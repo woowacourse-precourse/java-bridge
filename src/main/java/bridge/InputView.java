@@ -13,6 +13,11 @@ public class InputView {
      */
     public int readBridgeSize() {
         PrintInput.INPUT_SIZE.print();
+
+        return inputBridgeSize();
+    }
+
+    private int inputBridgeSize() {
         String bridgeSize;
 
         while(true) {
@@ -33,6 +38,11 @@ public class InputView {
     public String readMoving() {
         System.out.println();
         PrintInput.INPUT_MOVING.print();
+
+        return inputMoving();
+    }
+
+    private String inputMoving () {
         String moving;
 
         while(true) {
@@ -44,7 +54,6 @@ public class InputView {
                 e.printStackTrace();
             }
         }
-
         return moving;
     }
 
@@ -53,6 +62,11 @@ public class InputView {
      */
     public String readGameCommand() {
         PrintInput.INPUT_RETRY.print();
+
+        return inputCommand();
+    }
+
+    private String inputCommand() {
         String command;
 
         while(true) {
