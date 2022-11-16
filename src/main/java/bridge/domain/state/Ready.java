@@ -5,11 +5,9 @@ import bridge.domain.constants.BridgeConstants;
 
 import java.util.List;
 
-public class Ready implements State {
-    private final List<String> bridge;
-    
+public class Ready extends Started {
     public Ready(final List<String> bridge) {
-        this.bridge = bridge;
+        super(bridge);
     }
     
     @Override
@@ -20,10 +18,10 @@ public class Ready implements State {
     @Override
     public State move(final int currentPosition) {
         if (isPartBridgeExist(currentPosition)) {
-            return new Success();
+            return new Success(bridge());
         }
         
-        return new Fail();
+        return new Fail(bridge());
     }
     
     private boolean isPartBridgeExist(final int currentPosition) {
@@ -31,6 +29,11 @@ public class Ready implements State {
     }
     
     private String partBridge(final int currentPosition) {
-        return bridge.get(currentPosition);
+        return bridge().get(currentPosition);
+    }
+    
+    @Override
+    public boolean isMoveFail() {
+        throw new IllegalStateException("[ERROR] 준비 상태에선 이동 결과를 판별할 수 없습니다.");
     }
 }

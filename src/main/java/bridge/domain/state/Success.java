@@ -4,7 +4,11 @@ import bridge.domain.MoveResult;
 
 import java.util.List;
 
-public class Success implements State {
+public class Success extends Started {
+    public Success(final List<String> bridge) {
+        super(bridge);
+    }
+    
     @Override
     public MoveResult state() {
         return MoveResult.SUCCESS;
@@ -13,5 +17,10 @@ public class Success implements State {
     @Override
     public State move(final int currentPosition) {
         return null;
+    }
+    
+    @Override
+    public boolean isMoveFail() {
+        return false;
     }
 }
