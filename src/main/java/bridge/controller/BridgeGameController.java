@@ -16,6 +16,11 @@ public class BridgeGameController {
 
     public void start(){
         startGame();
+        run();
+    }
+
+    private void run(){
+        
     }
 
     private void startGame(){
