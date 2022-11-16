@@ -16,7 +16,15 @@ public class InputViewTest {
 	void 이동_테스트(){
 		Assertions.assertThrows(IllegalArgumentException.class,
 			() -> Validator.isMoveValidate("a"));
+		// Assertions.assertThrows( ,
+		// 	() -> Validator.isMoveValidate("U"));
 	}
 
-	
+	@Test
+	void 재시작_종료_입력_테스트(){
+		Assertions.assertThrows(IllegalArgumentException.class,
+			() -> Validator.isCommandValidate("a"));
+	}
+		// Assertions.assertThrows( ,
+		// 	() -> Validator.isCommandValidate("R"));
 }
