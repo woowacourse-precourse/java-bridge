@@ -2,9 +2,9 @@ package bridge.domain.state;
 
 import bridge.domain.MoveResult;
 
-public class Ready implements State {
+public class Success implements State {
     @Override
     public MoveResult state() {
-        return MoveResult.READY;
+        return MoveResult.SUCCESS;
     }
 }
