@@ -48,8 +48,8 @@ public class InputView {
         }
     }
 
-    private boolean isOne(String move) {
-        if (move.length() > 1) return false;
+    private boolean isOne(String command) {
+        if (command.length() > 1) return false;
         return true;
     }
 
@@ -68,10 +68,27 @@ public class InputView {
         return move;
     }
 
+    private void gameCommandValidate(String command) {
+        if (!isOne(command)) {
+            throw new IllegalArgumentException();
+        }
+        if (!isRetryQuit(command)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private boolean isRetryQuit(String command) {
+        if (!command.equals("R") && !command.equals("Q")) return false;
+        return true;
+    }
+
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String command = Console.readLine();
+        command = command.toUpperCase();
+        gameCommandValidate(command);
+        return command;
     }
 }
