@@ -7,8 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayInputStream;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class InputViewTest {
 
@@ -27,5 +26,13 @@ class InputViewTest {
     void inputBridgeSizeException(String input) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         assertThatThrownBy(inputView::readBridgeSize).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("건널 다리의 위치를 입력받아서 반환")
+    @Test
+    void inputBridgeMoving() {
+        System.setIn(new ByteArrayInputStream("U".getBytes()));
+        BridgeLocation result = BridgeLocation.UP;
+        assertThat(inputView.readMoving()).isEqualTo(result);
     }
 }
