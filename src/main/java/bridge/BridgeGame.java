@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.GameState;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,5 +80,10 @@ public class BridgeGame {
   public void retry() {
     tryCount++;
     success = GameState.SUCCESS;
+    for (int i = 0; i < 2; i++) {
+      for (int j = 0; j < size; j++) {
+        currentBridge.get(i).set(j,"   ");
+      }
+    }
   }
 }

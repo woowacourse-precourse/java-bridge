@@ -1,5 +1,9 @@
 package bridge;
 
+import bridge.UI.InputView;
+import bridge.UI.OutputView;
+import bridge.domain.BridgeMaker;
+import bridge.domain.GameState;
 import java.util.List;
 
 public class Application {
@@ -22,7 +26,7 @@ public class Application {
             }
             bridgeGame.retry(); //초기화
         }
-        outputView.printResult(round+1,bridgeGame);
+        outputView.printResult(round,bridgeGame);
 
 
 
@@ -32,7 +36,7 @@ public class Application {
         for(;round<bridgeSize;round++){
             String cmd=inputView.readMoving();
             boolean isSuccess=bridgeGame.move(round, cmd);
-            outputView.printMap(round+1,bridgeGame.getCurrentBridge());
+            outputView.printMap(round,bridgeGame.getCurrentBridge());
             if(!isSuccess){
                 return GameState.FAIL;
             }
