@@ -12,8 +12,8 @@
     - [ ] 플레이어가 이동할 칸 입력(U/D)
     - [ ] 게임 재시작/종료 여부(R/Q)
     - [ ] 각 메서드 예외 처리
-- [ ] bridge를 만드는 클래스 BridgeMaker 기능 구현
-    - [ ] makeBridge() 메서드 구현
+- [x] bridge를 만드는 클래스 BridgeMaker 기능 구현
+    - [x] makeBridge() 메서드 구현
 - [ ] 현재 진행중인 게임에 대한 정보를 관리하는 클래스 BridgeGame 기능 구현
     - 현재 게임의 성공 여부, 시도 횟수
     - [ ] move() 메서드 구현
