@@ -1,4 +1,7 @@
-package bridge;
+package bridge.output;
+
+import bridge.output.message.Error;
+import bridge.output.message.Read;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -7,8 +10,16 @@ public class OutputView {
 
     private static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.";
 
-    public void printStartMessage() {
+    public static void printStartMessage() {
         System.out.println(START_MESSAGE);
+    }
+
+    public static void printReadBridgeSizeMessage() {
+        System.out.println(Read.BRIDGE_SIZE.getMessage());
+    }
+
+    public static void printReadBridgeSizeErrorMessage() {
+        System.out.println(Error.BRIDGE_SIZE.getMessage());
     }
 
     /**

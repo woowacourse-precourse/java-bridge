@@ -10,8 +10,8 @@
 
 # 기능 목록
 - [x] 시작 문구를 출력할 수 있다.
-- [] 다리의 길이를 입력받을 수 있다. - InputView#readBridgeSize
-  - [] 3 이상 20 이하의 숫자이다.
+- [x] 다리의 길이를 입력받을 수 있다. - InputView#readBridgeSize
+  - [x] 3 이상 20 이하의 숫자이다.
 - [] 다리를 생성할 수 있다. - BridgeMaker#makeBridge
   - [] 0과 1중 무작위 값을 뽑는다.
   - [] 0이면 아래 칸이 건널 수 있고 D로 표현한다.
