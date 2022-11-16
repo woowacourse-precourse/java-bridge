@@ -23,12 +23,6 @@ class ReadyTest {
     }
     
     @Test
-    @DisplayName("Ready 상태 반환하기")
-    void stateInformation() {
-        assertThat(new Ready(List.of()).state()).isEqualTo(MoveResult.READY);
-    }
-    
-    @Test
     @DisplayName("다리 건너기 성공")
     void moveSuccess() {
         assertThat(upperReady.move(1)).isExactlyInstanceOf(Success.class);
@@ -38,6 +32,14 @@ class ReadyTest {
     @DisplayName("다리 건너기 실패")
     void moveFail() {
         assertThat(lowerReady.move(2)).isExactlyInstanceOf(Fail.class);
+    }
+    
+    @Test
+    @DisplayName("예외 처리 : Ready 상태에서 현재 상태를 알리려 할 경우")
+    void stateInformation() {
+        assertThatIllegalStateException()
+                .isThrownBy(() -> upperReady.state())
+                .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
     }
     
     @Test
