@@ -1,13 +1,13 @@
 package bridge.service.dto;
 
 public class BridgeSizeDto {
-    private final String bridgeSize;
+    private final int bridgeSize;
 
-    public BridgeSizeDto(String bridgeSize) {
+    public BridgeSizeDto(int bridgeSize) {
         this.bridgeSize = bridgeSize;
     }
 
-    public int toInt() {
-        return Integer.parseInt(bridgeSize);
+    public int getBridgeSize() {
+        return bridgeSize;
     }
 }
