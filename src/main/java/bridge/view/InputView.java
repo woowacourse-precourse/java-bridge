@@ -47,6 +47,14 @@ public class InputView {
     }
 
     private String receiveInput() {
-        return Console.readLine();
+        String input = Console.readLine();
+        validateInput(input);
+        return input;
+    }
+
+    private void validateInput(String input) {
+        if (input.length() >= 9) {
+            throw new IllegalArgumentException("[ERROR] 너무 긴 문자열은 입력할 수 없습니다.");
+        }
     }
 }
