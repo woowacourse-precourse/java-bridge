@@ -10,6 +10,7 @@ public class OutputView {
     private static final String GAME_START = "다리 건너기 게임을 시작합니다.";
     private static final String GET_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     private static final String GET_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String GET_GAME_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private static final String MAP_START_PART = "[ ";
     private static final String MAP_MIDDLE_PART = " | ";
     private static final String MAP_END_PART = " ]";
@@ -21,6 +22,7 @@ public class OutputView {
 
     public void printStart() {
         System.out.println(GAME_START);
+        System.out.println();
     }
 
     public void printGetBridgeSize() {
@@ -29,6 +31,10 @@ public class OutputView {
 
     public void printGetMoving() {
         System.out.println(GET_MOVING);
+    }
+
+    public void printGetGameCommand() {
+        System.out.println(GET_GAME_COMMAND);
     }
 
     /**
@@ -61,10 +67,10 @@ public class OutputView {
 
     private void printGameResult(boolean gameResult) {
         System.out.print(GAME_RESULT);
-        if(!gameResult) {
+        if (!gameResult) {
             System.out.println(FAIL);
         }
-        if(gameResult) {
+        if (gameResult) {
             System.out.println(SUCCESS);
         }
     }
