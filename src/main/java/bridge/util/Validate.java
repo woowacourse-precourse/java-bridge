@@ -25,7 +25,7 @@ public class Validate {
 
     public void validateMoving(String size){
         try{
-            if(size != "D" && size != "U"){
+            if(!size.equals("D")  && !size.equals("U")){
                 throw new IllegalArgumentException();
             }
         }
