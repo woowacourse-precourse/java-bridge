@@ -19,6 +19,53 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        while (true) {
+            Integer bridgeSize = getBridgeSizeOrNull();
+            if (bridgeSize == null) {
+                continue;
+            }
+            return bridgeSize;
+        }
+    }
+
+    /**
+     * 사용자가 이동할 칸을 입력받는다.
+     */
+    public String readMoving() {
+        while (true) {
+            String movingOrNull = getMovingOrNull();
+            if (movingOrNull == null) {
+                continue;
+            }
+            return movingOrNull;
+        }
+    }
+
+    /**
+     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
+     */
+    public String readGameCommand() {
+        while (true) {
+            String gameCommandOrNull = getGameCommandOrNull();
+            if (gameCommandOrNull == null) {
+                continue;
+            }
+            return gameCommandOrNull;
+        }
+    }
+
+    private Integer getBridgeSizeOrNull() {
+        try {
+            return inputBridgeSize();
+        } catch (IllegalArgumentException illegalArgumentException) {
+            ErrorView.printException(illegalArgumentException);
+        } catch (IllegalStateException illegalStateException) {
+            ErrorView.printException(illegalStateException);
+        }
+        return null;
+    }
+
+    private int inputBridgeSize() {
         System.out.println();
         System.out.println(PRINT_BRIDGE_SIZE);
         String userInput = Console.readLine().replaceAll(WHITE_SPACE, EMPTY);
@@ -29,10 +76,18 @@ public class InputView {
         return bridgeSize;
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
-    public String readMoving() {
+    private String getMovingOrNull() {
+        try {
+            return inputMoving();
+        } catch (IllegalArgumentException illegalArgumentException) {
+            ErrorView.printException(illegalArgumentException);
+        } catch (IllegalStateException illegalStateException) {
+            ErrorView.printException(illegalStateException);
+        }
+        return null;
+    }
+
+    private String inputMoving() {
         System.out.println();
         System.out.println(PRINT_SELECT_MOVING_DIRECTION);
 
@@ -43,10 +98,18 @@ public class InputView {
         return userInput;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public String readGameCommand() {
+    private String getGameCommandOrNull() {
+        try {
+            return inputGameCommand();
+        } catch (IllegalArgumentException illegalArgumentException) {
+            ErrorView.printException(illegalArgumentException);
+        } catch (IllegalStateException illegalStateException) {
+            ErrorView.printException(illegalStateException);
+        }
+        return null;
+    }
+
+    private String inputGameCommand() {
         System.out.println();
         System.out.println(PRINT_RETRY);
 
