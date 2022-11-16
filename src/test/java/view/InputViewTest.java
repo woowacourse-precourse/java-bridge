@@ -120,6 +120,33 @@ public class InputViewTest {
 		@DisplayName("성공 테스트 클래스")
 		class SuccessTest {
 
+			@Test
+			@DisplayName("이동할 칸 U 입력하는 경우 테스트")
+			void inputMovingU() {
+				// given
+				String moving = "U";
+
+				// when
+				readLine(moving);
+				String expectedMoving = "U";
+
+				// then
+				assertThat(inputView.readMoving()).isEqualTo(expectedMoving);
+			}
+
+			@Test
+			@DisplayName("이동할 칸 D 입력하는 경우 테스트")
+			void inputMovingD() {
+				// given
+				String moving = "D";
+
+				// when
+				readLine(moving);
+				String expectedMoving = "D";
+
+				// then
+				assertThat(inputView.readMoving()).isEqualTo(expectedMoving);
+			}
 		}
 
 		@Nested
