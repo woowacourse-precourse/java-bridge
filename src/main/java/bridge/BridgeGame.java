@@ -10,6 +10,7 @@ public class BridgeGame {
 
     public void run() {
         int lengthBridge = input.readBridgeSize();
+        System.out.println(lengthBridge);
         // make Bridge
 //        bridge.makeBridge(3);
 

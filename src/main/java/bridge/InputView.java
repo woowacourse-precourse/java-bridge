@@ -13,8 +13,14 @@ public class InputView {
     public int readBridgeSize() {
         OutputView.messageGameStart();
         OutputView.messageInputBridge();
-        Console.readLine();
-        return 0;
+        int bridgelength = 0;
+        try {
+            bridgelength = Integer.parseInt(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 숫자를 입력하세요. (3~20)");
+        }
+        validateOfBridgeLength(bridgelength);
+        return bridgelength;
     }
 
     /**
@@ -30,4 +36,12 @@ public class InputView {
     public String readGameCommand() {
         return null;
     }
-}
+
+    private void validateOfBridgeLength(int bridgelength) {
+        if ((bridgelength < 3) || (bridgelength > 20)) {
+            System.out.println("[ERROR] 올바른 범위의 값을 입력하세요. (3~20)");
+            throw new IllegalArgumentException();
+        }
+    }
+
+    }
