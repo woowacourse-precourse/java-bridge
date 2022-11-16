@@ -22,6 +22,7 @@ public class Validation {
 		try {
 			validateNumberLength(input, length);
 			validateNumberOnly(input);
+			validateRange(input);
 		} catch (IllegalArgumentException exception) {
 			System.out.println(exception.getMessage());
 			return true;
@@ -29,8 +30,16 @@ public class Validation {
 		return false;
 	}
 
+	private static void validateRange(String input) {
+		int bridgeSize = Integer.parseInt(input);
+
+		if (bridgeSize < 3 || bridgeSize > 20) {
+			throw Exceptions.LENGTH_EXCEPTION.getException();
+		}
+	}
+
 	public static void validateNumberLength(String input, int length) {
-		if (input.length() != length) {
+		if (input.length() > length || input.length() < length) {
 			throw Exceptions.LENGTH_EXCEPTION.getException();
 		}
 

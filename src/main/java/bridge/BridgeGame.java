@@ -3,12 +3,30 @@ package bridge;
 import java.util.List;
 
 import bridge.Validation.Validation;
+import bridge.View.GuideMessageView;
+import bridge.View.InputView;
+import bridge.View.OutputView;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 	private static String[][] map;
+
+
+	public void start(InputView inputView, OutputView outputView){
+		//다리 길이 입력
+		GuideMessageView.START_BRIDGE_GAME_GUIDE_MESSAGE.printMessage();
+		GuideMessageView.BRIDGE_LENGTH_GUIDE_MESSAGE.printMessage();
+		Validation.validateBridgeSize(2);
+
+		//이동할 칸 선택
+		GuideMessageView.SELECT_MOVE_GUIDE_MESSAGE.printMessage();
+		inputView.readMoving();
+		Validation.validateMoving();
+
+
+	}
 
 	/**
 	 * 사용자가 칸을 이동할 때 사용하는 메서드
