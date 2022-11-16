@@ -1,6 +1,6 @@
 package bridge;
 
-import java.util.Stack;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,7 +9,7 @@ import java.util.List;
 public class BridgeGame {
 
     private final List<String> randomBridge;
-    public Stack<String> passHistory = new Stack<>();
+    public List<String> passHistory;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -18,11 +18,12 @@ public class BridgeGame {
      */
     public BridgeGame (List<String> randomBridge) {
         this.randomBridge = randomBridge;
+        this.passHistory = new ArrayList<>();
     }
     public boolean move(String choiceUpAndDown) {
 
         if (!canPass(choiceUpAndDown)) {
-            this.passHistory.pop();
+            this.passHistory.remove(passHistory.size()-1);
             return retry();
         }
 
@@ -34,7 +35,7 @@ public class BridgeGame {
     }
 
     public boolean canPass (String choiceUpAndDown) {
-        this.passHistory.push(choiceUpAndDown);
+        this.passHistory.add(choiceUpAndDown);
 
         return randomBridge.get(passHistory.size()-1).equals(choiceUpAndDown);
     }
