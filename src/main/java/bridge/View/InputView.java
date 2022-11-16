@@ -2,12 +2,19 @@ package bridge.View;
 
 import static bridge.Utils.Convertor.stringToInt;
 
+import bridge.Utils.Validation;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+
+    Validation validation;
+
+    InputView() {
+        validation = new Validation();
+    }
 
     private String readLine() {
         return Console.readLine();
@@ -23,7 +30,8 @@ public class InputView {
      */
     public int readBridgeSize() {
         int input = readNumber();
-        return 0;
+        validation.isBridgeSize(input);
+        return input;
     }
 
     /**
