@@ -2,11 +2,10 @@ package bridge.domain.state;
 
 import bridge.constant.ErrorMessageConstant;
 import bridge.domain.MoveResult;
+import bridge.domain.factory.BridgeMakerTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
@@ -14,11 +13,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
 
 class ReadyTest {
-    private Ready ready;
+    private State upperReady;
+    private State lowerReady;
     
     @BeforeEach
     void setUp() {
-        ready = new Ready(List.of("X", "U", "X"));
+        upperReady = new Ready(BridgeMakerTest.UPPER_BRIDGE_MAKER.makeBridge(3));
+        lowerReady = new Ready(BridgeMakerTest.LOWER_BRIDGE_MAKER.makeBridge(3));
     }
     
     @Test
@@ -30,13 +31,13 @@ class ReadyTest {
     @Test
     @DisplayName("다리 건너기 성공")
     void moveSuccess() {
-        assertThat(ready.move(1)).isExactlyInstanceOf(Success.class);
+        assertThat(upperReady.move(1)).isExactlyInstanceOf(Success.class);
     }
     
     @Test
     @DisplayName("다리 건너기 실패")
     void moveFail() {
-        assertThat(ready.move(0)).isExactlyInstanceOf(Fail.class);
+        assertThat(lowerReady.move(2)).isExactlyInstanceOf(Fail.class);
     }
     
     @Test
