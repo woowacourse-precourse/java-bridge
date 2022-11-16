@@ -19,10 +19,12 @@ public class InputTest {
 
     private static final String ERROR = "[ERROR]";
     private static MockedStatic<Console> console;
+    private static InputView inputView;
 
     @BeforeEach
     void before() {
         console = mockStatic(Console.class);
+        inputView = new InputView();
     }
 
     @AfterEach
@@ -36,8 +38,6 @@ public class InputTest {
     void getBridgeSize(String input) {
         when(Console.readLine()).thenReturn(input);
 
-        InputView inputView = new InputView();
-
         assertThat(inputView.readBridgeSize()).isEqualTo(Integer.parseInt(input));
     }
 
@@ -46,8 +46,6 @@ public class InputTest {
     @ValueSource(strings = {"3Three", "!1l", "twenty"})
     void getBridgeSizeByNotNumber(String input) {
         when(Console.readLine()).thenReturn(input);
-
-        InputView inputView = new InputView();
 
         assertThatThrownBy(inputView::readBridgeSize)
                 .isInstanceOf(IllegalArgumentException.class)
@@ -61,8 +59,6 @@ public class InputTest {
     void getBridgeSizeByLowerThanBridgeSize(String input) {
         when(Console.readLine()).thenReturn(input);
 
-        InputView inputView = new InputView();
-
         assertThatThrownBy(inputView::readBridgeSize)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionType.IS_LOWER_THAN_MIN_BRIDGE_SIZE.getMessage())
@@ -74,8 +70,6 @@ public class InputTest {
     @ValueSource(strings = {"21", "999", "23"})
     void getBridgeSizeByHigherThanBridgeSize(String input) {
         when(Console.readLine()).thenReturn(input);
-
-        InputView inputView = new InputView();
 
         assertThatThrownBy(inputView::readBridgeSize)
                 .isInstanceOf(IllegalArgumentException.class)
@@ -89,8 +83,6 @@ public class InputTest {
     void getMoving(String input) {
         when(Console.readLine()).thenReturn(input);
 
-        InputView inputView = new InputView();
-
         assertThat(inputView.readMoving()).isEqualTo(input);
     }
 
@@ -99,8 +91,6 @@ public class InputTest {
     @ValueSource(strings = {"!", "0", "77tT", "Up!"})
     void getMovingByNotOnlyAlphabet(String input) {
         when(Console.readLine()).thenReturn(input);
-
-        InputView inputView = new InputView();
 
         assertThatThrownBy(inputView::readMoving)
                 .isInstanceOf(IllegalArgumentException.class)
@@ -114,8 +104,6 @@ public class InputTest {
     void getMovingByNotOneAlphabet(String input) {
         when(Console.readLine()).thenReturn(input);
 
-        InputView inputView = new InputView();
-
         assertThatThrownBy(inputView::readMoving)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionType.IS_NOT_ONE_ALPHABET.getMessage())
@@ -128,8 +116,6 @@ public class InputTest {
     void getMovingByLowerAlphabet(String input) {
         when(Console.readLine()).thenReturn(input);
 
-        InputView inputView = new InputView();
-
         assertThatThrownBy(inputView::readMoving)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionType.IS_NOT_UPPER_ALPHABET.getMessage())
@@ -141,8 +127,6 @@ public class InputTest {
     @ValueSource(strings = {"A", "T", "R", "Z"})
     void getMovingByNotMovingAlphabet(String input) {
         when(Console.readLine()).thenReturn(input);
-
-        InputView inputView = new InputView();
 
         assertThatThrownBy(inputView::readMoving)
                 .isInstanceOf(IllegalArgumentException.class)
