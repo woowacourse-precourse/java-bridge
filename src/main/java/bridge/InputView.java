@@ -20,14 +20,14 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-    private void validateBridgeSize (String input) {
+    private void validateBridgeSize(String input) {
         String regex = "^[0-9]+$";
         Matcher matcher = Pattern.compile(regex).matcher(input);
-        if (!matcher.matches()){
+        if (!matcher.matches()) {
             throw new IllegalArgumentException();
         }
         int bridgeSize = Integer.parseInt(input);
-        if (bridgeSize < 3 || bridgeSize > 20){
+        if (bridgeSize < 3 || bridgeSize > 20) {
             throw new IllegalArgumentException();
         }
     }
@@ -36,7 +36,8 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String move = Console.readLine();
+        return move;
     }
 
     /**
