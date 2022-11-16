@@ -14,10 +14,27 @@ public class BridgeGame {
 
     private final Bridge bridge;
     private final Player player;
+    private final GameResults gameResults;
 
-    public BridgeGame(Bridge bridge, Player player) {
+    public BridgeGame(Bridge bridge, Player player, GameResults gameResults) {
         this.bridge = bridge;
         this.player = player;
+        this.gameResults = gameResults;
+    }
+
+    public String matchResult(String movement) {
+        if (bridge.isMatched(player, movement)) {
+            return OK_SIGN;
+        }
+
+        // 틀리면 다시 시도 메세지!
+        return NO_SIGN;
+    }
+
+    public GameResults gameResults(String movement) {
+        String matchResult = matchResult(movement);
+        gameResults.addResults(movement, matchResult);
+        return gameResults;
     }
 
     /**
@@ -25,16 +42,9 @@ public class BridgeGame {
      * TODO 한칸씩 해당 메서드가 수행되고 결과를 반환해야 한다.
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String move(String movement) {  // TODO 값 반환 고민..
+    public void move() {  // TODO 값 반환 고민..
         // movement + Player position과 Bridge 비교
-        // 맞으면 Player position + 1
-        if (bridge.isMatched(player, movement)) {
-            player.move();
-            return OK_SIGN;
-        }
-
-        // 틀리면 다시 시도 메세지!
-        return NO_SIGN;
+        player.move();
     }
 
     /**
@@ -45,7 +55,12 @@ public class BridgeGame {
     public void retry() {
         // 게임을 재시도 할 때는 Bridge 상태가 그대로여야 한다.
         // 하지만 플레이어의 위치는 초기화 해야 한다.
+        gameResults.reset();
         player.initPosition();
         player.increaseNumberOfChallenges();  // 시도 회수 증가.
+    }
+
+    public GameResults gameResults() {
+        return gameResults;
     }
 }

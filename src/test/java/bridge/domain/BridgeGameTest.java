@@ -16,51 +16,35 @@ class BridgeGameTest {
 
     private Player player;
     private final Bridge bridge = new Bridge(List.of("U", "D", "U"));
+    private final GameResults gameResults = new GameResults();
     private BridgeGame bridgeGame;
 
     @BeforeEach
     void init() {
         player = new Player(INIT_VALUE_OF_POSITION, INIT_VALUE_OF_CHALLENGES);
-        bridgeGame = new BridgeGame(bridge, player);
+        bridgeGame = new BridgeGame(bridge, player, gameResults);
     }
 
-    @DisplayName("U를 입력 받으면 true를 반환한다.")
+    @DisplayName("U를 입력 받으면 O를 반환한다.")
     @Test
     void moveTestTrue() {
-        String sign = bridgeGame.move("U");
+        String sign = bridgeGame.matchResult("U");
         assertThat(sign).isEqualTo("O");
-    }
-
-    @DisplayName("U를 입력 받으면 Player의 position이 1 증가한다.")
-    @Test
-    void increasePosition() {
-        bridgeGame.move("U");
-        int position = player.position();
-        assertThat(position).isEqualTo(1);
-    }
-
-    @DisplayName("U, D를 연속적으로 입력 받으면 Player의 position이 2 증가한다.")
-    @Test
-    void doubleIncreasePosition() {
-        bridgeGame.move("U");
-        bridgeGame.move("D");
-        int position = player.position();
-        assertThat(position).isEqualTo(2);
     }
 
     @DisplayName("D를 입력 받으면 X를 반환한다.")
     @Test
     void moveTestFalse() {
-        String sign = bridgeGame.move("D");
+        String sign = bridgeGame.matchResult("D");
         assertThat(sign).isEqualTo("X");
     }
 
-    @DisplayName("D를 입력 받으면 Player의 position이 아무런 변동이 없다.")
+    @DisplayName("move() 메서드를 호출하면 Player의 position이 1 증가한다.")
     @Test
-    void nonChangedPosition() {
-        bridgeGame.move("D");
+    void increasePosition() {
+        bridgeGame.move();
         int position = player.position();
-        assertThat(position).isEqualTo(0);
+        assertThat(position).isEqualTo(1);
     }
 
     @ParameterizedTest(name = "{0}회 retry하면 Player의 총 시도 횟수가 {1}회가 된다.")
