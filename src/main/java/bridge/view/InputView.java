@@ -15,7 +15,8 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        int size = convert(input());
+        return checkSize(size);
     }
 
     /**
