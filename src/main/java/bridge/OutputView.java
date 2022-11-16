@@ -58,7 +58,7 @@ public class OutputView {
         }
     }
 
-    public void printFirstOrLast(String input) {
+    public void printFirst(String input) {
         if (input.equals("U")) {
             upBridge.replace("]", " O ]");
             downBridge.replace("]", "   ]");
@@ -77,5 +77,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult() {
+        System.out.println(upBridge);
+        System.out.println(downBridge);
     }
 }
