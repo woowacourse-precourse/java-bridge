@@ -62,48 +62,60 @@ class InputValidateTest {
   @DisplayName("String의 길이 검사 후 첫 글자가 U, P가 아니라면 예외가 발생한다.")
   @Test
   void isValidMoving() {
-    String test1 = "adfjU";
-    String test2 = "14afdP";
-    String test3 = "U";
-    String test4 = "P";
-    String test5 = "Uqwerjlk";
-    String test6 = "Pqwer";
+    String rangeOver1 = "adfjU";
+    String rangeOver2 = "14afdP";
+    String test1 = "U";
+    String test2 = "P";
+    String test3 = "R";
+    String test4 = "Q";
+    String test5 = "u";
+    String test6 = "d";
 
+    assertThatThrownBy(() -> InputValidate.isValidMoving(rangeOver1))
+            .isInstanceOf(IllegalArgumentException.class);
+    assertThatThrownBy(() -> InputValidate.isValidMoving(rangeOver2))
+            .isInstanceOf(IllegalArgumentException.class);
 //    assertThatThrownBy(() -> InputValidate.isValidMoving(test1))
 //            .isInstanceOf(IllegalArgumentException.class);
 //    assertThatThrownBy(() -> InputValidate.isValidMoving(test2))
 //            .isInstanceOf(IllegalArgumentException.class);
-//    assertThatThrownBy(() -> InputValidate.isValidMoving(test3))
-//            .isInstanceOf(IllegalArgumentException.class);
-//    assertThatThrownBy(() -> InputValidate.isValidMoving(test4))
-//            .isInstanceOf(IllegalArgumentException.class);
-//    assertThatThrownBy(() -> InputValidate.isValidMoving(test5))
-//            .isInstanceOf(IllegalArgumentException.class);
-//    assertThatThrownBy(() -> InputValidate.isValidMoving(test6))
-//            .isInstanceOf(IllegalArgumentException.class);
+    assertThatThrownBy(() -> InputValidate.isValidMoving(test3))
+            .isInstanceOf(IllegalArgumentException.class);
+    assertThatThrownBy(() -> InputValidate.isValidMoving(test4))
+            .isInstanceOf(IllegalArgumentException.class);
+    assertThatThrownBy(() -> InputValidate.isValidMoving(test5))
+            .isInstanceOf(IllegalArgumentException.class);
+    assertThatThrownBy(() -> InputValidate.isValidMoving(test6))
+            .isInstanceOf(IllegalArgumentException.class);
   }
 
   @DisplayName("String의 길이 검사 후 첫 글자가 Q, R이 아니라면 예외가 발생한다.")
   @Test
   void isValidCommand() {
-    String test1 = "adfjR";
-    String test2 = "14afdQ";
+    String sizeOver1 = "adfjR";
+    String sizeOver2 = "14afdQ";
     String test3 = "R";
     String test4 = "Q";
-    String test5 = "Rqwerjlk";
-    String test6 = "Qqwer";
+    String test5 = "D";
+    String test6 = "U";
+    String test7 = "r";
+    String test8 = "q";
 
-//    assertThatThrownBy(() -> InputValidate.isValidCommand(test1))
-//            .isInstanceOf(IllegalArgumentException.class);
-//    assertThatThrownBy(() -> InputValidate.isValidCommand(test2))
-//            .isInstanceOf(IllegalArgumentException.class);
-    assertThatThrownBy(() -> InputValidate.isValidCommand(test3))
+    assertThatThrownBy(() -> InputValidate.isValidCommand(sizeOver1))
             .isInstanceOf(IllegalArgumentException.class);
-    assertThatThrownBy(() -> InputValidate.isValidCommand(test4))
+    assertThatThrownBy(() -> InputValidate.isValidCommand(sizeOver2))
             .isInstanceOf(IllegalArgumentException.class);
-//    assertThatThrownBy(() -> InputValidate.isValidCommand(test5))
+//    assertThatThrownBy(() -> InputValidate.isValidCommand(test3))
 //            .isInstanceOf(IllegalArgumentException.class);
-//    assertThatThrownBy(() -> InputValidate.isValidCommand(test6))
+//    assertThatThrownBy(() -> InputValidate.isValidCommand(test4))
 //            .isInstanceOf(IllegalArgumentException.class);
+    assertThatThrownBy(() -> InputValidate.isValidCommand(test5))
+            .isInstanceOf(IllegalArgumentException.class);
+    assertThatThrownBy(() -> InputValidate.isValidCommand(test6))
+            .isInstanceOf(IllegalArgumentException.class);
+    assertThatThrownBy(() -> InputValidate.isValidCommand(test7))
+            .isInstanceOf(IllegalArgumentException.class);
+    assertThatThrownBy(() -> InputValidate.isValidCommand(test8))
+            .isInstanceOf(IllegalArgumentException.class);
   }
 }
