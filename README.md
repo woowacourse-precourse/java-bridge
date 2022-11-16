@@ -1,5 +1,17 @@
 # 미션 - 다리 건너기
 
+## 기능 목록 V 0 . 0
+
+### View (Package)
+#### InputView (Class) - 제공
+#### OutputView (Class) - 제공
+
+### Bridge (Package)
+#### BridgeMaker (Class) - 제공
+#### BridgeRandomNumberGenerator (Class) - 제공
+
+### BridgeGame (Class) - 제공
+
 ## 🔍 진행 방식
 
 - 미션은 **기능 요구 사항, 프로그래밍 요구 사항, 과제 진행 요구 사항** 세 가지로 구성되어 있다.
