@@ -10,6 +10,9 @@ import bridge.view.OutputView;
 
 public class BridgeGameController {
 
+    public static final String PASS_SIGN = "O";
+    public static final String FAIL_SIGN = "X";
+
     private final InputView inputView;
     private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
@@ -24,25 +27,22 @@ public class BridgeGameController {
     public void gameStart() {
         outputView.printStartMessage();
         int bridgeSize = inputView.bridgeSize();
-
-        Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
-        Player player = new Player(0, 1);
-        BridgeGame bridgeGame = new BridgeGame(bridge, player, new GameResults());
+        BridgeGame bridgeGame = bridgeGame(bridgeSize);
 
         String gameCommand = "";
         String success = "성공";
-        while (!gameCommand.equals("Q") && (player.position() != bridgeSize)) {
+        while (!gameCommand.equals("Q") && bridgeGame.ongoing(bridgeSize)) {
             String moveSign = inputView.movement();
             String resultSign = bridgeGame.matchResult(moveSign);
 
-            GameResults gameResults = bridgeGame.gameResults(moveSign);
-            outputView.printMap(gameResults);  // position은 출력 후 올려야..
+            GameResults gameResults = bridgeGame.gameResults(moveSign, resultSign);
+            outputView.printMap(gameResults);
 
-            if (resultSign.equals("O")) {
+            if (resultSign.equals(PASS_SIGN)) {
                 bridgeGame.move();
             }
 
-            if (resultSign.equals("X")) {
+            if (resultSign.equals(FAIL_SIGN)) {
                 gameCommand = inputView.gameCommand();
                 if (gameCommand.equals("R")) {
                     bridgeGame.retry();
@@ -53,6 +53,12 @@ public class BridgeGameController {
             }
         }
 
-        outputView.printResult(bridgeGame.gameResults(), player, success);
+        outputView.printResult(bridgeGame.gameResults(), bridgeGame.player(), success);
+    }
+
+    private BridgeGame bridgeGame(int bridgeSize) {
+        Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+        Player player = new Player(0, 1);
+        return new BridgeGame(bridge, player, new GameResults());
     }
 }
