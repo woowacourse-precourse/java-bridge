@@ -36,8 +36,8 @@ class InputViewTest {
         assertThat(inputView.readMoving()).isEqualTo(result);
     }
 
-    @DisplayName("잘못된 입력을 받으면 예외 반환")
-    @ValueSource(strings = {"u", "d", "d3"})
+    @DisplayName("잘못된 위치를 입력받으면 예외 반환")
+    @ValueSource(strings = {"u", "d", "D3"})
     @ParameterizedTest
     void inputBridgeMovingException(String input) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
@@ -51,5 +51,11 @@ class InputViewTest {
         assertThat(inputView.readGameCommand()).isEqualTo(true);
     }
 
-
+    @DisplayName("잘못된 재시작 여부를 입력받으면 예외 반환")
+    @ValueSource(strings = {"r", "q", "R3"})
+    @ParameterizedTest
+    void inputGameCommandException(String input) {
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        assertThatThrownBy(inputView::readGameCommand).isInstanceOf(IllegalArgumentException.class);
+    }
 }
