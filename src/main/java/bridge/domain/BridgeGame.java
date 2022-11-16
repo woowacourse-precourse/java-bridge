@@ -14,13 +14,12 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final List<String> bridge;
+    private final Bridge bridge;
     private NumberOfTry numberOfTry;
     private final LinkedList<State> states;
     
     public BridgeGame(final BridgeNumberGenerator bridgeNumberGenerator, final BridgeSizeDTO bridgeSizeDTO) {
-        final int bridgeSize = bridgeSizeDTO.getBridgeSize();
-        bridge = new BridgeMaker(bridgeNumberGenerator).makeBridge(bridgeSize);
+        bridge = new Bridge(bridgeNumberGenerator, bridgeSizeDTO.getBridgeSize());
         numberOfTry = new NumberOfTry();
         states = new LinkedList<>();
         System.out.println(bridge);

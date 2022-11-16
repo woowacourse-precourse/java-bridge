@@ -1,11 +1,10 @@
 package bridge.domain.state;
 
+import bridge.domain.Bridge;
 import bridge.domain.MoveResult;
 
-import java.util.List;
-
 public class Success extends MoveComplete {
-    public Success(final List<String> bridge, final String moving) {
+    public Success(final Bridge bridge, final String moving) {
         super(bridge, moving);
     }
     
@@ -16,7 +15,7 @@ public class Success extends MoveComplete {
     
     @Override
     public boolean isGameFinished(final int numberOfMoves) {
-        return bridge().size() == numberOfMoves;
+        return bridge().isSameWithBridgeSize(numberOfMoves);
     }
     
     @Override

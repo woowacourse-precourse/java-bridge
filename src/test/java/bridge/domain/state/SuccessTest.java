@@ -1,6 +1,7 @@
 package bridge.domain.state;
 
 import bridge.constant.ErrorMessageConstant;
+import bridge.domain.BridgeTest;
 import bridge.domain.MoveResult;
 import bridge.domain.factory.BridgeMakerTest;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,7 +20,7 @@ class SuccessTest {
     
     @BeforeEach
     void setUp() {
-        success = new Success(BridgeMakerTest.UPPER_BRIDGE_MAKER.makeBridge(3), "U");
+        success = new Success(BridgeTest.UPPER_BRIDGE, "U");
     }
     
     @Test
@@ -44,7 +45,7 @@ class SuccessTest {
     
     @DisplayName("게임 종료 상태 체크")
     @ParameterizedTest(name = "{displayName} : numberOfMoves => {0}, result => {1}")
-    @CsvSource(value = {"1, false", "2, true", "3, false"})
+    @CsvSource(value = {"1, false", "2, false", "3, true"})
     void isGameFinished(final int numberOfMoves, final boolean result) {
         assertThat(success.isGameFinished(numberOfMoves)).isEqualTo(result);
     }

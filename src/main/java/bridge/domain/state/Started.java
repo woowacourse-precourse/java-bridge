@@ -1,15 +1,15 @@
 package bridge.domain.state;
 
-import java.util.List;
+import bridge.domain.Bridge;
 
 public abstract class Started implements State {
-    private final List<String> bridge;
+    private final Bridge bridge;
     
-    Started(final List<String> bridge) {
+    Started(final Bridge bridge) {
         this.bridge = bridge;
     }
     
-    public List<String> bridge() {
+    public Bridge bridge() {
         return bridge;
     }
 }

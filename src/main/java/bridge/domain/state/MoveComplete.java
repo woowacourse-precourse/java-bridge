@@ -1,5 +1,7 @@
 package bridge.domain.state;
 
+import bridge.domain.Bridge;
+
 import java.util.List;
 
 public abstract class MoveComplete extends Started {
@@ -7,7 +9,7 @@ public abstract class MoveComplete extends Started {
     
     private final String moving;
     
-    MoveComplete(final List<String> bridge, final String moving) {
+    MoveComplete(final Bridge bridge, final String moving) {
         super(bridge);
         this.moving = moving;
     }

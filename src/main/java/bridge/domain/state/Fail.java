@@ -1,11 +1,10 @@
 package bridge.domain.state;
 
+import bridge.domain.Bridge;
 import bridge.domain.MoveResult;
 
-import java.util.List;
-
 public class Fail extends MoveComplete {
-    public Fail(final List<String> bridge, final String moving) {
+    public Fail(final Bridge bridge, final String moving) {
         super(bridge, moving);
     }
     

@@ -15,7 +15,7 @@ class BridgeGameTest {
     
     @BeforeEach
     void setUp() {
-        bridgeGame = new BridgeGame(BridgeNumberGeneratorTest.BRIDGE_NUMBER_GENERATOR_ONE, new BridgeSizeDTO(2));
+        bridgeGame = new BridgeGame(() -> 1, new BridgeSizeDTO(2));
         bridgeGame.move(new MovingDTO("U"));
     }
     

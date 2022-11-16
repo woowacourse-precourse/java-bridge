@@ -1,13 +1,11 @@
 package bridge.domain.state;
 
 import bridge.constant.ErrorMessageConstant;
+import bridge.domain.BridgeTest;
 import bridge.domain.MoveResult;
-import bridge.domain.factory.BridgeMakerTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
@@ -17,7 +15,7 @@ class FailTest {
     
     @BeforeEach
     void setUp() {
-        fail = new Fail(BridgeMakerTest.UPPER_BRIDGE_MAKER.makeBridge(3), "U");
+        fail = new Fail(BridgeTest.LOWER_BRIDGE, "U");
     }
     
     @Test

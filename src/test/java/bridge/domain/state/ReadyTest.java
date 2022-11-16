@@ -1,7 +1,7 @@
 package bridge.domain.state;
 
 import bridge.constant.ErrorMessageConstant;
-import bridge.domain.MoveResult;
+import bridge.domain.BridgeTest;
 import bridge.domain.factory.BridgeMakerTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -18,8 +18,8 @@ class ReadyTest {
     
     @BeforeEach
     void setUp() {
-        upperReady = new Ready(BridgeMakerTest.UPPER_BRIDGE_MAKER.makeBridge(3));
-        lowerReady = new Ready(BridgeMakerTest.LOWER_BRIDGE_MAKER.makeBridge(3));
+        upperReady = new Ready(BridgeTest.UPPER_BRIDGE);
+        lowerReady = new Ready(BridgeTest.LOWER_BRIDGE);
     }
     
     @Test
@@ -46,7 +46,7 @@ class ReadyTest {
     @DisplayName("예외 처리 : 재시도 여부 선택 상태를 판별하는 기능 사용 시")
     void isRetry() {
         assertThatIllegalStateException()
-                .isThrownBy(() -> new Ready(List.of()).isMoveFail())
+                .isThrownBy(() -> upperReady.isMoveFail())
                 .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
     }
     
@@ -54,7 +54,7 @@ class ReadyTest {
     @DisplayName("예외 처리 : 게임 종료 여부 선택 상태를 판별하는 기능 사용 시")
     void isGameFinished() {
         assertThatIllegalStateException()
-                .isThrownBy(() -> new Ready(List.of()).isGameFinished(2))
+                .isThrownBy(() -> upperReady.isGameFinished(2))
                 .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
     }
 }
