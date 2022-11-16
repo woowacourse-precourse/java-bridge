@@ -1,3 +1,30 @@
+# 기능 구현 목록
+- BridgeGame
+  - 다리 건너기 게임을 시작하는 메세지 출력 - printGameStartMessage()
+  - 다리 길이를 입력하라는 메세지 출력 - printRequestBridgeSizeMessage()
+  - 이동할 칸을 선택하라는 메세지 출력 - printRequestMovingSizeMessage()
+  - 게임을 다시 시도할지 여부를 입력하라는 메세지 출력 - printRequestRetryMessage()
+- BridgeMaker
+  - 다리길이를 입력 받아서 다리를 생성해준다. - makeBridge(int size)
+- BridgeRandomNumberGenerator
+  - 0 또는 1의 랜덤값을 반환해준다. - generate()
+- InputView
+  - 다리 길이를 입력받는다. - readBridgeSize()
+  - 이동할 칸을 입력받는다. - readMoving()
+  - 게임을 다시 시도할지 여부를 입력받는다. - readGameCommand()
+- OutputView
+  - 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다 - printMap()
+  - 게임의 최종 결과를 정해진 형식에 맞춰 출력한다. printResult()
+- Validator
+  - 자동으로 생성할 다리 길이를 입력받을때 입력값이 숫자인지 확인한다. -validIsNum()
+  - 자동으로 생성할 다리 길이를 입력받을때 3이상 20 이하의 숫자인지 확인한다. - validRange()
+  - 라운드마다 플레이어가 이동할 칸을 입력 받을때 올바른 값인지 확인한다. - validMovingInput()
+  - 게임 재시작/종료 여부를 입력받을때 올바른 값인지 확인한다. - validGameCommandInput()
+- Error Enum
+  - 예외 발생시 예외 메세지를 Enum 으로 처리한다.
+- GameMessage Enum
+  - 게임 진행에 관련한 상수들을 Enum 으로 처리한다.
+
 #🚀 기능 요구 사항
 ## 위아래 둘 중 하나의 칸만 건널 수 있는 다리를 끝까지 건너가는 게임이다.
 
