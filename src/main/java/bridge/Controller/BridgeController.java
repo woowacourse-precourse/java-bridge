@@ -20,18 +20,17 @@ public class BridgeController {
 
     public List<String> startAndGetAnswerBridge() {
         output.printStart();
+        return getAnswerBridge();
+    }
 
+    private List<String> getAnswerBridge() {
         try {
-            return getAnswerBridge();
+            output.printGetBridgeSize();
+            int bridgeSize = input.readBridgeSize();
+            return bridgeMaker.makeBridge(bridgeSize);
         } catch (IllegalArgumentException e) {
             output.printError(e.getMessage());
             return getAnswerBridge();
         }
-    }
-
-    private List<String> getAnswerBridge() {
-        output.printGetBridgeSize();
-        int bridgeSize = input.readBridgeSize();
-        return bridgeMaker.makeBridge(bridgeSize);
     }
 }
