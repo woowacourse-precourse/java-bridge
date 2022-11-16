@@ -1,9 +1,11 @@
 package bridge;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.when;
 
+import bridge.Utils.ExceptionType;
 import bridge.View.InputView;
 import camp.nextstep.edu.missionutils.Console;
 import org.junit.jupiter.api.AfterEach;
@@ -14,6 +16,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.MockedStatic;
 
 public class InputTest {
+
+    private static final String ERROR = "[ERROR]";
     private static MockedStatic<Console> console;
 
     @BeforeEach
@@ -35,6 +39,20 @@ public class InputTest {
         InputView inputView = new InputView();
 
         assertThat(inputView.readBridgeSize()).isEqualTo(Integer.parseInt(input));
+    }
+
+    @DisplayName("입력받은 다리 길이가 숫자가 아닌 경우 에러를 발생시킨다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"3Three", "!1l", "twenty"})
+    void getBridgeSizeByNotNumber(String input) {
+        when(Console.readLine()).thenReturn(input);
+
+        InputView inputView = new InputView();
+
+        assertThatThrownBy(inputView::readBridgeSize)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionType.IS_NOT_NUMBER.getMessage())
+                .hasMessageContaining(ERROR);
     }
 
 }
