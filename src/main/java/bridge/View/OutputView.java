@@ -63,4 +63,8 @@ public class OutputView {
         System.out.print(GAME_TOTAL);
         System.out.println(count);
     }
+
+    public void printError(String message) {
+        System.out.println(message);
+    }
 }
