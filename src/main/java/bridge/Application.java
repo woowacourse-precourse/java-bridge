@@ -11,6 +11,8 @@ public class Application {
         gameStart.move(BridgeNumberGenerator.bridgeLength); // 이동할 칸 선택
 
         output.printMap(BridgeNumberGenerator.bridgeLength); // Map 출력
+        
 
     }
 }
+

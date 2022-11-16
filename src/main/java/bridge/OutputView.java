@@ -12,6 +12,7 @@ public class OutputView {
      */
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
+    
     public void printMap(int bridgeLength) {
         BridgeMaker bridgeMake = new BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator);
         brigeMake.makeBridge(BridgeNumberGenerator.bridgeLength);
