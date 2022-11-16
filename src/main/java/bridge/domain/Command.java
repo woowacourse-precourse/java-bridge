@@ -13,4 +13,12 @@ public enum Command {
         this.abbreviation = abbreviation;
         this.korExplanation = korExplanation;
     }
+
+    public String getKor() {
+        return this.korExplanation;
+    }
+
+    public char getAbbreviation() {
+        return this.abbreviation;
+    }
 }

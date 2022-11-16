@@ -9,4 +9,8 @@ public enum State {
     State(String korExplanation) {
         this.korExplanation = korExplanation;
     }
+
+    public String getKorState() {
+        return this.korExplanation;
+    }
 }
