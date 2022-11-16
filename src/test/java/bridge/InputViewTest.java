@@ -68,4 +68,24 @@ class InputViewTest {
             inputView.readMoving();
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("재시작 종료 입력 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"R", "Q", "r", "q"})
+    void retryQuitTest(String input) {
+        String[] result = {"R", "Q"};
+        setIn(input);
+        String command = inputView.readGameCommand();
+        assertThat(result).contains(command);
+    }
+
+    @DisplayName("재시작 종료 입력 에러 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"qq", "Qq", "hj", "k", "retry"})
+    void retryQuitErrorTest(String input) {
+        setIn(input);
+        assertThatThrownBy(() -> {
+            inputView.readGameCommand();
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }
