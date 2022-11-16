@@ -1,15 +1,24 @@
 package bridge.view;
 
+import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
 
+    private static final String NUMBER_INPUT_ERROR_MESSAGE = "[ERROR] 숫자를 입력하여야 합니다.";
+
+    private static final String NUMBER_REGEX = "^\\d+$";
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        String bridgeSizeInput = Console.readLine();
+        validateIsNumber(bridgeSizeInput);
+        int bridgeSize = Integer.parseInt(bridgeSizeInput);
+        return bridgeSize;
     }
 
     /**
@@ -24,5 +33,12 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private void validateIsNumber(String input){
+        if(input.matches(NUMBER_REGEX)){
+            return;
+        }
+        throw new IllegalArgumentException(NUMBER_INPUT_ERROR_MESSAGE);
     }
 }
