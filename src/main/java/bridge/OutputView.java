@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.constant.PrintString;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -24,5 +26,13 @@ public class OutputView {
 
     public void printException(IllegalArgumentException e){
         System.out.println(e.getMessage());
+    }
+
+    public void printSetSize(){
+        System.out.println(PrintString.SET_SIZE.getPrint());
+    }
+
+    public void printStart(){
+        System.out.println(PrintString.INIT_START.getPrint());
     }
 }

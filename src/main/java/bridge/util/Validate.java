@@ -1,7 +1,6 @@
 package bridge.util;
 
-import bridge.OutputView;
-import bridge.exception.ERROR;
+import bridge.constant.ERROR;
 
 public class Validate {
 

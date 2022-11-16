@@ -1,4 +1,4 @@
-package bridge.exception;
+package bridge.constant;
 
 public enum ERROR {
     sizeException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
