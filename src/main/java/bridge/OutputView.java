@@ -20,4 +20,12 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    public void printStart() {
+        System.out.println(BridgeConstant.GAME_START.getValue());
+    }
+
+    public void printLengthInput() {
+        System.out.println(BridgeConstant.INPUT_BRIDGE_LENGTH.getValue());
+    }
 }
