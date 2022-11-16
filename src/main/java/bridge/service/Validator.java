@@ -5,7 +5,8 @@ import bridge.constant.ErrorMessage;
 public class Validator {
 
     public void validateBridgeLength(String bridgeLength) {
-
+        validateBridgeLengthForm(bridgeLength);
+        validateBridgeLengthValue(Integer.parseInt(bridgeLength));
     }
 
     private void validateBridgeLengthForm(String bridgeLength) {
