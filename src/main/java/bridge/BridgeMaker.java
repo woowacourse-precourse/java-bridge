@@ -21,13 +21,23 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for (int index = 0; index < size; index++) {
-            int generate = bridgeNumberGenerator.generate();
-            if (generate == 0) {
-                bridge.add("U");
-            }
-            if (generate == 1) {
-                bridge.add("D");
-            }
+            int answerNumber = bridgeNumberGenerator.generate();
+            bridge = addU(bridge, answerNumber);
+            bridge = addD(bridge, answerNumber);
+        }
+        return bridge;
+    }
+
+    private List<String> addU(List<String> bridge, int answerNumber){
+        if (answerNumber == 0){
+            bridge.add("U");
+        }
+        return bridge;
+    }
+
+    private List<String> addD(List<String> bridge, int answerNumber){
+        if (answerNumber == 1){
+            bridge.add("D");
         }
         return bridge;
     }
