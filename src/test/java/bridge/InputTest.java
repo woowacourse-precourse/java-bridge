@@ -121,4 +121,19 @@ public class InputTest {
                 .hasMessage(ExceptionType.IS_NOT_ONE_ALPHABET.getMessage())
                 .hasMessageContaining(ERROR);
     }
+
+    @DisplayName("이동할 칸을 입력받을 때 알파벳이 소문자인 경우 에러를 발생시킨다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"u", "d", "r", "z"})
+    void getMovingByLowerAlphabet(String input) {
+        when(Console.readLine()).thenReturn(input);
+
+        InputView inputView = new InputView();
+
+        assertThatThrownBy(inputView::readMoving)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionType.IS_NOT_UPPER_ALPHABET.getMessage())
+                .hasMessageContaining(ERROR);
+    }
+
 }
