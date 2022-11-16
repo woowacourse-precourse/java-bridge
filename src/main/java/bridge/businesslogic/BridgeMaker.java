@@ -1,4 +1,6 @@
-package bridge;
+package bridge.businesslogic;
+
+import bridge.BridgeNumberGenerator;
 
 import java.util.List;
 
