@@ -17,6 +17,7 @@ public class OutputView {
         StringBuilder upString = new StringBuilder();
         StringBuilder downString = new StringBuilder();
         upString.append("[");
+        downString.append("[");
         for (int i = 0; i < movingIdx; i++) {
             if (Objects.equals(bridgeList.get(i), "U")) {
                 upString.append(" O |");
