@@ -6,7 +6,7 @@
 - BridgeGame
   - 다리 건너기 게임을 시작하는 메세지 출력 - printGameStartMessage()
   - 다리 길이를 입력하라는 메세지 출력 - printRequestBridgeSizeMessage()
-  - 이동할 칸을 선택하라는 메세지 출력 - printRequestMovingSizeMessage()
+  - 이동할 칸을 선택하라는 메세지 출력 - printRequestMovingMessage()
   - 게임을 다시 시도할지 여부를 입력하라는 메세지 출력 - printRequestRetryMessage()
 - BridgeMaker
   - 다리길이를 입력 받아서 다리를 생성해준다. - makeBridge(int size)
