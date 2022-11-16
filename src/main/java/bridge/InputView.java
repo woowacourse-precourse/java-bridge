@@ -27,7 +27,6 @@ public class InputView {
             throw new IllegalArgumentException(ERROR);
         }
     }
-
     public void isRange(int Size){
         if(!(Size>=3&&Size<=20)){
             throw new IllegalArgumentException(ERROR);
