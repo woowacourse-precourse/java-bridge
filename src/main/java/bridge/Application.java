@@ -12,32 +12,31 @@ public class Application {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         BridgeGame bridgeGame = new BridgeGame();
-        int count = 0;
+        int count = 1;
         int round = 0;
         boolean ongoing = true;
 
-        try {
-            int bridgeSize = inputView.readBridgeSize();
-            List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        int bridgeSize = inputView.readBridgeSize();
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
 
-            while (round <= bridgeSize && ongoing) {
-                String moving = inputView.readMoving();
-                boolean movable = bridgeGame.move(bridge, round, moving);
-                outputView.printMap(bridge, round, movable);
-                if (movable) {
-                    round++;
-                    continue;
-                }
-                String command = inputView.readGameCommand();
-                ongoing = bridgeGame.retry(command);
-                if (ongoing) {
-                    round = 0;
-                    count++;
-                }
+        while (round < bridgeSize && ongoing) {
+            String moving = inputView.readMoving();
+            boolean movable = bridgeGame.move(bridge, round, moving);
+            outputView.printMap(bridge, round, movable);
+            if (movable) {
+                round++;
+                continue;
             }
-            outputView.printResult(ongoing, count);
-        }catch(IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            String command = inputView.readGameCommand();
+            ongoing = bridgeGame.retry(command);
+            if (ongoing) {
+                round = 0;
+                count++;
+            }
         }
+        System.out.println("\n최종 게임 결과");
+        outputView.printMap(bridge, bridgeSize - 1, true);
+        outputView.printResult(ongoing, count);
+
     }
 }

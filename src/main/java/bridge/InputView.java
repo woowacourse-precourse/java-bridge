@@ -14,10 +14,16 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println("\n다리의 길이를 입력해주세요.");
-        String input = Console.readLine();
-        validateBridgeSize(input);
-        return Integer.parseInt(input);
+        while (true) {
+            try {
+                System.out.println("\n다리의 길이를 입력해주세요.");
+                String input = Console.readLine();
+                validateBridgeSize(input);
+                return Integer.parseInt(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void validateBridgeSize(String input) {
@@ -36,13 +42,20 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String input = Console.readLine();
-        validateMoving(input);
-        return input;
+        while (true) {
+            try {
+                System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
+                String input = Console.readLine();
+                validateMoving(input);
+                return input;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
-    private void validateMoving(String input){
-        if (!input.equals("U") && !input.equals("D")){
+
+    private void validateMoving(String input) {
+        if (!input.equals("U") && !input.equals("D")) {
             throw new IllegalArgumentException("[ERROR] U, D 중 하나를 입력해주세요.");
         }
     }
@@ -51,14 +64,20 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        String input = Console.readLine();
-        validateGameCommand(input);
-        return input;
+        while (true) {
+            try {
+                System.out.println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+                String input = Console.readLine();
+                validateGameCommand(input);
+                return input;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void validateGameCommand(String input) {
-        if (!input.equals("R") && !input.equals("Q")){
+        if (!input.equals("R") && !input.equals("Q")) {
             throw new IllegalArgumentException("[ERROR] R, Q 중 하나를 입력해주세요.");
         }
     }
