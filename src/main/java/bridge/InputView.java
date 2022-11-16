@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.Scanner;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -9,7 +11,13 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        System.out.println("다리의 길이를 입력해주세요.");
+
+        Scanner sc = new Scanner(System.in);
+        int bridgeSize = sc.nextInt();
+        sc.close();
+
+        return bridgeSize;
     }
 
     /**
