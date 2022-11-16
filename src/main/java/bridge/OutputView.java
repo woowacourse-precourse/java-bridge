@@ -24,6 +24,7 @@ public class OutputView {
         List<String> upCase = passHistory.stream()
                         .map((el) -> {
                             if (el.equals("U")) return "O";
+                            if (el.equals("UX")) return "X";
                             return " ";
                         }).collect(Collectors.toList());
 
@@ -37,6 +38,7 @@ public class OutputView {
         List<String> upCase = passHistory.stream()
                 .map((el) -> {
                     if (el.equals("D")) return "O";
+                    if (el.equals("DX")) return "X";
                     return " ";
                 }).collect(Collectors.toList());
 
