@@ -16,11 +16,13 @@ import java.util.List;
 public class BridgeGame {
     private final List<String> bridge;
     private final LinkedList<State> states;
+    private NumberOfTry numberOfTry;
     
     public BridgeGame(final BridgeNumberGenerator bridgeNumberGenerator, final BridgeSizeDTO bridgeSizeDTO) {
         final int bridgeSize = bridgeSizeDTO.getBridgeSize();
         bridge = new BridgeMaker(bridgeNumberGenerator).makeBridge(bridgeSize);
         states = new LinkedList<>();
+        numberOfTry = new NumberOfTry();
         System.out.println(bridge);
     }
     
@@ -42,6 +44,7 @@ public class BridgeGame {
      */
     public void retry() {
         states.clear();
+        this.numberOfTry = numberOfTry.increase();
     }
     
     public boolean isGameFinished() {
