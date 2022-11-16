@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.message.PrintInput;
+import bridge.message.PrintError;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -84,32 +85,36 @@ public class InputView {
 
     private void validateCommand (String command) {
         if (!command.equals("R") && !command.equals("Q")) {
+            PrintError.COMMAND.print();
             throw new IllegalArgumentException();
         }
     }
 
     private void validateMoving (String moving) {
         if (!moving.equals("U") && !moving.equals("D")) {
+            PrintError.MOVING.print();
             throw new IllegalArgumentException();
         }
     }
 
     private void validateBridgeSize (String bridgeSize) {
         isRealNumber(bridgeSize);
-        checkbridgeSizeNumberRange(bridgeSize);
+        checkBridgeSizeNumberRange(bridgeSize);
     }
 
     private void isRealNumber (String bridgeSize) {
         for (char element: bridgeSize.toCharArray()) {
             if (element < 48 || element > 57) {
+                PrintError.SIZE_NUMBER.print();
                 throw new IllegalArgumentException();
             }
         }
     }
 
-    private void checkbridgeSizeNumberRange (String bridgeSize) {
+    private void checkBridgeSizeNumberRange (String bridgeSize) {
         int bridgeSizeNumber = Integer.parseInt(bridgeSize);
         if (bridgeSizeNumber < 3 || bridgeSizeNumber > 20) {
+            PrintError.SIZE_RANGE.print();
             throw new IllegalArgumentException();
         }
     }
