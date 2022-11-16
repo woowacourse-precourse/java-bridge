@@ -53,7 +53,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(int attempt, boolean outcome) {
+    public void printResult(int attempt, boolean outcome, List<String> passHistory) {
+        System.out.println();
+        System.out.println("최종 게임 결과");
+        printMap(passHistory);
+
         if (outcome) {
             System.out.println(PrintInput.RESULT + "성공");
         }
