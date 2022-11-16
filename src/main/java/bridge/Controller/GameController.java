@@ -12,6 +12,7 @@ public class GameController {
 
     private boolean keepGoing = true;
     private int i = 0;
+    private int tryCount = 1;
 
     InputView inputView;
     OutputView outputView;
@@ -38,12 +39,14 @@ public class GameController {
                 checkKeepGoing();
             }
         }
+        outputView.printResult(tryCount, keepGoing);
     }
 
     private void checkKeepGoing() {
         String resetCommand = inputView.readGameCommand();
         if(resetCommand.matches("R")) {
             i = 0;
+            tryCount++;
             outputView.clearMap();
         }
         if(resetCommand.matches("Q"))
