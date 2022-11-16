@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.message.PrintInput;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
