@@ -1,5 +1,8 @@
 package bridge;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -10,7 +13,35 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(List<String> passHistory) {
+        System.out.println(generateUpCase(passHistory));
+        System.out.println(generateDownCase(passHistory));
+    }
+
+    private String generateUpCase (List<String> passHistory) {
+        String upCaseResult;
+
+        List<String> upCase = passHistory.stream()
+                        .map((el) -> {
+                            if (el.equals("U")) return "O";
+                            return " ";
+                        }).collect(Collectors.toList());
+
+        return upCaseResult = upCase.stream()
+                        .collect(Collectors.joining(" | ", "[ ", " ]"));
+    }
+
+    private String generateDownCase (List<String> passHistory) {
+        String downCaseResult;
+
+        List<String> upCase = passHistory.stream()
+                .map((el) -> {
+                    if (el.equals("D")) return "O";
+                    return " ";
+                }).collect(Collectors.toList());
+
+        return downCaseResult = upCase.stream()
+                .collect(Collectors.joining(" | ", "[ ", " ]"));
     }
 
     /**
