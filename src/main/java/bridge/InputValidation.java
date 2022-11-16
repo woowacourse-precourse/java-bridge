@@ -9,8 +9,14 @@ public class InputValidation {
     }
 
     public void bridgeSize(int bridgeSize) {
-        if (bridgeSize  < 3 || bridgeSize > 20) {
+        if (bridgeSize < 3 || bridgeSize > 20) {
             throw new IllegalArgumentException(ERROR_TOKEN + " 다리 길이는 3이상 20이하의 값만 입력 가능합니다.");
+        }
+    }
+
+    public void userMove(String userInput) {
+        if (!userInput.matches("[U|D]")) {
+            throw new IllegalArgumentException(ERROR_TOKEN + " U 혹은 D 문자만 입력 가능합니다.");
         }
     }
 
