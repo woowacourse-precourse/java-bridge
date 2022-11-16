@@ -3,15 +3,15 @@ package bridge.Input;
 import bridge.CommandConstant;
 
 public class InputValidation {
-    private static final int MIN_BRIDGE_SIZE = 3;
-    private static final int MAX_BRIDGE_SIZE = 20;
+    public static final int MIN_BRIDGE_SIZE = 3;
+    public static final int MAX_BRIDGE_SIZE = 20;
 
     public static void validateBridgeSize(String bridgeSizeInput) {
         validateInteger(bridgeSizeInput);
         validateRange(bridgeSizeInput);
     }
 
-    public static void validateInteger(String bridgeSizeInput) {
+    private static void validateInteger(String bridgeSizeInput) {
         try {
             Integer.valueOf(bridgeSizeInput);
         } catch (NumberFormatException e) {
@@ -19,7 +19,7 @@ public class InputValidation {
         }
     }
 
-    public static void validateRange(String bridgeSizeInput) {
+    private static void validateRange(String bridgeSizeInput) {
         int bridgeSize = Integer.valueOf(bridgeSizeInput);
         if (bridgeSize < MIN_BRIDGE_SIZE || bridgeSize > MAX_BRIDGE_SIZE) {
             throw new IllegalArgumentException();
