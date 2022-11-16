@@ -10,9 +10,9 @@ public class InputValidator {
     private InputValidator() {
     }
 
-    public static int checkBridgeSize(String size) {
+    public static String checkBridgeSize(String size) {
         validateOnlyNumber(size);
-        return Integer.parseInt(size);
+        return size;
     }
 
     private static void validateOnlyNumber(String input) {

@@ -120,7 +120,7 @@ InputValidator
   - R 또는 Q만 입력할 수 있다.
 
 BridgeSizeDto
-- [ ]  다리 길이를 담아서 컨트롤러로 보낸다.
+- [x]  다리 길이를 담아서 컨트롤러로 보낸다.
 
 BridgeSpaceDto
 - [ ]  플레이어가 선택한 칸을 담아서 컨트롤러로 보낸다.
