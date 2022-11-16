@@ -11,4 +11,12 @@ public class InputViewTest {
 		Assertions.assertThrows(IllegalArgumentException.class,
 			() -> input.readBridgeSize());
 	}
+
+	@Test
+	void 이동_테스트(){
+		Assertions.assertThrows(IllegalArgumentException.class,
+			() -> Validator.isMoveValidate("a"));
+	}
+
+	
 }
