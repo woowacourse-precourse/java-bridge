@@ -25,4 +25,10 @@ public class InputView {
     public String readGameCommand() {
         return null;
     }
+
+    private void validateCommand (String command) {
+        if (command.equals("R") || command.equals("Q")) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
