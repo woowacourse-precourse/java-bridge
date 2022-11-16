@@ -136,4 +136,18 @@ public class ViewTest {
         assertThat(inputView.readGameCommand()).isEqualTo("Q");
     }
 
+    @Test
+    @DisplayName("게임 커멘드가 R 또는 Q가 아닐 경우 예외가 발생한다.")
+    void 게임_커멘드가_R_또는_Q가_아닐_경우_예외가_발생한다() {
+        // given
+        InputView inputView = new InputView();
+
+        // when
+        InputStream in = generateUserInput("F");
+        System.setIn(in);
+
+        // then
+        assertThatThrownBy(inputView::readGameCommand)
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
