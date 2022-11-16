@@ -1,7 +1,7 @@
 package bridge.service;
 
 import bridge.util.BridgeNumberGenerator;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,8 +21,24 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         validateLength(size);
-        return Collections.emptyList();
+        List<String> bridge = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            bridge.add(createRandomUpDown());
+        }
+        return bridge;
     }
+
+    private String createRandomUpDown() {
+        int zeroOrOne = bridgeNumberGenerator.generate();
+        if (zeroOrOne == 0) {
+            return "D";
+        }
+        if (zeroOrOne == 1) {
+            return "U";
+        }
+        throw new IllegalArgumentException("[ERROR] 난수는 0 또는 1만 허용됩니다.");
+    }
+
 
     private void validateLength(int size) {
         if (size < 3 || size > 20) {
