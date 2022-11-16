@@ -8,7 +8,10 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     private static final int MIN_SIZE = 3;
     private static final int MAX_SIZE = 20;
+    private static final String UP = "U";
+    private static final String DOWN = "D";
     private static final String SIZE_ERROR = "다리 길이는 " + MIN_SIZE + "부터 " + MAX_SIZE + "까지 가능합니다.";
+    private static final String MOVING_ERROR = UP + "(위) 또는 " + DOWN + "(아래)로만 이동이 가능합니다.";
     private static final String NUMBER_FORMAT_ERROR = "숫자가 아닙니다.";
 
     /**
@@ -31,6 +34,17 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private String checkMoving(String moving) {
+        if (isWrongMoving(moving)) {
+            throw new IllegalArgumentException(MOVING_ERROR);
+        }
+        return moving;
+    }
+
+    private boolean isWrongMoving(String moving) {
+        return !(moving.equals(UP) || moving.equals(DOWN));
     }
 
     private int checkSize(int size) {
