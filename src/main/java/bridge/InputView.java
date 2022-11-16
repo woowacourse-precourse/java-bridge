@@ -31,4 +31,10 @@ public class InputView {
             throw new IllegalArgumentException();
         }
     }
+
+    private void validateMoving (String moving) {
+        if (moving.equals("U") || moving.equals("D")) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
