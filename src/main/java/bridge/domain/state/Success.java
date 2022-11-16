@@ -4,14 +4,9 @@ import bridge.domain.MoveResult;
 
 import java.util.List;
 
-public class Success extends Started {
+public class Success extends MoveComplete {
     public Success(final List<String> bridge) {
         super(bridge);
-    }
-    
-    @Override
-    public State move(final int currentPosition) {
-        return null;
     }
     
     @Override
