@@ -7,12 +7,25 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
+    private static final String REGEX_NUMBER = "^[0-9]*$";
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         String bridgeSize = Console.readLine();
+        validateBridgeSizeInput(bridgeSize);
         return Integer.parseInt(bridgeSize);
+    }
+
+    private void validateBridgeSizeInput(String bridgeSize) {
+        if (!bridgeSize.matches(REGEX_NUMBER)) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이 입력은 3~20 사이의 숫자만 가능합니다!");
+        }
+        int bridgeSizeNumber = Integer.parseInt(bridgeSize);
+        if (bridgeSizeNumber < 3 || bridgeSizeNumber > 20) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이 입력은 3~20 사이의 숫자만 가능합니다!");
+        }
     }
 
     /**
