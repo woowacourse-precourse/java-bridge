@@ -29,7 +29,17 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        while (true) {
+            OutputView.printReadMovingMessage();
+            String moving = Console.readLine();
+
+            try {
+                Validator.moving(moving);
+                return moving;
+            } catch (IllegalArgumentException e) {
+                OutputView.printReadMovingErrorMessage();
+            }
+        }
     }
 
     /**

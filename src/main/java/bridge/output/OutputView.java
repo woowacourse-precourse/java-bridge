@@ -22,6 +22,14 @@ public class OutputView {
         System.out.println(Error.BRIDGE_SIZE.getMessage());
     }
 
+    public static void printReadMovingMessage() {
+        System.out.println(Read.MOVING.getMessage());
+    }
+
+    public static void printReadMovingErrorMessage() {
+        System.out.println(Error.MOVING.getMessage());
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>

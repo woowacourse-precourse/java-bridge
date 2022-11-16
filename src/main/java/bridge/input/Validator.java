@@ -15,6 +15,12 @@ public class Validator {
         isInRange(bridgeSize);
     }
 
+    public static void moving(String moving) {
+        if (!(moving.equals(Command.UP.getLetter()) || moving.equals(Command.DOWN.getLetter()))) {
+            throw new IllegalArgumentException(Exception.MOVING.getMessage());
+        }
+    }
+
     private static void isLengthInRange(String bridgeSize) {
         int bridgeSizeLength = bridgeSize.length();
         if (bridgeSizeLength < MINIMUM_BRIDGE_SIZE_LENGTH || bridgeSizeLength > MAXIMUM_BRIDGE_SIZE_LENGTH) {
