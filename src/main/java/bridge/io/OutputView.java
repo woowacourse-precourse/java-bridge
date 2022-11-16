@@ -9,6 +9,10 @@ package bridge.io;
  */
 public class OutputView {
 
+    public void printGuide(String guide) {
+        System.out.println(guide);
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
