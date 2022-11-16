@@ -6,6 +6,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import bridge.validator.Command;
+
 class CommandTest {
 	@DisplayName("R 혹은 Q를 입력하면 Boolean을 리턴한다.")
 	@Test

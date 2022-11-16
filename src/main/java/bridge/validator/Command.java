@@ -1,6 +1,8 @@
-package bridge;
+package bridge.validator;
 
 import java.util.List;
+
+import bridge.Error;
 
 public enum Command {
 	REPLAY("R"),

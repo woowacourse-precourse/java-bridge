@@ -1,4 +1,6 @@
-package bridge;
+package bridge.validator;
+
+import bridge.Error;
 
 public class BridgeSize {
 	private final int bridgeSize;

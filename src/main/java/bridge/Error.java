@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.validator.Command;
+import bridge.validator.Location;
+
 public enum Error {
 	FORMAT("자연수만 입력해주세요."),
 	RANGE(String.format("%d 에서 %d 사이의 자연수만 입력해 주세요", 3, 20)),

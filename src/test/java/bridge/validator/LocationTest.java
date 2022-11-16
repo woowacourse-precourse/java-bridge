@@ -6,6 +6,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import bridge.validator.Location;
+
 class LocationTest {
 	@DisplayName("U 혹은 D를 입력하면 숫자로 변환한다")
 	@Test
