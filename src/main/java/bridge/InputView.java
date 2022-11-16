@@ -14,14 +14,21 @@ public class InputView {
      */
     public int readBridgeSize() {
         String readline = Console.readLine();
-        if (!Pattern.matches("^[1-9]\\d*$", readline)) {
-            throw new IllegalArgumentException("[ERROR] 올바른 숫자가 아닙니다.");
-        }
-        int size = Integer.parseInt(readline);
+        isNumeric(readline);
+        isRange(Integer.parseInt(readline));
+        return Integer.parseInt(readline);
+    }
+
+    private void isRange(int size) {
         if (size < 3 || size > 20) {
             throw new IllegalArgumentException("[ERROR] 3에서 20까지의 숫자를 입력해 주시기 바랍니다.");
         }
-        return size;
+    }
+
+    private void isNumeric(String readline) {
+        if (!Pattern.matches("^[1-9]\\d*$", readline)) {
+            throw new IllegalArgumentException("[ERROR] 올바른 숫자가 아닙니다.");
+        }
     }
 
     /**
