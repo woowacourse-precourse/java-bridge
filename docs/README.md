@@ -3,8 +3,8 @@
 ## 입력
 
 - [X] 다리 사이즈를 입력받아서 반환 - InputView.readBridgeSize()
-- [ ] 위 아래 중 건널 다리를 입력받아서 반환 - InputView.readMoving()
-- [ ] 재시작 여부를 입력받아서 반환 - InputView.readGameCommand()
+- [X] 위 아래 중 건널 다리를 입력받아서 반환 - InputView.readMoving()
+- [X] 재시작 여부를 입력받아서 반환 - InputView.readGameCommand()
 
 ## 출력
 
@@ -14,7 +14,7 @@
 ## 게임 기능
 
 - [X] 입력받은 다리 길이만큼 생성 - BridgeMaker.makeBridge()
-- [ ] 생성된 다리의 위 아래 중 교통 가능한 다리를 랜덤으로 지정 - BridgeRandomNumberGenerator.generate()
+- [X] 생성된 다리의 위 아래 중 교통 가능한 다리를 랜덤으로 지정 - BridgeRandomNumberGenerator.generate()
 - [ ] 입력받은 건너갈 다리 위치가 교통 가능 여부 반환 - BridgeGame.move()
 - [ ] 다리 건너기를 실패한 경우 재시작 여부 반환 - BridgeGame.retry()
 - [ ] 다리를 다 건넌 경우, 재시작을 하지 않은 경우를 판별해 성공 여부 반환
@@ -31,7 +31,7 @@
 - [X] U, D 가 아닌 경우 - BridgeLocation.createLocation()
 
 ### 게임 재시작 여부 입력
-- [ ] R,Q 가 아닌 경우
+- [X] R,Q 가 아닌 경우
 
 ## 기타 및 추가사항
 
