@@ -2,7 +2,7 @@ package bridge.View;
 
 import static bridge.Utils.Convertor.stringToInt;
 
-import bridge.Utils.Validation;
+import bridge.Utils.Validation.Validation;
 import camp.nextstep.edu.missionutils.Console;
 
 /**

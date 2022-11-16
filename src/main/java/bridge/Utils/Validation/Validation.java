@@ -1,4 +1,6 @@
-package bridge.Utils;
+package bridge.Utils.Validation;
+
+import bridge.Utils.ExceptionType;
 
 public class Validation {
 

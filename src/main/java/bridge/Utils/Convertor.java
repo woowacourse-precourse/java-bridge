@@ -1,6 +1,6 @@
 package bridge.Utils;
 
-import static bridge.Utils.Validation.validateIsNumber;
+import static bridge.Utils.Validation.Validation.validateIsNumber;
 
 public class Convertor {
 
