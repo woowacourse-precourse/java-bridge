@@ -4,4 +4,8 @@ package bridge;
 public interface BridgeNumberGenerator {
 
     int generate();
+
+    InputView input = new InputView();
+    int bridgeLength = input.readBridgeSize();
+
 }
