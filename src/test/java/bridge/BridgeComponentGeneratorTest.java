@@ -1,2 +1,15 @@
-package bridge;public class BridgeComponentGeneratorTest {
+package bridge;
+
+import bridge.function.BridgeComponentGenerator;
+import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+
+public class BridgeComponentGeneratorTest {
+    @Test
+    void BridgeComponentGeneratorTest() {
+        BridgeComponentGenerator Bridge_generator =  new BridgeComponentGenerator();
+
+        String out = Bridge_generator.generate(1);
+        assertThat(out).isEqualTo("U");
+    }
 }
