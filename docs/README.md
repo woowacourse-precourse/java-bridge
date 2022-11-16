@@ -13,6 +13,7 @@
 ### Application
 ### BridgeGame
 ### BridgeMaker
+- One and only function is to generate bridge
 ### BridgeRandomNumberGenerator
 - DO NOT MODIFY
 ### InputView
