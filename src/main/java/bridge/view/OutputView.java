@@ -5,6 +5,8 @@ package bridge.view;
  */
 public class OutputView {
 
+    private static final String ERROR = "[ERROR] ";
+
     public void printGameStart() {
         out("다리 건너기 게임을 시작합니다.");
     }
@@ -12,6 +14,10 @@ public class OutputView {
     public void printRequestBridgeLength() {
         blank();
         out("다리의 길이를 입력해주세요.");
+    }
+
+    public void printExceptionMessage(String text) {
+        out(ERROR + text);
     }
 
     /**
