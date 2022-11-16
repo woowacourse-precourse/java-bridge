@@ -6,4 +6,5 @@ public interface InputValidator {
     void bridgeSizeRange(int input);
     void bridgeSize(String input);
     void moving(String input);
+    void gameCommand(String input);
 }

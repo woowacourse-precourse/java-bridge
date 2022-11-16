@@ -34,4 +34,9 @@ public class InputValidatorImpl implements InputValidator {
             throw new IllegalArgumentException(ErrorMessage.NOT_ALLOWED_MOVING.getErrorMessage());
         }
     }
+
+    @Override
+    public void gameCommand(String input) {
+        throw new IllegalArgumentException(ErrorMessage.NOT_ALLOWED_GAME_COMMAND.getErrorMessage());
+    }
 }
