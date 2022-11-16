@@ -16,4 +16,9 @@ public class Validation {
         if (!input.equals("U") && !input.equals("D"))
             throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_INPUT_UP_OR_DOWN.getMessage());
     }
+
+    public static void isInputRestartOrQuit(String input) {
+        if (!input.equals("R") && !input.equals("Q"))
+            throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_INPUT_RESTART_OR_QUIT.getMessage());
+    }
 }
