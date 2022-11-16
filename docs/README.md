@@ -31,3 +31,7 @@
 ### ❌ 잘못된 값 입력
 
 - 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러메시지를 출력 후 그 부분부터 다시 입력받는다.
+
+#### ✔️참고사항
+- InputView 클래스에서만 camp.nextstep.edu.missionutils.Console 의 readLine() 메서드를 이용해 사용자의 입력을 받을 수 있다.
+- BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.

@@ -1,5 +1,9 @@
 package bridge;
 
+import bridge.utils.Validation;
+import camp.nextstep.edu.missionutils.Console;
+
+/** 패키지 변경가능. 메서드의 인자와 이름, 반환타입 변경가능. 메서드 추가가능.
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -9,7 +13,9 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        System.out.println("다리의 길이를 입력해주세요.");
+        String bridgeSize = Console.readLine();
+        return Validation.validate(bridgeSize);
     }
 
     /**
