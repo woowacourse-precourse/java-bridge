@@ -119,24 +119,26 @@ InputValidator
   - 한 문자여야 한다.
   - R 또는 Q만 입력할 수 있다.
 
-BridgeController
+BridgeSizeDto
+- [ ]  다리 길이를 담아서 컨트롤러로 보낸다.
 
-- [ ]  게임을 시작한다.
-- [ ]  게임을 재시작
+BridgeSpaceDto
+- [ ]  플레이어가 선택한 칸을 담아서 컨트롤러로 보낸다.
+
+BridgeController
+- [ ]  BridgeSizeDto를 받아서 서비스에 넘겨준다.
+- [ ]  BridgeSpaceDto를 받아서 서비스에 넘겨준다.
+- [ ]  게임을 재시작할지 확인한다.
 
 BridgeMaker
-
 - [ ]  매개변수로 들어온 다리의 길이만큼 다리를 생성
 
 Success
-
 - [ ]  사용자가 다리를 다 건넜는지 확인
 
 Bridge
-
 - [ ]  이미 건넌 다리인지 확인
 
 Bridges
-
 - [ ]  안 건넌 다리가 없는지 확인
 - [ ]  다리를 생성
