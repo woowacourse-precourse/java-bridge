@@ -17,7 +17,7 @@
 - 재시작, 종료 여부 입력
   - R, Q 이외의 문자를 입력한 경우 예외 처리한다.
 
-### model(Package)
+### model (Package)
 #### BridgeMaker (Class) - 제공
 #### BridgeRandomNumberGenerator (Class) - 제공
 
@@ -289,7 +289,7 @@ public class BridgeMaker {
 
 ### BridgeRandomNumberGenerator 클래스
 
-- Random 값 추출은 제공된 `bridge.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
+- Random 값 추출은 제공된 `bridge.model.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
 - `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 변경할 수 없다.
 
 #### 사용 예시
