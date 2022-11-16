@@ -28,4 +28,8 @@ public class OutputView {
     public void printLengthInput() {
         System.out.println(BridgeConstant.INPUT_BRIDGE_LENGTH.getValue());
     }
+
+    public void printMovementInput() {
+        System.out.println(BridgeConstant.GET_MOVEMENT.getValue());
+    }
 }

@@ -5,13 +5,12 @@ import java.util.List;
 public class MainGame {
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
-    private final BridgeGame bridgeGame = new BridgeGame();
     private final List<String> bridge;
-    private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
+    private BridgeGame bridgeGame;
     private boolean endGame;
 
     public MainGame() {
-        bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 
         endGame = false;
@@ -21,7 +20,12 @@ public class MainGame {
     }
 
     public void playRound() {
-
+        bridgeGame = new BridgeGame(bridge);
+        while (!endGame) {
+            outputView.printMovementInput();
+            inputView.readMoving();
+            bridgeGame.move();
+        }
     }
 
 }
