@@ -33,10 +33,10 @@ public class BridgeGame {
     }
     
     private State nextState(final MovingDTO movingDTO) {
-        return initReady().move(states.size(), movingDTO.getMoving());
+        return initState().move(states.size(), movingDTO.getMoving());
     }
     
-    private Ready initReady() {
+    private State initState() {
         return new Ready(bridge);
     }
     
