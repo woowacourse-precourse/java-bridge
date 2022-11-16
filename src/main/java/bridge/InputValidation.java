@@ -16,13 +16,13 @@ public class InputValidation {
 
     public void userMove(String userInput) {
         if (!userInput.matches("[U|D]")) {
-            throw new IllegalArgumentException(ERROR_TOKEN + " U 혹은 D 문자만 입력 가능합니다.");
+            throw new IllegalArgumentException(ERROR_TOKEN + " " + GameKeySet.UP.getKeySet() + "  혹은 " + GameKeySet.DOWN.getKeySet() + " 문자만 입력 가능합니다.");
         }
     }
 
     public void restartOrEnd(String userInput) {
         if (!userInput.matches("[R|Q]")) {
-            throw new IllegalArgumentException(ERROR_TOKEN + " R 혹은 Q 문자만 입력 가능합니다.");
+            throw new IllegalArgumentException(ERROR_TOKEN + " " + GameKeySet.RESTART.getKeySet() + "혹은 " + GameKeySet.QUIT.getKeySet() + " 문자만 입력 가능합니다.");
         }
     }
 
