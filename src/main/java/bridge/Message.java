@@ -24,7 +24,11 @@ public enum Message {
     }
 
     public void inputMoveBridgeMessage() {
-        System.out.println(INPUT_MOVE_BRIDGE_MESSAGE);
+        System.out.println(INPUT_MOVE_BRIDGE_MESSAGE + " " + BRIDGE_OPTIONS);
+    }
+
+    public void inputSelectGameRetry() {
+        System.out.println(INPUT_SELECT_GAME_RETRY + " " + GAME_OPTIONS);
     }
 
 
