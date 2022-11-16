@@ -62,7 +62,7 @@
 
 - [ ] 현재 상태를 결정하는 역할 (State)
   - [ ] 현재 상태를 알려주는 Enum 반환
-    - [ ] Ready
+    - [x] Ready
     - [ ] Success
     - [ ] Fail
 
