@@ -94,6 +94,21 @@ class BridgeSizeTest {
 			});
 			assertEquals(Error.RANGE.getMessage(), exception.getMessage());
 		}
+		@Test
+		void case5() {
+			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
+				BridgeSize bridgeSize = new BridgeSize("0");
+			});
+			assertEquals(Error.RANGE.getMessage(), exception.getMessage());
+		}
+
+		@Test
+		void case6() {
+			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
+				BridgeSize bridgeSize = new BridgeSize("-1");
+			});
+			assertEquals(Error.RANGE.getMessage(), exception.getMessage());
+		}
 	}
 
 }

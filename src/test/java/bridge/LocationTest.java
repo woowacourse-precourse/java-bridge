@@ -76,4 +76,35 @@ class LocationTest {
 		}
 	}
 
+	@Test
+	void case8() {
+		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
+			Location.convertToInt("R");
+		});
+		assertEquals(Error.LOCATION.getMessage(), exception.getMessage());
+	}
+
+	@Test
+	void case9() {
+		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
+			Location.convertToInt("r");
+		});
+		assertEquals(Error.LOCATION.getMessage(), exception.getMessage());
+	}
+
+	@Test
+	void case10() {
+		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
+			Location.convertToInt("Q");
+		});
+		assertEquals(Error.LOCATION.getMessage(), exception.getMessage());
+	}
+
+	@Test
+	void case11() {
+		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
+			Location.convertToInt("q");
+		});
+		assertEquals(Error.LOCATION.getMessage(), exception.getMessage());
+	}
 }
