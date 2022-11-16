@@ -1,6 +1,6 @@
 package bridge.controller;
 
-import bridge.service.BridgeMaker;
+import bridge.service.BridgeService;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -10,16 +10,16 @@ import bridge.view.OutputView;
 public class BridgeGame {
     private final InputView inputView;
     private final OutputView outputView;
-    private final BridgeMaker bridgeMaker;
+    private final BridgeService bridgeService;
 
-    private BridgeGame(InputView inputView, OutputView outputView, BridgeMaker bridgeMaker) {
+    public BridgeGame(InputView inputView, OutputView outputView, BridgeService bridgeService) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.bridgeMaker = bridgeMaker;
+        this.bridgeService = bridgeService;
     }
 
-    public static BridgeGame create(InputView inputView, OutputView outputView, BridgeMaker bridgeMaker) {
-        return new BridgeGame(inputView, outputView, bridgeMaker);
+    public static BridgeGame create(InputView inputView, OutputView outputView, BridgeService bridgeService) {
+        return new BridgeGame(inputView, outputView, bridgeService);
     }
 
     public void start() {

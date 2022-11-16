@@ -1,7 +1,8 @@
 package bridge;
 
 import bridge.controller.BridgeGame;
-import bridge.service.BridgeMaker;
+import bridge.util.BridgeMaker;
+import bridge.service.BridgeService;
 import bridge.util.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -9,10 +10,8 @@ import bridge.view.OutputView;
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeGame bridgeGame = BridgeGame.create(new InputView(), new OutputView(),
-                new BridgeMaker(bridgeRandomNumberGenerator));
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        BridgeGame bridgeGame = BridgeGame.create(new InputView(), new OutputView(), new BridgeService(bridgeMaker));
         try {
             bridgeGame.start();
         } catch (IllegalArgumentException e) {
