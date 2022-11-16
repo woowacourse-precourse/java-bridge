@@ -16,12 +16,12 @@ public class BridgeController {
         this.outputView = new OutputView();
     }
 
-    private void setBridgeSize() {
+    private int getBridgeSizeFromUser() {
         outputView.printBridgeSizeInputMessage();
-        int bridgeSize = inputView.readBridgeSize();
+        return inputView.readBridgeSize();
     }
 
     public void start() {
-        setBridgeSize();
+        int bridgeSize = getBridgeSizeFromUser();
     }
 }
