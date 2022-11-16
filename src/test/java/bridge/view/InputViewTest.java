@@ -30,24 +30,6 @@ class InputViewTest extends NsTest {
         });
     }
 
-    @Test
-    @DisplayName("다리의 길이를 입력받을 때 길이가 3 미만이면 예외가 발생한다.")
-    void receiveBridgeLengthByUnder3() {
-        assertSimpleTest(() -> {
-            runException("2");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    @DisplayName("다리의 길이를 입력받을 때 길이가 20 초과이면 예외가 발생한다.")
-    void receiveBridgeLengthByOver20() {
-        assertSimpleTest(() -> {
-            runException("21");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
     @Override
     protected void runMain() {
         Application.main(new String[]{});
