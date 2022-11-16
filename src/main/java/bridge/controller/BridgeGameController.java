@@ -17,6 +17,7 @@ public class BridgeGameController {
     }
 
     public void play() {
-        BridgeSizeDto bridgeSizeDto = inputView.readBridgeSize();
+        BridgeSizeDto dto = inputView.readBridgeSize();
+        bridgeGame.create(dto);
     }
 }
