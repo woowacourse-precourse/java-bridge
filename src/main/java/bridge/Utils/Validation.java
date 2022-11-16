@@ -22,17 +22,19 @@ public class Validation {
     }
 
     public void isRightMoving(String target) {
-        isOnlyAlphabets(target);
-        isOneAlphabet(target);
-        isUpperAlphabet(target);
+        isOnlyOneUpperAlphabet(target);
         isMovingAlphabet(target);
     }
 
     public void isGameCommand(String target) {
+        isOnlyOneUpperAlphabet(target);
+        isGameCommandAlphabet(target);
+    }
+
+    private void isOnlyOneUpperAlphabet(String target) {
         isOnlyAlphabets(target);
         isOneAlphabet(target);
         isUpperAlphabet(target);
-        isGameCommandAlphabet(target);
     }
 
     private void isOnlyAlphabets(String target) {
