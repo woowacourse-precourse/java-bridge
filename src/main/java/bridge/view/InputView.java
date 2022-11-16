@@ -10,8 +10,11 @@ public class InputView {
     private static final int MAX_SIZE = 20;
     private static final String UP = "U";
     private static final String DOWN = "D";
+    private static final String RESTART = "R";
+    private static final String QUIT = "Q";
     private static final String SIZE_ERROR = "다리 길이는 " + MIN_SIZE + "부터 " + MAX_SIZE + "까지 가능합니다.";
     private static final String MOVING_ERROR = UP + "(위) 또는 " + DOWN + "(아래)로만 이동이 가능합니다.";
+    private static final String COMMAND_ERROR = RESTART + "(재시도) 또는 " + QUIT + "(종료)만 선택 가능합니다.";
     private static final String NUMBER_FORMAT_ERROR = "숫자가 아닙니다.";
 
     /**
@@ -34,6 +37,17 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private String checkCommand(String command) {
+        if (isWrongCommand(command)) {
+            throw new IllegalArgumentException(COMMAND_ERROR);
+        }
+        return command;
+    }
+
+    private boolean isWrongCommand(String command) {
+        return !(command.equals(RESTART) || command.equals(QUIT));
     }
 
     private String checkMoving(String moving) {
