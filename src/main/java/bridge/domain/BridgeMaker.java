@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
  */
 public class BridgeMaker {
 
-    private final static List<String> POSITION_NAME = List.of("D", "U");
+    public final static List<String> SPACE_NAME = List.of("D", "U");
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -29,6 +29,6 @@ public class BridgeMaker {
     }
 
     private String mapToBridge(int positionNumber) {
-        return POSITION_NAME.get(positionNumber);
+        return SPACE_NAME.get(positionNumber);
     }
 }
