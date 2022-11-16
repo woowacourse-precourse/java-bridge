@@ -63,6 +63,8 @@ public class BridgeGame {
     }
 
     public void finish() {
+        outputView.printFinalGameResult();
+        outputView.printMap(this.bridge, this.givenAnswerSheet);
         String result = FAIL;
         if (isWin()) {
             result = SUCCESS;
