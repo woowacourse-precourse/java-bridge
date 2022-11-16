@@ -1,12 +1,12 @@
 package bridge.domain;
 
-public enum MoveStatus {
+public enum MoveResult {
     SUCCESS("O"),
     FAIL("X");
 
     private final String initialLetter;
 
-    MoveStatus(String initialLetter) {
+    MoveResult(String initialLetter) {
         this.initialLetter = initialLetter;
     }
 }

@@ -4,8 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 
-@DisplayName("MoveStatus Enum")
+@DisplayName("MoveResult Enum")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-class MoveStatusTest {
+class MoveResultTest {
 
 }
