@@ -36,8 +36,4 @@ public class InputValidate {
       throw new IllegalArgumentException("[ERROR] 재시작을 원하면 R, 끝내기를 원하면 Q를 입력해 주세요.");
     }
   }
-
-  public static void main(String[] args) {
-    InputValidate.isValidMoving("D");
-  }
 }

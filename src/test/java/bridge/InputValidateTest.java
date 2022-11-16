@@ -59,7 +59,7 @@ class InputValidateTest {
 //            .isInstanceOf(IllegalArgumentException.class);
   }
 
-  @DisplayName("String의 길이 검사 후 첫 글자가 U, P가 아니라면 예외가 발생한다.")
+  @DisplayName("String의 길이 검사 후 한 글자가 U, P가 아니라면 예외가 발생한다.")
   @Test
   void isValidMoving() {
     String rangeOver1 = "adfjU";
@@ -89,7 +89,7 @@ class InputValidateTest {
             .isInstanceOf(IllegalArgumentException.class);
   }
 
-  @DisplayName("String의 길이 검사 후 첫 글자가 Q, R이 아니라면 예외가 발생한다.")
+  @DisplayName("String의 길이 검사 후 한 글자가 Q, R이 아니라면 예외가 발생한다.")
   @Test
   void isValidCommand() {
     String sizeOver1 = "adfjR";
