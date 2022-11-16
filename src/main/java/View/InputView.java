@@ -1,6 +1,8 @@
 package View;
 
+import bridge.UpAndDown;
 import camp.nextstep.edu.missionutils.Console;
+
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -19,7 +21,11 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String movingBlock = Console.readLine();
+        if(!isMovingBlockInputValid(movingBlock)){
+            throw new IllegalArgumentException("[ERROR] U 또는 D를 입력해주세요.");
+        }
+        return movingBlock;
     }
 
     /**
@@ -27,5 +33,14 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    public boolean isMovingBlockInputValid(String movingBlock){
+        for(UpAndDown upAndDown : UpAndDown.values()){
+            if(upAndDown.toString().equals(movingBlock)){
+                return true;
+            }
+        }
+        return false;
     }
 }
