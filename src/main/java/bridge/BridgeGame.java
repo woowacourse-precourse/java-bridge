@@ -51,6 +51,17 @@ public class BridgeGame {
      */
     public boolean retry() {
         Application app = new Application();
-        return app.retry();
+        Application.outcome = false;
+        Application.attempt += 1;
+
+        if(passHistory.get(passHistory.size()-1).equals("U")) {
+            passHistory.set(passHistory.size()-1, "UX");
+        }
+
+        if(passHistory.get(passHistory.size()-1).equals("D")) {
+            passHistory.set(passHistory.size()-1, "DX");
+        }
+
+        return app.retry(passHistory);
     }
 }
