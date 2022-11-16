@@ -27,4 +27,11 @@ public class InputValidatorImpl implements InputValidator {
     public void bridgeSize(String input) {
         bridgeSizeRange(bridgeSizeDataType(input));
     }
+
+    @Override
+    public void moving(String input) {
+        if (!(input.equals("U") || input.equals("D"))) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_ALLOWED_MOVING.getErrorMessage());
+        }
+    }
 }
