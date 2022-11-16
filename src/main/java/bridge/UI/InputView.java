@@ -43,7 +43,7 @@ public class InputView {
         String gameCommandInput;
         do{
             gameCommandInput = Console.readLine();
-            isRightInput = checkValidation.validateMovingInput(gameCommandInput);
+            isRightInput = checkValidation.validateGameCommandInput(gameCommandInput);
         }while(!isRightInput);
 
         return gameCommandInput;
