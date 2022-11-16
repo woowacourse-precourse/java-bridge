@@ -32,6 +32,7 @@ public class Validation {
         isOnlyAlphabets(target);
         isOneAlphabet(target);
         isUpperAlphabet(target);
+        isGameCommandAlphabet(target);
     }
 
     private void isOnlyAlphabets(String target) {
@@ -59,6 +60,13 @@ public class Validation {
         String movingAlphabetRegex = "^[UD]$";
         if (!target.matches(movingAlphabetRegex)) {
             throw new IllegalArgumentException(ExceptionType.IS_NOT_MOVING_ALPHABET.getMessage());
+        }
+    }
+
+    private void isGameCommandAlphabet(String target) {
+        String gameCommandAlphabetRegx = "^[RQ]$";
+        if (!target.matches(gameCommandAlphabetRegx)) {
+            throw new IllegalArgumentException(ExceptionType.IS_NOT_GAME_COMMAND_ALPHABET.getMessage());
         }
     }
 }
