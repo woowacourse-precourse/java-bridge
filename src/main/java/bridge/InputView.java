@@ -6,10 +6,10 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    private static String redBridgeSize = "다리의 길이를 입력해주세요.";
-    private static String redBridgeSizeError = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
-    private static String readMoving = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    private static String readMovingError = "[ERROR] U, D 중 하나를 입력해야 합니다.";
+    private final static String redBridgeSize = "다리의 길이를 입력해주세요.";
+    private final static String redBridgeSizeError = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+    private final static String readMoving = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private final static String readMovingError = "[ERROR] U, D 중 하나를 입력해야 합니다.";
     /**
      * 다리의 길이를 입력받는다.
      */
