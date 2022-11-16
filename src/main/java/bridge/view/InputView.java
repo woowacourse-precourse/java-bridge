@@ -8,7 +8,6 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-
 	public int readBridgeSize() {
 		int size;
 		try {

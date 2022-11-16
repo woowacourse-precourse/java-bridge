@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test;
 public class InputViewTest {
 
 	@Test
-	void 사이즈_입력_테스트(){
+	void 사이즈_입력_테스트() {
 		InputView input = new InputView();
 		Assertions.assertThrows(IllegalArgumentException.class,
 			() -> input.readBridgeSize());
 	}
 
 	@Test
-	void 이동_테스트(){
+	void 이동_테스트() {
 		Assertions.assertThrows(IllegalArgumentException.class,
 			() -> Validator.isMoveValidate("a"));
 		// Assertions.assertThrows( ,
@@ -21,10 +21,10 @@ public class InputViewTest {
 	}
 
 	@Test
-	void 재시작_종료_입력_테스트(){
+	void 재시작_종료_입력_테스트() {
 		Assertions.assertThrows(IllegalArgumentException.class,
 			() -> Validator.isCommandValidate("a"));
-	}
 		// Assertions.assertThrows( ,
 		// 	() -> Validator.isCommandValidate("R"));
+	}
 }
