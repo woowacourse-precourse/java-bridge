@@ -23,14 +23,14 @@
    - [] 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때 까지 시도한 횟수를 나타낸다 - BridgeGame#calculateTryCount()
 
 - [] 출력
-  - [] 다리 건너기 게임 시작 안내 메시지 출력 (다리 건너기 게임을 시작합니다.) - GuideMessageView#printStartBridgeGameGuideMessage()
-  - [] 다리 길이 입력 안내 메시지 출력 (다리의 길이를 입력해주세요.) - GuideMessageView#printBridgeLengthGuideMessage()
-  - [] 이동할 칸 입력 안내 메시지 출력 (이동할 칸을 선택해주세요. (위: U, 아래: D)) - GuideMessageView#printSelectMoveGuideMessage()
-  - [] 현재 다리 상태 출력 - OutputView#printMap()
-  - [] 재시작 혹은 종료 안내 메시지 출력 (게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)) - GuideMessageView#printReOrEndGuideMessage()
-  - [] 최종 게임 결과 안내 메시지 출력 (최종 게임 결과) - GuideMessageView#printGameResultGuideMessage()
-  - [] 게임 성공 여부 안내 메시지 출력 (게임 성공 여부: 성공) - GuideMessageView#printGameSuccessOrNotGuideMessage()
-  - [] 총 시도 횟수 안내 메시지 출력 (총 시도한 횟수: 2) - GuideMessageView#printTryCountGuideMessage()
+  - [x] 다리 건너기 게임 시작 안내 메시지 (다리 건너기 게임을 시작합니다.) - GuideMessageView#
+  - [] 다리 길이 입력 안내 메시지 (다리의 길이를 입력해주세요.) - GuideMessageView#
+  - [] 이동할 칸 입력 안내 메시지 (이동할 칸을 선택해주세요. (위: U, 아래: D)) - GuideMessageView#
+  - [] 현재 다리 상태 - OutputView#
+  - [] 재시작 혹은 종료 안내 메시지 (게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)) - GuideMessageView#
+  - [] 최종 게임 결과 안내 메시지 (최종 게임 결과) - GuideMessageView#
+  - [] 게임 성공 여부 안내 메시지(게임 성공 여부: 성공) - GuideMessageView#
+  - [] 총 시도 횟수 안내 메시지 (총 시도한 횟수: 2) - GuideMessageView#
 
 
 
