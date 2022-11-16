@@ -8,7 +8,7 @@ public class Application {
         BridgeGameController bridgeGameController = BridgeGameController.create();
         try{
             bridgeGameController.start();
-        } catch (Exception e){
+        } catch (IllegalArgumentException e){
             System.out.println(ERROR + e.getMessage());
         }
     }
