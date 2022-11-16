@@ -20,4 +20,9 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+
+    public void printException(IllegalArgumentException e){
+        System.out.println(e.getMessage());
+    }
 }
