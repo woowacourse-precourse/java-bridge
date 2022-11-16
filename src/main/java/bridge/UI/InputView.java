@@ -14,9 +14,9 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String bridgeSizeInput = Console.readLine();
-
+        String bridgeSizeInput;
         do{
+            bridgeSizeInput = Console.readLine();
             isRightInput = checkValidation.validateBridgeLength(bridgeSizeInput);
         }while(!isRightInput);
 
@@ -27,10 +27,11 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String movingInput = Console.readLine();
+        String movingInput;
         do{
+            movingInput = Console.readLine();
             isRightInput = checkValidation.validateMovingInput(movingInput);
-        }while(isRightInput);
+        }while(!isRightInput);
 
         return movingInput;
     }
