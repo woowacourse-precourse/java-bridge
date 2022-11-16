@@ -33,17 +33,17 @@ public class InputValidation {
         }
     }
 
-    public boolean validatePlayingInput(String input){
+    public boolean validateMovingInput(String input){
         boolean isAllRight = true;
         try{
-            validatePlayingInputIsRight(input);
+            validateMovingInputIsRight(input);
         }catch(IllegalArgumentException ex){
             isAllRight = false;
         }
         return isAllRight;
     }
 
-    public void validatePlayingInputIsRight(String input){
+    public void validateMovingInputIsRight(String input){
         boolean isNotRightInput = !(input.equals("U") || input.equals("D"));
         if(isNotRightInput){
             String errorMessage = "[ERROR] 게임을 진행할 때는 U 또는 D만 입력할 수 있습니다.";
