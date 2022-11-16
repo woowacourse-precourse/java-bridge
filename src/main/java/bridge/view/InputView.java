@@ -50,7 +50,6 @@ public class InputView {
         System.out.println();
         System.out.println(PRINT_BRIDGE_SIZE);
         String userInput = Console.readLine().replaceAll(WHITE_SPACE, EMPTY);
-        InputViewValidator.checkBridgeSizeIsNotNumber(userInput);
-        return Integer.parseInt(userInput);
+        return Integer.parseInt(InputViewValidator.ckeckBridgeSize(userInput));
     }
 }
