@@ -28,6 +28,7 @@ public class BridgeGameController {
             List<String> bridge = bridgeMaker.makeBridge(size);
             bridgeGame.setBridge(bridge);
         } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
             setBridgeSize();
         }
     }
