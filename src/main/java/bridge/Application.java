@@ -11,31 +11,33 @@ public class Application {
         OutputView outputView = new OutputView();
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        Comparator comparator = new Comparator();
         BridgeGame bridgeGame = new BridgeGame();
-        int bridgeSize = inputView.readBridgeSize();
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         int count = 0;
         int round = 0;
-
         boolean ongoing = true;
 
+        try {
+            int bridgeSize = inputView.readBridgeSize();
+            List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
 
-        while (round <= bridgeSize && ongoing) {
-            String moving = inputView.readMoving();
-            boolean isCorrect = comparator.compare(bridge, round, moving);
-            outputView.printMap(bridge, round, isCorrect);
-            if (isCorrect){
-                round++;
-                continue;
+            while (round <= bridgeSize && ongoing) {
+                String moving = inputView.readMoving();
+                boolean movable = bridgeGame.move(bridge, round, moving);
+                outputView.printMap(bridge, round, movable);
+                if (movable) {
+                    round++;
+                    continue;
+                }
+                String command = inputView.readGameCommand();
+                ongoing = bridgeGame.retry(command);
+                if (ongoing) {
+                    round = 0;
+                    count++;
+                }
             }
-            String command = inputView.readGameCommand();
-            ongoing = bridgeGame.retry(command);
-            if (ongoing){
-                round = 0;
-                count++;
-            }
+            outputView.printResult(ongoing, count);
+        }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
         }
-        outputView.printResult(ongoing, count);
     }
 }
