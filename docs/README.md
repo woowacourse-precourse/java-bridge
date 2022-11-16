@@ -29,7 +29,7 @@
     - 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때까지 시도한 횟수를 나타낸다.
 
 - 사용자가 잘못된 값을 입력할 경 `IllegalArgumentException`를 발생시키고 `"[ERROR]"`로 시작하는 에러 메세지를 출력한 후 그 부분부터 **입력을 다시 받는다**.
-    - `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
+    - `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 **명확한 유형**을 처리한다.
 
 ### ⌨️ 입력 요구사항 (InputView 사용)
 - 자동으로 생성할 다리 길이를 입력 받는다. 3 이상 20 이하의 숫자를 입력할 수 있으며 올바른 값이 아닌 경우에는 예외 처리한다.
@@ -54,6 +54,7 @@
     게임 성공 여부: 성공
     총 시도한 횟수: 2
     ```
+  
 - 사용자가 이동할 때마다 다리 건너기 결과의 출력 형식은 실행 결과 예시를 참고한다.
     - 이동할 수 있는 칸을 선택한 경우 O 표시
     - 이동할 수 없는 칸을 선택한 경우 X 표시
@@ -76,8 +77,52 @@
 ### BridgeMaker
 
 ### InputView
+```java
+public class InputView {
+    
+    public int readBridgeSize() {
+        return 0;
+    }
+    
+    public String readMoving() {
+        return null;
+    }
+    
+    public String readGameCommand() {
+        return null;
+    }
+}
+```
 
 ### OutputView
 
+### UserInputException
+- `IllegalArgumentException` 상속받는 Exception
+- `ErrorResponse`를 인자로 받는 생성자 오버로딩
+- ```java
+  public BridgeException(ErrorResponse errorResponse) {
+        super(errorResponse.getErrorMessage());
+    }
+  ```
+
+
+### ErrorResponse
+- BridgeGame에서 발생하는 예외에 대한 Enum Class
+  - `INPUT_BRIDE_SIZE_RANGE_ERROR` : 사용자 입력 범위 에러
+
+
+### ValidationUtil
+- 사용자 입력 및 비즈니스 모델 검증 Class
+  - `validateBridgeSizeInput` : 사용자 입력 다리 길이 범위 확인 
+
+
+## 👨🏻‍💻 추가된 프로그래밍 요구사항
+- 함수의 길이가 10라인을 넘어가지 않도록 구현한다.
+- 메소드의 파라미터의 개수는 최대 3개까지만 허용한다.
+- `InputView`, `OutputView`, `BridgeGame`, `BridgeMaker`, `BridgeRandomNumberGenerator` 클래스의 요구사항을 참고하여 구현한다.
+  - 각 클래스의 제약사항은 해당 세부 설명을 참고한다.
+  - 이외 필요한 클래스와 메소드는 **자유롭게 구현** 가능하다.
+  - `InputView` 클래스에서만 Console.readLine() 사용 가능하다.
+  - `BridgeGame` 클래스에서 `InputView`, `OutputView`를 사용하지 않는다.
 
 ## 👨🏻‍💻 Trouble Shooting
