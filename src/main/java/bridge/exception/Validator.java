@@ -14,7 +14,10 @@ import java.util.function.Predicate;
 public class Validator {
 
     public void validateBridgeSize(int size) {
-        validateBridgeSizeRange(size);
+        if (size > MAX_SIZE || size < MIN_SIZE) {
+            throw new IllegalArgumentException(format("다리 길이는 {0} 이상, {1} 이하여야 합니다. " + "입력값 : {2}",
+                    MIN_SIZE, MAX_SIZE, size));
+        }
     }
 
     public void validateMoveMessage(String message) {
@@ -27,17 +30,14 @@ public class Validator {
 
     private void validateInputIsCorrectValues(String inputMessage,
                                               String... correctValues) {
-        if (Arrays.stream(correctValues)
-                .noneMatch(Predicate.isEqual(inputMessage))) {
+        if (hasNotCorrectValues(inputMessage, correctValues)) {
             throw new IllegalArgumentException(format("{0} 이외의 값은 허용되지 않습니다. 입력값 : {1}",
                     String.join(",", correctValues), inputMessage));
         }
     }
 
-    private void validateBridgeSizeRange(int size) {
-        if (size > MAX_SIZE || size < MIN_SIZE) {
-            throw new IllegalArgumentException(format("다리 길이는 {0} 이상, {1} 이하여야 합니다. " + "입력값 : {2}",
-                    MIN_SIZE, MAX_SIZE, size));
-        }
+    private boolean hasNotCorrectValues(String inputMessage, String[] correctValues) {
+        return Arrays.stream(correctValues)
+                .noneMatch(Predicate.isEqual(inputMessage));
     }
 }
