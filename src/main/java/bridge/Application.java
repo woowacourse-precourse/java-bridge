@@ -1,8 +1,15 @@
 package bridge;
 
-public class Application {
+import bridge.controller.BridgeGameController;
 
+public class Application {
+    private static final String ERROR = "[ERROR]";
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        BridgeGameController bridgeGameController = BridgeGameController.create();
+        try{
+            bridgeGameController.run();
+        } catch (Exception e){
+            System.out.println(ERROR + e.getMessage());
+        }
     }
 }
