@@ -16,8 +16,16 @@ public class ValidationTest{
 
 		Assertions.assertAll(
 			() -> validateNumberOnly_메서드_테스트(),
-			() -> validateNumberLength_메서드_테스트()
+			() -> validateNumberLength_메서드_테스트(),
+			() -> validateRange_메서드_테스트()
 		);
+	}
+
+	@DisplayName("input이 숫자만으로 이루어져있는지 테스트")
+	private void validateRange_메서드_테스트() {
+		String input = "123";
+		Assertions.assertThrows(IllegalArgumentException.class,
+			() -> Validation.validateRange(input));
 	}
 
 	@DisplayName("input이 숫자만으로 이루어져있는지 테스트")

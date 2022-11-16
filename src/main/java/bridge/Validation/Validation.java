@@ -30,7 +30,7 @@ public class Validation {
 		return false;
 	}
 
-	private static void validateRange(String input) {
+	public static void validateRange(String input) {
 		int bridgeSize = Integer.parseInt(input);
 
 		if (bridgeSize < 3 || bridgeSize > 20) {
