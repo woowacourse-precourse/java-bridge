@@ -15,7 +15,13 @@ public class BridgeGame {
         validator.validateBridgeSize(size);
         return gameService.createBridge(size);
     }
-    
+
+    public boolean move(List<String> bridge,
+                        String moveMessage) {
+        validator.validateMoveMessage(moveMessage);
+        return gameService.isCorrectMove(bridge, moveMessage);
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
