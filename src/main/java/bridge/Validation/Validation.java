@@ -44,11 +44,19 @@ public class Validation {
 		}
 	}
 
-	public static void validateUorD(String input) {
+	private static void isMovingException(String input,int length) {
 
+		try {
+			validateNumberLength(input,length);
+			validateUOrDOnly(input);
+		} catch (IllegalArgumentException exception) {
+		}
+
+	}
+
+	private static void validateUOrDOnly(String input) {
 		if (!input.equals("U") || !input.equals("D")) {
 			throw Exceptions.U_OR_D_ONLY_EXCEPTION.getException();
 		}
-
 	}
 }
