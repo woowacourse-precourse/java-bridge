@@ -22,5 +22,9 @@ public enum Message {
         System.out.println(GAME_START_MESSAGE);
     }
 
+    public void showInputRangeBridgeMessage(){
+        System.out.println(INPUT_RANGE_BRIDGE_MESSAGE);
+    }
+
 
 }
