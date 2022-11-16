@@ -1,34 +1,48 @@
 package bridge;
 
+import java.util.List;
+
 import bridge.Validation.Validation;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-	private static int[][] result;
+	private static String[][] map;
 
 	/**
 	 * 사용자가 칸을 이동할 때 사용하는 메서드
 	 * <p>
 	 * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
-	public void move(int moveCount) {
+	public void move(int moveCount, List<String> bridge) {
 		String input = Validation.validateMoving();
-
-		isUp(moveCount, input);
-		isDown(moveCount, input);
+		makeMap(moveCount, input, bridge);
 	}
 
-	private static void isDown(int moveCount, String input) {
-		if(input.equals("D")){
-			result[1][moveCount] = 1;
+	private static void moveDown(int moveCount, String input, List<String> bridge) {
+		if (input.equals("D")) {
+			if (isCrossable(input, moveCount, bridge)) {
+				map[1][moveCount] = " O ";
+				map[0][moveCount] = "   ";
+			}
+			if (!isCrossable(input, moveCount, bridge)) {
+				map[1][moveCount] = " X ";
+				map[0][moveCount] = "   ";
+			}
 		}
 	}
 
-	private static void isUp(int moveCount, String input) {
+	private static void moveUp(int moveCount, String input, List<String> bridge) {
 		if (input.equals("U")) {
-			result[0][moveCount] = 1;
+			if (isCrossable(input, moveCount, bridge)) {
+				map[0][moveCount] = " O ";
+				map[1][moveCount] = "   ";
+			}
+			if (!isCrossable(input, moveCount, bridge)) {
+				map[0][moveCount] = " X ";
+				map[1][moveCount] = "   ";
+			}
 		}
 	}
 
@@ -40,8 +54,19 @@ public class BridgeGame {
 	public void retry() {
 	}
 
-	public static void initResult(int size) {
-		result = new int[2][size];
+	public static void initMoveHistory(int size) {
+		map = new String[2][size];
 	}
 
+	public static boolean isCrossable(String input, int moveCount, List<String> bridge) {
+		if (input.equals(bridge.get(moveCount))) {
+			return true;
+		}
+		return false;
+	}
+
+	public static void makeMap(int moveCount, String input, List<String> bridge) {
+		moveUp(moveCount, input, bridge);
+		moveDown(moveCount, input, bridge);
+	}
 }
