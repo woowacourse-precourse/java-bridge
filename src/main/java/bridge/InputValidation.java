@@ -20,6 +20,12 @@ public class InputValidation {
         }
     }
 
+    public void restartOrEnd(String userInput) {
+        if (!userInput.matches("[R|Q]")) {
+            throw new IllegalArgumentException(ERROR_TOKEN + " R 혹은 Q 문자만 입력 가능합니다.");
+        }
+    }
+
     private void isNumber(String numberable) throws IllegalArgumentException {
         if (!numberable.matches("[0-9]*")) {
             throw new IllegalArgumentException(ERROR_TOKEN + " 다리 길이는 숫자만 입력 가능합니다.");
