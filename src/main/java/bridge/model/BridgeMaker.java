@@ -1,5 +1,7 @@
 package bridge.model;
 
+import static bridge.controller.Constant.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,10 +31,10 @@ public class BridgeMaker {
 
 	private void fillBridge(List<String> bridge, int randomNumber) {
 		if (randomNumber == 1) {
-			bridge.add("U");
+			bridge.add(UPSIDE);
 		}
 		if (randomNumber == 0) {
-			bridge.add("D");
+			bridge.add(DOWNSIDE);
 		}
 	}
 }
