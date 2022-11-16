@@ -11,8 +11,11 @@ public class OutputView {
         System.out.println(OutputString.INPUT);
     }
 
-    public void printMap(String input, boolean tf, int idx) {
+    public void choice() {
         System.out.println(OutputString.MOVE);
+    }
+
+    public void printMap(String input, boolean tf, int idx) {
         if (tf == true) {
             printTrue(input);
             if (idx == 0)
@@ -55,16 +58,18 @@ public class OutputView {
         System.out.println(downBridge);
     }
 
-    public void printResult(boolean tf, int count, String re) {
-        if (!tf && re.equals("Q")) {
+    public void printResult(boolean tf, int count) {
+        if (!tf) {
             System.out.print(OutputString.SUCCESS_OR_NOT);
             System.out.println(OutputString.FAIL);
-            System.out.println(OutputString.TRY + "count");
+            System.out.print(OutputString.TRY );
+            System.out.println(count);
             return;
         }
         System.out.print(OutputString.SUCCESS_OR_NOT);
         System.out.println(OutputString.SUCCESS);
-        System.out.println(OutputString.TRY + "count");
+        System.out.print(OutputString.TRY );
+        System.out.println(count);
     }
 
     public void retry() {
