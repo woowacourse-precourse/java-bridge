@@ -41,22 +41,34 @@
 - [ ] 클래스의 코드는 변경할 수 없다.
 - [ ] Random 값 추출은 제공된 `bridge.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
 
+### validator / [BridgeSize]
+- [x] 3 이상 20 이하의 숫자만 입력
+- [x] 올바른 값이 아니면 예외 처리
+
+### validator / [Location]
+- [x] U와 D 중 하나의 문자만 입력
+- [x] 올바른 값이 아니면 예외 처리
+
+### validator / [Command]
+- [x] R과 Q 중 하나의 문자만 입력
+- [x] 올바른 값이 아니면 예외 처리
+
 ### view / [InputView]
-- [ ] 자동으로 생성할 다리 길이를 입력 받는다.
-  - [ ] `다리의 길이를 입력해주세요.` 문구 출력
-  - [ ] `camp.nextstep.edu.missionutils.Console`의 `readLine()` 메서드를 이용해 입력
-    - [ ] 3 이상 20 이하의 숫자만 입력
-    - [ ] 올바른 값이 아니면 예외 처리
-- [ ] 라운드마다 플레이어가 이동할 칸을 입력 받는다.
-  - [ ] `이동할 칸을 선택해주세요. (위: U, 아래: D)` 문구 출력
-  - [ ] `camp.nextstep.edu.missionutils.Console`의 `readLine()` 메서드를 이용해 입력
-    - [ ] U와 D 중 하나의 문자만 입력
-    - [ ] 올바른 값이 아니면 예외 처리
-- [ ] 게임 재시작/종료 여부를 입력 받는다.
-  - [ ] `게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)` 문구 출력
-  - [ ] `camp.nextstep.edu.missionutils.Console`의 `readLine()` 메서드를 이용해 입력
-    - [ ] R과 Q 중 하나의 문자만 입력
-    - [ ] 올바른 값이 아니면 예외 처리
+- [x] 자동으로 생성할 다리 길이를 입력 받는다.
+  - [x] `다리의 길이를 입력해주세요.` 문구 출력
+  - [x] `camp.nextstep.edu.missionutils.Console`의 `readLine()` 메서드를 이용해 입력
+  - [x] `BridgeSize`를 호출해 `readLine()`으로 입력 받은 값을 유효성 검사한다.
+
+- [x] 라운드마다 플레이어가 이동할 칸을 입력 받는다.
+  - [x] `이동할 칸을 선택해주세요. (위: U, 아래: D)` 문구 출력
+  - [x] `camp.nextstep.edu.missionutils.Console`의 `readLine()` 메서드를 이용해 입력
+  - [x] `Location`를 호출해 `readLine()`으로 입력 받은 값을 유효성 검사한다.
+
+- [x] 게임 재시작/종료 여부를 입력 받는다.
+  - [x] `게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)` 문구 출력
+  - [x] `camp.nextstep.edu.missionutils.Console`의 `readLine()` 메서드를 이용해 입력
+  - [x] `Command`를 호출해 `readLine()`으로 입력 받은 값을 유효성 검사한다.
+    
     
 ### view / [OutputView]
 - [ ] `OutputView`의 메서드는 이름을 변경할 수 없다.
