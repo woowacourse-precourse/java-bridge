@@ -22,12 +22,16 @@ public class BridgeGame {
     }
     public boolean move(String choiceUpAndDown) {
 
+        if (passHistory.contains("DX") || passHistory.contains("UX")) {
+            passHistory.clear();
+        }
+
         if (!canPass(choiceUpAndDown)) {
-            this.passHistory.remove(passHistory.size()-1);
             return retry();
         }
 
         if (passHistory.size() == randomBridge.size()) {
+            Application.outcome = true;
             return false;
         }
 
