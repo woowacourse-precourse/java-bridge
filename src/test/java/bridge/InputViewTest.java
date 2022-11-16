@@ -35,4 +35,12 @@ class InputViewTest {
         BridgeLocation result = BridgeLocation.UP;
         assertThat(inputView.readMoving()).isEqualTo(result);
     }
+
+    @DisplayName("잘못된 입력을 받으면 예외 반환")
+    @ValueSource(strings = {"u", "d", "d3"})
+    @ParameterizedTest
+    void inputBridgeMovingException(String input) {
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        assertThatThrownBy(inputView::readMoving).isInstanceOf(IllegalArgumentException.class);
+    }
 }
