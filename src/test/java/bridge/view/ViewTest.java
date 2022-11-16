@@ -92,4 +92,19 @@ public class ViewTest {
         // then
         assertThat(move).isEqualTo("D");
     }
+
+    @Test
+    @DisplayName("이동할 칸이 U 또는 D가 아닐 경우 예외가 발생한다.")
+    void 이동할_칸이_U_또는_D가_아닐_경우_예외가_발생한다() {
+        // given
+        InputView inputView = new InputView();
+
+        // when
+        InputStream in = generateUserInput("F");
+        System.setIn(in);
+
+        // then
+        assertThatThrownBy(inputView::readMoving)
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
