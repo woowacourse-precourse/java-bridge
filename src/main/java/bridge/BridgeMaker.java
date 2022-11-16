@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.util.List;
 
 /**
@@ -18,6 +20,13 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        return null;
+        List<String> randomBridge =
+                Stream.generate(() -> {
+                    if (bridgeNumberGenerator.generate() == 1) return "U";
+                    return "D";
+                }).limit(size)
+                        .collect(Collectors.toList());
+
+        return randomBridge;
     }
 }
