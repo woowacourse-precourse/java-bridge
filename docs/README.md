@@ -52,7 +52,7 @@
 ### Domain
 
 - [x]  MoveStatus 성공, 실패 표현하는 Enum
-- [ ]  Round 각 라운드를 표현하는 클래스
+- [x]  Round 각 라운드를 표현하는 클래스
 - [x]  Direction 위 아래 방향을 표현하는 Enum
     - [x]  toInitialLetter -> 0과 1사이의 값을 받아 D와 U중 하나를 반환
     - [x]  toEnum -> D와 U를 입력받아 Enum 인스턴스를 반환
@@ -62,5 +62,5 @@
 - [ ]  BridgeMaker 다리를 생성하는 클래스
     - [x]  makeBridge -> 다리의 길이를 입력받아 U와 D로 표현된 다리를 반환
 - [ ]  BridgeGameStatus 게임 진행 여부 Enum
-- [ ]  Trial 시도 횟수를 표현하는 클래스
+- [x]  GamePlayCount 시도 횟수를 표현하는 클래스
 - [ ]  BridgeGameResult 게임 결과를 표현하는 클래스
