@@ -50,6 +50,28 @@
 - 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
 - 메서드의 파라미터 개수는 최대 3개까지만 허용한다.
 - 함수(또는 메서드)의 길이가 10라인을 넘어가지 않도록 구현한다.
+- InputView
+  - 패키지 변경 가능 
+  - 메서드 시그니처와 반환 타입 변경 가능
+  - 메서드 추가 가능
+  - InputView 클래스에서만 camp.nextstep.edu.missionutils.Console 의 readLine() 메서드를 이용해 사용자의 입력을 받을 수 있다.
+- OutputView
+  - 패키지 변경 가능
+  - **메서드 이름 변경 불가**
+  - 파라미터, 반환 타입 추가 변경 가능
+  - 메서드 추가 가능
+- BridgeGame
+  - 필드 추가 가능
+  - 패키지 변경 가능
+  - **메서드 이름 변경 불가**
+  - 파라미터, 반환 타입 추가 변경 가능
+  - 메서드 추가, 변경 가능
+- BridgeMaker
+  - **필드 변경 불가**
+  - **메서드 시그니처 반환 타입 변경 불가**
+- BridgeRandomNumberGenerator
+  - Random 값 추출은 제공된 bridge.BridgeRandomNumberGenerator의 generate()를 활용
+  - **BridgeRandomNumberGenerator, BridgeNumberGenerator 클래스의 코드는 변경 불가**
 
 
 ## 체크리스트
@@ -79,3 +101,5 @@
 [] 정리한 기능 목록마다 정상 동작함을 테스트 코드로 확인하였는가?
 [] PR 이름 제대로 했는가?
 [] 출력 형식 제대로 했는가?
+
+## 기능 구현 목록 정리
