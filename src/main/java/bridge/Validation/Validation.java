@@ -50,18 +50,17 @@ public class Validation {
 
 		do {
 			input = inputView.readMoving();
-			isReInput = isMovingException(input,1);
+			isReInput = isMovingException(input, 1);
 
 		} while (isReInput);
 
 		return input;
 	}
 
-
-	private static boolean isMovingException(String input,int length) {
+	private static boolean isMovingException(String input, int length) {
 
 		try {
-			validateNumberLength(input,length);
+			validateNumberLength(input, length);
 			validateUOrDOnly(input);
 		} catch (IllegalArgumentException exception) {
 			System.out.println(exception.getMessage());
