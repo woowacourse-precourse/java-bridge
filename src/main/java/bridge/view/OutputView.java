@@ -1,9 +1,15 @@
-package bridge;
+package bridge.view;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+
+    public static final String GAME_STARTING_MESSAGE_FORMAT = "다리 건너기 게임을 시작합니다.%n%n";
+
+    public void printGameStartMessage() {
+        System.out.printf(GAME_STARTING_MESSAGE_FORMAT);
+    }
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
