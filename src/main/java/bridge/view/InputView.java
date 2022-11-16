@@ -13,7 +13,7 @@ public class InputView {
      */
     public int readBridgeSize() {
         String BridgeSizes = Console.readLine();
-        if (Function.validBridgeSize(BridgeSizes)){
+        if (Function.validBridgeSize(BridgeSizes)) {
             return Integer.parseInt(BridgeSizes);
         }
         return 0;
@@ -24,7 +24,7 @@ public class InputView {
      */
     public String readMoving() {
         String Moving = Console.readLine();
-        if (Function.validMoving(Moving)){
+        if (Function.validMoving(Moving)) {
             return Moving;
         }
         return null;
@@ -35,7 +35,7 @@ public class InputView {
      */
     public String readGameCommand() {
         String GameCommand = Console.readLine();
-        if (Function.validGameCommand(GameCommand)){
+        if (Function.validGameCommand(GameCommand)) {
             return GameCommand;
         }
         return null;
