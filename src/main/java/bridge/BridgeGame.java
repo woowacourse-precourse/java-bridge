@@ -27,7 +27,53 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry(List<String> bridge) {
+        boolean isWrong = false;
+        String result = "";
+        int count = 0;
+        String gameCommand = "R";
+        InputView input = new InputView();
 
+        while (gameCommand.equals("R")) {
+            isWrong = false;
+            List<Integer> upBridge = new ArrayList<>();
+
+            for (int i = 0; i < bridge.size(); i++) {
+                if (isWrong) {
+                    break;
+                }
+                System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+                String moving = input.readMoving();
+
+                if (isNotEqual(bridge.get(i), moving)) {
+                    if (moving.equals(Bridge.UP.getOrder())) {
+                        moving = "W";
+                    }
+                    if (moving.equals(Bridge.DOWN.getOrder())) {
+                        moving = "F";
+                    }
+                    isWrong = true;
+                }
+                upBridge = move(upBridge, moving);
+                System.out.println(upBridge);
+                List<Integer> downBridge = new ArrayList<>();
+                createDownBridge(upBridge, downBridge);
+
+                result = requestPrintMap(saveMap(upBridge), saveMap(downBridge));
+            }
+            // 다 맞춤
+            if (!(upBridge.contains(Bridge.WRONG.getFirst()) || upBridge.contains(Bridge.UNKNOWN.getFirst()))) {
+                count++;
+                break;
+            }
+            // X 있음
+            if (isWrong) {
+                count++;
+                System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+                gameCommand = input.readGameCommand();
+            }
+
+        }
+        stop(count, result, isWrong);
     }
 
     public void start() {
