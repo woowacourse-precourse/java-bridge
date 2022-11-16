@@ -7,17 +7,26 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    private static final String RIGHT_ANSWER = "O";
+    private static final String WRONG_ANSWER = "X";
+    private static final String NOT_CHOSEN = " ";
     private static final String UP_BRIDGE_CHARACTER = "U";
     private static final String DOWN_BRIDGE_CHARACTER = "D";
     private static final String RETRY_CHARACTER = "R";
     private static final String QUIT_CHARACTER = "Q";
-    private static final String WIN = "성공";
-    private static final String LOSE = "실패";
 
     private final List<String> bridge;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
+    }
+
+    public static String getUpBridgeCharacter() {
+        return UP_BRIDGE_CHARACTER;
+    }
+
+    public static String getDownBridgeCharacter() {
+        return DOWN_BRIDGE_CHARACTER;
     }
 
     public static String getRetryCharacter() {
@@ -33,7 +42,39 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
+    // TODO: 구현 필요
     public void move() {
+    }
+
+    public String getUpBridgeResult(int index, String input) {
+        if (isMovingCorrect(index, input) && input.equals(UP_BRIDGE_CHARACTER)) {
+            return RIGHT_ANSWER;
+        }
+        if (isMovingCorrect(index, input) && input.equals(DOWN_BRIDGE_CHARACTER)) {
+            return NOT_CHOSEN;
+        }
+        return WRONG_ANSWER;
+    }
+
+    public String getDownBridgeResult(int index, String input) {
+        if (isMovingCorrect(index, input) && input.equals(DOWN_BRIDGE_CHARACTER)) {
+            return RIGHT_ANSWER;
+        }
+        if (isMovingCorrect(index, input) && input.equals(UP_BRIDGE_CHARACTER)) {
+            return NOT_CHOSEN;
+        }
+        return WRONG_ANSWER;
+    }
+
+    private boolean isMovingCorrect(int index, String input) {
+        validateMovingInput(input);
+        return input.equals(bridge.get(index));
+    }
+
+    private void validateMovingInput(String input) {
+        if (!input.equals(UP_BRIDGE_CHARACTER) && !input.equals(DOWN_BRIDGE_CHARACTER)) {
+            throw new IllegalArgumentException();
+        }
     }
 
     /**
