@@ -153,6 +153,20 @@ public class InputViewTest {
 		@DisplayName("에외상황 테스트 클래스")
 		class FailTest {
 
+			@Test
+			@DisplayName("이동할 칸 U와 D를 제외한 입력 경우 테스트")
+			void inputMovingWrong() {
+				// given
+				List<String> movings = List.of("ㄱ", "ㅃㅉㄸ머ㅏ", "1234", "1", "9999", "!ㄲㅇ", "!U", "D2", "UU", "DD", "UD",
+						"DU", "D!", ".D", "U(");
+
+				// when
+				for (String moving : movings) {
+					// when, then
+					readLine(moving);
+					assertThatThrownBy(() -> inputView.readMoving()).isInstanceOf(IllegalArgumentException.class);
+				}
+			}
 		}
 	}
 
