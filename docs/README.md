@@ -2,14 +2,17 @@
 
 ## 기능 목록
 
-- [ ] 다리의 길이를 입력 받는 기능
-- [ ] 다리를 랜덤 생성 하는 기능
-- [ ] 이동할 칸을 입력 받는 기능
-- [ ] 다리 건너기 성공 실패 판별하는 기능
-- [ ] 다리 건너기 진행 출력 기능
-- [ ] 게임 재시도 기능
-- [ ] 최종 결과 출력 기능
-- [ ] 재시도 횟수 출력 기능
+- [ ] 다리 생성 기능 -BridgeMaker#makeBridge()
+  - [ ] 다리의 길이 입력 기능 -InputView#readBridgeSize()
+- [ ] 다리를 랜덤 생성 하는 기능 -BridgeRandomNumberGenerator#generate()
+- [ ] 사다리 이동 기능 -BridgeGame#move()
+  - [ ] 이동할 칸 입력 기능 -InputView#readMoving()
+- [ ] 다리 건너기 성공 실패 판별하는 기능 
+- [ ] 다리 건너기 진행 출력 기능 -OutputView#printMap()
+- [ ] 게임 재시도 기능 -BridgeGame#retry()
+  - [ ] 게임 재시도 입력 기능 -InputView#readGameCommand()
+- [ ] 최종 결과 출력 기능 -OutputView#printResult()
+  - [ ] 재시도 횟수 출력 기능
 ## 기능 요구 사항
 
 위아래 둘 중 하나의 칸만 건널 수 있는 다리를 끝까지 건너가는 게임이다.
