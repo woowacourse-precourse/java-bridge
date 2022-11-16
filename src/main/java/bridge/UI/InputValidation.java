@@ -4,7 +4,9 @@ public class InputValidation {
 
     OutputView outputView = new OutputView();
 
-    public void validateBridgeLength(int bridgeLength){
+
+    public void validateBridgeLengthInRange(String input){
+        int bridgeLength = Integer.parseInt(input);
         if(!(3 <= bridgeLength && bridgeLength <= 20)){
             String errorMessage = "[ERROR] 다리의 길이는 3 이상 20 이하여야 합니다.";
             errorProcess(errorMessage);
