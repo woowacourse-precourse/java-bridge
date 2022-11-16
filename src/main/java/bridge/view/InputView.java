@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.validator.Validator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -12,12 +13,25 @@ public class InputView {
     private static final String INPUT_RESTART_QUIT = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n";
     private static final String DATA_TYPE_ERR_MESSAGE = "[ERROR] 숫자가 아닙니다.";
 
+    private final Validator validator;
+
+    public InputView() {
+        this.validator = new Validator();
+    }
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         System.out.println(INPUT_BRIDGE_LENGTH);
-        return convertStringtoInt(Console.readLine());
+        int size = convertStringtoInt(Console.readLine());
+        try {
+            validator.isValidBridgeSize(size);
+            return size;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readBridgeSize();
+        }
     }
 
     /**
@@ -25,7 +39,14 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println(INPUT_BRIDGE_LOCATION);
-        return Console.readLine();
+        String moving = Console.readLine();
+        try {
+            validator.isValidMoving(moving);
+            return moving;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
     }
 
     /**
@@ -33,7 +54,14 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println(INPUT_RESTART_QUIT);
-        return Console.readLine();
+        String command = Console.readLine();
+        try {
+            validator.isValidGameCommand(command);
+            return command;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readGameCommand();
+        }
     }
 
     private static int convertStringtoInt(String input) {
