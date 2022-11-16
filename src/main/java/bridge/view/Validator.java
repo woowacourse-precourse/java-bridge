@@ -11,13 +11,13 @@ public class Validator {
 	}
 
 	static void isMoveValidate(String input){
-		if(!input.equals("U") || !input.equals("D")){
+		if(!input.equals("U") && !input.equals("D")){
 			throw new IllegalArgumentException(INVALID_INPUT);
 		}
 	}
 
 	static void isCommandValidate(String command){
-		if (!command.equals("R") || !command.equals("Q")){
+		if (!command.equals("R") && !command.equals("Q")){
 			throw new IllegalArgumentException(INVALID_INPUT);
 		}
 	}
