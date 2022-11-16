@@ -35,7 +35,11 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public BridgeLocation readMoving() {
-        return BridgeLocation.createLocation(Console.readLine());
+        String readline = Console.readLine();
+        if(!("U".equals(readline) || "D".equals(readline))) {
+            throw new IllegalArgumentException();
+        }
+        return BridgeLocation.createLocation(readline);
     }
 
     /**
