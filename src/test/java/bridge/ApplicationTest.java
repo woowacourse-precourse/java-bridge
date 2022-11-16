@@ -70,6 +70,16 @@ class ApplicationTest extends NsTest {
 		);
 	}
 
+	@Test
+	void 최종_다리_출력_테스트() {
+		OutputView outputView = new OutputView();
+		outputView.printResult(List.of(1, 0, 1, 1), List.of(1, 0, 1, 1));
+		assertThat(output()).contains(
+			"[ O |   | O | O ]",
+			"[   | O |   |   ]"
+		);
+	}
+
 	@Override
 	protected void runMain() {
 		Application.main(new String[] {});
