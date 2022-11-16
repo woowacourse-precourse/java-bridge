@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private static final String NUMBER_FORMAT_ERROR = "숫자가 아닙니다.";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -26,6 +27,14 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private int convert(String number) {
+        try {
+            return Integer.parseInt(number);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(NUMBER_FORMAT_ERROR);
+        }
     }
 
     private String input() {
