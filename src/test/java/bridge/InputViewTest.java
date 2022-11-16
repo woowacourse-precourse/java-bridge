@@ -50,4 +50,24 @@ public class InputViewTest {
             assertThat(inputView.readMoving(input)).isEqualTo(input);
         }
     }
+
+    @DisplayName("게임 종료 여부가 R 혹은 Q이 아닌 경우 오류가 발생한다.")
+    @Test
+    void wrongGameCommand() {
+        List<String> testInput = List.of("1", "U", "q", "-");
+
+        for (String input : testInput) {
+            assertThat(inputView.readGameCommand(input)).isNotEqualTo(input);
+        }
+    }
+
+    @DisplayName("게임 종료 여부가 R 혹은 Q인 경우 정상적으로 작동한다.")
+    @Test
+    void correctGameCommand() {
+        List<String> testInput = List.of("R", "Q");
+
+        for (String input : testInput) {
+            assertThat(inputView.readGameCommand(input)).isEqualTo(input);
+        }
+    }
 }
