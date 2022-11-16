@@ -68,13 +68,13 @@ public class InputView {
     }
 
     private void validateCommand (String command) {
-        if (command.equals("R") || command.equals("Q")) {
+        if (!command.equals("R") && !command.equals("Q")) {
             throw new IllegalArgumentException();
         }
     }
 
     private void validateMoving (String moving) {
-        if (moving.equals("U") || moving.equals("D")) {
+        if (!moving.equals("U") && !moving.equals("D")) {
             throw new IllegalArgumentException();
         }
     }
