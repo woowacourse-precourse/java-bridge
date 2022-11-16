@@ -8,7 +8,7 @@ public class Validator {
 
     }
 
-    private void validatePositiveNumber(String bridgeLength) {
+    private void validateBridgeLengthForm(String bridgeLength) {
         if (!bridgeLength.matches("[1-9][0-9]*")) {
             throw new IllegalArgumentException(ErrorMessage.IS_NOT_POSITIVE_NUMBER.message());
         }
