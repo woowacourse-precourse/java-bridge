@@ -5,12 +5,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyTest {
 
     @DisplayName("입력 받은 길이만큼 건널 수 있는 다리의 칸을 생성한다.")
     @Test
-    public void 다리_생성_테스트() {
+    public void 건널_수_있는_다리의_칸_생성_테스트() {
         String inputValue = "3";
         ArrayList<Integer> crossablePositions = Application.makeCrossablePositions(inputValue);
 
@@ -34,5 +35,31 @@ public class MyTest {
 
 
 
+    }
+
+    @DisplayName("입력에 맞게 다리를 생성한다.")
+    @Test
+    public void 다리_생성_테스트() {
+
+        ArrayList<StringBuilder> sb = new ArrayList<>();
+        sb.add(new StringBuilder("[ "));
+        sb.add(new StringBuilder("[ "));
+
+        ArrayList<Integer> crossablePositions = new ArrayList<>(List.of(0, 0, 1));
+
+        Application.makeBridge('U', sb, crossablePositions);
+
+        Assertions.assertThat(sb.get(0)).isEqualTo("[ o ]");
+        Assertions.assertThat(sb.get(1)).isEqualTo("[   ]");
+
+        Application.makeBridge('U', sb, crossablePositions);
+
+        Assertions.assertThat(sb.get(0)).isEqualTo("[ o | o ]");
+        Assertions.assertThat(sb.get(1)).isEqualTo("[   |   ]");
+
+        Application.makeBridge('U', sb, crossablePositions);
+
+        Assertions.assertThat(sb.get(0)).isEqualTo("[ o | o |   ]");
+        Assertions.assertThat(sb.get(1)).isEqualTo("[   |   | o ]");
     }
 }
