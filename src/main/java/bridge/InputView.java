@@ -1,5 +1,9 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Console;
+
+import java.util.regex.Pattern;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -9,7 +13,8 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        String readline = Console.readLine();
+        return Integer.parseInt(readline);
     }
 
     /**
@@ -25,4 +30,5 @@ public class InputView {
     public String readGameCommand() {
         return null;
     }
+
 }
