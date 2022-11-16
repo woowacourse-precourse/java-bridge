@@ -1,11 +1,15 @@
 package bridge.utils;
 
 public class Validator {
-    private static final int MIN_BRIDGE_SIZE = 3;
-    private static final int MAX_BRIDGE_SIZE = 20;
     public static void validateBridgeSize(String input) {
         int size = isDigit(input);
-        inRange(MIN_BRIDGE_SIZE, MAX_BRIDGE_SIZE, size);
+        inRange(Value.MIN_BRIDGE_SIZE, Value.MAX_BRIDGE_SIZE, size);
+    }
+
+    public static void validateMove(String input) {
+        if (!input.equals(Value.UP) && !input.equals(Value.DOWN)) {
+            throw new IllegalArgumentException("U또는 D를 입력해주세요");
+        }
     }
 
     private static int isDigit(String input) {

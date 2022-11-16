@@ -16,7 +16,6 @@ public class InputView {
         System.out.println(Message.INPUT_LENGTH);
         String size = Console.readLine();
         Validator.validateBridgeSize(size);
-
         return Integer.parseInt(size);
     }
 
@@ -24,7 +23,10 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(Message.SELECT_MOVE);
+        String move = Console.readLine();
+        Validator.validateMove(move);
+        return move;
     }
 
     /**
