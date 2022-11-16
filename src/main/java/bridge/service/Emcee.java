@@ -14,7 +14,9 @@ public class Emcee {
     }
 
     public void guideEnteringBridgeLength() {
-
+        String guide = "다리의 길이를 입력해주세요.\n" +
+                "다리의 길이는 3 이상 20 이하입니다.";
+        outputView.printGuide(guide);
     }
 
     public void guideEnteringMovement() {
