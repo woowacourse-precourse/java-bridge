@@ -24,8 +24,14 @@ class ReadyTest {
     }
     
     @Test
-    @DisplayName("다리를 건너기 성공")
-    void moveResult() {
+    @DisplayName("다리 건너기 성공")
+    void moveSuccess() {
         assertThat(ready.move(1)).isExactlyInstanceOf(Success.class);
+    }
+    
+    @Test
+    @DisplayName("다리 건너기 실패")
+    void moveFail() {
+        assertThat(ready.move(0)).isExactlyInstanceOf(Fail.class);
     }
 }
