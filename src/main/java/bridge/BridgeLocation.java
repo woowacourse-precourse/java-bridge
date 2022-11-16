@@ -25,7 +25,7 @@ public enum BridgeLocation {
         return Arrays.stream(values())
                 .filter(locationValue -> locationValue.location.equals(location))
                 .findFirst()
-                .orElseThrow();
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] U 또는 D를 입력해 주시기 바랍니다."));
     }
 
     public String getLocation() {
