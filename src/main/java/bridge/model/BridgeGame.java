@@ -10,14 +10,16 @@ import java.util.List;
 public class BridgeGame {
 
     private final BridgeMaker bridgeMaker;
+    private Bridges bridge;
 
     public BridgeGame(BridgeMaker bridgeMaker) {
         this.bridgeMaker = bridgeMaker;
     }
 
-    public List<String> createBridge(int size){
-        return bridgeMaker.makeBridge(size);
+    public void createBridge(int size) {
+        bridge = new Bridges(bridgeMaker.makeBridge(size));
     }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>

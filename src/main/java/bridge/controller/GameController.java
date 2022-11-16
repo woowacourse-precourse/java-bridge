@@ -4,8 +4,6 @@ import bridge.model.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-import java.util.List;
-
 public class GameController {
     private final InputView inputView;
     private final OutputView outputView;
@@ -24,7 +22,6 @@ public class GameController {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
 
-        List<String> bridge = bridgeGame.createBridge(bridgeSize);
-        System.out.println(bridge);
+        bridgeGame.createBridge(bridgeSize);
     }
 }
