@@ -1,17 +1,18 @@
 package bridge.view;
 
 public enum OutputString {
-    START("start", "다리 건너기 게임을 시작합니다."),
-    RESULT("result", "게임 성공 여부 : "),
-    TRY("try", "총 시도한 횟수 : "),
-    SUCCESS("success", "성공"),
-    FAIL("fail", "실패");
+    START("다리 건너기 게임을 시작합니다."),
+    INPUT("다리의 길이를 입력해주세요."),
+    MOVE("이동할 칸을 선택해주세요. (위 : U, 아래 : D"),
+    RESULT("게임 성공 여부 : "),
+    TRY("총 시도한 횟수 : "),
+    SUCCESS("성공"),
+    FAIL("실패"),
+    RETRY("게임을 다시 시도할지 여부를 입력해주세요. (재시도 : R, 종료 : Q)");
 
-    private String status;
     private String print;
 
-    OutputString(String status, String print) {
-        this.status = status;
+    OutputString(String print) {
         this.print = print;
     }
 
