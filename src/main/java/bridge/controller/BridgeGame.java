@@ -26,6 +26,8 @@ public class BridgeGame {
         outputView.printGameStartMessage();
         outputView.printEnterBridgeLength();
         inputView.readBridgeSize();
+        outputView.printEnterSelectMoving();
+        inputView.readMoving();
     }
 
     /**
