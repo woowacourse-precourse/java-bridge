@@ -12,8 +12,8 @@ public class InputView {
      */
     public int readBridgeSize() {
         String userInput = readLine();
-        validIsNum(userInput);
-        validRange(userInput);
+        Validator.validIsNum(userInput);
+        Validator.validRange(userInput);
         return Integer.parseInt(userInput);
     }
 
@@ -22,7 +22,7 @@ public class InputView {
      */
     public String readMoving() {
         String userInput = readLine();
-        validMovingInput(userInput);
+        Validator.validMovingInput(userInput);
         return userInput;
     }
 
@@ -31,7 +31,7 @@ public class InputView {
      */
     public String readGameCommand() {
         String userInput = readLine();
-        validGameCommandInput(userInput);
+        Validator.validGameCommandInput(userInput);
         return userInput;
     }
 }
