@@ -1,7 +1,6 @@
 package bridge.view;
 
-import camp.nextstep.edu.missionutils.Console;
-import java.util.NoSuchElementException;
+import static camp.nextstep.edu.missionutils.Console.readLine;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -10,21 +9,49 @@ import java.util.NoSuchElementException;
  */
 public class InputView {
 
+    private static final String ERROR_PREFIX = "[ERROR] ";
+    private static final String NOT_VALID_BRIDGE_LENGTH = "다리의 길이는 3 이상 20 이하여야 합니다.";
+
+    public int bridgeSize() {
+        try {
+            return number();
+        } catch (IllegalArgumentException e) {
+            System.out.println(ERROR_PREFIX + e.getMessage());
+            return bridgeSize();
+        }
+    }
+
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int bridgeSize() {
+    private int number() {
+        System.out.println("다리의 길이를 입력해주세요.");
         String inputValue = readLine();
         validateThisIsNumber(inputValue);
-        return Integer.parseInt(inputValue);
+
+        int intValue = Integer.parseInt(inputValue);
+        validateBridgeSize(intValue);
+
+        return intValue;
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String movement() {
+        try {
+            return oneStringForMovement();
+        } catch (IllegalArgumentException e) {
+            System.out.println(ERROR_PREFIX + e.getMessage());
+            return movement();
+        }
+    }
+
+    private String oneStringForMovement() {
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String inputValue = readLine();
         validateCorrectValueForMoving(inputValue);
+
         return inputValue;
     }
 
@@ -32,23 +59,34 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String gameCommand() {
-        String inputValue = readLine();
-        validateCorrectValueForGameCommand(inputValue);
-        return inputValue;
+        try {
+            return oneStringForGameCommand();
+        } catch (IllegalArgumentException e) {
+            System.out.println(ERROR_PREFIX + e.getMessage());
+            return gameCommand();
+        }
     }
 
-    private String readLine() {
-        try {
-            return Console.readLine();
-        } catch (NoSuchElementException e) {
-            throw new IllegalArgumentException("값이 입력되지 않았습니다. 값을 입력해 주세요.");
-        }
+    private String oneStringForGameCommand() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String inputValue = readLine();
+        validateCorrectValueForGameCommand(inputValue);
+
+        return inputValue;
     }
 
     private void validateThisIsNumber(String inputValue) {
         final String REGEX_FOR_NUMBER = "^\\d+$";
         if (!inputValue.matches(REGEX_FOR_NUMBER)) {
             throw new IllegalArgumentException("숫자만 입력해 주세요.");
+        }
+    }
+
+    private void validateBridgeSize(int size) {
+        final int MIN_SIZE = 3;
+        final int MAX_SIZE = 20;
+        if (size < MIN_SIZE || MAX_SIZE < size) {
+            throw new IllegalArgumentException(NOT_VALID_BRIDGE_LENGTH);
         }
     }
 

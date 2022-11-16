@@ -23,8 +23,6 @@ public class BridgeGameController {
 
     public void gameStart() {
         outputView.printStartMessage();
-
-        outputView.printInputBridgeLengthMessage();
         int bridgeSize = inputView.bridgeSize();
 
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
@@ -34,7 +32,6 @@ public class BridgeGameController {
         String gameCommand = "";
         String success = "성공";
         while (!gameCommand.equals("Q") && (player.position() != bridgeSize)) {
-            outputView.printMovingMessage();
             String moveSign = inputView.movement();
             String resultSign = bridgeGame.matchResult(moveSign);
 
@@ -46,7 +43,6 @@ public class BridgeGameController {
             }
 
             if (resultSign.equals("X")) {
-                outputView.printGameCommandMessage();
                 gameCommand = inputView.gameCommand();
                 if (gameCommand.equals("R")) {
                     bridgeGame.retry();

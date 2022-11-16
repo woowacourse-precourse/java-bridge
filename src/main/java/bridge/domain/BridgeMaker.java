@@ -10,8 +10,6 @@ import java.util.List;
  */
 public class BridgeMaker {
 
-    private static final String NOT_VALID_BRIDGE_LENGTH = "다리의 길이는 3 이상 20 이하여야 합니다.";
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -23,7 +21,6 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        validateBridgeSize(size);
         List<String> results = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
@@ -37,13 +34,5 @@ public class BridgeMaker {
         }
 
         return results;
-    }
-
-    private void validateBridgeSize(int size) {
-        final int MIN_SIZE = 3;
-        final int MAX_SIZE = 20;
-        if (size < MIN_SIZE || MAX_SIZE < size) {
-            throw new IllegalArgumentException(NOT_VALID_BRIDGE_LENGTH);
-        }
     }
 }
