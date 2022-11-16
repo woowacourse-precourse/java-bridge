@@ -19,6 +19,10 @@ public enum Command {
 		return upperCase.equals(REPLAY.value);
 	}
 
+	public String getValue() {
+		return value;
+	}
+
 	private static void validate(String inputValue) {
 		List<String> commandStrings = List.of(REPLAY.value, QUIT.value);
 

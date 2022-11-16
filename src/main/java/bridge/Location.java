@@ -15,6 +15,10 @@ public enum Location {
 		this.convertValue = convertValue;
 	}
 
+	public String getInputValue() {
+		return inputValue;
+	}
+
 	public static int convertToInt(String inputValue) {
 		String upperCase = inputValue.toUpperCase();
 		validate(upperCase);
