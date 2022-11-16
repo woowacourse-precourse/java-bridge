@@ -1,4 +1,6 @@
-package bridge;
+package bridge.domain.factory;
+
+import bridge.domain.strategy.BridgeNumberGenerator;
 
 import java.util.List;
 
