@@ -2,6 +2,11 @@ package bridge;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
+ * - Instance 변수 추가 가능
+ * - Package 변경 가능
+ * - Method 이름 변경 불가능
+ * - Method 인자와 반환 타입 변경 가능
+ * - 필요 method 추가 가능
  */
 public class BridgeGame {
 
