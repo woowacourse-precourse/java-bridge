@@ -7,17 +7,26 @@ import bridge.service.BridgeGame;
  */
 public class BridgeGameController {
 
-    private final BridgeGame BRIDGE_GAME;
+    private final BridgeGame bridgeGame;
 
     public BridgeGameController() {
-        this.BRIDGE_GAME = new BridgeGame();
+        this.bridgeGame = new BridgeGame();
     }
 
     public void gameStart() {
-        do {
-            while (!this.BRIDGE_GAME.isDone()) {
-                this.BRIDGE_GAME.move();
+        run();
+        while (!this.bridgeGame.isWin()) {
+            if (!this.bridgeGame.retry()) {
+                break;
             }
-        } while (this.BRIDGE_GAME.retry());
+            run();
+        }
+        this.bridgeGame.finish();
+    }
+
+    private void run() {
+        while (!this.bridgeGame.isDone()) {
+            this.bridgeGame.move();
+        }
     }
 }

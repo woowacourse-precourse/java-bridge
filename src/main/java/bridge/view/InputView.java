@@ -9,9 +9,10 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     private static final String WHITE_SPACE = "\\s";
-    private static final String EMPTY_STRING = "";
+    private static final String EMPTY = "";
     private static final String PRINT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     private static final String PRINT_SELECT_MOVING_DIRECTION = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String PRINT_RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
 
     /**
@@ -20,7 +21,7 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println();
         System.out.println(PRINT_BRIDGE_SIZE);
-        String userInput = Console.readLine().replaceAll(WHITE_SPACE, EMPTY_STRING);;
+        String userInput = Console.readLine().replaceAll(WHITE_SPACE, EMPTY);
         InputViewValidator.checkBridgeSizeIsNotNumber(userInput);
 
         int bridgeSize = Integer.parseInt(userInput);
@@ -35,9 +36,9 @@ public class InputView {
         System.out.println();
         System.out.println(PRINT_SELECT_MOVING_DIRECTION);
 
-        String userInput = Console.readLine().replaceAll(WHITE_SPACE, EMPTY_STRING);
-        InputViewValidator.checkMovingCommandSize(userInput);
-        InputViewValidator.checkMovingCommandUpperCase(userInput);
+        String userInput = Console.readLine().replaceAll(WHITE_SPACE, EMPTY);
+        InputViewValidator.checkCommandSize(userInput);
+        InputViewValidator.checkCommandUpperCase(userInput);
         InputViewValidator.checkMovingCommandCharacter(userInput);
         return userInput;
     }
@@ -46,6 +47,13 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println();
+        System.out.println(PRINT_RETRY);
+
+        String userInput = Console.readLine().replaceAll(WHITE_SPACE, EMPTY);
+        InputViewValidator.checkCommandSize(userInput);
+        InputViewValidator.checkCommandUpperCase(userInput);
+        InputViewValidator.checkRetryCommandCharacter(userInput);
+        return userInput;
     }
 }
