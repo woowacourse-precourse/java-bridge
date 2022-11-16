@@ -1,9 +1,27 @@
 package bridge;
 
+import bridge.service.BridgeService;
+
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
+    private final BridgeService bridgeService;
+
+    public BridgeGame(BridgeService bridgeService) {
+        this.bridgeService = bridgeService;
+    }
+
+    public void run() {
+        List<String> bridge = bridgeService.makeBridge();
+
+
+
+
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
