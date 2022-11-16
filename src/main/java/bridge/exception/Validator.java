@@ -1,12 +1,21 @@
 package bridge.exception;
 
+import static bridge.constant.BridgeConstant.LOWER_BLOCK;
 import static bridge.constant.BridgeConstant.MAX_SIZE;
 import static bridge.constant.BridgeConstant.MIN_SIZE;
+import static bridge.constant.BridgeConstant.UPPER_BLOCK;
 
 public class Validator {
 
     public void validateBridgeSize(int size) {
         validateBridgeSizeRange(size);
+    }
+
+    public void validateMoveMessage(String message) {
+        if (!message.equals(UPPER_BLOCK) && !message.equals(LOWER_BLOCK)) {
+            throw new IllegalArgumentException("입력 값은 " + UPPER_BLOCK + "혹은 " + LOWER_BLOCK + "이여야 합니다." +
+                    "입력값 : " + message);
+        }
     }
 
     private void validateBridgeSizeRange(int size) {
