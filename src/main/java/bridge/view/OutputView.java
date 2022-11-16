@@ -18,25 +18,22 @@ public class OutputView {
     private static final String CORRECT_ANSWER = "O";
     private static final String INCORRECT_ANSWER = "X";
     private static final String WHITE_SPACE = " ";
+    private static final String PRINT_GAME_START = "다리 건너기 게임을 시작합니다.";
     private static final String PRINT_RESULT = "게임 성공 여부: %s%s";
     private static final String PRINT_TRY_COUNT = "총 시도한 횟수: %d%s";
-    private final Bridge bridge;
 
-    public OutputView(Bridge bridge) {
-        this.bridge = bridge;
-    }
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> givenAnswerSheet) {
+    public void printMap(Bridge bridge, List<String> givenAnswerSheet) {
         System.out.print(ROW_START_BRACKET);
-        printRow(givenAnswerSheet, UP_ROW);
+        printRow(bridge, givenAnswerSheet, UP_ROW);
         System.out.println(ROW_END_BRACKET);
         System.out.print(ROW_START_BRACKET);
-        printRow(givenAnswerSheet, DOWN_ROW);
+        printRow(bridge, givenAnswerSheet, DOWN_ROW);
         System.out.println(ROW_END_BRACKET);
     }
 
@@ -50,12 +47,16 @@ public class OutputView {
         System.out.printf(PRINT_TRY_COUNT, tryCount, System.lineSeparator());
     }
 
-    private void printRow(List<String> givenAnswerSheet, String thisRow) {
+    public void printGameStart() {
+        System.out.println(PRINT_GAME_START);
+    }
+
+    private void printRow(Bridge bridge, List<String> givenAnswerSheet, String thisRow) {
         for (int i = INDEX_ZERO; i < givenAnswerSheet.size(); ++i) {
             if (i != INDEX_ZERO) {
                 System.out.print(ROW_DELIMITER);
             }
-            printElementResultOrWhiteSpace(this.bridge.getElementByIndex(i), givenAnswerSheet.get(i), thisRow);
+            printElementResultOrWhiteSpace(bridge.getElementByIndex(i), givenAnswerSheet.get(i), thisRow);
         }
     }
 

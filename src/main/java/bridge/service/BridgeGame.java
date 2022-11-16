@@ -1,6 +1,7 @@
 package bridge.service;
 
 import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.view.InputView;
@@ -16,7 +17,6 @@ public class BridgeGame {
 
     private static final int INDEX_ZERO = 0;
     private static final String GAME_RETRY = "R";
-    private static final String PRINT_GAME_START = "다리 건너기 게임을 시작합니다.";
     private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";
     private final InputView inputView;
@@ -26,14 +26,14 @@ public class BridgeGame {
     private int tryCount = 1;
 
     public BridgeGame() {
-        System.out.println(PRINT_GAME_START);
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         this.inputView = new InputView();
+        this.outputView = new OutputView();
+        this.outputView.printGameStart();
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         int bridgeSize = inputView.readBridgeSize();
         this.bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
         this.givenAnswerSheet = new ArrayList<>(bridgeSize);
-        this.outputView = new OutputView(this.bridge);
     }
 
     /**
@@ -44,7 +44,7 @@ public class BridgeGame {
     public void move() {
         String givenAnswer = inputView.readMoving();
         this.givenAnswerSheet.add(givenAnswer);
-        outputView.printMap(this.givenAnswerSheet);
+        outputView.printMap(this.bridge, this.givenAnswerSheet);
     }
 
     /**
