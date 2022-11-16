@@ -4,7 +4,7 @@
 
 - [] 다리 생성
   - [x] 다리의 길이를 입력한다 - InputView#readBridgeSize()
-    - [] 숫자가 아니면 예외처리 - Validation#validateNumberOnly()
+    - [x] 숫자가 아니면 IllegalArgumentException 발생시킨다 - Validation#validateNumberOnly()
     - [] "[ERROR]"로 시작하는 에러 메시지를 출력한다 - Validation#validateNumberOnly()
   - [] 생성 시 위 칸와 아래 칸 중 건널 수 있는 칸은 0과 1 중 무작위 값을 이용해 정한다 - BridgeNumberGenerator#generate()
     - [] 무작위 값이 0인 경우 아래 칸, 1인 경우 위 칸이 건널 수 있는 칸이 된다 - BridgeMaker#makeBridge()
