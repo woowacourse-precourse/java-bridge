@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,6 +26,23 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(List<String> bridge) {
+
     }
+
+    public void start() {
+        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println("다리의 길이를 입력해주세요.");
+
+        InputView input = new InputView();
+        int bridgeSize = input.readBridgeSize();
+
+        // 다리를 생성하기
+        BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> bridge = maker.makeBridge(bridgeSize);
+
+        System.out.println("다리 : " + bridge);
+        retry(bridge);
+    }
+
 }
