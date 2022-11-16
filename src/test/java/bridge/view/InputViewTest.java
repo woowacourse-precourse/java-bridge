@@ -30,6 +30,15 @@ class InputViewTest extends NsTest {
         });
     }
 
+    @Test
+    @DisplayName("이동할 칸을 입력받을 때 U 또는 D가 아니면 예외가 발생한다.")
+    void receiveMovingByNotUorD() {
+        assertSimpleTest(() -> {
+            runException("3", "Z");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
