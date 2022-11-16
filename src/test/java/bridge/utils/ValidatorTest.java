@@ -19,4 +19,11 @@ class ValidatorTest {
         assertThatThrownBy(() -> Validator.validateBridgeSize("21"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("이동할 칸 입력 시 U, D 이외의 값이 입력되면 예외 처리한다")
+    @Test
+    void inputInvalidMove() {
+        assertThatThrownBy(() -> Validator.validateMove("d"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
