@@ -1,6 +1,6 @@
 package bridge;
 
-import java.util.List;
+import java.util.*;
 
 public class Application {
 
@@ -13,6 +13,21 @@ public class Application {
         BridgeMaker bridgeMaker = new BridgeMaker(BridgeRandomNumberGenerator);
         final List<String> bridge = bridgeMaker.makeBridge(size);
         System.out.println(bridge);
+        BridgeGame bridgeGame = new BridgeGame();
+        OutputView outputView = new OutputView();
+        List<List<String>> userPlaying = new ArrayList<>();
+        for (int i = 0; i<size; i++) {
+            String move = inputView.readMoving();
+            String result = bridgeGame.move(move, bridge.get(i));
+            List<String> currentPlaying = new ArrayList<>();
+                currentPlaying.add(move);
+                currentPlaying.add(result);
+                userPlaying.add(currentPlaying);
+            outputView.printMap(userPlaying);
+            if (Objects.equals(result, "X"))
+                break;
+
+        }
     }
 
     public static int checkSize(String str) {
