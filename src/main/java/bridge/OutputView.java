@@ -62,4 +62,9 @@ public class OutputView {
         }
         System.out.println(PrintInput.RESULT_NUMBER.toString() + attempt);
     }
+
+    public void printStart () {
+        PrintInput.START.print();
+        System.out.println();
+    }
 }
