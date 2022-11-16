@@ -23,7 +23,9 @@ public class BridgeGame {
     }
 
     public void start() {
-
+        outputView.printGameStartMessage();
+        outputView.printEnterBridgeLength();
+        inputView.readBridgeSize();
     }
 
     /**
