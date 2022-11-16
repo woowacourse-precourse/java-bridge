@@ -33,7 +33,7 @@ public class InputView {
             System.out.println(readMovingError);
             throw new IllegalArgumentException();
         }
-        return null;
+        return result;
     }
 
     /**
