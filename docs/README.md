@@ -18,6 +18,10 @@
 - DO NOT MODIFY
 ### InputView
 ### OutputView
+### Err
+- wrong bridge length
+- wrong move
+- wrong retry or terminate
 
 # Interface
 ### BridgeNumberGenerator
