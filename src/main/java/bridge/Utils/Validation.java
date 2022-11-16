@@ -23,6 +23,7 @@ public class Validation {
 
     public void isRightMoving(String target) {
         isOnlyAlphabets(target);
+        isOneAlphabet(target);
 
     }
 
@@ -33,4 +34,10 @@ public class Validation {
         }
     }
 
+    private void isOneAlphabet(String target) {
+        String oneAlphabetRegex = "^[a-zA-Z]$";
+        if (!target.matches(oneAlphabetRegex)) {
+            throw new IllegalArgumentException(ExceptionType.IS_NOT_ONE_ALPHABET.getMessage());
+        }
+    }
 }
