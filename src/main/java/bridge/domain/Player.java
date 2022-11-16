@@ -29,4 +29,8 @@ public class Player {
     public int totalNumberOfChallenges() {
         return totalNumberOfChallenges;
     }
+
+    public boolean inTheGame(int bridgeSize) {
+        return position < bridgeSize;
+    }
 }
