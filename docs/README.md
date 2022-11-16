@@ -3,22 +3,19 @@
 ## 입력
 - [ ] 다리 길이를 숫자로 입력
   - [x] 정상 입력
-  - [ ] 예외 처리 (예외 메시지에 [ERROR] 로 시작) (IllegalArgumentException)
-    - [ ] 3 ~ 20 의 범위를 벗어난 경우
+  - [ ] 예외 처리 (예외 메시지에 [ERROR] 로 시작) (IllegalArgumentException) (에러 메시지 출력 후 다시 입력)
 
 - [ ] 어떤 칸을 밟을 지 입력
   - [x] 정상 입력
     - U : 위 칸으로 이동
     - D : 아래 칸으로 이동
-  - [ ] 예외 처리 (예외 메시지에 [ERROR] 로 시작) (IllegalArgumentException)
-    - [ ] U 또는 D 가 아닐 경우
+  - [ ] 예외 처리 (예외 메시지에 [ERROR] 로 시작) (IllegalArgumentException) (에러 메시지 출력 후 다시 입력)
 
 - [ ] 재시도 여부 입력
   - [x] 정상 입력
     - R : 재시도
     - Q : 게임 종료
-  - [ ] 예외 처리 (예외 메시지에 [ERROR] 로 시작) (IllegalArgumentException)
-    - [ ] Q 또는 R 이 아닐 경우 
+  - [ ] 예외 처리 (예외 메시지에 [ERROR] 로 시작) (IllegalArgumentException) (에러 메시지 출력 후 다시 입력)
 
 ## 출력
 - [ ] 게임 시작 메시지 출력 => "다리 건너기 게임을 시작합니다."
@@ -82,6 +79,14 @@
 
 - [x] 재시도 선택 시 시도 횟수 증가
 
+- [ ] 다리 길이 입력 예외 처리 (예외 메시지에 [ERROR] 로 시작) (IllegalArgumentException) (에러 메시지 출력 후 다시 입력)
+  - [ ] 3 ~ 20 의 범위를 벗어난 경우
+
+- [ ] 어떤 칸을 밟을 지 입력 예외 처리 (예외 메시지에 [ERROR] 로 시작) (IllegalArgumentException) (에러 메시지 출력 후 다시 입력)
+  - [ ] U 또는 D 가 아닐 경우
+
+- [ ] 재시도 여부 입력 예외 처리 (예외 메시지에 [ERROR] 로 시작) (IllegalArgumentException) (에러 메시지 출력 후 다시 입력)
+  - [ ] Q 또는 R 이 아닐 경우
 
 
 다리는 왼쪽에서 오른쪽으로 건넌다.
