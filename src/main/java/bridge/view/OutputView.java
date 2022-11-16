@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import java.util.List;
 public class OutputView {
     private static String upBridge = "[]";
     private static String downBridge = "[]";
+    private static OutputString outputString;
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -24,12 +25,22 @@ public class OutputView {
      * [ O |   |   ]
      * [   | O | O ]
      */
-    public void printMap(String input, boolean tf) {
+    public void start() {
+        System.out.println(OutputString.START);
+        System.out.println(OutputString.INPUT);
+    }
+
+    public void printMap(String input, boolean tf, int idx) {
+        System.out.println(OutputString.MOVE);
         if (tf == true) {
             printTrue(input);
+            if (idx == 0)
+                input.replace("|", "");
             return;
         }
         printFalse(input);
+        if (idx == 0)
+            input.replace("|", "");
     }
 
     public void printTrue(String input) {
@@ -54,19 +65,6 @@ public class OutputView {
         if (input.equals("D")) {
             upBridge.replace("]", "|   ]");
             downBridge.replace("]", "| X ]");
-            return;
-        }
-    }
-
-    public void printFirst(String input) {
-        if (input.equals("U")) {
-            upBridge.replace("]", " O ]");
-            downBridge.replace("]", "   ]");
-            return;
-        }
-        if (input.equals("D")) {
-            upBridge.replace("]", "   ]");
-            downBridge.replace("]", " O ]");
             return;
         }
     }
