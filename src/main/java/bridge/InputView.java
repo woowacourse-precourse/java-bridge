@@ -17,7 +17,6 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println(INPUT_BRIDGE_SIZE_MESSAGE);
         String input = getInput();
-        validateNotEmpty(input);
         validateInteger(input);
         return Integer.parseInt(input);
     }
@@ -25,8 +24,9 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public String readMoving(String upBridgeCharacter, String downBridgeCharacter) {
+        System.out.printf(INPUT_MOVING_POSITION_MESSAGE, upBridgeCharacter, downBridgeCharacter);
+        return getInput();
     }
 
     /**
@@ -38,7 +38,9 @@ public class InputView {
 
 
     private String getInput() {
-        return Console.readLine().trim();
+        String input = Console.readLine().trim();
+        validateNotEmpty(input);
+        return input;
     }
 
     private void validateNotEmpty(String input) {
