@@ -15,15 +15,7 @@ public class InputView {
     public int readBridgeSize() {
         String input = receiveInput();
         validateNumber(input);
-        int length = Integer.parseInt(input);
-        validateLength(length);
-        return length;
-    }
-
-    private void validateLength(int length) {
-        if (length < 3 || length > 20) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
-        }
+        return Integer.parseInt(input);
     }
 
     private void validateNumber(String input) {
