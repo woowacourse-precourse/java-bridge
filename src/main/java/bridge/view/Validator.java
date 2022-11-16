@@ -15,4 +15,10 @@ public class Validator {
 			throw new IllegalArgumentException(INVALID_INPUT);
 		}
 	}
+
+	static void isCommandValidate(String command){
+		if (!command.equals("R") || !command.equals("Q")){
+			throw new IllegalArgumentException(INVALID_INPUT);
+		}
+	}
 }
