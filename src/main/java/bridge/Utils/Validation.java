@@ -25,6 +25,7 @@ public class Validation {
         isOnlyAlphabets(target);
         isOneAlphabet(target);
         isLowerAlphabet(target);
+        isMovingAlphabet(target);
     }
 
     private void isOnlyAlphabets(String target) {
@@ -45,6 +46,13 @@ public class Validation {
         String lowerAlphabetRegex = "^[a-z]$";
         if (!target.matches(lowerAlphabetRegex)) {
             throw new IllegalArgumentException(ExceptionType.IS_NOT_UPPER_ALPHABET.getMessage());
+        }
+    }
+
+    private void isMovingAlphabet(String target) {
+        String movingAlphabetRegex = "^[UD]$";
+        if (!target.matches(movingAlphabetRegex)) {
+            throw new IllegalArgumentException(ExceptionType.IS_NOT_MOVING_ALPHABET.getMessage());
         }
     }
 }
