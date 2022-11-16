@@ -41,8 +41,20 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public String readMoving(String inputDirection) {
+        try {
+            validateMovingDirection(inputDirection);
+            return inputDirection;
+        } catch (IllegalStateException e) {
+            System.out.println(Error.ERROR_MOVING.getErrorMessage());
+            return Integer.toString(requestNewInput);
+        }
+    }
+
+    public void validateMovingDirection(String direction) {
+        if (!direction.equals("U") && !direction.equals("D")) {
+            throw new IllegalStateException();
+        }
     }
 
     /**
