@@ -10,7 +10,8 @@ import java.util.List;
 
 public class GameController {
 
-    private boolean KEEP_GOING = true;
+    private boolean keepGoing = true;
+    private int i = 0;
 
     InputView inputView;
     OutputView outputView;
@@ -26,13 +27,13 @@ public class GameController {
     }
 
     public void run() {
-        int i = 0;
         int bridgeSize = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        while(KEEP_GOING && i < bridgeSize){
+        while(keepGoing && i < bridgeSize){
             String nextMove = inputView.readMoving();
             String moveResult = bridgeGame.move(bridge.get(i), nextMove);
-            System.out.println("moveResult = " + moveResult);
+            outputView.extracted(nextMove, moveResult);
+            outputView.printMap();
             i++;
         }
     }
