@@ -13,9 +13,7 @@
 - [] 다리 건너기  
   - [x] 플레이어가 이동할 칸을 입력한다 - InputView#readMoving()
     - [x] 잘못된 값을 입력하면 IllegalArgumentException을 발생시킨다 - Validation#isMovingException()
-    - [] `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다. - Validation#validateUOrD()
-    - [] "[ERROR]"로 시작하는 에러 메시지를 출력한다 - Validation#validateUOrD()
-    - [] 그 부분부터 입력을 다시 받는다. - InputView#readMoving()
+    - [x] 그 부분부터 입력을 다시 받는다. - Validation#validateMoving()
   - [] 플레이어가 이동할 칸을 선택한다 - BridgeGame#move()
    - [] 위 칸은 대문자 U, 아래 칸은 대문자 D를 입력한다 - Input#isUpOrDown()
   - [] 이동한 칸을 건널 수 있다면 0, 건널 수 없다면 X로 표시한다 - OutputView#printMap()

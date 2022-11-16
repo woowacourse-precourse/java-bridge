@@ -44,14 +44,30 @@ public class Validation {
 		}
 	}
 
-	private static void isMovingException(String input,int length) {
+	public static String validateMoving() {
+		boolean isReInput;
+		String input = "";
+
+		do {
+			input = inputView.readMoving();
+			isReInput = isMovingException(input,1);
+
+		} while (isReInput);
+
+		return input;
+	}
+
+
+	private static boolean isMovingException(String input,int length) {
 
 		try {
 			validateNumberLength(input,length);
 			validateUOrDOnly(input);
 		} catch (IllegalArgumentException exception) {
+			System.out.println(exception.getMessage());
+			return true;
 		}
-
+		return false;
 	}
 
 	private static void validateUOrDOnly(String input) {
