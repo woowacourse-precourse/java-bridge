@@ -28,16 +28,17 @@ public class BridgeMaker {
         }
 
         for (int i = 0; i < size; i++) {
-            if (arr[i] == RANDOM_LOWER_INCLUSIVE){
-                list.add("D");
-            }
-            else{
-                list.add("U");
-            }
+            list.add(getDirection(arr[i]));
         }
 
         return list;
     }
 
+    String getDirection(int number) {
+        if (number == RANDOM_LOWER_INCLUSIVE) {
+            return "D";
+        }
+        return "U";
+    }
 
 }
