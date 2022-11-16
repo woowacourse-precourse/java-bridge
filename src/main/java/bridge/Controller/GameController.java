@@ -17,13 +17,12 @@ public class GameController {
     OutputView outputView;
     BridgeGame bridgeGame;
     BridgeMaker bridgeMaker;
-    BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
 
     public GameController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
         this.bridgeGame = new BridgeGame();
-        this.bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
     public void run() {
@@ -35,6 +34,19 @@ public class GameController {
             outputView.extracted(nextMove, moveResult);
             outputView.printMap();
             i++;
+            if(moveResult.matches("X")){
+                checkKeepGoing();
+            }
         }
+    }
+
+    private void checkKeepGoing() {
+        String resetCommand = inputView.readGameCommand();
+        if(resetCommand.matches("R")) {
+            i = 0;
+            outputView.clearMap();
+        }
+        if(resetCommand.matches("Q"))
+            keepGoing = false;
     }
 }
