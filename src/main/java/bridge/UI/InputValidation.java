@@ -4,6 +4,17 @@ public class InputValidation {
 
     OutputView outputView = new OutputView();
 
+    public boolean validateBridgeLength(String input){
+        boolean isAllRight = true;
+        try{
+            validateBridgeLengthInputIsNumber(input);
+            validateBridgeLengthInRange(input);
+        }catch(IllegalArgumentException ex){
+            isAllRight = false;
+        }
+
+        return isAllRight;
+    }
 
     public void validateBridgeLengthInRange(String input){
         int bridgeLength = Integer.parseInt(input);
