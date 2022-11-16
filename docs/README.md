@@ -17,6 +17,9 @@
 ### BridgeRandomNumberGenerator
 - DO NOT MODIFY
 ### InputView
+- enter bridge length
+- enter user move
+- enter retry or terminate
 ### OutputView
 ### Err
 - wrong bridge length
