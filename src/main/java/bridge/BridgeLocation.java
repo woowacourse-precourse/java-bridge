@@ -21,6 +21,13 @@ public enum BridgeLocation {
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 정보입니다."));
     }
 
+    public static BridgeLocation createLocation(String location) {
+        return Arrays.stream(values())
+                .filter(locationValue -> locationValue.location.equals(location))
+                .findFirst()
+                .orElseThrow();
+    }
+
     public String getLocation() {
         return location;
     }
