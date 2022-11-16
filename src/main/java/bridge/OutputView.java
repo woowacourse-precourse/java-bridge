@@ -9,7 +9,7 @@ import java.util.Map;
 public class OutputView {
 
     /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
+     * 지도를 형식에 맞춰 출력한다.
      *
      * @param bridge    다리
      * @param round     현재 회차
@@ -32,14 +32,17 @@ public class OutputView {
     }
 
     public Map<String, List<String>> convertToMap(List<String> bridge, int round, boolean isCorrect) {
-        return null;
+        Map<String, List<String>> map = makePreviousMap();
+        markAccordance(map, bridge.get(round), isCorrect);
+
+        return map;
     }
 
     public Map<String, List<String>> makePreviousMap() {
 
     }
 
-    private String markAccordance() {
+    private void markAccordance(Map<String, List<String>> map, String bridgeDirection, boolean isCorrect) {
         return null;
     }
 
