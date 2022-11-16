@@ -18,6 +18,10 @@ public class Bridge {
         this.bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
+    public Integer getBridgeSize() {
+        return bridgeSize;
+    }
+
     public List<String> getBridge() {
         return bridge;
     }
