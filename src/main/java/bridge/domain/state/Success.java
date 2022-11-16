@@ -16,7 +16,7 @@ public class Success extends MoveComplete {
     
     @Override
     public boolean isGameFinished(final int numberOfMoves) {
-        return bridge().size() - 1 == numberOfMoves;
+        return bridge().size() == numberOfMoves;
     }
     
     @Override

@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.dto.BridgeSizeDTO;
+import bridge.dto.GameCommandDTO;
 import bridge.dto.MovingDTO;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -27,7 +28,9 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public GameCommandDTO readGameCommand() {
+        final String inputGameCommand = Console.readLine();
+        
+        return new GameCommandDTO(inputGameCommand);
     }
 }

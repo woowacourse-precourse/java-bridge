@@ -21,6 +21,7 @@ public class BridgeGame {
         final int bridgeSize = bridgeSizeDTO.getBridgeSize();
         bridge = new BridgeMaker(bridgeNumberGenerator).makeBridge(bridgeSize);
         states = new LinkedList<>();
+        System.out.println(bridge);
     }
     
     /**
@@ -40,6 +41,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        states.clear();
     }
     
     public boolean isGameFinished() {
@@ -48,5 +50,9 @@ public class BridgeGame {
     
     private State lastState() {
         return states.getLast();
+    }
+    
+    public boolean isMoveFail() {
+        return lastState().isMoveFail();
     }
 }
