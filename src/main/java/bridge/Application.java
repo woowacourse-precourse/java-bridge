@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 public class Application {
 
     public static void main(String[] args) {
@@ -7,6 +9,10 @@ public class Application {
         InputView inputView = new InputView();
         String readValue = inputView.readBridgeSize();
         int size = checkSize(readValue);
+        BridgeNumberGenerator BridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(BridgeRandomNumberGenerator);
+        final List<String> bridge = bridgeMaker.makeBridge(size);
+        System.out.println(bridge);
     }
 
     public static int checkSize(String str) {
