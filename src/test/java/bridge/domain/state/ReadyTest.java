@@ -5,6 +5,8 @@ import bridge.domain.MoveResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
@@ -39,9 +41,17 @@ class ReadyTest {
     
     @Test
     @DisplayName("예외 처리 : 재시도 여부 선택 상태를 판별하는 기능 사용 시")
-    void retryState() {
+    void isRetry() {
         assertThatIllegalStateException()
                 .isThrownBy(() -> new Ready(List.of()).isMoveFail())
+                .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
+    }
+    
+    @Test
+    @DisplayName("예외 처리 : 게임 종료 여부 선택 상태를 판별하는 기능 사용 시")
+    void isGameFinished() {
+        assertThatIllegalStateException()
+                .isThrownBy(() -> new Ready(List.of()).isGameFinished(2))
                 .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
     }
 }

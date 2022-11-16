@@ -17,7 +17,13 @@ class FailTest {
     
     @Test
     @DisplayName("재시도 여부 선택 상태 맞음")
-    void retryState() {
+    void isRetry() {
         assertThat(new Fail(List.of()).isMoveFail()).isTrue();
+    }
+    
+    @Test
+    @DisplayName("게임 종료 상태 아님")
+    void isGameFinished() {
+        assertThat(new Fail(List.of("U", "D", "U")).isGameFinished(2)).isFalse();
     }
 }

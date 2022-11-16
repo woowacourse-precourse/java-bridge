@@ -10,11 +10,6 @@ public class Success extends Started {
     }
     
     @Override
-    public MoveResult state() {
-        return MoveResult.SUCCESS;
-    }
-    
-    @Override
     public State move(final int currentPosition) {
         return null;
     }
@@ -22,5 +17,15 @@ public class Success extends Started {
     @Override
     public boolean isMoveFail() {
         return false;
+    }
+    
+    @Override
+    public boolean isGameFinished(final int numberOfMoves) {
+        return bridge().size() - 1 == numberOfMoves;
+    }
+    
+    @Override
+    public MoveResult state() {
+        return MoveResult.SUCCESS;
     }
 }

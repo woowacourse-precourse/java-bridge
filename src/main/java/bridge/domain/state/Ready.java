@@ -11,11 +11,6 @@ public class Ready extends Started {
     }
     
     @Override
-    public MoveResult state() {
-        return MoveResult.READY;
-    }
-    
-    @Override
     public State move(final int currentPosition) {
         if (isPartBridgeExist(currentPosition)) {
             return new Success(bridge());
@@ -34,6 +29,16 @@ public class Ready extends Started {
     
     @Override
     public boolean isMoveFail() {
-        throw new IllegalStateException("[ERROR] 준비 상태에선 이동 결과를 판별할 수 없습니다.");
+        throw new IllegalStateException("[ERROR] 현재 상태에선 이동 성공 여부를 판단할 수 없습니다.");
+    }
+    
+    @Override
+    public boolean isGameFinished(final int numberOfMoves) {
+        throw new IllegalStateException("[ERROR] 현재 상태에선 게임 종료 여부를 판단할 수 없습니다.");
+    }
+    
+    @Override
+    public MoveResult state() {
+        return MoveResult.READY;
     }
 }
