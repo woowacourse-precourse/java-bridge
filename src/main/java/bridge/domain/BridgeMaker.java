@@ -1,9 +1,11 @@
-package bridge;
+package bridge.domain;
 
 import java.util.List;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
+ * TODO 필드(인스턴스 변수) 변경 불가!!!!!!
+ * TODO 메서드의 시그니처(인자, 이름)와 반환 타입은 변경 불가!!!!!
  */
 public class BridgeMaker {
 
