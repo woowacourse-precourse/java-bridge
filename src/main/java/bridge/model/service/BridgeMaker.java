@@ -1,4 +1,4 @@
-package bridge;
+package bridge.model.service;
 
 import java.util.List;
 
@@ -12,6 +12,7 @@ public class BridgeMaker {
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
+
 
     /**
      * @param size 다리의 길이
