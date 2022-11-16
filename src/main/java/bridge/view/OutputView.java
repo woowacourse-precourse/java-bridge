@@ -35,4 +35,8 @@ public class OutputView {
     public void printStart(){
         System.out.println(PrintString.INIT_START.getPrint());
     }
+
+    public void printMove(){
+        System.out.println(PrintString.MOVE.getPrint());
+    }
 }

@@ -23,7 +23,16 @@ public class Validate {
         }
     }
 
-
+    public void validateMoving(String size){
+        try{
+            if(size != "D" && size != "U"){
+                throw new IllegalArgumentException();
+            }
+        }
+        catch(IllegalArgumentException e){
+            throw new IllegalArgumentException(ERROR.moveException.getException());
+        }
+    }
 
 
 

@@ -31,6 +31,8 @@ public class Controller {
     public void play(){
         int idx=0;
         System.out.println("mapBridge = " + mapBridge);
+        String s = inputView.readMoving();
+
 
     }
 
