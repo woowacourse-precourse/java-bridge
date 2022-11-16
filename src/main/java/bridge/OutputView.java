@@ -25,6 +25,7 @@ public class OutputView {
 
     /**
      * 결과를 보여주는 지도에서 한 라인을 출력한다.
+     *
      * @param line 지도의 한 라인. 위 라인과 아래 라인으로 구성된다.
      */
     private void printLine(List<String> line) {
@@ -38,9 +39,8 @@ public class OutputView {
     }
 
     /**
-     *
-     * @param bridge 다리
-     * @param round 현재 회차
+     * @param bridge    다리
+     * @param round     현재 회차
      * @param isCorrect 현재 회차의 선택이 맞았는지 여부
      * @return 현재까지 이동한 다리의 상태를 나타내는 지도
      */
@@ -53,27 +53,26 @@ public class OutputView {
     }
 
     /**
-     *
      * @param bridge 다리
-     * @param round 현재 회차
+     * @param round  현재 회차
      * @return 이전 회차까지 이동한 상태를 보여주는 지도
      */
     public Map<String, List<String>> makePreviousMap(List<String> bridge, int round) {
         Map<String, List<String>> map = new HashMap<>();
-        List<String> upperLine = new ArrayList<>();
-        List<String> lowerLine = new ArrayList<>();
+        map.put("upper", new ArrayList<>());
+        map.put("lower", new ArrayList<>());
 
-        for (int i = 0; i < round - 1; i++) {
-            markAccordanceInUpperLine(upperLine, i, true);
-            markAccordanceInLowerLine(lowerLine, i, true);
+        for (int i = 0; i < round; i++) {
+            map.get("upper").add(markAccordanceInUpperLine(bridge, i, true));
+            map.get("lower").add(markAccordanceInLowerLine(bridge, i, true));
         }
+
         return map;
     }
 
     /**
-     *
-     * @param bridge 다리
-     * @param round 현재 회차
+     * @param bridge    다리
+     * @param round     현재 회차
      * @param isCorrect 현재 회차의 선택이 맞았는지 여부
      * @return 선택이 맞았는지를 문자로 표기. 맞을 경우 "O", 틀릴 경우 "X", 위 칸을 선택하지 않았을 경우 공백을 반환.
      */
@@ -88,9 +87,8 @@ public class OutputView {
     }
 
     /**
-     *
-     * @param bridge 다리
-     * @param round 현재 회차
+     * @param bridge    다리
+     * @param round     현재 회차
      * @param isCorrect 현재 회차의 선택이 맞았는지 여부
      * @return 선택이 맞았는지를 문자로 표기. 맞을 경우 "O", 틀릴 경우 "X", 아래 칸을 선택하지 않았을 경우 공백을 반환.
      */
@@ -109,6 +107,15 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(boolean clear, int count) {
+        System.out.printf("게임 성공 여부: %s\n", doesSuccess(clear));
+        System.out.printf("총 시도한 횟수: %d\n", count);
+    }
+
+    private String doesSuccess(boolean clear){
+        if(clear){
+            return "성공";
+        }
+        return "실패";
     }
 }

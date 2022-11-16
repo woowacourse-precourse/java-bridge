@@ -31,9 +31,11 @@ public class OutputViewTest {
         Map<String, List<String>> secondCorrect = Map.of("upper", Arrays.asList("O", "X"), "lower", Arrays.asList(" ", " "));
         Map<String, List<String>> secondWrong = Map.of("upper", Arrays.asList("O", " "), "lower", Arrays.asList(" ", "O"));
         Map<String, List<String>> thirdCorrect = Map.of("upper", Arrays.asList("O", " ", " "), "lower", Arrays.asList(" ", "O", "O"));
-        assertThat(outputView.convertToMap(bridge, 1, true)).isEqualTo(firstCorrect);
-        assertThat(outputView.convertToMap(bridge, 2, false)).isEqualTo(secondCorrect);
-        assertThat(outputView.convertToMap(bridge, 2, true)).isEqualTo(secondWrong);
-        assertThat(outputView.convertToMap(bridge, 3, true)).isEqualTo(thirdCorrect);
+        Map<String, List<String>> temp = outputView.convertToMap(bridge, 1, true);
+
+        assertThat(outputView.convertToMap(bridge, 0, true)).isEqualTo(firstCorrect);
+        assertThat(outputView.convertToMap(bridge, 1, false)).isEqualTo(secondCorrect);
+        assertThat(outputView.convertToMap(bridge, 1, true)).isEqualTo(secondWrong);
+        assertThat(outputView.convertToMap(bridge, 2, true)).isEqualTo(thirdCorrect);
     }
 }
