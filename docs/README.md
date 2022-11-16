@@ -27,7 +27,9 @@
 >>>>
 >>>> 리턴된 `bridge` 를 `BridgeGame` 의 인스턴스 변수 `bridge` 에 저장  
 >>>> 사용자의 정보 _(현재 위치, 총 시도 횟수 등)_ 를 저장할 `User` 생성
-> 
+>
+> <img src="./img/sketch_01.jpg">  
+* * *
 >>- 반복 `Repeat`
 >>>  - 이동 칸 입력 안내문 `Output`
 >>>>  - 이동 칸 입력 `Input`  
