@@ -20,11 +20,11 @@ public class InputView {
      */
     public int readBridgeSize() {
         while (true) {
-            Integer bridgeSize = getBridgeSizeOrNull();
-            if (bridgeSize == null) {
-                continue;
+            try {
+                return getBridgeSize();
+            } catch (IllegalArgumentException illegalArgumentException) {
+                ErrorView.printException(illegalArgumentException);
             }
-            return bridgeSize;
         }
     }
 
@@ -32,91 +32,25 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        while (true) {
-            String movingOrNull = getMovingOrNull();
-            if (movingOrNull == null) {
-                continue;
-            }
-            return movingOrNull;
-        }
+        System.out.println();
+        System.out.println(PRINT_SELECT_MOVING_DIRECTION);
+        return Console.readLine().replaceAll(WHITE_SPACE, EMPTY);
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        while (true) {
-            String gameCommandOrNull = getGameCommandOrNull();
-            if (gameCommandOrNull == null) {
-                continue;
-            }
-            return gameCommandOrNull;
-        }
+        System.out.println();
+        System.out.println(PRINT_RETRY);
+        return Console.readLine().replaceAll(WHITE_SPACE, EMPTY);
     }
 
-    private Integer getBridgeSizeOrNull() {
-        try {
-            return inputBridgeSize();
-        } catch (IllegalArgumentException illegalArgumentException) {
-            ErrorView.printException(illegalArgumentException);
-        } catch (IllegalStateException illegalStateException) {
-            ErrorView.printException(illegalStateException);
-        }
-        return null;
-    }
-
-    private int inputBridgeSize() {
+    private int getBridgeSize() {
         System.out.println();
         System.out.println(PRINT_BRIDGE_SIZE);
         String userInput = Console.readLine().replaceAll(WHITE_SPACE, EMPTY);
         InputViewValidator.checkBridgeSizeIsNotNumber(userInput);
-
-        int bridgeSize = Integer.parseInt(userInput);
-        InputViewValidator.checkBridgeSizeNotInvalid(bridgeSize);
-        return bridgeSize;
-    }
-
-    private String getMovingOrNull() {
-        try {
-            return inputMoving();
-        } catch (IllegalArgumentException illegalArgumentException) {
-            ErrorView.printException(illegalArgumentException);
-        } catch (IllegalStateException illegalStateException) {
-            ErrorView.printException(illegalStateException);
-        }
-        return null;
-    }
-
-    private String inputMoving() {
-        System.out.println();
-        System.out.println(PRINT_SELECT_MOVING_DIRECTION);
-
-        String userInput = Console.readLine().replaceAll(WHITE_SPACE, EMPTY);
-        InputViewValidator.checkCommandSize(userInput);
-        InputViewValidator.checkCommandUpperCase(userInput);
-        InputViewValidator.checkMovingCommandCharacter(userInput);
-        return userInput;
-    }
-
-    private String getGameCommandOrNull() {
-        try {
-            return inputGameCommand();
-        } catch (IllegalArgumentException illegalArgumentException) {
-            ErrorView.printException(illegalArgumentException);
-        } catch (IllegalStateException illegalStateException) {
-            ErrorView.printException(illegalStateException);
-        }
-        return null;
-    }
-
-    private String inputGameCommand() {
-        System.out.println();
-        System.out.println(PRINT_RETRY);
-
-        String userInput = Console.readLine().replaceAll(WHITE_SPACE, EMPTY);
-        InputViewValidator.checkCommandSize(userInput);
-        InputViewValidator.checkCommandUpperCase(userInput);
-        InputViewValidator.checkRetryCommandCharacter(userInput);
-        return userInput;
+        return Integer.parseInt(userInput);
     }
 }

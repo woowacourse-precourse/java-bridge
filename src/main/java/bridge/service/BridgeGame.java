@@ -1,9 +1,11 @@
 package bridge.service;
 
 import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
+import bridge.domain.BridgeGameCommand;
+import bridge.validator.BridgeValidator;
+import bridge.view.ErrorView;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -15,25 +17,26 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    private static final int FIRST_TRY = 1;
     private static final int INDEX_ZERO = 0;
     private static final String GAME_RETRY = "R";
     private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";
     private final InputView inputView;
     private final OutputView outputView;
+    private final BridgeGameCommand bridgeGameCommand;
     private final Bridge bridge;
     private final List<String> givenAnswerSheet;
-    private int tryCount = 1;
+    private int tryCount;
 
     public BridgeGame() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
+        this.bridgeGameCommand = new BridgeGameCommand();
         this.outputView.printGameStart();
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        int bridgeSize = inputView.readBridgeSize();
-        this.bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
-        this.givenAnswerSheet = new ArrayList<>(bridgeSize);
+        this.bridge = makeBridge();
+        this.givenAnswerSheet = new ArrayList<>(this.bridge.getBridgeSize());
+        this.tryCount = FIRST_TRY;
     }
 
     /**
@@ -42,9 +45,8 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
-        String givenAnswer = inputView.readMoving();
-        this.givenAnswerSheet.add(givenAnswer);
-        outputView.printMap(this.bridge, this.givenAnswerSheet);
+        this.givenAnswerSheet.add(this.bridgeGameCommand.getMovingCommand());
+        this.outputView.printMap(this.bridge, this.givenAnswerSheet);
     }
 
     /**
@@ -53,8 +55,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry() {
-        String retryGame = inputView.readGameCommand();
-        if (retryGame.equals(GAME_RETRY)) {
+        if (this.bridgeGameCommand.getRetryCommand().equals(GAME_RETRY)) {
             this.givenAnswerSheet.clear();
             ++this.tryCount;
             return true;
@@ -63,13 +64,13 @@ public class BridgeGame {
     }
 
     public void finish() {
-        outputView.printFinalGameResult();
-        outputView.printMap(this.bridge, this.givenAnswerSheet);
+        this.outputView.printFinalGameResult();
+        this.outputView.printMap(this.bridge, this.givenAnswerSheet);
         String result = FAIL;
         if (isWin()) {
             result = SUCCESS;
         }
-        outputView.printResult(result, this.tryCount);
+        this.outputView.printResult(result, this.tryCount);
     }
 
     public boolean isDone() {
@@ -86,5 +87,21 @@ public class BridgeGame {
             }
         }
         return true;
+    }
+
+    private Bridge makeBridge() {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        int bridgeSize = getBridgeSize();
+        return new Bridge(bridgeMaker.makeBridge(bridgeSize));
+    }
+
+    private int getBridgeSize() {
+        while (true) {
+            try {
+                return BridgeValidator.checkBridgeSizeNotInvalid(this.inputView.readBridgeSize());
+            } catch (IllegalArgumentException illegalArgumentException) {
+                ErrorView.printException(illegalArgumentException);
+            }
+        }
     }
 }
