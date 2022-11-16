@@ -41,14 +41,14 @@ public class BridgeGameController {
     }
     
     private boolean isGameFinished(final BridgeGame bridgeGame) {
-        if (isMoveFail(bridgeGame)) {
+        if (isMoveFailed(bridgeGame)) {
             return selectGameFinish(bridgeGame);
         }
         
         return bridgeGame.isGameFinished();
     }
     
-    private boolean isMoveFail(final BridgeGame bridgeGame) {
+    private boolean isMoveFailed(final BridgeGame bridgeGame) {
         return bridgeGame.isMoveFail();
     }
     
