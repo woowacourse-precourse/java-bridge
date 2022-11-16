@@ -49,12 +49,11 @@ public class BridgeMaker {
 		}
 	}
 
-	public static List<Integer> makeBridgeRandomNumber(int size) {
-		BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+	private List<Integer> makeBridgeRandomNumber(int size) {
 		List<Integer> randomNumbers = new ArrayList<>(size);
 
 		for (int index = 0; index < size; index++) {
-			randomNumbers.add(bridgeRandomNumberGenerator.generate());
+			randomNumbers.add(bridgeNumberGenerator.generate());
 		}
 
 		return randomNumbers;
