@@ -113,7 +113,13 @@ public class BridgeGame {
 
         return map;
     }
-    
+
+    private static boolean isNotEqual(String bridge, String moving) {
+        if (!bridge.equals(moving))
+            return true;
+        return false;
+    }
+
     public void stop(int count, String result, boolean isClear) {
         OutputView output = new OutputView();
 
