@@ -1,7 +1,9 @@
 package bridge;
 
+import static bridge.constant.BridgeConstant.LOWER_BLOCK;
 import static bridge.constant.BridgeConstant.MAX_SIZE;
 import static bridge.constant.BridgeConstant.MIN_SIZE;
+import static bridge.constant.BridgeConstant.UPPER_BLOCK;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -43,4 +45,29 @@ class ValidatorTest {
         }
     }
 
+    @Nested
+    @DisplayName("이동 명령 메시지가")
+    class MoveMessageTest {
+
+        @DisplayName(UPPER_BLOCK + "일시 정상 통과한다")
+        @Test
+        void test1() {
+            assertThatNoException()
+                    .isThrownBy(() -> validator.validateMoveMessage(UPPER_BLOCK));
+        }
+
+        @DisplayName(LOWER_BLOCK + "일시 정상 통과한다")
+        @Test
+        void test2() {
+            assertThatNoException()
+                    .isThrownBy(() -> validator.validateMoveMessage(LOWER_BLOCK));
+        }
+
+        @DisplayName(UPPER_BLOCK + "이나" + LOWER_BLOCK + "이 아니라면 예외를 반환한다.")
+        @Test
+        void test3() {
+            assertThatThrownBy(() -> validator.validateMoveMessage(UPPER_BLOCK + LOWER_BLOCK))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+    }
 }
