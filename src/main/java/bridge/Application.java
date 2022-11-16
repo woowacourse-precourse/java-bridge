@@ -25,7 +25,7 @@ public class Application {
                 output.printMap(bridgeGame.passHistory);
             }
         }
-        output.printResult(attempt, outcome);
+        output.printResult(attempt, outcome, bridgeGame.passHistory);
     }
 
     public boolean retry (List<String> passHistory) {
