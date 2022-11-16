@@ -10,6 +10,7 @@ public class InputView {
     static final String ENTER_BRIDGE_LENGTH = "다리의 길이를 입력해주세요.";
     static final String ERROR_NUMBER = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     static final String ERROR_STRING = "[ERROR] 숫자를 입력하여 주세요.";
+    static final String MOVE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     static final int UPPER_BOUND = 20;
     static final int LOWER_BOUND = 3;
     /**
@@ -25,7 +26,8 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(MOVE);
+        return Console.readLine();
     }
 
     /**
