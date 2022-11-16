@@ -23,5 +23,9 @@ public enum Message {
         System.out.println(INPUT_RANGE_BRIDGE_MESSAGE);
     }
 
+    public void inputMoveBridgeMessage() {
+        System.out.println(INPUT_MOVE_BRIDGE_MESSAGE);
+    }
+
 
 }
