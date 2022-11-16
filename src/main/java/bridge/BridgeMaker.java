@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,12 +22,25 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         validateLength(size);
-        return null;
+        return createBridge(size);
     }
 
     private void validateLength(int length) {
         if (length < MIN_BRIDGE_LENGTH || MAX_BRIDGE_LENGTH < length) {
             throw new IllegalArgumentException("다리의 길이는 3 이상 20 이하의 값만 입력 가능합니다.");
         }
+    }
+
+    private List<String> createBridge(int length) {
+        List<String> bridge = new ArrayList<>();
+        while (bridge.size() < length) {
+            int bridgeNumber = bridgeNumberGenerator.generate();
+            if (bridgeNumber == 0) {
+                bridge.add("D");
+            } else if (bridgeNumber == 1) {
+                bridge.add("U");
+            }
+        }
+        return bridge;
     }
 }
