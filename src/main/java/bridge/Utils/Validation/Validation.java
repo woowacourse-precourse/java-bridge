@@ -9,6 +9,10 @@ public class Validation {
 
     ValidationForOnlyOneUpperAlpha onlyOneUpperAlpha;
 
+    public Validation() {
+        onlyOneUpperAlpha = new ValidationForOnlyOneUpperAlpha();
+    }
+
     public static void validateIsNumber(String target) {
         String numberRegex = "^[0-9]*$";
         if (!target.matches(numberRegex)) {
