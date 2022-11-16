@@ -43,10 +43,14 @@ public class InputView {
      */
     public boolean readGameCommand() {
         String readline = Console.readLine();
+        isGameCommand(readline);
+        return "R".equals(readline);
+    }
+
+    private void isGameCommand(String readline) {
         if (!("R".equals(readline) || "Q".equals(readline))){
             throw new IllegalArgumentException("[ERROR] R 또는 Q를 입력해 주시기 바랍니다.");
         }
-        return "R".equals(readline);
     }
 
 }
