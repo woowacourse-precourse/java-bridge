@@ -1,3 +1,22 @@
+### 동작 순서 기준
+>- 게임 시작 안내문 `Output`
+>- 다리 길이 입력 안내문 `Output`
+>- 다리 길이 입력 `Input` `makeBridge`
+>- 반복 `Repeat`
+>  - 이동 칸 입력 안내문 `Output`
+>  - 이동 칸 입력 `Input`
+>  - 선택 결과 판별 `BridgeGame`
+>  - 선택 결과 출력 `Output`
+>    - 건널 수 있다면 게임 성공 여부 판별 `BridgeGame`
+>      - 성공시 게임 성공 안내문 `Output`
+>      - 종료 `Finish`
+>    - 반복 `Repeat-Continue`
+>    - 건널 수 없다면 재시도 여부 입력 안내문 `Output`
+>    - 재시도 입력 `Input`
+>    - 재시도 판별 `BridgeGame`
+>      - 반복 `Repeat-Continue`
+>      - 종료 `Finish`
+
 
 ## 🚀 기능 요구 사항
 위아래 둘 중 하나의 칸만 건널 수 있는 다리를 끝까지 건너가는 게임이다.
