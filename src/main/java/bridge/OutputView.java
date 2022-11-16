@@ -33,7 +33,8 @@ public class OutputView {
 
     public Map<String, List<String>> convertToMap(List<String> bridge, int round, boolean isCorrect) {
         Map<String, List<String>> map = makePreviousMap();
-        markAccordance(map, bridge.get(round), isCorrect);
+        map.get("upper").add(markAccordanceInUpperLine(bridge, round, isCorrect));
+        map.get("lower").add(markAccordanceInLowerLine(bridge, round, isCorrect));
 
         return map;
     }
@@ -42,8 +43,24 @@ public class OutputView {
 
     }
 
-    private void markAccordance(Map<String, List<String>> map, String bridgeDirection, boolean isCorrect) {
-        return null;
+    private String markAccordanceInUpperLine(List<String> bridge, int round, boolean isCorrect) {
+        if (bridge.get(round).equals("U") && isCorrect){
+            return "O";
+        }
+        if (bridge.get(round).equals("D") && !isCorrect){
+            return "X";
+        }
+        return " ";
+    }
+
+    private String markAccordanceInLowerLine(List<String> bridge, int round, boolean isCorrect) {
+        if (bridge.get(round).equals("D") && isCorrect){
+            return "O";
+        }
+        if (bridge.get(round).equals("U") && !isCorrect){
+            return "X";
+        }
+        return " ";
     }
 
     /**
