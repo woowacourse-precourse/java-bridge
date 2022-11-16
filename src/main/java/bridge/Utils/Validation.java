@@ -24,7 +24,7 @@ public class Validation {
     public void isRightMoving(String target) {
         isOnlyAlphabets(target);
         isOneAlphabet(target);
-        isLowerAlphabet(target);
+        isUpperAlphabet(target);
         isMovingAlphabet(target);
     }
 
@@ -42,9 +42,9 @@ public class Validation {
         }
     }
 
-    private void isLowerAlphabet(String target) {
-        String lowerAlphabetRegex = "^[a-z]$";
-        if (!target.matches(lowerAlphabetRegex)) {
+    private void isUpperAlphabet(String target) {
+        String upperAlphabetRegex = "^[A-Z]$";
+        if (!target.matches(upperAlphabetRegex)) {
             throw new IllegalArgumentException(ExceptionType.IS_NOT_UPPER_ALPHABET.getMessage());
         }
     }
