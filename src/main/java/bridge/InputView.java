@@ -37,4 +37,24 @@ public class InputView {
             throw new IllegalArgumentException();
         }
     }
+
+    private void validateBridgeSize (String bridgeSize) {
+        isRealNumber(bridgeSize);
+        checkbridgeSizeNumberRange(bridgeSize);
+    }
+
+    private void isRealNumber (String bridgeSize) {
+        for (char element: bridgeSize.toCharArray()) {
+            if (element < 48 || element > 57) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
+    private void checkbridgeSizeNumberRange (String bridgeSize) {
+        int bridgeSizeNumber = Integer.parseInt(bridgeSize);
+        if (bridgeSizeNumber < 3 || bridgeSizeNumber > 20) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
