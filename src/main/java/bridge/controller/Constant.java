@@ -15,9 +15,14 @@ public class Constant {
 	public static final String INVALID_INPUT = "[ERROR] 잘못된 입력입니다.";
 	public static final String UPSIDE = "U";
 	public static final String DOWNSIDE = "D";
-	public static final String RESTART_GAME = "R";
+	public static final String RETRY_GAME = "R";
 	public static final String QUIT_GAME = "Q";
 	public static final int MIN = 3;
 	public static final int MAX = 20;
+	public static final String RESULT = "최종 게임 결과";
+	public static final String WIN = "게임 성공 여부: 성공";
+	public static final String LOSE = "게임 성공 여부: 실패";
+	public static final String TOTAL_TRY = "총 시도한 횟수: ";
+
 
 }
