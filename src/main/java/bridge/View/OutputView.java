@@ -9,6 +9,7 @@ public class OutputView {
 
     private static final String GAME_START = "다리 건너기 게임을 시작합니다.";
     private static final String GET_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
+    private static final String GET_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String MAP_START_PART = "[ ";
     private static final String MAP_MIDDLE_PART = " | ";
     private static final String MAP_END_PART = " ]";
@@ -24,6 +25,10 @@ public class OutputView {
 
     public void printGetBridgeSize() {
         System.out.println(GET_BRIDGE_SIZE);
+    }
+
+    public void printGetMoving() {
+        System.out.println(GET_MOVING);
     }
 
     /**
