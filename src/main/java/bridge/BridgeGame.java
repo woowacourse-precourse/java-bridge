@@ -20,4 +20,20 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public void printGameStartMessage() {
+        System.out.println(GameMessage.GAME_START_MESSAGE.getMessage());
+    }
+
+    public void printRequestBridgeSizeMessage() {
+        System.out.println(GameMessage.REQUEST_BRIDGE_SIZE_MESSAGE.getMessage());
+    }
+
+    public void printRequestMovingMessage() {
+        System.out.println(GameMessage.REQUEST_MOVING_MESSAGE.getMessage());
+    }
+
+    public void printRequestRetryMessage() {
+        System.out.println(GameMessage.REQUEST_RETRY_MESSAGE.getMessage());
+    }
 }
