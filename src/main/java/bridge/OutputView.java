@@ -23,6 +23,10 @@ public class OutputView {
         printLine(map.get("lower"));
     }
 
+    /**
+     * 결과를 보여주는 지도에서 한 라인을 출력한다.
+     * @param line 지도의 한 라인. 위 라인과 아래 라인으로 구성된다.
+     */
     private void printLine(List<String> line) {
         System.out.print("[");
         for (int i = 0; i < line.size() - 1; i++) {
@@ -33,6 +37,13 @@ public class OutputView {
         System.out.print("]");
     }
 
+    /**
+     *
+     * @param bridge 다리
+     * @param round 현재 회차
+     * @param isCorrect 현재 회차의 선택이 맞았는지 여부
+     * @return 현재까지 이동한 다리의 상태를 나타내는 지도
+     */
     public Map<String, List<String>> convertToMap(List<String> bridge, int round, boolean isCorrect) {
         Map<String, List<String>> map = makePreviousMap(bridge, round);
         map.get("upper").add(markAccordanceInUpperLine(bridge, round, isCorrect));
@@ -41,6 +52,12 @@ public class OutputView {
         return map;
     }
 
+    /**
+     *
+     * @param bridge 다리
+     * @param round 현재 회차
+     * @return 이전 회차까지 이동한 상태를 보여주는 지도
+     */
     public Map<String, List<String>> makePreviousMap(List<String> bridge, int round) {
         Map<String, List<String>> map = new HashMap<>();
         List<String> upperLine = new ArrayList<>();
@@ -53,6 +70,13 @@ public class OutputView {
         return map;
     }
 
+    /**
+     *
+     * @param bridge 다리
+     * @param round 현재 회차
+     * @param isCorrect 현재 회차의 선택이 맞았는지 여부
+     * @return 선택이 맞았는지를 문자로 표기. 맞을 경우 "O", 틀릴 경우 "X", 위 칸을 선택하지 않았을 경우 공백을 반환.
+     */
     private String markAccordanceInUpperLine(List<String> bridge, int round, boolean isCorrect) {
         if (bridge.get(round).equals("U") && isCorrect) {
             return "O";
@@ -63,6 +87,13 @@ public class OutputView {
         return " ";
     }
 
+    /**
+     *
+     * @param bridge 다리
+     * @param round 현재 회차
+     * @param isCorrect 현재 회차의 선택이 맞았는지 여부
+     * @return 선택이 맞았는지를 문자로 표기. 맞을 경우 "O", 틀릴 경우 "X", 아래 칸을 선택하지 않았을 경우 공백을 반환.
+     */
     private String markAccordanceInLowerLine(List<String> bridge, int round, boolean isCorrect) {
         if (bridge.get(round).equals("D") && isCorrect) {
             return "O";
