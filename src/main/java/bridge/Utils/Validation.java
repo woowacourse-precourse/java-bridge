@@ -20,4 +20,17 @@ public class Validation {
             throw new IllegalArgumentException(ExceptionType.IS_HIGHER_THAN_MAX_BRIDGE_SIZE.getMessage());
         }
     }
+
+    public void isRightMoving(String target) {
+        isOnlyAlphabets(target);
+
+    }
+
+    private void isOnlyAlphabets(String target) {
+        String alphabetsRegex = "^[a-zA-Z]*$";
+        if (!target.matches(alphabetsRegex)) {
+            throw new IllegalArgumentException(ExceptionType.IS_NOT_ONLY_ALPHABET.getMessage());
+        }
+    }
+
 }
