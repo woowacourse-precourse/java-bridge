@@ -107,4 +107,33 @@ public class ViewTest {
         assertThatThrownBy(inputView::readMoving)
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("게임 커멘드 R을 입력받는다.")
+    void 게임_커멘드_R을_입력받는다() {
+        // given
+        InputView inputView = new InputView();
+
+        // when
+        InputStream in = generateUserInput("R");
+        System.setIn(in);
+
+        // then
+        assertThat(inputView.readGameCommand()).isEqualTo("R");
+    }
+
+    @Test
+    @DisplayName("게임 커멘드 Q를 입력받는다.")
+    void 게임_커멘드_Q를_입력받는다() {
+        // given
+        InputView inputView = new InputView();
+
+        // when
+        InputStream in = generateUserInput("Q");
+        System.setIn(in);
+
+        // then
+        assertThat(inputView.readGameCommand()).isEqualTo("Q");
+    }
+
 }
