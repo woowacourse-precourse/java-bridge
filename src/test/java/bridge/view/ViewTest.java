@@ -28,10 +28,10 @@ public class ViewTest {
         //when
         InputStream in = generateUserInput("3");
         System.setIn(in);
-        int bridgeLength = inputView.readBridgeSize();
+        int bridgeSize = inputView.readBridgeSize();
 
         //then
-        assertThat(bridgeLength).isEqualTo(3);
+        assertThat(bridgeSize).isEqualTo(3);
     }
 
     @Test
@@ -61,5 +61,35 @@ public class ViewTest {
         // then
         assertThatThrownBy(inputView::readBridgeSize)
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("이동할 칸 U를 입력받는다.")
+    void 이동할_칸_U를_입력받는다() {
+        //given
+        InputView inputView = new InputView();
+
+        //when
+        InputStream in = generateUserInput("U");
+        System.setIn(in);
+        String move = inputView.readMoving();
+
+        // then
+        assertThat(move).isEqualTo("U");
+    }
+
+    @Test
+    @DisplayName("이동할 칸 D를 입력받는다.")
+    void 이동할_칸_D를_입력받는다() {
+        //given
+        InputView inputView = new InputView();
+
+        //when
+        InputStream in = generateUserInput("D");
+        System.setIn(in);
+        String move = inputView.readMoving();
+
+        // then
+        assertThat(move).isEqualTo("D");
     }
 }

@@ -26,8 +26,8 @@ public class InputView {
         if (!matcher.matches()){
             throw new IllegalArgumentException();
         }
-        int bridgeLength = Integer.parseInt(input);
-        if (bridgeLength < 3 || bridgeLength > 20){
+        int bridgeSize = Integer.parseInt(input);
+        if (bridgeSize < 3 || bridgeSize > 20){
             throw new IllegalArgumentException();
         }
     }
