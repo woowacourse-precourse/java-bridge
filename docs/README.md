@@ -15,7 +15,7 @@
     - [x] 잘못된 값을 입력하면 IllegalArgumentException을 발생시킨다 - Validation#isMovingException()
     - [x] 그 부분부터 입력을 다시 받는다. - Validation#validateMoving()
   - [x] 플레이어가 칸을 이동한다 - BridgeGame#move()
-  - [] 이동한 칸을 건널 수 있다면 0, 건널 수 없다면 X로 표시한다 - OutputView#printMap()
+  - [] 이동한 칸을 건널 수 있다면 O, 건널 수 없다면 X로 표시한다 - OutputView#printMap()
   - [] 다리를 끝까지 건너면 게임이 종료된다 - BridgeGame#start()
     - [] 다리를 끝까지 건넜는지 확인한다 - BridgeGame#isEnd()
   - [] 다리를 건너다 실패하면 게임을 재시작하거나 종료할 수 있다 - BridgeGame#retry()
@@ -24,13 +24,14 @@
 
 - [] 출력
   - [x] 다리 건너기 게임 시작 안내 메시지 (다리 건너기 게임을 시작합니다.) - GuideMessageView#startBridgeGameGuideMessage
-  - [] 다리 길이 입력 안내 메시지 (다리의 길이를 입력해주세요.) - GuideMessageView#bridgeLengthGuideMessage
-  - [] 이동할 칸 입력 안내 메시지 (이동할 칸을 선택해주세요. (위: U, 아래: D)) - GuideMessageView#selectMoveGuideMessage
+  - [x] 다리 길이 입력 안내 메시지 (다리의 길이를 입력해주세요.) - GuideMessageView#bridgeLengthGuideMessage
+  - [x] 이동할 칸 입력 안내 메시지 (이동할 칸을 선택해주세요. (위: U, 아래: D)) - GuideMessageView#selectMoveGuideMessage
   - [] 현재 다리 상태 - OutputView#printMap()
-  - [] 재시작 혹은 종료 안내 메시지 (게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)) - GuideMessageView#reOrEndGuideMessage
-  - [] 최종 게임 결과 안내 메시지 (최종 게임 결과) - GuideMessageView#gameResultGuideMessage
-  - [] 게임 성공 여부 안내 메시지(게임 성공 여부: 성공) - GuideMessageView#gameSuccessOrNotGuideMessage
-  - [] 총 시도 횟수 안내 메시지 (총 시도한 횟수: 2) - GuideMessageView#tryCountGuideMessage
+  - [x] 재시작 혹은 종료 안내 메시지 (게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)) - GuideMessageView#reOrEndGuideMessage
+  - [x] 최종 게임 결과 안내 메시지 (최종 게임 결과) - GuideMessageView#gameResultGuideMessage
+  - [x] 게임 성공 안내 메시지(게임 성공 여부: 성공) - GuideMessageView#gameSuccessGuideMessage
+  - [x] 게임 실패 안내 메시지(게임 성공 여부: 실패) - GuideMessageView#gameFailGuideMessage
+  - [x] 총 시도한 횟수 안내 메시지 설정 (총 시도한 횟수: ) - GuideMessageView#tryCountGuideMessage
 
 
 
