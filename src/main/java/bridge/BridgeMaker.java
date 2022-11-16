@@ -32,6 +32,21 @@ public class BridgeMaker {
     }
 
     /**
+     * 주어진 길이의 다리를 만든다. 테스트 용으로 오버로딩하였다.
+     * @param accessibleSpots 각 칸마다 건널 수 있는 위치 배열. 0과 1로 구성되어 있다.
+     * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
+     */
+    public List<String> makeBridge(int[] accessibleSpots) {
+        List<String> bridge = new ArrayList<>();
+
+        for (int accessibleSpot : accessibleSpots) {
+            bridge.add(getDirection(accessibleSpot));
+        }
+
+        return bridge;
+    }
+
+    /**
      * 각 칸마다 건널 수 있는 위치를 알려준다.
      * @param size 다리의 길이
      * @return 각 칸마다 건널 수 있는 위치 배열. 0과 1로 구성되어 있다.
