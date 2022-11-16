@@ -4,4 +4,5 @@ public interface InputHandler {
 
     int inputBridgeSize();
     String inputMoving();
+    String inputGameCommand();
 }

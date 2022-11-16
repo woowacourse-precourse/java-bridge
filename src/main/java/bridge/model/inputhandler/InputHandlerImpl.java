@@ -13,4 +13,9 @@ public class InputHandlerImpl implements InputHandler {
     public String inputMoving() {
         return Console.readLine();
     }
+
+    @Override
+    public String inputGameCommand() {
+        return Console.readLine();
+    }
 }
