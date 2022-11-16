@@ -6,9 +6,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import model.BridgeMaker;
-import model.BridgeNumberGenerator;
-
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
