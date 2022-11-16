@@ -1,14 +1,11 @@
 package bridge.view;
 
 import bridge.InputView;
-import camp.nextstep.edu.missionutils.Console;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -28,10 +25,9 @@ public class ViewTest {
         //when
         InputStream in = generateUserInput("3");
         System.setIn(in);
-        int bridgeSize = inputView.readBridgeSize();
 
         //then
-        assertThat(bridgeSize).isEqualTo(3);
+        assertThat(inputView.readBridgeSize()).isEqualTo(3);
     }
 
     @Test
@@ -72,10 +68,9 @@ public class ViewTest {
         //when
         InputStream in = generateUserInput("U");
         System.setIn(in);
-        String move = inputView.readMoving();
 
         // then
-        assertThat(move).isEqualTo("U");
+        assertThat(inputView.readMoving()).isEqualTo("U");
     }
 
     @Test
