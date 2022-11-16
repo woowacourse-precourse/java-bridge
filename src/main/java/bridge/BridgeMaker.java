@@ -21,14 +21,19 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for(int i=0;i<size;i++){
-            int number = bridgeNumberGenerator.generate();
-            if (number == 0 ){
-                bridge.add("D");
-            }
-            if(number == 1){
-                bridge.add("U");
-            }
+            bridge.add(upOrDown(bridgeNumberGenerator.generate()));
         }
         return bridge;
+    }
+
+    private String upOrDown(int number){
+        String upOrDown = null;
+        if(number==0) {
+            upOrDown = "D";
+        }
+        if(number==1){
+            upOrDown = "U";
+        }
+        return upOrDown;
     }
 }
