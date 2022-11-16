@@ -19,16 +19,21 @@ public class InputView {
         return input;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public String readGameCommand() {
-        return null;
+        String input = Console.readLine();
+        checkRestartStop(input);
+        return input;
     }
 
     private void checkUpDown(String input) {
         if (!input.equals("U") && !input.equals("D")) {
             throw new IllegalArgumentException(" U 또는 D 를 입력해 주세요");
+        }
+    }
+
+    private void checkRestartStop(String input) {
+        if (!input.equals("R") && !input.equals("Q")) {
+            throw new IllegalArgumentException(" R 또는 Q 를 입력해 주세요");
         }
     }
 }
