@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.Arrays;
 import java.util.List;
 
 import bridge.Validation.Validation;
@@ -13,19 +14,47 @@ import bridge.View.OutputView;
 public class BridgeGame {
 	private static String[][] map;
 
+	public void start(InputView inputView, OutputView outputView) {
 
-	public void start(InputView inputView, OutputView outputView){
 		//다리 길이 입력
 		GuideMessageView.START_BRIDGE_GAME_GUIDE_MESSAGE.printMessage();
-		GuideMessageView.BRIDGE_LENGTH_GUIDE_MESSAGE.printMessage();
-		Validation.validateBridgeSize(2);
+		int bridgeSize = Validation.validateBridgeSize(2);
 
-		//이동할 칸 선택
-		GuideMessageView.SELECT_MOVE_GUIDE_MESSAGE.printMessage();
-		inputView.readMoving();
-		Validation.validateMoving();
+		//다리 생성
+		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+		List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
 
+		int moveCount = 0;
+		initMap(bridgeSize);
 
+		do {
+			//이동할 칸 선택하고 이동하기
+			String movingDirection = Validation.validateMoving(1);
+			move(moveCount++, bridge, movingDirection);
+			outputView.printMap(map, moveCount);
+
+		} while (!isClearCrossBridge() && !isFailCrossBridge());
+
+	}
+
+	private boolean isFailCrossBridge() {
+
+		boolean isFail = Arrays.stream(map)
+			.flatMap(flatMap -> Arrays.stream(flatMap))
+			.anyMatch(value -> value.contains("X"));
+
+		// for(int i=0;i< map.length;i++){
+		// 	for(int j=0;j<map[i].length;j++){
+		// 		if(map[i][j].contains("X")){
+		// 			return true;
+		// 		}
+		// 	}
+		// }
+		return isFail;
+	}
+
+	private static boolean isClearCrossBridge() {
+		return map[0][map[0].length - 1].equals(" O ") || map[1][map[1].length - 1].equals(" O ");
 	}
 
 	/**
@@ -33,9 +62,8 @@ public class BridgeGame {
 	 * <p>
 	 * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
-	public void move(int moveCount, List<String> bridge) {
-		String input = Validation.validateMoving();
-		makeMap(moveCount, input, bridge);
+	public void move(int moveCount, List<String> bridge, String movingDirection) {
+		makeMap(moveCount, movingDirection, bridge);
 	}
 
 	private static void moveDown(int moveCount, String input, List<String> bridge) {
@@ -72,8 +100,11 @@ public class BridgeGame {
 	public void retry() {
 	}
 
-	public static void initMoveHistory(int size) {
+	public static void initMap(int size) {
 		map = new String[2][size];
+
+		Arrays.fill(map[0], "");
+		Arrays.fill(map[1], "");
 	}
 
 	public static boolean isCrossable(String input, int moveCount, List<String> bridge) {
@@ -83,9 +114,9 @@ public class BridgeGame {
 		return false;
 	}
 
-	public static void makeMap(int moveCount, String input, List<String> bridge) {
-		moveUp(moveCount, input, bridge);
-		moveDown(moveCount, input, bridge);
+	public static void makeMap(int moveCount, String movingDirection, List<String> bridge) {
+		moveUp(moveCount, movingDirection, bridge);
+		moveDown(moveCount, movingDirection, bridge);
 	}
 
 	public static String[][] getMap() {

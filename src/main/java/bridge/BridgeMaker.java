@@ -30,19 +30,19 @@ public class BridgeMaker {
 	public static void setUOrD(List<String> bridge, List<Integer> randomNumbers) {
 
 		for (Integer randomNumber : randomNumbers) {
-			isUp(bridge, randomNumber);
-			isDown(bridge, randomNumber);
+			setU(bridge, randomNumber);
+			setD(bridge, randomNumber);
 		}
 
 	}
 
-	private static void isDown(List<String> bridge, int randomNumber) {
+	private static void setD(List<String> bridge, int randomNumber) {
 		if (randomNumber == 0) {
 			bridge.add("D");
 		}
 	}
 
-	private static void isUp(List<String> bridge, int randomNumber) {
+	private static void setU(List<String> bridge, int randomNumber) {
 		if (randomNumber == 1) {
 			bridge.add("U");
 		}

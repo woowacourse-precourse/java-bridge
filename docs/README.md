@@ -15,14 +15,12 @@
     - [x] 잘못된 값을 입력하면 IllegalArgumentException을 발생시킨다 - Validation#isMovingException()
     - [x] 그 부분부터 입력을 다시 받는다. - Validation#validateMoving()
   - [x] 플레이어가 칸을 이동한다 - BridgeGame#move()
-  - [] 이동한 칸을 건널 수 있다면 O, 건널 수 없다면 X로 표시한다 - OutputView#printMap()
-  - [] 다리를 끝까지 건너면 게임이 종료된다 - BridgeGame#start()
-    - [] 다리를 끝까지 건넜는지 확인한다 - BridgeGame#isEnd()
-  - [] 다리를 건너다 실패하면 게임을 재시작하거나 종료할 수 있다 - BridgeGame#retry()
+  - [x] 다리를 끝까지 건너거나 실패하면 게임이 종료된다 - BridgeGame#start()
+  - [] 게임을 재시작하거나 종료할 수 있다 - BridgeGame#retry()
    - [] 재시작해도 처음에 만든 다리로 재사용한다 - BridgeMaker#initBridge()
    - [] 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때 까지 시도한 횟수를 나타낸다 - BridgeGame#calculateTryCount()
 
-- [] 출력
+- [x] 출력
   - [x] 다리 건너기 게임 시작 안내 메시지 (다리 건너기 게임을 시작합니다.) - GuideMessageView#startBridgeGameGuideMessage
   - [x] 다리 길이 입력 안내 메시지 (다리의 길이를 입력해주세요.) - GuideMessageView#bridgeLengthGuideMessage
   - [x] 이동할 칸 입력 안내 메시지 (이동할 칸을 선택해주세요. (위: U, 아래: D)) - GuideMessageView#selectMoveGuideMessage

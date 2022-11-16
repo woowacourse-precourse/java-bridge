@@ -1,21 +1,23 @@
 package bridge.Validation;
 
+import bridge.View.GuideMessageView;
 import bridge.View.InputView;
 
 public class Validation {
 	public static InputView inputView = new InputView();
 
-	public static String validateBridgeSize(int length) {
+	public static int validateBridgeSize(int length) {
 		boolean isReInput;
 		String input = "";
 
 		do {
+			GuideMessageView.BRIDGE_LENGTH_GUIDE_MESSAGE.printMessage();
 			input = inputView.readBridgeSize();
 			isReInput = isBridgeSizeException(length, input);
 
 		} while (isReInput);
 
-		return input;
+		return Integer.parseInt(input);
 	}
 
 	private static boolean isBridgeSizeException(int length, String input) {
@@ -39,7 +41,7 @@ public class Validation {
 	}
 
 	public static void validateNumberLength(String input, int length) {
-		if (input.length() > length || input.length() < length) {
+		if (input.length() > length) {
 			throw Exceptions.LENGTH_EXCEPTION.getException();
 		}
 
@@ -53,13 +55,14 @@ public class Validation {
 		}
 	}
 
-	public static String validateMoving() {
+	public static String validateMoving(int length) {
 		boolean isReInput;
 		String input = "";
 
 		do {
+			GuideMessageView.SELECT_MOVE_GUIDE_MESSAGE.printMessage();
 			input = inputView.readMoving();
-			isReInput = isMovingException(input, 1);
+			isReInput = isMovingException(input, length);
 
 		} while (isReInput);
 
@@ -79,7 +82,7 @@ public class Validation {
 	}
 
 	private static void validateUOrDOnly(String input) {
-		if (!input.equals("U") || !input.equals("D")) {
+		if (!input.equals("U") && !input.equals("D")) {
 			throw Exceptions.U_OR_D_ONLY_EXCEPTION.getException();
 		}
 	}
