@@ -48,3 +48,26 @@
 ### 고려사항
 명세에 IllegalStateException 가 언급되었음
 - '객체 상태가 메서드 호출을 처리하기에 적절치 않을 때'가 있는지 체크
+
+### 제한사항
+- BridgeRandomNumberGenerator, BridgeNumberGenerator 클래스의 코드는 변경할 수 없다.
+- BridgeMaker 클래스
+  - 제공된 BridgeMaker 클래스를 활용해 구현해야 한다.
+  - BridgeMaker의 필드(인스턴스 변수)를 변경할 수 없다.
+  - BridgeMaker의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 없다.
+  - 패키지 변경 불가
+- BridgeGame 클래스
+  - BridgeGame에 필드(인스턴스 변수)를 추가할 수 있다.
+  -  BridgeGame의 패키지는 변경할 수 있다.
+  - BridgeGame의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
+  - 게임 진행을 위해 필요한 메서드를 추가 하거나 변경할 수 있다.
+- OutputView 클래스
+  - 제공된 OutputView 클래스를 활용해 구현해야 한다.
+  - OutputView의 패키지는 변경할 수 있다.
+  - OutputView의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
+  - 값 출력을 위해 필요한 메서드를 추가할 수 있다.
+- InputView 클래스
+  - 제공된 InputView 클래스를 활용해 구현해야 한다.
+  - InputView의 패키지는 변경할 수 있다.
+  - InputView의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 있다.
+  - 사용자 값 입력을 위해 필요한 메서드를 추가할 수 있다.
