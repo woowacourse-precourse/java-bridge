@@ -19,14 +19,14 @@ class SuccessTest {
     
     @BeforeEach
     void setUp() {
-        success = new Success(BridgeMakerTest.UPPER_BRIDGE_MAKER.makeBridge(3));
+        success = new Success(BridgeMakerTest.UPPER_BRIDGE_MAKER.makeBridge(3), "U");
     }
     
     @Test
     @DisplayName("예외 처리 : 이동을 시도할 시")
     void move() {
         assertThatIllegalStateException()
-                .isThrownBy(() -> success.move(2))
+                .isThrownBy(() -> success.move(2, "U"))
                 .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
     }
     

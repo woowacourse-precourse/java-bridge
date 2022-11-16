@@ -15,16 +15,16 @@ public class Ready extends Started {
     }
     
     @Override
-    public State move(final int currentPosition) {
-        if (isPartBridgeExist(currentPosition)) {
-            return new Success(bridge());
+    public State move(final int currentPosition, final String moving) {
+        if (isPartBridgeExist(currentPosition, moving)) {
+            return new Success(bridge(), moving);
         }
         
-        return new Fail(bridge());
+        return new Fail(bridge(), moving);
     }
     
-    private boolean isPartBridgeExist(final int currentPosition) {
-        return partBridge(currentPosition).equals(BridgeConstants.UPPER_COMPARTMENT);
+    private boolean isPartBridgeExist(final int currentPosition, final String moving) {
+        return partBridge(currentPosition).equals(moving);
     }
     
     private String partBridge(final int currentPosition) {

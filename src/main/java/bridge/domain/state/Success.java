@@ -5,8 +5,8 @@ import bridge.domain.MoveResult;
 import java.util.List;
 
 public class Success extends MoveComplete {
-    public Success(final List<String> bridge) {
-        super(bridge);
+    public Success(final List<String> bridge, final String moving) {
+        super(bridge, moving);
     }
     
     @Override

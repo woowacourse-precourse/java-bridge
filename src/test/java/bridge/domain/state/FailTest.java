@@ -17,14 +17,14 @@ class FailTest {
     
     @BeforeEach
     void setUp() {
-        fail = new Fail(BridgeMakerTest.UPPER_BRIDGE_MAKER.makeBridge(3));
+        fail = new Fail(BridgeMakerTest.UPPER_BRIDGE_MAKER.makeBridge(3), "U");
     }
     
     @Test
     @DisplayName("예외 처리 : 이동을 시도할 시")
     void move() {
         assertThatIllegalStateException()
-                .isThrownBy(() -> new Fail(List.of()).move(2))
+                .isThrownBy(() -> fail.move(2, "U"))
                 .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
     }
     

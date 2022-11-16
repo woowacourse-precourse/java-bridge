@@ -15,7 +15,7 @@ public class BridgeNumberGeneratorTest {
     void generate() {
         assertAll(
                 () -> assertThat(BRIDGE_NUMBER_GENERATOR_ONE.generate()).isEqualTo(1),
-                () -> assertThat(BRIDGE_NUMBER_GENERATOR_ZERO.generate()).isEqualTo(0)
+                () -> assertThat(BRIDGE_NUMBER_GENERATOR_ZERO.generate()).isZero()
         );
     }
 }
