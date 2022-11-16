@@ -5,8 +5,11 @@ package bridge;
  */
 public class OutputView {
     private static final String STARTING_MESSAGE = "다리 건너기 게임을 시작합니다.";
-    public void printStartingMsg() {
+    private static final String MESSAGE_FOR_GET_LENGTH = "다리의 길이를 입력해 주세요.";
+
+    public void printInitialMessages() {
         System.out.println(STARTING_MESSAGE);
+        System.out.println(MESSAGE_FOR_GET_LENGTH);
     }
 
     /**
