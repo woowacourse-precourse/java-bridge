@@ -193,6 +193,89 @@ public class InputViewTest {
 				}
 			}
 		}
+
+		@Nested
+		@DisplayName("에외상황 테스트 클래스")
+		class FailTest {
+
+			@Test
+			@DisplayName("재시작 여부 소문자로 입력한 경우 테스트")
+			void inputGameCommandLowerCase() {
+				// given
+				List<String> gameCommands = List.of("r", "q", "a", "b", "c", "rQ", "Rq", "qqq", "qR");
+
+				for (String gameCommand : gameCommands) {
+					// when, then
+					readLine(gameCommand);
+					assertThatThrownBy(() -> inputView.readGameCommand()).isInstanceOf(IllegalArgumentException.class);
+				}
+			}
+
+			@Test
+			@DisplayName("재시작 여부 한글 입력 경우 테스트")
+			void inputGameCommandKorean() {
+				// given
+				List<String> gameCommands = List.of("ㄱ", "ㅎ", "ㅃ", "ㅓ", "ㅏ", "Rㄱ", "Qㅓ", "Rㅎ", "한글");
+
+				for (String gameCommand : gameCommands) {
+					// when, then
+					readLine(gameCommand);
+					assertThatThrownBy(() -> inputView.readGameCommand()).isInstanceOf(IllegalArgumentException.class);
+				}
+			}
+
+			@Test
+			@DisplayName("재시작 여부 숫자 입력한 경우 테스트")
+			void inputGameCommandNumeric() {
+				// given
+				List<String> gameCommands = List.of("1", "123", "31", "1R", "R1", "Q1", "1Q", "R1Q");
+
+				for (String gameCommand : gameCommands) {
+					// when, then
+					readLine(gameCommand);
+					assertThatThrownBy(() -> inputView.readGameCommand()).isInstanceOf(IllegalArgumentException.class);
+				}
+			}
+
+			@Test
+			@DisplayName("재시작 여부 특수문자 입력한 경우 테스트")
+			void inputGameCommandSpecialCharacter() {
+				// given
+				List<String> gameCommands = List.of("R!", "!R", "_R", "Q%", "/Q", "\\", "RQQQQ!#$");
+
+				for (String gameCommand : gameCommands) {
+					// when, then
+					readLine(gameCommand);
+					assertThatThrownBy(() -> inputView.readGameCommand()).isInstanceOf(IllegalArgumentException.class);
+				}
+			}
+
+			@Test
+			@DisplayName("재시작 여부 중복 입력 경우 테스트")
+			void inputGameCommandDuplicate() {
+				// given
+				List<String> gameCommands = List.of("RR", "QQ", "RQ", "QR");
+
+				for (String gameCommand : gameCommands) {
+					// when, then
+					readLine(gameCommand);
+					assertThatThrownBy(() -> inputView.readGameCommand()).isInstanceOf(IllegalArgumentException.class);
+				}
+			}
+
+			@Test
+			@DisplayName("재시작 여부 공백 입력 경우 테스트")
+			void inputGameCommandSpaceBar() {
+				// given
+				List<String> gameCommands = List.of("R ", "Q ", " R", " Q", " ", "   ", "R Q", " Q ");
+
+				for (String gameCommand : gameCommands) {
+					// when, then
+					readLine(gameCommand);
+					assertThatThrownBy(() -> inputView.readGameCommand()).isInstanceOf(IllegalArgumentException.class);
+				}
+			}
+		}
 	}
 
 	private void readLine(String bridgeSize) {
