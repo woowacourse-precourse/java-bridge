@@ -28,7 +28,7 @@
 - [X] 앞 숫자가 0인 경우
 
 ### 이동할 칸 입력
-- [ ] U, D 가 아닌 경우
+- [X] U, D 가 아닌 경우 - BridgeLocation.createLocation()
 
 ### 게임 재시작 여부 입력
 - [ ] R,Q 가 아닌 경우
