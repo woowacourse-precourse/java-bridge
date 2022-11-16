@@ -9,6 +9,11 @@ public class OutputView {
         out("다리 건너기 게임을 시작합니다.");
     }
 
+    public void printRequestBridgeLength() {
+        blank();
+        out("다리의 길이를 입력해주세요.");
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -27,5 +32,9 @@ public class OutputView {
 
     private void out(String text) {
         System.out.println(text);
+    }
+
+    private void blank() {
+        System.out.println();
     }
 }
