@@ -19,4 +19,13 @@ public class GameDataTest {
         assertThat(gameData.getTopStatus()).isEqualTo(List.of("[", "]"));
         assertThat(gameData.getBottomStatus()).isEqualTo(List.of("[", "]"));
     }
+    @DisplayName("게임 재시작 횟수를 카운트한다.")
+    @Test
+    void checkRetryCount() {
+        int retryCount = 10;
+        for (int i = 1; i < retryCount; i++) {
+            gameData.increaseTotalTry();
+        }
+        assertThat(gameData.getTotalTry()).isEqualTo(retryCount);
+    }
 }
