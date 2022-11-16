@@ -7,14 +7,14 @@ import java.util.List;
  */
 public class BridgeGame {
     private final List<String> board;
-    private int now;
+    private int step;
     private int retryNum;
 
     public BridgeGame(){
         int boardSize = new InputView().readBridgeSize();
         BridgeRandomNumberGenerator randomGenerator = new BridgeRandomNumberGenerator();
         board = new BridgeMaker(randomGenerator).makeBridge(boardSize);
-        now = 0;
+        step = 0;
         retryNum = 0;
     }
     /**
@@ -24,11 +24,11 @@ public class BridgeGame {
      */
     public boolean move() {
         String move = new InputView().readMoving();
-        boolean success = !board.get(now + 1).equals(move);
-        //new OutputView().printMap(board, now, success);
+        boolean success = !board.get(step + 1).equals(move);
+        new OutputView().printMap(board, step, success);
         if(!success)
             return retry();
-        now += 1;
+        step += 1;
         return true;
     }
 
@@ -38,7 +38,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry() {
-        now = 0;
+        step = 0;
         retryNum += 1;
         String command = new InputView().readGameCommand();
         return command.equals("R");
