@@ -1,12 +1,16 @@
 package bridge.Controller;
 
+import bridge.domain.Bridge;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
     public void run(){
-
+        System.out.println("다리 건너기 게임을 시작합니다.");
+        //다리 생성
+        Bridge bridge = new Bridge();
     }
 
     /**
