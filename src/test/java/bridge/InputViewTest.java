@@ -1,19 +1,14 @@
 package bridge;
 
-import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
-import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.util.List;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Lists.newArrayList;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class InputViewTest {
 
@@ -26,4 +21,11 @@ class InputViewTest {
         assertThat(inputView.readBridgeSize()).isEqualTo(3);
     }
 
+    @DisplayName("잘못된 다리 사이즈를 입력받은 경우 예외 반환")
+    @ValueSource(strings = {"03", "21", "3j"})
+    @ParameterizedTest
+    void inputBridgeSizeException(String input) {
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        assertThatThrownBy(inputView::readBridgeSize).isInstanceOf(IllegalArgumentException.class);
+    }
 }
