@@ -63,7 +63,7 @@ public class BridgeGame {
     }
     
     public boolean isMoveFail() {
-        return lastState().isMoveFail();
+        return lastState().isMoveFailed();
     }
     
     private State lastState() {

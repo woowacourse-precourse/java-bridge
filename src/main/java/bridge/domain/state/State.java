@@ -5,7 +5,7 @@ import bridge.domain.MoveResult;
 public interface State {
     State move(final int currentPosition, final String moving);
     
-    boolean isMoveFail();
+    boolean isMoveFailed();
     
     boolean isGameFinished(final int numberOfMoves);
     

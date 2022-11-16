@@ -26,7 +26,7 @@ public class Ready extends Started {
     }
     
     @Override
-    public boolean isMoveFail() {
+    public boolean isMoveFailed() {
         throw new IllegalStateException(FAIL_CHECK_NOT_AVAILABLE);
     }
     

@@ -35,7 +35,7 @@ class FailTest {
     @Test
     @DisplayName("재시도 여부 선택 상태 맞음")
     void isRetry() {
-        assertThat(fail.isMoveFail()).isTrue();
+        assertThat(fail.isMoveFailed()).isTrue();
     }
     
     @Test

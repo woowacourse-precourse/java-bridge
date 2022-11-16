@@ -9,7 +9,7 @@ public class Fail extends MoveComplete {
     }
     
     @Override
-    public boolean isMoveFail() {
+    public boolean isMoveFailed() {
         return true;
     }
     

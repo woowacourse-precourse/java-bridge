@@ -3,14 +3,11 @@ package bridge.domain.state;
 import bridge.constant.ErrorMessageConstant;
 import bridge.domain.BridgeTest;
 import bridge.domain.MoveResult;
-import bridge.domain.factory.BridgeMakerTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
@@ -40,7 +37,7 @@ class SuccessTest {
     @Test
     @DisplayName("재시도 여부 선택 상태 아님")
     void isRetry() {
-        assertThat(success.isMoveFail()).isFalse();
+        assertThat(success.isMoveFailed()).isFalse();
     }
     
     @DisplayName("게임 종료 상태 체크")
