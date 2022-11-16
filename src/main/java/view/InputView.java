@@ -28,7 +28,7 @@ public class InputView {
 	private void validateBridgeSizeRange(String bridgeSize) {
 		int tmpBridgeSize = Integer.parseInt(bridgeSize);
 		if (tmpBridgeSize < 3 || tmpBridgeSize > 20) {
-			throw new IllegalArgumentException(ERROR_MEESAGE_OUT_OF_RANGE);
+			throw new IllegalArgumentException(ERROR_MESSAGE_OUT_OF_RANGE);
 		}
 	}
 
@@ -45,13 +45,22 @@ public class InputView {
 		if (moving.equals(MOVING_UP) || moving.equals(MOVING_DOWN)) {
 			return;
 		}
-		throw new IllegalArgumentException(ERROR_MESSAGE_NOT_U_OR_NOT_D);
+		throw new IllegalArgumentException(ERROR_MESSAGE_WRONG_MOVING_INPUT);
 	}
 
 	/**
 	 * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
 	 */
 	public String readGameCommand() {
-		return null;
+		String gameCommand = readLine();
+		validateGameCommand(gameCommand);
+		return gameCommand;
+	}
+
+	private void validateGameCommand(String gameCommand) {
+		if (gameCommand.equals(GAME_COMMAND_RESTART) || gameCommand.equals(GAME_COMMAND_QUIT)) {
+			return;
+		}
+		throw new IllegalArgumentException(ERROR_MESSAGE_WRONG_GAME_COMMAND_INPUT);
 	}
 }
