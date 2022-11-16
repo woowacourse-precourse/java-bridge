@@ -18,4 +18,9 @@ public enum PrintInput {
     public void print() {
         System.out.println(this.message);
     }
+
+    @Override
+    public String toString () {
+        return this.message;
+    }
 }
