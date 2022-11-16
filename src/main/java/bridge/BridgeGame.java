@@ -76,12 +76,21 @@ public class BridgeGame {
         stop(count, result, isWrong);
     }
 
+    private static String requestPrintMap(String up, String down) {
+        OutputView output = new OutputView();
+
+        output.printMap(up);
+        output.printMap(down);
+
+        return up + "\n" +  down;
+    }
+    
     public void stop(int count, String result, boolean isClear) {
         OutputView output = new OutputView();
 
         output.printResult(result, !isClear, count);
     }
-    
+
     public void start() {
         System.out.println("다리 건너기 게임을 시작합니다.");
         System.out.println("다리의 길이를 입력해주세요.");
