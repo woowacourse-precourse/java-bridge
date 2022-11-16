@@ -6,6 +6,9 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private static final int MIN_SIZE = 3;
+    private static final int MAX_SIZE = 20;
+    private static final String SIZE_ERROR = "다리 길이는 " + MIN_SIZE + "부터 " + MAX_SIZE + "까지 가능합니다.";
     private static final String NUMBER_FORMAT_ERROR = "숫자가 아닙니다.";
 
     /**
@@ -27,6 +30,13 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private int checkSize(int size) {
+        if (size < MIN_SIZE || MAX_SIZE < size) {
+            throw new IllegalArgumentException(SIZE_ERROR);
+        }
+        return size;
     }
 
     private int convert(String number) {
