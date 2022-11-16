@@ -15,6 +15,7 @@ public class OutputView {
     private static final String GAME_RESULT = "게임 성공 여부: ";
     private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";
+    private static final String GAME_TOTAL = "총 시도한 횟수: ";
 
     public void printStart() {
         System.out.println(GAME_START);
@@ -45,6 +46,7 @@ public class OutputView {
         printMap(upMap);
         printMap(downMap);
         printGameResult(gameResult);
+        printGameTotalCount(count);
     }
 
     private void printGameResult(boolean gameResult) {
@@ -55,5 +57,10 @@ public class OutputView {
         if(gameResult) {
             System.out.println(SUCCESS);
         }
+    }
+
+    private void printGameTotalCount(int count) {
+        System.out.print(GAME_TOTAL);
+        System.out.println(count);
     }
 }
