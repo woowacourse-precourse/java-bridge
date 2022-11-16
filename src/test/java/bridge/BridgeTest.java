@@ -30,4 +30,12 @@ public class BridgeTest {
         assertThatThrownBy(() -> new BridgeSizeValidator().run(Console.readLine()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("길이 만큼 다리 생성")
+    @Test
+    void createBridge(){
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        assertThat(bridgeMaker.makeBridge(3).size())
+                .isEqualTo(3);
+    }
 }
