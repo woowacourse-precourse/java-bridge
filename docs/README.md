@@ -54,7 +54,9 @@
 - [ ]  MoveStatus 성공/실패 Enum
 - [ ]  Round 각 라운드를 표현하는 클래스
 - [ ]  MoveResult 각 단계별 성공 여부를 표현하는 클래스
-- [ ]  Direction 위 아래 방향을 표현하는 Enum
+- [x]  Direction 위 아래 방향을 표현하는 Enum
+    - [x] toInitialLetter -> 0과 1사이의 값을 받아 D와 U중 하나를 반환
+    - [x] toEnum -> D와 U를 입력받아 Enum 인스턴스를 반환
 - [ ]  Bridge 다리를 표현하는 클래스
 - [ ]  Player 사용자 클래스
 - [ ]  BridgeGame 다리 건너기 게임을 관리하는 클래스
