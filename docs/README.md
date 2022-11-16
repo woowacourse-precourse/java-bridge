@@ -7,51 +7,50 @@
     <summary>게임 규칙</summary>
     <div markdown="1">
 
+
 위아래 둘 중 하나의 칸만 건널 수 있는 다리를 끝까지 건너가는 게임이다.
     
 - 위, 아래 두 칸으로 이루어진 다리를 건너야 한다.
-
 - 다리는 왼쪽에서 오른쪽으로 건너야 한다.
-
 - 위아래 둘 중 하나의 칸만 건널 수 있다.
 
+<br>
 </div>
 </details>
 
 <details>
     <summary>step 1. 다리 생성</summary>
     <div markdown="1">
+
 - 다리의 길이를 숫자로 입력받고 생성한다.
-
 - 다리를 생성할 때 위 칸과 아래 칸 중 건널 수 있는 칸은 0과 1 중 무작위 값을 이용해서 정한다.
-
 - 위 칸을 건널 수 있는 경우 U, 아래 칸을 건널 수 있는 경우 D값으로 나타낸다.
-
 - 무작위 값이 0인 경우 아래 칸, 1인 경우 위 칸이 건널 수 있는 칸이 된다.
-    </div>
+
+<br>
+</div>
 </details>
 <details>
     <summary>step 2. 다리 건너기</summary>
     <div markdown="1">
 
 - 다리가 생성되면 플레이어가 이동할 칸을 선택한다.
-
   - 이동할 때 위 칸은 대문자 U, 아래 칸은 대문자 D를 입력한다.
-
   - 이동한 칸을 건널 수 있다면 O로 표시한다. 건널 수 없다면 X로 표시한다.
+
 
 - 다리를 끝까지 건너면 게임이 종료된다.
 
+
 - 다리를 건너다 실패하면 게임을 재시작하거나 종료할 수 있다.
-
   - 재시작해도 처음에 만든 다리로 재사용한다.
+ - 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때까지 시도한 횟수를 나타낸다.
 
-  - 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때까지 시도한 횟수를 나타낸다.
 
-- 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
-  
+- 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다. 
   - `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
   
+<br>
 </div>
 </details>
 
@@ -77,6 +76,7 @@
   ```
   R
   ```
+  <br>
 </div>
 </details>
 
@@ -112,6 +112,7 @@
   ```
   [ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.
   ```
+<br>
 </div>
 </details>
 
@@ -185,6 +186,7 @@ Q
 게임 성공 여부: 실패
 총 시도한 횟수: 1
 ```
+<br>
 </div>
 </details>
 
@@ -198,22 +200,15 @@ Q
 > ✔ 각 클래스의 제약 사항은 아래 클래스별 세부 설명을 참고한다.
 >
 > ✔ 이외 필요한 클래스(또는 객체)와 메서드는 자유롭게 구현할 수 있다.
-> 
-> ✔ [`camp.nextstep.edu.missionutils`](https://github.com/woowacourse-projects/mission-utils)에서 제공하는 `Console` API를 사용하여 구현해야 한다.
-> 
-> ✔ 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
-
+<br>
 
 <details>
     <summary> <b>InputView</b> </summary>
     <div markdown="1">
 
-> 📍 `InputView` 클래스에서만 `camp.nextstep.edu.missionutils.Console` 의 `readLine()` 메서드를 이용해 사용자의 입력을 받을 수 있다.
 
-- 제공된 `InputView` 클래스를 활용해 구현해야 한다.
-- `InputView`의 패키지는 변경할 수 있다.
-- `InputView`의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 있다.
-- 사용자 값 입력을 위해 필요한 메서드를 추가할 수 있다. 
+> 📍 `InputView` 클래스에서만 `camp.nextstep.edu.missionutils.Console` 의 `readLine()` 메서드를 이용해 사용자의 입력을 받을 수 있다.
+>
 
   ```java
   public class InputView {
@@ -231,6 +226,13 @@ Q
       }
   }
   ```
+  
+  - [ ] 제공된 `InputView` 클래스를 활용해 구현해야 한다.
+  - [ ] `InputView`의 패키지는 변경할 수 있다.
+  - [ ] `InputView`의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 있다.
+  - [ ] 사용자 값 입력을 위해 필요한 메서드를 추가할 수 있다.
+
+<br>
 </div>
 </details>
 
@@ -238,10 +240,6 @@ Q
     <summary> <b>OutputView</b> </summary>
     <div markdown="1">
 
-- 제공된 `OutputView` 클래스를 활용해 구현해야 한다.
-- `OutputView`의 패키지는 변경할 수 있다.
-- `OutputView`의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
-- 값 출력을 위해 필요한 메서드를 추가할 수 있다.
 
   ```java
   public class OutputView {
@@ -253,6 +251,12 @@ Q
       }
   }
   ```
+  - [ ] 제공된 `OutputView` 클래스를 활용해 구현해야 한다.
+  - [ ] `OutputView`의 패키지는 변경할 수 있다.
+  - [ ] `OutputView`의 **메서드의 이름**은 **변경할 수 없고**, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
+  - [ ] 값 출력을 위해 필요한 메서드를 추가할 수 있다.
+
+<br>
 </div>
 </details>
 
@@ -261,12 +265,6 @@ Q
     <div markdown="1">
 
 > 📍 `BridgeGame` 클래스에서 `InputView`, `OutputView` 를 사용하지 않는다.
-
-- 제공된 `BridgeGame` 클래스를 활용해 구현해야 한다.
-- `BridgeGame`에 필드(인스턴스 변수)를 추가할 수 있다.
-- `BridgeGame`의 패키지는 변경할 수 있다.
-- `BridgeGame`의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
-- 게임 진행을 위해 필요한 메서드를 추가 하거나 변경할 수 있다.
 
   ```java
   public class BridgeGame {
@@ -279,16 +277,19 @@ Q
   }
   ```
 
+  - [ ] 제공된 `BridgeGame` 클래스를 활용해 구현해야 한다.
+  - [ ] `BridgeGame`에 필드(인스턴스 변수)를 추가할 수 있다.
+  - [ ] `BridgeGame`의 패키지는 변경할 수 있다.
+  - [ ] `BridgeGame`의 **메서드의 이름**은 **변경할 수 없고**, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
+  - [ ] 게임 진행을 위해 필요한 메서드를 추가 하거나 변경할 수 있다.
+
+<br>
 </div>
 </details>
 
 <details>
     <summary> <b>BridgeMaker</b> </summary>
     <div markdown="1">
-
-- 제공된 `BridgeMaker` 클래스를 활용해 구현해야 한다.
-- `BridgeMaker`의 필드(인스턴스 변수)를 변경할 수 없다.
-- `BridgeMaker`의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 없다.
   
   ```java
   public class BridgeMaker {
@@ -298,6 +299,12 @@ Q
       }
   }
   ```
+  
+  - [ ] 제공된 `BridgeMaker` 클래스를 활용해 구현해야 한다.
+  - [ ] `BridgeMaker`의 필드(인스턴스 변수)를 변경할 수 없다.
+  - [ ] `BridgeMaker`의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 없다.
+
+<br>
 </div>
 </details>
 
@@ -305,29 +312,78 @@ Q
     <summary> <b>BridgeRandomNumberGenerator</b> </summary>
     <div markdown="1">
 
-- Random 값 추출은 제공된 `bridge.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
-- `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 변경할 수 없다.
+> 📍 Random 값 추출은 제공된 `bridge.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
 
-- 사용 예시
   ```java
+  // 사용 예시
   int number = bridgeNumberGenerator.generate();
   ```
+  - [ ] `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 **변경할 수 없다**.
 
+<br>
 </div>
 </details>
 
 <br><br>
 
-## 📝 프로젝트에서 구현할 기능 목록
+## 📝 구현할 기능 목록
 
-- [ ] 작성 예정
+### 다리 생성
+
+- [ ] `출력 UI` : 게임 시작 문구 출력하기
+
+
+- [ ] `입력 UI` : 다리의 길이를 3 이상 20 이하의 숫자로 입력받기
+  - [ ] `exception` : 유효한 범위의 숫자가 아니거나, 정수가 아닌 다른 자료형일 경우 오류 발생
+  - [ ] `exception` : 오류 발생한 부분부터 다시 입력 받도록 설정
+
+
+- [ ] 입력받은 길이만큼 다리 생성하기
+
+
+- [ ] 다리에 각 칸마다 랜덤으로 0, 1값을 설정하기
+  - 1 : 위 칸이 정답
+  - 0 : 아래 칸이 정답
+
+<br>
+
+### 다리 건너기
+
+- [ ] `입력 UI` : 플레이어가 이동할 칸 U(위 칸), D(아래 칸) 중 하나의 문자 입력받기
+  - [ ] `exception` : U, D가 아닌 문자나 다른 자료형 입력 시 오류 발생
+  - [ ] `exception` : 오류 발생한 부분부터 다시 입력 받도록 설정
+
+    
+- [ ] 입력값을 활용하여 이동할 칸을 건널 수 있는지 없는지 확인하기
+  - `U` -> 다리의 해당 칸이 `1`이어야 건널 수 있음
+  - `D` -> 다리의 해당 칸이 `0`이어야 건널 수 있음
+
+
+- [ ] `출력 UI` : 이동에 대한 결과 출력하기
+
+
+- [ ] case 1 (성공) : 실패하거나, 마지막 칸에 도달할 때까지 다시 '다리 건너기' 단계 반복하기
+  - [ ] case 1-1 (최종 성공) : 게임 종료
+    - [ ] `출력 UI` : 최종 게임 결과 출력하기
+    - [ ] `출력 UI` : 게임 최종 결과 및 총 시도한 횟수 출력하기
+
+
+- [ ] case 2 (실패) : 게임 재시작 혹은 종료<br>
+
+    - [ ] `입력 UI` : 게임 재시작/종료 입력 받기<br>
+
+      - `R` &nbsp; -> &nbsp; (재시작) &nbsp; 다시 '다리 건너기' 단계 반복하기
+        
+      - `Q` &nbsp; -> &nbsp; (종료) &nbsp; 게임 종료<br>
+        - [ ] `출력 UI` : 최종 게임 결과 출력하기
+        - [ ] `출력 UI` : 게임 최종 결과 및 총 시도한 횟수 출력하기
 
 <br><br>
 
 ## 🔥 이번 주차의 도전 과제
 
 
-### 1️⃣ Clean Code
+### Clean Code
  
 - [ ] 함수(또는 메서드)의 길이가 10라인을 넘어가지 않도록 구현한다.
   - `main()` 함수에도 적용된다.
@@ -352,7 +408,7 @@ Q
 
 <br>
 
-### 2️⃣  객체 지향 프로그래밍 (OOP)
+### 객체 지향 프로그래밍 (OOP)
 - [ ] 객체의 상태 접근을 제한한다.
   - 인스턴스 변수의 접근 제어자는 private으로 구현한다.
 
@@ -373,7 +429,7 @@ Q
 
 <br>
 
-### 3️⃣ TDD
+### TDD
 - [ ] JUnit 5와 AssertJ를 이용하여 본인이 정리한 기능 목록이 모두 정상 동작함을 테스트 코드로 확인한다.
 
 
