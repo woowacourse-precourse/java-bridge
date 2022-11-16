@@ -18,11 +18,11 @@ public enum Message {
         this.script = script;
     }
 
-    public void showGameStartMessage(){
+    public void gameStartMessage(){
         System.out.println(GAME_START_MESSAGE);
     }
 
-    public void showInputRangeBridgeMessage(){
+    public void inputRangeBridgeMessage(){
         System.out.println(INPUT_RANGE_BRIDGE_MESSAGE);
     }
 
