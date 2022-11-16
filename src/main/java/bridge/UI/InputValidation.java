@@ -51,6 +51,24 @@ public class InputValidation {
         }
     }
 
+    public boolean validateGameCommandInput(String input){
+        boolean isAllRight = true;
+        try{
+            validateGameCommandIsRight(input);
+        }catch(IllegalArgumentException ex){
+            isAllRight = false;
+        }
+        return isAllRight;
+    }
+
+    public void validateGameCommandIsRight(String input){
+        boolean isNotRightInput = !(input.equals("R") || input.equals("Q"));
+        if(isNotRightInput){
+            String errorMessage = "[ERROR] 게임 재시작과 종료 여부에는, R 또는 Q만 입력받을 수 있습니다.";
+            errorProcess(errorMessage);
+        }
+    }
+
     private void errorProcess(String errorMessage){
         outputView.printStatement(errorMessage);
         throw new IllegalArgumentException();
