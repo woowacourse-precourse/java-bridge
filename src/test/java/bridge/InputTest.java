@@ -107,4 +107,18 @@ public class InputTest {
                 .hasMessage(ExceptionType.IS_NOT_ONLY_ALPHABET.getMessage())
                 .hasMessageContaining(ERROR);
     }
+
+    @DisplayName("이동할 칸을 입력받을 때 알파벳이 한 개가 아닌 경우 에러를 발생시킨다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"uu", "UU", "UD", "ud", "rr"})
+    void getMovingByNotOneAlphabet(String input) {
+        when(Console.readLine()).thenReturn(input);
+
+        InputView inputView = new InputView();
+
+        assertThatThrownBy(inputView::readMoving)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionType.IS_NOT_ONE_ALPHABET.getMessage())
+                .hasMessageContaining(ERROR);
+    }
 }
