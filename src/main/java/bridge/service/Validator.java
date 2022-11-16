@@ -14,6 +14,12 @@ public class Validator {
         }
     }
 
+    private void validateBridgeLengthValue(int bridgeLength) {
+        if (bridgeLength < 3 || bridgeLength > 20) {
+            throw new IllegalArgumentException(ErrorMessage.IS_OUT_OF_RANGE.message());
+        }
+    }
+
     public void validateMovement(String movement) {
 
     }
