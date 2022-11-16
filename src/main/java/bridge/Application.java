@@ -1,10 +1,12 @@
 package bridge;
 
-import static org.assertj.core.util.Lists.newArrayList;
+
+import java.util.List;
 
 public class Application {
 
     public static void main(String[] args) {
+
 
     }
 }

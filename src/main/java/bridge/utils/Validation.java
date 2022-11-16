@@ -19,12 +19,11 @@ public class Validation {
     }
 
     private static int validateNumber(String bridgeSize) {
-        int bridgeSizeNumber = 0;
         try {
-            bridgeSizeNumber = Integer.parseInt(bridgeSize);
-        } catch (IllegalArgumentException error) {
+            Integer.parseInt(bridgeSize);
+        } catch (NumberFormatException error) {
             System.out.println(error.getMessage());
         }
-        return bridgeSizeNumber;
+        return Integer.parseInt(bridgeSize);
     }
 }
