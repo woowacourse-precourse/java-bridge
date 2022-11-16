@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.controller.Controller;
+import bridge.view.OutputView;
 
 public class Application {
 
@@ -10,6 +11,6 @@ public class Application {
         // TODO: 프로그램 구현
         outputView.printStart();
         Controller controller = new Controller();
-        //controller.play();
+        controller.play();
     }
 }
