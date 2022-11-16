@@ -10,8 +10,9 @@ public class OutputView {
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * @param bridge 다리
-     * @param round 현재 회차
+     *
+     * @param bridge    다리
+     * @param round     현재 회차
      * @param isCorrect 현재 회차의 선택이 맞았는지 여부
      */
     public void printMap(List<String> bridge, int round, boolean isCorrect) {
@@ -21,16 +22,24 @@ public class OutputView {
     }
 
     private void printLine(List<String> line) {
+        System.out.print("[");
+        for (int i = 0; i < line.size() - 1; i++) {
+            System.out.print(" " + line.get(i) + " ");
+            System.out.print("|");
+        }
+        System.out.print(" " + line.get(line.size() - 1) + " ");
+        System.out.print("]");
     }
 
-    public Map<String, List<String>> convertToMap(List<String> bridge, int round, boolean isCorrect){
+    public Map<String, List<String>> convertToMap(List<String> bridge, int round, boolean isCorrect) {
         return null;
     }
 
-    public Map<String, List<String>> makePreviousMap(){
+    public Map<String, List<String>> makePreviousMap() {
 
     }
-    private String markAccordance(){
+
+    private String markAccordance() {
         return null;
     }
 
