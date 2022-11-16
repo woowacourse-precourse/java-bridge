@@ -17,6 +17,35 @@
 >      - 반복 `Repeat-Continue`
 >      - 종료 `Finish`
 
+### 동작 순서 기준 - 내부 기능 설계
+>- 게임 시작 안내문 `Output`
+>- 다리 길이 입력 안내문 `Output`
+>> - 다리 길이 입력 `Input`
+>>> 입력받은 다리 길이에 맞춰 다리 생성 - `BridgeGame`
+>>>> `BridgeGame` 은 `BridgeMaker.makeBridge(size)` 호출  
+>>>>> `BridgeMaker` 는 다리의 정보를 가진 `List<String> bridge` 를 리턴
+>>>>
+>>>> 리턴된 `bridge` 를 `BridgeGame` 의 인스턴스 변수 `bridge` 에 저장  
+>>>> 사용자의 정보 _(현재 위치, 총 시도 횟수 등)_ 를 저장할 `User` 생성
+> 
+>>- 반복 `Repeat`
+>>>  - 이동 칸 입력 안내문 `Output`
+>>>>  - 이동 칸 입력 `Input`  
+>>>>> 입력받은 칸으로 이동 - `BridgeGame.move(input)`
+>>>>>> 이동 결과 판별 - `BridgeGame.checkMoveResult(input,user)`  
+>>> 
+>>  - 선택 결과 판별 `BridgeGame`
+>>  - 선택 결과 출력 `Output`  
+>>    - 건널 수 있다면 게임 성공 여부 판별 `BridgeGame` 
+>>      - 성공시 게임 성공 안내문 `Output`  
+>>      - 종료 `Finish`
+>>    - 반복 `Repeat-Continue`
+>>    - 건널 수 없다면 재시도 여부 입력 안내문 `Output`
+>>    - 재시도 입력 `Input`
+>>    - 재시도 판별 `BridgeGame` 
+>>      - 반복 `Repeat-Continue`
+>>      - 종료 `Finish`
+
 
 ## 🚀 기능 요구 사항
 위아래 둘 중 하나의 칸만 건널 수 있는 다리를 끝까지 건너가는 게임이다.
