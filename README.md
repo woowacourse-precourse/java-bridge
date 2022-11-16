@@ -361,6 +361,14 @@ int number = bridgeNumberGenerator.generate();
 
 4. 필드 변경 금지 : 외부에서 BridgeNumberGenerator 주입.
 
+5. 징검다리 Up/Down 선택시, 맞는지 아닌지 처리하는 부분
+  - 선택이 맞았다면, 다리 진행 변수를 하나 올리고 true를 반환
+  - 선택이 틀렸다면, 다리 진행 변수를 0으로 바꾸고 false를 반환
+
+6. 다리를 다 건넜는지 아닌지에 대한 정보 처리 부분
+  - 다리를 다 건넜다면, true를 반환한다 
+  - 다리를 다 건너지 않았다면, false를 반환한다.
+
 
 ### 4. 징검다리 건너기 처리기능(Business Logic - BridgeGame)
 
