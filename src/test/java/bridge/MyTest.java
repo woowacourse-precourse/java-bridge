@@ -19,4 +19,20 @@ public class MyTest {
         Assertions.assertThat(crossablePositions.stream().filter(crossablePosition ->
                 (crossablePosition == 0 || crossablePosition == 1)).count()).isEqualTo(Integer.parseInt(inputValue));
     }
+
+    @DisplayName("3에서 20 사이의 숫자를 길이로 입력받지 못하면 예외가 발생한다.")
+    @Test
+    public void 다리_길이_입력_유효성_테스트() {
+        final String inputValue1 = "abc";
+        final String inputValue2 = "111111111111111";
+        Assertions.assertThatThrownBy(() -> Application.makeCrossablePositions(inputValue1))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        Assertions.assertThatThrownBy(() -> Application.makeCrossablePositions(inputValue2))
+                .isInstanceOf(IllegalArgumentException.class);
+
+
+
+
+    }
 }
