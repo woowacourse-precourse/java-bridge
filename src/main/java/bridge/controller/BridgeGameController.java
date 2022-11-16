@@ -10,6 +10,8 @@ public class BridgeGameController {
 
     public void run() {
         outputView.printStartMessage();
+        int bridgeSize = inputView.readBridgeSize();
+
         BridgeGame bridgeGame = new BridgeGame();
 
     }
