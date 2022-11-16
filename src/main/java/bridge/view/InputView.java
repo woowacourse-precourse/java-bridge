@@ -1,5 +1,11 @@
 package bridge.view;
 
+import camp.nextstep.edu.missionutils.Console;
+
+import java.util.Scanner;
+
+import static bridge.validator.NumberValidator.validateNonNumeric;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -8,8 +14,12 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
-        return 0;
+    public static int readBridgeSize() {
+        OutputView.printBridgeLengthInputMessage();
+        String input = Console.readLine();
+
+        validateNonNumeric(input);
+        return Integer.parseInt(input);
     }
 
     /**
