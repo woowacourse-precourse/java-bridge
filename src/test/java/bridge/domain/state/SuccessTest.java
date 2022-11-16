@@ -44,7 +44,7 @@ class SuccessTest {
     
     @DisplayName("게임 종료 상태 체크")
     @ParameterizedTest(name = "{displayName} : numberOfMoves => {0}, result => {1}")
-    @CsvSource(value = {"2, true", "1, false"})
+    @CsvSource(value = {"1, false", "2, true", "3, false"})
     void isGameFinished(final int numberOfMoves, final boolean result) {
         assertThat(success.isGameFinished(numberOfMoves)).isEqualTo(result);
     }
