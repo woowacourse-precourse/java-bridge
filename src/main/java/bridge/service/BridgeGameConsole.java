@@ -2,7 +2,7 @@ package bridge.service;
 
 public class BridgeGameConsole {
 
-    public void startGame() {
+    public void playGame() {
         // 게임 시작 안내문을 출력한다.
         // 다리 길이를 입력 받는다.
         // 다리 생성
