@@ -55,4 +55,31 @@ public class InputTest {
                 .hasMessageContaining(ERROR);
     }
 
+    @DisplayName("입력받은 다리 길이가 주어진 다리 최소 길이보다 작은 경우 에러를 발생시킨다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "0", "2"})
+    void getBridgeSizeByLowerThanBridgeSize(String input) {
+        when(Console.readLine()).thenReturn(input);
+
+        InputView inputView = new InputView();
+
+        assertThatThrownBy(inputView::readBridgeSize)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionType.IS_LOWER_THAN_MIN_BRIDGE_SIZE.getMessage())
+                .hasMessageContaining(ERROR);
+    }
+
+    @DisplayName("입력받은 다리 길이가 주어진 다리 최대 길이보다 큰 경우 에러를 발생시킨다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"21", "999", "23"})
+    void getBridgeSizeByHigherThanBridgeSize(String input) {
+        when(Console.readLine()).thenReturn(input);
+
+        InputView inputView = new InputView();
+
+        assertThatThrownBy(inputView::readBridgeSize)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionType.IS_HIGHER_THAN_MAX_BRIDGE_SIZE.getMessage())
+                .hasMessageContaining(ERROR);
+    }
 }
