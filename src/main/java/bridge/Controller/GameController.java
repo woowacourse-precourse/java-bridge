@@ -26,6 +26,7 @@ public class GameController {
     public void run() {
         int bridgeSize = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        System.out.println("bridge = " + bridge);
+        String nextMove = inputView.readMoving();
+        System.out.println("nextMove = " + nextMove);
     }
 }
