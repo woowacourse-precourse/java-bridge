@@ -7,9 +7,9 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    private static final String INPUT_BRIDGE_LENGTH = "다리의 길이를 입력해주세요.";
-    private static final String INPUT_BRIDGE_LOCATION = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    private static final String INPUT_RESTART_QUIT = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private static final String INPUT_BRIDGE_LENGTH = "다리의 길이를 입력해주세요.\n";
+    private static final String INPUT_BRIDGE_LOCATION = "이동할 칸을 선택해주세요. (위: U, 아래: D)\n";
+    private static final String INPUT_RESTART_QUIT = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n";
     private static final String DATA_TYPE_ERR_MESSAGE = "[ERROR] 숫자가 아닙니다.";
 
     /**
