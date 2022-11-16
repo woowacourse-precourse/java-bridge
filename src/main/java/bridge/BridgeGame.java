@@ -98,6 +98,21 @@ public class BridgeGame {
             }
         }
     }
+
+    public static String saveMap(List<Integer> bridge) {
+        String map = "[ ";
+
+        for (int i = 0; i < bridge.size(); i++) {
+            map += Bridge.findOrder(bridge.get(i)).getResult();
+
+            if (i < bridge.size() - 1) {
+                map += " | ";
+            }
+        }
+        map += " ]";
+
+        return map;
+    }
     
     public void stop(int count, String result, boolean isClear) {
         OutputView output = new OutputView();
