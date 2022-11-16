@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,32 +34,40 @@ public class OutputView {
     }
 
     public Map<String, List<String>> convertToMap(List<String> bridge, int round, boolean isCorrect) {
-        Map<String, List<String>> map = makePreviousMap();
+        Map<String, List<String>> map = makePreviousMap(bridge, round);
         map.get("upper").add(markAccordanceInUpperLine(bridge, round, isCorrect));
         map.get("lower").add(markAccordanceInLowerLine(bridge, round, isCorrect));
 
         return map;
     }
 
-    public Map<String, List<String>> makePreviousMap() {
+    public Map<String, List<String>> makePreviousMap(List<String> bridge, int round) {
+        Map<String, List<String>> map = new HashMap<>();
+        List<String> upperLine = new ArrayList<>();
+        List<String> lowerLine = new ArrayList<>();
 
+        for (int i = 0; i < round - 1; i++) {
+            markAccordanceInUpperLine(upperLine, i, true);
+            markAccordanceInLowerLine(lowerLine, i, true);
+        }
+        return map;
     }
 
     private String markAccordanceInUpperLine(List<String> bridge, int round, boolean isCorrect) {
-        if (bridge.get(round).equals("U") && isCorrect){
+        if (bridge.get(round).equals("U") && isCorrect) {
             return "O";
         }
-        if (bridge.get(round).equals("D") && !isCorrect){
+        if (bridge.get(round).equals("D") && !isCorrect) {
             return "X";
         }
         return " ";
     }
 
     private String markAccordanceInLowerLine(List<String> bridge, int round, boolean isCorrect) {
-        if (bridge.get(round).equals("D") && isCorrect){
+        if (bridge.get(round).equals("D") && isCorrect) {
             return "O";
         }
-        if (bridge.get(round).equals("U") && !isCorrect){
+        if (bridge.get(round).equals("U") && !isCorrect) {
             return "X";
         }
         return " ";
