@@ -84,6 +84,20 @@ public class BridgeGame {
 
         return up + "\n" +  down;
     }
+
+    public static void createDownBridge(List<Integer> upBridge, List<Integer> downBridge) {
+        for (int i = 0; i < upBridge.size(); i++) {
+            if (upBridge.get(i) == Bridge.UP.getFirst() || upBridge.get(i) == Bridge.WRONG.getFirst()) {
+                downBridge.add(Bridge.DOWN.getFirst());
+            }
+            if (upBridge.get(i) == Bridge.DOWN.getFirst()) {
+                downBridge.add(Bridge.UP.getFirst());
+            }
+            if (upBridge.get(i) == Bridge.UNKNOWN.getFirst()) {
+                downBridge.add(Bridge.WRONG.getFirst());
+            }
+        }
+    }
     
     public void stop(int count, String result, boolean isClear) {
         OutputView output = new OutputView();
