@@ -2,7 +2,7 @@ package bridge.Utils.Validation;
 
 import bridge.Utils.ExceptionType;
 
-public class ValidationForOnlyOneUpperAlpha {
+public class ValidationForOneUpperAlphabet {
 
     public void check(String target) {
         isOnlyAlphabets(target);

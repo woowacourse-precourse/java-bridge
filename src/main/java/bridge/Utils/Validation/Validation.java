@@ -7,10 +7,10 @@ public class Validation {
     private final int BRIDGE_MIN_SIZE = 3;
     private final int BRIDGE_MAX_SIZE = 20;
 
-    ValidationForOnlyOneUpperAlpha onlyOneUpperAlpha;
+    ValidationForOneUpperAlphabet onlyOneUpperAlpha;
 
     public Validation() {
-        onlyOneUpperAlpha = new ValidationForOnlyOneUpperAlpha();
+        onlyOneUpperAlpha = new ValidationForOneUpperAlphabet();
     }
 
     public static void validateIsNumber(String target) {

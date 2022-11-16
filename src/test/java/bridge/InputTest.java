@@ -6,7 +6,7 @@ import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.when;
 
 import bridge.Utils.ExceptionType;
-import bridge.Utils.Validation.ValidationForOnlyOneUpperAlpha;
+import bridge.Utils.Validation.ValidationForOneUpperAlphabet;
 import bridge.View.InputView;
 import camp.nextstep.edu.missionutils.Console;
 import org.junit.jupiter.api.AfterEach;
@@ -103,7 +103,7 @@ public class InputTest {
     @ParameterizedTest
     @ValueSource(strings = {"!", "0", "77tT", "Up!"})
     void getOneUpperAlphabetByNotOnlyAlphabet(String input) {
-        ValidationForOnlyOneUpperAlpha onlyOneUpperAlpha = new ValidationForOnlyOneUpperAlpha();
+        ValidationForOneUpperAlphabet onlyOneUpperAlpha = new ValidationForOneUpperAlphabet();
 
         assertThatThrownBy(() -> onlyOneUpperAlpha.check(input))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -115,7 +115,7 @@ public class InputTest {
     @ParameterizedTest
     @ValueSource(strings = {"uu", "UU", "UD", "ud", "rr"})
     void getOneUpperAlphabetByNotOneAlphabet(String input) {
-        ValidationForOnlyOneUpperAlpha onlyOneUpperAlpha = new ValidationForOnlyOneUpperAlpha();
+        ValidationForOneUpperAlphabet onlyOneUpperAlpha = new ValidationForOneUpperAlphabet();
 
         assertThatThrownBy(() -> onlyOneUpperAlpha.check(input))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -127,7 +127,7 @@ public class InputTest {
     @ParameterizedTest
     @ValueSource(strings = {"u", "d", "r", "z"})
     void getOneUpperAlphabetByLowerAlphabet(String input) {
-        ValidationForOnlyOneUpperAlpha onlyOneUpperAlpha = new ValidationForOnlyOneUpperAlpha();
+        ValidationForOneUpperAlphabet onlyOneUpperAlpha = new ValidationForOneUpperAlphabet();
 
         assertThatThrownBy(() -> onlyOneUpperAlpha.check(input))
                 .isInstanceOf(IllegalArgumentException.class)
