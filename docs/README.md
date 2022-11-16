@@ -61,10 +61,10 @@
   - [x] 0 : 아래 칸
 
 - [ ] 현재 상태를 결정하는 역할 (State)
-  - [ ] 현재 상태를 알려주는 Enum 반환
+  - [x] 현재 상태를 알려주는 Enum 반환
     - [x] Ready
     - [x] Success
-    - [ ] Fail
+    - [x] Fail
 
   - [ ] 다리 건널 때마다 상태 결정
     - Ready
