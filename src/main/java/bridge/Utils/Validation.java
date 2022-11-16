@@ -28,6 +28,12 @@ public class Validation {
         isMovingAlphabet(target);
     }
 
+    public void isGameCommand(String target) {
+        isOnlyAlphabets(target);
+        isOneAlphabet(target);
+        isUpperAlphabet(target);
+    }
+
     private void isOnlyAlphabets(String target) {
         String alphabetsRegex = "^[a-zA-Z]*$";
         if (!target.matches(alphabetsRegex)) {
