@@ -8,5 +8,9 @@ public class Message {
     public static final String PRINT_GAME_RESULT = "최종 게임 결과";
     public static final String PRINT_GAME_IS_SUCCESS = "게임 성공 여부";
     public static final String PRINT_ATTEMPTS = "총 시도한 횟수";
-    public static final String ERROR_MESSAGE = "[ERROR]";
+    public static final String ERROR_MESSAGE = "[ERROR] %s";
+
+    public static String createErrorMessage(String errorMessage){
+        return String.format(ERROR_MESSAGE, errorMessage);
+    }
 }
