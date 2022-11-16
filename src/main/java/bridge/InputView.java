@@ -7,6 +7,14 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
+    private static final int MIN_RANGE = 3;
+    private static final int MAX_RANGE = 20;
+    private static final String UP = "U";
+    private static final String DOWN = "D";
+    private static final String RETRY = "R";
+    private static final String QUIT = "Q";
+    private static final int COMMANDSIZE = 1;
+
     private void sizeValidate(String size) {
         if (!isNumber(size)) {
             throw new IllegalArgumentException();
@@ -18,7 +26,7 @@ public class InputView {
 
     private boolean isRange(String size) {
         int size_I = Integer.parseInt(size);
-        if (size_I < 3 || size_I > 20) return false;
+        if (size_I < MIN_RANGE || size_I > MAX_RANGE) return false;
         return true;
     }
 
@@ -49,12 +57,12 @@ public class InputView {
     }
 
     private boolean isOne(String command) {
-        if (command.length() > 1) return false;
+        if (command.length() > COMMANDSIZE) return false;
         return true;
     }
 
     private boolean isUpDown(String move) {
-        if (!move.equals("U") && !move.equals("D")) return false;
+        if (!move.equals(UP) && !move.equals(DOWN)) return false;
         return true;
     }
 
@@ -78,7 +86,7 @@ public class InputView {
     }
 
     private boolean isRetryQuit(String command) {
-        if (!command.equals("R") && !command.equals("Q")) return false;
+        if (!command.equals(RETRY) && !command.equals(QUIT)) return false;
         return true;
     }
 
