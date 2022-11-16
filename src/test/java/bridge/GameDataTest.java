@@ -16,8 +16,8 @@ public class GameDataTest {
     @Test
     void refreshGameStatus() {
         gameData.clearStatus();
-        assertThat(gameData.getTopStatus()).isEqualTo(List.of("[", "]"));
-        assertThat(gameData.getBottomStatus()).isEqualTo(List.of("[", "]"));
+        assertThat(gameData.getTopStatus().size()).isEqualTo(0);
+        assertThat(gameData.getBottomStatus().size()).isEqualTo(0);
     }
     @DisplayName("게임 재시작 횟수를 카운트한다.")
     @Test
