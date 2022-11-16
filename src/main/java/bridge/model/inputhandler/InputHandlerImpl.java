@@ -8,4 +8,9 @@ public class InputHandlerImpl implements InputHandler {
     public int inputBridgeSize() {
         return Integer.parseInt(Console.readLine());
     }
+
+    @Override
+    public String inputMoving() {
+        return Console.readLine();
+    }
 }
