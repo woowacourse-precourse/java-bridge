@@ -9,19 +9,43 @@ package bridge.domain;
  */
 public class BridgeGame {
 
+    public static final String OK_SIGN = "O";
+    public static final String NO_SIGN = "X";
+
+    private final Bridge bridge;
+    private final Player player;
+
+    public BridgeGame(Bridge bridge, Player player) {
+        this.bridge = bridge;
+        this.player = player;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
+     * TODO 한칸씩 해당 메서드가 수행되고 결과를 반환해야 한다.
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public String move(String movement) {  // TODO 값 반환 고민..
+        // movement + Player position과 Bridge 비교
+        // 맞으면 Player position + 1
+        if (bridge.isMatched(player, movement)) {
+            player.move();
+            return OK_SIGN;
+        }
+
+        // 틀리면 다시 시도 메세지!
+        return NO_SIGN;
     }
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
+     * TODO "사용자가 재시작을 입력했을 때"라고 가정하자.
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        // 게임을 재시도 할 때는 Bridge 상태가 그대로여야 한다.
+        // 하지만 플레이어의 위치는 초기화 해야 한다.
+        player.initPosition();
+        player.increaseNumberOfChallenges();  // 시도 회수 증가.
     }
 }
