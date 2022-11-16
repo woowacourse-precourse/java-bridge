@@ -26,9 +26,11 @@ public class BridgeMaker {
     }
 
     /**
+     * makeBridge 함수 길이를 지키기 위한 도우미 함수
+     * <p>
+     * BridgeNumberGenerator 의 generate 함수를 통해 0을 받으면 "D"를 1을 받으면 "U"를 result 에 추가 한다.
      * @param result 건널 수 있는 다리의 정보를 가지고 있는 List<String>
      * @param size generate 함수 호출 횟수
-     * BridgeNumberGenerator 의 generate 함수를 통해 0을 받으면 "D"를 1을 받으면 "U"를 result 에 추가 한다.
      */
     private void makeRandomBridge(List<String> result, int size) {
         for (int i = 0; i < size; ++i) {
