@@ -158,13 +158,38 @@ public class InputViewTest {
 			void inputMovingWrong() {
 				// given
 				List<String> movings = List.of("ㄱ", "ㅃㅉㄸ머ㅏ", "1234", "1", "9999", "!ㄲㅇ", "!U", "D2", "UU", "DD", "UD",
-						"DU", "D!", ".D", "U(");
+						"DU", "D!", ".D", "U(", "\\");
 
-				// when
 				for (String moving : movings) {
 					// when, then
 					readLine(moving);
 					assertThatThrownBy(() -> inputView.readMoving()).isInstanceOf(IllegalArgumentException.class);
+				}
+			}
+		}
+	}
+
+	@Nested
+	@DisplayName("재시작 여부 입력 기능 테스트")
+	class ReadGameCommandTest {
+
+		@Nested
+		@DisplayName("성공 테스트 클래스")
+		class SuccessTest {
+
+			@Test
+			@DisplayName("재시작 여부 R 또는 Q를 입력하는 경우 테스트")
+			void inputGameCommandCorrect() {
+				// given
+				List<String> gameCommands = List.of("R", "Q", "R", "Q", "Q");
+
+				for (String gameCommand : gameCommands) {
+					// when
+					readLine(gameCommand);
+					String expectedGameCommand = inputView.readGameCommand();
+
+					// then
+					assertThat(gameCommand).isEqualTo(expectedGameCommand);
 				}
 			}
 		}
