@@ -20,4 +20,9 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public Bridge generateBridge(int bridgeSize) {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        return new Bridge(bridgeMaker.makeBridge(bridgeSize));
+    }
 }
