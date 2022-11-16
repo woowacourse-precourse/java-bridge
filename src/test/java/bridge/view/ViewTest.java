@@ -49,7 +49,7 @@ public class ViewTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
     @Test
-    @DisplayName("입력받은 값이 숫자가 아닌경우 예외가 발생한다.")
+    @DisplayName("입력받은 길이가 숫자가 아닌경우 예외가 발생한다.")
     void test() {
         // given
         InputView inputView = new InputView();
