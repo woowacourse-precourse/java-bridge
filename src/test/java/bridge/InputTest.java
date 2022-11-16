@@ -6,6 +6,7 @@ import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.when;
 
 import bridge.Utils.ExceptionType;
+import bridge.Utils.Validation.ValidationForOnlyOneUpperAlpha;
 import bridge.View.InputView;
 import camp.nextstep.edu.missionutils.Console;
 import org.junit.jupiter.api.AfterEach;
@@ -86,42 +87,6 @@ public class InputTest {
         assertThat(inputView.readMoving()).isEqualTo(input);
     }
 
-    @DisplayName("이동할 칸을 입력받을 때 알파벳이 아닌 값이 입력된 경우 에러를 발생시킨다.")
-    @ParameterizedTest
-    @ValueSource(strings = {"!", "0", "77tT", "Up!"})
-    void getMovingByNotOnlyAlphabet(String input) {
-        when(Console.readLine()).thenReturn(input);
-
-        assertThatThrownBy(inputView::readMoving)
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionType.IS_NOT_ONLY_ALPHABET.getMessage())
-                .hasMessageContaining(ERROR);
-    }
-
-    @DisplayName("이동할 칸을 입력받을 때 알파벳이 한 개가 아닌 경우 에러를 발생시킨다.")
-    @ParameterizedTest
-    @ValueSource(strings = {"uu", "UU", "UD", "ud", "rr"})
-    void getMovingByNotOneAlphabet(String input) {
-        when(Console.readLine()).thenReturn(input);
-
-        assertThatThrownBy(inputView::readMoving)
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionType.IS_NOT_ONE_ALPHABET.getMessage())
-                .hasMessageContaining(ERROR);
-    }
-
-    @DisplayName("이동할 칸을 입력받을 때 알파벳이 소문자인 경우 에러를 발생시킨다.")
-    @ParameterizedTest
-    @ValueSource(strings = {"u", "d", "r", "z"})
-    void getMovingByLowerAlphabet(String input) {
-        when(Console.readLine()).thenReturn(input);
-
-        assertThatThrownBy(inputView::readMoving)
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionType.IS_NOT_UPPER_ALPHABET.getMessage())
-                .hasMessageContaining(ERROR);
-    }
-    
     @DisplayName("이동할 칸을 입력받을 때 알파벳이 U와 D가 아닌 경우 에러를 발생시킨다.")
     @ParameterizedTest
     @ValueSource(strings = {"A", "T", "R", "Z"})
@@ -131,6 +96,42 @@ public class InputTest {
         assertThatThrownBy(inputView::readMoving)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionType.IS_NOT_MOVING_ALPHABET.getMessage())
+                .hasMessageContaining(ERROR);
+    }
+
+    @DisplayName("입력받은 값이 알파벳이 아닌 값이 입력된 경우 에러를 발생시킨다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"!", "0", "77tT", "Up!"})
+    void getOneUpperAlphabetByNotOnlyAlphabet(String input) {
+        ValidationForOnlyOneUpperAlpha onlyOneUpperAlpha = new ValidationForOnlyOneUpperAlpha();
+
+        assertThatThrownBy(() -> onlyOneUpperAlpha.check(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionType.IS_NOT_ONLY_ALPHABET.getMessage())
+                .hasMessageContaining(ERROR);
+    }
+
+    @DisplayName("이동할 칸을 입력받을 때 알파벳이 한 개가 아닌 경우 에러를 발생시킨다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"uu", "UU", "UD", "ud", "rr"})
+    void getOneUpperAlphabetByNotOneAlphabet(String input) {
+        ValidationForOnlyOneUpperAlpha onlyOneUpperAlpha = new ValidationForOnlyOneUpperAlpha();
+
+        assertThatThrownBy(() -> onlyOneUpperAlpha.check(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionType.IS_NOT_ONE_ALPHABET.getMessage())
+                .hasMessageContaining(ERROR);
+    }
+
+    @DisplayName("이동할 칸을 입력받을 때 알파벳이 소문자인 경우 에러를 발생시킨다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"u", "d", "r", "z"})
+    void getOneUpperAlphabetByLowerAlphabet(String input) {
+        ValidationForOnlyOneUpperAlpha onlyOneUpperAlpha = new ValidationForOnlyOneUpperAlpha();
+
+        assertThatThrownBy(() -> onlyOneUpperAlpha.check(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionType.IS_NOT_UPPER_ALPHABET.getMessage())
                 .hasMessageContaining(ERROR);
     }
 }
