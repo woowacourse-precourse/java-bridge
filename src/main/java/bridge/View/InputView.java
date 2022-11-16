@@ -1,15 +1,34 @@
 package bridge.View;
 
+import bridge.Util.Validation;
+import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
 
+    private static final String INPUT_LENGTH_SENTENCE= "다리의 길이를 입력해주세요.";
+
+    private final Validation validation;
+
+    public InputView() {
+        this.validation = new Validation();
+    }
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        System.out.println(INPUT_LENGTH_SENTENCE);
+        String inputLength = Console.readLine();
+        try{
+            validation.isValidateSize(inputLength);
+            return Integer.parseInt(inputLength);
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
+        return readBridgeSize();
     }
 
     /**
