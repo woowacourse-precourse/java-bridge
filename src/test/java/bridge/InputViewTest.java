@@ -43,4 +43,13 @@ class InputViewTest {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         assertThatThrownBy(inputView::readMoving).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("재시작 여부를 입력받아서 반환")
+    @Test
+    void inputGameCommand() {
+        System.setIn(new ByteArrayInputStream("R".getBytes()));
+        assertThat(inputView.readGameCommand()).isEqualTo(true);
+    }
+
+
 }
