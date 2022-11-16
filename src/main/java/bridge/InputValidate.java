@@ -25,13 +25,19 @@ public class InputValidate {
 
   public static void isValidMoving(String inputMovingValue) {
     isValidLength(inputMovingValue);
-    if (inputMovingValue.charAt(0) != 'U' || inputMovingValue.charAt(0) != 'D') {
+    if (inputMovingValue.charAt(0) != 'U' && inputMovingValue.charAt(0) != 'D') {
       throw new IllegalArgumentException("[ERROR] 위로 이동을 원하면 U, 아래로 이동을 원하면 D를 입력해 주세요.");
     }
   }
+
   public static void isValidCommand(String inputCommandValue) {
-    if (inputCommandValue.charAt(0) != 'R' || inputCommandValue.charAt(0) != 'Q') {
+    isValidLength(inputCommandValue);
+    if (inputCommandValue.charAt(0) != 'R' && inputCommandValue.charAt(0) != 'Q') {
       throw new IllegalArgumentException("[ERROR] 재시작을 원하면 R, 끝내기를 원하면 Q를 입력해 주세요.");
     }
+  }
+
+  public static void main(String[] args) {
+    InputValidate.isValidMoving("D");
   }
 }
