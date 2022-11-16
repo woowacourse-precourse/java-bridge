@@ -69,4 +69,8 @@ public class BridgeGame {
 		moveUp(moveCount, input, bridge);
 		moveDown(moveCount, input, bridge);
 	}
+
+	public static String[][] getMap() {
+		return map;
+	}
 }

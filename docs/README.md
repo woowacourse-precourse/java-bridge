@@ -26,7 +26,7 @@
   - [x] 다리 건너기 게임 시작 안내 메시지 (다리 건너기 게임을 시작합니다.) - GuideMessageView#startBridgeGameGuideMessage
   - [x] 다리 길이 입력 안내 메시지 (다리의 길이를 입력해주세요.) - GuideMessageView#bridgeLengthGuideMessage
   - [x] 이동할 칸 입력 안내 메시지 (이동할 칸을 선택해주세요. (위: U, 아래: D)) - GuideMessageView#selectMoveGuideMessage
-  - [] 현재 다리 상태 - OutputView#printMap()
+  - [x] 현재 다리 상태 - OutputView#printMap()
   - [x] 재시작 혹은 종료 안내 메시지 (게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)) - GuideMessageView#reOrEndGuideMessage
   - [x] 최종 게임 결과 안내 메시지 (최종 게임 결과) - GuideMessageView#gameResultGuideMessage
   - [x] 게임 성공 안내 메시지(게임 성공 여부: 성공) - GuideMessageView#gameSuccessGuideMessage
