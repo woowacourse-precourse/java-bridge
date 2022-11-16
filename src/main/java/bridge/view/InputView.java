@@ -15,6 +15,14 @@ public class InputView {
         return convertToInt(input);
     }
 
+    private int convertToInt(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("입력값을 정수로 변환할 수 없습니다.");
+        }
+    }
+
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
