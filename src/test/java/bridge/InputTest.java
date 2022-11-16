@@ -89,13 +89,34 @@ public class InputTest {
 
     @DisplayName("이동할 칸을 입력받을 때 알파벳이 U와 D가 아닌 경우 에러를 발생시킨다.")
     @ParameterizedTest
-    @ValueSource(strings = {"A", "T", "R", "Z"})
+    @ValueSource(strings = {"A", "T", "R", "Q"})
     void getMovingByNotMovingAlphabet(String input) {
         when(Console.readLine()).thenReturn(input);
 
         assertThatThrownBy(inputView::readMoving)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionType.IS_NOT_MOVING_ALPHABET.getMessage())
+                .hasMessageContaining(ERROR);
+    }
+
+    @DisplayName("정상적인 재시작/종료 여부를 입력받는다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"R", "Q"})
+    void getGameCommand(String input) {
+        when(Console.readLine()).thenReturn(input);
+
+        assertThat(inputView.readGameCommand()).isEqualTo(input);
+    }
+
+    @DisplayName("재시작/종료 여부를 입력받을 때 알파벳이 R과 Q가 아닌 경우 에러를 발생시킨다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"U", "D", "A", "Z"})
+    void getGameCommandByNotCommandAlphabet(String input) {
+        when(Console.readLine()).thenReturn(input);
+
+        assertThatThrownBy(inputView::readGameCommand)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionType.IS_NOT_GAME_COMMAND_ALPHABET.getMessage())
                 .hasMessageContaining(ERROR);
     }
 
@@ -111,9 +132,9 @@ public class InputTest {
                 .hasMessageContaining(ERROR);
     }
 
-    @DisplayName("이동할 칸을 입력받을 때 알파벳이 한 개가 아닌 경우 에러를 발생시킨다.")
+    @DisplayName("입력받은 값이 알파벳이 한 개가 아닌 경우 에러를 발생시킨다.")
     @ParameterizedTest
-    @ValueSource(strings = {"uu", "UU", "UD", "ud", "rr"})
+    @ValueSource(strings = {"uu", "UU", "UD", "ud", "rrr"})
     void getOneUpperAlphabetByNotOneAlphabet(String input) {
         ValidationForOneUpperAlphabet onlyOneUpperAlpha = new ValidationForOneUpperAlphabet();
 
@@ -123,9 +144,9 @@ public class InputTest {
                 .hasMessageContaining(ERROR);
     }
 
-    @DisplayName("이동할 칸을 입력받을 때 알파벳이 소문자인 경우 에러를 발생시킨다.")
+    @DisplayName("입력받은 값이 알파벳이 소문자인 경우 에러를 발생시킨다.")
     @ParameterizedTest
-    @ValueSource(strings = {"u", "d", "r", "z"})
+    @ValueSource(strings = {"u", "d", "r", "q"})
     void getOneUpperAlphabetByLowerAlphabet(String input) {
         ValidationForOneUpperAlphabet onlyOneUpperAlpha = new ValidationForOneUpperAlphabet();
 
