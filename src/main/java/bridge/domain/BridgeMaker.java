@@ -1,5 +1,8 @@
 package bridge.domain;
 
+import static bridge.domain.constants.MoveCommands.MOVE_DOWN_COMMAND;
+import static bridge.domain.constants.MoveCommands.MOVE_UP_COMMAND;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,17 +23,19 @@ public class BridgeMaker {
      * @param size 다리의 길이
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
-    public List<String> makeBridge(int size) {
+    public List<String> makeBridge(final int size) {
         List<String> results = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
             int randomNumber = bridgeNumberGenerator.generate();
-            if (randomNumber == 1) {
-                results.add("U");
+
+            final int NUMBER_FOR_MOVE_UP = 1;
+            if (randomNumber == NUMBER_FOR_MOVE_UP) {
+                results.add(MOVE_UP_COMMAND);
                 continue;
             }
 
-            results.add("D");
+            results.add(MOVE_DOWN_COMMAND);
         }
 
         return results;

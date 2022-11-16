@@ -37,8 +37,8 @@
   - [X] 올바른 값이 아니라면 예외 처리한다.
 
 ### 사용자가 잘못된 값을 입력했을 경우
-- [ ] `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
-- [ ] `IllegalArgumentException`과 같은 명확한 유형을 처리해야 한다.
+- [X] `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+- [X] `IllegalArgumentException`과 같은 명확한 유형을 처리해야 한다.
 
 ### 출력
 - [X] 게임 시작 문구를 출력한다.

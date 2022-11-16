@@ -1,23 +1,27 @@
 package bridge.domain;
 
+import static bridge.domain.constants.MoveCommands.MOVE_UP_COMMAND;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class GameResults {
 
+    private static final String BLANK = " ";
+
     private final List<String> upResults = new ArrayList<>();
     private final List<String> downResults = new ArrayList<>();
 
-    public void addResults(String movement, String matchResult) {
-        if (movement.equals("U")) {
-            upResults.add(matchResult);
-            downResults.add(" ");
+    public void addResults(String moveCommands, String resultSign) {
+        if (moveCommands.equals(MOVE_UP_COMMAND)) {
+            upResults.add(resultSign);
+            downResults.add(BLANK);
             return;
         }
 
-        upResults.add(" ");
-        downResults.add(matchResult);
+        upResults.add(BLANK);
+        downResults.add(resultSign);
     }
 
     public void reset() {

@@ -1,5 +1,8 @@
 package bridge.domain;
 
+import static bridge.domain.constants.ResultSigns.FAIL_SIGN;
+import static bridge.domain.constants.ResultSigns.PASS_SIGN;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  * TODO 필드(인스턴스 변수) 추가 가능
@@ -8,9 +11,6 @@ package bridge.domain;
  * TODO 게임 진행을 위해 필요한 메서드를 추가하거나 변경 가능
  */
 public class BridgeGame {
-
-    public static final String PASS_SIGN = "O";
-    public static final String FAIL_SIGN = "X";
 
     private final Bridge bridge;
     private final Player player;
@@ -22,16 +22,16 @@ public class BridgeGame {
         this.gameResults = gameResults;
     }
 
-    public String matchResult(String moveSign) {
-        if (bridge.isMatched(player, moveSign)) {
+    public String matchResult(String moveCommand) {
+        if (bridge.isMatched(player, moveCommand)) {
             return PASS_SIGN;
         }
 
         return FAIL_SIGN;
     }
 
-    public GameResults gameResults(String moveSign, String resultSign) {
-        gameResults.addResults(moveSign, resultSign);
+    public GameResults gameResults(String moveCommand, String resultSign) {
+        gameResults.addResults(moveCommand, resultSign);
         return gameResults;
     }
 

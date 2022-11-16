@@ -30,7 +30,6 @@ public class OutputView {
 
         System.out.println("[ " + upString + " ]");
         System.out.println("[ " + downString + " ]");
-        // O | O | X
     }
 
     /**

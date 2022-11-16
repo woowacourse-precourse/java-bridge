@@ -1,5 +1,9 @@
 package bridge.view;
 
+import static bridge.domain.constants.GameCommands.QUIT_GAME_COMMAND;
+import static bridge.domain.constants.GameCommands.RESTART_GAME_COMMAND;
+import static bridge.domain.constants.MoveCommands.MOVE_DOWN_COMMAND;
+import static bridge.domain.constants.MoveCommands.MOVE_UP_COMMAND;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 /**
@@ -38,16 +42,16 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String movement() {
+    public String moveCommands() {
         try {
-            return oneStringForMovement();
+            return oneStringForMoveCommands();
         } catch (IllegalArgumentException e) {
             System.out.println(ERROR_PREFIX + e.getMessage());
-            return movement();
+            return moveCommands();
         }
     }
 
-    private String oneStringForMovement() {
+    private String oneStringForMoveCommands() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String inputValue = readLine();
         validateCorrectValueForMoving(inputValue);
@@ -91,17 +95,13 @@ public class InputView {
     }
 
     private void validateCorrectValueForMoving(String inputValue) {
-        final String VALUE_FOR_UP = "U";
-        final String VALUE_FOR_DOWN = "D";
-        if (!inputValue.equals(VALUE_FOR_UP) && !inputValue.equals(VALUE_FOR_DOWN)) {
+        if (!inputValue.equals(MOVE_UP_COMMAND) && !inputValue.equals(MOVE_DOWN_COMMAND)) {
             throw new IllegalArgumentException("U 또는 D만 입력해 주세요. (U:위, D:아래)");
         }
     }
 
     private void validateCorrectValueForGameCommand(String inputValue) {
-        final String VALUE_FOR_RESTART = "R";
-        final String VALUE_FOR_QUIT = "Q";
-        if (!inputValue.equals(VALUE_FOR_RESTART) && !inputValue.equals(VALUE_FOR_QUIT)) {
+        if (!inputValue.equals(RESTART_GAME_COMMAND) && !inputValue.equals(QUIT_GAME_COMMAND)) {
             throw new IllegalArgumentException("R 또는 Q만 입력해 주세요. (R:재시작, Q:종료)");
         }
     }
