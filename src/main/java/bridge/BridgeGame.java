@@ -8,12 +8,14 @@ import java.util.List;
 public class BridgeGame {
     private final List<String> board;
     private int now;
+    private int retryNum;
 
     public BridgeGame(){
         int boardSize = new InputView().readBridgeSize();
         BridgeRandomNumberGenerator randomGenerator = new BridgeRandomNumberGenerator();
         board = new BridgeMaker(randomGenerator).makeBridge(boardSize);
         now = 0;
+        retryNum = 0;
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -22,7 +24,9 @@ public class BridgeGame {
      */
     public boolean move() {
         String move = new InputView().readMoving();
-        if(!board.get(now + 1).equals(move))
+        boolean success = !board.get(now + 1).equals(move);
+        new OutputView().printMap(board, now, success);
+        if(!success)
             return retry();
         now += 1;
         return true;
@@ -35,6 +39,7 @@ public class BridgeGame {
      */
     public boolean retry() {
         now = 0;
+        retryNum += 1;
         String command = new InputView().readGameCommand();
         return command.equals("R");
     }
