@@ -50,7 +50,7 @@ public class InputTest {
 
         assertThatThrownBy(inputView::readBridgeSize)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionType.IS_NOT_NUMBER.getMessage())
+                .hasMessage(ExceptionType.NOT_NUMBER.getMessage())
                 .hasMessageContaining(ERROR);
     }
 
@@ -62,7 +62,7 @@ public class InputTest {
 
         assertThatThrownBy(inputView::readBridgeSize)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionType.IS_LOWER_THAN_MIN_BRIDGE_SIZE.getMessage())
+                .hasMessage(ExceptionType.LOWER_THAN_MIN_BRIDGE_SIZE.getMessage())
                 .hasMessageContaining(ERROR);
     }
 
@@ -74,7 +74,7 @@ public class InputTest {
 
         assertThatThrownBy(inputView::readBridgeSize)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionType.IS_HIGHER_THAN_MAX_BRIDGE_SIZE.getMessage())
+                .hasMessage(ExceptionType.HIGHER_THAN_MAX_BRIDGE_SIZE.getMessage())
                 .hasMessageContaining(ERROR);
     }
 
@@ -95,7 +95,7 @@ public class InputTest {
 
         assertThatThrownBy(inputView::readMoving)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionType.IS_NOT_MOVING_ALPHABET.getMessage())
+                .hasMessage(ExceptionType.NOT_MOVING_ALPHABET.getMessage())
                 .hasMessageContaining(ERROR);
     }
 
@@ -116,7 +116,7 @@ public class InputTest {
 
         assertThatThrownBy(inputView::readGameCommand)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionType.IS_NOT_GAME_COMMAND_ALPHABET.getMessage())
+                .hasMessage(ExceptionType.NOT_GAME_COMMAND_ALPHABET.getMessage())
                 .hasMessageContaining(ERROR);
     }
 
@@ -128,7 +128,7 @@ public class InputTest {
 
         assertThatThrownBy(() -> onlyOneUpperAlpha.check(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionType.IS_NOT_ONLY_ALPHABET.getMessage())
+                .hasMessage(ExceptionType.NOT_ONLY_ALPHABET.getMessage())
                 .hasMessageContaining(ERROR);
     }
 
@@ -140,7 +140,7 @@ public class InputTest {
 
         assertThatThrownBy(() -> onlyOneUpperAlpha.check(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionType.IS_NOT_ONE_ALPHABET.getMessage())
+                .hasMessage(ExceptionType.NOT_ONE_ALPHABET.getMessage())
                 .hasMessageContaining(ERROR);
     }
 
@@ -152,7 +152,7 @@ public class InputTest {
 
         assertThatThrownBy(() -> onlyOneUpperAlpha.check(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionType.IS_NOT_UPPER_ALPHABET.getMessage())
+                .hasMessage(ExceptionType.NOT_UPPER_ALPHABET.getMessage())
                 .hasMessageContaining(ERROR);
     }
 }
