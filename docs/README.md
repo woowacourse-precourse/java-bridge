@@ -23,8 +23,8 @@
   - [] 건널 수 없다면 X로 표현한다.
 - [] 이동할 수 있다. - BridgeGame#move
 - [] 다리의 상태를 출력할 수 있다. - OutputView#printMap
-- [] 게임을 다시 시도할지 입력받을 수 있다. - InputView#readGameCommand
-  - [] R 이나 Q 이다.
+- [x] 게임을 다시 시도할지 입력받을 수 있다. - InputView#readGameCommand
+  - [x] R 이나 Q 이다.
 - [] 게임을 다시 시작할 수 있다. BridgeGame#retry
   - [] 처음에 만든 다리를 재사용한다.
 - [] 최종 게임 결과를 출력할 수 있다. - OutputView#printResult

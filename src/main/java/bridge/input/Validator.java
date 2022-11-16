@@ -21,6 +21,12 @@ public class Validator {
         }
     }
 
+    public static void gameCommand(String gameCommand) {
+        if (!(gameCommand.equals(Command.RETRY.getLetter()) || gameCommand.equals(Command.QUIT.getLetter()))) {
+            throw new IllegalArgumentException(Exception.GAME_COMMAND.getMessage());
+        }
+    }
+
     private static void isLengthInRange(String bridgeSize) {
         int bridgeSizeLength = bridgeSize.length();
         if (bridgeSizeLength < MINIMUM_BRIDGE_SIZE_LENGTH || bridgeSizeLength > MAXIMUM_BRIDGE_SIZE_LENGTH) {

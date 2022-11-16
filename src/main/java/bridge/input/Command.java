@@ -3,7 +3,9 @@ package bridge.input;
 public enum Command {
 
     UP("U"),
-    DOWN("D");
+    DOWN("D"),
+    RETRY("R"),
+    QUIT("Q");
 
     private final String letter;
 

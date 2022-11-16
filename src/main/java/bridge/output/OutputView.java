@@ -30,6 +30,14 @@ public class OutputView {
         System.out.println(Error.MOVING.getMessage());
     }
 
+    public static void printReadGameCommandMessage() {
+        System.out.println(Read.GAME_COMMAND.getMessage());
+    }
+
+    public static void printReadGameCommandErrorMessage() {
+        System.out.println(Error.GAME_COMMAND.getMessage());
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>

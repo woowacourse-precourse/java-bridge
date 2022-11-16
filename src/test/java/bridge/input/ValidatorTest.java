@@ -71,4 +71,21 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Exception.MOVING.getMessage());
     }
+
+    @DisplayName("R이나 Q를 입력하면 예외가 발생하지 않는다.")
+    @ParameterizedTest
+    @CsvSource({"R", "Q"})
+    void 게임_명령_검증_테스트(String gameCommand) {
+        assertThatCode(() -> Validator.gameCommand(gameCommand))
+                .doesNotThrowAnyException();
+    }
+
+    @DisplayName("R이나 Q가 아니면 예외 처리한다.")
+    @ParameterizedTest
+    @CsvSource({"r", "72", "D"})
+    void 게임_명령_예외_테스트(String gameCommand) {
+        assertThatThrownBy(() -> Validator.gameCommand(gameCommand))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Exception.GAME_COMMAND.getMessage());
+    }
 }

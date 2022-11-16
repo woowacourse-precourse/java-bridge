@@ -6,7 +6,8 @@ public enum Exception {
     FIRST_LETTER("첫글자는 0일 수 없습니다."),
     NUMBER("숫자가 아닌 값이 있습니다."),
     RANGE("범위를 벗어납니다."),
-    MOVING("U나 D여야 합니다.");
+    MOVING("U나 D여야 합니다."),
+    GAME_COMMAND("R이나 Q여야 합니다.");
 
     private final String message;
 
