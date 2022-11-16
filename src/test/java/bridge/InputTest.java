@@ -82,4 +82,15 @@ public class InputTest {
                 .hasMessage(ExceptionType.IS_HIGHER_THAN_MAX_BRIDGE_SIZE.getMessage())
                 .hasMessageContaining(ERROR);
     }
+
+    @DisplayName("정상적인 이동할 칸을 입력받는다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"U", "D"})
+    void getMoving(String input) {
+        when(Console.readLine()).thenReturn(input);
+
+        InputView inputView = new InputView();
+
+        assertThat(inputView.readMoving()).isEqualTo(input);
+    }
 }
