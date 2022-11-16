@@ -33,7 +33,7 @@ public class InputValidator {
     }
 
     private static boolean isValidMove(String move) {
-        return move.equals(Commons.MOVE_UP.getCommand()) || move.equals(Commons.MOVE_DOWN.getCommand());
+        return move.equals(Commons.UP.getCommand()) || move.equals(Commons.DOWN.getCommand());
     }
 
     public static void gameCommandValidate(String command) {

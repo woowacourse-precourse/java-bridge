@@ -4,8 +4,8 @@ public enum Commons {
 
     MIN_BRIDGE_RANGE(3),
     MAX_BRIDGE_RANGE(20),
-    MOVE_UP("U"),
-    MOVE_DOWN("D"),
+    UP("U"),
+    DOWN("D"),
     GAME_RESTART("R"),
     GAME_QUIT("Q"),
     ;
