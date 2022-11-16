@@ -31,5 +31,4 @@ public enum Message {
         System.out.println(INPUT_SELECT_GAME_RETRY + " " + GAME_OPTIONS);
     }
 
-
 }
