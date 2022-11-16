@@ -25,7 +25,7 @@ public class BridgeGame {
     public boolean move() {
         String move = new InputView().readMoving();
         boolean success = !board.get(now + 1).equals(move);
-        new OutputView().printMap(board, now, success);
+        //new OutputView().printMap(board, now, success);
         if(!success)
             return retry();
         now += 1;
