@@ -18,5 +18,9 @@ public enum Message {
         this.script = script;
     }
 
+    public void showGameStartMessage(){
+        System.out.println(GAME_START_MESSAGE);
+    }
+
 
 }
