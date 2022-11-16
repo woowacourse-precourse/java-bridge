@@ -13,11 +13,10 @@ public class InputView {
         }
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public String readMoving() {
-        return null;
+        String input = Console.readLine();
+        checkUpDown(input);
+        return input;
     }
 
     /**
@@ -25,5 +24,11 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private void checkUpDown(String input) {
+        if (!input.equals("U") && !input.equals("D")) {
+            throw new IllegalArgumentException(" U 또는 D 를 입력해 주세요");
+        }
     }
 }
