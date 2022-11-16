@@ -17,10 +17,6 @@ public class BridgeGame {
 
     public void run() {
         List<String> bridge = bridgeService.makeBridge();
-
-
-
-
     }
 
     /**

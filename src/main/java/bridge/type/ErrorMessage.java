@@ -2,7 +2,7 @@ package bridge.type;
 
 public enum ErrorMessage {
 
-    ERROR("ERROR "),
+    ERROR("[ERROR] "),
 
     BRIDGE_SIZE_NUMERIC(ERROR.getMessage() + "다리 길이는 숫자만 입력 가능합니다."),
 

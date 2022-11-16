@@ -24,16 +24,30 @@ public class BridgeService {
     }
 
     public List<String> makeBridge() {
-        String bridgeSizeInput = inputView.readBridgeSize();
-        checkBridgeSizeInput(bridgeSizeInput);
-        return null;
+        outputView.printGreetingMessage();
+        int bridgeSize = getBridgeSize();
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        return bridge;
+    }
+
+    private int getBridgeSize() {
+        while (true) {
+            String bridgeSizeInput = inputView.readBridgeSize();
+            try {
+                checkBridgeSizeInput(bridgeSizeInput);
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e);
+                continue;
+            }
+            return Integer.parseInt(bridgeSizeInput);
+        }
     }
 
     private void checkBridgeSizeInput(String bridgeSizeInput) {
         if (!validator.isNumeric(bridgeSizeInput)) {
             throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_NUMERIC.getMessage());
         }
-        if (validator.isCorrectBoundary(bridgeSizeInput)) {
+        if (!validator.isCorrectBoundary(bridgeSizeInput)) {
             throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_BOUNDARY.getMessage());
         }
 
