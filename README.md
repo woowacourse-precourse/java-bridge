@@ -345,6 +345,9 @@ int number = bridgeNumberGenerator.generate();
 1. 다리의 길이를 입력받아, 전체 다리를 먼저 만든다 
   - 한번 만들어진 다리가 게임에서 계속 사용될 수 있어야 하므로 미리 한방에 만들어져야 한다 
   - 다리의 길이를 입력받으면, 그 갯수만큼 다리 칸 수가 만들어져야 한다
+  - 다리를 만들 때, 반환형식은 List<String> 이다. 
+    - U 와 D를 List<String> 에 넣으면서 다리를 생성한다 
+    - 다리의 형식이 결국 List<String> 타입으로 생성된다고 볼 수 있다.
 
 2. 다리 한 칸을 만들 때
   - BridgeNumberGenerator 의 내용을 보고 만들어야 한다 
