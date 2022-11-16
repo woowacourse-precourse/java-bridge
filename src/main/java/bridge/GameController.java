@@ -15,11 +15,28 @@ public class GameController {
     private int count = 0;
     private String move;
     private List<String> bridge;
-    private boolean tf;
+    private boolean tf = true;
     private String re;
 
-    public void gameStart() {
+    public void gameTotalProgress() {
+        if (count == 0)
+            gameStart();
         count++;
+        for (int idx = 0; idx < bridge.size(); idx++) {
+            gameProgress(idx);
+            if (!tf) {
+                re = reStart();
+                break;
+            }
+        }
+        if (!tf) {
+            if (re.equals("R"))
+                gameTotalProgress();
+        }
+        gameResult();
+    }
+
+    public void gameStart() {
         outputView.start();
         bridgeSize = inputView.readBridgeSize();
         bridge = bridgeMaker.makeBridge(bridgeSize);
