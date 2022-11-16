@@ -1,12 +1,13 @@
-package bridge;
+package bridge.validator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import bridge.validator.Location;
+import bridge.Error;
 
 class LocationTest {
 	@DisplayName("U 혹은 D를 입력하면 숫자로 변환한다")
@@ -26,7 +27,7 @@ class LocationTest {
 			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
 				Location.convertToInt("a");
 			});
-			assertEquals(Error.LOCATION.getMessage(), exception.getMessage());
+			Assertions.assertEquals(Error.LOCATION.getMessage(), exception.getMessage());
 		}
 
 		@Test

@@ -1,12 +1,13 @@
-package bridge;
+package bridge.validator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import bridge.validator.BridgeSize;
+import bridge.Error;
 
 class BridgeSizeTest {
 	@DisplayName("3 에서 20 사이 자연수를 입력하면 해당 숫자를 반환한다")
@@ -26,7 +27,7 @@ class BridgeSizeTest {
 			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
 				BridgeSize bridgeSize = new BridgeSize("a");
 			});
-			assertEquals(Error.FORMAT.getMessage(), exception.getMessage());
+			Assertions.assertEquals(Error.FORMAT.getMessage(), exception.getMessage());
 		}
 
 		@Test
@@ -96,6 +97,7 @@ class BridgeSizeTest {
 			});
 			assertEquals(Error.RANGE.getMessage(), exception.getMessage());
 		}
+
 		@Test
 		void case5() {
 			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {

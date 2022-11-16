@@ -1,12 +1,13 @@
-package bridge;
+package bridge.validator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import bridge.validator.Command;
+import bridge.Error;
 
 class CommandTest {
 	@DisplayName("R 혹은 Q를 입력하면 Boolean을 리턴한다.")
@@ -26,7 +27,7 @@ class CommandTest {
 			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
 				Command.isReplay("a");
 			});
-			assertEquals(Error.COMMAND.getMessage(), exception.getMessage());
+			Assertions.assertEquals(Error.COMMAND.getMessage(), exception.getMessage());
 		}
 
 		@Test
