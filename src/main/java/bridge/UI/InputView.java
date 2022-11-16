@@ -8,13 +8,13 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     InputValidation checkValidation = new InputValidation();
+    private boolean isRightInput;
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         String input = Console.readLine();
-        boolean isRightInput;
 
         do{
             isRightInput = checkValidation.validateBridgeLength(input);
