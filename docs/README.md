@@ -3,7 +3,7 @@
 ## 🧸 기능 목록
 
 - [] 다리 생성
-  - [] 다리의 길이를 입력한다 - InputView#readBridgeSize()
+  - [x] 다리의 길이를 입력한다 - InputView#readBridgeSize()
     - [] 숫자가 아니면 예외처리 - Validation#validateNumberOnly()
     - [] "[ERROR]"로 시작하는 에러 메시지를 출력한다 - Validation#validateNumberOnly()
   - [] 생성 시 위 칸와 아래 칸 중 건널 수 있는 칸은 0과 1 중 무작위 값을 이용해 정한다 - BridgeNumberGenerator#generate()
