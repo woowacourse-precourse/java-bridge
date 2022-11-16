@@ -24,16 +24,17 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving(String upBridgeCharacter, String downBridgeCharacter) {
-        System.out.printf(INPUT_MOVING_POSITION_MESSAGE, upBridgeCharacter, downBridgeCharacter);
+    public String readMoving(String upBridge, String downBridge) {
+        System.out.printf(INPUT_MOVING_POSITION_MESSAGE, upBridge, downBridge);
         return getInput();
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public String readGameCommand(String retry, String end) {
+        System.out.printf(INPUT_GAME_COMMAND_MESSAGE, retry, end);
+        return getInput();
     }
 
 
