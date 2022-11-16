@@ -27,4 +27,11 @@ public class UnitTest {
 		}).isInstanceOf(IllegalArgumentException.class);
 	}
 
+	@Test
+	void moveTest(){
+		BridgeGame bridgeGame = new BridgeGame();
+		Player player = new Player();
+		bridgeGame.move(player);
+		Assertions.assertThat(player.checkEnd(1)).isTrue();
+	}
 }
