@@ -21,14 +21,9 @@ public class BridgeGame {
         this.passHistory = new ArrayList<>();
     }
     public boolean move(String choiceUpAndDown) {
+        clearBridge();
 
-        if (passHistory.contains("DX") || passHistory.contains("UX")) {
-            passHistory.clear();
-        }
-
-        if (!canPass(choiceUpAndDown)) {
-            return retry();
-        }
+        if (!canPass(choiceUpAndDown)) return retry();
 
         if (passHistory.size() == randomBridge.size()) {
             Application.outcome = true;
@@ -36,6 +31,13 @@ public class BridgeGame {
         }
 
         return true;
+    }
+
+    private void clearBridge() {
+
+        if (passHistory.contains("DX") || passHistory.contains("UX")) {
+            passHistory.clear();
+        }
     }
 
     public boolean canPass (String choiceUpAndDown) {
@@ -54,6 +56,13 @@ public class BridgeGame {
         Application.outcome = false;
         Application.attempt += 1;
 
+       addFailTrace();
+
+        return app.retry(passHistory);
+    }
+
+    private void addFailTrace () {
+
         if(passHistory.get(passHistory.size()-1).equals("U")) {
             passHistory.set(passHistory.size()-1, "UX");
         }
@@ -61,7 +70,5 @@ public class BridgeGame {
         if(passHistory.get(passHistory.size()-1).equals("D")) {
             passHistory.set(passHistory.size()-1, "DX");
         }
-
-        return app.retry(passHistory);
     }
 }
