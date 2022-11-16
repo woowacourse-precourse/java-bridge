@@ -26,6 +26,14 @@ public class OutputView {
     public Map<String, List<String>> convertToMap(List<String> bridge, int round, boolean isCorrect){
         return null;
     }
+
+    public Map<String, List<String>> makePreviousMap(){
+
+    }
+    private String markAccordance(){
+        return null;
+    }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
