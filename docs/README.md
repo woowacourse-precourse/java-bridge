@@ -34,8 +34,6 @@
 >>>>> 입력받은 칸으로 이동 - `BridgeGame.move(input)`
 >>>>>> 이동 결과 판별 - `BridgeGame.checkMoveResult(input,user)`  
 >>> 
->>  - 선택 결과 판별 `BridgeGame`
->>  - 선택 결과 출력 `Output`  
 >>    - 건널 수 있다면 게임 성공 여부 판별 `BridgeGame` 
 >>      - 성공시 게임 성공 안내문 `Output`  
 >>      - 종료 `Finish`
