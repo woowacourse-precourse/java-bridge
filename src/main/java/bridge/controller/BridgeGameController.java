@@ -15,9 +15,12 @@ public class BridgeGameController {
     }
     
     public void start() {
-        final BridgeGame bridgeGame = new BridgeGame(new BridgeRandomNumberGenerator(), inputBridgeSize());
+        playBridgeGame(new BridgeGame(new BridgeRandomNumberGenerator(), inputBridgeSize()));
+    }
     
-        playBridgeGame(bridgeGame);
+    private BridgeSizeDTO inputBridgeSize() {
+        System.out.println("사다리 길이 입력(3~20)");
+        return inputView.readBridgeSize();
     }
     
     private void playBridgeGame(final BridgeGame bridgeGame) {
@@ -26,6 +29,15 @@ public class BridgeGameController {
             move(bridgeGame);
             isGameFinished = isGameFinished(bridgeGame);
         }
+    }
+    
+    private void move(final BridgeGame bridgeGame) {
+        bridgeGame.move(inputMoving());
+    }
+    
+    private MovingDTO inputMoving() {
+        System.out.println("이동할 칸 입력(U, D)");
+        return inputView.readMoving();
     }
     
     private boolean isGameFinished(final BridgeGame bridgeGame) {
@@ -40,36 +52,22 @@ public class BridgeGameController {
         return bridgeGame.isMoveFail();
     }
     
-    private void move(final BridgeGame bridgeGame) {
-        bridgeGame.move(inputMoving());
-    }
-    
-    private MovingDTO inputMoving() {
-        System.out.println("이동할 칸 입력");
-        return inputView.readMoving();
-    }
-    
-    private BridgeSizeDTO inputBridgeSize() {
-        System.out.println("사다리 길이 입력");
-        return inputView.readBridgeSize();
-    }
-    
     private boolean selectGameFinish(final BridgeGame bridgeGame) {
         if (inputGameCommand().equals("Q")) {
             return true;
         }
-    
+        
         initBridgeGameForRetry(bridgeGame);
         return false;
     }
     
-    private void initBridgeGameForRetry(final BridgeGame bridgeGame) {
-        bridgeGame.retry();
-    }
-    
     private String inputGameCommand() {
-        System.out.println("재시도 입력");
+        System.out.println("재시도 입력(Q, R)");
         final GameCommandDTO gameCommandDTO = inputView.readGameCommand();
         return gameCommandDTO.getGameCommand();
+    }
+    
+    private void initBridgeGameForRetry(final BridgeGame bridgeGame) {
+        bridgeGame.retry();
     }
 }
