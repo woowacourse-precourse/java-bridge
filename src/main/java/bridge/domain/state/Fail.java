@@ -10,13 +10,13 @@ public class Fail extends MoveComplete {
     }
     
     @Override
-    public boolean isGameFinished(final int numberOfMoves) {
-        return false;
+    public boolean isMoveFail() {
+        return true;
     }
     
     @Override
-    public boolean isMoveFail() {
-        return true;
+    public boolean isGameFinished(final int numberOfMoves) {
+        return false;
     }
     
     @Override
