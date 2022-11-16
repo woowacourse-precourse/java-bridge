@@ -14,4 +14,8 @@ public class Bridge {
     public boolean isCorrectBridge() {
         return correctBridge;
     }
+
+    public String getAnswerPosition() {
+        return answerPosition;
+    }
 }
