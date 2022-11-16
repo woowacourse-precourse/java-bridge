@@ -7,14 +7,13 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    private boolean sizeValidate(String size) {
+    private void sizeValidate(String size) {
         if (!isNumber(size)){
             throw new IllegalArgumentException();
         }
         if (!isRange(size)){
             throw  new IllegalArgumentException();
         }
-        return true;
     }
 
     private boolean isRange(String size) {
@@ -38,6 +37,7 @@ public class InputView {
         sizeValidate(size);
         return Integer.parseInt(size);
     }
+
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
