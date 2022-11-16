@@ -2,7 +2,7 @@
 
 ## 🧸 기능 목록
 
-- [] 다리 생성
+- [x] 다리 생성
   - [x] 다리의 길이를 입력한다 - InputView#readBridgeSize()
     - [x] 숫자가 아니면 IllegalArgumentException 발생시킨다 - Validation#validateNumberOnly()
   - [x] 생성 시 위 칸와 아래 칸 중 건널 수 있는 칸은 0과 1 중 무작위 값을 이용해 정한다 - BridgeMaker#makeBridgeRandomNumber()
@@ -10,7 +10,7 @@
     - [x] 위 칸을 건널 수 있는 경우 U, 아래 칸을 건널 수 있는 경우 D값으로 나타낸다 - BridgeMaker#makeBridge()
 
 - [] 다리 건너기  
-  - [] 플레이어가 이동할 칸을 입력한다 - InputView#readMoving()
+  - [x] 플레이어가 이동할 칸을 입력한다 - InputView#readMoving()
     - [] 잘못된 값을 입력하면 IllegalArgumentException을 발생시킨다 - Validation#validateUOrD()
     - [] `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다. - Validation#validateUOrD()
     - [] "[ERROR]"로 시작하는 에러 메시지를 출력한다 - Validation#validateUOrD()
