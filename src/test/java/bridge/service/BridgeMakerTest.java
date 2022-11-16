@@ -3,6 +3,7 @@ package bridge.service;
 import static org.assertj.core.api.Assertions.*;
 
 import bridge.util.BridgeRandomNumberGenerator;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,7 +18,7 @@ class BridgeMakerTest {
 
     @Test
     @DisplayName("다리의 길이를 입력받을 때 길이가 3 미만이면 예외가 발생한다.")
-    void receiveBridgeLengthByUnder3() {
+    void makeBridgeByUnder3Size() {
         // given
         int size = 2;
         //expect
@@ -27,11 +28,25 @@ class BridgeMakerTest {
 
     @Test
     @DisplayName("다리의 길이를 입력받을 때 길이가 20 초과이면 예외가 발생한다.")
-    void receiveBridgeLengthByOver20() {
+    void makeBridgeByOver20Size() {
         // given
         int size = 21;
         //expect
         assertThatThrownBy(() -> bridgeMaker.makeBridge(size))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("다리의 길이를 입력받을 때 정상적으로 생성되야한다.")
+    void makeBridge() {
+        // given
+        int size = 3;
+
+        // when
+        List<String> bridge = bridgeMaker.makeBridge(size);
+
+        // then
+        assertThat(bridge.size())
+                .isEqualTo(3);
     }
 }
