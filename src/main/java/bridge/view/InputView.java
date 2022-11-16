@@ -1,15 +1,18 @@
-package bridge;
+package bridge.view;
+
+import bridge.dto.BridgeSizeDTO;
+import camp.nextstep.edu.missionutils.Console;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
-        return 0;
+    public BridgeSizeDTO readBridgeSize() {
+        final String inputBridgeSize = Console.readLine();
+        return new BridgeSizeDTO(Integer.parseInt(inputBridgeSize));
     }
 
     /**
