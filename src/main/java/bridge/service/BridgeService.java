@@ -2,6 +2,7 @@ package bridge.service;
 
 import bridge.domain.Bridge;
 import bridge.util.BridgeMaker;
+import java.util.List;
 
 public class BridgeService {
     private final BridgeMaker bridgeMaker;
@@ -11,6 +12,7 @@ public class BridgeService {
     }
 
     public Bridge makeBridge(int size) {
-        return new Bridge(bridgeMaker.makeBridge(size));
+        List<String> bridge = bridgeMaker.makeBridge(size);
+        return Bridge.of(bridge);
     }
 }

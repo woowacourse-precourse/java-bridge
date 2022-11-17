@@ -1,5 +1,6 @@
 package bridge.util;
 
+import bridge.domain.UpDownFlag;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,13 +30,7 @@ public class BridgeMaker {
 
     private String createRandomUpDown() {
         int zeroOrOne = bridgeNumberGenerator.generate();
-        if (zeroOrOne == 0) {
-            return "D";
-        }
-        if (zeroOrOne == 1) {
-            return "U";
-        }
-        throw new IllegalArgumentException("[ERROR] 난수는 0 또는 1만 허용됩니다.");
+        return UpDownFlag.codeToFlag(zeroOrOne);
     }
 
 
