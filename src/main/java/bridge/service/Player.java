@@ -21,12 +21,12 @@ public class Player {
         }
     }
 
-    public char enterMovement() {
+    public String enterMovement() {
         while (true) {
             try {
                 String movement = input.readMovement();
                 validator.validateMovement(movement);
-                return movement.charAt(0);
+                return movement;
             } catch (IllegalArgumentException exception) {
                 output.printError(exception);
             }
