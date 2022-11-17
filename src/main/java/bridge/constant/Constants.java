@@ -11,6 +11,7 @@ public class Constants {
     public static class BridgeSign {
         public static final String PASS = "O";
         public static final String FAIL = "X";
+        public static final String EMPTY = " ";
         public static final String RETRY = "R";
         public static final String QUIT = "Q";
         public static final String UP = "U";
