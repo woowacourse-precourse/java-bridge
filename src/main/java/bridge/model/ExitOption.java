@@ -1,4 +1,4 @@
-package bridge.validator;
+package bridge.model;
 
 import java.util.List;
 
