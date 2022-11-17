@@ -5,6 +5,7 @@ import static bridge.domain.constants.MoveCommands.MOVE_UP_COMMAND;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.domain.constants.GameCommands;
+import bridge.domain.move_result.MoveResults;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -77,8 +78,8 @@ class BridgeGameTest {
         bridgeGame.retryOrQuit(GameCommands.RETRY, "성공");
 
         assertThat(player.position()).isEqualTo(INIT_VALUE_OF_POSITION);
-        assertThat(moveResults.upResults()).hasSize(0);
-        assertThat(moveResults.downResults()).hasSize(0);
+        assertThat(moveResults.upLineResults()).hasSize(0);
+        assertThat(moveResults.downLineResults()).hasSize(0);
     }
 
     @DisplayName("GameCommands.RETRY가 입력되면 입력된 gameResult를 그대로 반환한다.")
@@ -97,8 +98,8 @@ class BridgeGameTest {
         bridgeGame.retryOrQuit(GameCommands.QUIT, "성공");
 
         assertThat(player.position()).isEqualTo(1);
-        assertThat(moveResults.upResults()).hasSize(1);
-        assertThat(moveResults.downResults()).hasSize(1);
+        assertThat(moveResults.upLineResults()).hasSize(1);
+        assertThat(moveResults.downLineResults()).hasSize(1);
     }
 
     @DisplayName("GameCommands.QUIT이 입력되면 '실패'를 반환한다.")

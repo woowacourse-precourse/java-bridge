@@ -6,7 +6,7 @@ import static bridge.domain.constants.MoveResultsSign.MOVE_FAIL;
 
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
-import bridge.domain.MoveResults;
+import bridge.domain.move_result.MoveResults;
 import bridge.domain.Player;
 import bridge.domain.constants.GameCommands;
 import bridge.domain.constants.MoveCommands;

@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.move_result;
 
 import static bridge.domain.constants.MoveCommands.MOVE_DOWN_COMMAND;
 import static bridge.domain.constants.MoveCommands.MOVE_UP_COMMAND;
@@ -27,8 +27,8 @@ class MoveResultsTest {
     void addResultsUp(MoveCommands moveCommand, String resultSign) {
         moveResults.addResults(moveCommand, resultSign);
 
-        assertThat(moveResults.upResults()).contains(resultSign);
-        assertThat(moveResults.downResults()).contains(" ");
+        assertThat(moveResults.upLineResults()).containsOnly(resultSign);
+        assertThat(moveResults.downLineResults()).containsOnly(" ");
     }
 
     @ParameterizedTest(name = "{0}, {1}을 입력 받으면 upResult에는 공백이, downResults에는 {1}가 저장된다.")
@@ -36,8 +36,8 @@ class MoveResultsTest {
     void addResultsDown(MoveCommands moveCommand, String resultSign) {
         moveResults.addResults(moveCommand, resultSign);
 
-        assertThat(moveResults.upResults()).contains(" ");
-        assertThat(moveResults.downResults()).contains(resultSign);
+        assertThat(moveResults.upLineResults()).containsOnly(" ");
+        assertThat(moveResults.downLineResults()).containsOnly(resultSign);
     }
 
     @DisplayName("reset 메서드는 upResult와 downResult를 전부 비운다.")
@@ -46,8 +46,8 @@ class MoveResultsTest {
         moveResults.addResults(MOVE_UP_COMMAND, "O");
         moveResults.reset();
 
-        assertThat(moveResults.upResults()).isEmpty();
-        assertThat(moveResults.downResults()).isEmpty();
+        assertThat(moveResults.upLineResults()).isEmpty();
+        assertThat(moveResults.downLineResults()).isEmpty();
     }
 
     private static Stream<Arguments> provideArgumentsForAddResultsUp() {

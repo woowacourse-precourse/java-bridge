@@ -6,6 +6,7 @@ import static bridge.domain.constants.MoveResultsSign.MOVE_SUCCESS;
 
 import bridge.domain.constants.GameCommands;
 import bridge.domain.constants.MoveCommands;
+import bridge.domain.move_result.MoveResults;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

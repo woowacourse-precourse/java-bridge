@@ -1,15 +1,15 @@
 package bridge.view;
 
 import bridge.domain.BridgeGame;
-import bridge.domain.MoveResults;
+import bridge.domain.move_result.MoveResults;
 import java.util.List;
 import java.util.StringJoiner;
 
 public class OutputViewFormatter {
 
     String bridgeFormat(MoveResults moveResults) {
-        String upResultFormat = resultFormat(moveResults.upResults());
-        String downResultFormat = resultFormat(moveResults.downResults());
+        String upResultFormat = resultFormat(moveResults.upLineResults());
+        String downResultFormat = resultFormat(moveResults.downLineResults());
 
         return new StringJoiner("\n")
                 .add(upResultFormat)
