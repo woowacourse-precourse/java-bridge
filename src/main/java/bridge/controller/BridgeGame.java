@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.controller;
 
 import bridge.view.InputView;
 import bridge.view.OutputView;
