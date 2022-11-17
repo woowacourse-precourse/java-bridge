@@ -54,5 +54,39 @@ class BridgeGameTest {
         });
     }
 
+    @DisplayName("유저가 다리의 끝에 살아서 도착하면 게임은 끝난 것이다.")
+    @Test
+    void 다리게임_종료_조건_검증_테스트() {
+        Bridge bridge = new Bridge(List.of("U", "D", "U"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        assertAll(() -> {
+            bridgeGame.move(Direction.U);
+            assertThat(bridgeGame.isNeedToQuit()).isFalse();
+
+            bridgeGame.move(Direction.D);
+            assertThat(bridgeGame.isNeedToQuit()).isFalse();
+
+            bridgeGame.move(Direction.U);
+            assertThat(bridgeGame.isNeedToQuit()).isTrue();
+        });
+    }
+
+    @DisplayName("유저가 다리의 끝에 도착했지만 죽어있으면 게임은 끝난 것이 아니다")
+    @Test
+    void 다리게임_종료_조건_거짓_검증_테스트() {
+        Bridge bridge = new Bridge(List.of("U", "D", "U"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        assertAll(() -> {
+            bridgeGame.move(Direction.U);
+            assertThat(bridgeGame.isNeedToQuit()).isFalse();
+
+            bridgeGame.move(Direction.D);
+            assertThat(bridgeGame.isNeedToQuit()).isFalse();
+
+            bridgeGame.move(Direction.D);
+            assertThat(bridgeGame.isNeedToQuit()).isFalse();
+        });
+    }
+
 
 }
