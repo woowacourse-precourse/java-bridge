@@ -9,11 +9,12 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
     ErrorUtil errorUtil = new ErrorUtil();
+    BridgeDTO bridgeDTO = new BridgeDTO();
+
     private String inputSizeData;
     private int transSizeData;
 
     public BridgeDTO makeBridgeData() {
-        BridgeDTO bridgeDTO = new BridgeDTO();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         setBridgeSize();
         transBridgeSize();
@@ -29,6 +30,7 @@ public class InputView {
     public void transBridgeSize() {
         this.transSizeData = Integer.parseInt(inputSizeData);
         errorUtil.errorBridgeSize(transSizeData);
+        bridgeDTO.setSize(transSizeData);
     }
 
     public String readMoving() {
