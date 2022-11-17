@@ -14,10 +14,10 @@
 - 총 시도한 횟수: 출력 - OutputView#printTryNumber()
 
 ### domain
-- 다리를 생성할 수 있다
+- 다리를 생성할 수 있다 - BridgeMaker#makeBridge()
   - 생성 시 무작위로  0, 1 중 무작위로 건널 수 있는지 없는지 생성 BridgeRandomNumberGenerator#generate()
 - 플레이어 이동 - Bridge#move()
-  - 현재 까지 이동한 다리 모양을 생성 BridgeMaker#makeBridge()
+  - 현재 까지 이동한 다리 모양을 생성 - ???
 - 총 시도한 횟수를 계산한다. BridgeGame#increasTry()
 
 ### controlloer
