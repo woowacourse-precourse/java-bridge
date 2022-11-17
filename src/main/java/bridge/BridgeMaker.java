@@ -27,19 +27,19 @@ public class BridgeMaker {
     }
 
     private static void changeNumberToMark(List<String> bridge, int number) {
-        if (isSameDownBridge(number, BRIDGE_DOWN_RANDOM_NUMBER)) {
+        if (isSameDownBridge(number)) {
             bridge.add(DOWN.letter());
         }
-        if (isSameUpBridge(number, BRIDGE_UP_RANDOM_NUMBER)) {
+        if (isSameUpBridge(number)) {
             bridge.add(UP.letter());
         }
     }
 
-    private static boolean isSameUpBridge(int number, int bridgeUpRandomNumber) {
-        return number == bridgeUpRandomNumber;
+    private static boolean isSameUpBridge(int number) {
+        return number == BridgeMaker.BRIDGE_UP_RANDOM_NUMBER;
     }
 
-    private static boolean isSameDownBridge(int number, int bridgeDownRandomNumber) {
-        return number == bridgeDownRandomNumber;
+    private static boolean isSameDownBridge(int number) {
+        return number == BridgeMaker.BRIDGE_DOWN_RANDOM_NUMBER;
     }
 }

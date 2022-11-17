@@ -35,8 +35,7 @@ public class BridgeGameController {
 
     private List<String> makeRandomBridge() {
         int bridgeSizeInput = inputView.readBridgeSize();
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSizeInput);
-        return bridge;
+        return bridgeMaker.makeBridge(bridgeSizeInput);
     }
 
     private BridgeGame guessCorrectBridge(List<String> bridge, int bridgePositionIndex) {
@@ -63,7 +62,7 @@ public class BridgeGameController {
     private int chooseRestartOrQuitIndex(int bridgePositionIndex, BridgeGame bridgeGame, List<String> bridge) {
         String restartMessage = inputView.readGameCommand();
         if (isSelectedRestart(restartMessage)) {
-            bridgePositionIndex = getBackRestartIndex(bridgePositionIndex, bridgeGame);
+            bridgePositionIndex = getBackRestartIndex(bridgeGame);
         }
         if (isSelectedQuit(restartMessage)) {
             bridgePositionIndex = getBridgeSizeIndex(bridgeGame, bridge, restartMessage);
@@ -101,10 +100,9 @@ public class BridgeGameController {
         return !myAnswerBridges.contains(WRONG_ANSWER.letter());
     }
 
-    private int getBackRestartIndex(int bridgePositionIndex, BridgeGame bridgeGame) {
+    private int getBackRestartIndex(BridgeGame bridgeGame) {
         outputView.retryBridgeMap();
         bridgeGame.retry();
-        bridgePositionIndex = INIT_BRIDGE_POSITION_INDEX;
-        return bridgePositionIndex;
+        return INIT_BRIDGE_POSITION_INDEX;
     }
 }

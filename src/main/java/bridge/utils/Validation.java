@@ -1,7 +1,6 @@
 package bridge.utils;
 
 import bridge.constant.ErrorStatus;
-import bridge.constant.GameKeyboard;
 
 import static bridge.constant.GameKeyboard.*;
 
@@ -32,24 +31,24 @@ public class Validation {
     }
 
     public static String validateMoving(String moving) {
-        if (isNotMatchMovingLetter(moving, UP, DOWN)) {
+        if (isNotMatchMovingLetter(moving)) {
             throw new IllegalArgumentException(ErrorStatus.WRONG_MOVING_LETTER.getMessage());
         }
         return moving;
     }
 
-    private static boolean isNotMatchMovingLetter(String moving, GameKeyboard up, GameKeyboard down) {
-        return !(moving.equals(up.letter()) || moving.equals(down.letter()));
+    private static boolean isNotMatchMovingLetter(String moving) {
+        return !(moving.equals(UP.letter()) || moving.equals(DOWN.letter()));
     }
 
     public static String validateRestartInput(String restartAnswer) {
-        if (isNotMatchRestartLetter(restartAnswer, RESTART, QUIT)) {
+        if (isNotMatchRestartLetter(restartAnswer)) {
             throw new IllegalArgumentException(ErrorStatus.WRONG_RESTART_LETTER.getMessage());
         }
         return restartAnswer;
     }
 
-    private static boolean isNotMatchRestartLetter(String restartAnswer, GameKeyboard restart, GameKeyboard quit) {
-        return !(restartAnswer.equals(restart.letter()) || restartAnswer.equals(quit.letter()));
+    private static boolean isNotMatchRestartLetter(String restartAnswer) {
+        return !(restartAnswer.equals(RESTART.letter()) || restartAnswer.equals(QUIT.letter()));
     }
 }
