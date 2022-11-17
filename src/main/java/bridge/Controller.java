@@ -7,10 +7,10 @@ public class Controller {
 
     Controller() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridgeGame = new BridgeGame(bridgeMaker.makeBridge(retrieveBridgeSize()));
+        bridgeGame = new BridgeGame(bridgeMaker.makeBridge(getBridgeSize()));
     }
 
-    int retrieveBridgeSize() {
+    private int getBridgeSize() {
         InputView inputView = new InputView();
         while (true) {
             try {
@@ -21,9 +21,19 @@ public class Controller {
         }
     }
 
-    void startGame() {
+    private String getString(Integer which) {
+        InputView inputView = new InputView();
         while (true) {
-
+            try {
+                return inputView.readString(which);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
         }
+    }
+
+    private boolean stepGame() {
+        String input = getString(InputView.MOV);
+        return bridgeGame.move(input);
     }
 }

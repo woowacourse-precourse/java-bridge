@@ -16,7 +16,7 @@
 - (field) bridgeGame
 - constructor: initialize the bridgeGame instance
 ### BridgeGame
-#### <em>cannot call InputView or OutputViewer</em>
+#### <em>cannot call InputView or OutputView</em>
 - (field) bridge 
 - move
   - receives which direction to move
@@ -26,10 +26,11 @@
 ### BridgeRandomNumberGenerator
 - DO NOT MODIFY
 ### InputView
-#### to make it compact, it throws the exception outwards
-- enter bridge length
-- enter user move
-- enter retry or terminate
+#### it throws the exception outwards
+- read bridge size
+- read string wrapper
+  - read user move
+  - read retry or terminate
 ### OutputView
 ### Err
 - wrong bridge length
