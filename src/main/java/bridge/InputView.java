@@ -10,7 +10,7 @@ import java.util.Objects;
  */
 public class InputView {
 
-    private static final List<String> MOVE_COMMAND = List.of(State.UP.getCode(), State.DOWN.getCode());
+    private static final List<String> MOVE_COMMAND = List.of(MoveCommand.UP.getCommand(), MoveCommand.DOWN.getCommand());
     private static final List<String> GAME_COMMAND = List.of("Q", "R");
 
     /**
@@ -29,14 +29,14 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public static State readMoving() {
+    public static MoveCommand readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String moveCommand = Console.readLine();
         validationMoveCommand(moveCommand);
-        if (Objects.equals(moveCommand, State.UP.getCode())) {
-            return State.UP;
+        if (Objects.equals(moveCommand, MoveCommand.UP.getCommand())) {
+            return MoveCommand.UP;
         }
-        return State.DOWN;
+        return MoveCommand.DOWN;
     }
 
     /**

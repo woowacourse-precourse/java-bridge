@@ -47,7 +47,7 @@ public class BridgeGameController {
         }
     }
 
-    private static State inputMoveCommand() {
+    private static MoveCommand inputMoveCommand() {
         try {
             return InputView.readMoving();
         } catch (IllegalArgumentException e) {

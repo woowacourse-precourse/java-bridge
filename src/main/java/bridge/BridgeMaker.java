@@ -22,8 +22,8 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int count = 0; count < size; count++) {
             int randomNumber = bridgeNumberGenerator.generate();
-            State state = State.getState(randomNumber);
-            bridge.add(state.getCode());
+            MoveCommand moveCommand = MoveCommand.setCommand(randomNumber);
+            bridge.add(moveCommand.getCommand());
         }
         return bridge;
     }

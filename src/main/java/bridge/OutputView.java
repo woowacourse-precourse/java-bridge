@@ -13,9 +13,9 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printMap(BridgeGame bridgeGame, boolean successGame) {
-        String bridgeMap = addBridgeMap(bridgeGame, successGame, State.UP) +
+        String bridgeMap = addBridgeMap(bridgeGame, successGame, MoveCommand.UP) +
                 "\n" +
-                addBridgeMap(bridgeGame, successGame, State.DOWN);
+                addBridgeMap(bridgeGame, successGame, MoveCommand.DOWN);
         System.out.println(bridgeMap);
         System.out.println();
     }
@@ -39,20 +39,20 @@ public class OutputView {
     }
 
 
-    private static StringBuilder addBridgeMap(BridgeGame bridgeGame, boolean successGame, State state) {
+    private static StringBuilder addBridgeMap(BridgeGame bridgeGame, boolean successGame, MoveCommand moveCommand) {
         StringBuilder bridgeMap = new StringBuilder();
         bridgeMap.append("[");
-        addMiddleBridge(bridgeMap, bridgeGame, state);
-        bridgeMap.append(addEdgeBridge(bridgeGame ,successGame, state));
+        addMiddleBridge(bridgeMap, bridgeGame, moveCommand);
+        bridgeMap.append(addEdgeBridge(bridgeGame ,successGame, moveCommand));
         return bridgeMap;
     }
 
-    private static void addMiddleBridge(StringBuilder bridgeMap, BridgeGame bridgeGame, State state) {
+    private static void addMiddleBridge(StringBuilder bridgeMap, BridgeGame bridgeGame, MoveCommand moveCommand) {
         for (int mapIndex = 0; mapIndex < bridgeGame.getCurrentBridgeIndex() - 1; mapIndex++) {
-            if (Objects.equals(bridgeGame.getBridge().get(mapIndex), state.getCode())) {
+            if (Objects.equals(bridgeGame.getBridge().get(mapIndex), moveCommand.getCommand())) {
                 bridgeMap.append(" O ");
             }
-            if (!Objects.equals(bridgeGame.getBridge().get(mapIndex), state.getCode())) {
+            if (!Objects.equals(bridgeGame.getBridge().get(mapIndex), moveCommand.getCommand())) {
 
                 bridgeMap.append("   ");
             }
@@ -60,12 +60,12 @@ public class OutputView {
         }
     }
 
-    private static String addEdgeBridge(BridgeGame bridgeGame, boolean successGame, State state) {
+    private static String addEdgeBridge(BridgeGame bridgeGame, boolean successGame, MoveCommand moveCommand) {
         String edgeBridgeCode = bridgeGame.getBridge().get(bridgeGame.getCurrentBridgeIndex() - 1);
-        if (successGame && Objects.equals(state.getCode(), edgeBridgeCode)) {
+        if (successGame && Objects.equals(moveCommand.getCommand(), edgeBridgeCode)) {
             return " O ]";
         }
-        if (!successGame && !Objects.equals(state.getCode(), edgeBridgeCode)) {
+        if (!successGame && !Objects.equals(moveCommand.getCommand(), edgeBridgeCode)) {
             return " X ]";
         }
         return "   ]";
