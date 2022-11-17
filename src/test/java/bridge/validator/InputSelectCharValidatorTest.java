@@ -73,4 +73,13 @@ class InputSelectCharValidatorTest {
                 .isThrownBy(() -> InputSelectCharValidator.validate(input, MOVING_SELECT_CHAR_VALIDATOR_NUMBER))
                 .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
     }
+    
+    @DisplayName("예외 처리 : 길이가 2이상인 경우")
+    @ParameterizedTest(name = "{displayName} : input => {0}")
+    @ValueSource(strings = {"UU", "DD", "UD" ,"DU", "UUU", "DDD"})
+    void outOfLengthException(final String input) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> InputSelectCharValidator.validate(input, MOVING_SELECT_CHAR_VALIDATOR_NUMBER))
+                .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
+    }
 }
