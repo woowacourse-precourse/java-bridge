@@ -8,17 +8,18 @@ public enum Direction {
     U("U", 1);
 
     private static final String INVALID_INTEGER_ERROR_MESSAGE = "[ERROR] 방향으로 전환 될 수 없는 숫자의 입력 입니다.";
+    private static final String INVALID_STRING_ERROR_MESSAGE = "[ERROR] 방향으로 전환 될 수 없는 문자열의 입력 입니다.";
 
-    private String direction;
+    private String directionString;
     private int directionNumber;
 
     Direction(String direction, int directionNumber) {
-        this.direction = direction;
+        this.directionString = direction;
         this.directionNumber = directionNumber;
     }
 
-    public String getDirection() {
-        return direction;
+    public String getDirectionString() {
+        return directionString;
     }
 
     public int getDirectionNumber() {
@@ -26,12 +27,20 @@ public enum Direction {
     }
 
     public static String getDirectionStringByNumber(int directionNumber) {
-        Optional<String> direction = Arrays.stream(Direction.values())
+        Optional<String> resultDirection = Arrays.stream(Direction.values())
                 .filter(dir -> dir.getDirectionNumber() == directionNumber)
-                .map(dir -> dir.getDirection())
+                .map(dir -> dir.getDirectionString())
                 .findAny();
-        direction.orElseThrow(()->new IllegalArgumentException(INVALID_INTEGER_ERROR_MESSAGE));
-        return direction.get();
+        resultDirection.orElseThrow(() -> new IllegalArgumentException(INVALID_INTEGER_ERROR_MESSAGE));
+        return resultDirection.get();
+    }
+
+    public static Direction getDirectionByString(String direction) {
+        Optional<Direction> resultDirection = Arrays.stream(Direction.values())
+                .filter(dir -> dir.getDirectionString() == direction)
+                .findAny();
+        resultDirection.orElseThrow(() -> new IllegalArgumentException(INVALID_STRING_ERROR_MESSAGE));
+        return resultDirection.get();
     }
 
 }
