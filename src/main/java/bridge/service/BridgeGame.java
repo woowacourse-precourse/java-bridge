@@ -1,9 +1,23 @@
 package bridge.service;
 
+import bridge.model.entity.Bridge;
+import bridge.model.entity.BridgeMap;
+import bridge.model.entity.Player;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
+// 서비스 단계에서는 Input값과 model값만을 이용해서 구현한다.
 public class BridgeGame {
+
+    private Player player;
+    private BridgeMap bridgeMap;
+    private Bridge bridge;
+
+    /*
+    *
+     */
+
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
