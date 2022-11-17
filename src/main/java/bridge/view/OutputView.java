@@ -11,13 +11,15 @@ public class OutputView {
     private static final String OUTPUT_RESULT_IS_SUCCESS = LINE + "게임 성공 여부: " ;
     private static final String OUTPUT_RESULT_TRY_NUMBER = "총 시도한 횟수: " ;
     private String Map;
+    private boolean isFirst;
 
     public void printStart() {
         System.out.println(OUTPUT_START_MESSAGE);
     }
 
     public void initMap(){
-        Map = "[\n[";
+        this.Map = "[\n[";
+        this.isFirst = true;
     }
 
     /**
@@ -27,16 +29,22 @@ public class OutputView {
      */
     public void printMap(String right, int upOrDown) {
         String[] splitMap = Map.split("\\n");
-        if (splitMap[upOrDown].length()==1){
-            splitMap[upOrDown] = "[ " + right + " ]";
-            splitMap[(upOrDown+1)%2] = "[   ]";
-        }
-        if(splitMap[upOrDown].length()!=1) {
+        if(!this.isFirst) {
             splitMap[upOrDown] = splitMap[upOrDown].substring(0, splitMap[upOrDown].length() - 1) + "| " + right + " ]";
-            splitMap[(upOrDown + 1) % 2] = splitMap[upOrDown].substring(0, splitMap[upOrDown].length() - 1) + "|   ]";
+            splitMap[(upOrDown + 1) % 2] = splitMap[(upOrDown + 1) % 2].substring(0, splitMap[(upOrDown + 1) % 2].length() - 1) + "|   ]";
+        }
+        if (this.isFirst){
+            splitMap = firstPrintMap(splitMap, right, upOrDown);
         }
         Map = splitMap[0] + "\n" + splitMap[1];
         System.out.println(Map);
+    }
+
+    private String[] firstPrintMap(String[] splitMap,String right, int upOrDown){
+        this.isFirst = false;
+        splitMap[upOrDown] = "[ " + right + " ]";
+        splitMap[(upOrDown + 1)%2] = "[   ]";
+        return splitMap;
     }
 
     /**
