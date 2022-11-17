@@ -47,7 +47,7 @@ public class BridgeGame {
         boolean isUsersPickRight = bridge.isSelectedBridgesRight(usersPick);
         bridge.crossBridge(usersPick);
 
-        outputView.printMap(bridge.getAlreadyCrossedBridge(userPickResult));
+        outputView.printMap(bridge.getAlreadyCrossedBridge(),isUsersPickRight);
 
         return isUsersPickRight || retry();
     }
