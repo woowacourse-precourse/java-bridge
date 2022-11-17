@@ -1,20 +1,30 @@
 package bridge.service;
 
+import bridge.controller.GameFlag;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeFlag;
+import bridge.domain.Map;
 import bridge.domain.UpDownFlag;
 import bridge.domain.User;
 import bridge.util.BridgeMaker;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeService {
     private final BridgeMaker bridgeMaker;
+    private final InputView inputView;
+    private final OutputView outputView;
 
-    public BridgeService(BridgeMaker bridgeMaker) {
+    public BridgeService(BridgeMaker bridgeMaker, InputView inputView, OutputView outputView) {
         this.bridgeMaker = bridgeMaker;
+        this.inputView = inputView;
+        this.outputView = outputView;
     }
 
-    public Bridge makeBridge(int size) {
+    public Bridge makeBridge() {
+        outputView.printEnterBridgeLength();
+        int size = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(size);
         return Bridge.of(bridge);
     }
@@ -36,5 +46,29 @@ public class BridgeService {
             return BridgeFlag.SUCCESS;
         }
         return BridgeFlag.NOTHING;
+    }
+
+    public void printStartMessage() {
+        outputView.printGameStartMessage();
+    }
+
+    public UpDownFlag receiveMoving() {
+        outputView.printEnterSelectMoving();
+        String input = inputView.readMoving();
+        return UpDownFlag.ofString(input);
+    }
+
+    public void printMap(Map map) {
+        outputView.printMap(map);
+    }
+
+    public GameFlag receiveRestart() {
+        outputView.printRestartOrQuitMessage();
+        String input = inputView.readGameCommand();
+        return GameFlag.ofString(input);
+    }
+
+    public void printResult(Map map, BridgeFlag result, int tryCount) {
+        outputView.printResult(map, result, tryCount);
     }
 }

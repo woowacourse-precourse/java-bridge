@@ -5,40 +5,33 @@ import bridge.domain.BridgeFlag;
 import bridge.domain.Map;
 import bridge.domain.User;
 import bridge.service.BridgeService;
-import bridge.view.InputView;
-import bridge.view.OutputView;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final InputView inputView;
-    private final OutputView outputView;
     private final BridgeService bridgeService;
 
-    public BridgeGame(InputView inputView, OutputView outputView, BridgeService bridgeService) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public BridgeGame(BridgeService bridgeService) {
         this.bridgeService = bridgeService;
     }
 
-    public static BridgeGame create(InputView inputView, OutputView outputView, BridgeService bridgeService) {
-        return new BridgeGame(inputView, outputView, bridgeService);
+    public static BridgeGame create(BridgeService bridgeService) {
+        return new BridgeGame(bridgeService);
     }
 
     public void start() {
-        outputView.printGameStartMessage();
-        outputView.printEnterBridgeLength();
-        Bridge bridge = bridgeService.makeBridge(inputView.readBridgeSize());
+        bridgeService.printStartMessage();
+        Bridge bridge = bridgeService.makeBridge();
         User user = new User();
         Map map = new Map();
         System.out.println(bridge.getBridge()); // TEST
         while (true) {
-            outputView.printEnterSelectMoving();
-            user.move(inputView.readMoving());
+
+            user.move(bridgeService.receiveMoving());
             map.update(bridge, user);
             BridgeFlag gameStatus = bridgeService.getGameStatus(bridge, user);
-            outputView.printMap(map);
+            bridgeService.printMap(map);
             if (gameStatus != BridgeFlag.NOTHING) {
                 break;
             }

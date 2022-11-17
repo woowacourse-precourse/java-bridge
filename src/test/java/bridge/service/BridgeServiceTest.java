@@ -8,6 +8,8 @@ import bridge.domain.UpDownFlag;
 import bridge.domain.User;
 import bridge.util.BridgeMaker;
 import bridge.util.BridgeRandomNumberGenerator;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -18,7 +20,8 @@ class BridgeServiceTest {
 
     @BeforeEach
     void setUp() {
-        bridgeService = new BridgeService(new BridgeMaker(new BridgeRandomNumberGenerator()));
+        bridgeService = new BridgeService(new BridgeMaker(new BridgeRandomNumberGenerator()), new InputView(),
+                new OutputView());
     }
 
     @Test
