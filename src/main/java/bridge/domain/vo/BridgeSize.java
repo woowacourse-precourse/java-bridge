@@ -17,6 +17,10 @@ public class BridgeSize {
         this.bridgeSize = parseInt(bridgeSize);
     }
 
+    public int getBridgeSize() {
+        return this.bridgeSize;
+    }
+
     public void validateBridegeSize(String bridgeSize) {
         if (bridgeSize.chars().allMatch(Character::isDigit)) {
             throw new IllegalArgumentException(IS_NOT_NUMBER);

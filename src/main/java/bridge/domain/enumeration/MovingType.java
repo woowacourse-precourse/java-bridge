@@ -1,6 +1,16 @@
 package bridge.domain.enumeration;
 
 public enum MovingType {
-    UP,
-    DOWN
+    UP("U"),
+    DOWN("D");
+
+    private final String movingType;
+
+    MovingType(String movingType){
+        this.movingType = movingType;
+    }
+
+    public String getMovingType(){
+        return this.movingType;
+    }
 }
