@@ -26,4 +26,14 @@ public class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 다리 길이는 숫자여야 합니다.");
     }
+
+    @DisplayName("이동 입력값이 U/D 가 아니면 예외가 발생한다.")
+    @Test
+    void 이동_입력_예외() {
+        String input = "A";
+        assertThatThrownBy(() -> inputView.readMoving(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 이동 방향 여부는 'U(위)'/'D(아래)' 만 가능합니다.");
+    }
+
 }
