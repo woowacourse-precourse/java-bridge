@@ -18,4 +18,11 @@ public class InputController {
         validation.isValidDirection(moving);
         return moving;
     }
+
+    public String getGameCommand() throws IllegalArgumentException {
+        String command = inputView.readGameCommand();
+
+        validation.isValidGameCommand(command);
+        return command;
+    }
 }

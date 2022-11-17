@@ -26,4 +26,10 @@ public class Validation {
             throw new IllegalArgumentException();
         }
     }
+
+    public void isValidGameCommand(String inputCommand) throws IllegalArgumentException {
+        if (!inputCommand.equals(RETRY) && !inputCommand.equals(QUIT)) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
