@@ -1,8 +1,12 @@
 package bridge.domain;
 
 
+import bridge.msg.InputMsg;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import static bridge.msg.InputMsg.*;
 
 
 /**
@@ -20,9 +24,9 @@ public class BridgeMaker {
         int num = bridgeNumberGenerator.generate();
 
         if (num == 1)
-            return "U";
+            return UP_MSG.getMsg();
 
-        return "D";
+        return DOWN_MSG.getMsg();
     }
 
     /**
