@@ -21,7 +21,7 @@ class UtilTest {
 
     @Test
     @DisplayName("문자인지 아닌지 검사합니다")
-    void isLetter(){
+    void isLetterTest(){
         boolean isTrue = Util.isLetter("a");
         assertThat(isTrue)
                 .isTrue();
@@ -30,5 +30,18 @@ class UtilTest {
         assertThat(isFalse)
                 .isFalse();
     }
+
+    @Test
+    @DisplayName("한 글자인지 아닌지 검사합니다")
+    void isOneLetterTest(){
+        boolean isTrue = Util.isOneLetter("a");
+        assertThat(isTrue)
+                .isTrue();
+
+        boolean isFalse = Util.isOneLetter("aa");
+        assertThat(isFalse)
+                .isFalse();
+    }
+
 
 }
