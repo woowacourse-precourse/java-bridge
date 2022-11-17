@@ -9,12 +9,14 @@ public class InputSelectCharValidator {
     private static final Map<Integer, String> inputSelectCharValidatorSort = new HashMap<>();
     private static final String ERROR_MESSAGE = "[ERROR] ";
     private static final String MOVING_SELECT_ERROR_MESSAGE = "U 또는 D 만 입력할 수 있습니다.";
-    private static final int MOVING_SELECT_CHAR_VALIDATOR_NUMBER = 1;
-    private static final int RETRY_SELECT_CHAR_VALIDATOR_NUMBER = 2;
+    private static final String MOVING_SELECT_CHAR_FORM = "[U|D]";
+    private static final String RETRY_SELECT_CHAR_FORM = "[Q|R]";
+    private static final int MOVING_SELECT_CHAR_VALIDATE_NUMBER = 1;
+    private static final int RETRY_SELECT_CHAR_VALIDATE_NUMBER = 2;
     
     static {
-        inputSelectCharValidatorSort.put(MOVING_SELECT_CHAR_VALIDATOR_NUMBER, "[U|D]");
-        inputSelectCharValidatorSort.put(RETRY_SELECT_CHAR_VALIDATOR_NUMBER, "[Q|R]");
+        inputSelectCharValidatorSort.put(MOVING_SELECT_CHAR_VALIDATE_NUMBER, MOVING_SELECT_CHAR_FORM);
+        inputSelectCharValidatorSort.put(RETRY_SELECT_CHAR_VALIDATE_NUMBER, RETRY_SELECT_CHAR_FORM);
     }
     
     public static void validate(final String selectChar, final int selectCharValidatorNumber) {
@@ -33,7 +35,7 @@ public class InputSelectCharValidator {
     }
     
     private static String parseErrorMessage(final int selectCharValidatorNumber) {
-        if (selectCharValidatorNumber == MOVING_SELECT_CHAR_VALIDATOR_NUMBER) {
+        if (selectCharValidatorNumber == MOVING_SELECT_CHAR_VALIDATE_NUMBER) {
             return MOVING_SELECT_ERROR_MESSAGE;
         }
         
