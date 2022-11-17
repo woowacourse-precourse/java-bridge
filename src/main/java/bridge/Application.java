@@ -75,7 +75,7 @@ public class Application {
             if (bridgeGame.isPlayerDead()) {
                 inputCommand(bridgeGame);
             }
-        } while(bridgeGame.winGame() || bridgeGame.isPlayerDead());
+        } while(!bridgeGame.winGame() && !bridgeGame.isPlayerDead());
 
         outputView.printResult(bridgeGame);
     }
