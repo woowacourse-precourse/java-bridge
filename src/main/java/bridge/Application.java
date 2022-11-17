@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.constant.PrintMessage;
 import bridge.domain.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -11,6 +12,7 @@ public class Application {
     static BridgeGame bridgeGame;
 
     public static void main(String[] args) {
+        System.out.println(PrintMessage.START_MESSAGE.getString());
         int bridgeSize = inputView.readBridgeSize();
         bridgeGame = new BridgeGame(bridgeSize);
         startGame();
