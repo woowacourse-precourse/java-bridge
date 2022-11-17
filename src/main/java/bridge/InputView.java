@@ -17,7 +17,7 @@ public class InputView {
         while (true) {
             try {
                 bridgeSize = Integer.parseInt(readValue());
-                if(isBridgeNumber(bridgeSize)){
+                if (isBridgeNumber(bridgeSize)) {
                     break;
                 }
             } catch (NumberFormatException e) {
@@ -31,7 +31,15 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String moving = "";
+        while (true) {
+            moving = readValue();
+            if(moving.equals("U") || moving.equals("D")){
+                break;
+            }
+            System.out.println("[ERROR] \'U\' 또는 \'D\'를 입력해주세요.");
+        }
+        return moving;
     }
 
     /**
@@ -46,8 +54,8 @@ public class InputView {
         return value;
     }
 
-    public boolean isBridgeNumber(int bridgeSize){
-        if(bridgeSize >= 3 && bridgeSize <= 20)
+    public boolean isBridgeNumber(int bridgeSize) {
+        if (bridgeSize >= 3 && bridgeSize <= 20)
             return true;
         System.out.println("[ERROR] 3 이상 20 이하의 숫자를 입력해주세요.");
         return false;
