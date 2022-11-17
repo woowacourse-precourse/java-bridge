@@ -8,8 +8,18 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class BridgeTest {
     @Test
-    public void bridgeTest() {
+    public void bridgeKeepTest() {
         Bridge bridge = Bridge.of(List.of("U","U","U","D"));
-        assertThat(bridge.play(Bridge.of("U"))).isEqualTo(Result.KEEP);
+        assertThat(bridge.play(Bridge.of(List.of("U")))).isEqualTo(Result.KEEP);
+    }
+    @Test
+    public void bridgeLoseTest() {
+        Bridge bridge = Bridge.of(List.of("U","U","U","D"));
+        assertThat(bridge.play(Bridge.of(List.of("U","D")))).isEqualTo(Result.LOSE);
+    }
+    @Test
+    public void bridgeWinTest() {
+        Bridge bridge = Bridge.of(List.of("U","U","U","D"));
+        assertThat(bridge.play(Bridge.of(List.of("U","U","U","D")))).isEqualTo(Result.WIN);
     }
 }
