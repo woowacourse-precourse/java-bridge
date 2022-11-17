@@ -35,4 +35,17 @@ class ValidatorTest {
     void validateMovableInputByMovableInput(String input) {
         assertDoesNotThrow(() -> validateMovableInput(input));
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"r", "q", "a", "ra", "qa", "", " "})
+    void validateIfStringIsGameCommandByNotMatch(String string) {
+        assertThatThrownBy(() -> validateIfStringIsGameCommand(string))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"R", "Q"})
+    void validateIfStringIsGameCommandByMatch(String string) {
+        assertDoesNotThrow(() -> validateIfStringIsGameCommand(string));
+    }
 }
