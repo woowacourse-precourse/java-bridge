@@ -46,7 +46,7 @@
   - [x] 입력값이 3 이상 20 이하의 숫자가 아닐 경우 예외처리한다. -inputNoRangeException()
 
 
-- [ ] 플레이어가 이동할 칸을 입력 받을 때 예외처리 -inputMoveException()
+- [x] 플레이어가 이동할 칸을 입력 받을 때 예외처리 -inputMoveException()
   - [x] 입력값이 null인 경우 예외처리한다. -inputNullException()
   - [x] 입력값이 한 글자가 아닌 경우 예외처리한다. -inputNoOneCharException()
   - [x] 입력값이 U나 R이 아닐 경우 예외처리한다. -inputInvalidCharException()

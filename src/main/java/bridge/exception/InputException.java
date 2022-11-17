@@ -41,4 +41,10 @@ public class InputException {
         inputNoNumberException(input);
         inputNoRangeException(Integer.parseInt(input));
     }
+
+    public void inputMoveException(String input) {
+        inputNullException(input);
+        inputNoOneCharException(input);
+        inputInvalidCharException(input, "U", "R");
+    }
 }
