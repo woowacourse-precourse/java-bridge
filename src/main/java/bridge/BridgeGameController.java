@@ -4,7 +4,7 @@ public class BridgeGameController {
     InputView inputView;
     OutputView outputView;
     BridgeGame bridgeGame;
-    int count = 0;
+    int count = 1;
 
     int size;
 
@@ -13,11 +13,17 @@ public class BridgeGameController {
         outputView = new OutputView();
     }
     public void start(){
-        inputView.printHello();
-        size = inputView.readBridgeSize();
-        bridgeGame = new BridgeGame(size);
+        try {
+            inputView.printHello();
+            size = inputView.readBridgeSize();
+            bridgeGame = new BridgeGame(size);
 
-        gameLogic();
+            gameLogic();
+        }
+        catch (IllegalArgumentException e){
+            System.out.println(e);
+        }
+
     }
 
     public void gameLogic(){
@@ -25,13 +31,29 @@ public class BridgeGameController {
 
         while (restartResult){
             if (bridgeGame.isFinish()) break;
-            boolean movingResult = bridgeGame.move();
-
+            boolean movingResult = moveLogic();
             if (!movingResult){
-                restartResult = bridgeGame.retry();
-                if (restartResult) count++;
+                restartResult = retryLogic();
             }
         }
         outputView.printResult(bridgeGame.getInputs(), restartResult, count);
+    }
+
+    private boolean moveLogic(){
+        String userInput = inputView.readMoving();
+        boolean movingResult = bridgeGame.move(userInput);
+
+        outputView.printMap(bridgeGame.getInputs());
+
+        return movingResult;
+    }
+
+    private boolean retryLogic(){
+        String userInput = inputView.readGameCommand();
+        boolean restartResult = bridgeGame.retry(userInput);
+
+        if (restartResult) count++;
+
+        return restartResult;
     }
 }
