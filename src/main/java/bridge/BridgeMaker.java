@@ -20,4 +20,12 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         return null;
     }
+
+    private String whereIsBridge() {
+        if (bridgeNumberGenerator.generate() == 1) {
+            return "U";
+        }
+
+        return "D";
+    }
 }
