@@ -23,30 +23,33 @@ public class BridgeGameConsole {
         boolean playGame = true;
         while (playGame) {
             attemptCount++;
-            boolean shouldCrossMore = true;
-
-            while (shouldCrossMore) {
-                emcee.guideEnteringMovement();
-                String movement = player.enterMovement();
-                boolean availableMovement = bridgeGame.move(movement);
-                String movementStatus = bridgeGame.createMovementStatus();
-                emcee.showBridgeMovementStatus(movementStatus);
-
-                if (!availableMovement) {
-                    emcee.guideEnteringRetryStatus();
-                    String retryStatus = player.enterRetryStatus();
-                    if (retryStatus.equals("R")) {
-                        bridgeGame.retry();
-                        break;
-                    } else {
-                        playGame = false;
-                        break;
-                    }
-                } else {
-                    shouldCrossMore = !bridgeGame.crossedBridge();
-                }
-            }
+            playGame = crossTheBridge(bridgeGame);
         }
         return attemptCount;
+    }
+
+    private boolean crossTheBridge(BridgeGame bridgeGame) {
+        boolean shouldCrossMore = true;
+        while (shouldCrossMore) {
+            emcee.guideEnteringMovement();
+            String movement = player.enterMovement();
+            boolean availableMovement = bridgeGame.move(movement);
+            String movementStatus = bridgeGame.createMovementStatus();
+            emcee.showBridgeMovementStatus(movementStatus);
+
+            if (!availableMovement) {
+                emcee.guideEnteringRetryStatus();
+                String retryStatus = player.enterRetryStatus();
+                if (retryStatus.equals("R")) {
+                    bridgeGame.retry();
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                shouldCrossMore = !bridgeGame.crossedBridge();
+            }
+        }
+        return false;
     }
 }
