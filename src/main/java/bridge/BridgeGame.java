@@ -18,12 +18,17 @@ public class BridgeGame {
     }
 
     private void creatingLog(String submit) {
-        int lengthOfLog = log.length;
-        char[][] tempLog = new char[2][lengthOfLog + 1];
-        for (int i = 0; i <lengthOfLog ; i++) {
-            tempLog[i] = log[i];
+        int lengthOfLog = 0;
+        if (log != null) {
+            lengthOfLog = log[0].length;
         }
 
+        char[][] tempLog = new char[2][lengthOfLog + 1];
+        for (int i = 0; i <2 ; i++) {
+            for (int j = 0; j <lengthOfLog ; j++) {
+                tempLog[i][j] = log[i][j];
+            }
+        }
         if (submit.equals("U")) {
             tempLog[0][lengthOfLog] = Life.heIsSurvive(survival);
             tempLog[1][lengthOfLog] = ' ';
