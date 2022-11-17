@@ -15,7 +15,8 @@ public class OutputView {
     public void printMap(String[][] map) {
         String result = "[%s]";
         for (String[] line : map) {
-            System.out.println(String.format(result, line));
+            String format = String.format(result, String.join(" | ", line));
+            System.out.println(format);
         }
     }
 
