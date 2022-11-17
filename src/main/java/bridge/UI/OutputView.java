@@ -14,72 +14,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> getAlreadyCrossedBridge, boolean isLastPickIsRight) {
-        int mapLength = getAlreadyCrossedBridge.size();
-        int[][] bridgeStatus = createBridgeStatus(getAlreadyCrossedBridge);
-
-        if(!isLastPickIsRight){
-            bridgeStatus[0][mapLength] = checkAndChangeToFalse(bridgeStatus[0][mapLength]);
-            bridgeStatus[1][mapLength] = checkAndChangeToFalse(bridgeStatus[1][mapLength]);
-        }
-        printOneLine(bridgeStatus[0]);
-        printOneLine(bridgeStatus[1]);
-    }
-
-    private int[][] createBridgeStatus(List<String> getAlreadyCrossedBridge){
-        int bridgeLength = getAlreadyCrossedBridge.size();
-        int[][] bridgeStatus = new int[2][bridgeLength];
-
-        for(int bridgeIndex = 0; bridgeIndex < bridgeLength; bridgeIndex++){
-            setOneBridgeStatus(bridgeStatus,getAlreadyCrossedBridge.get(bridgeIndex),bridgeIndex);
-        }
-        return bridgeStatus;
-    }
-
-    private void setOneBridgeStatus(int[][] bridgeStatus, String userSelect,int bridgeIndex){
-        boolean choiceUp = (userSelect.equals("U"));
-        if(choiceUp){
-            bridgeStatus[0][bridgeIndex] = 1;
-            bridgeStatus[1][bridgeIndex] = 0;
-            return;
-        }
-        bridgeStatus[0][bridgeIndex] = 0;
-        bridgeStatus[1][bridgeIndex] = 1;
-    }
-
-    private int checkAndChangeToFalse(int currentStatus){
-        if(currentStatus == 1){
-            return 2;
-        }
-        return 0;
-    }
-    private void printOneLine(int[] oneLine){
-        System.out.print("[ ");
-        printInsides(oneLine);
-        printLastOne(oneLine[oneLine.length-1]);
-        System.out.println(" ]");
-    }
-    private void printInsides(int[] oneLine){
-        for(int i = 0; i < oneLine.length-1; i++){
-            if(oneLine[i] == 1){
-                System.out.print("O");
-                System.out.print(" | ");
-                continue;
-            }
-            System.out.print(" ");
-            System.out.print(" | ");
-        }
-    }
-    private void printLastOne(int lastData){
-        if(lastData == 0){
-            System.out.print(" ");
-        }
-        if(lastData == 1){
-            System.out.print("O");
-        }
-        if(lastData == 2){
-            System.out.print("X");
-        }
+    public void printMap(List<String> getAlreadyCrossedBridge) {
+        System.out.println(getAlreadyCrossedBridge.get(0));
+        System.out.println(getAlreadyCrossedBridge.get(1));
     }
 
     /**
