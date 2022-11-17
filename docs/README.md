@@ -9,7 +9,7 @@
 
 
 - [ ] 일급 컬렉션 생성
-  - [ ] Bridge 일급 컬렉션
+  - [x] Bridge 일급 컬렉션
   - [ ] UserMovement 일급 컬렉션
 
 

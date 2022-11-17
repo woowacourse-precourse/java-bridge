@@ -38,6 +38,6 @@ public class BridgeMaker {
             return "U";
         }
 
-        throw new IllegalStateException(ErrorMessage.NotValidRandomNumber.getMessage());
+        throw new IllegalStateException(ErrorMessage.NotValidBridgeElement.getMessage());
     }
 }

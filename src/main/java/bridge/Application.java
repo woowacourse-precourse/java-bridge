@@ -11,7 +11,7 @@ public class Application {
         // TODO: 프로그램 구현
         Application app = new Application();
 
-        List<String> bridge = app.initializeBridge();
+        Bridge bridge = new Bridge(app.initializeBridge());
     }
 
     private List<String> initializeBridge() {
