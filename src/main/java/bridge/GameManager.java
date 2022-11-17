@@ -3,6 +3,7 @@ package bridge;
 import bridge.config.Config;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import java.util.List;
 
 public class GameManager {
 
@@ -15,9 +16,18 @@ public class GameManager {
     }
 
     public static void execute() {
+        OutputView.startGame();
         Config config = new Config();
-        GameManager gameManager = new GameManager(new BridgeGame(config.bridgeNumberGenerator()), new GameStatus());
+        List<String> bridge = buildBridge(config.bridgeNumberGenerator());
+        GameManager gameManager = new GameManager(new BridgeGame(bridge), new GameStatus());
         gameManager.startGame();
+    }
+
+    private static List<String> buildBridge(BridgeNumberGenerator bridgeNumberGenerator) {
+        OutputView.getBridgeLength();
+        int bridgeSize = InputView.readBridgeSize();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        return bridgeMaker.makeBridge(bridgeSize);
     }
 
     private void startGame() {
@@ -35,7 +45,9 @@ public class GameManager {
 
     private GameCommand play(BridgeGame bridgeGame) {
         try {
+            OutputView.selectRoom();
             bridgeGame.move(InputView.readMoving());
+            OutputView.printMap(gameStatus.getBridgeStatus());
             if (bridgeGame.isFinish()) {
                 return GameCommand.FINISH;
             }
@@ -47,6 +59,7 @@ public class GameManager {
     }
 
     private GameCommand getUserDecision() {
+        OutputView.checkRestart();
         String input = InputView.readGameCommand();
         GameCommand.checkStatus(input);
 
