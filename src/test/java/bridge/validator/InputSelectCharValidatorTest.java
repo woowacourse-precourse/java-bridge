@@ -11,73 +11,74 @@ import static org.assertj.core.api.Assertions.assertThatNoException;
 
 class InputSelectCharValidatorTest {
     private static final int MOVING_SELECT_CHAR_VALIDATOR_NUMBER = 1;
+    private static final int RETRY_SELECT_CHAR_VALIDATE_NUMBER = 2;
     
-    @DisplayName("정상 입력")
+    @DisplayName("이동할 칸 입력 : 정상 입력")
     @ParameterizedTest(name = "{displayName} : bridgeSize => {0}")
     @ValueSource(strings = {"U", "D"})
-    void normalInput(final String bridgeSize) {
+    void normalMovingInput(final String bridgeSize) {
         assertThatNoException()
                 .isThrownBy(() -> InputSelectCharValidator.validate(bridgeSize, MOVING_SELECT_CHAR_VALIDATOR_NUMBER));
     }
     
-    @DisplayName("예외 처리 : Null 또는 Empty 입력 시")
+    @DisplayName("이동할 칸 입력 예외 처리 : Null 또는 Empty 입력 시")
     @ParameterizedTest(name = "{displayName} : input => {0}")
     @NullAndEmptySource
-    void nullOrEmptyException(final String input) {
+    void nullOrEmptyMovingException(final String input) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputSelectCharValidator.validate(input, MOVING_SELECT_CHAR_VALIDATOR_NUMBER))
                 .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
     }
     
-    @DisplayName("예외 처리 : 공백 입력 시")
+    @DisplayName("이동할 칸 입력 예외 처리 : 공백 입력 시")
     @ParameterizedTest(name = "{displayName} : input => {0}")
     @ValueSource(strings = {" ", "  ", " U", "U "})
-    void spaceException(final String input) {
+    void spaceMovingException(final String input) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputSelectCharValidator.validate(input, MOVING_SELECT_CHAR_VALIDATOR_NUMBER))
                 .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
     }
     
-    @DisplayName("예외 처리 : 숫자 입력 시")
+    @DisplayName("이동할 칸 입력 예외 처리 : 숫자 입력 시")
     @ParameterizedTest(name = "{displayName} : input => {0}")
     @ValueSource(strings = {"1", "-1", "0", "U1", "1U"})
-    void numberException(final String input) {
+    void numberMovingException(final String input) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputSelectCharValidator.validate(input, MOVING_SELECT_CHAR_VALIDATOR_NUMBER))
                 .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
     }
     
-    @DisplayName("예외 처리 : 특수 문자 입력 시")
+    @DisplayName("이동할 칸 입력 예외 처리 : 특수 문자 입력 시")
     @ParameterizedTest(name = "{displayName} : input => {0}")
     @ValueSource(strings = {"@", "$", "%", ",", "."})
-    void specialCharactersException(final String input) {
+    void specialCharactersMovingException(final String input) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputSelectCharValidator.validate(input, MOVING_SELECT_CHAR_VALIDATOR_NUMBER))
                 .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
     }
     
-    @DisplayName("예외 처리 : 한글 입력 시")
+    @DisplayName("이동할 칸 입력 예외 처리 : 한글 입력 시")
     @ParameterizedTest(name = "{displayName} : input => {0}")
     @ValueSource(strings = {"ㄱ", "ㅏ", "가"})
-    void koreanException(final String input) {
+    void koreanMovingException(final String input) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputSelectCharValidator.validate(input, MOVING_SELECT_CHAR_VALIDATOR_NUMBER))
                 .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
     }
     
-    @DisplayName("예외 처리 : U와 D가 아닌 영어 입력 시")
+    @DisplayName("이동할 칸 입력 예외 처리 : U와 D가 아닌 영어 입력 시")
     @ParameterizedTest(name = "{displayName} : input => {0}")
     @ValueSource(strings = {"A", "C", "Q", "R", "T","a", "c", "u", "d", "r", "q"})
-    void englishException(final String input) {
+    void englishMovingException(final String input) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputSelectCharValidator.validate(input, MOVING_SELECT_CHAR_VALIDATOR_NUMBER))
                 .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
     }
     
-    @DisplayName("예외 처리 : 길이가 2이상인 경우")
+    @DisplayName("이동할 칸 입력 예외 처리 : 길이가 2이상인 경우")
     @ParameterizedTest(name = "{displayName} : input => {0}")
     @ValueSource(strings = {"UU", "DD", "UD" ,"DU", "UUU", "DDD"})
-    void outOfLengthException(final String input) {
+    void outOfLengthMovingException(final String input) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputSelectCharValidator.validate(input, MOVING_SELECT_CHAR_VALIDATOR_NUMBER))
                 .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
