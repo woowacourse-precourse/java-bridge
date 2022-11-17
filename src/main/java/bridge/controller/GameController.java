@@ -24,7 +24,7 @@ public class GameController {
 
     public void startGame() {
         generateRandomBridge();
-        movePlayer();
+        generateMovingTargetTile();
     }
 
     private Bridge generateRandomBridge() {
@@ -40,12 +40,12 @@ public class GameController {
         }
     }
 
-    private void movePlayer() {
+    private BridgeTile generateMovingTargetTile() {
         while (true) {
             try {
                 String movingPosition = inputView.readMoving();
                 BridgeTile movingTile = BridgeTile.findByTilePosition(movingPosition);
-                return;
+                return movingTile;
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
