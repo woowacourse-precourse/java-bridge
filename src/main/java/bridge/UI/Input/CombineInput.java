@@ -1,18 +1,22 @@
 package bridge.UI.Input;
 
 public class CombineInput {
-    public void startReadBridgeSize(InputView command) {
+
+    public int startReadBridgeSize() throws IllegalArgumentException{
+        InputView inputView = new InputView();
         System.out.println(InputString.BRIDGE_SIZE.getMessage());
-        command.readBridgeSize();
+        return inputView.readBridgeSize();
     }
 
-    public void startReadMoving(InputView command) {
+    public String startReadMoving() throws IllegalArgumentException {
+        InputView inputView = new InputView();
         System.out.println(InputString.PLAYER_CHOICE.getMessage());
-        command.readMoving();
+        return inputView.readMoving();
     }
-    public void startReadGameCommand(InputView command) {
+    public String startReadGameCommand() throws IllegalArgumentException {
+        InputView inputView = new InputView();
         System.out.println(InputString.RESTART.getMessage());
-        command.readGameCommand();
+        return inputView.readGameCommand();
     }
 
 }

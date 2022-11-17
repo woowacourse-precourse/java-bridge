@@ -19,7 +19,7 @@ public class InputView {
         return bridgeSize;
     }
 
-    public String readMoving() {
+    public String readMoving() throws IllegalArgumentException {
         String userInput = Console.readLine();
         if(!(userInput.equals("U") || userInput.equals("D"))) {
             throw new IllegalArgumentException("[ERROR] U(위칸) 혹은 D(아래칸)을 입력해주세요");
@@ -27,7 +27,7 @@ public class InputView {
         return userInput;
     }
 
-    public String readGameCommand() {
+    public String readGameCommand() throws IllegalArgumentException {
         String userInput = Console.readLine();
         if(!(userInput.equals("R") || userInput.equals("Q"))) {
             throw new IllegalArgumentException("[ERROR] R(재시작) 혹은 Q(종료)를 입력해주세요");
