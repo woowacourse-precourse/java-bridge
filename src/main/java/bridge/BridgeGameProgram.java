@@ -16,8 +16,10 @@ public class BridgeGameProgram {
     public void run() {
         outputView.printGameStartComment();
         outputView.printRequestBridgeSizeComment();
-        List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        List<String> bridgeMap = bridgeMaker.makeBridge(inputView.readBridgeSize());
+
+        BridgeGame bridgeGame = new BridgeGame(bridgeMap);
         outputView.printRequestMoveSideComment();
-        String s = inputView.readMoving();
+        bridgeGame.move(inputView.readMoving());
     }
 }

@@ -13,7 +13,7 @@ public class Validator {
         String sideRegularExpression = "^[UD]$";
         boolean isNotSide = !moveSide.matches(sideRegularExpression);
         if (isNotSide) {
-            throw new IllegalArgumentException("선택할 수 있는 칸은 위(U) 또는 아래(D) 입니다.")
+            throw new IllegalArgumentException("선택할 수 있는 칸은 위(U) 또는 아래(D) 입니다.");
         }
     }
 }
