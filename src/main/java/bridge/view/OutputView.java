@@ -8,6 +8,7 @@ public class OutputView {
 
     public void printStart() {
         System.out.println(PRINT_START_GAME);
+        System.out.println();
     }
 
     /**
