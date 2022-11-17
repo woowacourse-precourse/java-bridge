@@ -8,9 +8,7 @@ import java.util.List;
  */
 public class BridgeGame {
     private final List<Integer> bridge;
-
     private int tryNumber;
-
     private List<Integer> selectedFootHold = new ArrayList<>();
 
     public BridgeGame(List<Integer> bridge) {
@@ -24,10 +22,10 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String userInput) {
-        if (userInput.equals(Command.UP)) {
+        if (userInput.equals(Command.UP.getValue())) {
             selectedFootHold.add(Command.UP.getCommandNum());
         }
-        if (userInput.equals(Command.DOWN)) {
+        if (userInput.equals(Command.DOWN.getValue())) {
             selectedFootHold.add(Command.DOWN.getCommandNum());
         }
         tryNumber++;
@@ -36,6 +34,13 @@ public class BridgeGame {
     public boolean isRightFoothold() {
         int index = tryNumber - 1;
         if (selectedFootHold.get(index) == bridge.get(index)) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isGameEnd() {
+        if (tryNumber == bridge.size()) {
             return true;
         }
         return false;
