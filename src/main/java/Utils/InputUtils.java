@@ -7,7 +7,7 @@ import bridge.EnumCollections.GameRestartType;
 public class InputUtils {
 
     public boolean isDigit(String input) {
-        try{
+        try {
             Integer.parseInt(input);
         } catch (NumberFormatException exception) {
             return false;
