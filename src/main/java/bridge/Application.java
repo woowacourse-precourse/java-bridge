@@ -22,4 +22,8 @@ public class Application {
     public static void playBridgeGame() {
 
     }
+
+    public static void setError(Error errorMessage) {
+        error = errorMessage;
+    }
 }
