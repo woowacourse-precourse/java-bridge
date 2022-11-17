@@ -1,8 +1,6 @@
 package bridge.service;
 
-import bridge.constant.ErrorMessage;
 import bridge.constant.Movement;
-import bridge.exception.ShouldNotReachException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +43,6 @@ public class BridgeGame {
             movements.add(Movement.DOWN_AND_X);
             return false;
         }
-        throw new ShouldNotReachException(ErrorMessage.SHOULD_NOT_REACH_HERE.message());
     }
 
     /**
