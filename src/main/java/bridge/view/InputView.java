@@ -38,6 +38,10 @@ public class InputView {
         return Console.readLine();
     }
 
+    public void getBridgeGameStartMsg(){
+        System.out.println(BRIDGE_GAME_START_MSG);
+    }
+
     private int parseIntOrThrowException(String input){
         try {
             return Integer.parseInt(input);
