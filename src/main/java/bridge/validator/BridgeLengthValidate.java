@@ -1,6 +1,6 @@
 package bridge.validator;
 
-public class BridgeLengthValidator {
+public class BridgeLengthValidate {
 	public static void validateNumber(String input) {
 		if (!input.matches("^[0-9]+$")) {
 			throw new IllegalArgumentException("숫자만 입력해주세요.");
