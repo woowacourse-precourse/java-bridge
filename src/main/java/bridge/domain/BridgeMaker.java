@@ -3,15 +3,12 @@ package bridge.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.utils.Constants.*;
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-    private static final int DOWN_NUMBER = 0;
-    private static final int UP_NUMBER = 1;
-    private static final String DOWN_BLOCK = "D";
-    private static final String UP_BLOCK = "U";
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
