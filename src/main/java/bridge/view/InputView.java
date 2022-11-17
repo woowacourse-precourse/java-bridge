@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Scanner;
 
+import static bridge.validator.BlockValidator.validateInvalidType;
 import static bridge.validator.NumberValidator.validateNonNumeric;
 import static bridge.validator.NumberValidator.validateRange;
 
@@ -17,17 +18,21 @@ public class InputView {
      */
     public static int readBridgeSize() {
         OutputView.printBridgeLengthInputMessage();
-        String input = Console.readLine();
+        String bridgeSize = Console.readLine();
 
-        validateNonNumeric(input);
-        validateRange(input);
-        return Integer.parseInt(input);
+        validateNonNumeric(bridgeSize);
+        validateRange(bridgeSize);
+        return Integer.parseInt(bridgeSize);
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public static String readMoving() {
+        OutputView.printSelectToMovePlayerMessage();
+        String moveCommand = Console.readLine();
+
+        validateInvalidType(moveCommand);
         return null;
     }
 
