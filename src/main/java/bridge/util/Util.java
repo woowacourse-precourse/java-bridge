@@ -16,7 +16,7 @@ public class Util {
 
     public static void validateInputType(String input) {
         if (!INPUT_REGEX.matcher(input).matches()) {
-            throw new IllegalArgumentException("숫자만 입력해 주세요.");
+            throw new IllegalArgumentException("자연수만 입력해 주세요.");
         }
     }
 }

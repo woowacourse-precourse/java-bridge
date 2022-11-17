@@ -7,7 +7,6 @@ import java.util.List;
  */
 public class BridgeMaker {
 
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -19,9 +18,14 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        System.out.println("다리 길이: " + size);
+        validateSizeRange(size);
         return null;
     }
 
+    private static void validateSizeRange(int size) {
+        if (size < 3 || size > 20) {
+            throw new IllegalArgumentException("3 이상 20 이하의 숫자를 입력해 주세요.");
+        }
+    }
 
 }
