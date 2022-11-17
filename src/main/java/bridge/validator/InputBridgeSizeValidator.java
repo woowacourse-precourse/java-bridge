@@ -1,5 +1,7 @@
 package bridge.validator;
 
+import bridge.exception.UtilClassCreateException;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -8,6 +10,10 @@ public class InputBridgeSizeValidator {
     private static final String BRIDGE_SIZE_FORM_ERROR_MESSAGE = "[ERROR] '3~20 범위'의 '숫자'만 입력 가능합니다.";
     private static final String EXIST_ZERO_AT_FIRST_PLACE_FORM = "0\\d+";
     private static final String BRIDGE_SIZE_INPUT_FORM = "[3-9]|1\\d|20";
+    
+    private InputBridgeSizeValidator() {
+        throw new UtilClassCreateException();
+    }
     
     public static void validate(final String inputBridgeSize) {
         validateNullOrEmpty(inputBridgeSize);

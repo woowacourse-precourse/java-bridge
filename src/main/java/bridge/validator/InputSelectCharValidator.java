@@ -1,5 +1,7 @@
 package bridge.validator;
 
+import bridge.exception.UtilClassCreateException;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -18,6 +20,10 @@ public class InputSelectCharValidator {
     static {
         inputSelectCharValidatorSort.put(MOVING_SELECT_CHAR_VALIDATE_NUMBER, MOVING_SELECT_CHAR_FORM);
         inputSelectCharValidatorSort.put(RETRY_SELECT_CHAR_VALIDATE_NUMBER, RETRY_SELECT_CHAR_FORM);
+    }
+    
+    private InputSelectCharValidator() {
+        throw new UtilClassCreateException();
     }
     
     public static void validate(final String selectChar, final int selectCharValidatorNumber) {

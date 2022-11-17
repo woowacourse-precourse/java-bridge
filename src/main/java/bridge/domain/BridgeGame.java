@@ -22,7 +22,6 @@ public class BridgeGame {
         bridge = new Bridge(bridgeNumberGenerator, bridgeSizeDTO.getBridgeSize());
         numberOfTry = new NumberOfTry();
         states = new LinkedList<>();
-        System.out.println(bridge);
     }
     
     /**
