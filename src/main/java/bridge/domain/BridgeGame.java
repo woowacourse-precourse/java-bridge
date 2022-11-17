@@ -82,7 +82,7 @@ public class BridgeGame {
         if (isReachFinal(bridgeSize)) {
             return;
         }
-        if (judgementRetry(bridgeSize)) {
+        if (judgementRetry()) {
             retry(bridgeSize,mapBridge);
             return;
         }
@@ -113,8 +113,8 @@ public class BridgeGame {
         return false;
     }
 
-    private boolean judgementRetry(int bridgeSize) {
-        return judgeDestination.judgeRestartOrOver(idx, bridgeSize);
+    private boolean judgementRetry() {
+        return judgeDestination.judgeRestartOrOver();
     }
 
     private void setQuit(int bridgeSize) {

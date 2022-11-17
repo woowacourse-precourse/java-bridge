@@ -7,7 +7,7 @@ public class JudgeDestination {
     private final String QUIT="Q";
     private final Boolean GAME_OVER=false;
     private final Boolean RESTART=true;
-    public boolean judgeRestartOrOver(int idx, int bridgeSize) {
+    public boolean judgeRestartOrOver() {
         String destination = inputView.readGameCommand();
         if(destination.equals(QUIT)){
             return GAME_OVER;
