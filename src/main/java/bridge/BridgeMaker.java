@@ -23,7 +23,7 @@ public class BridgeMaker {
         validate(size);
         return new ArrayList<>(size) {{
             for (int idx = 0; idx < size; idx++) {
-                add(TypeOfBridge.convertRandomNumberToText(bridgeNumberGenerator.generate()));
+                add(BridgeType.convertRandomNumberToText(bridgeNumberGenerator.generate()));
             }
         }};
     }
