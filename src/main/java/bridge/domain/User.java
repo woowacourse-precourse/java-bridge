@@ -7,22 +7,29 @@ public class User {
     private final List<UpDownFlag> movedPosition;
 
     public User() {
-        this.movedPosition = new ArrayList<>();
+        movedPosition = new ArrayList<>();
     }
 
     public void moveUp() {
-        this.movedPosition.add(UpDownFlag.UP);
+        movedPosition.add(UpDownFlag.UP);
     }
 
     public void moveDown() {
-        this.movedPosition.add(UpDownFlag.DOWN);
+        movedPosition.add(UpDownFlag.DOWN);
+    }
+
+    public int getMovedLength() {
+        return movedPosition.size();
     }
 
     public int getCurrentIndex() {
-        return this.movedPosition.size();
+        if (movedPosition.isEmpty()) {
+            throw new IllegalStateException("[ERROR] 사용자가 이동한 곳이 없습니다.");
+        }
+        return movedPosition.size() - 1;
     }
 
     public List<UpDownFlag> getMovedPosition() {
-        return List.copyOf(this.movedPosition);
+        return List.copyOf(movedPosition);
     }
 }
