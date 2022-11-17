@@ -1,6 +1,7 @@
 package bridge;
 
 public class InputValidator {
+
     private static final int MIN_BRIDGE_SIZE = 3;
     private static final int MAX_BRIDGE_SIZE = 20;
     private static final String NUMBER_TYPE_REGEX = "[0-9]+";
