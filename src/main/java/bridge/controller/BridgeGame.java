@@ -1,9 +1,28 @@
-package bridge;
+package bridge.controller;
+
+import bridge.InputView;
+import bridge.view.Print;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
+    public void setting() { //입력값받기
+        Print.gameStartMessage();
+        int startNumber = 1;
+        while (startNumber != 0) {
+            Print.requestBridgeLengthMessage();
+            try {
+                InputView inputView = new InputView();
+                int bridgeSize = inputView.readBridgeSize();
+                startNumber = 0;
+            } catch (IllegalArgumentException e) {
+                Print.exceptionMessage(e);
+                startNumber = 1;
+            }
+        }
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
