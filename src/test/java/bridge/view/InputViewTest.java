@@ -4,6 +4,7 @@ import bridge.mock.MockInputView;
 import bridge.system.validation.InputToBridgeSizeValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -50,6 +51,36 @@ class InputViewTest {
             assertThatThrownBy(inputView::readBridgeSize)
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(String.format(InputToBridgeSizeValidator.INVALID_NUMBER_RANGE_MESSAGE_FORMAT, 3, 20));
+        }
+
+        @Nested
+        @DisplayName("사용자가 이동할 칸을 입력받는 readMoving 메서드 테스트")
+        class readMovingTest {
+            @Test
+            @DisplayName("사용자가 이동할 칸을 선택하기 위해 U 또는 D를 입력할 수 있다.")
+            void whenReadingMoving_thenReturnsMovingPoint() {
+                //given
+                InputView inputView = new MockInputView("U");
+
+                //when
+                String target = inputView.readMoving();
+
+                //then
+                assertThat(target).isEqualTo("U");
+            }
+
+            @ParameterizedTest(name = "입력값 -> {0}")
+            @ValueSource(strings = {"u", "d", "가", "-D", "UU", "UD"})
+            @DisplayName("사용자가 U 또는 D 이외의 값을 입력하면 예외가 발생한다. UU나 UD같은 것도 허용하지 않는다.")
+            void givenNotUNorD_whenReadingMoving_thenReturnsMovingPoint(String input) {
+                //given
+                InputView inputView = new MockInputView(input);
+
+                //when && then
+                assertThatThrownBy(inputView::readMoving)
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessage("이동할 칸으로는 대문자 U 또는 D 둘 중 하나만 입력하실 수 있습니다.");
+            }
         }
     }
 }
