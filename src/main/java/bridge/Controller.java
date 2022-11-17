@@ -2,13 +2,11 @@ package bridge;
 
 public class Controller {
 
-	public void run(){
-		try{
-		BridgeGame bridgeGame = new BridgeGame();
-		bridgeGame.play();
+	public void run() {
+		InputView inputView = new InputView();
 
-		} catch (IllegalArgumentException ie){
-			System.out.println("error");
-		}
+		BridgeGame bridgeGame = new BridgeGame();
+		bridgeGame.play(inputView);
 	}
 }
+
