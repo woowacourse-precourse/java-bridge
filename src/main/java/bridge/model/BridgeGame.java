@@ -9,7 +9,7 @@ public class BridgeGame {
 
     private int position;
     private long playTime;
-    List<String> gameMap;
+    public List<String> gameMap;
 
     public BridgeGame(List<String> gameMap) {
         this.gameMap = gameMap;
@@ -42,5 +42,9 @@ public class BridgeGame {
 
     public boolean isClear() {
         return position >= gameMap.size();
+    }
+
+    public int getPosition() {
+        return position;
     }
 }
