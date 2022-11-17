@@ -25,6 +25,16 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printResult(BridgeGame bridgeGame, boolean successGame) {
+        System.out.println("최종 게임 결과");
+        printMap(bridgeGame, successGame);
+        System.out.print("게임 성공 여부: ");
+        if (successGame) {
+            System.out.println("성공");
+        }
+        if (!successGame) {
+            System.out.println("실패");
+        }
+        System.out.println("총 시도한 횟수: "+bridgeGame.getCount());
     }
 
 
@@ -32,28 +42,31 @@ public class OutputView {
         StringBuilder bridgeMap = new StringBuilder();
         bridgeMap.append("[");
         addMiddleBridge(bridgeMap, bridgeGame, state);
-        addEdgeBridge(bridgeMap, successGame);
+        bridgeMap.append(addEdgeBridge(bridgeGame ,successGame, state));
         return bridgeMap;
     }
 
     private static void addMiddleBridge(StringBuilder bridgeMap, BridgeGame bridgeGame, State state) {
         for (int mapIndex = 0; mapIndex < bridgeGame.getCurrentBridgeIndex() - 1; mapIndex++) {
             if (Objects.equals(bridgeGame.getBridge().get(mapIndex), state.getCode())) {
-                bridgeMap.append("O ");
+                bridgeMap.append(" O ");
             }
             if (!Objects.equals(bridgeGame.getBridge().get(mapIndex), state.getCode())) {
-                bridgeMap.append("  ");
+
+                bridgeMap.append("   ");
             }
+            bridgeMap.append("|");
         }
-        bridgeMap.append("| ");
     }
 
-    private static void addEdgeBridge(StringBuilder bridgeMap, boolean successGame) {
-        if (successGame) {
-            bridgeMap.append("O ]");
+    private static String addEdgeBridge(BridgeGame bridgeGame, boolean successGame, State state) {
+        String edgeBridgeCode = bridgeGame.getBridge().get(bridgeGame.getCurrentBridgeIndex() - 1);
+        if (successGame && Objects.equals(state.getCode(), edgeBridgeCode)) {
+            return " O ]";
         }
-        if (!successGame) {
-            bridgeMap.append("X ]");
+        if (!successGame && !Objects.equals(state.getCode(), edgeBridgeCode)) {
+            return " X ]";
         }
+        return "   ]";
     }
 }
