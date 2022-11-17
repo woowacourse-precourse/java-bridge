@@ -18,7 +18,6 @@ public class UserInputException {
     }
 
 
-
     public static void invalidCommandSize() {
         throw new IllegalArgumentException(ERROR_INVALID_COMMAND_SIZE);
     }

@@ -36,7 +36,7 @@ public class InputView {
         System.out.println(PRINT_SELECT_MOVING_DIRECTION);
         String userInput = Console.readLine().replaceAll(WHITE_SPACE, EMPTY);
 
-         return getMovingCommand(userInput);
+        return getMovingCommand(userInput);
     }
 
     /**

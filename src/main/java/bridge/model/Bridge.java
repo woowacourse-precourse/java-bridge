@@ -1,7 +1,6 @@
-package bridge.domain;
+package bridge.model;
 
 import bridge.validator.BridgeValidator;
-import bridge.view.ErrorView;
 
 import java.util.List;
 

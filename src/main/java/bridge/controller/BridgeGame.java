@@ -2,7 +2,7 @@ package bridge.controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.domain.Bridge;
+import bridge.model.Bridge;
 import bridge.validator.BridgeValidator;
 import bridge.view.ErrorView;
 import bridge.view.InputView;

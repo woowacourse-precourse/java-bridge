@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.domain.Bridge;
+import bridge.model.Bridge;
 
 import java.util.List;
 
