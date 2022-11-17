@@ -2,6 +2,8 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.Objects;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -31,6 +33,7 @@ public class InputView {
             throw new IllegalArgumentException("다리의 길이는 3에서 20 사이의 숫자입니다.");
         }
     }
+
     private void checkFirstNumberIsZero(String input) {
         if (input.charAt(0) == '0') {
             throw new IllegalArgumentException("0으로 시작하는 숫자는 옳은 입력방식이 아닙니다.");
@@ -42,7 +45,15 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String input = Console.readLine();
+        checkMoveCommand(input);
+        return input;
+    }
+
+    private void checkMoveCommand(String input) {
+        if (!Objects.equals(input, "U") && !Objects.equals(input, "D")) {
+            throw new IllegalArgumentException();
+        }
     }
 
     /**
