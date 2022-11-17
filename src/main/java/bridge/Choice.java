@@ -16,6 +16,11 @@ public class Choice {
         return isRight;
     }
 
+    public Choice(String input, String isRight) {
+        this.input = input;
+        this.isRight = isRight;
+    }
+
     public void setIsRight(String isRight) {
         this.isRight = isRight;
     }
