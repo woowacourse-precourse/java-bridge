@@ -5,23 +5,23 @@ public class GameCharacter {
     private String nextMove;
     private int where = -1;
 
-    void setNextMove(String move) {
+    public void setNextMove(String move) {
         nextMove = move;
     }
 
-    void move() {
+    public void move() {
         where += MOVE;
     }
 
-    int showCurrentLocation() {
+    public int showCurrentLocation() {
         return where;
     }
 
-    int showNextArea(){
+    public int showNextArea(){
         return where + MOVE;
     }
 
-    String showNextDestination() {
+    public String showNextDestination() {
         return nextMove;
     }
 }
