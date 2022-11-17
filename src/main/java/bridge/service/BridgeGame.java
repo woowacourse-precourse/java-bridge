@@ -32,18 +32,14 @@ public class BridgeGame {
         String partOfBridge = bridge.get(movements.size());
         if (movement.equals("U") && partOfBridge.equals("U")) {
             movements.add(Movement.UP_AND_O);
-            return true;
         } else if (movement.equals("U") && partOfBridge.equals("D")) {
             movements.add(Movement.UP_AND_X);
-            return false;
         } else if (movement.equals("D") && partOfBridge.equals("D")) {
             movements.add(Movement.DOWN_AND_O);
-            return true;
         } else if (movement.equals("D") && partOfBridge.equals("U")) {
             movements.add(Movement.DOWN_AND_X);
-            return false;
         }
-        return false;
+        return movements.get(movements.size() - 1).isAvailable();
     }
 
     /**
