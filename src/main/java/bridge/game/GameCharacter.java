@@ -1,22 +1,27 @@
 package bridge.game;
 
 public class GameCharacter {
+    private final int MOVE = 1;
     private String nextMove;
-    private int where = 0;
+    private int where = -1;
 
-    void getNextMove(String move) {
+    void setNextMove(String move) {
         nextMove = move;
     }
 
     void move() {
-        where++;
+        where += MOVE;
     }
 
     int showCurrentLocation() {
         return where;
     }
 
-    String showNextMove() {
+    int showNextArea(){
+        return where + MOVE;
+    }
+
+    String showNextDestination() {
         return nextMove;
     }
 }
