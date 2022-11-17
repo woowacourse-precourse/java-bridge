@@ -44,6 +44,26 @@ Bridge 게임의 정답지를 만들고
 |   ✓    | BridgeMaker | BridgeNumberGenerator 을 받아서 생성 |
 |   ✓    | makeBridge  | size 에 맞는 랜덤 bridge 를 만들고 반환   |
 
+## BridgeMaker Class ✓
+```
+Bridge 게임의 진행상황을 만들고
+반환시켜주는 클래스이다.
+```
+
+**기능 요구사항**
+
+| 구현 여부 | 메소드, 생성자 명    | 의미                                         |
+|:-----:|:--------------|:-------------------------------------------|
+|   ✓   | Statistic     | "U"에 대한 라인과 "D"에 대한 라인의 출력값을 갖는 HashMap 생성 |
+|   ✓   | updateStatus  | 입력에 맞는 status 업데이트                         |
+|   ✓   | createMessage | 입력에 맞는 메시지 생성                              |
+|   ✓   | getMessage    | 가지고 있는 메시지 반환                              |
+|   ✓   | undoStatus    | status 을 이전 상태로 되돌림                        |
+|   ✓   | addCorrect    | key 에 맞는 성공 원소 추가                          |                               | "                                |
+|   ✓   | addWrong      | key 에 맞는 탈락 원소 추가                          |
+|   ✓   | addBlank      | key 에 맞는 공백 원소 추가                          |
+|   ✓   | addDelimiter  | 윗 라인과 아랫 라인에 구분자 추가                        |
+
 # service Package
 ```
 비즈니스 로직들을 수행하는 메소드들을
@@ -66,7 +86,7 @@ BridgeNumberGenerator Interface의 설계도를
 
 | 구현 여부 | 메소드, 생성자 명 | 의미                       |
 |:-----:|:-----------|:-------------------------|
-|   o   | generate   | 0, 1의 두 정수중에 하나를 랜덤으로 반환 |
+|   ✓   | generate   | 0, 1의 두 정수중에 하나를 랜덤으로 반환 |
 
 
 ## Validation Class
