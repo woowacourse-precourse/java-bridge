@@ -1,6 +1,6 @@
 package bridge.exception;
 
-public class RetryCheckException {
+public class GameCommandException {
 
     private static final String RETRY = "R";
     private static final String QUIT = "Q";
