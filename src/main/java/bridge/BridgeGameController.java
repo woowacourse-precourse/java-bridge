@@ -20,7 +20,7 @@ public class BridgeGameController {
 
     public void play() {
         setBridgeSize();
-        selectMove();
+        move();
     }
 
     private void setBridgeSize() {
@@ -34,12 +34,18 @@ public class BridgeGameController {
         }
     }
 
-    private void selectMove() {
+    private String selectMove() {
         try {
-            String move = inputView.readMoving();
+            return inputView.readMoving();
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            selectMove();
+            return selectMove();
         }
+    }
+
+    private void move() {
+        String move = selectMove();
+        bridgeGame.move(move);
+        outputView.printMap(bridgeGame.getCurrentMap());
     }
 }

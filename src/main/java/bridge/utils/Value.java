@@ -5,4 +5,6 @@ public class Value {
     public static final int MAX_BRIDGE_SIZE = 20;
     public static final String UP = "U";
     public static final String DOWN = "D";
+    public static final String POSSIBLE = "O";
+    public static final String IMPOSSIBLE = "X";
 }
