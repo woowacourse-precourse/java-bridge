@@ -8,4 +8,8 @@ public class GameUser {
     public void move(String moving) {
         userBridge.addBlock(moving);
     }
+
+    public void reset() {
+        userBridge.reset();
+    }
 }
