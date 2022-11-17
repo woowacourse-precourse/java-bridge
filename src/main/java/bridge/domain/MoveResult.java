@@ -3,19 +3,19 @@ package bridge.domain;
 public class MoveResult {
 
     private String message;
-    private boolean correct;
+    private boolean success;
 
     public String getMessage() {
         return message;
     }
 
-    public boolean isCorrect() {
-        return correct;
+    public boolean isSuccess() {
+        return success;
     }
 
     public MoveResult(String message, boolean correct) {
         this.message = message;
-        this.correct = correct;
+        this.success = correct;
     }
 
 }

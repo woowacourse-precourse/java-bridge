@@ -24,7 +24,7 @@ public class OutputView {
 
     public void printMap(MoveResult moveResult) {
         String answer = moveResult.getMessage();
-        String resultMark = getResultMark(moveResult.isCorrect());
+        String resultMark = getResultMark(moveResult.isSuccess());
         setBlocks(answer, resultMark);
         printJoiningMessage();
     }
