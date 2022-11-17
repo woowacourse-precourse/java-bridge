@@ -13,14 +13,22 @@ public class GameController {
     BridgeGame bridgeGame;
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
-    public void gameInit() {
-        outputView.gameStart();
+    public void startGame() {
+        outputView.printGameStart();
         int size = inputView.readBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(size);
         bridgeGame = new BridgeGame(bridge);
     }
 
-    void movePlayer() {
+    public void movePlayer() {
+        boolean isCorrect = true;
+        boolean isClear = false;
+        while (isCorrect && !isClear){
+            String selection = inputView.readMoving();
+            isCorrect = bridgeGame.move(selection);
+            isClear = bridgeGame.isClear();
+            outputView.printMap(selection, isCorrect);
+        }
     }
 }
