@@ -291,3 +291,36 @@ int number = bridgeNumberGenerator.generate();
 - **Git의 커밋 단위는 앞 단계에서 `docs/README.md`에 정리한 기능 목록 단위**로 추가한다.
     - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.
+
+
+-------
+
+## 기능 구현 목록
+
+게임이 끝나는 기준  
+유저의 답이 틀렸을 때 -> 물어보고 재시작이면 시도 횟수 올리고 Bridge 다시 만들기. 아니면 break  
+유저가 다리의 끝까지 갔을 때 -> while true
+
+### BridgeMaker  
+  BridgeRandomNumberGenerator 클래스를 이용해 자동으로 랜덤 넘버를 생성한다.  
+  인스턴스 변수: BridgeNumberGenerator (Interface)
+  #### 기능목록
+  - [ ] 다리 사이즈를 입력 받아 이에 해당하는 길이의 다리를 생성. (List<String>)
+  - [ ] 랜덤하게 생성된 0과 1을 각각 D와 U로 매핑하는 기능
+  #### 밸리데이션
+  - [ ] 3 이상 20 이하의 숫자를 입력할 수 있다. ([ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.)
+  - [ ] 올바른 값이 아니면 예외 처리한다.
+
+
+### Bridge  
+  BridgeMaker를 통해 만들어진 다리를 다시 포장하는 용도이며 BridgeGame의 인스턴스 변수로 만들 예정  
+  멤버변수: 다리 (List<String>), 다리 모양 (String[][])
+  #### 기능목록
+  - [ ] D와 U를 입력 받아 다리와 비교
+  - [ ] 다리와 비교해 정답이면 다리 모양에 "O" 또는 "X" 추가
+  #### 밸리데이션
+  - [ ] "U" or "D" 이외의 문자를 입력할 수 없다.
+  
+
+### Player
+  멤버변수: 현재 위치(in), 시도한 횟수(int)
