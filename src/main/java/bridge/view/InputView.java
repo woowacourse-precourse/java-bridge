@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.option.GameCommand;
+import bridge.option.Move;
 import bridge.size.BridgeSize;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -19,14 +21,16 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public Move readMoving() {
+        String move = Console.readLine();
+        return new Move(move);
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public GameCommand readGameCommand() {
+        String command = Console.readLine();
+        return new GameCommand(command);
     }
 }
