@@ -16,4 +16,11 @@ public class Moving {
             throw new IllegalArgumentException(ErrorMessage.NOT_MOVING_VALUE.getMessage());
         }
     }
+
+    public boolean isSame(String moving) {
+        if (this.moving.equals(moving)) {
+            return true;
+        }
+        return false;
+    }
 }
