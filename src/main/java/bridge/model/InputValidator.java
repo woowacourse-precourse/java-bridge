@@ -1,5 +1,6 @@
 package bridge.model;
 
+import bridge.view.ErrorMessage;
 import java.util.regex.Pattern;
 
 public class InputValidator {
@@ -9,10 +10,10 @@ public class InputValidator {
     }
 
     public static void validateBridgeSize(String input) {
-        validateNumeric(input);
-        validateLength(input);
+        InputValidator.validateNumeric(input);
+        InputValidator.validateLength(input);
         int inputNumber = Integer.parseInt(input);
-        validateRange(inputNumber);
+        InputValidator.validateRange(inputNumber);
     }
 
     public static void validateNumeric(String input) {
