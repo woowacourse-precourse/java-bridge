@@ -11,4 +11,16 @@ public class LogicException {
             throw new IllegalArgumentException(ExceptionCode.SIZE_ERROR.getMessage());
         }
     }
+
+    public static void verifyUserInput(String input) {
+        if(!input.equals("U") && !input.equals("D")) {
+            throw  new IllegalArgumentException(ExceptionCode.INPUT_ERROR.getMessage());
+        }
+    }
+
+    public static void verifyRetryOrQuit(String input) {
+        if(!input.equals("R") && !input.equals("Q")) {
+            throw new IllegalArgumentException(ExceptionCode.INPUT_TRY_ERROR.getMessage());
+        }
+    }
 }
