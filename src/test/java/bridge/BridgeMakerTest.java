@@ -19,6 +19,21 @@ public class BridgeMakerTest {
 		@DisplayName("성공 테스트 클래스")
 		class SuccessTest {
 
+			@Test
+			@DisplayName("다리의 상태를 확인하는 테스트. (0은 아래칸(D), 1은 윗칸(U))")
+			void correctBridgeStateTest() {
+
+				// given
+				BridgeNumberGenerator bridgeFixNumberGenerator = new BridgeFixNumberGenerator(
+						newArrayList(1, 1, 0, 0, 1, 0, 1));
+				BridgeMaker bridgeMaker = new BridgeMaker(bridgeFixNumberGenerator);
+
+				// when
+				List<String> bridge = bridgeMaker.makeBridge(7);
+
+				// then
+				assertThat(bridge).containsExactly("U", "U", "D", "D", "U", "D", "U");
+			}
 		}
 
 		@Nested
