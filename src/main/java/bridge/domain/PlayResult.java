@@ -10,4 +10,8 @@ public class PlayResult {
     public void updateResult(String spaceToMove, boolean canGo) {
         playResult.add(MoveStatus.findBySpaceToMove(spaceToMove, canGo));
     }
+
+    public List<MoveStatus> getPlayResult() {
+        return playResult;
+    }
 }

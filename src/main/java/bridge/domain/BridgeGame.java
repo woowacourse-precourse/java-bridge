@@ -28,4 +28,8 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public PlayResult getPlayResult() {
+        return playResult;
+    }
 }
