@@ -31,9 +31,21 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public String readMoving(List<Integer> player) {
+
+        String readMovingToString = readLine();
+        for (int index = 0; index < player.size(); index++) {
+            if (player.equals("U")) {
+                readMovingToString.contains("U");
+            }
+            if (player.equals("D")) {
+                readMovingToString.contains("D");
+                System.out.println(readMovingToString);
+            }
+        }
+        return readMovingToString;
     }
+
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.

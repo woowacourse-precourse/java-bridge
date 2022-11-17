@@ -9,5 +9,8 @@ public class Application {
         int input = inputView.readBridgeSize();
                 System.out.println(input);
 
+//        String string = inputView.readMoving();
+
+
     }
 }
