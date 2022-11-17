@@ -1,13 +1,13 @@
 package bridge.domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class User {
-    private final List<UpDownFlag> movedPosition;
+    private final Stack<UpDownFlag> movedPosition;
 
     public User() {
-        movedPosition = new ArrayList<>();
+        movedPosition = new Stack<>();
     }
 
     public void moveUp() {
@@ -23,13 +23,22 @@ public class User {
     }
 
     public int getCurrentIndex() {
+        validateEmpty();
+        return movedPosition.size() - 1;
+    }
+
+    private void validateEmpty() {
         if (movedPosition.isEmpty()) {
             throw new IllegalStateException("[ERROR] 사용자가 이동한 곳이 없습니다.");
         }
-        return movedPosition.size() - 1;
     }
 
     public List<UpDownFlag> getMovedPosition() {
         return List.copyOf(movedPosition);
+    }
+
+    public UpDownFlag getCurrentUpDown() {
+        validateEmpty();
+        return movedPosition.peek();
     }
 }
