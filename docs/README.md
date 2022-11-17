@@ -10,10 +10,10 @@
 
 - [ ] 일급 컬렉션 생성
   - [x] Bridge 일급 컬렉션
-  - [ ] UserMovement 일급 컬렉션
+  - [ ] BridgeGame에 GameLog를 멤버변수로 선언하여 일급 컬렉션화
 
 
-- [ ] 다리 건너기
+- [ ]을 다리 건너기
   - [ ] U 또는 D를 입력하여 다리를 건넌다.
     - InputView에서 readMoving 메서드를 구현
     - BridgeGame의 move 메서드를 구현
