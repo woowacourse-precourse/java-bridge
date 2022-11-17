@@ -1,5 +1,7 @@
 package bridge.service;
 
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  * - Instance 변수 추가 가능
@@ -9,6 +11,12 @@ package bridge.service;
  * - 필요 method 추가 가능
  */
 public class BridgeGame {
+
+    private List<String> bridge;
+
+    public BridgeGame(List<String> bridge) {
+        this.bridge = bridge;
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
