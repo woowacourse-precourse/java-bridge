@@ -11,7 +11,7 @@ public class RestartProcess {
     private final Boolean GAME_OVER=false;
     private final Boolean RESTART=true;
     Validate validate = new Validate();
-    public boolean restart() {
+    public boolean restart(int idx, int bridgeSize) {
         String destination = inputView.readGameCommand();
         if(destination.equals(QUIT)){
             return GAME_OVER;

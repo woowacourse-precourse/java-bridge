@@ -33,7 +33,7 @@ public class Controller {
     }
 
     public void play(){
-        BridgeGame bridgeGame = new BridgeGame();
+        BridgeGame bridgeGame = new BridgeGame(mapBridge);
         bridgeGame.move(mapBridge, size);
 
 

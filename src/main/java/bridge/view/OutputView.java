@@ -24,8 +24,15 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
-        return;
+    public void printResult(int count, MapPrinting mapPrinting, boolean isSuccess) {
+        String isSucceed="실패";
+        System.out.println("최종 게임 결과");
+        mapPrinting.makeList();
+        if(isSuccess){
+            isSucceed="성공";
+        }
+        System.out.println("게임 성공 여부: " + isSucceed);
+        System.out.println("총 시도한 횟수: " + count);
     }
 
 
@@ -49,4 +56,7 @@ public class OutputView {
     public void printRestart() {
         System.out.println(PrintString.RESTART.getPrint());
     }
+
+
+
 }

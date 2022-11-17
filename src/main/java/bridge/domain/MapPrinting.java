@@ -38,6 +38,7 @@ public class MapPrinting {
         upDownLocation.add(nowIndex);
         makeUpList();
         makeDownList();
+        System.out.println();
     }
 
 
