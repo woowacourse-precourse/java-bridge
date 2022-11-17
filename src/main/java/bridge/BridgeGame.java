@@ -12,7 +12,7 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String answer, String submit ) {
+    public void move(String answer, String submit) {
         survival = answer.equals(submit);
         creatingLog(submit);
     }
@@ -24,11 +24,21 @@ public class BridgeGame {
         }
 
         char[][] tempLog = new char[2][lengthOfLog + 1];
-        for (int i = 0; i <2 ; i++) {
-            for (int j = 0; j <lengthOfLog ; j++) {
+        copyLog(lengthOfLog, tempLog);
+        recordNow(submit, lengthOfLog, tempLog);
+
+        log = tempLog;
+    }
+
+    private void copyLog(int lengthOfLog, char[][] tempLog) {
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < lengthOfLog; j++) {
                 tempLog[i][j] = log[i][j];
             }
         }
+    }
+
+    private void recordNow(String submit, int lengthOfLog, char[][] tempLog) {
         if (submit.equals("U")) {
             tempLog[0][lengthOfLog] = Life.heIsSurvive(survival);
             tempLog[1][lengthOfLog] = ' ';
@@ -36,8 +46,6 @@ public class BridgeGame {
             tempLog[1][lengthOfLog] = Life.heIsSurvive(survival);
             tempLog[0][lengthOfLog] = ' ';
         }
-
-        log = tempLog;
     }
 
     /**
@@ -48,6 +56,7 @@ public class BridgeGame {
     public void retry() {
     }
 }
+
 enum Life {
     Alive('O', true),
     Dead('X', false);
