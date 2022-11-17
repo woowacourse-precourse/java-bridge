@@ -22,13 +22,18 @@ public class Application {
             IsSuccess = bridgeGame.move(inputView.readMoving());
             outputView.printMap(bridgeGame.getMap());
             if (IsSuccess == false) {
-                if (inputView.readGameCommand() == "R") {
-                    startGame();
-                    return;
-                }
-                break;
+                wrongAnswerHandling();
+                return;
             }
         }
-        outputView.printResult(IsSuccess, bridgeGame.getTrials(), bridgeGame.getMap());
+        outputView.printResult(true, bridgeGame.getTrials(), bridgeGame.getMap());
+    }
+
+    public static void wrongAnswerHandling() {
+        if (inputView.readGameCommand() == "R") {
+            startGame();
+            return;
+        }
+        outputView.printResult(false, bridgeGame.getTrials(), bridgeGame.getMap());
     }
 }
