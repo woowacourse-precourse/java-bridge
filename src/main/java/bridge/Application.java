@@ -19,7 +19,7 @@ public class Application {
             String moving = inputView.readMoving();
 
             bridgeGame.move(moving);
-            outputView.printMap();
+            outputView.printMap(bridgeGame);
             if (bridgeGame.aborted()) {
                 outputView.printRestart();
                 String cmd = inputView.readGameCommand();
