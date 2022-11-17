@@ -9,14 +9,14 @@ import org.junit.jupiter.api.Test;
 
 import bridge.Error;
 
-class OptionTest {
+class ExitOptionTest {
 	@DisplayName("R 혹은 Q를 입력하면 Boolean을 리턴한다.")
 	@Test
 	void case1() {
-		assertTrue(Option.isReplay("R"));
-		assertTrue(Option.isReplay("r"));
-		assertFalse(Option.isReplay("Q"));
-		assertFalse(Option.isReplay("q"));
+		assertTrue(ExitOption.of("R").isReplay());
+		assertTrue(ExitOption.of("r").isReplay());
+		assertFalse(ExitOption.of("Q").isReplay());
+		assertFalse(ExitOption.of("q").isReplay());
 	}
 
 	@DisplayName("R 혹은 Q 외의 것을 입력하면 에러 메시지를 출력한다")
@@ -25,89 +25,89 @@ class OptionTest {
 		@Test
 		void case1() {
 			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-				Option.isReplay("a");
+				ExitOption.of("a");
 			});
-			Assertions.assertEquals(Error.COMMAND.getMessage(), exception.getMessage());
+			Assertions.assertEquals(Error.EXIT_OPTION.getMessage(), exception.getMessage());
 		}
 
 		@Test
 		void case2() {
 			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-				Option.isReplay("Z");
+				ExitOption.of("Z");
 			});
-			assertEquals(Error.COMMAND.getMessage(), exception.getMessage());
+			assertEquals(Error.EXIT_OPTION.getMessage(), exception.getMessage());
 		}
 
 		@Test
 		void case3() {
 			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-				Option.isReplay("0");
+				ExitOption.of("0");
 			});
-			assertEquals(Error.COMMAND.getMessage(), exception.getMessage());
+			assertEquals(Error.EXIT_OPTION.getMessage(), exception.getMessage());
 		}
 
 		@Test
 		void case4() {
 			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-				Option.isReplay("-1");
+				ExitOption.of("-1");
 			});
-			assertEquals(Error.COMMAND.getMessage(), exception.getMessage());
+			assertEquals(Error.EXIT_OPTION.getMessage(), exception.getMessage());
 		}
 
 		@Test
 		void case5() {
 			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-				Option.isReplay("100000");
+				ExitOption.of("100000");
 			});
-			assertEquals(Error.COMMAND.getMessage(), exception.getMessage());
+			assertEquals(Error.EXIT_OPTION.getMessage(), exception.getMessage());
 		}
 
 		@Test
 		void case6() {
 			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-				Option.isReplay("");
+				ExitOption.of("");
 			});
-			assertEquals(Error.COMMAND.getMessage(), exception.getMessage());
+			assertEquals(Error.EXIT_OPTION.getMessage(), exception.getMessage());
 		}
 
 		@Test
 		void case7() {
 			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-				Option.isReplay(" ");
+				ExitOption.of(" ");
 			});
-			assertEquals(Error.COMMAND.getMessage(), exception.getMessage());
+			assertEquals(Error.EXIT_OPTION.getMessage(), exception.getMessage());
 		}
 
 		@Test
 		void case8() {
 			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-				Option.isReplay("U");
+				ExitOption.of("U");
 			});
-			assertEquals(Error.COMMAND.getMessage(), exception.getMessage());
+			assertEquals(Error.EXIT_OPTION.getMessage(), exception.getMessage());
 		}
 
 		@Test
 		void case9() {
 			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-				Option.isReplay("u");
+				ExitOption.of("u");
 			});
-			assertEquals(Error.COMMAND.getMessage(), exception.getMessage());
+			assertEquals(Error.EXIT_OPTION.getMessage(), exception.getMessage());
 		}
 
 		@Test
 		void case10() {
 			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-				Option.isReplay("D");
+				ExitOption.of("D");
 			});
-			assertEquals(Error.COMMAND.getMessage(), exception.getMessage());
+			assertEquals(Error.EXIT_OPTION.getMessage(), exception.getMessage());
 		}
 
 		@Test
 		void case11() {
 			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-				Option.isReplay("d");
+				ExitOption.of("d");
 			});
-			assertEquals(Error.COMMAND.getMessage(), exception.getMessage());
+			assertEquals(Error.EXIT_OPTION.getMessage(), exception.getMessage());
 		}
 	}
 }
