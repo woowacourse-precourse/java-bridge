@@ -18,4 +18,8 @@ public class Bridge {
     public List<String> getBrideState(){
         return bridgeState;
     }
+
+    public int getBrideSize(){
+        return bridgeSize;
+    }
 }
