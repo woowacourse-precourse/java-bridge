@@ -19,6 +19,11 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public boolean readMoving() {
+        String moveString = Console.readLine();
+        validator.isValidMove(moveString);
+        if (moveString.equals("U")) {
+            return true;
+        }
         return false;
     }
 
