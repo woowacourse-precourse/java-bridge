@@ -13,13 +13,13 @@ public class BridgeLengthValidatorTest {
     @DisplayName("옳바른 다리 길이 입력 시")
     @ValueSource(ints = {3, 5, 20})
     void inputValidBridgeLength(int length) {
-        assertDoesNotThrow(() -> BridgeLengthValidator.validate(length));
+        assertDoesNotThrow(() -> BridgeValidator.validateLength(length));
     }
 
     @ParameterizedTest(name = "{index}: {displayName} length:{0}")
     @DisplayName("범위를 벗어난 다리 길이 입력 시 예외 발생")
     @ValueSource(ints = {-1, 2, 21})
     void inputOutOfRangeBridgeLength(int length) {
-        assertThrows(LengthOutOfRangeException.class, () -> BridgeLengthValidator.validate(length));
+        assertThrows(LengthOutOfRangeException.class, () -> BridgeValidator.validateLength(length));
     }
 }
