@@ -9,4 +9,6 @@ public class ViewConstants {
     static final String GAME_END = "최종 게임 결과";
     static final String WIN_OR_FAIL = "게임 성공 여부: ";
     static final String PLAY_TIME = "총 시도한 횟수: ";
+
+    private ViewConstants(){}
 }
