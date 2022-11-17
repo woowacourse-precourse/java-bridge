@@ -25,7 +25,8 @@ public class Emcee {
     }
 
     public void guideEnteringRetryStatus() {
-
+        String guide = "게임을 다시 시도할지 여부를 입력하세요. (재시도: R, 종료: Q)";
+        outputView.printGuide(guide);
     }
 
     public void showBridgeMovementStatus(String movementStatus) {
