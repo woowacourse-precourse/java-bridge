@@ -36,8 +36,8 @@ public class ProgressGame {
     }
 
     private void incorrectProecess() {
+        output.printMap(game, INCORRECT);
         System.out.println(PrintSentence.RESTART_REQUEST.getSentence());
-        output.printResult(game, 0);
         if (input.readGameCommand().equals("R")) {
             game.retry();
             progressGame();

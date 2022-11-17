@@ -20,6 +20,11 @@ public class BridgeGame {
         nowPosition = 0;
         retryCount += 1;
     }
+
+    public void backForResult() {
+        nowPosition -= 1;
+    }
+
     public int getNowPosition() {
         return nowPosition;
     }
