@@ -65,7 +65,7 @@ R
 - 게임을 시작 
 - [ ] 다리의 길이를 입력요청 (InputView)
 - [ ] 다리의 길이 예외처리 (3~20) 다시 입력요청 (InputValidator) 
-- [ ] 다리의 길이만큼 다리 생성 (BridgeGame ->Bridges-> BridgeMaker)
+- [X] 다리의 길이만큼 다리 생성 (BridgeGame ->Bridges-> BridgeMaker)
 - [ ] 다리 이동칸을 요청한다. (InputView)
 - [ ] 이동할 칸을 입력 예외처리  (InputValidator)
 - [ ] player를 이동한다.(BridgeGame->player)
