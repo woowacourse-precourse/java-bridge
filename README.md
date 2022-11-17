@@ -1,5 +1,20 @@
 # 미션 - 다리 건너기
 
+## 구현 목록
+* [ ] 다리의 길이 받기 getBridgeSize #GameController
+  * [ ] 멘트 출력 printReadBridgeSize #OutputView
+  * [ ] 입력 받기 readBridgeSize #InputView
+* [ ] 다리 건너기 시작하기 crossBridge #GameController
+  * [ ] 방향 입력 받기 readMoving #InputView
+  * [ ] 방향에 따른 판단하기 judgeMoving 
+  * [ ] 시도한 결과 보여주기 printMap #OutputView
+    * [ ] bridge의 시작과 끝, 구분 부분 출력하기 printDivisionOfBridge
+    * [ ] O, X 올바른 위치에 넣기 printOX
+  * [ ] 틀렸다면 재시도 여부 묻기 retry
+* [ ] 최종 게임 결과 출력하기 printResult
+  * [ ] 게임 성공 여부 출력 printGameSuccess
+  * [ ] 총 시도 횟수 출력 printAttempts
+
 ## 🔍 진행 방식
 
 - 미션은 **기능 요구 사항, 프로그래밍 요구 사항, 과제 진행 요구 사항** 세 가지로 구성되어 있다.
