@@ -21,9 +21,9 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         validate(size);
-        return new ArrayList<>() {{
+        return new ArrayList<>(size) {{
             for (int idx = 0; idx < size; idx++) {
-                add(BridgeSelectRule.convertRandomNumberToText(bridgeNumberGenerator.generate()));
+                add(TypeOfBridge.convertRandomNumberToText(bridgeNumberGenerator.generate()));
             }
         }};
     }

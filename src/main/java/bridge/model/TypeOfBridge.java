@@ -3,23 +3,26 @@ package bridge.model;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum BridgeSelectRule {
-    UP_BRIDGE("U", 1),
-    DOWN_BRIDGE("D", 0),
+public enum TypeOfBridge {
+    UP_BRIDGE("U", "위", 1),
+    DOWN_BRIDGE("D", "아래",  0),
     ;
 
     private static final Map<Integer, String> bridgeNumberText = new HashMap<>() {{
-        for (BridgeSelectRule rule : BridgeSelectRule.values()) {
+        for (TypeOfBridge rule : TypeOfBridge.values()) {
             put(rule.bridgeNumber, rule.text);
         }
     }};
 
     private final String text;
 
+    private final String position;
+
     private final int bridgeNumber;
 
-    BridgeSelectRule(String text, int bridgeNumber) {
+    TypeOfBridge(String text, String position, int bridgeNumber) {
         this.text = text;
+        this.position = position;
         this.bridgeNumber = bridgeNumber;
     }
 
@@ -31,5 +34,13 @@ public enum BridgeSelectRule {
         }
 
         return bridgeText;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public String getPosition() {
+        return position;
     }
 }
