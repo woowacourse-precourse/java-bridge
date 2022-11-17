@@ -1,12 +1,13 @@
 package bridge;
 
-import static bridge.OutputView.printGameStartMessage;
+import static bridge.OutputView.*;
 
 /** 다리 건너기 게임을 관리하는 클래스 */
 public class BridgeGame {
 
   public void run() {
     printGameStartMessage();
+    printLengthInputMessage();
   }
 
   /**

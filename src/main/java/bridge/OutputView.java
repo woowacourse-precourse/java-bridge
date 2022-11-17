@@ -5,9 +5,12 @@ import static bridge.GameMessage.*;
 /** 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다. */
 public class OutputView {
 
-  /** 게임 시작 메세지를 출력한다. */
   public static void printGameStartMessage() {
     System.out.println(GAME_START_MESSAGE.getMessage());
+  }
+
+  public static void printLengthInputMessage() {
+    System.out.println(LENGTH_INPUT_MESSAGE.getMessage());
   }
 
   /**
