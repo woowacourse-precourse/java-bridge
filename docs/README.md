@@ -80,3 +80,18 @@
 
 
 ## ● 테스트 코드
+### domain
+- BridgeMaker
+- [ ] 문자열 다리 검증
+- Bridge
+- [ ] 입력값에 맞는 횡단여부 검증
+- FootPrint
+- [ ] 게임 시도 횟수, 성공 여부 검증
+- [ ] 이동한 칸과 위치 검증
+- [ ] 올바른 BridgeCrossingDTO인지 검증
+
+### view
+- InputView
+- [ ] 다리 길이 검증
+- [ ] 이동할 칸 문자 검증
+- [ ] 재시작 여부 문자 검증
