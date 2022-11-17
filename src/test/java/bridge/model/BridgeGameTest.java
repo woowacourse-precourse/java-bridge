@@ -14,33 +14,33 @@ public class BridgeGameTest {
     @DisplayName("다리가 위 칸일 때, 사용자가 U과 D을 입력한 경우 테스트")
     @Test
     void saveStageWhenBridgeStageIsUp() {
-        List<List<String>> currentMap = new ArrayList<>();
+        String currentMap;
         bridgeGame.move("U", "U");
-        currentMap.addAll(bridgeGame.move("U", "D"));
+        currentMap = bridgeGame.move("U", "D");
 
-        Assertions.assertThat(currentMap).isEqualTo(List.of(List.of(" ", "O"), List.of(" ", "X")));
+        Assertions.assertThat(currentMap).contains("[ O |   ]", "[   | X ]");
     }
 
     @DisplayName("다리가 아래 칸일 때, 사용자가 U과 D을 입력한 경우 테스트")
     @Test
     void saveStageWhenBridgeStageIsDown() {
-        List<List<String>> currentMap = new ArrayList<>();
+        String currentMap;
         bridgeGame.move("D", "U");
-        currentMap.addAll(bridgeGame.move("D", "D"));
+        currentMap=bridgeGame.move("D", "D");
 
-        Assertions.assertThat(currentMap).isEqualTo(List.of(List.of("X", " "), List.of("O", " ")));
+        Assertions.assertThat(currentMap).contains("[ X |   ]", "[   | O ]");
     }
 
 
     @DisplayName("재시작 여부로 R을 입력하는 경우 테스트")
     @Test
     void retryThenCurrentMapClear() {
-        List<List<String>> currentMap = new ArrayList<>();
+        String currentMap;
         bridgeGame.move("D", "U");
         bridgeGame.move("D", "D");
         bridgeGame.retry("R");
-        currentMap.addAll(bridgeGame.move("D", "U"));
+        currentMap=bridgeGame.move("D", "U");
 
-        Assertions.assertThat(currentMap).isEqualTo(List.of(List.of("X", " ")));
+        Assertions.assertThat(currentMap).contains("[ X ]\n[   ]");
     }
 }

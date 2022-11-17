@@ -3,8 +3,8 @@ package bridge.model;
 public enum Stage {
     CROSS_UP_STAIR("U", "U", " -O"),
     CROSS_DOWN_STAIR("D", "D", "O- "),
-    CAN_NOT_CROSS_UP_STAIR("U", "D", " -X"),
-    CON_NOT_CROSS_DOWN_STAIR("D", "U", "X- ");
+    CAN_NOT_CROSS_UP_STAIR("U", "D", "X- "),
+    CON_NOT_CROSS_DOWN_STAIR("D", "U", " -X");
 
     private final String bridgeStage;
     private final String userMoving;
@@ -18,10 +18,10 @@ public enum Stage {
 
     public static String judge(String bridgeStage, String userMoving) {
         for (Stage stage : Stage.values()) {
-            if (bridgeStage == stage.bridgeStage && userMoving == stage.userMoving) {
+            if (bridgeStage.equals(stage.bridgeStage) && userMoving.equals(stage.userMoving)) {
                 return stage.mapElement;
             }
         }
-        throw new IllegalArgumentException();  //상황에 맞는 예외 찾아보기
+        throw new IllegalArgumentException();
     }
 }

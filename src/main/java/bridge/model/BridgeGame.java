@@ -1,6 +1,5 @@
 package bridge.model;
 
-import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -8,7 +7,7 @@ import java.util.List;
 public class BridgeGame {
     private CurrentBridge currentBridge = new CurrentBridge();
 
-    public List<List<String>> move(String bridgeStage, String userMoving) {
+    public String move(String bridgeStage, String userMoving) {
         return currentBridge.saveMap(Stage.judge(bridgeStage, userMoving));
     }
 

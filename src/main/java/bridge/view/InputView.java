@@ -2,9 +2,6 @@ package bridge.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 public class InputView {
     private static final String INPUT_ONLY_NUMBER = "다리길이는 숫자여야 합니다.";
     private static final String NOT_MOVING_PATTERN = "[^UD]";
