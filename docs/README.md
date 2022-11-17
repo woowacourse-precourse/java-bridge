@@ -5,8 +5,8 @@
   -[x] 랜덤하게 생성된 값에 따라 문자열 생성한다. 
   -[x] 3미만 20초과 값이면 `IllegalArgumentException`
   -[x] 다리 생성 중 랜덤하게 나온 숫자가 잘못된 경우 `IllegalArgumentException`
--[ ] 다리 길이 입력
-  -[ ] 숫자 아니면 `IllegalArgumentException`
+-[x] 다리 길이 입력
+  -[x] 숫자 아니면 `IllegalArgumentException`
 
 2. 플레이어 이동
     -[ ] validation
