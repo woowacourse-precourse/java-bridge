@@ -46,7 +46,7 @@ class BridgeGameTest {
         String input = "U";
         int index = 2;
         //then
-        assertThat(bridgeGame.checkStatus(bridge, input, index)).isEqualTo(false);
+        assertThat(bridgeGame.checkStatus(bridge, input, index)).isFalse();
     }
     
 }
