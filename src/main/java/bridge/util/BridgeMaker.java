@@ -1,5 +1,6 @@
 package bridge.util;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,7 +18,12 @@ public class BridgeMaker {
      * @param size 다리의 길이
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
-    public List<String> makeBridge(int size) {
-        return null;
+    public List<String> makeBridge(int size) { //TODO U, D Enum이나 HashMap을 만들어서 0 -> D , 1 -> U 반환 만들기
+        List<String> list = new ArrayList<>();
+        for(int i = 0; i < size; i++){
+            int up_and_down = bridgeNumberGenerator.generate();
+            list.add(String.valueOf(up_and_down));
+        }
+        return list;
     }
 }
