@@ -35,6 +35,7 @@ public class GameController {
                 outputView.setDownBridge("[]");
                 outputView.setUpBridge("[]");
                 gameTotalProgress();
+                return;
             }
         }
         gameResult();
@@ -42,6 +43,8 @@ public class GameController {
 
     public void gameStart() {
         outputView.start();
+        outputView.setUpBridge("[]");
+        outputView.setDownBridge("[]");
         bridgeSize = inputView.readBridgeSize();
         bridge = bridgeMaker.makeBridge(bridgeSize);
     }
