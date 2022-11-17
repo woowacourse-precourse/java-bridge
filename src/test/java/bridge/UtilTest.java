@@ -19,4 +19,16 @@ class UtilTest {
                 .isFalse();
     }
 
+    @Test
+    @DisplayName("문자인지 아닌지 검사합니다")
+    void isLetter(){
+        boolean isTrue = Util.isLetter("a");
+        assertThat(isTrue)
+                .isTrue();
+
+        boolean isFalse = Util.isLetter("1");
+        assertThat(isFalse)
+                .isFalse();
+    }
+
 }
