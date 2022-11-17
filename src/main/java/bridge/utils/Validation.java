@@ -9,6 +9,11 @@ public class Validation {
             throw new IllegalArgumentException(ERROR_BRIDGE_SIZE_NOT_INTEGER);
     }
 
+    public void validateNonZero(int bridgeSize){
+        if(bridgeSize == 0)
+            throw new IllegalArgumentException(ERROR_BRIDGE_SIZE_IS_ZERO);
+    }
+
     public void validateBridgeSizeInRange3to20(int bridgeSize){
         if(bridgeSize < MIN_BRIDGE_SIZE || bridgeSize > MAX_BRIDGE_SIZE){
             throw new IllegalArgumentException(ERROR_BRIDGE_SIZE_NOT_IN_RANGE);
