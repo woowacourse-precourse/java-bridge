@@ -1,9 +1,12 @@
 package bridge.validation;
 
 import bridge.validation.enums.ErrorMessage;
+import bridge.validation.enums.RegEx;
+import java.util.regex.Pattern;
 
 public class BridgeSizeValidation {
     private ErrorMessage message;
+    private RegEx regEx;
 
     public BridgeSizeValidation() {
     }
@@ -27,6 +30,11 @@ public class BridgeSizeValidation {
     }
 
     public void isNumber(String bridgeSize) {
+        regEx = RegEx.valueOf("NUMBER_REG_EX");
+        if (!Pattern.matches(regEx.getRegEx(), bridgeSize)) {
+            message = ErrorMessage.valueOf("NUMBER_EXCEPTION");
+            throwError(message.getMessage());
+        }
     }
 
     public void isCorrectRange(String bridgeSize) {
