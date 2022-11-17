@@ -5,6 +5,14 @@ package bridge;
  */
 public class BridgeGame {
 
+    private final Player player;
+    private final BridgeMaker bridgeMaker;
+
+    public BridgeGame(Player player, BridgeMaker bridgeMaker) {
+        this.player = player;
+        this.bridgeMaker = bridgeMaker;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
