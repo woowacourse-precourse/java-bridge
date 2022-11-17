@@ -8,6 +8,7 @@ public class OutputView {
 
     public void printStart() {
         System.out.println(START_GAME);
+        System.out.println();
     }
 
     public void printInputBridgeSize() {
