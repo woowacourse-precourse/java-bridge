@@ -31,7 +31,7 @@ public class Application {
 
     private static boolean retryOrNot(BridgeGame bridgeGame) {
         String command = InputView.readGameCommand();
-        if (command.equals(InputKey.Q.getValue())) {
+        if (InputKey.isQuit(command)) {
             return false;
         }
         bridgeGame.retry();
