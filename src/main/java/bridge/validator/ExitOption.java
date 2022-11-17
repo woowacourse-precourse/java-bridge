@@ -4,29 +4,29 @@ import java.util.List;
 
 import bridge.Error;
 
-public enum Command {
+public enum Option {
 	REPLAY("R"),
 	QUIT("Q"),
 	;
 
-	private final String value;
+	private final String command;
 
-	Command(String value) {
-		this.value = value;
+	Option(String command) {
+		this.command = command;
 	}
 
 	public static boolean isReplay(String inputValue) {
 		String upperCase = inputValue.toUpperCase();
 		validate(upperCase);
-		return upperCase.equals(REPLAY.value);
+		return upperCase.equals(REPLAY.command);
 	}
 
-	public String getValue() {
-		return value;
+	public String getCommand() {
+		return command;
 	}
 
 	private static void validate(String inputValue) {
-		List<String> commandStrings = List.of(REPLAY.value, QUIT.value);
+		List<String> commandStrings = List.of(REPLAY.command, QUIT.command);
 
 		if (!commandStrings.contains(inputValue)) {
 			throw new IllegalArgumentException(Error.COMMAND.getMessage());

@@ -9,32 +9,59 @@ public enum Location {
 	DOWN("D", 0),
 	;
 
-	private final String inputValue;
-	private final int convertValue;
+	private final String command;
+	private final int number;
 
-	Location(String inputValue, int convertValue) {
-		this.inputValue = inputValue;
-		this.convertValue = convertValue;
+	Location(String command, int number) {
+		this.command = command;
+		this.number = number;
 	}
 
-	public String getInputValue() {
-		return inputValue;
+	public String getCommand() {
+		return command;
 	}
 
-	public static int convertToInt(String inputValue) {
+	public int getNumber() {
+		return number;
+	}
+
+	public int getAnotherNumber() {
+		if (number == 1) {
+			return 0;
+		}
+		return 1;
+	}
+
+	public static Location of(int inputValue) {
+		validate(inputValue);
+		if (inputValue == UP.number) {
+			return UP;
+		}
+		return DOWN;
+	}
+
+	public static Location of(String inputValue) {
 		String upperCase = inputValue.toUpperCase();
 		validate(upperCase);
-		if (upperCase.equals(UP.inputValue)) {
-			return UP.convertValue;
+		if (upperCase.equals(UP.command)) {
+			return UP;
 		}
-		return DOWN.convertValue;
+		return DOWN;
 	}
 
 	private static void validate(String inputValue) {
-		List<String> locationStrings = List.of(UP.inputValue, DOWN.inputValue);
+		List<String> locationStrings = List.of(UP.command, DOWN.command);
 
 		if (!locationStrings.contains(inputValue)) {
-			throw new IllegalArgumentException(Error.LOCATION.getMessage());
+			throw new IllegalArgumentException(Error.LOCATION_COMMAND.getMessage());
+		}
+	}
+
+	private static void validate(int inputValue) {
+		List<Integer> locationStrings = List.of(UP.number, DOWN.number);
+
+		if (!locationStrings.contains(inputValue)) {
+			throw new IllegalArgumentException(Error.LOCATION_NUMBER.getMessage());
 		}
 	}
 

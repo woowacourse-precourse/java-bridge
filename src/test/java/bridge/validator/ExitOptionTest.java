@@ -9,14 +9,14 @@ import org.junit.jupiter.api.Test;
 
 import bridge.Error;
 
-class CommandTest {
+class OptionTest {
 	@DisplayName("R 혹은 Q를 입력하면 Boolean을 리턴한다.")
 	@Test
 	void case1() {
-		assertTrue(Command.isReplay("R"));
-		assertTrue(Command.isReplay("r"));
-		assertFalse(Command.isReplay("Q"));
-		assertFalse(Command.isReplay("q"));
+		assertTrue(Option.isReplay("R"));
+		assertTrue(Option.isReplay("r"));
+		assertFalse(Option.isReplay("Q"));
+		assertFalse(Option.isReplay("q"));
 	}
 
 	@DisplayName("R 혹은 Q 외의 것을 입력하면 에러 메시지를 출력한다")
@@ -25,7 +25,7 @@ class CommandTest {
 		@Test
 		void case1() {
 			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-				Command.isReplay("a");
+				Option.isReplay("a");
 			});
 			Assertions.assertEquals(Error.COMMAND.getMessage(), exception.getMessage());
 		}
@@ -33,7 +33,7 @@ class CommandTest {
 		@Test
 		void case2() {
 			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-				Command.isReplay("Z");
+				Option.isReplay("Z");
 			});
 			assertEquals(Error.COMMAND.getMessage(), exception.getMessage());
 		}
@@ -41,7 +41,7 @@ class CommandTest {
 		@Test
 		void case3() {
 			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-				Command.isReplay("0");
+				Option.isReplay("0");
 			});
 			assertEquals(Error.COMMAND.getMessage(), exception.getMessage());
 		}
@@ -49,7 +49,7 @@ class CommandTest {
 		@Test
 		void case4() {
 			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-				Command.isReplay("-1");
+				Option.isReplay("-1");
 			});
 			assertEquals(Error.COMMAND.getMessage(), exception.getMessage());
 		}
@@ -57,7 +57,7 @@ class CommandTest {
 		@Test
 		void case5() {
 			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-				Command.isReplay("100000");
+				Option.isReplay("100000");
 			});
 			assertEquals(Error.COMMAND.getMessage(), exception.getMessage());
 		}
@@ -65,7 +65,7 @@ class CommandTest {
 		@Test
 		void case6() {
 			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-				Command.isReplay("");
+				Option.isReplay("");
 			});
 			assertEquals(Error.COMMAND.getMessage(), exception.getMessage());
 		}
@@ -73,7 +73,7 @@ class CommandTest {
 		@Test
 		void case7() {
 			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-				Command.isReplay(" ");
+				Option.isReplay(" ");
 			});
 			assertEquals(Error.COMMAND.getMessage(), exception.getMessage());
 		}
@@ -81,7 +81,7 @@ class CommandTest {
 		@Test
 		void case8() {
 			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-				Command.isReplay("U");
+				Option.isReplay("U");
 			});
 			assertEquals(Error.COMMAND.getMessage(), exception.getMessage());
 		}
@@ -89,7 +89,7 @@ class CommandTest {
 		@Test
 		void case9() {
 			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-				Command.isReplay("u");
+				Option.isReplay("u");
 			});
 			assertEquals(Error.COMMAND.getMessage(), exception.getMessage());
 		}
@@ -97,7 +97,7 @@ class CommandTest {
 		@Test
 		void case10() {
 			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-				Command.isReplay("D");
+				Option.isReplay("D");
 			});
 			assertEquals(Error.COMMAND.getMessage(), exception.getMessage());
 		}
@@ -105,7 +105,7 @@ class CommandTest {
 		@Test
 		void case11() {
 			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-				Command.isReplay("d");
+				Option.isReplay("d");
 			});
 			assertEquals(Error.COMMAND.getMessage(), exception.getMessage());
 		}
