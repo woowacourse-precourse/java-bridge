@@ -1,7 +1,6 @@
 package bridge.controller;
 
 import bridge.model.BridgeGame;
-import bridge.model.ResultManager;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -27,8 +26,23 @@ public class GameController {
         for (int index = 0; index < bridgeSize; index++) {
             outputView.askMoveSpace();
             String moveSpace = inputView.readMoving();
-            ResultManager result = bridgeGame.move(moveSpace, index);
-            outputView.printResult(result);
+
+            String updateMoveResult = bridgeGame.move(moveSpace, index);
+            outputView.printMap(updateMoveResult);
+
+            if (bridgeGame.canNotMove()) {
+                outputView.askRetry();
+                String gameCommand = inputView.readGameCommand();
+                String retryResult = bridgeGame.retry(gameCommand);
+                if (!retryResult.equals("continue")) {
+                    outputView.printResult(retryResult);
+                    break;
+                }
+                index = -1;
+            }
+            if (index == bridgeSize - 1) {
+                outputView.printResult(bridgeGame.getFinishResult());
+            }
         }
     }
 }
