@@ -1,5 +1,7 @@
 package bridge.view;
 
+import java.util.Arrays;
+
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
@@ -23,25 +25,29 @@ public class InputView {
 
     public String readMoving() {
         String input = Console.readLine();
+        validCommand(input);
+        return input;
+    }
+
+    public String readGameCommand() {
+        String input = Console.readLine();
+        validCommand(input);
+        return input;
+    }
+
+    private void validCommand(String input) {
         try {
-            validMoving(input);
+            for (char c : input.toCharArray()) {
+                checkUpperCase(c);
+            }
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 이동 값은 대문자 알파벳이어야 합니다.");
         }
     }
 
-    private void validMoving(String input) {
-        for (char c : input.toCharArray()) {
-            if (!Character.isUpperCase(c)) {
-                throw new IllegalArgumentException();
-            }
+    private void checkUpperCase(char input) {
+        if (!Character.isUpperCase(input)) {
+            throw new IllegalArgumentException();
         }
-    }
-
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public String readGameCommand() {
-        return null;
     }
 }
