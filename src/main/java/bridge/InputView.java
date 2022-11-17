@@ -7,20 +7,21 @@ import exception.ExceptionHandler;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private ExceptionHandler eh;
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
-        int size = 0;
+    public Integer readBridgeSize() {
         try {
-            size = Integer.parseInt(Console.readLine());
-            if (!(size >= 3 && size <= 20)) throw new IllegalArgumentException();
+            int size = Integer.parseInt(Console.readLine());
+            this.eh = new ExceptionHandler(size);
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 3과 20 사이의 숫자여야 합니다.");
+            System.out.println("[ERROR] 3 ~ 20 사이의 정수만 입력 가능합니다.");
             this.readBridgeSize();
         }
-        return size;
+        return eh.getSize();
     }
+
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
