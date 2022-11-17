@@ -20,8 +20,9 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String>bridge = new ArrayList<>();
+        List<Integer>bridgeNumbers = makeBridgeNumbers(size);
         for(int i=0;i<size;i++){
-            bridge.add(toBridge(makeBridgeNumbers(size).get(i)));
+            bridge.add(toBridge(bridgeNumbers.get(i)));
         }
         return bridge;
     }
