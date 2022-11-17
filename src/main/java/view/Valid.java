@@ -28,7 +28,7 @@ public class Valid {
     }
 
     public static void isLengthValid(String length) {
-        if (isLengthEmpty(length) || isLengthNotNumber(length) || isLengthNotInRange(length)) {
+        if (!isLengthEmpty(length) || !isLengthNotNumber(length) || !isLengthNotInRange(length)) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3~20 중 하나인 숫자입니다.");
         }
     }
