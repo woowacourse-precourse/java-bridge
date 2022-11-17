@@ -6,7 +6,7 @@
 - [x] 입력값이 숫자인지 확인하고, 숫자가 아니면 예외 처리한다. `BridgeMaker#validateBridgeSizeType()`
 - [x] 예외 처리 후에, 그 부분부터 입력을 다시 받는다. `InputController`
 - [x] 3 이상 20 이하의 숫자가 아니면 예외 처리한다. `BridgeMaker#validateSizeRange()`
-- [ ] 다리 길이 만큼 0과 1 중 무작위 값을 생성한다.
+- [x] 다리 길이 만큼 0과 1 중 무작위 값을 생성한다. `BridgeNumberGenerator#generate()`
 - [ ] 무작위 값이 0인 경우 아래 칸, 1인 경우 위 칸을 건널 수 있는 칸으로 지정한다.
 
 ### 다리 게임

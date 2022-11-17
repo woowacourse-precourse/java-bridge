@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,7 +20,12 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         validateSizeRange(size);
-        return null;
+        // 다리 길이 만큼 0과 1 중 무작위 값을 생성한다.
+        List<String> bridge = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            int randomNumber = bridgeNumberGenerator.generate();
+        }
+        return bridge;
     }
 
     private static void validateSizeRange(int size) {

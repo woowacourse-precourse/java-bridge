@@ -15,7 +15,8 @@ public class InputController {
         try {
             BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
             BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-            bridgeMaker.makeBridge(inputView.readBridgeSize());
+            System.out.println(bridgeMaker.makeBridge(inputView.readBridgeSize()));
+            ;
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception);
             setBridgeSize();
