@@ -17,6 +17,6 @@ public class BridgeValidation {
     }
 
     private static boolean hasUnknownElement(List<String> squares) {
-        return squares.stream().anyMatch(PlayerMove::isInPlayerMove);
+        return !squares.stream().allMatch(PlayerMove::isInPlayerMove);
     }
 }
