@@ -71,4 +71,13 @@ class InputBridgeSizeValidatorTest {
                 .isThrownBy(() -> InputBridgeSizeValidator.validate(input))
                 .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
     }
+    
+    @DisplayName("예외 처리 : 3자리 이상 입력 시")
+    @ParameterizedTest(name = "{displayName} : input => {0}")
+    @ValueSource(strings = {"123", "123456789", "1234567890", "123456789012345678901234567890"})
+    void outOfLengthException(final String input) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> InputBridgeSizeValidator.validate(input))
+                .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
+    }
 }
