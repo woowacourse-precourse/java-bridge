@@ -19,7 +19,7 @@ public class OutputView {
         }
         return map;
     }
-    
+
     private void addFailResult(String line, String last, List<String> map){
         if(last.equals(line)){
             map.add(" ");
@@ -43,7 +43,7 @@ public class OutputView {
             addFailResult("D", board.get(step), resultDown);
         }
         System.out.println("[ "+String.join(" | ", resultUp)+" ]");
-        System.out.println("[ "+String.join(" | ", resultDown)+" ]");
+        System.out.println("[ "+String.join(" | ", resultDown)+" ]\n");
     }
 
     /**
@@ -57,7 +57,7 @@ public class OutputView {
 
         String result = "실패";
         if(isSuccess) result = "성공";
-        System.out.println("게임 성공 여부: " + result);
+        System.out.println("\n게임 성공 여부: " + result);
         System.out.println("총 시도한 횟수: " + retryNum);
     }
 }
