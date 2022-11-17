@@ -77,9 +77,6 @@ public class BridgeGame {
             printMessage.printMap(upCase, downCase, bridgeLength);
             bridgeLength++;
         }
-        printMessage.printMapResult();
-        printMessage.printMap(upCase, downCase, bridgeLength - 1);
-        printMessage.printGameSuccess();
-        printMessage.printGameTries(gameCount);
+        printMessage.printSuccessResult(upCase, downCase, gameCount);
     }
 }

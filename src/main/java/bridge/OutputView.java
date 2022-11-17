@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -62,5 +64,11 @@ public class OutputView {
     }
     public void printAskGameRestart(){
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+    }
+    public void printSuccessResult(int [] upCase, int [] downCase, int gameCount){
+        System.out.println("최종 게임 결과");
+        printMap(upCase, downCase, upCase.length);
+        System.out.println("게임 성공 여부: 성공");
+        System.out.println("총 시도한 횟수: " + gameCount);
     }
 }
