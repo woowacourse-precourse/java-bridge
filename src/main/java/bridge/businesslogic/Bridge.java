@@ -22,8 +22,8 @@ public class Bridge {
         currentlyCrossedBridge.add(userPick);
     }
 
-    public void dead(){
-
+    public void reset(){
+        currentlyCrossedBridge.clear();
     }
 
     public boolean isBridgeAllCrossed(){

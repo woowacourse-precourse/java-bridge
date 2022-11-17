@@ -58,9 +58,11 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry() {
-        bridge.dead();
         gameCount++;
         isGameWinningClosed = askUserToRetry();
+        if(isGameWinningClosed){//retry 할때, 게임을 새로 시작해야 할 때
+            bridge.reset();
+        }
         return isGameWinningClosed;
     }
 
