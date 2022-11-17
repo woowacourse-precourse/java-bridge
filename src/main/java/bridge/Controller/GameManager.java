@@ -3,9 +3,12 @@ package bridge.Controller;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.Model.BridgeDTO;
 import bridge.View.InputView;
 
 public class GameManager {
+    private BridgeDTO bridgeDTO;
+
     public void runGame() {
         makeBridgeGame();
     }
@@ -14,6 +17,6 @@ public class GameManager {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         InputView inputView = new InputView();
-        bridgeMaker.makeBridge(inputView.readBridgeSize());
+        bridgeDTO.getBridge();
     }
 }
