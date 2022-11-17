@@ -18,13 +18,35 @@ public class BridgeGameConsole {
         return player.enterBridgeLength();
     }
 
-    private void crossBridge() {
-        while (true) {
-            // 이동 방향 입력 안내
-            // 이동 방향 입력
-            // 이동 방향 입력값 처리
-            // 이동 결과 출력
-            // 이동 결과 처리
+    private void crossBridge(BridgeGame bridgeGame) {
+        int attemptCount = 0;
+        boolean playGame = true;
+        while (playGame) {
+            attemptCount++;
+            boolean shouldCrossMore = true;
+
+            while (shouldCrossMore) {
+                emcee.guideEnteringMovement();
+                String movement = player.enterMovement();
+                boolean availableMovement = bridgeGame.move(movement);
+                String movementStatus = bridgeGame.createMovementStatus();
+                emcee.showBridgeMovementStatus(movementStatus);
+
+                if (!availableMovement) {
+                    emcee.guideEnteringRetryStatus();
+                    String retryStatus = player.enterRetryStatus();
+                    if (retryStatus.equals("R")) {
+                        bridgeGame.retry();
+                        break;
+                    } else {
+                        playGame = false;
+                        break;
+                    }
+                } else {
+                    shouldCrossMore = !bridgeGame.crossedBridge();
+                }
+            }
         }
+        emcee.showGameResult(bridgeGame.createMovementStatus(), bridgeGame.crossedBridge(), attemptCount);
     }
 }
