@@ -24,7 +24,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(Message.CHOOSE_STEP.getMessage());
+        String step = Console.readLine();
+        return Exception.validateMoving(step);
     }
 
     /**
