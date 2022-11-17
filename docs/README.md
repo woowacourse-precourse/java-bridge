@@ -8,3 +8,5 @@
 - InputView 구현
   - validate 구현
 - OutputView 구현
+
+메인 흐름 구현
