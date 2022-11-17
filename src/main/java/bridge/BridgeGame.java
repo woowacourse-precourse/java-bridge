@@ -5,6 +5,27 @@ package bridge;
  */
 public class BridgeGame {
 
+    private InputView inputView;
+    private OutputView outputView;
+
+    /**
+     * 게임 관리 컨트롤러에서 필요한 객체를 생성해 주입한다.
+     */
+    public BridgeGame() {
+        inputView = new InputView();
+        outputView = new OutputView();
+    }
+
+    /**
+     * 게임을 시작하는 메서드
+     */
+    public void run() {
+        outputView.printStart();
+
+        int bridgeSize = inputView.readBridgeSize();
+
+    }
+    
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
