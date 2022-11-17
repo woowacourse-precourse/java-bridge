@@ -11,13 +11,11 @@ public class Application {
         BridgeGame bridgeGame = new BridgeGame();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> generatedBridge = bridgeMaker.makeBridge(size);
-        boolean gameSuccess = true;
-        List<String> nowBridge = new ArrayList<>();
+        boolean retry = true;
 
-        while(gameSuccess == true){
-            String pick = InputView.readMoving();
-            bridgeGame.move(pick, nowBridge);
-            gameSuccess = bridgeGame.compareBridge(nowBridge, generatedBridge);
+        while (retry) {
+            List<String> nowBridge = new ArrayList<>();
+            retry = bridgeGame.game(nowBridge, generatedBridge);
         }
     }
 }
