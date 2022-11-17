@@ -3,7 +3,7 @@ package bridge.domain;
 import java.util.List;
 
 public class Bridge {
-    private List<String> bridge;
+    private final List<String> bridge;
 
     private Bridge(List<String> bridge) {
         this.bridge = bridge;
@@ -13,13 +13,20 @@ public class Bridge {
         return new Bridge(generatedBridge);
     }
 
-    public Result play(Bridge otherBridge) {
-        if (bridge.equals(otherBridge.bridge)) {
+    public Result play(ExpectedBridge expectedBridge) {
+        if (isSameWith(expectedBridge.getExpectation())) {
             return Result.WIN;
         }
-        if (bridge.subList(0,otherBridge.bridge.size()).equals(otherBridge.bridge)) {
+        if (isPartOf(expectedBridge.getExpectation())) {
             return Result.KEEP;
         }
         return Result.LOSE;
+    }
+
+    private boolean isSameWith(List<String> expectation) {
+        return bridge.equals(expectation);
+    }
+    private boolean isPartOf(List<String> expectation) {
+        return bridge.subList(0,expectation.size()).equals(expectation);
     }
 }
