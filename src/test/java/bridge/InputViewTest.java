@@ -12,12 +12,12 @@ import org.junit.jupiter.api.Test;
 
 class InputViewTest {
     @Nested
-    class readSizeTest extends NsTest {
+    class ReadSizeTest extends NsTest {
         @DisplayName("입력 안내문 출력 테스트")
         @Test
         void testPrint() {
             Assertions.assertSimpleTest(() -> run("5"));
-            assertThat(output()).contains("다리의 길이를 입력해주세요.", "5");
+            assertThat(output()).contains("다리의 길이를 입력해주세요.");
         }
 
         @DisplayName("에러 메세지 정상 출력 테스트")
@@ -54,7 +54,23 @@ class InputViewTest {
         @Override
         protected void runMain() {
             InputView inputView = new InputView();
-            System.out.print(inputView.readBridgeSize());
+            inputView.readBridgeSize();
+        }
+    }
+
+    @Nested
+    class ReadMoveTest extends NsTest {
+        @DisplayName("입력 안내문 출력 테스트")
+        @Test
+        void testPrint() {
+            Assertions.assertSimpleTest(() -> run("U"));
+            assertThat(output()).contains("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        }
+
+        @Override
+        protected void runMain() {
+            InputView inputView = new InputView();
+            inputView.readMoving();
         }
     }
 
