@@ -32,4 +32,16 @@ public class BridgeMaker {
     private int generateZeroOrOne() {
         return bridgeNumberGenerator.generate();
     }
+
+    private String parseZeroOrOneToUorD(int number) {
+        String movement = "";
+        //TODO: 1과 U enum으로 묶어보기
+        if (number == 1) {
+            movement = "U";
+        }
+        if (number == 0) {
+            movement = "D";
+        }
+        return movement;
+    }
 }
