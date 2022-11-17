@@ -15,7 +15,11 @@ public class Application {
             int size = inputView.readBridgeSize();
             List<String> bridges = bridgeMaker.makeBridge(size);
 
-            inputView.readMoving();
+            // 플레이어가 이동할 칸을 입력받는 기능
+            BridgeGame bridgeGame = new BridgeGame();
+            String moveCommand = inputView.readMoving();
+            bridgeGame.move(moveCommand);
+
             inputView.readGameCommand();
             outputView.printGameStart();
         } catch (Exception e) {
