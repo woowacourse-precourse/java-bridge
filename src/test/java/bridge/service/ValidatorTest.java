@@ -51,5 +51,12 @@ class ValidatorTest {
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(ErrorMessage.IS_WRONG_MOVEMENT.message());
         }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"U", "D"})
+        @DisplayName("움직임 입력값이 U 혹은 D이면 예외를 던지지 않는다.")
+        void correctInputOfMovement(String movement) {
+            Assertions.assertThatNoException().isThrownBy(() -> validator.validateMovement(movement));
+        }
     }
 }
