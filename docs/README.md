@@ -11,7 +11,7 @@
 3. 다리 길이만큼 랜덤(0,1)로 이루어진 다리를 생성(핵심로직) - BridgeRandomNumberGenerator#generate() & BridgeMaker#makeBridge()
 
 4. 이동할 칸을 입력 받기(UI) - InputView#readMoving()
-    * 에외 : U 나 D의 문자가 아니면 IllegalArgumentException 발생시키고 [ERROR]로 시작하는 에러 메시지 출력하고 다시 입력받기
+    * 에외 : U 나 D의 문자가 아니면 IllegalArgumentException 발생시키고 [ERROR]로 시작하는 에러 메시지 출력하고 다시 입력받기 - InputView#readMovingExceptionCheck()
 
 5. 입력받은 문자(U/D)가 각각 생성된 다리(1/0)과 일치하는지 확인하기
     * 일치하는 경우

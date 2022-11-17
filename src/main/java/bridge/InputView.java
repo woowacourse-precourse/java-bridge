@@ -8,6 +8,7 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 	private int bridgeLength = 0;
+	private String upOrDown = "";
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -41,16 +42,24 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-    	String upOrDown = "";
-    	
-    	System.out.println();
-    	System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
-    	
-    	upOrDown = Console.readLine();
-  
+    	while(!upOrDown.equals("")) {
+    		System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    		String tempUpOrDown = Console.readLine();
+    		try {
+    			readMovingExceptionCheck(tempUpOrDown);
+    		} catch(IllegalArgumentException e) {
+    			continue;
+    		}
+    	}
         return upOrDown;
     }
 
+    public void readMovingExceptionCheck(String tempUpOrDown) {
+    	if(!tempUpOrDown.equals("U") || !tempUpOrDown.equals("D")) {
+    		throw new IllegalArgumentException("[ERROR] U와 D만 선택하세요.");
+    	}
+    	this.upOrDown = tempUpOrDown;
+    }
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
