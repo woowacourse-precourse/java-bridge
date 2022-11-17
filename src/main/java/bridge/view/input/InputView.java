@@ -9,6 +9,7 @@ import static java.lang.Integer.parseInt;
  */
 public class InputView {
     private static final String BRIDGE_SIZE_REQUEST_MESSAGE = "다리의 길이를 입력해주세요.";
+    private static final String MOVING_REQUEST_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
 
     private final InputValidator inputValidator;
 
@@ -31,7 +32,11 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        printMovingRequestMessage();
+        String moving = Console.readLine();
+        inputValidator.validateMoving(moving);
+        printEnter();
+        return moving;
     }
 
     /**
@@ -47,5 +52,9 @@ public class InputView {
 
     private void printBridgeSizeRequestMessage() {
         System.out.println(BRIDGE_SIZE_REQUEST_MESSAGE);
+    }
+
+    private void printMovingRequestMessage() {
+        System.out.println(MOVING_REQUEST_MESSAGE);
     }
 }
