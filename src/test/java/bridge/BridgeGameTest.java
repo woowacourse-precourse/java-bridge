@@ -61,4 +61,25 @@ class BridgeGameTest {
 
         assertThat(bridgeGame.isEnd()).isEqualTo(false);
     }
+
+
+    @Test
+    @DisplayName("현재 위치가 이동가능한 위치인지 판단할 수 있다.")
+    void checkCurrentPositionIsMovable() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "U"));
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+
+        assertThat(bridgeGame.isMovableArea()).isEqualTo(true);
+    }
+
+    @Test
+    @DisplayName("현재 위치가 이동가능한 위치인지 판단할 수 있다_2.")
+    void checkCurrentPositionIsMovableTwo() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "U"));
+        bridgeGame.move("U");
+        bridgeGame.move("U");
+
+        assertThat(bridgeGame.isMovableArea()).isEqualTo(false);
+    }
 }
