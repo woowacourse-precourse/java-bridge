@@ -9,6 +9,7 @@ public class BridgeGame {
     Bridge bridge;
     Player player;
     private int retryCount;
+    private int maxPassedCount;
 
 
     public BridgeGame(int size) throws IllegalArgumentException {
@@ -16,6 +17,7 @@ public class BridgeGame {
             this.bridge = new Bridge(size);
             this.player = new Player();
             this.retryCount = 1;
+            this.maxPassedCount = 0;
         } catch (IllegalArgumentException illegalArgumentException) {
             throw illegalArgumentException;
         }
@@ -43,6 +45,9 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry(String command) {
+        if (this.maxPassedCount < player.getNextLocation()) {
+            this.maxPassedCount = player.getNextLocation();
+        }
         if (command.equals("R")) {
             player.revive();
             this.retryCount++;
@@ -56,6 +61,7 @@ public class BridgeGame {
 
         // 다음에 이동할 곳이 인덱스를 벗어날 경우 끝에 도달한 것
         if (bridgeStates.size() <= playerNextLocation) {
+            this.maxPassedCount = playerNextLocation - 1;
             return true;
         }
 
@@ -86,5 +92,9 @@ public class BridgeGame {
 
     public int getRetryCount() {
         return this.retryCount;
+    }
+
+    public int getMaxPassedCount() {
+        return this.maxPassedCount;
     }
 }
