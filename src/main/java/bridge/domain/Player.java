@@ -25,6 +25,6 @@ public class Player {
     }
 
     public boolean isInEndOfBridge(int bridgeSize) {
-        return positionIndex == bridgeSize;
+        return positionIndex == bridgeSize - 1;
     }
 }
