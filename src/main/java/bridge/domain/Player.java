@@ -23,4 +23,8 @@ public class Player {
     private void initPosition() {
         this.positionIndex = -1;
     }
+
+    public boolean isInEndOfBridge(int bridgeSize) {
+        return positionIndex == bridgeSize;
+    }
 }

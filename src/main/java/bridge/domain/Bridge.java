@@ -39,4 +39,8 @@ public class Bridge {
         }
         return false;
     }
+
+    public int getBridgeSize() {
+        return bridgeTiles.size();
+    }
 }

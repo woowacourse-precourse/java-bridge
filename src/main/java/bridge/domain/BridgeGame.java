@@ -15,6 +15,10 @@ public class BridgeGame {
         return bridge.checkBridgeTileAt(movedPosition, targetTile);
     }
 
+    public boolean isWin(Bridge bridge, Player player) {
+        return player.isInEndOfBridge(bridge.getBridgeSize());
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
