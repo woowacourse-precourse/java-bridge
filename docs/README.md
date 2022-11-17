@@ -1,10 +1,10 @@
 ## 기능 구현 사항
 
-- [ ] 다리 생성 
+- [x] 다리 생성 
   - [x] 3 이상 20 이하의 수를 입력받는다.
     - InputView에서 입력을 받고 bridgeMaker로 전달
   
-  - [ ] 0(아래, D), 1(위, U) 무작위 생성한다.
+  - [x] 0(아래, D), 1(위, U) 무작위 생성한다.
     - BridgeMaker에서 BridgeNumberGenerator를 이용하여 makeBridge 메서드 구현
 
 
