@@ -1,9 +1,20 @@
-package bridge;
+package bridge.model;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
+    private Bridge bridge;
+    private Player player;
+
+    public BridgeGame() {
+
+    }
+
+    public void newBridge() {
+        this.bridge = new Bridge(null);
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
