@@ -59,11 +59,15 @@ public class BridgeGameController {
     }
 
     private boolean askRetry() {
-        String command = inputView.readGameCommand();
-        if (command.equals(Value.RETRY)) {
-            bridgeGame.retry();
-            return true;
+        try {
+            String command = inputView.readGameCommand();
+            if (command.equals(Value.RETRY)) {
+                return true;
+            }
+            return false;
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return askRetry();
         }
-        return false;
     }
 }
