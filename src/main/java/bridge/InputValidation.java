@@ -11,39 +11,50 @@ public class InputValidation {
 
     public boolean isNumber(String bridgeLength){
         try {
-            Integer.parseInt(bridgeLength);
-            return true;
-        } catch (NumberFormatException e) {
+            stringToInt(bridgeLength);
+        } catch (IllegalArgumentException e) {
             return false;
         }
+        return true;
     }
 
     public boolean isValidRange(int bridgeLength) {
-        if (bridgeLength >= MIN.bridgeLength && bridgeLength <= MAX.bridgeLength)
-            return true;
-        return false;
-    }
-
-    public boolean isValidInputOfBridgeLength(String bridgeLength){
-        if(!isNumber(bridgeLength))
+        try {
+            if (bridgeLength < MIN.bridgeLength || bridgeLength > MAX.bridgeLength)
+                throw new IllegalArgumentException();
+        }catch (IllegalArgumentException e){
             return false;
-
-        if(!isValidRange(Integer.parseInt(bridgeLength)))
-            return false;
-
+        }
         return true;
     }
 
     public boolean isValidDirection(String moveDirection){
-        if(U.equals(moveDirection) || D.equals(moveDirection))
-            return true;
-        return false;
+        try{
+            if(!U.equals(moveDirection) && !D.equals(moveDirection))
+                throw new IllegalArgumentException();
+        }catch (IllegalArgumentException e){
+            return false;
+        }
+        return true;
     }
 
     public boolean isValidGameRetryInput(String gameRetryInput){
-        if(R.equals(gameRetryInput) || Q.equals(gameRetryInput))
-            return true;
-        return false;
+        try{
+            if(R.equals(gameRetryInput) || Q.equals(gameRetryInput))
+                throw new IllegalArgumentException();
+        }catch (IllegalArgumentException e){
+            return false;
+        }
+        return true;
     }
+
+    public void stringToInt(String bridgeLength){
+        try {
+            Integer.parseInt(bridgeLength);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
+    }
+
 
 }
