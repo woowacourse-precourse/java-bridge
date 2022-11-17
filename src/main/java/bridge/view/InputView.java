@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.model.CheckValidation;
 import bridge.model.GameDTO;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -7,12 +8,14 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private static CheckValidation check = new CheckValidation();
 
     public int readBridgeSize() {
         String inputData;
         int bridgeSize;
 
         inputData = Console.readLine();
+        check.checklenght(inputData);
         bridgeSize = Integer.parseInt(inputData);
         return bridgeSize;
     }
@@ -21,6 +24,7 @@ public class InputView {
         String inputData;
 
         inputData = Console.readLine();
+        check.checkMove(inputData);
         return inputData;
     }
 
@@ -28,6 +32,7 @@ public class InputView {
         String inputData;
 
         inputData = Console.readLine();
+        check.checkRetry(inputData);
         return inputData;
     }
 }
