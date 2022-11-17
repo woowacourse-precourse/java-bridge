@@ -35,22 +35,21 @@ public class BridgeGame {
 
 		} while (!isClearCrossBridge() && !isFailCrossBridge());
 
+		if(isClearCrossBridge()){
+			GuideMessageView.GAME_RESULT_GUIDE_MESSAGE.printMessage();
+			outputView.printMap(map, moveCount);
+		}
+
+		if(isFailCrossBridge()){
+			GuideMessageView.RE_OR_END_GUIDE_MESSAGE.printMessage();
+			retry(inputView);
+		}
 	}
 
 	private boolean isFailCrossBridge() {
-
-		boolean isFail = Arrays.stream(map)
+		return Arrays.stream(map)
 			.flatMap(flatMap -> Arrays.stream(flatMap))
 			.anyMatch(value -> value.contains("X"));
-
-		// for(int i=0;i< map.length;i++){
-		// 	for(int j=0;j<map[i].length;j++){
-		// 		if(map[i][j].contains("X")){
-		// 			return true;
-		// 		}
-		// 	}
-		// }
-		return isFail;
 	}
 
 	private static boolean isClearCrossBridge() {
@@ -97,7 +96,8 @@ public class BridgeGame {
 	 * <p>
 	 * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
-	public void retry() {
+	public void retry(InputView inputView) {
+		inputView.readGameCommand();
 	}
 
 	public static void initMap(int size) {
