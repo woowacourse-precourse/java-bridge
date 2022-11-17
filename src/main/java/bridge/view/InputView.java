@@ -34,7 +34,9 @@ public class InputView {
     public String readMoving() {
         System.out.println();
         System.out.println(PRINT_SELECT_MOVING_DIRECTION);
-        return Console.readLine().replaceAll(WHITE_SPACE, EMPTY);
+        String userInput = Console.readLine().replaceAll(WHITE_SPACE, EMPTY);
+
+         return getMovingCommand(userInput);
     }
 
     /**
@@ -43,7 +45,28 @@ public class InputView {
     public String readGameCommand() {
         System.out.println();
         System.out.println(PRINT_RETRY);
-        return Console.readLine().replaceAll(WHITE_SPACE, EMPTY);
+        String userInput = Console.readLine().replaceAll(WHITE_SPACE, EMPTY);
+        return getRetryCommand(userInput);
+    }
+
+    private String getMovingCommand(String userInput) {
+        while (true) {
+            try {
+                return InputViewValidator.movingCommandValidation(userInput);
+            } catch (IllegalArgumentException illegalArgumentException) {
+                ErrorView.printException(illegalArgumentException);
+            }
+        }
+    }
+
+    private String getRetryCommand(String userInput) {
+        while (true) {
+            try {
+                return InputViewValidator.retryCommandValidation(userInput);
+            } catch (IllegalArgumentException illegalArgumentException) {
+                ErrorView.printException(illegalArgumentException);
+            }
+        }
     }
 
     private int getBridgeSize() {

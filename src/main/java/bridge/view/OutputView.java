@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class OutputView {
 
-    private static int INDEX_ZERO = 0;
+    private static final int INDEX_ZERO = 0;
     private static final String UP_ROW = "U";
     private static final String DOWN_ROW = "D";
     private static final String ROW_START_BRACKET = "[ ";
@@ -29,7 +29,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(Bridge bridge, List<String> givenAnswerSheet) {
+    public void printMap(final Bridge bridge, final List<String> givenAnswerSheet) {
         System.out.print(ROW_START_BRACKET);
         printRow(bridge, givenAnswerSheet, UP_ROW);
         System.out.println(ROW_END_BRACKET);
@@ -43,7 +43,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(String result, int tryCount) {
+    public void printResult(final String result, final int tryCount) {
         System.out.printf(PRINT_RESULT, result, System.lineSeparator());
         System.out.printf(PRINT_TRY_COUNT, tryCount, System.lineSeparator());
     }
@@ -56,7 +56,7 @@ public class OutputView {
         System.out.println(PRINT_FINAL_GAME_RESULT);
     }
 
-    private void printRow(Bridge bridge, List<String> givenAnswerSheet, String thisRow) {
+    private void printRow(final Bridge bridge, final List<String> givenAnswerSheet, final String thisRow) {
         for (int i = INDEX_ZERO; i < givenAnswerSheet.size(); ++i) {
             if (i != INDEX_ZERO) {
                 System.out.print(ROW_DELIMITER);
@@ -65,7 +65,8 @@ public class OutputView {
         }
     }
 
-    private void printElementResultOrWhiteSpace(String bridgeElement, String userElement, String thisRow) {
+    private void printElementResultOrWhiteSpace
+            (final String bridgeElement, final String userElement, final String thisRow) {
         if (userElement.equals(thisRow)) {
             printElementResult(bridgeElement, userElement);
             return;
@@ -73,7 +74,7 @@ public class OutputView {
         System.out.print(WHITE_SPACE);
     }
 
-    private void printElementResult(String bridgeElement, String userElement) {
+    private void printElementResult(final String bridgeElement, final String userElement) {
         if (bridgeElement.equals(userElement)) {
             System.out.print(CORRECT_ANSWER);
             return;

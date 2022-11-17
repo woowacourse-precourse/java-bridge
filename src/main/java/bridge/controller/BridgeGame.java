@@ -1,9 +1,8 @@
-package bridge.service;
+package bridge.controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
-import bridge.domain.BridgeGameCommand;
 import bridge.validator.BridgeValidator;
 import bridge.view.ErrorView;
 import bridge.view.InputView;
@@ -24,18 +23,16 @@ public class BridgeGame {
     private static final String FAIL = "실패";
     private final InputView inputView;
     private final OutputView outputView;
-    private final BridgeGameCommand bridgeGameCommand;
     private final Bridge bridge;
-    private final List<String> givenAnswerSheet;
+    private final List<String> userAnswerSheet;
     private int tryCount;
 
     public BridgeGame() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        this.bridgeGameCommand = new BridgeGameCommand();
         this.outputView.printGameStart();
         this.bridge = makeBridge();
-        this.givenAnswerSheet = new ArrayList<>(this.bridge.getBridgeSize());
+        this.userAnswerSheet = new ArrayList<>(this.bridge.getBridgeSize());
         this.tryCount = FIRST_TRY;
     }
 
@@ -45,8 +42,8 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
-        this.givenAnswerSheet.add(this.bridgeGameCommand.getMovingCommand());
-        this.outputView.printMap(this.bridge, this.givenAnswerSheet);
+        this.userAnswerSheet.add(this.inputView.readMoving());
+        this.outputView.printMap(this.bridge, this.userAnswerSheet);
     }
 
     /**
@@ -55,8 +52,8 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry() {
-        if (this.bridgeGameCommand.getRetryCommand().equals(GAME_RETRY)) {
-            this.givenAnswerSheet.clear();
+        if (this.inputView.readGameCommand().equals(GAME_RETRY)) {
+            this.userAnswerSheet.clear();
             ++this.tryCount;
             return true;
         }
@@ -65,7 +62,7 @@ public class BridgeGame {
 
     public void finish() {
         this.outputView.printFinalGameResult();
-        this.outputView.printMap(this.bridge, this.givenAnswerSheet);
+        this.outputView.printMap(this.bridge, this.userAnswerSheet);
         String result = FAIL;
         if (isWin()) {
             result = SUCCESS;
@@ -77,12 +74,12 @@ public class BridgeGame {
         if (!isWin()) {
             return true;
         }
-        return this.bridge.getBridgeSize() == this.givenAnswerSheet.size();
+        return this.bridge.getBridgeSize() == this.userAnswerSheet.size();
     }
 
     public boolean isWin() {
-        for (int i = INDEX_ZERO; i < this.givenAnswerSheet.size(); ++i) {
-            if (!this.givenAnswerSheet.get(i).equals(this.bridge.getElementByIndex(i))) {
+        for (int i = INDEX_ZERO; i < this.userAnswerSheet.size(); ++i) {
+            if (!this.userAnswerSheet.get(i).equals(this.bridge.getElementByIndex(i))) {
                 return false;
             }
         }
@@ -98,7 +95,7 @@ public class BridgeGame {
     private int getBridgeSize() {
         while (true) {
             try {
-                return BridgeValidator.checkBridgeSizeNotInvalid(this.inputView.readBridgeSize());
+                return BridgeValidator.checkBridgeSizeValid(this.inputView.readBridgeSize());
             } catch (IllegalArgumentException illegalArgumentException) {
                 ErrorView.printException(illegalArgumentException);
             }
