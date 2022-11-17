@@ -1,9 +1,9 @@
-package bridge.service.dto;
+package bridge.service.dto.request;
 
-public class BridgeSpaceDto {
+public class BridgeSpaceRequestDto {
     private final String movingSpace;
 
-    public BridgeSpaceDto(String movingSpace) {
+    public BridgeSpaceRequestDto(String movingSpace) {
         this.movingSpace = movingSpace;
     }
 

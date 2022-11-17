@@ -1,8 +1,8 @@
 package bridge.controller;
 
 import bridge.service.BridgeGame;
-import bridge.service.dto.BridgeSizeDto;
-import bridge.service.dto.BridgeSpaceDto;
+import bridge.service.dto.request.BridgeSizeRequestDto;
+import bridge.service.dto.request.BridgeSpaceRequestDto;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -24,14 +24,15 @@ public class BridgeGameController {
     }
 
     private void create() {
-        BridgeSizeDto dto = inputView.readBridgeSize();
+        BridgeSizeRequestDto dto = inputView.readBridgeSize();
         bridgeGame.create(dto);
     }
 
     private void play() {
         while (!bridgeGame.isCrossAllBridges()) {
-            BridgeSpaceDto dto = inputView.readMoving();
+            BridgeSpaceRequestDto dto = inputView.readMoving();
             bridgeGame.move(dto);
+            outputView.printMap();
         }
     }
 }
