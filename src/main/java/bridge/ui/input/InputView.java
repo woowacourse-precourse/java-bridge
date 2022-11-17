@@ -15,8 +15,14 @@ public class InputView {
         PlaceHolderText placeHolderText = PlaceHolderText.READ_BRIDGE_SIZE;
         System.out.println(placeHolderText.toConsolePrintFormat());
 
-        String bridgeSize = Console.readLine();
-        return BridgeSize.from(bridgeSize);
+        try {
+            String bridgeSize = Console.readLine();
+            return BridgeSize.from(bridgeSize);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
+
+            return this.readBridgeSize();
+        }
     }
 
     /**
