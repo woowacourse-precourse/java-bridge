@@ -1,7 +1,6 @@
 package bridge.domain;
 
 import java.util.List;
-import java.util.Objects;
 
 public class Bridge {
     private final List<Integer> bridge;

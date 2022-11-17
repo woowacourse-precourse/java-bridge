@@ -8,11 +8,14 @@ import java.util.List;
 import static bridge.utils.ErrorMessages.ERROR_OUT_OF_RANGE;
 
 public class BridgeGenerator {
+    private final int bridgeSize;
+
     public BridgeGenerator(int bridgeSize) {
         validateSize(bridgeSize);
+        this.bridgeSize = bridgeSize;
     }
 
-    public List<Integer> generate(int bridgeSize) {
+    public List<Integer> generate() {
         List<Integer> bridge = new ArrayList<>();
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         for (int i = 0; i < bridgeSize; i++) {
