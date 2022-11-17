@@ -4,8 +4,6 @@ import bridge.controller.BridgeGameController;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-import java.util.List;
-
 public class Application {
 
     public static void main(String[] args) {
