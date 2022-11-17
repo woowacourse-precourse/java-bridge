@@ -1,5 +1,8 @@
 package bridge.service;
 
+import bridge.constant.Movement;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,9 +16,11 @@ import java.util.List;
 public class BridgeGame {
 
     private List<String> bridge;
+    private List<Movement> movements;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
+        this.movements = new ArrayList<>();
     }
 
     /**
@@ -23,7 +28,17 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public void move(String movement) {
+        String partOfBridge = bridge.get(movements.size());
+        if (movement.equals("U") && partOfBridge.equals("U")) {
+            movements.add(Movement.UP_AND_O);
+        } else if (movement.equals("U") && partOfBridge.equals("D")) {
+            movements.add(Movement.UP_AND_X);
+        } else if (movement.equals("D") && partOfBridge.equals("D")) {
+            movements.add(Movement.DOWN_AND_O);
+        } else if (movement.equals("D") && partOfBridge.equals("U")) {
+            movements.add(Movement.DOWN_AND_X);
+        }
     }
 
     /**
