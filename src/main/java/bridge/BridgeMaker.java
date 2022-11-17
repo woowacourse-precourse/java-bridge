@@ -1,12 +1,11 @@
 package bridge;
 
+import constant.GameConstant;
+import constant.StringConstant;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
- */
 public class BridgeMaker {
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -14,27 +13,37 @@ public class BridgeMaker {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    /**
-     * @param size 다리의 길이
-     * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
-     */
     public List<String> makeBridge(int size) {
-
-        List<Integer> bridgeWithNumber = new ArrayList<>();
-        List<String> bridgeWithAlphabet = new ArrayList<>();
-
+        List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            bridgeWithNumber.add(bridgeNumberGenerator.generate());
-        }
-
-        for (int i = 0; i < size; i++) {
-            if (bridgeWithNumber.get(i) == 0) {
-                bridgeWithAlphabet.add("D");
+            int bridgeNumber = bridgeNumberGenerator.generate();
+            if (isBridgeNumberDownSide(bridgeNumber)) {
+                addBridgeDownPath(bridge);
             }
-            if (bridgeWithNumber.get(i) == 1) {
-                bridgeWithAlphabet.add("U");
+            if (isBridgeNumberUpSide(bridgeNumber)) {
+                addBridgeUpPath(bridge);
             }
         }
-        return Collections.unmodifiableList(bridgeWithAlphabet);
+        return Collections.unmodifiableList(bridge);
     }
+
+    public boolean isBridgeNumberDownSide(int bridgeNumber){
+        return bridgeNumber == GameConstant.DOWN_SIDE.getConstant();
+    }
+
+    public boolean isBridgeNumberUpSide(int bridgeNumber){
+        return bridgeNumber == GameConstant.UP_SIDE.getConstant();
+    }
+
+    public List<String> addBridgeDownPath(List<String> bridge){
+        bridge.add(StringConstant.DOWN_SIDE.getConstant());
+        return bridge;
+    }
+
+    public List<String> addBridgeUpPath(List<String> bridge){
+        bridge.add(StringConstant.UP_SIDE.getConstant());
+        return bridge;
+    }
+
+
 }
