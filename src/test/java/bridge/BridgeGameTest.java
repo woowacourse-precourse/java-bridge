@@ -70,4 +70,13 @@ class BridgeGameTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageStartingWith("[ERROR]");
     }
+
+    @DisplayName("사용자가 재시도를 할 때 ' R'나 ' Q '등 공백값을 넣을 시 자동으로 트리밍하는지 확인한다.")
+    @ValueSource(strings = {" R", " Q"})
+    @Test
+    void validate_Is_Acceptable_Blank_Input_Of_Retry() {
+        assertThatThrownBy(()-> BridgeGame.retry())
+                .isNotInstanceOf(IllegalArgumentException.class)
+                .hasMessageNotContaining("[ERROR]");
+    }
 }
