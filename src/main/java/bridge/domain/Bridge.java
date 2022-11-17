@@ -15,8 +15,8 @@ public class Bridge {
         bridgeBlocks = bridgeMaker.makeBridge(bridgeSize);
     }
 
-    public boolean isUpBlock(int blockIndex){
-        if(bridgeBlocks.get(blockIndex) == DOWN_BLOCK)
+    public boolean isUpBlock(int blockNumber){
+        if(bridgeBlocks.get(blockNumber) == DOWN_BLOCK)
             return true;
         return false;
     }
