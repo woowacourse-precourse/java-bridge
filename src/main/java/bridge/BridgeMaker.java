@@ -1,7 +1,6 @@
 package bridge;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -9,8 +8,8 @@ import java.util.List;
  */
 public class BridgeMaker {
 
-    private final BridgeNumberGenerator bridgeNumberGenerator;
     private static final List<String> board = List.of("U", "D");
+    private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -24,8 +23,8 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
-            int cell = bridgeNumberGenerator.generate();
-            bridge.add(board.get(cell));
+            int space = bridgeNumberGenerator.generate();
+            bridge.add(board.get(space));
         }
 
         return bridge;

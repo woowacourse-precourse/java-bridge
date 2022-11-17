@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,28 +8,28 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private final InputView inputView;
-    private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
+
+    private int position;
+    private List<String> bridge;
+    private List<String> result;
 
     /**
      * 게임 관리 컨트롤러에서 필요한 객체를 생성해 주입한다.
      */
-    public BridgeGame() {
-        inputView = new InputView();
-        outputView = new OutputView();
-        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    public BridgeGame(BridgeNumberGenerator bridgeNumberGenerator) {
+        bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+
+        position = 0;
     }
 
     /**
      * 게임을 시작하는 메서드
      */
-    public void initGame() {
-        outputView.printStart();
+    public void initGame(int bridgeSize) {
+        bridge = bridgeMaker.makeBridge(bridgeSize);
 
-        int bridgeSize = inputView.readBridgeSize();
-
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        result = new ArrayList<>();
     }
 
     /**
@@ -36,10 +37,14 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
-        String moving = inputView.readMoving();
+    public void move(String commend) {
+        String correctPosition = bridge.get(position);
 
-        
+        if (correctPosition.equals(commend)) {
+            result.add("O");
+
+            position += 1;
+        }
     }
 
     /**
