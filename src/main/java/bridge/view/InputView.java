@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.exception.Validator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -7,20 +8,31 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    public int readBridgeSize() {
+    Validator validator = new Validator();
+
+    public InputView() {
         System.out.println("다리 건너기 게임을 시작합니다.");
+    }
+
+    public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
-        return convertInputToInt(Console.readLine());
+        int bridgeSize = convertInputToInt(Console.readLine());
+        validator.validateBridgeSize(bridgeSize);
+        return bridgeSize;
     }
 
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        return Console.readLine();
+        String moveMessage = Console.readLine();
+        validator.validateMoveMessage(moveMessage);
+        return moveMessage;
     }
 
     public String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        return Console.readLine();
+        String commandMessage = Console.readLine();
+        validator.validateGameRestartMessage(commandMessage);
+        return commandMessage;
     }
 
     private int convertInputToInt(String input) {
