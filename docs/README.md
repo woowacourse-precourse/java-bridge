@@ -78,12 +78,12 @@
 
 <br/>
 
-    - AllMessage (Class)
+    - GameMessage (Class)
         모든 메시지 enum 모음 클래스 
 
-* GuideMessage
+* Guide
     - 안내 메시지 Enum
-* ExceptionMessage
+* Exception
     - 예외 메시지 Enum
-* ResultMessage
+* Result
     - 결과 메시지 Enum
