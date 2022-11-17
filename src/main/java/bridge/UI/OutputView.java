@@ -26,4 +26,7 @@ public class OutputView {
     public void printStatement(String output){
         System.out.println(output);
     }
+    public void printRequestStartAgain(){
+
+    }
 }
