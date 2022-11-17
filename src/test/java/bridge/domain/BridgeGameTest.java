@@ -10,9 +10,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeGameTest {
-    BridgeMaker bridgeMaker;
-    List<String> bridge;
-    BridgeGame bridgeGame;
+    private BridgeMaker bridgeMaker;
+    private List<String> bridge;
+    private BridgeGame bridgeGame;
 
     @BeforeEach
     void setup() {
@@ -26,7 +26,7 @@ class BridgeGameTest {
         bridgeGame.move(bridge.get(0));
         bridgeGame.move(bridge.get(1));
         bridgeGame.move(bridge.get(2));
-        assertEquals(true, bridgeGame.isEnd());
+        assertTrue(bridgeGame.isEnd());
     }
 
     @Test
@@ -35,6 +35,18 @@ class BridgeGameTest {
         bridgeGame.move(oppositeDirection(bridge.get(1)));
         assertFalse(bridgeGame.isEnd());
         assertTrue(bridgeGame.isStopped());
+    }
+
+    @Test
+    void testRetry() {
+        bridgeGame.move(bridge.get(0));
+        bridgeGame.move(bridge.get(1));
+        bridgeGame.move(bridge.get(2));
+        assertTrue(bridgeGame.isEnd());
+
+        bridgeGame.retry();
+        assertFalse(bridgeGame.isEnd());
+        assertFalse(bridgeGame.isStopped());
     }
 
     private String oppositeDirection(String direction) {
