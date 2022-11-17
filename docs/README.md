@@ -8,6 +8,11 @@
     - BridgeMaker에서 BridgeNumberGenerator를 이용하여 makeBridge 메서드 구현
 
 
+- [ ] 일급 컬렉션 생성
+  - [ ] Bridge 일급 컬렉션
+  - [ ] UserMovement 일급 컬렉션
+
+
 - [ ] 다리 건너기
   - [ ] U 또는 D를 입력하여 다리를 건넌다.
     - InputView에서 readMoving 메서드를 구현
