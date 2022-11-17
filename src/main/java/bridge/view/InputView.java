@@ -26,13 +26,15 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(MessageView.SELECT_TO_MOVE.getMessage());
+        return Console.readLine();
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println(MessageView.INPUT_RETRY_OR_NOT_GAME.getMessage());
+        return Console.readLine();
     }
 }
