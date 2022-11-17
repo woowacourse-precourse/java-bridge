@@ -5,6 +5,16 @@ package bridge;
  */
 public class BridgeGame {
 
+    private int bridgeSize;
+
+    public int getBridgeSize() {
+        return bridgeSize;
+    }
+
+    public void setBridgeSize(int bridgeSize) {
+        this.bridgeSize = bridgeSize;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -20,4 +30,6 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+
 }
