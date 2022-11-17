@@ -1,9 +1,27 @@
-package bridge;
+package bridge.view;
+
+import bridge.domain.OutputMessage;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+
+    public void printGameStartMsg() {
+        System.out.println(OutputMessage.GAME_START_MSG);
+    }
+
+    public void printInputBridgeSizeMsg() {
+        System.out.println(OutputMessage.INPUT_BRIDGE_SIZE_MSG);
+    }
+
+    public void printInputMoveCellMsg() {
+        System.out.println(OutputMessage.INPUT_MOVE_CELL_MSG);
+    }
+
+    public void printRestartMsg() {
+        System.out.println(OutputMessage.RESTART_MSG);
+    }
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
