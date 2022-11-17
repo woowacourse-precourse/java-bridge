@@ -39,4 +39,14 @@ public class InputView {
             }
         }
     }
+
+    private void validateInputSizeIsInRange(String input) {
+        int size = 0;
+        for (int i = 0; i < input.length(); i++) {
+            size = size * 10 + input.charAt(i) - 48;
+        }
+        if (size < 3 || size > 20) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
