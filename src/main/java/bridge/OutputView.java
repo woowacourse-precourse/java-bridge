@@ -24,6 +24,13 @@ public class OutputView {
     public void printResult() {
     }
 
+    private String printSuccessOrFail(boolean passOrFail) {
+        if (passOrFail) {
+            return "성공";
+        }
+        return "실패";
+    }
+
     public void printGameStart() {
         System.out.println("다리 건너기 게임을 시작합니다.");
     }
