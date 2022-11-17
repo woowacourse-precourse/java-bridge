@@ -39,14 +39,16 @@ public class BridgeMakerTest {
     @Test
     @DisplayName("0이면 D를 반환, 1이면 U을 반환")
     void makeUpDown() {
-        List<Integer> numbers = List.of(0,1,0,1,0,0,1,1);
-        List<String> upDown = new ArrayList<>();
+        String up = bridgeMaker.makeUpDown(1);
+        String down = bridgeMaker.makeUpDown(0);
 
-        for (int number : numbers) {
-            String result = bridgeMaker.makeUpDown(number);
-            upDown.add(result);
-        }
+        Assertions.assertThat(up).isEqualTo("U");
+        Assertions.assertThat(down).isEqualTo("D");
+    }
 
-        Assertions.assertThat(upDown).containsExactly("D","U","D","U","D","D","U","U");
+    @Test
+    @DisplayName("asd")
+    void makeBridge() {
+        List<Integer> numbers = List.of(0,1,0,1);
     }
 }
