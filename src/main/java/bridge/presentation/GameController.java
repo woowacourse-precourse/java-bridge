@@ -1,17 +1,26 @@
 package bridge.presentation;
 
+import bridge.application.GameService;
 import bridge.application.ViewService;
+import bridge.presentation.dto.BridgeSize;
+import camp.nextstep.edu.missionutils.Console;
 
 public class GameController {
     private static final GameController instance=new GameController();
-    ViewService viewService;
+    private final GameService gameService;
+    private final ViewService viewService;
     private GameController(){
         viewService=ViewService.getInstance();
+        gameService=GameService.getInstance();
     }
     public static GameController getInstance(){
         return instance;
     }
     public void run(){
         viewService.printGameRunMessage();
+    }
+    public void inputBridgeSize(){
+        viewService.printInputBridgeSize();
+        gameService.saveBridgeSize(new BridgeSize(Console.readLine()));
     }
 }

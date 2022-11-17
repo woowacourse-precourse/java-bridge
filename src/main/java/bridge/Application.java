@@ -8,5 +8,6 @@ public class Application {
         // TODO: 프로그램 구현
         GameController gameController=GameController.getInstance();
         gameController.run();
+        gameController.inputBridgeSize();
     }
 }
