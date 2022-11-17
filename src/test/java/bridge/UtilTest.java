@@ -44,4 +44,16 @@ class UtilTest {
     }
 
 
+    @Test
+    @DisplayName("여러 글자인지 아닌지 검사합니다")
+    void isStringTest(){
+        boolean isTrue = Util.isString("aa");
+        assertThat(isTrue)
+                .isTrue();
+
+        boolean isFalse = Util.isString("a");
+        assertThat(isFalse)
+                .isFalse();
+    }
+
 }
