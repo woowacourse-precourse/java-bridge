@@ -175,4 +175,75 @@ class InputViewTest {
             getExceptionTest(input,functionSupply);
         }
     }
+
+    @Nested
+    class ReadGameCommandTest{
+
+        Supplier<String> functionSupply = () -> inputView.readGameCommand();
+
+        void getGameCommandTest(String input){
+            beforeSetting(input);
+            assertThat(inputView.readGameCommand()).isEqualTo(input);
+        }
+
+        @Test
+        void readGameCommand_case1(){
+            String input = "R";
+            getGameCommandTest(input);
+        }
+
+        @Test
+        void readGameCommand_case2(){
+            String input = "Q";
+            getGameCommandTest(input);
+        }
+
+        @Test
+        void readGameCommand_exceptionCase1(){
+            String input = "RQ";
+            getExceptionTest(input,functionSupply);
+        }
+
+        @Test
+        void readGameCommand_exceptionCase2(){
+            String input = "A";
+            getExceptionTest(input,functionSupply);
+        }
+
+        @Test
+        void readGameCommand_exceptionCase3(){
+            String input = "X";
+            getExceptionTest(input,functionSupply);
+        }
+
+        @Test
+        void readGameCommand_exceptionCase4(){
+            String input = "Hi";
+            getExceptionTest(input,functionSupply);
+        }
+
+        @Test
+        void readGameCommand_exceptionCase5(){
+            String input = " ";
+            getExceptionTest(input,functionSupply);
+        }
+
+        @Test
+        void readGameCommand_exceptionCase6(){
+            String input = "!@#";
+            getExceptionTest(input,functionSupply);
+        }
+
+        @Test
+        void readGameCommand_exceptionCase7(){
+            String input = "5";
+            getExceptionTest(input,functionSupply);
+        }
+
+        @Test
+        void readGameCommand_exceptionCase8(){
+            String input = "-1234";
+            getExceptionTest(input,functionSupply);
+        }
+    }
 }
