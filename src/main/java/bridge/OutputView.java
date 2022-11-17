@@ -17,42 +17,38 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(int movingIdx, List<String> bridgeList, boolean winning, String input) {
-        StringBuilder upString = new StringBuilder();
-        StringBuilder downString = new StringBuilder();
-        upString.append("[");
-        downString.append("[");
-        for (int i = 0; i < movingIdx; i++) {
-            if (Objects.equals(bridgeList.get(i), "U")) {
-                upString.append(" O |");
-                downString.append("   |");
-            } else if (Objects.equals(bridgeList.get(i), "D")) {
-                upString.append("   |");
-                downString.append(" O |");
-            }
-        }
-        if (Objects.equals(input, "U")) {
-            if (winning) {
-                upString.append(" O ]");
-                downString.append("   ]");
-            }
-            if (!winning) {
-                upString.append(" X ]");
-                downString.append("   ]");
-            }
-        } else if (Objects.equals(input, "D")) {
-            if (winning) {
-                upString.append("   ]");
-                downString.append(" O ]");
-            }
-            if (!winning) {
-                upString.append("   ]");
-                downString.append(" X ]");
-            }
-        }
+    public void printMap(int movingIdx, List<String> bridgeList, String input) {
+        String upString = printUpString(movingIdx, bridgeList, input);
+        String downString = printDownString(movingIdx, bridgeList, input);
         System.out.println(upString);
         System.out.println(downString);
         System.out.println();
+    }
+
+    private String printUpString(int movingIdx, List<String> bridgeList, String input) {
+        StringBuilder upString = new StringBuilder();
+        upString.append("[");
+        for (int i = 0; i < movingIdx; i++) {
+            if (Objects.equals(bridgeList.get(i), "U")) upString.append(" O |");
+            if (Objects.equals(bridgeList.get(i), "D")) upString.append("   |");
+        }
+        if (Objects.equals(bridgeList.get(movingIdx), input) && Objects.equals(input, "U")) upString.append(" O ]");
+        if (!Objects.equals(bridgeList.get(movingIdx), input) && Objects.equals(input, "U")) upString.append(" X ]");
+        if (Objects.equals(input, "D")) upString.append("   ]");
+        return upString.toString();
+    }
+
+    private String printDownString(int movingIdx, List<String> bridgeList, String input) {
+        StringBuilder downString = new StringBuilder();
+        downString.append("[");
+        for (int i = 0; i < movingIdx; i++) {
+            if (Objects.equals(bridgeList.get(i), "D")) downString.append(" O |");
+            if (Objects.equals(bridgeList.get(i), "U")) downString.append("   |");
+        }
+        if (Objects.equals(bridgeList.get(movingIdx), input) && Objects.equals(input, "D")) downString.append(" O ]");
+        if (!Objects.equals(bridgeList.get(movingIdx), input) && Objects.equals(input, "D")) downString.append(" X ]");
+        if (Objects.equals(input, "U")) downString.append("   ]");
+        return downString.toString();
     }
 
     /**
@@ -60,11 +56,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(int movingIdx, List<String> bridgeList, int count, boolean winning, String input) {
+    public void printResult(int movingIdx, List<String> bridgeList, String input) {
         System.out.println(gameResult);
-        printMap(movingIdx, bridgeList, winning, input);
-        if (winning) System.out.println(success);
-        if (!winning) System.out.println(fail);
+        printMap(movingIdx, bridgeList, input);
+        if (Objects.equals(bridgeList.get(movingIdx), input)) System.out.println(success);
+        if (!Objects.equals(bridgeList.get(movingIdx), input)) System.out.println(fail);
+    }
+
+    public void printResult(int count) {
         System.out.print(countingGame + count);
     }
 }

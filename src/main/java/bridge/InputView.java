@@ -14,24 +14,27 @@ public class InputView {
     final String exceptNumber = "[ERROR] 3이상 20이하의 숫자를 입력해주세요.";
     final String exceptMoving = "[ERROR] U 혹은 D를 입력해주세요.";
     final String exceptRetry = "[ERROR] R 혹은 Q를 입력해주세요.";
+    static int size;
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String input;
-        int size;
         System.out.println(readBridgeSizeMs);
         try {
-            input = Console.readLine();
-            if (checkNumber(input)) throw new IllegalArgumentException();
+            String input = Console.readLine();
+            if (checkNumber(input)) getSize();
             size = Integer.parseInt(input);
-            if (size < 3 || size > 20) throw new IllegalArgumentException();
+            if (size < 3 || size > 20) getSize();
         } catch (IllegalArgumentException e) {
-            System.out.println(exceptNumber);
             size = readBridgeSize();
         }
         return size;
+    }
+
+    void getSize() {
+        System.out.println(exceptNumber);
+        throw new IllegalArgumentException();
     }
 
     private boolean checkNumber(String input) {
