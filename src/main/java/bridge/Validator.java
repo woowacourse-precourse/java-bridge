@@ -14,7 +14,7 @@ public class Validator {
     }
 
     public static void isRestart(String alpha){
-        if(!(alpha == "R" || alpha == "Q")){
+        if(!(alpha.charAt(0) == 'R' || alpha.charAt(0) == 'Q')){
             throw new IllegalArgumentException("[ERROR] 재시작은 R, Q의 입력만 가능합니다.");
         }
     }
