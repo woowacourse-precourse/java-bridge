@@ -39,12 +39,16 @@ public class BridgeGame {
         }
         return record;
     }
-
-    public boolean isGameOver() {
+    
+    public boolean isFailed() {
         if (!bridge.get(movementRecord.size()-1).equals(movementRecord.get(movementRecord.size()-1))) {
             return true;
         }
-        if (movementRecord.size() == bridge.size()) {
+        return false;
+    }
+
+    public boolean isSuccessful() {
+        if (!isFailed() && movementRecord.size() == bridge.size()) {
             return true;
         }
         return false;
