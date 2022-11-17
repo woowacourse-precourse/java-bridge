@@ -30,8 +30,8 @@ public class BridgeMaker {
 
     private String apply(Integer value) {
         if (value == 0) {
-            return UP_BRIDGE;
+            return DOWN_BRIDGE;
         }
-        return DOWN_BRIDGE;
+        return UP_BRIDGE;
     }
 }

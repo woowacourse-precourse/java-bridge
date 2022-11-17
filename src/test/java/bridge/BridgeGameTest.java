@@ -11,10 +11,11 @@ public class BridgeGameTest {
     @DisplayName("이동한 칸이 이동가능한 칸인지 확인")
     void check_move() {
         BridgeGame bridgeGame = new BridgeGame(4, new BridgeFakeNumberGenerator());
-        assertThat(bridgeGame.move("D")).isTrue();
-        assertThat(bridgeGame.move("U")).isTrue();
-        assertThat(bridgeGame.move("U")).isFalse();
+        // BridgeFakeNumberGenerator (테스트용; 1,0,1,0 순환하면서 숫자생성)
         assertThat(bridgeGame.move("D")).isFalse();
+        assertThat(bridgeGame.move("U")).isFalse();
+        assertThat(bridgeGame.move("U")).isTrue();
+        assertThat(bridgeGame.move("D")).isTrue();
     }
 
     @Test
