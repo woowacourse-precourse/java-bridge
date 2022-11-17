@@ -1,5 +1,8 @@
 package bridge.view;
 
+/**
+ * 입력값 에러 발생시 다시 입력값을 받도록 해주는 클래스
+ */
 public class InputViewProxy extends InputView {
 
     @Override
