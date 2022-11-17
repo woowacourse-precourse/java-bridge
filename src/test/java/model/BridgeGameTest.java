@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.util.Lists.newArrayList;
@@ -36,5 +37,51 @@ public class BridgeGameTest {
 	@DisplayName("다리 건너기 실패 테스트 클래스")
 	class FailTest {
 
+		@Test
+		@DisplayName("잘못된 moving으로 인해 X칸을 중간에 밟았을 경우 테스트")
+		void wrongMovingTest() {
+			// given
+			final List<String> bridge = newArrayList("U", "D", "U", "U", "U", "D", "U");
+			BridgeGame bridgeGame = new BridgeGame(bridge);
+
+			// when
+			List<String> wrongMovings = newArrayList("U", "D", "D", "U", "U", "U", "D");
+			List<Integer> movingResults = new ArrayList<>();
+
+			for (String moving : wrongMovings) {
+				int movingResult = bridgeGame.move(moving);
+				if (movingResult == MOVING_FAIL_WRONG_MOVING) {
+					break;
+				}
+				movingResults.add(movingResult);
+			}
+
+			// then
+			assertThat(movingResults).containsExactly(MOVING_SUCCESS, MOVING_SUCCESS);
+		}
+
+		@Test
+		@DisplayName("잘못된 moving으로 인해 X칸을 마지막에 밝았을 경우 테스트")
+		void wrongMovingEndTest() {
+			// given
+			final List<String> bridge = newArrayList("U", "D", "U", "U", "U", "D", "U");
+			BridgeGame bridgeGame = new BridgeGame(bridge);
+
+			// when
+			List<String> wrongMovings = newArrayList("U", "D", "U", "U", "U", "D", "D");
+			List<Integer> movingResults = new ArrayList<>();
+
+			for (String moving : wrongMovings) {
+				int movingResult = bridgeGame.move(moving);
+				if (movingResult == MOVING_FAIL_WRONG_MOVING) {
+					break;
+				}
+				movingResults.add(movingResult);
+			}
+
+			// then
+			assertThat(movingResults).containsExactly(MOVING_SUCCESS, MOVING_SUCCESS, MOVING_SUCCESS, MOVING_SUCCESS,
+					MOVING_SUCCESS, MOVING_SUCCESS);
+		}
 	}
 }
