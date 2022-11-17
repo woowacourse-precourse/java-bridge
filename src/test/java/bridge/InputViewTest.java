@@ -42,4 +42,13 @@ class InputViewTest {
         inputView.readBridgeSize();
         assertThat(out.toString()).contains(error);
     }
+
+    @DisplayName("정상 재입력 확인")
+    @Test
+    void reInput() {
+        String input = "2\n4";
+        in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        assertThat(inputView.readBridgeSize()).isEqualTo(4);
+    }
 }
