@@ -9,7 +9,7 @@ public class InputView {
 
     private static final String INPUT_BRIDGE_SIZE_INFO_MESSAGE = "다리의 길이를 입력해 주세요.";
 
-    private static final String NUMBER_INPUT_ERROR_MESSAGE = "[ERROR] 숫자를 입력하여야 합니다.";
+    private static final String POSITIVE_NUMBER_INPUT_ERROR_MESSAGE = "[ERROR] 양의 숫자를 입력하여야 합니다.";
 
     private static final String NUMBER_REGEX = "^\\d*[1-9]$";
 
@@ -20,8 +20,7 @@ public class InputView {
         printInputBridgeSizeInfoMessage();
         String bridgeSizeInput = Console.readLine();
         validateIsPositiveNumber(bridgeSizeInput);
-        int bridgeSize = Integer.parseInt(bridgeSizeInput);
-        return bridgeSize;
+        return Integer.parseInt(bridgeSizeInput);
     }
 
     private void printInputBridgeSizeInfoMessage(){
@@ -46,6 +45,6 @@ public class InputView {
         if(input.matches(NUMBER_REGEX)){
             return;
         }
-        throw new IllegalArgumentException(NUMBER_INPUT_ERROR_MESSAGE);
+        throw new IllegalArgumentException(POSITIVE_NUMBER_INPUT_ERROR_MESSAGE);
     }
 }
