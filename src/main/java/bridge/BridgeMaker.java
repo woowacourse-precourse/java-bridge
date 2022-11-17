@@ -19,13 +19,13 @@ public class BridgeMaker {
      * @param size 다리의 길이
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
-    public BridgeGame makeBridge(int size) {
+    public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         while (bridge.size() < size) {
             int path = bridgeNumberGenerator.generate();
             Arrays.stream(BridgeEnum.values()).filter(s -> s.upDown == path)
                     .forEach(s -> bridge.add(s.name()));
         }
-        return new BridgeGame(bridge);
+        return bridge;
     }
 }
