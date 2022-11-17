@@ -49,4 +49,8 @@ public class BridgeGameStarter {
         outputView.printMap(result);
     }
 
+    public void closeGame(int tryCount) {
+        outputView.printSuccessStatus(true);
+        outputView.printResult(tryCount);
+    }
 }
