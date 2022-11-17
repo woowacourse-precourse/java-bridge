@@ -10,14 +10,25 @@ public class BridgeGame {
     private int location;
     private boolean moveSuccess;
 
+    private int totalGameCount;
+
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         location = 0;
         moveSuccess = true;
+        totalGameCount = 1;
+    }
+
+    public List<String> getBridge() {
+        return bridge;
     }
 
     public int getLocation() {
         return location;
+    }
+
+    public int getTotalGameCount() {
+        return totalGameCount;
     }
 
     /**
@@ -40,6 +51,9 @@ public class BridgeGame {
      */
     public boolean retry(String gameCommand) {
         if (gameCommand.equals(CommandConstant.RETRY_COMMAND)) {
+            location = 0;
+            moveSuccess = true;
+            totalGameCount++;
             return true;
         }
         return false;
