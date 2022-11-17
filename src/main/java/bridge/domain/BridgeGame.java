@@ -49,8 +49,8 @@ public class BridgeGame {
             upBridgeStatus[position] = O_FLAG;
             return position;
         }
-        upBridgeStatus[position--] = X_FLAG;
-        return position;
+        upBridgeStatus[position] = X_FLAG;
+        return -1;
     }
 
     private int handleDownBridge(String input) {
@@ -58,8 +58,8 @@ public class BridgeGame {
             downBridgeStatus[position] = O_FLAG;
             return position;
         }
-        downBridgeStatus[position--] = X_FLAG;
-        return position;
+        downBridgeStatus[position] = X_FLAG;
+        return -1;
     }
 
     /**
@@ -82,11 +82,13 @@ public class BridgeGame {
     }
 
     public String printResult() {
-        StringBuilder result = new StringBuilder("게임 성공 여부: ");
+        StringBuilder result = new StringBuilder("최종 게임 결과\n");
+        result.append(this + "\n");
+        result.append("게임 성공 여부: ");
         if (position == bridge.size() - 1) {
             result.append("성공\n");
         }
-        result.append("실패\n");
+        if (position < bridge.size() - 1) result.append("실패\n");
         result.append("총 시도한 횟수: " + tryCount);
 
         return result.toString();
