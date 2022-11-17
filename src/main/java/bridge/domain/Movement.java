@@ -32,4 +32,8 @@ public class Movement {
         return false;
     }
 
+    public void clearMoving() {
+        this.movement = new ArrayList<>();
+        tryCount++;
+    }
 }
