@@ -1,4 +1,6 @@
-package bridge;
+package bridge.domain;
+
+import bridge.view.ViewMaker;
 
 public class Client {
     public static void requestBridgeConstruction(final ViewMaker viewMaker) {

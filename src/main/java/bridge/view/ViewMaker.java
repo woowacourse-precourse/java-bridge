@@ -1,6 +1,9 @@
-package bridge;
+package bridge.view;
+
+import bridge.BridgeMaker;
 
 public class ViewMaker {
+
     private final BridgeMaker bridgeMaker;
     private final InputView inputView;
     private final OutputView outputView;
