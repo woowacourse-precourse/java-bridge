@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.model.BridgeSizeRule;
 import java.util.List;
 
 /**
@@ -19,5 +20,14 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         return null;
+    }
+
+    private void validate(int size) {
+        if (size < BridgeSizeRule.START.getSize() || BridgeSizeRule.END.getSize() < size) {
+            throw new IllegalArgumentException(
+                    String.format("다리의 길이는 %d이상, %d이하여야 합니다.",
+                            BridgeSizeRule.START.getSize(),
+                            BridgeSizeRule.END.getSize()));
+        }
     }
 }
