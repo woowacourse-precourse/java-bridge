@@ -20,13 +20,14 @@ public class InputView {
             return validateInputSize(inputSize);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+
             return readBridgeSize();
         }
     }
 
     private static int validateInputSize(String inputSize) {
         if(!Pattern.matches("^[3-9]|1[0-9]|20", inputSize)) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorWord.INPUT_SIZE);
         }
 
         return Integer.parseInt(inputSize);
@@ -35,8 +36,25 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public static String readMoving() {
+        try {
+            System.out.println(PrintWord.SELECT_MOVE);
+            String inputMoving = Console.readLine();
+
+            return validateInputMoving(inputMoving);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+
+            return readMoving();
+        }
+    }
+
+    private static String validateInputMoving(String inputMoving) {
+        if(!Pattern.matches("^[UD]", inputMoving)) {
+            throw new IllegalArgumentException(ErrorWord.INPUT_MOVING);
+        }
+
+        return inputMoving;
     }
 
     /**
