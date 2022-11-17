@@ -11,6 +11,10 @@ public class BridgeSize {
         this.bridgeSize = Integer.parseInt(bridgeSize);
     }
 
+    public int getSize() {
+        return bridgeSize;
+    }
+
     private void validBridgeSize(String bridgeSize) {
         validIsDigit(bridgeSize);
         validBridgeSizeRange(Long.parseLong(bridgeSize));
