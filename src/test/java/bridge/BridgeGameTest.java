@@ -47,10 +47,20 @@ class BridgeGameTest {
 
     @DisplayName("캐릭터가 위 아래 둘 중 하나의 칸만 이동하는지 확인한다.")
     @Test
-    void validate_Does_Character_Step_Only_A_Tile() {
+    void validate_Is_One_Step_At_Once() {
         assertThatThrownBy(()-> new BridgeGame())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
+
+    @DisplayName("사용자가 재시도를 할 때 'R'나 'Q'가 아닌 값을 입력했는지 확인한다.")
+    @ValueSource(strings = {"r","🍖","q"})
+    @Test
+    void validate_Is_There_Only_R_And_Q() {
+        assertThatThrownBy(()-> BridgeGame.retry())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageStartingWith("[ERROR]");
+    }
+
 
 }
