@@ -2,13 +2,14 @@ package bridge;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
-    private List<Answer> gradingBoard;
+    private List<Map<UpDown,Boolean>> gradingBoard;
     private final List<String> answerBridge;
 
     public BridgeGame(List<String> answerBridge) {
@@ -23,10 +24,6 @@ public class BridgeGame {
      */
     public BridgeGameResultDto move(String nextStep) {
         boolean isCorrect = compareNextStep(nextStep);
-
-        if (nextStep.equals(UpDown.UP.label())) {
-
-        }
 
     }
 

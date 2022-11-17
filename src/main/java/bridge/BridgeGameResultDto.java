@@ -1,12 +1,13 @@
 package bridge;
 
 import java.util.List;
+import java.util.Map;
 
 public class BridgeGameResultDto {
-    private List<Answer> gradingBoard;
+    private List<Map<UpDown,Boolean>> gradingBoard;
     private boolean isCorrect;
 
-    public BridgeGameResultDto(List<Answer> gradingBoard, boolean isCorrect) {
+    public BridgeGameResultDto(List<Map<UpDown, Boolean>> gradingBoard, boolean isCorrect) {
         this.gradingBoard = gradingBoard;
         this.isCorrect = isCorrect;
     }
