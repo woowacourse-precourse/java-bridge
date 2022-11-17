@@ -18,27 +18,27 @@ public class OutputView {
 
     private void updateFirstLine(String currentStep, boolean valid) {
         if (currentStep.equals("D"))
-            firstLine.append("| ");
+            firstLine.append("|   ");
         if (currentStep.equals("U") && valid)
-            firstLine.append("|O");
+            firstLine.append("| O ");
         if (currentStep.equals("U") && !valid)
-            firstLine.append("|X");
+            firstLine.append("| X ");
         firstLine.setCharAt(0, '[');
     }
 
     private void updateSecondLine(String currentStep, boolean valid) {
         if (currentStep.equals("D") && valid)
-            secondLine.append("|O");
+            secondLine.append("| O ");
         if (currentStep.equals("U"))
-            secondLine.append("| ");
+            secondLine.append("|   ");
         if (currentStep.equals("D") && !valid)
-            secondLine.append("|X");
+            secondLine.append("| X ");
         secondLine.setCharAt(0, '[');
     }
 
     void retry() {
-        firstLine.setLength(firstLine.length() - 2);
-        secondLine.setLength(secondLine.length() - 2);
+        firstLine.setLength(firstLine.length() - 4);
+        secondLine.setLength(secondLine.length() - 4);
     }
 
     /**
