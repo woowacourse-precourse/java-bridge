@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.constant.Messages;
 import bridge.domain.BridgeSize;
+import bridge.domain.Command;
 import bridge.domain.Moving;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -17,10 +18,8 @@ public class InputView {
         return new Moving(Console.readLine());
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public String readGameCommand() {
-        return null;
+    public Command readGameCommand() {
+        System.out.println(Messages.RETRY_MESSAGE);
+        return new Command(Console.readLine());
     }
 }
