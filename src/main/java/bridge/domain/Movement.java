@@ -21,7 +21,7 @@ public class Movement {
         return true;
     }
 
-    public void saveMoving(Moving moving) {
+    private void saveMoving(Moving moving) {
         this.movement.add(moving);
     }
 
