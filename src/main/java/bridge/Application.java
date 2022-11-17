@@ -11,5 +11,6 @@ public class Application {
         gameController.inputBridgeSize();
         gameController.inputSelectMove();
         gameController.generateBridge();
+        gameController.move();
     }
 }

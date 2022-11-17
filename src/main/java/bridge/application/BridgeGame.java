@@ -54,8 +54,8 @@ public class BridgeGame {
         addCommonResult();
     }
     private void addCommonResult(){
-        bridgeRepository.addUpperResult("| ");
-        bridgeRepository.addLowerResult("| ");
+        bridgeRepository.addUpperResult("|");
+        bridgeRepository.addLowerResult("|");
     }
 
     /**
