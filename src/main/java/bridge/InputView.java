@@ -12,6 +12,18 @@ public class InputView {
         return 0;
     }
 
+    private void validateBridgeSize() {
+
+    }
+
+    private boolean isDecimal() {
+        return true;
+    }
+
+    private boolean isInRange() {
+        return true;
+    }
+
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
@@ -19,10 +31,26 @@ public class InputView {
         return null;
     }
 
+    private void validateMoving() {
+
+    }
+
+    private boolean isUpOrDown() {
+        return true;
+    }
+
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private void validateGameCommand() {
+
+    }
+
+    private boolean isRetryOrQuit() {
+        return true;
     }
 }

@@ -20,4 +20,12 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public void gameover() {
+
+    }
+
+    public void clearGame() {
+
+    }
 }
