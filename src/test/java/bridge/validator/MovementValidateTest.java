@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class MovementValidateTest {
 	@DisplayName("여러 개의 문자를 입력한 경우 예외 발생")
 	@ParameterizedTest
-	@ValueSource(strings = {"UD", "UU", "DD", "UDUD", "UDDU", "Uu", "uU", "Dd", "dD"})
+	@ValueSource(strings = {"UD", "UU", "DD", "UDUD", "UDDU", "Uu", "uU", "Dd", "dD", "U "})
 	void multipleCharacter(String input) {
 		assertThatThrownBy(() -> {
 			MovementValidate.validateCharacter(input);
