@@ -2,8 +2,6 @@ package bridge.view;
 
 import static bridge.view.Validator.*;
 
-import java.util.NoSuchElementException;
-
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
@@ -17,9 +15,8 @@ public class InputView {
 		try {
 			size = Integer.parseInt(Console.readLine());
 			isSizeValidate(size);
-		} catch (NoSuchElementException exception) {
-			System.out.println(exception.getMessage());
-			throw new IllegalArgumentException();
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException(SIZE_ERROR);
 		}
 		return size;
 	}
