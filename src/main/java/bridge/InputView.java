@@ -11,6 +11,8 @@ public class InputView {
     public static final int BRIDGE_MAX_SIZE = 20;
     public static final String UP = "U";
     public static final String DOWN = "D";
+    public static final String RETRY = "R";
+    public static final String QUIT = "Q";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -54,6 +56,13 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        return validateGameCommand(Console.readLine());
+    }
+
+    private String validateGameCommand(String input) {
+        if (!input.equals(RETRY) && !input.equals(QUIT)) {
+            throw new IllegalArgumentException();
+        }
+        return input;
     }
 }
