@@ -6,13 +6,15 @@ import bridge.view.Message;
 import bridge.view.OutputView;
 
 public class AppController {
-    //private final Bridge bridge;
+    private Bridge bridge;
 
     public void makeBridge() {
         OutputView.printLine(Message.INTRO);
         OutputView.printLine("");
         OutputView.printLine(Message.INQUIRE_BRIDGE_LENGTH);
-        int length = InputView.readBridgeSize();
+        int size = InputView.readBridgeSize();
+        BridgeController.setBridgeInstance(bridge, size);
+        OutputView.printLine("");
     }
 
     public void acrossBridge() {
