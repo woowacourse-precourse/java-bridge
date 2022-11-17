@@ -16,7 +16,7 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println(BRIDGE_SIZE);
         String inputBridgeSize = Console.readLine();
-        return 0;
+        return toInteger(inputBridgeSize);
     }
 
     /**
@@ -31,5 +31,13 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private int toInteger(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ERROR_NOT_INTEGER);
+        }
     }
 }
