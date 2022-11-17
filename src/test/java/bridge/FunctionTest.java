@@ -34,4 +34,16 @@ public class FunctionTest {
            Assertions.assertThat(inputView.readBridgeSize(input)).isEqualTo(10);
         }
     }
+
+    @Nested
+    class GenerateBridge {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        @ParameterizedTest
+        @DisplayName("다리의 길이가 입력받은 숫자와 같은지 확인")
+        @ValueSource(ints = {3, 9, 15})
+        void isBridgeLengthSame(int length) {
+            Assertions.assertThat(bridgeMaker.makeBridge(length).size()).isEqualTo(length);
+        }
+    }
 }
