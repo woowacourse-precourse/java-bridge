@@ -47,9 +47,9 @@ public class GameManager {
     }
 
     private GameCommand play(BridgeGame bridgeGame) {
-        Direction direction = InputView.readMoving();
         try {
             OutputView.selectRoom();
+            Direction direction = InputView.readMoving();
             bridgeGame.move(direction);
             gameStatus.move(direction);
             OutputView.printMap(gameStatus.getBridgeStatus());

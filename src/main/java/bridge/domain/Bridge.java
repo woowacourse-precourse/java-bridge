@@ -14,12 +14,12 @@ public class Bridge {
         this.bridgeLength = bridge.size();
     }
 
-    public void move(String input) {
+    public void move(Direction direction) {
         if (location >= bridgeLength) {
             throw new IllegalArgumentException();
         }
 
-        if (!Objects.equals(bridge.get(location++), input)) {
+        if (!Objects.equals(bridge.get(location++), direction.getPosition())) {
             throw new IllegalArgumentException();
         }
     }
