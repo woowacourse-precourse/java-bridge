@@ -10,11 +10,12 @@ import bridge.UI.OutputView;
  */
 public class BridgeGame {
 
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
-    private Bridge bridge;
     private boolean isGameWinningClosed = true;
     private int gameCount;
+
+    private static final InputView inputView = new InputView();
+    private static final OutputView outputView = new OutputView();
+    private static Bridge bridge;
 
     public void initBridgeGame(){
         gameCount = 0;
