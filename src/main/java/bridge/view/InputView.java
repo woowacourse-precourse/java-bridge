@@ -1,39 +1,55 @@
 package bridge.view;
 
+import bridge.standard.Bug;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
-    private static final String INPUT_ONLY_NUMBER = "다리길이는 숫자여야 합니다.";
-    private static final String NOT_MOVING_PATTERN = "[^UD]";
-    private static final String INPUT_U_OR_D = "위 칸은 U, 아래 칸은 D로만 입력 가능합니다.";
-    private static final String NOT_GAME_COMMAND_PATTERN = "[^RQ]";
-    private static final String INPUT_R_OR_Q = "재시작은 R, 종료는 Q로만 입력 가능합니다.";
+
 
     public int readBridgeSize() {
-        int bridgeSize;
+        String bridgeSize = Console.readLine();
         try {
-            bridgeSize = Integer.parseInt(Console.readLine());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INPUT_ONLY_NUMBER);
+            Bug.validateChar(bridgeSize, Bug.SIZE_PATTERN, Bug.INPUT_ONLY_NUMBER);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            readBridgeSize();
         }
-        return bridgeSize;
+        return toInt(bridgeSize);
+    }
+
+    private int toInt(String bridgeSize) {
+        int size = Integer.parseInt(bridgeSize);
+        try {
+            Bug.validateNumber(size, Bug.INPUT_BETWEEN_THREE_AND_TWENTY);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            readBridgeSize();
+        }
+        return size;
+
     }
 
     public String readMoving() {
         String moving = Console.readLine();
-        validate(moving, NOT_MOVING_PATTERN, INPUT_U_OR_D);
+        try {
+            Bug.validateChar(moving, Bug.MOVING_PATTERN, Bug.INPUT_U_OR_D);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            readMoving();
+        }
         return moving;
     }
 
     public String readGameCommand() {
         String gameCommand = Console.readLine();
-        validate(gameCommand, NOT_GAME_COMMAND_PATTERN, INPUT_R_OR_Q);
+        try {
+            Bug.validateChar(gameCommand, Bug.GAME_COMMAND_PATTERN, Bug.INPUT_R_OR_Q);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            readGameCommand();
+        }
         return gameCommand;
     }
 
-    private void validate(String input, String pattern, String errorMessage) {
-        if (input.matches(pattern)) {
-            throw new IllegalArgumentException(errorMessage);
-        }
-    }
+
 }
