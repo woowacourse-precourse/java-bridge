@@ -9,4 +9,8 @@ public class AnswerBridge {
     public AnswerBridge(Bridge bridge) {
         this.bridge = bridge;
     }
+
+    public boolean checkBridge(Bridge otherBridge) {
+        return this.bridge.isPassableBridge(otherBridge);
+    }
 }
