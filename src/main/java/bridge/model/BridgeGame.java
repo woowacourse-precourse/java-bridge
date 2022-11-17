@@ -1,4 +1,4 @@
-package bridge;
+package bridge.model;
 
 import bridge.model.BridgeMoveLog;
 import java.util.List;
@@ -12,6 +12,10 @@ public class BridgeGame {
 
     private final BridgeMoveLog bridgeMoveLog;
 
+    private int tryCount = 1;
+
+    private int moveCount = 0;
+
     public BridgeGame(List<String> bridge, BridgeMoveLog bridgeMoveLog) {
         this.bridge = bridge;
         this.bridgeMoveLog = bridgeMoveLog;
@@ -22,7 +26,23 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public GameStatus move(BridgeType bridgeType) {
+        GameStatus gameStatus = getGameStatus(bridgeType);
+        bridgeMoveLog.writeLog(bridgeType, gameStatus.getSafe());
+
+        if (moveCount == bridge.size() && gameStatus == GameStatus.CROSSING) {
+            return GameStatus.SUCCESS;
+        }
+
+        return gameStatus;
+    }
+
+    private GameStatus getGameStatus(BridgeType bridgeType) {
+        if (bridge.get(moveCount++).equals(bridgeType.getText())) {
+            return GameStatus.CROSSING;
+        }
+
+        return GameStatus.FAIL;
     }
 
     /**
