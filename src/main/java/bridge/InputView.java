@@ -1,15 +1,28 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Console;
+import java.util.NoSuchElementException;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private static String ERROR_MSG = "[ERROR]";
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        try {
+            String userInput = readUserInput();
+            InputViewValidator.validateNumberFormat(userInput);
+            int bridgeSize = Integer.parseInt(userInput);
+            InputViewValidator.validateBridgeLength(bridgeSize);
+            return bridgeSize;
+        } catch (NoSuchElementException | IllegalArgumentException e) {
+            System.out.println(ERROR_MSG + e.getMessage());
+            return readBridgeSize();
+        }
     }
 
     /**
@@ -24,5 +37,9 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private String readUserInput() {
+        return Console.readLine();
     }
 }
