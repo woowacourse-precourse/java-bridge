@@ -1,6 +1,7 @@
 package bridge.view;
 
 import static bridge.constant.BridgeConstant.LOWER_BLOCK;
+import static bridge.constant.BridgeConstant.RESTART_GAME;
 import static bridge.constant.BridgeConstant.UPPER_BLOCK;
 
 import bridge.FinalMessage;
@@ -13,26 +14,34 @@ import java.util.List;
  */
 public class OutputView {
 
+    private static final String ANSWER_IS_RIGHT = "O";
+    private static final String ANSWER_IS_WRONG = "X";
     private static final String BLANK = " ";
+    private static final String GAME_CLEAR_SUCCESS = "성공";
+    private static final String GAME_CLEAR_FAIL = "실패";
 
     private final List<String> upperBlocks = new ArrayList<>();
     private final List<String> lowerBlocks = new ArrayList<>();
 
     public void printMap(MoveResult moveResult) {
-        
         String answer = moveResult.getMessage();
         String resultMark = getResultMark(moveResult.isCorrect());
         setBlocks(answer, resultMark);
+        printJoiningMessage();
+    }
 
-        printEachMessage(upperBlocks);
-        printEachMessage(lowerBlocks);
+    private void printJoiningMessage() {
+        String upperBlocksMessage = String.join(" | ", upperBlocks);
+        String lowerBlocksMessage = String.join(" | ", lowerBlocks);
+        System.out.printf("[ %s ]\n", upperBlocksMessage);
+        System.out.printf("[ %s ]\n", lowerBlocksMessage);
     }
 
     private String getResultMark(boolean isCorrect) {
         if (isCorrect) {
-            return "O";
+            return ANSWER_IS_RIGHT;
         }
-        return "X";
+        return ANSWER_IS_WRONG;
     }
 
     private void setBlocks(String answer, String resultMark) {
@@ -47,10 +56,6 @@ public class OutputView {
         }
     }
 
-    private void printEachMessage(List<String> blocks) {
-        String combinedMessage = String.join(" | ", blocks);
-        System.out.printf("[ %s ]\n", combinedMessage);
-    }
 
     public void clear() {
         upperBlocks.clear();
@@ -59,16 +64,15 @@ public class OutputView {
 
     public void printResult(FinalMessage finalMessage) {
         System.out.println("최종 게임 결과");
-        printEachMessage(upperBlocks);
-        printEachMessage(lowerBlocks);
+        printJoiningMessage();
         System.out.printf("게임 성공 여부: %s\n", getIsGameClear(finalMessage));
         System.out.printf("총 시도한 횟수: %s\n", finalMessage.getTryCount());
     }
 
     private String getIsGameClear(FinalMessage finalMessage) {
         if (finalMessage.isGameClear()) {
-            return "성공";
+            return GAME_CLEAR_SUCCESS;
         }
-        return "실패";
+        return GAME_CLEAR_FAIL;
     }
 }
