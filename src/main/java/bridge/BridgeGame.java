@@ -11,6 +11,7 @@ public class BridgeGame {
     private final int bridgeSize;
     private int gameCount;
     private final List<String> resultBridge;
+    private boolean gameResult;
 
     public BridgeGame(int size) {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
@@ -19,6 +20,10 @@ public class BridgeGame {
         this.bridgeSize = bridge.size();
         this.gameCount = 1;
         this.resultBridge = new ArrayList<>();
+    }
+
+    public void setGameResult(boolean result) {
+        this.gameResult = result;
     }
 
     public int getBridgeSize() {

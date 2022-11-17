@@ -29,4 +29,8 @@ public class BridgeController {
         }
         return true;
     }
+
+    public void setGameResult() {
+        bridgeGame.setGameResult(proceedGame());
+    }
 }
