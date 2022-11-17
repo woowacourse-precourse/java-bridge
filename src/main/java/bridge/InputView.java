@@ -17,7 +17,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    UserDto userDto;
+    private final String INPUT_BRIDGE_SIZE_MSG ="다리의 길이를 입력해주세요.";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -25,6 +25,7 @@ public class InputView {
     public int readBridgeSize() {
         BridgeSizeValidation bridgeSizeValidation = new BridgeSizeValidation();
 
+        System.out.println(INPUT_BRIDGE_SIZE_MSG);
         String bridgeSize = readLine();
         bridgeSizeValidation.validate(bridgeSize);
 
