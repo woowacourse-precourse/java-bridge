@@ -5,12 +5,15 @@ import java.util.List;
 
 public class GameStatus {
 
-    private static final String SUCCESS = "O";
-    private static final String FAIL = "X";
+    private static final String O = "O";
+    private static final String X = "X";
+    private static final String SUCCESS = "성공";
+    private static final String FAIL = "실패";
 
+    private boolean isFail;
     private int tryCount;
-    private List<String> up;
-    private List<String> down;
+    private final List<String> up;
+    private final List<String> down;
 
     public GameStatus() {
         tryCount = 1;
@@ -20,6 +23,13 @@ public class GameStatus {
 
     public int getTryCount() {
         return this.tryCount;
+    }
+
+    public String getStatus() {
+        if (isFail) {
+            return FAIL;
+        }
+        return SUCCESS;
     }
 
     public void retry() {
@@ -38,10 +48,11 @@ public class GameStatus {
 
     private void addStatus(List<String> bridge, boolean isSuccess) {
         if (isSuccess) {
-            bridge.add(SUCCESS);
+            bridge.add(O);
             return;
         }
-        bridge.add(FAIL);
+        bridge.add(X);
+        this.isFail = true;
     }
 
     public String getBridgeStatus() {
@@ -54,7 +65,7 @@ public class GameStatus {
 
     private void makeMessage(StringBuilder sb, List<String> bridge) {
         sb.append("[ ");
-        for (String status : up) {
+        for (String status : bridge) {
             sb.append(status)
               .append(" | ");
         }

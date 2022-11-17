@@ -1,31 +1,34 @@
 package bridge;
 
+import bridge.config.Config;
 import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class GameManager {
 
-    private GameManager() {
+    private final BridgeGame bridgeGame;
+    private final GameStatus gameStatus;
 
+    private GameManager(BridgeGame bridgeGame, GameStatus gameStatus) {
+        this.bridgeGame = bridgeGame;
+        this.gameStatus = gameStatus;
     }
 
     public static void execute() {
-        GameManager gameManager = new GameManager();
+        Config config = new Config();
+        GameManager gameManager = new GameManager(new BridgeGame(config.bridgeNumberGenerator()), new GameStatus());
         gameManager.startGame();
     }
 
     private void startGame() {
-        BridgeGame bridgeGame = new BridgeGame(new BridgeRandomNumberGenerator());
-        GameStatus gameStatus = new GameStatus();
-        GameCommand gameCommand;
-
         while (true) {
-            gameCommand = play(bridgeGame);
-            if (gameCommand.isFinish()) {
-                // TODO: 결과 출력
-                break;
-            }
+            GameCommand gameCommand = play(bridgeGame);
             if (gameCommand.isRetry()) {
                 retry(bridgeGame, gameStatus);
+            }
+            if (gameCommand.isFinish()) {
+                OutputView.printResult(gameStatus.getBridgeStatus(), gameStatus);
+                break;
             }
         }
     }
