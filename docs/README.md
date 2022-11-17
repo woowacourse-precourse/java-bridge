@@ -5,6 +5,8 @@
     - [x] 이동 위치에 따라 다른 리스트에 데이터 저장하는 클래스 생성 - ListAdder, UpAdder, DownAdder
     - [x] upBridge, downBridge 리스트를 반환하는 getter 메서드 - BridgeGame#getUpBridge(), getDownBridge()
   - [x] 게임을 다시 시도할 때 사용할 메서드 - BridgeGame#retry()
+  - [x] 게임의 성공 여부를 확인하는 메서드 - BridgeGame#checkCompleteOrFail()
+  - [x] 게임 시도 횟수를 반환하는 getter 메서드 - BridgeGame#getRetyrNumber()
 - View
   - [x] 다리 길이 입력 - InputView#readBridgeSize()
   - [x] 이동할 위치 입력 - InputView#readMoving()

@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import static bridge.Constants.COMPLETE;
+import static bridge.Constants.FAIL;
 import static bridge.Constants.FAIL_MESSAGE;
 import static bridge.Constants.UP_BRIDGE;
 import static bridge.Constants.DOWN_BRIDGE;
@@ -15,6 +17,7 @@ import java.util.Objects;
 public class BridgeGame {
     private final List<String> bridge;
     private int index = 0;
+    int retryNumber = 1;
 
     List<String> upBridge = new ArrayList<>();
     List<String> downBridge = new ArrayList<>();
@@ -62,6 +65,14 @@ public class BridgeGame {
         index = 0;
         upBridge = new ArrayList<>();
         downBridge = new ArrayList<>();
+        retryNumber++;
+    }
+
+    public String checkCompleteOrFail() {
+        if (index == bridge.size()) {
+            return COMPLETE;
+        }
+        return FAIL;
     }
 
     public int getIndex() {
@@ -74,5 +85,9 @@ public class BridgeGame {
 
     public List<String> getDownBridge() {
         return downBridge;
+    }
+
+    public int getRetryNumber() {
+        return retryNumber;
     }
 }
