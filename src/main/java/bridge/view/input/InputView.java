@@ -1,11 +1,13 @@
 package bridge.view.input;
 
 import bridge.domain.vo.BridgeSize;
+import bridge.domain.vo.GameCommand;
 import bridge.domain.vo.Moving;
 import bridge.view.output.OutputView;
 import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.domain.vo.BridgeSize.createBridgeSize;
+import static bridge.domain.vo.GameCommand.createGameCommand;
 import static bridge.domain.vo.Moving.createMoving;
 
 /**
@@ -43,10 +45,9 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public GameCommand readGameCommand() {
         outputView.printGameCommandRequestMessage();
-        String gameCommand = Console.readLine();
-        inputValidator.validateGameCommand(gameCommand);
-        return gameCommand;
+        String gameCommandInput = Console.readLine();
+        return createGameCommand(gameCommandInput);
     }
 }
