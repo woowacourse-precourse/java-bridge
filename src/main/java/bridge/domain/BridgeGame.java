@@ -59,7 +59,7 @@ public class BridgeGame {
             upBridgeStatus[position] = O_FLAG;
             return true;
         }
-        upBridgeStatus[position] = X_FLAG;
+        upBridgeStatus[position--] = X_FLAG;
         return false;
     }
 
@@ -68,7 +68,7 @@ public class BridgeGame {
             downBridgeStatus[position] = O_FLAG;
             return true;
         }
-        downBridgeStatus[position] = X_FLAG;
+        downBridgeStatus[position--] = X_FLAG;
         return false;
     }
 

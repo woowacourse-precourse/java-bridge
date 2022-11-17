@@ -31,8 +31,7 @@ class BridgeGameTest {
         void test2() {
             assertThat(bridgeGame.move("U")).isTrue();
             assertThat(bridgeGame.move("D")).isFalse();
-
-            assertThat(bridgeGame.getPosition()).isEqualTo(1);
+            assertThat(bridgeGame.getPosition()).isEqualTo(0);
             assertThat(bridgeGame.getUpBridgeStatus()).containsExactly('O', ' ', ' ');
             assertThat(bridgeGame.getDownBridgeStatus()).containsExactly(' ', 'X', ' ');
         }
@@ -51,7 +50,7 @@ class BridgeGameTest {
             assertThat(bridgeGame.move("U")).isTrue();
             assertThat(bridgeGame.move("U")).isTrue();
             assertThat(bridgeGame.move("U")).isFalse();
-            assertThat(bridgeGame.getPosition()).isEqualTo(2);
+            assertThat(bridgeGame.getPosition()).isEqualTo(1);
             assertThat(bridgeGame.getUpBridgeStatus()).containsExactly('O', 'O', 'X');
             assertThat(bridgeGame.getDownBridgeStatus()).containsExactly(' ', ' ', ' ');
         }
@@ -64,6 +63,24 @@ class BridgeGameTest {
             assertThat(bridgeGame.getPosition()).isEqualTo(2);
             assertThat(bridgeGame.getUpBridgeStatus()).containsExactly('O', 'O', ' ');
             assertThat(bridgeGame.getDownBridgeStatus()).containsExactly(' ', ' ', 'O');
+        }
+    }
+
+    @Nested
+    class MoveAndRetryTest {
+        @Test
+        void test1() {
+            assertThat(bridgeGame.move("U")).isTrue();
+            assertThat(bridgeGame.move("D")).isFalse();
+            assertThat(bridgeGame.getPosition()).isEqualTo(0);
+            assertThat(bridgeGame.getUpBridgeStatus()).containsExactly('O', ' ', ' ');
+            assertThat(bridgeGame.getDownBridgeStatus()).containsExactly(' ', 'X', ' ');
+
+            assertThat(bridgeGame.move("U")).isTrue();
+            assertThat(bridgeGame.getPosition()).isEqualTo(1);
+            assertThat(bridgeGame.getUpBridgeStatus()).containsExactly('O', 'O', ' ');
+            assertThat(bridgeGame.getDownBridgeStatus()).containsExactly(' ', 'X', ' ');
+
         }
     }
 
