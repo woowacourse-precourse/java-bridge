@@ -10,45 +10,60 @@ public class CurrentBridge {
     private static final String SUCCESS = "성공";
     private static final String FAILS = "실패";
 
-    private static List<List<String>> currentMap;
+    private static List<List<String>> currentPosition;
+    private static String currentMap;
     private static int numberOfAttempts;
     private static String outcome;
 
-    public CurrentBridge() {
-        this.currentMap = new ArrayList<>();
+    protected CurrentBridge() {
+        this.currentPosition = new ArrayList<>();
         this.numberOfAttempts = 1;
         this.outcome = "";
     }
 
     protected String saveMap(String mapPosition) {
-        this.currentMap.add(Arrays.asList(mapPosition.split("-")));
-
-        return drawCurrentMap();
+        this.currentPosition.add(Arrays.asList(mapPosition.split("-")));
+        drawCurrentMap();
+        return this.currentMap;
     }
 
-    protected String drawCurrentMap() {
+    private void drawCurrentMap() {
         StringJoiner upStairMap = new StringJoiner(MAP_SEPARATOR, MAP_START, MAP_END);
         StringJoiner downStairMap = new StringJoiner(MAP_SEPARATOR, MAP_START, MAP_END);
-        for (List<String> location : currentMap) {
+        for (List<String> location : currentPosition) {
             upStairMap.add(location.get(1));
             downStairMap.add(location.get(0));
         }
-        String map = upStairMap.toString() + "\n" + downStairMap.toString();
-        return map;
+        this.currentMap = upStairMap.toString() + "\n" + downStairMap.toString();
     }
 
     protected void clearMap() {
         this.numberOfAttempts++;
-        this.outcome = FAILS;
-        this.currentMap.clear();
+        this.currentPosition.clear();
+    }
+
+    public static boolean canNotCross() {
+        if (getSize() == 0) {
+            return false;
+        }
+        if (currentPosition.get(getSize()-1).contains("X")) {
+            outcome = FAILS;
+            return true;
+        }
+        return false;
     }
 
     public static int getSize() {
-        return currentMap.size();
+        return currentPosition.size();
     }
 
-//    protected boolean isCross() {
-//        return !currentMap.get(-1).contains("X");
-//    }
-
+    public static String getCurrentMap() {
+        return currentMap;
+    }
+    public static int getNumberOfAttempts() {
+        return numberOfAttempts;
+    }
+    public static String getOutcome() {
+        return outcome;
+    }
 }

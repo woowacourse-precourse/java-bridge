@@ -16,7 +16,7 @@ public class BridgeGameTest {
     void saveStageWhenBridgeStageIsUp() {
         String currentMap;
         bridgeGame.move("U", "U");
-        currentMap = bridgeGame.move("U", "D");
+        currentMap = bridgeGame.move("D", "U");
 
         Assertions.assertThat(currentMap).contains("[ O |   ]", "[   | X ]");
     }
@@ -25,22 +25,22 @@ public class BridgeGameTest {
     @Test
     void saveStageWhenBridgeStageIsDown() {
         String currentMap;
-        bridgeGame.move("D", "U");
+        bridgeGame.move("U", "D");
         currentMap=bridgeGame.move("D", "D");
 
         Assertions.assertThat(currentMap).contains("[ X |   ]", "[   | O ]");
     }
 
 
-    @DisplayName("재시작 여부로 R을 입력하는 경우 테스트")
+    @DisplayName("재시작하는 경우 초기화 확인 테스트")
     @Test
     void retryThenCurrentMapClear() {
         String currentMap;
         bridgeGame.move("D", "U");
         bridgeGame.move("D", "D");
-        bridgeGame.retry("R");
+        bridgeGame.retry();
         currentMap=bridgeGame.move("D", "U");
 
-        Assertions.assertThat(currentMap).contains("[ X ]\n[   ]");
+        Assertions.assertThat(currentMap).contains("[   ]\n[ X ]");
     }
 }
