@@ -34,8 +34,8 @@ public class BridgeMaker {
 
     private String generateBridgeShape() {
         if (bridgeNumberGenerator.generate() == ZERO) {
-            return UP;
+            return DOWN;
         }
-        return DOWN;
+        return UP;
     }
 }
