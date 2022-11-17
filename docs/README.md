@@ -12,9 +12,9 @@
    3) 비교 후 채점표를 갱신한다. (feat.2.2)
    4) 결과 맵을 보여준다. (output.1)
    5) 다음 단계로 넘어간다. (output.2)
-      1) 성공 & 아직 남은 다리가 있을 시 -> feat.2으로 (output.3)
-      2) 성공 & 남은 다리가 없을 시 -> 게임 종료 문구 (output.4)
-      3) 실패 -> 게임 종료 문구 & 게임 재시작 여부 문구 (feat.2.3)(input.3)(output.5)
+      1) 성공 & 아직 남은 다리가 있을 시 -> feat.2으로 
+      2) 성공 & 남은 다리가 없을 시 -> 게임 종료 문구 
+      3) 실패 -> 게임 종료 문구 & 게임 재시작 여부 문구 (feat.2.3)(input.3)
 
 ### Validation
 1. 다리 길이 입력시 숫자인지 확인 - `IllegalArgumentException`
@@ -38,7 +38,8 @@ public String readGameCommand   (input.3)
 
 ### OutputView
 ```
-
+public void printMap()  (output.1)
+public void printResult()   (output.2)
 ```
 
 ### Controller
