@@ -29,4 +29,11 @@ public class BridgeMakerTest {
         assertThat(bridgeMaker.makeBridge(expected).size())
                 .isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("다리 길이가 주어졌을 때 길이만큼 건널 수 있는 방향은 오직 U 또는 D이다.")
+    void 다리_길이가_주어졌을때_방향은_오직_U_OR_D이다() {
+        assertThat(bridgeMaker.makeBridge(20))
+                .containsOnly("D", "U");
+    }
 }
