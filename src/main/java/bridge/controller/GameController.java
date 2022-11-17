@@ -13,6 +13,9 @@ import java.util.List;
 
 public class GameController {
 
+    public static final String GAME_RETRY_INPUT = "R";
+    public static final String GAME_QUIT_INPUT = "Q";
+
     private final InputView inputView;
     private final OutputView outputView;
     private BridgeGame bridgeGame;
@@ -23,9 +26,18 @@ public class GameController {
         outputView = new OutputView();
     }
 
+    // todo: refactor
     public void startGame() {
-        generateRandomBridge();
-        generateMovingTargetTile();
+        Player player = new Player();
+        Bridge bridge = generateRandomBridge();
+
+        do {
+            boolean isSurvival = playOneTurn(bridge, player);
+            // isSurvival false -> 제시도 여부 확인
+            if (!isSurvival) {
+            }
+        } while (!bridgeGame.isWin(bridge, player));
+        // 결과 출력
     }
 
     private Bridge generateRandomBridge() {
@@ -41,9 +53,10 @@ public class GameController {
         }
     }
 
-    private void playOneTurn(Bridge bridge, Player player) {
+    private boolean playOneTurn(Bridge bridge, Player player) {
         BridgeTile movingTargetTile = generateMovingTargetTile();
-        bridgeGame.move(bridge, player, movingTargetTile);
+        boolean turnResult = bridgeGame.move(bridge, player, movingTargetTile);
+        return turnResult;
     }
 
     private BridgeTile generateMovingTargetTile() {
@@ -56,6 +69,23 @@ public class GameController {
                 System.out.println(exception.getMessage());
             }
         }
+    }
+
+    // todo: refactor
+    private boolean askForTryAgain() {
+        String input = null;
+        do {
+            try {
+                input = inputView.readGameCommand(GAME_RETRY_INPUT, GAME_QUIT_INPUT);
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        } while (input == null);
+
+        if (input.equals(GAME_RETRY_INPUT)) {
+            return true;
+        }
+        return false;
     }
 
 }
