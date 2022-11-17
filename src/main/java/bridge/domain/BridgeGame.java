@@ -51,6 +51,8 @@ public class BridgeGame {
     }
 
     public boolean isEnd() {
+        if (isStopped)
+            return false;
         return currentTryIndex == bridge.size();
     }
 

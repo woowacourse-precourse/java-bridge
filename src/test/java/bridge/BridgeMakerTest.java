@@ -24,8 +24,8 @@ class BridgeMakerTest {
     void testBridgeString() {
         List<String> bridge = bridgeMaker.makeBridge(3);
         for (int i=0; i<3; i++) {
-            assertTrue(bridge.get(i) == "U"
-                    || bridge.get(i) == "D");
+            assertTrue(bridge.get(i).equals("U")
+                    || bridge.get(i).equals("D"));
         }
     }
 }

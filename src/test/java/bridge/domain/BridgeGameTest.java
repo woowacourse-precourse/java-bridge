@@ -49,6 +49,14 @@ class BridgeGameTest {
         assertFalse(bridgeGame.isStopped());
     }
 
+    @Test
+    void testReturnEnd() {
+        bridgeGame.move(bridge.get(0));
+        bridgeGame.move(bridge.get(1));
+        bridgeGame.move(oppositeDirection(bridge.get(2)));
+        assertFalse(bridgeGame.isEnd());
+    }
+
     private String oppositeDirection(String direction) {
         if (direction.equals("U"))
             return "D";
