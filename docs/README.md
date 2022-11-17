@@ -4,7 +4,7 @@
 
 - [x] 다리 생성
   - [x] 다리의 길이를 입력한다 - InputView#readBridgeSize()
-    - [x] 숫자가 아니면 IllegalArgumentException 발생시킨다 - Validation#validateBridgeSize()
+    - [x] 잘못된 값을 입력하면 IllegalArgumentException 발생시킨다 - Validation#validateBridgeSize()
     - [x] 사용자가 올바른 값을 입력할 때 까지 입력을 받는다 - Validation#validateBridgeSize()
   - [x] 생성 시 위 칸와 아래 칸 중 건널 수 있는 칸은 0과 1 중 무작위 값을 이용해 정한다 - BridgeMaker#makeBridgeRandomNumber()
     - [x] 무작위 값이 0인 경우 아래 칸, 1인 경우 위 칸이 건널 수 있는 칸이 된다 - BridgeMaker#makeBridge()
@@ -17,7 +17,7 @@
   - [x] 플레이어가 칸을 이동한다 - BridgeGame#move()
   - [x] 다리를 끝까지 건너거나 실패하면 게임이 종료된다 - BridgeGame#start()
   - [x] 게임을 재시작하거나 종료할 수 있다 - BridgeGame#retry()
-    - [] 잘못된 값을 입력하면 IllegalArgumentException 발생시킨다 - Validation#validateReOrEnd()
+    - [x] 잘못된 값을 입력하면 IllegalArgumentException 발생시킨다 - Validation#validateReOrEnd()
    - [] 재시작해도 처음에 만든 다리로 재사용한다 - BridgeMaker#initBridge()
    - [] 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때 까지 시도한 횟수를 나타낸다 - BridgeGame#calculateTryCount()
 

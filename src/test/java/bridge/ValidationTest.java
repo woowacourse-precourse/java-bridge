@@ -2,6 +2,7 @@ package bridge;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -15,30 +16,36 @@ public class ValidationTest{
 	void isBridgeSizeException_메서드_테스트(String input) {
 
 		Assertions.assertAll(
-			() -> validateNumberOnly_메서드_테스트(),
-			() -> validateNumberLength_메서드_테스트(),
-			() -> validateRange_메서드_테스트()
+			() -> validateNumberOnly_메서드_테스트(input),
+			() -> validateLength_메서드_테스트(input),
+			() -> validateRange_메서드_테스트(input)
 		);
 	}
 
 	@DisplayName("input이 숫자만으로 이루어져있는지 테스트")
-	private void validateRange_메서드_테스트() {
-		String input = "123";
+	private void validateRange_메서드_테스트(String input) {
 		Assertions.assertThrows(IllegalArgumentException.class,
 			() -> Validation.validateRange(input));
 	}
 
 	@DisplayName("input이 숫자만으로 이루어져있는지 테스트")
-	void validateNumberOnly_메서드_테스트() {
-		String input = "a";
+	void validateNumberOnly_메서드_테스트(String input) {
 		Assertions.assertThrows(IllegalArgumentException.class,
 			() -> Validation.validateNumberOnly(input));
 	}
 
 	@DisplayName("input이 올바른 길이인지 테스트")
-	void validateNumberLength_메서드_테스트() {
-		String input = "22";
+	void validateLength_메서드_테스트(String input) {
 		Assertions.assertThrows(IllegalArgumentException.class,
-			() -> Validation.validateNumberLength(input, 1));
+			() -> Validation.validateLength(input, 1));
+	}
+
+
+	@DisplayName("R 혹은 Q이외의 입력이 들어오면 예외처리")
+	@Test
+	void validateROrQ_메서드_테스트() {
+		String input = "T";
+		Assertions.assertThrows(IllegalArgumentException.class,
+			() -> Validation.validateROrQ(input));
 	}
 }

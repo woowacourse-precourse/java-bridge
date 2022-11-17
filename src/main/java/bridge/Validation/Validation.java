@@ -22,7 +22,7 @@ public class Validation {
 
 	private static boolean isBridgeSizeException(int length, String input) {
 		try {
-			validateNumberLength(input, length);
+			validateLength(input, length);
 			validateNumberOnly(input);
 			validateRange(input);
 		} catch (IllegalArgumentException exception) {
@@ -40,7 +40,7 @@ public class Validation {
 		}
 	}
 
-	public static void validateNumberLength(String input, int length) {
+	public static void validateLength(String input, int length) {
 		if (input.length() > length) {
 			throw Exceptions.LENGTH_EXCEPTION.getException();
 		}
@@ -72,8 +72,8 @@ public class Validation {
 	private static boolean isMovingException(String input, int length) {
 
 		try {
-			validateNumberLength(input, length);
-			validateUOrDOnly(input);
+			validateLength(input, length);
+			validateUOrD(input);
 		} catch (IllegalArgumentException exception) {
 			System.out.println(exception.getMessage());
 			return true;
@@ -81,9 +81,41 @@ public class Validation {
 		return false;
 	}
 
-	private static void validateUOrDOnly(String input) {
+	private static void validateUOrD(String input) {
 		if (!input.equals("U") && !input.equals("D")) {
-			throw Exceptions.U_OR_D_ONLY_EXCEPTION.getException();
+			throw Exceptions.U_OR_D_EXCEPTION.getException();
+		}
+	}
+
+	public static String validateGameCommand(int length){
+		boolean isReInput;
+		String input = "";
+
+		do {
+			GuideMessageView.RE_OR_END_GUIDE_MESSAGE.printMessage();
+			input = inputView.readGameCommand();
+			isReInput = isGameCommandException(input, length);
+
+		} while (isReInput);
+
+		return input;
+	}
+
+	private static boolean isGameCommandException(String input, int length) {
+		try{
+			validateLength(input, length);
+			validateROrQ(input);
+		}catch(IllegalArgumentException exception){
+			System.out.println(exception.getMessage());
+			return true;
+		}
+
+		return false;
+	}
+
+	public static void validateROrQ(String input) {
+		if (!input.equals("R") && !input.equals("Q")) {
+			throw Exceptions.R_OR_Q_EXCEPTION.getException();
 		}
 	}
 }
