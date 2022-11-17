@@ -1,6 +1,7 @@
 package bridge.utils;
 
 import bridge.constant.ErrorStatus;
+import bridge.constant.GameKeyboard;
 
 import static bridge.constant.GameKeyboard.*;
 
@@ -31,16 +32,24 @@ public class Validation {
     }
 
     public static String validateMoving(String moving) {
-        if (!(moving.equals(UP.letter()) || moving.equals(DOWN.letter()))) {
+        if (isNotMatchMovingLetter(moving, UP, DOWN)) {
             throw new IllegalArgumentException(ErrorStatus.WRONG_MOVING_LETTER.getMessage());
         }
         return moving;
     }
 
+    private static boolean isNotMatchMovingLetter(String moving, GameKeyboard up, GameKeyboard down) {
+        return !(moving.equals(up.letter()) || moving.equals(down.letter()));
+    }
+
     public static String validateRestartInput(String restartAnswer) {
-        if (!(restartAnswer.equals(RESTART.letter()) || restartAnswer.equals(QUIT.letter()))) {
+        if (isNotMatchRestartLetter(restartAnswer, RESTART, QUIT)) {
             throw new IllegalArgumentException(ErrorStatus.WRONG_RESTART_LETTER.getMessage());
         }
         return restartAnswer;
+    }
+
+    private static boolean isNotMatchRestartLetter(String restartAnswer, GameKeyboard restart, GameKeyboard quit) {
+        return !(restartAnswer.equals(restart.letter()) || restartAnswer.equals(quit.letter()));
     }
 }

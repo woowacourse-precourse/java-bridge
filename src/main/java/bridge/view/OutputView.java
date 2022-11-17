@@ -4,7 +4,10 @@ import bridge.BridgeGame;
 
 import java.util.List;
 
+import static bridge.constant.GameKeyboard.*;
+
 public class OutputView {
+    public static final int NEXT_INDEX = 1;
     private String initUpperBridgeMap = "[";
     private String initDownBridgeMap = "[";
 
@@ -20,13 +23,17 @@ public class OutputView {
     }
 
     private void checkXMark(List<String> answerBridge, int currentBridgeIndex) {
-        if (answerBridge.contains("X")) {
+        if (answerBridge.contains(WRONG_ANSWER.letter())) {
             printBridgeWithX(currentBridgeIndex, answerBridge);
         }
 
-        if (!answerBridge.contains("X")) {
+        if (isCorrectAnswer(answerBridge)) {
             printCorrectBridge(currentBridgeIndex, answerBridge);
         }
+    }
+
+    private static boolean isCorrectAnswer(List<String> answerBridge) {
+        return !answerBridge.contains(WRONG_ANSWER.letter());
     }
 
     private void printBridgeWithX(int currentBridgeIndex, List<String> answerBridge) {
@@ -41,23 +48,23 @@ public class OutputView {
 
     private void printWrongAllBridge(int currentBridgeIndex, List<String> answerBridge) {
         String nextIndexMovingMark = answerBridge.get(currentBridgeIndex + 1);
-        if (nextIndexMovingMark.equals("U")) {
+        if (nextIndexMovingMark.equals(UP.letter())) {
             initUpperBridgeMap = initUpperBridgeMap + "| X ";
             initDownBridgeMap = initDownBridgeMap + "|   ";
         }
-        if (nextIndexMovingMark.equals("D")) {
+        if (nextIndexMovingMark.equals(DOWN.letter())) {
             initUpperBridgeMap = initUpperBridgeMap + "|   ";
             initDownBridgeMap = initDownBridgeMap + "| X ";
         }
     }
 
     private void printWrongFirstBridge(int currentBridgeIndex, List<String> answerBridge) {
-        String nextIndexMovingMark = answerBridge.get(currentBridgeIndex + 1);
-        if (nextIndexMovingMark.equals("U")) {
+        String nextIndexMovingMark = answerBridge.get(currentBridgeIndex + NEXT_INDEX);
+        if (nextIndexMovingMark.equals(UP.letter())) {
             initUpperBridgeMap = initUpperBridgeMap + " X ";
             initDownBridgeMap = initDownBridgeMap + "   ";
         }
-        if (nextIndexMovingMark.equals("D")) {
+        if (nextIndexMovingMark.equals(DOWN.letter())) {
             initUpperBridgeMap = initUpperBridgeMap + "   ";
             initDownBridgeMap = initDownBridgeMap + " X ";
         }
@@ -83,11 +90,11 @@ public class OutputView {
 
     private void printCorrectAllBridge(int currentBridgeIndex, List<String> answerBridge) {
         String currentIndexMovingMark = answerBridge.get(currentBridgeIndex);
-        if (currentIndexMovingMark.equals("U")) {
+        if (currentIndexMovingMark.equals(UP.letter())) {
             initUpperBridgeMap = initUpperBridgeMap + "| O ";
             initDownBridgeMap = initDownBridgeMap + "|   ";
         }
-        if (currentIndexMovingMark.equals("D")) {
+        if (currentIndexMovingMark.equals(DOWN.letter())) {
             initUpperBridgeMap = initUpperBridgeMap + "|   ";
             initDownBridgeMap = initDownBridgeMap + "| O ";
         }
@@ -95,18 +102,18 @@ public class OutputView {
 
     private void printCorrectFirstBridge(int currentBridgeIndex, List<String> answerBridge) {
         String currentIndexMovingMark = answerBridge.get(currentBridgeIndex);
-        if (currentIndexMovingMark.equals("U")) {
+        if (currentIndexMovingMark.equals(UP.letter())) {
             initUpperBridgeMap = initUpperBridgeMap + " O ";
             initDownBridgeMap = initDownBridgeMap + "   ";
         }
-        if (currentIndexMovingMark.equals("D")) {
+        if (currentIndexMovingMark.equals(DOWN.letter())) {
             initUpperBridgeMap = initUpperBridgeMap + "   ";
             initDownBridgeMap = initDownBridgeMap + " O ";
         }
     }
 
     public void printResult(String restartMessage, int attemptCount) {
-        if (restartMessage.equals("Q")) {
+        if (restartMessage.equals(QUIT.letter())) {
             System.out.println("최종 게임 결과");
             printClose();
             System.out.println();
