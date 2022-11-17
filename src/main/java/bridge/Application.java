@@ -9,8 +9,16 @@ public class Application {
         GameController gameController=GameController.getInstance();
         gameController.run();
         gameController.inputBridgeSize();
-        gameController.inputSelectMove();
         gameController.generateBridge();
-        gameController.move();
     }
+
+    private static int move(GameController gameController){
+        while (true){
+                gameController.inputSelectMove();
+                if(gameController.move()==0){
+                    gameController.
+                }
+            }
+    }
+
 }

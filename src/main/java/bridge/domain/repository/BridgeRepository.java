@@ -2,6 +2,7 @@ package bridge.domain.repository;
 
 import bridge.application.BridgeGame;
 import bridge.presentation.dto.BridgeSize;
+import bridge.presentation.dto.GameCommand;
 import bridge.presentation.dto.SelectMove;
 
 import java.util.ArrayList;
@@ -14,10 +15,11 @@ public class BridgeRepository {
     private List<String> lowerResult;
     private BridgeSize bridgeSize;
     private SelectMove selectMove;
+    private GameCommand gameCommand;
     private Integer attemptNumber;
     private Integer successNumber;
     private BridgeRepository(){
-        attemptNumber=0;
+        attemptNumber=1;
     }
 
     public static BridgeRepository getInstance(){
@@ -27,6 +29,7 @@ public class BridgeRepository {
         upperResult=new ArrayList<>(List.of("["));
         lowerResult=new ArrayList<>(List.of("["));
         successNumber=0;
+
     }
     public void updateAttemptNumber(){
         attemptNumber+=1;
@@ -45,6 +48,7 @@ public class BridgeRepository {
         this.bridgeSize=bridgeSize;
     }
     public void saveSelectMove(SelectMove selectMove){this.selectMove=selectMove;}
+    public void saveGameCommand(GameCommand gameCommand){this.gameCommand=gameCommand;}
     public void updateBridge(List<String> bridge){this.bridge=bridge;}
 
     public BridgeSize getBridgeSize() {
@@ -53,6 +57,11 @@ public class BridgeRepository {
     public SelectMove getSelectMove() {
         return selectMove;
     }
+
+    public GameCommand getGameCommand() {
+        return gameCommand;
+    }
+
     public List<String> getBridge() {
         return bridge;
     }
