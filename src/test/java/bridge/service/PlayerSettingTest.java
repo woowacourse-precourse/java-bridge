@@ -18,8 +18,8 @@ public class PlayerSettingTest extends PlayerSetting {
         @ParameterizedTest
         @MethodSource("data")
         void test(String readBridgeSize, int validate) {
-            setBridgeSizeToPlayer(0);   // Param 변경 필요 Integer -> String
-            int playerBridgeSize = player.getBridgeSize();  // player 가 private 이여서 다른 방법 필요
+            setBridgeSizeToPlayer(readBridgeSize);
+            int playerBridgeSize = getPlayerBridgeSize();
             Assertions.assertThat(playerBridgeSize).isEqualTo(validate);
         }
 

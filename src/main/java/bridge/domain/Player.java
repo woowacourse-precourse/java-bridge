@@ -1,10 +1,12 @@
 package bridge.domain;
 
-public class Player {
-    private int bridgeSize;
+import bridge.dto.PlayerBridgeSizeDto;
 
-    public Player(int bridgeSize) {
-        this.bridgeSize = bridgeSize;
+public class Player {
+    private final int bridgeSize;
+
+    public Player(PlayerBridgeSizeDto playerBridgeSizeDto) {
+        this.bridgeSize = playerBridgeSizeDto.getBridgeSize();
     }
 
     public int getBridgeSize() {

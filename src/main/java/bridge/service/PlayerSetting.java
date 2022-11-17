@@ -1,13 +1,14 @@
 package bridge.service;
 
 import bridge.domain.Player;
+import bridge.dto.PlayerBridgeSizeDto;
 
 public class PlayerSetting {
 
     private Player player;
 
-    public void setBridgeSizeToPlayer(int bridgeSize) {
-        player = new Player(bridgeSize);
+    public void setBridgeSizeToPlayer(String readBridgeSize) {
+        player = new Player(new PlayerBridgeSizeDto(bridgeSizeToInt(readBridgeSize)));
     }
 
     private int bridgeSizeToInt(String readBridgeSize) {
@@ -24,5 +25,9 @@ public class PlayerSetting {
         2. 다리의 길이를 3미만 20초과로 입력한 경우 예외를 던짐
          */
         return true;
+    }
+
+    public int getPlayerBridgeSize() {
+        return PlayerBridgeSizeDto.from(player).getBridgeSize();
     }
 }
