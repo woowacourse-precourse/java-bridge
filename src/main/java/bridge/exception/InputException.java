@@ -16,4 +16,10 @@ public class InputException {
             }
         }
     }
+
+    public void inputNoRangeException(int input) throws IllegalArgumentException {
+        if (input < 3 || 20 < input) {
+            throw new IllegalArgumentException("[ERROR] input is not 3 to 20");
+        }
+    }
 }
