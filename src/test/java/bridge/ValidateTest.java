@@ -38,4 +38,14 @@ class ValidateTest {
         ).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(DIRECTION_EXCEPTION);
     }
+
+    @DisplayName("R(재시작), Q(종료) 이외의 문자가 입력되면 예외가 발생")
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "A", "RR", "QQ", "R ", "Q ", ".", "r", "q"})
+    void commandValidate(String command) {
+        assertThatThrownBy(() ->
+                Validate.commandValidate(command)
+        ).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(COMMAND_EXCEPTION);
+    }
 }
