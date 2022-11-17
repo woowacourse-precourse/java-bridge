@@ -8,7 +8,7 @@ public class Application {
 	static int bridgeSize = 0;
 	static String inputMoving = "";
 	
-	InputView inputView = new InputView();
+	static InputView inputView = new InputView();
     BridgeGame bridgeGame = new BridgeGame();
     
     public static void main(String[] args) {
