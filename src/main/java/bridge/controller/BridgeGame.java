@@ -8,31 +8,30 @@ import bridge.model.BridgeMaker;
 import bridge.model.BridgeNumberGenerator;
 import bridge.model.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
-import bridge.view.OutputView;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
-	BridgeNumberGenerator generator = new BridgeRandomNumberGenerator();
-	BridgeMaker bridgeMaker = new BridgeMaker(generator);
+	BridgeNumberGenerator generator;
+	BridgeMaker bridgeMaker;
+	private final List<String> bridge;
 	private String upsideBridge = "";
 	private String downsideBridge = "";
 
-	public void play() {
-		List<String> bridge = bridgeMaker.makeBridge(InputView.readBridgeSize());
-		System.out.println(START_MESSAGE);
-
-		controlMove(bridge);
+	public BridgeGame() {
+		this.generator = new BridgeRandomNumberGenerator();
+		this.bridgeMaker = new BridgeMaker(generator);
+		this.bridge = bridgeMaker.makeBridge(InputView.readBridgeSize());
 	}
 
-	private void controlMove(List<String> bridge) {
+	public void play() {
+		System.out.println(START_MESSAGE);
+
 		for (int i = 0; i < bridge.size(); i++) {
 			String location = InputView.readMoving();
 			move(location, bridge, i);
-			OutputView.printMap(upsideBridge);
-			OutputView.printMap(downsideBridge);
 		}
 	}
 
@@ -47,6 +46,7 @@ public class BridgeGame {
 	}
 
 	private void setDownsideBridge(String location, List<String> bridge, int index) {
+
 		if (location.equals(DOWNSIDE) && location.equals(bridge.get(index))) {
 			upsideBridge += (SEPARATOR + BLANK);
 			downsideBridge += (SEPARATOR + RIGHT);
@@ -77,10 +77,12 @@ public class BridgeGame {
 	 */
 	public boolean retry() {
 		String command = InputView.readGameCommand();
-		if (command.equals(RETRY_GAME)) {
-			return true;
-		}
-		return false;
+		return command.equals(RETRY_GAME);
+	}
+
+	public void resetBridge() {
+		this.upsideBridge = "";
+		this.downsideBridge = "";
 	}
 }
 
