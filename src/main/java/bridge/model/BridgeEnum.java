@@ -1,4 +1,4 @@
-package bridge;
+package bridge.model;
 
 public enum BridgeEnum {
     D(0),
