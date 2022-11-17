@@ -1,5 +1,7 @@
 package Utils;
 
+import bridge.EnumCollections.BridgeLengthType;
+
 public class InputUtils {
 
     public boolean isDigit(String input) {
@@ -10,4 +12,14 @@ public class InputUtils {
         }
         return true;
     }
+
+    public boolean isValidRangeDigit(String input) {
+        int length = Integer.parseInt(input);
+        int min = BridgeLengthType.MIN.getLength();
+        int max = BridgeLengthType.MAX.getLength();
+
+        return length >= min && length <= max;
+    }
+
+
 }
