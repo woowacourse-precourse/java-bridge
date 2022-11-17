@@ -6,4 +6,9 @@ public class Validate {
         return Exception.validateRangeThreeToTwenty
                 (Exception.convertStringToInteger(bridgeSize));
     }
+
+    // TODO: 사용자로부터 입력받은 이동할 칸을 검증하여 반환한다.
+    public static String moving(String moving){
+        return Exception.validateInputValueForMove(moving);
+    }
 }
