@@ -8,6 +8,8 @@ public class Application {
 
     private String retry;
 
+    private static Error error;
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         startBridgeGame();
