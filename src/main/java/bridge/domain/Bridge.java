@@ -1,7 +1,8 @@
 package bridge.domain;
 
-import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Bridge {
 
@@ -15,14 +16,14 @@ public class Bridge {
         return bridge.get(idx) == userMoved.get(idx);
     }
 
-    public List<String> getMatchingStatus(List<String> userMoved) {
-        List<String> matchingStatus = new ArrayList<>();
+    public Map<String, String> getMatchingStatus(List<String> userMoved) {
+        Map<String, String> matchingStatus = new LinkedHashMap<>();
         for (int i = 0; i < userMoved.size(); i++) {
             if (canMove(userMoved, i)) {
-                matchingStatus.add("O");
+                matchingStatus.put(userMoved.get(i), "O");
                 continue;
             }
-            matchingStatus.add("X");
+            matchingStatus.put(userMoved.get(i), "X");
         }
         return matchingStatus;
     }
