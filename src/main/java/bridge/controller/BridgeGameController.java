@@ -15,6 +15,10 @@ import static bridge.exception.BridgeGameValidator.validateInt;
 
 public class BridgeGameController {
 
+    private static final String SUCCESS = "성공";
+    private static final String FAILED = "실패";
+    private static final String YES = "O";
+    private static final String NO = "X";
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
 
@@ -48,10 +52,10 @@ public class BridgeGameController {
     private boolean crossBridge(int index){
         String moving = inputView.readMoving();
         if(bridgeGame.move(moving,index,bridge)){
-            outputView.printMap("O", bridgeUpDownNumber.upOrDown(bridge.get(index)));
+            outputView.printMap(YES, bridgeUpDownNumber.upOrDown(bridge.get(index)));
             return true;
         }
-        outputView.printMap("X", (bridgeUpDownNumber.upOrDown(bridge.get(index))+1)%2);
+        outputView.printMap(NO, (bridgeUpDownNumber.upOrDown(bridge.get(index))+1)%2);
         return false;
     }
 
@@ -60,7 +64,7 @@ public class BridgeGameController {
             restartGame();
         }
         if (go) {
-            outputView.printResult("성공");
+            outputView.printResult(SUCCESS);
         }
     }
 
@@ -84,7 +88,7 @@ public class BridgeGameController {
         if(restart){
             run();
         }
-        outputView.printResult("실패");
+        outputView.printResult(FAILED);
     }
 
 }
