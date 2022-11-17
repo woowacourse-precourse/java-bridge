@@ -21,11 +21,14 @@ public class OutputView {
     public void printResult() {
     }
 
-    public void printFirst(){
+    public void printStart(){
         System.out.println("다리 건너기 게임을 시작합니다.");
     }
-    public void printStart(){
+    public void printFirst(){
         System.out.println("다리의 길이를 입력해 주세요.");
+    }
+    public void printSecond(){
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
 
 }

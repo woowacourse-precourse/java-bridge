@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -7,7 +9,10 @@ public class BridgeGame {
     OutputView output = new OutputView();
     InputView input = new InputView();
     CheckError check = new CheckError();
+    BridgeRandomNumberGenerator Maker = new BridgeRandomNumberGenerator();
+    BridgeMaker Bridge = new BridgeMaker(Maker);
     int size;
+    List<String> bridge_answer;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -26,12 +31,15 @@ public class BridgeGame {
     }
 
     public void start(){
-        output.printFirst();
+        output.printStart();
         firstStep();
+        bridge_answer =  Bridge.makeBridge(size);
+        System.out.println(bridge_answer);
+        secondStep();
     }
 
     public void firstStep(){
-        output.printStart();
+        output.printFirst();
         try {
             size = input.readBridgeSize();
             check.checkBridgeSize(size);
@@ -39,5 +47,9 @@ public class BridgeGame {
             System.out.println(e.getMessage());
             firstStep();
         }
+    }
+
+    public void secondStep(){
+        output.printSecond();
     }
 }
