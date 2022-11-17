@@ -1,12 +1,15 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
-    private InputView inputView;
-    private OutputView outputView;
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final BridgeMaker bridgeMaker;
 
     /**
      * 게임 관리 컨트롤러에서 필요한 객체를 생성해 주입한다.
@@ -14,16 +17,18 @@ public class BridgeGame {
     public BridgeGame() {
         inputView = new InputView();
         outputView = new OutputView();
+        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
     /**
      * 게임을 시작하는 메서드
      */
-    public void run() {
+    public void initGame() {
         outputView.printStart();
 
         int bridgeSize = inputView.readBridgeSize();
 
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
     }
     
     /**
