@@ -30,7 +30,17 @@ public class BridgeController {
         return true;
     }
 
-    public void setGameResult() {
-        bridgeGame.setGameResult(proceedGame());
+    public boolean setGameResult() {
+        boolean gameResult = proceedGame();
+        bridgeGame.setGameResult(gameResult);
+        return gameResult;
+    }
+
+    public boolean isOver() {
+        if(inputView.readGameCommand().equals("R")){
+            bridgeGame.retry();
+            return false;
+        }
+        return true;
     }
 }
