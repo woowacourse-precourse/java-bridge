@@ -11,10 +11,11 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     BridgeSizeValidator bridgeSizeValidator;
 
+    public InputView() {}
+
     public InputView(BridgeSizeValidator bridgeSizeValidator) {
         this.bridgeSizeValidator = bridgeSizeValidator;
     }
-
 
     /**
      * 다리의 길이를 입력받는다.
