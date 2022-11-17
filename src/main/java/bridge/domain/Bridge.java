@@ -31,4 +31,8 @@ public class Bridge {
     public List<UpDownFlag> getBridge() {
         return List.copyOf(bridge);
     }
+
+    public int getLength() {
+        return bridge.size();
+    }
 }
