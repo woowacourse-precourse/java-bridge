@@ -26,8 +26,8 @@ public class BridgeMaker {
         List<String> list = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int generate = bridgeNumberGenerator.generate();
-            if (generate == 0) list.add(InputKey.U.getValue());
-            if (generate == 1) list.add(InputKey.D.getValue());
+            if (generate == 1) list.add(InputKey.U.getValue());
+            if (generate == 0) list.add(InputKey.D.getValue());
         }
         return list;
     }
