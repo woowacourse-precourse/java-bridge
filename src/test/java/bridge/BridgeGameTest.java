@@ -53,4 +53,15 @@ class BridgeGameTest {
         assertThat(testBridgeGame.getRetryNumber()).isEqualTo(2);
         assertThat(testBridgeGame.getStepNumber()).isEqualTo(0);
     }
+
+    @Test
+    void terminateCheckTest() {
+        BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(1, 0, 0));
+        BridgeGame testBridgeGame = new BridgeGame(new BridgeMaker(numberGenerator));
+        testBridgeGame.initializeBridgeGame(3);
+        testBridgeGame.move("U");
+        testBridgeGame.move("D");
+        testBridgeGame.move("D");
+        assertThat(testBridgeGame.terminateCheck()).isTrue();
+    }
 }
