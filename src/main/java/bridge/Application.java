@@ -19,6 +19,9 @@ public class Application {
             moving = inputView.readMoving();
             bridgeGame.move(new Bridge(bridge.get(bridgePositionIndex), moving));
             outputView.printMap(bridgeGame, bridgePositionIndex);
+            if (bridgeGame.getMyAnswerBridges().contains("X")) {
+                inputView.readGameCommand();
+            }
             bridgePositionIndex++;
         }
     }
