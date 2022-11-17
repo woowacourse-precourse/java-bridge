@@ -5,7 +5,6 @@ import java.util.regex.Pattern;
 public class BridgeSizeValidator {
 
     String length;
-    Converter converter = new Converter();
 
     public BridgeSizeValidator(String length) {
         this.length = length;
@@ -31,7 +30,7 @@ public class BridgeSizeValidator {
     }
 
     private void validateInputSize() {
-        if(converter.toInt(length)<Constants.MIN_LENGTH||converter.toInt(length)>Constants.MAX_LENGTH){
+        if(Integer.parseInt(length)<Constants.MIN_LENGTH||Integer.parseInt(length)>Constants.MAX_LENGTH){
             throw new IllegalArgumentException("[ERROR] 3이상 20이하의 길이를 입력해야 합니다.");
         }
     }
