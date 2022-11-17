@@ -18,4 +18,10 @@ public class OutputView {
         System.out.println(downSide);
         System.out.println();
     }
+
+    public static void printMovingSelectMessage() {
+        System.out.println(MOVING_SELECT_MESSAGE);
+    }
+
+
 }
