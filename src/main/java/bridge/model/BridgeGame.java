@@ -39,4 +39,8 @@ public class BridgeGame {
         position = 0;
         playTime++;
     }
+
+    public boolean isClear() {
+        return position >= gameMap.size();
+    }
 }
