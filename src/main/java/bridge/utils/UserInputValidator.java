@@ -1,16 +1,8 @@
 package bridge.utils;
 
-import static bridge.domain.BridgeMaker.SPACE_NAME;
+import static bridge.utils.Constants.*;
 
 public class UserInputValidator {
-
-    private static final int MINIMUM_BRIDGE_LENGTH = 3;
-    private static final int MAXIMUM_BRIDGE_LENGTH = 20;
-    private static final int SIZE_OF_SPACE_TO_MOVE = 1;
-    private static final String ERROR_MESSAGE_OUT_OF_RANGE_BRIDGE_LENGTH = "[ERROR] 다리 길이는 3이상 20이하여야 합니다.";
-    private static final String ERROR_MESSAGE_NOT_DIGIT = "[ERROR] 다리 길이는 숫자만 입력 가능합니다.";
-    private static final String ERROR_MESSAGE_NOT_VALID_SPACE_NAME = "[ERROR] 이동할 칸은 'U' 혹은 'D'만 입력 가능합니다.";
-    private static final String ERROR_MESSAGE_NOT_VALID_SPACE_INPUT_SIZE = "[ERROR] 이동할 칸은 하나의 문자만 입력 가능합니다.";
 
     public static void validateBridgeLength(String bridgeLength) {
         isDigit(bridgeLength);
