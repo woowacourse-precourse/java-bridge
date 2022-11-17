@@ -26,4 +26,12 @@ public class Valid {
         }
         throw new IllegalArgumentException("U나 D만 입력할 수 있습니다.");
     }
+
+    public static void isCorrectCommand(String input) {
+        if (input.equals("R") || input.equals("Q")) {
+            return;
+        }
+        throw new IllegalArgumentException("R이나 Q만 입력할 수 있습니다.");
+
+    }
 }
