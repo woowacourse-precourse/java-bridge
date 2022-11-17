@@ -1,4 +1,7 @@
-package bridge;
+package bridge.controller;
+
+import bridge.InputView;
+import bridge.OutputView;
 
 public class BridgeController {
     private OutputView outputView = new OutputView();

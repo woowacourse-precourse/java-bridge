@@ -9,7 +9,7 @@ package bridge;
  */
 
 import bridge.dto.UserDto;
-import bridge.valudation.BridgeSizeValidation;
+import bridge.validation.BridgeSizeValidation;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 

@@ -1,4 +1,4 @@
-package bridge.valudation;
+package bridge.validation;
 
 public class BridgeSizeValidation {
     private final String ERROR_MESSAGE = "[ERROR] ";
