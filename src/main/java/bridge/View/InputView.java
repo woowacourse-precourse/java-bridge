@@ -43,6 +43,7 @@ public class InputView {
      */
     public String readGameCommand() {
         String inputRetry = readLine();
+        errorUtil.errorInputRetry(inputRetry);
         return inputRetry;
     }
 }

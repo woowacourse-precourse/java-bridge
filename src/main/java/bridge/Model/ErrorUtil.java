@@ -15,9 +15,15 @@ public class ErrorUtil {
         }
     }
 
-    public  void errorInputReadMoving(String inputUpDown) {
+    public void errorInputReadMoving(String inputUpDown) {
         if (!inputUpDown.equals("U") && !inputUpDown.equals("D")) {
             throw new IllegalArgumentException("[ERROR] 이동할 칸은 U나 D 중 한 글자여야 합니다.");
+        }
+    }
+
+    public void errorInputRetry(String inputRetry) {
+        if (!inputRetry.equals("R") && !inputRetry.equals("Q")) {
+            throw new IllegalArgumentException("[ERROR] 재시작, 종료는 R이나 Q 중 한 글자여야 합니다.");
         }
     }
 }
