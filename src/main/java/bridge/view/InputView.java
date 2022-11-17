@@ -14,9 +14,23 @@ public class InputView {
     public static int readBridgeSize() {
         System.out.println("다리 건너기 게임을 시작합니다.");
         System.out.println("다리의 길이를 입력해주세요.");
-        String bridgeSize = Console.readLine();
-        ValidationUtil.isValidBridgeLength(bridgeSize);
-        return Integer.parseInt(bridgeSize);
+        int bridgeSize = -1;
+        while (bridgeSize < 0) {
+            bridgeSize = getValidBridgeLength();
+        }
+        return bridgeSize;
+    }
+
+    private static int getValidBridgeLength() {
+        String input;
+        try {
+            input = Console.readLine();
+            ValidationUtil.isValidBridgeLength(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+            input = "-1";
+        }
+        return Integer.parseInt(input);
     }
 
     /**
@@ -24,15 +38,21 @@ public class InputView {
      */
     public static String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        String inputKey = "";
+        while (inputKey.isBlank()) {
+            inputKey = getValidMovingKey();
+        }
+        return inputKey;
+    }
+
+    private static String getValidMovingKey() {
         String inputKey;
-        while (true) {
-            try {
-                inputKey = Console.readLine();
-                ValidationUtil.isUpOrDown(inputKey);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            inputKey = Console.readLine();
+            ValidationUtil.isUpOrDown(inputKey);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputKey = "";
         }
         return inputKey;
     }
@@ -43,14 +63,20 @@ public class InputView {
     public static String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String inputKey = "";
-        while (true) {
-            try {
-                inputKey = Console.readLine();
-                ValidationUtil.isRetryOrQuit(inputKey);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        while (inputKey.isBlank()) {
+            inputKey = getValidREadGameCommand();
+        }
+        return inputKey;
+    }
+
+    private static String getValidREadGameCommand() {
+        String inputKey;
+        try {
+            inputKey = Console.readLine();
+            ValidationUtil.isRetryOrQuit(inputKey);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputKey = "";
         }
         return inputKey;
     }

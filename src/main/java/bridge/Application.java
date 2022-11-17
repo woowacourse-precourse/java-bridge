@@ -2,7 +2,6 @@ package bridge;
 
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
-import bridge.enums.ConstVariable;
 import bridge.enums.InputKey;
 import bridge.view.InputView;
 
@@ -16,6 +15,7 @@ public class Application {
         BridgeGame bridgeGame = new BridgeGame(bridge);
         String key = "";
         do {
+            bridgeGame.retry();
             boolean flag = true;
             while (flag) {
                 flag = bridgeGame.move(InputView.readMoving());
