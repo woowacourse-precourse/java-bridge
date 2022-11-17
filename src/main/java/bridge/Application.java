@@ -11,22 +11,30 @@ public class Application {
     private static final BridgeGame bridgeGame = new BridgeGame();
 
     public static void main(String[] args) {
+        try {
         List<String> bridge = bridgeGame.getBridge(inputView.readBridgeSize());
-        do {
-            MessageToResult messageToResult = bridgeGame.move(bridge, inputView.readMoving());
-            outputView.printMap(messageToResult);
-            if (!messageToResult.isCorrect()) {
-                if (!bridgeGame.retry(inputView.readGameCommand())) {
-                    break;
-                }
-                bridgeGame.clear();
-                outputView.clear();
-            }
-        } while (!bridgeGame.isGameClear(bridge));
+            do {
+                playGame(bridge);
+            } while (!bridgeGame.isGameClear(bridge));
+        outputView.printFinalMessage(bridgeGame.getResult());
+        } catch (Exception e) {
+            System.out.println("[ERROR] " + e.getMessage());
+        }
     }
 
-    private static MessageToResult moveResult(List<String> bridge) {
+    private static void playGame(List<String> bridge) {
+        MessageToResult messageToResult = moveToBridge(bridge);
+        if (!messageToResult.isCorrect()) {
+            if (bridgeGame.retry(inputView.readGameCommand())) {
+                outputView.clear();
+                playGame(bridge);
+            }
+        }
+    }
+
+    private static MessageToResult moveToBridge(List<String> bridge) {
         MessageToResult messageToResult = bridgeGame.move(bridge, inputView.readMoving());
+        outputView.printMap(messageToResult);
         return messageToResult;
     }
 }
