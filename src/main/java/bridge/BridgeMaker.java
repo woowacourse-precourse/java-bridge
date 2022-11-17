@@ -18,17 +18,17 @@ public class BridgeMaker {
      * @param size 다리의 길이
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
-    // 다른 메소드에서 size 검증 후 이거 실행시키자ㅠ
     public List<String> makeBridge(int size) {
         List<String> bridgeMap = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
-            int randomNumber = bridgeNumberGenerator.generate();
-            if (randomNumber == 1)
+            if (bridgeNumberGenerator.generate() == 1) {
                 bridgeMap.add("U");
-            if (randomNumber == 0)
-                bridgeMap.add("D");
+                continue;
+            }
+            bridgeMap.add("D");
         }
+        System.out.println("bridgeMap = " + bridgeMap);
         return bridgeMap;
     }
 }
