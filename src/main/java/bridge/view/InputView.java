@@ -24,7 +24,7 @@ public class InputView {
             InputBridgeSizeValidator.validate(inputBridgeSize);
             return new BridgeSizeDTO(Integer.parseInt(inputBridgeSize));
         } catch (final IllegalArgumentException raisedException) {
-            System.out.println(raisedException.getMessage());
+            printErrorMessage(outputView, raisedException);
             return readBridgeSize(outputView);
         }
     }
@@ -43,7 +43,7 @@ public class InputView {
             InputSelectCharValidator.validate(inputMoving, MOVING_SELECT_CHAR_VALIDATE_NUMBER);
             return new MovingDTO(inputMoving);
         } catch (final IllegalArgumentException raisedException) {
-            System.out.println(raisedException.getMessage());
+            printErrorMessage(outputView, raisedException);
             return readMoving(outputView);
         }
     }
@@ -51,7 +51,7 @@ public class InputView {
     private void printMovingInputMessage(final OutputView outputView) {
         outputView.printMovingInputMessage();
     }
-
+    
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
@@ -62,13 +62,16 @@ public class InputView {
             InputSelectCharValidator.validate(inputGameCommand, RETRY_SELECT_CHAR_VALIDATOR_NUMBER);
             return new GameCommandDTO(inputGameCommand);
         } catch (final IllegalArgumentException raisedException) {
-            System.out.println(raisedException.getMessage());
+            printErrorMessage(outputView, raisedException);
             return readGameCommand(outputView);
         }
-        
     }
     
     private void printGameCommandInputMessage(final OutputView outputView) {
         outputView.printGameCommandInputMessage();
+    }
+    
+    private void printErrorMessage(final OutputView outputView, final IllegalArgumentException raisedException) {
+        outputView.printErrorMessage(raisedException);
     }
 }

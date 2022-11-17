@@ -132,6 +132,10 @@ public class OutputView {
         return gameResultDTO.getNumberOfTry();
     }
     
+    public void printErrorMessage(final IllegalArgumentException raisedException) {
+        printMessage(raisedException.getMessage());
+    }
+    
     private void printMessage(final String message) {
         System.out.println(message);
     }
