@@ -32,6 +32,6 @@ public class GameManager {
     }
 
     public void moveProcessing(String wordUpDown) {
-        
+
     }
 }
