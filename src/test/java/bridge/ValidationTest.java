@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.enums.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,9 +15,11 @@ public class ValidationTest {
         ValidationUtil.isValidBridgeLength(20);
 
         assertThatThrownBy(() -> ValidationUtil.isValidBridgeLength(2))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_LENGTH.getValue());
         assertThatThrownBy(() -> ValidationUtil.isValidBridgeLength(21))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_LENGTH.getValue());
     }
 
     @DisplayName("U 혹은 D인지 확인한다.")
@@ -26,15 +29,20 @@ public class ValidationTest {
         ValidationUtil.isUpOrDown("D");
 
         assertThatThrownBy(() -> ValidationUtil.isUpOrDown("R"))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_INPUT.getValue());
         assertThatThrownBy(() -> ValidationUtil.isUpOrDown("Q"))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_INPUT.getValue());
         assertThatThrownBy(() -> ValidationUtil.isUpOrDown("A"))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_INPUT.getValue());
         assertThatThrownBy(() -> ValidationUtil.isUpOrDown("1"))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_INPUT.getValue());
         assertThatThrownBy(() -> ValidationUtil.isUpOrDown("*"))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_INPUT.getValue());
     }
 
     @DisplayName("R 혹은 Q인지 확인한다.")
@@ -44,14 +52,19 @@ public class ValidationTest {
         ValidationUtil.isRetryOrQuit("Q");
 
         assertThatThrownBy(() -> ValidationUtil.isRetryOrQuit("U"))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_INPUT.getValue());
         assertThatThrownBy(() -> ValidationUtil.isRetryOrQuit("D"))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_INPUT.getValue());
         assertThatThrownBy(() -> ValidationUtil.isRetryOrQuit("A"))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_INPUT.getValue());
         assertThatThrownBy(() -> ValidationUtil.isRetryOrQuit("1"))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_INPUT.getValue());
         assertThatThrownBy(() -> ValidationUtil.isRetryOrQuit("*"))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_INPUT.getValue());
     }
 }
