@@ -37,6 +37,7 @@ public class InputView {
      */
     private int parseStrToInt(String str) {
         int ret;
+
         try {
             ret = Integer.parseInt(str);
         } catch (NumberFormatException e) {
