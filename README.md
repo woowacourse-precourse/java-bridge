@@ -305,8 +305,8 @@ int number = bridgeNumberGenerator.generate();
   BridgeRandomNumberGenerator 클래스를 이용해 자동으로 랜덤 넘버를 생성한다.  
   인스턴스 변수: BridgeNumberGenerator (Interface)
   #### 기능목록
-  - [ ] 다리 사이즈를 입력 받아 이에 해당하는 길이의 다리를 생성. (List<String>)
-  - [ ] 랜덤하게 생성된 0과 1을 각각 D와 U로 매핑하는 기능
+  - [x] 다리 사이즈를 입력 받아 이에 해당하는 길이의 다리를 생성. (List<String>)
+  - [x] 랜덤하게 생성된 0과 1을 각각 D와 U로 매핑하는 기능
   #### 밸리데이션
   - [ ] 3 이상 20 이하의 숫자를 입력할 수 있다. ([ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.)
   - [ ] 올바른 값이 아니면 예외 처리한다.
