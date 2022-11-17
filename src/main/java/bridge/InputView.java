@@ -1,15 +1,28 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Console;
+
+import java.util.regex.Pattern;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private final String sizePattern = "^[0-9]+$";
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        String inputSize = Console.readLine();
+        if (!(Pattern.matches(sizePattern, inputSize))) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
+        }
+        int size = Integer.parseInt(inputSize);
+        if (size < 3 || size > 20) {
+            throw new IllegalArgumentException("[ERROR] 3~20 사이의 숫자를 입력해주세요.");
+        }
+        return size;
     }
 
     /**
