@@ -72,7 +72,7 @@ class InputViewTest {
         assertThatIllegalArgumentException().isThrownBy(() -> inputView.readBridgeSize());
     }
 
-    @DisplayName("이동 위치를 'U'로 넣으면 readMoving 메서드는 'U'를 리턴한다.")
+    @DisplayName("이동 위치로 'U' 을 입력하면 readMoving 메서드는 'U'를 리턴한다.")
     @Test
     void readMovingTest1() {
         String input = "U";
@@ -81,7 +81,7 @@ class InputViewTest {
         assertThat(inputView.readMoving()).isEqualTo(input);
     }
 
-    @DisplayName("이동 위치를 'D'로 넣으면 readMoving 메서드는 'D'를 리턴한다.")
+    @DisplayName("이동 위치로 'D' 를 입력하면 readMoving 메서드는 'D'를 리턴한다.")
     @Test
     void readMovingTest2() {
         String input = "D";
@@ -115,5 +115,50 @@ class InputViewTest {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         assertThatIllegalArgumentException().isThrownBy(() ->inputView.readMoving());
+    }
+
+    @DisplayName("게임 커멘드로 'R' 을 입력하면 readMoving 메서드는 'R'을 리턴한다.")
+    @Test
+    void readGameCommandTest1() {
+        String input = "R";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        assertThat(inputView.readGameCommand()).isEqualTo(input);
+    }
+
+    @DisplayName("게임 커멘드로 'Q' 를 입력하면 readMoving 메서드는 'Q'를 리턴한다.")
+    @Test
+    void readGameCommandTest2() {
+        String input = "Q";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        assertThat(inputView.readGameCommand()).isEqualTo(input);
+    }
+
+    @DisplayName("게임 커멘드로 'R', 'Q' 이외의 것을 넣으면 IllegalArgumentException 가 발생한다.")
+    @Test
+    void readGameCommandErrorTest1() {
+        String input = "s";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        assertThatIllegalArgumentException().isThrownBy(() ->inputView.readGameCommand());
+    }
+
+    @DisplayName("게임 커멘드로 'R', 'Q' 이외의 것을 넣으면 IllegalArgumentException 가 발생한다.")
+    @Test
+    void readGameCommandErrorTest2() {
+        String input = "RQ";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        assertThatIllegalArgumentException().isThrownBy(() ->inputView.readGameCommand());
+    }
+
+    @DisplayName("게임 커멘드로 'R', 'Q' 이외의 것을 넣으면 IllegalArgumentException 가 발생한다.")
+    @Test
+    void readGameCommandErrorTest3() {
+        String input = "1";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        assertThatIllegalArgumentException().isThrownBy(() ->inputView.readGameCommand());
     }
 }
