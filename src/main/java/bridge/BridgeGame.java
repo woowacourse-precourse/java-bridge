@@ -7,9 +7,12 @@ import java.util.List;
  */
 public class BridgeGame {
     private int retryConut;
+    
     private InputView inputView;
     private OutputView outputView;
 
+    private Bridge bridge;
+    private User user;
 
     public BridgeGame(){
         retryConut = 0;
