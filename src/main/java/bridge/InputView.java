@@ -6,15 +6,24 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private static final int bridgeSizeMin = 3;
+    private static final int bridgeSizeMax = 20;
+
     private static final String readBridgeSizeMessage = "다리의 길이를 입력해주세요.";
-    private static final String readBridgeSizeErrorMessage = "[ERROR] 숫자를 입력해 주세요.";
+    private static final String parseStrToIntErrorMessage = "[ERROR] 숫자를 입력해 주세요.";
+    private static final String validateBridgeSizeErrorMessage = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         System.out.println(readBridgeSizeMessage);
-        return parseStrToInt(Console.readLine());
+        try {
+            return validateBridgeSize(parseStrToInt(Console.readLine()));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readBridgeSize();
+        }
     }
 
     /**
@@ -36,13 +45,16 @@ public class InputView {
      * 숫자가 아닌 문자일 경우 IllegalArgumentException을 발생 시킨다.
      */
     private int parseStrToInt(String str) {
-        int ret;
-
         try {
-            ret = Integer.parseInt(str);
+            return Integer.parseInt(str);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(readBridgeSizeErrorMessage);
+            throw new IllegalArgumentException(parseStrToIntErrorMessage);
         }
-        return ret;
+    }
+
+    private int validateBridgeSize(int size) {
+        if (size < bridgeSizeMin || size > bridgeSizeMax)
+            throw new IllegalArgumentException(validateBridgeSizeErrorMessage);
+        return size;
     }
 }
