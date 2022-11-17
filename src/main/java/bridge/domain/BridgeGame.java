@@ -13,7 +13,6 @@ public class BridgeGame {
 
     private final List<String> bridge;
     private Result result;
-
     private int position = -1;
     private int count = 0;
 
@@ -55,8 +54,8 @@ public class BridgeGame {
         return bridge.size();
     }
 
-    public String printResult() {
-        return result.printGameResult();
+    public String printGameResult() {
+        return result.toString();
     }
 
     @Override

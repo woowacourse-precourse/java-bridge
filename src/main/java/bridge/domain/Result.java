@@ -48,21 +48,6 @@ public class Result {
         tryCount++;
     }
 
-    public String printGameResult() {
-        StringBuilder result = new StringBuilder("최종 게임 결과\n");
-        result.append(this + "\n");
-        result.append("게임 성공 여부: ");
-        if (upBridgeStatus[upBridgeStatus.length - 1] == O_FLAG ||
-            downBridgeStatus[downBridgeStatus.length - 1] == O_FLAG) {
-            result.append("성공\n");
-            result.append("총 시도한 횟수: " + tryCount);
-            return result.toString();
-        }
-        result.append("실패\n");
-        result.append("총 시도한 횟수: " + tryCount);
-        return result.toString();
-    }
-
     public String printStatus(int count) {
         StringJoiner upJoiner = new StringJoiner(" | ", "[ ", " ]");
         StringJoiner downJoiner = new StringJoiner(" | ", "[ ", " ]");
@@ -71,5 +56,21 @@ public class Result {
             downJoiner.add(String.valueOf(downBridgeStatus[i]));
         }
         return upJoiner + "\n" + downJoiner;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder("최종 게임 결과\n");
+        result.append(this + "\n");
+        result.append("게임 성공 여부: ");
+        if (upBridgeStatus[upBridgeStatus.length - 1] == O_FLAG ||
+                downBridgeStatus[downBridgeStatus.length - 1] == O_FLAG) {
+            result.append("성공\n");
+            result.append("총 시도한 횟수: " + tryCount);
+            return result.toString();
+        }
+        result.append("실패\n");
+        result.append("총 시도한 횟수: " + tryCount);
+        return result.toString();
     }
 }
