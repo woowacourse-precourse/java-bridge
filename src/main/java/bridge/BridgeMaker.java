@@ -3,7 +3,7 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
-import bridge.validator.Location;
+import bridge.model.Stairs;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -23,8 +23,8 @@ public class BridgeMaker {
 	public List<String> makeBridge(int size) {
 		List<String> bridgeSquare = new ArrayList<>();
 		for (int i = 0; i < size; i++) {
-			Location location = Location.of(bridgeNumberGenerator.generate());
-			bridgeSquare.add(location.getCommand());
+			Stairs stairs = Stairs.of(bridgeNumberGenerator.generate());
+			bridgeSquare.add(stairs.getCommand());
 		}
 		return bridgeSquare;
 	}
