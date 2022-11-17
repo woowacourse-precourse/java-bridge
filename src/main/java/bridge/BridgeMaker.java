@@ -32,6 +32,11 @@ public class BridgeMaker {
     }
 
     private String makeBridgeSide() {
-        return null;
+        int bridgeSide = bridgeNumberGenerator.generate();
+
+        if (bridgeSide == 0) {
+            return DOWNSIDE;
+        }
+        return UPSIDE;
     }
 }
