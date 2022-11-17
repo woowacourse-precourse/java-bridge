@@ -9,4 +9,8 @@ public enum MoveResult {
     MoveResult(String initialLetter) {
         this.initialLetter = initialLetter;
     }
+
+    public String getInitialLetter() {
+        return initialLetter;
+    }
 }
