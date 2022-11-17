@@ -18,9 +18,16 @@ public class InputValidatorTest {
     }
 
     @DisplayName("이동할 칸을 입력 유효성 검사")
-    @CsvSource(value = {" :false","U:true","D:true","E:false","'':false"}, delimiter = ':')
+    @CsvSource(value = {" :false", "U:true", "D:true", "E:false", "'':false"}, delimiter = ':')
     @ParameterizedTest
-    void is_valid_moving(String moving,boolean expected) {
+    void is_valid_moving(String moving, boolean expected) {
         assertThat(InputValidator.isValidMoving(moving)).isEqualTo(expected);
+    }
+
+    @DisplayName("게임 다시 사작 입력 유효성 검사")
+    @CsvSource(value = {":false", "R:true", "Q:true", "'':false", "D:false"}, delimiter = ':')
+    @ParameterizedTest
+    void is_valid_restart(String input, boolean expected) {
+        assertThat(InputValidator.isValidRestart(input)).isEqualTo(expected);
     }
 }

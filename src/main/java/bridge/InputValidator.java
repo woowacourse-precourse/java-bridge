@@ -1,19 +1,25 @@
 package bridge;
 
+import static bridge.BridgeMaker.DOWN_BRIDGE;
+import static bridge.BridgeMaker.UP_BRIDGE;
+
 public class InputValidator {
 
     public static final int BRIDGE_MIN_SIZE = 3;
     public static final int BRIDGE_MAX_SIZE = 20;
     public static final String IS_NUMBER = "[0-9]*";
-    public static final String BRIDGE_SIZE_ERROR = "[ERROR] 4-20사이의 숫자가 아닙니다.";
+
+    public static final String RESTART_GAME = "R";
+    public static final String QUIT_GAME = "Q";
 
     private InputValidator() {
     }
+
     public static boolean isValidSize(String inputSize) {
         if (inputSize == null || inputSize.isBlank()) {
             return false;
         }
-        if (!inputSize.matches(IS_NUMBER)){
+        if (!inputSize.matches(IS_NUMBER)) {
             return false;
         }
         int size = Integer.parseInt(inputSize);
@@ -32,6 +38,13 @@ public class InputValidator {
         if (moving == null) {
             return false;
         }
-        return moving.equals("U") || moving.equals("D");
+        return moving.equals(UP_BRIDGE) || moving.equals(DOWN_BRIDGE);
+    }
+
+    public static boolean isValidRestart(String restart) {
+        if (restart == null) {
+            return false;
+        }
+        return restart.equals(RESTART_GAME) || restart.equals(QUIT_GAME);
     }
 }
