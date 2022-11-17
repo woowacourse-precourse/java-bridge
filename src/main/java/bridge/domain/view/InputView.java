@@ -16,11 +16,10 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
-    public String readMoving() {
-        return null;
+    public char readMoving() {
+        String input = Console.readLine();
+        inputException.inputMoveException(input);
+        return input.charAt(0);
     }
 
     /**
