@@ -1,9 +1,26 @@
 package bridge.businesslogic;
 
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.UI.InputView;
+import bridge.UI.OutputView;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private Bridge bridge;
+    private BridgeMaker bridgeMaker;
+
+    private void initBridgeGame(){
+        int bridgeSize = inputView.readBridgeSize();
+        BridgeNumberGenerator numberGenerator = () -> new BridgeRandomNumberGenerator().generate();
+        bridgeMaker = new BridgeMaker(numberGenerator);
+        bridge = new Bridge(bridgeMaker, bridgeSize);
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
