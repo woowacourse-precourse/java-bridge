@@ -23,7 +23,7 @@ class BridgeMapTest {
             String answer,
             String userAnswer,
             String output) {
-        BRIDGE_MAP.updateStatus(answer, userAnswer);
+        BRIDGE_MAP.updateBridgeMap(answer, userAnswer);
         BRIDGE_MAP.createMessage();
         String[] tmp = output.split(",");
         assertAll(

@@ -35,6 +35,7 @@ public class BridgeGame {
         OUTPUT_VIEW.printLengthInput();
         bridgeSize = INPUT_VIEW.readBridgeSize();
         answer = BRIDGE_MAKER.makeBridge(bridgeSize);
+        OUTPUT_VIEW.printLine();
         do {
             play();
             round+=1;

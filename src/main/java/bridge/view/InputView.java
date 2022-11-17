@@ -2,6 +2,8 @@ package bridge.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import static bridge.service.Validation.*;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  * 패키지 변경 가능
@@ -10,16 +12,38 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
+
     public int readBridgeSize() {
-        return Integer.parseInt(Console.readLine());
+        String input = Console.readLine();
+        try {
+            isNumber(input);
+            return Integer.parseInt(input);
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+            return readBridgeSize();
+        }
     }
 
 
     public String readMoving() {
-        return Console.readLine();
+        String input = Console.readLine();
+        try {
+            isUpOrDown(input);
+            return input;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
     }
 
     public String readGameCommand() {
-        return Console.readLine();
+        String input = Console.readLine();
+        try {
+            isRestartOrQuit(input);
+            return input;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
     }
 }

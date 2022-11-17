@@ -29,7 +29,7 @@ public class BridgeMap {
         undoStatus(3);
         bridgeMap.get("U").append(" ]");
         bridgeMap.get("D").append(" ]");
-        message = bridgeMap.get("U") + "\n" + bridgeMap.get("D");
+        message = bridgeMap.get("U") + "\n" + bridgeMap.get("D") + "\n";
         undoStatus(2);
         addDelimiter();
     }

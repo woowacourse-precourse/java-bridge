@@ -30,7 +30,7 @@ public class OutputView {
     }
 
     public void printStart() {
-        System.out.println(Message.START.msg);
+        System.out.println(Message.START.msg + "\n");
     }
 
     public void printLengthInput() {
@@ -55,5 +55,9 @@ public class OutputView {
 
     public void printTryCount(int tryCount) {
         System.out.println(Message.TRY_COUNT.msg + tryCount);
+    }
+
+    public void printLine() {
+        System.out.println();
     }
 }

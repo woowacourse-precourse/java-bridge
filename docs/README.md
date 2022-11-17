@@ -1,5 +1,5 @@
 
-# controller Package
+# controller Package ✓
 ```
 입력과 출력을 상호작용하도록
 넘겨주도록 하는 클래스들을 모아놓음
@@ -7,7 +7,7 @@
 dao와 service를 이용해 처리 후 view로 넘김
 ```
 
-## BridgeGame Class
+## BridgeGame Class ✓
 
 ```
 클라이언트의 사다리 게임에 대한 비즈니스
@@ -64,7 +64,7 @@ Bridge 게임의 진행상황을 만들고
 |   ✓   | addBlank      | key 에 맞는 공백 원소 추가                          |
 |   ✓   | addDelimiter  | 윗 라인과 아랫 라인에 구분자 추가                        |
 
-# service Package
+# service Package ✓
 ```
 비즈니스 로직들을 수행하는 메소드들을
 역할에 맞게 객체별로 나눠 놓은 패키지
@@ -89,28 +89,28 @@ BridgeNumberGenerator Interface의 설계도를
 |   ✓   | generate   | 0, 1의 두 정수중에 하나를 랜덤으로 반환 |
 
 
-## Validation Class
+## Validation Class ✓
 ```
 그때그때 구현하며, 데이터의 검증을 위한 클래스
 ```
 **기능 요구사항**
 
-| 구현 여부 | 메소드, 생성자 명 | 의미   |
-|:-----:|:-----------|:-----|
-|   x   |            |      |
-|   x   |            |      |
-|   x   |            |      |
-|   x   |            |      |
+| 구현 여부 | 메소드, 생성자 명      | 의미                  |
+|:-----:|:----------------|:--------------------|
+|   ✓   | isNull          | Null 이면 에러처리        |
+|   ✓   | isNumber        | 숫자 형식이 아니면 에러처리     |
+|   ✓   | isUpOrDown      | U 혹은 D 문자가 아니면 에러처리 |
+|   ✓   | isRestartOrQuit | R 혹은 Q 문자가 아니면 에러처리 |
 
-# view Package
+# view Package ✓
 ```
 사용자에게 보여지는 곳을 다루는
 객체들을 모아놓은 패키지
 view는 controller랑 상호작용하도록
-설계를 한다.r
+설계를 한다.
 ```
 
-## InputView Class
+## InputView Class ✓
 
 **기능 요구사항**
 
@@ -120,7 +120,7 @@ view는 controller랑 상호작용하도록
 |   ✓    | readMoving      | 사용자가 이동할 칸을 입력받는 메소드          |
 |   ✓    | readGameCommand | 게임을 다시 시도할지 종료할지 여부를 입력받는 메소드 |
 
-## OutputView Class
+## OutputView Class ✓
 
 **기능 요구사항**
 
@@ -134,8 +134,9 @@ view는 controller랑 상호작용하도록
 |   ✓   | printRetry       | 게임을 다시 시작하려고 할때 물어보는 문장을 출력한다.                                      |
 |   ✓   | printComplete    | 게임의 성공 여부를 출력한다.                                                    |
 |   ✓   | printTryCount    | 게임의 시도 횟수를 출력한다.                                                    |
+|   ✓   | printNewLine     | \n을 출력한다.                                                           |
 
-## Message Enum
+## Message Enum ✓
 
 **기능 요구사항**
 
@@ -143,7 +144,7 @@ view는 controller랑 상호작용하도록
 |:------:|:----------------|:-----------------------------|
 |   ✓    | Message         | Message 들의 상수값들을 생성하는 생성자이다. |
 
-# Application Class
+# Application Class ✓
 ```
 물리적으로 클라이언트를 대신하는 클래스다.
 게임을 실행을 할 수 있다.
