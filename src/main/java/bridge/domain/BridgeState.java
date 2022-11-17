@@ -24,6 +24,13 @@ public enum BridgeState {
                 .orElse(null);
     }
 
+    public static BridgeState valueOfUser(String userValue) {
+        return Arrays.stream(BridgeState.values())
+                .filter(bridgeState -> bridgeState.userValue.equals(userValue))
+                .findAny()
+                .orElse(null);
+    }
+
     public String getUserValue() {
         return this.userValue;
     }
