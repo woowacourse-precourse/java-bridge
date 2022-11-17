@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.ParameterizedTest;
 
-public class InputValidatorTest {
+public class BridgeSizeValidatorTest {
     @ParameterizedTest
     @DisplayName("잘못된 다리 사이즈를 입력 받으면 예외를 발생시킨다.")
     @CsvSource({
@@ -20,14 +20,14 @@ public class InputValidatorTest {
             "5b"
     })
     void throwExceptionForInvalidBridgeSize(String input) {
-        assertThatThrownBy(() -> InputValidator.validateBridgeSize(input))
+        assertThatThrownBy(() -> new BridgeSizeValidator().validateInput(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("빈 입력 받으면 예외를 발생시킨다.")
     void throwExceptionForEmpty() {
-        assertThatThrownBy(() -> InputValidator.validateNumeric(""))
+        assertThatThrownBy(() -> new BridgeSizeValidator().validateNumeric(""))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -39,7 +39,7 @@ public class InputValidatorTest {
             "12xc"
     })
     void throwExceptionForNonNumericInput(String input) {
-        assertThatThrownBy(() -> InputValidator.validateNumeric(input))
+        assertThatThrownBy(() -> new BridgeSizeValidator().validateNumeric(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -51,7 +51,7 @@ public class InputValidatorTest {
             "0011"
     })
     void throwExceptionForWrongLengthInput(String input) {
-        assertThatThrownBy(() -> InputValidator.validateLength(input))
+        assertThatThrownBy(() -> new BridgeSizeValidator().validateLength(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

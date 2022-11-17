@@ -1,34 +1,32 @@
 package bridge.model;
 
-import bridge.view.ErrorMessage;
 import java.util.regex.Pattern;
 
-public class InputValidator {
+public class BridgeSizeValidator implements Validator{
     private static final String bridgeSizePattern = "^[0-9]*$";
 
-    public InputValidator() {
-    }
-
-    public static void validateBridgeSize(String input) {
-        InputValidator.validateNumeric(input);
-        InputValidator.validateLength(input);
+    @Override
+    public void validateInput(String input) {
+        validateNumeric(input);
+        validateLength(input);
         int inputNumber = Integer.parseInt(input);
-        InputValidator.validateRange(inputNumber);
+        validateRange(inputNumber);
     }
 
-    public static void validateNumeric(String input) {
+    public void validateNumeric(String input) {
         if (input == null || input.isEmpty() || !Pattern.matches(bridgeSizePattern, input)) {
             throw new IllegalArgumentException();
         }
     }
 
-    public static void validateLength(String input) {
-        if (input.length() > BridgeSizeConstant.INPUT_LENGTH.getValue()) {
+    public void validateLength(String input) {
+        int upperBound = BridgeSizeConstant.UPPER_BOUND.getValue();
+        if (input.length() > Integer.toString(upperBound).length()) {
             throw new IllegalArgumentException();
         }
     }
 
-    public static void validateRange(int inputNumber) {
+    public void validateRange(int inputNumber) {
         if (inputNumber < BridgeSizeConstant.LOWER_BOUND.getValue()
                 || inputNumber > BridgeSizeConstant.UPPER_BOUND.getValue()) {
             throw new IllegalArgumentException();

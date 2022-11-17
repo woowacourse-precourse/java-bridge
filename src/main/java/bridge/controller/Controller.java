@@ -1,7 +1,8 @@
 package bridge.controller;
 
-import bridge.model.BridgeSizeConstant;
-import bridge.model.InputValidator;
+import bridge.model.BridgeSizeValidator;
+import bridge.model.NextMoveValidator;
+import bridge.model.Validator;
 import bridge.view.ErrorMessage;
 import bridge.view.GameMessage;
 import bridge.view.InputView;
@@ -24,21 +25,29 @@ public class Controller {
     }
 
     public int getBridgeSize() {
-        String input = "";
+        String input;
         do {
             outputView.printGameMessage(GameMessage.ASK_BRIDGE_SIZE);
             input = inputView.readBridgeSize();
-        } while (!validateBridgeSizeInput(input));
+        } while (!validateInput(input, new BridgeSizeValidator(), ErrorMessage.INVALID_BRIDGE_SIZE));
         return Integer.parseInt(input);
     }
 
-    public boolean validateBridgeSizeInput(String input) {
+    public String getNextMove() {
+        String input;
+        do {
+            outputView.printGameMessage(GameMessage.ASK_NEXT_MOVE);
+            input = inputView.readMoving();
+        } while (!validateInput(input, new NextMoveValidator(), ErrorMessage.INVALID_NEXT_MOVE));
+        return input;
+    }
+
+    public boolean validateInput(String input, Validator inputValidator, ErrorMessage errorMessage) {
         try {
-            InputValidator.validateBridgeSize(input);
+            inputValidator.validateInput(input);
             return true;
         } catch (IllegalArgumentException exception) {
-            outputView.printErrorMessage(ErrorMessage.INVALID_BRIDGE_SIZE,
-                    BridgeSizeConstant.LOWER_BOUND.getValue(), BridgeSizeConstant.UPPER_BOUND.getValue());
+            outputView.printErrorMessage(errorMessage);
             exception.printStackTrace();
             return false;
         }
