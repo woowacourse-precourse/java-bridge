@@ -13,12 +13,11 @@ public class InputView {
         Validator.isProperBridgeSize(bridgeSize);
         return Integer.parseInt(bridgeSize);
     }
-
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
+    
     public String readMoving() {
-        return null;
+        String move = Console.readLine();
+        Validator.isMove(move);
+        return move;
     }
 
     /**
