@@ -24,7 +24,7 @@ public enum InputType {
 
     public static void validateMovingCommand(String input) {
         if (!input.equals(MOVE_UP_COMMAND.command)
-                && input.equals(MOVE_DOWN_COMMAND.command))
+                && !input.equals(MOVE_DOWN_COMMAND.command))
             Error.printException(ErrorType.MOVING);
     }
 
