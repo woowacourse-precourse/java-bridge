@@ -8,7 +8,7 @@
 - [x] 게임 시작 문구 출력하기 (ViewMessage # printGameStartMessage)
 ### 2. 다리 만들기
 #### 1) 다리 길이 입력 받기
-- [ ] 다리 길이 입력 요청 문구를 출력한다. (ViewMessage # printBridgeSizeInputReqeust)
+- [x] 다리 길이 입력 요청 문구를 출력한다. (ViewMessage # printBridgeSizeInputRequest)
 - [ ] 다리 길이를 입력 받는다. (InputView # readBridgeSize)
 - [ ] 입력 받은 다리 길이에 대한 유효성 검사를 한다. (InputView # validateBridgeLength)
 #### 2) 다리 만들기
