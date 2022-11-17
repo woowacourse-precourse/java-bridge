@@ -27,7 +27,13 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println(MOVE);
-        return Console.readLine();
+        String input = Console.readLine();
+        try{
+            upOrDownCheck(input);
+        } catch(IllegalArgumentException e){
+            System.out.println("Error: wrong input");
+        }
+        return input;
     }
 
     /**
@@ -52,6 +58,10 @@ public class InputView {
 
     public static void rangeCheck(int number){
         if(!(number >= LOWER_BOUND && number <= UPPER_BOUND)) throw new IllegalArgumentException();
+    }
+
+    public static void upOrDownCheck(String move){
+        if(!(move.equals("U") || move.equals("D"))) throw new IllegalArgumentException();
     }
 
 }

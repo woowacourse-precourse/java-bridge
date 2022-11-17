@@ -16,9 +16,13 @@ public class Application {
         });
 
         List<String> list = bm.makeBridge(size);
-        for(String s: list){
-            System.out.println(s);
+        OutputView ov = new OutputView();
+        for (int i = 0; i < list.size(); i++) {
+            String choice = inputview.readMoving();
+            if (!ov.printMap(i, list, choice)) {
+                System.out.println("\n");
+                break;
+            }
         }
-        inputview.readMoving();
     }
 }
