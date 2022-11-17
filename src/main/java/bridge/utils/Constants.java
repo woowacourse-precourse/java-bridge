@@ -5,6 +5,8 @@ public class Constants {
     public static final int UP_NUMBER = 1;
     public static final String DOWN_BLOCK = "D";
     public static final String UP_BLOCK = "U";
+    public static final String PLAYER_RETRY = "R";
+    public static final String PLAYER_QUIT = "Q";
     public static final int MIN_BRIDGE_SIZE = 3;
     public static final int MAX_BRIDGE_SIZE = 20;
 
