@@ -37,6 +37,7 @@ public class BridgeGameController {
         bridge = bridgeMaker.makeBridge(bridgeSize);
         IntStream.range(0,bridgeSize)
                 .forEach(index -> crossBridge(index));
+        outputView.printResult();
     }
 
     private void crossBridge(int index){
@@ -46,6 +47,7 @@ public class BridgeGameController {
         }
         if(!bridgeGame.move(moving, index, bridge)){
             outputView.printMap("X", bridgeUpDownNumber.upOrDown(bridge.get(index)));
+            restartGame();
         }
     }
 
@@ -59,6 +61,7 @@ public class BridgeGameController {
         if(restart){
             run();
         }
+        outputView.printResult();
     }
 
 }
