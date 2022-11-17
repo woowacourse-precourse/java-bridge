@@ -23,7 +23,7 @@ public class InputView {
      */
     public String readMoving() {
         String inputMoving = Console.readLine();
-
+        LogicException.verifyUserInput(inputMoving);
         return inputMoving;
     }
 
@@ -32,7 +32,7 @@ public class InputView {
      */
     public String readGameCommand() {
         String retryOrQuit = Console.readLine();
-
+        LogicException.verifyRetryOrQuit(retryOrQuit);
         return retryOrQuit;
     }
 }
