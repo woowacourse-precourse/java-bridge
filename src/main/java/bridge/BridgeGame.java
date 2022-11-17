@@ -58,7 +58,7 @@ public class BridgeGame {
     }
 
     public boolean gameExit(){
-        if(!gameState.get(gameState.size() - 1))
+        if(!gameState.isEmpty() && !gameState.get(gameState.size() - 1))
             return true;
         return false;
     }
