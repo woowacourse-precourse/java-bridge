@@ -31,6 +31,10 @@
   - 건널 수 있는 칸의 위치를 반환하는 메소드
 
 
+- private String whereIsBridge()
+  - 다리의 위치가 어디인지 결정하는 메소드
+
+
 ### 🚀 InputView class
 
 - public int readBridgeSize()
