@@ -30,10 +30,8 @@ public class OutputView {
     }
 
     private void printJoiningMessage() {
-        String upperBlocksMessage = String.join(" | ", upperBlocks);
-        String lowerBlocksMessage = String.join(" | ", lowerBlocks);
-        System.out.printf("[ %s ]\n", upperBlocksMessage);
-        System.out.printf("[ %s ]\n", lowerBlocksMessage);
+        System.out.printf("[ %s ]\n", String.join(" | ", upperBlocks));
+        System.out.printf("[ %s ]\n", String.join(" | ", lowerBlocks));
     }
 
     private String getResultMark(boolean isCorrect) {
