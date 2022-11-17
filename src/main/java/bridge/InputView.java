@@ -38,4 +38,38 @@ public class InputView {
         validationGameCommand(gameCommand);
         return gameCommand;
     }
+
+    private void validationInteger(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자를 입력해야 합니다.");
+        }
+    }
+
+    private void validationBridgeSize(int bridgeSize) {
+        if (bridgeSize > 20 || bridgeSize < 3) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
+    }
+
+    private void validationMoveCommand(String moveCommand) {
+        if (Objects.equals(moveCommand, "U")) {
+            return;
+        }
+        if (Objects.equals(moveCommand, "D")) {
+            return;
+        }
+        throw new IllegalArgumentException("[ERROR] U,D를 입력해 주세요.");
+    }
+
+    private void validationGameCommand(String gameCommand) {
+        if (Objects.equals(gameCommand, "R")) {
+            return;
+        }
+        if (Objects.equals(gameCommand, "Q")) {
+            return;
+        }
+        throw new IllegalArgumentException("[ERROR] R,Q를 입력해 주세요.");
+    }
 }
