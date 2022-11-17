@@ -11,10 +11,18 @@ public class Application {
         BridgeGame bridgeGame = new BridgeGame();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> generatedBridge = bridgeMaker.makeBridge(size);
+        boolean successOrNot = false;
         boolean retry = true;
+        int count = 0;
         while (retry) {
+            count++;
             List<String> nowBridge = new ArrayList<>();
-            retry = bridgeGame.game(nowBridge, generatedBridge);
+            successOrNot = bridgeGame.game(nowBridge, generatedBridge);
+            if (successOrNot && nowBridge.size() == generatedBridge.size()) {
+                break;
+            }
+            retry = bridgeGame.retry();
         }
+        OutputView.printResult(count, successOrNot);
     }
 }

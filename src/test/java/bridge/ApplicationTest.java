@@ -109,6 +109,7 @@ class ApplicationTest extends NsTest {
         assertEquals("[ O |   | X ]\n[   | O |   ]\n", output);
     }
 
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});

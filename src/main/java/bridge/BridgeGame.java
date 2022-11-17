@@ -15,8 +15,8 @@ public class BridgeGame {
             move(pick, nowBridge);
             System.out.println(OutputView.printMap(nowBridge, generatedBridge));
             gameSuccess = compareBridge(nowBridge, generatedBridge);
-            if (!gameSuccess) {
-                return retry();
+            if (nowBridge.size() == generatedBridge.size()) {
+                return gameSuccess;
             }
         }
         return false;
