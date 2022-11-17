@@ -5,6 +5,8 @@ import java.util.regex.Pattern;
 public class BridgeSizeValidator {
 
     String size;
+    public final static int MIN_LENGTH = 3;
+    public final static int MAX_LENGTH = 20;
 
     public BridgeSizeValidator(String size) {
         this.size = size;
@@ -12,8 +14,8 @@ public class BridgeSizeValidator {
     }
 
     private void validate(){
-        validateInputNonBlank(); //공백인지를 먼저 파악한다.
-        validateInputType(); //그 다음으로 숫자만으로 구성되었는지를 파악해야 한다. 그래야 정수 형태로 변환이 가능
+        validateInputNonBlank();
+        validateInputType();
         validateInputSize();
     }
 
@@ -24,13 +26,13 @@ public class BridgeSizeValidator {
     }
 
     private void validateInputType(){
-        if(!Pattern.matches(Constants.PATTERN, size)){
+        if(!Pattern.matches(EnumStrings.PATTERN.getValue(), size)){
             throw new IllegalArgumentException("[ERROR] 숫자만 입력해야 합니다.");
         }
     }
 
     private void validateInputSize() {
-        if(Integer.parseInt(size)<Constants.MIN_LENGTH||Integer.parseInt(size)>Constants.MAX_LENGTH){
+        if(Integer.parseInt(size)<MIN_LENGTH||Integer.parseInt(size)>MAX_LENGTH){
             throw new IllegalArgumentException("[ERROR] 3이상 20이하의 길이를 입력해야 합니다.");
         }
     }

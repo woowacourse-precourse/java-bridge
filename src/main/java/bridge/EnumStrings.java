@@ -13,4 +13,8 @@ public enum EnumStrings {
     EnumStrings(String message) {
         this.message=message;
     }
+
+    public String getValue() {
+        return message;
+    }
 }
