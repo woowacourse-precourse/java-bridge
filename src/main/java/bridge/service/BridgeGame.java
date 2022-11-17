@@ -42,7 +42,7 @@ public class BridgeGame {
         return movements.get(movements.size() - 1).isAvailable();
     }
 
-    public String createMovementStatus(List<Movement> movements) {
+    public String createMovementStatus() {
         StringBuilder upperStatus = new StringBuilder("[");
         StringBuilder lowerStatus = new StringBuilder("[");
         for (Movement movement : movements) {
