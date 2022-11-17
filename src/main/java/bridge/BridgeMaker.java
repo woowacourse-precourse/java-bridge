@@ -2,6 +2,7 @@ package bridge;
 
 import static java.util.stream.Collectors.toUnmodifiableList;
 
+import bridge.domain.Direction;
 import java.util.List;
 import java.util.stream.Stream;
 

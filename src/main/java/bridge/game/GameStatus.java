@@ -1,5 +1,6 @@
-package bridge;
+package bridge.game;
 
+import bridge.domain.Direction;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +26,9 @@ public class GameStatus {
         return this.tryCount;
     }
 
-    public String getStatus() {
+    public String getStatus(Direction direction) {
         if (isFail) {
+            addStatus(direction, X);
             return FAIL;
         }
         return SUCCESS;
@@ -38,20 +40,16 @@ public class GameStatus {
         down.clear();
     }
 
-    public void move(Direction direction, boolean isSuccess) {
-        if (direction.isUp()) {
-            addStatus(up, isSuccess);
-            return;
-        }
-        addStatus(down, isSuccess);
+    public void move(Direction direction) {
+        addStatus(direction, O);
     }
 
-    private void addStatus(List<String> bridge, boolean isSuccess) {
-        if (isSuccess) {
-            bridge.add(O);
+    private void addStatus(Direction direction, String status) {
+        if (direction.isUp()) {
+            up.add(status);
             return;
         }
-        bridge.add(X);
+        down.add(X);
         this.isFail = true;
     }
 

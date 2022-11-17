@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.domain.Direction;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -18,7 +19,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public static String readMoving() {
-        return Console.readLine();
+        return Direction.getPosition(Console.readLine());
     }
 
     /**

@@ -1,6 +1,10 @@
 package bridge;
 
 import bridge.config.Config;
+import bridge.domain.Direction;
+import bridge.domain.GameCommand;
+import bridge.game.BridgeGame;
+import bridge.game.GameStatus;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
@@ -37,18 +41,20 @@ public class GameManager {
                 retry(bridgeGame, gameStatus);
             }
             if (gameCommand.isFinish()) {
-                OutputView.printResult(gameStatus.getBridgeStatus(), gameStatus);
                 break;
             }
         }
     }
 
     private GameCommand play(BridgeGame bridgeGame) {
+        Direction direction = InputView.readMoving();
         try {
             OutputView.selectRoom();
-            bridgeGame.move(InputView.readMoving());
+            bridgeGame.move(direction);
+            gameStatus.move(direction);
             OutputView.printMap(gameStatus.getBridgeStatus());
             if (bridgeGame.isFinish()) {
+                OutputView.printResult(gameStatus, direction);
                 return GameCommand.FINISH;
             }
         } catch (IllegalArgumentException e) {

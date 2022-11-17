@@ -1,5 +1,7 @@
-package bridge;
+package bridge.game;
 
+import bridge.domain.Bridge;
+import bridge.domain.Direction;
 import java.util.List;
 
 /**
@@ -18,15 +20,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String input) {
-        validateUserInputToMove(input);
-        bridge.move(input);
-    }
-
-    private void validateUserInputToMove(String input) {
-        if (Direction.DOWN.isWrong(input)) {
-            throw new IllegalArgumentException();
-        }
+    public void move(Direction direction) {
+        bridge.move(direction.getPosition());
     }
 
     /**

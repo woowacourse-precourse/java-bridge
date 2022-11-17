@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import java.util.Objects;
 
@@ -29,6 +29,10 @@ public enum Direction {
 
     public boolean isWrong(String input) {
         return !(Objects.equals(input, DOWN.position) || Objects.equals(input, UP.position));
+    }
+
+    public String getPosition() {
+        return this.position;
     }
 
 }
