@@ -25,12 +25,6 @@ class InputValidatorTest {
         //when & then
         assertThrows(IllegalArgumentException.class,
                      () -> inputValidator.isDigit(input));
-
-        assertThrows(IllegalArgumentException.class,
-                     () -> inputValidator.isDigit(input));
-
-        assertThrows(IllegalArgumentException.class,
-                     () -> inputValidator.isDigit(input));
     }
 
     @ParameterizedTest
