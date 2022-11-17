@@ -1,6 +1,6 @@
 # 미션 - 다리 건너기
 
-## 기능 목록 V 1 . 0
+## 기능 목록 V 1 . 1
 
 ### view (Package)
 
@@ -12,6 +12,7 @@
 #### OutputView (Class)
 - 현재 이동한 칸을 출력하는 기능
 - 전체 결과를 출력하는 기능
+- 시작 메세지를 출력하는 기능
 
 #### Validator (Class)
 - 다리 길이 입력
@@ -22,18 +23,20 @@
 - 재시작, 종료 여부 입력
   - R, Q 이외의 문자를 입력한 경우 예외 처리한다.
 
-### model (Package)
 
-#### BridgeMaker (Class)
+### BridgeMaker (Class)
 - 다리를 생성하는 기능
-- 
-#### BridgeRandomNumberGenerator (Class)
+
+### BridgeRandomNumberGenerator (Class)
 - 변경사항 없음
 
 ### controller (Package)
 
+#### Controller (Class)
+- 게임을 세팅하는 기능
+- 게임의 전체적인 로직을 관리하는 기능
+
 #### BridgeGame (Class)
-- 게임 로직을 관리하는 기능
 - 사용자의 입력을 받아 이동하는 기능
 - 재시작 혹은 종료를 관리하는 기능
 
@@ -303,7 +306,7 @@ public class BridgeMaker {
 
 ### BridgeRandomNumberGenerator 클래스
 
-- Random 값 추출은 제공된 `bridge.model.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
+- Random 값 추출은 제공된 `bridge.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
 - `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 변경할 수 없다.
 
 #### 사용 예시
