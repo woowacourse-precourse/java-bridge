@@ -47,7 +47,7 @@ public class InputView {
     }
 
     public static void validReInput(String str){
-        if (str !="1" && str !="0"){
+        if (str !="R" && str !="Q"){
             throw new IllegalArgumentException("[ERROR]");
         }
     };
