@@ -11,7 +11,7 @@ public class InputController {
     private static InputView inputView = new InputView();
     private static OutputView outputView = new OutputView();
 
-    public static void setBridgeSize() {
+    public void setBridgeSize() {
         try {
             BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
             BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);

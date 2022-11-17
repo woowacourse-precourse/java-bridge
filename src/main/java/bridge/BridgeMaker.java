@@ -8,8 +8,10 @@ import java.util.regex.Pattern;
  */
 public class BridgeMaker {
 
+    private static final Pattern INPUT_REGEX = Pattern.compile("^[0-9]*$");
+
     private final BridgeNumberGenerator bridgeNumberGenerator;
-    
+
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
@@ -21,6 +23,12 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         System.out.println("다리 길이: " + size);
         return null;
+    }
+
+    public static void validateBridgeSizeType(String input) {
+        if (!INPUT_REGEX.matcher(input).matches()) {
+            throw new IllegalArgumentException("숫자만 입력해 주세요.");
+        }
     }
 
 }
