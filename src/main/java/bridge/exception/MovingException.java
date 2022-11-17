@@ -1,6 +1,6 @@
 package bridge.exception;
 
-public class MoveSpaceException {
+public class MovingException {
 
     private static final String UP = "U";
     private static final String DOWN = "D";
