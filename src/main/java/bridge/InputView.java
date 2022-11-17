@@ -21,7 +21,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String moveSide = Console.readLine();
+        Validator.checkIsSide(moveSide);
+        return moveSide;
     }
 
     /**
