@@ -18,7 +18,7 @@ public class BridgeGameConsole {
         return player.enterBridgeLength();
     }
 
-    private void crossBridge(BridgeGame bridgeGame) {
+    private void playGame(BridgeGame bridgeGame) {
         int attemptCount = 0;
         boolean playGame = true;
         while (playGame) {
