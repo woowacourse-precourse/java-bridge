@@ -62,7 +62,8 @@ BridgeNumberGenerator bridgeNumberGenerator
 this.
 
 [method]<br>
-public List<String> makeBridge(int size)  (feat.1.1)(feat.1.2)
+public List<String> makeBridge(int size)  (feat.1.1)
+private String makeRandomUpDown()
 ```
 
 ### BridgeGame - 게임을 진행하는 주최자, 채점판을 가지고 있고 매 시도마다 채점판은 갱신됨
