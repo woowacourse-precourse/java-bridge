@@ -1,5 +1,8 @@
 package bridge;
 
+import static bridge.Utils.Constants.QUIT;
+import static bridge.Utils.Constants.RETRY;
+
 import bridge.Controller.BridgeController;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +32,7 @@ public class BridgeGame {
         playCount++;
         answerBridge = bridgeController.startAndGetAnswerBridge();
 
-        while(isPlaying) {
+        while (isPlaying) {
             move();
         }
     }
@@ -43,11 +46,22 @@ public class BridgeGame {
         String moving = bridgeController.getMoving();
         userBridge.add(moving);
         if (bridgeController.checkMatching(answerBridge, userBridge)) {
-            if(userBridge.size() == answerBridge.size()) {
+            if (userBridge.size() == answerBridge.size()) {
                 quit(true);
             }
+            return;
         }
+        quitOrRetry();
+    }
 
+    public void quitOrRetry() {
+        String command = bridgeController.getCommand();
+        if (command.equals(QUIT)) {
+            quit(false);
+        }
+        if (command.equals(RETRY)) {
+            retry();
+        }
     }
 
     public void quit(boolean isSuccess) {

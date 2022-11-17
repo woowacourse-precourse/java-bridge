@@ -71,4 +71,14 @@ public class BridgeController {
     public void quit(boolean isSuccess, int playCount) {
         output.printResult(result.toString(), isSuccess, playCount);
     }
+
+    public String getCommand() {
+        try {
+            output.printGetGameCommand();
+            return input.readGameCommand();
+        } catch (IllegalArgumentException e) {
+            output.printError(e.getMessage());
+            return getCommand();
+        }
+    }
 }
