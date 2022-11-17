@@ -18,7 +18,7 @@ public class BridgeGameConsole {
         return player.enterBridgeLength();
     }
 
-    private void playGame(BridgeGame bridgeGame) {
+    private int playGame(BridgeGame bridgeGame) {
         int attemptCount = 0;
         boolean playGame = true;
         while (playGame) {
@@ -47,6 +47,6 @@ public class BridgeGameConsole {
                 }
             }
         }
-        emcee.showGameResult(bridgeGame.createMovementStatus(), bridgeGame.crossedBridge(), attemptCount);
+        return attemptCount;
     }
 }
