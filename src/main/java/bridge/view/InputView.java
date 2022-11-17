@@ -35,6 +35,7 @@ public class InputView {
     public String readGameCommand() {
         System.out.println(Message.SELECT_RETRY);
         String command = Console.readLine();
+        Validator.validateGameCommand(command);
         return command;
     }
 }

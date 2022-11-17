@@ -12,6 +12,12 @@ public class Validator {
         }
     }
 
+    public static void validateGameCommand(String input) {
+        if (!input.equals(Value.RETRY) && !input.equals(Value.QUIT)) {
+            throw new IllegalArgumentException("R또는 Q를 입력해주세요");
+        }
+    }
+
     private static int isDigit(String input) {
         try {
             return Integer.parseInt(input);
