@@ -26,6 +26,8 @@ public class BridgeGameController {
     public void startGame() {
         outputView.printGameStart();
         List<String> bridge = createBridge();
+        BridgeGame bridgeGame = new BridgeGame(bridge, new BridgeMoveLog(bridge.size()));
+        play(bridgeGame);
     }
 
     private List<String> createBridge() {
@@ -34,6 +36,16 @@ public class BridgeGameController {
             int bridgeSize = inputView.readBridgeSize();
             return bridgeMaker.makeBridge(bridgeSize);
         });
+    }
+
+    private void play(BridgeGame bridgeGame) {
+        while (true) {
+            GameStatus gameStatus = bridgeGame.move(choiceBridge());
+
+            if ((gameStatus == GameStatus.FAIL && isGiveUp()) || gameStatus == GameStatus.SUCCESS) {
+                return;
+            }
+        }
     }
 
     private BridgeType choiceBridge() {
