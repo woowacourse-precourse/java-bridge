@@ -1,8 +1,10 @@
 package bridge;
 
+import bridge.controller.Rungame;
+
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        Rungame run = new Rungame();
     }
 }

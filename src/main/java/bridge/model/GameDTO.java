@@ -3,10 +3,10 @@ package bridge.model;
 import java.util.List;
 
 public class GameDTO {
-    private final List<Character> bridge;
+    private final List<String> bridge;
     private int nowPosition;
 
-    public GameDTO(List<Character> bridge) {
+    public GameDTO(List<String> bridge) {
         this.bridge = bridge;
     }
 
