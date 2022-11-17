@@ -49,7 +49,7 @@ BridgeGame과 BridgeMaker를 같은 추상화 계층으로 봐야하는가?
     - OutputView
 
 # 구현
-- [ ] 다리 건너기 게임 Module 생성
+- [x] 다리 건너기 게임 Module 생성
 - [ ] 게임 시작 문구 출력
 - [ ] 다리 길이 입력 요청 문구 출력
 - [ ] 다리 길이 입력 요청
