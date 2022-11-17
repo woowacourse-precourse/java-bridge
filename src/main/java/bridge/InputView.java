@@ -49,4 +49,10 @@ public class InputView {
             throw new IllegalArgumentException();
         }
     }
+
+    private void validateInputMovingCharacter(String input) {
+        if (!input.equals("U") && !input.equals("D")) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
