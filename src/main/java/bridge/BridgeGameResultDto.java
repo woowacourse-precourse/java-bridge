@@ -6,11 +6,8 @@ public class BridgeGameResultDto {
     private List<List<String>> gradingBoard;
     private boolean isCorrect;
 
-    public void setGradingBoard(List<List<String>> gradingBoard) {
+    public BridgeGameResultDto(List<List<String>> gradingBoard, boolean isCorrect) {
         this.gradingBoard = gradingBoard;
-    }
-
-    public void setCorrect(boolean correct) {
-        isCorrect = correct;
+        this.isCorrect = isCorrect;
     }
 }
