@@ -17,6 +17,10 @@ public class OutputView {
     private static final String CONTENTS_LINE_WITHOUT_BLANK = "%s |";
     private static final String END_LINE_WITH_BLANK = "  ]";
     private static final String END_LINE_WITHOUT_BLANK = "%s ]\n";
+    private static final String RESULT = "최종 게임 결과";
+    private static final String GAME_SUCCESS = "게임 성공 여부: 성공";
+    private static final String GAME_FAILED = "게임 성공 여부: 실패";
+    private static final String TOTAL_ATTEMPTS = "총 시도한 횟수: %d\n";
 
     public void printGameStart() {
         System.out.println(GAME_START);
@@ -75,6 +79,22 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(Map<String, String> matchingStatus, boolean isGameSuccess, int totalAttempts) {
+        System.out.println(RESULT);
+        printMap(matchingStatus);
+        printWhetherGameSuccess(isGameSuccess);
+        printTotalAttempts(totalAttempts);
+    }
+
+    private void printWhetherGameSuccess(boolean isGameSuccess) {
+        if (isGameSuccess) {
+            System.out.println(GAME_SUCCESS);
+            return;
+        }
+        System.out.println(GAME_FAILED);
+    }
+
+    private void printTotalAttempts(int totalAttempts) {
+        System.out.printf(TOTAL_ATTEMPTS, totalAttempts);
     }
 }
