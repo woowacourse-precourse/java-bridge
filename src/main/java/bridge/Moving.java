@@ -4,11 +4,19 @@ public enum Moving {
     UP("U", 1),
     DOWN("D", 0);
 
-    private final String directionWord;
-    private final int direction;
+    private final String direction;
+    private final int code;
 
-    Moving(String directionWord, int direction) {
-        this.directionWord = directionWord;
+    Moving(String direction, int code) {
         this.direction = direction;
+        this.code = code;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public String getDirection() {
+        return direction;
     }
 }
