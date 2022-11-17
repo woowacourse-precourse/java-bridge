@@ -1,5 +1,8 @@
 package bridge.domain;
 
+import static bridge.domain.BridgeCellType.DOWN;
+import static bridge.domain.BridgeCellType.UP;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,8 +31,8 @@ public class BridgeMaker {
 
     private String convertRandomNumberToBridgeCellType(int randomNumber) {
         if (randomNumber == 0) {
-            return "D";
+            return UP.getCellType();
         }
-        return "U";
+        return DOWN.getCellType();
     }
 }
