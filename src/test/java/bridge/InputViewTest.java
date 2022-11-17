@@ -90,4 +90,23 @@ class InputViewTest {
 
         assertThat(retryStatus).isEqualTo("R");
     }
+
+    @Test
+    void readGameCommand_입력_예외처리() {
+        InputView inputView = new InputView();
+
+        ByteArrayInputStream in = new ByteArrayInputStream("RQQ".getBytes());
+        System.setIn(in);
+
+        assertThatThrownBy(() -> inputView.readGameCommand())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 한 글자만 입력해주세요.");
+
+        ByteArrayInputStream in2 = new ByteArrayInputStream("D".getBytes());
+        System.setIn(in2);
+
+        assertThatThrownBy(() -> inputView.readGameCommand())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] R, Q 둘 중 하나만 입력해주세요.");
+    }
 }
