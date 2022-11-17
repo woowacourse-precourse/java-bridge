@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +26,10 @@ public class BridgeGame {
     public BridgeGameResultDto move(String nextStep) {
         boolean isCorrect = compareNextStep(nextStep);
 
+        gradingBoard.add(new HashMap<>() {{
+            put(UpDown.valueOfLabel(nextStep),isCorrect);
+        }});
+        return bridgeGameResultDtoMapper(isCorrect);
     }
 
     /**
