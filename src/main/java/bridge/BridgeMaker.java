@@ -19,6 +19,14 @@ public class BridgeMaker {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
+    public static int getBridgeMinSize() {
+        return BRIDGE_MIN_SIZE;
+    }
+
+    public static int getBridgeMaxSize() {
+        return BRIDGE_MAX_SIZE;
+    }
+
     /**
      * @param size 다리의 길이
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
