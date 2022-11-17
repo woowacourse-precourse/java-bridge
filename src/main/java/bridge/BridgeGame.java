@@ -11,8 +11,7 @@ public class BridgeGame {
     private List<String> bridge;
     private final BridgeMaker bridgeMaker;
 
-    public BridgeGame(int size, BridgeMaker bridgeMaker) {
-        this.size = size;
+    public BridgeGame(BridgeMaker bridgeMaker) {
         this.bridgeMaker = bridgeMaker;
     }
 
@@ -28,8 +27,9 @@ public class BridgeGame {
         return this.bridge;
     }
 
-    public void initializeBridgeGame() {
+    public void initializeBridgeGame(int size) {
         this.stepNumber = 0;
+        this.size = size;
         this.bridge = this.bridgeMaker.makeBridge(this.size);
     }
 
@@ -39,6 +39,10 @@ public class BridgeGame {
             return true;
         }
         return false;
+    }
+
+    public void resetSteps() {
+        this.stepNumber = 0;
     }
 
     /**
