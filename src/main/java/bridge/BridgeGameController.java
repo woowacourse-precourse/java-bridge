@@ -2,6 +2,7 @@ package bridge;
 
 public class BridgeGameController {
 
+    public static final String RETRY_SIGNAL = "R";
     private final InputView inputView;
     private final OutputView outputView;
     private BridgeGame bridgeGame;
@@ -10,7 +11,6 @@ public class BridgeGameController {
         this.inputView = new InputView();
         this.outputView = new OutputView();
     }
-
 
     void start() {
         outputView.printStart();
@@ -21,13 +21,20 @@ public class BridgeGameController {
 
     private void play() {
         String moving = inputView.readMoving();
-        boolean success = bridgeGame.move(moving);
-        if (!success) {
+        move(moving);
+    }
+
+    private void move(String moving) {
+        if (!bridgeGame.move(moving)) {
             outputView.printMap(bridgeGame.printWrongResult());
             retry();
             return;
         }
-        if (!bridgeGame.isCompleted()) {
+        continueOrSuccess();
+    }
+
+    private void continueOrSuccess() {
+        if (!bridgeGame.isSuccess()) {
             outputView.printMap(bridgeGame.printRightResult());
             play();
             return;
@@ -35,16 +42,9 @@ public class BridgeGameController {
         printSuccessResult();
     }
 
-    private void printSuccessResult() {
-        System.out.println("최종 게임 결과");
-        outputView.printMap(bridgeGame.printRightResult());
-        outputView.printResult(OutputView.SUCCESS_MESSAGE, bridgeGame.getRetryCount());
-    }
-
-
     private void retry() {
         String answer = inputView.readGameCommand();
-        if (isRetry(answer)) {
+        if (answer.equals(RETRY_SIGNAL)) {
             bridgeGame.retry();
             play();
             return;
@@ -52,14 +52,15 @@ public class BridgeGameController {
         printFailureResult();
     }
 
-    private void printFailureResult() {
-        System.out.println("최종 게임 결과");
-        outputView.printMap(bridgeGame.printWrongResult());
-        outputView.printResult(OutputView.FAILURE_MESSAGE, bridgeGame.getRetryCount());
+    private void printSuccessResult() {
+        outputView.printOverMessage();
+        outputView.printMap(bridgeGame.printRightResult());
+        outputView.printResult(OutputView.SUCCESS_MESSAGE, bridgeGame.getRetryCount());
     }
 
-
-    private boolean isRetry(String answer) {
-        return answer.equals("R");
+    private void printFailureResult() {
+        outputView.printOverMessage();
+        outputView.printMap(bridgeGame.printWrongResult());
+        outputView.printResult(OutputView.FAILURE_MESSAGE, bridgeGame.getRetryCount());
     }
 }
