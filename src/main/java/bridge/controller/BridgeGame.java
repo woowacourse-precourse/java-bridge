@@ -1,5 +1,7 @@
 package bridge.controller;
 
+import bridge.domain.Bridge;
+import bridge.service.BridgeService;
 import bridge.view.InputView;
 
 /**
@@ -8,11 +10,13 @@ import bridge.view.InputView;
 public class BridgeGame {
 
     public void startGame(){
-        initBridge();
+        Bridge bridge = initBridge();
     }
 
-    private void initBridge() {
+    private Bridge initBridge() {
         Integer bridgeSize = InputView.readBridgeSize();
+        Bridge bridge = BridgeService.makeBridge(bridgeSize);
+        return bridge;
     }
 
     /**
