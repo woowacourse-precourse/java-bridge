@@ -12,6 +12,7 @@ public class OutputView {
     private static final String OUTPUT_RESULT_TRY_NUMBER = "총 시도한 횟수: " ;
     private String Map;
     private boolean isFirst;
+    private int attempt = 0;
 
     public void printStart() {
         System.out.println(OUTPUT_START_MESSAGE);
@@ -20,6 +21,7 @@ public class OutputView {
     public void initMap(){
         this.Map = "[\n[";
         this.isFirst = true;
+        this.attempt += 1;
     }
 
     /**
@@ -53,8 +55,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult() {
-        System.out.println(OUTPUT_RESULT_MESSAGE);
-        System.out.println(OUTPUT_RESULT_IS_SUCCESS);
-        System.out.println(OUTPUT_RESULT_TRY_NUMBER);
+        System.out.println(OUTPUT_RESULT_MESSAGE + LINE +  Map);
+        System.out.println(OUTPUT_RESULT_IS_SUCCESS + "성공");
+        System.out.println(OUTPUT_RESULT_TRY_NUMBER + this.attempt);
     }
 }
