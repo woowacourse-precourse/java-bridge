@@ -33,7 +33,7 @@ public class BridgeMaker {
     return DOWN;
   }
 
-  private List<String> getBridgeShape(int length){
+  private List<String> getBridgeShape(int length) {
     List<String> bridgeShape = new ArrayList<>();
     for (int i = 0; i < length; i++) {
       bridgeShape.add(getUpOrDown());

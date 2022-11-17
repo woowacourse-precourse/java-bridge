@@ -2,7 +2,6 @@ package bridge;
 
 import bridge.exception.InvalidBridgeShapeException;
 import bridge.exception.LengthOutOfRangeException;
-
 import java.util.List;
 
 public class BridgeValidator {

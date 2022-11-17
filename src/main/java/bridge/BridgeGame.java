@@ -1,9 +1,9 @@
 package bridge;
 
-import java.util.List;
-
 import static bridge.InputView.readBridgeSize;
 import static bridge.OutputView.*;
+
+import java.util.List;
 
 /** 다리 건너기 게임을 관리하는 클래스 */
 public class BridgeGame {
@@ -15,18 +15,17 @@ public class BridgeGame {
 
   public void run() {
     printGameStartMessage();
-    try{
+    try {
       gameStart();
-    }catch (IllegalArgumentException e) {
+    } catch (IllegalArgumentException e) {
       printErrorMessage(e);
     }
   }
 
-  private void gameStart(){
+  private void gameStart() {
     List<String> bridge = makeBridgeByLengthInput();
     printMoveDirInputMessage();
   }
-
 
   /**
    * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -42,7 +41,7 @@ public class BridgeGame {
    */
   public void retry() {}
 
-  private List<String> makeBridgeByLengthInput(){
+  private List<String> makeBridgeByLengthInput() {
     printLengthInputMessage();
     return bridgeMaker.makeBridge(readBridgeSize());
   }
