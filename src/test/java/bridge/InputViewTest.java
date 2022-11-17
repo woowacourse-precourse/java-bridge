@@ -24,15 +24,13 @@ public class InputViewTest {
         return method;
     }
 
-    private boolean isErrOccur(Method method, String input) {
+    private boolean isErrOccur(Method method, String input) throws Exception {
         try {
             method.invoke(inputView, input);
         } catch (InvocationTargetException e) {
             if(e.getTargetException().getMessage().contains(ERROR_MSG)) {
                 return true;
             }
-        } catch(IllegalArgumentException | IllegalAccessException e) {
-            throw new RuntimeException(e);
         }
         return false;
     }
