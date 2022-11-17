@@ -5,13 +5,15 @@ import bridge.domain.MoveResult;
 
 import java.util.List;
 
-public class ResultMapDTO {
+public class GameResultDTO {
     private final List<MoveResult> moveResults;
     private final List<String> movings;
+    private final int numberOfTry;
     
-    public ResultMapDTO(final BridgeGame bridgeGame) {
+    public GameResultDTO(final BridgeGame bridgeGame) {
         moveResults = bridgeGame.moveResult();
         movings = bridgeGame.movings();
+        numberOfTry = bridgeGame.numberOfTry();
     }
     
     public List<MoveResult> getMoveResults() {
@@ -20,5 +22,9 @@ public class ResultMapDTO {
     
     public List<String> getMovings() {
         return movings;
+    }
+    
+    public int getNumberOfTry() {
+        return numberOfTry;
     }
 }

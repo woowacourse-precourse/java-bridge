@@ -83,4 +83,8 @@ public class BridgeGame {
                 .map(State::moving)
                 .collect(Collectors.toList());
     }
+    
+    public int numberOfTry() {
+        return numberOfTry.numberOfTry();
+    }
 }
