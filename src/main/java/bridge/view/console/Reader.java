@@ -15,18 +15,4 @@ public class Reader {
         ReaderValidator.validateString(value);
         return value;
     }
-
-
-    static class ReaderValidator extends Validator {
-        public static void validateNumber(String value) {
-            validateNotNull(value);
-            validateNotEmpty(value);
-            validateInteger(value);
-        }
-
-        public static void validateString(String value) {
-            validateNotNull(value);
-            validateNotEmpty(value);
-        }
-    }
 }
