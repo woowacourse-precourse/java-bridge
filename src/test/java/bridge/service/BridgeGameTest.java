@@ -1,5 +1,6 @@
 package bridge.service;
 
+import bridge.constant.Movement;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -20,4 +21,15 @@ class BridgeGameTest {
         assertThat(game.move("U")).isFalse();
     }
 
+    @Test
+    @DisplayName("움직임에 대한 현재 상태를 생성한다.")
+    void creatingMovementStatus() {
+        List<String> bridge = Arrays.asList("U", "D", "D", "U");
+        BridgeGame game = new BridgeGame(bridge);
+        game.move("U");
+        game.move("D");
+        game.move("U");
+        String movementStatus = game.createMovementStatus();
+        assertThat(movementStatus).isEqualTo("[ O |   | X ]\n[   | O |   ]\n");
+    }
 }
