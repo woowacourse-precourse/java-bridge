@@ -1,5 +1,7 @@
 package bridge.View;
 
+import bridge.Model.ErrorUtil;
+
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 /**
@@ -11,8 +13,10 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        ErrorUtil errorUtil = new ErrorUtil();
         String inputSize = readLine();
         int size = Integer.parseInt(inputSize);
+        errorUtil.errorBridgeSize(inputSize);
         return size;
     }
 
