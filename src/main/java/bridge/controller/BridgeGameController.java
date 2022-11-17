@@ -28,7 +28,8 @@ public class BridgeGameController {
         outputView.printGameStart();
         List<String> bridge = createBridge();
         BridgeGame bridgeGame = new BridgeGame(bridge, new BridgeMoveLog(bridge.size()));
-        play(bridgeGame);
+        GameStatus resultStatus = play(bridgeGame);
+        outputView.printResult(bridgeGame, resultStatus);
     }
 
     private List<String> createBridge() {
@@ -39,13 +40,13 @@ public class BridgeGameController {
         });
     }
 
-    private void play(BridgeGame bridgeGame) {
+    private GameStatus play(BridgeGame bridgeGame) {
         while (true) {
             GameStatus gameStatus = bridgeGame.move(choiceBridge());
             outputView.printMap(bridgeGame.getBridgeMoveLog());
 
             if ((gameStatus == GameStatus.FAIL && isGiveUp(bridgeGame)) || gameStatus == GameStatus.SUCCESS) {
-                return;
+                return gameStatus;
             }
         }
     }
