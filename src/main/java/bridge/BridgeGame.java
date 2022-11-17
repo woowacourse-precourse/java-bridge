@@ -1,18 +1,15 @@
 package bridge;
 
-import java.util.List;
-
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
-    private final List<String> bridges;
+    private final Bridges bridges;
     private Player player;
 
-    public BridgeGame(int size,BridgeNumberGenerator bridgeNumberGenerator) {
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        this.bridges = bridgeMaker.makeBridge(size);
+    public BridgeGame(int size, BridgeNumberGenerator bridgeNumberGenerator) {
+        this.bridges = new Bridges(size, bridgeNumberGenerator);
         player = new Player();
     }
 
@@ -22,8 +19,8 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String direction) {
-        int position = player.move();
-        return bridges.get(position).equals(direction);
+        int position = player.move(direction);
+        return bridges.isSameDirection(position, direction);
     }
 
     /**
@@ -36,7 +33,7 @@ public class BridgeGame {
     }
 
     public boolean isCompleted() {
-        return player.isCompleted(bridges.size());
+        return bridges.isEnd(player);
     }
 
     public boolean isStartStatus() {

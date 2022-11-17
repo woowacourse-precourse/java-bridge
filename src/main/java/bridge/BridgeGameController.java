@@ -3,16 +3,18 @@ package bridge;
 public class BridgeGameController {
 
     private final InputView inputView;
+    private final OutputView outputView;
     private BridgeGame bridgeGame;
 
     public BridgeGameController() {
         this.inputView = new InputView();
+        this.outputView = new OutputView();
     }
 
-    public static final String START_GAME = "다리 건너기 게임을 시작합니다.";
+
 
     void start() {
-        System.out.println(START_GAME);
+        outputView.printStart();
         int bridgeSize = inputView.readBridgeSize();
         this.bridgeGame = new BridgeGame(bridgeSize, new BridgeRandomNumberGenerator());
         play();
@@ -32,6 +34,7 @@ public class BridgeGameController {
     }
 
     private void print() {
+        outputView.printResult();
     }
 
     private void retry() {

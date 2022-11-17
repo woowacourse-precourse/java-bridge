@@ -10,12 +10,13 @@ public class BridgesTest {
     @DisplayName("이동 완려 여부 확인")
     @Test
     void check_is_end() {
-        Bridges bridges = new Bridges(3);
+        Bridges bridges = new Bridges(3,new BridgeFakeNumberGenerator());
         Player player = new Player();
         assertThat(bridges.isEnd(player)).isFalse();
-        player.move();
+        player.move("U");
         assertThat(bridges.isEnd(player)).isFalse();
-        player.move();
+        player.move("U");
+        player.move("U");
         assertThat(bridges.isEnd(player)).isTrue();
     }
 }
