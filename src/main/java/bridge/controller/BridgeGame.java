@@ -1,11 +1,10 @@
 package bridge.controller;
 
-import bridge.domain.AnswerBridge;
-import bridge.domain.BridgeMaker;
-import bridge.domain.BridgeRandomNumberGenerator;
+import bridge.model.AnswerBridge;
+import bridge.model.BridgeMaker;
+import bridge.model.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import org.mockito.stubbing.Answer;
 
 import java.util.List;
 

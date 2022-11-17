@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.model;
 
 import java.util.List;
 
