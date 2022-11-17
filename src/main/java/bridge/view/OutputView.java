@@ -23,6 +23,10 @@ public class OutputView {
     public void printResult() {
     }
 
+    public static void printMessage(String message) {
+        System.out.println(message);
+    }
+
     public static void printErrorMessage(String message) {
         System.out.printf("%s %s%n", ERROR_PREFIX, message);
     }
