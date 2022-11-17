@@ -11,9 +11,18 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class BridgeSizeTest {
 
     @DisplayName("길이를 숫자를 입력하지 않으면 예외가 발생")
-    @ValueSource(strings = {"일", "2이", "23!", "1@"})
+    @ValueSource(strings = {"일", "2이", "23!", "1@", ""})
     @ParameterizedTest
     void inputNotNumber(String input) {
+        assertThatThrownBy(()-> new BridgeSize(input))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(ERROR);
+    }
+
+    @DisplayName("길이가 3 ~ 20이 아닐때 예외가 발생")
+    @ValueSource(strings = {"44", "2", "-10", "0"})
+    @ParameterizedTest
+    void inputNumberOutOfRange(String input) {
         assertThatThrownBy(()-> new BridgeSize(input))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(ERROR);
