@@ -16,7 +16,7 @@ public class Application {
         do {
             playGame(bridge);
         } while (!bridgeGame.isGameClear(bridge));
-        outputView.printFinalMessage(bridgeGame.getResult());
+        outputView.printResult(bridgeGame.getResult());
     }
 
     private static void playGame(List<String> bridge) {
