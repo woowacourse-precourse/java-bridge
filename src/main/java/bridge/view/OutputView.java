@@ -12,6 +12,11 @@ public class OutputView {
 
     private static final String START = " [ ";
     private static final String END = " ] ";
+    private static final String FINAL_RESULT = "최종 게임 결과";
+    private static final String GAME_SUCCESS_OR_NOT = "게임 성공 여부: ";
+    private static final String SUCCESS = "성공";
+    private static final String FAIL = "실패";
+    private static final String TOTAL_ATTEMPT = "총 시도한 횟수: ";
 
     private static final String ERROR_PREFIX = "[ERROR] ";
 
@@ -41,7 +46,24 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult() {
+    public static void printResult(Bridge bridge, PassingPositions passingPositions, int attempt) {
+        Result result = new Result(bridge, passingPositions);
+        List<String> compares = result.makeCompares(bridge, passingPositions);
+
+        System.out.println(FINAL_RESULT);
+        printMap(bridge, passingPositions);
+
+        System.out.print(GAME_SUCCESS_OR_NOT);
+        if (compares.contains("X")) {
+            System.out.println(FAIL);
+        }
+        if (!compares.contains("X")) {
+            System.out.println(SUCCESS);
+        }
+
+        System.out.print(TOTAL_ATTEMPT);
+        System.out.println(attempt);
+
     }
 
     public static void printError(String message) {

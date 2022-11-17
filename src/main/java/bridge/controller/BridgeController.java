@@ -28,10 +28,12 @@ public class BridgeController {
         BridgeGame bridgeGame = new BridgeGame();
         boolean isQuit = false;
         int pos;
+        int attempt = 1;
 
+        PassingPositions passingPositions = new PassingPositions();
         do {
             pos = -1;
-            PassingPositions passingPositions = new PassingPositions();
+//            PassingPositions passingPositions = new PassingPositions();
             do {
                 pos++;
                 if (pos == size) {
@@ -47,6 +49,9 @@ public class BridgeController {
                 break;
             }
             bridgeGame.retry(passingPositions);
+            attempt++;
         } while (InputView.readGameCommand().equals("R"));
+
+        OutputView.printResult(bridge, passingPositions, attempt);
     }
 }
