@@ -9,4 +9,8 @@ public class Player {
     public int move() {
         return position++;
     }
+
+    public boolean isCompleted(int size) {
+        return position == size;
+    }
 }

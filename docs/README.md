@@ -74,7 +74,7 @@ R
 - [X] player를 이동한다.(BridgeGame->player)
 - [X] 이동한 칸이 이동가능한 칸인지 확인.(BridgeGame->Bridges)
 - [ ] 이동 한 칸을 출력 (OutputView)
-- [ ] 이동 완료 여부 확인 (BridgeGame)
+- [ ] 이동 완료 여부 확인 (BridgeGame->player)
 - [ ] 게임 완료시 게임 다시 사작 여부 입력요청(InputView)
 - [ ] 게임 다시 사작 여부 입력 예외처리 (InputView)
   - [X] 게임 다시 사작 입력 유효성 검사 (InputValidator)
@@ -97,6 +97,7 @@ R
 - [ ] 이동 완료 여부 확인
 - Player
 - [X] 이동한다.
+- [ ] 이동 완료 여부 확인
 - OutputView
 - [ ] 이동 한 칸을 출력
 - [ ] 게임 성공 여부 출력
