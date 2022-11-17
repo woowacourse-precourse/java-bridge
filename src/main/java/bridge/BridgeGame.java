@@ -50,7 +50,6 @@ public class BridgeGame {
 
     public void setBridgeSize(int n) {
         this.bridges = bridgeMaker.makeBridge(n);
-        System.out.println(bridges);
     }
 
     /**
