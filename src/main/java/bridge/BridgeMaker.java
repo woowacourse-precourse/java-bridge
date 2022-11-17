@@ -15,8 +15,6 @@ import java.util.List;
 public class BridgeMaker {
 
 	private final BridgeNumberGenerator bridgeNumberGenerator;
-	private final List<String> bridge = new ArrayList<>();
-	private final List<Integer> bridgeNumbers = new ArrayList<>();
 
 	public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
 		this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -27,30 +25,25 @@ public class BridgeMaker {
 	 * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
 	 */
 	public List<String> makeBridge(int size) {
-		makeBridgeNumber(size);
-		bridgeNumbers.forEach(number -> {
-			putOneToUp(number);
-			putZeroToDown(number);
-		});
-		return bridge;
+		Bridge bridge = Bridge.createBridge();
+		List<Integer> bridgeRandomNumbers = makeBridgeNumber(size);
+		modifyBridgeData(bridge, bridgeRandomNumbers);
+		return bridge.getBridgeLetters();
 	}
 
-	private void makeBridgeNumber(int size) {
+	private List<Integer> makeBridgeNumber(int size) {
 		BridgeRandomNumberGenerator randomNumberGenerator = new BridgeRandomNumberGenerator();
+		List<Integer> bridgeNumbers = new ArrayList<>();
 		for (int i = 0; i < size; i++) {
 			bridgeNumbers.add(randomNumberGenerator.generate());
 		}
+		return bridgeNumbers;
 	}
 
-	private void putOneToUp(Integer number) {
-		if (number == 1) {
-			bridge.add("U");
-		}
-	}
-
-	private void putZeroToDown(Integer number) {
-		if (number == 0) {
-			bridge.add("D");
+	private void modifyBridgeData(Bridge bridge, List<Integer> bridgeNumbers) {
+		for (Integer number : bridgeNumbers) {
+			bridge.putOneToUp(number);
+			bridge.putZeroToDown(number);
 		}
 	}
 }
