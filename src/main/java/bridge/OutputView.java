@@ -44,4 +44,8 @@ public class OutputView {
     public void printInputGameCommandMessage(){
         print(INPUT_GAME_COMMAND_MESSAGE);
     }
+
+    public void printExceptionMessage(String exceptionMessage){
+        print(exceptionMessage);
+    }
 }

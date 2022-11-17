@@ -18,7 +18,6 @@ public class InputView {
             Exception.checkInputIsNum(bridgeSize);
             Exception.checkBridgeSizeRange(Integer.valueOf(bridgeSize));
         }catch(IllegalArgumentException e){
-            System.out.println(e.getMessage());
             return readBridgeSize();
         }
         return Integer.valueOf(bridgeSize);
@@ -32,7 +31,6 @@ public class InputView {
         try{
             Exception.checkMovingString(moving);
         }catch(IllegalArgumentException e){
-            System.out.println(e.getMessage());
             return readMoving();
         }
         return moving;
@@ -46,7 +44,6 @@ public class InputView {
         try{
             Exception.checkGameCommandString(gameCommand);
         }catch(IllegalArgumentException e){
-            System.out.println(e.getMessage());
             return readGameCommand();
         }
         return gameCommand;
