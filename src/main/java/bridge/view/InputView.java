@@ -12,6 +12,8 @@ public class InputView {
      */
     private static final String PRINT_ASK_START = "다리 건너기 게임을 시작합니다.";
     private static final String PRINT_ASK_SIZE = "다리의 길이를 입력해주세요.";
+    private static final String PRINT_ASK_MOVE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+
     public static String readBridgeSize() {
         printSentence(PRINT_ASK_START);
         printBlankLine();
@@ -23,7 +25,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public static String readMoving() {
-        return null;
+        printBlankLine();
+        printSentence(PRINT_ASK_MOVE);
+        return getInput();
     }
 
     /**
