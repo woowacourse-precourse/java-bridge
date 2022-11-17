@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import bridge.domain.Bridge;
 import bridge.domain.BridgeFlag;
+import bridge.domain.UpDownFlag;
 import bridge.domain.User;
 import bridge.util.BridgeMaker;
 import bridge.util.BridgeRandomNumberGenerator;
@@ -26,9 +27,9 @@ class BridgeServiceTest {
         // given
         Bridge bridge = Bridge.of(List.of("D", "D", "D"));
         User user = new User();
-        user.move("D");
-        user.move("D");
-        user.move("D");
+        user.move(UpDownFlag.DOWN);
+        user.move(UpDownFlag.DOWN);
+        user.move(UpDownFlag.DOWN);
         // expect
         assertThat(bridgeService.getGameStatus(bridge, user))
                 .isEqualTo(BridgeFlag.SUCCESS);
@@ -40,8 +41,8 @@ class BridgeServiceTest {
         // given
         Bridge bridge = Bridge.of(List.of("D", "D", "D"));
         User user = new User();
-        user.move("D");
-        user.move("D");
+        user.move(UpDownFlag.DOWN);
+        user.move(UpDownFlag.DOWN);
         // expect
         assertThat(bridgeService.getGameStatus(bridge, user))
                 .isEqualTo(BridgeFlag.NOTHING);
@@ -53,9 +54,9 @@ class BridgeServiceTest {
         // given
         Bridge bridge = Bridge.of(List.of("D", "D", "D"));
         User user = new User();
-        user.move("D");
-        user.move("D");
-        user.move("U");
+        user.move(UpDownFlag.DOWN);
+        user.move(UpDownFlag.DOWN);
+        user.move(UpDownFlag.UP);
         // expect
         assertThat(bridgeService.getGameStatus(bridge, user))
                 .isEqualTo(BridgeFlag.FAIL);
@@ -67,9 +68,9 @@ class BridgeServiceTest {
         // given
         Bridge bridge = Bridge.of(List.of("D", "D", "D"));
         User user = new User();
-        user.move("D");
-        user.move("U");
-        user.move("D");
+        user.move(UpDownFlag.DOWN);
+        user.move(UpDownFlag.UP);
+        user.move(UpDownFlag.DOWN);
         // expect
         assertThat(bridgeService.getGameStatus(bridge, user))
                 .isEqualTo(BridgeFlag.FAIL);
@@ -81,10 +82,10 @@ class BridgeServiceTest {
         // given
         Bridge bridge = Bridge.of(List.of("D", "D", "D"));
         User user = new User();
-        user.move("D");
-        user.move("D");
-        user.move("D");
-        user.move("D");
+        user.move(UpDownFlag.DOWN);
+        user.move(UpDownFlag.DOWN);
+        user.move(UpDownFlag.DOWN);
+        user.move(UpDownFlag.DOWN);
         // expect
         assertThatThrownBy(() -> bridgeService.getGameStatus(bridge, user))
                 .isInstanceOf(IllegalArgumentException.class);
