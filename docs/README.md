@@ -24,7 +24,7 @@
     * 일치하지 않는 경우 
         - 이동할 수 없는 칸을 선택했으므로 올바른 위치에 X를 표시하고 지금까지 입력된 다리 출력하기(UI) - OutputView#printMap()
         - 게임 재시작(R)/종료(Q) 여부 입력받기 - InputView#readGameCommand()
-            * 예외 : R이나 Q의 문자가 아니면 IllegalArgumentException 발생시키고 [ERROR]로 시작하는 에러 메시지 출력하고 다시 입력받기
+            * 예외 : R이나 Q의 문자가 아니면 IllegalArgumentException 발생시키고 [ERROR]로 시작하는 에러 메시지 출력하고 다시 입력받기 - InputView#readGameCommandExceptionCheck()
 
             * 게임 재시작일 경우(R을 선택했을 경우) - BridgeGame#retry()
                 + 다리를 다시 처음부터 입력받기(조건)
