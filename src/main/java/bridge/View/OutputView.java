@@ -15,6 +15,7 @@ public class OutputView {
     private final String DIVISION = " | ";
     public final String FAIL = "X";
     private final String FINAL = "최종 게임 결과";
+    private final String RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     public void printMap(BridgeDTO bridgeDTO) {
         printFirstLine(bridgeDTO);
         printSecondLine(bridgeDTO);
@@ -55,5 +56,9 @@ public class OutputView {
 
     public void printMovePoint() {
         System.out.println(MOVEPOINT);
+    }
+
+    public void printRetry() {
+        System.out.println(RETRY);
     }
 }
