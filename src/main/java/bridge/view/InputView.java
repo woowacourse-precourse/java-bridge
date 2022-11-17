@@ -3,6 +3,7 @@ package bridge.view;
 import bridge.dto.BridgeSizeDTO;
 import bridge.dto.GameCommandDTO;
 import bridge.dto.MovingDTO;
+import bridge.validator.InputBridgeSizeValidator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -12,9 +13,20 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public BridgeSizeDTO readBridgeSize() {
+    public BridgeSizeDTO readBridgeSize(final OutputView outputView) {
+        printBridgeSizeInputMessage(outputView);
         final String inputBridgeSize = Console.readLine();
-        return new BridgeSizeDTO(Integer.parseInt(inputBridgeSize));
+        try {
+            InputBridgeSizeValidator.validate(inputBridgeSize);
+            return new BridgeSizeDTO(Integer.parseInt(inputBridgeSize));
+        } catch (IllegalArgumentException raisedException) {
+            System.out.println(raisedException.getMessage());
+            return readBridgeSize(outputView);
+        }
+    }
+    
+    private void printBridgeSizeInputMessage(final OutputView outputView) {
+        outputView.printBridgeSizeInputMessage();
     }
 
     /**

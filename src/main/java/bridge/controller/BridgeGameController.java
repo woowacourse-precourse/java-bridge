@@ -24,12 +24,7 @@ public class BridgeGameController {
     }
     
     private BridgeSizeDTO inputBridgeSize() {
-        printBridgeSizeInputMessage();
-        return inputView.readBridgeSize();
-    }
-    
-    private void printBridgeSizeInputMessage() {
-        outputView.printBridgeSizeInputMessage();
+        return inputView.readBridgeSize(outputView);
     }
     
     private void playBridgeGame(final BridgeGame bridgeGame) {

@@ -4,7 +4,7 @@
 - [ ] 다리 길이를 숫자로 입력
   - [x] 정상 입력
   - [ ] 예외 처리 (예외 메시지에 [ERROR] 로 시작) (IllegalArgumentException) (에러 메시지 출력 후 다시 입력)
-    - [ ] null or empty 입력 시
+    - [x] null or empty 입력 시
     - [ ] 공백 입력 시
     - [ ] 3~20 범위를 벗어난 숫자 입력 시
       - [ ] 음수
