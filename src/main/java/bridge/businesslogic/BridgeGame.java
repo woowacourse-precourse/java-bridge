@@ -45,7 +45,9 @@ public class BridgeGame {
         String userPickResult = convertUsersPick(isUsersPickRight);
         bridge.crossBridge();
 
-        return true;
+        outputView.printMap(bridge.getAlreadyCrossedBridge(userPickResult));
+
+        return isUsersPickRight || retry();
     }
 
     private String convertUsersPick(boolean isUsersPickRight){
