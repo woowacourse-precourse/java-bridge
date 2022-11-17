@@ -18,23 +18,40 @@
 ### 1. 게임 시작 문구를 출력한다. - `View`/`InputView`
 
 ### 2. 다리의 길이를 숫자를 입력받고 생성한다.
-   - [ ] 입력받은 숫자(문자열)을 정수로 변환한다. `Controller`/`Converter`
-      - [ ] 숫자가 아닌 입력일 경우(문자, 빈 문자열) 예외를 던진다.
-      - [ ] 잘못된 입력일 경우, 올바른 입력이 될 때 까지 입력받는다.
-   - [ ] 입력받은 숫자가 3 이상 20 이하인지 확인하고 아니면 예외를 던진다. - `Controller`/`BridgeMaker` from `Validator`/`InputValidator`
-   - [ ] 위 칸과 아래 칸 중 건널수 있는 칸은 0과 1중 무작위 값을 이용해서 정한다. `Controller`/`BridgeMaker` from `Controller`/`BridgeRandomNumberGenerator`
-   - [ ] 0인 경우 위 칸인 `U`, 1인 경우 아래 칸인 `D`인 다리 리스트를 만든다. - `Controller`/`BridgeMaker`
-   - [ ]
-### 3.`U` 또는 `D`를 입력받아 이동할 칸을 선택한다.
-   - [ ] 정해진 문자가 아니거나 입력이 없으면 예외를 던진다. `Validator`/`InputValidator`
-   - [ ] 예외가 발생할 경우, 다시 입력받도록 한다. `Controller`/`BridgeGame`
-   - [ ] 이동 후 생사여부를 update한다 `Controller`/`BridgeGame` -> `Model`/`UserBridge`
+   - [x] 입력받은 숫자(문자열)을 정수로 변환한다. `Domain`/`Converter`
+      - [x] 숫자가 아닌 입력일 경우(문자, 빈 문자열) 예외를 던진다.
+      - [x] 잘못된 입력일 경우, 올바른 입력이 될 때 까지 입력받는다.
+   - [x] 입력받은 숫자가 3 이상 20 이하인지 확인하고 아니면 예외를 던진다. - `Controller`/`BridgeMaker` from `Validator`/`InputValidator`
+   - [x] 0과 1을 다리 길이만큼 무작위로 생성한다. `Controller`/`BridgeMaker` from `Controller`/`BridgeRandomNumberGenerator`
+   - [x] 0인 경우 아랫 칸인 `D`, 1인 경우 윗 칸인 `U`인 다리 리스트를 만든다. - `Controller`/`BridgeMaker`
+### 3.`U` 또는 `D`를 입력받아 이동할 칸을 선택한다. `View`/`InputView`
+   - [x] 정해진 문자가 아니거나 입력이 없으면 예외를 던진다. `Validator`/`InputValidator`
+   - [x] 예외가 발생할 경우, 다시 입력받도록 한다. `Controller`/`BridgeGame`
+   - [x] 이동 후 생사여부를 update한다 `Controller`/`BridgeGame` -> `Model`/`UserBridge`
 
 ### 4. 입력 결과를 출력한다.
-  - [ ] 건너온 칸들은 전부 O로 출력하고 생사여부에 따라 O, X를 출력을 결정한다. `View`/`OutputView`
-### 5. 건너다 실패하면 재시작`R`, 종료`Q` 할 수 있다.
+  - [X] 건너온 칸들은 전부 O로 출력하고 칸 일치여부와 생사여부에 따라 O, X를 출력을 결정한다. `View`/`OutputView`
+
+### 5. 생사여부를 판별 후, 다음 행동을 결정한다.
+
+
+  #### 5-1. 죽었을 때
+   - [ ] 건너다 실패하면 재시작 `R`, 종료 `Q` 할 수 있다.
    - [ ] 정해진 문자가 아니거나 입력이 없으면 예외를 던진다 `Validator`/`InputValidator`
-   - [ ] 잘못된 입력일 경우, 올바른 입력이 될 때 까지 입력받는다.
+   - [ ] 예외가 발생할 경우, 다시 입력받도록 한다.
+   - [ ] 재시작시 처음부터 다시 진행한다.
+   - [ ] 종료시 최종 결과를 출력하고 종료한다.
+
+  #### 5-2. 살았을 때
+- [ ] 끝에 도달할 때 까지 계속 진행한다.
+- [ ] 끝에 도달하면 결과를 출력하고 종료한다.
+
+
+### 6. 결과 출력 `OutputView`/`printResult`
+  - [ ] 게임 성공 여부를 출력한다.
+  - [ ] 총 시도 횟수를 출력한다.
+
+   
 
 
 
@@ -112,9 +129,9 @@
 
 - [ ] `Exception`이 아닌 `IllegalArgumentException`과 같이 명확하게 유형을 처리하였는가?
 - [ ] 입출력 요구 사항을 모두 지켰는가?
-  - [ ] 게임 시작 문구
-  - [ ] 길이 입력 문구
-  - [ ] 칸 입력 문구
+  - [x] 게임 시작 문구
+  - [x] 길이 입력 문구
+  - [x] 칸 입력 문구
   - [ ] 칸 입력 후 다리 상태
   - [ ] 실패했을 시 재시도, 종료 여부
   - [ ] 게임 성공 여부 및 시도 횟수
@@ -126,5 +143,5 @@
   - [ ] `BridgeGame`의 메소드 이름을 변경하면 안된다.
   - [ ] `Bridge`
   - [ ] `InputView` 클래스에서만 `readLine()`을 사용한다. 
-  - [ ] `BridgeRandomNumberGenerator`, `BridgeNumberGenerator`의 코드를 수정하면 안된다.
-  - [ ] `BridgeRandomNumberGenerator`, `BridgeNumberGenerator`의 패키지를 수정하면 안된다.
+  - [x] `BridgeRandomNumberGenerator`, `BridgeNumberGenerator`의 를 수정하면 안된다.
+  - [x] `BridgeRandomNumberGenerator`, `BridgeNumberGenerator`의 패키지를 수정하면 안된다.
