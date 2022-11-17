@@ -1,5 +1,7 @@
-package bridge;
+package system;
 
+
+import bridge.EnumStrings;
 
 public class Application {
     public static void main(String[] args) {
