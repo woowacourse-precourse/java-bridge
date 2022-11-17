@@ -29,36 +29,19 @@ public class BridgeGame {
     }
 
     /**
-     * 처음 프로그램이 실행될 때 한번 호출주며 기본 프로그램 세팅을 한다.
-     */
-    public void start(){
-        inputView.printHello();
-        size = inputView.readBridgeSize();
-        bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
-
-        gameLogic();
-    }
-
-    /**
-     * 게임 플레이 로직을 시작합니다.
-     */
-    public void gameLogic(){
-
-    }
-
-    /**
-     * 게임이 종료 되었는지 확인합니다.
-     */
-    public void isGameEnd(){
-
-    }
-
-    /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public boolean move() {
+        String userInput = inputView.readMoving();
+        boolean result = checkBridge(userInput);
+
+        addResult(result);
+
+        outputView.printMap();
+
+        return result;
     }
 
     /**
@@ -66,6 +49,30 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry() {
+        String userInput = inputView.readGameCommand();
+        boolean result = checkRestart(userInput);
+
+        init();
+
+        return result;
+    }
+
+    public void addResult(boolean result){
+        if (result) inputs.add("O");
+        if (!result) inputs.add("X");
+    }
+    public boolean checkBridge(String userInput){
+        if (bridge.get(index++) == userInput){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkRestart(String userInput){
+        if (userInput == "Q"){
+            return false;
+        }
+        return true;
     }
 }
