@@ -7,16 +7,29 @@ public class BridgeGameController {
         int bridgeSize = inputBridgeSize();
         List<String> bridge = createBridge(bridgeSize);
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        boolean successGame = isSuccessGame(bridgeGame, bridgeSize);
-        OutputView.printResult(bridgeGame, successGame);
+        boolean successGame = playGame(bridgeSize, bridgeGame);
+        OutputView.printResult(bridgeGame,successGame);
+    }
+
+    private static boolean playGame(int bridgeSize, BridgeGame bridgeGame) {
+        boolean retry = true;
+        while(retry) {
+            boolean continueGame = isSuccessGame(bridgeGame, bridgeSize);
+            if(continueGame){
+                break;
+            }
+            String gameCommand = inputGameCommand();
+            retry = bridgeGame.retry(gameCommand);
+        }
+        return retry;
     }
 
     private static boolean isSuccessGame(BridgeGame bridgeGame, int bridgeSize) {
-        boolean continueGame = true;
-        while (continueGame) {
+        boolean crossBridge = true;
+        while (crossBridge) {
             State state = inputMoveCommand();
-            continueGame = bridgeGame.move(state);
-            OutputView.printMap(bridgeGame, continueGame);
+            crossBridge = bridgeGame.move(state);
+            OutputView.printMap(bridgeGame, crossBridge);
             if (bridgeGame.getCurrentBridgeIndex() == bridgeSize - 1) {
                 return true;
             }
