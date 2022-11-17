@@ -22,6 +22,7 @@ class BridgeTest {
 
     static final String UP = "U";
     static final String DOWN = "D";
+    static final String FILED_LOCATION = "location";
 
     Bridge bridge;
     List<String> mockBridge;
@@ -35,7 +36,7 @@ class BridgeTest {
     }
 
     @DisplayName("유효하지 않은 길이의 리스트로 Bridge 생성 시 예외 발생")
-    @ValueSource(ints = { 2, 21 })
+    @ValueSource(ints = { Bridge.MINIMUM_LENGTH - 1, Bridge.MAXIMUM_LENGTH + 1 })
     @ParameterizedTest
     void testCreateFail(int bridgeSize) {
         given(mockBridge.size()).willReturn(bridgeSize);
@@ -71,16 +72,15 @@ class BridgeTest {
     @DisplayName("게임 재시작 시 위치 초기화")
     @Test
     void testRestart() {
-        given(mockBridge.get(0)).willReturn(UP);
-        given(mockBridge.get(1)).willReturn(UP);
+        given(mockBridge.get(anyInt())).willReturn(UP);
 
         bridge.move(Direction.UP);
         bridge.move(Direction.UP);
-        assertThat(bridge).extracting("location").isEqualTo(2);
+        assertThat(bridge).extracting(FILED_LOCATION).isEqualTo(2);
 
         bridge.restart();
 
-        assertThat(bridge).extracting("location").isEqualTo(0);
+        assertThat(bridge).extracting(FILED_LOCATION).isEqualTo(0);
     }
 
     @DisplayName("다리 길이 만큼 틀리지 않으면 도착")
@@ -94,7 +94,7 @@ class BridgeTest {
         }
 
         assertThat(bridge.isArrive()).isTrue();
-        assertThat(bridge).extracting("location").isEqualTo(bridgeSize);
+        assertThat(bridge).extracting(FILED_LOCATION).isEqualTo(bridgeSize);
         then(mockBridge).should(times(bridgeSize)).get(anyInt());
     }
 
@@ -109,7 +109,7 @@ class BridgeTest {
         }
 
         assertThat(bridge.isArrive()).isFalse();
-        assertThat(bridge).extracting("location").isEqualTo(bridgeSize - 1);
+        assertThat(bridge).extracting(FILED_LOCATION).isEqualTo(bridgeSize - 1);
         then(mockBridge).should(times(bridgeSize - 1)).get(anyInt());
     }
 

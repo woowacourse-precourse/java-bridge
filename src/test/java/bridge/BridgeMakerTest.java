@@ -3,6 +3,7 @@ package bridge;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import bridge.domain.Bridge;
 import bridge.exception.ErrorMessage;
 import bridge.exception.InvalidInputException;
 import java.util.List;
@@ -31,7 +32,7 @@ class BridgeMakerTest {
     }
 
     @DisplayName("범위를 벗어나는 다리 길이 입력 시 예외 발생")
-    @ValueSource(ints = { 1, 21 })
+    @ValueSource(ints = { Bridge.MINIMUM_LENGTH - 1, Bridge.MAXIMUM_LENGTH + 1 })
     @ParameterizedTest
     void testInvalidBridgeLength(int size) {
         assertThatThrownBy(() -> bridgeMaker.makeBridge(size))
