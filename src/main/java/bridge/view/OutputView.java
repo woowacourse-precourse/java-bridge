@@ -21,13 +21,11 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(StringBuilder upperBridge, StringBuilder lowerBridge) {
-//        upperBridge.append(" ]");
-//        lowerBridge.append(" ]");
         System.out.println(upperBridge);
         System.out.println(lowerBridge);
     }
 
-    public void WriteInitUpperBridge(StringBuilder upperBridge, StringBuilder lowerBridge, boolean success) {
+    public void writeInitUpperBridge(StringBuilder upperBridge, StringBuilder lowerBridge, boolean success) {
         if(success) {
             upperBridge.append("[ ").append("O").append(" ]");
             lowerBridge.append("[ ").append(" ").append(" ]");
@@ -38,7 +36,7 @@ public class OutputView {
         }
     }
 
-    public void WriteInitLowerBridge(StringBuilder upperBridge, StringBuilder lowerBridge, boolean success) {
+    public void writeInitLowerBridge(StringBuilder upperBridge, StringBuilder lowerBridge, boolean success) {
         if(success) {
             upperBridge.append(" ").append(" ]");
             lowerBridge.append("O").append(" ]");
@@ -49,7 +47,7 @@ public class OutputView {
         }
     }
 
-    public void WriteUpperBridge(StringBuilder upperBridge, StringBuilder lowerBridge, boolean success) {
+    public void writeUpperBridge(StringBuilder upperBridge, StringBuilder lowerBridge, boolean success) {
         bridgeLastCharRemove(upperBridge, lowerBridge);
         if(success) {
             upperBridge.append("| ").append("O").append(" ]");
@@ -61,7 +59,7 @@ public class OutputView {
         }
     }
 
-    public void WriteLowerBridge(StringBuilder upperBridge, StringBuilder lowerBridge, boolean success) {
+    public void writeLowerBridge(StringBuilder upperBridge, StringBuilder lowerBridge, boolean success) {
         bridgeLastCharRemove(upperBridge, lowerBridge);
         if(success) {
             upperBridge.append("| ").append(" ").append(" ]");

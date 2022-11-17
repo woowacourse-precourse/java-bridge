@@ -6,7 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class OutputViewTest extends NsTest {
 
@@ -18,7 +17,7 @@ class OutputViewTest extends NsTest {
         StringBuilder upperBridge = new StringBuilder();
         StringBuilder lowerBridge = new StringBuilder();
         //when
-        outputView.WriteInitUpperBridge(upperBridge, lowerBridge, true);
+        outputView.writeInitUpperBridge(upperBridge, lowerBridge, true);
         //then
         outputView.printMap(upperBridge, lowerBridge);
         assertThat(output()).contains(
@@ -35,8 +34,8 @@ class OutputViewTest extends NsTest {
         StringBuilder upperBridge = Bridge.getUpperBridge();
         StringBuilder lowerBridge = Bridge.getLowerBridge();
         //when
-        outputView.WriteInitUpperBridge(upperBridge, lowerBridge, true);
-        outputView.WriteUpperBridge(upperBridge, lowerBridge, true);
+        outputView.writeInitUpperBridge(upperBridge, lowerBridge, true);
+        outputView.writeUpperBridge(upperBridge, lowerBridge, true);
         //then
         outputView.printMap(upperBridge, lowerBridge);
         assertThat(output()).contains(
@@ -53,9 +52,9 @@ class OutputViewTest extends NsTest {
         StringBuilder upperBridge = Bridge.getUpperBridge();
         StringBuilder lowerBridge = Bridge.getLowerBridge();
         //when
-        outputView.WriteInitUpperBridge(upperBridge, lowerBridge, true);
-        outputView.WriteUpperBridge(upperBridge, lowerBridge, true);
-        outputView.WriteLowerBridge(upperBridge, lowerBridge, false);
+        outputView.writeInitUpperBridge(upperBridge, lowerBridge, true);
+        outputView.writeUpperBridge(upperBridge, lowerBridge, true);
+        outputView.writeLowerBridge(upperBridge, lowerBridge, false);
         //then
         outputView.printMap(upperBridge, lowerBridge);
         assertThat(output()).contains(
