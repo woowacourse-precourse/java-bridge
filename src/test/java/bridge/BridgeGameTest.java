@@ -4,40 +4,41 @@ import static bridge.constant.BridgeMatch.CAN_MOVE;
 import static bridge.constant.BridgeMatch.CAN_NOT_MOVE;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.constant.BridgeMatch;
 import java.util.List;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class RefereeTest {
+class BridgeGameTest {
 
     @ParameterizedTest
     @ValueSource(ints = {0})
-    void compareByU(int count) {
+    void moveByU(int count) {
         // given
         List<String> bridge = List.of("U", "D", "D");
         String player = "U";
-        Referee referee = new Referee();
+        BridgeGame bridgeGame = new BridgeGame();
 
         // when
-        String result = referee.compare(bridge, player, count);
+        BridgeMatch result = bridgeGame.move(bridge, player, count);
 
         // then
-        assertThat(result).isEqualTo(CAN_MOVE.getSymbol());
+        assertThat(result).isEqualTo(CAN_MOVE);
     }
 
     @ParameterizedTest
     @ValueSource(ints = {1})
-    void compareByD(int count) {
+    void moveByD(int count) {
         // given
         List<String> bridge = List.of("U", "D", "D");
         String player = "D";
-        Referee referee = new Referee();
+        BridgeGame bridgeGame = new BridgeGame();
 
         // when
-        String result = referee.compare(bridge, player, count);
+        BridgeMatch result = bridgeGame.move(bridge, player, count);
 
         // then
-        assertThat(result).isEqualTo(CAN_MOVE.getSymbol());
+        assertThat(result).isEqualTo(CAN_MOVE);
     }
 
     @ParameterizedTest
@@ -46,12 +47,12 @@ class RefereeTest {
         // given
         List<String> bridge = List.of("U", "D", "D");
         String player = "D";
-        Referee referee = new Referee();
+        BridgeGame bridgeGame = new BridgeGame();
 
         // when
-        String result = referee.compare(bridge, player, count);
+        BridgeMatch result = bridgeGame.move(bridge, player, count);
 
         // then
-        assertThat(result).isEqualTo(CAN_NOT_MOVE.getSymbol());
+        assertThat(result).isEqualTo(CAN_NOT_MOVE);
     }
 }
