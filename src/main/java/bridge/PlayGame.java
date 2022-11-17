@@ -4,7 +4,9 @@ import java.util.List;
 
 public class PlayGame {
     private  static boolean Playing=true;
-    private static int count=0;
+    private static int total=1;
+    private static int count=1;
+
     OutputView outputView;
     InputView inputView;
     BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
@@ -21,45 +23,52 @@ public class PlayGame {
        return inputView.readBridgeSize();
     }
 
-    public String moveStart(List<String> Bridge,int index){
-        String answer="";
+    public String moveStart(String result,List<String> Bridge,int count){
         outputView.printMoving();
         String inputMoving=inputView.readMoving();
-        int count=index+1;
+        int index=count-1;
        if( isSame(Bridge.get(index),inputMoving)){
-          return answer=outputView.printMap(answer,inputMoving,count);
+          return result=outputView.printMap(result,inputMoving,count);
        }
        if( !isSame(Bridge.get(index),inputMoving)){
-           answer=outputView.printFailMap(answer,inputMoving,count);
+           result=outputView.printFailMap(result,inputMoving,count);
            if(retry()){
-               System.out.println(answer);
-               count=0;
-               return answer="";
+               total++;
+               return result="";
            }
            if(!retry()){
                Playing=false;
-               return answer;
+               return result;
            }
        }
-       return answer;}
+       return result;}
     public boolean retry() {
         outputView.printReGame();
        String regame= inputView.readGameCommand();
        return regame.equals("R");
     }
     public void run(){
-        int size=sizeStart();
+       try{ int size=sizeStart();
        List<String> Bridge= bridgemaker.makeBridge(size);
        int i=0;
        String answer="";
        while(Playing){
 
-      answer= moveStart(Bridge,count);
-      if(!answer.equals("")){
-       count++;}}
-       return ;
+      answer= moveStart(answer,Bridge,count);
+      if(answer.equals("")){
+       count=1;
+        continue;}
+      if(count==Bridge.size()){
+          outputView.printResult(answer,total);
+          return;
+      }
+      count++;
 
 
+    }
+        return ;}catch (Exception e){
+           throw new IllegalArgumentException(e);
+       }
     }
     public void bridgeMoving(List<String> Bridge,String inputMoving){
 

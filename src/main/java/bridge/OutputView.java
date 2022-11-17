@@ -12,17 +12,17 @@ public class OutputView {
      */
     public String printMap(String map,String Input, int count) {
         if(Input.equals("U")){
-            map+= printUMap(map,"O",count);}
+            map= printUMap(map,"O",count);}
         if(Input.equals("D")){
-            map+= printDMap(map,"O",count);}
+            map= printDMap(map,"O",count);}
         System.out.println(map);
         return map;
     }
     public String printFailMap(String map,String Input, int count){
         if(Input.equals("U")){
-            map+=printUMap(map,"X",count);}
+            map=printUMap(map,"X",count);}
         if(Input.equals("D")){
-            map+=printDMap(map,"X",count);}
+            map=printDMap(map,"X",count);}
         System.out.println(map);
         return map;
     }
@@ -37,7 +37,7 @@ public class OutputView {
     answer+=map.substring(0,(count-1)*4);
      answer+="| "+Input+" ]\n";
      int index=map.indexOf("[",1);
-        answer+=map.substring(index,index+4);
+        answer+=map.substring(index,index+(count-1)*4);
         answer+="|   ]";
     return answer;
     }
@@ -50,7 +50,7 @@ public class OutputView {
         answer+=map.substring(0,(count-1)*4);
         answer+="|   ]\n";
         int index=map.indexOf("[",1);
-        answer+=map.substring(index,index+4);
+        answer+=map.substring(index,index+(count-1)*4);
         answer+="| "+Input+" ]\n";
         return answer;
     }
@@ -59,7 +59,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(String result,int count) {
+        System.out.println("최종 게임 결과");
+        System.out.println(result);
+        System.out.println();
+        System.out.println("게임 성공 여부: 성공");
+        System.out.println("총 시도한 횟수: "+count);
     }
 
     public void printStart(){
