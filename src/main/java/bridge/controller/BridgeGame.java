@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeFlag;
 import bridge.domain.Map;
+import bridge.domain.UpDownFlag;
 import bridge.domain.User;
 import bridge.service.BridgeService;
 
@@ -12,7 +13,12 @@ import bridge.service.BridgeService;
 public class BridgeGame {
     private final BridgeService bridgeService;
 
-    public BridgeGame(BridgeService bridgeService) {
+    private User user;
+    private Bridge bridge;
+    private Map map;
+    private int tryCount = 1;
+
+    private BridgeGame(BridgeService bridgeService) {
         this.bridgeService = bridgeService;
     }
 
@@ -21,22 +27,32 @@ public class BridgeGame {
     }
 
     public void start() {
-        bridgeService.printStartMessage();
-        Bridge bridge = bridgeService.makeBridge();
-        User user = new User();
-        Map map = new Map();
-        System.out.println(bridge.getBridge()); // TEST
-        while (true) {
+        init();
+        while (loop() != GameFlag.QUIT) {
+            retry();
+        }
+        BridgeFlag result = bridgeService.getGameStatus(bridge, user);
+        bridgeService.printResult(map, result, tryCount);
+    }
 
-            user.move(bridgeService.receiveMoving());
-            map.update(bridge, user);
+    private void init() {
+        bridgeService.printStartMessage();
+        bridge = bridgeService.makeBridge();
+        user = new User();
+        map = new Map();
+    }
+
+    private GameFlag loop() {
+        while (true) {
+            move();
             BridgeFlag gameStatus = bridgeService.getGameStatus(bridge, user);
-            bridgeService.printMap(map);
-            if (gameStatus != BridgeFlag.NOTHING) {
-                break;
+            if (gameStatus == BridgeFlag.FAIL) {
+                return bridgeService.receiveRestart();
+            }
+            if (gameStatus == BridgeFlag.SUCCESS) {
+                return GameFlag.QUIT;
             }
         }
-        System.out.println("게임 종료");
     }
 
     /**
@@ -45,6 +61,10 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
+        UpDownFlag flag = bridgeService.receiveMoving();
+        user.move(flag);
+        map.update(bridge, user);
+        bridgeService.printMap(map);
     }
 
     /**
@@ -53,5 +73,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        tryCount++;
+        user = new User();
     }
 }
