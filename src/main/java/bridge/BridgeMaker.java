@@ -1,12 +1,14 @@
 package bridge;
 
 import bridge.constants.ErrorMessages;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
+
     private static final int SIZE_MINIMUM = 3;
     private static final int SIZE_MAXIMUM = 20;
 
@@ -22,7 +24,12 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         validateSize(size);
-        return null;
+
+        List<String> bridge = new ArrayList<>();
+        while (bridge.size() < size) {
+            bridge.add(createBridge()); // bridge 생성
+        }
+        return bridge;
     }
 
     private void validateSize(int size) {
@@ -30,4 +37,14 @@ public class BridgeMaker {
             throw new IllegalArgumentException(ErrorMessages.SIZE_ERROR);
         }
     }
+
+    private String createBridge() {
+        int randomNumber = bridgeNumberGenerator.generate();
+
+        if (randomNumber == 0) {
+            return "D";
+        }
+        return "U";
+    }
+
 }
