@@ -1,15 +1,19 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private final String INPUT_NUMBER_ERROR_SENTENCE = "[ERROR] 숫자를 입력해야 합니다.";
+    private final String INPUT_NUMBER_RANGE_ERROR_SENTENCE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        return getBridgeSize();
     }
 
     /**
@@ -24,5 +28,26 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private int getBridgeSize() {
+        String bridgeSize = Console.readLine();
+        int size = parseInt(bridgeSize);
+        validateNumberRange(size);
+        return size;
+    }
+
+    private int parseInt(String bridgeSize) {
+        try {
+            return Integer.parseInt(bridgeSize);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INPUT_NUMBER_ERROR_SENTENCE);
+        }
+    }
+
+    private void validateNumberRange(int bridgeSize) {
+        if (bridgeSize < 3 || bridgeSize > 20) {
+            throw new IllegalArgumentException(INPUT_NUMBER_RANGE_ERROR_SENTENCE);
+        }
     }
 }
