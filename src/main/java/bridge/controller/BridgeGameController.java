@@ -19,10 +19,15 @@ public class BridgeGameController {
     public void play() {
         outputView.printStart();
         create();
+        move();
     }
 
     private void create() {
         BridgeSizeDto dto = inputView.readBridgeSize();
         bridgeGame.create(dto);
+    }
+
+    private void move() {
+        String space = inputView.readMoving();
     }
 }
