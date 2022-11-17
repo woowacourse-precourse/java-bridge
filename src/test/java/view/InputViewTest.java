@@ -1,9 +1,11 @@
 package view;
 
 import static org.assertj.core.api.Assertions.*;
+import static view.InputViewConstants.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+
 import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
@@ -54,7 +56,10 @@ public class InputViewTest {
 				for (String bridgeSize : bridgeSizes) {
 					// when, then
 					readLine(bridgeSize);
-					assertThatThrownBy(() -> inputView.readBridgeSize()).isInstanceOf(IllegalArgumentException.class);
+					assertThatThrownBy(() -> inputView.readBridgeSize()).isInstanceOf(IllegalArgumentException.class)
+							.hasMessageContaining(ERROR_MESSAGE_NON_NUMERIC);
+
+//					assertThatThrownBy(() -> inputView.readBridgeSize()).isInstanceOf(IllegalArgumentException.class);
 				}
 			}
 
@@ -67,7 +72,10 @@ public class InputViewTest {
 				for (String bridgeSize : bridgeSizes) {
 					// when, then
 					readLine(bridgeSize);
-					assertThatThrownBy(() -> inputView.readBridgeSize()).isInstanceOf(IllegalArgumentException.class);
+					assertThatThrownBy(() -> inputView.readBridgeSize()).isInstanceOf(IllegalArgumentException.class)
+							.hasMessageContaining(ERROR_MESSAGE_NON_NUMERIC);
+
+//					assertThatThrownBy(() -> inputView.readBridgeSize()).isInstanceOf(IllegalArgumentException.class);
 				}
 			}
 
@@ -75,12 +83,16 @@ public class InputViewTest {
 			@DisplayName("다리 길이 특수문자를 입력하는 경우 테스트")
 			void inputBridgeSizeSpecialCharacter() {
 				// given
-				List<String> bridgeSizes = List.of("!", "1%", "2/", "/3", ")%", "2");
+				List<String> bridgeSizes = List.of("!", "1%", "2/", "/3", ")%", "-");
 
 				for (String bridgeSize : bridgeSizes) {
 					// when, then
 					readLine(bridgeSize);
-					assertThatThrownBy(() -> inputView.readBridgeSize()).isInstanceOf(IllegalArgumentException.class);
+					assertThatThrownBy(() -> inputView.readBridgeSize()).isInstanceOf(IllegalArgumentException.class)
+							.hasMessageContaining(ERROR_MESSAGE_NON_NUMERIC);
+
+					/** 잘못된 테스트 진행 방식 */
+//					assertThatThrownBy(() -> inputView.readBridgeSize()).isInstanceOf(IllegalArgumentException.class);
 				}
 			}
 
@@ -93,7 +105,10 @@ public class InputViewTest {
 				for (String bridgeSize : bridgeSizes) {
 					// when, then
 					readLine(bridgeSize);
-					assertThatThrownBy(() -> inputView.readBridgeSize()).isInstanceOf(IllegalArgumentException.class);
+					assertThatThrownBy(() -> inputView.readBridgeSize()).isInstanceOf(IllegalArgumentException.class)
+							.hasMessageContaining(ERROR_MESSAGE_NON_NUMERIC);
+
+//					assertThatThrownBy(() -> inputView.readBridgeSize()).isInstanceOf(IllegalArgumentException.class);
 				}
 			}
 
@@ -106,7 +121,10 @@ public class InputViewTest {
 				for (String bridgeSize : bridgeSizes) {
 					// when, then
 					readLine(bridgeSize);
-					assertThatThrownBy(() -> inputView.readBridgeSize()).isInstanceOf(IllegalArgumentException.class);
+					assertThatThrownBy(() -> inputView.readBridgeSize()).isInstanceOf(IllegalArgumentException.class)
+							.hasMessageContaining(ERROR_MESSAGE_OUT_OF_RANGE);
+
+//					assertThatThrownBy(() -> inputView.readBridgeSize()).isInstanceOf(IllegalArgumentException.class);
 				}
 			}
 		}
