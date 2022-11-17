@@ -3,6 +3,7 @@ package bridge.presentation;
 import bridge.application.GameService;
 import bridge.application.ViewService;
 import bridge.presentation.dto.BridgeSize;
+import bridge.presentation.dto.SelectMove;
 import camp.nextstep.edu.missionutils.Console;
 
 public class GameController {
@@ -20,7 +21,12 @@ public class GameController {
         viewService.printGameRunMessage();
     }
     public void inputBridgeSize(){
-        viewService.printInputBridgeSize();
+        viewService.printInputBridgeSizeMessage();
         gameService.saveBridgeSize(new BridgeSize(Console.readLine()));
+    }
+
+    public void inputSelectMove(){
+        viewService.printSelectMoveMessage();
+        gameService.saveSelectMove(new SelectMove(Console.readLine()));
     }
 }

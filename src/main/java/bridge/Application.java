@@ -9,5 +9,6 @@ public class Application {
         GameController gameController=GameController.getInstance();
         gameController.run();
         gameController.inputBridgeSize();
+        gameController.inputSelectMove();
     }
 }
