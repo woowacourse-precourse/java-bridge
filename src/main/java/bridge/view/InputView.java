@@ -4,8 +4,7 @@ import bridge.utils.UserInputConvertor;
 import bridge.utils.UserInputValidator;
 import camp.nextstep.edu.missionutils.Console;
 
-import static bridge.utils.Constants.INPUT_MESSAGE_ENTER_BRIDGE_LENGTH;
-import static bridge.utils.Constants.INPUT_MESSAGE_ENTER_SPACE_TO_MOVE;
+import static bridge.utils.Constants.*;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -34,7 +33,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public static String readGameCommand() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.println(INPUT_MESSAGE_RETRY_GAME_COMMAND);
         String gameCommand = Console.readLine();
         UserInputValidator.validateGameCommand(gameCommand);
         return gameCommand;
