@@ -29,4 +29,8 @@ public enum BridgeType {
                 .findAny()
                 .map(BridgeType::getMark);
     }
+
+    public boolean isEqualsMark(String mark) {
+        return this.mark.equals(mark);
+    }
 }
