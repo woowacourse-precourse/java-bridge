@@ -10,9 +10,14 @@ public class OutputView {
     private static final String OUTPUT_RESULT_MESSAGE = LINE + "최종 게임 결과" ;
     private static final String OUTPUT_RESULT_IS_SUCCESS = LINE + "게임 성공 여부: " ;
     private static final String OUTPUT_RESULT_TRY_NUMBER = "총 시도한 횟수: " ;
+    private String Map;
 
     public void printStart() {
         System.out.println(OUTPUT_START_MESSAGE);
+    }
+
+    public void initMap(){
+        Map = "[\n[";
     }
 
     /**
@@ -20,7 +25,18 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(String right, int upOrDown) {
+        String[] splitMap = Map.split("\\n");
+        if (splitMap[upOrDown].length()==1){
+            splitMap[upOrDown] = "[ " + right + " ]";
+            splitMap[(upOrDown+1)%2] = "[   ]";
+        }
+        if(splitMap[upOrDown].length()!=1) {
+            splitMap[upOrDown] = splitMap[upOrDown].substring(0, splitMap[upOrDown].length() - 1) + "| " + right + " ]";
+            splitMap[(upOrDown + 1) % 2] = splitMap[upOrDown].substring(0, splitMap[upOrDown].length() - 1) + "|   ]";
+        }
+        Map = splitMap[0] + "\\n" + splitMap[1];
+        System.out.println(Map);
     }
 
     /**
