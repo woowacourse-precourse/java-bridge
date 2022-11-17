@@ -16,7 +16,7 @@ public class GameController {
     private String move;
     private List<String> bridge;
     private boolean tf = true;
-    private String re;
+    private boolean re;
 
     public void gameTotalProgress() {
         if (count == 0)
@@ -25,12 +25,13 @@ public class GameController {
         for (int idx = 0; idx < bridge.size(); idx++) {
             gameProgress(idx);
             if (!tf) {
+                outputView.retry();
                 re = reStart();
                 break;
             }
         }
         if (!tf) {
-            if (re.equals("R"))
+            if (re)
                 gameTotalProgress();
         }
         gameResult();
@@ -45,13 +46,13 @@ public class GameController {
     public void gameProgress(int idx) {
         outputView.choice();
         move = inputView.readMoving();
-        tf = bridge.get(idx).equals(move);
+        tf = bridgeGame.move(move, bridge, idx);
         outputView.printMap(move, tf, idx);
         outputView.printMove();
     }
 
-    public String reStart() {
-        re = inputView.readGameCommand();
+    public boolean reStart() {
+        re = bridgeGame.retry(inputView.readGameCommand());
         return re;
     }
 
