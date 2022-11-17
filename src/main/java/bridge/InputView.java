@@ -8,16 +8,27 @@ package bridge;
  * 사용자 값 입력을 위해 필요한 메서드를 추가할 수 있다.
  */
 
+import bridge.dto.UserDto;
+import bridge.valudation.BridgeSizeValidation;
+
+import static camp.nextstep.edu.missionutils.Console.readLine;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    UserDto userDto;
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        BridgeSizeValidation bridgeSizeValidation = new BridgeSizeValidation();
+
+        String bridgeSize = readLine();
+        bridgeSizeValidation.validate(bridgeSize);
+
+        return Integer.parseInt(bridgeSize);
     }
 
     /**
