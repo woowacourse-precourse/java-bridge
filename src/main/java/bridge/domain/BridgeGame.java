@@ -8,11 +8,13 @@ public class BridgeGame {
     private Bridge bridge;
     private int userPosition;
     private boolean aliveUser;
+    private boolean needToQuit;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
         this.userPosition = 0;
         this.aliveUser = true;
+        this.needToQuit = false;
     }
 
     /**
@@ -30,6 +32,13 @@ public class BridgeGame {
             return true;
         }
         return false;
+    }
+
+    public boolean isNeedToQuit() {
+        if (bridge.isEndOfBridge(userPosition) && aliveUser) {
+            needToQuit = true;
+        }
+        return needToQuit;
     }
 
     private void checkLife(Direction direction) {
