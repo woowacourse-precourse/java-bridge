@@ -25,7 +25,7 @@ public class OutputView {
 		System.out.println(OPEN_BRACKET + toString(upsideCase) + CLOSE_BRACKET);
 	}
 
-	public String toString(List<String> list) {
+	public static String toString(List<String> list) {
 		String line = "";
 		for (int i = 0; i < list.size(); i++){
 			line += list.get(i);
@@ -38,7 +38,7 @@ public class OutputView {
 	 * <p>
 	 * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
-	public void printResult() {
+	public static void printResult() {
 		System.out.println(RESULT);
 	}
 }
