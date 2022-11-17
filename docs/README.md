@@ -12,17 +12,21 @@
 ### 기능 목록
 1. InputView : 사용자로부터 입력을 받는 역할을 한다.
 - readBridgeSize() - 다리의 길이를 입력받는다.
-  - 예외사항 : 3~20 사이의 숫자 입력 
+  - 예외사항 : 3~20 사이의 숫자 입력
 - readMoving() - 사용자가 이동할 칸을 입력받는다.
   - 예외사항 : U / D 의 문자 입력
 - readGameCommand() - 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-  - 예외사항 : R / Q 의 문자 입력 
+  - 예외사항 : R / Q 의 문자 입력
 2. OutputView : 사용자에게 게임 진행 상황과 결과, 메시지를 출력하는 역할을 한다.
 - printMap() - 현재 다리의 상태를 보여주는 메소드
+  - getUpPrint() : U에 해당하는 게임결과 출력
+  - getDownPrint() : D에 해당하는 게임결과 출력
 - printResult() - 게임의 결과를 보여주는 메소드
+  - isSuccess() - boolean 값을 통해 게임이 성공인지 실패인지 알려주는 메소드 
 3. BridgeGame : 다리 건너기 게임 관리 클래스
 - move() - 사용자의 입력에 따라 움직이게하는 메소드
 - retry() - 게임에 실패했을 때 게임을 다시 시도하는 메소드
+- 필드변수 getter()
 4. BridgeMaker : 다리를 생성하는 클래스
 - makeBridge() - 사이즈에 맞는 다리를 생성하는 메소드 
 5. BridgeNumberGenerator(Interface) : 다리 번호 생성기
