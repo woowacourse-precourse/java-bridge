@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,5 +45,13 @@ public class BridgeGame {
 
     public boolean ifEnd() {
         return where == bridge.size();
+    }
+    
+    public List<String> getBridge() {
+        List<String> get = new ArrayList<>();
+        for (String s: bridge)
+            get.add(s);
+
+        return get;
     }
 }
