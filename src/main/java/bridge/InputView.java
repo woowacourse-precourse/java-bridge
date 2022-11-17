@@ -8,6 +8,8 @@ import java.util.Collections;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    public static final Integer MOV = 1;
+    public static final Integer CMD = 2;
 
     /**
      * 다리의 길이를 입력받는다.
@@ -24,7 +26,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() throws IllegalArgumentException {
+    private String readMoving() throws IllegalArgumentException {
         String input = Console.readLine();
         if (!input.equals("U") && !input.equals("D"))
             Err.WRONG_MOVE.invalid();
@@ -34,10 +36,16 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() throws IllegalArgumentException {
+    private String readGameCommand() throws IllegalArgumentException {
         String input = Console.readLine();
         if (!input.equals("R") && !input.equals("Q"))
             Err.WRONG_RETRY_OR_TERMINATE.invalid();
         return input;
+    }
+
+    public String readString(Integer which) {
+        if (which == MOV)
+            return readMoving();
+        return readGameCommand();
     }
 }
