@@ -65,7 +65,7 @@
   - 사용자가 게임의 재시작/종료에 대한 결정을 입력받는 메소드
 
 
-- private void validateInputGameCommandCharcter(String)
+- private void validateInputGameCommandCharacter(String)
   - 게임 재시작/종료 여부를 결정하는 입력값이 'R' or 'Q' 인지 검사하는 메소드
   - 입력값이 'R' or 'Q'가 아니라면 IllegalArgumentException 발생
 
