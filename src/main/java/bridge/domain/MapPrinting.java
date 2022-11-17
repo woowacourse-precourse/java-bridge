@@ -3,15 +3,18 @@ package bridge.domain;
 import bridge.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.RestoreAction;
 
 public class MapPrinting {
 
     List<Boolean> upCapable = new ArrayList<>();
     List<Boolean> downCapable = new ArrayList<>();
+    static List<Integer> upDownLocation = new ArrayList<>();
     OutputView outputView = new OutputView();
     static final int UP=1;
     static final int DOWN=0;
     int nowIndex;
+    boolean restart=false;
 
 
     public MapPrinting(List<Boolean> upCapable, List<Boolean> downCapable, int nowIndex) {
@@ -20,10 +23,14 @@ public class MapPrinting {
         this.nowIndex = nowIndex;
     }
 
+
+
     public void makeList(){
+        upDownLocation.add(nowIndex);
         makeUpList();
         makeDownList();
     }
+
 
 
     public void makeUpList(){
@@ -46,11 +53,12 @@ public class MapPrinting {
         return ListString;
     }
 
-    private String chooseString(List<Boolean> capable, int i, int upDown) {
-        if(capable.get(i) && upDown==nowIndex){
+    private String chooseString(List<Boolean> bridgeCapable, int i, int upDown) {
+        if(bridgeCapable.get(i) && upDownLocation.get(i)==upDown){
             return "O ";
         }
-        if(capable.get(i) && upDown!=nowIndex){
+        if(!bridgeCapable.get(i) && upDownLocation.get(i)==upDown){// capable이 갈 수 있는지? 여부 다리가 잇는지, updownLocation 지금 내가 있는 위치  updown은 출력하고자하는 위치
+            restart=true;
             return "X ";
         }
         return "  ";
@@ -62,12 +70,6 @@ public class MapPrinting {
         downListString = downListString + addString(downCapable, DOWN);
         downListString = downListString + "]";
         outputView.printMap(downListString);
-    }
-
-
-    public void makeWrongList() {
-        makeUpList();
-        makeDownList();
     }
 
 }

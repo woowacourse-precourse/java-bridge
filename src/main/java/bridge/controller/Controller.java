@@ -18,11 +18,12 @@ public class Controller {
     private BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     private BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     private List<String> mapBridge = new ArrayList<>();
-    static private BridgeGame bridgeGame;
     static private final int UP=1;
     static private final int DOWN=0;
 
-    public Controller() {
+
+
+    public Controller(){
         setMap();
     }
 
@@ -32,19 +33,18 @@ public class Controller {
     }
 
     public void play(){
-        int idx=0;
-        List<Boolean> upPrint = new ArrayList<>();
-        List<Boolean> downPrint = new ArrayList<>();
-        while(idx<size){
-            System.out.println("mapBridge = " + mapBridge);
-            String nowIndex = inputView.readMoving();
-            setPrintBool(upPrint, downPrint, convertNowIndex(mapBridge.get(idx)));
-            MapPrinting mapPrinting = new MapPrinting(upPrint,downPrint,convertNowIndex(nowIndex));
-            mapPrinting.makeList();
-            idx++;
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.move(mapBridge, size);
 
 
-        }
+
+    }
+
+    private MapPrinting getMapPrinting(List<Boolean> upPrint, List<Boolean> downPrint,
+        String nowIndex) {
+        MapPrinting mapPrinting = new MapPrinting(upPrint, downPrint,convertNowIndex(nowIndex));
+        mapPrinting.makeList();
+        return mapPrinting;
     }
 
     private int convertNowIndex(String nowIndex) {

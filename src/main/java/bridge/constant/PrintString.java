@@ -6,6 +6,7 @@ public enum PrintString {
 
     MOVE("이동할 칸을 선택해주세요. (위: U, 아래: D)");
 
+
     private String printString;
 
     PrintString(String printString) {
