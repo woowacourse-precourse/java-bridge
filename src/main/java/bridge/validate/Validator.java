@@ -16,8 +16,9 @@ public class Validator {
     public static void isProperBridgeSize(String bridgeSizeInput) {
         int bridgeSize = Integer.parseInt(bridgeSizeInput);
         if (!isInRange(bridgeSize, SHORTEST_BRIDGE_LENGTH, LONGEST_BRIDGE_LENGTH)) {
-            String errorMessage = ErrorMessage.ERROR.toString() + ErrorMessage.NUMBER_OUT_OF_RANGE;
-            throw new IllegalArgumentException(errorMessage + ErrorMessage.PROPER_BRIDGE_LENGTH);
+            String errorMessage = "" + ErrorMessage.ERROR + ErrorMessage.NUMBER_OUT_OF_RANGE
+                    + ErrorMessage.PROPER_BRIDGE_LENGTH;
+            throw new IllegalArgumentException(errorMessage);
         }
     }
 
