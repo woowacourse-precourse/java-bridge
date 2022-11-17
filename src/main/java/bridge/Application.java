@@ -2,7 +2,6 @@ package bridge;
 
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
-import bridge.enums.InputKey;
 import bridge.view.InputView;
 
 import java.util.List;
@@ -13,15 +12,17 @@ public class Application {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(InputView.readBridgeSize());
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        String key;
-        do {
-            bridgeGame.retry();
+
+        while (true) {
             boolean flag = true;
             while (flag) {
-                flag = bridgeGame.move(InputView.readMoving());
-                System.out.println(bridgeGame);
+                bridgeGame.move(InputView.readMoving());
             }
-            key = InputView.readGameCommand();
-        } while (key.equals(InputKey.R.getValue()));
+            String command = InputView.readGameCommand();
+            if (command.equals("Q")) {
+                System.out.println(bridgeGame.printResult());
+                break;
+            }
+        }
     }
 }

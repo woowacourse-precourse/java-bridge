@@ -35,7 +35,7 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String key) {
+    public int move(String key) {
         String upOrDown = bridge.get(++position);
         count++;
         if (key.equals(InputKey.U.getValue())) {
@@ -44,25 +44,21 @@ public class BridgeGame {
         return handleDownBridge(upOrDown);
     }
 
-    private boolean handleUpBridge(String input) {
+    private int handleUpBridge(String input) {
         if (input.equals(InputKey.U.getValue())) {
             upBridgeStatus[position] = O_FLAG;
-            return true;
+            return position;
         }
         upBridgeStatus[position--] = X_FLAG;
-        return false;
+        return position;
     }
 
-    private boolean handleDownBridge(String input) {
+    private int handleDownBridge(String input) {
         if (input.equals(InputKey.D.getValue())) {
             downBridgeStatus[position] = O_FLAG;
-            return true;
+            return position;
         }
         downBridgeStatus[position--] = X_FLAG;
-        return false;
-    }
-
-    public int getPosition() {
         return position;
     }
 
@@ -79,6 +75,21 @@ public class BridgeGame {
         position = -1;
         count = 0;
         tryCount++;
+    }
+
+    public boolean isDone() {
+        return position == bridge.size() - 1;
+    }
+
+    public String printResult() {
+        StringBuilder result = new StringBuilder("게임 성공 여부: ");
+        if (position == bridge.size() - 1) {
+            result.append("성공\n");
+        }
+        result.append("실패\n");
+        result.append("총 시도한 횟수: " + tryCount);
+
+        return result.toString();
     }
 
     @Override
