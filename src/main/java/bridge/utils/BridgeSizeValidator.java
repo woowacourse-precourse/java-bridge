@@ -9,8 +9,11 @@ public class BridgeSizeValidator {
         checkBridgeSizeRange(Integer.parseInt(strBridgeSize));
     }
     private static void checkBridgeSizeRange(int bridgeSize){
-        if (bridgeSize < 3 || bridgeSize > 20) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        if (bridgeSize < 3) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3이상의 숫자여야만 합니다.");
+        }
+        if(bridgeSize>20){
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 20이하의 숫자여야만 합니다.");
         }
     }
 
