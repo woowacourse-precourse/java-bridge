@@ -1,15 +1,22 @@
 package bridge.controller;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.model.GeneratedBridge;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+
+import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
-    private OutputView outputView = new OutputView();
-    private InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private final InputView inputView = new InputView();
+    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private GeneratedBridge generatedBridge;
 
     private String bridgeSize;
 
@@ -20,6 +27,11 @@ public class BridgeGame {
     public void inputBridgeSize() {
         outputView.printInputBridgeSizeMessage();
         bridgeSize = inputView.inputBridgeSize();
+    }
+
+    public void generateBridge() {
+        List<String> bridgeShape = bridgeMaker.makeBridge(Integer.parseInt(bridgeSize));
+        generatedBridge = new GeneratedBridge(bridgeShape);
     }
 
     /**
