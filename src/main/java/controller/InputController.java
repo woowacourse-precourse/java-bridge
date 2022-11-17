@@ -21,23 +21,23 @@ public class InputController {
         }
     }
 
-    public String getMoving(){
-        try{
+    public String getMoving() {
+        try {
             String moving = inputView.readMoving();
             new MovingValidator(moving);
             return moving;
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
             return getMoving();
         }
     }
 
-    public String getGameCommand(){
-        try{
+    public String getGameCommand() {
+        try {
             String gameCommand = inputView.readGameCommand();
             new GameCommandValidator(gameCommand);
             return gameCommand;
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
             return getGameCommand();
         }

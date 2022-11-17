@@ -14,26 +14,26 @@ public class BridgeSizeValidator {
         validate();
     }
 
-    private void validate(){
+    private void validate() {
         validateInputNonBlank();
         validateInputType();
         validateInputSize();
     }
 
-    private void validateInputNonBlank(){
-        if(size.equals("")){
+    private void validateInputNonBlank() {
+        if (size.equals("")) {
             throw new IllegalArgumentException("[ERROR] 값을 넣어야합니다.");
         }
     }
 
-    private void validateInputType(){
-        if(!Pattern.matches(EnumStrings.PATTERN.getValue(), size)){
+    private void validateInputType() {
+        if (!Pattern.matches(EnumStrings.PATTERN.getValue(), size)) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력해야 합니다.");
         }
     }
 
     private void validateInputSize() {
-        if(Integer.parseInt(size)<MIN_LENGTH||Integer.parseInt(size)>MAX_LENGTH){
+        if (Integer.parseInt(size) < MIN_LENGTH || Integer.parseInt(size) > MAX_LENGTH) {
             throw new IllegalArgumentException("[ERROR] 3이상 20이하의 길이를 입력해야 합니다.");
         }
     }

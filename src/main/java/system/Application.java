@@ -1,6 +1,5 @@
 package system;
 
-
 import utils.EnumStrings;
 
 public class Application {
@@ -9,5 +8,4 @@ public class Application {
         System.out.println(EnumStrings.PRINT_START.getValue());
         new BridgeGame().start();
     }
-    dd
 }
