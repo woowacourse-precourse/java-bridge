@@ -19,17 +19,8 @@ public class GameController {
     private boolean re;
 
     public void gameTotalProgress() {
-        if (count == 0)
-            gameStart();
-        count++;
-        for (int idx = 0; idx < bridge.size(); idx++) {
-            gameProgress(idx);
-            if (!tf) {
-                outputView.retry();
-                re = reStart();
-                break;
-            }
-        }
+        countUp();
+        repeatProgress();
         if (!tf) {
             if (re) {
                 outputView.setDownBridge("[]");
@@ -39,6 +30,23 @@ public class GameController {
             }
         }
         gameResult();
+    }
+
+    public void repeatProgress() {
+        for (int idx = 0; idx < bridge.size(); idx++) {
+            gameProgress(idx);
+            if (!tf) {
+                outputView.retry();
+                re = reStart();
+                break;
+            }
+        }
+    }
+
+    public void countUp() {
+        if (count == 0)
+            gameStart();
+        count++;
     }
 
     public void gameStart() {
