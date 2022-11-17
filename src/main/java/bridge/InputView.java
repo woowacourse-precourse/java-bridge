@@ -2,14 +2,11 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 public class InputView {
-    private final int MIN_BRIDGE_LENGTH = 3;
-    private final int MAX_BRIDGE_LENGTH = 20;
+    private static final int MIN_BRIDGE_LENGTH = 3;
+    private static final int MAX_BRIDGE_LENGTH = 20;
 
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         try {
             int number = convertStringToInt(readInput());
             validateSize(number);
@@ -19,7 +16,7 @@ public class InputView {
         }
     }
 
-    public String readMoving() {
+    public static String readMoving() {
         try {
             String command = readInput();
             InputType.validateMovingCommand(command);
@@ -29,7 +26,7 @@ public class InputView {
         }
     }
 
-    public String readGameCommand() {
+    public static String readGameCommand() {
         try {
             String command = readInput();
             InputType.validateContinuousCommand(command);
@@ -39,17 +36,17 @@ public class InputView {
         }
     }
 
-    private void validateSize(int size) {
+    private static void validateSize(int size) {
         if (size < MIN_BRIDGE_LENGTH || size > MAX_BRIDGE_LENGTH)
             Error.printException(ErrorType.RANGE);
     }
 
-    private int convertStringToInt(String input) {
+    private static int convertStringToInt(String input) {
         InputType.validateNumber(input);
         return Integer.parseInt(input);
     }
 
-    private String readInput() {
+    private static String readInput() {
         return Console.readLine();
     }
 }
