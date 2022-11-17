@@ -1,8 +1,6 @@
 package bridge;
 
 import bridge.domain.PassingPositions;
-import bridge.domain.Position;
-import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -14,18 +12,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String input, Position position, PassingPositions passingPositions) {
-        position.updatePosition(input);
-        passingPositions.addPassingPositions(position);
-
-
-
-
-        List<Position> passingPositions1 = passingPositions.getPassingPositions();
-        for (Position passingPosition : passingPositions1) {
-            System.out.println("getIndex = " + passingPosition.getIndex());
-            System.out.println("getElementIndex = " + passingPosition.getElementIndex());
-        }
+    public void move(int pos, String answer, PassingPositions passingPositions) {
+        passingPositions.addPassingPositions(pos, answer);
     }
 
     /**
@@ -34,7 +22,6 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry(PassingPositions passingPositions) {
-//        position.resetPosition();
         passingPositions.resetPassingPosition();
 
     }

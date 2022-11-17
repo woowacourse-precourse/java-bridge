@@ -12,22 +12,16 @@ public class Position {
 
     private final List<Integer> position = new ArrayList<>();
 
-    public Position() {
-        resetPosition();
+    public Position(int pos, String answer) {
+        position.add(pos);
+        position.add(getAnswer(answer));
     }
 
-    public void updatePosition(String input) {
-        position.add(INDEX_INDEX, position.get(INDEX_INDEX) + 1);
-        if (input.equals("U")) {
-            position.add(ELEMENT_INDEX, UP);
+    private Integer getAnswer(String answer) {
+        if (answer.equals("U")) {
+            return UP;
         }
-        if (input.equals("D")) {
-            position.add(ELEMENT_INDEX, DOWN);
-        }
-    }
-
-    public void resetPosition() {
-        position.add(INDEX_INDEX, -1);
+        return DOWN;
     }
 
     public String getElementIndex() { // TODO: getter 사용 자제... 메시지를 보내기
