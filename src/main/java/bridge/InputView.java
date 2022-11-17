@@ -36,14 +36,14 @@ public class InputView {
      * 입력 받은 다리 길이에 대한 유효성 검증
      * 다리 길이는 3~20 사이의 숫자여야 한다
      */
-    private void sizeValidation(String input) {
+    public void sizeValidation(String input) {
         String sizeErrorMessage = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다";
         int result;
 
         //1. 입력이 숫자가 아닌 경우
         try {
             result = Integer.parseInt(input);
-        } catch(Exception e) {
+        } catch (Exception e) {
             throw new IllegalArgumentException(sizeErrorMessage);
         }
         //2. 입력 숫자가 3~20 사이 숫자가 아닌 경우
