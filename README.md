@@ -126,12 +126,12 @@ BridgeSpaceDto
 - [ ]  플레이어가 선택한 칸을 담아서 컨트롤러로 보낸다.
 
 BridgeController
-- [ ]  BridgeSizeDto를 받아서 서비스에 넘겨준다.
+- [x]  BridgeSizeDto를 받아서 서비스에 넘겨준다.
 - [ ]  BridgeSpaceDto를 받아서 서비스에 넘겨준다.
 - [ ]  게임을 재시작할지 확인한다.
 
 BridgeMaker
-- [ ]  매개변수로 들어온 다리의 길이만큼 다리를 생성
+- [x]  매개변수로 들어온 다리의 길이만큼 다리를 생성
 
 Success
 - [ ]  사용자가 다리를 다 건넜는지 확인

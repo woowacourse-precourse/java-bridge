@@ -1,8 +1,9 @@
 package bridge.service;
 
 import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
 import bridge.service.dto.BridgeSizeDto;
+
+import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -15,7 +16,7 @@ public class BridgeGame {
     }
 
     public void create(BridgeSizeDto dto) {
-        bridgeMaker.makeBridge(dto.getBridgeSize());
+        List<String> bridges = bridgeMaker.makeBridge(dto.getBridgeSize());
     }
 
     /**
