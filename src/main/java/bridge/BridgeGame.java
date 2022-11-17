@@ -7,16 +7,16 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private InputView inputView;
-    private OutputView outputView;
-    private List<String> bridge;
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final List<String> bridge;
     private List<String> inputs;
     private int index;
-    private int size;
 
-    public BridgeGame(){
+    public BridgeGame(int size){
         inputView = new InputView();
         outputView = new OutputView();
+        bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
         init();
     }
 
