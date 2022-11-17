@@ -1,22 +1,15 @@
 package bridge.View;
 
 import bridge.Model.ErrorUtil;
-
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 public class InputView {
-
-    /**
-     * 다리의 길이를 입력받는다.
-     */
+    ErrorUtil errorUtil = new ErrorUtil();
     public int readBridgeSize() {
-        ErrorUtil errorUtil = new ErrorUtil();
         String inputSize = readLine();
+        errorUtil.errorBridgeSizeNotNumber(inputSize);
         int size = Integer.parseInt(inputSize);
-        errorUtil.errorBridgeSize(inputSize);
+        errorUtil.errorBridgeSize(size);
         return size;
     }
 
