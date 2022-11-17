@@ -7,10 +7,10 @@ import java.util.List;
  */
 
 public class BridgeGame {
-    private final List<String> board;
-    private int step;
-    private int retryNum;
-    private boolean result;
+    public final List<String> board;
+    public int step;
+    public int retryNum;
+    public boolean result;
 
     public BridgeGame(){
         int boardSize = new InputView().readBridgeSize();
@@ -25,11 +25,9 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
-        String move = new InputView().readMoving();
+    public void move(String move) {
         result = board.get(step).equals(move);
         step += 1;
-        new OutputView().printMap(board, step, result);
     }
 
     /**
@@ -37,9 +35,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry() {
-        if(result) return true;
-        String command = new InputView().readGameCommand();
+    public boolean retry(String command) {
         if(command.equals("R")){
             step = 0;
             retryNum += 1;
@@ -51,9 +47,5 @@ public class BridgeGame {
 
     public boolean clear(){
         return step <= board.size()-1;
-    }
-
-    public void result(){
-        new OutputView().printResult(board, step, result, retryNum);
     }
 }

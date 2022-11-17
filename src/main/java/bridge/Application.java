@@ -4,14 +4,28 @@ package bridge;
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        InputView input = new InputView();
+        OutputView output = new OutputView();
         BridgeGame bridgeGame = new BridgeGame();
-        while(bridgeGame.clear()) //게임클리어여부
+
+        //게임클리어여부
+        while(bridgeGame.clear())
         {
-            bridgeGame.move(); //이동
-            if(!bridgeGame.retry()) //재시작여부
-                break;
+            //이동
+            String move = input.readMoving();
+            bridgeGame.move(move);
+
+            //맵출력
+            output.printMap(bridgeGame.board, bridgeGame.step, bridgeGame.result);
+
+            //이동실패시 재시작여부
+            if(!bridgeGame.result){
+                String command = input.readGameCommand();
+                if(!bridgeGame.retry(command))
+                    break;
+            }
         }
-        bridgeGame.result(); //결과출력
+        //게임 결과 출력
+        output.printResult(bridgeGame.board, bridgeGame.step, bridgeGame.result, bridgeGame.retryNum);
     }
 }
