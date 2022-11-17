@@ -2,8 +2,28 @@ package bridge;
 
 public class GameMessage {
 
-    public static final String IS_ERROR = "[ERROR] ";
+    private static final String IS_ERROR = "[ERROR] ";
     public static final String LINE_BREAK = "\n";
+
+    public static String getTotalTry(int tyrCounts) {
+        return String.format(Result.TOTAL_TRY.getContents(), tyrCounts);
+    }
+
+    public static String getSuccessOrNot(boolean isArrival) {
+        String message = Result.SUCCESS_OR_NOT.getContents();
+
+        if (isArrival) {
+            message += Result.SUCCESS.getContents();
+            return message;
+        }
+
+        message += Result.FAIL.getContents();
+        return message;
+    }
+
+    public static String getErrorMessage(String errorContents) {
+        return IS_ERROR + errorContents;
+    }
 
     public enum Guide {
         START("다리 건너기 게임을 시작합니다."),

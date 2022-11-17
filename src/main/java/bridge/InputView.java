@@ -24,33 +24,87 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String move = Console.readLine();
+        checkMoving(move);
+        return move;
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String command = Console.readLine();
+        checkCommand(command);
+        return command;
     }
 
     private static void checkIsNumber(String lengthInput) {
         try {
             Integer.valueOf(lengthInput);
         } catch (IllegalArgumentException e) {
-            String message = GameMessage.IS_ERROR;
-            String contents = GameMessage.Exception.IS_NUMBER.getContents();
-            OutputView.printMessage(message + contents);
+            String contents = GameMessage
+                    .Exception.IS_NUMBER.getContents();
+            String message = GameMessage.getErrorMessage(contents);
+            OutputView.printMessage(message);
             throw new IllegalArgumentException();
         }
     }
 
     private static void checkRange(int length) {
-        boolean rangeError = (checkStartRange(length) || checkEndRange(length));
+        boolean rangeError = !(checkStartRange(length) || checkEndRange(length));
 
         if (rangeError) {
+            String contents = GameMessage.Exception.OUT_OF_RANGE_BRIDGE.getContents();
+            String message = GameMessage.getErrorMessage(contents);
+            OutputView.printMessage(message);
             throw new IllegalArgumentException();
         }
+    }
+
+    private static void checkMoving(String move) {
+        boolean moveError = !(checkMatchDown(move) || checkMatchUp(move));
+
+        if (moveError) {
+            String contents = GameMessage.Exception.DISALLOWED_INPUT_MOVE.getContents();
+            String message = GameMessage.getErrorMessage(contents);
+            OutputView.printMessage(message);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void checkCommand(String command) {
+        boolean commandError = !(checkMatchRestart(command) || checkMatchQuit(command));
+
+        if (commandError) {
+            String contents = GameMessage.Exception.DISALLOWED_INPUT_RE_GAME.getContents();
+            String message = GameMessage.getErrorMessage(contents);
+            OutputView.printMessage(message);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static boolean checkMatchQuit(String command) {
+        String quit = BridgeValue
+                .Information
+                .QUIT
+                .getValue();
+
+        if (quit.equals(command)) {
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean checkMatchRestart(String command) {
+        String restart = BridgeValue
+                .Information
+                .RE_START
+                .getValue();
+
+        if (restart.equals(command)) {
+            return true;
+        }
+        return false;
     }
 
     private static boolean checkStartRange(int length) {
@@ -60,7 +114,7 @@ public class InputView {
                 .getValue();
 
         int start = BridgeValue.stringToInt(startValue);
-        if (length < start) {
+        if (length >= start) {
             return true;
         }
         return false;
@@ -73,17 +127,33 @@ public class InputView {
                 .getValue();
 
         int end = BridgeValue.stringToInt(endValue);
-        if (length > end) {
+        if (length <= end) {
             return true;
         }
         return false;
     }
 
-    private static void checkMoving(String move) {
+    private static boolean checkMatchDown(String move) {
+        String down = BridgeValue
+                .Information
+                .DOWN
+                .getValue();
 
+        if (down.equals(move)) {
+            return true;
+        }
+        return false;
     }
 
-    private static void checkCommand(String command) {
+    private static boolean checkMatchUp(String move) {
+        String up = BridgeValue
+                .Information
+                .UP
+                .getValue();
 
+        if (up.equals(move)) {
+            return true;
+        }
+        return false;
     }
 }
