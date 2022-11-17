@@ -1,15 +1,22 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private final InputValidator inputValidator;
+
+    public InputView(InputValidator inputValidator) {
+        this.inputValidator = inputValidator;
+    }
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        return getValidBridgeSize(Console.readLine());
     }
 
     /**
@@ -24,5 +31,15 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private int getValidBridgeSize(String bridgeSize) {
+        inputValidator.validateNumberType(bridgeSize);
+        inputValidator.validateZeroPrefix(bridgeSize);
+
+        int bridgeSizeNumber = Integer.parseInt(bridgeSize);
+        inputValidator.validateBridgeSize(bridgeSizeNumber);
+
+        return bridgeSizeNumber;
     }
 }
