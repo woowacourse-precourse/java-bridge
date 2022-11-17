@@ -78,4 +78,5 @@
 - [x]  BridgeGameController 요청 처리
 - [ ]  InputView 입력 처리
 - [x]  OutputView 출력 처리
-- [ ]  InputValidator 입력 검증
+- [x]  InputValidator 입력 검증
+    - [x]  validateBridgeSize -> 다리 길이 검증 
