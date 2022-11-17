@@ -1,5 +1,7 @@
 package bridge.controller;
 
+import java.util.List;
+
 import bridge.domain.Bridge;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeRandomNumberGenerator;
@@ -13,12 +15,13 @@ public class GameController {
 	private BridgeGame bridgeGame;
 
 	public void run() {
-		OutputView.printGameStart();
 		setting();
 		progress();
+		finish();
 	}
 
 	private void setting() {
+		OutputView.printGameStart();
 		User user = new User();
 		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 		Bridge bridge = new Bridge(bridgeMaker.makeBridge(InputView.readBridgeSize()));
@@ -30,9 +33,24 @@ public class GameController {
 		while (isEnd) {
 			bridgeGame.move(InputView.readMoving());
 			OutputView.printMap(bridgeGame.currentMap());
-			isEnd = bridgeGame.checkEnd();
+			isEnd = bridgeGame.isFail() && !bridgeGame.isClear();
 		}
-
+		if (!bridgeGame.isFail()) {
+			retry();
+		}
 	}
 
+	private void retry() {
+		if (InputView.readGameCommand().equals("R")) {
+			bridgeGame.retry();
+			progress();
+		}
+	}
+
+	public void finish() {
+		List<List<String>> resultMap = bridgeGame.currentMap();
+		String gameResult = bridgeGame.result();
+		int tryCount = bridgeGame.tryCount();
+		OutputView.printResult(resultMap, gameResult, tryCount);
+	}
 }

@@ -31,4 +31,13 @@ public class User {
 	public int getSelectionCount() {
 		return selections.size();
 	}
+
+	public void retry() {
+		selections.clear();
+		tryCount++;
+	}
+
+	public int getTryCount() {
+		return tryCount;
+	}
 }
