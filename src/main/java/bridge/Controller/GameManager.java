@@ -22,7 +22,6 @@ public class GameManager {
 
     public void execution() {
         boolean checkSame = runMovePoint();
-        System.out.println(checkSame);
         runResult(checkSame);
     }
 
@@ -84,15 +83,23 @@ public class GameManager {
             outputView.printRetry();
             String retryWord = inputView.readGameCommand();
             System.out.println(retryWord);
-            if (retryWord.equals("R")) {
-                bridgeGame.retry(bridgeDTO);
-                execution();
-                return ;
-            }
-            if (retryWord.equals("Q")) {
-                outputView.printResult();
-                outputView.printMap(bridgeDTO);
-            }
+            runRetry(retryWord);
+        }
+        if (checkSame) {
+            outputView.printResult();
+            outputView.printMap(bridgeDTO);
+        }
+    }
+
+    public void runRetry(String retryWord) {
+        if (retryWord.equals("R")) {
+            bridgeGame.retry(bridgeDTO);
+            execution();
+            return ;
+        }
+        if (retryWord.equals("Q")) {
+            outputView.printResult();
+            outputView.printMap(bridgeDTO);
         }
     }
 }
