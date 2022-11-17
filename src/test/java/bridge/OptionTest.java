@@ -18,4 +18,13 @@ public class OptionTest {
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(ERROR);
     }
+
+    @DisplayName("옵션은 1글자를 받지 않으면 예외가 발생")
+    @ValueSource(strings = {"UU", "", "UDUUD"})
+    @ParameterizedTest
+    void inputWrongRange(String input) {
+        assertThatThrownBy(()-> new Option(input))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(ERROR);
+    }
 }
