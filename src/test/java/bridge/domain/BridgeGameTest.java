@@ -28,5 +28,14 @@ class BridgeGameTest {
         });
     }
 
+    @DisplayName("유저가 잘못된 방향으로 진행하면 사망한다")
+    @Test
+    void 잘못된_이동_사망_테스트() {
+        Bridge bridge = new Bridge(List.of("U", "D", "U"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        bridgeGame.move(Direction.D);
+        assertThat(bridgeGame).extracting("aliveUser").isEqualTo(false);
+    }
+
 
 }
