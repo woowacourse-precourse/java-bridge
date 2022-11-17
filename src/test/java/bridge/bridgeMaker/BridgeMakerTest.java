@@ -24,7 +24,6 @@ public class BridgeMakerTest {
         List<String> madeBridge = bridgeMaker.makeBridge(size);
         List<String> caseOfBridges = new ArrayList<>();
         createBridgeCase(caseOfBridges, new ArrayList<>(), size);
-        System.out.println(caseOfBridges.size());
         assertThat(caseOfBridges.contains(madeBridge.toString())).isTrue();
     }
 

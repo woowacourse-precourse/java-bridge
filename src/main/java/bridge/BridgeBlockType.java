@@ -19,7 +19,7 @@ public enum BridgeBlockType {
         return block;
     }
 
-    public String getBlockByInputNumber(int inputNumber) {
+    public static String getBlockByInputNumber(int inputNumber) {
         return Arrays.stream(BridgeBlockType.values())
                 .filter(blockType -> blockType.inputNumber == inputNumber)
                 .findFirst()
