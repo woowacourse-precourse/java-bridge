@@ -30,4 +30,18 @@ class BridgeGameTest {
                 .isEqualTo(false);
     }
 
+    @DisplayName("게임 클리어 여부를 확인할 수 있다.")
+    @Test
+    void clearTheGame() {
+        Assertions.assertThat(bridgeGame.isGameClear())
+                .isEqualTo(false);
+        for (int i = 0; i < 3; i++) {
+            bridgeGame.move("U");
+        }
+        bridgeGame.move("D");
+
+        Assertions.assertThat(bridgeGame.isGameClear())
+                .isEqualTo(true);
+    }
+
 }
