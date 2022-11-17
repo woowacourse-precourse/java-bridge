@@ -63,7 +63,7 @@ public class InputView {
         String input;
         System.out.println(readGameCommandMs);
         try {
-            input = Console.readLine().toUpperCase();
+            input = Console.readLine();
             if (!Objects.equals(input, "R") && !Objects.equals(input, "Q")) throw new IllegalArgumentException();
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] R 혹은 Q를 입력해주세요.");
