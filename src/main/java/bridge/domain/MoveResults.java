@@ -13,7 +13,7 @@ public class MoveResults {
     private final List<String> upResults = new ArrayList<>();
     private final List<String> downResults = new ArrayList<>();
 
-    public void addResults(String moveCommand, String moveResult) {
+    void addResults(String moveCommand, String moveResult) {
         if (moveCommand.equals(MOVE_UP_COMMAND)) {
             upResults.add(moveResult);
             downResults.add(BLANK);
@@ -24,7 +24,7 @@ public class MoveResults {
         downResults.add(moveResult);
     }
 
-    public void reset() {
+    void reset() {
         upResults.clear();
         downResults.clear();
     }

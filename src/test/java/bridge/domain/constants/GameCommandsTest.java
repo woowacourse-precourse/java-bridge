@@ -13,6 +13,13 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class GameCommandsTest {
 
+    private static Stream<Arguments> provideArgumentsForOf() {
+        return Stream.of(
+                Arguments.of("R", GameCommands.RETRY),
+                Arguments.of("Q", GameCommands.QUIT)
+        );
+    }
+
     @ParameterizedTest(name = "{0}을 입력 받으면 {1}를 반환한다.")
     @MethodSource("provideArgumentsForOf")
     void ofSuccess(String command, GameCommands expected) {
@@ -40,12 +47,5 @@ class GameCommandsTest {
     void is() {
         GameCommands gameCommands = GameCommands.RETRY;
         assertThat(gameCommands.is(GameCommands.RETRY)).isTrue();
-    }
-
-    private static Stream<Arguments> provideArgumentsForOf() {
-        return Stream.of(
-                Arguments.of("R", GameCommands.RETRY),
-                Arguments.of("Q", GameCommands.QUIT)
-        );
     }
 }
