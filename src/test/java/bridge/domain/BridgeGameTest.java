@@ -39,7 +39,7 @@ class BridgeGameTest {
     @CsvSource(value = {"UDDUDDUD,true", "UDDUD,false"})
     void isWinTest(String movingPath, boolean expectedResult) {
 
-        for(String movingDirection : movingPath.split("")){
+        for (String movingDirection : movingPath.split("")) {
             BridgeTile targetTile = BridgeTile.findByTilePosition(movingDirection);
             bridgeGame.move(basicBridge, player, targetTile);
         }
