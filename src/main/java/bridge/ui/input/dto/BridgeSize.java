@@ -1,5 +1,6 @@
 package bridge.ui.input.dto;
 
+import bridge.ui.input.InputErrorText;
 import java.util.regex.Pattern;
 
 public class BridgeSize {
@@ -18,7 +19,7 @@ public class BridgeSize {
         String bridgeSizeRegex = "^(1?[1-9]|[1-2]0)$";
 
         if (!Pattern.matches(bridgeSizeRegex, userInput)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(InputErrorText.ERROR_BRIDGE_SIZE.errorText());
         }
     }
 }
