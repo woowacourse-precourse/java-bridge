@@ -8,7 +8,7 @@ public class BridgeGame {
     private final PlayResult playResult = new PlayResult();
 
     public BridgeGame(int bridgeSize, BridgeMaker bridgeMaker) {
-        this.bridge = new Bridge(bridgeSize, bridgeMaker);
+        this.bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
     public boolean move(int position, String spaceToMove) {

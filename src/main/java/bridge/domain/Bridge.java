@@ -6,8 +6,8 @@ public class Bridge {
 
     private final List<String> bridge;
 
-    public Bridge(int bridgeSize, BridgeMaker bridgeMaker) {
-        this.bridge = bridgeMaker.makeBridge(bridgeSize);
+    public Bridge(List<String> bridge) {
+        this.bridge = bridge;
     }
 
     public boolean canMove(int position, String spaceToMove) {
