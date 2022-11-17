@@ -35,7 +35,6 @@ public class InputView {
         outputView.printMovingRequestMessage();
         String moving = Console.readLine();
         inputValidator.validateMoving(moving);
-        outputView.printEnter();
         return moving;
     }
 
