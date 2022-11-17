@@ -1,14 +1,17 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
+import util.ErrorMessage;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private static final String NUMBER_REGEX = "^[0-9]*$";
 
     public int readBridgeSize() {
         String usersInput = Console.readLine();
+        validateBridgeSize(usersInput);
         int bridgeSize = Integer.parseInt(usersInput);
         return bridgeSize;
     }
@@ -25,5 +28,18 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    public void validateBridgeSize(String input){
+        if (!isDigit(input)) {
+            throw new IllegalArgumentException(ErrorMessage.IS_NOT_DIGIT);
+        }
+
+    }
+    private boolean isDigit(String input){
+        if (!input.matches(NUMBER_REGEX)) {
+            return false;
+        }
+        return true;
     }
 }
