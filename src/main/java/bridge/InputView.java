@@ -13,7 +13,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String bridgeSize = Console.readLine();
+        String bridgeSize = getBridgeSize();
         int size = parseInt(bridgeSize);
         validateNumberRange(size);
         return size;
@@ -45,5 +45,9 @@ public class InputView {
         if (bridgeSize < 3 || bridgeSize > 20) {
             throw new IllegalArgumentException(INPUT_NUMBER_RANGE_ERROR_SENTENCE);
         }
+    }
+
+    public String getBridgeSize() {
+        return Console.readLine();
     }
 }
