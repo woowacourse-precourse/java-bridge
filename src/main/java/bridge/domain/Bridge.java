@@ -16,6 +16,11 @@ public class Bridge {
         this.directions = makeDirectionsByStrings(directionData);
     }
 
+    public boolean isCorrectDirection(Direction direction, int position) {
+        final int gapBetweenPositionAndIndex = 1;
+        return directions.get(position - gapBetweenPositionAndIndex) == direction;
+    }
+
     private void validateLength(List<String> directionData) {
         if (directionData.size() < MIN_BRIDGE_LENGTH) {
             throw new IllegalArgumentException(String.format(MIN_VALIDATION_ERROR_MESSAGE, MIN_BRIDGE_LENGTH));

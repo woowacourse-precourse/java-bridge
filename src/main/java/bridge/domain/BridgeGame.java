@@ -7,10 +7,12 @@ public class BridgeGame {
 
     private Bridge bridge;
     private int userPosition;
+    private boolean aliveUser;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
         this.userPosition = 0;
+        this.aliveUser = true;
     }
 
     /**
@@ -20,6 +22,13 @@ public class BridgeGame {
      */
     public void move(Direction direction) {
         userPosition++;
+        checkLife(direction);
+    }
+
+    public void checkLife(Direction direction) {
+        if (!bridge.isCorrectDirection(direction, userPosition)) {
+            aliveUser=false;
+        }
     }
 
     /**
