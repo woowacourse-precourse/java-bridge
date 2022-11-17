@@ -29,5 +29,10 @@ public class Validator {
             throw new IllegalArgumentException(ERROR_NOT_VALID_MOVE);
         }
     }
-
+    public void isValidCommand(String command) {
+        List<String> validCommands = new ArrayList<String>(Arrays.asList("R", "Q"));
+        if (!(validCommands.contains(command.toUpperCase()))) {
+            throw new IllegalArgumentException(ERROR_NOT_VALID_COMMAND);
+        }
+    }
 }
