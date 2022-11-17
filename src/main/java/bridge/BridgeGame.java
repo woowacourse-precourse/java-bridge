@@ -41,6 +41,7 @@ public class BridgeGame {
             currentBridgeIndex++;
             return true;
         }
+        currentBridgeIndex++;
         return false;
     }
 
@@ -63,5 +64,4 @@ public class BridgeGame {
             throw new IndexOutOfBoundsException();
         }
     }
-
 }

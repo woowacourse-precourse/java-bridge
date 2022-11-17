@@ -30,7 +30,7 @@ public class BridgeGameController {
             State state = inputMoveCommand();
             crossBridge = bridgeGame.move(state);
             OutputView.printMap(bridgeGame, crossBridge);
-            if (bridgeGame.getCurrentBridgeIndex() == bridgeSize - 1) {
+            if (bridgeGame.getCurrentBridgeIndex() == bridgeSize) {
                 return true;
             }
         }
