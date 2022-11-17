@@ -20,4 +20,12 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         return null;
     }
+
+    private int makeRandomNumber() {
+        return bridgeNumberGenerator.generate();
+    }
+
+    private String makeNumberUpDown(int number) {
+        return UpDown.valueOfNumber(1).label();
+    }
 }
