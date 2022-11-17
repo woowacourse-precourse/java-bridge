@@ -1,7 +1,8 @@
 ## 기능 목록
 - Domain
   - [x] 특정 길이의 다리 생성 - BridgeMaker#makeBridge()
-  - [ ] 입력한 이동 위치의 성공 여부 확인
+  - [x] 입력한 이동 위치의 성공 여부 확인, 다리 이동시 사용할 메서드 - BridgeGame#move()
+  - [x] 게임을 다시 시도할 때 사용할 메서드 - BridgeGame#retry()
 - View
   - [ ] 다리 길이 입력
   - [ ] 이동할 위치 입력
