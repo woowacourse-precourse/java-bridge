@@ -2,9 +2,15 @@ package bridge;
 
 public class BridgeValue {
 
+    public static int stringToInt(String input) {
+        return Integer.valueOf(input);
+    }
+
     public enum Information {
         UP("U"),
         DOWN("D"),
+        UP_VALUE("1"),
+        DOWN_VALUE("0"),
         QUIT("Q"),
         RE_START("R"),
         MINIMUM_LENGTH("3"),
