@@ -10,9 +10,13 @@ public class OutputView {
     public void printGameStartMessage(){
         System.out.println(BRIDGE_GAME_START_MESSAGE);
     }
-    
+
     public void printRequestBridgeLengthMessage(){
         System.out.println(REQUEST_BRIDGE_LENGTH_MESSAGE);
+    }
+
+    public void printNotNumberBridgeLengthInputErrorMessage(){
+        System.out.println(NOT_NUMBER_BRIDGE_LENGTH_MESSAGE);
     }
 
     /**
