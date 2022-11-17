@@ -12,7 +12,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
         String input = Console.readLine();
         validationInteger(input);
@@ -24,7 +24,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public static String readMoving() {
         String moveCommand = Console.readLine();
         validationMoveCommand(moveCommand);
         return moveCommand;
@@ -33,13 +33,13 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public static String readGameCommand() {
         String gameCommand = Console.readLine();
         validationGameCommand(gameCommand);
         return gameCommand;
     }
 
-    private void validationInteger(String input) {
+    private static void validationInteger(String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -47,13 +47,13 @@ public class InputView {
         }
     }
 
-    private void validationBridgeSize(int bridgeSize) {
+    private static void validationBridgeSize(int bridgeSize) {
         if (bridgeSize > 20 || bridgeSize < 3) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
     }
 
-    private void validationMoveCommand(String moveCommand) {
+    private static void validationMoveCommand(String moveCommand) {
         if (Objects.equals(moveCommand, "U")) {
             return;
         }
@@ -63,7 +63,7 @@ public class InputView {
         throw new IllegalArgumentException("[ERROR] U,D를 입력해 주세요.");
     }
 
-    private void validationGameCommand(String gameCommand) {
+    private static void validationGameCommand(String gameCommand) {
         if (Objects.equals(gameCommand, "R")) {
             return;
         }
