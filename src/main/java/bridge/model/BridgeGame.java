@@ -18,6 +18,7 @@ public class BridgeGame {
     private List<String> bridge;
     private int nowIndex;
     private Map<String, List<String>> records;
+    private int trials;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
@@ -26,6 +27,7 @@ public class BridgeGame {
                 UPSIDE, new ArrayList<>(),
                 DOWNSIDE, new ArrayList<>()
         );
+        this.trials = 0;
     }
 
     /**
@@ -47,6 +49,12 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        nowIndex = 0;
+        records = Map.of(
+                UPSIDE, new ArrayList<>(),
+                DOWNSIDE, new ArrayList<>()
+        );
+        trials++;
     }
 
     public void updateRecords(String moving, boolean moveSuccess) {
@@ -73,5 +81,13 @@ public class BridgeGame {
 
     public List<String> getRecords(String direction) {
         return records.get(direction);
+    }
+
+    public int getTrials() {
+        return trials;
+    }
+
+    public boolean isArrived() {
+        return bridge.size() == nowIndex;
     }
 }

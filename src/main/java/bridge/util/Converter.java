@@ -1,9 +1,18 @@
 package bridge.util;
 
 public class Converter {
+    private static final String SUCCESS = "성공";
+    private static final String FAILURE = "실패";
 
     public int convertToInt(String s) {
         return Integer.parseInt(s);
+    }
+
+    public String convertBooleanToString(boolean tf) {
+        if (tf) {
+            return SUCCESS;
+        }
+        return FAILURE;
     }
 
 }
