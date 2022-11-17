@@ -11,4 +11,8 @@ public class BridgeGameController {
         this.inputView = inputView;
         this.outputView = outputView;
     }
+
+    public void init() {
+        outputView.printInitMessage();
+    }
 }
