@@ -38,10 +38,10 @@ public class Controller {
     private boolean stepGame() {
         String move = getString(InputView.MOV);
         if (bridgeGame.move(move)) {
-            outputView.printMap(move, true);
+            outputView.updateAndPrint(move, true);
             return true;
         }
-        outputView.printMap(move, false);
+        outputView.updateAndPrint(move, false);
         if (bridgeGame.retry(getString(InputView.CMD))) {
             outputView.retry();
             return true;
@@ -53,7 +53,7 @@ public class Controller {
         while (true)
             if (bridgeGame.ifEnd() || !stepGame())
                 break;
-        
+
         outputView.printResult();
     }
 
