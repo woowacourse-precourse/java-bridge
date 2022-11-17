@@ -9,13 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGame {
-    private List<String> bridge;
+    private final List<String> bridge;
     private int trials;
     private int currentPosition;
-    private int bridgeSize;
+    private final int bridgeSize;
     private boolean isCorrect;
-    private List<String> fullUpperMap;
-    private List<String> fullLowerMap;
+    private final List<String> fullUpperMap;
+    private final List<String> fullLowerMap;
 
     public BridgeGame(int bridgeSize) {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
