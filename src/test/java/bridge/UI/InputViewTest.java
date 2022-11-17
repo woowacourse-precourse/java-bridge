@@ -98,4 +98,75 @@ class InputViewTest {
             getExceptionTest(input,functionSupply);
         }
     }
+
+    @Nested
+    class ReadMovingTest{
+
+        Supplier<String> functionSupply = () -> inputView.readMoving();
+
+        void getReadMovingTest(String input){
+            beforeSetting(input);
+            assertThat(inputView.readMoving()).isEqualTo(input);
+        }
+
+        @Test
+        void readMoving_case1(){
+            String input = "U";
+            getReadMovingTest(input);
+        }
+
+        @Test
+        void readMoving_case2(){
+            String input = "D";
+            getReadMovingTest(input);
+        }
+
+        @Test
+        void readMoving_exceptionCase1(){
+            String input = "UD";
+            getExceptionTest(input,functionSupply);
+        }
+
+        @Test
+        void readMoving_exceptionCase2(){
+            String input = "-1";
+            getExceptionTest(input,functionSupply);
+        }
+
+        @Test
+        void readMoving_exceptionCase3(){
+            String input = "10000";
+            getExceptionTest(input,functionSupply);
+        }
+
+        @Test
+        void readMoving_exceptionCase4(){
+            String input = "A";
+            getExceptionTest(input,functionSupply);
+        }
+
+        @Test
+        void readMoving_exceptionCase5(){
+            String input = "Z";
+            getExceptionTest(input,functionSupply);
+        }
+
+        @Test
+        void readMoving_exceptionCase6(){
+            String input = "Hello";
+            getExceptionTest(input,functionSupply);
+        }
+
+        @Test
+        void readMoving_exceptionCase7(){
+            String input = "!!!";
+            getExceptionTest(input,functionSupply);
+        }
+
+        @Test
+        void readMoving_exceptionCase8(){
+            String input = " ";
+            getExceptionTest(input,functionSupply);
+        }
+    }
 }
