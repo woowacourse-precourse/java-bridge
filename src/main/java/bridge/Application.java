@@ -17,6 +17,8 @@ public class Application {
             bridgeGame.move(InputView.readMoving());
             OutputView.printMap(bridgeGame.map);
         }
-
+        if ((!bridgeGame.flag) && InputView.readGameCommand().equals("R")) {
+            bridgeGame.retry();
+        }
     }
 }
