@@ -31,4 +31,13 @@ public class InputExceptionTest {
                     inputException.validateMoving(moving);
                 });
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"A", "B", "C", "K", "", "김", "1", "2"})
+    void 게임종료_재시작_입력_예외(String gameCommand) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> {
+                    inputException.validateGameCommand(gameCommand);
+                });
+    }
 }
