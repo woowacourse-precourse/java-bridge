@@ -42,14 +42,13 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(List<String> bridge) {
+    public void retry(int [] upCase, int [] downCase, List<String> bridge) {
         if(inputView.readGameCommand(Console.readLine()).equals("R")) {
             gameCount++;
             gameLogic(bridge);
             return ;
         }
-        printMessage.printGameFailed();
-        printMessage.printGameTries(gameCount);
+        printMessage.printFailedResult(upCase, downCase, gameCount, bridgeLength);
     }
     public void gameLogic(List<String> bridge){
         int [] upCase = new int[bridge.size()];
@@ -65,7 +64,7 @@ public class BridgeGame {
                     downCase[i] += 2;
                 printMessage.printMap(upCase, downCase, bridgeLength);
                 printMessage.printAskGameRestart();
-                retry(bridge);
+                retry(upCase, downCase, bridge);
                 return;
             }
             if(bridge.get(i).equals("U")){
@@ -77,6 +76,6 @@ public class BridgeGame {
             printMessage.printMap(upCase, downCase, bridgeLength);
             bridgeLength++;
         }
-        printMessage.printSuccessResult(upCase, downCase, gameCount);
+        printMessage.printSuccessedResult(upCase, downCase, gameCount);
     }
 }
