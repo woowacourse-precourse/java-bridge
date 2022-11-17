@@ -17,7 +17,7 @@
 
 ### 사용자
 - [x] 사용자가 지금까지 이동한 칸에 대한 정보를 저장한다.
-- [ ] 사용자가 지금까지 이동한 칸의 정보를 반환한다. (Collections.unmodifiableList() 사용)
+- [x] 사용자가 지금까지 이동한 칸의 정보를 반환한다. (Collections.unmodifiableList() 사용)
 
 ## [ View ]
 
