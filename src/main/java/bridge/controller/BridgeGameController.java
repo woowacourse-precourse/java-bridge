@@ -5,6 +5,7 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeUpDownNumber;
+import bridge.exception.BridgeGameValidator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -28,6 +29,7 @@ public class BridgeGameController {
     }
 
     public void start(){
+        bridgeSize=0;
         startGame();
         run();
     }
@@ -63,7 +65,17 @@ public class BridgeGameController {
 
     private void startGame(){
         outputView.printStart();
-        bridgeSize = inputView.readBridgeSize();
+        createBridgeSize();
+    }
+
+    private void createBridgeSize(){
+        try{
+            bridgeSize = inputView.readBridgeSize();
+            BridgeGameValidator.isValidGameNumber(bridgeSize);
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            createBridgeSize();
+        }
     }
 
     private void restartGame(){
