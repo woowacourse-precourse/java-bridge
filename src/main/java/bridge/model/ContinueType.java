@@ -5,8 +5,7 @@ import java.util.Map;
 
 public enum ContinueType {
     RETRY("R", "재시도"),
-    QUIT("Q", "종료")
-    ;
+    QUIT("Q", "종료");
 
     private final String text;
 
