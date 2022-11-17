@@ -62,4 +62,13 @@ class InputBridgeSizeValidatorTest {
                 .isThrownBy(() -> InputBridgeSizeValidator.validate(input))
                 .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
     }
+    
+    @DisplayName("예외 처리 : 영어 입력 시")
+    @ParameterizedTest(name = "{displayName} : input => {0}")
+    @ValueSource(strings = {"a", "A", "z", "Z"})
+    void englishException(final String input) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> InputBridgeSizeValidator.validate(input))
+                .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
+    }
 }
