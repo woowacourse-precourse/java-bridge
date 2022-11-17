@@ -55,7 +55,7 @@ public class BridgeGameController {
     private void playing() {
         do {
             moving();
-        } while (askRetry());
+        } while (!bridgeGame.isSuccessful() && askRetry());
     }
 
     private boolean askRetry() {
