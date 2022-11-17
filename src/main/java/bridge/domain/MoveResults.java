@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class GameResults {
+public class MoveResults {
 
     private static final String BLANK = " ";
 
