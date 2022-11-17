@@ -27,13 +27,13 @@ public class InputValidation {
     }
 
     public static void validateMoveCommand(String moveCommand) {
-        if (!moveCommand.equals(CommandConstant.UP_COMMAND) || !moveCommand.equals(CommandConstant.DOWN_COMMAND)) {
+        if (!moveCommand.equals(CommandConstant.UP_COMMAND) && !moveCommand.equals(CommandConstant.DOWN_COMMAND)) {
             throw new IllegalArgumentException();
         }
     }
 
     public static void validateGameCommand(String gameCommand) {
-        if (!gameCommand.equals(CommandConstant.RETRY_COMMAND) || !gameCommand.equals(CommandConstant.QUIT_COMMAND)) {
+        if (!gameCommand.equals(CommandConstant.RETRY_COMMAND) && !gameCommand.equals(CommandConstant.QUIT_COMMAND)) {
             throw new IllegalArgumentException();
         }
     }
