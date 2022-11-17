@@ -10,6 +10,14 @@ public class Player {
         initPosition();
     }
 
+    public void moveForward() {
+        positionIndex++;
+    }
+
+    public void die() {
+        initPosition();
+        tryCount++;
+    }
 
     private void initPosition() {
         this.positionIndex = 0;
