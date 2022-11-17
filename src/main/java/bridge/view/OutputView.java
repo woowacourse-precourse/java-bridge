@@ -28,6 +28,11 @@ public class OutputView {
         printMap(bridge);
     }
 
+    public void printStatusResult() { // TODO 수정 필요
+        System.out.println(Message.GAME_RESULT_STATE_MSG.getMessage() + "");
+        System.out.println(Message.GAME_RESULT_TRY_MSG.getMessage() + "");
+    }
+
 
     public void printMessage(Message message){
         System.out.println(message.getMessage());
