@@ -1,4 +1,4 @@
-package bridge.ui.output;
+package bridge.ui;
 
 public interface ConsolePrintable {
     String toConsolePrintFormat();

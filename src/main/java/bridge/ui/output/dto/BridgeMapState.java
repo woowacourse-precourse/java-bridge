@@ -1,6 +1,6 @@
 package bridge.ui.output.dto;
 
-import bridge.ui.output.ConsolePrintable;
+import bridge.ui.ConsolePrintable;
 
 public class BridgeMapState implements ConsolePrintable {
     @Override
