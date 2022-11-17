@@ -46,4 +46,30 @@ class InputViewTest {
         // when & then
         assertThatThrownBy(inputView::readBridgeSize).isInstanceOf(NoSuchElementException.class);
     }
+
+    @DisplayName("이동할 칸이 U 혹은 D일 경우 입력받는데 성공한다.")
+    @Test
+    void 이동할_칸이_U_혹은_D인_경우() {
+        // given
+        InputView inputView = new InputView();
+        System.setIn(new ByteArrayInputStream("U".getBytes()));
+
+        // when
+        String moving = inputView.readMoving();
+
+        // then
+        assertThat(moving).isEqualTo("U");
+    }
+
+    @DisplayName("이동할 칸이 U 혹은 D가 아닌 경우 예외를 발생시킨다.")
+    @Test
+    void 이동할_칸이_U_혹은_D가_아닐_경우() {
+        // given
+        InputView inputView = new InputView();
+        System.setIn(new ByteArrayInputStream("I".getBytes()));
+
+        // when & then
+        assertThatThrownBy(inputView::readMoving)
+                .isInstanceOf(NoSuchElementException.class);
+    }
 }
