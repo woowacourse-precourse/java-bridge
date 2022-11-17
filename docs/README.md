@@ -44,7 +44,7 @@
 - 게임 진행을 위해 필요한 메서드를 추가 하거나 변경할 수 있다.
 
 #### BridgeMaker 클래스
-- [] 다리를 생성해주는 기능
+- [x] 다리를 생성해주는 기능
   - 다리를 생성할 때 위 칸과 아래 칸 중 건널 수 있는 칸은 0과 1 중 무작위 값을 이용해서 정한다.
     - 위 칸을 건널 수 있는 경우 U, 아래 칸을 건널 수 있는 경우 D값으로 나타낸다.
     - 무작위 값이 0인 경우 아래 칸, 1인 경우 위 칸이 건널 수 있는 칸이 된다.
@@ -52,12 +52,12 @@
 - `BridgeMaker`의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 없다.
 
 #### BridgeRandomNumberGenerator 클래스
-- [] 다리의 각 인덱스마다 0(D), 1(U)을 랜덤으로 생성해주는 기능
+- [x] 다리의 각 인덱스마다 0(D), 1(U)을 랜덤으로 생성해주는 기능
 - Random 값 추출은 제공된 `bridge.domain.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
 - `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 변경할 수 없다.
 ---
 ### error(예외처리)
-- [] 에러 상황에서 메시지 출력을 위해 메시지를 상수로 저장하는 기능
+- [x] 에러 상황에서 메시지 출력을 위해 메시지를 상수로 저장하는 기능
 - 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
     - `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
 - 예외 상황 시 에러 문구를 출력해야 한다. 단, 에러 문구는 "[ERROR]"로 시작해야 한다.
