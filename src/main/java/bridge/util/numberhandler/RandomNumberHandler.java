@@ -1,4 +1,4 @@
-package bridge.model.service.numberhandler;
+package bridge.util.numberhandler;
 
 public interface RandomNumberHandler {
 
