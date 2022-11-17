@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 
 public class BridgeGameTest {
 
-    @Test
     @DisplayName("이동한 칸이 이동가능한 칸인지 확인")
+    @Test
     void check_move() {
         BridgeGame bridgeGame = new BridgeGame(4, new BridgeFakeNumberGenerator());
         // BridgeFakeNumberGenerator (테스트용; 1,0,1,0 순환하면서 숫자생성)
@@ -18,8 +18,8 @@ public class BridgeGameTest {
         assertThat(bridgeGame.move("D")).isTrue();
     }
 
-    @Test
     @DisplayName("이동 완료 문의")
+    @Test
     void is_completed_move(){
         BridgeGame bridgeGame = new BridgeGame(2, new BridgeFakeNumberGenerator());
         assertThat(bridgeGame.isCompleted()).isFalse();
@@ -28,4 +28,16 @@ public class BridgeGameTest {
         bridgeGame.move("U");
         assertThat(bridgeGame.isCompleted()).isTrue();
     }
+
+    @DisplayName("게임 다시 시도")
+    @Test
+    void test_retry() {
+        BridgeGame bridgeGame = new BridgeGame(4, new BridgeFakeNumberGenerator());
+        assertThat(bridgeGame.isStartStatus()).isTrue();
+        bridgeGame.move("D");
+        assertThat(bridgeGame.isCompleted()).isFalse();
+        bridgeGame.retry();
+        assertThat(bridgeGame.isStartStatus()).isTrue();
+    }
+
 }

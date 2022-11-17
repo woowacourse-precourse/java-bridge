@@ -13,4 +13,8 @@ public class Player {
     public boolean isCompleted(int size) {
         return position == size;
     }
+
+    public boolean isStartStatus() {
+        return position == 0;
+    }
 }
