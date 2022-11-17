@@ -22,4 +22,9 @@ public class Bridge {
                 .map(BridgeDirection::wordToDirection)
                 .collect(Collectors.toList());
     }
+
+    public Answer canMove(int position, BridgeDirection direction) {
+        boolean isEqual = directions.get(position) == direction;
+        return Answer.of(isEqual);
+    }
 }
