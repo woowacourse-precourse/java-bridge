@@ -40,4 +40,21 @@ class InputValidatorTest {
         //when & then
         inputValidator.isDigit(input);
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {"24", "42", "20000"})
+    @DisplayName("3이상 20이하의 숫자가 아닐 경우 IllegalArgumentException을 반환합니다.")
+    void testIsInBoundary_IllegalArgumentException(String input) throws Exception {
+        //when & then
+        assertThrows(IllegalArgumentException.class,
+                     () -> inputValidator.isInBoundary(input));
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"3", "20", "15"})
+    @DisplayName("3이상 20이하의 숫자일 경우 아무것도 반환하지 않습니다.")
+    void testIsInBoundary_success(String input) throws Exception {
+        //when & then
+        inputValidator.isInBoundary(input);
+    }
 }

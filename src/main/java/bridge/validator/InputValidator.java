@@ -9,4 +9,12 @@ public class InputValidator {
             }
         }
     }
+
+    public void isInBoundary(String input) {
+        int length = Integer.parseInt(input);
+
+        if (length < 3 || length > 20) {
+            throw new IllegalArgumentException("3이상 20 이하의 숫자만 가능합니다.");
+        }
+    }
 }
