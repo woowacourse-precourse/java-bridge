@@ -22,6 +22,12 @@ public class BridgeGame {
         //validate(movement);
     }
 
+    private void validate(String movement) {
+        if (movement.equals("U") || movement.equals("D")) {
+            return;
+        }
+        throw new IllegalArgumentException("[ERROR] 움직임은 U또는 D만 가능합니다.");
+    }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
