@@ -19,7 +19,7 @@ public class InputView {
             int bridgeSize = Integer.parseInt(userInput);
             InputViewValidator.validateBridgeLength(bridgeSize);
             return bridgeSize;
-        } catch (NoSuchElementException | IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(ERROR_MSG + e.getMessage());
             return readBridgeSize();
         }
@@ -33,7 +33,7 @@ public class InputView {
             String step = readUserInput();
             InputViewValidator.validateBridgeStep(step);
             return step;
-        } catch (NoSuchElementException | IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(ERROR_MSG + e.getMessage());
             return readMoving();
         }
@@ -47,7 +47,7 @@ public class InputView {
             String cmd = readUserInput();
             InputViewValidator.validateRestartCommand(cmd);
             return (cmd);
-        } catch (NoSuchElementException | IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(ERROR_MSG + e.getMessage());
             return readGameCommand();
         }

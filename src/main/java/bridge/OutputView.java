@@ -87,4 +87,9 @@ public class OutputView {
     private void printSpace() {
         System.out.print("   ");
     }
+
+    public void printTotalMap(BridgeGame bridgeGame) {
+        System.out.println("최종 게임 결과");
+        printMap(bridgeGame);
+    }
 }
