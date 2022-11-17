@@ -13,4 +13,8 @@ public class BridgeGameResult {
     public boolean getIsMatched() {
         return this.isMatched;
     }
+
+    public String getUserMoving() {
+        return this.userMoving;
+    }
 }
