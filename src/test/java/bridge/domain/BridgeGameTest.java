@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import org.assertj.core.api.Assertions;
+import bridge.dto.UserState;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -88,5 +88,19 @@ class BridgeGameTest {
         });
     }
 
+    @DisplayName("게임 상황 진행 정보 Map 반환 테스트")
+    @Test
+    void 게임_상황_진행_정보_반환_테스트() {
+        Bridge bridge = new Bridge(List.of("U", "D", "U"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        bridgeGame.move(Direction.U);
+        bridgeGame.move(Direction.D);
 
+        UserState userState = bridgeGame.getProgressUserState();
+        assertAll(() -> {
+            assertThat(userState.getBridge()).isEqualTo(bridge);
+            assertThat(userState.getUserPosition()).isEqualTo(2);
+            assertThat(userState.isAliveUser()).isTrue();
+        });
+    }
 }
