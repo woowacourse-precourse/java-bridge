@@ -11,6 +11,11 @@ public class BridgeGame {
 
     public void startGame(){
         Bridge bridge = initBridge();
+        play(bridge);
+    }
+
+    private void play(Bridge bridge) {
+
     }
 
     private Bridge initBridge() {

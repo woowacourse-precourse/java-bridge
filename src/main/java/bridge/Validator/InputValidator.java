@@ -11,7 +11,7 @@ public class InputValidator {
         }
     }
 
-    private static boolean checkBoundaryNumber(String size) {
+    public static boolean checkBoundaryNumber(String size) {
         Integer bridgeSize = Integer.parseInt(size);
         if(bridgeSize < 3 || bridgeSize > 20){
             return false;
@@ -19,7 +19,7 @@ public class InputValidator {
         return true;
     }
 
-    private static boolean checkOnlyNumber(String size) {
+    public static boolean checkOnlyNumber(String size) {
         try{
             Integer.parseInt(size);
         }catch(NumberFormatException e){
