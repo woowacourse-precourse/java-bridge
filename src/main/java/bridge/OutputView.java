@@ -33,4 +33,8 @@ public class OutputView {
         }
         System.out.println("\n게임 성공 여부: 실패");
     }
+
+    public void printResult(int gameProceedCount) {
+        System.out.printf("총 시도한 횟수: %d\n", gameProceedCount);
+    }
 }
