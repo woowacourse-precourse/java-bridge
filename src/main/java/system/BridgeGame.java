@@ -5,7 +5,7 @@ import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.EnumStrings;
 import bridge.InputController;
-import bridge.OutputView;
+import view.OutputView;
 import bridge.RealTimeBridge;
 import java.util.List;
 

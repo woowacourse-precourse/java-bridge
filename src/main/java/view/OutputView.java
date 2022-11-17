@@ -1,4 +1,4 @@
-package bridge;
+package view;
 
 import system.BridgeGame;
 

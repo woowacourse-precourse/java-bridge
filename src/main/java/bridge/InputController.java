@@ -1,5 +1,8 @@
 package bridge;
 
+import view.InputView;
+import view.OutputView;
+
 public class InputController {
 
     InputView inputView = new InputView();
