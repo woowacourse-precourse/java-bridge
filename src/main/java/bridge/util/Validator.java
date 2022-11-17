@@ -4,6 +4,9 @@ public class Validator {
 
     private static final String IS_DIGIT_ERROR = "3이상 20이하 숫자만 입력 가능합니다.";
     private static final String BRIDGE_SIZE_ERROR = "다리길이는 3이상 20이하만 가능합니다.";
+    private static final String MOVE_ERROR = "이동은 U,D 만 입력이 가능합니다.";
+    private static final String UP = "U";
+    private static final String DOWN = "D";
 
     public int canCreateBridge(String number) {
         int changeNumber = toInt(number);
@@ -25,4 +28,10 @@ public class Validator {
         }
     }
 
+    public void canMove(String move) {
+        if (move == UP || move == DOWN) {
+            return;
+        }
+        throw new IllegalArgumentException(MOVE_ERROR);
+    }
 }

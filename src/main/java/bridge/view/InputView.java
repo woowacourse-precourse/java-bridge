@@ -9,6 +9,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     private static final String INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
+    private static final String INPUT_MOVE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final boolean INPUT_DEFAULT_VALUE = true;
     private static Validator validator;
 
@@ -34,7 +35,10 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(INPUT_MOVE);
+        String move = Console.readLine();
+        validator.canMove(move);
+        return move;
     }
 
     /**

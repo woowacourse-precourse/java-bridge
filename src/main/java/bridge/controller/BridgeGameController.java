@@ -30,4 +30,14 @@ public class BridgeGameController {
             }
         }
     }
+
+    public int getMove() {
+        while (true) {
+            try {
+                return inputView.readBridgeSize();
+            } catch (IllegalArgumentException iae) {
+                outputView.printError(iae.getMessage());
+            }
+        }
+    }
 }
