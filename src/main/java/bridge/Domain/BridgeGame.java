@@ -8,12 +8,14 @@ import java.util.List;
 public class BridgeGame {
     Bridge bridge;
     Player player;
+    private int retryCount;
 
 
     public BridgeGame(int size) throws IllegalArgumentException {
         try {
             this.bridge = new Bridge(size);
             this.player = new Player();
+            this.retryCount = 1;
         } catch (IllegalArgumentException illegalArgumentException) {
             throw illegalArgumentException;
         }
@@ -49,7 +51,8 @@ public class BridgeGame {
         int playerNextLocation = player.getNextLocation();
         List<String> bridgeStates = bridge.getBridgeStates();
 
-        if (bridgeStates.size() < playerNextLocation) {
+        // 다음에 이동할 곳이 인덱스를 벗어날 경우 끝에 도달한 것
+        if (bridgeStates.size() <= playerNextLocation) {
             return true;
         }
 
