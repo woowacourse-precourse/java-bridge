@@ -2,6 +2,10 @@ package bridge;
 
 import java.util.List;
 
+// 필드(인스턴스 변수) 변경 불가
+// 메서드의 시그니처(인자, 이름)와 반환 타입 변경 불가
+// 다리 칸을 생성하기 위한 Random 값 추출은 int number = bridgeNumberGenerator.generate(); 사용
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
