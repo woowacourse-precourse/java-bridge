@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.constant.Constant;
+import bridge.constant.ExceptionMessage;
 import bridge.constant.PrintMessage;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -8,7 +10,10 @@ public class InputView {
     public int readBridgeSize() {
         System.out.print(PrintMessage.INPUT_BRIDGE_SIZE.getString());
         String inputBridgeSize = Console.readLine();
-        if (validateBridgeSize(inputBridgeSize) == false) {
+        try {
+            validateBridgeSize(inputBridgeSize);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
             return readBridgeSize();
         }
         return Integer.parseInt(inputBridgeSize);
@@ -32,8 +37,15 @@ public class InputView {
         return inputGameCommand;
     }
 
-    private boolean validateBridgeSize(String inputBridgeSize) {
-        return true;
+    private void validateBridgeSize(String inputBridgeSize) throws IllegalArgumentException {
+        try {
+            int size = Integer.parseInt(inputBridgeSize);
+            if (size < Constant.BRIDGE_MIN_SIZE.getValue() || size > Constant.BRIDGE_MAX_SIZE.getValue()) {
+                throw new IllegalArgumentException(ExceptionMessage.INVALID_BRIDGE_SIZE_RANGE.getString());
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_BRIDGE_SIZE_TYPE.getString());
+        }
     }
 
     private boolean validateMoving(String Moving) {
