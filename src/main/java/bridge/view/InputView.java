@@ -1,4 +1,6 @@
-package bridge;
+package bridge.view;
+
+import bridge.exception.InputException;
 
 import static camp.nextstep.edu.missionutils.Console.*;
 
@@ -6,13 +8,14 @@ import static camp.nextstep.edu.missionutils.Console.*;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private static InputException inputException = new InputException();
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         String inputSize = readLine();
-
+        inputException.sizeException(inputSize);
         return Integer.parseInt(inputSize);
     }
 
@@ -21,11 +24,8 @@ public class InputView {
      */
     public String readMoving() {
         String move = readLine();
-        if (move.equals("U"))
-            return move;
-        if (move.equals("D"))
-            return move;
-        throw new IllegalArgumentException();
+        //예외 처리 필요
+        return move;
     }
 
     /**
