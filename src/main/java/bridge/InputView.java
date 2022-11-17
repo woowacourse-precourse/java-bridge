@@ -5,6 +5,15 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    enum InputType {
+        MOVINGCOMMAND(2),
+        GAMECOMMAND(2),
+        BRIDGELENGTH(3);
+
+        private int lengthLimit;
+        private InputType(int limitLength) { this.lengthLimit = limitLength; }
+    }
+
     private String lineInput;
 
     private void checkLengthLimit(String lineInput, int limit) {
@@ -27,42 +36,66 @@ public class InputView {
     private void isInValidRange(String lineInput, int lowerBound, int upperBound) {
         int number = Integer.parseInt(lineInput);
         if (number < lowerBound || number > upperBound)
-            throw new IllegalArgumentException("[ERROR] 3 이상 20 이하의 자연수를 입력해주세요.");
+            throw new IllegalArgumentException(
+                    String.format("[ERROR] %d 이상 %d 이하의 자연수를 입력해주세요.",
+                            lowerBound, upperBound));
     }
 
-    private void validate(String lineInput) {
-        checkLengthLimit(lineInput, 2);
-        isInputNumber(lineInput);
+    private void validateBridgeSize(String lineInput) {
         isTenthsPlaceZero(lineInput);
+        isInputNumber(lineInput);
         isInValidRange(lineInput, 3, 20);
     }
-    
+
+    private void validateCode(String lineInput, InputType inputType) {
+        String correctInput = "";
+        if (inputType == InputType.GAMECOMMAND) correctInput = "RQ";
+        if (inputType == InputType.MOVINGCOMMAND) correctInput = "UD";
+        if (correctInput.contains(lineInput)) return;
+        throw new IllegalArgumentException(
+                String.format("[ERROR] %c 또는 %c를 입력해주세요.",
+                        correctInput.charAt(0), correctInput.charAt(1)));
+    }
+
+    private void validate(String lineInput, InputType inputType) {
+        checkLengthLimit(lineInput, inputType.lengthLimit);
+        if(inputType == InputType.BRIDGELENGTH) {
+            validateBridgeSize(lineInput);
+            return;
+        }
+        validateCode(lineInput, inputType);
+    }
+
+    private String readInput(InputType inputType) {
+        while(true) {
+            String lineInput = Console.readLine();
+            try {
+                validate(lineInput, inputType);
+                return lineInput;
+            } catch(IllegalArgumentException e) {
+                new OutputView(e.getMessage()).printMessage();
+            }
+        }
+    }
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        while(true) {
-            String lineInput = Console.readLine();
-            try {
-                validate(lineInput);
-                break;
-            } catch(IllegalArgumentException e) {
-                OutputView outputview = new OutputView(e.getMessage());
-            }
-        }
+        lineInput = readInput(InputType.BRIDGELENGTH);
         return Integer.parseInt(lineInput);
     }
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        lineInput = readInput(InputType.MOVINGCOMMAND);
+        return lineInput;
     }
-
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        lineInput = readInput(InputType.GAMECOMMAND);
+        return lineInput;
     }
 }
