@@ -28,7 +28,7 @@ public class GameController {
         viewService.printSelectMoveMessage();
         bridgeGame.saveSelectMove(viewService.inputSelectMove());
     }
-    public void move(){
-
+    public int move(){
+        return bridgeGame.move();
     }
 }
