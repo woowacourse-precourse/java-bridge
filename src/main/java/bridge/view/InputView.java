@@ -27,7 +27,7 @@ public class InputView {
      */
     public String readMoving() {
         String str = Console.readLine();
-        validInput(str);
+        //validInput(str);
         return str;
     }
 

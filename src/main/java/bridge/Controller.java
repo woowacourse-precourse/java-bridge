@@ -3,7 +3,12 @@ package bridge;
 import bridge.service.BridgeGame;
 
 public class Controller {
-    BridgeGame bridgeGame = new BridgeGame();
+
+    public void getGame(){
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.playGame();
+    }
+
 
 
 }

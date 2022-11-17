@@ -3,6 +3,8 @@ package bridge.service;
 import java.util.List;
 
 import bridge.domain.BridgeMaker;
+import bridge.domain.BridgeNumberGenerator;
+import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -13,17 +15,18 @@ import bridge.view.OutputView;
 
 public class BridgeGame {
     InputView inputview = new InputView();
-
+    BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     private List<String> bridgeAnswer ;
     public int bridgeNum ;
-    private BridgeMaker bridgeMaker;
 
     public void getRandomBridge(int bridgeNum){
         bridgeAnswer = bridgeMaker.makeBridge(bridgeNum);
     }
 
-    public void getBridgeNum() {
-        bridgeNum = inputview.readBridgeSize();
+    public int getBridgeNum() {
+        int inputSize = inputview.readBridgeSize();
+        return inputSize;
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -36,6 +39,8 @@ public class BridgeGame {
     };
 
     public void playGame(){
+        bridgeNum = getBridgeNum();
+        getRandomBridge(bridgeNum);
         OutputView outputview = new OutputView();
         for (int i=0; i<bridgeNum; i++){
             String inputMove = move();
