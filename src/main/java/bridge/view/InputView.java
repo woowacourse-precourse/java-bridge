@@ -40,7 +40,14 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String command = readLine();
+        try{
+            validateRetryOrExit(command);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return readGameCommand();
+        }
+        return command;
     }
 
     private static void validateDigit(String input) {
@@ -59,7 +66,13 @@ public class InputView {
 
     private static void validateMoving(String input) {
         if (!input.equals("U") && !input.equals("D")) {
-            throw new IllegalArgumentException("[ERROR] U 혹인 D를 입력해 주세요.");
+            throw new IllegalArgumentException("[ERROR] U 혹은 D를 입력해 주세요.");
+        }
+    }
+
+    private static void validateRetryOrExit(String input) {
+        if (!input.equals("R") && !input.equals("Q")) {
+            throw new IllegalArgumentException("[ERROR] R 혹은 Q를 입력해 주세요.");
         }
     }
 }
