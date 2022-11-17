@@ -1,8 +1,11 @@
 package bridge.validator;
 
+import static bridge.validator.ExceptionMessage.*;
+
 public class BridgeSizeValidator {
     private static final int MIN_SIZE = 3;
     private static final int MAX_SIZE = 30;
+    private static final String EMPTY_VALUE = "";
 
     public static void validate(String size) {
         validateDigit(size);
@@ -12,22 +15,23 @@ public class BridgeSizeValidator {
 
     private static void validateInput(String size) {
         if (isBlank(size)) {
-            throw new NumberFormatException("[ERROR]");
+            throw new NumberFormatException(BLANK.getMessage());
         }
     }
 
     private static boolean isBlank(String size) {
-        return size.trim().equals("");
+        return size.trim().equals(EMPTY_VALUE);
     }
 
     private static void validateDigit(String size) {
         if (isDigit(size)) {
-            throw new IllegalArgumentException("[ERROR]");
+            throw new IllegalArgumentException(NO_NUMBER.getMessage());
         }
     }
+
     private static void validateSize(int size) {
         if (size < MIN_SIZE || size > MAX_SIZE) {
-            throw new IllegalArgumentException("[ERROR]");
+            throw new IllegalArgumentException(OVER_OR_UNDER_RANGE.getMessage());
         }
     }
 
