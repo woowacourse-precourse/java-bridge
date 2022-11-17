@@ -26,6 +26,14 @@ public class InputView {
         return null;
     }
 
+    private int changeInputStringToInteger(String input) {
+        int size = 0;
+        for (int i = 0; i < input.length(); i++) {
+            size = size * 10 + input.charAt(i) - 48;
+        }
+        return size;
+    }
+
     private void validateInputIsExist(String input) {
         if (input.length() == 0) {
             throw new IllegalStateException();
