@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
 public class BridgeSizeTest extends NsTest {
@@ -41,15 +42,23 @@ public class BridgeSizeTest extends NsTest {
 	@DisplayName("input 값에 대한 검증으로서 예외 발생시 재 입력 요청 기능을 검증한다")
 	@Test
 	void verify_rePrompt() {
-		assertThatCode(() -> {
+		assertSimpleTest(() -> {
 			run("a", "", "0");
-			assertThat(output()).contains(InputException.NOT_IN_BETWEEN_PROPER_RANGE, InputException.EMPTY, InputException.NOT_A_NUMBER);
+			assertThat(output()).contains(
+					InputException.EMPTY,
+					InputException.NOT_A_NUMBER,
+					String.format(InputException.NOT_IN_BETWEEN_PROPER_RANGE, FIRST_NUMBER_INCLUSIVE, LAST_NUMBER_INCLUSIVE)
+			);
 		});
 	}
 
 	@Override
 	protected void runMain() {
-		InputView inputView = new InputView();
-		inputView.readBridgeSize();
+		try {
+			InputView inputView = new InputView();
+			inputView.readBridgeSize();
+		} catch (Exception e) {
+			//
+		}
 	}
 }
