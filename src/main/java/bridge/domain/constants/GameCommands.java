@@ -30,10 +30,10 @@ public enum GameCommands {
     }
 
     public boolean isNot(GameCommands gameCommand) {
-        return !command.equals(gameCommand.command);
+        return this != gameCommand;
     }
 
     public boolean is(GameCommands gameCommand) {
-        return command.equals(gameCommand.command);
+        return this == gameCommand;
     }
 }
