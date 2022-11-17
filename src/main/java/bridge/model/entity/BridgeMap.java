@@ -1,2 +1,4 @@
-package bridge.model.entity;public class BridgeMap {
+package bridge.model.entity;
+
+public class BridgeMap {
 }
