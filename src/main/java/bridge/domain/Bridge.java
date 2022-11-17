@@ -23,4 +23,12 @@ public class Bridge {
         }
         return bridge.get(index);
     }
+
+    public boolean isCrossOver(User user) {
+        return bridge.size() <= user.getMovedLength();
+    }
+
+    public List<UpDownFlag> getBridge() {
+        return List.copyOf(bridge);
+    }
 }

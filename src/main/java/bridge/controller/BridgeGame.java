@@ -1,5 +1,8 @@
 package bridge.controller;
 
+import bridge.domain.Bridge;
+import bridge.domain.Map;
+import bridge.domain.User;
 import bridge.service.BridgeService;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -25,9 +28,20 @@ public class BridgeGame {
     public void start() {
         outputView.printGameStartMessage();
         outputView.printEnterBridgeLength();
-        inputView.readBridgeSize();
-        outputView.printEnterSelectMoving();
-        inputView.readMoving();
+        Bridge bridge = bridgeService.makeBridge(inputView.readBridgeSize());
+        User user = new User();
+        Map map = new Map();
+        System.out.println(bridge.getBridge()); // TEST
+        while (true) {
+            if (bridge.isCrossOver(user)) {
+                break;
+            }
+            outputView.printEnterSelectMoving();
+            user.move(inputView.readMoving());
+            map.cross(bridge, user);
+            outputView.printMap(map);
+        }
+        System.out.println("게임 종료");
     }
 
     /**

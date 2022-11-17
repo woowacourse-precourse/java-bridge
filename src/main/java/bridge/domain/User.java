@@ -10,12 +10,8 @@ public class User {
         movedPosition = new Stack<>();
     }
 
-    public void moveUp() {
-        movedPosition.add(UpDownFlag.UP);
-    }
-
-    public void moveDown() {
-        movedPosition.add(UpDownFlag.DOWN);
+    public void move(String flag) {
+        movedPosition.add(UpDownFlag.ofString(flag));
     }
 
     public int getMovedLength() {
