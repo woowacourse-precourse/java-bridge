@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 public class InputView {
     private final String sizePattern = "^[0-9]+$";
     private final String movePattern = "^[U|D]";
+    private final String commandPattern = "^[R|Q]";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -41,6 +42,10 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String inputCommand = Console.readLine();
+        if (!(Pattern.matches(commandPattern, inputCommand))) {
+            throw new IllegalArgumentException("[ERROR] R과 Q 이외의 다른것이 입력되었습니다.");
+        }
+        return inputCommand;
     }
 }
