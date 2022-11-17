@@ -56,9 +56,8 @@
 - Random 값 추출은 제공된 `bridge.domain.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
 - `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 변경할 수 없다.
 ---
-### msg(예외처리, input)
-- [] input 메시지를 상수화
-- [x] 에러 상황에서 메시지 출력을 위해 메시지를 상수로 저장하는 기능
+### msg(예외처리)
+- [x] 에러 상황에서 메시지 정력을 위해 메시지를 상수로 저장하는 기능
 - 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
     - `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
 - 예외 상황 시 에러 문구를 출력해야 한다. 단, 에러 문구는 "[ERROR]"로 시작해야 한다.
