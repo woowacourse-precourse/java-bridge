@@ -6,7 +6,7 @@ public class InputView {
 
     public String readBridgeSize() {
         OutputView.printGameStart();
-        OutputView.inputBridgeLength();
+        OutputView.inputBridgeSize();
         return Console.readLine();
     }
 
