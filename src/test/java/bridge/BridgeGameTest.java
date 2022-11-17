@@ -18,4 +18,14 @@ class BridgeGameTest {
                 .hasMessageStartingWith("[ERROR]");
     }
 
+    @DisplayName("사용자가 (char)85, (char)68로 U, D를 입력하는지 확인한다.")
+    @ValueSource(chars = {(char)85,(char)68})
+    @Test
+    void validate_Is_Unintentional_Character_Input(InputView input) {
+        assertThatThrownBy(()-> new BridgeGame(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageStartingWith("[ERROR]");
+    }
+
+
 }
