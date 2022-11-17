@@ -2,8 +2,7 @@ package bridge.view;
 
 import bridge.domain.Bridge;
 import bridge.domain.PassingPositions;
-import bridge.domain.Position;
-import java.util.ArrayList;
+import bridge.domain.Result;
 import java.util.List;
 
 /**
@@ -13,9 +12,12 @@ public class OutputView {
 
     private static final int INDEX_INDEX = 0;
     private static final int ELEMENT_INDEX = 1; // up or down
-    private static final int UP = 1;
-    private static final int DOWN = 0;
+    private static final String UP = "U";
+    private static final String DOWN = "D";
     private static final String SEPARATOR = " | ";
+    private static final String START = " [ ";
+    private static final String END = " ] ";
+    private static final String SPACE = " ";
 
     private static final String ERROR_PREFIX = "[ERROR] ";
 
@@ -25,13 +27,15 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static List<String> printMap(Bridge bridge, PassingPositions passingPositions) {
-        String compare;
-        List<String> compares = new ArrayList<>();
-        List<Position> passingPosition = passingPositions.getPassingPositions();
-        for (Position position : passingPosition) {
-            compare = bridge.compare(position);
-            System.out.print(compare + SEPARATOR);
-            compares.add(compare);
+        Result result = new Result(bridge, passingPositions);
+        List<String> compares = result.makeCompares(bridge, passingPositions);
+        List<List<String>> resultsGroup = result.getResultsGroup();
+
+        for (List<String> results : resultsGroup) {
+            for (String res : results) {
+                System.out.print(res + SEPARATOR);
+            }
+            System.out.println();
         }
         System.out.println();
         return compares;
