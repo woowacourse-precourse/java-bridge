@@ -26,6 +26,7 @@ public class BridgeGame {
 
     public void play(){
         while(!bridge.isBridgeAllCrossed()){
+            outputView.printRequestHowToMove();
             String usersPick = inputView.readMoving();
             boolean continueGame = move(usersPick);
             if(!continueGame){
