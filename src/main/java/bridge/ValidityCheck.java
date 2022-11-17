@@ -1,8 +1,10 @@
 package bridge;
 
+import bridge.enums.Number;
+
 import java.util.regex.Pattern;
 
-import static bridge.ErrorMessage.*;
+import static bridge.enums.ErrorMessage.*;
 
 public class ValidityCheck {
 

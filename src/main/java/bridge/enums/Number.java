@@ -1,4 +1,4 @@
-package bridge;
+package bridge.enums;
 
 public enum Number {
     RANGE_MIN(3),

@@ -2,7 +2,7 @@ package bridge;
 
 import org.junit.jupiter.api.*;
 
-import static bridge.ErrorMessage.*;
+import static bridge.enums.ErrorMessage.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ValidityCheckTest {
