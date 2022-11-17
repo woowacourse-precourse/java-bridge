@@ -24,7 +24,7 @@ class BridgeMakerTest {
     void makeBridge_정상범위_다리의길이(int bridgeSize) {
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         boolean actual = bridge.stream()
-                .anyMatch(s -> (s != "U") && (s != "D"));
+                .anyMatch(s -> (!s.equals("U")) && (!s.equals("D")));
 
         assertThat(actual).isFalse();
     }
