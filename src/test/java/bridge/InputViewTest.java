@@ -29,4 +29,14 @@ public class InputViewTest {
         assertThatThrownBy(() -> inputView.readBridgeSize())
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void validateInputSizeIsInRangeTest() {
+        String input = "33";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        InputView inputView = new InputView();
+        assertThatThrownBy(() -> inputView.readBridgeSize())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
