@@ -61,4 +61,9 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    public void clear() {
+        upperBlocks.clear();
+        lowerBlocks.clear();
+    }
 }

@@ -27,5 +27,12 @@ public class BridgeGame {
         validator.validateGameRestartMessage(retryMessage);
         return gameService.isRetry(retryMessage);
     }
+
+    public void clear() {
+        gameService.restart();
+    }
+
+    public boolean isGameClear(List<String> bridge) {
+        return gameService.isGameClear(bridge);
     }
 }
