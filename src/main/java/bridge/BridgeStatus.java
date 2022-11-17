@@ -11,4 +11,13 @@ public enum BridgeStatus {
         this.statusNumber = statusNumber;
         this.statusLetter = statusLetter;
     }
+
+    public static String convertNumberToLetter(int number) {
+        for (BridgeStatus bridgeStatus : BridgeStatus.values()) {
+            if (bridgeStatus.statusNumber == number) {
+                return bridgeStatus.statusLetter;
+            }
+        }
+        return null;
+    }
 }
