@@ -5,6 +5,7 @@ package bridge;
  */
 public class OutputView {
     private final String START_SENTENCE = "다리 건너기 게임을 시작합니다.";
+    private final String INPUT_BRIDGE_LENGTH_SENTENCE = "다리의 길이를 입력해주세요.";
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -26,5 +27,8 @@ public class OutputView {
      */
     public void printStart() {
         System.out.println(START_SENTENCE);
+    }
+    public void printInputBridgeLength() {
+        System.out.println(INPUT_BRIDGE_LENGTH_SENTENCE);
     }
 }
