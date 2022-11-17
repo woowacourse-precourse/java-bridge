@@ -13,7 +13,7 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println(ViewConstants.INPUT_SIZE);
-        String str = Console.readLine();
+        String str = Console.readLine().trim();
         try {
             validator = new SizeValidator();
             validator.validate(str);
@@ -29,7 +29,7 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println(ViewConstants.INPUT_MOVE);
-        String str = Console.readLine();
+        String str = Console.readLine().trim();
         try {
             validator = new MoveValidator();
             validator.validate(str);
@@ -45,7 +45,7 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println(ViewConstants.RESTART_GAME);
-        String str = Console.readLine();
+        String str = Console.readLine().trim();
         try {
             validator = new RestartValidator();
             validator.validate(str);
