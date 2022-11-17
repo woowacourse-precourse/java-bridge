@@ -20,4 +20,9 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public boolean rightMove(String input, String bridge) {
+
+        return input.equals(bridge);
+    }
 }
