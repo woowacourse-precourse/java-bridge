@@ -12,4 +12,5 @@ public class ConstantMessage {
     static final String INVALID_RANGE_BRIDGE_LENGTH_MESSAGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     static final String NOT_NUMBER_BRIDGE_LENGTH_MESSAGE = "[ERROR] 다리 길이는 숫자여야 합니다.";
     static final String INVALID_DIRECTION_MESSAGE = "[ERROR] 사용자가 움직일 수 있는 방향은 U 또는 D 입니다.";
+    static final String INVALID_RETRY_COMMAND_MESSAGE = "[ERROR] 사용자가 입력할 수 있는 명령은 R 또는 Q 입니다.";
 }
