@@ -17,6 +17,10 @@ public class Game {
         playing.add(down);
     }
 
+    public void setPlaying(List<List<String>> playing) {
+        this.playing = playing;
+    }
+
     public int getLocation() {
         return location;
     }
