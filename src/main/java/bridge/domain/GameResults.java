@@ -13,8 +13,8 @@ public class GameResults {
     private final List<String> upResults = new ArrayList<>();
     private final List<String> downResults = new ArrayList<>();
 
-    public void addResults(String moveCommands, String resultSign) {
-        if (moveCommands.equals(MOVE_UP_COMMAND)) {
+    public void addResults(String moveCommand, String resultSign) {
+        if (moveCommand.equals(MOVE_UP_COMMAND)) {
             upResults.add(resultSign);
             downResults.add(BLANK);
             return;
