@@ -55,7 +55,7 @@ public class BridgeGame {
         this.stepNumber = 0;
         this.retryNumber++;
     }
-    
+
     public boolean move(String userInput) {
         return this.stepCheck(userInput);
     }
