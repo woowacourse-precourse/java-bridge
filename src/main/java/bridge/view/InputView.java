@@ -4,6 +4,7 @@ import bridge.dto.BridgeSizeDTO;
 import bridge.dto.GameCommandDTO;
 import bridge.dto.MovingDTO;
 import bridge.validator.InputBridgeSizeValidator;
+import bridge.validator.InputSelectCharValidator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -19,7 +20,7 @@ public class InputView {
         try {
             InputBridgeSizeValidator.validate(inputBridgeSize);
             return new BridgeSizeDTO(Integer.parseInt(inputBridgeSize));
-        } catch (IllegalArgumentException raisedException) {
+        } catch (final IllegalArgumentException raisedException) {
             System.out.println(raisedException.getMessage());
             return readBridgeSize(outputView);
         }
@@ -32,9 +33,20 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public MovingDTO readMoving() {
-        final String inputMoving = Console.readLine();
-        return new MovingDTO(inputMoving);
+    public MovingDTO readMoving(final OutputView outputView) {
+        printMovingInputMessage(outputView);
+        try {
+            final String inputMoving = Console.readLine();
+            InputSelectCharValidator.validate(inputMoving);
+            return new MovingDTO(inputMoving);
+        } catch (final IllegalArgumentException raisedException) {
+            System.out.println(raisedException.getMessage());
+            return readMoving(outputView);
+        }
+    }
+    
+    private void printMovingInputMessage(final OutputView outputView) {
+        outputView.printMovingInputMessage();
     }
 
     /**

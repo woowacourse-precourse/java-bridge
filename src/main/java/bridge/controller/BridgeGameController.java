@@ -43,12 +43,7 @@ public class BridgeGameController {
     }
     
     private MovingDTO inputMoving() {
-        printMovingInputMessage();
-        return inputView.readMoving();
-    }
-    
-    private void printMovingInputMessage() {
-        outputView.printMovingInputMessage();
+        return inputView.readMoving(outputView);
     }
     
     private void printResultMap(final GameResultDTO gameResultDTO) {
