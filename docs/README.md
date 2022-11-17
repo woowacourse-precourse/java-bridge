@@ -101,3 +101,8 @@
 
 - public void printResult(List<String>)
   - 최종 게임 결과를 출력하는 메소드
+
+
+- public void printBridge(List<String>)
+  - 다리 상태를 출력하는 메소드
+  - printMap, printResult 메소드에서의 중복된 코드를 없애기 위한 메소드
