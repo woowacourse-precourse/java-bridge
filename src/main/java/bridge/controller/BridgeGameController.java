@@ -19,8 +19,12 @@ public class BridgeGameController {
     }
     
     private BridgeSizeDTO inputBridgeSize() {
-        System.out.println("사다리 길이 입력(3~20)");
+        printBridgeSizeInputMessage();
         return inputView.readBridgeSize();
+    }
+    
+    private void printBridgeSizeInputMessage() {
+        System.out.println("사다리 길이 입력(3~20)");
     }
     
     private void playBridgeGame(final BridgeGame bridgeGame) {
@@ -36,8 +40,12 @@ public class BridgeGameController {
     }
     
     private MovingDTO inputMoving() {
-        System.out.println("이동할 칸 입력(U, D)");
+        printMovingInputMessage();
         return inputView.readMoving();
+    }
+    
+    private void printMovingInputMessage() {
+        System.out.println("이동할 칸 입력(U, D)");
     }
     
     private boolean isGameFinished(final BridgeGame bridgeGame) {
@@ -62,9 +70,13 @@ public class BridgeGameController {
     }
     
     private String inputGameCommand() {
-        System.out.println("재시도 입력(Q, R)");
+        printGameCommandInputMessage();
         final GameCommandDTO gameCommandDTO = inputView.readGameCommand();
         return gameCommandDTO.getGameCommand();
+    }
+    
+    private void printGameCommandInputMessage() {
+        System.out.println("재시도 입력(Q, R)");
     }
     
     private void initBridgeGameForRetry(final BridgeGame bridgeGame) {
