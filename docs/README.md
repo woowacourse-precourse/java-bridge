@@ -6,7 +6,7 @@
 
 - [ ] 다리의 길이 입력 받기  (InputView)
   - 예외 발생 상황
-  - [ ] 3이상 20이하의 정수가 아닐시 예외 발생
+  - [X] 3이상 20이하의 정수가 아닐시 예외 발생 (ValidityCheck.numberRangeChecker)
   - [X] 문자를 입력했을 경우 예외 발생 (ValidityCheck.stringChecker)
 
 
