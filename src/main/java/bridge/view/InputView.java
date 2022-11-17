@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.Exception;
 import bridge.constant.Message;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -15,6 +16,7 @@ public class InputView {
         System.out.println(Message.INPUT_LENGTH.getMessage());
         String input = Console.readLine();
         int convertInput = Integer.parseInt(input);
+        Exception.lengthrangeException(convertInput);
         return convertInput;
     }
 
