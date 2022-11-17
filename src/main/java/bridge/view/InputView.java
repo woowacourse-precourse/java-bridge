@@ -12,7 +12,6 @@ import static bridge.service.Validation.*;
  */
 public class InputView {
 
-
     public int readBridgeSize() {
         String input = Console.readLine();
         try {
@@ -25,7 +24,6 @@ public class InputView {
             return readBridgeSize();
         }
     }
-
 
     public String readMoving() {
         String input = Console.readLine();

@@ -5,15 +5,13 @@ import java.util.Map;
 import java.util.Objects;
 
 public class BridgeMap {
-    private Map<String, StringBuilder> bridgeMap = new HashMap<>();
+    private final Map<String, StringBuilder> bridgeMap = new HashMap<>();
     private String message;
-
 
     public BridgeMap() {
         bridgeMap.put("U", new StringBuilder("[ "));
         bridgeMap.put("D", new StringBuilder("[ "));
     }
-
 
     public void updateBridgeMap(String answer, String userAnswer) {
         if(Objects.equals(answer, userAnswer)) {
