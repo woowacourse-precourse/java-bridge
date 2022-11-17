@@ -18,10 +18,19 @@ class ValidateUserInputTest {
                 .hasMessageContaining("[ERROR]");
     }
 
+    @DisplayName("업 다운 버튼이 유효한지에 대한 검사")
     @Test
     void checkReadMoving() {
         String moveButton = "Uk";
         assertThatThrownBy(() -> validateUserInput.checkReadMoving(moveButton))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+    @DisplayName("재시작 종료 버튼이 유효한지에 대한 검사")
+    @Test
+    void checkGameCommand() {
+        String commandButton = "12";
+        assertThatThrownBy(() -> validateUserInput.checkGameCommand(commandButton))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }

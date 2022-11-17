@@ -15,4 +15,9 @@ public class ValidateUserInput {
             return ;
         throw new IllegalArgumentException("[ERROR]");
     }
+    public void checkGameCommand(String gameCommandButton){
+        if(gameCommandButton.equals("R") || gameCommandButton.equals("Q"))
+            return ;
+        throw new IllegalArgumentException("[ERROR]");
+    }
 }
