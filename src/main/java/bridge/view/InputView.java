@@ -18,7 +18,7 @@ public class InputView {
             int inputToInt = getUserInputToInt();
             Validator.validateForRangeException(inputToInt);
             return inputToInt;
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return readBridgeSize();
         }
@@ -28,7 +28,15 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        try {
+            OutputView.printGameMessage(SELECT_UP_OR_DOWN_MESSAGE);
+            String input = getUserInputToString();
+            Validator.validateForIllegalInputUpOrDown(input);
+            return input;
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return readMoving();
+        }
     }
 
     /**
@@ -38,13 +46,17 @@ public class InputView {
         return null;
     }
 
+    private String getUserInputToString() {
+        return Console.readLine();
+    }
+
     private int getUserInputToInt() {
         try {
             OutputView.printGameMessage(REQUEST_FOR_BRIDGE_SIZE_MESSAGE);
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
             OutputView.printErrorMessage(ERROR_MESSAGE + OUT_OF_RANGE_ERROR_MESSAGE);
-             return getUserInputToInt();
+            return getUserInputToInt();
         }
     }
 
