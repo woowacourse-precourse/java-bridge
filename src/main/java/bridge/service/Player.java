@@ -1,7 +1,7 @@
 package bridge.service;
 
-import bridge.io.InputView;
-import bridge.io.OutputView;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class Player {
 

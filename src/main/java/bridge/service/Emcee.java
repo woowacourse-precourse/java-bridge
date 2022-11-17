@@ -1,6 +1,6 @@
 package bridge.service;
 
-import bridge.io.OutputView;
+import bridge.view.OutputView;
 
 public class Emcee {
 
