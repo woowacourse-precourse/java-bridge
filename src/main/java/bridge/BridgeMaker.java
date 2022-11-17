@@ -34,10 +34,11 @@ public class BridgeMaker {
     }
 
     public void changeNumberToDirection(List<String> bridges) {
-        if(bridgeNumberGenerator.generate() == DOWN) {
+        int result = bridgeNumberGenerator.generate();
+        if(result == DOWN) {
             bridges.add("D");
         }
-        if(bridgeNumberGenerator.generate() == UP) {
+        if(result == UP) {
             bridges.add("U");
         }
     }
