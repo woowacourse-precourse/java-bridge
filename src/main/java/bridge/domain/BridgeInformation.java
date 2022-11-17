@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public enum BridgeInformation {
-    UP(0, "U"), DOWN(1, "D"), WRONG(-1, "WRONG");
+    UP(1, "U"), DOWN(0, "D"), WRONG(-1, "WRONG");
 
     private final int bridgeNumber;
     private final String bridgePosition;
