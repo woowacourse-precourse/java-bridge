@@ -2,10 +2,6 @@ package bridge.presentation;
 
 import bridge.application.GameService;
 import bridge.application.ViewService;
-import bridge.presentation.dto.BridgeSize;
-import bridge.presentation.dto.SelectMove;
-import camp.nextstep.edu.missionutils.Console;
-
 public class GameController {
     private static final GameController instance=new GameController();
     private final GameService gameService;
@@ -22,14 +18,13 @@ public class GameController {
     }
     public void inputBridgeSize(){
         viewService.printInputBridgeSizeMessage();
-        gameService.saveBridgeSize(new BridgeSize(Console.readLine()));
+        gameService.saveBridgeSize(viewService.inputBridgeSize());
     }
     public void generateBridge(){
         gameService.generatorBridge();
     }
-
     public void inputSelectMove(){
         viewService.printSelectMoveMessage();
-        gameService.saveSelectMove(new SelectMove(Console.readLine()));
+        gameService.saveSelectMove(viewService.inputSelectMove());
     }
 }
