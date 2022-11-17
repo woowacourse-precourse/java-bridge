@@ -16,4 +16,9 @@ public class InputException {
         if (!movingInput.equals("U") && !movingInput.equals("D"))
             throw new IllegalArgumentException();
     }
+
+    public static void gameCommandInputErrorCheck(String gameCommandInput) {
+        if (!gameCommandInput.equals("R") && !gameCommandInput.equals("Q"))
+            throw new IllegalArgumentException();
+    }
 }
