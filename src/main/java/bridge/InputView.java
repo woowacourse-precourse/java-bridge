@@ -16,9 +16,11 @@ public class InputView {
 
     private String lineInput;
 
-    private void checkLengthLimit(String lineInput, int limit) {
-        if (lineInput.length() > limit)
+    private void checkLengthLimit(String lineInput, InputType inputType) {
+        if (lineInput.length() <= inputType.lengthLimit) return;
+        if (inputType == InputType.BRIDGELENGTH)
             throw new IllegalArgumentException("[ERROR] 한 글자 또는 두 글자만 입력해주세요.");
+        throw new IllegalArgumentException("[ERROR] 한 글자만 입력해주세요.");
     }
 
     private void isInputNumber(String lineInput) {
@@ -58,7 +60,7 @@ public class InputView {
     }
 
     private void validate(String lineInput, InputType inputType) {
-        checkLengthLimit(lineInput, inputType.lengthLimit);
+        checkLengthLimit(lineInput, inputType);
         if(inputType == InputType.BRIDGELENGTH) {
             validateBridgeSize(lineInput);
             return;
