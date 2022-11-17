@@ -2,17 +2,16 @@ package bridge.domain;
 
 public class Bridge {
     private BridgeState bridgeState;
-    private boolean alreadyCrossed;
+    private boolean alreadyCrossed = false;
 
     private Bridge() {
     }
 
-    private Bridge(BridgeState bridgeState, boolean alreadyCrossed) {
+    private Bridge(BridgeState bridgeState) {
         this.bridgeState = bridgeState;
-        this.alreadyCrossed = alreadyCrossed;
     }
 
-    public static Bridge create(BridgeState bridgeState, boolean alreadyCrossed) {
-        return new Bridge(bridgeState, alreadyCrossed);
+    public static Bridge create(BridgeState bridgeState) {
+        return new Bridge(bridgeState);
     }
 }

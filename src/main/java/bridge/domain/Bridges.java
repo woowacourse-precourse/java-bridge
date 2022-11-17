@@ -13,7 +13,7 @@ public class Bridges {
     public void generate(List<String> bridges) {
         bridges.forEach(bridge -> {
             BridgeState bridgeState = BridgeState.valueOfUser(bridge);
-            this.bridges.add(Bridge.create(bridgeState, false));
+            this.bridges.add(Bridge.create(bridgeState));
         });
     }
 }
