@@ -6,8 +6,12 @@ import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import static bridge.utils.Constants.MESSAGE_START_BRIDGE_GAME;
+
 public class BridgeGameController {
+
     public static void startGame() {
+        System.out.println(MESSAGE_START_BRIDGE_GAME);
         try {
             makeBridge(InputView.readBridgeLength());
         } catch (IllegalArgumentException e) {

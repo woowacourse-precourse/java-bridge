@@ -16,13 +16,15 @@ public class Constants {
     public static final int MINIMUM_BRIDGE_LENGTH = 3;
     public static final int MAXIMUM_BRIDGE_LENGTH = 20;
     public static final int INPUT_GAME_COMMAND_SIZE = 1;
-    public static final String ERROR_MESSAGE_OUT_OF_RANGE_BRIDGE_LENGTH = "[ERROR] 다리 길이는 3이상 20이하여야 합니다.";
-    public static final String ERROR_MESSAGE_NOT_DIGIT = "[ERROR] 다리 길이는 숫자만 입력 가능합니다.";
-    public static final String ERROR_MESSAGE_NOT_VALID_SPACE_NAME = "[ERROR] 이동할 칸은 'U' 혹은 'D'만 입력 가능합니다.";
-    public static final String ERROR_MESSAGE_INPUT_SIZE = "[ERROR] 하나의 문자만 입력 가능합니다.";
-    public static final String ERROR_MESSAGE_NOT_VALID_GAME_COMMAND_NAME = "[ERROR] 재시작 코드는 'Q' 또는 'R'만 입력 가능합니다.";
+    private static final String ERROR = "[ERROR]";
+    public static final String ERROR_MESSAGE_OUT_OF_RANGE_BRIDGE_LENGTH = ERROR + " 다리 길이는 3이상 20이하여야 합니다.";
+    public static final String ERROR_MESSAGE_NOT_DIGIT = ERROR + " 다리 길이는 숫자만 입력 가능합니다.";
+    public static final String ERROR_MESSAGE_NOT_VALID_SPACE_NAME = ERROR + " 이동할 칸은 'U' 혹은 'D'만 입력 가능합니다.";
+    public static final String ERROR_MESSAGE_INPUT_SIZE = ERROR + " 하나의 문자만 입력 가능합니다.";
+    public static final String ERROR_MESSAGE_NOT_VALID_GAME_COMMAND_NAME = ERROR + " 재시작 코드는 'Q' 또는 'R'만 입력 가능합니다.";
 
     //입력 관련 상수
+    public static final String MESSAGE_START_BRIDGE_GAME = "다리 건너기 게임을 시작합니다.\n";
     public static final String COLLECT_MESSAGE = "O";
     public static final String FAIL_MESSAGE = "X";
     public static final String BLANK = " ";
