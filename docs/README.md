@@ -9,7 +9,8 @@
   - [x] 다리 길이 입력 - InputView#readBridgeSize()
   - [x] 이동할 위치 입력 - InputView#readMoving()
   - [x] 재시도 여부 입력 - InputView#readGameCommand()
-  - [ ] 다리 뼈대 출력하기
+  - [x] printBridge 를 사용해 다리 출력하기 - OutputView#printMap()
+    - [x] bridge 리스트에 저장된 데이터를 사용해 다리를 출력한다. - OutputView#printBridge()
   - [ ] 이동 위치, 성공 여부에 따른 위치 출력
   - [ ] 기타 출력 메시지 (시작, 길이입력 등..)
   - [ ] 최종 결과 출력
