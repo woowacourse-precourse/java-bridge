@@ -1,6 +1,9 @@
 package bridge.view;
 
+import bridge.enums.IntEnum;
 import camp.nextstep.edu.missionutils.Console;
+
+import static bridge.enums.IntEnum.*;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -13,7 +16,16 @@ public class InputView {
     public int readBridgeSize() {
         String bridgeSizeInput = Console.readLine();
         bridgeInputDigitValidate(bridgeSizeInput);
+        bridgeInputRangeValidate(bridgeSizeInput);
         return Integer.parseInt(bridgeSizeInput);
+    }
+
+    private void bridgeInputRangeValidate(String bridgeSizeInput) {
+        int bridgeSize = Integer.parseInt(bridgeSizeInput);
+        if(BRIDGE_START.num()>bridgeSize || BRIDGE_LAST.num()<bridgeSize){
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 "+ BRIDGE_START.num()+"부터"+ BRIDGE_START.num()+
+                    "사이의 숫자여야 합니다.");
+        }
     }
 
     private void bridgeInputDigitValidate(String bridgeSizeInput) {
