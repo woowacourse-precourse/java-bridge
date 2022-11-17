@@ -32,6 +32,7 @@ public class BridgeGame {
                 break;
             }
         }
+        outputView.printResult(isGameWinningClosed,gameCount);
     }
 
 
