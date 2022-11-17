@@ -16,11 +16,11 @@
 
 ### BridgeGame
 
--[ ] 다리 이동 후 결과 저장
+-[x] 다리 이동 후 결과 저장
 -[ ] 게임 재시작
 
 ### BridgeMaker
-g
+
 -[x] 랜덤값을 이용해 다리 생성
 
 ### Exception

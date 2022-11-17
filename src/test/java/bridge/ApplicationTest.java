@@ -7,7 +7,10 @@ import static org.assertj.core.util.Lists.newArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+
+import java.util.ArrayList;
 import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -27,11 +30,11 @@ class ApplicationTest extends NsTest {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "U");
             assertThat(output()).contains(
-                "최종 게임 결과",
-                "[ O |   | O ]",
-                "[   | O |   ]",
-                "게임 성공 여부: 성공",
-                "총 시도한 횟수: 1"
+                    "최종 게임 결과",
+                    "[ O |   | O ]",
+                    "[   | O |   ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 1"
             );
 
             int upSideIndex = output().indexOf("[ O |   | O ]");
@@ -58,6 +61,22 @@ class ApplicationTest extends NsTest {
 
         // then
         assertEquals(10, bridge.size());
+    }
+
+    @Test
+    void 다리_이동_후_결과_확인() {
+        // given
+        BridgeGame bridgeGame = new BridgeGame();
+        List<String> bridge = new ArrayList<>();
+        bridge.add("U");
+
+        // when
+        bridgeGame.move("U", bridge);
+        System.out.println("hello2");
+
+        // then
+        assertEquals(2, bridge.size());
+        assertEquals("U", bridge.get(1));
     }
 
     @Override

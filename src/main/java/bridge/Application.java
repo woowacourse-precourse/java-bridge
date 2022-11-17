@@ -8,9 +8,16 @@ public class Application {
     public static void main(String[] args) {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
         int size = InputView.readBridgeSize();
+        BridgeGame bridgeGame = new BridgeGame();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> generatedBridge = bridgeMaker.makeBridge(size);
-        List<String> nowBridge = new ArrayList<>();
-        InputView.readMoving(nowBridge);
+        boolean flag = true;
+
+        while(flag == true){
+            List<String> nowBridge = new ArrayList<>();
+            InputView.readMoving(bridgeGame, nowBridge);
+            flag = false;
+        }
+
     }
 }
