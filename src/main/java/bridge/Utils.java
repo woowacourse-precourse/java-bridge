@@ -22,4 +22,10 @@ public class Utils {
         return new UsersBridgeCrossStatus(newBridge);
     }
 
+    public List<String> makeAnswerBridge(int length) {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        return bridgeMaker.makeBridge(length);
+    }
+
 }
