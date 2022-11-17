@@ -18,4 +18,8 @@ public enum GameStatus {
     public String getSafe() {
         return safe;
     }
+
+    public String getState() {
+        return state;
+    }
 }
