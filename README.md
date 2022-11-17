@@ -12,11 +12,19 @@
   - 다리의 위, 아래를 랜덤으로 결정하는 기능
 - InputView
   - 다리 건너기 게임의 입력을 담당하는 기능
+- BridgeComponentGenerator
+  - 다리의 위, 아래를 생성하는 기능
+- MapMaker
+  - 사용자가 지나간 길을 만드는 기능
+- Validate
+  - 유효한 값 검사 기능
 
 ### **2. ui**
 
 - OutputView
   - 다리 건너기 게임의 출력을 담당하는 기능
+- ErrorMessage
+  - Error message 담은 enum
 
 ## 🔍 진행 방식
 
