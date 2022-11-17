@@ -11,7 +11,13 @@ public class BridgeGame {
         boolean gameSuccess = true;
 
         while (gameSuccess) {
-            String pick = InputView.readMoving();
+            String pick = "";
+            try {
+                pick = InputView.readMoving();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+                continue;
+            }
             move(pick, nowBridge);
             System.out.println(OutputView.printMap(nowBridge, generatedBridge));
             gameSuccess = compareBridge(nowBridge, generatedBridge);

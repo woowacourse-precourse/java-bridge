@@ -3,6 +3,7 @@ package bridge;
 import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.BridgeException.BridgeSizeException;
+import static bridge.BridgeException.MovingException;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -22,7 +23,7 @@ public class InputView {
      */
     public static String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        return Console.readLine();
+        return MovingException(Console.readLine());
     }
 
     /**

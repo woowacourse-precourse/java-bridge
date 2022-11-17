@@ -15,4 +15,15 @@ public class BridgeException {
 
         return size;
     }
+
+    public static String MovingException(String input) {
+
+        if (input.length() != 1) {
+            throw new IllegalArgumentException("[ERROR] U, D 중에서 하나의 문자를 입력하시오.");
+        }
+        if (input.charAt(0) != 'U' && input.charAt(0) != 'D') {
+            throw new IllegalArgumentException("[ERROR] U, D 중에서 하나의 문자를 입력하시오.");
+        }
+        return input;
+    }
 }
