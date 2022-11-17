@@ -21,6 +21,6 @@ public class Player {
     }
 
     private void initPosition() {
-        this.positionIndex = 0;
+        this.positionIndex = -1;
     }
 }
