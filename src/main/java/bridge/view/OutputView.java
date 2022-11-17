@@ -22,6 +22,6 @@ public class OutputView {
     }
 
     public static void printStartGame(){
-        System.out.println(START_BRIDGE_GAME);
+        System.out.println(START_BRIDGE_GAME + "\n");
     }
 }
