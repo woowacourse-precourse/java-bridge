@@ -1,8 +1,23 @@
-package bridge;
+package bridge.validation;
 
-import static bridge.Message.ERROR_INVALID_BRIDGE_SIZE;
+import static bridge.validation.ErrorMessage.ERROR_INVALID_BRIDGE_SIZE;
+import static bridge.validation.ErrorMessage.ERROR_INVALID_GAME_COMMAND;
+import static bridge.validation.ErrorMessage.ERROR_INVALID_MOVE_COMMAND;
+
+import bridge.command.GameCommand;
+import bridge.command.MoveCommand;
 
 public class Validation {
+    public static void validateGameCommand(String userInput){
+        if(!GameCommand.exist(userInput)){
+            throw new IllegalArgumentException(ERROR_INVALID_GAME_COMMAND);
+        }
+    }
+    public static void validateMoveCommand(String userInput){
+        if(!MoveCommand.exist(userInput)){
+            throw new IllegalArgumentException(ERROR_INVALID_MOVE_COMMAND);
+        }
+    }
     public static void validateBridgeSize(String userInput){
         isEmpty(userInput);
         isNumeric(userInput);

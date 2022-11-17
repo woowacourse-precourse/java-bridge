@@ -1,7 +1,9 @@
 package bridge;
 
-import static bridge.Message.ERROR_INVALID_BRIDGE_SIZE;
-import static bridge.Validation.validateBridgeSize;
+import static bridge.validation.ErrorMessage.ERROR_INVALID_BRIDGE_SIZE;
+import static bridge.validation.ErrorMessage.ERROR_INVALID_MOVE_COMMAND;
+import static bridge.validation.Validation.validateBridgeSize;
+import static bridge.validation.Validation.validateMoveCommand;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -17,5 +19,19 @@ class ValidationTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ERROR_INVALID_BRIDGE_SIZE);
     }
-
+    @ParameterizedTest
+    @DisplayName("[ERROR] U 또는 D 이외의 값 입력시 예외 발생")
+    @CsvSource({"1U","u","A"})
+    void invalidInputInMoveCommand(String userInput){
+        assertThatThrownBy(()->validateMoveCommand(userInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ERROR_INVALID_MOVE_COMMAND);
+    }    @ParameterizedTest
+    @DisplayName("[ERROR] R 또는 Q 이외의 값 입력시 예외 발생")
+    @CsvSource({"1Q","1R","QQ","RR"})
+    void invalidInputInGameCommand(String userInput){
+        assertThatThrownBy(()->validateMoveCommand(userInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ERROR_INVALID_MOVE_COMMAND);
+    }
 }

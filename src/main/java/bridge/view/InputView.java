@@ -1,6 +1,8 @@
 package bridge.view;
 
-import static bridge.Validation.validateBridgeSize;
+import static bridge.validation.Validation.validateBridgeSize;
+import static bridge.validation.Validation.validateGameCommand;
+import static bridge.validation.Validation.validateMoveCommand;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 /**
@@ -18,16 +20,20 @@ public class InputView {
     }
 
     /**
-     * 사용자가 이동할 칸을 입력받는다.
+     * 사용자가 이동할 칸을 입력받는다. U / D
      */
     public String readMoving() {
-        return null;
+        String userInput = readLine();
+        validateMoveCommand(userInput);
+        return userInput;
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String userInput = readLine();
+        validateGameCommand(userInput);
+        return userInput;
     }
 }
