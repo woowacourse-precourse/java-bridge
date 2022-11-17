@@ -1,13 +1,8 @@
 package bridge.model;
 
-import java.util.Optional;
-
 public class UserInputExceptions {
 	public static boolean isNotValidLength(String length) {
-		if (isNotNumber(length) || isNotInRangeNumber(length)) {
-			throw new IllegalArgumentException(Messages.wrongLengthErrorMessage);
-		}
-		return false;
+		return isNotNumber(length) || isNotInRangeNumber(length);
 	}
 
 	private static boolean isNotNumber(String length) {
