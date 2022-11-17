@@ -31,15 +31,32 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(final MovingDTO movingDTO) {
-        states.add(nextState(movingDTO));
+        readyState();
+        convertToNextState(movingDTO);
+    }
+    
+    private void readyState() {
+        states.add(new Ready(bridge));
+    }
+    
+    private void convertToNextState(final MovingDTO movingDTO) {
+        states.set(statesLastIndex(), nextState(movingDTO));
     }
     
     private State nextState(final MovingDTO movingDTO) {
-        return initState().move(states.size(), movingDTO.getMoving());
+        return lastState().move(statesLastIndex(), movingDTO.getMoving());
     }
     
-    private State initState() {
-        return new Ready(bridge);
+    private int statesLastIndex() {
+        return states.size() - 1;
+    }
+    
+    private State lastState() {
+        return states.getLast();
+    }
+    
+    public boolean isMoveFail() {
+        return lastState().isMoveFailed();
     }
     
     /**
@@ -62,14 +79,6 @@ public class BridgeGame {
     
     public boolean isGameFinished() {
         return !states.isEmpty() && lastState().isGameFinished(states.size());
-    }
-    
-    public boolean isMoveFail() {
-        return lastState().isMoveFailed();
-    }
-    
-    private State lastState() {
-        return states.getLast();
     }
     
     public List<MoveResult> moveResult() {
