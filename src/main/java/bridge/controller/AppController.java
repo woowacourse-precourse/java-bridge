@@ -6,7 +6,7 @@ import bridge.view.Message;
 import bridge.view.OutputView;
 
 public class AppController {
-    private final Bridge bridge;
+    //private final Bridge bridge;
 
     public void makeBridge() {
         OutputView.printLine(Message.INTRO);

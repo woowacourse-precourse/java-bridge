@@ -13,7 +13,7 @@ public class InputValidate {
 
     public static boolean isInteger(String beforeChangeNum) {
         if(beforeChangeNum.contains(".")) {
-            return false;
+            throw new IllegalArgumentException();
         }
 
         return true;
