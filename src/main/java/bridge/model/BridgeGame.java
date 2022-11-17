@@ -27,7 +27,7 @@ public class BridgeGame {
                 UPSIDE, new ArrayList<>(),
                 DOWNSIDE, new ArrayList<>()
         );
-        this.trials = 0;
+        this.trials = 1;
     }
 
     /**
