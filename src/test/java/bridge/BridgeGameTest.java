@@ -36,5 +36,13 @@ class BridgeGameTest {
                 .hasMessageNotContaining("[ERROR]");
     }
 
+    // 가구현
+    @DisplayName("캐릭터의 이동 방향이 항상 왼쪽에서 오른쪽인지 확인한다.")
+    @Test
+    void validate_Is_Direction_From_Left_To_Right() {
+        assertThatThrownBy(()-> new BridgeGame())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
 
 }
