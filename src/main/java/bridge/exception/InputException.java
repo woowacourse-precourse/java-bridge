@@ -16,7 +16,14 @@ public class InputException {
 
     public void validateMoving(String moving) {
         if (!moving.equals("U") && !moving.equals("D")) {
-            System.out.println("[ERROR] U 또는 R 값만 입력해주세요.");
+            System.out.println("[ERROR] 주어진 선택지를 벗어났습니다.");
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void validateGameCommand(String gameCommand) {
+        if (!gameCommand.equals("R") && !gameCommand.equals("Q")) {
+            System.out.println("[ERROR] 주어진 선택지를 벗어났습니다.");
             throw new IllegalArgumentException();
         }
     }
