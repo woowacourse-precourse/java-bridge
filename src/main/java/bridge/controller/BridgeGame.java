@@ -1,9 +1,27 @@
-package bridge;
+package bridge.controller;
+
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.enums.Message;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+
+import java.util.List;
+
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private static final OutputView outputView = new OutputView();
+    private static final InputView inputView = new InputView();
+
+    public void start() {
+        outputView.printMessage(Message.GAME_START_MSG);
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
