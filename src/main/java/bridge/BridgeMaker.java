@@ -13,11 +13,28 @@ public class BridgeMaker {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
+    public static BridgeMaker getInstanceByRandomGenerator() {
+        return new BridgeMaker(new BridgeRandomNumberGenerator());
+    }
+
     /**
      * @param size 다리의 길이
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
         return null;
+    }
+
+    private String generateBridgeLine() {
+        int number = bridgeNumberGenerator.generate();
+
+        if (number == 0) {
+            return GameKeySet.UP.getKeySet();
+        }
+        if (number == 1) {
+            return GameKeySet.DOWN.getKeySet();
+        }
+
+        throw new IllegalStateException("[ERROR] 랜덤 생성 오류");
     }
 }
