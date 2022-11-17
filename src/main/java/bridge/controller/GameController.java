@@ -5,6 +5,7 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeTile;
+import bridge.domain.Player;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -38,6 +39,11 @@ public class GameController {
                 System.out.println(exception.getMessage());
             }
         }
+    }
+
+    private void playOneTurn(Bridge bridge, Player player) {
+        BridgeTile movingTargetTile = generateMovingTargetTile();
+        bridgeGame.move(bridge, player, movingTargetTile);
     }
 
     private BridgeTile generateMovingTargetTile() {
