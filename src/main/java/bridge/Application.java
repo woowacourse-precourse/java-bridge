@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.Domain.BridgeGame;
-import bridge.Domain.Player;
 import bridge.View.InputView;
 import bridge.View.OutputView;
 
@@ -9,7 +8,7 @@ public class Application {
     private static InputView inputView = new InputView();
     private static OutputView outputView = new OutputView();
 
-    public static BridgeGame initiateBridgeGame(InputView inputView) {
+    public static BridgeGame initiateBridgeGame() {
         boolean exceptionFlag = true;
         BridgeGame bridgeGame = null;
 
@@ -30,7 +29,7 @@ public class Application {
         return bridgeGame;
     }
 
-    public static void inputMoving(InputView inputView, BridgeGame bridgeGame) {
+    public static void inputMoving(BridgeGame bridgeGame) {
         boolean exceptionFlag = true;
         while(exceptionFlag) {
             exceptionFlag = false;
@@ -47,14 +46,14 @@ public class Application {
 
     public static void run(BridgeGame bridgeGame) {
         while(!bridgeGame.winGame() && !bridgeGame.isPlayerDead()) {
-            inputMoving(inputView, bridgeGame);
+            inputMoving(bridgeGame);
             outputView.printMap(bridgeGame);
             bridgeGame.updatePlayer();
         }
     }
 
     public static void main(String[] args) {
-        BridgeGame bridgeGame = initiateBridgeGame(inputView);
+        BridgeGame bridgeGame = initiateBridgeGame();
 
         run(bridgeGame);
         outputView.printResult(bridgeGame);
