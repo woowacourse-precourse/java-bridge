@@ -1,5 +1,7 @@
 package bridge.view;
 
+import static bridge.ExceptionConst.*;
+
 import bridge.domain.BridgeFlag;
 import bridge.domain.Map;
 import java.util.List;
@@ -55,7 +57,7 @@ public class OutputView {
         if (flag == BridgeFlag.FAIL) {
             return "실패";
         }
-        throw new IllegalArgumentException("[ERROR] SUCCESS 혹은 FAIL만 가능합니다.");
+        throw new IllegalArgumentException(EXCEPTION_MESSAGE_SUCCESS_OR_FAIL);
     }
 
     public void printGameStartMessage() {

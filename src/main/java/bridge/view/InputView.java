@@ -1,5 +1,7 @@
 package bridge.view;
 
+import static bridge.ExceptionConst.*;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.regex.Pattern;
 
@@ -20,7 +22,7 @@ public class InputView {
 
     private void validateNumber(String input) {
         if (!BRIDGE_SIZE_PATTERN.matcher(input).matches()) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_ONLY_NUMBER);
         }
     }
 
@@ -35,7 +37,7 @@ public class InputView {
 
     private void validateMoveInput(String input) {
         if (!input.equals("U") && !input.equals("D")) {
-            throw new IllegalArgumentException("[ERROR] U 또는 D만 입력해주세요.");
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_U_OR_D);
         }
     }
 
@@ -50,7 +52,7 @@ public class InputView {
 
     private void validateRestartOrQuitInput(String input) {
         if (!input.equals("R") && !input.equals("Q")) {
-            throw new IllegalArgumentException("[ERROR] R 또는 Q만 입력해주세요.");
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_R_OR_Q);
         }
     }
 
@@ -62,7 +64,7 @@ public class InputView {
 
     private void validateInput(String input) {
         if (input.length() >= 9) {
-            throw new IllegalArgumentException("[ERROR] 너무 긴 문자열은 입력할 수 없습니다.");
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_LONG_STRING);
         }
     }
 }

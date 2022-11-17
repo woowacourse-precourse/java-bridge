@@ -1,5 +1,7 @@
 package bridge.util;
 
+import static bridge.ExceptionConst.*;
+
 import bridge.domain.UpDownFlag;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +38,7 @@ public class BridgeMaker {
 
     private void validateLength(int size) {
         if (size < 3 || size > 20) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_BRIDGE_LENGTH_3_TO_20);
         }
     }
 }

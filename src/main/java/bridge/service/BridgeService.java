@@ -1,5 +1,7 @@
 package bridge.service;
 
+import static bridge.ExceptionConst.*;
+
 import bridge.controller.GameFlag;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeFlag;
@@ -31,7 +33,7 @@ public class BridgeService {
 
     public BridgeFlag getGameStatus(Bridge bridge, User user) {
         if (bridge.getLength() < user.getMovedLength()) {
-            throw new IllegalArgumentException("[ERROR] 유저가 건넌 다리의 길이가 다리의 길이보다 깁니다.");
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_BRIDGE_LENGTH_OVER_USER);
         }
         return isCrossOver(bridge.getBridge(), user.getMovedPosition());
     }

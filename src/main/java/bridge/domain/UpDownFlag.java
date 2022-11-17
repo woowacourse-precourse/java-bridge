@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import static bridge.ExceptionConst.*;
+
 public enum UpDownFlag {
     UP("U", 1),
     DOWN("D", 0);
@@ -19,7 +21,7 @@ public enum UpDownFlag {
         if (flag.equals(DOWN.flag)) {
             return DOWN;
         }
-        throw new IllegalArgumentException("[ERROR] U 또는 D만 허용됩니다.");
+        throw new IllegalArgumentException(EXCEPTION_MESSAGE_U_OR_D);
     }
 
     public static String codeToFlag(int code) {
@@ -29,6 +31,6 @@ public enum UpDownFlag {
         if (code == DOWN.code) {
             return DOWN.flag;
         }
-        throw new IllegalArgumentException("[ERROR] 0 또는 1만 허용됩니다.");
+        throw new IllegalArgumentException(EXCEPTION_MESSAGE_0_OR_1);
     }
 }

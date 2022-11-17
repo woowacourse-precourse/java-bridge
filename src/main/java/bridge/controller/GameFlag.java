@@ -1,5 +1,7 @@
 package bridge.controller;
 
+import static bridge.ExceptionConst.*;
+
 public enum GameFlag {
     RESTART("R"),
     QUIT("Q");
@@ -17,6 +19,6 @@ public enum GameFlag {
         if (flag.equals(QUIT.flag)) {
             return QUIT;
         }
-        throw new IllegalArgumentException("[ERROR] R 또는 Q만 허용됩니다.");
+        throw new IllegalArgumentException(EXCEPTION_MESSAGE_R_OR_Q);
     }
 }
