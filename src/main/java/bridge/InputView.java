@@ -20,6 +20,18 @@ public class InputView {
         }
     }
 
+    public String readMoving() {
+        try {
+            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            String userInputCommand = Console.readLine();
+            UserInputException.commandCheck(userInputCommand, "read");
+            return userInputCommand;
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR]");
+            return readMoving();
+        }
+    }
+
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
