@@ -1,5 +1,8 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameSimulator {
 
     private InputView inputView = new InputView();
@@ -8,7 +11,8 @@ public class GameSimulator {
 
     private int trial = 1;
     private int bridgeSize;
-    private String route = "";
+    private List<String> bridge;
+    private List<String> userRoute = new ArrayList<>();
 
     public void simulateGame() {
         initializeGame();
@@ -17,7 +21,15 @@ public class GameSimulator {
     }
 
     private void initializeGame() {
+        outputView.printGameStart();
+        bridgeSize = inputView.readBridgeSize();
 
+        makeBridge();
+    }
+
+    private void makeBridge() {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
     private void startGame() {
