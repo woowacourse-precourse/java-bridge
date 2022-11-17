@@ -17,4 +17,12 @@ public class OutputView {
     public void printInputGameCommand() {
         System.out.println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
+
+    public void printSuccessStatus(boolean status) {
+        if (status) {
+            System.out.println("\n게임 성공 여부: 성공");
+            return;
+        }
+        System.out.println("\n게임 성공 여부: 실패");
+    }
 }
