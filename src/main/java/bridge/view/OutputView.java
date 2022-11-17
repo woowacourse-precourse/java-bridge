@@ -24,20 +24,28 @@ public class OutputView {
         for (int step = 0; step < bridgeGame.getLocate(); step++) {
             if (bridgeGame.getBridge().get(step).equals("U")) {
                 System.out.print("O ");
-                continue;
             }
-            System.out.print("  ");
+            else{
+                System.out.print("  ");
+            }
+            System.out.print("  | ");
         }
         System.out.println("]");
+
         System.out.print("[ ");
         for (int step = 0; step < bridgeGame.getLocate(); step++) {
             if (bridgeGame.getBridge().get(step).equals("D")) {
-                System.out.print("X ");
-                continue;
+                System.out.print("O ");
             }
-            System.out.print("  ");
+            else{
+                System.out.print("  ");
+            }
+            System.out.print("  | ");
         }
         System.out.println("]");
+
+
+        System.out.println();
     }
 
     /**

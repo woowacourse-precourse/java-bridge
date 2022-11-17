@@ -26,12 +26,24 @@ public class Controller {
         while (moving == null) {
             moving = inputView.readMoving();
         }
-        if (!bridgeGame.move(moving)) {
+        boolean movement = bridgeGame.move(moving);
+
+        if (!movement) {
+            outputView.printMap(bridgeGame, false);
+            outputView.printRetry();
             result(bridgeGame, false);
             return false;
         }
         outputView.printMap(bridgeGame, true);
         return true;
+    }
+    public boolean finish(BridgeGame bridgeGame){
+        outputView.printRetry();
+        String gameCommand = inputView.readGameCommand();
+        while (gameCommand == null){
+            gameCommand = inputView.readGameCommand();
+        }
+        return bridgeGame.retry(gameCommand);
     }
 
     public void result(BridgeGame bridgeGame, boolean success) {
