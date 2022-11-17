@@ -8,7 +8,7 @@ public class Validator {
     }
 
     public static void isMoveAlpha(String alpha){
-        if (!(alpha == "D" || alpha == "U")){
+        if (!(alpha.charAt(0) == 'D' || alpha.charAt(0) == 'U')){
             throw new IllegalArgumentException("[ERROR] 이동할 칸은 U, D의 입력만 가능합니다.");
         }
     }
