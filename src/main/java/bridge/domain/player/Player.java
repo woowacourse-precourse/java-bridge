@@ -15,4 +15,7 @@ public class Player {
     public void movePlayerLocation() {
         playerLocation++;
     }
+    public void resetPlayerLocation() {
+        playerLocation = 0;
+    }
 }
