@@ -8,6 +8,9 @@ public class InputValidator {
         if (!isNumber(input)) {
             throw new IllegalArgumentException(BRIDGE_SIZE_ERROR);
         }
+        if (!isSizeThreeToTwenty(input)) {
+            throw new IllegalArgumentException(BRIDGE_SIZE_ERROR);
+        }
         return Integer.parseInt(input);
     }
 
@@ -18,5 +21,10 @@ public class InputValidator {
             }
         }
         return true;
+    }
+
+    private static boolean isSizeThreeToTwenty(String input) {
+        int bridgeSize = Integer.parseInt(input);
+        return bridgeSize >= 3 && bridgeSize <= 20;
     }
 }
