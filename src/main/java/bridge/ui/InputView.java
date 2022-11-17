@@ -1,5 +1,8 @@
 package bridge.ui;
 
+import bridge.message.Message;
+
+import static bridge.message.Message.*;
 import static bridge.ui.Validate.*;
 import static camp.nextstep.edu.missionutils.Console.*;
 
@@ -12,6 +15,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        System.out.println(REQUEST_BRIDGE_SIZE);
         String input = readLine();
 
         digitTypeValidate(input);
@@ -26,6 +30,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+        System.out.println(REQUEST_MOVE);
         String direction = readLine();
 
         directionValidate(direction);
@@ -37,6 +42,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
+        System.out.println(REQUEST_RETRY);
         String command = readLine();
 
         commandValidate(command);
