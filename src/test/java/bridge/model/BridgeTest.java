@@ -1,6 +1,7 @@
 package bridge.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -36,6 +37,32 @@ class BridgeTest {
 
         //then
         assertThat(result).isFalse();
+    }
+
+    @DisplayName("해당 위치가 다리 길이를 벗어나면 예외가 발생한다.")
+    @Test
+    void outOfIndex() {
+        //given
+        Bridge bridge = new Bridge(List.of("U", "D"));
+        int index = 2;
+        String direction = "D";
+
+        //then
+        assertThatThrownBy(() -> bridge.validateDirection(index, direction))
+                .isInstanceOf(IllegalStateException.class);
+    }
+
+    @DisplayName("해당 위치의 방향이 올바르지 않으면 예외가 발생한다.")
+    @Test
+    void validateDirection() {
+        //given
+        Bridge bridge = new Bridge(List.of("U", "D"));
+        int index = 0;
+        String direction = "D";
+
+        //then
+        assertThatThrownBy(() -> bridge.validateDirection(index, direction))
+                .isInstanceOf(IllegalStateException.class);
     }
 
 }
