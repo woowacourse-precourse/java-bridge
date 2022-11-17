@@ -2,7 +2,7 @@ package bridge;
 
 import org.junit.jupiter.api.*;
 
-import static bridge.ErrorMessage.ER_STRING;
+import static bridge.ErrorMessage.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ValidityCheckTest {
@@ -19,7 +19,7 @@ class ValidityCheckTest {
     class 문자_검사 {
 
         @Test
-        void case1() {
+        void case_1() {
             Throwable illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
                 validityCheck.stringChecker("십오");
             });
@@ -27,7 +27,7 @@ class ValidityCheckTest {
         }
 
         @Test
-        void case2() {
+        void case_2() {
             Throwable illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
                 validityCheck.stringChecker("10s");
             });
@@ -36,4 +36,26 @@ class ValidityCheckTest {
 
     }
 
+    @DisplayName("다리의 길이 범위(3~20)를 벗어난 숫자 입력시 예외가 발생한다.")
+    @Nested
+    class 범위_검사 {
+
+        @Test
+        void case_1() {
+            Throwable illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
+                validityCheck.numberRangeChecker("21");
+            });
+            assertEquals(ER_OUT_OF_RANGE.getMessage(), illegalArgumentException.getMessage());
+        }
+
+        @Test
+        void case_2() {
+            Throwable illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
+                validityCheck.numberRangeChecker("0");
+            });
+            assertEquals(ER_OUT_OF_RANGE.getMessage(), illegalArgumentException.getMessage());
+
+        }
+
+    }
 }
