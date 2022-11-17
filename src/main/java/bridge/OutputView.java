@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 public class OutputView {
 
     public void printGameStartContext() {
@@ -16,6 +18,12 @@ public class OutputView {
 
     public void printInputGameCommand() {
         System.out.println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+    }
+
+    public void printMap(List<String> movingResult) {
+        for (String result : movingResult) {
+            System.out.println(result);
+        }
     }
 
     public void printSuccessStatus(boolean status) {
