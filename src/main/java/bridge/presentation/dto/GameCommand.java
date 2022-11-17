@@ -6,11 +6,9 @@ public class GameCommand {
         validate(input);
         command=input;
     }
-
     private void validate(String target){
 
     }
-
     public String getCommand() {
         return command;
     }

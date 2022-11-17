@@ -7,8 +7,6 @@ import bridge.presentation.dto.BridgeSize;
 import bridge.presentation.dto.GameCommand;
 import bridge.presentation.dto.SelectMove;
 
-import java.util.List;
-
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -77,7 +75,13 @@ public class BridgeGame {
     public void generatorBridge(){
         bridgeRepository.updateBridge(bridgeMaker.makeBridge(bridgeRepository.getBridgeSize().getSize()));
     }
-    public void saveGameCommand(GameCommand gameCommand){bridgeRepository.saveGameCommand(gameCommand);}
+    public Boolean checkRetry(GameCommand gameCommand){
+        if(gameCommand.getCommand().equals("R")){
+            retry();
+            return true;
+        }
+        return false;
+    }
     public void saveBridgeSize(BridgeSize bridgeSize){
         bridgeRepository.saveBridgeSize(bridgeSize);
     }

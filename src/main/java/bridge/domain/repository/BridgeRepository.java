@@ -15,7 +15,6 @@ public class BridgeRepository {
     private List<String> lowerResult;
     private BridgeSize bridgeSize;
     private SelectMove selectMove;
-    private GameCommand gameCommand;
     private Integer attemptNumber;
     private Integer successNumber;
     private BridgeRepository(){
@@ -48,7 +47,6 @@ public class BridgeRepository {
         this.bridgeSize=bridgeSize;
     }
     public void saveSelectMove(SelectMove selectMove){this.selectMove=selectMove;}
-    public void saveGameCommand(GameCommand gameCommand){this.gameCommand=gameCommand;}
     public void updateBridge(List<String> bridge){this.bridge=bridge;}
 
     public BridgeSize getBridgeSize() {
@@ -56,10 +54,6 @@ public class BridgeRepository {
     }
     public SelectMove getSelectMove() {
         return selectMove;
-    }
-
-    public GameCommand getGameCommand() {
-        return gameCommand;
     }
 
     public List<String> getBridge() {

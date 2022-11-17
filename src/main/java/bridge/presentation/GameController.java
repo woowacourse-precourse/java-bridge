@@ -33,8 +33,8 @@ public class GameController {
         viewService.printMoveResult();
         return result;
     }
-    public void inputRetry(){
+    public Boolean inputRetry(){
         viewService.printInputRetryMessage();
-        bridgeGame.saveGameCommand(viewService.inputGameCommand());
+        return bridgeGame.checkRetry(viewService.inputGameCommand());
     }
 }

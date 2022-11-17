@@ -42,8 +42,6 @@ public class BridgeTest {
     @Test
     void 재시작_저장(){
         BridgeGame bridgeGame=BridgeGame.getInstance();
-        BridgeRepository bridgeRepository=BridgeRepository.getInstance();
-        bridgeGame.saveGameCommand(new GameCommand("R"));
-        Assertions.assertThat(bridgeRepository.getGameCommand().getCommand()).isEqualTo("R");
+        Assertions.assertThat(bridgeGame.checkRetry(new GameCommand("R"))).isEqualTo(true);
     }
 }
