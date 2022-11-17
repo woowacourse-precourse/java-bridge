@@ -1,7 +1,21 @@
 package bridge.controller;
 
 public class AppController {
-    public void run() {
+    public void makeBridge() {
 
+    }
+
+    public void acrossBridge() {
+
+    }
+
+    public void showResult() {
+
+    }
+
+    public void run() {
+        makeBridge();
+        acrossBridge();
+        showResult();
     }
 }
