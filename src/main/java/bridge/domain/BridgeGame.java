@@ -23,8 +23,8 @@ public class BridgeGame {
         this.upBridgeStatus = new char[bridge.size()];
         this.downBridgeStatus = new char[bridge.size()];
         for (int i = 0; i < bridge.size(); i++) {
-            upBridgeStatus[i] += DIFFERENCE_TO_BE_BLANK;
-            downBridgeStatus[i] += DIFFERENCE_TO_BE_BLANK;
+            upBridgeStatus[i] = DIFFERENCE_TO_BE_BLANK;
+            downBridgeStatus[i] = DIFFERENCE_TO_BE_BLANK;
         }
     }
 
@@ -43,8 +43,12 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(String key) {
-
+    public void retry() {
+        for (int i = 0; i < bridge.size(); i++) {
+            upBridgeStatus[i] = DIFFERENCE_TO_BE_BLANK;
+            downBridgeStatus[i] = DIFFERENCE_TO_BE_BLANK;
+        }
+        position = -1;
     }
 
     private boolean canMove(String key, String upOrDown) {
@@ -72,14 +76,6 @@ public class BridgeGame {
         return false;
     }
 
-    public char[] getUpBridgeStatus() {
-        return upBridgeStatus;
-    }
-
-    public char[] getDownBridgeStatus() {
-        return downBridgeStatus;
-    }
-
     public int getPosition() {
         return position;
     }
@@ -90,7 +86,7 @@ public class BridgeGame {
         StringJoiner downJoiner = new StringJoiner(" | ", "[ ", " ]");
         for (int i = 0; i < bridge.size(); i++) {
             upJoiner.add(String.valueOf(upBridgeStatus[i]));
-            downJoiner.add(String.valueOf(upBridgeStatus[i]));
+            downJoiner.add(String.valueOf(downBridgeStatus[i]));
         }
         return upJoiner + "\n" + downJoiner;
     }

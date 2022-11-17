@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -23,8 +24,7 @@ class BridgeGameTest {
         void test1() {
             assertThat(bridgeGame.move("U")).isTrue();
             assertThat(bridgeGame.getPosition()).isEqualTo(0);
-            assertThat(bridgeGame.getUpBridgeStatus()).containsExactly('O', ' ', ' ');
-            assertThat(bridgeGame.getDownBridgeStatus()).containsExactly(' ', ' ', ' ');
+            assertThat(bridgeGame.toString()).isEqualTo("[ O |   |   ]\n[   |   |   ]");
         }
 
         @Test
@@ -32,8 +32,7 @@ class BridgeGameTest {
             assertThat(bridgeGame.move("U")).isTrue();
             assertThat(bridgeGame.move("D")).isFalse();
             assertThat(bridgeGame.getPosition()).isEqualTo(0);
-            assertThat(bridgeGame.getUpBridgeStatus()).containsExactly('O', ' ', ' ');
-            assertThat(bridgeGame.getDownBridgeStatus()).containsExactly(' ', 'X', ' ');
+            assertThat(bridgeGame.toString()).isEqualTo("[ O |   |   ]\n[   | X |   ]");
         }
 
         @Test
@@ -41,8 +40,7 @@ class BridgeGameTest {
             assertThat(bridgeGame.move("U")).isTrue();
             assertThat(bridgeGame.move("U")).isTrue();
             assertThat(bridgeGame.getPosition()).isEqualTo(1);
-            assertThat(bridgeGame.getUpBridgeStatus()).containsExactly('O', 'O', ' ');
-            assertThat(bridgeGame.getDownBridgeStatus()).containsExactly(' ', ' ', ' ');
+            assertThat(bridgeGame.toString()).isEqualTo("[ O | O |   ]\n[   |   |   ]");
         }
 
         @Test
@@ -51,8 +49,7 @@ class BridgeGameTest {
             assertThat(bridgeGame.move("U")).isTrue();
             assertThat(bridgeGame.move("U")).isFalse();
             assertThat(bridgeGame.getPosition()).isEqualTo(1);
-            assertThat(bridgeGame.getUpBridgeStatus()).containsExactly('O', 'O', 'X');
-            assertThat(bridgeGame.getDownBridgeStatus()).containsExactly(' ', ' ', ' ');
+            assertThat(bridgeGame.toString()).isEqualTo("[ O | O | X ]\n[   |   |   ]");
         }
 
         @Test
@@ -61,27 +58,31 @@ class BridgeGameTest {
             assertThat(bridgeGame.move("U")).isTrue();
             assertThat(bridgeGame.move("D")).isTrue();
             assertThat(bridgeGame.getPosition()).isEqualTo(2);
-            assertThat(bridgeGame.getUpBridgeStatus()).containsExactly('O', 'O', ' ');
-            assertThat(bridgeGame.getDownBridgeStatus()).containsExactly(' ', ' ', 'O');
+            assertThat(bridgeGame.toString()).isEqualTo("[ O | O |   ]\n[   |   | O ]");
         }
     }
 
-    @Nested
-    class MoveAndRetryTest {
-        @Test
-        void test1() {
-            assertThat(bridgeGame.move("U")).isTrue();
-            assertThat(bridgeGame.move("D")).isFalse();
-            assertThat(bridgeGame.getPosition()).isEqualTo(0);
-            assertThat(bridgeGame.getUpBridgeStatus()).containsExactly('O', ' ', ' ');
-            assertThat(bridgeGame.getDownBridgeStatus()).containsExactly(' ', 'X', ' ');
+    @DisplayName("게임 종료 후 재시작한다.")
+    @Test
+    void moveAndRetry() {
+        assertThat(bridgeGame.move("D")).isFalse();
+        assertThat(bridgeGame.getPosition()).isEqualTo(-1);
+        assertThat(bridgeGame.toString()).isEqualTo("[   |   |   ]\n[ X |   |   ]");
 
-            assertThat(bridgeGame.move("U")).isTrue();
-            assertThat(bridgeGame.getPosition()).isEqualTo(1);
-            assertThat(bridgeGame.getUpBridgeStatus()).containsExactly('O', 'O', ' ');
-            assertThat(bridgeGame.getDownBridgeStatus()).containsExactly(' ', 'X', ' ');
+        bridgeGame.retry();
 
-        }
+        assertThat(bridgeGame.move("U")).isTrue();
+        assertThat(bridgeGame.getPosition()).isEqualTo(0);
+        assertThat(bridgeGame.toString()).isEqualTo("[ O |   |   ]\n[   |   |   ]");
     }
 
+    @DisplayName("다리의 끝까지 도달하면 게임을 종료한다.")
+    @Test
+    void moveToTheEnd() {
+        assertThat(bridgeGame.move("U")).isTrue();
+        assertThat(bridgeGame.move("U")).isTrue();
+        assertThat(bridgeGame.move("D")).isTrue();
+        assertThat(bridgeGame.getPosition()).isEqualTo(2);
+        assertThat(bridgeGame.toString()).isEqualTo("[ O | O |   ]\n[   |   | O ]");
+    }
 }
