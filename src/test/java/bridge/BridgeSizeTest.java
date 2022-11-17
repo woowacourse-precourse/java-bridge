@@ -1,12 +1,14 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class BridgeSizeTest {
+public class BridgeSizeTest extends NsTest {
 
 	private static final int FIRST_NUMBER_INCLUSIVE = 3;
 	private static final int LAST_NUMBER_INCLUSIVE = 20;
@@ -34,5 +36,20 @@ public class BridgeSizeTest {
 		assertThatThrownBy(() -> BridgeSize.valueOf(value))
 				.isInstanceOf(IllegalArgumentException.class)
 				.hasMessage(String.format(InputException.NOT_IN_BETWEEN_PROPER_RANGE, FIRST_NUMBER_INCLUSIVE, LAST_NUMBER_INCLUSIVE));
+	}
+
+	@DisplayName("input 값에 대한 검증으로서 예외 발생시 재 입력 요청 기능을 검증한다")
+	@Test
+	void verify_rePrompt() {
+		assertThatCode(() -> {
+			run("a", "", "0");
+			assertThat(output()).contains(InputException.NOT_IN_BETWEEN_PROPER_RANGE, InputException.EMPTY, InputException.NOT_A_NUMBER);
+		});
+	}
+
+	@Override
+	protected void runMain() {
+		InputView inputView = new InputView();
+		inputView.readBridgeSize();
 	}
 }
