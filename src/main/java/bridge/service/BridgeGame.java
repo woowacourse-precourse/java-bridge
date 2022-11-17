@@ -1,6 +1,7 @@
 package bridge.service;
 
 import bridge.BridgeMaker;
+import bridge.domain.Bridges;
 import bridge.service.dto.BridgeSizeDto;
 
 import java.util.List;
@@ -9,14 +10,17 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private BridgeMaker bridgeMaker;
+    private final BridgeMaker bridgeMaker;
+    private final Bridges bridges;
 
-    public BridgeGame(BridgeMaker bridgeMaker) {
+    public BridgeGame(BridgeMaker bridgeMaker, Bridges bridges) {
         this.bridgeMaker = bridgeMaker;
+        this.bridges = bridges;
     }
 
     public void create(BridgeSizeDto dto) {
-        List<String> bridges = bridgeMaker.makeBridge(dto.getBridgeSize());
+        List<String> createdBridges = bridgeMaker.makeBridge(dto.getBridgeSize());
+        bridges.generate(createdBridges);
     }
 
     /**
