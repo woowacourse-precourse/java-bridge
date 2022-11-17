@@ -54,9 +54,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(String result) {
         System.out.println(OUTPUT_RESULT_MESSAGE + LINE +  Map);
-        System.out.println(OUTPUT_RESULT_IS_SUCCESS + "성공");
+        System.out.println(OUTPUT_RESULT_IS_SUCCESS + result);
         System.out.println(OUTPUT_RESULT_TRY_NUMBER + this.attempt);
     }
 }

@@ -57,7 +57,7 @@ public class BridgeGameController {
             restartGame();
         }
         if (go) {
-            outputView.printResult();
+            outputView.printResult("성공");
         }
     }
 
@@ -71,7 +71,7 @@ public class BridgeGameController {
         if(restart){
             run();
         }
-        outputView.printResult();
+        outputView.printResult("실패");
     }
 
 }
