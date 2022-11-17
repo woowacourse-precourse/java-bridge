@@ -1,23 +1,30 @@
 package bridge.validation;
 
+import bridge.type.ErrorMessage;
 import bridge.type.NumberType;
 
 public class Validator {
 
-    public boolean isNumeric(String input) {
+
+
+    public void checkBridgeSize(String input) {
+        isNumeric(input);
+        isCorrectBoundary(input);
+    }
+
+
+    public void isNumeric(String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            return false;
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_NUMERIC.getMessage());
         }
-        return true;
     }
 
-    public boolean isCorrectBoundary(String bridgeSizeInput) {
+    public void isCorrectBoundary(String bridgeSizeInput) {
         int bridgeSize = Integer.parseInt(bridgeSizeInput);
         if (bridgeSize < NumberType.BRIDGE_MIN_LENGTH.getNumber() || bridgeSize > NumberType.BRIDGE_MAX_LENGTH.getNumber()) {
-            return false;
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_BOUNDARY.getMessage());
         }
-        return true;
     }
 }

@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.service.BridgeService;
+import bridge.validation.Validator;
 
 import java.util.List;
 
@@ -9,14 +9,14 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private final BridgeService bridgeService;
-
-    public BridgeGame(BridgeService bridgeService) {
-        this.bridgeService = bridgeService;
-    }
-
-    public void run() {
-        List<String> bridge = bridgeService.makeBridge();
+    private final BridgeMaker bridgeMaker;
+    private final Validator validator;
+    private final Player player;
+    private List<String> bridge;
+    public BridgeGame(BridgeMaker bridgeMaker, Validator validator, Player player) {
+        this.bridgeMaker = bridgeMaker;
+        this.validator = validator;
+        this.player = player;
     }
 
     /**
@@ -24,7 +24,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public boolean move(List<String> bridge, Player player) {
+        return true;
     }
 
     /**
@@ -33,5 +34,10 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+    }
+
+    public void makeBridge(String input) {
+        validator.checkBridgeSize(input);
+        this.bridge = bridgeMaker.makeBridge(Integer.parseInt(input));
     }
 }
