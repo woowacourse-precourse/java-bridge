@@ -15,21 +15,21 @@ public class GameController {
     private static final String RESET_COMMAND = "R";
     private static final String QUIT_COMMAND = "Q";
 
-    private boolean keepGoing = true;
-    private int i = 0;
-    private int tryCount = 1;
+    private static boolean keepGoing = true;
+    private static int i = 0;
+    private static int tryCount = 1;
 
     private final InputView inputView;
     private final OutputView outputView;
     private final BridgeGame bridgeGame;
     private final BridgeMaker bridgeMaker;
-    private final MapShape mapShape;
+    private static MapShape mapShape;
 
     public GameController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
         this.bridgeGame = new BridgeGame();
-        this.mapShape = new MapShape();
+        mapShape = new MapShape();
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
@@ -46,13 +46,18 @@ public class GameController {
         outputView.printResult(tryCount, keepGoing);
     }
 
-    public void checkKeepGoing(String resetCommand) {
-        if(resetCommand.matches(RESET_COMMAND)) {
-            i = 0;
-            tryCount++;
-            mapShape.clearMap();
-        }
-        if(resetCommand.matches(QUIT_COMMAND))
-            keepGoing = false;
+    public static void checkKeepGoing(String resetCommand) {
+        if(resetCommand.matches(RESET_COMMAND)) resetGame();
+        if(resetCommand.matches(QUIT_COMMAND)) quitGame();
+    }
+
+    private static void resetGame() {
+        i = 0;
+        tryCount++;
+        mapShape.clearMap();
+    }
+
+    private static void quitGame() {
+        keepGoing = false;
     }
 }

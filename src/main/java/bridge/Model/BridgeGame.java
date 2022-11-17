@@ -12,11 +12,9 @@ public class BridgeGame {
     private static final String FAIL_CASE = "X";
 
     private final InputView inputView;
-    private final GameController gameController;
 
     public BridgeGame() {
         this.inputView = new InputView();
-        this.gameController = new GameController();
     }
 
     /**
@@ -39,6 +37,6 @@ public class BridgeGame {
      */
     public void retry() {
         String inputCommand = inputView.readGameCommand();
-        gameController.checkKeepGoing(inputCommand);
+        GameController.checkKeepGoing(inputCommand);
     }
 }

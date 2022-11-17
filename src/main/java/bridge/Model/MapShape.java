@@ -13,7 +13,7 @@ public class MapShape {
     private static final List<String> upperMap = new ArrayList<>();
     private static final List<String> lowerMap = new ArrayList<>();
 
-    public static void addShape(String nextMove, String moveResult) {
+    public void addShape(String nextMove, String moveResult) {
         if(nextMove.matches(UPPER_CASE)) {
             upperMap.add(moveResult);
             lowerMap.add(BLANK);
@@ -29,15 +29,15 @@ public class MapShape {
         lowerMap.clear();
     }
 
-    public static String stringUpperMap() {
+    public String stringUpperMap() {
         return getJoin(upperMap);
     }
 
-    public static String stringLowerMap() {
+    public String stringLowerMap() {
         return getJoin(lowerMap);
     }
 
-    private static String getJoin(List<String> shapeMap) {
+    private String getJoin(List<String> shapeMap) {
         return String.join(SPLIT_UNIT, shapeMap);
     }
 
