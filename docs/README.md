@@ -4,8 +4,8 @@
 # 구현 기능 목록
 
 ## View
-- [ ] Enum 으로 메시지 상수 구현
-- [ ] OutputView 에 게임 시작 메시지 출력 메서드 구현
+- [X] Enum 으로 메시지 상수 구현
+- [X] OutputView 에 게임 시작 메시지 출력 메서드 구현
 - [ ] InputView 에 다리 길이 입력 메서드 구현
 - [ ] InputView 에 이동할 칸 선택 메서드 구현
 - [ ] OutputView 에 printMap 구현
