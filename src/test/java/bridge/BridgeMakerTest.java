@@ -52,4 +52,12 @@ class BridgeMakerTest {
                 .hasMessageNotContaining("[ERROR]");
     }
 
+    @DisplayName("건널 수 있는 칸에 0과 1 이외에 다른 값이 넘어오는지 확인한다.")
+    @ValueSource(strings = {"2","-1","-0"})
+    @Test
+    void validate_Is_One_Or_Zero() {
+        assertThatThrownBy(()-> BridgeMaker.validateGetOneOrZero())
+                .isNotInstanceOf(IllegalArgumentException.class)
+                .hasMessageNotContaining("[ERROR]");
+    }
 }
