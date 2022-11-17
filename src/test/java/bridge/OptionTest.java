@@ -4,6 +4,7 @@ import static bridge.config.ExceptionMessage.ERROR;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import bridge.option.GameOption;
+import bridge.option.Move;
 import bridge.option.Option;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -34,6 +35,15 @@ public class OptionTest {
     @ParameterizedTest
     void inputNotGameOption(String input) {
         assertThatThrownBy(() -> new GameOption(input))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(ERROR);
+    }
+
+    @DisplayName("플레이어 이동을 U나 D를 입력하지 않으면 예외가 발생")
+    @ValueSource(strings = {"Q", "R"})
+    @ParameterizedTest
+    void inputNotMove(String input) {
+        assertThatThrownBy(() -> new Move(input))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(ERROR);
     }
