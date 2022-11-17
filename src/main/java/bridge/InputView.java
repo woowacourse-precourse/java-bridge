@@ -10,6 +10,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 	private int bridgeLength = 0;
 	private String upOrDown = "";
+	private String restartOrQuit = "";
 
 	/**
 	 * 다리의 길이를 입력받는다.
@@ -66,6 +67,22 @@ public class InputView {
 	 * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
 	 */
 	public String readGameCommand() {
-		return null;
+		while (!restartOrQuit.equals("")) {
+			System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q");
+			String tempRestartOrQuit = Console.readLine();
+			try {
+				readGameCommandExceptionCheck(tempRestartOrQuit);
+			} catch (IllegalArgumentException e) {
+				continue;
+			}
+		}
+		return upOrDown;
+	}
+	
+	public void readGameCommandExceptionCheck(String tempRestartOrQuit) {
+		if (!tempRestartOrQuit.equals("R") || !tempRestartOrQuit.equals("Q")) {
+			throw new IllegalArgumentException("[ERROR] R와 Q만 선택하세요.");
+		}
+		this.restartOrQuit = tempRestartOrQuit;
 	}
 }
