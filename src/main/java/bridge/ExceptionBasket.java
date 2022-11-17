@@ -35,6 +35,12 @@ public class ExceptionBasket {
         }
     }
 
+    public static void invalidRetryRequestInputKey(String input) throws IllegalArgumentException{
+        if (!input.equals("R") || !input.equals("Q")){
+            throw new IllegalArgumentException(ERROR_MESSAGE + " R이나 Q를 누르세요!");
+        }
+    }
+
     /*public static void invalidNumberic(String input) throws IllegalArgumentException {
         if (input.indexOf('+') == 0
                 || input.indexOf('0') == 0
