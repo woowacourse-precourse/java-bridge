@@ -1,11 +1,20 @@
 package bridge.view;
 
+import bridge.model.BridgeType;
+import java.util.ArrayList;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
 
     private static final String ERROR = "[ERROR] ";
+
+    private static final String selectionGuide = String.join(", ", new ArrayList<>() {{
+        for (BridgeType bridge : BridgeType.values()) {
+            add(String.format("%s: %s", bridge.getPosition(), bridge.getText()));
+        }
+    }});
 
     public void printGameStart() {
         out("다리 건너기 게임을 시작합니다.");
@@ -18,6 +27,10 @@ public class OutputView {
 
     public void printExceptionMessage(String text) {
         out(ERROR + text);
+    }
+
+    public void printRequestMoveBridge() {
+        out(String.format("이동할 칸을 선택해주세요. (%s)", selectionGuide));
     }
 
     /**
