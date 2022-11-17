@@ -27,6 +27,7 @@ public class OutputView {
         System.out.println(GAME_RETRY_MESSAGE);
     }
 
-
-
+    public static void printResultMessage() {
+        System.out.println(GAME_RESULT_MESSAGE);
+    }
 }
