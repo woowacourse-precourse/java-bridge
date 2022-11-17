@@ -12,9 +12,13 @@ public class Moving {
         return new Moving(moving);
     }
 
-    public Moving(String moving){
+    public Moving(String moving) {
         validateMoving(moving);
         this.moving = moving;
+    }
+
+    public String getMoving() {
+        return this.moving;
     }
 
     public void validateMoving(String moving) {
