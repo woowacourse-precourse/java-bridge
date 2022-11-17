@@ -16,11 +16,11 @@ class BridgeBlockTest {
     class StringReturnTest {
         @Test
         void 반환_올바른_문자_UP() {
-            assertThat(BridgeBlock.getBlockIdentifier(0)).isEqualTo("U");
+            assertThat(BridgeBlock.getBlockIdentifier(0)).isEqualTo("D");
         }
         @Test
         void 반환_올바른_문자_DOWN() {
-            assertThat(BridgeBlock.getBlockIdentifier(1)).isEqualTo("D");
+            assertThat(BridgeBlock.getBlockIdentifier(1)).isEqualTo("U");
         }
     }
 }
