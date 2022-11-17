@@ -78,7 +78,15 @@ public class BridgeGame {
     }
     
     public boolean isGameFinished() {
-        return !states.isEmpty() && lastState().isGameFinished(states.size());
+        return !isStatesEmpty() && isAllSucceed();
+    }
+    
+    private boolean isAllSucceed() {
+        return lastState().isGameFinished(states.size());
+    }
+    
+    private boolean isStatesEmpty() {
+        return states.isEmpty();
     }
     
     public List<MoveResult> moveResult() {
