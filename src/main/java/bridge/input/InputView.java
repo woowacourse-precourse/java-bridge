@@ -12,8 +12,8 @@ public class InputView {
      */
     public int readBridgeSize() {
         String bridgeInput = Console.readLine();
-        int legLength = Integer.parseInt(bridgeInput);
-        return legLength;
+        int bridgeLength = Integer.parseInt(bridgeInput);
+        return bridgeLength;
     }
 
     /**
