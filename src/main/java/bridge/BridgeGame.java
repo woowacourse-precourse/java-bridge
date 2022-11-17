@@ -40,6 +40,10 @@ public class BridgeGame {
 
     }
 
+    public boolean isEnd() {
+        return player.equals(bridge);
+    }
+
     public List<String> getPlayer() {
         return player;
     }
