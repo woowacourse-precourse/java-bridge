@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class InputViewTest {
     private final String VALIDATE_SIZE = "validateInputSize";
+    private final String VALIDATE_MOVING = "validateInputMoving";
     private static final String ERROR_MSG = "[ERROR]";
     private final InputView inputView = new InputView();
 
@@ -35,6 +36,14 @@ public class InputViewTest {
         return false;
     }
 
+    private void exceptionTest(String test, String declaredMethod) throws Exception {
+        Method method = invokeMethod(declaredMethod);
+
+        boolean isErrOccur = isErrOccur(method, test);
+
+        assertTrue(isErrOccur);
+    }
+
     @DisplayName("다리 길이 입력 테스트")
     @ValueSource(strings={"3", "9", "10", "19", "20"})
     @ParameterizedTest(name="{index} {displayName} test={0}")
@@ -48,11 +57,25 @@ public class InputViewTest {
     @ValueSource(strings = {"-1", "2", "21", "가", "ab", "@"})
     @ParameterizedTest(name = "{index} {displayName} test={0}")
     void createExceptionBridgeSize(String test) throws Exception {
-        Method method = invokeMethod(VALIDATE_SIZE);
-
-        boolean isErrOccur = isErrOccur(method, test);
-
-        assertTrue(isErrOccur);
+        exceptionTest(test, VALIDATE_SIZE);
     }
+
+    @DisplayName("다리 건너기 입력 테스트")
+    @ValueSource(strings = {"U", "D"})
+    @ParameterizedTest(name = "{index} {displayName} test={0}")
+    void correctMoving(String test) throws Exception {
+        Method method = invokeMethod(VALIDATE_MOVING);
+
+        assertThat(method.invoke(inputView, test)).isNotNull();
+    }
+
+    @DisplayName("다리 건너기 입력 예외 테스트")
+    @ValueSource(strings = {"A", "1", "0", "u", "d"})
+    @ParameterizedTest(name = "{index} {displayName} test={0}")
+    void createExceptionMoving(String test) throws Exception {
+        exceptionTest(test, VALIDATE_MOVING);
+    }
+
+
 
 }
