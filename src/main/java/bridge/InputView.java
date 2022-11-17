@@ -1,5 +1,7 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -9,7 +11,16 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        System.out.println("다리의 길이를 입력해주세요.");
+        try {
+            int bridgeSize = Integer.parseInt(Console.readLine());
+
+            validateBridgeRange(bridgeSize);
+
+            return bridgeSize;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.NotNumberFormat.getMessage());
+        }
     }
 
     /**
@@ -24,5 +35,11 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private void validateBridgeRange(int bridgeSize) {
+        if(bridgeSize < 3 || 20 < bridgeSize) {
+            throw new IllegalArgumentException(ErrorMessage.NotValidBridgeSize.getMessage());
+        }
     }
 }
