@@ -10,15 +10,22 @@ public class OutputView {
   }
 
   public static void printLengthInputMessage() {
+    printBlankLine();
     System.out.println(LENGTH_INPUT_MESSAGE.getMessage());
   }
 
-  public static void printBlankLine() {
+  private static void printBlankLine() {
     System.out.println();
   }
 
   public static void printErrorMessage(Exception e) {
+    printBlankLine();
     System.out.println(ERROR_MESSAGE.getMessage() + e.getMessage());
+  }
+
+  public static void printMoveDirInputMessage() {
+    printBlankLine();
+    System.out.println(MOVE_DIR_INPUT_MESSAGE.getMessage());
   }
 
   /**

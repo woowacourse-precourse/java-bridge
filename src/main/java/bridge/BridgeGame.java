@@ -24,6 +24,7 @@ public class BridgeGame {
 
   private void gameStart(){
     List<String> bridge = makeBridgeByLengthInput();
+    printMoveDirInputMessage();
   }
 
 
@@ -42,7 +43,6 @@ public class BridgeGame {
   public void retry() {}
 
   private List<String> makeBridgeByLengthInput(){
-    printBlankLine();
     printLengthInputMessage();
     return bridgeMaker.makeBridge(readBridgeSize());
   }
