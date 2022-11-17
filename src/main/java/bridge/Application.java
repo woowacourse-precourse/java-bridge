@@ -14,5 +14,12 @@ public class Application {
         InputView inputView = new InputView();
         int size = inputView.readBridgeSize();
 
+        // 다리를 만듦
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(size);
+        System.out.println(bridge.toString());
+
+
     }
 }
