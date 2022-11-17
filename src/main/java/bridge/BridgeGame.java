@@ -67,7 +67,7 @@ public class BridgeGame {
 
     private void validateMovingInput(String input) {
         if (!input.equals(UP_BRIDGE_CHARACTER) && !input.equals(DOWN_BRIDGE_CHARACTER)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.NOT_VALID_MOVING_INPUT_ERROR.getMessage());
         }
     }
 
@@ -83,7 +83,7 @@ public class BridgeGame {
 
     private void validateRetryOrQuit(String input) {
         if (!input.equals(RETRY_CHARACTER) && !input.equals(QUIT_CHARACTER)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.NOT_VALID_RETRY_OR_QUIT_INPUT_ERROR.getMessage());
         }
     }
 

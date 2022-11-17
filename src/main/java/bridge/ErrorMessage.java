@@ -20,16 +20,16 @@ public enum ErrorMessage {
                     BridgeGame.getQuitCharacter())
     );
 
-    private static final String ERROR = "[Error] ";
+    private static final String ERROR = "[ERROR] ";
 
-    private final String errorMessage;
+    private final String message;
 
     ErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
+        this.message = errorMessage;
     }
 
-    public String getErrorMessage() {
-        return String.format(errorMessage, ERROR);
+    public String getMessage() {
+        return ERROR + message;
     }
 
 }

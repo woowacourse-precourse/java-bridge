@@ -47,7 +47,7 @@ public class InputView {
 
     private void validateNotEmpty(String input) {
         if (input.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INPUT_IS_EMPTY_ERROR.getMessage());
         }
     }
 
@@ -55,7 +55,7 @@ public class InputView {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException ne) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.NOT_VALID_INPUT_TYPE_ERROR.getMessage());
         }
     }
 
