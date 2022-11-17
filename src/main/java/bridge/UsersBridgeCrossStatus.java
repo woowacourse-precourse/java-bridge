@@ -8,4 +8,8 @@ public class UsersBridgeCrossStatus {
     public UsersBridgeCrossStatus(List<List<String>> currentBridge) {
         this.currentBridge = currentBridge;
     }
+
+    public List<List<String>> getCurrentBridge() {
+        return currentBridge;
+    }
 }
