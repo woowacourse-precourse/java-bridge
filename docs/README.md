@@ -3,20 +3,21 @@
 
 ---
 ### <span style = "color:skyblue" >GAME_START</span> : 게임 시작
+- 🟩 **`getInput`** → 사용자의 입력을 받아 온다.
 - 🟩 **`printGameStart`** → 맨 첫 게임 시작 시에만 출력
-- 🟩 **`getBridgeLength`** → 다리의 길이를 입력값으로 받으며 맨 처음 한 번만 사용한다.
+- 🟩 **`readBridgeSize`** → 다리의 길이를 입력값으로 받으며 맨 처음 한 번만 사용한다.
 - 🟩 **`isCorrectLength`** → 다리의 길이가 올바른 범위인지 확인한다.
 - 🟩 **`makeBridge`** → 입력된 값에 따라 다리를 만든다. 
 ---
 ### <span style = "color:skyblue" >RUN_PROCESS</span> : 플레이어를 이동시킨다.
-- 🟩 **`getPlayerMove`** → 라운드마다 플레이어가 이동할 칸을 입력 받는다. 위, 아래 중 하나로 이동 가능하다.
+- 🟩 **`readMoving`** → 라운드마다 플레이어가 이동할 칸을 입력 받는다. 위, 아래 중 하나로 이동 가능하다.
 - 🟩 **`isCorrectMove`** → 플레이어 이동이 올바른지 확인한다.
 - 🟩 **`movePlayer`** → 입력된 값에 따라 플레이어를 이동시킨다.
 - 🟩 **`printPresentBridge`** → 이동할 때마다 이동된 칸에 따라 다리 모양 출력
 - 🟩 **`checkBridge`** → 이동한 칸이 `O`, `X` 중에 어떤 것인지 확인하고 `X`면 게임을 종료한다.
 ---
 ### <span style = "color:skyblue" >SELECT_RESTART</span> : 게임 재시작/종료 여부를 입력 받는다.
-- 🟩 **`getRestartDecision`** → 게임 재시작/ 종료 여부를 문자로 입력 받는다.
+- 🟩 **`readGameCommand`** → 게임 재시작/ 종료 여부를 문자로 입력 받는다.
 - 🟩 **`isCorrectRestartDecision`** → 재시작 여부가 올바른 입력인지 확인한다.
 - 🟩 **`selectDecision`** → 재시작 입력 여부에 따라 게임을 종료하거나 재시작한다.
 ---
