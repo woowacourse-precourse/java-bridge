@@ -22,13 +22,15 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for(int i=0; i<size; i++){
             int number = bridgeNumberGenerator.generate();
-            if(number == 0){
-                bridge.add("D");
-            }
-            if(number == 1){
-                bridge.add("U");
-            }
+            bridge.add(judgeUpOrDown(number));
         }
         return bridge;
+    }
+
+    private String judgeUpOrDown(int number){
+        if(number == 1){
+            return "U";
+        }
+        return "D";
     }
 }
