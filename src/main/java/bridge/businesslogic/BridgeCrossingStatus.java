@@ -31,7 +31,7 @@ public class BridgeCrossingStatus {
     }
 
     private void checkLast(StringBuilder targetStatus,boolean isLastPickIsRight){
-        if(isLastPickIsRight && targetStatus.charAt(targetStatus.length() - 1) == 'O'){
+        if(!isLastPickIsRight && targetStatus.charAt(targetStatus.length() - 1) == 'O'){
             targetStatus.deleteCharAt(targetStatus.length() -1);
             targetStatus.append("X");
         }
