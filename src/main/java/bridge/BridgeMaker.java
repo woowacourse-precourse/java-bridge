@@ -23,7 +23,7 @@ public class BridgeMaker {
         int randomNum;
         for(int i = 0; i < size; i++){
             randomNum = bridgeNumberGenerator.generate();
-            if(randomNum == 1){
+            if(randomNum == 1) {
                 bridgeMap.add("U");
                 continue;
             }
