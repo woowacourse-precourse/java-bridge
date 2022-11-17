@@ -80,4 +80,13 @@ class InputBridgeSizeValidatorTest {
                 .isThrownBy(() -> InputBridgeSizeValidator.validate(input))
                 .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
     }
+    
+    @DisplayName("예외 처리 : 2자리일 때, 첫번째 자리에 0이 오는 경우")
+    @ParameterizedTest(name = "{displayName} : input => {0}")
+    @ValueSource(strings = {"00", "01", "02", "03", "04"})
+    void zeroAtFirstPlaceExistException(final String input) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> InputBridgeSizeValidator.validate(input))
+                .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
+    }
 }
