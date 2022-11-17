@@ -6,6 +6,7 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.BridgeMaker;
 import bridge.model.BridgeMoveLog;
 import bridge.model.BridgeType;
+import bridge.model.ContinueType;
 import bridge.model.GameStatus;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -42,7 +43,7 @@ public class BridgeGameController {
         while (true) {
             GameStatus gameStatus = bridgeGame.move(choiceBridge());
 
-            if ((gameStatus == GameStatus.FAIL && isGiveUp()) || gameStatus == GameStatus.SUCCESS) {
+            if ((gameStatus == GameStatus.FAIL && isGiveUp(bridgeGame)) || gameStatus == GameStatus.SUCCESS) {
                 return;
             }
         }
@@ -52,6 +53,19 @@ public class BridgeGameController {
         return exceptionHandle.getCorrectInput(() -> {
             outputView.printRequestMoveBridge();
             return inputView.readMoving();
+        });
+    }
+
+    private boolean isGiveUp(BridgeGame bridgeGame) {
+        return exceptionHandle.getCorrectInput(() -> {
+            outputView.printWantToContinue();
+
+            if (inputView.readGameCommand() == ContinueType.QUIT) {
+                return true;
+            }
+
+            bridgeGame.retry();
+            return false;
         });
     }
 
