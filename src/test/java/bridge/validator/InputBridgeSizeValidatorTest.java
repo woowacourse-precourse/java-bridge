@@ -7,8 +7,17 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThatNoException;
 
 class InputBridgeSizeValidatorTest {
+    @DisplayName("정상 입력")
+    @ParameterizedTest(name = "{displayName} : input => {0}")
+    @ValueSource(strings = {"3", "9", "10", "11", "19", "20"})
+    void normalInput(final String input) {
+        assertThatNoException()
+                .isThrownBy(() -> InputBridgeSizeValidator.validate(input));
+    }
+    
     @DisplayName("예외 처리 : Null 또는 Empty 입력 시")
     @ParameterizedTest(name = "{displayName} : input => {0}")
     @NullAndEmptySource

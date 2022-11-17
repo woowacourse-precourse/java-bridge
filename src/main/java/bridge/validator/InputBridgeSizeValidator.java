@@ -17,9 +17,16 @@ public class InputBridgeSizeValidator {
     }
     
     private static void validateInputtedBridgeSizeFormMatch(final String inputBridgeSize) {
-        final Matcher matcher = Pattern.compile(BRIDGE_SIZE_INPUT_FORM).matcher(inputBridgeSize);
-        if (!matcher.matches()) {
+        if (!matcher(inputBridgeSize).matches()) {
             throw new IllegalArgumentException(BRIDGE_SIZE_FORM_ERROR_MESSAGE);
         }
+    }
+    
+    private static Matcher matcher(final String inputBridgeSize) {
+        return compiler().matcher(inputBridgeSize);
+    }
+    
+    private static Pattern compiler() {
+        return Pattern.compile(BRIDGE_SIZE_INPUT_FORM);
     }
 }
