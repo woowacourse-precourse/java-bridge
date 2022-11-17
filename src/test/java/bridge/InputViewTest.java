@@ -48,7 +48,7 @@ class InputViewTest {
     @Test
     void inputGameCommand() {
         System.setIn(new ByteArrayInputStream("R".getBytes()));
-        assertThat(inputView.readGameCommand()).isEqualTo(true);
+        assertThat(inputView.readGameCommand()).isTrue();
     }
 
     @DisplayName("잘못된 재시작 여부를 입력받으면 예외 반환")
