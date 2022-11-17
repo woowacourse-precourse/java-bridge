@@ -13,6 +13,7 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
         int bridgeSize = validateBridgeSizeInput(Console.readLine());
+        validateBridgeSizeRange(bridgeSize);
 
         return bridgeSize;
     }
@@ -25,6 +26,11 @@ public class InputView {
         }
     }
 
+    private void validateBridgeSizeRange(int bridgeSize) {
+        if (bridgeSize < 3 || bridgeSize > 20) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
+    }
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
