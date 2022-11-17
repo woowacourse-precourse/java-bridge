@@ -1,4 +1,4 @@
-package bridge;
+package bridge.util;
 
 import java.util.List;
 
@@ -20,4 +20,5 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         return null;
     }
+
 }
