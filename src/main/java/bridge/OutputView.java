@@ -18,12 +18,7 @@ public class OutputView {
     public void printMap(String currentStep, boolean valid) {
         updateFirstLine(currentStep, valid);
         updateSecondLine(currentStep, valid);
-        System.out.println(firstLine.toString() + ']');
-        System.out.println(secondLine.toString() + ']');
-        if (!valid) {
-            firstLine.setLength(firstLine.length() - 2);
-            secondLine.setLength(secondLine.length() - 2);
-        }
+        printResult();
     }
 
     private void updateFirstLine(String currentStep, boolean valid) {
@@ -46,6 +41,11 @@ public class OutputView {
                 (currentStep.equals("D") && !valid))
             secondLine.append("|X");
         secondLine.setCharAt(0, '[');
+    }
+
+    void retry() {
+        firstLine.setLength(firstLine.length() - 2);
+        secondLine.setLength(secondLine.length() - 2);
     }
 
     /**
