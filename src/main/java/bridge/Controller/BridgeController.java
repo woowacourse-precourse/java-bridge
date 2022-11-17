@@ -50,16 +50,21 @@ public class BridgeController {
         }
     }
 
-    public void getMatchingResult(List<String> answer, List<String> user) {
+    public boolean checkMatching(List<String> answer, List<String> user) {
         int index = user.size() - 1;
         String answerAlphabet = answer.get(index);
         String userAlphabet = user.get(index);
+        boolean matching = matching(answerAlphabet, userAlphabet);
+        output.printMap(result.toString());
+        return matching;
+    }
+
+    private boolean matching(String answerAlphabet, String userAlphabet) {
         if (answerAlphabet.equals(userAlphabet)) {
             result.add(userAlphabet, RIGHT);
+            return true;
         }
-        if (!answerAlphabet.equals(userAlphabet)) {
-            result.add(userAlphabet, FALSE);
-        }
-        output.printMap(result.toString());
+        result.add(userAlphabet, FALSE);
+        return false;
     }
 }

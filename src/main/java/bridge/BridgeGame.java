@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.Controller.BridgeController;
-import bridge.Domain.BridgeMap;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,13 +12,13 @@ public class BridgeGame {
     BridgeController bridgeController;
     List<String> answerBridge;
     List<String> userBridge;
-    BridgeMap result;
+    int playCount = 0;
+
 
     BridgeGame() {
         bridgeController = new BridgeController();
         answerBridge = new ArrayList<>();
         userBridge = new ArrayList<>();
-        result = new BridgeMap();
 
         play();
     }
@@ -38,8 +37,9 @@ public class BridgeGame {
     public void move() {
         String moving = bridgeController.getMoving();
         userBridge.add(moving);
-
-        bridgeController.getMatchingResult(answerBridge, userBridge);
+        if (bridgeController.checkMatching(answerBridge, userBridge)) {
+            move();
+        }
     }
 
     /**
