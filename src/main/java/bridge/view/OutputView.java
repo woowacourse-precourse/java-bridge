@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.model.BridgeType;
+import bridge.model.ContinueType;
 import java.util.ArrayList;
 
 /**
@@ -13,6 +14,12 @@ public class OutputView {
     private static final String selectionGuide = String.join(", ", new ArrayList<>() {{
         for (BridgeType bridge : BridgeType.values()) {
             add(String.format("%s: %s", bridge.getPosition(), bridge.getText()));
+        }
+    }});
+
+    private static final String continueGuide = String.join(", ", new ArrayList<>() {{
+        for (ContinueType continueType : ContinueType.values()) {
+            add(String.format("%s: %s", continueType.getDescription(), continueType.getText()));
         }
     }});
 
@@ -31,6 +38,10 @@ public class OutputView {
 
     public void printRequestMoveBridge() {
         out(String.format("이동할 칸을 선택해주세요. (%s)", selectionGuide));
+    }
+
+    public void printWantToContinue() {
+        out(String.format("게임을 다시 시도할지 여부를 입력해주세요. (%s)", continueGuide));
     }
 
     /**
