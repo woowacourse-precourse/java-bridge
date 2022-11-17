@@ -5,6 +5,12 @@ package bridge.view;
  */
 public class InputView {
 
+    private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
+
+    public void showGameStartMessage() {
+        System.out.println(GAME_START_MESSAGE);
+    }
+
     /**
      * 다리의 길이를 입력받는다.
      */
