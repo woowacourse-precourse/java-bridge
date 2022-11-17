@@ -27,7 +27,7 @@ public class BridgeGame {
 			return MOVING_FAIL_ALREADY_END;
 		}
 		if (canGoNextStep(moving)) {
-			currentPos += 1;
+			currentPos += ONE_STEP_FORWARD;
 			return MOVING_SUCCESS;
 		}
 		return MOVING_FAIL_WRONG_MOVING;
