@@ -9,8 +9,6 @@ import java.util.stream.Collectors;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-    private static final String UP = "U";
-    private static final String DOWN = "D";
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -31,15 +29,8 @@ public class BridgeMaker {
     }
 
     private List<String> upOrDownBridge(List<Integer> bridgeNumbers) {
-        return bridgeNumbers.stream().map(convertUpOrDown()).collect(Collectors.toList());
-    }
-
-    private Function<Integer, String> convertUpOrDown() {
-        return number -> {
-            if (number == 0) {
-                return DOWN;
-            }
-            return UP;
-        };
+        return bridgeNumbers.stream()
+                .map(BridgeKey::bridgeKey)
+                .collect(Collectors.toList());
     }
 }
