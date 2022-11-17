@@ -22,6 +22,7 @@ public class BridgeGameController {
     public void play() {
         setBridgeSize();
         playing();
+        quit();
     }
 
     private void setBridgeSize() {
@@ -56,6 +57,10 @@ public class BridgeGameController {
         do {
             moving();
         } while (!bridgeGame.isSuccessful() && askRetry());
+    }
+
+    private void quit() {
+        outputView.printResult(bridgeGame.getCurrentMap());
     }
 
     private boolean askRetry() {
