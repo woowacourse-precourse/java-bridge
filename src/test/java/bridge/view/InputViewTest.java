@@ -28,6 +28,18 @@ class InputViewTest {
                 .hasMessageContaining(ERROR_MESSAGE);
     }
 
+    @DisplayName("다리 길이가 3이상 20이하가 아닌 경우에 대한 예외 처리")
+    @CsvSource({"2","-33","100"})
+    @ParameterizedTest
+    void OutOfRangeBridgeLength(String string) {
+        InputStream in = generateUserInput(string);
+        System.setIn(in);
+
+        assertThatThrownBy(() -> InputView.readBridgeSize())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE);
+    }
+
     public static InputStream generateUserInput(String input) {
         return new ByteArrayInputStream(input.getBytes());
     }
