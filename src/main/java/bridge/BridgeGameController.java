@@ -2,6 +2,7 @@ package bridge;
 
 import java.util.List;
 
+import bridge.utils.Value;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -20,7 +21,7 @@ public class BridgeGameController {
 
     public void play() {
         setBridgeSize();
-        moving();
+        playing();
     }
 
     private void setBridgeSize() {
@@ -48,6 +49,21 @@ public class BridgeGameController {
             String move = selectMove();
             bridgeGame.move(move);
             outputView.printMap(bridgeGame.getCurrentMap());
-        } while (!bridgeGame.isGameOver());
+        } while (!bridgeGame.isFailed() && !bridgeGame.isSuccessful());
+    }
+
+    private void playing() {
+        do {
+            moving();
+        } while (askRetry());
+    }
+
+    private boolean askRetry() {
+        String command = inputView.readGameCommand();
+        if (command.equals(Value.RETRY)) {
+            bridgeGame.retry();
+            return true;
+        }
+        return false;
     }
 }

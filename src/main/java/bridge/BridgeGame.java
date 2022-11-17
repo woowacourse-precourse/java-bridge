@@ -39,7 +39,7 @@ public class BridgeGame {
         }
         return record;
     }
-    
+
     public boolean isFailed() {
         if (!bridge.get(movementRecord.size()-1).equals(movementRecord.get(movementRecord.size()-1))) {
             return true;
