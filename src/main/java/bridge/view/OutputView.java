@@ -6,9 +6,14 @@ package bridge.view;
 public class OutputView {
 
     public static final String GAME_STARTING_MESSAGE_FORMAT = "다리 건너기 게임을 시작합니다.%n%n";
+    public static final String ASKING_BRIDGE_SIZE_MESSAGE_FORMAT = "이동할 칸을 선택해주세요. (위: U, 아래: D)%n";
 
     public void printGameStartMessage() {
         System.out.printf(GAME_STARTING_MESSAGE_FORMAT);
+    }
+
+    public void printAskingBridgeSizeMessage() {
+        System.out.printf(ASKING_BRIDGE_SIZE_MESSAGE_FORMAT);
     }
 
     /**

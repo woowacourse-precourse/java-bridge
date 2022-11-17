@@ -34,7 +34,26 @@ class OutputViewTest {
             outputView.printGameStartMessage();
 
             //then
-            assertThat(captor.toString()).isEqualTo(String.format(OutputView.GAME_STARTING_MESSAGE_FORMAT));
+            assertThat(captor.toString())
+                    .isEqualTo(String.format(OutputView.GAME_STARTING_MESSAGE_FORMAT));
+        }
+    }
+
+    @Nested
+    @DisplayName("다리 길이 입력을 유도하는 메시지를 출력하는 printAskingBridgeSizeMessage 메서드")
+    class PrintAskingBridgeSizeMessage {
+        @Test
+        @DisplayName("다리 길이의 입력을 유도하는 메시지를 출력할 수 있다.")
+        void whenAskingBridgeSizeMessage_thenPrintsMessage() {
+            //given
+            OutputView outputView = new OutputView();
+
+            //when
+            outputView.printAskingBridgeSizeMessage();
+
+            //then
+            assertThat(captor.toString())
+                    .isEqualTo(String.format(OutputView.ASKING_BRIDGE_SIZE_MESSAGE_FORMAT));
         }
     }
 }
