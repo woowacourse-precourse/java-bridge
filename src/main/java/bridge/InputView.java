@@ -22,17 +22,17 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        int bridgeSize;
-        try {
-            System.out.println("다리 건너기 게임을 시작합니다.");
-            bridgeSize = Integer.parseInt(Console.readLine());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_EXCEPTION.getMessage());
+        System.out.println("다리 건너기 게임을 시작합니다.");
+
+        while (true) {
+            try {
+                int bridgeSize = Integer.parseInt(Console.readLine());
+                validateBridgeSize(bridgeSize);
+                return bridgeSize;
+            } catch (IllegalArgumentException e) {
+                System.out.println(ErrorMessage.BRIDGE_SIZE_EXCEPTION.getMessage());
+            }
         }
-
-        validateBridgeSize(bridgeSize);
-
-        return bridgeSize;
     }
 
     private void validateBridgeSize(int bridgeSize) {
