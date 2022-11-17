@@ -2,19 +2,19 @@
 
 ### 🚀 Application class
 
-- public void startBridgeGame()
+- public static void startBridgeGame()
   - 다리 게임을 시작하는 메소드
 
 
-- public void playBridgeGame()
+- public static void playBridgeGame()
   - 다리 게임이 진행되는 메소드
 
 
-- public void setBridgeGame()
+- public static void setBridgeGame()
   - 게임 시작 전 다리의 특성을 설정하는 메소드
 
 
-- public boolean replayBridgeGame()
+- public static boolean replayBridgeGame()
   - 게임의 재시작/종료가 이루어지는 메소드
   
 ### 🚀 BridgeGame class
