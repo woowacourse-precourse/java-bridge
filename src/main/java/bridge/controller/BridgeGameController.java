@@ -28,7 +28,7 @@ public class BridgeGameController {
     }
     
     private void printBridgeSizeInputMessage() {
-        System.out.println("사다리 길이 입력");
+        outputView.printBridgeSizeInputMessage();
     }
     
     private void playBridgeGame(final BridgeGame bridgeGame) {
