@@ -12,17 +12,29 @@ public class Application {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
 
-        String moving;
+
         int bridgePositionIndex = 0;
         BridgeGame bridgeGame = new BridgeGame();
         while (bridgePositionIndex < bridge.size()) {
-            moving = inputView.readMoving();
+            String moving = inputView.readMoving();
             bridgeGame.move(new Bridge(bridge.get(bridgePositionIndex), moving));
             outputView.printMap(bridgeGame, bridgePositionIndex);
-            if (bridgeGame.getMyAnswerBridges().contains("X")) {
-                inputView.readGameCommand();
+            if (!bridgeGame.getMyAnswerBridges().contains("X")){
+                bridgePositionIndex++;
             }
-            bridgePositionIndex++;
+            if (bridgeGame.getMyAnswerBridges().contains("X")) {
+                String restartMessage = inputView.readGameCommand();
+                if (restartMessage.equals("R")) {
+                    outputView.retryBridgeMap();
+                    bridgeGame.retry();
+                    bridgePositionIndex = 0;
+                }
+                if (restartMessage.equals("Q")) {
+                    outputView.printResult(restartMessage, bridgeGame.getAttemptCount());
+                    bridgePositionIndex = bridge.size();
+                }
+            }
         }
+        outputView.printResult(bridgeGame);
     }
 }
