@@ -7,6 +7,10 @@ import java.util.List;
  */
 public class BridgeMaker {
 
+    private static final int ZERO = 0;
+    private static final String UP = "U";
+    private static final String DOWN = "D";
+
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -19,5 +23,12 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         return null;
+    }
+
+    private String generateBridgeShape() {
+        if (bridgeNumberGenerator.generate() == ZERO) {
+            return UP;
+        }
+        return DOWN;
     }
 }
