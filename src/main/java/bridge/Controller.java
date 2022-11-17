@@ -8,8 +8,8 @@ public class Controller {
     public static final int GAME_FAIL = -1;
     public static final int GAME_SUCCESS = 0;
     public static final int GAME_FINISH = 1;
-    private InputView inputView;
-    private OutputView outputView;
+    private final InputView inputView;
+    private final OutputView outputView;
     private BridgeGame bridgeGame;
     private int status;
 
