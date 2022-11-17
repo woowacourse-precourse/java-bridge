@@ -1,15 +1,15 @@
 package bridge;
 
-import java.util.ArrayList;
+import bridge.domain.Direction;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
 
-    private static final int MIN_BRIDGE_LENGTH = 3;
-    private static final int MAX_BRIDGE_LENGTH = 20;
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -21,26 +21,10 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        validateLength(size);
-        return createBridge(size);
-    }
-
-    private void validateLength(int length) {
-        if (length < MIN_BRIDGE_LENGTH || MAX_BRIDGE_LENGTH < length) {
-            throw new IllegalArgumentException("다리의 길이는 3 이상 20 이하의 값만 입력 가능합니다.");
-        }
-    }
-
-    private List<String> createBridge(int length) {
-        List<String> bridge = new ArrayList<>();
-        while (bridge.size() < length) {
-            int bridgeNumber = bridgeNumberGenerator.generate();
-            if (bridgeNumber == 0) {
-                bridge.add("D");
-            } else if (bridgeNumber == 1) {
-                bridge.add("U");
-            }
-        }
-        return bridge;
+        return Stream.generate(() -> bridgeNumberGenerator.generate())
+                .map(i -> Direction.from(i).getDirectionButton())
+                .limit(size)
+                .collect(Collectors.toUnmodifiableList());
     }
 }
+
