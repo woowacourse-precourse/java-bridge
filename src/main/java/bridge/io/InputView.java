@@ -67,7 +67,7 @@ public class InputView {
     }
 
     private static boolean isUpOrDown(String direction) {
-        return direction == UP_DIRECTION || direction == DOWN_DIRECTION;
+        return direction.equals(UP_DIRECTION) || direction.equals(DOWN_DIRECTION);
     }
 
     /**
@@ -92,6 +92,6 @@ public class InputView {
     }
 
     private static boolean isProperCommand(String command) {
-        return command == RETRY_COMMAND || command == QUIT_COMMAND;
+        return command.equals(RETRY_COMMAND) || command.equals(QUIT_COMMAND);
     }
 }

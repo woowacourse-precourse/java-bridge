@@ -42,7 +42,7 @@ public class BridgeGame {
     }
 
     private boolean canMove(String direction) {
-        return bridge.get(currentTryIndex++) == direction;
+        return bridge.get(currentTryIndex++).equals(direction);
     }
 
     private void logResult(String direction, CrossResult result) {
@@ -56,7 +56,7 @@ public class BridgeGame {
     }
 
     private boolean isUpside(String direction) {
-        return direction == UPSIDE;
+        return direction.equals(UPSIDE);
     }
 
     /**
