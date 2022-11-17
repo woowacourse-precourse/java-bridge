@@ -23,7 +23,7 @@ public class BridgeGame {
     }
 
     private boolean isMoveCommand(String moveCommand) {
-        return !moveCommand.equals("U") && !moveCommand.equals("D");
+        return moveCommand.equals("U") || moveCommand.equals("D");
     }
 
     /**
