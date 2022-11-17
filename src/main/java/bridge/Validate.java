@@ -24,4 +24,15 @@ public class Validate {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE);
         }
     }
+
+    public static void gameCommand(String input) {
+        final String INPUT_PATTERN = "^[RQ]$";
+        final String EXCEPTION_MESSAGE = "[ERROR] R 또는 Q를 제외한 문자가 입력되었습니다.";
+
+        boolean isMatch = Pattern.matches(INPUT_PATTERN, input);
+
+        if (!isMatch) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE);
+        }
+    }
 }
