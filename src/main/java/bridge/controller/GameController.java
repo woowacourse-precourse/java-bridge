@@ -1,5 +1,7 @@
 package bridge.controller;
 
+import static bridge.constant.Constant.*;
+
 import java.util.List;
 
 import bridge.domain.Bridge;
@@ -41,7 +43,7 @@ public class GameController {
 	}
 
 	private void retry() {
-		if (InputView.readGameCommand().equals("R")) {
+		if (InputView.readGameCommand().equals(RETRY_COMMAND.getConstant())) {
 			bridgeGame.retry();
 			progress();
 		}

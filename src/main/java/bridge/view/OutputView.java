@@ -1,7 +1,12 @@
 package bridge.view;
 
+import static bridge.constant.Constant.*;
+import static bridge.constant.NumericConstant.*;
+
 import java.util.List;
 import java.util.stream.Collectors;
+
+import bridge.constant.NumericConstant;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -33,10 +38,10 @@ public class OutputView {
 	 * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
 	public static void printMap(List<List<String>> map) {
-		String up = map.stream().map(strings -> strings.get(1))
-			.collect(Collectors.joining(" | ", "[ ", " ]"));
-		String down = map.stream().map(strings -> strings.get(0))
-			.collect(Collectors.joining(" | ", "[ ", " ]"));
+		String up = map.stream().map(strings -> strings.get(UP_BRIDGE_NUMBER.getConstValue()))
+			.collect(Collectors.joining(DELIMITER.getConstant(), PREFIX.getConstant(), SUFFIX.getConstant()));
+		String down = map.stream().map(strings -> strings.get(DOWN_BRIDGE_NUMBER.getConstValue()))
+			.collect(Collectors.joining(DELIMITER.getConstant(), PREFIX.getConstant(), SUFFIX.getConstant()));
 		System.out.printf(MAP_MESSAGE, up, down);
 	}
 

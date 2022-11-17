@@ -1,6 +1,8 @@
 package bridge.exception;
 
+import static bridge.constant.Constant.*;
 import static bridge.constant.ErrorConstant.*;
+import static bridge.constant.NumericConstant.*;
 
 public class InputExceptionHandler {
 
@@ -19,26 +21,26 @@ public class InputExceptionHandler {
 	}
 
 	private static void isRange(int bridgeSize) {
-		if (bridgeSize < 3 || bridgeSize > 20) {
+		if (bridgeSize < MIN_BRIDGE_SIZE.getConstValue() || bridgeSize > MAX_BRIDGE_SIZE.getConstValue()) {
 			throw new IllegalArgumentException(NOT_NUMBER_RANGE.getMessage());
 		}
 	}
 
 	public static String checkMovingCommand(String input) {
-		if (input.equals("U")) {
+		if (input.equals(UP_BRIDGE_COMMAND.getConstant())) {
 			return input;
 		}
-		if (input.equals("D")) {
+		if (input.equals(DOWN_BRIDGE_COMMAND.getConstant())) {
 			return input;
 		}
 		throw new IllegalArgumentException(NOT_MOVING_COMMAND.getMessage());
 	}
 
 	public static String checkRetryCommand(String input) {
-		if (input.equals("R")) {
+		if (input.equals(RETRY_COMMAND.getConstant())) {
 			return input;
 		}
-		if (input.equals("Q")) {
+		if (input.equals(QUIT_COMMAND.getConstant())) {
 			return input;
 		}
 		throw new IllegalArgumentException(NOT_RETRY_COMMAND.getMessage());

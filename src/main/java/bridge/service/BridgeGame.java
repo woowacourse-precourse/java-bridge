@@ -1,5 +1,8 @@
 package bridge.service;
 
+import static bridge.constant.Constant.*;
+import static bridge.constant.NumericConstant.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,20 +43,20 @@ public class BridgeGame {
 	private List<String> putOneSpace(List<String> userMap, int index) {
 		List<String> space = new ArrayList<>();
 		if (bridge.match(index, userMap.get(index))) {
-			space.add(" ");
-			space.add(positionNumber(userMap.get(index)), "O");
+			space.add(BLANK_SPACE.getConstant());
+			space.add(positionNumber(userMap.get(index)), POSSIBLE_SPACE.getConstant());
 			return space;
 		}
-		space.add(" ");
-		space.add(positionNumber(userMap.get(index)), "X");
+		space.add(BLANK_SPACE.getConstant());
+		space.add(positionNumber(userMap.get(index)), IMPOSSIBLE_SPACE.getConstant());
 		return space;
 	}
 
 	private int positionNumber(String position) {
-		if (position.equals("U")) {
-			return 1;
+		if (position.equals(UP_BRIDGE_COMMAND.getConstant())) {
+			return UP_BRIDGE_NUMBER.getConstValue();
 		}
-		return 0;
+		return DOWN_BRIDGE_NUMBER.getConstValue();
 	}
 
 	public boolean isFail() {
@@ -79,8 +82,8 @@ public class BridgeGame {
 
 	public String result() {
 		if (isClear()) {
-			return "성공";
+			return CLEAR.getConstant();
 		}
-		return "실패";
+		return FAIL.getConstant();
 	}
 }

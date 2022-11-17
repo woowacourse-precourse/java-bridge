@@ -1,5 +1,9 @@
 package bridge.domain;
 
+import static bridge.constant.Constant.*;
+import static bridge.constant.ErrorConstant.*;
+import static bridge.constant.NumericConstant.*;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -21,17 +25,17 @@ public class BridgeMaker {
 	 */
 	public List<String> makeBridge(int size) {
 		return IntStream.range(0, size)
-			.mapToObj(i -> change(bridgeNumberGenerator.generate()))
+			.mapToObj(i -> changeToMovingCommand(bridgeNumberGenerator.generate()))
 			.collect(Collectors.toList());
 	}
 
-	private String change(int number) {
-		if (number == 0) {
-			return "D";
+	private String changeToMovingCommand(int number) {
+		if (number == DOWN_BRIDGE_NUMBER.getConstValue()) {
+			return DOWN_BRIDGE_COMMAND.getConstant();
 		}
-		if (number == 1) {
-			return "U";
+		if (number == UP_BRIDGE_NUMBER.getConstValue()) {
+			return UP_BRIDGE_COMMAND.getConstant();
 		}
-		throw new IllegalArgumentException();
+		throw new IllegalArgumentException(NOT_MOVING_NUMBER.getMessage());
 	}
 }
