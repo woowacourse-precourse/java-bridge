@@ -35,6 +35,10 @@ public class GameController {
             boolean isSurvival = playOneTurn(bridge, player);
             // isSurvival false -> 제시도 여부 확인
             if (!isSurvival) {
+                if(!askForTryAgain()){
+                    break;
+                }
+                bridgeGame.retry(player);
             }
         } while (!bridgeGame.isWin(bridge, player));
         // 결과 출력
