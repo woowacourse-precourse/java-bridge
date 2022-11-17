@@ -54,12 +54,12 @@ public class GameController {
     }
 
     private boolean playOneTurn(Bridge bridge, Player player) {
-        BridgeTile movingTargetTile = generateMovingTargetTile();
+        BridgeTile movingTargetTile = readMovingTargetTile();
         boolean turnResult = bridgeGame.move(bridge, player, movingTargetTile);
         return turnResult;
     }
 
-    private BridgeTile generateMovingTargetTile() {
+    private BridgeTile readMovingTargetTile() {
         while (true) {
             try {
                 String movingPosition = inputView.readMoving();
@@ -71,8 +71,15 @@ public class GameController {
         }
     }
 
-    // todo: refactor
     private boolean askForTryAgain() {
+        String input = readTryAgainInput();
+        if (input.equals(GAME_RETRY_INPUT)) {
+            return true;
+        }
+        return false;
+    }
+
+    private String readTryAgainInput(){
         String input = null;
         do {
             try {
@@ -81,11 +88,7 @@ public class GameController {
                 System.out.println(exception.getMessage());
             }
         } while (input == null);
-
-        if (input.equals(GAME_RETRY_INPUT)) {
-            return true;
-        }
-        return false;
+        return input;
     }
 
 }
