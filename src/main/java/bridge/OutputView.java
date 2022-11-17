@@ -1,9 +1,33 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+
+    private List<String> convertToMap(String line, List<String> board, int step){
+        List<String> map = new ArrayList<>();
+        for(int i = 0; i < step; i++){
+            if(board.get(i).equals(line)){
+                map.add("O");
+                continue;
+            }
+            map.add(" ");
+        }
+        return map;
+    }
+    
+    private void addFailResult(String line, String last, List<String> map){
+        if(last.equals(line)){
+            map.add(" ");
+            return;
+        }
+        map.add("X");
+    }
+
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
