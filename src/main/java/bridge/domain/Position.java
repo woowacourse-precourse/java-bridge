@@ -30,8 +30,12 @@ public class Position {
         position.add(INDEX_INDEX, -1);
     }
 
-    public int getElementIndex() { // TODO: getter 사용 자제... 메시지를 보내기
-        return position.get(ELEMENT_INDEX);
+    public String getElementIndex() { // TODO: getter 사용 자제... 메시지를 보내기
+        int elementIndex = position.get(ELEMENT_INDEX);
+        if (elementIndex == UP) {
+            return "U";
+        }
+        return "D";
     }
 
     public int getIndex() { // TODO: getter 사용 자제... 메시지를 보내기

@@ -14,17 +14,24 @@ public class BridgeController {
 
     public void play() {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        List<Integer> bridgeNumbers = bridgeMaker.makeBridge(3); // TODO: InputView.readBridgeSize();
+
+        String input = InputView.readBridgeSize();
+        int size = Integer.parseInt(input);
+        List<String> bridgeNumbers = bridgeMaker.makeBridge(size);
+
         Bridge bridge = new Bridge(bridgeNumbers);
+
         System.out.println(bridge.getElements());
+
         Position position = new Position();
         BridgeGame bridgeGame = new BridgeGame();
         boolean isQuit = false;
 
         do {
             do {
-                if (position.getIndex() == 3 - 1) { // TODO: size - 1
+                if (position.getIndex() == size - 1) {
                     isQuit = true;
                     break;
                 }
