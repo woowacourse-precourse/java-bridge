@@ -1,20 +1,25 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player {
-    private int position;
+    private final List<String> paths;
+
     public Player() {
-        this.position = 0;
+        this.paths = new ArrayList<>();
     }
 
-    public int move() {
-        return position++;
+    public int move(String direction) {
+        paths.add(direction);
+        return paths.size();
     }
 
     public boolean isCompleted(int size) {
-        return position == size;
+        return paths.size() == size;
     }
 
     public boolean isStartStatus() {
-        return position == 0;
+        return paths.isEmpty();
     }
 }

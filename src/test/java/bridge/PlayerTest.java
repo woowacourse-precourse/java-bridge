@@ -10,16 +10,16 @@ public class PlayerTest {
     @DisplayName("플레이어를 이동한다.")
     void move() {
         Player player = new Player();
-        assertThat(player.move()).isEqualTo(0);
-        assertThat(player.move()).isEqualTo(1);
+        assertThat(player.move("U")).isEqualTo(1);
+        assertThat(player.move("U")).isEqualTo(2);
     }
 
     @Test
     @DisplayName("이동 완료 여부 확인")
     void is_move_complete(){
         Player player = new Player();
-        player.move();
-        player.move();
+        player.move("U");
+        player.move("u");
         assertThat(player.isCompleted(1)).isFalse();
         assertThat(player.isCompleted(2)).isTrue();
     }
