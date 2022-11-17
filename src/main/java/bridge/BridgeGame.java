@@ -23,7 +23,7 @@ public class BridgeGame {
     }
 
     private void updateGameState(String direction){
-        if(bridge.getBrideState().get(user.getUserCurrentLocation()) == direction){
+        if(bridge.getBrideState().get(user.getUserCurrentLocation()).equals(direction)){
             gameState.add(true);
             return;
         }
