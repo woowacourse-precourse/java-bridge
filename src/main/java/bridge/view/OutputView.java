@@ -25,9 +25,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(String[][] map) {
-        System.out.println(Message.PRINT_GAME_RESULT);
+    public void printResult(String[][] map, boolean success) {
+        System.out.println(Message.PRINT_TOTAL_RESULT);
         printMap(map);
+        System.out.println(Message.getGameResultMessage(success));
     }
 
     public void printErrorMessage(String message) {
