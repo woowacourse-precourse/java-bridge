@@ -5,12 +5,13 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeUpDownNumber;
-import bridge.exception.BridgeGameValidator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 import java.util.List;
-import java.util.stream.IntStream;
+
+import static bridge.exception.BridgeGameValidator.isValidGameNumber;
+import static bridge.exception.BridgeGameValidator.validateInt;
 
 public class BridgeGameController {
 
@@ -70,8 +71,8 @@ public class BridgeGameController {
 
     private void createBridgeSize(){
         try{
-            bridgeSize = inputView.readBridgeSize();
-            BridgeGameValidator.isValidGameNumber(bridgeSize);
+            bridgeSize = validateInt(inputView.readBridgeSize());
+            isValidGameNumber(bridgeSize);
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             createBridgeSize();
