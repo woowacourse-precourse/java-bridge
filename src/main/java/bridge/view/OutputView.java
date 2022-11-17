@@ -2,7 +2,6 @@ package bridge.view;
 
 import bridge.domain.BridgeGame;
 import bridge.domain.MoveResults;
-import java.util.List;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -12,26 +11,21 @@ import java.util.List;
  */
 public class OutputView {
 
+    private final OutputViewFormatter outputViewFormatter;
+
+    public OutputView(OutputViewFormatter outputViewFormatter) {
+        this.outputViewFormatter = outputViewFormatter;
+    }
+
     public void printStartMessage() {
         System.out.println("다리 건너기 게임을 시작합니다.");
     }
 
     public void printMap(MoveResults moveResults) {
-        List<String> upResults = moveResults.upResults();
-        List<String> downResults = moveResults.downResults();
-
-        String upString = String.join(" | ", upResults);
-        String downString = String.join(" | ", downResults);
-
-        System.out.println("[ " + upString + " ]");
-        System.out.println("[ " + downString + " ]");
+        System.out.println(outputViewFormatter.bridgeFormat(moveResults));
     }
 
     public void printResult(BridgeGame bridgeGame, String gameResult) {
-        System.out.println("최종 게임 결과");
-        printMap(bridgeGame.moveResults());
-
-        System.out.println("게임 성공 여부: " + gameResult);
-        System.out.println("총 시도한 횟수: " + bridgeGame.totalNumberOfChallenges());
+        System.out.println(outputViewFormatter.resultFormat(bridgeGame, gameResult));
     }
 }
