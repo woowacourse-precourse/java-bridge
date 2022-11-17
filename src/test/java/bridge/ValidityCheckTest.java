@@ -23,7 +23,7 @@ class ValidityCheckTest {
             Throwable illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
                 validityCheck.stringChecker("십오");
             });
-            assertEquals(ER_STRING.getMessage(), illegalArgumentException.getMessage());
+            assertEquals(ER_BRIDGE_LENGTH_INPUT.getMessage(), illegalArgumentException.getMessage());
         }
 
         @Test
@@ -31,7 +31,7 @@ class ValidityCheckTest {
             Throwable illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
                 validityCheck.stringChecker("10s");
             });
-            assertEquals(ER_STRING.getMessage(), illegalArgumentException.getMessage());
+            assertEquals(ER_BRIDGE_LENGTH_INPUT.getMessage(), illegalArgumentException.getMessage());
         }
 
     }
@@ -45,7 +45,7 @@ class ValidityCheckTest {
             Throwable illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
                 validityCheck.numberRangeChecker("21");
             });
-            assertEquals(ER_OUT_OF_RANGE.getMessage(), illegalArgumentException.getMessage());
+            assertEquals(ER_BRIDGE_LENGTH_INPUT.getMessage(), illegalArgumentException.getMessage());
         }
 
         @Test
@@ -53,7 +53,7 @@ class ValidityCheckTest {
             Throwable illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
                 validityCheck.numberRangeChecker("0");
             });
-            assertEquals(ER_OUT_OF_RANGE.getMessage(), illegalArgumentException.getMessage());
+            assertEquals(ER_BRIDGE_LENGTH_INPUT.getMessage(), illegalArgumentException.getMessage());
 
         }
 
