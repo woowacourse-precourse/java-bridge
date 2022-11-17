@@ -81,6 +81,10 @@ public class BridgeGame {
         return position == bridge.size() - 1;
     }
 
+    public int getBridgeSize() {
+        return bridge.size();
+    }
+
     public String printResult() {
         StringBuilder result = new StringBuilder("최종 게임 결과\n");
         result.append(this + "\n");
