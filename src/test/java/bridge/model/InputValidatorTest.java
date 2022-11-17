@@ -1,4 +1,4 @@
-package bridge;
+package bridge.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

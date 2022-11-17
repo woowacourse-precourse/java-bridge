@@ -1,10 +1,11 @@
-package bridge;
+package bridge.model;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
+    public static final int RETRY_DEFAULT_COUNT = 1;
     private final Bridges bridges;
     private Player player;
     private int retryCount;
@@ -12,7 +13,7 @@ public class BridgeGame {
     public BridgeGame(int size, BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridges = new Bridges(size, bridgeNumberGenerator);
         player = new Player();
-        retryCount = 1;
+        retryCount = RETRY_DEFAULT_COUNT;
     }
 
     /**
@@ -22,7 +23,7 @@ public class BridgeGame {
      */
     public boolean move(String direction) {
         int position = player.move(direction);
-        return bridges.isSameDirection(position, direction);
+        return bridges.isSuccess(position, direction);
     }
 
     /**
@@ -39,19 +40,19 @@ public class BridgeGame {
         return retryCount;
     }
 
-    public boolean isCompleted() {
+    public boolean isSuccess() {
         return bridges.isEnd(player);
     }
 
-    public boolean isStartStatus() {
+    boolean isStartStatus() {
         return player.isStartStatus();
     }
 
     public String printWrongResult() {
-        return player.printWrongResult();
+        return player.printFailureResult();
     }
 
     public String printRightResult() {
-        return player.printRightResult();
+        return player.printSuccessResult();
     }
 }

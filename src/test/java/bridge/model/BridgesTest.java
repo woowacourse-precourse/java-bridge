@@ -1,4 +1,4 @@
-package bridge;
+package bridge.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -11,7 +11,7 @@ public class BridgesTest {
     @DisplayName("이동 완료 여부 확인")
     @Test
     void check_is_end() {
-        Bridges bridges = new Bridges(3,new BridgeFakeNumberGenerator());
+        Bridges bridges = new Bridges(3, new BridgeFakeNumberGenerator());
         Player player = new Player();
         assertThat(bridges.isEnd(player)).isFalse();
         player.move("U");
@@ -24,9 +24,9 @@ public class BridgesTest {
     @DisplayName("특정한 위치의 방향 확인 기능")
     @Test
     void is_same_direction() {
-        Bridges bridges = new Bridges(3,new BridgeFakeNumberGenerator());
-        assertThat(bridges.isSameDirection(1, "U")).isTrue();
-        assertThat(bridges.isSameDirection(2, "D")).isTrue();
-        assertThat(bridges.isSameDirection(3, "U")).isTrue();
+        Bridges bridges = new Bridges(3, new BridgeFakeNumberGenerator());
+        assertThat(bridges.isSuccess(1, "U")).isTrue();
+        assertThat(bridges.isSuccess(2, "D")).isTrue();
+        assertThat(bridges.isSuccess(3, "U")).isTrue();
     }
 }

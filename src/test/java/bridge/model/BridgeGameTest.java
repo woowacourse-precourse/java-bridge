@@ -1,4 +1,4 @@
-package bridge;
+package bridge.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -20,13 +20,13 @@ public class BridgeGameTest {
 
     @DisplayName("이동 완료 문의")
     @Test
-    void is_completed_move(){
+    void is_completed_move() {
         BridgeGame bridgeGame = new BridgeGame(2, new BridgeFakeNumberGenerator());
-        assertThat(bridgeGame.isCompleted()).isFalse();
+        assertThat(bridgeGame.isSuccess()).isFalse();
         bridgeGame.move("D");
-        assertThat(bridgeGame.isCompleted()).isFalse();
+        assertThat(bridgeGame.isSuccess()).isFalse();
         bridgeGame.move("U");
-        assertThat(bridgeGame.isCompleted()).isTrue();
+        assertThat(bridgeGame.isSuccess()).isTrue();
     }
 
     @DisplayName("게임 다시 시도")
@@ -35,7 +35,7 @@ public class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(4, new BridgeFakeNumberGenerator());
         assertThat(bridgeGame.isStartStatus()).isTrue();
         bridgeGame.move("D");
-        assertThat(bridgeGame.isCompleted()).isFalse();
+        assertThat(bridgeGame.isSuccess()).isFalse();
         bridgeGame.retry();
         assertThat(bridgeGame.isStartStatus()).isTrue();
     }

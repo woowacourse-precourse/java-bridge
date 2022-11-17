@@ -1,4 +1,4 @@
-package bridge;
+package bridge.model;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,6 +11,7 @@ public class BridgeMaker {
 
     public static final String UP_BRIDGE = "U";
     public static final String DOWN_BRIDGE = "D";
+    public static final int DOWN_DEFAULT_VALUE = 0;
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -29,7 +30,7 @@ public class BridgeMaker {
     }
 
     private String apply(Integer value) {
-        if (value == 0) {
+        if (value == DOWN_DEFAULT_VALUE) {
             return DOWN_BRIDGE;
         }
         return UP_BRIDGE;

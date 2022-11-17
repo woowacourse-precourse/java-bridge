@@ -1,4 +1,4 @@
-package bridge;
+package bridge.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,35 +11,35 @@ public class Player {
     public static final String WRONG_SIGN = "X";
     public static final int CHANGE_INDEX_ADD_ONE = 1;
     public static final String RESULT_DELIMITER = " | ";
-    public static final String DEAULT_SIGN = " ";
+    public static final String DEFAULT_SIGN = " ";
     public static final String FORMAT_RESULT = "[ %s ]\n";
     private final List<String> directions;
 
-    public Player() {
+    Player() {
         this.directions = new ArrayList<>();
     }
 
-    public int move(String direction) {
+    int move(String direction) {
         directions.add(direction);
         return directions.size();
     }
 
-    public boolean isCompleted(int size) {
+    boolean isCompleted(int size) {
         return directions.size() == size;
     }
 
-    public boolean isStartStatus() {
+    boolean isStartStatus() {
         return directions.isEmpty();
     }
 
-    String printWrongResult() {
+    String printFailureResult() {
         StringBuilder result = new StringBuilder();
-        extracted(rightUpResult(), result, DIRECTION_UP);
-        extracted(rightDownResult(), result, DIRECTION_DOWN);
+        getFailureResult(getUpResult(), result, DIRECTION_UP);
+        getFailureResult(getDownResult(), result, DIRECTION_DOWN);
         return result.toString();
     }
 
-    private void extracted(String rightUpResult, StringBuilder result, String U) {
+    private void getFailureResult(String rightUpResult, StringBuilder result, String U) {
         result.append(getResultFormat(rightUpResult));
         if (directions.get(directions.size() - 1).equals(U)) {
             result.replace(result.lastIndexOf(RIGHT_SIGN), result.lastIndexOf(RIGHT_SIGN) + CHANGE_INDEX_ADD_ONE,
@@ -48,22 +48,22 @@ public class Player {
     }
 
 
-    public String printRightResult() {
-        return getResultFormat(rightUpResult())
-                + getResultFormat(rightDownResult());
+    String printSuccessResult() {
+        return getResultFormat(getUpResult())
+                + getResultFormat(getDownResult());
     }
 
     private String getResultFormat(String result) {
         return String.format(FORMAT_RESULT, result);
     }
 
-    private String rightDownResult() {
+    private String getDownResult() {
         return directions.stream()
                 .map(this::isDown)
                 .collect(Collectors.joining(RESULT_DELIMITER));
     }
 
-    private String rightUpResult() {
+    private String getUpResult() {
         return directions.stream()
                 .map(this::isUp)
                 .collect(Collectors.joining(RESULT_DELIMITER));
@@ -73,13 +73,13 @@ public class Player {
         if (direction.equals(DIRECTION_DOWN)) {
             return RIGHT_SIGN;
         }
-        return DEAULT_SIGN;
+        return DEFAULT_SIGN;
     }
 
-    public String isUp(String direction) {
+    private String isUp(String direction) {
         if (direction.equals(DIRECTION_UP)) {
             return RIGHT_SIGN;
         }
-        return DEAULT_SIGN;
+        return DEFAULT_SIGN;
     }
 }
