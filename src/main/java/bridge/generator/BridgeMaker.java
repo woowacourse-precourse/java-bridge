@@ -1,4 +1,4 @@
-package bridge;
+package bridge.generator;
 
 import java.util.List;
 
