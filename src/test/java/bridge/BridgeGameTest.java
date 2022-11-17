@@ -9,11 +9,22 @@ public class BridgeGameTest {
 
     @Test
     @DisplayName("이동한 칸이 이동가능한 칸인지 확인")
-    void check_move(){
-        BridgeGame bridgeGame = new BridgeGame(4,new BridgeFakeNumberGenerator());
+    void check_move() {
+        BridgeGame bridgeGame = new BridgeGame(4, new BridgeFakeNumberGenerator());
         assertThat(bridgeGame.move("D")).isTrue();
         assertThat(bridgeGame.move("U")).isTrue();
         assertThat(bridgeGame.move("U")).isFalse();
         assertThat(bridgeGame.move("D")).isFalse();
+    }
+
+    @Test
+    @DisplayName("이동 완료 문의")
+    void is_completed_move(){
+        BridgeGame bridgeGame = new BridgeGame(2, new BridgeFakeNumberGenerator());
+        assertThat(bridgeGame.isCompleted()).isFalse();
+        bridgeGame.move("D");
+        assertThat(bridgeGame.isCompleted()).isFalse();
+        bridgeGame.move("U");
+        assertThat(bridgeGame.isCompleted()).isTrue();
     }
 }

@@ -33,4 +33,9 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public boolean isCompleted() {
+        return player.isCompleted(bridges.size());
+    }
+
 }
