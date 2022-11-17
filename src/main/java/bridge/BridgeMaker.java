@@ -32,8 +32,8 @@ public class BridgeMaker {
 
     private String checkGenerate(int generatedNum) {
         if (generatedNum == 0) {
-            return "U";
+            return "D";
         }
-        return "D";
+        return "U";
     }
 }
