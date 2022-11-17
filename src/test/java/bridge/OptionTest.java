@@ -3,7 +3,7 @@ package bridge;
 import static bridge.config.ExceptionMessage.ERROR;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import bridge.option.GameOption;
+import bridge.option.GameCommand;
 import bridge.option.Move;
 import bridge.option.Option;
 import org.junit.jupiter.api.DisplayName;
@@ -33,8 +33,8 @@ public class OptionTest {
     @DisplayName("게임 옵션을 Q나 R를 입력하지 않으면 예외가 발생")
     @ValueSource(strings = {"A", "B"})
     @ParameterizedTest
-    void inputNotGameOption(String input) {
-        assertThatThrownBy(() -> new GameOption(input))
+    void inputNotGameCommand(String input) {
+        assertThatThrownBy(() -> new GameCommand(input))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(ERROR);
     }
