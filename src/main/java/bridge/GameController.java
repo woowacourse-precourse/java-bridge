@@ -31,8 +31,11 @@ public class GameController {
             }
         }
         if (!tf) {
-            if (re)
+            if (re) {
+                outputView.setDownBridge("[]");
+                outputView.setUpBridge("[]");
                 gameTotalProgress();
+            }
         }
         gameResult();
     }
