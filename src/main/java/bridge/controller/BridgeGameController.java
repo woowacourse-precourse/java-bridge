@@ -7,7 +7,7 @@ import static bridge.domain.constants.ResultSigns.PASS_SIGN;
 
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
-import bridge.domain.BridgeMaker;
+import bridge.domain.make_bridge.BridgeMaker;
 import bridge.domain.GameResults;
 import bridge.domain.Player;
 import bridge.view.InputView;
