@@ -12,7 +12,7 @@ public class InputView {
     }
 
     // TODO: 사용자가 이동할 칸을 입력받는다.
-    public String readMoving() {
+    public static String readMoving() {
         return Validate.moving(Console.readLine());
     }
 
