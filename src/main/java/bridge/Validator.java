@@ -1,5 +1,9 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Validator {
     private final String ERROR_MESSAGE = "[ERROR] ";
     private final String ERROR_NOT_INT = ERROR_MESSAGE + "다리 길이는 숫자여야 합니다.";
@@ -15,13 +19,9 @@ public class Validator {
         return Integer.parseInt(input);
     }
     public void isValidLength(int length) {
-
+        if (length < 3 || length > 20) {
+            throw new IllegalArgumentException(ERROR_NOT_VALID_LENGTH);
+        }
     }
-    public void isValidMove(String input) {
-        String[] valid = {"U", "D"};
 
-    }
-    public void isValidCommand(String input) {
-
-    }
 }
