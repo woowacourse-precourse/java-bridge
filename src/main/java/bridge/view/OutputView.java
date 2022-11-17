@@ -54,7 +54,7 @@ public class OutputView {
 
     public void printFalse(String input) {
         if (input.equals("U")) {
-            upBridge = upBridge.replace("]", "| O ]");
+            upBridge = upBridge.replace("]", "| X ]");
             downBridge = downBridge.replace("]", "|   ]");
             return;
         }
