@@ -37,4 +37,8 @@ public class GameController {
         viewService.printInputRetryMessage();
         return bridgeGame.checkRetry(viewService.inputGameCommand());
     }
+
+    public void exit(){
+        viewService.printExit();
+    }
 }

@@ -17,8 +17,10 @@ public class BridgeRepository {
     private SelectMove selectMove;
     private Integer attemptNumber;
     private Integer successNumber;
+    private String successOrFail;
     private BridgeRepository(){
         attemptNumber=1;
+        successOrFail="실패";
     }
 
     public static BridgeRepository getInstance(){
@@ -47,7 +49,7 @@ public class BridgeRepository {
     }
     public void saveSelectMove(SelectMove selectMove){this.selectMove=selectMove;}
     public void updateBridge(List<String> bridge){this.bridge=bridge;}
-
+    public void updateSuccessOrFail(){this.successOrFail="성공";}
     public BridgeSize getBridgeSize() {
         return bridgeSize;
     }
@@ -69,7 +71,12 @@ public class BridgeRepository {
         return successNumber;
     }
 
+    public String getSuccessOrFail() {
+        return successOrFail;
+    }
+
     public Integer getAttemptNumber() {
         return attemptNumber;
     }
+
 }

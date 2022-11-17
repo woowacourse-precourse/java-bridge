@@ -13,6 +13,7 @@ public class Application {
         gameController.inputBridgeSize();
         gameController.generateBridge();
         move(gameController);
+        gameController.exit();
     }
 
     private static void move(GameController gameController){

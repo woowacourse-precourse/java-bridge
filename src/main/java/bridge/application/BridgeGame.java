@@ -59,6 +59,7 @@ public class BridgeGame {
     }
     private int checkFinish(){
         if(bridgeRepository.getSuccessNumber().equals(bridgeRepository.getBridgeSize().getSize())){
+            bridgeRepository.updateSuccessOrFail();
             return FINISH;
         }
         return SUCCESS;
