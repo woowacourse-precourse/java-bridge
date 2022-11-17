@@ -7,7 +7,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     // TODO: 사용자가 생성할 다리의 길이를 입력받는다.
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         return Validate.bridgeSize(Console.readLine());
     }
 
