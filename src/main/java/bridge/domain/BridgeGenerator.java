@@ -12,6 +12,15 @@ public class BridgeGenerator {
         validateSize(bridgeSize);
     }
 
+    public void generate(int bridgeSize) {
+        List<Integer> bridge = new ArrayList<>();
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        for (int i = 0; i < bridgeSize; i++) {
+            bridge.add(bridgeRandomNumberGenerator.generate());
+        }
+        return new Bridge(bridge);
+    }
+
     private void validateSize(int bridgeSize) {
         if (bridgeSize < 3 || bridgeSize > 20) {
             throw new IllegalArgumentException(ERROR_OUT_OF_RANGE);
