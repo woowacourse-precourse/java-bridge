@@ -34,16 +34,28 @@ class PlayResultTest {
                 .isEqualTo(MoveStatus.DOWN);
     }
 
-    @DisplayName("다리를 건널 수 없으면 FAIL")
+    @DisplayName("다리를 건널 수 없고, 위 방향은 UP_FAIL")
     @Test
-    void 건널_수_없으면_FAIL() {
+    void 건널_수_없고_위_방향은_UP_FAIL() {
+        PlayResult playResult = new PlayResult();
+        playResult.updateResult("U", false);
+
+        assertThat(playResult)
+                .extracting("playResult", InstanceOfAssertFactories.LIST)
+                .first(new InstanceOfAssertFactory<>(MoveStatus.class, Assertions::assertThat))
+                .isEqualTo(MoveStatus.UP_FAIL);
+    }
+
+    @DisplayName("다리를 건널 수 없고, 아래 방향은 DOWN_FAIL")
+    @Test
+    void 건널_수_없고_아래_방향은_DOWN_FAIL() {
         PlayResult playResult = new PlayResult();
         playResult.updateResult("D", false);
 
         assertThat(playResult)
                 .extracting("playResult", InstanceOfAssertFactories.LIST)
                 .first(new InstanceOfAssertFactory<>(MoveStatus.class, Assertions::assertThat))
-                .isEqualTo(MoveStatus.FAIL);
+                .isEqualTo(MoveStatus.DOWN_FAIL);
     }
 
 }
