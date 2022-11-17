@@ -22,8 +22,7 @@ public class InputUtils {
 
 
     public boolean isValidBridgePosition(String input) {
-        char characterInput = input.charAt(0);
-        return BridgeType.isPosition(characterInput);
+        return BridgeType.isPosition(input);
     }
 
     public boolean isValidGameRestartInput(String input) {

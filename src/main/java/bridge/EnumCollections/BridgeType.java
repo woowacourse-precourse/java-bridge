@@ -1,26 +1,34 @@
 package bridge.EnumCollections;
 
 public enum BridgeType {
-    UP('U', 1),
-    DOWN('D', 0);
+    UP("U", 1),
+    DOWN("D", 0);
 
-    private char position;
+    private String position;
     private int randomValue;
 
-    BridgeType(char position, int randomValue) {
+    BridgeType(String position, int randomValue) {
         this.position = position;
         this.randomValue = randomValue;
     }
 
-    public char getPosition() {
+    public String getPosition() {
         return position;
+    }
+
+    public static String getPosition(int input) {
+        if(input == UP.randomValue) {
+            return UP.position;
+        }
+        return DOWN.position;
     }
 
     public int getRandomValue() {
         return randomValue;
     }
 
-    public static boolean isPosition(char input) {
-        return input == UP.getPosition() || input == DOWN.getPosition();
+
+    public static boolean isPosition(String input) {
+        return input.equals(UP.getPosition()) || input.equals(DOWN.getPosition());
     }
 }
