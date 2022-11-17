@@ -1,5 +1,6 @@
-package bridge;
+package view;
 
+import bridge.ErrorMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -49,25 +50,25 @@ public class InputView {
 
     public void isBridgeSizeNumber(String size) {
         if (!size.matches("^[0-9]*$")) {
-            throw new IllegalArgumentException(InputException.BRIDGE_SIZE_NOT_NUMBER.message());
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_NOT_NUMBER.getErrorMessage());
         }
     }
 
     public void isBridgeSizeValidRange(String size) {
         if (3 > Integer.parseInt(size) || Integer.parseInt(size) > 20) {
-            throw new IllegalArgumentException(InputException.BRIDGE_SIZE_INVALID_RANGE.message());
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_INVALID_RANGE.getErrorMessage());
         }
     }
 
     public void isValidMove(String moving) {
         if (!moving.equals("U") && !moving.equals("D")) {
-            throw new IllegalArgumentException(InputException.MOVE_INVALID.message());
+            throw new IllegalArgumentException(ErrorMessage.MOVE_INVALID.getErrorMessage());
         }
     }
 
     public void isValidRetryOrQuit(String gameCommand) {
         if (!gameCommand.equals("Q") && !gameCommand.equals("R")) {
-            throw new IllegalArgumentException(InputException.RETRY_OR_QUIT_INVALID.message());
+            throw new IllegalArgumentException(ErrorMessage.RETRY_OR_QUIT_INVALID.getErrorMessage());
         }
     }
 }
