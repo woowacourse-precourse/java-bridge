@@ -10,8 +10,7 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public boolean canMove(List<String> userMoved) {
-        int userMovedSize = userMoved.size();
-        return bridge.get(userMovedSize - 1) == userMoved.get(userMovedSize - 1);
+    public boolean canMove(List<String> userMoved, int idx) {
+        return bridge.get(idx) == userMoved.get(idx);
     }
 }
