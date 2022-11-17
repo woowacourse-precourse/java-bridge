@@ -19,17 +19,15 @@ public class InputView {
     }
 
     private int inputBridgeSize() {
-        String bridgeSize;
+        String bridgeSize = Console.readLine();
 
-        while(true) {
-            try {
-                bridgeSize = Console.readLine();
-                validateBridgeSize(bridgeSize);
-                break;
-            }catch (IllegalArgumentException e) {
-                e.printStackTrace();
-            }
+        try {
+            validateBridgeSize(bridgeSize);
+        }catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            return inputBridgeSize();
         }
+
         return Integer.parseInt(bridgeSize);
     }
 
@@ -44,17 +42,15 @@ public class InputView {
     }
 
     private String inputMoving () {
-        String moving;
+        String moving = Console.readLine();
 
-        while(true) {
-            try {
-                moving = Console.readLine();
-                validateMoving(moving);
-                break;
-            }catch (IllegalArgumentException e) {
-                e.printStackTrace();
-            }
+        try {
+            validateMoving(moving);
+        }catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            return inputMoving();
         }
+
         return moving;
     }
 
@@ -68,16 +64,13 @@ public class InputView {
     }
 
     private String inputCommand() {
-        String command;
+        String command = Console.readLine();
 
-        while(true) {
-            try {
-                command = Console.readLine();
-                validateCommand(command);
-                break;
-            }catch (IllegalArgumentException e) {
-                e.printStackTrace();
-            }
+        try {
+            validateCommand(command);
+        }catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            return inputCommand();
         }
 
         return command;
