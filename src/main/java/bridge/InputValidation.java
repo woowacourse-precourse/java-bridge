@@ -34,4 +34,10 @@ public class InputValidation {
         return true;
     }
 
+    public boolean isValidDirection(String moveDirection){
+        if(U.equals(moveDirection) || D.equals(moveDirection))
+            return true;
+        return false;
+    }
+
 }
