@@ -1,6 +1,5 @@
 package bridge;
 
-import static org.assertj.core.api.Assertions.anyOf;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
