@@ -4,6 +4,7 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberI
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
@@ -45,6 +46,18 @@ class ApplicationTest extends NsTest {
             runException("a");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    void 생성된_다리_사이즈() {
+        // given
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+
+        // when
+        List<String> bridge = bridgeMaker.makeBridge(10);
+
+        // then
+        assertEquals(10, bridge.size());
     }
 
     @Override
