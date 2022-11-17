@@ -22,4 +22,12 @@ public class Validate {
             throw new IllegalArgumentException(OUT_OF_RANGE_EXCEPTION);
         }
     }
+
+    //U(위 칸), D(아래 칸) 이외의 문자가 입력되면 예외가 발생한다.
+    public static void directionValidate(String direction) {
+        if (!(direction.equals("U") || direction.equals("D"))) {
+            throw new IllegalArgumentException(DIRECTION_EXCEPTION);
+        }
+    }
+
 }
