@@ -10,7 +10,6 @@ public class SelectMove {
     private void validate(String target){
 
     }
-
     public String getMove() {
         return move;
     }
