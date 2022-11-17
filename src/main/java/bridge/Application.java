@@ -10,6 +10,9 @@ public class Application {
             InputView inputView = new InputView();
             OutputView outputView = new OutputView();
 
+            // 게임 시작 문구를 출력하는 기능
+            outputView.printGameStart();
+
             // 다리 길이 입력받는 기능
             BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
             int size = inputView.readBridgeSize();
@@ -24,7 +27,6 @@ public class Application {
             String gameCommand = inputView.readGameCommand();
             bridgeGame.retry(gameCommand);
 
-            outputView.printGameStart();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
