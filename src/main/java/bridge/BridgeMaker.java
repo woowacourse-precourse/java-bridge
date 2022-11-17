@@ -22,10 +22,9 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
 
         for (int i = 0; i < size; i++) {
-            int randomNumber = bridgeRandomNumberGenerator.generate();
+            int randomNumber = this.bridgeNumberGenerator.generate();
             String letter = BridgeStatus.convertNumberToLetter(randomNumber);
             bridge.add(letter);
         }
