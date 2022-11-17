@@ -10,8 +10,9 @@ public class Player {
         initPosition();
     }
 
-    public void moveForward() {
+    public int moveForward() {
         positionIndex++;
+        return positionIndex;
     }
 
     public void die() {

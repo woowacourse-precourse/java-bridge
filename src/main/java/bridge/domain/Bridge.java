@@ -27,10 +27,16 @@ public class Bridge {
         return new Bridge(tiles);
     }
 
-
     private static void validateBridgePositions(List<String> bridgePositions) {
         if (bridgePositions.size() < MIN_SIZE || bridgePositions.size() > MAX_SIZE) {
             throw new IllegalArgumentException(String.format(BRIDGE_SIZE_EXCEPTION_MESSAGE, MIN_SIZE, MAX_SIZE));
         }
+    }
+
+    public boolean checkBridgeTileAt(int playerPosition, BridgeTile nextTile) {
+        if (bridgeTiles.get(playerPosition).equals(nextTile)) {
+            return true;
+        }
+        return false;
     }
 }
