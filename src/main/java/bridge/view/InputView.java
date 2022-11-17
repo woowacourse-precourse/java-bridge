@@ -6,20 +6,15 @@ import camp.nextstep.edu.missionutils.Console;
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
-public class InputView {
-    InputException inputException;
-
-    public InputView() {
-        inputException = new InputException();
-    }
+public class InputView extends InputException {
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
-        String  bridgeSize = Console.readLine();
-        inputException.validateBridgeSize(bridgeSize);
+        String bridgeSize = Console.readLine();
+        validateBridgeSize(bridgeSize);
         return Integer.parseInt(bridgeSize);
     }
 
@@ -29,6 +24,7 @@ public class InputView {
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String moving = Console.readLine();
+        validateMoving(moving);
         return moving;
     }
 
