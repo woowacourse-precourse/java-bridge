@@ -12,7 +12,7 @@ public class OutputView {
         System.out.println(START_MESSAGE);
     }
 
-    public static void printInputBridgeLength() {
+    public static void printInputBridgeSize() {
         System.out.println(INPUT_BRIDGE_LENGTH);
     }
 

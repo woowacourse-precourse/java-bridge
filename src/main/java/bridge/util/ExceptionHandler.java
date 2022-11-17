@@ -2,17 +2,17 @@ package bridge.util;
 
 public class ExceptionHandler {
 
-    static final int BRIDGE_LENGTH_MIN = 3;
-    static final int BRIDGE_LENGTH_MAX = 20;
+    static final int BRIDGE_SIZE_MIN = 3;
+    static final int BRIDGE_SIZE_MAX = 20;
 
-    public static void checkBridgeLength(String input) throws IllegalArgumentException {
-        int bridgeLength = Integer.parseInt(input);
-        if (!isValidRange(bridgeLength)) {
+    public static void checkBridgeSize(String input) throws IllegalArgumentException {
+        int size = Integer.parseInt(input);
+        if (!isValidRange(size)) {
             throw new IllegalArgumentException();
         }
     }
 
-    private static boolean isValidRange(int bridgeLength) {
-        return (BRIDGE_LENGTH_MIN <= bridgeLength && bridgeLength <= BRIDGE_LENGTH_MAX);
+    private static boolean isValidRange(int size) {
+        return (BRIDGE_SIZE_MIN <= size && size <= BRIDGE_SIZE_MAX);
     }
 }

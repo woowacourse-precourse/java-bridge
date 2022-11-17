@@ -12,10 +12,10 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public static int getInputBridgeLength() throws IllegalArgumentException {
-        OutputView.printInputBridgeLength();
+    public static int getInputBridgeSize() throws IllegalArgumentException {
+        OutputView.printInputBridgeSize();
         String input = readLine();
-        ExceptionHandler.checkBridgeLength(input);
+        ExceptionHandler.checkBridgeSize(input);
         return Integer.parseInt(input);
     }
 
