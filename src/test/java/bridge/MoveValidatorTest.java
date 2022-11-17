@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class MoveValidatorTest {
+class MoveValidatorTest {
 
     @DisplayName("잘못된 입력")
     @Test

@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class BridgeMakerTest {
+class BridgeMakerTest {
 
     @DisplayName("사이즈에 맞게 생성되는지 확인")
     @Test
