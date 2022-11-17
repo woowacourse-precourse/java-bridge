@@ -3,8 +3,8 @@ package bridge.domain.vo;
 import static java.lang.Integer.parseInt;
 
 public class BridgeSize {
-    private static final String IS_NOT_NUMBER = "문자열이 아닌 숫자(정수)를 입력해주세요.";
-    private static final String BRIDGE_SIZE_IS_NOT_IN_RANGE = "다리의 길이는 3부터 20사이의 숫자를 입력해주세요.";
+    private static final String IS_NOT_NUMBER = "[ERROR] 문자열이 아닌 숫자(정수)를 입력해주세요.";
+    private static final String BRIDGE_SIZE_IS_NOT_IN_RANGE = "[ERROR] 다리의 길이는 3부터 20사이의 숫자를 입력해주세요.";
 
     private final int bridgeSize;
 

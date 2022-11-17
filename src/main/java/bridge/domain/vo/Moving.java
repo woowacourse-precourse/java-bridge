@@ -1,8 +1,8 @@
 package bridge.domain.vo;
 
 public class Moving {
-    private static final String MOVING_LENGTH_IS_NOT_ONE = "이동할 칸은 문자 1개를 입력해주세요.";
-    private static final String MOVING_IS_NOT_U_AND_D = "이동할 칸은 U 또는 D로 입력해주세요.";
+    private static final String MOVING_LENGTH_IS_NOT_ONE = "[ERROR] 이동할 칸은 문자 1개를 입력해주세요.";
+    private static final String MOVING_IS_NOT_U_AND_D = "[ERROR] 이동할 칸은 U 또는 D로 입력해주세요.";
     private static final String MOVING_UP = "U";
     private static final String MOVING_DOWN = "D";
 
