@@ -28,6 +28,8 @@ public class Validator {
     }
 
     public void validateRetryStatus(String retryStatus) {
-
+        if (!retryStatus.matches("[RQ]")) {
+            throw new IllegalArgumentException(ErrorMessage.IS_WRONG_RETRY_STATUS.message());
+        }
     }
 }
