@@ -40,4 +40,10 @@ public class InputView {
         }
     }
 
+    private void validateNumberRange(int len){
+        if(len < 3 || len > 20){
+            throw new IllegalArgumentException("[ERROR] 숫자는 3~20 범위로 입력해야 합니다.");
+        }
+    }
+
 }
