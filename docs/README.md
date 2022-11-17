@@ -2,9 +2,34 @@
 
 ### 🚀 Application class
 
+- public void playBridgeGame()
+  - 다리 게임이 진행되는 메소드
+
 ### 🚀 BridgeGame class
 
+- public List<String> move(List<String>, int)
+  - 다음 칸으로 이동하는 메소드
+  - 이동한 후의 다리 상태를 List 형태로 반환
+
+
+- public boolean rightMove(int, String)
+  - 이동하려는 칸으로 실제 이동할 수 있는지 확인하는 메소드
+  - 이동할 수 있으면 true, 이동할 수 없으면 false 반환
+
+
+- public boolean retry(String)
+  - 재시작/종료 여부를 통해 게임의 진행을 관리하는 메소드
+  - 재시작의 경우 true, 종료의 경우 false 반환
+
 ### 🚀 BridgeMaker class
+
+- public BridgeMaker(BridgeRandomNumberGenerator)
+  - 다음에 올 다리의 위치(위, 아래)를 결정하는 생성자
+
+
+- public List<String> makeBridge(int)
+  - 건널 수 있는 칸의 위치를 반환하는 메소드
+
 
 ### 🚀 InputView class
 
@@ -61,3 +86,10 @@
 - public void printGameCommand()
   - 게임 재시작/종료 여부에 대한 입력을 알리는 문구를 출력하는 메소드
 
+
+- public void printMap(List<String>)
+  - 현재의 다리 상태를 출력하는 메소드
+
+
+- public void printResult(List<String>)
+  - 최종 게임 결과를 출력하는 메소드
