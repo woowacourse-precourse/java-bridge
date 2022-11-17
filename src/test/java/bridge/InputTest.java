@@ -13,12 +13,19 @@ public class InputTest {
     void setUp() {
         inputView = new InputView();
     }
-    
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "   "})
     @DisplayName("아무것도 입력하지 않았을 때 예외가 발생한다.")
     void 입력값이_없으면_예외발생(String input) {
         assertThatIllegalArgumentException().isThrownBy(() -> inputView.validateIsNotEmpty(input))
                 .withMessage("[ERROR] 숫자를 입력해야 합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"!", "base", "15a", "10."})
+    @DisplayName("NULL 을 포함하여 숫자가 아닌 값이 입력됐을 때 예외가 발생한다.")
+    void 입력값이_숫자가아니면_예외발생(String input) {
+        assertThatIllegalArgumentException().isThrownBy(() -> inputView.validateIsNumber(input))
+                .withMessage("[ERROR] 숫자만 입력할 수 있습니다.");
     }
 }
