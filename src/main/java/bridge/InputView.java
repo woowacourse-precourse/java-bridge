@@ -9,6 +9,8 @@ public class InputView {
 
     public static final int BRIDGE_MIN_SIZE = 3;
     public static final int BRIDGE_MAX_SIZE = 20;
+    public static final String UP = "U";
+    public static final String DOWN = "D";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -38,7 +40,14 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        return validateMoving(Console.readLine());
+    }
+
+    private String validateMoving(String moving) {
+        if (!moving.equals(UP) && !moving.equals(DOWN)) {
+            throw new IllegalArgumentException();
+        }
+        return moving;
     }
 
     /**
