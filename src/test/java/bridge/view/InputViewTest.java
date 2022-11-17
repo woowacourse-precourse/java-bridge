@@ -48,4 +48,17 @@ class InputViewTest {
         //then
         assertThat(bridgeSize).isEqualTo(Integer.parseInt(input));
     }
+
+    @DisplayName("[예외 테스트] 사용자 이동 입력값이 올바르지 않음")
+    @ValueSource(strings = {"UP", "DOWN", " "})
+    @ParameterizedTest
+    void movingInputNotProper(String input) {
+        //given
+        InputView inputView = new InputView();
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        //when then
+        assertThatThrownBy(() -> inputView.readMoving())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR);
+    }
 }
