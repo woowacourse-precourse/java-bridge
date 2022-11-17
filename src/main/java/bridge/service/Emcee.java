@@ -33,7 +33,10 @@ public class Emcee {
         outputView.printMap(movementStatus);
     }
 
-    public void showGameResult() {
-
+    public void showGameResult(String resultStatus, boolean completed, int attemptCount) {
+        String result = "최종 게임 결과\n" + resultStatus + "\n" +
+                "게임 성공 여부: " + (completed ? "성공" : "실패") + "\n" +
+                "총 시도한 횟수: " + attemptCount;
+        outputView.printResult(result);
     }
 }
