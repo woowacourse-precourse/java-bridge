@@ -47,4 +47,24 @@ public class BridgeGame {
         usersMove = new ArrayList<>();
         return true;
     }
+
+    public void plusCnt() {
+        this.cnt++;
+    }
+
+    public List<String> getBridge() {
+        return bridge;
+    }
+
+    public List<String> getUsersMove() {
+        return usersMove;
+    }
+
+    public int getCnt() {
+        return cnt;
+    }
+
+    public boolean isMove() {
+        return isMove;
+    }
 }
