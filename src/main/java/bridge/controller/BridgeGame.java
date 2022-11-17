@@ -4,6 +4,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.enums.Message;
+import bridge.view.InputNumValidator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -20,7 +21,9 @@ public class BridgeGame {
     public void start() {
         outputView.printMessage(Message.GAME_START_MSG);
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        InputNumValidator inputNumValidator = new InputNumValidator(inputView.readBridgeSize());
+        List<String> bridge = bridgeMaker.makeBridge(inputNumValidator.getInputValue());
+
     }
 
     /**
