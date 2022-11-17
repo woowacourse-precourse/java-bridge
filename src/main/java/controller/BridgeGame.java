@@ -1,11 +1,13 @@
-package bridge;
+package controller;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
+import constant.StringConstant;
+import view.InputView;
+import view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
     private final InputView inputView = InputView.getInstance();
     private final OutputView outputView = OutputView.getInstance();
@@ -33,7 +35,6 @@ public class BridgeGame {
     }
 
     public String getMoving() {
-
         return inputView.readMoving();
     }
 
@@ -41,11 +42,6 @@ public class BridgeGame {
         return inputView.readGameCommand();
     }
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public List<String> move(List<String> bridge, String path) {
         outputView.printRequestMove();
         outputView.printUserPath(path);
@@ -76,41 +72,34 @@ public class BridgeGame {
             outputView.printResult(upSide, downSide, countTryNumber);
             return;
         }
-
         List<String> isCorrectBridge = move(bridge, getMoving());
 
         if (isCorrectBridge.get(0).equals("U") && isCorrectBridge.get(1).equals("O")) {
-            upSide.add("O");
+            upSide.add(StringConstant.CORRECT_PATH.getConstant());
             downSide.add(" ");
             outputView.printMap(upSide, downSide);
             checkCorrectPath(bridge);
         }
         if (isCorrectBridge.get(0).equals("D") && isCorrectBridge.get(1).equals("O")) {
             upSide.add(" ");
-            downSide.add("O");
+            downSide.add(StringConstant.CORRECT_PATH.getConstant());
             outputView.printMap(upSide, downSide);
             checkCorrectPath(bridge);
         }
         if (isCorrectBridge.get(0).equals("U") && isCorrectBridge.get(1).equals("X")) {
-            upSide.add("X");
+            upSide.add(StringConstant.WRONG_PATH.getConstant());
             downSide.add(" ");
             outputView.printMap(upSide, downSide);
             retry(bridge, upSide, downSide);
         }
         if (isCorrectBridge.get(0).equals("U") && isCorrectBridge.get(1).equals("X")) {
             upSide.add(" ");
-            downSide.add("X");
+            downSide.add(StringConstant.WRONG_PATH.getConstant());
             outputView.printMap(upSide, downSide);
             retry(bridge, upSide, downSide);
         }
-
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public void retry(List<String> bridge, List<String> upSide, List<String> downSide) {
         String retryOrQuit = getGameCommand();
         outputView.printRequestRetryOrQuit();
