@@ -20,7 +20,8 @@ public class Emcee {
     }
 
     public void guideEnteringMovement() {
-
+        String guide = "이동할 칸을 선택하세요. (위: U, 아래: D)";
+        outputView.printGuide(guide);
     }
 
     public void guideEnteringRetryStatus() {
