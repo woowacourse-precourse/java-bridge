@@ -4,6 +4,7 @@ import java.util.List;
 
 import bridge.domain.BridgeMaker;
 import bridge.view.InputView;
+import bridge.view.OutputView;
 
 
 /**
@@ -13,11 +14,12 @@ import bridge.view.InputView;
 public class BridgeGame {
     InputView inputview = new InputView();
 
+    private List<String> bridgeAnswer ;
     public int bridgeNum ;
     private BridgeMaker bridgeMaker;
 
-    public List<String> getRandomBridge(){
-        return bridgeMaker.makeBridge(bridgeNum);
+    public void getRandomBridge(int bridgeNum){
+        bridgeAnswer = bridgeMaker.makeBridge(bridgeNum);
     }
 
     public void getBridgeNum() {
@@ -32,7 +34,18 @@ public class BridgeGame {
         String inputMove = inputview.readMoving();
         return inputMove;
     };
-    
+
+    public void playGame(){
+        OutputView outputview = new OutputView();
+        for (int i=0; i<bridgeNum; i++){
+            String inputMove = move();
+            if (inputMove != bridgeAnswer.get(i)){
+                retry();
+                break;
+            }
+            outputview.printMap(inputMove);
+        }
+    }
 
 
     /**
