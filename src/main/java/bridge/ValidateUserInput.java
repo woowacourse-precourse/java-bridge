@@ -11,8 +11,6 @@ public class ValidateUserInput {
     }
 
     public void checkReadMoving(String moveButton){
-//        if(moveButton.length() > 1)
-//            throw new IllegalArgumentException("[ERROR]");
         if(moveButton.equals("U") || moveButton.equals("D"))
             return ;
         throw new IllegalArgumentException("[ERROR]");
