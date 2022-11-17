@@ -53,6 +53,8 @@ public class BridgeGameController {
     }
 
     private void printFailureResult() {
+        System.out.println("최종 게임 결과");
+        outputView.printMap(bridgeGame.printWrongResult());
         outputView.printResult(OutputView.FAILURE_MESSAGE, bridgeGame.getRetryCount());
     }
 
