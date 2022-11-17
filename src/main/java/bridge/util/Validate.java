@@ -34,6 +34,17 @@ public class Validate {
         }
     }
 
+    public void validateGameDefinition(String definition){
+        try{
+            if(!definition.equals("Q")  && !definition.equals("R")){
+                throw new IllegalArgumentException();
+            }
+        }
+        catch(IllegalArgumentException e){
+            throw new IllegalArgumentException("dk");
+        }
+    }
+
 
 
 }

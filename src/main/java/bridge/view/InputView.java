@@ -47,7 +47,14 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        String gameDestination = Console.readLine();
-        return gameDestination;
+        outputView.printRestart();
+        try {
+            String gameDestination = Console.readLine();
+            validate.validateGameDefinition(gameDestination);
+            return gameDestination;
+        }catch(IllegalArgumentException e){
+            outputView.printException(e);
+            return readGameCommand();
+        }
     }
 }
