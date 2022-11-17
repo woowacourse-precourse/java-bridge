@@ -33,7 +33,7 @@ public class InputView {
         String moveCommand = Console.readLine();
 
         validateInvalidType(moveCommand);
-        return null;
+        return moveCommand;
     }
 
     /**
