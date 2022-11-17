@@ -37,6 +37,10 @@
   - 다리의 길이를 입력받는 메소드
 
 
+- private int changeInputStringToInteger(String)
+  - 다리의 길이로 입력된 문자열을 Integer 자료형으로 변환하여 반환하는 메소드
+
+
 - private void validateInputIsExit(String)
   - 입력값이 존재하는지(입력을 '\n' 등을 통해 넘기지 않았는지) 검사하는 메소드
   - 입력값이 존재하지 않는다면 IllegalStateException 발생
