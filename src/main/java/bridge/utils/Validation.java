@@ -1,15 +1,21 @@
 package bridge.utils;
 
-import bridge.ErrorStatus;
+import bridge.constant.ErrorStatus;
+
+import static bridge.constant.GameKeyboard.*;
 
 public class Validation {
+
+    public static final int MINIMUM_BRIDGE_SIZE = 3;
+    public static final int MAXIMUM_BRIDGE_SIZE = 20;
+
     public static int validateBridgeSize(String bridgeSize) {
         int bridgeSizeNumber = validateNumber(bridgeSize);
         return validateSize(bridgeSizeNumber);
     }
 
     private static int validateSize(int bridgeSizeNumber) {
-        if (bridgeSizeNumber < 3 || bridgeSizeNumber > 20) {
+        if (bridgeSizeNumber < MINIMUM_BRIDGE_SIZE || bridgeSizeNumber > MAXIMUM_BRIDGE_SIZE) {
             throw new IllegalArgumentException(ErrorStatus.BRIDGE_SIZE_OUT_RANGE.getMessage());
         }
         return bridgeSizeNumber;
@@ -25,14 +31,14 @@ public class Validation {
     }
 
     public static String validateMoving(String moving) {
-        if (!(moving.equals("U") || moving.equals("D"))) {
+        if (!(moving.equals(UP.letter()) || moving.equals(DOWN.letter()))) {
             throw new IllegalArgumentException(ErrorStatus.WRONG_MOVING_LETTER.getMessage());
         }
         return moving;
     }
 
     public static String validateRestartInput(String restartAnswer) {
-        if (!(restartAnswer.equals("R") || restartAnswer.equals("Q"))) {
+        if (!(restartAnswer.equals(RESTART.letter()) || restartAnswer.equals(QUIT.letter()))) {
             throw new IllegalArgumentException(ErrorStatus.WRONG_RESTART_LETTER.getMessage());
         }
         return restartAnswer;

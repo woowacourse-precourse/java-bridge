@@ -8,8 +8,11 @@ import bridge.view.OutputView;
 
 import java.util.List;
 
+import static bridge.constant.GameKeyboard.*;
+
 public class BridgeGameController {
     public static final int INIT_BRIDGE_POSITION_INDEX = 0;
+    public static final int NEXT_INDEX = 1;
     private final InputView inputView;
     private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
@@ -69,11 +72,11 @@ public class BridgeGameController {
     }
 
     private static boolean isSelectedQuit(String restartMessage) {
-        return restartMessage.equals("Q");
+        return restartMessage.equals(QUIT.letter());
     }
 
     private static boolean isSelectedRestart(String restartMessage) {
-        return restartMessage.equals("R");
+        return restartMessage.equals(RESTART.letter());
     }
 
     private int getBridgeSizeIndex(BridgeGame bridgeGame, List<String> bridge, String restartMessage) {
@@ -84,18 +87,18 @@ public class BridgeGameController {
     }
 
     private static int getNextBridgePositionIndex(int bridgePositionIndex) {
-        bridgePositionIndex = bridgePositionIndex + 1;
+        bridgePositionIndex = bridgePositionIndex + NEXT_INDEX;
         return bridgePositionIndex;
     }
 
     private static boolean isWrongAnswerBridge(BridgeGame bridgeGame) {
         List<String> myAnswerBridges = bridgeGame.getMyAnswerBridges();
-        return myAnswerBridges.contains("X");
+        return myAnswerBridges.contains(WRONG_ANSWER.letter());
     }
 
     private static boolean isCorrectAnswerBridge(BridgeGame bridgeGame) {
         List<String> myAnswerBridges = bridgeGame.getMyAnswerBridges();
-        return !myAnswerBridges.contains("X");
+        return !myAnswerBridges.contains(WRONG_ANSWER.letter());
     }
 
     private int getBackRestartIndex(int bridgePositionIndex, BridgeGame bridgeGame) {

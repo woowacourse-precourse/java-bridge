@@ -3,13 +3,16 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.constant.GameKeyboard.WRONG_ANSWER;
+
 public class BridgeGame {
+    public static final int PLUS_COUNT = 1;
     private List<String> myAnswerBridges = new ArrayList<>();
     private int attemptCount = 1;
 
     public void move(Bridge bridge) {
         if (isDroppedBridge(bridge)) {
-            myAnswerBridges.add("X");
+            myAnswerBridges.add(WRONG_ANSWER.letter());
         }
 
         myAnswerBridges.add(bridge.getMyMovingPostion());
@@ -21,7 +24,7 @@ public class BridgeGame {
 
     public void retry() {
         this.myAnswerBridges.clear();
-        this.attemptCount = attemptCount + 1;
+        this.attemptCount = attemptCount + PLUS_COUNT;
     }
 
     public List<String> getMyAnswerBridges() {

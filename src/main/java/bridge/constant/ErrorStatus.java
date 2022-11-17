@@ -1,4 +1,4 @@
-package bridge;
+package bridge.constant;
 
 public enum ErrorStatus {
     BRIDGE_SIZE_OUT_RANGE("[ERROR] 다리의 길이는 3이상 20이하여야 합니다."),

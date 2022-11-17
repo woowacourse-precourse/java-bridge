@@ -3,12 +3,13 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.constant.GameKeyboard.DOWN;
+import static bridge.constant.GameKeyboard.UP;
+
 public class BridgeMaker {
 
     public static final int BRIDGE_DOWN_RANDOM_NUMBER = 0;
     public static final int BRIDGE_UP_RANDOM_NUMBER = 1;
-    public static final String BRIDGE_DOWN_MARK = "D";
-    public static final String BRIDGE_UP_MARK = "U";
     public static final int INIT_SIZE_INDEX = 0;
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -20,17 +21,25 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int sizeIndex = INIT_SIZE_INDEX; sizeIndex < size; sizeIndex++) {
             int number = bridgeNumberGenerator.generate();
-            chageNumberToMark(bridge, number);
+            changeNumberToMark(bridge, number);
         }
         return bridge;
     }
 
-    private static void chageNumberToMark(List<String> bridge, int number) {
-        if (number == BRIDGE_DOWN_RANDOM_NUMBER) {
-            bridge.add(BRIDGE_DOWN_MARK);
+    private static void changeNumberToMark(List<String> bridge, int number) {
+        if (isSameDownBridge(number, BRIDGE_DOWN_RANDOM_NUMBER)) {
+            bridge.add(DOWN.letter());
         }
-        if (number == BRIDGE_UP_RANDOM_NUMBER) {
-            bridge.add(BRIDGE_UP_MARK);
+        if (isSameUpBridge(number, BRIDGE_UP_RANDOM_NUMBER)) {
+            bridge.add(UP.letter());
         }
+    }
+
+    private static boolean isSameUpBridge(int number, int bridgeUpRandomNumber) {
+        return number == bridgeUpRandomNumber;
+    }
+
+    private static boolean isSameDownBridge(int number, int bridgeDownRandomNumber) {
+        return number == bridgeDownRandomNumber;
     }
 }
