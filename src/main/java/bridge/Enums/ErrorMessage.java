@@ -1,4 +1,4 @@
-package bridge.Message;
+package bridge.Enums;
 
 public enum ErrorMessage {
     PREFIX("[ERROR] "),
