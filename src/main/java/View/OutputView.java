@@ -25,4 +25,9 @@ public class OutputView {
         final String startMessage = "다리 건너기 게임을 시작합니다.";
         System.out.println(startMessage);
     }
+
+    public void printReadBridgeSize(){
+        final String readBridgeSizeMessage = "다리의 길이를 입력해주세요.";
+        System.out.println(readBridgeSizeMessage);
+    }
 }
