@@ -11,4 +11,11 @@ public class Exception {
 
         return true;
     }
+
+    public static boolean readMoveValidation(String move) {
+        if (!(move.equals("U") || move.equals("D"))) {
+            throw new IllegalArgumentException(ERROR + " U 또는 D 를 입력해 주세요.");
+        }
+        return true;
+    }
 }
