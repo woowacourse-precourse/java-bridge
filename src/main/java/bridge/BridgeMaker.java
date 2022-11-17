@@ -1,6 +1,5 @@
 package bridge;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -27,7 +26,7 @@ public class BridgeMaker {
     }
 
     public String getBridgePosition(int bridgeNumber) {
-        if (BridgePosition.UP.isEqual(bridgeNumber)) {
+        if (BridgePosition.UP.isEqualToBridgeNumber(bridgeNumber)) {
             return BridgePosition.UP.getBridgePosition();
         }
 

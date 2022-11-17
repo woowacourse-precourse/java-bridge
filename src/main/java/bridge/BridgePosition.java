@@ -12,8 +12,12 @@ public enum BridgePosition {
         this.bridgeNumber = bridgeNumber;
     }
 
-    public boolean isEqual(int bridgeNumber) {
+    public boolean isEqualToBridgeNumber(int bridgeNumber) {
         return this.bridgeNumber == bridgeNumber;
+    }
+
+    public boolean isEqualToBridgePosition(String bridgePosition) {
+        return this.bridgePosition.equals(bridgePosition);
     }
 
     public String getBridgePosition() {

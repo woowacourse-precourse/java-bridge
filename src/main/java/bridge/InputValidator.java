@@ -23,4 +23,11 @@ public class InputValidator {
             throw new IllegalArgumentException();
         }
     }
+
+    public void validateMovingPosition(String movingPosition) {
+        if (!BridgePosition.UP.isEqualToBridgePosition(movingPosition) &&
+                !BridgePosition.DOWN.isEqualToBridgePosition(movingPosition)) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
