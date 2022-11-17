@@ -83,4 +83,12 @@ class InputSelectCharValidatorTest {
                 .isThrownBy(() -> InputSelectCharValidator.validate(input, MOVING_SELECT_CHAR_VALIDATOR_NUMBER))
                 .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
     }
+    
+    @DisplayName("재시도 여부 입력 : 정상 입력")
+    @ParameterizedTest(name = "{displayName} : bridgeSize => {0}")
+    @ValueSource(strings = {"Q", "R"})
+    void normalRetryInput(final String bridgeSize) {
+        assertThatNoException()
+                .isThrownBy(() -> InputSelectCharValidator.validate(bridgeSize, RETRY_SELECT_CHAR_VALIDATE_NUMBER));
+    }
 }
