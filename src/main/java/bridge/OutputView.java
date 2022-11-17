@@ -17,7 +17,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(int movingIdx, List<String> bridgeList, String input) {
+    public void printMap(int movingIdx, List<String> bridgeList, boolean winning, String input) {
         StringBuilder upString = new StringBuilder();
         StringBuilder downString = new StringBuilder();
         upString.append("[");
@@ -31,20 +31,21 @@ public class OutputView {
                 downString.append(" O |");
             }
         }
-        String getList = bridgeList.get(movingIdx);
         if (Objects.equals(input, "U")) {
-            if (Objects.equals(getList, "U")) {
+            if (winning) {
                 upString.append(" O ]");
                 downString.append("   ]");
-            } else if (Objects.equals(getList, "D")) {
+            }
+            if (!winning) {
                 upString.append(" X ]");
                 downString.append("   ]");
             }
         } else if (Objects.equals(input, "D")) {
-            if (Objects.equals(getList, "D")) {
+            if (winning) {
                 upString.append("   ]");
                 downString.append(" O ]");
-            } else if (Objects.equals(getList, "U")) {
+            }
+            if (!winning) {
                 upString.append("   ]");
                 downString.append(" X ]");
             }
@@ -59,9 +60,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(int movingIdx, List<String> bridgeList, String input, int count, boolean winning) {
+    public void printResult(int movingIdx, List<String> bridgeList, int count, boolean winning, String input) {
         System.out.println(gameResult);
-        printMap(movingIdx, bridgeList, input);
+        printMap(movingIdx, bridgeList, winning, input);
         if (winning) System.out.println(success);
         if (!winning) System.out.println(fail);
         System.out.print(countingGame + count);

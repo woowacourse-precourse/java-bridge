@@ -19,15 +19,16 @@ public class BridgeGame {
      */
     public void move(int currentIndex, List<String> bridgeList) {
         if (currentIndex == bridgeList.size()) {
-            outputView.printResult(currentIndex - 1, bridgeList, input, tryCount, true);
+            outputView.printResult(currentIndex - 1, bridgeList, tryCount, true, input);
             return;
         }
         input = inputView.readMoving();
-        outputView.printMap(currentIndex, bridgeList, input);
         if (!Objects.equals(bridgeList.get(currentIndex), input)) {
+            outputView.printMap(currentIndex, bridgeList, false, input);
             retry(bridgeList, currentIndex);
             return;
         }
+        outputView.printMap(currentIndex, bridgeList, true, input);
         move(currentIndex + 1, bridgeList);
     }
 
@@ -42,7 +43,7 @@ public class BridgeGame {
             tryCount++;
             move(0, bridgeList);
         } else if (Objects.equals(regame, "Q")) {
-            outputView.printResult(currentIndex, bridgeList, input, tryCount, false);
+            outputView.printResult(currentIndex, bridgeList, tryCount, false, input);
         }
     }
 }
