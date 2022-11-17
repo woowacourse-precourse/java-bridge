@@ -6,26 +6,34 @@ public class Application {
     private static InputView inputView;
     private static OutputView outputView;
     private static BridgeGame bridgeGame;
+    private static BridgeMaker bridgeMaker;
     private static int tryCount;
 
     public static void main(String[] args) {
         System.out.println("다리 건너기 게임을 시작합니다.");
-        inputView = new InputView();
+
+        initClass();
+
         String readValue = inputView.readBridgeSize();
         int size = checkSize(readValue);
-        BridgeNumberGenerator BridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(BridgeRandomNumberGenerator);
+
         final List<String> bridge = bridgeMaker.makeBridge(size);
         System.out.println(bridge);
-        bridgeGame = new BridgeGame();
-        outputView = new OutputView();
+
 
         String isSuccess = "성공";
         tryCount = 1;
         gameProcess(size, bridge, "성공");
-        //if (isRetry == "R")
 
 
+    }
+
+    public static void initClass() {
+        inputView = new InputView();
+        bridgeGame = new BridgeGame();
+        outputView = new OutputView();
+        BridgeNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
     }
 
     public static int checkSize(String str) {
@@ -43,21 +51,31 @@ public class Application {
 
     public static void gameProcess(int size, List<String> bridge, String isSuccess) {
         List<List<String>> userPlaying = new ArrayList<>();
+        System.out.println(userPlaying);
         String isRetry = "";
         for (int i = 0; i < size; i++) {
             String move = inputView.readMoving();
             List<String> currentPlaying = bridgeGame.move(move, bridge.get(i));
             userPlaying.add(currentPlaying);
             outputView.printMap(userPlaying);
-            if (i == size - 1)
-                outputView.printResult(isSuccess, tryCount);
+            isSuccess = "성공";
             if (currentPlaying.contains("X")) {
                 isRetry = inputView.readGameCommand();
                 isSuccess = "실패";
                 break;
             }
         }
+        if (Objects.equals(isRetry, "R")) {
+            tryCount++;
+            userPlaying.clear();
+            gameProcess(size, bridge, isSuccess);
+        } else {
+            outputView.printResult(isSuccess, tryCount, userPlaying);
+        }
+
     }
+
+
 
 
 }
