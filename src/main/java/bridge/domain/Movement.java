@@ -20,8 +20,16 @@ public class Movement {
         }
         return true;
     }
-    
+
     public void saveMoving(Moving moving) {
         this.movement.add(moving);
     }
+
+    public boolean isFinish() {
+        if (bridge.size() == movement.size()) {
+            return true;
+        }
+        return false;
+    }
+
 }
