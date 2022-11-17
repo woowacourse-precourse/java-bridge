@@ -13,8 +13,8 @@ public class OutputView {
     private static final String UP = "U";
     private static final String DOWN = "D";
     private static final String START_LINE = "[ ";
-    private static final String CONTENTS_LINE_WITH_BLANK = "  |";
-    private static final String CONTENTS_LINE_WITHOUT_BLANK = "%s |";
+    private static final String CONTENTS_LINE_WITH_BLANK = "  | ";
+    private static final String CONTENTS_LINE_WITHOUT_BLANK = "%s | ";
     private static final String END_LINE_WITH_BLANK = "  ]";
     private static final String END_LINE_WITHOUT_BLANK = "%s ]\n";
     private static final String RESULT = "최종 게임 결과";
