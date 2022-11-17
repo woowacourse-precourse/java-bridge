@@ -45,21 +45,12 @@ public class BridgeGame {
      */
     public boolean move(String usersPick) {
         boolean isUsersPickRight = bridge.isSelectedBridgesRight(usersPick);
-        String userPickResult = convertUsersPick(isUsersPickRight);
-        bridge.crossBridge();
+        bridge.crossBridge(usersPick);
 
         outputView.printMap(bridge.getAlreadyCrossedBridge(userPickResult));
 
         return isUsersPickRight || retry();
     }
-
-    private String convertUsersPick(boolean isUsersPickRight){
-        if(isUsersPickRight){
-            return "Y";
-        }
-        return "N";
-    }
-
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
