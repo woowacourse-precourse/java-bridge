@@ -17,11 +17,10 @@ public class Application {
 
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
 
+        OutputView.printGameStartMessage();
+        OutputView.printInputBridgeSizeMessage();
 
-        System.out.println("다리 건너기 게임을 시작합니다"); // Output
-        System.out.println("다리의 길이를 입력해주세요."); // input 메세지
-
-        int bridgeSize = InputView.inputBridgeSize(); // inputView에서 다리길이를 받는다.
+        int bridgeSize = InputView.inputBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 
 
