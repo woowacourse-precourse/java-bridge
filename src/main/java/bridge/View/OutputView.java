@@ -1,9 +1,17 @@
-package bridge;
+package bridge.View;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
+ * (추가) InputView의 부모클래스가 된다. InputView에서 입력을 받을때 관련된 메세지를 출력한다.
  */
 public class OutputView {
+    public void start() {
+        System.out.println("다리 건너기 게임을 시작합니다.\n");
+    }
+
+    public void printGetUserBridgeSize() {
+        System.out.println("다리의 길이를 입력해주세요.");
+    }
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
