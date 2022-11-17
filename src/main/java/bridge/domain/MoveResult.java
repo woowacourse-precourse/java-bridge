@@ -17,19 +17,20 @@ public class MoveResult {
             .forEach(cellType -> put(cellType, new ArrayList<>()));
     }};
 
-    public void setResult(BridgeCellType cellType, boolean isMove) {
-        String mark = getMark(isMove);
-        moveResults.get(cellType).add(mark);
+    public void success(BridgeCellType cellType) {
+        moveResults.get(cellType).add(CAN_MOVE_MARK);
+        setOtherCellEmpty(cellType);
+    }
+
+    public void fail(BridgeCellType cellType) {
+        moveResults.get(cellType).add(CAN_NOT_MOVE_MARK);
+        setOtherCellEmpty(cellType);
+    }
+
+    private void setOtherCellEmpty(BridgeCellType cellType) {
         moveResults.keySet().stream()
             .filter(key -> !cellType.equals(key))
             .forEach(key -> moveResults.get(key).add(EMPTY_MARK));
-    }
-
-    private static String getMark(boolean isMove) {
-        if (isMove) {
-            return CAN_MOVE_MARK;
-        }
-        return CAN_NOT_MOVE_MARK;
     }
 
     @Override

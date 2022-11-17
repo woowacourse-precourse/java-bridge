@@ -20,10 +20,10 @@ public class BridgeGame {
      */
     public boolean move(int location, String moveCommand, MoveResult moveResult) {
         if (canMove(location, moveCommand)) {
-            moveResult.setResult(BridgeCellType.of(moveCommand), true);
+            moveResult.success(BridgeCellType.of(moveCommand));
             return true;
         }
-        moveResult.setResult(BridgeCellType.of(moveCommand), false);
+        moveResult.fail(BridgeCellType.of(moveCommand));
         return false;
     }
 
