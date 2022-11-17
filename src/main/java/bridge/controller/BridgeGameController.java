@@ -35,19 +35,29 @@ public class BridgeGameController {
     private void run(){
         outputView.initMap();
         bridge = bridgeMaker.makeBridge(bridgeSize);
-        IntStream.range(0,bridgeSize)
-                .forEach(index -> crossBridge(index));
-        outputView.printResult();
+        boolean go = true;
+        for (int index = 0;index<bridgeSize && go;index++) {
+            go = crossBridge(index);
+        }
+        retryOrEnd(go);
     }
 
-    private void crossBridge(int index){
+    private boolean crossBridge(int index){
         String moving = inputView.readMoving();
         if(bridgeGame.move(moving,index,bridge)){
             outputView.printMap("O", bridgeUpDownNumber.upOrDown(bridge.get(index)));
+            return true;
         }
-        if(!bridgeGame.move(moving, index, bridge)){
-            outputView.printMap("X", bridgeUpDownNumber.upOrDown(bridge.get(index)));
+        outputView.printMap("X", (bridgeUpDownNumber.upOrDown(bridge.get(index))+1)%2);
+        return false;
+    }
+
+    private void retryOrEnd(boolean go){
+        if (!go){
             restartGame();
+        }
+        if (go) {
+            outputView.printResult();
         }
     }
 
