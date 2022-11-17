@@ -14,7 +14,7 @@ public enum BridgeState {
         this.numberBridgeState=numberBridgeState;
         this.bridgeState=bridgeState;
     }
-    
+
     private static boolean isSameBridgeState(BridgeState bridgeState, int numberBridgeState){
         return bridgeState.numberBridgeState==numberBridgeState;
     }
@@ -23,7 +23,12 @@ public enum BridgeState {
         return Arrays.stream(BridgeState.values())
                 .anyMatch(bridgeState -> isSameBridgeState(bridgeState, numberBridgeState));
     }
-
+    public static boolean validateBridgeState(int numberBridgeState){
+        if(!BridgeState.contains(numberBridgeState)){
+            throw new NoSuchElementException();
+        }
+        return true;
+    }
     private static BridgeState findByBridgeNumber(int numberBridgeState){
         return Arrays.stream(BridgeState.values())
                 .filter(bridgeState -> isSameBridgeState(bridgeState,numberBridgeState))
@@ -31,11 +36,10 @@ public enum BridgeState {
     }
 
     public static String transform(int numberBridgeState){
-        if(!BridgeState.contains(numberBridgeState)){
-            throw new NoSuchElementException();
-        }
         BridgeState bridgeState = findByBridgeNumber(numberBridgeState);
-
+        if(bridgeState==null){
+            throw new NullPointerException();
+        }
         return bridgeState.bridgeState;
     }
 
