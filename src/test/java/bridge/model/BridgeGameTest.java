@@ -32,4 +32,15 @@ public class BridgeGameTest {
     }
 
 
+    @DisplayName("재시작 여부로 R을 입력하는 경우 테스트")
+    @Test
+    void retryThenCurrentMapClear() {
+        List<List<String>> currentMap = new ArrayList<>();
+        bridgeGame.move("D", "U");
+        bridgeGame.move("D", "D");
+        bridgeGame.retry("R");
+        currentMap.addAll(bridgeGame.move("D", "U"));
+
+        Assertions.assertThat(currentMap).isEqualTo(List.of(List.of("X", " ")));
+    }
 }
