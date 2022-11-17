@@ -33,10 +33,13 @@ public class OutputView {
             stringBuilder.append("[ ");
             for (int j = 0; j <movingLog[i].length ; j++) {
                 stringBuilder.append(movingLog[i][j] + " ");
+                if (j < movingLog[i].length - 1) {
+                    stringBuilder.append("| ");
+                }
             }
-            stringBuilder.append("\n");
+            stringBuilder.append("]\n");
         }
-        System.out.println(stringBuilder.toString());
+        System.out.print(stringBuilder.toString());
     }
 
     /**
