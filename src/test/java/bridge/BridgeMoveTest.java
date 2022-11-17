@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 
 public class BridgeMoveTest {
     
@@ -26,5 +28,18 @@ public class BridgeMoveTest {
     void generateByNumberByInvalidGenerateNumber() {
         assertThatThrownBy(() -> BridgeMove.generateByNumber(5))
                 .isInstanceOf(AssertionError.class);
+    }
+    
+    @DisplayName("인수가 BridgeMove의 direction에 포함되는지 확인한다.")
+    @EnumSource(value = BridgeMove.class)
+    @ParameterizedTest
+    void isContainByValid(BridgeMove move) {
+        assertThat(BridgeMove.isContain(move.getDirection())).isEqualTo(true);
+    }
+    
+    @DisplayName("인수가 BridgeMove의 direction에 포함되지 않으면 false를 반환한다.")
+    @Test
+    void isContainByInvalid() {
+        assertThat(BridgeMove.isContain("A")).isEqualTo(false);
     }
 }
