@@ -36,7 +36,7 @@ public class InputView {
     }
 
     private void validateBridgeSize(int bridgeSize) {
-        if (bridgeSize < 3 || 20 < bridgeSize) {
+        if (bridgeSize < BridgeSizeBound.LOWER.getBound() || BridgeSizeBound.UPPER.getBound() < bridgeSize) {
             throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_EXCEPTION.getMessage());
         }
     }
