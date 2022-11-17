@@ -18,7 +18,7 @@ class ValidityCheckTest {
     @Nested
     class 문자_검사 {
 
-        @Test현
+        @Test
         void case1() {
             Throwable illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
                 validityCheck.stringChecker("십오");
