@@ -1,8 +1,8 @@
 package bridge;
 
 import bridge.domain.BridgeState;
+import bridge.exception.NotFoundBridgeStateException;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -24,10 +24,15 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         return IntStream.range(1, size+1)
                 .mapToObj(action -> {
-                    int bridgeValue = bridgeNumberGenerator.generate();
-                    BridgeState bridgeState = BridgeState.valueOfBridge(bridgeValue);
-                    return bridgeState.getUserValue();
+                    int randomNumber = bridgeNumberGenerator.generate();
+                    return getCanSpaceToCrossByNumber(randomNumber);
                 })
                 .collect(Collectors.toList());
+    }
+
+    private String getCanSpaceToCrossByNumber(int number) {
+        BridgeState bridgeState = BridgeState.valueOfBridge(number)
+                .orElseThrow(NotFoundBridgeStateException::new);
+        return bridgeState.getUserValue();
     }
 }

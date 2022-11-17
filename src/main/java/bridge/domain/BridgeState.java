@@ -1,11 +1,11 @@
 package bridge.domain;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 public enum BridgeState {
     UP("U", 1),
-    DOWN("D", 0),
-    EMPTY();
+    DOWN("D", 0);
 
     private String userValue;
     private int bridgeValue;
@@ -18,18 +18,16 @@ public enum BridgeState {
         this.bridgeValue = bridgeValue;
     }
 
-    public static BridgeState valueOfBridge(int bridgeValue) {
+    public static Optional<BridgeState> valueOfBridge(int bridgeValue) {
         return Arrays.stream(BridgeState.values())
                 .filter(bridgeState -> bridgeState.bridgeValue == bridgeValue)
-                .findAny()
-                .orElse(EMPTY);
+                .findAny();
     }
 
-    public static BridgeState valueOfUser(String userValue) {
+    public static Optional<BridgeState> valueOfUser(String userValue) {
         return Arrays.stream(BridgeState.values())
                 .filter(bridgeState -> bridgeState.userValue.equals(userValue))
-                .findAny()
-                .orElse(EMPTY);
+                .findAny();
     }
 
     public String getUserValue() {
