@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.Objects;
+
 public enum Direction {
 
     DOWN(0, "D"),
@@ -19,6 +21,10 @@ public enum Direction {
             return DOWN.position;
         }
         return UP.position;
+    }
+
+    public boolean isWrong(String input) {
+        return !(Objects.equals(input, DOWN.position) || Objects.equals(input, UP.position));
     }
 
 }

@@ -1,8 +1,6 @@
 package bridge;
 
 import bridge.view.InputView;
-import bridge.view.OutputView;
-import java.util.List;
 
 public class GameManager {
 
@@ -16,15 +14,40 @@ public class GameManager {
     }
 
     private void startGame() {
-        Bridge bridge = this.buildBridge();
+        BridgeGame bridgeGame = new BridgeGame(new BridgeRandomNumberGenerator());
+        int tryCount = 0;
+        GameCommand gameCommand;
 
+        while (true) {
+            gameCommand = play(bridgeGame);
+            if (gameCommand.isFinish()) {
+                // TODO: 결과 출력
+                break;
+            }
+            if (gameCommand.isRetry()) {
+                bridgeGame.retry();
+            }
+        }
     }
 
-    private Bridge buildBridge() {
-        int bridgeSize = InputView.readBridgeSize();
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private GameCommand play(BridgeGame bridgeGame) {
+        try {
+            bridgeGame.move(InputView.readMoving());
+            if (bridgeGame.isFinish()) {
+                return GameCommand.FINISH;
+            }
+        } catch (IllegalArgumentException e) {
+            return getUserDecision();
+        }
 
-        return new Bridge(bridgeMaker.makeBridge(bridgeSize));
+        return GameCommand.PROGRESS;
+    }
+
+    private GameCommand getUserDecision() {
+        String input = InputView.readGameCommand();
+        GameCommand.checkStatus(input);
+
+        return GameCommand.getStatus(input);
     }
 
 }
