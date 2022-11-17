@@ -17,7 +17,14 @@ public class BridgeController {
         bridgeGame = new BridgeGame(bridgeSize);
     }
 
-    public void proceedGame() {
-        String moving = inputView.readMoving();
+    public boolean proceedGame() {
+        for (int index = 0; index < bridgeGame.getBridgeSize(); index++) {
+            String moving = inputView.readMoving();
+            if (bridgeGame.move(index, moving)) {
+                continue;
+            }
+            return false;
+        }
+        return true;
     }
 }
