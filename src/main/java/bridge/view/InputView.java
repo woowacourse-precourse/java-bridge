@@ -16,8 +16,8 @@ public class InputView {
 			OutputView.printBridgeLength();
 			try {
 				return InputExceptionHandler.checkBridgeSizeForm(Console.readLine());
-			} catch (IllegalArgumentException e) {
-				System.out.println(e.getMessage());
+			} catch (IllegalArgumentException errorMessage) {
+				System.out.println(errorMessage.getMessage());
 			}
 		}
 	}
@@ -29,9 +29,9 @@ public class InputView {
 		while (true) {
 			OutputView.printMoving();
 			try {
-				return Console.readLine();
-			} catch (IllegalArgumentException e) {
-				System.out.println(e.getMessage());
+				return InputExceptionHandler.checkMovingCommand(Console.readLine());
+			} catch (IllegalArgumentException errorMessage) {
+				System.out.println(errorMessage.getMessage());
 			}
 		}
 	}
@@ -44,8 +44,8 @@ public class InputView {
 			OutputView.printRetryMessage();
 			try {
 				return Console.readLine();
-			} catch (IllegalArgumentException e) {
-				System.out.println(e.getMessage());
+			} catch (IllegalArgumentException errorMessage) {
+				System.out.println(errorMessage.getMessage());
 			}
 		}
 	}

@@ -23,4 +23,14 @@ public class InputExceptionHandler {
 			throw new IllegalArgumentException(NOT_NUMBER_RANGE.getMessage());
 		}
 	}
+
+	public static String checkMovingCommand(String input) {
+		if (input.equals("U")) {
+			return input;
+		}
+		if (input.equals("D")) {
+			return input;
+		}
+		throw new IllegalArgumentException(NOT_MOVING_COMMAND.getMessage());
+	}
 }
