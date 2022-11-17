@@ -12,14 +12,21 @@ public class Application {
 
     public static void main(String[] args) {
         List<String> bridge = bridgeGame.getBridge(inputView.readBridgeSize());
-        if (moveResult(bridge)) {
-            moveResult(bridge);
-        }
+        do {
+            MessageToResult messageToResult = bridgeGame.move(bridge, inputView.readMoving());
+            outputView.printMap(messageToResult);
+            if (!messageToResult.isCorrect()) {
+                if (!bridgeGame.retry(inputView.readGameCommand())) {
+                    break;
+                }
+                bridgeGame.clear();
+                outputView.clear();
+            }
+        } while (!bridgeGame.isGameClear(bridge));
     }
 
-    private static boolean moveResult(List<String> bridge) {
-        boolean isCorrect = bridgeGame.move(bridge, inputView.readMoving());
-        outputView.printMap(bridge, isCorrect);
-        return isCorrect;
+    private static MessageToResult moveResult(List<String> bridge) {
+        MessageToResult messageToResult = bridgeGame.move(bridge, inputView.readMoving());
+        return messageToResult;
     }
 }
