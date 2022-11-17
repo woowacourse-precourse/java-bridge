@@ -29,7 +29,7 @@ public class BridgeGameController {
     }
 
     private void play() {
-        while (bridgeGame.isCrossAllBridges()) {
+        while (!bridgeGame.isCrossAllBridges()) {
             BridgeSpaceDto dto = inputView.readMoving();
             bridgeGame.move(dto);
         }

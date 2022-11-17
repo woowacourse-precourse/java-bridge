@@ -4,6 +4,7 @@ import bridge.exception.NotFoundBridgeStateException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Bridges {
     private final List<Bridge> bridges;
@@ -18,6 +19,12 @@ public class Bridges {
                     .orElseThrow(NotFoundBridgeStateException::new);
             this.bridges.add(Bridge.create(bridgeState));
         });
+    }
+
+    public Optional<Bridge> findBridgeByNotCrossed() {
+        return bridges.stream()
+                .filter(bridge -> !bridge.isAlreadyCrossed())
+                .findAny();
     }
 
     public boolean isCrossAllBridges() {

@@ -1,7 +1,11 @@
 package bridge.service;
 
 import bridge.BridgeMaker;
+import bridge.domain.Bridge;
+import bridge.domain.BridgeState;
 import bridge.domain.Bridges;
+import bridge.exception.NotFoundBridgeException;
+import bridge.exception.NotFoundBridgeStateException;
 import bridge.service.dto.BridgeSizeDto;
 import bridge.service.dto.BridgeSpaceDto;
 
@@ -34,6 +38,13 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(BridgeSpaceDto dto) {
+        BridgeState bridgeState = BridgeState.findByPlayerValue(dto.getMovingSpace())
+                .orElseThrow(NotFoundBridgeStateException::new);
+
+        Bridge bridge = bridges.findBridgeByNotCrossed()
+                .orElseThrow(NotFoundBridgeException::new);
+
+
     }
 
     /**
