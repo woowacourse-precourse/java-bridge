@@ -1,5 +1,6 @@
 package bridge.ui.input;
 
+import bridge.ui.input.dto.BridgeSize;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -10,12 +11,12 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public BridgeSize readBridgeSize() {
         PlaceHolderText placeHolderText = PlaceHolderText.READ_BRIDGE_SIZE;
         System.out.println(placeHolderText.toConsolePrintFormat());
 
         String bridgeSize = Console.readLine();
-        return 0;
+        return BridgeSize.from(bridgeSize);
     }
 
     /**

@@ -13,6 +13,5 @@ public class Application {
         BridgeGameController bridgeGameController = new BridgeGameController(inputView, outputView);
 
         bridgeGameController.init();
-        bridgeGameController.run();
     }
 }
