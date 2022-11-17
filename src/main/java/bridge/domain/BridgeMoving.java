@@ -12,6 +12,13 @@ public class BridgeMoving {
         this.moving = moving;
     }
 
+    public String move(Bridge bridge, int movingIndex) {
+        if (bridge.isPossibleMove(movingIndex, moving)) {
+            return "O";
+        }
+        return "X";
+    }
+
     private void validateMoving(String moving) {
         if (!(moving.equals("U") || moving.equals("D"))) {
             throw new IllegalArgumentException(ERROR_INVALID_MOVING);
