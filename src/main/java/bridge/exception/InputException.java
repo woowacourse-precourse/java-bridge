@@ -35,4 +35,10 @@ public class InputException {
             throw new IllegalArgumentException("[ERROR] Input is Not " + terms1 + " or " + terms2);
         }
     }
+
+    public void inputBridgeLengthException(String input) {
+        inputNullException(input);
+        inputNoNumberException(input);
+        inputNoRangeException(Integer.parseInt(input));
+    }
 }
