@@ -72,21 +72,20 @@ public class OutputView {
         printFinalResult();
         printMap(upSide, downSide);
 
-        if (upSide.contains("X") || downSide.contains("X")) {
-            printFail(countTryNumber);
-        }
-
-        if (!upSide.contains("X") && !downSide.contains("X")) {
+        if (isWin(upSide, downSide)) {
             printWin(countTryNumber);
+        }
+        if (isFail(upSide, downSide)) {
+            printFail(countTryNumber);
         }
     }
 
-    public void printFail(int countTryNumber) {
-        System.out.print(View.WIN_FAIL_STATUS.message());
-        System.out.println("실패");
+    public boolean isWin(List<String> upSide, List<String> downSide) {
+        return !upSide.contains("X") && !downSide.contains("X");
+    }
 
-        System.out.print(View.TOTAL_TRY_NUMBER.message());
-        System.out.println(countTryNumber);
+    public boolean isFail(List<String> upSide, List<String> downSide) {
+        return upSide.contains("X") || downSide.contains("X");
     }
 
     public void printWin(int countTryNumber) {
@@ -96,6 +95,14 @@ public class OutputView {
 
         System.out.print(View.TOTAL_TRY_NUMBER.message());
         System.out.print(View.BLANK.message());
+        System.out.println(countTryNumber);
+    }
+
+    public void printFail(int countTryNumber) {
+        System.out.print(View.WIN_FAIL_STATUS.message());
+        System.out.println("실패");
+
+        System.out.print(View.TOTAL_TRY_NUMBER.message());
         System.out.println(countTryNumber);
     }
 
