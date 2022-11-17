@@ -9,13 +9,18 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    private static final String QUIT = "Q";
+    private static final String RETRY = "R";
+
     private final List<String> bridge;
     private int currentPosition;
+    private int retryCount;
 
     public BridgeGame(int size) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = bridgeMaker.makeBridge(size);
         currentPosition = 0;
+        retryCount = 1;
     }
 
     /**
@@ -36,6 +41,14 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry(String retryCommand) {
+        if (retryCommand.equals(RETRY)) {
+            retryCount++;
+            return true;
+        }
+        if (retryCommand.equals(QUIT)) {
+            return false;
+        }
+        throw new IllegalArgumentException();
     }
 }
