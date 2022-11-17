@@ -9,8 +9,8 @@ public class Move {
         this.move = move;
     }
 
-    private boolean detectMove(List<String> bridge){
-        if(bridge.get(0) == this.move){
+    public boolean goToNextMove(String BridgeStep){
+        if(BridgeStep == this.move){
             return true;
         }
         return false;
