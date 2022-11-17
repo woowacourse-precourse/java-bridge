@@ -17,16 +17,11 @@ public class BridgeGame {
 		
 	}
 	
-	public List<Boolean> compareMoving(String inputMoving, List<String> MadeBridge) {
-		ArrayList<Boolean> resultComparedMoving = new ArrayList<>();
-		for(String computerMoving : MadeBridge) {
-			if(computerMoving.equals(inputMoving)) {
-				resultComparedMoving.add(true);
-				continue;
-			}
-			resultComparedMoving.add(false);
+	public boolean compareMoving(String inputMoving, List<String> MadeBridge, int order) {
+		if(inputMoving.equals(MadeBridge.get(order))) {
+			return true;
 		}
-		return resultComparedMoving;
+		return false;
 	}
 
 	/**
