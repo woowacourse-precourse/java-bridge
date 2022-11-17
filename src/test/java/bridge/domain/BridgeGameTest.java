@@ -2,10 +2,13 @@ package bridge.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.domain.constants.GameCommands;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class BridgeGameTest {
 
@@ -20,46 +23,88 @@ class BridgeGameTest {
     @BeforeEach
     void init() {
         player = new Player(INIT_VALUE_OF_POSITION, INIT_VALUE_OF_CHALLENGES);
+        moveResults.addResults("U", "O");
         bridgeGame = new BridgeGame(bridge, player, moveResults);
     }
 
-    @DisplayName("U를 입력 받으면 O를 반환한다.")
+    @DisplayName("Bridge와 같은 값을 입력 받으면 O를 반환한다. (Bridge의 값: U)")
     @Test
     void moveTestTrue() {
         String sign = bridgeGame.matchResult("U");
         assertThat(sign).isEqualTo("O");
     }
 
-    @DisplayName("D를 입력 받으면 X를 반환한다.")
+    @DisplayName("Bridge와 다른 값을 입력 받으면 X를 반환한다. (Bridge의 값: U)")
     @Test
     void moveTestFalse() {
         String sign = bridgeGame.matchResult("D");
         assertThat(sign).isEqualTo("X");
     }
 
-//    @DisplayName("move() 메서드를 호출하면 Player의 position이 1 증가한다.")
-//    @Test
-//    void increasePosition() {
-//        bridgeGame.move();
-//        int position = player.position();
-//        assertThat(position).isEqualTo(1);
-//    }
+    @DisplayName("Bridge와 같은 값을 입력받으면 Player의 position이 1 증가한다. (Bridge의 값: U)")
+    @Test
+    void increasePosition() {
+        bridgeGame.move("O");
+        int position = player.position();
 
-//    @ParameterizedTest(name = "{0}회 retry하면 Player의 총 시도 횟수가 {1}회가 된다.")
-//    @CsvSource({"1,2", "5,6", "10,11"})
-//    void increaseNumberOfChallenges(int tryNum, int result) {
-//        for (int i = 0; i < tryNum; i++) {
-//            bridgeGame.retry();
-//        }
-//        assertThat(player.totalNumberOfChallenges()).isEqualTo(result);
-//    }
+        assertThat(position).isEqualTo(1);
+    }
 
-//    @DisplayName("retry하면 Player의 position이 초기화 된다.")
-//    @Test
-//    void initPosition() {
-//        player.move();
-//        player.move();
-//        bridgeGame.retry();
-//        assertThat(player.position()).isEqualTo(INIT_VALUE_OF_POSITION);
-//    }
+    @DisplayName("Bridge와 다른 값을 입력받으면 Player의 position에 변화가 없다. (Bridge의 값: U)")
+    @Test
+    void nothingHappenedInPosition() {
+        bridgeGame.move("X");
+        int position = player.position();
+
+        assertThat(position).isEqualTo(0);
+    }
+
+    @ParameterizedTest(name = "{0}회 retry하면 Player의 총 시도 횟수가 {1}회가 된다.")
+    @CsvSource({"1,2", "5,6", "10,11"})
+    void increaseNumberOfChallenges(int tryNum, int result) {
+        for (int i = 0; i < tryNum; i++) {
+            bridgeGame.retryOrQuit(GameCommands.RETRY, "");
+        }
+        assertThat(bridgeGame.totalNumberOfChallenges()).isEqualTo(result);
+    }
+
+    @DisplayName("GameCommands.RETRY가 입력되면 초기화가 된다.")
+    @Test
+    void retryGameInit() {
+        player.move();
+        bridgeGame.retryOrQuit(GameCommands.RETRY, "성공");
+
+        assertThat(player.position()).isEqualTo(INIT_VALUE_OF_POSITION);
+        assertThat(moveResults.upResults()).hasSize(0);
+        assertThat(moveResults.downResults()).hasSize(0);
+    }
+
+    @DisplayName("GameCommands.RETRY가 입력되면 입력된 gameResult를 그대로 반환한다.")
+    @Test
+    void retryGameReturnSameValue() {
+        String actual = bridgeGame.retryOrQuit(GameCommands.RETRY, "성공");
+        String expect = "성공";
+
+        assertThat(actual).isEqualTo(expect);
+    }
+
+    @DisplayName("GameCommands.QUIT이 입력되면 초기화가 되지 않는다.")
+    @Test
+    void doNotInit() {
+        player.move();
+        bridgeGame.retryOrQuit(GameCommands.QUIT, "성공");
+
+        assertThat(player.position()).isEqualTo(1);
+        assertThat(moveResults.upResults()).hasSize(1);
+        assertThat(moveResults.downResults()).hasSize(1);
+    }
+
+    @DisplayName("GameCommands.QUIT이 입력되면 '실패'를 반환한다.")
+    @Test
+    void initPosition() {
+        String actual = bridgeGame.retryOrQuit(GameCommands.QUIT, "성공");
+        String expect = "실패";
+
+        assertThat(actual).isEqualTo(expect);
+    }
 }
