@@ -12,18 +12,16 @@ import java.util.List;
 public class GameManager {
 
     private final BridgeGame bridgeGame;
-    private final GameStatus gameStatus;
 
-    private GameManager(BridgeGame bridgeGame, GameStatus gameStatus) {
+    private GameManager(BridgeGame bridgeGame) {
         this.bridgeGame = bridgeGame;
-        this.gameStatus = gameStatus;
     }
 
     public static void execute() {
         OutputView.startGame();
         Config config = new Config();
         List<String> bridge = buildBridge(config.bridgeNumberGenerator());
-        GameManager gameManager = new GameManager(new BridgeGame(bridge), new GameStatus());
+        GameManager gameManager = new GameManager(new BridgeGame(bridge, new GameStatus()));
         gameManager.startGame();
     }
 
@@ -37,11 +35,11 @@ public class GameManager {
     private void startGame() {
         while (true) {
             GameCommand gameCommand = play(bridgeGame);
-            if (gameCommand.isRetry()) {
-                retry(bridgeGame, gameStatus);
-            }
             if (gameCommand.isFinish()) {
                 break;
+            }
+            if (gameCommand.isRetry()) {
+                bridgeGame.retry();
             }
         }
     }
@@ -51,10 +49,9 @@ public class GameManager {
             OutputView.selectRoom();
             Direction direction = InputView.readMoving();
             bridgeGame.move(direction);
-            gameStatus.move(direction);
-            OutputView.printMap(gameStatus.getBridgeStatus());
+            OutputView.printMap(bridgeGame.getMap());
             if (bridgeGame.isFinish()) {
-                OutputView.printResult(gameStatus, direction);
+                OutputView.printResult(bridgeGame.getStatus(), direction);
                 return GameCommand.FINISH;
             }
         } catch (IllegalArgumentException e) {
@@ -70,11 +67,6 @@ public class GameManager {
         GameCommand.checkStatus(input);
 
         return GameCommand.getStatus(input);
-    }
-
-    private void retry(BridgeGame bridgeGame, GameStatus gameStatus) {
-        bridgeGame.retry();
-        gameStatus.retry();
     }
 
 }

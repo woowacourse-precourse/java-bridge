@@ -1,25 +1,34 @@
 package bridge.game;
 
 import bridge.domain.Direction;
-import java.util.ArrayList;
-import java.util.List;
 
 public class GameStatus {
 
     private static final String O = "O";
     private static final String X = "X";
+    private static final String EMPTY = " ";
     private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";
+    private static final String OPENER = "[ ";
+    private static final String CLOSER = " ]";
+    private static final String SEPARATOR = " | ";
 
+    private boolean isStart;
     private boolean isFail;
     private int tryCount;
-    private final List<String> up;
-    private final List<String> down;
+    private StringBuilder up;
+    private StringBuilder down;
 
     public GameStatus() {
+        isStart = true;
         tryCount = 1;
-        this.up = new ArrayList<>();
-        this.down = new ArrayList<>();
+        init();
+    }
+
+    private void init() {
+        up = new StringBuilder(OPENER);
+        down = new StringBuilder(OPENER);
+        this.isStart = true;
     }
 
     public int getTryCount() {
@@ -36,8 +45,7 @@ public class GameStatus {
 
     public void retry() {
         tryCount++;
-        up.clear();
-        down.clear();
+        init();
     }
 
     public void move(Direction direction) {
@@ -46,29 +54,35 @@ public class GameStatus {
 
     private void addStatus(Direction direction, String status) {
         if (direction.isUp()) {
-            up.add(status);
+            addUp(status);
             return;
         }
-        down.add(X);
+        addDown(status);
         this.isFail = true;
     }
 
     public String getBridgeStatus() {
-        StringBuilder sb = new StringBuilder();
-        makeMessage(sb, up);
-        makeMessage(sb, down);
-
-        return sb.toString();
+        return up + CLOSER + '\n' + down + CLOSER;
     }
 
-    private void makeMessage(StringBuilder sb, List<String> bridge) {
-        sb.append("[ ");
-        for (String status : bridge) {
-            sb.append(status)
-              .append(" | ");
+    private void addUp(String status) {
+        addStatus(up, down, status);
+    }
+
+    private void addDown(String status) {
+        addStatus(down, up, status);
+    }
+
+    private void addStatus(StringBuilder notEmpty, StringBuilder empty, String status) {
+        if (!isStart) {
+            notEmpty.append(SEPARATOR);
+            empty.append(SEPARATOR);
         }
-        sb.append(" ]")
-          .append("\n");
+
+        notEmpty.append(status);
+        empty.append(EMPTY);
+
+        isStart = false;
     }
 
 }

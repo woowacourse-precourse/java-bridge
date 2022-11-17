@@ -10,9 +10,11 @@ import java.util.List;
 public class BridgeGame {
 
     private final Bridge bridge;
+    private final GameStatus gameStatus;
 
-    public BridgeGame(List<String> bridge) {
+    public BridgeGame(List<String> bridge, GameStatus gameStatus) {
         this.bridge = new Bridge(bridge);
+        this.gameStatus = gameStatus;
     }
 
     /**
@@ -22,6 +24,7 @@ public class BridgeGame {
      */
     public void move(Direction direction) {
         bridge.move(direction);
+        gameStatus.move(direction);
     }
 
     /**
@@ -35,6 +38,14 @@ public class BridgeGame {
 
     public boolean isFinish() {
         return bridge.isArrive();
+    }
+
+    public String getMap() {
+        return gameStatus.getBridgeStatus();
+    }
+
+    public GameStatus getStatus() {
+        return gameStatus;
     }
 
 }
