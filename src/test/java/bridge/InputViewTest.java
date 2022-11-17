@@ -26,4 +26,18 @@ class InputViewTest {
         Assertions.assertThatThrownBy(()->inputView.readBridgeSize("21"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 올바른_칸_입력() {
+        InputView inputView = new InputView();
+        Assertions.assertThat(inputView.readMoving("U"))
+                .isEqualTo("U");
+    }
+
+    @Test
+    void 올바르지_않은_칸_입력() {
+        InputView inputView = new InputView();
+        Assertions.assertThatThrownBy(()->inputView.readMoving("A"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
