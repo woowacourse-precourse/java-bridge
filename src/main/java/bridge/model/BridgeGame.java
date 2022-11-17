@@ -38,6 +38,10 @@ public class BridgeGame {
         return gameStatus;
     }
 
+    public BridgeMoveLog getBridgeMoveLog() {
+        return bridgeMoveLog;
+    }
+
     private GameStatus getGameStatus(BridgeType bridgeType) {
         if (bridge.get(movePosition++).equals(bridgeType.getText())) {
             return GameStatus.CROSSING;
