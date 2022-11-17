@@ -15,9 +15,12 @@ public class BridgeGameController {
         this.bridgeGame = bridgeGame;
     }
 
-    public void createNewGame() {
-        int bridgeLength = inputView.readBridgeSize();
+    public void startNewGame() {
+        outputView.printStart();
+    }
 
+    public void createNewBridge() {
+        int bridgeLength = inputView.readBridgeSize();
         bridgeGame.newBridge(bridgeLength);
     }
 
