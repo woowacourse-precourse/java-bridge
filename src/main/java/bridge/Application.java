@@ -12,6 +12,7 @@ public class Application {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
         int bridgeSize = inputView.readBridgeSize();
         List<String> bridgeList = bridgeMaker.makeBridge(bridgeSize);
+        System.out.println();
         bridgeGame.move(0, bridgeList, 0, "");
     }
 }
