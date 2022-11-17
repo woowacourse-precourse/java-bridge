@@ -1,12 +1,12 @@
 package bridge;
 
+import bridge.model.Bridge;
+import bridge.model.BridgeGame;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeGameTest {
     private final BridgeGame bridgeGame = new BridgeGame(

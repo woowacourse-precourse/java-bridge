@@ -1,4 +1,6 @@
-package bridge;
+package bridge.view;
+
+import bridge.resource.ErrorType;
 
 public class Error {
     private static final String ERROR = "[ERROR] %s";

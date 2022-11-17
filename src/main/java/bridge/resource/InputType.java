@@ -1,4 +1,6 @@
-package bridge;
+package bridge.resource;
+
+import bridge.view.Error;
 
 public enum InputType {
     NUMERIC("^[0-9]*$"),

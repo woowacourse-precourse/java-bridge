@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.resource.InputType;
+
 import java.util.ArrayList;
 import java.util.List;
 

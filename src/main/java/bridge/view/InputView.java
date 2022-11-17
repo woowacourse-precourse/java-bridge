@@ -1,5 +1,7 @@
-package bridge;
+package bridge.view;
 
+import bridge.resource.ErrorType;
+import bridge.resource.InputType;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {

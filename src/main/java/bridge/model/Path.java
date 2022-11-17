@@ -1,4 +1,6 @@
-package bridge;
+package bridge.model;
+
+import bridge.resource.InputType;
 
 public class Path {
     private String upperPath;

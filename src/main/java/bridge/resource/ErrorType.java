@@ -1,4 +1,4 @@
-package bridge;
+package bridge.resource;
 
 public enum ErrorType {
     NUMERIC("3 ~ 20 사이의 숫자를 입력해주세요."),
