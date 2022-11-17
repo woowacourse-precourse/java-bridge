@@ -35,11 +35,12 @@ public class Controller {
     // true if valid move or retry, false if terminate
     private boolean stepGame() {
         OutputView outputView = new OutputView();
-        if (bridgeGame.move(getString(InputView.MOV))) {
-            outputView.printMap(bridgeGame, true);
+        String move = getString(InputView.MOV);
+        if (bridgeGame.move(move)) {
+            outputView.printMap(move, true);
             return true;
         }
-        outputView.printMap(bridgeGame, false);
+        outputView.printMap(move, false);
         return bridgeGame.retry(getString(InputView.CMD));
     }
 
