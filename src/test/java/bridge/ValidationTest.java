@@ -19,12 +19,27 @@ public class ValidationTest {
 
     @DisplayName("U 혹은 D인지 확인한다.")
     @Test
-    void upOrDown() {
+    void isUpOrDown() {
         assertThat(ValidationUtil.isUpOrDown("U")).isTrue();
         assertThat(ValidationUtil.isUpOrDown("D")).isTrue();
 
+        assertThat(ValidationUtil.isUpOrDown("R")).isFalse();
+        assertThat(ValidationUtil.isUpOrDown("Q")).isFalse();
         assertThat(ValidationUtil.isUpOrDown("A")).isFalse();
         assertThat(ValidationUtil.isUpOrDown("1")).isFalse();
         assertThat(ValidationUtil.isUpOrDown("*")).isFalse();
+    }
+
+    @DisplayName("R 혹은 Q인지 확인한다.")
+    @Test
+    void isRetryOrQuit() {
+        assertThat(ValidationUtil.isRetryOrQuit("R")).isTrue();
+        assertThat(ValidationUtil.isRetryOrQuit("Q")).isTrue();
+
+        assertThat(ValidationUtil.isRetryOrQuit("U")).isFalse();
+        assertThat(ValidationUtil.isRetryOrQuit("D")).isFalse();
+        assertThat(ValidationUtil.isRetryOrQuit("A")).isFalse();
+        assertThat(ValidationUtil.isRetryOrQuit("1")).isFalse();
+        assertThat(ValidationUtil.isRetryOrQuit("*")).isFalse();
     }
 }

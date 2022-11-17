@@ -14,4 +14,9 @@ public class ValidationUtil {
         return input.equals(InputKey.U.getValue()) ||
                 input.equals(InputKey.D.getValue());
     }
+
+    public static boolean isRetryOrQuit(String input) {
+        return input.equals(InputKey.R.getValue()) ||
+                input.equals(InputKey.Q.getValue());
+    }
 }
