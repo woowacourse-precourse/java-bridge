@@ -25,4 +25,10 @@ public class InputView {
     public String readGameCommand() {
         return null;
     }
+
+    private void validateInputIsExist(String input) {
+        if (input.length() == 0) {
+            throw new IllegalStateException();
+        }
+    }
 }
