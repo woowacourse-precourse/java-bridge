@@ -20,11 +20,11 @@ public class OutputView {
     }
 
     public void printRow(ArrayList<Field> userBridge, String position) {
-        System.out.println("[ ");
+        System.out.print("[ ");
         for(int i=0; i< userBridge.size(); i++){
             printCorrectOrNot(userBridge.get(i), position);
             if(i != userBridge.size() -1){
-                System.out.println(" | ");
+                System.out.print(" | ");
             }
         }
         System.out.println(" ]");
@@ -32,9 +32,11 @@ public class OutputView {
 
     private void printCorrectOrNot(Field field, String position){
         if(field.getLocation().equals(position) && field.isCorrection()){
-            System.out.println("O");
+            System.out.print("O");
         } else if(field.getLocation().equals(position) && !field.isCorrection()){
-            System.out.println("X");
+            System.out.print("X");
+        } else{
+            System.out.print(" ");
         }
     }
 
