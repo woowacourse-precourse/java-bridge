@@ -1,5 +1,7 @@
 package bridge.validate;
 
+import java.util.List;
+
 public class Validator {
     private static final int SHORTEST_BRIDGE_LENGTH = 3;
     private static final int LONGEST_BRIDGE_LENGTH = 20;
@@ -24,5 +26,13 @@ public class Validator {
 
     public static boolean isInRange(int num, int start, int end) {
         return start <= num && num <= end;
+    }
+
+    public static void isMove(String move) {
+        final List<String> properMoves = List.of("U", "D");
+        if(!properMoves.contains(move)){
+            String errorMessage = "" + ErrorMessage.ERROR + ErrorMessage.NOT_PROPER_MOVE;
+            throw new IllegalArgumentException(errorMessage);
+        }
     }
 }
