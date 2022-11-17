@@ -1,11 +1,11 @@
-package bridge;
+package bridge.Enum;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public enum Direction {
-    DOWN(0, 'D'),
-    UP(1, 'U'),
+    DOWN(0, "D"),
+    UP(1, "U"),
     ;
 
     private static final Map<Integer, Direction> numberToDirection = new HashMap<>();
@@ -16,14 +16,14 @@ public enum Direction {
     }
 
     private final int number;
-    private final char initial;
+    private final String initial;
 
-    Direction(int number, char initial) {
+    Direction(int number, String initial) {
         this.number = number;
         this.initial = initial;
     }
 
-    public char getInitial() {
+    public String getInitial() {
         return initial;
     }
 

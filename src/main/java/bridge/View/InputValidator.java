@@ -1,7 +1,7 @@
 package bridge.View;
 
-import static bridge.Error.BRIDGE_SIZE_FORMAT_ERROR;
-import static bridge.Error.BRIDGE_SIZE_RANGE_ERROR;
+import static bridge.Enum.Error.BRIDGE_SIZE_FORMAT_ERROR;
+import static bridge.Enum.Error.BRIDGE_SIZE_RANGE_ERROR;
 
 public class InputValidator {
     public static void validateBridgeSize(String bridge_size_input) {

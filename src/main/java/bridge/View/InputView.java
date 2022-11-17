@@ -2,10 +2,6 @@ package bridge.View;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import javax.xml.validation.Validator;
-
-import static bridge.Error.BRIDGE_SIZE_FORMAT_ERROR;
-
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
