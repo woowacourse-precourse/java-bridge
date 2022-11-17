@@ -30,8 +30,10 @@ public class Bridge {
         return (howManyBridgesCrossed == bridge.size());
     }
 
-    public List<String> getAlreadyCrossedBridge(){
+    public List<String> getAlreadyCrossedBridge(String isSelectCorrect){
         List<String> alreadyCrossedBridge = newArrayList();
+        alreadyCrossedBridge.add(isSelectCorrect);
+
         for(int i = 0; i < howManyBridgesCrossed; i++){
             alreadyCrossedBridge.add(bridge.get(i));
         }
