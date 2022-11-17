@@ -1,8 +1,8 @@
 package domain;
 
-public class Bridge {
 
-    private void checkBridgeLength(String bridgeSize) {
+public class AllBridge {
+    public void checkBridgeLength(String bridgeSize) {
         try {
             int size = Integer.parseInt(bridgeSize);
             if(size > 20 || size < 3) {
