@@ -1,7 +1,9 @@
-package bridge;
+package bridge.view;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
+ * 패키지 변경가능, 메서드 이름 변경 불가. 인자와 반환타입은 추가 및 변경 가능
+ * 메서드 추가 가능
  */
 public class OutputView {
 

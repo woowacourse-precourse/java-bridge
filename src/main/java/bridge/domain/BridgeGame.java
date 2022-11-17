@@ -1,7 +1,11 @@
-package bridge;
+package bridge.domain;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
+ * 인스턴스 변수 추가 가능, 패키지 변경 가능
+ * 메서드 이름 변경 불가, 인자 및 리턴타입은 추가 또는 변경 가능
+ * 메서드 추가 가능
+ * InputView, OutputView 사용 불가
  */
 public class BridgeGame {
 

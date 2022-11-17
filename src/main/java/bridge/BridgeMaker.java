@@ -4,6 +4,7 @@ import java.util.List;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
+ * makeBridge 내부만 수정 가능
  */
 public class BridgeMaker {
 
