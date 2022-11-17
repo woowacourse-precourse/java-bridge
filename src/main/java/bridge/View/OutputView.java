@@ -31,4 +31,8 @@ public class OutputView {
         String message = OutputSystemMessage.getMessage(situation);
         System.out.println(message);
     }
+
+    public String getOutputSystemMessage(OutputSystemMessage situation) {
+        return OutputSystemMessage.getMessage(situation);
+    }
 }
