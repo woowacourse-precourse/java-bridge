@@ -22,7 +22,7 @@ public class BridgeRepository {
     public BridgeSize getBridgeSize() {
         return bridgeSize;
     }
-    public BridgeRepository(SelectMove selectMove) {
-        this.selectMove = selectMove;
+    public SelectMove getSelectMove() {
+        return selectMove;
     }
 }
