@@ -34,10 +34,11 @@ public class CurrentBridge {
             upStairMap.add(location.get(1));
             downStairMap.add(location.get(0));
         }
-        this.currentMap = upStairMap + "\n" + downStairMap;
+        this.currentMap = upStairMap + "\n" + downStairMap + "\n";
     }
 
     protected void clearMap() {
+        this.outcome = SUCCESS;
         this.numberOfAttempts++;
         this.currentPosition.clear();
     }

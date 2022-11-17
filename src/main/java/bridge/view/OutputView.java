@@ -7,8 +7,8 @@ import java.util.StringJoiner;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private static final String GUIDE_START = "다리 건너기 게임을 시작합니다.";
-    private static final String GUIDE_INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
+    private static final String GUIDE_START = "다리 건너기 게임을 시작합니다.\n";
+    private static final String GUIDE_INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.\n";
     private static final String GUIDE_INPUT_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String GUIDE_INPUT_GAME_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
