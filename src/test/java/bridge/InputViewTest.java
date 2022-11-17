@@ -25,7 +25,6 @@ class InputViewTest {
         }).doesNotThrowAnyException();
     }
 
-
     @DisplayName("입력값이 숫자가 아닌 경우 예외를 발생한다.")
     @Test
     public void readSizeByDuplicatedNumber() {
@@ -43,7 +42,7 @@ class InputViewTest {
             setInput("21");
             inputView.readBridgeSize();
         }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.incorrectSize.getMessage());
+                .hasMessage(ExceptionMessage.sizeOverScope.getMessage());
     }
 
     @DisplayName("입력값이 숫자가 3 미만이면 예외를 발생한다.")
@@ -53,7 +52,7 @@ class InputViewTest {
             setInput("2");
             inputView.readBridgeSize();
         }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.incorrectSize.getMessage());
+                .hasMessage(ExceptionMessage.sizeOverScope.getMessage());
     }
 
     private void setInput(String input) {
