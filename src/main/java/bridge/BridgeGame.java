@@ -10,7 +10,7 @@ public class BridgeGame {
     private final InputView inputView;
     private final OutputView outputView;
     private final List<String> bridge;
-    private List<String> inputs;
+    private List<Choice> inputs;
     private int index;
 
     public BridgeGame(int size){
@@ -25,7 +25,7 @@ public class BridgeGame {
      */
     public void init(){
         index = 0;
-        inputs = new ArrayList<>();
+        inputs = new ArrayList<Choice>();
     }
 
     /**
@@ -37,7 +37,7 @@ public class BridgeGame {
         String userInput = inputView.readMoving();
         boolean result = checkBridge(userInput);
 
-        addResult(result);
+        addResult(userInput, result);
 
         outputView.printMap();
 
@@ -58,10 +58,14 @@ public class BridgeGame {
         return result;
     }
 
-    private void addResult(boolean result){
-        if (result) inputs.add("O");
-        if (!result) inputs.add("X");
+    private void addResult(String userInput, boolean result){
+        String isRight = "X";
+        if (result) isRight = "O";
+
+        Choice choice = new Choice(userInput, isRight);
+        inputs.add(choice);
     }
+
     private boolean checkBridge(String userInput){
         if (bridge.get(index++) == userInput){
             return true;
