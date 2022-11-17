@@ -18,6 +18,7 @@ public class InputController {
             bridgeMaker.makeBridge(inputView.readBridgeSize());
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception);
+            setBridgeSize();
         }
     }
 }
