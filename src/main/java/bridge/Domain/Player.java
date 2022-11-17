@@ -29,4 +29,10 @@ public class Player {
     public String getLastSelection() {
         return this.lastSelection;
     }
+
+    public void die() {
+        this.alive = false;
+    }
+
+
 }
