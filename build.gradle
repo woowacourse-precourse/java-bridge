@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'jacoco'
 }
 
 repositories {
@@ -19,4 +20,18 @@ java {
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacoco {
+    toolVersion = "0.8.8" // 버전 명시
+}
+
+jacocoTestReport {
+    dependsOn test // 리포트 생성 전에 test를 반드시 수행해야 한다!
+    reports { // 어떤 파일들을 생성할지, 어디에 생성할지 설정
+        xml.enabled true // xml과 html형식으로 결과물을 만들어내라!
+        html.enabled true
+        // 경로 명시 안 할 경우 기본 경로는 build/reports/jacoco 이하 경로
+    }
 }
