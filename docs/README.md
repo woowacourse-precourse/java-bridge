@@ -68,7 +68,7 @@ R
 - [X] 다리의 길이만큼 다리 생성 (BridgeGame ->Bridges-> BridgeMaker)
 - [ ] 다리 이동칸을 요청한다. (InputView)
 - [ ] 이동할 칸을 입력 예외처리  (InputValidator)
-- [ ] player를 이동한다.(BridgeGame->player)
+- [X] player를 이동한다.(BridgeGame->player)
 - [ ] 이동한 칸이 이동가능한 칸인지 확인.(BridgeGame->Bridges)
 - [ ] 이동 한 칸을 출력 (OutputView)
 - [ ] 이동 완료 여부 확인 (BridgeGame)
