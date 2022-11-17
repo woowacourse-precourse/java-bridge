@@ -13,6 +13,10 @@ public enum InputType {
         this.command = command;
     }
 
+    public String getCommand() {
+        return command;
+    }
+
     public static void validateNumber(String input) {
         if (!input.matches(NUMERIC.command))
             Error.printException(ErrorType.NUMERIC);
