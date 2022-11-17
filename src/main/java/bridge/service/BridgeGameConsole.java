@@ -2,6 +2,9 @@ package bridge.service;
 
 public class BridgeGameConsole {
 
+    private final Emcee emcee = new Emcee();
+    private final Player player = new Player();
+
     public void playGame() {
         // 게임 시작 안내문을 출력한다.
         // 다리 길이를 입력 받는다.
@@ -11,9 +14,8 @@ public class BridgeGameConsole {
     }
 
     private int createBridgeLength() {
-        // 다리 길이 입력 안내
-        // 다리 길이 입력
-        return 0;
+        emcee.guideEnteringBridgeLength();
+        return player.enterBridgeLength();
     }
 
     private void crossBridge() {
