@@ -13,15 +13,16 @@ public class InputView {
 	 */
 	public int readBridgeSize() {
 		System.out.println(MESSAGE_READ_BRIDGE_SIZE);
-		String bridgeSize = readLine();
-		validateBridgeSizeNumeric(bridgeSize);
+		int bridgeSize = validateBridgeSizeNumeric(readLine());
 		validateBridgeSizeRange(bridgeSize);
 		return Integer.parseInt(bridgeSize);
 	}
 
-	private void validateBridgeSizeNumeric(String bridgeSize) {
-		String regex = REGEX_ALL_NUMERIC;
-		if (!bridgeSize.matches(regex)) {
+	private int validateBridgeSizeNumeric(String bridgeSize) {
+		try {
+			int validateBridgeSize = Integer.parseInt(bridgeSize);
+			return validateBridgeSize;
+		} catch (IllegalArgumentException e) {
 			throw new IllegalArgumentException(ERROR_MESSAGE_NON_NUMERIC);
 		}
 	}
