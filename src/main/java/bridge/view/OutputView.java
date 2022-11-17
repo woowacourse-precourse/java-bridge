@@ -20,7 +20,15 @@ public class OutputView {
     private static final String NUMBER_OF_TRY_MESSAGE_FORM = "총 시도한 횟수: %s%n";
     private static final String SUCCESS_MESSAGE = "성공";
     private static final String FAIL_MESSAGE = "실패";
+    private static final String NEW_LINE_DELIMITER = "\n";
+    private static final String VERTICAL_DELIMITER = " | ";
+    private static final String SQUARE_BRACKETS_PREFIX = "[ ";
+    private static final String SQUARE_BRACKETS_SUFFIX = " ]";
+    private static final String SPACE_DISPLAY = " ";
+    private static final String PLACES_TO_GO_DISPLAY = "O";
+    private static final String PLACES_NOT_TO_GO_DISPLAY = "X";
     private static final int BRIDGE_LINE_SIZE = 2;
+    private static final int NUMBER_OF_PLACES_NOT_TO_GO = 0;
     
     public void printGameStartMessage() {
         printMessage(GAME_START_MESSAGE);
@@ -46,13 +54,13 @@ public class OutputView {
     private String parseBridgeMapDisplay(final GameResultDTO gameResultDTO) {
         return IntStream.range(0, BRIDGE_LINE_SIZE)
                 .mapToObj(lineIndex -> parseEachLineMapDisplay(gameResultDTO, lineIndex))
-                .collect(Collectors.joining("\n"));
+                .collect(Collectors.joining(NEW_LINE_DELIMITER));
     }
     
     private String parseEachLineMapDisplay(final GameResultDTO gameResultDTO, final int lineIndex) {
         return IntStream.range(0, countOfMoving(gameResultDTO))
                 .mapToObj(countOfMoving -> parseMovingDisplay(gameResultDTO, countOfMoving, lineIndex))
-                .collect(Collectors.joining(" | ", "[ ", " ]"));
+                .collect(Collectors.joining(VERTICAL_DELIMITER, SQUARE_BRACKETS_PREFIX, SQUARE_BRACKETS_SUFFIX));
     }
     
     private int countOfMoving(final GameResultDTO gameResultDTO) {
@@ -60,11 +68,15 @@ public class OutputView {
     }
     
     private String parseMovingDisplay(final GameResultDTO gameResultDTO, final int countOfMoving, final int lineIndex) {
-        if (isNotPlaceToMove(lineIndex, movings(gameResultDTO).get(countOfMoving))) {
-            return " ";
+        if (isNotPlaceToMove(lineIndex, currentMoving(gameResultDTO, countOfMoving))) {
+            return SPACE_DISPLAY;
         }
         
         return parseMovingResultDisplay(moveResults(gameResultDTO).get(countOfMoving));
+    }
+    
+    private String currentMoving(final GameResultDTO gameResultDTO, final int countOfMoving) {
+        return movings(gameResultDTO).get(countOfMoving);
     }
     
     private List<String> movings(final GameResultDTO gameResultDTO) {
@@ -72,7 +84,7 @@ public class OutputView {
     }
     
     private boolean isNotPlaceToMove(final int lineIndex, final String currentMoving) {
-        return (currentMoving.charAt(0) + lineIndex) % 2 == 0;
+        return (currentMoving.charAt(0) + lineIndex) % 2 == NUMBER_OF_PLACES_NOT_TO_GO;
     }
     
     private List<MoveResult> moveResults(final GameResultDTO gameResultDTO) {
@@ -81,10 +93,10 @@ public class OutputView {
     
     private String parseMovingResultDisplay(final MoveResult moveResult) {
         if (moveResult.isSuccess()) {
-            return "O";
+            return PLACES_TO_GO_DISPLAY;
         }
         
-        return "X";
+        return PLACES_NOT_TO_GO_DISPLAY;
     }
     
     public void printGameCommandInputMessage() {
