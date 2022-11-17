@@ -73,9 +73,37 @@ public class BridgeGame {
         outputView.printResult(flag, count, realTimeMap);
     }
 
+    private boolean compareInputActual(List<String> bridge, int index) {
+        String userMove = inputController.getMoving();
+        String moveResult = move(userMove, bridge.get(index));
+        return isWrong(realTimeMap, userMove, moveResult);
+    }
+
     private void checkResult() {
         if (!flag) {
             retry();
         }
+    }
+
+    private boolean isWrong(String[][] realTimeMap, String userMove, String moveResult) {
+        if (moveResult.equals(" X ")) {
+            printRealTimeMap(realTimeMap, userMove, moveResult);
+            flag = false;
+            return true;
+        }
+        printRealTimeMap(realTimeMap, userMove, moveResult);
+        return false;
+    }
+
+    private void printRealTimeMap(String[][] realTimeMap, String userMove, String moveResult) {
+        realTimeBridge.makeRealTimeBridge(userMove, moveResult);
+        outputView.printMap(realTimeMap);
+    }
+
+    public String isSuccess(boolean flag) {
+        if (flag) {
+            return EnumStrings.SUCCESS.getValue();
+        }
+        return EnumStrings.FAIL.getValue();
     }
 }

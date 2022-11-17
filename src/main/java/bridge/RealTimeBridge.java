@@ -6,7 +6,7 @@ public class RealTimeBridge {
     String [][] realTimeBridge = {{"[","","]"}
             ,{"[","","]"}};
 
-    public String [][] getArray(){
+    public String [][] getMap(){
         return realTimeBridge;
     }
 
@@ -37,5 +37,10 @@ public class RealTimeBridge {
         realTimeBridge[0][1]+="|"+bridgeText;
         realTimeBridge[1][1]+="|"+"   ";
         return realTimeBridge;
+    }
+
+    public void initialize() {
+        realTimeBridge[0][1]="";
+        realTimeBridge[1][1]="";
     }
 }
