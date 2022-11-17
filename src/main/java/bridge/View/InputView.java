@@ -1,7 +1,6 @@
 package bridge.View;
 
 import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.Model.BridgeDTO;
 import bridge.Model.ErrorUtil;

@@ -5,10 +5,8 @@ package bridge.Model;
  */
 public class BridgeGame {
 
-    public int move(int position, int size) {
-        if (position != size)
-            position += 1;
-        return position;
+    public void move(BridgeDTO bridgeDTO) {
+        bridgeDTO.setMovePoint(bridgeDTO.getMovePoint() + 1);
     }
 
     /**

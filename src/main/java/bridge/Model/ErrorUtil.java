@@ -16,7 +16,7 @@ public class ErrorUtil {
     }
 
     public  void errorInputReadMoving(String inputUpDown) {
-        if ((inputUpDown != "U" && inputUpDown != "D") || inputUpDown.length() != 1) {
+        if (!inputUpDown.equals("U") && !inputUpDown.equals("D")) {
             throw new IllegalArgumentException("[ERROR] 이동할 칸은 U나 D 중 한 글자여야 합니다.");
         }
     }
