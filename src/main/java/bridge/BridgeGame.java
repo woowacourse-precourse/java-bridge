@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.domain.MapPrinting;
+import bridge.domain.RestartProcess;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.ArrayList;
@@ -20,6 +21,8 @@ public class BridgeGame {
     OutputView outputView = new OutputView();
     static final int UP=1;
     static final int DOWN=0;
+    RestartProcess restartProcess = new RestartProcess();
+    private static int count=0;
     int nowIndex;
     boolean restart=false;
     InputView inputView = new InputView();
@@ -36,19 +39,21 @@ public class BridgeGame {
     public void move(List<String> mapBridge, int bridgeSize) {
         int idx=0;
         clearInfo();
-        while(idx<bridgeSize){
+        while(idx<bridgeSize && !MapPrinting.isMoveStop()){
             System.out.println("mapBridge = " + mapBridge);
             moving.add(inputView.readMoving());
             setPrintBool(upPrint, downPrint, convertNowIndex(mapBridge.get(idx)));
             MapPrinting mapPrinting = getMapPrinting(upPrint,downPrint, moving.get(idx));
             idx++;
         }
+        retry(idx,bridgeSize, mapBridge);
     }
 
     public void clearInfo(){
         moving.clear();
         upPrint.clear();
         downPrint.clear();
+        MapPrinting.clearUpDownLocation();
     }
 
     private MapPrinting getMapPrinting(List<Boolean> upPrint, List<Boolean> downPrint,
@@ -84,6 +89,19 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(int idx,int bridgeSize, List<String> mapBridge) {
+        count++;
+        if(isRestart(idx, bridgeSize)){
+            MapPrinting.setRestart();
+            move(mapBridge, bridgeSize);
+            return;
+        }
+
+
     }
+
+    private boolean isRestart(int idx, int bridgeSize) {
+        return idx != bridgeSize && restartProcess.restart();
+    }
+
 }

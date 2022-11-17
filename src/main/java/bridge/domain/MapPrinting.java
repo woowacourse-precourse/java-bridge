@@ -3,7 +3,6 @@ package bridge.domain;
 import bridge.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.RestoreAction;
 
 public class MapPrinting {
 
@@ -14,7 +13,7 @@ public class MapPrinting {
     static final int UP=1;
     static final int DOWN=0;
     int nowIndex;
-    boolean restart=false;
+    static boolean restart=false;
 
 
     public MapPrinting(List<Boolean> upCapable, List<Boolean> downCapable, int nowIndex) {
@@ -23,7 +22,17 @@ public class MapPrinting {
         this.nowIndex = nowIndex;
     }
 
+    public static boolean isMoveStop() {
+        return restart;
+    }
 
+    public static void clearUpDownLocation() {
+        upDownLocation.clear();
+    }
+
+    public static void setRestart() {
+        restart=false;
+    }
 
     public void makeList(){
         upDownLocation.add(nowIndex);

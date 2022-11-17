@@ -46,6 +46,7 @@ public class OutputView {
     }
 
 
-
-
+    public void printRestart() {
+        System.out.println(PrintString.RESTART.getPrint());
+    }
 }
