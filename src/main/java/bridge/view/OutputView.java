@@ -3,6 +3,7 @@ package bridge.view;
 import static bridge.constant.BridgeConstant.LOWER_BLOCK;
 import static bridge.constant.BridgeConstant.UPPER_BLOCK;
 
+import bridge.MessageToResult;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,10 +17,9 @@ public class OutputView {
     private final List<String> upperBlocks = new ArrayList<>();
     private final List<String> lowerBlocks = new ArrayList<>();
 
-    public void printMap(List<String> bridge,
-                         boolean isCorrect) {
-        String answer = getAnswer(bridge);
-        String resultMark = getResultMark(isCorrect);
+    public void printMap(MessageToResult messageToResult) {
+        String answer = messageToResult.getMessage();
+        String resultMark = getResultMark(messageToResult.isCorrect());
         setBlocks(answer, resultMark);
 
         printEachMessage(upperBlocks);

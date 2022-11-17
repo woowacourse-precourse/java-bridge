@@ -16,10 +16,11 @@ public class BridgeGame {
         return gameService.createBridge(size);
     }
 
-    public boolean move(List<String> bridge,
+    public MessageToResult move(List<String> bridge,
                         String moveMessage) {
         validator.validateMoveMessage(moveMessage);
-        return gameService.isCorrectMove(bridge, moveMessage);
+        boolean isCorrect = gameService.isCorrectMove(bridge, moveMessage);
+        return new MessageToResult(moveMessage, isCorrect);
     }
 
     /**
