@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.exception.InputExceptionHandler;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -14,7 +15,7 @@ public class InputView {
 		while (true) {
 			OutputView.printBridgeLength();
 			try {
-				return Integer.parseInt(Console.readLine());
+				return InputExceptionHandler.checkBridgeSizeForm(Console.readLine());
 			} catch (IllegalArgumentException e) {
 				System.out.println(e.getMessage());
 			}
