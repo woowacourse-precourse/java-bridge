@@ -12,10 +12,16 @@ public class InputView {
      */
     public int readBridgeSize() {
         String bridgeSizeInput = Console.readLine();
+        bridgeInputDigitValidate(bridgeSizeInput);
         return Integer.parseInt(bridgeSizeInput);
     }
 
-
+    private void bridgeInputDigitValidate(String bridgeSizeInput) {
+        String compareInput = bridgeSizeInput.replaceAll("[0-9]","");
+        if(bridgeSizeInput.length() == compareInput.length()){
+            throw new IllegalArgumentException("[ERROR] 다리 길이 입력값이 숫자 외의 값이 입력됐습니다.");
+        }
+    }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
