@@ -37,8 +37,7 @@ public class OutputView {
     public void printMap(String right, int upOrDown) {
         String[] splitMap = Map.split("\\n");
         if(!this.isFirst) {
-            splitMap[upOrDown] = splitMap[upOrDown].substring(0, splitMap[upOrDown].length() - 1) + DIVISION + right + CLOSE;
-            splitMap[(upOrDown + 1) % 2] = splitMap[(upOrDown + 1) % 2].substring(0, splitMap[(upOrDown + 1) % 2].length() - 1) + DIVISION + NONE + CLOSE;
+            splitMap = notFirstPrintMap(splitMap, right, upOrDown);
         }
         if (this.isFirst){
             splitMap = firstPrintMap(splitMap, right, upOrDown);
@@ -54,6 +53,12 @@ public class OutputView {
         return splitMap;
     }
 
+    private String[] notFirstPrintMap(String[] splitMap,String right, int upOrDown){
+        splitMap[upOrDown] = splitMap[upOrDown].substring(0, splitMap[upOrDown].length() - 1) + DIVISION + right + CLOSE;
+        splitMap[(upOrDown + 1) % 2] = splitMap[(upOrDown + 1) % 2].substring(0, splitMap[(upOrDown + 1) % 2].length() - 1) + DIVISION + NONE + CLOSE;
+        return splitMap;
+    }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -64,4 +69,5 @@ public class OutputView {
         System.out.println(OUTPUT_RESULT_IS_SUCCESS + result);
         System.out.println(OUTPUT_RESULT_TRY_NUMBER + this.attempt);
     }
+    
 }
