@@ -13,12 +13,14 @@ public class BridgeGame {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private Bridge bridge;
-    private BridgeMaker bridgeMaker;
+    private boolean isGameWin;
+    private int gameCount;
 
     private void initBridgeGame(){
+        gameCount = 0;
         int bridgeSize = inputView.readBridgeSize();
         BridgeNumberGenerator numberGenerator = () -> new BridgeRandomNumberGenerator().generate();
-        bridgeMaker = new BridgeMaker(numberGenerator);
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         bridge = new Bridge(bridgeMaker, bridgeSize);
     }
 
