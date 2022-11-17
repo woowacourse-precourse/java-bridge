@@ -81,4 +81,8 @@ public class BridgeController {
             return getCommand();
         }
     }
+
+    public void resultClear() {
+        result.clear();
+    }
 }

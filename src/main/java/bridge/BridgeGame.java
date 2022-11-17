@@ -77,5 +77,6 @@ public class BridgeGame {
     public void retry() {
         playCount++;
         userBridge.clear();
+        bridgeController.resultClear();
     }
 }
