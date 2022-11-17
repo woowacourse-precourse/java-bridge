@@ -9,12 +9,18 @@ import org.junit.jupiter.params.provider.CsvSource;
 public class InputValidatorTest {
 
 
-    @DisplayName("다리의 길이 예외처리 (3~20)")
-    @CsvSource(value = {"2:false", ":false", "21:false", "null:false", "$:false", "3:true", "20:true",
+    @DisplayName("다리의 길이 입력 유효성 검사 (3~20)")
+    @CsvSource(value = {"2:false", ":false", "21:false", "'':false", "$:false", "3:true", "20:true",
             "a:false"}, delimiter = ':')
     @ParameterizedTest
-    void is_not_valid_size(String inputSize, boolean expected) {
+    void is_valid_size(String inputSize, boolean expected) {
         assertThat(InputValidator.isValidSize(inputSize)).isEqualTo(expected);
     }
 
+    @DisplayName("이동할 칸을 입력 유효성 검사")
+    @CsvSource(value = {" :false","U:true","D:true","E:false","'':false"}, delimiter = ':')
+    @ParameterizedTest
+    void is_valid_moving(String moving,boolean expected) {
+        assertThat(InputValidator.isValidMoving(moving)).isEqualTo(expected);
+    }
 }

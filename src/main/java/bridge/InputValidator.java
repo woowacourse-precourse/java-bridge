@@ -27,4 +27,11 @@ public class InputValidator {
             e.printStackTrace();
         }
     }
+
+    public static boolean isValidMoving(String moving) {
+        if (moving == null) {
+            return false;
+        }
+        return moving.equals("U") || moving.equals("D");
+    }
 }
