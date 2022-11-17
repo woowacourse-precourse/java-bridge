@@ -41,7 +41,7 @@ public class InputView {
                 checkUpperCase(c);
             }
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 이동 값은 대문자 알파벳이어야 합니다.");
+            System.out.println("[ERROR] 커맨드는 대문자 알파벳으로 입력해야 합니다.");
         }
     }
 
