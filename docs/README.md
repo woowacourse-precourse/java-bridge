@@ -22,3 +22,9 @@
 ## OutputView
 - [ ] 현재까지 이동한 다리의 상태를 출력하는 메소드: printMap()
 - [ ] 게임의 최종 결과를 출력하는 메소드: printResult()
+
+## Validator
+    예외 발생할 경우들을 모아 놓은 객체 추후 구현내용을 추가할 예정
+
+## ExceptionMessage
+    예외 메세지들을 모아둔 Enum 추후 내용을 추가할 예정
