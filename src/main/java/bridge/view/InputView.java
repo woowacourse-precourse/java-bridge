@@ -10,8 +10,16 @@ public class InputView {
     // 다리 길이 입력받는 기능
     public int readBridgeSize() {
         String input = Console.readLine();
+        checkEmpty(input);
         checkIsNumber(input);
         return Integer.parseInt(input);
+    }
+
+    // 공백을 입력한 경우 예외처리
+    private void checkEmpty(String input) {
+        if (input.equals("")) {
+            throw new IllegalArgumentException("[ERROR] 3이상 20이하의 숫자를 입력해야 합니다.");
+        }
     }
 
     // 숫자가 아닐경우 예외처리
