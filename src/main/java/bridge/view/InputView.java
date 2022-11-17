@@ -8,6 +8,7 @@ public class InputView {
 
     private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
     private static final String READ_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
+    private static final String READ_MOVE_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
 
     /**
      *  게임 시작 메시지를 출력한다.
@@ -29,7 +30,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(READ_MOVE_MESSAGE);
+        String move = Console.readLine();
+        return move;
     }
 
     /**
