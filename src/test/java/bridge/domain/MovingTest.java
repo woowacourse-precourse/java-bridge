@@ -23,4 +23,13 @@ class MovingTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.NOT_MOVING_VALUE.getMessage());
     }
+
+    @DisplayName("isSame메서드는 Moving의 멤버와 매개변수 값을 비교하여 같을 경우 true를 반환한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"U", "D"})
+    void isSameTest(String input) {
+        Moving moving = new Moving(input);
+        boolean result = moving.isSame(input);
+        Assertions.assertThat(result).isTrue();
+    }
 }
