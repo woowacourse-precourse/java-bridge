@@ -10,8 +10,10 @@ public class InputView {
     private static final int bridgeSizeMax = 20;
 
     private static final String readBridgeSizeMessage = "다리의 길이를 입력해주세요.";
+    private static final String readMovingMessage = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String parseStrToIntErrorMessage = "[ERROR] 숫자를 입력해 주세요.";
     private static final String validateBridgeSizeErrorMessage = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+    private static final String validateMovingErrorMessage = "[ERROR] U 또는 D를 입력해야 합니다.";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -30,7 +32,13 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(readMovingMessage);
+        try {
+            return validateMoving(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
     }
 
     /**
@@ -59,5 +67,14 @@ public class InputView {
         if (size < bridgeSizeMin || size > bridgeSizeMax)
             throw new IllegalArgumentException(validateBridgeSizeErrorMessage);
         return size;
+    }
+
+    /**
+     * 매개변수 str이 U나 D가 아니면 IllegalArgumentException을 발생 시킨다.
+     */
+    private String validateMoving(String str) {
+        if (!(str.equals("U") || str.equals("D")))
+            throw new IllegalArgumentException(validateMovingErrorMessage);
+        return str;
     }
 }
