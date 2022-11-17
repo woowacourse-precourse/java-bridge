@@ -9,14 +9,14 @@ public class InputView {
 
     private static final String NUMBER_INPUT_ERROR_MESSAGE = "[ERROR] 숫자를 입력하여야 합니다.";
 
-    private static final String NUMBER_REGEX = "^\\d+$";
+    private static final String NUMBER_REGEX = "^\\d*[1-9]$";
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         String bridgeSizeInput = Console.readLine();
-        validateIsNumber(bridgeSizeInput);
+        validateIsPositiveNumber(bridgeSizeInput);
         int bridgeSize = Integer.parseInt(bridgeSizeInput);
         return bridgeSize;
     }
@@ -35,7 +35,7 @@ public class InputView {
         return null;
     }
 
-    private void validateIsNumber(String input){
+    private void validateIsPositiveNumber(String input){
         if(input.matches(NUMBER_REGEX)){
             return;
         }
