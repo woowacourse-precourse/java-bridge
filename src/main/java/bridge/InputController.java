@@ -4,9 +4,9 @@ public class InputController {
 
     public static int getBridgeSize() {
         try {
-            String length = InputView.readBridgeSize();
-            new BridgeSizeValidator(length);
-            return new Converter().toInt(length);
+            String size = InputView.readBridgeSize();
+            new BridgeSizeValidator(size);
+            return new Converter().toInt(size);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
             return getBridgeSize();
