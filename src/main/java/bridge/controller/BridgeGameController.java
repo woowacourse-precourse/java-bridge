@@ -9,7 +9,8 @@ public class BridgeGameController {
 
     public BridgeGameController() {
     }
-    
+
     public void run() {
+        outputView.printGameStart();
     }
 }
