@@ -12,7 +12,7 @@ public class InputBridgeSizeValidator {
     public static void validate(final String inputBridgeSize) {
         validateNullOrEmpty(inputBridgeSize);
         validateZeroAtFirstPlaceExist(inputBridgeSize);
-        validateInputtedBridgeSizeFormMatch(inputBridgeSize);
+        validateBridgeSizeFormMatch(inputBridgeSize);
     }
     
     private static void validateNullOrEmpty(final String inputBridgeSize) {
@@ -29,7 +29,7 @@ public class InputBridgeSizeValidator {
         return matcher(inputNumber, EXIST_ZERO_AT_FIRST_PLACE_FORM).matches();
     }
     
-    private static void validateInputtedBridgeSizeFormMatch(final String inputBridgeSize) {
+    private static void validateBridgeSizeFormMatch(final String inputBridgeSize) {
         if (isNotMatchInputFormat(inputBridgeSize)) {
             throw new IllegalArgumentException(BRIDGE_SIZE_FORM_ERROR_MESSAGE);
         }

@@ -11,6 +11,9 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private static final int MOVING_SELECT_CHAR_VALIDATOR_NUMBER = 1;
+    private static final int RETRY_SELECT_CHAR_VALIDATOR_NUMBER = 2;
+    
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -37,7 +40,7 @@ public class InputView {
         printMovingInputMessage(outputView);
         try {
             final String inputMoving = Console.readLine();
-            InputSelectCharValidator.validate(inputMoving);
+            InputSelectCharValidator.validate(inputMoving, MOVING_SELECT_CHAR_VALIDATOR_NUMBER);
             return new MovingDTO(inputMoving);
         } catch (final IllegalArgumentException raisedException) {
             System.out.println(raisedException.getMessage());
