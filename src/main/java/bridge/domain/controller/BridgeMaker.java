@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain.controller;
 
 import java.util.List;
 
