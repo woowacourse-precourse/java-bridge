@@ -1,7 +1,6 @@
 package bridge.domain;
 
 
-
 import java.util.List;
 
 
@@ -18,7 +17,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String moveInput, List<String> bridge, int index) {
-        if(moveInput.equals(bridge.get(index)))
+        if (moveInput.equals(bridge.get(index)))
             return true;
 
         return false;
@@ -30,7 +29,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String restartInput) {
-        if(restartInput.equals(RESTART_MSG))
+        if (restartInput.equals(RESTART_MSG))
             return true;
 
         return false;

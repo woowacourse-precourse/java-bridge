@@ -19,7 +19,7 @@ public class BridgeMaker {
     private String generateBridge() {
         int num = bridgeNumberGenerator.generate();
 
-        if(num == 1)
+        if (num == 1)
             return "U";
 
         return "D";
