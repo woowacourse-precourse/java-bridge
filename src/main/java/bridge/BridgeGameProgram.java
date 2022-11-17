@@ -17,5 +17,6 @@ public class BridgeGameProgram {
         outputView.printGameStartComment();
         outputView.printRequestBridgeSizeComment();
         List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        outputView.printRequestMoveSideComment();
     }
 }
