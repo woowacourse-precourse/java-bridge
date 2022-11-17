@@ -1,6 +1,7 @@
 package Utils;
 
 import bridge.EnumCollections.BridgeLengthType;
+import bridge.EnumCollections.BridgeType;
 
 public class InputUtils {
 
@@ -15,11 +16,16 @@ public class InputUtils {
 
     public boolean isValidRangeDigit(String input) {
         int length = Integer.parseInt(input);
-        int min = BridgeLengthType.MIN.getLength();
-        int max = BridgeLengthType.MAX.getLength();
-
-        return length >= min && length <= max;
+        return length >= BridgeLengthType.MIN.getLength() && length <= BridgeLengthType.MAX.getLength();
     }
+
+
+    public boolean isValidBridgePosition(String input) {
+        char characterInput = input.charAt(0);
+        return BridgeType.isPosition(characterInput);
+    }
+
+
 
 
 }
