@@ -7,30 +7,31 @@
 - 게임이 종료될 경우 성공/실패 여부와 함께 시도한 횟수가 출력된다.
 
 ## 🚀 기능 목록
-- [  ] 게임을 시작하면 게임 시작 안내문구를 출력한다
+- [  ] 게임을 시작하면 게임 시작 안내문구를 출력한다 → OutputView.printGameStart
 
 ### 1. 다리 생성하기  
-- [  ] 다리 길이 입력요청문구를 출력한다
-- [  ] 다리 길이를 입력받는다
-- [  ] 입력받은 다리 길이에 대한 유효성을 검사한다
-- [  ] 다리를 생성한다 
-    - [  ] 각 다리가 U 또는 D로만 이루어졌는지 확인 후 생성하도록 한다
+- [  ] 다리 길이 입력요청문구를 출력한다 → OutputView.printBridgeSizeInputRequest
+- [  ] 다리 길이를 입력받는다 → InputView.readBridgeSize
+- [  ] 입력받은 다리 길이에 대한 유효성을 검사한다 
+- [  ] 다리를 생성한다 → BridgeMaker.makeBridge
+    - [  ] 각 다리가 U 또는 D로만 이루어졌는지 확인 후 생성하도록 한다 → Bridge.validateBridge
 
 ### 2. 다리 건너기
-- [  ] 이동할 칸 입력요청문구를 출력한다
-- [  ] 이동할 칸을 입력받는다
-- [  ] 입력받은 이동할 칸에 대한 유효성을 검사한다
-- [  ] 이동한 칸에 대한 성공여부를 확인한다
-- [  ] 이동한 지점까지의 다리상태를 출력한다
+- [  ] 이동할 칸 입력요청문구를 출력한다 → OutputView.printMovingInputRequest
+- [  ] 이동할 칸을 입력받는다 → InputView.readMoving
+- [  ] 입력받은 이동할 칸에 대한 유효성을 검사한다 → Bridge.validateMoving
+- [  ] 이동한 칸에 대한 성공여부를 확인한다 Bridge.confirmMoving
+- [  ] 이동한 지점까지의 다리상태를 출력한다 → OutputView.printMap
 
 ### 3. 재시작 또는 종료하기  
-- [  ] 실패한 경우, 재시작/종료여부 입력요청문구를 출력한다
-- [  ] 입력받은 재시작/종료여부에 대한 유효성을 검사한다
-- [  ] 입력받은 값이 "Q"면 종료한다
-- [  ] 입력받은 값이 "R"이면 처음부터 재시작한다
+- [  ] 실패한 경우, 재시작/종료여부 입력요청문구를 출력한다 → OutputView.printGameCommandInputRequest
+- [  ] 재시작/종료여부를 입력받는다 → Input.readGameCommand
+- [  ] 입력받은 재시작/종료여부에 대한 유효성을 검사한다 → BridgeGame.validateGameCommand 
+- [  ] 입력받은 값이 "Q"면 종료한다 → BridgeGame.finish
+- [  ] 입력받은 값이 "R"이면 처음부터 재시작한다 → BridgeGame.retry
 
 ### 4. 게임결과 출력하기
-- [  ] 게임 성공/실패여부문구를 출력한다
+- [  ] 게임 성공/실패여부문구를 출력한다 
 - [  ] 시도횟수를 출력한다
 
 
