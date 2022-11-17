@@ -9,7 +9,7 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private String printLastStair(Player player, String stair) {
+    private String printSelectedStair(Player player, String stair) {
         if (!stair.equals(player.getLastSelection())) {
             return "   ";
         }
@@ -21,10 +21,10 @@ public class OutputView {
         return " O ";
     }
 
-    private String printPassedStair(List<String> bridgeStates, Player player, String stair) {
+    private String printPassedStair(List<String> bridgeStates, int passedCount, String stair) {
         String result = "";
 
-        for (int bridgeLocation = 0; bridgeLocation < player.getNextLocation() - 1; bridgeLocation++) {
+        for (int bridgeLocation = 0; bridgeLocation < passedCount; bridgeLocation++) {
             String state = "   ";
             if (stair.equals(bridgeStates.get(bridgeLocation))) {
                 state = " O ";
@@ -38,8 +38,8 @@ public class OutputView {
 
     private void printStair(List<String> bridgeStates, Player player, String stair) {
         String result = "[";
-        result += printPassedStair(bridgeStates, player, stair);
-        result += printLastStair(player, stair);
+        result += printPassedStair(bridgeStates, player.getNextLocation(), stair);
+        result += printSelectedStair(player, stair);
         result += "]";
 
         System.out.println(result);
@@ -49,7 +49,6 @@ public class OutputView {
         List<String> bridgeState = bridgeGame.getBridgeStates();
         Player player = bridgeGame.getPlayer();
 
-        System.out.println(player.getNextLocation());
         printStair(bridgeState, player, "U");
         printStair(bridgeState, player, "D");
         System.out.println();
