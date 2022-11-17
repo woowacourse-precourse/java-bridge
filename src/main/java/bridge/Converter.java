@@ -16,17 +16,21 @@ public class Converter {
 
     public List<List<String>> convertBridgeToBridges(List<String> bridge){
         List<List<String>> bridges = createBridges(bridge.size());
-        for(int i = 0; i < bridge.size(); i++){
-            String block = bridge.get(i);
-            String emptyBlock = " ";
-            if(UpAndDown.UP.isEqualDirection(block)){
-                bridges.get(UpAndDown.UP.getInputDirectionNumber()).add(block);
-                bridges.get(UpAndDown.DOWN.getInputDirectionNumber()).add(emptyBlock);
-            }
-            if(UpAndDown.DOWN.isEqualDirection(block)){
-                bridges.get(UpAndDown.DOWN.getInputDirectionNumber()).add(block);
-                bridges.get(UpAndDown.UP.getInputDirectionNumber()).add(emptyBlock);
-            }
+        for (String block : bridge) {
+            bridges = convertBlockToBridges(bridges, block);
+        }
+        return bridges;
+    }
+
+    public List<List<String>> convertBlockToBridges(List<List<String>> bridges, String block){
+        String emptyBlock = " ";
+        if(UpAndDown.UP.isEqualDirection(block)){
+            bridges.get(UpAndDown.UP.getInputDirectionNumber()).add(block);
+            bridges.get(UpAndDown.DOWN.getInputDirectionNumber()).add(emptyBlock);
+        }
+        if(UpAndDown.DOWN.isEqualDirection(block)){
+            bridges.get(UpAndDown.DOWN.getInputDirectionNumber()).add(block);
+            bridges.get(UpAndDown.UP.getInputDirectionNumber()).add(emptyBlock);
         }
         return bridges;
     }
