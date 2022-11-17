@@ -14,7 +14,7 @@ public class OptionTest {
     @ValueSource(strings = {"a", "Aa", "aA", "1A", ""})
     @ParameterizedTest
     void inputNotUppercase(String input) {
-        assertThatThrownBy(()-> new Option(input))
+        assertThatThrownBy(()-> Option.validate(input))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(ERROR);
     }
@@ -23,7 +23,7 @@ public class OptionTest {
     @ValueSource(strings = {"UU", "", "UDUUD"})
     @ParameterizedTest
     void inputWrongRange(String input) {
-        assertThatThrownBy(()-> new Option(input))
+        assertThatThrownBy(()-> Option.validate(input))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(ERROR);
     }

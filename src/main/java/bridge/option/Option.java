@@ -7,13 +7,6 @@ public class Option {
     private static final String ONLY_UPPERCASE_REGEXP ="^[A-Z]+$";
     private static final int OPTION_LENGTH = 1;
 
-    private final String option;
-
-    public Option(String option) {
-        validate(option);
-        this.option = option;
-    }
-
     public static void validate(String option) {
         validateOnlyUppercase(option);
         validateOptionLength(option);
