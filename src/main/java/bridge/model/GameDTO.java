@@ -17,4 +17,8 @@ public class GameDTO {
     public void setNowPosition(int nowPosition) {
         this.nowPosition = nowPosition;
     }
+
+    public List<String> getBridge() {
+        return bridge;
+    }
 }
