@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class User {
@@ -13,5 +14,9 @@ public class User {
 
     public void move(String moving) {
         userMoved.add(moving);
+    }
+
+    public List<String> getUserMoved() {
+        return Collections.unmodifiableList(userMoved);
     }
 }
