@@ -1,16 +1,15 @@
-package bridge;
+package bridge.util;
 
 import bridge.enums.ErrorMessage;
-import bridge.util.ValidationUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class ValidationTest {
+class ValidationUtilTest {
 
     @DisplayName("다리의 길이는 3이상 20 이하이다.")
     @Nested
