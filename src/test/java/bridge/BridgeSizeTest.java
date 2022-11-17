@@ -11,7 +11,7 @@ public class BridgeSizeTest {
 	private static final int FIRST_NUMBER_INCLUSIVE = 3;
 	private static final int LAST_NUMBER_INCLUSIVE = 20;
 
-	@DisplayName("다리 길이의 정상값을 입력했을 때 객체 생성을 검증한다")
+	@DisplayName("다리 길이의 정상값을 입력했을 때 인스턴스 생성을 검증한다")
 	@ParameterizedTest
 	@ValueSource(ints = {3, 7, 13, 20})
 	void verify_BridgeSize_CreateInstance(int value) {

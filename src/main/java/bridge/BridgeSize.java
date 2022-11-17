@@ -11,8 +11,8 @@ public class BridgeSize implements InputValidator {
 	}
 
 	@Override
-	public void validate(Object inputBridgeLength) {
-		isNumberInBetween((Integer) inputBridgeLength);
+	public void validate(Object inputBridgeSize) {
+		isNumberInBetween((Integer) inputBridgeSize);
 	}
 
 	public static BridgeSize valueOf(String inputBridgeSize){
