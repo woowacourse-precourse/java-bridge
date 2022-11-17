@@ -9,6 +9,14 @@ public class Validation {
     private static final String OTHER_CHAR_ERROR_SENTENCE = " U나 D를 입력 해야합니다.";
     private static final String OTHER_COMMAND_ERROR_SENTENCE = " R이나 Q를 입력 해야합니다.";
     private static final String LENGTH_ERROR_SENTENCE = " 유효한 길이가 아닙니다.";
+    private static final String CHECK_NUMBER_REGEX = "^-?[0-9]+$";
+
+    private static final String RESET_COMMAND = "R";
+    private static final String QUIT_COMMAND = "Q";
+    private static final String UPPER_CASE = "U";
+    private static final String LOWER_CASE = "D";
+    private static final int MIN_LENGTH = 3;
+    private static final int MAX_LENGTH = 20;
 
     public void isValidateSize(String inputLength){
         checkChar(inputLength);
@@ -16,13 +24,13 @@ public class Validation {
     }
 
     public void checkChar(String inputLength) {
-        if(!inputLength.matches("^-?[0-9]+$")){
+        if(!inputLength.matches(CHECK_NUMBER_REGEX)){
             throw new IllegalArgumentException(ERROR_MESSAGE + CHAR_ERROR_SENTENCE);
         }
     }
 
     public void checkRange(int bridgeLength) {
-        if(bridgeLength < 3 || bridgeLength >20) {
+        if(bridgeLength < MIN_LENGTH || bridgeLength > MAX_LENGTH) {
             throw new IllegalArgumentException(ERROR_MESSAGE + RANGE_ERROR_SENTENCE);
         }
     }
@@ -40,7 +48,7 @@ public class Validation {
     }
 
     private void isNumeric(String input) {
-        if(input.matches("^-?[0-9]+$")){
+        if(input.matches(CHECK_NUMBER_REGEX)){
             throw new IllegalArgumentException(ERROR_MESSAGE + NUMERIC_ERROR_SENTENCE);
         }
     }
@@ -52,14 +60,14 @@ public class Validation {
     }
 
     private void isValidateMoveChar(String inputMove) {
-        if("U".matches(inputMove) || "D".matches(inputMove)){
+        if(inputMove.matches(UPPER_CASE) || inputMove.matches(LOWER_CASE)){
             return;
         }
         throw new IllegalArgumentException(ERROR_MESSAGE + OTHER_CHAR_ERROR_SENTENCE);
     }
 
     private void isValidateCommandChar(String inputCommand) {
-        if("R".matches(inputCommand) || "Q".matches(inputCommand)){
+        if(inputCommand.matches(RESET_COMMAND) || inputCommand.matches(QUIT_COMMAND)){
             return;
         }
         throw new IllegalArgumentException(ERROR_MESSAGE + OTHER_COMMAND_ERROR_SENTENCE);

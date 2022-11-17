@@ -1,42 +1,31 @@
 package bridge.View;
 
-import java.util.ArrayList;
-import java.util.List;
+import bridge.Model.MapShape;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
 
-    List<String> upperMap = new ArrayList<>();
-    List<String> lowerMap = new ArrayList<>();
+    private static final String TOTAL_TRY_COUNT = "총 시도한 횟수: ";
+    private static final String PASS_OR_FAIL = "게임 성공 여부: ";
+    private static final String PASS_MESSAGE = "성공";
+    private static final String FAIL_MESSAGE = "실패";
+    private static final String FINAL_RESULT_MESSAGE = "최종 게임 결과";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
-        String upper = String.join(" | ", upperMap);
-        String lower = String.join(" | ", lowerMap);
-        System.out.println("[ "+ upper + " ]");
-        System.out.println("[ "+ lower + " ]");
+    public void printMap(String nextMove, String moveResult) {
+        MapShape.addShape(nextMove, moveResult);
+        printMapOfCase();
     }
 
-    public void extracted(String nextMove, String moveResult) {
-        if(nextMove.matches("U")) {
-            upperMap.add(moveResult);
-            lowerMap.add(" ");
-        }
-        if(nextMove.matches("D")) {
-            upperMap.add(" ");
-            lowerMap.add(moveResult);
-        }
-    }
-
-    public void clearMap(){
-        upperMap.clear();
-        lowerMap.clear();
+    public void printMapOfCase() {
+        System.out.println("[ "+ MapShape.stringUpperMap() + " ]");
+        System.out.println("[ "+ MapShape.stringLowerMap() + " ]");
     }
 
     /**
@@ -45,14 +34,15 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(int tryCount, boolean keepGoing) {
-        System.out.println("최종 게임 결과");
-        printMap();
-        if(!keepGoing){
-            System.out.println("게임 성공 여부: 실패");
-        }
-        if(keepGoing){
-            System.out.println("게임 성공 여부: 성공");
-        }
-        System.out.println("총 시도한 횟수: " + tryCount);
+        System.out.println(FINAL_RESULT_MESSAGE);
+        printMapOfCase();
+        System.out.println(PASS_OR_FAIL + checkPassOrFail(keepGoing));
+        System.out.println(TOTAL_TRY_COUNT + tryCount);
+    }
+
+    private String checkPassOrFail(boolean keepGoing) {
+        if(keepGoing)
+            return PASS_MESSAGE;
+        return FAIL_MESSAGE;
     }
 }

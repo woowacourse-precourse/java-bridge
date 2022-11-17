@@ -10,6 +10,9 @@ import java.util.List;
  */
 public class BridgeMaker {
 
+    private static final String UPPER_CASE = "U";
+    private static final String LOWER_CASE = "D";
+
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -30,7 +33,7 @@ public class BridgeMaker {
 
     private String addShape() {
         if(bridgeNumberGenerator.generate() == 1)
-            return "U";
-        return "D";
+            return UPPER_CASE;
+        return LOWER_CASE;
     }
 }
