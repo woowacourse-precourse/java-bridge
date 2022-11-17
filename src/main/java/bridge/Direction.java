@@ -23,6 +23,10 @@ public enum Direction {
         return UP.position;
     }
 
+    public boolean isUp() {
+        return this == UP;
+    }
+
     public boolean isWrong(String input) {
         return !(Objects.equals(input, DOWN.position) || Objects.equals(input, UP.position));
     }

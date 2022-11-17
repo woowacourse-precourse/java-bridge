@@ -15,7 +15,7 @@ public class GameManager {
 
     private void startGame() {
         BridgeGame bridgeGame = new BridgeGame(new BridgeRandomNumberGenerator());
-        int tryCount = 0;
+        GameStatus gameStatus = new GameStatus();
         GameCommand gameCommand;
 
         while (true) {
@@ -25,7 +25,7 @@ public class GameManager {
                 break;
             }
             if (gameCommand.isRetry()) {
-                bridgeGame.retry();
+                retry(bridgeGame, gameStatus);
             }
         }
     }
@@ -48,6 +48,11 @@ public class GameManager {
         GameCommand.checkStatus(input);
 
         return GameCommand.getStatus(input);
+    }
+
+    private void retry(BridgeGame bridgeGame, GameStatus gameStatus) {
+        bridgeGame.retry();
+        gameStatus.retry();
     }
 
 }
