@@ -10,7 +10,7 @@ public class GeneratedBridge {
         this.shape = bridgeShape;
     }
 
-    private boolean canMoveNextStep(int nextStepIndex, String inputNextStep) {
+    public boolean canMoveNextStep(int nextStepIndex, String inputNextStep) {
         String nextStep = shape.get(nextStepIndex);
         return nextStep.equals(inputNextStep);
     }
