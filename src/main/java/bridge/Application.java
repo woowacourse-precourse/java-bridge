@@ -7,6 +7,7 @@ public class Application {
         try {
             InputView inputView = new InputView();
             inputView.readBridgeSize();
+            inputView.readMoving();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
