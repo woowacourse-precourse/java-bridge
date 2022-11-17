@@ -20,8 +20,11 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public String readMoving(String input) {
+        // 예외처리
+        checkDirection(input);
+
+        return input;
     }
 
     /**
@@ -52,6 +55,14 @@ public class InputView {
     private void checkNumber(String input) {
         if(!input.matches(INT_REGEX)) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자여야 합니다.");
+        }
+    }
+    /**
+     * 사용자 이동 방향 입력값이 U/D 가 아닐 경우 IllegalArgumentException 가 발생한다.
+     */
+    private void checkDirection(String input) {
+        if(!(input.equals("D") || input.equals("U"))) {
+            throw new IllegalArgumentException("[ERROR] 이동 방향 여부는 'U(위)'/'D(아래)' 만 가능합니다.");
         }
     }
 }
