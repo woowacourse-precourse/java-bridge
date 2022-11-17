@@ -18,7 +18,7 @@ public class User {
         userLocation.add(direction);
     }
 
-    public String getUserCurrentLocation(){
-        return userLocation.get(userLocation.size() - 1);
+    public int getUserCurrentLocation(){
+        return userLocation.size() - 1;
     }
 }
