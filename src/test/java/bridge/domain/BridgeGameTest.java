@@ -37,5 +37,22 @@ class BridgeGameTest {
         assertThat(bridgeGame).extracting("aliveUser").isEqualTo(false);
     }
 
+    @DisplayName("유저가 사망하면 게임의 턴은 종료된 것이다.")
+    @Test
+    void 유저_사망_게임_턴종료_테스트() {
+        Bridge bridge = new Bridge(List.of("U", "D", "U"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        assertAll(() -> {
+            bridgeGame.move(Direction.U);
+            assertThat(bridgeGame.isEndGame()).isFalse();
+
+            bridgeGame.move(Direction.D);
+            assertThat(bridgeGame.isEndGame()).isFalse();
+
+            bridgeGame.move(Direction.D);
+            assertThat(bridgeGame.isEndGame()).isTrue();
+        });
+    }
+
 
 }
