@@ -1,4 +1,4 @@
-package bridge;
+package bridge.util;
 
 import bridge.enums.ConstVariable;
 import bridge.enums.ErrorMessage;
