@@ -10,11 +10,14 @@ public class BridgeController {
         this.inputView = new InputView();
     }
 
-    public void setGame(){
+    public void setGame() {
         outputView.printStartMessage();
 
         int bridgeSize = inputView.readBridgeSize();
         bridgeGame = new BridgeGame(bridgeSize);
     }
 
+    public void proceedGame() {
+        String moving = inputView.readMoving();
+    }
 }
