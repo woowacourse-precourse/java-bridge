@@ -33,4 +33,16 @@ public class BridgeMakerTest {
         assertThat(bridge.size()).isEqualTo(10);
     }
 
+    @DisplayName("생성한 다리 리스트에는 U와 D만 존재한다.")
+    @Test
+    void 다리_리스트_내의_값이_유효한지_확인() {
+        // given
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+
+        // when
+        List<String> bridge = bridgeMaker.makeBridge(10);
+
+        // then
+        assertThat(bridge.stream().distinct().sorted().collect(Collectors.toList())).isEqualTo(Arrays.asList("D", "U"));
+    }
 }
