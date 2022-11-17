@@ -25,17 +25,17 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridgeMovableInfo = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-           int numberOfUpOrDown = bridgeNumberGenerator.generate();
-           pushBridgeMovableInfo(numberOfUpOrDown, bridgeMovableInfo);
+            int numberOfUpOrDown = bridgeNumberGenerator.generate();
+            pushBridgeMovableInfo(numberOfUpOrDown, bridgeMovableInfo);
         }
         return bridgeMovableInfo;
     }
 
     private void pushBridgeMovableInfo(int numberOfUpOrDown, List<String> bridgeMovableInfo) {
-        if (numberOfUpOrDown == BridgeNumber.DOWN_NUMBER.getBridgeNumber()){
+        if (numberOfUpOrDown == BridgeNumber.DOWN_NUMBER.getBridgeNumber()) {
             bridgeMovableInfo.add(MovingType.DOWN.getMovingType());
         }
-        if (numberOfUpOrDown == BridgeNumber.UP_NUMBER.getBridgeNumber()){
+        if (numberOfUpOrDown == BridgeNumber.UP_NUMBER.getBridgeNumber()) {
             bridgeMovableInfo.add(MovingType.UP.getMovingType());
         }
     }
