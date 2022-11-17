@@ -5,9 +5,14 @@ package bridge.view;
  */
 public class OutputView {
     private static final String GAME_START = "다리 건너기 게임을 시작합니다.";
+    private static final String SELECT_MOVEMENT_DIRECTION = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
 
     public static void printGameStartMessage() {
         System.out.println(GAME_START);
+    }
+
+    public static void printSelectMovementDirection() {
+        System.out.println(SELECT_MOVEMENT_DIRECTION);
     }
 
     /**
