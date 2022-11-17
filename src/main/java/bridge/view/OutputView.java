@@ -1,10 +1,9 @@
 package bridge.view;
 
 import static bridge.constant.BridgeConstant.LOWER_BLOCK;
-import static bridge.constant.BridgeConstant.RESTART_GAME;
 import static bridge.constant.BridgeConstant.UPPER_BLOCK;
 
-import bridge.FinalMessage;
+import bridge.domain.GameResult;
 import bridge.domain.MoveResult;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,15 +61,15 @@ public class OutputView {
         lowerBlocks.clear();
     }
 
-    public void printResult(FinalMessage finalMessage) {
+    public void printResult(GameResult gameResult) {
         System.out.println("최종 게임 결과");
         printJoiningMessage();
-        System.out.printf("게임 성공 여부: %s\n", getIsGameClear(finalMessage));
-        System.out.printf("총 시도한 횟수: %s\n", finalMessage.getTryCount());
+        System.out.printf("게임 성공 여부: %s\n", getIsGameClear(gameResult));
+        System.out.printf("총 시도한 횟수: %s\n", gameResult.getTryCount());
     }
 
-    private String getIsGameClear(FinalMessage finalMessage) {
-        if (finalMessage.isGameClear()) {
+    private String getIsGameClear(GameResult gameResult) {
+        if (gameResult.isGameClear()) {
             return GAME_CLEAR_SUCCESS;
         }
         return GAME_CLEAR_FAIL;

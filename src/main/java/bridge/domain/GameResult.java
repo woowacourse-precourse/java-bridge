@@ -1,11 +1,11 @@
-package bridge;
+package bridge.domain;
 
-public class FinalMessage {
+public class GameResult {
 
     private int tryCount;
     private boolean gameClear;
 
-    public FinalMessage(int tryCount, boolean gameClear) {
+    public GameResult(int tryCount, boolean gameClear) {
         this.tryCount = tryCount;
         this.gameClear = gameClear;
     }

@@ -1,9 +1,9 @@
-package bridge;
+package bridge.domain;
 
 import static bridge.constant.BridgeConstant.RESTART_GAME;
 
-import bridge.domain.Bridge;
-import bridge.domain.MoveResult;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import java.util.List;
 
 /**
@@ -43,7 +43,7 @@ public class BridgeGame {
         return false;
     }
 
-    public FinalMessage getResult() {
-        return new FinalMessage(tryCount, gameClear);
+    public GameResult getResult() {
+        return new GameResult(tryCount, gameClear);
     }
 }
