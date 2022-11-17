@@ -9,4 +9,12 @@ public class ValidateUserInput {
         if(Integer.parseInt(bridgeLength) < 3 || Integer.parseInt(bridgeLength) > 20)
             throw new IllegalArgumentException("[ERROR]");
     }
+
+    public void checkReadMoving(String moveButton){
+        if(moveButton.length() > 1)
+            throw new IllegalArgumentException("[ERROR]");
+        if(moveButton.equals("U") || moveButton.equals("D"))
+            return ;
+        throw new IllegalArgumentException("[ERROR]");
+    }
 }
