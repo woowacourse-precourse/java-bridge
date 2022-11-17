@@ -44,6 +44,14 @@ public class RoundTest {
     }
 
     @Test
+    void reset_메서드는_라운드_값을_1로_초기화한다() {
+        Round round = new Round(20);
+        round.reset();
+
+        assertThat(round).isEqualTo(new Round(1));
+    }
+
+    @Test
     void naturalOrder_메서드는_Round를_오름차순으로_반환한다() {
         List<Round> naturalOrderedRound = IntStream.rangeClosed(ROUND_LOWER_BOUND, ROUND_UPPER_BOUND)
                 .mapToObj(Round::new)

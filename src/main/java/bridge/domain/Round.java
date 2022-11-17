@@ -24,14 +24,18 @@ public class Round {
         validate(++round);
     }
 
-    public static List<Round> naturalOrder() {
-        return NATURAL_ORDER;
+    public void reset() {
+        round = ROUND_LOWER_BOUND;
     }
 
     private static void validate(Integer round) {
         if (round < ROUND_LOWER_BOUND || ROUND_UPPER_BOUND < round) {
             throw new IllegalArgumentException(INVALID_ROUND_RANGE_MESSAGE);
         }
+    }
+
+    public static List<Round> naturalOrder() {
+        return NATURAL_ORDER;
     }
 
     private static List<Round> generateNaturalOrder() {
