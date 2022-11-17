@@ -39,7 +39,7 @@ public class OutputView {
         System.out.println(Message.PUT_MOVE);
     }
 
-    public void printTryGameInput() {
+    public void printRetry() {
         System.out.println(Message.RETRY);
     }
 
