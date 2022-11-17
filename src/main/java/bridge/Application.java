@@ -13,7 +13,7 @@ public class Application {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(InputView.readBridgeSize());
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        String key = "";
+        String key;
         do {
             bridgeGame.retry();
             boolean flag = true;

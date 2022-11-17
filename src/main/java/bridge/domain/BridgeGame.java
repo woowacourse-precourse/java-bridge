@@ -17,6 +17,7 @@ public class BridgeGame {
     private final char[] upBridgeStatus;
     private final char[] downBridgeStatus;
     private int position = -1;
+    private int count = 0;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
@@ -35,7 +36,33 @@ public class BridgeGame {
      */
     public boolean move(String key) {
         String upOrDown = bridge.get(++position);
-        return canMove(key, upOrDown);
+        count++;
+        if (key.equals(InputKey.U.getValue())) {
+            return handleUpBridge(upOrDown);
+        }
+        return handleDownBridge(upOrDown);
+    }
+
+    private boolean handleUpBridge(String input) {
+        if (input.equals(InputKey.U.getValue())) {
+            upBridgeStatus[position] = O_FLAG;
+            return true;
+        }
+        upBridgeStatus[position--] = X_FLAG;
+        return false;
+    }
+
+    private boolean handleDownBridge(String input) {
+        if (input.equals(InputKey.D.getValue())) {
+            downBridgeStatus[position] = O_FLAG;
+            return true;
+        }
+        downBridgeStatus[position--] = X_FLAG;
+        return false;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     /**
@@ -49,42 +76,14 @@ public class BridgeGame {
             downBridgeStatus[i] = DIFFERENCE_TO_BE_BLANK;
         }
         position = -1;
-    }
-
-    private boolean canMove(String key, String upOrDown) {
-        if (key.equals(InputKey.U.getValue())) {
-            return handleUpBridge(upOrDown);
-        }
-        return handleDownBridge(upOrDown);
-    }
-
-    private boolean handleUpBridge(String upOrDown) {
-        if (upOrDown.equals(InputKey.U.getValue())) {
-            upBridgeStatus[position] = O_FLAG;
-            return true;
-        }
-        upBridgeStatus[position--] = X_FLAG;
-        return false;
-    }
-
-    private boolean handleDownBridge(String upOrDown) {
-        if (upOrDown.equals(InputKey.D.getValue())) {
-            downBridgeStatus[position] = O_FLAG;
-            return true;
-        }
-        downBridgeStatus[position--] = X_FLAG;
-        return false;
-    }
-
-    public int getPosition() {
-        return position;
+        count = 0;
     }
 
     @Override
     public String toString() {
         StringJoiner upJoiner = new StringJoiner(" | ", "[ ", " ]");
         StringJoiner downJoiner = new StringJoiner(" | ", "[ ", " ]");
-        for (int i = 0; i < bridge.size(); i++) {
+        for (int i = 0; i < count; i++) {
             upJoiner.add(String.valueOf(upBridgeStatus[i]));
             downJoiner.add(String.valueOf(downBridgeStatus[i]));
         }

@@ -24,7 +24,7 @@ class BridgeGameTest {
         void test1() {
             assertThat(bridgeGame.move("U")).isTrue();
             assertThat(bridgeGame.getPosition()).isEqualTo(0);
-            assertThat(bridgeGame.toString()).isEqualTo("[ O |   |   ]\n[   |   |   ]");
+            assertThat(bridgeGame.toString()).isEqualTo("[ O ]\n[   ]");
         }
 
         @Test
@@ -32,7 +32,7 @@ class BridgeGameTest {
             assertThat(bridgeGame.move("U")).isTrue();
             assertThat(bridgeGame.move("D")).isFalse();
             assertThat(bridgeGame.getPosition()).isEqualTo(0);
-            assertThat(bridgeGame.toString()).isEqualTo("[ O |   |   ]\n[   | X |   ]");
+            assertThat(bridgeGame.toString()).isEqualTo("[ O |   ]\n[   | X ]");
         }
 
         @Test
@@ -40,7 +40,7 @@ class BridgeGameTest {
             assertThat(bridgeGame.move("U")).isTrue();
             assertThat(bridgeGame.move("U")).isTrue();
             assertThat(bridgeGame.getPosition()).isEqualTo(1);
-            assertThat(bridgeGame.toString()).isEqualTo("[ O | O |   ]\n[   |   |   ]");
+            assertThat(bridgeGame.toString()).isEqualTo("[ O | O ]\n[   |   ]");
         }
 
         @Test
@@ -67,13 +67,13 @@ class BridgeGameTest {
     void moveAndRetry() {
         assertThat(bridgeGame.move("D")).isFalse();
         assertThat(bridgeGame.getPosition()).isEqualTo(-1);
-        assertThat(bridgeGame.toString()).isEqualTo("[   |   |   ]\n[ X |   |   ]");
+        assertThat(bridgeGame.toString()).isEqualTo("[   ]\n[ X ]");
 
         bridgeGame.retry();
 
         assertThat(bridgeGame.move("U")).isTrue();
         assertThat(bridgeGame.getPosition()).isEqualTo(0);
-        assertThat(bridgeGame.toString()).isEqualTo("[ O |   |   ]\n[   |   |   ]");
+        assertThat(bridgeGame.toString()).isEqualTo("[ O ]\n[   ]");
     }
 
     @DisplayName("다리의 끝까지 도달하면 게임을 종료한다.")
