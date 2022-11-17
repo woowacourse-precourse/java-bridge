@@ -1,6 +1,8 @@
 package bridge.service;
 
+import bridge.constant.ErrorMessage;
 import bridge.constant.Movement;
+import bridge.exception.ShouldNotReachException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,17 +30,22 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String movement) {
+    public boolean move(String movement) {
         String partOfBridge = bridge.get(movements.size());
         if (movement.equals("U") && partOfBridge.equals("U")) {
             movements.add(Movement.UP_AND_O);
+            return true;
         } else if (movement.equals("U") && partOfBridge.equals("D")) {
             movements.add(Movement.UP_AND_X);
+            return false;
         } else if (movement.equals("D") && partOfBridge.equals("D")) {
             movements.add(Movement.DOWN_AND_O);
+            return true;
         } else if (movement.equals("D") && partOfBridge.equals("U")) {
             movements.add(Movement.DOWN_AND_X);
+            return false;
         }
+        throw new ShouldNotReachException(ErrorMessage.SHOULD_NOT_REACH_HERE.message());
     }
 
     /**
