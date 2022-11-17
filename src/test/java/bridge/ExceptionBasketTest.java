@@ -3,7 +3,6 @@ package bridge;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ExceptionBasketTest {
@@ -60,7 +59,7 @@ class ExceptionBasketTest {
     }
 
     @Test
-    @DisplayName("게임 플레이중 잘못된 키를 누를 경우 예외 처리")
+    @DisplayName("게임 플레이중 잘못된 U, D이외를 누를경우 예외 처리")
     void invalidGameKeyTest(){
         assertThatThrownBy(() ->
                 ExceptionBasket.invalidGameKey("A"))
@@ -78,6 +77,24 @@ class ExceptionBasketTest {
                 .hasMessageContaining(ERROR_MESSAGE);
     }
 
+    @Test
+    @DisplayName("다시 시작할지 말지 R, Q이외를 누를경우 예외 처리")
+    void invalidRetryRequestInputKeyTest(){
+        assertThatThrownBy(() ->
+                ExceptionBasket.invalidRetryRequestInputKey("A"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE);
+
+        assertThatThrownBy(() ->
+                ExceptionBasket.invalidRetryRequestInputKey("RR"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE);
+
+        assertThatThrownBy(() ->
+                ExceptionBasket.invalidRetryRequestInputKey("QQ"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE);
+    }
     /*@Test
     @DisplayName("허용되지 않은 숫자열 일 시 예외 처리")
     void invalidNumbericTest() {
