@@ -59,6 +59,19 @@
 
 <br/>
 
+    - Bridge (Class)
+        BridgeGame 등에 사용할 모델 클래스 
+
+* compareState(int length, String state)
+  - 해당 길이의 다리 상태 비교 
+* add
+  - List<String> states 에 값 추가 메서드
+* remove
+  - List<String> states 에 값 제거 메서드
+
+
+<br/>
+
     - BridgeMaker (Class)
         다리 만들기 위해 필요한 메서드를 가진 클래스
 

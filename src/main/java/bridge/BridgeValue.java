@@ -2,6 +2,8 @@ package bridge;
 
 public class BridgeValue {
 
+    public static final int BRIDGE_LINE = 2;
+
     public static int stringToInt(String input) {
         return Integer.valueOf(input);
     }
