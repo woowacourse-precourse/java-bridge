@@ -5,13 +5,17 @@ import java.util.List;
 
 public class Result {
 
+    private static final String SEPARATOR = " | ";
+    private static final String SPACE = " ";
     private final List<List<String>> resultsGroup = new ArrayList<>();
     private final List<String> upElements = new ArrayList<>();
     private final List<String> downElements = new ArrayList<>();
 
     public Result(Bridge bridge, PassingPositions passingPositions) {
         makeResultsGroup(bridge, passingPositions);
+        upElements.remove(0);
         resultsGroup.add(upElements);
+        downElements.remove(0);
         resultsGroup.add(downElements);
     }
 
@@ -25,11 +29,15 @@ public class Result {
 
     private void addUpAndDown(Position position, String compare) {
         if (position.getElementIndex().equals("U")) {
+            upElements.add(SEPARATOR);
             upElements.add(compare);
-            downElements.add(" ");
+            downElements.add(SEPARATOR);
+            downElements.add(SPACE);
         }
         if (position.getElementIndex().equals("D")) {
-            upElements.add(" ");
+            upElements.add(SEPARATOR);
+            upElements.add(SPACE);
+            downElements.add(SEPARATOR);
             downElements.add(compare);
         }
     }

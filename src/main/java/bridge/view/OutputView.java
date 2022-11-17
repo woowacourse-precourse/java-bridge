@@ -10,14 +10,8 @@ import java.util.List;
  */
 public class OutputView {
 
-    private static final int INDEX_INDEX = 0;
-    private static final int ELEMENT_INDEX = 1; // up or down
-    private static final String UP = "U";
-    private static final String DOWN = "D";
-    private static final String SEPARATOR = " | ";
     private static final String START = " [ ";
     private static final String END = " ] ";
-    private static final String SPACE = " ";
 
     private static final String ERROR_PREFIX = "[ERROR] ";
 
@@ -32,10 +26,11 @@ public class OutputView {
         List<List<String>> resultsGroup = result.getResultsGroup();
 
         for (List<String> results : resultsGroup) {
+            System.out.print(START);
             for (String res : results) {
-                System.out.print(res + SEPARATOR);
+                System.out.print(res);
             }
-            System.out.println();
+            System.out.println(END);
         }
         System.out.println();
         return compares;
