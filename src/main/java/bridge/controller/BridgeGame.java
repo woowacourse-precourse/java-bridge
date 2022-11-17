@@ -4,12 +4,8 @@ import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-
 import java.util.List;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
 
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
