@@ -22,7 +22,9 @@ public class Validator {
     }
 
     public void validateMovement(String movement) {
-
+        if (!movement.matches("[UD]")) {
+            throw new IllegalArgumentException(ErrorMessage.IS_WRONG_MOVEMENT.message());
+        }
     }
 
     public void validateRetryStatus(String retryStatus) {
