@@ -29,4 +29,21 @@ class InputViewTest {
             inputView.readBridgeSize();
         }) ;
     }
+
+    @Test
+    @DisplayName("Bridge 입력 예외 확인하기")
+    void readMoving() {
+        //GIVEN
+        inputView = new InputView();
+
+        InputStream in = new ByteArrayInputStream("P".getBytes());
+        System.setIn(in);
+
+        //THEN
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+
+            //WHEN
+            inputView.readMoving();
+        }) ;
+    }
 }

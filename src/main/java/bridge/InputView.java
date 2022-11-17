@@ -2,6 +2,8 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.stream.DoubleStream;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -33,9 +35,14 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        String writeMoving = Console.readLine();
+        if (!writeMoving.equals("U")&&!writeMoving.equals("D")){
+            throw new IllegalArgumentException("[ERROR] U / D 로 입력해주세요");
+        }
+        return writeMoving;
     }
-
+    
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
