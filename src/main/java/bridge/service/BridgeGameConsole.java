@@ -5,7 +5,7 @@ public class BridgeGameConsole {
     private final Emcee emcee = new Emcee();
     private final Player player = new Player();
 
-    public void playGame() {
+    public void run() {
         // 게임 시작 안내문을 출력한다.
         // 다리 길이를 입력 받는다.
         // 다리 생성
