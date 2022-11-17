@@ -17,6 +17,6 @@ public class BridgeLengthValidator {
   }
 
   private static boolean isLengthInRange(final int length) {
-    return length < MIN_LENGTH || length > MAX_LENGTH;
+    return length >= MIN_LENGTH && length <= MAX_LENGTH;
   }
 }
