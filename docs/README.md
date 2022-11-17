@@ -5,17 +5,17 @@
 - [x] 다리 길이 입력
   - [x] 입력받은 문자열을 Int형으로 전환
     - [x] 전환 불가할 시 예외 처리
-- [ ] 다리 생성
-  - [ ] 3 이상 20 이하가 아닐 경우 예외 처리
-  - [ ] 입력받은 값만큼 다리 생성
-    - [ ] `bridge.BridgeRandomNumberGenerator`의 `generate()`를 활용하여 건널 수 있는 칸 결정
-    - [ ] 자료구조에 맞게끔 생성된 int값을 String으로 변환
-    - [ ] 변환된 값을 기반으로 다리 객체의 건널 수 있는 칸 설정
+- [x] 다리 생성
+  - [x] 3 이상 20 이하가 아닐 경우 예외 처리
+  - [x] 입력받은 값만큼 다리 생성
+    - [x] `bridge.BridgeRandomNumberGenerator`의 `generate()`를 활용하여 건널 수 있는 칸 결정
+    - [x] 자료구조에 맞게끔 생성된 int값을 String으로 변환
+    - [x] 변환된 값을 기반으로 다리 생성
 - [ ] 게임 시도 횟수 증가
-- [ ] 이동 칸 선택
+- [ ] 이동할 다리 선택
   - [ ] `U` 또는 `D`가 아닐 경우 예외 처리
-  - [ ] 글자와 순서에 따른 칸이 건널 수 있는 칸인지 확인
-  - [ ] 해당 칸 확인 기록을 남김
+  - [ ] 글자와 순서에 따른 다리가 건널 수 있는 곳인지 확인
+  - [ ] 해당 다리를 건넌 기록을 남김
 - [ ] 이동 결과 출력
   - [ ] 이동한 칸이 건널 수 있다면 `O`, 아니라면 `X` 출력
 - [ ] 게임 종료 파악
@@ -24,9 +24,13 @@
     - [ ] 게임 다시 시도 여부 문구 출력
     - [ ] 게임 다시 시도 여부 입력
       - [ ] `R` 또는 `Q`가 아닐 경우 예외 처리
+    - [ ] 게임 재시작
+      - [ ] 다리 건넌 기록을 초기화하며 게임 시도 횟수를 증가
 - [ ] 최종 게임 결과 문구 출력
 - [ ] 게임 성공 여부 출력
 - [ ] 총 시도 횟수 출력
+
+
 
 # 구현 전
 
@@ -56,6 +60,8 @@
 - Controller는 Model과 View에 의존해도 된다.
 - View가 데이터를 받을 때는, 반드시 Controller를 통해 받아야 한다.
 
+
+
 # 초기 구현
 
 ## 예외 시 반복하여 값을 처리하는 메서드
@@ -77,4 +83,121 @@
 사용자의 입력을 받는 값 중 `다리의 길이 / 이동할 칸, 게임 재시작 여부`는 `정수 / 문자` 형태였다. 이를 통일시키기 위해서는 다리의 길이를 입력받을 때도 문자 형태로 받아야 했다. 뭐.. 이것도 가능은 했다. 구조를 `반복 - 입력 받음, 유효성 검사 - 예외 시 처리 `로 묶어주면 되니까.
 
 하지만 이렇게 되면 유효성 검사 부분에서 정수로 전환할 수 있는지 미리 살펴본 후, 이동하여 원하는 형태로 전환시켜야 했다. 별로 마음에 들지 않았다. 그렇다고 반환형만 다른 메서드를 따로 2개 작성하자니 그것도 별로였다. 따라서 원래 생각한 구조를 지니되, 제네릭을 써서 유동적으로 사용할 수 있게 하기로 했다.
+
+
+
+```java
+public interface Callback <T> {
+    T run();
+}
+```
+
+메소드 하나만 있는 인터페이스를 작성했다.
+
+
+
+```java
+public class ExceptionHandle {
+
+    private final OutputView outputView;
+
+    public ExceptionHandle(OutputView outputView) {
+        this.outputView = outputView;
+    }
+
+    public <T> T getCorrectInput(Callback<T> callback) {
+        while (true) {
+            try {
+                return callback.run();
+            } catch (IllegalArgumentException e) {
+                outputView.printExceptionMessage(e.getMessage());
+            }
+        }
+    }
+}
+```
+
+생성 시 기존에 지닌 `OutputView`를 넘겨주고, 해당 인스턴스를 이용해 출력할 수 있도록 했다.
+
+예외가 발생하지 않는, 옳은 값을 반환해 올 것이기에 `getCorrectInput`이라고 메서드명을 지었다.
+
+`callback`을 인자로 받은 후 `run()` 을 통해 `IllegalArgumentException`이 뜨지 않는지 확인한다. 예외가 없다면 그대로 return이 동작할 것이고, 예외가 있다면 계속해서 `run()`을 실행할 것이다.
+
+
+
+```java
+private List<String> createBridge() {
+    return exceptionHandle.getCorrectInput(() -> {
+        outputView.printRequestBridgeLength();
+        int bridgeSize = inputView.readBridgeSize();
+        return bridgeMaker.makeBridge(bridgeSize);
+    });
+}
+```
+
+인터페이스에 인자가 하나였기에, 간단하게 람다식으로 쓸 수 있었다. (`@Override` 하니까 코드가 조금 더러웠었는데, IntelliJ가 없앨 수 있다고 친절히 알려줬다!)
+
+다리의 길이를 입력해달라고 출력한 후, 값을 입력받는다. `inputView.readBridgeSize()` 내에는 정수로 변환할 수 없을 시, `bridgeMaker.makeBridge(bridgeSize)` 내에는 입력받은 `bridgeSize`가 3 미만, 20 초과일 때 예외를 발생시키도록 했다.
+
+
+
+![image-20221117155440350](README.assets/image-20221117155440350.png)
+
+두 가지 예외 사항에 따라 잘 동작하는 것을 확인할 수 있었다.
+
+
+
+## 일급 컬렉션
+
+3주차 과제 관련하여 [아고라에 Discussion](https://github.com/orgs/woowacourse-precourse/discussions/969#discussioncomment-4157936)을 남긴 게 있는데, 한 분이 회고문을 링크 걸어 주셨다. 해당 글을 읽고 `일급 컬렉션`에 대해 생각해보게 되었다.
+
+게임할 때의 진행 상황을 게임 내에 담아두는 게 아닌, 로그 자체에게 메시지를 던질 수 있도록 일급 컬렉션으로 생성하여 작업해보고자 하였다.
+
+3주차 공통 피드백의 `객체는 객체스럽게 사용한다` 부분과 `객체에 메시지를 보내자`를 바탕으로 게임을 진행하며 일어난 일들을 로그에 넘겼을 때, 알아서 동작하게끔 구성했다.
+
+
+
+```java
+public class BridgeMoveLog {
+
+    private final Map<TypeOfBridge, List<String>> moveLog;
+
+    private static final String EMPTY = " ";
+
+    public BridgeMoveLog(int size) {
+        this.moveLog = initLog(size);
+    }
+
+    private Map<TypeOfBridge, List<String>> initLog(int size) {
+        return new EnumMap<>(TypeOfBridge.class) {{
+            for (TypeOfBridge bridgeType : TypeOfBridge.values()) {
+                put(bridgeType, new ArrayList<>(size));
+            }
+        }};
+    }
+
+    public void writeLog(TypeOfBridge selectBridgeType, String status) {
+        for (TypeOfBridge bridgeType : moveLog.keySet()) {
+            if (selectBridgeType == bridgeType) {
+                moveLog.get(bridgeType).add(status);
+                continue;
+            }
+
+            moveLog.get(bridgeType).add(EMPTY);
+        }
+    }
+
+    public void resetLog() {
+        for (List<String> log : moveLog.values()) {
+            log.clear();
+        }
+    }
+
+    public Map<TypeOfBridge, List<String>> getMoveLog() {
+        return moveLog;
+    }
+}
+```
+
+게임에서 직접적으로 로그 데이터를 건드릴 수 없게끔 클래스로 감쌌으며, 게임 진행 상황과 매칭될 수 있도록 `로그 작성`과 `로그 리셋`을 작성하였다. 또한 로그 출력을 위해 `get` 메서드도 선언.
 
