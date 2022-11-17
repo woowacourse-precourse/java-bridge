@@ -81,6 +81,7 @@ public class InputView {
 
     private void validateInputMovingCharacter(String input) {
         if (!input.equals("U") && !input.equals("D")) {
+            setError(CHARACTER);
             throw new IllegalArgumentException();
         }
     }
