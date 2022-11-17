@@ -1,7 +1,7 @@
 package bridge.io;
 
-import bridge.domain.BridgeGameResult;
-import bridge.domain.CrossResult;
+import bridge.domain.game.BridgeGameResult;
+import bridge.domain.game.CrossResult;
 
 import java.util.List;
 

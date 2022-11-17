@@ -1,5 +1,7 @@
-package bridge.domain;
+package bridge.domain.game;
 
+import bridge.domain.game.BridgeGameResult;
+import bridge.domain.game.CrossResult;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

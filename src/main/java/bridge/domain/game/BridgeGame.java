@@ -1,8 +1,5 @@
-package bridge.domain;
+package bridge.domain.game;
 
-import bridge.BridgeMaker;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
