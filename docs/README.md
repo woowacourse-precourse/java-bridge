@@ -5,7 +5,7 @@
   - [x] 게임을 다시 시도할 때 사용할 메서드 - BridgeGame#retry()
 - View
   - [x] 다리 길이 입력 - InputView#readBridgeSize()
-  - [ ] 이동할 위치 입력
+  - [x] 이동할 위치 입력 - InputView#readMoving()
   - [ ] 재시도 여부 입력
   - [ ] 다리 뼈대 출력하기
   - [ ] 이동 위치, 성공 여부에 따른 위치 출력
@@ -16,8 +16,9 @@
   - [ ] Domain 과 View 를 연결하기  
 - Error
   - [x] 다리 길이가 숫자인지, 3이상 20이하 인지 확인 - ErrorControl#validateNumberOrNot(), validateBridgeSize()
-  - [ ] 이동 위치 U,D 둘 중 하나인지 확인 (소문자는?)
-  - [ ] 재시도 여부 R,Q 둘 중 하나인지 확인
+  - [x] 입력한 문자가 verifier 와 동일한지 확인 - ErrorControl#validateLetter()
+  - ~~[ ] 이동 위치 U,D 둘 중 하나인지 확인 (소문자는?)~~
+  - ~~[ ] 재시도 여부 R,Q 둘 중 하나인지 확인~~
 
 ## 구현 사항
 1. 생성할 다리의 길이를 입력받아 숫자 0, 1 로 이루어진 다리를 생성

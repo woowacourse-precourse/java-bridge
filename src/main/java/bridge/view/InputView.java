@@ -1,6 +1,7 @@
 package bridge.view;
 
 import static bridge.ErrorControl.validateBridgeSize;
+import static bridge.ErrorControl.validateLetter;
 import static bridge.ErrorControl.validateNumberOrNot;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -9,6 +10,8 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    final String MOVING_POSITION1 = "U";
+    final String MOVING_POSITION2 = "D";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -24,7 +27,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String input = Console.readLine();
+        validateLetter(input,MOVING_POSITION1,MOVING_POSITION2);
+        return input;
     }
 
     /**
