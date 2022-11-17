@@ -3,7 +3,7 @@
 -------------
 ## 기능 목록
 
-1. 게임 시작 문구 출력하기(UI) 
+1. 게임 시작 문구 출력하기(UI) - Application#main()
 
 2. 자동으로 생성할 다리 길이 입력 받기(UI) - InputView#readBridgeSize()
     * 예외 : 3 이상 20 이하의 정수가 아니면 IllegalArgumentException 발생시키고 [ERROR]로 시작하는 에러 메시지 출력하고 다시 입력받기
