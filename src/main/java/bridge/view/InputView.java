@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Scanner;
 
 import static bridge.validator.NumberValidator.validateNonNumeric;
+import static bridge.validator.NumberValidator.validateRange;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -19,6 +20,7 @@ public class InputView {
         String input = Console.readLine();
 
         validateNonNumeric(input);
+        validateRange(input);
         return Integer.parseInt(input);
     }
 
