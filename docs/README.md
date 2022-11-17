@@ -6,4 +6,5 @@
 
 입출력 영역
 - InputView 구현
+  - validate 구현
 - OutputView 구현
