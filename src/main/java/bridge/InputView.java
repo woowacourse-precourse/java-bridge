@@ -7,6 +7,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
  */
 public class InputView {
     public static int bridgeSize;
+    public static String inputDirection;
 
     /**
      * 다리의 길이를 입력받는다.
@@ -21,7 +22,8 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public static void inputMovingDirection() {
-
+        System.out.println(Message.SELECT_DIRECTION.getMessage());
+        inputDirection = readLine();
     }
 
     /**
