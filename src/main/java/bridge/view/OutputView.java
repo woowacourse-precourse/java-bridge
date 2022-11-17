@@ -1,6 +1,8 @@
 package bridge.view;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -25,25 +27,27 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> userMoved, List<String> matchingStatus) {
-        printUpperLineOfMap(userMoved, matchingStatus);
-        printLowerLineOfMap(userMoved, matchingStatus);
+    public void printMap(Map<String, String> matchingStatus) {
+        List<String> userMoved = new ArrayList<>(matchingStatus.keySet());
+        List<String> matching = new ArrayList<>(matchingStatus.values());
+        printUpperLineOfMap(userMoved, matching);
+        printLowerLineOfMap(userMoved, matching);
     }
 
-    private void printUpperLineOfMap(List<String> userMoved, List<String> matchingStatus) {
+    private void printUpperLineOfMap(List<String> userMoved, List<String> matching) {
         printStartLine();
         for (int i = 0; i < userMoved.size() - 1; i++) {
-            printContentsLine(userMoved.get(i), matchingStatus.get(i), UP);
+            printContentsLine(userMoved.get(i), matching.get(i), UP);
         }
-        printEndLine(userMoved.get(userMoved.size() - 1), matchingStatus.get(userMoved.size() - 1), UP);
+        printEndLine(userMoved.get(userMoved.size() - 1), matching.get(userMoved.size() - 1), UP);
     }
 
-    private void printLowerLineOfMap(List<String> userMoved, List<String> matchingStatus) {
+    private void printLowerLineOfMap(List<String> userMoved, List<String> matching) {
         printStartLine();
         for (int i = 0; i < userMoved.size() - 1; i++) {
-            printContentsLine(userMoved.get(i), matchingStatus.get(i), DOWN);
+            printContentsLine(userMoved.get(i), matching.get(i), DOWN);
         }
-        printEndLine(userMoved.get(userMoved.size() - 1), matchingStatus.get(userMoved.size() - 1), DOWN);
+        printEndLine(userMoved.get(userMoved.size() - 1), matching.get(userMoved.size() - 1), DOWN);
     }
 
     private void printStartLine() {
