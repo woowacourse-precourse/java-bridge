@@ -10,7 +10,7 @@
     - [x] 무작위 값이 0인 경우 아래 칸, 1인 경우 위 칸이 건널 수 있는 칸이 된다 - BridgeMaker#makeBridge()
     - [x] 위 칸을 건널 수 있는 경우 U, 아래 칸을 건널 수 있는 경우 D값으로 나타낸다 - BridgeMaker#makeBridge()
 
-- [] 다리 건너기  
+- [x] 다리 건너기  
   - [x] 플레이어가 이동할 칸을 입력한다 - InputView#readMoving()
     - [x] 잘못된 값을 입력하면 IllegalArgumentException을 발생시킨다 - Validation#isMovingException()
     - [x] 그 부분부터 입력을 다시 받는다. - Validation#validateMoving()
@@ -19,7 +19,7 @@
   - [x] 게임을 재시작하거나 종료할 수 있다 - BridgeGame#retry()
     - [x] 잘못된 값을 입력하면 IllegalArgumentException 발생시킨다 - Validation#validateReOrEnd()
    - [x] 재시작해도 처음에 만든 다리로 재사용한다 - BridgeGame#start()
-   - [x] 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때 까지 시도한 횟수를 나타낸다 - BridgeGame#calculateTryCount()
+   - [x] 총 시도한 횟수를 출력한다 - OutputView#printResult()
 
 - [x] 출력
   - [x] 다리 건너기 게임 시작 안내 메시지 (다리 건너기 게임을 시작합니다.) - GuideMessageView#startBridgeGameGuideMessage

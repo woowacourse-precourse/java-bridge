@@ -23,8 +23,10 @@ public class BridgeGame {
 		//다리 생성
 		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 		List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+
 		boolean isRe = false;
 		int moveCount = 0;
+		int tryCount = 0;
 
 		do {
 			moveCount = 0;
@@ -46,24 +48,21 @@ public class BridgeGame {
 				isRe = retry();
 			}
 
-		}while(isRe);
+			tryCount++;
+
+		} while (isRe);
 
 		//최종 게임 결과
-		GuideMessageView.GAME_RESULT_GUIDE_MESSAGE.printMessage();
-		outputView.printMap(map,moveCount);
-
-
-
-
+		outputView.printResult(map, moveCount, tryCount);
 	}
 
-	private boolean isFailCrossBridge() {
+	public static boolean isFailCrossBridge() {
 		return Arrays.stream(map)
 			.flatMap(flatMap -> Arrays.stream(flatMap))
 			.anyMatch(value -> value.contains("X"));
 	}
 
-	private static boolean isClearCrossBridge() {
+	public static boolean isClearCrossBridge() {
 		return map[0][map[0].length - 1].equals(" O ") || map[1][map[1].length - 1].equals(" O ");
 	}
 
@@ -109,7 +108,7 @@ public class BridgeGame {
 	 */
 	public boolean retry() {
 		String input = Validation.validateGameCommand(1);
-		if(input.equals("R")){
+		if (input.equals("R")) {
 			return true;
 		}
 		return false;
