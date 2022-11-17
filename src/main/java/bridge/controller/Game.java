@@ -1,6 +1,6 @@
 package bridge.controller;
 
-public class BridgeGame {
+public class Game {
 
     public void play() {
 
