@@ -43,4 +43,13 @@ class BridgeMakerTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageStartingWith("[ERROR]");
     }
+    @DisplayName("다리의 길이로 입력받은 값에 공백값이 섞였을 시 자동으로 트리밍하여 예외처리하지 않는다.")
+    @ValueSource(strings = {"3 "," 5"," 20 ","              19    "})
+    @Test
+    void validate_Is_Blank_Acceptable(BridgeNumberGenerator input) {
+        assertThatThrownBy(()-> new BridgeMaker(input))
+                .isNotInstanceOf(IllegalArgumentException.class)
+                .hasMessageNotContaining("[ERROR]");
+    }
+
 }
