@@ -4,25 +4,25 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public enum BridgeStatus {
+public enum BridgeMark {
 
     UP("U"), DOWN("D");
 
     private final String mark;
 
-    BridgeStatus(String mark) {
+    BridgeMark(String mark) {
         this.mark = mark;
     }
 
-    public static List<BridgeStatus> of(List<String> marks) {
+    public static List<BridgeMark> of(List<String> marks) {
         return marks.stream()
-                .map(BridgeStatus::of)
+                .map(BridgeMark::of)
                 .collect(Collectors.toList());
     }
 
-    private static BridgeStatus of(String mark) {
-        return Arrays.stream(BridgeStatus.values())
-                .filter(bridgeStatus -> bridgeStatus.isEqualMark(mark))
+    private static BridgeMark of(String mark) {
+        return Arrays.stream(BridgeMark.values())
+                .filter(bridgeMark -> bridgeMark.isEqualMark(mark))
                 .findFirst()
                 .orElseThrow();
     }

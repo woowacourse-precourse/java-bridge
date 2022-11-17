@@ -12,17 +12,17 @@ public class BridgeTest {
 
     @MethodSource("createTestBridgeStatus")
     @ParameterizedTest
-    void create(int index, BridgeStatus answer) {
-        List<BridgeStatus> bridgeStatuses = BridgeStatus.of(List.of("U", "D", "U", "D"));
-        assertThat(bridgeStatuses.get(index)).isEqualTo(answer);
+    void create(int index, BridgeMark answer) {
+        List<BridgeMark> bridgeMarks = BridgeMark.of(List.of("U", "D", "U", "D"));
+        assertThat(bridgeMarks.get(index)).isEqualTo(answer);
     }
 
     private static List<Arguments> createTestBridgeStatus() {
         return List.of(
-                Arguments.of(0, BridgeStatus.UP),
-                Arguments.of(1, BridgeStatus.DOWN),
-                Arguments.of(2, BridgeStatus.UP),
-                Arguments.of(3, BridgeStatus.DOWN)
+                Arguments.of(0, BridgeMark.UP),
+                Arguments.of(1, BridgeMark.DOWN),
+                Arguments.of(2, BridgeMark.UP),
+                Arguments.of(3, BridgeMark.DOWN)
         );
     }
 }
