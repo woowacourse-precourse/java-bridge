@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UpDownBridge {
-    public static List<String> upBridge = new ArrayList<>();
-    public static List<String> downBridge = new ArrayList<>();
+    public static StringBuffer upBridge = new StringBuffer();
+    public static StringBuffer downBridge = new StringBuffer();
     private static final String UP = "U";
     private static final String Down = "D";
     private static final String BLANK = " ";
@@ -17,15 +17,15 @@ public class UpDownBridge {
 
     public static void addUpBridge(String bridge, String inputDirection) {
         if(bridge.equals(inputDirection)) {
-            upBridge.add(inputDirection);
-            downBridge.add(BLANK);
+            upBridge.append(inputDirection);
+            downBridge.append(BLANK);
         }
     }
 
     public static void addDownBridge(String bridge, String inputDirection) {
         if(bridge.equals(inputDirection)) {
-            upBridge.add(BLANK);
-            downBridge.add(inputDirection);
+            upBridge.append(BLANK);
+            downBridge.append(inputDirection);
         }
     }
 }
