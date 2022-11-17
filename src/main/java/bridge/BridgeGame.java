@@ -86,4 +86,8 @@ public class BridgeGame {
         }
         return false;
     }
+
+    public List<Choice> getInputs(){
+        return inputs;
+    }
 }
