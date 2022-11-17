@@ -3,8 +3,8 @@ package bridge.Exception;
 import static bridge.Exception.ExceptionMessage.NOT_NUMBER;
 import static bridge.Exception.ExceptionMessage.NOT_RANGE;
 
-public class InputException {
-    private static final int MAX_SIZE = 30;
+public class InputException extends IllegalArgumentException {
+    private static final int MAX_SIZE = 20;
     private static final int MIN_SIZE = 3;
 
     public void validateBridgeSize(String readLine) {
