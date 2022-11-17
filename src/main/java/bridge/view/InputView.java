@@ -33,6 +33,6 @@ public class InputView {
     public String readGameCommand() {
         System.out.println(BridgeGameInfo.RESTART.message);
         // 다시 시도지 종료할지 입력받는다.
-        return null;
+        return Console.readLine();
     }
 }

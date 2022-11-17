@@ -8,7 +8,7 @@
 - 다리의 길이를 숫자로 입력받는다(3~20)(에러 발생시키기) - 다시 입력받음 - [ x ] InputView#readBridgeSize()
 - 플레이어는 이동할 칸을 선택한다(U or D)(에러 발생시키기) - 다시 입력받음 - [ x ] InputView#readMoving()
 - 플레이어 이동 현황 o/x (다리 출력) - OutputView#printMap()
-- 다리를 건너다가 실패 했다면 재시작 or 종료(R or Q)(에러 발생시키기) - 다시 입력받음 - InputView#readGameCommand()
+- 다리를 건너다가 실패 했다면 재시작 or 종료(R or Q)(에러 발생시키기) - 다시 입력받음 - [ x ] InputView#readGameCommand()
 - 최종 게임 결과 출력 - OutputView#printResult()
 - 게임 성공 여부: 출력 - OutputView#printSuccessFailure()
 - 총 시도한 횟수: 출력 - OutputView#printTryNumber()
