@@ -42,6 +42,7 @@ public class OutputView {
             downRow.append(makeDownRow(bridgeGameResults.get(i)));
         }
         printRows(upRow, downRow);
+        printEnter();
     }
 
     private static void printRows(StringBuilder upRow, StringBuilder downRow) {
