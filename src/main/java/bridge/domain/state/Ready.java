@@ -14,16 +14,16 @@ public class Ready extends Started {
     }
     
     @Override
-    public State move(final int currentPosition, final String moving) {
-        if (isPartBridgeExist(currentPosition, moving)) {
+    public State move(final int positionToMove, final String moving) {
+        if (isPartBridgeExist(positionToMove, moving)) {
             return new Success(bridge(), moving);
         }
         
         return new Fail(bridge(), moving);
     }
     
-    private boolean isPartBridgeExist(final int currentPosition, final String moving) {
-        return bridge().isPartBridgeExist(currentPosition, moving);
+    private boolean isPartBridgeExist(final int positionToMove, final String moving) {
+        return bridge().isPartBridgeExist(positionToMove, moving);
     }
     
     @Override

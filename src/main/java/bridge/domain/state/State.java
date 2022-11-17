@@ -3,7 +3,7 @@ package bridge.domain.state;
 import bridge.domain.MoveResult;
 
 public interface State {
-    State move(final int currentPosition, final String moving);
+    State move(final int positionToMove, final String moving);
     
     boolean isMoveFailed();
     

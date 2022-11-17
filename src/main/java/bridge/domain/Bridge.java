@@ -16,12 +16,12 @@ public class Bridge {
         return bridge.size() == numberOfMoves;
     }
     
-    public boolean isPartBridgeExist(final int currentPosition, final String moving) {
-        return partBridge(currentPosition).equals(moving);
+    public boolean isPartBridgeExist(final int positionToMove, final String moving) {
+        return partBridge(positionToMove).equals(moving);
     }
     
-    private String partBridge(final int currentPosition) {
-        return bridge.get(currentPosition);
+    private String partBridge(final int positionToMove) {
+        return bridge.get(positionToMove);
     }
     
     @Override
