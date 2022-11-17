@@ -11,11 +11,9 @@ public class InputView {
         return Validate.bridgeSize(Console.readLine());
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
+    // TODO: 사용자가 이동할 칸을 입력받는다.
     public String readMoving() {
-        return null;
+        return Validate.moving(Console.readLine());
     }
 
     /**
