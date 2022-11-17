@@ -1,7 +1,7 @@
 package bridge.domain;
 
-import static bridge.domain.constants.ResultSigns.FAIL_SIGN;
-import static bridge.domain.constants.ResultSigns.PASS_SIGN;
+import static bridge.domain.constants.MoveResultsSign.MOVE_FAIL;
+import static bridge.domain.constants.MoveResultsSign.MOVE_SUCCESS;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -14,25 +14,25 @@ public class BridgeGame {
 
     private final Bridge bridge;
     private final Player player;
-    private final GameResults gameResults;
+    private final MoveResults moveResults;
 
-    public BridgeGame(Bridge bridge, Player player, GameResults gameResults) {
+    public BridgeGame(Bridge bridge, Player player, MoveResults moveResults) {
         this.bridge = bridge;
         this.player = player;
-        this.gameResults = gameResults;
+        this.moveResults = moveResults;
     }
 
     public String matchResult(String moveCommand) {
         if (bridge.isMatched(player, moveCommand)) {
-            return PASS_SIGN;
+            return MOVE_SUCCESS;
         }
 
-        return FAIL_SIGN;
+        return MOVE_FAIL;
     }
 
-    public GameResults gameResults(String moveCommand, String resultSign) {
-        gameResults.addResults(moveCommand, resultSign);
-        return gameResults;
+    public MoveResults moveResults(String moveCommand, String resultSign) {
+        moveResults.addResults(moveCommand, resultSign);
+        return moveResults;
     }
 
     public boolean ongoing(int bridgeSize) {
@@ -43,8 +43,10 @@ public class BridgeGame {
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
-        player.move();
+    public void move(String resultSign) {
+        if (resultSign.equals(MOVE_SUCCESS)) {
+            player.move();
+        }
     }
 
     /**
@@ -52,13 +54,13 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        gameResults.reset();
+        moveResults.reset();
         player.initPosition();
         player.increaseNumberOfChallenges();
     }
 
-    public GameResults gameResults() {
-        return gameResults;
+    public MoveResults moveResults() {
+        return moveResults;
     }
 
     public Player player() {

@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.domain.GameResults;
+import bridge.domain.MoveResults;
 import bridge.domain.Player;
 import java.util.List;
 
@@ -21,9 +21,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(GameResults gameResults) {
-        List<String> upResults = gameResults.upResults();
-        List<String> downResults = gameResults.downResults();
+    public void printMap(MoveResults moveResults) {
+        List<String> upResults = moveResults.upResults();
+        List<String> downResults = moveResults.downResults();
 
         String upString = String.join(" | ", upResults);
         String downString = String.join(" | ", downResults);
@@ -37,9 +37,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(GameResults gameResults, Player player, String success) {
+    public void printResult(MoveResults moveResults, Player player, String success) {
         System.out.println("최종 게임 결과");
-        printMap(gameResults);
+        printMap(moveResults);
 
         System.out.println("게임 성공 여부: " + success);
         System.out.println("총 시도한 횟수: " + player.totalNumberOfChallenges());
