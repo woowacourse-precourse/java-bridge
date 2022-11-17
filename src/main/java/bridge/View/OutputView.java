@@ -15,25 +15,14 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(ArrayList<Field> userBridge) {
-        printFirstRow(userBridge);
-        printSecondRow(userBridge);
+        printRow(userBridge, "U");
+        printRow(userBridge, "D");
     }
 
-    public void printFirstRow(ArrayList<Field> userBridge) {
+    public void printRow(ArrayList<Field> userBridge, String position) {
         System.out.println("[ ");
         for(int i=0; i< userBridge.size(); i++){
-            printCorrectOrNot(userBridge.get(i), "U");
-            if(i != userBridge.size() -1){
-                System.out.println(" | ");
-            }
-        }
-        System.out.println(" ]");
-    }
-
-    public void printSecondRow(ArrayList<Field> userBridge) {
-        System.out.println("[ ");
-        for(int i=0; i< userBridge.size(); i++){
-            printCorrectOrNot(userBridge.get(i), "D");
+            printCorrectOrNot(userBridge.get(i), position);
             if(i != userBridge.size() -1){
                 System.out.println(" | ");
             }
