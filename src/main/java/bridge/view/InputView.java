@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.Controller;
+import bridge.domain.Direction;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -20,10 +22,14 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public Direction readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-
-        return validateMoving(Console.readLine());
+        try {
+            return Direction.from(validateMoving(Console.readLine()));
+        } catch (IllegalArgumentException e) {
+            System.out.println("이동할 칸은 D, U 만 입력이 가능합니다.");
+            return readMoving();
+        }
     }
 
     /**
