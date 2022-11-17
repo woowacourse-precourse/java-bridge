@@ -11,15 +11,17 @@ import java.util.List;
 public class BridgeGame {
     private static final String UPSIDE = "U";
 
-    private List<String> bridge;
+    private final List<String> bridge;
     private int currentTryIndex;
     private boolean isStopped;
+    private int numOfAttempts;
     private List<CrossResult> topRoad;
     private List<CrossResult> downRoad;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         this.currentTryIndex = 0;
+        this.numOfAttempts = 1;
         this.isStopped = false;
         this.topRoad = new ArrayList<>();
         this.downRoad = new ArrayList<>();
@@ -67,6 +69,7 @@ public class BridgeGame {
         this.isStopped = false;
         this.topRoad = new ArrayList<>();
         this.downRoad = new ArrayList<>();
+        this.numOfAttempts++;
     }
 
     public boolean isEnd() {
@@ -75,5 +78,17 @@ public class BridgeGame {
 
     public boolean isStopped() {
         return isStopped;
+    }
+
+    public int getNumOfAttempts() {
+        return numOfAttempts;
+    }
+
+    public List<CrossResult> getTopRoad() {
+        return topRoad;
+    }
+
+    public List<CrossResult> getDownRoad() {
+        return downRoad;
     }
 }
