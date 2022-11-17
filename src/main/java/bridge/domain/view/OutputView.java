@@ -11,6 +11,10 @@ public class OutputView {
         System.out.println(GuideMessage.START_MESSAGE);
     }
 
+    public void printInputLengthMessage() {
+        System.out.println(GuideMessage.INPUT_LENGTH_MESSAGE);
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>

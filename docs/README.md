@@ -3,7 +3,7 @@
 ## 📄 기능 목록
 ### 💡실행 목록
 - [x] 게임 시작 문구를 출력한다. -OutputView#printStartMessage()
-- [ ] 다리의 길이를 입력 받는 문구를 출력한다. -OutputView#printInputLengthMessage()
+- [x] 다리의 길이를 입력 받는 문구를 출력한다. -OutputView#printInputLengthMessage()
 - [ ] 다리의 길이를 입력 받는다.
   - [ ] 다리의 길이는 3부터 20 사이만 입력 받을 수 있다.
 - [ ] 다리의 길이만큼 다리를 랜덤 값으로 생성한다.
