@@ -10,15 +10,16 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public static int readBridgeSize() {
+    public static int inputBridgeSize() {
         return Integer.parseInt(Console.readLine());
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public String inputMoving() {
+        OutputView.printMovingSelectMessage();
+        return Console.readLine();
     }
 
     /**
