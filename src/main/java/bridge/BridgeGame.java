@@ -8,10 +8,12 @@ import java.util.List;
 public class BridgeGame {
     private List<String> bridge;
     private List<String> movementRecord;
+    private int count;
 
     public void setBridge(List<String> bridge) {
         this.bridge = bridge;
         movementRecord = new ArrayList<>();
+        count = 1;
     }
 
     /**
@@ -19,12 +21,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String direction) {
+    public void move(String direction) {
         movementRecord.add(direction);
-        if (isMovable(direction)) {
-            return true;
-        }
-        return false;
     }
 
     public String[][] getCurrentMap() {
@@ -42,9 +40,14 @@ public class BridgeGame {
         return record;
     }
 
-    private boolean isMovable(String direction) {
-        int next = movementRecord.size();
-        return isMovable(next, direction);
+    public boolean isGameOver() {
+        if (!bridge.get(movementRecord.size()-1).equals(movementRecord.get(movementRecord.size()-1))) {
+            return true;
+        }
+        if (movementRecord.size() == bridge.size()) {
+            return true;
+        }
+        return false;
     }
 
     private boolean isMovable(int index, String direction) {
@@ -66,5 +69,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        movementRecord.clear();
+        count++;
     }
 }

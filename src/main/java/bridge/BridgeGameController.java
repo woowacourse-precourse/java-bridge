@@ -20,7 +20,7 @@ public class BridgeGameController {
 
     public void play() {
         setBridgeSize();
-        move();
+        moving();
     }
 
     private void setBridgeSize() {
@@ -43,9 +43,11 @@ public class BridgeGameController {
         }
     }
 
-    private void move() {
-        String move = selectMove();
-        bridgeGame.move(move);
-        outputView.printMap(bridgeGame.getCurrentMap());
+    private void moving() {
+        do {
+            String move = selectMove();
+            bridgeGame.move(move);
+            outputView.printMap(bridgeGame.getCurrentMap());
+        } while (!bridgeGame.isGameOver());
     }
 }
