@@ -2,18 +2,20 @@ package bridge.controller;
 
 import bridge.domain.BridgeMaker;
 import bridge.domain.generator.BridgeRandomNumberGenerator;
-import bridge.domain.vo.BridgeSize;
 
 import java.util.List;
 
 import static bridge.view.InputView.*;
 
 public class BridgeController {
+    private final BridgeMaker bridgeMaker;
 
-    public BridgeController(){
+    public BridgeController(BridgeRandomNumberGenerator bridgeRandomNumberGenerator){
+        this.bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
     }
 
     public void start() {
-        BridgeSize bridgeSize = readBridgeSize();
+        List<String> bridge = bridgeMaker.makeBridge(readBridgeSize().getBridgeSize());
+
     }
 }
