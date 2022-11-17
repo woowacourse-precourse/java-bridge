@@ -1,6 +1,7 @@
 package bridge.controller;
 
 import bridge.BridgeGame;
+import bridge.dto.CurrentPositionDto;
 import bridge.validation.Validator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -26,15 +27,16 @@ public class BridgeController {
         printStartMessage();
         makeBridge();
         while (true) {
-            String result = movePlayer();
-
-
+            movePlayer();
         }
+
     }
 
-    private String movePlayer() {
+    private void movePlayer() {
         String direction = getDirection();
-        return null;
+        bridgeGame.move(direction);
+        CurrentPositionDto currentPosition = bridgeGame.getCurrentPosition();
+        outputView.printMap(currentPosition);
     }
 
     private void makeBridge() {

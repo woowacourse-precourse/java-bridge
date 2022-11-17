@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.validation.Validator;
+import bridge.dto.CurrentPositionDto;
 
 import java.util.List;
 
@@ -11,7 +11,6 @@ public class BridgeGame {
 
     private final BridgeMaker bridgeMaker;
     private final Player player;
-    private List<String> bridge;
     public BridgeGame(BridgeMaker bridgeMaker, Player player) {
         this.bridgeMaker = bridgeMaker;
         this.player = player;
@@ -22,8 +21,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(List<String> bridge, Player player) {
-        return true;
+    public void move(String direction) {
+        player.move(direction);
     }
 
     /**
@@ -35,6 +34,14 @@ public class BridgeGame {
     }
 
     public void makeBridge(int bridgeSize) {
-        this.bridge = bridgeMaker.makeBridge(bridgeSize);
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        player.addBridge(bridge);
+    }
+
+    public CurrentPositionDto getCurrentPosition() {
+        List<String> bridge = player.getBridge();
+        List<String> moveHistory = player.getMoveHistory();
+        CurrentPositionDto currentPositionDto = new CurrentPositionDto(bridge, moveHistory);
+        return currentPositionDto;
     }
 }
