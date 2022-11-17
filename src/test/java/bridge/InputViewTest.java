@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.view.InputView;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
