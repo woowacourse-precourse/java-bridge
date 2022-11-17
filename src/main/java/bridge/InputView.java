@@ -2,12 +2,15 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.Objects;
+import java.util.List;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+
+    private static final List<String> MOVE_COMMAND = List.of(State.UP.getCode(), State.DOWN.getCode());
+    private static final List<String> GAME_COMMAND = List.of("Q", "R");
 
     /**
      * 다리의 길이를 입력받는다.
@@ -54,22 +57,14 @@ public class InputView {
     }
 
     private static void validationMoveCommand(String moveCommand) {
-        if (Objects.equals(moveCommand, "U")) {
-            return;
+        if(!MOVE_COMMAND.contains(moveCommand)) {
+            throw new IllegalArgumentException("[ERROR] U,D를 입력해 주세요.");
         }
-        if (Objects.equals(moveCommand, "D")) {
-            return;
-        }
-        throw new IllegalArgumentException("[ERROR] U,D를 입력해 주세요.");
     }
 
     private static void validationGameCommand(String gameCommand) {
-        if (Objects.equals(gameCommand, "R")) {
-            return;
+        if (!GAME_COMMAND.contains(gameCommand)) {
+            throw new IllegalArgumentException("[ERROR] R,Q를 입력해 주세요.");
         }
-        if (Objects.equals(gameCommand, "Q")) {
-            return;
-        }
-        throw new IllegalArgumentException("[ERROR] R,Q를 입력해 주세요.");
     }
 }
