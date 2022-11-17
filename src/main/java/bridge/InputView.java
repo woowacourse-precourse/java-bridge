@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
  */
 public class InputView {
     private final String sizePattern = "^[0-9]+$";
+    private final String movePattern = "^[U|D]";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -29,7 +30,11 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String inputMove = Console.readLine();
+        if (!(Pattern.matches(movePattern, inputMove))) {
+            throw new IllegalArgumentException("[ERROR] U와 D 이외의 다른것이 입력되었습니다.");
+        }
+        return inputMove;
     }
 
     /**
