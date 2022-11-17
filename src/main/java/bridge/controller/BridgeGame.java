@@ -1,7 +1,9 @@
 package bridge.controller;
 
 import bridge.domain.Bridge;
+import bridge.domain.GameResult;
 import bridge.service.BridgeService;
+import bridge.service.MovingService;
 import bridge.view.InputView;
 
 /**
@@ -15,7 +17,12 @@ public class BridgeGame {
     }
 
     private void play(Bridge bridge) {
+       GameResult gameResult = initGameResult();
+       move(bridge,gameResult);
+    }
 
+    private GameResult initGameResult() {
+        return BridgeService.makeInitialGameResult();
     }
 
     private Bridge initBridge() {
@@ -29,7 +36,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public void move(Bridge bridge, GameResult gameResult) {
+        0
     }
 
     /**
