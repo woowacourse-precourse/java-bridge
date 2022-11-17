@@ -29,5 +29,36 @@ class BridgeGameTest {
         assertThatThrownBy(() -> bridgeGame.move("1"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+    @Test
+    @DisplayName("브릿지와 플레이어가 같다면, 다리를 다 건넌 것이다.")
+    void checkCrossBridgeWithSame() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "U"));
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("U");
 
+        assertThat(bridgeGame.isEnd()).isEqualTo(true);
+    }
+
+    @Test
+    @DisplayName("브릿지와 플레이어가 다르다면, 다리를 다 건너지 못했다.")
+    void checkCrossBridgeWithNotSame() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "U"));
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+
+        assertThat(bridgeGame.isEnd()).isEqualTo(false);
+    }
+
+    @Test
+    @DisplayName("브릿지와 플레이어의 길이가 같더라도, 다르다면 다 건너지 않은 것이다.")
+    void checkCrossBridgeWithSameLength() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "U"));
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("D");
+
+
+        assertThat(bridgeGame.isEnd()).isEqualTo(false);
+    }
 }
