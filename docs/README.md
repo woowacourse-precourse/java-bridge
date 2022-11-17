@@ -1,0 +1,118 @@
+# ✔️ 구현할 기능 목록
+
+## 설정(`Config`)
+
+게임에 필요한 설정들을 가지고 있음
+
+### 변수
+- [ ] 다리 길이의 숫자 범위 - RANGE_OF_BRIDGE_SIZE_START, RANGE_OF_BRIDGE_SIZE_END
+
+## 명령어(`Command`)
+
+사용자가 입력 가능한 명령어들의 모임
+
+### 변수
+- [ ] 칸 방향 관련 명령어
+  - [ ] 위 - UP
+  - [ ] 아래 - DOWN
+- [ ] 게임 관련 명령어
+  - [ ] 종료 - QUIT
+  - [ ] 재시도 - RETRY
+
+### 기능
+- [ ] 코드에 해당하는 명령어 값 반환
+
+## 에러 메시지(`ErrorMessage`)
+
+게임에서 발생하는 에러 메시지들의 모임
+
+### 변수
+- [ ] 입력 관련 에러 메시지
+  - [ ] 입력값이 숫자 형태가 아닐 때 - NO_NUMERIC_STRING
+  - [ ] 입력된 다리의 길이가 범위 안에 존재하지 않을 때 - NO_RANGE_OF_BRIDGE_SIZE
+  - [ ] 유효하지 않은 칸 이동 명령일 때 - NO_VALID_MOVING
+  - [ ] 유효하지 않은 게임 관련 명령일 때 - NO_VALID_GAME_COMMAND
+- [ ] 게임 실행 도중 발생하는 에러 메시지
+  - [ ] 칸의 방향이 올바르지 않을 때 - NO_SUCH_DIRECTION
+  - [ ] 다리의 길이가 범위 안에 없을 때 - NO_RANGE_OF_BRIDGE_SIZE
+  - [ ] 존재하지 않은 명령어일 때 - NO_SUCH_COMMAND
+
+## 칸(`Road`)
+
+다리에 존재하는 여러 칸 중에 하나
+
+### 기능
+- [ ] 칸의 방향 유효성 확인 - validate
+- [ ] 칸의 방향과 주어진 방향 일치 여부 확인 - match
+
+## 로드맵(`RoadMap`)
+
+이동했던 칸의 경로나 이동할 수 있는 칸의 정보
+
+### 기능
+- [ ] 현재 가지고 있는 칸의 개수 반환 - getSize
+- [ ] 지정된 칸의 방향과 일치 여부 확인 - matchPositionWithDirection
+- [ ] 지정된 칸과 다른 칸의 방향 일치 여부 확인 - matchPositionWithRoad
+- [ ] 다리 관련 로드맵
+  - [ ] 칸의 개수가 범위 안에 있는지 확인 - validate
+- [ ] 사용자 이동 관련 로드맵
+  - [ ] 위치에 해당하는 칸을 반환 - getRoad
+  - [ ] 이동했던 칸을 모두 삭제 - clear
+  - [ ] 이동할 칸에 대해 생성 및 저장 - addRoad
+  - [ ] 마지막 이동이 실패했는지 확인 - isFail
+
+## 다리 게임(`BridgeGame`)
+
+다리 건너기 게임을 관리
+
+### 기능
+- [ ] 사용자가 칸을 이동 - move
+- [ ] 사용자가 게임을 다시 시도 - retry
+
+## 다리 게임 매니저(`BridgeGameManager`)
+
+다리 건너기 게임의 흐름을 담당
+
+### 기능
+- [ ] 게임 실행 - play
+  - [ ] 게임 초기화 - initialize
+  - [ ] 다리 건너기 - run
+  - [ ] 재시작 여부 확인 - isRetry
+  - [ ] 게임 종료 - finish
+
+## 다리 생성자(`BridgeMaker`)
+
+다리의 길이를 입력 받아서 다리를 생성
+
+### 기능
+- [ ] 다리 생성 - makeBridge
+
+## 입력뷰(`InputView`)
+
+사용자로부터 입력을 받음
+
+### 기능
+- [ ] 다리의 길이를 입력 - readBridgeSize
+  - [ ] 사용자의 입력값이 숫자 형태인지 확인 - checkNumericString
+  - [ ] 주어진 다리 크기가 유효한지 확인 - checkRangeOfBridgeSize
+- [ ] 사용자가 이동할 칸을 입력 - readMoving
+  - [ ] 사용자의 입력값이 칸 이동 명령어인지 확인 - checkValidMoving
+- [ ] 사용자가 게임을 다시 시도할지 종료할지 여부를 입력 - readGameCommand
+  - [ ] 사용자의 입력값이 게임 관련 명령어인지 확인 - checkValidGameCommand
+
+## 출력뷰(`OutputView`)
+
+사용자에게 게임 진행 상황과 결과를 출력
+
+### 기능
+- [ ] 게임 시작 메시지 출력 - printGameStart
+- [ ] 다리 길이 입력 메시지 출력 - printInputBridgeLength
+- [ ] 이동할 칸 입력 메시지 출력 - printInputMove
+- [ ] 게임 재시작 여부 입력 메시지 출력 - printInputRetry
+- [ ] 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력 - printMap
+  - [ ] 위치하고 있는 방향(위, 아래)과 다리의 상태를 비교하여 형식에 맞게 출력 - printDirectionRoadStateMap 
+  - [ ] 칸 위치에 따른 구분자 출력 - printRoadSeparation
+  - [ ] 칸의 위치를 기준으로 정답과 해답을 비교하여 O, X 출력 - printOorX
+- [ ] 게임의 최종 결과를 정해진 형식에 맞춰 출력 - printResult
+  - [ ] 정답과 해답을 비교해 성공 여부를 출력 - printSuccessOrFail
+- [ ] 에러 메시지 출력 - printErrorMessage
