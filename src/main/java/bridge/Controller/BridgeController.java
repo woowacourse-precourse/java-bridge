@@ -13,7 +13,6 @@ public class BridgeController {
     private Integer bridgeSize;
     private List<String> bridge;
 
-    private BridgeGame bridgeGame = new BridgeGame();
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -27,5 +26,12 @@ public class BridgeController {
         bridge = bridgeMaker.makeBridge(bridgeSize);
     }
     public void run(){
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        int turn = 0;
+        while (turn < bridgeSize) {
+            System.out.println(bridge);
+            bridgeGame.move(inputView.readMoving());
+            turn++;
+        }
     }
 }
