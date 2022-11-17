@@ -3,6 +3,10 @@
 1. 다리 생성기 (**BridgeMaker**)
     - size가 주어지면 다리의 건너기의 정답을 U, D로 이루어진 List로 만든다.
     - BridgeRandomNumberGenerator를 사용
+
+    1. 주어진 size와 동일한 사이즈의 리스트를 리턴한다.
+    2. 주어진 "U"와 "D"로만 이루어져 있는 List이다.
+    3. BridgeGenerator에서 size만큼 0 또는 1을 받아 1은 U 로 0은 D로 변환하여 List를 만든다.
 2. 다리 게임 (**BridgeGame**)
     - 다리와 입력을 비교하며 상태를 반환한다.
     - 재시작 시작 위치와 이전의 상태를 반환한다.
