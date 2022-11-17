@@ -1,8 +1,10 @@
 ## 기능 목록
 - Domain
   - [x] 특정 길이의 다리 생성 - BridgeMaker#makeBridge()
-  - [x] 입력한 이동 위치의 성공 여부 확인, 다리 이동시 사용할 메서드 - BridgeGame#move()
-  - [x] 게임을 다시 시도할 때 사용할 메서드 - BridgeGame#retry()
+  - [x] 입력한 이동 위치의 성공 여부 확인, 다리 이동시 사용할 메서드, (추가) 이동 위치 및 성공 여부에 따라 리스트에 데이터를 저장한다. - BridgeGame#move()
+    - [x] 이동 위치에 따라 다른 리스트에 데이터 저장하는 클래스 생성 - ListAdder, UpAdder, DownAdder
+    - [x] upBridge, downBridge 리스트를 반환하는 getter 메서드 - BridgeGame#getUpBridge(), getDownBridge()
+  - [ ] 게임을 다시 시도할 때 사용할 메서드 - BridgeGame#retry()
 - View
   - [x] 다리 길이 입력 - InputView#readBridgeSize()
   - [x] 이동할 위치 입력 - InputView#readMoving()

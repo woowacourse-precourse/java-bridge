@@ -1,5 +1,9 @@
 package bridge.view;
 
+import static bridge.Constants.RESTART_GAME;
+import static bridge.Constants.QUIT_GAME;
+import static bridge.Constants.UP_BRIDGE;
+import static bridge.Constants.DOWN_BRIDGE;
 import static bridge.ErrorControl.validateBridgeSize;
 import static bridge.ErrorControl.validateLetter;
 import static bridge.ErrorControl.validateNumberOrNot;
@@ -10,10 +14,6 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    final String MOVING_POSITION1 = "U";
-    final String MOVING_POSITION2 = "D";
-    final String GAME_COMMAND1 = "R";
-    final String GAME_COMMAND2 = "Q";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -30,7 +30,7 @@ public class InputView {
      */
     public String readMoving() {
         String input = Console.readLine();
-        validateLetter(input,MOVING_POSITION1,MOVING_POSITION2);
+        validateLetter(input, UP_BRIDGE, DOWN_BRIDGE);
         return input;
     }
 
@@ -39,7 +39,7 @@ public class InputView {
      */
     public String readGameCommand() {
         String input = Console.readLine();
-        validateLetter(input,GAME_COMMAND1,GAME_COMMAND2);
+        validateLetter(input, RESTART_GAME, QUIT_GAME);
         return input;
     }
 }
