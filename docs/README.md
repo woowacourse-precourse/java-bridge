@@ -62,7 +62,7 @@
     - [x]  check -> 라운드와 방향을 입력받아 MoveResult를 반환
 - [ ]  Player 사용자 클래스
 - [ ]  BridgeGame 다리 건너기 게임을 관리하는 클래스
-- [ ]  BridgeMaker 다리를 생성하는 클래스
+- [x]  BridgeMaker 다리를 생성하는 클래스
     - [x]  makeBridge -> 다리의 길이를 입력받아 U와 D로 표현된 다리를 반환
 - [ ]  BridgeGameStatus 게임 진행 여부 Enum
 - [x]  GamePlayCount 시도 횟수를 표현하는 클래스

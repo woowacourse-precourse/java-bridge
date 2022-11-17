@@ -45,7 +45,7 @@ class AnswerBridgeTest {
     void check_메서드는_올바르지_않은_다리_위치를_입력한다면_IllegalArgumentException을_던진다() {
         AnswerBridge answerBridge = new AnswerBridge(List.of("U", "D", "U"));
 
-        assertThatThrownBy(() -> answerBridge.check(Round.valueOf(4), Direction.DOWN))
+        assertThatThrownBy(() -> answerBridge.check(new Round(4), Direction.DOWN))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("입력값이 다리의 범위를 벗어났습니다.");
     }
@@ -54,7 +54,7 @@ class AnswerBridgeTest {
     void check_메서드는_정답을_입력했다면_MoveResult_SUCCESS를_반환한다() {
         AnswerBridge answerBridge = new AnswerBridge(List.of("U", "D", "U"));
 
-        MoveResult result = answerBridge.check(Round.valueOf(1), Direction.UP);
+        MoveResult result = answerBridge.check(new Round(1), Direction.UP);
 
         assertThat(result).isEqualTo(MoveResult.SUCCESS);
     }
@@ -63,7 +63,7 @@ class AnswerBridgeTest {
     void check_메서드는_오답을_입력했다면_MoveResult_FAIL을_반환한다() {
         AnswerBridge answerBridge = new AnswerBridge(List.of("U", "D", "U"));
 
-        MoveResult result = answerBridge.check(Round.valueOf(1), Direction.DOWN);
+        MoveResult result = answerBridge.check(new Round(1), Direction.DOWN);
 
         assertThat(result).isEqualTo(MoveResult.FAIL);
     }

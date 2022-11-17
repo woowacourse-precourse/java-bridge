@@ -21,22 +21,32 @@ public class RoundTest {
 
     @ParameterizedTest
     @ValueSource(ints = {ROUND_LOWER_BOUND - 1, ROUND_UPPER_BOUND + 1, 9999})
-    void valueOf_메서드는_범위밖의_값을_입력하면_IllegalArgumentException을_던진다(int number) {
-        assertThatThrownBy(() -> Round.valueOf(number))
+    void 생성자는_범위밖의_값을_입력하면_IllegalArgumentException을_던진다(int number) {
+        assertThatThrownBy(() -> new Round(number))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("허용된 라운드 범위를 벗어났습니다.");
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = {ROUND_LOWER_BOUND, 10, ROUND_UPPER_BOUND})
-    void valueOf_메서드는_범위내의_값을_입력하면_Round_인스턴스를_반환한다(int number) {
-        assertThat(Round.valueOf(number)).isInstanceOf(Round.class);
+    @Test
+    void nextRound_메서드를_사용하여_허용된_범위를_넘어간다면_IllegalArgumentException을_던진다() {
+        Round round = new Round(ROUND_UPPER_BOUND);
+        assertThatThrownBy(round::nextRound)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("허용된 라운드 범위를 벗어났습니다.");
+    }
+
+    @Test
+    void nextRound_메서드는_라운드_값을_1_증가시킨다() {
+        Round round = new Round(1);
+        round.nextRound();
+
+        assertThat(round).isEqualTo(new Round(2));
     }
 
     @Test
     void naturalOrder_메서드는_Round를_오름차순으로_반환한다() {
         List<Round> naturalOrderedRound = IntStream.rangeClosed(ROUND_LOWER_BOUND, ROUND_UPPER_BOUND)
-                .mapToObj(Round::valueOf)
+                .mapToObj(Round::new)
                 .collect(Collectors.toList());
 
         assertThat(Round.naturalOrder()).hasSameElementsAs(naturalOrderedRound);
