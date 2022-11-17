@@ -76,4 +76,8 @@ public class BridgeGame {
         movementRecord.clear();
         count++;
     }
+
+    public int getAttempts() {
+        return count;
+    }
 }

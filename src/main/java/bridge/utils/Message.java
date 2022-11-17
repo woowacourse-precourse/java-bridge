@@ -9,17 +9,21 @@ public class Message {
     private static final String GAME_RESULT = "게임 성공 여부: %s";
     private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";
-    public static final String PRINT_ATTEMPTS = "총 시도한 횟수";
+    private static final String TOTAL_ATTEMPTS = "총 시도한 횟수: %d";
     public static final String ERROR_MESSAGE = "[ERROR] %s";
 
     public static String createErrorMessage(String errorMessage){
         return String.format(ERROR_MESSAGE, errorMessage);
     }
 
-    public static String getGameResultMessage(boolean success) {
+    public static String getGameResult(boolean success) {
         if (success) {
             return String.format(GAME_RESULT, SUCCESS);
         }
         return String.format(GAME_RESULT, FAIL);
+    }
+
+    public static String getAttempts(int attempts) {
+        return String.format(TOTAL_ATTEMPTS, attempts);
     }
 }

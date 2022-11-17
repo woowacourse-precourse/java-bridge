@@ -60,7 +60,10 @@ public class BridgeGameController {
     }
 
     private void quit() {
-        outputView.printResult(bridgeGame.getCurrentMap(), bridgeGame.isSuccessful());
+        String[][] map = bridgeGame.getCurrentMap();
+        boolean success = bridgeGame.isSuccessful();
+        int attempts = bridgeGame.getAttempts();
+        outputView.printResult(map, success, attempts);
     }
 
     private boolean askRetry() {
