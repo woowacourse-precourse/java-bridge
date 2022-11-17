@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -11,7 +13,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(List<String> resultBridge) {
+        printEachBridge(resultBridge, 0);
+        printEachBridge(resultBridge, 1);
     }
 
     /**
@@ -28,5 +32,20 @@ public class OutputView {
     public void printStartMessage() {
         System.out.println(START_MESSAGE);
         System.out.println();
+    }
+
+    /**
+     * 현재까지 이동한 다리 칸을 출력한다.
+     * 0은 위 칸 1은 아래 칸
+     */
+    public void printEachBridge(List<String> resultBridge, int upOrDown) {
+        System.out.print("[ ");
+        for (int i = upOrDown; i < resultBridge.size(); i += 2) {
+            System.out.print(resultBridge.get(i));
+            if (i + 2 < resultBridge.size()) {
+                System.out.print(" | ");
+            }
+        }
+        System.out.println(" ]");
     }
 }

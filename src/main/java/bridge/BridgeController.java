@@ -21,8 +21,10 @@ public class BridgeController {
         for (int index = 0; index < bridgeGame.getBridgeSize(); index++) {
             String moving = inputView.readMoving();
             if (bridgeGame.move(index, moving)) {
+                outputView.printMap(bridgeGame.getResultBridge());
                 continue;
             }
+            outputView.printMap(bridgeGame.getResultBridge());
             return false;
         }
         return true;
