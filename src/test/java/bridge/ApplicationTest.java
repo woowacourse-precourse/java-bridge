@@ -58,7 +58,22 @@ class ApplicationTest extends NsTest {
                     "총 시도한 횟수: 3",
                     "[ X ]",
                     "[ O | X ]",
-                    "[   |   ]"
+                    "[   |   ]",
+                    "게임 성공 여부: 성공"
+            );
+        }, 1, 0, 1);
+    }
+
+    @Test
+    void 도중_종료_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3","D", "R", "U", "U", "Q");
+            assertThat(output()).contains(
+                    "총 시도한 횟수: 2",
+                    "[ X ]",
+                    "[ O | X ]",
+                    "[   |   ]",
+                    "게임 성공 여부: 실패"
             );
         }, 1, 0, 1);
     }
