@@ -11,3 +11,4 @@
   - [x] 문자인가? - isLetter()
   - [x] 한글자인가? - isOneLetter()
   - [x] 여러 글자인가? - isString()
+  - [x] 1, 0을 U, D로 바꿈 - convertBridgenumberGenerator()
