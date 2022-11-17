@@ -54,6 +54,13 @@ public class BridgeGame {
         String direction = inputView.readMoving();
         user.move(direction);
         updateGameState(direction);
+        outputView.printMap(user.getUserLocation(), gameState);
+    }
+
+    public boolean gameExit(){
+        if(!gameState.get(gameState.size() - 1))
+            return true;
+        return false;
     }
 
     /**
