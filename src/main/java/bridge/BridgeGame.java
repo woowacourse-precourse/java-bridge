@@ -34,6 +34,14 @@ public class BridgeGame {
         return this.resultBridge;
     }
 
+    public int getGameCount() {
+        return this.gameCount;
+    }
+
+    public boolean getGameResult(){
+        return this.gameResult;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>

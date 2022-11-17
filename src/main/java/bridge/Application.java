@@ -12,6 +12,7 @@ public class Application {
                 }
             }
             while (!bridgeController.isOver());
+            bridgeController.exitGame();
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
         }
