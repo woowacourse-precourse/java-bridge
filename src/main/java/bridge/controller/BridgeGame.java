@@ -36,10 +36,10 @@ public class BridgeGame {
         bridgeSize = INPUT_VIEW.readBridgeSize();
         answer = BRIDGE_MAKER.makeBridge(bridgeSize);
         OUTPUT_VIEW.printLine();
-        do {
+        while (success && round < bridgeSize) {
             play();
             round+=1;
-        } while (success && round < bridgeSize);
+        }
         end();
     }
 

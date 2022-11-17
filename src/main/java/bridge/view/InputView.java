@@ -18,7 +18,7 @@ public class InputView {
         try {
             isNumber(input);
             return Integer.parseInt(input);
-        } catch(Exception e) {
+        } catch(NullPointerException | IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readBridgeSize();
         }
@@ -30,7 +30,7 @@ public class InputView {
         try {
             isUpOrDown(input);
             return input;
-        } catch (Exception e) {
+        } catch (NullPointerException | IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readMoving();
         }
@@ -41,9 +41,9 @@ public class InputView {
         try {
             isRestartOrQuit(input);
             return input;
-        } catch (Exception e) {
+        } catch (NullPointerException | IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return readMoving();
+            return readGameCommand();
         }
     }
 }
