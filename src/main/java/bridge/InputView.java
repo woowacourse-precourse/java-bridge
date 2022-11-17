@@ -13,9 +13,9 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
-
         String sizeName = Console.readLine();
-        validator.checkSize(sizeName);
+
+        validateSize(sizeName);
 
         return Integer.parseInt(sizeName);
     }
@@ -36,5 +36,10 @@ public class InputView {
 
     public InputView(Validator validator) {
         this.validator = validator;
+    }
+
+    private void validateSize(String sizeName) {
+        validator.checkSizeByInt(sizeName);
+        validator.checkSizeInScope(sizeName);
     }
 }
