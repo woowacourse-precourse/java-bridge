@@ -126,3 +126,10 @@
 - public void printBridge(List<String>)
   - 다리 상태를 출력하는 메소드
   - printMap, printResult 메소드에서의 중복된 코드를 없애기 위한 메소드
+
+### 🚀 Error enum
+
+- NONE("[ERROR] IllegalStateException 발생! 값을 입력해야 합니다."),
+  INTEGER("[ERROR] IllegalArgumentException 발생! 숫자로만 입력해야 합니다."),
+  RANGE("[ERROR] IllegalArgumentException 발생! 다리의 길이는 3~20 사이여야 합니다."),
+  CHARACTER("[ERROR] IllegalArgumentException 발생! 올바른 문자를 입력해야 합니다.")
