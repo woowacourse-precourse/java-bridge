@@ -60,4 +60,12 @@ public class GameController {
     private static void quitGame() {
         keepGoing = false;
     }
+
+    public void resetTotalGame(){
+        tryCount = 1;
+        i = 0;
+        keepGoing = true;
+        bridgeMaker.resetBridge();
+        mapShape.clearMap();
+    }
 }
