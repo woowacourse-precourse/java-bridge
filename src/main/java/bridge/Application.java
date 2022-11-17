@@ -95,7 +95,6 @@ public class Application {
                 downSideResult.insert(4*i+3, " ");
                 downSideResult.insert(4*i+4, "]");
                 bridgeGame.retry();
-                // 재시도 여부
             }
             OutputView.printMap(upSideResult, downSideResult);
         }
