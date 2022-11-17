@@ -8,6 +8,24 @@ public class Validator {
     private static final String RETRY_COMMAND_LETTER = "R";
     private static final String QUIT_COMMAND_LETTER = "Q";
 
+    public void validateBridgeSizeAndThrowException(int size) {
+        if (!isValidRange(size)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void validateMovingAndThrowException(String moving) {
+        if (!isValidMoving(moving)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void validateCommandAndThrowException(String letter) {
+        if (!isValidCommand(letter)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     public boolean isValidRange(int size) {
         return size >= VALID_RANGE_START && size <= VALID_RANGE_END;
     }
