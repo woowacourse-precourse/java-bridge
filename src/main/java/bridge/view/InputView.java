@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -10,7 +10,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public  int readBridgeSize() {
+    public static int readBridgeSize() {
         String input = readLine();
         try {
             validateDigit(input);
@@ -36,13 +36,13 @@ public class InputView {
         return null;
     }
 
-    private void validateDigit(String input) {
+    private static void validateDigit(String input) {
         if (!input.matches("[0-9]+")){
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
         }
     }
 
-    private void validateRange(String input) {
+    private static void validateRange(String input) {
         int size = Integer.parseInt(input);
 
         if (size < 3 || size > 20) {
