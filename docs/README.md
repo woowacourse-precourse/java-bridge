@@ -4,7 +4,7 @@
   - [x] 입력한 이동 위치의 성공 여부 확인, 다리 이동시 사용할 메서드 - BridgeGame#move()
   - [x] 게임을 다시 시도할 때 사용할 메서드 - BridgeGame#retry()
 - View
-  - [ ] 다리 길이 입력
+  - [x] 다리 길이 입력 - InputView#readBridgeSize()
   - [ ] 이동할 위치 입력
   - [ ] 재시도 여부 입력
   - [ ] 다리 뼈대 출력하기
@@ -15,7 +15,7 @@
 - Controller
   - [ ] Domain 과 View 를 연결하기  
 - Error
-  - [ ] 다리 길이 3이상 20이하 인지 확인
+  - [x] 다리 길이가 숫자인지, 3이상 20이하 인지 확인 - ErrorControl#validateNumberOrNot(), validateBridgeSize()
   - [ ] 이동 위치 U,D 둘 중 하나인지 확인 (소문자는?)
   - [ ] 재시도 여부 R,Q 둘 중 하나인지 확인
 
