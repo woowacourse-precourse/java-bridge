@@ -1,7 +1,6 @@
 package bridge.controller;
 
 import static bridge.domain.constants.GameCommands.QUIT_GAME_COMMAND;
-import static bridge.domain.constants.GameCommands.RESTART_GAME_COMMAND;
 import static bridge.domain.constants.MoveResultsSign.MOVE_FAIL;
 
 import bridge.domain.Bridge;
@@ -50,12 +49,7 @@ public class BridgeGameController {
 
             if (moveResult.equals(MOVE_FAIL)) {
                 gameCommand = inputView.gameCommand();
-                if (gameCommand.equals(RESTART_GAME_COMMAND)) {
-                    bridgeGame.retry();
-                }
-                if (gameCommand.equals(QUIT_GAME_COMMAND)) {
-                    result = "실패";
-                }
+                result = bridgeGame.retryOrQuit(gameCommand, result);
             }
         }
 

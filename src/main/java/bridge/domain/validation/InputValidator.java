@@ -1,7 +1,7 @@
 package bridge.domain.validation;
 
 import static bridge.domain.constants.GameCommands.QUIT_GAME_COMMAND;
-import static bridge.domain.constants.GameCommands.RESTART_GAME_COMMAND;
+import static bridge.domain.constants.GameCommands.RETRY_GAME_COMMAND;
 import static bridge.domain.constants.MoveCommands.MOVE_DOWN_COMMAND;
 import static bridge.domain.constants.MoveCommands.MOVE_UP_COMMAND;
 
@@ -37,7 +37,7 @@ public class InputValidator {
     }
 
     public static void validateCorrectValueForGameCommand(String inputValue) {
-        if (!inputValue.equals(RESTART_GAME_COMMAND) && !inputValue.equals(QUIT_GAME_COMMAND)) {
+        if (!inputValue.equals(RETRY_GAME_COMMAND) && !inputValue.equals(QUIT_GAME_COMMAND)) {
             throw new IllegalArgumentException(NOT_VALID_GAME_COMMANDS);
         }
     }

@@ -6,8 +6,6 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 class BridgeGameTest {
 
@@ -47,14 +45,14 @@ class BridgeGameTest {
 //        assertThat(position).isEqualTo(1);
 //    }
 
-    @ParameterizedTest(name = "{0}회 retry하면 Player의 총 시도 횟수가 {1}회가 된다.")
-    @CsvSource({"1,2", "5,6", "10,11"})
-    void increaseNumberOfChallenges(int tryNum, int result) {
-        for (int i = 0; i < tryNum; i++) {
-            bridgeGame.retry();
-        }
-        assertThat(player.totalNumberOfChallenges()).isEqualTo(result);
-    }
+//    @ParameterizedTest(name = "{0}회 retry하면 Player의 총 시도 횟수가 {1}회가 된다.")
+//    @CsvSource({"1,2", "5,6", "10,11"})
+//    void increaseNumberOfChallenges(int tryNum, int result) {
+//        for (int i = 0; i < tryNum; i++) {
+//            bridgeGame.retry();
+//        }
+//        assertThat(player.totalNumberOfChallenges()).isEqualTo(result);
+//    }
 
 //    @DisplayName("retry하면 Player의 position이 초기화 된다.")
 //    @Test
