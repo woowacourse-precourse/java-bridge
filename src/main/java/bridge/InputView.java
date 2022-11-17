@@ -26,32 +26,28 @@ public class InputView {
 	private int repeatReadBridgeSize() {
 		Print.inputBridgeSize();
 		String stringBridgeSize = Console.readLine();
-		int bridgeSize = convertBridgeSize(stringBridgeSize);
-		checkBridgeSizeRange(bridgeSize);
+		int bridgeSize = Validation.validationConvertBridgeSize(stringBridgeSize);
+		Validation.validationCheckBridgeSizeRange(bridgeSize);
 		return bridgeSize;
-	}
-
-	private int convertBridgeSize(String stringBridgeSize) {
-		int convertSize;
-		try {
-			convertSize = Integer.parseInt(stringBridgeSize);
-		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException("[ERROR] 숫자 외에 입력해선 안됩니다.");
-		}
-		return convertSize;
-	}
-
-	private void checkBridgeSizeRange(int bridgeSize) {
-		if (bridgeSize < 3 || bridgeSize > 20) {
-			throw new IllegalArgumentException("[ERROR] 다리의 길이는 3이상 20이하의 수만 입력해주세요.");
-		}
 	}
 
 	/**
 	 * 사용자가 이동할 칸을 입력받는다.
 	 */
 	public String readMoving() {
-		return null;
+		Print.selectBlock();
+		boolean flag = true;
+		String upDown = "";
+		while (flag){
+			try{
+				upDown = Console.readLine();
+				Validation.validationUpOrDown(upDown);
+				flag = false;
+			}catch (IllegalArgumentException e){
+				System.out.println(e.getMessage());
+			}
+		}
+		return upDown;
 	}
 
 	/**
