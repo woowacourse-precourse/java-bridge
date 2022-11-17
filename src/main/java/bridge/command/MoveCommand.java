@@ -1,19 +1,26 @@
 package bridge.command;
 
 public enum MoveCommand {
-    D("아래"),
-    U("위");
+    DOWN("D", "아래"),
+    UP("U", "위");
+    private final String hotKey;
     private final String explain;
 
-    MoveCommand(String explain) {
+    MoveCommand(String hotKey, String explain) {
+        this.hotKey = hotKey;
         this.explain = explain;
     }
-    public static boolean exist(String name){
-        for(MoveCommand moveCommand: MoveCommand.values()){
-            if(moveCommand.name().equals(name)){
+
+    public static boolean exist(String name) {
+        for (MoveCommand moveCommand : MoveCommand.values()) {
+            if (moveCommand.name().equals(name)) {
                 return true;
             }
         }
         return false;
+    }
+
+    public String hotKey() {
+        return this.hotKey;
     }
 }
