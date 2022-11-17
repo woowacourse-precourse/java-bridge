@@ -39,4 +39,8 @@ public class OutputView {
     public static void printGameCommandRequestMessage() {
         System.out.println(GAME_COMMAND_REQUEST_MESSAGE);
     }
+
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }
