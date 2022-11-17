@@ -5,8 +5,9 @@ import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 
 import bridge.model.BridgeGame;
-import bridge.model.userStage;
+import bridge.model.userStages;
 
+import bridge.standard.GameForm;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -34,45 +35,49 @@ public class GameController {
     public void start() {
         setBridge();
         do {
-            if (!canMoveOneStep()) {
+            moveOneStep();
+            if (wantEndWithFail()) {
                 break;
             }
-        } while (bridgeGame.isNotReached(bridge.size()));
+        } while (userStages.isNotReached(bridge.size()));
         exitGame();
     }
 
     private void setBridge() {
         outputView.guideInputBridgeSize();
         this.bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        outputView.emptyLine();
     }
 
-    private boolean canMoveOneStep() {
+    private void moveOneStep() {
         outputView.guideInputMoving();
-        bridgeGame.move(inputView.readMoving(), bridge.get(userStage.getSize()));
-        outputView.printMap(userStage.getPositions());
+        bridgeGame.move(inputView.readMoving(), bridge.get(userStages.nextIndex()));
+        outputView.printMap(userStages.getPositions());
+    }
 
-        if (userStage.isNotCross()) {
+    private boolean wantEndWithFail() {
+        if (userStages.isNotCross()) {
             outputView.guideInputGameCommand();
             return isRetry(inputView.readGameCommand());
         }
-        return true;
+        return false;
     }
 
     private boolean isRetry(String gameCommand) {
-        if (gameCommand.equals("R")) {
+        if (gameCommand.equals(GameForm.RESTART_VALUE)) {
             bridgeGame.retry();
-            return true;
-        }
-        if (gameCommand.equals("Q")) {
             return false;
+        }
+        if (gameCommand.equals(GameForm.QUIT_VALUE)) {
+            return true;
         }
         throw new IllegalArgumentException();
     }
 
     private void exitGame() {
         outputView.printResult(
-                userStage.getPositions(),
-                userStage.getNumberOfAttempts(),
-                userStage.getOutcome());
+                userStages.getPositions(),
+                userStages.getNumberOfAttempts(),
+                userStages.getOutcome());
     }
 }

@@ -1,6 +1,8 @@
 package bridge.view;
 
 
+import bridge.standard.GameForm;
+
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -50,8 +52,8 @@ public class OutputView {
         StringJoiner upStairMap = new StringJoiner(MAP_SEPARATOR, MAP_START, MAP_END);
         StringJoiner downStairMap = new StringJoiner(MAP_SEPARATOR, MAP_START, MAP_END);
         for (List<String> position : positions) {
-            upStairMap.add(position.get(1));
-            downStairMap.add(position.get(0));
+            upStairMap.add(position.get(GameForm.UP_LAYER));
+            downStairMap.add(position.get(GameForm.DOWN_LAYER));
         }
         map = upStairMap + downStairMap.toString();
         return map;

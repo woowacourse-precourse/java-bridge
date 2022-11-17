@@ -13,6 +13,9 @@ public class Bug {
     public static final String INPUT_U_OR_D = "위 칸은 U, 아래 칸은 D로만 입력 가능합니다.";
     public static final String INPUT_R_OR_Q = "재시작은 R, 종료는 Q로만 입력 가능합니다.";
 
+    private static final int MINIMUM_SIZE = 3;
+    private static final int MAXIMUM_SIZE = 20;
+
     public static void validateChar(String input, String pattern, String errorMessage) {
         if (!input.matches(pattern)) {
             throw new IllegalArgumentException(Bug.ERROR_MESSAGE + errorMessage);
@@ -20,7 +23,7 @@ public class Bug {
     }
 
     public static void validateNumber(int size, String errorMessage) {
-        if (size < 3 || 20 < size) {
+        if (size < MINIMUM_SIZE || MAXIMUM_SIZE < size) {
             throw new IllegalArgumentException(Bug.ERROR_MESSAGE + errorMessage);
         }
     }

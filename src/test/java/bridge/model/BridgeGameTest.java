@@ -16,7 +16,7 @@ public class BridgeGameTest {
         bridgeGame.move("U", "U");
         bridgeGame.move("D", "U");
 
-        Assertions.assertThat(userStage.getPositions()).isEqualTo(List.of(List.of(" ", "O"), List.of("X", " ")));
+        Assertions.assertThat(userStages.getPositions()).isEqualTo(List.of(List.of(" ", "O"), List.of("X", " ")));
     }
 
     @DisplayName("다리가 아래 칸일 때, 사용자가 U과 D을 입력한 경우 테스트")
@@ -25,7 +25,7 @@ public class BridgeGameTest {
         bridgeGame.move("U", "D");
         bridgeGame.move("D", "D");
 
-        Assertions.assertThat(userStage.getPositions()).isEqualTo(List.of(List.of(" ", "X"), List.of("O", " ")));
+        Assertions.assertThat(userStages.getPositions()).isEqualTo(List.of(List.of(" ", "X"), List.of("O", " ")));
     }
 
 
@@ -36,6 +36,6 @@ public class BridgeGameTest {
         bridgeGame.move("D", "D");
         bridgeGame.retry();
 
-        Assertions.assertThat(userStage.getPositions()).isEmpty();
+        Assertions.assertThat(userStages.getPositions()).isEmpty();
     }
 }

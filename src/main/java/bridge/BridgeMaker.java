@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.standard.GameForm;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,11 +29,11 @@ public class BridgeMaker {
     }
 
     private String setPosition(int random) {
-        if (random == 1) {
-            return "U";
+        if (random == GameForm.UP_LAYER) {
+            return GameForm.UP_VALUE;
         }
-        if (random == 0) {
-            return "D";
+        if (random == GameForm.DOWN_LAYER) {
+            return GameForm.DOWN_VALUE;
         }
         throw new IllegalArgumentException(); //무슨 예외인지 확인
     }

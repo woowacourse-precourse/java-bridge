@@ -16,7 +16,7 @@
 - [x] *입력*받은 칸을 판별해 진행 상황을 저장하는 기능 -Controller#moveOneStop()
     - 진행 상황 *출력*
 - [x] 진행 상황을 판별하는 기능 -Controller#stillCrossing()
-    - [X] 틀린 경우 -> 재시작 여부 !moveOneStep
+    - [X] 틀린 경우 -> 재시작 여부
     - [x] 다 맞은 경우 -> 게임 종료 
 - [X] 재시작 여부를 *입력*받은 값을 통해 판별하는 기능 -Controller#askRetry()
     - [X] "R"

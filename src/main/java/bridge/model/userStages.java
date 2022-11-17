@@ -1,8 +1,10 @@
 package bridge.model;
 
+import bridge.standard.GameForm;
+
 import java.util.*;
 
-public class userStage {
+public class userStages {
     private static final String SUCCESS = "성공";
     private static final String FAILS = "실패";
 
@@ -10,15 +12,15 @@ public class userStage {
     private static int numberOfAttempts;
     private static String outcome;
 
-    protected userStage() {
+    protected userStages() {
         positions = new ArrayList<>();
         numberOfAttempts = 1;
         outcome = "";
     }
 
-    protected void savePosition(String mapElement) {
-        positions.add(Arrays.asList(mapElement.split("-")));
-        if (positions.get(getSize() - 1).contains("X")) {
+    protected void savePosition(List<String> mapElement) {
+        positions.add(mapElement);
+        if (positions.get(positions.size() - 1).contains(GameForm.WRONG_CODE)) {
             outcome = FAILS;
         }
     }
@@ -29,19 +31,20 @@ public class userStage {
         outcome = "";
     }
 
-    protected void updateSuccess() {
-        outcome = SUCCESS;
+    public static boolean isNotReached(int bridgeSize) {
+        if (positions.size() == bridgeSize) {
+            outcome = SUCCESS;
+            return false;
+        }
+        return true;
     }
-
-
     public static boolean isNotCross() {
         if (outcome == FAILS) {
             return true;
         }
         return false;
     }
-
-    public static int getSize() {
+    public static int nextIndex() {
         return positions.size();
     }
     public static List<List<String>> getPositions() {
