@@ -1,8 +1,9 @@
 # 🎖️ 4주차 과제
 - 이미 구현된 클래스를 최대한 이용
 - 각 클래스의 모든 메서드에 단위 테스트 작성 (Input, Output 제외)
+- Controller, Input, Output 테스트는 ApplicationTest에 작성
 - 검증은 Input에서 끝내고, 나머지 검증은 테스트 코드로 확인
-- Input에서 Exception을 발생 시키고 Application에서 에러 메시지 출력
+- Input에서 Exception을 발생 시키고 Controller에서 에러 메시지 출력
 
 ---
 ## 🚀 구현 기능 목록
