@@ -7,7 +7,7 @@ package bridge.view;
  */
 public class OutputView {
     public void printLine(String message) {
-
+        System.out.println(message);
     }
 
 
