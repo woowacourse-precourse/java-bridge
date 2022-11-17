@@ -2,6 +2,7 @@ package bridge.util;
 
 import bridge.constant.BridgeMove;
 import bridge.constant.BridgeRange;
+import bridge.constant.GameCommand;
 
 public class Validator {
 
@@ -19,6 +20,14 @@ public class Validator {
 
         if (bridgeMove.isMiss()) {
             throw new IllegalArgumentException("[ERROR] 이동할 칸은 U 또는 D를 입력해야 합니다.");
+        }
+    }
+
+    public static void validateIfStringIsGameCommand(String string) {
+        GameCommand gameCommand = GameCommand.findByString(string);
+
+        if (gameCommand.isMiss()) {
+            throw new IllegalArgumentException("[ERROR] R 또는 Q를 입력해주세요.");
         }
     }
 }
