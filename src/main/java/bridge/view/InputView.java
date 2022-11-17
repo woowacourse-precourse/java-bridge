@@ -23,7 +23,7 @@ public class InputView {
     public static String readMoving() {
         String moving = Console.readLine();
         InputValidator.checkMoving(moving);
-        return null;
+        return moving;
     }
 
     /**
