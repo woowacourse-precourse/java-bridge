@@ -30,32 +30,36 @@ public class GameController {
         outputView.guideInputBridgeSize();
         setBridge(inputView.readBridgeSize());
         do {
-            oneStepMove();
+            if (!goOneStepMove()) {
+                break;
+            }
         } while (stillCrossing());
-        outputView.printResult(CurrentBridge.getCurrentMap(), CurrentBridge.getNumberOfAttempts(),CurrentBridge.getOutcome());
+        exitGame();
     }
 
     private void setBridge(int size) {
         this.bridge = bridgeMaker.makeBridge(size);
     }
 
-    private void oneStepMove() {
+    private boolean goOneStepMove() {
         outputView.guideInputMoving();
         outputView.printMap(bridgeGame.move(inputView.readMoving(), bridge.get(CurrentBridge.getSize())));
         if (CurrentBridge.canNotCross()) {
             outputView.guideInputGameCommand();
-            askRetry(inputView.readGameCommand());
+            return askRetry(inputView.readGameCommand());
         }
+        return true;
     }
 
-    private void askRetry(String gameCommand) {
+    private boolean askRetry(String gameCommand) {
         if (gameCommand.equals("R")) {
             bridgeGame.retry();
+            return true;
         }
         if (gameCommand.equals("Q")) {
-            outputView.printResult(CurrentBridge.getCurrentMap(), CurrentBridge.getNumberOfAttempts(),CurrentBridge.getOutcome());
+            return false;
         }
-
+        throw new IllegalArgumentException();
     }
 
     private boolean stillCrossing() {
@@ -63,5 +67,9 @@ public class GameController {
             return false;
         }
         return true;
+    }
+
+    private void exitGame() {
+        outputView.printResult(CurrentBridge.getCurrentMap(), CurrentBridge.getNumberOfAttempts(),CurrentBridge.getOutcome());
     }
 }
