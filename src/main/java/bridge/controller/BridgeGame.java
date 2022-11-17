@@ -2,12 +2,12 @@ package bridge.controller;
 
 import static bridge.controller.Constant.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import bridge.model.BridgeMaker;
-import bridge.model.BridgeNumberGenerator;
-import bridge.model.BridgeRandomNumberGenerator;
-import bridge.view.InputView;
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 
 public class BridgeGame {
 
@@ -16,6 +16,7 @@ public class BridgeGame {
 	private final List<String> bridge;
 	private String upsideBridge = "";
 	private String downsideBridge = "";
+	private int tryCount = 1;
 
 	public BridgeGame(int size) {
 		this.generator = new BridgeRandomNumberGenerator();
@@ -23,22 +24,25 @@ public class BridgeGame {
 		this.bridge = bridgeMaker.makeBridge(size);
 	}
 
-	public void play() {
-		for (int i = 0; i < bridge.size(); i++) {
-			String location = InputView.readMoving();
-			move(location, bridge, i);
-			if (upsideBridge.contains(WRONG) || downsideBridge.contains(WRONG)) {
-				retry();
-			}
+	public boolean checkRetry() {
+		if (upsideBridge.contains("X") || downsideBridge.contains("X")) {
+			return true;
 		}
+		return false;
 	}
 
-	public void move(String location, List<String> bridge, int index) {
-		setUpsideBridge(location, bridge, index);
-		setDownsideBridge(location, bridge, index);
+	public List<String> move(String location, int index) {
+		List<String> state = new ArrayList<>();
+		setUpsideBridge(location, index);
+		setDownsideBridge(location, index);
+
+		state.add(this.upsideBridge);
+		state.add(this.downsideBridge);
+
+		return state;
 	}
 
-	private void setDownsideBridge(String location, List<String> bridge, int index) {
+	private void setDownsideBridge(String location, int index) {
 
 		if (location.equals(DOWNSIDE) && location.equals(bridge.get(index))) {
 			upsideBridge += BLANK;
@@ -50,7 +54,7 @@ public class BridgeGame {
 		}
 	}
 
-	private void setUpsideBridge(String location, List<String> bridge, int index) {
+	private void setUpsideBridge(String location, int index) {
 		if (location.equals(UPSIDE) && location.equals(bridge.get(index))) {
 			upsideBridge += RIGHT;
 			downsideBridge += BLANK;
@@ -61,13 +65,13 @@ public class BridgeGame {
 		}
 	}
 
-	public boolean retry() {
-		String command = InputView.readGameCommand();
-		return command.equals(RETRY_GAME);
-	}
-
-	public void resetBridge() {
+	public void retry() {
 		this.upsideBridge = "";
 		this.downsideBridge = "";
+		this.tryCount++;
+	}
+
+	public int getTryCount() {
+		return tryCount;
 	}
 }
