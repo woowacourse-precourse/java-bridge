@@ -11,18 +11,15 @@ public class Rungame {
     private static InputView input = new InputView();
     private GameDTO game;
     public Rungame() {
-        rungame();
     }
 
-    private void rungame() {
-        makebrige();
-    }
-    private void makebrige() {
-        BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    public void rungame() {
         int length = input.readBridgeSize();
-
+        game = new GameDTO(getBridge(length));
+    }
+    private List<String> getBridge(int length) {
+        BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = maker.makeBridge(length);
-        this.game = new GameDTO(bridge);
-        System.out.println(bridge);
+        return bridge;
     }
 }
