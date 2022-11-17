@@ -78,4 +78,16 @@ class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] U, D 둘 중 하나만 입력해주세요.");
     }
+
+    @Test
+    void readGameCommand() {
+        InputView inputView = new InputView();
+
+        ByteArrayInputStream in = new ByteArrayInputStream("R".getBytes());
+        System.setIn(in);
+
+        String retryStatus = inputView.readGameCommand();
+
+        assertThat(retryStatus).isEqualTo("R");
+    }
 }
