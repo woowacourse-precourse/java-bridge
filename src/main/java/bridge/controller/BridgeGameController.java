@@ -1,8 +1,9 @@
 package bridge.controller;
 
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.BridgeGame;
 import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
 import bridge.BridgeUpDownNumber;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -17,9 +18,10 @@ public class BridgeGameController {
 
     private int bridgeSize;
     List<String> bridge;
+    private static BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    private BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     private BridgeGame bridgeGame = new BridgeGame();
-    private BridgeMaker bridgeMaker;
-    private BridgeUpDownNumber bridgeUpDownNumber;
+    private BridgeUpDownNumber bridgeUpDownNumber = new BridgeUpDownNumber();
 
     public static BridgeGameController create(){
         return new BridgeGameController();
