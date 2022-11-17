@@ -1,6 +1,7 @@
 package bridge.view;
 
 import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  *
@@ -14,21 +15,28 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
     private static final String INPUT_MESSAGE_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
+    private static final String ERROR_MESSAGE_NOT_INT = "[ERROR] 숫자를 입력해주세요.";
 
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
     public int readBridgeSize() {
         printInputMessageBridgeSize();
+        int bridgeSize = inputBridgeSize();
+        return bridgeSize;
+    }
 
-        String bridgeSize = Console.readLine();
-        try {
-
+    private int inputBridgeSize() {
+        int bridgeSize;
+        while (true) {
+            String size = Console.readLine();
+            try {
+                bridgeSize = Integer.valueOf(size);
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println(ERROR_MESSAGE_NOT_INT);
+                continue;
+            }
         }
-
-
-        return 0;
+        return bridgeSize;
     }
 
     private void printInputMessageBridgeSize() {
