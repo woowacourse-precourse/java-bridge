@@ -2,9 +2,6 @@ package view;
 
 import java.util.List;
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
 public class OutputView {
     private static final OutputView outputView = new OutputView();
 
@@ -49,11 +46,6 @@ public class OutputView {
         System.out.println(View.FINAL_RESULT.message());
     }
 
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public void printMap(List<String> upSide, List<String> downSide) {
         System.out.print("[ ");
         for (int i = 0; i < upSide.size(); i++) {
@@ -76,32 +68,35 @@ public class OutputView {
         insertLineBreak();
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public void printResult(List<String> upSide, List<String> downSide, int countTryNumber) {
         printFinalResult();
         printMap(upSide, downSide);
 
         if (upSide.contains("X") || downSide.contains("X")) {
-            System.out.print(View.WIN_FAIL_STATUS.message());
-            System.out.println("실패");
-
-            System.out.print(View.TOTAL_TRY_NUMBER.message());
-            System.out.println(countTryNumber);
+            printFail(countTryNumber);
         }
 
         if (!upSide.contains("X") && !downSide.contains("X")) {
-            System.out.print(View.WIN_FAIL_STATUS.message());
-            System.out.print(View.BLANK.message());
-            System.out.println("성공");
-
-            System.out.print(View.TOTAL_TRY_NUMBER.message());
-            System.out.print(View.BLANK.message());
-            System.out.println(countTryNumber);
+            printWin(countTryNumber);
         }
+    }
+
+    public void printFail(int countTryNumber) {
+        System.out.print(View.WIN_FAIL_STATUS.message());
+        System.out.println("실패");
+
+        System.out.print(View.TOTAL_TRY_NUMBER.message());
+        System.out.println(countTryNumber);
+    }
+
+    public void printWin(int countTryNumber) {
+        System.out.print(View.WIN_FAIL_STATUS.message());
+        System.out.print(View.BLANK.message());
+        System.out.println("성공");
+
+        System.out.print(View.TOTAL_TRY_NUMBER.message());
+        System.out.print(View.BLANK.message());
+        System.out.println(countTryNumber);
     }
 
     public void insertLineBreak() {
