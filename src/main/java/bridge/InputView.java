@@ -14,8 +14,9 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public int readBridgeSize() throws IllegalArgumentException {
         String size = input();
+        validateIsNotEmpty(size);
         return 0;
     }
 
@@ -31,5 +32,11 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    public void validateIsNotEmpty(String size) {
+        if(size.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
+        }
     }
 }
