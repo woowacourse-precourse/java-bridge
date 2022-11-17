@@ -29,7 +29,7 @@ public class BridgeGame {
     public int move(String key) {
         String upOrDown = bridge.get(++position);
         count++;
-        if (key.equals(InputKey.U.getValue())) {
+        if (InputKey.isUp(key)) {
             return result.handleUpBridge(upOrDown, position);
         }
         return result.handleDownBridge(upOrDown, position);
@@ -55,7 +55,10 @@ public class BridgeGame {
     }
 
     public String printGameResult() {
-        return result.toString();
+        StringBuilder buffer = new StringBuilder("최종 게임 결과\n");
+        buffer.append(this + "\n");
+        buffer.append(result);
+        return buffer.toString();
     }
 
     @Override
