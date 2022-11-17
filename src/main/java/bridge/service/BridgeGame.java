@@ -1,14 +1,21 @@
 package bridge.service;
 
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
 import bridge.service.dto.BridgeSizeDto;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private BridgeMaker bridgeMaker;
+
+    public BridgeGame(BridgeMaker bridgeMaker) {
+        this.bridgeMaker = bridgeMaker;
+    }
 
     public void create(BridgeSizeDto dto) {
-
+        bridgeMaker.makeBridge(dto.getBridgeSize());
     }
 
     /**

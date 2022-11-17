@@ -12,6 +12,14 @@ public class Application {
     }
 
     private static BridgeGame bridgeGame() {
-        return new BridgeGame();
+        return new BridgeGame(bridgeMaker());
+    }
+
+    private static BridgeMaker bridgeMaker() {
+        return new BridgeMaker(bridgeNumberGenerator());
+    }
+
+    private static BridgeNumberGenerator bridgeNumberGenerator() {
+        return new BridgeRandomNumberGenerator();
     }
 }
