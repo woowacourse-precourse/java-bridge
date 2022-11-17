@@ -65,4 +65,7 @@
     - [x]  makeBridge -> 다리의 길이를 입력받아 U와 D로 표현된 다리를 반환
 - [ ]  BridgeGameStatus 게임 진행 여부 Enum
 - [x]  GamePlayCount 시도 횟수를 표현하는 클래스
-- [ ]  BridgeGameResult 게임 결과를 표현하는 클래스
+- [x]  BridgeGameResult 게임 결과를 표현하는 클래스
+    - [x]  addResult -> 라운드와 게임 결과를 입력받아 추가
+    - [x]  getResult -> 1라운드 부터의 게임 결과를 반환
+    - [x]  retry -> 게임 결과를 초기화
