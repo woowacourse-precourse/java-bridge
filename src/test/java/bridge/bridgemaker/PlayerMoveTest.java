@@ -2,6 +2,7 @@ package bridge.bridgemaker;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.player.PlayerMove;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

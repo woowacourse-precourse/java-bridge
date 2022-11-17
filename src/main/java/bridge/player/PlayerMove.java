@@ -1,4 +1,4 @@
-package bridge.bridgemaker;
+package bridge.player;
 
 import java.util.Arrays;
 
