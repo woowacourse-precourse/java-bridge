@@ -19,7 +19,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        return Console.readLine();
     }
 
     /**
@@ -33,7 +33,7 @@ public class InputView {
         try {
             return Integer.parseInt(str);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자를 입력해야합니다.");
+            throw new IllegalArgumentException("숫자를 입력해야 합니다");
         }
     }
 }
