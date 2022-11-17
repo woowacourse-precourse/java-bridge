@@ -35,9 +35,13 @@ public class BridgeGame {
         this.bridge = bridge;
     }
 
+    public String showRightDestinationInArea(int area){
+        return bridge.get(area);
+    }
+
     public boolean isAbleToMove() {
-        int nextArea = character.showCurrentLocation() + MOVE;
-        String nextMove = character.showNextMove();
-        return bridge.get(nextArea).equals(nextMove);
+        int nextArea = character.showNextArea();
+        String nextMove = character.showNextDestination();
+        return showRightDestinationInArea(nextArea).equals(nextMove);
     }
 }
