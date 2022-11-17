@@ -3,10 +3,10 @@ package bridge.model;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ResultManager {
-    private Map<String, MovementResult> movementResult;
+public class MovementResultManager {
+    private final Map<String, MovementResult> movementResult;
 
-    public ResultManager() {
+    public MovementResultManager() {
         movementResult = new HashMap<>();
         movementResult.put("U", new MovementResult());
         movementResult.put("D", new MovementResult());
@@ -15,6 +15,12 @@ public class ResultManager {
     public void setResult(String moveSpace, boolean canMove) {
         movementResult.get(moveSpace).setResults(canMove);
         movementResult.get(reverse(moveSpace)).addBlank();
+    }
+
+    public void reset() {
+        for (MovementResult value : movementResult.values()) {
+            value.reset();
+        }
     }
 
     @Override

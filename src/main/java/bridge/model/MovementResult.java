@@ -11,12 +11,17 @@ public class MovementResult {
         results = new ArrayList<>();
     }
 
-    public void setResults(boolean canGo) {
-        results.add(processIndex, convertToString(canGo));
+    public void setResults(boolean canMove) {
+        results.add(processIndex, convertToString(canMove));
     }
 
     public void addBlank() {
         results.add(processIndex++, " ");
+    }
+
+    public void reset() {
+        processIndex = 0;
+        this.results.clear();
     }
 
     @Override
