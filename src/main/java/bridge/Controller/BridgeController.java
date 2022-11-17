@@ -1,7 +1,11 @@
 package bridge.Controller;
 
+import static bridge.Utils.Constants.FALSE;
+import static bridge.Utils.Constants.RIGHT;
+
 import bridge.BridgeRandomNumberGenerator;
 import bridge.Domain.BridgeMaker;
+import bridge.Domain.BridgeMap;
 import bridge.View.InputView;
 import bridge.View.OutputView;
 import java.util.List;
@@ -11,11 +15,13 @@ public class BridgeController {
     OutputView output;
     InputView input;
     BridgeMaker bridgeMaker;
+    BridgeMap result;
 
     public BridgeController() {
         output = new OutputView();
         input = new InputView();
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        result = new BridgeMap();
     }
 
     public List<String> startAndGetAnswerBridge() {
@@ -42,5 +48,18 @@ public class BridgeController {
             output.printError(e.getMessage());
             return getMoving();
         }
+    }
+
+    public void getMatchingResult(List<String> answer, List<String> user) {
+        int index = user.size() - 1;
+        String answerAlphabet = answer.get(index);
+        String userAlphabet = user.get(index);
+        if (answerAlphabet.equals(userAlphabet)) {
+            result.add(userAlphabet, RIGHT);
+        }
+        if (!answerAlphabet.equals(userAlphabet)) {
+            result.add(userAlphabet, FALSE);
+        }
+        output.printMap(result.toString());
     }
 }
