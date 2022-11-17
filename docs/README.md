@@ -1,6 +1,6 @@
 ### - 메세지 다이어그램 고안 
-<p style="text-align: right">
-    <img src="image/bridge_message_1.png" style="width: 60%; height: 60%">
+<p style="text-align: center">
+    <img src="image/bridge_message_2.png" style="width: 60%; height: 60%">
 </p>
 
 ---
@@ -27,6 +27,7 @@
 > [기능] 총 시도한 횟수를 반환하는 기능 <br>
 > [기능] 정답 브리지를 생성하는 기능 <br>
 > [기능] 브리지를 생성하는 기능 <br>
+> [기능] 유저 브리지를 생성하는 기능 <br>
 > [기능] 랜덤 값을 만들어내는 기능 <br>
 > [기능] 정답 브리지와 유저 값을 비교하는 기능 <br>
 > [기능] 게임을 재시작하는 기능 <br> 
