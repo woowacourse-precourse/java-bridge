@@ -1,9 +1,9 @@
 package bridge.domain;
 
 public class Bridge {
-    private final int length;
+    private final int size;
 
-    public Bridge(int length) {
-        this.length = length;
+    public Bridge(int size) {
+        this.size = size;
     }
 }

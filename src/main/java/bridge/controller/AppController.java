@@ -6,18 +6,23 @@ import bridge.view.Message;
 import bridge.view.OutputView;
 
 public class AppController {
-    private Bridge bridge;
+    BridgeGame game;
 
     public void makeBridge() {
         OutputView.printLine(Message.INTRO);
         OutputView.printLine("");
         OutputView.printLine(Message.INQUIRE_BRIDGE_LENGTH);
         int size = InputView.readBridgeSize();
-        BridgeController.setBridgeInstance(bridge, size);
+        game = new BridgeGame(size);
         OutputView.printLine("");
     }
 
     public void acrossBridge() {
+        OutputView.printLine(Message.INQUIRE_MOVE_BLOCK);
+
+    }
+
+    public void oneTry() {
 
     }
 
