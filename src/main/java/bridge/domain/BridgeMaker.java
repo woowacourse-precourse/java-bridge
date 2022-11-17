@@ -29,6 +29,12 @@ public class BridgeMaker {
     return bridge;
   }
 
+  /**
+   * 랜덤으로 뽑힌 수 randN을 커맨드 문자로 변경하는 메서드
+   *
+   * @param randN 입력받은 랜덤 값(0 또는 1)
+   * @return 입력받은 값에 따라 반환되는 커맨드 문자열(U 또는 D)
+   */
   public String convertItoS(int randN) {
     if (randN == 1) {
       return "U";

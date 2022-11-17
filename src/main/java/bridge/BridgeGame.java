@@ -18,6 +18,11 @@ public class BridgeGame {
   final int UP = 0;
   final int DOWN = 1;
 
+  /**
+   * 필드 멤버 변수를 초기화하는 생성자
+   * @param size
+   * @param bridge
+   */
   public BridgeGame(int size, List<String> bridge) {
     this.size = size;
     this.bridge = bridge;
@@ -32,6 +37,17 @@ public class BridgeGame {
     tryCount = 1;
   }
 
+  public List<List<String>> getCurrentBridge() {
+    return currentBridge;
+  }
+
+  public GameState getSuccess() {
+    return success;
+  }
+
+  public int getTryCount() {
+    return tryCount;
+  }
   /**
    * 사용자가 칸을 이동할 때 사용하는 메서드
    * <p>
@@ -48,22 +64,12 @@ public class BridgeGame {
     return false;
   }
 
-  public List<List<String>> getCurrentBridge() {
-    return currentBridge;
-  }
 
-  public int getSize() {
-    return size;
-  }
-
-  public GameState getSuccess() {
-    return success;
-  }
-
-  public int getTryCount() {
-    return tryCount;
-  }
-
+  /**
+   * cmd 문자열을 상수 0, 1 값으로 변환하는 메서드
+   * @param cmd
+   * @return
+   */
   private int getIndex(String cmd) {
     if (cmd.equals("U")) {
       return UP;
