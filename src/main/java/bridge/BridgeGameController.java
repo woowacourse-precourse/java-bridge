@@ -26,9 +26,15 @@ public class BridgeGameController {
     public void setGame() {
         outputView.printStart();
         List<String> bridge = getBridge();
-        String moving = getMoving();
-        int index = movingData.size();
-        updateMovingData(bridge, moving, index);
+        while (true) {
+            String moving = getMoving();
+            int index = movingData.size() - 1;
+            updateMovingData(bridge, index, moving);
+            outputView.printMap(upBridgeResult, downBridgeResult);
+            if (winBridgeGame(bridge, index, moving)) {
+                break;
+            }
+        }
     }
 
     private List<String> getBridge() {
@@ -52,10 +58,11 @@ public class BridgeGameController {
             System.out.println(ie.getMessage());
             getMoving();
         }
+        movingData.add(moving);
         return moving;
     }
 
-    private void updateMovingData(List<String> bridge, String input, int index) {
+    private void updateMovingData(List<String> bridge, int index, String input) {
         try {
             upBridgeResult.add(bridgeGame.getUpBridgeResult(bridge, index, input));
             downBridgeResult.add(bridgeGame.getDownBridgeResult(bridge, index, input));
@@ -65,5 +72,12 @@ public class BridgeGameController {
         }
     }
 
+    private boolean winBridgeGame(List<String> bridge, int index, String input) {
+        if (bridgeGame.isMovingCorrect(bridge, index, input) && bridge.size() == movingData.size()) {
+            outputView.printLastMap(upBridgeResult, downBridgeResult);
+            outputView.printResult(WIN_GAME, trials);
+        }
+        return false;
+    }
 
 }
