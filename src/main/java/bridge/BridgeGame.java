@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private List<List<String>> gradingBoard;
+    private List<Answer> gradingBoard;
     private final List<String> answerBridge;
 
     public BridgeGame(List<String> answerBridge) {
@@ -22,6 +22,11 @@ public class BridgeGame {
      * @return 현재까지의 점수판(gradingBoard)과 내딪은 위치가 정답인지 여부(isCorrect)를 표현한다.
      */
     public BridgeGameResultDto move(String nextStep) {
+        boolean isCorrect = compareNextStep(nextStep);
+
+        if (nextStep.equals(UpDown.UP.label())) {
+
+        }
 
     }
 
@@ -39,7 +44,7 @@ public class BridgeGame {
      * @return nextStep이 정답이면 true, 정답이 아니면 false
      */
     private boolean compareNextStep(String nextStep) {
-        int nextPosition = gradingBoard.get(0).size();
+        int nextPosition = gradingBoard.size();
         if (answerBridge.get(nextPosition).equals(nextStep)) {
             return true;
         }
