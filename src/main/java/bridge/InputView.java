@@ -17,6 +17,7 @@ public class InputView {
     public int readBridgeSize() throws IllegalArgumentException {
         String size = input();
         validateIsNotEmpty(size);
+        validateIsNumber(size);
         return 0;
     }
 
@@ -37,6 +38,13 @@ public class InputView {
     public void validateIsNotEmpty(String size) {
         if(size.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
+        }
+    }
+
+    public void validateIsNumber(String size) {
+        String regExp = "^[0-9]*$";
+        if(!size.matches(regExp)) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력할 수 있습니다.");
         }
     }
 }
