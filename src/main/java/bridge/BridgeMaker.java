@@ -9,6 +9,8 @@ import java.util.List;
  */
 public class BridgeMaker {
 
+    private static final int DOWN = 0;
+    private static final int UP = 1;
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -21,5 +23,14 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         return new ArrayList<>(size);
+    }
+
+    public void changeNumberToDirection(List<String> bridges) {
+        if(bridgeNumberGenerator.generate() == DOWN) {
+            bridges.add("D");
+        }
+        if(bridgeNumberGenerator.generate() == UP) {
+            bridges.add("U");
+        }
     }
 }
