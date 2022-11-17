@@ -12,6 +12,13 @@ package bridge;
  */
 public class OutputView {
 
+    private final String STARTING_PHRASE = "다리 건너기 게임을 시작합니다.";
+
+    public void printStartingPhrase(){
+        System.out.println(STARTING_PHRASE);
+        System.out.println();
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
