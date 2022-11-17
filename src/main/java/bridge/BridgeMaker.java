@@ -36,7 +36,4 @@ public class BridgeMaker {
         return bridge;
     }
 
-    public List<String> passBridge () {
-        return null;
-    }
 }

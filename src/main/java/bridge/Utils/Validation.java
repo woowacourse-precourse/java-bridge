@@ -1,6 +1,6 @@
 package bridge.Utils;
 
-import static bridge.Message.ErrorMessage.*;
+import static bridge.Enums.ErrorMessage.*;
 
 /**
  * 사용자의 입력을 확인하고 에러를 발생시킨다.
