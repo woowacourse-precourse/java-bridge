@@ -3,6 +3,7 @@ package bridge;
 import static bridge.config.ExceptionMessage.ERROR;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import bridge.option.GameOption;
 import bridge.option.Option;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,7 +15,7 @@ public class OptionTest {
     @ValueSource(strings = {"a", "Aa", "aA", "1A", ""})
     @ParameterizedTest
     void inputNotUppercase(String input) {
-        assertThatThrownBy(()-> Option.validate(input))
+        assertThatThrownBy(() -> Option.validate(input))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(ERROR);
     }
@@ -23,7 +24,16 @@ public class OptionTest {
     @ValueSource(strings = {"UU", "", "UDUUD"})
     @ParameterizedTest
     void inputWrongRange(String input) {
-        assertThatThrownBy(()-> Option.validate(input))
+        assertThatThrownBy(() -> Option.validate(input))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(ERROR);
+    }
+
+    @DisplayName("게임 옵션을 Q나 R를 입력하지 않으면 예외가 발생")
+    @ValueSource(strings = {"A", "B"})
+    @ParameterizedTest
+    void inputNotGameOption(String input) {
+        assertThatThrownBy(() -> new GameOption(input))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(ERROR);
     }
