@@ -2,6 +2,10 @@ package bridge.model;
 
 import org.junit.jupiter.api.Test;
 
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
+
 public class BridgeMakerTest {
 	@Test
 	void 다리_만들기_테스트() {
