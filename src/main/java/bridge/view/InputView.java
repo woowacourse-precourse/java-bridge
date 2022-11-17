@@ -4,6 +4,9 @@ import bridge.config.InputConfig;
 import bridge.domain.Command;
 import camp.nextstep.edu.missionutils.Console;
 
+import javax.swing.text.html.Option;
+import java.util.Optional;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -22,31 +25,47 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public Optional<Integer> readBridgeSize() {
         System.out.println(BRIDGE_LENGTH_INPUT_MESSAGE);
-        String input = Console.readLine();
-        inputConfig.checkBridgeLength(input);
-        return Integer.parseInt(input);
+        try {
+            String input = Console.readLine();
+            inputConfig.checkBridgeLength(input);
+            int size = Integer.parseInt(input);
+            return Optional.of(size);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return Optional.empty();
+        }
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public Optional<String> readMoving() {
         printMovingUpOrDown();
-        String input = Console.readLine();
-        inputConfig.checkMovingInput(input);
-        return input;
+        try {
+            String input = Console.readLine();
+            inputConfig.checkMovingInput(input);
+            return Optional.of(input);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return Optional.empty();
+        }
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public Optional<String> readGameCommand() {
         printRetryOrQuit();
-        String input = Console.readLine();
-        inputConfig.checkAskReGameInput(input);
-        return input;
+        try {
+            String input = Console.readLine();
+            inputConfig.checkAskReGameInput(input);
+            return Optional.of(input);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return Optional.empty();
+        }
     }
 
     private void printRetryOrQuit() {
