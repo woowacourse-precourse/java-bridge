@@ -83,5 +83,22 @@ public class BridgeGameTest {
 			assertThat(movingResults).containsExactly(MOVING_SUCCESS, MOVING_SUCCESS, MOVING_SUCCESS, MOVING_SUCCESS,
 					MOVING_SUCCESS, MOVING_SUCCESS);
 		}
+
+		@Test
+		@DisplayName("이미 다리를 다 건넜을 경우 테스트")
+		void moveFinish() {
+			// given
+			final List<String> bridge = newArrayList("U", "D", "U", "U");
+
+			BridgeGame bridgeGame = new BridgeGame(bridge);
+			List<String> movings = newArrayList("U", "D", "U", "U");
+
+			for (String moving : movings) {
+				assertThat(bridgeGame.move(moving)).isEqualTo(MOVING_SUCCESS);
+			}
+
+			// when: 이미 다 건넜는데 또 건너는 경우
+			assertThat(bridgeGame.move("U")).isEqualTo(MOVING_FAIL_ALREADY_END);
+		}
 	}
 }
