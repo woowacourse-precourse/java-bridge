@@ -12,13 +12,13 @@ public class BridgeGenerator {
         validateSize(bridgeSize);
     }
 
-    public void generate(int bridgeSize) {
+    public List<Integer> generate(int bridgeSize) {
         List<Integer> bridge = new ArrayList<>();
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         for (int i = 0; i < bridgeSize; i++) {
             bridge.add(bridgeRandomNumberGenerator.generate());
         }
-        return new Bridge(bridge);
+        return bridge;
     }
 
     private void validateSize(int bridgeSize) {
