@@ -43,7 +43,7 @@ public class InputView {
 		while (true) {
 			OutputView.printRetryMessage();
 			try {
-				return Console.readLine();
+				return InputExceptionHandler.checkRetryCommand(Console.readLine());
 			} catch (IllegalArgumentException errorMessage) {
 				System.out.println(errorMessage.getMessage());
 			}

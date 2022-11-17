@@ -14,7 +14,7 @@ public class InputExceptionHandler {
 		try {
 			return Integer.parseInt(input);
 		} catch (IllegalArgumentException ErrorMessage) {
-			throw new IllegalArgumentException(NOT_NUMERINC_ERROR.getMessage());
+			throw new IllegalArgumentException(NOT_NUMERIC_ERROR.getMessage());
 		}
 	}
 
@@ -32,5 +32,15 @@ public class InputExceptionHandler {
 			return input;
 		}
 		throw new IllegalArgumentException(NOT_MOVING_COMMAND.getMessage());
+	}
+
+	public static String checkRetryCommand(String input) {
+		if (input.equals("R")) {
+			return input;
+		}
+		if (input.equals("Q")) {
+			return input;
+		}
+		throw new IllegalArgumentException(NOT_RETRY_COMMAND.getMessage());
 	}
 }
