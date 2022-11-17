@@ -1,9 +1,8 @@
-package bridge.view.input;
+package bridge.view;
 
 import bridge.domain.vo.BridgeSize;
 import bridge.domain.vo.GameCommand;
 import bridge.domain.vo.Moving;
-import bridge.view.output.OutputView;
 import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.domain.vo.BridgeSize.createBridgeSize;
@@ -15,11 +14,9 @@ import static bridge.domain.vo.Moving.createMoving;
  */
 public class InputView {
     private final OutputView outputView;
-    private final InputValidator inputValidator;
 
     public InputView() {
         this.outputView = new OutputView();
-        this.inputValidator = new InputValidator();
     }
 
     /**
