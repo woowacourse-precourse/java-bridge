@@ -7,15 +7,11 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final InputView inputView;
-    private final OutputView outputView;
     private final List<String> bridge;
     private List<Choice> inputs;
     private int index;
 
     public BridgeGame(int size){
-        inputView = new InputView();
-        outputView = new OutputView();
         bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
         init();
     }
@@ -25,7 +21,7 @@ public class BridgeGame {
      */
     public void init(){
         index = 0;
-        inputs = new ArrayList<Choice>();
+        inputs = new ArrayList<>();
     }
 
     /**
@@ -33,14 +29,9 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move() {
-        String userInput = inputView.readMoving();
+    public boolean move(String userInput) {
         boolean result = checkBridge(userInput);
-
         addResult(userInput, result);
-
-        outputView.printMap(inputs);
-
         return result;
     }
 
@@ -49,8 +40,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry() {
-        String userInput = inputView.readGameCommand();
+    public boolean retry(String userInput) {
         boolean result = checkRestart(userInput);
 
         init();
@@ -62,26 +52,26 @@ public class BridgeGame {
         String isRight = "X";
         if (result) isRight = "O";
 
-        Choice choice = new Choice(userInput, isRight);
-        inputs.add(choice);
+        inputs.add(new Choice(userInput, isRight));
     }
 
     private boolean checkBridge(String userInput){
-        if (bridge.get(index++) == userInput){
+        if (bridge.get(index).equals(userInput)){
+            index++;
             return true;
         }
         return false;
     }
 
     private boolean checkRestart(String userInput){
-        if (userInput == "Q"){
+        if (userInput.equals("Q")){
             return false;
         }
         return true;
     }
 
     public boolean isFinish(){
-        if (index == inputs.size()){
+        if (index == bridge.size()){
             return true;
         }
         return false;
