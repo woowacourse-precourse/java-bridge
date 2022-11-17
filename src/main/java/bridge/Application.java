@@ -20,7 +20,10 @@ public class Application {
             String moveCommand = inputView.readMoving();
             bridgeGame.move(moveCommand);
 
-            inputView.readGameCommand();
+            // 재시작 / 종료 명령을 입력받는 기능
+            String gameCommand = inputView.readGameCommand();
+            bridgeGame.retry(gameCommand);
+
             outputView.printGameStart();
         } catch (Exception e) {
             System.out.println(e.getMessage());
