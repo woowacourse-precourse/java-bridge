@@ -18,10 +18,11 @@ public class Validator {
         }
         return Integer.parseInt(input);
     }
-    public void isValidLength(int length) {
+    public int isValidLength(int length) {
         if (length < 3 || length > 20) {
             throw new IllegalArgumentException(ERROR_NOT_VALID_LENGTH);
         }
+        return length;
     }
     public void isValidMove(String move) {
         List<String> validMoves = new ArrayList<String>(Arrays.asList("U", "D"));
