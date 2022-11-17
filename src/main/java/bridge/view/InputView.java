@@ -1,8 +1,6 @@
 package bridge.view;
 
-import bridge.validator.BridgeSize;
-import bridge.validator.ExitOption;
-import bridge.validator.Location;
+import bridge.Error;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -15,7 +13,11 @@ public class InputView {
 	 */
 	public int readBridgeSize() {
 		System.out.println("다리의 길이를 입력해주세요.");
-		return new BridgeSize(Console.readLine()).getSize();
+		try {
+			return Integer.parseInt(Console.readLine());
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException(Error.FORMAT.getMessage());
+		}
 	}
 
 	/**
@@ -23,15 +25,15 @@ public class InputView {
 	 */
 	public String readMoving() {
 		System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-		return Location.of(Console.readLine()).getCommand();
+		return Console.readLine();
 	}
 
 	/**
 	 * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
 	 */
-	public Boolean readGameCommand() {
+	public String readGameCommand() {
 		System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-		return ExitOption.of(Console.readLine()).isReplay();
+		return Console.readLine();
 	}
 
 }
