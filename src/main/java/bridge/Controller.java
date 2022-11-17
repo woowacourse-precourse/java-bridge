@@ -4,10 +4,12 @@ import java.util.List;
 
 public class Controller {
     private final BridgeGame bridgeGame;
+    private final OutputView outputView;
 
     Controller() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridgeGame = new BridgeGame(bridgeMaker.makeBridge(getBridgeSize()));
+        outputView = new OutputView();
     }
 
     private int getBridgeSize() {
@@ -34,24 +36,24 @@ public class Controller {
 
     // true if valid move or retry, false if terminate
     private boolean stepGame() {
-        OutputView outputView = new OutputView();
         String move = getString(InputView.MOV);
         if (bridgeGame.move(move)) {
             outputView.printMap(move, true);
             return true;
         }
         outputView.printMap(move, false);
-        return bridgeGame.retry(getString(InputView.CMD));
+        if (bridgeGame.retry(getString(InputView.CMD))) {
+            outputView.retry();
+            return true;
+        }
+        return false;
     }
 
     public void startGame() {
-        OutputView outputView = new OutputView();
-        while (true) {
-            if (bridgeGame.ifEnd())
+        while (true)
+            if (bridgeGame.ifEnd() || !stepGame())
                 break;
-            if (!stepGame())
-                break;
-        }
+        
         outputView.printResult();
     }
 
