@@ -12,7 +12,6 @@ public class BridgeGameController {
     }
 
 
-
     void start() {
         outputView.printStart();
         int bridgeSize = inputView.readBridgeSize();
@@ -24,26 +23,39 @@ public class BridgeGameController {
         String moving = inputView.readMoving();
         boolean success = bridgeGame.move(moving);
         if (!success) {
+            outputView.printMap(bridgeGame.printWrongResult());
             retry();
             return;
         }
         if (!bridgeGame.isCompleted()) {
+            outputView.printMap(bridgeGame.printRightResult());
             play();
+            return;
         }
-        print();
+        printSuccessResult();
     }
 
-    private void print() {
-        outputView.printResult();
+    private void printSuccessResult() {
+        System.out.println("최종 게임 결과");
+        outputView.printMap(bridgeGame.printRightResult());
+        outputView.printResult(OutputView.SUCCESS_MESSAGE, bridgeGame.getRetryCount());
     }
+
 
     private void retry() {
         String answer = inputView.readGameCommand();
         if (isRetry(answer)) {
             bridgeGame.retry();
             play();
+            return;
         }
+        printFailureResult();
     }
+
+    private void printFailureResult() {
+        outputView.printResult(OutputView.FAILURE_MESSAGE, bridgeGame.getRetryCount());
+    }
+
 
     private boolean isRetry(String answer) {
         return answer.equals("R");

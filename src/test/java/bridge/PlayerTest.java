@@ -16,11 +16,13 @@ public class PlayerTest {
 
     @Test
     @DisplayName("이동 완료 여부 확인")
-    void is_move_complete(){
+    void is_move_complete() {
         Player player = new Player();
         player.move("U");
-        player.move("u");
+        player.move("D");
         assertThat(player.isCompleted(1)).isFalse();
         assertThat(player.isCompleted(2)).isTrue();
     }
+
+
 }

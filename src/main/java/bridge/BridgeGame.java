@@ -7,10 +7,12 @@ public class BridgeGame {
 
     private final Bridges bridges;
     private Player player;
+    private int retryCount;
 
     public BridgeGame(int size, BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridges = new Bridges(size, bridgeNumberGenerator);
         player = new Player();
+        retryCount = 1;
     }
 
     /**
@@ -30,6 +32,11 @@ public class BridgeGame {
      */
     public void retry() {
         player = new Player();
+        retryCount++;
+    }
+
+    public int getRetryCount() {
+        return retryCount;
     }
 
     public boolean isCompleted() {
@@ -38,5 +45,13 @@ public class BridgeGame {
 
     public boolean isStartStatus() {
         return player.isStartStatus();
+    }
+
+    public String printWrongResult() {
+        return player.printWrongResult();
+    }
+
+    public String printRightResult() {
+        return player.printRightResult();
     }
 }
