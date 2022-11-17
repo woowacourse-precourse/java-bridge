@@ -17,4 +17,12 @@ public enum ValidationType {
     ValidationType(List<String> validationRange) {
         this.validationRange = validationRange;
     }
+
+    private List<String> getValidationRange() {
+        return validationRange;
+    }
+
+    public boolean validate(ValidationType validationType, String input) {
+        return validationType.getValidationRange().contains(input);
+    }
 }
