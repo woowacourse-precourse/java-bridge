@@ -9,6 +9,7 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+	private int tries = 0;
 
 	/**
 	 * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -26,11 +27,11 @@ public class OutputView {
 	}
 
 	public static String toString(List<String> list) {
-		String line = "";
-		for (int i = 0; i < list.size(); i++){
-			line += list.get(i);
+		StringBuffer line = new StringBuffer();
+		for (int i = 0; i < list.size(); i++) {
+			line.append(list.get(i));
 		}
-		return line;
+		return line.toString();
 	}
 
 	/**
@@ -40,5 +41,9 @@ public class OutputView {
 	 */
 	public static void printResult() {
 		System.out.println(RESULT);
+	}
+
+	public void resetTries() {
+		this.tries = 0;
 	}
 }
