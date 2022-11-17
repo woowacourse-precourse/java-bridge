@@ -21,7 +21,10 @@ public class OutputView {
     public void printResult() {
     }
 
-    public void printInitMessage() {
-        
+    public void printGameStart() {
+        System.out.println(GameMessage.START_MESSAGE + "\n");
+    }
+    public void printBridgeSizeInput() {
+        System.out.println(GameMessage.BRIDGE_SIZE_INPUT_MESSAGE);
     }
 }
