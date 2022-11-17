@@ -9,24 +9,26 @@ import java.util.Objects;
 public class BridgeGame {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
+    static int tryCount = 1;
+    static String input;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(int currentIndex, List<String> bridgeList, int tryCount, String input) {
+    public void move(int currentIndex, List<String> bridgeList) {
         if (currentIndex == bridgeList.size()) {
             outputView.printResult(currentIndex - 1, bridgeList, input, tryCount, true);
             return;
         }
-        String moving = inputView.readMoving();
-        outputView.printMap(currentIndex, bridgeList, moving);
-        if (!Objects.equals(bridgeList.get(currentIndex), moving)) {
-            retry(bridgeList, currentIndex, tryCount, false, moving);
+        input = inputView.readMoving();
+        outputView.printMap(currentIndex, bridgeList, input);
+        if (!Objects.equals(bridgeList.get(currentIndex), input)) {
+            retry(bridgeList, currentIndex, false);
             return;
         }
-        move(currentIndex + 1, bridgeList, tryCount, moving);
+        move(currentIndex + 1, bridgeList);
     }
 
     /**
@@ -34,9 +36,13 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(List<String> bridgeList, int currentIndex, int tryCount, boolean winning, String input) {
+    public void retry(List<String> bridgeList, int currentIndex, boolean winning) {
         String regame = inputView.readGameCommand();
-        if (Objects.equals(regame, "R")) move(0, bridgeList, tryCount + 1, "");
-        if (Objects.equals(regame, "Q")) outputView.printResult(currentIndex, bridgeList, input, tryCount, winning);
+        if (Objects.equals(regame, "R")) {
+            tryCount++;
+            move(0, bridgeList);
+        }else if (Objects.equals(regame, "Q")) {
+            outputView.printResult(currentIndex, bridgeList, input, tryCount, winning);
+        }
     }
 }
