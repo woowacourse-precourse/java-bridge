@@ -15,6 +15,8 @@ import bridge.domain.constants.GameCommands;
  */
 public class BridgeGame {
 
+    private static final String GAME_FAIL = "실패";
+
     private final Bridge bridge;
     private final Player player;
     private final MoveResults moveResults;
@@ -33,32 +35,32 @@ public class BridgeGame {
         return MOVE_FAIL;
     }
 
-    public MoveResults moveResults(String moveCommand, String resultSign) {
-        moveResults.addResults(moveCommand, resultSign);
+    public MoveResults moveResults(String moveCommand, String moveResult) {
+        moveResults.addResults(moveCommand, moveResult);
         return moveResults;
     }
 
     public boolean moveCountNotMoreThan(int bridgeSize) {
-        return player.inTheGame(bridgeSize);
+        return player.positionNotMoreThan(bridgeSize);
     }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String resultSign) {
-        if (resultSign.equals(MOVE_SUCCESS)) {
+    public void move(String moveResult) {
+        if (moveResult.equals(MOVE_SUCCESS)) {
             player.move();
         }
     }
 
-    public String retryOrQuit(GameCommands gameCommand, String result) {
+    public String retryOrQuit(GameCommands gameCommand, String gameResult) {
         if (gameCommand.is(RETRY)) {
             retry();
-            return result;
+            return gameResult;
         }
 
-        return "실패";
+        return GAME_FAIL;
     }
 
     /**
@@ -76,7 +78,7 @@ public class BridgeGame {
         return moveResults;
     }
 
-    public Player player() {
-        return player;
+    public int totalNumberOfChallenges() {
+        return player.totalNumberOfChallenges();
     }
 }

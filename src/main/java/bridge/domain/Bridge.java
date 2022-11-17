@@ -10,7 +10,7 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public boolean isMatched(Player player, String movement) {
-        return bridge.get(player.position()).equals(movement);
+    public boolean isMatched(Player player, String moveCommand) {
+        return bridge.get(player.position()).equals(moveCommand);
     }
 }

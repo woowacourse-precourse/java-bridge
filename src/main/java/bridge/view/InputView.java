@@ -25,9 +25,6 @@ public class InputView {
         }
     }
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
     private int number() {
         System.out.println("다리의 길이를 입력해주세요.");
         String inputValue = readLine();
@@ -39,9 +36,6 @@ public class InputView {
         return intValue;
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public String moveCommands() {
         try {
             return oneStringForMoveCommands();
@@ -59,9 +53,6 @@ public class InputView {
         return inputValue;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public GameCommands gameCommand() {
         try {
             return oneStringForGameCommand();

@@ -13,15 +13,15 @@ public class MoveResults {
     private final List<String> upResults = new ArrayList<>();
     private final List<String> downResults = new ArrayList<>();
 
-    public void addResults(String moveCommand, String resultSign) {
+    public void addResults(String moveCommand, String moveResult) {
         if (moveCommand.equals(MOVE_UP_COMMAND)) {
-            upResults.add(resultSign);
+            upResults.add(moveResult);
             downResults.add(BLANK);
             return;
         }
 
         upResults.add(BLANK);
-        downResults.add(resultSign);
+        downResults.add(moveResult);
     }
 
     public void reset() {

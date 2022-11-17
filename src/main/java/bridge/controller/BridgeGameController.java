@@ -15,6 +15,7 @@ import bridge.view.OutputView;
 
 public class BridgeGameController {
 
+    public static final String GAME_SUCCESS = "성공";
     private final InputView inputView;
     private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
@@ -32,30 +33,31 @@ public class BridgeGameController {
         int bridgeSize = inputView.bridgeSize();
         BridgeGame bridgeGame = bridgeGame(bridgeSize);
 
-        String result = gameResult(bridgeGame, bridgeSize);
-        outputView.printResult(bridgeGame.moveResults(), bridgeGame.player(), result);
+        String gameResult = gameResult(bridgeGame, bridgeSize);
+        outputView.printResult(bridgeGame, gameResult);
     }
 
     private BridgeGame bridgeGame(int bridgeSize) {
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
         Player player = new Player(0, 1);
+
         return new BridgeGame(bridge, player, new MoveResults());
     }
 
     private String gameResult(BridgeGame bridgeGame, int bridgeSize) {
         GameCommands gameCommand = NOTHING;
-        String result = "성공";
+        String gameResult = GAME_SUCCESS;
 
         while (gameCommand.isNot(QUIT) && bridgeGame.moveCountNotMoreThan(bridgeSize)) {
             String moveResult = moveResult(bridgeGame);
 
             if (moveResult.equals(MOVE_FAIL)) {
                 gameCommand = inputView.gameCommand();
-                result = bridgeGame.retryOrQuit(gameCommand, result);
+                gameResult = bridgeGame.retryOrQuit(gameCommand, gameResult);
             }
         }
 
-        return result;
+        return gameResult;
     }
 
     private String moveResult(BridgeGame bridgeGame) {
@@ -68,8 +70,9 @@ public class BridgeGameController {
         return moveResult;
     }
 
-    private void printCurrentPosition(BridgeGame bridgeGame, String moveSign, String resultSign) {
-        MoveResults moveResults = bridgeGame.moveResults(moveSign, resultSign);
+    private void printCurrentPosition(BridgeGame bridgeGame, String moveCommand,
+            String moveResult) {
+        MoveResults moveResults = bridgeGame.moveResults(moveCommand, moveResult);
         outputView.printMap(moveResults);
     }
 }
