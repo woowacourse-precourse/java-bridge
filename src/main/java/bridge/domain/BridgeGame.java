@@ -7,11 +7,11 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private final List<String> bridge;
-
-    public BridgeGame(List<String> bridge) {
-        this.bridge = bridge;
-    }
+//    private final List<String> bridge;
+//
+//    public BridgeGame(List<String> bridge) {
+//        this.bridge = bridge;
+//    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드

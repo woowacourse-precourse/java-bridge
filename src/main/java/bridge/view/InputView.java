@@ -12,11 +12,11 @@ public class InputView {
      */
     private static final String PRINT_ASK_START = "다리 건너기 게임을 시작합니다.";
     private static final String PRINT_ASK_SIZE = "다리의 길이를 입력해주세요.";
-    public static int readBridgeSize() {
+    public static String readBridgeSize() {
         printSentence(PRINT_ASK_START);
         printBlankLine();
         printSentence(PRINT_ASK_SIZE);
-        return getInt(getInput());
+        return getInput();
     }
 
     /**

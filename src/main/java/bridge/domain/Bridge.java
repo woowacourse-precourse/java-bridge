@@ -1,17 +1,21 @@
 package bridge.domain;
 
+import static bridge.utils.Util.getInt;
+
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.utils.validator.BridgeValidator;
 import java.util.List;
 
 public class Bridge {
 
-    private final int size;
+    private final String size;
     private List<String> bridge;
 
-    public Bridge(int size) {
+    public Bridge(String size) {
+        new BridgeValidator(size);
         this.size = size;
-        makeBridgeBySize(size);
+        makeBridgeBySize(getInt(size));
     }
 
     private void makeBridgeBySize(int size){
