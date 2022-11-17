@@ -55,4 +55,13 @@ class InputSelectCharValidatorTest {
                 .isThrownBy(() -> InputSelectCharValidator.validate(input, MOVING_SELECT_CHAR_VALIDATOR_NUMBER))
                 .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
     }
+    
+    @DisplayName("예외 처리 : 한글 입력 시")
+    @ParameterizedTest(name = "{displayName} : input => {0}")
+    @ValueSource(strings = {"ㄱ", "ㅏ", "가"})
+    void koreanException(final String input) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> InputSelectCharValidator.validate(input, MOVING_SELECT_CHAR_VALIDATOR_NUMBER))
+                .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
+    }
 }
