@@ -1,10 +1,11 @@
 # 기능 명세
 
-1. 다리 길이 숫자 입력받고 생성
--[ ] validation
-    -[ ] 3미만 20초과 값이면 `IllegalArgumentException`
-    -[ ] 숫자 아니면 `IllegalArgumentException`
-    -[ ] 무조건 위아래 두칸이다.
+1. 길이 입력받고 다리 생성
+-[ ] 다리 생성
+  -[ ] 3미만 20초과 값이면 `IllegalArgumentException`
+  -[ ] 다리 생성 중 랜덤하게 나온 숫자가 잘못된 경우 `IllegalArgumentException`
+-[ ] 다리 길이 입력
+  -[ ] 숫자 아니면 `IllegalArgumentException`
 
 2. 플레이어 이동
     -[ ] validation
