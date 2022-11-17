@@ -10,8 +10,13 @@ public class UserInputValidator {
     }
 
     public static void validateSpaceToMove(String spaceToMove) {
-        isValidSpaceInputSize(spaceToMove);
+        isValidInputSize(spaceToMove);
         isValidSpaceName(spaceToMove);
+    }
+
+    public static void validateGameCommand(String gameCommand) {
+        isValidInputSize(gameCommand);
+        isValidGameCommand(gameCommand);
     }
 
     private static void isDigit(String bridgeLength) {
@@ -28,15 +33,21 @@ public class UserInputValidator {
         }
     }
 
-    private static void isValidSpaceInputSize(String spaceToMove) {
-        if (spaceToMove.length() != SIZE_OF_SPACE_TO_MOVE) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_NOT_VALID_SPACE_INPUT_SIZE);
+    private static void isValidInputSize(String gameCommand) {
+        if (gameCommand.length() != INPUT_GAME_COMMAND_SIZE) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_INPUT_SIZE);
         }
     }
 
     private static void isValidSpaceName(String spaceToMove) {
         if (!SPACE_NAME.contains(spaceToMove)) {
             throw new IllegalArgumentException(ERROR_MESSAGE_NOT_VALID_SPACE_NAME);
+        }
+    }
+
+    private static void isValidGameCommand(String gameCommand) {
+        if (!gameCommand.equals(RETRY) && !gameCommand.equals(QUIT)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_NOT_VALID_GAME_COMMAND_NAME);
         }
     }
 }

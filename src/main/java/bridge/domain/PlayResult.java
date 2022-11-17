@@ -12,8 +12,9 @@ public class PlayResult {
         playResult.add(MoveStatus.findBySpaceToMove(spaceToMove, canGo));
     }
 
-    public void updateTryCount() {
+    public void retry() {
         tryCount++;
+        playResult.remove(playResult.size() - 1);
     }
 
     public List<MoveStatus> getPlayResult() {
