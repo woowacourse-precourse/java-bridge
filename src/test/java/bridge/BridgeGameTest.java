@@ -15,7 +15,7 @@ class BridgeGameTest {
         BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(1, 0, 0));
         BridgeGame testBridgeGame = new BridgeGame(new BridgeMaker(numberGenerator));
         testBridgeGame.initializeBridgeGame(3);
-        assertThat(testBridgeGame.stepCheck("U")).isTrue();
+        assertThat(testBridgeGame.move("U")).isTrue();
         assertThat(testBridgeGame.getStepNumber()).isEqualTo(1);
     }
 
@@ -24,8 +24,8 @@ class BridgeGameTest {
         BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(1, 0, 0));
         BridgeGame testBridgeGame = new BridgeGame(new BridgeMaker(numberGenerator));
         testBridgeGame.initializeBridgeGame(3);
-        testBridgeGame.stepCheck("U");
-        assertThat(testBridgeGame.stepCheck("U")).isFalse();
+        testBridgeGame.move("U");
+        assertThat(testBridgeGame.move("U")).isFalse();
         assertThat(testBridgeGame.getStepNumber()).isEqualTo(1);
     }
 }
