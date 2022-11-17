@@ -2,7 +2,7 @@ package bridge.domain.enumeration;
 
 public enum BridgeNumber {
     UP_NUMBER(1),
-    DOWN_NUMBER(1);
+    DOWN_NUMBER(0);
 
     private final int bridgeNumber;
 
