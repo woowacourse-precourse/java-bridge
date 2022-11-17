@@ -9,10 +9,6 @@ public class InputView {
     private String input(){
         return Console.readLine();
     }
-    
-    private void output(String message){
-        System.out.println(message);
-    }
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -32,6 +28,13 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+        String moving = input();
+        try{
+            Exception.checkMovingString(moving);
+        }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
         return null;
     }
 
