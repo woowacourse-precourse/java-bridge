@@ -22,4 +22,6 @@
     - [ ] 앞으로 움직이는 것을 구현
     - [ ] 재시작시 이동한 것을 초기화하는 것을 구현
 - BridgeMaker
-    - [ ] bridge를 만듦 (위는 'U' 아래는 'D'를 넣어서 List<String> 형태로 구현)
+    - [x] bridge를 만듦
+      - BridgeNumberGenerator 에서 0을 전달하면 아래를 추가, 1을 전달하면 위를 추가함
+      - 위는 'U' 아래는 'D'를 넣어서 List<String> 형태로 구현
