@@ -7,7 +7,12 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class ApplicationTest extends NsTest {
 
@@ -39,12 +44,32 @@ class ApplicationTest extends NsTest {
         }, 1, 0, 1);
     }
 
-    @Test
-    void 예외_테스트() {
+    @DisplayName("다리 길이에 대한 예외처리")
+    @ValueSource(strings = {"a", "0", "22"})
+    @ParameterizedTest
+    void 다리_길이_예외_테스트(String input) {
         assertSimpleTest(() -> {
-            runException("a");
+            runException(input);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @DisplayName("움직임에 대한 예외처리")
+    @Test
+    void 움직임_예외_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "123", "U", "D", "U");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }, 1,0, 1);
+    }
+
+    @DisplayName("재시작 대한 예외처리")
+    @Test
+    void 재시작_예외_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "D", "123", "R", "U", "D", "U");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }, 1,0, 1);
     }
 
     @Override
