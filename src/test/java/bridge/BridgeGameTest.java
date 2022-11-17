@@ -11,7 +11,7 @@ public class BridgeGameTest {
     @Test
     void check_move() {
         BridgeGame bridgeGame = new BridgeGame(4, new BridgeFakeNumberGenerator());
-        // BridgeFakeNumberGenerator (테스트용; 1,0,1,0 순환하면서 숫자생성)
+        // BridgeFakeNumberGenerator (테스트용; 1,0,1,0 순환하면서 숫자생성) -> "U","D","U","D"순환
         assertThat(bridgeGame.move("D")).isFalse();
         assertThat(bridgeGame.move("U")).isFalse();
         assertThat(bridgeGame.move("U")).isTrue();
