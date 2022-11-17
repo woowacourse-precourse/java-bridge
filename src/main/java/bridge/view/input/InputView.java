@@ -1,9 +1,10 @@
 package bridge.view.input;
 
+import bridge.domain.vo.BridgeSize;
 import bridge.view.output.OutputView;
 import camp.nextstep.edu.missionutils.Console;
 
-import static java.lang.Integer.parseInt;
+import static bridge.domain.vo.BridgeSize.createBridgeSize;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -20,12 +21,12 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public BridgeSize readBridgeSize() {
         outputView.printBridgeSizeRequestMessage();
-        String bridgeSize = Console.readLine();
-        inputValidator.validateBridegeSize(bridgeSize);
+        String bridgeSizeInput = Console.readLine();
+        BridgeSize bridgeSize = createBridgeSize(bridgeSizeInput);
         outputView.printEnter();
-        return parseInt(bridgeSize);
+        return bridgeSize;
     }
 
     /**
