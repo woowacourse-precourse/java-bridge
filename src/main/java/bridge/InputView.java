@@ -55,4 +55,10 @@ public class InputView {
             throw new IllegalArgumentException();
         }
     }
+
+    private void validateInputGameCommandCharacter(String input) {
+        if (!input.equals("R") && !input.equals("Q")) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
