@@ -28,16 +28,19 @@ public class BridgeMaker {
 
         for (int i = 0; i < size; i++) {
             int randomNumber = bridgeNumberGenerator.generate();
-
-            final int NUMBER_FOR_MOVE_UP = 1;
-            if (randomNumber == NUMBER_FOR_MOVE_UP) {
-                results.add(MOVE_UP_COMMAND);
-                continue;
-            }
-
-            results.add(MOVE_DOWN_COMMAND);
+            addMoveCommand(results, randomNumber);
         }
 
         return results;
+    }
+
+    private void addMoveCommand(final List<String> results, final int randomNumber) {
+        final int NUMBER_FOR_MOVE_UP = 1;
+        if (randomNumber == NUMBER_FOR_MOVE_UP) {
+            results.add(MOVE_UP_COMMAND);
+            return;
+        }
+
+        results.add(MOVE_DOWN_COMMAND);
     }
 }

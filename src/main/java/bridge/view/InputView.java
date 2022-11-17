@@ -79,6 +79,7 @@ public class InputView {
         return inputValue;
     }
 
+    // TODO : 아래의 validation 로직 어쩔껴?!
     private void validateThisIsNumber(String inputValue) {
         final String REGEX_FOR_NUMBER = "^\\d+$";
         if (!inputValue.matches(REGEX_FOR_NUMBER)) {
