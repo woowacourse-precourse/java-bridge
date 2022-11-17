@@ -11,4 +11,17 @@ public class Movement {
     public Movement(List<String> bridge) {
         this.bridge = bridge;
     }
+
+    public boolean canMove(Moving moving) {
+        saveMoving(moving);
+        int nowIndex = movement.size()-1;
+        if (!moving.isSame(bridge.get(nowIndex))){
+            return false;
+        }
+        return true;
+    }
+    
+    public void saveMoving(Moving moving) {
+        this.movement.add(moving);
+    }
 }
