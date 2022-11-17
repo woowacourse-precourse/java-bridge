@@ -7,4 +7,15 @@ public class BridgeGameCounter {
     public BridgeGameCounter(int limit) {
         countLimit = limit;
     }
+
+    public void addCount() {
+        count++;
+    }
+
+    public boolean isGameOver() {
+        if (countLimit == count) {
+            return true;
+        }
+        return false;
+    }
 }
