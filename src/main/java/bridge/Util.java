@@ -12,4 +12,14 @@ public class Util {
         }
     }
 
+    //문자인가?
+    public static boolean isLetter(String input){
+        try{
+            Double.parseDouble(input);
+            return false;
+        } catch (NumberFormatException nfe){
+            return true;
+        }
+    }
+
 }
