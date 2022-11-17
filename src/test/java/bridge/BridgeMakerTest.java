@@ -24,15 +24,6 @@ public class BridgeMakerTest {
         );
     }
     
-    @DisplayName("최소 다리 길이보다 작은 값을 인수로 실행하면 IllegalArgumentException 예외를 던진다.")
-    @Test
-    void makeBridgeByLessMinSize() {
-        BridgeMaker bridgeMaker = getByNumberList(newArrayList());
-        
-        assertThatThrownBy(() -> bridgeMaker.makeBridge(BridgeMaker.MIN_SIZE - 1))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-    
     BridgeMaker getByNumberList(List<Integer> generateNumberList) {
         return new BridgeMaker(new TestNumberGenerator(generateNumberList));
     }
