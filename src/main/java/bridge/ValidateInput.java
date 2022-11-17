@@ -15,18 +15,34 @@ public class ValidateInput {
         }
     }
 
-    public static void isAllDigit(String rawInput){
+//    public static void isAllDigit(String rawInput){
+//        boolean isDigit = Pattern.matches(regexPatterns.ONLY_DIGIT.regex, rawInput);
+//        if (!isDigit) {
+//            throw new IllegalArgumentException();
+//        }
+//    }
+
+    public static boolean isAllDigit(String rawInput){
         boolean isDigit = Pattern.matches(regexPatterns.ONLY_DIGIT.regex, rawInput);
         if (!isDigit) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("숫자로만 구성되어야 합니다.");
         }
+        return true;
     }
 
-    public static void isInRange(String rawInput) { // "0004" 이런 입력은 올바른 입력으로 통과됨.
+//    public static void isInRange(String rawInput) { // "0004" 이런 입력은 올바른 입력으로 통과됨.
+//        int target = Integer.parseInt(rawInput);
+//        if (target < 3 || target > 20) {
+//            throw new IllegalArgumentException();
+//        }
+//    }
+
+    public static boolean isInRange(String rawInput) { // "0004" 이런 입력은 올바른 입력으로 통과됨.
         int target = Integer.parseInt(rawInput);
         if (target < 3 || target > 20) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("3이상 20이하이어야 합니다.");
         }
+        return true;
     }
 
     public static void isUorD(String rawInput){

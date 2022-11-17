@@ -7,20 +7,43 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    private String readInput(){
+    private static String loop(Loopable thing){
+        String s;
+        boolean a;
+        do {
+            s = readInput();
+            a = thing.check(s);
+        }while (!a);
+        return s;
+    }
+
+    private static String readInput(){
         return Console.readLine();
     }
 
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
-        String rawInput = readInput();
+//    public int readBridgeSize() {
+//        String rawInput = readInput();
+//
+//        ValidateInput.isAllDigit(rawInput);
+//        ValidateInput.isInRange(rawInput);
+//
+//        return Integer.parseInt(rawInput);
+//    }
 
-        ValidateInput.isAllDigit(rawInput);
-        ValidateInput.isInRange(rawInput);
-
-        return Integer.parseInt(rawInput);
+    public static int readBridgeSize() {
+        Loopable checkBridgeSizeInput = (s) -> {
+            try {
+                return ValidateInput.isAllDigit(s) && ValidateInput.isInRange(s);
+            }catch (IllegalArgumentException e){
+                System.out.println("[ERROR] " + e.getMessage());
+                return false;
+            }
+        };
+        String input = loop(checkBridgeSizeInput);
+        return Integer.parseInt(input);
     }
 
     /**
