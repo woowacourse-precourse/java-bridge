@@ -5,7 +5,11 @@ package bridge;
  */
 public class BridgeGame {
     public void run() {
+        try {
 
+        } catch (IllegalArgumentException exception) {
+            OutputView.printMsg("[ERROR] " + exception.getMessage());
+        }
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
