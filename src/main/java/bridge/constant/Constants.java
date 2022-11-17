@@ -14,8 +14,10 @@ public class Constants {
     public static final String FINAL_RESULT_MESSAGE = "최종 게임 결과";
     public static final String SUCCESS_OR_NOT_MESSAGE = "게임 성공 여부: ";
     public static final String TOTAL_NUMBER_OF_ATTEMPTS_MESSAGE = "총 시도한 횟수: ";
-    
+
+    public static final String SELECT_U_OR_D_MESSAGE = " U 또는 D를 입력해주세요.";
+    public static final String SELECT_R_OR_Q_MESSAGE = " R 또는 Q를 입력해주세요.";
     public static final String ERROR_MESSAGE = "[ERROR]";
     public static final String OUT_OF_RANGE_ERROR_MESSAGE = " 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
-    public static final String INVALID_INPUT_ERROR_MESSAGE = "올바르지 않은 입력입니다.";
+    public static final String INVALID_INPUT_ERROR_MESSAGE = " 올바르지 않은 입력입니다.";
 }
