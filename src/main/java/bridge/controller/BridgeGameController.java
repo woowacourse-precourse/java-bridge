@@ -1,12 +1,14 @@
 package bridge.controller;
 
-import static bridge.domain.constants.GameCommands.QUIT_GAME_COMMAND;
+import static bridge.domain.constants.GameCommands.NOTHING;
+import static bridge.domain.constants.GameCommands.QUIT;
 import static bridge.domain.constants.MoveResultsSign.MOVE_FAIL;
 
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.MoveResults;
 import bridge.domain.Player;
+import bridge.domain.constants.GameCommands;
 import bridge.domain.make_bridge.BridgeMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -41,10 +43,10 @@ public class BridgeGameController {
     }
 
     private String gameResult(BridgeGame bridgeGame, int bridgeSize) {
-        String gameCommand = "";
+        GameCommands gameCommand = NOTHING;
         String result = "성공";
 
-        while (!gameCommand.equals(QUIT_GAME_COMMAND) && bridgeGame.ongoing(bridgeSize)) {
+        while (gameCommand.isNot(QUIT) && bridgeGame.moveCountNotMoreThan(bridgeSize)) {
             String moveResult = moveResult(bridgeGame);
 
             if (moveResult.equals(MOVE_FAIL)) {

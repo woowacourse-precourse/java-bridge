@@ -1,7 +1,6 @@
 package bridge.domain.validation;
 
 import static bridge.domain.validation.InputValidator.INPUT_ONLY_NUMBERS;
-import static bridge.domain.validation.InputValidator.NOT_VALID_GAME_COMMANDS;
 import static bridge.domain.validation.InputValidator.NOT_VALID_MOVE_COMMANDS;
 import static bridge.domain.validation.InputValidator.NOT_VALID_RANGE_OF_BRIDGE_SIZE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -33,13 +32,5 @@ class InputValidatorTest {
         assertThatThrownBy(() -> InputValidator.validateCorrectValueForMoving(inputValue))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NOT_VALID_MOVE_COMMANDS);
-    }
-
-    @ParameterizedTest(name = "R, Q가 아닌 값을 입력하면 예외가 발생한다. 입력: {0}")
-    @ValueSource(strings = {"U", "D", "ddd", "1"})
-    void validateCorrectValueForGameCommand(String inputValue) {
-        assertThatThrownBy(() -> InputValidator.validateCorrectValueForGameCommand(inputValue))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(NOT_VALID_GAME_COMMANDS);
     }
 }

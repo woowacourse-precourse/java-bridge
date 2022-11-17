@@ -1,8 +1,10 @@
 package bridge.domain;
 
-import static bridge.domain.constants.GameCommands.RETRY_GAME_COMMAND;
+import static bridge.domain.constants.GameCommands.RETRY;
 import static bridge.domain.constants.MoveResultsSign.MOVE_FAIL;
 import static bridge.domain.constants.MoveResultsSign.MOVE_SUCCESS;
+
+import bridge.domain.constants.GameCommands;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -36,7 +38,7 @@ public class BridgeGame {
         return moveResults;
     }
 
-    public boolean ongoing(int bridgeSize) {
+    public boolean moveCountNotMoreThan(int bridgeSize) {
         return player.inTheGame(bridgeSize);
     }
 
@@ -50,8 +52,8 @@ public class BridgeGame {
         }
     }
 
-    public String retryOrQuit(String gameCommand, String result) {
-        if (gameCommand.equals(RETRY_GAME_COMMAND)) {
+    public String retryOrQuit(GameCommands gameCommand, String result) {
+        if (gameCommand.is(RETRY)) {
             retry();
             return result;
         }
