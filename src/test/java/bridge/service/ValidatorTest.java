@@ -39,4 +39,17 @@ class ValidatorTest {
             Assertions.assertThatNoException().isThrownBy(() -> validator.validateBridgeLength(bridgeLength));
         }
     }
+
+    @Nested
+    class ValidateMovement {
+
+        @ParameterizedTest
+        @ValueSource(strings = {"A", "B", "u", "d", "Up", "Down"})
+        @DisplayName("움직임 입력값이 U 혹은 D가 아니면 예외를 던진다.")
+        void isNotCorrectInputValue(String movement) {
+            Assertions.assertThatThrownBy(() -> validator.validateMovement(movement))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(ErrorMessage.IS_WRONG_MOVEMENT.message());
+        }
+    }
 }
