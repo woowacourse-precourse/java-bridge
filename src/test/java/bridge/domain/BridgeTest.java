@@ -5,8 +5,6 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 class BridgeTest {
     @Test
@@ -29,26 +27,5 @@ class BridgeTest {
         // then
         assertThat(bridge.getLength())
                 .isEqualTo(3);
-    }
-
-    @ParameterizedTest
-    @DisplayName("다리의 인덱스를 넘으면 예외가 발생한다.")
-    @ValueSource(ints = {4, -1})
-    void bridgeIndexOverThrowException(int input) {
-        // given
-        Bridge bridge = Bridge.of(List.of("U", "D", "D"));
-        // expect
-        assertThatThrownBy(() -> bridge.getIndexOf(input))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    @DisplayName("다리의 인덱스가 정상적이면 UpDown을 반환한다.")
-    void bridgeGetOfIndex() {
-        // given
-        Bridge bridge = Bridge.of(List.of("D", "D", "D", "U"));
-        // expect
-        assertThat(bridge.getIndexOf(3))
-                .isEqualTo(UpDownFlag.UP);
     }
 }

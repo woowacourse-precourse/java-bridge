@@ -17,13 +17,6 @@ public class Bridge {
         return new Bridge(collect);
     }
 
-    public UpDownFlag getIndexOf(int index) {
-        if (index < 0 || index >= bridge.size()) {
-            throw new IllegalArgumentException("[ERROR] 인덱스가 다리의 길이를 벗어났습니다.");
-        }
-        return bridge.get(index);
-    }
-
     public List<UpDownFlag> getBridge() {
         return List.copyOf(bridge);
     }
