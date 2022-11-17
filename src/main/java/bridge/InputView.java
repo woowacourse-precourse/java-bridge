@@ -52,6 +52,9 @@ public class InputView {
         }
     }
 
+    /**
+     * 매개변수 size가 3 이상 20 이하가 아니면 IllegalArgumentException을 발생 시킨다.
+     */
     private int validateBridgeSize(int size) {
         if (size < bridgeSizeMin || size > bridgeSizeMax)
             throw new IllegalArgumentException(validateBridgeSizeErrorMessage);
