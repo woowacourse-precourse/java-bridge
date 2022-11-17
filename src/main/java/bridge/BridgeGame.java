@@ -13,11 +13,11 @@ public class BridgeGame {
         while (gameSuccess) {
             String pick = InputView.readMoving();
             move(pick, nowBridge);
+            System.out.println(OutputView.printMap(nowBridge, generatedBridge));
             gameSuccess = compareBridge(nowBridge, generatedBridge);
             if (!gameSuccess) {
                 return retry();
             }
-            System.out.println(nowBridge);
         }
         return false;
     }

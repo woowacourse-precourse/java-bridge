@@ -12,7 +12,6 @@ public class Application {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> generatedBridge = bridgeMaker.makeBridge(size);
         boolean retry = true;
-
         while (retry) {
             List<String> nowBridge = new ArrayList<>();
             retry = bridgeGame.game(nowBridge, generatedBridge);

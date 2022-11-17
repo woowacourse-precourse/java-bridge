@@ -66,14 +66,13 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 다리_이동_후_결과_확인() {
+    void 다리_이동_후_가장_최근에_건넌_다리_검사() {
         // given
         List<String> bridge = new ArrayList<>();
         bridge.add("U");
 
         // when
         bridgeGame.move("U", bridge);
-        System.out.println("hello2");
 
         // then
         assertEquals(2, bridge.size());
@@ -95,6 +94,19 @@ class ApplicationTest extends NsTest {
 
         // then
         assertEquals(false, gameSuccess);
+    }
+
+    @Test
+    void 지금까지_건넌_다리_출력_화면() {
+        // given
+        List<String> nowBridge = List.of("U", "D", "U");
+        List<String> generatedBridge = List.of("U", "D", "D");
+
+        // when
+        String output = OutputView.printMap(nowBridge, generatedBridge);
+
+        // then
+        assertEquals("[ O |   | X ]\n[   | O |   ]\n", output);
     }
 
     @Override
