@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.setting.Setting;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -28,6 +29,14 @@ public class InputView {
             if (!Character.isDigit(input.charAt(i))) {
                 throw new IllegalArgumentException("[ERROR] 3이상 20이하의 숫자를 입력해야 합니다.");
             }
+        }
+    }
+
+    // 3이상 20이하의 숫자가 아닐경우 예외처리
+    private void validateBridgeRange(String input) {
+        int range = Integer.parseInt(input);
+        if (range > Setting.MAX_BRIDGE_SIZE || range < Setting.MIN_BRIDGE_SIZE) {
+            throw new IllegalArgumentException("[ERROR] 3이상 20이하의 숫자를 입력해야 합니다.");
         }
     }
 
