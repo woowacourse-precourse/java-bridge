@@ -19,7 +19,7 @@ public class BridgeGameController {
             if(continueGame){
                 break;
             }
-            String gameCommand = inputGameCommand();
+            GameCommand gameCommand = inputGameCommand();
             retry = bridgeGame.retry(gameCommand);
         }
         return retry;
@@ -27,15 +27,12 @@ public class BridgeGameController {
 
     private static boolean isSuccessGame(BridgeGame bridgeGame, int bridgeSize) {
         boolean crossBridge = true;
-        while (crossBridge) {
-            State state = inputMoveCommand();
-            crossBridge = bridgeGame.move(state);
+        while (crossBridge && bridgeGame.getCurrentBridgeIndex() < bridgeSize) {
+            MoveCommand moveCommand = inputMoveCommand();
+            crossBridge = bridgeGame.move(moveCommand);
             OutputView.printMap(bridgeGame, crossBridge);
-            if (bridgeGame.getCurrentBridgeIndex() == bridgeSize) {
-                return true;
-            }
         }
-        return false;
+        return crossBridge;
     }
 
     private static int inputBridgeSize() {
