@@ -12,7 +12,8 @@ public class BridgeTest {
     @Test
     void 다리길이_저장(){
         GameService gameService=GameService.getInstance();
+        BridgeRepository bridgeRepository=BridgeRepository.getInstance();
         gameService.saveBridgeSize(new BridgeSize("3"));
-        Assertions.assertThat(BridgeRepository.getInstance().getBridgeSize().getSize()).isEqualTo(3);
+        Assertions.assertThat(bridgeRepository.getBridgeSize().getSize()).isEqualTo(3);
     }
 }
