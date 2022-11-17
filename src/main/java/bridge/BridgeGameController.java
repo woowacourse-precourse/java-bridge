@@ -7,8 +7,7 @@ public class BridgeGameController {
         System.out.println("다리 건너기 게임을 시작합니다.");
         System.out.println();
         int bridgeSize = inputBridgeSize();
-        List<String> bridge = createBridge(bridgeSize);
-        BridgeGame bridgeGame = new BridgeGame(bridge);
+        BridgeGame bridgeGame = new BridgeGame(createBridge(bridgeSize));
         boolean successGame = playGame(bridgeSize, bridgeGame);
         OutputView.printResult(bridgeGame,successGame);
     }
@@ -67,7 +66,8 @@ public class BridgeGameController {
     }
 
     private static List<String> createBridge(int bridgeSize) {
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        BridgeNumberGenerator randomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(randomNumberGenerator);
         return bridgeMaker.makeBridge(bridgeSize);
     }
 }
