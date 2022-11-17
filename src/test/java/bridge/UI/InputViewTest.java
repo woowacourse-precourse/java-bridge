@@ -97,6 +97,12 @@ class InputViewTest {
             String input = "!@#!$";
             getExceptionTest(input,functionSupply);
         }
+
+        @Test
+        void readBridgeSize_exceptionCase7(){
+            String input = " ";
+            getExceptionTest(input,functionSupply);
+        }
     }
 
     @Nested
