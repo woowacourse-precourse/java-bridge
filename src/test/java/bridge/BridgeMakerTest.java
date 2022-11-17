@@ -23,4 +23,18 @@ public class BridgeMakerTest {
         List<String> result = bridgeMaker.makeBridge(size);
         assertThat(result.size()).isEqualTo(size);
     }
+    @DisplayName("다리는 오직 U와 D로만 이루어져 있다.")
+    @Test
+    void bridgeIsMadeOfOnlyUAndD() {
+        TestNumberGenerator numberGenerator = new TestNumberGenerator(
+                newArrayList(1, 0, 1, 0, 1, 0, 1, 0, 1)
+        );
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(5);
+        boolean isOnlyUAndD = true;
+        for(String bridgeCell: bridge){
+            isOnlyUAndD &= bridgeCell.equals("D") || bridgeCell.equals("U");
+        }
+        assertThat(isOnlyUAndD).isTrue();
+    }
 }
