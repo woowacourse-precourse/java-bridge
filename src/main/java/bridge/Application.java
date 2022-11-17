@@ -6,6 +6,9 @@ import bridge.View.InputView;
 import bridge.View.OutputView;
 
 public class Application {
+    private static InputView inputView = new InputView();
+    private static OutputView outputView = new OutputView();
+
     public static BridgeGame initiateBridgeGame(InputView inputView) {
         boolean exceptionFlag = true;
         BridgeGame bridgeGame = null;
@@ -40,17 +43,20 @@ public class Application {
                 exceptionFlag = true;
             }
         }
+    }
 
-        bridgeGame.updatePlayer();
+    public static void run(BridgeGame bridgeGame) {
+        while(!bridgeGame.winGame() && !bridgeGame.isPlayerDead()) {
+            inputMoving(inputView, bridgeGame);
+            outputView.printMap(bridgeGame);
+            bridgeGame.updatePlayer();
+        }
     }
 
     public static void main(String[] args) {
-        InputView inputView = new InputView();
         BridgeGame bridgeGame = initiateBridgeGame(inputView);
-        OutputView outputView = new OutputView();
 
-        while(!bridgeGame.winGame() && !bridgeGame.isPlayerDead()) {
-            inputMoving(inputView, bridgeGame);
-        }
+        run(bridgeGame);
+        outputView.printResult(bridgeGame);
     }
 }
