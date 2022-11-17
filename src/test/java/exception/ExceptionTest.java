@@ -21,7 +21,7 @@ class ExceptionTest {
     @Test
     void 다리_길이_검증_테스트() {
         List<String> bridge = bridgeMaker.makeBridge(21);
-        assertThat(Exception.bridgeLengthValidation(bridge)).isFalse();
+        assertThat(Exception.bridgeLengthValidation(bridge.size())).isFalse();
     }
 
 
