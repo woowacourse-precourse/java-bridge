@@ -26,7 +26,7 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         return IntStream.range(0, size)
                 .mapToObj(count -> parsePartBridgeState())
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
     
     private String parsePartBridgeState() {
