@@ -6,6 +6,7 @@ package bridge;
 public class OutputView {
     private final String START_MESSAGE = "다리 건너기 게임을 시작합니다.";
     private final String INPUT_BRIDGE_SIZE_MESSAGE = "다리 건너기 게임을 시작합니다.";
+    private final String INPUT_MOVING_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
 
     private void print(String message){
         System.out.println(message);
@@ -33,5 +34,9 @@ public class OutputView {
 
     public void printInputBridgeSizeMessage(){
         print(INPUT_BRIDGE_SIZE_MESSAGE);
+    }
+
+    public void printInputMovingMessage(){
+        print(INPUT_MOVING_MESSAGE);
     }
 }
