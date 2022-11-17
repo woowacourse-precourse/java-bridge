@@ -8,8 +8,11 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
-        return 0;
+    public int readBridgeSize(String input) {
+        // 예외처리
+        checkRange(input);
+
+        return changeInt(input);
     }
 
     /**
@@ -24,5 +27,21 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    /**
+     * 입력받은 String 을 int 로 변환한다.
+     */
+    private int changeInt(String input) {
+        return Integer.parseInt(input);
+    }
+    /**
+     * 입력받은 숫자가 범위(3 ~ 20)를 벗어날 경우 IllegalArgumentException 을 발생시킨다.
+     */
+    private void checkRange(String input) {
+        int number = changeInt(input);
+        if(number < 3 || number > 20) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
     }
 }
