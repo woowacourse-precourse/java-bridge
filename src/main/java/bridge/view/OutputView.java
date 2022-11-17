@@ -6,6 +6,14 @@ public class OutputView {
     private static String upBridge = "[]";
     private static String downBridge = "[]";
 
+    public void setUpBridge(String upBridge) {
+        OutputView.upBridge = upBridge;
+    }
+
+    public void setDownBridge(String downBridge) {
+        OutputView.downBridge = downBridge;
+    }
+
     public void start() {
         System.out.println(OutputString.START.getPrint());
         System.out.println(OutputString.INPUT.getPrint());
