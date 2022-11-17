@@ -15,7 +15,7 @@ public class InputView {
 		System.out.println(MESSAGE_READ_BRIDGE_SIZE);
 		int bridgeSize = validateBridgeSizeNumeric(readLine());
 		validateBridgeSizeRange(bridgeSize);
-		return Integer.parseInt(bridgeSize);
+		return bridgeSize;
 	}
 
 	private int validateBridgeSizeNumeric(String bridgeSize) {
@@ -27,9 +27,8 @@ public class InputView {
 		}
 	}
 
-	private void validateBridgeSizeRange(String bridgeSize) {
-		int tmpBridgeSize = Integer.parseInt(bridgeSize);
-		if (tmpBridgeSize < 3 || tmpBridgeSize > 20) {
+	private void validateBridgeSizeRange(int bridgeSize) {
+		if (bridgeSize < MIN_BRIDGE_SIZE || bridgeSize > MAX_BRIDGE_SIZE) {
 			throw new IllegalArgumentException(ERROR_MESSAGE_OUT_OF_RANGE);
 		}
 	}
