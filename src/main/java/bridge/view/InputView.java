@@ -32,6 +32,13 @@ public class InputView {
         }
     }
 
+    // 2자리를 넘어선 문자열인 경우 예외처리
+    private void checkDigit(String input) {
+        if (input.length() > 2) {
+            throw new IllegalArgumentException("[ERROR] 3이상 20이하의 숫자를 입력해야 합니다.");
+        }
+    }
+
     // 3이상 20이하의 숫자가 아닐경우 예외처리
     private void validateBridgeRange(String input) {
         int range = Integer.parseInt(input);
