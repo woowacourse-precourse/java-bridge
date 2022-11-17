@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.model.BridgeType;
+import bridge.model.ContinueType;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -35,7 +36,8 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public ContinueType readGameCommand() {
+        String input = Console.readLine();
+        return ContinueType.searchContinueTypeToText(input);
     }
 }
