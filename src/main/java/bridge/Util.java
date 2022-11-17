@@ -1,5 +1,7 @@
 package bridge;
 
+import java.math.BigInteger;
+
 public class Util {
 
     //숫자인가?
@@ -37,5 +39,6 @@ public class Util {
 
         return false;
     }
+
 
 }
