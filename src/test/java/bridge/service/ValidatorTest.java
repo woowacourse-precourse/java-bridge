@@ -61,4 +61,17 @@ class ValidatorTest {
             assertThatNoException().isThrownBy(() -> validator.validateMovement(movement));
         }
     }
+
+    @Nested
+    class ValidateRetryStatus {
+
+        @ParameterizedTest
+        @ValueSource(strings = {"r", "q", "A", "B", "Retry", "Quit"})
+        @DisplayName("재시도 입력값이 R 혹은 Q가 아니면 예외를 던진다.")
+        void isNotCorrectInputValue(String retryStatus) {
+            assertThatThrownBy(() -> validator.validateRetryStatus(retryStatus))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(ErrorMessage.IS_WRONG_RETRY_STATUS.message());
+        }
+    }
 }
