@@ -64,4 +64,13 @@ class InputSelectCharValidatorTest {
                 .isThrownBy(() -> InputSelectCharValidator.validate(input, MOVING_SELECT_CHAR_VALIDATOR_NUMBER))
                 .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
     }
+    
+    @DisplayName("예외 처리 : U와 D가 아닌 영어 입력 시")
+    @ParameterizedTest(name = "{displayName} : input => {0}")
+    @ValueSource(strings = {"A", "C", "Q", "R", "T","a", "c", "u", "d", "r", "q"})
+    void englishException(final String input) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> InputSelectCharValidator.validate(input, MOVING_SELECT_CHAR_VALIDATOR_NUMBER))
+                .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
+    }
 }
