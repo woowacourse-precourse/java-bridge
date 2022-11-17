@@ -17,6 +17,10 @@ public enum Direction {
         return direction;
     }
 
+    public boolean isMatchDirection(String direction) {
+        return this.direction.equals(direction);
+    }
+
     public boolean isMatchGenerateCode(int code) {
         return generateCode == code;
     }
