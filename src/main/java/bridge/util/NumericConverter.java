@@ -1,9 +1,11 @@
 package bridge.util;
 
-public class NumericConverter implements Converter<String, Integer> {
+public class NumericConverter {
 
-    @Override
-    public Integer convert(String from) {
+    private NumericConverter() {
+    }
+
+    public static int convert(String from) {
         try {
             return Integer.parseInt(from);
         } catch (NumberFormatException e) {

@@ -13,10 +13,9 @@ class NumericConverterTest {
     void convert() {
         //given
         String from = "10";
-        Converter<String, Integer> numericConverter = new NumericConverter();
 
         //when
-        Integer to = numericConverter.convert(from);
+        Integer to = NumericConverter.convert(from);
 
         //then
         assertThat(to).isEqualTo(10);
@@ -27,10 +26,9 @@ class NumericConverterTest {
     void convertFail() {
         //given
         String from = "k10";
-        Converter<String, Integer> numericConverter = new NumericConverter();
 
         //then
-        assertThatThrownBy(() -> numericConverter.convert(from)).isInstanceOf(
+        assertThatThrownBy(() -> NumericConverter.convert(from)).isInstanceOf(
                 IllegalArgumentException.class);
     }
 
