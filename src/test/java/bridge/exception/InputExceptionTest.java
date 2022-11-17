@@ -18,6 +18,17 @@ public class InputExceptionTest {
     @ValueSource(strings = {"1", "2", "K", "U", "DDD", "김", "", "  ", "12J"})
     void 다리길이_입력_예외(String bridgeSize) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> { inputException.validateBridgeSize(bridgeSize); });
+                .isThrownBy(() -> {
+                    inputException.validateBridgeSize(bridgeSize);
+                });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"A", "B", "C", "K", "", "김", "1", "2"})
+    void 이동_입력_예외(String moving) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> {
+                    inputException.validateMoving(moving);
+                });
     }
 }
