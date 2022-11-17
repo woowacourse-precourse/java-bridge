@@ -15,7 +15,7 @@
 
 - [X] 입력받은 다리 길이만큼 생성 - BridgeMaker.makeBridge()
 - [X] 생성된 다리의 위 아래 중 교통 가능한 다리를 랜덤으로 지정 - BridgeRandomNumberGenerator.generate()
-- [ ] 입력받은 건너갈 다리 위치가 교통 가능 여부 반환 - BridgeGame.move()
+- [X] 입력받은 건너갈 다리 위치가 교통 가능 여부 반환 - BridgeGame.move()
 - [ ] 다리 건너기를 실패한 경우 재시작 여부 반환 - BridgeGame.retry()
 - [ ] 다리를 다 건넌 경우, 재시작을 하지 않은 경우를 판별해 성공 여부 반환
 - [ ] 재시작을 몇 번 했는지를 판별해 시도 횟수 반환
