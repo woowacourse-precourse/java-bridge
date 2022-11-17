@@ -11,14 +11,11 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 class BridgeGameTest {
 
-    private static final BridgeGame bridgeGame = new BridgeGame();
-    private List<String> bridge;
+    private BridgeGame bridgeGame;
 
     @BeforeEach
-    void createBridge() {
-        BridgeNumberGenerator numberGenerator = new BridgeGameTest.TestNumberGenerator(newArrayList(1, 0, 0));
-        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        bridge = bridgeMaker.makeBridge(3);
+    void createBridgeGame() {
+        bridgeGame = new BridgeGame(List.of("U","D","D"));
     }
 
     @DisplayName("올바른 다리를 건넌 경우 그 위치에 O 가 표시된 문자열 반환")
