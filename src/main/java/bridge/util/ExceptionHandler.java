@@ -15,4 +15,17 @@ public class ExceptionHandler {
     private static boolean isValidRange(final int size) {
         return (BRIDGE_SIZE_MIN <= size && size <= BRIDGE_SIZE_MAX);
     }
+
+    public static void checkMoving(final String input) {
+        if (!isValidMoving(input)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static boolean isValidMoving(final String input) {
+        if (input.equals("U") || input.equals("D")) {
+            return true;
+        }
+        return false;
+    }
 }

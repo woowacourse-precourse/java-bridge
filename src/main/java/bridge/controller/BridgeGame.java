@@ -1,9 +1,12 @@
 package bridge.controller;
 
+import bridge.domain.AnswerBridge;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import org.mockito.stubbing.Answer;
+
 import java.util.List;
 
 public class BridgeGame {
@@ -15,6 +18,11 @@ public class BridgeGame {
         int bridgeSize = InputView.getInputBridgeSize();
 
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        AnswerBridge answerBridge = new AnswerBridge(bridge);
+
+        while(true) {
+            String moving = InputView.getInputMoving();
+        }
     }
 
     /**
