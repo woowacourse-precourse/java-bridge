@@ -1,9 +1,13 @@
 package bridge;
 
 public enum GameStatus {
-    CONTINUE, DIE, SUCCESS;
+    CONTINUE, FAIL, SUCCESS;
 
     public boolean isContinue() {
         return this == CONTINUE;
+    }
+
+    public boolean isFail() {
+        return this == FAIL;
     }
 }

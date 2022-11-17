@@ -29,11 +29,19 @@ public class BridgeTest {
         );
     }
 
-    @DisplayName("다리를 한 라운드 건널 때 계속 가능 게임 결과 반환")
+    @DisplayName("다리를 한 라운드 건널 때 게임 계속 가능 결과 반환")
     @Test
     void crossContinueResult() {
         Bridge bridge = new Bridge(List.of("U", "D", "U", "D"));
         GameStatus gameStatus = bridge.cross(1, BridgeMark.UP);
         assertThat(gameStatus.isContinue()).isTrue();
+    }
+
+    @DisplayName("다리를 한 라운드 건널 때 게임 실패 결과 반환")
+    @Test
+    void crossFailResult() {
+        Bridge bridge = new Bridge(List.of("U", "D", "U", "D"));
+        GameStatus gameStatus = bridge.cross(3, BridgeMark.DOWN);
+        assertThat(gameStatus.isFail()).isTrue();
     }
 }

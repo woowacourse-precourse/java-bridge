@@ -16,6 +16,6 @@ public class Bridge {
         if (bridgeMark.equals(mark)) {
             return GameStatus.CONTINUE;
         }
-        return null;
+        return GameStatus.FAIL;
     }
 }
