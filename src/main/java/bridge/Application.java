@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.Validation.Validation;
 import bridge.View.InputView;
 import bridge.View.OutputView;
 

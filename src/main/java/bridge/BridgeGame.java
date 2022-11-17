@@ -23,26 +23,30 @@ public class BridgeGame {
 		//다리 생성
 		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 		List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-
-		int moveCount = 0;
-		initMap(bridgeSize);
+		boolean isRe = false;
 
 		do {
-			//이동할 칸 선택하고 이동하기
-			String movingDirection = Validation.validateMoving(1);
-			move(moveCount++, bridge, movingDirection);
-			outputView.printMap(map, moveCount);
+			int moveCount = 0;
+			initMap(bridgeSize);
 
-		} while (!isClearCrossBridge() && !isFailCrossBridge());
+			do {
+				//이동할 칸 선택하고 이동하기
+				String movingDirection = Validation.validateMoving(1);
+				move(moveCount++, bridge, movingDirection);
+				outputView.printMap(map, moveCount);
 
-		if(isClearCrossBridge()){
-			GuideMessageView.GAME_RESULT_GUIDE_MESSAGE.printMessage();
-			outputView.printMap(map, moveCount);
-		}
+			} while (!isClearCrossBridge() && !isFailCrossBridge());
 
-		if(isFailCrossBridge()){
-			retry();
-		}
+			if (isClearCrossBridge()) {
+				GuideMessageView.GAME_RESULT_GUIDE_MESSAGE.printMessage();
+				outputView.printMap(map, moveCount);
+			}
+
+			if (isFailCrossBridge()) {
+				isRe = retry();
+			}
+
+		}while(isRe);
 	}
 
 	private boolean isFailCrossBridge() {
@@ -95,8 +99,12 @@ public class BridgeGame {
 	 * <p>
 	 * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
-	public void retry() {
+	public boolean retry() {
 		String input = Validation.validateGameCommand(1);
+		if(input.equals("R")){
+			return true;
+		}
+		return false;
 	}
 
 	public static void initMap(int size) {

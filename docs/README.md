@@ -18,7 +18,7 @@
   - [x] 다리를 끝까지 건너거나 실패하면 게임이 종료된다 - BridgeGame#start()
   - [x] 게임을 재시작하거나 종료할 수 있다 - BridgeGame#retry()
     - [x] 잘못된 값을 입력하면 IllegalArgumentException 발생시킨다 - Validation#validateReOrEnd()
-   - [] 재시작해도 처음에 만든 다리로 재사용한다 - BridgeMaker#initBridge()
+   - [x] 재시작해도 처음에 만든 다리로 재사용한다 - BridgeGame#start()
    - [] 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때 까지 시도한 횟수를 나타낸다 - BridgeGame#calculateTryCount()
 
 - [x] 출력
