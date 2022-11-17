@@ -22,7 +22,7 @@ public class BridgeSize {
     }
 
     public void validateBridegeSize(String bridgeSize) {
-        if (bridgeSize.chars().allMatch(Character::isDigit)) {
+        if (!bridgeSize.chars().allMatch(Character::isDigit)) {
             throw new IllegalArgumentException(IS_NOT_NUMBER);
         }
         if (parseInt(bridgeSize) < 3 || parseInt(bridgeSize) > 20) {
