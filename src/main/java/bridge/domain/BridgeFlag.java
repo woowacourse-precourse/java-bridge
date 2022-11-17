@@ -10,4 +10,9 @@ public enum BridgeFlag {
     BridgeFlag(String flag) {
         this.flag = flag;
     }
+
+    @Override
+    public String toString() {
+        return flag;
+    }
 }
