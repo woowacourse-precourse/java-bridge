@@ -15,17 +15,17 @@ public class InputView {
      */
     public static int getBridgeSize(){
         System.out.println(INPUT_BRIDGE_LENGTH_MESSAGE.getMessage());
+        return readBridgeSize(Console.readLine());
+    }
+
+    private static int readBridgeSize(String strBridgeSize){
         try {
-            return readBridgeSize(Console.readLine());
-        }catch(IllegalArgumentException e){
+            BridgeSizeValidator.checkBridgeSize(strBridgeSize);
+            return Integer.parseInt(strBridgeSize);
+        } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             return readBridgeSize(Console.readLine());
         }
-    }
-
-    private static int readBridgeSize(String strBridgeSize) {
-        BridgeSizeValidator.checkBridgeSize(strBridgeSize);
-        return Integer.parseInt(strBridgeSize);
     }
 
     /**
