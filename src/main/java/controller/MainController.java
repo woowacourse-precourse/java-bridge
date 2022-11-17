@@ -19,10 +19,21 @@ public class MainController {
 
     public Bridge getBridgeContainBridgeSize(){
         printReceiveBridgeSize();
-        int bridgeSize = readBridgeSize();
-        return new Bridge(bridgeSize);
+        Bridge bridge = validateBridgeSize();
+        return bridge;
     }
 
+    private Bridge validateBridgeSize() {
+        Bridge bridge = null;
+        try {
+            int bridgeSize = readBridgeSize();
+            bridge = new Bridge(bridgeSize);
+        } catch (IllegalArgumentException exception) {
+            outputView.printError(exception.getMessage());
+            getBridgeContainBridgeSize();
+        }
+        return bridge;
+    }
 
 
     private void printReceiveBridgeSize(){
