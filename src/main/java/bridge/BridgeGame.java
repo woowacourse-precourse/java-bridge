@@ -37,4 +37,8 @@ public class BridgeGame {
     public void retry() {
         numberOfCrossedBlock = 0;
     }
+
+    public boolean isCrossed() {
+        return bridge.size() == numberOfCrossedBlock;
+    }
 }
