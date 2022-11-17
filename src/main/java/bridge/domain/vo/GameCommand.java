@@ -17,6 +17,10 @@ public class GameCommand {
         this.gameCommand = gameCommand;
     }
 
+    public String getGameCommand() {
+        return this.gameCommand;
+    }
+
     public void validateGameCommand(String gameCommand) {
         if (gameCommand.length() != 1) {
             throw new IllegalArgumentException(GAME_COMMAND_LENGTH_IS_NOT_ONE);

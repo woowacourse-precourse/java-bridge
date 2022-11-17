@@ -45,7 +45,7 @@ public class BridgeController {
         do {
             bridgeGameResults.clear();
             createGameResult(bridgeGameResults, bridge);
-        } while (isRetry());
+        } while (isRetry(bridgeGameResults, bridge.size()));
         return bridgeGameResults;
     }
 
@@ -69,6 +69,16 @@ public class BridgeController {
             return false;
         }
         return bridgeGameResult.getIsMatched();
+    }
+
+    private boolean isRetry(List<BridgeGameResult> bridgeGameResults, int bridgeSize) {
+        if (isSuccess(bridgeGameResults, bridgeSize)) {
+            return false;
+        }
+        if (Objects.equals(readGameCommand().getGameCommand(), QUIT_CONDITION)) {
+            return false;
+        }
+        return true;
     }
 
     private boolean isSuccess(List<BridgeGameResult> bridgeGameResults, int bridgeSize) {
