@@ -10,8 +10,8 @@ public class InputView {
         GAMECOMMAND(2),
         BRIDGELENGTH(3);
 
-        private int lengthLimit;
-        private InputType(int limitLength) { this.lengthLimit = limitLength; }
+        private final int lengthLimit;
+        InputType(int limitLength) { this.lengthLimit = limitLength; }
     }
 
     private String lineInput;
@@ -61,7 +61,7 @@ public class InputView {
 
     private void validate(String lineInput, InputType inputType) {
         checkLengthLimit(lineInput, inputType);
-        if(inputType == InputType.BRIDGELENGTH) {
+        if (inputType == InputType.BRIDGELENGTH) {
             validateBridgeSize(lineInput);
             return;
         }
