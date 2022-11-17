@@ -1,6 +1,5 @@
 package bridge.service;
 
-import bridge.constant.Movement;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,5 +34,14 @@ class BridgeGameTest {
         bridgeGame.move("U");
         String movementStatus = bridgeGame.createMovementStatus();
         assertThat(movementStatus).isEqualTo("[ O |   | X ]\n[   | O |   ]\n");
+    }
+
+    @Test
+    void crossingBridge() {
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("D");
+        bridgeGame.move("U");
+        assertThat(bridgeGame.crossedBridge()).isTrue();
     }
 }
