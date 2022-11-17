@@ -23,5 +23,11 @@ public class Validator {
             throw new IllegalArgumentException(ERROR_NOT_VALID_LENGTH);
         }
     }
+    public void isValidMove(String move) {
+        List<String> validMoves = new ArrayList<String>(Arrays.asList("U", "D"));
+        if (!(validMoves.contains(move.toUpperCase()))) {
+            throw new IllegalArgumentException(ERROR_NOT_VALID_MOVE);
+        }
+    }
 
 }
