@@ -50,7 +50,7 @@ class BridgeGameTest {
     }
 
     private String oppositeDirection(String direction) {
-        if (direction == "U")
+        if (direction.equals("U"))
             return "D";
         return "U";
     }

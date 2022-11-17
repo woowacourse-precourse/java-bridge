@@ -5,21 +5,43 @@ import bridge.io.InputView;
 import bridge.io.OutputView;
 
 public class Application {
+    private static final String QUIT_COMMAND = "Q";
+
+    private static BridgeGame game;
 
     public static void main(String[] args) {
-        System.out.println("다리 건너기 게임을 시작합니다.\n");
-        int bridgeSize = InputView.readBridgeSize();
+        OutputView.printStartPhrase();
+        makeBridgeGame();
+        playGame();
+        printResult();
+    }
+
+    private static void makeBridgeGame() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        BridgeGame game = new BridgeGame(bridgeMaker.makeBridge(bridgeSize));
+        game = new BridgeGame(bridgeMaker.makeBridge(InputView.readBridgeSize()));
+    }
+
+    private static void playGame() {
         while (!game.isEnd()) {
-            game.move(InputView.readMoving());
-            OutputView.printMap(game.getTopRoad(), game.getDownRoad());
+            moveMap();
             if (game.isStopped()) {
-                if (InputView.readGameCommand().equals("Q"))
-                    break;
+                if (isAskedToQuit())
+                    return ;
                 game.retry();
             }
         }
+    }
+
+    private static void moveMap() {
+        game.move(InputView.readMoving());
+        OutputView.printMap(game.getTopRoad(), game.getDownRoad());
+    }
+
+    private static boolean isAskedToQuit() {
+        return InputView.readGameCommand().equals(QUIT_COMMAND);
+    }
+
+    private static void printResult() {
         OutputView.printResult(game.getTopRoad(), game.getDownRoad(),
                 game.isEnd(), game.getNumOfAttempts());
     }
