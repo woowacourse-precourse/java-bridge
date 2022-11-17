@@ -62,6 +62,7 @@ public class InputView {
     private void validateInputSizeIsInteger(String input) {
         for (int i = 0; i < input.length(); i++) {
             if (input.charAt(i) < 48 || input.charAt(i) > 57) {
+                setError(INTEGER);
                 throw new IllegalArgumentException();
             }
         }
