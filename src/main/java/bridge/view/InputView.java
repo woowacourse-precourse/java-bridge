@@ -23,7 +23,9 @@ public class InputView {
     }
 
     public String readGameCommand() {
-        return null;
+        String command = readLine();
+        validateGameCommand(command);
+        return command;
     }
 
     private void validateBridgeSize(String input) {
