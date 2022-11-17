@@ -40,11 +40,12 @@ public class BridgeGame {
     public void move(BridgeSpaceDto dto) {
         BridgeState bridgeState = BridgeState.findByPlayerValue(dto.getMovingSpace())
                 .orElseThrow(NotFoundBridgeStateException::new);
-
         Bridge bridge = bridges.findBridgeByNotCrossed()
                 .orElseThrow(NotFoundBridgeException::new);
 
-
+        if(bridge.matches(bridgeState)) {
+            bridge.crossing();
+        }
     }
 
     /**

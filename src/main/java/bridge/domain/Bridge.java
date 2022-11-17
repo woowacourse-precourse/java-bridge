@@ -18,4 +18,12 @@ public class Bridge {
     public boolean isAlreadyCrossed() {
         return this.alreadyCrossed;
     }
+
+    public boolean matches(BridgeState bridgeState) {
+        return this.bridgeState.equals(bridgeState);
+    }
+
+    public void crossing() {
+        this.alreadyCrossed = true;
+    }
 }
