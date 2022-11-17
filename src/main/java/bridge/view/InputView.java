@@ -11,22 +11,29 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public static int readBridgeSize() {
-        String input = readLine();
+        String size = readLine();
         try {
-            validateDigit(input);
-            validateRange(input);
+            validateDigit(size);
+            validateRange(size);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             return readBridgeSize();
         }
-        return Integer.parseInt(input);
+        return Integer.parseInt(size);
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String moving = readLine();
+        try{
+            validateMoving(moving);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return readMoving();
+        }
+        return moving;
     }
 
     /**
@@ -37,7 +44,7 @@ public class InputView {
     }
 
     private static void validateDigit(String input) {
-        if (!input.matches("[0-9]+")){
+        if (!input.matches("[0-9]+")) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
         }
     }
@@ -46,7 +53,13 @@ public class InputView {
         int size = Integer.parseInt(input);
 
         if (size < 3 || size > 20) {
-            throw new IllegalArgumentException("[ERROR] 3이상 20 이하 숫자를 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] 3이상 20 이하 숫자를 입력해 주세요.");
+        }
+    }
+
+    private static void validateMoving(String input) {
+        if (!input.equals("U") && !input.equals("D")) {
+            throw new IllegalArgumentException("[ERROR] U 혹인 D를 입력해 주세요.");
         }
     }
 }
