@@ -10,6 +10,8 @@ import java.util.List;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
+    private static final int MINIMUM_BRIDGE_LENGTH = 3;
+    private static final int MAXIMUM_BRIDGE_LENGTH = 20;
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -37,7 +39,7 @@ public class BridgeMaker {
 
 
     private void validateLength(int size) {
-        if (size < 3 || size > 20) {
+        if (size < MINIMUM_BRIDGE_LENGTH || size > MAXIMUM_BRIDGE_LENGTH) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE_BRIDGE_LENGTH_3_TO_20);
         }
     }
