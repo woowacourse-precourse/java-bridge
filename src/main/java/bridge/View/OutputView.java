@@ -7,6 +7,7 @@ public class OutputView {
     private final String BRIDGESIZE = "다리의 길이를 입력해주세요.";
     private final String STARTGAME = "다리 건너기 게임을 시작합니다.";
     private final String PRINTLINE = "\n";
+    private final String MOVEPOINT = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -30,5 +31,9 @@ public class OutputView {
 
     public void printStartGame() {
         System.out.println(STARTGAME + PRINTLINE);
+    }
+
+    public void printMovePoint() {
+        System.out.println(MOVEPOINT);
     }
 }
