@@ -23,7 +23,7 @@
 
 - [ ] 이동한 칸이 유효하지 않은 칸이라면? 
   - [x] 게임 재시작 문구를 출력한다. -OutputView#printGuideMessage()
-  - [ ] 게임 재시작 여부를 입력 받는다. -InputView#readGameCommand()
+  - [x] 게임 재시작 여부를 입력 받는다. -InputView#readGameCommand()
     - [ ] 재시작 한다면, 이동할 칸을 입력 받는다.
     - [ ] 종료 한다면, 게임 종료 문구를 출력한다.
 
