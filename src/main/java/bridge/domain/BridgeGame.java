@@ -11,6 +11,7 @@ import java.util.StringJoiner;
 public class BridgeGame {
     private static final char O_FLAG = 'O';
     private static final char X_FLAG = 'X';
+    public static final int DIFFERENCE_TO_BE_BLANK = 32;
 
     private final List<String> bridge;
     private final char[] upBridgeStatus;
@@ -22,8 +23,8 @@ public class BridgeGame {
         this.upBridgeStatus = new char[bridge.size()];
         this.downBridgeStatus = new char[bridge.size()];
         for (int i = 0; i < bridge.size(); i++) {
-            upBridgeStatus[i] += 32;
-            downBridgeStatus[i] += 32;
+            upBridgeStatus[i] += DIFFERENCE_TO_BE_BLANK;
+            downBridgeStatus[i] += DIFFERENCE_TO_BE_BLANK;
         }
     }
 
