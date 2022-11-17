@@ -8,6 +8,10 @@ public class BridgeSizeValidation {
     public BridgeSizeValidation() {
     }
 
+    public void throwError(String message) {
+        throw new IllegalArgumentException(message);
+    }
+
     public void isNull(String bridgeSize) {
         if (bridgeSize.isEmpty()) {
             message = ErrorMessage.valueOf("NULL_EXCEPTION");
@@ -16,6 +20,10 @@ public class BridgeSizeValidation {
     }
 
     public void isBlank(String bridgeSize) {
+        if (bridgeSize.isBlank() && bridgeSize.length() != 0) {
+            message = ErrorMessage.valueOf("BLANK_EXCEPTION");
+            throwError(message.getMessage());
+        }
     }
 
     public void isNumber(String bridgeSize) {
