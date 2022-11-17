@@ -13,8 +13,8 @@ class BridgeMakerTest {
     @Test
     @DisplayName("숫자를 입력 받으면 숫자만큼 1또는 0을 생성하고 1은 U로 바꾼 후 0은 D로 변환한 후 List로 반환한다.")
     void makeBridge() {
-        BridgeMaker upBridgeMake = new BridgeMaker(new UpBridgeGenerator());
-        BridgeMaker downBridgeMaker = new BridgeMaker(new DownBridgeGenerator());
+        BridgeMaker upBridgeMake = new BridgeMaker(new UpNumberGenerator());
+        BridgeMaker downBridgeMaker = new BridgeMaker(new DownNumberGenerator());
 
         List<String> upBridge = upBridgeMake.makeBridge(3);
         List<String> downBridge = downBridgeMaker.makeBridge(3);
