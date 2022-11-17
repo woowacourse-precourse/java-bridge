@@ -1,22 +1,22 @@
-package bridge.Controller;
+package bridge.controller;
 
-import bridge.Model.BridgeGame;
-import bridge.Model.BridgeMaker;
-import bridge.Model.MapShape;
-import bridge.Util.BridgeRandomNumberGenerator;
-import bridge.View.InputView;
-import bridge.View.OutputView;
+import bridge.model.BridgeGame;
+import bridge.model.BridgeMaker;
+import bridge.model.MapShape;
+import bridge.util.BridgeRandomNumberGenerator;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 import java.util.List;
 
 public class GameController {
 
-    private static final String FAIL_CASE = "X";
+    private static final String FAIL_SIGN = "X";
     private static final String RESET_COMMAND = "R";
     private static final String QUIT_COMMAND = "Q";
 
     private static boolean keepGoing = true;
-    private static int i = 0;
+    private static int currentPosition = 0;
     private static int tryCount = 1;
 
     private final InputView inputView;
@@ -36,12 +36,12 @@ public class GameController {
     public void run() {
         int bridgeSize = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        while(keepGoing && i < bridgeSize){
+        while(keepGoing && currentPosition < bridgeSize){
             String nextMove = inputView.readMoving();
-            String moveResult = bridgeGame.move(bridge.get(i), nextMove);
+            String moveResult = bridgeGame.move(bridge.get(currentPosition), nextMove);
             outputView.printMap(nextMove, moveResult);
-            i++;
-            if(moveResult.matches(FAIL_CASE)) bridgeGame.retry();
+            currentPosition++;
+            if(moveResult.matches(FAIL_SIGN)) bridgeGame.retry();
         }
         outputView.printResult(tryCount, keepGoing);
     }
@@ -52,7 +52,7 @@ public class GameController {
     }
 
     private static void resetGame() {
-        i = 0;
+        currentPosition = 0;
         tryCount++;
         mapShape.clearMap();
     }
@@ -63,9 +63,9 @@ public class GameController {
 
     public void resetTotalGame(){
         tryCount = 1;
-        i = 0;
+        currentPosition = 0;
         keepGoing = true;
-        bridgeMaker.resetBridge();
+        bridgeMaker.clearBridge();
         mapShape.clearMap();
     }
 }

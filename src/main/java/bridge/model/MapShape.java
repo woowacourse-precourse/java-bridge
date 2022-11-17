@@ -1,4 +1,4 @@
-package bridge.Model;
+package bridge.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,18 +7,18 @@ public class MapShape {
 
     private static final String SPLIT_UNIT = " | ";
     private static final String BLANK = " ";
-    private static final String UPPER_CASE = "U";
-    private static final String LOWER_CASE = "D";
+    private static final String MOVE_TO_UPPER = "U";
+    private static final String MOVE_TO_LOWER = "D";
 
     private static final List<String> upperMap = new ArrayList<>();
     private static final List<String> lowerMap = new ArrayList<>();
 
     public void addShape(String nextMove, String moveResult) {
-        if(nextMove.matches(UPPER_CASE)) {
+        if(nextMove.matches(MOVE_TO_UPPER)) {
             upperMap.add(moveResult);
             lowerMap.add(BLANK);
         }
-        if(nextMove.matches(LOWER_CASE)) {
+        if(nextMove.matches(MOVE_TO_LOWER)) {
             upperMap.add(BLANK);
             lowerMap.add(moveResult);
         }
@@ -29,11 +29,11 @@ public class MapShape {
         lowerMap.clear();
     }
 
-    public String stringUpperMap() {
+    public String upperMapToString() {
         return getJoin(upperMap);
     }
 
-    public String stringLowerMap() {
+    public String lowerMapToString() {
         return getJoin(lowerMap);
     }
 

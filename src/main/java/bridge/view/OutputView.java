@@ -1,14 +1,14 @@
-package bridge.View;
+package bridge.view;
 
-import bridge.Model.MapShape;
+import bridge.model.MapShape;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
 
-    private static final String TOTAL_TRY_COUNT = "총 시도한 횟수: ";
-    private static final String PASS_OR_FAIL = "게임 성공 여부: ";
+    private static final String TOTAL_TRY_COUNT_MESSAGE = "총 시도한 횟수: ";
+    private static final String PASS_OR_FAIL_MESSAGE = "게임 성공 여부: ";
     private static final String PASS_MESSAGE = "성공";
     private static final String FAIL_MESSAGE = "실패";
     private static final String FINAL_RESULT_MESSAGE = "최종 게임 결과";
@@ -30,8 +30,8 @@ public class OutputView {
     }
 
     public void printMapOfCase() {
-        System.out.println("[ "+ mapShape.stringUpperMap() + " ]");
-        System.out.println("[ "+ mapShape.stringLowerMap() + " ]");
+        System.out.println("[ "+ mapShape.upperMapToString() + " ]");
+        System.out.println("[ "+ mapShape.lowerMapToString() + " ]");
     }
 
     /**
@@ -42,8 +42,8 @@ public class OutputView {
     public void printResult(int tryCount, boolean keepGoing) {
         System.out.println(FINAL_RESULT_MESSAGE);
         printMapOfCase();
-        System.out.println(PASS_OR_FAIL + checkPassOrFail(keepGoing));
-        System.out.println(TOTAL_TRY_COUNT + tryCount);
+        System.out.println(PASS_OR_FAIL_MESSAGE + checkPassOrFail(keepGoing));
+        System.out.println(TOTAL_TRY_COUNT_MESSAGE + tryCount);
     }
 
     private String checkPassOrFail(boolean keepGoing) {

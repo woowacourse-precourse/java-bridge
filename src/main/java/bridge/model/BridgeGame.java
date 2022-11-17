@@ -1,15 +1,15 @@
-package bridge.Model;
+package bridge.model;
 
-import bridge.Controller.GameController;
-import bridge.View.InputView;
+import bridge.controller.GameController;
+import bridge.view.InputView;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
-    private static final String PASS_CASE = "O";
-    private static final String FAIL_CASE = "X";
+    private static final String PASS_SIGN = "O";
+    private static final String FAIL_SIGN = "X";
 
     private final InputView inputView;
 
@@ -26,8 +26,8 @@ public class BridgeGame {
      */
     public String move(String bridgeShape, String nextMove) {
         if(bridgeShape.matches(nextMove))
-            return PASS_CASE;
-        return FAIL_CASE;
+            return PASS_SIGN;
+        return FAIL_SIGN;
     }
 
     /**

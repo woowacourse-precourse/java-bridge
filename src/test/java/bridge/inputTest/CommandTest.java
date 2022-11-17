@@ -1,7 +1,7 @@
 package bridge.inputTest;
 
 import bridge.Application;
-import bridge.Util.Validation;
+import bridge.util.Validation;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

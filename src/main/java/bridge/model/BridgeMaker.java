@@ -1,6 +1,6 @@
-package bridge.Model;
+package bridge.model;
 
-import bridge.Util.BridgeNumberGenerator;
+import bridge.util.BridgeNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +10,8 @@ import java.util.List;
  */
 public class BridgeMaker {
 
-    private static final String UPPER_CASE = "U";
-    private static final String LOWER_CASE = "D";
+    private static final String MOVE_TO_UPPER = "U";
+    private static final String MOVE_TO_LOWER = "D";
 
     List<String> bridgeShape = new ArrayList<>();
 
@@ -35,11 +35,11 @@ public class BridgeMaker {
 
     private String addShape() {
         if(bridgeNumberGenerator.generate() == 1)
-            return UPPER_CASE;
-        return LOWER_CASE;
+            return MOVE_TO_UPPER;
+        return MOVE_TO_LOWER;
     }
 
-    public void resetBridge(){
+    public void clearBridge(){
         bridgeShape.clear();
     }
 }
