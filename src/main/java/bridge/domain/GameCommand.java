@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.exception.ErrorMessage;
+import bridge.exception.InvalidInputException;
 import java.util.Objects;
 
 public enum GameCommand {
@@ -24,7 +26,7 @@ public enum GameCommand {
         if (Objects.equals(input, RESTART) || Objects.equals(input, QUIT)) {
             return;
         }
-        throw new IllegalArgumentException();
+        throw new InvalidInputException(ErrorMessage.RESTART_QUIT);
     }
 
     public static GameCommand getStatus(String input) {

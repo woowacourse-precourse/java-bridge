@@ -16,7 +16,7 @@ public class Bridge {
 
     public void move(Direction direction) {
         if (location >= bridgeLength) {
-            throw new IllegalArgumentException();
+            throw new IllegalStateException();
         }
 
         if (!Objects.equals(bridge.get(location++), direction.getPosition())) {

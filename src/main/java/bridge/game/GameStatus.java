@@ -43,13 +43,17 @@ public class GameStatus {
         return SUCCESS;
     }
 
-    public void retry() {
+    public void restart() {
         tryCount++;
         init();
     }
 
     public void move(Direction direction) {
         addStatus(direction, O);
+    }
+
+    public void makeFail(Direction direction) {
+        addStatus(direction, X);
     }
 
     private void addStatus(Direction direction, String status) {

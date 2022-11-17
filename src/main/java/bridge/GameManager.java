@@ -3,6 +3,7 @@ package bridge;
 import bridge.config.Config;
 import bridge.domain.Direction;
 import bridge.domain.GameCommand;
+import bridge.exception.InvalidInputException;
 import bridge.game.BridgeGame;
 import bridge.game.GameStatus;
 import bridge.view.InputView;
@@ -39,7 +40,7 @@ public class GameManager {
                 break;
             }
             if (gameCommand.isRetry()) {
-                bridgeGame.retry();
+                bridgeGame.restart();
             }
         }
     }
@@ -54,6 +55,9 @@ public class GameManager {
                 OutputView.printResult(bridgeGame.getStatus(), direction);
                 return GameCommand.FINISH;
             }
+        }catch (InvalidInputException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return GameCommand.PROGRESS;
         } catch (IllegalArgumentException e) {
             return getUserDecision();
         }

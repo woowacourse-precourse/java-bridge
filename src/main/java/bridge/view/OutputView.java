@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.domain.Direction;
+import bridge.exception.ErrorMessage;
 import bridge.game.GameStatus;
 
 /**
@@ -56,6 +57,10 @@ public class OutputView {
         String status = GAME_STATUS + gameStatus.getStatus(direction) + LF;
         String count = TRY_COUNT + gameStatus.getTryCount();
         print(status + count);
+    }
+
+    public static void printErrorMessage(String message) {
+        println(ErrorMessage.ERROR + message);
     }
 
     private static void print(String message) {

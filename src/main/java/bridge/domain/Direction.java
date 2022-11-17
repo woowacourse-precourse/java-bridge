@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.exception.ErrorMessage;
+import bridge.exception.InvalidInputException;
 import java.util.Objects;
 
 public enum Direction {
@@ -38,7 +40,7 @@ public enum Direction {
         if (Objects.equals(input, DOWN.position) || Objects.equals(input, UP.position)) {
             return;
         }
-        throw new IllegalArgumentException();
+        throw new InvalidInputException(ErrorMessage.UP_DOWN);
     }
 
     public String getPosition() {

@@ -3,6 +3,8 @@ package bridge;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
 import bridge.domain.Direction;
+import bridge.exception.ErrorMessage;
+import bridge.exception.InvalidInputException;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -34,7 +36,7 @@ public class BridgeMaker {
 
     private void validateSizeRange(int size) {
         if (size < MINIMUM_LENGTH || MAXIMUM_LENGTH < size) {
-            throw new IllegalArgumentException();
+            throw new InvalidInputException(ErrorMessage.BRIDGE_LENGTH_IS_BETWEEN_3_AND_20);
         }
     }
 
