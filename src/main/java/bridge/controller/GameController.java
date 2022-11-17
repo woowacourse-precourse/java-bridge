@@ -26,9 +26,16 @@ public class GameController {
     }
 
     private Bridge generateRandomBridge() {
-        int bridgeSize = inputView.readBridgeSize();
-        List<String> bridgePositions = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
-        Bridge bridge = Bridge.from(bridgePositions);
-        return bridge;
+        while(true) {
+            try {
+                int bridgeSize = inputView.readBridgeSize();
+                List<String> bridgePositions = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
+                Bridge bridge = Bridge.from(bridgePositions);
+                return bridge;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
+
 }
