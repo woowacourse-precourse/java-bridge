@@ -4,6 +4,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
+import bridge.domain.BridgeTile;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -23,15 +24,28 @@ public class GameController {
 
     public void startGame() {
         generateRandomBridge();
+        movePlayer();
     }
 
     private Bridge generateRandomBridge() {
-        while(true) {
+        while (true) {
             try {
                 int bridgeSize = inputView.readBridgeSize();
                 List<String> bridgePositions = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
                 Bridge bridge = Bridge.from(bridgePositions);
                 return bridge;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
+
+    private void movePlayer() {
+        while (true) {
+            try {
+                String movingPosition = inputView.readMoving();
+                BridgeTile movingTile = BridgeTile.findByTilePosition(movingPosition);
+                return;
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
