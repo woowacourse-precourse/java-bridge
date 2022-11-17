@@ -21,8 +21,12 @@ public enum BridgeMove {
         return direction;
     }
     
-    public static List<String> getDirectionList() {
-        return Arrays.stream(BridgeMove.values()).map((bridgeDirection -> bridgeDirection.getDirection())).collect(
+    public static boolean isContain(String direction) {
+        return getDirectionList().contains(direction);
+    }
+    
+    private static List<String> getDirectionList() {
+        return Arrays.stream(BridgeMove.values()).map((BridgeMove::getDirection)).collect(
                 Collectors.toList());
     }
     
