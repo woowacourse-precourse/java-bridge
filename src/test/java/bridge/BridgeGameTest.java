@@ -27,5 +27,14 @@ class BridgeGameTest {
                 .hasMessageStartingWith("[ERROR]");
     }
 
+    @DisplayName("사용자가 U, D를 입력할 때 공백을 넣으면 자동으로 트리밍하여 예외처리가 발생하지 않도록 한다.")
+    @ValueSource(strings = {" U","D "," U "})
+    @Test
+    void validate_Is_Acceptable_Blank_Input_Of_Character(InputView input) {
+        assertThatThrownBy(()-> new BridgeGame(input))
+                .isNotInstanceOf(IllegalArgumentException.class)
+                .hasMessageNotContaining("[ERROR]");
+    }
+
 
 }
