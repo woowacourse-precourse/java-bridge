@@ -18,8 +18,7 @@ public class BridgeGame {
     private final List<String> fullLowerMap;
 
     public BridgeGame(int bridgeSize) {
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         this.bridge = bridgeMaker.makeBridge(bridgeSize);
         this.trials = 1;
         this.bridgeSize = bridgeSize;
@@ -31,14 +30,18 @@ public class BridgeGame {
 
     private void makeFullMap() {
         for (String answer : bridge) {
-            if (answer.equals(Moving.U.toString())) {
-                fullUpperMap.add(PrintMessage.MAP_RIGHT.getString());
-                fullLowerMap.add(PrintMessage.MAP_BLANK.getString());
-                continue;
-            }
-            fullUpperMap.add(PrintMessage.MAP_BLANK.getString());
-            fullLowerMap.add(PrintMessage.MAP_RIGHT.getString());
+            fillMap(answer.equals(Moving.U.toString()));
         }
+    }
+
+    private void fillMap(boolean isAnswerUp) {
+        if (isAnswerUp) {
+            fullUpperMap.add(PrintMessage.MAP_RIGHT.getString());
+            fullLowerMap.add(PrintMessage.MAP_BLANK.getString());
+            return;
+        }
+        fullUpperMap.add(PrintMessage.MAP_BLANK.getString());
+        fullLowerMap.add(PrintMessage.MAP_RIGHT.getString());
     }
 
     public boolean move(String moving) {
