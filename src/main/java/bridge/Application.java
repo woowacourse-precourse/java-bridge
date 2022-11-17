@@ -2,11 +2,12 @@ package bridge;
 
 
 public class Application {
+    static InputView input = new InputView();
+    static OutputView output = new OutputView();
 
     public static void main(String[] args) {
-        InputView input = new InputView();
-        OutputView output = new OutputView();
-        BridgeGame bridgeGame = new BridgeGame();
+        int boardSize = new InputView().readBridgeSize();
+        BridgeGame bridgeGame = new BridgeGame(boardSize);
 
         //게임클리어여부
         while(bridgeGame.clear())
