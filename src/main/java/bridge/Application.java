@@ -8,6 +8,7 @@ public class Application {
             InputView inputView = new InputView();
             inputView.readBridgeSize();
             inputView.readMoving();
+            inputView.readGameCommand();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
