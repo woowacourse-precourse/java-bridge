@@ -4,6 +4,7 @@ package bridge;
 
 import bridge.UI.Input.InputWhileException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ import java.util.List;
  * 필드를 추가할 수 있다
  */
 public class BridgeGame {
-
+    private int round = 1;
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -39,7 +40,9 @@ public class BridgeGame {
      *
      * 메서드의 이름을 변경할 수 없다
      */
-    public void retry() {
+    public List<String> retry() {
+        round++;
+        return new ArrayList<String>();
     }
 
 }
