@@ -35,15 +35,37 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-
-        return null;
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        String answer = "";
+        try {
+            answer = checkMoving();
+        }
+        catch(IllegalArgumentException e){
+            System.err.println(e.getMessage());
+            readMoving();
+        }
+        return answer;
     }
 
+    public String checkMoving() {
+        String answer = "";
+        try {
+            answer = Console.readLine();
+        }
+        catch(StringIndexOutOfBoundsException e){
+            throw new IllegalArgumentException("[ERROR] 잘못된 입력을 하였습니다.");
+        }
+        return answer;
+    }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
         return null;
+    }
+
+    public int getSize(){
+        return size;
     }
 }
