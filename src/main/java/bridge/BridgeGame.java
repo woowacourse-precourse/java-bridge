@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -8,15 +9,25 @@ import java.util.Objects;
  */
 public class BridgeGame {
 
+    private String isSuccess;
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String move(String input, String availBridge) {
+    public List<String> move(String input, String availBridge) {
+        String result = "X";
         if (Objects.equals(input, availBridge))
-            return "O";
-        return "X";
+            result = "O";
+
+        return currentPlaying(input, result);
+    }
+
+    public List<String> currentPlaying(String move, String result) {
+        List<String> currentPlaying = new ArrayList<>();
+        currentPlaying.add(move);
+        currentPlaying.add(result);
+        return currentPlaying;
     }
 
     /**
