@@ -7,13 +7,14 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView implements ConsoleInput, InputValidator {
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
-//    public BridgeSize readBridgeSize() {
-//        BridgeSize bridgeSize = BridgeSize.valueOf(input());
-//        return bridgeSize;
-//    }
+    public BridgeSize readBridgeSize() {
+        try {
+            return BridgeSize.valueOf(input());
+        } catch ( IllegalArgumentException ignored) {
+            return readBridgeSize();
+        }
+    }
+
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
@@ -42,5 +43,4 @@ public class InputView implements ConsoleInput, InputValidator {
             throw new InputException(InputException.EMPTY);
         }
     }
-
 }
