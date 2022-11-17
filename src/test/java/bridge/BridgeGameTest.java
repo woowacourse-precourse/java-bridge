@@ -45,4 +45,12 @@ class BridgeGameTest {
                 .hasMessageContaining("[ERROR]");
     }
 
+    @DisplayName("캐릭터가 위 아래 둘 중 하나의 칸만 이동하는지 확인한다.")
+    @Test
+    void validate_Does_Character_Step_Only_A_Tile() {
+        assertThatThrownBy(()-> new BridgeGame())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
 }
