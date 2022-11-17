@@ -16,7 +16,9 @@ public class InputView {
     }
 
     public String readMoving() {
-        return null;
+        String moving = readLine();
+        validateMoving(moving);
+        return moving;
     }
 
     public String readGameCommand() {
