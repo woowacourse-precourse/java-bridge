@@ -1,9 +1,12 @@
 package bridge.exception;
 
-public class InputException {
+import java.util.regex.Pattern;
 
+public class InputException {
+    private static final Pattern MOVEMENT_DIRECTION = Pattern.compile("^(U)|(D)$");
     private static final String INVALID_BRIDGE_SIZE_TYPE = "[ERROR] 다리의 길이는 숫자여야 합니다.";
     private static final String INVALID_BRIDGE_SIZE_RANGE = "[ERROR] 다리의 길이는 3 이상 20 이하여야 합니다.";
+    private static final String INVALID_MOVEMENT_DIRECTION = "[ERROR] 이동할 칸은 U 또는 D 여야 합니다.";
     private static final Integer MIN_BRIDGE_SIZE = 3;
     private static final Integer MAX_BRIDGE_SIZE = 20;
 
@@ -18,6 +21,12 @@ public class InputException {
     public static void isValidBridgeSizeRange(String bridgeSize) {
         if (Integer.parseInt(bridgeSize) < MIN_BRIDGE_SIZE || Integer.parseInt(bridgeSize) > MAX_BRIDGE_SIZE) {
             throw new IllegalArgumentException(INVALID_BRIDGE_SIZE_RANGE);
+        }
+    }
+
+    public static void isValidMovementDirection(String movementDirection) {
+        if (!MOVEMENT_DIRECTION.matcher(movementDirection).matches()) {
+            throw new IllegalArgumentException(INVALID_MOVEMENT_DIRECTION);
         }
     }
 }

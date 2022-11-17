@@ -24,8 +24,13 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return Console.readLine();
+    public static String readMoving() {
+        String movementDirection = Console.readLine();
+
+        isValidMovementDirection(movementDirection);
+
+        return movementDirection;
+
     }
 
     /**
