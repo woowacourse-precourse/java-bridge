@@ -1,16 +1,21 @@
 package bridge.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player {
 
     private int tryCount;
     private int positionIndex;
+    private List<BridgeTile> movingLog;
 
     public Player() {
         this.tryCount = 1;
         initPosition();
     }
 
-    public int moveForward() {
+    public int moveForward(BridgeTile targetTile) {
+        movingLog.add(targetTile);
         positionIndex++;
         return positionIndex;
     }
@@ -21,6 +26,7 @@ public class Player {
     }
 
     private void initPosition() {
+        movingLog = new ArrayList<>();
         this.positionIndex = -1;
     }
 
