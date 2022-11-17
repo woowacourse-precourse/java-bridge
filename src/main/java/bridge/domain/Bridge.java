@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.exception.FailException;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,7 +21,7 @@ public class Bridge {
         }
 
         if (!Objects.equals(bridge.get(location++), direction.getPosition())) {
-            throw new IllegalArgumentException();
+            throw new FailException();
         }
     }
 

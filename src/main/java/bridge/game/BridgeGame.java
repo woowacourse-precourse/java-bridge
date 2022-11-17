@@ -2,6 +2,8 @@ package bridge.game;
 
 import bridge.domain.Bridge;
 import bridge.domain.Direction;
+import bridge.exception.ErrorMessage;
+import bridge.exception.FailException;
 import java.util.List;
 
 /**
@@ -26,11 +28,11 @@ public class BridgeGame {
         try {
             bridge.move(direction);
             gameStatus.move(direction);
-        } catch (IllegalArgumentException e) {
+        } catch (FailException e) {
             gameStatus.makeFail(direction);
-            throw new IllegalArgumentException();
+            throw new FailException();
         } catch (IllegalStateException e) {
-
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BRIDGE_STATUS);
         }
     }
 

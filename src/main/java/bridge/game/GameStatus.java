@@ -54,6 +54,7 @@ public class GameStatus {
 
     public void makeFail(Direction direction) {
         addStatus(direction, X);
+        isFail = true;
     }
 
     private void addStatus(Direction direction, String status) {
@@ -62,7 +63,6 @@ public class GameStatus {
             return;
         }
         addDown(status);
-        this.isFail = true;
     }
 
     public String getBridgeStatus() {
