@@ -1,5 +1,8 @@
 package bridge.domain;
 
+import bridge.validator.BridgeValidator;
+import bridge.view.ErrorView;
+
 import java.util.List;
 
 public class Bridge {
@@ -15,6 +18,6 @@ public class Bridge {
     }
 
     public String getElementByIndex(int index) {
-        return this.answerSheet.get(index);
+        return this.answerSheet.get(BridgeValidator.checkBridgeIndexValid(this.answerSheet.size(), index));
     }
 }
