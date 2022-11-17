@@ -49,7 +49,7 @@ public class BridgeGameController {
     }
     
     private void printMovingInputMessage() {
-        System.out.println("이동할 칸 입력(U, D)");
+        outputView.printMovingInputMessage();
     }
     
     private boolean isGameFinished(final BridgeGame bridgeGame) {
