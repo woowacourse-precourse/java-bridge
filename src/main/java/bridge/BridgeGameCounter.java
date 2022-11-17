@@ -18,4 +18,8 @@ public class BridgeGameCounter {
         }
         return false;
     }
+
+    public void reset() {
+        count = 0;
+    }
 }
