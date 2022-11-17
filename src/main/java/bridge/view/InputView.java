@@ -1,7 +1,6 @@
 package bridge.view;
 
 import bridge.model.CheckValidation;
-import bridge.model.GameDTO;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
