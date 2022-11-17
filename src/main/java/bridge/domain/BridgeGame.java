@@ -33,9 +33,9 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String key) {
+    public boolean move(String key) {
         String upOrDown = bridge.get(++position);
-        canMove(key, upOrDown);
+        return canMove(key, upOrDown);
     }
 
     /**
@@ -43,34 +43,33 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(String key) {
+
     }
 
-    private void canMove(String key, String upOrDown) {
+    private boolean canMove(String key, String upOrDown) {
         if (key.equals(InputKey.U.getValue())) {
-            handleUpBridge(upOrDown);
+            return handleUpBridge(upOrDown);
         }
-        if (key.equals(InputKey.D.getValue())) {
-            handleDownBridge(upOrDown);
-        }
+        return handleDownBridge(upOrDown);
     }
 
-    private void handleUpBridge(String upOrDown) {
+    private boolean handleUpBridge(String upOrDown) {
         if (upOrDown.equals(InputKey.U.getValue())) {
             upBridgeStatus[position] = O_FLAG;
+            return true;
         }
-        if (upOrDown.equals(InputKey.D.getValue())) {
-            upBridgeStatus[position] = X_FLAG;
-        }
+        upBridgeStatus[position] = X_FLAG;
+        return false;
     }
 
-    private void handleDownBridge(String upOrDown) {
+    private boolean handleDownBridge(String upOrDown) {
         if (upOrDown.equals(InputKey.D.getValue())) {
             downBridgeStatus[position] = O_FLAG;
+            return true;
         }
-        if (upOrDown.equals(InputKey.U.getValue())) {
-            downBridgeStatus[position] = X_FLAG;
-        }
+        downBridgeStatus[position] = X_FLAG;
+        return false;
     }
 
     public char[] getUpBridgeStatus() {

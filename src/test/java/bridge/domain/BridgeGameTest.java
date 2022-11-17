@@ -21,7 +21,7 @@ class BridgeGameTest {
     class MoveTest {
         @Test
         void test1() {
-            bridgeGame.move("U");
+            assertThat(bridgeGame.move("U")).isTrue();
             assertThat(bridgeGame.getPosition()).isEqualTo(0);
             assertThat(bridgeGame.getUpBridgeStatus()).containsExactly('O', ' ', ' ');
             assertThat(bridgeGame.getDownBridgeStatus()).containsExactly(' ', ' ', ' ');
@@ -29,8 +29,9 @@ class BridgeGameTest {
 
         @Test
         void test2() {
-            bridgeGame.move("U");
-            bridgeGame.move("D");
+            assertThat(bridgeGame.move("U")).isTrue();
+            assertThat(bridgeGame.move("D")).isFalse();
+
             assertThat(bridgeGame.getPosition()).isEqualTo(1);
             assertThat(bridgeGame.getUpBridgeStatus()).containsExactly('O', ' ', ' ');
             assertThat(bridgeGame.getDownBridgeStatus()).containsExactly(' ', 'X', ' ');
@@ -38,8 +39,8 @@ class BridgeGameTest {
 
         @Test
         void test3() {
-            bridgeGame.move("U");
-            bridgeGame.move("U");
+            assertThat(bridgeGame.move("U")).isTrue();
+            assertThat(bridgeGame.move("U")).isTrue();
             assertThat(bridgeGame.getPosition()).isEqualTo(1);
             assertThat(bridgeGame.getUpBridgeStatus()).containsExactly('O', 'O', ' ');
             assertThat(bridgeGame.getDownBridgeStatus()).containsExactly(' ', ' ', ' ');
@@ -47,9 +48,9 @@ class BridgeGameTest {
 
         @Test
         void test4() {
-            bridgeGame.move("U");
-            bridgeGame.move("U");
-            bridgeGame.move("U");
+            assertThat(bridgeGame.move("U")).isTrue();
+            assertThat(bridgeGame.move("U")).isTrue();
+            assertThat(bridgeGame.move("U")).isFalse();
             assertThat(bridgeGame.getPosition()).isEqualTo(2);
             assertThat(bridgeGame.getUpBridgeStatus()).containsExactly('O', 'O', 'X');
             assertThat(bridgeGame.getDownBridgeStatus()).containsExactly(' ', ' ', ' ');
@@ -57,9 +58,9 @@ class BridgeGameTest {
 
         @Test
         void test5() {
-            bridgeGame.move("U");
-            bridgeGame.move("U");
-            bridgeGame.move("D");
+            assertThat(bridgeGame.move("U")).isTrue();
+            assertThat(bridgeGame.move("U")).isTrue();
+            assertThat(bridgeGame.move("D")).isTrue();
             assertThat(bridgeGame.getPosition()).isEqualTo(2);
             assertThat(bridgeGame.getUpBridgeStatus()).containsExactly('O', 'O', ' ');
             assertThat(bridgeGame.getDownBridgeStatus()).containsExactly(' ', ' ', 'O');
