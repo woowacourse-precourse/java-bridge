@@ -48,4 +48,15 @@ class InputViewTest {
     }
 
 
+    @Test
+    void readMoving() {
+        InputView inputView = new InputView();
+
+        ByteArrayInputStream in = new ByteArrayInputStream("U".getBytes());
+        System.setIn(in);
+
+        String moveTo = inputView.readMoving();
+
+        assertThat(moveTo).isEqualTo("U");
+    }
 }
