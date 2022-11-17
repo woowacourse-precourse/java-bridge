@@ -48,6 +48,6 @@ public class InputView {
         /*
         입력이 유효한지 확인
          */
-        return null;
+        return gameCommanInput;
     }
 }
