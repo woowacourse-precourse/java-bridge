@@ -42,6 +42,27 @@ public class BridgeGame {
         return movements.get(movements.size() - 1).isAvailable();
     }
 
+    public String createMovementStatus(List<Movement> movements) {
+        StringBuilder upperStatus = new StringBuilder("[");
+        StringBuilder lowerStatus = new StringBuilder("[");
+        for (Movement movement : movements) {
+            upperStatus.append(distinguishStatus(movement, Movement.UP_AND_O, Movement.UP_AND_X));
+            lowerStatus.append(distinguishStatus(movement, Movement.DOWN_AND_O, Movement.DOWN_AND_X));
+        }
+        upperStatus.replace(upperStatus.length() - 1, upperStatus.length(), "]\n");
+        lowerStatus.replace(lowerStatus.length() - 1, lowerStatus.length(), "]\n");
+        return upperStatus.append(lowerStatus).toString();
+    }
+
+    private String distinguishStatus(Movement movement, Movement movementO, Movement movementX) {
+        if (movement == movementO) {
+            return " O |";
+        } else if (movement == movementX) {
+            return " X |";
+        }
+        return "   |";
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
