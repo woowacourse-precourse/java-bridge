@@ -12,13 +12,14 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        System.out.println(ViewConstants.INPUT_SIZE);
         String str = Console.readLine();
         try {
             validator = new SizeValidator();
             validator.validate(str);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            readBridgeSize();
+            return readBridgeSize();
         }
         return Integer.parseInt(str);
     }
@@ -27,7 +28,16 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(ViewConstants.INPUT_MOVE);
+        String str = Console.readLine();
+        try {
+            validator = new MoveValidator();
+            validator.validate(str);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
+        return str;
     }
 
     /**
