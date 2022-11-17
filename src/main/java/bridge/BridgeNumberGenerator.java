@@ -1,4 +1,4 @@
-package bridge.util;
+package bridge;
 
 /**
  * Random 값 추출은 제공된 bridge.BridgeRandomNumberGenerator의 generate()를 활용한다.
