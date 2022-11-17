@@ -14,11 +14,16 @@ public class GameManager {
     public void runGame() {
         try {
             makeBridgeGame();
-            boolean checkSame = runMovePoint();
-            runResult(checkSame);
+            execution();
         } catch(IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public void execution() {
+        boolean checkSame = runMovePoint();
+        System.out.println(checkSame);
+        runResult(checkSame);
     }
 
     public void makeBridgeGame() {
@@ -75,8 +80,19 @@ public class GameManager {
     }
 
     public void runResult(boolean checkSame) {
-        if ((bridgeDTO.getMovePoint() != bridgeDTO.getSize()) && !checkSame) {
-            bridgeGame.retry();
+        if (!checkSame) {
+            outputView.printRetry();
+            String retryWord = inputView.readGameCommand();
+            System.out.println(retryWord);
+            if (retryWord.equals("R")) {
+                bridgeGame.retry(bridgeDTO);
+                execution();
+                return ;
+            }
+            if (retryWord.equals("Q")) {
+                outputView.printResult();
+                outputView.printMap(bridgeDTO);
+            }
         }
     }
 }

@@ -42,4 +42,8 @@ public class BridgeDTO {
         return this.saveSecondLine;
     }
 
+    public void clearInitializeLine() {
+        this.saveFirstLine.clear();
+        this.saveSecondLine.clear();
+    }
 }
