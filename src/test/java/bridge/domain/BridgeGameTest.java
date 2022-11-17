@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import static bridge.Constants.COMPLETE;
+import static bridge.Constants.FAIL;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
@@ -72,12 +74,33 @@ class BridgeGameTest {
 
     @DisplayName("move()를 통해 증가한 index 값이 retry()를 통해 0으로 초기화 된다.")
     @Test
-    void retry() {
+    void retryTest() {
         bridgeGame.move("U");
         bridgeGame.move("D");
         bridgeGame.move("D");
-        assertThat(bridgeGame.getIndex()).isEqualTo(3);
+        assertThat(bridgeGame.getIndex()).isEqualTo(2);
         bridgeGame.retry();
         assertThat(bridgeGame.getIndex()).isEqualTo(0);
     }
+
+    @DisplayName("게임 성공시 checkCompleteOrFail()가 COMPLETE 를 반환한다.")
+    @Test
+    void checkCompleteOrFailTest1() {
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        assertThat(bridgeGame.checkCompleteOrFail()).isEqualTo(COMPLETE);
+    }
+
+    @DisplayName("게임 실패시 checkCompleteOrFail()가 FAIL 을 반환한다.")
+    @Test
+    void checkCompleteOrFailTest2() {
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("U");
+        bridgeGame.move("U");
+        assertThat(bridgeGame.checkCompleteOrFail()).isEqualTo(FAIL);
+    }
+
 }
