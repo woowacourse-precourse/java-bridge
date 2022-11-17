@@ -43,6 +43,7 @@ public class BridgeGame {
             movements.add(Movement.DOWN_AND_X);
             return false;
         }
+        return false;
     }
 
     /**
