@@ -24,6 +24,7 @@ public class InputView {
 
         Validator.isNumber(userInput);
 
+        System.out.println();
         return Integer.valueOf(userInput);
     }
 

@@ -16,6 +16,7 @@ public class OutputView {
     public void printMap(List<Choice> inputs) {
         printBridge(inputs, "U");
         printBridge(inputs, "D");
+        System.out.println();
     }
 
     public void printBridge(List<Choice> inputs, String upDown){
