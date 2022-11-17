@@ -9,6 +9,7 @@ public class BridgeDTO {
     private int movePoint = 0;
     private List<String> saveFirstLine = new ArrayList<>();
     private List<String> saveSecondLine = new ArrayList<>();
+    private int retry = 1;
 
     public List<String> getBridge() {
         return this.bridge;
@@ -45,5 +46,13 @@ public class BridgeDTO {
     public void clearInitializeLine() {
         this.saveFirstLine.clear();
         this.saveSecondLine.clear();
+    }
+
+    public int getRetry() {
+        return this.retry;
+    }
+
+    public void setRetry(int retry) {
+        this.retry = retry;
     }
 }

@@ -14,15 +14,17 @@ public class GameManager {
     public void runGame() {
         try {
             makeBridgeGame();
-            execution();
+            boolean checkSame = execution();
+            totalResult(checkSame);
         } catch(IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public void execution() {
+    public boolean execution() {
         boolean checkSame = runMovePoint();
         runResult(checkSame);
+        return checkSame;
     }
 
     public void makeBridgeGame() {
@@ -101,5 +103,13 @@ public class GameManager {
             outputView.printResult();
             outputView.printMap(bridgeDTO);
         }
+    }
+
+    public void totalResult(boolean sameWord) {
+        if (sameWord == false)
+            outputView.printFail();
+        if (sameWord == true)
+            outputView.printSuccess();
+        outputView.printTotalTry(bridgeDTO);
     }
 }
