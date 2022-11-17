@@ -26,4 +26,11 @@ public class Exception {
             return bridgeSize;
         throw new IllegalArgumentException(ERROR_PREFIX + OUT_RANGE_OF_BRIDGE_SIZE);
     }
+
+    // TODO: 입력 값이 U 혹은 D가 아닐 시 예외를 발생 시킨다.
+    public static String validateInputValueForMove(String moving){
+        if (moving.equals(USER_MOVE_UP) || (moving.equals(USER_MOVE_DOWN)))
+            return moving;
+        throw new IllegalArgumentException(ERROR_PREFIX + INVALID_INPUT_VALUE_FOR_MOVE);
+    }
 }
