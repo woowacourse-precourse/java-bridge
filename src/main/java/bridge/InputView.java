@@ -8,6 +8,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     private static final String ERROR="[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     private static final String ERROR_UD="[ERROR] 이동할 칸의 입력은 U,D 둘중 하나만 입력해야합니다.";
+    private static final String ERROR_RQ="[ERROR] 게임의 재시작 여부 입력은 R,Q 둘중 하나만 입력해야합니다.";
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -52,6 +53,13 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String regame=Console.readLine();
+        isRQ(regame);
+        return regame;
+    }
+    public void isRQ(String Input){
+        if(!(Input.equals("R")||Input.equals("Q"))){
+            throw new IllegalArgumentException(ERROR_RQ);
+        }
     }
 }

@@ -1,5 +1,5 @@
 package bridge;
-
+import java.lang.String;
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -10,9 +10,50 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public String printMap(String map,String Input, int count) {
+        if(Input.equals("U")){
+            map+= printUMap(map,"O",count);}
+        if(Input.equals("D")){
+            map+= printDMap(map,"O",count);}
+        System.out.println(map);
+        return map;
+    }
+    public String printFailMap(String map,String Input, int count){
+        if(Input.equals("U")){
+            map+=printUMap(map,"X",count);}
+        if(Input.equals("D")){
+            map+=printDMap(map,"X",count);}
+        System.out.println(map);
+        return map;
     }
 
+    public String printUMap(String map,String Input,int count){
+        String answer="";
+    if(count==1){
+
+        answer="[ "+Input+" ]\n[   ]";
+        return answer;
+    }
+    answer+=map.substring(0,(count-1)*4);
+     answer+="| "+Input+" ]\n";
+     int index=map.indexOf("[",1);
+        answer+=map.substring(index,index+4);
+        answer+="|   ]";
+    return answer;
+    }
+    public String printDMap(String map,String Input,int count){
+        String answer="";
+        if(count==1){
+            answer="[   ]\n[ "+Input+" ]";
+            return answer;
+        }
+        answer+=map.substring(0,(count-1)*4);
+        answer+="|   ]\n";
+        int index=map.indexOf("[",1);
+        answer+=map.substring(index,index+4);
+        answer+="| "+Input+" ]\n";
+        return answer;
+    }
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
