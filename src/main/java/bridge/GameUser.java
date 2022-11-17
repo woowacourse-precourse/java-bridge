@@ -12,4 +12,8 @@ public class GameUser {
     public void reset() {
         userBridge.reset();
     }
+
+    public boolean isSame(Bridge otherBridge) {
+        return userBridge.isSame(otherBridge);
+    }
 }

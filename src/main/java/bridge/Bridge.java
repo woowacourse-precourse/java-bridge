@@ -17,4 +17,12 @@ public class Bridge {
     public void reset() {
         bridge = new ArrayList<>();
     }
+
+    public boolean isSame(Bridge other) {
+        return other.isSameValue(bridge);
+    }
+
+    public boolean isSameValue(List<String> other) {
+        return bridge.equals(other);
+    }
 }
