@@ -9,7 +9,7 @@ public class BridgeGameController {
     private static final String LOSE_GAME = "실패";
 
     private int trials = 1;
-    private final List<String> moving = new ArrayList<>();
+    private final List<String> movingData = new ArrayList<>();
     private final List<String> upBridgeResult = new ArrayList<>();
     private final List<String> downBridgeResult = new ArrayList<>();
 
@@ -26,11 +26,14 @@ public class BridgeGameController {
     public void setGame() {
         outputView.printStart();
         List<String> bridge = getBridge();
+        String moving = getMoving();
+        int index = movingData.size();
+        updateMovingData(bridge, moving, index);
     }
 
     private List<String> getBridge() {
         List<String> bridge = new ArrayList<>();
-        int size = 0;
+        int size;
         try {
             size = inputView.readBridgeSize();
             bridge = bridgeMaker.makeBridge(size);
@@ -40,4 +43,27 @@ public class BridgeGameController {
         }
         return bridge;
     }
+
+    private String getMoving() {
+        String moving = null;
+        try {
+            moving = inputView.readMoving();
+        } catch (IllegalArgumentException ie) {
+            System.out.println(ie.getMessage());
+            getMoving();
+        }
+        return moving;
+    }
+
+    private void updateMovingData(List<String> bridge, String input, int index) {
+        try {
+            upBridgeResult.add(bridgeGame.getUpBridgeResult(bridge, index, input));
+            downBridgeResult.add(bridgeGame.getDownBridgeResult(bridge, index, input));
+        } catch (IllegalArgumentException ie) {
+            System.out.println(ie.getMessage());
+            getMoving();
+        }
+    }
+
+
 }
