@@ -2,6 +2,9 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import static bridge.Application.*;
+import static bridge.Error.*;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -51,6 +54,7 @@ public class InputView {
 
     private void validateInputIsExist(String input) {
         if (input.length() == 0) {
+            setError(NONE);
             throw new IllegalStateException();
         }
     }
