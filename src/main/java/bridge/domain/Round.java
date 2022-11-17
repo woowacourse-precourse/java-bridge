@@ -1,7 +1,11 @@
 package bridge.domain;
 
+import static java.util.stream.Collectors.toList;
+
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 public class Round {
 
@@ -32,5 +36,11 @@ public class Round {
         if (number < ROUND_LOWER_BOUND || ROUND_UPPER_BOUND < number) {
             throw new IllegalArgumentException(INVALID_ROUND_RANGE_MESSAGE);
         }
+    }
+
+    public static List<Round> naturalOrder() {
+        return IntStream.rangeClosed(ROUND_LOWER_BOUND, ROUND_UPPER_BOUND)
+                .mapToObj(CACHE::get)
+                .collect(toList());
     }
 }

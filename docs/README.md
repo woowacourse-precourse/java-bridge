@@ -54,6 +54,7 @@
 - [x]  MoveResult 성공, 실패 표현하는 Enum
     - [x]  getInitialLetter -> initialLetter를 반환
 - [x]  Round 각 라운드를 표현하는 클래스
+    - [x]  naturalOrder -> Round를 오름차순으로 반환
 - [x]  Direction 위 아래 방향을 표현하는 Enum
     - [x]  toInitialLetter -> 0과 1사이의 값을 받아 D와 U중 하나를 반환
     - [x]  toEnum -> D와 U를 입력받아 Enum 인스턴스를 반환
