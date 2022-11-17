@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.constant.Messages;
 import bridge.domain.BridgeSize;
+import bridge.domain.Moving;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
@@ -11,11 +12,9 @@ public class InputView {
         return new BridgeSize(Console.readLine());
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
-    public String readMoving() {
-        return null;
+    public Moving readMoving() {
+        System.out.println(Messages.MOVING_MESSAGE);
+        return new Moving(Console.readLine());
     }
 
     /**
