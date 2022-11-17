@@ -91,9 +91,13 @@ public class OutputView {
         System.out.println("최종 게임 결과");
         printMap(currentBridge.getAlreadyCrossedBridge(),isGameSuccess);
 
+        if(isGameSuccess){
+            gameCount++;
+        }
+
         String gameResult = convertResult(isGameSuccess);
-        System.out.printf("게임 성공 여부 : %s\n",gameResult);
-        System.out.printf("총 시도한 횟수 : %d", gameCount);
+        System.out.println("게임 성공 여부: " + gameResult);
+        System.out.println("총 시도한 횟수: " + gameCount);
     }
 
     private String convertResult(boolean gameResult){
