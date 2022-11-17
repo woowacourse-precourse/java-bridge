@@ -1,14 +1,27 @@
 package bridge.domain;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 public enum BridgeInformation {
-        UP(0, "U"), DOWN(1, "D");
+    UP(0, "U"), DOWN(1, "D"), WRONG(-1, "WRONG");
 
-        BridgeInformation(int bridgeNumber, String bridgePosition) {
-            this.bridgeNumber = bridgeNumber;
-            this.bridgePosition = bridgePosition;
-        }
+    private final int bridgeNumber;
+    private final String bridgePosition;
 
-        final int bridgeNumber;
-        final String bridgePosition;
+    BridgeInformation(int bridgeNumber, String bridgePosition) {
+        this.bridgeNumber = bridgeNumber;
+        this.bridgePosition = bridgePosition;
+    }
 
+    static BridgeInformation convertToBridgeInfo(int bridgeNumber) {
+        return Arrays.stream(BridgeInformation.values())
+                .filter(bridgeInfo -> Objects.equals(bridgeInfo.bridgeNumber, bridgeNumber))
+                .findAny()
+                .orElse(WRONG);
+    }
+
+    public String getPosition() {
+        return this.bridgePosition;
+    }
 }

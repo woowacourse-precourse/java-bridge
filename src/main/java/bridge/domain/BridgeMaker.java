@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import static bridge.domain.BridgeInformation.convertToBridgeInfo;
+
 import bridge.BridgeNumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +12,6 @@ import java.util.List;
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
-    private String bridgePosition;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -23,18 +24,9 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>(size);
         for (int count = 0; count < size; count++) {
-            convertToBridgePosition(bridgeNumberGenerator.generate());
-            bridge.add(bridgePosition);
+            BridgeInformation bridgeInfo = convertToBridgeInfo(bridgeNumberGenerator.generate());
+            bridge.add(bridgeInfo.getPosition());
         }
         return bridge;
-    }
-
-    private void convertToBridgePosition(int bridgeNumber) {
-        if (bridgeNumber == BridgeInformation.UP.bridgeNumber) {
-            bridgePosition = BridgeInformation.UP.bridgePosition;
-        }
-        if (bridgeNumber == BridgeInformation.DOWN.bridgeNumber) {
-            bridgePosition = BridgeInformation.DOWN.bridgePosition;
-        }
     }
 }
