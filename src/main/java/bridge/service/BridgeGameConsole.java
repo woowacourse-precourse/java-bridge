@@ -31,11 +31,7 @@ public class BridgeGameConsole {
     private boolean crossTheBridge(BridgeGame bridgeGame) {
         boolean shouldCrossMore = true;
         while (shouldCrossMore) {
-            emcee.guideEnteringMovement();
-            String movement = player.enterMovement();
-            boolean availableMovement = bridgeGame.move(movement);
-            String movementStatus = bridgeGame.createMovementStatus();
-            emcee.showBridgeMovementStatus(movementStatus);
+            boolean availableMovement = crossBlock(bridgeGame);
 
             if (!availableMovement) {
                 emcee.guideEnteringRetryStatus();
@@ -51,5 +47,14 @@ public class BridgeGameConsole {
             }
         }
         return false;
+    }
+
+    private boolean crossBlock(BridgeGame bridgeGame) {
+        emcee.guideEnteringMovement();
+        String movement = player.enterMovement();
+        boolean availableMovement = bridgeGame.move(movement);
+        String movementStatus = bridgeGame.createMovementStatus();
+        emcee.showBridgeMovementStatus(movementStatus);
+        return availableMovement;
     }
 }
