@@ -28,8 +28,8 @@ public class Emcee {
 
     }
 
-    public void showBridgeMovementStatus() {
-
+    public void showBridgeMovementStatus(String movementStatus) {
+        outputView.printMap(movementStatus);
     }
 
     public void showGameResult() {
