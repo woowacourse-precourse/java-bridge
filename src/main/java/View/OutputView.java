@@ -30,4 +30,9 @@ public class OutputView {
         final String readBridgeSizeMessage = "다리의 길이를 입력해주세요.";
         System.out.println(readBridgeSizeMessage);
     }
+
+    public void printReadMoving(){
+        final String readMovingMessage = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+        System.out.println(readMovingMessage);
+    }
 }
