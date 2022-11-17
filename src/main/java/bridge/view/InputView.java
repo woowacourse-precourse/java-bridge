@@ -30,7 +30,6 @@ public class InputView {
         isValidMovementDirection(movementDirection);
 
         return movementDirection;
-
     }
 
     /**
