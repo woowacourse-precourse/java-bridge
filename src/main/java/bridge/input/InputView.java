@@ -25,4 +25,10 @@ public class InputView {
     public String readGameCommand() {
         return null;
     }
+
+    public void validate(ValidationType validationType, String input) {
+        if (!ValidationType.validate(validationType, input)) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

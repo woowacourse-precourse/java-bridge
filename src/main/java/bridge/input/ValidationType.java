@@ -22,7 +22,7 @@ public enum ValidationType {
         return validationRange;
     }
 
-    public boolean validate(ValidationType validationType, String input) {
+    public static boolean validate(ValidationType validationType, String input) {
         return validationType.getValidationRange().contains(input);
     }
 }
