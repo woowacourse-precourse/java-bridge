@@ -20,7 +20,62 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(StringBuilder upperBridge, StringBuilder lowerBridge) {
+//        upperBridge.append(" ]");
+//        lowerBridge.append(" ]");
+        System.out.println(upperBridge);
+        System.out.println(lowerBridge);
+    }
+
+    public void WriteInitUpperBridge(StringBuilder upperBridge, StringBuilder lowerBridge, boolean success) {
+        if(success) {
+            upperBridge.append("[ ").append("O").append(" ]");
+            lowerBridge.append("[ ").append(" ").append(" ]");
+        }
+        if(!success) {
+            upperBridge.append("X").append(" ]");
+            lowerBridge.append(" ").append(" ]");
+        }
+    }
+
+    public void WriteInitLowerBridge(StringBuilder upperBridge, StringBuilder lowerBridge, boolean success) {
+        if(success) {
+            upperBridge.append(" ").append(" ]");
+            lowerBridge.append("O").append(" ]");
+        }
+        if(!success) {
+            upperBridge.append(" ").append(" ]");
+            lowerBridge.append("X").append(" ]");
+        }
+    }
+
+    public void WriteUpperBridge(StringBuilder upperBridge, StringBuilder lowerBridge, boolean success) {
+        bridgeLastCharRemove(upperBridge, lowerBridge);
+        if(success) {
+            upperBridge.append("| ").append("O").append(" ]");
+            lowerBridge.append("| ").append(" ").append(" ]");
+        }
+        if(!success) {
+            upperBridge.append("| ").append("X").append(" ]");
+            lowerBridge.append("| ").append(" ").append(" ]");
+        }
+    }
+
+    public void WriteLowerBridge(StringBuilder upperBridge, StringBuilder lowerBridge, boolean success) {
+        bridgeLastCharRemove(upperBridge, lowerBridge);
+        if(success) {
+            upperBridge.append("| ").append(" ").append(" ]");
+            lowerBridge.append("| ").append("O").append(" ]");
+        }
+        if(!success) {
+            upperBridge.append("| ").append(" ").append(" ]");
+            lowerBridge.append("| ").append("X").append(" ]");
+        }
+    }
+
+    private void bridgeLastCharRemove(StringBuilder upperBridge, StringBuilder lowerBridge) {
+        upperBridge.deleteCharAt(upperBridge.length()-1);
+        lowerBridge.deleteCharAt(lowerBridge.length()-1);
     }
 
     /**
