@@ -5,6 +5,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
+import bridge.domain.PassingPositions;
 import bridge.domain.Position;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -25,23 +26,28 @@ public class BridgeController {
 
         System.out.println(bridge.getElements());
 
-        Position position = new Position();
+//        Position position = new Position();
+//        PassingPositions passingPositions = new PassingPositions();
         BridgeGame bridgeGame = new BridgeGame();
         boolean isQuit = false;
 
         do {
+            Position position = new Position();
+            PassingPositions passingPositions = new PassingPositions();
+//            BridgeGame bridgeGame = new BridgeGame();
             do {
                 if (position.getIndex() == size - 1) {
                     isQuit = true;
                     break;
                 }
                 String answer = InputView.readMoving();
-                bridgeGame.move(answer, position);
-            } while (OutputView.printMap(bridge, position).equals("O"));
+                bridgeGame.move(answer, position, passingPositions);
+            } while (!OutputView.printMap(bridge, passingPositions).contains("X"));
+
             if (isQuit) {
                 break;
             }
-            bridgeGame.retry(position);
+            bridgeGame.retry(passingPositions);
         } while (InputView.readGameCommand().equals("R"));
     }
 }
