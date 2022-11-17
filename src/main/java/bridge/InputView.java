@@ -36,13 +36,11 @@ public class InputView {
 	 */
 	public String readMoving() {
 		Print.selectBlock();
-		boolean flag = true;
 		String upDown = "";
-		while (flag){
+		while (!upDown.equals("U") && !upDown.equals("D")){
 			try{
 				upDown = Console.readLine();
 				Validation.validationUpOrDown(upDown);
-				flag = false;
 			}catch (IllegalArgumentException e){
 				System.out.println(e.getMessage());
 			}
