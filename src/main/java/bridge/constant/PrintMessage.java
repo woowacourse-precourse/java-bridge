@@ -13,10 +13,9 @@ public enum PrintMessage {
     FAIL_IN_KOR("실패"),
     MAP_RIGHT("O"),
     MAP_WRONG("X"),
-    MAP_BLANK("X"),
-    MAP_LEFT_BRACKET("["),
-    MAP_RIGHT_BRACKET("]"),
-    MAP_SEPERATOR("|");
+    MAP_BLANK(" "),
+    MAP_FORMAT("[ %s ]"),
+    MAP_SEPARATOR(" | ");
 
 
     private final String message;
