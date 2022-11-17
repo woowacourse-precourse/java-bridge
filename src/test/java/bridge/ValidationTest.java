@@ -10,36 +10,48 @@ public class ValidationTest {
     @DisplayName("다리의 길이는 3이상 20 이하이다.")
     @Test
     void bridgeLength() {
-        assertThat(ValidationUtil.isValidBridgeLength(3)).isTrue();
-        assertThat(ValidationUtil.isValidBridgeLength(20)).isTrue();
+        ValidationUtil.isValidBridgeLength(3);
+        ValidationUtil.isValidBridgeLength(20);
 
-        assertThat(ValidationUtil.isValidBridgeLength(2)).isFalse();
-        assertThat(ValidationUtil.isValidBridgeLength(21)).isFalse();
+        assertThatThrownBy(() -> ValidationUtil.isValidBridgeLength(2))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> ValidationUtil.isValidBridgeLength(21))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("U 혹은 D인지 확인한다.")
     @Test
     void isUpOrDown() {
-        assertThat(ValidationUtil.isUpOrDown("U")).isTrue();
-        assertThat(ValidationUtil.isUpOrDown("D")).isTrue();
+        ValidationUtil.isUpOrDown("U");
+        ValidationUtil.isUpOrDown("D");
 
-        assertThat(ValidationUtil.isUpOrDown("R")).isFalse();
-        assertThat(ValidationUtil.isUpOrDown("Q")).isFalse();
-        assertThat(ValidationUtil.isUpOrDown("A")).isFalse();
-        assertThat(ValidationUtil.isUpOrDown("1")).isFalse();
-        assertThat(ValidationUtil.isUpOrDown("*")).isFalse();
+        assertThatThrownBy(() -> ValidationUtil.isUpOrDown("R"))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> ValidationUtil.isUpOrDown("Q"))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> ValidationUtil.isUpOrDown("A"))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> ValidationUtil.isUpOrDown("1"))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> ValidationUtil.isUpOrDown("*"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("R 혹은 Q인지 확인한다.")
     @Test
     void isRetryOrQuit() {
-        assertThat(ValidationUtil.isRetryOrQuit("R")).isTrue();
-        assertThat(ValidationUtil.isRetryOrQuit("Q")).isTrue();
+        ValidationUtil.isRetryOrQuit("R");
+        ValidationUtil.isRetryOrQuit("Q");
 
-        assertThat(ValidationUtil.isRetryOrQuit("U")).isFalse();
-        assertThat(ValidationUtil.isRetryOrQuit("D")).isFalse();
-        assertThat(ValidationUtil.isRetryOrQuit("A")).isFalse();
-        assertThat(ValidationUtil.isRetryOrQuit("1")).isFalse();
-        assertThat(ValidationUtil.isRetryOrQuit("*")).isFalse();
+        assertThatThrownBy(() -> ValidationUtil.isRetryOrQuit("U"))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> ValidationUtil.isRetryOrQuit("D"))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> ValidationUtil.isRetryOrQuit("A"))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> ValidationUtil.isRetryOrQuit("1"))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> ValidationUtil.isRetryOrQuit("*"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
