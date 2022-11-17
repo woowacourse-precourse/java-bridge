@@ -34,13 +34,7 @@ public class BridgeGameConsole {
             boolean availableMovement = crossBlock(bridgeGame);
 
             if (!availableMovement) {
-                emcee.guideEnteringRetryStatus();
-                String retryStatus = player.enterRetryStatus();
-                if (retryStatus.equals("R")) {
-                    bridgeGame.retry();
-                    return true;
-                }
-                return false;
+                return retryCrossing(bridgeGame);
             }
             shouldCrossMore = !bridgeGame.crossedBridge();
         }
@@ -54,5 +48,15 @@ public class BridgeGameConsole {
         String movementStatus = bridgeGame.createMovementStatus();
         emcee.showBridgeMovementStatus(movementStatus);
         return availableMovement;
+    }
+
+    private boolean retryCrossing(BridgeGame bridgeGame) {
+        emcee.guideEnteringRetryStatus();
+        String retryStatus = player.enterRetryStatus();
+        if (retryStatus.equals("R")) {
+            bridgeGame.retry();
+            return true;
+        }
+        return false;
     }
 }
