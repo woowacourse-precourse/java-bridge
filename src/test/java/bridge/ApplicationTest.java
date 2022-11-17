@@ -65,4 +65,12 @@ class ApplicationTest extends NsTest {
             return numbers.remove(0);
         }
     }
+
+    @Test
+    void 입력_예외_테스트_22_오버(){
+        assertSimpleTest(() -> {
+            runException("22");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
 }
