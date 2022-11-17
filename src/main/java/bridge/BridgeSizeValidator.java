@@ -11,7 +11,7 @@ public class BridgeSizeValidator {
         validate();
     }
 
-    public void validate(){
+    private void validate(){
         validateInputNonBlank(); //공백인지를 먼저 파악한다.
         validateInputType(); //그 다음으로 숫자만으로 구성되었는지를 파악해야 한다. 그래야 정수 형태로 변환이 가능
         validateInputSize();

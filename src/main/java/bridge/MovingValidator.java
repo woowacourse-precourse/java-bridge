@@ -9,7 +9,7 @@ public class MovingValidator {
         validate();
     }
 
-    public void validate(){
+    private void validate(){
         validateInputNonBlank();
         validateInputValue();
     }
