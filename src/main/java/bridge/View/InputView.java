@@ -1,4 +1,10 @@
-package bridge;
+package bridge.View;
+
+import camp.nextstep.edu.missionutils.Console;
+
+import javax.xml.validation.Validator;
+
+import static bridge.Error.BRIDGE_SIZE_FORMAT_ERROR;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -8,8 +14,10 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
-        return 0;
+    public int readBridgeSize(){
+        String bridge_size_input = Console.readLine().trim();
+        InputValidator.validateBridgeSize(bridge_size_input);
+        return Integer.parseInt(bridge_size_input);
     }
 
     /**
