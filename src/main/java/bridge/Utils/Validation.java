@@ -1,7 +1,6 @@
 package bridge.Utils;
 
-import static bridge.Message.ErrorMessage.ONLY_NUMBER_ALLOWED;
-import static bridge.Message.ErrorMessage.OUT_OF_BRIDGE_ALLOWED_SIZE;
+import static bridge.Message.ErrorMessage.*;
 
 /**
  * 사용자의 입력을 확인하고 에러를 발생시킨다.
@@ -22,6 +21,14 @@ public class Validation {
         }
 
         return parsedSize;
+    }
+
+    public void checkProperDirection(String direction) {
+        if(direction.equals("U") || direction.equals("D")) {
+            return;
+        }
+
+        throw new IllegalArgumentException(ONLY_UD_INPUT_ALLOWED.getMessage());
     }
 
 }

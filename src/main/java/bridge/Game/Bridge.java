@@ -13,8 +13,8 @@ public class Bridge extends BridgeMaker {
     // TODO: 건너는 다리 상태를 보여줄 수 있는 기능이 있어야한다.
     // TODO: 누적 시도한 값을 가지고 있어야한다.
 
-    private InputView input;
-    private List<String> bridge;
+    private final InputView input;
+    private static List<String> bridge;
 
     public Bridge() {
         super(new BridgeRandomNumberGenerator());
@@ -22,6 +22,15 @@ public class Bridge extends BridgeMaker {
 
         int size = input.readBridgeSize();
         this.bridge = makeBridge(size);
+    }
+
+    public boolean passBridge() {
+        String direction = input.readMoving();
+        return true;
+    }
+
+    public boolean isArrived() {
+        return false;
     }
 
 }

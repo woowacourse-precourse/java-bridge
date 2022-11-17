@@ -14,10 +14,10 @@ public class InputView extends OutputView {
     public InputView() {
         start();
     }
+
     /**
      * 다리의 길이를 입력받는다.
      */
-
     public int readBridgeSize() {
         printGetUserBridgeSize();
         String inputSize = Console.readLine();
@@ -34,8 +34,16 @@ public class InputView extends OutputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        // TODO: 사용자 입력 검증
-        return null;
+        printGetUserDirection();
+        String direction = Console.readLine();
+
+        try {
+            validate.checkProperDirection(direction);
+            return direction;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
     }
 
     /**
