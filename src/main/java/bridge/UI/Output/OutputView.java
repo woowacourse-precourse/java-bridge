@@ -28,8 +28,4 @@ public class OutputView {
     public void printStart() {
         System.out.println(OutputString.START.getMessage());
     }
-
-    public void printRestart() {
-        System.out.println(OutputString.RESTART.getMessage());
-    }
 }
