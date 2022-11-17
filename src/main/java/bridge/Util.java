@@ -22,4 +22,12 @@ public class Util {
         }
     }
 
+    //한 글자인가?
+    public static boolean isOneLetter(String input){
+        if (input.length() == 1)
+            return true;
+
+        return false;
+    }
+
 }
