@@ -17,8 +17,17 @@ public class InputView extends OutputView {
     /**
      * 다리의 길이를 입력받는다.
      */
+
     public int readBridgeSize() {
-        return 0;
+        printGetUserBridgeSize();
+        String inputSize = Console.readLine();
+
+        try {
+            return validate.checkSizeReturnInt(inputSize);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return readBridgeSize();
+        }
     }
 
     /**
