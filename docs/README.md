@@ -2,14 +2,14 @@
 
 ## 📄 기능 목록
 ### 💡실행 목록
-- [x] 게임 시작 문구를 출력한다. -OutputView#printStartMessage()
-- [x] 다리의 길이를 입력 받는 문구를 출력한다. -OutputView#printInputLengthMessage()
+- [x] 게임 시작 문구를 출력한다. -OutputView#printGuideMessage()
+- [x] 다리의 길이를 입력 받는 문구를 출력한다. -OutputView#printGuideMessage()
 - [ ] 다리의 길이를 입력 받는다.
   - [ ] 다리의 길이는 3부터 20 사이만 입력 받을 수 있다.
 - [ ] 다리의 길이만큼 다리를 랜덤 값으로 생성한다.
   - [ ] 0이면 아래 칸, 1이면 위의 칸이 유효한 칸이다.
   - [ ] 위 칸을 건널 수 있는 경우는 U, 아래 칸을 건널 수 있는 경우는 D 이다.
-- [ ] 이동할 칸을 입력 받는 문구를 출력한다. -OutputView#printInputMoveMessage()
+- [x] 이동할 칸을 입력 받는 문구를 출력한다. -OutputView#printInputMoveMessage()
 - [ ] 이동할 칸을 입력 받는다.
   - [ ] U 또는 D 만 입력 받을 수 있다.
 - [ ] 이동할 칸이 유효한 칸인지 확인한다.
@@ -22,7 +22,7 @@
 
 
 - [ ] 이동한 칸이 유효하지 않은 칸이라면? 
-  - [ ] 게임 재시작 문구를 출력한다. -OutputView#
+  - [x] 게임 재시작 문구를 출력한다. -OutputView#printGuideMessage()
   - [ ] 게임 재시작 여부를 입력 받는다.
     - [ ] 재시작 한다면, 이동할 칸을 입력 받는다.
     - [ ] 종료 한다면, 게임 종료 문구를 출력한다.
@@ -30,7 +30,7 @@
 
 - [ ] 이동한 칸이 마지막 칸이라면?
   - [ ] 게임 종료 문구를 출력한다. -OutputView#printResult()
-    - [ ] 최종 게임 결과 문구를 출력한다. -OutputView#printFinalResultMessage()
+    - [x] 최종 게임 결과 문구를 출력한다. -OutputView#printGuideMessage()
     - [ ] 최종 게임 결과(현재까지 건넌 다리)를 출력한다.
     - [ ] 게임 성공 여부를 출력한다. -OutputView#printSuccessOrFailure()
     - [ ] 총 시도한 횟수를 출력한다. -OutputView#printTotalTry()
