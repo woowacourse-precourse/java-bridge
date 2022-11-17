@@ -11,11 +11,23 @@ public class Bridge {
         this.bridge = BridgeMark.of(bridge);
     }
 
-    public GameStatus cross(int round, BridgeMark mark) {
-        BridgeMark bridgeMark = bridge.get(round - CRITERION_ROUND_START);
-        if (bridgeMark.equals(mark)) {
+    public GameStatus cross(int round, BridgeMark playerMark) {
+        BridgeMark bridgeMark = get(round);
+
+        if (bridgeMark.equals(playerMark) && isLastRound(round)) {
+            return GameStatus.SUCCESS;
+        }
+        if (bridgeMark.equals(playerMark)) {
             return GameStatus.CONTINUE;
         }
         return GameStatus.FAIL;
+    }
+
+    private BridgeMark get(int round) {
+        return bridge.get(round - CRITERION_ROUND_START);
+    }
+
+    private boolean isLastRound(int round) {
+        return bridge.size() == round;
     }
 }
