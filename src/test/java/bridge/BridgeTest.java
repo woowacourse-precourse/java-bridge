@@ -70,4 +70,15 @@ public class BridgeTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 다리의 길이는 3이상 20이하이어야 합니다.");
     }
+
+    @DisplayName("다리의 길이가 20 초과이면 예외 발생")
+    @Test
+    void validateMaximumLength() {
+        assertThatThrownBy(() -> new Bridge(
+                List.of("U", "U", "U", "U", "U", "U", "U", "U",
+                        "U", "U", "U", "U", "U", "U", "U", "U",
+                        "U", "U", "U", "U", "U")))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 다리의 길이는 3이상 20이하이어야 합니다.");
+    }
 }
