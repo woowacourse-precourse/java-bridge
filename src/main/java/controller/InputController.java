@@ -1,5 +1,8 @@
-package bridge;
+package controller;
 
+import bridge.BridgeSizeValidator;
+import bridge.GameCommandValidator;
+import bridge.MovingValidator;
 import view.InputView;
 import view.OutputView;
 
