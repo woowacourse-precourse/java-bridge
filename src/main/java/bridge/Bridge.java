@@ -8,12 +8,12 @@ public class Bridge {
 
 	private final List<String> bridgeLetters;
 
-	public Bridge() {
-		bridgeLetters = new ArrayList<>();
+	public Bridge(List<String> bridgeLetters) {
+		this.bridgeLetters = bridgeLetters;
 	}
 
 	public static Bridge createBridge() {
-		return new Bridge();
+		return new Bridge(new ArrayList<>());
 	}
 
 	public void putOneToUp(Integer number) {
@@ -30,5 +30,9 @@ public class Bridge {
 
 	public List<String> getBridgeLetters() {
 		return Collections.unmodifiableList(bridgeLetters);
+	}
+
+	public boolean isEquals(String userSelectedCell, int index) {
+		return userSelectedCell.equals(bridgeLetters.get(index));
 	}
 }

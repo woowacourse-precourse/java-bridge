@@ -12,14 +12,14 @@ public class BridgeGameTest {
 	@Test
 	void isMovable() {
 		// given
-		BridgeGame bridgeGame = new BridgeGame();
-		List<String> bridgeLetters = List.of("U", "D", "U", "D", "U");
+		Bridge bridgeLetters = new Bridge(List.of("U", "D", "U", "D", "U"));
+		BridgeGame bridgeGame = new BridgeGame(bridgeLetters, 5);
 		String userSelectedCell = "U";
 
 		// when
-		bridgeGame.move(userSelectedCell);
+		boolean isMovable = bridgeGame.isMovable(bridgeLetters, userSelectedCell);
 
 		// then
-		assertThat(bridgeGame.isMovable(bridgeLetters, userSelectedCell)).isTrue();
+		assertThat(isMovable).isTrue();
 	}
 }
