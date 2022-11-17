@@ -10,7 +10,7 @@ public class Util {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException("입력 범위를 초과하였습니다.");
+            throw new NumberFormatException("입력 범위를 초과하였습니다.");
         }
     }
 

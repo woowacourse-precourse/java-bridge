@@ -20,10 +20,14 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         validateSizeRange(size);
-        // 다리 길이 만큼 0과 1 중 무작위 값을 생성한다.
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int randomNumber = bridgeNumberGenerator.generate();
+            if (randomNumber == 1) {
+                bridge.add("U");
+                continue;
+            }
+            bridge.add("D");
         }
         return bridge;
     }
