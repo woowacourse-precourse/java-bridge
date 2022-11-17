@@ -30,4 +30,8 @@ public class InputUtils {
         char characterInput = input.charAt(0);
         return GameRestartType.isRestartStatus(characterInput);
     }
+
+    public boolean isCharacter(String input) {
+        return input.length() == 1;
+    }
 }
