@@ -62,5 +62,12 @@ class BridgeGameTest {
                 .hasMessageStartingWith("[ERROR]");
     }
 
-
+    @DisplayName("사용자가 재시도를 할 때 'R'나 'Q'가 아닌 값을 입력했는지 확인한다.")
+    @ValueSource(chars = {(char) 82, (char)81})
+    @Test
+    void validate_Is_Unintentional_Retry_Input() {
+        assertThatThrownBy(()-> BridgeGame.retry())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageStartingWith("[ERROR]");
+    }
 }
