@@ -99,7 +99,7 @@
   - 현재의 다리 상태를 출력하는 메소드
 
 
-- public void printResult(List<String>)
+- public void printResult(List<String>, boolean, int)
   - 최종 게임 결과를 출력하는 메소드
 
 
