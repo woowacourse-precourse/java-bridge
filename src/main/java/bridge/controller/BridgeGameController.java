@@ -31,11 +31,15 @@ public class BridgeGameController {
         boolean isGameFinished = false;
         
         while (!isGameFinished) {
-            move(bridgeGame);
-            printResultMap(new GameResultDTO(bridgeGame));
-            isGameFinished = isGameFinished(bridgeGame);
+            isGameFinished = onceMoving(bridgeGame);
         }
         printResult(new GameResultDTO(bridgeGame));
+    }
+    
+    private boolean onceMoving(final BridgeGame bridgeGame) {
+        move(bridgeGame);
+        printResultMap(new GameResultDTO(bridgeGame));
+        return isGameFinished(bridgeGame);
     }
     
     private void move(final BridgeGame bridgeGame) {
