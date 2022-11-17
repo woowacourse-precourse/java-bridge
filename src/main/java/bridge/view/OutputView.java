@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 import static bridge.Controller.GAME_FAIL;
 import static bridge.Controller.GAME_FINISH;

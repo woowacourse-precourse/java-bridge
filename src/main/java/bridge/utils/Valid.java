@@ -1,4 +1,6 @@
-package bridge;
+package bridge.utils;
+
+import bridge.domain.Pos;
 
 public class Valid {
 

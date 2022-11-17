@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.domain.Pos;
+
 import java.util.ArrayList;
 import java.util.List;
 

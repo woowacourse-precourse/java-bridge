@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 public enum Pos {
     D(0), U(1);

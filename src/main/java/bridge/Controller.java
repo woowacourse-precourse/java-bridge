@@ -1,5 +1,9 @@
 package bridge;
 
+import bridge.domain.BridgeGame;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+
 public class Controller {
     public static final int GAME_FAIL = -1;
     public static final int GAME_SUCCESS = 0;
