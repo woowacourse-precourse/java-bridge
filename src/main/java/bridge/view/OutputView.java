@@ -23,5 +23,10 @@ public class OutputView {
         System.out.println(MOVING_SELECT_MESSAGE);
     }
 
+    public static void printRetryMessage() {
+        System.out.println(GAME_RETRY_MESSAGE);
+    }
+
+
 
 }
