@@ -4,8 +4,8 @@
 - [ ] 다리를 건너는 게임을 총괄적으로 관리하는 클래스 - BridgeGame
   - [ ] 사용자가 칸을 이동할 때 사용하는 메서드 - BridgeGame#move
   - [ ] 사용자가 게임을 다시 시도할 때 사용하는 메서드 - BridgeGame#retry
-- [ ] 입력으로 다리의 길이를 받고 그에 따른 랜덤한 다리를 생성해야 한다. - BridgeMaker
-  - [ ] 다리의 길이를 매개변수로 받고 다리 모양이 위 칸이면 U, 아래 칸이면 D인 List를 반환한다 - BridgeMaker#makeBridge
+- [x] 입력으로 다리의 길이를 받고 그에 따른 랜덤한 다리를 생성해야 한다. - BridgeMaker
+  - [x] 다리의 길이를 매개변수로 받고 다리 모양이 위 칸이면 U, 아래 칸이면 D인 List를 반환한다 - BridgeMaker#makeBridge
 - [x] 다리 모양을 랜덤으로 생성할 때 필요한 0과 1 중 랜덤으로 선택하는 인터페이스 필요 - BridgeNumberGenerator
   - [ ] 구현체로 BridgeRandomNumberGenerator 선택 - BridgeRandomNumberGenerator
   - [ ] BridgeMaker의 생성자에서 구현체를 넣어줄 수 있다.
