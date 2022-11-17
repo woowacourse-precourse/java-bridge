@@ -28,4 +28,12 @@ public class UpDownBridge {
             downBridge.append(inputDirection);
         }
     }
+
+    public String upBridgeToString() {
+        return upBridge.toString();
+    }
+
+    public String downBridgeToString() {
+        return downBridge.toString();
+    }
 }
