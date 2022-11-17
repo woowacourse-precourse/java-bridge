@@ -16,10 +16,14 @@ public class BridgeGame {
   public void run() {
     printGameStartMessage();
     try{
-      List<String> bridge = makeBridgeByLengthInput();
+      gameStart();
     }catch (IllegalArgumentException e) {
       printErrorMessage(e);
     }
+  }
+
+  private void gameStart(){
+    List<String> bridge = makeBridgeByLengthInput();
   }
 
 
