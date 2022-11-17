@@ -19,4 +19,14 @@ public class InputViewTest {
         assertThatThrownBy(() -> inputView.readBridgeSize())
                 .isInstanceOf(IllegalStateException.class);
     }
+
+    @Test
+    void validateInputSizeIsIntegerTest() {
+        String input = "!";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        InputView inputView = new InputView();
+        assertThatThrownBy(() -> inputView.readBridgeSize())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
