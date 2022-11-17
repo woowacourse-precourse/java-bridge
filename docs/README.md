@@ -13,7 +13,7 @@
 
 ### 다리 생성
 - [x] 다리 길이 숫자로 입력받고 생성
-- [ ] 3 이상 20 이하의 숫자가 아니면 예외(IllegalArgumentException) 처리
+- [x] 3 이상 20 이하의 숫자가 아니면 예외(IllegalArgumentException) 처리
 - [x] 칸마다 0과 1 중 무작위 값 생성 
 - [x] 해당 칸이 0인 경우 "D", 1인 경우 "U"
   
