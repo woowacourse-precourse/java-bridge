@@ -1,8 +1,12 @@
 package bridge.controller;
 
+import bridge.model.BridgeGame;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.model.BridgeMaker;
+import bridge.BridgeMaker;
+import bridge.model.BridgeMoveLog;
+import bridge.model.BridgeType;
+import bridge.model.GameStatus;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
@@ -29,6 +33,13 @@ public class BridgeGameController {
             outputView.printRequestBridgeLength();
             int bridgeSize = inputView.readBridgeSize();
             return bridgeMaker.makeBridge(bridgeSize);
+        });
+    }
+
+    private BridgeType choiceBridge() {
+        return exceptionHandle.getCorrectInput(() -> {
+            outputView.printRequestMoveBridge();
+            return inputView.readMoving();
         });
     }
 
