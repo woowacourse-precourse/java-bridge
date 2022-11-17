@@ -1,7 +1,6 @@
 package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
-
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -31,16 +30,11 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] 3 이상 20 이하의 자연수를 입력해주세요.");
     }
 
-    private boolean validate(String lineInput) {
-        try {
-            checkLengthLimit(lineInput, 2);
-            isInputNumber(lineInput);
-            isTenthsPlaceZero(lineInput);
-            isInValidRange(lineInput, 3, 20);
-        } catch(IllegalArgumentException e) {
-            // TODO: pass message to OutputView
-            return false;
-        }
+    private void validate(String lineInput) {
+        checkLengthLimit(lineInput, 2);
+        isInputNumber(lineInput);
+        isTenthsPlaceZero(lineInput);
+        isInValidRange(lineInput, 3, 20);
     }
     
     /**
@@ -49,7 +43,12 @@ public class InputView {
     public int readBridgeSize() {
         while(true) {
             String lineInput = Console.readLine();
-            if(validate(lineInput)) break;
+            try {
+                validate(lineInput);
+                break;
+            } catch(IllegalArgumentException e) {
+                OutputView outputview = new OutputView(e.getMessage());
+            }
         }
         return Integer.parseInt(lineInput);
     }
