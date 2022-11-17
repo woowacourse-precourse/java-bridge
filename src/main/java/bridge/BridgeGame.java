@@ -15,12 +15,6 @@ public class BridgeGame {
     private static final String RETRY_CHARACTER = "R";
     private static final String QUIT_CHARACTER = "Q";
 
-    private final List<String> bridge;
-
-    public BridgeGame(List<String> bridge) {
-        this.bridge = bridge;
-    }
-
     public static String getUpBridgeCharacter() {
         return UP_BRIDGE_CHARACTER;
     }
@@ -46,27 +40,27 @@ public class BridgeGame {
     public void move() {
     }
 
-    public String getUpBridgeResult(int index, String input) {
-        if (isMovingCorrect(index, input) && input.equals(UP_BRIDGE_CHARACTER)) {
+    public String getUpBridgeResult(List<String> bridge, int index, String input) {
+        if (isMovingCorrect(bridge, index, input) && input.equals(UP_BRIDGE_CHARACTER)) {
             return RIGHT_ANSWER;
         }
-        if (isMovingCorrect(index, input) && input.equals(DOWN_BRIDGE_CHARACTER)) {
-            return NOT_CHOSEN;
+        if (!isMovingCorrect(bridge, index, input) && input.equals(UP_BRIDGE_CHARACTER)) {
+            return WRONG_ANSWER;
         }
-        return WRONG_ANSWER;
+        return NOT_CHOSEN;
     }
 
-    public String getDownBridgeResult(int index, String input) {
-        if (isMovingCorrect(index, input) && input.equals(DOWN_BRIDGE_CHARACTER)) {
+    public String getDownBridgeResult(List<String> bridge, int index, String input) {
+        if (isMovingCorrect(bridge, index, input) && input.equals(DOWN_BRIDGE_CHARACTER)) {
             return RIGHT_ANSWER;
         }
-        if (isMovingCorrect(index, input) && input.equals(UP_BRIDGE_CHARACTER)) {
-            return NOT_CHOSEN;
+        if (!isMovingCorrect(bridge, index, input) && input.equals(DOWN_BRIDGE_CHARACTER)) {
+            return WRONG_ANSWER;
         }
-        return WRONG_ANSWER;
+        return NOT_CHOSEN;
     }
 
-    private boolean isMovingCorrect(int index, String input) {
+    public boolean isMovingCorrect(List<String> bridge, int index, String input) {
         validateMovingInput(input);
         return input.equals(bridge.get(index));
     }
