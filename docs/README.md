@@ -1,33 +1,32 @@
 ## 필요 기능
 - 입력
-  - 다리 길이
-  - 이동할 칸
-  - 재시작 여부
+  - 다리 길이 - InputView#readBridgeSize()
+  - 이동할 칸 - InputView#readMoving()
+  - 재시작 여부 - InputView#readGameCommand()
 
 - 출력
-  - 게임시작 문구
-  - 다리 갈이 입력 안내문구
-  - 이동할 칸 입력 안내문구
-  - 재시작 안내문구
-  - 이동시 다리 건너기 결과
-  - 게임 최종 결과
+  - 게임시작 문구 - OutputView#printGameStart()
+  - 다리 갈이 입력 안내문구 - OutputView#printBridgeSizeGuide()
+  - 이동할 칸 입력 안내문구 - OutputView#printMovingGuide()
+  - 재시작 안내문구 - OutputView#printGameCommandGuide()
+  - 이동시마다 다리 건너기 결과 - OutputView#printMap()
+  - 게임 최종 결과 - OutputView#printResult()
   
-- 게임을 시작한다.
-- 다리를 생성한다.
-  - 한 칸마다 위, 아래 랜덤으로 정한다.
-- 다리를 이동한다.
-  - 다리와 일치하는 이동인지 체크한다.
-- 게임오버가 되었다.
-  - 재시작 여부를 묻는다.
-  - 게임을 재시작한다.
-- 게임을 클리어하였다.
+- 게임을 시작한다. - GameSimulator#simulateGame()
+- 다리를 생성한다. - BridgeMaker#makeBridge()
+  - 한 칸마다 위, 아래 랜덤으로 정한다. - BridgeNumberGenerator#generate()
+- 다리를 이동한다. - BridgeGame#move()
+  - 다리와 일치하는 이동인지 체크한다. - LifeGuard#checkSafety
+- 게임오버가 되었다. - BridgeGame#gameover()
+  - 게임을 재시작한다. - BridgeGame#retry()
+- 게임을 클리어하였다. - BridgeGame#clearGame()
 - 게임을 종료한다.
     
 ## 에러상황
-- 다리 길이 입력
-  - 숫자가 아님
-  - 3부터 20이 아님
-- 이동할 칸 입력
-  - "U"나 "D"가 아님
-- 재시작 여부 입력
-  - "R"나 "Q"가 아님
+- 다리 길이 입력 - InputView#validateBridgeSize()
+  - 숫자가 아님 - InputView#isDecimal()
+  - 3부터 20이 아님 - InputView#isInRange()
+- 이동할 칸 입력 - InputView#validateMoving()
+  - "U"나 "D"가 아님 - InputView#isUpOrDown()
+- 재시작 여부 입력 - InputView#validateGameCommand()
+  - "R"나 "Q"가 아님 - InputView#isRetryOrQuit()
