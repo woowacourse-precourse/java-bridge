@@ -54,6 +54,14 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 예외_테스트_다리_길이에_음수를_입력할_때() {
+        assertSimpleTest(() -> {
+            runException("-1");
+            assertThat(output()).contains("[ERROR] 3이상 20 이하 숫자를 입력해주시오.");
+        });
+    }
+
+    @Test
     void 생성된_다리_사이즈() {
         // given
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
