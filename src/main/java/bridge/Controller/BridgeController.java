@@ -67,4 +67,8 @@ public class BridgeController {
         result.add(userAlphabet, FALSE);
         return false;
     }
+
+    public void quit(boolean isSuccess, int playCount) {
+        output.printResult(result.toString(), isSuccess, playCount);
+    }
 }

@@ -13,6 +13,7 @@ public class BridgeGame {
     List<String> answerBridge;
     List<String> userBridge;
     int playCount = 0;
+    boolean isPlaying;
 
 
     BridgeGame() {
@@ -24,9 +25,13 @@ public class BridgeGame {
     }
 
     public void play() {
+        isPlaying = true;
+        playCount++;
         answerBridge = bridgeController.startAndGetAnswerBridge();
 
-        move();
+        while(isPlaying) {
+            move();
+        }
     }
 
     /**
@@ -38,8 +43,16 @@ public class BridgeGame {
         String moving = bridgeController.getMoving();
         userBridge.add(moving);
         if (bridgeController.checkMatching(answerBridge, userBridge)) {
-            move();
+            if(userBridge.size() == answerBridge.size()) {
+                quit(true);
+            }
         }
+
+    }
+
+    public void quit(boolean isSuccess) {
+        isPlaying = false;
+        bridgeController.quit(isSuccess, playCount);
     }
 
     /**
