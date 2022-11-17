@@ -40,4 +40,13 @@ public class BridgeGameStarter {
         outputView.printInputGameCommand();
         return bridgeGame.retry(inputView.readGameCommand());
     }
+
+    public void reInitialize() {
+        outputView.printInputBridgeSize();
+        outputView.printInputMoving();
+        bridgeGame.initializeLeftRightResult();
+        result = bridgeGame.move(inputView.readMoving(), bridge, 0);
+        outputView.printMap(result);
+    }
+
 }
