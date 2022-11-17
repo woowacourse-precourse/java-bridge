@@ -1,5 +1,7 @@
 package bridge;
 
+import static bridge.constant.BridgeConstant.RESTART_GAME;
+
 import bridge.exception.Validator;
 import java.util.List;
 
@@ -8,27 +10,38 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private final BridgeGameService gameService = new BridgeGameService();
+    private int round = 0;
+    private int tryCount = 1;
+    private boolean isGameClear = false;
 
     public List<String> getBridge(int size) {
-        return gameService.createBridge(size);
+        return new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
     }
 
     public MessageToResult move(List<String> bridge,
                         String moveMessage) {
-        boolean isCorrect = gameService.isCorrectMove(bridge, moveMessage);
+        boolean isCorrect = bridge.get(round++).equals(moveMessage);
         return new MessageToResult(moveMessage, isCorrect);
     }
 
     public boolean retry(String retryMessage) {
-        return gameService.isRetry(retryMessage);
+        if (retryMessage.equals(RESTART_GAME)) {
+            round = 0;
+            tryCount++;
+            return true;
+        }
+        return false;
     }
 
     public boolean isGameClear(List<String> bridge) {
-        return gameService.isGameClear(bridge);
+        if (bridge.size() == round) {
+            isGameClear = true;
+            return true;
+        }
+        return false;
     }
 
     public FinalMessage getResult() {
-        return gameService.getFinalMessage();
+        return new FinalMessage(tryCount, isGameClear);
     }
 }
