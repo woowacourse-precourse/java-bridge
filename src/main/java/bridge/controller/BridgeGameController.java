@@ -31,6 +31,11 @@ public class BridgeGameController {
         getMovingInputAndMove(bridgeGame);
     }
 
+    private void playGame(BridgeGame bridgeGame, String moving) {
+        int nowIndex = 0;
+        boolean success = bridgeGame.move(moving, nowIndex);
+    }
+
     private void getBridgeSizeInputAndStartGame() {
         try {
             int bridgeSize = inputView.readBridgeSize();
@@ -46,7 +51,7 @@ public class BridgeGameController {
         try {
             String moving = inputView.readMoving();
             validateMoving(moving);
-            bridgeGame.move();
+            playGame(bridgeGame, moving);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(INVALID_MOVING);
             getMovingInputAndMove(bridgeGame);
