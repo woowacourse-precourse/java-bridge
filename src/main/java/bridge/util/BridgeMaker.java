@@ -37,7 +37,6 @@ public class BridgeMaker {
         return UpDownFlag.codeToFlag(zeroOrOne);
     }
 
-
     private void validateLength(int size) {
         if (size < MINIMUM_BRIDGE_LENGTH || size > MAXIMUM_BRIDGE_LENGTH) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE_BRIDGE_LENGTH_3_TO_20);

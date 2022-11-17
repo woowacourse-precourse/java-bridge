@@ -36,21 +36,21 @@ public class Map {
         }
     }
 
-    private void crossFail(UpDownFlag userUpDown) {
-        if (userUpDown == UpDownFlag.UP) {
-            crossUpperFail();
-        }
-        if (userUpDown == UpDownFlag.DOWN) {
-            crossLowerFail();
-        }
-    }
-
     private void crossSuccess(UpDownFlag userUpDown) {
         if (userUpDown == UpDownFlag.UP) {
             crossUpperSuccess();
         }
         if (userUpDown == UpDownFlag.DOWN) {
             crossLowerSuccess();
+        }
+    }
+
+    private void crossFail(UpDownFlag userUpDown) {
+        if (userUpDown == UpDownFlag.UP) {
+            crossUpperFail();
+        }
+        if (userUpDown == UpDownFlag.DOWN) {
+            crossLowerFail();
         }
     }
 
