@@ -46,4 +46,13 @@ public class BridgeGame {
         return false;
     }
 
+    /**
+     * BridgeGameResultDto를 mapping하는 메서드
+     * @param isCorrect 내딪은 칸이 정답인지 여부
+     * @return 현재까지의 점수판(gradingBoard)과 내딪은 위치가 정답인지 여부(isCorrect)를 표현한다.
+     */
+    private BridgeGameResultDto bridgeGameResultDtoMapper(boolean isCorrect) {
+        return new BridgeGameResultDto(this.gradingBoard,isCorrect);
+    }
+
 }
