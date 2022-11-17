@@ -5,11 +5,15 @@ import static bridge.view.OutputView.INPUT_MOVE_MESSAGE;
 import static bridge.view.OutputView.printMessageWithNewline;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import bridge.domain.BridgeCellType;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private static final String NOT_INT_MESSAGE = "입력이 정수가 아닙니다. 정수를 입력해 주세요.";
 
+    private static final String INVALID_BRIDGE_CELL_TYPE_MESSAGE = "이동할 칸이 올바르지 않습니다. (U or D)";
     private InputView() {
     }
 
@@ -26,7 +30,7 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NOT_INT_MESSAGE);
         }
     }
 
@@ -35,7 +39,15 @@ public class InputView {
      */
     public static String readMoving() {
         printMessageWithNewline(INPUT_MOVE_MESSAGE);
-        return readLine();
+        String input = readLine();
+        validateMove(input);
+        return input;
+    }
+
+    private static void validateMove(String input) {
+        if (BridgeCellType.isNotBridgeCellType(input)) {
+            throw new IllegalArgumentException(INVALID_BRIDGE_CELL_TYPE_MESSAGE);
+        }
     }
 
     /**
