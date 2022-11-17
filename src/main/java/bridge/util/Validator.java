@@ -6,4 +6,7 @@ public class Validator {
         return size >= 3 && size <= 20;
     }
 
+    public boolean isValidMoving(String letter) {
+        return letter.equals("U") || letter.equals("D");
+    }
 }
