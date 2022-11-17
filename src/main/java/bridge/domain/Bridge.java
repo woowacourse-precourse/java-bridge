@@ -21,6 +21,10 @@ public class Bridge {
         return directions.get(position - gapBetweenPositionAndIndex) == direction;
     }
 
+    public boolean isEndOfBridge(int position) {
+        return position == directions.size();
+    }
+
     private void validateLength(List<String> directionData) {
         if (directionData.size() < MIN_BRIDGE_LENGTH) {
             throw new IllegalArgumentException(String.format(MIN_VALIDATION_ERROR_MESSAGE, MIN_BRIDGE_LENGTH));

@@ -25,9 +25,16 @@ public class BridgeGame {
         checkLife(direction);
     }
 
-    public void checkLife(Direction direction) {
+    public boolean isEndGame() {
+        if (!aliveUser || bridge.isEndOfBridge(userPosition)) {
+            return true;
+        }
+        return false;
+    }
+
+    private void checkLife(Direction direction) {
         if (!bridge.isCorrectDirection(direction, userPosition)) {
-            aliveUser=false;
+            aliveUser = false;
         }
     }
 
