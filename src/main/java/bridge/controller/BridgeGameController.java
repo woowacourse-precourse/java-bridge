@@ -7,7 +7,7 @@ import bridge.service.BridgeGameService;
 import bridge.view.InputView;
 
 public class BridgeGameController {
-	private InputView inputView;
+	private final InputView inputView = new InputView();
 	private final BridgeGameService bridgeGameService;
 
 	public BridgeGameController() {
@@ -15,7 +15,6 @@ public class BridgeGameController {
 	}
 
 	public void start() {
-		int bridgeSize = inputView.readBridgeSize();
 		List<String> bridge = receiveBridgeSize();
 	}
 
@@ -28,5 +27,4 @@ public class BridgeGameController {
 			return receiveBridgeSize();
 		}
 	}
-
 }

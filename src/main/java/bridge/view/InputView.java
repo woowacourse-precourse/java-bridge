@@ -7,19 +7,16 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     public int readBridgeSize() {
+        System.out.println("다리의 길이를 입력해주세요.");
         String input = Console.readLine();
-        try {
-            validSize(input);
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 다리 길이는 자연수여야 합니다.");
-        }
+        validSize(input);
         return Integer.parseInt(input);
     }
 
     private void validSize(String input) {
-        int size = Integer.parseInt(input);
-        if (size < 0) {
-            throw new IllegalArgumentException();
+        String digitPattern = "^[1-9]*$";
+        if (!input.matches(digitPattern)) {
+            throw new IllegalArgumentException("[ERROR] 다리의 길이는 자연수여야 합니다.");
         }
     }
 
