@@ -24,4 +24,17 @@ public class MakeBridgeTest {
         checkList = (List<String>)method.invoke(runGame,5);
         assertThat(checkList).containsOnly("U","D");
     }
+
+    @DisplayName("bridge의 파라미터로 받은 length이 값을 기준으로 생성되는지 테스트")
+    @Test
+    void checkLength() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Rungame runGame = new Rungame();
+        List<String> checkList;
+        int lenght = 5;
+
+        Method method = runGame.getClass().getDeclaredMethod("getBridge", int.class);
+        method.setAccessible(true);
+        checkList = (List<String>)method.invoke(runGame,lenght);
+        assertThat(checkList).hasSize(lenght);
+    }
 }
