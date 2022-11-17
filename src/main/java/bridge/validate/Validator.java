@@ -3,8 +3,10 @@ package bridge.validate;
 import java.util.List;
 
 public class Validator {
-    private static final int SHORTEST_BRIDGE_LENGTH = 3;
-    private static final int LONGEST_BRIDGE_LENGTH = 20;
+    private static final int MIN_BRIDGE_LENGTH = 3;
+    private static final int MAX_BRIDGE_LENGTH = 20;
+    private static final String MOVE_UPPER_BRIDGE = "U";
+    private static final String MOVE_LOWER_BRIDGE = "D";
 
     public static void isNum(String input) {
         input.chars().forEach(c -> {
@@ -17,7 +19,7 @@ public class Validator {
 
     public static void isProperBridgeSize(String bridgeSizeInput) {
         int bridgeSize = Integer.parseInt(bridgeSizeInput);
-        if (!isInRange(bridgeSize, SHORTEST_BRIDGE_LENGTH, LONGEST_BRIDGE_LENGTH)) {
+        if (!isInRange(bridgeSize, MIN_BRIDGE_LENGTH, MAX_BRIDGE_LENGTH)) {
             String errorMessage = "" + ErrorMessage.ERROR + ErrorMessage.NUMBER_OUT_OF_RANGE
                     + ErrorMessage.PROPER_BRIDGE_LENGTH;
             throw new IllegalArgumentException(errorMessage);
@@ -29,8 +31,8 @@ public class Validator {
     }
 
     public static void isMove(String move) {
-        final List<String> properMoves = List.of("U", "D");
-        if(!properMoves.contains(move)){
+        final List<String> properMoves = List.of(MOVE_UPPER_BRIDGE, MOVE_LOWER_BRIDGE);
+        if (!properMoves.contains(move)) {
             String errorMessage = "" + ErrorMessage.ERROR + ErrorMessage.NOT_PROPER_MOVE;
             throw new IllegalArgumentException(errorMessage);
         }
