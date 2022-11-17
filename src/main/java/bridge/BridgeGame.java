@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,6 +8,7 @@ import java.util.List;
  */
 public class BridgeGame {
     private int retryConut;
+    private List<Integer> gameState; 
     
     private InputView inputView;
     private OutputView outputView;
@@ -20,7 +22,19 @@ public class BridgeGame {
         outputView = new OutputView();
     }
 
+    public void gameStart(){
+        outputView.printStartMessage();
+    }
 
+    public void setBridgeSize(){
+        outputView.printInputBridgeSizeMessage();
+        int bridgeSize = inputView.readBridgeSize();
+
+        bridge = new Bridge(bridgeSize);
+        user = new User(bridgeSize);
+
+        gameState = new ArrayList<>(bridgeSize);
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
