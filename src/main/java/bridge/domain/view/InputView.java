@@ -13,15 +13,15 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-    public char readMoving() {
+    public String readMoving() {
         String input = Console.readLine();
         inputException.inputMoveException(input);
-        return input.charAt(0);
+        return input;
     }
 
-    public char readGameCommand() {
+    public String readGameCommand() {
         String input = Console.readLine();
         inputException.inputRestartException(input);
-        return input.charAt(0);
+        return input;
     }
 }
