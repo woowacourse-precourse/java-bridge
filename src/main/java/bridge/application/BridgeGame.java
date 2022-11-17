@@ -13,6 +13,7 @@ import bridge.presentation.dto.SelectMove;
  */
 public class BridgeGame {
     private static final BridgeGame instance=new BridgeGame();
+    private static final int FINISH=2;
     private static final int SUCCESS=1;
     private static final int FAIL=0;
     private final BridgeRepository bridgeRepository;
@@ -36,7 +37,7 @@ public class BridgeGame {
                 .equals(bridgeRepository.getSelectMove().getMove())){
             addResult("O");
             bridgeRepository.updateSuccessNumber();
-            return SUCCESS;
+            return checkFinish();
         }
         addResult("X");
         return FAIL;
@@ -56,7 +57,12 @@ public class BridgeGame {
         bridgeRepository.addUpperResult("|");
         bridgeRepository.addLowerResult("|");
     }
-
+    private int checkFinish(){
+        if(bridgeRepository.getSuccessNumber().equals(bridgeRepository.getBridgeSize().getSize())){
+            return FINISH;
+        }
+        return SUCCESS;
+    }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>

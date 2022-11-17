@@ -3,6 +3,8 @@ package bridge;
 import bridge.presentation.GameController;
 
 public class Application {
+    private static final int FAIL=0;
+    private static final int FINISH=2;
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -10,14 +12,31 @@ public class Application {
         gameController.run();
         gameController.inputBridgeSize();
         gameController.generateBridge();
+        move(gameController);
     }
 
-    private static int move(GameController gameController){
+    private static void move(GameController gameController){
         while (true){
-                gameController.inputSelectMove();
-                if(gameController.move()==0){
-                }
+            if(!checkMove(gameController)){
+                break;
             }
+        }
+    }
+    private static Boolean checkMove(GameController gameController){
+        gameController.inputSelectMove();
+        int moveValue=gameController.move();
+        if(moveValue==FAIL){
+            return retry(gameController);
+        }
+        return moveValue != FINISH;
+    }
+
+    private static Boolean retry(GameController gameController){
+        if(gameController.inputRetry()){
+            move(gameController);
+            return false;
+        }
+        return false;
     }
 
 }

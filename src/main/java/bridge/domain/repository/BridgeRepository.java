@@ -28,7 +28,6 @@ public class BridgeRepository {
         upperResult=new ArrayList<>(List.of("["));
         lowerResult=new ArrayList<>(List.of("["));
         successNumber=0;
-
     }
     public void updateAttemptNumber(){
         attemptNumber+=1;
