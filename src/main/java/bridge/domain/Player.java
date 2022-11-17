@@ -6,7 +6,7 @@ public class Player {
     private int positionIndex;
 
     public Player() {
-        this.tryCount = 0;
+        this.tryCount = 1;
         initPosition();
     }
 
