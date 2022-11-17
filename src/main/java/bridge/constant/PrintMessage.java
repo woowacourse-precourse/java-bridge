@@ -8,7 +8,16 @@ public enum PrintMessage {
     INPUT_GAME_COMMAND("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)\n"),
     RESULT_MAP("최종 게임 결과"),
     RESULT_IS_SUCCESS("게임 성공 여부: %s\n"),
-    RESULT_TRIALS("총 시도한 횟수: %d");
+    RESULT_TRIALS("총 시도한 횟수: %d"),
+    SUCCEED_IN_KOR("성공"),
+    FAIL_IN_KOR("실패"),
+    MAP_RIGHT("O"),
+    MAP_WRONG("X"),
+    MAP_BLANK("X"),
+    MAP_LEFT_BRACKET("["),
+    MAP_RIGHT_BRACKET("]"),
+    MAP_SEPERATOR("|");
+
 
     private final String message;
 

@@ -1,4 +1,7 @@
 package bridge.constant;
 
-public class Moving {
+import java.util.stream.Stream;
+
+public enum Moving {
+    U, D
 }
