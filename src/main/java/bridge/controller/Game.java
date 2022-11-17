@@ -1,8 +1,16 @@
 package bridge.controller;
 
+import bridge.view.InputView;
+
 public class Game {
 
-    public void play() {
+    private InputView inputView;
 
+    public Game() {
+        inputView = new InputView();
+    }
+
+    public void play() {
+        int input = inputView.readBridgeSize();
     }
 }
