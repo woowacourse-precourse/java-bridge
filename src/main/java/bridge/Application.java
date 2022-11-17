@@ -41,9 +41,6 @@ public class Application {
 
         output.printMap(passHistory);
 
-        if (input.readGameCommand().equals("R")) {
-            return true;
-        }
-        return false;
+        return input.readGameCommand().equals("R");
     }
 }
