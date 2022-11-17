@@ -12,9 +12,9 @@
 - [X] OutputView 에 printResult 구현
 
 ## Model
-- [ ] Player 모델 구현
-  - [ ] position 필드를 가짐
-  - [ ] 도착 여부를 확인할 수 있는 `boolean checkEnd(int endPosition)` 메서드를 가짐
+- [X] Player 모델 구현
+  - [X] position 필드를 가짐
+  - [X] 도착 여부를 확인할 수 있는 `boolean checkEnd(int endPosition)` 메서드를 가짐
 
 ## Controller
 - [ ] 0과 1로 이루어진 다리 List 를 리턴하는 메서드 구현
