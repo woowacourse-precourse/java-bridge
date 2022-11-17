@@ -1,8 +1,8 @@
 package bridge;
 
 import bridge.util.BridgeSizeValidator;
+import bridge.util.MoveCommandValidator;
 import camp.nextstep.edu.missionutils.Console;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -37,5 +37,13 @@ public class BridgeTest {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         assertThat(bridgeMaker.makeBridge(3).size())
                 .isEqualTo(3);
+    }
+
+    @DisplayName("사용자 명령 잘못된 값일 경우 예외 발생")
+    @Test
+    void moveCommandByWrongInput(){
+        MoveCommandValidator moveCommandValidator = new MoveCommandValidator();
+        assertThatThrownBy(() -> moveCommandValidator.validate("R"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
