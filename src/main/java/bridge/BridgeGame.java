@@ -39,7 +39,7 @@ public class BridgeGame {
 
         addResult(userInput, result);
 
-        outputView.printMap();
+        outputView.printMap(inputs);
 
         return result;
     }
