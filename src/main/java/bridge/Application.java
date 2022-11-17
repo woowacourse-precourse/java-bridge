@@ -8,8 +8,13 @@ public class Application {
 
     public static void main(String[] args) {
         System.out.println(GAME_START_SENTENCE);
-        GameController gameController = new GameController();
-        gameController.run();
+        try{
+            GameController gameController = new GameController();
+            gameController.run();
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
+
     }
 }
 

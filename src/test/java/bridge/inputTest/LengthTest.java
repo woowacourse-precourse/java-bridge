@@ -1,35 +1,28 @@
-package bridge;
+package bridge.inputTest;
 
+import bridge.Application;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class MoveTest extends NsTest {
+public class LengthTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
-    void 이동_숫자_테스트() {
+    void 다리길이_문자_테스트() {
         assertSimpleTest(() -> {
-            runException("3", "123");
+            runException("a");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 
     @Test
-    void 이동입력_길이_테스트() {
+    void 다리길이_범위_테스트() {
         assertSimpleTest(() -> {
-            runException("3", "qwe");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 이동_유효_테스트() {
-        assertSimpleTest(() -> {
-            runException("3", "u");
+            runException("-1");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
