@@ -18,14 +18,14 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
+        for (int i = 0; i < size; i++) {
+
+        }
         return null;
     }
 
-    private int makeRandomNumber() {
-        return bridgeNumberGenerator.generate();
+    private String makeRandomUpDown() {
+        return UpDown.valueOfNumber(bridgeNumberGenerator.generate()).label();
     }
 
-    private String makeNumberUpDown(int number) {
-        return UpDown.valueOfNumber(1).label();
-    }
 }
