@@ -1,7 +1,6 @@
 package bridge;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -18,7 +17,7 @@ public class MakeBridgeTest extends NsTest {
     @Test
     @DisplayName("다리가 잘 만들어졌는지 테스트")
     void makeBridgeTest() {
-        BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(1, 0, 0));
+        BridgeNumberGenerator numberGenerator = new MakeBridgeTest.TestNumberGenerator(newArrayList(1, 0, 0));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(3);
         assertThat(bridge).containsExactly("U", "D", "D");
