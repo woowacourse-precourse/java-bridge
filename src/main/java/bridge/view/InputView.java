@@ -24,7 +24,7 @@ public class InputView {
     public static String readMoving() {
         System.out.println(BridgeGameInfo.SELECT_UP_DOWN.message);
         // 이동할 칸 입력받기
-        return null;
+        return Console.readLine();
     }
 
     /**
