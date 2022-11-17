@@ -14,7 +14,7 @@ public class Application {
         BridgeGame bridgeGame = BridgeGame.create(new BridgeService(bridgeMaker, new InputView(), new OutputView()));
         try {
             bridgeGame.start();
-        } catch (IllegalArgumentException | IllegalStateException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
