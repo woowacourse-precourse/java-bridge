@@ -14,7 +14,7 @@ public class Bridge {
     private final static String WRONG_RANGE_INPUT = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
 
 
-    private List<String> bridge;
+    private List<String> bridgeStates;
 
 
     public Bridge(int bridgeSize) throws IllegalArgumentException {
@@ -27,7 +27,7 @@ public class Bridge {
         BridgeNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 
-        this.bridge = bridgeMaker.makeBridge(bridgeSize);
+        this.bridgeStates = bridgeMaker.makeBridge(bridgeSize);
     }
 
 
@@ -36,4 +36,13 @@ public class Bridge {
             throw new IllegalArgumentException(WRONG_RANGE_INPUT);
         }
     }
+
+    public List<String> getBridgeStates() {
+        return this.bridgeStates;
+    }
+
+    public String getBridgeState(int bridgeLocation) {
+        return bridgeStates.get(bridgeLocation);
+    }
+
 }
