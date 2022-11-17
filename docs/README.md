@@ -35,7 +35,7 @@
 * [ ] 발생 가능한 예외 - 명확하게 처리
     * 발생가능한 예외를 구체화 할 것(`IllegalArgumentException`, `IllegalStateException` 등...)
     * `IllegalArgumentException`의 경우 해당 부분부터 재시작
-    * [ ] 다리 길이 입력에서 문자가 들어가 있는지 확인
+    * [x] 다리 길이 입력에서 문자가 들어가 있는지 확인
     * [x] 다리의 길이 입력 중 3 ~ 20 사이인지 확인
     * [x] 사용자 입력이 옳바르지 못한 입력인지 확인
       * [x] U or D 확인하기
