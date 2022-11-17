@@ -1,7 +1,7 @@
 package bridge.view;
 
 import bridge.validator.BridgeSize;
-import bridge.validator.Command;
+import bridge.validator.ExitOption;
 import bridge.validator.Location;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -21,9 +21,9 @@ public class InputView {
 	/**
 	 * 사용자가 이동할 칸을 입력받는다.
 	 */
-	public int readMoving() {
+	public String readMoving() {
 		System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-		return Location.convertToInt(Console.readLine());
+		return Location.of(Console.readLine()).getCommand();
 	}
 
 	/**
@@ -31,7 +31,7 @@ public class InputView {
 	 */
 	public Boolean readGameCommand() {
 		System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-		return Command.isReplay(Console.readLine());
+		return ExitOption.of(Console.readLine()).isReplay();
 	}
 
 }
