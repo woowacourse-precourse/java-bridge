@@ -1,4 +1,9 @@
-package bridge;
+package bridge.view;
+
+import camp.nextstep.edu.missionutils.Console;
+
+import static bridge.utils.ErrorMessages.ERROR_NOT_INTEGER;
+import static bridge.utils.ViewMessages.BRIDGE_SIZE;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -9,6 +14,8 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        System.out.println(BRIDGE_SIZE);
+        String inputBridgeSize = Console.readLine();
         return 0;
     }
 
