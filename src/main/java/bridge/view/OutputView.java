@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -6,6 +6,10 @@ package bridge;
  * 값 출력을 위해 필요한 메서드를 추가할 수 있다.
  */
 public class OutputView {
+    public void printLine(String message) {
+
+    }
+
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
