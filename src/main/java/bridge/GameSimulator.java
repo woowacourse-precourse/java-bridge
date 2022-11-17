@@ -1,6 +1,5 @@
 package bridge;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GameSimulator {
@@ -9,16 +8,22 @@ public class GameSimulator {
     private OutputView outputView = new OutputView();
     private BridgeGame bridgeGame = new BridgeGame();
 
-    private int trial = 1;
-    private List<String> userRoute = new ArrayList<>();
-
     public void simulateGame() {
         int bridgeSize = initializeGame();
         List<String> bridge = makeBridge(bridgeSize);
-        startGame();
-        quitGame();
+        List<String> userRoute;
+        int trial = 0;
+
+        do {
+            trial++;
+            userRoute = startGame(bridge);
+        } while (!bridgeGame.gameClear(userRoute.size(), bridgeSize) && bridgeGame.gameover());
+        quitGame(bridgeSize, trial, userRoute);
     }
 
+    /**
+     * 게임 시작 세팅 출력 및 다리 길이를 입력 받는다.
+     */
     private int initializeGame() {
         outputView.printGameStart();
         return inputView.readBridgeSize();
@@ -29,11 +34,11 @@ public class GameSimulator {
         return bridgeMaker.makeBridge(bridgeSize);
     }
 
-    private void startGame() {
-
+    private List<String> startGame(List<String> bridge) {
+        return null;
     }
 
-    private void quitGame() {
+    private void quitGame(int bridgeSize, int trial, List<String> userRoute) {
 
     }
 }

@@ -21,7 +21,12 @@ public class BridgeGame {
     public void retry() {
     }
 
-    public void gameover() {
+    public boolean gameover() {
 
+        return true;
+    }
+
+    public boolean gameClear(int size, int bridgeSize) {
+        return true;
     }
 }

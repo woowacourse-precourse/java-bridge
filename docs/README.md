@@ -19,8 +19,8 @@
   - [ ] 게임이 끝날때까지 게임을 진행한다. - GameSimulator#startGame()
     - [ ] 다리를 이동한다. - BridgeGame#move()
       - [ ] 다리와 일치하는 이동인지 체크한다. - LifeGuard#checkSafety
-    - [ ] 게임오버가 되었다. - BridgeGame#gameover()
-      - [ ] 게임을 재시작한다. - BridgeGame#retry()
+  - [ ] 게임오버가 되었다. - BridgeGame#gameover()
+    - [ ] 게임을 재시작한다. - BridgeGame#retry()
   - [ ] 게임을 종료한다. - GameSimulator#quitGame()
     
 ## 에러상황
