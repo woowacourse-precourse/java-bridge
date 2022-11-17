@@ -52,10 +52,10 @@ public class BridgeGameController {
                 gameCommand = inputView.gameCommand();
                 if (gameCommand.equals(RESTART_GAME_COMMAND)) {
                     bridgeGame.retry();
-                    continue;
                 }
-
-                result = "실패";
+                if (gameCommand.equals(QUIT_GAME_COMMAND)) {
+                    result = "실패";
+                }
             }
         }
 
