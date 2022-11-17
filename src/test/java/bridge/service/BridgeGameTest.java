@@ -44,4 +44,12 @@ class BridgeGameTest {
         bridgeGame.move("U");
         assertThat(bridgeGame.crossedBridge()).isTrue();
     }
+
+    @Test
+    @DisplayName("게임을 재시도하면 이동 기록을 초기화한다.")
+    void retry() {
+        bridgeGame.retry();
+        String movementStatus = bridgeGame.createMovementStatus();
+        assertThat(movementStatus).isEqualTo("]\n]\n");
+    }
 }
