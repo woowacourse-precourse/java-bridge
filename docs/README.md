@@ -47,7 +47,7 @@
     - Q : 게임 종료
   - [ ] 예외 처리 (예외 메시지에 [ERROR] 로 시작) (IllegalArgumentException) (에러 메시지 출력 후 다시 입력)
     - [x] null or empty 입력 시
-    - [ ] 공백 입력 시
+    - [x] 공백 입력 시
     - [ ] 숫자 입력 시
       - [ ] 음수
       - [ ] 양수
