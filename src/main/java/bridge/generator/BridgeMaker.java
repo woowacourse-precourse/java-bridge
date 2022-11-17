@@ -9,9 +9,6 @@ import java.util.List;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-    private final static int UP = 1;
-    private final static int DOWN = 0;
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -26,6 +23,7 @@ public class BridgeMaker {
         List<Integer> numbers = generateNumbers(size);
 
         List<String> bridge = convertNumberToUpAndDown(numbers);
+
         return bridge;
     }
 
@@ -33,16 +31,24 @@ public class BridgeMaker {
         List<String> result = new ArrayList<>();
 
         for(int number : numbers) {
-            if(number == UP) {
-                result.add("U");
-            }
-            if(number == DOWN) {
-                result.add("D");
+            String direction = numberToUpOrDown(number);
+            result.add(direction);
+        }
+        return result;
+    }
+
+    public String numberToUpOrDown(int number) {
+        String result = "";
+
+        for(UpDown value : UpDown.values()) {
+            if(number == value.getNumber()) {
+                result = value.getDirection();
             }
         }
 
         return result;
     }
+
 
     public List<Integer> generateNumbers(int size) {
         List<Integer> numbers = new ArrayList<>();
