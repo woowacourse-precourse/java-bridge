@@ -6,7 +6,7 @@
 - View
   - [x] 다리 길이 입력 - InputView#readBridgeSize()
   - [x] 이동할 위치 입력 - InputView#readMoving()
-  - [ ] 재시도 여부 입력
+  - [x] 재시도 여부 입력 - InputView#readGameCommand()
   - [ ] 다리 뼈대 출력하기
   - [ ] 이동 위치, 성공 여부에 따른 위치 출력
   - [ ] 기타 출력 메시지 (시작, 길이입력 등..)
