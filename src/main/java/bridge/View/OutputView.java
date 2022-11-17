@@ -1,7 +1,5 @@
 package bridge.View;
 
-import java.util.List;
-
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -11,9 +9,6 @@ public class OutputView {
     private static final String GET_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     private static final String GET_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String GET_GAME_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-    private static final String MAP_START_PART = "[ ";
-    private static final String MAP_MIDDLE_PART = " | ";
-    private static final String MAP_END_PART = " ]";
     private static final String RESULT = "최종 게임 결과";
     private static final String GAME_RESULT = "게임 성공 여부: ";
     private static final String SUCCESS = "성공";
@@ -42,14 +37,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> map) {
-        System.out.print(MAP_START_PART);
-        for (int i = 0; i < map.size() - 1; i++) {
-            System.out.print(map.get(i));
-            System.out.print(MAP_MIDDLE_PART);
-        }
-        System.out.print(map.get(map.size() - 1));
-        System.out.println(MAP_END_PART);
+    public void printMap(String mapReuslt) {
+        System.out.print(mapReuslt);
     }
 
     /**
@@ -57,10 +46,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<String> upMap, List<String> downMap, boolean gameResult, int count) {
+    public void printResult(String mapResult, boolean gameResult, int count) {
         System.out.println(RESULT);
-        printMap(upMap);
-        printMap(downMap);
+        System.out.println(mapResult);
         printGameResult(gameResult);
         printGameTotalCount(count);
     }
