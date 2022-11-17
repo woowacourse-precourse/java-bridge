@@ -27,6 +27,9 @@ public class BridgeMaker {
         return answerBridge;
     }
 
+    /**
+     * @return 위아래 값. 랜덤으로 추출된 0, 1을 각각 "D","U"으로 바꿔 표현한다.
+     */
     private String makeRandomUpDown() {
         return UpDown.valueOfNumber(bridgeNumberGenerator.generate()).label();
     }
