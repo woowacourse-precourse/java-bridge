@@ -6,6 +6,7 @@ import bridge.constant.GameCommand;
 import bridge.constant.Moving;
 import bridge.constant.PrintMessage;
 import camp.nextstep.edu.missionutils.Console;
+import java.util.stream.Stream;
 
 public class InputView {
 
@@ -22,7 +23,8 @@ public class InputView {
     }
 
     public String readMoving() {
-        System.out.print(PrintMessage.INPUT_MOVING.getString());
+        System.out.printf(PrintMessage.INPUT_MOVING.getString(),
+                Stream.of(Moving.values()).map(Enum::toString).toArray());
         String inputMoving = Console.readLine();
         try {
             validateMoving(inputMoving);
@@ -34,7 +36,8 @@ public class InputView {
     }
 
     public String readGameCommand() {
-        System.out.print(PrintMessage.INPUT_GAME_COMMAND.getString());
+        System.out.printf(PrintMessage.INPUT_GAME_COMMAND.getString(),
+                Stream.of(GameCommand.values()).map(Enum::toString).toArray());
         String inputGameCommand = Console.readLine();
         try {
             validateGameCommand(inputGameCommand);
