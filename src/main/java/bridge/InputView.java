@@ -13,8 +13,7 @@ public class InputView {
      */
     public Integer readBridgeSize() {
         try {
-            int size = Integer.parseInt(Console.readLine());
-            this.eh = new ExceptionHandler(size);
+            this.eh = new ExceptionHandler(Integer.parseInt(Console.readLine()));
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 3 ~ 20 사이의 정수만 입력 가능합니다.");
             this.readBridgeSize();
