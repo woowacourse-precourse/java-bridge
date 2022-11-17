@@ -1,7 +1,6 @@
 package bridge.view;
 
 import bridge.BridgeGame;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -53,7 +52,7 @@ public class OutputView {
     public void printResult(BridgeGame game) {
 
         System.out.println(GAME_RESULT_MESSAGE);
-        printMap(game.getGameResult());
+        printMap(game.analyzeResult());
         System.out.println(GAME_IS_SUCCESS_MESSAGE + " " + successConverter(game.isSuccess()));
         System.out.println(GAME_ATTEMPTS + " " + game.getAttempt());
     }

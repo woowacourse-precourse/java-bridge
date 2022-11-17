@@ -12,33 +12,49 @@ public class Application {
 
     public static void main(String[] args) {
         try {
-            // TODO: 프로그램 구현
-            outputView.printStart();
-
-            outputView.printRequestBridgeLength();
-            int bridgeSize = inputView.readBridgeSize();
-            BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-            List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-            BridgeGame game = new BridgeGame(bridge);
-
-            while (!game.isEnd()) {
-                outputView.printRequestMoveDirection();
-                game.move(inputView.readMoving());
-                outputView.printMap(game.getGameResult());
-
-                if (!game.isStepSuccess()) {
-                    outputView.printRequestRestartOrQuit();
-                    String command = inputView.readGameCommand();
-                    if (command.equals(RESTART.ofHotKey())) {
-                        game.retry();
-                    } else {//QUIT
-                        break;
-                    }
-                }
-            }
-            outputView.printResult(game);
-        }catch (Exception e){
+            BridgeGame game = initializeGameWithBridgeLength();
+            play(game);
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
+
+    private static BridgeGame initializeGameWithBridgeLength() {
+        outputView.printRequestBridgeLength();
+        int bridgeSize = inputView.readBridgeSize();
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        return new BridgeGame(bridge);
+    }
+
+    private static void play(BridgeGame game) {
+        outputView.printStart();
+        while (!game.isEnd()) {
+            moveStep(game);
+            boolean continueGame = doBasedOnStepResult(game);
+            if (!continueGame) {
+                break;
+            }
+        }
+        outputView.printResult(game);
+    }
+
+    private static void moveStep(BridgeGame game) {
+        outputView.printRequestMoveDirection();
+        game.move(inputView.readMoving());
+        outputView.printMap(game.analyzeResult());
+    }
+
+    private static boolean doBasedOnStepResult(BridgeGame game) {
+        if (!game.isStepSuccess()) {
+            outputView.printRequestRestartOrQuit();
+            String command = inputView.readGameCommand();
+            if (!command.equals(RESTART.ofHotKey())) {
+                return false;
+            }
+            game.retry();
+        }
+        return true;
+    }
+
 }

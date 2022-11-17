@@ -50,20 +50,21 @@ public class BridgeGame {
         return current.get(index).equals(bridge.get(index));
     }
 
-
-    public List<List<String>> getGameResult() {
+    public List<List<String>> analyzeResult() {
         List<List<String>> result = new ArrayList<>();
         List<String> upLine = new ArrayList<>();
         List<String> downLine = new ArrayList<>();
+        setLines(upLine, downLine);
+        result.addAll(Arrays.asList(upLine, downLine));
+        return result;
+    }
 
+    private void setLines(List<String> upLine, List<String> downLine) {
         for (int i = 0; i < current.size(); i++) {
             String symbol = setSymbol(i);
             upLine.add(setUpItem(i, symbol));
             downLine.add(setDownItem(i, symbol));
         }
-        result.add(upLine);
-        result.add(downLine);
-        return result;
     }
 
     private String setUpItem(int index, String symbol) {
@@ -82,7 +83,7 @@ public class BridgeGame {
 
     private String setSymbol(int index) {
         String symbol = "X";
-        if (current.get(index).equals(bridge.get(index))) {//symbol결정
+        if (current.get(index).equals(bridge.get(index))) {
             symbol = "O";
         }
         return symbol;
@@ -97,6 +98,7 @@ public class BridgeGame {
     }
 
     private boolean compareCurrentWithBridge() {
-        return bridge.size() == current.size() && Arrays.equals(bridge.toArray(), current.toArray());
+        return bridge.size() == current.size()
+                && Arrays.equals(bridge.toArray(), current.toArray());
     }
 }
