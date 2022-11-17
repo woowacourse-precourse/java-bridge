@@ -56,7 +56,7 @@ public class BridgeGameController {
         }
     }
 
-    private static String inputGameCommand() {
+    private static GameCommand inputGameCommand() {
         try {
             return InputView.readGameCommand();
         } catch (IllegalArgumentException e) {

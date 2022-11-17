@@ -11,7 +11,7 @@ import java.util.Objects;
 public class InputView {
 
     private static final List<String> MOVE_COMMAND = List.of(MoveCommand.UP.getCommand(), MoveCommand.DOWN.getCommand());
-    private static final List<String> GAME_COMMAND = List.of("Q", "R");
+    private static final List<String> GAME_COMMAND = List.of(GameCommand.REPLAY.getCommand(),GameCommand.QUIT.getCommand());
 
     /**
      * 다리의 길이를 입력받는다.
@@ -42,11 +42,14 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public static String readGameCommand() {
+    public static GameCommand readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String gameCommand = Console.readLine();
         validationGameCommand(gameCommand);
-        return gameCommand;
+        if (Objects.equals(gameCommand, GameCommand.QUIT.getCommand())) {
+            return GameCommand.QUIT;
+        }
+        return GameCommand.REPLAY;
     }
 
     private static void validationInteger(String input) {
