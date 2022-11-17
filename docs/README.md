@@ -37,18 +37,18 @@
     - %d : 시도 횟수
 
 ## 기능 구현 목록
-- [ ] 게임 시작 문구 출력
-- [ ] 길이 입력 받는 문구 출력
-- [ ] 3~20사이의 숫자 입력
-  - [ ] 숫자가 아닌지 체크 - IllegalArgumentException
-  - [ ] 3~20사이의 숫자가 아닌지 체크 - IllegalArgumentException
-- [ ] 숫자에 맞는 다리 생성
+- [x] 게임 시작 문구 출력
+- [x] 길이 입력 받는 문구 출력
+- [x] 3~20사이의 숫자 입력
+  - [x] 숫자가 아닌지 체크 - IllegalArgumentException
+  - [x] 3~20사이의 숫자가 아닌지 체크 - IllegalArgumentException
+- [x] 숫자에 맞는 다리 생성
   - 위 칸을 건널 수 있는 경우 U, 아래 칸을 건널 수 있는 경우 D 값으로 나타낸다.
-- [ ] 이동할 칸을 입력 받는 문구 출력
-  - [ ] 'U' 또는 'D'가 아닌지 체크 - IllegalArgumentException
-- [ ] 틀렸을 경우 문구 출력
-  - [ ] 'R' 또는 'Q'가 아닌지 체크 - IllegalArgumentException
-- [ ] 맞췄을 경우 명세에 맞춰 결과 출력
+- [x] 이동할 칸을 입력 받는 문구 출력
+  - [x] 'U' 또는 'D'가 아닌지 체크 - IllegalArgumentException
+- [x] 틀렸을 경우 문구 출력
+  - [x] 'R' 또는 'Q'가 아닌지 체크 - IllegalArgumentException
+- [x] 맞췄을 경우 명세에 맞춰 결과 출력
 
 ### 고려사항
 명세에 IllegalStateException 가 언급되었음
