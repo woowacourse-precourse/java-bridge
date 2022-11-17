@@ -30,4 +30,12 @@ public class Util {
         return false;
     }
 
+    //여러 글자인가?
+    public static boolean isString(String input){
+        if (input.length() != 1)
+            return true;
+
+        return false;
+    }
+
 }
