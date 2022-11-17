@@ -10,7 +10,8 @@ public class InputView {
 
     public int readBridgeSize() {
         String bridgeSize = readLine();
-        return 0;
+        validateBridgeSize(bridgeSize);
+        return Integer.parseInt(bridgeSize);
     }
 
     public String readMoving() {
@@ -19,6 +20,11 @@ public class InputView {
 
     public String readGameCommand() {
         return null;
+    }
+
+    private void validateBridgeSize(String input) {
+        int bridgeSize = strToInt(input);
+        isBetweenRange(bridgeSize);
     }
 
     private int strToInt(String input) {
