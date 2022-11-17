@@ -42,7 +42,7 @@
 #### view _( InputException )_
 - [ ] 다리 길이를 입력 받을 때 예외처리 -inputBridgeLengthException()
   - [x] 입력값이 null인 경우 예외처리한다. -inputNullException()
-  - [ ] 입력값이 숫자가 아닐 경우 예외처리한다. -inputNoNumberException()
+  - [x] 입력값이 숫자가 아닐 경우 예외처리한다. -inputNoNumberException()
   - [ ] 입력값이 3 이상 20 이하의 숫자가 아닐 경우 예외처리한다. -inputNoRangeException()
 
 
