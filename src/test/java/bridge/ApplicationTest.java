@@ -46,6 +46,13 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+    @Test
+    void numberExceptionTest_1() {
+        assertSimpleTest(() -> {
+            runException("a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
 
     @Override
     protected void runMain() {
