@@ -11,4 +11,11 @@ public class InputController {
         validation.checkOnlyNumber(inputSize);
         return Integer.parseInt(inputSize);
     }
+
+    public String getMovingDirection() throws IllegalArgumentException {
+        String moving = inputView.readMoving();
+
+        validation.isValidDirection(moving);
+        return moving;
+    }
 }
