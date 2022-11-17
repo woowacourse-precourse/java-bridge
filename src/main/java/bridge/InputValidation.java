@@ -40,4 +40,10 @@ public class InputValidation {
         return false;
     }
 
+    public boolean isValidGameRetryInput(String gameRetryInput){
+        if(R.equals(gameRetryInput) || Q.equals(gameRetryInput))
+            return true;
+        return false;
+    }
+
 }
