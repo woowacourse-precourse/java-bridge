@@ -1,5 +1,7 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -19,5 +21,28 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult() {
+    }
+
+    public static void startPrint() {
+        System.out.println("다리 건너기 게임을 시작합니다.");
+    }
+
+    public static void bridgeSizeInputPrint(){
+        System.out.println("다리의 길이를 입력해 주세요.");
+    }
+
+    public static int validatorNonNumber(String input){
+        int number;
+        try{
+            number = Integer.parseInt(input);
+        } catch (IllegalArgumentException e){
+            return 0;
+        } return number;
+    }
+    public static int validatorNumberRange(int input){
+        if (input < 3 || input > 20){
+            System.out.println("[ERROR] 3 ~ 20 사이의 숫자를 입력해주세요.");
+            return 0;
+        } return input;
     }
 }
