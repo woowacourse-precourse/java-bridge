@@ -11,6 +11,7 @@ public class InputView {
     static final String ERROR_NUMBER = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     static final String ERROR_STRING = "[ERROR] 숫자를 입력하여 주세요.";
     static final String MOVE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    static final String RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     static final int UPPER_BOUND = 20;
     static final int LOWER_BOUND = 3;
     /**
@@ -40,11 +41,12 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println(RETRY);
+        return Console.readLine();
     }
 
     public static int catchException(){
-        int input = 0;
+        int input = -1;
         try{
             input = Integer.parseInt(Console.readLine());
             rangeCheck(input);

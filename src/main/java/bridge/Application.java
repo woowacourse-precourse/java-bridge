@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -14,15 +15,19 @@ public class Application {
                 return bng.generate();
             }
         });
-
-        List<String> list = bm.makeBridge(size);
         OutputView ov = new OutputView();
-        for (int i = 0; i < list.size(); i++) {
-            String choice = inputview.readMoving();
-            if (!ov.printMap(i, list, choice)) {
-                System.out.println("\n");
+        List<String> list;
+        while (true) {
+            list = bm.makeBridge(size);
+            boolean startAgain = ov.printResult(list);
+            System.out.println(startAgain);
+            if (!startAgain) {
+                ov.gameEnded(list);
                 break;
             }
+            System.out.println("OUT");
         }
+
     }
 }
+
