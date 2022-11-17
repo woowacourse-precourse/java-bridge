@@ -41,4 +41,8 @@ public class BridgeGame {
             return true;
         return false;
     }
+
+    public boolean ifEnd() {
+        return where == bridge.size();
+    }
 }
