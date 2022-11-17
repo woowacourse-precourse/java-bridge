@@ -4,6 +4,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.BridgeGame;
+import bridge.util.Converter;
 import bridge.util.Validator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -16,6 +17,7 @@ public class BridgeGameController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final Validator validator = new Validator();
+    private final Converter converter = new Converter();
     private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
@@ -27,21 +29,17 @@ public class BridgeGameController {
     public void startGame(int bridgeSize) {
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         BridgeGame bridgeGame = new BridgeGame(bridge);
+        String moving = inputView.readMoving();
     }
 
     public void getBridgeSizeInputAndStartGame() {
-        while (true) {
-            checkBridgeSizeAndThrowException();
-        }
-    }
-
-    public void checkBridgeSizeAndThrowException() {
         try {
             int bridgeSize = inputView.readBridgeSize();
             validateBridgeSize(bridgeSize);
             startGame(bridgeSize);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(INVALID_BRIDGE_SIZE);
+            getBridgeSizeInputAndStartGame();
         }
     }
 
