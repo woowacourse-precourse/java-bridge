@@ -41,7 +41,7 @@ public class InputValidator {
         return moving.equals(UP_BRIDGE) || moving.equals(DOWN_BRIDGE);
     }
 
-    public static boolean isValidRestart(String restart) {
+    public static boolean isValidRetry(String restart) {
         if (restart == null) {
             return false;
         }

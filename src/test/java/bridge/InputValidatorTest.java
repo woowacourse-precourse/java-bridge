@@ -27,7 +27,7 @@ public class InputValidatorTest {
     @DisplayName("게임 다시 사작 입력 유효성 검사")
     @CsvSource(value = {":false", "R:true", "Q:true", "'':false", "D:false"}, delimiter = ':')
     @ParameterizedTest
-    void is_valid_restart(String input, boolean expected) {
-        assertThat(InputValidator.isValidRestart(input)).isEqualTo(expected);
+    void is_valid_retry(String input, boolean expected) {
+        assertThat(InputValidator.isValidRetry(input)).isEqualTo(expected);
     }
 }
