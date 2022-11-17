@@ -20,7 +20,7 @@ class ValidateUserInputTest {
 
     @Test
     void checkReadMoving() {
-        String moveButton = "U";
+        String moveButton = "Uk";
         assertThatThrownBy(() -> validateUserInput.checkReadMoving(moveButton))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
