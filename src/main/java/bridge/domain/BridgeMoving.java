@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import java.util.List;
-
 import static bridge.utils.ErrorMessages.ERROR_INVALID_MOVING;
 
 public class BridgeMoving {
