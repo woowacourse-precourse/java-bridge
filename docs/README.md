@@ -4,8 +4,8 @@
 ### 💡실행 목록
 - [x] 게임 시작 문구를 출력한다. -OutputView#printGuideMessage()
 - [x] 다리의 길이를 입력 받는 문구를 출력한다. -OutputView#printGuideMessage()
-- [ ] 다리의 길이를 입력 받는다. -InputView#readBridgeSize()
-  - [ ] 다리의 길이는 3부터 20 사이만 입력 받을 수 있다.
+- [x] 다리의 길이를 입력 받는다. -InputView#readBridgeSize()
+  - [x] 다리의 길이는 3부터 20 사이만 입력 받을 수 있다.
 - [ ] 다리의 길이만큼 다리를 랜덤 값으로 생성한다.
   - [ ] 0이면 아래 칸, 1이면 위의 칸이 유효한 칸이다.
   - [ ] 위 칸을 건널 수 있는 경우는 U, 아래 칸을 건널 수 있는 경우는 D 이다.
