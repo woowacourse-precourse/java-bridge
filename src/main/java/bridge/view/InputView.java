@@ -17,7 +17,9 @@ public class InputView {
         String input = Console.readLine();
         try {
             isNumber(input);
-            return Integer.parseInt(input);
+            int tmp = Integer.parseInt(input);
+            isInRange(3, tmp, 20);
+            return tmp;
         } catch(NullPointerException | IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readBridgeSize();
@@ -28,7 +30,7 @@ public class InputView {
     public String readMoving() {
         String input = Console.readLine();
         try {
-            isUpOrDown(input);
+            isContain("UD",input);
             return input;
         } catch (NullPointerException | IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -39,7 +41,7 @@ public class InputView {
     public String readGameCommand() {
         String input = Console.readLine();
         try {
-            isRestartOrQuit(input);
+            isContain("RQ", input);
             return input;
         } catch (NullPointerException | IllegalArgumentException e) {
             System.out.println(e.getMessage());
