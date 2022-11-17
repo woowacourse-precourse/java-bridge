@@ -4,7 +4,7 @@ import static bridge.constant.BridgeConstant.LOWER_BLOCK;
 import static bridge.constant.BridgeConstant.UPPER_BLOCK;
 
 import bridge.FinalMessage;
-import bridge.MessageToResult;
+import bridge.domain.MoveResult;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,9 +18,10 @@ public class OutputView {
     private final List<String> upperBlocks = new ArrayList<>();
     private final List<String> lowerBlocks = new ArrayList<>();
 
-    public void printMap(MessageToResult messageToResult) {
-        String answer = messageToResult.getMessage();
-        String resultMark = getResultMark(messageToResult.isCorrect());
+    public void printMap(MoveResult moveResult) {
+        
+        String answer = moveResult.getMessage();
+        String resultMark = getResultMark(moveResult.isCorrect());
         setBlocks(answer, resultMark);
 
         printEachMessage(upperBlocks);

@@ -2,7 +2,8 @@ package bridge;
 
 import static bridge.constant.BridgeConstant.RESTART_GAME;
 
-import bridge.exception.Validator;
+import bridge.domain.Bridge;
+import bridge.domain.MoveResult;
 import java.util.List;
 
 /**
@@ -12,16 +13,17 @@ public class BridgeGame {
 
     private int round = 0;
     private int tryCount = 1;
-    private boolean isGameClear = false;
+    private boolean gameClear = false;
 
-    public List<String> getBridge(int size) {
-        return new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
+    public Bridge getBridge(int size) {
+        List<String> bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
+        return new Bridge(bridge);
     }
 
-    public MessageToResult move(List<String> bridge,
-                        String moveMessage) {
-        boolean isCorrect = bridge.get(round++).equals(moveMessage);
-        return new MessageToResult(moveMessage, isCorrect);
+    public MoveResult move(Bridge bridge,
+                           String moveMessage) {
+        boolean isCorrect = bridge.getResultIsCorrect(round++, moveMessage);
+        return new MoveResult(moveMessage, isCorrect);
     }
 
     public boolean retry(String retryMessage) {
@@ -33,15 +35,15 @@ public class BridgeGame {
         return false;
     }
 
-    public boolean isGameClear(List<String> bridge) {
-        if (bridge.size() == round) {
-            isGameClear = true;
+    public boolean isGameClear(Bridge bridge) {
+        if (bridge.isGameClear(round)) {
+            gameClear = true;
             return true;
         }
         return false;
     }
 
     public FinalMessage getResult() {
-        return new FinalMessage(tryCount, isGameClear);
+        return new FinalMessage(tryCount, gameClear);
     }
 }

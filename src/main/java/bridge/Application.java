@@ -1,9 +1,10 @@
 package bridge;
 
+import bridge.domain.Bridge;
+import bridge.domain.MoveResult;
 import bridge.view.InputView;
 import bridge.view.InputViewProxy;
 import bridge.view.OutputView;
-import java.util.List;
 
 public class Application {
 
@@ -12,16 +13,16 @@ public class Application {
     private static final BridgeGame bridgeGame = new BridgeGame();
 
     public static void main(String[] args) {
-        List<String> bridge = bridgeGame.getBridge(inputView.readBridgeSize());
+        Bridge bridge = bridgeGame.getBridge(inputView.readBridgeSize());
         do {
             playGame(bridge);
         } while (!bridgeGame.isGameClear(bridge));
         outputView.printResult(bridgeGame.getResult());
     }
 
-    private static void playGame(List<String> bridge) {
-        MessageToResult messageToResult = moveToBridge(bridge);
-        if (!messageToResult.isCorrect()) {
+    private static void playGame(Bridge bridge) {
+        MoveResult moveResult = moveToBridge(bridge);
+        if (!moveResult.isCorrect()) {
             if (bridgeGame.retry(inputView.readGameCommand())) {
                 outputView.clear();
                 playGame(bridge);
@@ -29,9 +30,9 @@ public class Application {
         }
     }
 
-    private static MessageToResult moveToBridge(List<String> bridge) {
-        MessageToResult messageToResult = bridgeGame.move(bridge, inputView.readMoving());
-        outputView.printMap(messageToResult);
-        return messageToResult;
+    private static MoveResult moveToBridge(Bridge bridge) {
+        MoveResult moveResult = bridgeGame.move(bridge, inputView.readMoving());
+        outputView.printMap(moveResult);
+        return moveResult;
     }
 }
