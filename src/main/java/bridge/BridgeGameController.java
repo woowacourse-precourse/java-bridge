@@ -4,6 +4,7 @@ public class BridgeGameController {
     InputView inputView;
     OutputView outputView;
     BridgeGame bridgeGame;
+    int count = 0;
 
     int size;
 
@@ -28,8 +29,9 @@ public class BridgeGameController {
 
             if (!movingResult){
                 restartResult = bridgeGame.retry();
+                if (restartResult) count++;
             }
         }
-        outputView.printResult();
+        outputView.printResult(bridgeGame.getInputs(), restartResult, count);
     }
 }
