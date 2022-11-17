@@ -35,7 +35,6 @@ class BridgeGameTest {
     @CsvSource(value = {"R:true","Q:false"}, delimiter = ':')
     void 입력에_따른_게임_재시작_여부_테스트(char input, boolean answer) {
         BridgeGame bridgeGame = new BridgeGame();
-
         assertThat(bridgeGame.retry(input)).isEqualTo(answer);
     }
 }
