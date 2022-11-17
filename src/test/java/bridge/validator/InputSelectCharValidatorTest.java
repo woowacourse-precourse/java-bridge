@@ -37,4 +37,13 @@ class InputSelectCharValidatorTest {
                 .isThrownBy(() -> InputSelectCharValidator.validate(input, MOVING_SELECT_CHAR_VALIDATOR_NUMBER))
                 .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
     }
+    
+    @DisplayName("예외 처리 : 특수 문자 입력 시")
+    @ParameterizedTest(name = "{displayName} : input => {0}")
+    @ValueSource(strings = {"@", "$", "%", ",", "."})
+    void specialCharactersException(final String input) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> InputSelectCharValidator.validate(input, MOVING_SELECT_CHAR_VALIDATOR_NUMBER))
+                .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
+    }
 }
