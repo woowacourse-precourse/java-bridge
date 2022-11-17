@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 import bridge.domain.BridgeMaker;
+import bridge.domain.BridgeMap;
 import bridge.service.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -17,30 +18,34 @@ import bridge.view.OutputView;
  * 메서드 추가, 변경 가능
  */
 public class BridgeGame {
-    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
+    private final static BridgeMaker BRIDGE_MAKER = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private final static InputView INPUT_VIEW = new InputView();
+    private final static OutputView OUTPUT_VIEW = new OutputView();
+    private final static BridgeMap BRIDGE_MAP = new BridgeMap();
+
     private List<String> answer;
     private String input;
     private boolean success = true;
-    private int repeat;
+    private int bridgeSize;
+    private int round = 0;
     private int tryCount = 1;
 
     public void start() {
-        outputView.printStart();
-        outputView.printLengthInput();
-        repeat = inputView.readBridgeSize();
-        answer = bridgeMaker.makeBridge(repeat);
-        play();
+        OUTPUT_VIEW.printStart();
+        OUTPUT_VIEW.printLengthInput();
+        bridgeSize = INPUT_VIEW.readBridgeSize();
+        answer = BRIDGE_MAKER.makeBridge(bridgeSize);
+        do {
+            play();
+            round+=1;
+        } while (success && round < bridgeSize);
+        end();
     }
 
     public void play() {
-        for(int i=0; i < repeat && success; i++){
-            move();
-            if(!Objects.equals(input, answer.get(i))) {
-                retry();
-            }
-        }
+        OUTPUT_VIEW.printMoveInput();
+        input = INPUT_VIEW.readMoving();
+        move();
     }
 
     /**
@@ -49,9 +54,10 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
-        outputView.printMoveInput();
-        input = inputView.readMoving();
-        outputView.printMap();
+        BRIDGE_MAP.updateBridgeMap(answer.get(round), input);
+        BRIDGE_MAP.createMessage();
+        OUTPUT_VIEW.printMap(BRIDGE_MAP);
+        retry();
     }
 
 
@@ -61,22 +67,22 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        success = false;
-        outputView.printRetry();
-        if(Objects.equals(inputView.readGameCommand(), "R")){
-            success = true;
-            repeat += 1;
-            tryCount += 1;
-        }
-        if (Objects.equals(inputView.readGameCommand(), "Q")) {
-            end();
+        if(!Objects.equals(answer.get(round), input)) {
+            OUTPUT_VIEW.printRetry();
+            if("R".equals(INPUT_VIEW.readGameCommand())) {
+                tryCount += 1;
+                round -= 1;
+                BRIDGE_MAP.undoStatus(4);
+                return;
+            }
+            success = false;
         }
     }
 
     public void end() {
-        outputView.printResult();
-        outputView.printMap();
-        outputView.printComplete(success);
-        outputView.printTryCount(tryCount);
+        OUTPUT_VIEW.printResult();
+        OUTPUT_VIEW.printMap(BRIDGE_MAP);
+        OUTPUT_VIEW.printComplete(success);
+        OUTPUT_VIEW.printTryCount(tryCount);
     }
 }

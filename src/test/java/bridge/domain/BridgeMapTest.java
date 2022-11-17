@@ -7,8 +7,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-class StatusTest {
-    private final static Status status = new Status();
+class BridgeMapTest {
+    private final static BridgeMap BRIDGE_MAP = new BridgeMap();
 
     @ParameterizedTest
     @DisplayName("Status Class 테스트")
@@ -23,12 +23,12 @@ class StatusTest {
             String answer,
             String userAnswer,
             String output) {
-        status.updateStatus(answer, userAnswer);
-        status.createMessage();
+        BRIDGE_MAP.updateStatus(answer, userAnswer);
+        BRIDGE_MAP.createMessage();
         String[] tmp = output.split(",");
         assertAll(
-                () -> assertTrue(status.getMessage().contains(tmp[0])),
-                () -> assertTrue(status.getMessage().contains(tmp[1]))
+                () -> assertTrue(BRIDGE_MAP.getMessage().contains(tmp[0])),
+                () -> assertTrue(BRIDGE_MAP.getMessage().contains(tmp[1]))
         );
     }
 }
