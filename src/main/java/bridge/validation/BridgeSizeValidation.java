@@ -38,5 +38,10 @@ public class BridgeSizeValidation {
     }
 
     public void isCorrectRange(String bridgeSize) {
+        regEx = RegEx.valueOf("BRIDGE_SIZE_REG_EX");
+        if (!Pattern.matches(regEx.getRegEx(), bridgeSize)) {
+            message = ErrorMessage.valueOf("RANGE_EXCEPTION");
+            throwError(message.getMessage());
+        }
     }
 }
