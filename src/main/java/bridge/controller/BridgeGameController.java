@@ -6,15 +6,19 @@ import bridge.dto.BridgeSizeDTO;
 import bridge.dto.GameCommandDTO;
 import bridge.dto.MovingDTO;
 import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class BridgeGameController {
-    final InputView inputView;
+    private final InputView inputView;
+    private final OutputView outputView;
     
     public BridgeGameController() {
         this.inputView = new InputView();
+        this.outputView = new OutputView();
     }
     
     public void start() {
+        outputView.printGameStartMessage();
         playBridgeGame(new BridgeGame(new BridgeRandomNumberGenerator(), inputBridgeSize()));
     }
     
@@ -24,7 +28,7 @@ public class BridgeGameController {
     }
     
     private void printBridgeSizeInputMessage() {
-        System.out.println("사다리 길이 입력(3~20)");
+        System.out.println("사다리 길이 입력");
     }
     
     private void playBridgeGame(final BridgeGame bridgeGame) {
