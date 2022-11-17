@@ -68,4 +68,24 @@ public class InputValidatorTest {
         assertThatNoException()
                 .isThrownBy(() -> inputValidator.validateBridgeSize(20));
     }
+
+    @DisplayName("이동할 칸이 U나 D가 아니면 예외가 발생한다")
+    @Test
+    void getMovingPositionByNotUOrD() {
+        InputValidator inputValidator = new InputValidator();
+
+        assertThatThrownBy(() -> inputValidator.validateMovingPosition("L"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("이동할 칸이 U나 D이면 예외가 발생하지 않는다")
+    @Test
+    void getMovingPositionByUOrD() {
+        InputValidator inputValidator = new InputValidator();
+
+        assertThatNoException()
+                .isThrownBy(() -> inputValidator.validateMovingPosition("U"));
+        assertThatNoException()
+                .isThrownBy(() -> inputValidator.validateMovingPosition("D"));
+    }
 }
