@@ -23,4 +23,12 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public boolean compareBridge(List<String> nowBridge, List<String> generatedBridge) {
+        int index = nowBridge.size() - 1;
+        if (nowBridge.get(index).equals(generatedBridge.get(index))) {
+            return true;
+        }
+        return false;
+    }
 }

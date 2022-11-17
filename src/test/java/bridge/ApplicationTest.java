@@ -17,6 +17,8 @@ class ApplicationTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
 
+    BridgeGame bridgeGame = new BridgeGame();
+
     @Test
     void 다리_생성_테스트() {
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
@@ -66,7 +68,6 @@ class ApplicationTest extends NsTest {
     @Test
     void 다리_이동_후_결과_확인() {
         // given
-        BridgeGame bridgeGame = new BridgeGame();
         List<String> bridge = new ArrayList<>();
         bridge.add("U");
 
@@ -77,6 +78,23 @@ class ApplicationTest extends NsTest {
         // then
         assertEquals(2, bridge.size());
         assertEquals("U", bridge.get(1));
+    }
+
+    @Test
+    void 게임_진행_여부() {
+        // given
+        List<String> generatedBridge = new ArrayList<>();
+        generatedBridge.add("U");
+        generatedBridge.add("D");
+        List<String> nowBridge = new ArrayList<>();
+        nowBridge.add("U");
+        nowBridge.add("U");
+
+        // when
+        boolean gameSuccess = bridgeGame.compareBridge(nowBridge, generatedBridge);
+
+        // then
+        assertEquals(false, gameSuccess);
     }
 
     @Override
