@@ -40,5 +40,13 @@ public class Util {
         return false;
     }
 
+    //1, 0 입력받고 U, D 리턴
+    public static String convertBridgeNumberGenerator(int number){
+        if (number == 1){
+            return "U";
+        }
+
+        return "D";
+    }
 
 }
