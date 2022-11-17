@@ -51,31 +51,4 @@ class BridgeTest {
         assertThat(bridge.getIndexOf(3))
                 .isEqualTo(UpDownFlag.UP);
     }
-
-    @Test
-    @DisplayName("사용자가 건넌 다리의 길이가 다리의 길이보다 같거나 크면 참을 반환한다")
-    void bridgeCrossOverTrue() {
-        // given
-        Bridge bridge = Bridge.of(List.of("D", "D", "D"));
-        User user = new User();
-        user.move("D");
-        user.move("D");
-        user.move("D");
-        // expect
-        assertThat(bridge.isCrossOver(user))
-                .isTrue();
-    }
-
-    @Test
-    @DisplayName("사용자가 건넌 다리의 길이가 다리의 길이보다 작으면 거짓을 반환한다")
-    void bridgeCrossOverFalse() {
-        // given
-        Bridge bridge = Bridge.of(List.of("D", "D", "D"));
-        User user = new User();
-        user.move("D");
-        user.move("D");
-        // expect
-        assertThat(bridge.isCrossOver(user))
-                .isFalse();
-    }
 }
