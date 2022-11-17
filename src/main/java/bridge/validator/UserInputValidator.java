@@ -2,7 +2,7 @@ package bridge.validator;
 
 import bridge.exception.UserInputException;
 
-public class InputViewValidator {
+public class UserInputValidator {
 
     private static final int ASCII_ZERO = 48;
     private static final int ASCII_NINE = 57;

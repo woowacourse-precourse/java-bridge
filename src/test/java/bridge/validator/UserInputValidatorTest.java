@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
-class InputViewValidatorTest {
+class UserInputValidatorTest {
 
 
     @DisplayName("다리 길이 테스트")
@@ -22,14 +22,14 @@ class InputViewValidatorTest {
         @ParameterizedTest(name = "[{index}번째 테스트 : {0}]")
         @ValueSource(strings = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"})
         void userInputWithNumber(final String userInput) {
-            assertThat(InputViewValidator.ckeckBridgeSize(userInput)).isEqualTo(userInput);
+            assertThat(UserInputValidator.ckeckBridgeSize(userInput)).isEqualTo(userInput);
         }
 
         @DisplayName("양의 숫자가 아닌 문자열을 입력 했을 때 Exception 을 던지는 지 확인")
         @ParameterizedTest(name = "[{index}번째 테스트 : {0}]")
         @ValueSource(strings = {"-1", "1a", "jj", "&1", "$", "q", "we", "t", "j1"})
         void userInputWithNotNumber(final String userInput) {
-            assertThatThrownBy(() -> InputViewValidator.ckeckBridgeSize(userInput))
+            assertThatThrownBy(() -> UserInputValidator.ckeckBridgeSize(userInput))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -37,7 +37,7 @@ class InputViewValidatorTest {
         @ParameterizedTest
         @EmptySource
         void userInputWithEmpty(final String userInput) {
-            assertThatThrownBy(() -> InputViewValidator.ckeckBridgeSize(userInput))
+            assertThatThrownBy(() -> UserInputValidator.ckeckBridgeSize(userInput))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -52,14 +52,14 @@ class InputViewValidatorTest {
         @ParameterizedTest(name = "[{index}]번째 테스트 : {0}")
         @ValueSource(strings = {"U", "D"})
         void movingCommandWithValidCommand(final String command) {
-            assertThat(InputViewValidator.movingCommandValidation(command)).isEqualTo(command);
+            assertThat(UserInputValidator.movingCommandValidation(command)).isEqualTo(command);
         }
 
         @DisplayName("커맨드 문자열이 1자리가 아닐때 Exception 을 던지는지 확인")
         @ParameterizedTest(name = "[{index}]번째 테스트 : {0}")
         @ValueSource(strings = {"", "12", "123", "1234", "12345"})
         void movingCommandWithInvalidCommandSize(final String command) {
-            assertThatThrownBy(() -> InputViewValidator.movingCommandValidation(command))
+            assertThatThrownBy(() -> UserInputValidator.movingCommandValidation(command))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -67,7 +67,7 @@ class InputViewValidatorTest {
         @ParameterizedTest(name = "[{index}]번째 테스트 : {0}")
         @ValueSource(strings = {"u", "d"})
         void movingCommandWithLowerCase(final String command) {
-            assertThatThrownBy(() -> InputViewValidator.movingCommandValidation(command))
+            assertThatThrownBy(() -> UserInputValidator.movingCommandValidation(command))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -76,7 +76,7 @@ class InputViewValidatorTest {
         @ValueSource(strings = {"A", "B", "C", "E", "F", "G",
                 "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "V", "W", "X", "Y", "Z"})
         void movingCommandWithInvalidCharacter(final String command) {
-            assertThatThrownBy(() -> InputViewValidator.movingCommandValidation(command))
+            assertThatThrownBy(() -> UserInputValidator.movingCommandValidation(command))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
@@ -89,14 +89,14 @@ class InputViewValidatorTest {
         @ParameterizedTest(name = "[{index}]번째 테스트 : {0}")
         @ValueSource(strings = {"R", "Q"})
         void retryCommandWithValidCommand(final String command) {
-            assertThat(InputViewValidator.retryCommandValidation(command)).isEqualTo(command);
+            assertThat(UserInputValidator.retryCommandValidation(command)).isEqualTo(command);
         }
 
         @DisplayName("커맨드 문자열이 1자리가 아닐때 Exception 을 던지는지 확인")
         @ParameterizedTest(name = "[{index}]번째 테스트 : {0}")
         @ValueSource(strings = {"", "12", "123", "1234", "12345"})
         void retryCommandWithInvalidCommandSize(final String command) {
-            assertThatThrownBy(() -> InputViewValidator.retryCommandValidation(command))
+            assertThatThrownBy(() -> UserInputValidator.retryCommandValidation(command))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -104,7 +104,7 @@ class InputViewValidatorTest {
         @ParameterizedTest(name = "[{index}]번째 테스트 : {0}")
         @ValueSource(strings = {"r", "q"})
         void retryCommandWithLowerCase(final String command) {
-            assertThatThrownBy(() -> InputViewValidator.retryCommandValidation(command))
+            assertThatThrownBy(() -> UserInputValidator.retryCommandValidation(command))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -113,7 +113,7 @@ class InputViewValidatorTest {
         @ValueSource(strings = {"A", "B", "C", "D", "E", "F", "G",
                 "H", "I", "J", "K", "L", "M", "N", "O", "P", "S", "T", "U", "V", "W", "X", "Y", "Z"})
         void retryCommandWithInvalidCharacter(final String command) {
-            assertThatThrownBy(() -> InputViewValidator.retryCommandValidation(command))
+            assertThatThrownBy(() -> UserInputValidator.retryCommandValidation(command))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }

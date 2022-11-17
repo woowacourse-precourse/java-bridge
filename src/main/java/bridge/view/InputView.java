@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.validator.InputViewValidator;
+import bridge.validator.UserInputValidator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -52,7 +52,7 @@ public class InputView {
     private String getMovingCommand(String userInput) {
         while (true) {
             try {
-                return InputViewValidator.movingCommandValidation(userInput);
+                return UserInputValidator.movingCommandValidation(userInput);
             } catch (IllegalArgumentException illegalArgumentException) {
                 ErrorView.printException(illegalArgumentException);
             }
@@ -62,7 +62,7 @@ public class InputView {
     private String getRetryCommand(String userInput) {
         while (true) {
             try {
-                return InputViewValidator.retryCommandValidation(userInput);
+                return UserInputValidator.retryCommandValidation(userInput);
             } catch (IllegalArgumentException illegalArgumentException) {
                 ErrorView.printException(illegalArgumentException);
             }
@@ -73,6 +73,6 @@ public class InputView {
         System.out.println();
         System.out.println(PRINT_BRIDGE_SIZE);
         String userInput = Console.readLine().replaceAll(WHITE_SPACE, EMPTY);
-        return Integer.parseInt(InputViewValidator.ckeckBridgeSize(userInput));
+        return Integer.parseInt(UserInputValidator.ckeckBridgeSize(userInput));
     }
 }
