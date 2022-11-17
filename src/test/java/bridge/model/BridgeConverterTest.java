@@ -17,10 +17,10 @@ class BridgeConverterTest {
     @DisplayName("1과 0으로 이루어진 다리를 U와 D로 이루어진 다리로 변환한다")
     @ParameterizedTest
     @MethodSource("generateData")
-    void convertString(List<Integer> numberBridge, List<String> convertedBridge) {
+    void convert(List<Integer> numberBridge, List<String> convertedBridge) {
         BridgeConverter bridgeConverter = new BridgeConverter();
 
-        List<String> result = bridgeConverter.convertString(numberBridge);
+        List<String> result = bridgeConverter.convert(numberBridge);
 
         assertThat(result).isEqualTo(convertedBridge);
     }
