@@ -23,7 +23,7 @@ public class BridgeMaker {
         for (int i=0;i<size;i++) {
             if (bridgeNumberGenerator.generate() == 0)
                 bridge.add("D");
-            else if (bridgeNumberGenerator.generate() == 1)
+            if (bridgeNumberGenerator.generate() == 1)
                 bridge.add("U");
         }
         return bridge;
