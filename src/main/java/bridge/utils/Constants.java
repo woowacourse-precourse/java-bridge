@@ -14,6 +14,7 @@ public class Constants {
 
     public final static List<String> SPACE_NAME = List.of(DOWN, UP);
 
+    //예외처리 관련 상수
     public static final int MINIMUM_BRIDGE_LENGTH = 3;
     public static final int MAXIMUM_BRIDGE_LENGTH = 20;
     public static final int SIZE_OF_SPACE_TO_MOVE = 1;
@@ -30,5 +31,9 @@ public class Constants {
     public static final String OPEN_BRACKET = "[ ";
     public static final String CLOSE_BRACKET = " ]";
     public static final String SEPARATOR = " | ";
-
+    public static final String OUTPUT_MESSAGE_SUCCESS = "성공";
+    public static final String OUTPUT_MESSAGE_FAIL = "실패";
+    public static final String OUTPUT_MESSAGE_FINAL_GAME_RESULT = "최종 게임 결과";
+    public static final String OUTPUT_MESSAGE_IS_SUCCESS_GAME = "게임 성공 여부: ";
+    public static final String OUTPUT_MESSAGE_TOTAL_TRY_COUNT = "총 시도한 횟수: ";
 }

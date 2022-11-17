@@ -18,18 +18,24 @@ public class BridgeGameController {
 
     private static void makeBridge(int bridgeLength) {
         BridgeGame bridgeGame = new BridgeGame(bridgeLength, new BridgeMaker(new BridgeRandomNumberGenerator()));
-        for (int position = 0; position < bridgeLength; position++) {
-            move(bridgeGame, position);
+        boolean gameStatus = true;
+        int position = 0;
+        while (gameStatus && position < bridgeLength) {
+            gameStatus = move(bridgeGame, position);
+            position++;
         }
+        OutputView.printResult(gameStatus, bridgeGame.getPlayResult());
     }
 
-    private static void move(BridgeGame bridgeGame, int position) {
+    private static boolean move(BridgeGame bridgeGame, int position) {
+        boolean gameStatus = true;
         try {
-            bridgeGame.move(position, InputView.readMoving());
+            gameStatus = bridgeGame.move(position, InputView.readMoving());
             OutputView.printMap(bridgeGame.getPlayResult());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             move(bridgeGame, position);
         }
+        return gameStatus;
     }
 }

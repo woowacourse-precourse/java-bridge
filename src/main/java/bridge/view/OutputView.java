@@ -29,7 +29,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public static void printResult(boolean gameStatus, PlayResult playResult) {
+        System.out.println(OUTPUT_MESSAGE_FINAL_GAME_RESULT);
+        printMap(playResult);
+        printSuccessMessage(gameStatus, playResult);
     }
 
     private static void printUpBridge(List<MoveStatus> result) {
@@ -38,6 +41,11 @@ public class OutputView {
 
     private static void printDownBridge(List<MoveStatus> result) {
         System.out.println(makeDownBridge(result));
+    }
+
+    private static void printSuccessMessage(boolean gameStatus, PlayResult playResult) {
+        System.out.println(OUTPUT_MESSAGE_IS_SUCCESS_GAME + makeSuccessMessage(gameStatus));
+        System.out.println(OUTPUT_MESSAGE_TOTAL_TRY_COUNT + playResult.getTryCount());
     }
 
     private static String makeUpBridge(List<MoveStatus> result) {
@@ -50,5 +58,12 @@ public class OutputView {
         return OPEN_BRACKET + result.stream()
                 .map(MoveStatus::isDown)
                 .collect(Collectors.joining(SEPARATOR)) + CLOSE_BRACKET;
+    }
+
+    private static String makeSuccessMessage(boolean gameStatus) {
+        if (gameStatus) {
+            return OUTPUT_MESSAGE_SUCCESS;
+        }
+        return OUTPUT_MESSAGE_FAIL;
     }
 }
