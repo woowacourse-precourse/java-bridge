@@ -11,7 +11,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public static int readBridgeSize() {
-        System.out.println("다리의 길이를 입력해주세요.");
+        System.out.println("\n다리의 길이를 입력해주세요.");
         try{
             return ValidateInput.validateBridgeSize(Console.readLine());
         }catch(IllegalArgumentException e){
@@ -23,8 +23,14 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public static String readMoving() {
+        System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        try{
+            return ValidateInput.validateMoving(Console.readLine());
+        }catch(IllegalArgumentException e){
+            System.out.println(ValidateInput.ERROR_MESSAGE+"\"U\"(위) 또는 \"D\"(아래)를 입력해야 합니다.");
+            return readMoving();
+        }
     }
 
     /**
