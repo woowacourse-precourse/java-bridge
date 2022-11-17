@@ -1,29 +1,61 @@
-[] BridgeGame
-- [test pass]move : 칸 이동
-- retry : 게임 재시도  
+## 의존관계
 
-- 게임 시도
-[] BridgeMaker
+![img.png](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fe1e81f91-2dc7-45a2-95f6-ffe40550c904%2FUntitled.png?table=block&id=fb0ca87d-3717-4af8-93db-b5992da5fea3&spaceId=0e02239b-4866-4203-83a5-55195ab8b31d&width=2000&userId=0a2e2e5e-d545-4fbc-8253-d76c703679b3&cache=v2)
+
+---
+
+
+## UI 계층
+### InputView : 사용자로부터 입력을 받는 역할
+- readBridgeSize : 다리 길이 입력 책임
+- readMoving : 사용자가 입력할 칸 책임
+- readGameCommand: 재시작 or 종료 입력 책임
+### OutputView : 게임 진행 상황 / 결과 출력
+- printMap :  현재까지 이동한 다리의 상태 출력
+- printResult : 게임 최종 결과 출력 (성공 여부)
+### [] 예외 발생 :
+- 사용자 잘못된 값 입력할 경우 IllegalArgumentException 발생 // [ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.
+- "[ERROR]"로 시작하는 에러 메시지를 출력
+- 그 부분부터 입력을 다시 받는다.
+
+---
+
+## 도메인 계층
+### [] FrontController
+- BridgeGame과 BridgeMaker 보유
+
+### [] BridgeGame
+- [test pass]move : 칸 이동
+- [] retry : 게임 재시도  
+
+### [] GameRepository
+- [] 게임 시도 회수의 변경 상태를 관리
+### [] BidgeRepository
+- [] 다리의 변경 상태를 관리
+
+
+
+### [] BridgeNumberGenerator
+- 인터페이스 : 번호 생성
+### BridgeRandomNumberGenerator
+- BridgeNumberGenerator 구현체
+- 0과1중 랜덤값 생성
+
+### [] BridgeMaker
 - BridgeNumberGenerator에 의존 
 - makeBridge : 입력 수의 길이로 다리 생성
 - 재사용 : 게임 재시작시 사용된다
 - 위칸이면 U, 아래칸이면 D 표현  
-[] BridgeNumberGenerator
-- 인터페이스 : 번호 생성  
-   BridgeRandomNumberGenerator
-- BridgeNumberGenerator 구현체
-- 0과1중 랜덤값 생성  
-[] InputView : 사용자로부터 입력을 받는 역할
-- readBridgeSize : 다리 길이 입력 책임
-- readMoving : 사용자가 입력할 칸 책임
-- readGameCommand: 재시작 or 종료 입력 책임  
-[] OutputView : 게임 진행 상황 / 결과 출력
-- printMap :  현재까지 이동한 다리의 상태 출력
-- printResult : 게임 최종 결과 출력 (성공 여부)
-[] 예외 발생 :
-- 사용자 잘못된 값 입력할 경우 IllegalArgumentException 발생 // [ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.
-- "[ERROR]"로 시작하는 에러 메시지를 출력
-- 그 부분부터 입력을 다시 받는다.
+
+---
+
+## 영속성 계층
+### [] GameEntity
+- [] GameRepository 구현
+### [] BridgeEntity
+- [] GameRepository 구현
+---
+
 ## 🚀 기능 요구 사항
 
 위아래 둘 중 하나의 칸만 건널 수 있는 다리를 끝까지 건너가는 게임이다.
