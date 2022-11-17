@@ -10,15 +10,15 @@ import java.util.List;
  */
 public class BridgeGame {
     private final List<String> bridge;
+    private BridgeGameResult result;
     private int currentTryIndex;
     private boolean isStopped;
-    private BridgeGameResult result;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
+        this.result = new BridgeGameResult();
         this.currentTryIndex = 0;
         this.isStopped = false;
-        this.result = new BridgeGameResult();
     }
 
     /**
