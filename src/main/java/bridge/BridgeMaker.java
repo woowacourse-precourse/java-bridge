@@ -12,8 +12,6 @@ public class BridgeMaker {
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
-        int bridgeSize = new InputView().readBridgeSize();
-        makeBridge(bridgeSize);
     }
 
     /**
