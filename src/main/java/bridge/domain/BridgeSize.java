@@ -13,14 +13,14 @@ public class BridgeSize {
 
     private void validBridgeSize(String bridgeSize) {
         validIsDigit(bridgeSize);
-        validBridgeSizeRange(Integer.parseInt(bridgeSize));
+        validBridgeSizeRange(Long.parseLong(bridgeSize));
     }
     private void validIsDigit(String bridgeSize) {
         if (!bridgeSize.chars().allMatch(Character::isDigit)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMessage());
         }
     }
-    private void validBridgeSizeRange(int bridgeSize) {
+    private void validBridgeSizeRange(long bridgeSize) {
         if (bridgeSize< Constant.BRIDGE_SIZE_MIN || bridgeSize>Constant.BRIDGE_SIZE_MAX) {
             throw new IllegalArgumentException(ErrorMessage.NOT_BRIDGE_SIZE_RANGE.getMessage());
         }
