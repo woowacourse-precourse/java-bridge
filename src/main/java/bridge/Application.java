@@ -10,6 +10,7 @@ public class Application {
         List<String> bridge = bridgeMaker.makeBridge(InputView.readBridgeSize());
         BridgeGame bridgeGame = new BridgeGame(bridge, 0, true);
         playGame(bridgeGame);
+        OutputView.printResult(bridgeGame.map, bridgeGame.flag, bridgeGame.count);
     }
 
     public static void playGame(BridgeGame bridgeGame) {
