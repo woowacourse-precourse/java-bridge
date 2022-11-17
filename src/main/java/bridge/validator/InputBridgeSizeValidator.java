@@ -15,32 +15,32 @@ public class InputBridgeSizeValidator {
         validateBridgeSizeFormMatch(inputBridgeSize);
     }
     
-    private static void validateNullOrEmpty(final String inputBridgeSize) {
-        InputCommonValidator.validate(inputBridgeSize);
+    private static void validateNullOrEmpty(final String bridgeSize) {
+        InputCommonValidator.validate(bridgeSize);
     }
     
-    private static void validateZeroAtFirstPlaceExist(final String inputNumber) {
-        if (isExistZeroAtFirstPlace(inputNumber)) {
+    private static void validateZeroAtFirstPlaceExist(final String bridgeSize) {
+        if (isExistZeroAtFirstPlace(bridgeSize)) {
             throw new IllegalArgumentException(EXIST_ZERO_AT_FIRST_PLACE_EXCEPTION_MESSAGE);
         }
     }
     
-    private static boolean isExistZeroAtFirstPlace(final String inputNumber) {
-        return matcher(inputNumber, EXIST_ZERO_AT_FIRST_PLACE_FORM).matches();
+    private static boolean isExistZeroAtFirstPlace(final String bridgeSize) {
+        return matcher(bridgeSize, EXIST_ZERO_AT_FIRST_PLACE_FORM).matches();
     }
     
-    private static void validateBridgeSizeFormMatch(final String inputBridgeSize) {
-        if (isNotMatchInputFormat(inputBridgeSize)) {
+    private static void validateBridgeSizeFormMatch(final String bridgeSize) {
+        if (isNotMatchInputFormat(bridgeSize)) {
             throw new IllegalArgumentException(BRIDGE_SIZE_FORM_ERROR_MESSAGE);
         }
     }
     
-    private static boolean isNotMatchInputFormat(final String inputBridgeSize) {
-        return !matcher(inputBridgeSize, BRIDGE_SIZE_INPUT_FORM).matches();
+    private static boolean isNotMatchInputFormat(final String bridgeSize) {
+        return !matcher(bridgeSize, BRIDGE_SIZE_INPUT_FORM).matches();
     }
     
-    private static Matcher matcher(final String inputNumber, final String correctInputForm) {
-        return compiler(correctInputForm).matcher(inputNumber);
+    private static Matcher matcher(final String bridgeSize, final String correctInputForm) {
+        return compiler(correctInputForm).matcher(bridgeSize);
     }
     
     private static Pattern compiler(final String correctInputForm) {
