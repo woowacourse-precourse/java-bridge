@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class BridgeMakerTest {
 
     @DisplayName("다리의 길이로 입력받은 값이 정수형인지 확인한다.")
-    @ValueSource(strings = {"문자","🍖"," ",""})
+    @ValueSource(strings = {"문자","🍖"})
     @Test
     void validate_Is_Number(BridgeNumberGenerator input) {
         assertThatThrownBy(()-> new BridgeMaker(input))
@@ -30,6 +30,15 @@ class BridgeMakerTest {
     @ValueSource(ints = {2,-3, 0, 21,})
     @Test
     void validate_Is_Number_In_Range(BridgeNumberGenerator input) {
+        assertThatThrownBy(()-> new BridgeMaker(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageStartingWith("[ERROR]");
+    }
+
+    @DisplayName("다리의 길이로 입력받은 값이 없거나 공백인지 확인한다.")
+    @ValueSource(strings = {""," "})
+    @Test
+    void validate_Is_Number_Blank(BridgeNumberGenerator input) {
         assertThatThrownBy(()-> new BridgeMaker(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageStartingWith("[ERROR]");
