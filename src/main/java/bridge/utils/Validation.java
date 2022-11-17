@@ -1,9 +1,6 @@
 package bridge.utils;
 
-import bridge.InputView;
-
 public class Validation {
-    static InputView inputView;
     public static int validateBridgeSize(String bridgeSize) {
         int bridgeSizeNumber = validateNumber(bridgeSize);
         return validateSize(bridgeSizeNumber);

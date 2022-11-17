@@ -24,4 +24,13 @@ public class BridgeGameTest {
         List<String> result = bridgeGame.getMyAnswerBridges();
         assertThat(result.contains("X")).isTrue();
     }
+
+    @Test
+    void retry_횟수() {
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.move(new Bridge("U", "U"));
+        bridgeGame.retry();
+        int count = bridgeGame.getAttemptCount();
+        assertThat(count).isEqualTo(2);
+    }
 }

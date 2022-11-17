@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class Application {
             String moving = inputView.readMoving();
             bridgeGame.move(new Bridge(bridge.get(bridgePositionIndex), moving));
             outputView.printMap(bridgeGame, bridgePositionIndex);
-            if (!bridgeGame.getMyAnswerBridges().contains("X")){
+            if (!bridgeGame.getMyAnswerBridges().contains("X")) {
                 bridgePositionIndex++;
             }
             if (bridgeGame.getMyAnswerBridges().contains("X")) {
