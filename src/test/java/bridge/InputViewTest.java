@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class InputViewTest {
     private final String VALIDATE_SIZE = "validateInputSize";
     private final String VALIDATE_MOVING = "validateInputMoving";
+    private final String VALIDATE_RETRY = "validateInputCommand";
     private static final String ERROR_MSG = "[ERROR]";
     private final InputView inputView = new InputView();
 
@@ -76,6 +77,20 @@ public class InputViewTest {
         exceptionTest(test, VALIDATE_MOVING);
     }
 
+    @DisplayName("재시작/종료 입력 테스트")
+    @ValueSource(strings = {"R", "Q"})
+    @ParameterizedTest(name = "{index} {displayName} test={0}")
+    void correctRetry(String test) throws Exception {
+        Method method = invokeMethod(VALIDATE_RETRY);
 
+        assertThat(method.invoke(inputView, test)).isNotNull();
+    }
+
+    @DisplayName("재시작/종료 입력 예외 테스트")
+    @ValueSource(strings = {"T", "S", "ab", "r", "q", "1"})
+    @ParameterizedTest(name = "{index} {displayName} test={0}")
+    void createExceptionRetry(String test) throws Exception {
+        exceptionTest(test, VALIDATE_RETRY);
+    }
 
 }
