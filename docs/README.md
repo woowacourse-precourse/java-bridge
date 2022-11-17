@@ -69,7 +69,7 @@ R
 - [ ] 다리 이동칸을 요청한다. (InputView)
 - [ ] 이동할 칸을 입력 예외처리  (InputValidator)
 - [X] player를 이동한다.(BridgeGame->player)
-- [ ] 이동한 칸이 이동가능한 칸인지 확인.(BridgeGame->Bridges)
+- [X] 이동한 칸이 이동가능한 칸인지 확인.(BridgeGame->Bridges)
 - [ ] 이동 한 칸을 출력 (OutputView)
 - [ ] 이동 완료 여부 확인 (BridgeGame)
 - [ ] 게임 완료시 게임 다시 사작여부 확인(InputView)
