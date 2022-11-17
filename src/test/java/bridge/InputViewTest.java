@@ -74,4 +74,20 @@ class InputViewTest {
         }
     }
 
+    @Nested
+    class ReadGameCommandTest extends NsTest {
+        @DisplayName("입력 안내문 출력 테스트")
+        @Test
+        void testPrint() {
+            Assertions.assertSimpleTest(() -> run("Q"));
+            assertThat(output()).contains("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        }
+
+        @Override
+        protected void runMain() {
+            InputView inputView = new InputView();
+            inputView.readGameCommand();
+        }
+    }
+
 }
