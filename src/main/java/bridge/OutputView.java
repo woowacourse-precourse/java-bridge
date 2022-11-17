@@ -17,6 +17,7 @@ public class OutputView {
                 "\n" +
                 addBridgeMap(bridgeGame, successGame, State.DOWN);
         System.out.println(bridgeMap);
+        System.out.println();
     }
 
     /**
