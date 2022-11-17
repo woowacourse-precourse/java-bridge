@@ -5,7 +5,7 @@
 
 ## 기능 목록
 ### 1. 게임 시작하기
-- [ ] 게임 시작 문구 출력하기 (ViewMessage # printGameStartMessage)
+- [x] 게임 시작 문구 출력하기 (ViewMessage # printGameStartMessage)
 ### 2. 다리 만들기
 #### 1) 다리 길이 입력 받기
 - [ ] 다리 길이 입력 요청 문구를 출력한다. (ViewMessage # printBridgeSizeInputReqeust)
