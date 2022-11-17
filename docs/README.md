@@ -31,7 +31,9 @@
   - Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 
 ## ⚠️ 유효성 체크
-
+- [ ] bridgeSize
+  - [ ] 숫자인지 검사
+  - [ ] 3~20 사이의 숫자인지 검사
 
 ## 📌 추가 요구사항
 - 함수(또는 메서드)의 길이가 10라인을 넘어가지 않도록 구현한다.
