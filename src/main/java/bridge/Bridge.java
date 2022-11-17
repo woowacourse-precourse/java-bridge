@@ -15,4 +15,11 @@ public class Bridge {
 
         return false;
     }
+
+    @Override
+    public boolean equals(Object object) {
+        List<String> list = (List<String>) object;
+
+        return bridge.equals(list);
+    }
 }
