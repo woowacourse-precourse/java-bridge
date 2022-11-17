@@ -21,9 +21,12 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for (int bridgeIndex = 0; bridgeIndex < size; bridgeIndex++) {
-            int randomNumber = bridgeNumberGenerator.generate();
-            bridge.add(Position.getStatus(randomNumber));
+            bridge.add(getAvailablePosition(bridgeNumberGenerator.generate()));
         }
         return bridge;
+    }
+
+    public String getAvailablePosition(int positionNumber) {
+        return Position.getStatus(positionNumber);
     }
 }
