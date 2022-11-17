@@ -17,11 +17,10 @@ public class Application {
     }
 
     public static void startGame() {
-        bridgeGame.start();
         while (bridgeGame.isPlaying()) {
             IsSuccess = bridgeGame.move(inputView.readMoving());
             outputView.printMap(bridgeGame.getMap());
-            if (IsSuccess == false) {
+            if (!IsSuccess) {
                 wrongAnswerHandling();
                 return;
             }
@@ -30,7 +29,8 @@ public class Application {
     }
 
     public static void wrongAnswerHandling() {
-        if (inputView.readGameCommand() == "R") {
+        boolean isRetrying = bridgeGame.retry(inputView.readGameCommand());
+        if (isRetrying) {
             startGame();
             return;
         }
