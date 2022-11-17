@@ -30,11 +30,11 @@ public class OutputView {
         upString.append("[");
         for (int i = 0; i < movingIdx; i++) {
             if (Objects.equals(bridgeList.get(i), "U")) upString.append(" O |");
-            if (Objects.equals(bridgeList.get(i), "D")) upString.append("   |");
+            else if (Objects.equals(bridgeList.get(i), "D")) upString.append("   |");
         }
         if (Objects.equals(bridgeList.get(movingIdx), input) && Objects.equals(input, "U")) upString.append(" O ]");
-        if (!Objects.equals(bridgeList.get(movingIdx), input) && Objects.equals(input, "U")) upString.append(" X ]");
-        if (Objects.equals(input, "D")) upString.append("   ]");
+        else if (!Objects.equals(bridgeList.get(movingIdx), input) && Objects.equals(input, "U")) upString.append(" X ]");
+        else if (Objects.equals(input, "D")) upString.append("   ]");
         return upString.toString();
     }
 
@@ -43,11 +43,11 @@ public class OutputView {
         downString.append("[");
         for (int i = 0; i < movingIdx; i++) {
             if (Objects.equals(bridgeList.get(i), "D")) downString.append(" O |");
-            if (Objects.equals(bridgeList.get(i), "U")) downString.append("   |");
+            else if (Objects.equals(bridgeList.get(i), "U")) downString.append("   |");
         }
         if (Objects.equals(bridgeList.get(movingIdx), input) && Objects.equals(input, "D")) downString.append(" O ]");
-        if (!Objects.equals(bridgeList.get(movingIdx), input) && Objects.equals(input, "D")) downString.append(" X ]");
-        if (Objects.equals(input, "U")) downString.append("   ]");
+        else if (!Objects.equals(bridgeList.get(movingIdx), input) && Objects.equals(input, "D")) downString.append(" X ]");
+        else if (Objects.equals(input, "U")) downString.append("   ]");
         return downString.toString();
     }
 

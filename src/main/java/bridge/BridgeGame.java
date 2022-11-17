@@ -18,18 +18,17 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(int currentIndex, List<String> bridgeList) {
-        if (currentIndex == bridgeList.size()) {
+        if (Objects.equals(currentIndex, bridgeList.size())) {
             outputView.printResult(currentIndex - 1, bridgeList, input);
             outputView.printResult(tryCount);
             return;
         }
         input = inputView.readMoving();
+        outputView.printMap(currentIndex, bridgeList, input);
         if (!Objects.equals(bridgeList.get(currentIndex), input)) {
-            outputView.printMap(currentIndex, bridgeList, input);
             retry(currentIndex, bridgeList);
             return;
         }
-        outputView.printMap(currentIndex, bridgeList, input);
         move(currentIndex + 1, bridgeList);
     }
 
