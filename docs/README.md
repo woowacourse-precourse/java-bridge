@@ -1,6 +1,8 @@
 
 ## 🚀 기능 목록
 
+- 전체 애플리케이션 실행 #BridgeGameManager#run()
+
 ### view
 - 다리 건너기 게임 시작 출력 - OutputView#printStart()
 - 다리의 길이를 숫자로 입력받는다(3~20)(에러 발생시키기) - 다시 입력받음 - InputView#readBridgeSize()
