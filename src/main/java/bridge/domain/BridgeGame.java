@@ -17,8 +17,10 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(int position, String spaceToMove) {
-        playResult.updateResult(spaceToMove, bridge.canGo(position, spaceToMove));
+    public boolean move(int position, String spaceToMove) {
+        boolean playerCanGo = bridge.canGo(position, spaceToMove);
+        playResult.updateResult(spaceToMove, playerCanGo);
+        return playerCanGo;
     }
 
     /**
@@ -27,6 +29,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        playResult.updateTryCount();
     }
 
     public PlayResult getPlayResult() {
