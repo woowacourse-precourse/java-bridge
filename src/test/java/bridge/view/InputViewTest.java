@@ -71,4 +71,49 @@ class InputViewTest {
         System.setIn(in);
         assertThatIllegalArgumentException().isThrownBy(() -> inputView.readBridgeSize());
     }
+
+    @DisplayName("이동 위치를 'U'로 넣으면 readMoving 메서드는 'U'를 리턴한다.")
+    @Test
+    void readMovingTest1() {
+        String input = "U";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        assertThat(inputView.readMoving()).isEqualTo(input);
+    }
+
+    @DisplayName("이동 위치를 'D'로 넣으면 readMoving 메서드는 'D'를 리턴한다.")
+    @Test
+    void readMovingTest2() {
+        String input = "D";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        assertThat(inputView.readMoving()).isEqualTo(input);
+    }
+
+    @DisplayName("이동 위치로 'U', 'D' 이외의 것을 넣으면 IllegalArgumentException 가 발생한다.")
+    @Test
+    void readMovingErrorTest1() {
+        String input = "e";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        assertThatIllegalArgumentException().isThrownBy(() ->inputView.readMoving());
+    }
+
+    @DisplayName("이동 위치로 'U', 'D' 이외의 것을 넣으면 IllegalArgumentException 가 발생한다.")
+    @Test
+    void readMovingErrorTest2() {
+        String input = "UD";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        assertThatIllegalArgumentException().isThrownBy(() ->inputView.readMoving());
+    }
+
+    @DisplayName("이동 위치로 'U', 'D' 이외의 것을 넣으면 IllegalArgumentException 가 발생한다.")
+    @Test
+    void readMovingErrorTest3() {
+        String input = " ";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        assertThatIllegalArgumentException().isThrownBy(() ->inputView.readMoving());
+    }
 }
