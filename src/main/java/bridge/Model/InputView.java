@@ -30,8 +30,11 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public String readGameCommand(String input) {
+        // 예외 처리
+        checkProgress(input);
+
+        return input;
     }
 
     /**
@@ -63,6 +66,14 @@ public class InputView {
     private void checkDirection(String input) {
         if(!(input.equals("D") || input.equals("U"))) {
             throw new IllegalArgumentException("[ERROR] 이동 방향 여부는 'U(위)'/'D(아래)' 만 가능합니다.");
+        }
+    }
+    /**
+     * 게임 재시작/종료 입력값이 R/Q 가 아닐 경우 IllegalArgumentException 가 발생한다.
+     */
+    private void checkProgress(String input) {
+        if(!(input.equals("R") || input.equals("Q"))) {
+            throw new IllegalArgumentException("[ERROR] 게임 진행 여부는 'R(재시작)'/'Q(종료)' 만 가능합니다.");
         }
     }
 }
