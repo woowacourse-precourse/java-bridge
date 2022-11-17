@@ -16,7 +16,10 @@ import bridge.view.OutputView;
 
 public class BridgeGameController {
 
+    private static final int INIT_VALUE_OF_POSITION = 0;
+    private static final int INIT_VALUE_OF_CHALLENGES = 1;
     public static final String GAME_SUCCESS = "성공";
+
     private final InputView inputView;
     private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
@@ -40,7 +43,7 @@ public class BridgeGameController {
 
     private BridgeGame bridgeGame(int bridgeSize) {
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
-        Player player = new Player(0, 1);
+        Player player = new Player(INIT_VALUE_OF_POSITION, INIT_VALUE_OF_CHALLENGES);
 
         return new BridgeGame(bridge, player, new MoveResults());
     }
