@@ -36,6 +36,21 @@ public class BridgeGame {
         position++;
     }
 
+    public void setMap(String moving, String match) {
+        if (position != 0) {
+            map[0].append("| ");
+            map[1].append("| ");
+        }
+        if (moving.equals("U")) {
+            map[0].append(match).append(" ");
+            map[1].append("  ");
+        }
+        if (moving.equals("D")) {
+            map[0].append("  ");
+            map[1].append(match).append(" ");
+        }
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
