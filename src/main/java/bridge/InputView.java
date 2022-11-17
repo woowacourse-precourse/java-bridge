@@ -15,7 +15,7 @@ public class InputView {
             UserInputException.numberCheck(userInputSize);
             return Integer.parseInt(userInputSize);
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR]");
+            System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
             return readBridgeSize();
         }
     }
@@ -27,7 +27,7 @@ public class InputView {
             UserInputException.commandCheck(userInputCommand, "read");
             return userInputCommand;
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR]");
+            System.out.println("[ERROR] 이동할 칸은 U 또는 D 의 알파벳 대문자여야 합니다.");
             return readMoving();
         }
     }
@@ -38,7 +38,7 @@ public class InputView {
             UserInputException.commandCheck(userInputCommand, "process");
             return userInputCommand;
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR]");
+            System.out.println("[ERROR] 시도 여부는 R 또는 Q 의 알파벳 대문자여야 합니다.");
             return readGameCommand();
         }
     }
