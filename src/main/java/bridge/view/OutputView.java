@@ -20,4 +20,9 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    // 에러메세지 출력 기능
+    public void printErrorMessage(IllegalArgumentException error) {
+        System.out.println(error.getMessage());
+    }
 }
