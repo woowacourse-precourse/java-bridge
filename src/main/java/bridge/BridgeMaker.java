@@ -24,8 +24,10 @@ public class BridgeMaker {
         int number;
 
         for (int i = 0; i < size; i++) {
-
+            number = generateZeroOrOne();
+            bridge.add(parseZeroOrOneToUorD(number));
         }
+
         return bridge;
     }
 
