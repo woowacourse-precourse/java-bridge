@@ -58,21 +58,28 @@ public class BridgeGame {
         return result;
     }
 
-    public void addResult(boolean result){
+    private void addResult(boolean result){
         if (result) inputs.add("O");
         if (!result) inputs.add("X");
     }
-    public boolean checkBridge(String userInput){
+    private boolean checkBridge(String userInput){
         if (bridge.get(index++) == userInput){
             return true;
         }
         return false;
     }
 
-    public boolean checkRestart(String userInput){
+    private boolean checkRestart(String userInput){
         if (userInput == "Q"){
             return false;
         }
         return true;
+    }
+
+    public boolean isFinish(){
+        if (index == inputs.size()){
+            return true;
+        }
+        return false;
     }
 }
