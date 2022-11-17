@@ -1,15 +1,13 @@
 package bridge.domain.game;
 
-import bridge.domain.game.BridgeGameResult;
-import bridge.domain.game.CrossResult;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class BridgeGameResultTest {
+class BridgeGameLoggerTest {
     @Test
     void testLogResult() {
-        BridgeGameResult result = new BridgeGameResult();
+        BridgeGameLogger result = new BridgeGameLogger();
         result.logResult("U", CrossResult.SUCCESS);
         result.logResult("D", CrossResult.SUCCESS);
         result.logResult("U", CrossResult.FAILURE);
@@ -25,7 +23,7 @@ class BridgeGameResultTest {
 
     @Test
     void testCountAttempts() {
-        BridgeGameResult result = new BridgeGameResult();
+        BridgeGameLogger result = new BridgeGameLogger();
         result.logResult("U", CrossResult.FAILURE);
         result.reset();
         assertEquals(2, result.getNumOfAttempts());

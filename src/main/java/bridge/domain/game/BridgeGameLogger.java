@@ -3,14 +3,14 @@ package bridge.domain.game;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BridgeGameResult {
+public class BridgeGameLogger {
     private static final String UP_DIRECTION = "U";
 
     private List<CrossResult> topRoad;
     private List<CrossResult> downRoad;
     private int numOfAttempts;
 
-    public BridgeGameResult() {
+    public BridgeGameLogger() {
         this.numOfAttempts = 1;
         this.topRoad = new ArrayList<>();
         this.downRoad = new ArrayList<>();
