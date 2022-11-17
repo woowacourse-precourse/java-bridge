@@ -8,9 +8,9 @@ public enum ExceptionMessage {
     INVALID_BRIDGE_SIZE_RANGE(String.format("[ERROR] 다리의 길이는 %d와 %d 사이여야 합니다.",
             Constant.BRIDGE_MIN_SIZE.getValue(),
             Constant.BRIDGE_MAX_SIZE.getValue())),
-    INVALID_MOVING(String.format("[ERROR] MOVING은 %s만 가능합니다.",
+    INVALID_MOVING(String.format("[ERROR] 이동할 칸은 %s중 하나만 가능합니다.",
             Arrays.toString(Stream.of(Moving.values()).map(Enum::toString).toArray()))),
-    INVALID_GAME_COMMAND(String.format("[ERROR] GAME_COMMAND는 %s만 가능합니다.",
+    INVALID_GAME_COMMAND(String.format("[ERROR] 재시도 여부는 %s중 하나만 가능합니다.",
             Arrays.toString(Stream.of(GameCommand.values()).map(Enum::toString).toArray())));
 
     private final String message;
