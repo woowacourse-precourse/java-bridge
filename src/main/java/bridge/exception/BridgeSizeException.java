@@ -9,6 +9,7 @@ public class BridgeSizeException {
     private static final String WRONG_RANGE_ERROR_MESSAGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
 
     public static void validate(String input) {
+        CommonInputException.validate(input);
         checkNumeric(input);
         checkRange(Integer.parseInt(input));
     }
