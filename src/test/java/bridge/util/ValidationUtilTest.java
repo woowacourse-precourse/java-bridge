@@ -11,18 +11,18 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ValidationUtilTest {
 
-    @DisplayName("다리의 길이는 3이상 20 이하이다.")
+    @DisplayName("다리의 길이는 3이상 20 이하의 숫자이다.")
     @Nested
     class BridgeLengthTest {
         @Test
         void valid() {
-            ValidationUtil.isValidBridgeLength(3);
-            ValidationUtil.isValidBridgeLength(20);
+            ValidationUtil.isValidBridgeLength("3");
+            ValidationUtil.isValidBridgeLength("20");
         }
 
-        @ValueSource(strings = {"2", "21"})
+        @ValueSource(strings = {"2", "21", "a", "!"})
         @ParameterizedTest
-        void inValid(Integer input) {
+        void inValid(String input) {
             assertThatThrownBy(() -> ValidationUtil.isValidBridgeLength(input))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ErrorMessage.INVALID_LENGTH.getValue());
