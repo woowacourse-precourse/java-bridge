@@ -25,6 +25,12 @@ public class BridgeMaker {
         return new ArrayList<>(size);
     }
 
+    public void makeDirectionToMove(List<String> bridges, int size) {
+        for(int i = 0; i < size; i++) {
+            changeNumberToDirection(bridges);
+        }
+    }
+
     public void changeNumberToDirection(List<String> bridges) {
         if(bridgeNumberGenerator.generate() == DOWN) {
             bridges.add("D");
