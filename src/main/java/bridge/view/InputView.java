@@ -9,7 +9,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-	public int readBridgeSize() {
+	public static int readBridgeSize() {
 		System.out.println(SIZE_INPUT);
 		int size;
 		try {
@@ -21,14 +21,14 @@ public class InputView {
 		return size;
 	}
 
-	public String readMoving() {
+	public static String readMoving() {
 		System.out.println(MOVE_INPUT);
 		String input = Console.readLine();
 		isMoveValidate(input);
 		return input;
 	}
 
-	public String readGameCommand() {
+	public static String readGameCommand() {
 		System.out.println(COMMAND_INPUT);
 		String command = Console.readLine();
 		isCommandValidate(command);
