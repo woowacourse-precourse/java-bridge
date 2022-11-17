@@ -28,7 +28,8 @@ public class InputView {
 
     public void validate(ValidationType validationType, String input) {
         if (!ValidationType.validate(validationType, input)) {
-            throw new IllegalArgumentException();
+            String errorMessage = validationType.getErrorMessage();
+            throw new IllegalArgumentException(errorMessage);
         }
     }
 }
