@@ -17,4 +17,13 @@ public class Valid {
             throw new IllegalArgumentException(MIN_BRIDGE + "부터 " + MAX_BRIDGE + " 사이의 숫자여야 합니다.");
         }
     }
+
+    public static void isCorrectPos(String input) {
+        for (Pos pos : Pos.values()) {
+            if (pos.name().equals(input)) {
+                return;
+            }
+        }
+        throw new IllegalArgumentException("U나 D만 입력할 수 있습니다.");
+    }
 }
