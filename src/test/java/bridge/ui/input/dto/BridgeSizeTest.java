@@ -22,7 +22,9 @@ class BridgeSizeTest {
     @ValueSource(strings = {"3", "1", "20", "10", "15"})
     public void 다리_길이는_생성_테스트(String input) {
         BridgeSize bridgeSize = BridgeSize.from(input);
-        Assertions.assertThat(bridgeSize).isEqualTo(Integer.parseInt(input));
+
+        Assertions.assertThat(bridgeSize.toInteger())
+                .isEqualTo(Integer.parseInt(input));
     }
 
 
