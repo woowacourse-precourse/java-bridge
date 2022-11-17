@@ -1,6 +1,5 @@
 package bridge;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,14 +11,14 @@ import static org.assertj.core.api.Assertions.*;
 public class ExceptionSituationTest {
     private static final InputView inputView = new InputView();
 
-    private InputStream setOutputStream(String input) {
+    private InputStream setInputStream(String input) {
         return new ByteArrayInputStream(input.getBytes());
     }
 
     @DisplayName("다리의 길이로 정수가 아닌 값이 입력되면 예외가 발생한다.")
     @Test
     void inputBridgeLengthNotIntTest() {
-        InputStream inputStream = setOutputStream("notInt");
+        InputStream inputStream = setInputStream("notInt");
         System.setIn(inputStream);
         assertThatThrownBy(inputView::readBridgeSize).isInstanceOf(IllegalArgumentException.class);
     }
@@ -27,7 +26,7 @@ public class ExceptionSituationTest {
     @DisplayName("입력된 다리의 길이가 3 미만, 20 초과이면 예외가 발생한다.")
     @Test
     void inputBridgeLengthOutOfBoundsTest() {
-        InputStream inputStream = setOutputStream("30");
+        InputStream inputStream = setInputStream("30");
         System.setIn(inputStream);
         int illegalLength = inputView.readBridgeSize();
         assertThatThrownBy(() -> Validation.validateLength(illegalLength))
@@ -37,7 +36,7 @@ public class ExceptionSituationTest {
     @DisplayName("입력된 이동할 칸 정보가 U나 D가 아닌 경우 예외가 발생한다.")
     @Test
     void InputForMoveNotUOrDTest() {
-        InputStream inputStream = setOutputStream("wrong input");
+        InputStream inputStream = setInputStream("wrong input");
         System.setIn(inputStream);
         String wrongInput = inputView.readMoving();
         assertThatThrownBy(() -> Validation.validateSpace(wrongInput))
