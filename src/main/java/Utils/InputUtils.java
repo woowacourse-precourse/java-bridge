@@ -2,6 +2,7 @@ package Utils;
 
 import bridge.EnumCollections.BridgeLengthType;
 import bridge.EnumCollections.BridgeType;
+import bridge.EnumCollections.GameRestartType;
 
 public class InputUtils {
 
@@ -25,7 +26,8 @@ public class InputUtils {
         return BridgeType.isPosition(characterInput);
     }
 
-
-
-
+    public boolean isValidGameRestartInput(String input) {
+        char characterInput = input.charAt(0);
+        return GameRestartType.isRestartStatus(characterInput);
+    }
 }
