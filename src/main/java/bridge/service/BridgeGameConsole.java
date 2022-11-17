@@ -27,10 +27,4 @@ public class BridgeGameConsole {
             // 이동 결과 처리
         }
     }
-
-    private void showGameResult() {
-        // 최종 다리 이동 결과 출력하기
-        // 게임 성공 여부 출력하기
-        // 시도 횟수 출력하기
-    }
 }
