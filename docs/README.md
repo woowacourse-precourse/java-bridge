@@ -20,6 +20,10 @@
 
 - public static boolean replayBridgeGame()
   - 게임의 재시작/종료가 이루어지는 메소드
+
+
+- public static void setError(Error)
+  - 에러 메세지를 설정하는 메소드
   
 ### 🚀 BridgeGame class
 
