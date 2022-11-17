@@ -22,7 +22,7 @@ public class InputTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"!", "base", "15a", "10."})
+    @ValueSource(strings = {"!", "base", "15a", "10.", "020", "05"})
     @DisplayName("NULL 을 포함하여 숫자가 아닌 값이 입력됐을 때 예외가 발생한다.")
     void 입력값이_숫자가아니면_예외발생(String input) {
         assertThatIllegalArgumentException().isThrownBy(() -> inputView.validateIsNumber(input))

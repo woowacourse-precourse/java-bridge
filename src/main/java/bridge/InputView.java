@@ -45,7 +45,7 @@ public class InputView {
 
     public void validateIsNumber(String size) {
         String regExp = "^[0-9]*$";
-        if(!size.matches(regExp)) {
+        if(!size.matches(regExp) || String.valueOf(size.charAt(0)).equals("0")) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력할 수 있습니다.");
         }
     }
