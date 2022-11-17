@@ -17,7 +17,7 @@ public class BridgeMakerTest {
     @ValueSource(ints = {3, 6, 8, 9, 18, 19, 20})
     void makeBridgeBySizes(int size) {
         TestNumberGenerator numberGenerator = new TestNumberGenerator(
-                newArrayList(1, 0, 1, 0, 1, 0, 1, 0, 1)
+                newArrayList(1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0)
         );
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         List<String> result = bridgeMaker.makeBridge(size);
@@ -27,14 +27,24 @@ public class BridgeMakerTest {
     @Test
     void bridgeIsMadeOfOnlyUAndD() {
         TestNumberGenerator numberGenerator = new TestNumberGenerator(
-                newArrayList(1, 0, 1, 0, 1, 0, 1, 0, 1)
+                newArrayList(1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0)
         );
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(5);
         boolean isOnlyUAndD = true;
-        for(String bridgeCell: bridge){
+        for (String bridgeCell : bridge) {
             isOnlyUAndD &= bridgeCell.equals("D") || bridgeCell.equals("U");
         }
         assertThat(isOnlyUAndD).isTrue();
+    }
+    @DisplayName("다리 번호로 10101가 주어지면 다리는 UDUDU가 된다.")
+    @Test
+    void bridgeMakingTest() {
+        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(
+                newArrayList(1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0)
+        );
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(5);
+        assertThat(bridge).containsExactly("U", "D", "U", "D", "U");
     }
 }
