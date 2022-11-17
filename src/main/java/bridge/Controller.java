@@ -3,11 +3,11 @@ package bridge;
 import java.util.List;
 
 public class Controller {
-    private final List<String> bridge;
+    private final BridgeGame bridgeGame;
 
     Controller() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridge = bridgeMaker.makeBridge(retrieveBridgeSize());
+        bridgeGame = new BridgeGame(bridgeMaker.makeBridge(retrieveBridgeSize()));
     }
 
     int retrieveBridgeSize() {
@@ -18,6 +18,12 @@ public class Controller {
             } catch (IllegalArgumentException e) {
                 System.out.println(e);
             }
+        }
+    }
+
+    void startGame() {
+        while (true) {
+
         }
     }
 }

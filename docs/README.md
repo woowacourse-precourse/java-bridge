@@ -13,8 +13,8 @@
 ### Application
 ### Controller
 #### controls the overall game flow
-- (field) bridge
-- constructor: stores the bridge info
+- (field) bridgeGame
+- constructor: initialize the bridgeGame instance
 ### BridgeGame
 #### <em>cannot call InputView or OutputViewer</em>
 - (field) bridge 
