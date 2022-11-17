@@ -11,6 +11,9 @@ public class InputValidator {
 
     public static final String RESTART_GAME = "R";
     public static final String QUIT_GAME = "Q";
+    public static final String ERROR_BRIDGE_SIZE = "[ERROR] 4-20사이의 숫자가 아닙니다.";
+    public static final String ERROR_MOVING = "[ERROR] 문자를 잘못 입력하셨습니다.";
+    public static final String ERROR_RETRY = "[ERROR] 문자를 잘못 입력하셨습니다.";
 
     private InputValidator() {
     }
@@ -30,7 +33,7 @@ public class InputValidator {
         try {
             throw new IllegalArgumentException(errorMessage);
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 

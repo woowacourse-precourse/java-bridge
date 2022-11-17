@@ -64,33 +64,33 @@ R
 ### 기능목록 ([ ])
 #### 순서 : 
 - 게임을 시작 
-- [ ] 다리의 길이를 입력요청 (InputView)
-- [ ] 다리의 길이 예외처리 (3~20)  (InputValidator)
+- [X] 다리의 길이를 입력요청 (InputView)
+- [X] 다리의 길이 예외처리 (3~20)  (InputValidator)
   - [X] 다리의 길이 입력 유효성 검사 (InputValidator)
 - [X] 다리의 길이만큼 다리 생성 (BridgeGame ->Bridges-> BridgeMaker)
-- [ ] 다리 이동칸을 입력요청. (InputView)
-- [ ] 이동할 칸을 입력 예외처리  (InputValidator)
+- [X] 다리 이동칸을 입력요청. (InputView)
+- [X] 이동할 칸을 입력 예외처리  (InputValidator)
   - [X] 이동할 칸을 입력 유효성 검사 (InputValidator)
 - [X] player를 이동한다.(BridgeGame->player)
 - [X] 이동한 칸이 이동가능한 칸인지 확인.(BridgeGame->Bridges)
 - [ ] 이동 한 칸을 출력 (OutputView)
 - [X] 이동 완료 여부 확인 (BridgeGame->player)
-- [ ] 게임 실패시 게임 다시 시도 여부 입력요청(InputView)
+- [X] 게임 실패시 게임 다시 시도 여부 입력요청(InputView)
 - [ ] 게임 다시 시도 여부 입력 예외처리 (InputValidator)
   - [X] 게임 다시 시도 입력 유효성 검사 (InputValidator)
 - [X] 게임 다시 시도 (BridgeGame)
 #### 객체 :
 - InputValidator
-- [X] 다리의 길이 입력 유효성 검사 
-- [ ] 다리의 길이 예외처리
+- [X] 다리의 길이 입력 유효성 검사
 - [X] 이동할 칸을 입력 유효성 검사
-- [ ] 이동할 칸을 입력 예외처리
 - [X] 게임 다시 시도 입력 유효성 검사
-- [ ] 게임 다시 시도 여부 입력 예외처리
 - InputView
-- [ ] 다리의 길이를 입력요청
-- [ ] 다리 이동칸을 입력요청
-- [ ] 게임 완료시 게임 다시 시도여부 입력요청
+- [X] 다리의 길이를 입력요청
+- [X] 다리의 길이 예외처리
+- [X] 다리 이동칸을 입력요청
+- [X] 이동할 칸을 입력 예외처리
+- [X] 게임 완료시 게임 다시 시도여부 입력요청
+- [X] 게임 다시 시도 여부 입력 예외처리
 - BridgeGame
 - [X] 다리의 길이만큼 다리 생성
 - [X] player를 이동한다
