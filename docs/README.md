@@ -4,7 +4,7 @@
 
 - [ ] 다리 길이 입력 받기
     - [ ] 정수로 변환이 안되는 문자 입력 시 `IllegalArgumentException` 발생
-    - [ ] 3~20 사이의 정수가 아닐 시 `IllegalArgumentException` 발생
+    - [x] 3~20 사이의 정수가 아닐 시 `IllegalArgumentException` 발생
 - [ ] 이동 방향 입력 받기
     - [ ] ‘U’, ‘D’ 아니면 `IllegalArgumentException` 발생
 - [ ] 게임 재시도 여부 입력 받기
@@ -40,7 +40,7 @@
 
 - [ ] 다리 길이 예외 처리
     - [ ] 정수로 변환이 안되는 경우 `IllegalArgumentException` 발생
-    - [ ] 3~20 사이의 정수가 아닌 경우 `IllegalArgumentException` 발생
+    - [x] 3~20 사이의 정수가 아닌 경우 `IllegalArgumentException` 발생
 - [ ] 다리 길이에 맞는 무작위 다리 생성
     - [ ] 가로: 입력 받은 다리 길이, 세로: 2
     - [ ] 세로 2칸 중 한 칸 만 통과 가능
