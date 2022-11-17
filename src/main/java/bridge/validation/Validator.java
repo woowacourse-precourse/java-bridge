@@ -1,5 +1,6 @@
 package bridge.validation;
 
+import bridge.type.Direction;
 import bridge.type.ErrorMessage;
 import bridge.type.NumberType;
 
@@ -26,5 +27,12 @@ public class Validator {
         if (bridgeSize < NumberType.BRIDGE_MIN_LENGTH.getNumber() || bridgeSize > NumberType.BRIDGE_MAX_LENGTH.getNumber()) {
             throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_BOUNDARY.getMessage());
         }
+    }
+
+    public void checkMoving(String input) {
+        if (input.equals(Direction.UP.getLetter()) || input.equals(Direction.DOWN.getLetter())) {
+            return;
+        }
+        throw new IllegalArgumentException(ErrorMessage.WRONG_DIRECTION.getMessage());
     }
 }

@@ -10,12 +10,10 @@ import java.util.List;
 public class BridgeGame {
 
     private final BridgeMaker bridgeMaker;
-    private final Validator validator;
     private final Player player;
     private List<String> bridge;
-    public BridgeGame(BridgeMaker bridgeMaker, Validator validator, Player player) {
+    public BridgeGame(BridgeMaker bridgeMaker, Player player) {
         this.bridgeMaker = bridgeMaker;
-        this.validator = validator;
         this.player = player;
     }
 
@@ -36,8 +34,7 @@ public class BridgeGame {
     public void retry() {
     }
 
-    public void makeBridge(String input) {
-        validator.checkBridgeSize(input);
-        this.bridge = bridgeMaker.makeBridge(Integer.parseInt(input));
+    public void makeBridge(int bridgeSize) {
+        this.bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 }
