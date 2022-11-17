@@ -20,8 +20,8 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridgeList = new ArrayList<>();
-        String[] UpAndDown = {"D","U"};
-        for (int i = 1 ; i <= size ; i++){
+        String[] UpAndDown = {"D", "U"};
+        for (int i = 1; i <= size; i++) {
             bridgeList.add(UpAndDown[bridgeNumberGenerator.generate()]);
         }
         return bridgeList;
