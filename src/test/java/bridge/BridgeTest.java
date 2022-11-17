@@ -3,6 +3,7 @@ package bridge;
 import bridge.application.BridgeGame;
 import bridge.domain.repository.BridgeRepository;
 import bridge.presentation.dto.BridgeSize;
+import bridge.presentation.dto.GameCommand;
 import bridge.presentation.dto.SelectMove;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -36,5 +37,13 @@ public class BridgeTest {
         bridgeRepository.saveSelectMove(new SelectMove("U"));
         bridgeRepository.updateBridge(List.of("U"));
         Assertions.assertThat(bridgeGame.move()).isEqualTo(1);
+    }
+    @DisplayName("재시작 값 저장 테스트")
+    @Test
+    void 재시작_저장(){
+        BridgeGame bridgeGame=BridgeGame.getInstance();
+        BridgeRepository bridgeRepository=BridgeRepository.getInstance();
+        bridgeGame.saveGameCommand(new GameCommand("R"));
+        Assertions.assertThat(bridgeRepository.getGameCommand().getCommand()).isEqualTo("R");
     }
 }

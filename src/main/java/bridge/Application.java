@@ -16,7 +16,6 @@ public class Application {
         while (true){
                 gameController.inputSelectMove();
                 if(gameController.move()==0){
-                    gameController.
                 }
             }
     }
