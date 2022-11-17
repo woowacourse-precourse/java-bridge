@@ -1,9 +1,19 @@
-package bridge;
+package bridge.controller;
+
+import bridge.view.InputView;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
+    public void startGame(){
+        initBridge();
+    }
+
+    private void initBridge() {
+        Integer bridgeSize = InputView.readBridgeSize();
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
