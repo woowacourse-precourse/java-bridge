@@ -19,6 +19,11 @@ public class Bridge {
         return bridge;
     }
 
+    public boolean isPassable(int userLocation, String userSelection) {
+        String bridgeShape = bridge.get(userLocation);
+        return bridgeShape.equals(userSelection);
+    }
+
     private String checkBridgeShape(String number) {
         if (number.equals("0")) {
             return "D";
