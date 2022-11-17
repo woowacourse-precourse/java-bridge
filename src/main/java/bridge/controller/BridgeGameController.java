@@ -42,6 +42,7 @@ public class BridgeGameController {
     private void play(BridgeGame bridgeGame) {
         while (true) {
             GameStatus gameStatus = bridgeGame.move(choiceBridge());
+            outputView.printMap(bridgeGame.getBridgeMoveLog());
 
             if ((gameStatus == GameStatus.FAIL && isGiveUp(bridgeGame)) || gameStatus == GameStatus.SUCCESS) {
                 return;
