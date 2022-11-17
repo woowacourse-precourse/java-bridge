@@ -44,5 +44,16 @@ public class Controller {
         return bridgeGame.retry(getString(InputView.CMD));
     }
 
+    public void startGame() {
+        OutputView outputView = new OutputView();
+        while (true) {
+            if (bridgeGame.ifEnd())
+                break;
+            if (!stepGame())
+                break;
+        }
+        outputView.printResult();
+    }
+
 
 }
