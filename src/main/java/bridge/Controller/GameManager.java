@@ -5,18 +5,24 @@ import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.Model.BridgeDTO;
 import bridge.View.InputView;
+import bridge.View.OutputView;
 
 public class GameManager {
     private BridgeDTO bridgeDTO;
+    OutputView outputView = new OutputView();
 
     public void runGame() {
-        makeBridgeGame();
+        try {
+            makeBridgeGame();
+        } catch(IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void makeBridgeGame() {
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         InputView inputView = new InputView();
-        bridgeDTO.getBridge();
+        outputView.printStartGame();
+        outputView.printMakeBridgeSize();
+        this.bridgeDTO = inputView.makeBridgeData();
     }
 }

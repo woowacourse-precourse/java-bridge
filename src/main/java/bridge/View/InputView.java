@@ -1,21 +1,36 @@
 package bridge.View;
 
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.Model.BridgeDTO;
 import bridge.Model.ErrorUtil;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
     ErrorUtil errorUtil = new ErrorUtil();
-    public int readBridgeSize() {
-        String inputSize = readLine();
-        errorUtil.errorBridgeSizeNotNumber(inputSize);
-        int size = Integer.parseInt(inputSize);
-        errorUtil.errorBridgeSize(size);
-        return size;
+    private String inputSizeData;
+    private int transSizeData;
+
+    public BridgeDTO makeBridgeData() {
+        BridgeDTO bridgeDTO = new BridgeDTO();
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        setBridgeSize();
+        transBridgeSize();
+        bridgeDTO.setBridge(bridgeMaker.makeBridge(transSizeData));
+        return bridgeDTO;
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
+    public void setBridgeSize() {
+        this.inputSizeData = readLine();
+        errorUtil.errorBridgeSizeNotNumber(inputSizeData);
+    }
+
+    public void transBridgeSize() {
+        this.transSizeData = Integer.parseInt(inputSizeData);
+        errorUtil.errorBridgeSize(transSizeData);
+    }
+
     public String readMoving() {
         String inputUpDown = readLine();
         errorUtil.errorInputReadMoving(inputUpDown);

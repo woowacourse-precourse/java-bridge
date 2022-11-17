@@ -6,7 +6,7 @@ public class BridgeDTO {
     private List<String> bridge;
 
     public List<String> getBridge() {
-        return bridge;
+        return this.bridge;
     }
 
     public void setBridge(List<String> bridge) {
