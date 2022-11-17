@@ -48,11 +48,11 @@
 
 - [ ] 플레이어가 이동할 칸을 입력 받을 때 예외처리 -inputMoveException()
   - [x] 입력값이 null인 경우 예외처리한다. -inputNullException()
-  - [ ] 입력값이 한 글자가 아닌 경우 예외처리한다. -inputNoOneCharException()
+  - [x] 입력값이 한 글자가 아닌 경우 예외처리한다. -inputNoOneCharException()
   - [ ] 입력값이 U나 R이 아닐 경우 예외처리한다. -inputInvalidCharException()
 
 
 - [ ] 게임 재시작 여부를 입력 받을 때 예외처리 -inputRestartException()
   - [x] 입력값이 null인 경우 예외처리한다. -inputNullException()
-  - [ ] 입력값이 한 글자가 아닌 경우 예외처리한다. -inputNoOneCharException()
+  - [x] 입력값이 한 글자가 아닌 경우 예외처리한다. -inputNoOneCharException()
   - [ ] 입력값이 R이나 Q가 아닐 경우 예외처리한다. -inputInvalidCharException()
