@@ -30,7 +30,7 @@ class BridgeGameTest {
         @Test
         void test2() {
             assertThat(bridgeGame.move("U")).isEqualTo(0);
-            assertThat(bridgeGame.move("D")).isEqualTo(0);
+            assertThat(bridgeGame.move("D")).isEqualTo(-1);
             assertThat(bridgeGame.toString()).isEqualTo("[ O |   ]\n[   | X ]");
         }
 
@@ -45,7 +45,7 @@ class BridgeGameTest {
         void test4() {
             assertThat(bridgeGame.move("U")).isEqualTo(0);
             assertThat(bridgeGame.move("U")).isEqualTo(1);
-            assertThat(bridgeGame.move("U")).isEqualTo(1);
+            assertThat(bridgeGame.move("U")).isEqualTo(-1);
             assertThat(bridgeGame.toString()).isEqualTo("[ O | O | X ]\n[   |   |   ]");
         }
 
