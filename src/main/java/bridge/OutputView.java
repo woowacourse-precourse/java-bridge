@@ -13,6 +13,14 @@ public class OutputView {
     System.out.println(LENGTH_INPUT_MESSAGE.getMessage());
   }
 
+  public static void printBlankLine() {
+    System.out.println();
+  }
+
+  public static void printErrorMessage(Exception e) {
+    System.out.println(ERROR_MESSAGE.getMessage() + e.getMessage());
+  }
+
   /**
    * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
    *
