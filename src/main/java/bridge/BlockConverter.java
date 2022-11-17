@@ -2,14 +2,14 @@ package bridge;
 
 import java.util.Arrays;
 
-public enum BridgeConverter {
+public enum BlockConverter {
     DOWN(0, "D"),
     UP(1, "U");
 
     private int number;
     private String message;
 
-    BridgeConverter(int number, String message) {
+    BlockConverter(int number, String message) {
         this.number = number;
         this.message = message;
     }

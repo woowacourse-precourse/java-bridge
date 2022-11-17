@@ -22,7 +22,7 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int bridgeNumber = bridgeNumberGenerator.generate();
-            String bridgeMessage = BridgeConverter.getMessageFromNumber(bridgeNumber);
+            String bridgeMessage = BlockConverter.getMessageFromNumber(bridgeNumber);
             bridge.add(bridgeMessage);
         }
         return bridge;
