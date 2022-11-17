@@ -26,4 +26,15 @@ public class InputController {
         }
     }
 
+    public String getGameCommand(){
+        try{
+            String gameCommand = inputView.readGameCommand();
+            new GameCommandValidator(gameCommand);
+            return gameCommand;
+        } catch (IllegalArgumentException e){
+            OutputView.printError(e.getMessage());
+            return getGameCommand();
+        }
+    }
+
 }
