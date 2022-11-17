@@ -23,7 +23,6 @@ public class InputView {
       OutputView.printError(e);
       return readBridgeSize();
     }
-
   }
 
   /**
@@ -54,6 +53,5 @@ public class InputView {
       OutputView.printError(e);
       return readGameCommand();
     }
-
   }
 }

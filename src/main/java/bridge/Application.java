@@ -18,18 +18,11 @@ public class Application {
         List<String> bridge=bridgeMaker.makeBridge(bridgeSize);
         BridgeGame bridgeGame=new BridgeGame(bridgeSize, bridge);
         while(true){
-            if(playGame(bridgeSize, bridgeGame).equals(GameState.SUCCESS)){
-                break;
-            }
-            if(inputView.readGameCommand().equals("Q")){    //재시도를 원하는 경우
-                break;
-            }
+            if(playGame(bridgeSize, bridgeGame).equals(GameState.SUCCESS)) break;
+            if(inputView.readGameCommand().equals("Q")) break;   //재시도를 원하는 경우
             bridgeGame.retry(); //초기화
         }
         outputView.printResult(round,bridgeGame);
-
-
-
     }
     public static GameState playGame(int bridgeSize, BridgeGame bridgeGame){
         round=0;
@@ -42,7 +35,5 @@ public class Application {
             }
         }
         return GameState.SUCCESS;
-
-
     }
 }
