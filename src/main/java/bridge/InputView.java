@@ -8,6 +8,13 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class InputView {
 
     /**
+     * 게임 시작을 알리는 문구를 출력한다.
+     */
+    public void printHello(){
+        System.out.println("다리 건너기 게임을 시작합니다.\n");
+    }
+
+    /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
