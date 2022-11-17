@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 class InputViewTest {
@@ -20,6 +21,18 @@ class InputViewTest {
         int bridgeSize = inputView.readBridgeSize();
 
         assertThat(bridgeSize).isEqualTo(3);
+    }
+
+    @Test
+    void bridgeSize가_숫자_아닐경우_예외처리() {
+        InputView inputView = new InputView();
+
+        ByteArrayInputStream in = new ByteArrayInputStream("e".getBytes());
+        System.setIn(in);
+
+        assertThatThrownBy(() -> inputView.readBridgeSize())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 숫자를 입력해주세요.");
     }
 
 
