@@ -1,26 +1,17 @@
-package bridge.validator;
+package bridge.model;
 
 import bridge.Error;
 
 public class BridgeSize {
 	private final int bridgeSize;
 
-	public BridgeSize(String inputValue) {
-		int value = convertToInt(inputValue);
+	public BridgeSize(int value) {
 		validateRange(value);
 		this.bridgeSize = value;
 	}
 
 	public int getSize() {
 		return bridgeSize;
-	}
-
-	private int convertToInt(String input) {
-		try {
-			return Integer.parseInt(input);
-		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException(Error.FORMAT.getMessage());
-		}
 	}
 
 	private void validateRange(int value) {
