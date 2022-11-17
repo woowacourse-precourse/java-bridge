@@ -1,8 +1,13 @@
 package bridge;
 
+
 public class Application {
 
+    private static final OutputView outputView = OutputView.getInstance();
+
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        outputView.printStart();
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.run();
     }
 }
