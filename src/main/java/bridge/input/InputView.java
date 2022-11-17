@@ -26,7 +26,15 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        try {
+            String input = Console.readLine();
+            validate(ValidationType.CHECK_MOVING, input);
+            return input;
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage() + " 다시 입력해주세요.");
+//           wrapper 메서드 내에서 재귀함수로 구성
+        }
+        return "";
     }
 
     /**
