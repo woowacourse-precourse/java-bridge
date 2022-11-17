@@ -24,6 +24,9 @@ public class GameController {
         viewService.printInputBridgeSizeMessage();
         gameService.saveBridgeSize(new BridgeSize(Console.readLine()));
     }
+    public void generateBridge(){
+        gameService.generatorBridge();
+    }
 
     public void inputSelectMove(){
         viewService.printSelectMoveMessage();

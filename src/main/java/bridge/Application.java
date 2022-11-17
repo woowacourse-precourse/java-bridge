@@ -10,5 +10,6 @@ public class Application {
         gameController.run();
         gameController.inputBridgeSize();
         gameController.inputSelectMove();
+        gameController.generateBridge();
     }
 }

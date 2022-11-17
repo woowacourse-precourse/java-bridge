@@ -1,7 +1,7 @@
 package bridge.application;
 
 public class ViewService {
-    private static ViewService instance=new ViewService();
+    private static final ViewService instance=new ViewService();
 
     private ViewService(){
 
