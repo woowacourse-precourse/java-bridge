@@ -82,4 +82,8 @@ public class BridgeGame {
     public int getTrials() {
         return trials;
     }
+
+    public boolean getIsCorrect() {
+        return isCorrect;
+    }
 }

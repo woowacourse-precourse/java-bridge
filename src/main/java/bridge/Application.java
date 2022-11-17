@@ -16,6 +16,7 @@ public class Application {
         int bridgeSize = inputView.readBridgeSize();
         bridgeGame = new BridgeGame(bridgeSize);
         startGame();
+        outputView.printResult(bridgeGame.getIsCorrect(), bridgeGame.getTrials(), bridgeGame.getMap());
     }
 
     public static void startGame() {
@@ -27,15 +28,12 @@ public class Application {
                 return;
             }
         }
-        outputView.printResult(true, bridgeGame.getTrials(), bridgeGame.getMap());
     }
 
     public static void wrongAnswerHandling() {
         boolean isRetrying = bridgeGame.retry(inputView.readGameCommand());
         if (isRetrying) {
             startGame();
-            return;
         }
-        outputView.printResult(false, bridgeGame.getTrials(), bridgeGame.getMap());
     }
 }
