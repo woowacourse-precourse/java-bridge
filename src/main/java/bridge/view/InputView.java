@@ -43,7 +43,15 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String input = receiveInput();
+        validateRestartOrQuitInput(input);
+        return input;
+    }
+
+    private void validateRestartOrQuitInput(String input) {
+        if (!input.equals("R") && !input.equals("Q")) {
+            throw new IllegalArgumentException("[ERROR] R 또는 Q만 입력해주세요.");
+        }
     }
 
     private String receiveInput() {
