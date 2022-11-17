@@ -136,4 +136,13 @@ class InputSelectCharValidatorTest {
                 .isThrownBy(() -> InputSelectCharValidator.validate(input, RETRY_SELECT_CHAR_VALIDATE_NUMBER))
                 .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
     }
+    
+    @DisplayName("재시도 여부 입력 예외 처리 : Q와 R이 아닌 영어 입력 시")
+    @ParameterizedTest(name = "{displayName} : input => {0}")
+    @ValueSource(strings = {"A", "C", "U", "D", "T","a", "c", "q", "r", "u", "d"})
+    void englishRetryException(final String input) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> InputSelectCharValidator.validate(input, RETRY_SELECT_CHAR_VALIDATE_NUMBER))
+                .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
+    }
 }
