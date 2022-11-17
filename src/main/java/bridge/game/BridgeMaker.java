@@ -1,6 +1,7 @@
 package bridge.game;
 
 import bridge.BridgeNumberGenerator;
+import bridge.message.ErrorMessage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,8 @@ import java.util.List;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
+    private static final String TOP = "U";
+    private static final String BOTTOM = "D";
 
     /**
      * 필드 변경 불가 (* 추가는 가능하다는 것인가?) 함수의 파라미터 및 반환 값 변경 불가
@@ -30,14 +33,14 @@ public class BridgeMaker {
         return bridge;
     }
 
-    public String makePassable() {
+    private String makePassable() {
         int passable = bridgeNumberGenerator.generate();
         if (passable == 1) {
-            return "U";
+            return TOP;
         }
         if (passable == 0) {
-            return "D";
+            return BOTTOM;
         }
-        return null;
+        throw new IllegalArgumentException(ErrorMessage.UNEXPECTED_ERROR);
     }
 }
