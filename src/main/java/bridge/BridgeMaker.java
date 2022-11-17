@@ -2,6 +2,7 @@ package bridge;
 
 import static java.util.stream.Collectors.toUnmodifiableList;
 
+import bridge.domain.Bridge;
 import bridge.domain.Direction;
 import bridge.exception.ErrorMessage;
 import bridge.exception.InvalidInputException;
@@ -12,9 +13,6 @@ import java.util.stream.Stream;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-
-    private static final int MINIMUM_LENGTH = 3;
-    private static final int MAXIMUM_LENGTH = 20;
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -35,7 +33,7 @@ public class BridgeMaker {
     }
 
     private void validateSizeRange(int size) {
-        if (size < MINIMUM_LENGTH || MAXIMUM_LENGTH < size) {
+        if (size < Bridge.MINIMUM_LENGTH || Bridge.MAXIMUM_LENGTH < size) {
             throw new InvalidInputException(ErrorMessage.BRIDGE_LENGTH_IS_BETWEEN_3_AND_20);
         }
     }
