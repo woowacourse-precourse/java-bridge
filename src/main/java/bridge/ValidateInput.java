@@ -13,4 +13,11 @@ public class ValidateInput {
             throw new IllegalArgumentException();
         }
     }
+
+    public static String validateMoving(String moving) throws IllegalArgumentException{
+        if(!(moving.equals("U")||moving.equals("D"))){
+            throw new IllegalArgumentException();
+        }
+        return moving;
+    }
 }
