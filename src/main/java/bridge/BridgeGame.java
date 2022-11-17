@@ -21,7 +21,6 @@ public class BridgeGame {
      */
     public void move(String moving) {
         userMoves.add(moving);
-        counter += 1;
         processGame();
     }
 
@@ -31,6 +30,11 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry(String cmd) {
+        if (cmd.equals("Q")) return;
+        this.aborted = false;
+        this.finished = false;
+        this.counter += 1;
+        userMoves.remove(userMoves.size() - 1);
     }
 
     /**
@@ -39,7 +43,7 @@ public class BridgeGame {
     public void init() {
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         this.userMoves = new LinkedList<>();
-        this.counter = 0;
+        this.counter = 1;
         this.finished = false;
         this.aborted = false;
     }

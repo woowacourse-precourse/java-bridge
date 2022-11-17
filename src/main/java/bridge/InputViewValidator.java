@@ -31,8 +31,21 @@ public class InputViewValidator {
             throw  new IllegalArgumentException("다리의 길이는 3이상 20이하여야 합니다.");
     }
 
+    /**
+     * 다음 Step이 범위에 있는지 검증합니다.
+     * @param step 다음 입력
+     */
     public static void validateBridgeStep(String step) {
         if (!(step.equals("U") || step.equals("D")) )
             throw new IllegalArgumentException("U 또는 D 형식으로만 이동할 수 있습니다.");
+    }
+
+    /**
+     * 재시작 명령어를 검증하는 메소드
+     * @param cmd
+     */
+    public static void validateRestartCommand(String cmd) {
+        if (!(cmd.equals("R") || cmd.equals("Q")))
+            throw new IllegalArgumentException("R 도는 Q 형식의 입력만 지원됩니다.");
     }
 }

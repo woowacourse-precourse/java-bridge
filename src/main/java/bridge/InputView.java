@@ -43,7 +43,14 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        try {
+            String cmd = readUserInput();
+            InputViewValidator.validateRestartCommand(cmd);
+            return (cmd);
+        } catch (NoSuchElementException | IllegalArgumentException e) {
+            System.out.println(ERROR_MSG + e.getMessage());
+            return readGameCommand();
+        }
     }
 
     private String readUserInput() {

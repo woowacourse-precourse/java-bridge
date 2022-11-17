@@ -39,4 +39,18 @@ class InputViewValidatorTest {
         InputViewValidator.validateBridgeStep("U");
         InputViewValidator.validateBridgeStep("D");
     }
+
+    @DisplayName("재시작 명령어가 R 또는 Q인지 확인한다.")
+    @Test
+    void validateRestartCommand() {
+        assertThrows(IllegalArgumentException.class, () -> InputViewValidator.validateRestartCommand("123"));
+        assertThrows(IllegalArgumentException.class, () -> InputViewValidator.validateRestartCommand("RQ"));
+        assertThrows(IllegalArgumentException.class, () -> InputViewValidator.validateRestartCommand("RR"));
+        assertThrows(IllegalArgumentException.class, () -> InputViewValidator.validateRestartCommand("QQ"));
+        assertThrows(IllegalArgumentException.class, () -> InputViewValidator.validateRestartCommand("QR"));
+        assertThrows(IllegalArgumentException.class, () -> InputViewValidator.validateRestartCommand("rq"));
+        InputViewValidator.validateRestartCommand("R");
+        InputViewValidator.validateRestartCommand("Q");
+
+    }
 }
