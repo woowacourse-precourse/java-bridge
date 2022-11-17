@@ -22,5 +22,14 @@ class ValidatorTest {
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(ErrorMessage.IS_NOT_POSITIVE_NUMBER.message());
         }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"1", "2", "21", "22", "23"})
+        @DisplayName("다리 길이 입력값이 범위(3 ~ 20)를 벗어난 경우 예외를 던진다.")
+        void outOfRange(String bridgeLength) {
+            Assertions.assertThatThrownBy(() -> validator.validateBridgeLength(bridgeLength))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(ErrorMessage.IS_OUT_OF_RANGE.message());
+        }
     }
 }
