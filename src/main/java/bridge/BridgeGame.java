@@ -9,6 +9,7 @@ import java.util.List;
  */
 public class BridgeGame {
     OutputView printMessage = new OutputView();
+    InputView inputView = new InputView();
     private int bridgeLength = 1;
     private int gameCount = 1;
 
@@ -17,7 +18,6 @@ public class BridgeGame {
         test.play();
     }
     public void play(){
-        InputView inputView = new InputView();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         printMessage.printStart();
         printMessage.printAskBridgeLength();
@@ -43,10 +43,15 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry(List<String> bridge) {
-        gameLogic(bridge);
+        if(inputView.readGameCommand(Console.readLine()).equals("R")) {
+            gameCount++;
+            gameLogic(bridge);
+            return ;
+        }
+        printMessage.printGameFailed();
+        printMessage.printGameTries(gameCount);
     }
     public void gameLogic(List<String> bridge){
-        InputView inputView = new InputView();
         int [] upCase = new int[bridge.size()];
         int [] downCase = new int[bridge.size()];
         printMessage.printAskMovingButton();
@@ -59,15 +64,8 @@ public class BridgeGame {
                 if(input.equals("D"))
                     downCase[i] += 2;
                 printMessage.printMap(upCase, downCase, bridgeLength);
-                gameCount++;
                 printMessage.printAskGameRestart();
-                String gameCommand = inputView.readGameCommand(Console.readLine());
-                if(gameCommand.equals("R")) {
-                    retry(bridge);
-                    return;
-                }
-                printMessage.printGameFailed();
-                printMessage.printGameTries(gameCount);
+                retry(bridge);
                 return;
             }
             if(bridge.get(i).equals("U")){
