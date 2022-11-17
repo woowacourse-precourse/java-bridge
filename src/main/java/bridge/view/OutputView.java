@@ -5,6 +5,17 @@ package bridge.view;
  */
 public class OutputView {
 
+    private static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
+    private static final String INPUT_BRIDGE_LENGTH = "다리의 길이를 입력해주세요.";
+
+    public static void printStart() {
+        System.out.println(START_MESSAGE);
+    }
+
+    public static void printInputBridgeLength() {
+        System.out.println(INPUT_BRIDGE_LENGTH);
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
