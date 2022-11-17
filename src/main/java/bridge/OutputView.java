@@ -24,4 +24,8 @@ public class OutputView {
     public void printStartMessage() {
         System.out.println(InformationMessage.START.getMessage());
     }
+
+    public void printBridgeLengthInputMessage() {
+        System.out.println(InformationMessage.BRIDGE_LENGTH.getMessage());
+    }
 }
