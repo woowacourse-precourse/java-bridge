@@ -1,7 +1,7 @@
 package bridge.service.dto;
 
 public class BridgeSpaceDto {
-    private String movingSpace;
+    private final String movingSpace;
 
     public BridgeSpaceDto(String movingSpace) {
         this.movingSpace = movingSpace;
