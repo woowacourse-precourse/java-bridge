@@ -20,4 +20,9 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    public void gameStart() {
+        System.out.println(ViewConstants.GAME_START);
+        System.out.println();
+    }
 }
