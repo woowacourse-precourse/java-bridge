@@ -10,11 +10,11 @@ public class GameSimulator {
     private BridgeGame bridgeGame = new BridgeGame();
 
     private int trial = 1;
-    private List<String> bridgeRoute;
     private List<String> userRoute = new ArrayList<>();
 
     public void simulateGame() {
         int bridgeSize = initializeGame();
+        List<String> bridge = makeBridge(bridgeSize);
         startGame();
         quitGame();
     }
@@ -24,9 +24,9 @@ public class GameSimulator {
         return inputView.readBridgeSize();
     }
 
-    private void makeBridge() {
+    private List<String> makeBridge(int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridgeRoute = bridgeMaker.makeBridge(bridgeSize);
+        return bridgeMaker.makeBridge(bridgeSize);
     }
 
     private void startGame() {
