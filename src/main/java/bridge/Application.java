@@ -16,16 +16,25 @@ public class Application {
         BridgeGame bridgeGame = new BridgeGame();
         OutputView outputView = new OutputView();
         List<List<String>> userPlaying = new ArrayList<>();
+        String isSuccess = "성공";
+        int tryCount = 1;
         for (int i = 0; i<size; i++) {
             String move = inputView.readMoving();
             String result = bridgeGame.move(move, bridge.get(i));
             List<String> currentPlaying = new ArrayList<>();
-                currentPlaying.add(move);
-                currentPlaying.add(result);
+            currentPlaying.add(move);
+            currentPlaying.add(result);
                 userPlaying.add(currentPlaying);
             outputView.printMap(userPlaying);
-            if (Objects.equals(result, "X"))
+            if (i == size-1) {
+                outputView.printResult(isSuccess, tryCount);
+            }
+            if (Objects.equals(result, "X")) {
+                inputView.readGameCommand();
+                isSuccess = "실패";
                 break;
+            }
+
 
         }
     }
