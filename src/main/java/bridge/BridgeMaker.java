@@ -31,8 +31,8 @@ public class BridgeMaker {
     }
 
     private String getCanSpaceToCrossByNumber(int number) {
-        BridgeState bridgeState = BridgeState.valueOfBridge(number)
+        BridgeState bridgeState = BridgeState.findByBridgeValue(number)
                 .orElseThrow(NotFoundBridgeStateException::new);
-        return bridgeState.getUserValue();
+        return bridgeState.getPlayerValue();
     }
 }

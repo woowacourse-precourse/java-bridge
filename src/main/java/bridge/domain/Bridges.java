@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.exception.NotFoundBridgeStateException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +14,8 @@ public class Bridges {
 
     public void generate(List<String> bridges) {
         bridges.forEach(bridge -> {
-            BridgeState bridgeState = BridgeState.valueOfUser(bridge);
+            BridgeState bridgeState = BridgeState.findByPlayerValue(bridge)
+                    .orElseThrow(NotFoundBridgeStateException::new);
             this.bridges.add(Bridge.create(bridgeState));
         });
     }

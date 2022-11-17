@@ -7,30 +7,30 @@ public enum BridgeState {
     UP("U", 1),
     DOWN("D", 0);
 
-    private String userValue;
+    private String playerValue;
     private int bridgeValue;
 
     BridgeState() {
     }
 
-    BridgeState(String userValue, int bridgeValue) {
-        this.userValue = userValue;
+    BridgeState(String playerValue, int bridgeValue) {
+        this.playerValue = playerValue;
         this.bridgeValue = bridgeValue;
     }
 
-    public static Optional<BridgeState> valueOfBridge(int bridgeValue) {
+    public static Optional<BridgeState> findByBridgeValue(int bridgeValue) {
         return Arrays.stream(BridgeState.values())
                 .filter(bridgeState -> bridgeState.bridgeValue == bridgeValue)
                 .findAny();
     }
 
-    public static Optional<BridgeState> valueOfUser(String userValue) {
+    public static Optional<BridgeState> findByPlayerValue(String playerValue) {
         return Arrays.stream(BridgeState.values())
-                .filter(bridgeState -> bridgeState.userValue.equals(userValue))
+                .filter(bridgeState -> bridgeState.playerValue.equals(playerValue))
                 .findAny();
     }
 
-    public String getUserValue() {
-        return this.userValue;
+    public String getPlayerValue() {
+        return this.playerValue;
     }
 }
