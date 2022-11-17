@@ -5,7 +5,7 @@ public enum BridgeFlag {
     FAIL("X"),
     NOTHING(" ");
 
-    public final String flag;
+    private final String flag;
 
     BridgeFlag(String flag) {
         this.flag = flag;
