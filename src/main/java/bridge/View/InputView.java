@@ -18,6 +18,7 @@ public class InputView {
      */
     public String readMoving() {
         String inputUpDown = readLine();
+        errorUtil.errorInputReadMoving(inputUpDown);
         return inputUpDown;
     }
 
