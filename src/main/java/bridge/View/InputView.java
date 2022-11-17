@@ -1,5 +1,8 @@
 package bridge.View;
 
+import bridge.EnumCollections.InputSystemMessage;
+import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -24,5 +27,10 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    public void printSystemMessage(InputSystemMessage situation) {
+        String message = InputSystemMessage.getMessage(situation);
+        System.out.println(message);
     }
 }
