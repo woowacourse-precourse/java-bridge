@@ -1,4 +1,4 @@
-package bridge.model.inputvalidator;
+package bridge.util.inputvalidator;
 
 public interface InputValidator {
 
