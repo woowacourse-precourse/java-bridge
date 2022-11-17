@@ -18,4 +18,19 @@ public enum UpAndDown {
         }
         return null;
     }
+
+    public boolean isEqualDirection(String block){
+        if(block.equals(this.direction)){
+            return true;
+        }
+        return false;
+    }
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public int getInputDirectionNumber() {
+        return inputDirectionNumber;
+    }
 }
