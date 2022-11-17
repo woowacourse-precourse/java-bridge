@@ -9,22 +9,16 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private static final String UPSIDE = "U";
-
     private final List<String> bridge;
     private int currentTryIndex;
     private boolean isStopped;
-    private int numOfAttempts;
-    private List<CrossResult> topRoad;
-    private List<CrossResult> downRoad;
+    private BridgeGameResult result;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         this.currentTryIndex = 0;
-        this.numOfAttempts = 1;
         this.isStopped = false;
-        this.topRoad = new ArrayList<>();
-        this.downRoad = new ArrayList<>();
+        this.result = new BridgeGameResult();
     }
 
     /**
@@ -34,29 +28,15 @@ public class BridgeGame {
      */
     public void move(String direction) {
         if (canMove(direction)) {
-            logResult(direction, CrossResult.SUCCESS);
+            result.logResult(direction, CrossResult.SUCCESS);
             return ;
         }
-        logResult(direction, CrossResult.FAILURE);
+        result.logResult(direction, CrossResult.FAILURE);
         isStopped = true;
     }
 
     private boolean canMove(String direction) {
         return bridge.get(currentTryIndex++).equals(direction);
-    }
-
-    private void logResult(String direction, CrossResult result) {
-        if (isUpside(direction)) {
-            topRoad.add(result);
-            downRoad.add(CrossResult.PASS);
-            return ;
-        }
-        topRoad.add(CrossResult.PASS);
-        downRoad.add(result);
-    }
-
-    private boolean isUpside(String direction) {
-        return direction.equals(UPSIDE);
     }
 
     /**
@@ -67,9 +47,7 @@ public class BridgeGame {
     public void retry() {
         this.currentTryIndex = 0;
         this.isStopped = false;
-        this.topRoad = new ArrayList<>();
-        this.downRoad = new ArrayList<>();
-        this.numOfAttempts++;
+        this.result.reset();
     }
 
     public boolean isEnd() {
@@ -80,15 +58,7 @@ public class BridgeGame {
         return isStopped;
     }
 
-    public int getNumOfAttempts() {
-        return numOfAttempts;
-    }
-
-    public List<CrossResult> getTopRoad() {
-        return topRoad;
-    }
-
-    public List<CrossResult> getDownRoad() {
-        return downRoad;
+    public BridgeGameResult getResult() {
+        return result;
     }
 }

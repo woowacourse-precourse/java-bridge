@@ -34,7 +34,7 @@ public class Application {
 
     private static void moveMap() {
         game.move(InputView.readMoving());
-        OutputView.printMap(game.getTopRoad(), game.getDownRoad());
+        OutputView.printMap(game.getResult());
     }
 
     private static boolean isAskedToQuit() {
@@ -42,7 +42,6 @@ public class Application {
     }
 
     private static void printResult() {
-        OutputView.printResult(game.getTopRoad(), game.getDownRoad(),
-                game.isEnd(), game.getNumOfAttempts());
+        OutputView.printResult(game.getResult(), game.isEnd());
     }
 }
