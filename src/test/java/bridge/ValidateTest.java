@@ -4,8 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static bridge.message.ExceptionMessage.OUT_OF_RANGE_EXCEPTION;
-import static bridge.message.ExceptionMessage.TYPE_EXCEPTION;
+import static bridge.message.ExceptionMessage.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ValidateTest {
@@ -30,4 +29,13 @@ class ValidateTest {
                 .hasMessageContaining(OUT_OF_RANGE_EXCEPTION);
     }
 
+    @DisplayName("U(위 칸), D(아래 칸) 이외의 문자가 입력되면 예외가 발생")
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "A", "UU", "DD", "U ", "D ", "."})
+    void directionValidate(String direction) {
+        assertThatThrownBy(() ->
+                Validate.directionValidate(direction)
+        ).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(DIRECTION_EXCEPTION);
+    }
 }
