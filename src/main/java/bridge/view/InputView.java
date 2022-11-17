@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.valid.Validation;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -8,7 +9,6 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     private static final String INPUT_BRIDGE_LENGTH = "다리의 길이를 입력해주세요.";
     private static final String SELECT_MOVING = "다리의 길이를 입력해주세요.";
-    private static final String TYPE_ERROR = "숫자만 입력 할 수 있습니다.";
 
 
     /**
@@ -34,11 +34,12 @@ public class InputView {
         return null;
     }
 
-    private static int convertToInt(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(TYPE_ERROR);
-        }
+    public void printError(String text){
+        System.out.println(text);
+    }
+
+    private int convertToInt(String input) {
+        Validation.inputNumberValid(input);
+        return Integer.parseInt(input);
     }
 }
