@@ -28,6 +28,10 @@ public class OutputView {
         System.out.println(Message.BRIDGE_SIZE_INPUT_MESSAGE);
     }
 
+    public void printMovingInputMessage() {
+        System.out.println(Message.BRIDGE_MOVING_INPUT_MESSAGE);
+    }
+
     public static void printException(IllegalArgumentException e) {
         System.out.println(e.getMessage());
     }

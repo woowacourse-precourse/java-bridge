@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import constants.BridgeConstants;
 import constants.Message;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class InputView {
@@ -32,7 +33,24 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        try {
+            String userInput = Console.readLine();
+
+            validateMoving(userInput);
+
+            return userInput;
+        } catch (IllegalArgumentException e) {
+            OutputView.printException(e);
+            return readMoving();
+        }
+    }
+
+    private void validateMoving(String userInput) {
+        List<String> directions = List.of(
+                BridgeConstants.UP_DIRECTION, BridgeConstants.DOWN_DIRECTION);
+        if (!directions.contains(userInput)) {
+            throw new IllegalArgumentException(Message.MOVING_ERROR_MESSAGE);
+        }
     }
 
     /**

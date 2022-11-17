@@ -2,6 +2,7 @@ package controller;
 
 import bridge.Bridge;
 import bridge.BridgeGame;
+import constants.BridgeConstants;
 import view.InputView;
 import view.OutputView;
 
@@ -25,5 +26,11 @@ public class BridgeController {
     public void start() {
         int bridgeSize = getBridgeSizeFromUser();
         Bridge bridge = bridgeGame.generateBridge(bridgeSize);
+        do {
+            outputView.printMovingInputMessage();
+            inputView.readMoving();
+            bridgeGame.play(bridge);
+            outputView.printMap();
+        } while (inputView.readGameCommand() == BridgeConstants.RESTART);
     }
 }

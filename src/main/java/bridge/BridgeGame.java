@@ -25,4 +25,8 @@ public class BridgeGame {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         return new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
+
+    public void play(Bridge bridge) {
+
+    }
 }
