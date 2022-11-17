@@ -11,28 +11,37 @@ public class OutputView {
     private static final String MAP_SEPARATOR = " | ";
     private static final String MAP_END = " ]";
 
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    private static final String GUIDE_START = "다리 건너기 게임을 시작합니다.";
+    private static final String GUIDE_INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
+    private static final String GUIDE_INPUT_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String GUIDE_INPUT_GAME_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+
+    private static final String FINAL_GAME_RESULT = "최종 게임 결과";
+    private static final String SUCCESS_OR_NOT = "게임 성공 여부: ";
+    private static final String NUMBER_OF_ATTEMPTS = "총 시도한 횟수: ";
+
+
+    public void guideStart() {
+        System.out.println(GUIDE_START);
+    }
+    public void guideInputBridgeSize() {
+        System.out.println(GUIDE_INPUT_BRIDGE_SIZE);
+    }
+    public void guideInputMoving() {
+        System.out.println(GUIDE_INPUT_MOVING);
+    }
     //더 좋은 방법 있는지 확인
-    public void printMap(List<List<String>> currentMap) {
-        StringJoiner upStairMap = new StringJoiner(MAP_SEPARATOR, MAP_START, MAP_END);
-        StringJoiner downStairMap = new StringJoiner(MAP_SEPARATOR, MAP_START, MAP_END);
-        for (List<String> map : currentMap) {
-            upStairMap.add(map.get(1));
-            downStairMap.add(map.get(0));
-        }
-        System.out.println(upStairMap);
-        System.out.println(downStairMap);
+    public void printMap(String currentMap) {
+        System.out.println(currentMap);
+    }
+    public void guideInputGameCommand() {
+        System.out.println(GUIDE_INPUT_GAME_COMMAND);
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult() {
+    public void printResult(String currentMap, int numberOfAttempts, String outcome) {
+        System.out.println(FINAL_GAME_RESULT);
+        System.out.println(currentMap);
+        System.out.println(SUCCESS_OR_NOT + numberOfAttempts);
+        System.out.println(NUMBER_OF_ATTEMPTS + outcome);
     }
 }
