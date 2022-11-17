@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.service.BridgeGame;
 import bridge.service.dto.BridgeSizeDto;
+import bridge.service.dto.BridgeSpaceDto;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -28,6 +29,7 @@ public class BridgeGameController {
     }
 
     private void move() {
-        String space = inputView.readMoving();
+        BridgeSpaceDto dto = inputView.readMoving();
+        bridgeGame.move(dto);
     }
 }

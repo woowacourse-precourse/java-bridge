@@ -3,6 +3,7 @@ package bridge.service;
 import bridge.BridgeMaker;
 import bridge.domain.Bridges;
 import bridge.service.dto.BridgeSizeDto;
+import bridge.service.dto.BridgeSpaceDto;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public void move(BridgeSpaceDto dto) {
     }
 
     /**

@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.service.dto.BridgeSizeDto;
+import bridge.service.dto.BridgeSpaceDto;
 import bridge.validator.InputValidator;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -28,11 +29,11 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public BridgeSpaceDto readMoving() {
         while (true) {
             try {
                 System.out.println(INPUT_MOVING_SPACE);
-                return InputValidator.checkMovingSpace(Console.readLine());
+                return new BridgeSpaceDto(InputValidator.checkMovingSpace(Console.readLine()));
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

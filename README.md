@@ -123,11 +123,11 @@ BridgeSizeDto
 - [x]  다리 길이를 담아서 컨트롤러로 보낸다.
 
 BridgeSpaceDto
-- [ ]  플레이어가 선택한 칸을 담아서 컨트롤러로 보낸다.
+- [x]  플레이어가 선택한 칸을 담아서 컨트롤러로 보낸다.
 
 BridgeController
 - [x]  BridgeSizeDto를 받아서 서비스에 넘겨준다.
-- [ ]  BridgeSpaceDto를 받아서 서비스에 넘겨준다.
+- [x]  BridgeSpaceDto를 받아서 서비스에 넘겨준다.
 - [ ]  게임을 재시작할지 확인한다.
 
 BridgeMaker
