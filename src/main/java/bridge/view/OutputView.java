@@ -15,7 +15,6 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap() {
-
     }
 
     /**
@@ -24,30 +23,34 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult() {
-        System.out.println(Message.RESULT);
+        System.out.println(Message.RESULT.msg);
     }
 
     public void printStart() {
-        System.out.println(Message.START);
+        System.out.println(Message.START.msg);
     }
 
     public void printLengthInput() {
-        System.out.println(Message.PUT_LENGTH);
+        System.out.println(Message.PUT_LENGTH.msg);
     }
 
     public void printMoveInput() {
-        System.out.println(Message.PUT_MOVE);
+        System.out.println(Message.PUT_MOVE.msg);
     }
 
     public void printRetry() {
-        System.out.println(Message.RETRY);
+        System.out.println(Message.RETRY.msg);
     }
 
-    public void printComplete() {
-        System.out.println(Message.COMPLETION);
+    public void printComplete(boolean success) {
+        if(success) {
+            System.out.println(Message.COMPLETION.msg + "성공");
+            return;
+        }
+        System.out.println(Message.COMPLETION.msg + "실패");
     }
 
-    public void printTryCount() {
-        System.out.println(Message.TRY_COUNT);
+    public void printTryCount(int tryCount) {
+        System.out.println(Message.TRY_COUNT.msg + String.valueOf(tryCount));
     }
 }

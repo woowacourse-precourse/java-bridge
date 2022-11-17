@@ -16,13 +16,13 @@ dao와 service를 이용해 처리 후 view로 넘김
 
 **기능 요구사항**
 
-| 구현 여부 | 메소드, 생성자 명 | 의미            |
-|:-----:|:-----------|:--------------|
-|   o   | start      | 게임 시작 메소드     |
-|   o   | length     | 길이 입력 메소드     |
-|   o   | move       | 이동 위치 묻는 메소드  |
-|   o   | retry      | 재시작 여부 묻는 메소드 |
-|   o   | end        | 게임 종료 메소드     |
+| 구현 여부 | 메소드, 생성자 명 | 의미                |
+|:-----:|:-----------|:------------------|
+|   o   | start      | 게임 시작 메소드         |
+|   x   | play       | 길이 입력 메소드         |
+|   x   | move       | 이동 위치 묻는 메소드      |
+|   x   | retry      | 이동 상태 계산 및 출력 메소드 |
+|   x   | end        | 게임 종료 메소드         |
 
 # domain Package
 ```
@@ -31,7 +31,7 @@ dao와 service를 이용해 처리 후 view로 넘김
 필요시 전처리를 위해 service를 쓸 수 있음
 ```
 
-## BridgeMaker Class
+## BridgeMaker Class ✓
 ```
 Bridge 게임의 정답지를 만들고
 반환시켜주는 클래스이다.
@@ -39,12 +39,10 @@ Bridge 게임의 정답지를 만들고
 
 **기능 요구사항**
 
-| 구현 여부 | 메소드, 생성자 명  | 의미                            |
-|:-----:|:------------|:------------------------------|
-|   x   | BridgeMaker | BridgeNumberGenerator을 받아서 생성 |
-|   x   | makeBridge  | size에 맞는 랜덤 bridge를 만들고 반환    |
-|   x   |             |                               |
-|   x   |             |                               |
+| 구현 여부  | 메소드, 생성자 명  | 의미                             |
+|:------:|:------------|:-------------------------------|
+|   ✓    | BridgeMaker | BridgeNumberGenerator 을 받아서 생성 |
+|   ✓    | makeBridge  | size 에 맞는 랜덤 bridge 를 만들고 반환   |
 
 # service Package
 ```
@@ -68,7 +66,7 @@ BridgeNumberGenerator Interface의 설계도를
 
 | 구현 여부 | 메소드, 생성자 명 | 의미                       |
 |:-----:|:-----------|:-------------------------|
-|   x   | generate   | 0, 1의 두 정수중에 하나를 랜덤으로 반환 |
+|   o   | generate   | 0, 1의 두 정수중에 하나를 랜덤으로 반환 |
 
 
 ## Validation Class

@@ -16,10 +16,10 @@ public class InputView {
 
 
     public String readMoving() {
-        return null;
+        return Console.readLine();
     }
 
     public String readGameCommand() {
-        return null;
+        return Console.readLine();
     }
 }
