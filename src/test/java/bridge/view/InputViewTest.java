@@ -19,7 +19,7 @@ class InputViewTest {
     @DisplayName("다리 길이가 숫자가 아닌 경우에 대한 예외 처리")
     @CsvSource({"k","&&","f4j"})
     @ParameterizedTest
-    void NonNumericBridgeLength(String string) {
+    void nonNumericBridgeLength(String string) {
         InputStream in = generateUserInput(string);
         System.setIn(in);
 
@@ -31,11 +31,23 @@ class InputViewTest {
     @DisplayName("다리 길이가 3이상 20이하가 아닌 경우에 대한 예외 처리")
     @CsvSource({"2","-33","100"})
     @ParameterizedTest
-    void OutOfRangeBridgeLength(String string) {
+    void outOfRangeBridgeLength(String string) {
         InputStream in = generateUserInput(string);
         System.setIn(in);
 
         assertThatThrownBy(() -> InputView.readBridgeSize())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE);
+    }
+
+    @DisplayName("이동할 칸이 U 또는 D가 아닌 경우에 대한 예외 처리")
+    @CsvSource({"k","...","4","X","ㄸ어모ㅓㅊ"})
+    @ParameterizedTest
+    void invalidType(String string) {
+        InputStream in = generateUserInput(string);
+        System.setIn(in);
+
+        assertThatThrownBy(() -> InputView.readMoving())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE);
     }
