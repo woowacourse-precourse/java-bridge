@@ -67,9 +67,36 @@ public class OutputView {
 
         return "성공";
     }
+
+    private String printLastStair(BridgeGame bridgeGame, String stair) {
+        List<String> bridgeStates = bridgeGame.getBridgeStates();
+        String bridgeState = bridgeStates.get(bridgeGame.getMaxPassedCount());
+
+        if (!bridgeState.equals(stair)) {
+            return "   ";
+        }
+
+        if (bridgeGame.isPlayerDead()) {
+            return " X ";
+        }
+
+        return " O ";
+    }
+
+    private void printResultStair(BridgeGame bridgeGame, String stair) {
+        String result = "[";
+        result += printPassedStair(bridgeGame.getBridgeStates(), bridgeGame.getMaxPassedCount(), stair);
+        result += printLastStair(bridgeGame, stair);
+        result += "]";
+
+        System.out.println(result);
+    }
+
     public void printResult(BridgeGame bridgeGame) {
         System.out.println("최종 게임 결과");
-        printMap(bridgeGame);
+
+        printResultStair(bridgeGame, "U");
+        printResultStair(bridgeGame, "D");
 
         System.out.println("게임 성공 여부: " + printIsSuccess(bridgeGame));
         System.out.println("총 시도한 횟수: " + bridgeGame.getRetryCount());
