@@ -23,8 +23,6 @@ public class BridgeMaker {
         for(int i=0; i<size; i++){
             bridge.add(putToBridge());
         }
-        
-        
         return bridge;
     }
 
@@ -39,7 +37,5 @@ public class BridgeMaker {
         }
         return in;
     }
-
-
 
 }
