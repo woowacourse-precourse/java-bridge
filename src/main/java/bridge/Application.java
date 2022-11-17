@@ -8,14 +8,16 @@ public class Application {
     private static BridgeGame bridgeGame;
     private static BridgeMaker bridgeMaker;
     private static int tryCount;
+    private static String isSuccess;
 
     public static void main(String[] args) {
         System.out.println("다리 건너기 게임을 시작합니다.");
 
         initClass();
 
-        String readValue = inputView.readBridgeSize();
-        int size = checkSize(readValue);
+
+        int size = sizeException();
+
 
         final List<String> bridge = bridgeMaker.makeBridge(size);
         System.out.println(bridge);
@@ -36,15 +38,30 @@ public class Application {
         bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
     }
 
-    public static int checkSize(String str) {
-        int size = 0;
+    public static int checkSize() {
+        String readValue = inputView.readBridgeSize();
+        int size;
         try {
-            size = Integer.parseInt(str);
+            size = Integer.parseInt(readValue);
         } catch (NumberFormatException e) {
-            //throw new IllegalArgumentException("[ERROR] 다시 시도해 주세요.");
-            InputView inputView = new InputView();
-            String s = inputView.readBridgeSize();
-            checkSize(s);
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자만 입력할 수 있습니다.");
+        }
+        return size;
+    }
+
+    public static void checkSizeRange(int size) {
+        if (size < 3 || size > 20)
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3~20 사이의 숫자여야 합니다.");
+    }
+
+    public static int sizeException() {
+        int size;
+        try {
+            size = checkSize();
+            checkSizeRange(size);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            size = sizeException();
         }
         return size;
     }
