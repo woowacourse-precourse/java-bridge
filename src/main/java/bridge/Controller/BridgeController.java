@@ -33,4 +33,14 @@ public class BridgeController {
             return getAnswerBridge();
         }
     }
+
+    public String getMoving() {
+        try {
+            output.printGetMoving();
+            return input.readMoving();
+        } catch (IllegalArgumentException e) {
+            output.printError(e.getMessage());
+            return getMoving();
+        }
+    }
 }
