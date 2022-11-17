@@ -3,7 +3,7 @@ package system;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.EnumStrings;
+import utils.EnumStrings;
 import controller.InputController;
 import view.OutputView;
 import bridge.RealTimeBridge;

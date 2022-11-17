@@ -1,4 +1,4 @@
-package bridge;
+package utils;
 
 public enum EnumStrings {
     PATTERN("^[0-9]*$"),

@@ -1,8 +1,8 @@
 package controller;
 
-import bridge.BridgeSizeValidator;
-import bridge.GameCommandValidator;
-import bridge.MovingValidator;
+import utils.validators.BridgeSizeValidator;
+import utils.validators.GameCommandValidator;
+import utils.validators.MovingValidator;
 import view.InputView;
 import view.OutputView;
 

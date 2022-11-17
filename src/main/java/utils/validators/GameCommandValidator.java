@@ -1,4 +1,4 @@
-package bridge;
+package utils.validators;
 
 public class GameCommandValidator {
 

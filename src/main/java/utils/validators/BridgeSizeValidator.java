@@ -1,6 +1,7 @@
-package bridge;
+package utils.validators;
 
 import java.util.regex.Pattern;
+import utils.EnumStrings;
 
 public class BridgeSizeValidator {
 
