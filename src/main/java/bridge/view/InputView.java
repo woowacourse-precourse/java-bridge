@@ -11,6 +11,7 @@ public class InputView {
     private static final String BRIDGE_LENGTH_INPUT_MESSAGE = "다리의 길이를 입력해주세요.";
     private static final String MOVING_INPUT_MESSAGE = "이동할 칸을 선택해주세요. ";
     private static final String RETRY_OR_QUIT_INPUT_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. ";
+    private static final String TWO_CHOICE_FORMAT = "(%s: %c, %s: %c)";
 
     private final InputConfig inputConfig;
 
@@ -59,8 +60,7 @@ public class InputView {
     }
 
     private String printTwoChoice(Command command1, Command command2) {
-        String tmp = "(%s: %c, %s: %c)";
-        String formatted = String.format(tmp, command1.getKor(), command1.getAbbreviation(), command2.getKor(), command2.getAbbreviation());
+        String formatted = String.format(TWO_CHOICE_FORMAT, command1.getKor(), command1.getAbbreviation(), command2.getKor(), command2.getAbbreviation());
         return formatted;
     }
 }
