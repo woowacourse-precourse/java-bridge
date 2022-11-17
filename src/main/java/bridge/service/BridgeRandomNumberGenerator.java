@@ -1,6 +1,5 @@
 package bridge.service;
 
-import bridge.service.BridgeNumberGenerator;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class BridgeRandomNumberGenerator implements BridgeNumberGenerator {
@@ -10,6 +9,14 @@ public class BridgeRandomNumberGenerator implements BridgeNumberGenerator {
 
     @Override
     public int generate() {
-        return Randoms.pickNumberInRange(RANDOM_LOWER_INCLUSIVE, RANDOM_UPPER_INCLUSIVE);
+        int randomNumber = Randoms.pickNumberInRange(RANDOM_LOWER_INCLUSIVE, RANDOM_UPPER_INCLUSIVE);
+        validGenerateBridgeRandomNumber(randomNumber);
+        return randomNumber;
+    }
+
+    private void validGenerateBridgeRandomNumber(int number) {
+        if (number!=RANDOM_LOWER_INCLUSIVE && number != RANDOM_UPPER_INCLUSIVE) {
+            throw new IllegalStateException();
+        }
     }
 }
