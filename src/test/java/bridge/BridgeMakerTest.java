@@ -25,4 +25,13 @@ class BridgeMakerTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageStartingWith("[ERROR]");
     }
+
+    @DisplayName("다리의 길이로 입력받은 값이 정수형으로 3 이상 20 이하인지 확인한다.")
+    @ValueSource(ints = {2,-3, 0, 21,})
+    @Test
+    void validate_Is_Number_In_Range(BridgeNumberGenerator input) {
+        assertThatThrownBy(()-> new BridgeMaker(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageStartingWith("[ERROR]");
+    }
 }
