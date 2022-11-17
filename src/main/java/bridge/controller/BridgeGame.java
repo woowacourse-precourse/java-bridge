@@ -22,6 +22,7 @@ public class BridgeGame {
 	private String downsideBridge = "";
 
 	public void play() {
+
 	}
 
 	/**
@@ -30,8 +31,33 @@ public class BridgeGame {
 	 * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
 	public void move(String location, List<String> bridge, int index) {
+		setUpsideBridge(location, bridge, index);
+		setDownsideBridge(location, bridge, index);
 	}
 
+	private void setDownsideBridge(String location, List<String> bridge, int index) {
+		if (location.equals(DOWNSIDE) && location.equals(bridge.get(index))) {
+			upsideBridge += (SEPARATOR + BLANK);
+			downsideBridge += (SEPARATOR + RIGHT);
+		}
+		if (location.equals(DOWNSIDE) && !location.equals(bridge.get(index))) {
+			upsideBridge += (SEPARATOR + BLANK);
+			downsideBridge += (SEPARATOR + WRONG);
+			retry();
+		}
+	}
+
+	private void setUpsideBridge(String location, List<String> bridge, int index) {
+		if (location.equals(UPSIDE) && location.equals(bridge.get(index))) {
+			upsideBridge += (SEPARATOR + RIGHT);
+			downsideBridge += (SEPARATOR + BLANK);
+		}
+		if (location.equals(UPSIDE) && !location.equals(bridge.get(index))) {
+			upsideBridge += (SEPARATOR + WRONG);
+			downsideBridge += (SEPARATOR + BLANK);
+			retry();
+		}
+	}
 
 	/**
 	 * 사용자가 게임을 다시 시도할 때 사용하는 메서드
@@ -39,7 +65,6 @@ public class BridgeGame {
 	 * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
 	public boolean retry() {
-		System.out.println(COMMAND_INPUT);
 		String command = input.readGameCommand();
 		if (command.equals(RETRY_GAME)) {
 			return true;
