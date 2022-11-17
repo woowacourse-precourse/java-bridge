@@ -1,4 +1,4 @@
-package bridge.View;
+package bridge.view;
 
 public enum GuideMessageView {
 	START_BRIDGE_GAME_GUIDE_MESSAGE("다리 건너기 게임을 시작합니다.\n"),
@@ -11,7 +11,8 @@ public enum GuideMessageView {
 	TRY_COUNT_GUIDE_MESSAGE("총 시도한 횟수: ");
 
 	private String message;
-	GuideMessageView(String message){
+
+	GuideMessageView(String message) {
 		this.message = message;
 	}
 

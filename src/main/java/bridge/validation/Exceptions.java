@@ -1,4 +1,4 @@
-package bridge.Validation;
+package bridge.validation;
 
 public enum Exceptions {
 	NUMBER_ONLY_EXCEPTION(new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.")),
@@ -9,13 +9,12 @@ public enum Exceptions {
 
 	private IllegalArgumentException exception;
 
-	Exceptions(IllegalArgumentException exception){
+	Exceptions(IllegalArgumentException exception) {
 		this.exception = exception;
 	}
 
 	public IllegalArgumentException getException() {
 		return exception;
 	}
-
 
 }
