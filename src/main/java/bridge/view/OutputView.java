@@ -35,7 +35,7 @@ public class OutputView {
             splitMap[upOrDown] = splitMap[upOrDown].substring(0, splitMap[upOrDown].length() - 1) + "| " + right + " ]";
             splitMap[(upOrDown + 1) % 2] = splitMap[upOrDown].substring(0, splitMap[upOrDown].length() - 1) + "|   ]";
         }
-        Map = splitMap[0] + "\\n" + splitMap[1];
+        Map = splitMap[0] + "\n" + splitMap[1];
         System.out.println(Map);
     }
 
