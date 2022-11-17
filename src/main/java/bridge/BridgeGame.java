@@ -6,19 +6,39 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    int size;
-    int stepNumber;
-    List<String> bridge;
-    BridgeMaker bridgeMaker;
+    private int size;
+    private int stepNumber;
+    private List<String> bridge;
+    private final BridgeMaker bridgeMaker;
 
     public BridgeGame(int size, BridgeMaker bridgeMaker) {
         this.size = size;
         this.bridgeMaker = bridgeMaker;
     }
 
+    public int getSize() {
+        return this.size;
+    }
+
+    public int getStepNumber() {
+        return this.stepNumber;
+    }
+
+    public List<String> getBridge() {
+        return this.bridge;
+    }
+
     public void initializeBridgeGame() {
         this.stepNumber = 0;
         this.bridge = this.bridgeMaker.makeBridge(this.size);
+    }
+
+    public boolean stepCheck(String userInput) {
+        if (this.bridge.get(stepNumber).equals(userInput)) {
+            stepNumber++;
+            return true;
+        }
+        return false;
     }
 
     /**
