@@ -14,4 +14,12 @@ public class ValidateTest {
         assertThatThrownBy(() -> Validate.bridgeSize(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("이동할 칸이 올바른 값이 아니면 예외가 발생한다.")
+    @ValueSource(strings = {"U ", " D", "Dx", "u", "d", "", "F"})
+    @ParameterizedTest
+    void testMoving(String input) {
+        assertThatThrownBy(() -> Validate.bridgeSize(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
