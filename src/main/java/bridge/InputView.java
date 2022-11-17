@@ -4,19 +4,21 @@ package bridge;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-
+    ValidateUserInput validateUserInput = new ValidateUserInput();
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
-        return 0;
+    public int readBridgeSize(String bridgeLength) {
+        validateUserInput.checkBridgeLength(bridgeLength);
+        return Integer.parseInt(bridgeLength);
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public String readMoving(String moveButton) {
+
+        return moveButton;
     }
 
     /**
