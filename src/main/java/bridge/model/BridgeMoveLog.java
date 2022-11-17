@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class BridgeMoveLog {
 
-    private final Map<TypeOfBridge, List<String>> moveLog;
+    private final Map<BridgeType, List<String>> moveLog;
 
     private static final String EMPTY = " ";
 
@@ -15,16 +15,16 @@ public class BridgeMoveLog {
         this.moveLog = initLog(size);
     }
 
-    private Map<TypeOfBridge, List<String>> initLog(int size) {
-        return new EnumMap<>(TypeOfBridge.class) {{
-            for (TypeOfBridge bridgeType : TypeOfBridge.values()) {
+    private Map<BridgeType, List<String>> initLog(int size) {
+        return new EnumMap<>(BridgeType.class) {{
+            for (BridgeType bridgeType : BridgeType.values()) {
                 put(bridgeType, new ArrayList<>(size));
             }
         }};
     }
 
-    public void writeLog(TypeOfBridge selectBridgeType, String status) {
-        for (TypeOfBridge bridgeType : moveLog.keySet()) {
+    public void writeLog(BridgeType selectBridgeType, String status) {
+        for (BridgeType bridgeType : moveLog.keySet()) {
             if (selectBridgeType == bridgeType) {
                 moveLog.get(bridgeType).add(status);
                 continue;
@@ -40,7 +40,7 @@ public class BridgeMoveLog {
         }
     }
 
-    public Map<TypeOfBridge, List<String>> getMoveLog() {
+    public Map<BridgeType, List<String>> getMoveLog() {
         return moveLog;
     }
 }
