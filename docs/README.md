@@ -47,6 +47,7 @@
 - [ ] 게임을 시작한다. - BridgeGameManager#play
   - [x] 다리를 생성한다. - BridgeMaker#makeBridge
     - 위 칸을 건널 수 있는 경우 U, 아래 칸을 건널 수 있는 경우 D값으로 나타낸다.
+    - [x] U와 D로 이루어진 다리로 변환한다. - BridgeConverter#convertString
   - [ ] 다리를 건넌다.
     - [ ] 플레이어가 움직인다.
     - [ ] 플레이어가 재시도한다.
