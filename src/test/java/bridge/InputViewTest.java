@@ -39,4 +39,13 @@ public class InputViewTest {
         assertThatThrownBy(() -> inputView.readBridgeSize())
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void changeInputStringToIntegerTest() {
+        String input = "10";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        InputView inputView = new InputView();
+        assertThat(10).isEqualTo(inputView.readBridgeSize());
+    }
 }
