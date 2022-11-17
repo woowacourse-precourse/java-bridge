@@ -1,6 +1,7 @@
 package bridge;
 
 import static bridge.InputView.inputBridgeSize;
+import static bridge.InputView.inputMovingDirection;
 
 public class Validator {
 
@@ -35,6 +36,32 @@ public class Validator {
         } catch (NullPointerException e) {
             System.out.println(ErrorMessage.INPUT_NULL.getErrorMessage());
             inputBridgeSize();
+        }
+    }
+
+    /**
+     * 플레이어가 이동할 칸 유효성 검사
+     */
+    public static void validateInputDIRECTION(String inputDirection) {
+        try {
+            if (inputDirection != "U" && inputDirection != "D") {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(ErrorMessage.BRIDGE_MOVE_INPUT.getErrorMessage());
+            inputMovingDirection();
+        }
+    }
+
+    public static void validateInputLowerCase(String inputDirection) {
+        char check = inputDirection.charAt(0);
+        try {
+            if (!Character.isUpperCase(check)) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(ErrorMessage.BRIDGE_MOVE_INPUT_LOWERCASE.getErrorMessage());
+            inputMovingDirection();
         }
     }
 }
