@@ -1,12 +1,11 @@
 package bridge;
 
-
 import static bridge.GameRetry.Q;
 import static bridge.GameRetry.R;
 import static bridge.MoveDirection.D;
 import static bridge.MoveDirection.U;
-import static bridge.BridgeLength.MIN;
 import static bridge.BridgeLength.MAX;
+import static bridge.BridgeLength.MIN;
 
 public class InputValidation {
 
@@ -23,6 +22,16 @@ public class InputValidation {
         if (bridgeLength >= MIN.bridgeLength && bridgeLength <= MAX.bridgeLength)
             return true;
         return false;
+    }
+
+    public boolean isValidInputOfBridgeLength(String bridgeLength){
+        if(!isNumber(bridgeLength))
+            return false;
+
+        if(!isValidRange(Integer.parseInt(bridgeLength)))
+            return false;
+
+        return true;
     }
 
 }
