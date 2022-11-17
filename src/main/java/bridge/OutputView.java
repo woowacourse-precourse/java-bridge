@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.*;
+
 import static bridge.ConstantMessage.*;
 
 /**
@@ -26,9 +28,13 @@ public class OutputView {
     public void printRequestMoveDirectionMessage(){
         System.out.println(REQUEST_MOVE_DIRECTION_MESSAGE);
     }
-    
+
     public void printInValidMoveDirectionErrorMessage(){
         System.out.println(INVALID_DIRECTION_MESSAGE);
+    }
+
+    public void printRetryGameMessage(){
+        System.out.println(REQUEST_GAME_RETRY_ANSWER_MESSAGE);
     }
 
     /**
@@ -36,7 +42,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(List<String> bridge , List<String> playerMoveRecord) {
     }
 
     /**
