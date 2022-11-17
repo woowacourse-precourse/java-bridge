@@ -5,6 +5,7 @@ import bridge.domain.strategy.BridgeRandomNumberGenerator;
 import bridge.dto.BridgeSizeDTO;
 import bridge.dto.GameCommandDTO;
 import bridge.dto.MovingDTO;
+import bridge.dto.ResultMapDTO;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -35,6 +36,7 @@ public class BridgeGameController {
         boolean isGameFinished = false;
         while (!isGameFinished) {
             move(bridgeGame);
+            printResultMap(new ResultMapDTO(bridgeGame));
             isGameFinished = isGameFinished(bridgeGame);
         }
     }
@@ -50,6 +52,10 @@ public class BridgeGameController {
     
     private void printMovingInputMessage() {
         outputView.printMovingInputMessage();
+    }
+    
+    private void printResultMap(final ResultMapDTO resultMapDTO) {
+        outputView.printMap(resultMapDTO);
     }
     
     private boolean isGameFinished(final BridgeGame bridgeGame) {

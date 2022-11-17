@@ -10,4 +10,6 @@ public interface State {
     boolean isGameFinished(final int numberOfMoves);
     
     MoveResult state();
+    
+    String moving();
 }

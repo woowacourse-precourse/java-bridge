@@ -7,6 +7,8 @@ import bridge.dto.BridgeSizeDTO;
 import bridge.dto.MovingDTO;
 
 import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -68,5 +70,17 @@ public class BridgeGame {
     
     private State lastState() {
         return states.getLast();
+    }
+    
+    public List<MoveResult> moveResult() {
+        return states.stream()
+                .map(State::state)
+                .collect(Collectors.toList());
+    }
+    
+    public List<String> movings() {
+        return states.stream()
+                .map(State::moving)
+                .collect(Collectors.toList());
     }
 }

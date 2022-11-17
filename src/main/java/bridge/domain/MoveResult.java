@@ -1,5 +1,9 @@
 package bridge.domain;
 
 public enum MoveResult {
-    SUCCESS, FAIL
+    SUCCESS, FAIL;
+    
+    public boolean isSuccess() {
+        return this == SUCCESS;
+    }
 }
