@@ -24,8 +24,4 @@ public class BridgeGame {
     public void gameover() {
 
     }
-
-    public void clearGame() {
-
-    }
 }
