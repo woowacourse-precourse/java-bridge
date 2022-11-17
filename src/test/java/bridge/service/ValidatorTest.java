@@ -73,5 +73,12 @@ class ValidatorTest {
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(ErrorMessage.IS_WRONG_RETRY_STATUS.message());
         }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"R", "Q"})
+        @DisplayName("재시도 입력값이 R 혹은 Q이면 예외를 던지지 않는다.")
+        void correctInputOfRetryStatus(String retryStatus) {
+            assertThatNoException().isThrownBy(() -> validator.validateRetryStatus(retryStatus));
+        }
     }
 }
