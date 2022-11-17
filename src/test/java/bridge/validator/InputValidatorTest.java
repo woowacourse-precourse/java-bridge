@@ -10,13 +10,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class InputValidatorTest {
 
-    InputValidator inputValidator;
-
-    @BeforeEach
-    void init() {
-        inputValidator = new InputValidator();
-    }
-
     @ParameterizedTest
     @CsvSource(value = {"123f", "김현우", "fda"})
     @DisplayName("숫자가 아닐 경우 IllegalArgumentException를 반환합니다.")
@@ -24,7 +17,7 @@ class InputValidatorTest {
 
         //when & then
         assertThrows(IllegalArgumentException.class,
-                     () -> inputValidator.isDigit(input));
+                     () -> InputValidator.isDigit(input));
     }
 
     @ParameterizedTest
@@ -32,7 +25,7 @@ class InputValidatorTest {
     @DisplayName("숫자일 경우 아무것도 반환하지 않습니다.")
     void testIsDigit_success(String input) throws Exception {
         //when & then
-        inputValidator.isDigit(input);
+        InputValidator.isDigit(input);
     }
 
     @ParameterizedTest
@@ -41,7 +34,7 @@ class InputValidatorTest {
     void testIsInBoundary_IllegalArgumentException(String input) throws Exception {
         //when & then
         assertThrows(IllegalArgumentException.class,
-                     () -> inputValidator.isInBoundary(input));
+                     () -> InputValidator.isInBoundary(input));
     }
 
     @ParameterizedTest
@@ -49,6 +42,6 @@ class InputValidatorTest {
     @DisplayName("3이상 20이하의 숫자일 경우 아무것도 반환하지 않습니다.")
     void testIsInBoundary_success(String input) throws Exception {
         //when & then
-        inputValidator.isInBoundary(input);
+        InputValidator.isInBoundary(input);
     }
 }
