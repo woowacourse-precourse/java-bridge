@@ -41,12 +41,4 @@ public class BridgeMaker {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
     }
-
-    public int convertStringToInt(String userInput) {
-        try{
-            return Integer.parseInt(userInput);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
-        }
-    }
 }

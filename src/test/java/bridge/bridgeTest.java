@@ -16,13 +16,11 @@ public class bridgeTest {
 
         BridgeNumberGenerator bridgeNumberGenerator;
         BridgeMaker bridgeMaker;
-
         @BeforeEach
         void setUp() {
             bridgeNumberGenerator = new BridgeRandomNumberGenerator();
             bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         }
-
         @Test
         @DisplayName("다리 사이즈가 3 미만일 때 정상적으로 예외를 던지고 메시지를 출력하는지 테스트")
         void validateBridgeSizeIsFour() {
@@ -40,12 +38,22 @@ public class bridgeTest {
             }).isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("[ERROR] 다리 길이는 3부터");
         }
+    }
 
+
+    @Nested
+    class InputViewTest {
+
+        InputView inputView;
+        @BeforeEach
+        void setUp() {
+            inputView = new InputView();
+        }
         @Test
-        @DisplayName("숫자만 정상적으로 받는지 테스트")
+        @DisplayName("다리 사이즈에서 숫자만 정상적으로 받는지 테스트")
         void validateBridgeSizeIsNumberTest() {
             assertThatThrownBy(() -> {
-                bridgeMaker.convertStringToInt("itCanNotBeConvertedToInt");
+                inputView.convertStringToInt("itCanNotBeConvertedToInt");
             }).isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("[ERROR] 숫자만 입력해주세요.");
         }

@@ -328,4 +328,4 @@ int number = bridgeNumberGenerator.generate();
 
 ### InputView
   #### 기능목록
-  - [ ] 유저로부터 다리 사이즈를 입력 받고 인풋을 검증하는 기능
+  - [x] 유저로부터 다리 사이즈를 입력 받고 인풋을 검증하는 기능
