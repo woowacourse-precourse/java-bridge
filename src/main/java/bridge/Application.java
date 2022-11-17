@@ -18,8 +18,6 @@ public class Application {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
 
         OutputView.printGameStartMessage();
-        OutputView.printInputBridgeSizeMessage();
-
         int bridgeSize = InputView.inputBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 
@@ -71,7 +69,7 @@ public class Application {
                     downSideResult.insert(4*i+4, "]");
                 }
             }
-            // 게임에서 졌을 떄
+            // 게임에서 졌을 다
             if (!bridgeGame.matchMoving(i, moveWord) && moveWord.equals("U")) {
                 upSideResult.insert(4*i+1, " ");
                 upSideResult.insert(4*i+2, "X");
