@@ -28,4 +28,11 @@ public class InputException {
             throw new IllegalArgumentException("[ERROR] Input is Not One Character");
         }
     }
+
+    public void inputInvalidCharException(String input, String terms1, String terms2)
+            throws IllegalArgumentException {
+        if (!(input.equals(terms1) || input.equals(terms2))) {
+            throw new IllegalArgumentException("[ERROR] Input is Not " + terms1 + " or " + terms2);
+        }
+    }
 }
