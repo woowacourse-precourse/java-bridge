@@ -12,4 +12,10 @@ public class Validator {
             throw new IllegalArgumentException("[ERROR] 이동할 칸은 U, D의 입력만 가능합니다.");
         }
     }
+
+    public static void isRestart(String alpha){
+        if(!(alpha == "R" || alpha == "Q")){
+            throw new IllegalArgumentException("[ERROR] 재시작은 R, Q의 입력만 가능합니다.");
+        }
+    }
 }
