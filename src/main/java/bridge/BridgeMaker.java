@@ -1,14 +1,12 @@
 package bridge;
 
 import java.util.List;
-import java.util.regex.Pattern;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
 
-    private static final Pattern INPUT_REGEX = Pattern.compile("^[0-9]*$");
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -25,10 +23,5 @@ public class BridgeMaker {
         return null;
     }
 
-    public static void validateBridgeSizeType(String input) {
-        if (!INPUT_REGEX.matcher(input).matches()) {
-            throw new IllegalArgumentException("숫자만 입력해 주세요.");
-        }
-    }
 
 }
