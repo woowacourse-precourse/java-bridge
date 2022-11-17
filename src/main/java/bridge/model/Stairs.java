@@ -4,7 +4,7 @@ import java.util.List;
 
 import bridge.Error;
 
-public enum Location {
+public enum Stairs {
 	UP("U", 1),
 	DOWN("D", 0),
 	;
@@ -12,7 +12,7 @@ public enum Location {
 	private final String command;
 	private final int number;
 
-	Location(String command, int number) {
+	Stairs(String command, int number) {
 		this.command = command;
 		this.number = number;
 	}
@@ -32,7 +32,7 @@ public enum Location {
 		return 1;
 	}
 
-	public static Location of(int inputValue) {
+	public static Stairs of(int inputValue) {
 		validate(inputValue);
 		if (inputValue == UP.number) {
 			return UP;
@@ -40,7 +40,7 @@ public enum Location {
 		return DOWN;
 	}
 
-	public static Location of(String inputValue) {
+	public static Stairs of(String inputValue) {
 		String upperCase = inputValue.toUpperCase();
 		validate(upperCase);
 		if (upperCase.equals(UP.command)) {
