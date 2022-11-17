@@ -38,20 +38,10 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String reOrNot) {
-        if (reOrNot.equals("R"))
-            return true;
-        return false;
+        return reOrNot.equals("R");
     }
 
     public boolean ifEnd() {
         return where == bridge.size();
-    }
-    
-    public List<String> getBridge() {
-        List<String> get = new ArrayList<>();
-        for (String s: bridge)
-            get.add(s);
-
-        return get;
     }
 }
