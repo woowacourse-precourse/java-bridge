@@ -20,7 +20,7 @@ public class BridgeGame {
     List<String> downBridge = new ArrayList<>();
 
 
-    BridgeGame(List<String> bridge) {
+    public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
     }
 
