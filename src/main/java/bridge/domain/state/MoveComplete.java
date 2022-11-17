@@ -21,4 +21,9 @@ public abstract class MoveComplete extends Started {
     public String moving() {
         return moving;
     }
+    
+    @Override
+    public String toString() {
+        return " {bridge => "+ bridge() + "moving => " + moving + "} ";
+    }
 }

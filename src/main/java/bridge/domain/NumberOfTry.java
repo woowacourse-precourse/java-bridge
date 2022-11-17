@@ -18,4 +18,11 @@ public class NumberOfTry {
     public int numberOfTry() {
         return numberOfTry;
     }
+    
+    @Override
+    public String toString() {
+        return "NumberOfTry{" +
+                "numberOfTry=" + numberOfTry +
+                '}';
+    }
 }
