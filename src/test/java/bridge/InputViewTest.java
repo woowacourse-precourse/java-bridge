@@ -1,9 +1,12 @@
 package bridge;
 
+import org.assertj.core.util.Strings;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.*;
 
 class InputViewTest {
     private InputView inputView = new InputView();
@@ -26,15 +29,31 @@ class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
     }
 
-    @Test
-    void 이동_사용자_입력_검증() {
-        assertThat(inputView.readMoving("U")).isEqualTo("U");
+    @ParameterizedTest
+    @CsvSource(value = {"U:U","D:D"}, delimiter = ':')
+    void 이동_사용자_입력_검증(String input,String result) {
+        assertThat(inputView.readMoving(input)).isEqualTo(result);
     }
 
-    @Test
-    void 이동_사용자_입력_예외_처리() {
-        assertThatThrownBy(() -> inputView.readMoving("AA"))
+    @ParameterizedTest
+    @ValueSource(strings = {"AA","BB","123","A"})
+    void 이동_사용자_입력_예외_처리(String input) {
+        assertThatThrownBy(() -> inputView.readMoving(input))
                 .isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 이동할 칸은 U(위), D(아래)만 선택 가능합니다.");
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {"R:R","Q:Q"}, delimiter = ':')
+    void 게임재시작_사용자_입력_검증(String input, char result) {
+        assertThat(inputView.readGameCommand(input)).isEqualTo(result);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"AA","BB","123","A"})
+    void 게임시작_사용자_입력_예외_처리(String input) {
+        assertThatThrownBy(() -> inputView.readMoving(input))
+                .isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 이동할 칸은 U(위), D(아래)만 선택 가능합니다.");
+    }
+
 
 }
