@@ -18,6 +18,10 @@ public class BridgeGame {
         count = 1;
     }
 
+    public List<String> getBridge() {
+        return bridge;
+    }
+
     public int getCurrentBridgeIndex() {
         return currentBridgeIndex;
     }
