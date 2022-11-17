@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.message.PrintInput;
+import bridge.message.PrintCommon;
 import bridge.message.PrintError;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -13,7 +13,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        PrintInput.INPUT_SIZE.print();
+        PrintCommon.INPUT_SIZE.print();
 
         return inputBridgeSize();
     }
@@ -35,7 +35,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        PrintInput.INPUT_MOVING.print();
+        PrintCommon.INPUT_MOVING.print();
 
         return inputMoving();
     }
@@ -57,7 +57,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        PrintInput.INPUT_RETRY.print();
+        PrintCommon.INPUT_RETRY.print();
 
         return inputCommand();
     }

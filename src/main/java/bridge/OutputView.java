@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.message.PrintInput;
+import bridge.message.PrintCommon;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -56,15 +56,15 @@ public class OutputView {
         printMap(passHistory);
 
         if (outcome) {
-            System.out.println(PrintInput.RESULT + "성공");
+            System.out.println(PrintCommon.RESULT + "성공");
         }
         if (!outcome) {
-            System.out.println(PrintInput.RESULT + "실패");
+            System.out.println(PrintCommon.RESULT + "실패");
         }
-        System.out.println(PrintInput.RESULT_NUMBER.toString() + attempt);
+        System.out.println(PrintCommon.RESULT_NUMBER.toString() + attempt);
     }
 
     public void printStart () {
-        PrintInput.START.print();
+        PrintCommon.START.print();
     }
 }

@@ -1,6 +1,6 @@
 package bridge.message;
 
-public enum PrintInput {
+public enum PrintCommon {
 
     START("다리 건너기 게임을 시작합니다.\n"),
     INPUT_SIZE("다리의 길이를 입력해주세요."),
@@ -11,7 +11,7 @@ public enum PrintInput {
 
     private final String message;
 
-    PrintInput (String message) {
+    PrintCommon(String message) {
         this.message = message;
     }
 
