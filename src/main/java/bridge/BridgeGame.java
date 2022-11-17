@@ -56,9 +56,9 @@ public class BridgeGame {
         Application.outcome = false;
         Application.attempt += 1;
 
-       addFailTrace();
+        addFailTrace();
 
-        return app.retry(passHistory);
+        return app.selectRetry(passHistory);
     }
 
     private void addFailTrace () {
