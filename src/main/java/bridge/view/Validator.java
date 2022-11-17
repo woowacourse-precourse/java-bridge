@@ -17,7 +17,7 @@ public class Validator {
 	}
 
 	static void isCommandValidate(String command) {
-		if (!command.equals(RESTART_GAME) && !command.equals(QUIT_GAME)) {
+		if (!command.equals(RETRY_GAME) && !command.equals(QUIT_GAME)) {
 			throw new IllegalArgumentException(INVALID_INPUT);
 		}
 	}
