@@ -8,4 +8,8 @@ public class Bridge {
     public Bridge(List<String> bridge) {
         this.bridge = bridge;
     }
+
+    public void addBlock(String moving) {
+        bridge.add(moving);
+    }
 }
