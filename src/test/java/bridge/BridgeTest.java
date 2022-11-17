@@ -1,5 +1,6 @@
 package bridge;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -8,6 +9,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BridgeTest {
@@ -59,5 +61,13 @@ public class BridgeTest {
         Bridge bridge = new Bridge(List.of("U", "D", "U", "D"));
         GameStatus gameStatus = bridge.cross(4, BridgeMark.UP);
         assertThat(gameStatus.isFail()).isTrue();
+    }
+
+    @DisplayName("다리의 길이가 3 미만이면 예외 발생")
+    @Test
+    void validateMinimumLength() {
+        assertThatThrownBy(() -> new Bridge(List.of("U", "U")))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 다리의 길이는 3이상 20이하이어야 합니다.");
     }
 }
