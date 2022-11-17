@@ -1,6 +1,8 @@
 package bridge;
 
 
+import bridge.validator.BridgeLengthValidate;
+import bridge.validator.MovementValidate;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -21,7 +23,13 @@ public class InputView {
 	public int readBridgeSize() {
 		System.out.println("다리의 길이를 입력해주세요.");
 		String userInput = Console.readLine();
+		checkBridgeSize(userInput);
 		return Integer.parseInt(userInput);
+	}
+
+	private static void checkBridgeSize(String userInput) {
+		BridgeLengthValidate.validateNumber(userInput);
+		BridgeLengthValidate.validateRange(userInput);
 	}
 
 	/**
@@ -29,7 +37,16 @@ public class InputView {
 	 */
 	public String readMoving() {
 		System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-		return Console.readLine();
+		String userInput = Console.readLine();
+		checkMoving(userInput);
+		return userInput;
+	}
+
+	private static void checkMoving(String userInput) {
+		MovementValidate.validateCharacter(userInput);
+		MovementValidate.validateEnglish(userInput);
+		MovementValidate.validateUpperCase(userInput);
+		MovementValidate.validateExactCharacter(userInput);
 	}
 
 	/**

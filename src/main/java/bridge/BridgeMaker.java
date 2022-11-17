@@ -26,12 +26,12 @@ public class BridgeMaker {
 	 */
 	public List<String> makeBridge(int size) {
 		Bridge bridge = Bridge.createBridge();
-		List<Integer> bridgeRandomNumbers = makeBridgeNumber(size);
+		List<Integer> bridgeRandomNumbers = makeBridgeNumbers(size);
 		modifyBridgeData(bridge, bridgeRandomNumbers);
 		return bridge.getBridgeLetters();
 	}
 
-	private List<Integer> makeBridgeNumber(int size) {
+	private List<Integer> makeBridgeNumbers(int size) {
 		BridgeRandomNumberGenerator randomNumberGenerator = new BridgeRandomNumberGenerator();
 		List<Integer> bridgeNumbers = new ArrayList<>();
 		for (int i = 0; i < size; i++) {
