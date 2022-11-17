@@ -1,4 +1,4 @@
-package bridge.model.service.numbergenerator;
+package bridge.util.numbergenerator;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
