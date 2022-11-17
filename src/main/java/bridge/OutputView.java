@@ -28,4 +28,8 @@ public class OutputView {
     public void printBridgeSizeInputMessage() {
         System.out.println(InformationMessage.BRIDGE_LENGTH.getMessage());
     }
+
+    public void printPositionSelectionMessage() {
+        System.out.println(InformationMessage.POSITION_SELECTION.getMessage());
+    }
 }
