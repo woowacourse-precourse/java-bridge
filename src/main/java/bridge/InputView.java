@@ -74,6 +74,7 @@ public class InputView {
             size = size * 10 + input.charAt(i) - 48;
         }
         if (size < 3 || size > 20) {
+            setError(RANGE);
             throw new IllegalArgumentException();
         }
     }
