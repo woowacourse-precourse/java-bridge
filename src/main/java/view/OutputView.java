@@ -25,7 +25,11 @@ public class OutputView {
     public void printResult() {
     }
 
-    public static void printStartGame(){
+    public void printStartGame(){
         System.out.println(START_BRIDGE_GAME);
+    }
+
+    public void printReceiveBridgeSize(){
+        System.out.println(RECEIVE_BRIDGE_SIZE);
     }
 }
