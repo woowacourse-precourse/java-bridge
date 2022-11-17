@@ -35,5 +35,11 @@ class BridgeGameTest {
         assertThat(bridgeGame.retry("R")).isTrue();
     }
 
+    @DisplayName("그만두기로 한 경우 false 반환")
+    @Test
+    void quit() {
+        assertThat(bridgeGame.retry("Q")).isFalse();
+    }
+
 
 }
