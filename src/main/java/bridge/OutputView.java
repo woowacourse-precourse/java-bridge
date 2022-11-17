@@ -20,4 +20,8 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    public static void printError(String errorMessage){
+        System.out.println(errorMessage);
+    }
 }
