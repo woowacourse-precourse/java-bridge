@@ -13,7 +13,7 @@ public class InputException {
         try {
             Integer.parseInt(number);
         }catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
+            throw new IllegalArgumentException(NumberFormatExceptionMessage.NUMBER_FORMAT_EXCEPTION_MESSAGE.getNumberFormatExceptionMessage());
         }
     }
 

@@ -18,18 +18,11 @@ public class BridgeMaker {
      * @param size 다리의 길이
      * @return 입력받은 길이에 해당하는 다리 Frame [  |  |  ]
      */
-    private List<String> makeBridgeFrame(int size) {
-//        List<String> frame1 = new ArrayList<>();
-//        List<String> frame2 = new ArrayList<>();
-//        frame1.add("[ O |  | O ]");
-//        frame2.add("[  | O |  ]");
-//        for (String s : frame1) {
-//            System.out.println(s);
-//        }
-//
-//        for (String s : frame2) {
-//            System.out.println(s);
-//        }
+    private List<String> makeBridgeFrame(int size, int randomBridgeSpace) {
+        List<String> test = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+
+        }
         return null;
     }
     // private List<String makeBridgeAblePosition()
@@ -40,15 +33,21 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> upAndDown = new ArrayList<>();
-        int number = 0;
         for (int i = 0; i < size; i++) {
-            number = bridgeNumberGenerator.generate();
-            if (number == 1) {
-                upAndDown.add("U");
-            } else if (number == 0) {
-                upAndDown.add("D");
-            }
+            upAndDown.add(makeBridgeSpace());
         }
         return upAndDown;
+    }
+
+    private String makeBridgeSpace() {
+        int generate = bridgeNumberGenerator.generate();
+        String space = "";
+        if (generate == 1) {
+            space = "U";
+        }
+        if (generate == 0) {
+            space = "D";
+        }
+        return space;
     }
 }

@@ -14,8 +14,10 @@ public class Controller {
         try {
             InputView inputView = new InputView();
             int bridgeSize = inputView.readBridgeSize();
-
             bridgeMaker.makeBridge(bridgeSize);
+//            if (inputView.readMoving().equals("U")) {
+//                System.out.println("[ O ] " +" \n" + "[   ]");
+//            }
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
