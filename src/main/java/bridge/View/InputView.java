@@ -35,6 +35,7 @@ public class InputView {
     public String readMoving() {
         String inputUpDown = readLine();
         errorUtil.errorInputReadMoving(inputUpDown);
+        errorUtil.errorInputCount(inputUpDown);
         return inputUpDown;
     }
 
@@ -44,6 +45,7 @@ public class InputView {
     public String readGameCommand() {
         String inputRetry = readLine();
         errorUtil.errorInputRetry(inputRetry);
+        errorUtil.errorInputCount(inputRetry);
         return inputRetry;
     }
 }

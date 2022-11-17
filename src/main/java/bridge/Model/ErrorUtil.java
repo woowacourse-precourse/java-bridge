@@ -26,4 +26,10 @@ public class ErrorUtil {
             throw new IllegalArgumentException("[ERROR] 재시작, 종료는 R이나 Q 중 한 글자여야 합니다.");
         }
     }
+
+    public void errorInputCount(String inputCharacter) {
+        if (inputCharacter.length() != 1) {
+            throw new IllegalArgumentException("[ERROR] 입력할 글자 수는 1개여야 합니다.");
+        }
+    }
 }
