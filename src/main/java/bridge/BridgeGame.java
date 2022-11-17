@@ -20,6 +20,7 @@ public class BridgeGame {
         this.randomBridge = randomBridge;
         this.passHistory = new ArrayList<>();
     }
+
     public boolean move(String choiceUpAndDown) {
         clearBridge();
 
@@ -40,7 +41,7 @@ public class BridgeGame {
         }
     }
 
-    public boolean canPass (String choiceUpAndDown) {
+    private boolean canPass (String choiceUpAndDown) {
         this.passHistory.add(choiceUpAndDown);
 
         return randomBridge.get(passHistory.size()-1).equals(choiceUpAndDown);
