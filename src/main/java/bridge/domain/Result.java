@@ -23,7 +23,7 @@ public class Result {
     }
 
     public int handleUpBridge(String input, int position) {
-        if (input.equals(InputKey.U.getValue())) {
+        if (InputKey.isUp(input)) {
             upBridgeStatus[position] = O_FLAG;
             return position;
         }
@@ -32,7 +32,7 @@ public class Result {
     }
 
     public int handleDownBridge(String input, int position) {
-        if (input.equals(InputKey.D.getValue())) {
+        if (InputKey.isDown(input)) {
             downBridgeStatus[position] = O_FLAG;
             return position;
         }
@@ -60,9 +60,7 @@ public class Result {
 
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder("최종 게임 결과\n");
-        result.append(this + "\n");
-        result.append("게임 성공 여부: ");
+        StringBuilder result = new StringBuilder("게임 성공 여부: ");
         if (upBridgeStatus[upBridgeStatus.length - 1] == O_FLAG ||
                 downBridgeStatus[downBridgeStatus.length - 1] == O_FLAG) {
             result.append("성공\n");
