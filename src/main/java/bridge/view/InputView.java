@@ -10,17 +10,17 @@ public class InputView {
 
     private Validate validate = new Validate();
     private OutputView outputView = new OutputView();
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        outputView.printSetSize();
         try {
-            outputView.printSetSize();
             String size = Console.readLine();
             validate.validateBridgeSize(size);
             return Integer.parseInt(size);
-        }
-        catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             outputView.printException(e);
             return readBridgeSize();
         }
@@ -52,9 +52,10 @@ public class InputView {
             String gameDestination = Console.readLine();
             validate.validateGameDefinition(gameDestination);
             return gameDestination;
-        }catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             outputView.printException(e);
             return readGameCommand();
         }
     }
+
 }

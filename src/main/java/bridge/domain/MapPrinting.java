@@ -6,14 +6,12 @@ import java.util.List;
 
 public class MapPrinting {
 
-    List<Boolean> upCapable = new ArrayList<>();
-    List<Boolean> downCapable = new ArrayList<>();
-    static List<Integer> upDownLocation = new ArrayList<>();
-    OutputView outputView = new OutputView();
-    static final int UP=1;
-    static final int DOWN=0;
-    int nowIndex;
-    static boolean restart=false;
+    private List<Boolean> upCapable;
+    private List<Boolean> downCapable;
+    private static List<Integer> upDownLocation = new ArrayList<>();
+    private OutputView outputView = new OutputView();
+    private int nowIndex;
+    private static boolean stop =false;
 
 
     public MapPrinting(List<Boolean> upCapable, List<Boolean> downCapable, int nowIndex) {
@@ -23,15 +21,15 @@ public class MapPrinting {
     }
 
     public static boolean isMoveStop() {
-        return restart;
+        return stop;
     }
 
     public static void clearUpDownLocation() {
         upDownLocation.clear();
     }
 
-    public static void setRestart() {
-        restart=false;
+    public static void initRestart() {
+        stop =false;
     }
 
     public void makeList(){
@@ -42,20 +40,19 @@ public class MapPrinting {
     }
 
 
-
-    public void makeUpList(){
+    private void makeUpList(){
         String upListString = "[ ";
-
+        final int UP=1;
         upListString = upListString + addString(upCapable, UP);
         upListString = upListString + "]";
         outputView.printMap(upListString);
     }
 
-    private String addString(List<Boolean> capable, int upDown) {
+    private String addString(List<Boolean> bridgeCapable, int upDown) {
         String ListString = "";
-        for(int i=0; i< capable.size(); i++){
-            ListString= ListString+ chooseString(capable, i, upDown);
-            if(i == capable.size()-1){
+        for(int i=0; i< bridgeCapable.size(); i++){
+            ListString= ListString + chooseString(bridgeCapable, i, upDown);
+            if(isIndexBetweenSpace(i, bridgeCapable.size() - 1)){
                 continue;
             }
             ListString = ListString + "| ";
@@ -63,20 +60,24 @@ public class MapPrinting {
         return ListString;
     }
 
+    private boolean isIndexBetweenSpace(int i, int bridgeCapable) {
+        return i == bridgeCapable;
+    }
+
     private String chooseString(List<Boolean> bridgeCapable, int i, int upDown) {
         if(bridgeCapable.get(i) && upDownLocation.get(i)==upDown){
             return "O ";
         }
         if(!bridgeCapable.get(i) && upDownLocation.get(i)==upDown){// capable이 갈 수 있는지? 여부 다리가 잇는지, updownLocation 지금 내가 있는 위치  updown은 출력하고자하는 위치
-            restart=true;
+            stop =true;
             return "X ";
         }
         return "  ";
     }
 
-    public void makeDownList(){
+    private void makeDownList(){
         String downListString = "[ ";
-
+        final int DOWN= 0;
         downListString = downListString + addString(downCapable, DOWN);
         downListString = downListString + "]";
         outputView.printMap(downListString);

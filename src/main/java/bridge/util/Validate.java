@@ -41,7 +41,7 @@ public class Validate {
             }
         }
         catch(IllegalArgumentException e){
-            throw new IllegalArgumentException("dk");
+            throw new IllegalArgumentException("[ERROR] 선택은 R 또는 Q로 결정시킬 수 있습니다!");
         }
     }
 

@@ -1,12 +1,9 @@
-package bridge;
+package bridge.domain;
 
-import bridge.domain.MapPrinting;
-import bridge.domain.RestartProcess;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -15,19 +12,17 @@ public class BridgeGame {
 
 
 
-    List<String> moving = new ArrayList<>();
-    List<Boolean> upPrint = new ArrayList<>();
-    List<Boolean> downPrint = new ArrayList<>();
+    private List<String> moving = new ArrayList<>();
+    private List<Boolean> upPrint = new ArrayList<>();
+    private List<Boolean> downPrint = new ArrayList<>();
 
-    OutputView outputView = new OutputView();
+    private OutputView outputView = new OutputView();
     static final int UP=1;
     static final int DOWN=0;
-    RestartProcess restartProcess = new RestartProcess();
+    JudgeDestination judgeDestination = new JudgeDestination();
     private static int count=0;
-    int nowIndex;
-    boolean restart=false;
-    InputView inputView = new InputView();
-    List<String> mapBridge = new ArrayList<>();
+    private InputView inputView = new InputView();
+    private List<String> mapBridge = new ArrayList<>();
 
 
     public BridgeGame(List<String> mapBridge) {
@@ -43,10 +38,10 @@ public class BridgeGame {
         int idx=0;
         clearInfo();
         while(idx<bridgeSize && !MapPrinting.isMoveStop()){
-            System.out.println("mapBridge = " + mapBridge);
+            System.out.println("mapBridge = " + mapBridge); // 출력시 어디가 갈 수 있는 칸인지 확인하기 위한 역할
             moving.add(inputView.readMoving());
             setPrintBool(upPrint, downPrint, convertNowIndex(mapBridge.get(idx)));
-            MapPrinting mapPrinting = getMapPrinting(upPrint,downPrint, moving.get(idx));
+            MapPrinting mapPrinting = makeBridgeMap(upPrint,downPrint, moving.get(idx));
             idx++;
         }
         retry(idx,bridgeSize, mapBridge);
@@ -59,7 +54,7 @@ public class BridgeGame {
         MapPrinting.clearUpDownLocation();
     }
 
-    private MapPrinting getMapPrinting(List<Boolean> upPrint, List<Boolean> downPrint,
+    private MapPrinting makeBridgeMap(List<Boolean> upPrint, List<Boolean> downPrint,
         String nowIndex) {
         MapPrinting mapPrinting = new MapPrinting(upPrint, downPrint,convertNowIndex(nowIndex));
         mapPrinting.makeList();
@@ -104,8 +99,8 @@ public class BridgeGame {
     }
 
     private boolean isRestartTrue(int idx, int bridgeSize, List<String> mapBridge) {
-        if(isRestart(idx, bridgeSize)){
-            MapPrinting.setRestart();
+        if(judgementRetry(idx, bridgeSize)){
+            MapPrinting.initRestart();
             move(mapBridge, bridgeSize);
             return true;
         }
@@ -120,17 +115,18 @@ public class BridgeGame {
         return false;
     }
 
-    private boolean isRestart(int idx, int bridgeSize) {
-
-        return restartProcess.restart(idx, bridgeSize);
+    private boolean judgementRetry(int idx, int bridgeSize) {
+        return judgeDestination.judgeRestartOrOver(idx, bridgeSize);
     }
 
     private void isRightQuit(int idx, int bridgeSize) {
+        int nowLocation = convertNowIndex(moving.get(idx - 1));
+        MapPrinting resultMapPrinting = new MapPrinting(upPrint,downPrint,nowLocation);
         if(bridgeSize == idx && !MapPrinting.isMoveStop()){
-            outputView.printResult(count, new MapPrinting(upPrint, downPrint, convertNowIndex(moving.get(idx -1))), true);
+            outputView.printResult(count, resultMapPrinting, true);
             return;
         }
-        outputView.printResult(count, new MapPrinting(upPrint, downPrint, convertNowIndex(moving.get(idx -1))), false);
+        outputView.printResult(count, resultMapPrinting, false);
     }
 
 }
