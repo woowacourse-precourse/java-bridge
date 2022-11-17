@@ -12,8 +12,8 @@ public class BridgeGame {
 
     }
 
-    public void newBridge() {
-        this.bridge = new Bridge(null);
+    public void newBridge(int bridgeLength) {
+        this.bridge = new Bridge(bridgeLength);
     }
 
     /**
