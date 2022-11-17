@@ -47,25 +47,40 @@ public class OutputView {
     }
 
     public void printMap(List<String> upSide, List<String> downSide) {
-        System.out.print("[ ");
-        for (int i = 0; i < upSide.size(); i++) {
-            System.out.print(upSide.get(i));
-            if (i != upSide.size() - 1 && upSide.size() > 1) {
-                System.out.print(" | ");
-            }
+        printStartSquareBracket();
+        printSide(upSide);
+        printEndSquareBracket();
 
-        }
-        System.out.println(" ]");
-
-        System.out.print("[ ");
-        for (int i = 0; i < downSide.size(); i++) {
-            System.out.print(downSide.get(i));
-            if (i != downSide.size() - 1 && upSide.size() > 1) {
-                System.out.print(" | ");
-            }
-        }
-        System.out.println(" ]");
+        printStartSquareBracket();
+        printSide(downSide);
+        printEndSquareBracket();
         insertLineBreak();
+    }
+
+    public void printSide(List<String> side) {
+        for (int index = 0; index < side.size(); index++) {
+            System.out.print(side.get(index));
+            if (index < lastIndex(side)) {
+                printDelimeter();
+            }
+        }
+    }
+
+    public int lastIndex(List<String> side){
+        return side.size() - 1;
+    }
+
+
+    public void printStartSquareBracket() {
+        System.out.print("[ ");
+    }
+
+    public void printDelimeter() {
+        System.out.print(" | ");
+    }
+
+    public void printEndSquareBracket() {
+        System.out.println(" ]");
     }
 
     public void printResult(List<String> upSide, List<String> downSide, int countTryNumber) {
