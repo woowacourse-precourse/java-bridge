@@ -1,42 +1,36 @@
 package bridge.businesslogic;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import static org.assertj.core.util.Lists.newArrayList;
 
 public class Bridge {
     private final List<String> bridge;
-    private int howManyBridgesCrossed;
+    private final List<String> currentlyCrossedBridge;
 
     public Bridge(BridgeMaker bridgeMaker, int size) {
         this.bridge = bridgeMaker.makeBridge(size);
-        this.howManyBridgesCrossed = 0;
+        this.currentlyCrossedBridge = new ArrayList<>();
     }
 
     public boolean isSelectedBridgesRight(String usersPick){
+        int howManyBridgesCrossed = currentlyCrossedBridge.size();
         String existingBridges = bridge.get(howManyBridgesCrossed);
         return existingBridges.equals(usersPick);
     }
 
-    public void crossBridge(){
-        howManyBridgesCrossed++;
+    public void crossBridge(String userPick){
+        currentlyCrossedBridge.add(userPick);
     }
 
     public void dead(){
-        howManyBridgesCrossed = 0;
+
     }
 
     public boolean isBridgeAllCrossed(){
-        return (howManyBridgesCrossed == bridge.size());
+        return (currentlyCrossedBridge.size()== bridge.size());
     }
 
-    public List<String> getAlreadyCrossedBridge(String isSelectCorrect){
-        List<String> alreadyCrossedBridge = newArrayList();
-        alreadyCrossedBridge.add(isSelectCorrect);
-
-        for(int i = 0; i < howManyBridgesCrossed; i++){
-            alreadyCrossedBridge.add(bridge.get(i));
-        }
-        return alreadyCrossedBridge;
+    public List<String> getAlreadyCrossedBridge(){
+        return currentlyCrossedBridge;
     }
 }
