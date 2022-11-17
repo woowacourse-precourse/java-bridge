@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +19,24 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        return null;
+        validateSize(size);
+
+        List<String> bridgeBoards = new ArrayList<>();
+        while(size-->0){
+            makeBoard(bridgeBoards);
+        }
+        return bridgeBoards;
+    }
+
+    private void validateSize(int size) {
+
+    }
+
+    private void makeBoard(List<String> bridgeBoards) {
+        if(bridgeNumberGenerator.generate()==1){
+            bridgeBoards.add(GameRule.UP_BOARD);
+        } else if(bridgeNumberGenerator.generate()==0){
+            bridgeBoards.add(GameRule.DOWN_BOARD);
+        }
     }
 }
