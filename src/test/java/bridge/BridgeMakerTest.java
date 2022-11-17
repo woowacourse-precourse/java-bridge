@@ -23,6 +23,5 @@ public class BridgeMakerTest {
             () -> assertThat(bridge).containsOnly("U", "D"),
             () -> assertThat(bridge.size()).isEqualTo(size)
         );
-
     }
 }
