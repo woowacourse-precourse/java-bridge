@@ -40,10 +40,13 @@
 - Random 값 추출은 제공된 `bridge.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
 - `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 변경할 수 없다.
 
+
+
 # 기능 목록
 ## 도메인 로직
 - [ ] 게임을 시작한다. - BridgeGameManager#play
-  - [ ] 다리를 생성한다.
+  - [x] 다리를 생성한다. - BridgeMaker#makeBridge
+    - 위 칸을 건널 수 있는 경우 U, 아래 칸을 건널 수 있는 경우 D값으로 나타낸다.
   - [ ] 다리를 건넌다.
     - [ ] 플레이어가 움직인다.
     - [ ] 플레이어가 재시도한다.
