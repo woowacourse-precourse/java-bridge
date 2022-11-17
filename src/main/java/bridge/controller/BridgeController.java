@@ -1,19 +1,19 @@
 package bridge.controller;
 
+import bridge.domain.BridgeMaker;
+import bridge.domain.generator.BridgeRandomNumberGenerator;
 import bridge.domain.vo.BridgeSize;
-import bridge.view.InputView;
-import bridge.view.OutputView;
+
+import java.util.List;
+
+import static bridge.view.InputView.*;
 
 public class BridgeController {
-    private final InputView inputView;
-    private final OutputView outputView;
 
-    public BridgeController(InputView inputView, OutputView outputView){
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public BridgeController(){
     }
 
     public void start() {
-        BridgeSize bridgeSize = inputView.readBridgeSize();
+        BridgeSize bridgeSize = readBridgeSize();
     }
 }

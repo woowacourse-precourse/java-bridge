@@ -8,33 +8,28 @@ import camp.nextstep.edu.missionutils.Console;
 import static bridge.domain.vo.BridgeSize.createBridgeSize;
 import static bridge.domain.vo.GameCommand.createGameCommand;
 import static bridge.domain.vo.Moving.createMoving;
+import static bridge.view.OutputView.*;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    private final OutputView outputView;
-
-    public InputView() {
-        this.outputView = new OutputView();
-    }
-
     /**
      * 다리의 길이를 입력받는다.
      */
-    public BridgeSize readBridgeSize() {
-        outputView.printBridgeSizeRequestMessage();
+    public static BridgeSize readBridgeSize() {
+        printBridgeSizeRequestMessage();
         String bridgeSizeInput = Console.readLine();
         BridgeSize bridgeSize = createBridgeSize(bridgeSizeInput);
-        outputView.printEnter();
+        printEnter();
         return bridgeSize;
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public Moving readMoving() {
-        outputView.printMovingRequestMessage();
+    public static Moving readMoving() {
+        printMovingRequestMessage();
         String movingInput = Console.readLine();
         return createMoving(movingInput);
     }
@@ -42,8 +37,8 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public GameCommand readGameCommand() {
-        outputView.printGameCommandRequestMessage();
+    public static GameCommand readGameCommand() {
+        printGameCommandRequestMessage();
         String gameCommandInput = Console.readLine();
         return createGameCommand(gameCommandInput);
     }

@@ -24,19 +24,19 @@ public class OutputView {
     public void printResult() {
     }
 
-    public void printEnter() {
+    public static void printEnter() {
         System.out.println();
     }
 
-    public void printBridgeSizeRequestMessage() {
+    public static void printBridgeSizeRequestMessage() {
         System.out.println(BRIDGE_SIZE_REQUEST_MESSAGE);
     }
 
-    public void printMovingRequestMessage() {
+    public static void printMovingRequestMessage() {
         System.out.println(MOVING_REQUEST_MESSAGE);
     }
 
-    public void printGameCommandRequestMessage() {
+    public static void printGameCommandRequestMessage() {
         System.out.println(GAME_COMMAND_REQUEST_MESSAGE);
     }
 }
