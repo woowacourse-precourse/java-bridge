@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -22,7 +21,16 @@ public class MakeBridgeTest {
         Method method = runGame.getClass().getDeclaredMethod("getBridge", int.class);
         method.setAccessible(true);
         checkList = (List<String>)method.invoke(runGame,5);
-        assertThat(checkList).containsOnly("U","D");
+        assertThat(check(checkList)).isTrue();
+    }
+
+    private boolean check(List<String> checkList) {
+        for (int i = 0; i < checkList.size(); i++) {
+            if (!(checkList.get(i).equals("U") || checkList.get(i).equals("D"))){
+                return false;
+            }
+        }
+        return true;
     }
 
     @DisplayName("bridge의 파라미터로 받은 length이 값을 기준으로 생성되는지 테스트")
