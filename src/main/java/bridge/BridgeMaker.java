@@ -1,6 +1,13 @@
 package bridge;
 
+import static bridge.controller.BridgeController.RANGE_END;
+import static bridge.controller.BridgeController.RANGE_START;
+
+import bridge.model.Direction;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -18,6 +25,32 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        return null;
+        validate(size);
+        return IntStream.range(0, size)
+                .map(i -> bridgeNumberGenerator.generate())
+                .mapToObj(this::generateDirection)
+                .collect(Collectors.toList());
     }
+
+    private void validate(int size) {
+        if (outOfRange(size)) {
+            throw new IllegalArgumentException(
+                    String.format("다리 길이는 %d부터 %d 사이의 숫자여야 합니다. 입력 : %d", RANGE_START,
+                            RANGE_END, size));
+        }
+    }
+
+    private boolean outOfRange(int size) {
+        return RANGE_START > size || RANGE_END < size;
+    }
+
+    private String generateDirection(int number) {
+        return Arrays.stream(Direction.values())
+                .filter(direction -> direction.isMatchGenerateCode(number))
+                .findFirst()
+                .map(Direction::getDirection)
+                .orElseThrow(() -> new IllegalStateException(
+                        String.format("생성 불가능한 코드입니다. 입력 : %d", number)));
+    }
+
 }
