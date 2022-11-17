@@ -25,4 +25,11 @@ class BridgeGameTest {
         GameStatus gameStatus = bridgeGame.move(1, "U");
         assertThat(gameStatus.isContinue()).isTrue();
     }
+
+    @DisplayName("플레이어가 한 라운드 플레이하면 게임 실패 결과 반환")
+    @Test
+    void moveResultFail() {
+        GameStatus gameStatus = bridgeGame.move(3, "U");
+        assertThat(gameStatus.isFail()).isTrue();
+    }
 }
