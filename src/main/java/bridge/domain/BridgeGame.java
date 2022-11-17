@@ -35,7 +35,6 @@ public class BridgeGame {
             return true;
         }
         addFail(inputPosition);
-        index++;
         return false;
     }
 
