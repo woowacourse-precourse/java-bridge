@@ -75,13 +75,13 @@ public class BridgeGame {
     public List<MoveResult> moveResult() {
         return states.stream()
                 .map(State::state)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
     
     public List<String> movings() {
         return states.stream()
                 .map(State::moving)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
     
     public int numberOfTry() {
