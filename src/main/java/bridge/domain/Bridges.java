@@ -19,4 +19,9 @@ public class Bridges {
             this.bridges.add(Bridge.create(bridgeState));
         });
     }
+
+    public boolean isCrossAllBridges() {
+        return bridges.stream()
+                .allMatch(Bridge::isAlreadyCrossed);
+    }
 }

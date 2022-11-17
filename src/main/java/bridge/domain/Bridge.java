@@ -14,4 +14,8 @@ public class Bridge {
     public static Bridge create(BridgeState bridgeState) {
         return new Bridge(bridgeState);
     }
+
+    public boolean isAlreadyCrossed() {
+        return this.alreadyCrossed;
+    }
 }

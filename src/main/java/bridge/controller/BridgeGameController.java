@@ -17,10 +17,10 @@ public class BridgeGameController {
         this.outputView = new OutputView();
     }
 
-    public void play() {
+    public void start() {
         outputView.printStart();
         create();
-        move();
+        play();
     }
 
     private void create() {
@@ -28,8 +28,10 @@ public class BridgeGameController {
         bridgeGame.create(dto);
     }
 
-    private void move() {
-        BridgeSpaceDto dto = inputView.readMoving();
-        bridgeGame.move(dto);
+    private void play() {
+        while (bridgeGame.isCrossAllBridges()) {
+            BridgeSpaceDto dto = inputView.readMoving();
+            bridgeGame.move(dto);
+        }
     }
 }
