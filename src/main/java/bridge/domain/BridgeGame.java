@@ -11,12 +11,13 @@ import java.util.StringJoiner;
 public class BridgeGame {
     private static final char O_FLAG = 'O';
     private static final char X_FLAG = 'X';
-    public static final int DIFFERENCE_TO_BE_BLANK = 32;
+    public static final int BLANK = 32;
 
     private final List<String> bridge;
     private final char[] upBridgeStatus;
     private final char[] downBridgeStatus;
     private int position = -1;
+    private int tryCount = 1;
     private int count = 0;
 
     public BridgeGame(List<String> bridge) {
@@ -24,8 +25,8 @@ public class BridgeGame {
         this.upBridgeStatus = new char[bridge.size()];
         this.downBridgeStatus = new char[bridge.size()];
         for (int i = 0; i < bridge.size(); i++) {
-            upBridgeStatus[i] = DIFFERENCE_TO_BE_BLANK;
-            downBridgeStatus[i] = DIFFERENCE_TO_BE_BLANK;
+            upBridgeStatus[i] = BLANK;
+            downBridgeStatus[i] = BLANK;
         }
     }
 
@@ -72,11 +73,12 @@ public class BridgeGame {
      */
     public void retry() {
         for (int i = 0; i < bridge.size(); i++) {
-            upBridgeStatus[i] = DIFFERENCE_TO_BE_BLANK;
-            downBridgeStatus[i] = DIFFERENCE_TO_BE_BLANK;
+            upBridgeStatus[i] = BLANK;
+            downBridgeStatus[i] = BLANK;
         }
         position = -1;
         count = 0;
+        tryCount++;
     }
 
     @Override
