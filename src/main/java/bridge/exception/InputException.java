@@ -45,6 +45,12 @@ public class InputException {
     public void inputMoveException(String input) {
         inputNullException(input);
         inputNoOneCharException(input);
-        inputInvalidCharException(input, "U", "R");
+        inputInvalidCharException(input, "U", "D");
+    }
+
+    public void inputRestartException(String input) {
+        inputNullException(input);
+        inputNoOneCharException(input);
+        inputInvalidCharException(input, "R", "Q");
     }
 }
