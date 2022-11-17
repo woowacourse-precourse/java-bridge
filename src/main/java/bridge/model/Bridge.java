@@ -2,14 +2,19 @@ package bridge.model;
 
 public class Bridge {
 
-    private static StringBuilder upperBridge = new StringBuilder();
-    private static StringBuilder lowerBridge = new StringBuilder();
+    private final StringBuilder upperBridge;
+    private final StringBuilder lowerBridge;
 
-    public static StringBuilder getUpperBridge() {
+    public Bridge(StringBuilder upperBridge, StringBuilder lowerBridge) {
+        this.upperBridge = upperBridge;
+        this.lowerBridge = lowerBridge;
+    }
+
+    public StringBuilder getUpperBridge() {
         return upperBridge;
     }
 
-    public static StringBuilder getLowerBridge() {
+    public StringBuilder getLowerBridge() {
         return lowerBridge;
     }
 }

@@ -31,8 +31,11 @@ class OutputViewTest extends NsTest {
     void outputViewTest2() {
         //given
         OutputView outputView = new OutputView();
-        StringBuilder upperBridge = Bridge.getUpperBridge();
-        StringBuilder lowerBridge = Bridge.getLowerBridge();
+        StringBuilder sb = new StringBuilder();
+        StringBuilder sb2 = new StringBuilder();
+        Bridge bridge = new Bridge(sb, sb2);
+        StringBuilder upperBridge = bridge.getUpperBridge();
+        StringBuilder lowerBridge = bridge.getLowerBridge();
         //when
         outputView.writeInitUpperBridge(upperBridge, lowerBridge, true);
         outputView.writeUpperBridge(upperBridge, lowerBridge, true);
@@ -49,8 +52,11 @@ class OutputViewTest extends NsTest {
     void outputViewTest3() {
         //given
         OutputView outputView = new OutputView();
-        StringBuilder upperBridge = Bridge.getUpperBridge();
-        StringBuilder lowerBridge = Bridge.getLowerBridge();
+        StringBuilder sb = new StringBuilder();
+        StringBuilder sb2 = new StringBuilder();
+        Bridge bridge = new Bridge(sb, sb2);
+        StringBuilder upperBridge = bridge.getUpperBridge();
+        StringBuilder lowerBridge = bridge.getLowerBridge();
         //when
         outputView.writeInitUpperBridge(upperBridge, lowerBridge, true);
         outputView.writeUpperBridge(upperBridge, lowerBridge, true);
