@@ -11,7 +11,7 @@ public class InputView {
 
     private static final String POSITIVE_NUMBER_INPUT_ERROR_MESSAGE = "[ERROR] 양의 숫자를 입력하여야 합니다.";
 
-    private static final String NUMBER_REGEX = "^\\d*[1-9]$";
+    private static final String POSITIVE_NUMBER_REGEX = "^[1-9]+\\d*$";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -42,7 +42,7 @@ public class InputView {
     }
 
     private void validateIsPositiveNumber(String input){
-        if(input.matches(NUMBER_REGEX)){
+        if(input.matches(POSITIVE_NUMBER_REGEX)){
             return;
         }
         throw new IllegalArgumentException(POSITIVE_NUMBER_INPUT_ERROR_MESSAGE);
