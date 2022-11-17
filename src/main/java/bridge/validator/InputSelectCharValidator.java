@@ -35,6 +35,22 @@ public class InputSelectCharValidator {
         }
     }
     
+    private static boolean isNotMatchSelectCharFormat(final String selectChar, final int selectCharValidateNumber) {
+        return !matcher(selectChar, selectCharForm(selectCharValidateNumber)).matches();
+    }
+    
+    private static String selectCharForm(final int selectCharValidateNumber) {
+        return inputSelectCharValidatorSort.get(selectCharValidateNumber);
+    }
+    
+    private static Matcher matcher(final String selectChar, final String correctInputForm) {
+        return compiler(correctInputForm).matcher(selectChar);
+    }
+    
+    private static Pattern compiler(final String correctInputForm) {
+        return Pattern.compile(correctInputForm);
+    }
+    
     private static String parseErrorMessage(final int selectCharValidatorNumber) {
         if (isMovingSelectNumber(selectCharValidatorNumber)) {
             return MOVING_SELECT_ERROR_MESSAGE;
@@ -45,17 +61,5 @@ public class InputSelectCharValidator {
     
     private static boolean isMovingSelectNumber(final int selectCharValidatorNumber) {
         return selectCharValidatorNumber == MOVING_SELECT_CHAR_VALIDATE_NUMBER;
-    }
-    
-    private static boolean isNotMatchSelectCharFormat(final String selectChar, final int selectCharValidatorNumber) {
-        return !matcher(selectChar, inputSelectCharValidatorSort.get(selectCharValidatorNumber)).matches();
-    }
-    
-    private static Matcher matcher(final String selectChar, final String correctInputForm) {
-        return compiler(correctInputForm).matcher(selectChar);
-    }
-    
-    private static Pattern compiler(final String correctInputForm) {
-        return Pattern.compile(correctInputForm);
     }
 }

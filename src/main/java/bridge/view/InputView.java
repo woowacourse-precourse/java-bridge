@@ -19,8 +19,8 @@ public class InputView {
      */
     public BridgeSizeDTO readBridgeSize(final OutputView outputView) {
         printBridgeSizeInputMessage(outputView);
-        final String inputBridgeSize = Console.readLine();
         try {
+            final String inputBridgeSize = Console.readLine();
             InputBridgeSizeValidator.validate(inputBridgeSize);
             return new BridgeSizeDTO(Integer.parseInt(inputBridgeSize));
         } catch (final IllegalArgumentException raisedException) {
@@ -55,9 +55,20 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public GameCommandDTO readGameCommand() {
-        final String inputGameCommand = Console.readLine();
+    public GameCommandDTO readGameCommand(final OutputView outputView) {
+        printGameCommandInputMessage(outputView);
+        try {
+            final String inputGameCommand = Console.readLine();
+            InputSelectCharValidator.validate(inputGameCommand, RETRY_SELECT_CHAR_VALIDATOR_NUMBER);
+            return new GameCommandDTO(inputGameCommand);
+        } catch (final IllegalArgumentException raisedException) {
+            System.out.println(raisedException.getMessage());
+            return readGameCommand(outputView);
+        }
         
-        return new GameCommandDTO(inputGameCommand);
+    }
+    
+    private void printGameCommandInputMessage(final OutputView outputView) {
+        outputView.printGameCommandInputMessage();
     }
 }

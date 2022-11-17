@@ -72,13 +72,8 @@ public class BridgeGameController {
     }
     
     private String inputGameCommand() {
-        printGameCommandInputMessage();
-        final GameCommandDTO gameCommandDTO = inputView.readGameCommand();
+        final GameCommandDTO gameCommandDTO = inputView.readGameCommand(outputView);
         return gameCommandDTO.getGameCommand();
-    }
-    
-    private void printGameCommandInputMessage() {
-        outputView.printGameCommandInputMessage();
     }
     
     private void initBridgeGameForRetry(final BridgeGame bridgeGame) {
