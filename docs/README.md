@@ -19,7 +19,7 @@
   - [x] 게임을 재시작하거나 종료할 수 있다 - BridgeGame#retry()
     - [x] 잘못된 값을 입력하면 IllegalArgumentException 발생시킨다 - Validation#validateReOrEnd()
    - [x] 재시작해도 처음에 만든 다리로 재사용한다 - BridgeGame#start()
-   - [] 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때 까지 시도한 횟수를 나타낸다 - BridgeGame#calculateTryCount()
+   - [x] 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때 까지 시도한 횟수를 나타낸다 - BridgeGame#calculateTryCount()
 
 - [x] 출력
   - [x] 다리 건너기 게임 시작 안내 메시지 (다리 건너기 게임을 시작합니다.) - GuideMessageView#startBridgeGameGuideMessage

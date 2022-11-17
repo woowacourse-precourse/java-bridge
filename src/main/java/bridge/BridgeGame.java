@@ -24,9 +24,10 @@ public class BridgeGame {
 		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 		List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
 		boolean isRe = false;
+		int moveCount = 0;
 
 		do {
-			int moveCount = 0;
+			moveCount = 0;
 			initMap(bridgeSize);
 
 			do {
@@ -38,8 +39,7 @@ public class BridgeGame {
 			} while (!isClearCrossBridge() && !isFailCrossBridge());
 
 			if (isClearCrossBridge()) {
-				GuideMessageView.GAME_RESULT_GUIDE_MESSAGE.printMessage();
-				outputView.printMap(map, moveCount);
+				isRe = false;
 			}
 
 			if (isFailCrossBridge()) {
@@ -47,6 +47,14 @@ public class BridgeGame {
 			}
 
 		}while(isRe);
+
+		//최종 게임 결과
+		GuideMessageView.GAME_RESULT_GUIDE_MESSAGE.printMessage();
+		outputView.printMap(map,moveCount);
+
+
+
+
 	}
 
 	private boolean isFailCrossBridge() {
