@@ -28,11 +28,11 @@ public class BridgeGame {
         return gameService.isRetry(retryMessage);
     }
 
-    public void clear() {
-        gameService.restart();
-    }
-
     public boolean isGameClear(List<String> bridge) {
         return gameService.isGameClear(bridge);
+    }
+
+    public FinalMessage getResult() {
+        return gameService.getFinalMessage();
     }
 }

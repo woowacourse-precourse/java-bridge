@@ -18,12 +18,10 @@ public class BridgeGameService {
         return bridge.get(round++).equals(moveMessage);
     }
 
-    public void restart() {
-        round = 0;
-    }
 
     public boolean isRetry(String retryMessage) {
         if (retryMessage.equals(RESTART_GAME)) {
+            round = 0;
             tryCount++;
             return true;
         }
@@ -36,5 +34,9 @@ public class BridgeGameService {
             return true;
         }
         return false;
+    }
+
+    public FinalMessage getFinalMessage() {
+        return new FinalMessage(tryCount, isGameClear);
     }
 }

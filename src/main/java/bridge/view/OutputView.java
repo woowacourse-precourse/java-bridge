@@ -3,6 +3,7 @@ package bridge.view;
 import static bridge.constant.BridgeConstant.LOWER_BLOCK;
 import static bridge.constant.BridgeConstant.UPPER_BLOCK;
 
+import bridge.FinalMessage;
 import bridge.MessageToResult;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,5 +66,20 @@ public class OutputView {
     public void clear() {
         upperBlocks.clear();
         lowerBlocks.clear();
+    }
+
+    public void printFinalMessage(FinalMessage finalMessage) {
+        System.out.println("최종 게임 결과");
+        printEachMessage(upperBlocks);
+        printEachMessage(lowerBlocks);
+        System.out.printf("게임 성공 여부: %s\n", getIsGameClear(finalMessage));
+        System.out.printf("총 시도한 횟수: %s\n", finalMessage.getTryCount());
+    }
+
+    private String getIsGameClear(FinalMessage finalMessage) {
+        if (finalMessage.isGameClear()) {
+            return "성공";
+        }
+        return "실패";
     }
 }
