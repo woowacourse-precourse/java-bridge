@@ -12,8 +12,12 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println("다리의 길이를 입력해주세요.");
-        return sc.nextInt();
+        System.out.println("\n다리의 길이를 입력해주세요.");
+        try{
+            return sc.nextInt();
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException();
+        }
     }
 
     /**
