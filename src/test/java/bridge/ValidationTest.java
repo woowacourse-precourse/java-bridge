@@ -16,4 +16,15 @@ public class ValidationTest {
         assertThat(ValidationUtil.isValidBridgeLength(2)).isFalse();
         assertThat(ValidationUtil.isValidBridgeLength(21)).isFalse();
     }
+
+    @DisplayName("U 혹은 D인지 확인한다.")
+    @Test
+    void upOrDown() {
+        assertThat(ValidationUtil.isUpOrDown("U")).isTrue();
+        assertThat(ValidationUtil.isUpOrDown("D")).isTrue();
+
+        assertThat(ValidationUtil.isUpOrDown("A")).isFalse();
+        assertThat(ValidationUtil.isUpOrDown("1")).isFalse();
+        assertThat(ValidationUtil.isUpOrDown("*")).isFalse();
+    }
 }

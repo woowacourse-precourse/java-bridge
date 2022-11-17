@@ -6,4 +6,9 @@ public class ValidationUtil {
         return value >= ConstVariable.MIN_BRIDGE_LENGTH.getValue()
                 && value <= ConstVariable.MAX_BRIDGE_LENGTH.getValue();
     }
+
+    public static boolean isUpOrDown(String input) {
+        return input.equals(InputKey.U.getValue()) ||
+                input.equals(InputKey.D.getValue());
+    }
 }
