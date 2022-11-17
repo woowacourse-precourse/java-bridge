@@ -22,4 +22,21 @@ public class GameMessage {
         }
     }
 
+    public enum Result {
+        FINAL_GAME_RESULT("최종 게임 결과"),
+        SUCCESS_OR_NOT("게임 성공 여부: "),
+        SUCCESS("성공"),
+        FAIL("실패"),
+        TOTAL_TRY("총 시도한 횟수: %d");
+        private final String contents;
+
+        Result(String contents) {
+            this.contents = contents;
+        }
+
+        public String getContents() {
+            return contents;
+        }
+    }
+
 }
