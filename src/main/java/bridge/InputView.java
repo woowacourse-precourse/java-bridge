@@ -25,6 +25,7 @@ public class InputView {
     public String readMoving() {
         System.out.println(INPUT_MOVING_MESSAGE);
         String inputMoving = Console.readLine();
+        Validation.validateMovingInput(inputMoving);
         return inputMoving;
     }
 
