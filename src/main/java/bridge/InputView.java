@@ -8,8 +8,13 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
-        return 0;
+    public int readBridgeSize(String input) {
+        try{
+            int bridgeLength = Integer.parseInt(input);
+            return bridgeLength;
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력하셔야 합니다.");
+        }
     }
 
     /**
@@ -25,4 +30,14 @@ public class InputView {
     public String readGameCommand() {
         return null;
     }
+
+    private int validateNotNumber(String input){
+        try{
+            int len = Integer.parseInt(input);
+            return len;
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력하셔야 합니다.");
+        }
+    }
+
 }
