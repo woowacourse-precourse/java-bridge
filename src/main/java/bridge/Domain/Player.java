@@ -37,4 +37,10 @@ public class Player {
     public void success() {
         this.nextLocation++;
     }
+
+    public void revive() {
+        this.alive = true;
+        this.nextLocation = 0;
+    }
+
 }

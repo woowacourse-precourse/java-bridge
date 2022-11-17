@@ -44,6 +44,21 @@ public class Application {
         }
     }
 
+    public static void inputCommand(BridgeGame bridgeGame) {
+        boolean exceptionFlag = true;
+
+        while(exceptionFlag) {
+            exceptionFlag = false;
+            try {
+                String command = inputView.readGameCommand();
+                bridgeGame.retry(command);
+            } catch (IllegalArgumentException illegalArgumentException) {
+                System.out.println(illegalArgumentException.getMessage());
+                exceptionFlag = true;
+            }
+        }
+    }
+
     public static void run(BridgeGame bridgeGame) {
         while(!bridgeGame.winGame() && !bridgeGame.isPlayerDead()) {
             inputMoving(bridgeGame);
@@ -55,7 +70,13 @@ public class Application {
     public static void main(String[] args) {
         BridgeGame bridgeGame = initiateBridgeGame();
 
-        run(bridgeGame);
+        do {
+            run(bridgeGame);
+            if (bridgeGame.isPlayerDead()) {
+                inputCommand(bridgeGame);
+            }
+        } while(bridgeGame.winGame() || bridgeGame.isPlayerDead());
+
         outputView.printResult(bridgeGame);
     }
 }
