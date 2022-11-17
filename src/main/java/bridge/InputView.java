@@ -6,6 +6,8 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private static final int MIN_LENGTH = 3;
+    private static final int MAX_LENGTH = 20;
 
     public String input() {
         return Console.readLine();
@@ -18,7 +20,7 @@ public class InputView {
         String size = input();
         validateIsNotEmpty(size);
         validateIsNumber(size);
-        return 0;
+        return validateIsLengthRange(size);
     }
 
     /**
@@ -46,5 +48,13 @@ public class InputView {
         if(!size.matches(regExp)) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력할 수 있습니다.");
         }
+    }
+
+    public int validateIsLengthRange(String input) {
+        int size = Integer.parseInt(input);
+        if(size < MIN_LENGTH || size > MAX_LENGTH) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
+        return size;
     }
 }
