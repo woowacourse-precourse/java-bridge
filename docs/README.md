@@ -22,9 +22,9 @@
     7) 총 시도한 횟수 출력
 
 ### 3. 다리 생성
-    1) 값에 따라 다리 생성
+    1) 값에 따라 다리 생성 (List<String> makeBridge)
 
 ### 4. 다리 게임
     1) 문자에 따라 이동 (U, D) (void move)
         - 이동 로그 작성 (void creatingLog)
-    2) 문자에 따라 게임 재시작 여부 결정(R, Q)
+    2) 문자에 따라 게임 재시작 여부 결정(R, Q) (void retry)
