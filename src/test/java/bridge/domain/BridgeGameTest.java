@@ -34,13 +34,49 @@ class BridgeGameTest {
         assertThat(result).isEqualTo(false);
     }
 
+    @DisplayName("bridge 가 U 일때 같은 position 으로 이동하면 upBridge 에 ' O ', downBridge 에 '   ' 를 저장한다.")
+    @Test
+    void moveTest3() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U"));
+        bridgeGame.move("U");
+        assertThat(bridgeGame.getUpBridge()).isEqualTo(List.of(" O "));
+        assertThat(bridgeGame.getDownBridge()).isEqualTo(List.of("   "));
+    }
+
+    @DisplayName("bridge 가 U 일때 다른 position 으로 이동하면 upBridge 에 '   ', downBridge 에 ' X ' 를 저장한다.")
+    @Test
+    void moveTest4() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U"));
+        bridgeGame.move("D");
+        assertThat(bridgeGame.getUpBridge()).isEqualTo(List.of("   "));
+        assertThat(bridgeGame.getDownBridge()).isEqualTo(List.of(" X "));
+    }
+
+    @DisplayName("bridge 가 D 일때 같은 position 으로 이동하면 upBridge 에 '   ', downBridge 에 ' O ' 를 저장한다.")
+    @Test
+    void moveTest5() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("D"));
+        bridgeGame.move("D");
+        assertThat(bridgeGame.getUpBridge()).isEqualTo(List.of("   "));
+        assertThat(bridgeGame.getDownBridge()).isEqualTo(List.of(" O "));
+    }
+
+    @DisplayName("bridge 가 D 일때 다른 position 으로 이동하면 upBridge 에 ' X ', downBridge 에 '   ' 를 저장한다.")
+    @Test
+    void moveTest6() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("D"));
+        bridgeGame.move("U");
+        assertThat(bridgeGame.getUpBridge()).isEqualTo(List.of(" X "));
+        assertThat(bridgeGame.getDownBridge()).isEqualTo(List.of("   "));
+    }
+
     @DisplayName("move()를 통해 증가한 index 값이 retry()를 통해 0으로 초기화 된다.")
     @Test
     void retry() {
         bridgeGame.move("U");
         bridgeGame.move("D");
         bridgeGame.move("D");
-        assertThat(bridgeGame.getIndex()).isEqualTo(2);
+        assertThat(bridgeGame.getIndex()).isEqualTo(3);
         bridgeGame.retry();
         assertThat(bridgeGame.getIndex()).isEqualTo(0);
     }
