@@ -6,6 +6,10 @@ import static bridge.ConstantMessage.*;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+
+    public void printGameStartMessage(){
+        System.out.println(BRIDGE_GAME_START_MESSAGE);
+    }
     
     public void printRequestBridgeLengthMessage(){
         System.out.println(REQUEST_BRIDGE_LENGTH_MESSAGE);
