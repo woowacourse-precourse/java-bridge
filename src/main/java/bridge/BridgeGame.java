@@ -19,6 +19,14 @@ public class BridgeGame {
         this.nowBridgeDown = "[";
     }
 
+    public String getNowBridgeUp() {
+        return this.nowBridgeUp;
+    }
+
+    public String getNowBridgeDown() {
+        return this.nowBridgeDown;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>

@@ -21,11 +21,11 @@ public class Application {
         return bridgeMaker.makeBridge(bridgeSize);
     }
 
-    static boolean gameProgress(InputView input, BridgeGame bridgeGame, int bridgeSize) {
+    static boolean gameProgress(InputView input, BridgeGame bridgeGame, int bridgeSize, OutputView output) {
         for (int step = 0; step < bridgeSize; step++) {
             String nextStep = readMoving(input);
             boolean rightStep = bridgeGame.move(nextStep, step);
-            // 스텝 후 현재 상황 출력
+            output.printMap(bridgeGame);    // 시스템 현재 상황 출력
             if (rightStep && step == bridgeSize - 1) return true;    // 게임 종료로 분기
             if (!rightStep) return false;   // 게임 재시도 여부로 분기
             bridgeGame.nextStepRecord();
@@ -46,7 +46,8 @@ public class Application {
             int bridgeSize = readBridgeSize(input);
             List<String> bridge = makeBridge(bridgeSize);
             BridgeGame bridgeGame = new BridgeGame(bridge);
-            boolean gameResult = gameProgress(input, bridgeGame, bridgeSize);
+            OutputView output = new OutputView();
+            boolean gameResult = gameProgress(input, bridgeGame, bridgeSize, output);
         } catch (IllegalArgumentException exception) {
             System.out.print("[ERROR] ");
             System.out.println(exception.getMessage());
