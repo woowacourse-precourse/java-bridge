@@ -5,7 +5,8 @@ import java.util.regex.Pattern;
 public class ValidateInput {
     private enum regexPatterns{
         ONLY_DIGIT("^[0-9]+$"),
-        U_OR_D("^[UD]$");
+        U_OR_D("^[UD]$"),
+        R_OR_Q("^[RQ]$");
 
         final String regex;
 
@@ -31,6 +32,13 @@ public class ValidateInput {
     public static void isUorD(String rawInput){
         boolean isUorD = Pattern.matches(regexPatterns.U_OR_D.regex, rawInput);
         if (!isUorD){
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void isRorQ(String rawInput){
+        boolean isRorQ = Pattern.matches(regexPatterns.R_OR_Q.regex, rawInput);
+        if (!isRorQ){
             throw new IllegalArgumentException();
         }
     }
