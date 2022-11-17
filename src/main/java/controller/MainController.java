@@ -1,6 +1,6 @@
 package controller;
 
-import model.User;
+import model.Bridge;
 import view.InputView;
 import view.OutputView;
 
@@ -9,7 +9,7 @@ public class MainController {
     InputView inputView = new InputView();
     public void run(){
         startGame();
-        User user = getUserIncludeBridgeSize();
+        Bridge bridge = getBridgeContainBridgeSize();
 
     }
 
@@ -17,10 +17,10 @@ public class MainController {
         outputView.printStartGame();
     }
 
-    public User getUserIncludeBridgeSize(){
+    public Bridge getBridgeContainBridgeSize(){
         printReceiveBridgeSize();
         int bridgeSize = readBridgeSize();
-        return new User(bridgeSize);
+        return new Bridge(bridgeSize);
     }
 
 
