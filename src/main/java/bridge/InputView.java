@@ -1,15 +1,44 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
 
+    private InputView() {
+    }
+
+    private static class InputViewHelper {
+        private static final InputView INSTANCE = new InputView();
+    }
+
+    public static InputView getInstance() {
+        return InputViewHelper.INSTANCE;
+    }
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        int bridgeSize;
+        try {
+            System.out.println("다리 건너기 게임을 시작합니다.");
+            bridgeSize = Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_EXCEPTION.getMessage());
+        }
+
+        validateBridgeSize(bridgeSize);
+
+        return bridgeSize;
+    }
+
+    private void validateBridgeSize(int bridgeSize) {
+        if (bridgeSize < 3 || 20 < bridgeSize) {
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_EXCEPTION.getMessage());
+        }
     }
 
     /**

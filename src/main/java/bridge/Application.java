@@ -1,8 +1,17 @@
 package bridge;
 
 public class Application {
+    private static InputView inputView = InputView.getInstance();
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        start();
+    }
+
+    private static void start() {
+        constructBridge();
+    }
+
+    private static void constructBridge() {
+        int bridgeSize = inputView.readBridgeSize();
     }
 }
