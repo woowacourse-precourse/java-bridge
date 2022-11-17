@@ -20,4 +20,22 @@ public class BridgeValue {
             return value;
         }
     }
+
+    public enum Drawing {
+        LEFT_SIDE("[ "),
+        RIGHT_SIDE("]"),
+        DIVISION("| "),
+        MOVE_ABLE_VALUE("O "),
+        UN_MOVE_ABLE_VALUE("X ");
+
+        private final String structure;
+
+        Drawing(String structure) {
+            this.structure = structure;
+        }
+
+        public String getStructure() {
+            return structure;
+        }
+    }
 }
