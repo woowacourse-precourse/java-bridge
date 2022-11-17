@@ -2,11 +2,12 @@
 
 ## 기능 목록
 
-- [ ] 다리 생성 기능 -BridgeMaker#makeBridge()
+- [x] 다리 생성 기능 -BridgeMaker#makeBridge()
+  - [x] 다리 U, D 변환 기능 -BridgeMaker#bridgeUpDown()
   - [x] 다리의 길이 입력 기능 -InputView#readBridgeSize()
     - [x] 다리의 길이 숫자가 아닌 경우 예외 처리 기능 -UserException#parseInt()
     - [x] 다리의 길이 범위를 벗어나는 경우 예외 처리 기능 -UserException#numberRange()
-- [ ] 다리를 랜덤 생성 하는 기능 -BridgeRandomNumberGenerator#generate()
+- [x] 다리를 랜덤 생성 하는 기능 -BridgeRandomNumberGenerator#generate()
 - [ ] 사다리 이동 기능 -BridgeGame#move()
   - [ ] 이동할 칸 입력 기능 -InputView#readMoving()
 - [ ] 다리 건너기 성공 실패 판별하는 기능 
