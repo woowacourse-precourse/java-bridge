@@ -68,4 +68,19 @@ class InputViewTest {
             assertThat(out.toString()).contains(error);
         }
     }
+
+    @DisplayName("재시작 입력 예외")
+    @Test
+    void restartException() {
+        String input = "r";
+        in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        OutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        try {
+            inputView.readGameCommand();
+        } catch (NoSuchElementException e) {
+            assertThat(out.toString()).contains(error);
+        }
+    }
 }
