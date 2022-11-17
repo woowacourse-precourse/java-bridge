@@ -6,13 +6,15 @@ import bridge.constant.GameCommand;
 import bridge.constant.Moving;
 import bridge.constant.PrintMessage;
 import camp.nextstep.edu.missionutils.Console;
-import java.util.stream.Stream;
 
 public class InputView {
+    private String getInput(String inputString) {
+        System.out.print(inputString);
+        return Console.readLine();
+    }
 
     public int readBridgeSize() {
-        System.out.print(PrintMessage.INPUT_BRIDGE_SIZE.getString());
-        String inputBridgeSize = Console.readLine();
+        String inputBridgeSize = getInput(PrintMessage.INPUT_BRIDGE_SIZE.getString());
         try {
             validateBridgeSize(inputBridgeSize);
         } catch (IllegalArgumentException e) {
@@ -23,9 +25,7 @@ public class InputView {
     }
 
     public String readMoving() {
-        System.out.printf(PrintMessage.INPUT_MOVING.getString(),
-                Stream.of(Moving.values()).map(Enum::toString).toArray());
-        String inputMoving = Console.readLine();
+        String inputMoving = getInput(PrintMessage.INPUT_MOVING.getString());
         try {
             validateMoving(inputMoving);
         } catch (IllegalArgumentException e) {
@@ -36,9 +36,7 @@ public class InputView {
     }
 
     public String readGameCommand() {
-        System.out.printf(PrintMessage.INPUT_GAME_COMMAND.getString(),
-                Stream.of(GameCommand.values()).map(Enum::toString).toArray());
-        String inputGameCommand = Console.readLine();
+        String inputGameCommand = getInput(PrintMessage.INPUT_GAME_COMMAND.getString());
         try {
             validateGameCommand(inputGameCommand);
         } catch (IllegalArgumentException e) {
