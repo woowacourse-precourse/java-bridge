@@ -2,7 +2,6 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,6 +9,8 @@ import java.util.List;
  */
 public class BridgeGame {
     OutputView printMessage = new OutputView();
+    private int bridgeLength = 1;
+    private int gameCount = 1;
 
     public static void main(String[] args) {
         BridgeGame test = new BridgeGame();
@@ -22,35 +23,7 @@ public class BridgeGame {
         printMessage.printAskBridgeLength();
         List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize(Console.readLine()));
         System.out.println(bridge);
-        int [] upCase = new int[bridge.size()];
-        int [] downCase = new int[bridge.size()];
-        printMessage.printAskMovingButton();
-        int length = 1;
-        int gameCount = 1;
-        for (int i = 0; i < bridge.size(); i++) {
-            String input = Console.readLine();
-            if(!move(bridge.get(i), input)){
-                if(input.equals("U"))
-                    upCase[i] += 2;
-                if(input.equals("D"))
-                    downCase[i] += 2;
-                printMessage.printMap(upCase, downCase, length);
-                gameCount++;
-                return;
-            }
-            if(bridge.get(i).equals("U")){
-                upCase[i]++;
-            }
-            if(bridge.get(i).equals("D")){
-                downCase[i]++;
-            }
-            printMessage.printMap(upCase, downCase, length);
-            length++;
-        }
-        printMessage.printMapResult();
-        printMessage.printMap(upCase, downCase, length - 1);
-        printMessage.printGameResult();
-        printMessage.printGameTries(gameCount);
+        gameLogic(bridge);
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -69,6 +42,46 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(List<String> bridge) {
+        gameLogic(bridge);
+    }
+    public void gameLogic(List<String> bridge){
+        InputView inputView = new InputView();
+        int [] upCase = new int[bridge.size()];
+        int [] downCase = new int[bridge.size()];
+        printMessage.printAskMovingButton();
+        bridgeLength = 1;
+        for (int i = 0; i < bridge.size(); i++) {
+            String input = inputView.readMoving(Console.readLine());
+            if(!move(bridge.get(i), input)){
+                if(input.equals("U"))
+                    upCase[i] += 2;
+                if(input.equals("D"))
+                    downCase[i] += 2;
+                printMessage.printMap(upCase, downCase, bridgeLength);
+                gameCount++;
+                printMessage.printAskGameRestart();
+                String gameCommand = inputView.readGameCommand(Console.readLine());
+                if(gameCommand.equals("R")) {
+                    retry(bridge);
+                    return;
+                }
+                printMessage.printGameFailed();
+                printMessage.printGameTries(gameCount);
+                return;
+            }
+            if(bridge.get(i).equals("U")){
+                upCase[i]++;
+            }
+            if(bridge.get(i).equals("D")){
+                downCase[i]++;
+            }
+            printMessage.printMap(upCase, downCase, bridgeLength);
+            bridgeLength++;
+        }
+        printMessage.printMapResult();
+        printMessage.printMap(upCase, downCase, bridgeLength - 1);
+        printMessage.printGameSuccess();
+        printMessage.printGameTries(gameCount);
     }
 }
