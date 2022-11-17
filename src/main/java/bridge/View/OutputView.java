@@ -22,12 +22,7 @@ public class OutputView {
     public void printFirstRow(ArrayList<Field> userBridge) {
         System.out.println("[ ");
         for(int i=0; i< userBridge.size(); i++){
-            Field field = userBridge.get(i);
-            if(field.getLocation().equals("U") && field.isCorrection()){
-                System.out.println("O");
-            } else if(field.getLocation().equals("U") && !field.isCorrection()){
-                System.out.println("X");
-            }
+            printCorrectOrNot(userBridge.get(i), "U");
             if(i != userBridge.size() -1){
                 System.out.println(" | ");
             }
@@ -38,17 +33,20 @@ public class OutputView {
     public void printSecondRow(ArrayList<Field> userBridge) {
         System.out.println("[ ");
         for(int i=0; i< userBridge.size(); i++){
-            Field field = userBridge.get(i);
-            if(field.getLocation().equals("D") && field.isCorrection()){
-                System.out.println("O");
-            } else if(field.getLocation().equals("D") && !field.isCorrection()){
-                System.out.println("X");
-            }
+            printCorrectOrNot(userBridge.get(i), "D");
             if(i != userBridge.size() -1){
                 System.out.println(" | ");
             }
         }
         System.out.println(" ]");
+    }
+
+    private void printCorrectOrNot(Field field, String position){
+        if(field.getLocation().equals(position) && field.isCorrection()){
+            System.out.println("O");
+        } else if(field.getLocation().equals(position) && !field.isCorrection()){
+            System.out.println("X");
+        }
     }
 
     /**
