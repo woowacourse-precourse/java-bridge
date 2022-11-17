@@ -28,4 +28,16 @@ public class BridgeGameStarter {
         result = bridgeGame.move(inputView.readMoving(), bridge, 0);
         outputView.printMap(result);
     }
+
+    public boolean run() {
+        int index = 1;
+        while (!bridgeGame.isGameDone(result) && index < bridge.size()) {
+            outputView.printInputMoving();
+            result = bridgeGame.move(inputView.readMoving(), bridge, index);
+            outputView.printMap(result);
+            index ++;
+        }
+        outputView.printInputGameCommand();
+        return bridgeGame.retry(inputView.readGameCommand());
+    }
 }
