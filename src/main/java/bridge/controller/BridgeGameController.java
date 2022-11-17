@@ -48,7 +48,7 @@ public class BridgeGameController {
         GameCommands gameCommand = NOTHING;
         String gameResult = GAME_SUCCESS;
 
-        while (gameCommand.isNot(QUIT) && bridgeGame.moveCountNotMoreThan(bridgeSize)) {
+        while (gameCommand.isNot(QUIT) && bridgeGame.positionNotMoreThan(bridgeSize)) {
             String moveResult = moveResult(bridgeGame);
 
             if (moveResult.equals(MOVE_FAIL)) {
