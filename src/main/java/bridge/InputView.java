@@ -6,7 +6,11 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-
+    /**
+     * 람다식을 true 값이 나올 때까지 반복시켜주는 메소드
+     * @param thing true 가 나올 때까지 반복하고 싶은 람다식(Loopable 인터페이스를 받는)
+     * @return true 값이 나온 입력
+     */
     private static String loop(Loopable thing){
         String s;
         boolean a;
@@ -24,15 +28,6 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-//    public int readBridgeSize() {
-//        String rawInput = readInput();
-//
-//        ValidateInput.isAllDigit(rawInput);
-//        ValidateInput.isInRange(rawInput);
-//
-//        return Integer.parseInt(rawInput);
-//    }
-
     public static int readBridgeSize() {
         Loopable checkBridgeSizeInput = (s) -> {
             try {
@@ -49,22 +44,30 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        String rawInput = readInput();
-
-        ValidateInput.isUorD(rawInput);
-
-        return rawInput;
+    public static String readMoving() {
+        Loopable checkMovementInput = (s) -> {
+          try {
+              return ValidateInput.isUorD(s);
+          }catch (IllegalArgumentException e){
+              System.out.println("[ERROR] " + e.getMessage());
+              return false;
+          }
+        };
+        return loop(checkMovementInput);
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        String rawInput = readInput();
-
-        ValidateInput.isRorQ(rawInput);
-
-        return rawInput;
+    public static String readGameCommand() {
+        Loopable checkGameCommandInput = (s) -> {
+          try {
+              return ValidateInput.isRorQ(s);
+          }catch (IllegalArgumentException e){
+              System.out.println("[ERROR] " + e.getMessage());
+              return false;
+          }
+        };
+        return loop(checkGameCommandInput);
     }
 }

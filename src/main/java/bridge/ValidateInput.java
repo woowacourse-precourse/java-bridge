@@ -15,13 +15,6 @@ public class ValidateInput {
         }
     }
 
-//    public static void isAllDigit(String rawInput){
-//        boolean isDigit = Pattern.matches(regexPatterns.ONLY_DIGIT.regex, rawInput);
-//        if (!isDigit) {
-//            throw new IllegalArgumentException();
-//        }
-//    }
-
     public static boolean isAllDigit(String rawInput){
         boolean isDigit = Pattern.matches(regexPatterns.ONLY_DIGIT.regex, rawInput);
         if (!isDigit) {
@@ -29,13 +22,6 @@ public class ValidateInput {
         }
         return true;
     }
-
-//    public static void isInRange(String rawInput) { // "0004" 이런 입력은 올바른 입력으로 통과됨.
-//        int target = Integer.parseInt(rawInput);
-//        if (target < 3 || target > 20) {
-//            throw new IllegalArgumentException();
-//        }
-//    }
 
     public static boolean isInRange(String rawInput) { // "0004" 이런 입력은 올바른 입력으로 통과됨.
         int target = Integer.parseInt(rawInput);
@@ -45,17 +31,19 @@ public class ValidateInput {
         return true;
     }
 
-    public static void isUorD(String rawInput){
+    public static boolean isUorD(String rawInput){
         boolean isUorD = Pattern.matches(regexPatterns.U_OR_D.regex, rawInput);
         if (!isUorD){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("이동은 U 또는 D만 가능합니다.");
         }
+        return true;
     }
 
-    public static void isRorQ(String rawInput){
+    public static boolean isRorQ(String rawInput){
         boolean isRorQ = Pattern.matches(regexPatterns.R_OR_Q.regex, rawInput);
         if (!isRorQ){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("게임 재시작은 R, 종료는 Q를 입력해주세요.");
         }
+        return true;
     }
 }
