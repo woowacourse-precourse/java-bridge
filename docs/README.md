@@ -1,9 +1,10 @@
 # 기능 명세
 
 1. 길이 입력받고 다리 생성
--[ ] 다리 생성
-  -[ ] 3미만 20초과 값이면 `IllegalArgumentException`
-  -[ ] 다리 생성 중 랜덤하게 나온 숫자가 잘못된 경우 `IllegalArgumentException`
+-[x] 다리 생성
+  -[x] 랜덤하게 생성된 값에 따라 문자열 생성한다. 
+  -[x] 3미만 20초과 값이면 `IllegalArgumentException`
+  -[x] 다리 생성 중 랜덤하게 나온 숫자가 잘못된 경우 `IllegalArgumentException`
 -[ ] 다리 길이 입력
   -[ ] 숫자 아니면 `IllegalArgumentException`
 
