@@ -13,14 +13,14 @@ public enum MoveCommand {
 
     public static boolean exist(String name) {
         for (MoveCommand moveCommand : MoveCommand.values()) {
-            if (moveCommand.name().equals(name)) {
+            if (moveCommand.ofHotKey().equals(name)) {
                 return true;
             }
         }
         return false;
     }
 
-    public String hotKey() {
+    public String ofHotKey() {
         return this.hotKey;
     }
 }

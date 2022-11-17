@@ -13,14 +13,14 @@ public enum GameCommand {
 
     public static boolean exist(String name) {
         for (GameCommand gameCommand : GameCommand.values()) {
-            if (gameCommand.name().equals(name)) {
+            if (gameCommand.ofHotKey().equals(name)) {
                 return true;
             }
         }
         return false;
     }
 
-    public String hotKey() {
+    public String ofHotKey() {
         return this.hotKey;
     }
 
