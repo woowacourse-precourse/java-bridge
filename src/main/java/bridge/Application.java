@@ -13,11 +13,17 @@ public class Application {
 
     private static void start() {
         int bridgeSize = inputView.readBridgeSize();
-        constructBridge(bridgeSize);
+        List<String> bridge = constructBridge(bridgeSize);
+
+        play(bridge);
     }
 
     private static List<String> constructBridge(int bridgeSize) {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         return bridgeMaker.makeBridge(bridgeSize);
+    }
+
+    private static void play(List<String> bridge) {
+        String moveChoice = inputView.readMoving();
     }
 }
