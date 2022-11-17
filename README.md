@@ -1,14 +1,19 @@
 # 미션 - 다리 건너기
 
-## 기능 목록 V 0 . 1
+## 기능 목록 V 1 . 0
 
 ### view (Package)
-#### InputView (Class) - 제공
-- 다리의 길이를 입력받는다.
-- 사용자가 이동할 칸을 입력받는다.
-- 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-#### OutputView (Class) - 제공
-#### Validator - 추가
+
+#### InputView (Class)
+- 다리의 길이를 입력받는 기능
+- 사용자가 이동할 칸을 입력받는 기능
+- 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는 기능
+
+#### OutputView (Class)
+- 현재 이동한 칸을 출력하는 기능
+- 전체 결과를 출력하는 기능
+
+#### Validator (Class)
 - 다리 길이 입력
   - 3 이상 20 이하의 숫자가 아닌 경우 예외 처리한다.
   - 숫자 이외의 문자인 경우 예외 처리한다.
@@ -18,10 +23,19 @@
   - R, Q 이외의 문자를 입력한 경우 예외 처리한다.
 
 ### model (Package)
-#### BridgeMaker (Class) - 제공
-#### BridgeRandomNumberGenerator (Class) - 제공
 
-### BridgeGame (Class) - 제공
+#### BridgeMaker (Class)
+- 다리를 생성하는 기능
+- 
+#### BridgeRandomNumberGenerator (Class)
+- 변경사항 없음
+
+### controller (Package)
+
+#### BridgeGame (Class)
+- 게임 로직을 관리하는 기능
+- 사용자의 입력을 받아 이동하는 기능
+- 재시작 혹은 종료를 관리하는 기능
 
 ## 🔍 진행 방식
 
