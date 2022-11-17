@@ -6,6 +6,7 @@ import bridge.domain.enumeration.MovingType;
 import java.util.List;
 import java.util.Objects;
 
+import static bridge.domain.BridgeGame.RETRY_COUNT;
 import static bridge.domain.enumeration.MovingType.*;
 
 /**
@@ -16,6 +17,10 @@ public class OutputView {
     private static final String MOVING_REQUEST_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String GAME_COMMAND_REQUEST_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.";
+    private static final String WHETHER_SUCCESS = "게임 성공 여부: ";
+    private static final String SUCCESS = "성공";
+    private static final String FAIL = "실패";
+    private static final String TOTAL_RETRY_COUNT_IS = "총 시도한 횟수: ";
 
     private static final String CORRECT = " O ";
     private static final String WRONG = " X ";
@@ -83,7 +88,21 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(List<BridgeGameResult> bridgeGameResults) {
+    public static void printResult(List<BridgeGameResult> bridgeGameResults, int bridgeSize) {
+        printIsSuccess(bridgeGameResults.size(), bridgeSize);
+        printRetryCount();
+    }
+
+    private static void printIsSuccess(int bridgeGameResultSize, int bridgeSize) {
+        if (bridgeGameResultSize == bridgeSize) {
+            System.out.println(WHETHER_SUCCESS + SUCCESS);
+            return;
+        }
+        System.out.println(WHETHER_SUCCESS + FAIL);
+    }
+
+    private static void printRetryCount() {
+        System.out.println(TOTAL_RETRY_COUNT_IS + RETRY_COUNT);
     }
 
     public static void printStartMessage() {

@@ -22,8 +22,9 @@ public class BridgeController {
     public void start() {
         try {
             printStartMessage();
-            List<BridgeGameResult> bridgeGameResults = play(createBridge());
-            printResult(bridgeGameResults);
+            List<String> bridge = createBridge();
+            List<BridgeGameResult> bridgeGameResults = play(bridge);
+            printResult(bridgeGameResults, bridge.size());
         } catch (IllegalArgumentException error) {
             printErrorMessage(error.getMessage());
         }
