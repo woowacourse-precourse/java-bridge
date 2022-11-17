@@ -14,6 +14,7 @@ public class OutputView {
     private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
     private static final String BRIDGE_SIZE_INPUT_MESSAGE = "\n다리의 길이를 입력해주세요.";
     private static final String MOVING_INPUT_MESSAGE = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String GAME_COMMAND_INPUT_MESSAGE = "\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private static final int BRIDGE_LINE_SIZE = 2;
     
     public void printGameStartMessage() {
@@ -75,6 +76,10 @@ public class OutputView {
         }
         
         return "X";
+    }
+    
+    public void printGameCommandInputMessage() {
+        System.out.println(GAME_COMMAND_INPUT_MESSAGE);
     }
     
     /**

@@ -86,7 +86,7 @@ public class BridgeGameController {
     }
     
     private void printGameCommandInputMessage() {
-        System.out.println("재시도 입력(Q, R)");
+        outputView.printGameCommandInputMessage();
     }
     
     private void initBridgeGameForRetry(final BridgeGame bridgeGame) {
