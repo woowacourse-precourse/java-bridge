@@ -4,12 +4,14 @@ package bridge.Model;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private static final String INT_REGEX = "^[0-9]*$";
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize(String input) {
         // 예외처리
+        checkNumber(input);
         checkRange(input);
 
         return changeInt(input);
@@ -42,6 +44,14 @@ public class InputView {
         int number = changeInt(input);
         if(number < 3 || number > 20) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
+    }
+    /**
+     * 입력받은 값이 숫자가 아닐 경우 IllegalArgumentException 을 발생시킨다.
+     */
+    private void checkNumber(String input) {
+        if(!input.matches(INT_REGEX)) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자여야 합니다.");
         }
     }
 }
