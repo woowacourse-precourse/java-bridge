@@ -324,3 +324,8 @@ int number = bridgeNumberGenerator.generate();
 
 ### Player
   멤버변수: 현재 위치(in), 시도한 횟수(int)
+  
+
+### InputView
+  #### 기능목록
+  - [ ] 유저로부터 다리 사이즈를 입력 받고 인풋을 검증하는 기능
