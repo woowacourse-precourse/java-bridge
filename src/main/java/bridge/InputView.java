@@ -11,7 +11,10 @@ public class InputView {
     // InputView의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 있다.
     // 사용자 값 입력을 위해 필요한 메서드를 추가할 수 있다.
 
+    private static final String UP = "U";
+    private static final String DOWN = "D";
     private static final String NUMBER_RANGE_ERROR_MESSAGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+    private static final String MOVING_TYPE_ERROR_MESSAGE = "[ERROR] 다리는 U(위) 또는 D(아래)를 입력받아 건널 수 있습니다.";
     private static final InputView INSTANCE = new InputView();
 
     private InputView() {
@@ -47,7 +50,22 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        while (true) {
+            try {
+                System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
+                String moving = Console.readLine();
+                checkMovingType(moving);
+                return moving;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void checkMovingType(String moving) {
+        if (!(moving.equals(UP) || moving.equals(DOWN))) {
+            throw new IllegalArgumentException(MOVING_TYPE_ERROR_MESSAGE);
+        }
     }
 
     /**
