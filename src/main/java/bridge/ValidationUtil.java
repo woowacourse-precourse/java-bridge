@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.enums.ConstVariable;
+import bridge.enums.InputKey;
+
 public class ValidationUtil {
 
     public static boolean isValidBridgeLength(int value) {

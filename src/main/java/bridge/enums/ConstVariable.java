@@ -1,4 +1,4 @@
-package bridge;
+package bridge.enums;
 
 public enum ConstVariable {
     MIN_BRIDGE_LENGTH(3), MAX_BRIDGE_LENGTH(20);

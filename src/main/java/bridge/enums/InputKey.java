@@ -1,4 +1,4 @@
-package bridge;
+package bridge.enums;
 
 public enum InputKey {
     U("U"), D("D"), R("R"), Q("Q");
