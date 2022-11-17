@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.List;
+
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -34,6 +35,11 @@ public class BridgeGameController {
     }
 
     private void selectMove() {
-        String move = inputView.readMoving();
+        try {
+            String move = inputView.readMoving();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            selectMove();
+        }
     }
 }
