@@ -10,6 +10,13 @@ public class OutputView {
     private static final String GAME_RESULT_MESSAGE = "최종 게임 결과";
     private static final String GAME_STATE_MESSAGE = "게임 성공 여부: %s";
     private static final String TOTAL_TRY_COUNT_MESSAGE = "총 시도한 횟수: %d";
+    private static final String START_OF_BRIDGE_MESSAGE = "[";
+    private static final String END_OF_BRIDGE_MESSAGE = "]";
+    private static final String PARTITION_OF_BRIDGE_MESSAGE = "|";
+    private static final String CORRECT_BRIDGE_MESSAGE = " O ";
+    private static final String WRONG_BRIDGE_MESSAGE = " X ";
+    private static final String NONE_BRIDGE_MESSAGE = "   ";
+
 
     public void printStartingMessage() {
         System.out.println(GAME_START_MESSAGE);
@@ -44,5 +51,29 @@ public class OutputView {
     private void printTryCount(int count) {
         String formatted = String.format(TOTAL_TRY_COUNT_MESSAGE, count);
         System.out.println(formatted);
+    }
+
+    public void printStartOfBridge() {
+        System.out.print(START_OF_BRIDGE_MESSAGE);
+    }
+
+    public void printEndOfBridge() {
+        System.out.print(END_OF_BRIDGE_MESSAGE);
+    }
+
+    public void printPartitionOfBridge() {
+        System.out.print(PARTITION_OF_BRIDGE_MESSAGE);
+    }
+
+    public void printCorrectBridge() {
+        System.out.print(CORRECT_BRIDGE_MESSAGE);
+    }
+
+    public void printWrongBridge() {
+        System.out.print(WRONG_BRIDGE_MESSAGE);
+    }
+
+    public void printNone() {
+        System.out.print(NONE_BRIDGE_MESSAGE);
     }
 }
