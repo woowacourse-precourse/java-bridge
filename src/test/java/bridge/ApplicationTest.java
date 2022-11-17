@@ -40,9 +40,17 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    void 예외_테스트_숫자_외_문자_입력() {
         assertSimpleTest(() -> {
             runException("a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_범위_외_숫자_입력() {
+        assertSimpleTest(() -> {
+            runException("899");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
