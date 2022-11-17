@@ -27,7 +27,7 @@ public class InputView {
         try {
             return Direction.from(validateMoving(Console.readLine()));
         } catch (IllegalArgumentException e) {
-            System.out.println("이동할 칸은 D, U 만 입력이 가능합니다.");
+            System.out.println(e.getMessage());
             return readMoving();
         }
     }
@@ -36,7 +36,19 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        try {
+            return validateReplayGame(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readGameCommand();
+        }
+    }
+
+    private String validateReplayGame(String command) {
+        if ("Q".equals(command) || "R".equals(command)) {
+            return command;
+        }
+        throw new IllegalArgumentException(" 재시작: R, 종료: Q로 입력해야 합니다.");
     }
 
     private String validateMoving(String moving) {
