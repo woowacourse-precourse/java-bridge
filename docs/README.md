@@ -34,6 +34,8 @@ Enum : UpDown
 public int readBridgeSize() (input.1)
 public String readMoving()  (input.2)
 public String readGameCommand   (input.3)
+private void validateSizeType(String input)
+private void validateSizeRange(String input)
 ```
 
 ### OutputView
@@ -60,10 +62,7 @@ BridgeNumberGenerator bridgeNumberGenerator
 this.
 
 [method]<br>
-public List<String> makeBridge(int size)  (feat.1.1)
-private String convertUpDown(int upDownNum) (feat.1.2)
-private void validateSizeType(String input)
-private void validateSizeRange(String input)
+public List<String> makeBridge(int size)  (feat.1.1)(feat.1.2)
 ```
 
 ### BridgeGame - 게임을 진행하는 주최자, 채점판을 가지고 있고 매 시도마다 채점판은 갱신됨
@@ -100,6 +99,7 @@ UP("U",1),
 DOWN("D",0)
 
 [constructor]<br>
+UpDown(String label, int number)
 this.
 
 [method]<br>
