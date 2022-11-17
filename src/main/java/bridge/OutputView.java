@@ -23,12 +23,12 @@ public class OutputView {
 
         for (Choice input: inputs){
             String tmp = "   |";
-            if (input.getInput() == upDown){
-                tmp = " " + input.getInput() + " |";
+            if (input.getInput().equals(upDown)){
+                tmp = " " + input.getIsRight() + " |";
             }
             result+=tmp;
         }
-        System.out.println(result.subSequence(0, result.length()-2)+"]");
+        System.out.println(result.subSequence(0, result.length()-1)+"]");
     }
 
     /**
@@ -44,7 +44,7 @@ public class OutputView {
         System.out.println("최종 게임 결과");
         printMap(inputs);
 
-        System.out.println("게임 성공 여부: " + yesNo);
+        System.out.println("게임 성공 여부: " + changed);
         System.out.println("총 시도한 횟수: " + count);
     }
 }
