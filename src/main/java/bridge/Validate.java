@@ -30,4 +30,10 @@ public class Validate {
         }
     }
 
+    //R(재시작), Q(종료) 이외의 문자가 입력되면 예외가 발생한다.
+    public static void commandValidate(String command) {
+        if (!(command.equals("R") || command.equals("Q"))) {
+            throw new IllegalArgumentException(COMMAND_EXCEPTION);
+        }
+    }
 }
