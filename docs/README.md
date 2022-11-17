@@ -15,6 +15,7 @@
     - readGameCommand: 사용자가 게임을 다시 시도할지 종료할지 여부 입력 받아 boolean 리턴 (재시도 - true, 종료 - false)
 6. Validator
    - isInt: 입력값이 integer인지 확인
+   - isValidLength: 입력값이 3~20인지 확인
    - isValidMove: 입력값이 U 또는 D인지 확인
    - isValidCommand: 입력값이 R 또 Q인지 확인
 7. OutputView
