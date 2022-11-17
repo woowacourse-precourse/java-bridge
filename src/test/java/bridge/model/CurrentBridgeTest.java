@@ -38,7 +38,6 @@ public class CurrentBridgeTest {
         assertThat(CurrentBridge.canNotCross()).isTrue();
         currentBridge.clearMap();
 
-
         assertThat(CurrentBridge.getSize()).isEqualTo(0);
         assertThat(CurrentBridge.getNumberOfAttempts()).isEqualTo(2);
         assertThat(CurrentBridge.getOutcome()).isEqualTo("실패");

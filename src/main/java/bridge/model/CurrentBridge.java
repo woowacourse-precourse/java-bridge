@@ -18,7 +18,7 @@ public class CurrentBridge {
     protected CurrentBridge() {
         this.currentPosition = new ArrayList<>();
         this.numberOfAttempts = 1;
-        this.outcome = "";
+        this.outcome = SUCCESS;
     }
 
     protected String saveMap(String mapPosition) {
@@ -34,7 +34,7 @@ public class CurrentBridge {
             upStairMap.add(location.get(1));
             downStairMap.add(location.get(0));
         }
-        this.currentMap = upStairMap.toString() + "\n" + downStairMap.toString();
+        this.currentMap = upStairMap + "\n" + downStairMap;
     }
 
     protected void clearMap() {
@@ -42,11 +42,12 @@ public class CurrentBridge {
         this.currentPosition.clear();
     }
 
+
     public static boolean canNotCross() {
         if (getSize() == 0) {
             return false;
         }
-        if (currentPosition.get(getSize()-1).contains("X")) {
+        if (currentPosition.get(getSize() - 1).contains("X")) {
             outcome = FAILS;
             return true;
         }
@@ -56,7 +57,6 @@ public class CurrentBridge {
     public static int getSize() {
         return currentPosition.size();
     }
-
     public static String getCurrentMap() {
         return currentMap;
     }
