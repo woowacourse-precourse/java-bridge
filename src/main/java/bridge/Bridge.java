@@ -15,7 +15,7 @@ public class Bridge {
         return correctBridge;
     }
 
-    public String getAnswerPosition() {
-        return answerPosition;
+    public String getMyMovingPostion() {
+        return myMovingPostion;
     }
 }

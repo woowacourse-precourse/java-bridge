@@ -20,14 +20,12 @@ public class BridgeGame {
      *
      * @return
      */
-    public int move(Bridge bridge, int bridgePositionIndex) {
+    public void move(Bridge bridge) {
         if (isDroppedBridge(bridge)) {
             myAnswerBridges.add("X");
-            return 0;
         }
 
-        myAnswerBridges.add(bridge.getAnswerPosition());
-        return bridgePositionIndex + 1;
+        myAnswerBridges.add(bridge.getMyMovingPostion());
     }
 
     private static boolean isDroppedBridge(Bridge bridge) {

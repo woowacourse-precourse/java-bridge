@@ -10,17 +10,17 @@ public class BridgeGameTest {
     @Test
     void 다리_플레이어_일치() {
         BridgeGame bridgeGame = new BridgeGame();
-        bridgeGame.move(new Bridge("U", "U"), 0);
-        bridgeGame.move(new Bridge("D", "D"), 1);
-        bridgeGame.move(new Bridge("D", "D"), 2);
+        bridgeGame.move(new Bridge("U", "U"));
+        bridgeGame.move(new Bridge("D", "D"));
+        bridgeGame.move(new Bridge("D", "D"));
         assertThat(bridgeGame.getMyAnswerBridges()).isEqualTo(List.of("U", "D", "D"));
     }
 
     @Test
     void 다리_플레이어_불일치() {
         BridgeGame bridgeGame = new BridgeGame();
-        bridgeGame.move(new Bridge("U", "U"), 0);
-        bridgeGame.move(new Bridge("D", "U"), 1);
+        bridgeGame.move(new Bridge("U", "U"));
+        bridgeGame.move(new Bridge("D", "U"));
         List<String> result = bridgeGame.getMyAnswerBridges();
         assertThat(result.contains("X")).isTrue();
     }

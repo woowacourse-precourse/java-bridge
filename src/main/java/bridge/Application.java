@@ -17,9 +17,9 @@ public class Application {
         BridgeGame bridgeGame = new BridgeGame();
         while (bridgePositionIndex < bridge.size()) {
             moving = inputView.readMoving();
-            bridgePositionIndex = bridgeGame.move(new Bridge(bridge.get(bridgePositionIndex), moving), bridgePositionIndex);
-            outputView.printMap(bridgeGame, bridgePositionIndex - 1);
+            bridgeGame.move(new Bridge(bridge.get(bridgePositionIndex), moving));
+            outputView.printMap(bridgeGame, bridgePositionIndex);
+            bridgePositionIndex++;
         }
-
     }
 }
