@@ -20,18 +20,19 @@ public class BridgeGame {
 	private String upsideBridge = "";
 	private String downsideBridge = "";
 
-	public BridgeGame() {
+	public BridgeGame(int size) {
 		this.generator = new BridgeRandomNumberGenerator();
 		this.bridgeMaker = new BridgeMaker(generator);
-		this.bridge = bridgeMaker.makeBridge(InputView.readBridgeSize());
+		this.bridge = bridgeMaker.makeBridge(size);
 	}
 
 	public void play() {
-		System.out.println(START_MESSAGE);
-
 		for (int i = 0; i < bridge.size(); i++) {
 			String location = InputView.readMoving();
 			move(location, bridge, i);
+			if (upsideBridge.contains(WRONG) || downsideBridge.contains(WRONG)) {
+				retry();
+			}
 		}
 	}
 
@@ -48,25 +49,23 @@ public class BridgeGame {
 	private void setDownsideBridge(String location, List<String> bridge, int index) {
 
 		if (location.equals(DOWNSIDE) && location.equals(bridge.get(index))) {
-			upsideBridge += (SEPARATOR + BLANK);
-			downsideBridge += (SEPARATOR + RIGHT);
+			upsideBridge += BLANK;
+			downsideBridge += RIGHT;
 		}
 		if (location.equals(DOWNSIDE) && !location.equals(bridge.get(index))) {
-			upsideBridge += (SEPARATOR + BLANK);
-			downsideBridge += (SEPARATOR + WRONG);
-			retry();
+			upsideBridge += BLANK;
+			downsideBridge += WRONG;
 		}
 	}
 
 	private void setUpsideBridge(String location, List<String> bridge, int index) {
 		if (location.equals(UPSIDE) && location.equals(bridge.get(index))) {
-			upsideBridge += (SEPARATOR + RIGHT);
-			downsideBridge += (SEPARATOR + BLANK);
+			upsideBridge += RIGHT;
+			downsideBridge += BLANK;
 		}
 		if (location.equals(UPSIDE) && !location.equals(bridge.get(index))) {
-			upsideBridge += (SEPARATOR + WRONG);
-			downsideBridge += (SEPARATOR + BLANK);
-			retry();
+			upsideBridge += WRONG;
+			downsideBridge += BLANK;
 		}
 	}
 
@@ -85,4 +84,3 @@ public class BridgeGame {
 		this.downsideBridge = "";
 	}
 }
-

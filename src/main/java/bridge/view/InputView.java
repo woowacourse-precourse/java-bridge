@@ -1,6 +1,5 @@
 package bridge.view;
 
-import static bridge.controller.Constant.*;
 import static bridge.view.Validator.*;
 
 import java.util.NoSuchElementException;
@@ -8,6 +7,9 @@ import java.util.NoSuchElementException;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
+	private static final String SIZE_INPUT = "다리의 길이를 입력해주세요.";
+	private static final String MOVE_INPUT = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+	private static final String COMMAND_INPUT = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
 	public static int readBridgeSize() {
 		System.out.println(SIZE_INPUT);
@@ -16,7 +18,8 @@ public class InputView {
 			size = Integer.parseInt(Console.readLine());
 			isSizeValidate(size);
 		} catch (NoSuchElementException exception) {
-			throw new IllegalArgumentException(INVALID_INPUT);
+			System.out.println(exception.getMessage());
+			throw new IllegalArgumentException();
 		}
 		return size;
 	}

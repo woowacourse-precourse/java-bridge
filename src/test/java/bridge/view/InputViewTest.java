@@ -7,9 +7,8 @@ public class InputViewTest {
 
 	@Test
 	void 사이즈_입력_테스트() {
-		InputView input = new InputView();
 		Assertions.assertThrows(IllegalArgumentException.class,
-			() -> input.readBridgeSize());
+			() -> InputView.readBridgeSize());
 	}
 
 	@Test
@@ -24,7 +23,7 @@ public class InputViewTest {
 	void 재시작_종료_입력_테스트() {
 		Assertions.assertThrows(IllegalArgumentException.class,
 			() -> Validator.isCommandValidate("a"));
-		// Assertions.assertThrows( ,
-		// 	() -> Validator.isCommandValidate("R"));
 	}
+	// Assertions.assertThrows( ,
+	// 	() -> Validator.isMoveValidate("U"));
 }
