@@ -2,6 +2,10 @@
 
 ### 🚀 Application class
 
+- public static void prepareExceptionBeforeBridgeGame()
+  - 게임 시작 전, 게임 중에 발생할 수 있는 Exception을 처리하는 메소드
+
+
 - public static void startBridgeGame()
   - 다리 게임을 시작하는 메소드
 
