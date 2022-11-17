@@ -22,13 +22,13 @@ public class CheckValidation {
     }
 
     public void checkMove(String inputData) {
-        if (!(inputData.equals('U') || inputData.equals('D'))) {
+        if (!(inputData.equals("U") || inputData.equals("D"))) {
             throw new IllegalArgumentException("[ERROR] U 또는 D값만 사용 할 수 있습니다.");
         }
     }
 
     public void checkRetry(String inputData) {
-        if (!(inputData.equals('R') || inputData.equals('Q'))) {
+        if (!(inputData.equals("R") || inputData.equals("Q"))) {
             throw new IllegalArgumentException("[ERROR] R 또는 Q값만 사용 할 수 있습니다.");
         }
     }
