@@ -22,9 +22,15 @@ public class Player {
     }
 
     public char enterMovement() {
-        // 이동 방향 입력 U or D
-        // 이동 방향 입력값 검증
-        return '0';
+        while (true) {
+            try {
+                String movement = input.readMovement();
+                validator.validateMovement(movement);
+                return movement.charAt(0);
+            } catch (IllegalArgumentException exception) {
+                output.printError(exception);
+            }
+        }
     }
 
     public char enterRetryStatus() {
