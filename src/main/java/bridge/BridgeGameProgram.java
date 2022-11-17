@@ -11,5 +11,7 @@ public class BridgeGameProgram {
 
     public void run() {
         outputView.printGameStartComment();
+        outputView.printRequestBridgeSize();
+        
     }
 }
