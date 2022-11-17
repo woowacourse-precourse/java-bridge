@@ -1,11 +1,12 @@
 package bridge;
 
-public class BridgeProcess {
+public class BridgeController {
     private OutputView outputView = new OutputView();
     private InputView inputView = new InputView();
 
     public void startGame(){
         outputView.printStartingPhrase();
+
     }
 
 }
