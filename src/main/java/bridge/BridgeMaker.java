@@ -20,16 +20,23 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        int randomNumber;
         for (int number = 0; number < size; number++) {
-            randomNumber = bridgeNumberGenerator.generate();
-            if (randomNumber == 0) {
-                bridge.add("D");
-            }
-            if (randomNumber == 1) {
-                bridge.add("U");
-            }
+            makeBridgeNumber(bridge);
         }
         return bridge;
+    }
+
+    private void makeBridgeNumber(List<String> bridge) {
+        int randomNumber = bridgeNumberGenerator.generate();
+        addBridgeNumber(bridge, randomNumber);
+    }
+
+    private void addBridgeNumber(List<String> bridge, int randomNumber) {
+        if (randomNumber == 0) {
+            bridge.add("D");
+        }
+        if (randomNumber == 1) {
+            bridge.add("U");
+        }
     }
 }
