@@ -88,6 +88,7 @@ public class InputView {
 
     private void validateInputGameCommandCharacter(String input) {
         if (!input.equals("R") && !input.equals("Q")) {
+            setError(CHARACTER);
             throw new IllegalArgumentException();
         }
     }
