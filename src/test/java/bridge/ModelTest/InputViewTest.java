@@ -36,4 +36,13 @@ public class InputViewTest {
                 .hasMessage("[ERROR] 이동 방향 여부는 'U(위)'/'D(아래)' 만 가능합니다.");
     }
 
+    @DisplayName("게임 재시작/종료 입력 값이 R, Q 가 아니면 예외가 발생한다.")
+    @Test
+    void 게임_진행_입력값_예외() {
+        String input = "C";
+        assertThatThrownBy(() -> inputView.readGameCommand(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 게임 진행 여부는 'R(재시작)'/'Q(종료)' 만 가능합니다.");
+    }
+
 }
