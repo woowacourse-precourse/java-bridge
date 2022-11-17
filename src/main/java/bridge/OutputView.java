@@ -32,18 +32,22 @@ public class OutputView {
             }
         }
         String getList = bridgeList.get(movingIdx);
-        if (Objects.equals(input, "U") && Objects.equals(getList, "U")) {
-            upString.append(" O ]");
-            downString.append("   ]");
-        } else if (Objects.equals(input, "U") && Objects.equals(getList, "D")) {
-            upString.append(" X ]");
-            downString.append("   ]");
-        } else if (Objects.equals(input, "D") && Objects.equals(getList, "D")) {
-            upString.append("   ]");
-            downString.append(" O ]");
-        } else if (Objects.equals(input, "D") && Objects.equals(getList, "U")) {
-            upString.append("   ]");
-            downString.append(" X ]");
+        if (Objects.equals(input, "U")) {
+            if (Objects.equals(getList, "U")) {
+                upString.append(" O ]");
+                downString.append("   ]");
+            } else if (Objects.equals(getList, "D")) {
+                upString.append(" X ]");
+                downString.append("   ]");
+            }
+        } else if (Objects.equals(input, "D")) {
+            if (Objects.equals(getList, "D")) {
+                upString.append("   ]");
+                downString.append(" O ]");
+            } else if (Objects.equals(getList, "U")) {
+                upString.append("   ]");
+                downString.append(" X ]");
+            }
         }
         System.out.println(upString);
         System.out.println(downString);
