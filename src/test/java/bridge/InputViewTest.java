@@ -26,4 +26,15 @@ class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
     }
 
+    @Test
+    void 이동_사용자_입력_검증() {
+        assertThat(inputView.readMoving("U")).isEqualTo("U");
+    }
+
+    @Test
+    void 이동_사용자_입력_예외_처리() {
+        assertThatThrownBy(() -> inputView.readMoving("AA"))
+                .isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 이동할 칸은 U(위), D(아래)만 선택 가능합니다.");
+    }
+
 }

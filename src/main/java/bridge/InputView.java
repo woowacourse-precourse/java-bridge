@@ -48,7 +48,7 @@ public class InputView {
 
     private void validMoving(String input) throws IllegalArgumentException {
         if (!isWrongMoving(input)) {
-            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U(위), D(아래)만 선택 가능합니다.")
+            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U(위), D(아래)만 선택 가능합니다.");
         }
     }
 
