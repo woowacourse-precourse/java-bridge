@@ -4,8 +4,7 @@ import bridge.BridgeGame;
 import view.InputView;
 import view.OutputView;
 
-public class
-Controller {
+public class Controller {
 
     private final BridgeGame bridgeGame;
     private final InputView inputView;

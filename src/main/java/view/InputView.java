@@ -8,7 +8,6 @@ import exception.Exception;
  */
 public class InputView {
 
-    private static final String ERROR = "[ERROR]";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -16,9 +15,7 @@ public class InputView {
     public int readBridgeSize() {
 
         int bridgeSize = Integer.parseInt(Console.readLine());
-        if (!Exception.bridgeLengthValidation(bridgeSize)) {
-            throw new IllegalArgumentException(ERROR + " 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
-        }
+        Exception.bridgeLengthValidation(bridgeSize);
 
         return bridgeSize;
     }
