@@ -5,7 +5,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeMakerTest {
@@ -13,14 +12,11 @@ public class BridgeMakerTest {
     BridgeMaker bridgeMaker = new BridgeMaker(generator);
 
     @Test
-    @DisplayName("0과 1중 무작위 값을 생성해준다")
+    @DisplayName("0과 1중 랜덤값으로 구성된 리스트 생성")
     void randomNumberTest() {
-        List<Integer> numbers = new ArrayList<>();
+        int size = 5;
 
-        for (int i = 0; i < 10; i++) {
-            int number = generator.generate();
-            numbers.add(number);
-        }
+        List<Integer> numbers = bridgeMaker.generateNumbers(size);
 
         for (Integer number : numbers) {
             Assertions.assertThat(number).isBetween(0,1);
@@ -28,27 +24,11 @@ public class BridgeMakerTest {
     }
 
     @Test
-    void makeBridgeTest() {
-        BridgeMaker bridgeMaker = new BridgeMaker(generator);
-        int size = 3;
+    @DisplayName("0과 1로 구성된 리스트를 U,D으로 변경")
+    void convertNumberToUpAndDown() {
+        List<Integer> numbers = List.of(0,1,0,1,1,0);
+        List<String> result = bridgeMaker.convertNumberToUpAndDown(numbers);
 
-
-
-    }
-
-    @Test
-    @DisplayName("0이면 D를 반환, 1이면 U을 반환")
-    void makeUpDown() {
-        String up = bridgeMaker.makeUpDown(1);
-        String down = bridgeMaker.makeUpDown(0);
-
-        Assertions.assertThat(up).isEqualTo("U");
-        Assertions.assertThat(down).isEqualTo("D");
-    }
-
-    @Test
-    @DisplayName("asd")
-    void makeBridge() {
-        List<Integer> numbers = List.of(0,1,0,1);
+        Assertions.assertThat(result).containsExactly("D","U","D","U","U","D");
     }
 }
