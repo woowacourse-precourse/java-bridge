@@ -12,34 +12,46 @@ public class Map {
         lower = new ArrayList<>();
     }
 
-    public BridgeFlag cross(Bridge bridge, User user) {
-        int userIndex = user.getCurrentIndex();
-        UpDownFlag bridgeUpDown = bridge.getIndexOf(userIndex);
-        UpDownFlag userUpDown = user.getCurrentUpDown();
-        if (bridgeUpDown == userUpDown) {
-            return crossSuccess(userUpDown);
+    public void update(Bridge bridge, User user) {
+        if (user.getMovedLength() > bridge.getLength()) {
+            throw new IllegalArgumentException("[ERROR] 유저가 건넌 다리의 길이가 다리의 길이보다 깁니다.");
         }
-        return crossFail(userUpDown);
+        upper.clear();
+        lower.clear();
+        List<UpDownFlag> userUpDowns = user.getMovedPosition();
+        List<UpDownFlag> bridgeUpDowns = bridge.getBridge();
+        draw(userUpDowns, bridgeUpDowns);
     }
 
-    private BridgeFlag crossFail(UpDownFlag userUpDown) {
+    private void draw(List<UpDownFlag> userUpDowns, List<UpDownFlag> bridgeUpDowns) {
+        for (int i = 0; i < userUpDowns.size(); i++) {
+            UpDownFlag bridgeUpdown = bridgeUpDowns.get(i);
+            UpDownFlag userUpDown = userUpDowns.get(i);
+            if (bridgeUpdown == userUpDown) {
+                crossSuccess(userUpDown);
+            }
+            if (bridgeUpdown != userUpDown) {
+                crossFail(userUpDown);
+            }
+        }
+    }
+
+    private void crossFail(UpDownFlag userUpDown) {
         if (userUpDown == UpDownFlag.UP) {
             crossUpperFail();
         }
         if (userUpDown == UpDownFlag.DOWN) {
             crossLowerFail();
         }
-        return BridgeFlag.FAIL;
     }
 
-    private BridgeFlag crossSuccess(UpDownFlag userUpDown) {
+    private void crossSuccess(UpDownFlag userUpDown) {
         if (userUpDown == UpDownFlag.UP) {
             crossUpperSuccess();
         }
         if (userUpDown == UpDownFlag.DOWN) {
             crossLowerSuccess();
         }
-        return BridgeFlag.SUCCESS;
     }
 
     private void crossUpperSuccess() {

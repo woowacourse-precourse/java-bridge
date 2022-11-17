@@ -1,6 +1,7 @@
 package bridge.controller;
 
 import bridge.domain.Bridge;
+import bridge.domain.BridgeFlag;
 import bridge.domain.Map;
 import bridge.domain.User;
 import bridge.service.BridgeService;
@@ -33,13 +34,14 @@ public class BridgeGame {
         Map map = new Map();
         System.out.println(bridge.getBridge()); // TEST
         while (true) {
-            if (bridge.isCrossOver(user)) {
-                break;
-            }
             outputView.printEnterSelectMoving();
             user.move(inputView.readMoving());
-            map.cross(bridge, user);
+            map.update(bridge, user);
+            BridgeFlag gameStatus = bridgeService.getGameStatus(bridge, user);
             outputView.printMap(map);
+            if (gameStatus != BridgeFlag.NOTHING) {
+                break;
+            }
         }
         System.out.println("게임 종료");
     }
