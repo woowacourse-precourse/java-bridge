@@ -22,11 +22,13 @@ class BridgeGameTest {
         Bridge bridge = Bridge.from(List.of("U", "D", "D", "U", "D"));
         Player player = new Player();
 
-        Player movedPlayer = bridgeGame.move(bridge, player, BridgeTile.UP);
-        movedPlayer = bridgeGame.move(bridge, movedPlayer, BridgeTile.DOWN);
-        movedPlayer = bridgeGame.move(bridge, movedPlayer, BridgeTile.DOWN);
+        bridgeGame.move(bridge, player, BridgeTile.UP);
+        bridgeGame.move(bridge, player, BridgeTile.DOWN);
+        boolean actualResult = bridgeGame.move(bridge, player, BridgeTile.DOWN);
 
-        assertThat(movedPlayer.moveForward()).isEqualTo(3);
+        boolean expectedResult = true;
+
+        assertThat(actualResult).isEqualTo(expectedResult);
     }
 
 }
