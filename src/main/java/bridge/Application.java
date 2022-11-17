@@ -2,11 +2,11 @@ package bridge;
 
 public class Application {
 
-    private int size;
+    private static int size;
 
-    private String move;
+    private static String move;
 
-    private String retry;
+    private static String retry;
 
     private static Error error;
 
