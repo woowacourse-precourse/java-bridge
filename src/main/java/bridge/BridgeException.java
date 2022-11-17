@@ -26,4 +26,15 @@ public class BridgeException {
         }
         return input;
     }
+
+    public static String GameCommandException(String input) {
+
+        if (input.length() != 1) {
+            throw new IllegalArgumentException("[ERROR] R, Q 중에서 하나의 문자를 입력하시오.");
+        }
+        if (input.charAt(0) != 'R' && input.charAt(0) != 'Q') {
+            throw new IllegalArgumentException("[ERROR] R, Q 중에서 하나의 문자를 입력하시오.");
+        }
+        return input;
+    }
 }

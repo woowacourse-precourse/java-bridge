@@ -62,13 +62,9 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트_다리를_선택할_때_U_와_D가_아닌_문자를_입력하거나_여러_문자를_입력하는_경우() {
+    void 예외_테스트_다리를_선택할_때_U_또는_D가_아닌_문자를_입력하는_경우() {
         assertSimpleTest(() -> {
             runException("5", "Q");
-            assertThat(output()).contains("[ERROR] U, D 중에서 하나의 문자를 입력하시오.");
-            runException("5", "UQ");
-            assertThat(output()).contains("[ERROR] U, D 중에서 하나의 문자를 입력하시오.");
-            runException("5", "UD");
             assertThat(output()).contains("[ERROR] U, D 중에서 하나의 문자를 입력하시오.");
         });
     }

@@ -24,12 +24,12 @@ public class Application {
         int count = 0;
         List<String> nowBridge = new ArrayList<>();
         while (retry) {
+            nowBridge.clear();
             count++;
             successOrNot = bridgeGame.game(nowBridge, generatedBridge);
             if (successOrNot && nowBridge.size() == generatedBridge.size()) {
                 break;
             }
-            nowBridge.clear();
             retry = bridgeGame.retry();
         }
         OutputView.printResult(count, successOrNot, nowBridge, generatedBridge);
