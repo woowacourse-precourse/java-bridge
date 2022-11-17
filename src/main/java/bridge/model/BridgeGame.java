@@ -4,13 +4,21 @@ package bridge.model;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private CurrentBridge currentBridge = new CurrentBridge();
+    private userStage userStage = new userStage();
 
-    public String move(String userMoving, String bridgeStage) {
-        return currentBridge.saveMap(Stage.judge(userMoving, bridgeStage));
+    public void move(String userMoving, String bridgeStage) {
+        userStage.savePosition(Stage.judge(userMoving, bridgeStage));
     }
 
     public void retry() {
-        currentBridge.clearMap();
+        userStage.init();
+    }
+
+    public boolean isNotReached(int bridgeSize) {
+        if (userStage.getSize() == bridgeSize) {
+            userStage.updateSuccess();
+            return false;
+        }
+        return true;
     }
 }
