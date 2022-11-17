@@ -40,10 +40,11 @@ public class BridgeGameController {
     }
 
     private void crossBridge(int index){
-        if(bridgeGame.move(inputView.readMoving(),index,bridge)){
+        String moving = inputView.readMoving();
+        if(bridgeGame.move(moving,index,bridge)){
             outputView.printMap("O", bridgeUpDownNumber.upOrDown(bridge.get(index)));
         }
-        if(!bridgeGame.move(inputView.readMoving(), index, bridge)){
+        if(!bridgeGame.move(moving, index, bridge)){
             outputView.printMap("X", bridgeUpDownNumber.upOrDown(bridge.get(index)));
         }
     }
