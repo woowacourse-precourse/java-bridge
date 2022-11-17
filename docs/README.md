@@ -61,5 +61,17 @@
     + Result
         - SUCCESS("성공")
         - FAILED("실패")
+    + GameMessage
+        - START_GAME("다리 건너기 게임을 시작합니다.")
+        - GET_SIZE("다리의 길이를 입력해주세요.")
+        - GET_DIRECTION("이동할 칸을 선택해주세요. (위: U, 아래: D)")
+        - GAME_RESULT("최종 게임 결과")
+        - GET_RESTART("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
+        - IS_SUCCESS("게임 성공 여부: ")
+        - TOTAL_TRY("총 시도한 횟수: ")
     + ErrorMessage
-        - feError
+        - NULL_INPUT_ERROR("값을 입력해주세요")
+        - NOT_NUMERIC_VALUE_ERROR("[ERROR] 숫자인 값을 입력해주세요.")
+        - INVALID_NUMERIC_VALUE("[ERROR] 3 이상 20 이하의 값을 입력해주세요")
+        - INVALID_DIRECTION_VALUE("[ERROR] U 혹은 D를 입력해주세요.")
+        - INVALID_RESTART_VALUE("[ERROR] R 혹은 Q를 입력해주세요.")
