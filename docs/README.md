@@ -9,7 +9,7 @@
 - [X] InputView 에 다리 길이 입력 메서드 구현
 - [X] InputView 에 이동할 칸 선택 메서드 구현
 - [X] OutputView 에 printMap 구현
-- [ ] OutputView 에 printResult 구현
+- [X] OutputView 에 printResult 구현
 
 ## Model
 - [ ] Player 모델 구현
