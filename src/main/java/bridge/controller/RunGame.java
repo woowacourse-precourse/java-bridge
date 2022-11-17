@@ -9,9 +9,9 @@ import bridge.view.PrintSentence;
 
 import java.util.List;
 
-public class Rungame {
+public class RunGame {
     private BridgeGame game;
-    public Rungame() {
+    public RunGame() {
         startGame();
     }
 
