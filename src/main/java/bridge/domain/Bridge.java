@@ -13,4 +13,8 @@ public class Bridge {
         return bridge.get(index).equals(move);
     }
 
+    public int size() {
+        return bridge.size();
+    }
+
 }
