@@ -5,6 +5,8 @@ import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -15,7 +17,8 @@ public class BridgeGame {
     public void run() {
         OutputView.printStart();
         int bridgeSize = InputView.getInputBridgeSize();
-        bridgeMaker.makeBridge(bridgeSize);
+
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
     /**

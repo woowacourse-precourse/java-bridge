@@ -2,6 +2,7 @@ package bridge.domain;
 
 import bridge.interfaces.BridgeNumberGenerator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +21,19 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        return null;
+        List<String> bridge = new ArrayList<>(size);
+
+        for (int repeat = 0; repeat < size; repeat++) {
+            int generatedNumber = bridgeNumberGenerator.generate();
+            bridge.add(generateAnswer(generatedNumber));
+        }
+        return bridge;
+    }
+
+    private String generateAnswer(int generatedNumber) {
+        if (generatedNumber == 0) {
+            return "D";
+        }
+        return "U";
     }
 }
