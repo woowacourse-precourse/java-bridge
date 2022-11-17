@@ -4,12 +4,15 @@ public class BridgeSizeValidation {
     public BridgeSizeValidation() {
     }
 
-    public void isEmptyAndBlank() {
+    public void isNull(String bridgeSize) {
     }
 
-    public void isNumber() {
+    public void isBlank(String bridgeSize) {
     }
 
-    public void isCorrectRange() {
+    public void isNumber(String bridgeSize) {
+    }
+
+    public void isCorrectRange(String bridgeSize) {
     }
 }
