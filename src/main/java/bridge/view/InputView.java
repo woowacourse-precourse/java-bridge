@@ -32,7 +32,7 @@ public class InputView {
     private void printBridgeSizeInputMessage(final OutputView outputView) {
         outputView.printBridgeSizeInputMessage();
     }
-
+    
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */

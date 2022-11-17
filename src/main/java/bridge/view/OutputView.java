@@ -99,7 +99,7 @@ public class OutputView {
     public void printResult(final GameResultDTO gameResultDTO) {
         printResultGuidanceMessage();
         printMap(gameResultDTO);
-    
+        
         printWhetherGameSuccess(gameResultDTO);
         printNumberOfTry(gameResultDTO);
     }

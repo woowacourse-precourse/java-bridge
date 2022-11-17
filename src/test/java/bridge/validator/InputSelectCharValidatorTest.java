@@ -68,7 +68,7 @@ class InputSelectCharValidatorTest {
     
     @DisplayName("이동할 칸 입력 예외 처리 : U와 D가 아닌 영어 입력 시")
     @ParameterizedTest(name = "{displayName} : input => {0}")
-    @ValueSource(strings = {"A", "C", "Q", "R", "T","a", "c", "u", "d", "r", "q"})
+    @ValueSource(strings = {"A", "C", "Q", "R", "T", "a", "c", "u", "d", "r", "q"})
     void englishMovingException(final String input) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputSelectCharValidator.validate(input, MOVING_SELECT_CHAR_VALIDATOR_NUMBER))
@@ -77,7 +77,7 @@ class InputSelectCharValidatorTest {
     
     @DisplayName("이동할 칸 입력 예외 처리 : 길이가 2이상인 경우")
     @ParameterizedTest(name = "{displayName} : input => {0}")
-    @ValueSource(strings = {"UU", "DD", "UD" ,"DU", "UUU", "DDD"})
+    @ValueSource(strings = {"UU", "DD", "UD", "DU", "UUU", "DDD"})
     void outOfLengthMovingException(final String input) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputSelectCharValidator.validate(input, MOVING_SELECT_CHAR_VALIDATOR_NUMBER))
@@ -139,7 +139,7 @@ class InputSelectCharValidatorTest {
     
     @DisplayName("재시도 여부 입력 예외 처리 : Q와 R이 아닌 영어 입력 시")
     @ParameterizedTest(name = "{displayName} : input => {0}")
-    @ValueSource(strings = {"A", "C", "U", "D", "T","a", "c", "q", "r", "u", "d"})
+    @ValueSource(strings = {"A", "C", "U", "D", "T", "a", "c", "q", "r", "u", "d"})
     void englishRetryException(final String input) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputSelectCharValidator.validate(input, RETRY_SELECT_CHAR_VALIDATE_NUMBER))
@@ -148,7 +148,7 @@ class InputSelectCharValidatorTest {
     
     @DisplayName("재시도 여부 입력 예외 처리 : 길이가 2이상인 경우")
     @ParameterizedTest(name = "{displayName} : input => {0}")
-    @ValueSource(strings = {"QQ", "RR", "QR" ,"RQ", "QQQ", "RRR"})
+    @ValueSource(strings = {"QQ", "RR", "QR", "RQ", "QQQ", "RRR"})
     void outOfLengthRetryException(final String input) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> InputSelectCharValidator.validate(input, RETRY_SELECT_CHAR_VALIDATE_NUMBER))

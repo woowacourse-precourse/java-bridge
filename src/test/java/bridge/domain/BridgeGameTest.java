@@ -1,6 +1,5 @@
 package bridge.domain;
 
-import bridge.domain.strategy.BridgeNumberGeneratorTest;
 import bridge.dto.BridgeSizeDTO;
 import bridge.dto.MovingDTO;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,7 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class BridgeGameTest {
     private BridgeGame bridgeGame;

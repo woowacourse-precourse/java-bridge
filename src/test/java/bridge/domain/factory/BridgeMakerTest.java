@@ -1,6 +1,5 @@
 package bridge.domain.factory;
 
-import bridge.domain.strategy.BridgeNumberGeneratorTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

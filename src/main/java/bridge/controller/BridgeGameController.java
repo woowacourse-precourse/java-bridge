@@ -4,8 +4,8 @@ import bridge.domain.BridgeGame;
 import bridge.domain.strategy.BridgeRandomNumberGenerator;
 import bridge.dto.BridgeSizeDTO;
 import bridge.dto.GameCommandDTO;
-import bridge.dto.MovingDTO;
 import bridge.dto.GameResultDTO;
+import bridge.dto.MovingDTO;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
