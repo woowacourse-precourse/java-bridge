@@ -20,7 +20,7 @@ public enum BridgeMark {
                 .collect(Collectors.toList());
     }
 
-    private static BridgeMark of(String mark) {
+    public static BridgeMark of(String mark) {
         return Arrays.stream(BridgeMark.values())
                 .filter(bridgeMark -> bridgeMark.isEqualMark(mark))
                 .findFirst()
