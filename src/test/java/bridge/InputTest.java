@@ -28,4 +28,12 @@ public class InputTest {
         assertThatIllegalArgumentException().isThrownBy(() -> inputView.validateIsNumber(input))
                 .withMessage("[ERROR] 숫자만 입력할 수 있습니다.");
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "-1", "2", "21", "22"})
+    @DisplayName("다리 길이 범위를 벗어난 값이 입력됐을 때 예외가 발생한다.")
+    void 입력값이_다리길이범위_벗어나면_예외발생(String input) {
+        assertThatIllegalArgumentException().isThrownBy(() -> inputView.validateIsLengthRange(input))
+                .withMessage("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+    }
 }
