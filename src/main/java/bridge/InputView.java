@@ -1,15 +1,25 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Console;
+import exception.ExceptionHandler;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        int size = 0;
+        try {
+            size = Integer.parseInt(Console.readLine());
+            if (!(size >= 3 && size <= 20)) throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 3과 20 사이의 숫자여야 합니다.");
+            this.readBridgeSize();
+        }
+        return size;
     }
 
     /**
