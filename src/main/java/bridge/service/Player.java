@@ -33,9 +33,15 @@ public class Player {
         }
     }
 
-    public char enterRetryStatus() {
-        // 재시도 여부 입력 R or Q
-        // 재시도 여부 입력값 검증
-        return '0';
+    public String enterRetryStatus() {
+        while (true) {
+            try {
+                String retryStatus = input.readGameCommand();
+                validator.validateRetryStatus(retryStatus);
+                return retryStatus;
+            } catch (IllegalArgumentException exception) {
+                output.printError(exception);
+            }
+        }
     }
 }
