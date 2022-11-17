@@ -1,7 +1,6 @@
 package bridge;
 
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public enum BridgeDirection {
     UP_NUMBER(0, "D"),
@@ -18,9 +17,7 @@ public enum BridgeDirection {
     public static String getDirection(int directionNumber) {
         return Arrays.stream(values())
                 .filter(BridgeDirection -> BridgeDirection.directionNumber == directionNumber)
-                .findFirst()
-                .get()
+                .findFirst().orElseThrow(()->new IllegalArgumentException("[ERROR] 0과 1외의 무작위 값이 발생하였습니다 "))
                 .direction;
-
     }
 }
