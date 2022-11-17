@@ -34,5 +34,7 @@ public class Player {
         this.alive = false;
     }
 
-
+    public void success() {
+        this.nextLocation++;
+    }
 }
