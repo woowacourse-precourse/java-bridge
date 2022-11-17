@@ -1,21 +1,35 @@
 package bridge;
 
+import java.util.Scanner;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
+ * camp.nextstep.edu.missionutils.Console 의 readLine() 메서드를 이용해 사용자의 입력을 받을 수 있다.
+ * 패키지, 메서드의 시그니처(인자, 이름)와 반환 타입 변경 및 메서드를 추가 가능.
  */
 public class InputView {
+    private Scanner sc = new Scanner(System.in);
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
-    public int readBridgeSize() {
-        return 0;
+    static int bridgeLength;
+
+    public void readBridgeSize() {
+        String bridgeLength = sc.nextLine();
+        bridgeSizeCheck(bridgeLength);
+        this.bridgeLength = Integer.parseInt(bridgeLength);
+
     }
-
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
+    public void bridgeSizeCheck(String bridgeLength){
+        for(int i = 0; i < bridgeLength.length(); i++){
+            if(!Character.isDigit(bridgeLength.charAt(i))){
+                throw new IllegalArgumentException("[ERROR]");
+            }
+        }
+        if(Integer.parseInt(bridgeLength) < 3 || Integer.parseInt(bridgeLength) > 20){
+            throw new IllegalArgumentException("[ERROR]");
+        }
+    }
     public String readMoving() {
+
         return null;
     }
 
@@ -25,4 +39,6 @@ public class InputView {
     public String readGameCommand() {
         return null;
     }
+
+
 }
