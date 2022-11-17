@@ -39,12 +39,10 @@ public class BridgeGameConsole {
                 if (retryStatus.equals("R")) {
                     bridgeGame.retry();
                     return true;
-                } else {
-                    return false;
                 }
-            } else {
-                shouldCrossMore = !bridgeGame.crossedBridge();
+                return false;
             }
+            shouldCrossMore = !bridgeGame.crossedBridge();
         }
         return false;
     }
