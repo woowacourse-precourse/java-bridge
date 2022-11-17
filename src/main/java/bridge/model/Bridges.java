@@ -9,4 +9,8 @@ public class Bridges {
     public Bridges(List<String> bridge) {
         this.bridge = bridge;
     }
+
+    public boolean judgeMovement(String moveSpace, int index) {
+        return bridge.get(index).equals(moveSpace);
+    }
 }
