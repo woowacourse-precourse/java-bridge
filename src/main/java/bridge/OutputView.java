@@ -59,5 +59,6 @@ public class OutputView {
         for (int i = bridge.size() / 2; i < bridge.size(); i++) {
             System.out.print(bridge.get(i));
         }
+        System.out.println();
     }
 }
