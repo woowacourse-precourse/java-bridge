@@ -17,6 +17,7 @@ public class BridgeGameController {
     }
 
     public void play() {
+        outputView.printStart();
         create();
     }
 
