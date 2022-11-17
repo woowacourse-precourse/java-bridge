@@ -7,9 +7,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import bridge.model.Move;
+import bridge.model.ValidateMove;
 
-public class MoveTest extends NsTest {
+public class ValidateMoveTest extends NsTest {
     @Override
     protected void runMain(){}
 
@@ -20,7 +20,7 @@ public class MoveTest extends NsTest {
         @ParameterizedTest
         @ValueSource(strings = {"UP","DOWN","UD","DU","UU","DD"})
         public void lengthFail(String value){
-            assertThatThrownBy(()->new Move(value))
+            assertThatThrownBy(()->new ValidateMove().validateMove(value))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -28,7 +28,7 @@ public class MoveTest extends NsTest {
         @ParameterizedTest
         @ValueSource(strings = {"A","Z","u","d"})
         public void wordFail(String value){
-            assertThatThrownBy(()->new Move(value))
+            assertThatThrownBy(()->new ValidateMove().validateMove(value))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -36,7 +36,8 @@ public class MoveTest extends NsTest {
         @ParameterizedTest
         @ValueSource(strings = {"U","D"})
         public void success(String value){
-            assertThat(new Move(value).getMove()).isEqualTo(value);
+            assertThat(new ValidateMove().validateMove(value))
+                    .isEqualTo(value);
         }
     }
 }

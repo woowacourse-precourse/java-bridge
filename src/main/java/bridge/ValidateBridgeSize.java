@@ -1,14 +1,10 @@
-package bridge.model;
+package bridge;
 
-public class BridgeSize {
-    private final int size;
-
-    public BridgeSize(String size){
+public class ValidateBridgeSize {
+    public int validateBridgeSize(String size){
         validate(size);
-        this.size=Integer.parseInt(size);
+        return Integer.parseInt(size);
     }
-
-    public int getSize(){return size;}
 
     private void validate(String size){
         if(!validateConsistOfNumber(size)){

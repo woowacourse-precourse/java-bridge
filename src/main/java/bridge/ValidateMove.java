@@ -1,14 +1,10 @@
-package bridge.model;
+package bridge;
 
-public class Move {
-    private final String move;
-
-    public Move(String move){
+public class ValidateMove {
+    public String validateMove(String move){
         validate(move);
-        this.move=move;
+        return move;
     }
-
-    public String getMove(){return move;}
 
     private void validate(String move){
         if(validateLength(move)){
