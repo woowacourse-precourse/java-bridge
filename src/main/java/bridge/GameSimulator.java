@@ -11,7 +11,9 @@ public class GameSimulator {
     private String route = "";
 
     public void simulateGame() {
-
+        initializeGame();
+        startGame();
+        quitGame();
     }
 
     private void initializeGame() {
