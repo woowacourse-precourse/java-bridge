@@ -34,4 +34,14 @@ public class ExceptionSituationTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("입력된 이동할 칸 정보가 U나 D가 아닌 경우 예외가 발생한다.")
+    @Test
+    void InputForMoveNotUOrDTest() {
+        InputStream inputStream = setOutputStream("wrong input");
+        System.setIn(inputStream);
+        String wrongInput = inputView.readMoving();
+        assertThatThrownBy(() -> Validation.validateSpace(wrongInput))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
