@@ -41,7 +41,15 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        try {
+            String input = Console.readLine();
+            validate(ValidationType.CHECK_GAME_COMMAND, input);
+            return input;
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage() + " 다시 입력해주세요.");
+//           wrapper 메서드 내에서 재귀함수로 구성
+        }
+        return "";
     }
 
     public void validate(ValidationType validationType, String input) {
