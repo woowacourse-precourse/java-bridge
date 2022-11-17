@@ -17,4 +17,13 @@ public class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
     }
+
+    @DisplayName("입력값이 숫자가 아닐 경우 예외가 발생한다.")
+    @Test
+    void 다리길이_입력값_숫자_예외() {
+        String input = "aa";
+        assertThatThrownBy(() -> inputView.readBridgeSize(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 다리 길이는 숫자여야 합니다.");
+    }
 }
