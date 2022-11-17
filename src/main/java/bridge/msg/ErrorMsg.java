@@ -1,4 +1,4 @@
-package bridge.error;
+package bridge.msg;
 
 public enum ErrorMsg {
     ERR("[ERROR] "),
