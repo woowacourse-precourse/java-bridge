@@ -11,7 +11,7 @@ public enum GameCommands {
     ;
 
     private static final Map<String, GameCommands> GAME_COMMANDS = Arrays.stream(values())
-            .filter(gameCommands -> gameCommands.isNot(NOTHING))
+            .filter(gameCommands -> !gameCommands.is(NOTHING))
             .collect(Collectors.toUnmodifiableMap(
                     gameCommands -> gameCommands.command,
                     gameCommands -> gameCommands));
@@ -27,10 +27,6 @@ public enum GameCommands {
             throw new IllegalArgumentException("R 또는 Q만 입력해 주세요. (R:재시작, Q:종료)");
         }
         return GAME_COMMANDS.get(command);
-    }
-
-    public boolean isNot(GameCommands gameCommand) {
-        return this != gameCommand;
     }
 
     public boolean is(GameCommands gameCommand) {

@@ -1,8 +1,5 @@
 package bridge.domain.make_bridge;
 
-import static bridge.domain.constants.MoveCommands.MOVE_DOWN_COMMAND;
-import static bridge.domain.constants.MoveCommands.MOVE_UP_COMMAND;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -13,6 +10,9 @@ import java.util.stream.IntStream;
  * TODO 메서드의 시그니처(인자, 이름)와 반환 타입은 변경 불가!!!!!
  */
 public class BridgeMaker {
+
+    private static final String MOVE_UP_COMMAND = "U";
+    private static final String MOVE_DOWN_COMMAND = "D";
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 

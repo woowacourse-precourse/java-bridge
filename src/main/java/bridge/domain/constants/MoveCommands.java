@@ -1,10 +1,38 @@
 package bridge.domain.constants;
 
-public class MoveCommands {
+import java.util.Arrays;
+import java.util.Map;
+import java.util.stream.Collectors;
 
-    private MoveCommands() {
+public enum MoveCommands {
+
+    MOVE_UP_COMMAND("U"),
+    MOVE_DOWN_COMMAND("D"),
+    ;
+
+    private static final Map<String, MoveCommands> MOVE_COMMANDS = Arrays.stream(values())
+            .collect(Collectors.toUnmodifiableMap(
+                    moveCommandsVer2 -> moveCommandsVer2.command,
+                    moveCommandsVer2 -> moveCommandsVer2));
+
+    private final String command;
+
+    MoveCommands(String command) {
+        this.command = command;
     }
 
-    public static final String MOVE_UP_COMMAND = "U";
-    public static final String MOVE_DOWN_COMMAND = "D";
+    public static MoveCommands of(String command) {
+        if (!MOVE_COMMANDS.containsKey(command)) {
+            throw new IllegalArgumentException("U 또는 D만 입력해 주세요. (U:위, D:아래)");
+        }
+        return MOVE_COMMANDS.get(command);
+    }
+
+    public boolean is(String command) {
+        return this.command.equals(command);
+    }
+
+    public boolean is(MoveCommands moveCommands) {
+        return this == moveCommands;
+    }
 }

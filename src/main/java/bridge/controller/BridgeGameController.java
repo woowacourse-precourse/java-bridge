@@ -9,6 +9,7 @@ import bridge.domain.BridgeGame;
 import bridge.domain.MoveResults;
 import bridge.domain.Player;
 import bridge.domain.constants.GameCommands;
+import bridge.domain.constants.MoveCommands;
 import bridge.domain.make_bridge.BridgeMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -48,7 +49,7 @@ public class BridgeGameController {
         GameCommands gameCommand = NOTHING;
         String gameResult = GAME_SUCCESS;
 
-        while (gameCommand.isNot(QUIT) && bridgeGame.positionNotMoreThan(bridgeSize)) {
+        while (!gameCommand.is(QUIT) && bridgeGame.positionNotMoreThan(bridgeSize)) {
             String moveResult = moveResult(bridgeGame);
 
             if (moveResult.equals(MOVE_FAIL)) {
@@ -61,7 +62,7 @@ public class BridgeGameController {
     }
 
     private String moveResult(BridgeGame bridgeGame) {
-        String moveCommand = inputView.moveCommands();
+        MoveCommands moveCommand = inputView.moveCommands();
         String moveResult = bridgeGame.matchResult(moveCommand);
 
         printCurrentPosition(bridgeGame, moveCommand, moveResult);
@@ -70,7 +71,7 @@ public class BridgeGameController {
         return moveResult;
     }
 
-    private void printCurrentPosition(BridgeGame bridgeGame, String moveCommand,
+    private void printCurrentPosition(BridgeGame bridgeGame, MoveCommands moveCommand,
             String moveResult) {
         MoveResults moveResults = bridgeGame.moveResults(moveCommand, moveResult);
         outputView.printMap(moveResults);

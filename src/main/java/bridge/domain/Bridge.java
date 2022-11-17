@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.domain.constants.MoveCommands;
 import java.util.List;
 
 public class Bridge {
@@ -10,7 +11,8 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    boolean isMatched(Player player, String moveCommand) {
-        return bridge.get(player.position()).equals(moveCommand);
+    public boolean isMatched(Player player, MoveCommands moveCommand) {
+        String bridgeCommand = bridge.get(player.position());
+        return moveCommand.is(bridgeCommand);
     }
 }

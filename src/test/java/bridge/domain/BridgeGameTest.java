@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import static bridge.domain.constants.MoveCommands.MOVE_DOWN_COMMAND;
+import static bridge.domain.constants.MoveCommands.MOVE_UP_COMMAND;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.domain.constants.GameCommands;
@@ -23,22 +25,22 @@ class BridgeGameTest {
     @BeforeEach
     void init() {
         player = new Player(INIT_VALUE_OF_POSITION, INIT_VALUE_OF_CHALLENGES);
-        moveResults.addResults("U", "O");
+        moveResults.addResults(MOVE_UP_COMMAND, "O");
         bridgeGame = new BridgeGame(bridge, player, moveResults);
     }
 
     @DisplayName("Bridge와 같은 값을 입력 받으면 O를 반환한다. (Bridge의 값: U)")
     @Test
     void moveTestTrue() {
-        String sign = bridgeGame.matchResult("U");
-        assertThat(sign).isEqualTo("O");
+        String matchResult = bridgeGame.matchResult(MOVE_UP_COMMAND);
+        assertThat(matchResult).isEqualTo("O");
     }
 
     @DisplayName("Bridge와 다른 값을 입력 받으면 X를 반환한다. (Bridge의 값: U)")
     @Test
     void moveTestFalse() {
-        String sign = bridgeGame.matchResult("D");
-        assertThat(sign).isEqualTo("X");
+        String matchResult = bridgeGame.matchResult(MOVE_DOWN_COMMAND);
+        assertThat(matchResult).isEqualTo("X");
     }
 
     @DisplayName("Bridge와 같은 값을 입력받으면 Player의 position이 1 증가한다. (Bridge의 값: U)")

@@ -1,7 +1,6 @@
 package bridge.domain.validation;
 
 import static bridge.domain.validation.InputValidator.INPUT_ONLY_NUMBERS;
-import static bridge.domain.validation.InputValidator.NOT_VALID_MOVE_COMMANDS;
 import static bridge.domain.validation.InputValidator.NOT_VALID_RANGE_OF_BRIDGE_SIZE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -24,13 +23,5 @@ class InputValidatorTest {
         assertThatThrownBy(() -> InputValidator.validateBridgeSize(inputValue))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NOT_VALID_RANGE_OF_BRIDGE_SIZE);
-    }
-
-    @ParameterizedTest(name = "U, D가 아닌 값을 입력하면 예외가 발생한다. 입력: {0}")
-    @ValueSource(strings = {"R", "Q", "ddd", "1"})
-    void validateCorrectValueForMoving(String inputValue) {
-        assertThatThrownBy(() -> InputValidator.validateCorrectValueForMoving(inputValue))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(NOT_VALID_MOVE_COMMANDS);
     }
 }

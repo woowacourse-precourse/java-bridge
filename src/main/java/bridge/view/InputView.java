@@ -1,11 +1,11 @@
 package bridge.view;
 
 import static bridge.domain.validation.InputValidator.validateBridgeSize;
-import static bridge.domain.validation.InputValidator.validateCorrectValueForMoving;
 import static bridge.domain.validation.InputValidator.validateThisIsNumber;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import bridge.domain.constants.GameCommands;
+import bridge.domain.constants.MoveCommands;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -36,7 +36,7 @@ public class InputView {
         return intValue;
     }
 
-    public String moveCommands() {
+    public MoveCommands moveCommands() {
         try {
             return oneStringForMoveCommands();
         } catch (IllegalArgumentException e) {
@@ -45,12 +45,9 @@ public class InputView {
         }
     }
 
-    private String oneStringForMoveCommands() {
+    private MoveCommands oneStringForMoveCommands() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String inputValue = readLine();
-        validateCorrectValueForMoving(inputValue);
-
-        return inputValue;
+        return MoveCommands.of(readLine());
     }
 
     public GameCommands gameCommand() {

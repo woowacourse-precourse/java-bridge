@@ -5,6 +5,7 @@ import static bridge.domain.constants.MoveResultsSign.MOVE_FAIL;
 import static bridge.domain.constants.MoveResultsSign.MOVE_SUCCESS;
 
 import bridge.domain.constants.GameCommands;
+import bridge.domain.constants.MoveCommands;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -31,7 +32,7 @@ public class BridgeGame {
         return player.positionNotMoreThan(bridgeSize);
     }
 
-    public String matchResult(String moveCommand) {
+    public String matchResult(MoveCommands moveCommand) {
         if (bridge.isMatched(player, moveCommand)) {
             return MOVE_SUCCESS;
         }
@@ -39,7 +40,7 @@ public class BridgeGame {
         return MOVE_FAIL;
     }
 
-    public MoveResults moveResults(String moveCommand, String moveResult) {
+    public MoveResults moveResults(MoveCommands moveCommand, String moveResult) {
         moveResults.addResults(moveCommand, moveResult);
         return moveResults;
     }
@@ -72,4 +73,5 @@ public class BridgeGame {
     public int totalNumberOfChallenges() {
         return player.totalNumberOfChallenges();
     }
+
 }

@@ -1,7 +1,8 @@
 package bridge.domain;
 
-import static bridge.domain.constants.MoveCommands.MOVE_UP_COMMAND;
+import static bridge.domain.constants.MoveCommands.*;
 
+import bridge.domain.constants.MoveCommands;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,8 +14,8 @@ public class MoveResults {
     private final List<String> upResults = new ArrayList<>();
     private final List<String> downResults = new ArrayList<>();
 
-    void addResults(String moveCommand, String moveResult) {
-        if (moveCommand.equals(MOVE_UP_COMMAND)) {
+    void addResults(MoveCommands moveCommand, String moveResult) {
+        if (moveCommand.is(MOVE_UP_COMMAND)) {
             upResults.add(moveResult);
             downResults.add(BLANK);
             return;
