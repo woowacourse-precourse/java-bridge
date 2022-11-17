@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BridgeMakerTest {
@@ -59,5 +60,20 @@ class BridgeMakerTest {
         assertThatThrownBy(()-> BridgeMaker.validateGetOneOrZero())
                 .isNotInstanceOf(IllegalArgumentException.class)
                 .hasMessageNotContaining("[ERROR]");
+    }
+
+    @DisplayName("0과 1을 무작위로 얻어낼 확률이 50:50 인지 확인한다.")
+    @Test
+    void check_Even_Chance() {
+        double trials=0;
+        double Zero=0;
+        while(trials!=100000000){
+            if(BridgeMaker.getOneOrZero()==0){
+                Zero++;
+            }
+            trials++;
+        }
+
+        assertThat(Math.round(Zero/trials)*2).isEqualTo(1);
     }
 }
