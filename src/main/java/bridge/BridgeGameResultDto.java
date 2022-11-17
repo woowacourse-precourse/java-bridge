@@ -11,4 +11,12 @@ public class BridgeGameResultDto {
         this.gradingBoard = gradingBoard;
         this.isCorrect = isCorrect;
     }
+
+    public List<Map<UpDown, Boolean>> getGradingBoard() {
+        return gradingBoard;
+    }
+
+    public boolean isCorrect() {
+        return isCorrect;
+    }
 }
