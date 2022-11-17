@@ -16,7 +16,7 @@ public class Application {
             // 다리 길이 입력받는 기능
             BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
             int size = inputView.readBridgeSize();
-            List<String> bridge = bridgeMaker.makeBridge(size);
+            Bridge bridge = new Bridge(bridgeMaker.makeBridge(size));
 
             // 플레이어가 이동할 칸을 입력받는 기능
             BridgeGame bridgeGame = new BridgeGame();
