@@ -11,6 +11,10 @@ public enum GameCondition {
         this.condition = condition;
     }
 
+    public boolean isMatchCondition(String condition) {
+        return this.condition.equals(condition);
+    }
+
     public String getCondition() {
         return condition;
     }

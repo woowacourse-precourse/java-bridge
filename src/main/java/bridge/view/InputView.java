@@ -1,6 +1,10 @@
 package bridge.view;
 
+import static bridge.model.Direction.*;
+import static bridge.model.GameCondition.*;
+
 import bridge.model.Direction;
+import bridge.model.GameCondition;
 import bridge.util.NumericConverter;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
@@ -44,8 +48,8 @@ public class InputView {
 
     private String inputMoving() {
         OutputView.printMessage(
-                String.format("이동할 칸을 선택해주세요. (위: %s, 아래: %s)", Direction.UP.getDirection(),
-                        Direction.DOWN.getDirection()));
+                String.format("이동할 칸을 선택해주세요. (위: %s, 아래: %s)", UP.getDirection(),
+                        DOWN.getDirection()));
         return Console.readLine();
     }
 
@@ -62,6 +66,30 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        while (true) {
+            try {
+                String input = inputGameCommand();
+                return findGameCommand(input);
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
+
+    private String inputGameCommand() {
+        OutputView.printMessage(
+                String.format("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)", RESTART.getCondition(),
+                        QUIT.getCondition()));
+        return Console.readLine();
+    }
+
+    private String findGameCommand(String input) {
+        return Arrays.stream(GameCondition.values())
+                .filter(condition -> condition.isMatchCondition(input))
+                .findFirst()
+                .map(GameCondition::getCondition)
+                .orElseThrow(() -> new IllegalArgumentException(
+                        String.format("해당하는 시도가 존재하지 않습니다. 입력 : %s", input)));
+    }
+
 }
