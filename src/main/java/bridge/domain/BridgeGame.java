@@ -20,7 +20,7 @@ public class BridgeGame {
     static final int UP=1;
     static final int DOWN=0;
     JudgeDestination judgeDestination = new JudgeDestination();
-    private static int count=0;
+    private static int count=1;
     private InputView inputView = new InputView();
     private List<String> mapBridge = new ArrayList<>();
 
@@ -38,13 +38,13 @@ public class BridgeGame {
         int idx=0;
         clearInfo();
         while(idx<bridgeSize && !MapPrinting.isMoveStop()){
-            System.out.println("mapBridge = " + mapBridge); // 출력시 어디가 갈 수 있는 칸인지 확인하기 위한 역할
+           System.out.println("mapBridge = " + mapBridge); // 출력시 어디가 갈 수 있는 칸인지 확인하기 위한 역할
             moving.add(inputView.readMoving());
             setPrintBool(upPrint, downPrint, convertNowIndex(mapBridge.get(idx)));
             MapPrinting mapPrinting = makeBridgeMap(upPrint,downPrint, moving.get(idx));
             idx++;
         }
-        retry(idx,bridgeSize, mapBridge);
+        afterMove(idx,bridgeSize, mapBridge);
     }
 
     public void clearInfo(){
@@ -79,6 +79,16 @@ public class BridgeGame {
         }
     }
 
+    public void afterMove(int idx,int bridgeSize, List<String> mapBridge){
+        if (isReachFinal(idx, bridgeSize)) {
+            return;
+        }
+        if (judgementRetry(idx, bridgeSize)) {
+            retry(idx,bridgeSize,mapBridge);
+            return;
+        }
+        setQuit(idx,bridgeSize);
+    }
 
 
 
@@ -87,29 +97,17 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(int idx,int bridgeSize, List<String> mapBridge) {
+    public void retry(int idx,int bridgeSize, List<String> mapBridge) { // 수정 부분 체크 retry 는 조금 별로 더 수정해야할 거 같음 retry말고 이전 작업에서처리
         count++;
-        if (isReachFinal(idx, bridgeSize)) {
-            return;
-        }
-        if (isRestartTrue(idx, bridgeSize, mapBridge)) {
-            return;
-        }
-        isRightQuit(idx,bridgeSize);
+        MapPrinting.initRestart();
+        move(mapBridge, bridgeSize);
     }
 
-    private boolean isRestartTrue(int idx, int bridgeSize, List<String> mapBridge) {
-        if(judgementRetry(idx, bridgeSize)){
-            MapPrinting.initRestart();
-            move(mapBridge, bridgeSize);
-            return true;
-        }
-        return false;
-    }
+
 
     private boolean isReachFinal(int idx, int bridgeSize) {
         if(!MapPrinting.isMoveStop()) {
-            isRightQuit(idx, bridgeSize);
+            setQuit(idx, bridgeSize);
             return true;
         }
         return false;
@@ -119,7 +117,7 @@ public class BridgeGame {
         return judgeDestination.judgeRestartOrOver(idx, bridgeSize);
     }
 
-    private void isRightQuit(int idx, int bridgeSize) {
+    private void setQuit(int idx, int bridgeSize) {
         int nowLocation = convertNowIndex(moving.get(idx - 1));
         MapPrinting resultMapPrinting = new MapPrinting(upPrint,downPrint,nowLocation);
         if(bridgeSize == idx && !MapPrinting.isMoveStop()){

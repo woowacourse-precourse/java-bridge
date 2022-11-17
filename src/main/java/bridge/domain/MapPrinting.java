@@ -50,9 +50,9 @@ public class MapPrinting {
 
     private String addString(List<Boolean> bridgeCapable, int upDown) {
         String ListString = "";
-        for(int i=0; i< bridgeCapable.size(); i++){
-            ListString= ListString + chooseString(bridgeCapable, i, upDown);
-            if(isIndexBetweenSpace(i, bridgeCapable.size() - 1)){
+        for(int index=0; index< bridgeCapable.size(); index++){
+            ListString= ListString + chooseString(bridgeCapable, index, upDown);
+            if(isIndexBetweenSpace(index, bridgeCapable.size())){
                 continue;
             }
             ListString = ListString + "| ";
@@ -60,8 +60,9 @@ public class MapPrinting {
         return ListString;
     }
 
-    private boolean isIndexBetweenSpace(int i, int bridgeCapable) {
-        return i == bridgeCapable;
+    private boolean isIndexBetweenSpace(int index, int bridgeCapableSize) {
+        bridgeCapableSize= bridgeCapableSize-1;
+        return index == bridgeCapableSize;
     }
 
     private String chooseString(List<Boolean> bridgeCapable, int i, int upDown) {
