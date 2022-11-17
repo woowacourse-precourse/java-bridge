@@ -59,4 +59,23 @@ class InputViewTest {
 
         assertThat(moveTo).isEqualTo("U");
     }
+
+    @Test
+    void readMoving_입력_예외처리() {
+        InputView inputView = new InputView();
+
+        ByteArrayInputStream in = new ByteArrayInputStream("DU".getBytes());
+        System.setIn(in);
+
+        assertThatThrownBy(() -> inputView.readMoving())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 한 글자만 입력해주세요.");
+
+        ByteArrayInputStream in2 = new ByteArrayInputStream("X".getBytes());
+        System.setIn(in2);
+
+        assertThatThrownBy(() -> inputView.readMoving())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] U, D 둘 중 하나만 입력해주세요.");
+    }
 }

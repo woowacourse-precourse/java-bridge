@@ -3,6 +3,7 @@ package bridge;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.NoSuchElementException;
+import java.util.stream.Stream;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -40,8 +41,19 @@ public class InputView {
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String moveTo = Console.readLine();
+        validateMoveTo(moveTo);
 
         return moveTo;
+    }
+
+    private void validateMoveTo(String moveTo) {
+        if (!(moveTo.contains("U") || moveTo.contains("D"))) {
+            throw new IllegalArgumentException("[ERROR] U, D 둘 중 하나만 입력해주세요.");
+        }
+
+        if (moveTo.length() != 1) {
+            throw new IllegalArgumentException("[ERROR] 한 글자만 입력해주세요.");
+        }
     }
 
     /**
