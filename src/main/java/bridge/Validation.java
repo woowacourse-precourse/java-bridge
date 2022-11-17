@@ -1,11 +1,8 @@
 package bridge;
 
-public class Validation {
-    private final String UP = "U";
-    private final String DOWN = "D";
-    private final String RETRY = "R";
-    private final String QUIT = "Q";
+import bridge.util.Constant;
 
+public class Validation {
     public void checkOnlyNumber(String inputSize) throws IllegalArgumentException {
         try {
             Integer.parseInt(inputSize);
@@ -22,13 +19,13 @@ public class Validation {
     }
 
     public void isValidDirection(String inputDirection) throws IllegalArgumentException {
-        if (!inputDirection.equals(UP) && !inputDirection.equals(DOWN)) {
+        if (!inputDirection.equals(Constant.UP) && !inputDirection.equals(Constant.DOWN)) {
             throw new IllegalArgumentException();
         }
     }
 
     public void isValidGameCommand(String inputCommand) throws IllegalArgumentException {
-        if (!inputCommand.equals(RETRY) && !inputCommand.equals(QUIT)) {
+        if (!inputCommand.equals(Constant.RETRY) && !inputCommand.equals(Constant.QUIT)) {
             throw new IllegalArgumentException();
         }
     }
