@@ -26,4 +26,17 @@ class InputViewValidatorTest {
         InputViewValidator.validateBridgeLength(4);
         InputViewValidator.validateBridgeLength(5);
     }
+
+    @DisplayName("이동하는 방향이 U 또는 D인지 확인한다")
+    @Test
+    void validateBridgeStep() {
+        assertThrows(IllegalArgumentException.class, () -> InputViewValidator.validateBridgeStep("N"));
+        assertThrows(IllegalArgumentException.class, () -> InputViewValidator.validateBridgeStep("UU"));
+        assertThrows(IllegalArgumentException.class, () -> InputViewValidator.validateBridgeStep("DD"));
+        assertThrows(IllegalArgumentException.class, () -> InputViewValidator.validateBridgeStep("UD"));
+        assertThrows(IllegalArgumentException.class, () -> InputViewValidator.validateBridgeStep("DU"));
+        assertThrows(IllegalArgumentException.class, () -> InputViewValidator.validateBridgeStep(""));
+        InputViewValidator.validateBridgeStep("U");
+        InputViewValidator.validateBridgeStep("D");
+    }
 }

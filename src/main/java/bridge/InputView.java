@@ -29,7 +29,14 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        try {
+            String step = readUserInput();
+            InputViewValidator.validateBridgeStep(step);
+            return step;
+        } catch (NoSuchElementException | IllegalArgumentException e) {
+            System.out.println(ERROR_MSG + e.getMessage());
+            return readMoving();
+        }
     }
 
     /**
@@ -42,4 +49,5 @@ public class InputView {
     private String readUserInput() {
         return Console.readLine();
     }
+
 }

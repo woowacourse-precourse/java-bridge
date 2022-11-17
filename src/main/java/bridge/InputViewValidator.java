@@ -30,4 +30,9 @@ public class InputViewValidator {
         if (!(BRIDGE_MIN_SIZE <= n && n <= BRIDGE_MAX_SIZE))
             throw  new IllegalArgumentException("다리의 길이는 3이상 20이하여야 합니다.");
     }
+
+    public static void validateBridgeStep(String step) {
+        if (!(step.equals("U") || step.equals("D")) )
+            throw new IllegalArgumentException("U 또는 D 형식으로만 이동할 수 있습니다.");
+    }
 }

@@ -10,5 +10,8 @@ public class Application {
 
         outputView.printReadBridgeLength();
         inputView.readBridgeSize();
+
+        outputView.printReadNextBridgeStep();
+        inputView.readMoving();
     }
 }
