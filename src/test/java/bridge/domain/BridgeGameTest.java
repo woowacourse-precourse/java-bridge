@@ -1,6 +1,8 @@
 package bridge.domain;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -45,5 +47,19 @@ class BridgeGameTest {
         }
 
         assertThat(bridgeGame.isWin(basicBridge, player)).isEqualTo(expectedResult);
+    }
+
+    @DisplayName("재시작시 위치 초기화 테스트")
+    @Test
+    void retryTest() {
+        String movingPath = "UDDUDDUD";
+
+        for (String movingDirection : movingPath.split("")) {
+            BridgeTile targetTile = BridgeTile.findByTilePosition(movingDirection);
+            bridgeGame.move(basicBridge, player, targetTile);
+        }
+        bridgeGame.retry(player);
+
+        assertThat(bridgeGame.isWin(basicBridge, player)).isFalse();
     }
 }
