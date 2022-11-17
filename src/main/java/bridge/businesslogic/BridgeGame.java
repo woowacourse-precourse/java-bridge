@@ -16,7 +16,7 @@ public class BridgeGame {
     private boolean isGameWinningClosed = true;
     private int gameCount;
 
-    private void initBridgeGame(){
+    public void initBridgeGame(){
         gameCount = 0;
         int bridgeSize = inputView.readBridgeSize();
         BridgeNumberGenerator numberGenerator = () -> new BridgeRandomNumberGenerator().generate();
@@ -25,8 +25,6 @@ public class BridgeGame {
     }
 
     public void play(){
-        initBridgeGame();
-
         while(!bridge.isBridgeAllCrossed()){
             String usersPick = inputView.readMoving();
             boolean continueGame = move(usersPick);
