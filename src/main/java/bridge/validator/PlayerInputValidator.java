@@ -7,4 +7,10 @@ public class PlayerInputValidator {
             throw new IllegalArgumentException("[ERROR] 이동하기 위해서는 U와 D만 입력 가능합니다.");
         }
     }
+
+    public static void canFinish(String input) {
+        if (!(input.equals("R") || input.equals("Q"))) {
+            throw new IllegalArgumentException("[ERROR] P와 Q를 통해서만 재시작, 종료가 가능합니다.");
+        }
+    }
 }
