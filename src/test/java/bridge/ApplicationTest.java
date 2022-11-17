@@ -6,12 +6,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+
 import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
+    private static final String MOVE_COMMAND_ERROR_MESSAGE = "[ERROR] U,D를 입력해 주세요.";
+    private static final String GAME_COMMAND_ERROR_MESSAGE = "[ERROR] R,Q를 입력해 주세요.";
 
     @Test
     void 다리_생성_테스트() {
@@ -26,11 +30,11 @@ class ApplicationTest extends NsTest {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "U");
             assertThat(output()).contains(
-                "최종 게임 결과",
-                "[ O |   | O ]",
-                "[   | O |   ]",
-                "게임 성공 여부: 성공",
-                "총 시도한 횟수: 1"
+                    "최종 게임 결과",
+                    "[ O |   | O ]",
+                    "[   | O |   ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 1"
             );
 
             int upSideIndex = output().indexOf("[ O |   | O ]");
@@ -40,11 +44,56 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 총_시도한_횟수_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "D", "R", "D", "R", "D", "R", "U", "D", "U");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O |   | O ]",
+                    "[   | O |   ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 4"
+            );
+        }, 1, 0, 1);
+    }
+
+    @Test
+    void 게임을_종료했을때_출력_결과_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "D", "D", "Q");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O |   |   ]",
+                    "[   | O | X ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 1"
+            );
+        }, 1, 0, 1);
+    }
+
+
+    @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("a");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    void MoveCommand_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("3", "Q");
+            assertThat(output()).contains(MOVE_COMMAND_ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void GameCommand_예외_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "D", "A", "Q");
+            assertThat(output()).contains(GAME_COMMAND_ERROR_MESSAGE);
+        }, 1, 0, 1);
     }
 
     @Override

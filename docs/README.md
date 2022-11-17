@@ -54,7 +54,7 @@
 
 
 - Application
-  - [ ] 총 시도한 횟수가 올바른지 테스트
-  - [ ] 게임을 종료했을때 출력 결과가 올바른지 테스트 
-  - [ ] MoveCommand 예외 테스트
-  - [ ] GameCommand 예외 테스트
+  - [x] 총 시도한 횟수가 올바른지 테스트
+  - [x] 게임을 종료했을때 출력 결과가 올바른지 테스트 
+  - [x] MoveCommand 예외 테스트
+  - [x] GameCommand 예외 테스트
