@@ -24,8 +24,13 @@ public enum PlayerMove {
     public static String findMove(Integer number) {
         return Arrays.stream(values())
             .filter(playerMove -> playerMove.number.equals(number))
-            .findAny()
+            .findFirst()
             .map(PlayerMove::toString)
             .orElse(UNKNOWN);
+    }
+
+    public static boolean isInPlayerMove(String input) {
+        return Arrays.stream(values())
+            .anyMatch(playerMove -> playerMove.move.equals(input));
     }
 }

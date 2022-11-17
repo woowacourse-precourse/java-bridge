@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.bridgemaker.PlayerMove;
+import bridge.domain.validation.BridgeValidation;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,11 +10,13 @@ public class Bridge {
     private final List<String> squares;
 
     public Bridge(List<String> squares) {
-        validate();
+        validate(squares);
         this.squares = squares;
     }
 
-    private void validate() {}
+    private void validate(List<String> squares) {
+        BridgeValidation.validate(squares);
+    }
 
     public boolean checkBridge(Bridge otherBridge) {
         List<String> otherBridgeSquares = otherBridge.squares;
