@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
