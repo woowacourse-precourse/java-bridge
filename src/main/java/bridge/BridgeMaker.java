@@ -1,6 +1,6 @@
 package bridge;
 
-import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toUnmodifiableList;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -28,7 +28,7 @@ public class BridgeMaker {
         return Stream.generate(bridgeNumberGenerator::generate)
                      .limit(size)
                      .map(Direction::getPosition)
-                     .collect(toList());
+                     .collect(toUnmodifiableList());
     }
 
     private void validateSizeRange(int size) {
