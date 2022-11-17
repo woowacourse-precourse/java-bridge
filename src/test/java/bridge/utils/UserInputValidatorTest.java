@@ -13,7 +13,7 @@ class UserInputValidatorTest {
     @DisplayName("다리 길이는 숫자여야 한다.")
     @Test
     void 다리_길이는_숫자() {
-        assertThatThrownBy(() -> UserInputValidator.validateBridgeLength("C"))
+        assertThatThrownBy(() -> UserInputValidator.validateBridgeSize("C"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -21,7 +21,7 @@ class UserInputValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"2", "21"})
     void 다리_길이는_3이상_20이하(String bridgeLength) {
-        assertThatThrownBy(() -> UserInputValidator.validateBridgeLength(bridgeLength))
+        assertThatThrownBy(() -> UserInputValidator.validateBridgeSize(bridgeLength))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -29,7 +29,7 @@ class UserInputValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"3", "20"})
     void 다리_길이_정상_입력(String bridgeLength) {
-        assertDoesNotThrow(() -> UserInputValidator.validateBridgeLength(bridgeLength));
+        assertDoesNotThrow(() -> UserInputValidator.validateBridgeSize(bridgeLength));
     }
 
     @DisplayName("다리 칸은 하나의 문자만 입력 가능하다.")

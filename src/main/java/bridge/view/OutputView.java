@@ -50,13 +50,13 @@ public class OutputView {
 
     private static String makeUpBridge(List<MoveStatus> result) {
         return OPEN_BRACKET + result.stream()
-                .map(MoveStatus::isUp)
+                .map(MoveStatus::isUpperSide)
                 .collect(Collectors.joining(SEPARATOR)) + CLOSE_BRACKET;
     }
 
     private static String makeDownBridge(List<MoveStatus> result) {
         return OPEN_BRACKET + result.stream()
-                .map(MoveStatus::isDown)
+                .map(MoveStatus::isDownSide)
                 .collect(Collectors.joining(SEPARATOR)) + CLOSE_BRACKET;
     }
 

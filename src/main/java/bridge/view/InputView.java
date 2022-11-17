@@ -14,9 +14,9 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public static int readBridgeLength() {
-        System.out.println(INPUT_MESSAGE_ENTER_BRIDGE_LENGTH);
-        return UserInputConvertor.mapToBridgeLength(Console.readLine());
+    public static int readBridgeSize() {
+        System.out.println(INPUT_MESSAGE_ENTER_BRIDGE_SIZE);
+        return UserInputConvertor.mapToBridgeSize(Console.readLine());
     }
 
     /**
@@ -34,8 +34,8 @@ public class InputView {
      */
     public static String readGameCommand() {
         System.out.println(INPUT_MESSAGE_RETRY_GAME_COMMAND);
-        String gameCommand = Console.readLine();
-        UserInputValidator.validateGameCommand(gameCommand);
-        return gameCommand;
+        String retryCommand = Console.readLine();
+        UserInputValidator.validateGameCommand(retryCommand);
+        return retryCommand;
     }
 }

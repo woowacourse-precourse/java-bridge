@@ -4,9 +4,9 @@ import static bridge.utils.Constants.*;
 
 public class UserInputValidator {
 
-    public static void validateBridgeLength(String bridgeLength) {
-        isDigit(bridgeLength);
-        isValidLength(Integer.parseInt(bridgeLength));
+    public static void validateBridgeSize(String bridgeSize) {
+        isDigit(bridgeSize);
+        isValidBridgeSize(Integer.parseInt(bridgeSize));
     }
 
     public static void validateSpaceToMove(String spaceToMove) {
@@ -27,9 +27,9 @@ public class UserInputValidator {
         }
     }
 
-    private static void isValidLength(int bridgeLength) {
-        if (bridgeLength < MINIMUM_BRIDGE_LENGTH || bridgeLength > MAXIMUM_BRIDGE_LENGTH) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_OUT_OF_RANGE_BRIDGE_LENGTH);
+    private static void isValidBridgeSize(int bridgeSize) {
+        if (bridgeSize < MINIMUM_BRIDGE_SIZE || bridgeSize > MAXIMUM_BRIDGE_SIZE) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_OUT_OF_RANGE_BRIDGE_SIZE);
         }
     }
 
@@ -45,8 +45,8 @@ public class UserInputValidator {
         }
     }
 
-    private static void isValidGameCommand(String gameCommand) {
-        if (!gameCommand.equals(RETRY) && !gameCommand.equals(QUIT)) {
+    private static void isValidGameCommand(String retryCommand) {
+        if (!retryCommand.equals(RETRY) && !retryCommand.equals(QUIT)) {
             throw new IllegalArgumentException(ERROR_MESSAGE_NOT_VALID_GAME_COMMAND_NAME);
         }
     }

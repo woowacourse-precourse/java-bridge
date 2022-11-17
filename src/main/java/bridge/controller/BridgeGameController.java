@@ -13,7 +13,7 @@ public class BridgeGameController {
     public static void startGame() {
         System.out.println(MESSAGE_START_BRIDGE_GAME);
         try {
-            makeBridge(InputView.readBridgeLength());
+            makeBridge(InputView.readBridgeSize());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             startGame();

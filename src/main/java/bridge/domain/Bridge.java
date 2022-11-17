@@ -10,7 +10,7 @@ public class Bridge {
         this.bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
-    public boolean canGo(int position, String spaceToMove) {
+    public boolean canMove(int position, String spaceToMove) {
         return bridge.get(position).equals(spaceToMove);
     }
 }

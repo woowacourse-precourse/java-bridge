@@ -23,8 +23,8 @@ public enum MoveStatus {
         this.moveMessage = moveMessage;
     }
 
-    public static MoveStatus findBySpaceToMove(String spaceToMove, boolean canGo) {
-        if (canGo) {
+    public static MoveStatus findBySpaceToMove(String spaceToMove, boolean canMove) {
+        if (canMove) {
             return BY_SPACE_TO_MOVE.get(spaceToMove);
         }
         return findFail(spaceToMove);
@@ -37,14 +37,14 @@ public enum MoveStatus {
         return DOWN_FAIL;
     }
 
-    public String isUp() {
+    public String isUpperSide() {
         if (this == UP || this == UP_FAIL) {
             return this.moveMessage;
         }
         return Constants.BLANK;
     }
 
-    public String isDown() {
+    public String isDownSide() {
         if (this == DOWN || this == DOWN_FAIL) {
             return this.moveMessage;
         }
