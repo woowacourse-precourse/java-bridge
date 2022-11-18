@@ -18,7 +18,7 @@ public class GameController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private BridgeGame bridgeGame;
+    private final BridgeGame bridgeGame;
 
     public GameController() {
         bridgeGame = new BridgeGame();
