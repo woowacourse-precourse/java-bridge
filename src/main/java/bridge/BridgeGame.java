@@ -1,13 +1,12 @@
 package bridge;
 
-import bridge.domain.*;
+import bridge.domain.BridgeSize;
+import bridge.domain.Command;
+import bridge.domain.Movement;
 import bridge.service.BridgeMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
     private final BridgeMaker bridgeMaker;
     private final InputView inputView;
@@ -27,26 +26,27 @@ public class BridgeGame {
     }
 
     private void repeatGame() {
+        boolean isContinue = true;
         do {
-            String moving = inputView.readMoving();
-            move(moving);
+            move(inputView.readMoving());
             if (!movement.canMove()) {
-                retry();
+                isContinue = retry();
             }
-        } while(!movement.isFinish());
-        outputView.printResult();
+        } while (!movement.isFinish() && isContinue);
+        outputView.printResult(movement);
     }
+
     private void move(String moving) {
         movement.saveMoving(moving);
         outputView.printMap(movement);
     }
 
-    public void retry() {
+    public boolean retry() {
         Command command = inputView.readGameCommand();
         if (command.isRetry()) {
             movement.clearMoving();
-            startGame();
+            return true;
         }
-        outputView.printResult();
+        return false;
     }
 }
