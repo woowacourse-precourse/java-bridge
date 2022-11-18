@@ -55,8 +55,37 @@ class InputViewTest {
                 .hasMessage(ExceptionMessage.sizeOverScope.getMessage());
     }
 
+    @DisplayName("이동거리가 U 일 때, 정상 작동")
+    @Test
+    public void checkMoveUpperWords() {
+        assertThatCode(() -> {
+            setInput("U");
+            inputView.readMoving();
+        }).doesNotThrowAnyException();
+    }
+
+    @DisplayName("이동거리가 u 일 때, 정상 작동")
+    @Test
+    public void checkMoveLowerWords() {
+        assertThatCode(() -> {
+            setInput("u");
+            inputView.readMoving();
+        }).doesNotThrowAnyException();
+    }
+
+    @DisplayName("이동거리가 U 또는 D가 아닐 경우 예외 발생")
+    @Test
+    public void checkMoveWordsNot() {
+        assertThatCode(() -> {
+            setInput("X");
+            inputView.readMoving();
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.moveByNotUD.getMessage());
+    }
+
     private void setInput(String input) {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
     }
+
 }
