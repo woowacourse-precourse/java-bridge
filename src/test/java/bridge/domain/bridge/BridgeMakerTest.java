@@ -1,8 +1,10 @@
 package bridge.domain.bridge;
 
 import bridge.resource.ErrorMessage;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -11,12 +13,19 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class BridgeMakerTest {
+
+    BridgeNumberGenerator bridgeNumberGenerator;
+
+    @BeforeAll
+    void init() {
+        bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    }
 
     @DisplayName("다리 생성 테스트 성공")
     @Test
     void makeBridgeSuccess() {
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         String size = "3";
 
@@ -32,7 +41,6 @@ class BridgeMakerTest {
     @ValueSource(strings = {"가나다", "a", "dbfbe"})
     @ParameterizedTest
     void makeBridgeInputByString(String size) {
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
         assertThatThrownBy(() -> bridgeMaker.makeBridge(size))
@@ -44,7 +52,6 @@ class BridgeMakerTest {
     @ValueSource(strings = {"1", "2", "21"})
     @ParameterizedTest
     void makeBridgeInputByOutOfBridgeLengthNumber(String size) {
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
         assertThatThrownBy(() -> bridgeMaker.makeBridge(size))
