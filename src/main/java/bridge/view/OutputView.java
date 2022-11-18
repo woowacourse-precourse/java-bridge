@@ -25,25 +25,25 @@ public class OutputView {
 
     public void setUpSideIndex(int count, boolean isPass) {
         if (isPass) {
-            upSideIndex += printDelimiter(count) + " O ";
-            downSideIndex += printDelimiter(count) + "   ";
+            upSideIndex += addDelimiter(count) + " O ";
+            downSideIndex += addDelimiter(count) + "   ";
             return;
         }
-        upSideIndex += printDelimiter(count) + " X ";
-        downSideIndex += printDelimiter(count) + "   ";
+        upSideIndex += addDelimiter(count) + " X ";
+        downSideIndex += addDelimiter(count) + "   ";
     }
 
     public void setDownSideIndex(int count, boolean isPass) {
         if (isPass) {
-            upSideIndex += printDelimiter(count) + "   ";
-            downSideIndex += printDelimiter(count) + " O ";
+            upSideIndex += addDelimiter(count) + "   ";
+            downSideIndex += addDelimiter(count) + " O ";
             return;
         }
-        upSideIndex += printDelimiter(count) + "   ";
-        downSideIndex += printDelimiter(count) + " X ";
+        upSideIndex += addDelimiter(count) + "   ";
+        downSideIndex += addDelimiter(count) + " X ";
     }
 
-    public String printDelimiter(int count) {
+    public String addDelimiter(int count) {
         if (count > 1) {
             return "|";
         }
