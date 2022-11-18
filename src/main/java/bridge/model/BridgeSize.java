@@ -18,10 +18,6 @@ public class BridgeSize {
         this.value = Integer.parseInt(value);
     }
 
-    public int getBridgeSize() {
-        return value;
-    }
-
     private void validate(String value) {
         if (value.length() > 2) {
             throw new IllegalArgumentException();
@@ -32,5 +28,9 @@ public class BridgeSize {
         if (Integer.parseInt(value) < MIN_SIZE || Integer.parseInt(value) > MAX_SIZE) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public int getBridgeSize() {
+        return value;
     }
 }
