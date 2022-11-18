@@ -1,10 +1,11 @@
 package bridge;
 
-import camp.nextstep.edu.missionutils.Console;
+import bridge.controller.Controller;
 
 public class Application {
 
     public static void main(String[] args) {
-        String str = Console.readLine();
+        Controller controller = new Controller();
+        controller.startBridgeGame();
     }
 }
