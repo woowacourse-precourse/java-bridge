@@ -22,7 +22,7 @@ public class RoadTest {
     @Test
     void testMatchDirection(){
         Road road = new Road("U");
-        assertThat(road.match("U"))
+        assertThat(road.matchDirection("U"))
                 .isTrue();
     }
 
@@ -30,7 +30,7 @@ public class RoadTest {
     @Test
     void testNotMatchDirection(){
         Road road = new Road("U");
-        assertThat(road.match("D"))
+        assertThat(road.matchDirection("D"))
                 .isFalse();
     }
 }

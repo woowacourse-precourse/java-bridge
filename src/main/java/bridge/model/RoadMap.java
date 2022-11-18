@@ -19,7 +19,7 @@ public abstract class RoadMap {
 
     public boolean matchPositionWithDirection(int roadPosition, String direction){
         if(roadPosition < getSize()){
-            return this.roads.get(roadPosition).match(direction);
+            return this.roads.get(roadPosition).matchDirection(direction);
         }
         return false;
     }

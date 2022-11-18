@@ -20,7 +20,7 @@ public class Road {
         throw new IllegalStateException(GameErrorMessage.NO_SUCH_DIRECTION.getMessage());
     }
 
-    public boolean match(String direction){
+    public boolean matchDirection(String direction){
         return this.direction.equals(direction);
     }
 }
