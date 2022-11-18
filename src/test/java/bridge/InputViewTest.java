@@ -15,7 +15,7 @@ class InputViewTest {
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "12ab", "ab12", "ab", "-ab", "-1ab", "0", "-12", "25", "1"})
     void createBridgeLengthWrongInput(String input) {
-        assertThatThrownBy(() -> InputView.validateBridgeLength(input))
+        assertThatThrownBy(() -> InputView.validateBridgeSize(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
