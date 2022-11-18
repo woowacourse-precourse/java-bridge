@@ -22,6 +22,12 @@ public class UserInputFilter {
 		checkCommand(userInput);
 	}
 
+	public String bindingRestartOrExitCommand(String userInput) {
+		checkUserInput(userInput);
+		checkRestartOrExitCommand(userInput);
+		return userInput;
+	}
+
 	private void checkBindingBridgeSize(int bindingBridgeSize) {
 		if (bindingBridgeSize < MIN_NUMBER || MAX_NUMBER < bindingBridgeSize) {
 			throw new IllegalArgumentException(String.format(RANGE_ERROR_MESSAGE_FORMAT, MIN_NUMBER, MAX_NUMBER));
@@ -38,6 +44,13 @@ public class UserInputFilter {
 		if (!(command.equals(UP_COMMAND_MESSAGE) || command.equals(DOWN_COMMAND_MESSAGE))) {
 			throw new IllegalArgumentException(
 				String.format(UP_OR_DOWN_COMMAND_ERROR_MESSAGE_FORMAT, UP_COMMAND_MESSAGE, DOWN_COMMAND_MESSAGE));
+		}
+	}
+
+	private void checkRestartOrExitCommand(String command) {
+		if (!(command.equals(RESTART_COMMAND_MESSAGE) || command.equals(EXIT_COMMAND_MESSAGE))) {
+			throw new IllegalArgumentException(
+				String.format(RESTART_OR_EXIT_COMMAND_ERROR_MESSAGE, RESTART_COMMAND_MESSAGE, EXIT_COMMAND_MESSAGE));
 		}
 	}
 }
