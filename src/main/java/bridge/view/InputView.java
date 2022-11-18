@@ -3,6 +3,8 @@ package bridge.view;
 import bridge.exception.ErrorMsg;
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 
 /**
@@ -15,9 +17,15 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println(Message.GET_BRIDGE_LENGTH);
-        int size = convertSize(Console.readLine());
-        validateBridgeSize(size);
-        return size;
+        return validated(Console.readLine(), 3, 20);
+    }
+
+    private int validated(String input, int min, int max) {
+        List<String> allowed = new ArrayList<>();
+        for (int i = min; i <= max; i++)
+            allowed.add(Integer.toString(i));
+
+        return Integer.parseInt(validated(input, allowed, ErrorMsg.WRONG_BRIDGE_SIZE));
     }
 
     public  <T> T loopInput(Supplier<T> function){
@@ -29,37 +37,24 @@ public class InputView {
             }
         }
     }
-
-    private int convertSize(String size){
-        try{return Integer.parseInt(size);}
-        catch (NumberFormatException e){
-            throw new IllegalArgumentException(ErrorMsg.NOT_NUMBER.toString());
-        }
-    }
-
-    private void validateBridgeSize(int size){
-        if (size < 3 || size > 20)
-            throw new IllegalArgumentException(ErrorMsg.WRONG_BRIDGE_SIZE.toString());
-    }
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
         System.out.println(Message.CHOOSE_UP_OR_DOWN);
-        return validatedMoving(Console.readLine());
+        return validated(Console.readLine(), List.of("U", "D"), ErrorMsg.NOT_ALLOWED_MOVEMENT);
     }
-
-    private String validatedMoving(String move){
-        if (!move.equals("U") && !move.equals("D")){
-            throw new IllegalArgumentException(ErrorMsg.NOT_ALLOWED_MOVEMENT.toString());
-        }
-        return move;
-    }
-
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private String validated(String move, List<String> allowed, ErrorMsg msg){
+        if (!allowed.contains(move)){
+            throw new IllegalArgumentException(msg.toString());
+        }
+        return move;
     }
 }

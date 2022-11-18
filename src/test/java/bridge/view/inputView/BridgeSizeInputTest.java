@@ -48,7 +48,7 @@ class BridgeSizeInputTest {
     @Test
     @DisplayName("숫자가 아닌 입력시 에러 문구 확인")
     public void notNumberErrorMsgTest(){
-        consoleTestUtil.testOutput("aaa\n20", ErrorMsg.NOT_NUMBER.toString(),
+        consoleTestUtil.testOutput("aaa\n20", ErrorMsg.WRONG_BRIDGE_SIZE.toString(),
                 () -> inputView.loopInput(() -> inputView.readBridgeSize()));
     }
 
