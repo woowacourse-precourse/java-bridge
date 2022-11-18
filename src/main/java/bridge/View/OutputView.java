@@ -1,9 +1,8 @@
 package bridge.View;
 
-import bridge.Controller.BridgeGame;
-import bridge.Model.Player;
+import bridge.Domain.BridgeGame;
+import bridge.Domain.Player;
 import bridge.Constant.InputValue;
-import bridge.Constant.OutputMessage;
 import bridge.Constant.OutputValue;
 
 import java.util.List;
@@ -12,6 +11,12 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    private static final String RESULT_MESSAGE = "최종 게임 결과";
+    private static final String BRIDGE_MAP = "[%s]" + System.lineSeparator();
+    private static final String IS_SUCCESS = "게임 성공 여부: %s" + System.lineSeparator();
+    private static final String RETRY_COUNT = "총 시도한 횟수: %d" + System.lineSeparator();
+
+
         private String printSelectedStair(Player player, String stair) {
         if (!stair.equals(player.getLastSelection())) {
             return OutputValue.NOT_SELECTION;
@@ -44,7 +49,7 @@ public class OutputView {
         result = printPassedStair(bridgeStates, player.getNextLocation(), stair);
         result += printSelectedStair(player, stair);
 
-        System.out.printf(OutputMessage.BRIDGE_MAP, result);
+        System.out.printf(BRIDGE_MAP, result);
     }
 
     public void printMap(BridgeGame bridgeGame) {
@@ -90,16 +95,16 @@ public class OutputView {
         result = printPassedStair(bridgeGame.getBridgeStates(), bridgeGame.getMaxPassedCount(), stair);
         result += printLastStair(bridgeGame, stair);
 
-        System.out.printf(OutputMessage.BRIDGE_MAP, result);
+        System.out.printf(BRIDGE_MAP, result);
     }
 
     public void printResult(BridgeGame bridgeGame) {
-        System.out.println(OutputMessage.RESULT_MESSAGE);
+        System.out.println(RESULT_MESSAGE);
 
         printResultStair(bridgeGame, InputValue.SELECTION_UP);
         printResultStair(bridgeGame, InputValue.SELECTION_DOWN);
 
-        System.out.printf(OutputMessage.IS_SUCCESS, printIsSuccess(bridgeGame));
-        System.out.printf(OutputMessage.RETRY_COUNT, bridgeGame.getRetryCount());
+        System.out.printf(IS_SUCCESS, printIsSuccess(bridgeGame));
+        System.out.printf(RETRY_COUNT, bridgeGame.getRetryCount());
     }
 }
