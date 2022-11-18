@@ -3,8 +3,9 @@ package bridge.control;
 public class inputCheck {
   private int change;
   public void bridge_size_check(String input_size){
-    if(!input_size.matches("^[0-9]*$]")){
-      throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+    if(!input_size.chars().allMatch(Character::isDigit)){
+      System.out.println("[ERROR] 숫자를 입력해주세요.");
+      //throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
     }
     change = Integer.parseInt(input_size);
     if(change < 3 || change > 20){
