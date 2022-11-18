@@ -79,12 +79,9 @@ public class BridgeGame {
         bridgeRepository.updateAttemptNumber();
         bridgeRepository.setResult();
     }
-
-
     public void setResult(){
         bridgeRepository.setResult();
     }
-
     public void generatorBridge(){
         bridgeRepository.updateBridge(bridgeMaker.makeBridge(bridgeRepository.getBridgeSize().getSize()));
     }

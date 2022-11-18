@@ -1,5 +1,7 @@
 package bridge.presentation.dto;
 
+import bridge.support.Validator;
+
 public class BridgeSize {
     private Integer size;
 
@@ -8,7 +10,7 @@ public class BridgeSize {
         size=Integer.parseInt(input);
     }
     private void validate(String input){
-
+        Validator.checkInteger(input);
     }
     public Integer getSize() {
         return size;

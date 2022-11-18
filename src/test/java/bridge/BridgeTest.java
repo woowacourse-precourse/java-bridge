@@ -11,6 +11,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 public class BridgeTest {
     @DisplayName("다리 길이 저장 테스트")
     @Test
@@ -43,5 +45,10 @@ public class BridgeTest {
     void 재시작_저장(){
         BridgeGame bridgeGame=BridgeGame.getInstance();
         Assertions.assertThat(bridgeGame.checkRetry(new GameCommand("R"))).isEqualTo(true);
+    }
+    @DisplayName("문자를 입력할 시 예외가 발생한다.")
+    @Test
+    void 다리길이_문자입력(){
+        assertThatThrownBy(()->new BridgeSize("q")).isInstanceOf(IllegalArgumentException.class);
     }
 }
