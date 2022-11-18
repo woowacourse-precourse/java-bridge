@@ -15,7 +15,11 @@ public class Player {
         inputs.add(direction);
     }
 
-    public List<String> getInputs() {
-        return Collections.unmodifiableList(inputs);
+    public int getLastIndex() {
+        return inputs.size() - 1;
+    }
+
+    public String getLastInput() {
+        return inputs.get(inputs.size() - 1);
     }
 }
