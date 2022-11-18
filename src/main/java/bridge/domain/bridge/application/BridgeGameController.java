@@ -39,7 +39,7 @@ public class BridgeGameController {
         BridgeGame bridgeGame = new BridgeGame(bridgeMap, gamePlayer);
 
         do {
-            inputView.readGameCommand();
+            inputView.readMoving();
         } while (true);
     }
 }
