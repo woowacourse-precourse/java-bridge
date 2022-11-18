@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.*;
 
 public class InputExceptionTest {
+    private final String ERROR_MESSAGE = "[ERROR]";
     InputException inputException;
 
     @BeforeEach
@@ -20,7 +21,8 @@ public class InputExceptionTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> {
                     inputException.validateBridgeSize(bridgeSize);
-                });
+                })
+                .withMessageStartingWith(ERROR_MESSAGE);
     }
 
     @ParameterizedTest
@@ -29,7 +31,8 @@ public class InputExceptionTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> {
                     inputException.validateMoving(moving);
-                });
+                })
+                .withMessageStartingWith(ERROR_MESSAGE);
     }
 
     @ParameterizedTest
@@ -38,6 +41,7 @@ public class InputExceptionTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> {
                     inputException.validateGameCommand(gameCommand);
-                });
+                })
+                .withMessageStartingWith(ERROR_MESSAGE);
     }
 }
