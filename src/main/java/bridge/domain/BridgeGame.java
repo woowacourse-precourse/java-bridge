@@ -23,12 +23,13 @@ public class BridgeGame {
 
     // 칸 이동을 관할하는 메소드, 이동이 끝났을 때는 false, 게속 진행할 때는 true를 반환한다.
     public boolean move(String choiceUpAndDown) {
+        Application app = new Application();
         clearBridge();
 
-        if (!canPass(choiceUpAndDown)) return retry();
+        if (!canPass(choiceUpAndDown)) return retry(app);
 
         if (passHistory.size() == randomBridge.size()) {
-            Application.outcome = true;
+            app.setGameClear(true);
             return false;
         }
 
@@ -51,10 +52,9 @@ public class BridgeGame {
     }
 
     // 잘못된 칸을 선택했을 때 재시작할지 프로그램을 종료할지 선택하는 메소드
-    public boolean retry() {
-        Application app = new Application();
-        Application.outcome = false;
-        Application.attempt += 1;
+    public boolean retry(Application app) {
+        app.setGameClear(false);
+        app.setAttempt(1);
 
         addFailTrace();
 
