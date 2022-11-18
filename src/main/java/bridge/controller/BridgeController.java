@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.BridgeGame;
 import bridge.dto.CurrentPositionDto;
+import bridge.dto.ResultDto;
 import bridge.type.CommandType;
 import bridge.validation.Validator;
 import bridge.view.InputView;
@@ -28,8 +29,12 @@ public class BridgeController {
         printStartMessage();
         makeBridge();
         moveToEndPoint();
+        printResult();
+    }
 
-
+    private void printResult() {
+        ResultDto resultDto = bridgeGame.getResultDto();
+        outputView.printResult(resultDto);
     }
 
     private void moveToEndPoint() {

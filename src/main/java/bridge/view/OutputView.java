@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.dto.CurrentPositionDto;
+import bridge.dto.ResultDto;
 import bridge.type.Direction;
 import bridge.type.GuideMessage;
 import bridge.type.MapType;
@@ -27,6 +28,7 @@ public class OutputView {
         makeBottomResultMap(bottom, resultMap);
         System.out.println(top);
         System.out.println(bottom);
+        System.out.println();
     }
 
     private void makeTopResultMap(StringBuilder top, List<String> resultMap) {
@@ -112,7 +114,19 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(ResultDto resultDto) {
+        System.out.println(GuideMessage.GAME_RESULT.getMessage());
+        printMap(resultDto.getCurrentPositionDto());
+        printGameStatus(resultDto.getIsComplete());
+        System.out.println(GuideMessage.TRY_COUNT.getMessage() + resultDto.getTryCount());
+    }
+
+    private void printGameStatus(boolean isComplete) {
+        if (isComplete) {
+            System.out.println(GuideMessage.GAME_SUCCESS.getMessage());
+            return;
+        }
+        System.out.println(GuideMessage.GAME_FAIL.getMessage());
     }
 
     public void printError(Exception e) {

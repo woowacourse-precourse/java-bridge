@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.dto.CurrentPositionDto;
+import bridge.dto.ResultDto;
 
 import java.util.List;
 
@@ -53,5 +54,12 @@ public class BridgeGame {
 
     public boolean isPlayerCompleteToMove() {
         return player.isCompleteToMove();
+    }
+
+    public ResultDto getResultDto() {
+        int tryCount = player.getTryCount();
+        boolean isComplete = player.isCompleteToMove();
+        CurrentPositionDto currentPosition = getCurrentPosition();
+        return new ResultDto(tryCount, isComplete, currentPosition);
     }
 }
