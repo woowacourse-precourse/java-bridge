@@ -1,10 +1,12 @@
 package bridge.domain;
 
+import bridge.constant.Constant;
+
 import java.util.Arrays;
 
 public enum Direction {
-    UP(1, "U"),
-    DOWN(0, "D");
+    UP(1, Constant.UP),
+    DOWN(0, Constant.DOWN);
 
     private final int value;
     private final String mark;
