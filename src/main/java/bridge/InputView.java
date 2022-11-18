@@ -21,18 +21,21 @@ public class InputView {
         try {
             int tempInt = Integer.parseInt(s);
 
-            if(tempInt >= 3 && tempInt <= 20) throw new IllegalArgumentException("[ERROR] 3부터 20 사이의 숫자가 아닙니다.");
+            if(!(tempInt >= 3 && tempInt <= 20)) throw new IllegalArgumentException("[ERROR] 3부터 20 사이의 숫자가 아닙니다.");
 
         } catch (Exception e) {
             if(e.getClass() == NumberFormatException.class) throw new IllegalArgumentException("[ERROR] 숫자가 아닙니다.");
             if(e.getClass() == IllegalArgumentException.class) throw e;
         }
     }
+
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String userInput = Console.readLine();
+
+        return userInput;
     }
 
     /**
