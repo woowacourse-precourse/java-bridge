@@ -37,6 +37,12 @@ public class OutputView {
         return sb.toString();
     }
 
+    private String checkGameState(List<Boolean> gameState){
+        if(gameState.get(gameState.size() - 1))
+            return "성공";
+        return "실패";
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -55,9 +61,7 @@ public class OutputView {
     public void printResult(List<String> userLocation, List<Boolean> gameState, int retryConut) {
         print(END_GAME_MESSAGE);
         printMap(userLocation, gameState);
-        if(gameState.get(gameState.size() - 1))
-            print(GAME_STATE_MESSAGE + "성공");
-        print(GAME_STATE_MESSAGE + "실패");
+        print(GAME_STATE_MESSAGE + checkGameState(gameState));
         print(GAME_RETRY_COUNT_MESSAGE + retryConut);
     }
 

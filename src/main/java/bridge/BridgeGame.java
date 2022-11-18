@@ -79,6 +79,7 @@ public class BridgeGame {
 
     public boolean gameExit(){
         if(gameFailState() || gameSuccessState()){
+            outputView.printResult(user.getUserLocation(), gameState, retryConut);
             return true;
         }
         return false;
