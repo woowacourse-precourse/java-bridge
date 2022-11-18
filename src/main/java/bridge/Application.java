@@ -15,6 +15,9 @@ public class Application {
         List<String> bridge = BridgeMaker.makeBridge(size);
         System.out.println(bridge);
 
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.gameStart(bridge);
+
         // TODO: 프로그램 구현
     }
 }

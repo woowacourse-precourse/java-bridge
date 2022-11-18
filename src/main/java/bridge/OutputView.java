@@ -1,5 +1,5 @@
 package bridge;
-
+import java.util.List;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -12,7 +12,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public static void printMap(List<String> upBridge, List<String> downBridge) {
+        for(int i=0 ; i<upBridge.size() ; i++){ System.out.print(upBridge.get(i));}
+        System.out.println("");
+        for(int i=0 ; i<downBridge.size() ; i++){ System.out.print(downBridge.get(i));}
+        System.out.println("");
     }
 
     /**
@@ -31,6 +35,8 @@ public class OutputView {
         System.out.println("다리의 길이를 입력해 주세요.");
     }
 
+    public static void userSelect() { System.out.println("이동할 칸을 선택해주세요. (위 : U, 아래 : D)"); }
+
     public static int validatorNonNumber(String input){
         int number;
         try{
@@ -44,5 +50,11 @@ public class OutputView {
             System.out.println("[ERROR] 3 ~ 20 사이의 숫자를 입력해주세요.");
             return 0;
         } return input;
+    }
+
+    public static String validatorUserSelect(String user){
+        if (user.equals("D") || user.equals("U")) {return user;}
+        System.out.println("[ERROR] U 혹은 D만 입력해 주세요.");
+        return "";
     }
 }

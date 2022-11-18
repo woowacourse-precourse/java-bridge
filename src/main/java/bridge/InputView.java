@@ -22,8 +22,14 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public static String readMoving() {
+        OutputView.userSelect();
+        String user = "";
+        while (user.equals("")){
+            user = Console.readLine();
+            user = OutputView.validatorUserSelect(user);
+        }
+        return user;
     }
 
     /**
