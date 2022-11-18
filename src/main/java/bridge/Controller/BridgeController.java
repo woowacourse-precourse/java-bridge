@@ -12,6 +12,7 @@ public class BridgeController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private BridgeGame bridgeGame;
     private Integer bridgeSize;
     private List<String> bridge;
 
@@ -22,12 +23,24 @@ public class BridgeController {
     public void init(){
         bridgeSize = inputView.readBridgeSize();
         bridge = bridgeMaker.makeBridge(bridgeSize);
+        bridgeGame = new BridgeGame(bridge);
     }
     public void run(){
-        BridgeGame bridgeGame = new BridgeGame(bridge);
+        game();
+        outputView.printResult(successMessage(), 1);
+    }
+
+    private void game() {
         while(bridgeGame.isEnd()){
             System.out.println(bridge);
             bridgeGame.move(inputView.readMoving());
         }
+    }
+
+    public String successMessage(){
+        if (bridgeGame.isSuccess()) {
+            return "성공";
+        }
+        return "실패";
     }
 }

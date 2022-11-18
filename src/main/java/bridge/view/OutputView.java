@@ -23,7 +23,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(String successMessage, Integer tryCount) {
+        System.out.println(Message.RESULT_IS_SUCCESS.getMessage() + successMessage);
+        System.out.println(Message.RESULT_TRY.getMessage() + tryCount.toString());
     }
 
     public void printStartMessage(){
