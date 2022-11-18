@@ -8,6 +8,8 @@ public class InputValidator {
 	private static final int MAX_BRIDGE_LENGTH = 20;
 	private static final String MOVE_UP = "U";
 	private static final String MOVE_DOWN = "D";
+	private static final String RETRY = "R";
+	private static final String QUIT = "Q";
 
 	public void validateBridgeLength(String string) {
 		assertStringIsPositiveNumber(string);
@@ -30,6 +32,12 @@ public class InputValidator {
 	public void validateMovement(String string) {
 		if (!string.equals(MOVE_UP) && !string.equals(MOVE_DOWN)) {
 			throw new IllegalArgumentException(ErrorMsg.MOVE_MSG_NOT_VALID.getMessage());
+		}
+	}
+
+	public void validateRetry(String string) {
+		if (!string.equals(RETRY) && !string.equals(QUIT)) {
+			throw new IllegalArgumentException(ErrorMsg.RETRY_MSG_NOT_VALID.getMessage());
 		}
 	}
 }

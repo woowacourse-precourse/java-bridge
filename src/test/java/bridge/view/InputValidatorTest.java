@@ -28,4 +28,11 @@ class InputValidatorTest {
 			() -> inputValidator.validateMovement(string));
 	}
 
+	@DisplayName("재시도 입력이 R또는 Q가 아니라면 예외가 발생한다.")
+	@ParameterizedTest
+	@ValueSource(strings = {"가나다", "1", "a", "r", "q", "rq"})
+	void validateRetryTest(String string) {
+		Assertions.assertThrows(IllegalArgumentException.class,
+			() -> inputValidator.validateRetry(string));
+	}
 }
