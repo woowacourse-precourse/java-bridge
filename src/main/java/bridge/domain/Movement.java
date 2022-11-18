@@ -38,6 +38,8 @@ public class Movement {
 
     public void clearMoving() {
         this.movement = new ArrayList<>();
+        this.topMap = new ArrayList<>();
+        this.bottomMap = new ArrayList<>();
         tryCount++;
     }
 
