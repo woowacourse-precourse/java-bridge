@@ -2,13 +2,18 @@ package bridge;
 
 public class InputController {
     private final InputView inputView;
+    private final OutputView outputView;
 
-    public InputController(InputView inputView) {
+    public InputController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public int getBridgeSize() throws IllegalArgumentException {
-        String inputSize = inputView.readBridgeSize();
+        String inputSize;
+        outputView.printGameStart();
+        outputView.printEnterSize();
+        inputSize = inputView.readBridgeSize();
 
         Validation.checkOnlyNumber(inputSize);
         Validation.isValidBridgeSize(inputSize);
