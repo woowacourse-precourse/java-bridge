@@ -39,6 +39,8 @@ public class Bridge {
     }
 
     public boolean possibleNextStep(int bridgeIndex, String inputPlate) {
-        return false;
+        Plate userNextStep = Plate.findBySymbol(inputPlate);
+        Plate currentPlate = this.bridge.get(bridgeIndex);
+        return userNextStep.equals(currentPlate);
     }
 }
