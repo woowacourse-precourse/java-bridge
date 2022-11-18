@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Controller {
+    final int Start_Point = 0;
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     BridgeGame bridgeGame = new BridgeGame();
@@ -15,7 +16,7 @@ public class Controller {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         inputView.printStart();
         bridgeList = bridgeMaker.makeBridge(inputView.readBridgeSize());
-        Game(0);
+        Game(Start_Point);
     }
 
     private void Game(int movingIndex) {
@@ -40,7 +41,7 @@ public class Controller {
         String Command = inputView.readGameCommand();
         if (bridgeGame.retry(Command)) {
             count++;
-            Game(0);
+            Game(Start_Point);
             return;
         }
         printingResult(movingIndex);
