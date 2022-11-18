@@ -5,6 +5,13 @@ package bridge.view;
  */
 public class OutputView {
 
+    private static final String BRIDGE_PREFIX = "[ ";
+    private static final String DELIMITER = " | ";
+    private static final String BRIDGE_SUFFIX = " ]";
+    private static final String PASS = "O";
+    private static final String NO_PASS = "X";
+    private static final String EMPTY = " ";
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
