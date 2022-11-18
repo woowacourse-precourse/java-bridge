@@ -19,15 +19,18 @@ public class Application {
     sout]
 
     구현
-    [] - 다리 생성 시 0과 1 중 무작위 값으로 설정
+    [x] - 다리 생성 시 0과 1 중 무작위 값으로 설정
     [] - U, D 입력시 판단하여 건널 수 있는지 없는지 여부 판단
     [] - 시도한 횟수 기억
     */
     public static void main(String[] args) {
         System.out.println("다리 건너기 게임을 시작합니다.");
         int bridgeSize = InputView.readBridgeSize();
-        for(int i = 0; i < bridgeSize; i++){
-            String movingPoint = InputView.readMoving();
-        }
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        bridgeMaker.makeBridge(bridgeSize);
+//        for(int i = 0; i < bridgeSize; i++){
+//            String movingPoint = InputView.readMoving();
+//        }
     }
 }

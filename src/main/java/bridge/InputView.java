@@ -21,7 +21,7 @@ public class InputView {
                 throw new IllegalArgumentException();
         }
         catch(IllegalArgumentException e){
-            System.out.println("[ERROR] 잘못된 다리 길이 입력");
+            System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
             readBridgeSize();
         }
         return bridgeSize;
@@ -37,7 +37,7 @@ public class InputView {
             if (!(movingPoint.equals("U") || movingPoint.equals("D")))
                 throw new IllegalArgumentException();
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 잘못된 이동할 칸 선택");
+            System.out.println("[ERROR] 이동할 칸은 U 혹은 D 여야만 합니다.");
             readMoving();
         }
         return movingPoint;
@@ -53,7 +53,7 @@ public class InputView {
             if (!(exitPoint.equals("R") || exitPoint.equals("Q")))
                 throw new IllegalArgumentException();
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 잘못된 여부 선택");
+            System.out.println("[ERROR] 게임 재시도 여부는 R 혹은 Q 여야만 합니다.");
             readGameCommand();
         }
         return exitPoint;
