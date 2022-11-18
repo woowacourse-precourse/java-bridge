@@ -62,6 +62,19 @@ class InputViewTest {
                 .hasMessageContaining(ERROR);
     }
 
+    @DisplayName("사용자 이동 입력 받기")
+    @ValueSource(strings = {"U", "D"})
+    @ParameterizedTest
+    void readMoving(String input) {
+        //given
+        InputView inputView = new InputView();
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        //when
+        String moving = inputView.readMoving();
+        //then
+        assertThat(moving).isEqualTo(input);
+    }
+
     @DisplayName("[예외 테스트] 재시도 여부 입력값이 올바르지 않음")
     @ValueSource(strings = {"RETRY", "QUIT", " "})
     @ParameterizedTest
