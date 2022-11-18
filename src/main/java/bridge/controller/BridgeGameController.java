@@ -23,7 +23,7 @@ public class BridgeGameController {
     private static void makeBridge(int bridgeSize) {
         BridgeGame bridgeGame = new BridgeGame(bridgeSize, new BridgeMaker(new BridgeRandomNumberGenerator()));
         boolean gameStatus = true;
-        while (gameStatus && !bridgeGame.gameEnd(bridgeSize)) {
+        while (gameStatus && !bridgeGame.gameEnd()) {
             gameStatus = move(bridgeGame);
             gameStatus = gameNotOver(gameStatus, bridgeGame);
         }

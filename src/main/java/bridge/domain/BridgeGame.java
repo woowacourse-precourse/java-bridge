@@ -4,10 +4,12 @@ import static bridge.utils.Constants.RETRY;
 
 public class BridgeGame {
 
+    private final int bridgeSize;
     private final Bridge bridge;
     private final Player player = new Player();
 
     public BridgeGame(int bridgeSize, BridgeMaker bridgeMaker) {
+        this.bridgeSize = bridgeSize;
         this.bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
@@ -23,7 +25,7 @@ public class BridgeGame {
         return false;
     }
 
-    public boolean gameEnd(int bridgeSize) {
+    public boolean gameEnd() {
         return player.crossTheBridge(bridgeSize);
     }
 
