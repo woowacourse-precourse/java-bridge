@@ -4,6 +4,8 @@ import bridge.service.Service;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.List;
+
 public class Controller {
     Service service = new Service();
     InputView inputView = new InputView();
@@ -31,7 +33,6 @@ public class Controller {
 
     private void playGame() {
             move();
-//            printMoveResult();
 //            boolean gameEnd = checkGameEnd();
 //            if(gameEnd) {
 //                boolean gameWin = checkWinning();
@@ -60,9 +61,15 @@ public class Controller {
         try {
             String moveInput = inputView.readMoving();
             service.move(moveInput);
+            printMoveResult();
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
             move();
         }
+    }
+
+    private void printMoveResult() {
+        List<String> currentResult = service.getCurrentResult();
+        outputView.printMap(currentResult);
     }
 }
