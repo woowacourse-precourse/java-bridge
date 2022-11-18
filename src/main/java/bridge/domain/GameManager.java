@@ -21,8 +21,7 @@ public class GameManager {
     }
 
     public void play() {
-        boolean status;
-        status = moveForward();
+        boolean status = moveForward();
         if (status && retryOrNot()) {
             play();
         }
