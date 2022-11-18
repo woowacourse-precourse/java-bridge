@@ -19,8 +19,10 @@ public class User {
     public int cross(Bridge bridge, String direction) {
         if (bridge.canCross(currentLocation, direction)) {
             currentLocation++;
+            recordStep(LIVE, direction);
             return LIVE;
         }
+        recordStep(DEAD, direction);
         return DEAD;
     }
 
