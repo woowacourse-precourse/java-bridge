@@ -20,7 +20,7 @@
             - 지금까지 입력된 다리 저장하고 출력하기(UI) - BridgeGame#currentStateBridgeSavePrint()
         + 다리의 길이만큼 계속 입력받기(조건)
         * 게임 종료일 경우(계속 일치해서 다리를 모두 건넜을 경우) 
-            - 최종 게임 결과, 게임 성공 여부 : 성공, 지금까지 총 시도한 횟수를 출력하기(UI) - OutputView#printResult()
+            - 최종 게임 결과, 게임 성공 여부 : 성공, 지금까지 총 시도한 횟수를 출력하기(UI) - OutputView#printResult() && main#checkSuccessOrFailure()
 
     * 일치하지 않는 경우 
         - 사용자 칸을 이동하기(핵심로직) - BridgeGame#move()
@@ -34,7 +34,7 @@
                 + 다리의 구성, 길이는 재시작 전과 같음(조건)
                 - 지금까지 이동한 다리까지 출력하기(UI) - OutputView#printMap()
             * 게임 종료일 경우(Q를 선택했을 경우) 
-                - 최종 게임 결과, 게임 성공 여부 : 실패, 지금까지 총 시도한 횟수를 출력하기(UI) - OutputView#printResult()
+                - 최종 게임 결과, 게임 성공 여부 : 실패, 지금까지 총 시도한 횟수를 출력하기(UI) - OutputView#printResult() && main#checkSuccessOrFailure()
     
 
 
