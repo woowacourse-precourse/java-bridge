@@ -95,7 +95,17 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(int result, int total) {
+        System.out.println(GAME_FINAL);
+        System.out.println(printMap(result));
+    }
+    public void successGamePrint(int result){
+        if(result == GAME_WIN.num()){
+            System.out.println(SUCCESS_GAME+ "성공");
+        }
+        if(result == GAME_LOSE.num()){
+            System.out.println(SUCCESS_GAME+ "실패");
+        }
     }
 
     public void printGameStart() {
