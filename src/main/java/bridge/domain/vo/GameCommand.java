@@ -6,6 +6,7 @@ import static bridge.domain.enumeration.GameCommandType.*;
 public class GameCommand {
 
     private final String gameCommand;
+    private final int GAME_COMMAND_MAX_LENGTH = 1;
 
     public static GameCommand createGameCommand(String gameCommand) {
         return new GameCommand(gameCommand);
@@ -21,7 +22,7 @@ public class GameCommand {
     }
 
     public void validateGameCommand(String gameCommand) {
-        if (gameCommand.length() != 1) {
+        if (gameCommand.length() != GAME_COMMAND_MAX_LENGTH) {
             throw new IllegalArgumentException(GAME_COMMAND_LENGTH_IS_NOT_ONE.getErrorMessage());
         }
         if (!gameCommand.equals(RETRY.getGameCommandType()) && !gameCommand.equals(QUIT.getGameCommandType())) {
