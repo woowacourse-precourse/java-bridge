@@ -16,7 +16,7 @@ public class BridgeGameController {
 		this.bridgeGame = new BridgeGame(bridgeMaker.makeBridge(inputView.readBridgeSize()));
 	}
 
-	public void gameStart() {
+	public void gameStart(int repeat) {
 		Record record = new Record();
 		Boolean gameResult = true;
 		for (int i = 0; i < bridgeGame.getBridgeSize(); i++) {
@@ -26,17 +26,17 @@ public class BridgeGameController {
 			outputView.printMap(record.getResult());
 			if (gameResult == false) {
 				if (bridgeGame.retry(inputView.readGameCommand())) {
-					gameStart();
+					gameStart(repeat + 1);
 				}
 				break;
 			}
 		}
 		if (gameResult == true) {
-			gameEnd(record);
+			gameEnd(record, repeat);
 		}
 	}
 
-	private void gameEnd(Record record) {
-		outputView.printResult(record.getResult());
+	private void gameEnd(Record record, int repeat) {
+		outputView.printResult(record.getResult(), repeat);
 	}
 }
