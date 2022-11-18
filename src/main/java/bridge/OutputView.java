@@ -1,5 +1,8 @@
 package bridge;
 
+import static bridge.MessageUtil.BRIDGE_SIZE_INPUT_INTRO;
+import static bridge.MessageUtil.START_GAME_INTRO;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -21,11 +24,20 @@ public class OutputView {
     public void printResult() {
     }
 
-    public void printOpening(){
-        System.out.println("다리 건너기 게임을 시작합니다.\n");
+    public void printOpening() {
+        System.out.println(START_GAME_INTRO.message + "\n");
     }
 
-    public void printErrorMessage(String message) {
-        System.out.println(message);
+    public void printBrideSizeOpening() {
+        System.out.println(BRIDGE_SIZE_INPUT_INTRO.message);
     }
+
+    public void printErrorMessage(String errorMsg) {
+        System.out.println("[ERROR]" + errorMsg + "\n");
+    }
+
+    public void printEmptyLine() {
+        System.out.println();
+    }
+
 }

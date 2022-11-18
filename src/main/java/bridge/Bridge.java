@@ -1,5 +1,7 @@
 package bridge;
 
+import static bridge.MessageUtil.INVALID_BRIDGE_SIZE;
+
 public class Bridge {
     private static final int SIZE_LIMIT_START = 3;
     private static final int SIZE_LIMIT_END = 20;
@@ -13,7 +15,7 @@ public class Bridge {
 
     private void validateBridgeSize(String bridgeSize) {
         if (!isNumeric(bridgeSize) || !isValidInRange(bridgeSize)) {
-            throw new IllegalArgumentException("error throw");
+            throw new IllegalArgumentException(INVALID_BRIDGE_SIZE.message);
         }
     }
 

@@ -18,8 +18,10 @@ public class GameController {
     }
 
     private Bridge getBridgeInput() {
+        outputView.printBrideSizeOpening();
         try {
             bridge = new Bridge(inputView.readBridgeSize());
+            outputView.printEmptyLine();
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
             getBridgeInput();
