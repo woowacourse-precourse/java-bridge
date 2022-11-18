@@ -39,8 +39,7 @@ public class OutputView {
             bridgeMapBuilder.append(BRIDGE_DIVIDE_SIGN);
             index++;
         }
-        bridgeMapBuilder.deleteCharAt(bridgeMapBuilder.length() - 1);
-        bridgeMapBuilder.append(BRIDGE_END_SIGN);
+        bridgeMapBuilder.replace(bridgeMapBuilder.length()-1, bridgeMapBuilder.length(), BRIDGE_END_SIGN);
         return bridgeMapBuilder.toString();
     }
 
