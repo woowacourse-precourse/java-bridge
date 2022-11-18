@@ -1,10 +1,15 @@
 package bridge;
 
 import static bridge.Validator.validateInputDIRECTION;
-import static bridge.Validator.validateInputLowerCase;
-import static bridge.Validator.validateInputNull;
+import static bridge.Validator.validateInputDirectionLowerCase;
+import static bridge.Validator.validateInputDirectionNull;
+import static bridge.Validator.validateInputGameRestart;
+import static bridge.Validator.validateInputGameRestartLowerCase;
+import static bridge.Validator.validateInputGameRestartNull;
 import static bridge.Validator.validateInputSize;
-import static bridge.Validator.validateInputType;
+import static bridge.Validator.validateInputSizeNull;
+import static bridge.Validator.validateInputSizeType;
+
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 /**
@@ -23,8 +28,8 @@ public class InputView {
         System.out.println(Message.INPUT_SIZE.getMessage());
         inputSize = readLine();
         System.out.println();
-        validateInputType(inputSize);
-        validateInputNull(inputSize);
+        validateInputSizeNull(inputSize);
+        validateInputSizeType(inputSize);
         bridgeSize = Integer.parseInt(inputSize);
         validateInputSize(bridgeSize);
         return bridgeSize;
@@ -36,8 +41,9 @@ public class InputView {
     public String inputMovingDirection() {
         System.out.println(Message.SELECT_DIRECTION.getMessage());
         inputDirection = readLine();
+        validateInputDirectionNull(inputDirection);
         validateInputDIRECTION(inputDirection);
-        validateInputLowerCase(inputDirection);
+        validateInputDirectionLowerCase(inputDirection);
         return inputDirection;
     }
 
@@ -47,6 +53,9 @@ public class InputView {
     public String inputGameRestart() {
         System.out.println(Message.ASK_RESTART.getMessage());
         inputRestart = readLine();
+        validateInputGameRestartNull(inputRestart);
+        validateInputGameRestart(inputRestart);
+        validateInputGameRestartLowerCase(inputRestart);
         return inputRestart;
     }
 }
