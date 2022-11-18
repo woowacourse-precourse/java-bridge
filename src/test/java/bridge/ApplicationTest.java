@@ -5,9 +5,13 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
+import bridge.constant.message.ErrorMessage;
+import bridge.constant.message.InputErrorMessage;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class ApplicationTest extends NsTest {
 
@@ -25,13 +29,7 @@ class ApplicationTest extends NsTest {
     void 기능_테스트() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "U");
-            assertThat(output()).contains(
-                "최종 게임 결과",
-                "[ O |   | O ]",
-                "[   | O |   ]",
-                "게임 성공 여부: 성공",
-                "총 시도한 횟수: 1"
-            );
+            assertThat(output()).contains("최종 게임 결과", "[ O |   | O ]", "[   | O |   ]", "게임 성공 여부: 성공", "총 시도한 횟수: 1");
 
             int upSideIndex = output().indexOf("[ O |   | O ]");
             int downSideIndex = output().indexOf("[   | O |   ]");
@@ -39,12 +37,40 @@ class ApplicationTest extends NsTest {
         }, 1, 0, 1);
     }
 
-    @Test
-    void 예외_테스트() {
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "3j", " ", "-3"})
+    void 예외_다리_길이_문자_포함(String command) {
         assertSimpleTest(() -> {
-            runException("a");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            runException(command);
+            assertThat(output()).contains(createErrorMessage(InputErrorMessage.NO_NUMERIC_STRING));
         });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"2", "21"})
+    void 예외_다리_길이_범위(String command) {
+        assertSimpleTest(() -> {
+            runException(command);
+            assertThat(output()).contains(createErrorMessage(InputErrorMessage.NO_RANGE_OF_BRIDGE_SIZE));
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"u", "R", "Q", " U", "D "})
+    void 예외_칸_방향_외_문자(String command) {
+        assertSimpleTest(() -> {
+            runException("3", command);
+            assertThat(output()).contains(createErrorMessage(InputErrorMessage.NO_VALID_MOVING));
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"r", "U", "D", " R", "Q "})
+    void 예외_게임_관련_외_문자(String command) {
+        assertRandomNumberInRangeTest(() -> {
+            runException("3", "D", command);
+            assertThat(output()).contains(createErrorMessage(InputErrorMessage.NO_VALID_GAME_COMMAND));
+        }, 1, 0, 1);
     }
 
     @Override
@@ -64,5 +90,9 @@ class ApplicationTest extends NsTest {
         public int generate() {
             return numbers.remove(0);
         }
+    }
+
+    static String createErrorMessage(ErrorMessage errorMessage) {
+        return String.format("%s %s", ERROR_MESSAGE, errorMessage.getMessage());
     }
 }
