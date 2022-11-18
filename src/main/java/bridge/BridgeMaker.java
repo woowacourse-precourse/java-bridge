@@ -47,7 +47,7 @@ enum NumberToShape {
         this.bridgeShape = bridgeShape;
     }
 
-    public String getShape () {
+    public String getShape() {
         return bridgeShape;
     }
 
