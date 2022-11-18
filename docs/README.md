@@ -50,4 +50,20 @@
     - [ ] `R`이나 `Q`가 아니면 예외 처리한다.
 
 
+## 요구 사항 체크
+
+- ### 라이브러리
+    - [ ] 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
+
+- ### 초기 클래스 활용
+    - InputView 클래스는 변경에 있어 자유롭다.
+    - OutputView 클래스는 매서드 이름의 변경이 불가능한 것 외에 자유롭다.
+    - BridgeGame 클래스는 인스턴스 변수를 추가할 수 있으며 매서드 이름을 변경할 수 없다.
+    - BridgeMaker 클래스는 인스턴스 변수와 매서드의 이름, 인자, 반환 타입을 변경할 수 없다.
+    - BridgeRandomNumberGenerator 클래스의 generate()를 활용해 랜덤값을 추출하며, 클래스 코드의 변경이 불가하다.
+
+- ### 추가 요구 사항
+    - 함수(메서드)의 길이가 10을 넘지 않도록 한다.
+    - 함수(메서드)의 파라미터의 개수를 3까지로 제한한다.
+    - BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.
 
