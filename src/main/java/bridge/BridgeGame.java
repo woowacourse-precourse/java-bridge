@@ -9,13 +9,15 @@ import java.util.List;
 public class BridgeGame {
 
     private ArrayList<String> bridge;
-    private int nowOn=0;
+    private int nowOn = 0;
 
     private boolean gameOver = false;
-    public BridgeGame(List<String> bridge)
-    {
-        this.bridge=new ArrayList<>(bridge);
+    private boolean isWin = false;
+
+    public BridgeGame(List<String> bridge) {
+        this.bridge = new ArrayList<>(bridge);
     }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -23,29 +25,28 @@ public class BridgeGame {
      */
     public void move(String moveCode) {
         gameOverChecker(nowOn);
-        if(gameOver) return;
+        if (gameOver) return;
         boolean isWrong = judge(moveCode);
-        if(!isWrong)
-        {
+        if (!isWrong) {
             nowOn++;
         }
         gameOver = isWrong;
     }
 
-    public boolean judge(String input)
-    {
-        if(bridge.get(nowOn).equals(input))
-        {
+    public boolean judge(String input) {
+        if (bridge.get(nowOn).equals(input)) {
             return false;
         }
         return true;
     }
 
-    public void gameOverChecker(int nowOn)
-    {
-        if(bridge.size()<=nowOn)
-        {
+    public void gameOverChecker(int nowOn) {
+        if (bridge.size() <= nowOn) {
             gameOver = true;
+        }
+        if(bridge.size()-1==nowOn)
+        {
+            isWin = true;
         }
     }
 
@@ -59,6 +60,10 @@ public class BridgeGame {
 
     public boolean isGameOver() {
         return gameOver;
+    }
+
+    public boolean isWin() {
+        return isWin;
     }
 
 }
