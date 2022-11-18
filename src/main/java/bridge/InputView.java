@@ -50,7 +50,7 @@ public class InputView {
     }
 
     private void validateUserMovement(String userMovement) {
-        if(userMovement.equals(Movement.UP.getValue()) || userMovement.equals(Movement.DOWN.getValue())) {
+        if(! (userMovement.equals(Movement.UP.getValue()) || userMovement.equals(Movement.DOWN.getValue()))) {
             throw new IllegalArgumentException(ErrorMessage.NotValidUserMovement.getMessage());
         }
     }
