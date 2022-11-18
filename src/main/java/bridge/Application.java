@@ -11,6 +11,10 @@ public class Application {
         OutputView outputView = new OutputView();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
-        new BridgeGame(inputView, outputView, bridgeMaker).play();
+        try {
+            new BridgeGame(inputView, outputView, bridgeMaker).play();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+        }
     }
 }
