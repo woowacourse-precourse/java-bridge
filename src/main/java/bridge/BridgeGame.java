@@ -12,9 +12,12 @@ public class BridgeGame {
     private boolean gameEnd = false;
     private int movingCount = 0;
     private int gameCount = 1;
+    private final List<List<String>> result = new ArrayList<>();
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
+        result.add(new ArrayList<>());
+        result.add(new ArrayList<>());
     }
 
     /**
@@ -40,6 +43,8 @@ public class BridgeGame {
             gameCount++;
             movingCount = 0;
             gameEnd = false;
+            result.get(0).clear();
+            result.get(1).clear();
             return true;
         }
         return false;
@@ -54,18 +59,6 @@ public class BridgeGame {
     }
 
     public List<List<String>> resultBridgeMoving() {
-        List<List<String>> result = List.of(new ArrayList<>(), new ArrayList<>());
-
-        for (int i = 0; i < gameCount; i++) {
-            if (bridge.get(i).equals("U")) {
-                result.get(0).add("O");
-                result.get(1).add(" ");
-                continue;
-            }
-            result.get(0).add(" ");
-            result.get(1).add("O");
-        }
-
         if (gameEnd) {
             if (bridge.get(movingCount).equals("U")) {
                 result.get(0).add("X");
@@ -74,8 +67,16 @@ public class BridgeGame {
                 result.get(0).add(" ");
                 result.get(1).add("X");
             }
+            return result;
         }
 
+        if (bridge.get(movingCount - 1).equals("U")) {
+            result.get(0).add("O");
+            result.get(1).add(" ");
+        } else {
+            result.get(0).add(" ");
+            result.get(1).add("O");
+        }
         return result;
     }
 }
