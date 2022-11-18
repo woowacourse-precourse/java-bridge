@@ -1,13 +1,10 @@
 package bridge.domain;
 
-import static bridge.BridgeExpression.DOWN;
-import static bridge.BridgeExpression.END_POINT;
-import static bridge.BridgeExpression.SEPARATOR;
-import static bridge.BridgeExpression.START_POINT;
-import static bridge.BridgeExpression.UP;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-import bridge.BridgeExpression;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +36,7 @@ class BridgeMakerTest {
         //when
         int random = Randoms.pickNumberInRange(0, 1);
         for ( int index = 0; index < size; index++ ) {
-            assertBridge.add(bridgeMaker.expressionByNumber());
+            assertBridge.add("U");
         }
 
 
