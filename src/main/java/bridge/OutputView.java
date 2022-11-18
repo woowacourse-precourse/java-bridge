@@ -52,7 +52,9 @@ public class OutputView {
     }
 
     private void printRoadSeparation(int roadPosition) {
-        // TODO: 칸 위치에 따른 구분자 출력
+        if(roadPosition != 0){
+            System.out.printf(ROAD_SEPARATOR);
+        }
     }
 
     private void printOorX(int roadPosition, BridgeRoadMap bridgeRoadMap, UserRoadMap userRoadMap) {
