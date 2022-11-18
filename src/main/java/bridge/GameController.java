@@ -71,7 +71,11 @@ public class GameController {
     }
 
     public void gameResult() {
-        outputView.printResult(tf, count);
+        if (!tf) {
+            outputView.printFail(count);
+            return;
+        }
+        outputView.printSuccess(count);
     }
 
 }
