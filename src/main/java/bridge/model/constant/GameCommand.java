@@ -1,13 +1,12 @@
-package bridge.model;
+package bridge.model.constant;
 
-public enum Result {
-    CAN_CROSS("O"),
-    CANNOT_CROSS("X"),
-    UNKNOWN(" ");
+public enum GameCommand {
+    RETRY("R"),
+    QUIT("Q");
 
     private final String value;
 
-    Result(String value) {
+    GameCommand(String value) {
         this.value = value;
     }
 

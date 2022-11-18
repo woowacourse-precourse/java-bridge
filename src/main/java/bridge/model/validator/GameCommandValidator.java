@@ -1,6 +1,6 @@
 package bridge.model.validator;
 
-import bridge.model.GameCommand;
+import bridge.model.constant.GameCommand;
 
 public class GameCommandValidator implements Validator{
     @Override

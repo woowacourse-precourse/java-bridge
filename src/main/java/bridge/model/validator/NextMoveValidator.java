@@ -1,6 +1,6 @@
 package bridge.model.validator;
 
-import bridge.model.Direction;
+import bridge.model.constant.Direction;
 
 public class NextMoveValidator implements Validator {
     @Override

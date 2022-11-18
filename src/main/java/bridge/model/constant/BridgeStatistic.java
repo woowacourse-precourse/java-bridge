@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge.model.constant;
 
 public enum BridgeStatistic {
     LOWER_BOUND(3),

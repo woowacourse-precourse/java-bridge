@@ -1,10 +1,11 @@
-package bridge.view;
+package bridge.view.constant;
 
 public enum GameMapInterface {
     MAP_BRACKET("[ %s ]"),
     MAP_SEPARATOR(" | ");
 
     private final String value;
+
     GameMapInterface(String value) {
         this.value = value;
     }

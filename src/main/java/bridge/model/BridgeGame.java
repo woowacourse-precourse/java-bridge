@@ -1,5 +1,6 @@
 package bridge.model;
 
+import bridge.model.constant.Direction;
 import java.util.List;
 
 /**

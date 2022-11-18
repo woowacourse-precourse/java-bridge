@@ -3,13 +3,13 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.BridgeGame;
-import bridge.model.GameCommand;
+import bridge.model.constant.GameCommand;
 import bridge.model.validator.BridgeSizeValidator;
 import bridge.model.validator.GameCommandValidator;
 import bridge.model.validator.NextMoveValidator;
 import bridge.model.validator.Validator;
-import bridge.view.ErrorMessage;
-import bridge.view.GameMessage;
+import bridge.view.constant.ErrorMessage;
+import bridge.view.constant.GameMessage;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 

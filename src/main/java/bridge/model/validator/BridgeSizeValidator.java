@@ -1,6 +1,6 @@
 package bridge.model.validator;
 
-import bridge.model.BridgeStatistic;
+import bridge.model.constant.BridgeStatistic;
 
 import java.util.regex.Pattern;
 

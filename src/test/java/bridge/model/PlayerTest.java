@@ -2,6 +2,7 @@ package bridge.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.model.constant.Direction;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
