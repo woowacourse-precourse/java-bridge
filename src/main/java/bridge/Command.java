@@ -9,4 +9,9 @@ public enum Command {
     Command(String key) {
         this.key = key;
     }
+
+    //getter 보다는 메세지 :: 리팩토링
+    public String getKey() {
+        return key;
+    }
 }
