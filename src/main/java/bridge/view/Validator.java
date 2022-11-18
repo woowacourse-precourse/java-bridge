@@ -4,7 +4,7 @@ import static bridge.controller.Constant.*;
 
 public class Validator {
 
-	static final String SIZE_ERROR = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+	public static final String SIZE_ERROR = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
 	public static final String INVALID_INPUT = "[ERROR] 잘못된 입력입니다.";
 	private static final int MIN = 3;
 	private static final int MAX = 20;

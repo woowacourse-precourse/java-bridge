@@ -11,8 +11,8 @@ import bridge.BridgeRandomNumberGenerator;
 
 public class BridgeGame {
 
-	BridgeNumberGenerator generator;
-	BridgeMaker bridgeMaker;
+	private final BridgeNumberGenerator generator;
+	private final BridgeMaker bridgeMaker;
 	private final List<String> bridge;
 	private String upsideBridge = "";
 	private String downsideBridge = "";
@@ -22,13 +22,6 @@ public class BridgeGame {
 		this.generator = new BridgeRandomNumberGenerator();
 		this.bridgeMaker = new BridgeMaker(generator);
 		this.bridge = bridgeMaker.makeBridge(size);
-	}
-
-	public boolean checkRetry() {
-		if (upsideBridge.contains("X") || downsideBridge.contains("X")) {
-			return true;
-		}
-		return false;
 	}
 
 	public List<String> move(String location, int index) {
