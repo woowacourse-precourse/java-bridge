@@ -14,6 +14,7 @@ public class InputController {
 
     public void setBridgeSize() {
         try {
+            outputView.printBridgeSizeInput();
             BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
             BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
             System.out.println(bridgeMaker.makeBridge(inputView.readBridgeSize()));
@@ -25,6 +26,7 @@ public class InputController {
 
     public void setMove() {
         try {
+            outputView.printMoveInput();
             BridgeGame bridgeGame = new BridgeGame();
             bridgeGame.move(inputView.readMoving());
         } catch (IllegalArgumentException exception) {
