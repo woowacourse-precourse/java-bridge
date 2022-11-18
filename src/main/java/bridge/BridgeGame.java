@@ -13,6 +13,7 @@ public class BridgeGame {
     private final List<String> upBoardCheckList = new ArrayList<>();
     private final List<String> downBoardCheckList = new ArrayList<>();
     private int stage = 0;
+    private boolean moveSuccess = true;
     private boolean success = false;
     private int tryCount = 1;
 
@@ -22,16 +23,16 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String board) {
-        boolean isRight = false;
         boardList.add(board);
         if (board.equals("U")) {
-            isRight = addCheckToUpList(board);
+            addCheckToUpList(board);
         }
         if (board.equals("D")) {
-            isRight = addCheckToDownList(board);
+            addCheckToDownList(board);
         }
         validate();
-        return isRight;
+        stage += 1;
+        return moveSuccess;
     }
 
     /**
@@ -40,32 +41,36 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        this.boardList.clear();
         this.upBoardCheckList.clear();
         this.downBoardCheckList.clear();
         this.stage = 0;
         this.tryCount += 1;
+        this.moveSuccess = true;
     }
 
-    private boolean addCheckToUpList(String board) {
+    private void addCheckToUpList(String board) {
         if (bridge.get(stage).equals(board)) {
             upBoardCheckList.add("O");
             downBoardCheckList.add(" ");
-            return true;
+            moveSuccess = true;
+            return;
         }
         upBoardCheckList.add("X");
         downBoardCheckList.add(" ");
-        return false;
+        moveSuccess = false;
     }
 
-    private boolean addCheckToDownList(String board) {
+    private void addCheckToDownList(String board) {
         if (bridge.get(stage).equals(board)) {
             downBoardCheckList.add("O");
             upBoardCheckList.add(" ");
-            return true;
+            moveSuccess = true;
+            return;
         }
         downBoardCheckList.add("X");
         upBoardCheckList.add(" ");
-        return false;
+        moveSuccess = false;
     }
 
     private void validate() {
