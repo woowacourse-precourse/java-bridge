@@ -2,18 +2,27 @@ package bridge.domain;
 
 import bridge.BridgeNumberGenerator;
 import bridge.bridgemaker.BridgeMaker;
+import bridge.gamebridge.GameBridge;
+import bridge.option.Move;
+import bridge.result.Result;
 import java.util.List;
 
 public class BridgeService {
 
-    private BridgeMaker bridgeMaker;
+    private final BridgeMaker bridgeMaker;
+    private final GameBridge gameBridge;
 
     public BridgeService(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        this.gameBridge = new GameBridge();
     }
 
-    public Bridge generateBridge(int size) {
+    public void generateBridge(int size) {
         List<String> squares = bridgeMaker.makeBridge(size);
-        return new Bridge(squares);
+        gameBridge.generateAnswerBridge(new Bridge(squares));
+    }
+
+    public Result insertMove(Move move) {
+        return gameBridge.insertMove(move);
     }
 }
