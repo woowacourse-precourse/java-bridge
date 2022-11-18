@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.Bridge;
 import bridge.BridgeGame;
 import bridge.BridgeGameResult;
 import bridge.BridgeMaker;
@@ -28,9 +29,19 @@ public class BridgeGameController {
 
     public void play() {
         start();
+        Bridge bridge = makeBridge(makeBridgeSize());
     }
 
     private void start() {
         outputView.printGameStartMsg();
+    }
+
+    private Bridge makeBridge(int size) {
+        return new Bridge(bridgeMaker.makeBridge(size));
+    }
+
+    private int makeBridgeSize() {
+        outputView.printBridgeSizeMsg();
+        return inputView.readBridgeSize();
     }
 }
