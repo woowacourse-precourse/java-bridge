@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class BridgeMaker {
 
+
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -19,15 +20,31 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        List<String> bridge = new ArrayList<>();
+        List<Integer> bridge = new ArrayList<>();
         for (int idx = 0; idx < size; idx++) {
-            int answer = bridgeNumberGenerator.generate();
-            if (answer == 0) {
-                break;
+            bridge.add(bridgeNumberGenerator.generate());
+            }
+
+        return convertNumToMove(bridge);
+    }
+
+    public List<String> convertNumToMove(List<Integer> bridge) {
+        List<String> convertedMove = new ArrayList<>();
+        for (Integer number : bridge) {
+            if (number == 0) {
+                convertedMove.add("D");
+            }
+            if (number == 1) {
+                convertedMove.add("U");
             }
         }
-
-
-        return null;
+        return convertedMove;
     }
+
+
+
+
+
+
+
 }
