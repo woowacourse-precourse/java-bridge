@@ -10,14 +10,14 @@ class BridgeGameTest {
     private BridgeGame bridgeGame;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
 
         bridgeGame = new BridgeGame();
 
     }
 
     @Test
-    void 칸_이동() throws Exception{
+    void 칸_이동() throws Exception {
         //given
         bridgeGame.createPosition();
         //when
@@ -29,7 +29,7 @@ class BridgeGameTest {
     }
 
     @Test
-    void 게임_재시작() throws Exception{
+    void 게임_재시작() throws Exception {
         //given
         bridgeGame.retry();
         //when
@@ -38,7 +38,7 @@ class BridgeGameTest {
     }
 
     @Test
-    void 다리_생성(){
+    public void 게임_시도_횟수_관리() {
         //given
 
         //when

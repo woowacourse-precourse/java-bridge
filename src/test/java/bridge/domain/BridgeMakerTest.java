@@ -1,13 +1,7 @@
 package bridge.domain;
 
-import static bridge.BridgeExpression.DOWN;
-import static bridge.BridgeExpression.END_POINT;
-import static bridge.BridgeExpression.SEPARATOR;
-import static bridge.BridgeExpression.START_POINT;
-import static bridge.BridgeExpression.UP;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import bridge.BridgeExpression;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +11,8 @@ import org.junit.jupiter.api.Test;
 
 class BridgeMakerTest {
 
-    private BridgeMaker bridgeMaker;
-
     int size;
+    private BridgeMaker bridgeMaker;
 
     @BeforeEach
     void setUp() {
@@ -29,33 +22,30 @@ class BridgeMakerTest {
     }
 
     @Test
-    public void 랜덤수에_따른_칸을_표현() throws Exception{
+    public void 랜덤수에_따른_칸을_표현() throws Exception {
         //given
         size = 3;
         List<String> bridge = bridgeMaker.makeBridge(size);
         List<String> assertBridge = new ArrayList<>();
 
-
         //when
         int random = Randoms.pickNumberInRange(0, 1);
-        for ( int index = 0; index < size; index++ ) {
+        for (int index = 0; index < size; index++) {
             assertBridge.add(bridgeMaker.expressionByNumber());
         }
-
 
         //then
         assertEquals(assertBridge, bridge);
     }
 
     @Test
-    public void 다리_생성() throws Exception{
+    public void 다리_생성() throws Exception {
         //given
         size = 3;
         List<String> bridge = bridgeMaker.makeBridge(size);
         List<String> assertBridge = new ArrayList<>();
 
         //when
-
 
         //then
         assertEquals(assertBridge, bridge);
@@ -63,7 +53,7 @@ class BridgeMakerTest {
 
     @DisplayName("다리 길이 생성의 규칙을 검증한다.")
     @Test
-    void assertBridgeSize(){
+    void assertBridgeSize() {
         // given
         String bridgeFirst = "[ O ]";
         String bridgeSecond = "[ O | X ]";
