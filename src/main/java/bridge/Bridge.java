@@ -32,4 +32,8 @@ public class Bridge {
 			lowerBridge.add("O");
 		}
 	}
+
+	public int getSize() {
+		return bridge.size();
+	}
 }
