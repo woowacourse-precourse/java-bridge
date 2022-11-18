@@ -1,8 +1,11 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UpDownBridge {
-    public static StringBuffer upBridge = new StringBuffer();
-    public static StringBuffer downBridge = new StringBuffer();
+    private static final List<String> upBridge = new ArrayList<>();
+    private static final List<String> downBridge = new ArrayList<>();
 
     public static void makeUpDownBridge(String inputDirection, String moveResult) {
         addUpBridge(inputDirection, moveResult);
@@ -10,16 +13,20 @@ public class UpDownBridge {
     }
 
     public static void addUpBridge(String inputDirection, String moveResult) {
-        if(inputDirection.equals(Message.UP.getMessage())) {
-            upBridge.append(moveResult + Message.CENTER_BAR.getMessage());
-            downBridge.append(Message.BLANK.getMessage() + Message.CENTER_BAR.getMessage());
-        }
+            if(inputDirection.equals(Message.UP.getMessage())) {
+                upBridge.add(moveResult);
+                downBridge.add(Message.BLANK.getMessage());
+            }
     }
 
     public static void addDownBridge(String inputDirection, String moveResult) {
-        if(inputDirection.equals(Message.Down.getMessage())) {
-            upBridge.append(Message.BLANK.getMessage() + Message.CENTER_BAR.getMessage());
-            downBridge.append(moveResult + Message.CENTER_BAR.getMessage());
-        }
+            if (inputDirection.equals(Message.Down.getMessage())) {
+                upBridge.add(Message.BLANK.getMessage());
+                downBridge.add(moveResult);
+            }
+    }
+
+    public static String addCenterBar(List<String> toAddBridge) {
+        return String.join(Message.CENTER_BAR.getMessage(), toAddBridge);
     }
 }
