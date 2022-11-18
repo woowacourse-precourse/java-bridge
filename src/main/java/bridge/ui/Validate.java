@@ -1,7 +1,5 @@
 package bridge.ui;
 
-import bridge.message.ExceptionMessage;
-
 import static bridge.message.ExceptionMessage.*;
 import static java.lang.Character.*;
 

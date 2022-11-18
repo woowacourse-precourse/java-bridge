@@ -2,7 +2,6 @@ package bridge.ui;
 
 import bridge.Player;
 import bridge.Result;
-import bridge.message.ExceptionMessage;
 
 import java.util.List;
 

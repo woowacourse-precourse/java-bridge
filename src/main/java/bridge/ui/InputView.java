@@ -1,7 +1,5 @@
 package bridge.ui;
 
-import bridge.message.Message;
-
 import static bridge.message.Message.*;
 import static bridge.ui.Validate.*;
 import static camp.nextstep.edu.missionutils.Console.*;
