@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.model.BridgeSize;
 import bridge.view.InputView;
 
 public class Application {
@@ -9,6 +10,7 @@ public class Application {
         InputView input = new InputView();
         input.gameStart();
         String size = input.readBridgeSize();
-        System.out.println("size = " + size);
+        BridgeSize bridgeSize = new BridgeSize(size);
+        System.out.println("bridgeSize = " + bridgeSize.getSize());
     }
 }
