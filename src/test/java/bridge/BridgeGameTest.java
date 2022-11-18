@@ -79,4 +79,11 @@ public class BridgeGameTest {
             method.invoke(bridgeGame, position.get(i), otherPosition.get(i), paintGame.get(i));
         }
     }
+
+    @DisplayName("R이면 true, Q면 false를 반환한다.")
+    @CsvSource(value = {"R:true", "Q:false"}, delimiter = ':')
+    @ParameterizedTest
+    void testRetry(String answer, boolean retry) {
+        assertEquals(bridgeGame.retry(answer), retry);
+    }
 }
