@@ -61,4 +61,7 @@ public class BridgeGame {
         return mapMakerService.makeMap(this.user.getUserBridge());
     }
 
+    public int getRetryCount() {
+        return this.user.getNumberOfAttempts();
+    }
 }

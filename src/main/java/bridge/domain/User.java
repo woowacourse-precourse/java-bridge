@@ -32,6 +32,10 @@ public class User {
         this.userBridge = userBridge;
     }
 
+    public int getNumberOfAttempts() {
+        return numberOfAttempts;
+    }
+
     public boolean onGame() {
         if (this.userBridge.size() == this.bridge.size()) {
             return false;
