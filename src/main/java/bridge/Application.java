@@ -10,9 +10,8 @@ public class Application {
         OutputView outputView = new OutputView();
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-        BridgeGame bridgeGame = new BridgeGame();
 
-        BridgeGameController bridgeGameController = new BridgeGameController(inputView,outputView,bridgeMaker,bridgeGame);
+        BridgeGameController bridgeGameController = new BridgeGameController(inputView,outputView,bridgeMaker);
 
         bridgeGameController.run();
     }

@@ -9,22 +9,27 @@ public class BridgeGameController {
     private final InputView inputView;
     private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
-    private final BridgeGame bridgeGame;
 
     private List<String> bridge_scaffold;
 
-    public BridgeGameController(InputView inputView, OutputView outputView, BridgeMaker bridgeMaker, BridgeGame bridgeGame) {
+    public BridgeGameController(InputView inputView, OutputView outputView, BridgeMaker bridgeMaker) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.bridgeMaker = bridgeMaker;
-        this.bridgeGame = bridgeGame;
     }
 
     public void run() {
         int bridge_size = inputView.readBridgeSize();
         bridge_scaffold = bridgeMaker.makeBridge(bridge_size);
 
-        System.out.println(bridge_scaffold);
+        BridgeGame bridgeGame = new BridgeGame(bridge_scaffold);
+
+        for (int i = 0; i < bridge_size; i++) {
+            String direction = inputView.readMoving();
+            if (!bridgeGame.move(direction)) {
+                break;
+            }
+        }
 
     }
 }
