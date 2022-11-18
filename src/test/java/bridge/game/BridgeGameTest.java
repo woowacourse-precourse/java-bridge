@@ -1,5 +1,6 @@
 package bridge.game;
 
+import bridge.enums.IntEnum;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -15,11 +16,24 @@ class BridgeGameTest {
         List<String > bridge = List.of("U","U","U","U");
         BridgeGame bridgeGame = new BridgeGame(bridge);
         List<Integer> gameResult = new ArrayList<>();
-        for(int i=0;i<bridge.size();i++){
+        for(int bridgeIndex=0;bridgeIndex<bridge.size();bridgeIndex++){
             gameResult.add(bridgeGame.move("U"));
         }
         Assertions.assertThat(gameResult).isEqualTo(List.of(1,1,1,0));
 
+    }
+    @Test
+    public void nowBridgePrintTest() throws Exception{
+        //given
+        List<String > bridge = List.of("U","D","U","U","D");
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        bridgeGame.nowBridgeStage(IntEnum.GAME_CONTINUE.num());
+        bridgeGame.nowBridgeStage(IntEnum.GAME_CONTINUE.num());
+        bridgeGame.nowBridgeStage(IntEnum.GAME_CONTINUE.num());
+        bridgeGame.nowBridgeStage(IntEnum.GAME_CONTINUE.num());
+        StringBuilder result = new StringBuilder("[ o |   | o | o |   ]\n");
+        result.append("[   | o |   |   | o ]");
+        assertEquals(bridgeGame.nowBridgeStage(IntEnum.GAME_CONTINUE.num()),result.toString());
     }
 
 }

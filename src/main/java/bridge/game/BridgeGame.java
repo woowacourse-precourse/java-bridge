@@ -2,6 +2,8 @@ package bridge.game;
 
 import java.util.List;
 import static bridge.enums.IntEnum.*;
+import static bridge.enums.StringEnum.DOWN;
+import static bridge.enums.StringEnum.UP;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -23,7 +25,6 @@ public class BridgeGame {
     public int move(String nowStage) {
         if (bridge.get(stage).equals(nowStage)) {
             if (isGameEnd()) return GAME_WIN.num();
-            stage++;
             return GAME_CONTINUE.num();
         }
         return GAME_LOSE.num();
@@ -40,5 +41,71 @@ public class BridgeGame {
      */
     public void retry() {
         stage = RESET_STAGE.num();
+    }
+
+    public String nowBridgeStage(int nowState){
+        StringBuilder upPrint = new StringBuilder("[");
+        StringBuilder downPrint = new StringBuilder("[");
+        makeMap(nowState, upPrint, downPrint);
+        upPrint.append("]");
+        downPrint.append("]");
+        if(!isGameEnd())stage++;
+        upPrint.append("\n").append(downPrint);
+        return upPrint.toString();
+    }
+    private void lastIndexPrint(int nowState, StringBuilder upPrint, StringBuilder downPrint) {
+        if (nowState == GAME_WIN.num() || nowState == GAME_CONTINUE.num()) {
+            continuePrint(stage, upPrint, downPrint);
+        }
+        if (nowState == GAME_LOSE.num()) {
+            failPrint(upPrint, downPrint);
+        }
+    }
+
+    private void failPrint(StringBuilder upPrint, StringBuilder downPrint) {
+        if (bridge.get(stage).equals(UP.key())) {
+            upPrint.append("  ");
+            downPrint.append(" x ");
+        }
+        if (bridge.get(stage).equals(DOWN.key())) {
+            upPrint.append(" x ");
+            downPrint.append("   ");
+        }
+    }
+    private void addBarPrint(StringBuilder upPrint, StringBuilder downPrint) {
+        upPrint.append("|");
+        downPrint.append("|");
+    }
+
+    private void continuePrint(int duringIndex, StringBuilder upPrint, StringBuilder downPrint) {
+        if (bridge.get(duringIndex).equals(UP.key())) {
+            upPrint.append(" o ");
+            downPrint.append("   ");
+        }
+        if (bridge.get(duringIndex).equals(DOWN.key())) {
+            upPrint.append("   ");
+            downPrint.append(" o ");
+        }
+    }
+    private void duringPrint(StringBuilder upPrint, StringBuilder downPrint) {
+        for (int duringIndex = 0; duringIndex < stage; duringIndex++) {
+            if (duringIndex == RESET_STAGE.num()) {
+                continuePrint(duringIndex, upPrint, downPrint);
+            }
+            if (duringIndex > RESET_STAGE.num()) {
+                addBarPrint(upPrint, downPrint);
+                continuePrint(duringIndex, upPrint, downPrint);
+            }
+        }
+    }
+    private void makeMap(int result, StringBuilder upPrint, StringBuilder downPrint) {
+        if (stage == RESET_STAGE.num()) {
+            lastIndexPrint(result, upPrint, downPrint);
+        }
+        if (stage > RESET_STAGE.num()) {
+            duringPrint(upPrint, downPrint);
+            addBarPrint(upPrint,downPrint);
+            lastIndexPrint(result, upPrint, downPrint);
+        }
     }
 }
