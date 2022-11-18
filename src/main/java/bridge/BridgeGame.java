@@ -16,6 +16,10 @@ public class BridgeGame {
             this.bridgePattern.add(new ArrayList<>());
     }
 
+    public List<List<String>> getBridgePattern() {
+        return bridgePattern;
+    }
+
     public void move(String moving, int bridgeNum) {
         int moveNum = toMovingNumber(moving);
         String answer = this.correctBridge.get(bridgeNum);
