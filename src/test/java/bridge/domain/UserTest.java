@@ -16,7 +16,7 @@ public class UserTest {
 
         // then
         assertThat(user.isGameDoneStatus()).isEqualTo(false);
-        assertThat(user.getGameTryCount()).isEqualTo(0);
+        assertThat(user.getGameTryCount()).isEqualTo(1);
     }
 
     @Test
@@ -59,6 +59,6 @@ public class UserTest {
         user.gameRetry();
 
         // then
-        assertThat(user.getGameTryCount()).isEqualTo(1);
+        assertThat(user.getGameTryCount()).isEqualTo(2);
     }
 }
