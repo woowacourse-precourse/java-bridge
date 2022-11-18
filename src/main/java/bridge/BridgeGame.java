@@ -11,7 +11,7 @@ public class BridgeGame {
     private final OutputView outputView = new OutputView();
     public void run() {
         try {
-            outputView.startMsg();
+            inputView.readBridgeSize();
         } catch (IllegalArgumentException exception) {
             OutputView.printMsg("[ERROR] " + exception.getMessage());
         }

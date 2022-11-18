@@ -7,6 +7,7 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    OutputView outputView = new OutputView();
 
     public String readValue() {
         return Console.readLine();
@@ -24,6 +25,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        outputView.startMsg();
         int bridgeSize = convertToInteger(readValue());
         if (bridgeSize < BridgeRule.MIN_LENGTH.getValue() && bridgeSize > BridgeRule.MAX_LENGTH.getValue()) {
             throw new IllegalArgumentException("다리 길이는 3 이상 20 이하여야 합니다!");
