@@ -38,12 +38,12 @@ public class BridgeGameController {
 		boolean playGame = true;
 		List<List<String>> currentMap = new ArrayList<>();
 		while (playGame) {
+			bridgeGame.retry();
 			currentMap = makeResultMap(bridgeGame);
 			if (currentMap.get(0).size() == bridgeGame.getBridgeSize()) {
 				return currentMap;
 			}
 			playGame = askRetry();
-			bridgeGame.retry();
 		}
 		return  currentMap;
 	}

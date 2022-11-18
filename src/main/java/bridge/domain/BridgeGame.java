@@ -11,7 +11,7 @@ public class BridgeGame {
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
-        this.repeatCount = 1;
+        this.repeatCount = 0;
     }
 
     public List<List<String>> move(String input, List<List<String>> gameProgress) {
