@@ -35,6 +35,7 @@ public class BridgeGame {
     public void retry() {
         if(inputView.readGameCommand().equals("R")){
             gameCount += 1;
+            moveMapList.remove(moveMapList.size() - 1);
             inputView.readMoving();
         }
         if(inputView.readGameCommand().equals("Q")){
