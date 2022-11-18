@@ -26,14 +26,14 @@ public class BridgeException {
     }
 
     public void invalidMovingInputValue(String moveDirection) {
-        if (moveDirection != "U" || moveDirection != "D") {
+        if (!moveDirection.equals("U") && !moveDirection.equals("D")) {
             throw new IllegalArgumentException(ErrorView.error + ErrorView.INVALID_MOVING_DIRECTION.getMessage());
         }
     }
 
     public void invalidRetryGame(String retryGame) {
-        if (retryGame != "R" || retryGame != "Q") {
-            throw new IllegalArgumentException(ErrorView.error + ErrorView.INVALID_MOVING_DIRECTION.getMessage());
+        if (!retryGame.equals("R") && !retryGame.equals("Q")) {
+            throw new IllegalArgumentException(ErrorView.error + ErrorView.INVALID_RETRY_GAME.getMessage());
         }
     }
 }
