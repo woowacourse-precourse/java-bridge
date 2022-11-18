@@ -27,4 +27,8 @@ public class Service {
     public List<String> getCurrentResult() {
         return result.getResult();
     }
+
+    public boolean checkMoveSuccess() {
+        return game.checkMoveSuccess();
+    }
 }

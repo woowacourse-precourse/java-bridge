@@ -32,29 +32,26 @@ public class Controller {
     }
 
     private void playGame() {
-            move();
+        move();
+        boolean moveSuccess = checkMoveSuccess();
+//        if (moveSuccess) {
 //            boolean gameEnd = checkGameEnd();
-//            if(gameEnd) {
-//                boolean gameWin = checkWinning();
-//                if(gameWin) {
-//                    printFinalResult();
-//                }
-//
-//                if(!gameWin) {
-//                    String retryInput = askRetry();
-//                    if(retryInput.equals("R")) {
-//                        resetGame();
-//                        playGame();
-//                    }
-//
-//                    if(retryInput.equals("Q")) {
-//                        printFinalResult();
-//                    }
-//                }
-//            }
-//            if(!gameEnd) {
+//            if (gameEnd) {
+//                printFinalResult();
+//            } else {
 //                playGame();
 //            }
+//        } else {
+//            String retryInput = getRetryInput();
+//            if(retryInput.equals("Q")) {
+//                printFinalResult();
+//            }
+//
+//            if(retryInput.equals("R")) {
+//                resetGame();
+//                playGame();
+//            }
+//        }
     }
 
     private void move() {
@@ -71,5 +68,9 @@ public class Controller {
     private void printMoveResult() {
         List<String> currentResult = service.getCurrentResult();
         outputView.printMap(currentResult);
+    }
+
+    private boolean checkMoveSuccess() {
+        return service.checkMoveSuccess();
     }
 }
