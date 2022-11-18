@@ -9,10 +9,13 @@ public class BridgeGame {
     private BridgeMaker bridgeMaker;
     private Player player;
     private GameStatistics gameStatistics;
-    public BridgeGame(BridgeMaker bridgeMaker, Player player, GameStatistics gameStatistics) {
+    private Bridge bridge;
+
+    public BridgeGame(BridgeMaker bridgeMaker, Player player, GameStatistics gameStatistics, Bridge bridge) {
         this.bridgeMaker = bridgeMaker;
         this.player = player;
         this.gameStatistics = gameStatistics;
+        this.bridge = bridge;
     }
 
     public BridgeMaker getBridgeMaker() {
@@ -26,7 +29,7 @@ public class BridgeGame {
      */
     public boolean move(String moveDirection, List<String> roadMap, Player player) {
         player.moveStraight();
-        return roadMap.get(player.getCurrentLocation()).equals(moveDirection);
+        return roadMap.get(Player.currentLocation).equals(moveDirection);
     }
 
     /**
@@ -37,11 +40,31 @@ public class BridgeGame {
     public void retry() {
     }
 
-    public void constructBridge() {
-        gameStatistics.getCheckRoad()
+    public boolean constructBridge() {
+        boolean checkProcess;
+        List<Boolean> checkRoad = gameStatistics.getCheckRoad();
+        if (checkRoad.get(Player.currentLocation)) {
+            checkProcess = true;
+            if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals("D")) {
+                bridge.setDownBridge("O");
+            } else if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals("U")) {
+                bridge.setUpBridge("O");
+            }
+        } else { //false
+            checkProcess = false;
+            if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals("D")) {
+                bridge.setUpBridge("X");
+            } else if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals("U")) {
+                bridge.setDownBridge("X");
+            }
+        } return checkProcess;
     }
 
     public Player getPlayer() {
         return player;
+    }
+
+    public Bridge getBridge() {
+        return bridge;
     }
 }
