@@ -4,25 +4,6 @@ package bridge;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private static final String ERROR_MESSAGE = "[ERROR] ";
-    /**
-     * 사용자가 입력한 다리 길이의 타입을 확인하는 함수
-     * <p>
-     * 성공 시 Integer로 바뀐 다리 길이를 반환
-     */
-    public int checkBridgeType(String readBridgeSize) {
-        int changeBridgeSize;
-
-        try {
-             changeBridgeSize = Integer.parseInt(readBridgeSize);
-        } catch (Exception e) {
-            System.out.println(ERROR_MESSAGE + "다리 길이는 숫자여야 합니다.");
-            throw new IllegalArgumentException();
-        }
-
-        return changeBridgeSize;
-    }
-
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>

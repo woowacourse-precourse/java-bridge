@@ -15,20 +15,21 @@ public class Application {
      */
     static int knowBridgeLength() {
         OutputView outputView = new OutputView();
-        InputView inputview = new InputView();
-        BridgeGame bridgegame = new BridgeGame();
+        InputView inputView = new InputView();
+        HandleException handleException = new HandleException();
 
         outputView.printBridgeLength();
-        String readBridgeSize = inputview.readBridgeSize();
-        int checkBridgeType = bridgegame.checkBridgeType(readBridgeSize);
+        String readBridgeSize = inputView.readBridgeSize();
+        int checkBridgeType = handleException.checkBridgeType(readBridgeSize);
+        int checkBridgeRange = handleException.checkBridgeRange(checkBridgeType);
 
-        return checkBridgeType;
+        return checkBridgeRange;
     }
 
     public static void main(String[] args) {
         try {
             Application.gameStart();
-            int BridgeSize = Application.knowBridgeLength();
+            int bridgeSize = Application.knowBridgeLength();
         } catch (IllegalArgumentException e) {}
     }
 }
