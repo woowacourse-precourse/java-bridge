@@ -2,6 +2,7 @@ package bridge;
 
 import static validator.BridgeValidator.validateBridgeLength;
 import static validator.MoveValidator.validateMovingPath;
+import static validator.RetryValidator.validateRetryCommand;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -34,6 +35,9 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String retryCommand = Console.readLine();
+        //재시작 여부 입력값을 검증하는 함수를 호출하는 자리
+        return retryCommand;
     }
 }
