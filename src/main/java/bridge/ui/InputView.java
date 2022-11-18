@@ -30,19 +30,19 @@ public class InputView {
     }
 
     private void printStartMessage(){
-        System.out.println(GameMessage.START_GAME);
+        System.out.println(GameMessage.START_GAME.getOutput());
     }
 
     private void printSizeMessage(){
-        System.out.println(GameMessage.GET_SIZE);
+        System.out.println(GameMessage.GET_SIZE.getOutput());
     }
 
     private void printGetMoveMessage(){
-        System.out.println(GameMessage.GET_DIRECTION);
+        System.out.println(GameMessage.GET_DIRECTION.getOutput());
     }
 
     private void printGetRestartMessage(){
-        System.out.println(GameMessage.GET_RESTART);
+        System.out.println(GameMessage.GET_RESTART.getOutput());
     }
 
     private String getInput(){
