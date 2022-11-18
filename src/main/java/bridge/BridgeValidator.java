@@ -1,7 +1,7 @@
 package bridge;
 
-import bridge.exception.InvalidBridgeShapeException;
 import bridge.exception.LengthOutOfRangeException;
+
 import java.util.List;
 
 public class BridgeValidator {
@@ -15,18 +15,12 @@ public class BridgeValidator {
   }
 
   public static void validateBridgeShape(final List<String> bridge) {
-    for (String shape : bridge) {
-      if (!isUpOrDown(shape)) {
-        throw new InvalidBridgeShapeException();
-      }
+    for (String dir : bridge) {
+      Direction.validateDirection(dir);
     }
   }
 
   private static boolean isLengthInRange(final int length) {
     return length >= MIN_LENGTH && length <= MAX_LENGTH;
-  }
-
-  private static boolean isUpOrDown(String shape) {
-    return shape.equals(BridgeMaker.UP) || shape.equals(BridgeMaker.DOWN);
   }
 }

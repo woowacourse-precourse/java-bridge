@@ -2,7 +2,7 @@ package bridge;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import bridge.exception.InvalidBridgeShapeException;
+import bridge.exception.InvalidDirectionException;
 import bridge.exception.LengthOutOfRangeException;
 import java.util.List;
 import java.util.stream.Stream;
@@ -41,7 +41,7 @@ public class BridgeValidatorTest {
   @MethodSource("invalidBridgeShapes")
   void checkInvalidBridgeShape(List<String> bridgeShape) {
     assertThrows(
-        InvalidBridgeShapeException.class, () -> BridgeValidator.validateBridgeShape(bridgeShape));
+        InvalidDirectionException.class, () -> BridgeValidator.validateBridgeShape(bridgeShape));
   }
 
   @RepeatedTest(10)
