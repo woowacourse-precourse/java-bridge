@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.NoSuchElementException;
+
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 /**
@@ -11,7 +13,12 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public Integer readBridgeSize() {
-        String size = readLine();
+        String size = null;
+        try {
+            size = readLine();
+        } catch (NoSuchElementException noSuchElementException) {
+            throw new IllegalArgumentException();
+        }
         validateBridgeSize(size);
         return Integer.parseInt(size);
     }
@@ -34,7 +41,12 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String moving = readLine();
+        String moving = null;
+        try {
+            moving = readLine();
+        } catch (NoSuchElementException noSuchElementException) {
+            throw new IllegalArgumentException();
+        }
         validateMoving(moving);
         return moving;
     }
@@ -52,7 +64,12 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        String command = readLine();
+        String command = null;
+        try {
+            command = readLine();
+        } catch (NoSuchElementException noSuchElementException) {
+            throw new IllegalArgumentException();
+        }
         validateCommand(command);
         return command;
     }
