@@ -2,8 +2,10 @@ package bridge;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,7 +15,9 @@ class BridgeMakerTest {
   @Test
   void makeBridge() {
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    assertThat(bridgeMaker.makeBridge(10).contains("U"));
-    assertThat(bridgeMaker.makeBridge(10).contains("D"));
+    List<String> bridgeMap =  bridgeMaker.makeBridge(10);
+    for (int i = 0; i < 10; i++) {
+      assertThat(bridgeMap).contains("U").contains("D");
+    }
   }
 }
