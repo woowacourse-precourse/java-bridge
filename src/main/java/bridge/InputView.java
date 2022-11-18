@@ -4,6 +4,7 @@ package bridge;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private static final String bridgeSizeExceptionMessage = "다리 길이는 3부터 20 사이의 숫자여야 합니다.";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -24,5 +25,15 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private void validateBridgeSizeInput(String input) {
+        if (!input.matches("^[0-9]+$")) {
+            throw new IllegalArgumentException(bridgeSizeExceptionMessage);
+        }
+        int integerInput = Integer.parseInt(input);
+        if (integerInput > 20 || integerInput < 3) {
+            throw new IllegalArgumentException(bridgeSizeExceptionMessage);
+        }
     }
 }
