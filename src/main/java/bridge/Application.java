@@ -47,6 +47,10 @@ public class Application {
             boolean isSuccess = bridgeGame.move(cmd, currentPosition);
             System.out.println("isSuccess = " + isSuccess);
 
+            outputView.printMap(currentPosition+1, bridgeGame.getBridgeMap());
+            if(!isSuccess) {
+                return false;
+            }
         }
         return true;
     }
