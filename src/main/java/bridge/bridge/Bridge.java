@@ -28,7 +28,25 @@ public class Bridge {
     }
 
     public void move(String direction) {
-        //TODO
+        int index = up.size();
+
+        if (bridge.get(index).equals(direction)) {
+            if (direction.equals("U")) {
+                up.add(MOVABLE);
+                down.add(EMPTY);
+            } else if (direction.equals("D")) {
+                up.add(EMPTY);
+                down.add(MOVABLE);
+            }
+        } else {
+            if (direction.equals("U")) {
+                up.add(IMMOVABLE);
+                down.add(EMPTY);
+            } else if (direction.equals("D")) {
+                up.add(EMPTY);
+                down.add(IMMOVABLE);
+            }
+        }
     }
 
     public void refresh() {
