@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -23,5 +24,12 @@ class BridgeTest {
     void checkMobility(int play, String moving, boolean expected) {
         boolean actual = bridge.isPossibleMoving(play, moving);
         assertThat(actual).isEqualTo(expected);
+    }
+
+    @DisplayName("다리의 길이를 구한다.")
+    @Test
+    void getBridgeSize() {
+        int actual = bridge.getSize();
+        assertThat(actual).isEqualTo(3);
     }
 }
