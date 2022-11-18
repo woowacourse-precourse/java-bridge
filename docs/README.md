@@ -2,9 +2,9 @@
 
 ### 다리 생성 `BridgeMaker#makeBridge()`
 
-- [x] 사용자에게 생성할 다리 길이를 입력 받는다. `InputController#setBridgeSize()`
+- [x] 사용자에게 생성할 다리 길이를 입력 받는다. `GameController#setBridgeSize()`
 - [x] 입력값이 숫자인지 확인하고, 숫자가 아니면 예외 처리한다. `Util#validateBridgeSizeType()`
-- [x] 예외 처리 후에, 그 부분부터 입력을 다시 받는다. `InputController#setBridgeSize()`
+- [x] 예외 처리 후에, 그 부분부터 입력을 다시 받는다. `GameController#setBridgeSize()`
 - [x] 3 이상 20 이하의 숫자가 아니면 예외 처리한다. `BridgeMaker#validateBridgeSizeRange()`
 - [x] 다리 길이 만큼 0과 1 중 무작위 값을 생성한다. `BridgeNumberGenerator#generate()`
 - [x] 무작위 값이 0인 경우 "D", 1인 경우 "D"로 이루어진 다리를 리스트 형태로 반환한다. `BridgeMaker#makeBridge()`
@@ -13,7 +13,10 @@
 
 - [x] 사용자에게 이동할 칸을 입력받는다. `InputView#readMoving()`
 - [x] U, D 중의 입력값이 아닌 경우 예외 처리한다. `Util#validateMovingInput()`
+- [x] 사용자에게 받은 값을 다리의 첫 칸과 비교한다. `BridgeGame#move()`
 - [ ] 이동한 칸을 건널 수 있으면 O, 없으면 X로 표시한다.
+- [ ] 사용자의 선택과 다리의 칸이 일치하면 위 내용을 반복한다.
+- [ ] 사용자의 선택과 다리의 칸이 일치하지 않으면 게임 재시작 옵션을 보여준다.
 - [ ] 다리를 끝까지 건너면 게임을 종료한다.
 - [ ] 다리를 건너다 실패하면 R(재시작)과 Q(종료) 중 하나의 문자를 입력받는다.
 - [ ] 사용자의 총 시도한 횟수를 출력한다.
