@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class BridgeGame {
     private final List<String> bridge;
-    private final List<String> userPath;
+    private List<String> userPath;
 
     public BridgeGame(int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
