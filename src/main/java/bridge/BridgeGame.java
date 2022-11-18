@@ -41,6 +41,10 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        this.upBoardCheckList.clear();
+        this.downBoardCheckList.clear();
+        this.stage = 0;
+        this.tryCount += 1;
     }
 
     private boolean addCheckToUpList(String board) {
