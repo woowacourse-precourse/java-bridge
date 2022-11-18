@@ -12,11 +12,11 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public Bridge readBridgeSize() {
+    public int readBridgeSize() {
         String input = Console.readLine();
         try {
             InputValidator.validateParseStringToInteger(input);
-            return new Bridge(Integer.parseInt(input));
+            return Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readBridgeSize();
