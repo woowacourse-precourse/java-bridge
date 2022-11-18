@@ -35,6 +35,22 @@ class PlayerTest {
         assertThat(attempt).isEqualTo(1);
     }
 
+    @DisplayName("플레이어의 시도 횟수가 증가하면 방향이 초기화된다.")
+    @Test
+    void increaseAttemptWithClear() {
+        //given
+        Player player = new Player();
+
+        //when
+        player.move(Direction.UP);
+        player.attempt();
+        int attempt = player.getAttempt();
+
+        //then
+        assertThat(attempt).isEqualTo(1);
+        assertThat(player.getDirections()).isEmpty();
+    }
+
     @DisplayName("처음 생성된 플레이어는 이동 방향을 가지고 있지 않다.")
     @Test
     void initDirections() {
