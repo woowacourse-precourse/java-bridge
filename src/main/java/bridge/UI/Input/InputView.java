@@ -34,7 +34,7 @@ public class InputView {
     private void validate(String s, ValidateType type){
         if(type == ValidateType.SIZE) checkSize(s);
 
-        if(type == ValidateType.MOVE);
+        if(type == ValidateType.MOVE) checkMove(s);
 
         if(type == ValidateType.COMMAND);
     }
@@ -49,5 +49,9 @@ public class InputView {
             if(e.getClass() == NumberFormatException.class) throw new IllegalArgumentException("[ERROR] 숫자가 아닙니다.");
             if(e.getClass() == IllegalArgumentException.class) throw e;
         }
+    }
+
+    private void checkMove(String s) {
+        if(!(s.charAt(0) == 'U' || s.charAt(0) == 'D')) throw new IllegalArgumentException("[ERROR] 방향을 잘못 입력하셨습니다.");
     }
 }

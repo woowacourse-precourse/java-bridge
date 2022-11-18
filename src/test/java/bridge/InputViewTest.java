@@ -35,7 +35,7 @@ public class InputViewTest extends NsTest {
         assertSimpleTest(() -> {
             assertThatThrownBy(() -> runException("3", "A"))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("[ERROR] 입력 방향을 잘못 입력하셨습니다.");
+                    .hasMessage("[ERROR] 방향을 잘못 입력하셨습니다.");
         });
     }
 
