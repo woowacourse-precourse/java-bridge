@@ -37,4 +37,8 @@ public class OutputView {
     public void printError(String message){
         System.out.println(message);
     }
+    
+    public void printSelectMove(){
+        System.out.println(SELECT_MOVE);
+    }
 }
