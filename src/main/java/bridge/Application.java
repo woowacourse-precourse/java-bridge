@@ -24,5 +24,8 @@ public class Application {
             outputView.printMap(bridgeMap);
             i = bridgeGame.count(i, bridgeSize);
         }
+
+        outputView.printResult();
+
     }
 }
