@@ -1,20 +1,22 @@
 package bridge.validator;
 
 public enum CommandValidatorKey {
-    MOVING_COMMAND_VALIDATOR("[U|D]"),
-    RETRY_COMMAND_VALIDATOR("[Q|R]");
+    MOVING_COMMAND_VALIDATOR("[U|D]", "U 또는 D 만 입력할 수 있습니다."),
+    RETRY_COMMAND_VALIDATOR("[Q|R]", "Q 또는 R 만 입력할 수 있습니다.");
     
     private final String commandForm;
+    private final String errorMessage;
     
-    CommandValidatorKey(final String commandForm) {
+    CommandValidatorKey(final String commandForm, final String errorMessage) {
         this.commandForm = commandForm;
-    }
-    
-    public boolean isMovingCommandValidatorKey() {
-        return this == MOVING_COMMAND_VALIDATOR;
+        this.errorMessage = errorMessage;
     }
     
     public String getCommandForm() {
         return commandForm;
+    }
+    
+    public String getErrorMessage() {
+        return errorMessage;
     }
 }
