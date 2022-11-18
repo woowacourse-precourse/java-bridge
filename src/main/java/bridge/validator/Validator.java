@@ -7,6 +7,8 @@ public class Validator {
     private static int BRIDGE_MAXIMUM_SIZE = 20;
     private static String UP = "U";
     private static String DOWN = "D";
+    private static String RESTART = "R";
+    private static String QUITE = "Q";
 
     public void validateInputIsNumber(String userInput) {
         for(char input : userInput.toCharArray()) {
@@ -31,6 +33,12 @@ public class Validator {
             throw new IllegalArgumentException(Messages.ERROR_MOVE.getMessage());
         }
     }
+    public void validateReStart(String userInput) {
+        if((!userInput.equals(RESTART) || userInput.equals(QUITE))) {
+            throw new IllegalArgumentException(Messages.ERROR_RESTART.getMessage());
+        }
+    }
+
 
     public int StringToInteger(String userInput) {
         return Integer.parseInt(userInput);

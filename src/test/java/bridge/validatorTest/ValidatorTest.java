@@ -38,12 +38,24 @@ public class ValidatorTest {
     @Test
     @DisplayName("입력한 move가 U,D가 아니면 예외를 반환한다")
     void moveTest() {
-        String userInput = "D";
+        String userInput = "z";
 
         try {
             validator.validateMove(userInput);
         } catch (Exception e) {
             Assertions.assertThat(e.getMessage()).isEqualTo(Messages.ERROR_MOVE.getMessage());
+        }
+    }
+
+    @Test
+    @DisplayName("입력한 restart가 R,Q가 아니면 예외를 반환한다")
+    void restartTest() {
+        String userInput ="A";
+
+        try {
+            validator.validateReStart(userInput);
+        } catch (Exception e) {
+            Assertions.assertThat(e.getMessage()).isEqualTo(Messages.ERROR_RESTART.getMessage());
         }
     }
 }
