@@ -44,6 +44,7 @@ public class OutputView {
     }
 
     private void printCountGame(int count) {
+        System.out.println("총 시도한 횟수: "+count);
     }
 
 
