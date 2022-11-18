@@ -10,6 +10,7 @@ public class Application {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker maker = new BridgeMaker(bridgeNumberGenerator);
         List<String> movalbeBridge = maker.makeBridge(bridgeSize);
+        System.out.println(movalbeBridge);
         int index =0;
         while (index < movalbeBridge.size()){
             String user = inputView.readMoving();         // 이동할 칸을 입력
