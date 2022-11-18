@@ -14,4 +14,11 @@ public enum Restart {
     public String getInput() {
         return input;
     }
+
+    public static Restart getRestartByString(String input){
+        if(input.equals(TRUE.getInput())){
+            return TRUE;
+        }
+        return FALSE;
+    }
 }

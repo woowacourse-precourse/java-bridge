@@ -19,4 +19,19 @@ public enum Direction {
     public String getInput() {
         return input;
     }
+
+    public static String getInputByValue(int value){
+        if(value == Direction.UP.getValue()){
+            return Direction.UP.getInput();
+        }
+        return Direction.DOWN.getInput();
+    }
+
+    public static Direction getDirectionByInput(String input){
+        if(input.equals(Direction.UP.getInput())){
+            return Direction.UP;
+        }
+
+        return Direction.DOWN;
+    }
 }
