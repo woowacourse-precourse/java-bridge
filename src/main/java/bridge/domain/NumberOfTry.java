@@ -9,7 +9,7 @@ public class NumberOfTry {
         this(FIRST_NUMBER_OF_TRY);
     }
     
-    public NumberOfTry(final int numberOfTry) {
+    private NumberOfTry(final int numberOfTry) {
         this.numberOfTry = numberOfTry;
     }
     
