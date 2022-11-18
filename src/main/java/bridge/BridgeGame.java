@@ -30,6 +30,7 @@ public class BridgeGame {
     public void moveUp(String sideToMove, List<String> bridge, int blockCount) {
         if (sideToMove.equals("U") ) {
             if (bridge.get(blockCount).equals("U")) {
+                isBridgeLengthMoreThan5(blockCount);
                 initialUpBridge.insert(blockCount, MOVABLE);
                 initialDownBridge.insert(blockCount, SPACE);
             }
@@ -39,9 +40,18 @@ public class BridgeGame {
     public void moveDown(String sideToMove, List<String> bridge, int blockCount) {
         if (sideToMove.equals("D") ) {
             if (bridge.get(blockCount).equals("D")) {
+                isBridgeLengthMoreThan5(blockCount);
                 initialDownBridge.insert(blockCount, MOVABLE);
                 initialUpBridge.insert(blockCount, SPACE);
             }
+        }
+    }
+
+    public void isBridgeLengthMoreThan5(int blockCount) {
+        if (blockCount > 0) {
+            int lastIndex = initialUpBridge.length() - 1;
+            initialUpBridge.insert(lastIndex, SPLIT_BY);
+            initialDownBridge.insert(lastIndex, SPLIT_BY);
         }
     }
     /**
