@@ -1,12 +1,12 @@
 package bridge.model;
 
-public enum BridgeSizeConstant {
+public enum BridgeStatistic {
     LOWER_BOUND(3),
     UPPER_BOUND(20);
 
     private final int value;
 
-    BridgeSizeConstant(int value) {
+    BridgeStatistic(int value) {
         this.value = value;
     }
 

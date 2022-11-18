@@ -1,6 +1,6 @@
 package bridge.model.validator;
 
-import bridge.model.BridgeSizeConstant;
+import bridge.model.BridgeStatistic;
 
 import java.util.regex.Pattern;
 
@@ -22,15 +22,15 @@ public class BridgeSizeValidator implements Validator{
     }
 
     public void validateLength(String input) {
-        int upperBound = BridgeSizeConstant.UPPER_BOUND.getValue();
+        int upperBound = BridgeStatistic.UPPER_BOUND.getValue();
         if (input.length() > Integer.toString(upperBound).length()) {
             throw new IllegalArgumentException();
         }
     }
 
     public void validateRange(int inputNumber) {
-        if (inputNumber < BridgeSizeConstant.LOWER_BOUND.getValue()
-                || inputNumber > BridgeSizeConstant.UPPER_BOUND.getValue()) {
+        if (inputNumber < BridgeStatistic.LOWER_BOUND.getValue()
+                || inputNumber > BridgeStatistic.UPPER_BOUND.getValue()) {
             throw new IllegalArgumentException();
         }
     }
