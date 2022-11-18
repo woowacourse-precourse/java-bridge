@@ -25,7 +25,6 @@ public class Controller {
         int bridgeSize = inputView.readBridgeSize();
         List<String> bridgeList = bridgeMaker.makeBridge(bridgeSize);
         BridgeGame bridgeGame = new BridgeGame(bridgeList);
-//        System.out.println(bridgeList);
         start(bridgeGame, bridgeList);
     }
 
@@ -52,8 +51,9 @@ public class Controller {
                 else {
                     outputView.printMap(bridge);
                     bridgeGame.initIndex();
-                    System.out.println(index);
-                    retry(bridgeGame, bridgeList);
+                    if(!retry(bridgeGame, bridgeList)){
+                        break;
+                    }
                 }
             }
             if (index != 0) {
@@ -63,8 +63,10 @@ public class Controller {
                 else {
                     outputView.printMap(bridge);
                     bridgeGame.initIndex();
-                    System.out.println(index);
-                    retry(bridgeGame, bridgeList);
+
+                    if(!retry(bridgeGame, bridgeList)){
+                        break;
+                    }
                 }
             }
             int checkIndex = bridgeGame.getIndex();
@@ -76,16 +78,15 @@ public class Controller {
         gameEnd();
     }
 
-    public void retry(BridgeGame bridgeGame, List<String> bridgeList) {
+    public boolean retry(BridgeGame bridgeGame, List<String> bridgeList) {
+        boolean flag = false;
         outputView.printSelectRetry();
         String retryOrQuit = inputView.readGameCommand();
         if(bridgeGame.checkRetry(retryOrQuit)) {
             user.addTryCount();
             start(bridgeGame, bridgeList);
         }
-        if(!bridgeGame.checkRetry(retryOrQuit)) {
-            gameEnd();
-        }
+        return flag;
     }
 
     private void gameEnd() {
