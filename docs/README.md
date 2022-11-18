@@ -22,7 +22,7 @@
   - [x] 건널 수 있으면 O로 표현한다.
   - [x] 건널 수 없다면 X로 표현한다.
 - [x] 이동할 수 있다. - BridgeGame#move
-- [] 다리의 상태를 출력할 수 있다. - OutputView#printMap
+- [x] 다리의 상태를 출력할 수 있다. - OutputView#printMap
 - [x] 게임을 다시 시도할지 입력받을 수 있다. - InputView#readGameCommand
   - [x] R 이나 Q 이다.
 - [] 게임을 다시 시작할 수 있다. BridgeGame#retry
