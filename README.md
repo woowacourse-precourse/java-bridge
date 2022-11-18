@@ -1,5 +1,9 @@
 # 미션 - 다리 건너기
 
+## 기능 구현 목록
+- OutputView Class
+  - 게임 시작 메시지 출력
+  - 게임 다리 입력 유도 메시지 입력 -> InputView 호출
 ## 기능 구체화
 - 메인 클래스
 - InputView Class 입력받는 클래스

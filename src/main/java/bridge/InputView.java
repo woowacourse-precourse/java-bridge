@@ -25,4 +25,5 @@ public class InputView {
     public String readGameCommand() {
         return null;
     }
+
 }
