@@ -36,37 +36,77 @@ public class MatchResult {
 
     public void matchProcess(List<String> userInput, boolean match) {
         reset();
-        upperSide.append(prefix);
-        downSide.append(prefix);
-        for (int index = 0; index < userInput.size()-1; index++) {
-            if (userInput.get(index).equals("U")) {
-                upperSide.append(MatchFormComponent.CorrectAnswer);
-                downSide.append(MatchFormComponent.space);
-            }
-            if (userInput.get(index).equals("D")) {
-                upperSide.append(MatchFormComponent.space);
-                downSide.append(MatchFormComponent.CorrectAnswer);
-            }
-            upperSide.append(MatchFormComponent.middleFormat);
-            downSide.append(MatchFormComponent.middleFormat);
-        }
-        if (match == true && userInput.get(userInput.size() - 1).equals("U")) {
-            upperSide.append(MatchFormComponent.CorrectAnswer);
-            downSide.append(MatchFormComponent.space);
-        }
-        if (match == true && userInput.get(userInput.size() - 1).equals("D")) {
-            upperSide.append(MatchFormComponent.space);
-            downSide.append(MatchFormComponent.CorrectAnswer);
-        }
-        if (match == false && userInput.get(userInput.size() - 1).equals("U")) {
-            upperSide.append(MatchFormComponent.WrongAnswer);
-            downSide.append(MatchFormComponent.space);
-        }
+        appendPrefix();
+        appendMiddleAreaOfMatchers(userInput);
+        matchIsTrueAndLastInputIsCapitalU(userInput, match);
+        matchIsTrueAndLastInputIsCapitalD(userInput, match);
+        matchIsFalseAndLastInputIsCapitalU(userInput, match);
+        matchIsFalseAndLastInputIsCapitalD(userInput, match);
+        appendPostfix();
+    }
+
+    private void appendPostfix() {
+        upperSide.append(MatchFormComponent.postfix);
+        downSide.append(MatchFormComponent.postfix);
+    }
+
+    private void matchIsFalseAndLastInputIsCapitalD(List<String> userInput, boolean match) {
         if (match == false && userInput.get(userInput.size() - 1).equals("D")) {
             upperSide.append(MatchFormComponent.space);
             downSide.append(MatchFormComponent.WrongAnswer);
         }
-        upperSide.append(MatchFormComponent.postfix);
-        downSide.append(MatchFormComponent.postfix);
+    }
+
+    private void matchIsFalseAndLastInputIsCapitalU(List<String> userInput, boolean match) {
+        if (match == false && userInput.get(userInput.size() - 1).equals("U")) {
+            upperSide.append(MatchFormComponent.WrongAnswer);
+            downSide.append(MatchFormComponent.space);
+        }
+    }
+
+    private void matchIsTrueAndLastInputIsCapitalD(List<String> userInput, boolean match) {
+        if (match == true && userInput.get(userInput.size() - 1).equals("D")) {
+            upperSide.append(MatchFormComponent.space);
+            downSide.append(MatchFormComponent.CorrectAnswer);
+        }
+    }
+
+    private void matchIsTrueAndLastInputIsCapitalU(List<String> userInput, boolean match) {
+        if (match == true && userInput.get(userInput.size() - 1).equals("U")) {
+            upperSide.append(MatchFormComponent.CorrectAnswer);
+            downSide.append(MatchFormComponent.space);
+        }
+    }
+
+    private void appendMiddleAreaOfMatchers(List<String> userInput) {
+        for (int index = 0; index < userInput.size()-1; index++) {
+            matchIsCapitalU(userInput, index);
+            matchIsCapitalD(userInput, index);
+            appendSeparator();
+        }
+    }
+
+    private void appendSeparator() {
+        upperSide.append(MatchFormComponent.middleFormat);
+        downSide.append(MatchFormComponent.middleFormat);
+    }
+
+    private void matchIsCapitalD(List<String> userInput, int index) {
+        if (userInput.get(index).equals("D")) {
+            upperSide.append(MatchFormComponent.space);
+            downSide.append(MatchFormComponent.CorrectAnswer);
+        }
+    }
+
+    private void matchIsCapitalU(List<String> userInput, int index) {
+        if (userInput.get(index).equals("U")) {
+            upperSide.append(MatchFormComponent.CorrectAnswer);
+            downSide.append(MatchFormComponent.space);
+        }
+    }
+
+    private void appendPrefix() {
+        upperSide.append(prefix);
+        downSide.append(prefix);
     }
 }

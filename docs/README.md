@@ -43,7 +43,17 @@
         - printUpperSide : upperSide 출력 메서드
         - printDownSide : downSide 출력 메서드
         - matchProcess : 사용자의 입력 결과들과 매칭 결과를 갖고 출력을 입력하는 메서드
-
+          - appendPrefix : 문자열 맨 앞 "[" 붙이는 메서드
+          - appendMiddleAreaOfMatchers : 중간 부분 Matching 결과를 붙이는 메서드
+            - matchIsCapitalD : 입력 문자가 "D" 일 경우 붙이는 메서드
+            - matchIsCapitalU : 입력 문자가 "U" 일 경우 붙이는 메서드
+            - appendSeparator : 결과 값 사이에 존재하는 "|"를 붙이는 메서드
+            - matchIsTrueAndLastInputIsCapitalU : 마지막 문자가 hit이고 위치가 "U"일 경우
+            - matchIsTrueAndLastInputIsCapitalD : 마지막 문자가 hit이고 위치가 "D"일 경우
+            - matchIsFalseAndLastInputIsCapitalU : 마지막 문자가 Not hit이고 위치가 "U"일 경우
+            - matchIsFalseAndLastInputIsCapitalD : 마지막 문자가 Not hit이고 위치가 "D"일 경우
+            - appendPostfix : 맨 끝 문자열 붙이는 메서드
+            
 - Infrastructure layer
     - ProcessHelperImpl
 - Application layer
