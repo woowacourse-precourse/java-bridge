@@ -1,4 +1,4 @@
-package bridge;
+package bridge.View;
 
 /*
 * OutputView 패키지는 변경할 수 있다.
