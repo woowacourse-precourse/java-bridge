@@ -8,7 +8,7 @@ import bridge.model.UserRoadMap;
  */
 public class OutputView {
     private final String ROAD_SEPARATOR = "|";
-    private final String[] ROAD_STATE = {"X", "O", " "};
+    private final String[] ROAD_STATE = {" X ", " O ", "   "};
     private final String[] GAME_RESULT_STATE = {"실패", "성공"};
 
     private final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
@@ -58,7 +58,11 @@ public class OutputView {
     }
 
     private void printOorX(int roadPosition, BridgeRoadMap bridgeRoadMap, UserRoadMap userRoadMap) {
-        // TODO: 칸의 위치를 기준으로 정답과 해답을 비교하여 O, X 출력
+        String result = ROAD_STATE[0];
+        if(bridgeRoadMap.matchPositionWithRoad(roadPosition, userRoadMap.getRoad(roadPosition))){
+            result = ROAD_STATE[1];
+        }
+        System.out.printf(result);
     }
 
     /**
