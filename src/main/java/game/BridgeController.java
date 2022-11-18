@@ -9,32 +9,38 @@ public class BridgeController {
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private int count = 0;
 
     public void settingGame() {
         System.out.println("다리 건너기 게임을 시작합니다.");
         System.out.println("다리의 길이를 입력해주세요.");
         List<String> bridge = getBridge();
+        System.out.println("bridge = " + bridge);
 
         run(bridge);
+        int gameRound= restart(bridge);
     }
 
-    private void run(List<String> bridge) {
-        int count = 0;
+
+    public void run(List<String> bridge) {
+        int i = 0;
+        for (i = 0; i < bridge.size(); i++) {
+            String command = moveCommand();
+            if (!(bridge.get(i).equals(command))) break;
+
+            if (command.equals("U")) outputView.commandIsU(bridge, i);
+            if (command.equals("D")) outputView.commandIsD(bridge, i);
+        }
+    }
+
+    public int restart(List<String> bridge) {
         while (true) {
             count++;
-
-            playGame(bridge);
-
             String retry = retryCommand();
             if (retry.equals("Q")) break;
-            if (retry.equals("R")) playGame(bridge);
+            if (retry.equals("R")) run(bridge);
         }
-        System.out.println("게임 성공 여부: " + "실패");
-        System.out.println("총 시도한 횟수: " + count);
-    }
-
-    private void playGame(List<String> bridge) {
-
+        return count;
     }
 
 
