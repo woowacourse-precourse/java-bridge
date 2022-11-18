@@ -1,16 +1,16 @@
 package bridge.domain.validator;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 import bridge.util.Errors;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -21,6 +21,39 @@ import org.junit.jupiter.params.provider.ValueSource;
 @TestMethodOrder(OrderAnnotation.class)
 class MovingInputValidatorTest {
     private static final  MovingInputValidator movingInputValidator  = new MovingInputValidator();
+
+    @Order(4)
+    @DisplayName("통합 유효성 검사")
+    @ParameterizedTest(name ="{displayName} 입력값({index}) : {1}")
+    @MethodSource("paramsForTotalValidate")
+    void validate(String inputValue, String testOutputMessage) {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> movingInputValidator.validate(inputValue))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+    private static Stream<Arguments> paramsForTotalValidate() {
+        return Stream.of(
+                Arguments.of("    ", "(공백 값)"),
+                Arguments.of("abcd", "abcd"),
+                Arguments.of("1234", "1234"),
+                Arguments.of("u", "u"),
+                Arguments.of("Q", "Q"),
+                Arguments.of("R", "R"),
+                Arguments.of("d", "d")
+        );
+    }
+    @Order(5)
+    @DisplayName("통합 유효성 검사 - 통과 case")
+    @ParameterizedTest(name ="{displayName} 입력값({index}) : {0}")
+    @ValueSource(strings = {
+            "U",
+            "D"
+    })
+    void validate(String inputValue) {
+        assertThatCode(()-> movingInputValidator.validate(inputValue)).doesNotThrowAnyException();
+        assertThatNoException().isThrownBy(()-> movingInputValidator.validate(inputValue));
+    }
 
     @Order(1)
     @DisplayName("공백 여부 검사")
