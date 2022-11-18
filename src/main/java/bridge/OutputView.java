@@ -24,4 +24,8 @@ public class OutputView {
     public void printOpening(){
         System.out.println("다리 건너기 게임을 시작합니다.\n");
     }
+
+    public void printErrorMessage(String message) {
+        System.out.println(message);
+    }
 }
