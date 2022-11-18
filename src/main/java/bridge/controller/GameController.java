@@ -49,8 +49,7 @@ public class GameController {
             try {
                 int bridgeSize = inputView.readBridgeSize();
                 List<String> bridgePositions = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
-                Bridge bridge = Bridge.from(bridgePositions);
-                return bridge;
+                return Bridge.from(bridgePositions);
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
