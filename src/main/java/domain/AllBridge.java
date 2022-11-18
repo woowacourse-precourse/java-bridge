@@ -1,7 +1,26 @@
 package domain;
 
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class AllBridge {
+    private List<String> bridge = new ArrayList<>();
+    BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+    BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+
+    public AllBridge(String size) {
+        checkBridgeLength(size);
+        bridge = bridgeMaker.makeBridge(Integer.parseInt(size));
+    }
+
+    public List<String> getBridge() {
+        return bridge;
+    }
+
     public void checkBridgeLength(String bridgeSize) {
         try {
             int size = Integer.parseInt(bridgeSize);
