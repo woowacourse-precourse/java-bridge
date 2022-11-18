@@ -36,13 +36,13 @@ public class BridgeGame {
     }
 
     private void correctMoveUp(List<List<String>> gameProgress) {
-        gameProgress.get(0).add("O");
-        gameProgress.get(1).add(" ");
+        gameProgress.get(0).add(" O ");
+        gameProgress.get(1).add("   ");
     }
 
     private void correctMoveDown(List<List<String>> gameProgress) {
-        gameProgress.get(0).add(" ");
-        gameProgress.get(1).add("O");
+        gameProgress.get(0).add("   ");
+        gameProgress.get(1).add(" O ");
     }
 
     private List<List<String>> incorrectMove(String moving, List<List<String>> gameProgress) {
@@ -56,13 +56,13 @@ public class BridgeGame {
     }
 
     private void incorrectMoveUp(List<List<String>> gameProgress) {
-        gameProgress.get(0).add("X");
-        gameProgress.get(1).add(" ");
+        gameProgress.get(0).add(" X ");
+        gameProgress.get(1).add("   ");
     }
 
     private void incorrectMoveDown(List<List<String>> gameProgress) {
-        gameProgress.get(0).add(" ");
-        gameProgress.get(1).add("X");
+        gameProgress.get(0).add("   ");
+        gameProgress.get(1).add(" X ");
     }
 
     private void validMoveCommand(String input) {
