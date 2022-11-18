@@ -42,7 +42,7 @@ public class BridgeGame {
     }
 
     private boolean canMove(String moving) {
-        if (bridge.get(movingCount) == moving) {
+        if (bridge.get(movingCount).equals(moving)) {
             return true;
         }
         return false;
@@ -59,7 +59,7 @@ public class BridgeGame {
     }
 
     private void validate(String moving) {
-        if (moving != Direction.Code.UP.getName() && moving != Direction.Code.DOWN.getName()) {
+        if (!moving.equals(Direction.Code.UP.getName()) && !moving.equals(Direction.Code.DOWN.getName())) {
             throw new IllegalArgumentException();
         }
     }

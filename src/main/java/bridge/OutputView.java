@@ -34,19 +34,19 @@ public class OutputView {
         String c = result.get(result.size() - 1);
         String d = result.get(result.size() - 2);
         for (int i = 0; i < result.size() - 1; i++) {
-            if (result.get(i) == "U") {
+            if (result.get(i).equals("U")) {
                 a.append(" O |");
                 b.append("   |");
             }
-            if (result.get(i) == "D") {
+            if (result.get(i).equals("D")) {
                 a.append("   |");
                 b.append(" O |");
             }
         }
-        if (c == "X" && d == "U") {
+        if (c.equals("X") && d.equals("U")) {
             a.replace(a.length() - 3, a.length() - 2, "X");
         }
-        if (c == "X" && d == "D") {
+        if (c.equals("X") && d.equals("D")) {
             b.replace(b.length() - 3, b.length() - 2, "X");
         }
         a.replace(a.length() - 1, a.length(), "]");
