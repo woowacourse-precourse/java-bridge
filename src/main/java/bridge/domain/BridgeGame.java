@@ -56,4 +56,7 @@ public class BridgeGame {
 		return resultMessageStatuses;
 	}
 
+	public int getTryCount() {
+		return tryCount;
+	}
 }
