@@ -1,11 +1,13 @@
 package bridge;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BridgeTest {
@@ -34,5 +36,19 @@ class BridgeTest {
         })
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(INVALID_LENGTH_RANGE_MESSAGE);
+    }
+
+    @DisplayName("다리 정답 리스트의 n번째 정답 값과 사용자가 n번째에 입력한 값이 정답과 일치하는지 테스트")
+    @Test
+    void isAnswer() {
+        //given
+        Bridge bridge = new Bridge(List.of("U", "D", "U"));
+        String moving = "U";
+        int index = 2;
+        //when
+        boolean answer = bridge.isAnswer(moving, index);
+        //then
+        assertThat(answer)
+                .isTrue();
     }
 }
