@@ -15,6 +15,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("이동 방향 입력 값 유효성 검사 테스트")
 @TestMethodOrder(OrderAnnotation.class)
@@ -41,5 +42,25 @@ class MovingInputValidatorTest {
                 Arguments.of("\t", "\"\t\""),
                 Arguments.of("\n", "개행문자")
         );
+    }
+
+    @Order(2)
+    @DisplayName("알파벳 u/d 값 입력 여부 검사")
+    @ParameterizedTest(name ="{displayName} 입력값({index}) : {0}")
+    @ValueSource(strings = {
+            "123",
+            "a",
+            "   r",
+            "q",
+            "Q"
+    })
+    void validateIsInvalid(String inputValue) {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> movingInputValidator.validateIsInvalid(inputValue))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> movingInputValidator.validateIsInvalid(inputValue))
+                .withMessage(Errors.INVALID_MOVE_VALUE.message());
     }
 }
