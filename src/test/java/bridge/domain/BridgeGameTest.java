@@ -19,10 +19,9 @@ import static org.mockito.Mockito.when;
 @DisplayName("BridgeGame 클래스")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 public class BridgeGameTest {
+    private final OutputView outputView = new OutputView();
+    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private InputView inputView;
-    private OutputView outputView = new OutputView();
-    private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-
 
     @BeforeEach
     void setUp() {

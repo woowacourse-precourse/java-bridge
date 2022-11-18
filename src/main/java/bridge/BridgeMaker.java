@@ -10,7 +10,7 @@ import static bridge.config.BridgeGameConstants.BRIDGE_MIN_LENGTH;
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
-public class BridgeMaker {
+public final class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 

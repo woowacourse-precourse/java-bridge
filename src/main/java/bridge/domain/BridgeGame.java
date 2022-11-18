@@ -49,7 +49,7 @@ public final class BridgeGame {
         try {
             outputView.printInitialMessage();
             outputView.printAskBridgeLength();
-            int size = inputView.readBridgeSize();
+            final int size = inputView.readBridgeSize();
             return new Bridge(bridgeMaker.makeBridge(size));
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
@@ -124,8 +124,8 @@ public final class BridgeGame {
     }
 
     private void finish(Visited visited) {
-        PlayLogDto log = new PlayLogDto(visited.printVisited());
-        GameResult gameResult = visited.result(bridge);
+        final PlayLogDto log = new PlayLogDto(visited.printVisited());
+        final GameResult gameResult = visited.result(bridge);
         outputView.printResult(new BridgeGameResultDto(triedCount, log, gameResult));
     }
 }

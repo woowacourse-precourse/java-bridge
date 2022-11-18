@@ -18,8 +18,8 @@ public class BridgeMakerTest {
     @BeforeEach
     void setUp() {
         generator = new BridgeNumberGenerator() {
+            private final List<Integer> expected = List.of(1, 0, 1, 0, 0, 1, 1, 0, 0, 1);
             private int position = 0;
-            private List<Integer> expected = List.of(1, 0, 1, 0, 0, 1, 1, 0, 0, 1);
 
             @Override
             public int generate() {

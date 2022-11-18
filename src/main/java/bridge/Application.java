@@ -7,9 +7,9 @@ import bridge.view.OutputView;
 public class Application {
 
     public static void main(String[] args) {
-        InputView inputView = new InputView();
-        OutputView outputView = new OutputView();
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        final InputView inputView = new InputView();
+        final OutputView outputView = new OutputView();
+        final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
         try {
             new BridgeGame(inputView, outputView, bridgeMaker).play();

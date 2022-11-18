@@ -12,7 +12,7 @@ import static bridge.config.BridgeGameConstants.BRIDGE_MIN_LENGTH;
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
-public class InputView {
+public final class InputView {
     private static final Pattern NUMBERS = Pattern.compile("^[0-9]+$");
     private static final String NOT_NUMBER_MESSAGE = "입력은 숫자로만 이루어져야 합니다";
     private static final String UNDER_SIZE_MESSAGE = "입력은 " + BRIDGE_MIN_LENGTH + "이상이어야 합니다";
