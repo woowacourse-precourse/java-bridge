@@ -34,15 +34,15 @@ public class AnswerBridge {
         return answerBridgeWord.equals(userBridgeWord);
     }
 
-    public boolean isCorrect(String choice, int step) {
-        String answer = answerBridge.get(step);
-        return answer.equals(choice);
+    public boolean isCorrect(User user) {
+        int lastStep = user.getStep();
+        String lastChoice = user.getLastChoice();
+        return answerBridge.get(lastStep).equals(lastChoice);
     }
 
     public boolean isApproachEnd(List<String> userChoices) {
-        int lastStep = userChoices.size() - 1;
-        if (lastStep == answerBridge.size() - 1) {
-            if (isSame(userChoices.get(lastStep), answerBridge.get(lastStep))) {
+        if (userChoices.size() == answerBridge.size()) {
+            if (isSame(userChoices.get(userChoices.size()-1), answerBridge.get(answerBridge.size()-1))) {
                 return true;
             }
         }

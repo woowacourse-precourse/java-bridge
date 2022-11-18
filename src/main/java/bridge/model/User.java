@@ -43,4 +43,8 @@ public class User {
     public int getTotalTryCount() {
         return totalTryCount;
     }
+
+    public String getLastChoice() {
+        return choices.get(choices.size() - 1);
+    }
 }
