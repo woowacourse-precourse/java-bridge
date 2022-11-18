@@ -6,80 +6,90 @@ import java.util.List;
 
 public class OutputView {
 
-    public static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
-    public static final String INPUT_BRIDGE_LENGTH = "다리의 길이를 입력해주세요.";
-    public static final String INPUT_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    public static final String INPUT_RETRY_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-    public static final String ERROR_PREFIX = "[ERROR] ";
-    public static final String ERROR_BRIDGE_SIZE = "잘못 입력했습니다. 3 이상 20 이하의 숫자를 입력해주세요.";
-    public static final String ERROR_MOVING = "잘못 입력했습니다. U 또는 D를 입력해주세요.";
-    public static final String ERROR_RETRY = "잘못 입력했습니다. R 또는 Q를 입력해주세요.";
+    public static final String CORRECT_LOG = "O|";
+    public static final String FAIL_LOG = "X|";
+    public static final String EMPTY_LOG = " |";
+    public static final String SUCCESS = "성공";
+    public static final String FAIL = "실패";
+    public static final String UP = "U";
+    public static final String DOWN = "D";
+    public static final String START_MAP = "[";
+    public static final String CLOSE_MAP = "\b]";
+    public static final String NEXT_LINE = "\n";
+    public static final String SUCCESS_OR_FAIL = "\n게임 성공 여부: ";
+    public static final String TOTAL_TRY_COUNT = "총 시도한 횟수: ";
 
     public static void printStart() {
-        System.out.println(START_MESSAGE);
+        System.out.println(bridge.model.constant.Message.START_MESSAGE);
     }
 
     public static void printInputBridgeSize() {
-        System.out.println(INPUT_BRIDGE_LENGTH);
+        System.out.println(bridge.model.constant.Message.INPUT_BRIDGE_LENGTH);
     }
 
     public static void printInputMoving() {
-        System.out.println(INPUT_MOVING);
+        System.out.println(bridge.model.constant.Message.INPUT_MOVING);
     }
 
-    // TODO: 리팩토링
     public static void printMap(List<String> userChoices, List<Boolean> compareResults) {
-        StringBuilder topLine = new StringBuilder("[");
-        StringBuilder bottomLine = new StringBuilder("[");
+        StringBuilder topLine = new StringBuilder(START_MAP);
+        StringBuilder bottomLine = new StringBuilder(START_MAP);
 
-        for (int i = 0; i < compareResults.size(); i++) {
-            String choice = userChoices.get(i);
-            boolean compareResult = compareResults.get(i);
-
-            if (choice.equals("U")) {
-                if (compareResult) {
-                    topLine.append("O|");
-                    bottomLine.append(" |");
-                } else {
-                    topLine.append("X|");
-                    bottomLine.append(" |");
-                }
-            }
-            if (choice.equals("D")) {
-                if (compareResult) {
-                    topLine.append(" |");
-                    bottomLine.append("O|");
-                } else {
-                    topLine.append(" |");
-                    bottomLine.append("X|");
-                }
-            }
+        for (int index = 0; index < compareResults.size(); index++) {
+            markAtTopLine(topLine, userChoices.get(index), compareResults.get(index));
+            markAtBottomLine(bottomLine, userChoices.get(index), compareResults.get(index));
         }
 
-        topLine.append("\b]");
-        bottomLine.append("\b]");
+        printResult(topLine, bottomLine);
+    }
 
-        System.out.println(topLine);
-        System.out.println(bottomLine);
+    private static void markAtTopLine(StringBuilder topLine, String choice, boolean compareResult) {
+        if (choice.equals(UP)) {
+            if (compareResult) {
+                topLine.append(CORRECT_LOG);
+                return;
+            }
+            topLine.append(FAIL_LOG);
+            return;
+        }
+        topLine.append(EMPTY_LOG);
+    }
+
+    private static void markAtBottomLine(StringBuilder bottomLine, String choice, boolean compareResult) {
+        if (choice.equals(DOWN)) {
+            if (compareResult) {
+                bottomLine.append(CORRECT_LOG);
+                return;
+            }
+            bottomLine.append(FAIL_LOG);
+            return;
+        }
+        bottomLine.append(EMPTY_LOG);
+    }
+
+    private static void printResult(StringBuilder topLine, StringBuilder bottomLine) {
+        topLine.append(CLOSE_MAP);
+        bottomLine.append(CLOSE_MAP);
+        System.out.println(topLine + NEXT_LINE + bottomLine);
     }
 
     public static void printInputRetryCommand() {
-        System.out.println(INPUT_RETRY_COMMAND);
+        System.out.println(bridge.model.constant.Message.INPUT_RETRY_COMMAND);
     }
 
     public static void printResult(User user, List<Boolean> compareResults) {
-        System.out.println("\n최종 게임 결과");
+        System.out.println(bridge.model.constant.Message.GAME_RESULT_MESSAGE);
         printMap(user.getChoices(), compareResults);
 
-        System.out.println("\n게임 성공 여부: " + booleanToString(user.getDoesSuccess()));
-        System.out.println("총 시도한 횟수: " + user.getTotalTryCount());
+        System.out.println(SUCCESS_OR_FAIL + booleanToString(user.getDoesSuccess()));
+        System.out.println(TOTAL_TRY_COUNT + user.getTotalTryCount());
     }
 
     private static String booleanToString(boolean isSuccess) {
         if (isSuccess) {
-            return "성공";
+            return SUCCESS;
         }
-        return "실패";
+        return FAIL;
     }
 
     public static void printError(IllegalArgumentException illegalArgumentException) {

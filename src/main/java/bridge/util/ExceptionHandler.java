@@ -1,5 +1,6 @@
 package bridge.util;
 
+import bridge.model.constant.Message;
 import bridge.view.OutputView;
 
 public class ExceptionHandler {
@@ -14,7 +15,7 @@ public class ExceptionHandler {
             int size = Integer.parseInt(input);
             isValidRange(size);
         } catch (IllegalArgumentException illegalArgumentException) {
-            String message = OutputView.ERROR_PREFIX + OutputView.ERROR_BRIDGE_SIZE;
+            String message = Message.ERROR_PREFIX + Message.ERROR_BRIDGE_SIZE;
             throw new IllegalArgumentException(message);
         }
     }
@@ -27,7 +28,7 @@ public class ExceptionHandler {
 
     public static void checkMoving(final String input) {
         if (!isValidMoving(input)) {
-            String message = OutputView.ERROR_PREFIX + OutputView.ERROR_MOVING;
+            String message = Message.ERROR_PREFIX + Message.ERROR_MOVING;
             throw new IllegalArgumentException(message);
         }
     }
@@ -41,7 +42,7 @@ public class ExceptionHandler {
 
     public static void checkRetryCommand(final String input) throws IllegalArgumentException {
         if (!(input.equals(RE_START) || input.equals(QUIT))) {
-            String message = OutputView.ERROR_PREFIX + OutputView.ERROR_RETRY;
+            String message = Message.ERROR_PREFIX + Message.ERROR_RETRY;
             throw new IllegalArgumentException(message);
         }
     }
