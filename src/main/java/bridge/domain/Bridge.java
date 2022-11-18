@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import static bridge.constant.ErrorConstant.*;
+
 import java.util.List;
 
 public class Bridge {
@@ -9,8 +11,15 @@ public class Bridge {
 		this.bridge = bridge;
 	}
 
-	public boolean match(int index, String position) {
-		return bridge.get(index).equals(position);
+	public boolean match(int index, String command) {
+		validateIndexRange(index);
+		return bridge.get(index).equals(command);
+	}
+
+	private void validateIndexRange(int index) {
+		if (index < 0 || index >= this.length()) {
+			throw new IllegalArgumentException(NOT_INDEX_RANGE.getMessage());
+		}
 	}
 
 	public int length() {
