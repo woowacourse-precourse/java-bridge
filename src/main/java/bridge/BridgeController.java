@@ -1,6 +1,7 @@
 package bridge;
 
 import view.InputView;
+import view.OutputView;
 
 import java.util.List;
 
@@ -8,6 +9,7 @@ public class BridgeController {
     private BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
 
     public void run() {
+        new OutputView().printStart();
         makeBridgeController();
     }
 
