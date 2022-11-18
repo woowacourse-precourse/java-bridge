@@ -27,4 +27,26 @@ class InputValidatorTest {
         assertThatThrownBy(() -> InputValidator.validateBridgeSize(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void validateMoving_anotherString_throwException() {
+        String input = "F";
+        assertThatThrownBy(() -> InputValidator.validateMoving(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void validateMoving_anotherString_zeroSize() {
+        String input = "";
+        assertThatThrownBy(() -> InputValidator.validateMoving(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void validateMoving_anotherString_overSize() {
+        String input = "UU";
+        assertThatThrownBy(() -> InputValidator.validateMoving(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
