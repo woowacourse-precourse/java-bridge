@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.controller.BridgesController;
+import bridge.controller.BridgeController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -23,7 +23,7 @@ class BridgeTest {
         System.setOut(new PrintStream(out));
     }
 
-    private final BridgesController bridgesController = new BridgesController();
+    private final BridgeController bridgesController = new BridgeController();
     @DisplayName("다리 사이즈가 올바른 형식이 아닌 경우")
     @ValueSource(strings = {"a", "가", "1", "-1", "21"})
     @ParameterizedTest
