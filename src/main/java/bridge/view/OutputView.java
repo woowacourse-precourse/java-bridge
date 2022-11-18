@@ -5,21 +5,16 @@ import bridge.message.PrintCommon;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
+// 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
 public class OutputView {
 
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    // 사용자가 건넌 다리를 만들어 출력하는 메소드
     public void printMap(List<String> passHistory) {
         System.out.println(generateUpCase(passHistory));
         System.out.println(generateDownCase(passHistory));
     }
 
+    // 위의 다리를 만드는 메소드
     private String generateUpCase (List<String> passHistory) {
 
         List<String> upCase = passHistory.stream()
@@ -32,6 +27,7 @@ public class OutputView {
                 .collect(Collectors.joining(" | ", "[ ", " ]"));
     }
 
+    // 아래의 다리를 만드는 메소드
     private String generateDownCase (List<String> passHistory) {
 
         List<String> upCase = passHistory.stream()
@@ -44,11 +40,7 @@ public class OutputView {
                 .collect(Collectors.joining(" | ", "[ ", " ]"));
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    // 최종 결과를 출력하는 메소드
     public void printResult(int attempt, boolean outcome, List<String> passHistory) {
         System.out.println("\n최종 게임 결과");
         printMap(passHistory);
@@ -62,6 +54,7 @@ public class OutputView {
         System.out.println(PrintCommon.RESULT_NUMBER.toString() + attempt);
     }
 
+    // 시작 메시지를 출력하는 메소드
     public void printStart () {
         PrintCommon.START.print();
     }
