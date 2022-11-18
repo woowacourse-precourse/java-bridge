@@ -13,14 +13,13 @@ public class GameController {
     private static OutputView outputView = new OutputView();
 
     public void play() {
-        BridgeGame bridgeGame = new BridgeGame();
-
         // 다리 생성
         outputView.printStartGame();
         List<String> bridge = setBridgeSize();
         System.out.println(bridge);
 
         // 다리 게임
+        BridgeGame bridgeGame = new BridgeGame();
         boolean success = bridgeGame.move(bridge.get(0), setMovingOption());
         System.out.println(success);
         bridge.remove(0);
@@ -28,8 +27,10 @@ public class GameController {
         while (success) {
             success = bridgeGame.move(bridge.get(0), setMovingOption());
             System.out.println(success);
+            if (success) {
+                bridge.remove(0);
+            }
             System.out.println(bridge);
-            bridge.remove(0);
         }
 
     }
