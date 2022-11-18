@@ -2,7 +2,8 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.io.PrintStream;
+import java.util.function.IntPredicate;
+import java.util.regex.Pattern;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -13,18 +14,30 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        String value = "";
         int bridgeSize = 0;
         while (true) {
-            try {
-                bridgeSize = Integer.parseInt(readValue());
-                if (isBridgeNumber(bridgeSize)) {
-                    break;
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 3 이상 20 이하의 숫자를 입력해주세요.");
+            value = readValue();
+            if (isBridgeSizeNumber(value)) {
+                bridgeSize = toInts(value);
+                break;
             }
         }
         return bridgeSize;
+    }
+
+    public int toInts(String value) {
+        int size = Integer.parseInt(value);
+        return size;
+    }
+
+    public boolean isBridgeSizeNumber(String value) {
+        final String REGEX = "^[3-9]{1}$|^[1]{1}[0-9]{1}$|^2{1}[0]{1}$";
+        if (!Pattern.matches(REGEX, value)) {
+            ErrorMessage.inputBridgeNumber();
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -34,10 +47,10 @@ public class InputView {
         String moving = "";
         while (true) {
             moving = readValue();
-            if(moving.equals("U") || moving.equals("D")){
+            if (moving.equals("U") || moving.equals("D")) {
                 break;
             }
-            System.out.println("[ERROR] \'U\' 또는 \'D\'를 입력해주세요.");
+            ErrorMessage.inputMoveBridgeError();
         }
         return moving;
     }
@@ -54,10 +67,4 @@ public class InputView {
         return value;
     }
 
-    public boolean isBridgeNumber(int bridgeSize) {
-        if (bridgeSize >= 3 && bridgeSize <= 20)
-            return true;
-        System.out.println("[ERROR] 3 이상 20 이하의 숫자를 입력해주세요.");
-        return false;
-    }
 }
