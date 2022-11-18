@@ -47,7 +47,8 @@ public class Bridge {
         List<String> upBridge = new ArrayList<>();
         upBridge.add(BridgeValue.getNothing());
 
-        String up = getUpMoves(bridge, upBridge);
+        String up = getUpMoves(bridge, upBridge)
+                .toString();
         String answer = up.replaceAll(BridgeValue.getComma(),BridgeValue.getNothing());
         return answer;
     }
@@ -56,27 +57,28 @@ public class Bridge {
         List<String> downBridge = new ArrayList<>();
         downBridge.add(BridgeValue.getNothing());
 
-        String down = getDownMoves(bridge, downBridge);
+        String down = getDownMoves(bridge, downBridge)
+                .toString();
         String answer = down.replaceAll(BridgeValue.getComma(),BridgeValue.getNothing());
         return answer;
     }
 
-    private String getUpMoves(Bridge bridge, List<String> upBridge) {
+    private List<String> getUpMoves(Bridge bridge, List<String> upBridge) {
         int size = bridge.getSize();
 
         for (int i = 0; i < size; i++) {
             upBridge = getUpMove(bridge, upBridge, i);
         }
-        return upBridge.toString();
+        return upBridge;
     }
 
-    private String getDownMoves(Bridge bridge, List<String> downBridge) {
+    private List<String> getDownMoves(Bridge bridge, List<String> downBridge) {
         int size = bridge.getSize();
 
         for (int i = 0; i < size; i++) {
             downBridge = getDownMove(bridge, downBridge, i);
         }
-        return downBridge.toString();
+        return downBridge;
     }
 
     private List<String> getUpMove(Bridge bridge, List<String> upBridge, int bridgeIndex) {

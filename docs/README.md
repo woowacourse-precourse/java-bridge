@@ -66,16 +66,22 @@
   - 올바른 다리 상태와 비교 후 성공 여부 반환 
 * compareState
   - 해당 길이의 다리 상태 비교
-* getMap
-  - 다리 윗부분과 아랫부분의 상태 String 값으로 반환
+* getMapToString
+  - 다리 윗부분과 아랫부분의 map 합쳐서 String 값으로 반환
 * getUpMap
-  - 다리 윗부분 String 값으로 반환
+  - 다리 윗부분 Bridge map 형식으로 String 값 반환
 * getDownMap
-  - 다리 아랫부분 String 값으로 반환
-* getUpStates
-  - 다리 윗부분 Map 모양으로 List<String> 값으로 반환
-* getDownStates
-  - 다리 아랫부분 Map 모양으로 List<String> 값으로 반환
+  - 다리 아랫부분 Bridge map 형식으로 String 값 반환
+* getUpMoves
+  - 다리 윗부분, 정답인 다리와 states 비교 후 List<String> 값으로 반환
+* getDownMoves
+  - 다리 아랫부분, 정답인 다리와 states 비교 후 List<String> 값으로 반환
+* getUpMove
+  - 다리 윗부분, 정답인 다리와 해당 index 의 state 비교 후 List<String> 값 갱신 후 반환
+* getDownMove
+  - 다리 아랫부분, 정답인 다리와 해당 index 의 state 비교 후 List<String> 값 갱신 후 반환
+* updateMove
+  - move 와 divisionOrNot 추가 후 List<String> 값 갱신 후 반환
 * getState
   - 해당 index 값 state 반환
 * getSize
