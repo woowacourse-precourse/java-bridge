@@ -6,6 +6,7 @@ import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.Direction;
+import bridge.domain.GameCommand;
 import bridge.domain.Length;
 import bridge.domain.PassingPositions;
 import bridge.domain.Result;
@@ -73,20 +74,17 @@ public class BridgeController {
                 break;
             }
 
-
-            String ans = "";
+            GameCommand gameCommand = null;
             do {
                 try {
-                    ans = InputView.readGameCommand();
-                    if (ans.equals("Q")) {
+                    gameCommand = new GameCommand(InputView.readGameCommand());
+                    if (gameCommand.getCommand().equals("Q")) {
                         break game;
                     }
                 } catch (IllegalArgumentException ex) {
                     OutputView.printError(ex.getMessage());
                 }
-            } while(ans.isBlank());
-
-
+            } while(gameCommand == null);
 
             bridgeGame.retry(passingPositions);
             attempt++;
