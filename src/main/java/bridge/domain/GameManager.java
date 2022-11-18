@@ -21,10 +21,11 @@ public class GameManager {
     }
 
     public void play() {
-        boolean status = moveForward();
-        if (status && retryOrNot()) {
-            play();
-        }
+        boolean status;
+        do {
+            status = moveForward();
+        } while (status && retryOrNot());
+
         OutputView.printResult(bridgeGame);
     }
 
