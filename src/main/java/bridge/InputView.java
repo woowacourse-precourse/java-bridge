@@ -2,6 +2,7 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import static bridge.enums.DorU.*;
 import static bridge.enums.ErrorMessage.*;
 import static bridge.enums.Sentence.*;
 /*
@@ -14,14 +15,16 @@ import static bridge.enums.Sentence.*;
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
-public class InputView extends ValidityCheck {
+public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
+    private static final ValidityCheck validityCheck = new ValidityCheck();
+
     public static int getBridgeLength() {
         System.out.println(INPUT_BRIDGE_LENGTH.getValue());
         String inputBridgeLength = Console.readLine();
-        if (!numberRangeChecker(inputBridgeLength) || !stringChecker(inputBridgeLength)) {
+        if (!validityCheck.numberRangeChecker(inputBridgeLength) || !validityCheck.stringChecker(inputBridgeLength)) {
             throw new IllegalArgumentException(ER_BRIDGE_LENGTH_INPUT.getMessage());
         }
         return Integer.parseInt(inputBridgeLength);
@@ -30,8 +33,13 @@ public class InputView extends ValidityCheck {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public static String readMoving() {
+        System.out.println(MOVE.getValue());
+        String inputDorU = Console.readLine();
+        if (!(inputDorU.equals(UP.getName()) || inputDorU.equals(DOWN.getName()))) {
+            throw new IllegalArgumentException(ER_NOT_D_OR_U.getMessage());
+        }
+        return inputDorU;
     }
 
     /**
