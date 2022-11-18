@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
 
     private static String isSuccess = "성공";
@@ -38,7 +35,7 @@ public class BridgeGame {
             userPlaying.add(currentPlaying);
             Application.printMap(userPlaying);
             if (currentPlaying.contains("X")) {
-                isRetry = Application.inputRetryCommand();
+                isRetry = Application.inputGameCommand();
                 isSuccess = "실패";
                 break;
             }
