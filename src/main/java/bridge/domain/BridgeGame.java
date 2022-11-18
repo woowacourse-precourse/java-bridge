@@ -27,13 +27,13 @@ public class BridgeGame {
     }
 
     public String[][] getCurrentMap() {
-        String[][] record = new String[2][movementRecord.size()];
-        clearMap(record);
+        String[][] map = new String[2][movementRecord.size()];
+        clearMap(map);
         for (int i = 0; i < movementRecord.size(); i++) {
             Direction dir = movementRecord.get(i);
-            record[dir.getIndex()][i] = marking(isMovable(i, dir.getCommand()));
+            map[dir.getIndex()][i] = marking(isMovable(i, dir.getCommand()));
         }
-        return record;
+        return map;
     }
 
     public boolean isFailed() {
