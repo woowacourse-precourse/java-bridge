@@ -6,6 +6,8 @@ import bridgeConstant.Cell;
 
 public class Validator {
 	private static final String NUMBER_REGEX = "\\d+";
+	private static final String RESTART = "R";
+	private static final String QUIT = "Q";
 
 	public static void validateBridgeSize(List<String> bridge, int size) {
 		if (bridge.size() != size) {
@@ -19,9 +21,15 @@ public class Validator {
 		}
 	}
 
-	public static void validateCellPosition(String position) {
-		if (!position.equals(Cell.upPosition()) && !position.equals(Cell.downPosition())) {
-			throw new IllegalArgumentException("[ERROR] 이동할 칸은 U와 D 둘 중 하나여야 합니다.");
+	public static void validateMovingIsCellPosition(String moving) {
+		if (!moving.equals(Cell.upPosition()) && !moving.equals(Cell.downPosition())) {
+			throw new IllegalArgumentException("[ERROR] 입력은 U와 D 둘 중 하나여야 합니다.");
+		}
+	}
+
+	public static void validateGameCommand(String gameCommand) {
+		if (!gameCommand.equals(RESTART) && !gameCommand.equals(QUIT)) {
+			throw new IllegalArgumentException("[ERROR] 입력은 R과 Q 둘 중 하나여야 합니다.");
 		}
 	}
 }
