@@ -1,6 +1,5 @@
 package bridge.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
@@ -8,5 +7,9 @@ public class Bridge {
 
 	public Bridge(List<String> boards) {
 		this.boards = boards;
+	}
+
+	public List<String> getBoards() {
+		return boards;
 	}
 }
