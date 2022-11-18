@@ -9,6 +9,7 @@ public class Constants {
     public static final String DOWN_AND_FAIL = "DF";
     public static final String RETRY = "R";
     public static final String QUIT = "Q";
+    public static final int UPPER_NUMBER = 1;
 
     public final static List<String> SPACE_NAME = List.of(DOWN, UP);
 

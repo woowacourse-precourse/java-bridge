@@ -1,8 +1,11 @@
 package bridge.utils.generator;
 
+import static bridge.utils.Constants.UPPER_NUMBER;
+
 public class BridgeSpecificNumberGenerator implements BridgeNumberGenerator {
+
     @Override
     public int generate() {
-        return 1;
+        return UPPER_NUMBER;
     }
 }
