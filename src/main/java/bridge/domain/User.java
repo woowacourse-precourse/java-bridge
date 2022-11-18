@@ -7,11 +7,13 @@ public class User {
 
     private List<String> bridge;
     private ArrayList<String> userBridge;
+    private int numberOfAttempts;
 
 
     public User(List<String> bridge) {
         this.userBridge = new ArrayList<>();
         this.bridge = bridge;
+        this.numberOfAttempts = 1;
     }
 
     public List<String> getBridge() {
@@ -51,6 +53,7 @@ public class User {
     }
 
     public void restartGame() {
+        this.numberOfAttempts += 1;
         this.userBridge.clear();
     }
 }
