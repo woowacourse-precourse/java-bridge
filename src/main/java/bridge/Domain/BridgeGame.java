@@ -43,4 +43,8 @@ public class BridgeGame {
         this.gameStartCount++;
         gameResultGenerator.initGameResult();
     }
+
+    public int getGameStartCount() {
+        return this.getGameStartCount();
+    }
 }
