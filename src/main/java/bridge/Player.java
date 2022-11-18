@@ -3,6 +3,8 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.Result.*;
+
 public class Player {
     private final List<String> bridge;
     private final List<String> directions = new ArrayList<>();
@@ -42,5 +44,23 @@ public class Player {
     public boolean isMovePossible() {
         int index = directions.size() - 1;
         return directions.get(index).equals(bridge.get(index));
+    }
+
+    public List<Result> createMapInformation(String target) {
+        List<Result> results = new ArrayList<>();
+        for (int i = 0; i < directions.size(); i++) {
+            String direction = directions.get(i);
+            if (direction.equals(target) && direction.equals(bridge.get(i))) {
+                results.add(POSSIBLE);
+            } else if (direction.equals(target) && !direction.equals(bridge.get(i))) {
+                results.add(IMPOSSIBLE);
+            } else {
+                results.add(BLANK);
+            }
+            if (i < directions.size() - 1) {
+                results.add(DIV);
+            }
+        }
+        return results;
     }
 }
