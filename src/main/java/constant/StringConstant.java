@@ -8,6 +8,8 @@ public enum StringConstant {
     QUIT("Q"),
     RETRY("R"),
     BRIDGE_SIZE_REGEX("^[0-9]*$"),
+    WIN("성공"),
+    FAIL("실패"),
     BLANK(" ");
 
     public final String stringConstant;
