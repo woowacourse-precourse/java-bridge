@@ -25,7 +25,12 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String input;
+        do {
+            outputView.printGetNextBlock();
+            input = Console.readLine();
+        } while (!validateMoving(input));
+        return input;
     }
 
     /**
@@ -48,11 +53,30 @@ public class InputView {
         }
     }
 
+    private Boolean validateMoving(String input) {
+        try {
+            if (!isUorD(input)){
+                throw new IllegalArgumentException();
+            }
+            return true;
+        } catch (IllegalArgumentException e){
+            return exception.exceptionMoving();
+        }
+    }
+
     private Boolean isNumeric(String input) {
         try {
             Integer.parseInt(input);
             return true;
         } catch (NumberFormatException e){
+            return false;
+        }
+    }
+
+    private Boolean isUorD(String input) {
+        try {
+            return input.equals("U") || input.equals("D");
+        } catch (NullPointerException e){
             return false;
         }
     }

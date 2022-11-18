@@ -12,7 +12,10 @@ public class OutputView {
     public void printGetBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
     }
-    public void printNewLine() { System.out.println(); }
+
+    public void printGetNextBlock() {
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    }
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -30,8 +33,15 @@ public class OutputView {
     public void printResult() {
     }
 
+    public void printNewLine() { System.out.println(); }
+
+
     // 여기부터 에러 메시지들
     public void printErrorBridgeSize() {
         System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+    }
+
+    public void printErrorMoving() {
+        System.out.println("[ERROR] 이동 할 위치는 U 또는 D 값이여야 합니다.");
     }
 }

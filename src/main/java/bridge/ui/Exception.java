@@ -7,4 +7,9 @@ public class Exception {
         outputView.printErrorBridgeSize();
         return false;
     }
+
+    public Boolean exceptionMoving() {
+        outputView.printErrorMoving();
+        return false;
+    }
 }
