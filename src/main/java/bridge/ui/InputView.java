@@ -1,15 +1,13 @@
 package bridge.ui;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
+
+import bridge.model.GameMessage;
+
 public class InputView {
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
-    public int readBridgeSize() {
-        return 0;
+
+    public String readBridgeSize() {
+        return "";
     }
 
     /**
@@ -25,4 +23,21 @@ public class InputView {
     public String readGameCommand() {
         return null;
     }
+
+    private void printStartMessage(){
+        System.out.println(GameMessage.START_GAME);
+    }
+
+    private void printSizeMessage(){
+        System.out.println(GameMessage.GET_SIZE);
+    }
+
+    private void printGetMoveMessage(){
+        System.out.println(GameMessage.GET_DIRECTION);
+    }
+
+    private void printGetRestartMessage(){
+        System.out.println(GameMessage.GET_RESTART);
+    }
+
 }
