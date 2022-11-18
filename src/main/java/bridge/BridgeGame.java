@@ -51,6 +51,7 @@ public class BridgeGame {
      */
     public void retry() {
         this.numberOfTries += 1;
+        this.bridgeMap = makeBridgeMap(this.size);
     }
 
     private List<List<String>> makeBridgeMap(int size) {
