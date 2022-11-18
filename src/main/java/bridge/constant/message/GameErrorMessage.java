@@ -16,6 +16,6 @@ public enum GameErrorMessage implements ErrorMessage {
 
     @Override
     public String getMessage() {
-        return null;
+        return message;
     }
 }
