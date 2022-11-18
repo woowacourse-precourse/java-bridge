@@ -64,7 +64,7 @@ public class BridgeGameStarter {
         gameStatusFlag.put("retryFlag", false);
     }
 
-    public void operate() {
+    public void work() {
         int index = 1;
         while (bridgeGame.canMove(result)) {
             if (bridgeGame.isGameEnded(bridge, index)) {
@@ -88,11 +88,11 @@ public class BridgeGameStarter {
 
     public void run() {
         initialize();
-        operate();
+        work();
         while (gameStatusFlag.get("retryFlag")) {
             tryCount++;
             reInitialize();
-            operate();
+            work();
         }
         closeGame();
     }
