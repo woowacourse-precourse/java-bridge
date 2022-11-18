@@ -7,8 +7,8 @@ import java.util.List;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-    private static final String UP_BRIDGE_PHRASE = "U";
-    private static final String DOWN_BRIDGE_PHRASE = "D";
+    public static final String UP_BRIDGE_PHRASE = "U";
+    public static final String DOWN_BRIDGE_PHRASE = "D";
     private static final int DOWN_BRIDGE_NUMBER = 0;
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
