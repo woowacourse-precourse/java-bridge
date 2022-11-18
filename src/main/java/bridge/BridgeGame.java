@@ -1,9 +1,6 @@
 package bridge;
 
-import bridge.domain.BridgeSize;
-import bridge.domain.Command;
-import bridge.domain.Movement;
-import bridge.domain.Moving;
+import bridge.domain.*;
 import bridge.service.BridgeMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -18,7 +15,7 @@ public class BridgeGame {
 
     public void startGame() {
         BridgeSize bridgeSize = InputView.readBridgeSize();
-        movement = new Movement(bridgeMaker.makeBridge(bridgeSize.getSize()));
+        movement = new Movement(new Bridge(bridgeMaker.makeBridge(bridgeSize.getSize())));
         repeatGame();
     }
 

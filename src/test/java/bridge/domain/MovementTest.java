@@ -15,7 +15,8 @@ class MovementTest {
     @ParameterizedTest
     @CsvSource(value = {"U:true", "D:false"}, delimiter = ':')
     void canMoveTest(String input, boolean expected) {
-        Movement movement = new Movement(List.of("U"));
+        Bridge bridge = new Bridge(List.of("U"));
+        Movement movement = new Movement(bridge);
         movement.saveMoving(input);
         Assertions.assertThat(movement.canMove()).isEqualTo(expected);
     }
@@ -23,7 +24,8 @@ class MovementTest {
     @DisplayName("사용자가 모두 정답을 입력하면 게임은 성공으로 종료된다.")
     @Test
     void isSuccessFinishTest() {
-        Movement movement = new Movement(List.of("U", "D", "D"));
+        Bridge bridge = new Bridge(List.of("U", "D", "D"));
+        Movement movement = new Movement(bridge);
         movement.saveMoving("U");
         movement.saveMoving("D");
         movement.saveMoving("D");
@@ -34,7 +36,8 @@ class MovementTest {
     @DisplayName("사용자가 끝까지 정답을 입력했지만, 마지막 움직임이 실패하면 실패한다.")
     @Test
     void isFailureFinishTest() {
-        Movement movement = new Movement(List.of("U", "D", "D"));
+        Bridge bridge = new Bridge(List.of("U", "D", "D"));
+        Movement movement = new Movement(bridge);
         movement.saveMoving("U");
         movement.saveMoving("D");
         movement.saveMoving("U");
