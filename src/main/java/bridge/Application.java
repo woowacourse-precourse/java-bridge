@@ -18,18 +18,18 @@ public class Application {
 
             // 플레이어가 이동할 칸을 입력받는 기능
             BridgeGame bridgeGame = new BridgeGame(bridge);
-            int status;
-            do {
+            int status = BridgeGame.KEEP_GOING;
+
+            while (status == BridgeGame.KEEP_GOING) {
                 String direction = inputView.readMoving();
                 status = bridgeGame.move(direction);
                 bridgeGame.recordStep(status, direction);
                 outputView.printMap(bridgeGame.getFootPrintsLog());
-            } while (status == BridgeGame.KEEP_GOING);
-
-            // 재시작 / 종료 명령을 입력받는 기능
-            String gameCommand = inputView.readGameCommand();
-            bridgeGame.retry(gameCommand);
-
+                if (status == BridgeGame.LOSE) {
+                    String gameCommand = inputView.readGameCommand();
+                    status = bridgeGame.retry(gameCommand);
+                }
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

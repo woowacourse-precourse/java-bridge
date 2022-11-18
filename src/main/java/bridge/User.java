@@ -35,4 +35,10 @@ public class User {
     public String getFootPrintsLog() {
         return footPrints.toString();
     }
+
+    public void prepareToRestart() {
+        footPrints.reset();
+        currentLocation = 0;
+        tryCount++;
+    }
 }
