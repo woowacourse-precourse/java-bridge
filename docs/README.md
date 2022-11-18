@@ -109,6 +109,12 @@ D
 ### BridgeMap
 
 
+### Bridge
+
+- [ ] 생성자
+- [ ] validate로 입력조건을 관리한다.
+
+
 ### BridgeIngredient enum
 
 `[ `
@@ -121,8 +127,11 @@ D
 
 ### BridgeGame
 1. move
+
 2. retry
-3. 
+
+3. create Map
+   - [ ] 맵 생성하기
 
 ### ChageType class
 
