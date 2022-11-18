@@ -34,7 +34,7 @@ public class BridgeController {
         PassingPositions passingPositions = new PassingPositions();
         Result result = null;
 
-        loop:
+        game:
         while(true) {
             pos = -1;
             do {
@@ -43,28 +43,46 @@ public class BridgeController {
                     isQuit = true;
                     break;
                 }
-                String answer = InputView.readMoving();
+
+                String answer = "";
+                boolean isUpAndDownValid = true;
+                do {
+                    try {
+                        answer = InputView.readMoving();
+                        isUpAndDownValid = true;
+                    } catch (IllegalArgumentException ex) {
+                        isUpAndDownValid = false;
+                        OutputView.printError(ex.getMessage());
+                    }
+                } while(!isUpAndDownValid);
 
                 bridgeGame.move(pos, answer, passingPositions);
                 result = new Result(bridge, passingPositions);
 
             } while (!OutputView.printMap(result).contains("X"));
 
+
             if (isQuit) {
                 break;
             }
 
-            boolean isAnswerValid = true;
+
+            String ans = "";
+            boolean isRetryOrQuitValid = true;
             do {
                 try {
-                    if (InputView.readGameCommand().equals("Q")) {
-                        break loop;
+                    ans = InputView.readGameCommand();
+                    isRetryOrQuitValid = true;
+                    if (ans.equals("Q")) {
+                        break game;
                     }
                 } catch (IllegalArgumentException ex) {
-                    isAnswerValid = false;
+                    isRetryOrQuitValid = false;
                     OutputView.printError(ex.getMessage());
                 }
-            } while(!isAnswerValid);
+            } while(!isRetryOrQuitValid);
+
+
 
             bridgeGame.retry(passingPositions);
             attempt++;
