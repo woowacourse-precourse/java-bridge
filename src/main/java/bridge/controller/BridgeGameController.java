@@ -1,16 +1,18 @@
 package bridge.controller;
 
+import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
+import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.domain.vo.BridgeMap;
 import bridge.domain.vo.BridgeSize;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import java.util.List;
 
 public class BridgeGameController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private bridge.domain.BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeGameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -18,6 +20,7 @@ public class BridgeGameController {
     }
 
     public void run() {
+        inputView.printStartBridgeGame();
         BridgeSize bridgeSize = inputBridgeSize();
         BridgeMap bridgeMap = makeBridgeMap(bridgeSize);
     }
@@ -33,7 +36,9 @@ public class BridgeGameController {
     }
 
     private BridgeMap makeBridgeMap(BridgeSize bridgeSize) {
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        return new BridgeMap(bridgeMaker.makeBridge(bridgeSize.getValue()));
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        List<String> test = bridgeMaker.makeBridge(bridgeSize.getValue());
+        return new BridgeMap(test);
     }
 }
