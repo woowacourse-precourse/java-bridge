@@ -36,7 +36,7 @@ public class BridgeGame {
 
     private int toMovingNumber(String moving) {
         if (moving.equals("D"))
-            return 0;
-        return 1;
+            return 1;
+        return 0;
     }
 }
