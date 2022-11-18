@@ -65,11 +65,11 @@ public class BridgeGame {
         lowerRoad.add(" ");
     }
 
-    public boolean isGameEnd() {
-        if (tryNumber == bridge.size()) {
-            return true;
+    public String isGameEnd() {
+        if (isRightFoothold() && tryNumber == bridge.size()) {
+            return "성공";
         }
-        return false;
+        return "실패";
     }
 
     /**
@@ -90,5 +90,9 @@ public class BridgeGame {
 
     public List<String> getLowerRoad() {
         return lowerRoad;
+    }
+
+    public int getTryNumber() {
+        return tryNumber;
     }
 }
