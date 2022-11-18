@@ -1,17 +1,13 @@
 package bridge.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class FootPrints {
 
-    // TODO: refactoring
-    private final List<String> up;
-    private final List<String> down;
+    private final FootPrint up;
+    private final FootPrint down;
 
     public FootPrints() {
-        up = new ArrayList<>();
-        down = new ArrayList<>();
+        up = new FootPrint();
+        down = new FootPrint();
     }
 
     public void add(int status, String direction) {
@@ -24,7 +20,7 @@ public class FootPrints {
         up.add(" ");
     }
 
-    private void reflectStatus(int status, List<String> footPrint) {
+    private void reflectStatus(int status, FootPrint footPrint) {
         if (status != User.DEAD) {
             footPrint.add("O");
             return;
@@ -39,6 +35,8 @@ public class FootPrints {
 
     @Override
     public String toString() {
-        return String.format("[ %s ]\n[ %s ]\n", String.join(" | ", up), String.join(" | ", down));
+        return String.format("[ %s ]\n[ %s ]\n",
+                String.join(" | ", up.toString()),
+                String.join(" | ", down.toString()));
     }
 }
