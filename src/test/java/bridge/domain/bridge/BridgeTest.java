@@ -5,7 +5,7 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 import bridge.BridgeMaker;
 import bridge.BridgeMove;
-import bridge.BridgeNumberGenerator;
+import bridge.domain.TestNumberGenerator;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -53,20 +53,5 @@ public class BridgeTest {
     void canMoveToPositionByOverIndex() {
         assertThatThrownBy(() -> bridge.canMoveToPosition(BridgeMove.UP, 5))
                 .isInstanceOf(IllegalArgumentException.class);
-    }
-    
-    
-    static class TestNumberGenerator implements BridgeNumberGenerator {
-        
-        private final List<Integer> numbers;
-        
-        TestNumberGenerator(List<Integer> numbers) {
-            this.numbers = numbers;
-        }
-        
-        @Override
-        public int generate() {
-            return numbers.remove(0);
-        }
     }
 }
