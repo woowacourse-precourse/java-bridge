@@ -10,11 +10,10 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String move(String direction, String bridge) {
-        if (direction.equals(bridge)) {
-            return "O";
-        }
-        return "X";
+    public boolean move(Player player, String direction) {
+        //이동 가능하면 true, 불가능하면 false 반환
+        player.addDirection(direction);
+        return player.isMovePossible();
     }
 
     /**
