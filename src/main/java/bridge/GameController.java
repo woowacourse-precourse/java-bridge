@@ -8,9 +8,10 @@ public class GameController {
     BridgeGame bridgeGame;
     int attempts = 1;
     boolean success = false;
+    OutputView outputView = new OutputView();
 
     public void start() {
-        System.out.println(Game.START_GAME_MESSAGE);
+//        System.out.println(Game.START_GAME_MESSAGE);
         int bridgeSize = getBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
@@ -58,14 +59,11 @@ public class GameController {
     }
 
     private void getGameResult() {
-        System.out.println(Game.GAME_RESULT_MESSAGE);
         OutputView outputView = new OutputView();
+
+        outputView.printResult();
         outputView.printMap(bridgeGame.getResult());
-        if (success) {
-            System.out.println(Game.GAME_SUCCESS);
-        } else {
-            System.out.println(Game.GAME_FAILED);
-        }
-        System.out.println(Game.TOTAL_NUMBER_OF_ATTEMPTS + attempts);
+        outputView.printSuccess(success);
+        outputView.printAttempts(attempts);
     }
 }
