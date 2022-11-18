@@ -79,7 +79,11 @@ public class OutputView {
     }
     
     private boolean isNotPlaceToMove(final int lineIndex, final String currentMoving) {
-        return (currentMoving.charAt(0) + lineIndex) % 2 == NUMBER_THAT_MEANS_PLACES_NOT_TO_WENT;
+        return numberOfWhetherToWent(lineIndex, currentMoving) == NUMBER_THAT_MEANS_PLACES_NOT_TO_WENT;
+    }
+    
+    private int numberOfWhetherToWent(final int lineIndex, final String currentMoving) {
+        return (currentMoving.charAt(0) + lineIndex) % 2;
     }
     
     private MoveResultDisplay currentMoveResult(final GameResultDTO gameResultDTO, final int countOfMoving) {
