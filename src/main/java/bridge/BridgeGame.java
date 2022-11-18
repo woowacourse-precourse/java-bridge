@@ -48,10 +48,6 @@ public class BridgeGame {
         return moveCommand.equals("U") || moveCommand.equals("D");
     }
 
-    public void recordStep(int status, String direction) {
-        user.recordStep(status, direction);
-    }
-
     public String getFootPrintsLog() {
         return user.getFootPrintsLog();
     }
