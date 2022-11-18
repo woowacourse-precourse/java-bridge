@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.domain.bridge.model.BridgeMapComponent;
+import bridge.domain.bridge.model.BridgeDirection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class BridgeMaker {
         List<String> bridgeInfo = new ArrayList<>(size);
         for (int i = 0; i < size; i++) {
             int generatedNumber = bridgeNumberGenerator.generate();
-            BridgeMapComponent mapComponent = BridgeMapComponent.fromCode(generatedNumber);
+            BridgeDirection mapComponent = BridgeDirection.fromCode(generatedNumber);
             bridgeInfo.add(mapComponent.getSignature());
         }
         return bridgeInfo;

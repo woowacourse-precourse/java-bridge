@@ -2,7 +2,7 @@ package bridge.domain.bridge.application;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
-import bridge.domain.bridge.model.Bridge;
+import bridge.domain.bridge.model.BridgeMap;
 import bridge.ui.input.InputView;
 import bridge.ui.output.OutputView;
 import java.util.List;
@@ -20,12 +20,12 @@ public class BridgeGameController {
         outputView.printInitMessage();
     }
 
-    public Bridge generateBaseBridge(BridgeNumberGenerator generator) {
+    public BridgeMap generateBaseBridge(BridgeNumberGenerator generator) {
         int bridgeSize = readBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(generator);
-        List<String> bridgeShape = bridgeMaker.makeBridge(bridgeSize);
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
 
-        return Bridge.from(bridgeShape);
+        return BridgeMap.from(bridge);
     }
 
     private int readBridgeSize() {

@@ -8,7 +8,7 @@ import org.assertj.core.api.Assertions;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 
-class BridgeTest {
+class BridgeMapTest {
     @Test
     public void 다리_생성_크기_테스트() {
         int bridgeSize = 6;
@@ -16,22 +16,22 @@ class BridgeTest {
         BridgeMaker bridgeMaker = new BridgeMaker(randomNumberGenerator);
         List<String> bridgeBluePrint = bridgeMaker.makeBridge(bridgeSize);
 
-        Bridge bridge = Bridge.from(bridgeBluePrint);
+        BridgeMap bridgeMap = BridgeMap.from(bridgeBluePrint);
 
-        Assertions.assertThat(bridge.size()).isEqualTo(bridgeSize);
+        Assertions.assertThat(bridgeMap.size()).isEqualTo(bridgeSize);
     }
 
     @Test
     public void 다리_생성_테스트() {
         List<String> blueprint = Lists.newArrayList("U", "D", "D", "U");
 
-        Bridge bridge = Bridge.from(blueprint);
-        Assertions.assertThat(bridge.getBridgeMapComponents())
+        BridgeMap bridgeMap = BridgeMap.from(blueprint);
+        Assertions.assertThat(bridgeMap.getBridgeDirections())
                 .containsExactly(
-                        BridgeMapComponent.UP,
-                        BridgeMapComponent.DOWN,
-                        BridgeMapComponent.DOWN,
-                        BridgeMapComponent.UP);
+                        BridgeDirection.UP,
+                        BridgeDirection.DOWN,
+                        BridgeDirection.DOWN,
+                        BridgeDirection.UP);
     }
 
 }
