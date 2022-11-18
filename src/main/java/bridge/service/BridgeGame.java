@@ -9,6 +9,7 @@ import bridge.model.BridgeSize;
 import bridge.model.ExitOption;
 import bridge.model.FootPrint;
 import bridge.model.GameResult;
+import bridge.model.Map;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -21,9 +22,10 @@ public class BridgeGame {
 		return bridgeMaker.makeBridge(bridgeSize.getSize());
 	}
 
-	public void setUpRound(GameResult gameResult) {
+	public void setUpRound(GameResult gameResult, Map map) {
 		gameResult.changeResultToSuccess();
 		gameResult.addNumberOfAttempts();
+		map.resetMap();
 	}
 
 	/**
