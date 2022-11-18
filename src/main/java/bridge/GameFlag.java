@@ -10,4 +10,8 @@ public enum GameFlag {
     GameFlag(String message) {
         this.message = message;
     }
+
+    public String getMessage() {
+        return this.message;
+    }
 }
