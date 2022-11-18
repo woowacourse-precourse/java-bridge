@@ -16,6 +16,8 @@ public enum Message {
     BLANK(" "),
     GAME_SUCCESS("게임 성공 여부: 성공"),
     GAME_FAILURE("게임 성공 여부: 실패"),
+    RESTART("R"),
+    QUIT("Q"),
     TRY_ATTEMPTS("총 시도한 횟수: ");
 
     private final String message;
