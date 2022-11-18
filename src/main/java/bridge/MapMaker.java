@@ -1,5 +1,9 @@
 package bridge;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 public class MapMaker {
     private static final String MAP_PREFIX = "[ ";
     private static final String MAP_SUFFIX = " ]";
@@ -14,46 +18,46 @@ public class MapMaker {
 
     private final StringBuilder topBridge = new StringBuilder();
     private final StringBuilder bottomBridge = new StringBuilder();
+    private Queue<String> bridge;
 
-    public void createMap(String move, boolean correctBridge){
-        if (topBridge.length() != 0 && bottomBridge.length() != 0){
+    public MapMaker(List<String> bridge){
+        this.bridge = new LinkedList<>(bridge);
+    }
+
+    public void createMap(boolean correctBridge){
+        if(topBridge.length() != 0 && bottomBridge.length() != 0){
             topBridge.append(MAP_SEPARATED_CHARACTER);
             bottomBridge.append(MAP_SEPARATED_CHARACTER);
         }
-        if (correctBridge)
-            createMapCorrectMove(move);
-        if (!correctBridge)
-            createMapIncorrectMove(move);
+        if(correctBridge)
+            createMapCorrectMove(bridge.remove());
+        if(!correctBridge)
+            createMapIncorrectMove(bridge.remove());
     }
 
-    public void createMapCorrectMove(String move){
-        if(move.equals(UP)){
+    public void createMapCorrectMove(String correctBridge){
+        if(correctBridge.equals(UP)){
             topBridge.append(CORRECT);
             bottomBridge.append(MAP_BLANK);
         }
-        if(move.equals(DOWN)) {
+        if(correctBridge.equals(DOWN)) {
             topBridge.append(MAP_BLANK);
             bottomBridge.append(CORRECT);
         }
     }
 
-    public void createMapIncorrectMove(String move){
-        if(move.equals(UP)){
+    public void createMapIncorrectMove(String correctBridge){
+        if(correctBridge.equals(DOWN)){
             topBridge.append(INCORRECT);
             bottomBridge.append(MAP_BLANK);
         }
-        if(move.equals(DOWN)) {
+        if(correctBridge.equals(UP)) {
             topBridge.append(MAP_BLANK);
             bottomBridge.append(INCORRECT);
         }
     }
-
-    public void printMap(){
-        System.out.println(MAP_PREFIX + topBridge + MAP_SUFFIX);
-        System.out.println(MAP_PREFIX + bottomBridge + MAP_SUFFIX);
+    public List<String> makeMap(){
+        return List.of(MAP_PREFIX + topBridge + MAP_SUFFIX
+                , MAP_PREFIX + bottomBridge + MAP_SUFFIX);
     }
-
-
-
-
 }
