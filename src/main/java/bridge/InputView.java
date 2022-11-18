@@ -34,7 +34,9 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println(INPUT_GAME_COMMAND);
-        return null;
+        String gameCommand = Console.readLine();
+        validateGameCommand(gameCommand);
+        return gameCommand;
     }
 
     private static int convertToInt(String input) {
