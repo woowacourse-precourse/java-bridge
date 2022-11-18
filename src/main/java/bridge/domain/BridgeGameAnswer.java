@@ -57,7 +57,7 @@ public class BridgeGameAnswer {
     }
 
     private boolean isLastIndex(List<String> history, int index) {
-        if (history.size() == index) {
+        if (history.size() == index + 1) {
             return true;
         }
         return false;
