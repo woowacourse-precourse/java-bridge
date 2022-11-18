@@ -6,8 +6,8 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private List<String> bridge;
-    private Player player;
+    private final List<String> bridge;
+    private final Player player;
     private int playerCurrentStep;
 
     BridgeGame(List<String> bridge){
@@ -36,9 +36,13 @@ public class BridgeGame {
     }
 
     public boolean checkBridgeAndPlayer(){
-        String safeDirection = this.bridge.get(this.playerCurrentStep);
-        String playerCurrentDirection = this.player.getCurrentPlace();
+        String safeDirection = this.bridge.get(this.playerCurrentStep - 1);
+        String playerCurrentDirection = this.player.getCurrentDirection();
 
         return safeDirection.equals(playerCurrentDirection);
+    }
+
+    public boolean isNotFinished(){
+        return this.playerCurrentStep < this.bridge.size();
     }
 }
