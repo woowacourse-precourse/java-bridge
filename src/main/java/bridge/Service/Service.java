@@ -26,10 +26,17 @@ public class Service {
     public void initGame() {
         do {
             try {
+                createBridge();
                 break;
             } catch (IllegalArgumentException error) {
                 outputView.printErrorMessage(error);
             }
         } while (true);
+    }
+
+    // 다리 만드는 기능
+    private void createBridge() {
+        outputView.printInputBridgeSize();
+        bridgeGame.createBridge(inputView.readBridgeSize());
     }
 }
