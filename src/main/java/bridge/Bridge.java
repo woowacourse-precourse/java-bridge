@@ -40,4 +40,8 @@ public class Bridge {
     private String getAnswer(int current) {
         return this.bridge.get(current);
     }
+
+    public int getLocation() {
+        return this.location;
+    }
 }
