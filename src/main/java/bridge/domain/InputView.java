@@ -3,10 +3,11 @@ package bridge.domain;
 
 import static bridge.common.message.ExceptionMessage.BRIDGE_LENGTH_INCORRECT_CHARACTER_MESSAGE;
 import static bridge.common.message.ExceptionMessage.ERROR_CODE;
+import static bridge.common.message.ExceptionMessage.GAME_COMMAND_INCORRECT_MESSAGE;
 import static bridge.common.message.ExceptionMessage.READ_MOVING_INCORRECT_MESSAGE;
 
-import bridge.common.message.ExceptionMessage;
 import bridge.domain.exception.BridgeSizeException;
+import bridge.domain.exception.GameCommandException;
 import bridge.domain.exception.ReadMovingException;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -48,8 +49,22 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public String readGameCommand(ProcessHelper processHelper) {
+        while (true) {
+            try {
+                String gameCommand = Console.readLine();
+                gameCommandValidation(processHelper, gameCommand);
+                return gameCommand;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.toString());
+            }
+        }
+    }
+
+    private void gameCommandValidation(ProcessHelper processHelper, String gameCommand) {
+        if (processHelper.checkCharIsROrQ(gameCommand)) {
+            throw new GameCommandException(ERROR_CODE + GAME_COMMAND_INCORRECT_MESSAGE);
+        }
     }
 
     private void movingValidation(ProcessHelper processHelper, String moving) {

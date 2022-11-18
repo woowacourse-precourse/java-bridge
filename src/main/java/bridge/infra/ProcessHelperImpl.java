@@ -23,4 +23,12 @@ public class ProcessHelperImpl implements ProcessHelper {
         }
         return true;
     }
+
+    @Override
+    public boolean checkCharIsROrQ(String gameCommand) {
+        if (!(gameCommand.equals("R") || gameCommand.equals("Q"))) {
+            return false;
+        }
+        return true;
+    }
 }

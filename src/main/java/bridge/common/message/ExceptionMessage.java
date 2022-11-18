@@ -16,4 +16,6 @@ public class ExceptionMessage {
 
     public static final String READ_MOVING_INCORRECT_MESSAGE = "U or D 문자만 이동할 수 있습니다.";
 
+    public static final String GAME_COMMAND_INCORRECT_MESSAGE = "R or Q 문자만 게임을 종료 혹은 실행시킬 수 있습니다.";
+
 }

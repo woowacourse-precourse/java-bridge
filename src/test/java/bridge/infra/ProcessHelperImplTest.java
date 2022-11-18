@@ -43,4 +43,15 @@ class ProcessHelperImplTest {
         assertThat(processHelper.checkCharIsUOrD("A")).isFalse();
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"R", "Q"})
+    public void gameCommandCorrectTest(String givenString) throws Exception {
+        assertThat(processHelper.checkCharIsROrQ(givenString)).isTrue();
+    }
+
+    @Test
+    public void gameCommandIncorrectTest() throws Exception {
+        assertThat(processHelper.checkCharIsUOrD("A")).isFalse();
+    }
+
 }
