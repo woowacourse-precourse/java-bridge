@@ -25,16 +25,7 @@ public class GameStart {
 
     public void run() {
         createBridge();
-        for (int i = 0; i < bridgeSize; i++) {
-            String moveBlock = move();
-            boolean isMove = bridgeGame.move(moveBlock);
-            outputView.printMap();
-            if (!isMove) {
-                String restart = inputView.readGameCommand();
-                bridgeGame.retry();
-            }
-        }
-        outputView.printResult();
+        play();
     }
 
     private void createBridge() {
@@ -47,5 +38,18 @@ public class GameStart {
         outputView.printInputMoveMessage();
         String moveBlock = inputView.readMoving();
         return moveBlock;
+    }
+
+    private void play() {
+        for (int i = 0; i < bridgeSize; i++) {
+            String moveBlock = move();
+            boolean isMove = bridgeGame.move(moveBlock);
+            outputView.printMap();
+            if (!isMove) {
+                String restart = inputView.readGameCommand();
+                bridgeGame.retry();
+            }
+        }
+        outputView.printResult();
     }
 }
