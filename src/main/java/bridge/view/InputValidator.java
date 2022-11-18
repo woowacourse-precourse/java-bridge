@@ -3,7 +3,6 @@ package bridge.view;
 public class InputValidator {
 
     public void validateSize(String input) {
-        //3~20 숫자
         int size = toNumber(input);
         validateRangeOfSize(size, 3, 20);
     }
@@ -22,5 +21,13 @@ public class InputValidator {
             System.out.printf("[ERROR] %d 이상 %d 이하의 자연수를 입력하세요.\n", min, max);
             throw new IllegalArgumentException();
         }
+    }
+
+    public void validateMoving(String input) throws IllegalArgumentException {
+        if (input.equals("U") || input.equals("D")) {
+            return;
+        }
+        System.out.println("[ERROR] U 또는 D를 입력하세요.");
+        throw new IllegalArgumentException();
     }
 }
