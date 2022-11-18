@@ -21,7 +21,6 @@ public class ResultInformation {
         }
     }
 
-
     public void updateUpBridge(Position position, char flag) {
         upBridge[position.getPosition()] = flag;
     }
@@ -38,28 +37,21 @@ public class ResultInformation {
         tryCount++;
     }
 
-    /*public String getUpBridgeElements(int count) {
-        StringJoiner upJoiner = new StringJoiner(" | ", "[ ", " ]");
-        for (int i = 0; i < count; i++) {
-            upJoiner.add(String.valueOf(upBridge[i]));
-        }
-        return upJoiner.toString();
-    }
-
-    public String getDownBridgeElements(int count) {
-        StringJoiner downJoiner = new StringJoiner(" | ", "[ ", " ]");
-        for (int i = 0; i < count; i++) {
-            downJoiner.add(String.valueOf(downBridge[i]));
-        }
-        return downJoiner.toString();
-    }*/
-
     public boolean isWin() {
-        return upBridge[bridgeLength - 1] == O_FLAG ||
-                downBridge[bridgeLength - 1] == O_FLAG;
+        return upBridge[bridgeLength - 1] == O_FLAG || downBridge[bridgeLength - 1] == O_FLAG;
     }
 
     public int getTryCount() {
         return tryCount;
+    }
+
+    public String toString(int tryCount) {
+        StringJoiner upJoiner = new StringJoiner(" | ", "[ ", " ]");
+        StringJoiner downJoiner = new StringJoiner(" | ", "[ ", " ]");
+        for (int i = 0; i < tryCount; i++) {
+            upJoiner.add(String.valueOf(upBridge[i]));
+            downJoiner.add(String.valueOf(downBridge[i]));
+        }
+        return upJoiner + "\n" + downJoiner;
     }
 }

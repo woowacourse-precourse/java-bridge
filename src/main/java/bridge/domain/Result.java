@@ -4,7 +4,6 @@ import bridge.enums.InputKey;
 import bridge.enums.ViewMessage;
 
 import java.text.MessageFormat;
-import java.util.StringJoiner;
 
 public class Result {
     private static final char O_FLAG = 'O';
@@ -40,14 +39,8 @@ public class Result {
         resultInformation.clear();
     }
 
-    public String printStatus(int count) {
-        StringJoiner upJoiner = new StringJoiner(" | ", "[ ", " ]");
-        StringJoiner downJoiner = new StringJoiner(" | ", "[ ", " ]");
-        for (int i = 0; i < count; i++) {
-            upJoiner.add(String.valueOf(resultInformation.upBridge[i]));
-            downJoiner.add(String.valueOf(resultInformation.downBridge[i]));
-        }
-        return upJoiner + "\n" + downJoiner;
+    public String printStatus(int tryCount) {
+        return resultInformation.toString(tryCount);
     }
 
     @Override
