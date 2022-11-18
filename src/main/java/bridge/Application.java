@@ -39,7 +39,7 @@ public class Application {
         return input.readMoving();
     }
 
-    static String readCommand(InputView input){
+    static String readCommand(InputView input) {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         return input.readGameCommand();
     }
@@ -54,17 +54,17 @@ public class Application {
             BridgeGame bridgeGame = new BridgeGame(bridge);
             OutputView output = new OutputView();
             boolean gameResult;
-            while(true){
+            while (true) {
                 gameResult = gameProgress(input, bridgeGame, bridgeSize, output);
-                if(gameResult){
+                if (gameResult) {
                     break;
                 }
-                if(Objects.equals(readCommand(input), "Q")){
+                if (Objects.equals(readCommand(input), "Q")) {
                     break;
                 }
                 bridgeGame.retry();
             }
-
+            output.printResult(bridgeGame);
         } catch (IllegalArgumentException exception) {
             System.out.print("[ERROR] ");
             System.out.println(exception.getMessage());
