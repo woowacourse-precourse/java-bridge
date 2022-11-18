@@ -30,6 +30,11 @@ public class BridgeGame {
      */
     public boolean move(String movement) {
         String partOfBridge = bridge.get(movements.size());
+        addMovementHistory(movement, partOfBridge);
+        return movements.get(movements.size() - 1).isAvailable();
+    }
+
+    private void addMovementHistory(String movement, String partOfBridge) {
         if (movement.equals("U") && partOfBridge.equals("U")) {
             movements.add(Movement.UP_AND_O);
         } else if (movement.equals("U") && partOfBridge.equals("D")) {
@@ -39,7 +44,6 @@ public class BridgeGame {
         } else if (movement.equals("D") && partOfBridge.equals("U")) {
             movements.add(Movement.DOWN_AND_X);
         }
-        return movements.get(movements.size() - 1).isAvailable();
     }
 
     public String createMovementStatus() {
