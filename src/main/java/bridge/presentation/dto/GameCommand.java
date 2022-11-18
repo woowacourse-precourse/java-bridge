@@ -3,7 +3,7 @@ package bridge.presentation.dto;
 import bridge.support.Validator;
 
 public class GameCommand {
-    private String command;
+    private final String command;
     public GameCommand(String input){
         validate(input);
         command=input;
