@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,7 +10,7 @@ public class BridgeGame {
 
     private final List<String> bridge;
     private boolean gameEnd = false;
-    private int movingCount = 1;
+    private int movingCount = 0;
     private int gameCount = 1;
 
     public BridgeGame(List<String> bridge) {
@@ -24,7 +25,9 @@ public class BridgeGame {
     public void move(String moving) {
         if (bridge.get(movingCount).equals(moving)) {
             movingCount++;
+            return;
         }
+        gameEnd = true;
     }
 
     /**
@@ -35,10 +38,37 @@ public class BridgeGame {
     public void retry() {
     }
 
+    public boolean isFinishBridge() {
+        return bridge.size() == movingCount;
+    }
+
     public boolean isGameEnd() {
-        if (bridge.size() == movingCount + 1) {
-            gameEnd = true;
-        }
         return gameEnd;
+    }
+
+    public List<List<String>> resultBridgeMoving() {
+        List<List<String>> result = List.of(new ArrayList<>(), new ArrayList<>());
+
+        for (int i = 0; i < gameCount; i++) {
+            if (bridge.get(i).equals("U")) {
+                result.get(0).add("O");
+                result.get(1).add(" ");
+                continue;
+            }
+            result.get(0).add(" ");
+            result.get(1).add("O");
+        }
+
+        if (gameEnd) {
+            if (bridge.get(movingCount).equals("U")) {
+                result.get(0).add("X");
+                result.get(1).add(" ");
+            } else {
+                result.get(0).add(" ");
+                result.get(1).add("X");
+            }
+        }
+
+        return result;
     }
 }
