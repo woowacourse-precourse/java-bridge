@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class PlayerTest {
 
-    @DisplayName("처음 생성된 플레이어의 시도 횟수는 1이다.")
+    @DisplayName("처음 생성된 플레이어의 시도 횟수는 0이다.")
     @Test
     void initAttempt() {
         //given
@@ -18,7 +18,7 @@ class PlayerTest {
         int attempt = player.getAttempt();
 
         //then
-        assertThat(attempt).isEqualTo(1);
+        assertThat(attempt).isEqualTo(0);
     }
 
     @DisplayName("플레이어의 시도 횟수가 증가한다.")
@@ -32,7 +32,7 @@ class PlayerTest {
         int attempt = player.getAttempt();
 
         //then
-        assertThat(attempt).isEqualTo(2);
+        assertThat(attempt).isEqualTo(1);
     }
 
     @DisplayName("처음 생성된 플레이어는 이동 방향을 가지고 있지 않다.")
@@ -42,7 +42,7 @@ class PlayerTest {
         Player player = new Player();
 
         //when
-        List<Direction> directions = player.getDirections();
+        List<String> directions = player.getDirections();
 
         //then
         assertThat(directions).isEmpty();
@@ -57,12 +57,12 @@ class PlayerTest {
 
         //when
         player.move(direction);
-        List<Direction> directions = player.getDirections();
+        List<String> directions = player.getDirections();
 
         //then
         assertThat(directions).isNotEmpty();
         assertThat(directions.size()).isEqualTo(1);
-        assertThat(directions).containsExactly(direction);
+        assertThat(directions).containsExactly(direction.getDirection());
     }
 
 }
