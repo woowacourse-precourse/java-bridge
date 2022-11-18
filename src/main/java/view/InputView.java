@@ -7,13 +7,14 @@ import util.ValidationUtil;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private ValidationUtil validationUtil = new ValidationUtil();
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         int bridgeSize = Integer.parseInt(Console.readLine());
-        ValidationUtil.validateBridgeSizeInput(bridgeSize);
+        validationUtil.validateBridgeSizeInput(bridgeSize);
 
         return bridgeSize;
     }
@@ -23,7 +24,7 @@ public class InputView {
      */
     public String readMoving() {
         String movement = Console.readLine();
-        ValidationUtil.validateUserMovement(movement);
+        validationUtil.validateUserMovement(movement);
 
         return movement;
     }
@@ -33,7 +34,7 @@ public class InputView {
      */
     public String readGameCommand() {
         String exitCode = Console.readLine();
-        ValidationUtil.validateExitCode(exitCode);
+        validationUtil.validateExitCode(exitCode);
 
         return exitCode;
     }
