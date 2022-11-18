@@ -29,10 +29,12 @@ public class BridgeGame {
      * User에게 입력을 받아서 U D 확인해야 한다.
      *
      */
-    public void creatMap() {
-        this.bridge = new Bridge(InputView.readBridgeSize());
+    public void createBridge() {
+        this.bridge = Bridge.of(InputView.readBridgeSize());
     }
-
+    public void createBridgeMap() {
+        this.bridgeMap = BridgeMap.of();
+    }
     public void move() {
     }
 
