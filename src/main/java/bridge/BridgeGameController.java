@@ -21,11 +21,11 @@ public class BridgeGameController {
 			gameResult = bridgeGame.move(move, i);
 			record.recordResult(move, gameResult);
 			if (gameResult == false) {
+				if (bridgeGame.retry(inputView.readGameCommand())) {
+					gameStart();
+				}
 				break;
 			}
-		}
-		if (gameResult == false) {
-			bridgeGame.retry();
 		}
 	}
 }
