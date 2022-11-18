@@ -14,13 +14,18 @@ public class InputView {
     private static final String RETRY = "R";
     private static final String QUIT = "Q";
     private static final int COMMANDSIZE = 1;
+    private static final String SIZE_ERROR = "입력 값이 너무 많습니다.";
+    private static final String NUMBER_ERROR = "숫자를 입력해주세요.";
+    private static final String RANGE_ERROR = "다리 길이는 3~20 사이의 숫자를 입력해주세요.";
+    private static final String UPDOWN_ERROR = "U와 D 중 입력해주세요.";
+    private static final String RETRYQUIT_ERROR = "R과 Q 중 입력해주세요.";
 
     private void sizeValidate(String size) {
         if (!isNumber(size)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NUMBER_ERROR);
         }
         if (!isRange(size)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(RANGE_ERROR);
         }
     }
 
@@ -49,10 +54,10 @@ public class InputView {
 
     private void moveValidate(String move) {
         if (!isOne(move)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(SIZE_ERROR);
         }
         if (!isUpDown(move)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(UPDOWN_ERROR);
         }
     }
 
@@ -78,10 +83,10 @@ public class InputView {
 
     private void gameCommandValidate(String command) {
         if (!isOne(command)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(SIZE_ERROR);
         }
         if (!isRetryQuit(command)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(RETRYQUIT_ERROR);
         }
     }
 
