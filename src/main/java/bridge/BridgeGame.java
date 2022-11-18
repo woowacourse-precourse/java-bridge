@@ -11,6 +11,7 @@ public class BridgeGame {
 
     private List<String> upBridge = new ArrayList<>(List.of("[ ", " ]"));
     private List<String> downBridge = new ArrayList<>(List.of("[ ", " ]"));
+    private int count = 1;
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -29,9 +30,13 @@ public class BridgeGame {
      */
     public int retry(int bridgeSize, int i) {
         String user = InputView.readGameCommand();
-        if (user.equals("Q")){return bridgeSize-1;}
+        if (user.equals("Q")){
+            upBridge.remove(upBridge.size()-1);
+            downBridge.remove(upBridge.size()-1);
+            return bridgeSize;}
         upBridge = new ArrayList<>(List.of("[ ", " ]"));
         downBridge = new ArrayList<>(List.of("[ ", " ]"));
+        count += 1;
         return -1;
     }
 
@@ -69,5 +74,11 @@ public class BridgeGame {
             if (i != bridge.size() - 1 ){ midStick();}
             if (upBridge.contains("X") || downBridge.contains("X")) {i = retry(bridge.size(), i);}
         }
+        OutputView.printResult(upBridge, downBridge);
     }
+
+    public int gameCount(){
+        return count;
+    }
+
 }

@@ -18,6 +18,6 @@ public class Application {
         BridgeGame bridgeGame = new BridgeGame();
         bridgeGame.gameStart(bridge);
 
-        // TODO: 프로그램 구현
+        OutputView.printCount(bridgeGame.gameCount());
     }
 }

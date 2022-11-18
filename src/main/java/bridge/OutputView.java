@@ -24,7 +24,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public static void printResult(List<String> upBridge, List<String> downBridge) {
+        System.out.println("최종 게임 결과");
+        for(int i=0 ; i<upBridge.size() ; i++){ System.out.print(upBridge.get(i));}
+        System.out.println("");
+        for(int i=0 ; i<downBridge.size() ; i++){ System.out.print(downBridge.get(i));}
+        System.out.println("");
+        if (upBridge.contains("X")) {lose();}
+        if (!upBridge.contains("X")) {win();}
     }
 
     public static void startPrint() {
@@ -64,5 +71,16 @@ public class OutputView {
         if(user.equals("R") || user.equals("Q")) {return user;}
         System.out.println("[ERROR] R 혹은 Q만 입력해 주세요.");
         return "";
+    }
+
+    public static void printCount(int count){
+        System.out.println("총 시도한 횟수: " + count);
+    }
+    public static void win(){
+        System.out.println("게임 성공 여부: 성공");
+    }
+
+    public static void lose(){
+        System.out.println("게임 성공 여부: 실패");
     }
 }
