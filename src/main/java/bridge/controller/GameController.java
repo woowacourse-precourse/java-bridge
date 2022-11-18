@@ -22,7 +22,6 @@ public class GameController {
 
     private final Bridge bridge;
 
-    // todo: 초가화시 맵도 같이 초기화해서 final로 해 두는것도 어떨까 함
     public GameController() {
         bridgeGame = new BridgeGame();
         inputView = new InputView();
@@ -32,22 +31,10 @@ public class GameController {
         bridge = generateRandomBridge();
     }
 
-    // todo: refactor
     public void startGame() {
         Player player = new Player();
 
-        do {
-            boolean isSurvival = playOneTurn(player);
-            outputView.printMap(bridge, player);
-            // isSurvival false -> 제시도 여부 확인
-            if (!isSurvival) {
-                if (!askForTryAgain()) {
-                    break;
-                }
-                bridgeGame.retry(player);
-            }
-        } while (!bridgeGame.isWin(bridge, player));
-        // 결과 출력
+        playUntilEnd(player);
         showResult(player);
     }
 
@@ -62,6 +49,26 @@ public class GameController {
                 System.out.println(exception.getMessage());
             }
         }
+    }
+
+    /**
+     * End if player die and select quit game or clear the game
+     *
+     * @param player 게임 플래이어
+     */
+    private void playUntilEnd(Player player) {
+        boolean isSurvival = true;
+        do {
+            isSurvival = playOneTurn(player);
+            outputView.printMap(bridge, player);
+        } while (isContinueGame(player, isSurvival));
+    }
+
+    private boolean isContinueGame(Player player, boolean isSurvivalThisTurn) {
+        if (isSurvivalThisTurn) {
+            return !bridgeGame.isWin(bridge, player);
+        }
+        return askForTryAgain();
     }
 
     private boolean playOneTurn(Player player) {
