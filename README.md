@@ -6,7 +6,7 @@
 - [ ] 사용자가 칸을 이동하는 기능
 - [ ] 사용자가 게임을 재시작하는 기능
 ### 2. BridgeMaker
-- [ ] 다리를 생성하는 기능
+- [x] 다리를 생성하는 기능
 ### 3. BridgeNumberGenerator
 - [ ]  BridgeRandomNumberGenerator에서 반드시 숫자 생성 기능을 구현하도록 하는 인터페이스
 ### 4. BridgeRandomNumberGenerator
