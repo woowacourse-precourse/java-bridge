@@ -9,6 +9,7 @@ public class BridgeConstants {
     public static final String INCORRECT_ANSWER = "X";
     public static final String UP_CROSS = "U";
     public static final String DOWN_CROSS = "D";
+    public static final String SPACE = " ";
     public static final String INPUT_BRIDGE_LENGTH = "\n다리의 길이를 입력해주세요.";
     public static final String INPUT_BRIDGE_MOVE_OPTION = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)";
 }
