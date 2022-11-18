@@ -16,8 +16,17 @@ public class InputView {
 
         System.out.println(BRIDGE_LENGTH_QUESTION);
         bridgeCount = Console.readLine();
+        validateNumber(bridgeCount);
 
         return Integer.parseInt(bridgeCount);
+    }
+
+    private void validateNumber(String bridgeCount) {
+        for (int i = 0; i < bridgeCount.length(); i++) {
+            if (bridgeCount.charAt(i) < '0' || bridgeCount.charAt(i) > '9') {
+                throw new IllegalArgumentException(ErrorMessage.BRIDGE_LENGTH_IS_ONLY_NUMBER.getErrorMessage());
+            }
+        }
     }
 
     /**

@@ -10,7 +10,7 @@ public class BridgeGame {
 
     public void start() {
         outputView.printStart();
-        bridgeLength = inputView.readBridgeSize();
+        Bridge bridge = new Bridge(inputView.readBridgeSize());
 
     }
 
