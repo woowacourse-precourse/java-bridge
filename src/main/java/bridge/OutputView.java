@@ -32,7 +32,7 @@ public class OutputView {
     }
 
     public void printInputMove(){
-        // TODO: 이동할 칸 입력 메시지 출력
+        System.out.println(INPUT_MOVE_MESSAGE);
     }
 
     public void printInputRetry(){
