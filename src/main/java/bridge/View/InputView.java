@@ -7,6 +7,7 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
     private static final String BRIDGE_SIZE_PHRASE = "다리의 길이를 입력해주세요.";
+    private static final String INVALID_CANT_CONVERT_INTEGER = "[ERROR] 숫자가 아닙니다.";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -29,5 +30,13 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private static int validateBridgeSize(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INVALID_CANT_CONVERT_INTEGER);
+        }
     }
 }
