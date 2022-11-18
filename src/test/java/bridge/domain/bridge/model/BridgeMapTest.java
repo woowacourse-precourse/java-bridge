@@ -10,11 +10,9 @@ import org.junit.jupiter.api.Test;
 
 class BridgeMapTest {
     @Test
-    public void 다리_생성_크기_테스트() {
+    public void 다리_지도_생성_크기_테스트() {
         int bridgeSize = 6;
-        BridgeNumberGenerator randomNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(randomNumberGenerator);
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        List<String> bridge = randomBridgeWithSize(bridgeSize);
 
         BridgeMap bridgeMap = BridgeMap.from(bridge);
 
@@ -22,7 +20,7 @@ class BridgeMapTest {
     }
 
     @Test
-    public void 다리_생성_테스트() {
+    public void 다리_지도_생성_테스트() {
         List<String> bridge = Lists.newArrayList("U", "D", "D", "U");
 
         BridgeMap bridgeMap = BridgeMap.from(bridge);
@@ -32,6 +30,21 @@ class BridgeMapTest {
                         BridgeDirection.DOWN,
                         BridgeDirection.DOWN,
                         BridgeDirection.UP);
+    }
+
+    @Test
+    public void 다리_지도는_수정_할_수_없다() {
+        List<String> bridge = randomBridgeWithSize(6);
+        BridgeMap bridgeMap = BridgeMap.from(bridge);
+        Assertions.assertThatThrownBy(() ->
+                        bridgeMap.getBridgeDirections().add(BridgeDirection.UP))
+                .isInstanceOf(UnsupportedOperationException.class);
+    }
+
+    private List<String> randomBridgeWithSize(int bridgeSize) {
+        BridgeNumberGenerator randomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(randomNumberGenerator);
+        return bridgeMaker.makeBridge(bridgeSize);
     }
 
 }
