@@ -1,8 +1,8 @@
 package bridge.model;
 
-import static global.advice.StepValidator.checkIsDigit;
-import static global.advice.StepValidator.checkLength;
-import static global.advice.StepValidator.checkRange;
+import static global.advice.SizeValidator.checkIsDigit;
+import static global.advice.SizeValidator.checkLength;
+import static global.advice.SizeValidator.checkRange;
 
 import bridge.BridgeFactory;
 import java.util.List;
