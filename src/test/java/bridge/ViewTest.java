@@ -29,9 +29,9 @@ public class ViewTest extends NsTest {
     }
     @Test
     void printMapTest(){
-        OutputView outputView = new OutputView();
         List<String> bridgeList = newArrayList("U","D","U","U");
-        outputView.printMap(bridgeList,false,2);
+        OutputView outputView = new OutputView(bridgeList);
+        outputView.printMap(false,2);
         assertThat(output()).contains(
                 "[ O |   | X ]",
                 "[   | O |   ]"
@@ -39,9 +39,9 @@ public class ViewTest extends NsTest {
     }
     @Test
     void printFirstMapTest(){
-        OutputView outputView = new OutputView();
         List<String> bridgeList = newArrayList("U","D","U","U");
-        outputView.printMap(bridgeList,true,0);
+        OutputView outputView = new OutputView(bridgeList);
+        outputView.printMap(true,0);
         assertThat(output()).contains(
                 "[ O ]",
                 "[   ]"
@@ -49,12 +49,24 @@ public class ViewTest extends NsTest {
     }
     @Test
     void printSecondMapTest(){
-        OutputView outputView = new OutputView();
         List<String> bridgeList = newArrayList("U","D","U","U");
-        outputView.printMap(bridgeList,false,1);
+        OutputView outputView = new OutputView(bridgeList);
+        outputView.printMap(false,1);
         assertThat(output()).contains(
                 "[ O |   ]",
                 "[   | X ]"
+        );
+    }
+    @Test
+    void printResultTest(){
+        List<String> bridgeList = newArrayList("U","D","U","U");
+        OutputView outputView = new OutputView(bridgeList);
+        outputView.printResult(true,3);
+        assertThat(output()).contains(
+                "[ O |   | O | O ]",
+                "[   | O |   |   ]",
+                "게임 성공 여부: 성공",
+                "총 시도한 횟수: 3"
         );
     }
     @Override
