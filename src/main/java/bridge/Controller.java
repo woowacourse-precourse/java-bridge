@@ -23,6 +23,9 @@ public class Controller {
     }
 
     public boolean play(BridgeGame bridgeGame) {
+        if (bridgeGame.check()){
+            return false;
+        }
         outputView.printGetMoving();
         String moving = inputView.readMoving();
         while (moving == null) {

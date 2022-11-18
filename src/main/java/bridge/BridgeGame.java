@@ -44,7 +44,7 @@ public class BridgeGame {
     }
 
     public boolean check(){
-        return this.locate == this.Bridge.size() - 1;
+        return this.locate == this.Bridge.size();
     }
 
     public List<String> getBridge(){
