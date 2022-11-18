@@ -44,7 +44,7 @@ public class BridgeMaker {
     }
 
     public StringBuilder makeInitialBridge() {
-        String bridgeFrame = "[   ]";
+        String bridgeFrame = "[ ]";
         StringBuilder initialBridge = new StringBuilder(bridgeFrame);
         return initialBridge;
     }
