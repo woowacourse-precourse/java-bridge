@@ -17,7 +17,7 @@
 ## ● 구현할 구조
 
 ### controller
-- BridgeGame
+- BridgeController
 - [ ] 다리 길이 입력 받기
 - [ ] 이동할 칸 입력 받기
 - [ ] 재시작 여부 입력 받기
