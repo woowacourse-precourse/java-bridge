@@ -10,7 +10,7 @@
 #### 1) 다리 길이 입력 받기
 - [x] 다리 길이 입력 요청 문구를 출력한다. (ViewMessage # printBridgeSizeInputRequest)
 - [x] 다리 길이를 입력 받는다. (InputView # readBridgeSize)
-- [ ] 입력 받은 다리 길이에 대한 유효성 검사를 한다. (InputView # validateBridgeLength)
+- [x] 입력 받은 다리 길이에 대한 유효성 검사를 한다. (InputView # validateBridgeLength)
 #### 2) 다리 만들기
 - [ ] 입력된 다리 길이만큼 다리를 만든다. (BridgeMaker # makeBridge)
   - [ ] 0이 나오면 아래칸, 1이 나오면 위 칸이 건널 수 있는 칸이 된다. (BridgeMaker # makeOneBlock)
@@ -37,8 +37,8 @@
 ## 예외 처리
 - [ ] 아래에 해당하는 예외가 발생할 시 IllegalArgumentException를 일으키고 [ERROR]로 시작하는 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
 ### 1. 다리 길이 입력 예외 처리
-- [ ] 입력이 3 이상 20 이하의 숫자가 아니면 예외 처리한다. (InputView # isLengthOutOfRange)
-- [ ] 입력이 숫자가 아니면 예외 처리한다. (InputView # isNotNumber)
+- [x] 입력이 3 이상 20 이하의 숫자가 아니면 예외 처리한다. (InputView # isLengthOutOfRange)
+- [x] 입력이 숫자가 아니면 예외 처리한다. (InputView # isNotNumber)
 ### 2. 라운드마다 플레이어가 이동할 칸 입력 예외 처리
 - [ ] 'U' 와 'D' 가 아닌 문자일 경우 예외 처리한다. (InputView # isNotUD)
 ### 3. 게임 재시작/종료 여부 입력 예외 처리

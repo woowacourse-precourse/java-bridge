@@ -12,9 +12,28 @@ public class InputView {
      */
     public int readBridgeSize() {
         String bridgeSize = Console.readLine();
+        validateBridgeLength(bridgeSize);
 
         return Integer.parseInt(bridgeSize);
     }
+
+    public static void validateBridgeLength(String bridgeSize) {
+        if (isNotNumber(bridgeSize)) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자여야 합니다.");
+        }
+        if (isLengthOutOfRange(Integer.parseInt(bridgeSize))) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
+    }
+
+    private static boolean isNotNumber(String bridgeSize) {
+        return !bridgeSize.matches("^-?[0-9]+$");
+    }
+
+    private static boolean isLengthOutOfRange(int bridgeSize) {
+        return bridgeSize < 3 || bridgeSize > 20;
+    }
+
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
