@@ -1,5 +1,7 @@
 package bridge.model;
 
+import java.util.Objects;
+
 public class BridgeSpace {
     String upOrDown;
     Moved myMoved;
@@ -18,11 +20,15 @@ public class BridgeSpace {
     }
 
     public BridgeSpace checkMoving(String userMove) {
-        if (userMove == upOrDown) {
+        if (Objects.equals(userMove, upOrDown)) {
             this.myMoved = Moved.CAN;
             return this;
         }
         this.myMoved = Moved.CANT;
         return this;
+    }
+
+    public void init() {
+        this.myMoved = Moved.NOTYET;
     }
 }

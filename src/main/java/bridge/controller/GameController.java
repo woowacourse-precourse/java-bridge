@@ -9,6 +9,7 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 import java.util.List;
+import java.util.Objects;
 
 public class GameController {
     InputView inputView = new InputView();
@@ -19,8 +20,20 @@ public class GameController {
 
     public GameController(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        this.bridgeGame = new BridgeGame();
     }
 
+    public void playGame() {
+        informStart();
+        buildBridge();
+        do {
+            bridge = bridgeGame.retry(bridge);
+            if(doRepeatBridgeMove()) {
+                break;
+            }
+        }while(askRetry());
+
+    }
     private void informStart() {
         outputView.printStartGame();
     }
@@ -55,20 +68,19 @@ public class GameController {
     private boolean askRetry() {
         // 재시도 묻기
         String retryFlag = inputView.readGameCommand();
-        return retryFlag == "R";
+        return Objects.equals(retryFlag, "R");
     }
 
     private boolean checkAllDone() {
         // 모두 완료했는지 검사, 마지막 요소가 이동 가능이면
         return bridge.getBridgeSpaces().get(bridge.getBridgeSpaces().size() - 1).getMyMoved()
-                != Moved.CAN;
+                == Moved.CAN;
     }
-
-
 
     private void printNowBridge() {
         outputView.printMap(this.bridge);
     }
+
 
 
 

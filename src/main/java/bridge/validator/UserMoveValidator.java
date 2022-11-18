@@ -2,6 +2,8 @@ package bridge.validator;
 
 import static bridge.validator.ErrorMessage.*;
 
+import java.util.Objects;
+
 public class UserMoveValidator {
 
     public static String runUserMoveValidator(String userMove) {
@@ -12,6 +14,6 @@ public class UserMoveValidator {
     }
 
     private static boolean isNotUorD(String userMove) {
-        return !(userMove == "U" || userMove == "D");
+        return !(Objects.equals(userMove, "U") || Objects.equals(userMove, "D"));
     }
 }

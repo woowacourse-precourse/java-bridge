@@ -19,4 +19,5 @@ public class Bridge {
     public List<BridgeSpace> getBridgeSpaces() {
         return bridgeSpaces;
     }
+
 }
