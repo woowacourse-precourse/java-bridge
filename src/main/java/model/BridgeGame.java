@@ -34,14 +34,14 @@ public class BridgeGame {
         return bridgeByUser;
     }
 
-    public void addWrongPath(List<String> isCorrectBridge, String path) {
-        isCorrectBridge.add(path);
-        isCorrectBridge.add(StringConstant.WRONG_PATH.getConstant());
-    }
-
     public void addCorrectPath(List<String> isCorrectBridge, String path) {
         isCorrectBridge.add(path);
         isCorrectBridge.add(StringConstant.CORRECT_PATH.getConstant());
+    }
+
+    public void addWrongPath(List<String> isCorrectBridge, String path) {
+        isCorrectBridge.add(path);
+        isCorrectBridge.add(StringConstant.WRONG_PATH.getConstant());
     }
 
     public boolean isUserPathEqualsBridge(List<String> bridge, String path) {
