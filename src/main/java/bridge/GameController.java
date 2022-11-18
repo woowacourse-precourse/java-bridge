@@ -13,19 +13,17 @@ public class GameController {
 
     public void executeGame() {
         outputView.printOpening();
-        bridge = getBridgeInput();
-
+        makeBridge();
     }
 
-    private Bridge getBridgeInput() {
+    private void makeBridge() {
         outputView.printBrideSizeOpening();
         try {
             bridge = new Bridge(inputView.readBridgeSize());
             outputView.printEmptyLine();
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
-            getBridgeInput();
+            makeBridge();
         }
-        return bridge;
     }
 }
