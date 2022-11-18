@@ -5,7 +5,6 @@
 
 
 - Domain layer
-    - Bridge : 자동 생성될 다리를 표현하는 객체
     - InputView : 사용자 입력 객체
         - readBridgeSize  : 다리의 길이를 입력받는다.
             - bridgeSizeValidation : 숫자가 아닌 입력 검증
