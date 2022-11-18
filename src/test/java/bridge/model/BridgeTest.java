@@ -15,8 +15,10 @@ class BridgeTest {
         @Test
         @DisplayName("인자가 U,D로 이루어진 리스트가 아니라면 IllegalAgumentException을 반환")
         void receiveWrongArgument() {
+            //given
             List<String> wrongBridge = List.of("A", "B");
 
+            //then
             Assertions.assertThatThrownBy(() -> new Bridge(wrongBridge))
                     .isInstanceOf(IllegalArgumentException.class);
         }
@@ -24,9 +26,13 @@ class BridgeTest {
         @Test
         @DisplayName("U, D로 이루어진 리스트 인자를 받으면 정상적인 Bridge 생성")
         void receiveValidArgument() {
+            //given
             List<String> bridge = List.of("U", "D", "U");
+
+            //when
             Bridge actual = new Bridge(bridge);
 
+            //then
             Assertions.assertThat(actual.getClass()).isEqualTo(Bridge.class);
         }
     }
