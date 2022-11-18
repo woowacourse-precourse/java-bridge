@@ -28,6 +28,11 @@ public class OutputView {
         System.out.println("총 시도한 횟수: " + number);
     }
 
+    public void printSFAndNumber(boolean passFail, int number) {
+        System.out.println("게임 성공 여부: " + printSuccessOrFail(passFail));
+        System.out.println("총 시도한 횟수: " + number);
+    }
+
     private String printSuccessOrFail(boolean passOrFail) {
         if (passOrFail) {
             return "성공";
