@@ -1,7 +1,5 @@
 package bridge.view;
 
-import bridge.domain.Bridge;
-import bridge.domain.PassingPositions;
 import bridge.domain.Result;
 import java.util.List;
 
