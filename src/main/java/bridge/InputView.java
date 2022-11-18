@@ -19,9 +19,8 @@ public class InputView {
             return Integer.parseInt(inputBridgeSize);
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
-            readBridgeSize();
+            return readBridgeSize();
         }
-        return 0;
     }
 
     private void validBridgeSize(String inputBridgeSize) {
