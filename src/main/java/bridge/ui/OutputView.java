@@ -25,4 +25,9 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    // 여기부터 에러 메시지들
+    public void printErrorBridgeSize() {
+        System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+    }
 }
