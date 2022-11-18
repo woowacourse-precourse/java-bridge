@@ -5,8 +5,18 @@ public class GameMessage {
     private static final String IS_ERROR = "[ERROR] ";
     public static final String LINE_BREAK = "\n";
 
+    public static String getResultMessage() {
+        return Result
+                .FINAL_GAME_RESULT
+                .getContents();
+    }
+
     public static String getTotalTry(int tyrCounts) {
-        return String.format(Result.TOTAL_TRY.getContents(), tyrCounts);
+        String totalTryContents = Result
+                .TOTAL_TRY
+                .getContents();
+
+        return String.format(totalTryContents, tyrCounts);
     }
 
     public static String getSuccessOrNot(boolean isArrival) {

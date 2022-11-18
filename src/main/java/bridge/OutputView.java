@@ -13,8 +13,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
-
+    public void printMap(Bridge rightBridge, Bridge userBridge) {
+        String map = rightBridge.getMap(userBridge);
+        printMessage(map);
     }
 
     /**
@@ -22,10 +23,17 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(Bridge rightBridge, Bridge userBridge, int tryCounts) {
+        String result = GameMessage.getResultMessage();
+        result += rightBridge.getMap(userBridge);
+        result += GameMessage.LINE_BREAK;
 
-        System.out.println();
+        boolean success = rightBridge.checkSuccess(userBridge);
+        result += GameMessage.getSuccessOrNot(success);
+        result += GameMessage.getTotalTry(tryCounts);
+        result += GameMessage.LINE_BREAK;
 
+        printMessage(result);
     }
 
     public static void printMessage(String message) {

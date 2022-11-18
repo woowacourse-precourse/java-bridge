@@ -62,12 +62,28 @@
     - Bridge (Class)
         BridgeGame 등에 사용할 모델 클래스 
 
-* compareState(int length, String state)
-  - 해당 길이의 다리 상태 비교 
+* checkSuccess
+  - 올바른 다리 상태와 비교 후 성공 여부 반환 
+* compareState
+  - 해당 길이의 다리 상태 비교
+* getMap
+  - 다리 윗부분과 아랫부분의 상태 String 값으로 반환
+* getUpMap
+  - 다리 윗부분 String 값으로 반환
+* getDownMap
+  - 다리 아랫부분 String 값으로 반환
+* getUpStates
+  - 다리 윗부분 Map 모양으로 List<String> 값으로 반환
+* getDownStates
+  - 다리 아랫부분 Map 모양으로 List<String> 값으로 반환
+* getState
+  - 해당 index 값 state 반환
+* getSize
+  - List<String> states 의 크기 반환
 * add
-  - List<String> states 에 값 추가 메서드
+  - List<String> states 에 값 추가
 * remove
-  - List<String> states 에 값 제거 메서드
+  - List<String> states 에 값 제거
 
 
 <br/>
