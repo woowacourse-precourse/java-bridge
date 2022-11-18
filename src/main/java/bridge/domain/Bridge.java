@@ -22,6 +22,4 @@ public class Bridge {
         }
         return true;
     }
-
-
 }
