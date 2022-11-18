@@ -37,7 +37,12 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String input ="";
+        while(!this.checkMessage(input,ErrorMessage.WRONGGAMEENDINPUTEXCEPTION).equals("PASS"))
+        {
+            input = Console.readLine();
+        }
+        return input;
     }
 
     public String checkMessage(String value, ErrorMessage errorValue){
