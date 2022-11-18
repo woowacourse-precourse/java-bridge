@@ -1,5 +1,6 @@
-package bridge.View;
+package bridge.view;
 
+import bridge.model.Model;
 import camp.nextstep.edu.missionutils.*;
 
 import java.util.List;
@@ -9,24 +10,21 @@ import java.util.List;
  */
 public class InputView {
 
-    private int bridgeSize;
-    private List<String> moveCommands;
-
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public void readBridgeSize(Model model) {
         System.out.println(MSG.INPUT_BRIDGE_SIZE.message);
         String bridgeSizeCommand = Console.readLine();
         try {
             validateBridgeSize(bridgeSizeCommand);
         }catch (IllegalArgumentException e) {
             //에러메시지 출력부
-            readBridgeSize();
+            readBridgeSize(model);
         }
-        return Integer.parseInt(bridgeSizeCommand);
+        model.setBridgeSize(Integer.parseInt(bridgeSizeCommand));
     }
-    private void validateBridgeSize(String bridgeSizeCommand) {
+    public void validateBridgeSize(String bridgeSizeCommand) {
         String regex = "^[3-9]$|^[1][0-9]$|^20$";
         if (!bridgeSizeCommand.matches(regex)) {
             throw new IllegalArgumentException();
@@ -36,18 +34,18 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public void readMoving(Model model) {
         System.out.println(MSG.INPUT_MOVING.message);
         String movingCommand = Console.readLine();
         try {
             validateMoving(movingCommand);
         }catch (IllegalArgumentException e) {
             //에러메시지 출력부
-            readMoving();
+            readMoving(model);
         }
-        return movingCommand;
+       model.addMovingCommands(movingCommand);
     }
-    private void validateMoving(String movingCommand) {
+    public void validateMoving(String movingCommand) {
         String regex = "[UD]";
         if (!movingCommand.matches(regex)) {
             throw new IllegalArgumentException();
@@ -57,18 +55,19 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public String readGameCommand(Model model) {
         System.out.println(MSG.INPUT_GAME.message);
         String gameCommand = Console.readLine();
         try {
             validateGame(gameCommand);
         }catch (IllegalArgumentException e) {
             //에러메시지 출력부
-            readGameCommand();
+            readGameCommand(model);
         }
+        model.increaseRunCounts();
         return gameCommand;
     }
-    private void validateGame(String gameCommand) {
+    public void validateGame(String gameCommand) {
         String regex = "[RQ]";
         if (!gameCommand.matches(regex)) {
             throw new IllegalArgumentException();

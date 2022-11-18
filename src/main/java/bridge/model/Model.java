@@ -4,26 +4,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Model {
-    private static int bridgeSize;
-    private static List<String> movingCommand = new ArrayList<>();
+    private int bridgeSize;
+    private List<String> movingCommands = new ArrayList<>();
+    private int runCounts = 0;
 
-    public static int getBridgeSize() {
+    public int getBridgeSize() {
         return bridgeSize;
     }
 
-    public static List<String> getMovingCommand() {
-        return movingCommand;
+    public List<String> getMovingCommand() {
+        return movingCommands;
     }
 
-    public static void setBridgeSize(int bridgeSize) {
-        Model.bridgeSize = bridgeSize;
+    public void setBridgeSize(int bridgeSize) {
+        this.bridgeSize = bridgeSize;
     }
 
-    public static void setMovingCommand(List<String> movingCommand) {
-        Model.movingCommand = movingCommand;
+    public void addMovingCommands(String movingCommand) {
+        this.movingCommands.add(movingCommand);
     }
 
-    public static void clearMovingCommand() {
-        movingCommand.clear();
+    public void increaseRunCounts() {
+        this.runCounts++;
+    }
+
+    public void clearMovingCommand() {
+        movingCommands.clear();
     }
 }
