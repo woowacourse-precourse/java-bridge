@@ -16,27 +16,38 @@ public class InputView {
     }
 
     //숫자 검증
-    public int numberValidate(String input) {
+    public int numberValidate(String size) {
         try {
-            return negativeValidate(Integer.parseInt(input));
+            return negativeValidate(Integer.parseInt(size));
         } catch (NumberFormatException e) {
-            System.out.println(e.getMessage());
             System.out.println("[ERROR] 숫자가 아닙니다.");
             return readBridgeSize();
         }
     }
 
-    //0 이상 검증
-    public int negativeValidate(int input) {
+    //1 이상 검증
+    public int negativeValidate(int size) {
         try {
-            if (input <= 0) {
-                throw new IllegalArgumentException("[ERROR] 0 이상의 숫자를 입력해주세요.");
+            if (size <= 0) {
+                throw new IllegalArgumentException("[ERROR] 1 이상의 숫자를 입력해주세요.");
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readBridgeSize();
         }
-        return input;
+        return rangeValidate(size);
+    }
+    //3에서 20사이 검증
+    public int rangeValidate(int size) {
+        try {
+            if (!(size >= 3 && size <= 20)) {
+                throw new IllegalArgumentException("[ERROR] 3에서 20사이의 숫자를 입력해주세요.");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readBridgeSize();
+        }
+        return size;
     }
 
     /**
