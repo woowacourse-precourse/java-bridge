@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.constant.Messages;
 import bridge.domain.Movement;
 
 public class OutputView {
@@ -11,12 +12,10 @@ public class OutputView {
         }
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult() {
-        System.out.println("HERE");
+    public void printResult(Movement movement) {
+        System.out.println(Messages.FINISH_RESULT_MESSAGE.getMessage());
+        printMap(movement);
+        System.out.println(String.format(Messages.SUCCESS_INFO_MESSAGE.getMessage(), movement.isSuccess()));
+        System.out.println(String.format(Messages.TRY_COUNT_INFO_MESSAGE.getMessage(), movement.getTryCount()));
     }
 }

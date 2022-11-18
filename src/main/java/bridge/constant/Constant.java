@@ -13,4 +13,6 @@ public class Constant {
     public static final String CORRECT_MARK = "O";
     public static final String WRONG_MARK = "X";
     public static final String BLANK = " ";
+    public static final String SUCCESS = "성공";
+    public static final String FAILURE = "실패";
 }
