@@ -13,4 +13,9 @@ public class InputController {
 		outputView.printRequestUpDown();
 		return inputView.readMoving();
 	}
+
+	public String requestRetry() {
+		outputView.printRequestRetry();
+		return inputView.readGameCommand();
+	}
 }
