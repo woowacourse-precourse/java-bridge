@@ -22,7 +22,10 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(ViewConstant.ASKING_INPUT_BRIDGE_SIZE_MESSAGE);
+        String moving = Console.readLine();
+        Validator.validateCellPosition(moving);
+        return moving;
     }
 
     /**
