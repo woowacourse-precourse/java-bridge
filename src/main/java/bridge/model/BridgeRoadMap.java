@@ -13,17 +13,17 @@ public class BridgeRoadMap extends RoadMap {
     @Override
     protected void validate(List<String> directions) {
         int size = directions.size();
-        if(size < RANGE_OF_BRIDGE_SIZE_START || size > RANGE_OF_BRIDGE_SIZE_END){
+        if (size < RANGE_OF_BRIDGE_SIZE_START || size > RANGE_OF_BRIDGE_SIZE_END) {
             throw new IllegalStateException(GameErrorMessage.NO_RANGE_OF_BRIDGE_SIZE.getMessage());
         }
     }
 
-    public boolean isFail(UserRoadMap userRoadMap){
+    public boolean isFail(UserRoadMap userRoadMap) {
         int lastRoadPosition = userRoadMap.getSize() - 1;
         return !matchPositionWithRoad(lastRoadPosition, userRoadMap.getRoad(lastRoadPosition));
     }
 
-    public boolean isEnd(UserRoadMap userRoadMap){
+    public boolean isEnd(UserRoadMap userRoadMap) {
         return getSize() == userRoadMap.getSize();
     }
 }

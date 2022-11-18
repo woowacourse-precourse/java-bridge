@@ -5,11 +5,11 @@ import java.util.function.Supplier;
 public class InfiniteInput<T> {
     private final T defaultValue;
 
-    public InfiniteInput(T defaultValue){
+    public InfiniteInput(T defaultValue) {
         this.defaultValue = defaultValue;
     }
 
-    public T getInput(Supplier<T> inputSupplier, OutputView outputView){
+    public T getInput(Supplier<T> inputSupplier, OutputView outputView) {
         T value = defaultValue;
         do {
             try {
@@ -17,7 +17,7 @@ public class InfiniteInput<T> {
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
             }
-        }while(value.equals(defaultValue));
+        } while (value.equals(defaultValue));
         return value;
     }
 }

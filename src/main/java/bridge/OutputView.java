@@ -24,19 +24,19 @@ public class OutputView {
 
     private final String ERROR_KEYWORD = "[ERROR]";
 
-    public void printGameStart(){
+    public void printGameStart() {
         System.out.println(GAME_START_MESSAGE + "\n");
     }
 
-    public void printInputBridgeSize(){
+    public void printInputBridgeSize() {
         System.out.println(INPUT_BRIDGE_SIZE_MESSAGE);
     }
 
-    public void printInputMove(){
+    public void printInputMove() {
         System.out.println(INPUT_MOVE_MESSAGE);
     }
 
-    public void printInputRetry(){
+    public void printInputRetry() {
         System.out.println(INPUT_RETRY_MESSAGE);
     }
 
@@ -47,7 +47,7 @@ public class OutputView {
      */
     public void printMap(BridgeRoadMap bridgeRoadMap, UserRoadMap userRoadMap) {
         DirectionCommand[] directionCommands = DirectionCommand.values();
-        for(int index = directionCommands.length - 1; index >= 0; index--){
+        for (int index = directionCommands.length - 1; index >= 0; index--) {
             System.out.printf("[");
             printDirectionRoadStateMap(directionCommands[index].getValue(), bridgeRoadMap, userRoadMap);
             System.out.println("]");
@@ -56,9 +56,9 @@ public class OutputView {
     }
 
     private void printDirectionRoadStateMap(String direction, BridgeRoadMap bridgeRoadMap, UserRoadMap userRoadMap) {
-        for(int roadPosition = 0; roadPosition < userRoadMap.getSize(); roadPosition++){
+        for (int roadPosition = 0; roadPosition < userRoadMap.getSize(); roadPosition++) {
             printRoadSeparation(roadPosition);
-            if(userRoadMap.matchPositionWithDirection(roadPosition, direction)) {
+            if (userRoadMap.matchPositionWithDirection(roadPosition, direction)) {
                 printOorX(roadPosition, bridgeRoadMap, userRoadMap);
                 continue;
             }
@@ -67,14 +67,14 @@ public class OutputView {
     }
 
     private void printRoadSeparation(int roadPosition) {
-        if(roadPosition != 0){
+        if (roadPosition != 0) {
             System.out.printf(ROAD_SEPARATOR);
         }
     }
 
     private void printOorX(int roadPosition, BridgeRoadMap bridgeRoadMap, UserRoadMap userRoadMap) {
         String result = ROAD_STATE[0];
-        if(bridgeRoadMap.matchPositionWithRoad(roadPosition, userRoadMap.getRoad(roadPosition))){
+        if (bridgeRoadMap.matchPositionWithRoad(roadPosition, userRoadMap.getRoad(roadPosition))) {
             result = ROAD_STATE[1];
         }
         System.out.printf(result);
@@ -94,17 +94,17 @@ public class OutputView {
 
     private void printSuccessOrFail(BridgeRoadMap bridgeRoadMap, UserRoadMap userRoadMap) {
         String result = GAME_RESULT_STATE[0];
-        if(!bridgeRoadMap.isFail(userRoadMap)){
+        if (!bridgeRoadMap.isFail(userRoadMap)) {
             result = GAME_RESULT_STATE[1];
         }
         System.out.println(String.format("%s %s", GAME_RESULT_SUCCESS_OR_NOT_MESSAGE, result));
     }
 
-    public void printErrorMessage(String message){
+    public void printErrorMessage(String message) {
         System.out.println(String.format("%s %s", ERROR_KEYWORD, message));
     }
 
-    public void printNextLine(){
+    public void printNextLine() {
         System.out.println();
     }
 }

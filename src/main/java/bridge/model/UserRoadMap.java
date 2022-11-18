@@ -12,18 +12,18 @@ public class UserRoadMap extends RoadMap {
     protected void validate(List<String> directions) {
     }
 
-    public Road getRoad(int roadPosition){
-        if(roadPosition < getSize()){
+    public Road getRoad(int roadPosition) {
+        if (roadPosition < getSize()) {
             return this.roads.get(roadPosition);
         }
         throw new IllegalStateException(GameErrorMessage.NO_SUCH_ROAD_POSITION.getMessage());
     }
 
-    public void clear(){
+    public void clear() {
         this.roads.clear();
     }
 
-    public void addRoad(String direction){
+    public void addRoad(String direction) {
         this.roads.add(new Road(direction));
     }
 }

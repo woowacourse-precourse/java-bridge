@@ -13,19 +13,19 @@ public abstract class RoadMap {
 
     protected abstract void validate(List<String> directions);
 
-    public int getSize(){
+    public int getSize() {
         return this.roads.size();
     }
 
-    public boolean matchPositionWithDirection(int roadPosition, String direction){
-        if(roadPosition < getSize()){
+    public boolean matchPositionWithDirection(int roadPosition, String direction) {
+        if (roadPosition < getSize()) {
             return this.roads.get(roadPosition).matchDirection(direction);
         }
         return false;
     }
 
-    public boolean matchPositionWithRoad(int roadPosition, Road road){
-        if(roadPosition < getSize()){
+    public boolean matchPositionWithRoad(int roadPosition, Road road) {
+        if (roadPosition < getSize()) {
             return this.roads.get(roadPosition).matchRoad(road);
         }
         return false;

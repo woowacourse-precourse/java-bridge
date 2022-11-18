@@ -1,6 +1,6 @@
 package bridge.constant.command;
 
-public enum DirectionCommand implements Command{
+public enum DirectionCommand implements Command {
     DOWN(0, "D"),
     UP(1, "U");
 

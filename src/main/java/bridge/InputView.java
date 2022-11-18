@@ -46,8 +46,8 @@ public class InputView {
     }
 
     private void checkValidMoving(String command) {
-        for(DirectionCommand directionCommand : DirectionCommand.values()){
-            if(directionCommand.getValue().equals(command)){
+        for (DirectionCommand directionCommand : DirectionCommand.values()) {
+            if (directionCommand.getValue().equals(command)) {
                 return;
             }
         }
@@ -64,8 +64,8 @@ public class InputView {
     }
 
     private void checkValidGameCommand(String command) {
-        for(GameCommand gameCommand : GameCommand.values()){
-            if(gameCommand.getValue().equals(command)){
+        for (GameCommand gameCommand : GameCommand.values()) {
+            if (gameCommand.getValue().equals(command)) {
                 return;
             }
         }
