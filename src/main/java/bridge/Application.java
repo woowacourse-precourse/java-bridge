@@ -28,8 +28,7 @@ public class Application {
             }
             return bridgeGame.closeGame();
         }
-        retry(bridge);
-        return bridgeGame.closeGame();
+        return selectWhetherToRetry(bridge);
     }
 
     private static MoveResult moveToBridge(Bridge bridge) {
@@ -38,10 +37,11 @@ public class Application {
         return moveResult;
     }
 
-    private static void retry(Bridge bridge) {
+    private static GameResult selectWhetherToRetry(Bridge bridge) {
         if (bridgeGame.retry(inputView.readGameCommand())) {
             outputView.resetMap();
             play(bridge);
         }
+        return bridgeGame.closeGame();
     }
 }
