@@ -11,7 +11,7 @@
 ## BridgeRandomNumberGenerator
 - [X] 다리 요소 생성
 ## InputView
-- [ ] 다리 길이 입력
+- [X] 다리 길이 입력
 - [ ] 플레이어가 이동할 다리 입력
 - [ ] 횡단 실패시 재시작 여부 입력
 ## OutputView
