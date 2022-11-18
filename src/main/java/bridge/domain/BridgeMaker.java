@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class BridgeMaker {
 
-    private static final List<String> board = List.of("U", "D");
+    private static final List<String> board = List.of("D", "U");
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -26,7 +26,7 @@ public class BridgeMaker {
             int space = bridgeNumberGenerator.generate();
             bridge.add(board.get(space));
         }
-        
+
         return bridge;
     }
 }

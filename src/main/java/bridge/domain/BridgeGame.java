@@ -12,6 +12,7 @@ public class BridgeGame {
     private final BridgeMaker bridgeMaker;
 
     private int position;
+    private int tryCount;
     private List<String> bridge;
     private List<String> result;
 
@@ -21,16 +22,23 @@ public class BridgeGame {
     public BridgeGame(BridgeNumberGenerator bridgeNumberGenerator) {
         bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
-        position = 0;
+        tryCount = 0;
+    }
+
+    /**
+     * 게임 시작 전, 다리를 세팅하는 메서드
+     */
+    public void settingBridge(int bridgeSize) {
+        bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
     /**
      * 게임을 시작하는 메서드
      */
-    public void initGame(int bridgeSize) {
-        bridge = bridgeMaker.makeBridge(bridgeSize);
-
+    public void initGame() {
         result = new ArrayList<>();
+        position = 0;
+        tryCount += 1;
     }
 
     /**
@@ -41,6 +49,7 @@ public class BridgeGame {
     public MovingResultDto move(String commend) {
         String correctPosition = bridge.get(position);
         boolean completeness = false;
+        boolean success = false;
 
         if (correctPosition.equals(commend)) {
             result.add("O");
@@ -49,6 +58,7 @@ public class BridgeGame {
 
             if (position == bridge.size()) {
                 completeness = true;
+                success = true;
             }
         } else {
             result.add("X");
@@ -56,7 +66,7 @@ public class BridgeGame {
             completeness = true;
         }
 
-        return new MovingResultDto(result, completeness);
+        return new MovingResultDto(result, completeness, success);
     }
 
     /**
@@ -64,10 +74,17 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry() {
+        initGame();
+
+        return true;
     }
 
     public List<String> getBridge() {
         return bridge;
+    }
+
+    public int getTryCount() {
+        return tryCount;
     }
 }

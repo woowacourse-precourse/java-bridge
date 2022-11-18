@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeRandomNumberGenerator;
+import bridge.domain.GameResult;
 import bridge.dto.MovingResultDto;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -14,6 +15,9 @@ public class BridgeController {
 
     private int bridgeSize;
     private boolean completeness;
+    private boolean success;
+
+    private List<String> result;
 
     public BridgeController() {
         inputView = new InputView();
@@ -23,18 +27,45 @@ public class BridgeController {
         bridgeGame = new BridgeGame(numberGenerator);
     }
 
-    public void run() {
+    public List<String> settingBridge() {
+        outputView.printStart();
         bridgeSize = inputView.readBridgeSize();
-        completeness = false;
 
-        bridgeGame.initGame(bridgeSize);
-        List<String> bridge = bridgeGame.getBridge();
+        bridgeGame.settingBridge(bridgeSize);
+        bridgeGame.initGame();
+
+        return bridgeGame.getBridge();
+    }
+
+    public boolean run(List<String> bridge) {
+        completeness = false;
+        success = false;
 
         while (!completeness) {
-            List<String> result = move();
+            result = move();
 
             outputView.printMap(bridge, result);
         }
+
+        if (!success) {
+            String retry = inputView.readGameCommand();
+
+            if (retry.equals("R")) {
+                return bridgeGame.retry();
+            }
+        }
+
+        return false;
+    }
+
+    public void ending(List<String> bridge) {
+        int tryCount = bridgeGame.getTryCount();
+
+        GameResult gameResult = GameResult.getGameResult(success);
+
+        outputView.printEndingPhrase();
+        outputView.printMap(bridge, result);
+        outputView.printResult(gameResult, tryCount);
     }
 
     private List<String> move() {
@@ -43,7 +74,9 @@ public class BridgeController {
         MovingResultDto resultDto = bridgeGame.move(moving);
 
         completeness = resultDto.getCompleteness();
+        success = resultDto.getSuccess();
 
         return resultDto.getResult();
     }
+
 }
