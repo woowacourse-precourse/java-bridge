@@ -2,6 +2,9 @@ package bridge;
 
 // 여기에서만 readLine()을 사용할 것.
 
+import camp.nextstep.edu.missionutils.Console;
+import net.bytebuddy.pool.TypePool.Resolution.Illegal;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -11,7 +14,26 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        String rawData = Console.readLine();
+        try{
+            validateSize(rawData);
+            int bridgeSize = Integer.parseInt(rawData);
+            return bridgeSize;
+        }catch(Exception e){
+            throw new IllegalArgumentException();
+        }
+    }
+
+    /**
+     * 다리 길이 예외 검사
+     * @param rawData 아직 문자열 상태인 데이터
+     * @throws IllegalArgumentException 3보다 작거나 20보다 크면 예외 발생
+     */
+    private void validateSize(String rawData) throws IllegalArgumentException {
+        int rawSize = Integer.parseInt(rawData);
+        if(rawSize < 3 || rawSize > 20){
+            throw new IllegalArgumentException();
+        }
     }
 
     /**
