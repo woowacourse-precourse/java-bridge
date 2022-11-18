@@ -34,7 +34,7 @@ public class OutputView {
     }
 
 
-    private void lastIndexOutput(int result, StringBuilder upPrint, StringBuilder downPrint) {
+    private void lastIndexPrint(int result, StringBuilder upPrint, StringBuilder downPrint) {
         if (result == GAME_WIN.num() || result == GAME_CONTINUE.num()) {
             continuePrint(stage, upPrint, downPrint);
         }
@@ -53,7 +53,7 @@ public class OutputView {
             downPrint.append("   ");
         }
     }
-    private void addBar(StringBuilder upPrint, StringBuilder downPrint) {
+    private void addBarPrint(StringBuilder upPrint, StringBuilder downPrint) {
         upPrint.append("|");
         downPrint.append("|");
     }
@@ -68,25 +68,25 @@ public class OutputView {
             downPrint.append(" o ");
         }
     }
-    private void duringOutput(StringBuilder upPrint, StringBuilder downPrint) {
+    private void duringPrint(StringBuilder upPrint, StringBuilder downPrint) {
         for (int duringIndex = 0; duringIndex < stage; duringIndex++) {
             if (duringIndex == RESET_STAGE.num()) {
                 continuePrint(duringIndex, upPrint, downPrint);
             }
             if (duringIndex > RESET_STAGE.num()) {
-                addBar(upPrint, downPrint);
+                addBarPrint(upPrint, downPrint);
                 continuePrint(duringIndex, upPrint, downPrint);
             }
         }
     }
     private void makeMap(int result, StringBuilder upPrint, StringBuilder downPrint) {
         if (stage == RESET_STAGE.num()) {
-            lastIndexOutput(result, upPrint, downPrint);
+            lastIndexPrint(result, upPrint, downPrint);
         }
         if (stage > RESET_STAGE.num()) {
-            duringOutput(upPrint, downPrint);
-            addBar(upPrint,downPrint);
-            lastIndexOutput(result, upPrint, downPrint);
+            duringPrint(upPrint, downPrint);
+            addBarPrint(upPrint,downPrint);
+            lastIndexPrint(result, upPrint, downPrint);
         }
     }
 
