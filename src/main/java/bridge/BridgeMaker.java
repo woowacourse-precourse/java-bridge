@@ -32,8 +32,8 @@ public class BridgeMaker {
 
     private void addBridge(List<String> bridge, int randNumber) {
         if (randNumber == UP.getNumber())
-            bridge.add(UP.getUpName());
+            bridge.add(UP.getName());
         if (randNumber == DOWN.getNumber())
-            bridge.add(DOWN.getUpName());
+            bridge.add(DOWN.getName());
     }
 }

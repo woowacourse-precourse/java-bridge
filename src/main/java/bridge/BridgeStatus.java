@@ -16,7 +16,7 @@ public enum BridgeStatus {
         return number;
     }
 
-    public String getUpName() {
+    public String getName() {
         return name;
     }
 }
