@@ -8,4 +8,9 @@ public class InputController {
 		outputView.printRequestBridgeSize();
 		return inputView.readBridgeSize();
 	}
+
+	public String requestMove() {
+		outputView.printRequestUpDown();
+		return inputView.readMoving();
+	}
 }
