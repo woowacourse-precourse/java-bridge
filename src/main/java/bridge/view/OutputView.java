@@ -1,5 +1,7 @@
 package bridge.view;
 
+import java.util.List;
+
 public class OutputView {
     static final String START_GAME = "다리 건너기 게임을 시작합니다.";
     static final String INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
@@ -23,7 +25,15 @@ public class OutputView {
         System.out.println(INPUT_COMMAND);
     }
 
-    public void printMap() {
+    public void printMap(List<List<String>> bridgePattern) {
+        for (List<String> row: bridgePattern) {
+            System.out.println(rowFormat(row));
+        }
+    }
+
+    private String rowFormat(List<String> row) {
+        String joinedRow = String.join(" | ", row);
+        return "[ " + joinedRow + " ]";
     }
 
     public void printResult() {
