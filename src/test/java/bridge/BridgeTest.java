@@ -17,9 +17,9 @@ public class BridgeTest extends NsTest {
         Bridge bridge =new Bridge(newArrayList("U","U","D"));
         User user =new User();
         BridgeGame bridgeGame = new BridgeGame();
-        bridgeGame.move(bridge,user,"U");
+        bridgeGame.move("U");
         assertThat(user.getPosition()).isEqualTo(1);
-        bridgeGame.move(bridge,user,"D");
+        bridgeGame.move("D");
         assertThat(user.getResult()).isFalse();
     }
     @Test

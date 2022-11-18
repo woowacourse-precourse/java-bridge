@@ -1,47 +1,58 @@
 package bridge;
 
-import bridge.model.Bridge;
-import bridge.model.User;
+import bridge.view.InputConsole;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class GameLogic {
-    private static BridgeGame bridgeGame;
-    private static InputView inputView;
-    private static OutputView outputView;
-    private static User user;
-    private static Bridge bridge;
-    public GameLogic(){
-        inputView = new InputView(new InputConsole());
-        user = new User();
+    private InputView inputView;
+    private OutputView outputView;
+    private BridgeGame bridgeGame;
+    GameLogic(){
         bridgeGame = new BridgeGame();
+        inputView =new InputView(new InputConsole());
         outputView = new OutputView();
     }
-    public void start() {
+    public void start(){
         System.out.println("다리 건너기 게임을 시작합니다.");
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridge = new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
-        System.out.println(bridge.getBridgeList());
-        play();
+        int input = inputView.readBridgeSize();
+        bridgeGame.inputBridgeSize(input);
+        changeLine();
+        playOneGame();
     }
-
-    private static void play(){
-        if(endGame()){
-            restartLogic(inputView.readGameCommand());
+    private void playOneGame(){
+        String inputMove = inputView.readMoving();
+        bridgeGame.move(inputMove);
+        changeLine();
+        outputView.printMap(bridgeGame.getBridge(),bridgeGame.getUser());
+        changeLine();
+    }
+    private void isEnd(){
+        if(!bridgeGame.isEnd()) {
+            playOneGame();
             return;
         }
-        bridgeGame.move(bridge,user,inputView.readMoving());
-        outputView.printMap(bridge,user);
-        play();
-    }
-    private static void restartLogic(String input){
-        if(bridgeGame.retry(input)) {
-            user.resetUser();
-            play();
+        if(!bridgeGame.getUser().getResult()){
+            askRetry();
             return;
-        };
+        }
+        showResult();
+
     }
-    private static boolean endGame(){
-        return !user.getResult()|user.getPosition().equals(bridge.getBridgeSize());
+
+    private void askRetry(){
+        String inputRetry = inputView.readGameCommand();
+        bridgeGame.retry(inputRetry);
+        if(bridgeGame.getRetryInput()){
+            playOneGame();
+            return;
+        }
+        showResult();
+    }
+    private void showResult(){
+
+    }
+    private void changeLine(){
+        System.out.println();
     }
 }

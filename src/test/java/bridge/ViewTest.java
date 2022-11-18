@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.model.Bridge;
 import bridge.model.User;
+import bridge.view.Input;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
@@ -69,7 +70,7 @@ public class ViewTest extends NsTest {
         Application.main(new String[]{});
     }
 
-    static class TestInput implements Input{
+    static class TestInput implements Input {
         private Integer inputInt;
         private String inputStr;
         TestInput(Integer inputInt,String inputStr){
