@@ -10,8 +10,13 @@ public class InputView {
     private final Exception exception = new Exception();
 
     public int readBridgeSize() {
-        String input = Console.readLine();
-        validateBridgeSize(input);
+        String input;
+        outputView.printGameStart();
+        do {
+            outputView.printGetBridgeSize();
+            input = Console.readLine();
+        } while (!validateBridgeSize(input));
+
         return Integer.parseInt(input);
     }
 
@@ -30,16 +35,24 @@ public class InputView {
     }
 
     // 검증 메소드
-    private void validateBridgeSize(String input) {
-        int bridgeSize = 0;
+    private Boolean validateBridgeSize(String input) {
         try {
-            bridgeSize = Integer.parseInt(input);
-        } catch (NumberFormatException e){
-            exception.exceptionBridgeSize();
+            if (!isNumeric(input) ||
+                    (Integer.parseInt(input) < 3 || Integer.parseInt(input) > 20)){
+                throw new IllegalArgumentException();
+            }
+            return true;
+        } catch (IllegalArgumentException e){
+            return exception.exceptionBridgeSize();
         }
+    }
 
-        if (bridgeSize < 3 || bridgeSize > 20){
-            exception.exceptionBridgeSize();
+    private Boolean isNumeric(String input) {
+        try {
+            Integer.parseInt(input);
+            return true;
+        } catch (NumberFormatException e){
+            return false;
         }
     }
 }
