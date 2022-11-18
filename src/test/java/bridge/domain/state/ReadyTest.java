@@ -32,14 +32,6 @@ class ReadyTest {
     }
     
     @Test
-    @DisplayName("예외 처리 : Ready 상태에서 현재 상태를 알리려 할 경우")
-    void stateInformation() {
-        assertThatIllegalStateException()
-                .isThrownBy(() -> upperReady.state())
-                .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
-    }
-    
-    @Test
     @DisplayName("예외 처리 : 재시도 여부 선택 상태를 판별하는 기능 사용 시")
     void isRetry() {
         assertThatIllegalStateException()

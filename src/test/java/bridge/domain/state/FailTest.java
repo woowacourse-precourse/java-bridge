@@ -2,7 +2,6 @@ package bridge.domain.state;
 
 import bridge.constant.ErrorMessageConstant;
 import bridge.domain.BridgeTest;
-import bridge.domain.MoveResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,12 +23,6 @@ class FailTest {
         assertThatIllegalStateException()
                 .isThrownBy(() -> fail.move(2, "U"))
                 .withMessageStartingWith(ErrorMessageConstant.ERROR_MESSAGE);
-    }
-    
-    @Test
-    @DisplayName("Fail 상태 반환하기")
-    void stateInformation() {
-        assertThat(fail.state()).isEqualTo(MoveResult.FAIL);
     }
     
     @Test

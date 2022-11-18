@@ -1,6 +1,5 @@
 package bridge.view;
 
-import bridge.domain.MoveResult;
 import bridge.dto.GameResultDTO;
 
 import java.util.List;
@@ -18,15 +17,11 @@ public class OutputView {
     private static final String RESULT_GUIDANCE_MESSAGE = "\n최종 게임 결과";
     private static final String WHETHER_GAME_SUCCESS_MESSAGE_FORM = "\n게임 성공 여부: %s%n";
     private static final String NUMBER_OF_TRY_MESSAGE_FORM = "총 시도한 횟수: %s%n";
-    private static final String SUCCESS_MESSAGE = "성공";
-    private static final String FAIL_MESSAGE = "실패";
     private static final String NEW_LINE_DELIMITER = "\n";
     private static final String VERTICAL_DELIMITER = " | ";
     private static final String SQUARE_BRACKETS_PREFIX = "[ ";
     private static final String SQUARE_BRACKETS_SUFFIX = " ]";
     private static final String SPACE_DISPLAY = " ";
-    private static final String PLACES_TO_GO_DISPLAY = "O";
-    private static final String PLACES_NOT_TO_GO_DISPLAY = "X";
     private static final int BRIDGE_LINE_SIZE = 2;
     private static final int NUMBER_OF_PLACES_NOT_TO_GO = 0;
     
@@ -72,7 +67,7 @@ public class OutputView {
             return SPACE_DISPLAY;
         }
         
-        return parseMovingResultDisplay(moveResults(gameResultDTO).get(countOfMoving));
+        return currentMoveResult(gameResultDTO, countOfMoving).getMovingResult();
     }
     
     private String currentMoving(final GameResultDTO gameResultDTO, final int countOfMoving) {
@@ -87,16 +82,12 @@ public class OutputView {
         return (currentMoving.charAt(0) + lineIndex) % 2 == NUMBER_OF_PLACES_NOT_TO_GO;
     }
     
-    private List<MoveResult> moveResults(final GameResultDTO gameResultDTO) {
-        return gameResultDTO.getMoveResults();
+    private MoveResultDisplay currentMoveResult(final GameResultDTO gameResultDTO, final int countOfMoving) {
+        return moveResults(gameResultDTO).get(countOfMoving);
     }
     
-    private String parseMovingResultDisplay(final MoveResult moveResult) {
-        if (moveResult.isSuccess()) {
-            return PLACES_TO_GO_DISPLAY;
-        }
-        
-        return PLACES_NOT_TO_GO_DISPLAY;
+    private List<MoveResultDisplay> moveResults(final GameResultDTO gameResultDTO) {
+        return gameResultDTO.getMoveResults();
     }
     
     public void printGameCommandInputMessage() {
@@ -125,14 +116,10 @@ public class OutputView {
     }
     
     private String whetherGameSuccess(final GameResultDTO gameResultDTO) {
-        if (lastMovingResult(gameResultDTO).isSuccess()) {
-            return SUCCESS_MESSAGE;
-        }
-        
-        return FAIL_MESSAGE;
+        return lastMovingResult(gameResultDTO).getGameResult();
     }
     
-    private MoveResult lastMovingResult(final GameResultDTO gameResultDTO) {
+    private MoveResultDisplay lastMovingResult(final GameResultDTO gameResultDTO) {
         return moveResults(gameResultDTO).get(countOfMoving(gameResultDTO) - 1);
     }
     

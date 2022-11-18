@@ -4,6 +4,7 @@ import bridge.domain.state.Ready;
 import bridge.domain.state.State;
 import bridge.dto.MovingDTO;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -61,10 +62,8 @@ public class MoveResultStates {
         return states.isEmpty();
     }
     
-    public List<MoveResult> moveResult() {
-        return states.stream()
-                .map(State::state)
-                .collect(Collectors.toUnmodifiableList());
+    public List<State> states() {
+        return Collections.unmodifiableList(states);
     }
     
     public List<String> movings() {
