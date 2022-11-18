@@ -1,8 +1,10 @@
 package bridge.controller;
 
 import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.Bridge;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeSize;
+import bridge.domain.Square;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -21,5 +23,9 @@ public class BridgeGameController {
         BridgeRandomNumberGenerator generator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker =  new BridgeMaker(generator);
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize.getSize());
+
+        String move = inputView.readMoving();
+        int position = 0;
+        Square square = new Square(position, move);
     }
 }
