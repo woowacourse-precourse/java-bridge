@@ -13,6 +13,15 @@ public enum Direction {
         this.direction = direction;
     }
 
+    public static String getDirection(int value) {
+        for (Direction direction : Direction.values()) {
+            if (direction.getValue() == value) {
+                return direction.getDirection();
+            }
+        }
+        return null;
+    }
+
     public int getValue() {
         return value;
     }
