@@ -19,7 +19,13 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String url = Console.readLine();
+
+         if(url.length() == 1)
+             if(url.equals("U") || url.equals("R"))
+                 return url;
+
+         throw new IllegalArgumentException("U 또는 R을 입력해주세요");
     }
 
     /**
