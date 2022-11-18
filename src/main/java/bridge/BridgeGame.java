@@ -9,6 +9,7 @@ public class BridgeGame {
     BridgeMaker bridgeMaker=new BridgeMaker(numberGenerator);
     public void start(){
         OutputView.printStartGame();
+        OutputView.printRequireSize();
         inputBridgeSize=InputView.readBridgeSize();
         bridgeMaker.startMakeBridge(inputBridgeSize);
     }
