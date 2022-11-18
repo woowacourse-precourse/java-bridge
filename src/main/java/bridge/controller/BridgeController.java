@@ -1,10 +1,10 @@
 package bridge.controller;
 
-import bridge.view.InputView;
+import bridge.service.BridgeService;
 
 public class BridgeController {
 
-    public static void initBridgeSize(){
-        InputView.readBridgeSize();
+    public static void initBridgeSize() {
+        BridgeService.getInitBridgeSize();
     }
 }
