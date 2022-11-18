@@ -4,12 +4,6 @@ import bridge.view.ErrorView;
 
 public class BridgeException {
 
-    public void invalidMovingInputValue(String moveDirection) {
-        if (moveDirection != "U" || moveDirection != "D") {
-            throw new IllegalArgumentException(ErrorView.error + ErrorView.INVALID_MOVING_DIRECTION.getMessage());
-        }
-    }
-
     public void invalidLengthInputValue(String bridgeLength) {
         if (invalidFormat(bridgeLength)) {
             throw new IllegalArgumentException(ErrorView.error + ErrorView.INVALID_BRIDGE_LENGTH.getMessage());
@@ -29,5 +23,17 @@ public class BridgeException {
 
     private boolean outOfRange(int bridgeLength) {
         return bridgeLength < 3 || bridgeLength > 20;
+    }
+
+    public void invalidMovingInputValue(String moveDirection) {
+        if (moveDirection != "U" || moveDirection != "D") {
+            throw new IllegalArgumentException(ErrorView.error + ErrorView.INVALID_MOVING_DIRECTION.getMessage());
+        }
+    }
+
+    public void invalidRetryGame(String retryGame) {
+        if (retryGame != "R" || retryGame != "Q") {
+            throw new IllegalArgumentException(ErrorView.error + ErrorView.INVALID_MOVING_DIRECTION.getMessage());
+        }
     }
 }
