@@ -24,7 +24,7 @@ public class BridgeGame {
             if (!isCorrectChoice()) {
                 flag = retry();
             }
-            checkApproachEnd();
+            isApproachEndPoint();
         }
         finishGame();
     }
@@ -90,8 +90,8 @@ public class BridgeGame {
         return false;
     }
 
-    private void checkApproachEnd() {
-        if (answerBridge.isApproachEnd(user.getChoices())) {
+    private void isApproachEndPoint() {
+        if (answerBridge.isApproachEndPoint(user)) {
             user.doSuccess();
         }
     }

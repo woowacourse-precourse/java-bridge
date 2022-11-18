@@ -33,7 +33,8 @@ public class AnswerBridge {
         return answerBridge.get(lastStep).equals(lastChoice);
     }
 
-    public boolean isApproachEnd(final List<String> userChoices) {
+    public boolean isApproachEndPoint(final User user) {
+        List<String> userChoices = user.getChoices();
         if (userChoices.size() == answerBridge.size()) {
             if (isSame(userChoices.get(userChoices.size()-1), answerBridge.get(answerBridge.size()-1))) {
                 return true;

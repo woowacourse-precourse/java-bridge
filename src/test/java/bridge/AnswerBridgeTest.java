@@ -44,7 +44,7 @@ public class AnswerBridgeTest {
         user.addChoice("U");
         user.addChoice("D");
         user.addChoice("U");
-        boolean result = answerBridge.isApproachEnd(user.getChoices());
+        boolean result = answerBridge.isApproachEndPoint(user.getChoices());
         assertThat(result).isTrue();
     }
 
