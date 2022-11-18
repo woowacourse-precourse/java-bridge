@@ -17,11 +17,15 @@ public class GameCharacter {
         return where;
     }
 
-    public int showNextArea(){
+    public int showNextArea() {
         return where + MOVE;
     }
 
     public String showNextDestination() {
         return nextMove;
+    }
+
+    public void reset() {
+        where = -1;
     }
 }
