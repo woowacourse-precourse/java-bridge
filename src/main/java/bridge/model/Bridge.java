@@ -5,17 +5,26 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.util.Errors;
 import bridge.util.Rules;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
-    private final List<String> bridge;
+    private final List<Plate> bridge;
 
     public Bridge(int bridgeLength) {
         validateLength(bridgeLength);
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         List<String> makeBridge = bridgeMaker.makeBridge(bridgeLength);
-        this.bridge = makeBridge;
+        this.bridge = bridgeStringToPlate(makeBridge);
+    }
+
+    private List<Plate> bridgeStringToPlate(List<String> bridge) {
+        List<Plate> newBridge = new ArrayList<>();
+        for (String symbol : bridge) {
+            newBridge.add(Plate.findBySymbol(symbol));
+        }
+        return newBridge;
     }
 
     private void validateLength(int bridgeLength) {
@@ -29,7 +38,7 @@ public class Bridge {
                 || (bridgeLength > Rules.BRIDGE_MAX_LENGTH);
     }
 
-    public boolean possibleNextStep() {
+    public boolean possibleNextStep(int bridgeIndex, String inputPlate) {
         return false;
     }
 }

@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.model.Plate;
 import bridge.util.Rules;
 
 import java.util.ArrayList;
@@ -31,9 +32,8 @@ public class BridgeMaker {
     }
 
     private String decidePlate(int zeroOrOne) {
-        if (zeroOrOne == Rules.PLATE_UP_PLATE) {
-            return "U";
-        }
-        return "D";
+        return Plate
+                .findByRandomNumber(zeroOrOne)
+                .getSymbol();
     }
 }
