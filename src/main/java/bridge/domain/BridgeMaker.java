@@ -1,6 +1,8 @@
-package bridge.service;
+package bridge.domain;
 
 import bridge.BridgeNumberGenerator;
+import bridge.model.Direction;
+import bridge.model.ErrorMessage;
 import java.util.List;
 
 /**
@@ -21,4 +23,21 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         return null;
     }
+
+    public int getSizeInteger(String size){
+        try{
+            return Integer.parseInt(size);
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMERIC_VALUE.getOutput());
+        }
+
+    }
+
+    private void isValidRange(int size){
+        if(size < 3 || size > 20){
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMERIC_VALUE.getOutput());
+        }
+    }
+
+
 }
