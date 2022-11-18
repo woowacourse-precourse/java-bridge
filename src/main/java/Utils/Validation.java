@@ -6,4 +6,10 @@ public class Validation {
             Error.generate(Message.SIZE);
         }
     }
+
+    public static void moving(String moving) {
+        if (!moving.equals("U") && !moving.equals("D")) {
+            Error.generate(Message.MOVE);
+        }
+    }
 }
