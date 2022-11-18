@@ -1,4 +1,10 @@
-package bridge;
+package bridge.controller;
+
+import bridge.domain.BridgeGame;
+import bridge.domain.BridgeRandomNumberGenerator;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+import java.util.List;
 
 public class BridgeController {
     private final InputView inputView;
@@ -15,13 +21,14 @@ public class BridgeController {
 
     public void run() {
         int bridgeSize = inputView.readBridgeSize();
+        boolean completeness = false;
 
         bridgeGame.initGame(bridgeSize);
 
-        move();
+        outputView.printMap(bridgeGame.getBridge(), move());
     }
 
-    private boolean move() {
+    private List<String> move() {
         String moving = inputView.readMoving();
 
         return bridgeGame.move(moving);
