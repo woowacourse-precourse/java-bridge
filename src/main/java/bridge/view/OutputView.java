@@ -68,7 +68,17 @@ public class OutputView {
             downPrint.append(" o ");
         }
     }
-
+    private void duringOutput(StringBuilder upPrint, StringBuilder downPrint) {
+        for (int duringIndex = 0; duringIndex < stage; duringIndex++) {
+            if (duringIndex == RESET_STAGE.num()) {
+                continuePrint(duringIndex, upPrint, downPrint);
+            }
+            if (duringIndex > RESET_STAGE.num()) {
+                addBar(upPrint, downPrint);
+                continuePrint(duringIndex, upPrint, downPrint);
+            }
+        }
+    }
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
