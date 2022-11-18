@@ -3,6 +3,8 @@ package bridge.domain;
 import org.assertj.core.api.InstanceOfAssertFactories;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -11,29 +13,21 @@ import static org.assertj.core.api.Assertions.*;
 
 class BridgeTest {
 
-    List<String> bridge = List.of("U", "U", "U", "U", "U", "U");
+    List<String> bridgeMap = List.of("U", "U", "U", "U", "U", "U");
+    Bridge bridge = new Bridge(bridgeMap);
 
     @DisplayName("생성된 다리 길이는 지정된 길이와 같다.")
     @Test
     void 다리_길이는_지정된_길이() {
-        int bridgeSize = 6;
-        Bridge bridge = new Bridge(this.bridge);
         assertThat(bridge)
                 .extracting("bridge", InstanceOfAssertFactories.LIST)
-                .hasSize(bridgeSize);
+                .hasSize(bridgeMap.size());
     }
 
-    @DisplayName("다리를 이동할 수 있다면 true")
-    @Test
-    void 이동_가능하면_true() {
-        Bridge bridge = new Bridge(this.bridge);
-        assertThat(bridge.canMove(0, "U")).isTrue();
-    }
-
-    @DisplayName("다리를 이동할 수 없다면 false")
-    @Test
-    void 이동이_불가능하면_false() {
-        Bridge bridge = new Bridge(this.bridge);
-        assertThat(bridge.canMove(0, "D")).isFalse();
+    @DisplayName("다리를 이동할 수 있는지 판달할 수 있다.")
+    @ValueSource(strings = {"U", "D"})
+    @ParameterizedTest
+    void 이동_가능_판단(String spaceToMove) {
+        assertThat(bridge.canMove(0, spaceToMove)).isEqualTo(bridgeMap.get(0).equals(spaceToMove));
     }
 }
