@@ -60,5 +60,23 @@ class BridgeSizeInputValidatorTest {
                 .withMessageContaining("[ERROR]");
     }
 
+    @Order(3)
+    @DisplayName("길이 범위 검사")
+    @ParameterizedTest(name ="{displayName} 입력값({index}) : {0}")
+    @ValueSource(strings = {
+            "-1",
+            "2",
+            "21",
+            "99"
+            })
+    void validateRange(String inputValue) {
+    assertSimpleTest(() ->
+                assertThatThrownBy(() -> sizeInputValidator.validateRange(inputValue))
+                .isInstanceOf(IllegalArgumentException.class)
+    );
+    assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> sizeInputValidator.validateRange(inputValue))
+                .withMessage(Errors.OUT_OF_BOUND.message());
+    }
 
 }
