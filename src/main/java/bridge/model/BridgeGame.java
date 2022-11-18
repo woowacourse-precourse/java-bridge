@@ -22,8 +22,10 @@ public class BridgeGame {
 
     public void move(String userMoving, String bridgeStage) {
         currentPositions.add(Stage.judge(userMoving, bridgeStage));
-        if (currentPositions.get(currentPositions.size() - 1).contains(GameForm.WRONG_CODE)) { //이동마다 x가 포함됐는지 확인
-            outcome = GameForm.FAILS;
+
+        //이동할 때마다 현재 x가 포함됐는지 확인
+        if (currentPositions.get(currentPositions.size() - 1).contains(GameForm.WRONG_MARK)) {
+            outcome = GameForm.FAILS_MARK;
         }
     }
 
@@ -33,17 +35,18 @@ public class BridgeGame {
         outcome = "";
     }
 
-    public boolean inProgress(int bridgeSize) {
+    public boolean isInProgress(int bridgeSize) {
         if (currentPositions.size() == bridgeSize) {
-            outcome = GameForm.SUCCESS;
+            outcome = GameForm.SUCCESS_MARK;
             return false;
         }
         return true;
     }
 
     public boolean isFail() {
-        return outcome.equals(GameForm.FAILS);
+        return outcome.equals(GameForm.FAILS_MARK);
     }
+
 
     public int nextIndex() {
         return currentPositions.size();

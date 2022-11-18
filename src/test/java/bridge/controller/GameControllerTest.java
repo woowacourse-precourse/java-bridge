@@ -9,7 +9,7 @@ import java.util.List;
 
 public class GameControllerTest extends NsTest {
 
-    GameController gameController = new GameController();
+    BridgeGameController gameController = new BridgeGameController();
 
     @DisplayName("U, D, U, U, U 다리")
     @Test

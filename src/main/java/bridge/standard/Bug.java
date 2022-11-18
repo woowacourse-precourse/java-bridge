@@ -5,8 +5,8 @@ public class Bug {
     public static final String ERROR_MESSAGE = "[ERROR] ";
 
     public static final String SIZE_PATTERN = "^[0-9]*$";
-    public static final String MOVING_PATTERN = "[" + GameForm.UP_VALUE + GameForm.DOWN_VALUE + "]";
-    public static final String GAME_COMMAND_PATTERN = "[" + GameForm.RESTART_VALUE + GameForm.QUIT_VALUE + "]";
+    public static final String MOVING_PATTERN = "[" + GameForm.UP_CODE + GameForm.DOWN_CODE + "]";
+    public static final String GAME_COMMAND_PATTERN = "[" + GameForm.RESTART_CODE + GameForm.QUIT_CODE + "]";
 
     public static final String INPUT_ONLY_NATURAL_NUMBER = "다리 길이는 자연수여야 합니다.";
     public static final String INPUT_BETWEEN_THREE_AND_TWENTY = "다리 길이는 3부터 20 사이의 숫자여야 합니다.";
