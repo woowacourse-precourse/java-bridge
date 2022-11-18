@@ -18,7 +18,7 @@ public class PassingPositions {
         return passingPositions;
     }
 
-    public void addPassingPositions(int pos, String answer) {
-        passingPositions.add(new Position(pos, answer));
+    public void addPassingPositions(Position position) {
+        passingPositions.add(position);
     }
 }

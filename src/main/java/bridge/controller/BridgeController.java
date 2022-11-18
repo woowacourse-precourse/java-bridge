@@ -9,6 +9,7 @@ import bridge.domain.Direction;
 import bridge.domain.GameCommand;
 import bridge.domain.Length;
 import bridge.domain.PassingPositions;
+import bridge.domain.Position;
 import bridge.domain.Result;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -34,8 +35,9 @@ public class BridgeController {
         List<String> bridgeNumbers = bridgeMaker.makeBridge(size);
 
         Bridge bridge = new Bridge(bridgeNumbers);
-
-        System.out.println(bridge.getDirections());
+        bridge.getDirections().stream()
+                .map(Direction::getDirection)
+                .forEach(System.out::println);
 
         BridgeGame bridgeGame = new BridgeGame();
         boolean isQuit = false;
@@ -64,7 +66,9 @@ public class BridgeController {
                     }
                 } while(direction == null);
 
-                bridgeGame.move(pos, direction.getDirection(), passingPositions);
+
+                Position position = new Position(pos, direction);
+                bridgeGame.move(position, passingPositions);
                 result = new Result(bridge, passingPositions);
 
             } while (!OutputView.printMap(result).contains("X"));

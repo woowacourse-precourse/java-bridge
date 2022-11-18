@@ -5,15 +5,15 @@ import java.util.Map;
 
 public class Position {
 
-    private final Map<Integer, String> position = new HashMap<>();
+    private final Map<Integer, Direction> position = new HashMap<>();
     private final int distance;
 
-    public Position(int distance, String answer) {
+    public Position(int distance, Direction answer) {
         this.distance = distance;
         position.put(distance, answer);
     }
 
-    public String getDirection() { // TODO: getter 사용 자제... 메시지를 보내기
+    public Direction getDirection() { // TODO: getter 사용 자제... 메시지를 보내기
         return position.get(distance);
     }
 
