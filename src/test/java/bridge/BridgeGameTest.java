@@ -25,4 +25,13 @@ public class BridgeGameTest {
         assertThatThrownBy(
                 () -> bridgeGame.move("u")).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("종료 재시작 선택 시 잘못된 입력값인 경우")
+    @Test
+    void commandByInvaildInput() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "D"));
+        ;
+        assertThatThrownBy(
+                () -> bridgeGame.retry("q")).isInstanceOf(IllegalArgumentException.class);
+    }
 }
