@@ -40,13 +40,26 @@ public class Util {
         return false;
     }
 
-    //1, 0 입력받고 U, D 리턴
+    //1, 0 입력받고 U, D 리턴(어디론가 이관해야하는가? 생각)
     public static String convertBridgeNumberGenerator(int number){
         if (number == 1){
             return "U";
         }
 
         return "D";
+    }
+
+    //문자열인 숫자열을 정수로 바꿔준다
+    public static Integer stringToInteger(String input) throws IllegalArgumentException {
+        try{
+            ExceptionBasket.inputIsNotNumberException(input);
+            ExceptionBasket.inputIsNotRangeException(input);
+        } catch(IllegalArgumentException iae){
+            throw new IllegalArgumentException(iae);
+        }
+
+        Integer convertInput = Integer.valueOf(input);
+        return convertInput;
     }
 
 }
