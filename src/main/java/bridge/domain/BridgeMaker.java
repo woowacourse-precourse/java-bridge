@@ -26,7 +26,7 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         validateSize(size);
         return Stream.generate(bridgeNumberGenerator::generate)
-                .map(BridgeCode::numberToCode)
+                .map(BridgeUnit::numberToCode)
                 .limit(size)
                 .collect(Collectors.toList());
     }
