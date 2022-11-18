@@ -44,14 +44,20 @@ public class BridgeGame {
     }
     private void addResult(String status){
         if(bridgeRepository.getSelectMove().getMove().equals("U")){
-            bridgeRepository.addUpperResult(" "+status+" ");
-            bridgeRepository.addLowerResult("   ");
+            addUpperResult(status);
         }
         if(bridgeRepository.getSelectMove().getMove().equals("D")) {
-            bridgeRepository.addUpperResult("   ");
-            bridgeRepository.addLowerResult(" "+status+" ");
+            addLowerResult(status);
         }
         addCommonResult();
+    }
+    private void addUpperResult(String status){
+        bridgeRepository.addUpperResult(" "+status+" ");
+        bridgeRepository.addLowerResult("   ");
+    }
+    private void addLowerResult(String status){
+        bridgeRepository.addUpperResult("   ");
+        bridgeRepository.addLowerResult(" "+status+" ");
     }
     private void addCommonResult(){
         bridgeRepository.addUpperResult("|");
