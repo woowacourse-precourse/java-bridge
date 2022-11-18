@@ -17,27 +17,17 @@ public class BridgeGame {
 
     public void run() {
         OutputView.printStart();
+        makeAnswerBridge();
+
         boolean flag = true;
         while (flag) {
-            flag = makeAnswerBridge();
-        }
+            move();
 
-        flag = true;
-        while (flag) {
-            flag = move();
-
-            if (!answerBridge.isCorrect(user)) {
+            if (!checkCorrect(answerBridge, user)) {
                 flag = retry();
-
-                if (flag) {
-                    resetGame();
-                    continue;
-                }
-                break;
             }
 
-            if (answerBridge.isApproachEnd(user.getChoices())) {
-                user.doSuccess();
+            if (flag && checkApproachEnd(answerBridge, user)) {
                 break;
             }
         }
@@ -45,41 +35,66 @@ public class BridgeGame {
         OutputView.printResult(user, answerBridge.compareTo(user));
     }
 
-    private boolean makeAnswerBridge() {
-        try {
-            int bridgeSize = InputView.getInputBridgeSize();
-            List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-            answerBridge = new AnswerBridge(bridge);
-        } catch (IllegalArgumentException illegalArgumentException) {
-            OutputView.printError(illegalArgumentException);
+    private boolean checkApproachEnd(AnswerBridge answerBridge, User user) {
+        if (answerBridge.isApproachEnd(user.getChoices())) {
+            user.doSuccess();
             return true;
         }
         return false;
     }
 
-    public boolean move() {
-        try {
-            String choice = InputView.getInputChoice();
-            user.addChoice(choice);
-            OutputView.printMap(user.getChoices(), answerBridge.compareTo(user));
-        } catch (IllegalArgumentException illegalArgumentException) {
-            OutputView.printError(illegalArgumentException);
+    private boolean checkCorrect(AnswerBridge answerBridge, User user) {
+        if (answerBridge.isCorrect(user)) {
             return true;
         }
         return false;
     }
 
     public boolean retry() {
-        try {
-            String retryCommand = InputView.getInputRetryCommand();
-            if (retryCommand.equals("R")) {
-                return true;
+        String retryCommand;
+        while (true) {
+            try {
+                retryCommand = InputView.getInputRetryCommand();
+                break;
+            } catch (IllegalArgumentException illegalArgumentException) {
+                OutputView.printError(illegalArgumentException);
             }
-        } catch (IllegalArgumentException illegalArgumentException) {
-            OutputView.printError(illegalArgumentException);
+        }
+        return isRetry(retryCommand);
+    }
+
+    private boolean isRetry(String retryCommand) {
+        if (retryCommand.equals("R")) {
+            resetGame();
             return true;
         }
         return false;
+    }
+
+    private void makeAnswerBridge() {
+        while (true) {
+            try {
+                int bridgeSize = InputView.getInputBridgeSize();
+                List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+                answerBridge = new AnswerBridge(bridge);
+                break;
+            } catch (IllegalArgumentException illegalArgumentException) {
+                OutputView.printError(illegalArgumentException);
+            }
+        }
+    }
+
+    public void move() {
+        while (true) {
+            try {
+                String choice = InputView.getInputChoice();
+                user.addChoice(choice);
+                OutputView.printMap(user.getChoices(), answerBridge.compareTo(user));
+                break;
+            } catch (IllegalArgumentException illegalArgumentException) {
+                OutputView.printError(illegalArgumentException);
+            }
+        }
     }
 
     private void resetGame() {
