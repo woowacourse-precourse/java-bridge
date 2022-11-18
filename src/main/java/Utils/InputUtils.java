@@ -6,7 +6,7 @@ import bridge.EnumCollections.GameRestartType;
 
 public class InputUtils {
 
-    public boolean isDigit(String input) {
+    public static boolean isDigit(String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException exception) {
@@ -15,22 +15,22 @@ public class InputUtils {
         return true;
     }
 
-    public boolean isValidRangeDigit(String input) {
+    public static boolean isValidRangeDigit(String input) {
         int length = Integer.parseInt(input);
         return length >= BridgeLengthType.MIN.getLength() && length <= BridgeLengthType.MAX.getLength();
     }
 
 
-    public boolean isValidBridgePosition(String input) {
+    public static boolean isValidBridgePosition(String input) {
         return BridgeType.isPosition(input);
     }
 
-    public boolean isValidGameRestartInput(String input) {
+    public static boolean isValidGameRestartInput(String input) {
         char characterInput = input.charAt(0);
         return GameRestartType.isRestartStatus(characterInput);
     }
 
-    public boolean isCharacter(String input) {
+    public static boolean isCharacter(String input) {
         return input.length() == 1;
     }
 }
