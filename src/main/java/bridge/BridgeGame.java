@@ -7,14 +7,16 @@ import bridge.domain.Bridge;
  */
 public class BridgeGame {
 
-    private final BridgeMaker bridgeMaker;
-    private final BridgeNumberGenerator bridgeNumberGenerator;
     private final Bridge bridge;
+    private final int bridgeSize;
+    private int position = 0;
 
     public BridgeGame(int size) {
-        this.bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        this.bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+
         this.bridge = new Bridge(bridgeMaker.makeBridge(size));
+        this.bridgeSize = size;
     }
 
     /**
@@ -22,7 +24,11 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public boolean move(String userInput) {
+        validateMovingInput(userInput);
+        boolean isSame = bridge.compare(position, userInput);
+        position++;
+        return isSame;
     }
 
     /**
@@ -31,5 +37,11 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+    }
+
+    private void validateMovingInput(String input) {
+        if (!input.equals(Bridge.down) && !input.equals(Bridge.up)) {
+            throw new IllegalArgumentException("다리는 위, 아래 두 칸만으로 이루어져 있습니다.");
+        }
     }
 }
