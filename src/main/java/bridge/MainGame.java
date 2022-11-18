@@ -33,8 +33,8 @@ public class MainGame {
 
     public void checkAnswer() {
         if (restart && bridgeGame.compareBridgeLength()) {
+            EndGame();
             restart = false;
-            //정답
             return;
         }
         if (!restart) {
@@ -53,11 +53,12 @@ public class MainGame {
             restart = true;
             return;
         }
-        lostGame();
+        EndGame();
     }
 
-    public void lostGame() {
+    public void EndGame() {
         outputView.printResult(bridgeGame.getUserBridge(), restart, countGame);
     }
+
 
 }
