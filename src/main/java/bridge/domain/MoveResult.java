@@ -20,6 +20,11 @@ public class MoveResult {
             .forEach(cellType -> put(cellType, new ArrayList<>()));
     }};
 
+    public MoveResult() {
+        this.isSuccess = false;
+        this.tryCount = 1;
+    }
+
     public void success(BridgeCellType cellType) {
         this.isSuccess = true;
         moveHistory.get(cellType).add(CAN_MOVE_MARK);
