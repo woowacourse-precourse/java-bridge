@@ -41,4 +41,11 @@ public class BridgeGame {
         }
         return " ";
     }
+
+    private String failureInTop(String movement) {
+        if (movement.equals("U")) {
+            return "X";
+        }
+        return " ";
+    }
 }
