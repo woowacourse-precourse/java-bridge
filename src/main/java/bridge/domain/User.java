@@ -14,4 +14,8 @@ public class User {
         return userMoves.size();
     }
 
+    public String getLastMove() {
+        int lastIndex = getMoveCount() -1;
+        return userMoves.get(lastIndex);
+    }
 }
