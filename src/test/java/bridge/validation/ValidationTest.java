@@ -20,4 +20,12 @@ class ValidationTest {
             .hasMessageContaining(ERROR_MESSAGE);
     }
 
+    @DisplayName("다리의 길이가 3이상 20이하가 아니면 에러가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"21", "2", "0", "-1"})
+    void createBridgeLengthOutOfRange3To20(String bridgeLenght) {
+        assertThatThrownBy(() -> Validation.checkBridgeLengthRange3To20(bridgeLenght))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(ERROR_MESSAGE);
+    }
 }
