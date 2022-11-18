@@ -27,6 +27,11 @@ public enum Direction {
                 .get();
     }
 
+    public static boolean hasInputLetter(String moving) {
+        return Arrays.stream(values())
+                .anyMatch(direction -> direction.inputLetter.equals(moving));
+    }
+
     public String getInputLetter() {
         return inputLetter;
     }

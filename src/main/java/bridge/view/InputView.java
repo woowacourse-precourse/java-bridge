@@ -65,7 +65,7 @@ public class InputView {
     }
 
     private String validateMoving(String moving) {
-        if ("U".equals(moving) || "D".equals(moving)) {
+        if (Direction.hasInputLetter(moving)) {
             return moving;
         }
         throw new IllegalArgumentException(" 이동할 칸은 위: U, 아래: D로 입력해야 합니다.");
