@@ -19,7 +19,7 @@ public class BridgeGame {
     private final List<String> bridge;
     private final List<Movement> movements;
 
-    private StringBuilder upperStatus, lowerStatus;
+    private StringBuilder upperMap, lowerMap;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
@@ -49,25 +49,25 @@ public class BridgeGame {
         }
     }
 
-    public String createMovementStatus() {
-        upperStatus = buildEmptyStatus();
-        lowerStatus = buildEmptyStatus();
+    public String createMovementMap() {
+        upperMap = buildEmptyMap();
+        lowerMap = buildEmptyMap();
         addMoveableStatus();
-        return upperStatus.append("\n").append(lowerStatus).append("\n").toString();
+        return upperMap.append("\n").append(lowerMap).append("\n").toString();
     }
 
-    private StringBuilder buildEmptyStatus() {
-        int statusSize = movements.size();
-        return new StringBuilder("[" + "   |".repeat(statusSize - 1) + "   ]");
+    private StringBuilder buildEmptyMap() {
+        int mapSize = movements.size();
+        return new StringBuilder("[" + "   |".repeat(mapSize - 1) + "   ]");
     }
 
     private void addMoveableStatus() {
         IntStream.range(0, movements.size()).forEach(index -> {
             Movement movement = movements.get(index);
             if (movement.direction().equals("U")) {
-                upperStatus.setCharAt(index * 4 + 2, movement.moveable());
+                upperMap.setCharAt(index * 4 + 2, movement.moveable());
             } else if (movement.direction().equals("D")) {
-                lowerStatus.setCharAt(index * 4 + 2, movement.moveable());
+                lowerMap.setCharAt(index * 4 + 2, movement.moveable());
             }
         });
     }

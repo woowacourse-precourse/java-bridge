@@ -29,12 +29,12 @@ class BridgeGameTest {
 
     @Test
     @DisplayName("움직임에 대한 현재 상태를 생성한다.")
-    void creatingMovementStatus() {
+    void creatingMovementMap() {
         bridgeGame.move("U");
         bridgeGame.move("D");
         bridgeGame.move("U");
-        String movementStatus = bridgeGame.createMovementStatus();
-        assertThat(movementStatus).isEqualTo("[ O |   | X ]\n[   | O |   ]\n");
+        String movementMap = bridgeGame.createMovementMap();
+        assertThat(movementMap).isEqualTo("[ O |   | X ]\n[   | O |   ]\n");
     }
 
     @Test
@@ -51,7 +51,7 @@ class BridgeGameTest {
     @DisplayName("게임을 재시도하고 다리 상태를 확인하며 예외를 던진다.")
     void retry() {
         bridgeGame.retry();
-        assertThatThrownBy(() -> bridgeGame.createMovementStatus())
+        assertThatThrownBy(() -> bridgeGame.createMovementMap())
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

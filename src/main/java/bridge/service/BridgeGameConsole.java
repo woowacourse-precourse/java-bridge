@@ -15,7 +15,7 @@ public class BridgeGameConsole {
         emcee.guideGame();
         BridgeGame bridgeGame = new BridgeGame(maker.makeBridge(createBridgeLength()));
         int attemptCount = playGame(bridgeGame);
-        emcee.showGameResult(bridgeGame.createMovementStatus(), bridgeGame.crossedBridge(), attemptCount);
+        emcee.showGameResult(bridgeGame.createMovementMap(), bridgeGame.crossedBridge(), attemptCount);
     }
 
     private int createBridgeLength() {
@@ -50,8 +50,8 @@ public class BridgeGameConsole {
         emcee.guideEnteringMovement();
         String movement = player.enterMovement();
         boolean availableMovement = bridgeGame.move(movement);
-        String movementStatus = bridgeGame.createMovementStatus();
-        emcee.showBridgeMovementStatus(movementStatus);
+        String movementMap = bridgeGame.createMovementMap();
+        emcee.showBridgeMovementMap(movementMap);
         return availableMovement;
     }
 
