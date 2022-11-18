@@ -9,6 +9,8 @@ public class OutputView {
     private static final String SEPARATOR = "|";
     private static final String OPEN = "[";
     private static final String CLOSE = "]";
+    public static final String SUCCESS = "성공";
+    public static final String FAIL = "실패";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -65,12 +67,18 @@ public class OutputView {
      */
     public void printResult(Result result) {
         System.out.println();
-        if (result.movable()) {
-            System.out.println("최종 게임 결과");
-            printMap(result);
-            return;
+        System.out.println("최종 게임 결과");
+        printMap(result);
+        System.out.println();
+        System.out.println("게임 성공 여부: " + changeSuccessOrFail(result.movable()));
+        System.out.println("총 시도한 횟수: " + result.nowCount());
+    }
+
+    private String changeSuccessOrFail(boolean movable) {
+        if (movable) {
+            return SUCCESS;
         }
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        return FAIL;
     }
 
     public void printStart() {
