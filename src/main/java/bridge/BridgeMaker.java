@@ -1,11 +1,16 @@
 package bridge;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker implements BridgeFactory{
+
+    public static final String TOP_ROW = "U";
+    public static final String UNDER_ROW = "D";
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -19,6 +24,15 @@ public class BridgeMaker implements BridgeFactory{
      */
     @Override
     public List<String> makeBridge(int size) {
-        return null;
+        return IntStream.range(0, size)
+                .mapToObj(i -> makeBridgeShape(this.bridgeNumberGenerator.generate()))
+                .collect(Collectors.toList());
+    }
+
+    private String makeBridgeShape(int bridgeNumber) {
+        if (bridgeNumber == 0) {
+            return UNDER_ROW;
+        }
+        return TOP_ROW;
     }
 }
