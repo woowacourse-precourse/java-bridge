@@ -8,18 +8,10 @@ import bridge.view.OutputView;
 
 import bridge.standard.GameForm;
 
-import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
-import bridge.BridgeRandomNumberGenerator;
-
 import java.util.List;
 
 public class GameController {
-    private final BridgeNumberGenerator bridgeNumberGenerator;
-    private final BridgeMaker bridgeMaker;
-
     private final BridgeGame bridgeGame = new BridgeGame();
-
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
 
@@ -27,13 +19,19 @@ public class GameController {
 
     public GameController() {
         outputView.guideStart();
-        bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        outputView.guideInputBridgeSize();
+    }
 
+    public int getBridgeSize() {
+        return inputView.readBridgeSize();
+    }
+
+    public void setBridge(List<String> bridge) {
+        this.bridge = bridge;
+        outputView.emptyLine();
     }
 
     public void start() {
-        setBridge();
         do {
             moveOneStep();
             if (wantEndWithFail()) {
@@ -43,11 +41,6 @@ public class GameController {
         exitGame();
     }
 
-    private void setBridge() {
-        outputView.guideInputBridgeSize();
-        this.bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
-        outputView.emptyLine();
-    }
 
     private void moveOneStep() {
         outputView.guideInputMoving();
