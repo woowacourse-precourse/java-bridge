@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.AttemptCount;
 import bridge.BridgeGame;
 
 import java.util.List;
@@ -106,13 +107,13 @@ public class OutputView {
         }
     }
 
-    public void printResult(String restartMessage, int attemptCount) {
+    public void printResult(String restartMessage, AttemptCount gameAttemptCount) {
         if (restartMessage.equals(QUIT.letter())) {
             System.out.println("최종 게임 결과");
             printClose();
             System.out.println();
             System.out.println("게임 성공 여부: 실패");
-            System.out.println("총 시도한 횟수: " + attemptCount);
+            System.out.println("총 시도한 횟수: " + gameAttemptCount.getAttemptCount());
         }
     }
 
@@ -121,13 +122,13 @@ public class OutputView {
         initDownBridgeMap = "[";
     }
 
-    public void printResult(BridgeGame bridgeGame, int gameAttemptCount) {
+    public void printResult(BridgeGame bridgeGame, AttemptCount gameAttemptCount) {
         if (bridgeGame.isSelectedCorrectBridge()) {
             System.out.println("최종 게임 결과");
             printClose();
             System.out.println();
             System.out.println("게임 성공 여부: 성공");
-            System.out.println("총 시도한 횟수: " + gameAttemptCount);
+            System.out.println("총 시도한 횟수: " + gameAttemptCount.getAttemptCount());
         }
     }
 

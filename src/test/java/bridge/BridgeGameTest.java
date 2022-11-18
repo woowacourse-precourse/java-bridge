@@ -29,7 +29,7 @@ public class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame();
         bridgeGame.move(new Bridge("U", "U"));
         bridgeGame.retry();
-        int count = bridgeGame.getAttemptCount();
-        assertThat(count).isEqualTo(2);
+        AttemptCount count = bridgeGame.getAttemptCount();
+        assertThat(count.getAttemptCount()).isEqualTo(2);
     }
 }

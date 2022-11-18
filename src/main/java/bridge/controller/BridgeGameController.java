@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.AttemptCount;
 import bridge.Bridge;
 import bridge.BridgeGame;
 import bridge.BridgeMaker;
@@ -29,7 +30,7 @@ public class BridgeGameController {
         int bridgePositionIndex = INIT_BRIDGE_POSITION_INDEX;
         BridgeGame bridgeGame = guessCorrectBridge(bridge, bridgePositionIndex);
 
-        int gameAttemptCount = bridgeGame.getAttemptCount();
+        AttemptCount gameAttemptCount = bridgeGame.getAttemptCount();
         outputView.printResult(bridgeGame, gameAttemptCount);
     }
 

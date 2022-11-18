@@ -6,9 +6,13 @@ import java.util.List;
 import static bridge.constant.GameKeyboard.WRONG_ANSWER;
 
 public class BridgeGame {
-    public static final int PLUS_COUNT = 1;
-    private List<String> myAnswerBridges = new ArrayList<>();
-    private int attemptCount = 1;
+    private List<String> myAnswerBridges;
+    private AttemptCount attemptCount;
+
+    public BridgeGame() {
+        this.myAnswerBridges = new ArrayList<>();
+        this.attemptCount = new AttemptCount();
+    }
 
     public void move(Bridge bridge) {
         if (isDroppedBridge(bridge)) {
@@ -24,7 +28,7 @@ public class BridgeGame {
 
     public void retry() {
         this.myAnswerBridges.clear();
-        this.attemptCount = attemptCount + PLUS_COUNT;
+        this.attemptCount = attemptCount.plus();
     }
 
     public boolean isSelectedCorrectBridge() {
@@ -47,7 +51,7 @@ public class BridgeGame {
         return myAnswerBridges;
     }
 
-    public int getAttemptCount() {
+    public AttemptCount getAttemptCount() {
         return attemptCount;
     }
 }
