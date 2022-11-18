@@ -13,9 +13,9 @@ public class BridgeGameTest {
     @Test
     void move() {
         BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "D"));
-        assertThat(bridgeGame.move("U")).isEqualTo(true);
-        assertThat(bridgeGame.move("D")).isEqualTo(true);
-        assertThat(bridgeGame.move("D")).isEqualTo(true);
+        assertThat(bridgeGame.move("U")).isEqualTo(List.of("U", "O"));
+        assertThat(bridgeGame.move("D")).isEqualTo(List.of("U", "D", "O"));
+        assertThat(bridgeGame.move("U")).isEqualTo(List.of("U", "D", "U", "X"));
     }
 
     @DisplayName("잘못된 입력값인 경우")
@@ -24,16 +24,5 @@ public class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "D"));
         assertThatThrownBy(
                 () -> bridgeGame.move("u")).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("이동 결과 변환")
-    @Test
-    void toResult() {
-        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "D"));
-        List<String> result = bridgeGame.toResult("U");
-        assertThat(result).isEqualTo(List.of("U", "O"));
-
-        result = bridgeGame.toResult("U");
-        assertThat(result).isEqualTo(List.of("U", "U", "X"));
     }
 }
