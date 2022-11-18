@@ -40,10 +40,9 @@ public class GameController {
 
 	private boolean isRightStep(String square) {
 		Stairs stairs = InputController.getStairs();
-		boolean isEqual = stairs.isEquals(square);
-		map.drawMap(bridgeGame.move(stairs.getNumber(), isEqual));
+		map.drawMap(bridgeGame.move(stairs, square));
 		outputView.printMap(map);
-		return isEqual;
+		return stairs.isEquals(square);
 	}
 
 	private void chooseRestartRound(List<String> bridges) {
