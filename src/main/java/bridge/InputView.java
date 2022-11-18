@@ -14,11 +14,10 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String rawData = Console.readLine();
+        String rawData;
         try{
-            validateSize(rawData);
-            int bridgeSize = Integer.parseInt(rawData);
-            return bridgeSize;
+            rawData = Console.readLine();
+            return validateSize(rawData);
         }catch(Exception e){
             throw new IllegalArgumentException();
         }
@@ -29,11 +28,12 @@ public class InputView {
      * @param rawData 아직 문자열 상태인 데이터
      * @throws IllegalArgumentException 3보다 작거나 20보다 크면 예외 발생
      */
-    private void validateSize(String rawData) throws IllegalArgumentException {
+    private int validateSize(String rawData) throws IllegalArgumentException {
         int rawSize = Integer.parseInt(rawData);
         if(rawSize < 3 || rawSize > 20){
             throw new IllegalArgumentException();
         }
+        return rawSize;
     }
 
     /**
