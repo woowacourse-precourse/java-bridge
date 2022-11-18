@@ -7,7 +7,7 @@ import java.util.List;
 
 public class BridgeMaker {
 
-    private final int DOWN_NUMBER = 0;
+    private static final int DOWN_NUMBER = 0;
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
