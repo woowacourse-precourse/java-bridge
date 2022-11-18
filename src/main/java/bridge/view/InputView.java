@@ -1,6 +1,8 @@
 package bridge.view;
 
+import bridge.model.Plate;
 import bridge.util.Errors;
+import bridge.util.Rules;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -8,6 +10,7 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
     private final String ASK_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
+    private final String ASK_NEXT_STEP = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -29,7 +32,22 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(ASK_NEXT_STEP);
+        String input = readString();
+        validateUpDown(input);
+        return input;
+    }
+
+    private void validateUpDown(String input) {
+        if (isNotUorD(input)) {
+            throw new IllegalArgumentException(Errors.ERROR_INPUT_UP_OR_DOWN.getMessage());
+        }
+    }
+
+    private boolean isNotUorD(String input) {
+        return !input.matches(
+                Rules.PLATE_DOWN_PLATE_SYMBOL
+                        + "|" + Rules.PLATE_UP_PLATE_SYMBOL);
     }
 
     /**
