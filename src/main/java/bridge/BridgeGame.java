@@ -27,4 +27,11 @@ public class BridgeGame {
 
         return input.equals(bridge);
     }
+
+    private String bridgeTopExist(String movement) {
+        if (movement.equals("U")) {
+            return "O";
+        }
+        return " ";
+    }
 }
