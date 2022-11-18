@@ -112,4 +112,57 @@ class InputViewTest {
 
         }
     }
+
+    @Nested
+    @DisplayName("게임 재시작 여부 입력 시")
+    class GameCommandInputTest {
+
+        @Test
+        @DisplayName("'R', 'Q' 외의 문자가 있으면 에러가 발생한다.")
+        void case1() {
+            //given
+            String gameCommandInput = "R1";
+            InputStream in = new ByteArrayInputStream(gameCommandInput.getBytes());
+            System.setIn(in);
+
+            InputView inputView = new InputView();
+
+            //when //then
+            assertThatThrownBy(inputView::readGameCommand).isInstanceOf(IllegalArgumentException.class);
+
+        }
+
+        @Test
+        @DisplayName("문자의 길이가 2자 이상이면 에러가 발생한다.")
+        void case2() {
+            //given
+            String gameCommandInput = "QQ";
+            InputStream in = new ByteArrayInputStream(gameCommandInput.getBytes());
+            System.setIn(in);
+
+            InputView inputView = new InputView();
+
+            //when //then
+            assertThatThrownBy(inputView::readGameCommand).isInstanceOf(IllegalArgumentException.class);
+
+        }
+
+        @Test
+        @DisplayName("'R', 'Q' 중 한 문자만 입력해야 한다. ")
+        void case3() {
+            //given
+            String gameCommandInput = "R";
+            InputStream in = new ByteArrayInputStream(gameCommandInput.getBytes());
+            System.setIn(in);
+
+            InputView inputView = new InputView();
+
+            //when
+            String gameCommand = inputView.readGameCommand();
+
+            //then
+            assertThat(gameCommand).isEqualTo(gameCommandInput);
+
+        }
+    }
 }
