@@ -1,7 +1,6 @@
 package bridge.domain;
 
 import bridge.BridgeNumberGenerator;
-import bridge.enums.ConstVariable;
 import bridge.enums.InputKey;
 
 import java.util.ArrayList;

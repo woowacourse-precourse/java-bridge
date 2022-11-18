@@ -15,9 +15,11 @@ public class Position {
     public void clear() {
         this.position = -1;
     }
+
     public void fail() {
         this.position = -2;
     }
+
     public int getPosition() {
         return position;
     }
