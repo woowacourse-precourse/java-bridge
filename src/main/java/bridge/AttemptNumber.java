@@ -1,7 +1,7 @@
 package bridge;
 
 public class AttemptNumber {
-    private Integer attemptNumber = 0;
+    private Integer attemptNumber = 1;
 
     public void addAttemptNumber() {
         attemptNumber += 1;

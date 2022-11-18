@@ -27,6 +27,10 @@ public class GameController {
 
     }
 
+    private AttemptNumber attemptNumber() {
+        return new AttemptNumber();
+    }
+
     private BridgeSize readBridgeSize() {
         Integer size = inputView.readBridgeSize();
         return new BridgeSize(size);
@@ -48,17 +52,19 @@ public class GameController {
         }
         success = true;
     }
-    
+
     private void startWalk(BridgeGame bridgeGame, List<String> bridge, MoveResult moveResult) {
+        AttemptNumber attemptNumber = attemptNumber(); // 리팩토링 대상
         while (!isSuccess()) {
             walk(bridgeGame, bridge, moveResult);
             if (isRetry()) {
-                bridgeGame.retry();
+                bridgeGame.retry(attemptNumber);
                 moveResult.clearHistory();
                 continue;
             }
             break;
         }
+        attemptNumber.printAttemptNumber(outputView, isSuccess());
     }
 
     private MoveResult moveResult() {
