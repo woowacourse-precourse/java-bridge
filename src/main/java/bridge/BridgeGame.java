@@ -7,16 +7,12 @@ public class BridgeGame {
     private final String CORRECT = "O";
     private final String WRONG = "X";
     private final String NOTHING = " ";
-    private final List<List<String>> bridgePattern = new ArrayList<>();
     private final List<String> correctBridge;
+    public final List<List<String>> bridgePattern = new ArrayList<>();
 
     public BridgeGame(List<String> correctBridge) {
         this.correctBridge = correctBridge;
         newBridgePattern();
-    }
-
-    public List<List<String>> getBridgePattern() {
-        return bridgePattern;
     }
 
     public boolean move(String moving, int bridgeNum) {
