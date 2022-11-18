@@ -34,6 +34,7 @@ public class InputView {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+        return readBridgeSize();
     }
 
     /**
@@ -48,6 +49,7 @@ public class InputView {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+        return readMoving();
     }
 
     /**
@@ -56,8 +58,13 @@ public class InputView {
     public String readGameCommand() {
         System.out.println(INPUT_GAME_COMMAND);
         String gameCommand = Console.readLine();
-        validateGameCommand(gameCommand);
-        return gameCommand;
+        try{
+            validateGameCommand(gameCommand);
+            return gameCommand;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return readGameCommand();
     }
 
     private static void isDigit(String input) {
