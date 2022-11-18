@@ -1,5 +1,10 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static bridge.BridgeGame.move;
+
 public class Application {
 
     /*
@@ -11,26 +16,28 @@ public class Application {
     출력
     [] - 게임 시작 문구
     [] - 게임 종료 문구
-    아마도
-    두번
-    sout[
-    for(배열 길이)
-    sout(배열 값 + | )
-    sout]
 
     구현
     [x] - 다리 생성 시 0과 1 중 무작위 값으로 설정
-    [] - U, D 입력시 판단하여 건널 수 있는지 없는지 여부 판단
+    [] -  U, D 입력시 판단하여 건널 수 있는지 없는지 여부 판단
     [] - 시도한 횟수 기억
     */
+    static List<String> myBridge = new ArrayList<String>();
+    static String[][] resultMap;
     public static void main(String[] args) {
         System.out.println("다리 건너기 게임을 시작합니다.");
         int bridgeSize = InputView.readBridgeSize();
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         bridgeMaker.makeBridge(bridgeSize);
-//        for(int i = 0; i < bridgeSize; i++){
-//            String movingPoint = InputView.readMoving();
-//        }
+        // 다리 결과가 들어있는
+        for(int i = 0; i < bridgeSize; i++){
+            String movingPoint = InputView.readMoving();
+            String[][] map = move(BridgeMaker.bridge, movingPoint);
+            String result = OutputView.printMap(map);
+            if(result.equals("R")) i = -1;
+            if(result.equals("Q")) break;
+        }
+        OutputView.printResult();
     }
 }
