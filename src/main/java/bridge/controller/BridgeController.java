@@ -20,16 +20,13 @@ public class BridgeController {
 
 
         String inputLength = "";
-        boolean isLengthValid = true;
         do {
             try {
                 inputLength = InputView.readBridgeSize();
-                isLengthValid = true;
             } catch (IllegalArgumentException ex) {
-                isLengthValid = false;
                 OutputView.printError(ex.getMessage());
             }
-        } while(!isLengthValid);
+        } while(inputLength.isBlank());
 
 
         int size = Integer.parseInt(inputLength);
@@ -58,16 +55,13 @@ public class BridgeController {
                 }
 
                 String answer = "";
-                boolean isUpAndDownValid = true;
                 do {
                     try {
                         answer = InputView.readMoving();
-                        isUpAndDownValid = true;
                     } catch (IllegalArgumentException ex) {
-                        isUpAndDownValid = false;
                         OutputView.printError(ex.getMessage());
                     }
-                } while(!isUpAndDownValid);
+                } while(answer.isBlank());
 
                 bridgeGame.move(pos, answer, passingPositions);
                 result = new Result(bridge, passingPositions);
@@ -81,19 +75,16 @@ public class BridgeController {
 
 
             String ans = "";
-            boolean isRetryOrQuitValid = true;
             do {
                 try {
                     ans = InputView.readGameCommand();
-                    isRetryOrQuitValid = true;
                     if (ans.equals("Q")) {
                         break game;
                     }
                 } catch (IllegalArgumentException ex) {
-                    isRetryOrQuitValid = false;
                     OutputView.printError(ex.getMessage());
                 }
-            } while(!isRetryOrQuitValid);
+            } while(ans.isBlank());
 
 
 
