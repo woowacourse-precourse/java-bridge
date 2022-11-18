@@ -43,7 +43,7 @@ class TileTest {
 
     @ParameterizedTest(name = "다리 지도용 toString 테스트 [{index}] : [{3}] 출력")
     @CsvSource(value = {"UP,UP,true,' O '", "DOWN,DOWN,false,' X '", "UP,DOWN,ture,'   '"})
-    void toFormatStringTest(Tile baseTile, Tile playerTile, boolean isSurvive, String expectedResult){
-        assertThat(baseTile.toFormatString(playerTile,isSurvive)).isEqualTo(expectedResult);
+    void toFormatStringTest(Tile baseTile, Tile playerTile, boolean isSurvive, String expectedResult) {
+        assertThat(baseTile.toFormatString(playerTile, isSurvive)).isEqualTo(expectedResult);
     }
 }

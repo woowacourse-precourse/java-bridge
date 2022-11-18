@@ -56,7 +56,7 @@ class PlayerTest {
             player.moveForward(Tile.UP);
             player.die();
         }
-        int expectedTryCount = dieCount+1;
+        int expectedTryCount = dieCount + 1;
 
         assertThat(player.getTryCount()).isEqualTo(expectedTryCount);
     }

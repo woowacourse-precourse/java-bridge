@@ -1,6 +1,5 @@
 package bridge.view;
 
-import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.Player;
 import bridge.domain.Tile;
