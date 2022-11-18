@@ -2,6 +2,7 @@ package bridge.ui;
 
 
 import bridge.model.GameMessage;
+import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
@@ -40,4 +41,7 @@ public class InputView {
         System.out.println(GameMessage.GET_RESTART);
     }
 
+    private String getInput(){
+        return Console.readLine();
+    }
 }
