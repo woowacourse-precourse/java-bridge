@@ -5,7 +5,6 @@ package bridge.domain;
  */
 public class BridgeGame {
 
-    // todo: bridge를 controller가 아닌 game에서 관리할 수 있도록 refactor
     private final Bridge bridge;
 
     private BridgeGame(Bridge bridge) {
