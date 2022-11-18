@@ -11,7 +11,7 @@ public class MoveResults {
     private final ResultsPerLine upLineResults = new ResultsPerLine(MOVE_UP_COMMAND);
     private final ResultsPerLine downLineResults = new ResultsPerLine(MOVE_DOWN_COMMAND);
 
-    public void addResults(MoveCommands moveCommand, String moveResult) {
+    public void addResults(final MoveCommands moveCommand, final String moveResult) {
         upLineResults.addMoveResults(moveCommand, moveResult);
         downLineResults.addMoveResults(moveCommand, moveResult);
     }

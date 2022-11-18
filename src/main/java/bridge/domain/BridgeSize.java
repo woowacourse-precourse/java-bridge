@@ -7,7 +7,7 @@ public class BridgeSize {
 
     private final int bridgeSize;
 
-    public BridgeSize(String inputValue) {
+    public BridgeSize(final String inputValue) {
         validateThisIsNumber(inputValue);
 
         int bridgeSize = Integer.parseInt(inputValue);
@@ -16,7 +16,7 @@ public class BridgeSize {
         this.bridgeSize = bridgeSize;
     }
 
-    boolean isMoreThan(int position) {
+    boolean isMoreThan(final int position) {
         return position < bridgeSize;
     }
 
@@ -24,14 +24,14 @@ public class BridgeSize {
         return bridgeSize;
     }
 
-    private void validateThisIsNumber(String inputValue) {
+    private void validateThisIsNumber(final String inputValue) {
         final String REGEX_FOR_NUMBER = "^\\d+$";
         if (!inputValue.matches(REGEX_FOR_NUMBER)) {
             throw new IllegalArgumentException(IS_NOT_NUMBERS);
         }
     }
 
-    private void validateBridgeSize(int size) {
+    private void validateBridgeSize(final int size) {
         final int MIN_SIZE = 3;
         final int MAX_SIZE = 20;
         if (size < MIN_SIZE || MAX_SIZE < size) {

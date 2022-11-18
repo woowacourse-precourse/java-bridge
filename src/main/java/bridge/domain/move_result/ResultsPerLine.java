@@ -12,11 +12,11 @@ public class ResultsPerLine {
     private final MoveCommands moveCommands;
     private final List<String> results = new ArrayList<>();
 
-    public ResultsPerLine(MoveCommands moveCommands) {
+    public ResultsPerLine(final MoveCommands moveCommands) {
         this.moveCommands = moveCommands;
     }
 
-    void addMoveResults(MoveCommands moveCommands, String moveResult) {
+    void addMoveResults(final MoveCommands moveCommands, final String moveResult) {
         if (this.moveCommands.is(moveCommands)) {
             results.add(moveResult);
             return;

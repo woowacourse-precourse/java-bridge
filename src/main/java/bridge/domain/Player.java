@@ -5,7 +5,7 @@ public class Player {
     private int position;
     private int totalNumberOfChallenges;
 
-    public Player(int position, int totalNumberOfChallenges) {
+    public Player(final int position, final int totalNumberOfChallenges) {
         this.position = position;
         this.totalNumberOfChallenges = totalNumberOfChallenges;
     }
@@ -14,7 +14,7 @@ public class Player {
         return position;
     }
 
-    boolean positionIsNotMoreThan(BridgeSize bridgeSize) {
+    boolean positionIsNotMoreThan(final BridgeSize bridgeSize) {
         return bridgeSize.isMoreThan(position);
     }
 

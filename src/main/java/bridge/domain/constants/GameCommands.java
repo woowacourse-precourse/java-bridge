@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public enum GameCommands {
+
     NOTHING(""),
     RETRY("R"),
     QUIT("Q"),

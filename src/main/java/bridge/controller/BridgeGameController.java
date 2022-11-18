@@ -25,8 +25,8 @@ public class BridgeGameController {
     private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
 
-    public BridgeGameController(InputView inputView, OutputView outputView,
-            BridgeMaker bridgeMaker) {
+    public BridgeGameController(final InputView inputView, final OutputView outputView,
+            final BridgeMaker bridgeMaker) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.bridgeMaker = bridgeMaker;
@@ -42,14 +42,14 @@ public class BridgeGameController {
         outputView.printResult(bridgeGame, gameResult);
     }
 
-    private BridgeGame bridgeGame(BridgeSize bridgeSize) {
+    private BridgeGame bridgeGame(final BridgeSize bridgeSize) {
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize.bridgeSize()));
         Player player = new Player(INIT_VALUE_OF_POSITION, INIT_VALUE_OF_CHALLENGES);
 
         return new BridgeGame(bridge, player, new MoveResults());
     }
 
-    private String gameResult(BridgeGame bridgeGame, BridgeSize bridgeSize) {
+    private String gameResult(final BridgeGame bridgeGame, final BridgeSize bridgeSize) {
         GameCommands gameCommand = NOTHING;
         String gameResult = GAME_SUCCESS;
 
@@ -65,7 +65,7 @@ public class BridgeGameController {
         return gameResult;
     }
 
-    private String moveResult(BridgeGame bridgeGame) {
+    private String moveResult(final BridgeGame bridgeGame) {
         MoveCommands moveCommand = inputView.moveCommands();
         String moveResult = bridgeGame.matchResult(moveCommand);
 
@@ -75,8 +75,8 @@ public class BridgeGameController {
         return moveResult;
     }
 
-    private void printCurrentPosition(BridgeGame bridgeGame, MoveCommands moveCommand,
-            String moveResult) {
+    private void printCurrentPosition(final BridgeGame bridgeGame, final MoveCommands moveCommand,
+            final String moveResult) {
         MoveResults moveResults = bridgeGame.moveResults(moveCommand, moveResult);
         outputView.printMap(moveResults);
     }

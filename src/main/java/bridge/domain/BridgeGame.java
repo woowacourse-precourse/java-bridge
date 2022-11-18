@@ -23,17 +23,17 @@ public class BridgeGame {
     private final Player player;
     private final MoveResults moveResults;
 
-    public BridgeGame(Bridge bridge, Player player, MoveResults moveResults) {
+    public BridgeGame(final Bridge bridge, final Player player, final MoveResults moveResults) {
         this.bridge = bridge;
         this.player = player;
         this.moveResults = moveResults;
     }
 
-    public boolean positionIsNotMoreThan(BridgeSize bridgeSize) {
+    public boolean positionIsNotMoreThan(final BridgeSize bridgeSize) {
         return player.positionIsNotMoreThan(bridgeSize);
     }
 
-    public String matchResult(MoveCommands moveCommand) {
+    public String matchResult(final MoveCommands moveCommand) {
         if (bridge.isMatched(player, moveCommand)) {
             return MOVE_SUCCESS;
         }
@@ -41,18 +41,18 @@ public class BridgeGame {
         return MOVE_FAIL;
     }
 
-    public MoveResults moveResults(MoveCommands moveCommand, String moveResult) {
+    public MoveResults moveResults(final MoveCommands moveCommand, final String moveResult) {
         moveResults.addResults(moveCommand, moveResult);
         return moveResults;
     }
 
-    public void move(String moveResult) {
+    public void move(final String moveResult) {
         if (moveResult.equals(MOVE_SUCCESS)) {
             player.move();
         }
     }
 
-    public String retryOrQuit(GameCommands gameCommand, String gameResult) {
+    public String retryOrQuit(final GameCommands gameCommand, final String gameResult) {
         if (gameCommand.is(RETRY)) {
             retry();
             return gameResult;

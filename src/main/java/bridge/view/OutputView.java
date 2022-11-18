@@ -21,11 +21,11 @@ public class OutputView {
         System.out.println("다리 건너기 게임을 시작합니다.");
     }
 
-    public void printMap(MoveResults moveResults) {
+    public void printMap(final MoveResults moveResults) {
         System.out.println(outputViewFormatter.bridgeFormat(moveResults));
     }
 
-    public void printResult(BridgeGame bridgeGame, String gameResult) {
+    public void printResult(final BridgeGame bridgeGame, final String gameResult) {
         System.out.println(outputViewFormatter.resultFormat(bridgeGame, gameResult));
     }
 }

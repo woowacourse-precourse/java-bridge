@@ -7,11 +7,11 @@ public class Bridge {
 
     private final List<String> bridge;
 
-    public Bridge(List<String> bridge) {
+    public Bridge(final List<String> bridge) {
         this.bridge = bridge;
     }
 
-    public boolean isMatched(Player player, MoveCommands moveCommand) {
+    public boolean isMatched(final Player player, final MoveCommands moveCommand) {
         String bridgeCommand = bridge.get(player.position());
         return moveCommand.is(bridgeCommand);
     }

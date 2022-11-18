@@ -7,7 +7,7 @@ import java.util.StringJoiner;
 
 public class OutputViewFormatter {
 
-    String bridgeFormat(MoveResults moveResults) {
+    String bridgeFormat(final MoveResults moveResults) {
         String upResultFormat = resultFormat(moveResults.upLineResults());
         String downResultFormat = resultFormat(moveResults.downLineResults());
 
@@ -17,11 +17,11 @@ public class OutputViewFormatter {
                 .toString();
     }
 
-    private String resultFormat(List<String> results) {
+    private String resultFormat(final List<String> results) {
         return "[ " + String.join(" | ", results) + " ]";
     }
 
-    String resultFormat(BridgeGame bridgeGame, String gameResult) {
+    String resultFormat(final BridgeGame bridgeGame, final String gameResult) {
         return new StringJoiner("\n")
                 .add("최종 게임 결과")
                 .add(bridgeFormat(bridgeGame.moveResults()))
