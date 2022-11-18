@@ -42,4 +42,15 @@ public class InputView {
         }
         return true;
     }
+    
+    public String readOneStairs(){
+        String oneStairs = Console.readLine();
+        return oneStairs;
+    }
+
+    public void validateCharacter(String oneStairs) {
+        if (isDigit(oneStairs)) {
+            throw new IllegalArgumentException(ErrorMessage.SHOULD_CHARACTER);
+        }
+    }
 }

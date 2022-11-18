@@ -17,6 +17,7 @@ public class MainController {
         startGame();
         int bridgeSize = getBridgeSize();
         Bridge bridge = makeBridge(bridgeSize);
+        String userOneStairs = getUserOneStairs();
     }
 
     private Bridge makeBridge(int bridgeSize){
@@ -48,5 +49,12 @@ public class MainController {
 
     private int readBridgeSize(){
         return inputView.readBridgeSize();
+    }
+
+    private String getUserOneStairs(){
+        outputView.printSelectMove();
+        String usersOneStairs = inputView.readOneStairs();
+        inputView.validateCharacter(usersOneStairs);
+        return usersOneStairs;
     }
 }
