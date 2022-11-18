@@ -7,7 +7,14 @@ import bridge.domain.MoveResult;
  */
 public class OutputView {
 
-    public static String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
+    private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
+    private static final String GAME_RESULT_MESSAGE = "최종 게임 결과";
+    private static final String TRY_COUNT_MESSAGE = "총 시도한 횟수: ";
+
+    private static final String GAME_SUCCESS_MESSAGE = "게임 성공 여부: 성공";
+    private static final String GAME_FAIL_MESSAGE = "게임 성공 여부: 실패";
+    private static final String ERROR_MESSAGE = "[ERROR]";
+
 
     public void printGameStartMessage() {
         System.out.println(GAME_START_MESSAGE);
@@ -28,17 +35,20 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(MoveResult moveResult) {
-        System.out.println("최종게임결과");
+        System.out.println(GAME_RESULT_MESSAGE);
         printMap(moveResult);
-        printGameResultMessage(moveResult.isSuccess());
-        System.out.println("총 시도한 횟수: " + moveResult.getTryCount());
+        System.out.println(getGameResultMessage(moveResult.isSuccess()));
+        System.out.println(TRY_COUNT_MESSAGE + moveResult.getTryCount());
     }
 
-    private static void printGameResultMessage(boolean isSuccess) {
+    private String getGameResultMessage(boolean isSuccess) {
         if (isSuccess) {
-            System.out.println("게임 성공 여부: 성공");
-            return;
+            return GAME_SUCCESS_MESSAGE;
         }
-        System.out.println("게임 성공 여부: 실패");
+        return GAME_FAIL_MESSAGE;
+    }
+
+    public void printErrorMessage(String message) {
+        System.out.println(ERROR_MESSAGE + message);
     }
 }
