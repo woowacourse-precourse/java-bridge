@@ -11,8 +11,12 @@ public class Player {
         this.record = new ArrayList<>();
     }
 
-    public void record(BridgeMark up) {
-        record.add(up);
+    public void record(BridgeMark bridgeMark) {
+        record.add(bridgeMark);
+    }
+
+    public void clear() {
+        record.clear();
     }
 
     public PlayerResponseDto toResponseDto() {
