@@ -2,7 +2,7 @@ package bridge.domain;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
-import bridge.view.OutputView;
+import bridge.BridgeRandomNumberGenerator;
 
 import java.util.List;
 
@@ -11,11 +11,13 @@ import java.util.List;
  */
 public class BridgeGame {
     private BridgeMaker bridgeMaker;
+    private BridgeNumberGenerator numberGenerator;
     private List<String> bridge;
     private int count;
     private int totalNumberOfAttempts;
 
-    public BridgeGame(BridgeNumberGenerator numberGenerator) {
+    public BridgeGame() {
+        this.numberGenerator = new BridgeRandomNumberGenerator();
         this.bridgeMaker = new BridgeMaker(numberGenerator);
         this.count = 0;
         this.totalNumberOfAttempts = 1;
@@ -53,8 +55,8 @@ public class BridgeGame {
      */
     public boolean retry(String gameCommand) {
         count = 0;
-        totalNumberOfAttempts++;
         if (gameCommand.equals("R")) {
+            totalNumberOfAttempts++;
             return true;
         }
         return false;
