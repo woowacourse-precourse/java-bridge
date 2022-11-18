@@ -20,8 +20,14 @@ public class GameData {
     }
 
     public void updateStatus(String moving, String movingResult) {
-        if (moving.equals("U")) { this.topStatus.add(movingResult); }
-        if (moving.equals("D")) { this.bottomStatus.add(movingResult); }
+        if (moving.equals("U")) {
+            this.topStatus.add(movingResult);
+            this.bottomStatus.add(" ");
+        }
+        if (moving.equals("D")) {
+            this.topStatus.add(" ");
+            this.bottomStatus.add(movingResult);
+        }
     }
 
     public void increaseTotalTry() { this.totalTry += 1; }
