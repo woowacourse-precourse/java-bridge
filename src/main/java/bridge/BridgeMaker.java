@@ -98,7 +98,6 @@ public class BridgeMaker {
         if (gameCommand.equals("U")) {
             endGame = checkWhenInputIsU(answer);
         }
-        makeMapBoundary();
         return endGame;
     }
 
