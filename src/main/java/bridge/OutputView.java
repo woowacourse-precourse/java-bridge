@@ -15,6 +15,12 @@ public class OutputView {
     private static final String END_BRACKET = "]";
 
     private static final String START_NOTICE = "다리 건너기 게임을 시작합니다.";
+    private static final String BRIDGE_SIZE_INPUT_NOTICE = "다리의 길이를 입력해주세요.";
+    private static final String RESTART_OR_QUIT_INPUT_NOTICE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private static final String FINAL_RESULT_NOTICE = "최종 게임 결과";
+
+    private static final String MOVING_DIRECTION_INPUT_NOTICE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -60,5 +66,23 @@ public class OutputView {
 
     public void printStartNotice() {
         System.out.println(START_NOTICE);
+    }
+
+    public void printBridgeSizeInputNotice() {
+        System.out.println(BRIDGE_SIZE_INPUT_NOTICE);
+    }
+
+    public void printRestartOrQuitInputNotice() {
+        System.out.println(RESTART_OR_QUIT_INPUT_NOTICE);
+    }
+
+    public void printFinalResultNotice() {
+        System.out.println(FINAL_RESULT_NOTICE);
+
+    }
+
+    public void printMovingDirectionInputNotice() {
+        System.out.println(MOVING_DIRECTION_INPUT_NOTICE);
+
     }
 }
