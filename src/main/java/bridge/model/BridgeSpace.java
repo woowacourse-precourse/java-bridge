@@ -16,4 +16,13 @@ public class BridgeSpace {
     public Moved getMyMoved() {
         return myMoved;
     }
+
+    public BridgeSpace checkMoving(String userMove) {
+        if (userMove == upOrDown) {
+            this.myMoved = Moved.CAN;
+            return this;
+        }
+        this.myMoved = Moved.CANT;
+        return this;
+    }
 }
