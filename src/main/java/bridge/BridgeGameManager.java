@@ -18,7 +18,7 @@ public class BridgeGameManager {
     private final InputView inputView;
     private final OutputView outputView;
 
-    private BridgeGameManager(){
+    private BridgeGameManager() {
         trialCount = 0;
 
         bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
@@ -30,57 +30,60 @@ public class BridgeGameManager {
         outputView = new OutputView();
     }
 
-    public static BridgeGameManager gameManager(){
-        if(manager == null){
+    public static BridgeGameManager gameManager() {
+        if (manager == null) {
             manager = new BridgeGameManager();
         }
         return manager;
     }
 
-    public void play(){
+    public void play() {
         try {
             initialize();
             do {
                 run();
             } while (isRetry());
             finish();
-        }catch (Exception e){
+        } catch (Exception e) {
             outputView.printErrorMessage(e.getMessage());
         }
     }
 
-    private void initialize(){
+    private void initialize() {
         outputView.printGameStart();
 
         outputView.printInputBridgeLength();
-        int bridgeSize = inputView.readBridgeSize();
+        InfiniteInput<Integer> bridgeSizeInfiniteInput = new InfiniteInput<>(0);
+        int bridgeSize = bridgeSizeInfiniteInput.getInput(() -> inputView.readBridgeSize(), outputView);
 
         bridgeRoadMap = new BridgeRoadMap(bridgeMaker.makeBridge(bridgeSize));
     }
 
-    private void run(){
-        do{
+    private void run() {
+        do {
             outputView.printInputMove();
-            String direction = inputView.readMoving();
+            InfiniteInput<String> directionInfiniteInput = new InfiniteInput<>("");
+            String direction = directionInfiniteInput.getInput(() -> inputView.readMoving(), outputView);
             game.move(direction);
             trialCount++;
 
             outputView.printMap(bridgeRoadMap, userRoadMap);
-        }while(!userRoadMap.isFail(bridgeRoadMap));
+        } while (!userRoadMap.isFail(bridgeRoadMap));
     }
 
-    private boolean isRetry(){
+    private boolean isRetry() {
         outputView.printInputRetry();
-        String command = inputView.readGameCommand();
+        InfiniteInput<String> commandInfiniteInput = new InfiniteInput<>("");
+        String command = commandInfiniteInput.getInput(() -> inputView.readGameCommand(), outputView);
 
-        if(command.equals(GameCommand.RETRY.getValue())){
+        if (command.equals(GameCommand.RETRY.getValue())) {
             game.retry();
             return true;
         }
         return false;
     }
 
-    private void finish(){
+    private void finish() {
         outputView.printResult(trialCount, bridgeRoadMap, userRoadMap);
     }
 }
