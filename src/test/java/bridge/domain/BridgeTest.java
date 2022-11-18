@@ -12,7 +12,7 @@ public class BridgeTest {
     @Test
     public void BridgeConstructorAndGetterTest() {
         // given
-        List<Integer> list = List.of(1, 0, 0);
+        List<String> list = List.of("U", "D", "D");
 
         // when
         Bridge bridge = new Bridge(list);
