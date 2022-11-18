@@ -3,8 +3,10 @@ package bridge.domain;
 import bridge.domain.validation.BridgeValidation;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Bridge {
+
     private static final Integer START_SUBLIST = 0;
     private final List<String> squares;
 
@@ -19,11 +21,28 @@ public class Bridge {
 
     public boolean isPassableBridge(Bridge otherBridge) {
         List<String> otherBridgeSquares = otherBridge.squares;
-        List<String> partialSquares= new ArrayList<>(squares.subList(START_SUBLIST, otherBridgeSquares.size()));
+        List<String> partialSquares = new ArrayList<>(squares.subList(START_SUBLIST, otherBridgeSquares.size()));
         return partialSquares.equals(otherBridgeSquares);
     }
 
     private void validate(List<String> squares) {
         BridgeValidation.validate(squares);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(squares);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Bridge bridge = (Bridge) o;
+        return squares.equals(bridge.squares);
     }
 }
