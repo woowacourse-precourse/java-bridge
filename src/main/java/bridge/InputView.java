@@ -30,9 +30,6 @@ public class InputView {
     public boolean readGameCommand() {
         String commandString = Console.readLine();
         validator.isValidCommand(commandString);
-        if (commandString.equals("R")) {
-            return true;
-        }
-        return false;
+        return (commandString.equals("R"));
     }
 }
