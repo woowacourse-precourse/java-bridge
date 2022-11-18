@@ -22,17 +22,11 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
-            bridge.add(makeOneBlock(bridgeNumberGenerator.generate()));
+            int number = bridgeNumberGenerator.generate();
+            if (number == 0) bridge.add("D");
+            if (number == 1) bridge.add("U");
         }
 
         return bridge;
-    }
-
-    public static String makeOneBlock(int number) {
-        if (number == 0) {
-            return "D";
-        }
-
-        return "U";
     }
 }
