@@ -12,7 +12,11 @@ public class Bridge {
     }
 
     public boolean checkSuccess(Bridge bridge) {
-        int size = bridge.getSize();
+        int size = getSize();
+
+        if (size != bridge.getSize()) {
+            return false;
+        }
 
         for (int i = 0; i < size; i++) {
             String userState = bridge.getState(i);
