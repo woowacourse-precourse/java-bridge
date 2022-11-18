@@ -1,9 +1,7 @@
 package bridge.domain;
 
 
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 public class Bridge {
     private final List<String> directions;
@@ -13,15 +11,7 @@ public class Bridge {
     }
 
     public boolean hasSameDirection(Player player) {
-        Queue<String> playerInputs = new LinkedList<>(player.getInputs());
-        int start = 0;
-        while(!playerInputs.isEmpty()) {
-            if(isDifferent(directions.get(start), playerInputs.poll())) {
-                return false;
-            }
-            start++;
-        }
-        return true;
+        return !isDifferent(player.getLastInput(), directions.get(player.getLastIndex()));
     }
 
     public boolean isDifferent(String original, String expected) {
