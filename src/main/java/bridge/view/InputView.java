@@ -27,26 +27,26 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        int BridgeSize = getBridgeSizeByConsole();
         try {
+            int BridgeSize = getBridgeSizeByConsole();
             Bridge.validateLength(BridgeSize);
+            return BridgeSize;
         } catch (IllegalArgumentException e) {
             outputView.printMessage(e.getMessage());
-            readBridgeSize();
+            return readBridgeSize();
         }
-        return BridgeSize;
     }
 
     private int getBridgeSizeByConsole() {
-        outputView.printMessage(INSERT_BRIDGE_SIZE_MESSAGE);
-        String userInput = Console.readLine();
         try {
+            outputView.printMessage(INSERT_BRIDGE_SIZE_MESSAGE);
+            String userInput = Console.readLine();
             intValidation(userInput);
+            return Integer.parseInt(userInput);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            getBridgeSizeByConsole();
+            return getBridgeSizeByConsole();
         }
-        return Integer.parseInt(userInput);
     }
 
     private void intValidation(String input) {
@@ -61,14 +61,14 @@ public class InputView {
      */
     public Direction readDirection() {
         outputView.printMessage(INSERT_DIRECTION_MESSAGE);
-        Direction direction = null;
         try {
-            Direction.getDirectionByString(Console.readLine());
+            Direction direction = Direction.getDirectionByString(Console.readLine());
+            return direction;
         } catch (IllegalArgumentException e) {
             outputView.printMessage(e.getMessage());
-            readDirection();
+            return readDirection();
         }
-        return direction;
+
     }
 
     /**
@@ -76,13 +76,12 @@ public class InputView {
      */
     public Command readGameCommand() {
         outputView.printMessage(INSERT_COMMAND_MESSAGE);
-        Command command = null;
         try {
-            Command.getCommandByString(Console.readLine());
+            Command command = Command.getCommandByString(Console.readLine());
+            return command;
         } catch (IllegalArgumentException e) {
             outputView.printMessage(e.getMessage());
-            readGameCommand();
+            return readGameCommand();
         }
-        return command;
     }
 }
