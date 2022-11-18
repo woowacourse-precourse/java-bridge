@@ -30,6 +30,10 @@ public class CrossBridge {
         return crossBridge;
     }
 
+    public Way getCrossBridgeIndex(int index) {
+        return crossBridge.get(index);
+    }
+
     public int getCrossBridgeSize() {
         return getCrossBridge().size();
     }
