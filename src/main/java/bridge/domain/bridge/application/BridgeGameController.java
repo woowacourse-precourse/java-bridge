@@ -1,9 +1,11 @@
 package bridge.domain.bridge.application;
 
+import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.domain.bridge.model.Bridge;
 import bridge.ui.input.InputView;
 import bridge.ui.output.OutputView;
+import java.util.List;
 
 public class BridgeGameController {
     private final InputView inputView;
@@ -20,7 +22,10 @@ public class BridgeGameController {
 
     public Bridge generateBaseBridge(BridgeNumberGenerator generator) {
         int bridgeSize = readBridgeSize();
-        return Bridge.of(bridgeSize, generator);
+        BridgeMaker bridgeMaker = new BridgeMaker(generator);
+        List<String> bridgeShape = bridgeMaker.makeBridge(bridgeSize);
+
+        return Bridge.from(bridgeShape);
     }
 
     private int readBridgeSize() {
