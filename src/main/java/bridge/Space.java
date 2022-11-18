@@ -19,10 +19,17 @@ public enum Space {
         return represented;
     }
 
-    public static Space getOtherSpace(Space space) {
-        if (space.equals(DOWN)) {
-            return UP;
+    public static int getOtherSpaceIndex(int index) {
+        if (index == DOWN.getIndex()) {
+            return UP.getIndex();
         }
-        return DOWN;
+        return DOWN.getIndex();
+    }
+
+    public static Space getValueByRepresented(String represented) {
+        if (represented.equals(DOWN.getRepresented())) {
+            return DOWN;
+        }
+        return UP;
     }
 }
