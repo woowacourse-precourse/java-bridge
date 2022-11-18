@@ -18,4 +18,12 @@ public class InputValidator {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void validateMoving(String input ) throws IllegalArgumentException {
+        String condition = "^[UD]{1}$";
+        if (!Pattern.matches(condition, input)) {
+            System.out.println("[ERROR] 이동할 칸은 공백없이 'U' 또는 'D' 이어야 합니다.");
+            throw new IllegalArgumentException();
+        }
+    }
 }
