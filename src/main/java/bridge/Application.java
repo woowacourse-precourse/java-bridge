@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.Domain.Bridge;
 import bridge.Domain.BridgeGame;
 import bridge.View.InputView;
 import bridge.View.OutputView;
@@ -8,53 +9,43 @@ public class Application {
     private static InputView inputView = new InputView();
     private static OutputView outputView = new OutputView();
 
-    public static BridgeGame initiateBridgeGame() {
-        boolean exceptionFlag = true;
-        BridgeGame bridgeGame = null;
 
+    public static BridgeGame initiateBridgeGame() {
         inputView.printStartMessage();
 
-        while(exceptionFlag) {
-            exceptionFlag = false;
-
+        while(true) {
             try {
                 int size = inputView.readBridgeSize();
-                bridgeGame = new BridgeGame(size);
+
+                return new BridgeGame(size);
             } catch (IllegalArgumentException illegalArgumentException) {
                 System.out.println(illegalArgumentException.getMessage());
-                exceptionFlag = true;
             }
         }
-
-        return bridgeGame;
     }
 
     public static void inputMoving(BridgeGame bridgeGame) {
-        boolean exceptionFlag = true;
-        while(exceptionFlag) {
-            exceptionFlag = false;
-
+        while(true) {
             try {
                 String selection = inputView.readMoving();
                 bridgeGame.move(selection);
+
+                return;
             } catch (IllegalArgumentException illegalArgumentException) {
                 System.out.println(illegalArgumentException.getMessage());
-                exceptionFlag = true;
             }
         }
     }
 
     public static void inputCommand(BridgeGame bridgeGame) {
-        boolean exceptionFlag = true;
-
-        while(exceptionFlag) {
-            exceptionFlag = false;
+        while(true) {
             try {
                 String command = inputView.readGameCommand();
                 bridgeGame.retry(command);
+
+                return;
             } catch (IllegalArgumentException illegalArgumentException) {
                 System.out.println(illegalArgumentException.getMessage());
-                exceptionFlag = true;
             }
         }
     }
