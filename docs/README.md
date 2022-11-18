@@ -1,13 +1,23 @@
 # 📈 기능 목록
 
-## ✅ 다리 정보 관련 기능
+## ✅ 다리 생성 기능
 
-- [] : 다리 정보를 저장하는 기능
-- [] : 재시작할 경우 다리 정보를 삭제하는 기능
-- [] : 사용자가 게임을 시작한 횟수를 저장하는 기능
 - [] : 입력받은 다리 길이에 따라 다리를 생성하는 기능
     - 0 또는 1 로 값을 생성한다
     - 무작위 값이 0인 경우 아래 칸, 1인 경우 위 칸이 건널 수 있는 칸이 된다.
+
+## ✅ 다리 정보 저장하는 기능
+
+- [X] : 다리 정보를 저장하는 기능
+- [] : 재시작 할 경우, 다리 정보를 삭제하는 기능
+- [X] : 건널수 있는 다리인지 확인하는 기능
+- [X] : 총 다리 사이즈를 저장하는 기능
+
+## ✅ 사용자가 건너는 다리 정보 저장 기능
+
+- [X] : 사용자가 건너는 다리 정보 저장 기능
+- [] : 재시작 할 경우, 사용자의 다리 정보를 삭제하는 기능
+- [X] : 총 다리 사이즈를 저장하는 기능
 
 ## ✅ 입력
 
@@ -212,7 +222,7 @@ public class BridgeMaker {
 
 ### ✅ BridgeRandomNumberGenerator 클래스
 
-- [] : Random 값 추출은 제공된 `bridge.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
+- [] : Random 값 추출은 제공된 `bridge.domain.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
 - [] : `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 변경할 수 없다.
 
 #### 사용 예시
