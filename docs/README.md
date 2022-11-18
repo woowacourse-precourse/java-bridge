@@ -123,3 +123,12 @@
 
 ### 기능
 - [ ] 사용자가 올바른 입력을 할 때까지 계속해서 입력 - getInput
+
+## 검증자(`Validator`)
+
+값이 형식에 맞춰져 있는지 확인
+
+### 기능
+- [ ] 값이 숫자 문자열인지 확인 - isInRangeOfString
+- [ ] 문자열로된 범위 안에 값이 존재하는지 확인 - isInRangeOfString
+- [ ] 숫자로된 범위 안에 값이 존재하는지 확인 - isInRangeOfNumber
