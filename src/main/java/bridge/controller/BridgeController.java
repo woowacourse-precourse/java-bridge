@@ -1,8 +1,8 @@
 package bridge.controller;
 
 import bridge.Bridge;
-import bridge.InputView;
-import bridge.OutputView;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class BridgeController {
     private int bridgeLength;
