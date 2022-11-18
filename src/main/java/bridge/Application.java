@@ -33,6 +33,7 @@ public class Application {
     }
 
     private boolean judgeNewGame(){
+        outputView.printRestartMessage();
         boolean retry = bridgeGame.retry(inputView.readGameCommand());
         if(retry)
         {
