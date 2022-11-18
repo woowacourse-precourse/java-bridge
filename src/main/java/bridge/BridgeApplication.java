@@ -15,7 +15,6 @@ public class BridgeApplication {
         System.out.println(Message.START_MESSAGE); // 다리 건너기 게임 시작
         int size = inputBridgeSize(); // 다리의 길이를 입력
         makeBridge(size); // 다리를 만듦
-
         outputView = new OutputView();
         bridgeGame = new BridgeGame(bridge, 1);
 
@@ -31,10 +30,9 @@ public class BridgeApplication {
 
     private void doBridgeGame(int size) {
         for (int idx = 0; idx < size; idx++) {
-            String moving = inputMoving();
-            bridgeGame.move(moving, idx);
-            if (isCorrectMove()) continue;
+            bridgeGame.move(inputMoving(), idx);
             printMap();
+            if (isCorrectMove()) continue;
             if (isSelectRetry()) break;
             idx = -1; // 반복문의 idx 를 -1로 돌려주어 다시 0부터 시작할 수 있게끔 함
             plusGameCnt();
@@ -58,7 +56,6 @@ public class BridgeApplication {
 
     private boolean isCorrectMove() {
         if (bridgeGame.isMove()) {
-            printMap();
             return true;
         }
         return false;
