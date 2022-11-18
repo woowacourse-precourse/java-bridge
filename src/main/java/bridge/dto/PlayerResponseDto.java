@@ -1,4 +1,6 @@
-package bridge;
+package bridge.dto;
+
+import bridge.BridgeMark;
 
 import java.util.List;
 

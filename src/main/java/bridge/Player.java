@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.dto.PlayerResponseDto;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.dto.PlayerResponseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
