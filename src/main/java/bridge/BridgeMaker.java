@@ -22,7 +22,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         return Stream.generate(() -> bridgeNumberGenerator.generate())
-                .map(i -> Direction.from(i).getDirectionButton())
+                .map(i -> Direction.from(i).getDirectionString())
                 .limit(size)
                 .collect(Collectors.toUnmodifiableList());
     }
