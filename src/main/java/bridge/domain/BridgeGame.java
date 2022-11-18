@@ -37,8 +37,8 @@ public class BridgeGame {
     }
 
     public boolean isFailed() {
-        String direction = movementRecord.get(movementRecord.size()-1).getCommand();
-        if (!bridge.get(movementRecord.size()-1).equals(direction)) {
+        String direction = movementRecord.get(movementRecord.size() - 1).getCommand();
+        if (!bridge.get(movementRecord.size() - 1).equals(direction)) {
             return true;
         }
         return false;
@@ -70,6 +70,7 @@ public class BridgeGame {
             Arrays.fill(line, " ");
         }
     }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
