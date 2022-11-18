@@ -39,5 +39,15 @@ public class BridgeMaker {
         }
     }
 
+    private String getEachBridge(int value){
+        String direction = null;
+
+        if(value == Direction.UP.getValue()){
+            direction = Direction.UP.getInput();
+        }else if(value == Direction.DOWN.getValue()){
+            direction = Direction.DOWN.getInput();
+        }
+        return direction;
+    }
 
 }
