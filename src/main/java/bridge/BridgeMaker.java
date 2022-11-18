@@ -28,7 +28,7 @@ public class BridgeMaker {
     }
 
     public static String convert(int number) {
-        if (number == 0) return "D";
-        return "U";
+        if (number == 0) return OutputView.DOWN;
+        return OutputView.UP;
     }
 }

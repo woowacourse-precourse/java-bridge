@@ -6,12 +6,23 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    final static String START = "[ ";
-    final static String SPACE = " ";
-    final static String END = " ]";
-    final static String DIVIDER = " | ";
-    final static String CORRECT = "O";
-    final static String WRONG = "X";
+    enum ladder{
+        START("[ "),
+        SPACE(" "),
+        END(" ]"),
+        DIVIDER(" | "),
+        CORRECT("O"),
+        WRONG("X");
+
+        final String sign;
+        ladder(String sign){
+            this.sign = sign;
+        }
+        public String getSign(){
+            return this.sign;
+        }
+    }
+
     final static String UP = "U";
     final static String DOWN = "D";
     final static String FIRST = "F";
@@ -41,9 +52,9 @@ public class OutputView {
     }
 
     public boolean startLadder(int index, List<String> upOrDown, String userInput) {
-        System.out.print(START);
+        System.out.print(ladder.START.getSign());
         boolean isFirstRowTrue = firstRow(index, upOrDown, userInput);
-        System.out.print(START);
+        System.out.print(ladder.START.getSign());
         boolean isSecondRowTrue = secondRow(index, upOrDown, userInput);
         return isFirstRowTrue && isSecondRowTrue;
     }
@@ -51,7 +62,7 @@ public class OutputView {
     public static boolean firstRow(int index, List<String> upOrDown, String userInput) {
         printPreviousIndexRow(upOrDown, index, FIRST);
         if (printCurrentIndexRow(upOrDown.get(index), userInput, DOWN)) return false;
-        System.out.print(END);
+        System.out.print(ladder.END.getSign());
         System.out.println();
         return true;
     }
@@ -59,7 +70,7 @@ public class OutputView {
     public static boolean secondRow(int index, List<String> upOrDown, String userInput) {
         printPreviousIndexRow(upOrDown, index, SECOND);
         if (printCurrentIndexRow(upOrDown.get(index), userInput, UP)) return false;
-        System.out.print(END);
+        System.out.print(ladder.END.getSign());
         System.out.println();
         return true;
     }
@@ -72,25 +83,25 @@ public class OutputView {
 
     public static void previousIndexRows(List<String> upOrDown, int index, String firstOrSecond){
         if (firstOrSecond.equals(FIRST)) {
-            if (upOrDown.get(index).equals(UP)) System.out.print(CORRECT);
-            if (upOrDown.get(index).equals(DOWN)) System.out.print(SPACE);
+            if (upOrDown.get(index).equals(UP)) System.out.print(ladder.CORRECT.getSign());
+            if (upOrDown.get(index).equals(DOWN)) System.out.print(ladder.SPACE.getSign());
         }
         if (firstOrSecond.equals(SECOND)) {
-            if (upOrDown.get(index).equals(DOWN)) System.out.print(CORRECT);
-            if (upOrDown.get(index).equals(UP)) System.out.print(SPACE);
+            if (upOrDown.get(index).equals(DOWN)) System.out.print(ladder.CORRECT.getSign());
+            if (upOrDown.get(index).equals(UP)) System.out.print(ladder.SPACE.getSign());
         }
-        System.out.print(DIVIDER);
+        System.out.print(ladder.DIVIDER.getSign());
     }
 
     public static boolean printCurrentIndexRow(String current, String userInput, String direction) {
         if (!(current.equals(userInput)) && current.equals(direction)) {
-            System.out.print(WRONG + END);
-            System.out.println();
+            System.out.print(ladder.WRONG.getSign());
+            System.out.print(ladder.END.getSign() + "\n");
             return true;
         }
-        if (!(current.equals(userInput)) && current.equals(invert(direction))) System.out.print(SPACE);
-        if (current.equals(userInput) && userInput.equals(invert(direction))) System.out.print(CORRECT);
-        if (current.equals(userInput) && userInput.equals(direction)) System.out.print(SPACE);
+        if (!(current.equals(userInput)) && current.equals(invert(direction))) System.out.print(ladder.SPACE.getSign());
+        if (current.equals(userInput) && userInput.equals(invert(direction))) System.out.print(ladder.CORRECT.getSign());
+        if (current.equals(userInput) && userInput.equals(direction)) System.out.print(ladder.SPACE.getSign());
         return false;
     }
 
