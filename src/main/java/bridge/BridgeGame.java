@@ -66,8 +66,15 @@ public class BridgeGame {
         lowerRoad.add(" ");
     }
 
-    public String isGameEnd() {
+    public boolean isGameEnd() {
         if (isRightFoothold() && tryNumber == bridge.size()) {
+            return true;
+        }
+        return false;
+    }
+
+    public String getGameResult() {
+        if (isGameEnd()) {
             return "성공";
         }
         return "실패";
