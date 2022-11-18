@@ -9,11 +9,17 @@ public class Validation {
         try {
             convertNumber = Integer.parseInt(number);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorType.INPUT_ERROR_TYPE.getText());
+            throw new IllegalArgumentException(ErrorType.INPUT_BRIDGE_SIZE_ERROR_TYPE.getText());
         }
 
         if (convertNumber < 1 || convertNumber > 20){
-            throw new IllegalArgumentException(ErrorType.INPUT_ERROR_TYPE.getText());
+            throw new IllegalArgumentException(ErrorType.INPUT_BRIDGE_SIZE_ERROR_TYPE.getText());
+        }
+    }
+
+    public static void inputMoveSquareValid(String move){
+        if (!(move.equals("U") || move.equals("D"))){
+            throw new IllegalArgumentException(ErrorType.INPUT_SQUARE_ERROR_TYPE.getText());
         }
     }
 }

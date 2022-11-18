@@ -8,7 +8,7 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
     private static final String INPUT_BRIDGE_LENGTH = "다리의 길이를 입력해주세요.";
-    private static final String SELECT_MOVING = "다리의 길이를 입력해주세요.";
+    private static final String SELECT_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
 
 
     /**
@@ -24,7 +24,7 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println(SELECT_MOVING);
-        return null;
+        return Console.readLine();
     }
 
     /**
