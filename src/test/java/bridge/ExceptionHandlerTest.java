@@ -24,7 +24,21 @@ public class ExceptionHandlerTest {
     void checkBridgeSizeTest(String input) {
         assertThatNoException()
                 .isThrownBy(() -> ExceptionHandler.checkBridgeSize(input));
+    }
 
+    @DisplayName("다리 선택 입력 테스트 - 예외")
+    @ValueSource(strings = {"", " ", "1", "d", "u"})
+    void checkMovingTest_Exception(String input) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> ExceptionHandler.checkMoving(input));
+    }
+
+    @DisplayName("다리 선택 입력 테스트 - 정상")
+    @ValueSource(strings = {"U", "D"})
+    @ParameterizedTest
+    void checkMovingTest(String input) {
+        assertThatNoException()
+                .isThrownBy(() -> ExceptionHandler.checkMoving(input));
     }
 
     @DisplayName("게임 재시작 입력 테스트 - 예외")
