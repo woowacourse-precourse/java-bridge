@@ -29,17 +29,20 @@ public class BridgeMaker {
 
     public void makeDirectionToMove(List<String> bridges, int size) {
         for(int i = 0; i < size; i++) {
-            changeNumberToDirection(bridges);
+            changeNumberToDirection(bridges, getRandomNumber());
         }
     }
 
-    public void changeNumberToDirection(List<String> bridges) {
-        int result = bridgeNumberGenerator.generate();
-        if(result == DOWN) {
+    public void changeNumberToDirection(List<String> bridges, int number) {
+        if(number == DOWN) {
             bridges.add("D");
         }
-        if(result == UP) {
+        if(number == UP) {
             bridges.add("U");
         }
+    }
+    
+    public int getRandomNumber() {
+        return bridgeNumberGenerator.generate();
     }
 }
