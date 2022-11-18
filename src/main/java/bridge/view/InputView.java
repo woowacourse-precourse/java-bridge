@@ -7,13 +7,22 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
+    private static final String REG_XP_DIGIT = "[0-9]+";
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
-        String length = Console.readLine();
-        return Integer.parseInt(length);
+        String size = Console.readLine();
+        isBridgeSizeDigit(size);
+        return Integer.parseInt(size);
+    }
+
+    private void isBridgeSizeDigit(String length) {
+        if (!length.matches(REG_XP_DIGIT)) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자만 입력 가능합니다.");
+        }
     }
 
     /**
