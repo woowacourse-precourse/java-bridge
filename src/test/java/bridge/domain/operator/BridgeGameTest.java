@@ -134,4 +134,33 @@ class BridgeGameTest {
             assertThat(gameStatus.isSuccess()).isEqualTo(false);
         }
     }
+
+    @Test
+    @DisplayName("플레이어가 재시작 선택 시 게임 결과와 플레이어의 상태가 초기화 된다.")
+    void retryTest() {
+        //given
+        Bridge bridge = new Bridge(List.of("0", "0", "1"));
+
+        Player player = new Player();
+
+        GameStatus gameStatus = new GameStatus();
+        BridgeGame bridgeGame = new BridgeGame(bridge, player, gameStatus);
+        bridgeGame.move("D");
+
+        int beforeRetryPlayerLocation = player.getPlayerLocation();
+
+        int beforeRetryDownBridgeSize = bridgeGame.getBridgeResult().getDownBridge().size();
+        int beforeRetryUpBridgeSize = bridgeGame.getBridgeResult().getUpBridge().size();
+
+        //when
+        bridgeGame.retry();
+
+        //then
+        assertThat(player.getPlayerLocation()).isEqualTo(beforeRetryPlayerLocation - 1);
+        assertThat(bridgeGame.getBridgeResult().getDownBridge().size())
+                .isEqualTo(beforeRetryDownBridgeSize - 1);
+        assertThat(bridgeGame.getBridgeResult().getUpBridge().size())
+                .isEqualTo(beforeRetryUpBridgeSize - 1);
+
+    }
 }
