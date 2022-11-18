@@ -12,7 +12,8 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize(String bridgeSizeInput) {
+    public int readBridgeSize() {
+        String bridgeSizeInput = Console.readLine();
         try {
             int bridgeSize = validateBridgeSizeType(bridgeSizeInput);
             validateBridgeSizeRange(bridgeSize);
@@ -41,7 +42,8 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving(String inputDirection) {
+    public String readMoving() {
+        String inputDirection = Console.readLine();
         try {
             validateMovingDirection(inputDirection);
             return inputDirection;
@@ -60,7 +62,8 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand(String gameCommand) {
+    public String readGameCommand() {
+        String gameCommand = Console.readLine();
         try {
             validateGameCommand(gameCommand);
             return gameCommand;
