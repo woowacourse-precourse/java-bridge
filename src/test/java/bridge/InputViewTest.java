@@ -63,7 +63,21 @@ class InputViewTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {})
-    void readGameCommand() {
+    @ValueSource(strings = {"R", "Q"})
+    @DisplayName("입력값이 R, Q라면 통과한다.")
+    void readGameCommand_정상_입력(String input) {
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        InputView inputView = new InputView();
+        assertThat(inputView.readGameCommand()).isEqualTo(input);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"W", "T", " ", "1"})
+    @DisplayName("입력값이 R, Q가 아니라면 예외가 발생한다.")
+    void readGameCommand_예외_입력(String input) {
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        InputView inputView = new InputView();
+        assertThatIllegalArgumentException()
+                .isThrownBy(inputView::readGameCommand);
     }
 }
