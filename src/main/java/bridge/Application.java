@@ -15,6 +15,9 @@ public class Application {
         while (currentLocation < bridgeSize) {
             String chosenPath = inputView.readMoving();
             boolean successOrFailure = bridgeGame.move(currentLocation, chosenPath);
+            if (successOrFailure == false) {
+                break;
+            }
             outputView.printMap(bridgeGame.getPassedPath(), successOrFailure);
 
             currentLocation++;
