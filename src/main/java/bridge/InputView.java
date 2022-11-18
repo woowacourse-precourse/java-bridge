@@ -16,9 +16,9 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        printCommand.getBridgeLength();
         int bridgeLength;
 
+        printCommand.getBridgeLength();
         try {
             bridgeLength = Integer.valueOf(Console.readLine());
         } catch (NumberFormatException error) {
@@ -33,6 +33,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+        printCommand.getMovement();
         return null;
     }
 
