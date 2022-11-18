@@ -14,12 +14,15 @@ public class OutputView {
     private final String totalTryText = "총 시도한 횟수: ";
     private final String errorText = "[ERROR] ";
     /**
-     *
+     * 게임 시작 문구를 출력한다.
      */
     public void printStart() {
         System.out.println(startText);
     }
 
+    /**
+     * 에러 문구를 에러 메시지와 함께 출력한다.
+     */
     public void printError(String errorMessage) {
         System.out.println(errorText + errorMessage);
     }
