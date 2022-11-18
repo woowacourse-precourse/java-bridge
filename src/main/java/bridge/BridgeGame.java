@@ -11,11 +11,13 @@ public class BridgeGame {
     private List<String> usersMove;
     private int cnt;
     private boolean isMove;
+    private boolean isExit;
 
     public BridgeGame(List<String> bridge, int cnt) {
         this.bridge = bridge;
         this.cnt = cnt;
         this.isMove = false;
+        this.isExit = false;
         usersMove = new ArrayList<>();
     }
 
@@ -30,7 +32,6 @@ public class BridgeGame {
             isMove = true;
             return;
         }
-        isMove = false;
     }
 
     /**
@@ -38,14 +39,14 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry(InputView inputView) {
+    public void retry(InputView inputView) {
         System.out.println(Message.INPUT_GAME_RETRY_OR_EXIT);
         String gameCommand = inputView.readGameCommand();
         if (gameCommand.equals("Q")) {
-            return false;
+            isExit = true;
+            return;
         }
         initializationUserMoves();
-        return true;
     }
 
     private void initializationUserMoves() {
@@ -70,5 +71,9 @@ public class BridgeGame {
 
     public boolean isMove() {
         return isMove;
+    }
+
+    public boolean isExit() {
+        return isExit;
     }
 }
