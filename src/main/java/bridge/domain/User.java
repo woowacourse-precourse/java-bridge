@@ -7,6 +7,10 @@ public class User {
     private List<String > position = new ArrayList<>();
     private Integer retry = 0;
 
+    public List<String> getPosition() {
+        return position;
+    }
+
     public Integer getRetry() {
         return retry;
     }
