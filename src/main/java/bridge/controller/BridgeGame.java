@@ -4,9 +4,11 @@ import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.BridgeSize;
+import bridge.model.Moving;
 import bridge.view.Input;
 import bridge.view.InputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,6 +35,21 @@ public class BridgeGame {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize.getBridgeSize());
 
+
+        // 사용자의 결과값을 알려줄 결과다리리스트를 생성한다
+        List<String> UserBridge = new ArrayList<>();
+
+
+        // 사용자에게 이동할 칸을 입력 받아서 결과다리리스트에 담아준다 // 나중에 move()에 넣자
+        Moving moving = null;
+        do {
+            try {
+                moving = new Moving(input.readMoving());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        } while (moving == null);
+        UserBridge.add(moving.toString());
 
     }
 

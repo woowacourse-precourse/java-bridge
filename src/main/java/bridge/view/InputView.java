@@ -10,6 +10,7 @@ public class InputView implements Input {
     /**
      * 다리의 길이를 입력받는다.
      */
+    @Override
     public String readBridgeSize() {
         System.out.println("\n다리의 길이를 입력해주세요.");
         return Console.readLine();
@@ -18,8 +19,10 @@ public class InputView implements Input {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
+    @Override
     public String readMoving() {
-        return null;
+        System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        return Console.readLine();
     }
 
     /**
