@@ -61,8 +61,8 @@ public class BridgeGame {
 
 
     public void failResult(List<String> upperBridge, List<String> lowerBridge, List<String> answer) {
-        System.out.println("upperBridge = " + upperBridge);
-        System.out.println("lowerBridge = " + lowerBridge);
+        outputView.printMap(upperBridge);
+        outputView.printMap(lowerBridge);
         retry(upperBridge, lowerBridge, answer);
     }
     /**
@@ -98,8 +98,8 @@ public class BridgeGame {
     }
     public void result(List<String> upperBridge, List<String> lowerBridge, int gameTryCount) {
         Message.gameResultMesaage();
-        System.out.println(upperBridge);
-        System.out.println(lowerBridge);
+        outputView.printMap(upperBridge);
+        outputView.printMap(lowerBridge);
         Message.result();
         Message.success();
         Message.tryCount(gameTryCount);
