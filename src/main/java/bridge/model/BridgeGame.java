@@ -8,11 +8,7 @@ import bridge.view.OutputView;
  */
 public class BridgeGame {
 
-    InputView inputView = new InputView();
 
-    private void buildBridge() {
-        Integer bridgeSize = inputView.readBridgeSize();
-    }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
