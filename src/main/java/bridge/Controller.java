@@ -11,26 +11,14 @@ public class Controller {
 
     void play() {
         String quit = "R";
-//        int attempt = 1;
         System.out.println("겜 시작");
         while(!quit.equals("Q")) {
             int size = inputView.readBridgeSize();
-//            boolean failed;
             List<String> bridge = bridgeMaker.makeBridge(size);
             System.out.println(bridge.toString());
 
             quit = whileQuitIsR(quit, bridge);
-//            while(quit.equals("R")) {
-//
-//                outputView = new OutputView();
-//                bridgeGame = new BridgeGame();
-//                List<List<String>> bridges = bridgeGame.getBridges();
-//
-//                failed = crossingBridge(bridges, bridge);
-//
-//                quit = askQuit(bridges,failed, attempt);
-//
-//            }
+
 
         }
     }
@@ -83,8 +71,9 @@ public class Controller {
     public String askQuit(List<List<String>> bridges,boolean failed,int attempt) {
         String quit = "R";
         int tmp = attempt;
+
         if(failed) {
-            outputView.printRestartGame();
+
             quit = inputView.readGameCommand();
             attempt = bridgeGame.retry(attempt, quit);
         }
