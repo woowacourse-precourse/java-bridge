@@ -1,5 +1,7 @@
 package bridge.validator;
 
+import bridge.common.ErrorCode;
+
 public class BridgeSizeValidator {
     private static final int MIN_VALUE = 3;
     private static final int MAX_VALUE = 20;
@@ -7,7 +9,7 @@ public class BridgeSizeValidator {
     public static int validate(String input) {
         int size = Integer.parseInt(input);
         if (isInvalidRange(size)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorCode.INVALID_RANGE.getMessage());
         }
 
         return size;

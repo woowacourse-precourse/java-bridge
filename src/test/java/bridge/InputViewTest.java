@@ -36,6 +36,7 @@ class InputViewTest {
 
             assertThatThrownBy(() -> inputView.readBridgeSize())
                     .isInstanceOf(IllegalArgumentException.class);
+
         }
 
         @ParameterizedTest
@@ -43,6 +44,7 @@ class InputViewTest {
         @ArgumentsSource(BridgeSizeProvider.class)
         public void 범위_확인_테스트(String inputStr, int inputInt) {
             SystemSet.input(inputStr);
+
             Assertions.assertThat(inputView.readBridgeSize()).isEqualTo(inputInt);
         }
     }
