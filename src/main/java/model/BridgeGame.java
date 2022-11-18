@@ -34,6 +34,10 @@ public class BridgeGame {
         bridgeNumber++;
     }
 
+    public void countTryNumber(){
+        tryNumber++;
+    }
+
     public void addCorrectPath(List<String> isCorrectBridge, String path) {
         isCorrectBridge.add(path);
         isCorrectBridge.add(StringConstant.CORRECT_PATH.getConstant());
@@ -132,7 +136,7 @@ public class BridgeGame {
         String retryOrQuit = BridgeController.getGameCommand();
         BridgeController.printRetryOrQuit(retryOrQuit);
         if (isUserInputRetry(retryOrQuit)) {
-            tryNumber++;
+            countTryNumber();
             checkNextPath(bridge, upSide, downSide);
         }
         if (isUserInputQuit(retryOrQuit)) {
