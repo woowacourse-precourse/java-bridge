@@ -116,3 +116,7 @@ Q
   - [X] 종료 직전까지 진행한 다리 상태를 출력한다. - OutputView#printMap
   - [X] 게임 성공 여부를 구한다. - OutputView#getResult
   - [X] 총 시도 횟수를 출력한다.
+
+## 기능 요구 사항
+
+- [ ] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
