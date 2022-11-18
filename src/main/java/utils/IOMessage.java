@@ -1,6 +1,6 @@
 package utils;
 
-public class Message {
+public class IOMessage {
     public static final String GAME_START_MSG = "다리 건너기 게임을 시작합니다.";
     public static final String GAME_EXIT_MSG = "최종 게임 결과";
     public static final String BRIDGE_SIZE_MSG = "다리의 길이를 입력해주세요.";
