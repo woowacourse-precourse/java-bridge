@@ -15,8 +15,8 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private List<String> bridge;
-    private List<Movement> movements;
+    private final List<String> bridge;
+    private final List<Movement> movements;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
