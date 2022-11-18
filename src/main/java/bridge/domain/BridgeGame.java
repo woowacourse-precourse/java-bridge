@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -59,7 +60,7 @@ public class BridgeGame {
     }
 
     public List<BridgeToken> getBridgeTokens() {
-        return bridgeTokens;
+        return Collections.unmodifiableList(bridgeTokens);
     }
 
     public int getRetryCount() {
