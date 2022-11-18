@@ -111,4 +111,16 @@ class BridgeGameTest {
                 //다리에 값을 저장하는 객체가 있다면 확인
                 .hasMessageStartingWith("최종 게임 결과");
     }
+
+    @DisplayName("게임 결과에서 총 시도한 횟수가 올바른지 확인한다.")
+    @ValueSource(ints = {/*게임 시작 후 2차례 실패 뒤 3차례에 성공*/})
+    @Test
+    void validate_Are_Trials_Alright(int input) {
+        assertThatThrownBy(()-> //게임 시작 메서드(input), 재시도, 재시도, 3 번째에 성공,끝
+                BridgeGame.start())
+                //재시작 후 3번째 성공
+                //이후 성공 확인 메세지 확인
+                //다리에 값을 저장하는 객체가 있다면 확인
+                .hasMessageContainingWith("최종 게임 결과", "총 시도한 횟수: 3");
+    }
 }
