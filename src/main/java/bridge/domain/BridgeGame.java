@@ -47,6 +47,7 @@ public class BridgeGame {
      */
     public boolean retry(String retryCommand) {
         if (retryCommand.equals(RETRY)) {
+            currentPosition = 0;
             retryCount++;
             return true;
         }
