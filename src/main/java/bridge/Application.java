@@ -4,7 +4,14 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        BridgeGame bridgeGame = new BridgeGame();
-        bridgeGame.play();
+        try
+        {
+            BridgeGame bridgeGame = new BridgeGame();
+            bridgeGame.play();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
     }
 }

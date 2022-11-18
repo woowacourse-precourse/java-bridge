@@ -9,21 +9,12 @@ public class OutputView {
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     * @param bridge Up 다리인지, Down 다리인지 알려준다.
+     * @param valueList 현재까지 건넌 다리의 결과
+     * @return 정해진 형식에 맞춰 string에 담아서 결과를 넘긴다.
+     *
      */
-    public String printMap(List<List<String>> valueList) {
-        String[] bridges = new String[]{"U", "D"};
-        for(String bridge : bridges)
-            System.out.println(printLayout(bridge, valueList));
-        System.out.println();
-
-
-        return null;
-    }
-
-    private String printLayout(String bridge, List<List<String>> valueList)
-    {
+    public String printMap(String bridge, List<List<String>> valueList) {
         String result ="[";
         for(int i = 0; i < valueList.size(); i++) {
             result += printValue(bridge, valueList.get(i));
@@ -35,7 +26,11 @@ public class OutputView {
     }
 
     /**
-    * 한 가지의 결과만 가져온다.
+     * 특정 위치 다리의 결과를 가져온다.
+     * @param bridge Up 다리인지, Down 다리인지 알려준다.
+     * @param value 특정 위치 다리의 결과
+     * @return bridge 일때, 그 다리를 건넜다면 결과를 반환해준다.
+     *         bridge 일때, 그 다리를 건너지 않았다면 공백을 반환해준다.
     */
     private String printValue(String bridge, List<String> value) {
         if(bridge.equals(value.get(0)))
@@ -47,21 +42,23 @@ public class OutputView {
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     * @param valueList 최종 게임 결과를 가지고 있다.
+     * @param attemption 지금까지 시도한 게임 횟수를 가지고 있다.
      */
-    public void printResult(List<List<String>> valueList) {
+    public void printResult(List<List<String>> valueList, int attemption) {
         System.out.println("최종 게임 결과");
-        printMap(valueList);
+        System.out.println(printMap("U", valueList)); //Upside 게임 결과 출력
+        System.out.println(printMap("D", valueList)); //Downside 게임 결과 출력
         System.out.println();
 
-        int attemption = valueList.size();
-        System.out.println("게임 성공 여부: " + getResult(valueList.get(attemption - 1)));
-//        System.out.println("총 시도한 횟수: " + bridgeGame.getAttemption());
+        System.out.println("게임 성공 여부: " + getResult(valueList.get(valueList.size() - 1))); //가장 마지막 결과로 확인해야 함
+        System.out.println("총 시도한 횟수: " + attemption);
     }
 
     /**
      *  게임 성공 여부를 가져온다.
+     * @param value 가장 마지막에 진행한 게임 결과를 가지고 있다.
+     * @return 게임 결과가 'O'이면 '성공'을, 'X'이면 '실패'를 반환한다.
      */
     public String getResult(List<String> value)
     {
