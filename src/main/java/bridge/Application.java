@@ -6,9 +6,9 @@ public class Application {
         try {
             InputView input = new InputView();
             OutputView output = new OutputView();
-
             output.startGame();
             int bridgeSize = input.readBridgeSize();
+            BridgeGame bridgeGame = new BridgeGame(bridgeSize);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

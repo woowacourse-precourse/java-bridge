@@ -3,8 +3,8 @@ package bridge;
 public enum Input {
     UP("U", 1),
     DOWN("D", 0),
-    RETRY("R"),
-    QUIT("Q"),
+    RETRY("R", 3),
+    QUIT("Q", 3),
     ;
 
     private final String input;
@@ -18,6 +18,10 @@ public enum Input {
     Input(String input, int value) {
         this.input = input;
         this.value = value;
+    }
+
+    public int toInteger() {
+        return this.value;
     }
 
     @Override
