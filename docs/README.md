@@ -20,7 +20,8 @@
   - 위아래 둘 중 하나의 칸만 건널 수 있다. -> Enum type Command (UP,DOWN) [괜찮은 이름 좀 더 생각해봐야할듯.]
   
 - 다리의 길이를 숫자로 입력받고 생성한다. 
-  - 다리 길이 입력 받는 기능 -> InputView
+  - 다리 길이 입력 받는 기능 -> InputView - readBridgeSize()
+    - [X] 입력 유효성 검사
   - 다리를 생성 하는 기능 -> BridgeMaker[BridgeNumberGenerator.class] - generate()
     - 다리를 생성할 때 위 칸과 아래 칸 중 건널 수 있는 칸은 0과 1 중 무작위 값을 이용해서 정한다.
     - 위 칸을 건널 수 있는 경우 U, 아래 칸을 건널 수 있는 경우 D값으로 나타낸다.

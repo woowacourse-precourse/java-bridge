@@ -17,7 +17,13 @@ public class InputView {
     // 일단 여기서 데이터 검증 로직 추가.
     // 추후 DTO 같은 곳에서 검증 할 수 도 있음.
     public int readBridgeSize() {
-        return 1;
+        String inputSize = Console.readLine();
+        for (int i = 0; i < inputSize.length(); i++) {
+            if (!Character.isDigit(inputSize.charAt(i))) {
+                throw new IllegalArgumentException("다리 길이는 양의숫자 여야 합니다.");
+            }
+        }
+        return Integer.parseInt(inputSize);
     }
 
     /**
