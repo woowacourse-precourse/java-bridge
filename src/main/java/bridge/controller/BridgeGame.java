@@ -74,6 +74,7 @@ public class BridgeGame {
         inputNextStep = inputView.inputMovingStep();
         canMove = generatedBridge.canMoveNextStep(nextStepIndex, inputNextStep);
         playerBridge.moveNextStep(inputNextStep, canMove);
+        nextStepIndex++;
     }
 
     public void printCurrentBridge() {
@@ -84,7 +85,7 @@ public class BridgeGame {
     }
 
     public void judgeGameStatus() {
-        if (nextStepIndex == Integer.parseInt(bridgeSize) -1 && canMove) {
+        if (nextStepIndex == Integer.parseInt(bridgeSize) && canMove) {
             isGameSuccess = true;
         }
     }
