@@ -12,5 +12,8 @@ public class Validate {
         return Exception.validateInputValueForMove(moving);
     }
 
-    
+    // TODO: 사용자로부터 입력받은 게임 재시작 여부를 검증하여 반환한다.
+    public static String gameCommend(String gameCommend){
+        return Exception.validateInputValueForReStart(gameCommend);
+    }
 }
