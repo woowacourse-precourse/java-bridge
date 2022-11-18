@@ -8,10 +8,18 @@ public class Validator {
 	private static final String NUMBER_REGEX = "\\d+";
 	private static final String RESTART = "R";
 	private static final String QUIT = "Q";
+	private static final int SIZE_LOWER_INCLUSIVE = 3;
+	private static final int SIZE_UPPER_INCLUSIVE = 20;
 
 	public static void validateBridgeSize(List<String> bridge, int size) {
 		if (bridge.size() != size) {
 			throw new IllegalArgumentException("[ERROR] 다리의 길이가 입력받은 길이와 같지 않습니다.");
+		}
+	}
+
+	public static void validateBridgeSizeRange(int size) {
+		if (size < SIZE_LOWER_INCLUSIVE || size > SIZE_UPPER_INCLUSIVE) {
+			throw new IllegalArgumentException("[ERROR] 다리의 길이는 3부터 20 사이여야 합니다.");
 		}
 	}
 
