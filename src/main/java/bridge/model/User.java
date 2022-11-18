@@ -25,6 +25,9 @@ public class User {
 
     public void resetChoices() {
         choices.clear();
+    }
+
+    public void addTryCount() {
         totalTryCount++;
     }
 

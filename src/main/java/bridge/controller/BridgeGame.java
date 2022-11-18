@@ -83,6 +83,7 @@ public class BridgeGame {
     private boolean isRetry(String retryCommand) {
         if (retryCommand.equals("R")) {
             user.resetChoices();
+            user.addTryCount();
             return true;
         }
         return false;
