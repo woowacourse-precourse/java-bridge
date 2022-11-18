@@ -2,9 +2,9 @@ package bridge;
 
 public class Validator {
 
-    public static void validateNumber(String bridgeNumber) {
-        for (int index = 0; index < bridgeNumber.length(); index++) {
-            if (!Character.isDigit(bridgeNumber.charAt(index))) {
+    public static void validateNumber(String userInput) {
+        for (int index = 0; index < userInput.length(); index++) {
+            if (!Character.isDigit(userInput.charAt(index))) {
                 System.out.println(ErrorMessage.NUMBER_ERROR.getMessage());
                 throw new IllegalArgumentException();
             }
