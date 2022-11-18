@@ -89,4 +89,12 @@ public class BridgeGame {
     public int getTryCount() {
         return tryCount;
     }
+
+    public List<String> getUpBoardCheckList() {
+        return upBoardCheckList;
+    }
+
+    public List<String> getDownBoardCheckList() {
+        return downBoardCheckList;
+    }
 }
