@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -9,6 +10,7 @@ import java.util.Scanner;
  */
 public class InputView {
     private Scanner sc = new Scanner(System.in);
+    private int count = 1;
 
     static int bridgeLength;
 
@@ -16,7 +18,6 @@ public class InputView {
         String bridgeLength = sc.nextLine();
         bridgeSizeCheck(bridgeLength);
         this.bridgeLength = Integer.parseInt(bridgeLength);
-
     }
     public void bridgeSizeCheck(String bridgeLength){
         for(int i = 0; i < bridgeLength.length(); i++){
@@ -29,8 +30,28 @@ public class InputView {
         }
     }
     public String readMoving() {
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        List<String> crossingTheBridge = bridgeMaker.makeBridge(bridgeLength);
+        for(int i = 0; i < bridgeLength; i++){
+            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            System.out.println(crossingTheBridge.get(i));
+            String UpAndDown = sc.next();
+            movingCheck(UpAndDown);
+            if(!crossingTheBridge.get(i).equals(UpAndDown)) {
+                return "실패";
+            }
+        }
+        return "성공";
+    }
+    public void movingCheck(String UpAndDown){
+        if(UpAndDown.length() > 1){
+            throw new IllegalArgumentException("[ERROR]");
+        }
+        if(!UpAndDown.equals("U") && !UpAndDown.equals("D")){
+            throw new IllegalArgumentException("[ERROR]");
+        }
 
-        return null;
     }
 
     /**
