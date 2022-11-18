@@ -59,6 +59,15 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    @DisplayName("예외 3-1. U(위 칸)와 D(아래 칸) 중 하나의 문자가 아닌 경우")
+    void test4() {
+        assertSimpleTest(() -> {
+            runException("3", "R");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
     void 다리_생성_테스트() {
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
