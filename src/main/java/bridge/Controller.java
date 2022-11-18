@@ -3,6 +3,8 @@ package bridge;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.List;
+
 public class Controller {
 
     InputView inputView = new InputView();
@@ -19,15 +21,28 @@ public class Controller {
         return bridgeGame;
     }
 
-    public boolean play(BridgeGame bridgeGame) {
+    public List<Boolean> movement(BridgeGame bridgeGame) {
         if (bridgeGame.check()) {
-            return false;
+            return List.of(true, false);
         }
         outputView.printGetMoving();
         String moving = getMoving();
         boolean movement = bridgeGame.move(moving);
         outputView.printMap(bridgeGame, movement);
-        return movement;
+        return List.of(false, movement);
+    }
+
+    public boolean play(BridgeGame bridgeGame) {
+        List<Boolean> result;
+        do {
+            do {
+                result = movement(bridgeGame);
+            } while (result.get(1));
+            if (result.get(0)) {
+                return true;
+            }
+        } while (finish(bridgeGame));
+        return false;
     }
 
     public boolean finish(BridgeGame bridgeGame) {
