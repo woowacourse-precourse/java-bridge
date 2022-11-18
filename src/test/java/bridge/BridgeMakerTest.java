@@ -41,7 +41,7 @@ class BridgeMakerTest {
     }
 
 
-    @DisplayName("[Bridge] 다리 길이의 입력값이 범위내 없는경우 예외발생")
+    @DisplayName("[validateBridgeSize] 다리 길이의 입력값이 범위내 없는경우 예외발생")
     @ParameterizedTest
     @ValueSource(ints = {2, -1, 132, 21})
     void notCorrectBridgeSize(int size) {
@@ -52,7 +52,7 @@ class BridgeMakerTest {
                 .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessage.NOT_RANGE_BRIDGE_SIZE);
     }
 
-    @DisplayName("[Bridge] 다리 길이의 입력값이 정상 범위인경우")
+    @DisplayName("[validateBridgeSize] 다리 길이의 입력값이 정상 범위인경우")
     @ParameterizedTest
     @ValueSource(ints = {3, 14, 20})
     void correctBridgeSize(int size) {
