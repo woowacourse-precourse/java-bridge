@@ -22,4 +22,8 @@ public class Player {
     public String getLastInput() {
         return inputs.get(inputs.size() - 1);
     }
+
+    public List<String> getInputs() {
+        return Collections.unmodifiableList(inputs);
+    }
 }
