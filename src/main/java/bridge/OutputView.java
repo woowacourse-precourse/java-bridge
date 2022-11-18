@@ -36,7 +36,7 @@ public class OutputView {
     private boolean SameWithD(String input) {
         return "D".equals(input);
     }
-    
+
     private String printUpString(int movingIdx, List<String> bridgeList, String input) {
         StringBuilder upString = new StringBuilder();
         upString.append("[");

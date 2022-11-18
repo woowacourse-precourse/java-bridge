@@ -59,7 +59,7 @@ public class InputView {
         System.out.println(readMovingMs);
         try {
             input = getInput().toUpperCase();
-            if (ThisIsMove()) throw new IllegalArgumentException();
+            if (ThisIsMove()) Except();
         } catch (IllegalArgumentException e) {
             System.out.println(exceptMoving);
             input = readMoving();
@@ -78,7 +78,7 @@ public class InputView {
         System.out.println(readGameCommandMs);
         try {
             input = getInput();
-            if (ThisIsRetry()) throw new IllegalArgumentException();
+            if (ThisIsRetry()) Except();
         } catch (IllegalArgumentException e) {
             System.out.println(exceptRetry);
             input = readGameCommand();
@@ -92,5 +92,9 @@ public class InputView {
 
     private String getInput(){
         return Console.readLine();
+    }
+
+    void Except() {
+        throw new IllegalArgumentException();
     }
 }
