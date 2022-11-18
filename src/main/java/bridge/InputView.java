@@ -27,14 +27,14 @@ public class InputView {
         System.out.println(InputMessage.INPUT_BRIDGE_MESSAGE.getMessage());
     }
 
-    private void validateBridge(String bridge) {
+    public void validateBridge(String bridge) {
         isNumber(bridge);
         isOutOfSize(bridge);
     }
 
     private void isNumber(String bridge) {
         String regex = "^\\d*$";
-        if(Pattern.matches(regex,bridge)){
+        if(!Pattern.matches(regex,bridge)){
             throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMessage());
         }
     }
@@ -60,7 +60,7 @@ public class InputView {
         System.out.println(InputMessage.INPUT_MOVING_MESSAGE.getMessage());
     }
 
-    private void validateMovingCommand(String command) {
+    public void validateMovingCommand(String command) {
         isMovingCommand(command);
     }
 
@@ -86,7 +86,7 @@ public class InputView {
         System.out.println(InputMessage.INPUT_GAME_MESSAGE.getMessage());
     }
 
-    private void validateGameCommand(String command) {
+    public void validateGameCommand(String command) {
         isGameCommand(command);
     }
 
