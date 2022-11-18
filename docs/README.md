@@ -8,21 +8,24 @@
 2. 자동으로 생성할 다리 길이 입력 받기(UI) - InputView#readBridgeSize()
     * 예외 : 3 이상 20 이하의 정수가 아니면 IllegalArgumentException 발생시키고 [ERROR]로 시작하는 에러 메시지 출력하고 다시 입력받기 - InputView#bridgeSizeExceptionCheck()
 
-3. 다리 길이만큼 랜덤(0,1)로 이루어진 다리를 생성(핵심로직) - BridgeRandomNumberGenerator#generate() & BridgeMaker#makeBridge()
+3. 다리 길이만큼 랜덤(0,1)로 이루어진 다리를 생성(핵심로직) - BridgeMaker#makeBridge()
 
 4. 이동할 칸을 입력 받기(UI) - InputView#readMoving()
     * 에외 : U 나 D의 문자가 아니면 IllegalArgumentException 발생시키고 [ERROR]로 시작하는 에러 메시지 출력하고 다시 입력받기 - InputView#readMovingExceptionCheck()
 
-5. 입력받은 문자(U/D)가 각각 생성된 다리(1/0)과 일치하는지 확인하기 - BridgeGame#compareMoving()
+5. 입력받은 문자(U/D)가 각각 생성된 다리(1/0)과 일치하는지 확인하기(핵심로직) - BridgeGame#compareMoving()
     * 일치하는 경우
         - 사용자 칸을 이동하기(핵심로직) - BridgeGame#move()
-        - 이동할 수 있는 칸을 선택했으므로 올바른 위치에 O를 표시하고 지금까지 입력된 다리 출력하기(UI) - OutputView#printMap()
+            - 이동할 수 있는 칸을 선택했으므로 올바른 위치에 O를 표시하고 - BridgeGame#addSuccessStateToBridge()
+            - 지금까지 입력된 다리 출력하기(UI) - OutputView#printMap()
         + 다리의 길이만큼 계속 입력받기(조건)
         * 게임 종료일 경우(계속 일치해서 다리를 모두 건넜을 경우) 
             - 최종 게임 결과, 게임 성공 여부 : 성공, 지금까지 총 시도한 횟수를 출력하기(UI) - OutputView#printResult()
 
     * 일치하지 않는 경우 
-        - 이동할 수 없는 칸을 선택했으므로 올바른 위치에 X를 표시하고 지금까지 입력된 다리 출력하기(UI) - OutputView#printMap()
+        - 사용자 칸을 이동하기(핵심로직) - BridgeGame#move()
+            - 이동할 수 없는 칸을 선택했으므로 올바른 위치에 X를 표시하고 - BridgeGame#addFailureStateToBridge()
+            -  지금까지 입력된 다리 출력하기(UI) - OutputView#printMap()
         - 게임 재시작(R)/종료(Q) 여부 입력받기 - InputView#readGameCommand()
             * 예외 : R이나 Q의 문자가 아니면 IllegalArgumentException 발생시키고 [ERROR]로 시작하는 에러 메시지 출력하고 다시 입력받기 - InputView#readGameCommandExceptionCheck()
 
