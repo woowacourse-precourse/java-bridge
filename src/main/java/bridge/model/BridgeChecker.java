@@ -9,6 +9,10 @@ public class BridgeChecker {
 		return isFinish(bridge, gameTurn) || isNotMovable(bridge, moveCommand, gameTurn);
 	}
 
+	public static boolean isEndGame(List<String> bridge, int gameTurn) {
+		return isFinish(bridge, gameTurn);
+	}
+
 	private static boolean isFinish(List<String> bridge, int gameTurn) {
 		return bridge.size() == gameTurn;
 	}
