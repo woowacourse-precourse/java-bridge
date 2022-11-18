@@ -1,5 +1,7 @@
 package bridge.domain.vo;
 
+import java.util.List;
+
 public class MatchResult {
 
     private StringBuilder upperSide;
@@ -11,8 +13,8 @@ public class MatchResult {
         this.downSide = new StringBuilder();
     }
 
-    public void correctUpperSide(int position) {
-        upperSide.
+    public void correctUpperSide(boolean moveOrNot, List<String> userInputs) {
+
     }
 
     public void retry() {
@@ -20,11 +22,16 @@ public class MatchResult {
         downSide.delete(0, downSide.length());
     }
 
-    public void printUpperSide() {
+    private void printUpperSide() {
         System.out.println(upperSide.toString());
     }
 
-    public void printDownSide() {
+    private void printDownSide() {
         System.out.println(downSide.toString());
+    }
+
+    public void printUpAndDownSides() {
+        printUpperSide();
+        printDownSide();
     }
 }

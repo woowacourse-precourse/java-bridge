@@ -13,12 +13,12 @@ import java.util.List;
 public class BridgeGame {
 
     private Integer gameTimes = 1;
-    private MatchResult matchResult;
     private List<String> userInputs;
+    private MatchResult matchResult;
 
     public BridgeGame() {
-        matchResult = new MatchResult();
         userInputs = new ArrayList<>();
+        matchResult = new MatchResult();
     }
 
     /**
@@ -26,13 +26,13 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public MatchResult move(List<String> givenBridge, String userInput, int position) {
+    public boolean move(List<String> givenBridge, String userInput, int position) {
         userInputs.add(userInput);
         // userInput과 bridge의 결과가 맞다면
         if (givenBridge.get(position).equals(userInputs.get(position))) {
-            matchResult.correctUpperSide(position);
+            return true;
         }
-        return matchResult;
+        return false;
     }
 
     /**
@@ -45,7 +45,20 @@ public class BridgeGame {
         gameTimes += 1;
     }
 
+    public List<String> currentUserInput() {
+        return userInputs;
+    }
+
     public void currentGameTime() {
-        System.out.println(GAME_NUMBER_OF_ATTEMPTS + String.valueOf(gameTimes));
+        System.out.println(GAME_NUMBER_OF_ATTEMPTS.currentMessage() + String.valueOf(gameTimes));
+    }
+
+    public void looseGame() {
+        ConsoleOut.LOOSING_GAME_MESSAGE.print();
+        currentGameTime();
+    }
+    public void winningGame() {
+        ConsoleOut.WINNING_GAME_MESSAGE.print();
+        currentGameTime();
     }
 }
