@@ -15,4 +15,8 @@ public enum CommandType {
     public String getMark() {
         return mark;
     }
+
+    public boolean isEqualsMark(String mark) {
+        return this.mark.equals(mark);
+    }
 }
