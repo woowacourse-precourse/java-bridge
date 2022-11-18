@@ -2,7 +2,9 @@ package bridge.domain.bridge.application;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
+import bridge.domain.bridge.model.BridgeGame;
 import bridge.domain.bridge.model.BridgeMap;
+import bridge.domain.player.GamePlayer;
 import bridge.ui.input.InputView;
 import bridge.ui.output.OutputView;
 import java.util.List;
@@ -16,7 +18,7 @@ public class BridgeGameController {
         this.outputView = outputView;
     }
 
-    public void initGame() {
+    public void launchGame() {
         outputView.printInitMessage();
     }
 
@@ -30,5 +32,10 @@ public class BridgeGameController {
 
     private int readBridgeSize() {
         return inputView.readBridgeSize().toInteger();
+    }
+
+    public void playGame(BridgeMap bridgeMap) {
+        GamePlayer gamePlayer = new GamePlayer();
+        BridgeGame bridgeGame = new BridgeGame(bridgeMap, gamePlayer);
     }
 }

@@ -13,9 +13,11 @@ public class Application {
         OutputView outputView = new OutputView();
         BridgeGameController bridgeGameController = new BridgeGameController(inputView, outputView);
 
-        bridgeGameController.initGame();
+        bridgeGameController.launchGame();
 
         BridgeNumberGenerator randomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMap bridgeMap = bridgeGameController.generateBridgeGameMap(randomNumberGenerator);
+
+        bridgeGameController.playGame(bridgeMap);
     }
 }

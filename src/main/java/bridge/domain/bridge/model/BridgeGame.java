@@ -1,9 +1,18 @@
 package bridge.domain.bridge.model;
 
+import bridge.domain.player.GamePlayer;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private final BridgeMap bridgeMap;
+    private final GamePlayer gamePlayer;
+
+    public BridgeGame(BridgeMap bridgeMap, GamePlayer gamePlayer) {
+        this.bridgeMap = bridgeMap;
+        this.gamePlayer = gamePlayer;
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
