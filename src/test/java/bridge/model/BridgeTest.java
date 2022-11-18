@@ -11,6 +11,7 @@ class BridgeTest {
     @Nested
     @DisplayName("생성자 유효성 테스트")
     class DescribeConstructValidate {
+
         @Test
         @DisplayName("인자가 U,D로 이루어진 리스트가 아니라면 IllegalAgumentException을 반환")
         void receiveWrongArgument() {
