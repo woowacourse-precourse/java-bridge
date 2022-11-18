@@ -11,6 +11,10 @@ public class MatchResult {
         this.downSide = new StringBuilder();
     }
 
+    public void correctUpperSide(int position) {
+        upperSide.
+    }
+
     public void retry() {
         upperSide.delete(0, upperSide.length());
         downSide.delete(0, downSide.length());

@@ -7,7 +7,7 @@ import static bridge.common.message.ExceptionMessage.ERROR_CODE;
 import static bridge.common.message.ExceptionMessage.GAME_COMMAND_INCORRECT_MESSAGE;
 import static bridge.common.message.ExceptionMessage.READ_MOVING_INCORRECT_MESSAGE;
 
-import bridge.common.message.ExceptionMessage;
+import bridge.common.message.ConsoleOut;
 import bridge.domain.exception.BridgeSizeException;
 import bridge.domain.exception.BridgeSizeOutOfBoundaryException;
 import bridge.domain.exception.GameCommandException;
@@ -25,6 +25,7 @@ public class InputView {
     public int readBridgeSize(ProcessHelper processHelper) {
         while (true) {
             try {
+                ConsoleOut.INPUT_BRIDGE_LENGTH_MESSAGE.print();
                 String bridgeSize = Console.readLine();
                 bridgeSizeValidation(processHelper, bridgeSize);
                 bridgeNumberValidation(bridgeSize);
@@ -42,6 +43,7 @@ public class InputView {
     public String readMoving(ProcessHelper processHelper) {
         while (true) {
             try {
+                ConsoleOut.INPUT_MOVING_POSITION_MESSAGE.print();
                 String moving = Console.readLine();
                 movingValidation(processHelper, moving);
                 return moving;
@@ -57,6 +59,7 @@ public class InputView {
     public String readGameCommand(ProcessHelper processHelper) {
         while (true) {
             try {
+                ConsoleOut.GAME_RESTART_Q_AND_A_MESSAGE.print();
                 String gameCommand = Console.readLine();
                 gameCommandValidation(processHelper, gameCommand);
                 return gameCommand;
@@ -85,8 +88,9 @@ public class InputView {
     }
 
     private void bridgeNumberValidation(String bridgeSize) {
-        if (Integer.parseInt(bridgeSize) < 3 || Integer.parseInt(bridgeSize) > 20){
-            throw new BridgeSizeOutOfBoundaryException(ERROR_CODE + BRIDGE_LENGTH_OUT_OF_SIZE_MESSAGE);
+        if (Integer.parseInt(bridgeSize) < 3 || Integer.parseInt(bridgeSize) > 20) {
+            throw new BridgeSizeOutOfBoundaryException(
+                ERROR_CODE + BRIDGE_LENGTH_OUT_OF_SIZE_MESSAGE);
         }
     }
 }
