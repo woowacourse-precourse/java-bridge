@@ -3,8 +3,8 @@ package bridge.ui;
 public class Exception {
     private final OutputView outputView = new OutputView();
 
-    public void exceptionBridgeSize() {
+    public Boolean exceptionBridgeSize() {
         outputView.printErrorBridgeSize();
-        throw new IllegalArgumentException();
+        return false;
     }
 }
