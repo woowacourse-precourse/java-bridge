@@ -48,4 +48,7 @@ public class BridgeGame {
         return  retrymap;
     }
 
+    public int getRound() {
+        return round;
+    }
 }
