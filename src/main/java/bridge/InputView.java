@@ -50,13 +50,13 @@ public class InputView {
     }
 
     private void validateMovingInput(String movingInput) {
-        if (!movingInput.equals("U") || !movingInput.equals("D")) {
+        if (!(movingInput.equals("U") || movingInput.equals("D"))) {
             throw new IllegalArgumentException("[ERROR] \"위: U, 아래: D\"만 입력 가능합니다.");
         }
     }
 
     private void validateRegameInput(String regameInput) {
-        if (!regameInput.equals("R") || !regameInput.equals("Q")) {
+        if (!(regameInput.equals("R") || regameInput.equals("Q"))) {
             throw new IllegalArgumentException("[ERROR] \"재시도: R, 종료: Q\"만 입력 가능합니다.");
         }
     }
