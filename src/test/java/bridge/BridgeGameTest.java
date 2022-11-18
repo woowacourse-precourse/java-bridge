@@ -19,23 +19,14 @@ public class BridgeGameTest {
         // when
         String nextStep = "U";
         BridgeGameResultDto move = bridgeGame.move(nextStep);
-        List<UpDown> collectUpDown = move.getGradingBoard()
-                .stream()
-                .map(v -> v.entrySet()
-                        .stream()
-                        .map(e -> e.getKey())
-                        .collect(Collectors.toList())
-                        .get(0))
+        List<UpDown> collectUpDown = move.getGradingBoard().stream()
+                .map(v -> v.getUpDown())
                 .collect(Collectors.toList());
 
-        List<Boolean> collectIsCorrect = move.getGradingBoard()
-                .stream()
-                .map(v -> v.entrySet()
-                        .stream()
-                        .map(e -> e.getValue())
-                        .collect(Collectors.toList())
-                        .get(0))
+        List<Boolean> collectIsCorrect = move.getGradingBoard().stream()
+                .map(v -> v.isCorrect())
                 .collect(Collectors.toList());
+
 
         // then
         assertThat(collectUpDown).containsExactly(UpDown.UP);
@@ -51,22 +42,12 @@ public class BridgeGameTest {
         // when
         String nextStep = "D";
         BridgeGameResultDto move = bridgeGame.move(nextStep);
-        List<UpDown> collectUpDown = move.getGradingBoard()
-                .stream()
-                .map(v -> v.entrySet()
-                        .stream()
-                        .map(e -> e.getKey())
-                        .collect(Collectors.toList())
-                        .get(0))
+        List<UpDown> collectUpDown = move.getGradingBoard().stream()
+                .map(v -> v.getUpDown())
                 .collect(Collectors.toList());
 
-        List<Boolean> collectIsCorrect = move.getGradingBoard()
-                .stream()
-                .map(v -> v.entrySet()
-                        .stream()
-                        .map(e -> e.getValue())
-                        .collect(Collectors.toList())
-                        .get(0))
+        List<Boolean> collectIsCorrect = move.getGradingBoard().stream()
+                .map(v -> v.isCorrect())
                 .collect(Collectors.toList());
 
         // then
