@@ -6,15 +6,15 @@
 - [x] 다리의 길이를 입력 받는 문구를 출력한다. -OutputView#printGuideMessage()
 - [x] 다리의 길이를 입력 받는다. -InputView#readBridgeSize()
   - [x] 다리의 길이는 3부터 20 사이만 입력 받을 수 있다.
-- [x] 다리의 길이만큼 다리를 랜덤 값으로 생성한다.
+- [x] 다리의 길이만큼 다리를 랜덤 값으로 생성한다. -BridgeMaker#makeBridge()
   - [x] 0이면 아래 칸, 1이면 위의 칸이 유효한 칸이다.
   - [x] 위 칸을 건널 수 있는 경우는 U, 아래 칸을 건널 수 있는 경우는 D 이다.
 - [x] 이동할 칸을 입력 받는 문구를 출력한다. -OutputView#printInputMoveMessage()
 - [x] 이동할 칸을 입력 받는다. -InputView#readMoving()
   - [x] U 또는 D 만 입력 받을 수 있다.
-- [x] 이동할 칸이 유효한 칸인지 확인한다.
+- [x] 이동할 칸이 유효한 칸인지 확인한다. -Bridge#isValid()
   - [x] 유효하면 O, 유효하지 않으면 X 이다.
-- [ ] 현재까지 건넌 다리를 출력한다.
+- [x] 현재까지 건넌 다리를 출력한다. -Output#printMap()
 
 
 - [ ] 이동한 칸이 유효한 칸이라면? 

@@ -36,7 +36,7 @@ public class Way {
 
     public String getWay(int where) {
         validate(where);
-        if (where == 0) {
+        if (where == 1) {
             return up;
         }
         return down;
