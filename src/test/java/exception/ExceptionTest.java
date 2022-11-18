@@ -24,4 +24,12 @@ class ExceptionTest {
                 .hasMessageContaining(ERROR + " U 또는 D 를 입력해 주세요.")
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ValueSource(strings = {"inputTest", "K", "Z"})
+    @ParameterizedTest
+    void 사용자_명령어_입력_검증_테스트(String input) {
+        assertThatThrownBy(() -> Exception.readGameCommandValidation(input))
+                .hasMessageContaining(ERROR + " R 또는 Q 를 입력해 주세요.")
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
