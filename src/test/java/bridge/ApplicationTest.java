@@ -7,11 +7,35 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
+
+    @Test
+    @DisplayName("예외 1-1. 3 이상 20 이하의 숫자가 아닌 경우")
+    void test0(){
+        assertSimpleTest(() -> {
+            runException("1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+        assertSimpleTest(() -> {
+            runException("2");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("예외 1-2. 숫자가 아닌 경우")
+    void test1(){
+        assertSimpleTest(() -> {
+            runException("문자");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
 
     @Test
     void 다리_생성_테스트() {
