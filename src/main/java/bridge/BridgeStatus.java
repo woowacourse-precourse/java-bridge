@@ -4,19 +4,19 @@ public enum BridgeStatus {
     UP(1, "U"),
     DOWN(0, "D");
 
-    private final int upNumber;
-    private final String upName;
+    private final int number;
+    private final String name;
 
-    BridgeStatus(int upNumber,String upName) {
-        this.upName = upName;
-        this.upNumber = upNumber;
+    BridgeStatus(int number,String name) {
+        this.number = number;
+        this.name = name;
     }
 
-    public int getUpNumber() {
-        return upNumber;
+    public int getNumber() {
+        return number;
     }
 
     public String getUpName() {
-        return upName;
+        return name;
     }
 }
