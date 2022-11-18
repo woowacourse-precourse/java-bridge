@@ -26,6 +26,7 @@ public class InputView {
     }
 
     public String readMoving() {
+        System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String input = Console.readLine();
         validCommand(input);
         return input;

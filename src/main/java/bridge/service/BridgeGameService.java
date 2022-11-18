@@ -1,7 +1,9 @@
 package bridge.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeRandomNumberGenerator;
 
@@ -15,6 +17,17 @@ public class BridgeGameService {
 	public List<String> initBridge(int size) {
 		validSize(size);
 		return bridgeMaker.makeBridge(size);
+	}
+
+	public List<List<String>> initGameResult() {
+		List<List<String>> moveResult = new ArrayList<>();
+		moveResult.add(new ArrayList<>());
+		moveResult.add(new ArrayList<>());
+		return moveResult;
+	}
+
+	public void moveBridge(String moving, BridgeGame bridgeGame, List<List<String>> moveResult) {
+		moveResult = bridgeGame.move(moving, moveResult);
 	}
 
 	private void validSize(int size) {
