@@ -15,7 +15,7 @@ public class BridgeRandomNumberGenerator implements BridgeNumberGenerator {
     }
 
     private void validGenerateBridgeRandomNumber(int number) {
-        if (number!=RANDOM_LOWER_INCLUSIVE && number != RANDOM_UPPER_INCLUSIVE) {
+        if (number != RANDOM_LOWER_INCLUSIVE && number != RANDOM_UPPER_INCLUSIVE) {
             throw new IllegalStateException();
         }
     }
