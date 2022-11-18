@@ -1,5 +1,6 @@
 package view;
 
+import constant.StringConstant;
 import java.util.List;
 
 public class OutputView {
@@ -54,6 +55,7 @@ public class OutputView {
         printStartSquareBracket();
         printSide(downSide);
         printEndSquareBracket();
+
         insertLineBreak();
     }
 
@@ -66,10 +68,9 @@ public class OutputView {
         }
     }
 
-    public int lastIndex(List<String> side){
-        return side.size() - 1;
+    public int lastIndex(List<String> side) {
+        return (side.size() - 1);
     }
-
 
     public void printStartSquareBracket() {
         System.out.print("[ ");
@@ -96,17 +97,19 @@ public class OutputView {
     }
 
     public boolean isWin(List<String> upSide, List<String> downSide) {
-        return !upSide.contains("X") && !downSide.contains("X");
+        return !upSide.contains(StringConstant.WRONG_PATH.getConstant())
+                && !downSide.contains(StringConstant.WRONG_PATH.getConstant());
     }
 
     public boolean isFail(List<String> upSide, List<String> downSide) {
-        return upSide.contains("X") || downSide.contains("X");
+        return upSide.contains(StringConstant.WRONG_PATH.getConstant())
+                || downSide.contains(StringConstant.WRONG_PATH.getConstant());
     }
 
     public void printWin(int countTryNumber) {
         System.out.print(View.WIN_FAIL_STATUS.message());
         System.out.print(View.BLANK.message());
-        System.out.println("성공");
+        System.out.println(StringConstant.WIN.getConstant());
 
         System.out.print(View.TOTAL_TRY_NUMBER.message());
         System.out.print(View.BLANK.message());
@@ -115,7 +118,7 @@ public class OutputView {
 
     public void printFail(int countTryNumber) {
         System.out.print(View.WIN_FAIL_STATUS.message());
-        System.out.println("실패");
+        System.out.println(StringConstant.FAIL.getConstant());
 
         System.out.print(View.TOTAL_TRY_NUMBER.message());
         System.out.println(countTryNumber);
