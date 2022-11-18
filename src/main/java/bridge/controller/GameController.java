@@ -22,18 +22,19 @@ public class GameController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final BridgeGame bridgeGame;
 
-    // todo: bridge를 BridgeGame에서 관리할 수 있도록 refactor, 그 외 OutputView등에서의 활용 방법 방안 구상
-    private final Bridge bridge;
+    private BridgeGame bridgeGame;
 
     public GameController() {
-        bridgeGame = new BridgeGame();
         inputView = new InputView();
         outputView = new OutputView();
 
+        initGame();
+    }
+
+    private void initGame() {
         outputView.printGameStartMessage();
-        bridge = generateRandomBridge();
+        bridgeGame = BridgeGame.from(generateRandomBridge());
     }
 
     public void startGame() {
@@ -65,20 +66,21 @@ public class GameController {
         boolean isSurvival = true;
         do {
             isSurvival = playOneTurn(player);
-            outputView.printMap(bridge, player);
+            // todo: bridge 없이 printmap 구현..
+//            outputView.printMap(bridge, player);
         } while (isContinueGame(player, isSurvival));
     }
 
     private boolean isContinueGame(Player player, boolean isSurvivalThisTurn) {
         if (isSurvivalThisTurn) {
-            return !bridgeGame.isWin(bridge, player);
+            return !bridgeGame.isWin(player);
         }
         return askForTryAgain();
     }
 
     private boolean playOneTurn(Player player) {
         Tile movingTargetTile = readMovingTargetTile();
-        boolean turnResult = bridgeGame.move(bridge, player, movingTargetTile);
+        boolean turnResult = bridgeGame.move(player, movingTargetTile);
         return turnResult;
     }
 
@@ -118,8 +120,9 @@ public class GameController {
 
     private void showResult(Player player) {
         outputView.printFinishGameInfoMessage();
-        outputView.printMap(bridge, player);
-        outputView.printResult(bridgeGame.isWin(bridge, player), player.getTryCount());
+        // todo: printMap 다시 구현
+//        outputView.printMap(bridge, player);
+        outputView.printResult(bridgeGame.isWin(player), player.getTryCount());
     }
 
 }

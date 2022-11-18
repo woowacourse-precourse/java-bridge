@@ -13,13 +13,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 class BridgeGameTest {
 
     private BridgeGame bridgeGame;
-    private Bridge basicBridge;
     private Player player;
 
     @BeforeEach
     private void setUp() {
-        bridgeGame = new BridgeGame();
-        basicBridge = Bridge.from(List.of("U", "D", "D", "U", "D", "D", "U", "D"));
+        bridgeGame = BridgeGame.from(Bridge.from(List.of("U", "D", "D", "U", "D", "D", "U", "D")));
         player = new Player();
     }
 
@@ -31,7 +29,7 @@ class BridgeGameTest {
 
         for (String movingDirection : movingPath.split("")) {
             Tile targetTile = Tile.findByTilePosition(movingDirection);
-            actualResult = bridgeGame.move(basicBridge, player, targetTile);
+            actualResult = bridgeGame.move(player, targetTile);
         }
 
         assertThat(actualResult).isEqualTo(expectedResult);
@@ -43,10 +41,10 @@ class BridgeGameTest {
 
         for (String movingDirection : movingPath.split("")) {
             Tile targetTile = Tile.findByTilePosition(movingDirection);
-            bridgeGame.move(basicBridge, player, targetTile);
+            bridgeGame.move(player, targetTile);
         }
 
-        assertThat(bridgeGame.isWin(basicBridge, player)).isEqualTo(expectedResult);
+        assertThat(bridgeGame.isWin(player)).isEqualTo(expectedResult);
     }
 
     @DisplayName("재시작시 위치 초기화 테스트")
@@ -56,10 +54,10 @@ class BridgeGameTest {
 
         for (String movingDirection : movingPath.split("")) {
             Tile targetTile = Tile.findByTilePosition(movingDirection);
-            bridgeGame.move(basicBridge, player, targetTile);
+            bridgeGame.move(player, targetTile);
         }
         bridgeGame.retry(player);
 
-        assertThat(bridgeGame.isWin(basicBridge, player)).isFalse();
+        assertThat(bridgeGame.isWin(player)).isFalse();
     }
 }
