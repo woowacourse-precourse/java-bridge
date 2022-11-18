@@ -10,6 +10,10 @@ public class BridgeGameController {
     public BridgeGameController() {
     }
 
+    private void printError(String message) {
+        System.out.println(message);
+    }
+
     public void run() {
         outputView.printGameStart();
         init();
@@ -21,7 +25,14 @@ public class BridgeGameController {
     }
 
     public void init() {
-        bridgeGame = new BridgeGame(createBridge());
+        while (true) {
+            try {
+                bridgeGame = new BridgeGame(createBridge());
+                break;
+            } catch (IllegalArgumentException e) {
+                printError(e.getMessage());
+            }
+        }
     }
 
     private Bridge createBridge() {
@@ -44,12 +55,24 @@ public class BridgeGameController {
     }
 
     private int goForward() {
-        String direction = inputView.readMoving();
-        return bridgeGame.move(direction);
+        while (true) {
+            try {
+                String direction = inputView.readMoving();
+                return bridgeGame.move(direction);
+            } catch (IllegalArgumentException e) {
+                printError(e.getMessage());
+            }
+        }
     }
 
     private int retry() {
-        String gameCommand = inputView.readGameCommand();
-        return bridgeGame.retry(gameCommand);
+        while (true) {
+            try {
+                String gameCommand = inputView.readGameCommand();
+                return bridgeGame.retry(gameCommand);
+            } catch (IllegalArgumentException e) {
+                printError(e.getMessage());
+            }
+        }
     }
 }
