@@ -60,10 +60,19 @@ public class Service {
             try {
                 outputView.printInputRetry();
                 String input = inputView.readGameCommand();
-                break;
+                return getRetry(input);
             } catch (IllegalArgumentException error) {
                 outputView.printErrorMessage(error);
             }
         } while (true);
+    }
+
+
+    // retry boolean값 가져오는 기능
+    private boolean getRetry(String input) {
+        if (bridgeGame.retry(input)) {
+            return true;
+        }
+        return false;
     }
 }
