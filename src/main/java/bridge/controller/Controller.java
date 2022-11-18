@@ -14,5 +14,16 @@ public class Controller {
     public void startBridgeGame() {
         service.welcomeGame();
         service.initGame();
+        gamePlay();
+    }
+
+    // 게임 다리건너기 기능
+    private void gamePlay() {
+        do {
+            service.move();
+            if (service.retry()) {
+                break;
+            }
+        } while (true);
     }
 }
