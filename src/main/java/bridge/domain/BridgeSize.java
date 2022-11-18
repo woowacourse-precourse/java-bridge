@@ -16,10 +16,16 @@ public class BridgeSize {
     }
 
     private void validBridgeSize(String bridgeSize) {
+        validIsEmpty(bridgeSize);
         validIsDigit(bridgeSize);
         validBridgeSizeRange(Long.parseLong(bridgeSize));
     }
 
+    private void validIsEmpty(String bridgeSize) {
+        if (bridgeSize.length()==Constant.EMPTY_SIZE) {
+            throw new IllegalArgumentException(ErrorMessage.NO_INPUT_VALUE.getMessage());
+        }
+    }
     private void validIsDigit(String bridgeSize) {
         if (!bridgeSize.chars().allMatch(Character::isDigit)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMessage());
