@@ -31,4 +31,21 @@ public class InputValidatorTest {
                 .doesNotThrowAnyException();
     }
 
+    @Test
+    @DisplayName("플레이어 이동 U 또는 D외의 입력시 예외처리")
+    void movementInputException() {
+        assertThatThrownBy(() -> inputValidator.checkMovement("3"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("플레이어 이동 올바른 입력 테스트")
+    void movementInputTest() {
+        assertThatCode(() -> inputValidator.checkMovement("U"))
+                .doesNotThrowAnyException();
+
+        assertThatCode(() -> inputValidator.checkMovement("D"))
+                .doesNotThrowAnyException();
+    }
+
 }

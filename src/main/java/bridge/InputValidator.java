@@ -19,4 +19,10 @@ public class InputValidator {
         return (Integer.parseInt(input) >= 3 && Integer.parseInt(input) <= 20);
     }
 
+    public void checkMovement(String input) {
+        if (!(input.equals("U") || input.equals("D"))) {
+            throw new IllegalArgumentException(BridgeConstant.MOVEMENT_EXCEPTION.getValue());
+        }
+    }
+
 }
