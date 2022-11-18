@@ -56,8 +56,8 @@ public class OutputView {
     }
 
     private static void printResult(StringBuilder topLine, StringBuilder bottomLine) {
-        topLine.replace(topLine.length() - 1, topLine.length(), "]");
-        bottomLine.replace(bottomLine.length() - 1, bottomLine.length(), "]");
+        topLine.replace(topLine.length() - 1, topLine.length(), Message.END_MAP);
+        bottomLine.replace(bottomLine.length() - 1, bottomLine.length(), Message.END_MAP);
         System.out.println(topLine + Message.NEXT_LINE + bottomLine);
     }
 

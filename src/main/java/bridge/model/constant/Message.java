@@ -19,6 +19,7 @@ public class Message {
     public static final String UP = "U";
     public static final String DOWN = "D";
     public static final String START_MAP = "[";
+    public static final String END_MAP = "]";
     public static final String NEXT_LINE = "\n";
     public static final String SUCCESS_OR_FAIL = "\n게임 성공 여부: ";
     public static final String TOTAL_TRY_COUNT = "총 시도한 횟수: ";
