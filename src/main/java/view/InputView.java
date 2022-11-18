@@ -21,10 +21,17 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println(INPUT_BRIDGE_LENGTH);
-        String bridgeSize = Console.readLine();
-        validation.validBridgeSize(bridgeSize);
-        return Integer.parseInt(bridgeSize);
+        do {
+            System.out.println(INPUT_BRIDGE_LENGTH);
+            String bridgeSize = Console.readLine();
+            try {
+                validation.validBridgeSize(bridgeSize);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            return Integer.parseInt(bridgeSize);
+        } while (true);
     }
 
     /**
