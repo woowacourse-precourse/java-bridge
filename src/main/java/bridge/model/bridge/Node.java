@@ -25,4 +25,14 @@ public enum Node {
         }
         throw new IllegalArgumentException(INVALID_POSITION_FOR_BRIDGE_NODE);
     }
+
+    public static Node of(String position) {
+        if (position.equals("U")) {
+            return UP;
+        }
+        if (position.equals("D")) {
+            return DOWN;
+        }
+        throw new IllegalArgumentException(INVALID_POSITION_FOR_BRIDGE_NODE);
+    }
 }

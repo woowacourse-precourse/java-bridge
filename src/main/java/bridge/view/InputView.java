@@ -45,10 +45,11 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public Node readMoving() {
         while (true) {
             try {
-                return null;
+                System.out.println(MOVE_INPUT_PROMPT);
+                return Node.of(Console.readLine());
             } catch (IllegalArgumentException e) {
                 Logger.log(e);
             }
