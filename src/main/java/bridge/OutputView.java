@@ -25,16 +25,28 @@ public class OutputView {
         System.out.println();
     }
 
+    private boolean Same(String input, String compared) {
+        return Objects.equals(input, compared);
+    }
+
+    private boolean SameWithU(String input) {
+        return "U".equals(input);
+    }
+
+    private boolean SameWithD(String input) {
+        return "D".equals(input);
+    }
+    
     private String printUpString(int movingIdx, List<String> bridgeList, String input) {
         StringBuilder upString = new StringBuilder();
         upString.append("[");
         for (int i = 0; i < movingIdx; i++) {
-            if (Objects.equals(bridgeList.get(i), "U")) upString.append(" O |");
-            else if (Objects.equals(bridgeList.get(i), "D")) upString.append("   |");
+            if (SameWithU(bridgeList.get(i))) upString.append(" O |");
+            else if (SameWithD(bridgeList.get(i))) upString.append("   |");
         }
-        if (Objects.equals(bridgeList.get(movingIdx), input) && Objects.equals(input, "U")) upString.append(" O ]");
-        else if (!Objects.equals(bridgeList.get(movingIdx), input) && Objects.equals(input, "U")) upString.append(" X ]");
-        else if (Objects.equals(input, "D")) upString.append("   ]");
+        if (Same(bridgeList.get(movingIdx), input) && SameWithU(input)) upString.append(" O ]");
+        else if (!Same(bridgeList.get(movingIdx), input) && SameWithU(input)) upString.append(" X ]");
+        else if (SameWithD(input)) upString.append("   ]");
         return upString.toString();
     }
 
@@ -42,12 +54,12 @@ public class OutputView {
         StringBuilder downString = new StringBuilder();
         downString.append("[");
         for (int i = 0; i < movingIdx; i++) {
-            if (Objects.equals(bridgeList.get(i), "D")) downString.append(" O |");
-            else if (Objects.equals(bridgeList.get(i), "U")) downString.append("   |");
+            if (SameWithD(bridgeList.get(i))) downString.append(" O |");
+            else if (SameWithU(bridgeList.get(i))) downString.append("   |");
         }
-        if (Objects.equals(bridgeList.get(movingIdx), input) && Objects.equals(input, "D")) downString.append(" O ]");
-        else if (!Objects.equals(bridgeList.get(movingIdx), input) && Objects.equals(input, "D")) downString.append(" X ]");
-        else if (Objects.equals(input, "U")) downString.append("   ]");
+        if (Same(bridgeList.get(movingIdx), input) && SameWithD(input)) downString.append(" O ]");
+        else if (!Same(bridgeList.get(movingIdx), input) && SameWithD(input)) downString.append(" X ]");
+        else if (SameWithU(input)) downString.append("   ]");
         return downString.toString();
     }
 
@@ -59,8 +71,8 @@ public class OutputView {
     public void printResult(int movingIdx, List<String> bridgeList, String input) {
         System.out.println(gameResult);
         printMap(movingIdx, bridgeList, input);
-        if (Objects.equals(bridgeList.get(movingIdx), input)) System.out.println(success);
-        if (!Objects.equals(bridgeList.get(movingIdx), input)) System.out.println(fail);
+        if (Same(bridgeList.get(movingIdx), input)) System.out.println(success);
+        if (!Same(bridgeList.get(movingIdx), input)) System.out.println(fail);
     }
 
     public void printResult(int count) {
