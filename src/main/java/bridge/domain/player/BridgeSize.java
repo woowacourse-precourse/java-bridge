@@ -5,9 +5,10 @@ import bridge.view.InputValidator;
 
 public class BridgeSize implements InputValidator {
 
-	private final int bridgeSize;
 	private static final int BRIDGE_SIZE_MIN = 3;
 	private static final int BRIDGE_SIZE_MAX = 20;
+
+	private final int bridgeSize;
 
 	public BridgeSize(int bridgeSize) {
 		validate(bridgeSize);
@@ -15,8 +16,8 @@ public class BridgeSize implements InputValidator {
 	}
 
 	@Override
-	public void validate(Object inputBridgeSize) {
-		isNumberInBetween((Integer) inputBridgeSize);
+	public void validate(Integer inputBridgeSize) {
+		isNumberInBetween(inputBridgeSize);
 	}
 
 	public static BridgeSize valueOf(String inputBridgeSize) {
@@ -35,5 +36,9 @@ public class BridgeSize implements InputValidator {
 
 	public int toNumber() {
 		return bridgeSize;
+	}
+
+	@Override
+	public void validate(String value) {
 	}
 }

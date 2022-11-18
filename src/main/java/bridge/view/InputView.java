@@ -1,8 +1,8 @@
 package bridge.view;
 
 import bridge.domain.player.BridgeSize;
+import bridge.domain.player.GameProceedCommand;
 import bridge.domain.player.MovementCommand;
-import bridge.domain.player.ProcessCommand;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView implements ConsoleInput, InputValidator {
@@ -23,9 +23,9 @@ public class InputView implements ConsoleInput, InputValidator {
 		}
 	}
 
-	public ProcessCommand readGameCommand() {
+	public GameProceedCommand readGameCommand() {
 		try {
-			return ProcessCommand.valueOf(input());
+			return GameProceedCommand.valueOf(input());
 		} catch (IllegalArgumentException ignored) {
 			return readGameCommand();
 		}
@@ -39,9 +39,13 @@ public class InputView implements ConsoleInput, InputValidator {
 	}
 
 	@Override
-	public void validate(Object input) {
+	public void validate(String input) {
 		if (input.equals("")) {
 			throw new InputException(InputException.EMPTY);
 		}
+	}
+
+	@Override
+	public void validate(Integer value) {
 	}
 }
