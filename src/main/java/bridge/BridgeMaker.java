@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,6 +25,20 @@ public class BridgeMaker {
         for (int i = 0; i < size; i++) {
             String randomNumber = String.valueOf(bridgeNumberGenerator.generate());
             bridge.add(randomNumber);
+        }
+        bridge = makeUpDownBridge(bridge);
+        return bridge;
+    }
+
+    public List<String> makeUpDownBridge(List<String> bridge) {
+        for (int index = 0; index < bridge.size(); index++) {
+            String blockOfBridge = bridge.get(index);
+            if (blockOfBridge == "0") {
+                bridge.set(index, "D");
+            }
+            if (blockOfBridge == "1") {
+                bridge.set(index, "U");
+            }
         }
         return bridge;
     }
