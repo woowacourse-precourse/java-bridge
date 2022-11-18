@@ -1,6 +1,5 @@
 package bridge.controller;
 
-import bridge.service.GameEndService;
 import bridge.service.GameService;
 import bridge.util.InputViewConst;
 import bridge.util.OutputViewConst;
@@ -14,14 +13,13 @@ public class BridgeGame {
 	private final InputController inputController;
 	private final GameService gameService;
 	private final OutputView outputView;
-	private final GameEndService gameEndService;
 
-	public BridgeGame(InputController inputController, GameService gameService, OutputView outputView,
-		GameEndService gameEndService) {
+	public BridgeGame(InputController inputController, GameService gameService, OutputView outputView
+	) {
 		this.inputController = inputController;
 		this.gameService = gameService;
 		this.outputView = outputView;
-		this.gameEndService = gameEndService;
+
 	}
 
 	public void startApplication() {
@@ -37,7 +35,7 @@ public class BridgeGame {
 				break;
 			}
 		} while (!retry());
-		outputView.printMap(gameEndService.getUserBridgeStatusDto());
+		outputView.printMap(gameService.getUserBridgeStatusDto());
 		outputView.printResult(userResult, attemptCount);
 	}
 
@@ -58,7 +56,7 @@ public class BridgeGame {
 			}
 			gameService.saveUserSpace(true, userLocation);
 			currentLocation++;
-			outputView.printMap(gameEndService.getUserBridgeStatusDto());
+			outputView.printMap(gameService.getUserBridgeStatusDto());
 		} while (currentLocation != bridgeSize);
 		return OutputViewConst.SUCCESS;
 	}

@@ -5,6 +5,7 @@ import java.util.List;
 import bridge.domain.BridgeMaker;
 import bridge.repository.BridgeRepository;
 import bridge.repository.UserBridgeRepository;
+import bridge.repository.UserBridgeStatusDto;
 
 public class GameService {
 
@@ -35,6 +36,10 @@ public class GameService {
 			return;
 		}
 		userBridgeRepository.saveUserSpace(userLocation, "X");
+	}
+
+	public UserBridgeStatusDto getUserBridgeStatusDto() {
+		return userBridgeRepository.findUserBridgeStatusDto();
 	}
 
 }
