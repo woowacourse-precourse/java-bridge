@@ -27,24 +27,42 @@ public class ViewTest extends NsTest {
         assertThat(outputStr).isEqualTo(TEST_STR);
     }
     @Test
-    void moveViewTest(){
-        GameLogic gameLogic = new GameLogic();
-        gameLogic.start();
-
-    }
-    @Test
     void printMapTest(){
         OutputView outputView = new OutputView();
-        Bridge bridge = new Bridge(newArrayList("U","D","D","U"));
+        Bridge bridge = new Bridge(newArrayList("U","D","U","U"));
         User user = new User();
         user.addPosition();
         user.addPosition();
         user.failResult();
         outputView.printMap(bridge,user);
         assertThat(output()).contains(
-                "[ O |   |   ]",
-                "[   | O | X ]"
+                "[ O |   | X ]",
+                "[   | O |   ]"
                 );
+    }
+    @Test
+    void printFirstMapTest(){
+        OutputView outputView = new OutputView();
+        Bridge bridge = new Bridge(newArrayList("U","U","D","U"));
+        User user = new User();
+        outputView.printMap(bridge,user);
+        assertThat(output()).contains(
+                "[ O ]",
+                "[   ]"
+        );
+    }
+    @Test
+    void printSecondMapTest(){
+        OutputView outputView = new OutputView();
+        Bridge bridge = new Bridge(newArrayList("U","D","D","U"));
+        User user = new User();
+        user.addPosition();
+        user.failResult();
+        outputView.printMap(bridge,user);
+        assertThat(output()).contains(
+                "[ O |   ]",
+                "[   | X ]"
+        );
     }
     @Override
     protected void runMain() {
