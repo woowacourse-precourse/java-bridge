@@ -1,10 +1,13 @@
 package bridge;
 
+import static bridge.view.InputView.moveCheck;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static java.lang.System.in;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import bridge.model.BridgeMaker;
 import bridge.model.BridgeNumberGenerator;
@@ -58,6 +61,17 @@ class ApplicationTest extends NsTest {
             InputView.bridgeLenRangeCheck(input);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+    }
+
+    @Test
+    void 이동칸_예외_테스트() {
+        String input = "a";
+        System.setIn(in);
+        Throwable exception = assertThrows(IllegalArgumentException.class, () ->{
+           moveCheck(input);
+        });
+        assertThat(exception.getMessage()).contains("[ERROR]");
+
     }
 
     @Override

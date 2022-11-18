@@ -7,6 +7,7 @@ public class BridgeGameController {
         int bridgeLen = readBridgeSize();
         bridgeLenRangeCheck(bridgeLen);
         String move = readMoving();
+        moveCheck(move);
 
     }
 }
