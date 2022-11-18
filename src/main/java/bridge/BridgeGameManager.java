@@ -55,6 +55,7 @@ public class BridgeGameManager {
         outputView.printInputBridgeSize();
         InfiniteInput<Integer> bridgeSizeInfiniteInput = new InfiniteInput<>(0);
         int bridgeSize = bridgeSizeInfiniteInput.getInput(() -> inputView.readBridgeSize(), outputView);
+        outputView.printNextLine();
 
         bridgeRoadMap = new BridgeRoadMap(bridgeMaker.makeBridge(bridgeSize));
     }

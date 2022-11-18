@@ -25,7 +25,7 @@ public class OutputView {
     private final String ERROR_KEYWORD = "[ERROR]";
 
     public void printGameStart(){
-        System.out.println(GAME_START_MESSAGE);
+        System.out.println(GAME_START_MESSAGE + "\n");
     }
 
     public void printInputBridgeSize(){
@@ -102,5 +102,9 @@ public class OutputView {
 
     public void printErrorMessage(String message){
         System.out.println(String.format("%s %s", ERROR_KEYWORD, message));
+    }
+
+    public void printNextLine(){
+        System.out.println();
     }
 }
