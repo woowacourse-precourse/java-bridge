@@ -21,4 +21,9 @@ public class User {
     public void addPosition(){this.position++;}
     public void failResult(){this.result = FAIL;}
     public Boolean getResult(){return this.result;}
+    public void resetUser(){
+        this.result = SUCCESS;
+        this.position = START;
+        this.count++;
+    }
 }
