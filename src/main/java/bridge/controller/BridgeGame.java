@@ -17,7 +17,6 @@ public class BridgeGame {
 
     public void run() {
         startGame();
-
         boolean flag = true;
         while (flag) {
             move();
@@ -28,7 +27,6 @@ public class BridgeGame {
                 break;
             }
         }
-
         OutputView.printResult(user, answerBridge.compareTo(user));
     }
 
@@ -65,8 +63,6 @@ public class BridgeGame {
         return false;
     }
 
-
-
     public boolean retry() {
         String retryCommand;
         while (true) {
@@ -82,7 +78,7 @@ public class BridgeGame {
 
     private boolean isRetry(String retryCommand) {
         if (retryCommand.equals("R")) {
-            resetGame();
+            user.resetChoices();
             return true;
         }
         return false;
@@ -99,11 +95,5 @@ public class BridgeGame {
                 OutputView.printError(illegalArgumentException);
             }
         }
-    }
-
-
-
-    private void resetGame() {
-        user.resetChoices();
     }
 }
