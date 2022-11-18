@@ -24,24 +24,29 @@ public class Controller {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
-        int index = 0; // 다리 길이 index
-        while (index < bridge.size()) {
-            outputView.printMap(index, inputView.readMoving(), bridge);
+        int bridgeLengthIndex = 0, gameAttempts = 1;
+        boolean success = true;
+        while (bridgeLengthIndex < bridge.size()) {
+            outputView.printMap(bridgeLengthIndex, inputView.readMoving(), bridge);
             if (outputView.upOutputBoard.contains("X") || outputView.downOutputBoard.contains("X")) {
                 String ROrQ = inputView.readGameCommand();
                 if (ROrQ.equals("Q")) {
+                    success = false;
+                    outputView.printResult(false, gameAttempts);
                     break;
                 }
 
                 if (ROrQ.equals("R")) {
-                    index = 0;
+                    gameAttempts += 1;
+                    bridgeLengthIndex = 0;
                     outputView.upOutputBoard.clear();
                     outputView.downOutputBoard.clear();
                     continue;
                 }
             }
-            index += 1;
-
+            bridgeLengthIndex += 1;
         }
+
+        if (success) outputView.printResult(true, gameAttempts);
     }
 }

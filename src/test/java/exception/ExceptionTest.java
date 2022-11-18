@@ -11,7 +11,7 @@ class ExceptionTest {
 
     @ValueSource(strings = {"1", "21"})
     @ParameterizedTest
-    void 다리_길이_검증_테스트(Integer input) {
+    void 다리_길이_검증_테스트(String input) {
         assertThatThrownBy(() -> Exception.bridgeLengthValidation(input))
                 .hasMessageContaining(ERROR + " 다리 길이는 3부터 20 사이의 숫자여야 합니다.")
                 .isInstanceOf(IllegalArgumentException.class);

@@ -16,10 +16,10 @@ public class InputView {
         while (true) {
             try {
                 System.out.println("다리의 길이를 입력해주세요.");
-                int bridgeSize = Integer.parseInt(Console.readLine());
+                String bridgeSize = Console.readLine();
                 Exception.bridgeLengthValidation(bridgeSize);
                 System.out.println();
-                return bridgeSize;
+                return Integer.parseInt(bridgeSize);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

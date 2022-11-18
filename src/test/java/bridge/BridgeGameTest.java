@@ -16,12 +16,10 @@ class BridgeGameTest {
     }
 
     @Test
-    void 칸을_이동하는_메서드_테스트 () {
+    void 칸을_이동하는_메서드_테스트() {
 
-        Assertions.assertThat(bridgeGame.move(4, "U", Arrays.asList("U", "D", "U")))
-                .isFalse();
+        Assertions.assertThat(bridgeGame.move(4, "U", Arrays.asList("U", "D", "U"))).isFalse();
 
-        Assertions.assertThat(bridgeGame.move(2, "U", Arrays.asList("U", "D", "U")))
-                .isTrue();
+        Assertions.assertThat(bridgeGame.move(2, "U", Arrays.asList("U", "D", "U"))).isTrue();
     }
 }
