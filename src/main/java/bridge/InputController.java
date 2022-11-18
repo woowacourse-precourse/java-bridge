@@ -1,12 +1,20 @@
 package bridge;
 
+import java.util.List;
+
 public class InputController {
     private final InputView inputView;
     private final OutputView outputView;
+    private final BridgeMaker bridgeMaker;
 
-    public InputController(InputView inputView, OutputView outputView) {
+    public InputController(InputView inputView, OutputView outputView, BridgeMaker bridgeMaker) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.bridgeMaker = bridgeMaker;
+    }
+
+    public List<String> getBridge(int size) throws IllegalArgumentException {
+        return bridgeMaker.makeBridge(size);
     }
 
     public int getBridgeSize() throws IllegalArgumentException {
