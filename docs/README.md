@@ -7,10 +7,10 @@
 - 게임이 종료될 경우 성공/실패 여부와 함께 시도한 횟수가 출력된다.
 
 ## 🚀 기능 목록
-- [  ] 게임을 시작하면 게임 시작 안내문구를 출력한다 → OutputView.printGameStart
+- [ ✅ ] 게임을 시작하면 게임 시작 안내문구를 출력한다 → OutputView.printGameStart
 
 ### 1. 다리 생성하기  
-- [  ] 다리 길이 입력요청문구를 출력한다 → OutputView.printBridgeSizeInputRequest
+- [ ✅ ] 다리 길이 입력요청문구를 출력한다 → OutputView.printBridgeSizeInputRequest
 - [  ] 다리 길이를 입력받는다 → InputView.readBridgeSize
 - [  ] 입력받은 다리 길이에 대한 유효성을 검사한다 
 - [  ] 다리를 생성한다 → BridgeMaker.makeBridge
