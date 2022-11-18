@@ -2,22 +2,22 @@ package bridge;
 
 public class Application {
 
-    private InputView inputView = new InputView();
-    private OutputView outputView = new OutputView();
-    private BridgeGame bridgeGame;
+    private static InputView inputView = new InputView();
+    private static OutputView outputView = new OutputView();
+    private static BridgeGame bridgeGame;
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        play();
     }
-    private void play() {
+    private static void play() {
         bridgeGame=bridgeGameStart();
     }
-    private BridgeGame bridgeGameStart() {
+    private static BridgeGame bridgeGameStart() {
         int bridgeSize= inputBridgeSize();
-        BridgeGame bridgeGame=new BridgeGame(bridgeSize);
+        bridgeGame=new BridgeGame(bridgeSize);
         return bridgeGame;
     }
-    private int inputBridgeSize() {
+    private static int inputBridgeSize() {
         return inputView.readBridgeSize();
     }
 }
