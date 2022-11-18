@@ -89,7 +89,11 @@ public class OutputView {
     }
 
     private void printSuccessOrFail(BridgeRoadMap bridgeRoadMap, UserRoadMap userRoadMap) {
-        // TODO: 정답과 해답을 비교해 성공 여부를 출력
+        String result = GAME_RESULT_STATE[0];
+        if(!bridgeRoadMap.isFail(userRoadMap)){
+            result = GAME_RESULT_STATE[1];
+        }
+        System.out.println(String.format("%s %s", GAME_RESULT_SUCCESS_OR_NOT_MESSAGE, result));
     }
 
     public void printErrorMessage(String message){
