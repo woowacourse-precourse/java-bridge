@@ -16,7 +16,7 @@ public class BridgeSize {
     }
 
     private static void validate(String userInput) {
-        String bridgeSizeRegex = "^(1?[1-9]|[1-2]0)$";
+        String bridgeSizeRegex = "^([3-9]|1[0-9]|20)$";
 
         if (!Pattern.matches(bridgeSizeRegex, userInput)) {
             throw new IllegalArgumentException(InputErrorText.ERROR_BRIDGE_SIZE.errorText());

@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 class BridgeSizeInputTest {
 
     @ParameterizedTest
-    @ValueSource(strings = {"0", "21", "1a", "", " ", "1.0", "12.4"})
+    @ValueSource(strings = {"0", "1", "2", "21", "1a", "", " ", "1.0", "12.4"})
     public void 다리_길이는_3에서_20사이의_자연수만_가능하다(String input) {
         String expectedErrorText = InputErrorText.ERROR_BRIDGE_SIZE.errorText();
 
