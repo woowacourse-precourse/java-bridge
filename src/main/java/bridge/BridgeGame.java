@@ -3,6 +3,7 @@ package bridge;
 import bridge.domain.BridgeSize;
 import bridge.domain.Command;
 import bridge.domain.Movement;
+import bridge.domain.Moving;
 import bridge.service.BridgeMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -36,8 +37,8 @@ public class BridgeGame {
         outputView.printResult(movement);
     }
 
-    private void move(String moving) {
-        movement.saveMoving(moving);
+    private void move(Moving moving) {
+        movement.saveMoving(moving.getMoving());
         outputView.printMap(movement);
     }
 

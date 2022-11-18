@@ -5,6 +5,7 @@ import bridge.constant.ErrorMessage;
 import bridge.constant.Messages;
 import bridge.domain.BridgeSize;
 import bridge.domain.Command;
+import bridge.domain.Moving;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
@@ -14,11 +15,10 @@ public class InputView {
         return new BridgeSize(Console.readLine());
     }
 
-    public String readMoving() {
+    public Moving readMoving() {
         System.out.println(Messages.MOVING_MESSAGE);
-        String movingInput = Console.readLine();
-        validMoving(movingInput);
-        return movingInput;
+        String s = Console.readLine();
+        return new Moving(s);
     }
 
     public Command readGameCommand() {
