@@ -34,7 +34,7 @@ public class BridgeController {
         PassingPositions passingPositions = new PassingPositions();
         Result result = null;
 
-        do {
+        while(true) {
             pos = -1;
             do {
                 pos++;
@@ -52,10 +52,12 @@ public class BridgeController {
             if (isQuit) {
                 break;
             }
+            if (InputView.readGameCommand().equals("Q")) {
+                break;
+            }
             bridgeGame.retry(passingPositions);
             attempt++;
-
-        } while (InputView.readGameCommand().equals("R"));
+        }
 
         if (result != null) {
             OutputView.printResult(result, attempt);
