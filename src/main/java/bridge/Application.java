@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.model.BridgeSize;
 import bridge.view.InputView;
+import java.util.List;
 
 public class Application {
 
@@ -11,6 +12,8 @@ public class Application {
         input.gameStart();
         String size = input.readBridgeSize();
         BridgeSize bridgeSize = new BridgeSize(size);
-        System.out.println("bridgeSize = " + bridgeSize.getSize());
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize.getSize());
+        System.out.println("bridge = " + bridge);
     }
 }
