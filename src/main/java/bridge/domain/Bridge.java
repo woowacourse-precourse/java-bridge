@@ -14,4 +14,8 @@ public class Bridge {
     public static Bridge create(String position) {
         return new Bridge(position);
     }
+
+    public boolean isCrossed() {
+        return this.crossed;
+    }
 }

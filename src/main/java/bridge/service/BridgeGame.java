@@ -13,7 +13,6 @@ import java.util.List;
 public class BridgeGame {
     private final BridgeMaker bridgeMaker;
     private final Bridges bridges;
-    private int count = 0;
 
     public BridgeGame(BridgeMaker bridgeMaker, Bridges bridges) {
         this.bridgeMaker = bridgeMaker;
@@ -23,6 +22,10 @@ public class BridgeGame {
     public void create(BridgeSizeRequestDto dto) {
         List<String> realBridges = bridgeMaker.makeBridge(dto.getBridgeSize());
         bridges.generate(realBridges);
+    }
+
+    public boolean isGameClear() {
+        return bridges.isGameClear();
     }
 
     /**

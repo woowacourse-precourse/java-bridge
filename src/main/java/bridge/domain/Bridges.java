@@ -13,4 +13,8 @@ public class Bridges {
     public void generate(List<String> realBridges) {
         realBridges.forEach(bridge -> bridges.add(Bridge.create(bridge)));
     }
+
+    public boolean isGameClear() {
+        return bridges.stream().allMatch(Bridge::isCrossed);
+    }
 }
