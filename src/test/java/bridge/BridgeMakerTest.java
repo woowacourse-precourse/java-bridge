@@ -1,6 +1,5 @@
 package bridge;
 
-import bridge.BridgeMaker;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +8,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-public class BridgeMakerTest {
+class BridgeMakerTest {
     public static final BridgeMaker UPPER_BRIDGE_MAKER = new BridgeMaker(() -> 1);
     public static final BridgeMaker LOWER_BRIDGE_MAKER = new BridgeMaker(() -> 0);
     

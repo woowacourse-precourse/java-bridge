@@ -1,9 +1,9 @@
 package bridge.view;
 
-import bridge.validator.CommandValidatorKey;
 import bridge.dto.BridgeSizeDTO;
 import bridge.dto.GameCommandDTO;
 import bridge.dto.MovingDTO;
+import bridge.validator.CommandValidatorKey;
 import bridge.validator.InputBridgeSizeValidator;
 import bridge.validator.InputCommandValidator;
 import camp.nextstep.edu.missionutils.Console;
