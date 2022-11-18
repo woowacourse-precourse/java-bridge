@@ -35,7 +35,7 @@ public class AnswerBridgeTest {
 
     private List<Boolean> makeSituation(String choice) {
         user.addChoice(choice);
-        return answerBridge.compareTo(user);
+        return answerBridge.compareTo(user.getChoices());
     }
 
     @DisplayName("유저가 끝까지 도달했을 경우 테스트")
@@ -44,7 +44,7 @@ public class AnswerBridgeTest {
         user.addChoice("U");
         user.addChoice("D");
         user.addChoice("U");
-        boolean result = answerBridge.isApproachEndPoint(user.getChoices());
+        boolean result = answerBridge.isApproachEndPoint(user);
         assertThat(result).isTrue();
     }
 
