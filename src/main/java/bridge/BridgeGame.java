@@ -7,6 +7,7 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    private static final int NUMBER_OF_BRIDGE = 2;
     private List<String> bridge;
     private int currentStage = 0;
     /**
@@ -31,5 +32,34 @@ public class BridgeGame {
     public void retry() {
         bridge = null;
         currentStage = 0;
+    }
+
+    @Override
+    public String toString() {
+        String str = "[ ";
+        for (BridgeStatus bridgeStatus : BridgeStatus.values()) {
+            for (int idx = 0; idx < bridge.size(); idx++) {
+                str = addOorSpace(str, bridgeStatus, idx);
+                str = checkLast(str, idx);
+            }
+            str += "]\n";
+        }
+        return str;
+    }
+
+    private String checkLast(String str, int idx) {
+        if (idx != bridge.size() - 1) {
+            str += "| ";
+        }
+        return str;
+    }
+
+    private String addOorSpace(String str, BridgeStatus bridgeStatus, int idx) {
+        if (bridge.get(idx).equals(bridgeStatus.getName())) {
+            str += "O ";
+            return str;
+        }
+        str += "  ";
+        return str;
     }
 }
