@@ -18,7 +18,8 @@ public class BridgeGameProcess {
 
     public static void run() {
         int bridgeSize = inputView.readBridgeSize(processHelper);
-        List<String> bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
+        List<String> bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(
+            bridgeSize);
         System.out.println(bridge); // 게임 보드 브릿지 생성
         while (true) {
             BridgeGame bridgeGame = new BridgeGame();
@@ -29,10 +30,10 @@ public class BridgeGameProcess {
                 String moving = inputView.readMoving(processHelper); // u or d 입력
 
                 // 입력이 매칭일 때
-                if (bridgeGame.move(bridge, moving)) {
+                if (bridgeGame.move(bridge, moving, index)) {
                     outputView.printMap(matchResult, bridgeGame.currentUserInput(), true);
                 }
-                if (!bridgeGame.move(bridge, moving)) {
+                if (!bridgeGame.move(bridge, moving, index)) {
                     outputView.printMap(matchResult, bridgeGame.currentUserInput(), false);
                     break;
                 }
@@ -42,10 +43,11 @@ public class BridgeGameProcess {
                 bridgeGame.winningGame();
                 break;
             }
-            if (inputView.readGameCommand(processHelper) == "R") {
+            String gameCommand = inputView.readGameCommand(processHelper);
+            if (gameCommand.equals("R")) {
                 bridgeGame.retry(matchResult);
             }
-            if (inputView.readGameCommand(processHelper) == "Q") {
+            if (gameCommand.equals("Q")) {
                 outputView.printResult(matchResult);
                 bridgeGame.looseGame();
                 break;

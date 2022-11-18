@@ -70,13 +70,13 @@ public class InputView {
     }
 
     private void gameCommandValidation(ProcessHelper processHelper, String gameCommand) {
-        if (processHelper.checkCharIsROrQ(gameCommand)) {
+        if (!processHelper.checkCharIsROrQ(gameCommand)) {
             throw new GameCommandException(ERROR_CODE + GAME_COMMAND_INCORRECT_MESSAGE);
         }
     }
 
     private void movingValidation(ProcessHelper processHelper, String moving) {
-        if (processHelper.checkCharIsUOrD(moving)) {
+        if (!processHelper.checkCharIsUOrD(moving)) {
             throw new ReadMovingException(ERROR_CODE + READ_MOVING_INCORRECT_MESSAGE);
         }
     }

@@ -13,7 +13,7 @@ class BridgeGameTest {
     @Test
     public void moveReturnTrueTest() throws Exception {
         BridgeGame bridgeGame = new BridgeGame();
-        boolean move = bridgeGame.move(List.of("U"), "U");
+        boolean move = bridgeGame.move(List.of("U","U","U"), "U",0);
         assertThat(move).isTrue();
     }
 
@@ -21,7 +21,7 @@ class BridgeGameTest {
     @Test
     public void moveReturnFalseTest() throws Exception {
         BridgeGame bridgeGame = new BridgeGame();
-        boolean move = bridgeGame.move(List.of("D"), "U");
+        boolean move = bridgeGame.move(List.of("D"), "U",0);
         assertThat(move).isFalse();
     }
 

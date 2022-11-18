@@ -1,5 +1,8 @@
 package bridge.domain.vo;
 
+import static bridge.common.message.MatchFormComponent.prefix;
+
+import bridge.common.message.MatchFormComponent;
 import java.util.List;
 
 public class MatchResult {
@@ -13,13 +16,9 @@ public class MatchResult {
         this.downSide = new StringBuilder();
     }
 
-    public void correctUpperSide(boolean moveOrNot, List<String> userInputs) {
-
-    }
-
-    public void retry() {
-        upperSide.delete(0, upperSide.length());
-        downSide.delete(0, downSide.length());
+    public void reset() {
+        upperSide.setLength(0);
+        downSide.setLength(0);
     }
 
     private void printUpperSide() {
@@ -35,10 +34,39 @@ public class MatchResult {
         printDownSide();
     }
 
-
     public void matchProcess(List<String> userInput, boolean match) {
-        for (int i = 0; i < userInput.size(); i++) {
-
+        reset();
+        upperSide.append(prefix);
+        downSide.append(prefix);
+        for (int index = 0; index < userInput.size()-1; index++) {
+            if (userInput.get(index).equals("U")) {
+                upperSide.append(MatchFormComponent.CorrectAnswer);
+                downSide.append(MatchFormComponent.space);
+            }
+            if (userInput.get(index).equals("D")) {
+                upperSide.append(MatchFormComponent.space);
+                downSide.append(MatchFormComponent.CorrectAnswer);
+            }
+            upperSide.append(MatchFormComponent.middleFormat);
+            downSide.append(MatchFormComponent.middleFormat);
         }
+        if (match == true && userInput.get(userInput.size() - 1).equals("U")) {
+            upperSide.append(MatchFormComponent.CorrectAnswer);
+            downSide.append(MatchFormComponent.space);
+        }
+        if (match == true && userInput.get(userInput.size() - 1).equals("D")) {
+            upperSide.append(MatchFormComponent.space);
+            downSide.append(MatchFormComponent.CorrectAnswer);
+        }
+        if (match == false && userInput.get(userInput.size() - 1).equals("U")) {
+            upperSide.append(MatchFormComponent.WrongAnswer);
+            downSide.append(MatchFormComponent.space);
+        }
+        if (match == false && userInput.get(userInput.size() - 1).equals("D")) {
+            upperSide.append(MatchFormComponent.space);
+            downSide.append(MatchFormComponent.WrongAnswer);
+        }
+        upperSide.append(MatchFormComponent.postfix);
+        downSide.append(MatchFormComponent.postfix);
     }
 }

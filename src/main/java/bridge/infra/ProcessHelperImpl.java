@@ -27,17 +27,17 @@ public class ProcessHelperImpl implements ProcessHelper {
 
     @Override
     public boolean checkCharIsUOrD(String moving) {
-        if (!(moving.equals("U") || moving.equals("D"))) {
-            return false;
+        if (moving.equals("U") || moving.equals("D")) {
+            return true;
         }
-        return true;
+        return false;
     }
 
     @Override
     public boolean checkCharIsROrQ(String gameCommand) {
-        if (!(gameCommand.equals("R") || gameCommand.equals("Q"))) {
-            return false;
+        if (gameCommand.equals("R") || gameCommand.equals("Q")) {
+            return true;
         }
-        return true;
+        return false;
     }
 }
