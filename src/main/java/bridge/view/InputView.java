@@ -52,7 +52,7 @@ public class InputView {
 
     public void movingValidate(String movingInput) {
         if(!(movingInput.equals(UP.key()) || movingInput.equals(DOWN.key()))){
-            throw new IllegalArgumentException("[ERROR] 이동값이 'U'이나 'D'가 아닙니다.");
+            throw new IllegalArgumentException("[ERROR] 입력값이 'U'이나 'D'가 아닙니다.");
         }
     }
 
@@ -61,6 +61,13 @@ public class InputView {
      */
     public String readGameCommand() {
         String gameCommandInput = Console.readLine();
+        gameCommandValidate(gameCommandInput);
         return gameCommandInput;
+    }
+
+    public void gameCommandValidate(String gameCommandInput) {
+        if(!(gameCommandInput.equals(RESTART.key())||gameCommandInput.equals(QUIT.key()))){
+            throw new IllegalArgumentException("[ERROR] 입력값이 'R'이나 'Q'가 아닙니다.");
+        }
     }
 }

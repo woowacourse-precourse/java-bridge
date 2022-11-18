@@ -27,5 +27,9 @@ class InputViewTest {
         Assertions.assertThatThrownBy(()-> inputView.movingValidate("d"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
+    @Test
+    public void gameCommandTest() throws Exception{
+        Assertions.assertThatThrownBy(()->inputView.gameCommandValidate("S"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
