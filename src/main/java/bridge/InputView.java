@@ -66,4 +66,8 @@ public class InputView {
     public int getSize() {
         return size;
     }
+
+    public List<String> getMove() {
+        return move;
+    }
 }
