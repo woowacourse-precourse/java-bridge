@@ -27,7 +27,10 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        OutputView.messageInputMove();
+        String moveTO = Console.readLine();
+        validateOfMoveTo(moveTO);
+        return moveTO;
     }
 
     /**
@@ -43,5 +46,14 @@ public class InputView {
             throw new IllegalArgumentException();
         }
     }
+
+    private void validateOfMoveTo(String moveTo) {
+        if ((!moveTo.equals("U")) && (!moveTo.equals("D"))) {
+            System.out.println("[ERROR]");
+            throw new IllegalArgumentException();
+        }
+    }
+
+
 
     }
