@@ -44,4 +44,8 @@ public class Bridge {
     public int getLocation() {
         return this.location;
     }
+
+    public int getTryCount() {
+        return this.tryCount;
+    }
 }
