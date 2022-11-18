@@ -63,4 +63,21 @@ class MovingInputValidatorTest {
                 .isThrownBy(() -> movingInputValidator.validateIsInvalid(inputValue))
                 .withMessage(Errors.INVALID_MOVE_VALUE.message());
     }
+
+    @Order(3)
+    @DisplayName("대문자 U/D 값 입력 여부 검사")
+    @ParameterizedTest(name ="{displayName} 입력값({index}) : {0}")
+    @ValueSource(strings = {
+            "u",
+            "d",
+    })
+    void validateRange(String inputValue) {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> movingInputValidator.validateIsUpperCase(inputValue))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> movingInputValidator.validateIsUpperCase(inputValue))
+                .withMessage(Errors.NOT_UPPERCASE.message());
+    }
 }
