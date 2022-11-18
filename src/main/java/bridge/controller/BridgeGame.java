@@ -39,4 +39,14 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public int inputBridgeLength() {
+        try {
+            String length = inputView.input();
+            return inputView.readBridgeSize(length);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputBridgeLength();
+        }
+    }
 }
