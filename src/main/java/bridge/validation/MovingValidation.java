@@ -10,7 +10,7 @@ public class MovingValidation {
 
     public void validateUOrD(String moving) {
         if ( !(moving.equals("U") || moving.equals("D"))){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_MESSAGE + NOT_U_OR_D_ERROR_MESSAGE);
         }
     }
 
