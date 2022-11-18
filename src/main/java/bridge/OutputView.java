@@ -1,15 +1,16 @@
 package bridge;
 
-import static bridge.UpDownBridge.downBridge;
+import static bridge.UpDownBridge.addCenterBar;
+import static bridge.UpDownBridge.getDownBridge;
+import static bridge.UpDownBridge.getUpBridge;
 import static bridge.UpDownBridge.makeUpDownBridge;
-import static bridge.UpDownBridge.upBridge;
+import static bridge.controller.BridgeGameController.getCount;
 import static bridge.controller.BridgeGameController.getStatus;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private static int count = 0;
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -23,8 +24,8 @@ public class OutputView {
     }
 
     public static void printProgress() {
-        System.out.println(Message.LEFT_BAR.getMessage() + upBridge + Message.RIGHT_BAR.getMessage());
-        System.out.println(Message.LEFT_BAR.getMessage() + downBridge + Message.RIGHT_BAR.getMessage());
+        System.out.println(Message.LEFT_BAR.getMessage() + addCenterBar(getUpBridge()) + Message.RIGHT_BAR.getMessage());
+        System.out.println(Message.LEFT_BAR.getMessage() + addCenterBar(getDownBridge()) + Message.RIGHT_BAR.getMessage());
     }
 
     /**
@@ -37,8 +38,7 @@ public class OutputView {
         printProgress();
         System.out.println();
         System.out.println(getSuccessOrFailure());
-        count++;
-        printTotalCount(count);
+        printTotalCount(getCount());
     }
 
     private static String getSuccessOrFailure() {
