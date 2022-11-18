@@ -35,7 +35,6 @@ public class BridgeService {
         boolean playerCrossable = bridge.isCrossable(playerMove, player.getPlayerPosition());
         player.crossOverBridge(playerMove, playerCrossable);
         boolean isReachedBridge = bridge.isReachedTheEnd(player.getPlayerPosition());
-//        numberOfAttempts += 1;
         return GameStatus.findByStatus(playerCrossable, isReachedBridge);
     }
 
