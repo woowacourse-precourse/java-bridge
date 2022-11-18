@@ -9,8 +9,8 @@ public interface ListAdder {
 
 
 class UpAdder implements ListAdder {
-    List<String> upBridge;
-    List<String> downBridge;
+    private final List<String> upBridge;
+    private final List<String> downBridge;
 
     UpAdder(List<String> upBridge, List<String> downBridge) {
         this.upBridge = upBridge;
@@ -25,8 +25,8 @@ class UpAdder implements ListAdder {
 }
 
 class DownAdder implements ListAdder {
-    List<String> upBridge;
-    List<String> downBridge;
+    private final List<String> upBridge;
+    private final List<String> downBridge;
 
     DownAdder(List<String> upBridge, List<String> downBridge) {
         this.upBridge = upBridge;
