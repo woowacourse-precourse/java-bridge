@@ -9,7 +9,7 @@ public class GameStatus {
     }
 
     public void setFlag(GameUser gameUser, Bridge answerBridge) {
-        if (gameUser.hasDifferentBridge(answerBridge)) {
+        if (gameUser.hasBridgeDifferentFrom(answerBridge)) {
             flag = GameFlag.FAIL;
             return;
         }

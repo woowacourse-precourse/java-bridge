@@ -1,7 +1,5 @@
 package bridge;
 
-import java.util.List;
-
 public class BridgeGame {
     private Bridge answerBridge;
     private GameUser gameUser;
@@ -34,7 +32,7 @@ public class BridgeGame {
     }
 
     private boolean isGameOver() {
-        return gameUser.hasDifferentBridge(answerBridge) ||
+        return gameUser.hasBridgeDifferentFrom(answerBridge) ||
                 gameUser.hasBridgeLength(answerBridge.length());
     }
 

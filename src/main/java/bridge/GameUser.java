@@ -13,7 +13,7 @@ public class GameUser {
         userBridge.reset();
     }
 
-    public boolean hasDifferentBridge(Bridge otherBridge) {
+    public boolean hasBridgeDifferentFrom(Bridge otherBridge) {
         return !userBridge.isPartOfBridge(otherBridge);
     }
 
