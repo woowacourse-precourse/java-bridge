@@ -23,4 +23,12 @@ public class BridgeGameTest {
         bridgeGame.move("D");
         Assertions.assertEquals(bridgeGame.getDownMove().get(0), " X ");
     }
+
+    @DisplayName("게임 재시작 시 게임 횟수 증가")
+    @Test
+    void retryGameCnt() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U","U","U"));
+        bridgeGame.retry("R");
+        Assertions.assertEquals(bridgeGame.getGameCnt(), 2);
+    }
 }
