@@ -5,13 +5,14 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class InputViewTest {
     InputView inputView = new InputView();
+    private static Constant constant = new Constant();
 
     @Test
     void 다리길이_예외() {
         String Input = "30";
         assertThatThrownBy(() -> inputView.checkLengthValidate(Input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+                .hasMessage(constant.Length_Restrict());
     }
 
     @Test
@@ -19,7 +20,7 @@ public class InputViewTest {
         String input = "A";
         assertThatThrownBy(() -> inputView.checkMoveValidate(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 이동 관련 입력은 U와 D만 사용 가능합니다.");
+                .hasMessage(constant.Move_Restrict());
     }
 
     @Test
@@ -27,6 +28,6 @@ public class InputViewTest {
         String input = "C";
         assertThatThrownBy(() -> inputView.checkRetryValidate(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 게임 종료 및 재시작 관련 입력은 R와 Q만 사용 가능합니다.");
+                .hasMessage(constant.Replay_Restrict());
     }
 }
