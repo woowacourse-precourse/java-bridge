@@ -1,11 +1,11 @@
 package bridge.view;
 
-import bridge.domain.Bridge;
+
 import bridge.domain.GameResult;
 import bridge.domain.State;
+import bridge.dto.BridgeDto;
 
 import java.util.List;
-import java.util.ListIterator;
 import java.util.stream.IntStream;
 
 /**
@@ -30,13 +30,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(Bridge bridge) {
-        List<List<State>> bridgeToPrint = bridge.toPrint();
-        getMap(bridgeToPrint);
+    public void printMap(BridgeDto bridgeDto) {
+        getMap(bridgeDto);
     }
 
-    private void getMap(List<List<State>> bridgeToPrint) {
-        for (List<State> stateOfBridge : bridgeToPrint) {
+    private void getMap(BridgeDto bridgeDto) {
+        for (List<State> stateOfBridge : bridgeDto.toList()) {
             printStartOfBridge();
             printBridgeMark(stateOfBridge);
             printEndOfBridge();

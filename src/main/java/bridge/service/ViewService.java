@@ -1,6 +1,6 @@
 package bridge.service;
 
-import bridge.domain.Bridge;
+import bridge.dto.BridgeDto;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -36,7 +36,7 @@ public class ViewService {
         return move.get();
     }
 
-    public void printBridge(Bridge bridge) {
+    public void printBridge(BridgeDto bridge) {
         outputView.printMap(bridge);
     }
 
