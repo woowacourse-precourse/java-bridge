@@ -29,9 +29,10 @@ BridgeGame
     method
         생성자
             다리를 만들고(BridgeMaker) 사용 // curidx를 0으로 초기화한다.
-        void move()
+        int move()
             InputView.readMoving()을 호출해서 무빙을 받은 다음에 curidx+1값을 비교한다.
             그리고 isFinish(curidx+1,pos)를 호출해서 curidx+1가 pos가 맞는지 확인한다.
+            맞으면 1 리턴 안되면 0 리턴
         void retry()
             curidx를 0으로 초기화한다.
         int isFinish(int idx,String pos)
