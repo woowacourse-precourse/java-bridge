@@ -19,19 +19,7 @@ public class GameController {
         System.out.println(bridge);
 
         // 다리 게임
-        BridgeGame bridgeGame = new BridgeGame();
-        boolean success = bridgeGame.move(bridge.get(0), setMovingOption());
-        System.out.println(success);
-        bridge.remove(0);
-        System.out.println(bridge);
-        while (success) {
-            success = bridgeGame.move(bridge.get(0), setMovingOption());
-            System.out.println(success);
-            if (success) {
-                bridge.remove(0);
-            }
-            System.out.println(bridge);
-        }
+        int attemptsNumber = 1;
 
     }
 
