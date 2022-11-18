@@ -14,15 +14,37 @@ public class Way {
     }
 
     public Way(String where, boolean isValid) {
-        if (isValid) {
-            if (where.equals(UP)) {
+        if (where.equals(UP)) {
+            if (isValid) {
                 new Way("O", " ");
             }
-            new Way(" ", "O");
-        }
-        if (where.equals(UP)) {
             new Way("X", " ");
         }
+        if (isValid) {
+            new Way(" ", "O");
+        }
         new Way(" ", "X");
+    }
+
+    public String getUp() {
+        return up;
+    }
+
+    public String getDown() {
+        return down;
+    }
+
+    public String getWay(int where) {
+        validate(where);
+        if (where == 0) {
+            return up;
+        }
+        return down;
+    }
+
+    public void validate(int input) throws IllegalArgumentException {
+        if (input != 0 && input != 1) {
+            throw new IllegalArgumentException("[ERROR] Input is not 0 or 1");
+        }
     }
 }
