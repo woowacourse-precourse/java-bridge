@@ -1,25 +1,62 @@
 package bridge;
 
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
+
+import static bridge.Space.*;
+import static org.assertj.core.api.Assertions.*;
 
 public class UtilsUnitTest {
     private final BridgeGame bridgeGame = new BridgeGame();
+    private static UsersBridgeCrossStatus testBridge;
+    private static String userInput;
+    private static List<String> testAnswerBridge;
+
+    @BeforeAll
+    static void setTest() {
+        userInput = "D";
+        testAnswerBridge = new ArrayList<>(Arrays.asList("U", "D", "U", "D"));
+        BridgeMakerImpl bridgeMakerImpl = new BridgeMakerImpl();
+        testBridge = bridgeMakerImpl.makeInitialBridge(3);
+    }
+    @AfterAll
+    static void assertions() {
+        List<String> up = testBridge.getCurrentBridge().get(UP.getIndex());
+        List<String> down = testBridge.getCurrentBridge().get(DOWN.getIndex());
+
+        assertThat(up).isEqualTo(List.of("[", " ", "O", " ", "|", " ", " ", " ", "|", " ", " ", " ", "]"));
+        assertThat(down).isEqualTo(List.of("[", " ", " ", " ", "|", " ", "O", " ", "|", " ", "X", " ", "]"));
+    }
 
     @DisplayName("사용자가 선택한 칸이 이동 가능한 칸이면 O, 불가능한 칸이면 X를 반환한다.")
     @ParameterizedTest
-    @CsvSource({"0, X", "1, O", "2, X", "3, O"})
-    void checkCrossabilityTest(int currBridgeIdx, String expectedResult) {
-        String userInput = "D";
-        List<String> testAnswerBridge = new ArrayList<>(Arrays.asList("U", "D", "U", "D"));
-
-        String actualResult = bridgeGame.move(currBridgeIdx, testAnswerBridge, userInput);
-        Assertions.assertThat(actualResult).isEqualTo(expectedResult);
+    @CsvSource({"1, X", "2, O", "3, X", "4, O"})
+    void checkCrossabilityTest(int currBridgeOrder, String expectedResult) {
+        String actualResult = bridgeGame.move(currBridgeOrder, testAnswerBridge, userInput);
+        assertThat(actualResult).isEqualTo(expectedResult);
     }
+
+    @DisplayName("이동 결과를 UsersBridgeCrossStatus 내의 currentBridge에 저장한다.")
+    @ParameterizedTest
+    @MethodSource("sourceMethod")
+    void addCrossingResultTest(Space selectedSpace, int currBridgeOrder, String movingResult) {
+        testBridge.addCrossingResult(selectedSpace, currBridgeOrder, movingResult);
+    }
+
+    private static Stream<Arguments> sourceMethod() {
+        return Stream.of(
+                Arguments.of(UP, 1, "O"),
+                Arguments.of(DOWN, 2, "O"),
+                Arguments.of(DOWN, 3, "X")
+        );
+    }
+
 }
