@@ -14,9 +14,15 @@ public class InputView {
     }
 
     public String readMoving() {
-        String input = Console.readLine();
-        checkUpDown(input);
-        return input;
+        while (true) {
+            try {
+                String input = Console.readLine();
+                checkUpDown(input);
+                return input;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR]" + e.getMessage());
+            }
+        }
     }
 
     public String readGameCommand() {
