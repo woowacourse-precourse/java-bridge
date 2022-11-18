@@ -30,13 +30,17 @@ public class BridgeApplication {
 
     private void doBridgeGame(int size) {
         for (int idx = 0; idx < size; idx++) {
-            bridgeGame.move(inputMoving(), idx);
+            bridgeGameMoveAction(idx);
             printMap();
             if (isCorrectMove()) continue;
             if (isSelectExit()) break;
             idx = -1; // 반복문의 idx 를 -1로 돌려주어 다시 0부터 시작할 수 있게끔 함
             plusGameCnt();
         }
+    }
+
+    private void bridgeGameMoveAction(int idx) {
+        bridgeGame.move(inputMoving(), idx);
     }
 
     private boolean isSelectExit() {
