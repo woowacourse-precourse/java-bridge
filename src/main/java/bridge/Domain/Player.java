@@ -1,20 +1,20 @@
 package bridge.Domain;
 
 public class Player {
-    private int nextLocation;
-    private String lastSelection;
+    private int passedCount;
+    private String selection;
     private boolean alive;
 
 
     public Player() {
-        this.nextLocation = 0;
-        this.lastSelection = null;
+        this.passedCount = 0;
+        this.selection = null;
         this.alive = true;
     }
 
 
-    public void setLastSelection(String lastSelection) {
-        this.lastSelection = lastSelection;
+    public void setSelection(String selection) {
+        this.selection = selection;
     }
 
 
@@ -22,12 +22,12 @@ public class Player {
         return this.alive;
     }
 
-    public int getNextLocation() {
-        return this.nextLocation;
+    public int getPassedCount() {
+        return this.passedCount;
     }
 
-    public String getLastSelection() {
-        return this.lastSelection;
+    public String getSelection() {
+        return this.selection;
     }
 
     public void die() {
@@ -35,12 +35,12 @@ public class Player {
     }
 
     public void success() {
-        this.nextLocation++;
+        this.passedCount++;
     }
 
     public void revive() {
         this.alive = true;
-        this.nextLocation = 0;
+        this.passedCount = 0;
     }
 
 }

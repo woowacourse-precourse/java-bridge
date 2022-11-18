@@ -29,9 +29,9 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String playerSelection) {
-        player.setLastSelection(playerSelection);
+        player.setSelection(playerSelection);
 
-        int nextPlayerLocation = player.getNextLocation();
+        int nextPlayerLocation = player.getPassedCount();
         String nextBridgeState = bridge.getBridgeState(nextPlayerLocation);
 
         if (!playerSelection.equals(nextBridgeState)) {
@@ -45,8 +45,8 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry(String command) {
-        if (this.maxPassedCount < player.getNextLocation()) {
-            this.maxPassedCount = player.getNextLocation();
+        if (this.maxPassedCount < player.getPassedCount()) {
+            this.maxPassedCount = player.getPassedCount();
         }
         if (command.equals("R")) {
             player.revive();
@@ -56,7 +56,7 @@ public class BridgeGame {
 
 
     public boolean winGame() {
-        int playerNextLocation = player.getNextLocation();
+        int playerNextLocation = player.getPassedCount();
         List<String> bridgeStates = bridge.getBridgeStates();
 
         // 다음에 이동할 곳이 인덱스를 벗어날 경우 끝에 도달한 것
