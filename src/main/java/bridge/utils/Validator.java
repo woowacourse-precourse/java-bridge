@@ -4,8 +4,7 @@ public class Validator {
     private Validator(){}
 
     public static boolean isNumericString(String target){
-        // TODO: 값이 숫자 문자열인지 확인
-        return false;
+        return target.chars().allMatch(Character::isDigit);
     }
 
     public static boolean isInRangeOfString(String target, String[] range){
