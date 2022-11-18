@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 public class BridgeGameTest {
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private static final int BRIDGE_SIZE = 10;
-    private Bridge bridge = new Bridge(bridgeMaker.makeBridge(BRIDGE_SIZE), BRIDGE_SIZE);
-    private BridgeGame bridgeGame = new BridgeGame(bridge);
+    private final Bridge bridge = new Bridge(bridgeMaker.makeBridge(BRIDGE_SIZE), BRIDGE_SIZE);
+    private final BridgeGame bridgeGame = new BridgeGame(bridge);
 
     @DisplayName("정답을 입력했을경우 bridge의 location이 정상적으로 증가하는지 테스트")
     @Test
@@ -19,5 +19,13 @@ public class BridgeGameTest {
         bridgeGame.move(up);
         bridgeGame.move(down);
         assertThat(bridge.getLocation()).isGreaterThan(0);
+    }
+
+    @DisplayName("재시도 물어볼때 R 입력 시 tryCount가 정상적으로 증가하는지 테스트")
+    @Test
+    void bridgeGameretryTest() {
+        String input = "R";
+        bridgeGame.retry(input);
+        assertThat(bridge.getTryCount()).isGreaterThan(1);
     }
 }
