@@ -96,4 +96,42 @@ class InputViewTest extends CustomNsTest{
         }
     }
 
+    @Test
+    @DisplayName("사용자가 리트라이 여부를 입력받는지 테스트")
+    void readGameCommand(){
+        //비정상 동작
+        {
+            command("A");
+            inputView.readGameCommand();
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }
+
+        //비정상 동작
+        {
+            command("RR");
+            inputView.readGameCommand();
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }
+
+        //비정상 동작
+        {
+            command("QQ");
+            inputView.readGameCommand();
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }
+
+        //정상 동작
+        {
+            command("R");
+            assertThat(inputView.readGameCommand())
+                    .isEqualTo("R");
+        }
+
+        //정상 동작
+        {
+            command("Q");
+            assertThat(inputView.readGameCommand())
+                    .isEqualTo("Q");
+        }
+    }
 }
