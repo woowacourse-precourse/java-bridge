@@ -2,12 +2,13 @@ package bridge.gamebridge;
 
 import bridge.domain.Bridge;
 import bridge.option.Move;
+import bridge.result.Result;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameBridge {
     private AnswerBridge answerBridge;
-    private PlayerBridge playerBridge;
+    private final PlayerBridge playerBridge;
 
     public GameBridge(){
         this.playerBridge = new PlayerBridge();
@@ -17,7 +18,7 @@ public class GameBridge {
         this.answerBridge = new AnswerBridge(bridge);
     }
 
-    public boolean insertMove(Move move) {
+    public Result insertMove(Move move) {
         Bridge insertedBridge = insertMoveInPlayerBridge(move);
         return answerBridge.checkBridge(insertedBridge);
     }

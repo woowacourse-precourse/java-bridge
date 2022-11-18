@@ -1,6 +1,13 @@
 package bridge.gamebridge;
 
+import static bridge.result.GameStatus.FAIL;
+import static bridge.result.GameStatus.PROGRESS;
+import static bridge.result.GameStatus.SUCCESS;
+
 import bridge.domain.Bridge;
+import bridge.result.GameStatus;
+import bridge.result.Result;
+import java.util.List;
 
 public class AnswerBridge {
 
@@ -10,7 +17,16 @@ public class AnswerBridge {
         this.bridge = bridge;
     }
 
-    public boolean checkBridge(Bridge otherBridge) {
-        return this.bridge.isPassableBridge(otherBridge);
+    public Result checkBridge(Bridge otherBridge) {
+        return new Result(otherBridge.getSquares(), determineGameStatus(otherBridge));
+    }
+
+    private GameStatus determineGameStatus(Bridge otherBridge) {
+        if (bridge.equals(otherBridge)) {
+            return SUCCESS;
+        } else if (this.bridge.isPassableBridge(otherBridge)) {
+            return PROGRESS;
+        }
+        return FAIL;
     }
 }
