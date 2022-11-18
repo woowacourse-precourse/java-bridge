@@ -18,7 +18,10 @@ public class Validator {
     }
 
     public void validateLength(String userInput) {
-
+        if (userInput.length() != 1) {
+            System.out.println(ErrorMessage.LENGTH_ERROR.getMessage());
+            throw new IllegalArgumentException();
+        }
     }
 
     public void validateMoving(String moving) {
