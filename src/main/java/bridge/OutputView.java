@@ -13,12 +13,13 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeGame bridgeGame) {
-        System.out.print("[");
+        System.out.print(printPrefix());
         getUpPrint(bridgeGame.getBridge(), bridgeGame.getUsersMove());
-        System.out.println("]");
-        System.out.print("[");
+        System.out.println(printPostfix());
+
+        System.out.print(printPrefix());
         getDownPrint(bridgeGame.getBridge(), bridgeGame.getUsersMove());
-        System.out.println("]");
+        System.out.println(printPostfix());
     }
 
     private void getDownPrint(List<String> bridge, List<String> usersMove) {
@@ -40,9 +41,9 @@ public class OutputView {
     private boolean printBlank(List<String> usersMove, int idx, String inputString) {
         if (!(usersMove.get(idx).equals(inputString))) {
             if (idx != 0) {
-                System.out.print("|");
+                System.out.print(printBar());
             }
-            System.out.print("   ");
+            System.out.print(printAllBlank());
             return true;
         }
         return false;
@@ -50,17 +51,17 @@ public class OutputView {
 
     private void printX(int idx) {
         if (idx != 0) {
-            System.out.print("|");
+            System.out.print(printBar());
         }
-        System.out.print(" X ");
+        System.out.print(printNotCorrect());
     }
 
     private boolean printO(List<String> bridge, List<String> usersMove, int idx) {
         if (bridge.get(idx).equals(usersMove.get(idx))) {
             if (idx != 0) {
-                System.out.print("|");
+                System.out.print(printBar());
             }
-            System.out.print(" O ");
+            System.out.print(printCorrect());
             return true;
         }
         return false;
@@ -72,12 +73,44 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(BridgeGame bridgeGame) {
-        System.out.println("게임 성공 여부: " + isSuccess(bridgeGame.isMove()));
-        System.out.println("총 시도한 횟수: " + bridgeGame.getCnt());
+        System.out.println(Message.IS_GAME_SUCCESSFUL + isSuccess(bridgeGame.isMove()));
+        System.out.println(Message.TOTAL_NUMBER_OF_ATTEMPTS + bridgeGame.getCnt());
     }
 
     public String isSuccess(boolean flag) {
-        if (flag) return "성공";
+        if (flag) return printSuccess();
+        return printFailure();
+    }
+
+    private String printFailure() {
         return "실패";
+    }
+
+    private String printSuccess() {
+        return "성공";
+    }
+
+    private String printPostfix() {
+        return "]";
+    }
+
+    private String printPrefix() {
+        return "[";
+    }
+
+    private String printBar() {
+        return "|";
+    }
+
+    private String printAllBlank() {
+        return "   ";
+    }
+
+    private String printNotCorrect() {
+        return " X ";
+    }
+
+    private String printCorrect() {
+        return " O ";
     }
 }
