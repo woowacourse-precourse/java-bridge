@@ -12,13 +12,30 @@ public class InputView {
      */
     public int readBridgeSize() throws NumberFormatException, IllegalArgumentException{
         System.out.println("다리의 길이를 입력해주세요.");
-        int convertedSize = Integer.parseInt(readLine());
-        if (convertedSize < 3 || convertedSize > 20) {
+        return convertInt(readLine());
+    }
+    private int convertInt(String read) {
+        if (!isDigit(read)) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
-        return convertedSize;
+        int size = Integer.parseInt(read);
+        if (!validateBridgeSize(size)) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
+        return size;
     }
-
+    private boolean isDigit(String read) {
+        if (read.matches("^[0-9]*$")) {
+            return false;
+        }
+        return true;
+    }
+    private boolean validateBridgeSize(int size) {
+        if (size < 3 || size > 20) {
+            return false;
+        }
+        return true;
+    }
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
