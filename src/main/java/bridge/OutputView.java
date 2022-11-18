@@ -13,10 +13,28 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeGame bridgeGame) {
-        List<String> user_bridge = bridgeGame.getUser_bridge();
-        List<String> answer_bridge = bridgeGame.getAnswer_bridge();
-//        System.out.println("user: "+user_bridge);
-//        System.out.println("answer_bridge: "+answer_bridge);
+        String upperRow = createRow("U",bridgeGame.getUser_bridge(),bridgeGame.getAnswer_bridge());
+        String bottomRow = createRow("D",bridgeGame.getUser_bridge(),bridgeGame.getAnswer_bridge());
+
+        System.out.println(upperRow+bottomRow);
+    }
+    private String createRow(String UorD, List<String> user, List<String> ans){
+        String row = "[";
+
+        for(int index = 0 ; index<user.size();index++) {
+            row += rowCompare(UorD, user.get(index),ans.get(index)) +"|";
+        }
+
+        row = row.substring(0,row.length()-1) + "]\n";
+        return row;
+    }
+    private String rowCompare(String UorD,String user, String ans){
+        if(user.equals(UorD)) {
+            if (user.equals(ans))
+                return " O ";
+            return " X ";
+        }
+        return "   ";
     }
 
     /**
