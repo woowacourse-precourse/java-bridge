@@ -14,7 +14,7 @@ public class Bridge {
     private final static String WRONG_RANGE_INPUT = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
 
 
-    private List<String> bridgeStates;
+    final private List<String> bridgeStates;
 
 
     public Bridge(int bridgeSize) throws IllegalArgumentException {

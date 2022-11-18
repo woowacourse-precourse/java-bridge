@@ -5,7 +5,7 @@ import java.util.List;
 
 
 public class BridgeGame {
-    Bridge bridge;
+    final Bridge bridge;
     Player player;
     private int retryCount;
     private int maxPassedCount;
