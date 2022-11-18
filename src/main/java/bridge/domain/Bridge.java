@@ -19,7 +19,7 @@ public class Bridge {
         new BridgeValidator(size);
         this.size = size;
         makeBridgeBySize(getInt(size));
-        this.step = 0;
+        this.step = step;
     }
 
     private void makeBridgeBySize(int size){
@@ -28,12 +28,28 @@ public class Bridge {
         this.bridge = bridgeMaker.makeBridge(size);
     }
 
-    private boolean successMove(Move move){
+    public String successUpMove(Move move){
+        String result = "";
+        if(move.isUpMove()){
+            result = successMove(move);
+        }
+        return result;
+    }
+
+    public String successDownMove(Move move){
+        String result = "";
+        if(!move.isUpMove()){
+            result = successMove(move);
+        }
+        return result;
+    }
+
+    private String successMove(Move move){
         if(move.goToNextMove(this.bridge.get(this.step))){
             this.step += 1;
-            return true;
+            return "O";
         }
-        return false;
+        return "X";
     }
 
 
