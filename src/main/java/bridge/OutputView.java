@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,16 +17,35 @@ public class OutputView {
     final static String DOWN = "D";
     final static String REDO = "R";
     final static String QUIT = "Q";
+    final static String FINAL_RESULT = "최종 게임 결과";
+    final static String SUCCEEDED = "게임 성공 여부: ";
+    final static String SUCCESS = "성공";
+    final static String FAIL = "실패";
+    final static String ATTEMPT = "\n총 시도한 횟수: ";
+    static boolean isComplete;
     static InputView iv = new InputView();
-
-    static int count = 1;
+    static String lastUserInput;
+    static int totalCount = 0;
+    static int attempt;
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean printMap(int index, List<String> upOrDown, String userInput) {
+    public boolean printMap(List<String> upOrDown) {
+        for (int i = 0; i < upOrDown.size(); i++){
+            String userInput = iv.readMoving();
+            totalCount++; attempt++;
+            lastUserInput = userInput;
+            if(!startLadder(i, upOrDown, userInput)){
+                return redoOrQuit(iv.readGameCommand());
+            }
+        }
+        return false;
+    }
+
+    public boolean startLadder(int index, List<String> upOrDown, String userInput){
         boolean isFirstRowTrue = firstRow(index, upOrDown, userInput);
         boolean isSecondRowTrue = secondRow(index, upOrDown, userInput);
         return isFirstRowTrue && isSecondRowTrue;
@@ -95,30 +115,22 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean printResult(List<String> bridgeMaker) {
-        String reset;
-        for (int i = 0; i < bridgeMaker.size(); i++) {
-            String userInput = iv.readMoving();
-            if (!printMap(i, bridgeMaker, userInput)) {
-                reset = iv.readGameCommand();
-                return retry(bridgeMaker, reset);
-            }
+    public void printResult(List<String> bridgeMaker) {
+        System.out.println(FINAL_RESULT);
+        startLadder(attempt-1, bridgeMaker, lastUserInput);
+        if (!isComplete) System.out.println(SUCCEEDED + FAIL + ATTEMPT + totalCount);
+        if (isComplete) System.out.println(SUCCEEDED + SUCCESS + ATTEMPT + totalCount);
+    }
+
+    public boolean redoOrQuit(String reset) {
+        if (reset.equals(REDO)) {
+            isComplete = true;
+            attempt = 0;
+            return true;
         }
+        if (reset.equals(QUIT)) isComplete = false;
+        if (!reset.equals(QUIT)) throw new IllegalArgumentException();
         return false;
-    }
-
-    public boolean retry(List<String> bridgeMaker, String reset) {
-        if (reset.equals(REDO)) return true;
-        if (reset.equals(QUIT)) return false;
-
-        throw new IllegalArgumentException();
-    }
-
-    public void gameEnded(List<String> bridgeMaker) {
-        System.out.println("최종 게임 결과!");
-//        printMap(bridgeMaker.size()-1, bridgeMaker, userInput);
-//        System.out.println("게임 성공 여부: 성공\n" +
-//                "총 시도한 횟수: 2");
     }
 
 }
