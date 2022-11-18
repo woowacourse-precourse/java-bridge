@@ -41,6 +41,9 @@ public class BridgeGame {
                 retry();
             }
         }
+    }
+
+    public void end(){
         printFinalGameResult(topGameBoard, bottomGameBoard);
         printGameStatistics(isGameWin, tryCount);
     }
