@@ -30,9 +30,10 @@ public class BridgeGame {
             selectedFoothold.add(Command.DOWN.getValue());
         }
         tryNumber++;
+        makeRoad();
     }
 
-    public boolean isRightFoothold() {
+    private boolean isRightFoothold() {
         int index = tryNumber - 1;
         if (selectedFoothold.get(index) == bridge.get(index)) {
             return true;

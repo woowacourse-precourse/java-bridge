@@ -27,7 +27,7 @@ public class OutputView {
         System.out.println("최종 게임 결과");
         printMap(bridgeGame.getUpperRoad(), bridgeGame.getLowerRoad());
         System.out.println("\n");
-        System.out.println("게임 성공 여부: " + bridgeGame.isGameEnd());
+        System.out.println("게임 성공 여부: " + bridgeGame.getGameResult());
         System.out.println("총 시도한 횟수: " + String.valueOf(bridgeGame.getTryNumber()));
     }
 }
