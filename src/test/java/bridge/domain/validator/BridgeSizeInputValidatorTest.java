@@ -20,6 +20,40 @@ class BridgeSizeInputValidatorTest {
 
     private static final  BridgeSizeInputValidator sizeInputValidator  = new BridgeSizeInputValidator();
 
+    @Order(4)
+    @DisplayName("통합 유효성 검사")
+    @ParameterizedTest(name ="{displayName} 입력값({index}) : {1}")
+    @MethodSource("paramsForTotalValidate")
+    void validate(String inputValue, String testOutputMessage) {
+    assertSimpleTest(() ->
+                assertThatThrownBy(() -> sizeInputValidator.validate(inputValue))
+                .isInstanceOf(IllegalArgumentException.class)
+    );
+    }
+    private static Stream<Arguments> paramsForTotalValidate() {
+        return Stream.of(
+                Arguments.of("    ", "(공백 값)"),
+                Arguments.of("abcd", "abcd"),
+                Arguments.of("ㄱㄴㄷㄹ", "ㄱㄴㄷㄹ"),
+                Arguments.of("99", "99"),
+                Arguments.of("123456", "123456")
+    );
+    }
+    @Order(5)
+    @DisplayName("통합 유효성 검사 - 통과 case")
+    @ParameterizedTest(name ="{displayName} 입력값({index}) : {0}")
+    @ValueSource(strings = {
+            "   12",
+            "4",
+            "20",
+            "3"
+            })
+    void validate(String inputValue) {
+    assertThatCode(()-> sizeInputValidator.validate(inputValue)).doesNotThrowAnyException();
+    assertThatNoException().isThrownBy(()-> sizeInputValidator.validate(inputValue));
+
+    }
+
     @Order(1)
     @DisplayName("공백 여부 검사")
     @ParameterizedTest(name = "{displayName} 입력값({index}) : {1}")
