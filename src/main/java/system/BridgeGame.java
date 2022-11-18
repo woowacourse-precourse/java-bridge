@@ -60,13 +60,13 @@ public class BridgeGame {
         realTimeBridge.initialize();
     }
 
-    public void start() {
+    private void start() {
         do {
             play(size, bridge);
         } while(retry());
     }
 
-    public void Game() {
+    public void game() {
         this.size = inputController.getBridgeSize();
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
