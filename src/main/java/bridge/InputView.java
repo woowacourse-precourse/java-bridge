@@ -2,19 +2,27 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    int bridgeSize;
+    String userInputMoving;
+    String userInputCommand;
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String userInputValue = Console.readLine();
-        InputValidate.isDigitBridgeSize(userInputValue);
-        int bridgeSize = Integer.parseInt(userInputValue);
-        InputValidate.isInRangeBridgeSize(bridgeSize);
+        try {
+            bridgeSize = InputValidate.isValidSize(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            readBridgeSize();
+        }
         return bridgeSize;
     }
 
@@ -22,18 +30,28 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String userInputValue = Console.readLine();
-        InputValidate.isValidMoving(userInputValue);
-        return userInputValue;
+        userInputMoving = Console.readLine();
+        try {
+            InputValidate.isValidMoving(userInputMoving);
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            readMoving();
+        }
+        return userInputMoving;
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        String userInputValue = Console.readLine();
-        InputValidate.isValidCommand(userInputValue);
-        return userInputValue;
+        userInputCommand = Console.readLine();
+        try {
+            InputValidate.isValidCommand(userInputCommand);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            readGameCommand();
+        }
+        return userInputCommand;
     }
 
 }

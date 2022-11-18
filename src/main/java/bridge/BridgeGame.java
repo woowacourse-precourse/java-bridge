@@ -110,6 +110,7 @@ public class BridgeGame {
         Message.startMessage();
         Message.requestBridgeSizeMessage();
         int size = inputView.readBridgeSize();
+        System.out.println("size : " + size);
         List<String> answer = bridgeMaker.makeBridge(size); // 정답
         test(answer);
     }
@@ -126,7 +127,7 @@ public class BridgeGame {
                 failMove(answer, upperCurrentBridge, lowerCurrentBridge, userMovingValue, i);
                 return ;
             }
-            outputView.printMap(upperCurrentBridge); // 추가된 다리를 출력한다
+            outputView.printMap(upperCurrentBridge); // 추가된 다리만큼만 출력한다
             outputView.printMap(lowerCurrentBridge);
         }
         result(upperCurrentBridge, lowerCurrentBridge, gameTryCount);

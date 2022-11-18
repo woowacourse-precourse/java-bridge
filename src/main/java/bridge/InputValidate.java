@@ -1,5 +1,7 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Console;
+
 public class InputValidate {
 
   public static void isDigitBridgeSize(String strSize) {
@@ -14,6 +16,13 @@ public class InputValidate {
     if (bridgeSize < 3 || bridgeSize > 20) {
       throw new IllegalArgumentException("[ERROR] 3 이상 20 이하의 숫자를 입력해 주세요.");
     }
+  }
+
+  public static int isValidSize(String userInputSize) {
+    isDigitBridgeSize(userInputSize);
+    int bridgeSize = Integer.parseInt(userInputSize);
+    isInRangeBridgeSize(bridgeSize);
+    return bridgeSize;
   }
 
   // String 길이 검사를 하고, U, P만 들어올 수 있도록

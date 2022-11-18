@@ -28,6 +28,7 @@ public class BridgeMaker {
             }
             bridgeMap.add("D");
         }
+        System.out.println("bridgeMap = " + bridgeMap);
         return bridgeMap;
     }
 }
