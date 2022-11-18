@@ -6,6 +6,7 @@ import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.PassingPositions;
+import bridge.domain.Result;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
@@ -31,9 +32,10 @@ public class BridgeController {
         int attempt = 1;
 
         PassingPositions passingPositions = new PassingPositions();
+        Result result = null;
+
         do {
             pos = -1;
-//            PassingPositions passingPositions = new PassingPositions();
             do {
                 pos++;
                 if (pos == size) {
@@ -43,15 +45,20 @@ public class BridgeController {
                 String answer = InputView.readMoving();
 
                 bridgeGame.move(pos, answer, passingPositions);
-            } while (!OutputView.printMap(bridge, passingPositions).contains("X"));
+                result = new Result(bridge, passingPositions);
+
+            } while (!OutputView.printMap(result).contains("X"));
 
             if (isQuit) {
                 break;
             }
             bridgeGame.retry(passingPositions);
             attempt++;
+
         } while (InputView.readGameCommand().equals("R"));
 
-        OutputView.printResult(bridge, passingPositions, attempt);
+        if (result != null) {
+            OutputView.printResult(result, attempt);
+        }
     }
 }

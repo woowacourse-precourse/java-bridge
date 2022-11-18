@@ -11,15 +11,21 @@ public class Result {
     private final List<String> upElements = new ArrayList<>();
     private final List<String> downElements = new ArrayList<>();
 
+    private final Bridge bridge;
+    private final PassingPositions passingPositions;
+
     public Result(Bridge bridge, PassingPositions passingPositions) {
-        makeResultsGroup(bridge, passingPositions);
+        this.bridge = bridge;
+        this.passingPositions = passingPositions;
+
+        makeResultsGroup();
         upElements.remove(0);
         resultsGroup.add(upElements);
         downElements.remove(0);
         resultsGroup.add(downElements);
     }
 
-    public void makeResultsGroup(Bridge bridge, PassingPositions passingPositions) {
+    public void makeResultsGroup() {
         List<Position> passingPosition = passingPositions.getPassingPositions();
         for (Position position : passingPosition) {
             String compare = bridge.compare(position);
@@ -46,7 +52,7 @@ public class Result {
         return resultsGroup;
     }
 
-    public List<String> makeCompares(Bridge bridge, PassingPositions passingPositions) {
+    public List<String> makeCompares() {
         List<String> compares = new ArrayList<>();
         List<Position> passingPosition = passingPositions.getPassingPositions();
         for (Position position : passingPosition) {
@@ -55,4 +61,13 @@ public class Result {
         }
         return compares;
     }
+//    public List<String> makeCompares(Bridge bridge, PassingPositions passingPositions) {
+//        List<String> compares = new ArrayList<>();
+//        List<Position> passingPosition = passingPositions.getPassingPositions();
+//        for (Position position : passingPosition) {
+//            String compare = bridge.compare(position);
+//            compares.add(compare);
+//        }
+//        return compares;
+//    }
 }

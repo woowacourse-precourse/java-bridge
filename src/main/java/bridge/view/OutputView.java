@@ -25,9 +25,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static List<String> printMap(Bridge bridge, PassingPositions passingPositions) {
-        Result result = new Result(bridge, passingPositions);
-        List<String> compares = result.makeCompares(bridge, passingPositions);
+    public static List<String> printMap(Result result) {
+        List<String> compares = result.makeCompares();
         List<List<String>> resultsGroup = result.getResultsGroup();
 
         for (List<String> results : resultsGroup) {
@@ -46,12 +45,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(Bridge bridge, PassingPositions passingPositions, int attempt) {
-        Result result = new Result(bridge, passingPositions);
-        List<String> compares = result.makeCompares(bridge, passingPositions);
+    public static void printResult(Result result, int attempt) {
+        List<String> compares = result.makeCompares();
 
         System.out.println(FINAL_RESULT);
-        printMap(bridge, passingPositions);
+        printMap(result);
 
         System.out.print(GAME_SUCCESS_OR_NOT);
         if (compares.contains("X")) {
