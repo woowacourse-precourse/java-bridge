@@ -11,6 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import util.ErrorMessage;
 
 class InputViewTest {
+    private final InputView inputView = new InputView();
 
     @DisplayName("[InputView] 다리 사이즈 입력시 숫자가 아닌경우 예외처리(음수인경우에도 view단에서 예외처리)")
     @ParameterizedTest
@@ -34,4 +35,27 @@ class InputViewTest {
         //then
         assertDoesNotThrow(() -> inputView.validateBridgeSize(input));
     }
+
+    @DisplayName("[validateCharacter] 입력이 문자가 이닌경우 예외발생")
+    @ParameterizedTest
+    @ValueSource(strings = {"10","21","21133"})
+    void notCorrectInputOneStairs(String input) {
+        //given
+        //when
+        //then
+        assertThatThrownBy(() -> inputView.validateCharacter(input))
+                .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessage.SHOULD_CHARACTER);
+    }
+
+    @DisplayName("[validateCharacter] 입력이 문자인경우 테스트 ")
+    @ParameterizedTest
+    @ValueSource(strings = {"asds","test","안녕하세요"})
+    void inputCharacter(String input) {
+        //given
+        //when
+        //then
+        assertDoesNotThrow(() -> inputView.validateCharacter(input));
+    }
+
+
 }
