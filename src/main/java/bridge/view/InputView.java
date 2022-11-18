@@ -18,6 +18,7 @@ public class InputView extends InputException {
             bridgeSize = Console.readLine();
             validateBridgeSize(bridgeSize);
         } catch (IllegalArgumentException exception) {
+            printErrorMessage(exception.getMessage());
             return readBridgeSize();
         }
         return Integer.parseInt(bridgeSize);
@@ -33,6 +34,7 @@ public class InputView extends InputException {
             moving = Console.readLine();
             validateMoving(moving);
         } catch (IllegalArgumentException exception) {
+            printErrorMessage(exception.getMessage());
             return readMoving();
         }
         return moving;
@@ -48,6 +50,7 @@ public class InputView extends InputException {
             gameCommand = Console.readLine();
             validateGameCommand(gameCommand);
         } catch (IllegalArgumentException exception) {
+            printErrorMessage(exception.getMessage());
             return readGameCommand();
         }
         return gameCommand;
