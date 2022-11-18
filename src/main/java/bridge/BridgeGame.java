@@ -46,6 +46,10 @@ public class BridgeGame {
     public void retry() {
     }
 
+    public boolean isEndOfBridge(){
+        return bridge.size() == userMoving.size();
+    }
+
     public List<String> getBridge() {
         return bridge;
     }
