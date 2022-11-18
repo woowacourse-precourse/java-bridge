@@ -41,6 +41,7 @@ public class BridgeGame {
                 retry(inputView.readGameCommand()); return;
             }
         }
+        outputView.printResult(recursiveCount, Result.SUCCESS.getResult());
     }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
@@ -51,6 +52,9 @@ public class BridgeGame {
         if (gameCommand.equals(RetryCode.RETRY.getRetryCode())){
             recursiveCount += 1;
             move();
+        }
+        if (gameCommand.equals(RetryCode.QUIT.getRetryCode())) {
+            outputView.printResult(recursiveCount, Result.FAIL.getResult());
         }
     }
 }
