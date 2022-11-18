@@ -21,10 +21,10 @@ public class InputView {
 
     private void validateBridgeSize(String bridgeSize) {
         if (!bridgeSize.matches("^[0-9]*$")) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException("숫자만 입력 가능합니다.");
         }
         if (3 > Integer.parseInt(bridgeSize) || Integer.parseInt(bridgeSize) > 20) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
     }
 
@@ -39,8 +39,8 @@ public class InputView {
     }
 
     private void validateMoving(String inputMoving) {
-        if (!inputMoving.equals("U") && !inputMoving.equals("D")) {
-            throw new IllegalArgumentException("[ERROR] U와 D만 입력 가능합니다.");
+        if (!inputMoving.equals(UP_DIRECTION) && !inputMoving.equals(DOWN_DIRECTION)) {
+            throw new IllegalArgumentException("U와 D만 입력 가능합니다.");
         }
     }
 
@@ -55,8 +55,8 @@ public class InputView {
     }
 
     private void validateGameCommand(String gameCommand) {
-        if (!gameCommand.equals("R") && !gameCommand.equals("Q")) {
-            throw new IllegalArgumentException("[ERROR] R과 Q만 입력 가능합니다.");
+        if (!gameCommand.equals(RETRY) && !gameCommand.equals(QUIT)) {
+            throw new IllegalArgumentException("R과 Q만 입력 가능합니다.");
         }
     }
 }

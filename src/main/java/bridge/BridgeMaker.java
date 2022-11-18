@@ -32,8 +32,8 @@ public class BridgeMaker {
 
     private String checkUpDown(int number) {
         if (number == 0) {
-            return UP_DIRECTION;
+            return DOWN_DIRECTION;
         }
-        return DOWN_DIRECTION;
+        return UP_DIRECTION;
     }
 }

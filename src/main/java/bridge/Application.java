@@ -9,7 +9,7 @@ public class Application {
             int size = inputView.readBridgeSize();
             bridgeGame.run(size);
         } catch (IllegalArgumentException error) {
-            System.out.println(error.getMessage());
+            System.out.println("[ERROR] " + error.getMessage());
         }
     }
 }
