@@ -15,6 +15,9 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    private static final String RETRY_COMMAND = "R";
+    private static final String END_COMMAND = "Q";
+
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -30,6 +33,7 @@ public class BridgeGame {
     private String currentPlayerBridgeDownShape;
     private boolean isGameSuccess;
     private String retryOrEndCommand;
+    private int tryCount = 1;
 
     public void printBridgeGameStartMessage() {
         outputView.printBridgeGameStartMessage();
@@ -84,6 +88,17 @@ public class BridgeGame {
         }
     }
 
+    private void retryOrEnd() {
+        inputRetryOrEndCommand();
+        if (retryOrEndCommand.equals(RETRY_COMMAND)) {
+            tryCount++;
+            retry();
+        }
+        if (retryOrEndCommand.equals(END_COMMAND)) {
+            printGameResult();
+        }
+    }
+
     public void inputRetryOrEndCommand() {
         outputView.printRetryOrEndMessage();
         retryOrEndCommand = inputView.inputRetryOrEndCommand();
@@ -95,5 +110,15 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        initGame();
+        moveUntilSuccessOrFailure();
+        if (isGameSuccess == false) {
+            successOrFailure = "실패";
+            retryOrEnd();
+        }
+        if (isGameSuccess) {
+            successOrFailure = "성공";
+            printGameResult();
+        }
     }
 }
