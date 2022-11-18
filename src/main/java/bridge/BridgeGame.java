@@ -9,10 +9,9 @@ import java.util.List;
  */
 public class BridgeGame {
     private final List<String> bridge;
-    private List<String> boardList = new ArrayList<>();
-    private List<String> upBoardCheckList = new ArrayList<>();
-    private List<String> downBoardCheckList = new ArrayList<>();
-    private final OutputView outputView;
+    private final List<String> boardList = new ArrayList<>();
+    private final List<String> upBoardCheckList = new ArrayList<>();
+    private final List<String> downBoardCheckList = new ArrayList<>();
     private int stage = 0;
     private boolean success = false;
     private int tryCount = 1;
@@ -77,9 +76,8 @@ public class BridgeGame {
         }
     }
 
-    public BridgeGame(List<String> bridge, OutputView outputView) {
+    public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
-        this.outputView = outputView;
     }
 
     public boolean getSuccess() {
