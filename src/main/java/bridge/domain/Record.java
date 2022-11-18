@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Record {
-	private static final List<List<String>> result = new ArrayList<>();
+	private final List<List<String>> result = new ArrayList<>();
 
 	public void recordResult(String move, Boolean moveResult) {
 		if (moveResult == true) {

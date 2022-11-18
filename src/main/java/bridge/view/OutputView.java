@@ -1,5 +1,7 @@
 package bridge.view;
 
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -10,7 +12,37 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(List<List<String>> result) {
+        String upMap;
+        upMap = "[ ";
+        for (int i = 0; i < result.size(); i++) {
+            if (result.get(i).get(0).equals("U")) {
+                upMap = upMap + result.get(i).get(1) + " ";
+            }
+            if (result.get(i).get(0).equals("D")) {
+                upMap = upMap + "  ";
+            }
+            if (result.size() - i != 1) {
+                upMap += "| ";
+            }
+        }
+        upMap = upMap + "]";
+        String downMap;
+        downMap = "[ ";
+        for (int i = 0; i < result.size(); i++) {
+            if (result.get(i).get(0).equals("U")) {
+                downMap = downMap + "  ";
+            }
+            if (result.get(i).get(0).equals("D")) {
+                downMap = downMap + result.get(i).get(1) + " ";
+            }
+            if (result.size() - i != 1) {
+                downMap += "| ";
+            }
+        }
+        downMap = downMap + "]";
+        System.out.println(upMap);
+        System.out.println(downMap);
     }
 
     /**
@@ -18,6 +50,6 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<List<String>> result) {
     }
 }
