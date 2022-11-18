@@ -19,7 +19,8 @@ public class BridgeGameResult {
         moveResult = new BridgeMoveResult();
     }
 
-    public void increaseTryCount() {
+    public int increaseTryCount() {
         tryCount++;
+        return tryCount;
     }
 }
