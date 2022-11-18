@@ -27,6 +27,8 @@ public class CommandValidate {
 	}
 
 	public static void validateExactCharacterRQ(String input) {
+		if (!input.matches("^[RQ]+$")) {
 			throw new IllegalArgumentException("R과 Q만 입력할 수 있습니다.");
+		}
 	}
 }
