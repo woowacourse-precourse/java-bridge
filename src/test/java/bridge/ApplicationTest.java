@@ -49,6 +49,16 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @DisplayName("움직임 입력 값이 U또는 D가 아닐 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {" ", "*", "/", "R", "Q"})
+    void validMovingError(String move) {
+        assertSimpleTest(() -> {
+            runException("3", move);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
