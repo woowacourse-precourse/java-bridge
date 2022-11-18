@@ -63,4 +63,9 @@ public class BridgeGame {
         }
         throw new IllegalArgumentException();
     }
+
+    public boolean isReached() {
+        int arrivalPosition = bridge.size();
+        return arrivalPosition == currentPosition;
+    }
 }
