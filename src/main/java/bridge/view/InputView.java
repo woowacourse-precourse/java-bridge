@@ -23,13 +23,24 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        int BridgeSize = getBridgeSizeByConsole();
+        try {
+            Bridge.validateLength(BridgeSize);
+        } catch (IllegalArgumentException e) {
+            outputView.printMessage(e.getMessage());
+            readBridgeSize();
+        }
+        return BridgeSize;
+    }
+
+    private int getBridgeSizeByConsole() {
         outputView.printMessage(INSERT_BRIDGE_SIZE_MESSAGE);
         String userInput = Console.readLine();
         try {
             intValidation(userInput);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            readBridgeSize();
+            getBridgeSizeByConsole();
         }
         return Integer.parseInt(userInput);
     }
@@ -45,6 +56,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+        String userInput = Console.readLine();
         return null;
     }
 
