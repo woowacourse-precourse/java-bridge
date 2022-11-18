@@ -1,17 +1,17 @@
 package bridge.model;
 
 public class Player {
-    private int currentLocation;
+    private static int currentLocation;
 
     public Player() {
-        currentLocation = 0;
+        currentLocation = -1;
     }
 
     public void moveStraight() {
         this.currentLocation += 1;
     }
 
-    public int getCurrentLocation() {
+    public static int getCurrentLocation() {
         return currentLocation;
     }
 
