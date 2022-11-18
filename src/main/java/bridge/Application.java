@@ -19,4 +19,13 @@ public class Application {
 
         return bridgeMaker.makeBridge(inputView.readBridgeSize());
     }
+
+    private void crossBridge(Bridge bridge) {
+        boolean isGameOver = false;
+        BridgeGame bridgeGame = new BridgeGame();
+
+        while(isGameOver) {
+            bridgeGame.move(inputView.readMoving());
+        }
+    }
 }
