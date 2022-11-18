@@ -36,10 +36,20 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    // TODO: 구현 필요
-    public void move() {
+    public String move(String moving) {
+        validateMovingInput(moving);
+        return moving;
     }
 
+    private void validateMovingInput(String input) {
+        if (!input.equals(UP_BRIDGE_CHARACTER) && !input.equals(DOWN_BRIDGE_CHARACTER)) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_VALID_MOVING_INPUT_ERROR.getMessage());
+        }
+    }
+
+    /**
+     * 사용자가 이동한 칸의 정답을 확인할 때 사용하는 메서드
+     */
     public String getUpBridgeResult(List<String> bridge, int index, String input) {
         if (isMovingCorrect(bridge, index, input) && input.equals(UP_BRIDGE_CHARACTER)) {
             return RIGHT_ANSWER;
@@ -61,14 +71,7 @@ public class BridgeGame {
     }
 
     public boolean isMovingCorrect(List<String> bridge, int index, String input) {
-        validateMovingInput(input);
-        return input.equals(bridge.get(index));
-    }
-
-    private void validateMovingInput(String input) {
-        if (!input.equals(UP_BRIDGE_CHARACTER) && !input.equals(DOWN_BRIDGE_CHARACTER)) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_VALID_MOVING_INPUT_ERROR.getMessage());
-        }
+        return bridge.get(index).equals(input);
     }
 
     /**
