@@ -13,12 +13,14 @@ public class BridgeGame {
 
     private final List<String> bridge;
     private Result result;
-    private int position = -1;
+    private Position position;
     private int count = 0;
+
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         result = new Result(bridge.size());
+        position = new Position(bridge.size());
     }
 
     /**
@@ -26,13 +28,14 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public int move(String key) {
+    public void move(String key) {
         count++;
-        String upOrDown = bridge.get(++position);
+        String upOrDown = bridge.get(position.getNext());
         if (InputKey.isUp(key)) {
-            return result.handleUpBridge(upOrDown, position);
+            result.handleUpBridge(upOrDown, position);
+            return;
         }
-        return result.handleDownBridge(upOrDown, position);
+        result.handleDownBridge(upOrDown, position);
     }
 
     /**
@@ -42,12 +45,16 @@ public class BridgeGame {
      */
     public void retry() {
         result.clear();
-        position = -1;
+        position.clear();
         count = 0;
     }
 
-    public boolean isDone() {
-        return position == bridge.size() - 1;
+    public boolean isNotDone() {
+        return !position.isDone();
+    }
+
+    public boolean canGoForward() {
+        return position.isLessThanBridgeLength() && position.isNotInitializedValue();
     }
 
     public String printGameResult() {

@@ -9,7 +9,6 @@ import java.util.List;
 public class GameManager {
     private final List<String> bridge;
     private final BridgeGame bridgeGame;
-    private int position = 0;
 
     public GameManager(BridgeMaker bridgeMaker) {
         bridge = bridgeMaker.makeBridge(InputView.readBridgeSize());
@@ -31,11 +30,11 @@ public class GameManager {
     }
 
     private boolean moveForward() {
-        while (position < bridge.size() - 1 && position != -1) {
-            position = bridgeGame.move(InputView.readMoving());
+        while (bridgeGame.canGoForward()) {
+            bridgeGame.move(InputView.readMoving());
             OutputView.printMap(bridgeGame);
         }
-        return position != bridge.size() - 1; // 다리의 끝까지 도달하지 못했는가?
+        return bridgeGame.isNotDone(); // 다리의 끝까지 도달하지 못했는가?
     }
 
     private boolean retryOrNot() {

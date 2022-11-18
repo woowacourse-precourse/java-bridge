@@ -26,22 +26,22 @@ public class Result {
         }
     }
 
-    public int handleUpBridge(String input, int position) {
+    public void handleUpBridge(String input, Position position) {
         if (InputKey.isUp(input)) {
-            upBridgeStatus[position] = O_FLAG;
-            return position;
+            upBridgeStatus[position.getPosition()] = O_FLAG;
+            return;
         }
-        upBridgeStatus[position] = X_FLAG;
-        return -1;
+        upBridgeStatus[position.getPosition()] = X_FLAG;
+        position.fail();
     }
 
-    public int handleDownBridge(String input, int position) {
+    public void handleDownBridge(String input, Position position) {
         if (InputKey.isDown(input)) {
-            downBridgeStatus[position] = O_FLAG;
-            return position;
+            downBridgeStatus[position.getPosition()] = O_FLAG;
+            return;
         }
-        downBridgeStatus[position] = X_FLAG;
-        return -1;
+        downBridgeStatus[position.getPosition()] = X_FLAG;
+        position.fail();
     }
 
     public void clear() {
