@@ -17,4 +17,10 @@ class BridgeGameTest {
         Assertions.assertThat(bridgeGame.move(1, "D")).isTrue();
         Assertions.assertThat(bridgeGame.move(2, "U")).isFalse();
     }
+
+    @Test
+    void retry(){
+        Assertions.assertThat(bridgeGame.retry("R")).isTrue();
+        Assertions.assertThat(bridgeGame.retry("Q")).isFalse();
+    }
 }
