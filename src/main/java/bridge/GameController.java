@@ -22,7 +22,6 @@ public class GameController {
         MoveResult moveResult = moveResult();
 
         startWalk(bridgeGame, bridge, moveResult);
-
     }
 
     private AttemptNumber attemptNumber() {
@@ -62,6 +61,8 @@ public class GameController {
             }
             break;
         }
+        System.out.println("최종 게임 결과");
+        moveResult.printBridge(outputView);
         attemptNumber.printAttemptNumber(outputView, isSuccess());
     }
 
