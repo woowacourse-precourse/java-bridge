@@ -12,7 +12,7 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    boolean matchWithIndex(int idx, String candidate){
+    boolean matchWithIndex(int idx, String candidate) {
         return bridge.get(idx).equals(candidate);
     }
 

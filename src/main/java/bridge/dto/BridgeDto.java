@@ -1,5 +1,6 @@
 package bridge.dto;
 
+import bridge.domain.Command;
 import bridge.domain.State;
 
 import java.util.List;
@@ -15,5 +16,19 @@ public class BridgeDto {
 
     public List<List<State>> toList() {
         return List.of(up, down);
+    }
+
+    public void swap(String upOrDown) {
+        if(upOrDown.equals(Command.UP)){
+            down.remove(down.size()-1);
+            down.add(State.NONE);
+            up.remove(up.size()-1);
+            up.add(State.WRONG);
+            return;
+        }
+        up.remove(up.size()-1);
+        up.add(State.NONE);
+        down.remove(down.size()-1);
+        down.add(State.WRONG);
     }
 }
