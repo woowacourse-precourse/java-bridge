@@ -2,10 +2,8 @@ package ui;
 
 
 public enum Block {
-    START_BLOCK(0, "["),
-    END_BLOCK(1, "]"),
-    MIDDLE_BLOCK(2, "|"),
-    TRUE_BLOCK(3,"O"),
+    NULL_BLOCK(0," "),
+    TRUE_BLOCK(1,"O"),
     FALSE_BLOCK(-1, "X");
     private int correct_size;
     private String result;

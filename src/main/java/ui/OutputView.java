@@ -13,6 +13,9 @@ public class OutputView {
     private final String PROMPT_USER_MOVE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private final String GAME_RESTART_OR_END = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private final String GAME_SUCCESS_RESULT = "게임 성공 여부: ";
+    private final String BLOCK_START = "[";
+    private final String BLOCK_END = "]";
+    private final String BLOCK_SEP = "|";
     // 게임 성공, 실패는 ENUM으로 관리하도록 고려할 것.
     private final Map<Boolean, String> GAME_RESULT = Map.of(true, "성공",
             false, "실패");
@@ -24,13 +27,18 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<List<Integer>> map) {
-        for (int firstBlock : map.get(0)) {
-            printBlock(firstBlock);
+        printOneLine(map.get(0));
+        printOneLine(map.get(1));
+    }
+    private void printOneLine(List<Integer> line){
+        System.out.print(BLOCK_START);
+        for(int i = 0; i < line.size(); i++){
+            printBlock(line.get(i));
+            if(i != line.size()-1){
+                System.out.print(BLOCK_SEP);
+            }
         }
-        System.out.println();
-        for (int secondBlock : map.get(1)) {
-            printBlock(secondBlock);
-        }
+        System.out.println(BLOCK_END);
     }
 
     /**
@@ -43,7 +51,7 @@ public class OutputView {
     }
 
     private void printBlock(final int index) {
-        System.out.print(Block.getMessage(index));
+        System.out.print(" " + Block.getMessage(index) + " ");
     }
 
     public void printGameStartMessage() {
