@@ -16,4 +16,10 @@ public class InputService {
         int bridgeSize = inputView.readBridgeSize();
         return bridgeSize;
     }
+
+    public String requestMove() {
+        outputView.printRequestMove();
+        String moveDirection = inputView.readMoving();
+        return moveDirection;
+    }
 }
