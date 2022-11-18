@@ -7,4 +7,12 @@ public class Bridge {
 	public Bridge(char path) {
 		this.path = path;
 	}
+
+	public boolean isRightPath(char chosenPath) {
+		if (chosenPath == this.path) {
+			return true;
+		}
+
+		return false;
+	}
 }
