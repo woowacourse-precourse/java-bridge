@@ -1,10 +1,7 @@
 package bridge.service;
 
 import bridge.BridgeMaker;
-import bridge.domain.Bridge;
 import bridge.domain.Bridges;
-import bridge.exception.NotFoundBridgeException;
-import bridge.exception.NotFoundBridgeStateException;
 import bridge.service.dto.request.BridgeSizeRequestDto;
 import bridge.service.dto.request.BridgeSpaceRequestDto;
 

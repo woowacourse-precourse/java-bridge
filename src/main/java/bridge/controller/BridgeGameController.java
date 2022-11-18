@@ -29,10 +29,5 @@ public class BridgeGameController {
     }
 
     private void play() {
-        while (!bridgeGame.isCrossAllBridges()) {
-            BridgeSpaceRequestDto dto = inputView.readMoving();
-            bridgeGame.move(dto);
-            outputView.printMap();
-        }
     }
 }
