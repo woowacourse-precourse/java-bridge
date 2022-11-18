@@ -7,22 +7,13 @@ import java.util.List;
 import java.util.Objects;
 
 import static bridge.domain.BridgeGame.RETRY_COUNT;
+import static bridge.domain.enumeration.Message.*;
 import static bridge.domain.enumeration.MovingType.*;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private static final String BRIDGE_SIZE_REQUEST_MESSAGE = "다리의 길이를 입력해주세요.";
-    private static final String MOVING_REQUEST_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    private static final String GAME_COMMAND_REQUEST_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-    private static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.";
-    private static final String WHETHER_SUCCESS = "게임 성공 여부: ";
-    private static final String SUCCESS = "성공";
-    private static final String FAIL = "실패";
-    private static final String TOTAL_RETRY_COUNT_IS = "총 시도한 횟수: ";
-    private static final String LAST_GAME_RESULT_MESSAGE = "최종 게임 결과";
-
     private static final String CORRECT = " O ";
     private static final String WRONG = " X ";
     private static final String EMPTY = "   ";
@@ -98,23 +89,23 @@ public class OutputView {
     }
 
     private static void printLastGameResultMessage() {
-        System.out.println(LAST_GAME_RESULT_MESSAGE);
+        System.out.println(LAST_GAME_RESULT_MESSAGE.getMessage());
     }
 
     private static void printIsSuccess(int bridgeGameResultSize, int bridgeSize) {
         if (bridgeGameResultSize == bridgeSize) {
-            System.out.println(WHETHER_SUCCESS + SUCCESS);
+            System.out.println(WHETHER_SUCCESS.getMessage() + SUCCESS.getMessage());
             return;
         }
-        System.out.println(WHETHER_SUCCESS + FAIL);
+        System.out.println(WHETHER_SUCCESS.getMessage() + FAIL.getMessage());
     }
 
     private static void printRetryCount() {
-        System.out.println(TOTAL_RETRY_COUNT_IS + RETRY_COUNT);
+        System.out.println(TOTAL_RETRY_COUNT_IS.getMessage() + RETRY_COUNT);
     }
 
     public static void printStartMessage() {
-        System.out.println(START_MESSAGE);
+        System.out.println(START_MESSAGE.getMessage());
         printEnter();
     }
 
@@ -123,15 +114,15 @@ public class OutputView {
     }
 
     public static void printBridgeSizeRequestMessage() {
-        System.out.println(BRIDGE_SIZE_REQUEST_MESSAGE);
+        System.out.println(BRIDGE_SIZE_REQUEST_MESSAGE.getMessage());
     }
 
     public static void printMovingRequestMessage() {
-        System.out.println(MOVING_REQUEST_MESSAGE);
+        System.out.println(MOVING_REQUEST_MESSAGE.getMessage());
     }
 
     public static void printGameCommandRequestMessage() {
-        System.out.println(GAME_COMMAND_REQUEST_MESSAGE);
+        System.out.println(GAME_COMMAND_REQUEST_MESSAGE.getMessage());
     }
 
     public static void printErrorMessage(String errorMessage) {
