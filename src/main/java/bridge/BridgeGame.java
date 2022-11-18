@@ -5,12 +5,10 @@ package bridge;
  */
 public class BridgeGame {
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+    private final BridgeState bridgeState = new BridgeState();
+
+    public void move(Bridge bridge, String moving, int round) {
+        bridgeState.updateStateOfBridge(moving, bridge.isCorrectMoving(moving, round));
     }
 
     /**
@@ -26,7 +24,7 @@ public class BridgeGame {
         return new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
-    public void play(Bridge bridge) {
-
+    public BridgeState getStateOfBridge() {
+        return bridgeState;
     }
 }

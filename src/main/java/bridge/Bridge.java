@@ -1,5 +1,7 @@
 package bridge;
 
+import constants.BridgeConstants;
+
 import java.util.List;
 
 public class Bridge {
@@ -8,5 +10,12 @@ public class Bridge {
 
     public Bridge(List<String> bridge) {
         this.bridge = bridge;
+    }
+
+    public String isCorrectMoving(String moving, int round) {
+        if (bridge.get(round).equals(moving)) {
+            return BridgeConstants.RIGHT_ANSWER;
+        }
+        return BridgeConstants.WRONG_ANSWER;
     }
 }
