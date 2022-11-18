@@ -9,7 +9,11 @@ public class GameController {
         output.printStart();
         Bridge randomBridge = makeBridge();
         output.printMove();
-        String move = input.readMoving();
+        String inputMove = input.readMoving();
+
+        int tryCount = 0;
+        BridgeGame bridgeGame = new BridgeGame(randomBridge);
+        bridgeGame.move(inputMove, tryCount);
     }
 
     private Bridge makeBridge() {
