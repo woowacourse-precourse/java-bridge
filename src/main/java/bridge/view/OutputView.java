@@ -13,6 +13,12 @@ public class OutputView {
 
     private static final String BRIDGE_GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
     private static final String ERROR = "[ERROR]";
+    private static final String MOVABLE_SIGN = "O";
+    private static final String IMMOVABLE_SIGN = "X";
+    private static final String UNCHOSEN_SIGN = " ";
+    private static final String BRIDGE_START_REGEX = "[ ";
+    private static final String BRIDGE_END_REGEX = " ]\n";
+    private static final String BRIDGE_SEPARATOR = " | ";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -22,11 +28,11 @@ public class OutputView {
     public void printMap(List<BridgeToken> bridgeTokens) {
         StringBuilder stringBuilder = new StringBuilder();
         for (Direction direction : Direction.values()) {
-            stringBuilder.append("[ ");
+            stringBuilder.append(BRIDGE_START_REGEX);
             stringBuilder.append(bridgeTokens.stream()
                     .map(bridgeToken -> toSign(direction, bridgeToken))
-                    .collect(Collectors.joining(" | ")));
-            stringBuilder.append(" ]\n");
+                    .collect(Collectors.joining(BRIDGE_SEPARATOR)));
+            stringBuilder.append(BRIDGE_END_REGEX);
         }
         System.out.println(stringBuilder);
     }
@@ -43,14 +49,6 @@ public class OutputView {
         System.out.println("총 시도한 횟수: " + bridgeGame.getRetryCount());
     }
 
-    private static void extracted(boolean status) {
-        if (status) {
-            System.out.println("게임 성공 여부: 성공");
-        } else {
-            System.out.println("게임 성공 여부: 실패");
-        }
-    }
-
     public static void printExceptionMessage(String message) {
         System.out.println(ERROR + message);
     }
@@ -59,12 +57,20 @@ public class OutputView {
         System.out.println(BRIDGE_GAME_START_MESSAGE);
     }
 
+    private static void extracted(boolean status) {
+        if (status) {
+            System.out.println("게임 성공 여부: 성공");
+        } else {
+            System.out.println("게임 성공 여부: 실패");
+        }
+    }
+
     private String toSign(Direction direction, BridgeToken bridgeToken) {
         if (direction.equals(bridgeToken.getDirection()) && bridgeToken.isCorrect()) {
-            return "O";
+            return MOVABLE_SIGN;
         } else if (direction.equals(bridgeToken.getDirection()) && !bridgeToken.isCorrect()) {
-            return "X";
+            return IMMOVABLE_SIGN;
         }
-        return " ";
+        return UNCHOSEN_SIGN;
     }
 }
