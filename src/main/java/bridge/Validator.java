@@ -22,6 +22,12 @@ public class Validator {
         }
     }
 
+    public void restartValidate(String restart) {
+        if (!(RETRY.equals(restart) || QUIT.equals(restart))) {
+            throw new IllegalArgumentException(WRONG_RESTART_INPUT);
+        }
+    }
+
     private boolean isNotWrongLength(String input) {
         return input.length() == 1 || input.length() == 2;
     }
