@@ -2,9 +2,6 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 public class InputView {
 
     public void startMsg() {
@@ -23,37 +20,33 @@ public class InputView {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
 
-
-    /**
-     * 다리의 길이를 입력받는다.
-     */
     public int readBridgeSize() {
         try {
-            try {
-                bridgeSizeMsg();
-                String input = Console.readLine();
-                int bridgeSize = Integer.parseInt(input);
-                bridgeSizeException(bridgeSize);
-                return bridgeSize;
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
-            }
+            return catchNumberFormatException();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readBridgeSize();
         }
     }
 
-    private void bridgeSizeException(int bridgeSize) {
-        if (bridgeSize < 3 || bridgeSize > 20) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+    private int catchNumberFormatException() {
+        try {
+            bridgeSizeMsg();
+            String input = Console.readLine();
+            int bridgeSize = Integer.parseInt(input);
+            bridgeSizeException(bridgeSize);
+            return bridgeSize;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자만 입력할 수 있습니다.\n");
         }
     }
 
+    private void bridgeSizeException(int bridgeSize) {
+        if (bridgeSize < 3 || bridgeSize > 20) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.\n");
+        }
+    }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public String readMoving() {
         try {
             selectBridgeMsg();
@@ -68,13 +61,10 @@ public class InputView {
 
     private void movingException(String move) {
         if (!move.equals("U") && !move.equals("D")) {
-            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U 또는 D여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U 또는 D여야 합니다.\n");
         }
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public String readGameCommand() {
         try {
             quitOrRetryMsg();
@@ -90,7 +80,7 @@ public class InputView {
 
     private void gameCommandException(String select) {
         if (!select.equals("R") && !select.equals("Q")) {
-            throw new IllegalArgumentException("[ERROR] 입력키는 R 또는 Q여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 입력키는 R 또는 Q여야 합니다.\n");
         }
     }
 
