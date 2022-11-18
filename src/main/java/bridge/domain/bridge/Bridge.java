@@ -7,7 +7,7 @@ import java.util.List;
 
 import static java.util.stream.Collectors.*;
 
-public class Bridge  {
+public class Bridge {
 	private final List<String> bridge;
 
 	public Bridge(BridgeSize bridgeSize, BridgeMaker bridgeMaker) {

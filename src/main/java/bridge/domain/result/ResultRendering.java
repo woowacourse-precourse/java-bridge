@@ -33,8 +33,8 @@ public class ResultRendering {
 
 	public void renderEachResult(CrossingDecision crossingDecision, MovementCommand movementCommand) {
 		String crossingMark = MovementDescription.of(crossingDecision).getMark();
-		List<String> passingSide = SideDescription.of(movementCommand).getSide();
-		List<String> nonPassingSide = SideDescription.of(movementCommand).getOtherSide();
+		List<String> passingSide = BridgeSideDescription.of(movementCommand).getSide();
+		List<String> nonPassingSide = BridgeSideDescription.of(movementCommand).getOtherSide();
 
 		buildDescription(crossingMark, passingSide, nonPassingSide);
 	}

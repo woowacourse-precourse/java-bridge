@@ -41,13 +41,13 @@ public class BridgeGame {
 	}
 
 	private boolean isTrialContinue(String commandChoice) {
-		return !(crossFailOrSuccess.equals(RESULT_SUCCESS) || GameProceedCommand.CQUIT.equals(commandChoice));
+		return !(crossFailOrSuccess.equals(RESULT_SUCCESS) || GameProceedCommand.QUIT.equals(commandChoice));
 	}
 
 	private String retryOrQuit(InputView inputView) {
 		String commandChoice = "";
-		if (crossFailOrSuccess.equals(RESULT_SUCCESS) || GameProceedCommand.CQUIT.equals(requestRetry(inputView).getGameCommand())) {
-			commandChoice = GameProceedCommand.CQUIT;
+		if (crossFailOrSuccess.equals(RESULT_SUCCESS) || GameProceedCommand.QUIT.equals(requestRetry(inputView).getGameCommand())) {
+			commandChoice = GameProceedCommand.QUIT;
 			return commandChoice;
 		}
 		Map.underBridgeDescription.clear();
