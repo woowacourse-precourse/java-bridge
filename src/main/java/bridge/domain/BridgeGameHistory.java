@@ -22,4 +22,7 @@ public class BridgeGameHistory {
         return currentIndex;
     }
 
+    public List<String> getBridgeHistory() {
+        return bridgeHistory;
+    }
 }
