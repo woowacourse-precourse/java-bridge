@@ -79,4 +79,16 @@ public class BridgeGame {
         return false;
     }
 
+    public boolean checkGameIsDone() {
+        return upMove.size() == bridgeRoad.size();
+    }
+
+    public int getGameCnt() {
+        return gameCnt;
+    }
+
+    public boolean isGameSuccess() {
+        return gameSuccess;
+    }
+
 }
