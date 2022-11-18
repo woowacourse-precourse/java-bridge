@@ -26,9 +26,14 @@ public class OutputView {
         System.out.println("다리 건너기 게임을 시작합니다.");
     }
 
-    // 다리의 길이를 입력하라는 메세지 추가
+    // 다리의 길이를 입력하라는 메세지 출력 기능
     public void printInputBridgeSize() {
         System.out.println("\n다리의 길이를 입력해주세요.");
+    }
+
+    // 이동할 칸을 선택하라는 메세지 출력 기능
+    public void printInputSpaceToMove() {
+        System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
 
     // 에러메세지 출력 기능
