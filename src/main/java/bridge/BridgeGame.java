@@ -19,6 +19,10 @@ public class BridgeGame {
         this.nowBridgeDown = "[";
     }
 
+    public int getCount() {
+        return count;
+    }
+
     public String getNowBridgeUp() {
         return this.nowBridgeUp;
     }
