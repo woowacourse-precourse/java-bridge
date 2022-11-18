@@ -7,10 +7,17 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         outputView.printStart();
-        outputView.printInputBridgeSize();
 
-        int size = inputView.readBridgeSize();
+        int size = 0;
+        while (size == 0) {
+            try {
+                outputView.printInputBridgeSize();
+                size = inputView.readBridgeSize();
 
-        System.out.println(size);
+                System.out.println(size);
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 }
