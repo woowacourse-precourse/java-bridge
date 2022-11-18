@@ -48,4 +48,8 @@ public class BridgeGame {
     public boolean isPlayerFailToMove() {
         return player.isFailToMove();
     }
+
+    public boolean isPlayerCompleteToMove() {
+        return player.isCompleteToMove();
+    }
 }

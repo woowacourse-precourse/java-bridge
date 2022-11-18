@@ -43,6 +43,13 @@ public class Player {
         }
         return false;
     }
-
-
+    public boolean isCompleteToMove() {
+        if (moveHistory.size() != bridge.size()) {
+            return false;
+        }
+        if (isFailToMove()) {
+            return false;
+        }
+        return true;
+    }
 }

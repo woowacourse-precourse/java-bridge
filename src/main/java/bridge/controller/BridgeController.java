@@ -53,6 +53,10 @@ public class BridgeController {
         return false;
     }
 
+    private boolean CompleteToMove() {
+        return bridgeGame.isPlayerCompleteToMove();
+    }
+
     private boolean isPlayerWantedToEnd() {
         String input = getCommand();
         if (input.equals(CommandType.QUIT.getCommand())) {
