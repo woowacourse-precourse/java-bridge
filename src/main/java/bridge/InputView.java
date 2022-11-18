@@ -15,6 +15,7 @@ public class InputView {
     }
 
     private String lineInput;
+    private static final OutputView outputView = new OutputView();
 
     private void checkLengthLimit(String lineInput, InputType inputType) {
         if (lineInput.length() <= inputType.lengthLimit) return;
@@ -75,7 +76,7 @@ public class InputView {
                 validate(lineInput, inputType);
                 return lineInput;
             } catch(IllegalArgumentException e) {
-                new OutputView(e.getMessage()).printMessage();
+                outputView.printMessage(e.getMessage());
             }
         }
     }
