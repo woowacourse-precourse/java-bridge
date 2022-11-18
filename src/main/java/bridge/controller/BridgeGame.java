@@ -17,6 +17,9 @@ import java.util.regex.Pattern;
  */
 public class BridgeGame {
 
+    private static final String DIGIT_VALIDATE_REGEX = "[0-9]+";
+    private static final int MIN_BRIDGE_SIZE = 3;
+    private static final int MAX_BRIDGE_SIZE = 20;
     private static final String RETRY_COMMAND = "R";
     private static final String END_COMMAND = "Q";
 
@@ -80,12 +83,12 @@ public class BridgeGame {
     }
 
     private boolean isBridgeSizeNotDigit(String bridgeSize) {
-        return !Pattern.compile("[0-9]+").matcher(bridgeSize).matches();
+        return !Pattern.compile(DIGIT_VALIDATE_REGEX).matcher(bridgeSize).matches();
     }
 
     private boolean isWrongBridgeSizeRange(String bridgeSize) {
         int convertedBridgeSize = Integer.parseInt(bridgeSize);
-        return convertedBridgeSize < 3 || convertedBridgeSize > 20;
+        return convertedBridgeSize < MIN_BRIDGE_SIZE || convertedBridgeSize > MAX_BRIDGE_SIZE;
     }
 
     public void generateBridge() {
