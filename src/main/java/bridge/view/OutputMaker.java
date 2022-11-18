@@ -19,7 +19,9 @@ public class OutputMaker {
         for (int i = 0; i < result.size(); i++) {
             if (bridge.get(i).equals("U")) {
                 appendState(upperLayerBuilder, result.get(i));
-            } else {
+            }
+
+            if (bridge.get(i).equals("D")) {
                 upperLayerBuilder.append(EMPTY);
             }
 
@@ -41,7 +43,9 @@ public class OutputMaker {
         for (int i = 0; i < result.size(); i++) {
             if (bridge.get(i).equals("D")) {
                 appendState(lowerLayerBuilder, result.get(i));
-            } else {
+            }
+
+            if (bridge.get(i).equals("U")) {
                 lowerLayerBuilder.append(EMPTY);
             }
 
@@ -58,8 +62,9 @@ public class OutputMaker {
     private void appendState(StringBuilder builder, String result) {
         if (result.equals("O")) {
             builder.append(CORRECT);
-        } else {
-            builder.append(WRONG);
+            return;
         }
+        
+        builder.append(WRONG);
     }
 }
