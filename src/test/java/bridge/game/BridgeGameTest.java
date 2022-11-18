@@ -2,7 +2,6 @@ package bridge.game;
 
 import bridge.generator.BridgeMaker;
 import bridge.generator.BridgeRandomNumberGenerator;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -50,7 +49,7 @@ class BridgeGameTest {
         Progress progress = bridgeGame.makeProgress(destination, isSuccess);
         //then
         assertThat(progress.getDestination()).isEqualTo(destination);
-        assertThat(progress.getIsSuccess()).isEqualTo(isSuccess);
+        assertThat(progress.isSuccess()).isEqualTo(isSuccess);
     }
 
     @DisplayName("진행 결과 저장")

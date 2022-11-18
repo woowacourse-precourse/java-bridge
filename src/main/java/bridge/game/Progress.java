@@ -2,18 +2,18 @@ package bridge.game;
 
 public class Progress {
     String destination;
-    boolean isSuccess;
+    boolean success;
 
     public Progress(String destination, boolean isSuccess) {
         this.destination = destination;
-        this.isSuccess = isSuccess;
+        this.success = isSuccess;
     }
 
     public String getDestination() {
         return destination;
     }
 
-    public boolean getIsSuccess() {
-        return isSuccess;
+    public boolean isSuccess() {
+        return success;
     }
 }

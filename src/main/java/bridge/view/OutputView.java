@@ -49,7 +49,7 @@ public class OutputView {
             results.add(Result.NONE);
             return;
         }
-        if (progress.getIsSuccess()) {
+        if (progress.isSuccess()) {
             results.add(Result.SUCCESS);
             return;
         }
@@ -61,7 +61,7 @@ public class OutputView {
             results.add(Result.NONE);
             return;
         }
-        if (progress.getIsSuccess()) {
+        if (progress.isSuccess()) {
             results.add(Result.SUCCESS);
             return;
         }
