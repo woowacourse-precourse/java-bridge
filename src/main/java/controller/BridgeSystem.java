@@ -1,7 +1,7 @@
 package controller;
 
-import controller.services.BridgeMaker;
-import controller.services.BridgeRandomNumberGenerator;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import controller.services.GamePlay;
 import model.GameResult;
 import view.InputView;

@@ -1,4 +1,4 @@
-package controller.services;
+package bridge;
 
 @FunctionalInterface
 public interface BridgeNumberGenerator {
