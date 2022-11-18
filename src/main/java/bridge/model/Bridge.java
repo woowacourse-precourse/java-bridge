@@ -29,4 +29,18 @@ public class Bridge {
                 .anyMatch(i -> !directions.get(i).equals(bridge.get(i)));
     }
 
+    public boolean isDone(Player player) {
+        List<String> directions = player.getDirections();
+        return isSameLength(directions.size()) && isSameDirections(directions);
+    }
+
+    private boolean isSameLength(int length) {
+        return bridge.size() == length;
+    }
+
+    private boolean isSameDirections(List<String> directions) {
+        return IntStream.range(0, directions.size())
+                .allMatch(i -> directions.get(i).equals(bridge.get(i)));
+    }
+
 }
