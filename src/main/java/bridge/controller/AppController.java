@@ -13,16 +13,12 @@ public class AppController {
         OutputView.printLine("");
         OutputView.printLine(Message.INQUIRE_BRIDGE_LENGTH);
         int size = InputView.readBridgeSize();
-        game = new BridgeGame(size);
+        game = BridgeGameController.setInstance(size);
         OutputView.printLine("");
     }
 
     public void acrossBridge() {
         OutputView.printLine(Message.INQUIRE_MOVE_BLOCK);
-
-    }
-
-    public void oneTry() {
 
     }
 
