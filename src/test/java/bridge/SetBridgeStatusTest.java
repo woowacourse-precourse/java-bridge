@@ -7,7 +7,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,24 +16,13 @@ import java.util.stream.Stream;
 import static bridge.Space.*;
 import static org.assertj.core.api.Assertions.*;
 
-public class UtilsUnitTest {
+public class SetBridgeStatusTest {
     private final BridgeGame bridgeGame = new BridgeGame();
     private static final OutputView outputView = new OutputView();
+    private static final ByteArrayOutputStream output = new ByteArrayOutputStream();
     private static UsersBridgeCrossStatus testBridge;
     private static String userInput;
     private static List<String> testAnswerBridge;
-    private static final ByteArrayOutputStream output = new ByteArrayOutputStream();
-
-//    @BeforeEach
-//    void setUpStream() {
-//        System.setOut(new PrintStream(output));
-//    }
-
-//    @AfterEach
-//    void restoreStreams() {
-//        System.setOut(System.out);
-//        output.reset();
-//    }
 
     @BeforeAll
     static void setTest() {
@@ -44,6 +32,7 @@ public class UtilsUnitTest {
         BridgeMakerImpl bridgeMakerImpl = new BridgeMakerImpl();
         testBridge = bridgeMakerImpl.makeInitialBridge(3);
     }
+
     @AfterAll
     static void assertions() {
         List<String> up = testBridge.getCurrentBridge().get(UP.getIndex());
