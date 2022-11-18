@@ -27,6 +27,8 @@
         - 다리의 이동과 게임 재시작 등을 담당해준다.
     - BridgeCalculatorService (추가)
         - 다리 이동시 실패 유무를 판단해준다.
+    - InputService (추가)
+        - View를 호출해서 입력을 받고 리턴해준다.
 
 - domain
     - Bridge (추가)
@@ -49,7 +51,7 @@
 
     - BridgeRandomNumberGenerator
         - 0과 1을 랜덤하게 생성해준다. (다리의 값)
-    - BridgeInputConverter
+    - BridgeInputConverter (추가)
         - 다리 생성 입력시 String값으로 들어온 입력을 int형으로 parsing 해준다.
 
 - exception
