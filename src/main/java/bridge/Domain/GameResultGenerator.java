@@ -35,6 +35,12 @@ public class GameResultGenerator {
         this.lowerBridge.add(lowerResult);
     }
 
+    public String getGameResult() {
+        String upBridge = makeBridgeOutput(this.upperBridge);
+        String lowBridge = makeBridgeOutput(this.lowerBridge);
+        return upBridge + '\n' + lowBridge;
+    }
+
     public String makeBridgeOutput(List<String> bridge) {
         return"[ " + String.join(" | ", bridge) + " ]";
     }
