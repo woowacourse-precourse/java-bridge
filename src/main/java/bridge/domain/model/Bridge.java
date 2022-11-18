@@ -14,6 +14,10 @@ public class Bridge {
         return bridge;
     }
 
+    public boolean isValid(int index, String where) {
+        return getBridge().get(index).equals(where);
+    }
+
     public int getSize() {
         return getBridge().size();
     }
