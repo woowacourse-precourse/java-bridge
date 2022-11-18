@@ -17,7 +17,7 @@ public class BridgeGameController {
     }
 
     public void playBridgeGame() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        outputView.printStartMessage();
         bridgeGame.setBridge(inputView.readBridgeSize());
         enterMoving();
         outputView.printResult(isSuccess, bridgeGame.getTotalNumberOfAttempts());
