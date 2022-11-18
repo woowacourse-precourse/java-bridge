@@ -4,6 +4,7 @@ import static bridge.Utils.Constants.QUIT;
 import static bridge.Utils.Constants.RETRY;
 
 import bridge.Controller.BridgeController;
+import bridge.Controller.ViewController;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import java.util.List;
 public class BridgeGame {
 
     BridgeController bridgeController;
+    ViewController viewController;
     List<String> answerBridge;
     List<String> userBridge;
     int playCount = 0;
@@ -21,6 +23,7 @@ public class BridgeGame {
 
     BridgeGame() {
         bridgeController = new BridgeController();
+        viewController = new ViewController();
         answerBridge = new ArrayList<>();
         userBridge = new ArrayList<>();
 
@@ -43,7 +46,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
-        String moving = bridgeController.getMoving();
+        String moving = viewController.getMoving();
         userBridge.add(moving);
         if (bridgeController.checkMatching(answerBridge, userBridge)) {
             if (userBridge.size() == answerBridge.size()) {

@@ -8,7 +8,7 @@ public class ViewController {
     private final InputView input;
     private final OutputView output;
 
-    ViewController() {
+    public ViewController() {
         input = new InputView();
         output = new OutputView();
     }
@@ -25,6 +25,16 @@ public class ViewController {
         } catch (IllegalArgumentException e) {
             output.printError(e.getMessage());
             return getBridgeSize();
+        }
+    }
+
+    public String getMoving() {
+        try {
+            output.printGetMoving();
+            return input.readMoving();
+        } catch (IllegalArgumentException e) {
+            output.printError(e.getMessage());
+            return getMoving();
         }
     }
 

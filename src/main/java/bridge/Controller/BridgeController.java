@@ -32,16 +32,6 @@ public class BridgeController {
         return bridgeMaker.makeBridge(bridgeSize);
     }
 
-    public String getMoving() {
-        try {
-            output.printGetMoving();
-            return input.readMoving();
-        } catch (IllegalArgumentException e) {
-            output.printError(e.getMessage());
-            return getMoving();
-        }
-    }
-
     public boolean checkMatching(List<String> answer, List<String> user) {
         int index = user.size() - 1;
         String answerAlphabet = answer.get(index);
