@@ -21,7 +21,7 @@ public class BridgeGame {
             return "O";
         }
         
-        return "X"; 
+        return "X";
     }
 
     /**
@@ -36,6 +36,12 @@ public class BridgeGame {
         }
 
         return false;
+    }
+
+    public String checkGameResult(int bridgeSize, int currentBridgeIndex) {
+        if (bridgeSize == currentBridgeIndex) { return "성공"; }
+
+        return "실패";
     }
 
     public int getBridgeIndex() { return this.bridgeIndex; }
