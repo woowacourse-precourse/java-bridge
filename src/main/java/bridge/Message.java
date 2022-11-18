@@ -20,6 +20,7 @@ public enum Message {
     }
 
     public static void inputRangeBridgeMessage() {
+        System.out.println();
         System.out.println(INPUT_RANGE_BRIDGE_MESSAGE.script);
     }
 
