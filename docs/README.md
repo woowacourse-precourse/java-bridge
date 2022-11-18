@@ -79,5 +79,7 @@
 - [x]  InputView 입력 처리
     - [x]  readBridgeSize -> 다리 길이 입력
 - [x]  OutputView 출력 처리
+    - [x]  printGameStart -> 게임 시작 메시지를 출력
+    - [x]  printError -> 에러를 출력
 - [x]  InputValidator 입력 검증
     - [x]  validateBridgeSize -> 다리 길이 검증 
