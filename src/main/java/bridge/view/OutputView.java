@@ -30,7 +30,18 @@ public class OutputView {
         }
         return bridgeOutputUP;
     }
-
+    private List<String> downBridgeMap(List<String> bridgeView){
+        List<String> bridgeOutputDown = new ArrayList<>();
+        for(int i =0; i<bridgeView.size(); i+=2){
+            if((bridgeView.get(i)).equals("D")){
+                bridgeOutputDown.add((bridgeView.get(i+1)));
+            }
+            if(!(bridgeView.get(i)).equals("D")){
+                bridgeOutputDown.add(" ");
+            }
+        }
+        return bridgeOutputDown;
+    }
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
