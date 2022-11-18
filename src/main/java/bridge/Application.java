@@ -22,6 +22,7 @@ public class Application {
             - 6. 예외 발생 시 "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.*/
 
         System.out.println("다리 건너기 게임을 시작합니다.");
+        int cnt = 0;
 
         // 1.
         InputView inputView = new InputView();
@@ -36,18 +37,21 @@ public class Application {
         OutputView outputView = new OutputView();
         BridgeGame bridgeGame = new BridgeGame(inputView, outputView);
         String gameStatus = bridgeGame.move(bridge);
+        cnt += 1;
 
         // 4.
         String regameStatus = "";
         while (!regameStatus.equals("Q")) {
-            if (gameStatus.equals("fail")) {
+            if (gameStatus.equals("실패")) {
                 regameStatus = inputView.readGameCommand();
             }
             if (regameStatus.equals("R")) {
                 gameStatus = bridgeGame.retry(bridge);
+                cnt += 1;
             }
         }
 
-
+        // 5.
+        outputView.printResult(gameStatus, cnt, bridgeGame.getResult(), bridge);
     }
 }
