@@ -11,16 +11,19 @@ import java.util.List;
 public class OutputView {
     private static final String UPPER ="U";
     private static final String LOWER ="D";
+    private static OutputLogic outputLogic;
+    public OutputView(List<String> bridgeList){
+        this.outputLogic = new OutputLogic(bridgeList);
+    }
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> bridgeList, Boolean userResult,int userPosition) {
-        OutputLogic outputLogic = new OutputLogic(bridgeList,userResult);
-        outputLogic.printMapLogic(UPPER,userPosition);
+    public void printMap(Boolean userResult,int userPosition) {
+        outputLogic.printMapLogic(UPPER,userPosition,userResult);
         changeLine();
-        outputLogic.printMapLogic(LOWER,userPosition);
+        outputLogic.printMapLogic(LOWER,userPosition,userResult);
         changeLine();
     }
 
@@ -30,7 +33,6 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(Boolean result) {
-
     }
     private void changeLine(){
         System.out.println();

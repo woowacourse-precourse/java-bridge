@@ -11,12 +11,13 @@ public class GameLogic {
     GameLogic(){
         bridgeGame = new BridgeGame();
         inputView =new InputView(new InputConsole());
-        outputView = new OutputView();
+
     }
     public void start(){
         System.out.println("다리 건너기 게임을 시작합니다.");
         int input = inputView.readBridgeSize();
         bridgeGame.inputBridgeSize(input);
+        outputView = new OutputView(bridgeGame.getBridge().getBridgeList());
         changeLine();
         playOneGame();
     }
@@ -24,7 +25,7 @@ public class GameLogic {
         String inputMove = inputView.readMoving();
         bridgeGame.move(inputMove);
         changeLine();
-        outputView.printMap(bridgeGame.getBridge().getBridgeList(),bridgeGame.getUser().getResult(),bridgeGame.getUser().getPosition());
+        outputView.printMap(bridgeGame.getUser().getResult(),bridgeGame.getUser().getPosition());
         changeLine();
         checkEnd();
     }
@@ -38,7 +39,6 @@ public class GameLogic {
             return;
         }
         showResult();
-
     }
 
     private void askRetry(){

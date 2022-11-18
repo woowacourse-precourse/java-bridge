@@ -16,21 +16,19 @@ public class OutputLogic {
     private static final Boolean NOT_LAST = Boolean.FALSE;
     private String outPut;
     private List<String> bridgeList;
-    private boolean userResult;
-    OutputLogic(List<String> bridgeList,boolean userResult){
+    OutputLogic(List<String> bridgeList){
         this.bridgeList = bridgeList;
-        this.userResult = userResult;
     }
     private void print(String string){
         System.out.print(string);
     }
-    public void printMapLogic(String side,int userPosition){
+    public void printMapLogic(String side,int userPosition,Boolean userResult){
         print(START);
         for(int position = 0; position< userPosition;position++){
             printGlass(position,side);
             print(WALL);
         }
-        printLastGlass(userPosition,side);
+        printLastGlass(userPosition,side,userResult);
         print(END);
     }
     private void printGlass(int position,String side){
@@ -40,7 +38,7 @@ public class OutputLogic {
         }
         print(SPACE);
     }
-    private void printLastGlass(int position, String side){
+    private void printLastGlass(int position, String side,Boolean userResult){
         if(!bridgeList.get(position).equals(side)) {
             print(SPACE);
             return;
