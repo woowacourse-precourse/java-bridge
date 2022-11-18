@@ -28,4 +28,8 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public void makeBridge(int i) {
+        bridgeMaker.makeBridge(i);
+    }
 }
