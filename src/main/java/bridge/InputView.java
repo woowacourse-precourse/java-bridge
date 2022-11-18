@@ -21,7 +21,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String input = Console.readLine();
+        validateMoveInput(input);
+        return input;
     }
 
     /**
@@ -45,6 +47,13 @@ public class InputView {
         if(len < 3 || len > 20){
             System.out.println("[ERROR] 숫자는 3~20 범위로 입력해야 합니다.");
             throw new IllegalArgumentException("[ERROR] 숫자는 3~20 범위로 입력해야 합니다.");
+        }
+    }
+
+    private static void validateMoveInput(String input){
+        if(!input.equals("U") || !input.equals("D")){
+            System.out.println("[ERROR] U 또는 D만 입력해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] U 또는 D만 입력해야 합니다.");
         }
     }
 
