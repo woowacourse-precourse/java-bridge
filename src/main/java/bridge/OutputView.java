@@ -14,13 +14,16 @@ public class OutputView {
         System.out.println(Output.whereToGoInputRequest);
     }
 
-    public void printMap(String map) {
-        System.out.println(map);
+    public void printContinueOrEndRequest() {
+        System.out.println(Output.continueOrEndRequest.getOutput());
     }
 
-    public void printResult(String winOrLose, int numberOfAttempt) {
-        System.out.println(Output.winOrLoseResult.getOutput()+winOrLose);
-        System.out.println(Output.howManyAttempts.getOutput()+numberOfAttempt);
+    public void printResult(boolean isWin, int numberOfAttempt) {
+        if (isWin) {
+            System.out.println(Output.winOrLoseResult.getOutput()+"성공");
+            return;
+        }
+        System.out.println(Output.howManyAttempts.getOutput()+"실패");
     }
 
 }
