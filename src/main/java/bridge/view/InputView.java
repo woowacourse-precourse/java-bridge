@@ -48,7 +48,8 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println(Message.CHOOSE_RETRY);
+        return validated(Console.readLine(), List.of("R", "Q"), ErrorMsg.NOT_ALLOWED_COMMAND);
     }
 
     private String validated(String move, List<String> allowed, ErrorMsg msg){
