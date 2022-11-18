@@ -78,15 +78,17 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printResult(boolean tf, int count) {
+    public void printFail(int count) {
         lastPrint();
-        if (!tf) {
-            System.out.print(OutputString.RESULT.getPrint());
-            System.out.println(OutputString.FAIL.getPrint());
-            System.out.print(OutputString.TRY.getPrint());
-            System.out.println(count);
-            return;
-        }
+        System.out.print(OutputString.RESULT.getPrint());
+        System.out.println(OutputString.FAIL.getPrint());
+        System.out.print(OutputString.TRY.getPrint());
+        System.out.println(count);
+
+    }
+
+    public void printSuccess(int count) {
+        lastPrint();
         System.out.print(OutputString.RESULT.getPrint());
         System.out.println(OutputString.SUCCESS.getPrint());
         System.out.print(OutputString.TRY.getPrint());
