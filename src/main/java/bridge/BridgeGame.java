@@ -16,7 +16,42 @@ public class BridgeGame {
     public void move(List<String> firstBridge, List<String> secondBridge, String move) {
         bridgeSet(firstBridge, secondBridge);
         String firstBridgeMap = moveFirstBridge(firstBridge, move);
+        String secondBridgeMap = moveSecondBridge(secondBridge, move);
         count++;
+    }
+
+    private String moveSecondBridge(List<String> secondBridge, String move) {
+        secondStorage.put(-1, "");
+        StringBuilder secondSb = new StringBuilder();
+        secondSb.append(secondStorage.get(count - 1));
+        secondBridgeMoveDown(secondSb, secondBridge, move);
+        secondBridgeMoveUp(secondSb, move);
+        secondStorage.put(count, secondSb.toString());
+        return secondSb.toString();
+    }
+
+    private void secondBridgeMoveUp(StringBuilder secondSb, String move) {
+        if (move.equals("U")) {
+            if (count != 0) {
+                secondSb.append(" | ");
+                secondSb.append(" ");
+            }
+            if (count == 0) {
+                secondSb.append(" ");
+            }
+        }
+    }
+
+    private void secondBridgeMoveDown(StringBuilder secondSb, List<String> secondBridge, String move) {
+        if (move.equals("D")) {
+            if (count != 0) {
+                secondSb.append(" | ");
+                secondSb.append(secondBridge.get(count));
+            }
+            if (count == 0) {
+                secondSb.append(secondBridge.get(count));
+            }
+        }
     }
 
     private String moveFirstBridge(List<String> firstBridge, String move) {
