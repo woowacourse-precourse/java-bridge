@@ -1,7 +1,6 @@
 package bridge;
 
-import static bridge.InputValidator.validateNumeric;
-import static bridge.InputValidator.validateRange;
+import static bridge.InputValidator.*;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 /**
@@ -23,7 +22,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String candidate = readLine();
+        validateUpOrDown(candidate);
+        return candidate;
     }
 
     /**
