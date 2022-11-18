@@ -15,6 +15,10 @@ public class Round {
 
     private Integer round;
 
+    public Round() {
+        this(ROUND_LOWER_BOUND);
+    }
+
     public Round(Integer round) {
         validate(round);
         this.round = round;
