@@ -14,15 +14,18 @@ public class InputView {
     final String exceptNumber = "[ERROR] 3이상 20이하의 숫자를 입력해주세요.";
     final String exceptMoving = "[ERROR] U 혹은 D를 입력해주세요.";
     final String exceptRetry = "[ERROR] R 혹은 Q를 입력해주세요.";
-    final String startGame = "다리 건너기 게임을 시작합니다.\n\n";
+    final String startGame = "다리 건너기 게임을 시작합니다.\n";
     int size;
     String input;
 
+    public void printStart(){
+        System.out.println(startGame);
+    }
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println(startGame + readBridgeSizeMs);
+        System.out.println(readBridgeSizeMs);
         try {
             input = getInput();
             if (ThisIsNumber(input)) getSize();

@@ -13,8 +13,8 @@ public class Controller {
 
     public void start() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        inputView.printStart();
         bridgeList = bridgeMaker.makeBridge(inputView.readBridgeSize());
-        System.out.println();
         Game( 0);
     }
 
