@@ -23,7 +23,7 @@ public class ValidatorTest {
     }
 
     @Test
-    @DisplayName("입력한 다리의 길이가 3 ~ 20 사이가 아니면 예외 반환")
+    @DisplayName("입력한 다리의 길이가 3 ~ 20 사이가 아니면 예외 반환한다")
     void bridgeSizeTest() {
         String userInput = "21";
 
@@ -31,6 +31,19 @@ public class ValidatorTest {
             validator.validateBridgeSize(userInput);
         } catch (Exception e) {
             Assertions.assertThat(e.getMessage()).isEqualTo(Messages.ERROR_BRIDGE_SIZE.getMessage());
+        }
+
+    }
+
+    @Test
+    @DisplayName("입력한 move가 U,D가 아니면 예외를 반환한다")
+    void moveTest() {
+        String userInput = "D";
+
+        try {
+            validator.validateMove(userInput);
+        } catch (Exception e) {
+            Assertions.assertThat(e.getMessage()).isEqualTo(Messages.ERROR_MOVE.getMessage());
         }
     }
 }

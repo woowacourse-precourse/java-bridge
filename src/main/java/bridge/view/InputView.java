@@ -53,6 +53,19 @@ public class InputView {
         return null;
     }
 
+    public String readMoveUntilCollectFormat(String userInput) {
+        while(true) {
+            try {
+                userInput = readInput();
+                validator.validateMove(userInput);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return userInput;
+    }
+
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
