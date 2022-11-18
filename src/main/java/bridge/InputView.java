@@ -54,7 +54,7 @@ public class InputView {
     }
 
     private ErrorMessage moveInputChecker(String value) {
-        if(value.equals("U")||value.equals("D"))
+        if(value.equals(BridgeJoyStick.U.toString())||value.equals(BridgeJoyStick.D.toString()))
             return ErrorMessage.PASS;
         return ErrorMessage.WRONGMOVEINPUTEXCEPTION;
     }
