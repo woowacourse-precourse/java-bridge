@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.util.GuideMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -18,7 +19,12 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+        printInputMoving();
         return Console.readLine();
+    }
+
+    private void printInputMoving() {
+        System.out.println(GuideMessage.ENTER_NEXT_DIRECTION);
     }
 
     /**
