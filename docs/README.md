@@ -3,8 +3,8 @@
 ---
 
 ![Generic badge](https://img.shields.io/badge/precourse-week4-green.svg)
-![Generic badge](https://img.shields.io/badge/test-0_passed-blue.svg)
-![Generic badge](https://img.shields.io/badge/version-1.0-brightgreen.svg)
+![Generic badge](https://img.shields.io/badge/test-1_passed-blue.svg)
+![Generic badge](https://img.shields.io/badge/version-1.0.6-brightgreen.svg)
 
 > 우테코 5기 4주차 미션 다리게임을 구현한 저장소입니다
 ## 목차
@@ -54,10 +54,13 @@ ___
 
 
 #### 4. 위치 이동 ( Class: BridgeGame -> Bridge ) <span style="color:red">**[Loop 내부 로직]**
-- [ ] 위치이동 입력값 유효성 검사 :  UD가 아님 (대소문자..는 고민)
-- [ ] 현 위치저장 변수, 시도횟수저장 변수 선언 및 조절 필요
-- [ ] 정오판단 메소드에 현 위치 및 입력값 전달 
 
+- [X] 위치이동 입력값 유효성 검사 :  UD가 아님 (대소문자..는 고민)
+- [X] 현 위치저장 변수, 시도횟수저장 변수 선언 및 조절 필요
+
+~~- 정오판단 메소드에 현 위치 및 입력값 전달~~
+
+- [X] 위치저장 변수, 시도횟수 저장 변수 값 참조 위한 dto 클래스
 
 #### 5. 정오 판단 ( Class: Bridge -> Result ) <span style="color:red">**[Loop 내부 로직]**
    * 메인 로직
