@@ -51,7 +51,7 @@ public class InputView {
 
     private void intValidation(String input) {
         final String intRegex = "^[0-9]*$";
-        if (Pattern.matches(intRegex, input)) {
+        if (!Pattern.matches(intRegex, input)) {
             throw new IllegalArgumentException(new IllegalArgumentException(REQUIRE_INTEGER_ERROR_MESSAGE));
         }
     }
