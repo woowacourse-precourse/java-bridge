@@ -40,6 +40,15 @@ public class BridgeGame {
         outputView.printBridgeGameStartMessage();
     }
 
+    public void playGame() {
+        initGame();
+        printBridgeGameStartMessage();
+        inputBridgeSize();
+        generateBridge();
+        moveUntilSuccessOrFailure();
+        gameSuccessOrFailure();
+    }
+
     public void initGame() {
         nextStepIndex = 0;
         canMove = true;
