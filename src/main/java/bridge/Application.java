@@ -27,9 +27,11 @@ public class Application {
         while (!bridgeGame.isGameOver()) {
             gameDo();
         }
-        //after must modify Later;
+        if(inputView.readGameCommand().equals("R"))
+            return true;
         return false;
     }
+
 
     private void gameInitialize() {
         outputView.printStart();
