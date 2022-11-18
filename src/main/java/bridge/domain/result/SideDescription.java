@@ -1,6 +1,6 @@
 package bridge.domain.result;
 
-import bridge.domain.BridgeGame;
+import bridge.domain.game.BridgeGame;
 import bridge.domain.player.Movement;
 
 import java.util.Arrays;
