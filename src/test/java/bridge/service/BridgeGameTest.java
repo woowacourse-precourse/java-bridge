@@ -1,7 +1,9 @@
 package bridge.service;
 
+import bridge.BridgeMark;
 import bridge.GameStatus;
 import bridge.TestBridgeNumberGenerator;
+import bridge.dto.PlayerResponseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -45,5 +47,19 @@ class BridgeGameTest {
     void moveResultLastFail() {
         GameStatus gameStatus = bridgeGame.move(6, "D");
         assertThat(gameStatus.isFail()).isTrue();
+    }
+
+    @DisplayName("플레이어가 이동한 위치 기록 반환")
+    @Test
+    void getMoveReport() {
+        bridgeGame.move(1, "U");
+        bridgeGame.move(2, "U");
+        bridgeGame.move(3, "D");
+
+        PlayerResponseDto responseDto = bridgeGame.getGameReport();
+
+        assertThat(responseDto.getAttempt()).isEqualTo(1);
+        assertThat(responseDto.getRecord())
+                .containsExactly(BridgeMark.UP, BridgeMark.UP, BridgeMark.DOWN);
     }
 }

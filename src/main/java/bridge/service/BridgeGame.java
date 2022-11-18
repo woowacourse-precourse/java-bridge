@@ -1,6 +1,7 @@
 package bridge.service;
 
 import bridge.*;
+import bridge.dto.PlayerResponseDto;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -14,10 +15,12 @@ import bridge.*;
 public class BridgeGame {
 
     private Bridge bridge;
+    private Player player;
 
     public void createBridge(int size, BridgeNumberGenerator bridgeNumberGenerator) {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         bridge = new Bridge(bridgeMaker.makeBridge(size));
+        player = new Player();
     }
 
     /**
@@ -26,7 +29,13 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public GameStatus move(int round, String moveMark) {
-        return bridge.cross(round, BridgeMark.of(moveMark));
+        BridgeMark mark = BridgeMark.of(moveMark);
+        player.record(mark);
+        return bridge.cross(round, mark);
+    }
+
+    public PlayerResponseDto getGameReport() {
+        return player.toResponseDto();
     }
 
     /**
@@ -36,4 +45,5 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
 }
