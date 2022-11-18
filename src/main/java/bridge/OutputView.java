@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 public class OutputView {
 
     public void printGameStart() {
@@ -11,7 +13,16 @@ public class OutputView {
     }
 
     public void printWhereToGoInputRequest() {
-        System.out.println(Output.whereToGoInputRequest);
+        System.out.println(Output.whereToGoInputRequest.getOutput());
+    }
+
+    public void printMap(List<String> mapUpper, List<String> mapLower) {
+        mapUpper.stream()
+                .forEach(System.out::print);
+        System.out.println();
+        mapLower.stream()
+                .forEach(System.out::print);
+        System.out.println();
     }
 
     public void printContinueOrEndRequest() {
