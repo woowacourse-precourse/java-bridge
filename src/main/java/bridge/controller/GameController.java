@@ -32,7 +32,11 @@ public class GameController {
         Integer bridgeSize = inputBridgeSize();
         List<String> bridgeStrs =  bridgeMaker.makeBridge(bridgeSize);
         this.bridge = new Bridge(bridgeStrs);
+    }
 
+    private String inputUserMove() {
+        String userMove = inputView.readMoving();
+        return userMove;
     }
 
 
