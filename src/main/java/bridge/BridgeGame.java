@@ -58,7 +58,7 @@ public class BridgeGame {
     }
 
     public void quitOrRetry() {
-        String command = bridgeController.getCommand();
+        String command = viewController.getCommand();
         if (command.equals(QUIT)) {
             quit(false);
         }

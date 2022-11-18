@@ -38,4 +38,14 @@ public class ViewController {
         }
     }
 
+    public String getCommand() {
+        try {
+            output.printGetGameCommand();
+            return input.readGameCommand();
+        } catch (IllegalArgumentException e) {
+            output.printError(e.getMessage());
+            return getCommand();
+        }
+    }
+
 }
