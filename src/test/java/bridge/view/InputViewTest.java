@@ -84,4 +84,46 @@ class InputViewTest {
             }
         }
     }
+
+    @Nested
+    @DisplayName("게임 다시시도 여부 입력 테스트")
+    class ReadGameCommand {
+        @Nested
+        @DisplayName("종료하고 싶을 때")
+        class ReadToQuit extends NsTest {
+
+            @Test
+            @DisplayName("Q를 입력하면 GameCommand.QUIT을 반환한다.")
+            public void returnQUIT() {
+                assertSimpleTest(() -> {
+                    run("Q");
+                });
+            }
+
+            @Override
+            protected void runMain() {
+                GameCommand command = inputView.readGameCommand();
+                assertThat(command).isEqualTo(GameCommand.QUIT);
+            }
+        }
+    }
+
+    @Nested
+    @DisplayName("다시 시도하고 싶을 때")
+    class ReadToReplay extends NsTest {
+
+        @Test
+        @DisplayName("R을 입력하면 GameCommand.REPLAY를 반환한다.")
+        public void returnREPLAY() {
+            assertSimpleTest(() -> {
+                run("R");
+            });
+        }
+
+        @Override
+        protected void runMain() {
+            GameCommand command = inputView.readGameCommand();
+            assertThat(command).isEqualTo(GameCommand.REPLAY);
+        }
+    }
 }

@@ -59,10 +59,11 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public GameCommand readGameCommand() {
         while (true) {
             try {
-                return null;
+                System.out.println(GAME_COMMAND_INPUT_PROMPT);
+                return GameCommand.of(Console.readLine());
             } catch (IllegalArgumentException e) {
                 Logger.log(e);
             }
