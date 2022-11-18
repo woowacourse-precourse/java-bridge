@@ -3,6 +3,9 @@ package bridge.view;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
+    private static final int BRIDGE_MAXIMUM_SIZE = 20;
+    private static final int BRIDGE_MINIMUM_SIZE = 3;
+
     public static int inputBridgeSize() {
         String bridgeSize = Console.readLine();
         validateSizeNumber(bridgeSize);
@@ -12,14 +15,14 @@ public class InputView {
 
     private static void validateSizeNumber(String bridgeSize) {
         if (!bridgeSize.chars().allMatch(Character::isDigit)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(OutputMessage.BRIDGE_IS_NUMBER.getErrorMessage());
         }
     }
 
     private static void validateSizeRange(String bridgeSize) {
-        if (Integer.parseInt(bridgeSize) < 3 ||
-            Integer.parseInt(bridgeSize) > 20) {
-            throw new IllegalArgumentException();
+        if (Integer.parseInt(bridgeSize) < BRIDGE_MAXIMUM_SIZE ||
+            Integer.parseInt(bridgeSize) > BRIDGE_MINIMUM_SIZE) {
+            throw new IllegalArgumentException(OutputMessage.BRIDGE_HAS_RANGE.getErrorMessage());
         }
     }
 
