@@ -13,7 +13,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(String bridgeStatus) {
+    public static void printMap(String bridgeStatus) {
         System.out.println(bridgeStatus);
     }
 
@@ -22,7 +22,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(String gameResult, BridgeResultType resultType, int gameCount) {
+    public static void printResult(String gameResult, BridgeResultType resultType, int gameCount) {
         printOutputSystemMessage(OutputSystemMessage.GAME_RESULT_OUTPUT);
         System.out.println(gameResult);
         printGameSuccess(resultType);
