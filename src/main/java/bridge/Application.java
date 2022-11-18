@@ -1,8 +1,12 @@
 package bridge;
 
+import view.InputView;
+import view.OutputView;
+
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        BridgeGame game = new BridgeGame(new InputView(), new OutputView());
+        game.start();
     }
 }
