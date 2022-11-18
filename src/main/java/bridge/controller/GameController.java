@@ -1,6 +1,7 @@
 package bridge.controller;
 
 import bridge.BridgeGame;
+import bridge.GameFlag;
 import bridge.GameStatus;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -13,26 +14,34 @@ public class GameController {
 
     public void run() {
         initialize();
-        GameStatus finalResult = getOneGameResult();
-        outputView.printMap(finalResult);
+        GameStatus gameStatus;
+        do {
+            gameStatus = getOneGameResult();
+            if (gameStatus.getFlag() == GameFlag.CLEAR) {
+                break;
+            }
+            String gameCommand = inputView.readGameCommand();
+            if (gameCommand.equals("Q")) {
+                break;
+            }
+            bridgeGame.retry();
+        } while (gameStatus.getFlag() != GameFlag.CLEAR);
+
+        outputView.printResult(gameStatus, bridgeGame.getCount());
     }
 
-    private GameStatus getOneGameResult() { // 정상적인 경우가 아니라면 루프 종료
+    private GameStatus getOneGameResult() {
         GameStatus gameResult;
         do {
             String moving = inputView.readMoving();
             gameResult = bridgeGame.getMovingResult(moving);
             outputView.printMap(gameResult);
-        } while(gameResult.getFlag() == -1);
+        } while(gameResult.getFlag() == GameFlag.PLAYING);
         return gameResult;
     }
 
     private void initialize() {
         int size = inputView.readBridgeSize();
         bridgeGame.initialize(size);
-    }
-
-    private void retry() {
-        bridgeGame.retry();
     }
 }
