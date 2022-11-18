@@ -12,7 +12,7 @@ public class Bridge {
     private List<Direction> directions;
 
     public Bridge(List<String> directionData) {
-        validateLength(directionData);
+        validateLength(directionData.size());
         this.directions = makeDirectionsByStrings(directionData);
     }
 
@@ -25,11 +25,11 @@ public class Bridge {
         return position == directions.size();
     }
 
-    private void validateLength(List<String> directionData) {
-        if (directionData.size() < MIN_BRIDGE_LENGTH) {
+    public static void validateLength(int bridgeSize) {
+        if (bridgeSize < MIN_BRIDGE_LENGTH) {
             throw new IllegalArgumentException(String.format(MIN_VALIDATION_ERROR_MESSAGE, MIN_BRIDGE_LENGTH));
         }
-        if (directionData.size() > MAX_BRIDGE_LENGTH) {
+        if (bridgeSize > MAX_BRIDGE_LENGTH) {
             throw new IllegalArgumentException(String.format(MAX_VALIDATION_ERROR_MESSAGE, MAX_BRIDGE_LENGTH));
         }
     }
