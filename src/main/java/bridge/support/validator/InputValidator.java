@@ -5,7 +5,7 @@ public final class InputValidator {
 
     private InputValidator() {}
 
-    public static void validateParseStringToInteger(String input) throws IllegalArgumentException {
+    public static void validateParseStringToInteger(String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
