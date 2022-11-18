@@ -20,15 +20,13 @@ class BridgeGameTest {
     @DisplayName("올바른 다리를 건넌 경우 true 반환")
     @Test
     void moveCorrectBridge() {
-        List<BridgeLocation> result = List.of(BridgeLocation.UP_TRUE);
-        assertThat(bridgeGame.move("U")).isEqualTo(result);
+        assertThat(bridgeGame.move("U")).isTrue();
     }
 
     @DisplayName("올바른 다리가 아닌 경우 false 반환")
     @Test
     void moveIncorrectBridge() {
-        List<BridgeLocation> result = List.of(BridgeLocation.DOWN_FALSE);
-        assertThat(bridgeGame.move("D")).isEqualTo(result);
+        assertThat(bridgeGame.move("D")).isFalse();
     }
 
     @DisplayName("재시작을 한 경우 true 반환")
