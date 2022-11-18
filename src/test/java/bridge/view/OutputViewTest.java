@@ -74,4 +74,23 @@ class OutputViewTest {
                     .isEqualTo(String.format("이동할 칸을 선택해주세요. (위: U, 아래: D)%n"));
         }
     }
+
+    @Nested
+    @DisplayName("현재까지 이동한 다리의 상태를 출력하는 printMap 매서드")
+    class PrintMapTest {
+        @Test
+        @DisplayName("현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.")
+        void givenMap_whenPrintingMap_thenPrintsMessage() {
+            //given
+            OutputView outputView = new OutputView();
+            String map = "[ O |   |   ]" + System.lineSeparator() + "[   | X | O ]";
+
+            //when
+            outputView.printMap(map);
+
+            //then
+            assertThat(captor.toString())
+                    .isEqualTo(map + System.lineSeparator());
+        }
+    }
 }
