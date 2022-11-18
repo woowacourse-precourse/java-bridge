@@ -10,6 +10,7 @@ import bridge.model.ExitOption;
 import bridge.model.FootPrint;
 import bridge.model.GameResult;
 import bridge.model.Map;
+import bridge.model.Stairs;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -33,8 +34,10 @@ public class BridgeGame {
 	 * <p>
 	 * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
-	public List<String> move(int stairs, boolean isEqual) {
-		return FootPrint.makeFootPrints(stairs, isEqual);
+	public List<String> move(Stairs stairs, String square) {
+		boolean isEqual = stairs.isEquals(square);
+		int stairsNumber = stairs.getNumber();
+		return FootPrint.makeFootPrints(stairsNumber, isEqual);
 	}
 
 	/**
