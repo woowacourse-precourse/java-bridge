@@ -16,4 +16,9 @@ public enum ConsoleMessage {
     ConsoleMessage(String message) {
         this.message = message;
     }
+
+    @Override
+    public String toString() {
+        return message;
+    }
 }
