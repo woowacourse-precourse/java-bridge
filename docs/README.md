@@ -1,7 +1,10 @@
-## 의존관계
+## 의존 관계 다이어그램
 
 ![image](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/371d9afa-08eb-44f8-a18c-68c224fef078/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221117%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221117T064758Z&X-Amz-Expires=86400&X-Amz-Signature=5c706a240e9c7c48efdc597c9cec8dad6f7f89972e6b20a061f2439b2e34b75b&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject)
 
+1. UI 계층은 공통 처리자(FrontController)를 통해 도메인 계층을 의존한다.
+2. 도메인 계층은 레포지토리 인터페이스를 통해 영속성 계층과의 결합도가 높아지는 것을 방지한다.
+3. 영속성 계층은 도메인에서의 처리 상태를 별도로 보관한다.
 ---
 
 ## UI 계층
