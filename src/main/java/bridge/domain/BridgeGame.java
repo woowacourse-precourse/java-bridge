@@ -9,12 +9,16 @@ import java.util.List;
 public class BridgeGame {
 
     private final List<String> randomBridge;
-    public List<String> passHistory;
+    private List<String> passHistory;
 
     // 클래스 기본 생성자, 랜덤으로 만들어진 randemBridge객체를 받는다.
     public BridgeGame (List<String> randomBridge) {
         this.randomBridge = randomBridge;
         this.passHistory = new ArrayList<>();
+    }
+
+    public List<String> getPassHistory () {
+        return this.passHistory;
     }
 
     // 칸 이동을 관할하는 메소드, 이동이 끝났을 때는 false, 게속 진행할 때는 true를 반환한다.
