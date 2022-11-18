@@ -11,6 +11,7 @@ public class Application {
     }
 
     private static void play() {
+        outputView.printStart();
         bridgeGame = bridgeGameStart();
     }
 
@@ -21,7 +22,7 @@ public class Application {
     }
 
     private static int inputBridgeSize() {
-        outputView.printStart();
+        outputView.printInputSize();
         return inputView.readBridgeSize();
     }
 }

@@ -24,7 +24,7 @@ public class Values {
 
     public enum Message {
         GAME_START("다리 건너기 게임을 시작합니다."),
-        INPUT_LENGTH("다리의 길이를 입력해주세요."),
+        INPUT_SIZE("다리의 길이를 입력해주세요."),
         SELECT_MOVE("이동할 칸을 선택해주세요. (위: U, 아래: D)"),
         BRIDGE_OPEN("[ "),
         BRIDGE_SUCCESS("O"),
