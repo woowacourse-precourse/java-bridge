@@ -48,4 +48,8 @@ public class OutputView {
     public void printRestart(){
         System.out.println(ENTER_RESTART);
     }
+
+    public void printError(String error){
+        System.out.println(error);
+    }
 }
