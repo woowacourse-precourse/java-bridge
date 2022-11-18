@@ -8,7 +8,7 @@ public class InputWhileException {
         while (true) {
             try { userInput = combineInput.startReadBridgeSize(); }
             catch (IllegalArgumentException e) {
-                e.getMessage();
+                System.out.println(e.getMessage());
                 continue;
             }
             return userInput;
@@ -21,7 +21,7 @@ public class InputWhileException {
         while (true) {
             try { userInput = combineInput.startReadMoving(); }
             catch (IllegalArgumentException e) {
-                e.getMessage();
+                System.out.println(e.getMessage());
                 continue;
             }
             return userInput;
@@ -34,7 +34,7 @@ public class InputWhileException {
         while (true) {
             try { userInput = combineInput.startReadGameCommand(); }
             catch (IllegalArgumentException e) {
-                e.getMessage();
+                System.out.println(e.getMessage());
                 continue;
             }
             return userInput;
