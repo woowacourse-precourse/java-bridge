@@ -26,11 +26,11 @@ public class Player {
         return playerPosition;
     }
 
-    public void crossOverBridge(Movement playerMove, boolean moveble) {
+    public void crossOverBridge(Movement playerMove, boolean crossable) {
         for(Map.Entry<Movement, List<String>> bridge: movementStatus.entrySet()) {
             String status = " ";
             if(bridge.getKey() == playerMove) {
-                status = toStatusAfterCrossOver(moveble);
+                status = toStatusAfterCrossOver(crossable);
             }
             bridge.getValue().add(status);
         }

@@ -10,7 +10,11 @@ public class Bridge {
         this.route = route.stream().map(Movement::valueOf).collect(Collectors.toList());
     }
 
-    public Boolean isMoveable(Movement playerMove, int playerPosition) {
+    public Boolean isCrossable(Movement playerMove, int playerPosition) {
         return route.get(playerPosition) == playerMove;
+    }
+
+    public Boolean isReachedTheEnd(int playerPosition) {
+        return route.size() == playerPosition;
     }
 }

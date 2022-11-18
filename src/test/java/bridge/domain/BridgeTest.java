@@ -16,6 +16,6 @@ class BridgeTest {
     void 다리를_건널_수_있는지_테스트(String playerMove, int playerPosition, Boolean expected) {
         Movement playerMovement = Movement.valueOf(playerMove);
         Bridge bridge = new Bridge(new ArrayList<>(Arrays.asList("U", "D", "D")));
-        assertThat(bridge.isMoveable(playerMovement, playerPosition)).isEqualTo(expected);
+        assertThat(bridge.isCrossable(playerMovement, playerPosition)).isEqualTo(expected);
     }
 }
