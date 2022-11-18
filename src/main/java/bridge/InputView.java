@@ -36,7 +36,10 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String input = Console.readLine();
+        validateRetryValid(input);
+        return input;
     }
 
     /**
@@ -63,11 +66,21 @@ public class InputView {
     }
 
     /**
-     * @param input 사용자에게 입력받는 다리의 길이
+     * @param input 사용자에게 입력받는 이동할 칸
      */
     private void validateMoveValid(String input) {
-        if (input != "U" && input != "D") {
+        if (!(input.equals("U") || input.equals("D"))) {
             System.out.println("[ERROR] 입력한 칸이 유효하지 않습니다.");
+            throw new IllegalArgumentException();
+        }
+    }
+
+    /**
+     * @param input 사용자에게 입력받는 재시도 여부
+     */
+    private void validateRetryValid(String input) {
+        if (!(input.equals("R") || input.equals("Q"))) {
+            System.out.println("[ERROR] 유효하지 않은 명령어 입니다.");
             throw new IllegalArgumentException();
         }
     }
