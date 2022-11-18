@@ -1,15 +1,12 @@
 package bridge.controller;
 
-import bridge.domain.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.domain.MapPrinting;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class Controller {
 
@@ -32,8 +29,8 @@ public class Controller {
     }
 
     public void play(){
-        BridgeGame bridgeGame = new BridgeGame();
-        bridgeGame.start(mapBridge, size);
+        GameController gameController = new GameController();
+        gameController.start(mapBridge, size);
     }
 
 

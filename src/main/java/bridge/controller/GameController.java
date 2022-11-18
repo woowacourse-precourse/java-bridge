@@ -1,5 +1,7 @@
-package bridge.domain;
+package bridge.controller;
 
+import bridge.domain.JudgeDestination;
+import bridge.domain.MapPrinting;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.ArrayList;
@@ -8,7 +10,7 @@ import java.util.List;
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
-public class BridgeGame {
+public class GameController {
 
 
     private List<String> moving = new ArrayList<>();
@@ -33,7 +35,6 @@ public class BridgeGame {
     public void start(List<String> mapBridge, int bridgeSize){
         move(mapBridge, bridgeSize);
         afterMove(mapBridge, bridgeSize);
-
     }
     public void move(List<String> mapBridge, int bridgeSize) {
         clearInfo();
@@ -90,7 +91,6 @@ public class BridgeGame {
     }
 
 
-
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
@@ -118,8 +118,8 @@ public class BridgeGame {
     }
 
     private void setQuit(int bridgeSize) {
-        int nowLocation = convertNowIndex(moving.get(idx - 1));
-        MapPrinting resultMapPrinting = new MapPrinting(upPrint,downPrint,nowLocation);
+        int nowIndex = convertNowIndex(moving.get(idx - 1));
+        MapPrinting resultMapPrinting = new MapPrinting(upPrint,downPrint,nowIndex);
         if(bridgeSize == idx && !MapPrinting.isMoveStop()){
             outputView.printResult(count, resultMapPrinting, true);
             return;
