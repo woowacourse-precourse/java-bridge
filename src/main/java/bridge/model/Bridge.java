@@ -3,7 +3,7 @@ package bridge.model;
 public enum Bridge {
 
     START("[ "),
-    END("] "),
+    END(" ]"),
     MID(" | ");
 
     private final String view;
