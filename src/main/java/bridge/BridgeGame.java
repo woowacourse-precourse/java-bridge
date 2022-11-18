@@ -7,8 +7,8 @@ public class BridgeGame {
 
     private final BridgeGameResult bridgeGameResult;
 
-    public BridgeGame() {
-        bridgeGameResult = new BridgeGameResult();
+    public BridgeGame(BridgeGameResult bridgeGameResult) {
+        this.bridgeGameResult = bridgeGameResult;
     }
 
     /**
