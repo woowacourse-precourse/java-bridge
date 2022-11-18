@@ -20,7 +20,7 @@ public class BridgeMap {
     }
 
     public void initializeBridges() {
-        upperBridgeMap = new ArrayList<>();
-        lowerBridgeMap = new ArrayList<>();
+        upperBridgeMap.clear();
+        lowerBridgeMap.clear();
     }
 }

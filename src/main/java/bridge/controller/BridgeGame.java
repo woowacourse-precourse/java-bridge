@@ -2,11 +2,10 @@ package bridge.controller;
 
 import bridge.domain.BridgeMove;
 import bridge.model.Bridge;
+import bridge.model.BridgeMap;
 import bridge.model.Player;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-
-import java.util.Arrays;
 
 import static bridge.util.BridgeConstant.FALL_POSITION;
 
@@ -14,9 +13,14 @@ import static bridge.util.BridgeConstant.FALL_POSITION;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    public final String SUCCESS_BLOCK = "O";
+    public final String FAIL_BLOCK = "X";
+    public final String BLANK_BLOCK = " ";
+
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     BridgeMove bridgeMove = new BridgeMove();
+    BridgeMap bridgeMap = new BridgeMap();
     boolean isContinue;
     boolean isWin;
     Bridge bridge;
@@ -24,7 +28,6 @@ public class BridgeGame {
     public void init() {
         outputView.printStartMessage();
         makeBridge();
-        print2DBridge();
         start(new Player());
     }
 
@@ -34,13 +37,31 @@ public class BridgeGame {
             move(player);
             checkPlayerPosition(player);
         }
-        outputView.printResult(player, isWin);
+        outputView.printResult(player, bridgeMap, isWin);
     }
 
     private void checkPlayerPosition(Player player) {
         if (!moveSuccess(player, bridge)) {
+            if (player.getYPosition() == 1) {
+                bridgeMap.getUpperBridgeMap().add(FAIL_BLOCK);
+                bridgeMap.getLowerBridgeMap().add(BLANK_BLOCK);
+            } else {
+                bridgeMap.getUpperBridgeMap().add(BLANK_BLOCK);
+                bridgeMap.getLowerBridgeMap().add(FAIL_BLOCK);
+            }
+            outputView.printMap(bridgeMap);
             retry(player);
+            return;
         }
+
+        if (player.getYPosition() == 1) {
+            bridgeMap.getUpperBridgeMap().add(SUCCESS_BLOCK);
+            bridgeMap.getLowerBridgeMap().add(BLANK_BLOCK);
+        } else {
+            bridgeMap.getUpperBridgeMap().add(BLANK_BLOCK);
+            bridgeMap.getLowerBridgeMap().add(SUCCESS_BLOCK);
+        }
+        outputView.printMap(bridgeMap);
 
         if (reachFinalLine(player, bridge)) {
             isContinue = false;
@@ -61,21 +82,12 @@ public class BridgeGame {
         return bridge.getBridge()[positionY][positionX].equals(FALL_POSITION);
     }
 
-//    private void printPlayerPosition(Player player) {
-//        System.out.println(player.getXPosition());
-//        System.out.println(player.getYPosition());
-//    }
 
     private void makeBridge() {
         int bridgeSize = inputView.readBridgeSize();
         bridge = new Bridge(bridgeSize);
     }
 
-    private void print2DBridge() {
-        Arrays.stream(bridge.getBridge()).forEach(
-                bridgeBlock -> System.out.println(Arrays.toString(bridgeBlock))
-        );
-    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -99,6 +111,7 @@ public class BridgeGame {
         if (continueCode) {
             player.initializePosition();
             player.setTryCount();
+            bridgeMap.initializeBridges();
             return;
         }
         isWin = false;

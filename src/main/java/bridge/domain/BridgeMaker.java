@@ -44,11 +44,11 @@ public class BridgeMaker {
         String[][] bridge2D = new String[2][bridge.size()];
         for (int i = 0; i < bridge.size(); i++) {
             if (bridge.get(i).equals(DOWN_KEY)) {
-                bridge2D[UP][i] = FALL_POSITION;
-                bridge2D[DOWN][i] = DOWN_KEY;
+                bridge2D[UP_POSITION][i] = FALL_POSITION;
+                bridge2D[DOWN_POSITION][i] = DOWN_KEY;
             } else {
-                bridge2D[UP][i] = UP_KEY;
-                bridge2D[DOWN][i] = FALL_POSITION;
+                bridge2D[DOWN_POSITION][i] = FALL_POSITION;
+                bridge2D[UP_POSITION][i] = UP_KEY;
             }
         }
         return bridge2D;
