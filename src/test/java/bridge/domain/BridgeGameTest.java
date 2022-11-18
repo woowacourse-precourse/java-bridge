@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import static bridge.domain.ResultMessageStatus.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
@@ -49,5 +50,18 @@ class BridgeGameTest {
 		boolean sizeFinish = bridgeGame.isFinish(ResultStatus.SUCCESS, 10);
 		assertThat(failFinish).isTrue();
 		assertThat(sizeFinish).isTrue();
+	}
+
+	@Test
+	@DisplayName("결과 상태 메시지는 네 종류")
+	void getResultMessageStatusesTest() {
+		for (int stage = 0; stage < 10; stage++) {
+			bridgeGame.move("U");
+		}
+		List<ResultMessageStatus> result = bridgeGame.getResultMessageStatuses();
+		for (int index = 0; index < 10; index++) {
+			ResultMessageStatus message = result.get(index);
+			assertThat(message).isIn(UP_SUCCESS_RESULT, UP_FAILURE_RESULT, DOWN_SUCCESS_RESULT, DOWN_FAILURE_RESULT);
+		}
 	}
 }
