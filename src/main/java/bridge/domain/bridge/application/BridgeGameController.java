@@ -37,5 +37,9 @@ public class BridgeGameController {
     public void playGame(BridgeMap bridgeMap) {
         GamePlayer gamePlayer = new GamePlayer();
         BridgeGame bridgeGame = new BridgeGame(bridgeMap, gamePlayer);
+
+        do {
+            inputView.readGameCommand();
+        } while (true);
     }
 }
