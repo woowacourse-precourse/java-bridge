@@ -29,7 +29,7 @@ public class BridgeGameController {
     }
 
     private void play() {
-        while (!bridgeGame.isGameOver()) {
+        while (true) {
             PlayerMovementRequestDto dto = inputView.readMoving();
             bridgeGame.move(dto);
         }

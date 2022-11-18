@@ -8,4 +8,8 @@ public class Bridges {
     public void generate(List<String> bridges) {
         this.bridges = bridges;
     }
+
+    public String getBridgeByPositionToMove(int position) {
+        return bridges.get(position);
+    }
 }
