@@ -35,9 +35,11 @@ public class Application {
             String mainBridge1 = "[ ";                                //윗층
             String mainBridge2 = "[ ";                                //아랫층
 
-            while(yesOrNo != "X" || maxBridgeLength == bridgeLength) {
+            while(yesOrNo != "X") {
+                if(maxBridgeLength == bridgeLength){
+                    break;
+                }
                 String movingUpDown = makeBridge.readMoving();          // U이면 위, D이면 아래
-
 
                 BridgeRandomNumberGenerator randomNumber = new BridgeRandomNumberGenerator();
                 int whichBridge = randomNumber.generate();              // 1이면 U, 0이면 D가 맞는거!
@@ -87,13 +89,17 @@ public class Application {
                 System.out.println(mainBridge1 + " ]");
                 System.out.println(mainBridge2 + " ]");
                 maxBridgeLength += 1;
+
             }
-            int cntMainB1 = 0;
-            int cntMainB2 = 0;
 
             if(countChar(mainBridge1,'O') + countChar(mainBridge2, 'O') == bridgeLength){
+                System.out.println("최종 게임 결과");
+                System.out.println(mainBridge1 + " ]");
+                System.out.println(mainBridge2 + " ]");
+
                 System.out.println("게임 성공 여부: 성공");
                 System.out.println("총 시도한 횟수: " + howManyGames);
+                break;
             }
             reOrStop = makeBridge.readGameCommand();
 
