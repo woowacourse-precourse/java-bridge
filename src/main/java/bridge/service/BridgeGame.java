@@ -4,6 +4,7 @@ import bridge.constant.Movement;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -17,6 +18,8 @@ public class BridgeGame {
 
     private final List<String> bridge;
     private final List<Movement> movements;
+
+    private StringBuilder upperStatus, lowerStatus;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
@@ -47,24 +50,26 @@ public class BridgeGame {
     }
 
     public String createMovementStatus() {
-        StringBuilder upperStatus = new StringBuilder("[");
-        StringBuilder lowerStatus = new StringBuilder("[");
-        for (Movement movement : movements) {
-            upperStatus.append(distinguishStatus(movement, Movement.UP_AND_O, Movement.UP_AND_X));
-            lowerStatus.append(distinguishStatus(movement, Movement.DOWN_AND_O, Movement.DOWN_AND_X));
-        }
-        upperStatus.replace(upperStatus.length() - 1, upperStatus.length(), "]\n");
-        lowerStatus.replace(lowerStatus.length() - 1, lowerStatus.length(), "]\n");
-        return upperStatus.append(lowerStatus).toString();
+        upperStatus = buildEmptyStatus();
+        lowerStatus = buildEmptyStatus();
+        addMoveableStatus();
+        return upperStatus.append("\n").append(lowerStatus).append("\n").toString();
     }
 
-    private String distinguishStatus(Movement movement, Movement movementO, Movement movementX) {
-        if (movement == movementO) {
-            return " O |";
-        } else if (movement == movementX) {
-            return " X |";
-        }
-        return "   |";
+    private StringBuilder buildEmptyStatus() {
+        int statusSize = movements.size();
+        return new StringBuilder("[" + "   |".repeat(statusSize - 1) + "   ]");
+    }
+
+    private void addMoveableStatus() {
+        IntStream.range(0, movements.size()).forEach(index -> {
+            Movement movement = movements.get(index);
+            if (movement.direction().equals("U")) {
+                upperStatus.setCharAt(index * 4 + 2, movement.moveable());
+            } else if (movement.direction().equals("D")) {
+                lowerStatus.setCharAt(index * 4 + 2, movement.moveable());
+            }
+        });
     }
 
     public boolean crossedBridge() {
