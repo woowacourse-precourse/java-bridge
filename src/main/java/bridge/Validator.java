@@ -5,13 +5,13 @@ import bridge.exception.ExceptionMessage;
 
 public class Validator {
     public static <T> void validateNotNull(T object) {
-        if (object != null) {
+        if (object == null) {
             ExceptionHandler.throwException(new IllegalArgumentException(), ExceptionMessage.NULL);
         }
     }
 
     public static void validateNotEmpty(String string) {
-        if (!string.equals("")) {
+        if (string.equals("")) {
             ExceptionHandler.throwException(new IllegalArgumentException(), ExceptionMessage.EMPTY_STRING);
         }
     }
