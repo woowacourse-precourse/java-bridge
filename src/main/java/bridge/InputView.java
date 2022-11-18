@@ -12,8 +12,9 @@ public class InputView {
      */
     public int readBridgeSize() {
         String lengthInput = Console.readLine();
-        checkIsNumber(lengthInput);
+        OutputView.printMessage(lengthInput);
 
+        checkIsNumber(lengthInput);
         int length = Integer.valueOf(lengthInput);
         checkRange(length);
 
@@ -25,6 +26,7 @@ public class InputView {
      */
     public String readMoving() {
         String move = Console.readLine();
+        OutputView.printMessage(move);
         checkMoving(move);
         return move;
     }
@@ -34,6 +36,7 @@ public class InputView {
      */
     public String readGameCommand() {
         String command = Console.readLine();
+        OutputView.printMessage(command);
         checkCommand(command);
         return command;
     }
@@ -43,7 +46,9 @@ public class InputView {
             Integer.valueOf(lengthInput);
         } catch (IllegalArgumentException e) {
             String contents = GameMessage
-                    .Exception.IS_NUMBER.getContents();
+                    .Exception
+                    .IS_NUMBER
+                    .getContents();
             String message = GameMessage.getErrorMessage(contents);
             OutputView.printMessage(message);
             throw new IllegalArgumentException();
@@ -51,10 +56,13 @@ public class InputView {
     }
 
     private static void checkRange(int length) {
-        boolean rangeError = !(checkStartRange(length) || checkEndRange(length));
+        boolean rangeError = !(checkStartRange(length) && checkEndRange(length));
 
         if (rangeError) {
-            String contents = GameMessage.Exception.OUT_OF_RANGE_BRIDGE.getContents();
+            String contents = GameMessage
+                    .Exception
+                    .OUT_OF_RANGE_BRIDGE
+                    .getContents();
             String message = GameMessage.getErrorMessage(contents);
             OutputView.printMessage(message);
             throw new IllegalArgumentException();
@@ -65,7 +73,10 @@ public class InputView {
         boolean moveError = !(checkMatchDown(move) || checkMatchUp(move));
 
         if (moveError) {
-            String contents = GameMessage.Exception.DISALLOWED_INPUT_MOVE.getContents();
+            String contents = GameMessage
+                    .Exception
+                    .DISALLOWED_INPUT_MOVE
+                    .getContents();
             String message = GameMessage.getErrorMessage(contents);
             OutputView.printMessage(message);
             throw new IllegalArgumentException();
@@ -123,7 +134,7 @@ public class InputView {
     private static boolean checkEndRange(int length) {
         String endValue = BridgeValue
                 .Information
-                .MINIMUM_LENGTH
+                .MAXIMUM_LENGTH
                 .getValue();
 
         int end = BridgeValue.stringToInt(endValue);
