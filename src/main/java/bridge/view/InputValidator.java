@@ -1,15 +1,12 @@
 package bridge.view;
 
 import bridge.enums.ErrorMsg;
+import bridge.enums.Inputs;
 
 public class InputValidator {
 
 	private static final int MIN_BRIDGE_LENGTH = 3;
 	private static final int MAX_BRIDGE_LENGTH = 20;
-	private static final String MOVE_UP = "U";
-	private static final String MOVE_DOWN = "D";
-	private static final String RETRY = "R";
-	private static final String QUIT = "Q";
 
 	public void validateBridgeSize(String string) {
 		assertStringIsPositiveNumber(string);
@@ -30,13 +27,13 @@ public class InputValidator {
 	}
 
 	public void validateMovement(String string) {
-		if (!string.equals(MOVE_UP) && !string.equals(MOVE_DOWN)) {
+		if (!string.equals(Inputs.MOVE_UP.getMessage()) && !string.equals(Inputs.MOVE_DOWN.getMessage())) {
 			throw new IllegalArgumentException(ErrorMsg.MOVE_MSG_NOT_VALID.getMessage());
 		}
 	}
 
 	public void validateRetry(String string) {
-		if (!string.equals(RETRY) && !string.equals(QUIT)) {
+		if (!string.equals(Inputs.RETRY.getMessage()) && !string.equals(Inputs.QUIT.getMessage())) {
 			throw new IllegalArgumentException(ErrorMsg.RETRY_MSG_NOT_VALID.getMessage());
 		}
 	}
