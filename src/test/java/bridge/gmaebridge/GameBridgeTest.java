@@ -1,5 +1,6 @@
 package bridge.gmaebridge;
 
+import static bridge.option.util.MoveTestUtils.convertStringListToMoveList;
 import static bridge.result.GameStatus.FAIL;
 import static bridge.result.GameStatus.PROGRESS;
 import static bridge.result.GameStatus.SUCCESS;
@@ -8,9 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import bridge.domain.Bridge;
 import bridge.gamebridge.GameBridge;
 import bridge.option.Move;
-import bridge.result.GameStatus;
 import bridge.result.Result;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
@@ -83,13 +82,5 @@ public class GameBridgeTest {
         for (Move move : moves) {
             gameBridge.insertMoveInPlayerBridge(move);
         }
-    }
-
-    private List<Move> convertStringListToMoveList(List<String> inputMoves) {
-        List<Move> moves = new ArrayList<>();
-        for (String inputMove : inputMoves) {
-            moves.add(new Move(inputMove));
-        }
-        return moves;
     }
 }
