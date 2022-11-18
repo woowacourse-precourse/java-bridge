@@ -14,8 +14,7 @@ public abstract class RoadMap {
     protected abstract void validate(List<String> directions);
 
     public int getSize(){
-        // TODO: 현재 가지고 있는 다리 크기 반환
-        return 0;
+        return this.roads.size();
     }
 
     public boolean matchPositionWithDirection(int roadPosition, String direction){

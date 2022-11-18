@@ -50,7 +50,7 @@
 이동했던 칸의 경로나 이동할 수 있는 칸의 정보
 
 ### 기능
-- [ ] 현재 가지고 있는 칸의 개수 반환 - getSize
+- [x] 현재 가지고 있는 칸의 개수 반환 - getSize
 - [ ] 지정된 칸의 방향과 일치 여부 확인 - matchPositionWithDirection
 - [ ] 지정된 칸과 다른 칸의 방향 일치 여부 확인 - matchPositionWithRoad
 - [ ] 다리 관련 로드맵
