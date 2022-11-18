@@ -23,13 +23,21 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         validateBrideSize(size);
         List<String> bridge = new ArrayList<>();
-        return null;
+        return addBridgeArrow(bridge, size);
     }
 
     private void validateBrideSize(int size) {
         if (size < BRIDGE_SIZE_LOWER_INCLUSIVE || size > BRIDGE_SIZE_UPPER_INCLUSIVE) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private List<String> addBridgeArrow(List<String> bridge, int size) {
+        while (size-- > 0) {
+            int bridgeRandomNumber = bridgeNumberGenerator.generate();
+            bridge.add(convertBridgeRandomNumberToUpDownMark(bridgeRandomNumber));
+        }
+        return bridge;
     }
 
     private String convertBridgeRandomNumberToUpDownMark(int bridgeRandomNumber) {
