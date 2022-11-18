@@ -29,4 +29,46 @@ public class InputViewTest {
     void inputBridgeSizeValid() {
         assertThat(inputView.readBridgeSize("20")).isEqualTo(20);
     }
+
+    @DisplayName("움직일 위치로 U 혹은 D 한글자 이외를 입력한 경우 예외가 발생한다")
+    @Test
+    void inputMovingInvalid() {
+        assertThatThrownBy(() -> inputView.readMoving(""))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> inputView.readMoving("UU"))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> inputView.readMoving("유유"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("움직일 위치로 U 혹은 D 한글자를 입력한 경우 해당 문자를 반환한다")
+    @Test
+    void inputMovingValid() {
+        assertThat(inputView.readMoving("U")).isEqualTo("U");
+        assertThat(inputView.readMoving("D")).isEqualTo("D");
+    }
+
+    @DisplayName("움직일 위치로 R 혹은 Q 한글자 외를 입력한 경우 예외가 발생한다")
+    @Test
+    void inputGameCommandInvalid() {
+        assertThatThrownBy(() -> inputView.readGameCommand(""))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> inputView.readGameCommand("큐"))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> inputView.readGameCommand("RR"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("재시작 여부로 R 혹은 Q 한글자를 입력한 경우 해당 문자를 반환한다")
+    @Test
+    void inputGameCommandValid() {
+        assertThat(inputView.readGameCommand("R")).isEqualTo("R");
+        assertThat(inputView.readGameCommand("Q")).isEqualTo("Q");
+    }
+
+
 }
