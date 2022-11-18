@@ -10,6 +10,9 @@ public enum StringConstant {
     BRIDGE_SIZE_REGEX("^[0-9]*$"),
     WIN("성공"),
     FAIL("실패"),
+    START_SQUARE_BRACKET("[ "),
+    DELIMETER(" | "),
+    END_SQUARE_BRACKET(" ]"),
     BLANK(" ");
 
     public final String stringConstant;
