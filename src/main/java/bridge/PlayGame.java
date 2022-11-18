@@ -11,9 +11,11 @@ import java.util.Map;
 
 public class PlayGame {
     private List<String> bridge;
-    private CountRound countRound;
+    private final CountRound countRound;
 
-    PlayGame() {}
+    PlayGame(CountRound countRound) {
+        this.countRound = countRound;
+    }
     PlayGame(List<String> bridge, CountRound countRound) {
         this.bridge = bridge;
         this.countRound = countRound;
@@ -37,9 +39,19 @@ public class PlayGame {
             condition = bridgeGame.checkEnd(userStatus, bridge);
         }
         if(condition == Condition.WIN) { end(userStatus, countRound); }
-        if(condition == Condition.LOOSE) { bridgeGame.retry(bridge, countRound); }
+        if(condition == Condition.LOOSE) { ask(userStatus, countRound, bridgeGame);}
     }
 
+    public void ask(Map<Integer, Map<String, String>> userStatus, CountRound countRound, BridgeGame bridgeGame) {
+        InputWhileException inputWhileException = new InputWhileException();
+        String checkEnd= inputWhileException.startWhileReadGameCommand();
+        if(checkEnd.equals("Q")) {
+            end(userStatus, countRound);
+        }
+        if(checkEnd.equals("R")){
+            bridgeGame.retry(bridge, countRound);
+        }
+    }
     public void end(Map<Integer, Map<String, String>> userStatus, CountRound countRound) {
         OutputView outputView = new OutputView();
         outputView.printResult(userStatus, countRound);
