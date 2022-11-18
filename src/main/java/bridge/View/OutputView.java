@@ -6,7 +6,6 @@ import static bridge.Constant.InputValue.SELECTION_UP;
 import static bridge.Constant.OutputValue.*;
 
 import bridge.Domain.BridgeGame;
-import bridge.Domain.Player;
 
 import java.util.List;
 
@@ -28,7 +27,6 @@ public class OutputView {
         return NOT_SELECTION;
     }
 
-
     private String getPassedStair(List<String> bridgeStates, int passedCount, String stair) {
         String result = "";
 
@@ -42,28 +40,15 @@ public class OutputView {
         return result;
     }
 
-    private void printStair(BridgeGame bridgeGame, String stair) {
+    private void printStair(BridgeGame bridgeGame, int passedCount, String stair) {
         List<String> bridgeStates = bridgeGame.getBridgeStates();
-        int passedCount = bridgeGame.getPlayerLocation();
         String selectedBridgeState = bridgeStates.get(passedCount);
 
         String result = getPassedStair(bridgeStates, passedCount, stair)
-                + getLastSelectResult(bridgeGame, selectedBridgeState, stair);
+                + getSelectResult(bridgeGame, selectedBridgeState, stair);
 
         System.out.printf(BRIDGE_MAP, result);
     }
-
-    public void printMap(BridgeGame bridgeGame) {
-        printStair(bridgeGame, SELECTION_UP);
-        printStair(bridgeGame, SELECTION_DOWN);
-        System.out.println();
-    }
-
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
 
     private String getIsSuccess(BridgeGame bridgeGame) {
         if (bridgeGame.isPlayerDead()) {
@@ -73,7 +58,7 @@ public class OutputView {
         return SUCCESS;
     }
 
-    private String getLastSelectResult(BridgeGame bridgeGame, String bridgeState, String stair) {
+    private String getSelectResult(BridgeGame bridgeGame, String bridgeState, String stair) {
         if (!bridgeGame.isPlayerDead() && bridgeState.equals(stair)) {
             return RIGHT_SELECTION;
         }
@@ -85,22 +70,18 @@ public class OutputView {
         return NOT_SELECTION;
     }
 
-    private void printResultStair(BridgeGame bridgeGame, String stair) {
-        List<String> bridgeStates = bridgeGame.getBridgeStates();
-        int maxPassedCount = bridgeGame.getMaxPassedCount();
-        String lastBridgeState = bridgeStates.get(maxPassedCount);
-
-        String result = getPassedStair(bridgeStates, maxPassedCount, stair)
-                + getLastSelectResult(bridgeGame, lastBridgeState, stair);
-
-        System.out.printf(BRIDGE_MAP, result);
+    public void printMap(BridgeGame bridgeGame, int passedCount) {
+        printStair(bridgeGame, passedCount, SELECTION_UP);
+        printStair(bridgeGame, passedCount, SELECTION_DOWN);
+        System.out.println();
     }
 
     public void printResult(BridgeGame bridgeGame) {
+        int maxPassedCount = bridgeGame.getMaxPassedCount();
+
         System.out.println(RESULT_MESSAGE);
 
-        printResultStair(bridgeGame, SELECTION_UP);
-        printResultStair(bridgeGame, SELECTION_DOWN);
+        printMap(bridgeGame, maxPassedCount);
 
         System.out.printf(IS_SUCCESS, getIsSuccess(bridgeGame));
         System.out.printf(RETRY_COUNT, bridgeGame.getRetryCount());

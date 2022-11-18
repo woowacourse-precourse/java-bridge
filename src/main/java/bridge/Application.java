@@ -52,7 +52,7 @@ public class Application {
     public static void run(BridgeGame bridgeGame) {
         while(!bridgeGame.winGame() && !bridgeGame.isPlayerDead()) {
             inputMoving(bridgeGame);
-            outputView.printMap(bridgeGame);
+            outputView.printMap(bridgeGame, bridgeGame.getPassedCount());
             bridgeGame.updatePlayer();
         }
     }
