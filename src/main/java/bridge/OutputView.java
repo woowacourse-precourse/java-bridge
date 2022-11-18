@@ -14,8 +14,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public String printMap(List<List<String>> upDownBridgeList) {
-    	for(List<String> bridge : upDownBridgeList) {
-    		result = new StringBuilder();
+    	result = new StringBuilder();
+    	for(List<String> bridge : upDownBridgeList) {	
     		result.append("[");
     		for(int i = 0; i < bridge.size(); i++) {
     			result.append(" " + bridge.get(i) + " ");

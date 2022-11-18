@@ -78,7 +78,7 @@ public class BridgeGame {
 	}
 	
 	public String checkSuccessFailure() {
-		if(upBridge.size() != bridgeSize) {
+		if(upBridge.contains("X") || downBridge.contains("X")) {
 			return "실패";
 		}
 		return "성공";

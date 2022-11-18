@@ -8,9 +8,9 @@ public class Application {
 	static int bridgeSize = 0;
 	static String inputMoving = "";
 	static String restartOrQuit = "";
-	static int tryCount = 1;
+	static int tryCount = 0;
 	static boolean retrycheck = false;
-	static String successOrFailure = "";
+	static String successOrFailure = "실패";
 	static String currentStateBridge = "";
 	static InputView inputView = new InputView();
 	static OutputView outputView = new OutputView();
@@ -33,7 +33,7 @@ public class Application {
     	BridgeGame bridgeGame = new BridgeGame(bridgeSize);
     	for(int order = 0; order < bridgeSize; order++) {      	
         	inputMoving = inputView.readMoving();
-        	if(!bridgeGame.move(inputMoving, madeBridge, bridgeSize)) {
+        	if(!bridgeGame.move(inputMoving, madeBridge, order)) {
         		currentStateBridge = bridgeGame.getCurrentStateBridge();
         		return bridgeGame.retry();                   // 재시도할 경우 return true. 게임 종료의 경우 return false.
         	}
