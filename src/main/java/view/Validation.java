@@ -3,6 +3,8 @@ package view;
 import java.util.Arrays;
 
 public class Validation {
+    private static final String NUMBER_REGEX = "^\\d*$";
+
     public void validate(String input, String message) {
         validateEmpty(input);
         validateContainBlank(input);
@@ -26,6 +28,12 @@ public class Validation {
     public void validateBridgeSizeRange(String input) {
         if (Integer.parseInt(input) < 3 || Integer.parseInt(input) > 20) {
             throw new IllegalArgumentException("다리의 길이는 3 이상 20 이하여야 합니다.");
+        }
+    }
+
+    public void validateBridgeSizeFormat(String input) {
+        if (!input.matches(NUMBER_REGEX)) {
+            throw new IllegalArgumentException("다리의 길이의 입력은 자연수가 되어야 합니다.");
         }
     }
 
