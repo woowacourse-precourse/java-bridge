@@ -52,6 +52,7 @@ public class InputView {
     }
 
     private void checkMove(String s) {
+        if(s.length() > 1) throw new IllegalArgumentException("[ERROR] 입력 값이 단일 문자가 아닙니다.");
         if(!(s.charAt(0) == 'U' || s.charAt(0) == 'D')) throw new IllegalArgumentException("[ERROR] 방향을 잘못 입력하셨습니다.");
     }
 }
