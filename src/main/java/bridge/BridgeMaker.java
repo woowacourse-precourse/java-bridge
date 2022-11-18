@@ -1,5 +1,11 @@
 package bridge;
 
+import static bridge.util.BridgeConstant.DOWN_KEY_NUMBER;
+import static bridge.util.BridgeConstant.DOWN_KEY;
+import static bridge.util.BridgeConstant.UP_KEY_NUMBER;
+import static bridge.util.BridgeConstant.UP_KEY;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +24,21 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        return null;
+        List<String> bridge = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            int key = bridgeNumberGenerator.generate();
+            bridge.add(addBridge(key));
+        }
+        return bridge;
     }
+
+    private String addBridge(int key) {
+        if (key == DOWN_KEY_NUMBER) {
+            return DOWN_KEY;
+        } else if (key == UP_KEY_NUMBER) {
+            return UP_KEY;
+        }
+        throw new IllegalArgumentException("0 혹은 1의 값을 입력받아야 합니다.");
+    }
+
 }
