@@ -9,20 +9,20 @@ public class BridgeSize {
     private final String bridgeSize;
 
     public BridgeSize(String bridgeSize) {
+        validate(bridgeSize);
         this.bridgeSize = bridgeSize;
     }
 
     public static BridgeSize from(String userInput) {
-        validate(userInput);
         return new BridgeSize(userInput);
     }
 
-    private static void validate(String userInput) {
+    private void validate(String userInput) {
         validateNumber(userInput);
         validateRange(userInput);
     }
 
-    private static void validateNumber(String userInput) {
+    private void validateNumber(String userInput) {
         String bridgeSizeRegex = "^([0-9]*)$";
 
         if (!Pattern.matches(bridgeSizeRegex, userInput)) {
@@ -30,7 +30,7 @@ public class BridgeSize {
         }
     }
 
-    private static void validateRange(String userInput) {
+    private void validateRange(String userInput) {
         int bridgeSize = Integer.parseInt(userInput);
         if (bridgeSize < BRIDGE_MIN_SIZE || bridgeSize > BRIDGE_MAX_SIZE) {
             throw new IllegalArgumentException(InputErrorText.ERROR_BRIDGE_NUMBER.errorText());
