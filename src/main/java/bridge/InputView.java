@@ -12,16 +12,9 @@ public class InputView {
      */
     public int readBridgeSize() {
         String input = Console.readLine();
-        int bridgeLength = 0;
-
-        try{
-            bridgeLength = validateNotNumber(input);
-            validateNumberRange(bridgeLength);
-            return bridgeLength;
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-        return bridgeLength;
+        validateNotNumber(input);
+        validateNumberRange(input);
+        return Integer.parseInt(input);
     }
 
     /**
@@ -38,17 +31,19 @@ public class InputView {
         return null;
     }
 
-    private int validateNotNumber(String input){
+    private static void validateNotNumber(String input){
         try{
             int len = Integer.parseInt(input);
-            return len;
         }catch (NumberFormatException e){
+            System.out.println("[ERROR] 숫자를 입력하셔야 합니다.");
             throw new IllegalArgumentException("[ERROR] 숫자를 입력하셔야 합니다.");
         }
     }
 
-    private void validateNumberRange(int len){
+    private static void validateNumberRange(String input){
+        int len = Integer.parseInt(input);
         if(len < 3 || len > 20){
+            System.out.println("[ERROR] 숫자는 3~20 범위로 입력해야 합니다.");
             throw new IllegalArgumentException("[ERROR] 숫자는 3~20 범위로 입력해야 합니다.");
         }
     }
