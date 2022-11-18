@@ -1,6 +1,4 @@
 package bridge;
-import bridge.InputView;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
@@ -8,7 +6,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 public class InputViewTest {
     InputView inputView = new InputView();
 
-    //@DisplayName("입력값이 3 이상 20 이하 입력 시 예외가 발생한다.")
     @Test
     void 다리길이_예외() {
         String Input = "30";
