@@ -37,7 +37,7 @@ public enum Direction {
 
     public static Direction getDirectionByString(String direction) {
         Optional<Direction> resultDirection = Arrays.stream(Direction.values())
-                .filter(dir -> dir.getDirectionString() == direction)
+                .filter(dir -> dir.getDirectionString().equals(direction))
                 .findAny();
         resultDirection.orElseThrow(() -> new IllegalArgumentException(INVALID_STRING_ERROR_MESSAGE));
         return resultDirection.get();
