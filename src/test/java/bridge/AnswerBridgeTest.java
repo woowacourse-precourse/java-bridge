@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.model.AnswerBridge;
 import bridge.model.User;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -33,5 +34,17 @@ public class AnswerBridgeTest {
         user.addChoice("D");
         List<Boolean> fourthResult = answerBridge.compareTo(user);
         assertThat(fourthResult).isEqualTo(List.of(true, true, false));
+    }
+
+    @DisplayName("유저가 끝까지 도달했을 경우 테스트")
+    @Test
+    void isApproachEndTest() {
+        User user = new User();
+        user.addChoice("U");
+        user.addChoice("D");
+        user.addChoice("U");
+
+        boolean result = answerBridge.isApproachEnd(user.getChoices());
+        assertThat(result).isTrue();
     }
 }
