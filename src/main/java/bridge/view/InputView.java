@@ -8,6 +8,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     private static final String REGEX_NUMBER = "^[0-9]*$";
+    private static final String REGEX_MOVING = "^D|U$";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -32,7 +33,15 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String moving = Console.readLine();
+        validateMoving(moving);
+        return moving;
+    }
+
+    private void validateMoving(String moving) {
+        if (!moving.matches(REGEX_MOVING)) {
+            throw new IllegalArgumentException("[ERROR] 사용자가 이동할 칸은 'D', 'U' 중 하나를 선택해야 합니다.");
+        }
     }
 
     /**
