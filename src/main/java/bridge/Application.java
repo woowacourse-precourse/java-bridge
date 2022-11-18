@@ -19,14 +19,17 @@ public class Application {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
+        try {
+            playUntilQuit(bridgeMaker, inputView, outputView);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+        }
+    }
+
+    private static void playUntilQuit(BridgeMaker bridgeMaker, InputView inputView, OutputView outputView) {
         outputView.printGameStartMessage();
         int bridgeSize = inputView.readBridgeSize();
         BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(bridgeSize), new MoveResult());
-        playUntilQuit(bridgeGame, bridgeSize, inputView, outputView);
-    }
-
-    private static void playUntilQuit( BridgeGame bridgeGame, int bridgeSize,
-        InputView inputView, OutputView outputView) {
         while (true) {
             if (play(bridgeGame, bridgeSize, inputView, outputView).equals(QUIT)) {
                 outputView.printResult(bridgeGame.getMoveResult());
@@ -35,8 +38,7 @@ public class Application {
         }
     }
 
-    public static GameCommand play(BridgeGame bridgeGame, int bridgeSize, InputView inputView,
-        OutputView outputView) {
+    public static GameCommand play(BridgeGame bridgeGame, int bridgeSize, InputView inputView, OutputView outputView) {
         for (int i = 0; i < bridgeSize; i++) {
             bridgeGame.move(i, inputView.readMoving());
             outputView.printMap(bridgeGame.getMoveResult());
