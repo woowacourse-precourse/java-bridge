@@ -54,8 +54,8 @@
 - [x] 현재 가지고 있는 칸의 개수 반환 - getSize
 - [x] 지정된 칸의 방향과 일치 여부 확인 - matchPositionWithDirection
 - [x] 지정된 칸과 다른 칸의 방향 일치 여부 확인 - matchPositionWithRoad
-- [ ] 다리 관련 로드맵
-  - [ ] 칸의 개수가 범위 안에 있는지 확인 - validate
+- [x] 다리 관련 로드맵
+  - [x] 칸의 개수가 범위 안에 있는지 확인 - validate
 - [ ] 사용자 이동 관련 로드맵
   - [ ] 위치에 해당하는 칸을 반환 - getRoad
   - [ ] 이동했던 칸을 모두 삭제 - clear

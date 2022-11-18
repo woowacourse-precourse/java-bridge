@@ -1,5 +1,8 @@
 package bridge.model;
 
+import static bridge.constant.Config.*;
+
+import bridge.constant.message.GameErrorMessage;
 import java.util.List;
 
 public class BridgeRoadMap extends RoadMap {
@@ -9,6 +12,9 @@ public class BridgeRoadMap extends RoadMap {
 
     @Override
     protected void validate(List<String> directions) {
-        // TODO: 다리의 크기 유효성 확인,
+        int size = directions.size();
+        if(size < RANGE_OF_BRIDGE_SIZE_START || size > RANGE_OF_BRIDGE_SIZE_END){
+            throw new IllegalStateException(GameErrorMessage.NO_RANGE_OF_BRIDGE_SIZE.getMessage());
+        }
     }
 }
