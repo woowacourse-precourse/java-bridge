@@ -28,4 +28,11 @@ public class Exception {
         }
     }
 
+    public static int checkString(String userInput) throws IllegalArgumentException{
+        try {
+            return Integer.parseInt(userInput);
+        } catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR]" + ErrorMessage.STRING_EXCEPTION);
+        }
+    }
 }
