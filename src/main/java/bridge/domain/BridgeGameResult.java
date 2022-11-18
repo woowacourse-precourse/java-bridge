@@ -14,6 +14,10 @@ public class BridgeGameResult {
         results.put(moving, result);
     }
 
+    public boolean isSuccess(int bridgeSize) {
+        return results.size() == bridgeSize;
+    }
+
     public Map<String, String> getResult() {
         return results;
     }
