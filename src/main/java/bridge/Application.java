@@ -8,7 +8,7 @@ public class Application {
         bridgeGameMachine.setGame();
         bridgeGameMachine.playGame();
         while (bridgeGameMachine.askRetry()) {
-            bridgeGameMachine.retry();
+            bridgeGameMachine.retryGame();
         }
         bridgeGameMachine.printResult();
     }
