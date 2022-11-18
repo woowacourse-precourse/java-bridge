@@ -1,32 +1,26 @@
-package controller;
+package controller.services;
+
+import bridge.constants.DirectionTable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
- */
 public class BridgeMaker {
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    /**
-     * @param size 다리의 길이
-     * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
-     */
     public List<String> makeBridge(int size) {
         List<String> bridgeMap = new ArrayList<>();
-        String[] table = new String[]{"D","U"};
+        String[] positionTable = new String[]{
+                DirectionTable.DOWN.getInitial(), DirectionTable.UP.getInitial()
+        };
 
         for(int loop=0; loop < size; loop++){
-            bridgeMap.add(table[bridgeNumberGenerator.generate()]);
+            bridgeMap.add(positionTable[bridgeNumberGenerator.generate()]);
         }
-
-        bridgeMap.forEach(str -> System.out.println(str));
         return bridgeMap;
     }
 }

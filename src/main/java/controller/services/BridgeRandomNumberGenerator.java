@@ -1,4 +1,4 @@
-package controller;
+package controller.services;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
