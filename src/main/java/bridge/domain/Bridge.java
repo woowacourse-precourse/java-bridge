@@ -13,7 +13,7 @@ public class Bridge {
     }
 
     public boolean checkToMove(int position, String moveTo) {
-        return bridge.get(position) == moveTo;
+        return bridge.get(position).equals(moveTo);
     }
 
 }

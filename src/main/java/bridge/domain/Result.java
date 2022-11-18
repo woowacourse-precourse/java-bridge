@@ -23,10 +23,10 @@ public class Result {
     }
 
     public void update(String isCorrect, String moveTo) {
-        if (moveTo == "U") {
+        if (moveTo.equals("U")) {
             up.add(isCorrect);
         }
-        if (moveTo == "D") {
+        if (moveTo.equals("D")) {
             down.add(isCorrect);
         }
     }
