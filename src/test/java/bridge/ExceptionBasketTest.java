@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class ExceptionBasketTest {
 
@@ -39,21 +40,6 @@ class ExceptionBasketTest {
     void inputIsNotNumberExceptionTest(){
         assertThatThrownBy(() ->
                 ExceptionBasket.inputIsNotNumberException("a"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_MESSAGE);
-
-        assertThatThrownBy(() ->
-                ExceptionBasket.inputIsNotNumberException("5.3"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_MESSAGE);
-
-        assertThatThrownBy(() ->
-                ExceptionBasket.inputIsNotNumberException("5.3"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_MESSAGE);
-
-        assertThatThrownBy(() ->
-                ExceptionBasket.inputIsNotNumberException("5.3"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE);
     }
