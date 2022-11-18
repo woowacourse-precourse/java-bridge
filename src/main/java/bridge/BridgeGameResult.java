@@ -31,4 +31,8 @@ public class BridgeGameResult {
     public void makeMoveResult(String moving, String moveState) {
         moveResult.createResult(moving, moveState);
     }
+
+    public void setSuccess() {
+        gameResult = SUCCESS;
+    }
 }
