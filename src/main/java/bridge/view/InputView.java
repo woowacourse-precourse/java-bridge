@@ -1,7 +1,7 @@
 package bridge.view;
 
 import bridge.util.BridgeSizeValidator;
-import bridge.util.MoveCommandValidator;
+import bridge.util.CommandValidator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -9,9 +9,9 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    private OutputView outputView = new OutputView();
-    private BridgeSizeValidator bridgeSizeValidator = new BridgeSizeValidator();
-    private MoveCommandValidator moveCommandValidator = new MoveCommandValidator();
+    private final OutputView outputView = new OutputView();
+    private final BridgeSizeValidator bridgeSizeValidator = new BridgeSizeValidator();
+    private final CommandValidator commandValidator = new CommandValidator();
 
     /**
      * 다리의 길이를 입력받는다.
@@ -35,7 +35,7 @@ public class InputView {
         try {
             outputView.printMoveMessage();
             String moveCommand = Console.readLine();
-            moveCommandValidator.validate(moveCommand);
+            commandValidator.validate(moveCommand);
             return moveCommand;
         } catch (IllegalArgumentException exception) {
             outputView.printError(exception.getMessage());
@@ -49,6 +49,7 @@ public class InputView {
     public boolean readGameCommand() {
         outputView.printRetryMessage();
         String retryCommand = Console.readLine();
+        commandValidator.retryValidate(retryCommand);
         if (retryCommand.equals("R")) {
             return true;
         }
