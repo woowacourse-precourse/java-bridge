@@ -9,4 +9,6 @@ public class ErrorMessage {
     public static final String MOVING_NOT_OPTIONS = ERROR_TAG + "U(위 칸)와 D(아래 칸) 중 하나의 문자여야 합니다.";
 
     public static final String GAME_COMMAND_NOT_OPTIONS = ERROR_TAG + "R(재시작)과 Q(종료) 중 하나의 문자여야 합니다.";
+
+    public static final String RANDOM_NUMBER_NOT_OPTIONS = ERROR_TAG + "존재하지 않는 무작위 값 입니다.";
 }
