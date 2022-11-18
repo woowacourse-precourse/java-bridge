@@ -3,8 +3,18 @@ ___
 
 ## 기능 구현 목록
 
-## BridgeGame
-### 게임을 실행하는 역할
+## Game(Controller)
+### 게임을 전반적으로 관리
+### 1. 다리의 길이를 입력받는다.(inputView.readBridgeSize)
+### 2. 입력받은 다리의 길이를 받고 다리를 생성 -> 게임 끝까지 사용 (BridgeMaker.makebridge)
+### 3. 이동할 칸을 선택하도록 U와 D를 입력받는다. (inputView.readBridgeSize)
+### 4. 3에서 입력받은 값으로 칸을 이동한다. (BrdigeGame.move)
+### 5. 칸을 이동한 리스트를 출력(OutputView.printmap)
+### 6. 다리가 건널수 없는 상태라면 게임 재시도 여부를 묻는다(OutputView.printResult, BridgeGame.retry)
+### 다리를 건널 수 없는 상태 : 다리 하나에 X가 나오면 건널수 없음
+### 7. 종료 조건이 만족할때까지 3~6를 반복한다.
+### 종료 조건 : 1) 재시도입력 시 Q가 입력될 떄 까지, 2) 1에서 생성한 길이만큼 다리를 건넜을 때
+### 8. 종료 조건이 만족하면 최종 게임결과와 게임 성공여부, 시도 횟수를 출력(OutputView.printResult)
 
 ## BridgeMaker
 ### - 입력받은 다리의 길이를 인자로 받아 다리를 생성하는 역할
