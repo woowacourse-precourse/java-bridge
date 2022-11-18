@@ -21,6 +21,13 @@ public class OutputView {
     }
 
     /**
+     * 이동할 칸을 입력받는 문구를 출력한다.
+     */
+    public void printBridgeSizeInput() {
+        System.out.println(bridgeSizeInputText);
+    }
+
+    /**
      * 에러 문구를 에러 메시지와 함께 출력한다.
      */
     public void printError(String errorMessage) {
