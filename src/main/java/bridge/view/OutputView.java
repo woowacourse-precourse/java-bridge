@@ -22,25 +22,30 @@ public class OutputView {
     public void printMap(BridgeGame bridgeGame, boolean success) {
         System.out.print("[ ");
         for (int step = 0; step < bridgeGame.getLocate(); step++) {
+            if (step > 0){
+                System.out.print("| ");
+            }
             if (bridgeGame.getBridge().get(step).equals("U")) {
                 System.out.print("O ");
             }
             else{
                 System.out.print("  ");
             }
-            System.out.print("  | ");
+
         }
         System.out.println("]");
 
         System.out.print("[ ");
         for (int step = 0; step < bridgeGame.getLocate(); step++) {
+            if (step > 0){
+                System.out.print("| ");
+            }
             if (bridgeGame.getBridge().get(step).equals("D")) {
                 System.out.print("O ");
             }
             else{
                 System.out.print("  ");
             }
-            System.out.print("  | ");
         }
         System.out.println("]");
 
