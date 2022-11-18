@@ -27,7 +27,7 @@ public class InputView {
             input = Console.readLine();
             ValidationUtil.isValidBridgeLength(input);
         } catch (IllegalArgumentException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             input = "-1";
         }
         return Integer.parseInt(input);
