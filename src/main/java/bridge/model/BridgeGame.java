@@ -1,4 +1,4 @@
-package bridge.controller;
+package bridge.model;
 
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -8,12 +8,7 @@ import bridge.view.OutputView;
  */
 public class BridgeGame {
 
-    OutputView outputView = new OutputView();
     InputView inputView = new InputView();
-
-    private void printStartGame() {
-        outputView.printStartGame();
-    }
 
     private void buildBridge() {
         Integer bridgeSize = inputView.readBridgeSize();
