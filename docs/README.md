@@ -26,7 +26,7 @@
   - [x] [예외] R(재시작), Q(종료) 이외의 문자가 입력되면 예외가 발생한다.
 - [x] 다리 건너기 결과를 출력한다. - OutputView#printMap();
 - [x] 최종 게임 결과를 출력한다. - OutputView#printResult();
-- [ ] 예외 상황 시 에러 문구를 출력한다. - OutputView#printError();
+- [x] 예외 상황 시 에러 문구를 출력한다. - OutputView#printError();
 
 
 ---

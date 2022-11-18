@@ -45,6 +45,10 @@ public class OutputView {
         System.out.println("총 시도한 횟수: " + player.getPlayCount());
     }
 
+    public void printExceptionMessage(IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+    }
+
     private String getView(Player player, String direction) {
         List<Result> information = player.createMapInformation(direction);
 
