@@ -81,4 +81,12 @@ public class BridgeGame {
         this.bridge = bridge;
         this.outputView = outputView;
     }
+
+    public boolean getSuccess() {
+        return success;
+    }
+
+    public int getTryCount() {
+        return tryCount;
+    }
 }
