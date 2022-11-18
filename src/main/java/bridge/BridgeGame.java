@@ -13,31 +13,26 @@ public class BridgeGame {
     private int bridgeLength = 1;
     private int gameCount = 1;
 
-    public static void main(String[] args) {
-        BridgeGame test = new BridgeGame();
-        test.play();
-    }
     public void play(){
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         printMessage.printStart();
         printMessage.printAskBridgeLength();
-        List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize(Console.readLine()));
+        List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
         System.out.println(bridge);
         gameLogic(bridge);
     }
-    public boolean move(int [] upCase, int [] downCase, String answerBridge, String moveCommand, int i) {
-        if(answerBridge.equals(moveCommand)){
-            if(answerBridge.equals("U")){
+    public boolean move(int [] upCase, int [] downCase, List<String> bridge, String moveCommand, int i) {
+        if(bridge.get(i).equals(moveCommand)){
+            if(bridge.get(i).equals("U"))
                 upCase[i] += 1;
-            }
-            if(answerBridge.equals("D")){
+            if(bridge.get(i).equals("D"))
                 downCase[i] += 1;
-            }
             return true;
         }
+        doNotMove(upCase, downCase, bridge, moveCommand, i);
         return false;
     }
-    public void dontMove(int [] upCase, int [] downCase, List<String> bridge, String input, int i){
+    public void doNotMove(int [] upCase, int [] downCase, List<String> bridge, String input, int i){
         if(input.equals("U")) {
             upCase[i] += 2;
         }
@@ -66,8 +61,7 @@ public class BridgeGame {
         for (int i = 0; i < bridge.size(); i++) {
             printMessage.printAskMovingButton();
             String input = inputView.readMoving(Console.readLine());
-            if(!move(upCase, downCase, bridge.get(i), input, i)){
-                dontMove(upCase, downCase, bridge, input, i);
+            if(!move(upCase, downCase, bridge, input, i)){
                 return;
             }
             printMessage.printMap(upCase, downCase, bridgeLength);

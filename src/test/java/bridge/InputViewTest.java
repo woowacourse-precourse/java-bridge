@@ -10,7 +10,7 @@ class InputViewTest {
     @Test
     void readBridgeSize() {
         String test = "10";
-        assertThat(inputView.readBridgeSize(test)).isEqualTo(10);
+        assertThat(inputView.readBridgeSize()).isEqualTo(10);
     }
 
     @Test
