@@ -26,7 +26,7 @@ public class GameStart {
     public void run() {
         createBridge();
         for (int i = 0; i < bridgeSize; i++) {
-            String moveBlock = inputView.readMoving();
+            String moveBlock = move();
             boolean isMove = bridgeGame.move(moveBlock);
             outputView.printMap();
             if (!isMove) {
@@ -41,5 +41,11 @@ public class GameStart {
         outputView.printInputSizeMessage();
         bridgeSize = inputView.readBridgeSize();
         bridge = bridgeMaker.makeBridge(bridgeSize);
+    }
+
+    private String move() {
+        outputView.printInputMoveMessage();
+        String moveBlock = inputView.readMoving();
+        return moveBlock;
     }
 }
