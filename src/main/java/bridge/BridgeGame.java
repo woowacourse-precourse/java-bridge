@@ -6,17 +6,27 @@ import java.util.List;
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
+
 public class BridgeGame {
+
+    public static int retryCount = 1;
+    public static boolean gameFlag = false;
 
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
     BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
 
-    public void run() {
-        int size = inputView.readBridgeSize();
+    public void run(int size) {
+        List<String> upSideDownSideMove;
         List<String> bridge = bridgeMaker.makeBridge(size);
-        move(bridge);
+        do {
+            upSideDownSideMove = move(bridge);
+            if (!isSuccess(upSideDownSideMove)) {
+                retry();
+            }
+        } while (!gameFlag);
+        outputView.printResult(upSideDownSideMove);
     }
 
     /**
@@ -24,7 +34,7 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(List<String> bridge) {
+    public List<String> move(List<String> bridge) {
         List<String> upSideDownSideMove = new ArrayList<>(List.of("", ""));
         for (String bridgeElement : bridge) {
             CompareBridge playerMove = new CompareBridge(inputView.readMoving());
@@ -33,7 +43,20 @@ public class BridgeGame {
             upSideDownSideMove.set(1, upSideDownSideMove.get(1)
                     + playerMove.getDownSideMove(playerMove, bridgeElement).toString());
             outputView.printMap(upSideDownSideMove);
+            if (!isSuccess(upSideDownSideMove)) {
+                break;
+            }
         }
+        return upSideDownSideMove;
+    }
+
+    public boolean isSuccess(List<String> upSideDownSideMove) {
+        if (upSideDownSideMove.stream().anyMatch(move -> move.contains("X"))) {
+            gameFlag = false;
+            return false;
+        }
+        gameFlag = true;
+        return true;
     }
 
     /**
@@ -42,5 +65,13 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        String gameCommand = inputView.readGameCommand();
+        if (gameCommand.equals("R")) {
+            retryCount += 1;
+            gameFlag = false;
+        }
+        if (gameCommand.equals("Q")) {
+            gameFlag = true;
+        }
     }
 }

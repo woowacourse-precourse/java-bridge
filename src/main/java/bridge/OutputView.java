@@ -1,5 +1,7 @@
 package bridge;
 
+import static bridge.BridgeGame.*;
+
 import java.util.List;
 
 /**
@@ -30,7 +32,14 @@ public class OutputView {
             move = move.replaceFirst("^", "[").replaceFirst(".$", "]");
             System.out.println(move.toString());
         }
-        System.out.println("게임 성공 여부: %s");
-        System.out.println("총 시도한 횟수: %d");
+        System.out.printf("게임 성공 여부: %s\n", getSuccessFailure(gameFlag));
+        System.out.printf("총 시도한 횟수: %d", retryCount);
+    }
+
+    public String getSuccessFailure(boolean gameFlag) {
+        if (gameFlag) {
+            return "성공";
+        }
+        return "실패";
     }
 }
