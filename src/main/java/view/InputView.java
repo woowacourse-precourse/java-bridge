@@ -1,5 +1,7 @@
 package view;
 
+import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  *
@@ -10,12 +12,27 @@ package view;
  * 4. 사용자 값 입력을 위해 필요한 메서드를 추가할 수 있다.
  */
 public class InputView {
+    private static final String INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
+    private static final Validation validation = new Validation();
+    public static String input = "";
+
+    public String repeat(String message) {
+        while(true) {
+            try {
+                System.out.println("\n" + message);
+                input = Console.readLine();
+                return input;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
+    }
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        return Integer.parseInt(repeat(INPUT_BRIDGE_SIZE));
     }
 
     /**
