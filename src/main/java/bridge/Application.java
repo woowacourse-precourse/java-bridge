@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -30,6 +31,20 @@ public class Application {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+
+        // 3.
+        BridgeGame bridgeGame = new BridgeGame();
+        OutputView outputView = new OutputView();
+        List<String> result = new ArrayList<>();
+        for (int i = 0; i < bridgeSize; i++) {
+            String movingValue = inputView.readMoving();
+            result.add(bridgeGame.move(movingValue, bridge.get(i)));
+            outputView.printMap(result, bridge);
+            if (result.contains("X")) {
+                break;
+            }
+        }
+
 
     }
 }
