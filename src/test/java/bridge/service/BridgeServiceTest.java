@@ -1,15 +1,11 @@
 package bridge.service;
 
 import bridge.constant.ViewStatus;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BridgeServiceTest {
 
@@ -26,7 +22,7 @@ class BridgeServiceTest {
     @ValueSource(ints = {20,3,5})
     @ParameterizedTest
     void returnMakeBridgeResponseWhenSizeIsInvalid(int size) {
-        assertThat(bridgeService.makeBridge(size).getViewStatus())
+        assertThat(bridgeService.makeBridge(size))
                 .isEqualTo(ViewStatus.DETERMINE_MOVE);
     }
 }
