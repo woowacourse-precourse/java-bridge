@@ -1,15 +1,30 @@
 package bridge.view;
 
+import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private static final String INPUT_SIZE = "다리의 길이를 입력해주세요.";
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        System.out.println(INPUT_SIZE);
+        String size = Console.readLine();
+        sizeValidate(size);
+        return Integer.valueOf(size);
+    }
+
+    private void sizeValidate(String size) {
+        if (!size.matches("^[0-9]+$")) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자만 들어올 수 있습니다.");
+        }
+        if (Integer.valueOf(size) < 3 || Integer.valueOf(size) > 20) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
     }
 
     /**
