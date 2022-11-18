@@ -4,8 +4,6 @@ import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 
-import java.util.List;
-
 public class BridgeGameConsole {
 
     private final Emcee emcee = new Emcee();
@@ -15,11 +13,8 @@ public class BridgeGameConsole {
 
     public void run() {
         emcee.guideGame();
-        int bridgeLength = createBridgeLength();
-        List<String> bridge = maker.makeBridge(bridgeLength);
-        BridgeGame bridgeGame = new BridgeGame(bridge);
-        int attemptCount = playGame(bridgeGame);
-        emcee.showGameResult(bridgeGame.createMovementStatus(), bridgeGame.crossedBridge(), attemptCount);
+        BridgeGame bridgeGame = new BridgeGame(maker.makeBridge(createBridgeLength()));
+        emcee.showGameResult(bridgeGame.createMovementStatus(), bridgeGame.crossedBridge(), playGame(bridgeGame));
     }
 
     private int createBridgeLength() {
