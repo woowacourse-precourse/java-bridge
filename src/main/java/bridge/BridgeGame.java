@@ -21,7 +21,11 @@ public class BridgeGame {
         return bridge.get(count++).equals(move);
     }
 
-
-    public void retry() {
+    public boolean retry(String gameCommand){
+        if(gameCommand.equals(COMMAND_RESTART))
+            return true;
+        if(gameCommand.equals(COMMAND_QUIT))
+            return false;
+        throw new IllegalArgumentException();
     }
 }
