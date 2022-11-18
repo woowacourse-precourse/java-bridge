@@ -9,6 +9,7 @@ public class InputView {
 
     private static final String REGEX_NUMBER = "^[0-9]*$";
     private static final String REGEX_MOVING = "^D|U$";
+    private static final String REGEX_GAME_COMMAND = "^R|Q$";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -48,6 +49,14 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String gameCommand = Console.readLine();
+        validateGameCommand(gameCommand);
+        return gameCommand;
+    }
+
+    private void validateGameCommand(String gameCommand) {
+        if (!gameCommand.matches(REGEX_GAME_COMMAND)) {
+            throw new IllegalArgumentException("[ERROR] 게임 재시작 여부는 'R', 'Q' 중 하나를 선택해야 합니다.");
+        }
     }
 }
