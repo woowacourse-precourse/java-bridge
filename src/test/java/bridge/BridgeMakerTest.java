@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.ApplicationTest.TestNumberGenerator;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
@@ -21,19 +20,17 @@ class BridgeMakerTest {
         // given
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(numbers);
         BridgeMaker maker = new BridgeMaker(numberGenerator);
-
         // when
         List<String> bridge = maker.makeBridge(size);
-
         // then
         assertThat(bridge).containsAll(expected);
     }
 
     static Stream<Arguments> generateData() {
         return Stream.of(
-                Arguments.of(new ArrayList<>(List.of(0, 1, 1)), 3, Arrays.asList("D", "U", "U")),
-                Arguments.of(new ArrayList<>(List.of(1, 0, 0, 1)), 4, Arrays.asList("U", "D", "D", "U")),
-                Arguments.of(new ArrayList<>(List.of(1, 0, 1, 1, 0)), 5, Arrays.asList("U", "D", "U", "U", "D"))
+                Arguments.of(new ArrayList<>(List.of(0, 1, 1)), 3, List.of("D", "U", "U")),
+                Arguments.of(new ArrayList<>(List.of(1, 0, 0, 1)), 4, List.of("U", "D", "D", "U")),
+                Arguments.of(new ArrayList<>(List.of(1, 0, 1, 1, 0)), 5, List.of("U", "D", "U", "U", "D"))
         );
     }
 }
