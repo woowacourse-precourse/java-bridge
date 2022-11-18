@@ -26,6 +26,13 @@ public class OutputView {
         }
     }
 
+    public void printFinalMap(List<String> movingResult) {
+        System.out.println("\n최종 게임 결과");
+        for (String result : movingResult) {
+            System.out.println(result);
+        }
+    }
+
     public void printSuccessStatus(boolean status) {
         if (status) {
             System.out.println("\n게임 성공 여부: 성공");
@@ -34,7 +41,12 @@ public class OutputView {
         System.out.println("\n게임 성공 여부: 실패");
     }
 
-    public void printResult(int gameProceedCount) {
+    public void printTryCount(int gameProceedCount) {
         System.out.printf("총 시도한 횟수: %d\n", gameProceedCount);
+    }
+
+    public void printResult(boolean status, int gameProceedCount) {
+        printSuccessStatus(status);
+        printTryCount(gameProceedCount);
     }
 }
