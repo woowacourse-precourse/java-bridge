@@ -48,4 +48,18 @@ public class InputView {
         return moving;
     }
 
+        public String readGameCommand () {
+            System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+            String retry = sc.next();
+            retryCheck(retry);
+            return retry;
+        }
+    public void retryCheck(String retry) {
+            if(retry.equals("")){
+                throw new IllegalArgumentException("[ERROR]");
+            }
+        if (!retry.equals("R") && !retry.equals("Q")) {
+            throw new IllegalArgumentException("[ERROR]");
+        }
+    }
 }
