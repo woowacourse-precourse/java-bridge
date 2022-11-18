@@ -39,4 +39,8 @@ public class Bridge {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = bridgeMaker.makeBridge(bridgeSize);
     }
+
+    public boolean isEqualToChoice(int idx, String choice){
+        return choice.equals(bridge.get(idx));
+    }
 }

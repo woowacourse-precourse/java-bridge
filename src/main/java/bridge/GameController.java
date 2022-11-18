@@ -1,16 +1,17 @@
 package bridge;
 
+import static bridge.MessageUtil.INVALID_GAME_CMD;
+
 public class GameController {
 
     private final InputView inputView;
     private final OutputView outputView;
     private Bridge bridge;
-    private final BridgeGame bridgeGame;
+    private BridgeGame bridgeGame;
 
     public GameController() {
         inputView = new InputView();
         outputView = new OutputView();
-        bridgeGame = new BridgeGame();
     }
 
     public void executeGame() {
@@ -28,14 +29,34 @@ public class GameController {
             outputView.printErrorMessage(exception.getMessage());
             makeBridge();
         }
+        bridgeGame = new BridgeGame(bridge);
     }
 
     private void crossToOtherSide() {
-        int matchCount = 0;
-        while (matchCount < bridge.getBridgeSize()) {
+        while (!bridgeGame.hasCrossed()) {
             outputView.printUserChoiceOpening();
-            String choice = inputView.readPositionChoice();
+            String choice = inputView.readMoving();
+            if (!bridgeGame.matches(choice)){
+                chooseNextStep();
+                continue;
+            }
+            bridgeGame.move();
+        }
+    }
 
+    private void chooseNextStep() {
+        // 만약 R를 고르면 재시작, Q를 고르면 종료
+        String cmd = inputView.readGameCommand();
+        validateCommand(cmd);
+//        if (cmd == "R"){
+//            bridgeGame.retry();
+//        }
+        // 종료.... -> 바로 결과 출력 !
+    }
+
+    private void validateCommand(String cmd) {
+        if (!cmd.matches("^[RQ]$")){
+            throw new IllegalArgumentException(INVALID_GAME_CMD.message);
         }
     }
 }

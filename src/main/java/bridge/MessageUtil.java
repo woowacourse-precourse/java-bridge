@@ -7,7 +7,9 @@ public enum MessageUtil {
     POSITION_CHOICE_INPUT("이동할 칸을 선택해주세요. (위: U, 아래: D)"),
 
     // 에러 관련
-    INVALID_BRIDGE_SIZE("잘못된 입력 형식입니다. 3 ~ 20 사이의 숫자를 입력해주세요.");
+    INVALID_BRIDGE_SIZE("잘못된 입력 형식입니다. 3 ~ 20 사이의 숫자를 입력해주세요."),
+    INVALID_MOVE_CHOICE("잘못된 입력 형식입니다. U, D 중 선택해주세요"),
+    INVALID_GAME_CMD("잘못된 입력 형식입니다. R, Q 중 선택해주세요");
 
     public final String message;
 
