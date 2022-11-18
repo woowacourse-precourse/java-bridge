@@ -59,4 +59,57 @@ class InputViewTest {
             assertThat(bridgeSize).isEqualTo(Integer.parseInt(bridgeSizeInput));
         }
     }
+
+    @Nested
+    @DisplayName("사용자가 이동할 칸 입력 시")
+    class MovingInputTest {
+
+        @Test
+        @DisplayName("'D', 'U' 외의 문자가 있으면 에러가 발생한다.")
+        void case1() {
+            //given
+            String movingInput = "D1";
+            InputStream in = new ByteArrayInputStream(movingInput.getBytes());
+            System.setIn(in);
+
+            InputView inputView = new InputView();
+
+            //when //then
+            assertThatThrownBy(inputView::readMoving).isInstanceOf(IllegalArgumentException.class);
+
+        }
+
+        @Test
+        @DisplayName("문자의 길이가 2자 이상이면 에러가 발생한다.")
+        void case2() {
+            //given
+            String movingInput = "UU";
+            InputStream in = new ByteArrayInputStream(movingInput.getBytes());
+            System.setIn(in);
+
+            InputView inputView = new InputView();
+
+            //when //then
+            assertThatThrownBy(inputView::readMoving).isInstanceOf(IllegalArgumentException.class);
+
+        }
+
+        @Test
+        @DisplayName("'D', 'U' 중 한 문자만 입력해야 한다. ")
+        void case3() {
+            //given
+            String movingInput = "D";
+            InputStream in = new ByteArrayInputStream(movingInput.getBytes());
+            System.setIn(in);
+
+            InputView inputView = new InputView();
+
+            //when
+            String moving = inputView.readMoving();
+
+            //then
+            assertThat(moving).isEqualTo(movingInput);
+
+        }
+    }
 }
