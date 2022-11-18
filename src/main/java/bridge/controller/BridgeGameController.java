@@ -10,6 +10,9 @@ import bridge.view.OutputView;
 
 public class BridgeGameController {
 
+    private static final String RETRY = "R";
+    private static final String QUIT = "Q";
+
     private final InputView inputView;
     private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
@@ -30,7 +33,9 @@ public class BridgeGameController {
     public void play() {
         start();
         Bridge bridge = makeBridge(makeBridgeSize());
-        moveBridge(bridge);
+        while (play) {
+            moveBridge(bridge);
+        }
     }
 
     private void start() {
@@ -55,6 +60,30 @@ public class BridgeGameController {
 
             gameResult.makeMoveResult(moving, moveState);
             outputView.printMap(gameResult.getMoveResult());
+
+            if (isFail(moveState)) {
+                break;
+            }
+        }
+    }
+
+    private boolean isFail(String moveState) {
+        if (moveState.equals("X")) {
+            outputView.printGameCommandMsg();
+            checkPlay(inputView.readGameCommand());
+            return true;
+        }
+
+        return false;
+    }
+
+    private void checkPlay(String command) {
+        if (command.equals(RETRY)) {
+            bridgeGame.retry(gameResult);
+        }
+
+        if (command.equals(QUIT)) {
+            play = false;
         }
     }
 }
