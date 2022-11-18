@@ -16,6 +16,7 @@ public class InputView {
     private static final String ERROR_INPUT_LENGTH_ZERO = "[ERROR] 아무것도 입력하지 않았습니다.";
     private static final String ERROR_NOT_INTEGER = "[ERROR] 숫자를 입력해야 합니다.";
     private static final String BRIDGE_SIZE_INPUT_MESSAGE = "다리의 길이를 입력해주세요.";
+    private static final String MOVE_INPUT_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final int EMPTY_LENGTH_VALUE = 0;
 
     /**
@@ -30,7 +31,8 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(MOVE_INPUT_MESSAGE);
+        return validateNotEmpty(Console.readLine());
     }
 
     /**
