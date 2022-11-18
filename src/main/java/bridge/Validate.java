@@ -11,4 +11,6 @@ public class Validate {
     public static String moving(String moving){
         return Exception.validateInputValueForMove(moving);
     }
+
+    
 }
