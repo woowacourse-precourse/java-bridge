@@ -5,6 +5,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
+import bridge.domain.Length;
 import bridge.domain.PassingPositions;
 import bridge.domain.Result;
 import bridge.view.InputView;
@@ -18,18 +19,16 @@ public class BridgeController {
 
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
-
-        String inputLength = "";
+        Length length = null;
         do {
             try {
-                inputLength = InputView.readBridgeSize();
+                length = new Length(InputView.readBridgeSize());
             } catch (IllegalArgumentException ex) {
                 OutputView.printError(ex.getMessage());
             }
-        } while(inputLength.isBlank());
+        } while(length == null);
 
-
-        int size = Integer.parseInt(inputLength);
+        int size = length.getLength();
         List<String> bridgeNumbers = bridgeMaker.makeBridge(size);
 
         Bridge bridge = new Bridge(bridgeNumbers);
