@@ -16,9 +16,7 @@ class SquareTest {
         @ParameterizedTest
         @ValueSource(strings = {"1", "1$", "U D", "C", " ", "u", "d"})
         void validateChar(String move) {
-            int position = 0;
-
-            Assertions.assertThatThrownBy( () -> new Square(position, move))
+            Assertions.assertThatThrownBy( () -> new Square(move))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("[ERROR] 이동할 칸은 U와 D 문자만 입력 가능합니다.");
         }
@@ -27,9 +25,7 @@ class SquareTest {
         @ParameterizedTest
         @ValueSource(strings = {"UU", "DD", "UD"})
         void validateSize(String move) {
-            int position = 0;
-
-            Assertions.assertThatThrownBy( () -> new Square(position, move))
+            Assertions.assertThatThrownBy( () -> new Square(move))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("[ERROR] 이동할 칸은 U와 D 중에 하나만 입력 가능합니다.");
         }

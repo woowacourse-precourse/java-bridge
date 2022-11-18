@@ -1,10 +1,7 @@
 package bridge.controller;
 
 import bridge.BridgeRandomNumberGenerator;
-import bridge.domain.Bridge;
-import bridge.domain.BridgeMaker;
-import bridge.domain.BridgeSize;
-import bridge.domain.Square;
+import bridge.domain.*;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -15,6 +12,12 @@ public class BridgeGameController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 
+    private final BridgeGame bridgeGame;
+
+    public BridgeGameController(BridgeGame bridgeGame) {
+        this.bridgeGame = bridgeGame;
+    }
+
     public void run() {
         outputView.printInit();
         int size = inputView.readBridgeSize();
@@ -22,10 +25,15 @@ public class BridgeGameController {
 
         BridgeRandomNumberGenerator generator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker =  new BridgeMaker(generator);
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize.getSize());
+        List<String> tempBridge = bridgeMaker.makeBridge(bridgeSize.getSize());
+        Bridge bridge = Bridge.valueOf(tempBridge);
 
         String move = inputView.readMoving();
-        int position = 0;
-        Square square = new Square(position, move);
+        Square userMove = new Square(move);
+
+        int position = bridgeGame.getPosition();
+        if (bridge.canMoveForward(userMove, position)) {
+
+        }
     }
 }
