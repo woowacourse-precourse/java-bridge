@@ -23,13 +23,14 @@ public class BridgeGameProgram {
             outputView.printRequestMoveSideComment();
             bridgeGame.move(inputView.readMoving());
             outputView.printMap(bridgeGame.nowUserMapState());
-        }
-        if (bridgeGame.isSuccess()) {
-            outputView.printResult();
-        }
-        if (!bridgeGame.isSuccess()) {
-            outputView.printRequestRetryComment();
-            String s = inputView.readRetry();
+
+            if (bridgeGame.isFail()) {
+                outputView.printRequestRetryComment();
+                String s = inputView.readRetry();
+                if (s.equals("R")) {
+                    bridgeGame.retry();
+                }
+            }
         }
     }
 }

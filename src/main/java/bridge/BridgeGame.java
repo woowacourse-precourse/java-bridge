@@ -8,8 +8,9 @@ import java.util.List;
  */
 public class BridgeGame {
     private final BridgeOfComputer computerMap;
-    private final BridgeOfUser userMap;
+    private BridgeOfUser userMap;
     private int stage;
+    private boolean fail;
     private boolean done;
 
     public BridgeGame(List<String> answerBridgeMap) {
@@ -17,6 +18,7 @@ public class BridgeGame {
         this.userMap = new BridgeOfUser();
         this.stage = 0;
         this.done = false;
+        this.fail = false;
     }
 
     public void move(String moveSide) {
@@ -33,11 +35,18 @@ public class BridgeGame {
     private void restoreRightMove(String moveSide) {
         userMap.restoreByRigth(moveSide);
         stage++;
+        checkSuccess();
+    }
+
+    private void checkSuccess() {
+        if (userMap.equalsWithComputerMapLength(computerMap.getLength())) {
+            done = true;
+        }
     }
 
     private void restoreWrongMove(String moveSide) {
         userMap.restoreByWrong(moveSide);
-        done = true;
+        fail = true;
     }
 
     public BridgeOfUser nowUserMapState() {
@@ -50,14 +59,17 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        this.userMap = new BridgeOfUser();
+        this.stage = 0;
+        this.done = false;
+        this.fail = false;
     }
-
 
     public boolean isNotDone() {
         return !done;
     }
 
-    public boolean isSuccess() {
-       return userMap.equalsWithComputerMapLength(computerMap.getLength());
+    public boolean isFail() {
+        return fail;
     }
 }
