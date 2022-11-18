@@ -1,5 +1,7 @@
 package bridge;
 
+import static bridge.constant.Config.*;
+
 import bridge.constant.message.InputErrorMessage;
 import bridge.utils.Validator;
 
@@ -15,14 +17,16 @@ public class InputView {
         return 0;
     }
 
-    private void checkNumericString(String command){
-        if(!Validator.isNumericString(command)){
+    private void checkNumericString(String command) {
+        if (!Validator.isNumericString(command)) {
             throw new IllegalArgumentException(InputErrorMessage.NO_NUMERIC_STRING.getMessage());
         }
     }
 
-    private void checkRangeOfBridgeSize(int bridgeSize){
-        // TODO: 주어진 다리 크기가 유효한지 확인
+    private void checkRangeOfBridgeSize(int bridgeSize) {
+        if (!Validator.isInRangeOfNumber(bridgeSize, RANGE_OF_BRIDGE_SIZE_START, RANGE_OF_BRIDGE_SIZE_END)) {
+            throw new IllegalArgumentException(InputErrorMessage.NO_RANGE_OF_BRIDGE_SIZE.getMessage());
+        }
     }
 
     /**
@@ -32,7 +36,7 @@ public class InputView {
         return null;
     }
 
-    private void checkValidMoving(String command){
+    private void checkValidMoving(String command) {
         // TODO: 사용자의 입력값이 칸 이동 명령어인지 확인
     }
 
@@ -43,7 +47,7 @@ public class InputView {
         return null;
     }
 
-    private void checkValidGameCommand(String command){
+    private void checkValidGameCommand(String command) {
         // TODO: 사용자의 입력값이 게임 관련 명령어인지 확인
     }
 }
