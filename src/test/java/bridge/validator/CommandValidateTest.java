@@ -40,7 +40,17 @@ public class CommandValidateTest {
 		"T", "V", "W", "X", "Y", "Z"})
 	void notUD(String input) {
 		assertThatThrownBy(() -> {
-			CommandValidate.validateExactCharacter(input);
+			CommandValidate.validateExactCharacterUD(input);
+		}).isInstanceOf(IllegalArgumentException.class);
+	}
+
+	@DisplayName("R와 Q 이외의 문자를 입력한 경우 예외 발생")
+	@ParameterizedTest
+	@ValueSource(strings = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "S",
+		"T", "U", "V", "W", "X", "Y", "Z"})
+	void notRQ(String input) {
+		assertThatThrownBy(() -> {
+			CommandValidate.validateExactCharacterRQ(input);
 		}).isInstanceOf(IllegalArgumentException.class);
 	}
 }

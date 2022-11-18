@@ -46,7 +46,7 @@ public class InputView {
 		CommandValidate.validateCharacter(userInput);
 		CommandValidate.validateEnglish(userInput);
 		CommandValidate.validateUpperCase(userInput);
-		CommandValidate.validateExactCharacter(userInput);
+		CommandValidate.validateExactCharacterUD(userInput);
 	}
 
 	/**

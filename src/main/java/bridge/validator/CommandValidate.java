@@ -20,9 +20,13 @@ public class CommandValidate {
 		}
 	}
 
-	public static void validateExactCharacter(String input) {
+	public static void validateExactCharacterUD(String input) {
 		if (!input.matches("^[UD]+$")) {
 			throw new IllegalArgumentException("U와 D만 입력할 수 있습니다.");
 		}
+	}
+
+	public static void validateExactCharacterRQ(String input) {
+			throw new IllegalArgumentException("R과 Q만 입력할 수 있습니다.");
 	}
 }
