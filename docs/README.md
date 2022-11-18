@@ -8,8 +8,30 @@
   - [ ] "게임 성공 여부:"
   - [ ] "총 시도한 횟수:"
 
+  
+- [ ] (UI 메시지를 제외한) 출력
+  - [ ] 한 줄 비우기
+  - [ ] 
+ 
 
 - [ ] [ERROR]
   - [ ] 다리 길이 입력: 3~20이 아닌 경우 (범위 밖 숫자는 물론이고 문자도 싹 다 예외)
   - [ ] 이동 칸 입력: U, D가 아닌 경우 (두 개를 제외한 나머지는 싹 다 예외)
   - [ ] 재시도 여부 입력: R, Q가 아닌 경우 (두 개를 제외한 나머지는 싹 다 예외)
+
+
+### 클래스별 기능 목록
+- [ ] BridgeGame
+  - [ ] move(): 칸 이동 메서드
+  - [ ] retry(): 재시작 메서드
+- [ ] BridgeMaker
+  - [ ] makeBridge(): ***
+- [ ] BridgeRandomNumberGenerator
+  - [ ] generate()를 구체화!
+- [ ] InputView => ERROR의 순서대로 대응됨
+  - [ ] readBridgeSize()
+  - [ ] readMoving()
+  - [ ] readGameCommand()
+- [ ] OutputView
+  - [ ] printMap(): 그러니까 다리의 틀과, O X의 결과를 합쳐서 출력하는 메서드라는거겠지?
+  - [ ] printResult(): 게임 성공 여부, 총 시도한 횟수를 출력해주는 메서드인듯
