@@ -35,12 +35,19 @@ public class BridgeGame {
     }
 
     public void retry(String command) {
-        if (this.maxPassedCount < player.getPassedCount()) {
-            this.maxPassedCount = player.getPassedCount();
-        }
+        updateMaxPassedCount();
+
         if (command.equals(InputValue.COMMAND_RETRY)) {
             player.revive();
             this.retryCount++;
+        }
+    }
+
+    public void updateMaxPassedCount() {
+        int passedCount = player.getPassedCount();
+
+        if (this.maxPassedCount < passedCount) {
+            this.maxPassedCount = passedCount;
         }
     }
 
