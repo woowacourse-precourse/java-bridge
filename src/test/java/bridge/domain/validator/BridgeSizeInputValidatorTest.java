@@ -12,6 +12,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("다리 길이 입력값 유효성 검사 테스트")
 @TestMethodOrder(OrderAnnotation.class)
@@ -39,6 +40,24 @@ class BridgeSizeInputValidatorTest {
                 Arguments.of("\t", "\"\t\""),
                 Arguments.of("\n", "개행문자")
         );
+    }
+
+    @Order(2)
+    @DisplayName("올바른 숫자 값 입력 여부 검사")
+    @ParameterizedTest(name ="{displayName} 입력값({index}) : {0}")
+    @ValueSource(strings = {
+            "abcd",
+            "ㄱㄴㄷㄹㅁ",
+            "100000000"
+            })
+    void validateIsInvalid(String inputValue) {
+    assertSimpleTest(() ->
+                assertThatThrownBy(() -> sizeInputValidator.validateIsInvalid(inputValue))
+                .isInstanceOf(IllegalArgumentException.class)
+    );
+    assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> sizeInputValidator.validateIsInvalid(inputValue))
+                .withMessageContaining("[ERROR]");
     }
 
 
