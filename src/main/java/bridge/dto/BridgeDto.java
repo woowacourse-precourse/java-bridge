@@ -1,6 +1,6 @@
 package bridge.dto;
 
-import bridge.domain.Bridge;
+import bridge.domain.bridge.Bridge;
 
 import java.util.List;
 

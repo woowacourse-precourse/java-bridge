@@ -1,14 +1,14 @@
 package bridge.repository;
 
-import bridge.domain.Bridge;
+import bridge.domain.bridge.Bridge;
 
 public class BridgeRepository {
     private static final BridgeRepository bridgeRepository = new BridgeRepository();
 
+    private Bridge bridge;
+
     private BridgeRepository() {
     }
-
-    private Bridge bridge;
 
     public static BridgeRepository getInstance() {
         return bridgeRepository;

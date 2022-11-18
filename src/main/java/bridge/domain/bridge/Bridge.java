@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.bridge;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ public class Bridge {
     private Bridge(List<String> bridge) {
         this.bridge = bridge;
     }
+
     public static Bridge from(List<String> bridge) {
         return new Bridge(bridge);
     }
