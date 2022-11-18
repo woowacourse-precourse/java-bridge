@@ -1,10 +1,13 @@
 package bridge;
 
 import static bridge.ErrorCode.WRONG_BRIDGE_LENGTH_INPUT;
+import static bridge.ErrorCode.WRONG_MOVE_INPUT;
 
 public class Validator {
     private final int SHORTEST_LEGNTH = 3;
     private final int LONGEST_LENGTH = 20;
+    private final String UP = "U";
+    private final String DOWN = "D";
 
     public Validator() {
     }
@@ -12,6 +15,12 @@ public class Validator {
     public void bridgeLengthValidate(String length) {
         if (!(isNotWrongLength(length) && isOnlyContainDigit(length) && isNotWrongRange(length))) {
             throw new IllegalArgumentException(WRONG_BRIDGE_LENGTH_INPUT);
+        }
+    }
+
+    public void moveValidate(String move) {
+        if (!(UP.equals(move) || DOWN.equals(move))) {
+            throw new IllegalArgumentException(WRONG_MOVE_INPUT);
         }
     }
 
