@@ -9,6 +9,7 @@ public class ExceptionConst {
     public static String EXCEPTION_MESSAGE_0_OR_1 = "[ERROR] 0 또는 1만 허용됩니다.";
     public static String EXCEPTION_MESSAGE_BRIDGE_LENGTH_OVER_USER = "[ERROR] 유저가 건넌 다리의 길이가 다리의 길이보다 깁니다.";
     public static String EXCEPTION_MESSAGE_BRIDGE_LENGTH_3_TO_20 = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+    public static String EXCEPTION_MESSAGE_ILLEGAL_INDEX = "[ERROR] 인덱스가 음수거나 범위를 초과했습니다.";
 
     private ExceptionConst() {
     }

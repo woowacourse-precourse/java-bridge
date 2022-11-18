@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import static bridge.ExceptionConst.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +18,7 @@ public class Map {
 
     public void update() {
         if (user.getMovedLength() > bridge.getLength()) {
-            throw new IllegalArgumentException("[ERROR] 유저가 건넌 다리의 길이가 다리의 길이보다 깁니다.");
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_BRIDGE_LENGTH_OVER_USER);
         }
         upper.clear();
         lower.clear();
