@@ -44,6 +44,7 @@ public class BridgeGame {
         getRandomBridge(bridgeNum);
         playGame(1);
     }
+
     public void playGame(int gameCount){
         OutputView outputview = new OutputView();
         for (int i=0; i<bridgeNum; i++){
