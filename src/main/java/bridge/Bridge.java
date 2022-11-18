@@ -7,6 +7,7 @@ public class Bridge {
     private final int size;
     private int location = 0;
     private int tryCount = 1;
+    private boolean correct;
 
     public Bridge(List<String> bridge, int size) {
         this.bridge = bridge;
@@ -47,5 +48,16 @@ public class Bridge {
 
     public int getTryCount() {
         return this.tryCount;
+    }
+
+    public void setCorrect(boolean correct) {
+        this.correct = correct;
+    }
+
+    /**
+     * 현재 진행도에 따른 다리 출력물을 반환한다.
+     */
+    public String getProgress() {
+            return null;
     }
 }

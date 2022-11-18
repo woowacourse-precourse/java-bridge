@@ -18,8 +18,10 @@ public class BridgeGame {
     public boolean move(String moving) {
         if (bridge.possibleMove(moving)) {
             bridge.locationUpdate();
+            bridge.setCorrect(true);
             return true;
         }
+        bridge.setCorrect(false);
         return false;
     }
 
