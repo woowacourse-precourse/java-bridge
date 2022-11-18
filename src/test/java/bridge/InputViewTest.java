@@ -1,7 +1,9 @@
 package bridge;
 
 import bridge.view.InputView;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.api.DisplayName;
 
 import java.io.*;
 import java.util.*;
@@ -10,10 +12,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputViewTest {
 
-    @Test
-    void 다리_길이_범위_밖의_숫자_입력 () {
+    @DisplayName("다리 길이를 입력 할 때 범위 내 숫자가 아닌 문자를 입력하면 예외 발생")
+    @ValueSource(strings = {"2","21","a"," ","1 "})
+    @ParameterizedTest
+    void inputExceededRangeBridgeSize (String inputNumber) {
         InputView input = new InputView();
-        String bridgeSize = "2";
+        String bridgeSize = inputNumber;
 
         InputStream in = new ByteArrayInputStream(bridgeSize.getBytes());
         System.setIn(in);
@@ -22,20 +26,10 @@ public class InputViewTest {
                 .isInstanceOf(NoSuchElementException.class);
     }
 
-    @Test
-    void 다리_길이_숫자_외의_문자_입력 () {
-        InputView input = new InputView();
-        String bridgeSize = ";";
-
-        InputStream in = new ByteArrayInputStream(bridgeSize.getBytes());
-        System.setIn(in);
-
-        assertThatThrownBy(input::readBridgeSize)
-                .isInstanceOf(NoSuchElementException.class);
-    }
-
-    @Test
-    void 이동할_칸_다른_문자_입력 () {
+    @DisplayName("이동할 칸을 입력할 땐 U,D외의 문자를 입력하면 예외 발생")
+    @ValueSource(strings = {"P"," ","1","U "})
+    @ParameterizedTest
+    void inputOutOfFormMoving () {
         InputView input = new InputView();
         String bridgeSize = "P";
 
@@ -46,20 +40,10 @@ public class InputViewTest {
                 .isInstanceOf(NoSuchElementException.class);
     }
 
-    @Test
-    void 이동할_칸_공백_함께_입력 () {
-        InputView input = new InputView();
-        String bridgeSize = "U ";
-
-        InputStream in = new ByteArrayInputStream(bridgeSize.getBytes());
-        System.setIn(in);
-
-        assertThatThrownBy(input::readMoving)
-                .isInstanceOf(NoSuchElementException.class);
-    }
-
-    @Test
-    void 재시작_커맨드_다른_문자_입력 () {
+    @DisplayName("재시작 커맨드 입력 시 지정된 문자 외의 다른 문자를 입력하면 예외 발생")
+    @ValueSource(strings = {"U","1","R ","Q "})
+    @ParameterizedTest
+    void inputOutOfFormCommand () {
         InputView input = new InputView();
         String bridgeSize = "U ";
 
