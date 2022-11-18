@@ -18,4 +18,11 @@ public class Exception {
         }
         return true;
     }
+
+    public static boolean readGameCommandValidation(String command) {
+        if (!(command.equals("R") || command.equals("Q"))) {
+            throw new IllegalArgumentException(ERROR + " R 또는 Q 를 입력해 주세요.");
+        }
+        return true;
+    }
 }
