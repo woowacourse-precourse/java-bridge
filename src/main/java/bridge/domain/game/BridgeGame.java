@@ -38,10 +38,11 @@ public class BridgeGame {
     }
     
     public boolean isReachedLastPosition() {
-        return getBridge().size() <= getCurrentPosition();
+        return getBridge().size() - 1 <= getCurrentPosition();
     }
     
     public void move() {
+        if (isReachedLastPosition()) return;
         setCurrentPosition(getCurrentPosition() + 1);
     }
     
