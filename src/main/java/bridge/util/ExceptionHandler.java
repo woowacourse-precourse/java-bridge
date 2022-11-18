@@ -6,8 +6,6 @@ public class ExceptionHandler {
 
     static final int BRIDGE_SIZE_MIN = 3;
     static final int BRIDGE_SIZE_MAX = 20;
-    static final String RE_START = "R";
-    static final String QUIT = "Q";
 
     public static void checkBridgeSize(final String input) {
         try {
@@ -40,7 +38,7 @@ public class ExceptionHandler {
     }
 
     public static void checkRetryCommand(final String input) {
-        if (!(input.equals(RE_START) || input.equals(QUIT))) {
+        if (!(input.equals(Message.RE_START) || input.equals(Message.QUIT))) {
             String message = Message.ERROR_PREFIX + Message.ERROR_RETRY;
             throw new IllegalArgumentException(message);
         }

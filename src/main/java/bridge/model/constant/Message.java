@@ -16,6 +16,8 @@ public class Message {
     public static final String EMPTY_LOG = "   |";
     public static final String SUCCESS = "성공";
     public static final String FAIL = "실패";
+    public static final String RE_START = "R";
+    public static final String QUIT = "Q";
     public static final String UP = "U";
     public static final String DOWN = "D";
     public static final String START_MAP = "[";
