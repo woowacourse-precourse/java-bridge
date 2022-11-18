@@ -52,6 +52,9 @@ public class BridgeGame {
         return moveCommand.equals("U") || moveCommand.equals("D");
     }
 
+    public void recordStep(int status, String direction) {
+        user.recordStep(status, direction);
+    }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>

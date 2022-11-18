@@ -1,6 +1,7 @@
 package bridge;
 
 public class User {
+
     public static final int DEAD = 0;
     public static final int LIVE = 1;
 
@@ -23,7 +24,11 @@ public class User {
         return DEAD;
     }
 
-    public MoveResult getMoveResult() {
-        return moveResult;
+    public void recordStep(int status, String direction) {
+        footPrints.add(status, direction);
+    }
+
+    public boolean isLocateAt(int location) {
+        return currentLocation == location;
     }
 }

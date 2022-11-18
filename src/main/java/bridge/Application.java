@@ -22,6 +22,7 @@ public class Application {
             do {
                 String direction = inputView.readMoving();
                 status = bridgeGame.move(direction);
+                bridgeGame.recordStep(status, direction);
             } while (status == BridgeGame.KEEP_GOING);
 
             // 재시작 / 종료 명령을 입력받는 기능
