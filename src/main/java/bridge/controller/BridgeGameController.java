@@ -11,6 +11,8 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameController {
+    private static final String GAME_FINISH_CHARACTER = "Q";
+    
     private final InputView inputView;
     private final OutputView outputView;
     
@@ -80,7 +82,7 @@ public class BridgeGameController {
     }
     
     private boolean selectGameFinish(final BridgeGame bridgeGame) {
-        if (inputGameCommand().equals("Q")) {
+        if (isSelectFinish()) {
             return true;
         }
         
@@ -88,9 +90,16 @@ public class BridgeGameController {
         return false;
     }
     
-    private String inputGameCommand() {
-        final GameCommandDTO gameCommandDTO = inputView.readGameCommand(outputView);
-        return gameCommandDTO.getGameCommand();
+    private boolean isSelectFinish() {
+        return gameCommand().equals(GAME_FINISH_CHARACTER);
+    }
+    
+    private String gameCommand() {
+        return inputGameCommand().getGameCommand();
+    }
+    
+    private GameCommandDTO inputGameCommand() {
+        return inputView.readGameCommand(outputView);
     }
     
     private void initBridgeGameForRetry(final BridgeGame bridgeGame) {
