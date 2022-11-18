@@ -115,21 +115,20 @@
   - 게임 재시작/종료 여부에 대한 입력을 알리는 문구를 출력하는 메소드
 
 
-- public void printMap(List<String>)
+- public void printMap(List<String>, List<String>)
   - 현재의 다리 상태를 출력하는 메소드
 
 
-- public void printResult(List<String>, boolean, int)
+- public void printResult(List<String>, List<String>)
   - 최종 게임 결과를 출력하는 메소드
+
+
+- public void printSFAndNumber(boolean, int)
+  - 게임의 성공 여부와 시도 횟수를 출력하는 메소드
 
 
 - private String printSuccessOrFail(boolean)
   - 게임의 성공 여부를 출력하는 메소드
-
-
-- private void printBridge(List<String>)
-  - 다리 상태를 출력하는 메소드
-  - printMap, printResult 메소드에서의 중복된 코드를 없애기 위한 메소드
 
 
 - private void printBridgeTop(List<String>)
