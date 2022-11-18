@@ -7,13 +7,11 @@ import java.util.List;
 import static bridge.constant.GameKeyboard.*;
 
 public class OutputView {
-    public static final int NEXT_INDEX = 1;
     private String initUpperBridgeMap = "[";
     private String initDownBridgeMap = "[";
 
     public void printMap(BridgeGame bridgeGame, int currentBridgeIndex) {
-        List<String> answerBridge = bridgeGame.getMyAnswerBridges();
-        checkXMark(answerBridge, currentBridgeIndex);
+        checkXMark(bridgeGame, currentBridgeIndex);
         printClose();
     }
 
@@ -22,32 +20,28 @@ public class OutputView {
         System.out.println(initDownBridgeMap + "]");
     }
 
-    private void checkXMark(List<String> answerBridge, int currentBridgeIndex) {
-        if (answerBridge.contains(WRONG_ANSWER.letter())) {
-            printBridgeWithX(currentBridgeIndex, answerBridge);
+    private void checkXMark(BridgeGame bridgeGame, int currentBridgeIndex) {
+        if (bridgeGame.isSelectedWrongBridge()) {
+            printBridgeWithX(currentBridgeIndex, bridgeGame);
         }
 
-        if (isCorrectAnswer(answerBridge)) {
-            printCorrectBridge(currentBridgeIndex, answerBridge);
+        if (bridgeGame.isSelectedCorrectBridge()) {
+            printCorrectBridge(currentBridgeIndex, bridgeGame);
         }
     }
 
-    private static boolean isCorrectAnswer(List<String> answerBridge) {
-        return !answerBridge.contains(WRONG_ANSWER.letter());
-    }
-
-    private void printBridgeWithX(int currentBridgeIndex, List<String> answerBridge) {
+    private void printBridgeWithX(int currentBridgeIndex, BridgeGame bridgeGame) {
         if (isFirstBridge(currentBridgeIndex)) {
-            printWrongFirstBridge(currentBridgeIndex, answerBridge);
+            printWrongFirstBridge(currentBridgeIndex, bridgeGame);
         }
 
         if (isNotFirstBridge(currentBridgeIndex)) {
-            printWrongAllBridge(currentBridgeIndex, answerBridge);
+            printWrongAllBridge(currentBridgeIndex, bridgeGame);
         }
     }
 
-    private void printWrongAllBridge(int currentBridgeIndex, List<String> answerBridge) {
-        String nextIndexMovingMark = answerBridge.get(currentBridgeIndex + 1);
+    private void printWrongAllBridge(int currentBridgeIndex, BridgeGame bridgeGame) {
+        String nextIndexMovingMark = bridgeGame.getWrongMovingMark(currentBridgeIndex);
         if (nextIndexMovingMark.equals(UP.letter())) {
             initUpperBridgeMap = initUpperBridgeMap + "| X ";
             initDownBridgeMap = initDownBridgeMap + "|   ";
@@ -58,8 +52,8 @@ public class OutputView {
         }
     }
 
-    private void printWrongFirstBridge(int currentBridgeIndex, List<String> answerBridge) {
-        String nextIndexMovingMark = answerBridge.get(currentBridgeIndex + NEXT_INDEX);
+    private void printWrongFirstBridge(int currentBridgeIndex, BridgeGame bridgeGame) {
+        String nextIndexMovingMark = bridgeGame.getWrongMovingMark(currentBridgeIndex);
         if (nextIndexMovingMark.equals(UP.letter())) {
             initUpperBridgeMap = initUpperBridgeMap + " X ";
             initDownBridgeMap = initDownBridgeMap + "   ";
@@ -70,13 +64,13 @@ public class OutputView {
         }
     }
 
-    private void printCorrectBridge(int currentBridgeIndex, List<String> answerBridge) {
+    private void printCorrectBridge(int currentBridgeIndex, BridgeGame bridgeGame) {
         if (isFirstBridge(currentBridgeIndex)) {
-            printCorrectFirstBridge(currentBridgeIndex, answerBridge);
+            printCorrectFirstBridge(currentBridgeIndex, bridgeGame);
         }
 
         if (isNotFirstBridge(currentBridgeIndex)) {
-            printCorrectAllBridge(currentBridgeIndex, answerBridge);
+            printCorrectAllBridge(currentBridgeIndex, bridgeGame);
         }
     }
 
@@ -88,8 +82,8 @@ public class OutputView {
         return currentBridgeIndex == 0;
     }
 
-    private void printCorrectAllBridge(int currentBridgeIndex, List<String> answerBridge) {
-        String currentIndexMovingMark = answerBridge.get(currentBridgeIndex);
+    private void printCorrectAllBridge(int currentBridgeIndex, BridgeGame bridgeGame) {
+        String currentIndexMovingMark = bridgeGame.getCorrectMovingMark(currentBridgeIndex);
         if (currentIndexMovingMark.equals(UP.letter())) {
             initUpperBridgeMap = initUpperBridgeMap + "| O ";
             initDownBridgeMap = initDownBridgeMap + "|   ";
@@ -100,8 +94,8 @@ public class OutputView {
         }
     }
 
-    private void printCorrectFirstBridge(int currentBridgeIndex, List<String> answerBridge) {
-        String currentIndexMovingMark = answerBridge.get(currentBridgeIndex);
+    private void printCorrectFirstBridge(int currentBridgeIndex, BridgeGame bridgeGame) {
+        String currentIndexMovingMark = bridgeGame.getCorrectMovingMark(currentBridgeIndex);
         if (currentIndexMovingMark.equals(UP.letter())) {
             initUpperBridgeMap = initUpperBridgeMap + " O ";
             initDownBridgeMap = initDownBridgeMap + "   ";
@@ -127,13 +121,13 @@ public class OutputView {
         initDownBridgeMap = "[";
     }
 
-    public void printResult(BridgeGame bridgeGame) {
-        if (!bridgeGame.getMyAnswerBridges().contains("X")) {
+    public void printResult(BridgeGame bridgeGame, int gameAttemptCount) {
+        if (bridgeGame.isSelectedCorrectBridge()) {
             System.out.println("최종 게임 결과");
             printClose();
             System.out.println();
             System.out.println("게임 성공 여부: 성공");
-            System.out.println("총 시도한 횟수: " + bridgeGame.getAttemptCount());
+            System.out.println("총 시도한 횟수: " + gameAttemptCount);
         }
     }
 

@@ -15,7 +15,7 @@ public class BridgeGame {
             myAnswerBridges.add(WRONG_ANSWER.letter());
         }
 
-        myAnswerBridges.add(bridge.getMyMovingPostion());
+        myAnswerBridges.add(bridge.getMyMovingPosition());
     }
 
     private static boolean isDroppedBridge(Bridge bridge) {
@@ -25,6 +25,22 @@ public class BridgeGame {
     public void retry() {
         this.myAnswerBridges.clear();
         this.attemptCount = attemptCount + PLUS_COUNT;
+    }
+
+    public boolean isSelectedCorrectBridge() {
+        return !myAnswerBridges.contains(WRONG_ANSWER.letter());
+    }
+
+    public boolean isSelectedWrongBridge() {
+        return myAnswerBridges.contains(WRONG_ANSWER.letter());
+    }
+
+    public String getWrongMovingMark(int currentBridgeIndex) {
+        return myAnswerBridges.get(currentBridgeIndex + 1);
+    }
+
+    public String getCorrectMovingMark(int currentBridgeIndex) {
+        return myAnswerBridges.get(currentBridgeIndex);
     }
 
     public List<String> getMyAnswerBridges() {

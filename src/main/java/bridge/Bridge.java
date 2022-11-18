@@ -1,19 +1,19 @@
 package bridge;
 
 public class Bridge {
-    private final String myMovingPostion;
+    private final String myMovingPosition;
     private final boolean correctBridge;
 
-    public Bridge(String answerPosition, String myMovingPostion) {
-        this.myMovingPostion = myMovingPostion;
-        this.correctBridge = answerPosition.equals(myMovingPostion);
+    public Bridge(String answerPosition, String myMovingPosition) {
+        this.myMovingPosition = myMovingPosition;
+        this.correctBridge = answerPosition.equals(myMovingPosition);
     }
 
     public boolean isCorrectBridge() {
         return correctBridge;
     }
 
-    public String getMyMovingPostion() {
-        return myMovingPostion;
+    public String getMyMovingPosition() {
+        return myMovingPosition;
     }
 }

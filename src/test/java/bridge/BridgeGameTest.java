@@ -21,8 +21,7 @@ public class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame();
         bridgeGame.move(new Bridge("U", "U"));
         bridgeGame.move(new Bridge("D", "U"));
-        List<String> result = bridgeGame.getMyAnswerBridges();
-        assertThat(result.contains("X")).isTrue();
+        assertThat(bridgeGame.isSelectedWrongBridge()).isTrue();
     }
 
     @Test

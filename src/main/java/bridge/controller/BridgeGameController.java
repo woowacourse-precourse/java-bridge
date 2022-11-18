@@ -27,10 +27,10 @@ public class BridgeGameController {
         outputView.printGameStart();
         List<String> bridge = makeRandomBridge();
         int bridgePositionIndex = INIT_BRIDGE_POSITION_INDEX;
-
         BridgeGame bridgeGame = guessCorrectBridge(bridge, bridgePositionIndex);
 
-        outputView.printResult(bridgeGame);
+        int gameAttemptCount = bridgeGame.getAttemptCount();
+        outputView.printResult(bridgeGame, gameAttemptCount);
     }
 
     private List<String> makeRandomBridge() {
@@ -50,10 +50,10 @@ public class BridgeGameController {
     }
 
     private int getBridgePositionIndex(int bridgePositionIndex, BridgeGame bridgeGame, List<String> bridge) {
-        if (isCorrectAnswerBridge(bridgeGame)) {
+        if (bridgeGame.isSelectedCorrectBridge()) {
             bridgePositionIndex = getNextBridgePositionIndex(bridgePositionIndex);
         }
-        if (isWrongAnswerBridge(bridgeGame)) {
+        if (bridgeGame.isSelectedWrongBridge()) {
             bridgePositionIndex = chooseRestartOrQuitIndex(bridgePositionIndex, bridgeGame, bridge);
         }
         return bridgePositionIndex;
@@ -88,16 +88,6 @@ public class BridgeGameController {
     private static int getNextBridgePositionIndex(int bridgePositionIndex) {
         bridgePositionIndex = bridgePositionIndex + NEXT_INDEX;
         return bridgePositionIndex;
-    }
-
-    private static boolean isWrongAnswerBridge(BridgeGame bridgeGame) {
-        List<String> myAnswerBridges = bridgeGame.getMyAnswerBridges();
-        return myAnswerBridges.contains(WRONG_ANSWER.letter());
-    }
-
-    private static boolean isCorrectAnswerBridge(BridgeGame bridgeGame) {
-        List<String> myAnswerBridges = bridgeGame.getMyAnswerBridges();
-        return !myAnswerBridges.contains(WRONG_ANSWER.letter());
     }
 
     private int getBackRestartIndex(BridgeGame bridgeGame) {
