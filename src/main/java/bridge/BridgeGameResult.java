@@ -35,4 +35,12 @@ public class BridgeGameResult {
             upStates.add(BLANK);
         }
     }
+
+    public List<String> getUpStates() {
+        return upStates;
+    }
+
+    public List<String> getDownStates() {
+        return downStates;
+    }
 }
