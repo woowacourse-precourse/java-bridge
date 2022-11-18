@@ -19,10 +19,18 @@ public class MoveMark {
         this.mark = upperCaseMark;
     }
 
+    public String getMark() {
+        return mark;
+    }
+
     private void validateValue(String moving) {
         if (!UP.isEqualsMark(moving) && !DOWN.isEqualsMark(moving)) {
             throw new IllegalArgumentException(VALUE_ERROR);
         }
+    }
+
+    public BridgeType getBridgeType() {
+        return BridgeType.getByMark(mark);
     }
 
     public boolean canMove(MoveMark mark) {

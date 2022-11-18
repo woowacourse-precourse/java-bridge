@@ -26,6 +26,19 @@ public class BridgeGame {
      */
     public void move(MoveMark mark) {
         boolean move = bridge.canMove(stage, mark);
+        updateBridgeMaps(mark, move);
+        updateStage(move);
+    }
+
+    private void updateBridgeMaps(MoveMark mark, boolean move) {
+        BridgeType type = mark.getBridgeType();
+        maps.updateMaps(type, move);
+    }
+
+    private void updateStage(boolean move) {
+        if (move) {
+            stage++;
+        }
     }
 
     /**

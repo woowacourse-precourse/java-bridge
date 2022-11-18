@@ -30,7 +30,18 @@ public enum BridgeType {
                 .map(BridgeType::getMark);
     }
 
+    public boolean isEquals(BridgeType type) {
+        return this.equals(type);
+    }
+
     public boolean isEqualsMark(String mark) {
         return this.mark.equals(mark);
+    }
+
+    public static BridgeType getByMark(String mark) {
+        return Arrays.stream(values())
+                .filter(type -> type.isEqualsMark(mark))
+                .findAny()
+                .orElse(null);
     }
 }

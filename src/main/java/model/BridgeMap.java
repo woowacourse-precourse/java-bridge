@@ -9,4 +9,8 @@ public class BridgeMap {
     public BridgeMap() {
         map = new ArrayList<>();
     }
+
+    public void updateMap(Boolean result) {
+        map.add(GameResult.getByBoolean(result));
+    }
 }
