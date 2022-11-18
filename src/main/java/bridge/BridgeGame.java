@@ -12,7 +12,6 @@ public class BridgeGame {
     private int nowOn=0;
 
     private boolean gameOver = false;
-
     public BridgeGame(List<String> bridge)
     {
         this.bridge=new ArrayList<>(bridge);
@@ -25,14 +24,21 @@ public class BridgeGame {
     public void move(String moveCode) {
         gameOverChecker(nowOn);
         if(gameOver) return;
-        if(moveCode.equals(BridgeJoyStick.U.toString()))
+        boolean isWrong = judge(moveCode);
+        if(!isWrong)
         {
-
+            nowOn++;
         }
-        if(moveCode.equals(BridgeJoyStick.D.toString()))
+        gameOver = isWrong;
+    }
+
+    public boolean judge(String input)
+    {
+        if(bridge.get(nowOn).equals(input))
         {
-
+            return false;
         }
+        return true;
     }
 
     public void gameOverChecker(int nowOn)
