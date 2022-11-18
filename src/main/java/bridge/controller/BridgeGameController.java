@@ -1,15 +1,11 @@
 package bridge.controller;
 
-import static bridge.UpDownBridge.downBridge;
-import static bridge.UpDownBridge.upBridge;
-
 import bridge.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.InputView;
 import bridge.Message;
 import bridge.OutputView;
-import bridge.UpDownBridge;
 import java.util.List;
 
 public class BridgeGameController {
@@ -28,9 +24,18 @@ public class BridgeGameController {
         while (status && bridgeLocation < inputSize) {
             String inputDirection = inputView.inputMovingDirection();
             String moveResult = bridgeGame.move(bridges.get(bridgeLocation), inputDirection);
+            getState(moveResult);
             outputView.printMap(inputDirection, moveResult);
             bridgeLocation++;
         }
         outputView.printResult(status);
+    }
+
+    public static void getState(String moveResult) {
+        if (moveResult.contains(Message.MOVE_FAIL.getMessage())) {
+            status = false;
+        } else if (moveResult.contains(Message.MOVE_SUCCESS.getMessage())) {
+            status = true;
+        }
     }
 }
