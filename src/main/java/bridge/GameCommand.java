@@ -10,6 +10,10 @@ public class GameCommand {
         this.command = command;
     }
 
+    public boolean isRetry() {
+        return command.equals(RE_START_MESSAGE);
+    }
+
     private void validate(String command) {
         if (!isValidCommand(command)) {
             throw new IllegalArgumentException();

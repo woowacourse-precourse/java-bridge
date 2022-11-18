@@ -3,8 +3,6 @@ package bridge;
 import java.util.List;
 
 public class GameController {
-    private static final String RETRY_COMMAND = "R";
-    private static final String POSSIBLE_MOVE = "O";
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private boolean success = false;
@@ -93,6 +91,7 @@ public class GameController {
             return false;
         }
         String command = inputView.readGameCommand();
-        return command.equals(RETRY_COMMAND);
+        GameCommand gameCommand = new GameCommand(command);
+        return gameCommand.isRetry();
     }
 }
