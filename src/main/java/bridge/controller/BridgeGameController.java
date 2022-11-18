@@ -18,7 +18,7 @@ public class BridgeGameController {
     public void process() {
         outputView.printGameStartingMessage();
         BridgeGame bridgeGame = new BridgeGame(getRandomBridgeFromUserByBridge());
-        while (bridgeGame.isNeedToQuit()) {
+        while (!bridgeGame.isNeedToQuit()) {
             playGameUntilEnd(bridgeGame);
             askGameCommand(bridgeGame);
         }
@@ -33,7 +33,7 @@ public class BridgeGameController {
     }
 
     private void playGameUntilEnd(BridgeGame bridgeGame) {
-        while (bridgeGame.isEndGame()) {
+        while (!bridgeGame.isEndGame()) {
             Direction direction = inputView.readDirection();
             bridgeGame.move(direction);
             outputView.printMap(bridgeGame.getProgressUserState());
