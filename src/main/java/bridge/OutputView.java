@@ -24,4 +24,7 @@ public class OutputView {
     public static void gameStartMessage() {
         System.out.println(Message.Game_Start.getMessage());
     }
+    public static void bridgeSizeMessgage() {
+        System.out.println(Message.Bridge_Size_Input.getMessage());
+    }
 }
