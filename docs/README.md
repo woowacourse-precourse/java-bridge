@@ -1,22 +1,50 @@
 기능 구현 목록
 
-Application
-- 사다리게임을 시작하는 클래스
+bridge
 
-BridgeGame
-- 게임을 실행하고 입력과 출력, 핵심 로직을 구현하는 기능
+- Application
+  : 사다리게임을 시작하는 클래스
 
-BridgeMaker
-- bridgeNumberGenerator로 부터 생성된 값을 bridgeWithNumber에 저장하고, bridgeWithAlphabet에 영어로 다시 저장하는 기능
+constant
 
-InputException
-- 에러메세지를 enum으로 저장하고 message로 출력하는 기능
+- ErrorMessage
+  : 에러메세지를 enum으로 저장하고 message로 출력하는 기능
 
-InputView
-- 사용자로부터 입력을 받는 기능 및 잘못된 입력값일때 에러를 발생
+- GameConstant
+  : 필요한 정수형 상수를 enum으로 저장
 
-OutputView
-- 사용자에게 보여지는 출력을 하는 기능
+- StringConstant
+  : 필요한 문자형 상수를 enum으로 저장
 
-View
-- 출력메세지를 enum으로 저장하고 message로 출력하는 기능
+controller
+
+- BridgeController
+  : view와 model의 값을 받고 전달하는 기능
+
+generator
+
+- BridgeNumberGenerator
+- BridgeRandomNumberGenerator
+  : 다리의 요소를 랜덤으로 생성하는 기능
+
+model
+
+- BridgeGame
+  : 게임에 필요한 로직을 구성
+
+service
+
+- BridgeMaker
+  : 다리를 생성하는 기능
+
+view
+
+- InputView
+  : 사용자의 입력을 받는 기능
+
+- OutputView
+  : 사용자에게 보여지는 출력을 하는 기능
+
+- View
+  : 출력과 관련된 상수를 enum타입으로 저장
+
