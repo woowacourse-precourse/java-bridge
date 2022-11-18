@@ -44,8 +44,15 @@ public class BridgeGame {
         userCrossBridge.clear();
     }
 
+    public boolean isMovable() {
+        return isMovable(userCrossBridge.size() - 1);
+    }
+
+    /**
+     * 사용자가 건넌 다리가 건널수있는 다리인지 확인하는 메서드
+     */
     public boolean isMovable(int userCrossBridgeIndex) {
-        return bridgeLine.get(userCrossBridgeIndex).equals(userCrossBridge.get(userCrossBridgeIndex));
+        return bridgeLine.get(userCrossBridgeIndex).equals(userCrossBridge.get(userCrossBridgeIndex)) && !isEnd();
     }
 
     /**
