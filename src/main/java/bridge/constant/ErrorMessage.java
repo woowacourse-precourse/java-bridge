@@ -15,7 +15,9 @@ public enum ErrorMessage {
                     Integer.MIN_VALUE,
                     Integer.MAX_VALUE
             )
-    );
+    ),
+    MOVE_COMMAND("U(위 칸), D(아래 칸) 중 하나만 입력하셔야 합니다.")
+    ;
 
     private final String message;
     private final StringBuilder sb = new StringBuilder();

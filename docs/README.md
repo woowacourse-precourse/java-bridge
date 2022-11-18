@@ -9,9 +9,9 @@
   -[x] 숫자 아니면 `IllegalArgumentException`
 
 2. 플레이어 이동
-    -[ ] validation
-        -[ ] U,u,D,d중 하나를 입력해야 함.
-    -[ ] toUpperCase 사용해서 대문자든 소문자든 인식되게 한다.
+    -[x] validation
+        -[x] U,u,D,d중 하나를 입력해야 함.
+    -[x] toUpperCase 사용해서 대문자든 소문자든 인식되게 한다.
 3. 이동 칸 표시(output)
     -[ ] 건널 수 있는지의 여부에 따라 O, X로 표기
 4. 게임 판단
