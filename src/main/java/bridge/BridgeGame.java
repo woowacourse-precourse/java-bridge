@@ -25,26 +25,32 @@ public class BridgeGame {
         System.out.println(bridge);
         gameLogic(bridge);
     }
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public boolean move(String answerBridge, String moveCommand) {
+    public boolean move(int [] upCase, int [] downCase, String answerBridge, String moveCommand, int i) {
         if(answerBridge.equals(moveCommand)){
+            if(answerBridge.equals("U")){
+                upCase[i] += 1;
+            }
+            if(answerBridge.equals("D")){
+                downCase[i] += 1;
+            }
             return true;
         }
         return false;
     }
-
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    public void dontMove(int [] upCase, int [] downCase, List<String> bridge, String input, int i){
+        if(input.equals("U")) {
+            upCase[i] += 2;
+        }
+        if(input.equals("D")) {
+            downCase[i] += 2;
+        }
+        printMessage.printMap(upCase, downCase, bridgeLength);
+        printMessage.printAskGameRestart();
+        retry(upCase, downCase, bridge);
+    }
     public void retry(int [] upCase, int [] downCase, List<String> bridge) {
         if(inputView.readGameCommand(Console.readLine()).equals("R")) {
-            gameCount++;
+            gameCount += 1;
             gameLogic(bridge);
             return ;
         }
@@ -53,28 +59,19 @@ public class BridgeGame {
     public void gameLogic(List<String> bridge){
         int [] upCase = new int[bridge.size()];
         int [] downCase = new int[bridge.size()];
-        printMessage.printAskMovingButton();
         bridgeLength = 1;
+        bridgeMatch(upCase, downCase, bridge);
+    }
+    public void bridgeMatch(int [] upCase, int [] downCase, List<String> bridge){
         for (int i = 0; i < bridge.size(); i++) {
+            printMessage.printAskMovingButton();
             String input = inputView.readMoving(Console.readLine());
-            if(!move(bridge.get(i), input)){
-                if(input.equals("U"))
-                    upCase[i] += 2;
-                if(input.equals("D"))
-                    downCase[i] += 2;
-                printMessage.printMap(upCase, downCase, bridgeLength);
-                printMessage.printAskGameRestart();
-                retry(upCase, downCase, bridge);
+            if(!move(upCase, downCase, bridge.get(i), input, i)){
+                dontMove(upCase, downCase, bridge, input, i);
                 return;
             }
-            if(bridge.get(i).equals("U")){
-                upCase[i]++;
-            }
-            if(bridge.get(i).equals("D")){
-                downCase[i]++;
-            }
             printMessage.printMap(upCase, downCase, bridgeLength);
-            bridgeLength++;
+            bridgeLength += 1;
         }
         printMessage.printSuccessedResult(upCase, downCase, gameCount);
     }
