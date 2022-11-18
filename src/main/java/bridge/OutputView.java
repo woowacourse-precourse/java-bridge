@@ -21,10 +21,10 @@ public class OutputView {
     public void printResult() {
     }
 
-    public static void gameStartMessage() {
+    public void gameStartMessage() {
         System.out.println(Message.Game_Start.getMessage());
     }
-    public static void bridgeSizeMessgage() {
+    public void bridgeSizeMessgage() {
         System.out.println(Message.Bridge_Size_Input.getMessage());
     }
 }

@@ -10,7 +10,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public static int readBridgeSize() {
+    public int readBridgeSize() {
         String size_str = readLine();
         if(!ValidCheck.isString_in_1to9(size_str))
             throw new IllegalArgumentException(Exception.NotInteger.getMessage());
