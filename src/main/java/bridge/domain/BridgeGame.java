@@ -69,6 +69,8 @@ public class BridgeGame {
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
+     *
+     * @return 다시 시작 여부
      */
     public boolean retry(String input) {
         if (input.equals("R")) {
