@@ -1,0 +1,127 @@
+# 🍀 다리건너기
+
+##  Class
+
+---
+
+## BridgeGame (게임 관리)
+- 인스턴스 변수
+  - 총 시도 횟수
+  - 성공 여부
+- [ ] 사용자가 칸을 이동 (O or X)
+- [ ] 게임 다시 시도 or 종료
+
+ 
+## BridgeMaker (다리 생성)
+- [ ] 다리 길이를 입력 받아 다리를 생성
+
+## BridgeRandomNumberGenerator (다리 한 칸 생성)
+- [ ] Random으로 다리 위, 아래 생성
+
+## User (다리 건너는 사람)
+- 인스턴스 변수
+  - 윗다리
+  - 아랫다리
+- [ ] 건너온 PATH 반환
+- [ ] 이동한 칸 추가
+
+<br>
+
+## UI
+
+---
+
+## InputView
+- [ ] 다리 길이를 입력
+  - [ ] 숫자가 아닌 경우 예외처리
+  - [ ] 값이 3부터 20사이의 값이 아닌 경우 예외처리
+- [ ] 이동할 칸 입력 (U, D)
+  - [ ] U, D가 아닌 값인 경우 예외처리
+- [ ] 게임 재시작 / 종료 여부를 입력
+  - [ ] R, Q가 아닌 값인 경우 예외처리
+
+## OutputView
+- [ ] "다리 건너기 게임을 시작합니다." 출력
+- [ ] "다리의 길이를 입력해주세요." 출력
+- [ ] "이동할 칸을 선택해주세요. (위: U, 아래: D)" 출력
+- [ ] 다리 건너기 결과 출력
+- [ ] "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)" 출력
+- [ ] "최종 게임 결과" 출력
+- [ ] "게임 성공 여부: ", "총 시도한 횟수: " 출력
+
+
+---
+```
+(OutputView, InputView -> BridgeMaker)
+다리 건너기 게임을 시작합니다.
+
+다리의 길이를 입력해주세요.
+3 
+
+(OutputView -> InputView -> BridgeGame -> User -> OutView)
+이동할 칸을 선택해주세요. (위: U, 아래: D) 
+U  
+[ O ]
+[   ]
+
+(OutputView -> InputView -> BridgeGame -> User -> OutView, BridgeGame)
+이동할 칸을 선택해주세요. (위: U, 아래: D) (OutputView)
+U
+[ O | X ]
+[   |   ]
+
+게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)
+R
+
+(OutputView -> InputView -> BridgeGame -> User -> OutView)
+이동할 칸을 선택해주세요. (위: U, 아래: D)
+U
+[ O ]
+[   ]
+
+(OutputView -> InputView -> BridgeGame -> User -> OutView)
+이동할 칸을 선택해주세요. (위: U, 아래: D)
+D
+[ O |   ]
+[   | O ]
+
+(OutputView -> InputView -> BridgeGame -> User -> OutView)
+이동할 칸을 선택해주세요. (위: U, 아래: D)
+D
+[ O |   |   ]
+[   | O | O ]
+
+(OutputView -> InputView -> BridgeGame -> User -> OutView)
+최종 게임 결과
+[ O |   |   ]
+[   | O | O ]
+
+게임 성공 여부: 성공
+총 시도한 횟수: 2
+```
+
+```
+다리 건너기 게임을 시작합니다.
+
+다리의 길이를 입력해주세요.
+3
+
+이동할 칸을 선택해주세요. (위: U, 아래: D)
+U
+[ O ]
+[   ]
+
+이동할 칸을 선택해주세요. (위: U, 아래: D)
+U
+[ O | X ]
+[   |   ]
+
+게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)
+Q
+최종 게임 결과
+[ O | X ]
+[   |   ]
+
+게임 성공 여부: 실패
+총 시도한 횟수: 1
+```
