@@ -50,6 +50,10 @@ public class BridgeGame {
         return bridge.size() == userMoving.size();
     }
 
+    public List<String> getUserMoving() {
+        return userMoving;
+    }
+
     public List<String> getBridge() {
         return bridge;
     }

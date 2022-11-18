@@ -7,14 +7,22 @@ package bridge;
  * 값 출력을 위해 필요한 메서드를 추가할 수 있다.
  */
 
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
 
     private final String STARTING_PHRASE = "다리 건너기 게임을 시작합니다.";
+    private final String START_OF_BRIDGE = "[";
+    private final String END_OF_BRIDGE = "]";
+    private final String CROSSE_BRIDGE = " O ";
+    private final String SPACE = "   ";
+    private final String SEPARATION = "|";
 
-    public void printStartingPhrase(){
+
+    public void printStartingPhrase() {
         System.out.println(STARTING_PHRASE);
         System.out.println();
     }
@@ -24,7 +32,37 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(List<String> userMoving) {
+        printUpperBridge(userMoving);
+        printLowerBridge(userMoving);
+    }
+
+    private void printUpperBridge(List<String> userMoving) {
+        System.out.print(START_OF_BRIDGE);
+        for (int bridgeIndex = 0; bridgeIndex < userMoving.size(); bridgeIndex++) {
+            if (userMoving.get(bridgeIndex).equals("U")) {
+                System.out.print(CROSSE_BRIDGE);
+            }
+            if (userMoving.get(bridgeIndex).equals("D")) {
+                System.out.print(SPACE);
+            }
+            if (bridgeIndex < userMoving.size() - 1) System.out.print(SEPARATION);
+        }
+        System.out.println(END_OF_BRIDGE);
+    }
+
+    private void printLowerBridge(List<String> userMoving) {
+        System.out.print(START_OF_BRIDGE);
+        for (int bridgeIndex = 0; bridgeIndex < userMoving.size(); bridgeIndex++) {
+            if (userMoving.get(bridgeIndex).equals("D")) {
+                System.out.print(CROSSE_BRIDGE);
+            }
+            if (userMoving.get(bridgeIndex).equals("U")) {
+                System.out.print(SPACE);
+            }
+            if (bridgeIndex < userMoving.size() - 1) System.out.print(SEPARATION);
+        }
+        System.out.println(END_OF_BRIDGE);
     }
 
     /**

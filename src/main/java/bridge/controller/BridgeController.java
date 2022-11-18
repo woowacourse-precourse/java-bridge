@@ -12,7 +12,7 @@ public class BridgeController {
     public void startGame() {
         outputView.printStartingPhrase();
         bridgeGame = new BridgeGame(bridgeMaker.makeBridge(inputView.readBridgeSize()));
-        //System.out.println(bridgeGame.getBridge());
+        System.out.println(bridgeGame.getBridge());
         startMove();
     }
 
@@ -24,6 +24,7 @@ public class BridgeController {
             if(bridgeGame.isEndOfBridge() == true){
                 break;
             }
+            outputView.printMap(bridgeGame.getUserMoving());
         }
     }
 }
