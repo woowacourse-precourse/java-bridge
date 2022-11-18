@@ -5,14 +5,14 @@ import bridge.domain.Movement;
 
 public class OutputView {
 
-    public void printMap(Movement movement) {
+    public static void printMap(Movement movement) {
         String[] map = movement.getMap();
         for (String s : map) {
             System.out.println("[ "+s+" ]");
         }
     }
 
-    public void printResult(Movement movement) {
+    public static void printResult(Movement movement) {
         System.out.println(Messages.FINISH_RESULT_MESSAGE.getMessage());
         printMap(movement);
         System.out.println(String.format(Messages.SUCCESS_INFO_MESSAGE.getMessage(), movement.isSuccess()));

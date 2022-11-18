@@ -13,8 +13,7 @@ public class Application {
         try {
             System.out.println(Messages.START_MESSAGE);
             BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-            BridgeGame bridgeGame = new BridgeGame(
-                    new BridgeMaker(bridgeNumberGenerator), new InputView(), new OutputView());
+            BridgeGame bridgeGame = new BridgeGame(new BridgeMaker(bridgeNumberGenerator));
             bridgeGame.startGame();
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());

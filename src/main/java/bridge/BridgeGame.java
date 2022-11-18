@@ -10,18 +10,14 @@ import bridge.view.OutputView;
 
 public class BridgeGame {
     private final BridgeMaker bridgeMaker;
-    private final InputView inputView;
-    private final OutputView outputView;
     private Movement movement;
 
-    public BridgeGame(BridgeMaker bridgeMaker, InputView inputView, OutputView outputView) {
+    public BridgeGame(BridgeMaker bridgeMaker) {
         this.bridgeMaker = bridgeMaker;
-        this.inputView = inputView;
-        this.outputView = outputView;
     }
 
     public void startGame() {
-        BridgeSize bridgeSize = inputView.readBridgeSize();
+        BridgeSize bridgeSize = InputView.readBridgeSize();
         movement = new Movement(bridgeMaker.makeBridge(bridgeSize.getSize()));
         repeatGame();
     }
@@ -29,21 +25,21 @@ public class BridgeGame {
     private void repeatGame() {
         boolean isContinue = true;
         do {
-            move(inputView.readMoving());
+            move(InputView.readMoving());
             if (!movement.canMove()) {
                 isContinue = retry();
             }
         } while (!movement.isFinish() && isContinue);
-        outputView.printResult(movement);
+        OutputView.printResult(movement);
     }
 
     private void move(Moving moving) {
         movement.saveMoving(moving.getMoving());
-        outputView.printMap(movement);
+        OutputView.printMap(movement);
     }
 
     public boolean retry() {
-        Command command = inputView.readGameCommand();
+        Command command = InputView.readGameCommand();
         if (command.isRetry()) {
             movement.clearMoving();
             return true;
