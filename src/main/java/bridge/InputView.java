@@ -32,6 +32,9 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String tmp = Console.readLine();
+        if(tmp.length() != 1) throw new IllegalArgumentException();
+        if(!(tmp.charAt(0) == 'R' || tmp.charAt(0) == 'Q')) throw new IllegalArgumentException();
+        return tmp;
     }
 }
