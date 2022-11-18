@@ -1,4 +1,7 @@
-package bridge;
+package bridge.domain.player;
+
+import bridge.view.InputException;
+import bridge.view.InputValidator;
 
 public class BridgeSize implements InputValidator {
 

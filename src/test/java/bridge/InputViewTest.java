@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.view.InputException;
+import bridge.view.InputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

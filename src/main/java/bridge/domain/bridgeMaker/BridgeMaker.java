@@ -1,4 +1,6 @@
-package bridge;
+package bridge.domain.bridgeMaker;
+
+import bridge.domain.bridge.BridgeChannel;
 
 import java.util.ArrayList;
 import java.util.List;

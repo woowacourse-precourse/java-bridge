@@ -1,4 +1,7 @@
-package bridge;
+package bridge.domain.player;
+
+import bridge.view.InputException;
+import bridge.view.InputValidator;
 
 public class Movement implements InputValidator {
 
@@ -26,7 +29,7 @@ public class Movement implements InputValidator {
 		}
 	}
 
-	public String getMovement() {
+	public String side() {
 		return movement;
 	}
 }

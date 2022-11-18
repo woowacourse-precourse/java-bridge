@@ -1,10 +1,13 @@
-package bridge;
+package bridge.domain.player;
+
+import bridge.view.InputException;
+import bridge.view.InputValidator;
 
 public class GameCommand implements InputValidator {
 
 	private final String gameCommand;
-	private static final String COMMAND_RETRY = "R";
-	private static final String COMMAND_QUIT = "Q";
+	public static final String COMMAND_RETRY = "R";
+	public static final String COMMAND_QUIT = "Q";
 
 	public GameCommand(String gameCommand) {
 		validate(gameCommand);

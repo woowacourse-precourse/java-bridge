@@ -1,6 +1,12 @@
-package bridge;
+package bridge.domain;
 
-import bridge.result.ResultDescription;
+import bridge.domain.player.GameCommand;
+import bridge.domain.player.Movement;
+import bridge.domain.bridge.Bridge;
+import bridge.domain.bridgeMaker.BridgeMaker;
+import bridge.domain.result.ResultDescription;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;

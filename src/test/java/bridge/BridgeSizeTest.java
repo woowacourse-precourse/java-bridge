@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.domain.player.BridgeSize;
+import bridge.view.InputException;
+import bridge.view.InputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

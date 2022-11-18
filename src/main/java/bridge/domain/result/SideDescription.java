@@ -1,7 +1,7 @@
-package bridge.result;
+package bridge.domain.result;
 
-import bridge.BridgeGame;
-import bridge.Movement;
+import bridge.domain.BridgeGame;
+import bridge.domain.player.Movement;
 
 import java.util.Arrays;
 import java.util.List;
