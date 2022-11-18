@@ -10,7 +10,6 @@ public class BridgeStatus {
 	private final HashMap<String, String> status = new HashMap<>();
 	private static int phase = 0;
 
-
 	public static BridgeStatus getInstance() {
 		if (uniqueInstance == null) {
 			synchronized (BridgeStatus.class) {
@@ -32,15 +31,13 @@ public class BridgeStatus {
 	}
 
 	public HashMap<String, String> loadStatus(String userSelectedCell, String bridgeLetter) {
-		if (userSelectedCell.equals("U")) {
+		if (isUp(userSelectedCell)) {
 			buildUpperCell(bridgeLetter);
-			status.put("UpperCell", getUpperCell());
-			status.put("LowerCell", getLowerCell());
+			putStatus();
 		}
-		if (userSelectedCell.equals("D")) {
+		if (isDown(userSelectedCell)) {
 			buildLowerCell(bridgeLetter);
-			status.put("UpperCell", getUpperCell());
-			status.put("LowerCell", getLowerCell());
+			putStatus();
 		}
 		return status;
 	}
@@ -56,10 +53,10 @@ public class BridgeStatus {
 	}
 
 	private void putFirstUpperCell(String bridgeLetter) {
-		if (bridgeLetter.equals("U")) {
+		if (isUp(bridgeLetter)) {
 			upperCellBuilder.append(" O ");
 		}
-		if (!bridgeLetter.equals("U")) {
+		if (isDown(bridgeLetter)) {
 			upperCellBuilder.append(" X ");
 		}
 		lowerCellBuilder.append("   ");
@@ -68,10 +65,10 @@ public class BridgeStatus {
 
 	private void putConsecutiveUpperCell(String bridgeLetter) {
 		deleteEndCell();
-		if (bridgeLetter.equals("U")) {
+		if (isUp(bridgeLetter)) {
 			upperCellBuilder.append("|").append(" O ");
 		}
-		if (!bridgeLetter.equals("U")) {
+		if (isDown(bridgeLetter)) {
 			upperCellBuilder.append("|").append(" X ");
 		}
 		lowerCellBuilder.append("|").append("   ");
@@ -89,10 +86,10 @@ public class BridgeStatus {
 	}
 
 	private void putFirstLowerCell(String bridgeLetter) {
-		if (bridgeLetter.equals("D")) {
+		if (isDown(bridgeLetter)) {
 			lowerCellBuilder.append(" O ");
 		}
-		if (!bridgeLetter.equals("D")) {
+		if (isUp(bridgeLetter)) {
 			lowerCellBuilder.append(" X ");
 		}
 		upperCellBuilder.append("   ");
@@ -101,14 +98,35 @@ public class BridgeStatus {
 
 	private void putConsecutiveLowerCell(String bridgeLetter) {
 		deleteEndCell();
-		if (bridgeLetter.equals("D")) {
+		if (isDown(bridgeLetter)) {
 			lowerCellBuilder.append("|").append(" O ");
 		}
-		if (!bridgeLetter.equals("D")) {
+		if (isUp(bridgeLetter)) {
 			lowerCellBuilder.append("|").append(" X ");
 		}
 		upperCellBuilder.append("|").append("   ");
 		endCell();
+	}
+
+	private static boolean isUp(String Letter) {
+		return Letter.equals("U");
+	}
+
+	private static boolean isDown(String Letter) {
+		return Letter.equals("D");
+	}
+
+	private void putStatus() {
+		status.put("UpperCell", getUpperCell());
+		status.put("LowerCell", getLowerCell());
+	}
+
+	private String getUpperCell() {
+		return upperCellBuilder.toString();
+	}
+
+	private String getLowerCell() {
+		return lowerCellBuilder.toString();
 	}
 
 	private void endCell() {
@@ -119,13 +137,5 @@ public class BridgeStatus {
 	private void deleteEndCell() {
 		upperCellBuilder.deleteCharAt(upperCellBuilder.length() - 1);
 		lowerCellBuilder.deleteCharAt(lowerCellBuilder.length() - 1);
-	}
-
-	private String getUpperCell() {
-		return upperCellBuilder.toString();
-	}
-
-	private String getLowerCell() {
-		return lowerCellBuilder.toString();
 	}
 }
