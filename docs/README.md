@@ -3,12 +3,12 @@
 ## 구현 목록
 
  
-  - [ ] 숫자 입력시 다리의 길이가 생성되는 기능
-      - [ ] 숫자를 입력 받음
-      - [ ] 입력이 예외사항인 경우 에러메시지 출력후 입력을 다시 받음
-          - [ ] (예외) 3이상 20이하가 아닌 숫자가 들어오면 IllegalArgumentException 발생
-          - [ ] (예외) 문자열이 들어오면 IllegalArgumentException 발생
-          - [ ] (예외) 공백이 들어오면 IllegalArgumentException 발생
+  - [X] 숫자 입력시 다리의 길이가 생성되는 기능
+      - [X] 숫자를 입력 받음
+      - [X] 입력이 예외사항인 경우 에러메시지 출력후 입력을 다시 받음
+          - [X] (예외) 3이상 20이하가 아닌 숫자가 들어오면 IllegalArgumentException 발생
+          - [X] (예외) 문자열이 들어오면 IllegalArgumentException 발생
+          - [x] (예외) 공백이 들어오면 재입력받음
 
 
   - [ ] 두개가 한 쌍인 다리 발판 생성 기능
