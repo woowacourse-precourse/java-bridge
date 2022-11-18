@@ -1,6 +1,5 @@
 package bridge;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,24 +25,19 @@ public class BridgeMaker {
 	 */
 	public List<String> makeBridge(int size) {
 		Bridge bridge = Bridge.createBridge();
-		List<Integer> bridgeRandomNumbers = makeBridgeNumbers(size);
-		modifyBridgeData(bridge, bridgeRandomNumbers);
+		makeBridgeNumbers(size, bridge);
 		return bridge.getBridgeLetters();
 	}
 
-	private List<Integer> makeBridgeNumbers(int size) {
-		BridgeRandomNumberGenerator randomNumberGenerator = new BridgeRandomNumberGenerator();
-		List<Integer> bridgeNumbers = new ArrayList<>();
+	private void makeBridgeNumbers(int size, Bridge bridge) {
 		for (int i = 0; i < size; i++) {
-			bridgeNumbers.add(randomNumberGenerator.generate());
+			Integer RandomNumber = bridgeNumberGenerator.generate();
+			modifyBridgeData(bridge, RandomNumber);
 		}
-		return bridgeNumbers;
 	}
 
-	private void modifyBridgeData(Bridge bridge, List<Integer> bridgeNumbers) {
-		for (Integer number : bridgeNumbers) {
-			bridge.putOneToUp(number);
-			bridge.putZeroToDown(number);
-		}
+	private static void modifyBridgeData(Bridge bridge, Integer number) {
+		bridge.putOneToUp(number);
+		bridge.putZeroToDown(number);
 	}
 }
