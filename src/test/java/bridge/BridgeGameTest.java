@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class BridgeGameTest {
 
@@ -48,6 +50,15 @@ public class BridgeGameTest {
         bridgeGame.move("U");
         assertThat(bridgeGame.isRecentMoveSuccessful()).isFalse();
     }
-
+    @DisplayName("retry 횟수에 따라 tryCount의 횟수가 달라진다.")
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 2, 3})
+    void checkTryCountWhenRetry(int retryCount) {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "U"));
+        for (int i = 0; i < retryCount; i++) {
+            bridgeGame.retry();
+        }
+        assertThat(bridgeGame.getTryCount()).isEqualTo(retryCount + 1);
+    }
 
 }
