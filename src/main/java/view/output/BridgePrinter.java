@@ -1,4 +1,4 @@
-package view;
+package view.output;
 
 public enum BridgePrinter {
     TRUE_ZERO_UP(true, true, "U") {

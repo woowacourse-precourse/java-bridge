@@ -1,11 +1,11 @@
-package bridge;
+package bridge.model;
 
 import java.util.List;
 
 public class Bridge {
     private final List<String> bridge;
 
-    Bridge(List<String> bridge) {
+    public Bridge(List<String> bridge) {
         this.bridge = bridge;
     }
 

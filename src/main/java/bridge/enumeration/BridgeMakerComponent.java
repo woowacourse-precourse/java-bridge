@@ -1,13 +1,13 @@
-package bridge;
+package bridge.enumeration;
 
-public enum BridgeComponent {
+public enum BridgeMakerComponent {
     UP(1, "U"),
     DOWN(0, "D");
 
     private final int randomNumber;
     private final String mark;
 
-    BridgeComponent(int randomNumber, String mark) {
+    BridgeMakerComponent(int randomNumber, String mark) {
         this.randomNumber = randomNumber;
         this.mark = mark;
     }

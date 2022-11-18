@@ -1,4 +1,6 @@
-package view;
+package validation;
+
+import view.input.InputMessage;
 
 import java.util.Arrays;
 

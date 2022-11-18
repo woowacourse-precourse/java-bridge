@@ -1,4 +1,4 @@
-package bridge;
+package bridge.enumeration;
 
 public enum Result {
     SUCCESS("성공"),

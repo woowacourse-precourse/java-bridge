@@ -1,7 +1,12 @@
-package bridge;
+package bridge.controller;
 
-import view.InputView;
-import view.OutputView;
+import bridge.model.Bridge;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.enumeration.Result;
+import bridge.enumeration.RetryCode;
+import view.input.InputView;
+import view.output.OutputView;
 /**
  * 다리 건너기 게임을 관리하는 클래스
  *

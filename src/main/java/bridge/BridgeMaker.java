@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.enumeration.BridgeMakerComponent;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,9 +32,9 @@ public class BridgeMaker {
         for (int count = 0; count < size; count++) {
             int bridgeNumber = bridgeNumberGenerator.generate();
 
-            Arrays.stream(BridgeComponent.values())
-                    .filter(bridgeComponent -> bridgeNumber  == bridgeComponent.getRandomNumber())
-                    .forEach(bridgeComponent -> bridge.add(bridgeComponent.getMark()));
+            Arrays.stream(BridgeMakerComponent.values())
+                    .filter(bridgeMakerComponent -> bridgeNumber  == bridgeMakerComponent.getRandomNumber())
+                    .forEach(bridgeMakerComponent -> bridge.add(bridgeMakerComponent.getMark()));
         }
         return bridge;
     }
