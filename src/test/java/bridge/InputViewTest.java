@@ -44,7 +44,7 @@ class InputViewTest {
 
     @ParameterizedTest
     @CsvSource(value = {"R:R","Q:Q"}, delimiter = ':')
-    void 게임재시작_사용자_입력_검증(String input, char result) {
+    void 게임재시작_사용자_입력_검증(String input, String  result) {
         assertThat(inputView.readGameCommand(input)).isEqualTo(result);
     }
 

@@ -38,9 +38,11 @@ public class OutputView {
     }
 
 
-    public void printResult(int count, boolean win) {
-        printSuccess(win);
+    public void printResult(int count, BridgeGame bridgeGame) {
+        printSuccess(bridgeGame.survival);
         printCountGame(count);
+        System.out.println("최종 게임 결과");
+        printMap(bridgeGame.log);
     }
 
     private void printCountGame(int count) {

@@ -1,5 +1,7 @@
 package bridge;
 
+import static camp.nextstep.edu.missionutils.Console.readLine;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -8,6 +10,10 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
+    public String readUserInput() {
+        return readLine();
+    }
+
     public int readBridgeSize(String input) {
         validBridgeSize(input);
         return Integer.parseInt(input);
@@ -61,9 +67,9 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public char readGameCommand(String input) {
+    public String readGameCommand(String input) {
         validCommand(input);
-        return input.charAt(0);
+        return input;
     }
 
     private void validCommand(String input) throws IllegalArgumentException {

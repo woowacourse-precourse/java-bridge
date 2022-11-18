@@ -29,7 +29,10 @@ class OutputViewTest {
     void 게임_결과_출력(){
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
-        outputView.printResult(3,true);
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.log = new char[][] {{'O', 'O', 'O'}, {' ', ' ', ' ',}};
+        bridgeGame.survival = true;
+        outputView.printResult(3,bridgeGame);
         String output = out.toString();
         assertThat(output).contains(
                 "게임 성공 여부: 성공",

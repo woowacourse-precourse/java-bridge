@@ -6,6 +6,7 @@ package bridge;
 public class BridgeGame {
     boolean survival;
     char[][] log;
+    int checkTheEnd;
 
     public void move(String answer, String submit) {
         survival = answer.equals(submit);
@@ -44,29 +45,37 @@ public class BridgeGame {
     }
 
 
-    public boolean retry(char input) {
-        if (Restart.gameRestart(input)) {
-            log = null;
-            return true;
+    public boolean retry(String input) {
+        return Restart.gameRestart(input);
+    }
+
+    public void checkTheEndByBrideSize(int bridgeSize) {
+        if (survival) {
+            if (log[0].length == bridgeSize) {
+                checkTheEnd =1;
+                return;
+            }
+            checkTheEnd = 0;
+            return;
         }
-        return false;
+        checkTheEnd = -1;
     }
 }
 enum Restart {
-    RESTART('R', true),
-    END('Q', false);
+    RESTART("R", true),
+    END("Q", false);
 
-    char restartOrEnd;
+    String  restartOrEnd;
     boolean survival;
 
 
-    Restart(char restartOrEnd, boolean survival) {
+    Restart(String restartOrEnd, boolean survival) {
         this.restartOrEnd = restartOrEnd;
         this.survival = survival;
     }
 
-    static boolean gameRestart(char restartOrEnd) {
-        if (restartOrEnd == 'R') {
+    static boolean gameRestart(String restartOrEnd) {
+        if (restartOrEnd.equals("R")) {
             return Restart.RESTART.survival;
         }
         return END.survival;
