@@ -51,7 +51,7 @@ public class InputView {
     }
 
     private static boolean isNotUD (String moving) {
-        return !(moving.equals("U") && moving.equals("D"));
+        return !moving.equals("U") && !moving.equals("D");
     }
     
     /**
