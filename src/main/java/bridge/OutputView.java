@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -9,7 +11,26 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap() {
+    public static void printMap(List<String> bridgeNow) {
+        StringBuilder UpStep = new StringBuilder("[ ");
+        StringBuilder DownStep = new StringBuilder("[ ");
+        for (String s : bridgeNow) {
+            if (s.equals("1")) {
+                UpStep.append("O | ");
+                DownStep.append("  | ");
+            }
+            if (s.equals("0")) {
+                UpStep.append("  | ");
+                DownStep.append("O | ");
+            }
+        }
+        UpStep.deleteCharAt(UpStep.length() - 1);
+        UpStep.deleteCharAt(UpStep.length() - 1);
+        DownStep.deleteCharAt(DownStep.length() -1);
+        DownStep.deleteCharAt(DownStep.length() -1);
+
+        System.out.println(UpStep + "]");
+        System.out.println(DownStep + "]");
     }
 
     /**

@@ -11,6 +11,7 @@ public class Bridge {
     public Bridge(List<String> bridge) {
         this.bridgeWin = bridge;
         this.bridgeNow = new ArrayList<>();
+        System.out.println(bridgeWin);
     }
 
     public boolean applyMove(String moveTo) {
@@ -24,10 +25,10 @@ public class Bridge {
         if(!checkSucces()) {
             return false;
         }
-//        OutputView.printMap();
-        System.out.println("======");
-        System.out.println(bridgeWin);
-        System.out.println(bridgeNow);
+        OutputView.printMap(bridgeNow);
+//        System.out.println("======");
+//        System.out.println(bridgeWin);
+//        System.out.println(bridgeNow);
         return true;
 
     }

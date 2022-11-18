@@ -13,7 +13,6 @@ public class BridgeGame {
     public void run() {
         int lengthBridge = input.readBridgeSize();
         bridge = new Bridge(bridgemaker.makeBridge(lengthBridge));
-//        System.out.println(bridge);
         while (state) {
             state = move();
         }
