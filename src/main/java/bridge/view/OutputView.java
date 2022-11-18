@@ -3,8 +3,6 @@ package bridge.view;
 import static bridge.BridgeMaker.DOWN_BRIDGE;
 import static bridge.BridgeMaker.UP_BRIDGE;
 
-import bridge.BridgeMaker;
-
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -68,5 +66,9 @@ public class OutputView {
         println();
         printIsClear(isClear);
         printTryCount(tryCount);
+    }
+
+    public void printError(String message) {
+        println("[ERROR] %s", message);
     }
 }
