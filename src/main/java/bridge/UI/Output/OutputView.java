@@ -1,7 +1,5 @@
 package bridge.UI.Output; //패키지 변경
 
-import bridge.BridgeGame;
-
 import java.util.Map;
 
 /**
@@ -34,7 +32,7 @@ public class OutputView {
      *
      * 메서드의 이름은 변경할 수 없다
      */
-    public void printResult(Map<Integer, Map<String, String>> userStatus, BridgeGame bridgeGame) {
+    public void printResult(Map<Integer, Map<String, String>> userStatus, CountRound countRound) {
         printMap(userStatus);
         String up = userStatus.get(userStatus.size()).get("U");
         String down = userStatus.get(userStatus.size()).get("D");
@@ -42,10 +40,7 @@ public class OutputView {
             System.out.println(OutputString.SUCCESS_OR_FAIL.getMessage() + "실패");
         }
             System.out.println(OutputString.SUCCESS_OR_FAIL.getMessage() + "성공");
-            System.out.println(OutputString.FINAL_RESULT.getMessage() + bridgeGame.getRound());
+            System.out.println(OutputString.FINAL_RESULT.getMessage() + countRound.getRound());
     }
 
-    public void printStart() {
-        System.out.println(OutputString.START.getMessage());
-    }
 }
