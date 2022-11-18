@@ -15,12 +15,14 @@ public class BridgeGame {
     private List<String> realBridge;
     private HashMap<String, List<String>> moveStatus;
     private int currentLocation;
+    private int restartNumber;
 
     public BridgeGame(int bridgeLength) {
         realBridge = generateBridge(bridgeLength);
         moveStatus.put("U", new ArrayList<String>());
         moveStatus.put("D", new ArrayList<String>());
         currentLocation = 0;
+        restartNumber = 0;
     }
 
     private List<String> generateBridge(int bridgeLength) {
@@ -43,6 +45,7 @@ public class BridgeGame {
         moveStatus.put("U", new ArrayList<>());
         moveStatus.put("D", new ArrayList<>());
         currentLocation = 0;
+        restartNumber++;
     }
 
     private boolean reflectMovement(boolean isCorrectLocation, String direction) {
