@@ -37,7 +37,7 @@ class PlayResultTest {
     void 재시작_시_시도_횟수_증가() {
         playResult.updateResult(MoveStatus.DOWN_FAIL);
         int tryCountBeforeRetry = playResult.getTryCount();
-        playResult.retry();
+        playResult.deletePreviousResult();
 
         assertThat(playResult.getTryCount()).isEqualTo(tryCountBeforeRetry + 1);
     }
@@ -47,7 +47,7 @@ class PlayResultTest {
     void 재시작_시_실패_결과_삭제() {
         playResult.updateResult(MoveStatus.DOWN_FAIL);
         int playResultSizeBeforeRetry = playResult.getPlayResult().size();
-        playResult.retry();
+        playResult.deletePreviousResult();
 
         assertThat(playResult.getPlayResult().size()).isEqualTo(playResultSizeBeforeRetry - 1);
     }

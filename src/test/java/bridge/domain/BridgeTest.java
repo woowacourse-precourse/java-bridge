@@ -28,6 +28,6 @@ class BridgeTest {
     @ValueSource(strings = {"U", "D"})
     @ParameterizedTest
     void 이동_가능_판단(String spaceToMove) {
-        assertThat(bridge.canMove(0, spaceToMove)).isEqualTo(bridgeMap.get(0).equals(spaceToMove));
+        assertThat(bridge.hasNextTileThatPosition(0, spaceToMove)).isEqualTo(bridgeMap.get(0).equals(spaceToMove));
     }
 }

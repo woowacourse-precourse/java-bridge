@@ -11,12 +11,12 @@ public class BridgeGame {
     }
 
     public boolean move(String spaceToMove) {
-        return player.canMove(spaceToMove);
+        return player.move(spaceToMove);
     }
 
     public boolean retry(String retryCommand) {
         if (retryCommand.equals(RETRY)) {
-            player.retry();
+            player.deletePreviousResult();
             return true;
         }
         return false;

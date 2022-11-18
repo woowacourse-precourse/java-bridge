@@ -12,10 +12,10 @@ public class Player {
         this.bridge = new Bridge(bridge);
     }
 
-    public boolean canMove(String spaceToMove) {
-        boolean moveStatus = bridge.canMove(position, spaceToMove);
-        move(MoveStatus.findBySpaceToMove(spaceToMove, moveStatus));
-        return moveStatus;
+    public boolean move(String spaceToMove) {
+        boolean canMove = bridge.hasNextTileThatPosition(position, spaceToMove);
+        move(MoveStatus.findBySpaceToMove(spaceToMove, canMove));
+        return canMove;
     }
 
     private void move(MoveStatus moveStatus) {
@@ -23,8 +23,8 @@ public class Player {
         position++;
     }
 
-    public void retry() {
-        playResult.retry();
+    public void deletePreviousResult() {
+        playResult.deletePreviousResult();
         position--;
     }
 

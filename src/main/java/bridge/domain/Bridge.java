@@ -10,7 +10,7 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public boolean canMove(int position, String spaceToMove) {
+    public boolean hasNextTileThatPosition(int position, String spaceToMove) {
         return bridge.get(position).equals(spaceToMove);
     }
 

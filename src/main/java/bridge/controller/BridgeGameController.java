@@ -22,31 +22,31 @@ public class BridgeGameController {
 
     private static void makeBridge(int bridgeSize) {
         BridgeGame bridgeGame = new BridgeGame(bridgeSize, new BridgeMaker(new BridgeRandomNumberGenerator()));
-        boolean gameStatus = true;
-        while (gameStatus && !bridgeGame.gameEnd()) {
-            gameStatus = move(bridgeGame);
-            gameStatus = gameNotOver(gameStatus, bridgeGame);
+        boolean gameContinue = true;
+        while (gameContinue && !bridgeGame.gameEnd()) {
+            gameContinue = move(bridgeGame);
+            gameContinue = gameNotOver(gameContinue, bridgeGame);
         }
-        OutputView.printResult(gameStatus, bridgeGame.getPlayer());
+        OutputView.printResult(gameContinue, bridgeGame.getPlayer());
     }
 
     private static boolean move(BridgeGame bridgeGame) {
-        boolean gameStatus;
+        boolean gameContinue;
         try {
-            gameStatus = bridgeGame.move(InputView.readMoving());
+            gameContinue = bridgeGame.move(InputView.readMoving());
             OutputView.printMap(bridgeGame.getPlayer());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return move(bridgeGame);
         }
-        return gameStatus;
+        return gameContinue;
     }
 
-    private static boolean gameNotOver(boolean gameStatus, BridgeGame bridgeGame) {
-        if (!gameStatus) {
-            gameStatus = retry(bridgeGame);
+    private static boolean gameNotOver(boolean gameContinue, BridgeGame bridgeGame) {
+        if (!gameContinue) {
+            gameContinue = retry(bridgeGame);
         }
-        return gameStatus;
+        return gameContinue;
     }
 
     private static boolean retry(BridgeGame bridgeGame) {

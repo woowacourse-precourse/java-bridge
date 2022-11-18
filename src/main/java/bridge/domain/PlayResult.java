@@ -12,7 +12,7 @@ public class PlayResult {
         playResult.add(moveStatus);
     }
 
-    public void retry() {
+    public void deletePreviousResult() {
         tryCount++;
         playResult.remove(playResult.size() - 1);
     }
