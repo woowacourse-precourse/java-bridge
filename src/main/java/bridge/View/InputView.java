@@ -1,7 +1,7 @@
 package bridge.View;
 
-import bridge.Domain.InputConverter;
-import bridge.Domain.InputValidator;
+import bridge.Controller.InputConverter;
+import bridge.Controller.InputValidator;
 import bridge.Constant.InputMessage;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;

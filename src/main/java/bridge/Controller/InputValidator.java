@@ -1,4 +1,4 @@
-package bridge.Domain;
+package bridge.Controller;
 
 import static bridge.Constant.ErrorMessage.*;
 import static bridge.Constant.InputValue.*;

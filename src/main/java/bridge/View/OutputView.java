@@ -1,7 +1,7 @@
 package bridge.View;
 
-import bridge.Domain.BridgeGame;
-import bridge.Domain.Player;
+import bridge.Controller.BridgeGame;
+import bridge.Model.Player;
 import bridge.Constant.InputValue;
 import bridge.Constant.OutputMessage;
 import bridge.Constant.OutputValue;

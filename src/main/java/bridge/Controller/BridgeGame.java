@@ -1,4 +1,7 @@
-package bridge.Domain;
+package bridge.Controller;
+
+import bridge.Model.Bridge;
+import bridge.Model.Player;
 
 import java.util.List;
 
