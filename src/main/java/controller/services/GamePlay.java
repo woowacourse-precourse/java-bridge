@@ -1,9 +1,11 @@
 package controller.services;
 
-import bridge.constants.CommandTable;
+import constants.CommandTable;
+import constants.ResultTable;
+import controller.MapConverter;
 import model.Bridge;
-import model.RouteMap;
 import model.User;
+import model.GameResult;
 import view.InputView;
 import view.OutputView;
 
@@ -12,50 +14,41 @@ import java.util.List;
 public class GamePlay {
     private Bridge bridge;
     private User user;
-    private BridgeGame bridgeGame;
-    private RouteMap routeMap;
-    private int countOfAttempt=0;
 
-    public GamePlay(List<String> bridgeMap){
+    public GamePlay(List<String> bridgeMap) {
         bridge = new Bridge(bridgeMap);
     }
 
-    public int repeatGame() {
-        for (; ; ) {
-            countOfAttempt++;
-            user = new User();
-            int result = playGame();
+    public GameResult playGame() {
+        for (int countOfAttempt = 1; ; countOfAttempt++) {
+            int commandNumber = tryGameOnce();
 
-            if (result != CommandTable.RETRY.getCommandNumber()) {
-                return result;
+            if (isEndingCommandNumber(commandNumber)) {
+                return new GameResult(user,commandNumber,countOfAttempt);
             }
         }
     }
 
-    private int playGame() {
-        bridgeGame = new BridgeGame(bridge, user);
+    private boolean isEndingCommandNumber(int commandNumber) {
+        return commandNumber != CommandTable.RETRY.getCommandNumber();
+    }
 
-        for (int loop = 0; loop < bridge.getBridgeSize(); loop++) {
-            if (tryMoving()) {
+    private int tryGameOnce() {
+        user = new User();
+        BridgeGame bridgeGame = new BridgeGame(bridge, user);
+
+        for (;user.getUserMovingDistance() < bridge.getBridgeSize();) {
+            if (isInaccessibleNextPosition(bridgeGame)) {
                 return bridgeGame.retry(InputView.readGameCommand());
             }
         }
-        return CommandTable.SUCCESS.getCommandNumber();
+        return ResultTable.PASS.getResultNumber();
     }
 
-    private boolean tryMoving(){
-        boolean accessibleDirection = bridgeGame.move(InputView.readMoving());
-        routeMap = new RouteMap(user.getUserMap());
+    private boolean isInaccessibleNextPosition(BridgeGame bridgeGame) {
+        boolean result = bridgeGame.move(InputView.readMoving());
+        OutputView.printMap(MapConverter.convertMap(user.getUserMap()));
 
-        OutputView.printMap(routeMap.getRouteMap());
-        return accessibleDirection;
-    }
-
-    public int getCountOfAttempt() {
-        return countOfAttempt;
-    }
-
-    public RouteMap getRouteMap() {
-        return routeMap;
+        return result;
     }
 }
