@@ -19,7 +19,7 @@ public class ExceptionHandler {
         }
     }
 
-    private static void isValidRange(final int size) throws IllegalArgumentException {
+    private static void isValidRange(final int size) {
         if (!(BRIDGE_SIZE_MIN <= size && size <= BRIDGE_SIZE_MAX)) {
             throw new IllegalArgumentException();
         }
@@ -39,7 +39,7 @@ public class ExceptionHandler {
         return false;
     }
 
-    public static void checkRetryCommand(final String input) throws IllegalArgumentException {
+    public static void checkRetryCommand(final String input) {
         if (!(input.equals(RE_START) || input.equals(QUIT))) {
             String message = Message.ERROR_PREFIX + Message.ERROR_RETRY;
             throw new IllegalArgumentException(message);
