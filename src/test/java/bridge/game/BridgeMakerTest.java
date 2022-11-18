@@ -23,6 +23,7 @@ class BridgeMakerTest {
 
             // when
             List<String> bridge = bridgeMaker.makeBridge(size);
+            System.out.println("bridge = " + bridge);
 
             // then
             Assertions.assertThat(bridge.size())
