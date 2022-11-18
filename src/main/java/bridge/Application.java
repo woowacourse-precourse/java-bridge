@@ -33,17 +33,10 @@ public class Application {
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
 
         // 3.
-        BridgeGame bridgeGame = new BridgeGame();
         OutputView outputView = new OutputView();
-        List<String> result = new ArrayList<>();
-        for (int i = 0; i < bridgeSize; i++) {
-            String movingValue = inputView.readMoving();
-            result.add(bridgeGame.move(movingValue, bridge.get(i)));
-            outputView.printMap(result, bridge);
-            if (result.contains("X")) {
-                break;
-            }
-        }
+        BridgeGame bridgeGame = new BridgeGame(inputView, outputView);
+
+        String gameStatus = bridgeGame.move(bridge);
 
 
     }
