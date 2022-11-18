@@ -18,11 +18,11 @@ public class InputView {
     public int readBridgeSize() {
         String inputSize = Console.readLine();
         if (!(Pattern.matches(sizePattern, inputSize))) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
+            throw new IllegalArgumentException(Message.INPUT_IS_NOT_NUMBER);
         }
         int size = Integer.parseInt(inputSize);
-        if (size < 3 || size > 20) {
-            throw new IllegalArgumentException("[ERROR] 3~20 사이의 숫자를 입력해주세요.");
+        if (size < Message.MIN_BRIDGE_SIZE || size > Message.MAX_BRIDGE_SIZE) {
+            throw new IllegalArgumentException(Message.INPUT_CORRECT_RANGE_OF_NUMBER);
         }
         return size;
     }
@@ -33,7 +33,7 @@ public class InputView {
     public String readMoving() {
         String inputMove = Console.readLine();
         if (!(Pattern.matches(movePattern, inputMove))) {
-            throw new IllegalArgumentException("[ERROR] U와 D 이외의 다른것이 입력되었습니다.");
+            throw new IllegalArgumentException(Message.INPUT_U_OR_D);
         }
         return inputMove;
     }
@@ -44,7 +44,7 @@ public class InputView {
     public String readGameCommand() {
         String inputCommand = Console.readLine();
         if (!(Pattern.matches(commandPattern, inputCommand))) {
-            throw new IllegalArgumentException("[ERROR] R과 Q 이외의 다른것이 입력되었습니다.");
+            throw new IllegalArgumentException(Message.INPUT_R_OR_Q);
         }
         return inputCommand;
     }
