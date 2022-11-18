@@ -33,7 +33,12 @@
 - WIN : 사용자가 입력한 값이 정답이고 게임이 끝났을 때
 ## Controller
 1. BridgeGame
-- move()
+- tryNumber : 시도 횟수
+- bridge, userPosition
+- start(Bridge bridge, userPosition)
+  - 정적 팩터리 메서드
+  - 게임을 시작하는 메서드
+- move(Position position)
   - 사용자가 칸을 이동할 때 사용하는 메서드
 - retry()
   - 사용자가 게임을 다시 시작할 때 사용하는 메서드

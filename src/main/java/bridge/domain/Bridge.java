@@ -8,8 +8,12 @@ public class Bridge {
     private final List<Position> bridge;
 
     private Bridge(List<String> bridge) {
-        this.bridge = Stream.iterate(0, i-> i<bridge.size(), i->i+1)
-                .map(i -> Position.of(i+1, bridge.get(i)))
+        this.bridge = mapStringToPosition(bridge);
+    }
+
+    private static List<Position> mapStringToPosition(List<String> bridge) {
+        return Stream.iterate(0, i -> i < bridge.size(), i -> i + 1)
+                .map(i -> Position.of(i + 1, bridge.get(i)))
                 .collect(Collectors.toList());
     }
 

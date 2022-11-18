@@ -13,6 +13,9 @@ public class Position {
     public static Position of(int distance, String verticalStatus) {
         return new Position(distance, verticalStatus);
     }
+    public static Position nextOf(Position otherPosition, String verticalStatus) {
+        return new Position(otherPosition.distance + 1, verticalStatus);
+    }
 
     @Override
     public boolean equals(Object o) {
