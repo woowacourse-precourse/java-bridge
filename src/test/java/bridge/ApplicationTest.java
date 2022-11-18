@@ -93,6 +93,21 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    @DisplayName("예외 5-1. R(재시작)과 Q(종료) 중 하나의 문자가 아닌 경우")
+    void test7() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "D", "D", "문자", "Q");
+            assertThat(output()).contains(
+                    ERROR_MESSAGE
+            );
+
+            int upSideIndex = output().indexOf("[ O |   |  ]");
+            int downSideIndex = output().indexOf("[   | O | X ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 1);
+    }
+
+    @Test
     void 다리_생성_테스트() {
         BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
