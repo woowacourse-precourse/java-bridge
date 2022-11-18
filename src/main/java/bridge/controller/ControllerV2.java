@@ -14,6 +14,7 @@ public class ControllerV2 {
 	private int size;
 	private boolean retry = true;
 	private boolean winOrLose = false;
+	private final String WRONG_ANSWER = "X";
 
 	public void init() {
 		OutputView.printStartMessage();
@@ -52,7 +53,7 @@ public class ControllerV2 {
 	}
 
 	private boolean retryLogic() {
-		if (state.get(0).contains("X") || state.get(1).contains("X")) {
+		if (state.get(0).contains(WRONG_ANSWER) || state.get(1).contains(WRONG_ANSWER)) {
 			command = InputView.readGameCommand();
 			isRetry();
 			if (isQuit())
