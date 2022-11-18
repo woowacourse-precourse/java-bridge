@@ -8,16 +8,22 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.model.BridgeSize;
 import bridge.model.ExitOption;
 import bridge.model.FootPrint;
+import bridge.model.GameResult;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-	public List<String> setUp(int userInput) {
+	public List<String> setUpGame(int userInput) {
 		BridgeSize bridgeSize = new BridgeSize(userInput);
 		BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
 		BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 		return bridgeMaker.makeBridge(bridgeSize.getSize());
+	}
+
+	public void setUpRound(GameResult gameResult) {
+		gameResult.changeResultToSuccess();
+		gameResult.addNumberOfAttempts();
 	}
 
 	/**
