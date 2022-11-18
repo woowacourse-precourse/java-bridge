@@ -21,8 +21,23 @@ public class OutputView {
 	 * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
 	public HashMap<String, String> printMap(String userSelectedCell, String bridgeLetter) {
-		status.put("UpperCell", "[ O ]");
-		status.put("LowerCell", "[   ]");
+		if (userSelectedCell.equals("U")) {
+			if (bridgeLetter.equals("U")) {
+				status.put("UpperCell", "[ O ]");
+				status.put("LowerCell", "[   ]");
+			} else {
+				status.put("UpperCell", "[ X ]");
+				status.put("LowerCell", "[   ]");
+			}
+		} else {
+			if (bridgeLetter.equals("D")) {
+				status.put("UpperCell", "[   ]");
+				status.put("LowerCell", "[ O ]");
+			} else {
+				status.put("UpperCell", "[   ]");
+				status.put("LowerCell", "[ X ]");
+			}
+		}
 		return status;
 	}
 
