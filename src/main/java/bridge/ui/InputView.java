@@ -1,11 +1,18 @@
 package bridge.ui;
 
+import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private final OutputView outputView = new OutputView();
+    private final Exception exception = new Exception();
+
     public int readBridgeSize() {
-        return 0;
+        String input = Console.readLine();
+        validateBridgeSize(input);
+        return Integer.parseInt(input);
     }
 
     /**
@@ -20,5 +27,19 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    // 검증 메소드
+    private void validateBridgeSize(String input) {
+        int bridgeSize = 0;
+        try {
+            bridgeSize = Integer.parseInt(input);
+        } catch (NumberFormatException e){
+            exception.exceptionBridgeSize();
+        }
+
+        if (bridgeSize < 3 || bridgeSize > 20){
+            exception.exceptionBridgeSize();
+        }
     }
 }
