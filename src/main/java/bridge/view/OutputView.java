@@ -1,5 +1,8 @@
 package bridge.view;
 
+import java.util.List;
+import java.util.StringJoiner;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -24,7 +27,35 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public static void printMap(List<Boolean> currentBridge, List<String> bridge) {
+        int index = 0;
+        StringJoiner topLayer = new StringJoiner(" | ", " [ ", " ] ");
+        StringJoiner bottomLayer = new StringJoiner(" | ", " [ ", " ] ");
+        for (boolean current : currentBridge) {
+            if (current && "U".equals(bridge.get(index))) {
+                topLayer.add("O");
+                bottomLayer.add(" ");
+                continue;
+            }
+            if (current && "D".equals(bridge.get(index))) {
+                topLayer.add(" ");
+                bottomLayer.add("O");
+                continue;
+            }
+            if (!current && "D".equals(bridge.get(index))) {
+                topLayer.add("X");
+                bottomLayer.add(" ");
+                continue;
+            }
+            if (!current && "U".equals(bridge.get(index))) {
+                topLayer.add(" ");
+                bottomLayer.add("X");
+                continue;
+            }
+            index++;
+        }
+        System.out.println(topLayer.toString());
+        System.out.println(bottomLayer.toString());
     }
 
     /**
