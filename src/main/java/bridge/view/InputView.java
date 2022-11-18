@@ -2,6 +2,8 @@ package bridge.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.Arrays;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -25,8 +27,10 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public String readMoving(String direction) throws IllegalArgumentException {
+        validateIsNotEmpty(direction);
+        validateDirection(direction);
+        return direction;
     }
 
     /**
@@ -55,5 +59,15 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
         return size;
+    }
+
+    public void validateDirection(String direction) {
+        if(!isExistDirection(direction)) {
+            throw new IllegalArgumentException("[ERROR] U(위) 또는 D(아래)만을 입력해야 합니다.");
+        }
+    }
+
+    public boolean isExistDirection(String direction) {
+        return Arrays.asList("U", "D").contains(direction);
     }
 }
