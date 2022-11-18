@@ -12,7 +12,6 @@ import camp.nextstep.edu.missionutils.Console;
  * 4. 사용자 값 입력을 위해 필요한 메서드를 추가할 수 있다.
  */
 public class InputView {
-    private static final String INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     private static final String INPUT_BRIDGE_MOVE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final Validation validation = new Validation();
     public static String input = "";
@@ -21,7 +20,7 @@ public class InputView {
         while(true) {
             try {
                 System.out.println("\n" + message);
-                validation.validate(input = Console.readLine());
+                validation.validate(input = Console.readLine(), message);
                 return input;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
@@ -33,7 +32,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return Integer.parseInt(repeat(INPUT_BRIDGE_SIZE));
+        return Integer.parseInt(repeat(InputMessage.INPUT_BRIDGE_SIZE.getMessage()));
     }
 
     /**
