@@ -10,6 +10,22 @@ public class Controller {
     OutputView outputView = new OutputView();
 
     public void run() {
+        printGameStartMessage();
+        setGame();
+//        playGame();
+    }
 
+    private void printGameStartMessage() {
+        outputView.printGameStartMessage();
+    }
+
+    private void setGame() {
+        try {
+            String bridgeSizeInput = inputView.readBridgeSize();
+            service.prepareGame(bridgeSizeInput);
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception.getMessage());
+            setGame();
+        }
     }
 }
