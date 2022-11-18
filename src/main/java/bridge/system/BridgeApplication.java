@@ -3,6 +3,7 @@ package bridge.system;
 import bridge.service.BridgeGame;
 import bridge.system.controller.BridgeController;
 import bridge.system.util.BridgeMaker;
+import bridge.system.util.BridgeMessageMaker;
 import bridge.system.util.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -24,7 +25,7 @@ public class BridgeApplication {
 
     private void InjectDependencies() {
         inputView = new InputView();
-        outputView = new OutputView();
+        outputView = new OutputView(new BridgeMessageMaker());
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridgeGame = new BridgeGame();
         bridgeController = new BridgeController(inputView, outputView, bridgeMaker, bridgeGame);

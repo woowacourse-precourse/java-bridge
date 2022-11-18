@@ -1,5 +1,10 @@
 package bridge.view;
 
+import bridge.system.util.BridgeMessageMaker;
+import bridge.vo.StepResult;
+
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -8,6 +13,11 @@ public class OutputView {
     public static final String GAME_STARTING_MESSAGE_FORMAT = "다리 건너기 게임을 시작합니다.%n%n";
     public static final String ASKING_BRIDGE_SIZE_MESSAGE_FORMAT = "다리의 길이를 입력해주세요.%n";
     public static final String ASKING_NEXT_STEP_MESSAGE_FORMAT = "이동할 칸을 선택해주세요. (위: U, 아래: D)%n";
+    private final BridgeMessageMaker bridgeMessageMaker;
+
+    public OutputView(BridgeMessageMaker bridgeMessageMaker) {
+        this.bridgeMessageMaker = bridgeMessageMaker;
+    }
 
     public void printGameStartMessage() {
         System.out.printf(GAME_STARTING_MESSAGE_FORMAT);
@@ -26,8 +36,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(String map) {
-        System.out.println(map);
+    public void printMap(List<StepResult> stepResults) {
+        System.out.println(bridgeMessageMaker.makeBridgeMessage(stepResults));
     }
 
     /**

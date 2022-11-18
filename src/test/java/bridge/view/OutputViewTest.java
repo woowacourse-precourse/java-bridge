@@ -1,15 +1,20 @@
 package bridge.view;
 
+import bridge.system.util.BridgeMessageMaker;
+import bridge.vo.BridgeStep;
+import bridge.vo.StepResult;
 import org.junit.jupiter.api.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class OutputViewTest {
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream captor = new ByteArrayOutputStream();
+    private final OutputView outputView = new OutputView(new BridgeMessageMaker());
 
     @BeforeEach
     public void setUp() {
@@ -27,9 +32,6 @@ class OutputViewTest {
         @Test
         @DisplayName("게임 시작을 알리는 메시지를 출력할 수 있다.")
         void whenPrintingGameStartingMessage_thenPrintsGameStartingMessage() {
-            //given
-            OutputView outputView = new OutputView();
-
             //when
             outputView.printGameStartMessage();
 
@@ -45,9 +47,6 @@ class OutputViewTest {
         @Test
         @DisplayName("다리 길이의 입력을 유도하는 메시지를 출력할 수 있다.")
         void whenAskingBridgeSizeMessage_thenPrintsMessage() {
-            //given
-            OutputView outputView = new OutputView();
-
             //when
             outputView.printAskingBridgeSizeMessage();
 
@@ -63,9 +62,6 @@ class OutputViewTest {
         @Test
         @DisplayName("다음으로 이동할 칸을 입력하도록 유도하는 메시지를 출력할 수 있다.")
         void whenAskingNextStep_thenPrintsMessage() {
-            //given
-            OutputView outputView = new OutputView();
-
             //when
             outputView.printAskingNextStepMessage();
 
@@ -81,16 +77,17 @@ class OutputViewTest {
         @Test
         @DisplayName("현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.")
         void givenMap_whenPrintingMap_thenPrintsMessage() {
-            //given
-            OutputView outputView = new OutputView();
-            String map = "[ O |   |   ]" + System.lineSeparator() + "[   | X | O ]";
-
             //when
-            outputView.printMap(map);
+            outputView.printMap(List.of(
+                    new StepResult(BridgeStep.D, true),
+                    new StepResult(BridgeStep.U, true),
+                    new StepResult(BridgeStep.U, false)
+            ));
 
             //then
             assertThat(captor.toString())
-                    .isEqualTo(map + System.lineSeparator());
+                    .isEqualTo("[   | O | X ]" + System.lineSeparator() + "[ O |   |   ]" +
+                            System.lineSeparator());
         }
     }
 }
