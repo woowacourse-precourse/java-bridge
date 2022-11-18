@@ -1,5 +1,9 @@
 package bridge;
 
+import java.util.List;
+
+import static bridge.Const.*;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -10,7 +14,64 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(GameHost gameHost) { // 여기서 player 위치는 index 로 따졌을 때 현재 위치인 것
+        System.out.println(getPrintOfMap(gameHost, UP));
+        System.out.println(getPrintOfMap(gameHost, DOWN));
+    }
+
+    private StringBuilder getPrintOfMap(GameHost gameHost, String position) {
+        StringBuilder printOfMap = new StringBuilder();
+        appendPastMap(gameHost, printOfMap, position);
+        appendNowMap(gameHost, printOfMap, position);
+        translateLastLetter(printOfMap);
+        return printOfMap;
+    }
+
+    private void appendPastMap(GameHost gameHost, StringBuilder printOfMap, String position) {
+        for (int index = 0; index < gameHost.getPlayerIndex(); index++) {
+            if (gameHost.stepOfIndexInBridge(index).equals(position)) {
+                printOfMap.append("| ").append("O ");
+            }
+
+            if (!gameHost.stepOfIndexInBridge(index).equals(position)) {
+                printOfMap.append("| ").append("  ");
+            }
+        }
+    }
+
+    private void appendNowMap(GameHost gameHost, StringBuilder printOfMap,String position) {
+        if (gameHost.playerAlive()) { // 플레이어가 살아있을 떄
+            appendNowMapWhenAlive(gameHost, printOfMap, position);
+        }
+
+        if (!gameHost.playerAlive()) { // 플레이어가 죽었을 때
+            appendNowMapWhenNotAlive(gameHost, printOfMap, position);
+        }
+    }
+
+    private void appendNowMapWhenAlive(GameHost gameHost, StringBuilder printOfMap, String position) {
+        if (gameHost.stepOfIndexInBridge(gameHost.getPlayerIndex()).equals(position)) {
+            printOfMap.append("| ").append("O ");
+        }
+
+        if (!gameHost.stepOfIndexInBridge(gameHost.getPlayerIndex()).equals(position)) {
+            printOfMap.append("| ").append("  ");
+        }
+    }
+
+    private void appendNowMapWhenNotAlive(GameHost gameHost, StringBuilder printOfMap, String position) {
+        if (gameHost.stepOfIndexInBridge(gameHost.getPlayerIndex()).equals(position)) {
+            printOfMap.append("| ").append("  ");
+        }
+
+        if (!gameHost.stepOfIndexInBridge(gameHost.getPlayerIndex()).equals(position)) {
+            printOfMap.append("| ").append("X ");
+        }
+    }
+
+    private void translateLastLetter(StringBuilder printOfMap) {
+        printOfMap.setCharAt(0, '[');
+        printOfMap.append("]");
     }
 
     /**
@@ -18,6 +79,18 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(GameHost gameHost) {
+        printWhetherFailOrSuccess();
+        printNumberOfRetry();
+    }
+
+    private void printWhetherFailOrSuccess() {
+        System.out.print("게임 성공 여부: ");
+        System.out.println(gameHost.gameResult());
+    }
+
+    private void printNumberOfRetry() {
+        System.out.print("총 시도한 횟수: ");
+        System.out.println(gameHost.getRetry());
     }
 }
