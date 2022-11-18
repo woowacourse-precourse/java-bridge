@@ -34,43 +34,64 @@ public class OutputView {
     public void printMap(List<String> map, List<String> step) {
         StringBuilder up = new StringBuilder();
         StringBuilder down = new StringBuilder();
-        up.append("[").append(" ");
-        down.append("[").append(" ");
+        openCasing(up, down);
+        markFootStep(map, step, up, down);
+        closeCasing(up, down);
+        printMoveResult(up, down);
 
-        for (int i = 0; i < step.size(); i++) {
-            String mark = "";
-            if (step.get(i).equals(map.get(i))) {
-                mark = "O ";
-            }
-            if (!step.get(i).equals(map.get(i))) {
-                mark = "X ";
-            }
+    }
 
-            if (step.get(i).equals("U")) {
-                up.append(mark);
-                down.append("  ");
-            }
-
-            if (step.get(i).equals("D")) {
-                up.append("  ");
-                down.append(mark);
-            }
-
-            if (i != step.size() - 1) {
-                up.append("| ");
-                down.append("| ");
-            }
-
-
-
-        }
-
-        up.append("]");
-        down.append("]");
-
+    private void printMoveResult(StringBuilder up, StringBuilder down) {
         System.out.println(up);
         System.out.println(down);
+    }
 
+    private void markFootStep(List<String> map, List<String> step, StringBuilder up, StringBuilder down) {
+        for (int i = 0; i < step.size(); i++) {
+            String mark = "";
+            mark = markSuccessOrFail(map, step, i, mark);
+            printMarkOnTrail(step, up, down, i, mark);
+            printSpacer(step, up, down, i);
+        }
+    }
+
+    private void printSpacer(List<String> step, StringBuilder up, StringBuilder down, int i) {
+        if (i != step.size() - 1) {
+            up.append("| ");
+            down.append("| ");
+        }
+    }
+
+    private void printMarkOnTrail(List<String> step, StringBuilder up, StringBuilder down, int i, String mark) {
+        if (step.get(i).equals("U")) {
+            up.append(mark);
+            down.append("  ");
+        }
+
+        if (step.get(i).equals("D")) {
+            up.append("  ");
+            down.append(mark);
+        }
+    }
+
+    private String markSuccessOrFail(List<String> map, List<String> step, int i, String mark) {
+        if (step.get(i).equals(map.get(i))) {
+            mark = "O ";
+        }
+        if (!step.get(i).equals(map.get(i))) {
+            mark = "X ";
+        }
+        return mark;
+    }
+
+    private void closeCasing(StringBuilder up, StringBuilder down) {
+        up.append("]");
+        down.append("]");
+    }
+
+    private void openCasing(StringBuilder up, StringBuilder down) {
+        up.append("[ ");
+        down.append("[ ");
     }
 
     /**
@@ -79,6 +100,15 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(List<String> map, GameSession gameSession, GameResult result) {
+
+        System.out.println(MSG_FINAL_RESULT);
+        printMap(map, gameSession.getStep());
+        System.out.print(MSG_GAME_SUCCEED);
+        printGameResult(result);
+        System.out.println(MSG_TRIAL + gameSession.getTrial());
+    }
+
+    private void printGameResult(GameResult result) {
         String successOrFail = "";
         if (result == GameResult.succeed) {
             successOrFail = "성공";
@@ -86,12 +116,7 @@ public class OutputView {
         if (result == GameResult.fail) {
             successOrFail = "실패";
         }
-
-        System.out.println(MSG_FINAL_RESULT);
-        printMap(map, gameSession.getStep());
-        System.out.print(MSG_GAME_SUCCEED);
         System.out.println(successOrFail);
-        System.out.println(MSG_TRIAL + gameSession.getTrial());
     }
 
     public void printChooseRetry() {
