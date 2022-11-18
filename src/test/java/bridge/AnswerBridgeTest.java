@@ -5,6 +5,7 @@ import bridge.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -46,5 +47,18 @@ public class AnswerBridgeTest {
 
         boolean result = answerBridge.isApproachEnd(user.getChoices());
         assertThat(result).isTrue();
+    }
+
+    @DisplayName("유저가 현재 선택한 결과를 반환하는 함수 테스트")
+    @Test
+    void isCorrect() {
+        User user = new User();
+        user.addChoice("U");
+        boolean result = answerBridge.isCorrect(user);
+        assertThat(result).isTrue();
+
+        user.addChoice("U");
+        result = answerBridge.isCorrect(user);
+        assertThat(result).isFalse();
     }
 }
