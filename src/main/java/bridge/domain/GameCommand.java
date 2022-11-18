@@ -19,10 +19,6 @@ public class GameCommand {
         checkFormatValid(command);
     }
 
-    public String getCommand() { // TODO:
-        return command;
-    }
-
     private void checkNotBlank(String command) {
         boolean isBlank = command.isBlank();
         if (isBlank) {
@@ -35,5 +31,9 @@ public class GameCommand {
         if (!isFormatValid) {
             throw new IllegalArgumentException(COMMAND_FORMAT_ERROR);
         }
+    }
+
+    public boolean isQuit() {
+        return command.equals("Q");
     }
 }

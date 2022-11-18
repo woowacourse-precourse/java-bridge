@@ -82,7 +82,7 @@ public class BridgeController {
             do {
                 try {
                     gameCommand = new GameCommand(InputView.readGameCommand());
-                    if (gameCommand.getCommand().equals("Q")) {
+                    if (gameCommand.isQuit()) {
                         break game;
                     }
                 } catch (IllegalArgumentException ex) {
