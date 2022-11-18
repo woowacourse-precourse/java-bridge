@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public enum BridgeCellType {
 
-    DOWN("D"),
-    UP("U");
+    UP("U"),
+    DOWN("D");
     private static final String INVALID_BRIDGE_CELL_TYPE_MESSAGE = "이동할 칸이 올바르지 않습니다. (U or D)";
     private final String cellType;
 

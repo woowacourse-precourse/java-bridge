@@ -1,7 +1,7 @@
 package bridge.domain;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -15,7 +15,7 @@ public class MoveResult {
     private boolean isSuccess;
     private int tryCount;
 
-    private final Map<BridgeCellType, List<String>> moveResults = new HashMap<>() {{
+    private final Map<BridgeCellType, List<String>> moveResults = new LinkedHashMap<>() {{
         List.of(BridgeCellType.values())
             .forEach(cellType -> put(cellType, new ArrayList<>()));
     }};
