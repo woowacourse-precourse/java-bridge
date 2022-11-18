@@ -21,7 +21,8 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         return Arrays.stream(new String[size])
-                .map(bridgeLocation -> BridgeLocation.createLocation(bridgeNumberGenerator.generate()).getLocation())
+                .map(bridgeLocation ->
+                        BridgeLocation.createLocation(bridgeNumberGenerator.generate()).getLocation())
                 .collect(Collectors.toList());
     }
 }
