@@ -27,4 +27,11 @@ public enum Error {
         }
         return false;
     }
+
+    public static boolean validatePlayerMove(String move) {
+        if (!(move.equals("U") || move.equals("D"))) {
+            throw new IllegalArgumentException(MoveInputWrong.getErrorMsg());
+        }
+        return false;
+    }
 }

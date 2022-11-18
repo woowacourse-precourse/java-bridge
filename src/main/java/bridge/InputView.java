@@ -20,6 +20,19 @@ public class InputView {
             }}
         return Integer.parseInt(inputBridgeSize);
     }
+
+    public String readMoving() {
+        String inputMove = ""; boolean input = true;
+        while (input) {
+            try {outputView.printPlayerMove();
+                inputMove = Console.readLine();
+                input = Error.validatePlayerMove(inputMove);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }}
+        return inputMove;
+    }
+
     public String readMoving() {
         return null;
     }
