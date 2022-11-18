@@ -23,16 +23,16 @@ public class OutputView {
     public void printResult() {
     }
 
-    public void printGameStart() {
+    public static void printGameStart() {
         printOutputSystemMessage(OutputSystemMessage.GAME_START_OUTPUT);
     }
 
-    public void printOutputSystemMessage(OutputSystemMessage situation) {
+    public static void printOutputSystemMessage(OutputSystemMessage situation) {
         String message = OutputSystemMessage.getMessage(situation);
         System.out.println(message);
     }
 
-    public String getOutputSystemMessage(OutputSystemMessage situation) {
+    public static String getOutputSystemMessage(OutputSystemMessage situation) {
         return OutputSystemMessage.getMessage(situation);
     }
 }
