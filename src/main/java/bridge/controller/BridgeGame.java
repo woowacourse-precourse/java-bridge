@@ -1,7 +1,10 @@
 package bridge.controller;
 
+import bridge.model.Bridge;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+
+import java.util.Arrays;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -13,6 +16,17 @@ public class BridgeGame {
     public void start() {
         outputView.printStartMessage();
         int bridgeSize = inputView.readBridgeSize();
+        Bridge bridge = new Bridge(bridgeSize);
+        print2DBridge(bridge);
+
+    }
+
+    private void print2DBridge(Bridge bridge) {
+        Arrays.stream(bridge.bridge).forEach(
+                bridgeBlock -> {
+                    System.out.println(Arrays.toString(bridgeBlock));
+                }
+        );
     }
 
     /**

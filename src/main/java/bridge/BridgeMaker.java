@@ -41,4 +41,17 @@ public class BridgeMaker {
         throw new IllegalArgumentException("0 혹은 1의 값을 입력받아야 합니다.");
     }
 
+    public String[][] make2DBridge(List<String> bridge) {
+        String[][] bridge2D = new String[2][bridge.size()];
+        for (int i = 0; i < bridge.size(); i++) {
+            if (bridge.get(i) == DOWN_KEY) {
+                bridge2D[1][i] = DOWN_KEY;
+                bridge2D[0][i] = "X";
+            } else {
+                bridge2D[0][i] = UP_KEY;
+                bridge2D[1][i] = "X";
+            }
+        }
+        return bridge2D;
+    }
 }
