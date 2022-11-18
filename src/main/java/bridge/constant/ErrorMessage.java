@@ -9,7 +9,13 @@ public enum ErrorMessage {
                     BridgeRule.MAXIMUM_SIZE.getSize())
     ),
     POSITION_IN_FORM_OF_NUMBER("다리 생성 도중 오류가 발생했습니다."),
-    NOT_NUMBER("숫자를 입력해주세요");
+    NOT_NUMBER(
+            String.format(
+                    "%d이상, %d이하의 \"정수\"만 입력하셔야 합니다.",
+                    Integer.MIN_VALUE,
+                    Integer.MAX_VALUE
+            )
+    );
 
     private final String message;
     private final StringBuilder sb = new StringBuilder();
