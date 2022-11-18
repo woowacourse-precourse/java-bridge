@@ -44,8 +44,12 @@ public class BridgeGame {
         if (gameCommand.equals("Q")) {
             return false;
         }
-        usersMove = new ArrayList<>();
+        initializationUserMoves();
         return true;
+    }
+
+    private void initializationUserMoves() {
+        usersMove = new ArrayList<>();
     }
 
     public void plusCnt() {
