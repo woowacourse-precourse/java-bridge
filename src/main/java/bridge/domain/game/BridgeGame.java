@@ -1,9 +1,9 @@
-package bridge.domain;
+package bridge.domain.game;
 
-import bridge.domain.player.GameCommand;
-import bridge.domain.player.Movement;
 import bridge.domain.bridge.Bridge;
 import bridge.domain.bridgeMaker.BridgeMaker;
+import bridge.domain.player.GameCommand;
+import bridge.domain.player.Movement;
 import bridge.domain.result.ResultDescription;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -24,7 +24,6 @@ public class BridgeGame {
 	private static final String DOUBLE_ENTER = "\n\n";
 
 	private List<String> bridgeNowCrossing;
-	private boolean passable;
 	public static List<String> upperBridge = new ArrayList<>();
 	public static List<String> underBridge = new ArrayList<>();
 	private String commandChoice;
@@ -58,19 +57,15 @@ public class BridgeGame {
 		do {
 			OutputView.printRequest(REQUEST_MOVEMENT);
 			Movement movement = inputView.readMovement();
-			judgement(movement, bridgeNowCrossing);
-			passThrough();
-			OutputView.printGameInfo(ResultDescription.generatedBy(passable, movement).getBridgeDescription() + ENTER);
+			CrossingDecision crossingDecision = CrossingDecision.judgingBy(movement, bridgeNowCrossing);
+			passThrough(crossingDecision);
+			OutputView.printGameInfo(ResultDescription.generatedBy(crossingDecision, movement).getBridgeDescription() + ENTER);
 
 		} while (continueToPassThrough());
 	}
 
-	private void judgement(Movement movement, List<String> bridge) {
-		passable = movement.side().equals(bridge.get(0));
-	}
-
-	private void passThrough() {
-		if (passable) {
+	private void passThrough(CrossingDecision crossingDecision) {
+		if (crossingDecision.isCrossable()) {
 			bridgeNowCrossing.remove(0);
 		}
 	}
@@ -102,4 +97,5 @@ public class BridgeGame {
 		failOrSuccess = "성공";
 		return (bridgeNowCrossing.isEmpty());
 	}
+
 }
