@@ -25,4 +25,12 @@ public class BridgeGameController {
         gameResult = new BridgeGameResult();
         play = true;
     }
+
+    public void play() {
+        start();
+    }
+
+    private void start() {
+        outputView.printGameStartMsg();
+    }
 }
