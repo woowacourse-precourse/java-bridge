@@ -16,13 +16,13 @@ public class InputValidator {
 
 
     public static void validateNumberInput(String input) throws IllegalArgumentException {
-        final String NOT_NUMBER_REGEX = "[^0-9]";
+        final String NUMBER_REGEX = "[0-9]+";
 
         if (input.isBlank()) {
             throw new IllegalArgumentException(EMPTY_INPUT);
         }
 
-        if (input.matches(NOT_NUMBER_REGEX)) {
+        if (!input.matches(NUMBER_REGEX)) {
             throw new IllegalArgumentException(WRONG_SIZE_INPUT);
         }
     }
