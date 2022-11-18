@@ -2,6 +2,9 @@ package bridge.View;
 
 import bridge.Domain.BridgeGame;
 import bridge.Domain.Player;
+import bridge.Constant.InputValue;
+import bridge.Constant.OutputMessage;
+import bridge.Constant.OutputValue;
 
 import java.util.List;
 
@@ -9,27 +12,27 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private String printSelectedStair(Player player, String stair) {
+        private String printSelectedStair(Player player, String stair) {
         if (!stair.equals(player.getLastSelection())) {
-            return "   ";
+            return OutputValue.NOT_SELECTION;
         }
 
         if (!player.isAlive()) {
-            return " X ";
+            return OutputValue.WRONG_SELECTION;
         }
 
-        return " O ";
+        return OutputValue.RIGHT_SELECTION;
     }
 
     private String printPassedStair(List<String> bridgeStates, int passedCount, String stair) {
         String result = "";
 
         for (int bridgeLocation = 0; bridgeLocation < passedCount; bridgeLocation++) {
-            String state = "   ";
+            String state = OutputValue.NOT_SELECTION;
             if (stair.equals(bridgeStates.get(bridgeLocation))) {
-                state = " O ";
+                state = OutputValue.RIGHT_SELECTION;
             }
-            state += "|";
+            state += OutputValue.SEPARATOR;
             result += state;
         }
 
@@ -37,20 +40,19 @@ public class OutputView {
     }
 
     private void printStair(List<String> bridgeStates, Player player, String stair) {
-        String result = "[";
-        result += printPassedStair(bridgeStates, player.getNextLocation(), stair);
+        String result;
+        result = printPassedStair(bridgeStates, player.getNextLocation(), stair);
         result += printSelectedStair(player, stair);
-        result += "]";
 
-        System.out.println(result);
+        System.out.printf(OutputMessage.BRIDGE_MAP, result);
     }
 
     public void printMap(BridgeGame bridgeGame) {
         List<String> bridgeState = bridgeGame.getBridgeStates();
         Player player = bridgeGame.getPlayer();
 
-        printStair(bridgeState, player, "U");
-        printStair(bridgeState, player, "D");
+        printStair(bridgeState, player, InputValue.SELECTION_UP);
+        printStair(bridgeState, player, InputValue.SELECTION_DOWN);
         System.out.println();
     }
 
@@ -62,10 +64,10 @@ public class OutputView {
 
     private String printIsSuccess(BridgeGame bridgeGame) {
         if (bridgeGame.isPlayerDead()) {
-            return "실패";
+            return OutputValue.FAIL;
         }
 
-        return "성공";
+        return OutputValue.SUCCESS;
     }
 
     private String printLastStair(BridgeGame bridgeGame, String stair) {
@@ -73,32 +75,31 @@ public class OutputView {
         String bridgeState = bridgeStates.get(bridgeGame.getMaxPassedCount());
 
         if (!bridgeState.equals(stair)) {
-            return "   ";
+            return OutputValue.NOT_SELECTION;
         }
 
         if (bridgeGame.isPlayerDead()) {
-            return " X ";
+            return OutputValue.WRONG_SELECTION;
         }
 
-        return " O ";
+        return OutputValue.RIGHT_SELECTION;
     }
 
     private void printResultStair(BridgeGame bridgeGame, String stair) {
-        String result = "[";
-        result += printPassedStair(bridgeGame.getBridgeStates(), bridgeGame.getMaxPassedCount(), stair);
+        String result;
+        result = printPassedStair(bridgeGame.getBridgeStates(), bridgeGame.getMaxPassedCount(), stair);
         result += printLastStair(bridgeGame, stair);
-        result += "]";
 
-        System.out.println(result);
+        System.out.printf(OutputMessage.BRIDGE_MAP, result);
     }
 
     public void printResult(BridgeGame bridgeGame) {
-        System.out.println("최종 게임 결과");
+        System.out.println(OutputMessage.RESULT_MESSAGE);
 
-        printResultStair(bridgeGame, "U");
-        printResultStair(bridgeGame, "D");
+        printResultStair(bridgeGame, InputValue.SELECTION_UP);
+        printResultStair(bridgeGame, InputValue.SELECTION_DOWN);
 
-        System.out.println("게임 성공 여부: " + printIsSuccess(bridgeGame));
-        System.out.println("총 시도한 횟수: " + bridgeGame.getRetryCount());
+        System.out.printf(OutputMessage.IS_SUCCESS, printIsSuccess(bridgeGame));
+        System.out.printf(OutputMessage.RETRY_COUNT, bridgeGame.getRetryCount());
     }
 }
