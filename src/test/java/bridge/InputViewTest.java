@@ -2,6 +2,8 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayInputStream;
 
@@ -24,34 +26,11 @@ class InputViewTest{
         });
     }
 
-    @Test
-    void readBridgeSizeTest2() {
+    @ParameterizedTest
+    @ValueSource(strings = {"2", "21", "2a", ""})
+    void readBridgeSizeTest2(String line) {
         assertSimpleTest(() -> {
-            command("2");
-            assertThatThrownBy(inputView::readBridgeSize).isInstanceOf(IllegalArgumentException.class);
-        });
-    }
-
-    @Test
-    void readBridgeSizeTest3() {
-        assertSimpleTest(() -> {
-            command("21");
-            assertThatThrownBy(inputView::readBridgeSize).isInstanceOf(IllegalArgumentException.class);
-        });
-    }
-
-    @Test
-    void readBridgeSizeTest4() {
-        assertSimpleTest(() -> {
-            command("2a");
-            assertThatThrownBy(inputView::readBridgeSize).isInstanceOf(IllegalArgumentException.class);
-        });
-    }
-
-    @Test
-    void readBridgeSizeTest5() {
-        assertSimpleTest(() -> {
-            command("");
+            command(line);
             assertThatThrownBy(inputView::readBridgeSize).isInstanceOf(IllegalArgumentException.class);
         });
     }
