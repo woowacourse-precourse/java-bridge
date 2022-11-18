@@ -9,43 +9,44 @@ public class Controller {
     BridgeGame bridgeGame = new BridgeGame();
     String input;
     int count = 1;
+    List<String> bridgeList;
 
     public void start() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> bridgeList = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        bridgeList = bridgeMaker.makeBridge(inputView.readBridgeSize());
         System.out.println();
-        processGame(bridgeList, 0);
+        Game( 0);
     }
 
-    private void processGame(List<String> bridgeList, int movingIndex) {
+    private void Game(int movingIndex) {
         if (Objects.equals(bridgeList.size(), movingIndex)) { //다리를 무사히 모두 맞힌 경우
-            printingResult(bridgeList, movingIndex - 1);
+            printingResult(movingIndex - 1);
             return;
         }
-        moveInOutView(bridgeList, movingIndex); //입력을 받고 진행 사항을 출력
-        if (bridgeGame.move(bridgeList.get(movingIndex), input)) { //입력이 틀렸을 경우
-            if (askRetry(bridgeList, movingIndex)) return; //게임 재시작 혹은 재개를 묻는다.
+        processMove(movingIndex); //입력을 받고 진행 사항을 출력
+        if (bridgeGame.move(bridgeList.get(movingIndex), input)) { //입력이 정답과 다를 경우
+            askRetry(movingIndex); //게임 재시작 혹은 종료를 묻는다.
+            return;
         }
-        processGame(bridgeList, movingIndex + 1); //입력이 정답이면서 아직 게임이 남아있는 경우
+        Game(movingIndex + 1); //입력이 정답이면서 아직 게임이 남아있는 경우
     }
 
-    private void moveInOutView(List<String> bridgeList, int movingIndex) {
+    private void processMove(int movingIndex) {
         input = inputView.readMoving();
         outputView.printMap(movingIndex, bridgeList, input);
     }
 
-    private boolean askRetry(List<String> bridgeList, int movingIndex) {
+    private void askRetry(int movingIndex) {
         String Command = inputView.readGameCommand();
         if (bridgeGame.retry(Command)) {
             count++;
-            processGame(bridgeList, 0);
-            return true;
+            Game(0);
+            return;
         }
-        printingResult(bridgeList, movingIndex);
-        return true;
+        printingResult(movingIndex);
     }
 
-    private void printingResult(List<String> bridgeList, int movingIndex) {
+    private void printingResult(int movingIndex) {
         outputView.printResult(movingIndex, bridgeList, input);
         outputView.printResult(count);
     }
