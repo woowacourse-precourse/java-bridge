@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.constant.Constant;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,23 +11,33 @@ import java.util.List;
 
 class MovementTest {
 
-    @DisplayName("canMove 메서드는 사용자가 정답을 입력하면 true를 오답을 입력하면 false를 반환한다.")
+    @DisplayName("canMove 메서드는 움직일 수 있다면 true를, 없다면 false를 반환한다.")
     @ParameterizedTest
     @CsvSource(value = {"U:true", "D:false"}, delimiter = ':')
     void canMoveTest(String input, boolean expected) {
         Movement movement = new Movement(List.of("U"));
-        boolean result = movement.canMove(input);
-        Assertions.assertThat(result).isEqualTo(expected);
+        movement.saveMoving(input);
+        Assertions.assertThat(movement.canMove()).isEqualTo(expected);
     }
 
-    @DisplayName("사용자가 모두 정답을 입력하면 게임은 종료된다.")
+    @DisplayName("사용자가 모두 정답을 입력하면 게임은 성공으로 종료된다.")
     @Test
-    void isFinishTest() {
+    void isSuccessFinishTest() {
         Movement movement = new Movement(List.of("U", "D", "D"));
-        movement.canMove("U");
-        movement.canMove("D");
-        movement.canMove("D");
+        movement.saveMoving("U");
+        movement.saveMoving("D");
+        movement.saveMoving("D");
+        Assertions.assertThat(movement.isSuccess()).isEqualTo(Constant.SUCCESS);
+    }
 
-        Assertions.assertThat(movement.isFinish()).isTrue();
+
+    @DisplayName("사용자가 끝까지 정답을 입력했지만, 마지막 움직임이 실패하면 실패한다.")
+    @Test
+    void isFailureFinishTest() {
+        Movement movement = new Movement(List.of("U", "D", "D"));
+        movement.saveMoving("U");
+        movement.saveMoving("D");
+        movement.saveMoving("U");
+        Assertions.assertThat(movement.isSuccess()).isEqualTo(Constant.FAILURE);
     }
 }
