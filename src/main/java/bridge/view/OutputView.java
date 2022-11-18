@@ -67,7 +67,7 @@ public class OutputView {
             return SPACE_DISPLAY;
         }
         
-        return currentMoveResult(gameResultDTO, countOfMoving).getMovingResult();
+        return currentMovingResult(gameResultDTO, countOfMoving);
     }
     
     private String currentMoving(final GameResultDTO gameResultDTO, final int countOfMoving) {
@@ -84,6 +84,10 @@ public class OutputView {
     
     private int numberOfWhetherToWent(final int lineIndex, final String currentMoving) {
         return (currentMoving.charAt(0) + lineIndex) % 2;
+    }
+    
+    private String currentMovingResult(final GameResultDTO gameResultDTO, final int countOfMoving) {
+        return currentMoveResult(gameResultDTO, countOfMoving).getMovingResult();
     }
     
     private MoveResultDisplay currentMoveResult(final GameResultDTO gameResultDTO, final int countOfMoving) {
