@@ -29,6 +29,16 @@ public class InputViewTest extends NsTest {
         });
     }
 
+    @DisplayName("다리 이동 방향을 입력할 때, 입력 값이 단일 문자가 아니면 예외가 발생한다.")
+    @Test
+    void enterBridgeMoveByNotSingleCharacter() {
+        assertSimpleTest(() -> {
+            assertThatThrownBy(() -> runException("3", "ab"))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("[ERROR] 입력 값이 단일 문자가 아닙니다.");
+        });
+    }
+
     @DisplayName("다리 이동 방향을 입력할 때, 이미 정해진 값 외의 입력 값은 예외가 발생한다.")
     @Test
     void enterBridgeMoveByInvalidValue() {
