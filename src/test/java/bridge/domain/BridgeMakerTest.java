@@ -1,4 +1,4 @@
-package bridge.game;
+package bridge.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -20,7 +20,7 @@ public class BridgeMakerTest {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         final String DOWN_SIDE = "D";
         final String UP_SIDE = "U";
-        
+
         //when
         List<String> bridge = bridgeMaker.makeBridge(size);
 
