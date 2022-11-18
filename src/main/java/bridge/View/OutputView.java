@@ -32,15 +32,23 @@ public class OutputView {
         return RIGHT_SELECTION;
     }
 
+    private String getPassedResult(String bridgeState, String stair) {
+        if (bridgeState.equals(stair)) {
+            return RIGHT_SELECTION;
+        }
+
+        return NOT_SELECTION;
+    }
+
+
     private String getPassedResultMap(List<String> bridgeStates, int passedCount, String stair) {
         String result = "";
 
         for (int bridgeLocation = 0; bridgeLocation < passedCount; bridgeLocation++) {
-            String state = NOT_SELECTION;
-            if (stair.equals(bridgeStates.get(bridgeLocation))) {
-                state = RIGHT_SELECTION;
-            }
-            result += state + SEPARATOR;
+            String bridgeState = bridgeStates.get(bridgeLocation);
+
+            result += getPassedResult(bridgeState, stair);
+            result += SEPARATOR;
         }
 
         return result;
