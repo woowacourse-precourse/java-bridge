@@ -16,9 +16,7 @@ public class Controller {
         outputView.printStart();
         outputView.printGetLength();
         int BridgeLength = getBridgeLength();
-        BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(BridgeLength));
-        System.out.println(bridgeGame.getBridge());
-        return bridgeGame;
+        return new BridgeGame(bridgeMaker.makeBridge(BridgeLength));
     }
 
     public List<Boolean> movement(BridgeGame bridgeGame) {
