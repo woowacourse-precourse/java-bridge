@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGame {
-    int countTryNumber = 1;
+    int tryNumber = 1;
     private int bridgeNumber = 0;
 
     public void run() {
@@ -71,7 +71,7 @@ public class BridgeGame {
 
     private boolean UserInputDone(List<String> bridge, List<String> upSide, List<String> downSide) {
         if (isUserInputDone(bridge, upSide)) {
-            BridgeController.printResult(upSide, downSide, countTryNumber);
+            BridgeController.printResult(upSide, downSide, tryNumber);
             return true;
         }
         return false;
@@ -132,11 +132,11 @@ public class BridgeGame {
         String retryOrQuit = BridgeController.getGameCommand();
         BridgeController.printRetryOrQuit(retryOrQuit);
         if (isUserInputRetry(retryOrQuit)) {
-            countTryNumber++;
+            tryNumber++;
             checkNextPath(bridge, upSide, downSide);
         }
         if (isUserInputQuit(retryOrQuit)) {
-            BridgeController.printResult(upSide, downSide, countTryNumber);
+            BridgeController.printResult(upSide, downSide, tryNumber);
         }
     }
 
