@@ -14,7 +14,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(String nowStageMap) {
+    public static void printMap(String nowStageMap) {
         System.out.println(nowStageMap);
     }
 
@@ -23,14 +23,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(int result, int total, String resultStage) {
+    public static void printResult(int result, int total, String resultStage) {
         System.out.println(GAME_FINAL);
         printMap(resultStage);
         successGamePrint(result);
         challengeTotal(total);
     }
 
-    public void successGamePrint(int result) {
+    public static void successGamePrint(int result) {
         if (result == GAME_WIN.num()) {
             System.out.println(SUCCESS_GAME + "성공");
         }
@@ -39,23 +39,23 @@ public class OutputView {
         }
     }
 
-    public void challengeTotal(int total) {
+    public static void challengeTotal(int total) {
         System.out.println(CHALLENGE + String.valueOf(total));
     }
 
-    public void printGameStart() {
+    public static void printGameStart() {
         System.out.println(GAME_START.key());
     }
 
-    public void printAskMoving() {
+    public static void printAskMoving() {
         System.out.println(ASK_MOVING.key());
     }
 
-    public void printAskCommand() {
+    public static void printAskCommand() {
         System.out.println(ASK_COMMAND.key());
     }
 
-    public void printAskLength() {
+    public static void printAskLength() {
         System.out.println(ASK_BRIDGE_LENGTH.key());
     }
 
