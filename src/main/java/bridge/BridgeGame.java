@@ -13,11 +13,13 @@ public class BridgeGame {
     static Map<Integer, String> firstStorage = new HashMap<>();
     static Map<Integer, String> secondStorage = new HashMap<>();
 
-    public void move(List<String> firstBridge, List<String> secondBridge, String move) {
+    public String[] move(List<String> firstBridge, List<String> secondBridge, String move) {
         bridgeSet(firstBridge, secondBridge);
         String firstBridgeMap = moveFirstBridge(firstBridge, move);
         String secondBridgeMap = moveSecondBridge(secondBridge, move);
+        String bridgeMap[] = {firstBridgeMap, secondBridgeMap};
         count++;
+        return bridgeMap;
     }
 
     private String moveSecondBridge(List<String> secondBridge, String move) {

@@ -9,6 +9,7 @@ public class Application {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         BridgeGame bridgeGame = new BridgeGame();
+        OutputView outputView = new OutputView();
 
         inputView.startMsg();
 
@@ -17,8 +18,10 @@ public class Application {
         List<String> firstBridge = bridgeMaker.makeBridge(bridgeSize);
         List<String> secondBridge = bridgeMaker.makeSecondBridge(firstBridge);
 
-        String move = inputView.readMoving();
-        bridgeGame.move(firstBridge, secondBridge, move);
-
+        for (int i = 0; i < bridgeSize; i++) {
+            String move = inputView.readMoving();
+            String[] bridgeMap = bridgeGame.move(firstBridge, secondBridge, move);
+            outputView.printMap(bridgeMap);
+        }
     }
 }
