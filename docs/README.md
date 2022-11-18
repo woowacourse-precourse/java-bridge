@@ -1,10 +1,11 @@
 ## 🚀 기능 리스트
 - [x] 다리의 길이를 입력받는다 - InputView#readBridgeSize()
 - [x] 새로운 다리를 생성한다 - BridgeMaker#makeBridge()
-- [x] 이동할 다리를 선택한다 - InputView#readMoving()
+- [x] 이동할 다리를 선택한다 - InputView#readMoving() 
 - [x] 입력받은 다리로 이동한다 - BridgeGame#Move()
+  - [x] 입력받은 문자로 이동할 곳의 인덱스를 알아낸다 - BridgeGame#convertToIndex()
+  - [x] 이동할 수 있는 곳이면 "O", 그렇지 않다면 "X"를 반환한다 - BridgeGame#calculateAnswer()
 - [x] 다리에 끝에 도달한다 - BridgeGame#isEnd()
-- [ ] 이동할 수 없는 칸에 도달한다 - 미정 
 - [ ] 현재까지 이동한 다리의 상태를 출력한다 - OutputView#printMap()
 - [ ] 게임 결과를 출력한다 - OutputView#printResult()
 - [ ] 재시작 유무를 입력받는다 - InputView#readGameCommand()
