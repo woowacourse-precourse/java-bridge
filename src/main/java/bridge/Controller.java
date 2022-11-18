@@ -6,9 +6,6 @@ public class Controller {
 
     public void getGame(){
         BridgeGame bridgeGame = new BridgeGame();
-        bridgeGame.playGame();
+        bridgeGame.startGame();
     }
-
-
-
 }

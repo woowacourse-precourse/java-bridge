@@ -23,7 +23,7 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> randomNumberBridge = new ArrayList<>();
         for (int i=0; i<size; i++){
-            if (bridgeNumberGenerator.generate()==0){
+            if (bridgeNumberGenerator.generate()==1){
                 randomNumberBridge.add("U");
             }else {
                 randomNumberBridge.add("D");
