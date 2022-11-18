@@ -8,22 +8,23 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class GameConfig {
-    private InputView inputView(){
+    private InputView inputView() {
         return new InputView();
     }
-    private OutputView outputView(){
+
+    private OutputView outputView() {
         return new OutputView();
     }
 
-    private BridgeNumberGenerator bridgeRandomNumberGenerator(){
+    private BridgeNumberGenerator bridgeRandomNumberGenerator() {
         return new BridgeRandomNumberGenerator();
     }
 
-    private BridgeMaker bridgeMaker(){
+    private BridgeMaker bridgeMaker() {
         return new BridgeMaker(bridgeRandomNumberGenerator());
     }
 
-    public GameController gameController(){
+    public GameController gameController() {
         return new GameController(bridgeMaker(), inputView(), outputView());
     }
 }

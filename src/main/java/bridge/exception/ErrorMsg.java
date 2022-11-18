@@ -5,11 +5,13 @@ public enum ErrorMsg {
     NOT_ALLOWED_MOVEMENT("[ERROR] 이동은 U, D만 입력 가능합니다."),
     NOT_ALLOWED_COMMAND("[ERROR] R, Q만 입력 가능합니다.");
 
-    private String msg;
-    ErrorMsg(String msg){
+    private final String msg;
+
+    ErrorMsg(String msg) {
         this.msg = msg;
     }
-    public String toString(){
+
+    public String toString() {
         return this.msg;
     }
 }

@@ -1,7 +1,6 @@
 package bridge.view;
 
 import bridge.model.BridgeGame;
-import bridge.model.Direction;
 
 import java.util.List;
 
@@ -19,7 +18,7 @@ public class OutputView {
         System.out.print(printBridge(game, direction));
     }
 
-    private String printBridge(BridgeGame game, String direction){
+    private String printBridge(BridgeGame game, String direction) {
         boolean success = game.currentBridge().equals(direction);
         game.getGameResultBoard().update(direction, success);
         return makeMap(game.getGameResultBoard().getState());
@@ -27,7 +26,7 @@ public class OutputView {
 
     private String makeMap(List<List<String>> bridges) {
         StringBuilder map = new StringBuilder();
-        for (List<String> bridge : bridges){
+        for (List<String> bridge : bridges) {
             map.append("[ ");
             map.append(String.join(" | ", bridge));
             map.append(" ]\n");
@@ -43,11 +42,11 @@ public class OutputView {
     public void printResult(BridgeGame game) {
         System.out.println(Message.FINAL_STATE);
         System.out.println(makeMap(game.getGameResultBoard().getState()));
-        System.out.println(Message.GAME_SUCCESS +game.getGameState().stateMsg());
-        System.out.println(Message.NUMBER_OF_TRY.toString()+game.getAttempts());
+        System.out.println(Message.GAME_SUCCESS + game.getGameState().stateMsg());
+        System.out.println(Message.NUMBER_OF_TRY.toString() + game.getAttempts());
     }
 
-    public void printStart(){
+    public void printStart() {
         System.out.println(Message.GAME_START);
     }
 }

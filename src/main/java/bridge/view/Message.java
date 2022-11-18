@@ -10,10 +10,12 @@ public enum Message {
     NUMBER_OF_TRY("총 시도한 횟수: ");
 
     private final String msg;
-    Message(String msg){
+
+    Message(String msg) {
         this.msg = msg;
     }
-    public String toString(){
+
+    public String toString() {
         return this.msg;
     }
 }

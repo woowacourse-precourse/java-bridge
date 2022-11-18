@@ -15,7 +15,7 @@ public class CommandInputTest {
 
     @Test
     @DisplayName("올바른 입력 테스트")
-    public void movementInputTest(){
+    public void movementInputTest() {
         consoleTestUtil.setInput("R");
         String move = inputView.readGameCommand();
         assertThat(move).isEqualTo("R");
@@ -24,7 +24,7 @@ public class CommandInputTest {
 
     @Test
     @DisplayName("command 예외 테스트")
-    public void movementException(){
+    public void movementException() {
         consoleTestUtil.setInput("19");
         assertThatThrownBy(() -> inputView.readGameCommand())
                 .isInstanceOf(IllegalArgumentException.class);
@@ -33,14 +33,14 @@ public class CommandInputTest {
 
     @Test
     @DisplayName("반복 입력 테스트 - 잘못된 입력 예외 출력")
-    public void movementLoopInputException(){
+    public void movementLoopInputException() {
         consoleTestUtil.testOutput("RR\nQ", ErrorMsg.NOT_ALLOWED_COMMAND.toString(),
                 () -> inputView.loopInput(() -> inputView.readGameCommand()));
     }
 
     @Test
     @DisplayName("반복 입력 테스트 - 값 테스트")
-    public void movementLoopInput(){
+    public void movementLoopInput() {
         consoleTestUtil.setInput("A\nQ");
         String move = inputView.loopInput(() -> inputView.readGameCommand());
         assertThat(move).isEqualTo("Q");

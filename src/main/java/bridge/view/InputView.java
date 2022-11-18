@@ -28,15 +28,16 @@ public class InputView {
         return Integer.parseInt(validated(input, allowed, ErrorMsg.WRONG_BRIDGE_SIZE));
     }
 
-    public  <T> T loopInput(Supplier<T> function){
-        while(true){
-            try{
+    public <T> T loopInput(Supplier<T> function) {
+        while (true) {
+            try {
                 return function.get();
-            }catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
+
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
@@ -44,6 +45,7 @@ public class InputView {
         System.out.println(Message.CHOOSE_UP_OR_DOWN);
         return validated(Console.readLine(), List.of("U", "D"), ErrorMsg.NOT_ALLOWED_MOVEMENT);
     }
+
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
@@ -52,8 +54,8 @@ public class InputView {
         return validated(Console.readLine(), List.of("R", "Q"), ErrorMsg.NOT_ALLOWED_COMMAND);
     }
 
-    private String validated(String move, List<String> allowed, ErrorMsg msg){
-        if (!allowed.contains(move)){
+    private String validated(String move, List<String> allowed, ErrorMsg msg) {
+        if (!allowed.contains(move)) {
             throw new IllegalArgumentException(msg.toString());
         }
         return move;
