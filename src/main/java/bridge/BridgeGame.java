@@ -34,4 +34,11 @@ public class BridgeGame {
     public void retry() {
         this.playerCurrentStep = 0;
     }
+
+    public boolean checkBridgeAndPlayer(){
+        String safeDirection = this.bridge.get(this.playerCurrentStep);
+        String playerCurrentDirection = this.player.getCurrentPlace();
+
+        return safeDirection.equals(playerCurrentDirection);
+    }
 }
