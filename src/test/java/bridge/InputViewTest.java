@@ -42,10 +42,33 @@ class InputViewTest {
         @ParameterizedTest
         @DisplayName("올바른 형식을 입력받는다.")
         @ArgumentsSource(BridgeSizeProvider.class)
-        public void 범위_확인_테스트(String inputStr, int inputInt) {
+        public void 올바른_입력_테스트(String inputStr, int inputInt) {
             SystemSet.input(inputStr);
 
             Assertions.assertThat(inputView.readBridgeSize()).isEqualTo(inputInt);
+        }
+    }
+
+    @Nested
+    @DisplayName("이동할 칸 입력 테스트")
+    class readMovingTest {
+        @ParameterizedTest
+        @DisplayName("U, D가 아니라면 예외가 발생한다.")
+        @ValueSource(strings = {"2", "d", "u", "@", "!!!", "예외"})
+        public void 예외_입력_테스트(String input) {
+            SystemSet.input(input);
+
+            assertThatThrownBy(() -> inputView.readBridgeSize())
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        @ParameterizedTest
+        @DisplayName("올바른 형식을 입력받는다.")
+        @ValueSource(strings = {"U", "D"})
+        public void 올바른_입력_테스트(String input) {
+            SystemSet.input(input);
+
+            Assertions.assertThat(inputView.readMoving()).isEqualTo(input);
         }
     }
 }
