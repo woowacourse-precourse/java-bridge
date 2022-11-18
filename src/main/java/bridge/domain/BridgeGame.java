@@ -35,7 +35,7 @@ public class BridgeGame {
     }
 
     private void movingValidation() {
-        if (isEndGame()) {
+        if (!aliveUser || bridge.isEndOfBridge(userPosition)) {
             throw new IllegalArgumentException(MOVING_ERROR_MESSAGE);
         }
     }
