@@ -1,5 +1,6 @@
 package bridge.model;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -54,6 +55,53 @@ class BridgeTest {
         //then
         assertThatThrownBy(() -> bridge.validatePlayerStatus(player))
                 .isInstanceOf(IllegalStateException.class);
+    }
+
+    @DisplayName("플레이어 이동 방향 개수가 적으면 게임이 종료되지 않은 상태이다.")
+    @Test
+    void isNotDoneByLength() {
+        //given
+        Bridge bridge = new Bridge(List.of("U", "D"));
+        Player player = new Player();
+
+        //when
+        player.move(Direction.UP);
+        boolean result = bridge.isDone(player);
+
+        //then
+        assertThat(result).isFalse();
+    }
+
+    @DisplayName("플레이어의 이동 방향이 전부 같지 않으면 게임이 종료되지 않은 상태이다.")
+    @Test
+    void isNotDoneByNotMatchDirection() {
+        //given
+        Bridge bridge = new Bridge(List.of("U", "D"));
+        Player player = new Player();
+
+        //when
+        player.move(Direction.UP);
+        player.move(Direction.UP);
+        boolean result = bridge.isDone(player);
+
+        //then
+        assertThat(result).isFalse();
+    }
+
+    @DisplayName("플레이어의 이동 방향이 전부 같다면 게임이 종료된 상태이다.")
+    @Test
+    void isDone() {
+        //given
+        Bridge bridge = new Bridge(List.of("U", "D"));
+        Player player = new Player();
+
+        //when
+        player.move(Direction.UP);
+        player.move(Direction.DOWN);
+        boolean result = bridge.isDone(player);
+
+        //then
+        assertThat(result).isTrue();
     }
 
 }
