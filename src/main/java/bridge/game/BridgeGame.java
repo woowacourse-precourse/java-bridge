@@ -7,10 +7,11 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final int MOVE = 1;
     private final GameCharacter character;
-    private List<Progress> gameProgress = new ArrayList<>();
 
+    private boolean success = false;
+    private int totalTry = 0;
+    private List<Progress> gameProgress = new ArrayList<>();
     private List<String> bridge;
 
     public BridgeGame(GameCharacter character) {
@@ -56,5 +57,16 @@ public class BridgeGame {
         int nextArea = character.showNextArea();
         String nextMove = character.showNextDestination();
         return showRightDestinationInArea(nextArea).equals(nextMove);
+    }
+
+    public String showSuccess() {
+        if (success) {
+            return Result.SUCCESS.getKorean();
+        }
+        return Result.FAIL.getKorean();
+    }
+
+    public int showTotalTry() {
+        return totalTry;
     }
 }
