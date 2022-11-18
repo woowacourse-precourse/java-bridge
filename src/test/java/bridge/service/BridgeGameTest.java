@@ -54,4 +54,32 @@ class BridgeGameTest {
                 IllegalStateException.class);
     }
 
+    @DisplayName("재시작 상태면 true 반환한다.")
+    @Test
+    void canRetry() {
+        //given
+        BridgeGame bridgeGame = new BridgeGame(new Bridge(List.of("U", "D")));
+        GameCondition condition = GameCondition.RESTART;
+
+        //when
+        boolean result = bridgeGame.retry(condition);
+
+        //then
+        assertThat(result).isTrue();
+    }
+
+    @DisplayName("재시작 상태가 아니라면 false 반환한다.")
+    @Test
+    void cannotRetry() {
+        //given
+        BridgeGame bridgeGame = new BridgeGame(new Bridge(List.of("U", "D")));
+        GameCondition condition = GameCondition.QUIT;
+
+        //when
+        boolean result = bridgeGame.retry(condition);
+
+        //then
+        assertThat(result).isFalse();
+    }
+
 }
