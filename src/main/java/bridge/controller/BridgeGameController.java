@@ -27,4 +27,5 @@ public class BridgeGameController {
 			return receiveBridgeSize();
 		}
 	}
+
 }
