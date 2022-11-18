@@ -5,6 +5,7 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.model.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGameController {
@@ -28,9 +29,12 @@ public class BridgeGameController {
     public void run(){
         int bridgeSize = bridge.size();
         boolean isMoveSuccess;
+        List<String> userAnswer = new ArrayList<>();
         for (int moveCount = 0; moveCount < bridgeSize; moveCount++) {
             String moving = InputView.readMoving();
             isMoveSuccess = bridgeGame.move(bridge, moving);
+            userAnswer.add(moving);
+            OutputView.printMap(bridge,userAnswer);
             if (!isMoveSuccess){
                 gameResult = false;
                 retry();
@@ -54,7 +58,6 @@ public class BridgeGameController {
     }
 
     public void end() {
-        OutputView outputView = new OutputView();
-        outputView.printResult();
+        OutputView.printResult(gameResult, gameCount);
     }
 }
