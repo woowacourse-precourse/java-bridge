@@ -18,7 +18,7 @@ public class InputView extends InputException {
             bridgeSize = Console.readLine();
             validateBridgeSize(bridgeSize);
         } catch (IllegalArgumentException exception) {
-            readBridgeSize();
+            return readBridgeSize();
         }
         return Integer.parseInt(bridgeSize);
     }
@@ -27,9 +27,14 @@ public class InputView extends InputException {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String moving = Console.readLine();
-        validateMoving(moving);
+        String moving = "";
+        try {
+            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            moving = Console.readLine();
+            validateMoving(moving);
+        } catch (IllegalArgumentException exception) {
+            return readMoving();
+        }
         return moving;
     }
 
@@ -37,9 +42,14 @@ public class InputView extends InputException {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        String gameCommand = Console.readLine();
-        validateGameCommand(gameCommand);
+        String gameCommand = "";
+        try {
+            System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+            gameCommand = Console.readLine();
+            validateGameCommand(gameCommand);
+        } catch (IllegalArgumentException exception) {
+            return readGameCommand();
+        }
         return gameCommand;
     }
 }
