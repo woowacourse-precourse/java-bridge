@@ -11,6 +11,14 @@ public class Bridge {
         this.shapes = shapes;
     }
 
+    public boolean isPossibleMoving(int play, String moving) {
+        return findShape(play).equals(moving);
+    }
+
+    private String findShape(int play) {
+        return shapes.get(play);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -26,5 +34,10 @@ public class Bridge {
     @Override
     public int hashCode() {
         return Objects.hash(shapes);
+    }
+
+    @Override
+    public String toString() {
+        return shapes.toString();
     }
 }
