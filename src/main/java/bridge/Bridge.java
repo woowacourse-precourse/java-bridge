@@ -21,4 +21,8 @@ public class Bridge {
     public void initializeCurrentPosition() {
         currentPosition = 0;
     }
+
+    public boolean isLastBlock() {
+        return availableBlocks.size() == currentPosition;
+    }
 }
