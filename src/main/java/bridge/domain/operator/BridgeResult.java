@@ -5,8 +5,8 @@ import java.util.List;
 
 public class BridgeResult {
 
-    private final List<Boolean> upBridge;
-    private final List<Boolean> downBridge;
+    private final List<String> upBridge;
+    private final List<String> downBridge;
 
     private int attempt;
 
@@ -15,11 +15,11 @@ public class BridgeResult {
         this.downBridge = new ArrayList<>();
     }
 
-    public List<Boolean> getUpBridge() {
+    public List<String> getUpBridge() {
         return upBridge;
     }
 
-    public List<Boolean> getDownBridge() {
+    public List<String> getDownBridge() {
         return downBridge;
     }
 
@@ -29,15 +29,22 @@ public class BridgeResult {
 
     public void addResult(boolean passable, int userLocation, String userSelection) {
         if (userSelection.equals("U")) {
-            upBridge.add(userLocation, passable);
-            downBridge.add(userLocation, null);
+            upBridge.add(userLocation, renderOX(passable));
+            downBridge.add(userLocation, "   ");
             return;
         }
-        downBridge.add(userLocation, passable);
-        upBridge.add(userLocation, null);
+        downBridge.add(userLocation, renderOX(passable));
+        upBridge.add(userLocation, "   ");
     }
 
     public void plusAttempt() {
         attempt++;
+    }
+
+    private String renderOX(boolean passable) {
+        if (passable) {
+            return " O ";
+        }
+        return " X ";
     }
 }

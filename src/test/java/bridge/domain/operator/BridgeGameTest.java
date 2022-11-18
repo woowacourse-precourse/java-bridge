@@ -26,13 +26,13 @@ class BridgeGameTest {
         bridgeGame.move(playerSelection2);
 
         //then
-        List<Boolean> upBridgeResult = bridgeGame.getBridgeResult().getUpBridge();
-        List<Boolean> downBridgeResult = bridgeGame.getBridgeResult().getDownBridge();
+        List<String> upBridgeResult = bridgeGame.getBridgeResult().getUpBridge();
+        List<String> downBridgeResult = bridgeGame.getBridgeResult().getDownBridge();
 
-        assertThat(upBridgeResult.get(0)).isEqualTo(null);
-        assertThat(upBridgeResult.get(1)).isEqualTo(false);
-        assertThat(downBridgeResult.get(0)).isEqualTo(true);
-        assertThat(downBridgeResult.get(1)).isEqualTo(null);
+        assertThat(upBridgeResult.get(0)).isEqualTo("   ");
+        assertThat(upBridgeResult.get(1)).isEqualTo(" X ");
+        assertThat(downBridgeResult.get(0)).isEqualTo(" O ");
+        assertThat(downBridgeResult.get(1)).isEqualTo("   ");
     }
 
     @Nested
