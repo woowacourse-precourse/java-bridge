@@ -12,4 +12,8 @@ public class PlayerBridge {
     public void setBridge(Bridge bridge) {
         this.bridge = bridge;
     }
+
+    public boolean isEmpty() {
+        return bridge == null;
+    }
 }

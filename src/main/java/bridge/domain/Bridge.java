@@ -13,12 +13,16 @@ public class Bridge {
         this.squares = squares;
     }
 
+    public List<String> getSquares() {
+        return squares;
+    }
+
     public boolean isPassableBridge(Bridge otherBridge) {
         List<String> otherBridgeSquares = otherBridge.squares;
         List<String> partialSquares= new ArrayList<>(squares.subList(START_SUBLIST, otherBridgeSquares.size()));
         return partialSquares.equals(otherBridgeSquares);
     }
-    
+
     private void validate(List<String> squares) {
         BridgeValidation.validate(squares);
     }

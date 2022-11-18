@@ -14,13 +14,17 @@ public class Move {
         this.move = move;
     }
 
-    public static void validate(String move) {
-        validateMoveAvailable(move);
+    public String getMove() {
+        return move;
     }
 
     public static void validateMoveAvailable(String move) {
         if (!PlayerMove.isInPlayerMove(move)) {
             throw new IllegalArgumentException(WRONG_MOVE_OPTION.toString());
         }
+    }
+
+    private static void validate(String move) {
+        validateMoveAvailable(move);
     }
 }
