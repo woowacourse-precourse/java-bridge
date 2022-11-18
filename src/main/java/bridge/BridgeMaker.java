@@ -1,5 +1,9 @@
 package bridge;
 
+import static bridge.constant.BridgeConstants.DOWN_SIDE;
+import static bridge.constant.BridgeConstants.DOWN_SIDE_INDEX;
+import static bridge.constant.BridgeConstants.UP_SIDE;
+
 import java.util.List;
 
 /**
@@ -23,5 +27,12 @@ public class BridgeMaker {
 
     private int generateBridgeNumber() {
         return bridgeNumberGenerator.generate();
+    }
+
+    private String convertToBridgeSource(int number) {
+        if (number == DOWN_SIDE_INDEX) {
+            return DOWN_SIDE;
+        }
+        return UP_SIDE;
     }
 }
