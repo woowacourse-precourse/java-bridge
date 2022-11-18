@@ -29,13 +29,21 @@ public class OutputView {
         printJoiningMessage();
     }
 
-    private void printJoiningMessage() {
-        System.out.printf("[ %s ]\n", String.join(" | ", upperBlocks));
-        System.out.printf("[ %s ]\n", String.join(" | ", lowerBlocks));
+
+    public void resetMap() {
+        upperBlocks.clear();
+        lowerBlocks.clear();
     }
 
-    private String getResultMark(boolean isCorrect) {
-        if (isCorrect) {
+    public void printResult(GameResult gameResult) {
+        System.out.println("최종 게임 결과");
+        printJoiningMessage();
+        System.out.printf("게임 성공 여부: %s\n", getIsGameClear(gameResult));
+        System.out.printf("총 시도한 횟수: %s\n", gameResult.getTryCount());
+    }
+
+    private String getResultMark(boolean isSuccess) {
+        if (isSuccess) {
             return ANSWER_IS_RIGHT;
         }
         return ANSWER_IS_WRONG;
@@ -53,19 +61,12 @@ public class OutputView {
         }
     }
 
-
-    public void clear() {
-        upperBlocks.clear();
-        lowerBlocks.clear();
+    private void printJoiningMessage() {
+        System.out.printf("[ %s ]\n", String.join(" | ", upperBlocks));
+        System.out.printf("[ %s ]\n", String.join(" | ", lowerBlocks));
     }
 
-    public void printResult(GameResult gameResult) {
-        System.out.println("최종 게임 결과");
-        printJoiningMessage();
-        System.out.printf("게임 성공 여부: %s\n", getIsGameClear(gameResult));
-        System.out.printf("총 시도한 횟수: %s\n", gameResult.getTryCount());
-    }
-
+    //TODO 메소드명 수정
     private String getIsGameClear(GameResult gameResult) {
         if (gameResult.isGameClear()) {
             return GAME_CLEAR_SUCCESS;

@@ -32,7 +32,7 @@ public class Application {
 
     private static void selectRestartGame() {
         if (bridgeGame.retry(inputView.readGameCommand())) {
-            outputView.clear();
+            outputView.resetMap();
         }
     }
 }
