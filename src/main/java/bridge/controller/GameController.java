@@ -47,7 +47,12 @@ public class GameController {
             String userMove = inputUserMove();
             BridgeSpace movedSpace = this.bridgeGame.move(userMove,bridge.getBridgeSpaces().get(idx));
             bridge.getBridgeSpaces().set(idx,movedSpace);
+            printNowBridge();
         }
+    }
+
+    private void printNowBridge() {
+        outputView.printMap(this.bridge);
     }
 
 
