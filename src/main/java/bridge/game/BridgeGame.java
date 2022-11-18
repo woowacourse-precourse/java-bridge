@@ -1,5 +1,7 @@
-package bridge;
+package bridge.game;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.map.Map;
 
 import java.util.List;
@@ -13,8 +15,8 @@ public class BridgeGame {
     private int currentPosition;
     private Map map;
 
-    BridgeGame(int bridgeSize) {
-        bridge = setBridge(bridgeSize);
+    BridgeGame(List<String> bridge) {
+        this.bridge = bridge;
         currentPosition = 0;
         map = new Map();
     }
@@ -24,13 +26,15 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
-    }
-
-    private List<String> setBridge(int bridgeSize) {
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-        return bridgeMaker.makeBridge(bridgeSize);
+    public int move(String moving) {
+        if (canMove(moving)) {
+            if (currentPosition == bridge.size() - 1) {
+                return Status.SUCCESS.getNumber();
+            }
+            currentPosition++;
+            return Status.CONTINUE.getNumber();
+        }
+        return Status.FAIL.getNumber();
     }
 
     private boolean canMove(String moving) {
