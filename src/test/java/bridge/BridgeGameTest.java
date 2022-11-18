@@ -28,4 +28,11 @@ public class BridgeGameTest {
         assertThat(bridgeGame.move(bridge, "U")).isEqualTo("O");
         assertThat(bridgeGame.move(bridge, "U")).isEqualTo("X");
     }
+
+    @DisplayName("R을 입력받으면 게임 재시작, Q를 입력받으면 게임 종료를 확인한다.")
+    @Test
+    void retryGame() {
+        assertThat(bridgeGame.retry("R")).isEqualTo(true);
+        assertThat(bridgeGame.retry("Q")).isEqualTo(false);
+    }
 }
