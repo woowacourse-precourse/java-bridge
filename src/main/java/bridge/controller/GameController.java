@@ -20,7 +20,7 @@ public class GameController {
     static final int UP=1;
     static final int DOWN=0;
     JudgeDestination judgeDestination = new JudgeDestination();
-    private static int count=1;
+    private int count=1;
     private static int idx=0;
     private InputView inputView = new InputView();
 
