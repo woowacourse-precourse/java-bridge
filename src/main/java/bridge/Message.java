@@ -1,11 +1,11 @@
 package bridge;
 
 public enum Message {
-    LEFT_BAR ("["),
-    RIGHT_BAR(" ]"),
-    CENTER_BAR(" |"),
-    MOVE_SUCCESS(" O"),
-    MOVE_FAIL(" X"),
+    LEFT_BAR ("[ "),
+    RIGHT_BAR("  ]"),
+    CENTER_BAR(" | "),
+    MOVE_SUCCESS("O"),
+    MOVE_FAIL("X"),
     START_GAME("다리 건너기 게임을 시작합니다."),
     INPUT_SIZE("다리의 길이를 입력해주세요."),
     SELECT_DIRECTION("이동할 칸을 선택해주세요. (위: U, 아래: D)"),
