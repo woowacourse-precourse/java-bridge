@@ -25,7 +25,7 @@ public class FootPrints {
     }
 
     private void reflectStatus(int status, List<String> footPrint) {
-        if (status != BridgeGame.DIED) {
+        if (status != BridgeGame.LOSE) {
             footPrint.add("O");
             return;
         }

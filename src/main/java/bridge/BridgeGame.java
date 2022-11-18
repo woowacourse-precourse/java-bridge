@@ -7,8 +7,8 @@ import bridge.constants.ErrorMessages;
  */
 public class BridgeGame {
 
-    public static final int END = 0;
-    public static final int DIED = 1;
+    public static final int WIN = 0;
+    public static final int LOSE = 1;
     public static final int KEEP_GOING = 2;
 
     private final Bridge bridge;
