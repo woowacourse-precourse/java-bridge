@@ -14,7 +14,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         System.out.println(INPUT_BRIDGE_SIZE_MESSAGE);
         String input = getInput();
         validateInteger(input);
@@ -24,34 +24,37 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        System.out.printf(INPUT_MOVING_POSITION_MESSAGE, BridgeGame.getUpBridgeCharacter(),
-                BridgeGame.getDownBridgeCharacter());
+    public static String readMoving() {
+        System.out.printf(
+                INPUT_MOVING_POSITION_MESSAGE,
+                BridgeGame.getUpBridgeCharacter(),
+                BridgeGame.getDownBridgeCharacter()
+        );
         return getInput();
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public static String readGameCommand() {
         System.out.printf(INPUT_GAME_COMMAND_MESSAGE, BridgeGame.getRetryCharacter(), BridgeGame.getQuitCharacter());
         return getInput();
     }
 
 
-    private String getInput() {
+    private static String getInput() {
         String input = Console.readLine().trim();
         validateNotEmpty(input);
         return input;
     }
 
-    private void validateNotEmpty(String input) {
+    private static void validateNotEmpty(String input) {
         if (input.isEmpty()) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_IS_EMPTY_ERROR.getMessage());
         }
     }
 
-    private void validateInteger(String input) {
+    private static void validateInteger(String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException ne) {

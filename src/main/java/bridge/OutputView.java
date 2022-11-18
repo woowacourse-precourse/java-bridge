@@ -15,9 +15,7 @@ public class OutputView {
     private static final String BRIDGE_END_DELIMITER = " ]";
     private static final String BLOCK_DELIMITER = " | ";
 
-    StringBuilder stringBuilder;
-
-    public void printStart() {
+    public static void printStart() {
         System.out.println(GAME_START_MESSAGE);
         System.out.println();
     }
@@ -27,14 +25,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> upBridgeResult, List<String> downBridgeResult) {
+    public static void printMap(List<String> upBridgeResult, List<String> downBridgeResult) {
         System.out.println(getBridge(upBridgeResult));
         System.out.println(getBridge(downBridgeResult));
         System.out.println();
     }
 
-    private String getBridge(List<String> bridgeResult) {
-        stringBuilder = new StringBuilder();
+    private static String getBridge(List<String> bridgeResult) {
+        StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(BRIDGE_START_DELIMITER);
         for (int i = 0; i < bridgeResult.size(); i++) {
             stringBuilder.append(bridgeResult.get(i));
@@ -52,12 +50,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printLastMap(List<String> upBridgeResult, List<String> downBridgeResult) {
+    public static void printLastMap(List<String> upBridgeResult, List<String> downBridgeResult) {
         System.out.println(PRINT_MAP_MESSAGE);
         printMap(upBridgeResult, downBridgeResult);
     }
 
-    public void printResult(String gameResult, int trials) {
+    public static void printResult(String gameResult, int trials) {
         System.out.printf(GAME_RESULT_MESSAGE, gameResult);
         System.out.printf(NUMBER_OF_TRIALS_MESSAGE, trials);
     }
