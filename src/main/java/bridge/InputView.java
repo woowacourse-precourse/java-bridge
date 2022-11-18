@@ -18,7 +18,6 @@ public class InputView {
         } catch (IllegalArgumentException illegalArgumentException) {
             readBridgeSize();
         }
-
         return Integer.parseInt(userInput);
     }
 
@@ -26,7 +25,14 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String userInput = Console.readLine();
+
+        try {
+            Validation.validateMovingChoice(userInput);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            readMoving();
+        }
+        return userInput;
     }
 
     /**
