@@ -10,6 +10,7 @@ public class InputView {
         System.out.println("다리의 길이를 입력해주세요.");
         String input = Console.readLine();
         validSize(input);
+        System.out.println();
         return Integer.parseInt(input);
     }
 
@@ -28,7 +29,7 @@ public class InputView {
     }
 
     public String readMoving() {
-        System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String input = Console.readLine();
         validCommand(input);
         return input;

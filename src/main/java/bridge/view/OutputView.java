@@ -11,6 +11,7 @@ public class OutputView {
         String downBridge = createBridgeMap(result.get(1));
         System.out.println(upBridge);
         System.out.println(downBridge);
+        System.out.println();
     }
 
     private String createBridgeMap(List<String> map) {
@@ -34,7 +35,6 @@ public class OutputView {
     private void printClearMap(List<List<String>> result, int count) {
         printResultIntro();
         printMap(result);
-        System.out.println();
         System.out.println("게임 성공 여부: 성공");
         System.out.printf("총 시도한 횟수: %d%n", count);
     }
@@ -42,7 +42,6 @@ public class OutputView {
     private void printFailedMap(List<List<String>> result, int count) {
         printResultIntro();
         printMap(result);
-        System.out.println();
         System.out.println("게임 성공 여부: 실패");
         System.out.printf("총 시도한 횟수: %d%n", count);
     }
