@@ -44,4 +44,22 @@ public class RoadMapTest {
         assertThat(roadMap.matchPositionWithDirection(roadPosition, direction))
                 .isFalse();
     }
+
+    @DisplayName("칸 위치와 다른 칸이 같다면 true 값을 반환한다.")
+    @Test
+    void testMatchPositionWithRoad(){
+        int roadPosition = 0;
+        Road road = new Road("U");
+        assertThat(roadMap.matchPositionWithRoad(roadPosition, road))
+                .isTrue();
+    }
+
+    @DisplayName("위치하지 않은 칸이거나 제공된 칸이 다르다면 false 값을 반환한다.")
+    @ParameterizedTest
+    @CsvSource({"1,U", "0,D"})
+    void testNotMatchPositionWithRoad(int roadPosition, String direction){
+        Road road = new Road(direction);
+        assertThat(roadMap.matchPositionWithRoad(roadPosition, road))
+                .isFalse();
+    }
 }

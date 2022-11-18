@@ -25,7 +25,9 @@ public abstract class RoadMap {
     }
 
     public boolean matchPositionWithRoad(int roadPosition, Road road){
-        // TODO: 지정된 칸과 다른 칸의 방향 일치 여부 확인
+        if(roadPosition < getSize()){
+            return this.roads.get(roadPosition).matchRoad(road);
+        }
         return false;
     }
 }

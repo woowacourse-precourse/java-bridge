@@ -53,7 +53,7 @@
 ### 기능
 - [x] 현재 가지고 있는 칸의 개수 반환 - getSize
 - [x] 지정된 칸의 방향과 일치 여부 확인 - matchPositionWithDirection
-- [ ] 지정된 칸과 다른 칸의 방향 일치 여부 확인 - matchPositionWithRoad
+- [x] 지정된 칸과 다른 칸의 방향 일치 여부 확인 - matchPositionWithRoad
 - [ ] 다리 관련 로드맵
   - [ ] 칸의 개수가 범위 안에 있는지 확인 - validate
 - [ ] 사용자 이동 관련 로드맵
