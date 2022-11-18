@@ -1,10 +1,32 @@
 package bridge.service;
 
+import bridge.repository.BridgeMaker;
+import bridge.validation.Validation;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
+    private static BridgeGame bridgeGame;
+    private final List<Integer> bridge = new ArrayList<>();
+    private final Validation validation = new Validation();
+    protected BridgeGame() {
+
+    }
+
+    public static BridgeGame getBridgeGame() {
+        if (bridgeGame == null) {
+            return new BridgeGame();
+        }
+        return bridgeGame;
+    }
+
+    public void createBridge(String length) {
+        validation.bridgeLengthValidation(length);
+    }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>

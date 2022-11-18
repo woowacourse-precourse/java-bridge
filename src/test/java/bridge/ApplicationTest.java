@@ -5,8 +5,8 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
-import bridge.service.BridgeMaker;
-import bridge.service.BridgeNumberGenerator;
+import bridge.repository.BridgeMaker;
+import bridge.repository.BridgeNumberGenerator;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import org.junit.jupiter.api.Test;

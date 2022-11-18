@@ -8,9 +8,9 @@ import bridge.view.OutputView;
 public class BridgeGameController {
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
-    private final BridgeGame bridgeGame = new BridgeGame();
+    private final BridgeGame bridgeGame = BridgeGame.getBridgeGame();
     public void start() {
-        String userInput = bridgeLengthInputView();
+        bridgeGame.createBridge(bridgeLengthInputView());
 
     }
 
