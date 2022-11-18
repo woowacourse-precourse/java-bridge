@@ -6,7 +6,6 @@ import java.util.List;
 
 public class GameData {
     private int totalTry = 1;
-    private String gameResult;
     private LinkedList<String> topStatus = new LinkedList<>();
     private LinkedList<String> bottomStatus = new LinkedList<>();
 
@@ -18,6 +17,11 @@ public class GameData {
     public void clearStatus() {
         this.topStatus.clear();
         this.bottomStatus.clear();
+    }
+
+    public void updateStatus(String moving, String movingResult) {
+        if (moving.equals("U")) { this.topStatus.add(movingResult); }
+        if (moving.equals("D")) { this.bottomStatus.add(movingResult); }
     }
 
     public void increaseTotalTry() { this.totalTry += 1; }
