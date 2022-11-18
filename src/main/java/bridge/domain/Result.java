@@ -1,13 +1,17 @@
 package bridge.domain;
 
 import bridge.enums.InputKey;
+import bridge.enums.ViewMessage;
 
+import java.text.MessageFormat;
 import java.util.StringJoiner;
 
 public class Result {
     private static final char O_FLAG = 'O';
     private static final char X_FLAG = 'X';
     public static final int BLANK = 32;
+    private static final String WIN = "성공";
+    private static final String FAIL = "실패";
 
     private final char[] upBridgeStatus;
     private final char[] downBridgeStatus;
@@ -60,15 +64,11 @@ public class Result {
 
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder("게임 성공 여부: ");
-        if (upBridgeStatus[upBridgeStatus.length - 1] == O_FLAG ||
-                downBridgeStatus[downBridgeStatus.length - 1] == O_FLAG) {
-            result.append("성공\n");
-            result.append("총 시도한 횟수: " + tryCount);
-            return result.toString();
+        boolean flag = upBridgeStatus[upBridgeStatus.length - 1] == O_FLAG ||
+                downBridgeStatus[downBridgeStatus.length - 1] == O_FLAG;
+        if (flag) {
+            return MessageFormat.format(ViewMessage.OUTPUT_PRINT_FINAL_RESULT.getValue(), WIN, tryCount);
         }
-        result.append("실패\n");
-        result.append("총 시도한 횟수: " + tryCount);
-        return result.toString();
+        return MessageFormat.format(ViewMessage.OUTPUT_PRINT_FINAL_RESULT.getValue(), FAIL, tryCount);
     }
 }

@@ -1,7 +1,9 @@
 package bridge.domain;
 
 import bridge.enums.InputKey;
+import bridge.enums.ViewMessage;
 
+import java.text.MessageFormat;
 import java.util.List;
 
 /**
@@ -49,10 +51,7 @@ public class BridgeGame {
     }
 
     public String printGameResult() {
-        StringBuilder buffer = new StringBuilder("최종 게임 결과\n");
-        buffer.append(this + "\n");
-        buffer.append(result);
-        return buffer.toString();
+        return MessageFormat.format(ViewMessage.OUTPUT_PRINT_FINAL_MAP.getValue(), this, result);
     }
 
     @Override
