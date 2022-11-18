@@ -11,6 +11,7 @@
 ***
 #### 📤 출력
 - [ ] 게임 시작 안내 메시지 출력
+- [ ] 현재 다리 상태 출력
 - [ ] 최종 게임 결과 출력
 - [ ] 게임 성공 여부 출력 (성공 또는 실패)
 - [ ] 총 시도 횟수 출력
@@ -22,6 +23,22 @@
     - [ ] 다리 길이 유효성 검증 및 예외처리
     - [ ] 0 또는 1 중 무작위 값 생성 - BridgeMaker#BridgeNumberGenerator#generate()
     - [ ] 무작위 값(0 또는 1)에 대해 각각 아래 칸(D), 위 칸(U)으로 변환
-
+***
 - [ ] 다리 건너기 - BridgeGame#move()
+    - [ ] 몇 라운드인지 계산
+    - [ ] 다리를 건널 수 있는지 여부 확인 - BridgeGame#isCrossable()
+    - [ ] 다리에 표시할 상태 값 생성 - BridgeGame#makeBridgeStatus()
+    - [ ] 다리를 건널 수 있는지 여부에 따른 표시 작업 요청 - BridgeGame#BridgeState#mark()
 - [ ] 게임 재시도 - BridgeGame#retry()
+    - [ ] 게임 라운드 초기화 
+    - [ ] 게임 총 도전 횟수 카운트
+    - [ ] 다리 상태 초기화 요청 - BridgeGame#BridgeState#initBridgeState()
+- [ ] 게임 성공 여부 값 반환 - BridgeGame#isWon()
+- [ ] 게임 총 도전 횟수 값 반환 - BridgeGame#getTotalGameAttemps()
+***
+- [ ] 다리 상태 표시 - BridgeState#mark()
+    - [ ] 현재 위, 아래 다리 모두 비어있는지 확인 - BridgeState#isEmpty()
+    - [ ] 위 칸 또는 아래 칸 중 선택한 방향에 대해 건널 수 있는지 여부 표시 
+    - [ ] 위 칸 또는 아래 칸 중 선택하지 않는 방향에 대해 공백 표시   
+- [ ] 다리 상태 값 반환 - BridgeState#getBridgeState()
+- [ ] 다리 상태 초기화 - BridgeState#initBridgeState()
