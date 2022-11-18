@@ -1,6 +1,7 @@
 package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 /**
@@ -15,6 +16,8 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println(Sentence.INPUT_LENGTH);
         String input = Console.readLine().trim();
+        System.out.println();
+
         validateNumber(input);
         int number = stringToInt(input);
         validateNumberRange(number);
@@ -25,7 +28,10 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(Sentence.INPUT_SPACE);
+        String input = Console.readLine().trim();
+        validateMove(input);
+        return input;
     }
 
     /**
@@ -45,9 +51,15 @@ public class InputView {
         }
     }
 
-    public void validateNumberRange(int number) {
+    private void validateNumberRange(int number) {
         if (number < 3 || number > 20) {
             throw new IllegalArgumentException(Error.OUT_OF_RANGE.toString());
+        }
+    }
+
+    private void validateMove(String target) {
+        if (!Objects.equals(target, Input.UP.toString()) && !Objects.equals(target, Input.DOWN.toString())) {
+            throw new IllegalArgumentException(Error.UP_OR_DOWN.toString());
         }
     }
 }

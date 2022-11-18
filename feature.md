@@ -2,10 +2,10 @@
 
 - [x] 다리 길이 입력
     - 3 <= 다리 길이 <= 20 => `IllegalArgumentException`
-- [ ] 이동 가능 여부 설정
+- [x] 이동 가능 여부 설정
     - 0 -> 아래 (D)
     - 1 -> 위 (U)
-- [ ] 사용자에게 이동 칸 입력
+- [x] 사용자에게 이동 칸 입력
     - U / D
     - `IllegalArgumentException`
 - [ ] 시도 횟수 +1
