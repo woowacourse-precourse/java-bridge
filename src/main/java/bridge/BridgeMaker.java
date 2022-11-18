@@ -27,7 +27,7 @@ public class BridgeMaker {
             int randNumber = bridgeNumberGenerator.generate();
             addBridge(bridge, randNumber);
         }
-        return null;
+        return bridge;
     }
 
     private void addBridge(List<String> bridge, int randNumber) {
