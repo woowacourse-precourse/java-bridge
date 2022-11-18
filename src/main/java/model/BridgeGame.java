@@ -26,8 +26,12 @@ public class BridgeGame {
         if (!isUserPathEqualsBridge(bridge, path)) {
             addWrongPath(bridgeByUser, path);
         }
-        bridgeNumber++;
+        countBridgeNumber();
         return bridgeByUser;
+    }
+
+    public void countBridgeNumber(){
+        bridgeNumber++;
     }
 
     public void addCorrectPath(List<String> isCorrectBridge, String path) {
