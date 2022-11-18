@@ -31,6 +31,6 @@ public class BridgeMaker {
 	}
 
 	private String makeRandomMovableLocation() {
-		return MovableLocation.getMovableSymbolFromMovableNumber(bridgeNumberGenerator.generate());
+		return MovableCommand.getMovableSymbolFromMovableNumber(bridgeNumberGenerator.generate());
 	}
 }
