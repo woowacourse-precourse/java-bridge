@@ -15,31 +15,31 @@ public class MoveResult {
     private boolean isSuccess;
     private int tryCount;
 
-    private final Map<BridgeCellType, List<String>> moveResults = new LinkedHashMap<>() {{
+    private final Map<BridgeCellType, List<String>> moveHistory = new LinkedHashMap<>() {{
         List.of(BridgeCellType.values())
             .forEach(cellType -> put(cellType, new ArrayList<>()));
     }};
 
     public void success(BridgeCellType cellType) {
         this.isSuccess = true;
-        moveResults.get(cellType).add(CAN_MOVE_MARK);
+        moveHistory.get(cellType).add(CAN_MOVE_MARK);
         setOtherCellEmpty(cellType);
     }
 
     public void fail(BridgeCellType cellType) {
         this.isSuccess = false;
-        moveResults.get(cellType).add(CAN_NOT_MOVE_MARK);
+        moveHistory.get(cellType).add(CAN_NOT_MOVE_MARK);
         setOtherCellEmpty(cellType);
     }
 
     private void setOtherCellEmpty(BridgeCellType cellType) {
-        moveResults.keySet().stream()
+        moveHistory.keySet().stream()
             .filter(key -> !cellType.equals(key))
-            .forEach(key -> moveResults.get(key).add(EMPTY_MARK));
+            .forEach(key -> moveHistory.get(key).add(EMPTY_MARK));
     }
 
     public void clearMoveResults() {
-        this.moveResults.forEach((key, value) -> value.clear());
+        this.moveHistory.forEach((key, value) -> value.clear());
     }
 
     public boolean isSuccess() {
@@ -56,7 +56,7 @@ public class MoveResult {
 
     @Override
     public String toString() {
-        return moveResults.values().stream()
+        return moveHistory.values().stream()
             .map(value -> "[ " + String.join(" | ", value) + " ]")
             .collect(Collectors.joining("\n"));
     }
