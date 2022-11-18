@@ -29,6 +29,7 @@
   - [x] 입력한 문자가 verifier 와 동일한지 확인 - ErrorControl#validateLetter()
   - ~~[ ] 이동 위치 U,D 둘 중 하나인지 확인 (소문자는?)~~
   - ~~[ ] 재시도 여부 R,Q 둘 중 하나인지 확인~~
+  - [x] 에러 발생 시 재시도할 수 있도록 검사 결과를 반환 - ErrorControl
 - Application
   - [x] main() 을 통해 최종 구현 - Application#main() 
 

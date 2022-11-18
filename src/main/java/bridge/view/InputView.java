@@ -1,5 +1,6 @@
 package bridge.view;
 
+import static bridge.Constants.INPUT_BRIDGE_LENGTH_MESSAGE;
 import static bridge.Constants.INPUT_COMMAND_MESSAGE;
 import static bridge.Constants.INPUT_POSITION_MESSAGE;
 import static bridge.Constants.RESTART_GAME;
@@ -17,25 +18,32 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private boolean validated;
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        String input;
         System.out.println(START_MESSAGE);
-        String input = Console.readLine();
-        int bridgeSize = validateNumberOrNot(input);
-        validateBridgeSize(bridgeSize);
-        return bridgeSize;
+        do {
+            System.out.println(INPUT_BRIDGE_LENGTH_MESSAGE);
+            input = Console.readLine();
+            validated = validateBridgeSize(validateNumberOrNot(input), input);
+        } while (!validated);
+        return Integer.parseInt(input);
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println(INPUT_POSITION_MESSAGE);
-        String input = Console.readLine();
-        validateLetter(input, UP_BRIDGE, DOWN_BRIDGE);
+        String input;
+        do {
+            System.out.println(INPUT_POSITION_MESSAGE);
+            input = Console.readLine();
+            validated = validateLetter(input, UP_BRIDGE, DOWN_BRIDGE);
+        } while (!validated);
         return input;
     }
 
@@ -43,9 +51,12 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println(INPUT_COMMAND_MESSAGE);
-        String input = Console.readLine();
-        validateLetter(input, RESTART_GAME, QUIT_GAME);
+        String input;
+        do {
+            System.out.println(INPUT_COMMAND_MESSAGE);
+            input = Console.readLine();
+            validated = validateLetter(input, RESTART_GAME, QUIT_GAME);
+        } while (!validated);
         return input;
     }
 }
