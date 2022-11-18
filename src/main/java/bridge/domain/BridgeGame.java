@@ -11,6 +11,8 @@ public class BridgeGame {
 
     private static final String QUIT = "Q";
     private static final String RETRY = "R";
+    private static final String UPPER_SIDE = "U";
+    private static final String LOWER_SIDE = "D";
 
     private final List<String> bridge;
     private int currentPosition;
@@ -28,8 +30,10 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String leftOrRight) {
-        if (leftOrRight.equals(bridge.get(currentPosition))) {
+    public boolean move(String moveCommand) {
+        validateMoveCommand(moveCommand);
+        String availableRow = bridge.get(currentPosition);
+        if (moveCommand.equals(availableRow)) {
             currentPosition++;
             return true;
         }
@@ -48,6 +52,13 @@ public class BridgeGame {
         }
         if (retryCommand.equals(QUIT)) {
             return false;
+        }
+        throw new IllegalArgumentException();
+    }
+
+    private void validateMoveCommand(String moveCommand) {
+        if (moveCommand.equals(UPPER_SIDE) || moveCommand.equals(LOWER_SIDE)) {
+            return;
         }
         throw new IllegalArgumentException();
     }
