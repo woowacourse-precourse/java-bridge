@@ -16,7 +16,7 @@
   - [x] 0이 나오면 아래칸, 1이 나오면 위 칸이 건널 수 있는 칸이 된다. (BridgeMaker # makeOneBlock)
 ### 3. 게임 진행하기
 #### 1) 유저 위치 초기화
-- [ ] 유저의 위치를 초기화 한다. (BridgeGame # resetStartPoint)
+- [x] 유저의 위치를 초기화 한다. (BridgeGame # resetStartPoint)
 #### 2) 이동할 칸 입력 받기
 - [x] 이동할 칸 입력 요청 문구를 출력한다. (ViewMessage # printMovingInputRequest)
 - [x] 이동할 칸을 입력 받는다. ('U' or 'D') (InputView # readMoving)
