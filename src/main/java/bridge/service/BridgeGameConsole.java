@@ -15,7 +15,7 @@ public class BridgeGameConsole {
 
     public void run() {
         emcee.guideGame();
-        int bridgeLength = player.enterBridgeLength();
+        int bridgeLength = createBridgeLength();
         List<String> bridge = maker.makeBridge(bridgeLength);
         BridgeGame bridgeGame = new BridgeGame(bridge);
         int attemptCount = playGame(bridgeGame);
