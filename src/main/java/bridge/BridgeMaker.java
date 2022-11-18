@@ -28,7 +28,7 @@ public class BridgeMaker {
         return bridge;
     }
 
-    private String makeOneBlock(int number) {
+    public static String makeOneBlock(int number) {
         if (number == 0) {
             return "D";
         }
