@@ -4,6 +4,7 @@ import static bridge.command.GameCommand.RESTART;
 
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -24,7 +25,7 @@ public class Application {
         int bridgeSize = inputView.readBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        return new BridgeGame(new Referee(bridge));
+        return new BridgeGame(new Referee(bridge),new ArrayList<>(),1);
     }
 
     private static void play(BridgeGame game) {
