@@ -38,4 +38,11 @@ public class Validator {
         }
     }
 
+    public void checkMoveWord(String move) {
+        if(!move.equals("U") && !move.equals("D")){
+            throw new IllegalArgumentException(
+                    ExceptionMessage.moveByNotUD.getMessage());
+        }
+    }
+
 }

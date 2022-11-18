@@ -24,7 +24,13 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        String move = Console.readLine();
+        System.out.println(move);
+
+        validateMove(move);
+
+        return move;
     }
 
     /**
@@ -41,5 +47,10 @@ public class InputView {
     private void validateSize(String sizeName) {
         validator.checkSizeByInt(sizeName);
         validator.checkSizeInScope(sizeName);
+    }
+
+    private void validateMove(String move) {
+        move = move.toUpperCase();
+        validator.checkMoveWord(move);
     }
 }
