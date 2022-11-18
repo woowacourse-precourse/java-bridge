@@ -25,7 +25,6 @@ public class Road {
     }
 
     public boolean matchRoad(Road other){
-        // TODO: 현재 칸과 주어진 칸 일치 여부 확인
-        return false;
+        return other.matchDirection(this.direction);
     }
 }

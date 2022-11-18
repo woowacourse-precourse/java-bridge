@@ -44,7 +44,7 @@
 ### 기능
 - [x] 칸의 방향 유효성 확인 - validate
 - [x] 칸의 방향과 주어진 방향 일치 여부 확인 - matchDirection
-- [ ] 현재 칸과 주어진 칸 일치 여부 확인 - matchRoad
+- [x] 현재 칸과 주어진 칸 일치 여부 확인 - matchRoad
 
 ## 로드맵(`RoadMap`)
 

@@ -33,4 +33,24 @@ public class RoadTest {
         assertThat(road.matchDirection("D"))
                 .isFalse();
     }
+
+    @DisplayName("현재 칸과 주어진 칸이 일치하다면 true 값을 반환한다.")
+    @Test
+    void testMatchRoad(){
+        Road road = new Road("U");
+        Road other = new Road("U");
+
+        assertThat(road.matchRoad(other))
+                .isTrue();
+    }
+
+    @DisplayName("현재 칸과 주어진 칸이 일치하지 않다면 false 값을 반환한다.")
+    @Test
+    void testNotMatchRoad(){
+        Road road = new Road("U");
+        Road other = new Road("D");
+
+        assertThat(road.matchRoad(other))
+                .isFalse();
+    }
 }
