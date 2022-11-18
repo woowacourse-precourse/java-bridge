@@ -28,6 +28,9 @@ public class BridgeSizeInputValidator implements Validator {
 
     @Override
     public void validateIsInvalid(String inputValue) {
+        if(inputValue.matches("(\\d{2})*")){
+            throw new IllegalArgumentException(Errors.OUT_OF_BOUND.message());
+        }
         if (!inputValue.matches("\\d{1,2}")) {
             throw new IllegalArgumentException(Errors.NOT_NUMBER.message());
         }
