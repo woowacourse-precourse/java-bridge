@@ -1,6 +1,8 @@
 package bridge.domain;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public enum BridgeBlock {
     D(0), U(1);
@@ -11,10 +13,19 @@ public enum BridgeBlock {
         this.phase = phaseNum;
     }
 
-    public static String convertBridgeMessage(int generateNum) {
+    public static String convertType(int generateNum) {
         return Arrays.stream(BridgeBlock.values())
                 .filter(value -> value.phase == generateNum)
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new).toString();
+    }
+
+    public static List<BridgeBlock> convertType(List<String> randomBridge) {
+        return randomBridge.stream()
+                .map(block -> Arrays.stream(BridgeBlock.values())
+                        .filter(value -> block.equals(value.name()))
+                        .findFirst()
+                        .orElseThrow(IllegalAccessError::new))
+                .collect(Collectors.toList());
     }
 }

@@ -1,5 +1,6 @@
 package bridge.system.controller;
 
+import bridge.domain.Bridge;
 import bridge.domain.BridgeBlock;
 import bridge.system.service.BridgeGame;
 import bridge.system.util.BridgeMaker;
@@ -7,6 +8,8 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 import java.util.List;
+
+import static bridge.domain.BridgeBlock.*;
 
 public class BridgeController {
 
@@ -26,12 +29,14 @@ public class BridgeController {
         //입력값 받기
         outputView.printGameStartMessage();
         List<String> randomBridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        List<BridgeBlock> bridgeBlocks = convertType(randomBridge);
 
         //다리 선택
         outputView.printSelectBlock();
-        BridgeBlock bridgeBlock = BridgeBlock.valueOf(inputView.readMoving());
+        BridgeBlock bridgeBlock = valueOf(inputView.readMoving());
 
         //선택한 다리 확인
+//        bridgeGame.move(, bridgeBlock);
 
     }
 }

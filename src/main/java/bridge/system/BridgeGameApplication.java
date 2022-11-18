@@ -11,18 +11,12 @@ import bridge.view.OutputView;
 
 public class BridgeGameApplication {
 
-    private InputView inputView;
-    private OutputView outputView;
-    private BridgeGame bridgeGame;
-    private BridgeController bridgeController;
-    private BridgeMaker bridgeMaker;
-
     public void execute() {
-        inputView = new InputView();
-        outputView = new OutputView(new BridgeMessageMaker());
-        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridgeGame = new BridgeGame();
-        bridgeController = new BridgeController(inputView, outputView, bridgeGame, bridgeMaker);
+        InputView inputView = new InputView();
+        OutputView outputView = new OutputView(new BridgeMessageMaker());
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        BridgeGame bridgeGame = new BridgeGame();
+        BridgeController bridgeController = new BridgeController(inputView, outputView, bridgeGame, bridgeMaker);
 
         bridgeController.playBridgeGame();
     }

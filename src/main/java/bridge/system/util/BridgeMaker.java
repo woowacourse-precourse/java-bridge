@@ -16,7 +16,7 @@ public class BridgeMaker {
     public List<String> makeBridge(int bridgeSize) {
         List<String> randomBridge = new ArrayList<>();
         for (int i = 0; i < bridgeSize; i++) {
-            randomBridge.add(convertBridgeMessage(bridgeNumberGenerator.generate()));
+            randomBridge.add(convertType(bridgeNumberGenerator.generate()));
         }
         return randomBridge;
     }
