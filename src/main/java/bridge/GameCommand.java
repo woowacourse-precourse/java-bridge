@@ -16,7 +16,7 @@ public class GameCommand {
 
     private void validate(String command) {
         if (!isValidCommand(command)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("재시도 여부는 R 또는 Q 문자 중 하나여야 합니다.");
         }
     }
 

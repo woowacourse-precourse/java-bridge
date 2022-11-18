@@ -46,8 +46,12 @@ public class OutputView {
             sb.append(bridgeStatus);
             sb.append(" | ");
         }
-        sb.setLength(sb.length()-2);
+        sb.setLength(sb.length() - 2);
         sb.append("]");
         return sb.toString();
+    }
+
+    public void errorMessage(Exception e) {
+        System.out.println("[ERROR] " + e.toString());
     }
 }
