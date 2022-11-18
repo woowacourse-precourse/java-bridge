@@ -68,4 +68,12 @@ public class BridgeGame {
         int arrivalPosition = bridge.size();
         return arrivalPosition == currentPosition;
     }
+
+    public List<String> getBridge() {
+        return bridge.subList(0, currentPosition + 1);
+    }
+
+    public int getRetryCount() {
+        return retryCount;
+    }
 }
