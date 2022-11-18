@@ -7,9 +7,11 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private List<String> bridge;
-    private List<String> userBridge = new ArrayList<>();
+    private final List<String> bridge;
+    private List<String> userBridgeHistroy = new ArrayList<>();
     private int movingCount;
+
+    public boolean isSuccess;
 
     BridgeGame(List<String> bridge) {
         this.bridge = bridge;
@@ -20,19 +22,16 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String moving) {
+    public List<String> move(String moving) {
         validate(moving);
-        userBridge.add(moving);
-        if (bridge.get(movingCount) == moving) {
-            movingCount++;
-            return true;
-        }
-        return false;
+        userBridgeHistroy.add(moving);
+        isSuccess = canMove(moving);
+        movingCount++;
+        return toResult();
     }
 
-    public List<String> toResult(String moving) {
-        boolean isSuccess = move(moving);
-        List<String> result = new ArrayList<>(userBridge);
+    private List<String> toResult() {
+        List<String> result = new ArrayList<>(userBridgeHistroy);
         if (isSuccess) {
             result.add("O");
         }
@@ -40,6 +39,13 @@ public class BridgeGame {
             result.add("X");
         }
         return result;
+    }
+
+    private boolean canMove(String moving) {
+        if (bridge.get(movingCount) == moving) {
+            return true;
+        }
+        return false;
     }
 
 
