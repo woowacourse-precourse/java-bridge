@@ -10,4 +10,10 @@ public class InputValidator {
             throw new IllegalArgumentException(ERROR_FOR_LENGTH_OF_BRIDGE);
         }
     }
+
+    public static void validateRange(int input) {
+        if (input < 3 || input > 20) {
+            throw new IllegalArgumentException(ERROR_FOR_LENGTH_OF_BRIDGE);
+        }
+    }
 }
