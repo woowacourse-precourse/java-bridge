@@ -18,7 +18,11 @@
   - [x] 최종 결과, 성공여부, 시도 횟수 출력 - OutputView#printResult(())
   - ~~[ ] 성공여부, 시도 횟수 출력~~
 - Controller
-  - [ ] Domain 과 View 를 연결하기  
+  - [x] Domain 과 View 를 연결하기  - BridgeGameController
+    - [x] bridge 및 BridgeGame, OutputView 객체 생성 - BridgeGameController#makeGame()
+    - [x] makeGame 에서 생성한 객체로 게임 시작 및 진행하기 - BridgeGameController#startGame()
+    - [x] move 에 실패한 경우 게임 종료 여부 입력받아 반환하기 - BridgeGameController#finishGame()
+    - [x] 게임 종료 메세지 출력하기 - BridgeGameController#endGame()
 - Error
   - [x] 다리 길이가 숫자인지, 3이상 20이하 인지 확인 - ErrorControl#validateNumberOrNot(), validateBridgeSize()
   - [x] 입력한 문자가 verifier 와 동일한지 확인 - ErrorControl#validateLetter()
