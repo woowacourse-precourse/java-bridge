@@ -2,10 +2,11 @@
 다리 건너기 게임에서 생성된 다리를 정의한 클래스이다.
 
 * __필드 종류__
-> * 정답 다리 `Bridge` : `private final static`
+> * 정답 다리 Bridge : `private final static`
 
 * __생성자__
-> * `BridgeAnswer(List<String> bridge)`
+> * `BridgeAnswer()`
+> * `BridgeAnswer(Bridge bridgeAnswer)`
 
 * __메소드 종류__
 > * 다리 만들기 `makeAnswerBridge()` : 다리를 생성한다.
