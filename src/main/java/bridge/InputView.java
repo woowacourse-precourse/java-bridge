@@ -24,6 +24,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+        String command = readLine();
+        if(!ValidCheck.isUorD(command))
+            throw new IllegalArgumentException(Exception.NotUorD.getMessage());
         return null;
     }
 

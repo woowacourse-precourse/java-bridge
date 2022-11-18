@@ -5,6 +5,7 @@ package bridge;
  */
 public class BridgeGame {
     private OutputView outputView = new OutputView();
+    private InputView inputView = new InputView();
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -15,6 +16,7 @@ public class BridgeGame {
         //move message 출력
         outputView.moveMessage();
         //input move
+        String way = inputView.readMoving();
         //print map
     }
 

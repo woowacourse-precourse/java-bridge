@@ -7,4 +7,7 @@ public class ValidCheck {
     public static boolean isRange_3to20(int num) {
         return num>=3 && num<=20;
     }
+    public static boolean isUorD(String str) {
+        return str.matches("[U,D]+");
+    }
 }
