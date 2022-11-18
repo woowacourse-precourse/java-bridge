@@ -1,12 +1,14 @@
 package bridge.domain.game;
 
+import bridge.exception.domain.WrongGeneratorException;
+import bridge.utils.common.BridgeConst;
 import bridge.utils.common.CommandConst;
 import bridge.utils.message.ExceptionMessageUtils;
 import java.util.Arrays;
 
 public enum BridgeTile {
-    DOWN(CommandConst.PLAYER_MOVE_DOWN, 0),
-    UP(CommandConst.PLAYER_MOVE_UP, 1);
+    DOWN(CommandConst.PLAYER_MOVE_DOWN, BridgeConst.DOWN_TILE_VALUE),
+    UP(CommandConst.PLAYER_MOVE_UP, BridgeConst.UP_TILE_VALUE);
 
     private final String command;
     private final int value;
@@ -28,6 +30,9 @@ public enum BridgeTile {
         if (value == BridgeTile.DOWN.value) {
             return BridgeTile.DOWN.command;
         }
-        return BridgeTile.UP.command;
+        if (value == BridgeTile.UP.value) {
+            return BridgeTile.UP.command;
+        }
+        throw new WrongGeneratorException();
     }
 }

@@ -14,7 +14,11 @@ public enum ExceptionMessageUtils {
 
     WRONG_GAME_COMMAND("게임 시도 여부는 %s(재시도) 혹은 %s(종료)만을 선택할 수 있습니다.",
             CommandConst.GAME_RETRY,
-            CommandConst.GAME_QUIT);
+            CommandConst.GAME_QUIT),
+
+    WRONG_GENERATOR("다리를 생성하는 generator는 %d(위 칸) 또는 %d(아래 칸)만을 생성할 수 있습니다.",
+            BridgeConst.UP_TILE_VALUE,
+            BridgeConst.DOWN_TILE_VALUE);
 
     private final String message;
 
