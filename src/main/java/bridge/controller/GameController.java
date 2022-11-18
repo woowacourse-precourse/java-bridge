@@ -17,13 +17,12 @@ public class GameController {
     private List<Boolean> upPrint = new ArrayList<>();
     private List<Boolean> downPrint = new ArrayList<>();
     private OutputView outputView = new OutputView();
-    static final int UP=1;
-    static final int DOWN=0;
+    static final int UP = 1;
+    static final int DOWN = 0;
     JudgeDestination judgeDestination = new JudgeDestination();
-    private int count=1;
-    private static int idx=0;
+    private int count = 1;
+    private static int idx = 0;
     private InputView inputView = new InputView();
-
 
 
     /**
@@ -32,13 +31,14 @@ public class GameController {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
 
-    public void start(List<String> mapBridge, int bridgeSize){
+    public void start(List<String> mapBridge, int bridgeSize) {
         move(mapBridge, bridgeSize);
         afterMove(mapBridge, bridgeSize);
     }
+
     public void move(List<String> mapBridge, int bridgeSize) {
         clearInfo();
-        while(idx<bridgeSize && !MapPrinting.isMoveStop()){
+        while (idx < bridgeSize && !MapPrinting.isMoveStop()) {
             System.out.println("mapBridge = " + mapBridge); // 출력시 어디가 갈 수 있는 칸인지 확인하기 위한 역할
             moving.add(inputView.readMoving());
             setPrintBool(upPrint, downPrint, convertNowIndex(mapBridge.get(idx)));
@@ -47,44 +47,44 @@ public class GameController {
         }
     }
 
-    public void clearInfo(){
+    public void clearInfo() {
         moving.clear();
         upPrint.clear();
         downPrint.clear();
-        idx=0;
+        idx = 0;
         MapPrinting.clearUpDownLocation();
     }
 
     private void makeBridgeMap(List<Boolean> upPrint, List<Boolean> downPrint,
         String nowIndex) {
-        MapPrinting mapPrinting = new MapPrinting(upPrint, downPrint,convertNowIndex(nowIndex));
+        MapPrinting mapPrinting = new MapPrinting(upPrint, downPrint, convertNowIndex(nowIndex));
         mapPrinting.makeList();
     }
 
     private int convertNowIndex(String nowIndex) {
-        if(nowIndex.equals("U")){
+        if (nowIndex.equals("U")) {
             return UP;
         }
         return DOWN;
     }
 
     private void setPrintBool(List<Boolean> upPrint, List<Boolean> downPrint, int upDown) {
-        if(upDown==UP){
+        if (upDown == UP) {
             upPrint.add(true);
             downPrint.add(false);
         }
-        if(upDown==DOWN){
+        if (upDown == DOWN) {
             upPrint.add(false);
             downPrint.add(true);
         }
     }
 
-    public void afterMove( List<String> mapBridge, int bridgeSize){
+    public void afterMove(List<String> mapBridge, int bridgeSize) {
         if (isReachFinal(bridgeSize)) {
             return;
         }
         if (judgementRetry()) {
-            retry(bridgeSize,mapBridge);
+            retry(bridgeSize, mapBridge);
             return;
         }
         setQuit(bridgeSize);
@@ -96,7 +96,8 @@ public class GameController {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(int bridgeSize, List<String> mapBridge) { // 수정 부분 체크 retry 는 조금 별로 더 수정해야할 거 같음 retry말고 이전 작업에서처리
+    public void retry(int bridgeSize,
+        List<String> mapBridge) { // 수정 부분 체크 retry 는 조금 별로 더 수정해야할 거 같음 retry말고 이전 작업에서처리
         count++;
         MapPrinting.initRestart();
         start(mapBridge, bridgeSize);
@@ -104,9 +105,8 @@ public class GameController {
     }
 
 
-
     private boolean isReachFinal(int bridgeSize) {
-        if(!MapPrinting.isMoveStop()) {
+        if (!MapPrinting.isMoveStop()) {
             setQuit(bridgeSize);
             return true;
         }
@@ -119,8 +119,8 @@ public class GameController {
 
     private void setQuit(int bridgeSize) {
         int nowIndex = convertNowIndex(moving.get(idx - 1));
-        MapPrinting resultMapPrinting = new MapPrinting(upPrint,downPrint,nowIndex);
-        if(bridgeSize == idx && !MapPrinting.isMoveStop()){
+        MapPrinting resultMapPrinting = new MapPrinting(upPrint, downPrint, nowIndex);
+        if (bridgeSize == idx && !MapPrinting.isMoveStop()) {
             outputView.printResult(count, resultMapPrinting, true);
             return;
         }

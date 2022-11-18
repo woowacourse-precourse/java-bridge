@@ -10,7 +10,7 @@ public enum PrintString {
     private String printString;
 
     PrintString(String printString) {
-        this.printString=printString;
+        this.printString = printString;
     }
 
     public String getPrint() {
