@@ -11,11 +11,15 @@ import java.util.List;
 public class BridgeGame {
     private final int bridgeSize;
     private final List<String> bridge;
+    private int userPosition;
+    private int countGameTry;
 
     public BridgeGame(int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         this.bridgeSize = bridgeSize;
         this.bridge = bridgeMaker.makeBridge(bridgeSize);
+        userPosition = 0;
+        countGameTry = 1;
     }
 
     /**
@@ -23,7 +27,12 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public Boolean move(String inputGoingBlock) {
+        if (canMove(inputGoingBlock)) {
+            userPosition += 1;
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -32,6 +41,11 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        countGameTry += 1;
+    }
+
+    private Boolean canMove(String inputGoingBlock) {
+        return inputGoingBlock.equals(bridge.get(userPosition + 1));
     }
 
 }
