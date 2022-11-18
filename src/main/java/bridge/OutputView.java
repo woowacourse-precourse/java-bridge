@@ -29,4 +29,9 @@ public class OutputView {
         System.out.println();
         System.out.println("다리의 길이를 입력해 주세요.");
     }
+
+    public void printMove() {
+        System.out.println();
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    }
 }

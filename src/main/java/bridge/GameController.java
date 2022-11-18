@@ -9,7 +9,9 @@ public class GameController {
 
     public void start() {
         output.printStart();
-        makeBridge();
+        List<String> randomBridge = makeBridge();
+        output.printMove();
+        String move = input.readMoving();
     }
 
     private List<String> makeBridge() {
