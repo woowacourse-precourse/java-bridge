@@ -12,19 +12,19 @@ public class Player {
     }
 
     public int getXPosition() {
-        return position.x;
+        return position.getPositionX();
     }
 
     public int getYPosition() {
-        return position.y;
+        return position.getPositionY();
     }
 
     public void setPosition(String moveTo) {
-        this.position.x += 1;
+        position.addPositionX();
         if (moveTo.equals(UP_KEY)) {
-            this.position.y = UP;
+            position.changePositionY(UP);
         } else if (moveTo.equals(DOWN_KEY)) {
-            this.position.y = DOWN;
+            position.changePositionY(DOWN);
         }
     }
 
