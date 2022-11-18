@@ -14,4 +14,11 @@ class PlayerTest {
 
         assertThat(player.getLocation()).isEqualTo(0);
     }
+
+    @Test
+    public void movable_다리_시작점에서_움직일_수_있는지() throws Exception {
+        //given
+        Player player = new Player(new Bridge(List.of("U", "U")));
+        assertThat(player.movable()).isTrue();
+    }
 }

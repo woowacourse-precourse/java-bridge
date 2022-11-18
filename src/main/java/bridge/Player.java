@@ -26,4 +26,11 @@ public class Player {
         }
         return false;
     }
+
+    public boolean movable() {
+        if (bridge.hasNextBlock(getLocation())) {
+            return true;
+        }
+        return false;
+    }
 }
