@@ -14,12 +14,16 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(ArrayList<Field> userBridge) {
-        printRow(userBridge, "U");
-        printRow(userBridge, "D");
+    public boolean printMap(ArrayList<Field> userBridge) {
+        boolean first = printRow(userBridge, "U");
+        boolean second = printRow(userBridge, "D");
+        if(first && second){
+            return true;
+        }
+        return false;
     }
 
-    public void printRow(ArrayList<Field> userBridge, String position) {
+    public boolean printRow(ArrayList<Field> userBridge, String position) {
         System.out.print("[ ");
         for(int i=0; i< userBridge.size(); i++){
             printCorrectOrNot(userBridge.get(i), position);
@@ -28,6 +32,7 @@ public class OutputView {
             }
         }
         System.out.println(" ]");
+        return returnCorrectOrNot(userBridge.get(userBridge.size()-1), position);
     }
 
     private void printCorrectOrNot(Field field, String position){
@@ -38,6 +43,13 @@ public class OutputView {
         } else{
             System.out.print(" ");
         }
+    }
+
+    public boolean returnCorrectOrNot(Field field, String position){
+        if(field.getLocation().equals(position) && !field.isCorrection()){
+            return false;
+        }
+        return true;
     }
 
     /**
