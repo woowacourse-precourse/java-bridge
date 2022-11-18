@@ -1,10 +1,20 @@
 package bridge.view;
 
+import bridge.domain.Bridge;
+import bridge.domain.Direction;
+import bridge.dto.UserState;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
     private static final String GAME_BEGINNING_MESSAGE = "다리 건너기 게임을 시작합니다.";
+    private static final String BRIDGE_FRAME = "[%s]\n[%s]";
+    private static final String CORRECT_DIRECTION = " O ";
+    private static final String INCORRECT_DIRECTION = " X ";
+    private static final String EMPTY_SPACE = "   ";
+    private static final String DIVIDER = "|";
+
     public void printGameStartingMessage() {
         printMessage(GAME_BEGINNING_MESSAGE);
     }
@@ -14,7 +24,57 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(UserState userState) {
+        StringBuilder higherBridge = new StringBuilder();
+        StringBuilder lowerBridge = new StringBuilder();
+        getPrintedBridge(userState, higherBridge, lowerBridge);
+        System.out.println(String.format(BRIDGE_FRAME, higherBridge.toString(), lowerBridge.toString()));
+    }
+
+    private void getPrintedBridge(UserState userState, StringBuilder higherBridge, StringBuilder lowerBridge) {
+        final int excludeLastDirection = 1;
+        Bridge bridge = userState.getBridge();
+        for (int i = 0; i < userState.getUserPosition() - excludeLastDirection; i++) {
+            addCircleOrEmptyWithDividerInBridge(higherBridge, bridge.isCorrectDirection(Direction.U, i));
+            addCircleOrEmptyWithDividerInBridge(lowerBridge, bridge.isCorrectDirection(Direction.D, i));
+        }
+        printLastFigure(userState, higherBridge, lowerBridge);
+    }
+
+    private void addCircleOrEmptyWithDividerInBridge(StringBuilder bridgePrinting, boolean isCorrectDirection) {
+        addCircleOrEmptyInBridge(bridgePrinting, isCorrectDirection);
+        addDividerInBridge(bridgePrinting);
+    }
+
+    private void addCircleOrEmptyInBridge(StringBuilder bridgePrinting, boolean isCorrectDirection) {
+        if (isCorrectDirection) {
+            bridgePrinting.append(CORRECT_DIRECTION);
+            return;
+        }
+        bridgePrinting.append(EMPTY_SPACE);
+    }
+
+    private void addDividerInBridge(StringBuilder bridgePainting) {
+        bridgePainting.append(DIVIDER);
+    }
+
+    private void printLastFigure(UserState userState, StringBuilder higherBridge, StringBuilder lowerBridge) {
+        Bridge bridge = userState.getBridge();
+        if (userState.isAliveUser()) {
+            addCircleOrEmptyInBridge(higherBridge, bridge.isCorrectDirection(Direction.U, userState.getUserPosition()));
+            addCircleOrEmptyInBridge(lowerBridge, bridge.isCorrectDirection(Direction.D, userState.getUserPosition()));
+            return;
+        }
+        addCrossOrEmptyInBridge(higherBridge, !bridge.isCorrectDirection(Direction.U, userState.getUserPosition()));
+        addCrossOrEmptyInBridge(lowerBridge, !bridge.isCorrectDirection(Direction.D, userState.getUserPosition()));
+    }
+
+    private void addCrossOrEmptyInBridge(StringBuilder bridgePrinting, boolean isCorrectDirection) {
+        if (isCorrectDirection) {
+            bridgePrinting.append(INCORRECT_DIRECTION);
+            return;
+        }
+        bridgePrinting.append(EMPTY_SPACE);
     }
 
     /**
