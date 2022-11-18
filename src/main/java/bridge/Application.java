@@ -9,7 +9,9 @@ public class Application {
 	static String inputMoving = "";
 	static String restartOrQuit = "";
 	static int tryCount = 1;
-	static boolean check = false;
+	static boolean retrycheck = false;
+	static String successOrFailure = "";
+	static String currentStateBridge = "";
 	static InputView inputView = new InputView();
 	static OutputView outputView = new OutputView();
     
@@ -21,21 +23,28 @@ public class Application {
     	BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     	madeBridge = bridgeMaker.makeBridge(bridgeSize);
     	do {
-    		check = inputBridgeState();
+    		retrycheck = inputBridgeState();
     		tryCount++;
-    	} while(check);
-    	outputView.printResult(tryCount);
+    	} while(retrycheck);
+    	outputView.printResult(tryCount, currentStateBridge, successOrFailure);
     }
     
     public static boolean inputBridgeState() {
-    	BridgeGame bridgeGame = new BridgeGame();
+    	BridgeGame bridgeGame = new BridgeGame(bridgeSize);
     	for(int order = 0; order < bridgeSize; order++) {      	
         	inputMoving = inputView.readMoving();
         	if(!bridgeGame.move(inputMoving, madeBridge, bridgeSize)) {
+        		currentStateBridge = bridgeGame.getCurrentStateBridge();
         		return bridgeGame.retry();                   // 재시도할 경우 return true. 게임 종료의 경우 return false.
         	}
         }
+    	currentStateBridge = bridgeGame.getCurrentStateBridge();
+    	checkSuccessOrFailure(bridgeGame);
     	return false;   // 다리를 다 건넜을 때 return false.
+    }
+    
+    public static void checkSuccessOrFailure(BridgeGame bridgeGame) {
+    	successOrFailure = bridgeGame.checkSuccessFailure();
     }
     
 }

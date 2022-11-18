@@ -13,12 +13,14 @@ public class BridgeGame {
 	ArrayList<String> upBridge = new ArrayList<>();
 	ArrayList<String> downBridge = new ArrayList<>();
 	private String currentStateBridge = "";
+	private int bridgeSize = 0;
 	
-	public BridgeGame() {
+	public BridgeGame(int bridgeSize) {
 		upDownBridgeList.add(upBridge);
 		upDownBridgeList.add(downBridge);
 		upBridge.clear();
 		downBridge.clear();
+		this.bridgeSize = bridgeSize;
 	}
 	
 	/**
@@ -69,6 +71,17 @@ public class BridgeGame {
 	public void currentStateBridgeSavePrint() {
 		currentStateBridge = outputView.printMap(upDownBridgeList);
 		System.out.println(currentStateBridge);
+	}
+	
+	public String getCurrentStateBridge() {
+		return currentStateBridge;
+	}
+	
+	public String checkSuccessFailure() {
+		if(upBridge.size() != bridgeSize) {
+			return "실패";
+		}
+		return "성공";
 	}
 	/**
 	 * 사용자가 게임을 다시 시도할 때 사용하는 메서드
