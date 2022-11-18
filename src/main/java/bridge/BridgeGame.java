@@ -33,6 +33,7 @@ public class BridgeGame {
     }
 
     public void retry() {
+        newBridgePattern();
     }
 
     private void newBridgePattern() {
