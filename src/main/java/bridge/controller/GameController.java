@@ -11,6 +11,7 @@ public class GameController {
     private static final OutputView output = new OutputView();
 
     public static void run() {
+        output.printStart();
         int bridgeSize = input.readBridgeSize();
         game.init(bridgeSize);
         while (game.isEnd()) {
