@@ -13,11 +13,10 @@ public class Bridge {
         return bridgeMap.size();
     }
 
-    public boolean isAccessibleDirection(String direction,int position){
-        if(bridgeMap.get(position).equals(direction)){
+    public boolean isAccessiblePosition(int distance,String direction){
+        if(bridgeMap.get(distance).equals(direction)){
             return true;
         }
         return false;
     }
-
 }
