@@ -11,44 +11,78 @@ public class GameController {
 
     public void play() {
         outputView.printGameStartMessage();
-        Integer size = inputView.readBridgeSize();
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        BridgeSize bridgeSize = readBridgeSize();
+
+        Integer size = bridgeSize.getBrideSize();
+
+        BridgeMaker bridgeMaker = bridgeMaker();
+
         List<String> bridge = bridgeMaker.makeBridge(size);
+
         BridgeGame bridgeGame = new BridgeGame();
-        startWalk(bridgeGame, bridge);
+
+        MoveResult moveResult = moveResult();
+
+        startWalk(bridgeGame, bridge, moveResult);
+
     }
 
-    private void walk(BridgeGame bridgeGame, List<String> bridge) {
+    private BridgeSize readBridgeSize() {
+        Integer size = inputView.readBridgeSize();
+        return new BridgeSize(size);
+    }
+
+    private BridgeMaker bridgeMaker() {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        return new BridgeMaker(bridgeNumberGenerator);
+    }
+
+    private void walk(BridgeGame bridgeGame, List<String> bridge, MoveResult moveResult) {
+        List<String> high = moveResult.getHighBridge();
+        List<String> low = moveResult.getLowBridge();
+
         for (String bridgeStatus : bridge) {
-            if (isMovePossible(bridgeGame, bridgeStatus)) {
-                outputView.printMap();
+            if (isMovePossible(bridgeGame, bridgeStatus, moveResult)) {
+                outputView.printMap(low, high);
                 continue;
             }
+            outputView.printMap(low, high);
             return;
         }
         success = true;
     }
 
-    private void startWalk(BridgeGame bridgeGame, List<String> bridge) {
+    private void startWalk(BridgeGame bridgeGame, List<String> bridge, MoveResult moveResult) {
         while (!isSuccess()) {
-            walk(bridgeGame, bridge);
+            walk(bridgeGame, bridge, moveResult);
             if (isRetry()) {
                 bridgeGame.retry();
+                moveResult.clearHistory();
                 continue;
             }
             break;
         }
     }
 
+    private MoveResult moveResult() {
+        return new MoveResult();
+    }
+
     private boolean isSuccess() {
         return success;
     }
 
-    private boolean isMovePossible(BridgeGame bridgeGame, String bridgeStatus) {
+    private boolean isMovePossible(BridgeGame bridgeGame, String bridgeStatus, MoveResult moveResult) {
+        String moving = moving();
+        boolean movePossible = bridgeGame.move(moving, bridgeStatus);
+        moveResult.makeResultBridge(moving, movePossible);
+
+        return movePossible;
+    }
+
+    private String moving() {
         String moving = inputView.readMoving();
-        String movePossible = bridgeGame.move(moving, bridgeStatus);
-        return movePossible.equals(POSSIBLE_MOVE);
+        return new Moving(moving).getMoving();
     }
 
     private boolean isRetry() {

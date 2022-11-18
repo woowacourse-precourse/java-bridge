@@ -17,4 +17,8 @@ public class BridgeSize {
     private boolean isValidRange(int number) {
         return 3 <= number && number <= 20;
     }
+
+    public Integer getBrideSize() {
+        return brideSize;
+    }
 }
