@@ -14,13 +14,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> bridge_input ,String choice, boolean same) {
+    public String[] printMap(List<String> bridge_input ,String choice, boolean same) {
         String[] Bridge_out = beforeMap(bridge_input);
         Bridge_out = addNow(Bridge_out,choice,same);
         Bridge_out[0] = "[" + Bridge_out[0] + "]";
         Bridge_out[1] = "[" + Bridge_out[1] + "]";
         System.out.println(Bridge_out[0]);
         System.out.println(Bridge_out[1]);
+        return Bridge_out;
     }
 
     /**
