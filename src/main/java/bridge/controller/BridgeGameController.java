@@ -44,7 +44,6 @@ public class BridgeGameController {
     private void playGame() {
         while (true) {
             try {
-                while (true) {
                     String direction = getInputDirection();
                     boolean isMovable = bridgeGame.isMovable(direction);
                     if (isMovable){
@@ -58,7 +57,6 @@ public class BridgeGameController {
                         retryOrQuit();
                         return;
                     }
-                }
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(INVALID_MOVING);
             }
