@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.constant.ErrorMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -13,6 +14,9 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
         int result = validateSize(Console.readLine());
+        if (result < 3 || result > 20) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE_SIZE);
+        }
         return result;
     }
 
@@ -35,7 +39,7 @@ public class InputView {
 
     private String validateCommend(String commend) {
         if (!(commend.equals("R") || commend.equals("Q"))) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_COMMEND);
         }
 
         return commend;
@@ -46,7 +50,7 @@ public class InputView {
         for (int i = 0; i < size.length(); i++)
         {
             if (!(size.charAt(i) <= '9' && size.charAt(i) >= '0'))
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_NUMBER);
         }
 
         result = Integer.parseInt(size);
@@ -55,7 +59,7 @@ public class InputView {
 
     private String validateMoving(String moving) {
         if (!(moving.equals("U") || moving.equals("D"))) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_DIRECTION);
         }
 
         return moving;
