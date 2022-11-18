@@ -34,13 +34,29 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public String readMoving(String userInput) {
+        isValidMoving(userInput);
+        return userInput;
+    }
+
+    private void isValidMoving(String userInput) {
+        if (!Pattern.matches("^[DU]{1}$", userInput)) {
+            throw new IllegalArgumentException("[ERROR] D 혹은 U 한 문자를 입력해야 합니다");
+        }
     }
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public String readGameCommand(String userInput) {
+        isValidGameCommand(userInput);
+        return userInput;
     }
+
+    private void isValidGameCommand(String userInput) {
+        if (!Pattern.matches("^[RQ]{1}$", userInput)) {
+            throw new IllegalArgumentException("[ERROR] D 혹은 U 한 문자를 입력해야 합니다");
+        }
+    }
+
+
 }
