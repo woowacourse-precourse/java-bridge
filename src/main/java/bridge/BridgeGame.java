@@ -9,11 +9,13 @@ import java.util.Objects;
 public class BridgeGame {
 
     private final List<String> bridge;
+    private int numberOfMoving;
     private int numberOfCrossedBlock;
     private int numberOfAttempt;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
+        numberOfMoving = 0;
         numberOfCrossedBlock = 0;
         numberOfAttempt = 0;
     }
@@ -29,7 +31,7 @@ public class BridgeGame {
      */
     public boolean move(String playerMoving) {
         if (isFirstMoving()) numberOfAttempt++;
-        if (Objects.equals(bridge.get(numberOfCrossedBlock), playerMoving)) {
+        if (Objects.equals(bridge.get(numberOfMoving++), playerMoving)) {
             numberOfCrossedBlock++;
             return true;
         }
@@ -37,7 +39,7 @@ public class BridgeGame {
     }
 
     private boolean isFirstMoving() {
-        return numberOfCrossedBlock == 0;
+        return numberOfMoving == 0;
     }
 
     /**
@@ -46,6 +48,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        numberOfMoving = 0;
         numberOfCrossedBlock = 0;
     }
 
