@@ -7,10 +7,6 @@ import bridge.constants.ErrorMessages;
  */
 public class BridgeGame {
 
-    public static final int WIN = 0;
-    public static final int LOSE = 1;
-    public static final int KEEP_GOING = 2;
-
     private final Bridge bridge;
     private final User user;
 
@@ -26,16 +22,16 @@ public class BridgeGame {
      *
      * @param command
      */
-    public int move(String command) {
+    public GameStatus move(String command) {
         validateMoveCommand(command);
         int userStatus = user.cross(bridge, command);
         if (userStatus == User.LIVE) {
             if (isSuccess()) {
-                return WIN;
+                return GameStatus.WIN;
             }
-            return KEEP_GOING;
+            return GameStatus.KEEP_GOING;
         }
-        return LOSE;
+        return GameStatus.LOSE;
     }
 
     private boolean isSuccess() {
@@ -75,13 +71,13 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public int retry(String gameCommand) {
+    public GameStatus retry(String gameCommand) {
         validateGameCommand(gameCommand);
         if (gameCommand.equals("R")) {
             user.prepareToRestart();
-            return KEEP_GOING;
+            return GameStatus.KEEP_GOING;
         }
-        return LOSE;
+        return GameStatus.LOSE;
     }
 
     public int getTryCount() {

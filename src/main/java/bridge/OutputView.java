@@ -27,17 +27,10 @@ public class OutputView {
      *
      * @param status
      */
-    public void printResult(BridgeGame bridgeGame, int status) {
+    public void printResult(BridgeGame bridgeGame, GameStatus status) {
         System.out.println("최종 게임 결과");
         System.out.println(bridgeGame.getFootPrintsLog());
-        System.out.printf("최종 성공 여부: %s\n", getStatus(status));
+        System.out.printf("최종 성공 여부: %s\n", status.getStatus());
         System.out.printf("총 시도한 횟수: %d\n", bridgeGame.getTryCount());
-    }
-
-    private String getStatus(int status) {
-        if (status == BridgeGame.LOSE) {
-            return "실패";
-        }
-        return "성공";
     }
 }

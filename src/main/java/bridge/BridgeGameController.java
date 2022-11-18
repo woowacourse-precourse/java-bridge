@@ -17,8 +17,8 @@ public class BridgeGameController {
     public void run() {
         outputView.printGameStart();
         init();
-        int status = BridgeGame.KEEP_GOING;
-        while (status == BridgeGame.KEEP_GOING) {
+        GameStatus status = GameStatus.KEEP_GOING;
+        while (status == GameStatus.KEEP_GOING) {
             status = play();
         }
         outputView.printResult(bridgeGame, status);
@@ -45,16 +45,16 @@ public class BridgeGameController {
         return inputView.readBridgeSize();
     }
 
-    private int play() {
-        int result = goForward();
+    private GameStatus play() {
+        GameStatus result = goForward();
         outputView.printMap(bridgeGame.getFootPrintsLog());
-        if (result == BridgeGame.LOSE) {
+        if (result == GameStatus.LOSE) {
             result = retry();
         }
         return result;
     }
 
-    private int goForward() {
+    private GameStatus goForward() {
         while (true) {
             try {
                 String direction = inputView.readMoving();
@@ -65,7 +65,7 @@ public class BridgeGameController {
         }
     }
 
-    private int retry() {
+    private GameStatus retry() {
         while (true) {
             try {
                 String gameCommand = inputView.readGameCommand();
