@@ -3,6 +3,8 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.GeneratedBridge;
+import bridge.model.PlayerBridge;
+import bridge.model.PrintBridge;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -17,8 +19,12 @@ public class BridgeGame {
     private final InputView inputView = new InputView();
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private GeneratedBridge generatedBridge;
+    private final PlayerBridge playerBridge = new PlayerBridge();
+    private final PrintBridge printBridge = new PrintBridge();
 
     private String bridgeSize;
+    private int nextStepIndex = 0;
+    private String inputNextStep;
 
     public void printBridgeGameStartMessage() {
         outputView.printBridgeGameStartMessage();
@@ -40,6 +46,13 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
+        outputView.printInputMovingStepMessage();
+        inputNextStep = inputView.inputMovingStep();
+        boolean canMove = generatedBridge.canMoveNextStep(nextStepIndex, inputNextStep);
+        playerBridge.moveNextStep(inputNextStep, canMove);
+        String printUpShape = printBridge.generatePrintUpShape(playerBridge.getUpShape());
+        String printDownShape = printBridge.generatePrintDownShape(playerBridge.getDownShape());
+        outputView.printMap(printUpShape, printDownShape);
     }
 
     /**
