@@ -39,4 +39,18 @@ public class Service {
         outputView.printInputBridgeSize();
         bridgeGame.createBridge(inputView.readBridgeSize());
     }
+
+    // 다리를 건너는 기능
+    public void move() {
+        bridgeGame.initBridgeUserKeyList();
+        do {
+            try {
+                outputView.printInputSpaceToMove();
+                Bridge bridge = bridgeGame.move(inputView.readMoving());
+                outputView.printBridge(bridge);
+            } catch (IllegalArgumentException error) {
+                outputView.printErrorMessage(error);
+            }
+        } while (!bridgeGame.isBridgeEnd());
+    }
 }
