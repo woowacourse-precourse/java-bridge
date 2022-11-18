@@ -80,11 +80,23 @@ class BridgeGameTest {
                 .hasMessageNotContaining("[ERROR]");
     }
 
-    @DisplayName("사용자가 재시도를 할 때 재시도가 정상적으로 이루어지는지 확인한다.")
+    @DisplayName("사용자가 재시도를 할 때 재시도가 정상적으가 이루어지는지 확인한다.")
     @ValueSource(strings = {"R"})
     @Test
     void validate_Is_Retry_Available() {
         assertThatThrownBy(()-> BridgeGame.retry())
                 .hasMessageStartingWith("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    }
+
+    @DisplayName("사용자가 재시도를 할 때 이전에 만들어둔 다리를 사용하는지 확인한다.")
+    @ValueSource(strings = {/*게임 시작 후 다리 선택, 실패 발생,*/"R"})
+    @Test
+    void validate_Is_Retry_Available(String input) {
+        assertThatThrownBy(()-> //게임 시작 메서드(input), 10 번째 다리까지 성공, 11차 시도 실패 입력
+                BridgeGame.retry())
+                //재시작 후 10 번째 다리 성공, 11차 시도 이전과 다른 값으로 입력 후 성공
+                //이후 성공 확인 메세지 확인
+                //다리에 값을 저장하는 객체가 있다면 확인
+                .hasMessageStartingWith(/*성공메세지 확인*/"이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
 }
