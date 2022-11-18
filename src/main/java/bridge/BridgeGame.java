@@ -7,9 +7,12 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
+    private final List<String> bridge;
     private final List<String> BridgeTrack;
 
     public BridgeGame(List<String> bridge) {
+        this.bridge = bridge;
         BridgeTrack = new ArrayList<>();
     }
     /**
@@ -33,5 +36,9 @@ public class BridgeGame {
     }
     public void reset() {
         BridgeTrack.clear();
+    }
+    public boolean isRecentMoveSuccessful() {
+        int lastMoveIndex = BridgeTrack.size() - 1;
+        return BridgeTrack.get(lastMoveIndex).equals(bridge.get(lastMoveIndex));
     }
 }
