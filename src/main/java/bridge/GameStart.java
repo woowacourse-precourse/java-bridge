@@ -24,7 +24,17 @@ public class GameStart {
     }
 
     public void run() {
-
+        createBridge();
+        for (int i = 0; i < bridgeSize; i++) {
+            String moveBlock = inputView.readMoving();
+            boolean isMove = bridgeGame.move(moveBlock);
+            outputView.printMap();
+            if (!isMove) {
+                String restart = inputView.readGameCommand();
+                bridgeGame.retry();
+            }
+        }
+        outputView.printResult();
     }
 
     private void createBridge() {
