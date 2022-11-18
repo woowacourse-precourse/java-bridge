@@ -36,7 +36,8 @@ public class BridgeGame {
         this.tryNumber = 0;
     }
 
-    public void increaseTry() {
+    public int getTryNumber() {
+        return this.tryNumber;
     }
 
 
