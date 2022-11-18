@@ -24,7 +24,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
+        for (int x = 0; x < size; x++) {
             int key = bridgeNumberGenerator.generate();
             bridge.add(addBridge(key));
         }
@@ -42,13 +42,13 @@ public class BridgeMaker {
 
     public String[][] make2DBridge(List<String> bridge) {
         String[][] bridge2D = new String[2][bridge.size()];
-        for (int i = 0; i < bridge.size(); i++) {
-            if (bridge.get(i).equals(DOWN_KEY)) {
-                bridge2D[UP_POSITION][i] = FALL_POSITION;
-                bridge2D[DOWN_POSITION][i] = DOWN_KEY;
+        for (int x = 0; x < bridge.size(); x++) {
+            if (bridge.get(x).equals(DOWN_KEY)) {
+                bridge2D[UP_POSITION][x] = FALL_POSITION;
+                bridge2D[DOWN_POSITION][x] = DOWN_KEY;
             } else {
-                bridge2D[DOWN_POSITION][i] = FALL_POSITION;
-                bridge2D[UP_POSITION][i] = UP_KEY;
+                bridge2D[DOWN_POSITION][x] = FALL_POSITION;
+                bridge2D[UP_POSITION][x] = UP_KEY;
             }
         }
         return bridge2D;
