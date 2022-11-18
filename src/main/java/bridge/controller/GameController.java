@@ -3,7 +3,6 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.model.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
@@ -20,6 +19,12 @@ public class GameController {
 
         // 다리 게임
         int attemptsNumber = 1;
+        for (int index = 0; index < bridge.size(); index++) {
+            if (isUserSelectionCorrect(setUserSelection(), bridge.get(index))) {
+                continue;
+            }
+        }
+
 
     }
 
@@ -36,13 +41,17 @@ public class GameController {
         return null;
     }
 
-    private String setMovingOption() {
+    private String setUserSelection() {
         try {
             outputView.printMoveInput();
             return inputView.readMoving();
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception);
-            return setMovingOption();
+            return setUserSelection();
         }
+    }
+
+    private boolean isUserSelectionCorrect(String userSelection, String bridge) {
+        return userSelection.equals(bridge);
     }
 }
