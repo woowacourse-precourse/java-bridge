@@ -12,7 +12,7 @@ class InputViewTest {
     @Test
     void isBridgeSizeNumber(){
         InputView inputView = new InputView();
-        assertThat(inputView.isBridgeSizeNumber("1"));
+        assertTrue(inputView.isBridgeSizeNumber("20"));
     }
 
 }
