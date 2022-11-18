@@ -33,12 +33,11 @@
       - 종료 메시지, 지도, 성공 여부, 시도 횟수
     - [ ] 에러 문구
 - ## 타입
-  - [ ] 게임 일반 상수 타입
-  - [ ] 게임 상태 타입 (INIT, PLAY, FAIL, RESULT, DONE)
-  - [ ] 진행 결과 타입 (DEAD, ALIVE)
-  - [ ] 진행 명령어 타입
-  - [ ] 메뉴 명령어 타입
-  - [ ] 에러 메시지 타입
+  - [X] 게임 일반 상수 타입
+  - [X] 게임 상태 타입 (INIT, PLAY, FAIL, RESULT, DONE)
+  - [X] 진행 명령어 타입
+  - [X] 메뉴 명령어 타입
+  - [X] 에러 메시지 타입
 
 ## ✏ 과제를 진행하며 배운 점
 - IllegalArgumentException 과 IllegalStateException은 어떤 상황에 발생시키 오류인가?[[참조](https://stackoverflow.com/questions/20169127/what-is-illegalstateexception)]
