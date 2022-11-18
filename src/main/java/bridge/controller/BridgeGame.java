@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.model.AnswerBridge;
 import bridge.model.BridgeMaker;
 import bridge.model.BridgeRandomNumberGenerator;
+import bridge.model.User;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -10,17 +11,19 @@ import java.util.List;
 
 public class BridgeGame {
 
+    User user = new User();
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
     public void run() {
         OutputView.printStart();
         int bridgeSize = InputView.getInputBridgeSize();
-
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         AnswerBridge answerBridge = new AnswerBridge(bridge);
 
         while(true) {
-            String moving = InputView.getInputMoving();
+            String choice = InputView.getInputChoice();
+            user.addChoice(choice);
+            OutputView.printMap(user.getChoices(), answerBridge.compareTo(user));
         }
     }
 

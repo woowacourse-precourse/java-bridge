@@ -13,7 +13,7 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-    public static String getInputMoving() {
+    public static String getInputChoice() {
         OutputView.printInputMoving();
         String input = readLine();
         ExceptionHandler.checkMoving(input);
