@@ -47,4 +47,7 @@ public class BridgeGame {
     public int getTryCount() {
         return tryCount;
     }
+    public boolean isBridgeGameSuccess() {
+        return BridgeTrack.equals(bridge);
+    }
 }
