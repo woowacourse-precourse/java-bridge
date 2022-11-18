@@ -14,6 +14,7 @@ public class InputView {
     private static int bridgeSize;
     private static String inputSize;
     private static String inputDirection;
+    private static String inputRestart;
 
     /**
      * 다리의 길이를 입력받는다.
@@ -45,7 +46,7 @@ public class InputView {
      */
     public String inputGameRestart() {
         System.out.println(Message.ASK_RESTART.getMessage());
-        String inputRestart = readLine();
+        inputRestart = readLine();
         return inputRestart;
     }
 }
