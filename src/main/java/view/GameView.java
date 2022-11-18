@@ -7,5 +7,10 @@ public class GameView {
     public void init() {
         outputView.printStartMessage();
         inputView.readBridgeSize();
+        game();
+    }
+
+    public void game() {
+        inputView.readMoving();
     }
 }
