@@ -8,6 +8,7 @@
   - [x] 입력값이 숫자인지 체크  (테스트케이스)
 - [x] 입력값을 readBridgeSize에서 리턴
   - [x] 다리 길이 3이상 20이하 아니면 예외처리 `IllegalArgumentException`를 발생+`[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.`
+- [x] bridgeGenerator로 bridgeMaker 생성
 - [ ] BridgeMaker 사용해서 다리 입력받은 다리 개수 만큼 생성
 - [ ] BridgeMaker안에 새 메소드(Generator 사용하는 메소드, 다리 길이 받아서 만든다)
 
