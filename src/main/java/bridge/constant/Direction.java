@@ -34,4 +34,12 @@ public enum Direction {
     private boolean hasBridgeNumber(int bridgeNumber) {
         return this.bridgeNumber == bridgeNumber;
     }
+
+    public String capitalLetter() {
+        return capitalLetter;
+    }
+
+    public int bridgeNumber() {
+        return bridgeNumber;
+    }
 }
