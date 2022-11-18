@@ -7,6 +7,7 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -39,6 +40,7 @@ class ApplicationTest extends NsTest {
         }, 1, 0, 1);
     }
 
+ 
     @Test
     void 기능_테스트_실패_후_성공() {
         assertRandomNumberInRangeTest(() -> {
@@ -56,12 +58,12 @@ class ApplicationTest extends NsTest {
             );
         }, 1, 0, 1);
     }
-
+    @DisplayName("재시작 전후로 서로 다른 값일 경우")
     @Test
-    void 기능_테스트_실패_후_종료() {
+    void 기능_테스트_실패_후_종료_다른값() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "U", "R", "D", "Q");
-            assertThat(output()).contains(
+            assertThat(output()).containsSubsequence(
                     "[ O | X ]",
                     "[   |   ]",
                     "[   ]",
@@ -73,6 +75,25 @@ class ApplicationTest extends NsTest {
                     "총 시도한 횟수: 2"
             );
         }, 1, 0, 1);
+    }
+
+    @DisplayName("재시작 전후로 서로 같은 값일 경우")
+    @Test
+    void 기능_테스트_실패_후_종료_같은값() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "D", "R", "D", "Q");
+            assertThat(output()).containsSubsequence(
+                    "[ O |   ]",
+                    "[   | X ]",
+                    "[   ]",
+                    "[ X ]",
+                    "최종 게임 결과",
+                    "[ O |   ]",
+                    "[   | X ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 2"
+            );
+        }, 1, 1, 1);
     }
 
     @Test
