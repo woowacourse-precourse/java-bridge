@@ -60,7 +60,7 @@ public class BridgeGame {
     public void retry() {
     }
     public boolean isEnd() {
-        if (bridge.size() == tryCount) {
+        if (bridge.size() == currentIndex) {
             return true;
         }
         return false;
