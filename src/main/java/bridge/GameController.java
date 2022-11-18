@@ -23,7 +23,12 @@ public class GameController {
             moveStep(bridgeGame);
             isEnd = bridgeGame.isEnd();
         }
+        //if(정답 맞추면)
+        //최종결과 출력
+        //return;
         outputView.restartMessage();
+        String command = inputView.readGameCommand();
+        System.out.println(command);
     }
     private void moveStep(BridgeGame bridgeGame){
         //move message 출력

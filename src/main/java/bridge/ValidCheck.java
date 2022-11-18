@@ -10,4 +10,7 @@ public class ValidCheck {
     public static boolean isUorD(String str) {
         return str.matches("[U,D]+");
     }
+    public static boolean isRorQ(String str) {
+        return str.matches("[R,Q]+");
+    }
 }
