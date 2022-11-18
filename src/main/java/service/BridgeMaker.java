@@ -6,6 +6,7 @@ import constant.StringConstant;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class BridgeMaker {
     private final BridgeNumberGenerator bridgeNumberGenerator;
@@ -29,6 +30,10 @@ public class BridgeMaker {
         }
     }
 
+    private int bridgeNumberGenerator() {
+        return bridgeNumberGenerator.generate();
+    }
+
     private void buildUpPath(List<String> bridge, int bridgeNumber) {
         if (isBridgeNumberUpSide(bridgeNumber)) {
             addBridgeUpPath(bridge);
@@ -39,10 +44,6 @@ public class BridgeMaker {
         if (isBridgeNumberDownSide(bridgeNumber)) {
             addBridgeDownPath(bridge);
         }
-    }
-
-    private int bridgeNumberGenerator() {
-        return bridgeNumberGenerator.generate();
     }
 
     public boolean isBridgeNumberUpSide(int bridgeNumber) {
@@ -60,5 +61,4 @@ public class BridgeMaker {
     public void addBridgeDownPath(List<String> bridge) {
         bridge.add(StringConstant.DOWN_SIDE.getConstant());
     }
-
 }
