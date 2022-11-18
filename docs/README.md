@@ -10,7 +10,7 @@
 ------------ 위는 최초 1회 시행 -------------
 
 - [] 사용자에게 위로 건널지 아래로 건널지 input값을 받는다. U또는 D값을 받는다. (Input) ->Judge
-- [] 사용자에게 다시할 것인지, 그만할 것인지 물어본다.
+- [] 사용자에게 다시할 것인지, 그만할 것인지 input값을 받는다. R과 Q값을 받는다.
   
 
 - 받은 U,D 값을 비교해서 실패인지 성공인지 확인한다.Input,Generator-> (Judge) 
@@ -32,6 +32,48 @@
     - [] 다시안하면, 몇개 성공 실패했는지
 
 - [] 예외사항 처리를 한다.
+
+- [] 추가된 요구 사항이 뜻하는 것이 무엇인지 파악
+  - InputView 클래스 : 내가 생각한 Input 클래스랑 똑같다.
+  - OutputView 클래스 : 내가 생각한 printer 클래스와 똑같다. (하지만, 기본적으로 출력하는 메세지는 포함하지 않는데 이유가 있을까?)
+  - BridgeGame 클래스 : 내가 생각한 Judge 클래스와 똑같은 듯?
+  - BridgeMaker 클래스 : 내가 생각한 Generator 클래스와 똑같은 듯?
+  - BridgeRandomNumberGenerator 클래스 : Generator 클래스에서 조금 더 세분화된 생성 클래스
+
+
+### InputView 클래스
+- [] 제공된 `InputView` 클래스를 활용해 구현해야 한다.
+- [] `InputView`의 패키지는 변경할 수 있다.
+- [] `InputView`의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 있다.
+- [] 사용자 값 입력을 위해 필요한 메서드를 추가할 수 있다.
+
+### OutputView 클래스
+- [] 제공된 `OutputView` 클래스를 활용해 구현해야 한다.
+- [] `OutputView`의 패키지는 변경할 수 있다.
+- [] `OutputView`의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
+- [] 값 출력을 위해 필요한 메서드를 추가할 수 있다.
+
+### BridgeGame 클래스
+- [] 제공된 `BridgeGame` 클래스를 활용해 구현해야 한다.
+- [] `BridgeGame`에 필드(인스턴스 변수)를 추가할 수 있다.
+- [] `BridgeGame`의 패키지는 변경할 수 있다.
+- [] `BridgeGame`의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
+- [] 게임 진행을 위해 필요한 메서드를 추가 하거나 변경할 수 있다.
+
+### BridgeMaker 클래스
+- [] 제공된 `BridgeMaker` 클래스를 활용해 구현해야 한다.
+- [] `BridgeMaker`의 필드(인스턴스 변수)를 변경할 수 없다.
+- [] `BridgeMaker`의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 없다.
+
+### BridgeRandomNumberGenerator 클래스
+
+- [] Random 값 추출은 제공된 `bridge.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
+- [] `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 변경할 수 없다.
+
+
+```java
+int number = bridgeNumberGenerator.generate();
+``` 
 
 
 
