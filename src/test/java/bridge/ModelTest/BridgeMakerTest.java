@@ -19,8 +19,8 @@ public class BridgeMakerTest {
         int size = 15;
         List<String> bridge = bridgeMaker.makeBridge(size);
         List<String> test = bridge.stream()
-                .filter(str -> !(str.equals("U") || str.equals("D")))
+                .filter(str -> (str.equals("U") || str.equals("D")))
                 .collect(Collectors.toList());
-        assertThat(test).isEqualTo(null);
+        assertThat(test.size()).isEqualTo(15);
     }
 }
