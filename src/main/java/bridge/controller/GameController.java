@@ -86,7 +86,7 @@ public class GameController {
         Tile movingTile = null;
         do {
             try {
-                movingTile = Tile.findByTilePosition(inputView.readMoving());
+                movingTile = Tile.findByPositionSign(inputView.readMoving());
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }

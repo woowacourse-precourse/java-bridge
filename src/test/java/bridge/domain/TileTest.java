@@ -18,25 +18,25 @@ class TileTest {
         assertThat(actualTile).isEqualTo(expectedTile);
     }
 
+    @ParameterizedTest(name = "findByCode 조건 외 입력 시 예외 발생 테스트 [{index}] : {0} 입력")
+    @ValueSource(ints = {2, 3, 4, 12, 334, -1})
+    void findByCodeExceptionTest(int code) {
+        assertThatThrownBy(() -> Tile.findByCode(code))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(EXCEPTION_MESSAGE);
+    }
+
     @ParameterizedTest(name = "findByTilePosition 테스트 [{index}] : {1}")
     @CsvSource(value = {"D,DOWN", "U,UP"})
-    void findByPositionTest(String position, Tile expectedTil) {
-        Tile actualTile = Tile.findByTilePosition(position);
+    void findByPositionSignTest(String position, Tile expectedTil) {
+        Tile actualTile = Tile.findByPositionSign(position);
         assertThat(actualTile).isEqualTo(expectedTil);
     }
 
     @ParameterizedTest(name = "findByTilePosition 에 조건 외 입력 시 예외 발생 테스트 [{index}] : {0} 입력")
     @ValueSource(strings = {"asd", "a", "B", "0", "1"})
-    void findByPositionExceptionTest(String positionInput) {
-        assertThatThrownBy(() -> Tile.findByTilePosition(positionInput))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(EXCEPTION_MESSAGE);
-    }
-
-    @ParameterizedTest(name = "findByCode 조건 외 입력 시 예외 발생 테스트 [{index}] : {0} 입력")
-    @ValueSource(ints = {2, 3, 4, 12, 334, -1})
-    void findByCodeExceptionTest(int code) {
-        assertThatThrownBy(() -> Tile.findByCode(code))
+    void findByPositionSignExceptionTest(String positionInput) {
+        assertThatThrownBy(() -> Tile.findByPositionSign(positionInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(EXCEPTION_MESSAGE);
     }

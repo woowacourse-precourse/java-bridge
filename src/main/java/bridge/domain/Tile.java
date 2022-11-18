@@ -14,31 +14,31 @@ public enum Tile {
     private static final String FAIL_SIGN = "X";
     private static final String EMPTY_SIGN = " ";
 
-    private final int tileCode;
-    private final String tilePosition;
+    private final int code;
+    private final String positionSign;
 
-    Tile(int tileCode, String tilePosition) {
-        this.tileCode = tileCode;
-        this.tilePosition = tilePosition;
+    Tile(int code, String positionSign) {
+        this.code = code;
+        this.positionSign = positionSign;
     }
 
-    public static Tile findByCode(int tileCode) {
+    public static Tile findByCode(int code) {
         return Arrays.stream(Tile.values())
-                .filter(tile -> tile.tileCode == tileCode)
+                .filter(tile -> tile.code == code)
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(String.format(TILE_CODE_ERROR_MESSAGE, tileCode)));
+                .orElseThrow(() -> new IllegalArgumentException(String.format(TILE_CODE_ERROR_MESSAGE, code)));
     }
 
-    public static Tile findByTilePosition(String tilePosition) {
+    public static Tile findByPositionSign(String positionSign) {
         return Arrays.stream(Tile.values())
-                .filter(tile -> tile.tilePosition.equals(tilePosition))
+                .filter(tile -> tile.positionSign.equals(positionSign))
                 .findAny()
                 .orElseThrow(() ->
-                        new IllegalArgumentException(String.format(TILE_POSITION_ERROR_MESSAGE, tilePosition)));
+                        new IllegalArgumentException(String.format(TILE_POSITION_ERROR_MESSAGE, positionSign)));
     }
 
-    public String getTilePosition() {
-        return this.tilePosition;
+    public String getPositionSign() {
+        return this.positionSign;
     }
 
     public String toFormatString(Tile playerTile, boolean isSurvive) {

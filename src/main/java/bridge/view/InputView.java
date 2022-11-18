@@ -50,7 +50,7 @@ public class InputView {
 
     private void printInputMovingPositionInfoMessage() {
         System.out.println(String.format(INPUT_MOVING_POSITION_INFO_MESSAGE_FORMAT,
-                Tile.UP.getTilePosition(), Tile.DOWN.getTilePosition()));
+                Tile.UP.getPositionSign(), Tile.DOWN.getPositionSign()));
     }
 
     /**
