@@ -7,6 +7,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -32,13 +33,10 @@ class BridgeMakerTest {
         List<String> bridge = bridgeMaker.makeBridge(size);
         List<String> assertBridge = new ArrayList<>();
 
-
         //when
-        int random = Randoms.pickNumberInRange(0, 1);
-        for ( int index = 0; index < size; index++ ) {
-            assertBridge.add("U");
-        }
-
+        assertBridge.add("U");
+        assertBridge.add("D");
+        assertBridge.add("U");
 
         //then
         assertEquals(assertBridge, bridge);
@@ -58,26 +56,33 @@ class BridgeMakerTest {
         assertEquals(assertBridge, bridge);
     }
 
-    @DisplayName("다리 길이 생성의 규칙을 검증한다.")
+    @DisplayName("다리 길이 생성의 규칙 검증")
     @Test
     void assertBridgeSize(){
         // given
         String bridgeFirst = "[ O ]";
-        String bridgeSecond = "[ O | X ]";
-        String bridgeThird = "[ O |   | O ]";
-        String bridgeFourTh = "[ O |   | O | O ]";
-        String bridgeFifth = "[ O | O |   | O | O ]";
-        String bridgeSix = "[ O |   | O |   | O | O ]";
-        String bridgeThirteen = "[ O | O |   | O | O |   | O | O |   | O |   |   | O ]";
+        LinkedList<String> bridge = new LinkedList<>();
 
-        // 다리 길이는 최소 5부터 4씩 증가, 입력 수 만큼 반복
-        assertEquals(bridgeFirst.length(), 5);
-        assertEquals(bridgeSecond.length(), 9);
-        assertEquals(bridgeThird.length(), 13);
-        assertEquals(bridgeFourTh.length(), 17);
-        assertEquals(bridgeFifth.length(), 21);
-        assertEquals(bridgeSix.length(), 25);
-        assertEquals(bridgeThirteen.length(), 53);
+        int bridgeFirstSize= 5;
+        // 다리 길이는 5부터 (n-1)*4씩 증가
+        int bridgeParameter = 3;
+        int bridgeAnyParameter = 12;
+        int bridgeParameterMax = 20;
+
+        int bridgeSize = bridgeFirstSize+(bridgeParameter-1)*4;
+        int bridgeSomeSize = bridgeFirstSize+(bridgeAnyParameter-1)*4;
+        int bridgeMaxSize = bridgeFirstSize+(bridgeParameterMax-1)*4;
+
+        assertEquals(13, bridgeSize);
+        assertEquals(49, bridgeSomeSize);
+        assertEquals(81, bridgeMaxSize);
+
+    }
+
+    @Test
+    public void 이중_for문() throws Exception{
+        ArrayList<String> bridge = new ArrayList<>();
+
     }
 
 }
