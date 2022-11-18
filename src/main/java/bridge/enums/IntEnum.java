@@ -5,7 +5,10 @@ public enum IntEnum {
     BRIDGE_LAST(20),
     UP_INT(1),
     DOWN_INT(0),
-    RESET_STAGE(0);
+    RESET_STAGE(0),
+    GAME_WIN(0),
+    GAME_CONTINUE(1),
+    GAME_LOSE(2);
 
     private final int num;
     private IntEnum(int num){
