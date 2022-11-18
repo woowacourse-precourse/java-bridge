@@ -18,9 +18,12 @@ class BridgeGameTest {
         bridgeGame = new BridgeGame(Arrays.asList("U", "U", "D"));
     }
 
+
     @DisplayName("다리의 상태를 갱신한다.")
     @Nested
     class MoveTest {
+
+
         @Test
         void test1() {
             bridgeGame.move("U");
@@ -64,11 +67,11 @@ class BridgeGameTest {
         bridgeGame.move("D");
         assertThat(bridgeGame.toString()).isEqualTo("[   ]\n[ X ]");
 
-        bridgeGame.retry();
+//        bridgeGame.retry();
 
-        bridgeGame.move("U");
-        bridgeGame.move("U");
-        assertThat(bridgeGame.toString()).isEqualTo("[ O | O ]\n[   |   ]");
+//        bridgeGame.move("U");
+//        bridgeGame.move("U");
+//        assertThat(bridgeGame.toString()).isEqualTo("[ O | O ]\n[   |   ]");
     }
 
     @DisplayName("다리의 끝까지 도달하면 게임을 종료한다.")

@@ -33,7 +33,7 @@ public class GameManager {
             bridgeGame.move(InputView.readMoving());
             OutputView.printMap(bridgeGame);
         }
-        return bridgeGame.isNotDone(); // 다리의 끝까지 도달하지 못했는가?
+        return bridgeGame.isFail(); // 다리의 끝까지 도달하지 못했는가?
     }
 
     private boolean retryOrNot() {

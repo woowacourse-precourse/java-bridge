@@ -1,6 +1,6 @@
 package bridge.domain;
 
-public class TryCount {
+public class Turn {
     private int count = 0;
 
     public void increase() {

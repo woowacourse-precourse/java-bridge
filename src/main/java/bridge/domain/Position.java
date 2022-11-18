@@ -22,7 +22,7 @@ public class Position {
         return position;
     }
 
-    public boolean isDone() {
+    public boolean hasReachedToTheEnd() {
         return position == bridgeSize - 1;
     }
 
