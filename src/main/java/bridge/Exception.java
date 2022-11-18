@@ -35,4 +35,11 @@ public class Exception {
             throw new IllegalArgumentException("[ERROR]" + ErrorMessage.STRING_EXCEPTION);
         }
     }
+
+    // 3부터 20까지만 입력
+    public static int checkBridgeLength(int bridgeLength) throws IllegalArgumentException{
+        if (bridgeLength >= MIN_LENGTH && bridgeLength <= MAX_LENGTH)
+            return bridgeLength;
+        throw new IllegalArgumentException("[ERROR]" + ErrorMessage.AMOUNT_BOUNDS);
+    }
 }
