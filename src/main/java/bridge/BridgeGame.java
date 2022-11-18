@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.utils.Validator;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -11,13 +10,13 @@ public class BridgeGame {
     private final BridgeOfComputer computerMap;
     private final BridgeOfUser userMap;
     private int stage;
-    private boolean fail;
+    private boolean done;
 
     public BridgeGame(List<String> answerBridgeMap) {
         this.computerMap = new BridgeOfComputer(answerBridgeMap);
         this.userMap = new BridgeOfUser();
         this.stage = 0;
-        this.fail = false;
+        this.done = false;
     }
 
     public void move(String moveSide) {
@@ -38,7 +37,7 @@ public class BridgeGame {
 
     private void restoreWrongMove(String moveSide) {
         userMap.restoreByWrong(moveSide);
-        fail = true;
+        done = true;
     }
 
     public BridgeOfUser nowUserMapState() {
@@ -54,4 +53,7 @@ public class BridgeGame {
     }
 
 
+    public boolean isNotDone() {
+        return !done;
+    }
 }

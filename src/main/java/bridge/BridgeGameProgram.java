@@ -19,8 +19,10 @@ public class BridgeGameProgram {
         List<String> bridgeMap = bridgeMaker.makeBridge(inputView.readBridgeSize());
 
         BridgeGame bridgeGame = new BridgeGame(bridgeMap);
-        outputView.printRequestMoveSideComment();
-        bridgeGame.move(inputView.readMoving());
-        outputView.printMap(bridgeGame.nowUserMapState());
+        while (bridgeGame.isNotDone()) {
+            outputView.printRequestMoveSideComment();
+            bridgeGame.move(inputView.readMoving());
+            outputView.printMap(bridgeGame.nowUserMapState());
+        }
     }
 }
