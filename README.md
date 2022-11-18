@@ -329,3 +329,8 @@ int number = bridgeNumberGenerator.generate();
 ### InputView
   #### 기능목록
   - [x] 유저로부터 다리 사이즈를 입력 받고 인풋을 검증하는 기능
+
+
+### OutputView
+  #### 기능목록
+  - [ ] Bridge로부터  위, 아래 다리 모양(List<String>)을 입력 받아 요구사항에 맞춘 형식으로 변환하는 기능
