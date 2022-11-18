@@ -10,6 +10,7 @@ import java.util.Map;
 public class BridgeGame {
 
     static int count = 0;
+    static String select = "";
     static Map<Integer, String> firstStorage = new HashMap<>();
     static Map<Integer, String> secondStorage = new HashMap<>();
 
@@ -19,6 +20,7 @@ public class BridgeGame {
         String secondBridgeMap = moveSecondBridge(secondBridge, move);
         String bridgeMap[] = {firstBridgeMap, secondBridgeMap};
         count++;
+        select = "";
         return bridgeMap;
     }
 
@@ -109,5 +111,26 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        InputView inputView = new InputView();
+        String command = inputView.readGameCommand();
+        if (command.equals("R")) {
+            count = 0;
+            firstStorage.clear();
+            secondStorage.clear();
+            select = "R";
+        }
+        if (command.equals("Q")) {
+            select = "Q";
+        }
+    }
+
+    public int count(int i, int bridgeSize) {
+        if (select.equals("R")) {
+            return -1;
+        }
+        if (select.equals("Q")) {
+            return bridgeSize - 1;
+        }
+        return i;
     }
 }

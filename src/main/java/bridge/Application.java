@@ -22,6 +22,7 @@ public class Application {
             String move = inputView.readMoving();
             String[] bridgeMap = bridgeGame.move(firstBridge, secondBridge, move);
             outputView.printMap(bridgeMap);
+            i = bridgeGame.count(i, bridgeSize);
         }
     }
 }

@@ -6,8 +6,13 @@ package bridge;
 public class OutputView {
 
     public void printMap(String[] bridgeMap) {
+        BridgeGame bridgeGame = new BridgeGame();
+
         System.out.println("[ " + bridgeMap[0] + " ]");
         System.out.println("[ " + bridgeMap[1] + " ]");
+        if (bridgeMap[0].contains("X") || bridgeMap[1].contains("X")) {
+            bridgeGame.retry();
+        }
     }
 
     /**
