@@ -12,7 +12,7 @@ public class BridgeApplication {
     private List<String> bridge;
 
     void run() {
-        System.out.println("다리 건너기 게임을 시작합니다."); // 다리 건너기 게임 시작
+        System.out.println(Message.START_MESSAGE); // 다리 건너기 게임 시작
         int size = inputBridgeSize(); // 다리의 길이를 입력
         makeBridge(size); // 다리를 만듦
 
@@ -24,7 +24,7 @@ public class BridgeApplication {
     }
 
     private void printBridgeGameResult() {
-        System.out.println("최종 게임 결과");
+        System.out.println(Message.RESULT_MESSAGE);
         printMap();
         outputView.printResult(bridgeGame);
     }
@@ -65,7 +65,7 @@ public class BridgeApplication {
     }
 
     private String inputMoving() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println(Message.INPUT_MOVE_U_OR_D);
         String moving = inputView.readMoving();
         return moving;
     }
@@ -77,7 +77,7 @@ public class BridgeApplication {
     }
 
     private int inputBridgeSize() {
-        System.out.println("다리의 길이를 입력해주세요.");
+        System.out.println(Message.INPUT_BRIDGE_SIZE);
         inputView = new InputView();
         int size = inputView.readBridgeSize();
         return size;
