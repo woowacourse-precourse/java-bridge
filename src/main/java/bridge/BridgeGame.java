@@ -25,9 +25,10 @@ public class BridgeGame {
      */
     public BridgeGameResultDto move(String nextStep) {
         boolean isCorrect = compareNextStep(nextStep);
+        boolean isGameEnd = compareGameEnd();
 
         gradingBoard.add(new StepStatus(UpDown.valueOfLabel(nextStep),isCorrect));
-        return bridgeGameResultDtoMapper(isCorrect);
+        return bridgeGameResultDtoMapper(isCorrect,isGameEnd);
     }
 
     /**
@@ -51,12 +52,29 @@ public class BridgeGame {
     }
 
     /**
+     * 게임이 끝났는지 확인하는 메서드
+     * @return 게임이 끝났으면 true, 아직 게임이 진행중이면 false
+     */
+    private boolean compareGameEnd() {
+        if (gradingBoard.size() == answerBridge.size()-1) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * BridgeGameResultDto를 mapping하는 메서드
      * @param isCorrect 내딪은 칸이 정답인지 여부
      * @return 현재까지의 점수판(gradingBoard)과 내딪은 위치가 정답인지 여부(isCorrect)를 표현한다.
      */
-    private BridgeGameResultDto bridgeGameResultDtoMapper(boolean isCorrect) {
-        return new BridgeGameResultDto(this.gradingBoard,isCorrect);
+    private BridgeGameResultDto bridgeGameResultDtoMapper(boolean isCorrect, boolean isGameEnd) {
+        if (isCorrect == true && isGameEnd == true) {
+            return new BridgeGameResultDto(this.gradingBoard, GameStatus.SUCCESS);
+        }
+        if (isCorrect == true && isGameEnd == false) {
+            return new BridgeGameResultDto(this.gradingBoard, GameStatus.ONGOING);
+        }
+        return new BridgeGameResultDto(this.gradingBoard, GameStatus.FAIL);
     }
 
 }
