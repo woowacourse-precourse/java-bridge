@@ -12,6 +12,7 @@ public class BridgeGame {
     private final GameCharacter character;
     private final TotalView totalView = new TotalView(new InputView(), new OutputView());
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private final String RETRY = "R";
 
     private boolean success = false;
     private int totalTry = 0;
@@ -30,9 +31,50 @@ public class BridgeGame {
         setBridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
-    public void move() {
+    public void play() {
+        totalTry++;
+        int result = Result.CONTINUE.getStatus();
+        while (result == Result.CONTINUE.getStatus()) {
+            result = cycle();
+        }
+        if (result == Result.SUCCESS.getStatus()) {
+            success = true;
+            return;
+        }
+        retryOrQuit();
+    }
+
+    public int cycle() {
+        totalView.out().enterMove();
+        String move = totalView.in().readMoving();
+        character.setNextMove(move);
         saveProgress();
+        move();
+        totalView.out().printMap(this);
+        return cycleResult();
+    }
+
+    public void move() {
         character.move();
+    }
+
+    public int cycleResult() {
+        int progressCount = gameProgress.size();
+        if (!gameProgress.get(progressCount - 1).isSuccess()) {
+            return Result.FAIL.getStatus();
+        }
+        if (progressCount == bridgeSize) {
+            return Result.SUCCESS.getStatus();
+        }
+        return Result.CONTINUE.getStatus();
+    }
+
+    public void retryOrQuit() {
+        totalView.out().enterGameCommand();
+        String gameCommand = totalView.in().readGameCommand();
+        if (gameCommand.equals(RETRY)) {
+            retry();
+        }
     }
 
     public void saveProgress() {
@@ -55,6 +97,11 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        play();
+    }
+
+    public void showResult() {
+        totalView.out().printResult(this);
     }
 
     public void setBridge(List<String> bridge) {
