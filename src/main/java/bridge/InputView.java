@@ -11,6 +11,7 @@ public class InputView {
      */
     public static int readBridgeSize() {
         int size = 0;
+        OutputView.startPrint();
         while (size == 0) {
             OutputView.bridgeSizeInputPrint();
             String bridgeSize = Console.readLine();
