@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.model;
 
 public enum ErrorMessage {
     BRIDGE_SIZE_IS_NOT_NUMERIC("다리의 길이는 숫자로 입력해야합니다."),

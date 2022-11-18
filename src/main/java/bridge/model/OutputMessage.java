@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.model;
 
 public enum OutputMessage {
     GAME_START_MSG("다리 건너기 게임을 시작합니다."),

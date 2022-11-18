@@ -1,7 +1,7 @@
 package bridge.view;
 
-import bridge.domain.ErrorMessage;
-import bridge.domain.UserKeySet;
+import bridge.model.ErrorMessage;
+import bridge.model.UserKeySet;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
