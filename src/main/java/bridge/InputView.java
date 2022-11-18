@@ -24,14 +24,18 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println(startGame + readBridgeSizeMs);
         try {
-            String input = getInput();
-            if (checkNumber(input)) getSize();
+            input = getInput();
+            if (ThisIsNumber(input)) getSize();
             size = Integer.parseInt(input);
-            if (size < 3 || size > 20) getSize();
+            if (RangeOfNumber()) getSize();
         } catch (IllegalArgumentException e) {
             size = readBridgeSize();
         }
         return size;
+    }
+
+    private boolean RangeOfNumber() {
+        return size < 3 || size > 20;
     }
 
     void getSize() {
@@ -39,7 +43,7 @@ public class InputView {
         throw new IllegalArgumentException();
     }
 
-    private boolean checkNumber(String input) {
+    private boolean ThisIsNumber(String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -55,12 +59,16 @@ public class InputView {
         System.out.println(readMovingMs);
         try {
             input = getInput().toUpperCase();
-            if (!Objects.equals(input, "U") && !Objects.equals(input, "D")) throw new IllegalArgumentException();
+            if (ThisIsMove()) throw new IllegalArgumentException();
         } catch (IllegalArgumentException e) {
             System.out.println(exceptMoving);
             input = readMoving();
         }
         return input;
+    }
+
+    private boolean ThisIsMove() {
+        return !Objects.equals(input, "U") && !Objects.equals(input, "D");
     }
 
     /**
@@ -70,12 +78,16 @@ public class InputView {
         System.out.println(readGameCommandMs);
         try {
             input = getInput();
-            if (!Objects.equals(input, "R") && !Objects.equals(input, "Q")) throw new IllegalArgumentException();
+            if (ThisIsRetry()) throw new IllegalArgumentException();
         } catch (IllegalArgumentException e) {
             System.out.println(exceptRetry);
             input = readGameCommand();
         }
         return input;
+    }
+
+    private boolean ThisIsRetry() {
+        return !Objects.equals(input, "R") && !Objects.equals(input, "Q");
     }
 
     private String getInput(){
