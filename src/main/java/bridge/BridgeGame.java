@@ -15,10 +15,13 @@ public class BridgeGame {
      *
      * @return
      */
-    public List<Integer> move(List<Integer> upBridge, String moving) {
-        upBridge.add(Bridge.findIndex(moving).getFirst());
+    public List<Integer> move(List<Integer> bridge, String moving) {
+        Bridge solution = Bridge.findTop(moving);
 
-        return upBridge;
+        bridge.add(solution.getTop());
+        bridge.add(solution.getBottom());
+
+        return bridge;
     }
 
     /**
@@ -35,9 +38,12 @@ public class BridgeGame {
 
         while (gameCommand.equals("R")) {
             isWrong = false;
-            List<Integer> upBridge = new ArrayList<>();
+
+            List<Integer> bottomBridge = new ArrayList<>();
+            List<Integer> topBridge = new ArrayList<>();
 
             for (int i = 0; i < bridge.size(); i++) {
+                List<Integer> userMove = new ArrayList<>();
                 if (isWrong) {
                     break;
                 }
@@ -53,15 +59,18 @@ public class BridgeGame {
                     }
                     isWrong = true;
                 }
-                upBridge = move(upBridge, moving);
-                System.out.println(upBridge);
-                List<Integer> downBridge = new ArrayList<>();
-                createDownBridge(upBridge, downBridge);
 
-                result = requestPrintMap(saveMap(upBridge), saveMap(downBridge));
+                move(userMove, moving);
+                topBridge.add(userMove.get(0));
+                bottomBridge.add(userMove.get(1));
+
+                System.out.println(topBridge);
+                System.out.println(bottomBridge);
+
+                result = requestPrintMap(saveMap(topBridge), saveMap(bottomBridge));
             }
             // 다 맞춤
-            if (!(upBridge.contains(Bridge.WRONG.getFirst()) || upBridge.contains(Bridge.UNKNOWN.getFirst()))) {
+            if (!(topBridge.contains(Bridge.WRONG.getTop()) || topBridge.contains(Bridge.UNKNOWN.getTop()))) {
                 count++;
                 break;
             }
@@ -83,20 +92,6 @@ public class BridgeGame {
         output.printMap(down);
 
         return up + "\n" +  down;
-    }
-
-    public static void createDownBridge(List<Integer> upBridge, List<Integer> downBridge) {
-        for (int i = 0; i < upBridge.size(); i++) {
-            if (upBridge.get(i) == Bridge.UP.getFirst() || upBridge.get(i) == Bridge.WRONG.getFirst()) {
-                downBridge.add(Bridge.DOWN.getFirst());
-            }
-            if (upBridge.get(i) == Bridge.DOWN.getFirst()) {
-                downBridge.add(Bridge.UP.getFirst());
-            }
-            if (upBridge.get(i) == Bridge.UNKNOWN.getFirst()) {
-                downBridge.add(Bridge.WRONG.getFirst());
-            }
-        }
     }
 
     public static String saveMap(List<Integer> bridge) {

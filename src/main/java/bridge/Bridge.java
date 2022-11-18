@@ -3,23 +3,29 @@ package bridge;
 import java.util.Arrays;
 
 public enum Bridge {
-	UP(1, "U", "O"),
-	DOWN(0, "D", " "),
-	WRONG(-1, "W", "X"),
-	UNKNOWN(2, "F", " ");
+	UP(1, 0, "U", "O"),
+	DOWN(0, 1, "D", " "),
+	WRONG(-1, 0, "W", "X"),
+	UNKNOWN(2, -1,"F", " ");
 
-	private final int first;
+	private final int top;
+	private final int bottom;
 	private final String order;
 	private final String result;
 
-	Bridge(int index, String order, String result) {
-		this.first = index;
+	Bridge(int top, int bottom, String order, String result) {
+		this.top = top;
+		this.bottom = bottom;
 		this.order = order;
 		this.result = result;
 	}
 
-	public int getFirst() {
-		return first;
+	public int getTop() {
+		return top;
+	}
+
+	public int getBottom() {
+		return bottom;
 	}
 
 	public String getOrder() {
@@ -31,15 +37,16 @@ public enum Bridge {
 	}
 	public static Bridge findOrder(int number) {
 		return Arrays.stream(values())
-				.filter(v -> v.first == number)
+				.filter(v -> v.top == number)
 				.findFirst()
 				.orElse(UNKNOWN);
 	}
 
-	public static Bridge findIndex(String shape) {
+	public static Bridge findTop(String shape) {
 		return Arrays.stream(values())
 				.filter(v -> v.getOrder().equals(shape))
 				.findFirst()
 				.orElse(UNKNOWN);
 	}
+
 }
