@@ -1,19 +1,17 @@
 package bridge.view;
 
+import bridge.validator.CommandValidatorKey;
 import bridge.dto.BridgeSizeDTO;
 import bridge.dto.GameCommandDTO;
 import bridge.dto.MovingDTO;
 import bridge.validator.InputBridgeSizeValidator;
-import bridge.validator.InputSelectCharValidator;
+import bridge.validator.InputCommandValidator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    private static final int MOVING_SELECT_CHAR_VALIDATE_NUMBER = 1;
-    private static final int RETRY_SELECT_CHAR_VALIDATOR_NUMBER = 2;
-    
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -40,7 +38,7 @@ public class InputView {
         printMovingInputMessage(outputView);
         try {
             final String inputMoving = Console.readLine();
-            InputSelectCharValidator.validate(inputMoving, MOVING_SELECT_CHAR_VALIDATE_NUMBER);
+            InputCommandValidator.validate(inputMoving, CommandValidatorKey.MOVING_COMMAND_VALIDATOR);
             return new MovingDTO(inputMoving);
         } catch (final IllegalArgumentException raisedException) {
             printErrorMessage(outputView, raisedException);
@@ -59,7 +57,7 @@ public class InputView {
         printGameCommandInputMessage(outputView);
         try {
             final String inputGameCommand = Console.readLine();
-            InputSelectCharValidator.validate(inputGameCommand, RETRY_SELECT_CHAR_VALIDATOR_NUMBER);
+            InputCommandValidator.validate(inputGameCommand, CommandValidatorKey.RETRY_COMMAND_VALIDATOR);
             return new GameCommandDTO(inputGameCommand);
         } catch (final IllegalArgumentException raisedException) {
             printErrorMessage(outputView, raisedException);
