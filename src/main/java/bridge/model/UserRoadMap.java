@@ -20,7 +20,7 @@ public class UserRoadMap extends RoadMap {
     }
 
     public void clear(){
-        // TODO: 이동했던 칸을 모두 삭제
+        this.roads.clear();
     }
 
     public void addRoad(String direction){

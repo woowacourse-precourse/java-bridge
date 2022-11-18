@@ -1,5 +1,7 @@
 package bridge.model;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import bridge.constant.message.GameErrorMessage;
@@ -22,5 +24,15 @@ public class UserRoadMapTest {
         int roadPosition = 1;
         assertThatThrownBy(() -> userRoadMap.getRoad(roadPosition)).hasMessage(
                 GameErrorMessage.NO_SUCH_ROAD_POSITION.getMessage()).isInstanceOf(IllegalStateException.class);
+    }
+
+    @DisplayName("이동했던 모든 칸들을 지운다.")
+    @Test
+    void testClearRoad(){
+        assertSimpleTest(() -> {
+           userRoadMap.clear();
+           assertThat(userRoadMap.getSize())
+                   .isEqualTo(0);
+        });
     }
 }
