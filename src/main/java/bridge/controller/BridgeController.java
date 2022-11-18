@@ -34,7 +34,7 @@ public class BridgeController {
 
         Bridge bridge = new Bridge(bridgeNumbers);
 
-        System.out.println(bridge.getElements());
+        System.out.println(bridge.getDirections());
 
         BridgeGame bridgeGame = new BridgeGame();
         boolean isQuit = false;

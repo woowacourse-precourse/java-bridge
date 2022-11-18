@@ -8,8 +8,8 @@ public class Result {
     private static final String SEPARATOR = " | ";
     private static final String SPACE = " ";
     private final List<List<String>> resultsGroup = new ArrayList<>();
-    private final List<String> upElements = new ArrayList<>();
-    private final List<String> downElements = new ArrayList<>();
+    private final List<String> upDirections = new ArrayList<>();
+    private final List<String> downDirections = new ArrayList<>();
 
     private final Bridge bridge;
     private final PassingPositions passingPositions;
@@ -19,10 +19,10 @@ public class Result {
         this.passingPositions = passingPositions;
 
         makeResultsGroup();
-        upElements.remove(0);
-        resultsGroup.add(upElements);
-        downElements.remove(0);
-        resultsGroup.add(downElements);
+        upDirections.remove(0);
+        resultsGroup.add(upDirections);
+        downDirections.remove(0);
+        resultsGroup.add(downDirections);
     }
 
     public void makeResultsGroup() {
@@ -34,17 +34,17 @@ public class Result {
     }
 
     private void addUpAndDown(Position position, String compare) {
-        if (position.getElementIndex().equals("U")) {
-            upElements.add(SEPARATOR);
-            upElements.add(compare);
-            downElements.add(SEPARATOR);
-            downElements.add(SPACE);
+        if (position.getDirection().equals("U")) {
+            upDirections.add(SEPARATOR);
+            upDirections.add(compare);
+            downDirections.add(SEPARATOR);
+            downDirections.add(SPACE);
         }
-        if (position.getElementIndex().equals("D")) {
-            upElements.add(SEPARATOR);
-            upElements.add(SPACE);
-            downElements.add(SEPARATOR);
-            downElements.add(compare);
+        if (position.getDirection().equals("D")) {
+            upDirections.add(SEPARATOR);
+            upDirections.add(SPACE);
+            downDirections.add(SEPARATOR);
+            downDirections.add(compare);
         }
     }
 
