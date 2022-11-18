@@ -43,4 +43,28 @@ public class BridgeGameTest {
 			() -> assertThat(Pause.paused).isTrue()
 		);
 	}
+
+	@DisplayName("게임 재시작 여부 확인")
+	@Test
+	void isRetry() {
+		// given
+		Bridge bridgeLetters = new Bridge(List.of("U", "D", "U", "D", "U"));
+		BridgeGame bridgeGame = new BridgeGame(bridgeLetters, 5);
+		String userSelectedCell = "D";
+		bridgeGame.move(userSelectedCell);
+
+		// when
+		if (Pause.paused) {
+			bridgeGame.retry();
+		}
+		userSelectedCell = "U";
+		bridgeGame.move(userSelectedCell);
+
+		// then
+		String nextUserSelectedCell = userSelectedCell;
+		assertAll(
+			() -> assertThat(Pause.paused).isFalse(),
+			() -> assertThat(bridgeGame.isMovable(bridgeLetters, nextUserSelectedCell)).isTrue()
+			);
+	}
 }
