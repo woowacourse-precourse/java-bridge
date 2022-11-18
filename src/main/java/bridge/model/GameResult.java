@@ -20,7 +20,7 @@ public class GameResult {
 		}
 	}
 
-	public void changeResulToFail() {
+	public void changeResultToFail() {
 		if (!result.equals("실패")) {
 			result = "실패";
 		}

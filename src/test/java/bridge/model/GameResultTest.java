@@ -75,7 +75,7 @@ class GameResultTest {
 		void case2() {
 			GameResult gameResult = new GameResult();
 
-			gameResult.changeResulToFail();
+			gameResult.changeResultToFail();
 
 			assertEquals(gameResult.getResult(), "실패");
 		}
@@ -94,8 +94,8 @@ class GameResultTest {
 		void case4() {
 			GameResult gameResult = new GameResult();
 
-			gameResult.changeResulToFail();
-			gameResult.changeResulToFail();
+			gameResult.changeResultToFail();
+			gameResult.changeResultToFail();
 
 			assertEquals(gameResult.getResult(), "실패");
 		}
@@ -106,7 +106,7 @@ class GameResultTest {
 
 			gameResult.changeResultToSuccess();
 			gameResult.changeResultToSuccess();
-			gameResult.changeResulToFail();
+			gameResult.changeResultToFail();
 
 			assertEquals(gameResult.getResult(), "실패");
 		}
@@ -115,8 +115,8 @@ class GameResultTest {
 		void case6() {
 			GameResult gameResult = new GameResult();
 
-			gameResult.changeResulToFail();
-			gameResult.changeResulToFail();
+			gameResult.changeResultToFail();
+			gameResult.changeResultToFail();
 			gameResult.changeResultToSuccess();
 
 			assertEquals(gameResult.getResult(), "성공");
