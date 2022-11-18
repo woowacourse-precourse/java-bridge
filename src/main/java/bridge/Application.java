@@ -10,8 +10,8 @@ import java.util.List;
 
 public class Application {
 
-    public static boolean outcome;
-    public static int attempt = 1;
+    private static boolean gameClear;
+    private static int attempt = 1;
 
 
     public static void main(String[] args) {
@@ -28,11 +28,11 @@ public class Application {
 
         while (bridgeGame.move(input.readMoving())) {
 
-            if (!bridgeGame.passHistory.contains("UX") && !bridgeGame.passHistory.contains("DX")) {
-                output.printMap(bridgeGame.passHistory);
+            if (!bridgeGame.getPassHistory().contains("UX") && !bridgeGame.getPassHistory().contains("DX")) {
+                output.printMap(bridgeGame.getPassHistory());
             }
         }
-        output.printResult(attempt, outcome, bridgeGame.passHistory);
+        output.printResult(attempt, gameClear, bridgeGame.getPassHistory());
     }
 
     public boolean selectRetry (List<String> passHistory) {
@@ -42,5 +42,13 @@ public class Application {
         output.printMap(passHistory);
 
         return input.readGameCommand().equals("R");
+    }
+
+    public void setGameClear (boolean gameClear) {
+        this.gameClear = gameClear;
+    }
+
+    public void setAttempt (int attempt) {
+        this.attempt += attempt;
     }
 }
