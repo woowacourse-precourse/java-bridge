@@ -24,10 +24,11 @@ public class GameLogic {
         String inputMove = inputView.readMoving();
         bridgeGame.move(inputMove);
         changeLine();
-        outputView.printMap(bridgeGame.getBridge(),bridgeGame.getUser());
+        outputView.printMap(bridgeGame.getBridge().getBridgeList(),bridgeGame.getUser().getResult(),bridgeGame.getUser().getPosition());
         changeLine();
+        checkEnd();
     }
-    private void isEnd(){
+    private void checkEnd(){
         if(!bridgeGame.isEnd()) {
             playOneGame();
             return;
