@@ -11,22 +11,21 @@
 
 ### 1. 다리 생성하기  
 - [ ✅ ] 다리 길이 입력요청문구를 출력한다 → OutputView.printBridgeSizeInputRequest
-- [ ✅ ] 다리 길이를 입력받는다 → InputView.readBridgeSize
-- [  ] 입력받은 다리 길이에 대한 유효성을 검사한다 
-- [  ] 다리를 생성한다 → BridgeMaker.makeBridge
+- [ ✅ ] 다리 길이를 입력받는다 → InputView.readBridgeSize 
+- [  ] 다리를 생성한다 → BridgeGameController.generateBridge
+    - [  ] 번호를 랜덤하게 생성한다 → BridgeRandomNumberGenerator.generate
+    - [  ] 생성된 번호가 1이면 "U", 0이면 "D"를 더한다 → BridgeMaker.addMovableSpace
     - [  ] 각 다리가 U 또는 D로만 이루어졌는지 확인 후 생성하도록 한다 → Bridge.validateBridge
 
 ### 2. 다리 건너기
 - [  ] 이동할 칸 입력요청문구를 출력한다 → OutputView.printMovingInputRequest
 - [  ] 이동할 칸을 입력받는다 → InputView.readMoving
-- [  ] 입력받은 이동할 칸에 대한 유효성을 검사한다 → Bridge.validateMoving
 - [  ] 이동한 칸에 대한 성공여부를 확인한다 Bridge.confirmMoving
 - [  ] 이동한 지점까지의 다리상태를 출력한다 → OutputView.printMap
 
 ### 3. 재시작 또는 종료하기  
 - [  ] 실패한 경우, 재시작/종료여부 입력요청문구를 출력한다 → OutputView.printGameCommandInputRequest
-- [  ] 재시작/종료여부를 입력받는다 → Input.readGameCommand
-- [  ] 입력받은 재시작/종료여부에 대한 유효성을 검사한다 → BridgeGame.validateGameCommand 
+- [  ] 재시작/종료여부를 입력받는다 → Input.readGameCommand 
 - [  ] 입력받은 값이 "Q"면 종료한다 → BridgeGame.finish
 - [  ] 입력받은 값이 "R"이면 처음부터 재시작한다 → BridgeGame.retry
 
@@ -39,11 +38,14 @@
 - [  ] 아래 목록에 있는 예외가 발생할 시 `IllegalArgumentException`를 일으키고 `[ERROR]`로 시작하는 메시지를 출력한다
 - [  ] 공백이나 띄어쓰기만 입력된 경우, 음수가 입력된 경우도 고려해야 함
 ### 1. 다리 길이 입력 예외처리
-- [  ] 입력이 숫자로만 구성된 게 아니면 예외처리한다
+- [ ✅ ] 입력이 정수가 아니면 예외처리한다
 - [  ] 3 ~ 20 사이의 숫자가 아니면 예외처리한다
 
-### 2. 이동할 칸 입력 예외처리
+### 2. 다리 생성 예외처리
+- [  ] 생성한 번호가 0이나 1이 아니면 예외처리한다
+
+### 3. 이동할 칸 입력 예외처리
 - [  ] 입력이 U나 D가 아니면 예외처리한다
 
-### 3. 재시작/종료여부 입력 예외처리
+### 4. 재시작/종료여부 입력 예외처리
 - [  ] 입력이 R이나 Q가 아니면 예외처리한다

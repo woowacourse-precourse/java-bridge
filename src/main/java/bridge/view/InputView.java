@@ -13,8 +13,17 @@ public class InputView {
      */
     public int readBridgeSize() {
         String input = Console.readLine();
-        int bridgeSize = Integer.parseInt(input);
+        int bridgeSize = convertToInteger(input);
         return bridgeSize;
+    }
+
+    public int convertToInteger(String input) {
+        try {
+            int convertedInput = Integer.parseInt(input);
+        } catch (Exception exception) {
+            throw new IllegalArgumentException("[ERROR] 입력된 값이 정수가 아닙니다");
+        }
+        return Integer.parseInt(input);
     }
 
     /**
