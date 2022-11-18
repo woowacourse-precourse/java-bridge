@@ -1,5 +1,7 @@
 package bridge.UI.Output; //패키지 변경
 
+import java.util.Map;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -12,7 +14,15 @@ public class OutputView {
      *
      * 메서드의 이름은 변경할 수 없다
      */
-    public void printMap() {
+    public void printMap(Map<Integer, Map<String, String>> userStatus) {
+        UpperLowerMap upperLowerMap = new UpperLowerMap();
+
+        StringBuilder up = upperLowerMap.printUpperMap(userStatus,"U");
+        StringBuilder down = upperLowerMap.printUpperMap(userStatus,"D");
+
+        MapFormatter mapFormatter = new MapFormatter();
+        System.out.println(mapFormatter.changeMapFormat(up));
+        System.out.println(mapFormatter.changeMapFormat(down));
     }
 
     /**

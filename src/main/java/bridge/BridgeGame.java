@@ -4,8 +4,9 @@ package bridge;
 
 import bridge.UI.Input.InputWhileException;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -18,18 +19,19 @@ public class BridgeGame {
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     *
+     * <p>
      * 메서드의 이름을 변경할 수 없다
      */
-    public List<String> move(List<String> userStatus, List<String> bridge) {
+    public Map<Integer, Map<String, String>> move(Map<Integer, Map<String, String>> userStatus, List<String> bridge) {
         InputWhileException inputWhileException = new InputWhileException();
         String userInput = inputWhileException.startWhileReadMoving();
         int index = userStatus.size();
+        Map<String, String> userResult = new HashMap<>();
         if(userInput.equals(bridge.get(index))) {
-            userStatus.add(userInput);
-            return userStatus;
+            userResult.put(userInput,"O");
         }
-        userStatus.add("X");
+            userResult.put(userInput, "X");
+            userStatus.put(index, userResult);
         return userStatus;
     }
 
@@ -40,9 +42,10 @@ public class BridgeGame {
      *
      * 메서드의 이름을 변경할 수 없다
      */
-    public List<String> retry() {
+    public Map<Integer, Map<String, String>> retry() {
         round++;
-        return new ArrayList<String>();
+        Map<Integer, Map<String, String>> retrymap = new HashMap<>();
+        return  retrymap;
     }
 
 }
