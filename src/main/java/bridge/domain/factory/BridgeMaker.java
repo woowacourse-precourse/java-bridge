@@ -1,6 +1,5 @@
 package bridge.domain.factory;
 
-import bridge.domain.constants.BridgeConstants;
 import bridge.domain.strategy.BridgeNumberGenerator;
 
 import java.util.List;
@@ -11,6 +10,8 @@ import java.util.stream.IntStream;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
+    private static final String UPPER_MOVING = "U";
+    private static final String LOWER_MOVING = "D";
     private static final int BRIDGE_EXIST_NUMBER = 1;
     
     private final BridgeNumberGenerator bridgeNumberGenerator;
@@ -31,10 +32,10 @@ public class BridgeMaker {
     
     private String parsePartBridgeState() {
         if (isPartBridgeExist(partBridgeCreateRandomNumber())) {
-            return BridgeConstants.UPPER_COMPARTMENT;
+            return UPPER_MOVING;
         }
         
-        return BridgeConstants.LOWER_COMPARTMENT;
+        return LOWER_MOVING;
     }
     
     private int partBridgeCreateRandomNumber() {
