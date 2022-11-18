@@ -47,7 +47,7 @@ public class BridgeGameTest {
     @ParameterizedTest
     void moveByTimes(int moveCount) {
         for (int i = 0; i < moveCount; i++) {
-            bridgeGame.move();
+            bridgeGame.move(BridgeMove.DOWN);
         }
         
         assertThat(bridgeGame.getCurrentPosition()).isEqualTo(-1 + moveCount);
@@ -57,7 +57,7 @@ public class BridgeGameTest {
     @Test
     void moveByOverTimes() {
         for (int i = 0; i < 1000; i++) {
-            bridgeGame.move();
+            bridgeGame.move(BridgeMove.DOWN);
         }
         assertThat(bridgeGame.getCurrentPosition()).isEqualTo(4);
     }
@@ -66,13 +66,13 @@ public class BridgeGameTest {
     @DisplayName("retryByValid 메소드는 currentPosition은 -1로 tryCount는 1을 증가시킨다.")
     @Test
     void retryByValid() {
-        bridgeGame.move();
+        bridgeGame.move(BridgeMove.DOWN);
         bridgeGame.retry();
         
         assertThat(bridgeGame.getCurrentPosition()).isEqualTo(-1);
         assertThat(bridgeGame.getTryCount()).isEqualTo(2);
         
-        bridgeGame.move();
+        bridgeGame.move(BridgeMove.DOWN);
         bridgeGame.retry();
         
         assertThat(bridgeGame.getCurrentPosition()).isEqualTo(-1);
@@ -83,7 +83,7 @@ public class BridgeGameTest {
     @Test
     void isReachedLastPositionByReached() {
         for (int i = 0; i < 5; i++) {
-            bridgeGame.move();
+            bridgeGame.move(BridgeMove.DOWN);
         }
         assertThat(bridgeGame.isReachedLastPosition()).isEqualTo(true);
     }
@@ -98,11 +98,11 @@ public class BridgeGameTest {
     @Test
     void canMoveToNextPositionByValid() {
         assertThat(bridgeGame.canMoveToNextPosition(BridgeMove.DOWN)).isEqualTo(true);
-        bridgeGame.move();
+        bridgeGame.move(BridgeMove.DOWN);
         assertThat(bridgeGame.canMoveToNextPosition(BridgeMove.UP)).isEqualTo(true);
         assertThat(bridgeGame.canMoveToNextPosition(BridgeMove.UP)).isEqualTo(true);
-        bridgeGame.move();
-        bridgeGame.move();
+        bridgeGame.move(BridgeMove.UP);
+        bridgeGame.move(BridgeMove.UP);
         assertThat(bridgeGame.canMoveToNextPosition(BridgeMove.UP)).isEqualTo(true);
     }
     
@@ -111,7 +111,7 @@ public class BridgeGameTest {
     void canMoveToNextPositionByInvalid() {
         assertThat(bridgeGame.canMoveToNextPosition(BridgeMove.UP)).isEqualTo(false);
         assertThat(bridgeGame.canMoveToNextPosition(BridgeMove.DOWN)).isEqualTo(true);
-        bridgeGame.move();
+        bridgeGame.move(BridgeMove.DOWN);
         assertThat(bridgeGame.canMoveToNextPosition(BridgeMove.DOWN)).isEqualTo(false);
     }
 }

@@ -6,15 +6,22 @@ import bridge.domain.bridge.Bridge;
 public class BridgeGame {
     
     private final Bridge bridge;
+    private final BridgeGameHistory history;
     private Integer currentPosition = -1;
     private Integer tryCount = 1;
     
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
+        this.history = new BridgeGameHistory(bridge);
+        history.createHistory(tryCount);
     }
     
     public Bridge getBridge() {
         return bridge;
+    }
+    
+    public BridgeGameHistory getHistory() {
+        return history;
     }
     
     public Integer getCurrentPosition() {
@@ -41,14 +48,16 @@ public class BridgeGame {
         return getBridge().size() - 1 <= getCurrentPosition();
     }
     
-    public void move() {
+    public void move(BridgeMove move) {
         if (isReachedLastPosition()) return;
+        getHistory().addMoveHistory(getTryCount(), move);
         setCurrentPosition(getCurrentPosition() + 1);
     }
     
     public void retry() {
         setCurrentPosition(-1);
         setTryCount(getTryCount() + 1);
+        getHistory().createHistory(getTryCount());
     }
     
     public boolean canMoveToNextPosition(BridgeMove move) {

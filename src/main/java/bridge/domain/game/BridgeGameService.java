@@ -12,7 +12,7 @@ public class BridgeGameService {
     
     public boolean tryMove(BridgeMove selectMove) {
         if (game.canMoveToNextPosition(selectMove)) {
-            game.move();
+            game.move(selectMove);
             return true;
         }
         return false;
