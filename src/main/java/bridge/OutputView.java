@@ -1,6 +1,7 @@
 package bridge;
 
 import static bridge.MessageUtil.BRIDGE_SIZE_INPUT_INTRO;
+import static bridge.MessageUtil.POSITION_CHOICE_INPUT;
 import static bridge.MessageUtil.START_GAME_INTRO;
 
 /**
@@ -30,6 +31,10 @@ public class OutputView {
 
     public void printBrideSizeOpening() {
         System.out.println(BRIDGE_SIZE_INPUT_INTRO.message);
+    }
+
+    public void printUserChoiceOpening() {
+        System.out.println(POSITION_CHOICE_INPUT.message);
     }
 
     public void printErrorMessage(String errorMsg) {

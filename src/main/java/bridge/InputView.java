@@ -27,4 +27,8 @@ public class InputView {
     public String readGameCommand() {
         return null;
     }
+
+    public String readPositionChoice() {
+        return Console.readLine();
+    }
 }
