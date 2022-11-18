@@ -28,7 +28,7 @@ public class BridgeMaker {
     }
 
     private String convertUOrD(int number) {
-        if (number == 0) {
+        if (number == 1) {
             return Command.UP.getValue();
         }
         return Command.DOWN.getValue();

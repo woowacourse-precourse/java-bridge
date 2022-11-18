@@ -33,7 +33,7 @@ public class BridgeGame {
         makeRoad();
     }
 
-    private boolean isRightFoothold() {
+    public boolean isRightFoothold() {
         int index = tryNumber - 1;
         if (selectedFoothold.get(index) == bridge.get(index)) {
             return true;
@@ -67,6 +67,8 @@ public class BridgeGame {
     }
 
     public boolean isGameEnd() {
+        if (tryNumber == 0)
+            return false;
         if (isRightFoothold() && tryNumber == bridge.size()) {
             return true;
         }
