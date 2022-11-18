@@ -18,4 +18,10 @@ class UserExceptionTest {
         assertThatThrownBy(() -> UserException.numberRange(21))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 이동_입력_예외_테스트() {
+        assertThatThrownBy(() -> UserException.movingException("T"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
