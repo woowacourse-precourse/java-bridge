@@ -1,5 +1,7 @@
 package bridge;
 
+import static validator.BridgeValidator.validateBridgeLength;
+
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -13,7 +15,7 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
         String input = Console.readLine();
-        //해당 입력값을 검증하는 함수 호출 코드가 들어갈 자리.
+        validateBridgeLength(input);
         return Integer.parseInt(input);
     }
 
