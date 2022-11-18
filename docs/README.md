@@ -48,4 +48,4 @@
 ### 📝 Domain Test
 
 - [X] 다리 생성 시, 다리 길이 유효 숫자 범위를 벗어난 경우 예외 발생 - BridgeMakerTest#validateBridgeSize()
-- [ ] 다리 길이 유효 숫자 범위 내 길이 지정 시, 해당 길이의 다리 생성 - BridgeMakerTest#makeBridgePerSize()
+- [X] 다리 길이 유효 숫자 범위 내 길이 지정 시, 해당 길이의 다리 생성 - BridgeMakerTest#makeBridgePerSize()
