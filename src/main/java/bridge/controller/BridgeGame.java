@@ -18,14 +18,12 @@ public class BridgeGame {
     public void run() {
         startGame();
         boolean flag = true;
-        while (flag) {
+        while (isRepeat(flag, user)) {
             move();
-            if (!checkCorrect(answerBridge, user)) {
+            if (!answerBridge.isCorrect(user)) {
                 flag = retry();
             }
-            if (flag && checkApproachEnd(answerBridge, user)) {
-                break;
-            }
+            checkApproachEnd(answerBridge, user);
         }
         OutputView.printResult(user, answerBridge.compareTo(user));
     }
@@ -33,6 +31,10 @@ public class BridgeGame {
     private void startGame() {
         OutputView.printStart();
         makeAnswerBridge();
+    }
+
+    private boolean isRepeat(boolean flag, User user) {
+        return (flag && user.getDoesSuccess());
     }
 
     public void move() {
@@ -48,19 +50,10 @@ public class BridgeGame {
         }
     }
 
-    private boolean checkCorrect(AnswerBridge answerBridge, User user) {
-        if (answerBridge.isCorrect(user)) {
-            return true;
-        }
-        return false;
-    }
-
-    private boolean checkApproachEnd(AnswerBridge answerBridge, User user) {
+    private void checkApproachEnd(AnswerBridge answerBridge, User user) {
         if (answerBridge.isApproachEnd(user.getChoices())) {
             user.doSuccess();
-            return true;
         }
-        return false;
     }
 
     public boolean retry() {
