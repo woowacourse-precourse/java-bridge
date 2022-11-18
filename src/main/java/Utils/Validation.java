@@ -12,4 +12,10 @@ public class Validation {
             Error.generate(Message.MOVE);
         }
     }
+
+    public static void restart(String moving) {
+        if (!moving.equals("R") && !moving.equals("Q")) {
+            Error.generate(Message.RETRY);
+        }
+    }
 }
