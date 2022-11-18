@@ -18,6 +18,11 @@ public class BridgeGame {
         bridge = new Bridge(createdBridge);
     }
 
+    // Bridge 객체 유저가 입력할 키 리스트 초기화
+    public void initBridgeUserKeyList() {
+        bridge.initUserKeyList();
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
