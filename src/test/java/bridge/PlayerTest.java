@@ -31,7 +31,7 @@ class PlayerTest {
     void resetResultsPlayCount() {
         int previous = player.getPlayCount();
 
-        player.resetResults();
+        player.resetDirections();
 
         assertThat(player.getPlayCount()).isEqualTo(previous + 1);
     }
@@ -39,12 +39,12 @@ class PlayerTest {
     @DisplayName("결과가 리셋되면 결과는 비워짐")
     @Test
     void resetResultsSize() {
-        player.resetResults();
+        player.resetDirections();
 
-        assertThat(player.getResults().size()).isEqualTo(0);
+        assertThat(player.getDirections().size()).isEqualTo(0);
     }
 
     private void addResult() {
-        player.addResult("O");
+        player.addDirection("O");
     }
 }
