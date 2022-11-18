@@ -15,7 +15,10 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
     private static final String INPUT_MESSAGE_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
+    private static final String INPUT_MESSAGE_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String ERROR_MESSAGE_NOT_INT = "[ERROR] 숫자를 입력해주세요.";
+    private static final String ERROR_MESSAGE_NOT_PROPER_MOVE = "[ERROR] 대문자 U또는 D를 입력해주세요.";
+
 
 
     public int readBridgeSize() {
@@ -39,15 +42,28 @@ public class InputView {
         return bridgeSize;
     }
 
-    private void printInputMessageBridgeSize() {
-        System.out.println(INPUT_MESSAGE_BRIDGE_SIZE);
-    }
-
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        printInputMessageMoving();
+        String input = Console.readLine();
+        validateMovingInput(input);
+        return input;
+    }
+
+    private void printInputMessageBridgeSize() {
+        System.out.println(INPUT_MESSAGE_BRIDGE_SIZE);
+    }
+
+    private void printInputMessageMoving() {
+        System.out.println(INPUT_MESSAGE_MOVING);
+    }
+
+    private void validateMovingInput(String input) {
+        if (!(input.equals("D") || input.equals("U"))) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_NOT_PROPER_MOVE);
+        }
     }
 
     /**
