@@ -40,11 +40,11 @@ Moving
 
 InputHandler
 
-	- [ ] stringToInt
+	- [x] stringToInt
 
 InputView
 
- - [ ] readBridgeSize
+ - [x] readBridgeSize
  - [ ] readMoving
  - [ ] readGameCommand
 
@@ -69,10 +69,10 @@ BridgeGameController
 
 ## 기능 목록
 
-- [ ] InputView.readBridgeSize() : 건널 다리의 개수를 입력한다. 범위는 3개 ~ 20개
-	- [ ] 다른 값 입력시  `IllegalArgumentException` 발생 후 메시지 출력 후 그 부분부터 입력을 다시 받는다.
-	- [ ] "[ERROR] 다리의 개수는 숫자만 가능합니다.
-	- [ ] "[ERROR] 다리의 개수의 범위는 3부터 20까지 입니다.
+- [x] InputView.readBridgeSize() : 건널 다리의 개수를 입력한다. 범위는 3개 ~ 20개
+	- [x] 다른 값 입력시  `IllegalArgumentException` 발생 후 메시지 출력 후 그 부분부터 입력을 다시 받는다.
+	- [x] "[ERROR] 다리의 개수는 숫자만 가능합니다.
+	- [x] "[ERROR] 다리의 개수의 범위는 3부터 20까지 입니다.
 
 
 
