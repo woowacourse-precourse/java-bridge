@@ -10,7 +10,6 @@ public class BridgeMaker {
 
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
-    //  private List<String> bridgeFormat=new ArrayList<>();
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -21,13 +20,14 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        int bridgeFormat=  bridgeNumberGenerator.generate();
+        int bridgeFormat= 0;
+        List<String> bridge=new ArrayList<>();
+        for(int i=0; i<size; i++) {
+            bridgeFormat=bridgeNumberGenerator.generate();
+            if (1 == bridgeFormat) bridge.add("U");
 
-        if(size==0) return new ArrayList<>();
-
-        if (1 == bridgeFormat) makeBridge(size - 1).add("U");
-        if (0 == bridgeFormat) makeBridge(size-1).add("D");
-
-        return new ArrayList<>();
+            if (0 == bridgeFormat) bridge.add("D");
+        }
+        return bridge;
     }
 }
