@@ -49,6 +49,7 @@ public class BridgeTest {
     @DisplayName("문자를 입력할 시 예외가 발생한다.")
     @Test
     void 다리길이_문자입력(){
-        assertThatThrownBy(()->new BridgeSize("q")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(()->new BridgeSize("q"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
