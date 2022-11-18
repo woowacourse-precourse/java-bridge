@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.view.OutputView;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -9,8 +10,9 @@ import java.util.List;
 
 public class OutputViewTest extends NsTest{
 
+    @DisplayName("다리 출력 메소드에 리스트를 건네 주면 그 리스트를 토대로 맵을 생성해 출력되는지 확인.")
     @Test
-    void 성공_다리_출력 () {
+    void printCorrectMap () {
         OutputView output = new OutputView();
         List<String> passHistory = List.of("U", "D", "U", "U");
 
@@ -23,8 +25,9 @@ public class OutputViewTest extends NsTest{
 
     }
 
+    @DisplayName("잘못된 칸을 선택한 다리 리스트를 건네 주더라도 이를 반영하여 맵을 생성해 출력하는지 확인.(위에 칸이 틀렸을 때)")
     @Test
-    void 실패_다리_출력1 () {
+    void printIncorrectUpCaseMap () {
         OutputView output = new OutputView();
         List<String> passHistory = List.of("U", "D", "U", "UX");
 
@@ -36,8 +39,9 @@ public class OutputViewTest extends NsTest{
         );
     }
 
+    @DisplayName("잘못된 칸을 선택한 다리 리스트를 건네 주더라도 이를 반영하여 맵을 생성해 출력하는지 확인.(위에 칸이 틀렸을 때)")
     @Test
-    void 실패_다리_출력2 () {
+    void printIncorrectDownCaseMap () {
         OutputView output = new OutputView();
         List<String> passHistory = List.of("U", "D", "U", "DX");
 
@@ -49,8 +53,9 @@ public class OutputViewTest extends NsTest{
         );
     }
 
+    @DisplayName("최종 결과가 올바르게 출력되는지 확인")
     @Test
-    void 최종_결과_출력 () {
+    void printFinalResult () {
         OutputView output = new OutputView();
         List<String> passHistory= List.of("U","D","D","U");
 
