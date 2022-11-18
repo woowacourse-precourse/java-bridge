@@ -121,4 +121,10 @@ public class BridgeGame {
             printGameResult();
         }
     }
+
+    public void printGameResult() {
+        outputView.printGameResultMessage();
+        outputView.printMap(currentPlayerBridgeUpShape, currentPlayerBridgeDownShape);
+        outputView.printResult(successOrFailure, tryCount);
+    }
 }
