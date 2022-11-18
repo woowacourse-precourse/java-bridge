@@ -12,7 +12,18 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String printMap(String bridge, List<List<String>> valueList) {
+    public String printMap(List<List<String>> valueList) {
+        String[] bridges = new String[]{"U", "D"};
+        for(String bridge : bridges)
+            System.out.println(printLayout(bridge, valueList));
+        System.out.println();
+
+
+        return null;
+    }
+
+    private String printLayout(String bridge, List<List<String>> valueList)
+    {
         String result ="[";
         for(int i = 0; i < valueList.size(); i++) {
             result += printValue(bridge, valueList.get(i));
@@ -41,23 +52,22 @@ public class OutputView {
      */
     public void printResult(List<List<String>> valueList) {
         System.out.println("최종 게임 결과");
-        new BridgeGame().move(valueList);
+        printMap(valueList);
         System.out.println();
 
         int attemption = valueList.size();
-        List<String> value = valueList.get(attemption - 1);
-        System.out.println("게임 성공 여부: " + getResult(value.get(1)));
-        System.out.println("총 시도한 횟수: " + attemption);
+        System.out.println("게임 성공 여부: " + getResult(valueList.get(attemption - 1)));
+//        System.out.println("총 시도한 횟수: " + bridgeGame.getAttemption());
     }
 
     /**
      *  게임 성공 여부를 가져온다.
      */
-    private String getResult(String value)
+    public String getResult(List<String> value)
     {
-        if(value.equals("O"))
+        if(value.get(1).equals("O"))
             return "성공";
-        if(value.equals("X"))
+        if(value.get(1).equals("X"))
             return "실패";
         return null;
     }
