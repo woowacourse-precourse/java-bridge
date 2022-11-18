@@ -30,12 +30,8 @@ public class ViewTest extends NsTest {
     @Test
     void printMapTest(){
         OutputView outputView = new OutputView();
-        Bridge bridge = new Bridge(newArrayList("U","D","U","U"));
-        User user = new User();
-        user.addPosition();
-        user.addPosition();
-        user.failResult();
-        outputView.printMap(bridge,user);
+        List<String> bridgeList = newArrayList("U","D","U","U");
+        outputView.printMap(bridgeList,false,2);
         assertThat(output()).contains(
                 "[ O |   | X ]",
                 "[   | O |   ]"
@@ -44,9 +40,8 @@ public class ViewTest extends NsTest {
     @Test
     void printFirstMapTest(){
         OutputView outputView = new OutputView();
-        Bridge bridge = new Bridge(newArrayList("U","U","D","U"));
-        User user = new User();
-        outputView.printMap(bridge,user);
+        List<String> bridgeList = newArrayList("U","D","U","U");
+        outputView.printMap(bridgeList,true,0);
         assertThat(output()).contains(
                 "[ O ]",
                 "[   ]"
@@ -55,11 +50,8 @@ public class ViewTest extends NsTest {
     @Test
     void printSecondMapTest(){
         OutputView outputView = new OutputView();
-        Bridge bridge = new Bridge(newArrayList("U","D","D","U"));
-        User user = new User();
-        user.addPosition();
-        user.failResult();
-        outputView.printMap(bridge,user);
+        List<String> bridgeList = newArrayList("U","D","U","U");
+        outputView.printMap(bridgeList,false,1);
         assertThat(output()).contains(
                 "[ O |   ]",
                 "[   | X ]"
