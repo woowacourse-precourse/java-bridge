@@ -27,7 +27,13 @@ public class OutputView {
         System.out.println(" "+upBridgeMap(bridgeView).get(upBridgeMap(bridgeView).size()-1)+" ]");
     }
 
-
+    public void downPrintMap(List<String> bridgeView) {
+        System.out.print("[");
+        for(int i = 1; i<downBridgeMap(bridgeView).size()-1; i++){
+            System.out.print(" "+downBridgeMap(bridgeView).get(i)+" |");
+        }
+        System.out.println(" "+downBridgeMap(bridgeView).get(downBridgeMap(bridgeView).size()-1)+" ]");
+    }
     private List<String> upBridgeMap(List<String> bridgeView){
         List<String> bridgeOutputUP = new ArrayList<>();
         for(int i =0; i<bridgeView.size(); i+=2){
