@@ -10,6 +10,7 @@ public class InputView {
     private static final String MOVING_BRIDGE_PHRASE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String INVALID_CANT_CONVERT_INTEGER = "[ERROR] 숫자가 아닙니다.";
     private static final String INVALID_RANGE = "[ERROR] 3 이상 20 이하 숫자를 입력해주세요.";
+    private static final String INVALID_VALUE = "[ERROR] U나 D를 입력해주세요.";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -42,6 +43,14 @@ public class InputView {
             throw new IllegalArgumentException(INVALID_CANT_CONVERT_INTEGER);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(INVALID_RANGE);
+        }
+    }
+
+    private static String validateIsUOrD() {
+        try {
+            return Console.readLine();
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(INVALID_VALUE);
         }
     }
 }
