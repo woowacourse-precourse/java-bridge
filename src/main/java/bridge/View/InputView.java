@@ -1,4 +1,4 @@
-package View;
+package bridge.View;
 
 import bridge.Utils.Parser;
 import bridge.Validator.Integarated.BridgeSizeValidator;
