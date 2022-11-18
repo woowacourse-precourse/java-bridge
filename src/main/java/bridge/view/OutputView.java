@@ -25,8 +25,14 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap() {
-        System.out.println(bridge.getUpBridge());
-        System.out.println(bridge.getDownBridge());
+        for (String value: bridge.getUpBridge()) {
+            System.out.print(value + "");
+        }
+        System.out.println();
+        for (String value: bridge.getDownBridge()) {
+            System.out.print(value + "");
+        }
+        System.out.println();
     }
 
     /**
@@ -36,9 +42,15 @@ public class OutputView {
      */
     public void printResult() {
         System.out.println(MessageView.FINAL_GAME_RESULT.getMessage());
-        System.out.println(bridge.getUpBridge());
-        System.out.println(bridge.getDownBridge());
-        System.out.println(MessageView.WHETHER_GAME_SUCCESS + gameStatistics.getGameResult());
-        System.out.println(MessageView.TOTAL_ATTEMPTS + gameStatistics.getTotalTryCount());
+        for (String value: bridge.getUpBridge()) {
+            System.out.print(value + "");
+        }
+        System.out.println();
+        for (String value: bridge.getDownBridge()) {
+            System.out.print(value + "");
+        }
+        System.out.println();
+        System.out.println(MessageView.WHETHER_GAME_SUCCESS.getMessage() + gameStatistics.getGameResult());
+        System.out.println(MessageView.TOTAL_ATTEMPTS.getMessage() + gameStatistics.getTotalTryCount());
     }
 }
