@@ -60,6 +60,14 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String input = Console.readLine();
+        checkGameCommand(input);
+        return input;
+    }
+
+    private void checkGameCommand(String input) {
+        if (!Objects.equals(input, "R") && !Objects.equals(input, "Q")) {
+            throw new IllegalArgumentException();
+        }
     }
 }
