@@ -57,4 +57,28 @@ public class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(WRONG_MOVE_INPUT);
     }
+
+    @DisplayName("재시작 입력이 유효한 경우")
+    @ParameterizedTest
+    @ValueSource(strings = {"R", "Q"})
+    void restartCorrectValue(String restart) {
+        // given
+        Validator validator = new Validator();
+
+        // then
+        validator.restartValidate();
+    }
+    
+    @DisplayName("재시작 입력이 유효하지 않은 경우")
+    @ParameterizedTest
+    @ValueSource(strings = {"r", "q", "z"})
+    void restartWrongValue(String restart) {
+        // given
+        Validator validator = new Validator();
+
+        // then
+        assertThatThrownBy(() -> validator.restartValidate())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(WRONG_RESTART_INPUT);
+    }
 }
