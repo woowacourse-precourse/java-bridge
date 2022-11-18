@@ -66,6 +66,19 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        try {
+            String gameCommand = Console.readLine();
+            validReadGameCommand(gameCommand);
+            return gameCommand;
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+            return readGameCommand();
+        }
+    }
+
+    private void validReadGameCommand(String gameCommand) {
+        if (!gameCommand.matches("^[R|Q]$")) {
+            throw new IllegalArgumentException("입력한 값이 R 또는 Q가 아닙니다.");
+        }
     }
 }
