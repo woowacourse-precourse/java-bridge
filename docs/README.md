@@ -5,8 +5,8 @@
 - [x] 다리 길이 입력 받기
     - [x] 정수로 변환이 안되는 문자 입력 시 `IllegalArgumentException` 발생
     - [x] 3~20 사이의 정수가 아닐 시 `IllegalArgumentException` 발생
-- [ ] 이동 방향 입력 받기
-    - [ ] ‘U’, ‘D’ 아니면 `IllegalArgumentException` 발생
+- [x] 이동 방향 입력 받기
+    - [x] ‘U’, ‘D’ 아니면 `IllegalArgumentException` 발생
 - [ ] 게임 재시도 여부 입력 받기
     - [ ] ‘R’, ‘Q’ 가 아니면 `IllegalArgumentException` 발생
 
