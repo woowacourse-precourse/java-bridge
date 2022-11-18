@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.List;
 import java.util.StringJoiner;
 
 /**
@@ -7,30 +8,23 @@ import java.util.StringJoiner;
  */
 public class OutputView {
 
-    private final StringJoiner upBridge = new StringJoiner(" | ", "[ ", " ]");
-    private final StringJoiner downBridge = new StringJoiner(" | ", "[ ", " ]");
-
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String printMap(String location, boolean correctLocation) {
-        if ("U".equals(location) && correctLocation) {
-            upBridge.add("O");
-            downBridge.add(" ");
-        }
-        if ("U".equals(location) && !correctLocation) {
-            upBridge.add("X");
-            downBridge.add(" ");
-        }
-        if ("D".equals(location) && correctLocation) {
-            upBridge.add(" ");
-            downBridge.add("O");
-        }
-        if ("D".equals(location) && !correctLocation) {
-            upBridge.add(" ");
-            downBridge.add("X");
+    public String printMap(List<BridgeLocation> bridgeLocations) {
+        StringJoiner upBridge = new StringJoiner(" | ", "[ ", " ]");
+        StringJoiner downBridge = new StringJoiner(" | ", "[ ", " ]");
+        for (BridgeLocation bridgeLocation : bridgeLocations) {
+            if ("U".equals(bridgeLocation.getLocation())) {
+                upBridge.add(bridgeLocation.getStateLocation());
+                downBridge.add(" ");
+            }
+            if ("D".equals(bridgeLocation.getLocation())) {
+                upBridge.add(" ");
+                downBridge.add(bridgeLocation.getStateLocation());
+            }
         }
         return new StringJoiner("\n").add(upBridge.toString()).add(downBridge.toString()).toString();
     }

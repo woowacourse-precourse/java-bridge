@@ -3,6 +3,7 @@ package bridge;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.StringJoiner;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -17,8 +18,7 @@ class OutputViewTest {
         StringJoiner upBridge = new StringJoiner(" | ", "[ ", " ]").add("O").add("X");
         StringJoiner downBridge = new StringJoiner(" | ", "[ ", " ]").add(" ").add(" ");
         StringJoiner result = new StringJoiner("\n").add(upBridge.toString()).add(downBridge.toString());
-        outputView.printMap("U", true);
-        assertThat(outputView.printMap("U", false)).isEqualTo(result.toString());
+        assertThat(outputView.printMap(List.of(BridgeLocation.UP_TRUE,BridgeLocation.UP_FALSE))).isEqualTo(result.toString());
     }
 
 }
