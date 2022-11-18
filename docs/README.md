@@ -31,6 +31,10 @@
   - 다음 칸으로 이동하는 메소드
 
 
+- public void failure(List<String>, List<String>, String)
+  - 게임 실패 시에 이동하는 메소드
+
+
 - private void next(List<String>, List<String>)
   - 다음 칸으로 이동할 때 칸을 구분하는 '|'를 리스트에 삽입하는 메소
 
@@ -41,6 +45,14 @@
 
 - private String bridgeBottomExist(String)
   - 들어온 인수가 "D"라면 "O", "U"라면 " " 반환
+
+
+- private String failureInTop(String)
+  - 들어온 인수가 "U"라면 "X", "D"라면 " " 반환
+
+
+- private String failureInBottom(String)
+  - 들어온 인수가 "D"라면 "X", "U"라면 " " 반환
 
 
 - public boolean rightMove(String, String)
