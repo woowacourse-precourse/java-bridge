@@ -1,9 +1,6 @@
 package bridge.service;
 
-import bridge.domain.BridgeGame;
-import bridge.domain.BridgeMaker;
-import bridge.domain.BridgeRandomNumberGenerator;
-import bridge.domain.User;
+import bridge.domain.*;
 import bridge.utils.Converter;
 
 import java.util.List;
@@ -12,6 +9,7 @@ public class Service {
     BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
     Converter converter = new Converter();
+    Result result = new Result();
     BridgeGame game;
 
     public void prepareGame(String bridgeSizeInput) {
@@ -22,6 +20,7 @@ public class Service {
     }
 
     public void move(String moveInput) {
-       boolean moveSuccess = game.move(moveInput);
+        boolean moveSuccess = game.move(moveInput);
+        result.write(moveInput, moveSuccess);
     }
 }
