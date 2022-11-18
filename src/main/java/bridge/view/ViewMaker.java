@@ -15,7 +15,12 @@ public class ViewMaker {
     }
 
     public void receiveClientRequest() {
-        bridgeMaker.makeBridge(inputView.readBridgeSize());
+        try {
+            bridgeMaker.makeBridge(inputView.readBridgeSize());
+        } catch (IllegalArgumentException exception) {
+            outputView.printError(exception.getMessage());
+            this.receiveClientRequest();
+        }
     }
 
 }

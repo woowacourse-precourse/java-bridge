@@ -1,5 +1,9 @@
 package bridge.view;
 
+import static bridge.constant.NumberConstant.MAXIMUM_BRIDGE_SIZE;
+import static bridge.constant.NumberConstant.MINIMUM_BRIDGE_SIZE;
+import static bridge.exception.ExceptionHandler.BRIDGE_SIZE;
+
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -15,15 +19,22 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        int bridgeSize;
+        int bridgeSize = 0;
 
         try {
             bridgeSize = Integer.parseInt(Console.readLine());
+            validateBridgeSize(bridgeSize);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력 해 주세요.");
+            BRIDGE_SIZE.error();
         }
 
         return bridgeSize;
+    }
+
+    private void validateBridgeSize(int bridgeSize) {
+        if (bridgeSize < MINIMUM_BRIDGE_SIZE.getCode() || bridgeSize > MAXIMUM_BRIDGE_SIZE.getCode()) {
+            BRIDGE_SIZE.error();
+        }
     }
 
     /**
@@ -39,4 +50,5 @@ public class InputView {
     public String readGameCommand() {
         return null;
     }
+
 }
