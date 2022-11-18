@@ -9,8 +9,6 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    public static final int BLANK = 32;
-
     private final List<String> bridge;
     private Result result;
     private int position = -1;
