@@ -24,8 +24,6 @@ public class BridgeGame {
 
 
     public void move(String playerSelection) {
-        player.setSelection(playerSelection);
-
         int nextPlayerLocation = player.getPassedCount();
         String nextBridgeState = bridge.getBridgeState(nextPlayerLocation);
 
@@ -73,10 +71,6 @@ public class BridgeGame {
     //getter
     public List<String> getBridgeStates() {
         return this.bridge.getBridgeStates();
-    }
-
-    public Player getPlayer() {
-        return this.player;
     }
 
     public int getRetryCount() {

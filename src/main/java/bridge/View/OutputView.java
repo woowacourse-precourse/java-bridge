@@ -62,7 +62,7 @@ public class OutputView {
             return RIGHT_SELECTION;
         }
 
-        if (bridgeGame.isPlayerDead() && !bridgeState.equals(stair)) {   // 옳지 않은 발판을 선택해서 죽었기 때문에 해당 위치에 X 출력
+        if (bridgeGame.isPlayerDead() && !bridgeState.equals(stair)) {
             return WRONG_SELECTION;
         }
 
