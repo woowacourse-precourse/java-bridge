@@ -10,10 +10,12 @@ import java.util.Map;
  */
 public class BridgeGame {
 
+    private int totalAttemptNum;
     private List<StepStatus> gradingBoard;
     private final List<String> answerBridge;
 
     public BridgeGame(List<String> answerBridge) {
+        this.totalAttemptNum = 1;
         this.answerBridge = answerBridge;
         this.gradingBoard = new ArrayList<>();
     }
@@ -35,6 +37,7 @@ public class BridgeGame {
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      */
     public void retry() {
+        this.totalAttemptNum++;
         this.gradingBoard = new ArrayList<>();
     }
 
@@ -69,12 +72,12 @@ public class BridgeGame {
      */
     private BridgeGameResultDto bridgeGameResultDtoMapper(boolean isCorrect, boolean isGameEnd) {
         if (isCorrect == true && isGameEnd == true) {
-            return new BridgeGameResultDto(this.gradingBoard, GameStatus.SUCCESS);
+            return new BridgeGameResultDto(this.gradingBoard, GameStatus.SUCCESS, this.totalAttemptNum);
         }
         if (isCorrect == true && isGameEnd == false) {
-            return new BridgeGameResultDto(this.gradingBoard, GameStatus.ONGOING);
+            return new BridgeGameResultDto(this.gradingBoard, GameStatus.ONGOING, this.totalAttemptNum);
         }
-        return new BridgeGameResultDto(this.gradingBoard, GameStatus.FAIL);
+        return new BridgeGameResultDto(this.gradingBoard, GameStatus.FAIL, this.totalAttemptNum);
     }
 
 }

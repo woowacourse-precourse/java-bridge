@@ -6,10 +6,12 @@ import java.util.Map;
 public class BridgeGameResultDto {
     private List<StepStatus> gradingBoard;
     private GameStatus gameStatus;
+    private int totalAttemptNum;
 
-    public BridgeGameResultDto(List<StepStatus> gradingBoard, GameStatus gameStatus) {
+    public BridgeGameResultDto(List<StepStatus> gradingBoard, GameStatus gameStatus, int totalAttemptNum) {
         this.gradingBoard = gradingBoard;
         this.gameStatus = gameStatus;
+        this.totalAttemptNum = totalAttemptNum;
     }
 
     public List<StepStatus> getGradingBoard() {
@@ -18,5 +20,9 @@ public class BridgeGameResultDto {
 
     public GameStatus getGameStatus() {
         return gameStatus;
+    }
+
+    public int getTotalAttemptNum() {
+        return totalAttemptNum;
     }
 }
