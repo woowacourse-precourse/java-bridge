@@ -18,8 +18,11 @@ public class GameController {
         List<String> answer_bridge = bridgeMaker.makeBridge(size);
 
         BridgeGame bridgeGame = new BridgeGame(answer_bridge);
-        moveStep(bridgeGame);
-        moveStep(bridgeGame);
+        boolean isEnd = false;
+        while (!isEnd) {
+            moveStep(bridgeGame);
+            isEnd = bridgeGame.isEnd();
+        }
     }
     private void moveStep(BridgeGame bridgeGame){
         //move message 출력
