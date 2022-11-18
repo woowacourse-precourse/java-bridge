@@ -55,9 +55,9 @@ BridgeGameController
 ## 기능 목록
 
 - [ ] InputView.readBridgeSize() : 건널 다리의 개수를 입력한다. 범위는 3개 ~ 20개
-	- [ ] "[ERROR] 건널 다리의 개수는 숫자만 가능합니다.
-	- [ ] "[ERROR] 건널 다리의 개수는 빈칸 입력은 불가능 합니다.
-	- [ ] "[ERROR] 건널 다리의 개수의 범위는 3개 ~ 20개 입니다.
+	- [ ] 다른 값 입력시  `IllegalArgumentException` 발생 후 메시지 출력 후 그 부분부터 입력을 다시 받는다.
+	- [ ] "[ERROR] 다리의 개수는 숫자만 가능합니다.
+	- [ ] "[ERROR] 다리의 개수의 범위는 3부터 20까지 입니다.
 
 
 
