@@ -1,60 +1,91 @@
 package bridge;
 
+import bridge.View.OutputView;
+
 import java.util.*;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.joining;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final HashMap<String, Integer> directionToIndex = new HashMap<>();
-    private final List<List<String>> roundResult;
+    private final List<String> scaffold;
+    private HashMap<String, List<String>> scaffoldMap = new HashMap<>();
     private int gameRound = 0;
 
     public BridgeGame(List<String> bridgeScaffold) {
-        directionToIndex.put("D", 1);
-        directionToIndex.put("U", 0);
-        roundResult = makeRoundResult(bridgeScaffold);
+        this.scaffold = bridgeScaffold;
+        initScaffoldMap();
     }
 
-    private List<List<String>> makeRoundResult(List<String> bridgeScaffold) {
-        List<List<String>> roundResult = new ArrayList<>();
-        roundResult.add(new ArrayList<>(Collections.nCopies(bridgeScaffold.size(), " ")));
-        roundResult.add(new ArrayList<>(Collections.nCopies(bridgeScaffold.size(), " ")));
-
-        for (int i = 0; i < bridgeScaffold.size(); i++) {
-            int resultIndex = directionToIndex.get(bridgeScaffold.get(i));
-            roundResult.get(resultIndex).set(i,"O");
-        }
-        return roundResult;
+    private void initScaffoldMap() {
+        this.scaffoldMap.put("U", new ArrayList<>());
+        this.scaffoldMap.put("D", new ArrayList<>());
     }
+//        Collections.nCopies(bridgeScaffold.size(), " ")
+//        for (int i = 0; i < bridgeScaffold.size(); i++) {
+//            scaffoldMap.get(bridgeScaffold.get(i)).set(i, "O");
+//        }
+//        System.out.println(scaffoldMap);
+//    }
+
+
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String direction) {
+    public List<String> move(String direction) {
         boolean isSurvive = checkSurvive(direction);
 
-        System.out.println(isSurvive);
-//        printResult(isSurvive);
+        List<String> movingProgress = getMovingProgress(isSurvive, direction);
+
         this.gameRound++;
 
-        return isSurvive;
+        if (!isSurvive) {
+            movingProgress.add("FAIL");
+        }
+
+        return movingProgress;
     }
 
     private boolean checkSurvive(String direction) {
-        return "O".equals(roundResult.get(directionToIndex.get(direction)).get(this.gameRound));
+        return direction.equals(this.scaffold.get(gameRound));
     }
 
-    private void printResult(boolean isSurvive) {
-//        for (int i = 0; i < gameRound; i++) {
-//            this.roundResult.get(i);
-//        }
-//        if(isSurvive){
-//
-//        }
+    private List<String> getMovingProgress(boolean isSurvive, String direction) {
+        updateScaffordMap(isSurvive, direction);
+
+        String upDirectionProgress = getProgressOfDirection("U");
+        String downDirectionProgress = getProgressOfDirection("D");
+
+        return new ArrayList<>(List.of(upDirectionProgress, downDirectionProgress));
+    }
+
+    private String getOppositeDirection(String direction) {
+        if ("U".equals(direction)) {
+            return "D";
+        }
+        return "U";
+    }
+
+    private void updateScaffordMap(boolean isSurvive, String direction) {
+        String oppositeDirection = getOppositeDirection(direction);
+        if (!isSurvive) {
+            this.scaffoldMap.get(direction).add("X");
+            this.scaffoldMap.get(oppositeDirection).add(" ");
+        } else {
+            this.scaffoldMap.get(direction).add("O");
+            this.scaffoldMap.get(oppositeDirection).add(" ");
+        }
+    }
+
+
+    private String getProgressOfDirection(String direction) {
+        String stack = String.join(" | ", this.scaffoldMap.get(direction));
+        return "[ " + stack + " ]";
     }
 
 
@@ -64,6 +95,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        initScaffoldMap();
         gameRound = 0;
     }
 }

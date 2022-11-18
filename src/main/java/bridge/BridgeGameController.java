@@ -26,7 +26,9 @@ public class BridgeGameController {
 
         for (int i = 0; i < bridgeSize; i++) {
             String direction = inputView.readMoving();
-            if (!bridgeGame.move(direction)) {
+            List<String> movingProgress = bridgeGame.move(direction);
+            outputView.printMap(movingProgress.subList(0,2));
+            if (movingProgress.size() > 2) {
                 break;
             }
         }
