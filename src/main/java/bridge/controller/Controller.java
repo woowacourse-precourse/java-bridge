@@ -1,8 +1,8 @@
 package bridge.controller;
 
-import bridge.model.BridgeSizeValidator;
-import bridge.model.NextMoveValidator;
-import bridge.model.Validator;
+import bridge.model.validator.BridgeSizeValidator;
+import bridge.model.validator.NextMoveValidator;
+import bridge.model.validator.Validator;
 import bridge.view.ErrorMessage;
 import bridge.view.GameMessage;
 import bridge.view.InputView;

@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge.model.validator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

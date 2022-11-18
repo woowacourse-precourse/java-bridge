@@ -1,7 +1,6 @@
 package bridge.model;
 
 public enum BridgeSizeConstant {
-    INPUT_LENGTH(2),
     LOWER_BOUND(3),
     UPPER_BOUND(20);
 

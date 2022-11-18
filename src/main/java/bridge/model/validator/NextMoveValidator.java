@@ -1,4 +1,6 @@
-package bridge.model;
+package bridge.model.validator;
+
+import bridge.model.Direction;
 
 public class NextMoveValidator implements Validator {
     @Override

@@ -1,4 +1,6 @@
-package bridge.model;
+package bridge.model.validator;
+
+import bridge.model.BridgeSizeConstant;
 
 import java.util.regex.Pattern;
 
