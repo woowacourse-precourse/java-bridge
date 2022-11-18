@@ -7,12 +7,16 @@
 - 입력받은 길이 예외 검증
 - 다리 생성
 ```
-다리길이 입력값의 범위가 3이상 20이하가 아니라면 IllegalArgumentException을 발생시킨다.
+[예외사항]
+다리길이 입력값의 범위가 3이상 20이하가 아니라면,
+IllegalArgumentException을 발생시킨 후 입력을 다시 받는다.
 ```
 
 ### 📃 이동할 방향 입력 기능 구현
 ```
-입력값이 U or D가 아니라면 IllegalArgumentException을 발생시킨다.
+[예외사항]
+입력값이 U or D가 아니라면,
+IllegalArgumentException을 발생시킨 후 입력을 다시 받는다.
 ```
 ### 📃 이동상태 출력기능 구현
 - 입력받은 이동 방향이 U일 때를 예시로 아래와 같이 구현한다.
@@ -56,7 +60,9 @@
 ## ❌ 게임 실패 시
 ### 📃 재시작 여부 입력
 ```
-재시작 여부 입력 값이 R or Q가 아니라면 IllegalArgumentException을 발생시킨다.
+[예외사항]
+재시작 여부 입력 값이 R or Q가 아니라면,
+IllegalArgumentException을 발생시킨 후 입력을 다시 받는다.
 ```
 
 ### 📃 재시작 여부에 따른 기능 구현
