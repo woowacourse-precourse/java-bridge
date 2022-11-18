@@ -6,6 +6,8 @@ import bridge.model.Player;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.Arrays;
+
 import static bridge.util.BridgeConstant.FALL_POSITION;
 
 /**
@@ -22,7 +24,7 @@ public class BridgeGame {
     public void init() {
         outputView.printStartMessage();
         makeBridge();
-//        print2DBridge();
+        print2DBridge();
         start(new Player());
     }
 
@@ -39,6 +41,21 @@ public class BridgeGame {
         if (!moveSuccess(player, bridge)) {
             retry(player);
         }
+
+        if (reachFinalLine(player, bridge)) {
+            isContinue = false;
+            isWin = true;
+        }
+    }
+
+    private boolean reachFinalLine(Player player, Bridge bridge) {
+        int positionX = player.getXPosition();
+        int bridgeLength = bridge.getBridge()[0].length;
+
+        if (positionX == bridgeLength - 1) {
+            return true;
+        }
+        return false;
     }
 
     private boolean moveSuccess(Player player, Bridge bridge) {
@@ -61,13 +78,13 @@ public class BridgeGame {
         bridge = new Bridge(bridgeSize);
     }
 
-//    private void print2DBridge() {
-//        Arrays.stream(bridge.getBridge()).forEach(
-//                bridgeBlock -> {
-//                    System.out.println(Arrays.toString(bridgeBlock));
-//                }
-//        );
-//    }
+    private void print2DBridge() {
+        Arrays.stream(bridge.getBridge()).forEach(
+                bridgeBlock -> {
+                    System.out.println(Arrays.toString(bridgeBlock));
+                }
+        );
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
