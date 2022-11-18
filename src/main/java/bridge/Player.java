@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Player {
     private final List<String> bridge;
-    private final List<String> results = new ArrayList<>();
+    private final List<String> directions = new ArrayList<>();
     private int playCount;
 
     public Player(List<String> bridge) {
@@ -17,8 +17,8 @@ public class Player {
         return bridge;
     }
 
-    public List<String> getResults() {
-        return results;
+    public List<String> getDirections() {
+        return directions;
     }
 
     public int getPlayCount() {
@@ -26,16 +26,21 @@ public class Player {
     }
 
     //== 비즈니스 로직 ==//
-    public void addResult(String result) {
-        results.add(result);
+    public void addDirection(String direction) {
+        directions.add(direction);
     }
 
     public boolean isGameEnd() {
-        return results.size() == bridge.size();
+        return directions.size() == bridge.size();
     }
 
-    public void resetResults() {
-        results.clear();
+    public void resetDirections() {
+        directions.clear();
         playCount++;
+    }
+
+    public boolean isMovePossible() {
+        int index = directions.size() - 1;
+        return directions.get(index).equals(bridge.get(index));
     }
 }
