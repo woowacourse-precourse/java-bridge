@@ -90,4 +90,19 @@ class OutputViewTest {
                             System.lineSeparator());
         }
     }
+
+    @Nested
+    @DisplayName("게임 재시도/종료 여부를 입력하도록 유도하는 메시지를 출력하는 printAskingGameCommandMessage 메서드")
+    class PrintAskingGameCommandMessage {
+        @Test
+        @DisplayName("게임 재시도/종료 여부를 입력하도록 유도하는 메시지를 출력할 수 있다.")
+        void whenAskingGameCommandMessage_thenPrintsMessage() {
+            //when
+            outputView.printAskingGameCommandMessage();
+
+            //then
+            assertThat(captor.toString())
+                    .isEqualTo(String.format("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)%n"));
+        }
+    }
 }
