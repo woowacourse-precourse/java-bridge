@@ -2,7 +2,6 @@ package bridge;
 
 import bridge.model.AnswerBridge;
 import bridge.model.User;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +13,7 @@ public class AnswerBridgeTest {
 
     AnswerBridge answerBridge = new AnswerBridge(List.of("U", "D", "U"));
 
+    // TODO: 리팩토링
     @DisplayName("유저의 선택과 answerBridge 비교 결과 테스트")
     @Test
     void compareToTest() {

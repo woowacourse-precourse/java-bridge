@@ -24,7 +24,18 @@ public class BridgeGame {
             String choice = InputView.getInputChoice();
             user.addChoice(choice);
             OutputView.printMap(user.getChoices(), answerBridge.compareTo(user));
+
+            if (!answerBridge.isCorrect(choice, user.getStep())) {
+                boolean doesRetry = retry();
+                if (doesRetry) {
+                    resetGame();
+                    continue;
+                }
+                break;
+            }
         }
+
+        OutputView.printResult();
     }
 
     /**
@@ -40,6 +51,15 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry() {
+        String retryCommand = InputView.getInputRetryCommand();
+        if (retryCommand.equals("R")) {
+            return true;
+        }
+        return false;
+    }
+
+    private void resetGame() {
+        user.resetChoices();
     }
 }

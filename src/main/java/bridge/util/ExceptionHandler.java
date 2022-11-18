@@ -28,4 +28,10 @@ public class ExceptionHandler {
         }
         return false;
     }
+
+    public static void checkRetryCommand(final String input) throws IllegalArgumentException {
+        if (!(input.equals("R") || input.equals("Q"))) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
