@@ -8,8 +8,8 @@ public class PlayResult {
     private final List<MoveStatus> playResult = new ArrayList<>();
     private int tryCount = 1;
 
-    public void updateResult(String spaceToMove, boolean canMove) {
-        playResult.add(MoveStatus.findBySpaceToMove(spaceToMove, canMove));
+    public void updateResult(MoveStatus moveStatus) {
+        playResult.add(moveStatus);
     }
 
     public void retry() {

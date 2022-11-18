@@ -5,27 +5,29 @@ import static bridge.utils.Constants.RETRY;
 public class BridgeGame {
 
     private final Bridge bridge;
-    private final PlayResult playResult = new PlayResult();
+    private final Player player = new Player();
 
     public BridgeGame(int bridgeSize, BridgeMaker bridgeMaker) {
         this.bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
-    public boolean move(int position, String spaceToMove) {
-        boolean canMove = bridge.canMove(position, spaceToMove);
-        playResult.updateResult(spaceToMove, canMove);
-        return canMove;
+    public boolean move(String spaceToMove) {
+        return player.canMove(bridge, spaceToMove);
     }
 
     public boolean retry(String retryCommand) {
         if (retryCommand.equals(RETRY)) {
-            playResult.retry();
+            player.retry();
             return true;
         }
         return false;
     }
 
-    public PlayResult getPlayResult() {
-        return playResult;
+    public boolean gameEnd(int bridgeSize) {
+        return player.crossTheBridge(bridgeSize);
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 }

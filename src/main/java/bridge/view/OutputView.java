@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.domain.MoveStatus;
 import bridge.domain.PlayResult;
+import bridge.domain.Player;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,16 +11,16 @@ import static bridge.utils.Constants.*;
 
 public class OutputView {
 
-    public static void printMap(PlayResult playResult) {
-        List<MoveStatus> result = playResult.getPlayResult();
+    public static void printMap(Player player) {
+        List<MoveStatus> result = player.getPlayResult().getPlayResult();
         printUpBridge(result);
         printDownBridge(result);
     }
 
-    public static void printResult(boolean gameStatus, PlayResult playResult) {
+    public static void printResult(boolean gameStatus, Player player) {
         System.out.println(OUTPUT_MESSAGE_FINAL_GAME_RESULT);
-        printMap(playResult);
-        printSuccessMessage(gameStatus, playResult);
+        printMap(player);
+        printSuccessMessage(gameStatus, player.getPlayResult());
     }
 
     private static void printUpBridge(List<MoveStatus> result) {

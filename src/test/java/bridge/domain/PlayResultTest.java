@@ -6,6 +6,8 @@ import org.assertj.core.api.InstanceOfAssertFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -18,54 +20,22 @@ class PlayResultTest {
         playResult = new PlayResult();
     }
 
-    @DisplayName("다리를 건널 수 있고, 위 방향이면 UP")
-    @Test
-    void 건널_수_있고_위_방향은_UP() {
-        playResult.updateResult("U", true);
+    @DisplayName("넘겨준 값과 동일 값이 저장된다.")
+    @ParameterizedTest
+    @EnumSource(names = {"UP", "DOWN", "UP_FAIL", "DOWN_FAIL"})
+    void 넘겨준_값과_동일_값이_저장된다(MoveStatus moveStatus) {
+        playResult.updateResult(moveStatus);
 
         assertThat(playResult)
                 .extracting("playResult", InstanceOfAssertFactories.LIST)
                 .first(new InstanceOfAssertFactory<>(MoveStatus.class, Assertions::assertThat))
-                .isEqualTo(MoveStatus.UP);
-    }
-
-    @DisplayName("다리를 건널 수 있고, 아래 방향이면 DOWN")
-    @Test
-    void 건널_수_있고_아래_방향은_DOWN() {
-        playResult.updateResult("D", true);
-
-        assertThat(playResult)
-                .extracting("playResult", InstanceOfAssertFactories.LIST)
-                .first(new InstanceOfAssertFactory<>(MoveStatus.class, Assertions::assertThat))
-                .isEqualTo(MoveStatus.DOWN);
-    }
-
-    @DisplayName("다리를 건널 수 없고, 위 방향은 UP_FAIL")
-    @Test
-    void 건널_수_없고_위_방향은_UP_FAIL() {
-        playResult.updateResult("U", false);
-
-        assertThat(playResult)
-                .extracting("playResult", InstanceOfAssertFactories.LIST)
-                .first(new InstanceOfAssertFactory<>(MoveStatus.class, Assertions::assertThat))
-                .isEqualTo(MoveStatus.UP_FAIL);
-    }
-
-    @DisplayName("다리를 건널 수 없고, 아래 방향은 DOWN_FAIL")
-    @Test
-    void 건널_수_없고_아래_방향은_DOWN_FAIL() {
-        playResult.updateResult("D", false);
-
-        assertThat(playResult)
-                .extracting("playResult", InstanceOfAssertFactories.LIST)
-                .first(new InstanceOfAssertFactory<>(MoveStatus.class, Assertions::assertThat))
-                .isEqualTo(MoveStatus.DOWN_FAIL);
+                .isEqualTo(moveStatus);
     }
 
     @DisplayName("재시작 시 시도 횟수 증가")
     @Test
     void 재시작_시_시도_횟수_증가() {
-        playResult.updateResult("D", false);
+        playResult.updateResult(MoveStatus.DOWN_FAIL);
         int tryCountBeforeRetry = playResult.getTryCount();
         playResult.retry();
 
@@ -75,7 +45,7 @@ class PlayResultTest {
     @DisplayName("재시작 시 실패 결과 삭제")
     @Test
     void 재시작_시_실패_결과_삭제() {
-        playResult.updateResult("D", false);
+        playResult.updateResult(MoveStatus.DOWN_FAIL);
         int playResultSizeBeforeRetry = playResult.getPlayResult().size();
         playResult.retry();
 
