@@ -36,7 +36,6 @@ public class BridgeGame {
 	}
 
 	private void setDownsideBridge(String location, int index) {
-
 		if (location.equals(DOWNSIDE) && location.equals(bridge.get(index))) {
 			upsideBridge += BLANK;
 			downsideBridge += RIGHT;
