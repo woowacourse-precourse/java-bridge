@@ -1,6 +1,7 @@
 package bridge.service;
 
 import bridge.vo.BridgeStep;
+import bridge.vo.StepResult;
 
 import java.util.Iterator;
 
@@ -14,8 +15,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(BridgeStep input, Iterator<BridgeStep> bridgeIter) {
-        return input.equals(bridgeIter.next());
+    public StepResult move(BridgeStep input, Iterator<BridgeStep> bridgeIter) {
+        return new StepResult(input, input.equals(bridgeIter.next()));
     }
 
     /**

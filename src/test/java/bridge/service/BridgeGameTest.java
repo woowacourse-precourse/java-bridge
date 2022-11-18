@@ -23,11 +23,11 @@ class BridgeGameTest {
             Iterator<BridgeStep> bridgeIter = getBridgeIter();
 
             //when
-            Assertions.assertTrue(bridgeGame.move(BridgeStep.U, bridgeIter));
-            Assertions.assertTrue(bridgeGame.move(BridgeStep.D, bridgeIter));
-            Assertions.assertTrue(bridgeGame.move(BridgeStep.U, bridgeIter));
-            Assertions.assertTrue(bridgeGame.move(BridgeStep.U, bridgeIter));
-            Assertions.assertTrue(bridgeGame.move(BridgeStep.D, bridgeIter));
+            Assertions.assertTrue(bridgeGame.move(BridgeStep.U, bridgeIter).isCorrect());
+            Assertions.assertTrue(bridgeGame.move(BridgeStep.D, bridgeIter).isCorrect());
+            Assertions.assertTrue(bridgeGame.move(BridgeStep.U, bridgeIter).isCorrect());
+            Assertions.assertTrue(bridgeGame.move(BridgeStep.U, bridgeIter).isCorrect());
+            Assertions.assertTrue(bridgeGame.move(BridgeStep.D, bridgeIter).isCorrect());
         }
 
         @Test
@@ -36,12 +36,12 @@ class BridgeGameTest {
             //given
             Iterator<BridgeStep> bridgeIter = getBridgeIter();
 
-            //when
-            Assertions.assertTrue(bridgeGame.move(BridgeStep.U, bridgeIter));
-            Assertions.assertTrue(bridgeGame.move(BridgeStep.D, bridgeIter));
-            Assertions.assertTrue(bridgeGame.move(BridgeStep.U, bridgeIter));
-            Assertions.assertFalse(bridgeGame.move(BridgeStep.D, bridgeIter));
-            Assertions.assertFalse(bridgeGame.move(BridgeStep.U, bridgeIter));
+            //when.isCorrect()
+            Assertions.assertTrue(bridgeGame.move(BridgeStep.U, bridgeIter).isCorrect());
+            Assertions.assertTrue(bridgeGame.move(BridgeStep.D, bridgeIter).isCorrect());
+            Assertions.assertTrue(bridgeGame.move(BridgeStep.U, bridgeIter).isCorrect());
+            Assertions.assertFalse(bridgeGame.move(BridgeStep.D, bridgeIter).isCorrect());
+            Assertions.assertFalse(bridgeGame.move(BridgeStep.U, bridgeIter).isCorrect());
         }
     }
 

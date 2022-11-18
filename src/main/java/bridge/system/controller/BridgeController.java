@@ -6,7 +6,9 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 import bridge.vo.Bridge;
 import bridge.vo.BridgeStep;
+import bridge.vo.StepResult;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -36,6 +38,7 @@ public class BridgeController {
         outputView.printAskingNextStepMessage();
         BridgeStep nextMove = BridgeStep.getByValue(inputView.readMoving());
 
-        boolean result = bridgeGame.move(nextMove, bridgeIter);
+        ArrayList<StepResult> stepResults = new ArrayList<>();
+        stepResults.add(bridgeGame.move(nextMove, bridgeIter));
     }
 }
