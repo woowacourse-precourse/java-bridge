@@ -6,6 +6,9 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,12 +19,26 @@ import static org.assertj.core.api.Assertions.*;
 
 public class UtilsUnitTest {
     private final BridgeGame bridgeGame = new BridgeGame();
+    private static final OutputView outputView = new OutputView();
     private static UsersBridgeCrossStatus testBridge;
     private static String userInput;
     private static List<String> testAnswerBridge;
+    private static final ByteArrayOutputStream output = new ByteArrayOutputStream();
+
+//    @BeforeEach
+//    void setUpStream() {
+//        System.setOut(new PrintStream(output));
+//    }
+
+//    @AfterEach
+//    void restoreStreams() {
+//        System.setOut(System.out);
+//        output.reset();
+//    }
 
     @BeforeAll
     static void setTest() {
+        System.setOut(new PrintStream(output));
         userInput = "D";
         testAnswerBridge = new ArrayList<>(Arrays.asList("U", "D", "U", "D"));
         BridgeMakerImpl bridgeMakerImpl = new BridgeMakerImpl();
@@ -34,6 +51,8 @@ public class UtilsUnitTest {
 
         assertThat(up).isEqualTo(List.of("[", " ", "O", " ", "|", " ", " ", " ", "|", " ", " ", " ", "]"));
         assertThat(down).isEqualTo(List.of("[", " ", " ", " ", "|", " ", "O", " ", "|", " ", "X", " ", "]"));
+        outputView.printMap(testBridge);
+        assertThat(output.toString()).isEqualTo("[ O |   |   ]\n[   | O | X ]");
     }
 
     @DisplayName("사용자가 선택한 칸이 이동 가능한 칸이면 O, 불가능한 칸이면 X를 반환한다.")
