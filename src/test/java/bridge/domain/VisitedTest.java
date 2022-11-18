@@ -24,10 +24,8 @@ public class VisitedTest {
     @BeforeAll
     public static void setUp() {
         visited1.move(Position.UP, bridge);
-
         visited2.move(Position.UP, bridge);
         visited2.move(Position.UP, bridge);
-
         visited3.move(Position.UP, bridge);
         visited3.move(Position.UP, bridge);
         visited3.move(Position.DOWN, bridge);
