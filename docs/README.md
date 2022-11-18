@@ -8,9 +8,9 @@
     - BridgeMaker에서 BridgeNumberGenerator를 이용하여 makeBridge 메서드 구현
 
 
-- [ ] 일급 컬렉션 생성
+- [x] 일급 컬렉션 생성
   - [x] Bridge 일급 컬렉션
-  - [ ] BridgeGame에 GameLog를 멤버변수로 선언하여 일급 컬렉션화
+  - [x] BridgeGame에 GameLog를 멤버변수로 선언하여 일급 컬렉션화
 
 
 - [ ]을 다리 건너기
