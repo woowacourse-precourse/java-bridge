@@ -1,7 +1,7 @@
 package bridge.domain.game;
 
 import bridge.domain.player.MovementCommand;
-import bridge.domain.result.ResultDescription;
+import bridge.domain.result.ResultRendering;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -10,7 +10,6 @@ import java.util.List;
 public class CrossingBridge {
 
 	private static final String REQUEST_MOVEMENT = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-	private static final String ENTER = "\n";
 
 	private final boolean crossComplete;
 
@@ -29,7 +28,7 @@ public class CrossingBridge {
 			MovementCommand movementCommand = inputView.readMovement();
 			CrossingDecision crossingDecision = CrossingDecision.judgingBy(movementCommand, bridgeNowCrossing);
 			stepAhead(crossingDecision, bridgeNowCrossing);
-			OutputView.printGameInfo(ResultDescription.generatedBy(crossingDecision, movementCommand).getBridgeDescription() + ENTER);
+			OutputView.printGameInfo(ResultRendering.generatedBy(crossingDecision, movementCommand).getBridgeDescription());
 
 		} while (isCrossToContinue(bridgeNowCrossing));
 	}
@@ -41,7 +40,7 @@ public class CrossingBridge {
 	}
 
 	private boolean isCrossToContinue(List<String> bridgeNowCrossing) {
-		return !(ResultDescription.getBridgeDescription().contains("X") || isCompleteCrossing(bridgeNowCrossing));
+		return !(ResultRendering.getBridgeDescription().contains("X") || isCompleteCrossing(bridgeNowCrossing));
 	}
 
 	private boolean isCompleteCrossing(List<String> bridgeNowCrossing) {
@@ -50,8 +49,8 @@ public class CrossingBridge {
 
 	public String isCrossComplete() {
 		if (crossComplete) {
-			return "성공";
+			return BridgeGame.RESULT_SUCCESS;
 		}
-		return "실패";
+		return BridgeGame.RESULT_FAIL;
 	}
 }

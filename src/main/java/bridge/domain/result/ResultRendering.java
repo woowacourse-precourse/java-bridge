@@ -1,37 +1,49 @@
 package bridge.domain.result;
 
-import bridge.domain.game.BridgeGame;
 import bridge.domain.game.CrossingDecision;
 import bridge.domain.game.Map;
 import bridge.domain.player.MovementCommand;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ResultDescription {
+public class ResultRendering {
+
+	private static final String RESULT_PRESENTATION = "최종 게임 결과";
+	private static final String RESULT_FAIL_OR_SUCCESS = "게임 성공 여부: %s";
+	private static final String RESULT_TRIAL = "총 시도한 횟수: %d";
+	private static final String ENTER = "\n";
 
 	private static String BridgeDescription;
 	private static String upperBridgeDescription;
 	private static String underBridgeDescription;
 
-	private ResultDescription(CrossingDecision crossingDecision, MovementCommand movementCommand) {
-		resultDescription(crossingDecision, movementCommand);
+	private ResultRendering(CrossingDecision crossingDecision, MovementCommand movementCommand) {
+		renderEachResult(crossingDecision, movementCommand);
+
 		upperBridgeDescription = constructUpperBridgeMap();
 		underBridgeDescription = constructUnderBridgeMap();
 		BridgeDescription = constructTotalBridgeMap();
 	}
 
-	public static ResultDescription generatedBy(CrossingDecision crossingDecision, MovementCommand movementCommand) {
-		return new ResultDescription(crossingDecision, movementCommand);
+	public static ResultRendering generatedBy(CrossingDecision crossingDecision, MovementCommand movementCommand) {
+		return new ResultRendering(crossingDecision, movementCommand);
 	}
 
-
-	public void resultDescription(CrossingDecision crossingDecision, MovementCommand movementCommand) {
+	public void renderEachResult(CrossingDecision crossingDecision, MovementCommand movementCommand) {
 		String crossingMark = MovementDescription.of(crossingDecision).getMark();
 		List<String> passingSide = SideDescription.of(movementCommand).getSide();
 		List<String> nonPassingSide = SideDescription.of(movementCommand).getOtherSide();
 
 		buildDescription(crossingMark, passingSide, nonPassingSide);
+	}
+
+	public static String renderFinalResult(HashMap<String, Integer> gameResult) {
+		return RESULT_PRESENTATION + ENTER
+				+ BridgeDescription + ENTER
+				+ String.format(RESULT_FAIL_OR_SUCCESS, gameResult.keySet().toArray()[0]) + ENTER
+				+ String.format(RESULT_TRIAL, gameResult.values().toArray()[0]);
 	}
 
 	private void buildDescription(String crossingMark, List<String> passingSide, List<String> nonPassingSide) {
@@ -43,9 +55,9 @@ public class ResultDescription {
 	}
 
 	private static void fixFormatting(List<String> side) {
-		int prevElementIdx = side.size()-1;
+		int prevElementIdx = side.size() - 1;
 		String preElement = side.get(prevElementIdx);
-		int idxToLastCharacter = preElement.length()-1;
+		int idxToLastCharacter = preElement.length() - 1;
 
 		side.set(prevElementIdx, preElement.substring(0, idxToLastCharacter));
 	}
@@ -72,8 +84,8 @@ public class ResultDescription {
 		return String.join("", Map.underBridgeDescription);
 	}
 
-	public String constructTotalBridgeMap(){
-		return upperBridgeDescription + "\n" + underBridgeDescription + "\n";
+	public String constructTotalBridgeMap() {
+		return upperBridgeDescription + ENTER + underBridgeDescription + ENTER;
 	}
 
 	public static String getBridgeDescription() {

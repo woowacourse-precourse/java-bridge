@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.domain.game.BridgeGame;
 import bridge.domain.bridgeMaker.BridgeMaker;
 import bridge.domain.bridgeMaker.BridgeRandomNumberGenerator;
+import bridge.domain.result.ResultRendering;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -18,6 +19,7 @@ public class Controller {
 			BridgeGame bridgeGame = new BridgeGame();
 
 			bridgeGame.play(inputView, bridgeMaker);
+			OutputView.printGameInfo(ResultRendering.renderFinalResult(bridgeGame.getGameResult()));
 		} catch (IllegalArgumentException ignored) {
 		} finally {
 			OutputView.printGameInfo(ENTER + EXIT_MESSAGE);

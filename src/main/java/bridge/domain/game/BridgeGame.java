@@ -3,10 +3,10 @@ package bridge.domain.game;
 import bridge.domain.bridge.Bridge;
 import bridge.domain.bridgeMaker.BridgeMaker;
 import bridge.domain.player.GameProceedCommand;
-import bridge.domain.result.ResultDescription;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class BridgeGame {
@@ -14,13 +14,13 @@ public class BridgeGame {
 	private static final String GAME_START_INFO = "다리 건너기 게임을 시작합니다.";
 	private static final String REQUEST_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
 	private static final String REQUEST_RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-	private static final String RESULT_PRESENTATION = "최종 게임 결과";
-	private static final String RESULT_FAIL_OR_SUCCESS = "게임 성공 여부: %s";
-	private static final String RESULT_TRIAL = "총 시도한 횟수: %d";
 	private static final String ENTER = "\n";
 
-	private String crossComplete;    // 얘가 고유
-	private int trialCount;                    // 얘가 고유
+	public static final String RESULT_SUCCESS = "성공";
+	public static final String RESULT_FAIL = "실패";
+
+	private String crossFailOrSuccess;
+	private int trialCount;
 
 	public void play(InputView inputView, BridgeMaker bridgeMaker) {
 		OutputView.printGameInfo(GAME_START_INFO + ENTER);
@@ -29,10 +29,6 @@ public class BridgeGame {
 		Bridge bridge = new Bridge(inputView.readBridgeSize(), bridgeMaker);
 
 		crossingTrial(inputView, bridge);
-
-		OutputView.printGameInfo(RESULT_PRESENTATION + ENTER + ResultDescription.getBridgeDescription()
-				+ ENTER + String.format(RESULT_FAIL_OR_SUCCESS, crossComplete)
-				+ ENTER + String.format(RESULT_TRIAL, trialCount));
 	}
 
 	private void crossingTrial(InputView inputView, Bridge bridge) {
@@ -40,17 +36,17 @@ public class BridgeGame {
 			trialCount++;
 			List<String> bridgeNowCrossing = bridge.getBridgeToCross();
 			CrossingBridge crossingBridge = CrossingBridge.over(inputView, bridgeNowCrossing);
-			crossComplete = crossingBridge.isCrossComplete();
+			crossFailOrSuccess = crossingBridge.isCrossComplete();
 		} while (isTrialContinue(retryOrQuit(inputView)));
 	}
 
 	private boolean isTrialContinue(String commandChoice) {
-		return !(crossComplete.equals("성공") || GameProceedCommand.CQUIT.equals(commandChoice));
+		return !(crossFailOrSuccess.equals(RESULT_SUCCESS) || GameProceedCommand.CQUIT.equals(commandChoice));
 	}
 
 	private String retryOrQuit(InputView inputView) {
 		String commandChoice = "";
-		if (crossComplete.equals("성공") || GameProceedCommand.CQUIT.equals(requestRetry(inputView).getGameCommand())) {
+		if (crossFailOrSuccess.equals(RESULT_SUCCESS) || GameProceedCommand.CQUIT.equals(requestRetry(inputView).getGameCommand())) {
 			commandChoice = GameProceedCommand.CQUIT;
 			return commandChoice;
 		}
@@ -62,5 +58,11 @@ public class BridgeGame {
 	public GameProceedCommand requestRetry(InputView inputView) {
 		OutputView.printRequest(REQUEST_RETRY);
 		return inputView.readGameCommand();
+	}
+
+	public HashMap<String, Integer> getGameResult() {
+		HashMap<String, Integer> gameResult = new HashMap<>();
+		gameResult.put(crossFailOrSuccess, trialCount);
+		return gameResult;
 	}
 }
