@@ -12,6 +12,8 @@ public class OutputView {
      * 함수 이름 변경 불가
      */
 
+    private String clear = "실패";
+
     public void start() {
         System.out.println(GameMessage.START_MSG);
     }
@@ -32,8 +34,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(String clear, int count) {
-        System.out.printf(GameMessage.GAME_CLEAR_WHETHER, clear);
+    public void printResult(boolean clear, int count) {
+        if (clear) {
+            this.clear = "성공";
+        }
+        System.out.printf(GameMessage.GAME_CLEAR_WHETHER, this.clear);
         System.out.printf(GameMessage.TOTAL_TRY_COUNT, count);
     }
 }
