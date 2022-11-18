@@ -13,23 +13,24 @@ import org.junit.jupiter.params.provider.ValueSource;
 class JudgeDestinationTest {
 
     private InputView inputView = new InputView();
-    private final String QUIT="Q";
-    private final String RETRY="R";
-    private final Boolean GAME_OVER=false;
-    private final Boolean RESTART=true;
+    private final String QUIT = "Q";
+    private final String RETRY = "R";
+    private final Boolean GAME_OVER = false;
+    private final Boolean RESTART = true;
+
     @ParameterizedTest
-    @ValueSource(strings = {"E","123","J"})
+    @ValueSource(strings = {"E", "123", "J"})
     @DisplayName("게임 재시작 종료 판별, 종료시 예외 입력시 오류 발생")
     void judgeRestartOrOverException(String input) {
         Validate validate = new Validate();
-        Assertions.assertThatThrownBy(()->{
+        Assertions.assertThatThrownBy(() -> {
             validate.validateGameDefinition(input);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("게임 재시작 종료 판별, 종료시 예외 입력시 오류 발생")
-    void judgeRestartOrOver(){
+    void judgeRestartOrOver() {
         JudgeDestination judgeDestination = new JudgeDestination();
         Boolean result = judgeDestination.judgeRestartOrOver(QUIT);
         Boolean result2 = judgeDestination.judgeRestartOrOver(RETRY);
