@@ -17,6 +17,13 @@ public class InputValidService {
 		return bridgeSizeNumber;
 	}
 
+	public String validUserMoving(String userMoving) {
+		if (!userMoving.equals(InputViewConst.MOVING_UP) && !userMoving.equals(InputViewConst.MOVING_DOWN)) {
+			throw new IllegalArgumentException(ErrorConst.MOVING_ERROR);
+		}
+		return userMoving;
+	}
+
 	public String validUserCommand(String userCommand) {
 		if (!userCommand.equals(InputViewConst.RESTART) && !userCommand.equals(InputViewConst.QUIT)) {
 			throw new IllegalArgumentException(ErrorConst.USER_COMMAND_ERROR);

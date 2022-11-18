@@ -25,6 +25,15 @@ public class InputController {
 		}
 	}
 
+	public String getUserMoving() {
+		try {
+			return inputValidService.validUserMoving(inputView.readMoving());
+		} catch (IllegalArgumentException e) {
+			outputView.printError(e.getMessage());
+			return getUserMoving();
+		}
+	}
+
 	public String getUserRestartCommand() {
 		try {
 			return inputValidService.validUserCommand(inputView.readGameCommand());
