@@ -43,7 +43,7 @@ public class InputView {
 
     public boolean isMovingBlockInputValid(String movingBlock){
         for(UpAndDown upAndDown : UpAndDown.values()){
-            if(upAndDown.toString().equals(movingBlock)){
+            if(upAndDown.isEqualDirection(movingBlock)){
                 return true;
             }
         }
