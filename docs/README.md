@@ -7,7 +7,7 @@ ___
 ### 게임을 전반적으로 관리
 ### 1. 다리의 길이를 입력받는다.(inputView.readBridgeSize)
 ### 2. 입력받은 다리의 길이를 받고 다리를 생성 -> 게임 끝까지 사용 (BridgeMaker.makebridge)
-### 3. 이동할 칸을 선택하도록 U와 D를 입력받는다. (inputView.readBridgeSize)
+### 3. 이동할 칸을 선택하도록 U와 D를 입력받는다. (inputView.readMoving)
 ### 4. 3에서 입력받은 값으로 칸을 이동한다. (BrdigeGame.move)
 ### 5. 칸을 이동한 리스트를 출력(OutputView.printmap)
 ### 6. 다리가 건널수 없는 상태라면 게임 재시도 여부를 묻는다(OutputView.printResult, BridgeGame.retry)
