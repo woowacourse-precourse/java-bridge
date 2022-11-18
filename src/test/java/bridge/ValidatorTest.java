@@ -9,7 +9,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ValidatorTest {
 
-//    @Test
     @DisplayName("다리 길이 입력이 유효한 경우")
     @ParameterizedTest
     @ValueSource(strings = {"3", "5"})
