@@ -10,17 +10,13 @@ public class BridgeGame {
     private int bridgeNumber = 0;
 
     public void run() {
-        try {
-            List<String> upSide = new ArrayList<>();
-            List<String> downSide = new ArrayList<>();
-            List<String> bridge = BridgeController.makeBridge();
-            checkNextPath(bridge, upSide, downSide);
-        } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage());
-        }
+        List<String> upSide = new ArrayList<>();
+        List<String> downSide = new ArrayList<>();
+        List<String> bridge = BridgeController.makeBridge();
+        checkNextPath(bridge, upSide, downSide);
     }
 
-    public List<String> addUserMove(List<String> bridge, String path) {
+    public List<String> move(List<String> bridge, String path) {
         BridgeController.printMoving(path);
         List<String> bridgeByUser = new ArrayList<>();
 
@@ -57,14 +53,6 @@ public class BridgeGame {
         checkNextPath(bridge, upSide, downSide);
     }
 
-    private boolean UserInputDone(List<String> bridge, List<String> upSide, List<String> downSide) {
-        if (isUserInputDone(bridge, upSide)) {
-            BridgeController.printResult(upSide, downSide, countTryNumber);
-            return true;
-        }
-        return false;
-    }
-
     private void addCorrectResult(List<String> bridge, List<String> upSide, List<String> downSide) {
         while (!isUserInputDone(bridge, upSide)) {
             addCorrectSymbolUpSideDownSide(bridge, upSide, downSide);
@@ -75,6 +63,14 @@ public class BridgeGame {
         while (!isUserInputDone(bridge, upSide)) {
             addWrongSymbolUpSideDownSide(bridge, upSide, downSide);
         }
+    }
+
+    private boolean UserInputDone(List<String> bridge, List<String> upSide, List<String> downSide) {
+        if (isUserInputDone(bridge, upSide)) {
+            BridgeController.printResult(upSide, downSide, countTryNumber);
+            return true;
+        }
+        return false;
     }
 
     public void addCorrectSymbolUpSideDownSide(List<String> bridge, List<String> upSide, List<String> downSide) {
@@ -125,7 +121,7 @@ public class BridgeGame {
     }
 
     public List<String> getUserMove(List<String> bridge) {
-        return addUserMove(bridge, BridgeController.getMoving());
+        return move(bridge, BridgeController.getMoving());
     }
 
     public void retry(List<String> bridge, List<String> upSide, List<String> downSide) {
