@@ -32,4 +32,12 @@ public class BridgeMaker {
 
         return bridge;
     }
+    public String generateUpDown(int number) {
+        if (number == DOWN)
+            return "D";
+        if (number == UP )
+            return "U";
+
+        throw new IllegalArgumentException("0 혹은 1이 아닙니다.");
+    }
 }
