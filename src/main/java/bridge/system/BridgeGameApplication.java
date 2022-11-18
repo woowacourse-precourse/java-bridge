@@ -21,8 +21,8 @@ public class BridgeGameApplication {
         inputView = new InputView();
         outputView = new OutputView(new BridgeMessageMaker());
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridgeGame = new BridgeGame(bridgeMaker);
-        bridgeController = new BridgeController(inputView, outputView, bridgeGame);
+        bridgeGame = new BridgeGame();
+        bridgeController = new BridgeController(inputView, outputView, bridgeGame, bridgeMaker);
 
         bridgeController.playBridgeGame();
     }

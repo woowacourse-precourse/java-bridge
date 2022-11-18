@@ -7,9 +7,6 @@ import java.util.List;
 
 import static bridge.domain.BridgePhase.*;
 
-/**
- * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
- */
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
@@ -18,9 +15,9 @@ public class BridgeMaker {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    public List<String> makeBridge(int size) {
+    public List<String> makeBridge(int bridgeSize) {
         List<String> randomBridge = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < bridgeSize; i++) {
             randomBridge.add(convertBridgeMessage(bridgeNumberGenerator.generate()));
         }
         return randomBridge;
