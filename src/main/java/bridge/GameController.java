@@ -20,22 +20,28 @@ public class GameController {
         System.out.println(answer_bridge);
 
         BridgeGame bridgeGame = new BridgeGame(answer_bridge);
-        boolean isEnd = false;
-        while (!isEnd) {
-            moveStep(bridgeGame);
-            isEnd = bridgeGame.isEnd();
-        }
-        if(bridgeGame.isSuccess()) {
-            outputView.printResult("성공",bridgeGame,trials);
-            return;
-        }
-        outputView.restartMessage();
-        String command = inputView.readGameCommand();
-        if(command.equals("R"))
-            bridgeGame.retry();
+        boolean keepGoing = true;
+        while(keepGoing) {
+            boolean isEnd = false;
+            while (!isEnd) {
+                moveStep(bridgeGame);
+                isEnd = bridgeGame.isEnd();
+            }
+            if (bridgeGame.isSuccess()) {
+                outputView.printResult("성공", bridgeGame, trials);
+                return;
+            }
+            outputView.restartMessage();
+            String command = inputView.readGameCommand();
+            if (command.equals("R"))
+                bridgeGame.retry();
 
-        if(command.equals("Q"))
-            outputView.printResult("실패",bridgeGame,trials);
+            if (command.equals("Q")) {
+                outputView.printResult("실패", bridgeGame, trials);
+                return;
+            }
+            trials++;
+        }
     }
     private void moveStep(BridgeGame bridgeGame){
         //move message 출력
