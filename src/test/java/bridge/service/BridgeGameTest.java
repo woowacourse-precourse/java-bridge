@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -25,13 +24,17 @@ class BridgeGameTest {
 	}
 
 	@Test
-	@DisplayName("현재까지의 지도를 반환해준다.")
+	@DisplayName("현재까지의 지도를 반환해준다. 0 은 아래칸 1은 위칸")
 	void currentMap() {
-		bridgeGame.move("U");
-		bridgeGame.move("U");
-		List<List<String>> map = bridgeGame.currentMap();
-		IntStream.range(0, map.size())
-			.forEach(i -> assertThat(map.get(i)).contains("O"));
+		List<String> map = new ArrayList<>(List.of("U", "U", "U"));
+		for (int i = 0; i < 3; i++) {
+			bridgeGame.move(map.get(i));
+		}
+		List<List<String>> currentMap = bridgeGame.currentMap();
+		List<String> targetMap = new ArrayList<>(List.of("O", "O", "X"));
+		for (int i = 0; i < currentMap.size(); i++) {
+			assertThat(currentMap.get(i)).contains(targetMap.get(i));
+		}
 	}
 
 	@Test
