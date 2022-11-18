@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.game.BridgeGameCommand;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -26,14 +27,30 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String input = Console.readLine();
+        validateReadMovingInput(input);
+        return input;
     }
-
+    
+    private void validateReadMovingInput(String input) {
+        if (!BridgeMove.isContain(input)) {
+            throw new IllegalArgumentException("잘못된 입력입니다. 다시 시도하세요.");
+        }
+    }
+    
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String input = Console.readLine();
+        validateReadGameCommandInput(input);
+        return input;
+    }
+    
+    private void validateReadGameCommandInput(String input) {
+        if (!BridgeGameCommand.isContain(input)) {
+            throw new IllegalArgumentException("잘못된 입력입니다. 다시 시도하세요.");
+        }
     }
     
     public int getNumber() throws IllegalArgumentException {
