@@ -11,7 +11,10 @@ public class Validator {
     }
 
     public void validateRange(int bridgeNumber) {
-
+        if (bridgeNumber < 3 || bridgeNumber > 20) {
+            System.out.println(ErrorMessage.RANGE_ERROR.getMessage());
+            throw new IllegalArgumentException();
+        }
     }
 
     public void validateLength(String userInput) {
