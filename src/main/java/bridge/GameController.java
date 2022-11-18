@@ -11,14 +11,16 @@ public class GameController {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
         int bridgeSize = getBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         while (true) {
-            if (startCrossBridge(bridgeMaker.makeBridge(bridgeSize))) {
+            if (startCrossBridge(bridge)) {
                 break;
             }
 
-            if (bridgeGame.retry().equals("Q")) {
+            String commend = bridgeGame.retry();
+            if (commend.equals("Q")) {
                 break;
-            } else if (bridgeGame.retry().equals("R")) {
+            } else if (commend.equals("R")) {
                 attempts++;
             }
         }
