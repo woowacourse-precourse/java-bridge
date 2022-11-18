@@ -1,22 +1,14 @@
 package bridge;
 
 public class BridgeGameCounter {
-    private final int countLimit;
-    private int count = 0;
+    private int count = 1;
 
-    public BridgeGameCounter(int limit) {
-        countLimit = limit;
+    public int getCount() {
+        return count;
     }
 
     public void addCount() {
         count++;
-    }
-
-    public boolean isGameOver() {
-        if (countLimit == count) {
-            return true;
-        }
-        return false;
     }
 
     public void reset() {
