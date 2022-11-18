@@ -21,5 +21,6 @@ public class BridgeGameProgram {
         BridgeGame bridgeGame = new BridgeGame(bridgeMap);
         outputView.printRequestMoveSideComment();
         bridgeGame.move(inputView.readMoving());
+        outputView.printMap(bridgeGame.nowUserMapState());
     }
 }

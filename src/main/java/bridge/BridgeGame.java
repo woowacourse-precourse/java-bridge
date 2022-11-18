@@ -1,41 +1,49 @@
 package bridge;
 
 import bridge.utils.Validator;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final List<String> computerBridgeMap;
-    private final List<String> userBridgeMap;
+    private final BridgeOfComputer computerMap;
+    private final BridgeOfUser userMap;
+    private int stage;
+    private boolean fail;
 
-    public BridgeGame(List<String> computerBridgeMap) {
-        this.computerBridgeMap = computerBridgeMap;
-        this.userBridgeMap = new ArrayList<>(computerBridgeMap.size());
+    public BridgeGame(List<String> answerBridgeMap) {
+        this.computerMap = new BridgeOfComputer(answerBridgeMap);
+        this.userMap = new BridgeOfUser();
+        this.stage = 0;
+        this.fail = false;
     }
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public void move(String moveSide) {
         Validator.checkIsSide(moveSide);
-        compareWithComputer(moveSide);
-    }
-
-    private void compareWithComputer(String moveSide) {
-        int nowUserBlock = userBridgeMap.size();
-        String rightSide = computerBridgeMap.get(nowUserBlock);
-        if (rightSide.equals(moveSide)) {
-            userBridgeMap.add("O");
-            return;
+        boolean isRight = computerMap.match(stage, moveSide);
+        if (isRight) {
+            restoreRightMove(moveSide);
         }
-        userBridgeMap.add("X");
+        if (!isRight) {
+            restoreWrongMove(moveSide);
+        }
     }
 
+    private void restoreRightMove(String moveSide) {
+        userMap.restoreByRigth(moveSide);
+        stage++;
+    }
+
+    private void restoreWrongMove(String moveSide) {
+        userMap.restoreByWrong(moveSide);
+        fail = true;
+    }
+
+    public BridgeOfUser nowUserMapState() {
+        return userMap;
+    }
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
@@ -44,4 +52,6 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+
 }
