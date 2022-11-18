@@ -76,9 +76,22 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        quitOrRetryMsg();
-        String select = Console.readLine();
-        return select;
+        try {
+            quitOrRetryMsg();
+            String select = Console.readLine();
+            gameCommandException(select);
+            return select;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readGameCommand();
+        }
+
+    }
+
+    private void gameCommandException(String select) {
+        if (!select.equals("R") && !select.equals("Q")) {
+            throw new IllegalArgumentException("[ERROR] 입력키는 R 또는 Q여야 합니다.");
+        }
     }
 
 }
