@@ -7,7 +7,20 @@ import static bridge.view.OutputView.*;
 
 public class BridgeGameConsole {
 
-    //output
+    // Message
+    public void gameStartMessage(){
+        printStartMessage();
+    }
+
+    public void movementDirectionInputRequestMessage() {
+        printInputDirectionMessage();
+    }
+
+    public void bridgeSizeInputRequestMessage() {
+        printInputBridgeSizeMessage();
+    }
+
+    // Util
     public void gameResult(List<String> topGameBoard, List<String> bottomGameBoard) {
         printResult(topGameBoard, bottomGameBoard);
     }
@@ -20,15 +33,7 @@ public class BridgeGameConsole {
         printMap(topGameBoard, bottomGameBoard);
     }
 
-    public void movementDirectionInputRequestMessage() {
-        printInputDirectionMessage();
-    }
-
-    public void bridgeSizeInputRequestMessage() {
-        printInputBridgeSizeMessage();
-    }
-
-    //input
+    // Input
     public int inputBridgeSize(){
         return readBridgeSize();
     }
