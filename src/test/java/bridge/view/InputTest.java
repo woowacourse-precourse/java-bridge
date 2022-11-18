@@ -42,7 +42,7 @@ class InputTest {
     @DisplayName("입력 예외 발생 시 다시 입력")
     public void loopInputTest(){
         setInput("22\n20");
-        Integer size = inputView.tryReadingInput(() -> inputView.readBridgeSize());
+        Integer size = inputView.loopInput(() -> inputView.readBridgeSize());
         assertThat(size).isEqualTo(20);
     }
 
@@ -50,21 +50,21 @@ class InputTest {
     @DisplayName("숫자가 아닌 입력시 에러 문구 확인")
     public void notNumberErrorMsgTest(){
         testOutput("aaa\n20", ErrorMsg.NOT_NUMBER.toString(),
-                () -> inputView.tryReadingInput(() -> inputView.readBridgeSize()));
+                () -> inputView.loopInput(() -> inputView.readBridgeSize()));
     }
 
     @Test
     @DisplayName("입력범위를 넘어가는 경우 에러 문구 확인")
     public void outOfBoundErrorMsgTest(){
         testOutput("21\n20", ErrorMsg.WRONG_BRIDGE_SIZE.toString(),
-                () -> inputView.tryReadingInput(() -> inputView.readBridgeSize()));
+                () -> inputView.loopInput(() -> inputView.readBridgeSize()));
     }
 
     private <T> void testOutput(String input, String ouput, Supplier<T> function) {
         PrintStream defaultOut = System.out;
         OutputStream out = beforeTestOutput();
 
-        setInput("aaa\n21\n20");
+        setInput(input);
         function.get();
         assertThat(out.toString()).contains(ouput);
 

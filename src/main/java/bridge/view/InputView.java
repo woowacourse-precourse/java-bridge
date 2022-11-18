@@ -20,7 +20,7 @@ public class InputView {
         return size;
     }
 
-    public  <T> T tryReadingInput (Supplier<T> function){
+    public  <T> T loopInput(Supplier<T> function){
         while(true){
             try{
                 return function.get();
