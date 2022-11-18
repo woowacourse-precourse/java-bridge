@@ -7,6 +7,7 @@ public class GameController {
     private static final String POSSIBLE_MOVE = "O";
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
+    private boolean success = false;
 
     public void play() {
         outputView.printGameStartMessage();
@@ -15,7 +16,7 @@ public class GameController {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(size);
         BridgeGame bridgeGame = new BridgeGame();
-        walk(bridgeGame, bridge);
+        startWalk(bridgeGame, bridge);
     }
 
     private void walk(BridgeGame bridgeGame, List<String> bridge) {
@@ -24,21 +25,37 @@ public class GameController {
                 outputView.printMap();
                 continue;
             }
-            String command = inputView.readGameCommand();
-            if (isRetry(command)) {
+            return;
+        }
+        success = true;
+    }
+
+    private void startWalk(BridgeGame bridgeGame, List<String> bridge) {
+        while (!isSuccess()) {
+            walk(bridgeGame, bridge);
+            if (isRetry()) {
                 bridgeGame.retry();
+                continue;
             }
             break;
         }
     }
 
+    private boolean isSuccess() {
+        return success;
+    }
+
     private boolean isMovePossible(BridgeGame bridgeGame, String bridgeStatus) {
         String moving = inputView.readMoving();
-        String movePossible =  bridgeGame.move(moving, bridgeStatus);
+        String movePossible = bridgeGame.move(moving, bridgeStatus);
         return movePossible.equals(POSSIBLE_MOVE);
     }
 
-    private boolean isRetry(String command) {
+    private boolean isRetry() {
+        if (isSuccess()) {
+            return false;
+        }
+        String command = inputView.readGameCommand();
         return command.equals(RETRY_COMMAND);
     }
 }
