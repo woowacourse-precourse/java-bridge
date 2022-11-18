@@ -18,9 +18,9 @@ public class ProcessHelperImpl implements ProcessHelper {
 
     @Override
     public boolean checkCharIsUOrD(String moving) {
-        if (moving.equals("U") || moving.equals("D")) {
-            return true;
+        if (!(moving.equals("U") || moving.equals("D"))) {
+            return false;
         }
-        return false;
+        return true;
     }
 }

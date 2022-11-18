@@ -14,4 +14,6 @@ public class ExceptionMessage {
 
     public static final String BRIDGE_LENGTH_INCORRECT_CHARACTER_MESSAGE = "다리 길이 입력엔 숫자만 가능합니다.";
 
+    public static final String READ_MOVING_INCORRECT_MESSAGE = "U or D 문자만 이동할 수 있습니다.";
+
 }

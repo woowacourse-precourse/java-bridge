@@ -3,8 +3,11 @@ package bridge.domain;
 
 import static bridge.common.message.ExceptionMessage.BRIDGE_LENGTH_INCORRECT_CHARACTER_MESSAGE;
 import static bridge.common.message.ExceptionMessage.ERROR_CODE;
+import static bridge.common.message.ExceptionMessage.READ_MOVING_INCORRECT_MESSAGE;
 
+import bridge.common.message.ExceptionMessage;
 import bridge.domain.exception.BridgeSizeException;
+import bridge.domain.exception.ReadMovingException;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -50,8 +53,8 @@ public class InputView {
     }
 
     private void movingValidation(ProcessHelper processHelper, String moving) {
-        if (!processHelper.checkCharIsUOrD(moving)) {
-            throw new IllegalArgumentException(ERROR_CODE);
+        if (processHelper.checkCharIsUOrD(moving)) {
+            throw new ReadMovingException(ERROR_CODE + READ_MOVING_INCORRECT_MESSAGE);
         }
     }
 
