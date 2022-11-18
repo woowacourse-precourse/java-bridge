@@ -13,6 +13,7 @@ public class ControllerV2 {
 	private String command = "";
 	private int size;
 	private boolean retry = true;
+	private boolean winOrLose = false;
 
 	public void init() {
 		OutputView.printStartMessage();
@@ -32,7 +33,12 @@ public class ControllerV2 {
 	}
 
 	public void end() {
-		OutputView.printResultWin(state, game.getTryCount());
+		if (this.winOrLose) {
+			OutputView.printResultWin(state, game.getTryCount());
+		}
+		if (!this.winOrLose) {
+			OutputView.printResultLose(state, game.getTryCount());
+		}
 	}
 
 	private int gameState(int index) {
@@ -46,6 +52,7 @@ public class ControllerV2 {
 	private void isWin(int index) {
 		if (index == size) {
 			this.retry = false;
+			this.winOrLose = true;
 		}
 	}
 
@@ -68,7 +75,6 @@ public class ControllerV2 {
 
 	private boolean isQuit() {
 		if (command.equals(QUIT_GAME)) {
-			OutputView.printResultLose(state, game.getTryCount());
 			this.retry = false;
 			return true;
 		}
