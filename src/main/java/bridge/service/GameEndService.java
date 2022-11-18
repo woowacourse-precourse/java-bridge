@@ -1,8 +1,7 @@
 package bridge.service;
 
-import java.util.List;
-
 import bridge.repository.UserBridgeRepository;
+import bridge.repository.UserBridgeStatusDto;
 
 public class GameEndService {
 
@@ -12,7 +11,7 @@ public class GameEndService {
 		this.userBridgeRepository = userBridgeRepository;
 	}
 
-	public List<String> getUserMap() {
-		return userBridgeRepository.findUserBridge();
+	public UserBridgeStatusDto getUserBridgeStatusDto() {
+		return userBridgeRepository.findUserBridgeStatusDto();
 	}
 }

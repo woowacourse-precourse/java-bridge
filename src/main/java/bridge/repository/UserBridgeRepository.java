@@ -5,23 +5,37 @@ import java.util.List;
 
 public class UserBridgeRepository {
 
-	private List<String> userBridge;
-	private Integer bridgeSize; // 이거 integer 로 받아도 크기 충분한지 체크해야함
+	private List<String> userUpperBridge;
+	private List<String> userLowerBridge;
+	private Integer userCurrentLocation; // 이거 integer 로 받아도 크기 충분한지 체크해야함
 
 	public UserBridgeRepository() {
-		this.userBridge = new ArrayList<>();
+		this.userUpperBridge = new ArrayList<>();
+		this.userLowerBridge = new ArrayList<>();
+		this.userCurrentLocation = 0;
 	}
 
-	public void initUserBridge(Integer bridgeSize) {
-		this.bridgeSize = bridgeSize;
+	public void saveUserSpace(String Location, String userCurrentTrace) {
+		userCurrentLocation++;
+		if (Location.equals("U")) {
+			this.userUpperBridge.add(userCurrentTrace);
+			this.userLowerBridge.add(" ");
+			return;
+		}
+		this.userUpperBridge.add(" ");
+		this.userLowerBridge.add(userCurrentTrace);
 	}
 
-	public void saveUserSpace(String userMoving) {
-		this.userBridge.add(userMoving);
+	public UserBridgeStatusDto findUserBridgeStatusDto() {
+		return new UserBridgeStatusDto(userUpperBridge, userLowerBridge, userCurrentLocation);
+	}
+
+	public Integer findUserCurrentLocation() {
+		return this.userCurrentLocation;
 	}
 
 	public List<String> findUserBridge() {
-		return userBridge;
+		return userUpperBridge;
 	}
 
 }

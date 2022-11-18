@@ -25,7 +25,6 @@ public class BridgeGame {
 	}
 
 	public void startApplication() {
-
 		inputController.startGame();
 		Integer attemptCount = 0;
 		Integer bridgeSize = inputController.getBridgeSize();
@@ -38,12 +37,8 @@ public class BridgeGame {
 				break;
 			}
 		} while (!retry());
-		//여기부터 게임을 나가는 경우다
-
-		//게임 최종결과 출력
-		outputView.printMap(gameEndService.getUserMap(), bridgeSize);
-		//게임 성공 여부 출력, 총시도한 횟수 출력
-		outputView.printResult(userResult, attemptCount); // 이거 경우의 수 나눠서 판단해야함, 지금은 임시
+		outputView.printMap(gameEndService.getUserBridgeStatusDto());
+		outputView.printResult(userResult, attemptCount);
 	}
 
 	/**
@@ -53,17 +48,18 @@ public class BridgeGame {
 	 */
 	public String move(Integer bridgeSize) {
 		boolean validMove;
-		Integer currentCount = 0;
+		Integer currentLocation = 0;
 		do {
-			String userMoving = inputController.getUserMoving();
-			validMove = gameService.checkValidSpace(userMoving, currentCount);
+			String userLocation = inputController.getUserMoving();
+			validMove = gameService.checkValidSpace(userLocation, currentLocation);
 			if (validMove == false) {
+				gameService.saveUserSpace(false, userLocation);
 				return OutputViewConst.FAIL;
 			}
-			currentCount++;
-			gameService.saveUserSpace(userMoving);
-		} while (currentCount != bridgeSize);//다리에 끝까지 도착했는지 진행한 다리 사이즈로 체크
-		//만약 움직일수 있는 곳이 아니면 break 게임 종료,-> 그리고 재시작 할것인지 물음
+			gameService.saveUserSpace(true, userLocation);
+			currentLocation++;
+			outputView.printMap(gameEndService.getUserBridgeStatusDto());
+		} while (currentLocation != bridgeSize);
 		return OutputViewConst.SUCCESS;
 	}
 

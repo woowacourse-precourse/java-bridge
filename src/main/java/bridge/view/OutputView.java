@@ -2,6 +2,7 @@ package bridge.view;
 
 import java.util.List;
 
+import bridge.repository.UserBridgeStatusDto;
 import bridge.util.InputViewConst;
 import bridge.util.OutputViewConst;
 
@@ -19,25 +20,17 @@ public class OutputView {
 	 * <p>
 	 * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
-	public void printMap(List<String> userMap, Integer bridgeSize) {
+	public void printMap(UserBridgeStatusDto userBridgeStatusDto) {
+		Integer bridgeSize = userBridgeStatusDto.getUserCurrentLocation();
 		System.out.println(OutputViewConst.USER_FINAL_RESULT_PHRASE);
-		printBridge(userMap, bridgeSize, InputViewConst.MOVING_UP);
-		printBridge(userMap, bridgeSize, InputViewConst.MOVING_DOWN);
+		printBridge(userBridgeStatusDto.getUserUpperBridge(), bridgeSize);
+		printBridge(userBridgeStatusDto.getUserLowerBridge(), bridgeSize);
 	}
 
-	private void printBridge(List<String> userMap, Integer bridgeSize, String moving) {
+	private void printBridge(List<String> userMap, Integer bridgeSize) {
 		System.out.print(OutputViewConst.RESULT_PREFIX);
 		for (int i = 0; i < bridgeSize; i++) {
-			if (userMap.get(i).equals(moving)) {
-				System.out.print(OutputViewConst.USER_SPACE);
-			}
-
-			//Todo: X 처리도 해야한다 -> 일단 어느정도 완성후에 할 것
-
-			if (!userMap.get(i).equals(moving)) {
-				System.out.print(OutputViewConst.BLANK_SPACE);
-			}
-
+			System.out.print(userMap.get(i));
 			if (i != bridgeSize - 1) {
 				System.out.print(OutputViewConst.RESULT_PARTITION);
 			}
