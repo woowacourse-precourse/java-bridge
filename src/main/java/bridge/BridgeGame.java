@@ -1,5 +1,6 @@
 package bridge;
 
+import java.net.PortUnreachableException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +46,13 @@ public class BridgeGame {
 
     public boolean isMovable(int userCrossBridgeIndex) {
         return bridgeLine.get(userCrossBridgeIndex).equals(userCrossBridge.get(userCrossBridgeIndex));
+    }
+
+    /**
+     * 게임이 끝났는지 확인하는 메서드
+     */
+    public boolean isEnd() {
+        return bridgeLine.size() <= userCrossBridge.size();
     }
 
     public int getRound() {
