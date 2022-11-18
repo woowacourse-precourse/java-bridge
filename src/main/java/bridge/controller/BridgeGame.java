@@ -34,7 +34,7 @@ public class BridgeGame {
     }
 
     private boolean isRepeat(boolean flag, User user) {
-        return (flag && user.getDoesSuccess());
+        return (flag && !user.getDoesSuccess());
     }
 
     public void move() {

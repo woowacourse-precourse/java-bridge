@@ -11,13 +11,12 @@ public class User {
 
     public User() {
         this.choices = new ArrayList<>();
-        totalTryCount = 0;
+        totalTryCount = 1;
         doesSuccess = false;
     }
 
     public void addChoice(final String choice) {
         this.choices.add(choice);
-        totalTryCount++;
     }
 
     public List<String> getChoices() {
@@ -26,6 +25,7 @@ public class User {
 
     public void resetChoices() {
         choices.clear();
+        totalTryCount++;
     }
 
     public int getStep() {
