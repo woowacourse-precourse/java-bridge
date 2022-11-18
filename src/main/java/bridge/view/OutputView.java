@@ -1,10 +1,15 @@
 package bridge.view;
 
+import java.util.List;
+import java.util.StringJoiner;
+
+import static bridge.constant.Constants.BridgeUtils.*;
+import static bridge.constant.Constants.BridgeUtils.BRIDGE_FINISH;
 import static bridge.constant.Constants.Console.*;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- *
+ * <p>
  * 제공된 OutputView 클래스를 활용해 구현해야 한다.
  * OutputView의 패키지는 변경할 수 있다.
  * OutputView의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
@@ -17,7 +22,18 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap() {
+    public static void printMap(List<String> topGameBoard, List<String> bottomGameBoard) {
+        System.out.println(createMap(topGameBoard));
+        System.out.println(createMap(bottomGameBoard));
+    }
+
+    private static StringJoiner createMap(List<String> gameBoard) {
+        StringJoiner map = new StringJoiner(BRIDGE_SEPARATOR, BRIDGE_START, BRIDGE_FINISH);
+
+        for(String value : gameBoard){
+            map.add(value);
+        }
+        return map;
     }
 
     /**
@@ -43,11 +59,11 @@ public class OutputView {
         System.out.println("");
     }
 
-    public static void printInputBridgeSizeMessage(){
+    public static void printInputBridgeSizeMessage() {
         System.out.println(INPUT_BRIDGE_SIZE_MESSAGE);
     }
 
-    public static void printInputDirectionMessage(){
+    public static void printInputDirectionMessage() {
         System.out.println(INPUT_DIRECTION_MESSAGE);
     }
 }
