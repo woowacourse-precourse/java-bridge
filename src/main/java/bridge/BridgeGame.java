@@ -18,6 +18,7 @@ public class BridgeGame {
         move(moving);
         GameStatus gameStatus = new GameStatus(gameUser);
         if (isGameOver()) {
+            // 게임 종료되는 경우는. 1. 틀렸거나, 2. 답을 맞췄거나
             gameStatus.setFlag(gameUser, answerBridge);
         }
         return gameStatus;
@@ -28,7 +29,7 @@ public class BridgeGame {
     }
 
     private boolean isGameOver() {
-        return !gameUser.hasSameBridge(answerBridge) ||
+        return gameUser.hasDifferentBridge(answerBridge) ||
                 gameUser.hasBridgeLength(answerBridge.length());
     }
 

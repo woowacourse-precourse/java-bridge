@@ -18,16 +18,27 @@ public class Bridge {
         bridge = new ArrayList<>();
     }
 
+    // delete later
     public boolean isSame(Bridge other) {
         return other.isSameValue(bridge);
     }
 
+    // delete later
     public boolean isSameValue(List<String> other) {
         return bridge.equals(other);
     }
 
     public int length() {
         return bridge.size();
+    }
+
+    public boolean isPartOfBridge(Bridge otherBridge) {
+        return otherBridge.isPartOfList(bridge);
+    }
+
+    public boolean isPartOfList(List<String> other) {
+        List<String> temp = other.subList(0, length());
+        return temp.equals(bridge);
     }
 
     @Override
