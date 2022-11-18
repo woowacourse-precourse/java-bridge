@@ -31,11 +31,14 @@ public class InputView {
         }
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public String readGameCommand() {
-        return null;
+        try {
+            String input = Console.readLine();
+            validateGameCommand(input);
+            return input;
+        } catch (NoSuchElementException e) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public void validateAllNumber(String input) {
@@ -53,6 +56,12 @@ public class InputView {
 
     public void validateMoveCommand(String input) {
         if (!input.equals(Command.UP.getCommand()) && !input.equals(Command.DOWN.getCommand())) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void validateGameCommand(String input) {
+        if (!input.equals(Command.RETRY.getCommand()) && !input.equals(Command.QUIT.getCommand())) {
             throw new IllegalArgumentException();
         }
     }
