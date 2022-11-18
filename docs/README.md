@@ -9,8 +9,8 @@
 - [x] 입력값을 readBridgeSize에서 리턴
   - [x] 다리 길이 3이상 20이하 아니면 예외처리 `IllegalArgumentException`를 발생+`[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.`
 - [x] bridgeGenerator로 bridgeMaker 생성
-- [ ] BridgeMaker 사용해서 다리 입력받은 다리 개수 만큼 생성
-- [ ] BridgeMaker안에 새 메소드(Generator 사용하는 메소드, 다리 길이 받아서 만든다)
+- [x] BridgeMaker 사용해서 다리 입력받은 다리 개수 만큼 생성
+
 
 ## 다리 이동
 - [ ] 입력 `이동할 칸을 선택해주세요. (위: U, 아래: D)` 후 정답과 비교하는 함수 구현
