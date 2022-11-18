@@ -1,11 +1,12 @@
 package bridge.controller;
 
 import bridge.model.BridgeGame;
+import bridge.model.bridge.Node;
+import bridge.view.GameCommand;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class GameController {
-    private static final String QUIT_COMMAND = "Q";
     private static final BridgeGame game = new BridgeGame();
     private static final InputView input = new InputView();
     private static final OutputView output = new OutputView();
@@ -28,13 +29,13 @@ public class GameController {
     }
 
     private static void moveAndPrintResult() {
-        String to = input.readMoving();
+        Node to = input.readMoving();
         game.move(to);
         output.printMap();
     }
 
     private static void quitOrRetry() {
-        String command = input.readGameCommand();
+        GameCommand command = input.readGameCommand();
         if (wantToQuit(command)) {
             game.quit();
             return;
@@ -42,7 +43,7 @@ public class GameController {
         game.retry();
     }
 
-    private static boolean wantToQuit(String command) {
-        return command.equals(QUIT_COMMAND);
+    private static boolean wantToQuit(GameCommand command) {
+        return command == GameCommand.QUIT;
     }
 }

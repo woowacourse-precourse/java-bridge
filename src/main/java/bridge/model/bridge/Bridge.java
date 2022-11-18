@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
+    public static final int MAX_SIZE = 20;
+    public static final int MIN_SIZE = 3;
     private List<Node> nodes;
 
     private Bridge(int size) {
