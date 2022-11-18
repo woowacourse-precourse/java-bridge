@@ -22,12 +22,12 @@ public class Application {
         return bridgeMaker.makeBridge(bridgeSize);
     }
 
-    static boolean gameProgress(InputView input, BridgeGame bridgeGame, int bridgeSize, OutputView output) {
-        for (int step = 0; step < bridgeSize; step++) {
+    static boolean gameProgress(InputView input, BridgeGame bridgeGame, OutputView output) {
+        for (int step = 0; step < bridgeGame.getBridgeSize(); step++) {
             String nextStep = readMoving(input);
             boolean rightStep = bridgeGame.move(nextStep, step);
             output.printMap(bridgeGame);    // 시스템 현재 상황 출력
-            if (rightStep && step == bridgeSize - 1) return true;    // 게임 종료로 분기
+            if (rightStep && step == bridgeGame.getBridgeSize() - 1) return true;    // 게임 종료로 분기
             if (!rightStep) return false;   // 게임 재시도 여부로 분기
             bridgeGame.nextStepRecord();
         }
@@ -44,10 +44,10 @@ public class Application {
         return input.readGameCommand();
     }
 
-    static String playGame(InputView input, BridgeGame bridgeGame, int bridgeSize, OutputView output) {
+    static String playGame(InputView input, BridgeGame bridgeGame, OutputView output) {
         while (true) {
             bridgeGame.plusGameCount();
-            boolean gameResult = gameProgress(input, bridgeGame, bridgeSize, output);
+            boolean gameResult = gameProgress(input, bridgeGame, output);
             if (gameResult) return "성공";
             if (Objects.equals(readCommand(input), "Q")) return "실패";
             bridgeGame.retry();
@@ -61,7 +61,7 @@ public class Application {
         List<String> bridge = makeBridge(bridgeSize);
         BridgeGame bridgeGame = new BridgeGame(bridge);
         OutputView output = new OutputView();
-        String isSuccess = playGame(input, bridgeGame, bridgeSize, output);
+        String isSuccess = playGame(input, bridgeGame, output);
         output.printResult(bridgeGame);
         output.printIsSuccess(bridgeGame, isSuccess);
     }
@@ -71,8 +71,7 @@ public class Application {
         try {
             startGame();
         } catch (IllegalArgumentException exception) {
-            System.out.print("[ERROR] ");
-            System.out.println(exception.getMessage());
+            System.out.print("[ERROR] " + exception.getMessage());
         }
     }
 }

@@ -8,6 +8,7 @@ import java.util.Objects;
  */
 public class BridgeGame {
     private static int count;
+    private final int bridgeSize;
     private final List<String> allBridge;
     private String nowBridgeUp;
     private String nowBridgeDown;
@@ -15,12 +16,17 @@ public class BridgeGame {
     public BridgeGame(List<String> allBridge) {
         count = 0;
         this.allBridge = allBridge;
+        this.bridgeSize = allBridge.size();
         this.nowBridgeUp = "[";
         this.nowBridgeDown = "[";
     }
 
     public int getCount() {
         return count;
+    }
+
+    public int getBridgeSize() {
+        return bridgeSize;
     }
 
     public String getNowBridgeUp() {
