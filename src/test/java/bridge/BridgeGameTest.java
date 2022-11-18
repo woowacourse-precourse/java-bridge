@@ -24,4 +24,13 @@ public class BridgeGameTest {
         bridgeGame.move("D");
         assertThat(bridgeGame.getBridgeTrack()).isEqualTo(List.of("D", "D"));
     }
+    @DisplayName("reset()이후 bridgeTrack은 초기화된다.")
+    @Test
+    void resetAndCheckBridgeTrackSize() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "U"));
+        bridgeGame.move("D");
+        assertThat(bridgeGame.getBridgeTrack()).isNotEmpty();
+        bridgeGame.reset();
+        assertThat(bridgeGame.getBridgeTrack()).isEmpty();
+    }
 }
