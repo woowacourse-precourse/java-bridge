@@ -11,6 +11,10 @@ import bridge.view.OutputView;
 
 import java.util.List;
 
+/**
+ * 다리 건너기 게임의 플래이어와 맵 등록, 입력등을 관리하는 클래스
+ */
+// todo: 다른 클래스로 분리할 기능들 확인
 public class GameController {
 
     public static final String GAME_RETRY_INPUT = "R";
@@ -20,6 +24,7 @@ public class GameController {
     private final OutputView outputView;
     private final BridgeGame bridgeGame;
 
+    // todo: bridge를 BridgeGame에서 관리할 수 있도록 refactor, 그 외 OutputView등에서의 활용 방법 방안 구상
     private final Bridge bridge;
 
     public GameController() {
