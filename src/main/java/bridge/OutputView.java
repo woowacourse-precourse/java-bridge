@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,6 +14,16 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<List<String>> upDownBridgeList) {
+    	for(List<String> bridge : upDownBridgeList) {
+    		StringBuilder result = new StringBuilder();
+    		result.append("[");
+    		for(int i = 0; i < bridge.size(); i++) {
+    			result.append(" " + bridge.get(i) + " ");
+    			result.append("|");
+    		}
+    		result.replace(result.length() - 1, result.length(), "]");
+    		System.out.println(result);
+    	}
     }
 
     /**
