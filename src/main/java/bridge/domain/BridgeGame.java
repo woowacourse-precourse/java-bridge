@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.utils.Validator;
+
 import java.util.List;
 
 public class BridgeGame {
@@ -10,9 +12,16 @@ public class BridgeGame {
         this.user = user;
     }
 
-    public void move() {
+    public void move(String moveInput) {
+        validateMoveInput(moveInput);
+
+        user.move(moveInput);
     }
 
     public void retry() {
+    }
+
+    private void validateMoveInput(String moveInput) {
+        Validator.checkMoveInput(moveInput);
     }
 }
