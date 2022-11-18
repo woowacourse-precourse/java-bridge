@@ -99,4 +99,15 @@ public class Validator {
             inputView.inputGameRestart();
         }
     }
+
+    public static void validateInputGameRestartNull(String inputRestart) {
+        try {
+            if (inputRestart.length() == 0) {
+                throw new NullPointerException();
+            }
+        } catch (NullPointerException e) {
+            System.out.println(ErrorMessage.INPUT_NULL.getErrorMessage());
+            inputView.inputGameRestart();
+        }
+    }
 }
