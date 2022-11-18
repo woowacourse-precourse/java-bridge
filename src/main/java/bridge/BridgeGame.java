@@ -8,9 +8,14 @@ import java.util.List;
 public class BridgeGame {
 
     private int playerPos;
+    private final int bridgeSize;
 
-    public void init() {
-        playerPos = -1;
+    public BridgeGame(int bridgeSize) {
+        this.bridgeSize = bridgeSize;
+    }
+
+    public void init(int bridgeSize) {
+        this.playerPos = -1;
     }
 
     /**
@@ -21,6 +26,10 @@ public class BridgeGame {
      */
     public Boolean move(List<String> bridge, String moving) {
         return bridge.get(++playerPos).equals(moving);
+    }
+
+    public Boolean isClear() {
+        return playerPos == bridgeSize;
     }
 
     /**
