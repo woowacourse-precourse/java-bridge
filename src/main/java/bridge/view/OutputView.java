@@ -32,4 +32,7 @@ public class OutputView {
     public void printAskMoving() {
         System.out.println(ASK_MOVING.key());
     }
+    public void printAskCommand(){
+        System.out.println(ASK_COMMAND.key());
+    }
 }
