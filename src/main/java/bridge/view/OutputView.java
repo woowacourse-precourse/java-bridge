@@ -1,12 +1,23 @@
 package bridge.view;
 
+import bridge.constant.GameProcedureStringConstant;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
 
-     public void printGameStartMessage() {
-         System.out.println();
+     public void gameStartMessage() {
+         System.out.println(GameProcedureStringConstant.GAME_START_MESSAGE.getMessage());
+         System.out.println(GameProcedureStringConstant.BRIDGE_LENGTH_INPUT_MESSAGE.getMessage());
+     }
+
+     public void printChooseWhereToGoBridgeMessage() {
+
+     }
+
+     public void printRetryOrExitGameMessage() {
+
      }
 
     /**
