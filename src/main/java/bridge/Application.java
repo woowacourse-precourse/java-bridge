@@ -3,6 +3,9 @@ package bridge;
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        PrintCommand printCommand= new PrintCommand();
+        printCommand.printGameStart();
+        BridgeGame game = new BridgeGame();
+
     }
 }
