@@ -34,8 +34,16 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public BridgeLocation readMoving() {
-        return BridgeLocation.createLocation(Console.readLine());
+    public String readMoving() {
+        String readline = Console.readLine();
+        isMovingCommand(readline);
+        return readline;
+    }
+
+    private void isMovingCommand(String readline) {
+        if (!("U".equals(readline) || "D".equals(readline))) {
+            throw new IllegalArgumentException("[ERROR] U 또는 D를 입력해 주시기 바랍니다.");
+        }
     }
 
     /**
@@ -48,7 +56,7 @@ public class InputView {
     }
 
     private void isGameCommand(String readline) {
-        if (!("R".equals(readline) || "Q".equals(readline))){
+        if (!("R".equals(readline) || "Q".equals(readline))) {
             throw new IllegalArgumentException("[ERROR] R 또는 Q를 입력해 주시기 바랍니다.");
         }
     }

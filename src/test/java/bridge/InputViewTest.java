@@ -32,7 +32,7 @@ class InputViewTest {
     @Test
     void inputBridgeMoving() {
         System.setIn(new ByteArrayInputStream("U".getBytes()));
-        BridgeLocation result = BridgeLocation.UP;
+        String result = "U";
         assertThat(inputView.readMoving()).isEqualTo(result);
     }
 
