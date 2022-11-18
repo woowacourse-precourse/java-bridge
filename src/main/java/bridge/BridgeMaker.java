@@ -3,15 +3,13 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.BridgeStatus.DOWN;
+import static bridge.BridgeStatus.UP;
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-
-    private static final String UP = "U";
-    private static final String DOWN = "D";
-    private static final int UP_NUMBER = 1;
-    private static final int DOWN_NUMBER = 0;
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -33,9 +31,9 @@ public class BridgeMaker {
     }
 
     private void addBridge(List<String> bridge, int randNumber) {
-        if (randNumber == UP_NUMBER)
-            bridge.add(UP);
-        if (randNumber == DOWN_NUMBER)
-            bridge.add(DOWN);
+        if (randNumber == UP.getUpNumber())
+            bridge.add(UP.getUpName());
+        if (randNumber == DOWN.getUpNumber())
+            bridge.add(DOWN.getUpName());
     }
 }
