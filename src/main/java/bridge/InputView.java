@@ -66,7 +66,7 @@ public class InputView {
 
     private void isMovingCommand(String command) {
         String regex = "^[DU]$";
-        if(Pattern.matches(regex, command)){
+        if(!Pattern.matches(regex, command)){
             throw new IllegalArgumentException(ErrorMessage.NOT_MATCHING_MOVING_COMMAND.getMessage());
         }
     }
@@ -92,7 +92,7 @@ public class InputView {
 
     private void isGameCommand(String command) {
         String regex = "^[RQ]$";
-        if(Pattern.matches(regex, command)) {
+        if(!Pattern.matches(regex, command)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_MATCHING_GAME_COMMAND.getMessage());
         }
     }
