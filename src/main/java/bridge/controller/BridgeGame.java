@@ -56,7 +56,7 @@ public class BridgeGame {
             try {
                 String choice = InputView.getInputChoice();
                 user.addChoice(choice);
-                OutputView.printMap(user.getChoices(), answerBridge.compareTo(user));
+                OutputView.printMap(user.getChoices(), answerBridge.compareTo(user.getChoices()));
                 break;
             } catch (IllegalArgumentException illegalArgumentException) {
                 OutputView.printError(illegalArgumentException);
@@ -97,6 +97,6 @@ public class BridgeGame {
     }
 
     private void finishGame() {
-        OutputView.printResult(user, answerBridge.compareTo(user));
+        OutputView.printResult(user, answerBridge.compareTo(user.getChoices()));
     }
 }

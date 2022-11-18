@@ -11,9 +11,8 @@ public class AnswerBridge {
         this.answerBridge = bridge;
     }
 
-    public List<Boolean> compareTo(final User user) {
+    public List<Boolean> compareTo(final List<String> choices) {
         List<Boolean> result = new ArrayList<>();
-        List<String> choices = user.getChoices();
         for (int index = 0; index < choices.size(); index++) {
             if (isSame(answerBridge.get(index), choices.get(index))) {
                 result.add(true);
