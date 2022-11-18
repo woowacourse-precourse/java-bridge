@@ -26,12 +26,14 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<String>(size);
         for (int i = 0; i < size; i++) {
-            if (bridgeNumberGenerator.generate() == 0) {
+            int generateNumber = bridgeNumberGenerator.generate();
+            if (generateNumber == 0) {
                 bridge.add("D");
-            } else if (bridgeNumberGenerator.generate() == 1) {
+            } else if (generateNumber == 1) {
                 bridge.add("U");
             }
         }
+        System.out.println(bridge);
         return bridge;
     }
 }
