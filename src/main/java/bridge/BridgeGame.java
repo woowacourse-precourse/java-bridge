@@ -38,8 +38,8 @@ public class BridgeGame {
         return false;
     }
 
-    public String checkGameResult(int bridgeSize, int currentBridgeIndex) {
-        if (bridgeSize == currentBridgeIndex) { return "성공"; }
+    public String checkGameResult(int bridgeSize) {
+        if (bridgeSize == this.bridgeIndex) { return "성공"; }
 
         return "실패";
     }
