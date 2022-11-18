@@ -1,17 +1,22 @@
 package bridge;
 
+import java.util.List;
+
 public class Controller {
     private final static String ERROR_MESSAGE = "[ERROR]";
     private final InputView inputView = InputView.getInstance();
     private final OutputView outputView = OutputView.getInstance();
 
     public void run () {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         BridgeGame bridgeGame = BridgeGame.getInstance();
         String bridgeSize;
 
         outputView.printGameStart();
         bridgeSize = inputView.readBridgeSize();
         validate(bridgeSize);
+        bridgeMaker.makeBridge(Integer.parseInt(bridgeSize));
     }
 
     private void validate(String bridgeSize) {
