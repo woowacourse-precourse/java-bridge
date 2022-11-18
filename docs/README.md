@@ -63,6 +63,9 @@
 - [x]  AnswerBridge 다리를 표현하는 클래스
     - [x]  check -> 라운드와 방향을 입력받아 MoveResult를 반환
 - [x]  Player 사용자 클래스
+    - [x]  move -> 다리 건너기
+    - [x]  reset -> 해당 게임을 리셋
+    - [x]  getGameResult -> 게임 결과 확인
 - [x]  BridgeGame 다리 건너기 게임을 관리하는 클래스
     - [x]  move -> 움직이는 방향에 대한 결과 확인
 - [x]  BridgeMaker 다리를 생성하는 클래스
