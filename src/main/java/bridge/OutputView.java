@@ -75,4 +75,13 @@ public class OutputView {
     public void printStartGame() {
         System.out.println("다리 건너기 게임을 시작합니다.");
     }
+
+    public void printGameResult(boolean result) {
+        String resultMessage = "";
+        if (result) {
+            resultMessage += "성공";
+        }
+        resultMessage += "실패";
+        System.out.println("게임 성공 여부: " + resultMessage);
+    }
 }
