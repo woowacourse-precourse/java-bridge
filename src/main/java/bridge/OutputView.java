@@ -20,6 +20,7 @@ public class OutputView {
     private void printEachFloor(List<String> result) {
         String str = String.join(" | ", result);
         System.out.println("[ " + str + " ]");
+        System.out.println();
     }
 
     /**
