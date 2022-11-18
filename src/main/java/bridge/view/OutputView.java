@@ -7,6 +7,7 @@ public class OutputView {
     private final static String NEW_LINE = "\n";
     private final static String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
     private final static String REQUEST_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
+    private final static String REQUEST_MOVING_DIRECTION_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -31,5 +32,9 @@ public class OutputView {
     public static void askBridgeSize() {
         System.out.print(NEW_LINE);
         System.out.println(REQUEST_BRIDGE_SIZE_MESSAGE);
+    }
+
+    public static void askMovingDirection() {
+        System.out.println(REQUEST_MOVING_DIRECTION_MESSAGE);
     }
 }

@@ -1,15 +1,18 @@
 package bridge;
 
 import bridge.controller.BridgeController;
+import bridge.controller.BridgeGameController;
 import bridge.view.OutputView;
 
 public class Application {
 
-    private static final BridgeController bridgesController = new BridgeController();
+    private static final BridgeController bridgeController = new BridgeController();
+    private static final BridgeGameController bridgeGameController = new BridgeGameController();
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         OutputView.startGame();
-        bridgesController.generateBridge();
+        bridgeController.generateBridge();
+        bridgeGameController.move();
     }
 }
