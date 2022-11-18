@@ -42,7 +42,8 @@ public class Values {
         GAME_SUCCESS("게임 성공 여부: %s"),
         SUCCESS("성공"),
         FAIL("실패"),
-        GAME_TRY("총 시도한 횟수: %d");
+        GAME_TRY("총 시도한 횟수: %d"),
+        ERROR_MESSAGE("[ERROR] %s");
         private String message;
 
         private Message(String message) {
