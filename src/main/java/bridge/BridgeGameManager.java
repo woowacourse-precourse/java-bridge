@@ -6,8 +6,6 @@ import bridge.model.UserRoadMap;
 import java.util.ArrayList;
 
 public class BridgeGameManager {
-    private static BridgeGameManager manager;
-
     private int trialCount;
     private BridgeRoadMap bridgeRoadMap;
 
@@ -18,7 +16,7 @@ public class BridgeGameManager {
     private final InputView inputView;
     private final OutputView outputView;
 
-    private BridgeGameManager() {
+    public BridgeGameManager() {
         trialCount = 0;
 
         bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
@@ -28,13 +26,6 @@ public class BridgeGameManager {
 
         inputView = new InputView();
         outputView = new OutputView();
-    }
-
-    public static BridgeGameManager gameManager() {
-        if (manager == null) {
-            manager = new BridgeGameManager();
-        }
-        return manager;
     }
 
     public void play() {
