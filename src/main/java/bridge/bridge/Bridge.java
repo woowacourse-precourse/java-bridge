@@ -24,35 +24,32 @@ public class Bridge {
         return Arrays.asList(upper, lower);
     }
 
-    public void move(String direction) {
-        if (isMovable(direction)) {
-            if (isUpper(direction)) {
-                addMoving(Moving.MOVABLE, Moving.EMPTY);
-            } else {
-                addMoving(Moving.EMPTY, Moving.MOVABLE);
+    public void move(String moving) {
+        addMoving(
+                selectMoving(Moving.UP, moving),
+                selectMoving(Moving.DOWN, moving)
+        );
+    }
+
+    private Step selectMoving(Moving direction, String moving) {
+        if (direction.equals(moving)) {
+            if (isMovable(moving)) {
+                return Step.MOVABLE;
             }
-        } else {
-            if (isUpper(direction)) {
-                addMoving(Moving.IMMOVABLE, Moving.EMPTY);
-            } else {
-                addMoving(Moving.EMPTY, Moving.IMMOVABLE);
-            }
+            return Step.IMMOVABLE;
         }
+        return Step.EMPTY;
     }
 
-    private boolean isMovable(String direction) {
-        return bridge.get(upper.size())
-                .equals(direction);
+    private boolean isMovable(String moving) {
+        return bridge
+                .get(upper.size())
+                .equals(moving);
     }
 
-    private boolean isUpper(String direction) {
-        return Direction.UP
-                .equals(direction);
-    }
-
-    private void addMoving(Moving up, Moving down) {
-        upper.add(up.moving());
-        lower.add(down.moving());
+    private void addMoving(Step up, Step down) {
+        upper.add(up.value());
+        lower.add(down.value());
     }
 
     public void refresh() {
@@ -66,8 +63,8 @@ public class Bridge {
     }
 
     public boolean isAnyFail() {
-        return upper.contains(Moving.IMMOVABLE.moving())
-                || lower.contains(Moving.IMMOVABLE.moving());
+        return upper.contains(Step.IMMOVABLE.value())
+                || lower.contains(Step.IMMOVABLE.value());
     }
 
     public boolean isAllSuccess() {
