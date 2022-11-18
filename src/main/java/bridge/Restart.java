@@ -16,4 +16,8 @@ public class Restart {
         }
         this.command = command;
     }
+
+    public String getCommand() {
+        return command;
+    }
 }
