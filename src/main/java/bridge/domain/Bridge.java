@@ -11,14 +11,14 @@ import java.util.List;
 
 public class Bridge {
 
-    private final String size;
+    private final int size;
     private List<String> bridge;
     private int step;
 
     public Bridge(String size) {
         new BridgeValidator(size);
-        this.size = size;
-        makeBridgeBySize(getInt(size));
+        this.size = getInt(size);
+        makeBridgeBySize(this.size);
         this.step = step;
     }
 
