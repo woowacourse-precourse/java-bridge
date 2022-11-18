@@ -20,4 +20,8 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         return null;
     }
+
+    private int generateBridgeNumber() {
+        return bridgeNumberGenerator.generate();
+    }
 }
