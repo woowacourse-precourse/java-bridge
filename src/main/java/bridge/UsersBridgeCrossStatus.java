@@ -13,17 +13,17 @@ public class UsersBridgeCrossStatus {
         this.length = length;
     }
 
-    public void addNewCrossingResult(Space selectedSpace, int currBridgeOrder, String movingResult) {
-        addResultsForEachSpace(true, selectedSpace, movingResult);
-
-        Space otherSpace = Space.getOtherSpace(selectedSpace);
-        addResultsForEachSpace(false, otherSpace, movingResult);
-
-        if (currBridgeOrder != length) {
+    public void addCrossingResult(Space selectedSpace, int currBridgeOrder, String movingResult) {
+        if (currBridgeOrder != FIRST_BRIDGE) {
             int spaceIdx = selectedSpace.getIndex();
             addDelimiter(currentBridge.get(spaceIdx).size());
         }
+
+        addResultsForEachSpace(true, selectedSpace, movingResult);
+        Space otherSpace = Space.getOtherSpace(selectedSpace);
+        addResultsForEachSpace(false, otherSpace, movingResult);
     }
+
 
     private void addResultsForEachSpace(boolean isSelected, Space objectSpace, String movingResult) {
         int objectSpaceIndex = objectSpace.getIndex();
