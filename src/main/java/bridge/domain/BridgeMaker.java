@@ -37,6 +37,7 @@ public class BridgeMaker {
         }
     }
 
+    //Direction에 static 함수로 빼는게 낫지 않을까?
     private String getEachBridge(int value){
         String direction = null;
 
