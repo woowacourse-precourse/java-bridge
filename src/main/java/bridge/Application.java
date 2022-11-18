@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.service.BridgeGameConsole;
+import bridge.domain.BridgeGameConsole;
 
 public class Application {
 

@@ -1,4 +1,4 @@
-package bridge.service;
+package bridge.domain;
 
 import bridge.constant.GuideMessage;
 import bridge.view.OutputView;
