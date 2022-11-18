@@ -16,7 +16,7 @@ class InputViewTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"3", "20"})
-    @DisplayName("입력값이 3 이상 20 이하 숫자라면 통과한다.")
+    @DisplayName("다리 길이가 3 이상 20 이하 숫자라면 통과한다.")
     void readBridgeSize_정상_입력(String input) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         InputView inputView = new InputView();
@@ -24,19 +24,9 @@ class InputViewTest {
                 .isEqualTo(Integer.parseInt(input));
     }
     @ParameterizedTest
-    @ValueSource(strings = {"20a", "", "a", " "})
-    @DisplayName("입력값을 숫자로 입력받지 않으면 예외가 발생한다.")
-    void readBridgeSize_예외_문자_입력(String input) {
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-        InputView inputView = new InputView();
-        assertThatIllegalArgumentException()
-                .isThrownBy(inputView::readBridgeSize);
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"21", "2"})
-    @DisplayName("입력값이 3 이상 20 이하가 아니라면 예외가 발생한다.")
-    void readBridgeSize_예외_숫자_범위(String input) {
+    @ValueSource(strings = {"20a", "", "a", " ", "21", "1", "-1"})
+    @DisplayName("다리 길이가 3~20 사이의 숫자가 아니라면 예외가 발생한다.")
+    void readBridgeSize_예외_입력(String input) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         InputView inputView = new InputView();
         assertThatIllegalArgumentException()
@@ -45,7 +35,7 @@ class InputViewTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"U", "D"})
-    @DisplayName("입력값이 U, D라면 통과한다.")
+    @DisplayName("이동할 칸이 U, D라면 통과한다.")
     void readMoving_정상_입력(String input) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         InputView inputView = new InputView();
@@ -54,7 +44,7 @@ class InputViewTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"F", "G", "1", ""})
-    @DisplayName("입력값이 U, D가 아니라면 예외가 발생한다.")
+    @DisplayName("이동할 칸이 U, D가 아니라면 예외가 발생한다.")
     void readMoving_예외_입력(String input) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         InputView inputView = new InputView();
@@ -64,7 +54,7 @@ class InputViewTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"R", "Q"})
-    @DisplayName("입력값이 R, Q라면 통과한다.")
+    @DisplayName("커맨드가 R, Q라면 통과한다.")
     void readGameCommand_정상_입력(String input) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         InputView inputView = new InputView();
@@ -73,7 +63,7 @@ class InputViewTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"W", "T", " ", "1"})
-    @DisplayName("입력값이 R, Q가 아니라면 예외가 발생한다.")
+    @DisplayName("커맨드가 R, Q가 아니라면 예외가 발생한다.")
     void readGameCommand_예외_입력(String input) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         InputView inputView = new InputView();
