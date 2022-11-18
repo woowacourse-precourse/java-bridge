@@ -17,29 +17,19 @@ public class InputView {
     private static final String INPUT_MESSAGE_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     private static final String INPUT_MESSAGE_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String ERROR_MESSAGE_NOT_INT = "[ERROR] 숫자를 입력해주세요.";
+    private static final String ERROR_MESSAGE_NOT_PROPER_BRIDGE_SIZE = "[ERROR] 다리 길이는 3이상 20이하의 숫자만 입력 가능합니다.";
     private static final String ERROR_MESSAGE_NOT_PROPER_MOVE = "[ERROR] 대문자 U또는 D를 입력해주세요.";
-
-
 
     public int readBridgeSize() {
         printInputMessageBridgeSize();
-        int bridgeSize = inputBridgeSize();
+        String input = Console.readLine();
+        validateBridgeSize(input);
+        int bridgeSize = convertToIntSize(input);
         return bridgeSize;
     }
 
-    private int inputBridgeSize() {
-        int bridgeSize;
-        while (true) {
-            String size = Console.readLine();
-            try {
-                bridgeSize = Integer.valueOf(size);
-                break;
-            } catch (NumberFormatException e) {
-                System.out.println(ERROR_MESSAGE_NOT_INT);
-                continue;
-            }
-        }
-        return bridgeSize;
+    private int convertToIntSize(String input) {
+        return Integer.valueOf(input);
     }
 
     /**
@@ -50,6 +40,31 @@ public class InputView {
         String input = Console.readLine();
         validateMovingInput(input);
         return input;
+    }
+
+    /**
+     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
+     */
+    public String readGameCommand() {
+        return null;
+    }
+    private void validateBridgeSize(String input) {
+        validateIsNumeric(input);
+        validateBridgeSizeRange(input);
+    }
+
+    private void validateIsNumeric(String input) {
+        final String REGEX = "[0-9]+";
+        if(input.matches(REGEX)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_NOT_INT);
+        }
+    }
+
+    private void validateBridgeSizeRange(String input) {
+        int bridgeSize = Integer.valueOf(input);
+        if(!(bridgeSize >= 3 && bridgeSize <= 20)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_NOT_PROPER_BRIDGE_SIZE);
+        }
     }
 
     private void printInputMessageBridgeSize() {
@@ -64,12 +79,5 @@ public class InputView {
         if (!(input.equals("D") || input.equals("U"))) {
             throw new IllegalArgumentException(ERROR_MESSAGE_NOT_PROPER_MOVE);
         }
-    }
-
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public String readGameCommand() {
-        return null;
     }
 }
