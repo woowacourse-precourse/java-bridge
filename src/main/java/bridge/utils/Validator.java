@@ -1,5 +1,7 @@
 package bridge.utils;
 
+import java.util.List;
+
 public class Validator {
     private Validator(){}
 
@@ -8,8 +10,7 @@ public class Validator {
     }
 
     public static boolean isInRangeOfString(String target, String[] range){
-        // TODO: 문자열로된 범위 안에 값이 존재하는지 확인
-        return false;
+        return List.of(range).contains(target);
     }
 
     public static boolean isInRangeOfNumber(int target, int start, int end){

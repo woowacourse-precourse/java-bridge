@@ -130,5 +130,5 @@
 
 ### 기능
 - [x] 값이 숫자 문자열인지 확인 - isInRangeOfString
-- [ ] 문자열로된 범위 안에 값이 존재하는지 확인 - isInRangeOfString
+- [x] 문자열로된 범위 안에 값이 존재하는지 확인 - isInRangeOfString
 - [ ] 숫자로된 범위 안에 값이 존재하는지 확인 - isInRangeOfNumber

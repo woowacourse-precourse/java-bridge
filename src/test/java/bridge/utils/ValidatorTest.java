@@ -22,4 +22,22 @@ public class ValidatorTest {
         assertThat(Validator.isNumericString(target))
                 .isFalse();
     }
+
+    @DisplayName("문자열로된 범위 안에 값이 존재할 때 true 값을 반환한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "b", "c"})
+    void testInRangeOfString(String target) {
+        String[] range = {"a", "b", "c"};
+        assertThat(Validator.isInRangeOfString(target, range))
+                .isTrue();
+    }
+
+    @DisplayName("문자열로된 범위 안에 값이 존재하지 않을 때 false 값을 반환한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"e", "f", "g"})
+    void testNotInRangeOfString(String target) {
+        String[] range = {"a", "b", "c"};
+        assertThat(Validator.isInRangeOfString(target, range))
+                .isFalse();
+    }
 }
