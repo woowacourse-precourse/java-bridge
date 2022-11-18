@@ -7,6 +7,7 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
     private static final String BRIDGE_SIZE_PHRASE = "다리의 길이를 입력해주세요.";
+    private static final String MOVING_BRIDGE_PHRASE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String INVALID_CANT_CONVERT_INTEGER = "[ERROR] 숫자가 아닙니다.";
     private static final String INVALID_RANGE = "[ERROR] 3 이상 20 이하 숫자를 입력해주세요.";
 
@@ -22,8 +23,9 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public static String readMoving() {
+        System.out.println(MOVING_BRIDGE_PHRASE);
+        return Console.readLine();
     }
 
     /**
