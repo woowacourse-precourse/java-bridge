@@ -21,36 +21,15 @@ public class BridgeGame {
         return bridgeMap;
     }
 
-    private String moveSecondBridge(List<String> secondBridge, String move) {
-        secondStorage.put(-1, "");
-        StringBuilder secondSb = new StringBuilder();
-        secondSb.append(secondStorage.get(count - 1));
-        secondBridgeMoveDown(secondSb, secondBridge, move);
-        secondBridgeMoveUp(secondSb, move);
-        secondStorage.put(count, secondSb.toString());
-        return secondSb.toString();
-    }
-
-    private void secondBridgeMoveUp(StringBuilder secondSb, String move) {
-        if (move.equals("U")) {
-            if (count != 0) {
-                secondSb.append(" | ");
-                secondSb.append(" ");
+    private void bridgeSet(List<String> firstBridge, List<String> secondBridge) {
+        for (int i = 0; i < firstBridge.size(); i++) {
+            if (firstBridge.get(i).equals("U")) {
+                firstBridge.set(i, "O");
+                secondBridge.set(i, "X");
             }
-            if (count == 0) {
-                secondSb.append(" ");
-            }
-        }
-    }
-
-    private void secondBridgeMoveDown(StringBuilder secondSb, List<String> secondBridge, String move) {
-        if (move.equals("D")) {
-            if (count != 0) {
-                secondSb.append(" | ");
-                secondSb.append(secondBridge.get(count));
-            }
-            if (count == 0) {
-                secondSb.append(secondBridge.get(count));
+            if (firstBridge.get(i).equals("D")) {
+                firstBridge.set(i, "X");
+                secondBridge.set(i, "O");
             }
         }
     }
@@ -63,6 +42,16 @@ public class BridgeGame {
         firstBridgeMoveUp(firstSb, firstBridge, move);
         firstStorage.put(count, firstSb.toString());
         return firstSb.toString();
+    }
+
+    private String moveSecondBridge(List<String> secondBridge, String move) {
+        secondStorage.put(-1, "");
+        StringBuilder secondSb = new StringBuilder();
+        secondSb.append(secondStorage.get(count - 1));
+        secondBridgeMoveDown(secondSb, secondBridge, move);
+        secondBridgeMoveUp(secondSb, move);
+        secondStorage.put(count, secondSb.toString());
+        return secondSb.toString();
     }
 
     private void firstBridgeMoveUp(StringBuilder firstSb, List<String> firstBridge, String move) {
@@ -89,15 +78,26 @@ public class BridgeGame {
         }
     }
 
-    private void bridgeSet(List<String> firstBridge, List<String> secondBridge) {
-        for (int i = 0; i < firstBridge.size(); i++) {
-            if (firstBridge.get(i).equals("U")) {
-                firstBridge.set(i, "O");
-                secondBridge.set(i, "X");
+    private void secondBridgeMoveUp(StringBuilder secondSb, String move) {
+        if (move.equals("U")) {
+            if (count != 0) {
+                secondSb.append(" | ");
+                secondSb.append(" ");
             }
-            if (firstBridge.get(i).equals("D")) {
-                firstBridge.set(i, "X");
-                secondBridge.set(i, "O");
+            if (count == 0) {
+                secondSb.append(" ");
+            }
+        }
+    }
+
+    private void secondBridgeMoveDown(StringBuilder secondSb, List<String> secondBridge, String move) {
+        if (move.equals("D")) {
+            if (count != 0) {
+                secondSb.append(" | ");
+                secondSb.append(secondBridge.get(count));
+            }
+            if (count == 0) {
+                secondSb.append(secondBridge.get(count));
             }
         }
     }
