@@ -1,19 +1,10 @@
 package bridge;
 
-import bridge.InputView;
-import bridge.OutputView;
-import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
-
 import java.util.List;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
 
     BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-    BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     OutputView outputView = new OutputView();
     InputView inputView = new InputView();
 
@@ -21,13 +12,13 @@ public class BridgeGame {
         outputView.printBridgeLengthInputRequest();
         return inputView.readBridgeSize();
     }
-
+/*
     public int move(List<String> crossable) {
         int howManyAttempts;
         howManyAttempts = bridgeMaker.makeMap(crossable);
         return howManyAttempts;
     }
-
+*/
     public boolean retry() {
         String continueOrEnd;
         outputView.printContinueOrEndRequest();
@@ -38,17 +29,48 @@ public class BridgeGame {
         return false;
     }
 
-    public boolean play() {
+    public boolean play(int limitSize, BridgeMaker bridgeMaker) {
+        boolean isWin;
+        List<String> crossable;
+
+        crossable = bridgeMaker.makeBridge(limitSize);
+        isWin = bridgeMaker.makeMap(crossable);
+
+        return isWin;
+    }
+
+    public void controller() {
+        int attempts = 1;
         int limitSize;
-        int currentSize;
+        String gameCommand;
+        boolean endGame = false;
+        boolean isWin;
 
         limitSize = determineBridgeSize();
-        currentSize = move(bridgeMaker.makeBridge(limitSize));
-        outputView.printResult(currentSize!=-1,currentSize);
 
-        if (currentSize==-1) {
-            return retry();
+        while (!endGame) {
+            BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+            isWin = play(limitSize, bridgeMaker);
+            if (isWin) {
+                outputView.printTitle();
+                outputView.printMap(bridgeMaker.getMapUpper(),bridgeMaker.getMapLower());
+                outputView.printResult(isWin,attempts);
+                endGame = true;
+
+            }
+            if (!isWin) {
+                outputView.printContinueOrEndRequest();
+                gameCommand = inputView.readGameCommand();
+                if (gameCommand.equals("R")) {
+                    attempts++;
+                    continue;
+                } else {
+                    outputView.printTitle();
+                    outputView.printMap(bridgeMaker.getMapUpper(),bridgeMaker.getMapLower());
+                    outputView.printResult(isWin,attempts);
+                    endGame = true;
+                }
+            }
         }
-        return false;
     }
 }
