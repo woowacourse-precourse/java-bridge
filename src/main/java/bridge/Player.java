@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Player {
 
-    private int tryCount = 0;
+    private int tryCount = 1;
     
     private List<String> bridge;
     private List<String> moveHistory = new ArrayList<>();
@@ -51,5 +51,13 @@ public class Player {
             return false;
         }
         return true;
+    }
+
+    public void increaseTryCount() {
+        tryCount++;
+    }
+
+    public void initMoveHistory() {
+        moveHistory.clear();
     }
 }

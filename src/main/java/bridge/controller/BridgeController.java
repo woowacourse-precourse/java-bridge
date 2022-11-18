@@ -62,6 +62,8 @@ public class BridgeController {
         if (input.equals(CommandType.QUIT.getCommand())) {
             return true;
         }
+        bridgeGame.retry();
+        return false;
     }
 
     private String getCommand() {
