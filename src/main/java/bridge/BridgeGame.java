@@ -36,4 +36,11 @@ public class BridgeGame {
     public void retry() {
         this.userPath = new ArrayList<>();
     }
+
+    public boolean isCorrectPath() {
+        int userPosition = this.userPath.size() - 1;
+
+        return this.userPath.get(userPosition)
+                .equals(this.bridge.get(userPosition));
+    }
 }
