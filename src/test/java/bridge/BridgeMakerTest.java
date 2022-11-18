@@ -1,11 +1,13 @@
 package bridge;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class BridgeMakerTest {
@@ -48,6 +50,17 @@ class BridgeMakerTest {
         assertThat(output).hasSize(size)
                 .contains(UP)
                 .doesNotContain(DOWN);
+    }
+
+    @DisplayName("다리 길이 예외 테스트")
+    @ValueSource(ints = {0, -1, 2, 21, 25})
+    @ParameterizedTest
+    void invalidSizeTest(int input) {
+        bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+
+        assertThatThrownBy(() -> bridgeMaker.makeBridge(input))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
 
