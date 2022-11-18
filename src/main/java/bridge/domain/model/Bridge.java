@@ -1,24 +1,36 @@
 package bridge.domain.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
 
-    private final List<String> bridge;
+    private static List<String> bridge = new ArrayList<>();
+
+    public Bridge() {
+
+    }
 
     public Bridge(List<String> bridge) {
-        this.bridge = bridge;
+        Bridge.bridge = bridge;
     }
 
     public List<String> getBridge() {
         return bridge;
     }
 
+    public int getSize() {
+        return getBridge().size();
+    }
+
     public boolean isValid(int index, String where) {
+        validate(index);
         return getBridge().get(index).equals(where);
     }
 
-    public int getSize() {
-        return getBridge().size();
+    private void validate(int index) throws IllegalArgumentException {
+        if (getSize() <= index) {
+            throw new IllegalArgumentException("[ERROR] have No Bridge Information");
+        }
     }
 }
