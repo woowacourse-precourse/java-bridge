@@ -16,6 +16,8 @@ public class Application {
         List<String> firstBridge = bridgeMaker.makeBridge(bridgeSize);
         List<String> secondBridge = bridgeMaker.makeSecondBridge(firstBridge);
 
+        String move = inputView.readMoving();
+
 
     }
 }
