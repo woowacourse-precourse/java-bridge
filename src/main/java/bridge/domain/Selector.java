@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 public enum Selector {
     U(1),
@@ -16,6 +17,6 @@ public enum Selector {
         return Arrays.stream(Selector.values())
                 .filter(selector -> selector.number == number)
                 .findAny()
-                .orElse(null);
+                .orElseThrow(() -> new NoSuchElementException("[ERROR] 잘못된 숫자가 생성되었습니다."));
     }
 }
