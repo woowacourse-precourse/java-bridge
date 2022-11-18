@@ -19,6 +19,10 @@ public class OutputView {
         System.out.print("이동할 칸을 선택해주세요. (위: U, 아래: D)\n");
     }
 
+    public void printRestartMessage() {
+        System.out.print("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n");
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -67,18 +71,18 @@ public class OutputView {
             String block = " ";
             if (bridge.get(i).equals(BridgeJoyStick.U.toString()))
                 block = "O";
-            upMap.append(block);
+            upMap.append(" "+block+" ");
             upMap.append("|");
         }
     }
 
-    public void makePreviousDownMap(ArrayList<String> bridge, int nowOn, StringBuilder upMap) {
+    public void makePreviousDownMap(ArrayList<String> bridge, int nowOn, StringBuilder downMap) {
         for (int i = 0; i < nowOn; i++) {
             String block = " ";
             if (bridge.get(i).equals(BridgeJoyStick.D.toString()))
                 block = "O";
-            upMap.append(block);
-            upMap.append("|");
+            downMap.append(" "+block+" ");
+            downMap.append("|");
         }
     }
 
