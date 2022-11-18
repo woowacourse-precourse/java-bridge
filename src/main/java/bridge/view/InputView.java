@@ -70,9 +70,9 @@ public class InputView {
         throw new IllegalArgumentException(MOVING_DIRECTION_EXCEPTION_MESSAGE);
     }
 
-    private String validateReplayGame(String command) {
-        if ("Q".equals(command) || "R".equals(command)) {
-            return command;
+    private String validateReplayGame(String inputLetter) {
+        if (GameCommand.hasCommand(inputLetter)) {
+            return inputLetter;
         }
         throw new IllegalArgumentException(RETRY_COMMAND_EXCEPTION_MESSAGE);
     }

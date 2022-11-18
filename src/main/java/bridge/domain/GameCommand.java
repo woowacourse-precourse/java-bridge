@@ -18,4 +18,9 @@ public enum GameCommand {
                 .get();
     }
 
+    public static boolean hasCommand(String inputLetter) {
+        return Arrays.stream(values())
+                .anyMatch(gameCommand -> gameCommand.command.equals(inputLetter));
+    }
+
 }
