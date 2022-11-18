@@ -42,6 +42,13 @@ public class Movement {
         tryCount++;
     }
 
+    public String[] getMap() {
+        String top = String.join(" | ", topMap);
+        String bottom = String.join(" | ", bottomMap);
+
+        return new String[]{top, bottom};
+    }
+
     public void saveCompareResult(String moving) {
         String mark = Constant.CORRECT_MARK;
         if (!canMove()) {
