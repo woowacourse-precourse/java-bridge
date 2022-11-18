@@ -30,8 +30,8 @@ class BridgeGameTest {
 		String input2 = "D";
 		String input3 = "U";
 		List<List<String>> expect = new ArrayList<>();
-		expect.add(List.of("O"," ","O"));
-		expect.add(List.of(" ", "O"," "));
+		expect.add(List.of("O", " ", "O"));
+		expect.add(List.of(" ", "O", " "));
 
 		gameProgress.add(new ArrayList<>());
 		gameProgress.add(new ArrayList<>());
@@ -39,7 +39,7 @@ class BridgeGameTest {
 		bridgeGame.move(input2, gameProgress);
 		bridgeGame.move(input3, gameProgress);
 
-		assertEquals(expect,gameProgress);
+		assertEquals(expect, gameProgress);
 	}
 
 	@Test
@@ -48,7 +48,7 @@ class BridgeGameTest {
 		String input = "U";
 		String input2 = "U";
 		List<List<String>> expect = new ArrayList<>();
-		expect.add(List.of("O","X"));
+		expect.add(List.of("O", "X"));
 		expect.add(List.of(" ", " "));
 
 		bridgeGame.move(input, gameProgress);

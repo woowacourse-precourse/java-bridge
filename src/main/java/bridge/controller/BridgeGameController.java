@@ -29,7 +29,7 @@ public class BridgeGameController {
 		try {
 			int size = inputView.readBridgeSize();
 			return bridgeGameService.initBridge(size);
-		}  catch (IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			return receiveBridgeSize();
 		}
@@ -46,7 +46,7 @@ public class BridgeGameController {
 			}
 			playGame = askRetry();
 		}
-		return  currentMap;
+		return currentMap;
 	}
 
 	private List<List<String>> makeResultMap(BridgeGame bridgeGame) {
@@ -57,7 +57,7 @@ public class BridgeGameController {
 		return moveMap;
 	}
 
-	private void crossBridge(BridgeGame bridgeGame,List<List<String>> currentMap) {
+	private void crossBridge(BridgeGame bridgeGame, List<List<String>> currentMap) {
 		try {
 			String moving = inputView.readMoving();
 			bridgeGameService.moveBridge(moving, bridgeGame, currentMap);
