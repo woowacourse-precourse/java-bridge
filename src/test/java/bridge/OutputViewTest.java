@@ -24,7 +24,11 @@ class OutputViewTest {
     void printResult() {
         String result = "최종 게임 결과\n[ O |   |   ]\n[   | O | O ]" +
                 "\n\n게임 성공 여부: 성공\n총 시도한 횟수: 2";
-        assertThat(outputView.printResult()).isEqualTo(result);
+        List<BridgeLocation> bridgeLocations = List
+                .of(BridgeLocation.UP_TRUE, BridgeLocation.DOWN_TRUE,BridgeLocation.DOWN_TRUE);
+        assertThat(outputView
+                .printResult(bridgeLocations,2))
+                .isEqualTo(result);
     }
 
 }
