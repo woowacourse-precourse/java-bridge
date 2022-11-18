@@ -7,7 +7,7 @@ public class GameController {
         OutputView outputView =new OutputView();
         InputView inputView = new InputView();
         outputView.gameStartMessage();
-        outputView.bridgeSizeMessgage();
+        outputView.bridgeSizeMessage();
         int size = inputView.readBridgeSize();
     }
 }
