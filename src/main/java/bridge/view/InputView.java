@@ -16,11 +16,16 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() throws IllegalArgumentException {
-        String size = input();
-        validateIsNotEmpty(size);
-        validateIsNumber(size);
-        return validateIsLengthRange(size);
+    public int readBridgeSize() {
+        try {
+            String size = input();
+            validateIsNotEmpty(size);
+            validateIsNumber(size);
+            return validateIsLengthRange(size);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readBridgeSize();
+        }
     }
 
     /**
