@@ -1,9 +1,9 @@
 package bridge.view;
 
-import static bridge.domain.validation.InputValidator.validateBridgeSize;
 import static bridge.domain.validation.InputValidator.validateThisIsNumber;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import bridge.domain.BridgeSize;
 import bridge.domain.constants.GameCommands;
 import bridge.domain.constants.MoveCommands;
 
@@ -16,24 +16,21 @@ public class InputView {
 
     private static final String ERROR_PREFIX = "[ERROR] ";
 
-    public int bridgeSize() {
+    public BridgeSize bridgeSize() {
         try {
-            return number();
+            return numberForBridgeSize();
         } catch (IllegalArgumentException e) {
             System.out.println(ERROR_PREFIX + e.getMessage());
             return bridgeSize();
         }
     }
 
-    private int number() {
+    private BridgeSize numberForBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
         String inputValue = readLine();
         validateThisIsNumber(inputValue);
 
-        int intValue = Integer.parseInt(inputValue);
-        validateBridgeSize(intValue);
-
-        return intValue;
+        return new BridgeSize(Integer.parseInt(inputValue));
     }
 
     public MoveCommands moveCommands() {

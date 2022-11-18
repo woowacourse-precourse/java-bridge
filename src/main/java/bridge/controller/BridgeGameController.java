@@ -6,6 +6,7 @@ import static bridge.domain.constants.MoveResultsSign.MOVE_FAIL;
 
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
+import bridge.domain.BridgeSize;
 import bridge.domain.move_result.MoveResults;
 import bridge.domain.Player;
 import bridge.domain.constants.GameCommands;
@@ -34,25 +35,25 @@ public class BridgeGameController {
     public void gameStart() {
         outputView.printStartMessage();
 
-        int bridgeSize = inputView.bridgeSize();
+        BridgeSize bridgeSize = inputView.bridgeSize();
         BridgeGame bridgeGame = bridgeGame(bridgeSize);
 
         String gameResult = gameResult(bridgeGame, bridgeSize);
         outputView.printResult(bridgeGame, gameResult);
     }
 
-    private BridgeGame bridgeGame(int bridgeSize) {
-        Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+    private BridgeGame bridgeGame(BridgeSize bridgeSize) {
+        Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize.bridgeSize()));
         Player player = new Player(INIT_VALUE_OF_POSITION, INIT_VALUE_OF_CHALLENGES);
 
         return new BridgeGame(bridge, player, new MoveResults());
     }
 
-    private String gameResult(BridgeGame bridgeGame, int bridgeSize) {
+    private String gameResult(BridgeGame bridgeGame, BridgeSize bridgeSize) {
         GameCommands gameCommand = NOTHING;
         String gameResult = GAME_SUCCESS;
 
-        while (!gameCommand.is(QUIT) && bridgeGame.positionNotMoreThan(bridgeSize)) {
+        while (!gameCommand.is(QUIT) && bridgeGame.positionIsNotMoreThan(bridgeSize)) {
             String moveResult = moveResult(bridgeGame);
 
             if (moveResult.equals(MOVE_FAIL)) {

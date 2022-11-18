@@ -14,8 +14,8 @@ public class Player {
         return position;
     }
 
-    boolean positionNotMoreThan(int bridgeSize) {
-        return position < bridgeSize;
+    boolean positionIsNotMoreThan(BridgeSize bridgeSize) {
+        return bridgeSize.isMoreThan(position);
     }
 
     void move() {

@@ -29,8 +29,8 @@ public class BridgeGame {
         this.moveResults = moveResults;
     }
 
-    public boolean positionNotMoreThan(int bridgeSize) {
-        return player.positionNotMoreThan(bridgeSize);
+    public boolean positionIsNotMoreThan(BridgeSize bridgeSize) {
+        return player.positionIsNotMoreThan(bridgeSize);
     }
 
     public String matchResult(MoveCommands moveCommand) {
