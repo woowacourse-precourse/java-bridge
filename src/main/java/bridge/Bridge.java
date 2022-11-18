@@ -36,4 +36,16 @@ public class Bridge {
 	public int getSize() {
 		return bridge.size();
 	}
+
+	public List<String> getBridge() {
+		return bridge;
+	}
+
+	public List<String> getUpperBridge() {
+		return upperBridge;
+	}
+
+	public List<String> getLowerBridge() {
+		return lowerBridge;
+	}
 }
