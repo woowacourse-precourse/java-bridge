@@ -55,7 +55,7 @@ class ApplicationTest extends NsTest {
 	@Test
 	void 다리_출력_테스트() {
 		OutputView outputView = new OutputView();
-		outputView.printMap(List.of(1, 0, 1), List.of(1, 0, 1));
+		outputView.printMap(List.of("U", "D", "U"), List.of("U", "D", "U"));
 		assertThat(output()).contains(
 			"[ O |   | O ]",
 			"[   | O |   ]"
@@ -65,7 +65,7 @@ class ApplicationTest extends NsTest {
 	@Test
 	void 다리_출력_테스트_입력리스트의_길이가_더_짧을_경우() {
 		OutputView outputView = new OutputView();
-		outputView.printMap(List.of(1, 0, 1), List.of(1, 0));
+		outputView.printMap(List.of("U", "D", "U"), List.of("U", "D"));
 		assertThat(output()).contains(
 			"[ O |   ]",
 			"[   | O ]"
@@ -75,7 +75,7 @@ class ApplicationTest extends NsTest {
 	@Test
 	void 최종_다리_출력_테스트() {
 		OutputView outputView = new OutputView();
-		outputView.printFinalMapResult(List.of(1, 0, 1, 1), List.of(1, 0, 1, 1));
+		outputView.printFinalMapResult(List.of("U", "D", "U", "U"), List.of("U", "D", "U", "U"));
 		assertThat(output()).contains(
 			"[ O |   | O | O ]",
 			"[   | O |   |   ]"
@@ -85,10 +85,10 @@ class ApplicationTest extends NsTest {
 	@Test
 	void 이동_테스트() {
 		BridgeGame bridgeGame = new BridgeGame();
-		List<Integer> currentBridgeState = new ArrayList<>(List.of(1, 0, 1));
-		List<Integer> currentBridge = bridgeGame.move(currentBridgeState, "U");
+		List<String> currentBridgeState = new ArrayList<>(List.of("U", "D", "U"));
+		List<String> currentBridge = bridgeGame.move(currentBridgeState, "U");
 
-		assertThat(currentBridge.containsAll(List.of(1, 0, 1, 1))).isTrue();
+		assertThat(currentBridge.containsAll(List.of("U", "D", "U", "U"))).isTrue();
 	}
 
 	@Override
