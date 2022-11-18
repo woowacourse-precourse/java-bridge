@@ -10,18 +10,21 @@ public class OutputView {
     private final String INPUT_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
     private final String INPUT_MOVING_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private final String INPUT_GAME_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private final String END_GAME_MESSAGE = "최종 게임 결과";
+    private final String GAME_STATE_MESSAGE = "게임 성공 여부: ";
+    private final String GAME_RETRY_COUNT_MESSAGE = "총 시도한 횟수: ";
 
     private void print(String message){
         System.out.println(message);
     }
 
-    private char judgeUserLocationStatus(String currLocation, String direction, Boolean gameState){
+    private String judgeUserLocationStatus(String currLocation, String direction, Boolean gameState){
         if(currLocation.equals(direction)){
             if(gameState)
-                return 'O';
-            return 'X';
+                return " O ";
+            return " X ";
         }
-        return ' ';
+        return "   ";
     }
 
     private String makeMapString(List<String> userLocation, List<Boolean> gameState, String direction){
@@ -49,7 +52,13 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<String> userLocation, List<Boolean> gameState) {
+    public void printResult(List<String> userLocation, List<Boolean> gameState, int retryConut) {
+        print(END_GAME_MESSAGE);
+        printMap(userLocation, gameState);
+        if(gameState.get(gameState.size() - 1))
+            print(GAME_STATE_MESSAGE + "성공");
+        print(GAME_STATE_MESSAGE + "실패");
+        print(GAME_RETRY_COUNT_MESSAGE + retryConut);
     }
 
     public void printStartMessage(){

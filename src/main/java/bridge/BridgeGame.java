@@ -17,9 +17,14 @@ public class BridgeGame {
     private User user;
 
     public BridgeGame(){
-        retryConut = 0;
+        retryConut = 1;
         inputView = new InputView();
         outputView = new OutputView();
+    }
+
+    private void gameReset(){
+        gameState.clear();
+        user.getUserLocation().clear();
     }
 
     private void updateGameState(String direction){
@@ -28,6 +33,21 @@ public class BridgeGame {
             return;
         }
         gameState.add(false);
+    }
+
+    private boolean gameFailState(){
+        if(!gameState.isEmpty() && !gameState.get(gameState.size() - 1)){
+            if(retry())
+                return false;
+            return true;
+        }
+        return false;
+    }
+
+    private boolean gameSuccessState(){
+        if(gameState.size() == bridge.getBrideSize() && gameState.get(gameState.size() - 1))
+            return true;
+        return false;
     }
 
     public void gameStart(){
@@ -58,8 +78,9 @@ public class BridgeGame {
     }
 
     public boolean gameExit(){
-        if(!gameState.isEmpty() && !gameState.get(gameState.size() - 1))
+        if(gameFailState() || gameSuccessState()){
             return true;
+        }
         return false;
     }
 
@@ -68,6 +89,14 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public Boolean retry() {
+        outputView.printInputGameCommandMessage();
+        String gameCommand = inputView.readGameCommand();
+        if(gameCommand.equals("R")){
+            ++retryConut;
+            gameReset();
+            return true;
+        }
+        return false;
     }
 }
