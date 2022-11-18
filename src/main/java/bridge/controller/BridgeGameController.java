@@ -36,10 +36,15 @@ public class BridgeGameController {
         while (play) {
             moveBridge(bridge);
         }
+        end();
     }
 
     private void start() {
         outputView.printGameStartMsg();
+    }
+
+    private void end() {
+        outputView.printResult(gameResult);
     }
 
     private Bridge makeBridge(int size) {
