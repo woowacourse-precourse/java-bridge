@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class Application {
 
@@ -16,7 +17,7 @@ public class Application {
         Result result = new Result();
         for (int i = 0; i < bridgeSize; i++) {
             MoveDirection direction = inputView.readMoving();
-            result.updateIsAnswers(bridgeGame.move(direction, i));
+            result.updateIsAnswers(direction, bridgeGame.move(direction, i));
         }
 
     }
