@@ -5,9 +5,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import bridge.BridgeFactory;
 import global.config.AppConfig;
+import java.util.ArrayList;
 import java.util.List;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class BridgeTest {
     private BridgeFactory bridgeFactory;
@@ -22,4 +27,20 @@ class BridgeTest {
     void createBridge(){
         assertThat(new Bridge(List.of("U", "D,", "D"))).isEqualTo(new Bridge(List.of("U", "D,", "D")));
     }
+
+    @DisplayName("가야하는 순서와, 유저 선택이 주어졌을 때 갈수있는 곳이 일치하면 true를 반환한다.")
+    @ParameterizedTest(name = "bridge [U | D | D]  step : {0}, pick : {1}")
+    @CsvSource({"U, U", "D, UD", "D, UDD"})
+    void canGo(String userPick, String step) {
+        assertTrue(new Bridge(List.of("U", "D", "D")).canGoOrNot(List.of(step.split("")), userPick));
+    }
+
+    @DisplayName("가야하는 순서와, 유저 선택이 주어졌을 때 갈수있는 곳이 일치하지 않으면 false를 반환한다.")
+    @ParameterizedTest(name = "bridge [U | D | D]  step : {0}, pick : {1}")
+    @CsvSource({"D, U", "U, UD", "U, UDD"})
+    void canNotGo(String userPick, String step) {
+
+        assertFalse(new Bridge(List.of("U", "D", "D")).canGoOrNot(List.of(step.split("")), userPick));
+    }
+
 }
