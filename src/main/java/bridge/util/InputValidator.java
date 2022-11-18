@@ -1,17 +1,25 @@
 package bridge.util;
 
+import static bridge.constant.BridgeConstants.DOWN_SIDE;
 import static bridge.constant.BridgeConstants.MAX_BRIDGE_SIZE;
 import static bridge.constant.BridgeConstants.MIN_BRIDGE_SIZE;
+import static bridge.constant.BridgeConstants.UP_SIDE;
 
 public class InputValidator {
     private static final String BLANK_INPUT_MSG = "비어 있는 입력값 입니다.";
     private static final String NOT_NUMERIC_INPUT_MSG = "숫자 이외의 값이 존재하는 입력값입니다.";
-    private static final String INVALID_BRIDGE_SIZE_INPUT = "유효하지 않은 다리 크기입니다.";
+    private static final String INVALID_BRIDGE_SIZE_INPUT_MSG = "유효하지 않은 다리 크기입니다.";
+    private static final String INVALID_BRIDGE_MOVE_INPUT_MSG = "유효하지 않은 다리 이동 명령입니다.";
 
     public void validateBridgeSize(String userInput) {
         validateBlank(userInput);
         validateNumeric(userInput);
         validateRange(userInput);
+    }
+
+    public void validateBridgeMove(String userInput) {
+        validateBlank(userInput);
+        validateOrder(userInput);
     }
 
     private void validateBlank(String userInput) {
@@ -30,7 +38,13 @@ public class InputValidator {
         int bridgeSize = Integer.parseInt(userInput);
 
         if (bridgeSize < MIN_BRIDGE_SIZE || bridgeSize > MAX_BRIDGE_SIZE) {
-            throw new IllegalArgumentException(INVALID_BRIDGE_SIZE_INPUT);
+            throw new IllegalArgumentException(INVALID_BRIDGE_SIZE_INPUT_MSG);
+        }
+    }
+
+    private void validateOrder(String userInput) {
+        if (!userInput.equals(UP_SIDE) || !userInput.equals(DOWN_SIDE)) {
+            throw new IllegalArgumentException(INVALID_BRIDGE_MOVE_INPUT_MSG);
         }
     }
 }
