@@ -30,7 +30,7 @@ public class OutputView {
     }
 
     public static void printEnter() {
-        System.out.println(ENTER);
+        System.out.print(ENTER);
     }
 
     public static void printMap(MapMaker mapMaker) {
