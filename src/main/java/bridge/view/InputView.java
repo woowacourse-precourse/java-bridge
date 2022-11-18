@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.BridgeRule;
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Objects;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -36,8 +37,11 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-
-        return null;
+        String move = readValue();
+        if (Objects.equals(move, "U") || Objects.equals(move, "D")) {
+            throw new IllegalArgumentException("입력은 U(위쪽) D(아래쪽) 중 하나만 입력하셔야 합니다!");
+        }
+        return move;
     }
 
     /**
