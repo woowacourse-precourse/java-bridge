@@ -3,6 +3,7 @@ package bridge;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -68,6 +69,42 @@ public class OutputViewTest {
 		HashMap<String, String> expectedStatus = new HashMap<>();
 		expectedStatus.put("UpperCell", "[   ]");
 		expectedStatus.put("LowerCell", "[ X ]");
+
+		// when
+		HashMap<String, String> actualStatus = new OutputView().printMap(userSelectedCell, bridgeLetter);
+
+		// then
+		assertThat(actualStatus).isEqualTo(expectedStatus);
+	}
+
+	@DisplayName("연속된 U가 입력되었을 때, 두 번째 U는 X 표시 출력")
+	@Test
+	void printFailSecondUpperCell() {
+		// given
+		printSuccessUpperCell();
+		String userSelectedCell = "U";
+		String bridgeLetter = "D";
+		HashMap<String, String> expectedStatus = new HashMap<>();
+		expectedStatus.put("UpperCell", "[ O | X ]");
+		expectedStatus.put("LowerCell", "[   |   ]");
+
+		// when
+		HashMap<String, String> actualStatus = new OutputView().printMap(userSelectedCell, bridgeLetter);
+
+		// then
+		assertThat(actualStatus).isEqualTo(expectedStatus);
+	}
+
+	@DisplayName("연속된 D가 입력되었을 때, 두 번째 D는 X 표시 출력")
+	@Test
+	void printFailSecondLowerCell() {
+		// given
+		printSuccessLowerCell();
+		String userSelectedCell = "D";
+		String bridgeLetter = "U";
+		HashMap<String, String> expectedStatus = new HashMap<>();
+		expectedStatus.put("UpperCell", "[   |   ]");
+		expectedStatus.put("LowerCell", "[ O | X ]");
 
 		// when
 		HashMap<String, String> actualStatus = new OutputView().printMap(userSelectedCell, bridgeLetter);
