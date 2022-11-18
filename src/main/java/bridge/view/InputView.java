@@ -46,7 +46,7 @@ public class InputView {
     public String readGameCommand() {
         while(true){
             try{
-                System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+                System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
                 String RorQ = readLine();
                 ValidInputChecker.validateRorQ(RorQ);
                 return RorQ;
