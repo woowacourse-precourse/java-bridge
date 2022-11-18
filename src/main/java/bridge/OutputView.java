@@ -20,6 +20,7 @@ public class OutputView {
         System.out.print(printPrefix());
         getDownPrint(bridgeGame.getBridge(), bridgeGame.getUsersMove());
         System.out.println(printPostfix());
+        System.out.println();
     }
 
     private void getDownPrint(List<String> bridge, List<String> usersMove) {
