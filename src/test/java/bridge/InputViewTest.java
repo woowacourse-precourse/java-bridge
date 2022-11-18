@@ -43,6 +43,18 @@ public class InputViewTest {
         assertThat(inputView.readBridgeSize()).isEqualTo(5);
     }
 
+    @DisplayName("readMoving에 올바른 입력이 주어지면 String이 리턴된다.")
+    @Test
+    void readMovingReturnCheck() {
+        settingInput("D");
+        assertThat(inputView.readMoving()).isEqualTo("D");
+    }
+    @DisplayName("readGameCommand에 올바른 입력이 주어지면 String이 리턴된다.")
+    @Test
+    void readGameCommandReturnCheck() {
+        settingInput("Q");
+        assertThat(inputView.readGameCommand()).isEqualTo("Q");
+    }
     void settingInput(String input) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
     }
