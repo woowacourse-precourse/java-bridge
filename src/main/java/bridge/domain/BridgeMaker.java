@@ -11,8 +11,6 @@ import java.util.List;
  */
 public class BridgeMaker {
 
-    private static String UP = "U";
-    private static String DOWN = "D";
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
