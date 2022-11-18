@@ -33,4 +33,14 @@ class BridgeControllerTest {
                 }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INPUT_IS_NUMERIC);
     }
+
+    @Test
+    void 다리의크기는_0이될수_없다() {
+        InputStream inputStream = new ByteArrayInputStream("0".getBytes());
+        System.setIn(inputStream);
+
+        Assertions.assertThatThrownBy(() -> inputView.readBridgeSize())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.BRIDGE_SIZE_NOT_ZERO);
+    }
 }
