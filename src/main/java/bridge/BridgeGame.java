@@ -20,7 +20,11 @@ public class BridgeGame {
      */
     public void move(String randomBridge, String input) {
         if(randomBridge == input) moveMapList.add("O");
-        if(randomBridge != input) moveMapList.add("X");
+        if(randomBridge != input) {
+            moveMapList.add("X");
+            outputView.printResult();
+            retry();
+        }
     }
 
     /**
