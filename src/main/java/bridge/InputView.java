@@ -1,7 +1,10 @@
 package bridge;
 
+import bridge.Setting.BridgeLengthSetting;
+import bridge.Setting.BridgeSideIndex;
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
@@ -30,7 +33,7 @@ public class InputView {
             String line = Console.readLine();
             validReadMoving(line);
             return line;
-        } catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             throw new IllegalArgumentException(e.getMessage());
         }
     }
@@ -43,14 +46,19 @@ public class InputView {
     }
 
     private void validBridgeSize(int bridgeSize) {
-        if (bridgeSize < 3 || bridgeSize > 20) {
-            throw new NoSuchElementException("3 ~ 20 사이의 값만 입력 가능합니다.");
+        if (bridgeSize < BridgeLengthSetting.MIN_LENGTH.getLength()
+                || bridgeSize > BridgeLengthSetting.MAX_LENGTH.getLength()) {
+            throw new NoSuchElementException();
         }
     }
 
     private void validReadMoving(String line) {
-        if (!(line.equals("U") || line.equals("D"))) {
-            throw new IllegalArgumentException("U 또는 D만 입력가능합니다.");
+        List<BridgeSideIndex> bridgeSideIndex = List.of(BridgeSideIndex.values());
+        for (BridgeSideIndex bridgeSideEach : bridgeSideIndex) {
+            if (bridgeSideEach.getLabel().equals(line)) {
+                return;
+            }
         }
+        throw new IllegalArgumentException();
     }
 }
