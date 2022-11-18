@@ -13,29 +13,29 @@ class ValidityCheckTest {
         validityCheck = new ValidityCheck();
     }
 
-    @DisplayName("다리의 길이 입력시 문자를 입력하면 예외가 발생한다.")
+    @DisplayName("다리의 길이가 문자 일시 False / 정수일시 True")
     @Nested
     class 문자_확인 {
         @Test
         void case_문자() {
-            String Test1 = "십오";
-            String Test2 = "15j";
+            String testString1 = "십오";
+            String testString2 = "15j";
 
-            assertFalse(validityCheck.stringChecker(Test1));
-            assertFalse(validityCheck.stringChecker(Test2));
+            assertFalse(validityCheck.stringChecker(testString1));
+            assertFalse(validityCheck.stringChecker(testString2));
         }
 
         @Test
         void case_숫자() {
-            String Test1 = "15";
-            String Test2 = "20";
+            String testNumber1 = "15";
+            String testNumber2 = "20";
 
-            assertTrue(validityCheck.stringChecker(Test1));
-            assertTrue(validityCheck.stringChecker(Test2));
+            assertTrue(validityCheck.stringChecker(testNumber1));
+            assertTrue(validityCheck.stringChecker(testNumber2));
         }
     }
 
-    @DisplayName("다리의 길이 범위(3~20)를 벗어난 숫자 입력시 예외가 발생한다.")
+    @DisplayName("다리의 길이 범위(3~20)밖 일시 False / 범위 안 일시 True")
     @Nested
     class 범위_확인 {
         @Test
