@@ -71,4 +71,8 @@ public class OutputView {
     public void printResult(List<String> bridge, List<String> userPath) {
         printMap(bridge, userPath);
     }
+
+    public void printStartGame() {
+        System.out.println("다리 건너기 게임을 시작합니다.");
+    }
 }
