@@ -16,6 +16,10 @@ public class Bridge {
         this.bridge = bridgeFactory.makeBridge(size);
     }
 
+    public boolean canGoOrNot(List<String> step, String userPick) {
+        return bridge.get(step.size() - 1).equals(userPick);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
