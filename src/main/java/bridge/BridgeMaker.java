@@ -1,8 +1,5 @@
 package bridge;
 
-import bridge.domain.BridgeState;
-import bridge.exception.NotFoundBridgeStateException;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -25,14 +22,15 @@ public class BridgeMaker {
         return IntStream.range(1, size+1)
                 .mapToObj(action -> {
                     int randomNumber = bridgeNumberGenerator.generate();
-                    return getCanSpaceToCrossByNumber(randomNumber);
+                    return getRoute(randomNumber);
                 })
                 .collect(Collectors.toList());
     }
 
-    private String getCanSpaceToCrossByNumber(int number) {
-        BridgeState bridgeState = BridgeState.findByBridgeValue(number)
-                .orElseThrow(NotFoundBridgeStateException::new);
-        return bridgeState.getPlayerValue();
+    private String getRoute(int number) {
+        if(number == 1) {
+            return "U";
+        }
+        return "D";
     }
 }

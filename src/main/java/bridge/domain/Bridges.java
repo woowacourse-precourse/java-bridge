@@ -1,10 +1,7 @@
 package bridge.domain;
 
-import bridge.exception.NotFoundBridgeStateException;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class Bridges {
     private final List<Bridge> bridges;
@@ -14,21 +11,6 @@ public class Bridges {
     }
 
     public void generate(List<String> bridges) {
-        bridges.forEach(bridge -> {
-            BridgeState bridgeState = BridgeState.findByPlayerValue(bridge)
-                    .orElseThrow(NotFoundBridgeStateException::new);
-            this.bridges.add(Bridge.create(bridgeState));
-        });
-    }
-
-    public Optional<Bridge> findBridgeByNotCrossed() {
-        return bridges.stream()
-                .filter(bridge -> !bridge.isAlreadyCrossed())
-                .findAny();
-    }
-
-    public boolean isCrossAllBridges() {
-        return bridges.stream()
-                .allMatch(Bridge::isAlreadyCrossed);
+        bridges.forEach(bridge -> this.bridges.add(Bridge.create(bridge)));
     }
 }
