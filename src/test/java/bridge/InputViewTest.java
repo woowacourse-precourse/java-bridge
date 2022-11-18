@@ -1,13 +1,16 @@
 package bridge;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.io.ByteArrayInputStream;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class InputViewTest {
+
     InputView inputView = new InputView();
     @DisplayName("readBridgeSize 에 잘못된 입력이 주어지면 예외가 발생한다.")
     @ParameterizedTest
@@ -33,7 +36,14 @@ public class InputViewTest {
         assertThatThrownBy(inputView::readGameCommand)
                 .isInstanceOf(IllegalArgumentException.class);
     }
-    void settingInput(String input){
+    @DisplayName("readBridgeSize에 올바른 입력이 주어지면 int로 변환되어 리턴된다.")
+    @Test
+    void readBridgeSizeReturnCheck() {
+        settingInput("5");
+        assertThat(inputView.readBridgeSize()).isEqualTo(5);
+    }
+
+    void settingInput(String input) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
     }
 }
