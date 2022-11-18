@@ -2,9 +2,9 @@ package bridge.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import static bridge.constant.Constants.BridgeSign.QUIT;
-import static bridge.constant.Constants.BridgeSign.RETRY;
-import static bridge.constant.Constants.Error.RETRY_ERROR_MESSAGE;
+import static bridge.constant.Constants.BridgeSign.*;
+import static bridge.constant.Constants.BridgeSign.DOWN;
+import static bridge.constant.Constants.Error.*;
 import static bridge.view.OutputView.printCheckRetryMessage;
 import static bridge.view.OutputView.printEnter;
 
@@ -25,6 +25,7 @@ public class InputView {
      */
     public static int readBridgeSize() {
         String size = Console.readLine();
+        validateBridgeSize(size);
         printEnter();
         return Integer.parseInt(size);
     }
@@ -34,6 +35,7 @@ public class InputView {
      */
     public static String readMoving() {
         String movingDirection = Console.readLine();
+        validateDirection(movingDirection);
         return movingDirection;
     }
 
@@ -49,6 +51,26 @@ public class InputView {
             return false;
         }
         return true;
+    }
+
+    private static void validateBridgeSize(String size) {
+        int bridgeSize = Integer.parseInt(size);
+        if (bridgeSize >= 3 && bridgeSize <= 20) {
+            return;
+        }
+        throw new IllegalArgumentException(BRIDGE_SIZE_ERROR_MESSAGE);
+    }
+
+    /**
+     * 입력받은 이동 방향 검증
+     *
+     * @param direction 입력받은 이동 방향 [U or D]
+     */
+    private static void validateDirection(String direction) {
+        if (direction.equals(UP) || direction.equals(DOWN)) {
+            return;
+        }
+        throw new IllegalArgumentException(MOVE_DIRECTION_ERROR_MESSAGE);
     }
 
     private static void validateRetryCheckValue(String retryCheck){
