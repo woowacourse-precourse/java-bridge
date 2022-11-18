@@ -13,7 +13,11 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
+    
+    
+    //모든 메서드에서 안내 메세지 출력 필요 -> OutputView 클래스에 구현하깅
     public int readBridgeSize() {
+        //안내 메세지 출력 필요
         String bridgeSize = Console.readLine();
         validateBridgeSizeInput(bridgeSize);
 
@@ -24,7 +28,10 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        //안내 메세지 출력 필요
+        String direction = Console.readLine();
+        validateMovingInput(direction);
+        return direction;
     }
 
     /**
