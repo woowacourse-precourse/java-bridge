@@ -10,6 +10,7 @@ public class User {
 
 
     public User(List<String> bridge) {
+        this.userBridge = new ArrayList<>();
         this.bridge = bridge;
     }
 
@@ -34,5 +35,9 @@ public class User {
             return false;
         }
         return true;
+    }
+
+    public void addMove(String move) {
+        this.userBridge.add(move);
     }
 }
