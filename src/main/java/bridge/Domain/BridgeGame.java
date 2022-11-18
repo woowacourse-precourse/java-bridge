@@ -10,13 +10,11 @@ public class BridgeGame {
     private int gameStartCount;
     private Player player;
     private Bridge bridge;
-    private GameResultGenerator gameResultGenerator;
 
     public BridgeGame(Bridge bridge) {
         this.gameStartCount = 1;
         this.player = new Player();
         this.bridge = bridge;
-        this.gameResultGenerator = new GameResultGenerator();
     }
 
     /**
@@ -39,7 +37,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(GameResultGenerator gameResultGenerator) {
         this.gameStartCount++;
         gameResultGenerator.initGameResult();
     }
