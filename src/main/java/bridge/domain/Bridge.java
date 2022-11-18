@@ -10,7 +10,7 @@ public class Bridge {
         this.bridgeFrame = bridgeFrame;
     }
 
-    Bridge from(List<String> bridgeFrame) {
+    public static Bridge from(List<String> bridgeFrame) {
         return new Bridge(bridgeFrame);
     }
 }
