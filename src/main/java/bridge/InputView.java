@@ -27,7 +27,9 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String inputGameCommand = Console.readLine();
+        gameCommandValidate(inputGameCommand);
+        return inputGameCommand;
     }
 
     private int bridgeSizeValidate(String inputBridgeSize) {
@@ -43,7 +45,13 @@ public class InputView {
 
     private void movingCommandValidate(String inputMovingCommand) {
         if (!inputMovingCommand.equals("U") && !inputMovingCommand.equals("D")) {
-            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U와 D만 입력 할 수 있습니다.");
+            throw new IllegalArgumentException("[ERROR] 위로 이동은 U, 아래로 이동은 D만 입력 할 수 있습니다.");
+        }
+    }
+
+    private void gameCommandValidate(String inputGameCommand) {
+        if (!inputGameCommand.equals("R") && !inputGameCommand.equals("Q")) {
+            throw new IllegalArgumentException("[ERROR] 재시작은 R, 종료는 Q만 입력 할 수 있습니다.");
         }
     }
 }
