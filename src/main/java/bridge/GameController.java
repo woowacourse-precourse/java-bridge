@@ -54,6 +54,14 @@ public class GameController {
     }
 
     private void getGameResult() {
-
+        System.out.println("최종 게임 결과");
+        OutputView outputView = new OutputView();
+        outputView.printMap(bridgeGame.getResult());
+        if (success) {
+            System.out.println("게임 성공 여부: 성공");
+        } else {
+            System.out.println("게임 성공 여부: 실패");
+        }
+        System.out.println("총 시도한 횟수: " + attempts);
     }
 }
