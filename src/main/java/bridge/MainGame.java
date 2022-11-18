@@ -19,7 +19,6 @@ public class MainGame {
         outputView.printLengthInput();
         bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
         bridgeGame = new BridgeGame(bridge);
-        System.out.println(bridge); //test print
     }
 
     public void playRound() {
