@@ -21,12 +21,8 @@ public class MoveResult {
         highBridge.clear();
     }
 
-    public List<String> getHighBridge() {
-        return highBridge;
-    }
-
-    public List<String> getLowBridge() {
-        return lowBridge;
+    public void printBridge(OutputView outputView) {
+        outputView.printMap(lowBridge, highBridge);
     }
 
     private void up(boolean success) {

@@ -38,20 +38,17 @@ public class GameController {
     }
 
     private void walk(BridgeGame bridgeGame, List<String> bridge, MoveResult moveResult) {
-        List<String> high = moveResult.getHighBridge();
-        List<String> low = moveResult.getLowBridge();
-
         for (String bridgeStatus : bridge) {
             if (isMovePossible(bridgeGame, bridgeStatus, moveResult)) {
-                outputView.printMap(low, high);
+                moveResult.printBridge(outputView);
                 continue;
             }
-            outputView.printMap(low, high);
+            moveResult.printBridge(outputView);
             return;
         }
         success = true;
     }
-
+    
     private void startWalk(BridgeGame bridgeGame, List<String> bridge, MoveResult moveResult) {
         while (!isSuccess()) {
             walk(bridgeGame, bridge, moveResult);
