@@ -1,19 +1,14 @@
 package bridge.view;
 
 public class TotalView {
-    private final InputView in;
-    private final OutputView out;
-
-    public TotalView(InputView in, OutputView out) {
-        this.in = in;
-        this.out = out;
-    }
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
 
     public InputView in() {
-        return in;
+        return inputView;
     }
 
     public OutputView out() {
-        return out;
+        return outputView;
     }
 }
