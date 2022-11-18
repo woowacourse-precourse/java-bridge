@@ -52,6 +52,6 @@ public class ResultInformation {
             upJoiner.add(String.valueOf(upBridge[i]));
             downJoiner.add(String.valueOf(downBridge[i]));
         }
-        return upJoiner + "\n" + downJoiner + "\n";
+        return upJoiner + "\n" + downJoiner;
     }
 }
