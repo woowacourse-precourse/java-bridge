@@ -1,4 +1,4 @@
-package bridge.resource.message;
+package bridge.utils.message;
 
 public enum ErrorMessage {
     EXIT("에러로 인해 게임을 종료합니다."),

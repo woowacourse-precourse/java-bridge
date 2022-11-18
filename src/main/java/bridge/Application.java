@@ -1,7 +1,7 @@
 package bridge;
 
-import bridge.resource.message.ErrorMessage;
-import bridge.resource.message.FixedMessage;
+import bridge.utils.message.ErrorMessage;
+import bridge.utils.message.FixedMessage;
 
 public class Application {
 

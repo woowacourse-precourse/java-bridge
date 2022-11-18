@@ -1,6 +1,6 @@
 package bridge.validator;
 
-import bridge.resource.message.ErrorMessage;
+import bridge.utils.message.ErrorMessage;
 
 public class BridgeSizeValidator implements Validator {
     @Override

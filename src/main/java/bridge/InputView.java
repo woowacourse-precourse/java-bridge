@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.resource.message.FixedMessage;
+import bridge.utils.message.FixedMessage;
 import bridge.validator.BridgeSizeValidator;
 import bridge.validator.Validator;
 import camp.nextstep.edu.missionutils.Console;
