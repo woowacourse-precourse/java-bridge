@@ -16,7 +16,17 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap() {
+
     }
+
+    public void upPrintMap(List<String> bridgeView) {
+        System.out.print("[");
+        for(int i = 1; i<upBridgeMap(bridgeView).size()-1; i++){
+            System.out.print(" "+upBridgeMap(bridgeView).get(i)+" |");
+        }
+        System.out.println(" "+upBridgeMap(bridgeView).get(upBridgeMap(bridgeView).size()-1)+" ]");
+    }
+
 
     private List<String> upBridgeMap(List<String> bridgeView){
         List<String> bridgeOutputUP = new ArrayList<>();
