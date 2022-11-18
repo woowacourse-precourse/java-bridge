@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import bridge.constant.message.GameErrorMessage;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -15,5 +16,21 @@ public class RoadTest {
     void testNotValidDirection(String direction) {
         assertThatThrownBy(() -> new Road(direction)).hasMessage(GameErrorMessage.NO_SUCH_DIRECTION.getMessage())
                 .isInstanceOf(IllegalStateException.class);
+    }
+
+    @DisplayName("주어진 방향과 일치하다면 true 값을 반환한다.")
+    @Test
+    void testMatchDirection(){
+        Road road = new Road("U");
+        assertThat(road.match("U"))
+                .isTrue();
+    }
+
+    @DisplayName("주어진 방향과 일치하지 않다면 false 값을 반환한다.")
+    @Test
+    void testNotMatchDirection(){
+        Road road = new Road("U");
+        assertThat(road.match("D"))
+                .isFalse();
     }
 }

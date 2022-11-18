@@ -21,7 +21,6 @@ public class Road {
     }
 
     public boolean match(String direction){
-        // TODO: 방향 일치 여부를 확인
-        return false;
+        return this.direction.equals(direction);
     }
 }
