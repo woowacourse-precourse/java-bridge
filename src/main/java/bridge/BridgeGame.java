@@ -69,6 +69,17 @@ public class BridgeGame {
         }
     }
 
+    public boolean checkGame(Game game,int size) {
+        if (game.getLocation() == size){
+            game.setSuccess("성공");
+            return true;
+        }
+        if (game.getLocation()>0 &&game.getCurrentAnswer().equals("X")) {
+            return true;
+        }
+        return false;
+    }
+
     private void moveChoice(int location) {
         try {
             outputView.printMove();
@@ -82,18 +93,7 @@ public class BridgeGame {
         }
     }
 
-    private boolean checkGame(Game game,int size) {
-        if (game.getLocation() == size){
-            game.setSuccess("성공");
-            return true;
-        }
-        if (game.getCurrentAnswer().equals("X")) {
-            return true;
-        }
-        return false;
-    }
-
-    private String match(String user, String answer) {
+    public String match(String user, String answer) {
         if (!user.equals(answer)) return "X";
         return "O";
     }

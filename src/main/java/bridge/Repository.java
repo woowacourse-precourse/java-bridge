@@ -10,7 +10,7 @@ public class Repository {
      */
     private Game result;
     /**
-     * 현재 진행 중인 게임을 저장하는 리스트
+     * 시도 횟수 저장
      */
     private int times;
 

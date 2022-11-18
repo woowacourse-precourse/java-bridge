@@ -12,7 +12,6 @@ public class Game {
     private String currentAnswer;
 
     public Game() {
-        currentAnswer = "O";
         location = 0;
         success = "실패";
         playing = new ArrayList<>();
