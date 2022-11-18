@@ -5,21 +5,21 @@ import java.util.List;
 public class BridgeGame {
     private Bridge answerBridge;
     private GameUser gameUser;
+    private BridgeGameCounter gameCounter;
 
     public void initialize(int size) {
         BridgeRandomNumberGenerator generator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(generator);
 
         answerBridge = new Bridge(bridgeMaker.makeBridge(size));
-        System.out.println("answerBridge: " + answerBridge);
         gameUser = new GameUser();
+        gameCounter = new BridgeGameCounter();
     }
 
     public GameStatus getMovingResult(String moving) {
         move(moving);
         GameStatus gameStatus = new GameStatus(gameUser);
         if (isGameOver()) {
-            // 게임 종료되는 경우는. 1. 틀렸거나, 2. 답을 맞췄거나
             gameStatus.setFlag(gameUser, answerBridge);
         }
         return gameStatus;
@@ -29,12 +29,17 @@ public class BridgeGame {
         gameUser.move(moving);
     }
 
+    public int getCount() {
+        return gameCounter.getCount();
+    }
+
     private boolean isGameOver() {
         return gameUser.hasDifferentBridge(answerBridge) ||
                 gameUser.hasBridgeLength(answerBridge.length());
     }
 
     public void retry() {
+        gameCounter.addCount();
         gameUser.reset();
     }
 }
