@@ -1,28 +1,25 @@
 package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
-import exception.CommandException;
-import exception.MovingException;
-import exception.SizeException;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    private SizeException se;
-    private MovingException me;
-    private CommandException ce;
+    private BridgeGame bridgeGame;
+
+    
     /**
      * 다리의 길이를 입력받는다.
      */
-    public Integer readBridgeSize() {
+    public int readBridgeSize() {
         try {
-            this.se = new SizeException(Integer.parseInt(Console.readLine()));
+            this.bridgeGame = new BridgeGame(Integer.parseInt(Console.readLine()));
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 3 ~ 20 사이의 정수만 입력 가능합니다.");
             this.readBridgeSize();
         }
-        return se.getSize();
+        return bridgeGame.getSize();
     }
 
 
@@ -31,24 +28,25 @@ public class InputView {
      */
     public String readMoving() {
         try {
-            this.me = new MovingException(Console.readLine());
+            this.bridgeGame = new BridgeGame(Console.readLine(),"R");
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 위로이동: U, 아래로이동: D");
+            System.out.println("[ERROR] 이동할 칸을 선택해주세요. (위: U, 아래: D)");
             this.readMoving();
         }
-        return me.getReadMoving();
+        return bridgeGame.getReadMoving();
     }
+
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
         try {
-            this.ce = new CommandException(Console.readLine());
+            this.bridgeGame = new BridgeGame("D", Console.readLine());
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 재시도: R, 종료: Q");
+            System.out.println("[ERROR] 게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
             this.readGameCommand();
         }
-        return ce.getGameCommand();
+        return bridgeGame.getGameCommand();
     }
 }
