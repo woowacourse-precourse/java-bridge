@@ -5,17 +5,25 @@ import java.util.List;
 
 public class CrossBridge {
 
-    private static List<Way> crossBridge = new ArrayList<>();
+
+    private static final List<Way> crossBridge = new ArrayList<>();
     private static int totalTry;
     private static boolean success;
+
+    Bridge bridge = new Bridge();
 
     public CrossBridge() {
         CrossBridge.totalTry = 0;
         CrossBridge.success = false;
     }
 
-    public void addCrossBridge(Way way) {
-        CrossBridge.crossBridge.add(way);
+    public void addCrossBridge(String where) {
+        int goIndex = getCrossBridgeSize();
+        if (bridge.isValid(goIndex, where)) {
+            CrossBridge.crossBridge.add(new Way(where, true));
+            return;
+        }
+        CrossBridge.crossBridge.add(new Way(where, false));
     }
 
     public List<Way> getCrossBridge() {
