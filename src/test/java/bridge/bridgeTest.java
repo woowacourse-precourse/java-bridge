@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class bridgeTest {
 
@@ -37,6 +38,48 @@ public class bridgeTest {
                 List<String> itSupposedToThrowsException = bridgeMaker.makeBridge(21);
             }).isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("[ERROR] 다리 길이는 3부터");
+        }
+    }
+
+    @Nested
+    class BridgeTest {
+        Bridge bridge;
+
+        @BeforeEach
+        void setUp() {
+            List<String> testBridge = List.of("U", "D", "U", "D");
+            this.bridge = new Bridge(testBridge);
+        }
+
+        @Test
+        void bridgeShape가_제대로_생성되는지_테스트_모두성공() {
+            bridge.generateShape("U", 0);
+            bridge.generateShape("D", 1);
+            bridge.generateShape("U", 2);
+            bridge.generateShape("D", 3);
+            assertThat(bridge.getBridgeUpperSide().contains("[ O ,   , O ,   ]"));
+            assertThat(bridge.getBridgeUpperSide().contains("[   , O ,   , O ]"));
+            System.out.println(bridge.getBridgeUpperSide());
+            System.out.println(bridge.getBridgeDownSide());
+        }
+
+        @Test
+        void bridgeShape가_제대로_생성되는지_테스트_실패포함() {
+            bridge.generateShape("U", 0);
+            bridge.generateShape("U", 1);
+            bridge.generateShape("D", 2);
+            bridge.generateShape("D", 3);
+            assertThat(bridge.getBridgeUpperSide().contains("[ O , X ,   ,   ]"));
+            assertThat(bridge.getBridgeUpperSide().contains("[   ,   , X , O ]"));
+            System.out.println(bridge.getBridgeUpperSide());
+            System.out.println(bridge.getBridgeDownSide());
+        }
+
+        @Test
+        void 인풋이_D나_U가_아닐_때_오류_던지는지_테스트() {
+            assertThatThrownBy(() -> {
+                bridge.generateShape("ItHavaToThrowException", 0);
+            }).isInstanceOf(IllegalArgumentException.class);
         }
     }
 

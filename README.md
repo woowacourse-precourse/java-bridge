@@ -316,10 +316,10 @@ int number = bridgeNumberGenerator.generate();
   BridgeMaker를 통해 만들어진 다리를 다시 포장하는 용도이며 BridgeGame의 인스턴스 변수로 만들 예정  
   멤버변수: 다리 (List<String>), 다리 모양 (String[][])
   #### 기능목록
-  - [ ] D와 U를 입력 받아 다리와 비교
-  - [ ] 다리와 비교해 정답이면 다리 모양에 "O" 또는 "X" 추가
+  - [x] D와 U를 입력 받아 다리와 비교
+  - [x] 다리와 비교해 정답이면 다리 모양에 "O" 또는 "X" 추가
   #### 밸리데이션
-  - [ ] "U" or "D" 이외의 문자를 입력할 수 없다.
+  - [x] "U" or "D" 이외의 문자를 입력할 수 없다.
   
 
 ### Player
