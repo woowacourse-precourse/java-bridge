@@ -1,6 +1,5 @@
 package bridge.view;
 
-
 import bridge.standard.GameForm;
 
 import java.util.List;
@@ -24,15 +23,19 @@ public class OutputView {
     public void emptyLine() {
         System.out.println(EMPTY_LINE);
     }
+
     public void guideStart() {
         System.out.println(GUIDE_START);
     }
+
     public void guideInputBridgeSize() {
         System.out.println(GUIDE_INPUT_BRIDGE_SIZE);
     }
+
     public void guideInputMoving() {
         System.out.println(GUIDE_INPUT_MOVING);
     }
+
     public void guideInputGameCommand() {
         System.out.println(GUIDE_INPUT_GAME_COMMAND);
     }
@@ -40,6 +43,7 @@ public class OutputView {
     public void printMap(List<List<String>> positions) {
         System.out.println(transFromToMap(positions));
     }
+
     public void printResult(List<List<String>> positions, int numberOfAttempts, String outcome) {
         System.out.println(FINAL_GAME_RESULT);
         System.out.println(transFromToMap(positions));

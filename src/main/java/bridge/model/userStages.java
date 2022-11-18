@@ -5,8 +5,6 @@ import bridge.standard.GameForm;
 import java.util.*;
 
 public class userStages {
-    private static final String SUCCESS = "성공";
-    private static final String FAILS = "실패";
 
     private static List<List<String>> positions;
     private static int numberOfAttempts;
@@ -21,7 +19,7 @@ public class userStages {
     protected void savePosition(List<String> mapElement) {
         positions.add(mapElement);
         if (positions.get(positions.size() - 1).contains(GameForm.WRONG_CODE)) {
-            outcome = FAILS;
+            outcome = GameForm.FAILS;
         }
     }
 
@@ -33,26 +31,31 @@ public class userStages {
 
     public static boolean isNotReached(int bridgeSize) {
         if (positions.size() == bridgeSize) {
-            outcome = SUCCESS;
+            outcome = GameForm.SUCCESS;
             return false;
         }
         return true;
     }
+
     public static boolean isNotCross() {
-        if (outcome == FAILS) {
+        if (outcome == GameForm.FAILS) {
             return true;
         }
         return false;
     }
+
     public static int nextIndex() {
         return positions.size();
     }
+
     public static List<List<String>> getPositions() {
         return positions;
     }
+
     public static int getNumberOfAttempts() {
         return numberOfAttempts;
     }
+
     public static String getOutcome() {
         return outcome;
     }

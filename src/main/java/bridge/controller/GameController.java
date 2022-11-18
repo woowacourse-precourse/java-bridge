@@ -1,29 +1,29 @@
 package bridge.controller;
 
+import bridge.model.BridgeGame;
+import bridge.model.userStages;
+
+import bridge.view.InputView;
+import bridge.view.OutputView;
+
+import bridge.standard.GameForm;
+
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 
-import bridge.model.BridgeGame;
-import bridge.model.userStages;
-
-import bridge.standard.GameForm;
-import bridge.view.InputView;
-import bridge.view.OutputView;
-
 import java.util.List;
 
 public class GameController {
-    private List<String> bridge;
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
     private final BridgeMaker bridgeMaker;
+
+    private final BridgeGame bridgeGame = new BridgeGame();
 
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
 
-    private final BridgeGame bridgeGame = new BridgeGame();
-
+    private List<String> bridge;
 
     public GameController() {
         outputView.guideStart();
@@ -75,9 +75,6 @@ public class GameController {
     }
 
     private void exitGame() {
-        outputView.printResult(
-                userStages.getPositions(),
-                userStages.getNumberOfAttempts(),
-                userStages.getOutcome());
+        outputView.printResult(userStages.getPositions(), userStages.getNumberOfAttempts(), userStages.getOutcome());
     }
 }

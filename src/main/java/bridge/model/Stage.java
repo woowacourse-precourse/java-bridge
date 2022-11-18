@@ -12,7 +12,7 @@ public enum Stage {
 
     private final String userMoving;
     private final String bridgeStage;
-    private final List<String> mapElement;  //"아래 칸-위 칸"
+    private final List<String> mapElement;
 
     private Stage(String userMoving, String bridgeStage, List<String> mapElement) {
         this.userMoving = userMoving;

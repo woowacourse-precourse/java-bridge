@@ -1,15 +1,15 @@
 package bridge.view;
 
 import bridge.standard.Bug;
+
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-
     public int readBridgeSize() {
         String bridgeSize = Console.readLine();
         try {
-            Bug.validateChar(bridgeSize, Bug.SIZE_PATTERN, Bug.INPUT_ONLY_NUMBER);
+            Bug.validateChar(bridgeSize, Bug.SIZE_PATTERN, Bug.INPUT_ONLY_NATURAL_NUMBER);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             readBridgeSize();
@@ -26,7 +26,6 @@ public class InputView {
             readBridgeSize();
         }
         return size;
-
     }
 
     public String readMoving() {
