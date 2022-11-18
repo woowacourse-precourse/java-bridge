@@ -68,7 +68,7 @@ public class InputView {
 
     private void checkMoveCommand(String input) {
         if (!Objects.equals(input, "U") && !Objects.equals(input, "D")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("U 또는 D를 입력해주세요");
         }
     }
 
@@ -89,7 +89,7 @@ public class InputView {
 
     private void checkGameCommand(String input) {
         if (!Objects.equals(input, "R") && !Objects.equals(input, "Q")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("R 또는 Q를 입력해주세요");
         }
     }
 }
