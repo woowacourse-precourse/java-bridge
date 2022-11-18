@@ -1,8 +1,9 @@
 package controller.services;
 
-import bridge.constants.DirectionTable;
+import constants.DirectionTable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BridgeMaker {
@@ -14,12 +15,10 @@ public class BridgeMaker {
 
     public List<String> makeBridge(int size) {
         List<String> bridgeMap = new ArrayList<>();
-        String[] positionTable = new String[]{
-                DirectionTable.DOWN.getInitial(), DirectionTable.UP.getInitial()
-        };
+        List<DirectionTable> directionTable = Arrays.asList(DirectionTable.values());
 
-        for(int loop=0; loop < size; loop++){
-            bridgeMap.add(positionTable[bridgeNumberGenerator.generate()]);
+        for (; bridgeMap.size() < size; ) {
+            bridgeMap.add(directionTable.get(bridgeNumberGenerator.generate()).getInitial());
         }
         return bridgeMap;
     }
