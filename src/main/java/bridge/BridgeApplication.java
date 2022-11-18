@@ -33,7 +33,8 @@ public class BridgeApplication {
             bridgeGame.move(inputMoving(), idx);
             printMap();
             if (isCorrectMove()) continue;
-            if (isSelectRetry()) break;
+            bridgeGame.retry(inputView);
+            if(bridgeGame.isExit()) break;
             idx = -1; // 반복문의 idx 를 -1로 돌려주어 다시 0부터 시작할 수 있게끔 함
             plusGameCnt();
         }
@@ -41,13 +42,6 @@ public class BridgeApplication {
 
     private void plusGameCnt() {
         bridgeGame.plusCnt();
-    }
-
-    private boolean isSelectRetry() {
-        if (!(bridgeGame.retry(inputView))) {
-            return true;
-        }
-        return false;
     }
 
     private void printMap() {
