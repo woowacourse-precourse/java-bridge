@@ -1,8 +1,6 @@
 package bridge.domain.repository;
 
-import bridge.application.BridgeGame;
 import bridge.presentation.dto.BridgeSize;
-import bridge.presentation.dto.GameCommand;
 import bridge.presentation.dto.SelectMove;
 
 import java.util.ArrayList;
@@ -22,7 +20,6 @@ public class BridgeRepository {
         attemptNumber=1;
         successOrFail="실패";
     }
-
     public static BridgeRepository getInstance(){
         return instance;
     }
@@ -47,16 +44,21 @@ public class BridgeRepository {
     public void saveBridgeSize(BridgeSize bridgeSize){
         this.bridgeSize=bridgeSize;
     }
-    public void saveSelectMove(SelectMove selectMove){this.selectMove=selectMove;}
-    public void updateBridge(List<String> bridge){this.bridge=bridge;}
-    public void updateSuccessOrFail(){this.successOrFail="성공";}
+    public void saveSelectMove(SelectMove selectMove){
+        this.selectMove=selectMove;
+    }
+    public void updateBridge(List<String> bridge){
+        this.bridge=bridge;
+    }
+    public void updateSuccessOrFail(){
+        this.successOrFail="성공";
+    }
     public BridgeSize getBridgeSize() {
         return bridgeSize;
     }
     public SelectMove getSelectMove() {
         return selectMove;
     }
-
     public List<String> getBridge() {
         return bridge;
     }
@@ -66,17 +68,13 @@ public class BridgeRepository {
     public List<String> getLowerResult() {
         return lowerResult;
     }
-
     public Integer getSuccessNumber() {
         return successNumber;
     }
-
     public String getSuccessOrFail() {
         return successOrFail;
     }
-
     public Integer getAttemptNumber() {
         return attemptNumber;
     }
-
 }
