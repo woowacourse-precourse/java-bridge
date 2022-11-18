@@ -40,7 +40,7 @@ public class Application {
     }
 
     static String readCommand(InputView input){
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q");
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         return input.readGameCommand();
     }
 
@@ -62,6 +62,7 @@ public class Application {
                 if(Objects.equals(readCommand(input), "Q")){
                     break;
                 }
+                bridgeGame.retry();
             }
 
         } catch (IllegalArgumentException exception) {
