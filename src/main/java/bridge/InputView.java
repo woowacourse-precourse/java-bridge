@@ -18,9 +18,10 @@ public class InputView {
     int size;
     String input;
 
-    public void printStart(){
+    public void printStart() {
         System.out.println(startGame);
     }
+
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -86,15 +87,17 @@ public class InputView {
         }
         return input;
     }
-    private void getRetry(){
+
+    private void getRetry() {
         System.out.println(exceptRetry);
         throw new IllegalArgumentException(exceptRetry);
     }
+
     private boolean ThisIsRetry() {
         return !Objects.equals(input, "R") && !Objects.equals(input, "Q");
     }
 
-    private String getInput(){
+    private String getInput() {
         return Console.readLine();
     }
 

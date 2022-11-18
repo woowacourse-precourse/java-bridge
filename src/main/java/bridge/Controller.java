@@ -15,7 +15,7 @@ public class Controller {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         inputView.printStart();
         bridgeList = bridgeMaker.makeBridge(inputView.readBridgeSize());
-        Game( 0);
+        Game(0);
     }
 
     private void Game(int movingIndex) {
