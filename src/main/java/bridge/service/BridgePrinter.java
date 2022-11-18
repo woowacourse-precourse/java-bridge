@@ -25,14 +25,6 @@ public class BridgePrinter {
         downBridge.append("]");
     }
 
-    private void addUpBridge(String answer){
-        upBridge.append(answer);
-    }
-
-    private void addDownBridge(String answer){
-        downBridge.append(answer);
-    }
-
     public void printStatus(List<String> bridge, List<String> playerMove){
         init();
         for(int index = 0; index < playerMove.size(); index++){
@@ -45,15 +37,15 @@ public class BridgePrinter {
 
     private void makeUpBridge(List<String> bridge, List<String> playerMove, int index) {
         if (playerMove.get(index).equals("U")) {
-            addUpBridge(judge.isCorrect(bridge.get(index), playerMove.get(index)));
-            addDownBridge("   |");
+            upBridge.append(judge.isCorrect(bridge.get(index), playerMove.get(index)));
+            downBridge.append("   |");
         }
     }
 
     private void makeDownBridge(List<String> bridge, List<String> playerMove, int index) {
         if (playerMove.get(index).equals("D")) {
-            addDownBridge(judge.isCorrect(bridge.get(index), playerMove.get(index)));
-            addUpBridge("   |");
+            downBridge.append(judge.isCorrect(bridge.get(index), playerMove.get(index)));
+            upBridge.append("   |");
         }
     }
 
