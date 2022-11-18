@@ -12,12 +12,8 @@ public class Application {
     private static final OutputView outputView = new OutputView();
 
     public static void main(String[] args) {
-        try {
-            BridgeGame game = initializeGameWithBridgeLength();
-            play(game);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        BridgeGame game = initializeGameWithBridgeLength();
+        play(game);
     }
 
     private static BridgeGame initializeGameWithBridgeLength() {
@@ -25,7 +21,7 @@ public class Application {
         int bridgeSize = inputView.readBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        return new BridgeGame(new Referee(bridge),new ArrayList<>(),1);
+        return new BridgeGame(new Referee(bridge), new ArrayList<>(), 1);
     }
 
     private static void play(BridgeGame game) {

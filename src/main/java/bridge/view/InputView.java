@@ -14,26 +14,44 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String userInput = readLine();
-        validateBridgeSize(userInput);
-        return Integer.parseInt(userInput);
+        try {
+            String userInput = readLine();
+            validateBridgeSize(userInput);
+            return Integer.parseInt(userInput);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            System.out.println("다시 입력해주세요.");
+            return readBridgeSize();
+        }
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다. U / D
      */
     public String readMoving() {
-        String userInput = readLine();
-        validateMoveCommand(userInput);
-        return userInput;
+        try {
+            String userInput = readLine();
+            validateMoveCommand(userInput);
+            return userInput;
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            System.out.println("다시 입력해주세요.");
+            return readMoving();
+        }
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        String userInput = readLine();
-        validateGameCommand(userInput);
-        return userInput;
+        try {
+            String userInput = readLine();
+            validateGameCommand(userInput);
+            return userInput;
+        }catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            System.out.println("다시 입력해주세요.");
+            return readGameCommand();
+        }
     }
 }
