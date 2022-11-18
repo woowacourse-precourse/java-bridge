@@ -3,11 +3,11 @@ package bridge.domain.player;
 public class Player {
 
     private int playerLocation;
-    private boolean success;
+    private boolean cross;
 
     public Player() {
         this.playerLocation = 0;
-        this.success = true;
+        this.cross = true;
     }
 
     public int getPlayerLocation() {
@@ -21,11 +21,11 @@ public class Player {
         playerLocation = 0;
     }
 
-    public boolean isSuccess() {
-        return success;
+    public boolean isCross() {
+        return cross;
     }
 
-    public void setSuccess(boolean success) {
-        this.success = success;
+    public void setCross(boolean cross) {
+        this.cross = cross;
     }
 }

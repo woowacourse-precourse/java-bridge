@@ -57,7 +57,7 @@ class BridgeGameTest {
 
             //then
             int afterMoveAttempt = bridgeResult.getAttempt();
-            assertThat(player.isSuccess()).isEqualTo(false);
+            assertThat(player.isCross()).isEqualTo(false);
             assertThat(afterMoveAttempt).isEqualTo(beforeMoveAttempt + 1);
         }
 
@@ -79,7 +79,7 @@ class BridgeGameTest {
 
             //then
             int afterMoveAttempt = bridgeResult.getAttempt();
-            assertThat(player.isSuccess()).isEqualTo(true);
+            assertThat(player.isCross()).isEqualTo(true);
             assertThat(afterMoveAttempt).isEqualTo(beforeMoveAttempt);
         }
     }

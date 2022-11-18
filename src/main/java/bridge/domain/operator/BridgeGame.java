@@ -38,11 +38,11 @@ public class BridgeGame {
         if (!passable) {
             player.resetPlayerLocation();
             bridgeResult.plusAttempt();
-            player.setSuccess(false);
+            player.setCross(false);
             return;
         }
         player.movePlayerLocation();
-        player.setSuccess(true);
+        player.setCross(true);
     }
 
     /**
