@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.constant.message.InputErrorMessage;
+import bridge.utils.Validator;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -13,7 +16,9 @@ public class InputView {
     }
 
     private void checkNumericString(String command){
-        // TODO: 사용자의 입력값이 숫자 형태인지 확인
+        if(!Validator.isNumericString(command)){
+            throw new IllegalArgumentException(InputErrorMessage.NO_NUMERIC_STRING.getMessage());
+        }
     }
 
     private void checkRangeOfBridgeSize(int bridgeSize){
