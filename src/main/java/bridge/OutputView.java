@@ -37,12 +37,9 @@ public class OutputView {
     }
 
     public void askRestartGame() {
-        System.out.println(PHRASE_RESULT_OF_THE_GAME.getPhrase());
+        System.out.println(PHRASE_RESTART_THE_GAME.getPhrase());
     }
 
-    public void printfinalResult() {
-        System.out.println(PHRASE_RESULT_OF_THE_GAME.getPhrase());
-    }
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.

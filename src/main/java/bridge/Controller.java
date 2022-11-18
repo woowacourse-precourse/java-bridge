@@ -73,7 +73,7 @@ public class Controller {
         int tmp = attempt;
 
         if(failed) {
-
+            outputView.askRestartGame();
             quit = inputView.readGameCommand();
             attempt = bridgeGame.retry(attempt, quit);
         }
