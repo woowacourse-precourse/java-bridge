@@ -14,7 +14,6 @@ public class Validator {
     }
 
     public static boolean isInRangeOfNumber(int target, int start, int end){
-        // TODO: 숫자로된 범위 안에 값이 존재하는지 확인
-        return false;
+        return target >= start && target <= end;
     }
 }

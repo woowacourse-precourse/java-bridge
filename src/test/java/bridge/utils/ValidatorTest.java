@@ -40,4 +40,24 @@ public class ValidatorTest {
         assertThat(Validator.isInRangeOfString(target, range))
                 .isFalse();
     }
+
+    @DisplayName("숫자로된 범위 안에 값이 존재할 때 true 값을 반환한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {3, 9, 20})
+    void testInRangeOfNumber(int target) {
+        int start = 3;
+        int end = 20;
+        assertThat(Validator.isInRangeOfNumber(target, start, end))
+                .isTrue();
+    }
+
+    @DisplayName("숫자로된 범위 안에 값이 존재하지 않을 때 false 값을 반환한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {2, 21})
+    void testNotInRangeOfNumber(int target) {
+        int start = 3;
+        int end = 20;
+        assertThat(Validator.isInRangeOfNumber(target, start, end))
+                .isFalse();
+    }
 }
