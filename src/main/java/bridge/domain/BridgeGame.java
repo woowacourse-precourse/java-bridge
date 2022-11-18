@@ -12,12 +12,21 @@ import bridge.view.OutputView;
  */
 public class BridgeGame {
 
-    public void start(InputView inputView, OutputView outputView) {
+    private Bridge bridge;
+    private BridgeRecord record;
+
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+
+
+    public void start() {
         outputView.printStart();
 
         BridgeRandomNumberGenerator generator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(generator);
-        Bridge bridge = new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
+        this.bridge = new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
+
+        this.record = new BridgeRecord();
     }
 
     /**
@@ -26,6 +35,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
+        record.addBoard(inputView.readMoving());
     }
 
     /**

@@ -1,6 +1,7 @@
 package bridge.view;
 
-
+import bridge.GameRule;
+import bridge.validator.BridgeBoardValidator;
 import bridge.validator.BridgeSizeValidator;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -9,37 +10,41 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    private static final String INPUT_BRIDGE_LENGTH_MESSAGE = "다리의 길이를 입력해주세요.";
+	private static final String INPUT_BRIDGE_LENGTH_MESSAGE = "다리의 길이를 입력해주세요.";
+	private static final String INPUT_MOVING =
+		"이동할 칸을 선택해주세요. (위: " + GameRule.UP_BOARD + ", 아래: " + GameRule.DOWN_BOARD + ")";
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
-    public int readBridgeSize() {
-        System.out.println(INPUT_BRIDGE_LENGTH_MESSAGE);
+	public int readBridgeSize() {
+		System.out.println(INPUT_BRIDGE_LENGTH_MESSAGE);
 
-        try{
-            BridgeSizeValidator validator = new BridgeSizeValidator(Console.readLine());
-            validator.validate();
-            return Integer.parseInt(validator.getSize());
-        } catch (IllegalArgumentException e){
+		try {
+			BridgeSizeValidator validator = new BridgeSizeValidator(Console.readLine());
+			validator.validate();
+			return Integer.parseInt(validator.getSize());
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return readBridgeSize();
+		}
+	}
+
+	/**
+	 * 사용자가 이동할 칸을 입력받는다.
+	 */
+	public String readMoving() {
+        System.out.println(INPUT_MOVING);
+
+        try {
+			return BridgeBoardValidator.validate(Console.readLine());
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return readBridgeSize();
+            return readMoving();
         }
-    }
+	}
 
-
-
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
-    public String readMoving() {
-        return null;
-    }
-
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public String readGameCommand() {
-        return null;
-    }
+	/**
+	 * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
+	 */
+	public String readGameCommand() {
+		return null;
+	}
 }
