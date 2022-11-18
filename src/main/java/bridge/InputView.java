@@ -15,7 +15,7 @@ public class InputView {
         System.out.println("다리의 길이를 입력해주세요.");
     }
 
-    public void selectBridgeMsg(){
+    public void selectBridgeMsg() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
 
@@ -51,9 +51,21 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        selectBridgeMsg();
-        String move = Console.readLine();
-        return move;
+        try {
+            selectBridgeMsg();
+            String move = Console.readLine();
+            movingException(move);
+            return move;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
+    }
+
+    private void movingException(String move) {
+        if (!move.equals("U") && !move.equals("D")) {
+            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U 또는 D여야 합니다.");
+        }
     }
 
     /**
