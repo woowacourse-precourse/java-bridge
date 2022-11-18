@@ -3,7 +3,7 @@ package bridge;
 import java.util.ArrayList;
 
 public class User {
-    private ArrayList<Field> userBridge;
+    private ArrayList<Field> userBridge = new ArrayList<>();
     private int gameCount = 0;
 
     public int getGameCount() {
