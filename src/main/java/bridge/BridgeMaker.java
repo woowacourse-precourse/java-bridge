@@ -11,7 +11,7 @@ public class BridgeMaker {
     private final OutputView outputView = new OutputView();
     private List<String> mapUpper = new ArrayList<>();
     private List<String> mapLower = new ArrayList<>();
-    private int limitSize = 3;
+    private int limitSize;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -26,6 +26,7 @@ public class BridgeMaker {
     }
 
     public List<String> makeBridge(int size) {
+        limitSize = size;
         List<String> crossable = new ArrayList<>();
         int addNumber;
         for (int index = 0; index < size; index++) {
