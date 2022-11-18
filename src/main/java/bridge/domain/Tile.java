@@ -45,7 +45,7 @@ public enum Tile {
         if (!this.equals(playerTile)) {
             return String.format(TILE_FORMAT, EMPTY_SIGN);
         }
-        if(this.equals(bridgeTile)){
+        if (this.equals(bridgeTile)) {
             return String.format(TILE_FORMAT, SUCCESS_SIGN);
         }
         return String.format(TILE_FORMAT, FAIL_SIGN);
