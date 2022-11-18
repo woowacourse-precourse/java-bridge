@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import static bridge.domain.GameCommand.RETRY;
+
 import java.util.List;
 
 /**
@@ -8,9 +10,11 @@ import java.util.List;
 public class BridgeGame {
 
     private final List<String> bridge;
+    private final MoveResult moveResult;
 
-    public BridgeGame(List<String> bridge) {
+    public BridgeGame(List<String> bridge, MoveResult moveResult) {
         this.bridge = bridge;
+        this.moveResult = moveResult;
     }
 
     /**
@@ -18,17 +22,16 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(int location, String moveCommand, MoveResult moveResult) {
+    public void move(int location, BridgeCellType moveCommand) {
         if (canMove(location, moveCommand)) {
-            moveResult.success(BridgeCellType.of(moveCommand));
-            return true;
+            moveResult.success(moveCommand);
+            return;
         }
-        moveResult.fail(BridgeCellType.of(moveCommand));
-        return false;
+        moveResult.fail(moveCommand);
     }
 
-    private boolean canMove(int location, String moveCommand) {
-        return moveCommand.equals(bridge.get(location));
+    private boolean canMove(int location, BridgeCellType moveCommand) {
+        return moveCommand.getCellType().equals(bridge.get(location));
     }
 
     /**
@@ -36,6 +39,15 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public GameCommand retry(GameCommand gameCommand) {
+        if (gameCommand.equals(RETRY)) {
+            this.moveResult.increaseTryCount();
+            this.moveResult.clearMoveResults();
+        }
+        return gameCommand;
+    }
+
+    public MoveResult getMoveResult() {
+        return moveResult;
     }
 }
