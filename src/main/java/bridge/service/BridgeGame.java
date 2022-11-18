@@ -62,12 +62,12 @@ public class BridgeGame {
     }
 
     private void addMoveableStatus() {
-        IntStream.range(0, movements.size()).forEach(index -> {
-            Movement movement = movements.get(index);
+        IntStream.range(0, movements.size()).forEach(movementSequence -> {
+            Movement movement = movements.get(movementSequence);
             if (movement.direction().equals("U")) {
-                upperMap.setCharAt(index * 4 + 2, movement.moveable());
+                upperMap.setCharAt(movementSequence * 4 + 2, movement.moveable());
             } else if (movement.direction().equals("D")) {
-                lowerMap.setCharAt(index * 4 + 2, movement.moveable());
+                lowerMap.setCharAt(movementSequence * 4 + 2, movement.moveable());
             }
         });
     }
