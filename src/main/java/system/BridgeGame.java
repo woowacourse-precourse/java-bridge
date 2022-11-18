@@ -18,7 +18,7 @@ public class BridgeGame {
     OutputView outputView = new OutputView();
     InputController inputController = new InputController();
 
-    int count = 1;
+    int count = 0;
     int size;
     boolean isAnswer = true;
     List<String> bridge;
@@ -46,9 +46,12 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
 
-    private void retry() {
-        initializeVariables();
-        play(size, bridge);
+    private boolean retry() {
+        if(!isAnswer){
+            String gameCommand = inputController.getGameCommand();
+            return gameCommand.equals("R");
+        }
+        return false;
     }
 
     private void initializeVariables() {
@@ -58,21 +61,26 @@ public class BridgeGame {
     }
 
     public void start() {
+        do {
+            play(size, bridge);
+        } while(retry());
+    }
+
+    public void Game() {
         this.size = inputController.getBridgeSize();
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         this.bridge = bridgeMaker.makeBridge(size);
-        play(size, bridge);
+        start();
+        outputView.printResult(isAnswer, count, realTimeMap);
     }
 
     private void play(int size, List<String> bridge) {
+        initializeVariables();
         for (int i = 0; i < size; i++) {
             if (compareInputActual(bridge, i)) {
                 break;
             }
-        }
-        if(!isAnswer){
-            askRetry();
         }
     }
 
@@ -102,13 +110,5 @@ public class BridgeGame {
             return EnumStrings.SUCCESS.getValue();
         }
         return EnumStrings.FAIL.getValue();
-    }
-
-    private void askRetry() {
-        String gameCommand = inputController.getGameCommand();
-        if (gameCommand.equals("R")) {
-            retry();
-        }
-        outputView.printResult(isAnswer, count, realTimeMap);
     }
 }
