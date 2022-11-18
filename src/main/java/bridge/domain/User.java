@@ -5,9 +5,6 @@ import java.util.List;
 public class User {
 
     private int position = 0;
-    private List<String> up;
-    private List<String> down;
-    private int numberOfTrial = 0;
 
     public int getPosition() {
         return this.position;
@@ -15,5 +12,9 @@ public class User {
 
     public void move() {
         position++;
+    }
+
+    public void returnStart() {
+        position = 0;
     }
 }
