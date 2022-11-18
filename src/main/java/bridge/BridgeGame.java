@@ -41,8 +41,8 @@ public class BridgeGame {
         return moving;
     }
 
-    private void validateMovingInput(String input) {
-        if (!input.equals(UP_BRIDGE_CHARACTER) && !input.equals(DOWN_BRIDGE_CHARACTER)) {
+    private void validateMovingInput(String moving) {
+        if (!moving.equals(UP_BRIDGE_CHARACTER) && !moving.equals(DOWN_BRIDGE_CHARACTER)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_VALID_MOVING_INPUT_ERROR.getMessage());
         }
     }
@@ -50,28 +50,28 @@ public class BridgeGame {
     /**
      * 사용자가 이동한 칸의 정답을 확인할 때 사용하는 메서드
      */
-    public String getUpBridgeResult(List<String> bridge, int index, String input) {
-        if (isMovingCorrect(bridge, index, input) && input.equals(UP_BRIDGE_CHARACTER)) {
+    public String getUpBridgeResult(List<String> bridge, int index, String moving) {
+        if (isMovingCorrect(bridge, index, moving) && moving.equals(UP_BRIDGE_CHARACTER)) {
             return RIGHT_ANSWER;
         }
-        if (!isMovingCorrect(bridge, index, input) && input.equals(UP_BRIDGE_CHARACTER)) {
+        if (!isMovingCorrect(bridge, index, moving) && moving.equals(UP_BRIDGE_CHARACTER)) {
             return WRONG_ANSWER;
         }
         return NOT_CHOSEN;
     }
 
-    public String getDownBridgeResult(List<String> bridge, int index, String input) {
-        if (isMovingCorrect(bridge, index, input) && input.equals(DOWN_BRIDGE_CHARACTER)) {
+    public String getDownBridgeResult(List<String> bridge, int index, String moving) {
+        if (isMovingCorrect(bridge, index, moving) && moving.equals(DOWN_BRIDGE_CHARACTER)) {
             return RIGHT_ANSWER;
         }
-        if (!isMovingCorrect(bridge, index, input) && input.equals(DOWN_BRIDGE_CHARACTER)) {
+        if (!isMovingCorrect(bridge, index, moving) && moving.equals(DOWN_BRIDGE_CHARACTER)) {
             return WRONG_ANSWER;
         }
         return NOT_CHOSEN;
     }
 
-    public boolean isMovingCorrect(List<String> bridge, int index, String input) {
-        return bridge.get(index).equals(input);
+    public boolean isMovingCorrect(List<String> bridge, int index, String moving) {
+        return bridge.get(index).equals(moving);
     }
 
     /**
