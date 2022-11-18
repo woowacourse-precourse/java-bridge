@@ -21,8 +21,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println("이동할 칸을 선택해주세요.");
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String moving = Console.readLine();
+        System.out.println(moving);
         checkMoving(moving);
         return moving;
     }
@@ -44,14 +45,16 @@ public class InputView {
     }
 
     private void checkMoving(String moving){
-        if(moving != "U" || moving != "D"){
-            throw new IllegalArgumentException("[ERROR] U 또는 D를 입력해주세요.");
+        if(moving.equals("U") || moving.equals("D")){
+            return;
         }
+        throw new IllegalArgumentException("[ERROR] U 또는 D를 입력해주세요.");
     }
 
     private void checkGameCommand(String command) {
-        if(command != "R" || command != "Q"){
-            throw new IllegalArgumentException("[ERROR] R 또는 Q를 입력해주세요.");
+        if(command.equals("R") || command.equals("Q")){
+            return;
         }
+        throw new IllegalArgumentException("[ERROR] R 또는 Q를 입력해주세요.");
     }
 }
