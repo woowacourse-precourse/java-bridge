@@ -29,11 +29,20 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String result = validateCommend(Console.readLine());
+        return result;
+    }
+
+    private String validateCommend(String commend) {
+        if (!(commend.equals("R") || commend.equals("Q"))) {
+            throw new IllegalArgumentException();
+        }
+
+        return commend;
     }
 
     private int validateSize(String size) {
-        int result = 0;
+        int result;
         for (int i = 0; i < size.length(); i++)
         {
             if (!(size.charAt(i) <= '9' && size.charAt(i) >= '0'))
