@@ -10,6 +10,8 @@ public class Application {
 
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        System.out.println(bridge);
+
+        String moving = inputView.readMoving();
+        System.out.println(moving);
     }
 }
