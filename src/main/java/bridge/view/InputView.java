@@ -1,5 +1,7 @@
 package bridge.view;
 
+import static bridge.view.OutputView.printExceptionMessage;
+
 import bridge.domain.Direction;
 import bridge.domain.GameCommand;
 import camp.nextstep.edu.missionutils.Console;
@@ -24,7 +26,7 @@ public class InputView {
             validateLength(size);
             return size;
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            printExceptionMessage(e.getMessage());
             return readBridgeSize();
         }
     }
@@ -37,7 +39,7 @@ public class InputView {
         try {
             return Direction.from(validateMoving(Console.readLine()));
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            printExceptionMessage(e.getMessage());
             return readMoving();
         }
     }
@@ -50,7 +52,7 @@ public class InputView {
         try {
             return GameCommand.from(validateReplayGame(Console.readLine()));
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            printExceptionMessage(e.getMessage());
             return readGameCommand();
         }
     }
@@ -66,12 +68,12 @@ public class InputView {
         if ("U".equals(moving) || "D".equals(moving)) {
             return moving;
         }
-        throw new IllegalArgumentException("이동할 칸은 위: U, 아래: D로 입력해야 합니다.");
+        throw new IllegalArgumentException(" 이동할 칸은 위: U, 아래: D로 입력해야 합니다.");
     }
 
     private void validateLength(int length) {
         if (length < MIN_BRIDGE_LENGTH || MAX_BRIDGE_LENGTH < length) {
-            throw new IllegalArgumentException("다리의 길이는 3 이상 20 이하의 값만 입력 가능합니다.");
+            throw new IllegalArgumentException(" 다리의 길이는 3 이상 20 이하의 값만 입력 가능합니다.");
         }
     }
 }

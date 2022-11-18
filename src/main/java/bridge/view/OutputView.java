@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 public class OutputView {
 
     private static final String BRIDGE_GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
+    private static final String ERROR = "[ERROR]";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -48,6 +49,10 @@ public class OutputView {
         } else {
             System.out.println("게임 성공 여부: 실패");
         }
+    }
+
+    public static void printExceptionMessage(String message) {
+        System.out.println(ERROR + message);
     }
 
     public void printGameStartMessage() {
