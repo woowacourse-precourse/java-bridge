@@ -1,9 +1,9 @@
 package bridge.service.dto.request;
 
-public class BridgeSpaceRequestDto {
+public class PlayerMovementRequestDto {
     private final String movingSpace;
 
-    public BridgeSpaceRequestDto(String movingSpace) {
+    public PlayerMovementRequestDto(String movingSpace) {
         this.movingSpace = movingSpace;
     }
 

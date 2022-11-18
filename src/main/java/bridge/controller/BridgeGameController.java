@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.service.BridgeGame;
 import bridge.service.dto.request.BridgeSizeRequestDto;
+import bridge.service.dto.request.PlayerMovementRequestDto;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -29,7 +30,8 @@ public class BridgeGameController {
 
     private void play() {
         while (!bridgeGame.isGameClear() || !bridgeGame.isGameFail()) {
-
+            PlayerMovementRequestDto dto = inputView.readMoving();
+            bridgeGame.move(dto);
         }
     }
 }
