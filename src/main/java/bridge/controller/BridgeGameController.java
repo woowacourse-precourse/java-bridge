@@ -1,9 +1,10 @@
 package bridge.controller;
 
-import bridge.BridgeGame;
+import bridge.domain.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.validator.BridgeSizeValidator;
+import bridge.validator.MoveCommandValidator;
 import bridge.view.InputView;
 
 import java.util.List;
@@ -22,5 +23,11 @@ public class BridgeGameController {
         int bridgeSize = bridgeSizeValidator.getValidBridgeSize(inputView.readBridgeSize());
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         return bridgeMaker.makeBridge(bridgeSize);
+    }
+
+    public void getMoveResultFromUserMoveCommand(){
+        MoveCommandValidator moveCommandValidator = new MoveCommandValidator();
+        String userMove = moveCommandValidator.getValidCommand(inputView.readMoving());
+
     }
 }
