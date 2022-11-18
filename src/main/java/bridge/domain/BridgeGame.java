@@ -46,4 +46,15 @@ public class BridgeGame {
     public void retry(Player player) {
         player.die();
     }
+
+    /**
+     * bridge의 checkBridgeTileAt 대신 호출, 해당 위치에 타일이 입력된 타일과 같은지 확인
+     *
+     * @param positionIndex 다리의 확인할 위치 index
+     * @param tile          확인할 위치의 tile
+     * @return positionIndex의 타일이 tile과 같으면 true, 아니면 false
+     */
+    public boolean checkBridgeTileAt(int positionIndex, Tile tile) {
+        return bridge.checkBridgeTileAt(positionIndex, tile);
+    }
 }

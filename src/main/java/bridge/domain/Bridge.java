@@ -33,15 +33,11 @@ public class Bridge {
         }
     }
 
-    public boolean checkBridgeTileAt(int playerPosition, Tile nextTile) {
-        if (bridgeTiles.get(playerPosition).equals(nextTile)) {
+    public boolean checkBridgeTileAt(int positionIndex, Tile tile) {
+        if (bridgeTiles.get(positionIndex).equals(tile)) {
             return true;
         }
         return false;
-    }
-
-    public Tile getTileOf(int index) {
-        return bridgeTiles.get(index);
     }
 
     public int getBridgeSize() {

@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.domain.Bridge;
+import bridge.domain.BridgeGame;
 import bridge.domain.Player;
 import bridge.domain.Tile;
 
@@ -26,31 +27,30 @@ public class OutputView {
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     *
+     * @param bridgeGame 결과를 출력할 게임 입력
+     * @param player     결과를 출력할 사용자 입력
      */
-    public void printMap(Bridge bridge, Player player) {
-
-        StringBuilder stringBuilder = new StringBuilder();
+    public void printMap(BridgeGame bridgeGame, Player player) {
+        StringBuilder totalBridgeMapBuilder = new StringBuilder();
 
         for (Tile tile : Tile.values()) {
-            stringBuilder.append(generateTileMap(player, bridge, tile));
+            totalBridgeMapBuilder.append(generateTileMap(tile, bridgeGame, player));
         }
 
-        System.out.println(stringBuilder.toString());
+        System.out.println(totalBridgeMapBuilder.toString());
     }
 
-    // todo: refactor -> bridge는 안받고 player와 승리여부로 출력하는 방법이 있을 것 같음...!!! isPassedPosition도 지울 수 있이면 지우는거로
-    private String generateTileMap(Player player, Bridge bridge, Tile tile) {
-        StringBuilder bridgeMapBuilder = new StringBuilder();
-        bridgeMapBuilder.append(BRIDGE_START_SIGN);
+    private String generateTileMap(Tile tile, BridgeGame bridgeGame, Player player) {
+        StringBuilder bridgeMapBuilder = new StringBuilder(BRIDGE_START_SIGN);
         int index = 0;
-        while (!player.isPassedPosition(index)) {
-            bridgeMapBuilder.append(tile.toString(bridge.getTileOf(index), player.getMovingLogOf(index)));
+        while (player.isPassedPosition(index)) {
+            Tile playerTile = player.getMovingLogOf(index);
+            bridgeMapBuilder.append(tile.toFormatString(playerTile, bridgeGame.checkBridgeTileAt(index++, playerTile)));
             bridgeMapBuilder.append(BRIDGE_DIVIDE_SIGN);
-            index++;
         }
         bridgeMapBuilder.replace(bridgeMapBuilder.length() - 1, bridgeMapBuilder.length(), BRIDGE_END_SIGN);
+
         return bridgeMapBuilder.toString();
     }
 

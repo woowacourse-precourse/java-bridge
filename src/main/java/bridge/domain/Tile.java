@@ -41,11 +41,11 @@ public enum Tile {
         return this.tilePosition;
     }
 
-    public String toString(Tile bridgeTile, Tile playerTile) {
+    public String toFormatString(Tile playerTile, boolean isSurvive) {
         if (!this.equals(playerTile)) {
             return String.format(TILE_FORMAT, EMPTY_SIGN);
         }
-        if (this.equals(bridgeTile)) {
+        if (isSurvive) {
             return String.format(TILE_FORMAT, SUCCESS_SIGN);
         }
         return String.format(TILE_FORMAT, FAIL_SIGN);

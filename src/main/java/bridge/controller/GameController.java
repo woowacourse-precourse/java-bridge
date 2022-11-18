@@ -66,8 +66,7 @@ public class GameController {
         boolean isSurvival = true;
         do {
             isSurvival = playOneTurn(player);
-            // todo: bridge 없이 printmap 구현..
-//            outputView.printMap(bridge, player);
+            outputView.printMap(bridgeGame, player);
         } while (isContinueGame(player, isSurvival));
     }
 
@@ -120,8 +119,7 @@ public class GameController {
 
     private void showResult(Player player) {
         outputView.printFinishGameInfoMessage();
-        // todo: printMap 다시 구현
-//        outputView.printMap(bridge, player);
+        outputView.printMap(bridgeGame, player);
         outputView.printResult(bridgeGame.isWin(player), player.getTryCount());
     }
 
