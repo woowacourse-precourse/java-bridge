@@ -32,10 +32,7 @@ public class BridgeGame {
         return bridge;
     }
     public boolean move(String direction) {
-        //방향이 맞는지 검증하고,
-        //그렇다면 moveStatus 에 O 추가하고 return true
-        //그렇지 않다면 moveStatus에 X 추가하고 return false
-
+        currentLocation++;
         if (realBridge.get(currentLocation) == direction) {
             return reflectMovement(true, direction);
         }
@@ -43,6 +40,9 @@ public class BridgeGame {
     }
 
     public void retry() {
+        moveStatus.put("U", new ArrayList<>());
+        moveStatus.put("D", new ArrayList<>());
+        currentLocation = 0;
     }
 
     private boolean reflectMovement(boolean isCorrectLocation, String direction) {
