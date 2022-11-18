@@ -22,7 +22,7 @@ class InputViewTest {
     @DisplayName("이동할 칸에 대한 입력은 'U' 또는 'D'여야 한다.")
     @ParameterizedTest
     @ValueSource(strings = {"u", "d", "UD", "12", "", "!"})
-    void createmovingWrongInput(String input) {
+    void createMovingWrongInput(String input) {
         assertThatThrownBy(() -> InputView.validateMoving(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
