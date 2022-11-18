@@ -1,9 +1,28 @@
-package bridge;
+package bridge.controller;
+
+import bridge.BridgeMaker;
+import bridge.domain.Bridge;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+
+import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final BridgeMaker bridgeMaker;
+    private List<String> directions;
+
+    public BridgeGame(InputView inputView, OutputView outputView, BridgeMaker bridgeMaker) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+        this.bridgeMaker = bridgeMaker;
+        outputView.printStartMessage();
+        outputView.printInputLengthMessage();
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
