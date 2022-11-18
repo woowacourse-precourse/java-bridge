@@ -62,4 +62,14 @@ class BridgeGameTest {
         assertThat(responseDto.getRecord())
                 .containsExactly(BridgeMark.UP, BridgeMark.UP, BridgeMark.DOWN);
     }
+
+    @DisplayName("게임 시도 횟수 반환")
+    @Test
+    void getGameAttempt() {
+        bridgeGame.retry();
+        bridgeGame.retry();
+
+        PlayerResponseDto responseDto = bridgeGame.getGameReport();
+        assertThat(responseDto.getAttempt()).isEqualTo(3);
+    }
 }
