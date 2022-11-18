@@ -1,6 +1,6 @@
 package bridge.validator;
 
-public class Error {
+public class ErrorConst {
     public static final int MIN_RANGE = 3;
     public static final int MAX_RANGE = 20;
     public static final String UP = "U";

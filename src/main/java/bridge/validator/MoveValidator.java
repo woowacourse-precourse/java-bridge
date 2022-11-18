@@ -1,6 +1,6 @@
 package bridge.validator;
 
-import static bridge.validator.Error.*;
+import static bridge.validator.ErrorConst.*;
 
 public class MoveValidator implements Validator{
     @Override
