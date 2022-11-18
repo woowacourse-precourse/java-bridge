@@ -6,7 +6,7 @@ public class BridgeGameController {
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
 
-    public void start(){
+    public void start() {
         outputView.printStartMsg();
         outputView.printRequestLenOfBridge();
 
@@ -15,9 +15,16 @@ public class BridgeGameController {
         List<String> bridge = bridgeMaker.makeBridge(size);
         BridgeGame bridgeGame = new BridgeGame(bridge);
 
-        outputView.printChooseMove();
-        String move = inputView.readMoving();
-        bridgeGame.move(move);
-        outputView.printMap(bridgeGame.toString());
+        boolean moveFlag = true;
+        while (moveFlag) {
+            outputView.printChooseMove();
+            String move = inputView.readMoving();
+            moveFlag = bridgeGame.move(move);
+            outputView.printMap(bridgeGame.toString());
+            if (bridgeGame.isGameEnd())
+                break;
+        }
+
+        outputView.printResult(bridgeGame.toString(), bridgeGame.isFail(), 0);
     }
 }
