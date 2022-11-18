@@ -18,7 +18,7 @@
     - [ ✅ ] 번호를 랜덤하게 생성한다 → BridgeRandomNumberGenerator.generate
     - [ ✅ ] 생성된 번호가 1이면 "U", 0이면 "D"를 더한다 → BridgeMaker.addMovableSpace
 - [ ✅ ] 이 과정들에서 `IllegalArgument`오류가 나면 다시 입력요청문구 출력단계로 돌아간다
-- [  ] 이 과정들에서 `IllegalStatement`오류가 나면 종료한다
+- [ ✅ ] 이 과정들에서 `IllegalStatement`오류가 나면 종료한다
 
 ### 2. 게임 진행하기
 #### 1) 다리 건너기

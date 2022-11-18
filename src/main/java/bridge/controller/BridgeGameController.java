@@ -20,7 +20,11 @@ public class BridgeGameController {
 
     public void run() {
         outputView.printGameStart();
-        BridgeGame bridgeGame = generateGame();
+        try {
+            BridgeGame bridgeGame = generateGame();
+        } catch(IllegalStateException exception) {
+            outputView.printError(exception);
+        }
     }
 
     private BridgeGame generateGame() {
