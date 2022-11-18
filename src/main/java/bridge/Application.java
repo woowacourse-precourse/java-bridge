@@ -8,6 +8,7 @@ public class Application {
         InputView inputView = new InputView();
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        BridgeGame bridgeGame = new BridgeGame();
 
         inputView.startMsg();
 
@@ -17,7 +18,7 @@ public class Application {
         List<String> secondBridge = bridgeMaker.makeSecondBridge(firstBridge);
 
         String move = inputView.readMoving();
-
+        bridgeGame.move(firstBridge, secondBridge, move);
 
     }
 }
