@@ -13,8 +13,8 @@ public class Application {
 
         int currentLocation = 0;
         while (currentLocation < bridgeSize) {
-            String chosenPath = inputView.readMoving();
-            boolean successOrFailure = bridgeGame.move(currentLocation, chosenPath);
+            String userPath = inputView.readMoving();
+            boolean successOrFailure = bridgeGame.move(currentLocation, userPath);
             outputView.printMap(bridgeGame.getPassedPath(), successOrFailure);
             if (successOrFailure == false) {
                 break;
@@ -25,7 +25,7 @@ public class Application {
 
         System.out.println();
 
-        outputView.printResult(bridgeGame.getPassedPath(), bridgeSize);
+        outputView.printResult(bridgeGame.getPassedPath(), currentLocation);
 
 
     }
