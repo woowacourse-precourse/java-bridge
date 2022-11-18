@@ -7,7 +7,6 @@ import bridge.domain.result.ResultDescription;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGame {
@@ -19,13 +18,9 @@ public class BridgeGame {
 	private static final String RESULT_FAIL_OR_SUCCESS = "게임 성공 여부: %s";
 	private static final String RESULT_TRIAL = "총 시도한 횟수: %d";
 	private static final String ENTER = "\n";
-	private static final String DOUBLE_ENTER = "\n\n";
 
-	public static List<String> upperBridge = new ArrayList<>();	// map
-	public static List<String> underBridge = new ArrayList<>();	// map
-//	private String commandChoice;
-	private String crossComplete = "실패";	// 얘가 고유
-	private int trialCount;					// 얘가 고유
+	private String crossComplete;    // 얘가 고유
+	private int trialCount;                    // 얘가 고유
 
 	public void play(InputView inputView, BridgeMaker bridgeMaker) {
 		OutputView.printGameInfo(GAME_START_INFO + ENTER);
@@ -36,7 +31,7 @@ public class BridgeGame {
 		crossingTrial(inputView, bridge);
 
 		OutputView.printGameInfo(RESULT_PRESENTATION + ENTER + ResultDescription.getBridgeDescription()
-				+ DOUBLE_ENTER + String.format(RESULT_FAIL_OR_SUCCESS, crossComplete)
+				+ ENTER + String.format(RESULT_FAIL_OR_SUCCESS, crossComplete)
 				+ ENTER + String.format(RESULT_TRIAL, trialCount));
 	}
 
@@ -46,7 +41,6 @@ public class BridgeGame {
 			List<String> bridgeNowCrossing = bridge.getBridgeToCross();
 			CrossingBridge crossingBridge = CrossingBridge.over(inputView, bridgeNowCrossing);
 			crossComplete = crossingBridge.isCrossComplete();
-
 		} while (isTrialContinue(retryOrQuit(inputView)));
 	}
 
@@ -57,11 +51,11 @@ public class BridgeGame {
 	private String retryOrQuit(InputView inputView) {
 		String commandChoice = "";
 		if (crossComplete.equals("성공") || GameProceedCommand.CQUIT.equals(requestRetry(inputView).getGameCommand())) {
-			 commandChoice = GameProceedCommand.CQUIT;
+			commandChoice = GameProceedCommand.CQUIT;
 			return commandChoice;
 		}
-		upperBridge.clear();
-		underBridge.clear();
+		Map.underBridgeDescription.clear();
+		Map.upperBridgeDescription.clear();
 		return commandChoice;
 	}
 

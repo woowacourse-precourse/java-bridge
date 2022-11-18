@@ -2,6 +2,7 @@ package bridge.domain.result;
 
 import bridge.domain.game.BridgeGame;
 import bridge.domain.game.CrossingDecision;
+import bridge.domain.game.Map;
 import bridge.domain.player.MovementCommand;
 
 import java.util.List;
@@ -15,9 +16,9 @@ public class ResultDescription {
 
 	private ResultDescription(CrossingDecision crossingDecision, MovementCommand movementCommand) {
 		resultDescription(crossingDecision, movementCommand);
-		upperBridgeDescription = upperBridgeDescription();
-		underBridgeDescription = downBridgeDescription();
-		BridgeDescription = combineBridge();
+		upperBridgeDescription = constructUpperBridgeMap();
+		underBridgeDescription = constructUnderBridgeMap();
+		BridgeDescription = constructTotalBridgeMap();
 	}
 
 	public static ResultDescription generatedBy(CrossingDecision crossingDecision, MovementCommand movementCommand) {
@@ -62,17 +63,17 @@ public class ResultDescription {
 		nonPassingSide.add("[   ]");
 	}
 
-	public String upperBridgeDescription() {
-		return BridgeGame.upperBridge.stream()
+	public String constructUpperBridgeMap() {
+		return Map.upperBridgeDescription.stream()
 				.map(String::toString).collect(Collectors.joining());
 	}
 
-	public String downBridgeDescription() {
-		return String.join("", BridgeGame.underBridge);
+	public String constructUnderBridgeMap() {
+		return String.join("", Map.underBridgeDescription);
 	}
 
-	public String combineBridge(){
-		return upperBridgeDescription + "\n" + underBridgeDescription;
+	public String constructTotalBridgeMap(){
+		return upperBridgeDescription + "\n" + underBridgeDescription + "\n";
 	}
 
 	public static String getBridgeDescription() {
