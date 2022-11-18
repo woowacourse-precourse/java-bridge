@@ -15,13 +15,19 @@ public class Bridges {
         if (isAllPassed()) {
             return false;
         }
-
         boolean isPassed = bridges.get(passIndex).equals(moving);
-        if (isPassed) {++passIndex;}
+        if (isPassed) {
+            ++passIndex;
+        }
+
         return isPassed;
     }
 
     public boolean isAllPassed() {
         return this.passIndex >= bridges.size();
+    }
+
+    public void init() {
+        this.passIndex = 0;
     }
 }

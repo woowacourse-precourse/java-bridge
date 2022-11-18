@@ -1,10 +1,11 @@
 package bridge;
 
+import bridge.enums.GameCommand;
 import bridge.view.InputView;
-
 import java.util.List;
 
 public class GameController {
+
     private final BridgeMaker bridgeMaker;
     private final InputView inputView;
     private BridgeGame game;
@@ -22,5 +23,14 @@ public class GameController {
     }
 
     public void run() {
+        game.play();
+        while ((!game.isCleared()) && (isWantRestart())) {
+            game.retry();
+        }
+    }
+
+    private boolean isWantRestart() {
+        GameCommand gameCommand = inputView.readGameCommand();
+        return gameCommand.isGameRestart();
     }
 }
