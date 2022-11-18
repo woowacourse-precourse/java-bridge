@@ -43,7 +43,7 @@ public class Controller {
         return false;
     }
 
-    public boolean finish(BridgeGame bridgeGame) {
+    private boolean finish(BridgeGame bridgeGame) {
         outputView.printRetry();
         String gameCommand = getCommand();
         return bridgeGame.retry(gameCommand);
