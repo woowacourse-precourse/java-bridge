@@ -3,6 +3,7 @@ package bridge.service;
 import bridge.domain.Bridge;
 import bridge.domain.Movement;
 import bridge.domain.Player;
+import bridge.domain.GameStatus;
 import java.util.List;
 import java.util.Map;
 
@@ -23,10 +24,11 @@ public class BridgeService {
         return player.getMovementStatus();
     }
 
-    public boolean movePlayer(Movement playerMove) {
-        boolean playerMoveable = bridge.isMoveable(playerMove, player.getPlayerPosition());
-        player.crossOverBridge(playerMove, playerMoveable);
-        return playerMoveable;
+    public GameStatus movePlayer(Movement playerMove) {
+        boolean playerCrossable = bridge.isCrossable(playerMove, player.getPlayerPosition());
+        player.crossOverBridge(playerMove, playerCrossable);
+        boolean isReachedBridge = bridge.isReachedTheEnd(player.getPlayerPosition());
+        return GameStatus.findByStatus(playerCrossable, isReachedBridge);
     }
 
 }

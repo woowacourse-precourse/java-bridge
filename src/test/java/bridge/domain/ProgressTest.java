@@ -13,16 +13,16 @@ class ProgressTest {
     @DisplayName("현재 사용자가 다리를 건넜고, 끝까지 도달했다면 성공이다.")
     @ParameterizedTest
     @MethodSource("parametersProvider")
-    void 이동가능_여부에_따른_상태값_계산(boolean isCrossed, boolean isReached, ProgressStatus expected){
-        assertThat(ProgressStatus.findByStatus(isCrossed, isReached)).isEqualTo(expected);
+    void 이동가능_여부에_따른_상태값_계산(boolean isCrossed, boolean isReached, GameStatus expected){
+        assertThat(GameStatus.findByStatus(isCrossed, isReached)).isEqualTo(expected);
     }
 
     static Stream<Arguments> parametersProvider() {
         return Stream.of(
-                arguments(true, true, ProgressStatus.SUCCESS),
-                arguments(true, false, ProgressStatus.ONGOING),
-                arguments(false, true, ProgressStatus.FAILED),
-                arguments(false, false, ProgressStatus.FAILED)
+                arguments(true, true, GameStatus.SUCCESS),
+                arguments(true, false, GameStatus.ONGOING),
+                arguments(false, true, GameStatus.FAILED),
+                arguments(false, false, GameStatus.FAILED)
         );
     }
 }
