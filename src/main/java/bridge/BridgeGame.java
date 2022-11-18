@@ -40,7 +40,7 @@ public class BridgeGame {
         return false;
     }
 
-    public void makeRoad() {
+    private void makeRoad() {
         String result = Command.FAILURE.getValue();
         if (isRightFoothold()) {
             result = Command.SUCCESS.getValue();
@@ -49,7 +49,7 @@ public class BridgeGame {
         makeLowerRoad(result);
     }
 
-    public void makeUpperRoad(String result) {
+    private void makeUpperRoad(String result) {
         if (selectedFoothold.get(selectedFoothold.size() - 1) == Command.UP.getValue()) {
             upperRoad.add(result);
             return;
@@ -57,7 +57,7 @@ public class BridgeGame {
         upperRoad.add(" ");
     }
 
-    public void makeLowerRoad(String result) {
+    private void makeLowerRoad(String result) {
         if (selectedFoothold.get(selectedFoothold.size() - 1) == Command.DOWN.getValue()) {
             lowerRoad.add(result);
             return;
@@ -82,5 +82,13 @@ public class BridgeGame {
         upperRoad.clear();
         lowerRoad.clear();
         tryNumber = 0;
+    }
+
+    public List<String> getUpperRoad() {
+        return upperRoad;
+    }
+
+    public List<String> getLowerRoad() {
+        return lowerRoad;
     }
 }
