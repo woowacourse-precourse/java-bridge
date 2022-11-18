@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.domain.Direction;
+import bridge.utils.Value;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,8 +10,6 @@ import java.util.List;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-    private final String UP = "U";
-    private final String DOWN = "D";
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -23,15 +24,17 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int random = bridgeNumberGenerator.generate();
-            bridge.add(upOrDown(random));
+            bridge.add(getDirection(random));
         }
         return bridge;
     }
 
-    private String upOrDown(int number) {
-        if (number == 1) {
-            return UP;
+    private String getDirection(int number) {
+        for (Direction dir : Direction.values()) {
+            if (number == dir.getValue()) {
+                return dir.getCommand();
+            }
         }
-        return DOWN;
+        return "";
     }
 }

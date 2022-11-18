@@ -3,11 +3,12 @@ package bridge.domain;
 import bridge.utils.Value;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BridgeGame {
     private List<String> bridge;
-    private List<String> movementRecord;
+    private List<Direction> movementRecord;
     private int count;
 
     public void setBridge(List<String> bridge) {
@@ -22,26 +23,22 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String direction) {
-        movementRecord.add(direction);
+        movementRecord.add(getDirection(direction));
     }
 
     public String[][] getCurrentMap() {
         String[][] record = new String[2][movementRecord.size()];
+        clearMap(record);
         for (int i = 0; i < movementRecord.size(); i++) {
-            if (movementRecord.get(i).equals(Value.UP)) {
-                record[0][i] = isMovable(isMovable(i, movementRecord.get(i)));
-                record[1][i] = " ";
-            }
-            if (movementRecord.get(i).equals(Value.DOWN)) {
-                record[0][i] = " ";
-                record[1][i] = isMovable(isMovable(i, movementRecord.get(i)));
-            }
+            Direction dir = movementRecord.get(i);
+            record[dir.getIndex()][i] = marking(isMovable(i, dir.getCommand()));
         }
         return record;
     }
 
     public boolean isFailed() {
-        if (!bridge.get(movementRecord.size()-1).equals(movementRecord.get(movementRecord.size()-1))) {
+        String direction = movementRecord.get(movementRecord.size()-1).getCommand();
+        if (!bridge.get(movementRecord.size()-1).equals(direction)) {
             return true;
         }
         return false;
@@ -61,11 +58,26 @@ public class BridgeGame {
         return false;
     }
 
-    private String isMovable(boolean movable) {
+    private String marking(boolean movable) {
         if (movable) {
             return Value.POSSIBLE;
         }
         return Value.IMPOSSIBLE;
+    }
+
+    private Direction getDirection(String direction) {
+        for (Direction dir : Direction.values()) {
+            if (dir.getCommand().equals(direction)) {
+                return dir;
+            }
+        }
+        return null;
+    }
+
+    private void clearMap(String[][] map) {
+        for (String[] line : map) {
+            Arrays.fill(line, " ");
+        }
     }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드

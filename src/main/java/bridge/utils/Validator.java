@@ -1,5 +1,7 @@
 package bridge.utils;
 
+import bridge.domain.Direction;
+
 public class Validator {
     public static void validateBridgeSize(String input) {
         int size = isDigit(input);
@@ -7,7 +9,7 @@ public class Validator {
     }
 
     public static void validateMove(String input) {
-        if (!input.equals(Value.UP) && !input.equals(Value.DOWN)) {
+        if (!input.equals(Direction.UP.getCommand()) && !input.equals(Direction.DOWN.getCommand())) {
             throw new IllegalArgumentException("U또는 D를 입력해주세요");
         }
     }
