@@ -15,6 +15,10 @@ public class Bridge {
         return bridge.get(index).equals(input);
     }
 
+    public boolean isSize(int size) {
+        return bridge.size() == size;
+    }
+
     private void checkBridgeLength(List<String> randomBridge) {
         if (randomBridge.size() < 3 || randomBridge.size() > 20) {
             throw new IllegalArgumentException(" 다리 길이는 3부터 20 사이의 숫자여야 합니다.");

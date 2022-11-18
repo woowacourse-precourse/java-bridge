@@ -1,5 +1,8 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameController {
     private final InputView input = new InputView();
     private final OutputView output = new OutputView();
@@ -8,12 +11,21 @@ public class GameController {
     public void start() {
         output.printStart();
         Bridge randomBridge = makeBridge();
-        output.printMove();
-        String inputMove = input.readMoving();
-
-        int tryCount = 0;
         BridgeGame bridgeGame = new BridgeGame(randomBridge);
-        bridgeGame.move(inputMove, tryCount);
+        gameStart(bridgeGame, randomBridge);
+    }
+
+    private void gameStart(BridgeGame bridgeGame, Bridge randomBridge) {
+        int tryCount = 0;
+        boolean movable = true;
+        List<String> crossBridgeState = new ArrayList<>();
+        while (!randomBridge.isSize(tryCount) && movable) {
+            output.printMove();
+            String inputMove = input.readMoving();
+            crossBridgeState.add(inputMove);
+            movable = bridgeGame.move(inputMove, tryCount);
+            tryCount++;
+        }
     }
 
     private Bridge makeBridge() {
