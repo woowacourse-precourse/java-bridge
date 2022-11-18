@@ -10,7 +10,7 @@ public class BridgeGame {
     private int trial;
     private int locate;
 
-    public BridgeGame(List<String> Bridge){
+    public BridgeGame(List<String> Bridge) {
         this.Bridge = Bridge;
         this.trial = 1;
         this.locate = 0;
@@ -22,11 +22,9 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String Moving) {
-        if (this.Bridge.get(this.locate).equals(Moving)){
-            this.locate += 1;
-            return true;
-        }
-        return false;
+        boolean result = this.Bridge.get(this.locate).equals(Moving);
+        this.locate += 1;
+        return result;
     }
 
     /**
@@ -35,7 +33,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String GameCommand) {
-        if (GameCommand.equals("R")){
+        if (GameCommand.equals("R")) {
             this.trial += 1;
             this.locate = 0;
             return true;
@@ -43,17 +41,19 @@ public class BridgeGame {
         return false;
     }
 
-    public boolean check(){
+    public boolean check() {
         return this.locate == this.Bridge.size();
     }
 
-    public List<String> getBridge(){
+    public List<String> getBridge() {
         return this.Bridge;
     }
-    public int getLocate(){
+
+    public int getLocate() {
         return this.locate;
     }
-    public int getTrial(){
+
+    public int getTrial() {
         return this.trial;
     }
 }

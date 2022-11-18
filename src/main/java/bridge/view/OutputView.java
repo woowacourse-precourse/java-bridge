@@ -20,36 +20,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeGame bridgeGame, boolean success) {
-        System.out.print("[ ");
-        for (int step = 0; step < bridgeGame.getLocate(); step++) {
-            if (step > 0){
-                System.out.print("| ");
-            }
-            if (bridgeGame.getBridge().get(step).equals("U")) {
-                System.out.print("O ");
-            }
-            else{
-                System.out.print("  ");
-            }
-
-        }
-        System.out.println("]");
-
-        System.out.print("[ ");
-        for (int step = 0; step < bridgeGame.getLocate(); step++) {
-            if (step > 0){
-                System.out.print("| ");
-            }
-            if (bridgeGame.getBridge().get(step).equals("D")) {
-                System.out.print("O ");
-            }
-            else{
-                System.out.print("  ");
-            }
-        }
-        System.out.println("]");
-
-
+        printMapLine(bridgeGame, success, "U");
+        printMapLine(bridgeGame, success, "D");
         System.out.println();
     }
 
@@ -68,9 +40,43 @@ public class OutputView {
         System.out.println("게임 성공 여부: " + result);
         System.out.println("총 시도한 횟수: " + bridgeGame.getTrial());
     }
+
     public void printStart() {
         System.out.println(Message.Start);
         System.out.println();
+    }
+
+    private void printMapLine(BridgeGame bridgeGame, boolean success, String index) {
+        System.out.print("[ ");
+        printMapContent(bridgeGame, index);
+        printMapSuffix(bridgeGame, success, index);
+        System.out.println("]");
+    }
+
+    private void printMapContent(BridgeGame bridgeGame, String index) {
+        for (int step = 0; step < bridgeGame.getLocate() - 1; step++) {
+            if (step > 0) {
+                System.out.print("| ");
+            }
+            if (bridgeGame.getBridge().get(step).equals(index)) {
+                System.out.print("O ");
+                continue;
+            }
+            System.out.print("  ");
+        }
+    }
+
+    private void printMapSuffix(BridgeGame bridgeGame, boolean success, String index) {
+        if (bridgeGame.getLocate() > 1) System.out.print("| ");
+        if (bridgeGame.getBridge().get(bridgeGame.getLocate() - 1).equals(index) == success) {
+            if (success) {
+                System.out.print("O ");
+                return;
+            }
+            System.out.print("X ");
+            return;
+        }
+        System.out.print("  ");
     }
 
     public void printGetLength() {
