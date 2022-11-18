@@ -5,7 +5,7 @@ build/
 !**/src/main/**
 !**/src/test/**
 test.java
-
+sugi.md
 ### macOS ###
 .DS_Store
 
