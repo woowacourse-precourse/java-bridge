@@ -30,7 +30,7 @@ public class BridgeMaker {
     }
 
     private String convertRandomNumberToBridgeCellType(int randomNumber) {
-        if (randomNumber == 0) {
+        if (randomNumber == 1) {
             return UP.getCellType();
         }
         return DOWN.getCellType();
