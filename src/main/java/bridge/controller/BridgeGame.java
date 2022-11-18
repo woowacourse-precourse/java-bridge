@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.Judge;
 import bridge.model.BridgeSize;
 import bridge.model.Moving;
 import bridge.view.Input;
@@ -37,19 +38,31 @@ public class BridgeGame {
 
 
         // 사용자의 결과값을 알려줄 결과다리리스트를 생성한다
-        List<String> UserBridge = new ArrayList<>();
+        List<String> userBridge = new ArrayList<>();
 
 
         // 사용자에게 이동할 칸을 입력 받아서 결과다리리스트에 담아준다 // 나중에 move()에 넣자
         Moving moving = null;
+        boolean isCorrectMoving = false;
+
         do {
-            try {
-                moving = new Moving(input.readMoving());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        } while (moving == null);
-        UserBridge.add(moving.toString());
+            do {
+                try {
+                    moving = new Moving(input.readMoving());
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+            } while (moving == null);
+            userBridge.add(moving.toString());
+
+
+            // 입력받은 이동할 칸과 다리리스트를 비교한다
+            Judge judge = new Judge();
+            isCorrectMoving = judge.checkIsCorrectMoving(bridge, userBridge);
+
+
+        } while (isCorrectMoving);
+
 
     }
 
