@@ -8,7 +8,6 @@ public class BridgeResult {
     private final List<String> upBridge;
     private final List<String> downBridge;
 
-    private int attempt;
 
     public BridgeResult() {
         this.upBridge = new ArrayList<>();
@@ -23,9 +22,6 @@ public class BridgeResult {
         return downBridge;
     }
 
-    public int getAttempt() {
-        return attempt;
-    }
 
     public void addResult(boolean passable, int userLocation, String userSelection) {
         if (userSelection.equals("U")) {
@@ -37,8 +33,9 @@ public class BridgeResult {
         upBridge.add(userLocation, "   ");
     }
 
-    public void plusAttempt() {
-        attempt++;
+    public void resetBridgeResult() {
+        upBridge.clear();
+        downBridge.clear();
     }
 
     private String renderOX(boolean passable) {

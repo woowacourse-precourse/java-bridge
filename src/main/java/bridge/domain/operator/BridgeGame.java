@@ -40,7 +40,7 @@ public class BridgeGame {
 
     private void handleAfterMove(boolean passable) {
         if (!passable) {
-            bridgeResult.plusAttempt();
+            gameStatus.plusAttempt();
             player.setCross(false);
             gameStatus.setSuccess(false);
             return;

@@ -46,10 +46,10 @@ class BridgeGameTest {
             //given
             Bridge bridge = new Bridge(List.of("0", "0", "1"));
             Player player = new Player();
-            BridgeGame bridgeGame = new BridgeGame(bridge, player, new GameStatus());
+            GameStatus gameStatus = new GameStatus();
+            BridgeGame bridgeGame = new BridgeGame(bridge, player, gameStatus);
 
-            BridgeResult bridgeResult = bridgeGame.getBridgeResult();
-            int beforeMoveAttempt = bridgeResult.getAttempt();
+            int beforeMoveAttempt = gameStatus.getAttempt();
 
             String playerSelection = "U";
 
@@ -57,7 +57,7 @@ class BridgeGameTest {
             bridgeGame.move(playerSelection);
 
             //then
-            int afterMoveAttempt = bridgeResult.getAttempt();
+            int afterMoveAttempt = gameStatus.getAttempt();
             assertThat(player.isCross()).isEqualTo(false);
             assertThat(afterMoveAttempt).isEqualTo(beforeMoveAttempt + 1);
         }
@@ -68,10 +68,10 @@ class BridgeGameTest {
             //given
             Bridge bridge = new Bridge(List.of("0", "0", "1"));
             Player player = new Player();
-            BridgeGame bridgeGame = new BridgeGame(bridge, player, new GameStatus());
+            GameStatus gameStatus = new GameStatus();
+            BridgeGame bridgeGame = new BridgeGame(bridge, player, gameStatus);
 
-            BridgeResult bridgeResult = bridgeGame.getBridgeResult();
-            int beforeMoveAttempt = bridgeResult.getAttempt();
+            int beforeMoveAttempt = gameStatus.getAttempt();
 
             String playerSelection = "D";
 
@@ -79,7 +79,7 @@ class BridgeGameTest {
             bridgeGame.move(playerSelection);
 
             //then
-            int afterMoveAttempt = bridgeResult.getAttempt();
+            int afterMoveAttempt = gameStatus.getAttempt();
             assertThat(player.isCross()).isEqualTo(true);
             assertThat(afterMoveAttempt).isEqualTo(beforeMoveAttempt);
         }

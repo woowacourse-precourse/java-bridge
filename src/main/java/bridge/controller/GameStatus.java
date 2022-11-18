@@ -4,10 +4,12 @@ public class GameStatus {
 
     private boolean success;
     private boolean running;
+    private int attempt;
 
     public GameStatus() {
         this.success = false;
         this.running = true;
+        this.attempt = 1;
     }
 
     public boolean isSuccess() {
@@ -24,5 +26,13 @@ public class GameStatus {
 
     public void setRunning(boolean running) {
         this.running = running;
+    }
+
+    public int getAttempt() {
+        return attempt;
+    }
+
+    public void plusAttempt() {
+        attempt++;
     }
 }
