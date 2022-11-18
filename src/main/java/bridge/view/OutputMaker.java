@@ -22,6 +22,10 @@ public class OutputMaker {
             } else {
                 upperLayerBuilder.append(EMPTY);
             }
+
+            if (i != result.size() - 1) {
+                upperLayerBuilder.append(BRIDGE_PARTITION);
+            }
         }
 
         upperLayerBuilder.append(BRIDGE_END);
@@ -39,6 +43,10 @@ public class OutputMaker {
                 appendState(lowerLayerBuilder, result.get(i));
             } else {
                 lowerLayerBuilder.append(EMPTY);
+            }
+
+            if (i != result.size() - 1) {
+                lowerLayerBuilder.append(BRIDGE_PARTITION);
             }
         }
 

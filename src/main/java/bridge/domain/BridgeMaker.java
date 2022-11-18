@@ -26,7 +26,7 @@ public class BridgeMaker {
             int space = bridgeNumberGenerator.generate();
             bridge.add(board.get(space));
         }
-
+        
         return bridge;
     }
 }
