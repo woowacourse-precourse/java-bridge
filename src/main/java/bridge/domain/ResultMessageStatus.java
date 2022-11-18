@@ -36,4 +36,12 @@ public enum ResultMessageStatus {
 		}
 		return DOWN_FAILURE_RESULT;
 	}
+
+	public String getUpFloor() {
+		return this.upFloor;
+	}
+
+	public String getDownFloor() {
+		return this.downFloor;
+	}
 }
