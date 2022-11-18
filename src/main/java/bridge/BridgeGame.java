@@ -12,10 +12,12 @@ public class BridgeGame {
 	List<List<String>> upDownBridgeList = new ArrayList<>();
 	ArrayList<String> upBridge = new ArrayList<>();
 	ArrayList<String> downBridge = new ArrayList<>();
-
+	
 	public BridgeGame() {
 		upDownBridgeList.add(upBridge);
 		upDownBridgeList.add(downBridge);
+		upBridge.clear();
+		downBridge.clear();
 	}
 	
 	/**
@@ -57,6 +59,7 @@ public class BridgeGame {
 		if(inputMoving.equals("U")) {
 			upBridge.add("X");
 			downBridge.add(" ");
+			return;
 		}
 		downBridge.add("X");
 		upBridge.add(" ");
@@ -68,9 +71,11 @@ public class BridgeGame {
 	 * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 * @return 
 	 */
-	public String retry() {
-		String restartOrQuit = "";
-		restartOrQuit = inputView.readGameCommand();
-		return restartOrQuit;	
+	public boolean retry() {
+		String restartOrQuit = inputView.readGameCommand();
+		if(restartOrQuit.equals("R")) {
+			return true;
+		}
+		return false;	
 	}
 }
