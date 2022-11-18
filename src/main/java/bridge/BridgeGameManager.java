@@ -42,7 +42,7 @@ public class BridgeGameManager {
             initialize();
             do {
                 run();
-            } while (isRetry());
+            } while (!bridgeRoadMap.isEnd(userRoadMap) && isRetry());
             finish();
         } catch (Exception e) {
             outputView.printErrorMessage(e.getMessage());
