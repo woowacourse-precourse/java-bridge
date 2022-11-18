@@ -56,17 +56,6 @@ public class OutputView {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
 
-    public void printBridge(List<String> bridge) {
-        for (int i = 0; i < bridge.size() / 2; i++) {
-            System.out.print(bridge.get(i));
-        }
-        System.out.println();
-        for (int i = bridge.size() / 2; i < bridge.size(); i++) {
-            System.out.print(bridge.get(i));
-        }
-        System.out.println();
-    }
-
     private void printBridgeTop(List<String> topBridge) {
         System.out.print("[ ");
         for (String top : topBridge) {
