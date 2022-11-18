@@ -31,4 +31,8 @@ public class User {
     public boolean isLocateAt(int location) {
         return currentLocation == location;
     }
+
+    public String getFootPrintsLog() {
+        return footPrints.toString();
+    }
 }
