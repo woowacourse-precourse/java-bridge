@@ -38,16 +38,7 @@ public class BridgeMaker {
     }
 
     //Direction에 static 함수로 빼는게 낫지 않을까?
-    private String getEachBridge(int value){
-        String direction = null;
 
-        if(value == Direction.UP.getValue()){
-            direction = Direction.UP.getInput();
-        }else if(value == Direction.DOWN.getValue()){
-            direction = Direction.DOWN.getInput();
-        }
-        return direction;
-    }
 
 
     private List<Integer> makePreBridge(int size){
@@ -58,7 +49,7 @@ public class BridgeMaker {
 
     private List<String> makeFinalBridge(List<Integer> preBridge){
         return preBridge.stream()
-                .map(this::getEachBridge)
+                .map(Direction::getInputByValue)
                 .collect(Collectors.toUnmodifiableList());
     }
 }
