@@ -38,6 +38,30 @@ public class InputViewTest {
         assertThat(inputView.readBridgeSize()).isEqualTo(14);
     }
 
+    @Test
+    @DisplayName("이동 방향의 입력이 잘못된 문자일 경우 예외를 발생시킵니다.")
+    void readMovingTest1() {
+        setTestInput("Q");
+
+        assertThatThrownBy(inputView::readMoving).isInstanceOf(
+                IllegalArgumentException.class);
+    }
+    @Test
+    @DisplayName("이동 방향의 입력이 문자가 아닐 경우 예외를 발생시킵니다.")
+    void readMovingTest2() {
+        setTestInput("1");
+
+        assertThatThrownBy(inputView::readMoving).isInstanceOf(
+                IllegalArgumentException.class);
+    }
+
+    @Test
+    void readMovingTest3() {
+        setTestInput("U");
+
+        assertThat(inputView.readMoving()).isEqualTo("U");
+    }
+
     private void setTestInput(String testInput) {
         InputStream in = new ByteArrayInputStream(testInput.getBytes());
         System.setIn(in);
