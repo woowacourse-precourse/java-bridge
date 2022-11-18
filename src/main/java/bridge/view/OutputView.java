@@ -25,10 +25,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static List<String> printMap(Result result) {
-        List<String> compares = result.makeCompares();
+    public static boolean printMap(Result result) {
         List<List<String>> resultsGroup = result.getResultsGroup();
-
         for (List<String> results : resultsGroup) {
             System.out.print(START);
             for (String res : results) {
@@ -37,7 +35,7 @@ public class OutputView {
             System.out.println(END);
         }
         System.out.println();
-        return compares;
+        return result.isContainWrongAnswer();
     }
 
     /**
@@ -46,22 +44,18 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printResult(Result result, int attempt) {
-        List<String> compares = result.makeCompares();
-
         System.out.println(FINAL_RESULT);
         printMap(result);
 
         System.out.print(GAME_SUCCESS_OR_NOT);
-        if (compares.contains("X")) {
+        if (result.isContainWrongAnswer()) {
             System.out.println(FAIL);
         }
-        if (!compares.contains("X")) {
+        if (!result.isContainWrongAnswer()) {
             System.out.println(SUCCESS);
         }
-
         System.out.print(TOTAL_ATTEMPT);
         System.out.println(attempt);
-
     }
 
     public static void printError(String message) {

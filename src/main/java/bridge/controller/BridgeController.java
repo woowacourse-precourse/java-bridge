@@ -44,7 +44,7 @@ public class BridgeController {
         int pos;
         int attempt = 1;
 
-        PassingPositions passingPositions = new PassingPositions();
+        PassingPositions passingPositions = new PassingPositions(bridge);
         Result result = null;
 
         game:
@@ -69,9 +69,8 @@ public class BridgeController {
 
                 Position position = new Position(pos, direction);
                 bridgeGame.move(position, passingPositions);
-                result = new Result(bridge, passingPositions);
-
-            } while (!OutputView.printMap(result).contains("X"));
+                result = passingPositions.makeResultsGroup();
+            } while (!OutputView.printMap(result));
 
 
             if (isQuit) {
