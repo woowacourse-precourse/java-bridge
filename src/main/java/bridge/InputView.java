@@ -6,14 +6,43 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    public final String bridgeSize = "다리의 길이를 입력해주세요.";
+    private final String REGEX = "[0-9]+";
+    private final int minLength = 3;
+    private final int maxLength = 20;
+    private final String bridgeSize = "다리의 길이를 입력해주세요.";
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         System.out.println(bridgeSize);
         String input = Console.readLine();
+        validateSize(input);
         return Integer.valueOf(input);
+    }
+
+    private void validateSize(String input) {
+        try {
+            checkOnlyNumber(input);
+            checkSize(input);
+        }
+        catch (IllegalArgumentException ex){
+            System.out.println("[ERROR]" + ex.getMessage());
+            readBridgeSize();
+        }
+    }
+
+    private void checkSize(String input) {
+        int size = Integer.valueOf(input);
+        if(size < minLength)
+            throw new IllegalArgumentException("다리의 길이는 3보다 작을 수 없습니다.");
+
+        if(size > maxLength)
+            throw new IllegalArgumentException("다리의 길이는 20보다 클 수 없습니다.");
+    }
+
+    private void checkOnlyNumber(String input) {
+        if(!input.matches(REGEX))
+            throw new IllegalArgumentException("다리의 길이는 숫자로 작성해주셔야 합니다.");
     }
 
     /**
