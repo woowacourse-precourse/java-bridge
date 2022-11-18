@@ -54,4 +54,11 @@ public class BridgeGame {
         }
         return false;
     }
+
+    public boolean isGameContinue() {
+        if (bridge.size() > count) {
+            return true;
+        }
+        return false;
+    }
 }
