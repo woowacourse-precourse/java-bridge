@@ -24,7 +24,10 @@ public class BridgeGame {
         InputView iv = new InputView();
         String mov = iv.readMoving();
         if(isFinish(curidx,mov) == 0) return 0;
-        else return 1;
+        else {
+            curidx++;
+            return 1;
+        }
     }
 
     /**
