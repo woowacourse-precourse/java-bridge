@@ -16,9 +16,9 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@DisplayName("BridgeGame 클래스")
+@DisplayName("BridgeGameController 클래스")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-public class BridgeGameTest {
+public class BridgeGameControllerTest {
     private final OutputView outputView = new OutputView();
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private InputView inputView;
@@ -31,15 +31,15 @@ public class BridgeGameTest {
 
     @Test
     void 생성시_null_이_안_들어오면_잘_생성된다() {
-        assertDoesNotThrow(() -> new BridgeGame(inputView, outputView, bridgeMaker));
+        assertDoesNotThrow(() -> new BridgeGameController(inputView, outputView, bridgeMaker));
     }
 
     @Test
     void 생성시_inputView_에_null_이_들어오면_예외_발생() {
         try {
             assertThatIllegalArgumentException()
-                    .isThrownBy(() -> new BridgeGame(null, outputView, bridgeMaker));
-            new BridgeGame(null, outputView, bridgeMaker);
+                    .isThrownBy(() -> new BridgeGameController(null, outputView, bridgeMaker));
+            new BridgeGameController(null, outputView, bridgeMaker);
         } catch (IllegalArgumentException expected) {
             assertThat(expected.getMessage()).isEqualTo("inputView 에는 null 이 올 수 없습니다");
         }
@@ -49,8 +49,8 @@ public class BridgeGameTest {
     void 생성시_outputView_에_null_이_들어오면_예외_발생() {
         try {
             assertThatIllegalArgumentException()
-                    .isThrownBy(() -> new BridgeGame(inputView, null, bridgeMaker));
-            new BridgeGame(inputView, null, bridgeMaker);
+                    .isThrownBy(() -> new BridgeGameController(inputView, null, bridgeMaker));
+            new BridgeGameController(inputView, null, bridgeMaker);
         } catch (IllegalArgumentException expected) {
             assertThat(expected.getMessage()).isEqualTo("outputView 에는 null 이 올 수 없습니다");
         }
@@ -60,8 +60,8 @@ public class BridgeGameTest {
     void 생성시_bridgeMaker_에_null_이_들어오면_예외_발생() {
         try {
             assertThatIllegalArgumentException()
-                    .isThrownBy(() -> new BridgeGame(inputView, outputView, null));
-            new BridgeGame(inputView, outputView, null);
+                    .isThrownBy(() -> new BridgeGameController(inputView, outputView, null));
+            new BridgeGameController(inputView, outputView, null);
         } catch (IllegalArgumentException expected) {
             assertThat(expected.getMessage()).isEqualTo("bridgeMaker 에는 null 이 올 수 없습니다");
         }

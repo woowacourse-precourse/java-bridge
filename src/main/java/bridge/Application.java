@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.domain.BridgeGame;
+import bridge.domain.BridgeGameController;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -12,7 +12,7 @@ public class Application {
         final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
         try {
-            new BridgeGame(inputView, outputView, bridgeMaker).play();
+            new BridgeGameController(inputView, outputView, bridgeMaker).play();
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
         }
