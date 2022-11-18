@@ -1,21 +1,33 @@
 package bridge.game;
 
+import bridge.generator.BridgeMaker;
+import bridge.generator.BridgeRandomNumberGenerator;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+import bridge.view.TotalView;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
     private final GameCharacter character;
+    private final TotalView totalView = new TotalView(new InputView(), new OutputView());
+    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
     private boolean success = false;
     private int totalTry = 0;
+    private int bridgeSize;
     private List<Progress> gameProgress = new ArrayList<>();
     private List<String> bridge;
 
     public BridgeGame(GameCharacter character) {
         this.character = character;
+    }
+
+    public void ready() {
+        totalView.out().start();
+        totalView.out().enterBridgeSize();
+        bridgeSize = totalView.in().readBridgeSize();
+        setBridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
     public void move() {
