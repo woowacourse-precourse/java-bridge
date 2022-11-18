@@ -2,9 +2,7 @@ package bridge.view;
 
 import bridge.model.BridgeGame;
 import bridge.model.Direction;
-import bridge.model.GameState;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,37 +15,24 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(BridgeGame game) {
-        List<String> moved = game.getBridge().subList(0, game.getUserLocation()+1);
-        System.out.println("[ " + printBridge(Direction.U,moved, game.getGameState()) + " ]");
-        System.out.println("[ " + printBridge(Direction.D,moved, game.getGameState()) + " ]");
+    public void printMap(BridgeGame game, String direction) {
+        System.out.print(printBridge(game, direction));
     }
 
-    private String printBridge(Direction type, List<String> bridge, GameState state){
-        List<String> map = new ArrayList<>();
-        for (String floor : bridge){
-            makeMap(type, map, floor);
-        }
-        return String.join(" | ", appendFail(map, state));
+    private String printBridge(BridgeGame game, String direction){
+        boolean success = game.currentBridge().equals(direction);
+        game.getGameResultBoard().update(direction, success);
+        return makeMap(game.getGameResultBoard().getState());
     }
 
-    private void makeMap(Direction type, List<String> map, String floor) {
-        if (floor.equals(type.name())){
-            map.add("O");
-            return;
+    private String makeMap(List<List<String>> bridges) {
+        StringBuilder map = new StringBuilder();
+        for (List<String> bridge : bridges){
+            map.append("[ ");
+            map.append(String.join(" | ", bridge));
+            map.append(" ]\n");
         }
-        map.add(" ");
-    }
-
-    private List<String> appendFail(List<String> bridge, GameState state) {
-        if (!state.equals(GameState.FINISH_FAIL)) {
-            bridge.remove(bridge.size() - 1);
-            return bridge;
-        }
-        if (bridge.get(bridge.size() - 1).equals("O")) {
-            bridge.set(bridge.size() - 1, "X");
-        }
-        return bridge;
+        return map.toString();
     }
 
     /**
