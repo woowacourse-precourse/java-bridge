@@ -33,4 +33,21 @@ public class BridgeGameTest {
         bridgeGame.reset();
         assertThat(bridgeGame.getBridgeTrack()).isEmpty();
     }
+    @DisplayName("최근 움직임이 정답이면 true가 반환된다.")
+    @Test
+    void successToMove() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "U"));
+        bridgeGame.move("U");
+        assertThat(bridgeGame.isRecentMoveSuccessful()).isTrue();
+    }
+    @DisplayName("최근 움직임이 오답이면 false가 반환된다.")
+    @Test
+    void failToMove() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "U"));
+        bridgeGame.move("U");
+        bridgeGame.move("U");
+        assertThat(bridgeGame.isRecentMoveSuccessful()).isFalse();
+    }
+
+
 }
