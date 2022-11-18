@@ -9,7 +9,7 @@ public class User {
     private ArrayList<String> userBridge;
 
 
-    public User(ArrayList<String> bridge) {
+    public User(List<String> bridge) {
         this.bridge = bridge;
     }
 
