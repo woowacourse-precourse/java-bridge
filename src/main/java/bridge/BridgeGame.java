@@ -17,11 +17,13 @@ public class BridgeGame {
     public static final List<String> DOWN = Arrays.asList("D", "d");
     private static int currentPosition = -1;
     private static int totalTrial = 0;
+    private static String direction = null;
 
     public void move(String direction) {
         checkDirectionValidity(direction);
         currentPosition++;
         totalTrial++;
+        BridgeGame.direction = direction;
     }
 
     private void checkDirectionValidity(String direction) {
@@ -32,7 +34,7 @@ public class BridgeGame {
     }
 
     public BridgeGameDto sendDto() {
-        return new BridgeGameDto(currentPosition, totalTrial);
+        return new BridgeGameDto(currentPosition, totalTrial, direction);
     }
 
     /**
