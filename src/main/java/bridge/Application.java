@@ -19,6 +19,7 @@ public class Application {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
+        outputView.printGameStartMessage();
         int bridgeSize = inputView.readBridgeSize();
         BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(bridgeSize), new MoveResult());
         playUntilQuit(bridgeGame, bridgeSize, inputView, outputView);
