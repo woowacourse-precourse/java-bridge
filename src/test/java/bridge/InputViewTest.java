@@ -39,4 +39,16 @@ class InputViewTest {
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> inputView.readMoving());
     }
+
+    @Test
+    @DisplayName("잘못된 게임 재시작 입력 테스트")
+    void readGameCommand() {
+        String input = "a";
+
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> inputView.readGameCommand());
+    }
 }
