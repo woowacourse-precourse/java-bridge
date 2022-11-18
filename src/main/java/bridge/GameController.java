@@ -6,5 +6,6 @@ public class GameController {
     public static void begin(){
         OutputView.gameStartMessage();
         OutputView.bridgeSizeMessgage();
+        int size = InputView.readBridgeSize();
     }
 }
