@@ -33,6 +33,12 @@ public class BridgeGame {
         outputView.printBridgeGameStartMessage();
     }
 
+    public void initGame() {
+        nextStepIndex = 0;
+        canMove = true;
+        isGameSuccess = false;
+    }
+
     public void inputBridgeSize() {
         outputView.printInputBridgeSizeMessage();
         bridgeSize = inputView.inputBridgeSize();
