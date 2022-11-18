@@ -17,4 +17,9 @@ public class BridgeRoadMap extends RoadMap {
             throw new IllegalStateException(GameErrorMessage.NO_RANGE_OF_BRIDGE_SIZE.getMessage());
         }
     }
+
+    public boolean isFail(UserRoadMap userRoadMap){
+        // TODO: 마지막 이동했던 칸과 다리의 칸이 일치하는지 여부 확인
+        return false;
+    }
 }
