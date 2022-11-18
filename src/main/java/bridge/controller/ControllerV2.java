@@ -33,12 +33,7 @@ public class ControllerV2 {
 	}
 
 	public void end() {
-		if (this.winOrLose) {
-			OutputView.printResultWin(state, game.getTryCount());
-		}
-		if (!this.winOrLose) {
-			OutputView.printResultLose(state, game.getTryCount());
-		}
+		OutputView.printResult(state, game.getTryCount(), winOrLose);
 	}
 
 	private int gameState(int index) {
