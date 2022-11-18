@@ -11,12 +11,10 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private BridgeGame bridgeGame;
     private GameStatistics gameStatistics;
     private Bridge bridge;
 
-    public OutputView(BridgeGame bridgeGame, GameStatistics gameStatistics, Bridge bridge) {
-        this.bridgeGame = bridgeGame;
+    public OutputView(GameStatistics gameStatistics, Bridge bridge) {
         this.gameStatistics = gameStatistics;
         this.bridge = bridge;
     }
