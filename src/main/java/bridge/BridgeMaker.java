@@ -3,7 +3,7 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
-import constant.Cell;
+import bridgeConstant.Cell;
 import util.Validator;
 
 /**
@@ -23,20 +23,20 @@ public class BridgeMaker {
 	public List<String> makeBridge(int size) {
 		List<String> bridge = new ArrayList<>();
 		for (int index = 0; index < size; index++) {
-			addUpperOrLowerCell(bridge);
+			addUpOrDownCell(bridge);
 		}
 		Validator.validateBridgeSize(bridge, size);
 		return bridge;
 	}
 
-	private void addUpperOrLowerCell(List<String> bridgeCells) {
+	private void addUpOrDownCell(List<String> bridgeCells) {
 		int bridgeNumber = bridgeNumberGenerator.generate();
 
-		if (Cell.isUpper(bridgeNumber)) {
-			bridgeCells.add(Cell.upperPosition());
+		if (Cell.isUp(bridgeNumber)) {
+			bridgeCells.add(Cell.upPosition());
 		}
-		if (Cell.isLower(bridgeNumber)) {
-			bridgeCells.add(Cell.lowerPosition());
+		if (Cell.isDown(bridgeNumber)) {
+			bridgeCells.add(Cell.downPosition());
 		}
 	}
 }
