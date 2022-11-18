@@ -16,7 +16,7 @@ public class User {
 		selections.add(movePosition);
 	}
 
-	public List<String> map() {
+	public List<String> getSelections() {
 		return new ArrayList<>(selections);
 	}
 

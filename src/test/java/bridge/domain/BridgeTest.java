@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class BridgeTest {
 
-	Bridge bridge;
+	private Bridge bridge;
 
 	@BeforeEach()
 	@DisplayName("다리 길이가 3인 다리 만들기")

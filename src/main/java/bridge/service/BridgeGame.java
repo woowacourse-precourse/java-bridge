@@ -34,7 +34,7 @@ public class BridgeGame {
 	}
 
 	public List<List<String>> currentMap() {
-		List<String> userMap = user.map();
+		List<String> userMap = user.getSelections();
 		return IntStream.range(0, userMap.size())
 			.mapToObj(i -> putOneSpace(userMap, i))
 			.collect(Collectors.toList());
@@ -42,12 +42,11 @@ public class BridgeGame {
 
 	private List<String> putOneSpace(List<String> userMap, int index) {
 		List<String> space = new ArrayList<>();
+		space.add(BLANK_SPACE.getConstant());
 		if (bridge.match(index, userMap.get(index))) {
-			space.add(BLANK_SPACE.getConstant());
 			space.add(positionNumber(userMap.get(index)), POSSIBLE_SPACE.getConstant());
 			return space;
 		}
-		space.add(BLANK_SPACE.getConstant());
 		space.add(positionNumber(userMap.get(index)), IMPOSSIBLE_SPACE.getConstant());
 		return space;
 	}
