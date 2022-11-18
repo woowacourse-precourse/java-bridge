@@ -40,8 +40,11 @@ public class OutputView {
     }
 
     private List<String> appendFail(List<String> bridge, GameState state) {
-        if (state.equals(GameState.FINISH_FAIL)
-                && bridge.get(bridge.size() - 1).equals("O")) {
+        if (!state.equals(GameState.FINISH_FAIL)) {
+            bridge.remove(bridge.size() - 1);
+            return bridge;
+        }
+        if (bridge.get(bridge.size() - 1).equals("O")) {
             bridge.set(bridge.size() - 1, "X");
         }
         return bridge;
