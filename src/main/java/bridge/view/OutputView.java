@@ -32,7 +32,12 @@ public class OutputView {
     public void printAskMoving() {
         System.out.println(ASK_MOVING.key());
     }
-    public void printAskCommand(){
+
+    public void printAskCommand() {
         System.out.println(ASK_COMMAND.key());
+    }
+
+    public void printAskLength() {
+        System.out.println(ASK_BRIDGE_LENGTH.key());
     }
 }
