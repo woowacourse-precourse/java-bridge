@@ -68,6 +68,18 @@ public class OutputView {
         }
     }
 
+    public void printResult(List<String> upSide, List<String> downSide, int countTryNumber) {
+        printFinalResult();
+        printMap(upSide, downSide);
+
+        if (isWin(upSide, downSide)) {
+            printWin(countTryNumber);
+        }
+        if (isFail(upSide, downSide)) {
+            printFail(countTryNumber);
+        }
+    }
+
     public int lastIndex(List<String> side) {
         return (side.size() - 1);
     }
@@ -82,18 +94,6 @@ public class OutputView {
 
     public void printEndSquareBracket() {
         System.out.println(StringConstant.END_SQUARE_BRACKET.getConstant());
-    }
-
-    public void printResult(List<String> upSide, List<String> downSide, int countTryNumber) {
-        printFinalResult();
-        printMap(upSide, downSide);
-
-        if (isWin(upSide, downSide)) {
-            printWin(countTryNumber);
-        }
-        if (isFail(upSide, downSide)) {
-            printFail(countTryNumber);
-        }
     }
 
     public boolean isWin(List<String> upSide, List<String> downSide) {
