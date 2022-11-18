@@ -14,7 +14,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public int readBridgeSize() throws IllegalArgumentException{
         System.out.println("다리의 길이를 입력해주세요.");
         String input = Console.readLine();
         validateSizeType(input);
