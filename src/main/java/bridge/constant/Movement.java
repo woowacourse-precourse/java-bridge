@@ -6,7 +6,7 @@ public enum Movement {
     DOWN_AND_O(true),
     DOWN_AND_X(false);
 
-    private boolean availability;
+    private final boolean availability;
 
     Movement(boolean availability) {
         this.availability = availability;
