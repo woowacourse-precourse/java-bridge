@@ -1,15 +1,23 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
 
+    private static final String BRIDGE_LENGTH_QUESTION = "다리의 길이를 입력해주세요.";
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        String bridgeCount;
+
+        System.out.println(BRIDGE_LENGTH_QUESTION);
+        bridgeCount = Console.readLine();
+
+        return Integer.parseInt(bridgeCount);
     }
 
     /**
