@@ -22,5 +22,20 @@ public class InputView {
         return bridgeSize;
     }
 
+    /**
+     * 사용자가 이동할 칸을 입력받는다.
+     */
+    public String readMoving() {
+        String input = "";
+        try {
+            input = Console.readLine();
+            ExceptionBasket.invalidGameKey(input);
+        } catch (IllegalArgumentException iae) {
+            System.out.println(iae.getMessage());
+            input = "";
+        }
+        return input;
+    }
+
 
 }
