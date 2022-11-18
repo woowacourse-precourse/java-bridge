@@ -1,6 +1,6 @@
 package bridge.domain.game;
 
-import bridge.domain.player.Movement;
+import bridge.domain.player.MovementCommand;
 
 import java.util.List;
 
@@ -8,16 +8,16 @@ public class CrossingDecision {
 
 	private final boolean crossable;
 
-	private CrossingDecision(Movement movement, List<String> bridge) {
-		this.crossable = decideCrossable(movement, bridge);
+	private CrossingDecision(MovementCommand movementCommand, List<String> bridge) {
+		this.crossable = decideCrossable(movementCommand, bridge);
 	}
 
-	public static CrossingDecision judgingBy(Movement movement, List<String> bridge) {
-		return new CrossingDecision(movement, bridge);
+	public static CrossingDecision judgingBy(MovementCommand movementCommand, List<String> bridge) {
+		return new CrossingDecision(movementCommand, bridge);
 	}
 
-	private boolean decideCrossable(Movement movement, List<String> bridge) {
-		return movement.side().equals(bridge.get(0));
+	private boolean decideCrossable(MovementCommand movementCommand, List<String> bridge) {
+		return movementCommand.side().equals(bridge.get(0));
 	}
 
 	public boolean isCrossable() {

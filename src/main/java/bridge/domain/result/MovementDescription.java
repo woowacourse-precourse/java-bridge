@@ -1,5 +1,7 @@
 package bridge.domain.result;
 
+import bridge.domain.game.CrossingDecision;
+
 import java.util.Arrays;
 
 public enum MovementDescription {
@@ -14,9 +16,9 @@ public enum MovementDescription {
 		this.mark = mark;
 	}
 
-	public static MovementDescription of(boolean passable) {
+	public static MovementDescription of(CrossingDecision crossingDecision) {
 		return Arrays.stream(values())
-				.filter(checkPassable -> checkPassable.passAllowance == passable)
+				.filter(checkPassable -> checkPassable.passAllowance == crossingDecision.isCrossable())
 				.findFirst()
 				.orElseThrow(IllegalAccessError::new);
 	}

@@ -3,19 +3,19 @@ package bridge.domain.player;
 import bridge.view.InputException;
 import bridge.view.InputValidator;
 
-public class GameCommand implements InputValidator {
+public class ProcessCommand implements InputValidator {
 
 	private final String gameCommand;
 	public static final String COMMAND_RETRY = "R";
 	public static final String COMMAND_QUIT = "Q";
 
-	public GameCommand(String gameCommand) {
+	public ProcessCommand(String gameCommand) {
 		validate(gameCommand);
 		this.gameCommand = gameCommand;
 	}
 
-	public static GameCommand valueOf(String gameCommand) {
-		return new GameCommand(gameCommand);
+	public static ProcessCommand valueOf(String gameCommand) {
+		return new ProcessCommand(gameCommand);
 	}
 
 	@Override

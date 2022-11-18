@@ -1,7 +1,8 @@
 package bridge.domain.result;
 
-import bridge.domain.BridgeGame;
-import bridge.domain.player.Movement;
+import bridge.domain.game.BridgeGame;
+import bridge.domain.game.CrossingDecision;
+import bridge.domain.player.MovementCommand;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,22 +13,22 @@ public class ResultDescription {
 	private static String upperBridgeDescription;
 	private static String underBridgeDescription;
 
-	private ResultDescription(boolean passable, Movement movement) {
-		resultDescription(passable, movement);
+	private ResultDescription(CrossingDecision crossingDecision, MovementCommand movementCommand) {
+		resultDescription(crossingDecision, movementCommand);
 		upperBridgeDescription = upperBridgeDescription();
 		underBridgeDescription = downBridgeDescription();
 		BridgeDescription = combineBridge();
 	}
 
-	public static ResultDescription generatedBy(boolean passable, Movement movement) {
-		return new ResultDescription(passable, movement);
+	public static ResultDescription generatedBy(CrossingDecision crossingDecision, MovementCommand movementCommand) {
+		return new ResultDescription(crossingDecision, movementCommand);
 	}
 
 
-	public void resultDescription(boolean passable, Movement movement) {
-		String crossingMark = MovementDescription.of(passable).getMark();
-		List<String> passingSide = SideDescription.of(movement).getSide();
-		List<String> nonPassingSide = SideDescription.of(movement).getOtherSide();
+	public void resultDescription(CrossingDecision crossingDecision, MovementCommand movementCommand) {
+		String crossingMark = MovementDescription.of(crossingDecision).getMark();
+		List<String> passingSide = SideDescription.of(movementCommand).getSide();
+		List<String> nonPassingSide = SideDescription.of(movementCommand).getOtherSide();
 
 		buildDescription(crossingMark, passingSide, nonPassingSide);
 	}

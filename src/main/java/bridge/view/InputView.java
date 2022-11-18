@@ -1,8 +1,8 @@
 package bridge.view;
 
 import bridge.domain.player.BridgeSize;
-import bridge.domain.player.GameCommand;
-import bridge.domain.player.Movement;
+import bridge.domain.player.MovementCommand;
+import bridge.domain.player.ProcessCommand;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView implements ConsoleInput, InputValidator {
@@ -15,17 +15,17 @@ public class InputView implements ConsoleInput, InputValidator {
 		}
 	}
 
-	public Movement readMovement() {
+	public MovementCommand readMovement() {
 		try {
-			return Movement.valueOf(input());
+			return MovementCommand.valueOf(input());
 		} catch (IllegalArgumentException ignored) {
 			return readMovement();
 		}
 	}
 
-	public GameCommand readGameCommand() {
+	public ProcessCommand readGameCommand() {
 		try {
-			return GameCommand.valueOf(input());
+			return ProcessCommand.valueOf(input());
 		} catch (IllegalArgumentException ignored) {
 			return readGameCommand();
 		}

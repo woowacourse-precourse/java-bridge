@@ -2,8 +2,8 @@ package bridge.domain.game;
 
 import bridge.domain.bridge.Bridge;
 import bridge.domain.bridgeMaker.BridgeMaker;
-import bridge.domain.player.GameCommand;
-import bridge.domain.player.Movement;
+import bridge.domain.player.ProcessCommand;
+import bridge.domain.player.MovementCommand;
 import bridge.domain.result.ResultDescription;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -56,10 +56,10 @@ public class BridgeGame {
 	private void crossBridge(InputView inputView) {
 		do {
 			OutputView.printRequest(REQUEST_MOVEMENT);
-			Movement movement = inputView.readMovement();
-			CrossingDecision crossingDecision = CrossingDecision.judgingBy(movement, bridgeNowCrossing);
+			MovementCommand movementCommand = inputView.readMovement();
+			CrossingDecision crossingDecision = CrossingDecision.judgingBy(movementCommand, bridgeNowCrossing);
 			passThrough(crossingDecision);
-			OutputView.printGameInfo(ResultDescription.generatedBy(crossingDecision, movement).getBridgeDescription() + ENTER);
+			OutputView.printGameInfo(ResultDescription.generatedBy(crossingDecision, movementCommand).getBridgeDescription() + ENTER);
 
 		} while (continueToPassThrough());
 	}
@@ -75,12 +75,12 @@ public class BridgeGame {
 	}
 
 	private boolean continueToRetry() {
-		return !(completeCrossing() || GameCommand.COMMAND_QUIT.equals(commandChoice));
+		return !(completeCrossing() || ProcessCommand.COMMAND_QUIT.equals(commandChoice));
 	}
 
 	private void retryOrQuit(InputView inputView, Bridge bridge) {
-		if (completeCrossing() || GameCommand.COMMAND_QUIT.equals(requestRetry(inputView).getGameCommand())) {
-			commandChoice = GameCommand.COMMAND_QUIT;
+		if (completeCrossing() || ProcessCommand.COMMAND_QUIT.equals(requestRetry(inputView).getGameCommand())) {
+			commandChoice = ProcessCommand.COMMAND_QUIT;
 			return;
 		}
 		upperBridge.clear();
@@ -88,7 +88,7 @@ public class BridgeGame {
 		bridgeNowCrossing = bridge.getBridgeToCross();
 	}
 
-	public GameCommand requestRetry(InputView inputView) {
+	public ProcessCommand requestRetry(InputView inputView) {
 		OutputView.printRequest(REQUEST_RETRY);
 		return inputView.readGameCommand();
 	}
