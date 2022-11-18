@@ -98,6 +98,8 @@ public class OutputView {
     public void printResult(int result, int total) {
         System.out.println(GAME_FINAL);
         System.out.println(printMap(result));
+        successGamePrint(result);
+        challengeTotal(total);
     }
     public void successGamePrint(int result){
         if(result == GAME_WIN.num()){
@@ -107,7 +109,9 @@ public class OutputView {
             System.out.println(SUCCESS_GAME+ "실패");
         }
     }
-
+    public void challengeTotal(int total){
+        System.out.println(CHALLENGE+String.valueOf(total));
+    }
     public void printGameStart() {
         System.out.println(GAME_START.key());
     }
