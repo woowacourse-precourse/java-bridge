@@ -1,5 +1,7 @@
 package bridge.model;
 
+import static bridge.util.BridgeConstant.*;
+
 public class Player {
     private Position position;
     private int tryCount;
@@ -9,11 +11,21 @@ public class Player {
         this.tryCount = 0;
     }
 
-    public Position getPosition() {
-        return position;
+    public int getXPosition() {
+        return position.x;
     }
 
-    public void setPosition() {
+    public int getYPosition() {
+        return position.y;
+    }
+
+    public void setPosition(String moveTo) {
+        this.position.x += 1;
+        if (moveTo.equals(UP_KEY)) {
+            this.position.y = UP;
+        } else if (moveTo.equals(DOWN_KEY)) {
+            this.position.y = DOWN;
+        }
     }
 
     public int getTryCount() {

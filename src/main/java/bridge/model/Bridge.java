@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Bridge {
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    public String[][] bridge;
+    private String[][] bridge;
 
     public Bridge(int size) {
         List<String> bridge1D = bridgeMaker.makeBridge(size);
