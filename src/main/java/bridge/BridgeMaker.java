@@ -42,4 +42,10 @@ public class BridgeMaker {
         }
         return bridge;
     }
+
+    public StringBuilder makeInitialBridge() {
+        String bridgeFrame = "[   ]";
+        StringBuilder initialBridge = new StringBuilder(bridgeFrame);
+        return initialBridge;
+    }
 }
