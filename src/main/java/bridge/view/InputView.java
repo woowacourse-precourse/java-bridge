@@ -14,14 +14,14 @@ public class InputView {
     /**
      *  게임 시작 메시지를 출력한다.
      */
-    public void showGameStartMessage() {
+    public static void showGameStartMessage() {
         System.out.println(GAME_START_MESSAGE);
     }
 
     /**
      * 다리의 길이를 입력받는다.
      */
-    public String readBridgeSize() {
+    public static String readBridgeSize() {
         System.out.println(READ_BRIDGE_SIZE_MESSAGE);
         String size = Console.readLine();
         return size;
@@ -30,7 +30,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public static String readMoving() {
         System.out.println(READ_MOVE_MESSAGE);
         String move = Console.readLine();
         return move;
@@ -39,7 +39,7 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public static String readGameCommand() {
         System.out.println(READ_GAME_COMMAND_MESSAGE);
         String gameCommand = Console.readLine();
         return gameCommand;
