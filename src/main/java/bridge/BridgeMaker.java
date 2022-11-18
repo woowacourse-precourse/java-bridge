@@ -33,21 +33,11 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         validateSize(size);
-        List<Integer> bridgeNumbers = new ArrayList<>();
+        List<Integer> bridgeNumbers = getBridgeNumbers(size);
         List<String> bridgeCharacters = new ArrayList<>();
-
-        for (int i = 0; i < size; i++) {
-            int bridgeNumber = bridgeNumberGenerator.generate();
-            bridgeNumbers.add(bridgeNumber);
-        }
-
         for (Integer bridgeNumber : bridgeNumbers) {
-            if (bridgeNumber == UP_BRIDGE_NUMBER) {
-                bridgeCharacters.add(BridgeGame.getUpBridgeCharacter());
-            }
-            if (bridgeNumber == DOWN_BRIDGE_NUMBER) {
-                bridgeCharacters.add(BridgeGame.getDownBridgeCharacter());
-            }
+            String bridgeCharacter = convertNumberToString(bridgeNumber);
+            bridgeCharacters.add(bridgeCharacter);
         }
         return bridgeCharacters;
     }
@@ -57,4 +47,21 @@ public class BridgeMaker {
             throw new IllegalArgumentException(ErrorMessage.NOT_VALID_SIZE_ERROR.getMessage());
         }
     }
+
+    private List<Integer> getBridgeNumbers(int size) {
+        List<Integer> bridgeNumbers = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            int bridgeNumber = bridgeNumberGenerator.generate();
+            bridgeNumbers.add(bridgeNumber);
+        }
+        return bridgeNumbers;
+    }
+
+    private String convertNumberToString(int bridgeNumber) {
+        if (bridgeNumber == UP_BRIDGE_NUMBER) {
+            return BridgeGame.getUpBridgeCharacter();
+        }
+        return BridgeGame.getDownBridgeCharacter();
+    }
+
 }
