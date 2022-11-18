@@ -20,6 +20,11 @@ public class HandleException {
         return changeBridgeSize;
     }
 
+    /**
+     * 사용자가 입력한 다리 길이의 범위를 확인하는 함수 
+     * <p>
+     * 성공 시 Integer로 바뀐 다리 길이 그대로 반환
+     */
     public int checkBridgeRange(int readBridgeSize) {
         if (readBridgeSize < 3 || readBridgeSize > 20) {
             System.out.println(ERROR_MESSAGE + "다리 길이는 3부터 20 사이의 숫자여야 합니다.");
