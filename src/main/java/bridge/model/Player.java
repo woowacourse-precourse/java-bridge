@@ -8,7 +8,7 @@ public class Player {
 
     public Player() {
         this.position = new Position();
-        this.tryCount = 0;
+        this.tryCount = 1;
     }
 
     public int getXPosition() {
