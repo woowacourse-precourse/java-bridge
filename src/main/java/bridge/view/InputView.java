@@ -18,12 +18,13 @@ public class InputView {
         }catch (IllegalArgumentException e){
             System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
+        return bridgeLen;
+    }
 
+    public static void bridgeLenRangeCheck(int bridgeLen){
         if(bridgeLen > 20 || bridgeLen < 3){
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
-
-        return bridgeLen;
     }
 
     /**
