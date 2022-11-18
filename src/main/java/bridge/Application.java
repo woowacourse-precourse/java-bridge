@@ -32,7 +32,12 @@ public class Application {
         outputView.printStart();
         outputView.printInputBridgeLength();
         bridgeGame = new BridgeGame(bridgeMaker.makeBridge(inputView.readBridgeSize()));
-
+    }
+    private void gameDo(){
+        while(!bridgeGame.isGameOver())
+        {
+            inputView.readMoving();
+        }
     }
 
 

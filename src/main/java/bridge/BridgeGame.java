@@ -10,6 +10,9 @@ public class BridgeGame {
 
     private ArrayList<String> bridge;
 
+
+    private boolean gameOver = false;
+
     public BridgeGame(List<String> bridge)
     {
         this.bridge=new ArrayList<>(bridge);
@@ -29,4 +32,9 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public boolean isGameOver() {
+        return gameOver;
+    }
+
 }
