@@ -8,9 +8,11 @@ import static bridge.OutputView.*;
 /** 다리 건너기 게임을 관리하는 클래스 */
 public class BridgeGame {
   private final BridgeMaker bridgeMaker;
+  private final User user;
 
   public BridgeGame() {
     this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    this.user = new User();
   }
 
   public void run() {
@@ -32,11 +34,14 @@ public class BridgeGame {
    *
    * <p>이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
    */
-  public void move(List<String> bridge) {
+  public void move(final List<String> bridge) {
     printMoveDirInputMessage();
     String moveDirection = readMoving();
-    System.out.println(moveDirection);
-    // 입력받은 값이 bridge.get(user.progress) 와 같은가?
+    user.move(moveDirection);
+    System.out.println(bridge.get(0));
+    if (user.isCorrectlyMove(bridge)) {
+      System.out.println("굳");
+    }
   }
 
   /**
