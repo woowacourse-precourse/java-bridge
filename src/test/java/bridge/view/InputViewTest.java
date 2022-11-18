@@ -61,4 +61,30 @@ class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR);
     }
+
+    @DisplayName("[예외 테스트] 재시도 여부 입력값이 올바르지 않음")
+    @ValueSource(strings = {"RETRY", "QUIT", " "})
+    @ParameterizedTest
+    void gameCommandInputNotProper(String input) {
+        //given
+        InputView inputView = new InputView();
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        //when then
+        assertThatThrownBy(() -> inputView.readGameCommand())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR);
+    }
+
+    @DisplayName("재시도 여부 입력 받기")
+    @ValueSource(strings = {"R", "Q"})
+    @ParameterizedTest
+    void readGameCommand(String input) {
+        //given
+        InputView inputView = new InputView();
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        //when
+        String gameCommand = inputView.readGameCommand();
+        //then
+        assertThat(gameCommand).isEqualTo(input);
+    }
 }
