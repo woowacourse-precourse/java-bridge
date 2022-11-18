@@ -20,18 +20,6 @@ public class OutputView {
     private static final String RETRY_COUNT = "총 시도한 횟수: %d" + System.lineSeparator();
 
 
-    private String getSelectResult(Player player, String stair) {
-        if (!stair.equals(player.getSelection())) {
-            return NOT_SELECTION;
-        }
-
-        if (!player.isAlive()) {
-            return WRONG_SELECTION;
-        }
-
-        return RIGHT_SELECTION;
-    }
-
     private String getIsPassedStair(String bridgeState, String stair) {
         if (bridgeState.equals(stair)) {
             return RIGHT_SELECTION;
@@ -54,22 +42,20 @@ public class OutputView {
         return result;
     }
 
-    private void printStair(List<String> bridgeStates, Player player, String stair) {
-        String result;
-        int passedCount = player.getPassedCount();
+    private void printStair(BridgeGame bridgeGame, String stair) {
+        List<String> bridgeStates = bridgeGame.getBridgeStates();
+        int passedCount = bridgeGame.getPlayerLocation();
+        String selectedBridgeState = bridgeStates.get(passedCount);
 
-        result = getPassedStair(bridgeStates, passedCount, stair);
-        result += getSelectResult(player, stair);
+        String result = getPassedStair(bridgeStates, passedCount, stair)
+                + getLastSelectResult(bridgeGame, selectedBridgeState, stair);
 
         System.out.printf(BRIDGE_MAP, result);
     }
 
     public void printMap(BridgeGame bridgeGame) {
-        List<String> bridgeState = bridgeGame.getBridgeStates();
-        Player player = bridgeGame.getPlayer();
-
-        printStair(bridgeState, player, SELECTION_UP);
-        printStair(bridgeState, player, SELECTION_DOWN);
+        printStair(bridgeGame, SELECTION_UP);
+        printStair(bridgeGame, SELECTION_DOWN);
         System.out.println();
     }
 
@@ -87,11 +73,8 @@ public class OutputView {
         return SUCCESS;
     }
 
-    private String getLastSelectResult(BridgeGame bridgeGame, String stair) {
-        List<String> bridgeStates = bridgeGame.getBridgeStates();
-        String bridgeState = bridgeStates.get(bridgeGame.getMaxPassedCount());
-
-        if (bridgeGame.winGame() && bridgeState.equals(stair)) {
+    private String getLastSelectResult(BridgeGame bridgeGame, String bridgeState, String stair) {
+        if (!bridgeGame.isPlayerDead() && bridgeState.equals(stair)) {
             return RIGHT_SELECTION;
         }
 
@@ -104,10 +87,11 @@ public class OutputView {
 
     private void printResultStair(BridgeGame bridgeGame, String stair) {
         List<String> bridgeStates = bridgeGame.getBridgeStates();
-        int passedCount = bridgeGame.getMaxPassedCount();
+        int maxPassedCount = bridgeGame.getMaxPassedCount();
+        String lastBridgeState = bridgeStates.get(maxPassedCount);
 
-        String result = getPassedStair(bridgeStates, passedCount, stair);
-        result += getLastSelectResult(bridgeGame, stair);
+        String result = getPassedStair(bridgeStates, maxPassedCount, stair)
+                + getLastSelectResult(bridgeGame, lastBridgeState, stair);
 
         System.out.printf(BRIDGE_MAP, result);
     }
