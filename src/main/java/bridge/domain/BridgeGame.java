@@ -10,15 +10,39 @@ import bridge.view.OutputView;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public final class BridgeGame {
+    private static final String INPUT_VIEW_NULL_MESSAGE = "inputView 에는 null 이 올 수 없습니다";
+    private static final String OUTPUT_VIEW_NULL_MESSAGE = "outputView 에는 null 이 올 수 없습니다";
+    private static final String BRIDGE_MAKER_NULL_MESSAGE = "bridgeMaker 에는 null 이 올 수 없습니다";
     private final InputView inputView;
     private final OutputView outputView;
     private final Bridge bridge;
     private int triedCount = 0;
 
     public BridgeGame(InputView inputView, OutputView outputView, BridgeMaker bridgeMaker) {
+        validateInputView(inputView);
+        validateOutputView(outputView);
+        validateBridgeMaker(bridgeMaker);
         this.inputView = inputView;
         this.outputView = outputView;
         this.bridge = setUpBridge(bridgeMaker);
+    }
+
+    private void validateInputView(InputView inputView) {
+        if (inputView == null) {
+            throw new IllegalArgumentException(INPUT_VIEW_NULL_MESSAGE);
+        }
+    }
+
+    private void validateOutputView(OutputView inputView) {
+        if (inputView == null) {
+            throw new IllegalArgumentException(OUTPUT_VIEW_NULL_MESSAGE);
+        }
+    }
+
+    private void validateBridgeMaker(BridgeMaker bridgeMaker) {
+        if (bridgeMaker == null) {
+            throw new IllegalArgumentException(BRIDGE_MAKER_NULL_MESSAGE);
+        }
     }
 
     private Bridge setUpBridge(BridgeMaker bridgeMaker) {
