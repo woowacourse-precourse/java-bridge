@@ -1,4 +1,4 @@
-package bridge;
+package bridge.ui;
 
 import bridge.validator.BridgeSizeValidator;
 import bridge.validator.DirectionSelectionValidator;
