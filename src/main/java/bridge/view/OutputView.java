@@ -29,8 +29,15 @@ public class OutputView {
 
     private String format(List<String> states) {
         StringBuilder result = new StringBuilder();
-        result.append(BRIDGE_START);
 
+        result.append(BRIDGE_START);
+        addState(states, result);
+        result.append(BRIDGE_END);
+
+        return result.toString();
+    }
+
+    private static void addState(List<String> states, StringBuilder result) {
         for (int count = 0; count < states.size(); count++) {
             String state = " " + states.get(count);
             if (count != 0) {
@@ -38,9 +45,6 @@ public class OutputView {
             }
             result.append(state);
         }
-
-        result.append(BRIDGE_END);
-        return result.toString();
     }
 
     /**
