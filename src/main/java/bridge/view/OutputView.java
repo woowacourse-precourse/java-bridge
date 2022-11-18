@@ -24,7 +24,12 @@ public class OutputView {
      */
     public void printResult() {
     }
-    public void printGameStart(){
+
+    public void printGameStart() {
         System.out.println(GAME_START.key());
+    }
+
+    public void printAskMoving() {
+        System.out.println(ASK_MOVING.key());
     }
 }
