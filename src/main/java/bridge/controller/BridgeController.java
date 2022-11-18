@@ -18,8 +18,21 @@ public class BridgeController {
 
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
-        String input = InputView.readBridgeSize();
-        int size = Integer.parseInt(input);
+
+        String inputLength = "";
+        boolean isLengthValid = true;
+        do {
+            try {
+                inputLength = InputView.readBridgeSize();
+                isLengthValid = true;
+            } catch (IllegalArgumentException ex) {
+                isLengthValid = false;
+                OutputView.printError(ex.getMessage());
+            }
+        } while(!isLengthValid);
+
+
+        int size = Integer.parseInt(inputLength);
         List<String> bridgeNumbers = bridgeMaker.makeBridge(size);
 
         Bridge bridge = new Bridge(bridgeNumbers);

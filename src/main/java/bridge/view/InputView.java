@@ -11,6 +11,7 @@ public class InputView {
     private static final String ENTER_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     private static final String ENTER_SPACE_WANT_TO_MOVE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String ENTER_RETRY_OR_QUIT = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private static final String BRIDGE_LENGTH_ERROR = "다리의 길이는 3 이상 20 이하의 숫자여야합니다";
     private static final String RETRY_OR_QUIT_FORMAT_ERROR = "R 또는 Q 를 입력해야합니다.";
     private static final String UP_AND_DOWN_FORMAT_ERROR = "U 또는 D 를 입력해야합니다.";
 
@@ -24,7 +25,11 @@ public class InputView {
      */
     public static String readBridgeSize() {
         System.out.println(ENTER_BRIDGE_SIZE);
-        return input();
+        String size = input();
+        if (!InputValidator.checkBridgeValid(size)) {
+            throw new IllegalArgumentException(BRIDGE_LENGTH_ERROR);
+        }
+        return size;
     }
 
     /**
