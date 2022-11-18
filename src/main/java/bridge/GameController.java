@@ -16,26 +16,34 @@ public class GameController {
 
     public void executeGame() {
         outputView.printOpening();
-        makeBridge();
+        bridge = makeBridge();
+        bridgeGame = new BridgeGame(bridge);
         crossToOtherSide();
     }
 
-    private void makeBridge() {
+    private Bridge makeBridge() {
         outputView.printBrideSizeOpening();
-        try {
-            bridge = new Bridge(inputView.readBridgeSize());
-            outputView.printEmptyLine();
+        int bridgeSize = 0;
+        try{
+            bridgeSize = inputView.readBridgeSize();
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
             makeBridge();
         }
-        bridgeGame = new BridgeGame(bridge);
+        outputView.printEmptyLine();
+        return new Bridge(bridgeSize);
     }
 
     private void crossToOtherSide() {
-        while (!bridgeGame.hasCrossed()) {
+        while (!bridgeGame.playerHasCrossed()) {
             outputView.printUserChoiceOpening();
-            String choice = inputView.readMoving();
+            String choice = "";
+            try {
+                choice = inputView.readMoving();
+            } catch (IllegalArgumentException exception) {
+                outputView.printErrorMessage(exception.getMessage());
+                continue;
+            }
             if (!bridgeGame.matches(choice)){
                 chooseNextStep();
                 continue;
@@ -47,16 +55,10 @@ public class GameController {
     private void chooseNextStep() {
         // 만약 R를 고르면 재시작, Q를 고르면 종료
         String cmd = inputView.readGameCommand();
-        validateCommand(cmd);
+//        validateCommand(cmd);
 //        if (cmd == "R"){
 //            bridgeGame.retry();
 //        }
         // 종료.... -> 바로 결과 출력 !
-    }
-
-    private void validateCommand(String cmd) {
-        if (!cmd.matches("^[RQ]$")){
-            throw new IllegalArgumentException(INVALID_GAME_CMD.message);
-        }
     }
 }
