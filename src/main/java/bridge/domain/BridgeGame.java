@@ -3,6 +3,7 @@ package bridge.domain;
 import bridge.model.Direction;
 import bridge.model.ErrorMessage;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -30,10 +31,11 @@ public class BridgeGame {
     public void retry() {
     }
 
-    private void isValidDirection(String input){
-        if(input.equals(Direction.DOWN.getInput())
-                || input.equals(Direction.UP.getInput())){
-            return;
+    private Direction getDirection(String input){
+        if(input.equals(Direction.UP.getInput())){
+            return Direction.UP;
+        }else if(input.equals(Direction.DOWN.getInput())){
+            return Direction.DOWN;
         }
         throw new IllegalArgumentException(ErrorMessage.INVALID_DIRECTION_VALUE.getOutput());
     }
