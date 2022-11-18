@@ -1,5 +1,7 @@
 package bridge.service;
 
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.repository.BridgeMaker;
 import bridge.validation.Validation;
 import java.util.ArrayList;
@@ -11,8 +13,10 @@ import java.util.List;
 public class BridgeGame {
 
     private static BridgeGame bridgeGame;
-    private final List<Integer> bridge = new ArrayList<>();
+    private final List<String> bridge = new ArrayList<>();
     private final Validation validation = new Validation();
+    private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     protected BridgeGame() {
 
     }
@@ -24,8 +28,10 @@ public class BridgeGame {
         return bridgeGame;
     }
 
-    public void createBridge(String length) {
+    public List<String> createBridge(String length) {
         validation.bridgeLengthValidation(length);
+        this.bridge.addAll(bridgeMaker.makeBridge(Integer.parseInt(length)));
+        return this.bridge;
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드

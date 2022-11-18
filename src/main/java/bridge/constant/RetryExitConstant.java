@@ -5,8 +5,8 @@ public enum RetryExitConstant {
     EXIT("종료", "Q");
 
 
-    private String status;
-    private String symbol;
+    private final String status;
+    private final String symbol;
 
     RetryExitConstant(String status, String symbol) {
         this.status = status;

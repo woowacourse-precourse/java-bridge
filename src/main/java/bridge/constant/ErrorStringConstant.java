@@ -10,7 +10,7 @@ public enum ErrorStringConstant {
             "[ERROR] 게임 진행 여부는 " + RetryExitConstant.RETRY.getSymbol() + "혹은 " + RetryExitConstant.EXIT.getSymbol()
                     + "만 입력가능합니다."),;
 
-    private String error;
+    private final String error;
 
     ErrorStringConstant(String error) {
         this.error = error;

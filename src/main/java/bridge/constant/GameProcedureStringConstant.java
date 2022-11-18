@@ -8,7 +8,7 @@ public enum GameProcedureStringConstant {
     GAME_SUCCESS_OR_FAIL_MESSAGE("게임 성공 여부: "),
     GAME_TRY_COUNT_MESSAGE("총 시도한 횟수: ");
 
-    private String message;
+    private final String message;
 
     GameProcedureStringConstant(String message) {
         this.message = message;
