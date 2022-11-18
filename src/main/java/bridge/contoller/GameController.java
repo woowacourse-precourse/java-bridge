@@ -15,34 +15,23 @@ public class GameController {
     private BridgeGame bridgeGame;
 
 
-    public void run() {
-        start();
+    public void start() {
+        outputView.printGameStartMessage();
         bridgeGame = new BridgeGame(inputLength());
         crossBridge();
     }
 
-
-    public void start() {
-        outputView.printGameStartMessage();
-    }
-
-    public List<String> inputLength() {
+    private List<String> inputLength() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-
-        try {
-            List<String> list = bridgeMaker.makeBridge(inputView.readBridgeSize());
-            return list;
-        } catch (IllegalArgumentException i) {
-            System.out.println("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
-        }
-        return inputLength();
+        List<String> list = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        return list;
     }
 
-
-    public void crossBridge() {
+    private void crossBridge() {
         do {
             tryMove();
         } while (!bridgeGame.isEnd() && bridgeGame.retry(inputView.readGameCommand()));
+
         outputView.printResult(bridgeGame);
     }
 
@@ -55,4 +44,5 @@ public class GameController {
             outputView.printMap(bridgeGame.getBridgeTokens());
         }
     }
+
 }
