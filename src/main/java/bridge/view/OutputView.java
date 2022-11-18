@@ -40,14 +40,14 @@ public class OutputView {
 
         int index = 0;
         while (!player.isPassedPosition(index)) {
-            if (bridge.checkBridgeTileAt(index, tile)) {
-                bridgeMapBuilder.append(String.format(BRIDGE_TILE_FORMAT, BRIDGE_SUCCESS_SIGN));
+            if (!tile.equals(player.getMovingLogOf(index))) {
+                bridgeMapBuilder.append(String.format(BRIDGE_TILE_FORMAT, BRIDGE_EMPTY_SIGN));
                 bridgeMapBuilder.append(BRIDGE_DIVIDE_SIGN);
                 index++;
                 continue;
             }
-            if (bridge.checkBridgeTileAt(index, player.getMovingLogOf(index))) {
-                bridgeMapBuilder.append(String.format(BRIDGE_TILE_FORMAT, BRIDGE_EMPTY_SIGN));
+            if (bridge.checkBridgeTileAt(index, tile)) {
+                bridgeMapBuilder.append(String.format(BRIDGE_TILE_FORMAT, BRIDGE_SUCCESS_SIGN));
                 bridgeMapBuilder.append(BRIDGE_DIVIDE_SIGN);
                 index++;
                 continue;
@@ -56,7 +56,7 @@ public class OutputView {
             bridgeMapBuilder.append(BRIDGE_DIVIDE_SIGN);
             index++;
         }
-        bridgeMapBuilder.deleteCharAt(bridgeMapBuilder.length()-1);
+        bridgeMapBuilder.deleteCharAt(bridgeMapBuilder.length() - 1);
         bridgeMapBuilder.append(BRIDGE_END_SIGN);
         return bridgeMapBuilder.toString();
     }
