@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class InputViewTest {
     private static InputView inputView;
-    private static final String errMsg = "[ERROR]";
 
     @BeforeAll
     static void initAll() {
