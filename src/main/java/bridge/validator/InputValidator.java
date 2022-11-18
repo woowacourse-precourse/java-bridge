@@ -19,10 +19,18 @@ public class InputValidator {
         }
     }
 
-    public static void validateMoving(String input ) throws IllegalArgumentException {
+    public static void validateMoving(String input) throws IllegalArgumentException {
         String condition = "^[UD]{1}$";
         if (!Pattern.matches(condition, input)) {
             System.out.println("[ERROR] 이동할 칸은 공백없이 'U' 또는 'D' 이어야 합니다.");
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void validateGameCommand(String input) throws IllegalArgumentException {
+        String condition = "^[RQ]{1}$";
+        if (!Pattern.matches(condition, input)) {
+            System.out.println("[ERROR] 재시작 여부는 'R' 또는 'Q' 이어야 합니다.");
             throw new IllegalArgumentException();
         }
     }
