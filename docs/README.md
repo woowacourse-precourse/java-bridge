@@ -12,8 +12,8 @@
 - [x] 다리 길이를 입력 받는다. (InputView # readBridgeSize)
 - [x] 입력 받은 다리 길이에 대한 유효성 검사를 한다. (InputView # validateBridgeLength)
 #### 2) 다리 만들기
-- [ ] 입력된 다리 길이만큼 다리를 만든다. (BridgeMaker # makeBridge)
-  - [ ] 0이 나오면 아래칸, 1이 나오면 위 칸이 건널 수 있는 칸이 된다. (BridgeMaker # makeOneBlock)
+- [x] 입력된 다리 길이만큼 다리를 만든다. (BridgeMaker # makeBridge)
+  - [x] 0이 나오면 아래칸, 1이 나오면 위 칸이 건널 수 있는 칸이 된다. (BridgeMaker # makeOneBlock)
 ### 3. 게임 진행하기
 #### 1) 유저 위치 초기화
 - [ ] 유저의 위치를 초기화 한다. (BridgeGame # resetStartPoint)
