@@ -17,4 +17,8 @@ public enum ResultStatus {
 		}
 		return FAILURE;
 	}
+
+	public String getResultStatusMessage() {
+		return this.resultStatusMessage;
+	}
 }
