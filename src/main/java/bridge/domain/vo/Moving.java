@@ -8,6 +8,7 @@ import static bridge.domain.enumeration.MovingType.*;
 public class Moving {
 
     private final String moving;
+    private final int MOVING_MAX_LENGTH = 1;
 
     public static Moving createMoving(String moving) {
         return new Moving(moving);
@@ -23,7 +24,7 @@ public class Moving {
     }
 
     public void validateMoving(String moving) {
-        if (moving.length() != 1) {
+        if (moving.length() != MOVING_MAX_LENGTH) {
             throw new IllegalArgumentException(MOVING_LENGTH_IS_NOT_ONE.getErrorMessage());
         }
         if (!moving.equals(UP.getMovingType()) && !moving.equals(DOWN.getMovingType())) {
