@@ -25,12 +25,13 @@ public class OutputView {
     public static void printMap(List<String> topGameBoard, List<String> bottomGameBoard) {
         System.out.println(createMap(topGameBoard));
         System.out.println(createMap(bottomGameBoard));
+        printEnter();
     }
 
     private static StringJoiner createMap(List<String> gameBoard) {
         StringJoiner map = new StringJoiner(BRIDGE_SEPARATOR, BRIDGE_START, BRIDGE_FINISH);
 
-        for(String value : gameBoard){
+        for (String value : gameBoard) {
             map.add(value);
         }
         return map;
@@ -41,7 +42,20 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult() {
+    public static void printFinalGameResult(List<String> topGameBoard, List<String> bottomGameBoard) {
+        System.out.println(GAME_RESULT_MESSAGE);
+        printMap(topGameBoard, bottomGameBoard);
+    }
+
+    public static void printGameStatistics(boolean gameResult, int tryCnt) {
+        String isGameWin = LOSE;
+        if (gameResult == true) {
+            isGameWin = WIN;
+        }
+
+        System.out.printf(IS_GAME_WIN_MESSAGE, isGameWin);
+        printEnter();
+        System.out.printf(TOTAL_TRY_CNT_MESSAGE, tryCnt);
     }
 
     /**
@@ -65,6 +79,10 @@ public class OutputView {
 
     public static void printInputDirectionMessage() {
         System.out.println(INPUT_DIRECTION_MESSAGE);
+    }
+
+    public static void printCheckRetryMessage() {
+        System.out.println(CHECK_RETRY_MESSAGE);
     }
 }
 

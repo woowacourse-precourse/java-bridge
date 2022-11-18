@@ -26,6 +26,8 @@ public class Constants {
         public static final String GAME_RESULT_MESSAGE = "최종 게임 결과";
         public static final String IS_GAME_WIN_MESSAGE = "게임 성공 여부: %s";
         public static final String TOTAL_TRY_CNT_MESSAGE = "총 시도한 횟수: %d";
+        public static final String WIN = "성공";
+        public static final String LOSE = "실패";
     }
 
     public static class Error {
