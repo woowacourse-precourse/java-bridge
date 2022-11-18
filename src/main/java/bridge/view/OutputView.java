@@ -15,7 +15,7 @@ public class OutputView {
         System.out.printf(format, args);
     }
 
-    private void println() {
+    public void println() {
         println("");
     }
 
