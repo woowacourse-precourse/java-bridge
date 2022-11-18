@@ -1,6 +1,22 @@
+## 기능 재정의
+- 게임을 시작한다.
+- 사용자가 3~20 사이의 다리의 길이를 입력한다.(잘못된 값일 경우 예외 처리) / InputView
+- 입력된 만큼의 길이의 다리를 위 or 아래 칸으로 생성한다. / BridgeMaker
+  - 0과 1로 이루어진 랜덤 수 생성을 통해 위 or 아래 중 건널 수 있는 칸이 무작위로 정해진다. / BridgeNumberGenerator
+- 사용자가 위/ 아래를 선택자를 입력한다. / InputView
+- 0부터 1칸씩 칸을 이동한다. / BridgeGame
+  - 건널 수 있는 칸이면 O, 없는 칸일 경우 X를 표현한다. / Expression
+  - X칸으로 이동했을 경우 사용자에게 재시작 or 종료 여부를 입력받는다. (잘못된 값일 경우 예외 처리) / BridgeGame, InputView
+  - 게임을 재시작할 경우 다리를 재사용한다. / BridgeRepository
+- O칸으로 이동했을 경우 다음 라운드를 진행한다. / BridgeGame, InputView
+- 마지막까지 O칸을 선택하면 게임 종료 / BridgeGame, InputView
+- 게임 종료시 성공 여부와 시도 횟수를 출력한다. / OutputView
+
+- 
+
 ## 의존 관계 다이어그램
 
-![image](https://velog.velcdn.com/images/urtimeislimited/post/929c14f5-e9d6-4cdd-966c-69f57b5d4564/image.png)
+![image](https://velog.velcdn.com/images/urtimeislimited/post/99eadb5a-8ab1-4da5-9954-c8ee3d8e281d/image.png)
 
 1. UI 계층은 공통 처리자(FrontController)를 통해 도메인 계층을 의존한다.
 2. 도메인 계층은 레포지토리 인터페이스를 통해 영속성 계층과의 결합도가 높아지는 것을 방지한다.
@@ -43,11 +59,11 @@
 
 - [] 게임 시도 회수의 변경 상태를 관리
 
-### [] BidgeRepository
+### [] BridgeRepository
 
 - [] 다리의 변경 상태를 관리
 
-### [] BridgeNumberGenerator
+### [test fail] BridgeNumberGenerator
 
 - 인터페이스 : 번호 생성
 
@@ -56,7 +72,7 @@
 - BridgeNumberGenerator 구현체
 - 0과1중 랜덤값 생성
 
-### [] BridgeMaker
+### [test fail] BridgeMaker
 
 - BridgeNumberGenerator에 의존
 - makeBridge : 입력 수의 길이로 다리 생성
@@ -67,33 +83,12 @@
 
 ## 영속성 계층
 
-### [] GameEntity
+### [] GameRepositoryImpl
 
 - [] GameRepository 구현
 
-### [] BridgeEntity
+### [] BridgeRepositoryImpl
 
 - [] GameRepository 구현
 
 ---
-
-## 🚀 기능 요구 사항
-
-위아래 둘 중 하나의 칸만 건널 수 있는 다리를 끝까지 건너가는 게임이다.
-
-- 위아래 두 칸으로 이루어진 다리를 건너야 한다.
-    - [] 다리는 왼쪽에서 오른쪽으로 건너야 한다.
-    - [] 위아래 둘 중 하나의 칸만 건널 수 있다.
-- 다리의 길이를 숫자로 입력받고 생성한다.
-    - 다리를 생성할 때 위 칸과 아래 칸 중 건널 수 있는 칸은 0과 1 중 무작위 값을 이용해서 정한다.
-    - 위 칸을 건널 수 있는 경우 U, 아래 칸을 건널 수 있는 경우 D값으로 나타낸다.
-    - 무작위 값이 0인 경우 아래 칸, 1인 경우 위 칸이 건널 수 있는 칸이 된다.
-- 다리가 생성되면 플레이어가 이동할 칸을 선택한다.
-    - 이동할 때 위 칸은 대문자 U, 아래 칸은 대문자 D를 입력한다.
-    - 이동한 칸을 건널 수 있다면 O로 표시한다. 건널 수 없다면 X로 표시한다.
-- 다리를 끝까지 건너면 게임이 종료된다.
-- 다리를 건너다 실패하면 게임을 재시작하거나 종료할 수 있다.
-    - 재시작해도 처음에 만든 다리로 재사용한다.
-    - 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때까지 시도한 횟수를 나타낸다.
-- 사용자가 잘못된 값을 입력할 경우`IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
-    - `Exception`이 아닌`IllegalArgumentException`,`IllegalStateException`등과 같은 명확한 유형을 처리한다.
