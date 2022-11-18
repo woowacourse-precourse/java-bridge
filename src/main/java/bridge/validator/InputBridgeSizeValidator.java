@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class InputBridgeSizeValidator {
     private static final String EXIST_ZERO_AT_FIRST_PLACE_EXCEPTION_MESSAGE = "[ERROR] 1번째 자리에는 0이 올 수 없습니다.";
-    private static final String BRIDGE_SIZE_FORM_ERROR_MESSAGE = "[ERROR] '3~20 범위'의 '숫자'만 입력 가능합니다.";
+    private static final String BRIDGE_SIZE_FORM_ERROR_MESSAGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     private static final String EXIST_ZERO_AT_FIRST_PLACE_FORM = "0\\d+";
     private static final String BRIDGE_SIZE_INPUT_FORM = "[3-9]|1\\d|20";
     
