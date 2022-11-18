@@ -1,0 +1,15 @@
+package bridge;
+
+import java.util.List;
+
+public class Bridge {
+    List<String> bridgeBlocks;
+
+    public Bridge(List<String> bridgeBlocks) {
+        this.bridgeBlocks = bridgeBlocks;
+    }
+
+    public boolean matchBlockLocation(int location, String block) {
+        return (bridgeBlocks.get(location).equals(block));
+    }
+}
