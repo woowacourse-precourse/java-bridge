@@ -8,6 +8,7 @@ import java.util.List;
 public class OutputView {
     private final String START_SENTENCE = "다리 건너기 게임을 시작합니다.";
     private final String INPUT_BRIDGE_LENGTH_SENTENCE = "다리의 길이를 입력해주세요.";
+    private final String INPUT_BOARD_SENTENCE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private final String INPUT_RETRY_GAME_SENTENCE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private final String GAME_RESULT_SENTENCE = "최종 게임 결과";
     private final String GAME_SUCCESS_OR_NOT_SENTENCE = "게임 성공 여부: ";
@@ -78,6 +79,10 @@ public class OutputView {
      */
     public void printInputBridgeLength() {
         System.out.println(INPUT_BRIDGE_LENGTH_SENTENCE);
+    }
+
+    public void printInputBoard() {
+        System.out.println(INPUT_BOARD_SENTENCE);
     }
 
     /**
