@@ -24,7 +24,7 @@ public class OutputView {
     }
 
     public void initMap(){
-        this.Map = "[\n[";
+        this.Map = NONE + "\n" + NONE;
         this.isFirst = true;
         this.attempt += 1;
     }
