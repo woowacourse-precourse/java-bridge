@@ -28,7 +28,11 @@ public class GameController {
         //return;
         outputView.restartMessage();
         String command = inputView.readGameCommand();
-        System.out.println(command);
+        if(command.equals("R"))
+            bridgeGame.retry();
+
+        //if(command.equals("Q"))
+            //최종결과 출력
     }
     private void moveStep(BridgeGame bridgeGame){
         //move message 출력
