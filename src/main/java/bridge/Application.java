@@ -11,10 +11,14 @@ public class Application {
         outputView.printStartGame();
         outputView.printInputBridgeLength();
         int bridgeSize;
-        try {
-            bridgeSize = inputView.readBridgeSize();
-        } catch(IllegalArgumentException e) {
-            System.out.println(e);
+        while(true) {
+            try {
+                bridgeSize = inputView.readBridgeSize();
+                break;
+            } catch(IllegalArgumentException e) {
+                System.out.println(e);
+            }
         }
+
     }
 }
