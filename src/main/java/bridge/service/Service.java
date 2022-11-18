@@ -23,4 +23,8 @@ public class Service {
         boolean moveSuccess = game.move(moveInput);
         result.write(moveInput, moveSuccess);
     }
+
+    public List<String> getCurrentResult() {
+        return result.getResult();
+    }
 }
