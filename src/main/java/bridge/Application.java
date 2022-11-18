@@ -6,5 +6,6 @@ public class Application {
         BridgeGame game = new BridgeGame();
 
         game.start();
+        game.knowBridgeLength();
     }
 }
