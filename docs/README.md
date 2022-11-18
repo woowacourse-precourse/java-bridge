@@ -8,5 +8,5 @@
   [X] 게임 시도 여부를 입력받는다: readGameCommand()
     [X] R or Q 만 입력이 가능하다: isGameCommand()
 - BridgeMaker
-  [ ] 다리 길이에 따른 정답지 생성: makeBridge(int size)
-    [ ] 랜덤 함수를 활용하여 답지를 생성한다.(0 == D, 1 == U): checking()
+  [X] 다리 길이에 따른 정답지 생성: makeBridge(int size)
+    [X] 랜덤 함수를 활용하여 답지를 생성한다.(0 == D, 1 == U): checking()
