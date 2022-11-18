@@ -4,7 +4,7 @@ public enum BridgeDraw {
     start("["),
     success(" O "),
     fail(" X "),
-    none(" "),
+    none("   "),
     line("|"),
     finish("]");
 

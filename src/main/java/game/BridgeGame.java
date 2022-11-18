@@ -14,8 +14,6 @@ public class BridgeGame {
 
     public void isValueSame(String user, List<String> upAndDown) {
         move(user, upAndDown);
-        upAndDown.set(0, upAndDown.get(0) + BridgeDraw.line.getDraw());
-        upAndDown.set(1, upAndDown.get(1) + BridgeDraw.line.getDraw());
     }
 
     public void isValueDiff(String user, List<String> upAndDown) {
@@ -52,9 +50,5 @@ public class BridgeGame {
             upAndDown.set(0, upAndDown.get(0) + BridgeDraw.none.getDraw());
             upAndDown.set(1, upAndDown.get(1) + BridgeDraw.fail.getDraw());
         }
-    }
-
-    public void reset(List<String> upAndDown) {
-        upAndDown.clear();
     }
 }
