@@ -48,4 +48,10 @@ public class Exception {
             return userInput;
         throw new IllegalArgumentException("[ERROR]" + ErrorMessage.WRONG_INPUT);
     }
+
+    public static String checkRestartOrQuit(String userInput) throws IllegalArgumentException{
+        if(userInput.equals(RESTART) || userInput.equals(QUIT))
+            return userInput;
+        throw new IllegalArgumentException("[ERROR]" + ErrorMessage.WRONG_INPUT);
+    }
 }
