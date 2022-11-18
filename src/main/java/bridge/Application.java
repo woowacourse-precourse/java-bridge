@@ -1,13 +1,8 @@
 package bridge;
 
-가import bridge.controller.BridgeController;
-import bridge.domain.BridgeGame;
+import bridge.controller.BridgeController;
 import bridge.domain.BridgeMaker;
-import bridge.view.InputView;
-import bridge.view.OutputView;
-import camp.nextstep.edu.missionutils.Console;
 
-import java.util.List;
 
 public class Application {
 

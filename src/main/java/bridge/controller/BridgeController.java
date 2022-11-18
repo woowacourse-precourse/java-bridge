@@ -11,6 +11,8 @@ import java.util.List;
 
 public class BridgeController {
 
+    private static final int BRIDGE_ONE_SPACE_SIZE = 4;
+    private static final String BRIDGE_ONE_SPACE_BLANK = "   ";
     private StringBuilder upSideResult = new StringBuilder("[]");
     private StringBuilder downSideResult = new StringBuilder("[]");
     int tryCount = 1;
@@ -35,23 +37,23 @@ public class BridgeController {
 
     private void replaceBracket(int bracketIndex) {
         if(bracketIndex > 0) {
-            upSideResult.replace(4*bracketIndex,4*bracketIndex, "|" );
-            downSideResult.replace(4*bracketIndex,4*bracketIndex, "|" );
+            upSideResult.replace(BRIDGE_ONE_SPACE_SIZE *bracketIndex, BRIDGE_ONE_SPACE_SIZE *bracketIndex, "|" );
+            downSideResult.replace(BRIDGE_ONE_SPACE_SIZE *bracketIndex, BRIDGE_ONE_SPACE_SIZE *bracketIndex, "|" );
         }
     }
 
     private void moveUp(BridgeGame bridgeGame, String moveSide, int index) {
         if (bridgeGame.move(index,moveSide) && moveSide.equals("U")) {
-            upSideResult.insert(4*index+1,bridgeGame.successMove(index, moveSide));
-            downSideResult.insert(4*index+1, "   ");
+            upSideResult.insert(BRIDGE_ONE_SPACE_SIZE *index+1,bridgeGame.successMove(index, moveSide));
+            downSideResult.insert(BRIDGE_ONE_SPACE_SIZE *index+1, BRIDGE_ONE_SPACE_BLANK);
             OutputView.printMap(upSideResult,downSideResult);
         }
     }
 
     private void moveDown(BridgeGame bridgeGame, String moveSide, int index) {
         if (bridgeGame.move(index,moveSide) && moveSide.equals("D")) {
-            upSideResult.insert(4*index+1, "   ");
-            downSideResult.insert(4*index+1,bridgeGame.successMove(index, moveSide));
+            upSideResult.insert(BRIDGE_ONE_SPACE_SIZE *index+1, BRIDGE_ONE_SPACE_BLANK);
+            downSideResult.insert(BRIDGE_ONE_SPACE_SIZE *index+1,bridgeGame.successMove(index, moveSide));
             OutputView.printMap(upSideResult,downSideResult);
         }
     }
