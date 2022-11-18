@@ -1,7 +1,5 @@
 package bridge;
 
-import java.util.List;
-
 public class GameController {
     private final InputView input = new InputView();
     private final OutputView output = new OutputView();
@@ -9,22 +7,20 @@ public class GameController {
 
     public void start() {
         output.printStart();
-        List<String> randomBridge = makeBridge();
+        Bridge randomBridge = makeBridge();
         output.printMove();
         String move = input.readMoving();
     }
 
-    private List<String> makeBridge() {
+    private Bridge makeBridge() {
         output.printInputBridgeSize();
-        int bridgeSize;
         while (true) {
             try {
-                bridgeSize = input.readBridgeSize();
-                break;
+                int bridgeSize = input.readBridgeSize();
+                return new Bridge(maker.makeBridge(bridgeSize));
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR]" + e.getMessage());
             }
         }
-        return maker.makeBridge(bridgeSize);
     }
 }
