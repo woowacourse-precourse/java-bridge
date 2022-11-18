@@ -49,6 +49,8 @@
 
     - BridgeRandomNumberGenerator
         - 0과 1을 랜덤하게 생성해준다. (다리의 값)
+    - BridgeInputConverter
+        - 다리 생성 입력시 String값으로 들어온 입력을 int형으로 parsing 해준다.
 
 - exception
     - BridgeGameException (추가)
