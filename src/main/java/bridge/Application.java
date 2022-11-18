@@ -49,6 +49,7 @@ public class Application {
 
     private void gameDo() {
         outputView.printMoveBridge();
+        bridgeGame.gameOverChecker(bridgeGame.getNowOn());
         String lastInput = inputView.readMoving();
         bridgeGame.move(lastInput);
         outputView.printMap(bridgeGame.getBridge(), bridgeGame.getNowOn(), lastInput);
