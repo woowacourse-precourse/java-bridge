@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.constant.command.DirectionCommand;
 import bridge.model.BridgeRoadMap;
 import bridge.model.UserRoadMap;
 
@@ -45,6 +46,13 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeRoadMap bridgeRoadMap, UserRoadMap userRoadMap) {
+        DirectionCommand[] directionCommands = DirectionCommand.values();
+        for(int index = directionCommands.length - 1; index >= 0; index--){
+            System.out.printf("[");
+            printDirectionRoadStateMap(directionCommands[index].getValue(), bridgeRoadMap, userRoadMap);
+            System.out.println("]");
+        }
+        System.out.println();
     }
 
     private void printDirectionRoadStateMap(String direction, BridgeRoadMap bridgeRoadMap, UserRoadMap userRoadMap) {
