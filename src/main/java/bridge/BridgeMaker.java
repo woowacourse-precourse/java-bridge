@@ -80,23 +80,23 @@ public class BridgeMaker {
     public boolean checkWhenInputIsD(String answer) {
         if (answer.equals("D")) {
             makeMapLower(true);
-            return false;
+            return true;
         }
         if (!answer.equals("D")) {
             makeMapLower(false);
         }
-        return true;
+        return false;
     }
 
     public boolean checkWhenInputIsU(String answer) {
         if (answer.equals("U")) {
             makeMapUpper(true);
-            return false;
+            return true;
         }
         if (!answer.equals("U")) {
             makeMapUpper(false);
         }
-        return true;
+        return false;
     }
 
     public boolean runMap(String moving, String answer) {
@@ -110,15 +110,15 @@ public class BridgeMaker {
         return isWin;
     }
 
-    public int makeMap(List<String> crossable) {
+    public boolean makeMap(List<String> crossable) {
         String moving;
-        boolean isWin = true;
+        boolean isWin = false;
         int index = 0;
 
         startMap();
         while (true) {
-            if (index>=limitSize||isWin) {
-                break;
+            if (index>=limitSize) {
+                return true;
             }
             outputView.printWhereToGoInputRequest();
             moving = inputView.readMoving();
@@ -129,8 +129,10 @@ public class BridgeMaker {
             index++;
             endMap();
             outputView.printMap(mapUpper,mapLower);
+            if (!isWin) {
+                return false;
+            }
         }
-        return index;
     }
 
 }
