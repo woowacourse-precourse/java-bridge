@@ -10,9 +10,7 @@ public class BridgeGame {
     private static final int UP_INDEX = 0;
     private static final int DOWN_INDEX = 1;
     private static final String MOVE_UP = "U";
-    private static final String MOVE_DOWN = "D";
     private static final int MAX_HEIGHT = 2;
-    private static final String INPUT_COMMAND_ERROR = "[ERROR] U 또는 D만 입력해주세요. 위는 U, 아래는 D를 입력해주세요.";
 
     int size;
     List<String> bridge;
@@ -33,7 +31,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String command, int currentPosition) {
-        validateMoveCommand(command);
+//        validateMoveCommand(command);
         int index = getIndex(command);
         if (command.equals(bridge.get(currentPosition))) {
             bridgeMap.get(index).set(currentPosition, " O ");
@@ -65,13 +63,6 @@ public class BridgeGame {
             bridgeMap.add(row);
         }
         return bridgeMap;
-    }
-
-    private static void validateMoveCommand(String input) {
-        if (input.matches(MOVE_UP) || input.matches(MOVE_DOWN)) {
-            return;
-        }
-        throw new IllegalArgumentException(INPUT_COMMAND_ERROR);
     }
 
     private int getIndex(String command) {
