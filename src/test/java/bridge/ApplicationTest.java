@@ -4,11 +4,13 @@ import static camp.nextstep.edu.missionutils.test.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.util.Lists.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import bridge.repository.BridgeMaker;
+import bridge.service.BridgeGame;
 import bridge.view.OutputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
 
@@ -73,11 +75,20 @@ class ApplicationTest extends NsTest {
 	@Test
 	void 최종_다리_출력_테스트() {
 		OutputView outputView = new OutputView();
-		outputView.printResult(List.of(1, 0, 1, 1), List.of(1, 0, 1, 1));
+		outputView.printFinalMapResult(List.of(1, 0, 1, 1), List.of(1, 0, 1, 1));
 		assertThat(output()).contains(
 			"[ O |   | O | O ]",
 			"[   | O |   |   ]"
 		);
+	}
+
+	@Test
+	void 이동_테스트() {
+		BridgeGame bridgeGame = new BridgeGame();
+		List<Integer> currentBridgeState = new ArrayList<>(List.of(1, 0, 1));
+		List<Integer> currentBridge = bridgeGame.move(currentBridgeState, "U");
+
+		assertThat(currentBridge.containsAll(List.of(1, 0, 1, 1))).isTrue();
 	}
 
 	@Override
