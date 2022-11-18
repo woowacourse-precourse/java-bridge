@@ -36,19 +36,34 @@ GameCommand
 
 Moving
 
-
-
 ## View
+
+InputHandler
+
+	- [ ] stringToInt
 
 InputView
 
+ - [ ] readBridgeSize
+ - [ ] readMoving
+ - [ ] readGameCommand
+
 OutputView
 
-
+	- [ ] printMap
+	- [ ] printResult
 
 ### Controller
 
 BridgeGameController
+
+- [ ] inputBridgeSize
+- [ ] makeBridge
+- [ ] printMap
+- [ ] startGame
+- [ ] inputMoving
+- [ ] inputGameCommand
+	- [ ] printResult
 
 
 
