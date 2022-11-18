@@ -24,4 +24,12 @@ public class DeckTest {
         assertThat(deck.isMovable(CAPITAL_LETTER_UPPER)).isTrue();
         assertThat(deck.isMovable(CAPITAL_LETTER_LOWER)).isFalse();
     }
+
+    @Test
+    void 잘못된_방향은_예외를_던진다() {
+        String anomalyDirection = "ASDF";
+        Deck deck = new Deck(CAPITAL_LETTER_UPPER);
+
+        assertThatIllegalArgumentException().isThrownBy(() -> deck.isMovable(anomalyDirection));
+    }
 }
