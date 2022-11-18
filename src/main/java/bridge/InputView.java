@@ -21,10 +21,7 @@ public class InputView {
     public boolean readMoving() {
         String moveString = Console.readLine();
         validator.isValidMove(moveString);
-        if (moveString.equals("U")) {
-            return true;
-        }
-        return false;
+        return (moveString.equals("U"));
     }
 
     /**
