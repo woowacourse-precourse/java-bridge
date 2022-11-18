@@ -46,10 +46,10 @@ public class BridgeGameResult {
     }
 
     private void tryMoveBridge(Bridge bridge, int currentPosition, String direction) {
-        if (Objects.equals(direction, "U")) {
+        if (Objects.equals(direction, Direction.U.name())) {
             tryMoveUpperBridge(bridge, currentPosition, direction);
         }
-        if (Objects.equals(direction, "D")) {
+        if (Objects.equals(direction, Direction.D.name())) {
             tryMoveLowerBridge(bridge, currentPosition, direction);
         }
     }
