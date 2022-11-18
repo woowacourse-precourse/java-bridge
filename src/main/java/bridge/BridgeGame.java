@@ -1,5 +1,7 @@
 package bridge;
 
+import static bridge.Messages.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,7 +53,7 @@ public class BridgeGame {
     }
 
     public boolean isSuccess(List<String> upSideDownSideMove) {
-        if (upSideDownSideMove.stream().anyMatch(move -> move.contains("X"))) {
+        if (upSideDownSideMove.stream().anyMatch(move -> move.contains(INCORRECT))) {
             gameFlag = false;
             return false;
         }
@@ -66,11 +68,11 @@ public class BridgeGame {
      */
     public void retry() {
         String gameCommand = inputView.readGameCommand();
-        if (gameCommand.equals("R")) {
+        if (gameCommand.equals(RETRY)) {
             retryCount += 1;
             gameFlag = false;
         }
-        if (gameCommand.equals("Q")) {
+        if (gameCommand.equals(QUIT)) {
             gameFlag = true;
         }
     }

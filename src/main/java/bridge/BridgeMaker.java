@@ -1,6 +1,9 @@
 package bridge;
 
+import static bridge.Messages.*;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -24,13 +27,13 @@ public class BridgeMaker {
             int number = bridgeNumberGenerator.generate();
             bridge.add(checkUpDown(number));
         }
-        return bridge;
+        return Collections.unmodifiableList(bridge);
     }
 
     private String checkUpDown(int number) {
         if (number == 0) {
-            return "D";
+            return UP_DIRECTION;
         }
-        return "U";
+        return DOWN_DIRECTION;
     }
 }

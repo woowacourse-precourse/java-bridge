@@ -1,6 +1,7 @@
 package bridge;
 
 import static bridge.BridgeGame.*;
+import static bridge.Messages.*;
 
 import java.util.List;
 
@@ -27,19 +28,19 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(List<String> upSideDownSideMove) {
-        System.out.println("최종 게임 결과");
+        System.out.println(OUTPUT_RESULT);
         for (String move : upSideDownSideMove) {
             move = move.replaceFirst("^", "[").replaceFirst(".$", "]");
             System.out.println(move.toString());
         }
-        System.out.printf("게임 성공 여부: %s\n", getSuccessFailure(gameFlag));
-        System.out.printf("총 시도한 횟수: %d", retryCount);
+        System.out.printf(OUTPUT_SUCCESS_FAILURE, getSuccessFailure(gameFlag));
+        System.out.printf(OUTPUT_RETRY_COUNT, retryCount);
     }
 
     public String getSuccessFailure(boolean gameFlag) {
         if (gameFlag) {
-            return "성공";
+            return SUCCESS;
         }
-        return "실패";
+        return FAILURE;
     }
 }
