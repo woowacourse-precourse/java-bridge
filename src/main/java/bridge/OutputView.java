@@ -27,7 +27,10 @@ public class OutputView {
         System.out.println(ENTER);
     }
 
-    public void printMap() {
+    public static void printMap(MapMaker mapMaker) {
+        for(String map : mapMaker.makeMap())
+            System.out.println(map);
+        System.out.print(ENTER);
     }
 
 
