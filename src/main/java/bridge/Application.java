@@ -15,13 +15,17 @@ public class Application {
         while (currentLocation < bridgeSize) {
             String chosenPath = inputView.readMoving();
             boolean successOrFailure = bridgeGame.move(currentLocation, chosenPath);
+            outputView.printMap(bridgeGame.getPassedPath(), successOrFailure);
             if (successOrFailure == false) {
                 break;
             }
-            outputView.printMap(bridgeGame.getPassedPath(), successOrFailure);
 
             currentLocation++;
         }
+
+        System.out.println();
+
+        outputView.printResult(bridgeGame.getPassedPath(), bridgeSize);
 
 
     }
