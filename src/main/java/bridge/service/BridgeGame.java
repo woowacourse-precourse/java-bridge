@@ -11,7 +11,7 @@ public class BridgeGame {
     private int currentIndex;
     private List<String> bridge;
     private List<String>[] result;
-
+    private boolean isFail;
     public BridgeGame(List<String> bridge) {
         this.tryCount = 0;
         this.currentIndex = 0;
@@ -20,6 +20,7 @@ public class BridgeGame {
         for (int i = 0; i < 2; i++) {
             result[i] = new ArrayList<>();
         }
+        this.isFail = false;
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -48,6 +49,14 @@ public class BridgeGame {
             return "O";
         }
         return "X";
+    }
+    public boolean isGameFail() {
+        int lastIndex = currentIndex - 1;
+        if (result[0].get(lastIndex).equals("X") || result[1].get(lastIndex).equals("X")) {
+            this.isFail = true;
+            return true;
+        }
+        return false;
     }
     public List<String>[] getResult() {
         return result;
