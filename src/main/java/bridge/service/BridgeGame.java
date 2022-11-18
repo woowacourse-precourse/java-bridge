@@ -1,5 +1,7 @@
-package bridge.domain;
+package bridge.service;
 
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
 import bridge.validator.Validator;
 
 import java.util.ArrayList;
@@ -17,10 +19,16 @@ public class BridgeGame {
     private List<String> userBridge = new ArrayList<>();
     private int totalAttempt = COUNT_ZERO;
 
-    public BridgeGame(List<String> bridge) throws IllegalArgumentException{
-        Validator.validateListLengthInRange(bridge, BRIDGE_MIN_LENGTH, BRIDGE_MAX_LENGTH);
-        this.systemBridge = bridge;
+    public BridgeGame(BridgeNumberGenerator generator, int bridgeSize) throws IllegalArgumentException{
+        this.systemBridge = makeBridge(generator, bridgeSize);
         totalAttempt++;
+    }
+
+    private List<String> makeBridge(BridgeNumberGenerator generator, int bridgeSize) throws IllegalArgumentException{
+        final BridgeMaker bridgeMaker = new BridgeMaker(generator);
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        Validator.validateListLengthInRange(bridge, BRIDGE_MIN_LENGTH, BRIDGE_MAX_LENGTH);
+        return bridge;
     }
 
     /**
