@@ -34,10 +34,7 @@ public class Bridge {
     }
 
     public boolean checkBridgeTileAt(int positionIndex, Tile tile) {
-        if (bridgeTiles.get(positionIndex).equals(tile)) {
-            return true;
-        }
-        return false;
+        return bridgeTiles.get(positionIndex).equals(tile);
     }
 
     public int getBridgeSize() {
