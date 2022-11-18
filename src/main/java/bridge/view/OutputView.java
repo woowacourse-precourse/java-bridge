@@ -29,7 +29,6 @@ public class OutputView {
         printJoiningMessage();
     }
 
-
     public void resetMap() {
         upperBlocks.clear();
         lowerBlocks.clear();

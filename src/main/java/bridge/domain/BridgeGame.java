@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private int round = 0;
+    private int round = 1;
     private int tryCount = 1;
     private boolean gameClear = false;
 
@@ -22,21 +22,17 @@ public class BridgeGame {
 
     public MoveResult move(Bridge bridge,
                            String moveMessage) {
-        boolean isSuccess = bridge.isMoveSuccess(round++, moveMessage);
+        boolean isSuccess = bridge.isMoveSuccess(round, moveMessage);
         return new MoveResult(moveMessage, isSuccess);
     }
 
     public boolean retry(String retryMessage) {
         if (retryMessage.equals(RESTART_GAME)) {
-            round = 0;
+            round = 1;
             tryCount++;
             return true;
         }
         return false;
-    }
-
-    public GameResult closeGame() {
-        return new GameResult(tryCount, gameClear);
     }
 
     public boolean isGameClear(Bridge bridge) {
@@ -44,6 +40,11 @@ public class BridgeGame {
             gameClear = true;
             return true;
         }
+        round++;
         return false;
+    }
+
+    public GameResult closeGame() {
+        return new GameResult(tryCount, gameClear);
     }
 }

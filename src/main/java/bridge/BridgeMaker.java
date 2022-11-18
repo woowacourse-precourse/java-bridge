@@ -3,7 +3,6 @@ package bridge;
 import static bridge.constant.BridgeConstant.LOWER_BLOCK;
 import static bridge.constant.BridgeConstant.UPPER_BLOCK;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
