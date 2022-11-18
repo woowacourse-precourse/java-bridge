@@ -19,4 +19,9 @@ public enum Input {
         this.input = input;
         this.value = value;
     }
+
+    @Override
+    public String toString() {
+        return this.input;
+    }
 }

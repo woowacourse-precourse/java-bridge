@@ -15,4 +15,9 @@ public enum Sentence {
     Sentence(String sentence) {
         this.sentence = sentence;
     }
+
+    @Override
+    public String toString() {
+        return this.sentence;
+    }
 }
