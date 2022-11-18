@@ -1,5 +1,7 @@
 package bridge.util;
 
+import bridge.domain.ErrorMessage;
+
 public class BridgeSizeValidator {
 
     private static final String ERROR_WRONG = "올바른 값을 입력해주세요.";
@@ -12,13 +14,13 @@ public class BridgeSizeValidator {
 
     public void validateDigit(String bridgeSize){
         if (!bridgeSize.matches("-?\\d+(\\.\\d+)?")){
-            throw new IllegalArgumentException(ERROR_WRONG);
+            throw new IllegalArgumentException(ErrorMessage.WRONG_INPUT.getMessage());
         }
     }
 
     public void validateRange(String bridgeSize){
         if (Integer.parseInt(bridgeSize) < 3 || Integer.parseInt(bridgeSize) > 20) {
-            throw new IllegalArgumentException(ERROR_NOT_DIGIT);
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_RANGE.getMessage());
         }
     }
 }

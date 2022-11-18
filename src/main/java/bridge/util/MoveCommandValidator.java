@@ -1,5 +1,7 @@
 package bridge.util;
 
+import bridge.domain.ErrorMessage;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +11,7 @@ public class MoveCommandValidator {
 
     public void validate(String move){
         if(move.length() > 1 || !commands.contains(move)){
-            throw new IllegalArgumentException("올바른 값을 입력해주세요");
+            throw new IllegalArgumentException(ErrorMessage.WRONG_INPUT.getMessage());
         }
     }
 }
