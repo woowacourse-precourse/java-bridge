@@ -41,6 +41,7 @@ public class BridgeGameManager {
         try {
             initialize();
             do {
+                trialCount++;
                 run();
             } while (!bridgeRoadMap.isEnd(userRoadMap) && isRetry());
             finish();
@@ -66,7 +67,6 @@ public class BridgeGameManager {
             InfiniteInput<String> directionInfiniteInput = new InfiniteInput<>("");
             String direction = directionInfiniteInput.getInput(() -> inputView.readMoving(), outputView);
             game.move(direction);
-            trialCount++;
 
             outputView.printMap(bridgeRoadMap, userRoadMap);
         } while (!(bridgeRoadMap.isFail(userRoadMap) || bridgeRoadMap.isEnd(userRoadMap)));
