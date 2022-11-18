@@ -8,6 +8,7 @@ public enum BridgeLocation {
     DOWN_FALSE(0, false, "D", "X"),
     DOWN_TRUE(0, true, "D", "O");
 
+    public static final String UN_CHOSEN_LOCATION = " ";
     private final int locationNumber;
     private final boolean correctLocation;
     private final String location;
@@ -47,7 +48,10 @@ public enum BridgeLocation {
         return location;
     }
 
-    public String getStateLocation() {
-        return stateLocation;
+    public String getStateLocation(String location) {
+        if (this.location.equals(location)) {
+            return stateLocation;
+        }
+        return UN_CHOSEN_LOCATION;
     }
 }
