@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -10,8 +11,13 @@ public class BridgeGame {
 
     private BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
     private List<String> realBridge;
-    private HashMap<String, Integer> moveStatus;
+    private HashMap<String, List<Integer>> moveStatus;
 
+    public BridgeGame(int bridgeLength) {
+        realBridge = generateBridge(bridgeLength);
+        moveStatus.put("U", new ArrayList<Integer>());
+        moveStatus.put("D", new ArrayList<Integer>());
+    }
     public void move(String direction) {
     }
 
