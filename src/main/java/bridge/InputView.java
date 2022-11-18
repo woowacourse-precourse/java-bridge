@@ -39,9 +39,21 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String moving = Console.readLine();
+        validateMoving(moving);
+        return moving;
     }
 
+    public static void validateMoving(String moving) {
+        if(isNotUD(moving)){
+            throw new IllegalArgumentException("[ERROR] 이동할 칸에 대한 입력은 'U' 또는 'D'여야 합니다.");
+        }
+    }
+
+    private static boolean isNotUD (String moving) {
+        return !(moving.equals("U") && moving.equals("D"));
+    }
+    
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */

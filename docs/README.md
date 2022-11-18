@@ -18,9 +18,9 @@
 #### 1) 유저 위치 초기화
 - [ ] 유저의 위치를 초기화 한다. (BridgeGame # resetStartPoint)
 #### 2) 이동할 칸 입력 받기
-- [ ] 이동할 칸 입력 요청 문구를 출력한다. (ViewMessage # printMovingInputRequest)
-- [ ] 이동할 칸을 입력 받는다. ('U' or 'D') (InputView # readMoving)
-- [ ] 입력 받은 명령어에 대한 유효성 검사를 한다. (InputView # validateMoving)
+- [x] 이동할 칸 입력 요청 문구를 출력한다. (ViewMessage # printMovingInputRequest)
+- [x] 이동할 칸을 입력 받는다. ('U' or 'D') (InputView # readMoving)
+- [x] 입력 받은 명령어에 대한 유효성 검사를 한다. (InputView # validateMoving)
 #### 3) 유저 이동하기
 - [ ] 입력 받은 명령어에 맞춰 유저를 이동한다. (BridgeGame # move)
 - [ ] 이동한만큼 다리를 출력한다. (OutputView # printMap)
@@ -40,6 +40,6 @@
 - [x] 입력이 3 이상 20 이하의 숫자가 아니면 예외 처리한다. (InputView # isLengthOutOfRange)
 - [x] 입력이 숫자가 아니면 예외 처리한다. (InputView # isNotNumber)
 ### 2. 라운드마다 플레이어가 이동할 칸 입력 예외 처리
-- [ ] 'U' 와 'D' 가 아닌 문자일 경우 예외 처리한다. (InputView # isNotUD)
+- [x] 'U' 와 'D' 가 아닌 문자일 경우 예외 처리한다. (InputView # isNotUD)
 ### 3. 게임 재시작/종료 여부 입력 예외 처리
 - [ ] 'R' 와 'Q' 가 아닌 문자일 경우 예외 처리한다. (InputView # isNotRQ)
