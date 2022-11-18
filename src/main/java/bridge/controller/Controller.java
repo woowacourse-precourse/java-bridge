@@ -63,28 +63,32 @@ public class Controller {
     }
 
     public int getBridgeSize() {
-        String input = getValidInput(GameMessage.ASK_BRIDGE_SIZE,
-                new BridgeSizeValidator(), ErrorMessage.INVALID_BRIDGE_SIZE);
+        String input;
+        do {
+            outputView.printGameMessage(GameMessage.ASK_BRIDGE_SIZE);
+            input = inputView.readBridgeSize();
+        } while (!validateInput(input, new BridgeSizeValidator(), ErrorMessage.INVALID_BRIDGE_SIZE));
         return Integer.parseInt(input);
     }
 
     public String getNextMove() {
-        return getValidInput(GameMessage.ASK_NEXT_MOVE, new NextMoveValidator(), ErrorMessage.INVALID_NEXT_MOVE);
-    }
-
-    public String getGameCommand() {
-        return getValidInput(GameMessage.ASK_RETRY, new GameCommandValidator(), ErrorMessage.INVALID_GAME_COMMAND);
-    }
-
-    public String getValidInput(GameMessage gameMessage, Validator inputValidator, ErrorMessage errorMessage) {
         String input;
         do {
-            outputView.printGameMessage(gameMessage);
+            outputView.printGameMessage(GameMessage.ASK_NEXT_MOVE);
             input = inputView.readMoving();
-        } while (!validateInput(input, inputValidator, errorMessage));
+        } while (!validateInput(input, new NextMoveValidator(), ErrorMessage.INVALID_NEXT_MOVE));
         return input;
     }
 
+    public String getGameCommand() {
+        String input;
+        do {
+            outputView.printGameMessage(GameMessage.ASK_RETRY);
+            input = inputView.readGameCommand();
+        } while (!validateInput(input, new GameCommandValidator(), ErrorMessage.INVALID_GAME_COMMAND));
+        return input;
+    }
+    
     public boolean validateInput(String input, Validator inputValidator, ErrorMessage errorMessage) {
         try {
             inputValidator.validateInput(input);
