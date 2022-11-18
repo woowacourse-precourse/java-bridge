@@ -24,8 +24,8 @@
   - [x] [예외] U(위 칸), D(아래 칸) 이외의 문자가 입력되면 예외가 발생한다.
 - [x] 게임 재시작/종료 여부를 입력 받는다. - InputView#readGameCommand();
   - [x] [예외] R(재시작), Q(종료) 이외의 문자가 입력되면 예외가 발생한다.
-- [ ] 다리 건너기 결과를 출력한다. - OutputView#printMap();
-- [ ] 최종 게임 결과를 출력한다. - OutputView#printResult();
+- [x] 다리 건너기 결과를 출력한다. - OutputView#printMap();
+- [x] 최종 게임 결과를 출력한다. - OutputView#printResult();
 - [ ] 예외 상황 시 에러 문구를 출력한다. - OutputView#printError();
 
 
