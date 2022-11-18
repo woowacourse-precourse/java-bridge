@@ -91,6 +91,12 @@ class ApplicationTest extends NsTest {
 		assertThat(currentBridge.containsAll(List.of("U", "D", "U", "U"))).isTrue();
 	}
 
+	@Test
+	void 게임_종료테스트() {
+		BridgeGame bridgeGame = new BridgeGame();
+		assertThat(bridgeGame.retry("R")).isTrue();
+	}
+
 	@Override
 	protected void runMain() {
 		Application.main(new String[] {});
