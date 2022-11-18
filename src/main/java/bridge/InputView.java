@@ -21,11 +21,15 @@ public class InputView {
      */
     public int readBridgeSize() {
         try {
-            bridgeSizeMsg();
-            String input = Console.readLine();
-            int bridgeSize = Integer.parseInt(input);
-            bridgeSizeException(bridgeSize);
-            return bridgeSize;
+            try {
+                bridgeSizeMsg();
+                String input = Console.readLine();
+                int bridgeSize = Integer.parseInt(input);
+                bridgeSizeException(bridgeSize);
+                return bridgeSize;
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readBridgeSize();
@@ -34,7 +38,7 @@ public class InputView {
 
     private void bridgeSizeException(int bridgeSize) {
         if (bridgeSize < 3 || bridgeSize > 20) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.\n");
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
     }
 
