@@ -27,12 +27,15 @@ public class InputView {
      */
     public String readMoving() {
         String str = Console.readLine();
-        //validInput(str);
+        validInput(str);
         return str;
     }
 
     public static void validInput(String str) {
-        if (str != "U" && str != "D") {
+        if (str.length()>1){
+            throw new IllegalArgumentException("[ERROR]");
+        }
+        if (!str.equals("U") && !str.equals("D")) {
             throw new IllegalArgumentException("[ERROR]");
         }
     };
@@ -47,7 +50,7 @@ public class InputView {
     }
 
     public static void validReInput(String str){
-        if (str !="R" && str !="Q"){
+        if (str.equals("R") && str.equals("Q")){
             throw new IllegalArgumentException("[ERROR]");
         }
     };
