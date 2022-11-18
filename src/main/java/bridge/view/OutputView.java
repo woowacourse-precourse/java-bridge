@@ -36,9 +36,8 @@ public class OutputView {
     }
 
     private void getPrintedBridge(UserState userState, StringBuilder higherBridge, StringBuilder lowerBridge) {
-        final int excludeLastDirection = 1;
         Bridge bridge = userState.getBridge();
-        for (int i = 0; i < userState.getUserPosition() - excludeLastDirection; i++) {
+        for (int i = 1; i < userState.getUserPosition(); i++) {
             addCircleOrEmptyWithDividerInBridge(higherBridge, bridge.isCorrectDirection(Direction.U, i));
             addCircleOrEmptyWithDividerInBridge(lowerBridge, bridge.isCorrectDirection(Direction.D, i));
         }
