@@ -23,7 +23,10 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        String movingPath = Console.readLine();
+        //해당 값을 검증하는 함수를 호출할 자리
+        return movingPath;
     }
 
     /**
