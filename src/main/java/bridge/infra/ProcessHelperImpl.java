@@ -6,14 +6,23 @@ public class ProcessHelperImpl implements ProcessHelper {
 
 
     @Override
-    public boolean canItChangeBridgeSize(String bridgeLength) {
+    public boolean checkBridgeSize(String bridgeLength) {
+        boolean flag = true;
         char[] chars = bridgeLength.toCharArray();
+        flag = isChars(flag, chars);
+        if (flag == true) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isChars(boolean flag, char[] chars) {
         for (char aChar : chars) {
             if (!Character.isDigit(aChar)) {
-                return false;
+                flag = false;
             }
         }
-        return true;
+        return flag;
     }
 
     @Override

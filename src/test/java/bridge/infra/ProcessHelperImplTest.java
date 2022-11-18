@@ -23,13 +23,13 @@ class ProcessHelperImplTest {
     public void isDigitStringTest() throws Exception {
         processHelper = new ProcessHelperImpl();
         String givenString = "123";
-        assertThat(processHelper.canItChangeBridgeSize(givenString)).isTrue();
+        assertThat(processHelper.checkBridgeSize(givenString)).isTrue();
     }
 
     @Test
     public void isNotDigitStringTest() throws Exception {
         String givenString = "1000j";
-        assertThat(processHelper.canItChangeBridgeSize(givenString)).isFalse();
+        assertThat(processHelper.checkBridgeSize(givenString)).isFalse();
     }
 
     @ParameterizedTest

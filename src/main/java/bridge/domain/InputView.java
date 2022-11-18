@@ -2,11 +2,14 @@ package bridge.domain;
 
 
 import static bridge.common.message.ExceptionMessage.BRIDGE_LENGTH_INCORRECT_CHARACTER_MESSAGE;
+import static bridge.common.message.ExceptionMessage.BRIDGE_LENGTH_OUT_OF_SIZE_MESSAGE;
 import static bridge.common.message.ExceptionMessage.ERROR_CODE;
 import static bridge.common.message.ExceptionMessage.GAME_COMMAND_INCORRECT_MESSAGE;
 import static bridge.common.message.ExceptionMessage.READ_MOVING_INCORRECT_MESSAGE;
 
+import bridge.common.message.ExceptionMessage;
 import bridge.domain.exception.BridgeSizeException;
+import bridge.domain.exception.BridgeSizeOutOfBoundaryException;
 import bridge.domain.exception.GameCommandException;
 import bridge.domain.exception.ReadMovingException;
 import camp.nextstep.edu.missionutils.Console;
@@ -24,6 +27,8 @@ public class InputView {
             try {
                 String bridgeSize = Console.readLine();
                 bridgeSizeValidation(processHelper, bridgeSize);
+                bridgeNumberValidation(bridgeSize);
+
                 return Integer.parseInt(bridgeSize);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.toString());
@@ -74,8 +79,14 @@ public class InputView {
     }
 
     private void bridgeSizeValidation(ProcessHelper processHelper, String str) {
-        if (processHelper.canItChangeBridgeSize(str)) {
+        if (!processHelper.checkBridgeSize(str)) {
             throw new BridgeSizeException(ERROR_CODE + BRIDGE_LENGTH_INCORRECT_CHARACTER_MESSAGE);
+        }
+    }
+
+    private void bridgeNumberValidation(String bridgeSize) {
+        if (Integer.parseInt(bridgeSize) < 3 || Integer.parseInt(bridgeSize) > 20){
+            throw new BridgeSizeOutOfBoundaryException(ERROR_CODE + BRIDGE_LENGTH_OUT_OF_SIZE_MESSAGE);
         }
     }
 }

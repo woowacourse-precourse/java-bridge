@@ -3,7 +3,7 @@ package bridge.domain;
 public interface ProcessHelper {
 
 
-    boolean canItChangeBridgeSize(String bridgeLength);
+    boolean checkBridgeSize(String bridgeLength);
 
     boolean checkCharIsUOrD(String moving);
 
