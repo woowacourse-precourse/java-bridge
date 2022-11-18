@@ -39,6 +39,7 @@ public class InputView {
     private void validateBridgeSize(String input) {
         Validator.validateBlank(input);
         Validator.validateInteger(input);
+        Validator.validateBridgeLength(input);
     }
 
     private void validateMovingCommand(String input) {
