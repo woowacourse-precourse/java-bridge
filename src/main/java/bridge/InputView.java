@@ -32,7 +32,11 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String regameInput = Console.readLine();
+        // TODO : 예외 발생 시 다시 입력
+        validateRegameInput(regameInput);
+        return regameInput;
     }
 
     private int validateBridgeSize(String bridgeSizeInput) {
@@ -48,6 +52,12 @@ public class InputView {
     private void validateMovingInput(String movingInput) {
         if (!movingInput.equals("U") || !movingInput.equals("D")) {
             throw new IllegalArgumentException("[ERROR] \"위: U, 아래: D\"만 입력 가능합니다.");
+        }
+    }
+
+    private void validateRegameInput(String regameInput) {
+        if (!regameInput.equals("R") || !regameInput.equals("Q")) {
+            throw new IllegalArgumentException("[ERROR] \"재시도: R, 종료: Q\"만 입력 가능합니다.");
         }
     }
 }
