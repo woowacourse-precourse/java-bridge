@@ -4,13 +4,13 @@ import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeRandomNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class BridgeMakerTest {
     BridgeMaker bridgeMaker;
@@ -28,5 +28,13 @@ public class BridgeMakerTest {
         List<String> bridge = bridgeMaker.makeBridge(input);
 
         assertThat(bridge.size()).isEqualTo(input);
+    }
+
+    @DisplayName("예외처리 테스트")
+    @ParameterizedTest(name = "input = {0}")
+    @ValueSource(ints = {-1, 0, 1, 2, 21})
+    void checkRangeExceptionTest(int input) {
+        assertThatThrownBy(() -> assertThat(bridgeMaker.makeBridge(input))
+                .isInstanceOf(IllegalArgumentException.class));
     }
 }
