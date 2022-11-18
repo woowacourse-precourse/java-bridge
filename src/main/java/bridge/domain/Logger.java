@@ -1,6 +1,6 @@
 package bridge.domain;
 
-public class Logger {
+final class Logger {
     private static final String NOT_NULL_MESSAGE = "다음 위치에 null 이 들어올 수 없습니다";
     private static final String BLANK_SIGN = "   |";
     private static final String CORRECT_SIGN = " O |";
