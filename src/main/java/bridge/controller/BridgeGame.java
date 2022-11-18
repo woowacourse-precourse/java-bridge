@@ -8,6 +8,8 @@ import bridge.view.OutputView;
 
 import java.util.Arrays;
 
+import static bridge.util.BridgeConstant.FALL_POSITION;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -15,6 +17,7 @@ public class BridgeGame {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     BridgeMove bridgeMove = new BridgeMove();
+    boolean isContinue;
     Bridge bridge;
 
     public void init() {
@@ -25,8 +28,27 @@ public class BridgeGame {
     }
 
     public void start(Player player) {
-        move(player);
-//        printPlayerPosition(player);
+        isContinue = true;
+        while (isContinue) {
+            move(player);
+            checkPlayerPosition(player);
+        }
+    }
+
+    private void checkPlayerPosition(Player player) {
+        if (!moveSuccess(player, bridge)) {
+            retry(player);
+        }
+    }
+
+    private boolean moveSuccess(Player player, Bridge bridge) {
+        String[][] tempBridge = bridge.getBridge();
+        int positionX = player.getXPosition();
+        int positionY = player.getYPosition();
+        if (tempBridge[positionY][positionX].equals(FALL_POSITION)) {
+            return false;
+        }
+        return true;
     }
 
 //    private void printPlayerPosition(Player player) {
@@ -64,6 +86,13 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(Player player) {
+        boolean continueCode = inputView.readGameCommand();
+        if (continueCode) {
+            player.initializePosition();
+            player.setTryCount();
+            return;
+        }
+        isContinue = false;
     }
 }

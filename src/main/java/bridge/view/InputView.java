@@ -38,7 +38,7 @@ public class InputView {
         String readGameCommand = Console.readLine();
         String gameStatus = getGameCommand(readGameCommand);
 
-        if (gameStatus == GAME_RETRY_KEY) {
+        if (gameStatus.equals(GAME_RETRY_KEY)) {
             return true;
         }
 
