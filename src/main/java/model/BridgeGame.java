@@ -20,15 +20,18 @@ public class BridgeGame {
     public List<String> move(List<String> bridge, String path) {
         BridgeController.printMoving(path);
         List<String> bridgeByUser = new ArrayList<>();
+        addPathInBridgeByUser(bridge, path, bridgeByUser);
+        countBridgeNumber();
+        return bridgeByUser;
+    }
 
+    private void addPathInBridgeByUser(List<String> bridge, String path, List<String> bridgeByUser) {
         if (isUserPathEqualsBridge(bridge, path)) {
             addCorrectPath(bridgeByUser, path);
         }
         if (!isUserPathEqualsBridge(bridge, path)) {
             addWrongPath(bridgeByUser, path);
         }
-        countBridgeNumber();
-        return bridgeByUser;
     }
 
     public void countBridgeNumber() {
