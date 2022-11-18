@@ -1,7 +1,7 @@
 package bridge.model;
 
 public enum Floor {
-    U, D;
+    D, U;
 
     public static String getName(int value){
         for (Floor floor : values()){

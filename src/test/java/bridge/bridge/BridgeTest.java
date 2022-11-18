@@ -14,6 +14,6 @@ class BridgeTest {
     @Test
     public void makeBridgeTest() {
         List<String> bridge = testBridgeGenerator.generate(List.of(1, 0, 1, 0, 1));
-        assertThat(bridge).isEqualTo(new ArrayList<>(List.of("D", "U", "D", "U", "D")));
+        assertThat(bridge).isEqualTo(new ArrayList<>(List.of("U", "D", "U", "D", "U")));
     }
 }

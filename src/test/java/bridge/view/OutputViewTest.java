@@ -18,10 +18,10 @@ class OutputViewTest {
     @Test
     @DisplayName("이동 결과 테스트")
     public void printMove(){
-        game.move("U");
         game.move("D");
         game.move("U");
-        game.move("U");
+        game.move("D");
+        game.move("D");
         consoleTestUtil.testOutput(
                 List.of("[ O |   | O |   ]", "[   | O |   | X ]"),
                 (Null) -> outputView.printMap(game));
