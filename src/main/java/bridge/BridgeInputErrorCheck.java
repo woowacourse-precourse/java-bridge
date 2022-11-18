@@ -11,7 +11,7 @@ public class BridgeInputErrorCheck {
     private static final int BRIDGE_SIZE_MAX = 20;
 
 
-    public void readBridgeSizeErrorCheck(String bridgeSize){
+    public static void readBridgeSizeErrorCheck(String bridgeSize){
 
         if(!Pattern.matches(NUMBER_PATTERN, bridgeSize))
             throw new IllegalArgumentException(NOT_NUMBER_ERROR);

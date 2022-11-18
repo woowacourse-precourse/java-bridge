@@ -1,5 +1,6 @@
 package bridge;
 
+import static bridge.BridgeInputErrorCheck.readBridgeSizeErrorCheck;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 /**
@@ -12,6 +13,8 @@ public class InputView {
      */
     public int readBridgeSize() {
         String bridgeSize = readLine();
+
+        readBridgeSizeErrorCheck(bridgeSize);
 
         return Integer.parseInt(bridgeSize);
     }
