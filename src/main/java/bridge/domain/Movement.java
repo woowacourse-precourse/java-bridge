@@ -72,7 +72,7 @@ public class Movement {
     }
 
     public String isSuccess() {
-        if (canMove()) {
+        if (isFinish() && canMove()) {
             return Constant.SUCCESS;
         }
         return Constant.FAILURE;
