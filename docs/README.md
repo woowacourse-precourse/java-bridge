@@ -1,19 +1,22 @@
 ## 🚀 기능 목록
 - ## 컨트롤러
   - [ ] 다리 건너기 게임 컨트롤러
-- ## 모델
-  - ### 데이터
-    - DTO
-      - RequestDto
-        - [ ] 게임 초기화 명령어 DTO
-        - [ ] 게임 진행 명령어 DTO
-        - [ ] 실패 메뉴 명령어 DTO
-      - ResponseDto
-        - [ ] 게임 진행 상황 DTO
-        - [ ] 게임 최종 결과 DTO
-  - ### 서비스
-    - [ ] 다리 제작
+- ## 데이터
+  - DTO
+    - RequestDto 및 ResponseDto
+      - [ ] 게임 초기화 명령어
+      - [ ] 게임 진행 명령어
+      - [ ] 실패 메뉴 명령어
+      - [ ] 게임 최종 결과
+  - DAO
+    - [ ] 게임 정보 Dao
+  - Repository
+    - [ ] 게임 정보 Repository
+  - Entity
     - [ ] 다리 건너기 게임
+- ## 서비스
+  - [ ] 다리 제작
+  - [ ] 다리 건너기 게임
 - ## 뷰
   - ### 입력
     - [ ] `3 ~ 20` 다리 길이
@@ -21,16 +24,21 @@
     - [ ] `R` or `Q` 재시작/종료 여부
   - ### 출력
     - [ ] 게임 시작 문구
+      - 시작 메시지, 길이 입력 메시지
+    - [ ] 게임 진행 문구
+      - 진행 입력 메시지, 지도
+    - [ ] 게임 재시작 문구
+      - 재시작 질문 메시지
     - [ ] 게임 종료 문구
-      - [ ] 지도
-      - [ ] 성공 여부
-      - [ ] 시도 횟수
+      - 종료 메시지, 지도, 성공 여부, 시도 횟수
     - [ ] 에러 문구
 - ## 타입
   - [ ] 게임 일반 상수 타입
-  - [ ] 게임 상태 타입 (INIT, PLAY, FAIL, DONE)
+  - [ ] 게임 상태 타입 (INIT, PLAY, FAIL, RESULT, DONE)
+  - [ ] 진행 결과 타입 (DEAD, ALIVE)
   - [ ] 진행 명령어 타입
   - [ ] 메뉴 명령어 타입
+  - [ ] 에러 메시지 타입
 
 ## ✏ 과제를 진행하며 배운 점
 - IllegalArgumentException 과 IllegalStateException은 어떤 상황에 발생시키 오류인가?[[참조](https://stackoverflow.com/questions/20169127/what-is-illegalstateexception)]
