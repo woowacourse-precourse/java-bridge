@@ -1,4 +1,4 @@
-package bridge.controller;
+package bridge.model;
 
 public enum Direction {
     UP("U", 1),
