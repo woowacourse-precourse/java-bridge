@@ -13,13 +13,15 @@ public class InputView {
         String input = Console.readLine();
         checkEmpty(input);
         checkIsNumber(input);
+        checkDigit(input);
+        validateBridgeRange(input);
         return Integer.parseInt(input);
     }
 
     // 공백을 입력한 경우 예외처리
     private void checkEmpty(String input) {
         if (input.equals("")) {
-            throw new IllegalArgumentException("[ERROR] 3이상 20이하의 숫자를 입력해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 공백을 입력할 수 없습니다.");
         }
     }
 
@@ -47,11 +49,19 @@ public class InputView {
         }
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
+    // 이동할 칸을 입력받는 기능
     public String readMoving() {
-        return null;
+        String input = Console.readLine();
+        checkEmpty(input);
+        validateMoveInput(input);
+        return input;
+    }
+
+    // U키, D키 외에 다른 키 입력받았는지 검증하는 기능
+    private void validateMoveInput(String input) {
+        if (!(input.equals(Setting.MOVE_UP_KEY) || input.equals(Setting.MOVE_DOWN_KEY))) {
+            throw new IllegalArgumentException("[ERROR] 'U'키와 'D'키 만 입력 가능합니다.");
+        }
     }
 
     /**
