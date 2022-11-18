@@ -3,9 +3,6 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
- */
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
@@ -26,7 +23,7 @@ public class BridgeMaker {
 
     //TODO: bridgeNumberGenerator.generate() 값을 "U" 혹은 "D"로 변환하여 반환한다.
     private String convertCorrectBridge(){
-        if (bridgeNumberGenerator.generate() == 0)
+        if (bridgeNumberGenerator.generate() == 1)
             return "U";
         return "D";
     }
