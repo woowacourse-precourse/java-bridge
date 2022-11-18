@@ -27,9 +27,11 @@ public class Application {
         while (!bridgeGame.isGameOver()) {
             gameDo();
         }
-        if(inputView.readGameCommand().equals("R"))
-            return true;
-        return false;
+        return judgeNewGame();
+    }
+
+    private boolean judgeNewGame(){
+        return bridgeGame.retry(inputView.readGameCommand());
     }
 
 
