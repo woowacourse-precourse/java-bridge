@@ -42,4 +42,16 @@ class BridgeGameTest {
         boolean result = bridgeGame.move(bridge, "U");
         assertThat(result).isFalse();
     }
+
+    @Test
+    void choiceRetry() {
+        boolean result = bridgeGame.retry("R");
+        assertThat(result).isTrue();
+    }
+
+    @Test
+    void choiceEndGame() {
+        boolean result = bridgeGame.retry("Q");
+        assertThat(result).isFalse();
+    }
 }
