@@ -38,7 +38,10 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println(Sentence.INPUT_END);
+        String input = Console.readLine().trim();
+        validateEnd(input);
+        return input;
     }
 
     private int stringToInt(String target) {
@@ -59,6 +62,12 @@ public class InputView {
 
     private void validateMove(String target) {
         if (!Objects.equals(target, Input.UP.toString()) && !Objects.equals(target, Input.DOWN.toString())) {
+            throw new IllegalArgumentException(Error.UP_OR_DOWN.toString());
+        }
+    }
+
+    private void validateEnd(String target) {
+        if (!Objects.equals(target, Input.RETRY.toString()) && !Objects.equals(target, Input.QUIT.toString())) {
             throw new IllegalArgumentException(Error.UP_OR_DOWN.toString());
         }
     }
