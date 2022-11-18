@@ -1,10 +1,6 @@
 package bridge.game;
 
-import bridge.enums.IntEnum;
-import bridge.enums.StringEnum;
-
 import java.util.List;
-
 import static bridge.enums.IntEnum.*;
 
 /**
@@ -13,6 +9,7 @@ import static bridge.enums.IntEnum.*;
 public class BridgeGame {
     private final List<String> bridge;
     private int stage;
+
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         stage = RESET_STAGE.num();
@@ -24,8 +21,8 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public int move(String nowStage) {
-        if(bridge.get(stage).equals(nowStage)){
-            if(isGameEnd())return GAME_WIN.num();
+        if (bridge.get(stage).equals(nowStage)) {
+            if (isGameEnd()) return GAME_WIN.num();
             stage++;
             return GAME_CONTINUE.num();
         }
@@ -33,7 +30,7 @@ public class BridgeGame {
     }
 
     private boolean isGameEnd() {
-        return bridge.size()-1 == stage;
+        return bridge.size() - 1 == stage;
     }
 
     /**

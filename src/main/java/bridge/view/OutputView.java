@@ -25,7 +25,7 @@ public class OutputView {
     public String printMap(int result) {
         StringBuilder upPrint = new StringBuilder("[");
         StringBuilder downPrint = new StringBuilder("[");
-
+        makeMap(result, upPrint, downPrint);
         upPrint.append("]");
         downPrint.append("]");
         stage++;
@@ -79,6 +79,17 @@ public class OutputView {
             }
         }
     }
+    private void makeMap(int result, StringBuilder upPrint, StringBuilder downPrint) {
+        if (stage == RESET_STAGE.num()) {
+            lastIndexOutput(result, upPrint, downPrint);
+        }
+        if (stage > RESET_STAGE.num()) {
+            duringOutput(upPrint, downPrint);
+            addBar(upPrint,downPrint);
+            lastIndexOutput(result, upPrint, downPrint);
+        }
+    }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
