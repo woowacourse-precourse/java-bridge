@@ -11,10 +11,16 @@ public class BridgeGame {
     private final OutputView outputView = new OutputView();
     public void run() {
         try {
-            inputView.readBridgeSize();
+            initMsg();
+            //int bridgeSize = inputView.readBridgeSize();
         } catch (IllegalArgumentException exception) {
             OutputView.printMsg("[ERROR] " + exception.getMessage());
         }
+    }
+
+    private void initMsg() {
+        outputView.startMsg();
+        outputView.lengthMsg();
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
