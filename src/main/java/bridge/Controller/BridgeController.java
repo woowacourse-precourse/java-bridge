@@ -9,13 +9,11 @@ import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeController {
-
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private Integer bridgeSize;
     private List<String> bridge;
-
-    private InputView inputView = new InputView();
-    private OutputView outputView = new OutputView();
-    private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
     public BridgeController() {
         outputView.printStartMessage();
@@ -27,11 +25,9 @@ public class BridgeController {
     }
     public void run(){
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        int turn = 0;
-        while (turn < bridgeSize) {
+        while(bridgeGame.isEnd()){
             System.out.println(bridge);
             bridgeGame.move(inputView.readMoving());
-            turn++;
         }
     }
 }
