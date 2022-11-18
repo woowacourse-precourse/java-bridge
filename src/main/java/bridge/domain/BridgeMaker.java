@@ -1,4 +1,6 @@
-package bridge;
+package bridge.domain;
+
+import bridge.BridgeNumberGenerator;
 
 import static bridge.util.BridgeConstant.DOWN_KEY_NUMBER;
 import static bridge.util.BridgeConstant.DOWN_KEY;
