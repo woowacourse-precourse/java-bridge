@@ -8,10 +8,12 @@ import java.util.List;
 public class BridgeGame {
     private int pointer;
     private final List<String> bridge;
+    private GameState gameState;
 
     public BridgeGame(List<String> bridge) {
         this.pointer = 0;
         this.bridge = bridge;
+        this.gameState = GameState.NOT_FINISH;
     }
 
     /**
@@ -19,12 +21,18 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String direction) {
+    public void move(String direction) {
         if (! bridge.get(pointer).equals(direction))
-            return false;
+            gameState = GameState.FINISH_FAIL;
 
-        pointer++;
-        return true;
+        if (gameState.equals(GameState.NOT_FINISH))
+            pointer++;
+        finishGame();
+    }
+
+    private void finishGame(){
+        if (this.pointer == this.bridge.size())
+            gameState = GameState.FINISH_SUCCESS;
     }
 
     /**
