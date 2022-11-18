@@ -1,7 +1,6 @@
 package bridge.controller;
 
 import bridge.model.BridgeGame;
-import bridge.model.userStages;
 
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -33,41 +32,43 @@ public class GameController {
 
     public void start() {
         do {
-            moveOneStep();
-            if (wantEndWithFail()) {
+            moveOneStage();
+            if (isFailAndNotWantRetry()) {
                 break;
             }
-        } while (userStages.isNotReached(bridge.size()));
+        } while (bridgeGame.inProgress(bridge.size()));
         exitGame();
     }
 
 
-    private void moveOneStep() {
+    private void moveOneStage() {
         outputView.guideInputMoving();
-        bridgeGame.move(inputView.readMoving(), bridge.get(userStages.nextIndex()));
-        outputView.printMap(userStages.getPositions());
+        bridgeGame.move(inputView.readMoving(), bridge.get(bridgeGame.nextIndex()));
+        outputView.printMap(bridgeGame.getCurrentPositions());
     }
 
-    private boolean wantEndWithFail() {
-        if (userStages.isNotCross()) {
+    private boolean isFailAndNotWantRetry() {
+        if (bridgeGame.isFail()) {
             outputView.guideInputGameCommand();
-            return isRetry(inputView.readGameCommand());
+            return !wantRetry(inputView.readGameCommand());
         }
         return false;
     }
 
-    private boolean isRetry(String gameCommand) {
+    private boolean wantRetry(String gameCommand) {
         if (gameCommand.equals(GameForm.RESTART_VALUE)) {
             bridgeGame.retry();
-            return false;
+            return true;
         }
         if (gameCommand.equals(GameForm.QUIT_VALUE)) {
-            return true;
+            return false;
         }
         throw new IllegalArgumentException();
     }
 
     private void exitGame() {
-        outputView.printResult(userStages.getPositions(), userStages.getNumberOfAttempts(), userStages.getOutcome());
+        outputView.printResult(bridgeGame.getCurrentPositions(),
+                bridgeGame.getNumberOfAttempts(),
+                bridgeGame.getOutcome());
     }
 }
