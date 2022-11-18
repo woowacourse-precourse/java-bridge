@@ -18,11 +18,14 @@ public class GameController {
         System.out.println(bridge);
 
         // 다리 게임
+        boolean fail = false;
         int attemptsNumber = 1;
         for (int index = 0; index < bridge.size(); index++) {
             if (isUserSelectionCorrect(setUserSelection(), bridge.get(index))) {
                 continue;
             }
+            fail = true;
+            break;
         }
 
 
