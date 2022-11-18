@@ -17,20 +17,27 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
 
-        makeBridgePath(size, bridge);
+        buildBridgePath(size, bridge);
         return Collections.unmodifiableList(bridge);
     }
 
-    private void makeBridgePath(int size, List<String> bridge) {
+    private void buildBridgePath(int size, List<String> bridge) {
         for (int i = 0; i < size; i++) {
             int bridgeNumber = bridgeNumberGenerator();
+            buildUpPath(bridge, bridgeNumber);
+            buildDownPath(bridge, bridgeNumber);
+        }
+    }
 
-            if (isBridgeNumberDownSide(bridgeNumber)) {
-                addBridgeDownPath(bridge);
-            }
-            if (isBridgeNumberUpSide(bridgeNumber)) {
-                addBridgeUpPath(bridge);
-            }
+    private void buildUpPath(List<String> bridge, int bridgeNumber) {
+        if (isBridgeNumberUpSide(bridgeNumber)) {
+            addBridgeUpPath(bridge);
+        }
+    }
+
+    private void buildDownPath(List<String> bridge, int bridgeNumber) {
+        if (isBridgeNumberDownSide(bridgeNumber)) {
+            addBridgeDownPath(bridge);
         }
     }
 
