@@ -24,8 +24,11 @@ public class Validator {
         }
     }
 
-    public void validateMoving(String moving) {
-
+    public void validateMoving(char moving) {
+        if (moving != 'U' && moving != 'D') {
+            System.out.println(ErrorMessage.MOVING_ERROR.getMessage());
+            throw new IllegalArgumentException();
+        }
     }
 
     public void validateGameCommand(String gameCommand) {
