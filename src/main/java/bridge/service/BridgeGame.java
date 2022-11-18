@@ -27,12 +27,8 @@ public class BridgeGame {
         bridges.generate(realBridges);
     }
 
-    public boolean isGameClear() {
-        return bridges.isGameClear();
-    }
-
-    public boolean isGameFail() {
-        return gameState.isFail();
+    public boolean isGameOver() {
+        return bridges.isGameClear() || gameState.isFail();
     }
 
     /**
