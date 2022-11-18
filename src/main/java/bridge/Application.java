@@ -36,7 +36,7 @@ public class Application {
     private void gameDo(){
         while(!bridgeGame.isGameOver())
         {
-            inputView.readMoving();
+            bridgeGame.move(inputView.readMoving());
         }
     }
 
