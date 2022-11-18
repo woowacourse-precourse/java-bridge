@@ -1,14 +1,13 @@
 package bridge.application;
 
 import bridge.BridgeRandomNumberGenerator;
-import bridge.common.message.ConsoleOut;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
 import bridge.domain.InputView;
 import bridge.domain.OutputView;
 import bridge.domain.ProcessHelper;
 import bridge.domain.vo.MatchResult;
-import bridge.infra.ProcessHelperImpl;
+import bridge.infrastructure.ProcessHelperImpl;
 import java.util.List;
 
 public class BridgeGameProcess {

@@ -13,9 +13,39 @@
             - movingValidation : U/D가 아닌 문자 검증
         - readGameCommand : 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
             - gameCommandValidation : R/Q가 아닌 문자 검증
+
     - BridgeMaker : 게임 다리 만드는 객체
         - makeBridge : 사이즈를 입력받아 0, 1 난수를 통해 다리 생성
+            - isZeroAppendCapitalD : 난수 0 발생 시 "D"를 다리에 붙이는 메서드
+            - isOneAppendCapitalU : 난수 1 발생 시 "U"를 다리에 붙이는 메서드
 
+    - OutputView : 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
+        - printMap : 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력 메서드
+        - printResult : 게임의 최종 결과를 정해진 형식에 맞춰 출력 메서드
+
+    - BridgeGame : 다리 건너기 게임을 관리하는 클래스
+        - move : 사용자가 칸을 이동할 때 사용하는 메서드
+        - retry : 사용자가 게임을 다시 시도할 때 사용하는 메서드
+        - currentUserInput : 게임 진행 시 사용자의 Input 들을 담고 출력하는 메서드
+        - currentGameTime : 게임 횟수를 출력하는 메서드
+        - looseGame : 게임 성공 여부 실패 출력 메서드
+        - winningGame : 게임 성공 여부 성공 출력 메서드
+
+    - ProcessHelper<I> : InputView와 협력하며 테스트 하기 어려운 InputView 대신
+      레벨을 낮춰 기능을 분리. Domain layer에선 명세만 정의하고 실제 구현은 Infrastructure layer에서 구현
+      ! random, ui 작업이 필요한 InputView에선 테스트하기 어렵지만 기능을 떼어낸 ProcessHelper에선 쉽다.
+
+    - MatchResult : 게임 결과를 담고 결과를 산출하는 객체. upperSide와 downSide로 다리 위 아래를 표현하고
+      생성 시 해당 필드들을 생성합니다. 필드는 String이 아닌 StringBuffer로 선언해 사용했습니다.
+      이유는 결과를 출력하기 위해선 문자열을 유연하게 핸들링 할 수 있어야 하기 때문입니다.
+      - reset : upperSide와 downSide data reset
+      - printUpAndDownSides : upperSide와 downSide 출력 메서드
+        - printUpperSide : upperSide 출력 메서드
+        - printDownSide : downSide 출력 메서드
+        - matchProcess : 사용자의 입력 결과들과 매칭 결과를 갖고 출력을 입력하는 메서드
+
+- Infrastructure layer
+    - ProcessHelperImpl
 - Application layer
     - BridgeGameProcess : Application 에서 호출해 게임을 총괄하는 역할을 담당하는 클래스
         - run() : static으로 설정해 new 연산자 없이 호출해 사용 가능

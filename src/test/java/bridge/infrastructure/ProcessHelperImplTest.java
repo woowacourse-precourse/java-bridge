@@ -1,4 +1,4 @@
-package bridge.infra;
+package bridge.infrastructure;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

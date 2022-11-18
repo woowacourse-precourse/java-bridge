@@ -1,4 +1,4 @@
-package bridge.infra;
+package bridge.infrastructure;
 
 import bridge.domain.ProcessHelper;
 
