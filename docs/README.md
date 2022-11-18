@@ -42,12 +42,12 @@
       * [x] R or Q 확인하기
 
 
-* [ ] Bridge 클래스
+* [x] Bridge 클래스
     * 로직에 대한 구현이 없을 것
     * getter 메서드만을 가질 것
     * BridgeMaker를 통해서 만들어진다.
     * 필드는 private final List<String> bridge 하나
-    * [ ] getBridge() 메서드 만들기
+    * [x] getBridge() 메서드 만들기
 
 
 ## 시나리오
