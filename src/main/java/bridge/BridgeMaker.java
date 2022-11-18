@@ -14,6 +14,7 @@ public class BridgeMaker {
 
     public List<String> makeBridge(int size) {
         List<Integer> randomNumbers = makeRandomIntegers(size);
+        System.out.println("randomNumbers = " + randomNumbers);
         return randomNumbers.stream()
                 .map(this::changeUpDown)
                 .collect(Collectors.toList());

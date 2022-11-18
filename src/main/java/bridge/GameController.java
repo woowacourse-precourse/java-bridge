@@ -21,7 +21,9 @@ public class GameController {
             output.printMove();
             String inputMove = input.readMoving();
             result.updateState(inputMove, bridgeGame.move(inputMove, result.nowCount()));
+            output.printMap(result);
         }
+        output.printResult(result);
     }
 
     private Bridge makeBridge() {
