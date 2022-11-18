@@ -2,6 +2,7 @@ package bridge.domain.operator;
 
 import static org.assertj.core.api.Assertions.*;
 
+import bridge.controller.GameStatus;
 import bridge.domain.bridge.Bridge;
 import bridge.domain.player.Player;
 import java.util.List;
@@ -16,7 +17,7 @@ class BridgeGameTest {
     void moveTest() {
         //given
         Bridge bridge = new Bridge(List.of("0", "0", "1"));
-        BridgeGame bridgeGame = new BridgeGame(bridge, new Player());
+        BridgeGame bridgeGame = new BridgeGame(bridge, new Player(), new GameStatus());
 
         String playerSelection1 = "D";
         String playerSelection2 = "U";
@@ -45,7 +46,7 @@ class BridgeGameTest {
             //given
             Bridge bridge = new Bridge(List.of("0", "0", "1"));
             Player player = new Player();
-            BridgeGame bridgeGame = new BridgeGame(bridge, player);
+            BridgeGame bridgeGame = new BridgeGame(bridge, player, new GameStatus());
 
             BridgeResult bridgeResult = bridgeGame.getBridgeResult();
             int beforeMoveAttempt = bridgeResult.getAttempt();
@@ -67,7 +68,7 @@ class BridgeGameTest {
             //given
             Bridge bridge = new Bridge(List.of("0", "0", "1"));
             Player player = new Player();
-            BridgeGame bridgeGame = new BridgeGame(bridge, player);
+            BridgeGame bridgeGame = new BridgeGame(bridge, player, new GameStatus());
 
             BridgeResult bridgeResult = bridgeGame.getBridgeResult();
             int beforeMoveAttempt = bridgeResult.getAttempt();
@@ -84,4 +85,53 @@ class BridgeGameTest {
         }
     }
 
+    @Nested
+    @DisplayName("플레이어의 게임 성공 여부는")
+    class IsClearTest {
+
+        @Test
+        @DisplayName("플레이어가 다리 끝까지 건너면 성공이다.")
+        void case1() {
+            //given
+            Bridge bridge = new Bridge(List.of("0", "0", "1"));
+
+            Player player = new Player();
+            player.movePlayerLocation();
+            player.movePlayerLocation();
+            player.movePlayerLocation();
+
+            GameStatus gameStatus = new GameStatus();
+
+            BridgeGame bridgeGame = new BridgeGame(bridge, player, gameStatus);
+
+            //when
+            boolean clearResult = bridgeGame.isClear();
+
+            //then
+            assertThat(clearResult).isEqualTo(true);
+            assertThat(gameStatus.isSuccess()).isEqualTo(true);
+        }
+
+        @Test
+        @DisplayName("플레이어가 다리 끝까지 건너지 못하면 실패이다.")
+        void case2() {
+            //given
+            Bridge bridge = new Bridge(List.of("0", "0", "1"));
+
+            Player player = new Player();
+            player.movePlayerLocation();
+            player.movePlayerLocation();
+
+            GameStatus gameStatus = new GameStatus();
+
+            BridgeGame bridgeGame = new BridgeGame(bridge, player, gameStatus);
+
+            //when
+            boolean clearResult = bridgeGame.isClear();
+
+            //then
+            assertThat(clearResult).isEqualTo(false);
+            assertThat(gameStatus.isSuccess()).isEqualTo(false);
+        }
+    }
 }
