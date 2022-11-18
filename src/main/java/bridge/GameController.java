@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.constant.Game;
+
 import java.util.List;
 
 public class GameController {
@@ -8,7 +10,7 @@ public class GameController {
     boolean success = false;
 
     public void start() {
-        System.out.println("다리 건너기 게임을 시작합니다.\n");
+        System.out.println(Game.START_GAME_MESSAGE);
         int bridgeSize = getBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
@@ -56,14 +58,14 @@ public class GameController {
     }
 
     private void getGameResult() {
-        System.out.println("최종 게임 결과");
+        System.out.println(Game.GAME_RESULT_MESSAGE);
         OutputView outputView = new OutputView();
         outputView.printMap(bridgeGame.getResult());
         if (success) {
-            System.out.println("게임 성공 여부: 성공");
+            System.out.println(Game.GAME_SUCCESS);
         } else {
-            System.out.println("게임 성공 여부: 실패");
+            System.out.println(Game.GAME_FAILED);
         }
-        System.out.println("총 시도한 횟수: " + attempts);
+        System.out.println(Game.TOTAL_NUMBER_OF_ATTEMPTS + attempts);
     }
 }

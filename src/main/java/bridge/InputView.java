@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.constant.ErrorMessage;
+import bridge.constant.Game;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -12,7 +13,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println("다리의 길이를 입력해주세요.");
+        System.out.println(Game.INPUT_BRIDGE_SIZE);
         int result = validateSize(Console.readLine());
         if (result < 3 || result > 20) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE_SIZE);
@@ -24,7 +25,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println(Game.INPUT_DIRECTION);
         String result = validateMoving(Console.readLine());
         return result;
     }
