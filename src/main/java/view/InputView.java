@@ -20,7 +20,7 @@ public class InputView {
         while(true) {
             try {
                 System.out.println("\n" + message);
-                input = Console.readLine();
+                validation.validate(input = Console.readLine());
                 return input;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
