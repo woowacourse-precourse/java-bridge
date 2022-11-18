@@ -1,5 +1,9 @@
 package bridge.model;
 
+import static global.advice.StepValidator.checkIsDigit;
+import static global.advice.StepValidator.checkLength;
+import static global.advice.StepValidator.checkRange;
+
 import bridge.BridgeFactory;
 import java.util.List;
 import java.util.Objects;
@@ -12,8 +16,15 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public Bridge(BridgeFactory bridgeFactory, int size) {
-        this.bridge = bridgeFactory.makeBridge(size);
+    public Bridge(BridgeFactory bridgeFactory, String size) {
+        validation(size);
+        this.bridge = bridgeFactory.makeBridge(Integer.parseInt(size));
+    }
+
+    private void validation(String size) {
+        checkLength(size);
+        checkIsDigit(size);
+        checkRange(size);
     }
 
     public boolean canGoOrNot(List<String> step, String userPick) {
