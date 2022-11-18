@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.domain.factory.BridgeMaker;
-import bridge.domain.strategy.BridgeNumberGenerator;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 

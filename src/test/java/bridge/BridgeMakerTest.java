@@ -1,5 +1,6 @@
-package bridge.domain.factory;
+package bridge;
 
+import bridge.BridgeMaker;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,7 +1,7 @@
 package bridge.domain;
 
-import bridge.domain.factory.BridgeMaker;
-import bridge.domain.strategy.BridgeNumberGenerator;
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
 
 import java.util.List;
 
