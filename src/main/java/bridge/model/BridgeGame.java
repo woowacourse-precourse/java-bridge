@@ -1,5 +1,9 @@
 package bridge.model;
 
+import static bridge.controller.InputController.setUserSelection;
+
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -15,7 +19,24 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String correctOption, String userSelection) {
+    public void move(List<String> bridge) {
+        int attemptsNumber = 1;
+        int index;
+        for (index = 0; index < bridge.size(); index++) {
+            if (isUserSelectionCorrect(setUserSelection(), bridge.get(index))) {
+                continue;
+            }
+            break;
+        }
+        if (index == bridge.size()) {
+            System.out.println("성공");
+        }
+        if (index < bridge.size()) {
+            System.out.println("실패");
+        }
+    }
+
+    private boolean isUserSelectionCorrect(String correctOption, String userSelection) {
         return correctOption.equals(userSelection);
     }
 

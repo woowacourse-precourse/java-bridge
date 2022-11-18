@@ -1,8 +1,8 @@
 package bridge.controller;
 
-import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
-import bridge.BridgeRandomNumberGenerator;
+import static bridge.controller.InputController.setBridgeSize;
+
+import bridge.model.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
@@ -18,43 +18,10 @@ public class GameController {
         System.out.println(bridge);
 
         // 다리 게임
-        boolean fail = false;
-        int attemptsNumber = 1;
-        for (int index = 0; index < bridge.size(); index++) {
-            if (isUserSelectionCorrect(setUserSelection(), bridge.get(index))) {
-                continue;
-            }
-            fail = true;
-            break;
-        }
-
+        BridgeGame bridgegame = new BridgeGame();
+        bridgegame.move(bridge);
 
     }
 
-    private List<String> setBridgeSize() {
-        try {
-            outputView.printBridgeSizeInput();
-            BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-            BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-            return bridgeMaker.makeBridge(inputView.readBridgeSize());
-        } catch (IllegalArgumentException exception) {
-            outputView.printErrorMessage(exception);
-            setBridgeSize();
-        }
-        return null;
-    }
 
-    private String setUserSelection() {
-        try {
-            outputView.printMoveInput();
-            return inputView.readMoving();
-        } catch (IllegalArgumentException exception) {
-            outputView.printErrorMessage(exception);
-            return setUserSelection();
-        }
-    }
-
-    private boolean isUserSelectionCorrect(String userSelection, String bridge) {
-        return userSelection.equals(bridge);
-    }
 }

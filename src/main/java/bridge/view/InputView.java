@@ -1,7 +1,7 @@
 package bridge.view;
 
+import static bridge.model.Position.validateMovingInput;
 import static bridge.util.Util.convertStringToInt;
-import static bridge.util.Util.validateMovingInput;
 
 import camp.nextstep.edu.missionutils.Console;
 
