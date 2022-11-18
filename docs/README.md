@@ -19,6 +19,7 @@
 ### controller
 - BridgeController
 - [x] 다리 길이 입력 받기
+- [x] 다리 생성하기
 - [ ] 이동할 칸 입력 받기
 - [ ] 재시작 여부 입력 받기
 - [ ] 사용자 이동시키기
@@ -54,7 +55,7 @@
 - [x] 정수값 다리를 문자열로 변환하기
 - [x] 문자열 다리 반환하기
 - Bridge
-- [ ] 문자열 다리 생성하기
+- [x] 문자열 다리 생성하기
 - [ ] 입력값에 맞는 횡단여부 반환하기
 - BridgeGame
 - [ ] 게임 시도 횟수 늘리기
@@ -65,7 +66,7 @@
 
 ### service
 - BridgeService
-- [ ] BridgeMaker에서 만든 다리 Bridge에 저장
+- [x] BridgeMaker에서 만든 다리 Bridge에 저장
 - [ ] 이동할 칸에 맞는 BridgeCrossingDTO 반환
 - [ ] FootPrint 초기화
 

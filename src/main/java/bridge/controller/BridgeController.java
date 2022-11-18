@@ -18,7 +18,7 @@ public class BridgeController {
         int bridgeSize;
         try {
             bridgeSize = InputView.inputBridgeSize();
-            // 서비스에서 다리 생성
+            bridgeService.createBridge(bridgeSize);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             createBridge();
