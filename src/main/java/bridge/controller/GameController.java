@@ -78,15 +78,16 @@ public class GameController {
     }
 
     private Tile readMovingTargetTile() {
-        while (true) {
+        Tile movingTile = null;
+        do {
             try {
-                String movingPosition = inputView.readMoving();
-                Tile movingTile = Tile.findByTilePosition(movingPosition);
-                return movingTile;
+                movingTile = Tile.findByTilePosition(inputView.readMoving());
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
-        }
+        } while (movingTile == null);
+
+        return movingTile;
     }
 
     private boolean askForTryAgain() {
@@ -106,6 +107,7 @@ public class GameController {
                 System.out.println(exception.getMessage());
             }
         } while (input == null);
+
         return input;
     }
 
