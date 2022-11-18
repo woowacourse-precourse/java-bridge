@@ -18,6 +18,7 @@ public class BridgeGameController {
 	}
 
 	public void start() {
+		inputView.printIntroMessage();
 		List<String> bridge = receiveBridgeSize();
 		BridgeGame bridgeGame = new BridgeGame(bridge);
 		List<List<String>> currentMap = startBridgeGame(bridgeGame);
