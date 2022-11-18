@@ -6,15 +6,13 @@ import bridge.view.Message;
 public class CheckHandler {
 
 	public static String isBridgeLengthInput(String input) {
-		//TODO : 다리 길이 입력시 예외처리 구현 중
 		isNumber(input);
 		isValidNumber(input);
 		return input;
 	}
 
 	public static String isMoveInput(String input) {
-		//TODO : 이동 위치 입력시 예외처리 구현 중
-		isMoveCommand();
+		isMoveCommand(input);
 		return input;
 	}
 
@@ -41,8 +39,10 @@ public class CheckHandler {
 		return inputNumber < 3 || inputNumber > 20;
 	}
 
-	private static void isMoveCommand() {
-		//TODO : 이동 명령어 입력이 U/D 가 아니면 예외 발생
+	private static void isMoveCommand(String inputMoveCommand) {
+		if (!(inputMoveCommand.equals("U") || inputMoveCommand.equals("D"))) {
+			ExceptionHandler.raisingIllegalArgumentException(Message.getMessage(Message.INPUT_NOT_MOVE_COMMAND));
+		}
 	}
 
 	private static void isGameCommand() {
