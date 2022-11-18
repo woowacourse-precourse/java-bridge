@@ -12,23 +12,32 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        int bridgeSize;
+
         Printer.printLine(InputMessage.BRIDGE_SIZE);
-        return Reader.readNumber();
+        bridgeSize = Reader.readNumber();
+        return InputValidator.validateBridgeSize(bridgeSize);
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+        String moving;
+
         Printer.printLine(InputMessage.MOVING);
-        return Reader.readString();
+        moving = Reader.readString();
+        return InputValidator.validateMoving(moving);
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
+        String gameCommand;
+
         Printer.printLine(InputMessage.GAME_COMMAND);
-        return Reader.readString();
+        gameCommand = Reader.readString();
+        return InputValidator.validateGameCommand(gameCommand);
     }
 }
