@@ -11,18 +11,18 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize(){
-        String bridge_size_input = Console.readLine().trim();
-        InputValidator.validateBridgeSize(bridge_size_input);
-        return Integer.parseInt(bridge_size_input);
+        String bridgeSizeInput = Console.readLine().trim();
+        InputValidator.validateBridgeSize(bridgeSizeInput);
+        return Integer.parseInt(bridgeSizeInput);
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String moving_direction = Console.readLine().trim();
-        InputValidator.validateMovingDirection(moving_direction);
-        return moving_direction;
+        String movingDirection = Console.readLine().trim();
+        InputValidator.validateMovingDirection(movingDirection);
+        return movingDirection;
     }
 
     /**

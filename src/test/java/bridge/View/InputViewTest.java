@@ -14,37 +14,37 @@ class InputViewTest {
     @DisplayName("다리길이 입력 실패 케이스 테스트")
     @ParameterizedTest(name = "{index} {displayName} message={0}")
     @ValueSource(strings = {")", "ㅁ", "a", "0", "2", "21"})
-    void 다리길이_입력_실패케이스_테스트(String bridge_size_input) {
+    void 다리길이_입력_실패케이스_테스트(String bridgeSizeInput) {
         assertInputByMockingTest(()->{
                 assertThrows(IllegalArgumentException.class,()->inputView.readBridgeSize());
-        },bridge_size_input);
+        },bridgeSizeInput);
     }
 
     @DisplayName("다리길이 입력 성공 케이스 테스트")
     @ParameterizedTest(name = "{index} {displayName} message={0}")
     @ValueSource(strings = {"3","5","20"})
-    void 다리길이_입력_성공케이스_테스트(String bridge_size_input) {
+    void 다리길이_입력_성공케이스_테스트(String bridgeSizeInput) {
         assertInputByMockingTest(()->{
-            assertEquals(inputView.readBridgeSize(),Integer.parseInt(bridge_size_input));
-        },bridge_size_input);
+            assertEquals(inputView.readBridgeSize(),Integer.parseInt(bridgeSizeInput));
+        },bridgeSizeInput);
     }
 
 
     @DisplayName("이동방향 입력 성공 케이스 테스트")
     @ParameterizedTest(name = "{index} {displayName} message={0}")
     @ValueSource(strings = {"U","D","U","D"})
-    void 이동방향_입력_성공케이스_테스트(String moving_direction) {
+    void 이동방향_입력_성공케이스_테스트(String movingDirection) {
         assertInputByMockingTest(()->{
-            assertEquals(inputView.readMoving(),moving_direction);
-        },moving_direction);
+            assertEquals(inputView.readMoving(),movingDirection);
+        },movingDirection);
     }
 
     @DisplayName("이동방향 입력 실패 케이스 테스트")
     @ParameterizedTest(name = "{index} {displayName} message={0}")
     @ValueSource(strings = {"UD","DU","u","d","마","1","#"})
-    void 이동방향_입력_실패케이스_테스트(String moving_direction) {
+    void 이동방향_입력_실패케이스_테스트(String movingDirection) {
         assertInputByMockingTest(()->{
             assertThrows(IllegalArgumentException.class, () -> inputView.readMoving());
-        },moving_direction);
+        },movingDirection);
     }
 }

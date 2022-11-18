@@ -7,26 +7,26 @@ import java.util.stream.Collectors;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final HashMap<String, Integer> direction_to_index = new HashMap<>();
-    private final List<List<String>> round_result;
-    private int game_round = 0;
+    private final HashMap<String, Integer> directionToIndex = new HashMap<>();
+    private final List<List<String>> roundResult;
+    private int gameRound = 0;
 
-    public BridgeGame(List<String> bridge_scaffold) {
-        direction_to_index.put("D", 1);
-        direction_to_index.put("U", 0);
-        round_result = makeRoundResult(bridge_scaffold);
+    public BridgeGame(List<String> bridgeScaffold) {
+        directionToIndex.put("D", 1);
+        directionToIndex.put("U", 0);
+        roundResult = makeRoundResult(bridgeScaffold);
     }
 
-    private List<List<String>> makeRoundResult(List<String> bridge_scaffold) {
-        List<List<String>> round_result = new ArrayList<>();
-        round_result.add(new ArrayList<>(Collections.nCopies(bridge_scaffold.size(), " ")));
-        round_result.add(new ArrayList<>(Collections.nCopies(bridge_scaffold.size(), " ")));
+    private List<List<String>> makeRoundResult(List<String> bridgeScaffold) {
+        List<List<String>> roundResult = new ArrayList<>();
+        roundResult.add(new ArrayList<>(Collections.nCopies(bridgeScaffold.size(), " ")));
+        roundResult.add(new ArrayList<>(Collections.nCopies(bridgeScaffold.size(), " ")));
 
-        for (int i = 0; i < bridge_scaffold.size(); i++) {
-            int result_index = direction_to_index.get(bridge_scaffold.get(i));
-            round_result.get(result_index).set(i,"O");
+        for (int i = 0; i < bridgeScaffold.size(); i++) {
+            int resultIndex = directionToIndex.get(bridgeScaffold.get(i));
+            roundResult.get(resultIndex).set(i,"O");
         }
-        return round_result;
+        return roundResult;
     }
 
     /**
@@ -35,24 +35,24 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String direction) {
-        boolean is_survive = checkSurvive(direction);
+        boolean isSurvive = checkSurvive(direction);
 
-        System.out.println(is_survive);
-//        printResult(is_survive);
-        this.game_round++;
+        System.out.println(isSurvive);
+//        printResult(isSurvive);
+        this.gameRound++;
 
-        return is_survive;
+        return isSurvive;
     }
 
     private boolean checkSurvive(String direction) {
-        return "O".equals(round_result.get(direction_to_index.get(direction)).get(this.game_round));
+        return "O".equals(roundResult.get(directionToIndex.get(direction)).get(this.gameRound));
     }
 
-    private void printResult(boolean is_survive) {
-//        for (int i = 0; i < game_turn; i++) {
-//            this.round_result.get(i);
+    private void printResult(boolean isSurvive) {
+//        for (int i = 0; i < gameRound; i++) {
+//            this.roundResult.get(i);
 //        }
-//        if(is_survive){
+//        if(isSurvive){
 //
 //        }
     }
@@ -64,6 +64,6 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        game_round = 0;
+        gameRound = 0;
     }
 }

@@ -10,7 +10,7 @@ public class BridgeGameController {
     private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
 
-    private List<String> bridge_scaffold;
+    private List<String> bridgeScaffold;
 
     public BridgeGameController(InputView inputView, OutputView outputView, BridgeMaker bridgeMaker) {
         this.inputView = inputView;
@@ -19,12 +19,12 @@ public class BridgeGameController {
     }
 
     public void run() {
-        int bridge_size = inputView.readBridgeSize();
-        bridge_scaffold = bridgeMaker.makeBridge(bridge_size);
+        int bridgeSize = inputView.readBridgeSize();
+        bridgeScaffold = bridgeMaker.makeBridge(bridgeSize);
 
-        BridgeGame bridgeGame = new BridgeGame(bridge_scaffold);
+        BridgeGame bridgeGame = new BridgeGame(bridgeScaffold);
 
-        for (int i = 0; i < bridge_size; i++) {
+        for (int i = 0; i < bridgeSize; i++) {
             String direction = inputView.readMoving();
             if (!bridgeGame.move(direction)) {
                 break;

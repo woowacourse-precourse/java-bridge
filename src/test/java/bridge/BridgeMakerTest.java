@@ -17,16 +17,16 @@ class BridgeMakerTest {
     @DisplayName("다리 생성 테스트")
     @ParameterizedTest(name = "{index} {displayName} message={0}")
     @MethodSource("generateData")
-    void 다리_생성_테스트(List<Integer> mocked_bridge) {
-        BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(mocked_bridge));
+    void 다리_생성_테스트(List<Integer> mockedBridge) {
+        BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(mockedBridge));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
 
-        List<String> bridge = bridgeMaker.makeBridge(mocked_bridge.size());
-        List<String> bridge_compare = mocked_bridge.stream()
-                .map(num -> Direction.getDirectionOfNumber(num).getInitial())
+        List<String> bridge = bridgeMaker.makeBridge(mockedBridge.size());
+        List<String> bridgeCompare = mockedBridge.stream()
+                .map(number -> Direction.getDirectionOfNumber(number).getInitial())
                 .collect(Collectors.toList());
 
-        assertThat(bridge).isEqualTo(bridge_compare);
+        assertThat(bridge).isEqualTo(bridgeCompare);
     }
 
     static Stream<List<Integer>> generateData() {
