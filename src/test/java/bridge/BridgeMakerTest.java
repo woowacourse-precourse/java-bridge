@@ -16,11 +16,11 @@ public class BridgeMakerTest {
         
         assertThat(bridgeMaker.makeBridge(5)).isEqualTo(
                 List.of(
-                        BridgeDirection.DOWN.getSelect(),
-                        BridgeDirection.UP.getSelect(),
-                        BridgeDirection.DOWN.getSelect(),
-                        BridgeDirection.UP.getSelect(),
-                        BridgeDirection.UP.getSelect())
+                        BridgeMove.DOWN.getDirection(),
+                        BridgeMove.UP.getDirection(),
+                        BridgeMove.DOWN.getDirection(),
+                        BridgeMove.UP.getDirection(),
+                        BridgeMove.UP.getDirection())
         );
     }
     
