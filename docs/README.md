@@ -31,6 +31,10 @@
   - 다음 칸으로 이동하는 메소드
 
 
+- private void next(List<String>, List<String>)
+  - 다음 칸으로 이동할 때 칸을 구분하는 '|'를 리스트에 삽입하는 메소드
+
+
 - public boolean rightMove(String, String)
   - 이동하려는 칸으로 실제 이동할 수 있는지 확인하는 메소드
   - 이동할 수 있으면 true, 이동할 수 없으면 false 반환
