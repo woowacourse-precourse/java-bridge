@@ -31,4 +31,7 @@ public class BridgeGame {
     public List<String> getBridgeTrack() {
         return new ArrayList<>(BridgeTrack);
     }
+    public void reset() {
+        BridgeTrack.clear();
+    }
 }
