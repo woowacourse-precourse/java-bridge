@@ -10,6 +10,7 @@ public class OutputView {
     private final static String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
     private final static String BRIDGE_LENGTH_INPUT_MESSAGE = "다리의 길이를 입력해주세요.";
     private final static String SELECT_TO_MOVE_PLAYER_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private final static String ASK_RETRY_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     public static void printGameStartMessage() {
         System.out.println(GAME_START_MESSAGE);
@@ -22,16 +23,22 @@ public class OutputView {
     public static void printSelectToMovePlayerMessage() {
         System.out.println(SELECT_TO_MOVE_PLAYER_MESSAGE);
     }
+
+    public static void printAskRetryMessage() {
+        System.out.println(ASK_RETRY_MESSAGE);
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printMap(List<Boolean> currentBridge, List<String> bridge) {
-        int index = 0;
+        int index = -1;
         StringJoiner topLayer = new StringJoiner(" | ", " [ ", " ] ");
         StringJoiner bottomLayer = new StringJoiner(" | ", " [ ", " ] ");
         for (boolean current : currentBridge) {
+            index++;
             if (current && "U".equals(bridge.get(index))) {
                 topLayer.add("O");
                 bottomLayer.add(" ");
@@ -52,7 +59,6 @@ public class OutputView {
                 bottomLayer.add("X");
                 continue;
             }
-            index++;
         }
         System.out.println(topLayer.toString());
         System.out.println(bottomLayer.toString());
