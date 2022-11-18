@@ -30,6 +30,18 @@ public class InputView {
         return validateMove(Console.readLine());
     }
 
+    public String validateMove(String userInput) {
+        if(!Pattern.matches("^U|D$", userInput)) {
+            throw new IllegalArgumentException("대문자 U와 대문자 D만 입력 가능합니다.");
+        }
+
+        if(userInput.equals("U")) {
+            return "U";
+        }
+
+        return "D";
+    }
+
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
