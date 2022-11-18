@@ -35,7 +35,12 @@ public class BridgeGame {
     public boolean move(String command, int currentPosition) {
         validateMoveCommand(command);
         int index = getIndex(command);
-
+        if (command.equals(bridge.get(currentPosition))) {
+            bridgeMap.get(index).set(currentPosition, " O ");
+            return true;
+        }
+        bridgeMap.get(index).set(currentPosition, " X ");
+        isSuccess = false;
         return false;
     }
 

@@ -41,7 +41,12 @@ public class Application {
     public static boolean play(int bridgeSize, BridgeGame bridgeGame, InputView inputView, OutputView outputView) {
         currentPosition = 0;
         for (; currentPosition < bridgeSize; currentPosition++) {
-            
+            String cmd = inputView.readMoving();
+            System.out.println("cmd = " + cmd);
+
+            boolean isSuccess = bridgeGame.move(cmd, currentPosition);
+            System.out.println("isSuccess = " + isSuccess);
+
         }
         return true;
     }
