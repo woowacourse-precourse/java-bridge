@@ -1,10 +1,15 @@
 package bridge.gmaebridge;
 
+import static bridge.result.GameStatus.FAIL;
+import static bridge.result.GameStatus.PROGRESS;
+import static bridge.result.GameStatus.SUCCESS;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.domain.Bridge;
 import bridge.gamebridge.GameBridge;
 import bridge.option.Move;
+import bridge.result.GameStatus;
+import bridge.result.Result;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -23,7 +28,9 @@ public class GameBridgeTest {
         GameBridge gameBridge = new GameBridge();
         insertMovesForTest(inputMoves, gameBridge);
         Bridge answerBridge = new Bridge(inputMoves);
+
         Bridge bridge = gameBridge.getPlayerBridge().getBridge();
+
         assertThat(bridge.getSquares()).isEqualTo(answerBridge.getSquares());
     }
 
@@ -33,7 +40,10 @@ public class GameBridgeTest {
         GameBridge gameBridge = new GameBridge();
         gameBridge.generateAnswerBridge(new Bridge(List.of("U", "D", "U", "U", "D")));
         insertMovesForTest(List.of("U", "D"), gameBridge);
-        assertThat(gameBridge.insertMove(new Move("U"))).isEqualTo(true);
+
+        Result result = gameBridge.insertMove(new Move("U"));
+
+        assertThat(result.getGameStatus()).isEqualTo(PROGRESS);
     }
 
     @DisplayName("사용자 입력 결과 거짓인 테스트")
@@ -42,7 +52,22 @@ public class GameBridgeTest {
         GameBridge gameBridge = new GameBridge();
         gameBridge.generateAnswerBridge(new Bridge(List.of("U", "D", "U", "U", "D")));
         insertMovesForTest(List.of("U", "D"), gameBridge);
-        assertThat(gameBridge.insertMove(new Move("D"))).isEqualTo(false);
+
+        Result result = gameBridge.insertMove(new Move("D"));
+
+        assertThat(result.getGameStatus()).isEqualTo(FAIL);
+    }
+
+    @DisplayName("사용자가 게임을 클리어 했을 때 테스트")
+    @Test
+    void checkInsertSuccessBridge() {
+        GameBridge gameBridge = new GameBridge();
+        gameBridge.generateAnswerBridge(new Bridge(List.of("U", "D", "U", "U", "D")));
+        insertMovesForTest(List.of("U", "D", "U", "U"), gameBridge);
+
+        Result result = gameBridge.insertMove(new Move("D"));
+
+        assertThat(result.getGameStatus()).isEqualTo(SUCCESS);
     }
 
     private static Stream<Arguments> generateTestMoveInput() {
