@@ -30,4 +30,14 @@ public class BridgeGameTest {
                    .isEqualTo(originBridgeSize + 1);
         });
     }
+
+    @DisplayName("사용자가 게임을 다시 시도한다.")
+    @Test
+    void testRetry(){
+        assertSimpleTest(() -> {
+            bridgeGame.retry();
+            assertThat(userRoadMap.getSize())
+                    .isEqualTo(0 );
+        });
+    }
 }
