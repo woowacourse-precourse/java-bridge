@@ -9,7 +9,7 @@ public class BridgeSizeValidator {
     public static int validate(String input) {
         int size = Integer.parseInt(input);
         if (isInvalidRange(size)) {
-            throw new IllegalArgumentException(ErrorCode.INVALID_RANGE.getMessage());
+            throw new IllegalArgumentException(ErrorCode.INVALID_MOVING.getMessage());
         }
 
         return size;
