@@ -26,7 +26,13 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        try {
+            return validateMovement(readLine());
+        } catch (IllegalArgumentException e) {
+            OutputView output = new OutputView();
+            output.printError(e);
+            return readMoving();
+        }
     }
 
     /**
@@ -36,10 +42,11 @@ public class InputView {
         return null;
     }
 
+
     private int validateSizeNotNumber(String answer) {
-        try{
+        try {
             return Integer.parseInt(answer);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("다리 길이는 숫자를 입력해야 합니다.");
         }
     }
@@ -48,5 +55,12 @@ public class InputView {
         if (size > BridgeMaker.MAX_BRIDGE_SIZE || size < BridgeMaker.MIN_BRIDGE_SIZE) {
             throw new IllegalArgumentException("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
+    }
+
+    private String validateMovement(String answer) {
+        if (!(answer.equals("U") || answer.equals("D"))) {
+            throw new IllegalArgumentException("이동할 칸은 'U' 또는 'D' 만 입력 가능합니다.");
+        }
+        return answer;
     }
 }
