@@ -6,7 +6,8 @@ public class Application {
     private OutputView outputView;
     private BridgeMaker bridgeMaker;
     private boolean runGame;
-    private int tryNumber = 0;
+
+    private int tryNumber = 1;
 
     public Application() {
         inputView = new InputView();
@@ -31,9 +32,14 @@ public class Application {
     }
 
     private boolean judgeNewGame(){
-        return bridgeGame.retry(inputView.readGameCommand());
+        boolean retry = bridgeGame.retry(inputView.readGameCommand());
+        if(retry)
+        {
+            tryNumber++;
+            return true;
+        }
+        return false;
     }
-
 
     private void gameInitialize() {
         outputView.printStart();
@@ -48,5 +54,7 @@ public class Application {
         outputView.printMap(bridgeGame.getBridge(), bridgeGame.getNowOn(), lastInput);
     }
 
-
+    public int getTryNumber() {
+        return tryNumber;
+    }
 }
