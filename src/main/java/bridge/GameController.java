@@ -10,6 +10,7 @@ public class GameController {
     private InputView inputView = new InputView();
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     public void begin(){
+        int trials = 0;
         outputView.gameStartMessage();
         outputView.bridgeSizeMessage();
 
@@ -25,7 +26,7 @@ public class GameController {
             isEnd = bridgeGame.isEnd();
         }
         if(bridgeGame.isCorrect()) {
-            outputView.printResult("성공");
+            outputView.printResult("성공",bridgeGame,trials);
             return;
         }
         outputView.restartMessage();
