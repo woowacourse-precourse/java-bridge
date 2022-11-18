@@ -1,7 +1,7 @@
 //package model;
 //
 //public class User {
-//    private final int bridgeSize;
+//    private Bridge bridge;
 //
 //    public User(int bridgeSize) {
 //        this.bridgeSize = bridgeSize;

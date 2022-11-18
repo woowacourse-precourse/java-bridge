@@ -2,6 +2,7 @@ package bridge;
 
 import java.util.ArrayList;
 import java.util.List;
+import util.ErrorMessage;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -9,6 +10,8 @@ import java.util.List;
 public class BridgeMaker {
     public static final String UP_STAIRS="U";
     public static final String DOWN_STAIRS="D";
+    private static final int MIN_BRIDGE_SIZE=3;
+    private static final int MAX_BRIDGE_SIZE=20;
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -34,6 +37,12 @@ public class BridgeMaker {
             bridge.add(UP_STAIRS);
         }else{
             bridge.add(DOWN_STAIRS);
+        }
+    }
+
+    public static void validateBridgeSize(int bridgeSize){
+        if (bridgeSize < MIN_BRIDGE_SIZE || bridgeSize > MAX_BRIDGE_SIZE) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_RANGE_BRIDGE_SIZE);
         }
     }
 }

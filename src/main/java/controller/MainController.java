@@ -8,17 +8,18 @@ import view.InputView;
 import view.OutputView;
 
 public class MainController {
-    OutputView outputView = new OutputView();
-    InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private final InputView inputView = new InputView();
+    private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+    private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+
     public void run(){
         startGame();
-        Bridge bridge = getBridgeContainBridgeSize();
-
+        int bridgeSize = getBridgeSize();
+        Bridge bridge = makeBridge(bridgeSize);
     }
 
-    public Bridge makeBridge(int bridgeSize){
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+    private Bridge makeBridge(int bridgeSize){
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         return new Bridge(bridgeSize, bridge);
     }
@@ -27,22 +28,17 @@ public class MainController {
         outputView.printStartGame();
     }
 
-    public Bridge getBridgeContainBridgeSize(){
+    private int getBridgeSize() {
         printReceiveBridgeSize();
-        Bridge bridge = validateBridgeSize();
-        return bridge;
-    }
-
-    private Bridge validateBridgeSize() {
-        Bridge bridge = null;
+        int bridgeSize = -1;
         try {
-            int bridgeSize = readBridgeSize();
-            bridge = new Bridge(bridgeSize);
+            bridgeSize = readBridgeSize();
+            BridgeMaker.validateBridgeSize(bridgeSize);
         } catch (IllegalArgumentException exception) {
             outputView.printError(exception.getMessage());
-            getBridgeContainBridgeSize();
+            getBridgeSize();
         }
-        return bridge;
+        return bridgeSize;
     }
 
 
