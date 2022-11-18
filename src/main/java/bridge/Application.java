@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.domain.bridge.application.BridgeGameController;
+import bridge.domain.bridge.model.Bridge;
 import bridge.ui.input.InputView;
 import bridge.ui.output.OutputView;
 
@@ -12,6 +13,9 @@ public class Application {
         OutputView outputView = new OutputView();
         BridgeGameController bridgeGameController = new BridgeGameController(inputView, outputView);
 
-        bridgeGameController.init();
+        bridgeGameController.initGame();
+
+        BridgeNumberGenerator randomNumberGenerator = new BridgeRandomNumberGenerator();
+        Bridge bridge = bridgeGameController.generateBaseBridge(randomNumberGenerator);
     }
 }

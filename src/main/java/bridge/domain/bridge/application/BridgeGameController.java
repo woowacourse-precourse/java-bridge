@@ -1,7 +1,8 @@
 package bridge.domain.bridge.application;
 
+import bridge.BridgeNumberGenerator;
+import bridge.domain.bridge.model.Bridge;
 import bridge.ui.input.InputView;
-import bridge.ui.input.dto.BridgeSize;
 import bridge.ui.output.OutputView;
 
 public class BridgeGameController {
@@ -13,8 +14,16 @@ public class BridgeGameController {
         this.outputView = outputView;
     }
 
-    public void init() {
+    public void initGame() {
         outputView.printInitMessage();
-        BridgeSize bridgeSize = inputView.readBridgeSize();
+    }
+
+    public Bridge generateBaseBridge(BridgeNumberGenerator generator) {
+        int bridgeSize = readBridgeSize();
+        return Bridge.of(bridgeSize, generator);
+    }
+
+    private int readBridgeSize() {
+        return inputView.readBridgeSize().toInteger();
     }
 }
