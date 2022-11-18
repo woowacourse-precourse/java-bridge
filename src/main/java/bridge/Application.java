@@ -1,10 +1,9 @@
 package bridge;
 
-import bridge.system.BridgeApplication;
+import bridge.system.DependencyContainer;
 
 public class Application {
     public static void main(String[] args) {
-        BridgeApplication bridgeApplication = new BridgeApplication();
-        bridgeApplication.run();
+        DependencyContainer.gameController().doGame();
     }
 }
