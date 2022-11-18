@@ -1,25 +1,43 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
- * BridgeMaker의 필드(인스턴스 변수)를 변경할 수 없다.
- * BridgeMaker의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 없다.
+ * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다. BridgeMaker의 필드(인스턴스 변수)를 변경할 수 없다. BridgeMaker의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수
+ * 없다.
  */
 public class BridgeMaker {
 
+    public static final int MIN_SIZE = 3;
+    public static final int MAX_SIZE = 20;
+    public static final String ERROR_BRIDGE_SIZE = "[ERROR] 다리 길이는 3 이상 20 이하입니다.";
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    /**
-     * @param size 다리의 길이
-     * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
-     */
-    public List<String> makeBridge(int size) {
-        return null;
+    public List<String> makeBridge(int size) throws IllegalArgumentException {
+        checkRangeValidity(size);
+        List<String> bridge = new ArrayList<>();
+        for (int time = 0; time < size; time++) {
+            String direction = toDirection(bridgeNumberGenerator.generate());
+            bridge.add(direction);
+        }
+        return bridge;
+    }
+
+    private void checkRangeValidity(int size) throws IllegalArgumentException {
+        if (size < MIN_SIZE || size > MAX_SIZE) {
+            throw new IllegalArgumentException(ERROR_BRIDGE_SIZE);
+        }
+    }
+
+    private String toDirection(int bridgeNumber) {
+        if (bridgeNumber == 0) {
+            return "D";
+        }
+        return "U";
     }
 }
