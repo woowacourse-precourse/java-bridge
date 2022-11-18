@@ -58,7 +58,6 @@ public class OutputView {
     public void printResult(boolean success, int tryCount, List<String> upBoardCheckList, List<String> downBoardCheckList) {
         System.out.println(GAME_RESULT_SENTENCE);
         String result = printMap(upBoardCheckList, downBoardCheckList);
-        System.out.println(result);
 
         System.out.print(GAME_SUCCESS_OR_NOT_SENTENCE);
         if (success) System.out.println("성공");
