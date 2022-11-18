@@ -23,6 +23,7 @@ public class GameController {
             moveStep(bridgeGame);
             isEnd = bridgeGame.isEnd();
         }
+        outputView.restartMessage();
     }
     private void moveStep(BridgeGame bridgeGame){
         //move message 출력

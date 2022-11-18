@@ -54,4 +54,7 @@ public class OutputView {
     public void moveMessage() {
         System.out.println(Message.Move_Input.getMessage());
     }
+    public void restartMessage() {
+        System.out.println(Message.Restart_Input.getMessage());
+    }
 }
