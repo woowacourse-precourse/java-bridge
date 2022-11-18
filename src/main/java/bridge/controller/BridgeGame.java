@@ -47,7 +47,7 @@ public class BridgeGame {
         }
     }
 
-    private boolean isRepeat(boolean flag, User user) {
+    private boolean isRepeat(final boolean flag, final User user) {
         return (flag && !user.getDoesSuccess());
     }
 
@@ -81,7 +81,7 @@ public class BridgeGame {
         return isRetry(retryCommand);
     }
 
-    private boolean isRetry(String retryCommand) {
+    private boolean isRetry(final String retryCommand) {
         if (retryCommand.equals(Message.RE_START)) {
             user.resetChoices();
             user.addTryCount();
