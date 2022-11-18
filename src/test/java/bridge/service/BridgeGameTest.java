@@ -3,7 +3,7 @@ package bridge.service;
 import bridge.BridgeMark;
 import bridge.GameStatus;
 import bridge.TestBridgeNumberGenerator;
-import bridge.dto.PlayerResponseDto;
+import bridge.dto.GameResultDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -56,7 +56,7 @@ class BridgeGameTest {
         bridgeGame.move(2, "U");
         bridgeGame.move(3, "D");
 
-        PlayerResponseDto responseDto = bridgeGame.getGameReport();
+        GameResultDto responseDto = bridgeGame.getGameReport();
 
         assertThat(responseDto.getAttempt()).isEqualTo(1);
         assertThat(responseDto.getRecord())
@@ -69,7 +69,7 @@ class BridgeGameTest {
         bridgeGame.retry();
         bridgeGame.retry();
 
-        PlayerResponseDto responseDto = bridgeGame.getGameReport();
+        GameResultDto responseDto = bridgeGame.getGameReport();
         assertThat(responseDto.getAttempt()).isEqualTo(3);
     }
 }

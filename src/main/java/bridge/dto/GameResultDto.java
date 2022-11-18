@@ -4,12 +4,12 @@ import bridge.BridgeMark;
 
 import java.util.List;
 
-public class PlayerResponseDto {
+public class GameResultDto {
 
     private final List<BridgeMark> record;
     private final int attempt;
 
-    public PlayerResponseDto(List<BridgeMark> record, int attempt) {
+    public GameResultDto(List<BridgeMark> record, int attempt) {
         this.record = record;
         this.attempt = attempt;
     }

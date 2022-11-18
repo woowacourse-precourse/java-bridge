@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.dto.PlayerResponseDto;
+import bridge.dto.GameResultDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,7 +23,7 @@ public class PlayerTest {
     @DisplayName("플레이어가 움직인 마크 기록 확인")
     @Test
     void record() {
-        PlayerResponseDto responseDto = player.toResponseDto();
+        GameResultDto responseDto = player.toResponseDto();
         List<BridgeMark> record = responseDto.getRecord();
 
         assertThat(record).containsExactly(BridgeMark.UP, BridgeMark.DOWN);
@@ -33,7 +33,7 @@ public class PlayerTest {
     @Test
     void clearRecord() {
         player.clear();
-        PlayerResponseDto responseDto = player.toResponseDto();
+        GameResultDto responseDto = player.toResponseDto();
         List<BridgeMark> record = responseDto.getRecord();
 
         assertThat(record.size()).isEqualTo(0);
@@ -43,7 +43,7 @@ public class PlayerTest {
     void increaseAttempt() {
         player.increaseAttempt();
         player.increaseAttempt();
-        PlayerResponseDto responseDto = player.toResponseDto();
+        GameResultDto responseDto = player.toResponseDto();
 
         assertThat(responseDto.getAttempt()).isEqualTo(3);
     }

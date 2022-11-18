@@ -1,7 +1,7 @@
 package bridge.service;
 
 import bridge.*;
-import bridge.dto.PlayerResponseDto;
+import bridge.dto.GameResultDto;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -46,7 +46,7 @@ public class BridgeGame {
         player.increaseAttempt();
     }
 
-    public PlayerResponseDto getGameReport() {
+    public GameResultDto getGameReport() {
         return player.toResponseDto();
     }
 }
