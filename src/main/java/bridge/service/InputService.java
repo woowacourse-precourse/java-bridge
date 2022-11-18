@@ -10,4 +10,10 @@ public class InputService {
     public void printGameStart() {
         outputView.printGameStart();
     }
+
+    public int requestBridgeSize() {
+        outputView.printRequestBridgeSize();
+        int bridgeSize = inputView.readBridgeSize();
+        return bridgeSize;
+    }
 }
