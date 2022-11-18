@@ -44,7 +44,18 @@ public class BridgeGame {
 
 
     public String retry() {
-        return null;
+        String retry = inputView.readGameCommand();
+        if(retry.equals("R")){
+            outputView.printMap1.clear();
+            outputView.printMap2.clear();
+            randomBridge.clear();
+            count++;
+            move();
+        }
+        if(retry.equals("Q")){
+            outputView.printResult(failOrTure, count);
+        }
+        return retry;
     }
 
 }
