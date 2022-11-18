@@ -12,9 +12,10 @@ public class OutputLogic {
     private static final String CORRECT = " O ";
     private static final String SPACE = "   ";
     private static final String WRONG = " X ";
-    private static final Boolean LAST = Boolean.TRUE;
-    private static final Boolean NOT_LAST = Boolean.FALSE;
-    private String outPut = CORRECT;
+    private String side;
+
+    private String input;
+    private String output = CORRECT;
     private List<String> bridgeList;
     OutputLogic(List<String> bridgeList){
         this.bridgeList = bridgeList;
@@ -23,27 +24,30 @@ public class OutputLogic {
         System.out.print(string);
     }
     public void printMapLogic(String side,int userPosition,Boolean userResult){
+        this.side = side;
         print(START);
         for(int position = 0; position< userPosition;position++){
-            printGlass(position,side);
+            printGlass(position);
             print(WALL);
         }
-        printLastGlass(userPosition,side,userResult);
+        printLastGlass(userResult);
         print(END);
     }
-    private void printGlass(int position,String side){
+    private void printGlass(int position){
         if(bridgeList.get(position).equals(side)) {
             print(CORRECT);
             return;
         }
         print(SPACE);
     }
-    private void printLastGlass(int position, String side,Boolean userResult){
-        if(!userResult){outPut = WRONG;}
-        if(bridgeList.get(position).equals(side)) {
-            print(outPut);
+    private void printLastGlass(Boolean userResult){
+        if(!userResult)output = WRONG;
+        if(!input.equals(side)) {
+            print(SPACE);
             return;
         }
-        print(SPACE);
+        print(output);
+        output = CORRECT;
     }
+    public void setInput(String input){this.input = input;}
 }

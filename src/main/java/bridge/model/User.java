@@ -3,7 +3,7 @@ package bridge.model;
 public class User {
     private static final Integer START = 0;
     private static final Boolean SUCCESS = Boolean.TRUE;
-    private final Boolean FAIL = Boolean.FALSE;
+    private static final Boolean FAIL = Boolean.FALSE;
     private Integer position;
     private Integer count;
     private Boolean result;

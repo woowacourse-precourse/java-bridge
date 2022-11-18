@@ -8,6 +8,7 @@ public class GameLogic {
     private InputView inputView;
     private OutputView outputView;
     private BridgeGame bridgeGame;
+    private String inputMove;
     GameLogic(){
         bridgeGame = new BridgeGame();
         inputView =new InputView(new InputConsole());
@@ -22,10 +23,10 @@ public class GameLogic {
         playOneGame();
     }
     private void playOneGame(){
-        String inputMove = inputView.readMoving();
+        this.inputMove = inputView.readMoving();
         bridgeGame.isCorrect(inputMove);
         changeLine();
-        outputView.printMap(bridgeGame.getUser().getResult(),bridgeGame.getUser().getPosition());
+        outputView.printMap(bridgeGame.getUser().getResult(),bridgeGame.getUser().getPosition(),inputMove);
         bridgeGame.move();
         changeLine();
         checkEnd();
@@ -52,7 +53,7 @@ public class GameLogic {
         showResult();
     }
     private void showResult(){
-        outputView.printResult(bridgeGame.getUser().getResult(),bridgeGame.getUser().getCount());
+        outputView.printResult(bridgeGame.getUser().getResult(),bridgeGame.getUser().getCount(),this.inputMove);
     }
     private void changeLine(){
         System.out.println();

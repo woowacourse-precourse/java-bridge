@@ -31,17 +31,17 @@ public class ViewTest extends NsTest {
     void printMapTest(){
         List<String> bridgeList = newArrayList("U","D","U","U");
         OutputView outputView = new OutputView(bridgeList);
-        outputView.printMap(false,2);
+        outputView.printMap(false,2,"U");
         assertThat(output()).contains(
-                "[ O |   | X ]",
-                "[   | O |   ]"
+                "[ O |   |   ]",
+                "[   | O | X ]"
                 );
     }
     @Test
     void printFirstMapTest(){
         List<String> bridgeList = newArrayList("U","D","U","U");
         OutputView outputView = new OutputView(bridgeList);
-        outputView.printMap(true,0);
+        outputView.printMap(true,0,"U");
         assertThat(output()).contains(
                 "[ O ]",
                 "[   ]"
@@ -51,17 +51,17 @@ public class ViewTest extends NsTest {
     void printSecondMapTest(){
         List<String> bridgeList = newArrayList("U","D","U","U");
         OutputView outputView = new OutputView(bridgeList);
-        outputView.printMap(false,1);
+        outputView.printMap(false,1,"U");
         assertThat(output()).contains(
-                "[ O |   ]",
-                "[   | X ]"
+                "[ O | X ]",
+                "[   |   ]"
         );
     }
     @Test
     void printResultTest(){
         List<String> bridgeList = newArrayList("U","D","U","U");
         OutputView outputView = new OutputView(bridgeList);
-        outputView.printResult(true,3);
+        outputView.printResult(true,3,"U");
         assertThat(output()).contains(
                 "[ O |   | O | O ]",
                 "[   | O |   |   ]",
