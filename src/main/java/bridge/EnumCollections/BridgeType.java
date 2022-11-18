@@ -23,6 +23,13 @@ public enum BridgeType {
         return DOWN.position;
     }
 
+    public static BridgeType getBridgeType(String input) {
+        if(UP.position.equals(input)) {
+            return BridgeType.UP;
+        }
+        return BridgeType.DOWN;
+    }
+
     public int getRandomValue() {
         return randomValue;
     }
