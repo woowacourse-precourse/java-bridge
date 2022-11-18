@@ -23,11 +23,11 @@ class BridgeGameTest {
             Iterator<BridgeStep> bridgeIter = getBridgeIter();
 
             //when
-            Assertions.assertTrue(bridgeGame.move(BridgeStep.U, bridgeIter).isCorrect());
-            Assertions.assertTrue(bridgeGame.move(BridgeStep.D, bridgeIter).isCorrect());
-            Assertions.assertTrue(bridgeGame.move(BridgeStep.U, bridgeIter).isCorrect());
-            Assertions.assertTrue(bridgeGame.move(BridgeStep.U, bridgeIter).isCorrect());
-            Assertions.assertTrue(bridgeGame.move(BridgeStep.D, bridgeIter).isCorrect());
+            Assertions.assertTrue(bridgeGame.move(BridgeStep.U, bridgeIter.next()).isCorrect());
+            Assertions.assertTrue(bridgeGame.move(BridgeStep.D, bridgeIter.next()).isCorrect());
+            Assertions.assertTrue(bridgeGame.move(BridgeStep.U, bridgeIter.next()).isCorrect());
+            Assertions.assertTrue(bridgeGame.move(BridgeStep.U, bridgeIter.next()).isCorrect());
+            Assertions.assertTrue(bridgeGame.move(BridgeStep.D, bridgeIter.next()).isCorrect());
         }
 
         @Test
@@ -37,11 +37,11 @@ class BridgeGameTest {
             Iterator<BridgeStep> bridgeIter = getBridgeIter();
 
             //when.isCorrect()
-            Assertions.assertTrue(bridgeGame.move(BridgeStep.U, bridgeIter).isCorrect());
-            Assertions.assertTrue(bridgeGame.move(BridgeStep.D, bridgeIter).isCorrect());
-            Assertions.assertTrue(bridgeGame.move(BridgeStep.U, bridgeIter).isCorrect());
-            Assertions.assertFalse(bridgeGame.move(BridgeStep.D, bridgeIter).isCorrect());
-            Assertions.assertFalse(bridgeGame.move(BridgeStep.U, bridgeIter).isCorrect());
+            Assertions.assertTrue(bridgeGame.move(BridgeStep.U, bridgeIter.next()).isCorrect());
+            Assertions.assertTrue(bridgeGame.move(BridgeStep.D, bridgeIter.next()).isCorrect());
+            Assertions.assertTrue(bridgeGame.move(BridgeStep.U, bridgeIter.next()).isCorrect());
+            Assertions.assertFalse(bridgeGame.move(BridgeStep.D, bridgeIter.next()).isCorrect());
+            Assertions.assertFalse(bridgeGame.move(BridgeStep.U, bridgeIter.next()).isCorrect());
         }
     }
 

@@ -35,10 +35,19 @@ public class BridgeController {
         Bridge bridge = new Bridge(bridgeSteps);
         Iterator<BridgeStep> bridgeIter = bridge.toIterator();
 
-        outputView.printAskingNextStepMessage();
-        BridgeStep nextMove = BridgeStep.getByValue(inputView.readMoving());
-
         ArrayList<StepResult> stepResults = new ArrayList<>();
-        stepResults.add(bridgeGame.move(nextMove, bridgeIter));
+
+        while (bridgeIter.hasNext()) {
+            outputView.printAskingNextStepMessage();
+            BridgeStep nextMove = BridgeStep.getByValue(inputView.readMoving());
+
+            StepResult stepResult = bridgeGame.move(nextMove, bridgeIter.next());
+            stepResults.add(stepResult);
+            outputView.printMap(stepResults);
+
+            if (!stepResult.isCorrect()) {
+                break;
+            }
+        }
     }
 }
