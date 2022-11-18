@@ -49,39 +49,51 @@ public class InputView {
     }
 
 
-    public String readMoving() {
-        System.out.println(CHOOSE_MOVING_MESSAGE);
-        String moving = "";
+    public void readMoving() {
         while(true) {
             try {
-                moving = Console.readLine();
+                System.out.println(CHOOSE_MOVING_MESSAGE);
+                this.moving = Console.readLine();
+                checkCorrectMoving(this.moving);
                 break;
-            } catch(IllegalArgumentException e) {
-                if(moving.indexOf(0) != 'U' || moving.indexOf(0) != 'D') {
-                    System.out.println("[ERROR] : U나 D가 입력되어야 합니다.");
-                    System.out.println("다시 입력해주세요.");
-                    continue;
-                }
+            } catch (IllegalArgumentException e) {
+                System.out.println("다시 입력해주세요.");
+                continue;
             }
         }
-        return moving;
     }
 
-    public String readGameCommand() {
-        String retry = "";
+    public void checkCorrectMoving(String moving) {
+        if(moving.indexOf(0) != 'U' || moving.indexOf(0) != 'D') {
+            throw new IllegalArgumentException("[ERROR] : U나 D가 입력되어야 합니다.");
+        }
+    }
+
+    public String getReadMoving() {
+        return this.moving;
+    }
+
+    public void readGameCommand() {
         while(true) {
             try {
                 System.out.println(RETRY_MESSAGE);
-                retry = Console.readLine();
+                this.retry = Console.readLine();
+                checkCorrectRetry(this.retry);
                 break;
-            } catch(IllegalArgumentException e) {
-                if(retry.indexOf(0) != 'R' || retry.indexOf(0) != 'Q') {
-                    System.out.println("[ERROR] : U나 D가 입력되어야 합니다");
-                    System.out.println("다시 입력해주세요");
-                    continue;
-                }
+            } catch (IllegalArgumentException e) {
+                System.out.println("다시 입력해 주세요.");
+                continue;
             }
         }
-        return retry;
+    }
+
+    public void checkCorrectRetry(String retry) {
+        if(retry.indexOf(0) != 'R' || retry.indexOf(0) != 'Q') {
+            throw new IllegalArgumentException("[ERROR : R이나 Q가 입력되어야 합니다");
+        }
+    }
+
+    public String getReadGameCommand() {
+        return this.retry;
     }
 }
