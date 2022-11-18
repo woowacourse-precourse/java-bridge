@@ -33,14 +33,16 @@ public class InputView {
         return inputMove;
     }
 
-    public String readMoving() {
-        return null;
-    }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public String readGameCommand() {
-        return null;
+        String progress = ""; boolean input = true;
+        while(input) {
+            try {outputView.printProgress();
+                progress = Console.readLine();
+                input = Error.validateGameProgress(progress);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }}
+        return progress;
     }
 }

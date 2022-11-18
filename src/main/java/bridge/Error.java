@@ -34,4 +34,11 @@ public enum Error {
         }
         return false;
     }
+
+    public static boolean validateGameProgress(String progress) {
+        if (!(progress.equals("Q") || progress.equals("R"))) {
+            throw new IllegalArgumentException(RestartOrMoveWrong.getErrorMsg());
+        }
+        return false;
+    }
 }
