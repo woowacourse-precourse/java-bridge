@@ -1,5 +1,6 @@
 package bridge.system;
 
+import bridge.service.BridgeGame;
 import bridge.system.controller.BridgeController;
 import bridge.system.util.BridgeMaker;
 import bridge.system.util.BridgeRandomNumberGenerator;
@@ -11,6 +12,7 @@ public class BridgeApplication {
     private BridgeMaker bridgeMaker;
     private InputView inputView;
     private OutputView outputView;
+    private BridgeGame bridgeGame;
 
     public BridgeApplication() {
         InjectDependencies();
@@ -24,6 +26,7 @@ public class BridgeApplication {
         inputView = new InputView();
         outputView = new OutputView();
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridgeController = new BridgeController(inputView, outputView, bridgeMaker);
+        bridgeGame = new BridgeGame();
+        bridgeController = new BridgeController(inputView, outputView, bridgeMaker, bridgeGame);
     }
 }
