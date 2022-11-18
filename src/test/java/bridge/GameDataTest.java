@@ -2,9 +2,10 @@ package bridge;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -27,5 +28,12 @@ public class GameDataTest {
             gameData.increaseTotalTry();
         }
         assertThat(gameData.getTotalTry()).isEqualTo(retryCount);
+    }
+    @DisplayName("이동 위치에 따라 게임 현황을 업데이트한다.")
+    @ValueSource(strings = {"U"})
+    @ParameterizedTest
+    void updateGameStatus(String moving) {
+        gameData.updateStatus(moving, "O");
+        assertThat(gameData.getTopStatus()).isEqualTo(Arrays.asList("O"));
     }
 }
