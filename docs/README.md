@@ -36,6 +36,7 @@
   - [x] 칸의 방향이 올바르지 않을 때 - NO_SUCH_DIRECTION
   - [x] 다리의 길이가 범위 안에 없을 때 - NO_RANGE_OF_BRIDGE_SIZE
   - [x] 존재하지 않은 명령어일 때 - NO_SUCH_COMMAND
+  - [x] 아직 이동하지 않은 칸 위치일 때 - NO_SUCH_ROAD_POSITION
 
 ## 칸(`Road`)
 
