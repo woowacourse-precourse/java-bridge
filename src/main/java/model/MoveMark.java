@@ -1,5 +1,9 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 import static constant.Config.ERROR;
 import static model.BridgeType.DOWN;
 import static model.BridgeType.UP;
@@ -19,5 +23,27 @@ public class MoveMark {
         if (!UP.isEqualsMark(moving) && !DOWN.isEqualsMark(moving)) {
             throw new IllegalArgumentException(VALUE_ERROR);
         }
+    }
+
+    public boolean canMove(MoveMark mark) {
+        return this.equals(mark);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MoveMark moveMark = (MoveMark) o;
+        return mark.equals(moveMark.mark);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(mark);
+    }
+
+    @Override
+    public String toString() {
+        return mark;
     }
 }
