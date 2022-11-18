@@ -35,7 +35,7 @@ public class BridgeGameController {
 
 	private List<List<String>> makeResultMap(BridgeGame bridgeGame) {
 		List<List<String>> moveMap = bridgeGameService.initGameMap();
-		while (!failedClear(moveMap) && moveMap.get(0).size() < 3) {
+		while (!failedClear(moveMap) && moveMap.get(0).size() < bridgeGame.getBridgeSize()) {
 			crossBridge(bridgeGame, moveMap);
 		}
 		return moveMap;
