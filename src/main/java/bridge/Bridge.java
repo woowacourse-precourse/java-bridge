@@ -9,4 +9,8 @@ public class Bridge {
     public Bridge(List<String> availableBlocks) {
         this.availableBlocks = availableBlocks;
     }
+
+    public boolean isNextAvailable(Position position) {
+        return availableBlocks.get(playerPosition + 1).equals(position);
+    }
 }
