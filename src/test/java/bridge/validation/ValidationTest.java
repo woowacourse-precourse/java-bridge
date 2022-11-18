@@ -37,4 +37,13 @@ class ValidationTest {
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(ERROR_MESSAGE);
     }
+
+    @DisplayName("게임 종료 후 입력값이 R 혹은 Q가 아니면 에러가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "1", "@", "ㄱ", "R1", "r", "q"})
+    void createGameCommandOtherThanQOrR(String gameCommand) {
+        assertThatThrownBy(() -> Validation.checkGameCommand(gameCommand))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(ERROR_MESSAGE);
+    }
 }
