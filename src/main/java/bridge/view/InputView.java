@@ -18,10 +18,17 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public String readMoving() throws IllegalArgumentException{
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        String location = readLine();
+        validateMoveLocation(location);
+        return location;
     }
-
+    private void validateMoveLocation(String location) throws IllegalArgumentException{
+        if (location.isEmpty() || location.length() > 1 || !(location.equals("U") || location.equals("D"))) {
+            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U이거나 D이여야 합니다.");
+        }
+    }
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */

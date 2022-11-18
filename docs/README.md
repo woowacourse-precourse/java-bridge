@@ -1,7 +1,7 @@
 ## 🚀 기능 리스트
 - [x] 다리의 길이를 입력받는다 - InputView#readBridgeSize()
 - [x] 새로운 다리를 생성한다 - BridgeMaker#makeBridge()
-- [ ] 이동할 다리를 선택한다 - InputView#readMoving()
+- [x] 이동할 다리를 선택한다 - InputView#readMoving()
 - [ ] 이력받은 다리로 이동한다 - BridgeGame#Move()
 - [ ] 다리에 끝에 도달한다 - 미정
 - [ ] 이동할 수 없는 칸에 도달한다 - 미정 
