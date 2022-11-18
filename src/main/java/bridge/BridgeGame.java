@@ -7,6 +7,21 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    public static int wholeGame(BridgeGame bridgeGame, List<String> generatedBridge, boolean retry, List<String> nowBridge) {
+        boolean successOrNot;
+        int count = 0;
+        while (retry) {
+            nowBridge.clear();
+            successOrNot = bridgeGame.game(nowBridge, generatedBridge);
+            count++;
+            if (successOrNot && nowBridge.size() == generatedBridge.size()) {
+                break;
+            }
+            retry = bridgeGame.retry();
+        }
+        return count;
+    }
+
     public boolean game(List<String> nowBridge, List<String> generatedBridge) {
         boolean gameSuccess = true;
 
@@ -26,6 +41,10 @@ public class BridgeGame {
             }
         }
         return false;
+    }
+
+    public static boolean gameStatus(List<String> generatedBridge, List<String> nowBridge) {
+        return nowBridge.size() == generatedBridge.size() && nowBridge.get(nowBridge.size() - 1).equals(generatedBridge.get(generatedBridge.size() - 1));
     }
 
     /**
@@ -55,5 +74,18 @@ public class BridgeGame {
             return true;
         }
         return false;
+    }
+
+    public static int inputBridgeSize() {
+        int size;
+        while (true) {
+            try {
+                size = InputView.readBridgeSize();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
+        }
+        return size;
     }
 }
