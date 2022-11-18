@@ -51,4 +51,9 @@ public class BridgeGame {
 	public boolean isFinish(ResultStatus resultStatus, int bridgeSize) {
 		return resultStatus == ResultStatus.FAILURE || gameStage == bridgeSize;
 	}
+
+	public List<ResultMessageStatus> getResultMessageStatuses() {
+		return resultMessageStatuses;
+	}
+
 }
