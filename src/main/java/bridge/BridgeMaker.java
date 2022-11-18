@@ -8,6 +8,8 @@ import java.util.List;
  */
 public class BridgeMaker {
 
+    private static final int UP = 1;
+    private static final int DOWN = 0;
     private final String SIZE_TYPE_ERROR = "다리의 길이는 정수로 입력해야 합니다.";
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -33,11 +35,11 @@ public class BridgeMaker {
     }
 
     private void addNumbers(List<String> bridge, int randomNumber) {
-        if (randomNumber == 0) {
-            bridge.add("U");
-        }
-        if (randomNumber == 1) {
+        if (randomNumber == DOWN) {
             bridge.add("D");
+        }
+        if (randomNumber == UP) {
+            bridge.add("U");
         }
     }
 }
