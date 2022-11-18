@@ -24,6 +24,7 @@ public class Application {
                 String moveCommand = inputView.readMoving();
                 status = bridgeGame.move(moveCommand);
                 user.addResult(status, moveCommand);
+                outputView.printMap(user.getMoveResult());
             } while (status == BridgeGame.KEEP_GOING);
 
             // 재시작 / 종료 명령을 입력받는 기능

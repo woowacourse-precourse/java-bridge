@@ -31,4 +31,9 @@ public class MoveResult {
         }
         direction.add("X");
     }
+
+    @Override
+    public String toString() {
+        return String.format("[ %s ]\n[ %s ]\n", String.join(" | ", up), String.join(" | ", down));
+    }
 }
