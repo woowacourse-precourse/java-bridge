@@ -6,16 +6,22 @@ package bridge;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
+    private static final String REGEX = "^[0-9]*$";
     private static Constant constant = new Constant();
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        int bridgeSize =  Integer.parseInt(Console.readLine());
-        if(bridgeSize > 3 || bridgeSize < 20)
-            throw new IllegalArgumentException(constant.Length_Restrict());
+        String bridgeSize = Console.readLine();
+        checkLengthValidate(bridgeSize);
         System.out.println(constant.Game_Start());
-        return bridgeSize;
+        return Integer.parseInt(bridgeSize);
+    }
+
+    public void checkLengthValidate(String input) {
+        int length = Integer.parseInt(input);
+        if(length < 3 || length > 20 || !input.matches(REGEX))
+            throw new IllegalArgumentException(constant.Length_Restrict());
     }
 
     /**
@@ -23,11 +29,15 @@ public class InputView {
      */
     public String readMoving() {
         String move = Console.readLine();
-        if(!(move == "U" || move == "D"))
-            throw new IllegalArgumentException(constant.Move_Restrict());
+        checkMoveValidate(move);        
         System.out.println(constant.Select_Move());
         System.out.println(move);
         return move;
+    }
+
+    public void checkMoveValidate(String input) {
+        if(!(input.equals("U") || input.equals("D")))
+            throw new IllegalArgumentException(constant.Move_Restrict());
     }
 
     /**
@@ -35,10 +45,14 @@ public class InputView {
      */
     public String readGameCommand() {
         String Replay = Console.readLine();
-        if(!(Replay == "R" || Replay == "Q"))  
-            throw new IllegalArgumentException(constant.Replay_Restrict());
+        checkRetryValidate(Replay);
         System.out.println(constant.Select_Replay());
         System.out.println(Replay);
         return Replay;
+    }
+
+    public void checkRetryValidate(String input) {
+        if(!(input.equals("R") || input.equals("Q")))
+            throw new IllegalArgumentException(constant.Replay_Restrict());
     }
 }
