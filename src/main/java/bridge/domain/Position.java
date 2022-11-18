@@ -1,38 +1,23 @@
 package bridge.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Position {
 
-    private static final int DISTANCE_INDEX = 0;
-    private static final int DIRECTION_INDEX = 1;
-    private static final int UP = 1;
-    private static final int DOWN = 0;
+    private final Map<Integer, String> position = new HashMap<>();
+    private final int distance;
 
-    private final List<Integer> position = new ArrayList<>();
-
-    public Position(int pos, String answer) {
-        position.add(pos);
-        position.add(getAnswer(answer));
-    }
-
-    private Integer getAnswer(String answer) {
-        if (answer.equals("U")) {
-            return UP;
-        }
-        return DOWN;
+    public Position(int distance, String answer) {
+        this.distance = distance;
+        position.put(distance, answer);
     }
 
     public String getDirection() { // TODO: getter 사용 자제... 메시지를 보내기
-        int direction = position.get(DIRECTION_INDEX);
-        if (direction == UP) {
-            return "U";
-        }
-        return "D";
+        return position.get(distance);
     }
 
     public int getDistance() { // TODO: getter 사용 자제... 메시지를 보내기
-        return position.get(DISTANCE_INDEX);
+        return distance;
     }
 }
