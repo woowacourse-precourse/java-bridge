@@ -12,7 +12,7 @@
 
     다리의 길이를 입력해주세요. 
 
-- [ ] 입력 받은 값으로 다리 생성
+- [X] 입력 받은 값으로 다리 생성 (BridgeMaker.makeBridge)
   - (BridgeMaker <- BridgeNumberGenerator <- BridgeRandomNumberGenerator)
 
 - [ ] 이동할 칸 입력 받기 (InputView)
