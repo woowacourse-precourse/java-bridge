@@ -24,7 +24,7 @@ public class Application {
         int bridgeSize = inputView.readBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        return new BridgeGame(bridge);
+        return new BridgeGame(new Referee(bridge));
     }
 
     private static void play(BridgeGame game) {

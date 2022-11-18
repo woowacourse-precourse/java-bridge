@@ -3,22 +3,24 @@ package bridge;
 import static bridge.command.MoveCommand.DOWN;
 import static bridge.command.MoveCommand.UP;
 
+import bridge.command.MoveCommand;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-
-    private final List<String> bridge;
+    private Referee referee;
     private List<String> current;
     private int attempt;
 
-    public BridgeGame(List<String> bridge) {
+    public BridgeGame(Referee referee) {
+        this.referee = referee;
         this.current = new ArrayList<>();
-        this.bridge = bridge;
         this.attempt = 1;
     }
 
@@ -42,51 +44,45 @@ public class BridgeGame {
     }
 
     public boolean isEnd() {
-        return bridge.size() == current.size();
+        return referee.isSizeEquals(current.size());
     }
 
     public boolean isStepSuccess() {
         int index = current.size() - 1;
-        return current.get(index).equals(bridge.get(index));
+        return referee.isStepSuccess(current.get(index), index);
     }
 
     public List<List<String>> analyzeResult() {
-        List<List<String>> result = new ArrayList<>();
-        List<String> upLine = new ArrayList<>();
-        List<String> downLine = new ArrayList<>();
-        setLines(upLine, downLine);
-        result.addAll(Arrays.asList(upLine, downLine));
-        return result;
-    }
-
-    private void setLines(List<String> upLine, List<String> downLine) {
+        Map<MoveCommand, List<String>> result = new EnumMap<>(MoveCommand.class);
         for (int i = 0; i < current.size(); i++) {
-            String symbol = setSymbol(i);
-            upLine.add(setUpItem(i, symbol));
-            downLine.add(setDownItem(i, symbol));
+            setLines(result, i);
         }
+        return Arrays.asList(result.get(UP), result.get(DOWN));
     }
 
-    private String setUpItem(int index, String symbol) {
-        if (current.get(index).equals(UP.ofHotKey())) {
-            return symbol;
+    private void setLines(Map<MoveCommand, List<String>> result, int index) {
+        String symbol = setSymbol(index);
+        String currentItem = current.get(index);
+        for (MoveCommand moveCommand : Arrays.asList(UP, DOWN)) {
+            List<String> item = result.getOrDefault(moveCommand, new ArrayList<>());
+            item.add(setItem(moveCommand, symbol, currentItem));
+            result.put(moveCommand, item);
         }
-        return " ";
-    }
-
-    private String setDownItem(int index, String symbol) {
-        if (current.get(index).equals(DOWN.ofHotKey())) {
-            return symbol;
-        }
-        return " ";
     }
 
     private String setSymbol(int index) {
         String symbol = "X";
-        if (current.get(index).equals(bridge.get(index))) {
+        if (referee.isStepSuccess(current.get(index), index)) {
             symbol = "O";
         }
         return symbol;
+    }
+
+    private String setItem(MoveCommand moveCommand, String symbol, String currentItem) {
+        if (currentItem.equals(moveCommand.ofHotKey())) {
+            return symbol;
+        }
+        return " ";
     }
 
     public int getAttempt() {
@@ -94,11 +90,7 @@ public class BridgeGame {
     }
 
     public boolean isSuccess() {
-        return compareCurrentWithBridge();
+        return referee.compareBridgeWith(current);
     }
 
-    private boolean compareCurrentWithBridge() {
-        return bridge.size() == current.size()
-                && Arrays.equals(bridge.toArray(), current.toArray());
-    }
 }
