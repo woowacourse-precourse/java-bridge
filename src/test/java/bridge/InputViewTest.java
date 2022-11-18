@@ -14,7 +14,7 @@ public class InputViewTest {
     InputView inputView = new InputView();
     @DisplayName("readBridgeSize 에 잘못된 입력이 주어지면 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"20l", "2", "-15", "30", "무성", "\n\t", "", "3a"})
+    @ValueSource(strings = {"20l", "2", "-15", "30", "무성", "\n\t", "3a", " ", ""})
     void wrongInputToReadBridgeSize(String input) {
         settingInput(input);
         assertThatThrownBy(inputView::readBridgeSize)
@@ -28,9 +28,9 @@ public class InputViewTest {
         assertThatThrownBy(inputView::readMoving)
                 .isInstanceOf(IllegalArgumentException.class);
     }
-    @DisplayName("readBridgeSize 에 잘못된 입력이 주어지면 예외가 발생한다.")
+    @DisplayName("readGameCommandeSize 에 잘못된 입력이 주어지면 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"QR", "q", "ㅂ", " R", " Q", "무성", "\n\t", "", " "})
+    @ValueSource(strings = {"QR", "q", "ㅂ", " R", " Q", "무성", "\n\t", " ", ""})
     void wrongInputToReadGameCommand(String input) {
         settingInput(input);
         assertThatThrownBy(inputView::readGameCommand)
