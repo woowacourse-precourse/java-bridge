@@ -12,7 +12,7 @@ public class BridgeGame {
 
     public BridgeGame() {
         this.count = 0;
-        this.totalNumberOfAttempts = 0;
+        this.totalNumberOfAttempts = 1;
     }
 
     public void setBridge(List<String> bridge) {
@@ -35,10 +35,8 @@ public class BridgeGame {
     public boolean move(String moving) {
         if (bridge.get(count).equals(moving)) {
             count++;
-            totalNumberOfAttempts++;
             return true;
         }
-        totalNumberOfAttempts++;
         return false;
     }
 
@@ -49,6 +47,7 @@ public class BridgeGame {
      */
     public boolean retry(String gameCommand) {
         count = 0;
+        totalNumberOfAttempts++;
         if (gameCommand.equals("R")) {
             return true;
         }
