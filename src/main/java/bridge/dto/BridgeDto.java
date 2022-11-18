@@ -19,15 +19,11 @@ public class BridgeDto {
     }
 
     public void swap(String upOrDown) {
-        if(upOrDown.equals(Command.UP)){
-            down.remove(down.size()-1);
-            down.add(State.NONE);
-            up.remove(up.size()-1);
+        if(upOrDown.equals(Command.UP.getAbbreviation())) {
+            up.remove(up.size() - 1);
             up.add(State.WRONG);
             return;
         }
-        up.remove(up.size()-1);
-        up.add(State.NONE);
         down.remove(down.size()-1);
         down.add(State.WRONG);
     }
