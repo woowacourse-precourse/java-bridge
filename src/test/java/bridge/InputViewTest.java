@@ -16,5 +16,20 @@ public class InputViewTest {
         assertThatThrownBy(() -> inputView.checkCorrectLength(input)).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[ERROR]");
     }
 
+    @Test
+    @DisplayName("U나 D가 입력되지 않았을 때 예외를 던지는지 확인")
+    public void checkCorrectMovingTest() {
+        InputView inputView = new InputView();
+        String input = "IO";
+        assertThatThrownBy(() -> inputView.checkCorrectMoving(input)).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[ERROR]");
+    }
 
+
+    @Test
+    @DisplayName("R이나 Q가 입력되지 않았을 때 예외를 던지는지 확인")
+    public void checkCorrectRetryTest() {
+        InputView inputView = new InputView();
+        String input = "DD";
+        assertThatThrownBy(() -> inputView.checkCorrectRetry(input)).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[ERROR");
+    }
 }
