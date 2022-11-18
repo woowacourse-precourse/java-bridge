@@ -5,8 +5,6 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-import static bridge.view.InputView.VALIDATED;
-
 public enum InputValidation {
     BLANK(
             "아무것도 입력하지 않으셨습니다.",
@@ -37,6 +35,7 @@ public enum InputValidation {
     private final String errorMessage;
     private final Function<String, Boolean> expression;
     private final List<String> validationGroup;
+    public static final boolean VALIDATED = false;
 
     InputValidation(String errorMessage, Function<String, Boolean> expression, List<String> validationGroup) {
         this.errorMessage = errorMessage;
