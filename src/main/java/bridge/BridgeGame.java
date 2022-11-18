@@ -7,11 +7,11 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final List<Integer> bridge;
+    private final List<String> bridge;
     private int tryNumber;
-    private List<Integer> selectedFootHold = new ArrayList<>();
+    private List<String> selectedFootHold = new ArrayList<>();
 
-    public BridgeGame(List<Integer> bridge) {
+    public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         this.tryNumber = 0;
     }
@@ -23,10 +23,10 @@ public class BridgeGame {
      */
     public void move(String userInput) {
         if (userInput.equals(Command.UP.getValue())) {
-            selectedFootHold.add(Command.UP.getCommandNum());
+            selectedFootHold.add(Command.UP.getValue());
         }
         if (userInput.equals(Command.DOWN.getValue())) {
-            selectedFootHold.add(Command.DOWN.getCommandNum());
+            selectedFootHold.add(Command.DOWN.getValue());
         }
         tryNumber++;
     }
