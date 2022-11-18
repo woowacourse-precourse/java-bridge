@@ -34,4 +34,9 @@ public class Validation {
             throw new IllegalArgumentException("이동할 칸의 입력은 'U' 또는 'D'가 되어야 합니다.");
         }
     }
+    public void validateRetryCode(String input){
+        if (!input.equals("R") && !input.equals("Q")) {
+            throw new IllegalArgumentException("재시도 여부의 입력은 'R' 또는 'Q'가 되어야 합니다.");
+        }
+    }
 }
