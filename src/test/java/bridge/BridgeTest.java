@@ -1,7 +1,7 @@
 package bridge;
 
 import bridge.util.BridgeSizeValidator;
-import bridge.util.MoveCommandValidator;
+import bridge.util.CommandValidator;
 import camp.nextstep.edu.missionutils.Console;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -42,8 +42,11 @@ public class BridgeTest {
     @DisplayName("사용자 명령 잘못된 값일 경우 예외 발생")
     @Test
     void moveCommandByWrongInput(){
-        MoveCommandValidator moveCommandValidator = new MoveCommandValidator();
-        assertThatThrownBy(() -> moveCommandValidator.validate("R"))
+        CommandValidator commandValidator = new CommandValidator();
+        assertThatThrownBy(() -> commandValidator.validate("W"))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> commandValidator.retryValidate("W"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
