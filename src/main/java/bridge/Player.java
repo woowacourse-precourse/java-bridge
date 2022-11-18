@@ -26,4 +26,7 @@ public class Player {
         return this.commands.size();
     }
 
+    public List<Command> getCommands() {
+        return commands;
+    }
 }
