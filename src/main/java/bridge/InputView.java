@@ -1,6 +1,7 @@
 package bridge;
 
 import static validator.BridgeValidator.validateBridgeLength;
+import static validator.MoveValidator.validateMovingPath;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -25,7 +26,7 @@ public class InputView {
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String movingPath = Console.readLine();
-        //해당 값을 검증하는 함수를 호출할 자리
+        validateMovingPath(movingPath);
         return movingPath;
     }
 
