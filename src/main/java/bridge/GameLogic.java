@@ -23,9 +23,10 @@ public class GameLogic {
     }
     private void playOneGame(){
         String inputMove = inputView.readMoving();
-        bridgeGame.move(inputMove);
+        bridgeGame.isCorrect(inputMove);
         changeLine();
         outputView.printMap(bridgeGame.getUser().getResult(),bridgeGame.getUser().getPosition());
+        bridgeGame.move();
         changeLine();
         checkEnd();
     }
@@ -51,7 +52,7 @@ public class GameLogic {
         showResult();
     }
     private void showResult(){
-
+        outputView.printResult(bridgeGame.getUser().getResult(),bridgeGame.getUser().getCount());
     }
     private void changeLine(){
         System.out.println();

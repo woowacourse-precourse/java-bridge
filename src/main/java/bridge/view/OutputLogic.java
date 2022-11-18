@@ -14,7 +14,7 @@ public class OutputLogic {
     private static final String WRONG = " X ";
     private static final Boolean LAST = Boolean.TRUE;
     private static final Boolean NOT_LAST = Boolean.FALSE;
-    private String outPut;
+    private String outPut = CORRECT;
     private List<String> bridgeList;
     OutputLogic(List<String> bridgeList){
         this.bridgeList = bridgeList;
@@ -39,16 +39,11 @@ public class OutputLogic {
         print(SPACE);
     }
     private void printLastGlass(int position, String side,Boolean userResult){
-        if(!bridgeList.get(position).equals(side)) {
-            print(SPACE);
+        if(!userResult){outPut = WRONG;}
+        if(bridgeList.get(position).equals(side)) {
+            print(outPut);
             return;
         }
-        if(userResult){
-            print(CORRECT);
-            return;
-        }
-        if(!userResult){
-            print(WRONG);
-        }
+        print(SPACE);
     }
 }
