@@ -1,5 +1,6 @@
-package bridge;
+package bridge.view;
 
+import bridge.BridgeRule;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
