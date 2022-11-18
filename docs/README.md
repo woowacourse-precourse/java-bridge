@@ -17,7 +17,7 @@
     * 일치하는 경우
         - 사용자 칸을 이동하기(핵심로직) - BridgeGame#move()
             - 이동할 수 있는 칸을 선택했으므로 올바른 위치에 O를 표시하고 - BridgeGame#addSuccessStateToBridge()
-            - 지금까지 입력된 다리 출력하기(UI) - OutputView#printMap()
+            - 지금까지 입력된 다리 저장하고 출력하기(UI) - BridgeGame#currentStateBridgeSavePrint()
         + 다리의 길이만큼 계속 입력받기(조건)
         * 게임 종료일 경우(계속 일치해서 다리를 모두 건넜을 경우) 
             - 최종 게임 결과, 게임 성공 여부 : 성공, 지금까지 총 시도한 횟수를 출력하기(UI) - OutputView#printResult()
@@ -25,7 +25,7 @@
     * 일치하지 않는 경우 
         - 사용자 칸을 이동하기(핵심로직) - BridgeGame#move()
             - 이동할 수 없는 칸을 선택했으므로 올바른 위치에 X를 표시하고 - BridgeGame#addFailureStateToBridge()
-            -  지금까지 입력된 다리 출력하기(UI) - OutputView#printMap()
+            - 지금까지 입력된 다리 저장하고 출력하기(UI)- BridgeGame#currentStateBridgeSavePrint()
         - 게임 재시작(R)/종료(Q) 여부 입력받기 - InputView#readGameCommand()
             * 예외 : R이나 Q의 문자가 아니면 IllegalArgumentException 발생시키고 [ERROR]로 시작하는 에러 메시지 출력하고 다시 입력받기 - InputView#readGameCommandExceptionCheck()
 

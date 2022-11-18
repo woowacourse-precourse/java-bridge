@@ -12,6 +12,7 @@ public class BridgeGame {
 	List<List<String>> upDownBridgeList = new ArrayList<>();
 	ArrayList<String> upBridge = new ArrayList<>();
 	ArrayList<String> downBridge = new ArrayList<>();
+	private String currentStateBridge = "";
 	
 	public BridgeGame() {
 		upDownBridgeList.add(upBridge);
@@ -30,11 +31,11 @@ public class BridgeGame {
 		boolean compareResult = compareMoving(inputMoving, madeBridge, order);
 		if(compareResult) {
 			addSuccessStateToBridge(inputMoving);
-			outputView.printMap(upDownBridgeList);
+			currentStateBridgeSavePrint();
 			return true;
 		}
 		addFailureStateToBridge(inputMoving);
-		outputView.printMap(upDownBridgeList);
+		currentStateBridgeSavePrint();
 		return false;
 	}
 	
@@ -65,6 +66,10 @@ public class BridgeGame {
 		upBridge.add(" ");
 	}
 	
+	public void currentStateBridgeSavePrint() {
+		currentStateBridge = outputView.printMap(upDownBridgeList);
+		System.out.println(currentStateBridge);
+	}
 	/**
 	 * 사용자가 게임을 다시 시도할 때 사용하는 메서드
 	 * <p>

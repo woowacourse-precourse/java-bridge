@@ -24,7 +24,7 @@ public class Application {
     		check = inputBridgeState();
     		tryCount++;
     	} while(check);
-    	outputView.printResult();
+    	outputView.printResult(tryCount);
     }
     
     public static boolean inputBridgeState() {
