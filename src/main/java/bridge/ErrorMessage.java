@@ -10,4 +10,9 @@ public enum ErrorMessage {
     ErrorMessage(String message) {
         this.message = PREFIX + message;
     }
+
+    @Override
+    public String toString() {
+        return message;
+    }
 }
