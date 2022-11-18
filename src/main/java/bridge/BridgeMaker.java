@@ -4,16 +4,14 @@ import java.util.List;
 import java.util.ArrayList;
 import bridge.InputView;
 
-/**
- * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
- */
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
     private final InputView inputView = new InputView();
-    private List<String> mapUpper;
-    private List<String> mapLower;
-    private int limitSize;
+    private final OutputView outputView = new OutputView();
+    private List<String> mapUpper = new ArrayList<>();
+    private List<String> mapLower = new ArrayList<>();
+    private int limitSize = 3;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -104,16 +102,31 @@ public class BridgeMaker {
         return endGame;
     }
 
-    public void makeMap(List<String> crossable) {
-        String gameCommand = inputView.readGameCommand();
+    public int makeMap(List<String> crossable) {
+        String moving;
         boolean endGame = false;
         int index = 0;
 
         startMap();
-        while (index<limitSize&&!endGame) {
-            endGame = runMap(gameCommand, crossable.get(index++));
+        while (true) {
+            if (index>=limitSize||endGame) {
+                if (endGame) {
+                    index=-1;
+                }
+                break;
+            }
+            outputView.printWhereToGoInputRequest();
+            moving = inputView.readMoving();
+            if (index>0) {
+                extendMap();
+            }
+            endGame = runMap(moving, crossable.get(index));
+            index++;
+            endMap();
+            outputView.printMap(mapUpper,mapLower);
+            System.out.println(crossable.toString());
         }
-        endMap();
+        return index;
     }
 
 }
