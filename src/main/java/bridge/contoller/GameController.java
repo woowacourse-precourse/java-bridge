@@ -1,11 +1,13 @@
-package bridge;
+package bridge.contoller;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
 
-public class Controller {
+public class GameController {
 
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
