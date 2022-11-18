@@ -7,17 +7,17 @@ public enum BridgeDirection {
     UP(1, "U"),
     DOWN(0, "D");
 
-    private final int code;
+    private final int numberCode;
     private final String signature;
 
-    BridgeDirection(int code, String signature) {
-        this.code = code;
+    BridgeDirection(int numberCode, String signature) {
+        this.numberCode = numberCode;
         this.signature = signature;
     }
 
-    public static BridgeDirection fromCode(int code) {
+    public static BridgeDirection fromNumberCode(int numberCode) {
         return Arrays.stream(BridgeDirection.values())
-                .filter(component -> component.code == code)
+                .filter(component -> component.numberCode == numberCode)
                 .findFirst()
                 .orElseThrow(NoSuchElementException::new);
     }

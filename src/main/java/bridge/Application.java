@@ -16,6 +16,6 @@ public class Application {
         bridgeGameController.initGame();
 
         BridgeNumberGenerator randomNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMap bridgeMap = bridgeGameController.generateBaseBridge(randomNumberGenerator);
+        BridgeMap bridgeMap = bridgeGameController.generateBridgeGameMap(randomNumberGenerator);
     }
 }

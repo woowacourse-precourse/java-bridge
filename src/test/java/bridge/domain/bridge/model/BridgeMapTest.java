@@ -14,18 +14,18 @@ class BridgeMapTest {
         int bridgeSize = 6;
         BridgeNumberGenerator randomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(randomNumberGenerator);
-        List<String> bridgeBluePrint = bridgeMaker.makeBridge(bridgeSize);
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
 
-        BridgeMap bridgeMap = BridgeMap.from(bridgeBluePrint);
+        BridgeMap bridgeMap = BridgeMap.from(bridge);
 
         Assertions.assertThat(bridgeMap.size()).isEqualTo(bridgeSize);
     }
 
     @Test
     public void 다리_생성_테스트() {
-        List<String> blueprint = Lists.newArrayList("U", "D", "D", "U");
+        List<String> bridge = Lists.newArrayList("U", "D", "D", "U");
 
-        BridgeMap bridgeMap = BridgeMap.from(blueprint);
+        BridgeMap bridgeMap = BridgeMap.from(bridge);
         Assertions.assertThat(bridgeMap.getBridgeDirections())
                 .containsExactly(
                         BridgeDirection.UP,

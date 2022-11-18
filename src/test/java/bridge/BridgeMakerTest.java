@@ -6,7 +6,7 @@ import org.assertj.core.api.Assertions;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 
-class BridgeMapMakerTest {
+class BridgeMakerTest {
 
     @Test
     public void 다리_생성자를_통한_다리_크기_테스트() {

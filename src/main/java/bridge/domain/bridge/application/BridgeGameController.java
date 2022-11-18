@@ -20,7 +20,7 @@ public class BridgeGameController {
         outputView.printInitMessage();
     }
 
-    public BridgeMap generateBaseBridge(BridgeNumberGenerator generator) {
+    public BridgeMap generateBridgeGameMap(BridgeNumberGenerator generator) {
         int bridgeSize = readBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(generator);
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);

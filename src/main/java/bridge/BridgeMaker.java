@@ -23,7 +23,7 @@ public class BridgeMaker {
         List<String> bridgeInfo = new ArrayList<>(size);
         for (int i = 0; i < size; i++) {
             int generatedNumber = bridgeNumberGenerator.generate();
-            BridgeDirection mapComponent = BridgeDirection.fromCode(generatedNumber);
+            BridgeDirection mapComponent = BridgeDirection.fromNumberCode(generatedNumber);
             bridgeInfo.add(mapComponent.getSignature());
         }
         return bridgeInfo;

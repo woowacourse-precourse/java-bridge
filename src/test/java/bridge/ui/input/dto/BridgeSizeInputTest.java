@@ -5,7 +5,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class BridgeMapSizeTest {
+class BridgeSizeInputTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"0", "21", "1a", "", " ", "1.0", "12.4"})
