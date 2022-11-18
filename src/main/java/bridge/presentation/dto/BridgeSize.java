@@ -11,6 +11,7 @@ public class BridgeSize {
     }
     private void validate(String input){
         Validator.checkInteger(input);
+        Validator.checkSize(input);
     }
     public Integer getSize() {
         return size;
