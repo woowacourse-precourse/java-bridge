@@ -28,6 +28,14 @@ class ValidatorTest extends NsTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("입력한 이동할 칸이 U 또는 D가 아닌 경우에 대한 예외 처리")
+    @ValueSource(strings = {"R", "Q", "u", "d"})
+    @ParameterizedTest
+    void movingByWrongString(String input) {
+        assertThatThrownBy(() -> validator.validateMoving(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
