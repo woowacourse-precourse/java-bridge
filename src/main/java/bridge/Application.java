@@ -13,7 +13,7 @@ public class Application {
         inputView = new InputView();
         outputView = new OutputView();
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        boolean runGame = true;
+        runGame = true;
     }
 
     public static void main(String[] args) {
@@ -22,6 +22,7 @@ public class Application {
         while (application.runGame) {
             application.runGame = application.gameRun();
         }
+        application.gameResult();
     }
 
     private boolean gameRun() {
@@ -55,7 +56,7 @@ public class Application {
         outputView.printMap(bridgeGame.getBridge(), bridgeGame.getNowOn(), lastInput);
     }
 
-    public int getTryNumber() {
-        return tryNumber;
+    public void gameResult(){
+        outputView.printResult(tryNumber,bridgeGame.getBridge(),bridgeGame.isWin());
     }
 }

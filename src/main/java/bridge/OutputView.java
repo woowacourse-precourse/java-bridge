@@ -1,5 +1,6 @@
 package bridge;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -28,8 +29,10 @@ public class OutputView {
         StringBuilder downMap = new StringBuilder("[");
         makePreviousUpMap(bridge, nowOn, upMap);
         makePreviousDownMap(bridge, nowOn, downMap);
-        makeNowUpMap(bridge, lastInput, upMap);
-        makeNowDownMap(bridge, lastInput, downMap);
+        if (nowOn != bridge.size()) {
+            makeNowUpMap(bridge, lastInput, upMap);
+            makeNowDownMap(bridge, lastInput, downMap);
+        }
         System.out.print(upMap.append("]\n").toString());
         System.out.print(downMap.append("]\n").toString());
     }
@@ -84,6 +87,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(int tryNumber,ArrayList<String> bridge,boolean win) {
+        System.out.print("최종 게임 결과\n");
+        printMap(bridge,bridge.size(),"");
+        System.out.println("");
+        String resultMessage = "게임 성공 여부: 실패";
+        if(win)
+            resultMessage = resultMessage.replace("실패","성공");
+        System.out.print(resultMessage);
+        System.out.print("총 시도한 횟수: "+tryNumber);
     }
 }
