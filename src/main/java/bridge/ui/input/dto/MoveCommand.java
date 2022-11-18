@@ -1,5 +1,6 @@
 package bridge.ui.input.dto;
 
+import bridge.domain.bridge.model.BridgeDirection;
 import bridge.ui.input.InputErrorText;
 import java.util.regex.Pattern;
 
@@ -21,5 +22,9 @@ public class MoveCommand {
         if (!Pattern.matches(moveCommandRegex, moveCommand)) {
             throw new IllegalArgumentException(InputErrorText.ERROR_MOVE_COMMAND.errorText());
         }
+    }
+
+    public BridgeDirection toBridgeDirection() {
+        return BridgeDirection.fromSignature(this.moveCommand);
     }
 }

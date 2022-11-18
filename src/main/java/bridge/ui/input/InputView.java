@@ -17,11 +17,10 @@ public class InputView {
         System.out.println(placeHolderText.toConsolePrintFormat());
 
         try {
-            String bridgeSize = Console.readLine();
-            return BridgeSize.from(bridgeSize);
+            String userInput = Console.readLine();
+            return BridgeSize.from(userInput);
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
-
             return this.readBridgeSize();
         }
     }
@@ -33,8 +32,13 @@ public class InputView {
         PlaceHolderText placeHolderText = PlaceHolderText.READ_GAME_COMMAND;
         System.out.println(placeHolderText.toConsolePrintFormat());
 
-        String moveCommand = Console.readLine();
-        return MoveCommand.from(moveCommand);
+        try {
+            String userInput = Console.readLine();
+            return MoveCommand.from(userInput);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
+            return this.readMoving();
+        }
     }
 
     /**

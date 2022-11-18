@@ -2,10 +2,12 @@ package bridge.domain.bridge.application;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
+import bridge.domain.bridge.model.BridgeDirection;
 import bridge.domain.bridge.model.BridgeGame;
 import bridge.domain.bridge.model.BridgeMap;
 import bridge.domain.player.GamePlayer;
 import bridge.ui.input.InputView;
+import bridge.ui.input.dto.MoveCommand;
 import bridge.ui.output.OutputView;
 import java.util.List;
 
@@ -39,7 +41,11 @@ public class BridgeGameController {
         BridgeGame bridgeGame = new BridgeGame(bridgeMap, gamePlayer);
 
         do {
-            inputView.readMoving();
+            BridgeDirection bridgeDirection = readBridgeDirection();
         } while (true);
+    }
+
+    private BridgeDirection readBridgeDirection() {
+        return inputView.readMoving().toBridgeDirection();
     }
 }
