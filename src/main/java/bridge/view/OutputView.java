@@ -4,13 +4,50 @@ package bridge.view;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    private String upSideIndex = "";
+    private String downSideIndex = "";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(int size) {
+    public void printMap(int count, String moving, boolean isPass) {
+        if (moving.equals("U")) {
+            setUpSideIndex(count, isPass);
+        }
+        if (moving.equals("D")) {
+            setDownSideIndex(count, isPass);
+        }
+        System.out.println("[" + upSideIndex + "]");
+        System.out.println("[" + downSideIndex + "]");
+    }
+
+    public void setUpSideIndex(int count, boolean isPass) {
+        if (isPass) {
+            upSideIndex += printDelimiter(count) + " O ";
+            downSideIndex += printDelimiter(count) + "   ";
+            return;
+        }
+        upSideIndex += printDelimiter(count) + " X ";
+        downSideIndex += printDelimiter(count) + "   ";
+    }
+
+    public void setDownSideIndex(int count, boolean isPass) {
+        if (isPass) {
+            upSideIndex += printDelimiter(count) + "   ";
+            downSideIndex += printDelimiter(count) + " O ";
+            return;
+        }
+        upSideIndex += printDelimiter(count) + "   ";
+        downSideIndex += printDelimiter(count) + " X ";
+    }
+
+    public String printDelimiter(int count) {
+        if (count > 1) {
+            return "|";
+        }
+        return "";
     }
 
     /**
@@ -19,6 +56,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(boolean isSuccess, int totalNumberOfAttempts) {
+        System.out.println("최종 게임 결과");
         String result = "실패";
         if (isSuccess) {
             result = "성공";
