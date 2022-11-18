@@ -10,7 +10,6 @@ public class BridgeGame {
 
     private ArrayList<String> bridge;
     private int nowOn = 0;
-
     private boolean gameOver = false;
     private boolean isWin = false;
 
@@ -64,6 +63,13 @@ public class BridgeGame {
 
     public boolean isWin() {
         return isWin;
+    }
+
+    public ArrayList<String> getBridge() {
+        return bridge;
+    }
+    public int getNowOn() {
+        return nowOn;
     }
 
 }
