@@ -44,7 +44,7 @@ public class BridgeGame {
     }
 
     public void end(){
-        printFinalGameResult(topGameBoard, bottomGameBoard);
+        printResult(topGameBoard, bottomGameBoard);
         printGameStatistics(isGameWin, tryCount);
     }
 
