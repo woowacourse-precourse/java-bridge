@@ -38,11 +38,7 @@ public class InputView {
         String readGameCommand = Console.readLine();
         String gameStatus = getGameCommand(readGameCommand);
 
-        if (gameStatus.equals(GAME_RETRY_KEY)) {
-            return true;
-        }
-
-        return false;
+        return gameStatus.equals(GAME_RETRY_KEY);
     }
 
     private int getBridgeSize() {
@@ -102,10 +98,7 @@ public class InputView {
     }
 
     private boolean validateMoveRange(String readBridgeMove) {
-        if (readBridgeMove.equals(DOWN_KEY) || readBridgeMove.equals(UP_KEY)) {
-            return true;
-        }
-        return false;
+        return readBridgeMove.equals(DOWN_KEY) || readBridgeMove.equals(UP_KEY);
     }
 
     private String getGameCommand(String readGameCommand) {
@@ -127,10 +120,7 @@ public class InputView {
     }
 
     private boolean validateCommandRange(String readGameCommand) {
-        if (readGameCommand.equals(GAME_RETRY_KEY) || readGameCommand.equals(GAME_QUIT_KEY)) {
-            return true;
-        }
-        return false;
+        return readGameCommand.equals(GAME_RETRY_KEY) || readGameCommand.equals(GAME_QUIT_KEY);
     }
 
 

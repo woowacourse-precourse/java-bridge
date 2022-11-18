@@ -43,7 +43,7 @@ public class BridgeMaker {
     public String[][] make2DBridge(List<String> bridge) {
         String[][] bridge2D = new String[2][bridge.size()];
         for (int i = 0; i < bridge.size(); i++) {
-            if (bridge.get(i) == DOWN_KEY) {
+            if (bridge.get(i).equals(DOWN_KEY)) {
                 bridge2D[UP][i] = FALL_POSITION;
                 bridge2D[DOWN][i] = DOWN_KEY;
             } else {

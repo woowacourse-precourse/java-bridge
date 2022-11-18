@@ -30,7 +30,7 @@ public class OutputView {
     public void printResult(Player player, boolean win) {
         String result = "실패";
 
-        if (win == true) {
+        if (win) {
             result = "성공";
         }
 

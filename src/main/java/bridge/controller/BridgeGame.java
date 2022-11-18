@@ -52,20 +52,13 @@ public class BridgeGame {
         int positionX = player.getXPosition();
         int bridgeLength = bridge.getBridge()[0].length;
 
-        if (positionX == bridgeLength - 1) {
-            return true;
-        }
-        return false;
+        return positionX == bridgeLength - 1;
     }
 
     private boolean moveSuccess(Player player, Bridge bridge) {
-        String[][] tempBridge = bridge.getBridge();
         int positionX = player.getXPosition();
         int positionY = player.getYPosition();
-        if (tempBridge[positionY][positionX].equals(FALL_POSITION)) {
-            return false;
-        }
-        return true;
+        return bridge.getBridge()[positionY][positionX].equals(FALL_POSITION);
     }
 
 //    private void printPlayerPosition(Player player) {
@@ -80,9 +73,7 @@ public class BridgeGame {
 
     private void print2DBridge() {
         Arrays.stream(bridge.getBridge()).forEach(
-                bridgeBlock -> {
-                    System.out.println(Arrays.toString(bridgeBlock));
-                }
+                bridgeBlock -> System.out.println(Arrays.toString(bridgeBlock))
         );
     }
 
