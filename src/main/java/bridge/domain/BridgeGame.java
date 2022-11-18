@@ -47,4 +47,8 @@ public class BridgeGame {
 		tryCount += 1;
 		resultMessageStatuses.clear();
 	}
+
+	public boolean isFinish(ResultStatus resultStatus, int bridgeSize) {
+		return resultStatus == ResultStatus.FAILURE || gameStage == bridgeSize;
+	}
 }
