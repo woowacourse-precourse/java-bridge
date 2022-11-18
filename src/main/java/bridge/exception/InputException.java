@@ -22,4 +22,14 @@ public class InputException {
         sizeIsNotNumber(size);
         minOrMaxSize(size);
     }
+
+    public void moveException(String move) {
+        if (!(move.equals("U") || move.equals("D")))
+            throw new IllegalArgumentException(ExceptionString.NOT_U_D.getPrint());
+    }
+
+    public void retryException(String retry) {
+        if (!(retry.equals("Q") || retry.equals("R")))
+            throw new IllegalArgumentException(ExceptionString.NOT_Q_R.getPrint());
+    }
 }

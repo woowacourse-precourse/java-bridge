@@ -24,7 +24,7 @@ public class InputView {
      */
     public String readMoving() {
         String move = readLine();
-        //예외 처리 필요
+        inputException.moveException(move);
         return move;
     }
 
@@ -32,8 +32,8 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        String reply = readLine();
-
-        return reply;
+        String retry = readLine();
+        inputException.retryException(retry);
+        return retry;
     }
 }
