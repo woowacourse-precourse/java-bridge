@@ -16,5 +16,6 @@ public class Controller {
         outputView.printBridgeGameStart();
         int bridgeSize = inputView.readBridgeSize(outputView::printBridgeSizeInput);
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+        String moveDirection = inputView.readMoving(outputView::printBridgeMoveDirectionInput);
     }
 }

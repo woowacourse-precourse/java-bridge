@@ -1,5 +1,6 @@
 package bridge;
 
+import static bridge.ErrorMessage.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.stream.IntStream;
@@ -24,6 +25,21 @@ public class InputViewTest {
     @ValueSource(strings = {"2, 21"})
     void readBridgeSizeExceptionTest(String input) {
         assertThatThrownBy(() -> inputView.validateBridgeSize(input))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(INVALID_BRIDGE_SIZE_ERROR);
+    }
+
+    @ParameterizedTest(name = "이동할 다음 칸을 {0}로 입력하면 성공한다.")
+    @ValueSource(strings = {"U", "D"})
+    void validateMoveDirectionTest(String input) {
+        inputView.validateMoveDirection(input);
+    }
+
+    @ParameterizedTest(name = "이동할 다음 칸을 {0}로 잘못 입력한 경우 예외가 발생한다.")
+    @ValueSource(strings = {"A", "UU", "", "u", "d"})
+    void validateMoveDirectionExceptionTest(String input) {
+        assertThatThrownBy(() -> inputView.validateMoveDirection(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(INVALID_MOVE_DIRECTION_ERROR);
     }
 }

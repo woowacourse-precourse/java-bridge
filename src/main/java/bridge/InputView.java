@@ -1,6 +1,7 @@
 package bridge;
 
 import static bridge.ErrorMessage.INVALID_BRIDGE_SIZE_ERROR;
+import static bridge.ErrorMessage.INVALID_MOVE_DIRECTION_ERROR;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -22,8 +23,11 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public String readMoving(Runnable printInputMessage) {
+        printInputMessage.run();
+        String moveDirection = readLine();
+        validateMoveDirection(moveDirection);
+        return moveDirection;
     }
 
     /**
@@ -39,6 +43,17 @@ public class InputView {
         if (!bridgeSizeInput.matches(IN_3_TO_20_PATTERN)) {
             throw new IllegalArgumentException(INVALID_BRIDGE_SIZE_ERROR);
         }
+    }
+
+    public void validateMoveDirection(String moveDirection) {
+        if (isInvalidMoveDirection(moveDirection)) {
+            throw new IllegalArgumentException(INVALID_MOVE_DIRECTION_ERROR);
+        }
+    }
+
+    private boolean isInvalidMoveDirection(String moveDirection) {
+        return !moveDirection.equals(Bridge.UP_BLOCK_MARK)
+                && !moveDirection.equals(Bridge.DOWN_BLOCK_MARK);
     }
 
     private String readLine() {
