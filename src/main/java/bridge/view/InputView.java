@@ -14,15 +14,17 @@ public class InputView {
     }
 
     private void validSize(String input) {
-        for (char c : input.toCharArray()) {
-            checkDigit(c);
+        if (!checkDigit(input) || input.equals("0")) {
+            throw new IllegalArgumentException("[ERROR] 다리의 길이는 자연수여야 합니다.");
         }
     }
 
-    private void checkDigit(char c) {
-        if (!Character.isDigit(c) || c == '0') {
-            throw new IllegalArgumentException("[ERROR] 다리의 길이는 자연수여야 합니다.");
+    private boolean checkDigit(String input) {
+        boolean check = false;
+        for (char c : input.toCharArray()) {
+            check =  Character.isDigit(c);
         }
+        return check;
     }
 
     public String readMoving() {
