@@ -1,6 +1,6 @@
 package bridge.UI.Output; //패키지 변경
 
-import java.util.Map;
+import java.util.*;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -34,13 +34,13 @@ public class OutputView {
      */
     public void printResult(Map<Integer, Map<String, String>> userStatus, CountRound countRound) {
         printMap(userStatus);
-        String up = userStatus.get(userStatus.size()).get("U");
-        String down = userStatus.get(userStatus.size()).get("D");
-        if(up.equals("X") || down.equals("X")){
+        Collection<String> result = userStatus.get(userStatus.size()-1).values();
+        System.out.println(OutputString.FINAL_RESULT.getMessage());
+        if(result.stream().anyMatch(wrong -> wrong.equals("X"))){
             System.out.println(OutputString.SUCCESS_OR_FAIL.getMessage() + "실패");
         }
             System.out.println(OutputString.SUCCESS_OR_FAIL.getMessage() + "성공");
-            System.out.println(OutputString.FINAL_RESULT.getMessage() + countRound.getRound());
+            System.out.println(OutputString.TOTAL_PLAYED_NUM.getMessage() + countRound.getRound());
     }
 
 }

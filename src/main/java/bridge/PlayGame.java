@@ -32,13 +32,15 @@ public class PlayGame {
 
     public void play() {
         BridgeGame bridgeGame = new BridgeGame();
+        OutputView outputView = new OutputView();
         Map<Integer, Map<String,String>> userStatus = new HashMap<>();
         Condition condition = Condition.PLAY;
         while (condition == Condition.PLAY) {
             userStatus = bridgeGame.move(userStatus, bridge);
             condition = bridgeGame.checkEnd(userStatus, bridge);
+            outputView.printMap(userStatus);
         }
-        if(condition == Condition.WIN) { end(userStatus, countRound); }
+        if(condition == Condition.WIN) { end(userStatus); }
         if(condition == Condition.LOOSE) { ask(userStatus, countRound, bridgeGame);}
     }
 
@@ -46,13 +48,13 @@ public class PlayGame {
         InputWhileException inputWhileException = new InputWhileException();
         String checkEnd= inputWhileException.startWhileReadGameCommand();
         if(checkEnd.equals("Q")) {
-            end(userStatus, countRound);
+            end(userStatus);
         }
         if(checkEnd.equals("R")){
             bridgeGame.retry(bridge, countRound);
         }
     }
-    public void end(Map<Integer, Map<String, String>> userStatus, CountRound countRound) {
+    public void end(Map<Integer, Map<String, String>> userStatus) {
         OutputView outputView = new OutputView();
         outputView.printResult(userStatus, countRound);
     }

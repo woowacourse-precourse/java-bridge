@@ -5,9 +5,9 @@ public class MapFormatter {
         StringBuilder formatChanged = new StringBuilder();
         formatChanged.append("[");
         for (char inputChar : input.toString().toCharArray()){
-            formatChanged.append(inputChar).append(" |");
+            formatChanged.append(" ").append(inputChar).append(" ").append("|");
         }
-        formatChanged.deleteCharAt(formatChanged.lastIndexOf(" |"));
+        formatChanged.deleteCharAt(formatChanged.lastIndexOf("|"));
         formatChanged.append("]");
 
         return formatChanged;
