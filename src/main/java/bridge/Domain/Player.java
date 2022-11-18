@@ -1,5 +1,7 @@
 package bridge.Domain;
 
+
+
 public class Player {
     private int passedCount;
     private String selection;
@@ -13,23 +15,6 @@ public class Player {
     }
 
 
-    public void setSelection(String selection) {
-        this.selection = selection;
-    }
-
-
-    public boolean isAlive() {
-        return this.alive;
-    }
-
-    public int getPassedCount() {
-        return this.passedCount;
-    }
-
-    public String getSelection() {
-        return this.selection;
-    }
-
     public void die() {
         this.alive = false;
     }
@@ -42,5 +27,26 @@ public class Player {
         this.alive = true;
         this.passedCount = 0;
     }
+
+    // getter
+    public boolean isAlive() {
+        return this.alive;
+    }
+
+    public int getPassedCount() {
+        return this.passedCount;
+    }
+
+    public String getSelection() {
+        return this.selection;
+    }
+
+
+    // setter
+    public void setSelection(String selection) {
+        this.selection = selection;
+    }
+
+
 
 }

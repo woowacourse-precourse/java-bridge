@@ -2,9 +2,8 @@ package bridge.Domain;
 
 import java.util.List;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
+
+
 public class BridgeGame {
     Bridge bridge;
     Player player;
@@ -23,11 +22,7 @@ public class BridgeGame {
         }
     }
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+
     public void move(String playerSelection) {
         player.setSelection(playerSelection);
 
@@ -39,11 +34,6 @@ public class BridgeGame {
         }
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public void retry(String command) {
         if (this.maxPassedCount < player.getPassedCount()) {
             this.maxPassedCount = player.getPassedCount();
@@ -54,22 +44,16 @@ public class BridgeGame {
         }
     }
 
-
     public boolean winGame() {
         int playerNextLocation = player.getPassedCount();
         List<String> bridgeStates = bridge.getBridgeStates();
 
-        // 다음에 이동할 곳이 인덱스를 벗어날 경우 끝에 도달한 것
-        if (bridgeStates.size() <= playerNextLocation) {
+        if (bridgeStates.size() <= playerNextLocation) {    // 다음에 이동할 곳이 인덱스를 벗어날 경우 끝에 도달한 것
             this.maxPassedCount = playerNextLocation - 1;
             return true;
         }
 
         return false;
-    }
-
-    public List<String> getBridgeStates() {
-        return this.bridge.getBridgeStates();
     }
 
     public boolean isPlayerDead() {
@@ -84,6 +68,11 @@ public class BridgeGame {
         if (player.isAlive()) {
             player.success();
         }
+    }
+
+    //getter
+    public List<String> getBridgeStates() {
+        return this.bridge.getBridgeStates();
     }
 
     public Player getPlayer() {
@@ -101,4 +90,5 @@ public class BridgeGame {
     public int getPassedCount() {
         return player.getPassedCount();
     }
+
 }

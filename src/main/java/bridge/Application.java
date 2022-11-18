@@ -4,6 +4,8 @@ import bridge.Domain.BridgeGame;
 import bridge.View.InputView;
 import bridge.View.OutputView;
 
+
+
 public class Application {
     private static InputView inputView = new InputView();
     private static OutputView outputView = new OutputView();

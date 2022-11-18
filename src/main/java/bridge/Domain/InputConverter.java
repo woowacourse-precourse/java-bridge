@@ -1,8 +1,6 @@
 package bridge.Domain;
 
 public class InputConverter {
-
-
     public static int convertToInt(String input) throws IllegalArgumentException {
         try {
             InputValidator.validateNumberInput(input);

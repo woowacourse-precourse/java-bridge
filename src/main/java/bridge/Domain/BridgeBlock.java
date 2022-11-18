@@ -2,6 +2,8 @@ package bridge.Domain;
 
 import java.util.Arrays;
 
+
+
 public enum BridgeBlock {
     UP("U", 1),
     DOWN("D", 0);

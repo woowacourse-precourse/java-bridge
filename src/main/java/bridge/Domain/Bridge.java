@@ -44,5 +44,4 @@ public class Bridge {
     public String getBridgeState(int bridgeLocation) {
         return bridgeStates.get(bridgeLocation);
     }
-
 }
