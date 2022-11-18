@@ -13,6 +13,8 @@ public class InputView {
         String input = Console.readLine();
         int size = Integer.valueOf(input);
 
+        //에러 판독
+
         return size;
     }
 
@@ -20,7 +22,11 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String input = Console.readLine();
+
+        //에러 판독
+
+        return input;
     }
 
     /**
