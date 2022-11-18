@@ -8,13 +8,12 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class InputViewTest {
-
+    InputView inputView = new InputView();
     @DisplayName("readBridgeSize 에 잘못된 입력이 주어지면 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"20l", "2", "-15", "무성", "\n\t", "", "3a"})
+    @ValueSource(strings = {"20l", "2", "-15", "30", "무성", "\n\t", "", "3a"})
     void wrongInputToReadBridgeSize(String input) {
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-        InputView inputView = new InputView();
+        settingInput(input);
         assertThatThrownBy(inputView::readBridgeSize)
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -22,8 +21,7 @@ public class InputViewTest {
     @ParameterizedTest
     @ValueSource(strings = {"DU", "ㅇ", "ㅕ", "U ", "무성", "\n\t", " ", ""})
     void wrongInputToReadMoving(String input) {
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-        InputView inputView = new InputView();
+        settingInput(input);
         assertThatThrownBy(inputView::readMoving)
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -31,9 +29,11 @@ public class InputViewTest {
     @ParameterizedTest
     @ValueSource(strings = {"QR", "q", "ㅂ", " R", " Q", "무성", "\n\t", "", " "})
     void wrongInputToReadGameCommand(String input) {
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-        InputView inputView = new InputView();
+        settingInput(input);
         assertThatThrownBy(inputView::readGameCommand)
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+    void settingInput(String input){
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
     }
 }
