@@ -1,7 +1,5 @@
 package bridge;
 
-
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -19,5 +17,21 @@ class BridgeTest {
 
         //then
         assertThat(result).isEqualTo(true);
+    }
+
+    @Test
+    public void hasNextBlock_메서드로_남은_다리_블록_있는_경우() throws Exception {
+        Bridge bridge = new Bridge(List.of("U", "D", "D"));
+        int playerLocation = 1;
+
+        assertThat(bridge.hasNextBlock(playerLocation)).isTrue();
+    }
+
+    @Test
+    public void hasNextBlock_메서드로_다리_끝에_있는_경우() throws Exception {
+        Bridge bridge = new Bridge(List.of("U", "D", "D"));
+        int playerLocation = 2;
+
+        assertThat(bridge.hasNextBlock(playerLocation)).isFalse();
     }
 }

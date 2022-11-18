@@ -12,4 +12,11 @@ public class Bridge {
     public boolean matchBlockLocation(int location, String block) {
         return (bridgeBlocks.get(location).equals(block));
     }
+
+    public boolean hasNextBlock(int playerLocation) {
+        if ((bridgeBlocks.size() - 1) > playerLocation) {
+            return true;
+        }
+        return false;
+    }
 }
