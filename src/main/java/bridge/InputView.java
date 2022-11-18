@@ -2,6 +2,7 @@ package bridge;
 
 import static bridge.constant.Config.*;
 
+import bridge.constant.command.DirectionCommand;
 import bridge.constant.message.InputErrorMessage;
 import bridge.utils.Validator;
 import camp.nextstep.edu.missionutils.Console;
@@ -42,7 +43,12 @@ public class InputView {
     }
 
     private void checkValidMoving(String command) {
-        // TODO: 사용자의 입력값이 칸 이동 명령어인지 확인
+        for(DirectionCommand directionCommand : DirectionCommand.values()){
+            if(directionCommand.getValue().equals(command)){
+                return;
+            }
+        }
+        throw new IllegalArgumentException(InputErrorMessage.NO_VALID_MOVING.getMessage());
     }
 
     /**

@@ -98,7 +98,7 @@
   - [x] 사용자의 입력값이 숫자 형태인지 확인 - checkNumericString
   - [x] 주어진 다리 크기가 유효한지 확인 - checkRangeOfBridgeSize
 - [ ] 사용자가 이동할 칸을 입력 - readMoving
-  - [ ] 사용자의 입력값이 칸 이동 명령어인지 확인 - checkValidMoving
+  - [x] 사용자의 입력값이 칸 이동 명령어인지 확인 - checkValidMoving
 - [ ] 사용자가 게임을 다시 시도할지 종료할지 여부를 입력 - readGameCommand
   - [ ] 사용자의 입력값이 게임 관련 명령어인지 확인 - checkValidGameCommand
 
