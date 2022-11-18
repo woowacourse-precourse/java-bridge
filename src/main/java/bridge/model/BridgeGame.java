@@ -9,12 +9,14 @@ public class BridgeGame {
     private final List<String> bridge;
     private int userLocation;
     private GameState gameState;
+    private int attempts;
     private GameResultBoard gameResultBoard;
 
     public BridgeGame(List<String> bridge) {
         this.userLocation = 0;
         this.bridge = bridge;
         this.gameState = GameState.NOT_FINISH;
+        this.attempts = 1;
         this.gameResultBoard = new GameResultBoard();
     }
 
@@ -24,6 +26,10 @@ public class BridgeGame {
 
     public GameState getGameState() {
         return gameState;
+    }
+
+    public int getAttempts() {
+        return attempts;
     }
 
     public GameResultBoard getGameResultBoard() {
@@ -63,6 +69,12 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(String command) {
+        if (command.equals("R")) {
+            gameState = GameState.NOT_FINISH;
+            userLocation = 0;
+            gameResultBoard = new GameResultBoard();
+            attempts++;
+        }
     }
 }
