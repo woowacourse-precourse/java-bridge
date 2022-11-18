@@ -26,8 +26,7 @@ public class BridgeMaker {
         for (int i = 0; i < size; i++) {
             int number = bridgeNumberGenerator.generate();
 
-            if (number == DOWN) bridge.add("D");
-            else if (number == UP) bridge.add("U");
+            bridge.add(generateUpDown(number));
         }
 
         return bridge;
