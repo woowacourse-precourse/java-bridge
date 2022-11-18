@@ -29,20 +29,30 @@ public class BridgeGame {
             Bridge moveResult = move(bridge, currentPosition);
             currentBridge.add(moveResult);
             outputController.printMap(currentBridge);
-            if (moveResult.getUpShape().equals("X") || moveResult.getDownShape().equals("X")) {
-                boolean retryResult = retry();
-                if (!retryResult) {
-                    outputController.printResult(currentBridge, GAME_LOSE, tryCount);
-                    return;
-                }
-                currentBridge = new ArrayList<>();
-                currentPosition = 0;
-                tryCount++;
-                continue;
+            if (isGameOver(moveResult)) {
+                return;
             }
             currentPosition++;
         }
         outputController.printResult(currentBridge, GAME_WIN, tryCount);
+    }
+
+    private boolean isGameOver(Bridge moveResult) {
+        if (moveResult.getUpShape().equals("X") || moveResult.getDownShape().equals("X")) {
+            boolean retryResult = retry();
+            if (!retryResult) {
+                outputController.printResult(currentBridge, GAME_LOSE, tryCount);
+                return true;
+            }
+            gameReset();
+        }
+        return false;
+    }
+
+    private void gameReset() {
+        currentBridge = new ArrayList<>();
+        currentPosition = 0;
+        tryCount++;
     }
 
     /**
