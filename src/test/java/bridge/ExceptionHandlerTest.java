@@ -3,10 +3,12 @@ package bridge;
 import bridge.util.ExceptionHandler;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThatNoException;
 
 public class ExceptionHandlerTest {
 
@@ -22,9 +24,25 @@ public class ExceptionHandlerTest {
     @ValueSource(strings = {"3", "20"})
     @ParameterizedTest
     void checkBridgeSizeTest(String input) {
-        Assertions.assertThatNoException()
+        assertThatNoException()
                 .isThrownBy(() -> ExceptionHandler.checkBridgeSize(input));
 
+    }
+
+    @DisplayName("게임 재시작 입력 테스트 - 예외")
+    @ValueSource(strings = {"", " ", "r", "a", "1"})
+    @ParameterizedTest
+    void checkRetryCommandTest_Exception(String input) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> ExceptionHandler.checkRetryCommand(input));
+    }
+
+    @DisplayName("게임 재시작 입력 테스트 - 정상")
+    @ValueSource(strings = {"R", "Q"})
+    @ParameterizedTest
+    void checkRetryCommandTest(String input) {
+        assertThatNoException()
+                .isThrownBy(() -> ExceptionHandler.checkRetryCommand(input));
     }
 
 }
