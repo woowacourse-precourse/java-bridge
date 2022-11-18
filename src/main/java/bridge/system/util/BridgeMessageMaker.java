@@ -1,6 +1,6 @@
 package bridge.system.util;
 
-import bridge.vo.BridgeStep;
+import bridge.vo.Step;
 import bridge.vo.StepResult;
 
 import java.util.Iterator;
@@ -40,23 +40,23 @@ public class BridgeMessageMaker {
         return makeResult(upBridgeBuilder, downBridgeBuilder);
     }
 
-    private void handleCorrect(StringBuilder upBridgeBuilder, StringBuilder downBridgeBuilder, BridgeStep bridgeStep) {
-        if (bridgeStep == BridgeStep.U) {
+    private void handleCorrect(StringBuilder upBridgeBuilder, StringBuilder downBridgeBuilder, Step step) {
+        if (step == Step.U) {
             upBridgeBuilder.append(CORRECT);
             downBridgeBuilder.append(SPACE);
         }
-        if (bridgeStep == BridgeStep.D) {
+        if (step == Step.D) {
             upBridgeBuilder.append(SPACE);
             downBridgeBuilder.append(CORRECT);
         }
     }
 
-    private void handleFailure(StringBuilder upBridgeBuilder, StringBuilder downBridgeBuilder, BridgeStep bridgeStep) {
-        if (bridgeStep == BridgeStep.U) {
+    private void handleFailure(StringBuilder upBridgeBuilder, StringBuilder downBridgeBuilder, Step step) {
+        if (step == Step.U) {
             upBridgeBuilder.append(FAIL);
             downBridgeBuilder.append(SPACE);
         }
-        if (bridgeStep == BridgeStep.D) {
+        if (step == Step.D) {
             upBridgeBuilder.append(SPACE);
             downBridgeBuilder.append(FAIL);
         }

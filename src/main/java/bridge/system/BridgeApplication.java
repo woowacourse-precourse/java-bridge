@@ -1,7 +1,7 @@
 package bridge.system;
 
 import bridge.service.BridgeGame;
-import bridge.system.controller.BridgeController;
+import bridge.system.controller.GameController;
 import bridge.system.util.BridgeMaker;
 import bridge.system.util.BridgeMessageMaker;
 import bridge.system.util.BridgeRandomNumberGenerator;
@@ -9,7 +9,7 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeApplication {
-    private BridgeController bridgeController;
+    private GameController gameController;
     private BridgeMaker bridgeMaker;
     private InputView inputView;
     private OutputView outputView;
@@ -20,14 +20,14 @@ public class BridgeApplication {
     }
 
     public void run() {
-        bridgeController.doGame();
+        gameController.doGame();
     }
 
     private void InjectDependencies() {
         inputView = new InputView();
         outputView = new OutputView(new BridgeMessageMaker());
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridgeGame = new BridgeGame();
-        bridgeController = new BridgeController(inputView, outputView, bridgeMaker, bridgeGame);
+        bridgeGame = new BridgeGame(outputView, inputView);
+        gameController = new GameController(inputView, outputView, bridgeMaker, bridgeGame);
     }
 }

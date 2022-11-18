@@ -1,7 +1,7 @@
 package bridge.view;
 
 import bridge.system.util.BridgeMessageMaker;
-import bridge.vo.BridgeStep;
+import bridge.vo.Step;
 import bridge.vo.StepResult;
 import org.junit.jupiter.api.*;
 
@@ -79,9 +79,9 @@ class OutputViewTest {
         void givenMap_whenPrintingMap_thenPrintsMessage() {
             //when
             outputView.printMap(List.of(
-                    new StepResult(BridgeStep.D, true),
-                    new StepResult(BridgeStep.U, true),
-                    new StepResult(BridgeStep.U, false)
+                    new StepResult(Step.D, true),
+                    new StepResult(Step.U, true),
+                    new StepResult(Step.U, false)
             ));
 
             //then

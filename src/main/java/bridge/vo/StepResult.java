@@ -1,16 +1,16 @@
 package bridge.vo;
 
 public class StepResult {
-    private final BridgeStep bridgeStep;
+    private final Step step;
     private final boolean isCorrect;
 
-    public StepResult(BridgeStep bridgeStep, boolean isCorrect) {
-        this.bridgeStep = bridgeStep;
+    public StepResult(Step step, boolean isCorrect) {
+        this.step = step;
         this.isCorrect = isCorrect;
     }
 
-    public BridgeStep getBridgeStep() {
-        return bridgeStep;
+    public Step getBridgeStep() {
+        return step;
     }
 
     public boolean isCorrect() {

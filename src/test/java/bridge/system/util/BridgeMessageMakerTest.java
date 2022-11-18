@@ -1,6 +1,6 @@
 package bridge.system.util;
 
-import bridge.vo.BridgeStep;
+import bridge.vo.Step;
 import bridge.vo.StepResult;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -20,9 +20,9 @@ class BridgeMessageMakerTest {
         void givenStepResults_whenMakingBridgeMessage_thenReturnsMessage() {
             //given && when
             String resultMessage = makeBridgeMessage(
-                    new StepResult(BridgeStep.D, true),
-                    new StepResult(BridgeStep.U, true),
-                    new StepResult(BridgeStep.U, false)
+                    new StepResult(Step.D, true),
+                    new StepResult(Step.U, true),
+                    new StepResult(Step.U, false)
             );
 
             //then
@@ -35,9 +35,9 @@ class BridgeMessageMakerTest {
         void givenStepResultsOnlyU_whenMakingBridgeMessage_thenReturnsMessage() {
             //given && when
             String resultMessage = makeBridgeMessage(
-                    new StepResult(BridgeStep.U, true),
-                    new StepResult(BridgeStep.U, true),
-                    new StepResult(BridgeStep.U, false)
+                    new StepResult(Step.U, true),
+                    new StepResult(Step.U, true),
+                    new StepResult(Step.U, false)
             );
 
             //then
@@ -50,9 +50,9 @@ class BridgeMessageMakerTest {
         void givenStepResultsFailingInMiddle_whenMakingBridgeMessage_thenReturnsMessage() {
             //given && when
             String resultMessage = makeBridgeMessage(
-                    new StepResult(BridgeStep.U, true),
-                    new StepResult(BridgeStep.D, false),
-                    new StepResult(BridgeStep.D, true)
+                    new StepResult(Step.U, true),
+                    new StepResult(Step.D, false),
+                    new StepResult(Step.D, true)
             );
 
             //then
