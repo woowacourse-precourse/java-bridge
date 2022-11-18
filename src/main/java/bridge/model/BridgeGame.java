@@ -10,14 +10,22 @@ import java.util.List;
  */
 public class BridgeGame {
     /**
-     * BridgeGame에 필드(인스턴스 변수)를 추가할 수 있다. BridgeGame의 패키지는 변경할 수 있다. BridgeGame의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라
-     * 추가하거나 변경할 수 있다. 게임 진행을 위해 필요한 메서드를 추가 하거나 변경할 수 있다.
+     * BridgeGame에 필드(인스턴스 변수)를 추가할 수 있다. BridgeGame의 패키지는 변경할 수 있다.
+     * BridgeGame의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
+     * 게임 진행을 위해 필요한 메서드를 추가 하거나 변경할 수 있다.
      */
     private static Bridge bridge;
 
     private static BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
+
     public boolean survived() {
+        // TODO
+        return false;
+    }
+
+    public boolean isEnd() {
+        // TODO
         return false;
     }
 
@@ -31,7 +39,16 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public void move(String to) {
+    }
+
+    public boolean lastChoiceMismatch() {
+        // TODO
+        return false;
+    }
+
+    public void quit() {
+        // TODO
     }
 
     /**

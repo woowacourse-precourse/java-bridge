@@ -12,18 +12,31 @@ public class GameController {
     public static void run() {
         int bridgeSize = input.readBridgeSize();
         game.init(bridgeSize);
-        while (true) {
-            String to = input.readMoving();
-            game.move(to);
-            output.printMap();
-            if (!game.survived()) {
-                String command = input.readGameCommand();
-                if (command.equals("Q")) {
-                    break;
-                }
-                game.retry();
-            }
+        while (game.isEnd()) {
+            goOneStep();
         }
         output.printResult();
+    }
+
+    private static void goOneStep() {
+        moveAndPrintResult();
+        if (game.lastChoiceMismatch()) {
+            quitOrRetry();
+        }
+    }
+
+    private static void moveAndPrintResult() {
+        String to = input.readMoving();
+        game.move(to);
+        output.printMap();
+    }
+
+    private static void quitOrRetry() {
+        String command = input.readGameCommand();
+        if (command.equals("Q")) {
+            game.quit();
+            return;
+        }
+        game.retry();
     }
 }
