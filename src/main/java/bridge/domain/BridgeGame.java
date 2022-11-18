@@ -64,11 +64,18 @@ public class BridgeGame {
         if (command == Command.Restart) {
             settingForRestart();
         }
+        if (command == Command.Quit) {
+            settingForQuit();
+        }
     }
 
     private void settingForRestart() {
         userPosition = 0;
         numberOfAttempts++;
         aliveUser = true;
+    }
+
+    private void settingForQuit() {
+        needToQuit = true;
     }
 }
