@@ -1,6 +1,5 @@
 package bridge;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -10,29 +9,22 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ValidatorTest {
 
-    private Validator validator;
-
-    @BeforeEach
-    void beforeEach() {
-        validator = new Validator();
-    }
-
     @DisplayName("다리 길이 입력이 유효한 경우")
     @ParameterizedTest
     @ValueSource(strings = {"3", "5"})
-    void bridgeLengthCorrectValue(String length) {
+    void bridgeLengthCorrectValue(String size) {
         // then
-        validator.bridgeLengthValidate(length);
+        Validator.bridgeSizeValidate(size);
     }
 
     @DisplayName("다리 길이 입력이 유효하지 않은 경우")
     @ParameterizedTest
     @ValueSource(strings = {"1", "21", "a"})
-    void bridgeLengthWrongValue(String length) {
+    void bridgeLengthWrongValue(String size) {
         // then
-        assertThatThrownBy(() -> validator.bridgeLengthValidate(length))
+        assertThatThrownBy(() -> Validator.bridgeSizeValidate(size))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(WRONG_BRIDGE_LENGTH_INPUT);
+                .hasMessageContaining(WRONG_BRIDGE_SIZE_INPUT);
     }
 
     @DisplayName("이동 입력이 유효한 경우")
@@ -40,7 +32,7 @@ public class ValidatorTest {
     @ValueSource(strings = {"U", "D"})
     void moveCorrectValue(String move) {
         // then
-        validator.moveValidate(move);
+        Validator.moveValidate(move);
     }
 
     @DisplayName("이동 입력이 유효하지 않은 경우")
@@ -48,7 +40,7 @@ public class ValidatorTest {
     @ValueSource(strings = {"a", " ", "d"})
     void moveWrongValue(String move) {
         // then
-        assertThatThrownBy(() -> validator.moveValidate(move))
+        assertThatThrownBy(() -> Validator.moveValidate(move))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(WRONG_MOVE_INPUT);
     }
@@ -58,7 +50,7 @@ public class ValidatorTest {
     @ValueSource(strings = {"R", "Q"})
     void gameCommandCorrectValue(String gameCommand) {
         // then
-        validator.gameCommandValidate(gameCommand);
+        Validator.gameCommandValidate(gameCommand);
     }
 
     @DisplayName("재시작 입력이 유효하지 않은 경우")
@@ -66,7 +58,7 @@ public class ValidatorTest {
     @ValueSource(strings = {"r", "q", "z"})
     void gameCommandWrongValue(String gameCommand) {
         // then
-        assertThatThrownBy(() -> validator.gameCommandValidate(gameCommand))
+        assertThatThrownBy(() -> Validator.gameCommandValidate(gameCommand))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(WRONG_GAME_COMMAND_INPUT);
     }
