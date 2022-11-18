@@ -22,25 +22,44 @@ public class BridgeGameAnswer {
         List<List<String>> rvalue = new ArrayList<>();
         for (int i = 0; i < history.size(); i++) {
             if (isAnswer(history.get(i), i)) {
-                rvalue.add(getCollectMessage(bridgeAnswer.get(i)));
+                rvalue.add(getCollectMessage(bridgeAnswer.get(i), isLastIndex(history, i)));
                 continue;
             }
-            rvalue.add(getWrongMessage(bridgeAnswer.get(i)));
+            rvalue.add(getWrongMessage(bridgeAnswer.get(i), isLastIndex(history, i)));
         }
         return rvalue;
     }
 
-    private List<String> getCollectMessage(String answer) {
+    private List<String> getCollectMessage(String answer, boolean isLast) {
         if (answer == "U") {
-            return List.of(" O ", "   ");
+            if (isLast) {
+                return List.of(" O ", "   ");
+            }
+            return List.of(" O |", "   |");
         }
-        return List.of("   ", " O ");
+        if (isLast) {
+            return List.of("   ", " O ");
+        }
+        return List.of("   |", " O |");
     }
 
-    private List<String> getWrongMessage(String answer) {
+    private List<String> getWrongMessage(String answer, boolean isLast) {
         if (answer == "U") {
-            return List.of(" X ", "   ");
+            if (isLast) {
+                return List.of(" X ", "   ");
+            }
+            return List.of(" X |", "   |");
         }
-        return List.of("   ", " X ");
+        if (isLast) {
+            return List.of("   ", " X ");
+        }
+        return List.of("   |", " X |");
+    }
+
+    private boolean isLastIndex(List<String> history, int index) {
+        if (history.size() == index) {
+            return true;
+        }
+        return false;
     }
 }
