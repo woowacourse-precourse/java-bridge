@@ -21,10 +21,12 @@ public class BridgeMaker {
 
     public List<String> makeBridge(int size) {
         List<String> crossable = new ArrayList<>();
+        int addNumber;
         for (int index = 0; index < size; index++) {
-            if (bridgeNumberGenerator.generate() == 0) {
+            addNumber = bridgeNumberGenerator.generate();
+            if (addNumber == 0) {
                 crossable.add("D");
-            } else if (bridgeNumberGenerator.generate() == 0) {
+            } else if (addNumber == 1) {
                 crossable.add("U");
             }
         }
@@ -52,7 +54,7 @@ public class BridgeMaker {
             mapLower.add(" O ");
         }
         if (!isCorrect) {
-            mapUpper.add("  ");
+            mapUpper.add("   ");
             mapLower.add(" X ");
         }
     }
@@ -64,7 +66,7 @@ public class BridgeMaker {
         }
         if (!isCorrect) {
             mapUpper.add(" X ");
-            mapLower.add("  ");
+            mapLower.add("   ");
         }
     }
 
