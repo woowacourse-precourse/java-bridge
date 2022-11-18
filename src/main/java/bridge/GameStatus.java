@@ -19,5 +19,8 @@ public class GameStatus {
     public int getFlag() {
         return flag;
     }
-    
+
+    public String getGameHistory() {
+        return gameHistory;
+    }
 }
