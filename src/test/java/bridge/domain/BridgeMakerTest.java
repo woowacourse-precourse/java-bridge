@@ -1,0 +1,21 @@
+package bridge.domain;
+
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+public class BridgeMakerTest {
+    BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+
+    @DisplayName("숫자가 아닌 input 에러 테스트")
+    @Test
+    void 숫자_아닌_경우_에러_테스트(){
+        String input = "숫자아님";
+        assertThatThrownBy(() -> bridgeMaker.getSizeInteger(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+}
