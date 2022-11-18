@@ -54,11 +54,21 @@ public class InputView {
     }
 
     private static void validateBridgeSize(String size) {
+        validateBridgeSizeInputValueFormat(size);
+
         int bridgeSize = Integer.parseInt(size);
         if (bridgeSize >= 3 && bridgeSize <= 20) {
             return;
         }
         throw new IllegalArgumentException(BRIDGE_SIZE_ERROR_MESSAGE);
+    }
+
+    private static void validateBridgeSizeInputValueFormat(String size){
+        try{
+            Integer.parseInt(size);
+        } catch (NumberFormatException e){
+            throw new IllegalArgumentException(INPUT_VALUE_FORMAT_ERROR_MESSAGE);
+        }
     }
 
     /**
