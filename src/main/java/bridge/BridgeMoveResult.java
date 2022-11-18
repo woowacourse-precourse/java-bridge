@@ -11,6 +11,8 @@ public class BridgeMoveResult {
     private static final String UP = "U";
     private static final String DOWN = "D";
     private static final String BLANK = " ";
+    private static final String MOVE = "O";
+    private static final String STOP = "X";
 
     private final List<String> upStates;
     private final List<String> downStates;
@@ -21,19 +23,28 @@ public class BridgeMoveResult {
     }
 
     /**
-     * @param moving    이동할 칸
-     * @param moveState 이동 상태 (가능:O, 불가능:X)
+     * @param moving   이동할 칸
+     * @param mobility 이동 가능성
      */
-    public void createResult(String moving, String moveState) {
+    public void createResult(String moving, Boolean mobility) {
+        String state = makeState(mobility);
+
         if (moving.equals(UP)) {
-            upStates.add(moveState);
+            upStates.add(state);
             downStates.add(BLANK);
         }
 
         if (moving.equals(DOWN)) {
-            downStates.add(moveState);
+            downStates.add(state);
             upStates.add(BLANK);
         }
+    }
+
+    private String makeState(Boolean mobility) {
+        if (mobility) {
+            return MOVE;
+        }
+        return STOP;
     }
 
     public List<String> getUpStates() {

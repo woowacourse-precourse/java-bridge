@@ -28,8 +28,8 @@ public class BridgeGameResult {
         moveResult = new BridgeMoveResult();
     }
 
-    public void makeMoveResult(String moving, String moveState) {
-        moveResult.createResult(moving, moveState);
+    public void makeMoveResult(String moving, Boolean mobility) {
+        moveResult.createResult(moving, mobility);
     }
 
     public void setSuccess() {

@@ -5,24 +5,24 @@ package bridge;
  */
 public class BridgeGame {
 
+    private final BridgeGameResult bridgeGameResult;
+
+    public BridgeGame() {
+        bridgeGameResult = new BridgeGameResult();
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      *
      * @param bridge 다리
      * @param play   이동 횟수
      * @param moving 이동할 칸
-     * @return 이동 상태, 이동한 칸을 건널 수 있다면 "O", 건널 수 없다면 "X"로 표현한다.
+     * @return
      */
     public String move(Bridge bridge, int play, String moving) {
         boolean mobility = bridge.isPossibleMoving(play, moving);
-        return createState(mobility);
-    }
-
-    private String createState(boolean mobility) {
-        if (mobility) {
-            return "O";
-        }
-        return "X";
+        bridgeGameResult.makeMoveResult(moving, mobility);
+        return " ";
     }
 
     /**
