@@ -58,6 +58,10 @@ public class BridgeGame {
         return position.isLessThanBridgeLength() && position.isNotInitializedValue();
     }
 
+    public int getPosition() {
+        return position.getPosition();
+    }
+
     public String printGameResult() {
         return MessageFormat.format(ViewMessage.OUTPUT_PRINT_FINAL_MAP.getValue(), this, result);
     }
