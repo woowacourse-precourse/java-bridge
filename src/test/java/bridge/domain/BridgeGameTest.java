@@ -4,6 +4,7 @@ import static bridge.Constants.COMPLETE;
 import static bridge.Constants.FAIL;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -41,8 +42,18 @@ class BridgeGameTest {
     void moveTest3() {
         BridgeGame bridgeGame = new BridgeGame(List.of("U"));
         bridgeGame.move("U");
-        assertThat(bridgeGame.getUpBridge()).isEqualTo(List.of(" O "));
-        assertThat(bridgeGame.getDownBridge()).isEqualTo(List.of("   "));
+        try {
+            Field field1 = bridgeGame.getClass().getDeclaredField("upBridge");
+            field1.setAccessible(true);
+            Field field2 = bridgeGame.getClass().getDeclaredField("downBridge");
+            field2.setAccessible(true);
+            List<String> value1 = (List<String>) field1.get(bridgeGame);
+            List<String> value2 = (List<String>) field2.get(bridgeGame);
+            assertThat(value1).isEqualTo(List.of(" O "));
+            assertThat(value2).isEqualTo(List.of("   "));
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 
     @DisplayName("bridge 가 U 일때 다른 position 으로 이동하면 upBridge 에 '   ', downBridge 에 ' X ' 를 저장한다.")
@@ -50,8 +61,18 @@ class BridgeGameTest {
     void moveTest4() {
         BridgeGame bridgeGame = new BridgeGame(List.of("U"));
         bridgeGame.move("D");
-        assertThat(bridgeGame.getUpBridge()).isEqualTo(List.of("   "));
-        assertThat(bridgeGame.getDownBridge()).isEqualTo(List.of(" X "));
+        try {
+            Field field1 = bridgeGame.getClass().getDeclaredField("upBridge");
+            field1.setAccessible(true);
+            Field field2 = bridgeGame.getClass().getDeclaredField("downBridge");
+            field2.setAccessible(true);
+            List<String> value1 = (List<String>) field1.get(bridgeGame);
+            List<String> value2 = (List<String>) field2.get(bridgeGame);
+            assertThat(value1).isEqualTo(List.of("   "));
+            assertThat(value2).isEqualTo(List.of(" X "));
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 
     @DisplayName("bridge 가 D 일때 같은 position 으로 이동하면 upBridge 에 '   ', downBridge 에 ' O ' 를 저장한다.")
@@ -59,8 +80,18 @@ class BridgeGameTest {
     void moveTest5() {
         BridgeGame bridgeGame = new BridgeGame(List.of("D"));
         bridgeGame.move("D");
-        assertThat(bridgeGame.getUpBridge()).isEqualTo(List.of("   "));
-        assertThat(bridgeGame.getDownBridge()).isEqualTo(List.of(" O "));
+        try {
+            Field field1 = bridgeGame.getClass().getDeclaredField("upBridge");
+            field1.setAccessible(true);
+            Field field2 = bridgeGame.getClass().getDeclaredField("downBridge");
+            field2.setAccessible(true);
+            List<String> value1 = (List<String>) field1.get(bridgeGame);
+            List<String> value2 = (List<String>) field2.get(bridgeGame);
+            assertThat(value1).isEqualTo(List.of("   "));
+            assertThat(value2).isEqualTo(List.of(" O "));
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 
     @DisplayName("bridge 가 D 일때 다른 position 으로 이동하면 upBridge 에 ' X ', downBridge 에 '   ' 를 저장한다.")
@@ -68,8 +99,18 @@ class BridgeGameTest {
     void moveTest6() {
         BridgeGame bridgeGame = new BridgeGame(List.of("D"));
         bridgeGame.move("U");
-        assertThat(bridgeGame.getUpBridge()).isEqualTo(List.of(" X "));
-        assertThat(bridgeGame.getDownBridge()).isEqualTo(List.of("   "));
+        try {
+            Field field1 = bridgeGame.getClass().getDeclaredField("upBridge");
+            field1.setAccessible(true);
+            Field field2 = bridgeGame.getClass().getDeclaredField("downBridge");
+            field2.setAccessible(true);
+            List<String> value1 = (List<String>) field1.get(bridgeGame);
+            List<String> value2 = (List<String>) field2.get(bridgeGame);
+            assertThat(value1).isEqualTo(List.of(" X "));
+            assertThat(value2).isEqualTo(List.of("   "));
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 
     @DisplayName("move()를 통해 증가한 index 값이 retry()를 통해 0으로 초기화 된다.")
@@ -78,9 +119,23 @@ class BridgeGameTest {
         bridgeGame.move("U");
         bridgeGame.move("D");
         bridgeGame.move("D");
-        assertThat(bridgeGame.getIndex()).isEqualTo(2);
+        try {
+            Field field = bridgeGame.getClass().getDeclaredField("index");
+            field.setAccessible(true);
+            int value = (int) field.get(bridgeGame);
+            assertThat(value).isEqualTo(2);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
         bridgeGame.retry();
-        assertThat(bridgeGame.getIndex()).isEqualTo(0);
+        try {
+            Field field = bridgeGame.getClass().getDeclaredField("index");
+            field.setAccessible(true);
+            int value = (int) field.get(bridgeGame);
+            assertThat(value).isEqualTo(0);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 
     @DisplayName("게임 성공시 checkCompleteOrFail()가 COMPLETE 를 반환한다.")
