@@ -1,21 +1,22 @@
 package bridge.view;
 
+import bridge.GameFlag;
 import bridge.GameStatus;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
+
 public class OutputView {
 
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    public void printResult(GameStatus gameStatus, int count) {
+        System.out.println("최종 게임 결과");
+        printMap(gameStatus);
+        System.out.println("게임 성공 여부: ");
+        System.out.println("총 시도한 횟수: " + count);
+    }
+
     public void printMap(GameStatus gameStatus) {
         String gameHistory = gameStatus.getGameHistory();
         List<String> upperLine = new ArrayList<>();
@@ -24,7 +25,7 @@ public class OutputView {
         setLines(gameHistory, upperLine, lowerLine);
         convertIfGameOver(gameStatus, upperLine, lowerLine);
 
-        String result = joinListToString(upperLine) + "\n" + joinListToString(lowerLine);
+        String result = joinListToString(upperLine) + "\n" + joinListToString(lowerLine) + "\n";
         System.out.println(result);
     }
 
@@ -48,7 +49,7 @@ public class OutputView {
     }
 
     private void convertIfGameOver(GameStatus gameStatus, List<String> upperLine, List<String> lowerLine) {
-        if (gameStatus.getFlag() == 1) {
+        if (gameStatus.getFlag() == GameFlag.FAIL) {
             convertIfNeeded(upperLine);
             convertIfNeeded(lowerLine);
         }
@@ -58,13 +59,5 @@ public class OutputView {
         if (line.get(line.size() - 1).equals("O")) {
             line.set(line.size() - 1, "X");
         }
-    }
-
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult() {
     }
 }

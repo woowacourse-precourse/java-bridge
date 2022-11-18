@@ -1,8 +1,8 @@
 package bridge;
 
 public class GameStatus {
-    private String gameHistory;
-    private int flag = -1;
+    private final String gameHistory;
+    private GameFlag flag = GameFlag.PLAYING;
 
     public GameStatus(GameUser gameUser) {
         this.gameHistory = gameUser.toString();
@@ -10,16 +10,13 @@ public class GameStatus {
 
     public void setFlag(GameUser gameUser, Bridge answerBridge) {
         if (gameUser.hasDifferentBridge(answerBridge)) {
-            flag = 1;
+            flag = GameFlag.FAIL;
             return;
-            // 0은 답을 맞춤을 의미함.
-            // -1은 맞추지도 않고 틀리지도 않은 상태.
-            // 1은 틀린 상태.
         }
-        flag = 0;
+        flag = GameFlag.CLEAR;
     }
 
-    public int getFlag() {
+    public GameFlag getFlag() {
         return flag;
     }
 
