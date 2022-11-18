@@ -6,20 +6,20 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    private static final int bridgeSizeMin = 3;
-    private static final int bridgeSizeMax = 20;
+    private static final int BRIDGE_SIZE_MIN = 3;
+    private static final int BRIDGE_SIZE_MAX = 20;
 
-    private static final String readBridgeSizeMessage = "다리의 길이를 입력해주세요.";
-    private static final String readMovingMessage = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    private static final String parseStrToIntErrorMessage = "[ERROR] 숫자를 입력해 주세요.";
-    private static final String validateBridgeSizeErrorMessage = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
-    private static final String validateMovingErrorMessage = "[ERROR] U 또는 D를 입력해야 합니다.";
+    private static final String READ_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
+    private static final String READ_MOVING_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String PARSE_STR_TO_INT_ERROR_MESSAGE = "[ERROR] 숫자를 입력해 주세요.";
+    private static final String VALIDATE_BRIDGE_SIZE_ERROR_MESSAGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+    private static final String VALIDATE_MOVING_ERROR_MESSAGE = "[ERROR] U 또는 D를 입력해야 합니다.";
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println(readBridgeSizeMessage);
+        System.out.println(READ_BRIDGE_SIZE_MESSAGE);
         try {
             return validateBridgeSize(parseStrToInt(Console.readLine()));
         } catch (IllegalArgumentException e) {
@@ -32,7 +32,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println(readMovingMessage);
+        System.out.println(READ_MOVING_MESSAGE);
         try {
             return validateMoving(Console.readLine());
         } catch (IllegalArgumentException e) {
@@ -56,7 +56,7 @@ public class InputView {
         try {
             return Integer.parseInt(str);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(parseStrToIntErrorMessage);
+            throw new IllegalArgumentException(PARSE_STR_TO_INT_ERROR_MESSAGE);
         }
     }
 
@@ -64,8 +64,8 @@ public class InputView {
      * 매개변수 size가 3 이상 20 이하가 아니면 IllegalArgumentException을 발생 시킨다.
      */
     private int validateBridgeSize(int size) {
-        if (size < bridgeSizeMin || size > bridgeSizeMax)
-            throw new IllegalArgumentException(validateBridgeSizeErrorMessage);
+        if (size < BRIDGE_SIZE_MIN || size > BRIDGE_SIZE_MAX)
+            throw new IllegalArgumentException(VALIDATE_BRIDGE_SIZE_ERROR_MESSAGE);
         return size;
     }
 
@@ -74,7 +74,7 @@ public class InputView {
      */
     private String validateMoving(String str) {
         if (!(str.equals("U") || str.equals("D")))
-            throw new IllegalArgumentException(validateMovingErrorMessage);
+            throw new IllegalArgumentException(VALIDATE_MOVING_ERROR_MESSAGE);
         return str;
     }
 }
