@@ -5,13 +5,12 @@ import static bridge.Constants.COMPLETE_OR_NOT;
 import static bridge.Constants.FINAL_MESSAGE;
 
 import bridge.domain.BridgeGame;
-import java.util.List;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    BridgeGame bridgeGame;
+    private final BridgeGame bridgeGame;
 
     public OutputView(BridgeGame bridgeGame) {
         this.bridgeGame = bridgeGame;
@@ -21,19 +20,9 @@ public class OutputView {
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      */
     public void printMap() {
-        printBridge(bridgeGame.getUpBridge());
-        printBridge(bridgeGame.getDownBridge());
-    }
-
-    private void printBridge(List<String> bridge) {
-        System.out.print("[");
-        for (int index = 0; index < bridge.size(); index++) {
-            System.out.print(bridge.get(index));
-            if (index != (bridge.size() - 1)) {
-                System.out.print("|");
-            }
+        for (String bridgeMessage : bridgeGame.makeBridgeMessage()) {
+            System.out.println(bridgeMessage);
         }
-        System.out.println("]");
     }
 
     /**

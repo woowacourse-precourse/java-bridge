@@ -3,7 +3,8 @@
   - [x] 특정 길이의 다리 생성 - BridgeMaker#makeBridge()
   - [x] 입력한 이동 위치의 성공 여부 확인, 다리 이동시 사용할 메서드, (추가) 이동 위치 및 성공 여부에 따라 리스트에 데이터를 저장한다. - BridgeGame#move()
     - [x] 이동 위치에 따라 다른 리스트에 데이터 저장하는 클래스 생성 - ListAdder, UpAdder, DownAdder
-    - [x] upBridge, downBridge 리스트를 반환하는 getter 메서드 - BridgeGame#getUpBridge(), getDownBridge()
+    - ~~[x] upBridge, downBridge 리스트를 반환하는 getter 메서드 - BridgeGame#getUpBridge(), getDownBridge()~~
+    - [x] 리스트를 활용해 출력할 메세지를 만들어 리턴 - BridgeGame#makeBridgeMessage()
   - [x] 게임을 다시 시도할 때 사용할 메서드 - BridgeGame#retry()
   - [x] 게임의 성공 여부를 확인하는 메서드 - BridgeGame#checkCompleteOrFail()
   - [x] 게임 시도 횟수를 반환하는 getter 메서드 - BridgeGame#getRetyrNumber()
@@ -11,8 +12,8 @@
   - [x] 다리 길이 입력 - InputView#readBridgeSize()
   - [x] 이동할 위치 입력 - InputView#readMoving()
   - [x] 재시도 여부 입력 - InputView#readGameCommand()
-  - [x] printBridge 를 사용해 다리 출력하기 - OutputView#printMap()
-    - [x] bridge 리스트에 저장된 데이터를 사용해 다리를 출력한다. - OutputView#printBridge()
+  - [x] BridgeGame 의 객체로부터 bridgeMessage 를 받아 다리 출력하기 - OutputView#printMap()
+    - ~~[x] bridge 리스트에 저장된 데이터를 사용해 다리를 출력한다. - OutputView#printBridge()~~
   - ~~[ ] 이동 위치, 성공 여부에 따른 위치 출력~~
   - [x] 기타 안내용 출력 메시지 (시작, 길이입력 등..) - InputView
   - [x] 최종 결과, 성공여부, 시도 횟수 출력 - OutputView#printResult(())

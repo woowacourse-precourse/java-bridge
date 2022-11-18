@@ -17,11 +17,9 @@ import java.util.Objects;
 public class BridgeGame {
     private final List<String> bridge;
     private int index = 0;
-    int retryNumber = 1;
-
-    List<String> upBridge = new ArrayList<>();
-    List<String> downBridge = new ArrayList<>();
-
+    private int retryNumber = 1;
+    private List<String> upBridge = new ArrayList<>();
+    private List<String> downBridge = new ArrayList<>();
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
@@ -74,16 +72,11 @@ public class BridgeGame {
         return FAIL;
     }
 
-    public int getIndex() {
-        return index;
-    }
-
-    public List<String> getUpBridge() {
-        return upBridge;
-    }
-
-    public List<String> getDownBridge() {
-        return downBridge;
+    public List<String> makeBridgeMessage() {
+        List<String> bridgeMessage = new ArrayList<>();
+        bridgeMessage.add("[" + String.join("|", upBridge) + "]");
+        bridgeMessage.add("[" + String.join("|", downBridge) + "]");
+        return bridgeMessage;
     }
 
     public int getRetryNumber() {
