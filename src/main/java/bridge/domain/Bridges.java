@@ -2,6 +2,7 @@ package bridge.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Bridges {
     private final List<Bridge> bridges;
@@ -16,5 +17,11 @@ public class Bridges {
 
     public boolean isGameClear() {
         return bridges.stream().allMatch(Bridge::isCrossed);
+    }
+
+    public Optional<Bridge> findByPositionToMove(int position) {
+        return bridges.stream()
+                .filter(bridge -> bridges.indexOf(bridge) == position)
+                .findAny();
     }
 }

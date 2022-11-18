@@ -9,6 +9,10 @@ public class GameState {
         playerPosition = 0;
     }
 
+    public int getPlayerPosition() {
+        return this.playerPosition;
+    }
+
     public void movePlayer() {
         this.playerPosition += 1;
     }

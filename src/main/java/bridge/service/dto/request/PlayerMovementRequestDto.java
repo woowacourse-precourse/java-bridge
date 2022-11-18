@@ -1,13 +1,13 @@
 package bridge.service.dto.request;
 
 public class PlayerMovementRequestDto {
-    private final String movingSpace;
+    private final String movePlayer;
 
-    public PlayerMovementRequestDto(String movingSpace) {
-        this.movingSpace = movingSpace;
+    public PlayerMovementRequestDto(String movePlayer) {
+        this.movePlayer = movePlayer;
     }
 
-    public String getMovingSpace() {
-        return movingSpace;
+    public String getMovePlayer() {
+        return movePlayer;
     }
 }
