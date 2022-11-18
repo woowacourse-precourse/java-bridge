@@ -20,6 +20,14 @@ class ValidatorTest extends NsTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("다리 크기가 3과 20 사이의 값이 아닌 경우에 대한 예외 처리")
+    @ValueSource(strings = {"-8", "2", "100"})
+    @ParameterizedTest
+    void bridgeSizeByWrongNumber(String input) {
+        assertThatThrownBy(() -> validator.validateBridgeSize(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
