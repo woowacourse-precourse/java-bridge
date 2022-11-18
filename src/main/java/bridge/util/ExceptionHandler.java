@@ -1,7 +1,6 @@
 package bridge.util;
 
 import bridge.model.constant.Message;
-import bridge.view.OutputView;
 
 public class ExceptionHandler {
 
