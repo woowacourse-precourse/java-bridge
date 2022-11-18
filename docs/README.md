@@ -21,19 +21,26 @@
 ## 기능 목록
 - [x] "다리 건너기 게임을 시작합니다."를 출력
 - [x] "다리의 길이를 입력해 주세요."를 출력
-- [ ] 다리의 길이를 입력(예외 사항 참고)
-- [ ] 입력받은 다리 길이만큼 다리 생성
+- [x] 다리의 길이를 입력 - InputView#readBridgeSize
+  - [x] 입력한 다리의 길이가 조건에 맞는지 검사(예외 사항 참고) - InputView#isBridgeSizeNumber
+  - [x] String to int - InputView#toInts
+- [x] 입력받은 다리 길이만큼 다리 생성 - BridgeMaker#makeBridge
 - [x] "이동할 칸을 선택해주세요. (위: U, 아레: D)"를 출력
-- [ ] 이동할 칸을 입력받고 저장
+- [x] 이동할 칸을 입력받기 - InputView#readMoving
+  - [x] 입력한 값이 U 또는 D 인지 검사 - InputView#isReadMoving
+- [x] 다리 이동에 성공했는지 검사 - BridgeGame#move
 - [ ] 시도한 횟수를 저장
-- [ ] BridgeRandomNumberGenerator 클래스를 이용하여 랜덤 값 추출(입력 받을 때마다 랜덤 값 생성)
+- [x] BridgeRandomNumberGenerator 클래스를 이용하여 랜덤 값 추출(입력 받을 때마다 랜덤 값 생성)
 - [ ] 이동한 칸에 따라 결과를 반영하여 결과를 출력
 - [x] "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"를 출력
 - [ ] 게임 재시도 여부를 입력(예외 사항 참고)
 - [ ] 최종 게임 결과를 출력(게임 결과, 게임 성공 여부, 총 시도한 횟수)
 
+- [x] "[ERROR] 3 이상 20 이하의 숫자를 입력해주세요."를 출력 - ErrorMessage#inputBridgeNumber
+- [x] "[ERROR] 위 칸은 'U', 아래 칸은 'D'를 입력해주세요."를 출력 - ErrorMessage#inputMoveBridgeError
+
 ## 예외 사항
-- [ ] 다리의 길이 입력이 숫자가 아닌 경우
-- [ ] 다리의 길이 입력이 3이상 20이하가 아닌 경우
-- [ ] 플레이어가 이동할 칸의 입력이 U 또는 D가 아닌 경우
+- [x] 다리의 길이 입력이 숫자가 아닌 경우
+- [x] 다리의 길이 입력이 3이상 20이하가 아닌 경우
+- [x] 플레이어가 이동할 칸의 입력이 U 또는 D가 아닌 경우
 - [ ] 게임 재시작 여부 입력이 R 또는 Q가 아닌 경우
