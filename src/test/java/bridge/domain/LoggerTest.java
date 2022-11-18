@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 @DisplayName("Logger 클래스")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
@@ -15,7 +15,8 @@ public class LoggerTest {
     void put_메서드에_null_이_들어오면_예외가_발생한다() {
         Logger logger = new Logger();
         try {
-            assertThrows(IllegalArgumentException.class, () -> logger.put(null, true));
+            assertThatIllegalArgumentException()
+                    .isThrownBy(() -> logger.put(null, true));
             logger.put(null, true);
         } catch (IllegalArgumentException expected) {
             assertThat(expected.getMessage()).isEqualTo("다음 위치에 null 이 들어올 수 없습니다");

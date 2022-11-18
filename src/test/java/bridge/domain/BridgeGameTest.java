@@ -11,8 +11,8 @@ import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -37,7 +37,8 @@ public class BridgeGameTest {
     @Test
     void 생성시_inputView_에_null_이_들어오면_예외_발생() {
         try {
-            assertThrows(IllegalArgumentException.class, () -> new BridgeGame(null, outputView, bridgeMaker));
+            assertThatIllegalArgumentException()
+                    .isThrownBy(() -> new BridgeGame(null, outputView, bridgeMaker));
             new BridgeGame(null, outputView, bridgeMaker);
         } catch (IllegalArgumentException expected) {
             assertThat(expected.getMessage()).isEqualTo("inputView 에는 null 이 올 수 없습니다");
@@ -47,7 +48,8 @@ public class BridgeGameTest {
     @Test
     void 생성시_outputView_에_null_이_들어오면_예외_발생() {
         try {
-            assertThrows(IllegalArgumentException.class, () -> new BridgeGame(inputView, null, bridgeMaker));
+            assertThatIllegalArgumentException()
+                    .isThrownBy(() -> new BridgeGame(inputView, null, bridgeMaker));
             new BridgeGame(inputView, null, bridgeMaker);
         } catch (IllegalArgumentException expected) {
             assertThat(expected.getMessage()).isEqualTo("outputView 에는 null 이 올 수 없습니다");
@@ -57,7 +59,8 @@ public class BridgeGameTest {
     @Test
     void 생성시_bridgeMaker_에_null_이_들어오면_예외_발생() {
         try {
-            assertThrows(IllegalArgumentException.class, () -> new BridgeGame(inputView, outputView, null));
+            assertThatIllegalArgumentException()
+                    .isThrownBy(() -> new BridgeGame(inputView, outputView, null));
             new BridgeGame(inputView, outputView, null);
         } catch (IllegalArgumentException expected) {
             assertThat(expected.getMessage()).isEqualTo("bridgeMaker 에는 null 이 올 수 없습니다");

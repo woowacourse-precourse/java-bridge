@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 @DisplayName("Position 클래스")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
@@ -25,7 +25,8 @@ public class PositionTest {
     @ValueSource(strings = {"A", " U", "D ", "한글"})
     void from_메서드는_U_D_를_제외한_입력을_받으면_IEA_예외가_발생한다(String input) {
         try {
-            assertThrows(IllegalArgumentException.class, () -> Position.from(input));
+            assertThatIllegalArgumentException()
+                    .isThrownBy(() -> Position.from(input));
             Position.from(input);
         } catch (IllegalArgumentException expected) {
             assertThat(expected.getMessage()).isEqualTo("U,D 만 입력 가능합니다");
