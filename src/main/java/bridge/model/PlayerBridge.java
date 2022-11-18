@@ -45,6 +45,11 @@ public class PlayerBridge {
         upShape.add(BLANK_SHAPE);
     }
 
+    public void initializeShape() {
+        upShape.clear();
+        downShape.clear();
+    }
+
     public List<String> getUpShape() {
         return upShape;
     }
