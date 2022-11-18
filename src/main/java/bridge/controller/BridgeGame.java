@@ -12,10 +12,18 @@ import java.util.List;
 public class BridgeGame {
     private User user;
 
+    /**
+     * 사용자가 게임을 시작할 때 랜덤한 다리를 만드는 메서드
+     * @param bridgeSize
+     */
     public void initGame(String bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         //TODO : bridgeSize 예외처리
         this.user = new User(bridgeMaker.makeBridge(Integer.parseInt(bridgeSize)));
+    }
+
+    public boolean onGame() {
+        return user.onGame();
     }
 
     /**

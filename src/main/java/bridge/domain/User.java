@@ -28,4 +28,11 @@ public class User {
     public void setUserBridge(ArrayList<String> userBridge) {
         this.userBridge = userBridge;
     }
+
+    public boolean onGame() {
+        if (this.userBridge.size() == this.bridge.size()) {
+            return false;
+        }
+        return true;
+    }
 }
