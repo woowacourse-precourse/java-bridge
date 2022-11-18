@@ -12,10 +12,10 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
-
     private static final String ERROR_MESSAGE = "[ERROR]";
     private static final String MOVE_COMMAND_ERROR_MESSAGE = "[ERROR] U,D를 입력해 주세요.";
     private static final String GAME_COMMAND_ERROR_MESSAGE = "[ERROR] R,Q를 입력해 주세요.";
+    private static final String BRIDGE_SIZE_RANGE_ERROR_MESSAGE = "ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
 
     @Test
     void 다리_생성_테스트() {
@@ -60,13 +60,13 @@ class ApplicationTest extends NsTest {
     @Test
     void 게임을_종료했을때_출력_결과_테스트() {
         assertRandomNumberInRangeTest(() -> {
-            run("3", "U", "D", "D", "Q");
+            run("3", "U", "U", "R", "U", "D", "D", "Q");
             assertThat(output()).contains(
                     "최종 게임 결과",
                     "[ O |   |   ]",
                     "[   | O | X ]",
                     "게임 성공 여부: 실패",
-                    "총 시도한 횟수: 1"
+                    "총 시도한 횟수: 2"
             );
         }, 1, 0, 1);
     }
@@ -77,6 +77,14 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             runException("a");
             assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 다리_길이_범위_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("25");
+            assertThat(output()).contains(BRIDGE_SIZE_RANGE_ERROR_MESSAGE);
         });
     }
 
