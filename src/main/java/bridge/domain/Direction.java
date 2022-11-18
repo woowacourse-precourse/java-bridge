@@ -2,16 +2,16 @@ package bridge.domain;
 
 import java.util.Arrays;
 
-public enum BridgeStatus {
+public enum Direction {
     UP(1, "U"),
     DOWN(0, "D");
 
     private final int value;
     private final String mark;
 
-    BridgeStatus(int value, String status) {
+    Direction(int value, String mark) {
         this.value = value;
-        this.mark = status;
+        this.mark = mark;
     }
 
     private int getValue() {
@@ -23,7 +23,7 @@ public enum BridgeStatus {
     }
 
     public static String findMark(int randomValue) {
-        return Arrays.stream(BridgeStatus.values())
+        return Arrays.stream(Direction.values())
                 .filter(status -> status.getValue() == randomValue)
                 .findAny()
                 .get().getMark();
