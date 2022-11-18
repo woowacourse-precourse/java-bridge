@@ -20,8 +20,10 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
+
         for (int count = 0; count < size; count++) {
             int randomNumber = bridgeNumberGenerator.generate();
+            //0 = moveCommand.DOWN, 1 = moveCommand.UP
             MoveCommand moveCommand = MoveCommand.setCommand(randomNumber);
             bridge.add(moveCommand.getCommand());
         }
