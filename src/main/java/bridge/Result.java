@@ -11,12 +11,13 @@ public class Result {
         isAnswers = new ArrayList<>();
     }
 
-    public void increaseTryCount() {
+    private void increaseTryCount() {
         tryCount++;
     }
 
     public void updateIsAnswers(boolean isAnswer) {
         isAnswers.add(isAnswer);
+        increaseTryCount();
     }
 
     public int getTryCount() {
