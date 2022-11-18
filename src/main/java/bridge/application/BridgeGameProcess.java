@@ -30,13 +30,11 @@ public class BridgeGameProcess {
                 String moving = inputView.readMoving(processHelper); // u or d 입력
 
                 // 입력이 매칭일 때
-                if (bridgeGame.move(bridge, moving, index)) {
-                    outputView.printMap(matchResult, bridgeGame.currentUserInput(), true);
-                }
                 if (!bridgeGame.move(bridge, moving, index)) {
                     outputView.printMap(matchResult, bridgeGame.currentUserInput(), false);
                     break;
                 }
+                outputView.printMap(matchResult, bridgeGame.currentUserInput(), true);
             }
             if (bridge.equals(bridgeGame.currentUserInput())) {
                 outputView.printResult(matchResult);
