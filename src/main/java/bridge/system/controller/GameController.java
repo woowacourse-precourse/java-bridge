@@ -31,7 +31,7 @@ public class GameController {
         handleGameResult(bridge, gameResult);
     }
 
-    private static void handleGameResult(Bridge bridge, GameResult gameResult) {
+    private void handleGameResult(Bridge bridge, GameResult gameResult) {
         if (bridge.size() == gameResult.getStepResults().size()) {
             handleSuccess(gameResult);
         }
@@ -40,16 +40,13 @@ public class GameController {
         }
     }
 
-    private static void handleSuccess(GameResult gameResult) {
-        System.out.println("gameResult.getTryCount() = " + gameResult.getTryCount());
-        System.out.println("성공");
-        //TODO
+    private void handleSuccess(GameResult gameResult) {
+        outputView.printResult(gameResult, true);
     }
 
-    private static void handleFailure(GameResult gameResult) {
-        System.out.println("gameResult.getTryCount() = " + gameResult.getTryCount());
-        System.out.println("중도 포기");
-        //TODO
+    private void handleFailure(GameResult gameResult) {
+        outputView.printResult(gameResult, false);
+
     }
 
     private Bridge makeBridge() {
