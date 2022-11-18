@@ -16,19 +16,26 @@ public class BridgeGame {
         this.bridge = bridge;
     }
 
+    public boolean isFail() {
+        return isFail;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String input) {
-        if (bridge.get(currentStage).equals(input))
-        {
+        if (bridge.get(currentStage).equals(input)) {
             currentStage++;
             return true;
         }
         isFail = true;
         return false;
+    }
+
+    public boolean isGameEnd() {
+        return bridge.size() == currentStage;
     }
 
     /**
@@ -51,13 +58,25 @@ public class BridgeGame {
                 str = addOorSpace(str, bridgeStatus, idx);
                 str = checkLast(str, idx);
             }
+            if (isFail) {
+                str = addXorSpace(str, bridgeStatus);
+            }
             str += "]\n";
         }
         return str;
     }
 
+    private String addXorSpace(String str, BridgeStatus bridgeStatus) {
+        if (!bridge.get(currentStage).equals(bridgeStatus.getName())) {
+            str += "X ";
+            return str;
+        }
+        str += "  ";
+        return str;
+    }
+
     private String checkLast(String str, int idx) {
-        if (idx != bridge.size() - 1) {
+        if (idx != currentStage - 1 || isFail) {
             str += "| ";
         }
         return str;
