@@ -1,10 +1,12 @@
 package bridge.domain;
 
 public class NumberOfTry {
+    public static final int FIRST_NUMBER_OF_TRY = 1;
+    
     private final int numberOfTry;
     
     public NumberOfTry() {
-        this(1);
+        this(FIRST_NUMBER_OF_TRY);
     }
     
     public NumberOfTry(final int numberOfTry) {
@@ -12,7 +14,7 @@ public class NumberOfTry {
     }
     
     public NumberOfTry increase() {
-        return new NumberOfTry(numberOfTry + 1);
+        return new NumberOfTry(numberOfTry + FIRST_NUMBER_OF_TRY);
     }
     
     public int numberOfTry() {
