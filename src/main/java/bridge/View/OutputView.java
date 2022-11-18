@@ -56,7 +56,9 @@ public class OutputView {
 
     private void printStair(List<String> bridgeStates, Player player, String stair) {
         String result;
-        result = getPassedStair(bridgeStates, player.getPassedCount(), stair);
+        int passedCount = player.getPassedCount();
+
+        result = getPassedStair(bridgeStates, passedCount, stair);
         result += getSelectResult(player, stair);
 
         System.out.printf(BRIDGE_MAP, result);
@@ -89,20 +91,22 @@ public class OutputView {
         List<String> bridgeStates = bridgeGame.getBridgeStates();
         String bridgeState = bridgeStates.get(bridgeGame.getMaxPassedCount());
 
-        if (!bridgeState.equals(stair)) {
-            return NOT_SELECTION;
+        if (bridgeGame.winGame() && bridgeState.equals(stair)) {
+            return RIGHT_SELECTION;
         }
 
-        if (bridgeGame.isPlayerDead()) {
+        if (bridgeGame.isPlayerDead() && !bridgeState.equals(stair)) {   // 옳지 않은 발판을 선택해서 죽었기 때문에 해당 위치에 X 출력
             return WRONG_SELECTION;
         }
 
-        return RIGHT_SELECTION;
+        return NOT_SELECTION;
     }
 
     private void printResultStair(BridgeGame bridgeGame, String stair) {
-        String result;
-        result = getPassedStair(bridgeGame.getBridgeStates(), bridgeGame.getMaxPassedCount(), stair);
+        List<String> bridgeStates = bridgeGame.getBridgeStates();
+        int passedCount = bridgeGame.getMaxPassedCount();
+
+        String result = getPassedStair(bridgeStates, passedCount, stair);
         result += getLastSelectResult(bridgeGame, stair);
 
         System.out.printf(BRIDGE_MAP, result);
