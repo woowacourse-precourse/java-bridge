@@ -26,9 +26,15 @@ public class InputView {
     }
 
     public String readGameCommand() {
-        String input = Console.readLine();
-        checkRestartStop(input);
-        return input;
+        while (true) {
+            try {
+                String input = Console.readLine();
+                checkRestartStop(input);
+                return input;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR]" + e.getMessage());
+            }
+        }
     }
 
     private void checkUpDown(String input) {
