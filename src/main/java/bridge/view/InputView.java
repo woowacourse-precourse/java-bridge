@@ -16,7 +16,7 @@ public class InputView {
     public InputView(Validator validator) {
         this.validator = validator;
     }
-
+    
     public String readInput() {
         return Console.readLine();
     }
@@ -25,7 +25,14 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String userInput = "";
+        String userInput = readInput();
+
+        userInput = readBridgeSizeUntilCollectFormat(userInput);
+
+        return Integer.parseInt(userInput);
+    }
+
+    public String readBridgeSizeUntilCollectFormat(String userInput) {
         while(true) {
             try {
                 userInput = readInput();
@@ -35,8 +42,9 @@ public class InputView {
                 System.out.println(e.getMessage());
             }
         }
-        return Integer.parseInt(userInput);
+        return userInput;
     }
+
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
