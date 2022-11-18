@@ -20,4 +20,11 @@ public class ErrorTest {
         assertThatThrownBy(() -> Error.validateBridgeSizeIsWrong("1"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("다리 이동이 U,D가 아닌 경우")
+    @Test
+    void validatePlayerMove() {
+        assertThatThrownBy(() -> Error.validatePlayerMove("R"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
