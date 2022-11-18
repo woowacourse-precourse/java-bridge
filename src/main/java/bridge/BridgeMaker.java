@@ -19,15 +19,15 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        return IntStream.range(1, size+1)
+        return IntStream.range(0, size)
                 .mapToObj(action -> {
                     int randomNumber = bridgeNumberGenerator.generate();
-                    return getRoute(randomNumber);
+                    return getRealBridgeByNumber(randomNumber);
                 })
                 .collect(Collectors.toList());
     }
 
-    private String getRoute(int number) {
+    private String getRealBridgeByNumber(int number) {
         if(number == 1) {
             return "U";
         }

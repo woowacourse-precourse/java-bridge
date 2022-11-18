@@ -21,8 +21,8 @@ public class BridgeGame {
     }
 
     public void create(BridgeSizeRequestDto dto) {
-        List<String> createdBridges = bridgeMaker.makeBridge(dto.getBridgeSize());
-        bridges.generate(createdBridges);
+        List<String> realBridges = bridgeMaker.makeBridge(dto.getBridgeSize());
+        bridges.generate(realBridges);
     }
 
     /**

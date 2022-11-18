@@ -2,7 +2,6 @@ package bridge.controller;
 
 import bridge.service.BridgeGame;
 import bridge.service.dto.request.BridgeSizeRequestDto;
-import bridge.service.dto.request.BridgeSpaceRequestDto;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -19,11 +18,11 @@ public class BridgeGameController {
 
     public void start() {
         outputView.printStart();
-        create();
+        createBridge();
         play();
     }
 
-    private void create() {
+    private void createBridge() {
         BridgeSizeRequestDto dto = inputView.readBridgeSize();
         bridgeGame.create(dto);
     }

@@ -1,17 +1,17 @@
 package bridge.domain;
 
 public class Bridge {
-    private String route;
+    private String position;
     private boolean crossed = false;
 
     private Bridge() {
     }
 
-    private Bridge(String route) {
-        this.route = route;
+    private Bridge(String position) {
+        this.position = position;
     }
 
-    public static Bridge create(String route) {
-        return new Bridge(route);
+    public static Bridge create(String position) {
+        return new Bridge(position);
     }
 }
