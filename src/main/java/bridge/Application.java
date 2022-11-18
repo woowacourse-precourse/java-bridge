@@ -9,12 +9,12 @@ public class Application {
         OutputView outputView = new OutputView();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
-        // 다리 길이를 입력받고 다리를 생성
-        List<String> answerBridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
-        BridgeGame bridgeGame = new BridgeGame(answerBridge);
-
-        // 게임 시작
         try {
+            // 다리 길이를 입력받고 다리를 생성
+            List<String> answerBridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+            BridgeGame bridgeGame = new BridgeGame(answerBridge);
+
+            // 게임 시작
             while (true) {
                 // TODO: while문 안 기능 분배 리팩토링
                 BridgeGameResultDto moveResult = bridgeGame.move(inputView.readMoving());
@@ -22,7 +22,7 @@ public class Application {
                 if (moveResult.getGameStatus().equals(GameStatus.FAIL)) {
                     String s = inputView.readGameCommand();
                     if (s.equals("Q")) {
-                        outputView.printResult(moveResult.getGradingBoard(),moveResult.getGameStatus());
+                        outputView.printResult(moveResult.getGradingBoard(),moveResult.getGameStatus(), moveResult.getTotalAttemptNum());
                         break;
                     }
                     if (s.equals("R")) {
@@ -30,7 +30,7 @@ public class Application {
                     }
                 }
                 if (moveResult.getGameStatus().equals(GameStatus.SUCCESS)) {
-                    outputView.printResult(moveResult.getGradingBoard(),moveResult.getGameStatus());
+                    outputView.printResult(moveResult.getGradingBoard(),moveResult.getGameStatus(), moveResult.getTotalAttemptNum());
                     break;
                 }
             }
