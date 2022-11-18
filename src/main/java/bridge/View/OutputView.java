@@ -32,7 +32,7 @@ public class OutputView {
         return RIGHT_SELECTION;
     }
 
-    private String getPassedResult(String bridgeState, String stair) {
+    private String getIsPassedStair(String bridgeState, String stair) {
         if (bridgeState.equals(stair)) {
             return RIGHT_SELECTION;
         }
@@ -41,13 +41,13 @@ public class OutputView {
     }
 
 
-    private String getPassedResultMap(List<String> bridgeStates, int passedCount, String stair) {
+    private String getPassedStair(List<String> bridgeStates, int passedCount, String stair) {
         String result = "";
 
         for (int bridgeLocation = 0; bridgeLocation < passedCount; bridgeLocation++) {
             String bridgeState = bridgeStates.get(bridgeLocation);
 
-            result += getPassedResult(bridgeState, stair);
+            result += getIsPassedStair(bridgeState, stair);
             result += SEPARATOR;
         }
 
@@ -56,7 +56,7 @@ public class OutputView {
 
     private void printStair(List<String> bridgeStates, Player player, String stair) {
         String result;
-        result = getPassedResultMap(bridgeStates, player.getPassedCount(), stair);
+        result = getPassedStair(bridgeStates, player.getPassedCount(), stair);
         result += getSelectResult(player, stair);
 
         System.out.printf(BRIDGE_MAP, result);
@@ -102,7 +102,7 @@ public class OutputView {
 
     private void printResultStair(BridgeGame bridgeGame, String stair) {
         String result;
-        result = getPassedResultMap(bridgeGame.getBridgeStates(), bridgeGame.getMaxPassedCount(), stair);
+        result = getPassedStair(bridgeGame.getBridgeStates(), bridgeGame.getMaxPassedCount(), stair);
         result += getLastSelectResult(bridgeGame, stair);
 
         System.out.printf(BRIDGE_MAP, result);
