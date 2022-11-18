@@ -16,11 +16,4 @@ class BridgeMakerTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("다리 사이즈와 다른 크기의 값이 입력된 경우")
-    @Test
-    void createBridgeByWrongSize(){
-        BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(1, 0, 1));
-        assertThatThrownBy(() -> new BridgeMaker(numberGenerator).makeBridge(2))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
 }
