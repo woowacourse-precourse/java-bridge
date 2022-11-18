@@ -56,6 +56,7 @@ public class MapMaker {
             bottomBridge.append(INCORRECT);
         }
     }
+
     public List<String> makeMap(){
         return List.of(MAP_PREFIX + topBridge + MAP_SUFFIX
                 , MAP_PREFIX + bottomBridge + MAP_SUFFIX);

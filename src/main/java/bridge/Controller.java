@@ -38,11 +38,10 @@ public class Controller {
 
     // TODO: 다리를 이동하며 게임을 진행한다.
     public void movingBridge(){
-        while (true){
-            count ++;
+        do {
+            count++;
             bridgeGameSet();
-            if(!bridgeMoveRoutine()) break;
-        }
+        } while (bridgeMoveRoutine());
     }
 
     // TODO: 다리 이동 루틴을 구현한다.
