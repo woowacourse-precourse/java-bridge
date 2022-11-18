@@ -1,4 +1,4 @@
-package bridge;// @ author ninaaano
+package bridge.exception;// @ author ninaaano
 
 public class Exception {
 
