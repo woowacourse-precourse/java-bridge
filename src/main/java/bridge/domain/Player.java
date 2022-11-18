@@ -31,7 +31,7 @@ public class Player {
     }
 
     public boolean isCurrentPosition(int position) {
-        return positionIndex == position - 1;
+        return positionIndex == position;
     }
 
     public boolean isPassedPosition(int position) {
