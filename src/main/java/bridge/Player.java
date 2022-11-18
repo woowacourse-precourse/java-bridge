@@ -14,6 +14,7 @@ public class Player {
 
     //객체가 행동하도록 메서드 구현.
     public void retry() {
+        this.commands = new ArrayList<>();
         this.attemptCount++;
     }
 
@@ -21,6 +22,8 @@ public class Player {
         this.commands.add(command);
     }
 
-
+    public int checkCurrentLevel() {
+        return this.commands.size();
+    }
 
 }
