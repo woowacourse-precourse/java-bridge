@@ -3,6 +3,16 @@ package bridge;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
+ * 패키지 변경 가능
+ * 인자 변경 가능
+ * 반환 타입 변경 가능
+ * 메서드 명 변경 가능
+ * 메서드 추가 가능
+ * 여기서만 입력 가능
+ * BridgeGame 클래스에서 사용 불가
+ */
+
+/**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
@@ -13,7 +23,7 @@ public class InputView {
     public int readBridgeSize() {
         String size = Console.readLine();
         String sizeRegex = "^([3-9]{1})$|^(1[0-9]{1})$|^20$";
-        if(!size.matches(sizeRegex)) {
+        if (!size.matches(sizeRegex)) {
             throw new IllegalArgumentException("[ERROR] 3이상 20이하의 숫자를 입력해 주세요");
         }
         return Integer.parseInt(size);
