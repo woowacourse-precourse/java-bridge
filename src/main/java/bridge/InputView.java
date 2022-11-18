@@ -73,7 +73,12 @@ public class InputView {
         } // end while
     }
 
-
+    public boolean isRetry(String retry){
+        if(retry.equals("R") || retry.equals("Q"))
+            return true;
+        ErrorMessage.inputRetryError();
+        return false;
+    }
 
     public String readValue() {
         String value = Console.readLine();
