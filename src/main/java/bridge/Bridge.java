@@ -23,23 +23,23 @@ public class Bridge {
 
     private void caseWhenUserInputIsU(String userInput, int idx) {
         if (userInput == "U" && bridge.get(idx) == "U") {
-            bridgeShape.get(0).add(" O ");
-            bridgeShape.get(1).add("   ");
+            bridgeShape.get(0).add("O");
+            bridgeShape.get(1).add(" ");
         }
         if (userInput == "U" && bridge.get(idx) == "D") {
-            bridgeShape.get(0).add(" X ");
-            bridgeShape.get(1).add("   ");
+            bridgeShape.get(0).add("X");
+            bridgeShape.get(1).add(" ");
         }
     }
 
     private void caseWhenUserInputIsD(String userInput, int idx) {
         if (userInput == "D" && bridge.get(idx) == "U") {
-            bridgeShape.get(1).add(" X ");
-            bridgeShape.get(0).add("   ");
+            bridgeShape.get(1).add("X");
+            bridgeShape.get(0).add(" ");
         }
         if (userInput == "D" && bridge.get(idx) == "D") {
-            bridgeShape.get(1).add(" O ");
-            bridgeShape.get(0).add("   ");
+            bridgeShape.get(1).add("O");
+            bridgeShape.get(0).add(" ");
         }
     }
 

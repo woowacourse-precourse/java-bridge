@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.io.InputStream;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -57,8 +58,8 @@ public class bridgeTest {
             bridge.generateShape("D", 1);
             bridge.generateShape("U", 2);
             bridge.generateShape("D", 3);
-            assertThat(bridge.getBridgeUpperSide().contains("[ O ,   , O ,   ]"));
-            assertThat(bridge.getBridgeUpperSide().contains("[   , O ,   , O ]"));
+            assertThat(bridge.getBridgeUpperSide().contains("[O, ,O, ]"));
+            assertThat(bridge.getBridgeUpperSide().contains("[ ,O, ,O]"));
             System.out.println(bridge.getBridgeUpperSide());
             System.out.println(bridge.getBridgeDownSide());
         }
@@ -69,8 +70,8 @@ public class bridgeTest {
             bridge.generateShape("U", 1);
             bridge.generateShape("D", 2);
             bridge.generateShape("D", 3);
-            assertThat(bridge.getBridgeUpperSide().contains("[ O , X ,   ,   ]"));
-            assertThat(bridge.getBridgeUpperSide().contains("[   ,   , X , O ]"));
+            assertThat(bridge.getBridgeUpperSide().contains("[O,X, , ]"));
+            assertThat(bridge.getBridgeUpperSide().contains("[ , ,X,O]"));
             System.out.println(bridge.getBridgeUpperSide());
             System.out.println(bridge.getBridgeDownSide());
         }
@@ -99,6 +100,26 @@ public class bridgeTest {
                 inputView.convertStringToInt("itCanNotBeConvertedToInt");
             }).isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("[ERROR] 숫자만 입력해주세요.");
+        }
+    }
+
+    @Nested
+    class OutputViewTest {
+        OutputView outputView;
+        Bridge bridge;
+        @BeforeEach
+        void setUp() {
+            this.outputView = new OutputView();
+            List<String> testBridge = List.of("U", "D", "U", "D");
+            this.bridge = new Bridge(testBridge);
+            bridge.generateShape("U", 0);
+            bridge.generateShape("D", 1);
+            bridge.generateShape("U", 2);
+            bridge.generateShape("D", 3);
+        }
+        @Test
+        void printMapTest() {
+            outputView.printMap(bridge);
         }
     }
 }
