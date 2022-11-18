@@ -3,6 +3,7 @@ package bridge;
 import java.util.List;
 
 public class Application {
+    private static int currentPosition = 0;
     public static void main(String[] args) {
         try {
             OutputView outputView = new OutputView();
@@ -21,8 +22,27 @@ public class Application {
             List<List<String>> bridgeMap = bridgeGame.getBridgeMap();
             System.out.println("bridgeMap = " + bridgeMap);
 
+            while (true) {
+                if (play(bridgeSize, bridgeGame, inputView, outputView)) {
+                    break;
+                }
+                if (inputView.readGameCommand().equals("Q")) {
+                    break;
+                }
+                bridgeGame.retry();
+            }
+            //outputView.printResult(currentPosition+1, bridgeGame);
+
         } catch (IllegalArgumentException e) {
             System.out.println(e);
         }
+    }
+
+    public static boolean play(int bridgeSize, BridgeGame bridgeGame, InputView inputView, OutputView outputView) {
+        currentPosition = 0;
+        for (; currentPosition < bridgeSize; currentPosition++) {
+            
+        }
+        return true;
     }
 }
