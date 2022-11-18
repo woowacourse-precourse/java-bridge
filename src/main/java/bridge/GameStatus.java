@@ -7,4 +7,17 @@ public class GameStatus {
     public GameStatus(GameUser gameUser) {
         this.gameHistory = gameUser.toString();
     }
+
+    public void setFlag(GameUser gameUser, Bridge answerBridge) {
+        if (gameUser.hasSameBridge(answerBridge)) {
+            flag = 0;
+            return;
+        }
+        flag = 1;
+    }
+
+    public int getFlag() {
+        return flag;
+    }
+    
 }
