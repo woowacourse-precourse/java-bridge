@@ -33,7 +33,11 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public String readGameCommand() throws IllegalArgumentException {
+        String input = readLine();
+        if (!input.equals("R") && !input.equals("Q")) {
+            throw new IllegalArgumentException("[ERROR] <임시 에러 메시지>");
+        }
+        return input;
     }
 }
