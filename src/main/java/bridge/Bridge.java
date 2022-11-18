@@ -1,11 +1,11 @@
 package bridge;
 
 public enum Bridge {
-    AVAILABLE("O"),
-    UNAVAILABLE("X"),
+    AVAILABLE(" O "),
+    UNAVAILABLE(" X "),
     START("["),
     END("]"),
-    BLANK(" "),
+    BLANK("   "),
     DIVISION("|"),
     ;
 

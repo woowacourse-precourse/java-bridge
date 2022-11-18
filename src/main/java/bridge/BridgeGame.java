@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private final List<String> bridge;
+    public final List<String> bridge;
     private static int trying = 1;
 
     public BridgeGame(int size) {

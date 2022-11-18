@@ -23,5 +23,7 @@ public class Application {
 
     private static void moveAndPrint(int position) {
         String moving = input.readMoving();
+        boolean available = bridgeGame.isAvailable(moving, position);
+        output.printMap(position, available, bridgeGame.bridge);
     }
 }
