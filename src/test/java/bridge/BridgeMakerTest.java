@@ -16,7 +16,6 @@ class BridgeMakerTest {
     private static final String DOWN = "D";
     private static final String UP = "U";
 
-
     BridgeMaker bridgeMaker;
     BridgeNumberGenerator bridgeNumberGenerator;
     int size;
@@ -50,6 +49,17 @@ class BridgeMakerTest {
         assertThat(output).hasSize(size)
                 .contains(UP)
                 .doesNotContain(DOWN);
+    }
+
+    @DisplayName("다리 길이 성공 테스트")
+    @ValueSource(ints = {3,4, 10, 15, 20})
+    @ParameterizedTest
+    void validSizeTest(int input) {
+        bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+
+        List<String> output = bridgeMaker.makeBridge(input);
+        assertThat(output).hasSize(input);
     }
 
     @DisplayName("다리 길이 예외 테스트")
