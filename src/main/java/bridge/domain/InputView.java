@@ -5,6 +5,7 @@ import static bridge.common.message.ExceptionMessage.BRIDGE_LENGTH_INCORRECT_CHA
 import static bridge.common.message.ExceptionMessage.ERROR_CODE;
 
 import bridge.common.message.ExceptionMessage;
+import bridge.domain.exception.BridgeSizeException;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -20,10 +21,11 @@ public class InputView {
             try {
                 String str = Console.readLine();
                 if (processHelper.canItChangeBridgeSize(str)) {
-                    throw new IllegalArgumentException(ERROR_CODE + BRIDGE_LENGTH_INCORRECT_CHARACTER_MESSAGE);
+                    throw new BridgeSizeException(ERROR_CODE + BRIDGE_LENGTH_INCORRECT_CHARACTER_MESSAGE);
                 }
                 return Integer.parseInt(str);
             } catch (IllegalArgumentException e) {
+                System.out.println(e.toString());
             }
         }
     }
