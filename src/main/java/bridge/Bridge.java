@@ -13,79 +13,104 @@ public class Bridge {
 
     public boolean checkSuccess(Bridge bridge) {
         int size = getSize();
-
         if (size != bridge.getSize()) {
             return false;
         }
 
         for (int i = 0; i < size; i++) {
-            String userState = bridge.getState(i);
-            boolean isEqual = compareState(i, userState);
-
-            if (!isEqual) {
+            if (!compareState(i, bridge)) {
                 return false;
             }
         }
         return true;
     }
 
-    private boolean compareState(int index, String state) {
+    private boolean compareState(int index, Bridge bridge) {
+        String userState = bridge.getState(index);
         String rightState = getState(index);
-        if (rightState.equals(state)) {
+        if (rightState.equals(userState)) {
             return true;
         }
         return false;
     }
 
-    public String getMap(Bridge bridge) {
+    public String getMapToString(Bridge bridge) {
         String map = getUpMap(bridge);
         map += GameMessage.LINE_BREAK;
         map += getDownMap(bridge);
         map += GameMessage.LINE_BREAK;
+
         return map;
     }
 
     private String getUpMap(Bridge bridge) {
-        List<String> upBridge = BridgeValue.getLeftSide();
-        upBridge = getUpStates(bridge, upBridge);
+        List<String> upBridge = new ArrayList<>();
+        upBridge.add(BridgeValue.getNothing());
 
-        return upBridge.toString();
+        String up = getUpMoves(bridge, upBridge);
+        String answer = up.replaceAll(BridgeValue.getComma(),BridgeValue.getNothing());
+        return answer;
     }
 
     private String getDownMap(Bridge bridge) {
-        List<String> downBridge = BridgeValue.getLeftSide();
-        downBridge = getDownStates(bridge, downBridge);
+        List<String> downBridge = new ArrayList<>();
+        downBridge.add(BridgeValue.getNothing());
 
+        String down = getDownMoves(bridge, downBridge);
+        String answer = down.replaceAll(BridgeValue.getComma(),BridgeValue.getNothing());
+        return answer;
+    }
+
+    private String getUpMoves(Bridge bridge, List<String> upBridge) {
+        int size = bridge.getSize();
+
+        for (int i = 0; i < size; i++) {
+            upBridge = getUpMove(bridge, upBridge, i);
+        }
+        return upBridge.toString();
+    }
+
+    private String getDownMoves(Bridge bridge, List<String> downBridge) {
+        int size = bridge.getSize();
+
+        for (int i = 0; i < size; i++) {
+            downBridge = getDownMove(bridge, downBridge, i);
+        }
         return downBridge.toString();
     }
 
-    private List<String> getUpStates(Bridge bridge, List<String> upBridge) {
-        int size = bridge.getSize();
-        for (int i = 0; i < size; i++) {
-            String rightState = states.get(i);
-            String userState = bridge.getState(i);
-            String state = BridgeValue.getUpState(rightState, userState);
-            String divisionOrBracket = BridgeValue.getDivisionOrBracket(size-1, i);
-            upBridge.add(state);
-            upBridge.add(divisionOrBracket);
-        }
+    private List<String> getUpMove(Bridge bridge, List<String> upBridge, int bridgeIndex) {
+        String rightState = getState(bridgeIndex);
+        String userState = bridge.getState(bridgeIndex);
+        String move = BridgeValue.getMoveState(rightState, userState);
+        String divisionOrNot = BridgeValue.getDivisionOrBracket(bridge.getSize() - 1, bridgeIndex);
 
+        if (BridgeValue.checkUpState(userState)) {
+            upBridge = updateMove(upBridge, move, divisionOrNot);
+            return upBridge;
+        }
+        upBridge = updateMove(upBridge, BridgeValue.getSpace(), divisionOrNot);
         return upBridge;
     }
 
+    private List<String> getDownMove(Bridge bridge, List<String> downBridge, int bridgeIndex) {
+        String rightState = getState(bridgeIndex);
+        String userState = bridge.getState(bridgeIndex);
+        String move = BridgeValue.getMoveState(rightState, userState);
+        String divisionOrNot = BridgeValue.getDivisionOrBracket(bridge.getSize() - 1, bridgeIndex);
 
-    private List<String> getDownStates(Bridge bridge, List<String> downBridge) {
-        int size = bridge.getSize();
-        for (int i = 0; i < size; i++) {
-            String rightState = states.get(i);
-            String userState = bridge.getState(i);
-            String state = BridgeValue.getDownState(rightState, userState);
-            String divisionOrBracket = BridgeValue.getDivisionOrBracket(size-1, i);
-            downBridge.add(state);
-            downBridge.add(divisionOrBracket);
+        if (BridgeValue.checkUpState(userState)) {
+            downBridge = updateMove(downBridge, BridgeValue.getSpace(), divisionOrNot);
+            return downBridge;
         }
-
+        downBridge = updateMove(downBridge, move, divisionOrNot);
         return downBridge;
+    }
+
+    private List<String> updateMove(List<String> moves, String move, String divisionOrNot) {
+        moves.add(move);
+        moves.add(divisionOrNot);
+        return moves;
     }
 
     public void addState(String state) {
@@ -95,6 +120,10 @@ public class Bridge {
     public void removeState() {
         int lastIndex = getSize() - 1;
         states.remove(lastIndex);
+    }
+
+    private List<String> getStates() {
+        return states;
     }
 
     private String getState(int index) {

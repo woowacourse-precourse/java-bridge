@@ -1,7 +1,9 @@
 package bridge;
 
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class BridgeValue {
 
@@ -9,31 +11,22 @@ public class BridgeValue {
 
     public static String getDivisionOrBracket(int size, int index) {
         if (size == index) {
-            return getRightSide();
+            return getNothing();
         }
         return getDivision();
     }
-
-    public static String getUpState(String rightState, String userState) {
+    public static String getMoveState(String rightState, String userState) {
         if (rightState.equals(userState)) {
-            String upState = getUp();
-            if (upState.equals(userState)) {
-                return getMoveAble();
-            }
-            return getNothing();
+            return getMoveAble();
         }
         return getMoveUnable();
     }
 
-    public static String getDownState(String rightState, String userState) {
-        if (rightState.equals(userState)) {
-            String downState = getDown();
-            if (downState.equals(userState)) {
-                return getMoveAble();
-            }
-            return getNothing();
+    public static boolean checkUpState(String state) {
+        if (state.equals(getUp())) {
+            return true;
         }
-        return getMoveUnable();
+        return false;
     }
 
     public static String getDivision() {
@@ -48,6 +41,18 @@ public class BridgeValue {
                 .getStructure();
     }
 
+    public static String getSpace() {
+        return Drawing
+                .SPACE
+                .getStructure();
+    }
+
+    public static String getComma() {
+        return Drawing
+                .COMMA
+                .getStructure();
+    }
+
     public static String getMoveAble() {
         return Drawing
                 .MOVE_ABLE_VALUE
@@ -57,22 +62,6 @@ public class BridgeValue {
     public static String getMoveUnable() {
         return Drawing
                 .MOVE_UNABLE_VALUE
-                .getStructure();
-    }
-
-    public static List<String> getLeftSide() {
-        List<String> bridgeMap = new ArrayList<>();
-        String leftSide = Drawing
-                .LEFT_SIDE
-                .getStructure();
-
-        bridgeMap.add(leftSide);
-        return bridgeMap;
-    }
-
-    public static String getRightSide() {
-        return Drawing
-                .RIGHT_SIDE
                 .getStructure();
     }
 
@@ -114,12 +103,12 @@ public class BridgeValue {
     }
 
     public enum Drawing {
-        LEFT_SIDE("[ "),
-        RIGHT_SIDE("]"),
-        DIVISION("| "),
-        MOVE_ABLE_VALUE("O "),
-        MOVE_UNABLE_VALUE("X "),
-        NOTHING("  ");
+        DIVISION("|"),
+        MOVE_ABLE_VALUE("O"),
+        MOVE_UNABLE_VALUE("X"),
+        COMMA(","),
+        SPACE(" "),
+        NOTHING("");
 
         private final String structure;
 
