@@ -22,7 +22,8 @@
 - [ ] 다리 생성 - BridgeMaker#makeBridge()
     - [X] 다리 길이 유효성 검증 및 예외처리 - BridgeMaker#validateBrideSize()
     - [ ] 0 또는 1 중 무작위 값 생성 - BridgeMaker#BridgeNumberGenerator#generate()
-    - [ ] 무작위 값(0 또는 1)에 대해 각각 아래 칸(D), 위 칸(U)으로 변환
+    - [X] 무작위 값(0 또는 1)에 대해 각각 아래 칸(D), 위 칸(U)으로 변환 - BridgeMaker#convertBridgeRandomNumberToUpDownMark()
+    - [ ] 생성된 다리에 각 지점 별로 이동할 수 있는 칸 배치 - BridgeMaker#addBridgeArrow()
 ***
 - [ ] 다리 건너기 - BridgeGame#move()
     - [ ] 몇 라운드인지 계산

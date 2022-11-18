@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.domain.Constants.*;
@@ -21,12 +22,20 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         validateBrideSize(size);
+        List<String> bridge = new ArrayList<>();
         return null;
     }
 
     private void validateBrideSize(int size) {
-        if (size < BRIDGE_SIZE_LOWER_INCLUSIVE || size > BRIDGE_SIZE_LOWER_INCLUSIVE) {
+        if (size < BRIDGE_SIZE_LOWER_INCLUSIVE || size > BRIDGE_SIZE_UPPER_INCLUSIVE) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private String convertBridgeRandomNumberToUpDownMark(int bridgeRandomNumber) {
+        if (bridgeRandomNumber == BRIDGE_DOWN_NUMBER) {
+            return DOWN;
+        }
+        return UP;
     }
 }
