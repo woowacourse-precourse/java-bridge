@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,5 +20,33 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         return null;
+    }
+
+    public String convertToShape(int randomNumber) {
+        if (randomNumber == NumberToShape.UP.getNumber()) {
+            return NumberToShape.UP.getShape();
+        }
+        return NumberToShape.DOWN.getShape();
+    }
+}
+
+enum NumberToShape {
+    UP(1, "U"),
+    DOWN(0, "D");
+
+    private int randomNumber;
+    private String bridgeShape;
+
+    NumberToShape(int randomNumber, String bridgeShape) {
+        this.randomNumber = randomNumber;
+        this.bridgeShape = bridgeShape;
+    }
+
+    public String getShape () {
+        return bridgeShape;
+    }
+
+    public int getNumber() {
+        return randomNumber;
     }
 }
