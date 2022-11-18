@@ -42,4 +42,16 @@ public class Map {
         this.upper.clear();
         this.lower.clear();
     }
+
+    public List<String> getPrintableMap(){
+        List<String> printableMaps = new ArrayList<>(2);
+
+        String printableUpper = this.upper.toString().replaceAll(",", "|");
+        String printableLower = this.lower.toString().replaceAll(",", "|");
+
+        printableMaps.add(printableUpper);
+        printableMaps.add(printableLower);
+
+        return printableMaps;
+    }
 }
