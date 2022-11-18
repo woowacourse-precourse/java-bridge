@@ -18,12 +18,25 @@ public class InputView {
     //숫자 검증
     public int numberValidate(String input) {
         try {
-            return (Integer.parseInt(input));
+            return negativeValidate(Integer.parseInt(input));
         } catch (NumberFormatException e) {
             System.out.println(e.getMessage());
             System.out.println("[ERROR] 숫자가 아닙니다.");
             return readBridgeSize();
         }
+    }
+
+    //0 이상 검증
+    public int negativeValidate(int input) {
+        try {
+            if (input <= 0) {
+                throw new IllegalArgumentException("[ERROR] 0 이상의 숫자를 입력해주세요.");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readBridgeSize();
+        }
+        return input;
     }
 
     /**
