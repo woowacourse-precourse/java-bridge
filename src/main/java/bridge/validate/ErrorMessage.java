@@ -2,11 +2,11 @@ package bridge.validate;
 
 public enum ErrorMessage {
     ERROR("[ERROR] "),
-    INPUT_NOT_A_NUMBER("입력값이 숫자가 아닙니다."),
-    NUMBER_OUT_OF_RANGE("올바르지 않은 범위의 숫자입니다."),
-    PROPER_BRIDGE_LENGTH("( 다리 길이는 3이상 20이하 )"),
-    NOT_PROPER_MOVE("'U', 'D' 중에 입력해주세요."),
-    NOT_PROPER_GAME_COMMAND("'R', 'Q' 중에 입력해주세요.");
+    INPUT_NOT_A_NUMBER("숫자가 아닙니다. 다시 입력해 주세요."),
+    NUMBER_OUT_OF_RANGE("올바른 범위의 길이를 다시 입력해 주세요. "),
+    PROPER_BRIDGE_LENGTH("( 최소 길이 = 3 , 최대 길이 = 20 )"),
+    NOT_PROPER_MOVE("'U' 혹은 'D'로 다시 입력해주세요."),
+    NOT_PROPER_GAME_COMMAND("'R' 혹은 'Q'로 다시 입력해주세요.");
 
     public final String message;
 
