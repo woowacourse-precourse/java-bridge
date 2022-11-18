@@ -97,4 +97,8 @@ public class BridgeGame {
     public int getMaxPassedCount() {
         return this.maxPassedCount;
     }
+
+    public int getPassedCount() {
+        return player.getPassedCount();
+    }
 }
