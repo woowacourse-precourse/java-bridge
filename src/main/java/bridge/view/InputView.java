@@ -67,6 +67,15 @@ public class InputView {
     // 게임을 다시 시도할지 종료할지 여부를 입력받는 기능
     public String readGameCommand() {
         String input = Console.readLine();
+        checkEmpty(input);
+        validateRetryInput(input);
         return input;
+    }
+
+    // R키, Q키 외에 다른 키 입력받았는지 검증하는 기능
+    private void validateRetryInput(String input) {
+        if (!(input.equals(Setting.RETRY_BUTTON) || input.equals(Setting.EXIT_BUTTON))) {
+            throw new IllegalArgumentException("[ERROR] 'R'키와 'Q'키 만 입력 가능합니다.");
+        }
     }
 }
