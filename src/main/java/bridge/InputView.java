@@ -16,15 +16,15 @@ public class InputView {
         System.out.println("다리의 길이를 입력해주세요.");
         String input = Console.readLine();
 
-        if (exceptionMsg(input,"[ERROR] 3 ~ 20사이 숫자를 입력하여 주세요")){
+        if (exceptionMsg(input,"[ERROR] 3 ~ 20사이 숫자를 입력하여 주세요",1)){
             return readBridgeSize();
         }
         return Integer.parseInt(input);
     }
 
-    public boolean exceptionMsg (String input, String msg) {
+    public boolean exceptionMsg (String input, String msg, int num) {
         try {
-            Validate.checkLenInput(input);
+            Validate.check(input,num);
         } catch (IllegalArgumentException e) {
             System.out.println(msg);
             return true;
@@ -38,6 +38,9 @@ public class InputView {
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String selectedDir = Console.readLine().toUpperCase();
+        if (exceptionMsg(selectedDir,"[ERROR] 위: U, 아래: D로 입력해야 합니다.",2)){
+            return readMoving();
+        }
         return selectedDir;
     }
 

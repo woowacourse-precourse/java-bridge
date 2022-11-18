@@ -8,5 +8,7 @@ public class Application {
         InputView inputView = new InputView();
         int ladderLen = inputView.readBridgeSize();
         System.out.println("ladderLen = " + ladderLen);
+        String UD = inputView.readMoving();
+        System.out.println("UD = " + UD);
     }
 }
