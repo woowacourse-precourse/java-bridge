@@ -18,10 +18,17 @@ public class InputView {
      */
     public static int readBridgeSize() {
         OutputView.printBridgeLengthInputMessage();
-        String bridgeSize = Console.readLine();
-
-        validateNonNumeric(bridgeSize);
-        validateRange(bridgeSize);
+        String bridgeSize;
+        while(true) {
+            try {
+                bridgeSize = Console.readLine();
+                validateNonNumeric(bridgeSize);
+                validateRange(bridgeSize);
+                break;
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
         return Integer.parseInt(bridgeSize);
     }
 
@@ -30,9 +37,16 @@ public class InputView {
      */
     public static String readMoving() {
         OutputView.printSelectToMovePlayerMessage();
-        String moveCommand = Console.readLine();
-
-        validateInvalidType(moveCommand);
+        String moveCommand;
+        while (true) {
+            try {
+                moveCommand = Console.readLine();
+                validateInvalidType(moveCommand);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         return moveCommand;
     }
 
