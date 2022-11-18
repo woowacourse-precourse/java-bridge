@@ -15,8 +15,15 @@ public class BridgeMaker {
 
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
+
+        makeBridgePath(size, bridge);
+        return Collections.unmodifiableList(bridge);
+    }
+
+    private void makeBridgePath(int size, List<String> bridge) {
         for (int i = 0; i < size; i++) {
-            int bridgeNumber = bridgeNumberGenerator.generate();
+            int bridgeNumber = bridgeNumberGenerator();
+
             if (isBridgeNumberDownSide(bridgeNumber)) {
                 addBridgeDownPath(bridge);
             }
@@ -24,26 +31,26 @@ public class BridgeMaker {
                 addBridgeUpPath(bridge);
             }
         }
-        return Collections.unmodifiableList(bridge);
     }
 
-    public boolean isBridgeNumberDownSide(int bridgeNumber){
-        return bridgeNumber == GameConstant.DOWN_SIDE.getConstant();
+    private int bridgeNumberGenerator() {
+        return bridgeNumberGenerator.generate();
     }
 
-    public boolean isBridgeNumberUpSide(int bridgeNumber){
+    public boolean isBridgeNumberUpSide(int bridgeNumber) {
         return bridgeNumber == GameConstant.UP_SIDE.getConstant();
     }
 
-    public List<String> addBridgeDownPath(List<String> bridge){
-        bridge.add(StringConstant.DOWN_SIDE.getConstant());
-        return bridge;
+    public boolean isBridgeNumberDownSide(int bridgeNumber) {
+        return bridgeNumber == GameConstant.DOWN_SIDE.getConstant();
     }
 
-    public List<String> addBridgeUpPath(List<String> bridge){
+    public void addBridgeUpPath(List<String> bridge) {
         bridge.add(StringConstant.UP_SIDE.getConstant());
-        return bridge;
     }
 
+    public void addBridgeDownPath(List<String> bridge) {
+        bridge.add(StringConstant.DOWN_SIDE.getConstant());
+    }
 
 }
