@@ -3,7 +3,6 @@ package bridge;
 import java.util.List;
 
 public class Application {
-
     public static void main(String[] args) {
         try {
             OutputView outputView = new OutputView();
@@ -17,6 +16,11 @@ public class Application {
 
             List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
             System.out.println("bridge = " + bridge);
+
+            BridgeGame bridgeGame = new BridgeGame(bridgeSize, bridge);
+            List<List<String>> bridgeMap = bridgeGame.getBridgeMap();
+            System.out.println("bridgeMap = " + bridgeMap);
+
         } catch (IllegalArgumentException e) {
             System.out.println(e);
         }
