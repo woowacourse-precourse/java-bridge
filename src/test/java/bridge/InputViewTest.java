@@ -10,7 +10,7 @@ import java.io.ByteArrayInputStream;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.*;
 
-class InputViewTest{
+class InputViewTest {
 
     private final InputView inputView;
 
@@ -28,10 +28,27 @@ class InputViewTest{
 
     @ParameterizedTest
     @ValueSource(strings = {"2", "21", "2a", ""})
-    void readBridgeSizeTest2(String line) {
+    void readBridgeSizeExceptionTest1(String line) {
         assertSimpleTest(() -> {
             command(line);
             assertThatThrownBy(inputView::readBridgeSize).isInstanceOf(IllegalArgumentException.class);
+        });
+    }
+
+    @Test
+    void readMovingTest1() {
+        assertSimpleTest(() -> {
+            command("D");
+            assertThat(inputView.readMoving()).isEqualTo("D");
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"A", "", " ", "DU", "D U", "123",})
+    void readMovingExceptionTest1(String line) {
+        assertSimpleTest(() -> {
+            command(line);
+            assertThatThrownBy(inputView::readMoving).isInstanceOf(IllegalArgumentException.class);
         });
     }
 

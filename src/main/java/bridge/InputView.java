@@ -11,21 +11,28 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() throws IllegalArgumentException{
+    public int readBridgeSize() throws IllegalArgumentException {
         try {
             String line = Console.readLine();
             int bridgeSize = Integer.parseInt(line);
             validBridgeSize(bridgeSize);
             return bridgeSize;
-        } catch (IllegalArgumentException | NoSuchElementException e){
+        } catch (IllegalArgumentException | NoSuchElementException e) {
             throw new IllegalArgumentException(e.getMessage());
         }
     }
+
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public String readMoving() throws IllegalArgumentException {
+        try {
+            String line = Console.readLine();
+            validReadMoving(line);
+            return line;
+        } catch (NoSuchElementException e){
+            throw new IllegalArgumentException(e.getMessage());
+        }
     }
 
     /**
@@ -35,9 +42,15 @@ public class InputView {
         return null;
     }
 
-    private void validBridgeSize(int bridgeSize){
-        if (bridgeSize < 3 || bridgeSize > 20){
+    private void validBridgeSize(int bridgeSize) {
+        if (bridgeSize < 3 || bridgeSize > 20) {
             throw new NoSuchElementException("3 ~ 20 사이의 값만 입력 가능합니다.");
+        }
+    }
+
+    private void validReadMoving(String line) {
+        if (!(line.equals("U") || line.equals("D"))) {
+            throw new IllegalArgumentException("U 또는 D만 입력가능합니다.");
         }
     }
 }
