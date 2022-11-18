@@ -26,12 +26,12 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for (int space = 1; space <= size; space++) {
-            makeOneSpace(bridge);
+            makeOneStairs(bridge);
         }
         return bridge;
     }
 
-    private void makeOneSpace(List<String> bridge) {
+    private void makeOneStairs(List<String> bridge) {
         int generateNum = bridgeNumberGenerator.generate();
         if (generateNum == 1) {
             bridge.add(UP_STAIRS);

@@ -11,7 +11,7 @@ public class InputView {
 
     public int readBridgeSize() {
         String usersInput = Console.readLine();
-        validateBridgeSize(usersInput);
+        validateDigit(usersInput);
         int bridgeSize = Integer.parseInt(usersInput);
         return bridgeSize;
     }
@@ -30,9 +30,9 @@ public class InputView {
         return null;
     }
 
-    public void validateBridgeSize(String input){
+    public void validateDigit(String input){
         if (!isDigit(input)) {
-            throw new IllegalArgumentException(ErrorMessage.IS_NOT_DIGIT);
+            throw new IllegalArgumentException(ErrorMessage.SHOULD_DIGIT);
         }
 
     }
