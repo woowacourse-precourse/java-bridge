@@ -1,13 +1,16 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private int userPosition;
+    private List<String> userPosition;
 
     public void resetStartPoint() {
-        userPosition = 0;
+        userPosition = new ArrayList<>();
     }
 
     /**
