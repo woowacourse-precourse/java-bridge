@@ -19,6 +19,7 @@ public class BridgeController {
     public void startMove() {
         while (true) {
             if (bridgeGame.move(inputView.readMoving()) == false) {
+                outputView.printMap(bridgeGame.getUserMoving());
                 break;
             }
             if(bridgeGame.isEndOfBridge() == true){

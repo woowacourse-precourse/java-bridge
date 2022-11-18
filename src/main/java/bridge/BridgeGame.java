@@ -35,6 +35,13 @@ public class BridgeGame {
             return true;
         }
 
+        if(moving.equals("U")) {
+            userMoving.add("UX");
+        }
+
+        if(moving.equals("D")){
+            userMoving.add("DX");
+        }
         return false;
     }
 

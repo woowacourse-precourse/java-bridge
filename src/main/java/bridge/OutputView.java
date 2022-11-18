@@ -20,6 +20,7 @@ public class OutputView {
     private final String CROSSE_BRIDGE = " O ";
     private final String SPACE = "   ";
     private final String SEPARATION = "|";
+    private final String FAIL_TO_CROSSE_BRIDGE = " X ";
 
 
     public void printStartingPhrase() {
@@ -43,7 +44,10 @@ public class OutputView {
             if (userMoving.get(bridgeIndex).equals("U")) {
                 System.out.print(CROSSE_BRIDGE);
             }
-            if (userMoving.get(bridgeIndex).equals("D")) {
+            if(userMoving.get(bridgeIndex).equals("UX") ){
+                System.out.print(FAIL_TO_CROSSE_BRIDGE);
+            }
+            if (userMoving.get(bridgeIndex).equals("D")||userMoving.get(bridgeIndex).equals("DX")) {
                 System.out.print(SPACE);
             }
             if (bridgeIndex < userMoving.size() - 1) System.out.print(SEPARATION);
@@ -57,7 +61,10 @@ public class OutputView {
             if (userMoving.get(bridgeIndex).equals("D")) {
                 System.out.print(CROSSE_BRIDGE);
             }
-            if (userMoving.get(bridgeIndex).equals("U")) {
+            if(userMoving.get(bridgeIndex).equals("DX") ){
+                System.out.print(FAIL_TO_CROSSE_BRIDGE);
+            }
+            if (userMoving.get(bridgeIndex).equals("U") || userMoving.get(bridgeIndex).equals("UX")) {
                 System.out.print(SPACE);
             }
             if (bridgeIndex < userMoving.size() - 1) System.out.print(SEPARATION);
