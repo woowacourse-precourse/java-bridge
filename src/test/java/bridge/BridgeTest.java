@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeTest {
@@ -12,7 +13,7 @@ class BridgeTest {
     @DisplayName("다리 길이가 3미만일 경우 예외가 발생하는지 테스트")
     @Test
     void validateLengthRangeByUnder3() {
-        Assertions.assertThatThrownBy(() -> {
+        assertThatThrownBy(() -> {
                       new Bridge(2);
                   })
                   .isInstanceOf(IllegalArgumentException.class)
@@ -22,6 +23,10 @@ class BridgeTest {
     @DisplayName("다리 길이가 20초과일 경우 예외가 발생하는지 테스트")
     @Test
     void validateLengthRangeByOver20() {
-
+       assertThatThrownBy(() -> {
+            new Bridge(21);
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(INVALID_LENGTH_RANGE_MESSAGE);
     }
 }
