@@ -25,12 +25,12 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
-            bridge.add(makeNextDirection(bridgeNumberGenerator.generate()));
+            bridge.add(makeAnswerDirection(bridgeNumberGenerator.generate()));
         }
         return bridge;
     }
 
-    private String makeNextDirection(int generate) {
+    private String makeAnswerDirection(int generate) {
         if (generate == 1) {
             return Direction.UP;
         }
