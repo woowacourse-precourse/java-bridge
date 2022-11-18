@@ -39,4 +39,16 @@ class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(Arrays.asList("U"));
         assertThat(bridgeGame.isEnd()).isEqualTo(false);
     }
+    @Test
+    void is_fail_test_true() {
+        BridgeGame bridgeGame = new BridgeGame(Arrays.asList("U"));
+        bridgeGame.move("D");
+        assertThat(bridgeGame.isGameFail()).isEqualTo(true);
+    }
+    @Test
+    void is_fail_test_false() {
+        BridgeGame bridgeGame = new BridgeGame(Arrays.asList("U"));
+        bridgeGame.move("U");
+        assertThat(bridgeGame.isGameFail()).isEqualTo(false);
+    }
 }
