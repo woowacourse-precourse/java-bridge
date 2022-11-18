@@ -11,6 +11,10 @@ public class Bridge {
         this.shapes = shapes;
     }
 
+    public int getSize() {
+        return shapes.size();
+    }
+
     public boolean isPossibleMoving(int play, String moving) {
         return findShape(play).equals(moving);
     }
