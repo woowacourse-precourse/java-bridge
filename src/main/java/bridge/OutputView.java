@@ -84,4 +84,8 @@ public class OutputView {
         resultMessage += "실패";
         System.out.println("게임 성공 여부: " + resultMessage);
     }
+
+    public void printTotalTry(int tryCount) {
+        System.out.println(String.format("총 시도한 횟수 : %d", tryCount));
+    }
 }
