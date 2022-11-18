@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGame {
+    private int tryCount = 1;
     private final String CORRECT = "O";
     private final String WRONG = "X";
     private final String NOTHING = " ";
@@ -28,8 +29,10 @@ public class BridgeGame {
         return false;
     }
 
-    public void retry() {
+    public int retry() {
         newBridgePattern();
+        this.tryCount += 1;
+        return tryCount;
     }
 
     private void newBridgePattern() {
