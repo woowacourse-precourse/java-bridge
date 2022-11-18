@@ -21,6 +21,14 @@ public class Result {
         resultRecord(move, resultString);
     }
 
+    public List<String> getResult() {
+        List<String> results = new ArrayList<>();
+        results.add(getResultMessage(upBridgeResult));
+        results.add(getResultMessage(downBridgeResult));
+
+        return results;
+    }
+
     private String getResultString(boolean moveSuccess) {
         if (moveSuccess) {
             return SUCCESS;
@@ -46,5 +54,9 @@ public class Result {
     private void recordDownBridge(String result) {
         downBridgeResult.add(result);
         upBridgeResult.add(NONE);
+    }
+
+    private String getResultMessage(List<String> bridgeResult) {
+        return String.join("|", bridgeResult);
     }
 }
