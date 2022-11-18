@@ -1,6 +1,5 @@
 package bridge.view;
 
-import static bridge.domain.validation.InputValidator.validateThisIsNumber;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import bridge.domain.BridgeSize;
@@ -27,10 +26,7 @@ public class InputView {
 
     private BridgeSize numberForBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
-        String inputValue = readLine();
-        validateThisIsNumber(inputValue);
-
-        return new BridgeSize(Integer.parseInt(inputValue));
+        return new BridgeSize(readLine());
     }
 
     public MoveCommands moveCommands() {

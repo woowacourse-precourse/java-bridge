@@ -2,12 +2,17 @@ package bridge.domain;
 
 public class BridgeSize {
 
-    static final String NOT_VALID_RANGE_OF_BRIDGE_SIZE = "다리의 길이는 3 이상 20 이하여야 합니다.";
+    private static final String IS_NOT_NUMBERS = "숫자만 입력해 주세요.";
+    private static final String NOT_VALID_RANGE_OF_BRIDGE_SIZE = "다리의 길이는 3 이상 20 이하여야 합니다.";
 
     private final int bridgeSize;
 
-    public BridgeSize(int bridgeSize) {
+    public BridgeSize(String inputValue) {
+        validateThisIsNumber(inputValue);
+
+        int bridgeSize = Integer.parseInt(inputValue);
         validateBridgeSize(bridgeSize);
+
         this.bridgeSize = bridgeSize;
     }
 
@@ -17,6 +22,13 @@ public class BridgeSize {
 
     public int bridgeSize() {
         return bridgeSize;
+    }
+
+    private void validateThisIsNumber(String inputValue) {
+        final String REGEX_FOR_NUMBER = "^\\d+$";
+        if (!inputValue.matches(REGEX_FOR_NUMBER)) {
+            throw new IllegalArgumentException(IS_NOT_NUMBERS);
+        }
     }
 
     private void validateBridgeSize(int size) {
