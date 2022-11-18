@@ -80,4 +80,20 @@ public class DomainTest {
         assertThat(bridgeGame.isGameOver()).isTrue();
     }
 
+    @DisplayName("이동 틀렸을 때 체크")
+    @Test
+    void MoveWrong() {
+        bridgeGame.move("D");
+        assertThat(bridgeGame.isGameOver()).isTrue();
+    }
+
+    @DisplayName("이동 맞았을 때 체크")
+    @Test
+    void MoveRight() {
+        bridgeGame.move("U");
+        assertThat(bridgeGame.isGameOver()).isFalse();
+    }
+
+
+
 }
