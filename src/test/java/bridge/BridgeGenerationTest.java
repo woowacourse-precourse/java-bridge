@@ -16,9 +16,9 @@ public class BridgeGenerationTest {
         UsersBridgeCrossStatus initialBridge = bridgeMakerImpl.makeInitialBridge();
 
         List<String> topSpace = initialBridge.getCurrentBridge().get(1);
-        assertThat(topSpace).isEqualTo(List.of("[", " ", " ", "]"));
+        assertThat(topSpace).isEqualTo(List.of("[", "]"));
         List<String> underSpace = initialBridge.getCurrentBridge().get(0);
-        assertThat(underSpace).isEqualTo(List.of("[", " ", " ", "]"));
+        assertThat(underSpace).isEqualTo(List.of("[", "]"));
     }
 
     @DisplayName("길이가 10인 새로운 answerBridge를 생성한다.")
