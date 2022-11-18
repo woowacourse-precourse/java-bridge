@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public class BridgeGame {
 
-    private List<Map<UpDown,Boolean>> gradingBoard;
+    private List<StepStatus> gradingBoard;
     private final List<String> answerBridge;
 
     public BridgeGame(List<String> answerBridge) {
@@ -26,9 +26,7 @@ public class BridgeGame {
     public BridgeGameResultDto move(String nextStep) {
         boolean isCorrect = compareNextStep(nextStep);
 
-        gradingBoard.add(new HashMap<>() {{
-            put(UpDown.valueOfLabel(nextStep),isCorrect);
-        }});
+        gradingBoard.add(new StepStatus(UpDown.valueOfLabel(nextStep),isCorrect));
         return bridgeGameResultDtoMapper(isCorrect);
     }
 

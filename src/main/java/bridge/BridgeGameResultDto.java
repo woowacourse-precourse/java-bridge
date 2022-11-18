@@ -4,15 +4,15 @@ import java.util.List;
 import java.util.Map;
 
 public class BridgeGameResultDto {
-    private List<Map<UpDown,Boolean>> gradingBoard;
+    private List<StepStatus> gradingBoard;
     private boolean isCorrect;
 
-    public BridgeGameResultDto(List<Map<UpDown, Boolean>> gradingBoard, boolean isCorrect) {
+    public BridgeGameResultDto(List<StepStatus> gradingBoard, boolean isCorrect) {
         this.gradingBoard = gradingBoard;
         this.isCorrect = isCorrect;
     }
 
-    public List<Map<UpDown, Boolean>> getGradingBoard() {
+    public List<StepStatus> getGradingBoard() {
         return gradingBoard;
     }
 
