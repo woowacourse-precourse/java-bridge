@@ -1,8 +1,11 @@
 package bridge;
 
+import bridge.system.BridgeGameApplication;
+
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        BridgeGameApplication bridgeGameApplication = new BridgeGameApplication();
+        bridgeGameApplication.execute();
     }
 }
