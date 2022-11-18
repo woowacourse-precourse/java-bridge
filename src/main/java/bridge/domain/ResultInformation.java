@@ -3,11 +3,11 @@ package bridge.domain;
 import java.util.StringJoiner;
 
 public class ResultInformation {
-    public static final int BLANK = 32;
+    private static final int BLANK = 32;
     private static final char O_FLAG = 'O';
 
-    public final char[] upBridge;
-    public final char[] downBridge;
+    private final char[] upBridge;
+    private final char[] downBridge;
     private final int bridgeLength;
     private int tryCount = 1;
 
@@ -21,15 +21,15 @@ public class ResultInformation {
         }
     }
 
-    public void updateUpBridge(Position position, char flag) {
+    void updateUpBridge(Position position, char flag) {
         upBridge[position.getPosition()] = flag;
     }
 
-    public void updateDownBridge(Position position, char flag) {
+    void updateDownBridge(Position position, char flag) {
         downBridge[position.getPosition()] = flag;
     }
 
-    public void clear() {
+    void clear() {
         for (int i = 0; i < bridgeLength; i++) {
             upBridge[i] = BLANK;
             downBridge[i] = BLANK;
@@ -37,15 +37,15 @@ public class ResultInformation {
         tryCount++;
     }
 
-    public boolean isWin() {
+    boolean isWin() {
         return upBridge[bridgeLength - 1] == O_FLAG || downBridge[bridgeLength - 1] == O_FLAG;
     }
 
-    public int getTryCount() {
+    int getTryCount() {
         return tryCount;
     }
 
-    public String toString(int tryCount) {
+    String toString(int tryCount) {
         StringJoiner upJoiner = new StringJoiner(" | ", "[ ", " ]");
         StringJoiner downJoiner = new StringJoiner(" | ", "[ ", " ]");
         for (int i = 0; i < tryCount; i++) {

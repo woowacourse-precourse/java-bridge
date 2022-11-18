@@ -4,35 +4,35 @@ public class Position {
     private int position = -1;
     private final int bridgeSize;
 
-    public Position(int size) {
+    Position(int size) {
         this.bridgeSize = size;
     }
 
-    public int getNext() {
+    int getNext() {
         return ++position;
     }
 
-    public void clear() {
+    void clear() {
         this.position = -1;
     }
 
-    public void fail() {
+    void fail() {
         this.position = -2;
     }
 
-    public int getPosition() {
+    int getPosition() {
         return position;
     }
 
-    public boolean hasReachedToTheEnd() {
+    boolean hasReachedToTheEnd() {
         return position == bridgeSize - 1;
     }
 
-    public boolean isLessThanBridgeLength() {
+    boolean isLessThanBridgeLength() {
         return position < bridgeSize - 1;
     }
 
-    public boolean isNotInitializedValue() {
+    boolean isNotInitializedValue() {
         return position != -2;
     }
 

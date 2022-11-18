@@ -17,7 +17,7 @@ public class Result {
         this.resultInformation = new ResultInformation(size);
     }
 
-    public void handleUpBridge(String input, Position position) {
+    void handleUpBridge(String input, Position position) {
         if (InputKey.matchUp(input)) {
             resultInformation.updateUpBridge(position, O_FLAG);
             return;
@@ -26,7 +26,7 @@ public class Result {
         position.fail();
     }
 
-    public void handleDownBridge(String input, Position position) {
+    void handleDownBridge(String input, Position position) {
         if (InputKey.matchDown(input)) {
             resultInformation.updateDownBridge(position, O_FLAG);
             return;
@@ -35,11 +35,11 @@ public class Result {
         position.fail();
     }
 
-    public void clear() {
+    void clear() {
         resultInformation.clear();
     }
 
-    public String printStatus(int tryCount) {
+    String printStatus(int tryCount) {
         return resultInformation.toString(tryCount);
     }
 

@@ -16,7 +16,6 @@ public class BridgeGame {
     private final Position position;
     private final Turn turn;
 
-
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         result = new Result(bridge.size());
@@ -29,7 +28,7 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String key) {
+    void move(String key) {
         turn.increase();
         String upOrDown = bridge.get(position.getNext());
         if (InputKey.matchUp(key)) {
@@ -44,21 +43,21 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    void retry() {
         result.clear();
         position.clear();
         turn.clear();
     }
 
-    public boolean isFail() {
+    boolean isFail() {
         return !position.hasReachedToTheEnd(); // 다리 끝까지 포지션이 도달하지 못했다면 실패
     }
 
-    public boolean canGoForward() {
+    boolean canGoForward() {
         return position.isLessThanBridgeLength() && position.isNotInitializedValue();
     }
 
-    public int getPosition() {
+    int getPosition() {
         return position.getPosition();
     }
 
