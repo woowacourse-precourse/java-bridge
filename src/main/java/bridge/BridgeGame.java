@@ -12,11 +12,15 @@ public class BridgeGame {
         return loggingGameResult(moving, bridge, index);
     }
 
-    public boolean isGameDone(List<String> movingResult) {
+    public boolean canMove(List<String> movingResult) {
         if (movingResult.get(0).contains("X") || movingResult.get(1).contains("X")) {
-            return true;
+            return false;
         }
-        return false;
+        return true;
+    }
+
+    public boolean isGameEnded(List<String> bridge, int index) {
+        return index == bridge.size();
     }
 
     public boolean retry(String command) {
@@ -33,7 +37,7 @@ public class BridgeGame {
         return false;
     }
 
-    public void initializeLeftRightResult() {
+    public void initializeLeftRightMovingLog() {
         this.leftResult = new StringBuilder("[");
         this.rightResult = new StringBuilder("[");
     }
