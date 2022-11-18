@@ -17,6 +17,7 @@ public class BridgeGame {
     private static final OutputView outputView = new OutputView();
     private static final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private static Bridge bridge;
+    private int recursiveCount = 1;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -48,6 +49,7 @@ public class BridgeGame {
      */
     public void retry(String gameCommand) {
         if (gameCommand.equals(RetryCode.RETRY.getRetryCode())){
+            recursiveCount += 1;
             move();
         }
     }
