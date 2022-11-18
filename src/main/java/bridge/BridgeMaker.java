@@ -1,6 +1,12 @@
-package bridge.persistence;
+package bridge;
 
-import bridge.domain.BridgeNumberGenerator;
+import static bridge.BridgeExpression.START_POINT;
+import static bridge.BridgeStructure.BRIDGE_FIRST;
+import static bridge.Expression.DOWN;
+import static bridge.Expression.UP;
+
+import bridge.BridgeNumberGenerator;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,6 +25,27 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        return null;
+
+        List<String> bridge = new ArrayList<>();
+
+        for ( int i = 0; i < size; i++){
+            bridge.add(BRIDGE_FIRST.buildStructure());
+        }
+
+        return bridge;
+
+    }
+
+
+    private String expressionByNumber() {
+        String expression = "";
+        if (bridgeNumberGenerator.generate() == 0 ) {
+            expression = DOWN.expressThat();
+        }
+        if ( bridgeNumberGenerator.generate() == 1 ) {
+            expression = UP.expressThat();
+        }
+
+        return expression;
     }
 }
