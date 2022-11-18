@@ -22,4 +22,8 @@ public class BridgeGameController {
     private void setForGame() {
         int bridgeSize = inputView.readBridgeSize();
     }
+
+    private void run() {
+        String direction = inputView.readMoving();
+    }
 }
