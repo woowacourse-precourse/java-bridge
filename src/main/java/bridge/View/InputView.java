@@ -18,20 +18,27 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println(Messeges.INPUT_BRIDGE_LENGTH.msg);
-        String bridgeSizeInput = readGameCommand();
+        String bridgeSizeCommand = readGameCommand();
         try {
-            validateBridgeSize(bridgeSizeInput);
+            validateBridgeSize(bridgeSizeCommand);
         }catch (IllegalArgumentException e) {
             readBridgeSize();
         }
-        return Integer.parseInt(bridgeSizeInput);
+        return Integer.parseInt(bridgeSizeCommand);
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(Messeges.INPUT_SELECT_MOVING_POSITION.msg);
+        String movingCommand = readGameCommand();
+        try {
+            validateMoving(movingCommand);
+        }catch (IllegalArgumentException e) {
+            readMoving();
+        }
+        return movingCommand;
     }
 
     /**
@@ -41,9 +48,16 @@ public class InputView {
         return Console.readLine();
     }
 
-    private void validateBridgeSize(String bridgeSizeInput) {
-        String regex = "^[3-9]{1}$|^[1]{1}[0-9]{1}$|^[2]{1}[0]{1}$";
-        if (!bridgeSizeInput.matches(regex)) {
+    private void validateBridgeSize(String bridgeSizeCommand) {
+        String regex = "^[3-9]$|^[1][0-9]$|^[2][0]$";
+        if (!bridgeSizeCommand.matches(regex)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateMoving(String movingCommand) {
+        String regex = "[UD]";
+        if (!movingCommand.matches(regex)) {
             throw new IllegalArgumentException();
         }
     }
