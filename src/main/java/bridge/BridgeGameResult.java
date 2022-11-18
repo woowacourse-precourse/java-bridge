@@ -5,13 +5,17 @@ package bridge;
  */
 public class BridgeGameResult {
 
+    private static final int FIRST_COUNT = 1;
+    private static final String SUCCESS = "성공";
+    private static final String FAIL = "실패";
+
     private int tryCount;
     private String gameResult;
     private BridgeMoveResult moveResult;
 
     public BridgeGameResult() {
-        tryCount = 1;
-        gameResult = "";
+        tryCount = FIRST_COUNT;
+        gameResult = FAIL;
         moveResult = new BridgeMoveResult();
     }
 }
