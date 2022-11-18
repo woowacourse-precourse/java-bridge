@@ -3,36 +3,7 @@ package bridge;
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
-        try {
-            InputView inputView = new InputView();
-            OutputView outputView = new OutputView();
-
-            // 게임 시작 문구를 출력하는 기능
-            outputView.printGameStart();
-
-            // 다리 길이 입력받는 기능
-            BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-            int size = inputView.readBridgeSize();
-            Bridge bridge = new Bridge(bridgeMaker.makeBridge(size));
-
-            // 플레이어가 이동할 칸을 입력받는 기능
-            BridgeGame bridgeGame = new BridgeGame(bridge);
-            int status = BridgeGame.KEEP_GOING;
-
-            while (status == BridgeGame.KEEP_GOING) {
-                String direction = inputView.readMoving();
-                status = bridgeGame.move(direction);
-                bridgeGame.recordStep(status, direction);
-                outputView.printMap(bridgeGame.getFootPrintsLog());
-                if (status == BridgeGame.LOSE) {
-                    String gameCommand = inputView.readGameCommand();
-                    status = bridgeGame.retry(gameCommand);
-                }
-            }
-            outputView.printResult(bridgeGame.getFootPrintsLog(), status, bridgeGame.getTryCount());
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        BridgeGameController bridgeGameController = new BridgeGameController();
+        bridgeGameController.run();
     }
 }
