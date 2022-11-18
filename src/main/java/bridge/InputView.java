@@ -24,7 +24,10 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String moving = Console.readLine();
+        checkMoving(moving);
+
+        return moving;
     }
 
     /**
@@ -49,6 +52,12 @@ public class InputView {
     public void checkBridgeLength(int length) {
         if (length < 3 || length > 20) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3이상 20이하로 입력해야 합니다.");
+        }
+    }
+
+    public void checkMoving(String moving) {
+        if (!(moving.equals("U") || moving.equals("D"))) {
+            throw new IllegalArgumentException("[ERROR] 이동은 U 또는 D만 입력 가능합니다.");
         }
     }
 }

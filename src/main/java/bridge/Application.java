@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 public class Application {
 
     public static void main(String[] args) {
@@ -11,6 +13,9 @@ public class Application {
 
         int bridgeSize = inputView.readBridgeSize();
 
-        System.out.println(bridgeMaker.makeBridge(bridgeSize));
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+
+        System.out.println("\n이동할 칸을 선택해주세요.");
+        System.out.println(inputView.readMoving());
     }
 }
