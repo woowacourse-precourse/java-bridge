@@ -16,9 +16,11 @@ public class Application {
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         System.out.println(bridge);
         BridgeGame bridgeGame = new BridgeGame();
+        OutputView outputView = new OutputView();
         for (int i = 0; i < bridgeSize; i++) {
             String moving = inputView.readMoving();
             bridgeGame.move(moving, bridge);
+            outputView.printMap(bridgeGame.getUpBridge(), bridgeGame.getDownBridge(), i);
         }
         System.out.println("끝");
     }

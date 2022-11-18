@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,6 +9,9 @@ import java.util.List;
 public class BridgeGame {
 
     //BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.
+
+    private final List<String> upBridge = new ArrayList<>();
+    private final List<String> downBridge = new ArrayList<>();
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -18,9 +22,25 @@ public class BridgeGame {
         if (moving.equals(bridge.get(0))){
             System.out.println("성공");
             bridge.remove(0);
+            if(moving.equals("U")){
+                upBridge.add("O");
+                downBridge.add(" ");
+            }
+            else if(moving.equals("D")){
+                upBridge.add(" ");
+                downBridge.add("O");
+            }
             return;
         }
         System.out.println("실패");
+        if(moving.equals("U")){
+            upBridge.add("X");
+            downBridge.add(" ");
+        }
+        else if(moving.equals("D")){
+            upBridge.add(" ");
+            downBridge.add("X");
+        }
     }
 
     /**
@@ -31,5 +51,11 @@ public class BridgeGame {
     public void retry() {
     }
 
+    public List<String> getUpBridge() {
+        return upBridge;
+    }
 
+    public List<String> getDownBridge() {
+        return downBridge;
+    }
 }
