@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -17,8 +18,8 @@ public class BridgeGame {
      */
     public void move(String bridge) {
         String user = InputView.readMoving();
-        if (user.equals("U")){uplist(bridge, user);}
-        if (user.equals("D")){downlist(bridge, user);}
+        if (user.equals("U")) {uplist(bridge, user);}
+        if (user.equals("D")) {downlist(bridge, user);}
     }
 
     /**
@@ -26,7 +27,12 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public int retry(int bridgeSize, int i) {
+        String user = InputView.readGameCommand();
+        if (user.equals("Q")){return bridgeSize-1;}
+        upBridge = new ArrayList<>(List.of("[ ", " ]"));
+        downBridge = new ArrayList<>(List.of("[ ", " ]"));
+        return -1;
     }
 
     public void uplist(String bridge, String user){
@@ -60,7 +66,8 @@ public class BridgeGame {
         for(int i=0 ; i<bridge.size() ; i++){
             move(bridge.get(i));
             OutputView.printMap(upBridge, downBridge);
-            if (i != bridge.size() -1 ){ midStick();}
+            if (i != bridge.size() - 1 ){ midStick();}
+            if (upBridge.contains("X") || downBridge.contains("X")) {i = retry(bridge.size(), i);}
         }
     }
 }

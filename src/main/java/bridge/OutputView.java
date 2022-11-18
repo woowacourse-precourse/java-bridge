@@ -35,6 +35,8 @@ public class OutputView {
         System.out.println("다리의 길이를 입력해 주세요.");
     }
 
+    public static void retryPrint(){System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");}
+
     public static void userSelect() { System.out.println("이동할 칸을 선택해주세요. (위 : U, 아래 : D)"); }
 
     public static int validatorNonNumber(String input){
@@ -55,6 +57,12 @@ public class OutputView {
     public static String validatorUserSelect(String user){
         if (user.equals("D") || user.equals("U")) {return user;}
         System.out.println("[ERROR] U 혹은 D만 입력해 주세요.");
+        return "";
+    }
+
+    public static String validatorRetryUserSelect(String user){
+        if(user.equals("R") || user.equals("Q")) {return user;}
+        System.out.println("[ERROR] R 혹은 Q만 입력해 주세요.");
         return "";
     }
 }
