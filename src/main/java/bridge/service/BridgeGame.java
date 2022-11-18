@@ -17,10 +17,13 @@ public class BridgeGame {
     private Bridge bridge;
     private Player player;
 
+    public BridgeGame() {
+        this.player = new Player();
+    }
+
     public void createBridge(int size, BridgeNumberGenerator bridgeNumberGenerator) {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         bridge = new Bridge(bridgeMaker.makeBridge(size));
-        player = new Player();
     }
 
     /**
