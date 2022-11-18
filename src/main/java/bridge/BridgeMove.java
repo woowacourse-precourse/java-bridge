@@ -21,6 +21,10 @@ public enum BridgeMove {
         return direction;
     }
     
+    public Integer getGenerateNumber() {
+        return generateNumber;
+    }
+    
     public static boolean isContain(String direction) {
         return getDirectionList().contains(direction);
     }
