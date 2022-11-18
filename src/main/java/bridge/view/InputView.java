@@ -41,18 +41,14 @@ public class InputView {
     }
 
     private void validCommand(String input) {
-        try {
-            for (char c : input.toCharArray()) {
-                checkUpperCase(c);
-            }
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 커맨드는 대문자 알파벳으로 입력해야 합니다.");
+        for (char c : input.toCharArray()) {
+            checkUpperCase(c);
         }
     }
 
     private void checkUpperCase(char input) {
         if (!Character.isUpperCase(input)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 커맨드는 대문자 알파벳으로 입력해야 합니다.");
         }
     }
 }

@@ -27,7 +27,8 @@ public class BridgeGameService {
 	}
 
 	public void moveBridge(String moving, BridgeGame bridgeGame, List<List<String>> moveResult) {
-		moveResult = bridgeGame.move(moving, moveResult);
+		validMoving(moving);
+		bridgeGame.move(moving, moveResult);
 	}
 
 	private void validSize(int size) {
@@ -36,4 +37,9 @@ public class BridgeGameService {
 		}
 	}
 
+	private void validMoving(String moving) {
+		if (!moving.equals("U") && !moving.equals("D")) {
+			throw new IllegalArgumentException("[ERROR] 이동 커맨드는 U 또는 D 입니다.");
+		}
+	}
 }
