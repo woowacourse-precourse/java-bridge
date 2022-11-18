@@ -53,9 +53,9 @@ public class ValidatorTest {
         String userInput ="A";
 
         try {
-            validator.validateReStart(userInput);
+            validator.validateGameCommand(userInput);
         } catch (Exception e) {
-            Assertions.assertThat(e.getMessage()).isEqualTo(Messages.ERROR_RESTART.getMessage());
+            Assertions.assertThat(e.getMessage()).isEqualTo(Messages.ERROR_GAME_COMMAND.getMessage());
         }
     }
 }

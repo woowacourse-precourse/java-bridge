@@ -16,10 +16,6 @@ public class InputView {
     public InputView(Validator validator) {
         this.validator = validator;
     }
-    
-    public String readInput() {
-        return Console.readLine();
-    }
 
     /**
      * 다리의 길이를 입력받는다.
@@ -44,7 +40,6 @@ public class InputView {
         }
         return userInput;
     }
-
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
@@ -76,5 +71,10 @@ public class InputView {
     public String readGameCommand() {
         return null;
     }
+    
 
+
+    public String readInput() {
+        return Console.readLine();
+    }
 }

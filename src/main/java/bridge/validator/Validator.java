@@ -33,12 +33,11 @@ public class Validator {
             throw new IllegalArgumentException(Messages.ERROR_MOVE.getMessage());
         }
     }
-    public void validateReStart(String userInput) {
+    public void validateGameCommand(String userInput) {
         if((!userInput.equals(RESTART) || userInput.equals(QUITE))) {
-            throw new IllegalArgumentException(Messages.ERROR_RESTART.getMessage());
+            throw new IllegalArgumentException(Messages.ERROR_GAME_COMMAND.getMessage());
         }
     }
-
 
     public int StringToInteger(String userInput) {
         return Integer.parseInt(userInput);
