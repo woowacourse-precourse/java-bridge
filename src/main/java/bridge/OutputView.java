@@ -2,6 +2,8 @@ package bridge;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
+ * OutputView의 패키지는 변경할 수 있다.
+ * OutputView의 메서드의 이름은 변경할 수 없다.
  */
 public class OutputView {
 
