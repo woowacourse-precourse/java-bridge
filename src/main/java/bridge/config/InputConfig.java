@@ -11,7 +11,7 @@ public class InputConfig {
     private static final String NUMBER_PATTERN = "^[0-9]+$";
     private static final String NOT_ONE_WORD_ERROR = ERROR_MESSAGE + " 한 단어만 입력해 주세요.";
     private static final String NOT_IN_CORRECT_RANGE = ERROR_MESSAGE + " %d ~ %d 사이의 값만 입력해 주세요.";
-    private static final String INVALID_INPUT_ERROR = ERROR_MESSAGE + " %c, %c만 입력해 주세요.";
+    private static final String INVALID_INPUT_ERROR = ERROR_MESSAGE + " %s, %s만 입력해 주세요.";
     private static final String NOT_NUMBER_ERROR = ERROR_MESSAGE + " 숫자만 입력해 주세요.";
 
 
@@ -53,7 +53,7 @@ public class InputConfig {
     private void isUpOrDown(String input) {
         String up = Command.UP.getAbbreviation();
         String down = Command.DOWN.getAbbreviation();
-        if (!input.equals(up) || !input.equals(down)) {
+        if (!(input.equals(up) || input.equals(down))) {
             String errMsg = String.format(INVALID_INPUT_ERROR, up, down);
             throw new IllegalArgumentException(errMsg);
         }
@@ -62,7 +62,7 @@ public class InputConfig {
     private void isRetryOrQuit(String input) {
         String retry = Command.RETRY.getAbbreviation();
         String quit = Command.QUIT.getAbbreviation();
-        if (!input.equals(retry) || !input.equals(quit)) {
+        if (!(input.equals(retry) || input.equals(quit))) {
             String errMsg = String.format(INVALID_INPUT_ERROR, retry, quit);
             throw new IllegalArgumentException(errMsg);
         }
