@@ -4,27 +4,17 @@ public enum Commons {
 
     MIN_BRIDGE_RANGE(3),
     MAX_BRIDGE_RANGE(20),
-    UP("U"),
-    DOWN("D"),
-    GAME_RESTART("R"),
-    GAME_QUIT("Q"),
+    BRIDGE_HEIGHT(2),
+    INDEX_ZERO(0),
+    INDEX_ONE(1),
     ;
-    private int number;
-    private String command;
+    private final int number;
 
-    Commons(int number) {
+    Commons(final int number) {
         this.number = number;
-    }
-
-    Commons(String command) {
-        this.command = command;
     }
 
     public int getNumber() {
         return number;
-    }
-
-    public String getCommand() {
-        return command;
     }
 }

@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.utils.constants.Comments;
 import bridge.utils.constants.Commons;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +29,9 @@ public class BridgeMaker {
     }
 
     private String getBridgePlace(int randomNumber) {
-        if (randomNumber == 1) {
-            return Commons.UP.getCommand();
+        if (randomNumber == Commons.INDEX_ONE.getNumber()) {
+            return Comments.UP.getComment();
         }
-        return Commons.DOWN.getCommand();
+        return Comments.DOWN.getComment();
     }
 }

@@ -27,7 +27,7 @@ public class OutputView {
         for (String place : gameResult.getResult().get(index)) {
             line.append(getPlaceOutput(place));
         }
-        line.deleteCharAt(line.length() - 1);
+        line.deleteCharAt(line.length() - Commons.INDEX_ONE.getNumber());
         return line.append(Comments.RIGHT_BRACKET.getComment()).toString();
     }
 

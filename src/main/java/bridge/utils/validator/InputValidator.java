@@ -1,5 +1,6 @@
 package bridge.utils.validator;
 
+import bridge.utils.constants.Comments;
 import bridge.utils.constants.Commons;
 import bridge.utils.constants.ErrorMessages;
 
@@ -33,7 +34,7 @@ public class InputValidator {
     }
 
     private static boolean isValidMove(String move) {
-        return move.equals(Commons.UP.getCommand()) || move.equals(Commons.DOWN.getCommand());
+        return move.equals(Comments.UP.getComment()) || move.equals(Comments.DOWN.getComment());
     }
 
     public static void gameCommandValidate(String command) {
@@ -43,6 +44,6 @@ public class InputValidator {
     }
 
     private static boolean isValidCommand(String command) {
-        return command.equals(Commons.GAME_RESTART.getCommand()) || command.equals(Commons.GAME_QUIT.getCommand());
+        return command.equals(Comments.GAME_RESTART.getComment()) || command.equals(Comments.GAME_QUIT.getComment());
     }
 }
