@@ -20,4 +20,12 @@ public class Bridge {
         }
         throw new IllegalArgumentException(INVALID_LENGTH_RANGE_MESSAGE);
     }
+
+    public int getLength() {
+        return length;
+    }
+
+    public List<String> getBridgeAnswers() {
+        return bridgeAnswers;
+    }
 }
