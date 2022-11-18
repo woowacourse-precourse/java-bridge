@@ -12,6 +12,11 @@ public class BridgeGame {
     private int bridgeLength;
     private int gameTryNumber;
 
+    public BridgeGame(List<String> answerBridge, User user) {
+        this.answerBridge = answerBridge;
+        this.user = user;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -47,5 +52,9 @@ public class BridgeGame {
         if(userInputValue != "R" && userInputValue != "Q"){
             throw new IllegalArgumentException("[ERROR] 재시작은 R, 종료는 Q를 입력해주세요.");
         }
+    }
+
+    public User getUser() {
+        return user;
     }
 }
