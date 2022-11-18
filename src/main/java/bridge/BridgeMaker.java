@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.domain.BridgePanel;
+import bridge.domain.enums.BridgePanel;
 import java.util.ArrayList;
 import java.util.List;
 
