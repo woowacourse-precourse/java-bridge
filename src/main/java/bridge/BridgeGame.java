@@ -11,7 +11,7 @@ public class BridgeGame {
     private ArrayList<String> bridge;
     private int nowOn = 0;
     private boolean gameOver = false;
-    private boolean isWin = false;
+    private boolean win = false;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = new ArrayList<>(bridge);
@@ -32,6 +32,7 @@ public class BridgeGame {
         gameOver = isWrong;
     }
 
+
     public boolean judge(String input) {
         if (bridge.get(nowOn).equals(input)) {
             return false;
@@ -43,10 +44,6 @@ public class BridgeGame {
         if (bridge.size() <= nowOn) {
             gameOver = true;
         }
-        if(bridge.size()-1==nowOn)
-        {
-            isWin = true;
-        }
     }
 
     /**
@@ -56,7 +53,7 @@ public class BridgeGame {
      */
     public boolean retry(String reGame) {
         if(reGame.equals("R")){
-            isWin=false;
+            win=false;
             gameOver=false;
             nowOn=0;
             return true;
@@ -71,7 +68,11 @@ public class BridgeGame {
     }
 
     public boolean isWin() {
-        return isWin;
+        if(bridge.size()==nowOn)
+        {
+            win = true;
+        }
+        return win;
     }
 
     public ArrayList<String> getBridge() {
