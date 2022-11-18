@@ -12,7 +12,7 @@ public class Bridge {
         this.bridgeSize = bridgeSize;
     }
 
-    private void bridgeSizeValidation(Integer bridgeSize) {
+    private void bridgeSizeValidation(Integer bridgeSize) throws IllegalArgumentException {
         if (bridgeSize < 3 || bridgeSize > 20) {
             throw new IllegalArgumentException(ERROR_CODE + BRIDGE_LENGTH_OUT_OF_SIZE_MESSAGE);
         }

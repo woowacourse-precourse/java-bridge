@@ -6,6 +6,8 @@ import bridge.domain.ProcessHelper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class ProcessHelperImplTest {
 
@@ -28,6 +30,17 @@ class ProcessHelperImplTest {
     public void isNotDigitStringTest() throws Exception {
         String givenString = "1000j";
         assertThat(processHelper.canItChangeBridgeSize(givenString)).isFalse();
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"D", "U"})
+    public void readMovingCorrectTest(String givenString) throws Exception {
+        assertThat(processHelper.checkCharIsUOrD(givenString)).isTrue();
+    }
+
+    @Test
+    public void readMovingIncorrectTest() throws Exception {
+        assertThat(processHelper.checkCharIsUOrD("A")).isFalse();
     }
 
 }

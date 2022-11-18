@@ -6,11 +6,6 @@ public class ProcessHelperImpl implements ProcessHelper {
 
 
     @Override
-    public int inputArrayToBridgeSize(String bridgeLength) {
-        return 0;
-    }
-
-    @Override
     public boolean canItChangeBridgeSize(String bridgeLength) {
         char[] chars = bridgeLength.toCharArray();
         for (char aChar : chars) {
@@ -19,5 +14,13 @@ public class ProcessHelperImpl implements ProcessHelper {
             }
         }
         return true;
+    }
+
+    @Override
+    public boolean checkCharIsUOrD(String moving) {
+        if (moving.equals("U") || moving.equals("D")) {
+            return true;
+        }
+        return false;
     }
 }
