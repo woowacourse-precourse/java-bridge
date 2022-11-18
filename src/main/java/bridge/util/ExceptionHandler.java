@@ -4,8 +4,8 @@ import bridge.model.constant.Message;
 
 public class ExceptionHandler {
 
-    static final int BRIDGE_SIZE_MIN = 3;
-    static final int BRIDGE_SIZE_MAX = 20;
+    private static final int BRIDGE_SIZE_MIN = 3;
+    private static final int BRIDGE_SIZE_MAX = 20;
 
     public static void checkBridgeSize(final String input) {
         try {
