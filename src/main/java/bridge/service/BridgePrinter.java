@@ -56,4 +56,12 @@ public class BridgePrinter {
             addUpBridge("   |");
         }
     }
+
+    public String getUpBridge() {
+        return upBridge.toString();
+    }
+
+    public String getDownBridge() {
+        return downBridge.toString();
+    }
 }

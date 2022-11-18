@@ -28,6 +28,11 @@ public class OutputView {
         System.out.println(Message.RESULT_TRY.getMessage() + tryCount.toString());
     }
 
+    public void printMapResult(String upBridge, String downBridge){
+        System.out.println(Message.RESULT_MAP_MESSAGE.getMessage());
+        System.out.println(upBridge + "\n" + downBridge);
+    }
+
     public void printStartMessage(){
         System.out.println(Message.GAME_START.getMessage());
     }

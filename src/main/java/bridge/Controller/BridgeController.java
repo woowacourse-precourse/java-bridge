@@ -3,6 +3,7 @@ package bridge.Controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.service.BridgeGame;
+import bridge.service.BridgePrinter;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -12,9 +13,11 @@ public class BridgeController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private BridgePrinter bridgePrinter;
     private BridgeGame bridgeGame;
     private Integer bridgeSize;
     private List<String> bridge;
+    private int tryCount = 1;
 
     public BridgeController() {
         outputView.printStartMessage();
@@ -27,13 +30,25 @@ public class BridgeController {
     }
     public void run(){
         game();
-        outputView.printResult(successMessage(), 1);
+        retryCheck();
+        outputView.printMapResult(bridgePrinter.getUpBridge(), bridgePrinter.getDownBridge());
+        outputView.printResult(successMessage(), tryCount);
+    }
+
+    private void retryCheck() {
+        if (!bridgeGame.isSuccess()) {
+            if(retry()){
+                tryCount++;
+                bridgeGame.retry();
+                game();
+            }
+        }
     }
 
     private void game() {
         while(bridgeGame.isEnd()){
             System.out.println(bridge);
-            bridgeGame.move(inputView.readMoving());
+            bridgePrinter = bridgeGame.move(inputView.readMoving());
         }
     }
 
@@ -42,5 +57,9 @@ public class BridgeController {
             return "성공";
         }
         return "실패";
+    }
+
+    public boolean retry(){
+        return inputView.readGameCommand();
     }
 }
