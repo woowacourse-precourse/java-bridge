@@ -37,6 +37,7 @@ class BridgeGameTest {
     }
 
     @Test
+    @DisplayName("다리를 완전히 건넜는지 확인한다.")
     void crossingBridge() {
         bridgeGame.move("U");
         bridgeGame.move("D");
