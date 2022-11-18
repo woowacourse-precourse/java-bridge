@@ -1,8 +1,10 @@
 package bridge;
 
+import bridge.resource.message.FixedMessage;
+
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        System.out.println(FixedMessage.GAME_START.getMessage() + "\n");
     }
 }
