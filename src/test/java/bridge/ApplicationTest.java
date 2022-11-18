@@ -76,23 +76,8 @@ class ApplicationTest extends NsTest {
     @Nested
     class BridgeLengthValidateTest{
 
-        @DisplayName("다리의 길이가 숫자가 아닌 경우 예외 처리")
-        @ParameterizedTest
-        @ValueSource(strings = {"a","bc","$",".@#!#!"})
-        void 다리_길이_숫자_예외_테스트(String length){
-            assertThatThrownBy(() ->
-                    new BridgeLength(length))
-                    .isInstanceOf(IllegalArgumentException.class);
-        }
 
-        @DisplayName("다리의 길이가 3부터 20 사이의 숫자가 아닌 경우 예외 처리")
-        @ParameterizedTest
-        @ValueSource(strings = {"0","1","2","21"})
-        void 다리_길이_범위_예외_테스트(String length){
-            assertThatThrownBy(() ->
-                    new BridgeLength(length))
-                    .isInstanceOf(IllegalArgumentException.class);
-        }
 
     }
+
 }

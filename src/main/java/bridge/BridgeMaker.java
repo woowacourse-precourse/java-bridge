@@ -28,6 +28,7 @@ public class BridgeMaker {
         return bridge;
     }
 
+
     private void makeDown(int generatedNumber,List<String> bridge) {
         if(generatedNumber==0){
             bridge.add("D");
