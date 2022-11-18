@@ -19,7 +19,6 @@ public class BridgeGame {
     }
 
     public Answer move(String input) {
-        System.out.println(answer);
         isValidDirection(input);
         String nextAnswer = answer.get(step).getInput();
         if(input.equals(nextAnswer)){
@@ -38,9 +37,26 @@ public class BridgeGame {
         return result;
     }
 
+    public List<Answer> getCorrectBridge(Direction direction){
+        return answer.stream().map( dir -> {
+                            if(dir == direction){
+                                return Answer.CORRECT;
+                            }
+                            return Answer.NONE;
+                        }
+                ).limit(step)
+                .collect(Collectors.toUnmodifiableList());
+    }
 
-
-
+    public List<Answer> getFailedBridge(Direction direction){
+        List<Answer> result = getCorrectBridge(direction);
+        if(direction == answer.get(step)){
+            result.add(Answer.NONE);
+            return result;
+        }
+        result.add(Answer.INCORRECT);
+        return result;
+    }
 
     private void isValidDirection(String input){
         if(input.equals(Direction.DOWN.getInput())
@@ -58,11 +74,4 @@ public class BridgeGame {
         throw new IllegalArgumentException(ErrorMessage.INVALID_RESTART_VALUE.getOutput());
     }
 
-    public List<Direction> getAnswer() {
-        return answer;
-    }
-
-    public int getStep() {
-        return step;
-    }
 }
