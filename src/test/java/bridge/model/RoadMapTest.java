@@ -6,6 +6,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class RoadMapTest {
     private static RoadMap roadMap;
@@ -24,5 +26,22 @@ public class RoadMapTest {
     void testGetSize(){
         assertThat(roadMap.getSize())
                 .isEqualTo(1);
+    }
+
+    @DisplayName("칸 위치와 제공된 방향이 같다면 true 값을 반환한다.")
+    @Test
+    void testMatchPositionWithDirection(){
+        int roadPosition = 0;
+        String direction = "U";
+        assertThat(roadMap.matchPositionWithDirection(roadPosition, direction))
+                .isTrue();
+    }
+
+    @DisplayName("위치하지 않은 칸이거나 제공된 방향이 다르다면 false 값을 반환한다.")
+    @ParameterizedTest
+    @CsvSource({"1,U", "0,D"})
+    void testNotMatchPositionWithDirection(int roadPosition, String direction){
+        assertThat(roadMap.matchPositionWithDirection(roadPosition, direction))
+                .isFalse();
     }
 }
