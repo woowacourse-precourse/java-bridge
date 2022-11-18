@@ -10,10 +10,8 @@ public class BridgeGame {
 
     private final List<String> bridge;
     private final List<String> BridgeTrack;
-    private int tryCount;
 
     public BridgeGame(List<String> bridge) {
-        tryCount =1;
         this.bridge = bridge;
         BridgeTrack = new ArrayList<>();
     }
@@ -32,7 +30,6 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        tryCount++;
     }
     public List<String> getBridgeTrack() {
         return new ArrayList<>(BridgeTrack);
@@ -43,8 +40,5 @@ public class BridgeGame {
     public boolean isRecentMoveSuccessful() {
         int lastMoveIndex = BridgeTrack.size() - 1;
         return BridgeTrack.get(lastMoveIndex).equals(bridge.get(lastMoveIndex));
-    }
-    public int getTryCount() {
-        return tryCount;
     }
 }
