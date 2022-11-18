@@ -26,5 +26,8 @@ public enum IsSuccess {
     public String getCheck() {
         return check;
     }
-    public String getWord() { return word; }
+
+    public String getWord() {
+        return word;
+    }
 }

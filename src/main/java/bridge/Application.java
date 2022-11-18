@@ -15,9 +15,9 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         startGame();
-        while(retry) {
+        while (retry) {
             Bridge player = new Bridge(new ArrayList<>());
-            if(ongoingGame(player, bridgeAnswer.getBridgeAnswer())){ break; }
+            if (ongoingGame(player, bridgeAnswer.getBridgeAnswer())) { break; }
             retry = retryGame();
         }
         outputView.printResult(bridgeGame.getBridgeGameResult());
@@ -32,11 +32,11 @@ public class Application {
 
     private static boolean ongoingGame(Bridge player, Bridge answer) {
         bridgeGame.setBridgeGameResult();
-        for(int i=0; i<answer.getBridge().size(); i++) {
+        for (int i = 0; i < answer.getBridge().size(); i++) {
             player.getBridge().add(InputView.readMoving());
             boolean isOver = bridgeGame.move(player, answer, i);
             outputView.printMap(bridgeGame.getBridgeGameResult());
-            if(isOver) { return false; }
+            if (isOver) { return false; }
         }
         return true;
     }

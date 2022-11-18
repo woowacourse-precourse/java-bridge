@@ -28,9 +28,7 @@ public class InputViewTest {
         try {
             method.invoke(inputView, input);
         } catch (InvocationTargetException e) {
-            if(e.getTargetException().getMessage().contains(ERROR_MSG)) {
-                return true;
-            }
+            if (e.getTargetException().getMessage().contains(ERROR_MSG)) { return true; }
         }
         return false;
     }
@@ -44,8 +42,8 @@ public class InputViewTest {
     }
 
     @DisplayName("다리 길이 입력 테스트")
-    @ValueSource(strings={"3", "9", "10", "19", "20"})
-    @ParameterizedTest(name="{index} {displayName} test={0}")
+    @ValueSource(strings = {"3", "9", "10", "19", "20"})
+    @ParameterizedTest(name = "{index} {displayName} test={0}")
     void correctBridgeSize(String test) throws Exception {
         Method method = invokeMethod(VALIDATE_SIZE);
 

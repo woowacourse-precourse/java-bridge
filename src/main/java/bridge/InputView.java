@@ -16,20 +16,17 @@ public class InputView {
         try {
             System.out.println(PrintWord.BRIDGE_LENGTH);
             String inputSize = Console.readLine();
-
             return validateInputSize(inputSize);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-
             return readBridgeSize();
         }
     }
 
     private static int validateInputSize(String inputSize) {
-        if(!Pattern.matches("^[3-9]|1[0-9]|20", inputSize)) {
+        if (!Pattern.matches("^[3-9]|1[0-9]|20", inputSize)) {
             throw new IllegalArgumentException(ErrorWord.INPUT_SIZE);
         }
-
         return Integer.parseInt(inputSize);
     }
 
@@ -40,20 +37,17 @@ public class InputView {
         try {
             System.out.println(PrintWord.SELECT_MOVE);
             String inputMoving = Console.readLine();
-
             return validateInputMoving(inputMoving);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-
             return readMoving();
         }
     }
 
     private static String validateInputMoving(String inputMoving) {
-        if(!Pattern.matches("^[UD]", inputMoving)) {
+        if (!Pattern.matches("^[UD]", inputMoving)) {
             throw new IllegalArgumentException(ErrorWord.INPUT_MOVING);
         }
-
         return inputMoving;
     }
 
@@ -64,20 +58,17 @@ public class InputView {
         try {
             System.out.println(PrintWord.SELECT_RETRY);
             String inputCommand = Console.readLine();
-
             return validateInputCommand(inputCommand);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-
             return readGameCommand();
         }
     }
 
     private static String validateInputCommand(String inputCommand) {
-        if(!Pattern.matches("^[RQ]", inputCommand)) {
+        if (!Pattern.matches("^[RQ]", inputCommand)) {
             throw new IllegalArgumentException(ErrorWord.INPUT_RETRY);
         }
-
         return inputCommand;
     }
 }

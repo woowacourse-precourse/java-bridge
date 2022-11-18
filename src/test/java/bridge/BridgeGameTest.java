@@ -32,8 +32,7 @@ public class BridgeGameTest {
         List<String> expected = List.of("X", "O", "O", "X", "X", "O");
         Method method = bridgeGame.getClass().getDeclaredMethod("getPaintGame", Bridge.class, Bridge.class, int.class);
         method.setAccessible(true);
-
-        for(int i=0; i< player.getBridge().size(); i++) {
+        for (int i = 0; i < player.getBridge().size(); i++) {
             assertThat(method.invoke(bridgeGame, player, answer, i)).isEqualTo(expected.get(i));
         }
     }
@@ -44,7 +43,6 @@ public class BridgeGameTest {
     void testGetOtherPosition(String position, String expected) throws Exception {
         Method method = bridgeGame.getClass().getDeclaredMethod("getOtherPosition", String.class);
         method.setAccessible(true);
-
         assertEquals(method.invoke(bridgeGame, position), expected);
     }
 
@@ -56,9 +54,7 @@ public class BridgeGameTest {
         List<String> paintGame = List.of("X", "O", "O", "X", "X", "O");
         bridgeGame.setBridgeGameResult();
         HashMap<String, List<String>> expected = paintExpected();
-
         invokePaintBridgeGameResult(position, otherPosition, paintGame);
-
         assertEquals(expected, bridgeGame.getBridgeGameResult());
     }
 
@@ -66,14 +62,13 @@ public class BridgeGameTest {
         HashMap<String, List<String>> expected = new HashMap<>();
         expected.put("U", List.of("X", " ", "O", "X", " ", "O"));
         expected.put("D", List.of(" ", "O", " ", " ", "X", " "));
-        System.out.println("U: "+ Arrays.toString(expected.get("U").toArray()));
-        System.out.println("D: "+ Arrays.toString(expected.get("D").toArray()));
-
+        System.out.println("U: " + Arrays.toString(expected.get("U").toArray()));
+        System.out.println("D: " + Arrays.toString(expected.get("D").toArray()));
         return expected;
     }
 
     private void invokePaintBridgeGameResult(List<String> position, List<String> otherPosition, List<String> paintGame) throws Exception {
-        for(int i=0; i<position.size(); i++) {
+        for (int i = 0; i < position.size(); i++) {
             Method method = bridgeGame.getClass().getDeclaredMethod("paintBridgeGameResult", String.class, String.class, String.class);
             method.setAccessible(true);
             method.invoke(bridgeGame, position.get(i), otherPosition.get(i), paintGame.get(i));

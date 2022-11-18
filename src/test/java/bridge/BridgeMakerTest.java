@@ -22,7 +22,6 @@ public class BridgeMakerTest extends NsTest {
     private Method invokeMethod(String declared) throws NoSuchMethodException {
         Method method = maker.getClass().getDeclaredMethod(declared, int.class);
         method.setAccessible(true);
-
         return method;
     }
 
@@ -31,7 +30,6 @@ public class BridgeMakerTest extends NsTest {
     @ParameterizedTest(name = "{index} {displayName} test={0}")
     void returnRandomWordTest(int bridgeNumber, String expected) throws Exception {
         Method method = invokeMethod(RANDOM_BRIDGE_WORD);
-
         assertThat(method.invoke(maker, bridgeNumber)).isEqualTo(expected);
     }
 
@@ -42,7 +40,6 @@ public class BridgeMakerTest extends NsTest {
                 new ApplicationTest.TestNumberGenerator(newArrayList(1, 0, 1, 1));
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(4);
-
         assertThat(bridge).containsExactly("U", "D", "U", "U");
     }
 

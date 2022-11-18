@@ -37,8 +37,8 @@ public class OutputView {
     public void printResult(HashMap<String, List<String>> bridgeGameResult) {
         System.out.println(PrintWord.RESULT);
         printMap(bridgeGameResult);
-        System.out.println(PrintWord.IS_SUCCESS+
+        System.out.println(PrintWord.IS_SUCCESS +
                 IsSuccess.isSuccess(bridgeGameResult).getWord());
-        System.out.println(PrintWord.COUNT+BridgeGame.getTotalCount());
+        System.out.println(PrintWord.COUNT + BridgeGame.getTotalCount());
     }
 }

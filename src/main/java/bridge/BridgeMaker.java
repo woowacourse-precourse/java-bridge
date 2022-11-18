@@ -21,7 +21,7 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
 
-        for(int i=1; i<=size; i++) {
+        for (int i = 1; i <= size; i++) {
             bridge.add(makeRandomBridgeWord(new BridgeRandomNumberGenerator().generate()));
         }
 
@@ -29,7 +29,7 @@ public class BridgeMaker {
     }
 
     private String makeRandomBridgeWord(int bridgeNumber) {
-        if(bridgeNumber==1) {
+        if (bridgeNumber == 1) {
             return "U";
         }
         return "D";

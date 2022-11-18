@@ -19,6 +19,7 @@ public class BridgeGame {
     public void clear() {
         bridgeGameResult.clear();
     }
+
     public HashMap<String, List<String>> getBridgeGameResult() {
         return bridgeGameResult;
     }
@@ -42,14 +43,14 @@ public class BridgeGame {
     }
 
     private String getPaintGame(Bridge player, Bridge answer, int index) {
-        if(answer.isSamePosition(player, index)) {
+        if (answer.isSamePosition(player, index)) {
             return "O";
         }
         return "X";
     }
 
     private String getOtherPosition(String position) {
-        if("U".equals(position)) {
+        if ("U".equals(position)) {
             return "D";
         }
         return "U";
