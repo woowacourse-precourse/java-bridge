@@ -12,30 +12,38 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
-        return numberValidate(Console.readLine());
+        return BridgeValidate(Console.readLine());
     }
-
-    //숫자 검증
-    public int numberValidate(String size) {
-        try {
-            return rangeValidate(Integer.parseInt(size));
-        } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 숫자가 아닙니다.");
-        }
-        return readBridgeSize();
+    private int BridgeValidate(String input) {
+        numberValidateRetry(input);
+        rangeValidateRetry(input);
+        return Integer.parseInt(input);
     }
-
-    //3에서 20사이 검증
-    public int rangeValidate(int size) {
+    private void numberValidateRetry(String input) {
         try {
-            if (!(size >= 3 && size <= 20)) {
-                throw new IllegalArgumentException("[ERROR] 3에서 20사이의 숫자를 입력해주세요.");
-            }
-            return size;
+            numberValidate(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+            readBridgeSize();
         }
-        return readBridgeSize();
+    }
+    private void rangeValidateRetry(String input) {
+        try {
+            rangeValidate(Integer.parseInt(input));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            readBridgeSize();
+        }
+    }
+    public void numberValidate(String input) {
+        if (!input.matches("[+-]?\\d*(\\.\\d+)?")) {
+            throw new NumberFormatException("[ERROR] 숫자를 입력해주세요.");
+        }
+    }
+    public void rangeValidate(int size) {
+        if (!(size >= 3 && size <= 20)) {
+            throw new IllegalArgumentException("[ERROR] 3에서 20사이의 숫자를 입력해주세요.");
+        }
     }
 
     /**
