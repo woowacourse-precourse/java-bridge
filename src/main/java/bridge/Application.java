@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.view.InputView;
+import bridge.model.BridgeMaker;
 
 import java.util.List;
 

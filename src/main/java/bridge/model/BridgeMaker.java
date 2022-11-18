@@ -1,4 +1,6 @@
-package bridge;
+package bridge.model;
+
+import bridge.BridgeNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,16 +31,20 @@ public class BridgeMaker {
     }
 
 
-    private void makeDown(int generatedNumber,List<String> bridge) {
-        if(generatedNumber==0){
+    public void makeDown(int generatedNumber,List<String> bridge) {
+        if(!isNumberOne(generatedNumber)){
             bridge.add("D");
         }
     }
 
-    private void makeUp(int generatedNumber,List<String> bridge) {
-        if(generatedNumber==1){
+    public void makeUp(int generatedNumber,List<String> bridge) {
+        if(isNumberOne(generatedNumber)){
             bridge.add("U");
         }
+    }
+
+    private static boolean isNumberOne(int generatedNumber) {
+        return generatedNumber == 1;
     }
 
 }
