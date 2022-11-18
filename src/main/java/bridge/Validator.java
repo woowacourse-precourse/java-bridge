@@ -1,12 +1,12 @@
 package bridge;
 
 public class Validator {
-    private final InputView inputView = new InputView();
+    private static final InputView inputView = new InputView();
 
     /**
      * 다리 길이의 유효성 검사
      */
-    public void validateInputSize(int bridgeSize) {
+    public static void validateInputSize(int bridgeSize) {
         try {
             if (bridgeSize < 3 || bridgeSize > 20) {
                 throw new IllegalArgumentException();
@@ -17,7 +17,7 @@ public class Validator {
         }
     }
 
-    public void validateInputType(String inputSize) {
+    public static void validateInputType(String inputSize) {
         try {
             Integer.parseInt(inputSize);
         } catch (NumberFormatException e) {
@@ -26,7 +26,7 @@ public class Validator {
         }
     }
 
-    public void validateInputNull(String input) {
+    public static void validateInputNull(String input) {
         try {
             if (input.length() == 0) {
                 throw new NullPointerException();
@@ -40,7 +40,7 @@ public class Validator {
     /**
      * 플레이어가 이동할 칸 유효성 검사
      */
-    public void validateInputDIRECTION(String inputDirection) {
+    public static void validateInputDIRECTION(String inputDirection) {
         try {
             if (!inputDirection.equals("U") && !inputDirection.equals("D")) {
                 throw new IllegalArgumentException();
@@ -51,7 +51,7 @@ public class Validator {
         }
     }
 
-    public void validateInputLowerCase(String inputDirection) {
+    public static void validateInputDirectionLowerCase(String inputDirection) {
         char check = inputDirection.charAt(0);
         try {
             if (!Character.isUpperCase(check)) {
@@ -60,6 +60,20 @@ public class Validator {
         } catch (IllegalArgumentException e) {
             System.out.println(ErrorMessage.BRIDGE_MOVE_INPUT_LOWERCASE.getErrorMessage());
             inputView.inputMovingDirection();
+        }
+    }
+
+    /**
+     * 사용자가 게임을 다시 시도할지 종료할지 여부 유효성 검사
+     */
+    public static void validateInputGameRestart(String inputRestart) {
+        try {
+            if (!inputRestart.equals("R") && !inputRestart.equals("Q")) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(ErrorMessage.BRIDGE_RESTART_INPUT.getErrorMessage());
+            inputView.inputGameRestart();
         }
     }
 }
