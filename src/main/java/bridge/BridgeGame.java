@@ -27,6 +27,10 @@ public class BridgeGame {
         return getNextPosition().equals(userPosition);
     }
 
+    public boolean checkArriveDestination(boolean canMove) {
+        return canMove && this.bridge.size() == 0;
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
