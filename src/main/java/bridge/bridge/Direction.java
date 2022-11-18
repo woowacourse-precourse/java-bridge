@@ -24,6 +24,10 @@ public enum Direction {
         this.direction = direction;
     }
 
+    public boolean equals(String direction) {
+        return direction.equals(this.direction);
+    }
+
     public static String convert(int number) {
         return BRIDGE_VALUE.get(number);
     }
