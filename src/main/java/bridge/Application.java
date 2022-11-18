@@ -18,13 +18,10 @@ public class Application {
 
             // 플레이어가 이동할 칸을 입력받는 기능
             BridgeGame bridgeGame = new BridgeGame(bridge);
-            User user = new User();
             int status;
             do {
-                String moveCommand = inputView.readMoving();
-                status = bridgeGame.move(moveCommand);
-                user.addResult(status, moveCommand);
-                outputView.printMap(user.getMoveResult());
+                String direction = inputView.readMoving();
+                status = bridgeGame.move(direction);
             } while (status == BridgeGame.KEEP_GOING);
 
             // 재시작 / 종료 명령을 입력받는 기능

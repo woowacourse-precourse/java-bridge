@@ -12,33 +12,34 @@ public class BridgeGame {
     public static final int KEEP_GOING = 2;
 
     private final Bridge bridge;
-    private int currentLocation;
+    private final User user;
 
     public BridgeGame(Bridge bridge) {
+        this.user = new User();
         this.bridge = bridge;
-        this.currentLocation = 0;
     }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     * @param moveCommand
+     *
+     * @param command
      */
-    public int move(String moveCommand) {
-        validateMoveCommand(moveCommand);
-        if (bridge.canCross(currentLocation, moveCommand)) {
-            currentLocation++;
-            if (isEnd(bridge.size())) {
-                return END;
+    public int move(String command) {
+        validateMoveCommand(command);
+        int userStatus = user.cross(bridge, command);
+        if (userStatus == User.LIVE) {
+            if (isSuccess()) {
+                return WIN;
             }
             return KEEP_GOING;
         }
-        return DIED;
+        return LOSE;
     }
 
-    private boolean isEnd(int brideSize) {
-        return brideSize == currentLocation;
+    private boolean isSuccess() {
+        return user.isLocateAt(bridge.size());
     }
 
     private void validateMoveCommand(String moveCommand) {

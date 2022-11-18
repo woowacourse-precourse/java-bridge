@@ -1,15 +1,26 @@
 package bridge;
 
 public class User {
+    public static final int DEAD = 0;
+    public static final int LIVE = 1;
 
-    private final MoveResult moveResult;
+    private final FootPrints footPrints;
+    private int currentLocation;
+    private int tryCount;
+
 
     public User() {
-        moveResult = new MoveResult();
+        currentLocation = 0;
+        tryCount = 1;
+        footPrints = new FootPrints();
     }
 
-    public void addResult(int status, String moveCommand) {
-        moveResult.add(status, moveCommand);
+    public int cross(Bridge bridge, String direction) {
+        if (bridge.canCross(currentLocation, direction)) {
+            currentLocation++;
+            return LIVE;
+        }
+        return DEAD;
     }
 
     public MoveResult getMoveResult() {
