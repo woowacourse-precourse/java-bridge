@@ -7,6 +7,24 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    private BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+
+    public void run() {
+        startGame();
+        makeBridge();
+        move();
+    }
+
+    private void startGame() {
+        ViewMessage.printGameStartMessage();
+    }
+
+    private void makeBridge() {
+        ViewMessage.printBridgeSizeInputRequest();
+        int bridgeSize = InputView.readBridgeSize();
+        bridgeMaker.makeBridge(bridgeSize);
+    }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
