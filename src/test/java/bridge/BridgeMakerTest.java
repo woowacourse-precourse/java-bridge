@@ -3,7 +3,6 @@ package bridge;
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.util.Lists.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
@@ -34,6 +33,8 @@ class BridgeMakerTest {
 		BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
 
 		//then
-		assertThatThrownBy(() -> {List<String> bridge = bridgeMaker.makeBridge(3);}).isInstanceOf(IllegalArgumentException.class);
+		assertThatThrownBy(() -> {
+			List<String> bridge = bridgeMaker.makeBridge(3);
+		}).isInstanceOf(IllegalArgumentException.class);
 	}
 }
