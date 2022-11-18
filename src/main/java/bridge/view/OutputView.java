@@ -98,4 +98,8 @@ public class OutputView {
     public void printTotalTry(BridgeGame bridgeGame){
         System.out.println(Message.TOTAL_TRY.toString() + bridgeGame.showTotalTry());
     }
+
+    public void printError(Exception e){
+        System.out.println(e.getMessage());
+    }
 }
