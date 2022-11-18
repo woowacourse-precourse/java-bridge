@@ -29,15 +29,16 @@ public class BridgeGame {
     private void repeatGame() {
         do {
             String moving = inputView.readMoving();
-            if (!move(moving, movement)) {
+            move(moving);
+            if (!movement.canMove()) {
                 retry();
             }
-            outputView.printMap();
         } while(!movement.isFinish());
         outputView.printResult();
     }
-    private boolean move(String moving, Movement movement) {
-        return movement.canMove(moving);
+    private void move(String moving) {
+        movement.saveMoving(moving);
+        outputView.printMap(movement);
     }
 
     public void retry() {

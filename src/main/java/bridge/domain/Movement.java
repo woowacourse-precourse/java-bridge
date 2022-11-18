@@ -16,16 +16,15 @@ public class Movement {
         this.bridge = bridge;
     }
 
-    public boolean canMove(String moving) {
-        saveMoving(moving);
+    public boolean canMove() {
         int nowIndex = movement.size() - 1;
-        if (!moving.equals(bridge.get(nowIndex))) {
+        if (!movement.get(nowIndex).equals(bridge.get(nowIndex))) {
             return false;
         }
         return true;
     }
 
-    private void saveMoving(String moving) {
+    public void saveMoving(String moving) {
         this.movement.add(moving);
         saveCompareResult(moving);
     }
