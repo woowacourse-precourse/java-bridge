@@ -3,6 +3,8 @@ package bridge.view;
 import bridge.model.BridgeMap;
 import bridge.model.Player;
 
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -13,6 +15,7 @@ public class OutputView {
     public final String GAME_TOTAL_TRY_COUNT_MESSAGE = "총 시도한 횟수: %d%n";
     public final String BRIDGE_START_BRACKET = "[ ";
     public final String BRIDGE_END_BRACKET = " ]";
+    public final String BRIDGE_CONTOUR = " | ";
     public final String SUCCESS = "성공";
     public final String FAIL = "실패";
 
@@ -26,8 +29,12 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeMap bridgeMap) {
-        System.out.println(BRIDGE_START_BRACKET + String.join(" | ", bridgeMap.getUpperBridgeMap()) + BRIDGE_END_BRACKET);
-        System.out.println(BRIDGE_START_BRACKET + String.join(" | ", bridgeMap.getLowerBridgeMap()) + BRIDGE_END_BRACKET);
+        System.out.println(getJoinElements(bridgeMap.getUpperBridgeMap()));
+        System.out.println(getJoinElements(bridgeMap.getLowerBridgeMap()));
+    }
+
+    private String getJoinElements(List<String> bridgeMap) {
+        return BRIDGE_START_BRACKET + String.join(BRIDGE_CONTOUR, bridgeMap) + BRIDGE_END_BRACKET;
     }
 
     /**
