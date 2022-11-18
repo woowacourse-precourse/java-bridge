@@ -52,10 +52,10 @@ public class BridgeTest {
         assertThatThrownBy(()->new BridgeSize("q"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-    @DisplayName("한자리를 입력하지 않을 경우 예외가 발생한다.")
+    @DisplayName("3부터 20사이의 숫자를 입력 하지 않을 경우 예외가 발생한다.")
     @Test
-    void 한자리_입력(){
-        assertThatThrownBy(()->new BridgeSize("12"))
+    void 범위_입력(){
+        assertThatThrownBy(()->new BridgeSize("-1"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
