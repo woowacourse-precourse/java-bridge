@@ -34,20 +34,20 @@
 - [x] 다리의 시작은 `[`, 다리의 끝은 `]`으로 표시
 - [x] 다리 칸의 구분은 ` | `(앞뒤 공백 포함) 문자열로 구분
 - [x] 현재까지 건넌 다리를 모두 출력
-- [ ] 예외 상황 시 에러 문구를 출력해야 한다. 단, 에러 문구는 "[ERROR]"로 시작해야 한다.
+- [x] 예외 상황 시 에러 문구를 출력해야 한다. 단, 에러 문구는 "[ERROR]"로 시작해야 한다.
 
 
 ### 종료
 - [x] 다리를 끝까지 건너면 게임이 종료
 - [x] 다리를 건너다 실패하면 게임을 재시작하거나 종료
-- [ ] R(재시작)과 Q(종료) 중 하나의 문자를 입력할 수 있으며 올바른 값이 아니면 예외(IllegalArgumentException) 처리
+- [x] R(재시작)과 Q(종료) 중 하나의 문자를 입력할 수 있으며 올바른 값이 아니면 예외(IllegalArgumentException) 처리
 - [x] 재시작해도 처음에 만든 다리로 재사용
 - [ ] 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때까지 시도한 횟수이며, 이를 출력
 
 
 ### 예외
 - [ ] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException을 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받음
-- [ ] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리
+- [x] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리
 
 
 ### 단위 테스트
