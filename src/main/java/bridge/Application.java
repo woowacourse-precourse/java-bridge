@@ -14,7 +14,15 @@ public class Application {
         printCommand.gameStart();
         int bridgeLength=input.readBridgeSize();
         List<String> bridgeRoute = bridgeMaker.makeBridge(bridgeLength);
+        game.bridgeRoute=bridgeRoute;
+        game.trialCount+=1;
+
+        for(int loop=0;loop<bridgeLength;loop++){
+            game.move(input.readMoving());
+        }
+
 
 
     }
+
 }
