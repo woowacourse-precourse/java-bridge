@@ -5,6 +5,9 @@
 
 
 - Domain layer
+- Application layer
+  - BridgeGameProcess : Application 에서 호출해 게임을 총괄하는 역할을 담당하는 클래스
+    - run() : static으로 설정해 new 연산자 없이 호출해 사용 가능
 - Common
   - message : Bridge Game Process를 위한 메세지를 모아둔 Package
     - ConsoleOut : 상수로 메세지를 선언, 모든 Layer에서 선언해 사용할 수 있습니다.
