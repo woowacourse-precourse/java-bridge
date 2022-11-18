@@ -9,7 +9,7 @@ public class Function {
 
     public static boolean validCastingBridgeSize(String BridgeSizes) {
         try {
-            int BridgeSize = Integer.parseInt(BridgeSizes);
+            Integer.parseInt(BridgeSizes);
             return true;
         } catch (NumberFormatException e) {
             OutputView.printError("다리 길이로 숫자를 입력해주세요.");
