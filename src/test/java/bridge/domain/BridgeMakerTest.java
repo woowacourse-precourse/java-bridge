@@ -2,10 +2,7 @@ package bridge.domain;
 
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
-import camp.nextstep.edu.missionutils.Randoms;
+import bridge.FrontController;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,14 +12,14 @@ import org.junit.jupiter.api.Test;
 
 class BridgeMakerTest {
 
-    private BridgeMaker bridgeMaker;
+    FrontController frontController;
 
     int size;
 
     @BeforeEach
     void setUp() {
 
-        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        frontController = new FrontController();
 
     }
 
@@ -30,7 +27,7 @@ class BridgeMakerTest {
     public void 랜덤수에_따른_칸을_표현() throws Exception{
         //given
         size = 3;
-        List<String> bridge = bridgeMaker.makeBridge(size);
+        List<String> bridge = frontController.bridgeRepository();
         List<String> assertBridge = new ArrayList<>();
 
         //when
@@ -45,12 +42,10 @@ class BridgeMakerTest {
     @Test
     public void 다리_생성() throws Exception{
         //given
-        size = 3;
-        List<String> bridge = bridgeMaker.makeBridge(size);
+        List<String> bridge = frontController.bridgeRepository();
         List<String> assertBridge = new ArrayList<>();
 
         //when
-
 
         //then
         assertEquals(assertBridge, bridge);
