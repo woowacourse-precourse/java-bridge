@@ -1,10 +1,7 @@
 package bridge.service;
 
 import bridge.BridgeMaker;
-import bridge.domain.Bridge;
 import bridge.domain.Bridges;
-import bridge.domain.GameState;
-import bridge.exception.NotFoundBridgeException;
 import bridge.service.dto.request.BridgeSizeRequestDto;
 import bridge.service.dto.request.PlayerMovementRequestDto;
 
@@ -16,21 +13,15 @@ import java.util.List;
 public class BridgeGame {
     private final BridgeMaker bridgeMaker;
     private final Bridges bridges;
-    private final GameState gameState;
 
-    public BridgeGame(BridgeMaker bridgeMaker, Bridges bridges, GameState gameState) {
+    public BridgeGame(BridgeMaker bridgeMaker, Bridges bridges) {
         this.bridgeMaker = bridgeMaker;
         this.bridges = bridges;
-        this.gameState = gameState;
     }
 
     public void create(BridgeSizeRequestDto dto) {
         List<String> realBridges = bridgeMaker.makeBridge(dto.getBridgeSize());
         bridges.generate(realBridges);
-    }
-
-    public boolean isGameOver() {
-        return bridges.isGameClear() || gameState.isFail();
     }
 
     /**
@@ -40,8 +31,6 @@ public class BridgeGame {
      */
     public void move(PlayerMovementRequestDto dto) {
         String movePlayer = dto.getMovePlayer();
-        Bridge bridge = bridges.findByPositionToMove(gameState.getPlayerPosition())
-                .orElseThrow(NotFoundBridgeException::new);
     }
 
     /**
