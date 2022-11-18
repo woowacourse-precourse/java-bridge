@@ -1,6 +1,5 @@
 package bridge;
 
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -10,16 +9,20 @@ import java.util.Scanner;
  */
 public class InputView {
     private Scanner sc = new Scanner(System.in);
-    private int count = 1;
 
     static int bridgeLength;
 
     public void readBridgeSize() {
+        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println("\n" + "다리의 길이를 입력해주세요.");
         String bridgeLength = sc.nextLine();
         bridgeSizeCheck(bridgeLength);
         this.bridgeLength = Integer.parseInt(bridgeLength);
     }
     public void bridgeSizeCheck(String bridgeLength){
+        if(bridgeLength.equals("")){
+            throw new IllegalArgumentException("[ERROR]");
+        }
         for(int i = 0; i < bridgeLength.length(); i++){
             if(!Character.isDigit(bridgeLength.charAt(i))){
                 throw new IllegalArgumentException("[ERROR]");
@@ -30,36 +33,19 @@ public class InputView {
         }
     }
     public String readMoving() {
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-        List<String> crossingTheBridge = bridgeMaker.makeBridge(bridgeLength);
-        for(int i = 0; i < bridgeLength; i++){
             System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-            System.out.println(crossingTheBridge.get(i));
-            String UpAndDown = sc.next();
-            movingCheck(UpAndDown);
-            if(!crossingTheBridge.get(i).equals(UpAndDown)) {
-                return "실패";
+            String moving = sc.next();
+            movingCheck(moving);
+            return moving;
+    }
+    public String movingCheck(String moving) {
+            if (moving.equals("")) {
+                throw new IllegalArgumentException("[ERROR]");
             }
-        }
-        return "성공";
+            if (!moving.equals("U") && !moving.equals("D")) {
+                throw new IllegalArgumentException("[ERROR]");
+            }
+        return moving;
     }
-    public void movingCheck(String UpAndDown){
-        if(UpAndDown.length() > 1){
-            throw new IllegalArgumentException("[ERROR]");
-        }
-        if(!UpAndDown.equals("U") && !UpAndDown.equals("D")){
-            throw new IllegalArgumentException("[ERROR]");
-        }
-
-    }
-
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public String readGameCommand() {
-        return null;
-    }
-
 
 }
