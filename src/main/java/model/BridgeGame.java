@@ -14,7 +14,7 @@ public class BridgeGame {
             List<String> upSide = new ArrayList<>();
             List<String> downSide = new ArrayList<>();
             List<String> bridge = BridgeController.makeBridge();
-            checkCorrectPath(bridge, upSide, downSide);
+            checkNextPath(bridge, upSide, downSide);
         } catch (IllegalArgumentException ex) {
             System.out.println(ex.getMessage());
         }
@@ -44,41 +44,84 @@ public class BridgeGame {
         isCorrectBridge.add(StringConstant.CORRECT_PATH.getConstant());
     }
 
-    public boolean isUserPathEqualsBridge(List<String> bridge, String path){
+    public boolean isUserPathEqualsBridge(List<String> bridge, String path) {
         return bridge.get(bridgeNumber).equals(path);
     }
 
-    public void checkCorrectPath(List<String> bridge, List<String> upSide, List<String> downSide) {
-        if (bridge.size() == upSide.size()) {
-            BridgeController.printResult(upSide, downSide, countTryNumber);
+    public void checkNextPath(List<String> bridge, List<String> upSide, List<String> downSide) {
+        addCorrectResult(bridge, upSide, downSide);
+        addWrongResult(bridge, upSide, downSide);
+        if (UserInputDone(bridge, upSide, downSide)) {
             return;
         }
-        List<String> userMove = getUserMove(bridge);
+        checkNextPath(bridge, upSide, downSide);
+    }
 
-        if (userMove.get(0).equals("U") && userMove.get(1).equals("O")) {
+    private boolean UserInputDone(List<String> bridge, List<String> upSide, List<String> downSide) {
+        if (isUserInputDone(bridge, upSide)) {
+            BridgeController.printResult(upSide, downSide, countTryNumber);
+            return true;
+        }
+        return false;
+    }
+
+    private void addCorrectResult(List<String> bridge, List<String> upSide, List<String> downSide) {
+        while (!isUserInputDone(bridge, upSide)) {
+            addCorrectSymbolUpSideDownSide(bridge, upSide, downSide);
+        }
+    }
+
+    private void addWrongResult(List<String> bridge, List<String> upSide, List<String> downSide) {
+        while (!isUserInputDone(bridge, upSide)) {
+            addWrongSymbolUpSideDownSide(bridge, upSide, downSide);
+        }
+    }
+
+    public void addCorrectSymbolUpSideDownSide(List<String> bridge, List<String> upSide, List<String> downSide) {
+        List<String> userMove = getUserMove(bridge);
+        if (userMoveEqualsU(userMove) && userMoveCorrect(userMove)) {
             upSide.add(StringConstant.CORRECT_PATH.getConstant());
-            downSide.add(" ");
-            BridgeController.printMap(upSide, downSide);
-            checkCorrectPath(bridge, upSide, downSide);
+            downSide.add(StringConstant.BLANK.getConstant());
         }
-        if (userMove.get(0).equals("D") && userMove.get(1).equals("O")) {
-            upSide.add(" ");
+        if (userMoveEqualsD(userMove) && userMoveCorrect(userMove)) {
+            upSide.add(StringConstant.BLANK.getConstant());
             downSide.add(StringConstant.CORRECT_PATH.getConstant());
-            BridgeController.printMap(upSide, downSide);
-            checkCorrectPath(bridge, upSide, downSide);
         }
-        if (userMove.get(0).equals("U") && userMove.get(1).equals("X")) {
+        BridgeController.printMap(upSide, downSide);
+    }
+
+    public void addWrongSymbolUpSideDownSide(List<String> bridge, List<String> upSide, List<String> downSide) {
+        List<String> userMove = getUserMove(bridge);
+        if (userMoveEqualsU(userMove) && userMoveWrong(userMove)) {
             upSide.add(StringConstant.WRONG_PATH.getConstant());
-            downSide.add(" ");
-            BridgeController.printMap(upSide, downSide);
-            retry(bridge, upSide, downSide);
+            downSide.add(StringConstant.BLANK.getConstant());
         }
-        if (userMove.get(0).equals("U") && userMove.get(1).equals("X")) {
-            upSide.add(" ");
+        if (userMoveEqualsD(userMove) && userMoveWrong(userMove)) {
+            upSide.add(StringConstant.BLANK.getConstant());
             downSide.add(StringConstant.WRONG_PATH.getConstant());
-            BridgeController.printMap(upSide, downSide);
-            retry(bridge, upSide, downSide);
         }
+        BridgeController.printMap(upSide, downSide);
+        retry(bridge, upSide, downSide);
+    }
+
+    public boolean isUserInputDone(List<String> bridge, List<String> upSide) {
+        return bridge.size() == upSide.size();
+    }
+
+    public boolean userMoveEqualsU(List<String> userMove) {
+        return userMove.get(0).equals("U");
+    }
+
+    public boolean userMoveEqualsD(List<String> userMove) {
+        return userMove.get(0).equals("D");
+    }
+
+    public boolean userMoveCorrect(List<String> userMove) {
+        return userMove.get(1).equals("O");
+    }
+
+    public boolean userMoveWrong(List<String> userMove) {
+        return userMove.get(1).equals("X");
     }
 
     public List<String> getUserMove(List<String> bridge) {
@@ -90,7 +133,7 @@ public class BridgeGame {
         BridgeController.printRetryOrQuit(retryOrQuit);
         if (isUserInputRetry(retryOrQuit)) {
             countTryNumber++;
-            checkCorrectPath(bridge, upSide, downSide);
+            checkNextPath(bridge, upSide, downSide);
         }
         if (isUserInputQuit(retryOrQuit)) {
             BridgeController.printResult(upSide, downSide, countTryNumber);
