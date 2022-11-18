@@ -27,4 +27,7 @@ public class OutputView {
     public void bridgeSizeMessage() {
         System.out.println(Message.Bridge_Size_Input.getMessage());
     }
+    public void moveMessage() {
+        System.out.println(Message.Move_Input.getMessage());
+    }
 }
