@@ -17,6 +17,11 @@ public class Map {
 		upstairs.append(footPrints.get(1));
 	}
 
+	public void resetMap() {
+		downstairs.setLength(0);
+		upstairs.setLength(0);
+	}
+
 	public String getDownstairs() {
 		String value = downstairs.toString();
 		return value.substring(0, value.length() - 1);
