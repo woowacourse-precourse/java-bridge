@@ -1,6 +1,5 @@
 package bridge;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,18 +14,15 @@ public class OutputView {
     final static String WRONG = "X";
     final static String UP = "U";
     final static String DOWN = "D";
-    final static String REDO = "R";
-    final static String QUIT = "Q";
+    final static String FIRST = "F";
+    final static String SECOND = "S";
     final static String FINAL_RESULT = "최종 게임 결과";
     final static String SUCCEEDED = "게임 성공 여부: ";
     final static String SUCCESS = "성공";
     final static String FAIL = "실패";
     final static String ATTEMPT = "\n총 시도한 횟수: ";
-    static boolean isComplete;
-    static InputView iv = new InputView();
-    static String lastUserInput;
-    static int totalCount = 0;
-    static int attempt;
+    static BridgeGame bm = new BridgeGame();
+
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -34,80 +30,73 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean printMap(List<String> upOrDown) {
-        for (int i = 0; i < upOrDown.size(); i++){
-            String userInput = iv.readMoving();
-            totalCount++; attempt++;
-            lastUserInput = userInput;
-            if(!startLadder(i, upOrDown, userInput)){
-                return redoOrQuit(iv.readGameCommand());
+        for (int i = 0; i < upOrDown.size(); i++) {
+            String userInput = bm.move();
+            boolean canMove = startLadder(i, upOrDown, userInput);
+            if (!canMove) {
+                return bm.retry();
             }
         }
         return false;
     }
 
-    public boolean startLadder(int index, List<String> upOrDown, String userInput){
+    public boolean startLadder(int index, List<String> upOrDown, String userInput) {
+        System.out.print(START);
         boolean isFirstRowTrue = firstRow(index, upOrDown, userInput);
+        System.out.print(START);
         boolean isSecondRowTrue = secondRow(index, upOrDown, userInput);
         return isFirstRowTrue && isSecondRowTrue;
     }
 
     public static boolean firstRow(int index, List<String> upOrDown, String userInput) {
-        System.out.print(START);
-        printPreviousIndexFirstRow(upOrDown, index);
-        if (!printCurrentIndexFirstRow(upOrDown.get(index), userInput)) return false;
+        printPreviousIndexRow(upOrDown, index, FIRST);
+        if (printCurrentIndexRow(upOrDown.get(index), userInput, DOWN)) return false;
         System.out.print(END);
         System.out.println();
         return true;
     }
-
-    public static void printPreviousIndexFirstRow(List<String> upOrDown, int index) {
-        for (int i = 0; i < index; i++) {
-            if (upOrDown.get(i).equals(UP)) System.out.print(CORRECT);
-            if (upOrDown.get(i).equals(DOWN)) System.out.print(SPACE);
-            System.out.print(DIVIDER);
-        }
-    }
-
-    public static boolean printCurrentIndexFirstRow(String current, String userInput) {
-        if (!(current.equals(userInput)) && current.equals(DOWN)) {
-            System.out.print(WRONG + END);
-            System.out.println();
-            return false;
-        }
-        if (!(current.equals(userInput)) && current.equals(UP)) System.out.print(SPACE);
-        if (current.equals(userInput) && userInput.equals(UP)) System.out.print(CORRECT);
-        if (current.equals(userInput) && userInput.equals(DOWN)) System.out.print(SPACE);
-        return true;
-    }
-
 
     public static boolean secondRow(int index, List<String> upOrDown, String userInput) {
-        System.out.print(START);
-        printPreviousIndexSecondRow(upOrDown, index);
-        if (!printCurrentIndexSecondRow(upOrDown.get(index), userInput)) return false;
+        printPreviousIndexRow(upOrDown, index, SECOND);
+        if (printCurrentIndexRow(upOrDown.get(index), userInput, UP)) return false;
         System.out.print(END);
         System.out.println();
         return true;
     }
 
-    public static void printPreviousIndexSecondRow(List<String> upOrDown, int index) {
+    public static void printPreviousIndexRow(List<String> upOrDown, int index, String firstOrSecond) {
         for (int i = 0; i < index; i++) {
-            if (upOrDown.get(i).equals(DOWN)) System.out.print(CORRECT);
-            if (upOrDown.get(i).equals(UP)) System.out.print(SPACE);
-            System.out.print(DIVIDER);
+            previousIndexRows(upOrDown, i, firstOrSecond);
         }
     }
 
-    public static boolean printCurrentIndexSecondRow(String current, String userInput) {
-        if (!(current.equals(userInput)) && current.equals(UP)) {
+    public static void previousIndexRows(List<String> upOrDown, int index, String firstOrSecond){
+        if (firstOrSecond.equals(FIRST)) {
+            if (upOrDown.get(index).equals(UP)) System.out.print(CORRECT);
+            if (upOrDown.get(index).equals(DOWN)) System.out.print(SPACE);
+        }
+        if (firstOrSecond.equals(SECOND)) {
+            if (upOrDown.get(index).equals(DOWN)) System.out.print(CORRECT);
+            if (upOrDown.get(index).equals(UP)) System.out.print(SPACE);
+        }
+        System.out.print(DIVIDER);
+    }
+
+    public static boolean printCurrentIndexRow(String current, String userInput, String direction) {
+        if (!(current.equals(userInput)) && current.equals(direction)) {
             System.out.print(WRONG + END);
             System.out.println();
-            return false;
+            return true;
         }
-        if (!(current.equals(userInput)) && current.equals(DOWN)) System.out.print(SPACE);
-        if (current.equals(userInput) && userInput.equals(DOWN)) System.out.print(CORRECT);
-        if (current.equals(userInput) && userInput.equals(UP)) System.out.print(SPACE);
-        return true;
+        if (!(current.equals(userInput)) && current.equals(invert(direction))) System.out.print(SPACE);
+        if (current.equals(userInput) && userInput.equals(invert(direction))) System.out.print(CORRECT);
+        if (current.equals(userInput) && userInput.equals(direction)) System.out.print(SPACE);
+        return false;
+    }
+
+    public static String invert(String invert){
+        if(invert.equals(UP)) return DOWN;
+        return UP;
     }
 
     /**
@@ -117,20 +106,8 @@ public class OutputView {
      */
     public void printResult(List<String> bridgeMaker) {
         System.out.println(FINAL_RESULT);
-        startLadder(attempt-1, bridgeMaker, lastUserInput);
-        if (!isComplete) System.out.println(SUCCEEDED + FAIL + ATTEMPT + totalCount);
-        if (isComplete) System.out.println(SUCCEEDED + SUCCESS + ATTEMPT + totalCount);
+        startLadder(BridgeGame.attempt - 1, bridgeMaker, BridgeGame.lastUserInput);
+        if (!BridgeGame.isComplete) System.out.println(SUCCEEDED + FAIL + ATTEMPT + BridgeGame.totalCount);
+        if (BridgeGame.isComplete) System.out.println(SUCCEEDED + SUCCESS + ATTEMPT + BridgeGame.totalCount);
     }
-
-    public boolean redoOrQuit(String reset) {
-        if (reset.equals(REDO)) {
-            isComplete = true;
-            attempt = 0;
-            return true;
-        }
-        if (reset.equals(QUIT)) isComplete = false;
-        if (!reset.equals(QUIT)) throw new IllegalArgumentException();
-        return false;
-    }
-
 }
