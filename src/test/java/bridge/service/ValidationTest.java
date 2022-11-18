@@ -34,7 +34,7 @@ class ValidationTest {
     @DisplayName("isUpOrDown 테스트")
     @CsvSource(value = {"U", "D"})
     void isUpOrDownTest(String s) {
-        isUpOrDown(s);
+        isContain("UD", s);
     }
 
     @ParameterizedTest
@@ -42,7 +42,7 @@ class ValidationTest {
     @MethodSource("errorCase")
     void isUpOrDownError(String s) {
         try {
-            isUpOrDown(s);
+            isContain("UD", s);
         } catch (Exception e) {
             assert e.getMessage().contains("[ERROR]");
         }
@@ -52,7 +52,7 @@ class ValidationTest {
     @DisplayName("isRestartOrQuit 테스트")
     @CsvSource(value = {"R", "Q"})
     void isRestartOrQuitTest(String s) {
-        isRestartOrQuit(s);
+        isContain("RQ", s);
     }
 
     @ParameterizedTest
@@ -60,7 +60,7 @@ class ValidationTest {
     @MethodSource("errorCase")
     void isRestartOrQuitError(String s) {
         try {
-            isRestartOrQuit(s);
+            isContain("RQ", s);
         } catch (Exception e) {
             assert e.getMessage().contains("[ERROR]");
         }

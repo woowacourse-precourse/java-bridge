@@ -7,8 +7,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-class BridgeMapTest {
-    private final static BridgeMap BRIDGE_MAP = new BridgeMap();
+class BridgeStatusTest {
+    private final static BridgeStatus BRIDGE_MAP = new BridgeStatus();
 
     @ParameterizedTest
     @DisplayName("Status Class 테스트")

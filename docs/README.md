@@ -7,22 +7,38 @@
 dao와 service를 이용해 처리 후 view로 넘김
 ```
 
-## BridgeGame Class ✓
-
+## ConsoleController Class ✓
 ```
-클라이언트의 사다리 게임에 대한 비즈니스
-요구사항을 처리하는 클래스이다.
+입출력에 대한 비즈니스 처리를 하는
+컨트롤러 객체이다.
 ```
 
 **기능 요구사항**
 
-| 구현 여부  | 메소드, 생성자 명 | 의미                |
-|:------:|:-----------|:------------------|
-|   ✓    | start      | 게임 시작 메소드         |
-|   ✓    | play       | 길이 입력 메소드         |
-|   ✓    | move       | 이동 위치 묻는 메소드      |
-|   ✓    | retry      | 이동 상태 계산 및 출력 메소드 |
-|   ✓    | end        | 게임 종료 메소드         |
+| 구현 여부  | 메소드, 생성자 명        | 의미                          |
+|:------:|:------------------|:----------------------------|
+|   ✓    | bridgeSizeConsole | 다리 길이 입력에 대한 입출력 처리         |
+|   ✓    | moveConsole       | 이동에 대한 입출력 처리               |
+|   ✓    | statusConsole     | 다리 건너는 상태에 대한 입출력 처리        |
+|   ✓    | commandConsole    | 다시 시작할지 아니면 종료할지에 대한 입출력 처리 |
+|   ✓    | endConsole        | 종료할 때의 입출력 처리               |
+
+
+## DataAccessController Class ✓
+```
+domain에 대한 통합적인 접근을 담당한다.
+```
+
+**기능 요구사항**
+
+| 구현 여부  | 메소드, 생성자 명           | 의미                            |
+|:------:|:---------------------|:------------------------------|
+|   ✓    | updateBridgeStatus   | 입력받은 문자에 대한 bridgeStatus 업데이트 |
+|   ✓    | getBridgeStatus      | bridgeStatus를 얻을 수 있는 getter  |
+|   ✓    | getBridgeSize        | 다리의 크기를 얻을 수 있는 getter        |
+|   ✓    | previousBridgeStatus | bridgeStatus를 이전 상태로 되돌리는 메소드 |
+|   ✓    | makeBridge           | 다리를 만드는 메소드                   |
+
 
 # domain Package ✓
 ```
@@ -30,6 +46,18 @@ dao와 service를 이용해 처리 후 view로 넘김
 저장과 전처리 후에 반환하는 객체들을 모아놓은 패키지
 필요시 전처리를 위해 service를 쓸 수 있음
 ```
+
+## Bridge Class ✓
+```
+Bridge 와 길이를 가지고 있는 클래스
+```
+
+**기능 요구사항**
+
+| 구현 여부  | 메소드, 생성자 명      | 의미                            |
+|:------:|:----------------|:------------------------------|
+|   ✓    | getBridgeAnswer | 다리의 정답에 대해 index 접근을 하여 정답 얻음 |
+|   ✓    | getBridgeSize   | bridgesize를 얻을 수 있음           |
 
 ## BridgeMaker Class ✓
 ```
@@ -44,25 +72,27 @@ Bridge 게임의 정답지를 만들고
 |   ✓    | BridgeMaker | BridgeNumberGenerator 을 받아서 생성 |
 |   ✓    | makeBridge  | size 에 맞는 랜덤 bridge 를 만들고 반환   |
 
-## BridgeMaker Class ✓
+## BridgeStatus Class ✓
 ```
-Bridge 게임의 진행상황을 만들고
+Bridge 게임의 bridgeStatus를 만들고,
 반환시켜주는 클래스이다.
 ```
 
 **기능 요구사항**
 
-| 구현 여부 | 메소드, 생성자 명    | 의미                                         |
-|:-----:|:--------------|:-------------------------------------------|
-|   ✓   | Statistic     | "U"에 대한 라인과 "D"에 대한 라인의 출력값을 갖는 HashMap 생성 |
-|   ✓   | updateStatus  | 입력에 맞는 status 업데이트                         |
-|   ✓   | createMessage | 입력에 맞는 메시지 생성                              |
-|   ✓   | getMessage    | 가지고 있는 메시지 반환                              |
-|   ✓   | undoStatus    | status 을 이전 상태로 되돌림                        |
-|   ✓   | addCorrect    | key 에 맞는 성공 원소 추가                          |                               | "                                |
-|   ✓   | addWrong      | key 에 맞는 탈락 원소 추가                          |
-|   ✓   | addBlank      | key 에 맞는 공백 원소 추가                          |
-|   ✓   | addDelimiter  | 윗 라인과 아랫 라인에 구분자 추가                        |
+| 구현 여부 | 메소드, 생성자 명      | 의미                                   |
+|:-----:|:----------------|:-------------------------------------|
+|   ✓   | BridgeStatus    | "U"에 대한 라인과 "D"에 대한 출력값을 저장함         |
+|   ✓   | getSuccess      | 진행 상태에 대한 성공 여부를 반환                  |
+|   ✓   | switchSuccess   | success를 true이면 false로 false이면 true로 |
+|   ✓   | getMessage      | 가지고 있는 메시지 반환                        |
+|   ✓   | updateBridgeMap | 입력에 대한 상태 업데이트                       |
+|   ✓   | createMessage   | 출력해야되는 message를 만들고 기억함              |
+|   ✓   | undoStatus      | 현재 상태에서 이전 상태로 되돌림                   |                               | "                                |
+|   ✓   | addCorrect      | key 에 "O" 추가                         |
+|   ✓   | addWrong        | key 에 "X" 추가                         |
+|   ✓   | addBlank        | key 에 " " 추가                         |
+|   ✓   | addDelimiter    | 윗 라인과 아랫 라인에 구분자 추가                  |
 
 # service Package ✓
 ```
@@ -156,6 +186,22 @@ view는 controller랑 상호작용하도록
 |:-----:|:------|:----------------------------------------------------------|
 |   ✓   | main  | 콘솔의 초기 입력을 받아 실행되는 기본적인 함수이다.<br/>bridgeGame의 컨트롤러를 실행한다. |
 
+## BridgeGame Class ✓
+
+```
+클라이언트의 사다리 게임에 대한 비즈니스
+요구사항을 처리하는 클래스이다.
+```
+
+**기능 요구사항**
+
+| 구현 여부  | 메소드, 생성자 명 | 의미             |
+|:------:|:-----------|:---------------|
+|   ✓    | start      | 게임 시작 후 초기화 처리 |
+|   ✓    | move       | 어디로 이동할지 처리    |
+|   ✓    | check      | 정답인지 탈락인지 처리   |
+|   ✓    | retry      | 다시할지 말지 처리     |
+|   ✓    | end        | 게임 종료 처리       |
 
 
 _아래는 기능 요구 사항 전체이다._
@@ -251,4 +297,4 @@ R
   - ✓ 각 클래스의 제약 사항은 아래 클래스별 세부 설명을 참고한다.
   - ✓ 이외 필요한 클래스(또는 객체)와 메서드는 자유롭게 구현할 수 있다.
   - ✓ `InputView` 클래스에서만 `camp.nextstep.edu.missionutils.Console` 의 `readLine()` 메서드를 이용해 사용자의 입력을 받을 수 있다.
-  - `BridgeGame` 클래스에서 `InputView`, `OutputView` 를 사용하지 않는다.
+  - ✓ `BridgeGame` 클래스에서 `InputView`, `OutputView` 를 사용하지 않는다.

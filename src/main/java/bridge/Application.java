@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.controller.BridgeGame;
-
 public class Application {
     public final static BridgeGame bridgeGame = new BridgeGame();
 
