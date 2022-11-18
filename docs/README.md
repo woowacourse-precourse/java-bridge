@@ -9,7 +9,7 @@
 - [x] 현재까지 이동한 다리의 상태를 출력한다 - OutputView#printMap()
 - [x] 게임 실패 유무를 파악한다 - BridgeGame#isGameFail()
 - [x] 게임 결과를 출력한다 - OutputView#printResult()
-- [ ] 재시작 유무를 입력받는다 - InputView#readGameCommand()
+- [x] 재시작 유무를 입력받는다 - InputView#readGameCommand()
 - [ ] 게임을 종료한다 - 미정
 - [ ] 게임을 재시작한다 - BridgeGame#retry()
 - [ ] 총 시도 횟수를 출력한다 - 미정 
