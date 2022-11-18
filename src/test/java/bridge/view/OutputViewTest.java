@@ -56,4 +56,22 @@ class OutputViewTest {
                     .isEqualTo(String.format(OutputView.ASKING_BRIDGE_SIZE_MESSAGE_FORMAT));
         }
     }
+
+    @Nested
+    @DisplayName("다음으로 이동할 칸을 입력하도록 유도하는 메시지를 출력하는 printAskingNextStepMessage 메서드")
+    class PrintAskingNextStepMessage {
+        @Test
+        @DisplayName("다음으로 이동할 칸을 입력하도록 유도하는 메시지를 출력할 수 있다.")
+        void whenAskingNextStep_thenPrintsMessage() {
+            //given
+            OutputView outputView = new OutputView();
+
+            //when
+            outputView.printAskingNextStepMessage();
+
+            //then
+            assertThat(captor.toString())
+                    .isEqualTo(String.format("이동할 칸을 선택해주세요. (위: U, 아래: D)%n"));
+        }
+    }
 }
