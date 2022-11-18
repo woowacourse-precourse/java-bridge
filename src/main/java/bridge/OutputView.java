@@ -61,4 +61,12 @@ public class OutputView {
         }
         System.out.println();
     }
+
+    private void printBridgeTop(List<String> topBridge) {
+        System.out.print("[ ");
+        for (String top : topBridge) {
+            System.out.println(top);
+        }
+        System.out.println(" ]");
+    }
 }
