@@ -20,7 +20,7 @@ class ValidationUtilTest {
             ValidationUtil.isValidBridgeLength("20");
         }
 
-        @ValueSource(strings = {"2", "21", "a", "!"})
+        @ValueSource(strings = {"-1", "0", "2", "21", "a", "!", "999999999999999999999999999999999999999999999999999999999999999999999"})
         @ParameterizedTest
         void inValid(String input) {
             assertThatThrownBy(() -> ValidationUtil.isValidBridgeLength(input))
@@ -38,7 +38,7 @@ class ValidationUtilTest {
             ValidationUtil.isUpOrDown("D");
         }
 
-        @ValueSource(strings = {"R", "Q", "A", "1", "*", "!"})
+        @ValueSource(strings = {"R", "Q", "A", "10", "-10", "*", "!"})
         @ParameterizedTest
         void inValid(String input) {
             assertThatThrownBy(() -> ValidationUtil.isUpOrDown(input))
@@ -57,7 +57,7 @@ class ValidationUtilTest {
             ValidationUtil.isRetryOrQuit("Q");
         }
 
-        @ValueSource(strings = {"U", "D", "A", "1", "*", "!"})
+        @ValueSource(strings = {"U", "D", "A", "10", "-10", "*", "!"})
         @ParameterizedTest
         void inValid(String input) {
             assertThatThrownBy(() -> ValidationUtil.isRetryOrQuit(input))
