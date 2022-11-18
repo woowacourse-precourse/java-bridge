@@ -21,7 +21,7 @@ public class InputView {
      */
     public InputType readMoving() {
         System.out.println(ConsoleMessage.REQUEST_INPUT_MOVE);
-        return InputType.getType(Console.readLine().charAt(0));
+        return getInputType();
     }
 
     /**
@@ -29,6 +29,14 @@ public class InputView {
      */
     public InputType readGameCommand() {
         System.out.println(ConsoleMessage.REQUEST_INPUT_RETRY);
-        return InputType.getType(Console.readLine().charAt(0));
+        return getInputType();
+    }
+
+    private InputType getInputType() {
+        return InputType.getType(inputChar());
+    }
+
+    private char inputChar() {
+        return Console.readLine().charAt(0);
     }
 }
