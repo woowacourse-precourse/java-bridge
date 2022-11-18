@@ -2,7 +2,7 @@ package bridge;
 
 public enum Message {
     LEFT_BAR ("[ "),
-    RIGHT_BAR("  ]"),
+    RIGHT_BAR(" ]"),
     CENTER_BAR(" | "),
     MOVE_SUCCESS("O"),
     MOVE_FAIL("X"),
