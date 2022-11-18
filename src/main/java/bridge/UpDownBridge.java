@@ -10,30 +10,22 @@ public class UpDownBridge {
     private static final String Down = "D";
     private static final String BLANK = " ";
 
-    public static void makeUpDownBridge(String bridge, String inputDirection) {
-        addUpBridge(bridge, inputDirection);
-        addDownBridge(bridge, inputDirection);
+    public static void makeUpDownBridge(String inputDirection, String moveResult) {
+        addUpBridge(inputDirection, moveResult);
+        addDownBridge(inputDirection, moveResult);
     }
 
-    public static void addUpBridge(String bridge, String inputDirection) {
-        if(bridge.equals(inputDirection)) {
-            upBridge.append(inputDirection);
+    public static void addUpBridge(String inputDirection, String moveResult) {
+        if(inputDirection.equals(UP)) {
+            upBridge.append(moveResult);
             downBridge.append(BLANK);
         }
     }
 
-    public static void addDownBridge(String bridge, String inputDirection) {
-        if(bridge.equals(inputDirection)) {
+    public static void addDownBridge(String inputDirection, String moveResult) {
+        if(inputDirection.equals(Down)) {
             upBridge.append(BLANK);
-            downBridge.append(inputDirection);
+            downBridge.append(moveResult);
         }
-    }
-
-    public String upBridgeToString() {
-        return upBridge.toString();
-    }
-
-    public String downBridgeToString() {
-        return downBridge.toString();
     }
 }
