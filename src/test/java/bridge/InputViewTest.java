@@ -1,6 +1,5 @@
 package bridge;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
@@ -53,8 +52,47 @@ class InputViewTest extends CustomNsTest{
         //정상 동작
         {
             command("5");
-            inputView.readBridgeSize();
-            assertThat(output().contains(ERROR_MESSAGE));
+            assertThat(inputView.readBridgeSize())
+                    .isEqualTo(5);
+        }
+    }
+
+    @Test
+    @DisplayName("사용자가 이동할 칸을 입력받는지 테스트")
+    void readMovingTest(){
+        //비정상 동작
+        {
+            command("A");
+            inputView.readMoving();
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }
+
+        //비정상 동작
+        {
+            command("UU");
+            inputView.readMoving();
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }
+
+        //비정상 동작
+        {
+            command("DD");
+            inputView.readMoving();
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }
+
+        //정상 동작
+        {
+            command("U");
+            assertThat(inputView.readMoving())
+                    .isEqualTo("U");
+        }
+
+        //정상 동작
+        {
+            command("D");
+            assertThat(inputView.readMoving())
+                    .isEqualTo("D");
         }
     }
 
