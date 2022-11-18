@@ -75,4 +75,13 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public boolean isGameFailed(List<List<String>> resultBridges){
+        for(List<String> bridge : resultBridges){
+            if(bridge.contains(WRONG)){
+                return true;
+            }
+        }
+        return false;
+    }
 }
