@@ -9,5 +9,9 @@ public class GameController {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
         bridgeMaker.makeBridge(bridgeNumberGenerator.generate());
+        InputView.readMoving();
+
+        BridgeGame bridgeGame = new BridgeGame();
+
     }
 }

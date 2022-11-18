@@ -34,13 +34,25 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] 값은 3 이상 20 이하 숫자만 가능합니다");
         }
     }
-
-
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public static String readMoving() {
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        String input = Console.readLine().trim();
+        return validValue(input);
+    }
+
+    public static String validValue(String inputChoice) {
+        try {
+            if (!inputChoice.equals("D") && !inputChoice.equals("U")) {
+                throw new IllegalArgumentException("[ERROR] 값은 D 혹은 U로만 입력이 가능합니다.");
+            }
+            return inputChoice;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
     }
 
     /**
