@@ -9,7 +9,7 @@ import java.util.List;
 public class Bridge {
     private final List<String> answer;
 
-    public Bridge(int size) {
+    private Bridge(int size) {
         BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> answer = maker.makeBridge(size);
         validate(answer);
@@ -22,6 +22,10 @@ public class Bridge {
 
     public List<String> getAnswer() {
         return this.answer;
+    }
+
+    public static Bridge of(int size){
+        return new Bridge(size);
     }
 
 }
