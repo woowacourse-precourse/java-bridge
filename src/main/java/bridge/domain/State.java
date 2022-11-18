@@ -1,16 +1,17 @@
 package bridge.domain;
 
 public enum State {
-    SUCCESS("성공"),
-    FAILURE("실패");
+    CORRECT(" O "),
+    WRONG(" X "),
+    NONE("   ");
 
-    private String korExplanation;
+    private String mark;
 
-    State(String korExplanation) {
-        this.korExplanation = korExplanation;
+    State(String mark) {
+        this.mark = mark;
     }
 
-    public String getKorState() {
-        return this.korExplanation;
+    public String getMark() {
+        return this.mark;
     }
 }

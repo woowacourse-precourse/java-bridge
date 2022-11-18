@@ -1,6 +1,12 @@
 package bridge.view;
 
+import bridge.domain.Bridge;
+import bridge.domain.GameResult;
 import bridge.domain.State;
+
+import java.util.List;
+import java.util.ListIterator;
+import java.util.stream.IntStream;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -13,9 +19,6 @@ public class OutputView {
     private static final String START_OF_BRIDGE_MESSAGE = "[";
     private static final String END_OF_BRIDGE_MESSAGE = "]";
     private static final String PARTITION_OF_BRIDGE_MESSAGE = "|";
-    private static final String CORRECT_BRIDGE_MESSAGE = " O ";
-    private static final String WRONG_BRIDGE_MESSAGE = " X ";
-    private static final String NONE_BRIDGE_MESSAGE = "   ";
 
 
     public void printStartingMessage() {
@@ -27,7 +30,28 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(Bridge bridge) {
+        List<List<State>> bridgeToPrint = bridge.toPrint();
+        getMap(bridgeToPrint);
+    }
+
+    private void getMap(List<List<State>> bridgeToPrint) {
+        for (List<State> stateOfBridge : bridgeToPrint) {
+            printStartOfBridge();
+            printBridgeMark(stateOfBridge);
+            printEndOfBridge();
+        }
+    }
+
+    private void printBridgeMark(List<State> stateOfBridge) {
+        int bound = stateOfBridge.size() - 1;
+        IntStream.range(0, bound)
+                .mapToObj(i -> stateOfBridge.get(i).getMark())
+                .forEach(i -> {
+                    System.out.print(i);
+                    printPartitionOfBridge();
+                });
+        System.out.print(stateOfBridge.get(bound).getMark());
     }
 
     /**
@@ -43,8 +67,8 @@ public class OutputView {
         // 시도횟수
     }
 
-    private void printSuccessOrFailure(State state) {
-        String formatted = String.format(GAME_STATE_MESSAGE, state.getKorState());
+    private void printSuccessOrFailure(GameResult gameResult) {
+        String formatted = String.format(GAME_STATE_MESSAGE, gameResult.getKorState());
         System.out.println(formatted);
     }
 
@@ -58,22 +82,11 @@ public class OutputView {
     }
 
     public void printEndOfBridge() {
-        System.out.print(END_OF_BRIDGE_MESSAGE);
+        System.out.println(END_OF_BRIDGE_MESSAGE);
     }
 
     public void printPartitionOfBridge() {
         System.out.print(PARTITION_OF_BRIDGE_MESSAGE);
     }
 
-    public void printCorrectBridge() {
-        System.out.print(CORRECT_BRIDGE_MESSAGE);
-    }
-
-    public void printWrongBridge() {
-        System.out.print(WRONG_BRIDGE_MESSAGE);
-    }
-
-    public void printNone() {
-        System.out.print(NONE_BRIDGE_MESSAGE);
-    }
 }
