@@ -12,4 +12,8 @@ public class Bridge {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         this.shape = bridgeMaker.makeBridge(size);
     }
+
+    public List<String> showCurrentShape(int currentSection) {
+        return shape.subList(0, currentSection);
+    }
 }
