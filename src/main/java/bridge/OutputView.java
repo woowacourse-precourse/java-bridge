@@ -20,4 +20,16 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    public void printStartMessage() {
+
+    }
+
+    public void printInputSizeMessage() {
+
+    }
+
+    public void printInputMoveMessage() {
+
+    }
 }
