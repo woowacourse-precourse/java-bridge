@@ -1,18 +1,28 @@
 package bridge.constant;
 
 public enum Movement {
-    UP_AND_O(true),
-    UP_AND_X(false),
-    DOWN_AND_O(true),
-    DOWN_AND_X(false);
+    UP_AND_O("U", "O"),
+    UP_AND_X("U", "X"),
+    DOWN_AND_O("D", "O"),
+    DOWN_AND_X("D", "X");
 
-    private final boolean availability;
+    private final String direction;
+    private final String type;
 
-    Movement(boolean availability) {
-        this.availability = availability;
+    Movement(String direction, String type) {
+        this.direction = direction;
+        this.type = type;
+    }
+
+    public String direction() {
+        return direction;
+    }
+
+    public String type() {
+        return type;
     }
 
     public boolean isAvailable() {
-        return availability;
+        return type.equals("O");
     }
 }
