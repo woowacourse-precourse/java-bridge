@@ -21,4 +21,8 @@ public enum Answer {
                 //TODO : 예외 처리 수정
                 .orElseThrow();
     }
+
+    public boolean isCorrect() {
+        return isCorrect;
+    }
 }
