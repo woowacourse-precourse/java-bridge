@@ -26,6 +26,12 @@ public class BridgeController {
         bridgeView.printResult(bridgeGame.getMap(), bridgeGame.isCrossOver(), bridgeGame.getTryCount());
     }
 
+    private void init() {
+        bridgeView.printStartMessage();
+        List<String> strings = bridgeMaker.makeBridge(bridgeView.receiveBridgeSize());
+        bridgeGame = new BridgeGame(new User(), Bridge.of(strings));
+    }
+
     private GameFlag loop() {
         bridgeGame.move(bridgeView.receiveMoving());
         bridgeView.printMap(bridgeGame.getMap());
@@ -37,11 +43,5 @@ public class BridgeController {
             return bridgeView.receiveRestart();
         }
         return loop();
-    }
-
-    private void init() {
-        bridgeView.printStartMessage();
-        List<String> strings = bridgeMaker.makeBridge(bridgeView.receiveBridgeSize());
-        bridgeGame = new BridgeGame(new User(), Bridge.of(strings));
     }
 }
