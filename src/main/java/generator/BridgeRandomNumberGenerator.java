@@ -7,6 +7,7 @@ public class BridgeRandomNumberGenerator implements BridgeNumberGenerator {
 
     @Override
     public int generate() {
-        return Randoms.pickNumberInRange(GameConstant.RANDOM_LOWER_INCLUSIVE.getConstant(), GameConstant.RANDOM_UPPER_INCLUSIVE.getConstant());
+        return Randoms.pickNumberInRange(GameConstant.RANDOM_LOWER_INCLUSIVE.getConstant()
+                , GameConstant.RANDOM_UPPER_INCLUSIVE.getConstant());
     }
 }
