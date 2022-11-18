@@ -1,9 +1,27 @@
 package bridge.controller;
 
+import bridge.domain.Bridge;
+import bridge.domain.BridgeMaker;
+import bridge.domain.BridgeNumberGenerator;
+import bridge.domain.BridgeRandomNumberGenerator;
+import bridge.domain.User;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
+    private Bridge bridge;
+    private User user;
+    private int totalAttempts;
+
+    public BridgeGame(int size) {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        bridge = new Bridge(bridgeMaker.makeBridge(size));
+        user = new User();
+        totalAttempts = 1;
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
