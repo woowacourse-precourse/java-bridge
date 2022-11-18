@@ -30,8 +30,8 @@ public class OutputView {
         System.out.println("");
         for(int i=0 ; i<downBridge.size() ; i++){ System.out.print(downBridge.get(i));}
         System.out.println("");
-        if (upBridge.contains("X")) {lose();}
-        if (!upBridge.contains("X")) {win();}
+        if (upBridge.contains("X")||downBridge.contains("X")) {lose();}
+        if (!upBridge.contains("X")&&!downBridge.contains("X")) {win();}
     }
 
     public static void startPrint() {
@@ -42,7 +42,7 @@ public class OutputView {
         System.out.println("다리의 길이를 입력해 주세요.");
     }
 
-    public static void retryPrint(){System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");}
+    public static void retryPrint() {System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");}
 
     public static void userSelect() { System.out.println("이동할 칸을 선택해주세요. (위 : U, 아래 : D)"); }
 
