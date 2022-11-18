@@ -21,11 +21,14 @@ public class InputView {
         }
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public String readMoving() {
-        return null;
+        try {
+            String input = Console.readLine();
+            validateMoveCommand(input);
+            return input;
+        } catch (NoSuchElementException e) {
+            throw new IllegalArgumentException();
+        }
     }
 
     /**
@@ -44,6 +47,12 @@ public class InputView {
     public void validateNumberRange(String input) {
         int number = Integer.parseInt(input);
         if (number < SIZE_MIN || number > SIZE_MAX) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void validateMoveCommand(String input) {
+        if (!input.equals(Command.UP.getCommand()) && !input.equals(Command.DOWN.getCommand())) {
             throw new IllegalArgumentException();
         }
     }
