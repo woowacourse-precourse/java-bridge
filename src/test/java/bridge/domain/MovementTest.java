@@ -15,7 +15,7 @@ class MovementTest {
     @CsvSource(value = {"U:true", "D:false"}, delimiter = ':')
     void canMoveTest(String input, boolean expected) {
         Movement movement = new Movement(List.of("U"));
-        boolean result = movement.canMove(new Moving(input));
+        boolean result = movement.canMove(input);
         Assertions.assertThat(result).isEqualTo(expected);
     }
 
@@ -23,9 +23,9 @@ class MovementTest {
     @Test
     void isFinishTest() {
         Movement movement = new Movement(List.of("U", "D", "D"));
-        movement.canMove(new Moving("U"));
-        movement.canMove(new Moving("D"));
-        movement.canMove(new Moving("D"));
+        movement.canMove("U");
+        movement.canMove("D");
+        movement.canMove("D");
 
         Assertions.assertThat(movement.isFinish()).isTrue();
     }

@@ -28,7 +28,7 @@ public class BridgeGame {
 
     private void repeatGame() {
         do {
-            Moving moving = inputView.readMoving();
+            String moving = inputView.readMoving();
             if (!move(moving, movement)) {
                 retry();
             }
@@ -36,7 +36,7 @@ public class BridgeGame {
         } while(!movement.isFinish());
         outputView.printResult();
     }
-    private boolean move(Moving moving, Movement movement) {
+    private boolean move(String moving, Movement movement) {
         return movement.canMove(moving);
     }
 

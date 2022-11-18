@@ -5,23 +5,23 @@ import java.util.List;
 
 public class Movement {
     private final List<String> bridge;
-    private List<Moving> movement = new ArrayList<>();
+    private List<String> movement = new ArrayList<>();
     private int tryCount;
 
     public Movement(List<String> bridge) {
         this.bridge = bridge;
     }
 
-    public boolean canMove(Moving moving) {
+    public boolean canMove(String moving) {
         saveMoving(moving);
-        int nowIndex = movement.size()-1;
-        if (!moving.isSame(bridge.get(nowIndex))){
+        int nowIndex = movement.size() - 1;
+        if (!moving.equals(bridge.get(nowIndex))) {
             return false;
         }
         return true;
     }
 
-    private void saveMoving(Moving moving) {
+    private void saveMoving(String moving) {
         this.movement.add(moving);
     }
 
