@@ -5,6 +5,10 @@ public class Constant {
     public static String Select_Location = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     public static String Select_Retry = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
+    public static String Result_of_game = "최종 게임 결과";
+    public static String Total_Try = "총 시도한 횟수: ";
+    public static String Result_of_try = "게임 성공 여부: ";
+
     public static String Error_Message = "[ERROR] ";
     public static String Err_Bridge_Length = "다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     public static String Err_Move = "이동 관련 입력은 U와 D만 사용 가능합니다.";
