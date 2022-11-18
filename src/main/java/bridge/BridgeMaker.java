@@ -38,11 +38,6 @@ public class BridgeMaker {
         mapLower.add("[");
     }
 
-    public void makeMapBoundary() {
-        mapUpper.add("|");
-        mapLower.add("|");
-    }
-
     public void endMap() {
         mapUpper.add("]");
         mapLower.add("]");
@@ -68,6 +63,11 @@ public class BridgeMaker {
             mapUpper.add(" X ");
             mapLower.add("   ");
         }
+    }
+
+    public void extendMap() {
+        mapUpper.set(mapUpper.size()-1,"|");
+        mapLower.set(mapLower.size()-1,"|");
     }
 
     public boolean checkWhenInputIsD(String answer) {
