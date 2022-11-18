@@ -17,15 +17,15 @@
   - [x] R, Q 값이 아닌 입력 예외처리
 
 ### BridgeMaker
-- [ ] user 에게 입력받은 사이즈에 따라 다리 생성
+- [x] user 에게 입력받은 사이즈에 따라 다리 생성
 
   - 어디가 가능한 다리인지 생성해서 반환하는 것
 
 ### BridgeJudge
 
-- [ ] BridgeMaker 에서 생성된 다리(가능한 방향을 ArrayList 로 담아놓은 것)를 매개변수로 받아서 사용자 입력값도 매개변수로 받기
+- [x] BridgeMaker 에서 생성된 다리(가능한 방향을 ArrayList 로 담아놓은 것)를 매개변수로 받아서 사용자 입력값도 매개변수로 받기
 
-- [ ] 두 개를 비교해서 같으면 True 반환, 다르면 False 반환
+  - [x] 두 개를 비교해서 같으면 True 반환, 다르면 False 반환
 
 ## View
 ### OutputView
