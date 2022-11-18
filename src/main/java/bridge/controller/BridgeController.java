@@ -18,6 +18,7 @@ public class BridgeController {
         bridge.isRangeNumber(size);
         int s = Integer.parseInt(size);
         bridgeMaker.makeBridge(s);
+        String move = inputView.readMoving();
 
     }
 
