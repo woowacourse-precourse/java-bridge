@@ -1,20 +1,20 @@
 package bridge.EnumCollections;
 
 public enum GameRestartType {
-    RESTART('R'),
-    QUIT('Q');
+    RESTART("R"),
+    QUIT("Q");
 
-    private char restartStatus;
+    private String restartStatus;
 
-    GameRestartType(char restartStatus) {
+    GameRestartType(String restartStatus) {
         this.restartStatus = restartStatus;
     }
 
-    public char getRestartStatus() {
+    public String getRestartStatus() {
         return restartStatus;
     }
 
-    public static boolean isRestartStatus(char input) {
-        return input == RESTART.getRestartStatus() || input == QUIT.getRestartStatus();
+    public static boolean isRestartStatus(String input) {
+        return input.equals(RESTART.getRestartStatus()) || input.equals(QUIT.getRestartStatus());
     }
 }

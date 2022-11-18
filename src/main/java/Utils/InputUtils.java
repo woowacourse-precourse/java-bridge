@@ -26,8 +26,7 @@ public class InputUtils {
     }
 
     public static boolean isValidGameRestartInput(String input) {
-        char characterInput = input.charAt(0);
-        return GameRestartType.isRestartStatus(characterInput);
+        return GameRestartType.isRestartStatus(input);
     }
 
     public static boolean isCharacter(String input) {
