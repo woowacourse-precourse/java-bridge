@@ -9,6 +9,7 @@ import bridge.domain.Tile;
  */
 public class OutputView {
 
+    private static final String START_GAME_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
     private static final String FINISH_GAME_INFO_MESSAGE = "최종 게임 결과";
     private static final String GAME_SUCCESS_OR_NOT_MESSAGE_FORMAT = "게임 성공 여부: %s";
     private static final String GAME_TRY_COUNT_MESSAGE_FORMAT = "총 시도한 횟수: %d";
@@ -18,6 +19,10 @@ public class OutputView {
     private static final String BRIDGE_START_SIGN = "[";
     private static final String BRIDGE_END_SIGN = "]\n";
     private static final String BRIDGE_DIVIDE_SIGN = "|";
+
+    public void printGameStartMessage() {
+        System.out.println(START_GAME_MESSAGE);
+    }
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.

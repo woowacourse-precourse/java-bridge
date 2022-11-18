@@ -20,17 +20,21 @@ public class GameController {
     private final OutputView outputView;
     private final BridgeGame bridgeGame;
 
+    private final Bridge bridge;
+
     // todo: 초가화시 맵도 같이 초기화해서 final로 해 두는것도 어떨까 함
     public GameController() {
         bridgeGame = new BridgeGame();
         inputView = new InputView();
         outputView = new OutputView();
+
+        outputView.printGameStartMessage();
+        bridge = generateRandomBridge();
     }
 
     // todo: refactor
     public void startGame() {
         Player player = new Player();
-        Bridge bridge = generateRandomBridge();
 
         do {
             boolean isSurvival = playOneTurn(bridge, player);
