@@ -1,6 +1,7 @@
 package bridge.view;
 
 import static bridge.message.InputMessageConstants.*;
+import static bridge.message.MessageConstants.*;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -17,12 +18,13 @@ public class InputView {
 		return readUserInput();
 	}
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
-    public String readMoving() {
-        return null;
-    }
+	/**
+	 * 사용자가 이동할 칸을 입력받는다.
+	 */
+	public String readMoving() {
+		System.out.printf(GAME_COMMAND_MESSAGE_FORMAT, UP_COMMAND_MESSAGE, DOWN_COMMAND_MESSAGE);
+		return readUserInput();
+	}
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
