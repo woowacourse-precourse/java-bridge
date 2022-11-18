@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.validator.Validator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -10,6 +11,11 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자 값 입력을 위해 필요한 메서드를 추가할 수 있다.
  */
 public class InputView {
+    private final Validator validator;
+
+    public InputView(Validator validator) {
+        this.validator = validator;
+    }
 
     public String readInput() {
         return Console.readLine();
@@ -19,8 +25,16 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String userInput = readInput();
-
+        String userInput = "";
+        while(true) {
+            try {
+                userInput = readInput();
+                validator.validateBridgeSize(userInput);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         return Integer.parseInt(userInput);
     }
 
@@ -37,4 +51,5 @@ public class InputView {
     public String readGameCommand() {
         return null;
     }
+
 }
