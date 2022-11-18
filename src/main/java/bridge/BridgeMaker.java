@@ -23,7 +23,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        IntStream.range(0, size)
+        IntStream.range(Commons.INDEX_ZERO.getNumber(), size)
                 .forEach(index -> bridge.add(getBridgePlace(bridgeNumberGenerator.generate())));
         return bridge;
     }

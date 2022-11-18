@@ -8,11 +8,11 @@ public class InputValidator {
 
     public static void bridgeSizeValidate(String bridge) {
         if (!isValidBridgeType(bridge)) {
-            throw new IllegalArgumentException(ErrorMessages.INVALID_BRIDGE_TYPE.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.INVALID_INPUT_BRIDGE_TYPE.getMessage());
         }
         int bridgeSize = Integer.parseInt(bridge);
         if (!isValidBridgeRange(bridgeSize)) {
-            throw new IllegalArgumentException(ErrorMessages.INVALID_BRIDGE_SIZE.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.INVALID_INPUT_BRIDGE_SIZE.getMessage());
         }
     }
 
@@ -29,7 +29,7 @@ public class InputValidator {
 
     public static void movingValidate(String move) {
         if (!isValidMove(move)) {
-            throw new IllegalArgumentException(ErrorMessages.INVALID_MOVE.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.INVALID_INPUT_MOVE.getMessage());
         }
     }
 
@@ -39,7 +39,7 @@ public class InputValidator {
 
     public static void gameCommandValidate(String command) {
         if (!isValidCommand(command)) {
-            throw new IllegalArgumentException(ErrorMessages.INVALID_COMMAND.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.INVALID_INPUT_COMMAND.getMessage());
         }
     }
 
