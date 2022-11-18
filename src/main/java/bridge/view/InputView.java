@@ -24,10 +24,4 @@ public class InputView {
         System.out.println(Messages.RETRY_MESSAGE);
         return new Command(Console.readLine());
     }
-
-    private void validMoving(String moving) {
-        if (!moving.equals(Constant.UP) && !moving.equals(Constant.DOWN)) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_MOVING_VALUE.getMessage());
-        }
-    }
 }
