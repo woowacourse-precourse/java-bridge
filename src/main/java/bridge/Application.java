@@ -5,10 +5,7 @@ import java.util.*;
 public class Application {
     private static InputView inputView;
     private static OutputView outputView;
-    private static BridgeGame bridgeGame;
     private static BridgeMaker bridgeMaker;
-    private static int tryCount;
-    private static String isSuccess = "성공";
 
     public static void main(String[] args) {
         initClass();
@@ -17,16 +14,27 @@ public class Application {
 
         final List<String> bridge = bridgeMaker.makeBridge(size);
         System.out.println(bridge);
-        tryCount = 1;
-        gameProcess(bridge);
+        BridgeGame.gameProcess(bridge);
     }
 
     public static void initClass() {
         inputView = new InputView();
-        bridgeGame = new BridgeGame();
         outputView = new OutputView();
         BridgeNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+    }
+
+    public static int inputSize() {
+        String readValue = inputView.readBridgeSize();
+        int size;
+        try {
+            size = checkSizeType(readValue);
+            checkSizeRange(size);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            size = inputSize();
+        }
+        return size;
     }
 
     public static int checkSizeType(String str) {
@@ -44,47 +52,21 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3~20 사이의 숫자여야 합니다.");
     }
 
-    public static int inputSize() {
-        String readValue = inputView.readBridgeSize();
-        int size;
-        try {
-            size = checkSizeType(readValue);
-            checkSizeRange(size);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            size = inputSize();
-        }
-        return size;
+    public static String inputMove() {
+        return inputView.readMoving();
     }
 
-    public static void gameProcess(List<String> bridge) {
-        List<List<String>> userPlaying = new ArrayList<>();
-        String isRetry = "";
-        for (String s : bridge) {
-            List<String> currentPlaying = bridgeGame.move(inputView.readMoving(), s);
-            userPlaying.add(currentPlaying);
-            outputView.printMap(userPlaying);
-            if (currentPlaying.contains("X")) {
-                isRetry = inputView.readGameCommand();
-                isSuccess = "실패";
-                break;
-            }
-        }
-        gameRetry(isRetry, userPlaying, bridge);
+    public static void printMap(List<List<String>> userPlaying) {
+        outputView.printMap(userPlaying);
     }
 
-    //TODO BridgeGame으로 리팩토링
-    public static void gameRetry(String isRetry, List<List<String>> userPlaying, List<String> bridge) {
-        if (Objects.equals(isRetry, "R")) {
-            tryCount++;
-            userPlaying.clear();
-            gameProcess(bridge);
-        } else {
-            outputView.printResult(isSuccess, tryCount, userPlaying);
-        }
+    public static String inputRetryCommand() {
+        return inputView.readGameCommand();
     }
 
-
+    public static void printResult(String isSuccess, int tryCount, List<List<String>> userPlaying) {
+        outputView.printResult(isSuccess, tryCount, userPlaying);
+    }
 
 
 }
