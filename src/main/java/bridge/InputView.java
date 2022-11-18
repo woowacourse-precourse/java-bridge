@@ -14,8 +14,22 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
-        int ladderLen = Integer.parseInt(Console.readLine());
-        return ladderLen;
+        String input = Console.readLine();
+
+        if (exceptionMsg(input,"[ERROR] 3 ~ 20사이 숫자를 입력하여 주세요")){
+            return readBridgeSize();
+        }
+        return Integer.parseInt(input);
+    }
+
+    public boolean exceptionMsg (String input, String msg) {
+        try {
+            Validate.checkLenInput(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(msg);
+            return true;
+        }
+        return false;
     }
 
     /**
