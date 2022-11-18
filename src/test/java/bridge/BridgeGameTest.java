@@ -24,11 +24,11 @@ class BridgeGameTest {
     @DisplayName("한칸 이동 성공 테스트")
     @Test
     void 한칸이동_성공_테스트() {
-        assertEquals(List.of("[ O ]","[   ]"),bridgeGame.move("U"));
-        assertEquals(List.of("[ O |   ]","[   | O ]"),bridgeGame.move("D"));
-        assertEquals(List.of("[ O |   |   ]","[   | O | O ]"),bridgeGame.move("D"));
-        assertEquals(List.of("[ O |   |   |   ]","[   | O | O | O ]"),bridgeGame.move("D"));
-        assertEquals(List.of("[ O |   |   |   | O ]","[   | O | O | O |   ]"),bridgeGame.move("U"));
+        assertEquals(List.of("[ O ]","[   ]","SURVIVE"),bridgeGame.move("U"));
+        assertEquals(List.of("[ O |   ]","[   | O ]","SURVIVE"),bridgeGame.move("D"));
+        assertEquals(List.of("[ O |   |   ]","[   | O | O ]","SURVIVE"),bridgeGame.move("D"));
+        assertEquals(List.of("[ O |   |   |   ]","[   | O | O | O ]","SURVIVE"),bridgeGame.move("D"));
+        assertEquals(List.of("[ O |   |   |   | O ]","[   | O | O | O |   ]","FINISH"),bridgeGame.move("U"));
     }
 
     @DisplayName("한칸 이동 실패 테스트")
@@ -50,10 +50,10 @@ class BridgeGameTest {
     @DisplayName("한칸 이동 성공_실패 테스트")
     @Test
     void 한칸이동_성공_실패_테스트() {
-        assertEquals(List.of("[ O ]","[   ]"),bridgeGame.move("U"));
-        assertEquals(List.of("[ O |   ]","[   | O ]"),bridgeGame.move("D"));
-        assertEquals(List.of("[ O |   |   ]","[   | O | O ]"),bridgeGame.move("D"));
-        assertEquals(List.of("[ O |   |   |   ]","[   | O | O | O ]"),bridgeGame.move("D"));
+        assertEquals(List.of("[ O ]","[   ]","SURVIVE"),bridgeGame.move("U"));
+        assertEquals(List.of("[ O |   ]","[   | O ]","SURVIVE"),bridgeGame.move("D"));
+        assertEquals(List.of("[ O |   |   ]","[   | O | O ]","SURVIVE"),bridgeGame.move("D"));
+        assertEquals(List.of("[ O |   |   |   ]","[   | O | O | O ]","SURVIVE"),bridgeGame.move("D"));
         assertEquals(List.of("[ O |   |   |   |   ]","[   | O | O | O | X ]","FAIL"),bridgeGame.move("D"));
     }
 }
