@@ -45,7 +45,15 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(Message.CHOOSE_UP_OR_DOWN);
+        return validatedMoving(Console.readLine());
+    }
+
+    private String validatedMoving(String move){
+        if (!move.equals("U") && !move.equals("D")){
+            throw new IllegalArgumentException(ErrorMsg.NOT_ALLOWED_MOVEMENT.toString());
+        }
+        return move;
     }
 
     /**
