@@ -12,12 +12,12 @@ public class InputView {
      */
     public int readBridgeSize() {
         String bridgeSize = Console.readLine();
-        validateBridgeLength(bridgeSize);
+        validateBridgeSize(bridgeSize);
 
         return Integer.parseInt(bridgeSize);
     }
 
-    public static void validateBridgeLength(String bridgeSize) {
+    public static void validateBridgeSize(String bridgeSize) {
         if (isNotNumber(bridgeSize)) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자여야 합니다.");
         }
