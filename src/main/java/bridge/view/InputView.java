@@ -71,7 +71,19 @@ public class InputView {
     public String readGameCommand() {
         return null;
     }
-    
+
+    public String readGameCommandUntilCollectFormat(String userInput) {
+        while(true) {
+            try {
+                userInput = readInput();
+                validator.validateGameCommand(userInput);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return userInput;
+    }
 
 
     public String readInput() {
