@@ -18,25 +18,15 @@ public class Bridge {
         bridge = new ArrayList<>();
     }
 
-    // delete later
-    public boolean isSame(Bridge other) {
-        return other.isSameValue(bridge);
-    }
-
-    // delete later
-    public boolean isSameValue(List<String> other) {
-        return bridge.equals(other);
-    }
-
     public int length() {
         return bridge.size();
     }
 
     public boolean isPartOfBridge(Bridge otherBridge) {
-        return otherBridge.isPartOfList(bridge);
+        return otherBridge.containsAll(bridge);
     }
 
-    public boolean isPartOfList(List<String> other) {
+    public boolean containsAll(List<String> other) {
         List<String> temp = bridge.subList(0, other.size());
         return temp.equals(other);
     }
