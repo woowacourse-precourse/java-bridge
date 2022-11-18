@@ -1,6 +1,5 @@
 package bridge;
 
-
 import java.util.NoSuchElementException;
 
 public class Bridge {
@@ -11,25 +10,29 @@ public class Bridge {
     public Bridge(String bridgeSize) {
         bridgeNumericException(bridgeSize);
         bridgeSizeRangeException(bridgeSize);
-        this.bridgeSize = getBridgeSize(bridgeSize);
+        this.bridgeSize = toInteger(bridgeSize);
     }
 
-    public int getBridgeSize(String bridgeSize) {
+    private Integer toInteger(String bridgeSize) {
         return Integer.parseInt(bridgeSize);
     }
 
     private void bridgeSizeRangeException(String bridgeSize) {
-        if ((getBridgeSize(bridgeSize) < 3) || (getBridgeSize(bridgeSize) > 20 )) {
+        if ((toInteger(bridgeSize) < 3) || (toInteger(bridgeSize) > 20 )) {
             throw new IllegalArgumentException(BRIDGE_SIZE_RANGE_EXCEPTION);
         }
     }
 
     private void bridgeNumericException(String bridgeSize) {
         try {
-            getBridgeSize(bridgeSize);
+            toInteger(bridgeSize);
         } catch (NumberFormatException ignore) {
             System.out.println(BRIDGE_SIZE_NUMERIC_EXCEPTION);
             throw new NoSuchElementException();
         }
+    }
+
+    public int getBridgeSize() {
+        return bridgeSize;
     }
 }
