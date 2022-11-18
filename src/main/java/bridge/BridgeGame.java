@@ -28,11 +28,10 @@ public class BridgeGame {
         String userInput = inputWhileException.startWhileReadMoving();
         int index = userStatus.size();
         Map<String, String> userResult = new HashMap<>();
-        if(userInput.equals(bridge.get(index))) {
-            userResult.put(userInput,"O");
-        }
-            userResult.put(userInput, "X");
-            userStatus.put(index, userResult);
+        boolean isSame = userInput.equals(bridge.get(index));
+        if(isSame) { userResult.put(userInput,"O"); }
+        if(!isSame) { userResult.put(userInput, "X"); }
+        userStatus.put(index, userResult);
         return userStatus;
     }
 
