@@ -20,4 +20,16 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         return null;
     }
+
+    String decodeBridgeAnswerNumber(int bridgeAnswerNumber) {
+        BridgeAnswer[] bridgeAnswers = BridgeAnswer.values();
+        String decoded = "";
+
+        for (BridgeAnswer bridgeAnswer : bridgeAnswers) {
+            if (bridgeAnswerNumber == bridgeAnswer.getValue()) {
+                decoded = bridgeAnswer.getName();
+            }
+        }
+        return decoded;
+    }
 }
