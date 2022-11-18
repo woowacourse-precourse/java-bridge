@@ -101,6 +101,6 @@ public class OutputView {
     }
 
     public void printErrorMessage(String message){
-        // TODO: 에러 메시지 출력
+        System.out.println(String.format("%s %s", ERROR_KEYWORD, message));
     }
 }

@@ -118,7 +118,7 @@
     - [x] 칸의 위치를 기준으로 정답과 해답을 비교하여 O, X 출력 - printOorX
 - [x] 게임의 최종 결과를 정해진 형식에 맞춰 출력 - printResult
   - [x] 정답과 해답을 비교해 성공 여부를 출력 - printSuccessOrFail
-- [ ] 에러 메시지 출력 - printErrorMessage
+- [x] 에러 메시지 출력 - printErrorMessage
 
 ## 무한 입력(`InfiniteInput`)
 
