@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.domain.BridgeTile;
+import bridge.domain.Tile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,7 @@ public class BridgeMaker {
 
         while (bridgePositions.size() < size) {
             int bridgeCode = bridgeNumberGenerator.generate();
-            BridgeTile tile = BridgeTile.findByCode(bridgeCode);
+            Tile tile = Tile.findByCode(bridgeCode);
             bridgePositions.add(tile.getTilePosition());
         }
 

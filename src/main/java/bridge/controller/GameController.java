@@ -4,7 +4,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
-import bridge.domain.BridgeTile;
+import bridge.domain.Tile;
 import bridge.domain.Player;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -59,16 +59,16 @@ public class GameController {
     }
 
     private boolean playOneTurn(Bridge bridge, Player player) {
-        BridgeTile movingTargetTile = readMovingTargetTile();
+        Tile movingTargetTile = readMovingTargetTile();
         boolean turnResult = bridgeGame.move(bridge, player, movingTargetTile);
         return turnResult;
     }
 
-    private BridgeTile readMovingTargetTile() {
+    private Tile readMovingTargetTile() {
         while (true) {
             try {
                 String movingPosition = inputView.readMoving();
-                BridgeTile movingTile = BridgeTile.findByTilePosition(movingPosition);
+                Tile movingTile = Tile.findByTilePosition(movingPosition);
                 return movingTile;
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());

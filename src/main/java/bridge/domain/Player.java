@@ -7,14 +7,14 @@ public class Player {
 
     private int tryCount;
     private int positionIndex;
-    private List<BridgeTile> movingLog;
+    private List<Tile> movingLog;
 
     public Player() {
         this.tryCount = 1;
         initPosition();
     }
 
-    public int moveForward(BridgeTile targetTile) {
+    public int moveForward(Tile targetTile) {
         movingLog.add(targetTile);
         positionIndex++;
         return positionIndex;
@@ -38,7 +38,7 @@ public class Player {
         return positionIndex < position;
     }
 
-    public BridgeTile getMovingLogOf(int index) {
+    public Tile getMovingLogOf(int index) {
         return movingLog.get(index);
     }
 }

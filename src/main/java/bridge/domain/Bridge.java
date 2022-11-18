@@ -10,18 +10,18 @@ public class Bridge {
 
     public static final String BRIDGE_SIZE_EXCEPTION_MESSAGE = "[ERROR] 다리의 길이는 %d부터 %d 사이의 숫자여야 합니다.";
 
-    private final List<BridgeTile> bridgeTiles;
+    private final List<Tile> bridgeTiles;
 
-    private Bridge(List<BridgeTile> bridgeTiles) {
+    private Bridge(List<Tile> bridgeTiles) {
         this.bridgeTiles = List.copyOf(bridgeTiles);
     }
 
     public static Bridge from(List<String> bridgePositions) {
         validateBridgePositions(bridgePositions);
 
-        List<BridgeTile> tiles = new ArrayList<>();
+        List<Tile> tiles = new ArrayList<>();
         for (String position : bridgePositions) {
-            tiles.add(BridgeTile.findByTilePosition(position));
+            tiles.add(Tile.findByTilePosition(position));
         }
 
         return new Bridge(tiles);
@@ -33,11 +33,15 @@ public class Bridge {
         }
     }
 
-    public boolean checkBridgeTileAt(int playerPosition, BridgeTile nextTile) {
+    public boolean checkBridgeTileAt(int playerPosition, Tile nextTile) {
         if (bridgeTiles.get(playerPosition).equals(nextTile)) {
             return true;
         }
         return false;
+    }
+
+    public Tile getTileOf(int index) {
+        return bridgeTiles.get(index);
     }
 
     public int getBridgeSize() {

@@ -1,7 +1,7 @@
 package bridge.view;
 
 import bridge.domain.Bridge;
-import bridge.domain.BridgeTile;
+import bridge.domain.Tile;
 import bridge.domain.Player;
 
 /**
@@ -12,10 +12,6 @@ public class OutputView {
     private static final String BRIDGE_START_SIGN = "[";
     private static final String BRIDGE_END_SIGN = "]\n";
     private static final String BRIDGE_DIVIDE_SIGN = "|";
-    private static final String BRIDGE_TILE_FORMAT = " %s ";
-    private static final String BRIDGE_SUCCESS_SIGN = "O";
-    private static final String BRIDGE_FAIL_SIGN = "X";
-    private static final String BRIDGE_EMPTY_SIGN = " ";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -26,7 +22,7 @@ public class OutputView {
 
         StringBuilder stringBuilder = new StringBuilder();
 
-        for (BridgeTile tile : BridgeTile.values()) {
+        for (Tile tile : Tile.values()) {
             stringBuilder.append(generateTileMap(player, bridge, tile));
         }
 
@@ -34,25 +30,12 @@ public class OutputView {
     }
 
     // todo: refactor -> bridge는 안받고 player와 승리여부로 출력하는 방법이 있을 것 같음...!!! isPassedPosition도 지울 수 있이면 지우는거로
-    private String generateTileMap(Player player, Bridge bridge, BridgeTile tile) {
+    private String generateTileMap(Player player, Bridge bridge, Tile tile) {
         StringBuilder bridgeMapBuilder = new StringBuilder();
         bridgeMapBuilder.append(BRIDGE_START_SIGN);
-
         int index = 0;
         while (!player.isPassedPosition(index)) {
-            if (!tile.equals(player.getMovingLogOf(index))) {
-                bridgeMapBuilder.append(String.format(BRIDGE_TILE_FORMAT, BRIDGE_EMPTY_SIGN));
-                bridgeMapBuilder.append(BRIDGE_DIVIDE_SIGN);
-                index++;
-                continue;
-            }
-            if (bridge.checkBridgeTileAt(index, tile)) {
-                bridgeMapBuilder.append(String.format(BRIDGE_TILE_FORMAT, BRIDGE_SUCCESS_SIGN));
-                bridgeMapBuilder.append(BRIDGE_DIVIDE_SIGN);
-                index++;
-                continue;
-            }
-            bridgeMapBuilder.append(String.format(BRIDGE_TILE_FORMAT, BRIDGE_FAIL_SIGN));
+            bridgeMapBuilder.append(tile.toString(bridge.getTileOf(index), player.getMovingLogOf(index)));
             bridgeMapBuilder.append(BRIDGE_DIVIDE_SIGN);
             index++;
         }

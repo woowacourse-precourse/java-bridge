@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.domain.BridgeTile;
+import bridge.domain.Tile;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -50,7 +50,7 @@ public class InputView {
 
     private void printInputMovingPositionInfoMessage() {
         System.out.println(String.format(INPUT_MOVING_POSITION_INFO_MESSAGE_FORMAT,
-                BridgeTile.UP.getTilePosition(), BridgeTile.DOWN.getTilePosition()));
+                Tile.UP.getTilePosition(), Tile.DOWN.getTilePosition()));
     }
 
     /**
