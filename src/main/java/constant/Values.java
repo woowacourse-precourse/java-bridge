@@ -2,14 +2,16 @@ package constant;
 
 public class Values {
     public enum BridgeCase {
-        POSITIVE(1, "U"),
-        NEGATIVE(0, "D");
+        POSITIVE(1, "U","성공"),
+        NEGATIVE(0, "D","실패");
         private int flag;
         private String value;
+        private String message;
 
-        private BridgeCase(int flag, String value) {
+        private BridgeCase(int flag, String value, String message) {
             this.flag = flag;
             this.value = value;
+            this.message = message;
         }
 
         public String getValue() {
@@ -18,6 +20,10 @@ public class Values {
 
         public int getFlag() {
             return flag;
+        }
+
+        public String getMessage() {
+            return message;
         }
 
     }
