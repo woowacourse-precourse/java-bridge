@@ -34,7 +34,7 @@ public class BridgeGameManager {
             do {
                 trialCount++;
                 run();
-            } while (!bridgeRoadMap.isEnd(userRoadMap) && isRetry());
+            } while (bridgeRoadMap.isFail(userRoadMap) && isRetry());
             finish();
         } catch (Exception e) {
             outputView.printErrorMessage(e.getMessage());
