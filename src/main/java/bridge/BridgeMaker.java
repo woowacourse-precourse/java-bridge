@@ -22,6 +22,9 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         validateSize(size);
         List<String> bridge = new ArrayList<>();
+        for (int count = 0; count < size; count++) {
+            int bridgeNumber = bridgeNumberGenerator.generate();
+        }
         return bridge;
     }
 
@@ -30,5 +33,4 @@ public class BridgeMaker {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3 ~ 20사이여야 합니다");
         }
     }
-
 }
