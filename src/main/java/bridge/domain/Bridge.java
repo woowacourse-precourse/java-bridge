@@ -1,6 +1,5 @@
 package bridge.domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,8 +27,7 @@ public class Bridge {
 
     // Bridge (정답) 과 input 을 비교해 O 또는 X 를 반환
     public String compare(Position position) {
-        if (directions.get(position.getDistance()).getDirection()
-                .equals(position.getDirection().getDirection())) {
+        if (directions.get(position.getDistance()).isSameDirection(position.getDirection())) {
             return "O";
         }
         return "X";

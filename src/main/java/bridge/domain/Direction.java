@@ -19,10 +19,6 @@ public class Direction {
         checkFormatValid(direction);
     }
 
-    public String getDirection() {
-        return direction;
-    }
-
     private void checkNotBlank(String direction) {
         boolean isBlank = direction.isBlank();
         if (isBlank) {
@@ -35,5 +31,13 @@ public class Direction {
         if (!isFormatValid) {
             throw new IllegalArgumentException(BRIDGE_FORMAT_ERROR);
         }
+    }
+
+    public boolean isUpper() {
+        return direction.equals("U");
+    }
+
+    public boolean isSameDirection(Direction other) {
+        return direction.equals(other.direction);
     }
 }

@@ -34,13 +34,13 @@ public class Result {
     }
 
     private void addUpAndDown(Position position, String compare) {
-        if (position.getDirection().getDirection().equals("U")) {
+        if (position.getDirection().isUpper()) {
             upDirections.add(SEPARATOR);
             upDirections.add(compare);
             downDirections.add(SEPARATOR);
             downDirections.add(SPACE);
         }
-        if (position.getDirection().getDirection().equals("D")) {
+        if (!position.getDirection().isUpper()) {
             upDirections.add(SEPARATOR);
             upDirections.add(SPACE);
             downDirections.add(SEPARATOR);
