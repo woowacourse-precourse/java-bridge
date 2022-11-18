@@ -33,24 +33,20 @@ public class Controller {
 
     private void playGame() {
         move();
+        printMoveResult();
         boolean moveSuccess = checkMoveSuccess();
-//        if (moveSuccess) {
-//            boolean gameEnd = checkGameEnd();
-//            if (gameEnd) {
-//                printFinalResult();
-//            } else {
-//                playGame();
-//            }
-//        } else {
-//            String retryInput = getRetryInput();
-//            if(retryInput.equals("Q")) {
-//                printFinalResult();
-//            }
-//
-//            if(retryInput.equals("R")) {
-//                resetGame();
-//                playGame();
-//            }
+        boolean gameEnd = checkGameEnd();
+
+        if (moveSuccess && gameEnd) {
+            // 게임 결과 출력
+        }
+
+        if (moveSuccess && !gameEnd) {
+            playGame();
+        }
+
+//        if (!moveSuccess) {
+//            // requestRetryInput
 //        }
     }
 
@@ -72,5 +68,9 @@ public class Controller {
 
     private boolean checkMoveSuccess() {
         return service.checkMoveSuccess();
+    }
+
+    private boolean checkGameEnd() {
+        return service.isFinishedGame();
     }
 }

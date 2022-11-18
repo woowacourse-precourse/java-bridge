@@ -31,4 +31,8 @@ public class Service {
     public boolean checkMoveSuccess() {
         return game.checkMoveSuccess();
     }
+
+    public boolean isFinishedGame() {
+        return game.checkFinish();
+    }
 }

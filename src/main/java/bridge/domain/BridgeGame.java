@@ -21,6 +21,10 @@ public class BridgeGame {
         return checkMoveSuccess();
     }
 
+    public boolean checkFinish() {
+        return user.getMoveCount() == answerBridge.size();
+    }
+
     public void retry() {
     }
 
