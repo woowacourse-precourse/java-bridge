@@ -3,6 +3,7 @@ package bridge;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -84,8 +85,8 @@ public class BridgeGame {
 
     public void resultMessage(List<String> up, List<String> down) {
         Message.gameResultMesaage();
-        System.out.println("upperBridge = " + up);
-        System.out.println("lowerBridge = " + down);
+        outputView.printMap(up);
+        outputView.printMap(down);
 
         Message.result();
 
