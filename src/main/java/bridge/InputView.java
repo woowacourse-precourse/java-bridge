@@ -22,7 +22,10 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String tmp = Console.readLine();
+        if(tmp.length() != 1) throw new IllegalArgumentException();
+        if(!(tmp.charAt(0) == 'U' || tmp.charAt(0) == 'D')) throw new IllegalArgumentException();
+        return tmp;
     }
 
     /**
