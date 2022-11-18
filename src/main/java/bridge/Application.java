@@ -46,6 +46,7 @@ public class Application {
 
     static String playGame(InputView input, BridgeGame bridgeGame, int bridgeSize, OutputView output) {
         while (true) {
+            bridgeGame.plusGameCount();
             boolean gameResult = gameProgress(input, bridgeGame, bridgeSize, output);
             if (gameResult) return "성공";
             if (Objects.equals(readCommand(input), "Q")) return "실패";
