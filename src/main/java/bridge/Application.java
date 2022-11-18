@@ -11,7 +11,6 @@ public class Application {
         OutputView.startPrint();
 
         int size = InputView.readBridgeSize();
-
         List<String> bridge = BridgeMaker.makeBridge(size);
         System.out.println(bridge);
 
