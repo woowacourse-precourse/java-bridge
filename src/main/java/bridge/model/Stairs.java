@@ -25,11 +25,8 @@ public enum Stairs {
 		return number;
 	}
 
-	public int getAnotherNumber() {
-		if (number == 1) {
-			return 0;
-		}
-		return 1;
+	public boolean isEquals(String square) {
+		return command.equals(square.toUpperCase());
 	}
 
 	public static Stairs of(int inputValue) {
