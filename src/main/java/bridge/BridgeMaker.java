@@ -3,6 +3,7 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+import constant.Cell;
 import util.Validator;
 
 /**
@@ -22,19 +23,20 @@ public class BridgeMaker {
 	public List<String> makeBridge(int size) {
 		List<String> bridge = new ArrayList<>();
 		for (int index = 0; index < size; index++) {
-			addUpperOrLowerSpace(bridge);
+			addUpperOrLowerCell(bridge);
 		}
 		Validator.validateBridgeSize(bridge, size);
 		return bridge;
 	}
 
-	private void addUpperOrLowerSpace(List<String> bridgeSpaces) {
+	private void addUpperOrLowerCell(List<String> bridgeCells) {
 		int bridgeNumber = bridgeNumberGenerator.generate();
-		if (bridgeNumber == 0) {
-			bridgeSpaces.add("D");
+
+		if (Cell.isUpper(bridgeNumber)) {
+			bridgeCells.add(Cell.upperPosition());
 		}
-		if (bridgeNumber == 1) {
-			bridgeSpaces.add("U");
+		if (Cell.isLower(bridgeNumber)) {
+			bridgeCells.add(Cell.lowerPosition());
 		}
 	}
 }
