@@ -21,7 +21,11 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        String movingInput = Console.readLine();
+        // TODO : 예외 발생 시 다시 입력
+        validateMovingInput(movingInput);
+        return movingInput;
     }
 
     /**
@@ -39,5 +43,11 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] 3 이상 20 이하의 숫자만 입력 가능합니다.");
         }
         return Integer.parseInt(bridgeSizeInput);
+    }
+
+    private void validateMovingInput(String movingInput) {
+        if (!movingInput.equals("U") || !movingInput.equals("D")) {
+            throw new IllegalArgumentException("[ERROR] \"위: U, 아래: D\"만 입력 가능합니다.");
+        }
     }
 }
