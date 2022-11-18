@@ -1,2 +1,5 @@
-package bridge.controller;public class BridgeGameController {
+package bridge.controller;
+
+public class BridgeGameController {
+
 }

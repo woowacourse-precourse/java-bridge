@@ -1,5 +1,5 @@
-package bridge.domain;
+package bridge.domain.vo;
 
-public class ReadMoving {
+public class Moving {
 
 }

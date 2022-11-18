@@ -1,5 +1,5 @@
-package bridge.domain;
+package bridge.domain.vo;
 
-public class ReadGameCommand {
+public class GameCommand {
 
 }
