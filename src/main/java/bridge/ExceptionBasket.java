@@ -24,7 +24,7 @@ public class ExceptionBasket {
 
     //숫자가 아닐 경우 예외 처리
     public static void inputIsNotNumberException(String input) throws IllegalArgumentException {
-        if (Util.isNumber(input)){
+        if (!Util.isNumber(input)){
             throw new IllegalArgumentException(ERROR_MESSAGE + " 숫자가 아닙니다!");
         }
     }
