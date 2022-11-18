@@ -1,5 +1,9 @@
 package bridge;
 
+import view.InputView;
+import view.OutputView;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,45 +14,66 @@ public class BridgeGame {
     private final String UNMOVABLE = "X ";
     private final String SPLIT_BY = "| ";
     private final String SPACE = "  ";
-
-    private StringBuilder initialUpBridge;
-    private StringBuilder initialDownBridge;
     private BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
+
+    private StringBuilder initialUpBridge =
+            new BridgeMaker(bridgeRandomNumberGenerator).makeInitialBridge();
+    ;
+    private StringBuilder initialDownBridge =
+            new BridgeMaker(bridgeRandomNumberGenerator).makeInitialBridge();
+    ;
+    private List<String> moveBridgeResult = new ArrayList<>();
+    ;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String sideToMove, List<String> bridge, int blockCount) {
-        initialUpBridge = new BridgeMaker(bridgeRandomNumberGenerator).makeInitialBridge();
-        initialDownBridge = new BridgeMaker(bridgeRandomNumberGenerator).makeInitialBridge();
-        moveUp(sideToMove, bridge, blockCount);
-        moveDown(sideToMove, bridge, blockCount);
+    public void move(List<String> bridge, int blockCount) {
+        for (int i = 0; i < blockCount; i++) {
+            String sideToMove = new InputView().readMoving();
+            isBridgeLengthMoreThan5(i);
+            moveUp(sideToMove, bridge, i);
+            moveDown(sideToMove, bridge, i);
+            moveBridgeResult.add(initialUpBridge.toString());
+            moveBridgeResult.add(initialDownBridge.toString());
+            new OutputView().printMap(moveBridgeResult);
+        }
     }
 
-    public void moveUp(String sideToMove, List<String> bridge, int blockCount) {
-        if (sideToMove.equals("U") ) {
-            if (bridge.get(blockCount).equals("U")) {
-                isBridgeLengthMoreThan5(blockCount);
-                initialUpBridge.insert(blockCount, MOVABLE);
-                initialDownBridge.insert(blockCount, SPACE);
+    public void moveUp(String sideToMove, List<String> bridge, int i) {
+        if (sideToMove.equals("U")) {
+            if (bridge.get(i).equals("U")) {
+                int lastIndex = initialUpBridge.length() - 1;
+                initialUpBridge.insert(lastIndex, MOVABLE);
+                initialDownBridge.insert(lastIndex, SPACE);
+            }
+            if (bridge.get(i).equals("D")) {
+                int lastIndex = initialUpBridge.length() - 1;
+                initialUpBridge.insert(lastIndex, UNMOVABLE);
+                initialDownBridge.insert(lastIndex, SPACE);
             }
         }
     }
 
-    public void moveDown(String sideToMove, List<String> bridge, int blockCount) {
-        if (sideToMove.equals("D") ) {
-            if (bridge.get(blockCount).equals("D")) {
-                isBridgeLengthMoreThan5(blockCount);
-                initialDownBridge.insert(blockCount, MOVABLE);
-                initialUpBridge.insert(blockCount, SPACE);
+    public void moveDown(String sideToMove, List<String> bridge, int i) {
+        if (sideToMove.equals("D")) {
+            if (bridge.get(i).equals("D")) {
+                int lastIndex = initialDownBridge.length() - 1;
+                initialDownBridge.insert(lastIndex, MOVABLE);
+                initialUpBridge.insert(lastIndex, SPACE);
+            }
+            if (bridge.get(i).equals("U")) {
+                int lastIndex = initialDownBridge.length() - 1;
+                initialDownBridge.insert(lastIndex, UNMOVABLE);
+                initialUpBridge.insert(lastIndex, SPACE);
             }
         }
     }
 
-    public void isBridgeLengthMoreThan5(int blockCount) {
-        if (blockCount > 0) {
+    public void isBridgeLengthMoreThan5(int i) {
+        if (i > 0) {
             int lastIndex = initialUpBridge.length() - 1;
             initialUpBridge.insert(lastIndex, SPLIT_BY);
             initialDownBridge.insert(lastIndex, SPLIT_BY);
