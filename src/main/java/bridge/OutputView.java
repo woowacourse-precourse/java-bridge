@@ -21,7 +21,7 @@ public class OutputView {
     }
 
     /**
-     * 이동할 칸을 입력받는 문구를 출력한다.
+     * 다리 길이를 입력받는 문구를 출력한다.
      */
     public void printBridgeSizeInput() {
         System.out.println(bridgeSizeInputText);
