@@ -35,7 +35,7 @@ public class MapMaker {
             createMapIncorrectMove(bridge.remove());
     }
 
-    public void createMapCorrectMove(String correctBridge){
+    private void createMapCorrectMove(String correctBridge){
         if(correctBridge.equals(UP)){
             topBridge.append(CORRECT);
             bottomBridge.append(MAP_BLANK);
@@ -46,7 +46,7 @@ public class MapMaker {
         }
     }
 
-    public void createMapIncorrectMove(String correctBridge){
+    private void createMapIncorrectMove(String correctBridge){
         if(correctBridge.equals(DOWN)){
             topBridge.append(INCORRECT);
             bottomBridge.append(MAP_BLANK);
