@@ -17,7 +17,6 @@ public class BridgeGameProcess {
     private static InputView inputView = new InputView();
 
     public static void run() {
-        ConsoleOut.GAME_START_MESSAGE.print();
         int bridgeSize = inputView.readBridgeSize(processHelper);
         List<String> bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
         System.out.println(bridge); // 게임 보드 브릿지 생성
