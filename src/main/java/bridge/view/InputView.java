@@ -11,15 +11,42 @@ public class InputView {
         return Integer.parseInt(bridgeSize);
     }
 
+    public int reReadBridgeSizeWhenError() {
+        try{
+            return readBridgeSize();
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return reReadBridgeSizeWhenError();
+        }
+    }
+
     public String readMoving() {
         String move = Console.readLine();
         Validator.isMove(move);
         return move;
     }
 
+    public String reReadMovingWhenError() {
+        try{
+            return readMoving();
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return reReadMovingWhenError();
+        }
+    }
+
     public String readGameCommand() {
         String gameCommand = Console.readLine();
         Validator.isProperGameCommand(gameCommand);
         return gameCommand;
+    }
+
+    public String reReadGameCommandWhenError() {
+        try{
+            return readGameCommand();
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return reReadGameCommandWhenError();
+        }
     }
 }
