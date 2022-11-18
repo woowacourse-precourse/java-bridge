@@ -49,6 +49,7 @@ public class BridgeGame {
      */
     public void retry() {
         tryCount++;
+        player.reset();
     }
 
     public int getTryCount() {
