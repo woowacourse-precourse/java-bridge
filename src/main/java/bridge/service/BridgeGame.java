@@ -7,12 +7,14 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private int tryCount;
+    private static int tryCount;
+    private int currentIndex;
     private List<String> bridge;
     private List<String>[] result;
 
     public BridgeGame(List<String> bridge) {
         this.tryCount = 0;
+        this.currentIndex = 0;
         this.bridge = bridge;
         this.result = new ArrayList[2];
         for (int i = 0; i < 2; i++) {
@@ -24,11 +26,16 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String direction) {
+    public boolean move(String direction) {
         int index = convertToIndex(direction);
-        result[index].add(calculateAnswer(tryCount, direction));
+        String answer = calculateAnswer(currentIndex, direction);
+        result[index].add(answer);
         result[(index + 1) % 2].add(" ");
-        tryCount++;
+        currentIndex++;
+        if (answer.equals("X")) {
+            return false;
+        }
+        return true;
     }
     private int convertToIndex(String direction) {
         if (direction.equals("U")) {
