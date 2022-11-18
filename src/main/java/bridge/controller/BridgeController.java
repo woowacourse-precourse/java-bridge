@@ -34,6 +34,7 @@ public class BridgeController {
         PassingPositions passingPositions = new PassingPositions();
         Result result = null;
 
+        loop:
         while(true) {
             pos = -1;
             do {
@@ -52,9 +53,19 @@ public class BridgeController {
             if (isQuit) {
                 break;
             }
-            if (InputView.readGameCommand().equals("Q")) {
-                break;
-            }
+
+            boolean isAnswerValid = true;
+            do {
+                try {
+                    if (InputView.readGameCommand().equals("Q")) {
+                        break loop;
+                    }
+                } catch (IllegalArgumentException ex) {
+                    isAnswerValid = false;
+                    OutputView.printError(ex.getMessage());
+                }
+            } while(!isAnswerValid);
+
             bridgeGame.retry(passingPositions);
             attempt++;
         }
