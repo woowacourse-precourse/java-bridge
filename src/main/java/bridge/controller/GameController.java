@@ -10,44 +10,54 @@ import bridge.view.OutputView;
 
 public class GameController {
 
-	private final BridgeGame bridgeGame = new BridgeGame();
-	private final OutputView outputView = new OutputView();
+	private final BridgeGame bridgeGame;
+	private final Map map;
+	private final GameResult gameResult;
+	private final OutputView outputView;
 
-	public void run() {
-		GameResult gameResult = new GameResult();
-		List<String> bridges = bridgeGame.setUpGame(InputController.getBridgeSize());
-		playRound(bridges, gameResult);
-		outputView.printResult(gameResult);
+	public GameController() {
+		this.bridgeGame = new BridgeGame();
+		this.map = new Map();
+		this.gameResult = new GameResult();
+		this.outputView = new OutputView();
 	}
 
-	private void playRound(List<String> bridges, GameResult gameResult) {
-		bridgeGame.setUpRound(gameResult);
-		Map map = new Map();
+	public void run() {
+		List<String> bridges = bridgeGame.setUpGame(InputController.getBridgeSize());
+		playRound(bridges);
+		printTotalResult();
+	}
+
+	private void playRound(List<String> bridges) {
+		bridgeGame.setUpRound(gameResult, map);
 		for (String square : bridges) {
-			if (!isSuccess(map, square)) {
-				gameResult.changeResultToFail();
-				isRetry(bridges, gameResult, map);
+			if (!isRightStep(square)) {
+				chooseRestartRound(bridges);
 				break;
 			}
 		}
-		outputView.printEndMessage();
-		outputView.printMap(map);
 	}
 
-	private void isRetry(List<String> bridges, GameResult gameResult, Map map) {
-		if (bridgeGame.retry(InputController.getExitOption())) {
-			playRound(bridges, gameResult);
-		}
-		outputView.printEndMessage();
-		outputView.printMap(map);
-	}
-
-	private boolean isSuccess(Map map, String square) {
+	private boolean isRightStep(String square) {
 		Stairs stairs = InputController.getStairs();
 		boolean isEqual = stairs.isEquals(square);
 		map.drawMap(bridgeGame.move(stairs.getNumber(), isEqual));
 		outputView.printMap(map);
 		return isEqual;
+	}
+
+	private void chooseRestartRound(List<String> bridges) {
+		gameResult.changeResultToFail();
+
+		if (bridgeGame.retry(InputController.getExitOption())) {
+			playRound(bridges);
+		}
+	}
+
+	private void printTotalResult() {
+		outputView.printEndMessage();
+		outputView.printMap(map);
+		outputView.printResult(gameResult);
 	}
 
 }
