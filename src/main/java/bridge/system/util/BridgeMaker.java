@@ -1,11 +1,9 @@
 package bridge.system.util;
 
-import bridge.domain.BridgePhase;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.domain.BridgePhase.*;
+import static bridge.domain.BridgeBlock.*;
 
 public class BridgeMaker {
 

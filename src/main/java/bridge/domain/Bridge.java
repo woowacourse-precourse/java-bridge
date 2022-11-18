@@ -4,9 +4,9 @@ import java.util.List;
 
 public class Bridge {
 
-    private final List<BridgePhase> bridge;
+    private final List<BridgeBlock> bridge;
 
-    public Bridge(List<BridgePhase> bridge) {
+    public Bridge(List<BridgeBlock> bridge) {
         this.bridge = bridge;
     }
 }

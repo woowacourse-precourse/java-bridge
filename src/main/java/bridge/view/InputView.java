@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.domain.BridgeBlock;
 import camp.nextstep.edu.missionutils.Console;
 
 import static camp.nextstep.edu.missionutils.Console.*;
@@ -12,11 +13,8 @@ public class InputView {
         return parseInt(readLine());
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public String readMoving() {
-        return null;
+        return readLine();
     }
 
     /**
