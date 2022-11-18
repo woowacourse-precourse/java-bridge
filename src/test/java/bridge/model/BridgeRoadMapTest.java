@@ -44,4 +44,20 @@ public class BridgeRoadMapTest {
         assertThat(bridgeRoadMap.isFail(userRoadMap))
                 .isTrue();
     }
+
+    @DisplayName("사용자가 다리 끝에 도달했다면 true 값을 반환")
+    @Test
+    void testEnd(){
+        UserRoadMap userRoadMap = new UserRoadMap(List.of("U".repeat(RANGE_OF_BRIDGE_SIZE_START).split("")));
+        assertThat(bridgeRoadMap.isEnd(userRoadMap))
+                .isTrue();
+    }
+
+    @DisplayName("사용자가 다리 끝에 도달하지 않았다면 false 값을 반환")
+    @Test
+    void testNotEnd(){
+        UserRoadMap userRoadMap = new UserRoadMap(List.of());
+        assertThat(bridgeRoadMap.isEnd(userRoadMap))
+                .isFalse();
+    }
 }
