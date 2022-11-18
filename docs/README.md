@@ -136,13 +136,12 @@
   - [x] 칸 입력 후 다리 상태
   - [x] 실패했을 시 재시도, 종료 여부
   - [x] 게임 성공 여부 및 시도 횟수
-- [ ] 함수(또는 메소드)의 길이가 10라인 미만인가? (빈줄 포함)
-- [ ] 함수(또는 메소드)의 파라미터가 3개 이하인가?
-- [ ] 클래스 제약 사항들을 모두 지켰는가?
-  - [ ] `OutuptView`의 메소드 이름을 변경하면 안된다.
-  - [ ] `BridgeMaker`의 메소드의 시그니처(인자, 이름)와 반환 타입을 변경하면 안된다.
-  - [ ] `BridgeGame`의 메소드 이름을 변경하면 안된다.
-  - [ ] `Bridge`
-  - [ ] `InputView` 클래스에서만 `readLine()`을 사용한다. 
+- [x] 함수(또는 메소드)의 길이가 10라인 이내인가? (빈줄 포함)
+- [x] 함수(또는 메소드)의 파라미터가 3개 이하인가?
+- [x] 클래스 제약 사항들을 모두 지켰는가?
+  - [x] `OutuptView`의 메소드 이름을 변경하면 안된다. (printMap, printResult)
+  - [x] `BridgeMaker`의 메소드의 시그니처(인자, 이름)와 반환 타입을 변경하면 안된다.
+  - [x] `BridgeGame`의 메소드 이름을 변경하면 안된다. (move, retry)
+  - [x] `InputView` 클래스에서만 `readLine()`을 사용한다. 
   - [x] `BridgeRandomNumberGenerator`, `BridgeNumberGenerator`의 를 수정하면 안된다.
   - [x] `BridgeRandomNumberGenerator`, `BridgeNumberGenerator`의 패키지를 수정하면 안된다.
