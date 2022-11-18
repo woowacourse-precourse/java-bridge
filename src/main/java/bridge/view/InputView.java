@@ -6,7 +6,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
 
-    public static int getInputBridgeSize() throws IllegalArgumentException {
+    public static int getInputBridgeSize() {
         OutputView.printInputBridgeSize();
         String input = readLine();
         ExceptionHandler.checkBridgeSize(input);
