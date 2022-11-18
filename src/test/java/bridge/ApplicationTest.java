@@ -53,7 +53,7 @@ class ApplicationTest extends NsTest {
         Application.main(new String[]{});
     }
 
-    static class TestNumberGenerator implements BridgeNumberGenerator {
+    public static class TestNumberGenerator implements BridgeNumberGenerator {
 
         private final List<Integer> numbers;
 

@@ -2,6 +2,9 @@ package bridge.service;
 
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.constant.AfterMovingStatusConstant;
+import bridge.constant.UpDownConstant;
+import bridge.domain.Bridge;
 import bridge.repository.BridgeMaker;
 import bridge.validation.Validation;
 import java.util.ArrayList;
@@ -38,7 +41,17 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public AfterMovingStatusConstant move(Bridge randomCreateBridge, Bridge thisTurnBridge, String upOrDownInput) {
+        validation.bridgeMovingValidation(upOrDownInput);
+        UpDownConstant upDownConstant = UpDownConstant.of(upOrDownInput);
+        thisTurnBridge.addBridge(upDownConstant);
+        if (thisTurnBridge.equalsLast(randomCreateBridge)) {
+            if (thisTurnBridge.equalsLength(randomCreateBridge)) {
+                return AfterMovingStatusConstant.SUCCESS;
+            }
+            return AfterMovingStatusConstant.NEXT_TURN;
+        }
+        return AfterMovingStatusConstant.FAIL;
     }
 
     /**

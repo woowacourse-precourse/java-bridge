@@ -2,6 +2,7 @@ package bridge.validation;
 
 import bridge.constant.ErrorStringConstant;
 import bridge.constant.BridgeLengthConstant;
+import bridge.constant.UpDownConstant;
 
 public class Validation {
 
@@ -15,6 +16,11 @@ public class Validation {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorStringConstant.BRIDGE_LENGTH_INPUT_ERROR_MESSAGE.getError());
         }
+    }
 
+    public void bridgeMovingValidation(String bridgeMoving) {
+        if (!(UpDownConstant.contains(bridgeMoving))) {
+            throw new IllegalArgumentException(ErrorStringConstant.UP_OR_DOWN_INPUT_ERROR_MESSAGE.getError());
+        }
     }
 }

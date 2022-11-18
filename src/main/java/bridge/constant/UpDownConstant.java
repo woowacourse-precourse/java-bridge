@@ -1,5 +1,7 @@
 package bridge.constant;
 
+import java.util.Objects;
+
 public enum UpDownConstant {
     UP("위", "U", 1),
     DOWN("아래", "D", 0);
@@ -43,4 +45,9 @@ public enum UpDownConstant {
     public int getNumericSymbol() {
         return numericSymbol;
     }
+
+    public static boolean contains(String symbol) {
+        return Objects.equals(symbol, UP.getSymbol()) || Objects.equals(symbol, DOWN.getSymbol());
+    }
+
 }
