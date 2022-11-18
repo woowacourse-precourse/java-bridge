@@ -2,11 +2,8 @@ package bridge;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
-import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeGameTest {
 
@@ -36,7 +33,7 @@ class BridgeGameTest {
         testBridgeGame.initializeBridgeGame(3);
         testBridgeGame.move("U");
         testBridgeGame.retry();
-        assertThat(testBridgeGame.getRetryNumber()).isEqualTo(1);
+        assertThat(testBridgeGame.getTryNumber()).isEqualTo(1);
         assertThat(testBridgeGame.getStepNumber()).isEqualTo(0);
     }
 
@@ -50,7 +47,7 @@ class BridgeGameTest {
         testBridgeGame.retry();
         testBridgeGame.move("U");
         testBridgeGame.retry();
-        assertThat(testBridgeGame.getRetryNumber()).isEqualTo(2);
+        assertThat(testBridgeGame.getTryNumber()).isEqualTo(2);
         assertThat(testBridgeGame.getStepNumber()).isEqualTo(0);
     }
 

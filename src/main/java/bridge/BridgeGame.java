@@ -9,7 +9,7 @@ public class BridgeGame {
     private int size;
     private boolean[] stepStatus;
     private int stepNumber;
-    private int retryNumber;
+    private int tryNumber;
     private List<String> bridge;
     private final BridgeMaker bridgeMaker;
 
@@ -25,8 +25,8 @@ public class BridgeGame {
         return this.stepNumber;
     }
 
-    public int getRetryNumber() {
-        return this.retryNumber;
+    public int getTryNumber() {
+        return this.tryNumber;
     }
 
     public List<String> getBridge() {
@@ -36,7 +36,7 @@ public class BridgeGame {
     public void initializeBridgeGame(int size) {
         this.stepNumber = 0;
         this.stepStatus = new boolean[size];
-        this.retryNumber = 0;
+        this.tryNumber = 1;
         this.size = size;
         this.bridge = this.bridgeMaker.makeBridge(this.size);
     }
@@ -48,13 +48,16 @@ public class BridgeGame {
     public void retry() {
         this.stepNumber = 0;
         this.stepStatus = new boolean[this.size];
-        this.retryNumber++;
+        this.tryNumber++;
     }
 
-    public void move(String userInput) {
+    public boolean move(String userInput) {
         if (this.bridge.get(this.stepNumber).equals(userInput)) {
             this.stepStatus[this.stepNumber] = true;
+            this.stepNumber++;
+            return true;
         }
         this.stepNumber++;
+        return false;
     }
 }
