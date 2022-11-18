@@ -54,18 +54,22 @@ public class Application {
         }
     }
 
+    static void startGame() {
+        startMessage();
+        InputView input = new InputView();
+        int bridgeSize = readBridgeSize(input);
+        List<String> bridge = makeBridge(bridgeSize);
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        OutputView output = new OutputView();
+        String isSuccess = playGame(input, bridgeGame, bridgeSize, output);
+        output.printResult(bridgeGame);
+        output.printIsSuccess(bridgeGame, isSuccess);
+    }
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         try {
-            startMessage();
-            InputView input = new InputView();
-            int bridgeSize = readBridgeSize(input);
-            List<String> bridge = makeBridge(bridgeSize);
-            BridgeGame bridgeGame = new BridgeGame(bridge);
-            OutputView output = new OutputView();
-            String isSuccess = playGame(input, bridgeGame, bridgeSize, output);
-            output.printResult(bridgeGame);
-            output.printIsSuccess(bridgeGame, isSuccess);
+            startGame();
         } catch (IllegalArgumentException exception) {
             System.out.print("[ERROR] ");
             System.out.println(exception.getMessage());
