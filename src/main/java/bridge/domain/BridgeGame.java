@@ -32,13 +32,13 @@ public class BridgeGame {
 
     public void start(List<String> mapBridge, int bridgeSize){
         move(mapBridge, bridgeSize);
-        afterMove(bridgeSize, mapBridge);
+        afterMove(mapBridge, bridgeSize);
 
     }
     public void move(List<String> mapBridge, int bridgeSize) {
         clearInfo();
         while(idx<bridgeSize && !MapPrinting.isMoveStop()){
-           System.out.println("mapBridge = " + mapBridge); // 출력시 어디가 갈 수 있는 칸인지 확인하기 위한 역할
+            System.out.println("mapBridge = " + mapBridge); // 출력시 어디가 갈 수 있는 칸인지 확인하기 위한 역할
             moving.add(inputView.readMoving());
             setPrintBool(upPrint, downPrint, convertNowIndex(mapBridge.get(idx)));
             makeBridgeMap(upPrint, downPrint, moving.get(idx));
@@ -78,7 +78,7 @@ public class BridgeGame {
         }
     }
 
-    public void afterMove(int bridgeSize, List<String> mapBridge){
+    public void afterMove( List<String> mapBridge, int bridgeSize){
         if (isReachFinal(bridgeSize)) {
             return;
         }
@@ -114,7 +114,7 @@ public class BridgeGame {
     }
 
     private boolean judgementRetry() {
-        return judgeDestination.judgeRestartOrOver();
+        return judgeDestination.judgeRestartOrOver(inputView.readGameCommand());
     }
 
     private void setQuit(int bridgeSize) {

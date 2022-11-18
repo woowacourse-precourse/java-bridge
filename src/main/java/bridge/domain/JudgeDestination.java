@@ -7,8 +7,8 @@ public class JudgeDestination {
     private final String QUIT="Q";
     private final Boolean GAME_OVER=false;
     private final Boolean RESTART=true;
-    public boolean judgeRestartOrOver() {
-        String destination = inputView.readGameCommand();
+    public boolean judgeRestartOrOver(String input) {
+        String destination =input;
         if(destination.equals(QUIT)){
             return GAME_OVER;
         }
