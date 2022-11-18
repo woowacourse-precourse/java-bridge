@@ -14,7 +14,8 @@ public class InputView {
     final String exceptNumber = "[ERROR] 3이상 20이하의 숫자를 입력해주세요.";
     final String exceptMoving = "[ERROR] U 혹은 D를 입력해주세요.";
     final String exceptRetry = "[ERROR] R 혹은 Q를 입력해주세요.";
-    static int size;
+    int size;
+    String input;
 
     /**
      * 다리의 길이를 입력받는다.
@@ -50,7 +51,6 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String input;
         System.out.println(readMovingMs);
         try {
             input = Console.readLine().toUpperCase();
@@ -66,7 +66,6 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        String input;
         System.out.println(readGameCommandMs);
         try {
             input = Console.readLine();
