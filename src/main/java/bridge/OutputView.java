@@ -86,6 +86,10 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(int trialCount, BridgeRoadMap bridgeRoadMap, UserRoadMap userRoadMap) {
+        System.out.println(GAME_RESULT_MESSAGE);
+        printMap(bridgeRoadMap, userRoadMap);
+        printSuccessOrFail(bridgeRoadMap, userRoadMap);
+        System.out.println(String.format("%s %d", GAME_RESULT_TRIAL_COUNT_MESSAGE, trialCount));
     }
 
     private void printSuccessOrFail(BridgeRoadMap bridgeRoadMap, UserRoadMap userRoadMap) {
