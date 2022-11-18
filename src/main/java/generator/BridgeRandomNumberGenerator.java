@@ -1,4 +1,4 @@
-package bridge;
+package generator;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import constant.GameConstant;
