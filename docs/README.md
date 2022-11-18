@@ -20,34 +20,32 @@
 ### 1. 게임 시작 문구를 출력한다. - `View`/`InputView`
 
 ### 2. 다리의 길이를 숫자를 입력받고 생성한다.
-   - [x] 입력받은 숫자(문자열)을 정수로 변환한다. `Domain`/`Converter`
-      - [x] 숫자가 아닌 입력일 경우(문자, 빈 문자열) 예외를 던진다.
-      - [x] 잘못된 입력일 경우, 올바른 입력이 될 때 까지 입력받는다.
-   - [x] 입력받은 숫자가 3 이상 20 이하인지 확인하고 아니면 예외를 던진다. - `Controller`/`BridgeMaker` from `Validator`/`InputValidator`
-   - [x] 0과 1을 다리 길이만큼 무작위로 생성한다. `Controller`/`BridgeMaker` from `Controller`/`BridgeRandomNumberGenerator`
-   - [x] 0인 경우 아랫 칸인 `D`, 1인 경우 윗 칸인 `U`인 다리 리스트를 만든다. - `Controller`/`BridgeMaker`
+   - [x] 입력받은 숫자(문자열)을 정수로 변환한다. - `Domain`/`InputConverter`
+      - [x] 숫자가 아닌 입력일 경우(문자, 빈 문자열) 예외를 던진다. - `Domain`/`InputValidator`
+      - [x] 잘못된 입력일 경우, 올바른 입력이 될 때 까지 입력받는다. - from `Application` call `View`/`InputView`
+   - [x] 입력받은 숫자가 3 이상 20 이하인지 확인하고 아니면 예외를 던진다. - `Domain`/`InputValidator`
+   - [x] 0과 1을 다리 길이만큼 무작위로 생성한다. - `BridgeMaker` from `BridgeRandomNumberGenerator`
+   - [x] 0인 경우 아랫 칸인 `D`, 1인 경우 윗 칸인 `U`인 다리 리스트를 만든다. - from `Domain`/`Bridge` call `BridgeMaker`
 ### 3.`U` 또는 `D`를 입력받아 이동할 칸을 선택한다. `View`/`InputView`
-   - [x] 정해진 문자가 아니거나 입력이 없으면 예외를 던진다. `Validator`/`InputValidator`
-   - [x] 예외가 발생할 경우, 다시 입력받도록 한다. `Controller`/`BridgeGame`
-   - [x] 이동 후 생사여부를 update한다 `Controller`/`BridgeGame` -> `Model`/`UserBridge`
+   - [x] 정해진 문자가 아니거나 입력이 없으면 예외를 던진다. - `Domain`/`InputValidator`
+   - [x] 예외가 발생할 경우, 다시 입력받도록 한다. - from `Application` call `View`/`InputView`
+   - [x] 이동 후 생사여부를 update한다 - in `Domain`/`BridgeGame` update `Domain`/`Player` 
 
 ### 4. 입력 결과를 출력한다.
-  - [X] 건너온 칸들은 전부 O로 출력하고 칸 일치여부와 생사여부에 따라 O, X를 출력을 결정한다. `View`/`OutputView`
+  - [X] 건너온 칸들은 전부 O로 출력하고 칸 일치여부와 생사여부에 따라 O, X를 출력을 결정한다. - from `Application` call `View`/`OutputView`
 
 ### 5. 생사여부를 판별 후, 다음 행동을 결정한다.
   #### 5-1. 죽었을 때
-   - [x] 건너다 실패하면 재시작 `R`, 종료 `Q` 할 수 있다.
-   - [x] 정해진 문자가 아니거나 입력이 없으면 예외를 던진다 `Validator`/`InputValidator`
-   - [x] 예외가 발생할 경우, 다시 입력받도록 한다.
-   - [x] 재시작시 처음부터 다시 진행한다.
-   - [x] 종료시 최종 결과를 출력하고 종료한다.
+   - [x] 건너다 실패하면 재시작 `R`, 종료 `Q` 할 수 있다. `View`/`InputView`
+   - [x] 정해진 문자가 아니거나 입력이 없으면 예외를 던진다 `Domain`/`InputValidator`
+   - [x] 예외가 발생할 경우, 다시 입력받도록 한다. from `Application` call `View`/`InputView`
+   - [x] 재시작시 처음부터 다시 진행한다. - `Application`
 
   #### 5-2. 살았을 때
-- [x] 끝에 도달할 때 까지 계속 진행한다.
-- [x] 끝에 도달하면 결과를 출력하고 종료한다.
+- [x] 끝에 도달할 때 까지 계속 진행한다. - `Application`
 
 
-### 6. 결과 출력 `OutputView`/`printResult`
+### 6. 게임 종료시 결과를 출력한다. `OutputView`/`printResult`
   - [x] 최고 기록을 출력한다. 
   - [x] 게임 성공 여부를 출력한다.
   - [x] 총 시도 횟수를 출력한다.
@@ -63,24 +61,61 @@
     - Bridge를 랜덤한 길이로 생성
 ```
 
-## Model
+## Constant
 
 ---
+
+- ### InputValue
+```
+  - 사용자 입력값으로 이루어진 상수 클래스
+```
+
+- ### OutputValue
+```
+  - 출력값으로 이루어진 상수 클래스
+```
+
+
+## Domain
+
+---
+
+- ### InputConverter
+```
+  - 사용자가 입력한 값(문자열)을 정수로 변환해 return
+  - 변환 불가시 예외를 던짐
+```
+
+- ### InputValidator
+```
+    - 입력값에 대한 검증
+    - 올바르지 않은 입력일 시 예외를 던짐
+```
+
 
 - ### Bridge
 ```
     - 게임에 사용되는 다리 정보
 ```
 
-- ### Selection
+- ### BridgeBlock
 ```
-    - 선택에 대한 정보를 담은 enum 클래스
+    - 사용자 선택 정보를 열거형 상수로 지정한 enum 클래스
 ```
 
-- ### User
+- ### Player
 ```
     - 현재 위치
     - 생사 여부
+```
+
+- ### BridgeGame
+```
+    - 게임 상태 및 제어에 관련된 클래스
+    - 주어진 값에 대한 검증
+    - 개수를 입력받고 Bridge 모델 초기화
+    - 입력값에 따라 유저의 생사 여부 및 위치 결정
+    - 최고 기록을 저장
 ```
 
 
@@ -92,36 +127,14 @@
 ```
     - 게임 시작 문구 출력
     - 입력 문구 출력
-    - 입력받은 값을 Controller에 전달
+    - 입력받은 값을 검증 후 반환
 ```
 ### OutputView
 ```
     - 결과 문구 출력
-    - update된 model의 정보를 출력
+    - update된 정보를 가공하여 출력
 ```
 
-## Controller
-
----
-
-- ### BridgeGame
-```
-    - 게임 실행 및 상태에 관련된 클래스
-    - 입력 값에 대한 검증
-    - 개수를 입력받고 Bridge 모델 초기화
-    - 입력값에 따라 유저의 생사 여부 및 위치 결정
-```
-
-- ### Converter
-```
-  - 사용자가 입력한 값(문자열)을 정수로 변환해 return
-```
-
-
-- ### Validator
-```
-    - 입력값에 대한 검증
-```
 
 
 # ❗ 주의사항 체크 리스트
