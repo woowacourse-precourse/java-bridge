@@ -1,6 +1,5 @@
-package bridge;
+package bridge.domain;
 
-import bridge.domain.Bridge;
 import bridge.exception.InputException;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
