@@ -21,7 +21,8 @@ public class InputView {
     }
 
     public String readGameCommand() {
-        return "";
+        printGetRestartMessage();
+        return getInput();
     }
 
     private void printStartMessage(){
