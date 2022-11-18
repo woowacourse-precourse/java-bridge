@@ -15,7 +15,12 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println(GET_BRIDE_LENGTH);
         String inputBrideLength = Console.readLine();
-        return Integer.parseInt(inputBrideLength);
+        try {
+            return Integer.parseInt(inputBrideLength);
+        }
+        catch (NumberFormatException e){
+            throw new IllegalArgumentException("다리의 개수는 숫자만 입력해야 합니다.");
+        }
     }
 
     /**

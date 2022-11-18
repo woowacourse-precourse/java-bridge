@@ -13,7 +13,7 @@ public class BridgeMaker {
     static final int DOWN_NUMBER = 0;
     static final String UP = "U";
     static final String DOWN = "D";
-    //인스턴스 변수 추가 X
+
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -25,16 +25,28 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
+        sizeValidation(size);
         List<String> bridge = new ArrayList<>();
-        for(int i=0;i<size;i++){
+        for (int i = 0; i < size; i++) {
             int generateRandomBridge = bridgeNumberGenerator.generate();
-            if(generateRandomBridge == UP_NUMBER){
+            if (generateRandomBridge == UP_NUMBER) {
                 bridge.add(UP);
             }
-            if(generateRandomBridge == DOWN_NUMBER){
+            if (generateRandomBridge == DOWN_NUMBER) {
                 bridge.add(DOWN);
             }
         }
         return bridge;
+    }
+
+    /**
+     * 입력받은 다리 길이가 문제의 조건에 유효한지 검사
+     *
+     * @param size 다리의 크기를 의미하는 size는 반드시 3이상 20 이하의 숫자로 이루어져 있어야한다.
+     */
+    private void sizeValidation(int size) {
+        if (size < 3 || 20 < size) {
+            throw new IllegalArgumentException("다리의 크기는 3이상, 20 이하의 숫자를 입력할 수 있습니다.");
+        }
     }
 }
