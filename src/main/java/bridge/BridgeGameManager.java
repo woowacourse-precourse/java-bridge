@@ -68,7 +68,7 @@ public class BridgeGameManager {
             trialCount++;
 
             outputView.printMap(bridgeRoadMap, userRoadMap);
-        } while (!bridgeRoadMap.isFail(userRoadMap));
+        } while (!(bridgeRoadMap.isFail(userRoadMap) || bridgeRoadMap.isEnd(userRoadMap)));
     }
 
     private boolean isRetry() {

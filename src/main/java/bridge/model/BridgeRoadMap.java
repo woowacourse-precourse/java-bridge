@@ -22,4 +22,9 @@ public class BridgeRoadMap extends RoadMap {
         int lastRoadPosition = userRoadMap.getSize() - 1;
         return !matchPositionWithRoad(lastRoadPosition, userRoadMap.getRoad(lastRoadPosition));
     }
+
+    public boolean isEnd(UserRoadMap userRoadMap){
+        // TODO: 사용자가 다리 끝에 도달했는지 확인
+        return false;
+    }
 }
