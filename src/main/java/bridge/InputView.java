@@ -27,7 +27,7 @@ public class InputView {
         String command = readLine();
         if(!ValidCheck.isUorD(command))
             throw new IllegalArgumentException(Exception.NotUorD.getMessage());
-        return null;
+        return command;
     }
 
     /**

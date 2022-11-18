@@ -1,23 +1,37 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private OutputView outputView = new OutputView();
-    private InputView inputView = new InputView();
+    private final List<String> answer_bridge;
+    private List<String> user_bridge;
+
+    public BridgeGame(List<String> answer_bridge) {
+        this.answer_bridge = answer_bridge;
+        this.user_bridge = new ArrayList<>();
+    }
+
+    public List<String> getUser_bridge() {
+        return user_bridge;
+    }
+
+
+    public List<String> getAnswer_bridge() {
+        return answer_bridge;
+    }
+
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
-        //move message 출력
-        outputView.moveMessage();
-        //input move
-        String way = inputView.readMoving();
-        //print map
+    public void move(String way) {
+        user_bridge.add(way);
     }
 
     /**
