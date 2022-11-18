@@ -31,7 +31,7 @@ public class Application {
                 }
                 bridgeGame.retry();
             }
-            //outputView.printResult(currentPosition+1, bridgeGame);
+            outputView.printResult(currentPosition, bridgeGame);
 
         } catch (IllegalArgumentException e) {
             System.out.println(e);
