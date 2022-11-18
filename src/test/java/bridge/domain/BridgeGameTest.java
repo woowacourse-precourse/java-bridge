@@ -60,4 +60,10 @@ class BridgeGameTest {
 
         assertThat(bridgeGame.isWin(player)).isFalse();
     }
+
+    @ParameterizedTest(name = "다리게임 다리 타일 체크 테스트 [{index}] : 테스트 결과 반환 - {2}")
+    @CsvSource(value = {"3,DOWN,false", "0,UP,true"})
+    void checkBridgeTileAtTest(int positionIndex, Tile tile, boolean expectedResult) {
+        assertThat(bridgeGame.checkBridgeTileAt(positionIndex, tile)).isEqualTo(expectedResult);
+    }
 }
