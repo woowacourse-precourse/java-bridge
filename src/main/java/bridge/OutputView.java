@@ -56,7 +56,7 @@ public class OutputView {
     }
 
     private void printDirectionRoadStateMap(String direction, BridgeRoadMap bridgeRoadMap, UserRoadMap userRoadMap) {
-        for(int roadPosition = 0; roadPosition < bridgeRoadMap.getSize(); roadPosition++){
+        for(int roadPosition = 0; roadPosition < userRoadMap.getSize(); roadPosition++){
             printRoadSeparation(roadPosition);
             if(userRoadMap.matchPositionWithDirection(roadPosition, direction)) {
                 printOorX(roadPosition, bridgeRoadMap, userRoadMap);
