@@ -13,10 +13,9 @@ public class Application {
         BridgeGame bridgeGame = new BridgeGame();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> generatedBridge = bridgeMaker.makeBridge(size);
-        boolean retry = true;
         List<String> nowBridge = new ArrayList<>();
-        int count = wholeGame(bridgeGame, generatedBridge, retry, nowBridge);
-        boolean gameSuccessStatus = gameStatus(generatedBridge, nowBridge);
+        int count = wholeGame(bridgeGame, generatedBridge, nowBridge);
+        boolean gameSuccessStatus = isGameWin(generatedBridge, nowBridge);
         OutputView.printResult(count, gameSuccessStatus, nowBridge, generatedBridge);
     }
 }

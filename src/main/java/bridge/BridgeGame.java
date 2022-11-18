@@ -7,43 +7,45 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    public static int wholeGame(BridgeGame bridgeGame, List<String> generatedBridge, boolean retry, List<String> nowBridge) {
+    public static int wholeGame(BridgeGame bridgeGame, List<String> generatedBridge, List<String> nowBridge) {
         boolean successOrNot;
         int count = 0;
-        while (retry) {
+        do {
             nowBridge.clear();
-            successOrNot = bridgeGame.game(nowBridge, generatedBridge);
+            bridgeGame.oneGame(nowBridge, generatedBridge);
             count++;
-            if (successOrNot && nowBridge.size() == generatedBridge.size()) {
-                break;
-            }
-            retry = bridgeGame.retry();
-        }
+            if (isGameWin(nowBridge, generatedBridge)) break;
+        } while (bridgeGame.retry());
         return count;
     }
 
-    public boolean game(List<String> nowBridge, List<String> generatedBridge) {
-        boolean gameSuccess = true;
-
-        while (gameSuccess) {
-            String pick = "";
-            try {
-                pick = InputView.readMoving();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e);
-                continue;
-            }
+    public void oneGame(List<String> nowBridge, List<String> generatedBridge) {
+        boolean gameSuccess = false;
+        do {
+            String pick = inputUpAndDown();
             move(pick, nowBridge);
             System.out.println(OutputView.printMap(nowBridge, generatedBridge));
             gameSuccess = compareBridge(nowBridge, generatedBridge);
             if (nowBridge.size() == generatedBridge.size()) {
-                return gameSuccess;
+                break;
             }
-        }
-        return false;
+        } while (gameSuccess);
     }
 
-    public static boolean gameStatus(List<String> generatedBridge, List<String> nowBridge) {
+    private static String inputUpAndDown() {
+        String pick;
+        while (true) {
+            try {
+                pick = InputView.readMoving();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
+        }
+        return pick;
+    }
+
+    public static boolean isGameWin(List<String> generatedBridge, List<String> nowBridge) {
         return nowBridge.size() == generatedBridge.size() && nowBridge.get(nowBridge.size() - 1).equals(generatedBridge.get(generatedBridge.size() - 1));
     }
 
