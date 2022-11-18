@@ -42,6 +42,10 @@ public class OutputView {
 		System.out.print(START_MESSAGE);
 	}
 
+	public void printErrorMessage(IllegalArgumentException exception) {
+		System.out.println(exception.getMessage());
+	}
+
 	private String makeUpFloorMessage(List<ResultMessageStatus> bridgeStatuses) {
 		StringBuilder result = new StringBuilder();
 		result.append(BRIDGE_START_SYMBOL);
