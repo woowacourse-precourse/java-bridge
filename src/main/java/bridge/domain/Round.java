@@ -25,7 +25,7 @@ public class Round {
     }
 
     public void nextRound() {
-        validate(++round);
+        round++;
     }
 
     public void reset() {

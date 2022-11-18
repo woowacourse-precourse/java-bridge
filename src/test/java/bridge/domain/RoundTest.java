@@ -33,14 +33,6 @@ public class RoundTest {
     }
 
     @Test
-    void nextRound_메서드를_사용하여_허용된_범위를_넘어간다면_IllegalArgumentException을_던진다() {
-        Round round = new Round(ROUND_UPPER_BOUND);
-        assertThatThrownBy(round::nextRound)
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("허용된 라운드 범위를 벗어났습니다.");
-    }
-
-    @Test
     void nextRound_메서드는_라운드_값을_1_증가시킨다() {
         Round round = new Round(1);
         round.nextRound();
