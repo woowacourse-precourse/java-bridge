@@ -5,6 +5,7 @@ import bridge.generator.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import bridge.view.TotalView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,10 +25,19 @@ public class BridgeGame {
         this.character = character;
     }
 
+    public void repeatReadyUntilProperBridgeSize() {
+        try {
+            totalView.out().enterBridgeSize();
+            bridgeSize = totalView.in().readBridgeSize();
+        } catch (IllegalArgumentException e) {
+            totalView.out().printError(e);
+            repeatReadyUntilProperBridgeSize();
+        }
+    }
+
     public void ready() {
         totalView.out().start();
-        totalView.out().enterBridgeSize();
-        bridgeSize = totalView.in().readBridgeSize();
+        repeatReadyUntilProperBridgeSize();
         setBridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
@@ -35,23 +45,31 @@ public class BridgeGame {
         totalTry++;
         int result = Result.CONTINUE.getStatus();
         while (result == Result.CONTINUE.getStatus()) {
-            result = cycle();
+            repeatCycleUntilProperMove();
+            result = cycleResult();
         }
-        if (result == Result.SUCCESS.getStatus()) {
-            success = true;
-            return;
+        if (result == Result.FAIL.getStatus()) {
+            repeatRetryOrQuitUntilProperCommand();
         }
-        retryOrQuit();
+        success = true;
     }
 
-    public int cycle() {
+    public void repeatCycleUntilProperMove() {
+        try {
+            cycle();
+        } catch (IllegalArgumentException e) {
+            totalView.out().printError(e);
+            repeatCycleUntilProperMove();
+        }
+    }
+
+    public void cycle() {
         totalView.out().enterMove();
         String move = totalView.in().readMoving();
         character.setNextMove(move);
-        saveProgress();
         move();
+        saveProgress();
         totalView.out().printMap(this);
-        return cycleResult();
     }
 
     public void move() {
@@ -67,6 +85,15 @@ public class BridgeGame {
             return Result.SUCCESS.getStatus();
         }
         return Result.CONTINUE.getStatus();
+    }
+
+    public void repeatRetryOrQuitUntilProperCommand() {
+        try {
+            retryOrQuit();
+        } catch (IllegalArgumentException e) {
+            totalView.out().printError(e);
+            repeatRetryOrQuitUntilProperCommand();
+        }
     }
 
     public void retryOrQuit() {
@@ -97,6 +124,9 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        setBridge(bridgeMaker.makeBridge(bridgeSize));
+        gameProgress.clear();
+        character.reset();
         play();
     }
 
