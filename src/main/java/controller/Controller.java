@@ -28,9 +28,16 @@ public class Controller {
         while (index < bridge.size()) {
             outputView.printMap(index, inputView.readMoving(), bridge);
             if (outputView.upOutputBoard.contains("X") || outputView.downOutputBoard.contains("X")) {
-                if (inputView.readGameCommand().equals("Q")) {
-                    index = 0;
+                String ROrQ = inputView.readGameCommand();
+                if (ROrQ.equals("Q")) {
                     break;
+                }
+
+                if (ROrQ.equals("R")) {
+                    index = 0;
+                    outputView.upOutputBoard.clear();
+                    outputView.downOutputBoard.clear();
+                    continue;
                 }
             }
             index += 1;
