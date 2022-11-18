@@ -6,7 +6,7 @@ import java.util.List;
 public class Position {
 
     private static final int DISTANCE_INDEX = 0;
-    private static final int DIRECTION_INDEX = 1; // up or down
+    private static final int DIRECTION_INDEX = 1;
     private static final int UP = 1;
     private static final int DOWN = 0;
 

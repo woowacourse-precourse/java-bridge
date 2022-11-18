@@ -8,12 +8,10 @@ public class Bridge {
     private static final String DOWN = "D";
     private static final String BRIDGE_COMPONENTS_INVALID_ERROR = "다리의 구성 요소가 올바르지 않습니다.";
     private final List<String> directions;
-//    private final int size;
 
     public Bridge(List<String> directions) {
         validate(directions);
         this.directions = directions;
-//        this.size = elements.size();
     }
 
     private void validate(List<String> directions) {

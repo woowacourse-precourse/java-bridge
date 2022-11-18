@@ -61,13 +61,4 @@ public class Result {
         }
         return compares;
     }
-//    public List<String> makeCompares(Bridge bridge, PassingPositions passingPositions) {
-//        List<String> compares = new ArrayList<>();
-//        List<Position> passingPosition = passingPositions.getPassingPositions();
-//        for (Position position : passingPosition) {
-//            String compare = bridge.compare(position);
-//            compares.add(compare);
-//        }
-//        return compares;
-//    }
 }
