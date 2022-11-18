@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.util.Constant;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,6 +11,7 @@ import java.util.List;
 public class BridgeGame {
     private final InputController inputController;
     private List<String> board;
+    private int count;
 
     public BridgeGame(BridgeNumberGenerator numberGenerator) {
         this.inputController = new InputController(
@@ -15,6 +19,12 @@ public class BridgeGame {
                 new OutputView(),
                 new BridgeMaker(numberGenerator)
         );
+        count = 1;
+        initialize();
+    }
+
+    private void initialize() {
+        board = new ArrayList<>();
     }
 
     /**
@@ -32,6 +42,13 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry() throws IllegalArgumentException {
+        String retryOrQuit = inputController.getGameCommand();
+        if (retryOrQuit.equals(Constant.RETRY)) {
+            count++;
+            initialize();
+            return true;
+        }
+        return false;
     }
 }
