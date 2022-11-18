@@ -5,3 +5,8 @@
 
 - BridgeMaker Class
 1. 입력된 사이즈만큼의 다리를 만드는 기능
+
+- InputView Class
+1. 다리 길이 입력
+2. 이동 방향 입력
+3. 재시작 여부 입력
