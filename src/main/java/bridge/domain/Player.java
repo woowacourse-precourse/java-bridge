@@ -1,32 +1,39 @@
 package bridge.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Player {
 
-
-    private List<String> bridge;
     private int position;
+    private String lastSelection;
+    private boolean isAlive;
 
     public Player() {
-        this.bridge = new ArrayList<>();
         this.position = 0;
-    }
-
-    public List<String> get() {
-        return bridge;
-    }
-
-    public void addMove(String playerMove) {
-        bridge.add(playerMove);
+        this.lastSelection = "";
+        this.isAlive = true;
     }
 
     public int getPosition() {
-        return this.position;
+        return position;
     }
 
-    public void move() {
+    public String getLastSelection() {
+        return lastSelection;
+    }
+
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    public void updateSelection(String playerSelection) {
+        this.lastSelection = playerSelection;
+    }
+
+    public void dead() {
+        this.isAlive = false;
+    }
+
+    public void updatePosition() {
         this.position++;
     }
+
 }
