@@ -1,6 +1,5 @@
 package bridge;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -28,42 +27,37 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(ArrayList<String> bridge, int nowOn, String lastInput) {
+    public String printMap(ArrayList<String> bridge, int nowOn, String lastInput) {
         StringBuilder upMap = new StringBuilder("[");
         StringBuilder downMap = new StringBuilder("[");
         makePreviousUpMap(bridge, nowOn, upMap);
         makePreviousDownMap(bridge, nowOn, downMap);
-        if (nowOn != bridge.size()) {
-            makeNowUpMap(bridge, lastInput, upMap);
-            makeNowDownMap(bridge, lastInput, downMap);
-        }
-        System.out.print(upMap.append("]\n").toString());
-        System.out.print(downMap.append("]\n").toString());
+        upMap.append(makeNowUpMap(bridge, lastInput, nowOn));
+        downMap.append(makeNowDownMap(bridge,lastInput,nowOn));
+        String lastText = upMap.append("]\n").toString()+downMap.append("]\n").toString();
+        System.out.print(lastText);
+        return lastText;
     }
 
 
-    public void makeNowUpMap(ArrayList<String> bridge, String lastInput, StringBuilder upMap) {
-        if (lastInput.equals("U") && bridge.get(bridge.size() - 1).equals("U")) {
-            upMap.append(" O ");
-            return;     //마지막 입력 윗다리 값 일치
+    public String makeNowUpMap(ArrayList<String> bridge, String lastInput, int nowOn) {
+        if (lastInput.equals("U") && bridge.get(nowOn).equals("U")) {
+            return " O "; //마지막 입력 윗다리 값 일치
         }
-        if (lastInput.equals("U") && (!(bridge.get(bridge.size() - 1).equals("U")))) {
-            upMap.append(" X ");
-            return; //마지막 입력 윗다리 값 불일치
+        if (lastInput.equals("U") && (!(bridge.get(nowOn).equals("U")))) {
+            return " X ";
         }
-        upMap.append("   ");
+        return "   ";
     }
 
-    public void makeNowDownMap(ArrayList<String> bridge, String lastInput, StringBuilder downMap) {
-        if (lastInput.equals("D") && bridge.get(bridge.size() - 1).equals("D")) {
-            downMap.append(" O ");
-            return;     //마지막 입력 윗다리 값 일치
+    public String makeNowDownMap(ArrayList<String> bridge, String lastInput, int nowOn) {
+        if (lastInput.equals("D") && bridge.get(nowOn).equals("D")) {
+            return " O "; //마지막 입력 윗다리 값 일치
         }
-        if (lastInput.equals("D") && (!(bridge.get(bridge.size() - 1).equals("D")))) {
-            downMap.append(" X ");
-            return; //마지막 입력 윗다리 값 불일치
+        if (lastInput.equals("D") && (!(bridge.get(nowOn).equals("D")))) {
+            return " X ";
         }
-        downMap.append("   ");
+        return "   ";
     }
 
     public void makePreviousUpMap(ArrayList<String> bridge, int nowOn, StringBuilder upMap) {
@@ -72,7 +66,8 @@ public class OutputView {
             if (bridge.get(i).equals(BridgeJoyStick.U.toString()))
                 block = "O";
             upMap.append(" "+block+" ");
-            upMap.append("|");
+            if(i<=nowOn-1)
+                upMap.append("|");
         }
     }
 
@@ -82,7 +77,8 @@ public class OutputView {
             if (bridge.get(i).equals(BridgeJoyStick.D.toString()))
                 block = "O";
             downMap.append(" "+block+" ");
-            downMap.append("|");
+            if(i<=nowOn-1)
+                downMap.append("|");
         }
     }
 
@@ -91,14 +87,13 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(int tryNumber,ArrayList<String> bridge,boolean win) {
+    public void printResult(int tryNumber,String lastText,boolean win) {
         System.out.print("최종 게임 결과\n");
-        printMap(bridge,bridge.size(),"");
-        System.out.println("");
+        System.out.print(lastText);
         String resultMessage = "게임 성공 여부: 실패";
         if(win)
             resultMessage = resultMessage.replace("실패","성공");
-        System.out.print(resultMessage);
+        System.out.println(resultMessage);
         System.out.print("총 시도한 횟수: "+tryNumber);
     }
 }
