@@ -1,5 +1,6 @@
 package bridge;
 
+import static bridge.Validator.validateInputNull;
 import static bridge.Validator.validateInputSize;
 import static bridge.Validator.validateInputType;
 import static camp.nextstep.edu.missionutils.Console.readLine;
@@ -19,6 +20,7 @@ public class InputView {
         inputSize = readLine();
         System.out.println();
         validateInputType(inputSize);
+        validateInputNull(inputSize);
         bridgeSize = Integer.parseInt(inputSize);
         validateInputSize(bridgeSize);
         return bridgeSize;
