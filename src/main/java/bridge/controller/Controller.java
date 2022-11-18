@@ -26,6 +26,10 @@ public class Controller {
 
     public void startGame() {
         BridgeGame bridgeGame = createNewGame();
+        runGame(bridgeGame);
+    }
+
+    public void runGame(BridgeGame bridgeGame) {
         do {
             do {
                 bridgeGame.move(getNextMove());
@@ -35,7 +39,7 @@ public class Controller {
                 break;
             }
             bridgeGame.retry();
-        } while(getGameCommand().equals(GameCommand.RETRY.getValue()));
+        } while (getGameCommand().equals(GameCommand.RETRY.getValue()));
     }
 
     public BridgeGame createNewGame() {
