@@ -5,18 +5,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Bridge {
-    private static final String MOVABLE = "O";
-    private static final String IMMOVABLE = "X";
-    private static final String EMPTY = " ";
 
     private final List<String> bridge;
-    private final List<String> up;
-    private final List<String> down;
+    private final List<String> upper;
+    private final List<String> lower;
 
     public Bridge(List<String> bridge) {
         this.bridge = bridge;
-        this.up = new ArrayList<>();
-        this.down = new ArrayList<>();
+        this.upper = new ArrayList<>();
+        this.lower = new ArrayList<>();
     }
 
     public static Bridge generate(List<String> bridge) {
@@ -24,34 +21,43 @@ public class Bridge {
     }
 
     public List<List<String>> makeMap() {
-        return Arrays.asList(up, down);
+        return Arrays.asList(upper, lower);
     }
 
     public void move(String direction) {
-        int index = up.size();
-
-        if (bridge.get(index).equals(direction)) {
-            if (direction.equals("U")) {
-                up.add(MOVABLE);
-                down.add(EMPTY);
-            } else if (direction.equals("D")) {
-                up.add(EMPTY);
-                down.add(MOVABLE);
+        if (isMovable(direction)) {
+            if (isUpper(direction)) {
+                addMoving(Moving.MOVABLE, Moving.EMPTY);
+            } else {
+                addMoving(Moving.EMPTY, Moving.MOVABLE);
             }
         } else {
-            if (direction.equals("U")) {
-                up.add(IMMOVABLE);
-                down.add(EMPTY);
-            } else if (direction.equals("D")) {
-                up.add(EMPTY);
-                down.add(IMMOVABLE);
+            if (isUpper(direction)) {
+                addMoving(Moving.IMMOVABLE, Moving.EMPTY);
+            } else {
+                addMoving(Moving.EMPTY, Moving.IMMOVABLE);
             }
         }
     }
 
+    private boolean isMovable(String direction) {
+        return bridge.get(upper.size())
+                .equals(direction);
+    }
+
+    private boolean isUpper(String direction) {
+        return Direction.UP
+                .equals(direction);
+    }
+
+    private void addMoving(Moving up, Moving down) {
+        upper.add(up.moving());
+        lower.add(down.moving());
+    }
+
     public void refresh() {
-        up.clear();
-        down.clear();
+        upper.clear();
+        lower.clear();
     }
 
     public boolean isEnd() {
@@ -60,12 +66,12 @@ public class Bridge {
     }
 
     public boolean isAnyFail() {
-        return up.contains(IMMOVABLE)
-                || down.contains(IMMOVABLE);
+        return upper.contains(Moving.IMMOVABLE.moving())
+                || lower.contains(Moving.IMMOVABLE.moving());
     }
 
     public boolean isAllSuccess() {
-        return up.size() == bridge.size()
+        return upper.size() == bridge.size()
                 && !isAnyFail();
     }
 }
