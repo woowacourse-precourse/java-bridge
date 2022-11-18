@@ -33,4 +33,20 @@ class BridgeGameTest {
         assertThatThrownBy(() -> bridgeGame.move(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("재시작 기능 성공케이스 테스트")
+    @ValueSource(strings = {"R", "Q"})
+    @ParameterizedTest
+    void move_ValidGameCommand_Boolean(String input) {
+        assertThat(bridgeGame.retry(input))
+                .isIn(true, false);
+    }
+
+    @DisplayName("재시작 기능 예외케이스 테스트")
+    @ValueSource(strings = {"1", "A", "b", "u", "d", "U", "D"})
+    @ParameterizedTest
+    void move_InvalidGameCommand_ExceptionThrown(String input) {
+        assertThatThrownBy(() -> bridgeGame.retry(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
