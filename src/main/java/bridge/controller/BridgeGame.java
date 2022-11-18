@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.constant.ErrorConstant;
 import bridge.model.GeneratedBridge;
 import bridge.model.PlayerBridge;
 import bridge.model.PrintBridge;
@@ -9,6 +10,7 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -56,8 +58,26 @@ public class BridgeGame {
     }
 
     public void inputBridgeSize() {
-        outputView.printInputBridgeSizeMessage();
-        bridgeSize = inputView.inputBridgeSize();
+        while(true) {
+            try {
+                outputView.printInputBridgeSizeMessage();
+                bridgeSize = inputView.inputBridgeSize();
+                validateBridgeSize(bridgeSize);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void validateBridgeSize(String bridgeSize) {
+        if (isBridgeSizeNotDigit(bridgeSize)) {
+            throw new IllegalArgumentException(ErrorConstant.ERROR_PREFIX + "다리 길이는 숫자여야합니다.");
+        }
+    }
+
+    private boolean isBridgeSizeNotDigit(String bridgeSize) {
+        return !Pattern.compile("[0-9]+").matcher(bridgeSize).matches();
     }
 
     public void generateBridge() {
