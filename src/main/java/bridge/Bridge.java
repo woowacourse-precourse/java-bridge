@@ -25,4 +25,8 @@ public class Bridge {
     public boolean isSameValue(List<String> other) {
         return bridge.equals(other);
     }
+
+    public int length() {
+        return bridge.size();
+    }
 }
