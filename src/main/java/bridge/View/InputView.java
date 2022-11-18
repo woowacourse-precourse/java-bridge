@@ -1,7 +1,7 @@
 package bridge.View;
 
-import bridge.InputConverter;
-import bridge.InputValidator;
+import bridge.Domain.InputConverter;
+import bridge.Domain.InputValidator;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -18,11 +18,11 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public void printStartMessage() {
-        System.out.println(InputMessage.START_GAME);
+        System.out.println(START_GAME);
     }
 
     public int readBridgeSize() throws IllegalArgumentException {
-        System.out.println(InputMessage.INPUT_BRIDGE_SIZE);
+        System.out.println(INPUT_BRIDGE_SIZE);
 
         String input = readLine();
 
@@ -41,7 +41,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() throws IllegalArgumentException {
-        System.out.println(InputMessage.INPUT_SELECTION);
+        System.out.println(INPUT_SELECTION);
         String input = readLine();
 
         try {
@@ -57,7 +57,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() throws IllegalArgumentException {
-        System.out.println(InputMessage.INPUT_COMMAND);
+        System.out.println(INPUT_COMMAND);
 
         String input = readLine();
         try {

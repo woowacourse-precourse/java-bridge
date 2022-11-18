@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.Model.BridgeBlock;
+import bridge.Domain.BridgeBlock;
 
 import java.util.ArrayList;
 import java.util.List;

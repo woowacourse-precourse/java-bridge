@@ -1,4 +1,4 @@
-package bridge.Model;
+package bridge.Domain;
 
 public class Player {
     private int nextLocation;

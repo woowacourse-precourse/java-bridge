@@ -1,4 +1,4 @@
-package bridge.Model;
+package bridge.Domain;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;

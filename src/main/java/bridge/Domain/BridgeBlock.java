@@ -1,4 +1,4 @@
-package bridge.Model;
+package bridge.Domain;
 
 import java.util.Arrays;
 
