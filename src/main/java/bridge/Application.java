@@ -16,21 +16,20 @@ public class Application {
 
     public static void main(String[] args) {
         Bridge bridge = bridgeGame.getBridge(inputView.readBridgeSize());
-        play(bridge);
-        GameResult gameResult = bridgeGame.closeGame();
+        GameResult gameResult = play(bridge);
         outputView.printResult(gameResult);
     }
 
-    private static void play(Bridge bridge) {
+    private static GameResult play(Bridge bridge) {
         MoveResult moveResult = moveToBridge(bridge);
         if (moveResult.isSuccess()) {
             if (!bridgeGame.isGameClear(bridge)) {
                 play(bridge);
             }
-            return;
+            return bridgeGame.closeGame();
         }
         retry(bridge);
-        return;
+        return bridgeGame.closeGame();
     }
 
     private static MoveResult moveToBridge(Bridge bridge) {
