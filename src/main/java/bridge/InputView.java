@@ -26,7 +26,10 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        String input = Console.readLine();
+        validateMoveValid(input);
+        return input;
     }
 
     /**
@@ -55,6 +58,16 @@ public class InputView {
         int inputNumber = Integer.parseInt(input);
         if (inputNumber < 3 || inputNumber > 20) {
             System.out.println("[ERROR] 입력한 size의 범위가 유효하지 않습니다.");
+            throw new IllegalArgumentException();
+        }
+    }
+
+    /**
+     * @param input 사용자에게 입력받는 다리의 길이
+     */
+    private void validateMoveValid(String input) {
+        if (input != "U" && input != "D") {
+            System.out.println("[ERROR] 입력한 칸이 유효하지 않습니다.");
             throw new IllegalArgumentException();
         }
     }
