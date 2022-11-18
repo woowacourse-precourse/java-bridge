@@ -1,5 +1,10 @@
 package bridge.view;
 
+import bridge.domain.Bridge;
+import bridge.setting.Setting;
+
+import java.sql.SQLOutput;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -34,6 +39,29 @@ public class OutputView {
     // 이동할 칸을 선택하라는 메세지 출력 기능
     public void printInputSpaceToMove() {
         System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    }
+
+    // Bridge 맵 출력
+    public void printBridge(Bridge bridge) {
+        String[] bridgeMap = bridge.getBridgeMap();
+        StringBuilder topRow = createSingleLineMap(bridge, bridgeMap, Setting.MOVE_UP_KEY);
+        StringBuilder bottomRow = createSingleLineMap(bridge, bridgeMap, Setting.MOVE_DOWN_KEY);
+        System.out.println(topRow.toString());
+        System.out.println(bottomRow.toString());
+    }
+
+    private StringBuilder createSingleLineMap(Bridge bridge, String[] bridgeMap, String key) {
+        StringBuilder row = new StringBuilder("[ ");
+        for (int i = 0; i < bridge.getBridgeMap().length; i++) {
+            if (i > 0) row.append(" | ");
+            if (bridge.getUserKeyList().get(i).equals(key)) {
+                row.append(bridgeMap[i]);
+                continue;
+            }
+            row.append(" ");
+        }
+        row.append(" ]");
+        return row;
     }
 
     // 에러메세지 출력 기능
