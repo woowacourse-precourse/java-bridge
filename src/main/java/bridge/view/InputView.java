@@ -12,10 +12,11 @@ public class InputView {
     private static final String DOWN = "D";
     private static final String RESTART = "R";
     private static final String QUIT = "Q";
-    private static final String SIZE_ERROR = "다리 길이는 " + MIN_SIZE + "부터 " + MAX_SIZE + "까지 가능합니다.";
-    private static final String MOVING_ERROR = UP + "(위) 또는 " + DOWN + "(아래)로만 이동이 가능합니다.";
-    private static final String COMMAND_ERROR = RESTART + "(재시도) 또는 " + QUIT + "(종료)만 선택 가능합니다.";
-    private static final String NUMBER_FORMAT_ERROR = "숫자가 아닙니다.";
+    private static final String ERROR = "[ERROR] ";
+    private static final String SIZE_ERROR = ERROR + "다리 길이는 " + MIN_SIZE + "부터 " + MAX_SIZE + "까지 가능합니다.";
+    private static final String MOVING_ERROR = ERROR + UP + " 또는 " + DOWN + "를 입력해주세요.";
+    private static final String COMMAND_ERROR = ERROR + RESTART + " 또는 " + QUIT + "를 입력해주세요.";
+    private static final String NUMBER_FORMAT_ERROR = ERROR + "숫자를 입력해주세요.";
 
     /**
      * 다리의 길이를 입력받는다.
