@@ -10,8 +10,8 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public boolean canCross(int location, String direction) {
-        return bridge.get(location).equals(direction);
+    public boolean canCross(int position, String direction) {
+        return bridge.get(position).equals(direction);
     }
 
     public int size() {

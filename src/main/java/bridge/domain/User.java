@@ -6,19 +6,17 @@ public class User {
     public static final int LIVE = 1;
 
     private final FootPrints footPrints;
-    private int currentLocation;
-    private int tryCount;
+    private final UserData userData;
 
 
     public User() {
-        currentLocation = 0;
-        tryCount = 1;
         footPrints = new FootPrints();
+        userData = new UserData();
     }
 
     public int cross(Bridge bridge, String direction) {
-        if (bridge.canCross(currentLocation, direction)) {
-            currentLocation++;
+        if (bridge.canCross(userData.getPosition(), direction)) {
+            userData.increasePosition();
             recordStep(LIVE, direction);
             return LIVE;
         }
@@ -30,8 +28,8 @@ public class User {
         footPrints.add(status, direction);
     }
 
-    public boolean isLocateAt(int location) {
-        return currentLocation == location;
+    public boolean isLocateAt(int position) {
+        return userData.isSamePosition(position);
     }
 
     public String getFootPrintsLog() {
@@ -40,11 +38,11 @@ public class User {
 
     public void prepareToRestart() {
         footPrints.reset();
-        currentLocation = 0;
-        tryCount++;
+        userData.resetPosition();
+        userData.addTryCount();
     }
 
     public int getTryCount() {
-        return tryCount;
+        return userData.getTryCount();
     }
 }
