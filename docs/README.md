@@ -50,6 +50,7 @@
 ### StringEnum
 - [ ] 이동 묻는 출력문
 - [ ] 재시도 묻는 출력문
+- [ ] Up, Down, Restart, Quit key 저장
 
 ### IntEnum
 - [ ] 다리 길이 범위 저장
