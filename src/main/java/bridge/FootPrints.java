@@ -3,19 +3,19 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MoveResult {
+public class FootPrints {
 
     // TODO: refactoring
     private final List<String> up;
     private final List<String> down;
 
-    public MoveResult() {
+    public FootPrints() {
         up = new ArrayList<>();
         down = new ArrayList<>();
     }
 
-    public void add(int status, String moveCommand) {
-        if (moveCommand.equals("U")) {
+    public void add(int status, String direction) {
+        if (direction.equals("U")) {
             reflectStatus(status, up);
             down.add(" ");
             return;
@@ -24,12 +24,12 @@ public class MoveResult {
         up.add(" ");
     }
 
-    private void reflectStatus(int status, List<String> direction) {
+    private void reflectStatus(int status, List<String> footPrint) {
         if (status != BridgeGame.DIED) {
-            direction.add("O");
+            footPrint.add("O");
             return;
         }
-        direction.add("X");
+        footPrint.add("X");
     }
 
     @Override
