@@ -14,8 +14,6 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
 
-    private static final int[] Min_Value_MaxVlaue = {};
-//    private static final int Max_Value = 20;
 
 
     public static int readBridgeSize(){
@@ -32,7 +30,6 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving(List<Integer> player) {
-
         String readMovingToString = readLine();
         for (int index = 0; index < player.size(); index++) {
             if (player.equals("U")) {

@@ -4,12 +4,14 @@ package bridge;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-
+    public static void bridgeGameStart(){
+        System.out.println("다리 건너기 게임을 시작합니다");
+    }
     /**
      * 다리의 길이를 입력해주세요.
      *
      */
-    public void bridgeLengthMessage(){
+    public static void bridgeLengthMessage(){
         System.out.println("다리의 길이를 입력해주세요.");
     }
 
@@ -17,7 +19,7 @@ public class BridgeGame {
      * 이동할 칸을 선택해주세요.
      *
      */
-    public void moveStepMessage(){
+    public static void moveStepMessage(){
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
     /**
