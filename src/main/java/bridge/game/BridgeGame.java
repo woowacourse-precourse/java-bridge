@@ -13,7 +13,7 @@ import java.util.StringJoiner;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private static BridgeGame game = null;
+//    private static BridgeGame game = null;
     private static List<String> bridge;
     private int currentLocation = 0;
     private int retryCount = 1;
@@ -23,19 +23,28 @@ public class BridgeGame {
     private StringJoiner topMap = new StringJoiner(" | ");
     private StringJoiner bottomMap = new StringJoiner(" | ");
 
-    public static BridgeGame getInstance() { // singleton
-        if (game == null) {
-            game = new BridgeGame();
-            BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-            bridge = bridgeMaker.makeBridge(
-                    InputConvertor.inputParseNumber(
-                            Application.sizeValidation()
-                    )
-            );
-        }
-        return game;
-    }
+//    public static BridgeGame getInstance() { // singleton
+//        if (game == null) {
+//            game = new BridgeGame();
+//            BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+//            bridge = bridgeMaker.makeBridge(
+//                    InputConvertor.inputParseNumber(
+//                            Application.sizeValidation()
+//                    )
+//            );
+//        }
+//        return game;
+//    }
 
+
+    public BridgeGame() {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        bridge = bridgeMaker.makeBridge(
+                InputConvertor.inputParseNumber(
+                        Application.sizeValidation()
+                )
+        );
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드

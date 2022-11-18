@@ -15,11 +15,13 @@ public class Application {
     private static BridgeGame game;
 
     public static void main(String[] args) {
+        System.out.println(GameMessage.START_MSG);
+        game = new BridgeGame();
+        boolean progress = true;
+        while (progress) {
+            progress = game.move();
+        }
 
-        do {
-            System.out.println(GameMessage.START_MSG);
-            game = BridgeGame.getInstance();
-        } while (game.move());
     }
 
     public static String sizeValidation() {
