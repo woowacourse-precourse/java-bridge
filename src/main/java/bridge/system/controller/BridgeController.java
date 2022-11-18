@@ -18,6 +18,7 @@ public class BridgeController {
     }
 
     public void playBridgeGame() {
-
+        outputView.showGameStartMessage();
+        inputView.readBridgeSize();
     }
 }

@@ -2,15 +2,21 @@ package bridge.view;
 
 import bridge.system.util.BridgeMessageMaker;
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
 public class OutputView {
+
+    private final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
+    private final String INIT_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
 
     private final BridgeMessageMaker bridgeMessageMaker;
 
     public OutputView(BridgeMessageMaker bridgeMessageMaker) {
         this.bridgeMessageMaker = bridgeMessageMaker;
+    }
+
+
+    public void showGameStartMessage() {
+        System.out.println(GAME_START_MESSAGE);
+        System.out.println(INIT_BRIDGE_SIZE_MESSAGE);
     }
 
     /**

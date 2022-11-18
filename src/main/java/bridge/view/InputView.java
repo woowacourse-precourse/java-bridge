@@ -1,16 +1,15 @@
 package bridge.view;
 
-import java.security.PublicKey;
+import camp.nextstep.edu.missionutils.Console;
+
+import static camp.nextstep.edu.missionutils.Console.*;
+import static java.lang.Integer.*;
 
 public class InputView {
-    private final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
 
-    public void showGameStartMessage() {
-        System.out.println(GAME_START_MESSAGE);
-    }
 
     public int readBridgeSize() {
-        return 0;
+        return parseInt(readLine());
     }
 
     /**
