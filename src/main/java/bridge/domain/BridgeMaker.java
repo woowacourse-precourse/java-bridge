@@ -15,7 +15,12 @@ public class BridgeMaker {
     }
 
     public List<String> makeBridge(int size) {
-        return null;
+        List<String> bridge = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            int randomNumber = bridgeNumberGenerator.generate();
+            addBridgeMoving(bridge, randomNumber);
+        }
+        return Collections.unmodifiableList(bridge);
     }
 
     public void addBridgeMoving(List<String> bridge, int number) {
