@@ -26,7 +26,10 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String input = Console.readLine();
+        if(input.equals("U") || input.equals("D"))
+            return input;
+        throw new IllegalArgumentException("[ERROR] 올바른 이동할 칸이 아닙니다.");
     }
 
     /**
