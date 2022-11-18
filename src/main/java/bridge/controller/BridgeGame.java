@@ -6,8 +6,6 @@ import bridge.model.Player;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-import java.util.Arrays;
-
 import static bridge.util.BridgeConstant.FALL_POSITION;
 
 /**
@@ -18,6 +16,7 @@ public class BridgeGame {
     OutputView outputView = new OutputView();
     BridgeMove bridgeMove = new BridgeMove();
     boolean isContinue;
+    boolean isWin;
     Bridge bridge;
 
     public void init() {
@@ -33,6 +32,7 @@ public class BridgeGame {
             move(player);
             checkPlayerPosition(player);
         }
+        outputView.printResult(player, isWin);
     }
 
     private void checkPlayerPosition(Player player) {
@@ -93,6 +93,7 @@ public class BridgeGame {
             player.setTryCount();
             return;
         }
+        isWin = false;
         isContinue = false;
     }
 }
