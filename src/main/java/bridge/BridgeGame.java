@@ -17,12 +17,12 @@ public class BridgeGame {
      * @param bridge 다리
      * @param play   이동 횟수
      * @param moving 이동할 칸
-     * @return
+     * @return 이동 가능성
      */
-    public String move(Bridge bridge, int play, String moving) {
+    public Boolean move(Bridge bridge, int play, String moving) {
         boolean mobility = bridge.isPossibleMoving(play, moving);
         bridgeGameResult.makeMoveResult(moving, mobility);
-        return " ";
+        return mobility;
     }
 
     /**

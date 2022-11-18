@@ -63,12 +63,10 @@ public class BridgeGameController {
             outputView.printMovingMsg();
 
             String moving = inputView.readMoving();
-            String moveState = bridgeGame.move(bridge, moveCount, moving);
-
-            gameResult.makeMoveResult(moving, moveState);
+            Boolean mobility = bridgeGame.move(bridge, moveCount, moving);
             outputView.printMap(gameResult.getMoveResult());
 
-            if (isFail(moveState)) {
+            if (isFail(mobility)) {
                 break;
             }
         }
@@ -79,8 +77,8 @@ public class BridgeGameController {
         }
     }
 
-    private boolean isFail(String moveState) {
-        if (moveState.equals("X")) {
+    private boolean isFail(Boolean mobility) {
+        if (mobility.equals(false)) {
             outputView.printGameCommandMsg();
             checkPlay(inputView.readGameCommand());
             return true;
