@@ -16,21 +16,21 @@ public class OutputView {
         System.out.printf("%s", "]\n");
         System.out.printf("%s", "[ ");
         printBridge(downCase, count);
-        System.out.printf("%s", "]\n");
+        System.out.printf("%s", "]\n\n");
     }
     public void printBridge(int [] bridgeCase, int count){
         for(int i = 0; i < count; i++){
-            if(bridgeCase[i] == 1){
-                System.out.printf("%s", "O ");
-            }
             if(bridgeCase[i] == 0){
                 System.out.printf("%s", "  ");
             }
-            if(i < count - 1) {
-                System.out.printf("%s", "| ");
+            if(bridgeCase[i] == 1){
+                System.out.printf("%s", "O ");
             }
             if(bridgeCase[i] == 2){
                 System.out.printf("%s", "X ");
+            }
+            if(i < count - 1) {
+                System.out.printf("%s", "| ");
             }
         }
     }
