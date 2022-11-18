@@ -10,6 +10,12 @@ public class BridgeGame {
     private static final int NUMBER_OF_BRIDGE = 2;
     private List<String> bridge;
     private int currentStage = 0;
+    private boolean isFail = false;
+
+    public BridgeGame(List<String> bridge) {
+        this.bridge = bridge;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -21,6 +27,7 @@ public class BridgeGame {
             currentStage++;
             return true;
         }
+        isFail = true;
         return false;
     }
 
@@ -32,13 +39,15 @@ public class BridgeGame {
     public void retry() {
         bridge = null;
         currentStage = 0;
+        isFail = false;
     }
 
     @Override
     public String toString() {
-        String str = "[ ";
+        String str = "";
         for (BridgeStatus bridgeStatus : BridgeStatus.values()) {
-            for (int idx = 0; idx < bridge.size(); idx++) {
+            str += "[ ";
+            for (int idx = 0; idx < currentStage; idx++) {
                 str = addOorSpace(str, bridgeStatus, idx);
                 str = checkLast(str, idx);
             }
