@@ -60,5 +60,30 @@ public class BridgeGameTest {
         }
         assertThat(bridgeGame.getTryCount()).isEqualTo(retryCount + 1);
     }
-
+    @DisplayName("다리와 똑같이 움직이면 성공한다.")
+    @Test
+    void gameSuccess() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "U"));
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("U");
+        assertThat(bridgeGame.isBridgeGameSuccess()).isTrue();
+    }
+    @DisplayName("움직이는데 실패하면 성공한 상태가 아니다.")
+    @Test
+    void gameIsNotSuccess() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "U"));
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("D");
+        assertThat(bridgeGame.isBridgeGameSuccess()).isFalse();
+    }
+    @DisplayName("끝까지 도달하지 않으면 성공한 상태가 아니다.")
+    @Test
+    void gameIsNotSuccess2() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "U"));
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        assertThat(bridgeGame.isBridgeGameSuccess()).isFalse();
+    }
 }
