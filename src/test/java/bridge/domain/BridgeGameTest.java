@@ -124,4 +124,23 @@ class BridgeGameTest {
             assertThat(bridgeGame).extracting("numberOfAttempts").isEqualTo(2);
         });
     }
+
+    @DisplayName("게임 종료 테스트")
+    @Test
+    void 게임_종료_커맨드를_입력하면_게임이_종료된다() {
+        Bridge bridge = new Bridge(List.of("U", "D", "U"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        assertAll(() -> {
+            bridgeGame.move(Direction.U);
+            bridgeGame.move(Direction.U);
+            assertThat(bridgeGame.isEndGame()).isTrue();
+            assertThat(bridgeGame).extracting("aliveUser").isEqualTo(false);
+            assertThat(bridgeGame).extracting("userPosition").isEqualTo(2);
+            assertThat(bridgeGame).extracting("numberOfAttempts").isEqualTo(1);
+            assertThat(bridgeGame.isNeedToQuit()).isFalse();
+
+            bridgeGame.retry(Command.Quit);
+            assertThat(bridgeGame.isNeedToQuit()).isTrue();
+        });
+    }
 }
