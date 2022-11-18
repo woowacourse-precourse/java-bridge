@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,6 +24,16 @@ public class BridgeGame {
     public void move(String input) {
         position = position + 1;
         alive = isCorrect(input);
+    }
+
+    public List<String> getResult(String input) {
+        List<String> result = new ArrayList<>(bridge.subList(0, position));
+        if (isCorrect(input)) {
+            return List.copyOf(result);
+        }
+        result.remove(position - 1);
+        result.add(input);
+        return List.copyOf(result);
     }
 
     private boolean isCorrect(String input) {
