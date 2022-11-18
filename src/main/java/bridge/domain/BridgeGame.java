@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import bridge.view.InputView;
 import org.assertj.core.api.ThrowableAssert;
@@ -22,14 +22,6 @@ public class BridgeGame {
     private final static String MOVE_DOWN_COMMAND = "D";
     private final static String RETRY_GAME_COMMAND = "R";
     private final static String END_GAME_COMMAND = "Q";
-
-    public void run() {
-        try {
-
-        } catch (IllegalArgumentException illegalArgumentException) {
-            System.out.println(illegalArgumentException.getMessage());
-        }
-    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
