@@ -21,32 +21,27 @@ public class Controller {
     }
 
     public void run() {
-        try {
-            System.out.println("다리 건너기 게임을 시작합니다.\n");
-            BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-            List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
-            int index = 0; // 다리 길이 index
-            while (index < bridge.size()) {
-                outputView.printMap(index, inputView.readMoving(), bridge);
-                if (outputView.upOutputBoard.contains("X") || outputView.downOutputBoard.contains("X")) {
-                    String ROrQ = inputView.readGameCommand();
-                    if (ROrQ.equals("Q")) {
-                        break;
-                    }
-
-                    if (ROrQ.equals("R")) {
-                        index = 0;
-                        outputView.upOutputBoard.clear();
-                        outputView.downOutputBoard.clear();
-                        continue;
-                    }
+        System.out.println("다리 건너기 게임을 시작합니다.\n");
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        int index = 0; // 다리 길이 index
+        while (index < bridge.size()) {
+            outputView.printMap(index, inputView.readMoving(), bridge);
+            if (outputView.upOutputBoard.contains("X") || outputView.downOutputBoard.contains("X")) {
+                String ROrQ = inputView.readGameCommand();
+                if (ROrQ.equals("Q")) {
+                    break;
                 }
-                index += 1;
 
+                if (ROrQ.equals("R")) {
+                    index = 0;
+                    outputView.upOutputBoard.clear();
+                    outputView.downOutputBoard.clear();
+                    continue;
+                }
             }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            index += 1;
+
         }
     }
 }
-
