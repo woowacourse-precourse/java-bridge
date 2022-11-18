@@ -17,16 +17,16 @@
 
 ## 🚦 기능 요구 사항 목록
 
-+ [ ] 게임 시작 멘트 출력
-+ [ ] 다리 길이 입력 받기
++ [x] 게임 시작 멘트 출력
++ [x] 다리 길이 입력 받기
 + [ ] 입력된 다리 길이 값 유효성 검사
 + [ ] 다리 길이 만큼의 다리를 생성한다.
-+ [ ] 사용자에게 이동할 칸을 U,D로 입력 받는다.
++ [x] 사용자에게 이동할 칸을 U,D로 입력 받는다.
 + [ ] 입력된 값을 유효성 검사
 + [ ] 이동할 칸이 건널 수 있는 다리인지 검사 한다.
 + [ ] 이동 상태를 O과 X로 표시하여 출력한다.
     + [ ] 건널 수 있다면 다음 칸의 이동할 칸을 입력받는다.
-    + [ ] 건널 수 없다면 게임을 종료할지 재시작할지를 물어 본다.
+    + [x] 건널 수 없다면 게임을 종료할지 재시작할지를 물어 본다.
         + [ ] 시도 횟수를 카운트 한다.
         + [ ] 시도 횟수를 카운트 한다.
         + [ ] R을 입력 받는다면 게임을 재시작한다.
@@ -51,32 +51,32 @@
 
 ### InputView 클래스
 
-+ [ ] InputView의 시그니처(인자, 이름)와 반환 타입은 변경 가능
-+ [ ] 사용자 값 입력을 위해 필요한 추가 메서드 구현 가능
-+ [ ] camp.nextstep.edu.missionutils.Console의 readLine()을 활용
+- InputView의 시그니처(인자, 이름)와 반환 타입은 변경 가능
+- 사용자 값 입력을 위해 필요한 추가 메서드 구현 가능
+- camp.nextstep.edu.missionutils.Console의 readLine()을 활용
 
 ### OutputView 클래스
 
-+ [ ] 메서드 이름은 변경 불가
-+ [ ] 인자와 반환 타입은 필요에 따라 추가,변경 가능
+- 메서드 이름은 변경 불가
+- 인자와 반환 타입은 필요에 따라 추가,변경 가능
 
 
 ### BridgeGame 클래스
 
-+ [ ] 필드 추가 가능
-+ [ ] 메서드 이름 변경 불가
-+ [ ] 인자와 반환 타입은 필요에 따라 추가,변경 가능
-+ [ ] 게임 진행을 위해 필요한 메서드를 추가 하거나 변경 가능
+- 필드 추가 가능
+- 메서드 이름 변경 불가
+- 인자와 반환 타입은 필요에 따라 추가,변경 가능
+- 게임 진행을 위해 필요한 메서드를 추가 하거나 변경 가능
 
 ### BridgeMaker 클래스
 
-+ [ ] 필드 변경 불가
-+ [ ] 메서드 시그니처,반환타입 변경 불가
+- 필드 변경 불가
+- 메서드 시그니처,반환타입 변경 불가
 
 ### BridgeRandomNumberGenerator 클래스
 
-+ [ ] Random 값 추출은 제공된 bridge.BridgeRandomNumberGenerator의 generate()를 활용
-+ [ ] BridgeRandomNumberGenerator, BridgeNumberGenerator 클래스의 코드는 변경할 수 없음
+- Random 값 추출은 제공된 bridge.BridgeRandomNumberGenerator의 generate()를 활용
+- BridgeRandomNumberGenerator, BridgeNumberGenerator 클래스의 코드는 변경할 수 없음
 
 
 <hr/>
