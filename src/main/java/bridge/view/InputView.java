@@ -4,6 +4,8 @@ package bridge.view;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 
+import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 제공된 InputView 클래스를 활용해 구현해야 한다.
  * InputView의 패키지는 변경할 수 있다.
@@ -13,13 +15,15 @@ package bridge.view;
 public class InputView {
     private static final String ERROR_INPUT_LENGTH_ZERO = "[ERROR] 아무것도 입력하지 않았습니다.";
     private static final String ERROR_NOT_INTEGER = "[ERROR] 숫자를 입력해야 합니다.";
+    private static final String BRIDGE_SIZE_INPUT_MESSAGE = "다리의 길이를 입력해주세요.";
     private static final int EMPTY_LENGTH_VALUE = 0;
 
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize(String readLine) {
-        return validateStringToInt(validateNotEmpty(readLine));
+    public int readBridgeSize() {
+        System.out.println(BRIDGE_SIZE_INPUT_MESSAGE);
+        return validateStringToInt(validateNotEmpty(Console.readLine()));
     }
 
     /**
