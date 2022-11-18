@@ -22,10 +22,11 @@ class OutputViewTest extends NsTest {
         BridgeGame bridgeGame = new BridgeGame(bridge);
         StringBuilder upperBridge = new StringBuilder();
         StringBuilder lowerBridge = new StringBuilder();
+        Bridge bridge1 = new Bridge(upperBridge, lowerBridge);
         //when
         bridgeGame.writeInitUpperBridge(upperBridge, lowerBridge, true);
         //then
-        outputView.printMap(upperBridge, lowerBridge);
+        outputView.printMap(bridge1);
         assertThat(output()).contains(
                 "[ O ]",
                 "[   ]"
@@ -48,7 +49,7 @@ class OutputViewTest extends NsTest {
         bridgeGame.writeInitUpperBridge(upperBridge, lowerBridge, true);
         bridgeGame.writeUpperBridge(upperBridge, lowerBridge, true);
         //then
-        outputView.printMap(upperBridge, lowerBridge);
+        outputView.printMap(testBridge);
         assertThat(output()).contains(
                 "[ O | O ]",
                 "[   |   ]"
@@ -72,7 +73,7 @@ class OutputViewTest extends NsTest {
         bridgeGame.writeUpperBridge(upperBridge, lowerBridge, true);
         bridgeGame.writeLowerBridge(upperBridge, lowerBridge, false);
         //then
-        outputView.printMap(upperBridge, lowerBridge);
+        outputView.printMap(testBridge);
         assertThat(output()).contains(
                 "[ O | O |   ]",
                 "[   |   | X ]"
