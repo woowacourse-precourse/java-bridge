@@ -25,4 +25,8 @@ public class User {
     public void reset() {
         movedPosition.clear();
     }
+
+    public UpDownFlag getIndexOf(int index) {
+        return movedPosition.get(index);
+    }
 }

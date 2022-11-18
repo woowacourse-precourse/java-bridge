@@ -1,9 +1,9 @@
 package bridge;
 
-import bridge.model.BridgeGame;
+import bridge.controller.BridgeController;
 import bridge.service.BridgeMaker;
-import bridge.service.BridgeService;
 import bridge.util.BridgeRandomNumberGenerator;
+import bridge.view.BridgeView;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -11,9 +11,10 @@ public class Application {
 
     public static void main(String[] args) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        BridgeGame bridgeGame = BridgeGame.create(new BridgeService(bridgeMaker, new InputView(), new OutputView()));
+        BridgeView bridgeView = new BridgeView(new InputView(), new OutputView());
+        BridgeController bridgeController = new BridgeController(bridgeView, bridgeMaker);
         try {
-            bridgeGame.start();
+            bridgeController.gameStart();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }

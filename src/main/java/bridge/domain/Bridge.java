@@ -24,4 +24,8 @@ public class Bridge {
     public int getLength() {
         return bridge.size();
     }
+
+    public UpDownFlag getIndexOf(int index) {
+        return bridge.get(index);
+    }
 }

@@ -1,58 +1,44 @@
 package bridge.model;
 
-import bridge.controller.GameFlag;
+import static bridge.ExceptionConst.*;
+
 import bridge.domain.Bridge;
 import bridge.domain.BridgeFlag;
 import bridge.domain.Map;
 import bridge.domain.UpDownFlag;
 import bridge.domain.User;
-import bridge.service.BridgeService;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final BridgeService bridgeService;
-
-    private User user;
-    private Bridge bridge;
-    private Map map;
+    private final User user;
+    private final Bridge bridge;
+    private final Map map;
     private int tryCount = 1;
 
-    private BridgeGame(BridgeService bridgeService) {
-        this.bridgeService = bridgeService;
+    public BridgeGame(User user, Bridge bridge) {
+        this.user = user;
+        this.bridge = bridge;
+        this.map = new Map(bridge, user);
     }
 
-    public static BridgeGame create(BridgeService bridgeService) {
-        return new BridgeGame(bridgeService);
-    }
-
-    public void start() {
-        init();
-        while (loop() != GameFlag.QUIT) {
-            retry();
+    public BridgeFlag isCrossOver() {
+        validateLength(bridge, user);
+        for (int i = 0; i < user.getMovedLength(); i++) {
+            if (bridge.getIndexOf(i) != user.getIndexOf(i)) {
+                return BridgeFlag.FAIL;
+            }
         }
-        BridgeFlag result = bridgeService.getGameStatus(bridge, user);
-        bridgeService.printResult(map, result, tryCount);
+        if (bridge.getLength() == user.getMovedLength()) {
+            return BridgeFlag.SUCCESS;
+        }
+        return BridgeFlag.NOTHING;
     }
 
-    private void init() {
-        bridgeService.printStartMessage();
-        bridge = bridgeService.makeBridge();
-        user = new User();
-        map = new Map(bridge, user);
-    }
-
-    private GameFlag loop() {
-        while (true) {
-            move();
-            BridgeFlag gameStatus = bridgeService.getGameStatus(bridge, user);
-            if (gameStatus == BridgeFlag.FAIL) {
-                return bridgeService.receiveRestart();
-            }
-            if (gameStatus == BridgeFlag.SUCCESS) {
-                return GameFlag.QUIT;
-            }
+    private void validateLength(Bridge bridge, User user) {
+        if (bridge.getLength() < user.getMovedLength()) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_BRIDGE_LENGTH_OVER_USER);
         }
     }
 
@@ -61,11 +47,9 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
-        UpDownFlag flag = bridgeService.receiveMoving();
+    public void move(UpDownFlag flag) {
         user.move(flag);
         map.update();
-        bridgeService.printMap(map);
     }
 
     /**
@@ -76,5 +60,13 @@ public class BridgeGame {
     public void retry() {
         tryCount++;
         user.reset();
+    }
+
+    public Map getMap() {
+        return map;
+    }
+
+    public int getTryCount() {
+        return tryCount;
     }
 }
