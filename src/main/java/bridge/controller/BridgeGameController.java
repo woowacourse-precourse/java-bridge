@@ -30,6 +30,7 @@ public class BridgeGameController {
     public void play() {
         start();
         Bridge bridge = makeBridge(makeBridgeSize());
+        moveBridge(bridge);
     }
 
     private void start() {
@@ -43,5 +44,17 @@ public class BridgeGameController {
     private int makeBridgeSize() {
         outputView.printBridgeSizeMsg();
         return inputView.readBridgeSize();
+    }
+
+    private void moveBridge(Bridge bridge) {
+        for (int moveCount = 0; moveCount < bridge.getSize(); moveCount++) {
+            outputView.printMovingMsg();
+
+            String moving = inputView.readMoving();
+            String moveState = bridgeGame.move(bridge, moveCount, moving);
+
+            gameResult.makeMoveResult(moving, moveState);
+            outputView.printMap(gameResult.getMoveResult());
+        }
     }
 }
