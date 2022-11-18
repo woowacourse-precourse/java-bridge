@@ -13,10 +13,13 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String input = "";
-        while(!this.checkMessage(input,ErrorMessage.BRIDGELENGTHERROREXCEPTION).equals("PASS"))
+        String input = Console.readLine();
+        String checkMessage = this.checkMessage(input,ErrorMessage.BRIDGELENGTHERROREXCEPTION);
+        while(!checkMessage.equals("PASS"))
         {
+            System.out.println(checkMessage);
             input = Console.readLine();
+            checkMessage = this.checkMessage(input,ErrorMessage.BRIDGELENGTHERROREXCEPTION);
         }
         return Integer.parseInt(input);
     }
@@ -25,10 +28,13 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String input = "";
-        while(!this.checkMessage(input,ErrorMessage.WRONGMOVEINPUTEXCEPTION).equals("PASS"))
+        String input = Console.readLine();
+        String checkMessage = this.checkMessage(input,ErrorMessage.WRONGMOVEINPUTEXCEPTION);
+        while(!checkMessage.equals("PASS"))
         {
+            System.out.println(checkMessage);
             input = Console.readLine();
+            checkMessage = this.checkMessage(input,ErrorMessage.WRONGMOVEINPUTEXCEPTION);
         }
         return input;
     }
@@ -37,10 +43,13 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        String input ="";
-        while(!this.checkMessage(input,ErrorMessage.WRONGGAMEENDINPUTEXCEPTION).equals("PASS"))
+        String input =Console.readLine();
+        String checkMessage = this.checkMessage(input,ErrorMessage.WRONGGAMEENDINPUTEXCEPTION);
+        while(!checkMessage.equals("PASS"))
         {
+            System.out.println(checkMessage);
             input = Console.readLine();
+            checkMessage = this.checkMessage(input,ErrorMessage.WRONGGAMEENDINPUTEXCEPTION);
         }
         return input;
     }

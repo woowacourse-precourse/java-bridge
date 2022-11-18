@@ -55,7 +55,7 @@ public class OutputView {
             downMap.append(" O ");
             return;     //마지막 입력 윗다리 값 일치
         }
-        if (lastInput.equals("U") && (!(bridge.get(bridge.size() - 1).equals("U")))) {
+        if (lastInput.equals("D") && (!(bridge.get(bridge.size() - 1).equals("D")))) {
             downMap.append(" X ");
             return; //마지막 입력 윗다리 값 불일치
         }
