@@ -4,6 +4,7 @@ import bridge.model.AnswerBridge;
 import bridge.model.BridgeMaker;
 import bridge.model.BridgeRandomNumberGenerator;
 import bridge.model.User;
+import bridge.model.constant.Message;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -81,7 +82,7 @@ public class BridgeGame {
     }
 
     private boolean isRetry(String retryCommand) {
-        if (retryCommand.equals("R")) {
+        if (retryCommand.equals(Message.RE_START)) {
             user.resetChoices();
             user.addTryCount();
             return true;
