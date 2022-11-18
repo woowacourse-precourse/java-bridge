@@ -28,7 +28,7 @@ public class OutputView {
     }
 
     public void printInputBridgeSize(){
-        // TODO: 다리 길이 입력 메시지 출력
+        System.out.println(INPUT_BRIDGE_SIZE_MESSAGE);
     }
 
     public void printInputMove(){
