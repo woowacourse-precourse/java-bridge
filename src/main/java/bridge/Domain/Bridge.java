@@ -1,12 +1,15 @@
 package bridge.Domain;
 
+import bridge.BridgeRandomNumberGenerator;
+
 import java.util.List;
 
 public class Bridge {
     private final List<String> bridge;
 
-    public Bridge(List<String> bridge) {
-        this.bridge = bridge;
+    public Bridge(int size) {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        this.bridge = bridgeMaker.makeBridge(size);
     }
 
     public boolean isBridgeFinished(int distance) {
