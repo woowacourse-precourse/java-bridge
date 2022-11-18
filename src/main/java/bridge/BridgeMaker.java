@@ -2,6 +2,11 @@ package bridge;
 
 import java.util.List;
 
+/*
+* BridgeMaker의 필드를 변경할 수 없다.
+* BridgeMaker의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 없다.
+*  */
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
