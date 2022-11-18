@@ -1,9 +1,13 @@
 package bridge.view;
 
 import bridge.system.util.BridgeMessageMaker;
+import bridge.vo.GameResult;
 import bridge.vo.Step;
 import bridge.vo.StepResult;
+import bridge.vo.TryCount;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -103,6 +107,69 @@ class OutputViewTest {
             //then
             assertThat(captor.toString())
                     .isEqualTo(String.format("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)%n"));
+        }
+    }
+
+    @Nested
+    @DisplayName("게임의 최종 결과를 출력하는 printResult 메서드")
+    class PrintResultTest {
+        @Test
+        @DisplayName("최종 게임 결과를 안내하는 메시지와, 마지막으로 이동한 다리의 결과를 출력한다.")
+        void givenGameResult_whenPrintingResult_thenPrintsMessage() {
+            //given
+            GameResult gameResult = getGameResult();
+
+            //when
+            outputView.printResult(gameResult, false);
+
+            //then
+            assertThat(captor.toString())
+                    .contains("최종 게임 결과",
+                            "[ O |   | X ]",
+                            "[   | O |   ]");
+        }
+
+        @ParameterizedTest(name = "입력값 -> isFinished: {0}")
+        @CsvSource(value = {"true:성공", "false:실패"}, delimiter = ':')
+        @DisplayName("게임 성공 여부를 출력한다.")
+        void givenGameResult_whenPrintingResult_thenPrintsGamePassingMessage(boolean isFinished, String description) {
+            //given
+            GameResult gameResult = getGameResult();
+
+            //when
+            outputView.printResult(gameResult, isFinished);
+
+            //then
+            assertThat(captor.toString())
+                    .contains(String.format("게임 성공 여부: %s", description));
+        }
+
+        @Test
+        @DisplayName("재도전을 포함하여 총 게임 시도 횟수를 출력한다.")
+        void givenGameResult_whenPrintingResult_thenPrintsGamePassingMessage() {
+            //given
+            GameResult gameResult = getGameResult();
+
+            //when
+            outputView.printResult(gameResult, true);
+
+            //then
+            assertThat(captor.toString())
+                    .contains("총 시도한 횟수: 2");
+        }
+
+        private GameResult getGameResult() {
+            List<StepResult> stepResults = List.of(
+                    new StepResult(Step.U, true),
+                    new StepResult(Step.D, true),
+                    new StepResult(Step.U, false)
+            );
+            TryCount tryCount = new TryCount();
+            tryCount.addCount();
+            tryCount.addCount();
+
+            GameResult gameResult = new GameResult(stepResults, tryCount);
+            return gameResult;
         }
     }
 }
