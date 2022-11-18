@@ -1,6 +1,7 @@
 package bridge.view;
 
 import static bridge.util.Util.convertStringToInt;
+import static bridge.util.Util.validateMovingInput;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -16,8 +17,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String input = Console.readLine();
-        return convertStringToInt(input);
+        return convertStringToInt(Console.readLine());
     }
 
     /**
@@ -25,7 +25,7 @@ public class InputView {
      */
     public String readMoving() {
         String input = Console.readLine();
-        // validation
+        validateMovingInput(input);
         return input;
     }
 
