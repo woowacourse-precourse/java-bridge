@@ -14,7 +14,9 @@
             - movingValidation : U/D가 아닌 문자 검증
         - readGameCommand : 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
             - gameCommandValidation : R/Q가 아닌 문자 검증
-    
+    - BridgeMaker : 게임 다리 만드는 객체
+        - makeBridge : 사이즈를 입력받아 0, 1 난수를 통해 다리 생성
+
 - Application layer
     - BridgeGameProcess : Application 에서 호출해 게임을 총괄하는 역할을 담당하는 클래스
         - run() : static으로 설정해 new 연산자 없이 호출해 사용 가능
