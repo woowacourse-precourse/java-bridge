@@ -18,18 +18,19 @@ public class BridgeGame {
 
         user.move(moveInput);
 
-        return checkMoveSuccess(moveInput);
+        return checkMoveSuccess();
     }
 
     public void retry() {
     }
 
-    private void validateMoveInput(String moveInput) {
-        Validator.checkMoveInput(moveInput);
+    public boolean checkMoveSuccess() {
+        int lastIndex = user.getMoveCount() - 1;
+        String lastMove = user.getLastMove();
+        return lastMove.equals(answerBridge.get(lastIndex));
     }
 
-    private boolean checkMoveSuccess(String moveInput) {
-        int currentIndex = user.getMoveCount() - 1;
-        return moveInput.equals(answerBridge.get(currentIndex));
+    private void validateMoveInput(String moveInput) {
+        Validator.checkMoveInput(moveInput);
     }
 }
