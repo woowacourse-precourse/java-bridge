@@ -73,6 +73,14 @@ public class DomainTest {
         assertThat(inputView.checkMessage("dkfjsdkf",ErrorMessage.WRONGMOVEINPUTEXCEPTION)).contains("ERROR");
     }
 
+    @DisplayName("재시작 종료 입력 받는 것 체크")
+    @Test
+    void RestartOrQuitValue() {
+        assertThat(inputView.checkMessage("R",ErrorMessage.WRONGGAMEENDINPUTEXCEPTION)).contains("PASS");
+        assertThat(inputView.checkMessage("Q",ErrorMessage.WRONGGAMEENDINPUTEXCEPTION)).contains("PASS");
+        assertThat(inputView.checkMessage("dfddf",ErrorMessage.WRONGGAMEENDINPUTEXCEPTION)).contains("ERROR");
+    }
+
     @DisplayName("다리만큼 다왔으면 게임 오버")
     @Test
     void GameOverCheck() {
@@ -93,6 +101,8 @@ public class DomainTest {
         bridgeGame.move("U");
         assertThat(bridgeGame.isGameOver()).isFalse();
     }
+
+
 
 
 
