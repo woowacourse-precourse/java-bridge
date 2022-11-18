@@ -18,4 +18,11 @@ public enum Space {
     public String getRepresented() {
         return represented;
     }
+
+    public static Space getOtherSpace(Space space) {
+        if (space.equals(DOWN)) {
+            return UP;
+        }
+        return DOWN;
+    }
 }

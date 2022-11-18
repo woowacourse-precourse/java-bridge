@@ -13,12 +13,13 @@ public class BridgeGenerationTest {
     @DisplayName("새로운 UsersBridgeCrossStatus 객체를 생성한다.")
     @Test
     void generateUsersBridgeCrossStatusTest() {
-        UsersBridgeCrossStatus initialBridge = bridgeMakerImpl.makeInitialBridge();
+        UsersBridgeCrossStatus initialBridge = bridgeMakerImpl.makeInitialBridge(3);
 
         List<String> topSpace = initialBridge.getCurrentBridge().get(1);
         assertThat(topSpace).isEqualTo(List.of("[", "]"));
         List<String> underSpace = initialBridge.getCurrentBridge().get(0);
         assertThat(underSpace).isEqualTo(List.of("[", "]"));
+        assertThat(initialBridge.getLength()).isEqualTo(3);
     }
 
     @DisplayName("길이가 10인 새로운 answerBridge를 생성한다.")
