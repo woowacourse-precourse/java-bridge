@@ -12,10 +12,10 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
-        String bridgeSize = readLine();
+    public String readBridgeSize() {
+        String readBridgeSize = readLine();
 
-        return 0;
+        return readBridgeSize;
     }
 
     /**
