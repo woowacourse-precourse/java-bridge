@@ -40,7 +40,7 @@ public class BridgeGameTest {
 		// then
 		assertAll(
 			() -> assertThat(isMovable).isFalse(),
-			() -> assertThat(bridgeGame.isPaused()).isTrue()
+			() -> assertThat(Pause.paused).isTrue()
 		);
 	}
 }

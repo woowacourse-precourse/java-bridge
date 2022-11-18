@@ -31,6 +31,9 @@ public class BridgeGame {
 		if (isMovable(bridge, userSelectedCell)) {
 			currentPhase++;
 		}
+		if (!isMovable(bridge, userSelectedCell)) {
+			Pause.setPause();
+		}
 	}
 
 	/**
@@ -43,9 +46,5 @@ public class BridgeGame {
 
 	public boolean isMovable(Bridge bridge, String userSelectedCell) {
 		return bridge.isEquals(userSelectedCell, currentPhase);
-	}
-
-	public boolean isPaused() {
-		return true;
 	}
 }
