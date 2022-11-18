@@ -29,7 +29,7 @@ public class BridgeGameController {
 			int size = inputView.readBridgeSize();
 			return bridgeGameService.initBridge(size);
 		}  catch (IllegalArgumentException e) {
-			System.out.print(e.getMessage());
+			System.out.println(e.getMessage());
 			return receiveBridgeSize();
 		}
 	}
