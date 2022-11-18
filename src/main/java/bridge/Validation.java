@@ -4,6 +4,11 @@ public class Validation {
     static final int BRIDGE_SIZE_MINIMUM_INCLUSIVE = 3;
     static final int BRIDGE_SIZE_MAXIMUM_INCLUSIVE = 20;
 
+    static void validateBridgeSize(String userInput) {
+        validateBridgeSizeIsNumber(userInput);
+        validateBridgeSizeOutOfRange(userInput);
+    }
+
     private static void validateBridgeSizeIsNumber(String userInput) {
         if (userInput.matches("\\D+")) {
             System.out.println("[ERROR] 다리 길이는 숫자여야 합니다.");
