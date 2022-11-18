@@ -1,6 +1,5 @@
 package bridge.controller;
 
-import bridge.BridgeRandomNumberGenerator;
 import bridge.model.Bridge;
 import bridge.model.BridgeGame;
 import bridge.model.BridgeSpace;
@@ -24,16 +23,25 @@ public class GameController {
     }
 
     public void playGame() {
+        int tryCount = 0;
+        boolean allDone = false;
         informStart();
         buildBridge();
         do {
+            tryCount += 1;
             bridge = bridgeGame.retry(bridge);
-            if(doRepeatBridgeMove()) {
+            allDone = doRepeatBridgeMove();
+            if(allDone) {
                 break;
             }
         }while(askRetry());
-
+        printResult(tryCount,bridge);
     }
+
+    private void printResult(int tryCount, Bridge bridge) {
+        outputView.printResult(tryCount,bridge);
+    }
+
     private void informStart() {
         outputView.printStartGame();
     }

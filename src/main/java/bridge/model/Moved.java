@@ -12,10 +12,6 @@ public enum Moved {
         this.oOrX = oOrX;
     }
 
-    public Integer getMovedFlag() {
-        return movedFlag;
-    }
-
     public String getoOrX() {
         return oOrX;
     }
