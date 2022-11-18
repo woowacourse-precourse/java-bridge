@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.StringJoiner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,10 +14,17 @@ class OutputViewTest {
     @DisplayName("현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력")
     @Test
     void printMap() {
-        StringJoiner upBridge = new StringJoiner(" | ", "[ ", " ]").add("O").add("X");
-        StringJoiner downBridge = new StringJoiner(" | ", "[ ", " ]").add(" ").add(" ");
-        StringJoiner result = new StringJoiner("\n").add(upBridge.toString()).add(downBridge.toString());
-        assertThat(outputView.printMap(List.of(BridgeLocation.UP_TRUE,BridgeLocation.UP_FALSE))).isEqualTo(result.toString());
+        String result = "[ O | X ]\n[   |   ]";
+        assertThat(outputView.printMap(List.of(BridgeLocation.UP_TRUE, BridgeLocation.UP_FALSE)))
+                .isEqualTo(result);
+    }
+
+    @DisplayName("게임의 최종 결과를 정해진 형식에 맞춰 출력")
+    @Test
+    void printResult() {
+        String result = "최종 게임 결과\n[ O |   |   ]\n[   | O | O ]" +
+                "\n\n게임 성공 여부: 성공\n총 시도한 횟수: 2";
+        assertThat(outputView.printResult()).isEqualTo(result);
     }
 
 }
