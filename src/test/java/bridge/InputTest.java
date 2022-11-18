@@ -2,8 +2,11 @@ package bridge;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.ByteArrayInputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.NoSuchElementException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,6 +26,21 @@ public class InputTest  {
     void inputValueFail() {
         assertThatThrownBy(() -> inputView.readValue()).isInstanceOf(NoSuchElementException.class);
     }
+
+    @DisplayName("인자를 정수형으로 성공적으로 바꾸는 케이스")
+    @Test
+    void convertToIntegerSuccess() {
+        try {
+            Method method = inputView.getClass().getDeclaredMethod("convertToInteger", String.class);
+            method.setAccessible(true);
+            int actual = (int) method.invoke(inputView, "20");
+            assertEquals(20, actual);
+        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+
 
     // 입력에 대한 테스트를 수행하기 위해 사전에 정의된 NsTest 클래스에서 command 메서드 가져옴
     private void command(final String... args) {
