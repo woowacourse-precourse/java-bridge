@@ -11,8 +11,12 @@ import java.util.List;
  * BridgeGame에 필드(인스턴스 변수)를 추가할 수 있다.
  */
 public class BridgeGame {
+    private final List<String> bridge;
     private final List<String> userPath;
-    public BridgeGame() {
+
+    public BridgeGame(int bridgeSize) {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        this.bridge = bridgeMaker.makeBridge(bridgeSize);
         this.userPath = new ArrayList<>();
     }
     /**
