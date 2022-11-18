@@ -33,11 +33,16 @@ public class Application {
 
         outputView.printInputMoveDirection();
         String direction;
-        try {
-            direction = inputView.readMoving();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e);
+
+        while(true) {
+            try {
+                direction = inputView.readMoving();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
         }
+
 
 
     }
