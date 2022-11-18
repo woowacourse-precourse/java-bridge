@@ -38,4 +38,16 @@ class BridgeGameTest {
 			assertThat(results.get(stage)).isEqualTo(bridgeGame.move("U"));
 		}
 	}
+
+	@Test
+	@DisplayName("게임이 끝나는 경우는 실패 또는 다리의 끝")
+	void isFinishTest() {
+		boolean failFinish = bridgeGame.isFinish(ResultStatus.FAILURE, 10);
+		for (int stage = 0; stage < 10; stage++) {
+			bridgeGame.move("U");
+		}
+		boolean sizeFinish = bridgeGame.isFinish(ResultStatus.SUCCESS, 10);
+		assertThat(failFinish).isTrue();
+		assertThat(sizeFinish).isTrue();
+	}
 }
