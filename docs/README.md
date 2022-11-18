@@ -27,9 +27,8 @@
   
 ### 🚀 BridgeGame class
 
-- public List<String> move(List<String>, String, int)
+- public void move(List<String>, List<String>, String)
   - 다음 칸으로 이동하는 메소드
-  - 이동한 후의 다리 상태를 List 형태로 반환
 
 
 - public boolean rightMove(String, String)
