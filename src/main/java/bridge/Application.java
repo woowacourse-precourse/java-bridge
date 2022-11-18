@@ -6,11 +6,20 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Application {
-    static InputView inputView = new InputView();
+
     public static void main(String[] args) {
+        InputView inputView = new InputView();
+        BridgeGame bridgeGame = new BridgeGame();
         // TODO: 프로그램 구현
-        System.out.println("다리 건너기 게임을 시작합니다.");
-        System.out.println("\n" + "다리의 길이를 입력해주세요.");
         inputView.readBridgeSize();
+        bridgeGame.move();
+        while(true) {
+            if (bridgeGame.failOrTure.equals("실패")) {
+                bridgeGame.retry();
+            }
+            if(bridgeGame.failOrTure.equals("성공") || bridgeGame.retry().equals("Q")){
+                break;
+            }
+        }
     }
 }
