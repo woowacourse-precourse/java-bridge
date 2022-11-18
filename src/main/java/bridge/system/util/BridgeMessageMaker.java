@@ -23,4 +23,9 @@ public class BridgeMessageMaker {
         upBridgeBuilder.append(BRIDGE_START);
         downBridgeBuilder.append(BRIDGE_START);
     }
+
+    private void makeEndOfBridge(StringBuilder upBridgeBuilder, StringBuilder downBridgeBuilder) {
+        upBridgeBuilder.append(BRIDGE_END);
+        downBridgeBuilder.append(BRIDGE_END);
+    }
 }
