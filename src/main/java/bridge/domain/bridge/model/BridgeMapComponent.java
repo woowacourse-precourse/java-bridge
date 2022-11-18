@@ -22,6 +22,14 @@ public enum BridgeMapComponent {
                 .orElseThrow(NoSuchElementException::new);
     }
 
+
+    public static BridgeMapComponent fromSignature(String signature) {
+        return Arrays.stream(BridgeMapComponent.values())
+                .filter(component -> component.signature.equals(signature))
+                .findFirst()
+                .orElseThrow(NoSuchElementException::new);
+    }
+
     public String getSignature() {
         return signature;
     }
