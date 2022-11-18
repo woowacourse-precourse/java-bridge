@@ -8,9 +8,11 @@ import java.util.List;
  */
 public class BridgeGame {
     private final static String moveError = "[ERROR] 어디에도 포함되지 않는 값입니다.";
+    BridgeNumberGenerator bridgeNumberGenerator;
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     private List<String> moveMapList = new ArrayList<>();
+    private static int gameCount = 0;
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -28,9 +30,11 @@ public class BridgeGame {
      */
     public void retry() {
         if(inputView.readGameCommand().equals("R")){
+            gameCount += 1;
             inputView.readMoving();
         }
         if(inputView.readGameCommand().equals("Q")){
+            gameCount += 1;
             outputView.printResult();
         }
     }
