@@ -34,4 +34,16 @@ public class BridgeMaker {
             firstBridge.add(result);
         }
     }
+
+    public List<String> makeSecondBridge(List<String> firstBridge) {
+        List<String> secondBridge = new ArrayList<>();
+        for (int i = 0; i < firstBridge.size(); i++) {
+            String result = "D";
+            if (firstBridge.get(i).equals("D")) {
+                result = "U";
+            }
+            secondBridge.add(result);
+        }
+        return secondBridge;
+    }
 }

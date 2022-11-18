@@ -14,6 +14,8 @@ public class Application {
         int bridgeSize = inputView.readBridgeSize();
 
         List<String> firstBridge = bridgeMaker.makeBridge(bridgeSize);
+        List<String> secondBridge = bridgeMaker.makeSecondBridge(firstBridge);
+
 
     }
 }
