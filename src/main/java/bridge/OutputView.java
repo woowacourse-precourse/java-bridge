@@ -27,14 +27,14 @@ public class OutputView {
     }
     public StringBuilder makeUpperMap(List<String> bridge, List<String> userPath, StringBuilder upperMap) {
         for (int position = 0; position < userPath.size(); position++) {
-            upperMap.append(chooseUpperBlock(bridge.get(position), userPath.get(position)));
+            upperMap.append(selectUpperBlock(bridge.get(position), userPath.get(position)));
             upperMap.append("|");
         }
         upperMap.deleteCharAt(upperMap.length()-1);
         return upperMap.append("]");
     }
 
-    public String chooseUpperBlock(String nowBridge, String nowUser) {
+    public String selectUpperBlock(String nowBridge, String nowUser) {
         if (nowBridge.equals("D") && nowUser.equals("U")) {
             return " X ";
         }
@@ -46,14 +46,14 @@ public class OutputView {
 
     public StringBuilder makeLowerMap(List<String> bridge, List<String> userPath, StringBuilder lowerMap) {
         for (int position = 0; position < userPath.size(); position++) {
-            lowerMap.append(chooseLowerBlock(bridge.get(position), userPath.get(position)));
+            lowerMap.append(selectLowerBlock(bridge.get(position), userPath.get(position)));
             lowerMap.append("|");
         }
         lowerMap.deleteCharAt(lowerMap.length()-1);
         return lowerMap.append("]");
     }
 
-    public String chooseLowerBlock(String nowBridge, String nowUser) {
+    public String selectLowerBlock(String nowBridge, String nowUser) {
         if (nowBridge.equals("U") && nowUser.equals("D")) {
             return " X ";
         }
