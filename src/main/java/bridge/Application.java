@@ -1,11 +1,13 @@
 package bridge;
 
+import bridge.domain.BridgeMaker;
 import bridge.domain.GameManager;
 
 public class Application {
 
     public static void main(String[] args) {
-        GameManager gameManager = new GameManager();
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        GameManager gameManager = new GameManager(bridgeMaker);
         gameManager.play();
     }
 }

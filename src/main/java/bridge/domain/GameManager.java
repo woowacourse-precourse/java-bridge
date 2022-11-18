@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import bridge.BridgeRandomNumberGenerator;
-import bridge.enums.GameStatus;
 import bridge.enums.InputKey;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -13,32 +11,31 @@ public class GameManager {
     private final BridgeGame bridgeGame;
     private int position = 0;
 
-    public GameManager() {
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    public GameManager(BridgeMaker bridgeMaker) {
         bridge = bridgeMaker.makeBridge(InputView.readBridgeSize());
         bridgeGame = new BridgeGame(bridge);
     }
 
-    public void play() {
-        GameStatus status;
-        do {
-            status = moveForward();
-        } while (isValid(status));
+    protected GameManager(List<String> bridge) {
+        this.bridge = bridge;
+        this.bridgeGame = new BridgeGame(bridge);
+    }
 
+    public void play() {
+        boolean status;
+        status = moveForward();
+        if (status && retryOrNot()) {
+            play();
+        }
         OutputView.printResult(bridgeGame);
     }
 
-    private boolean isValid(GameStatus status) {
-        return status != GameStatus.LOSE && status != GameStatus.WIN && retryOrNot();
-    }
-
-    private GameStatus moveForward() {
+    private boolean moveForward() {
         while (position < bridge.size() - 1 && position != -1) {
             position = bridgeGame.move(InputView.readMoving());
             OutputView.printMap(bridgeGame);
         }
-        if (position == bridge.size() - 1) return GameStatus.WIN; // 게임 종료
-        return GameStatus.LOSE; // retry?
+        return position != bridge.size() - 1; // 다리의 끝까지 도달하지 못했는가?
     }
 
     private boolean retryOrNot() {
