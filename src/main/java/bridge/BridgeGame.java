@@ -12,8 +12,7 @@ public class BridgeGame {
 
     public BridgeGame(List<String> correctBridge) {
         this.correctBridge = correctBridge;
-        for (int i = 0; i < 2; i++)
-            this.bridgePattern.add(new ArrayList<>());
+        newBridgePattern();
     }
 
     public List<List<String>> getBridgePattern() {
@@ -34,6 +33,12 @@ public class BridgeGame {
     }
 
     public void retry() {
+    }
+
+    private void newBridgePattern() {
+        this.bridgePattern.clear();
+        for (int i = 0; i < 2; i++)
+            this.bridgePattern.add(new ArrayList<>());
     }
 
     private int toMovingNumber(String moving) {
