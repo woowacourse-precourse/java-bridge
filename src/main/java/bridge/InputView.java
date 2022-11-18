@@ -11,35 +11,16 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        int bridgeSize = 0;
+        int bridgeSize = -1;
         try {
             String input = Console.readLine();
             bridgeSize = Util.stringToInteger(input);
-        } catch(IllegalArgumentException iae){
+        } catch (IllegalArgumentException iae) {
             String errorMessage = iae.getMessage();
             System.out.println(errorMessage);
         }
         return bridgeSize;
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
-    public String readMoving() {
-        String input = "";
-        try{
-            input = Console.readLine();
-            ExceptionBasket.invalidGameKey(input);
-        } catch (IllegalArgumentException iae){
-            System.out.println(iae);
-        }
-        return input;
-    }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public String readGameCommand() {
-        return null;
-    }
 }
