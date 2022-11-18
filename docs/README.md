@@ -52,14 +52,14 @@
       이를 catch하는 로직에서 던져진 예외의 메세지를 출력
     - `다리 길이 숫자 여부`, `범위 내 존재 여부`
     - `이동 칸 입력 한 문자 여부`, `대문자 여부`, `U or D 여부`, `R or Q 여부`
-- `**util/InputView**`
+- **`util/InputView`**
     - 역할 : 입력 처리
     - `readBridgeSize()`, `readMoving()`, `readGameCommand()`
-- `**domain/GameResult**`
+- **`domain/GameResult`**
     - 역할 : 게임의 상태 관리
     - `PROCEEDING` `DONE` `SUCCESS` `FAIL`
         - 게임 진행 중, 다리 건너기 완료, 1개 건너기 성공, 1개 건너기 실패
-- `**domain/Bridge**`
+- **`domain/Bridge`**
     - 역할 : 다리 관리
     - `List<String> originalBridge`, `List<String> copyBridge`
         - 초기 다리 상태는 저장해둬야 함.
@@ -67,12 +67,12 @@
         - OutputView에 사용할 다리 출력 시 사용
     - `changeBridge(String input)`
         - 사용자 입력에 따라 다리 상태 변경
-- `**domain/BridgeMaker**`
+- **`domain/BridgeMaker`**
     - 역할 : 다리 생성
 - **`view/OutputView`**
     - 역할 : 출력 처리
     - `final String` 관리
-- `**error/ErrorMessage**`
+- **`error/ErrorMessage`**
     - NOT_NUMBER_BRIDGESIZE(”다리 길이는 숫자여야 합니다.”)
     - INVALID_BRIDGESIZE(”다리 길이는 3 ~ 20 사이의 숫자여야 합니다.”)
     - NOT_ONE_CHAR_MOVING(”이동할 칸은 한 문자여야 합니다.”)
