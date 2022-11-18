@@ -16,6 +16,7 @@ public class GameController {
         int size = inputView.readBridgeSize();
 
         List<String> answer_bridge = bridgeMaker.makeBridge(size);
+        System.out.println(answer_bridge);
 
         BridgeGame bridgeGame = new BridgeGame(answer_bridge);
         boolean isEnd = false;
@@ -23,16 +24,17 @@ public class GameController {
             moveStep(bridgeGame);
             isEnd = bridgeGame.isEnd();
         }
-        //if(정답 맞추면)
-        //최종결과 출력
-        //return;
+        if(bridgeGame.isCorrect()) {
+            outputView.printResult("성공");
+            return;
+        }
         outputView.restartMessage();
         String command = inputView.readGameCommand();
         if(command.equals("R"))
             bridgeGame.retry();
 
         //if(command.equals("Q"))
-            //최종결과 출력
+            //outputView.printResult("실패");
     }
     private void moveStep(BridgeGame bridgeGame){
         //move message 출력

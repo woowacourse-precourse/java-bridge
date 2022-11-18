@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -55,5 +56,9 @@ public class BridgeGame {
 
         //다리의 길이도 다르고, 입력이 맞았으면 아직 종료x
         return false;
+    }
+
+    public boolean isCorrect(){
+        return Arrays.equals(user_bridge.toArray(),answer_bridge.toArray());
     }
 }
