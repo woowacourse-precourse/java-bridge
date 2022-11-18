@@ -22,8 +22,8 @@ public class BridgeGame {
 
     public MoveResult move(Bridge bridge,
                            String moveMessage) {
-        boolean moveSuccess = bridge.isMoveSuccess(round++, moveMessage);
-        return new MoveResult(moveMessage, moveSuccess);
+        boolean isSuccess = bridge.isMoveSuccess(round++, moveMessage);
+        return new MoveResult(moveMessage, isSuccess);
     }
 
     public boolean retry(String retryMessage) {
@@ -35,15 +35,15 @@ public class BridgeGame {
         return false;
     }
 
+    public GameResult closeGame() {
+        return new GameResult(tryCount, gameClear);
+    }
+
     public boolean isGameClear(Bridge bridge) {
         if (bridge.isGameClear(round)) {
             gameClear = true;
             return true;
         }
         return false;
-    }
-
-    public GameResult getResult() {
-        return new GameResult(tryCount, gameClear);
     }
 }

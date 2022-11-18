@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
+import bridge.domain.GameResult;
 import bridge.domain.MoveResult;
 import bridge.view.InputView;
 import bridge.view.InputViewProxy;
@@ -15,13 +16,21 @@ public class Application {
 
     public static void main(String[] args) {
         Bridge bridge = bridgeGame.getBridge(inputView.readBridgeSize());
-        do {
-            MoveResult moveResult = moveToBridge(bridge);
-            if (!moveResult.isSuccess()) {
-                selectRestartGame();
+        play(bridge);
+        GameResult gameResult = bridgeGame.closeGame();
+        outputView.printResult(gameResult);
+    }
+
+    private static void play(Bridge bridge) {
+        MoveResult moveResult = moveToBridge(bridge);
+        if (moveResult.isSuccess()) {
+            if (!bridgeGame.isGameClear(bridge)) {
+                play(bridge);
             }
-        } while (!bridgeGame.isGameClear(bridge));
-        outputView.printResult(bridgeGame.getResult());
+            return;
+        }
+        retry(bridge);
+        return;
     }
 
     private static MoveResult moveToBridge(Bridge bridge) {
@@ -30,9 +39,10 @@ public class Application {
         return moveResult;
     }
 
-    private static void selectRestartGame() {
+    private static void retry(Bridge bridge) {
         if (bridgeGame.retry(inputView.readGameCommand())) {
             outputView.resetMap();
+            play(bridge);
         }
     }
 }
