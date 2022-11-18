@@ -35,6 +35,7 @@ public class BridgeGame {
 
         for (int index = 0; index < bridge.size(); index++) {
             crossBridge = inputView.readMoving();
+            outputView.printMap(bridge.isEqual(crossBridge, index), (index == 0), crossBridge);
         }
     }
     /**

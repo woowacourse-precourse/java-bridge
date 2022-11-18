@@ -1,8 +1,10 @@
 package view;
 
+import java.util.Arrays;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- *
+ * <p>
  * 요구사항
  * 1. 제공된 OutputView 클래스를 활용해 구현해야 한다.
  * 2. OutputView 의 패키지는 변경할 수 있다.
@@ -11,7 +13,13 @@ package view;
  */
 public class OutputView {
     private static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.";
+    private static StringBuilder upSideBridge;
+    private static StringBuilder downSideBridge;
 
+    public void bridgeInit() {
+        upSideBridge = new StringBuilder("[  ]");
+        downSideBridge = new StringBuilder("[  ]");
+    }
     public void printStartMessage() {
         System.out.println(START_MESSAGE);
     }
@@ -21,7 +29,13 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(boolean isAnswer, boolean isFirst, String crossBridge) {
+        Arrays.stream(BridgePrinter.values())
+                .filter(bridgePrinter -> isAnswer == bridgePrinter.isAnswer())
+                .filter(bridgePrinter -> isFirst == bridgePrinter.isFirst())
+                .filter(bridgePrinter -> crossBridge.equals(bridgePrinter.getMark()))
+                .forEach(bridgePrinter -> bridgePrinter.addPrintBridge(upSideBridge, downSideBridge));
+        System.out.println(upSideBridge + "\n" + downSideBridge);
     }
 
     /**
