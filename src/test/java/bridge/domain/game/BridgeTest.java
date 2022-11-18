@@ -1,5 +1,6 @@
 package bridge.domain.game;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class BridgeTest {
@@ -62,6 +64,61 @@ class BridgeTest {
 
                 assertThatThrownBy(() -> new Bridge(size, validGenerator))
                         .isInstanceOf(IllegalArgumentException.class);
+            }
+        }
+    }
+
+    @Nested
+    @DisplayName("calculatePlayerMoving 메소드는")
+    class DescribeCalculatePlayerMovingMethodTest {
+
+        @Nested
+        @DisplayName("만약 플레이어가 이동할 다리 방향과 플레이어의 현재 위치가 주어지면")
+        class ContextWithBridgeTileAndPlayerPosition {
+
+            @ParameterizedTest
+            @CsvSource(
+                    value = {
+                        "UP:false",
+                        "DOWN:true"
+                    },
+                    delimiter = ':'
+            )
+            @DisplayName("건널 수 있는지 여부를 반환한다")
+            void itReturnsBoolean(BridgeTile playerStep, boolean expected) {
+                BridgeNumberGenerator generator = new StubBridgeNumberGenerator(List.of(0, 0, 0));
+                Bridge bridge = new Bridge(3, generator);
+
+                boolean actual = bridge.calculatePlayerMoving(playerStep, 0);
+
+                assertThat(actual).isSameAs(expected);
+            }
+        }
+    }
+
+    @Nested
+    @DisplayName("isEnd 메소드는")
+    class DescribeIsEndMethodTest {
+
+        @Nested
+        @DisplayName("만약 플레이어의 현재 위치가 주어지면")
+        class ContextWithPlayerPosition {
+
+            @ParameterizedTest
+            @CsvSource(
+                    value = {
+                        "1:false",
+                        "2:false",
+                        "3:true"
+                    },
+                    delimiter = ':'
+            )
+            @DisplayName("플레이어의 현재 위치가 다리의 끝인지 여부를 반환한다")
+            void itReturnsBoolean() {
+                BridgeNumberGenerator generator = new StubBridgeNumberGenerator(List.of(0, 0, 0));
+                Bridge bridge = new Bridge(3, generator);
+
+                bridge.isEnd(3);
             }
         }
     }
