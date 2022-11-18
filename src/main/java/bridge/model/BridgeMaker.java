@@ -1,12 +1,13 @@
 package bridge.model;
 
+import bridge.model.constant.Message;
 import bridge.model.interfaces.BridgeNumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeMaker {
 
-    private final int DOWN = 0;
+    private final int DOWN_NUMBER = 0;
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -24,9 +25,9 @@ public class BridgeMaker {
 
     private String generateAnswer() {
         int generatedNumber = bridgeNumberGenerator.generate();
-        if (generatedNumber == DOWN) {
-            return "D";
+        if (generatedNumber == DOWN_NUMBER) {
+            return Message.DOWN;
         }
-        return "U";
+        return Message.UP;
     }
 }
