@@ -39,6 +39,9 @@ public class BridgeGame {
         count++;
         String retry_choice =  thirdStep();
         if(retry_choice.equals("R")) clear_global();
+        if(retry_choice.equals("Q")){
+            output.printResult(Bridge_out,false,count);
+        }
         //retry_choice 가 Q일경우 종료
         //retry_choice 가 R인 경우 다시시작
     }
