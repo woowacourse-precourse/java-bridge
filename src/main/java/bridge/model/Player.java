@@ -10,6 +10,7 @@ public class Player {
 
     public void attempt() {
         attempt += 1;
+        directions.clear();
     }
 
     public void move(Direction direction) {
