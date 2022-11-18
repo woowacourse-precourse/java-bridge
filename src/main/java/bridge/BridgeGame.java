@@ -27,16 +27,15 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(Bridge player, Bridge answer, int index) {
+    public boolean move(Bridge player, Bridge answer, int index) {
         totalCount++;
+        System.out.println("totalCount: "+totalCount);
         String paintGame = getPaintGame(player, answer, index);
         String position = player.getBridge().get(index);
         String otherPosition = getOtherPosition(position);
         paintBridgeGameResult(position, otherPosition, paintGame);
 
-        if(bridgeGameResult.get(position).contains("X")) {
-            retry();
-        }
+        return bridgeGameResult.get(position).contains("X");
     }
 
     private String getPaintGame(Bridge player, Bridge answer, int index) {
@@ -65,7 +64,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
-        System.out.println("retry!");
+    public boolean retry(String answer) {
+        return "R".equals(answer);
     }
 }
