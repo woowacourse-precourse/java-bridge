@@ -21,4 +21,10 @@ public class InputValidator {
             throw new IllegalArgumentException(BRIDGE_SIZE_FORMAT_ERROR.getMessage());
         }
     }
+
+    public static void validateMovingDirection(String moving_direction) {
+        if(!moving_direction.matches("[UD]")){
+            throw new IllegalArgumentException(BRIDGE_SIZE_RANGE_ERROR.getMessage());
+        }
+    }
 }
