@@ -16,23 +16,45 @@ public class BridgeGame {
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
     public void run() {
-        OutputView.printStart();
-        makeAnswerBridge();
+        startGame();
 
         boolean flag = true;
         while (flag) {
             move();
-
             if (!checkCorrect(answerBridge, user)) {
                 flag = retry();
             }
-
             if (flag && checkApproachEnd(answerBridge, user)) {
                 break;
             }
         }
 
         OutputView.printResult(user, answerBridge.compareTo(user));
+    }
+
+    private void startGame() {
+        OutputView.printStart();
+        makeAnswerBridge();
+    }
+
+    public void move() {
+        while (true) {
+            try {
+                String choice = InputView.getInputChoice();
+                user.addChoice(choice);
+                OutputView.printMap(user.getChoices(), answerBridge.compareTo(user));
+                break;
+            } catch (IllegalArgumentException illegalArgumentException) {
+                OutputView.printError(illegalArgumentException);
+            }
+        }
+    }
+
+    private boolean checkCorrect(AnswerBridge answerBridge, User user) {
+        if (answerBridge.isCorrect(user)) {
+            return true;
+        }
+        return false;
     }
 
     private boolean checkApproachEnd(AnswerBridge answerBridge, User user) {
@@ -43,12 +65,7 @@ public class BridgeGame {
         return false;
     }
 
-    private boolean checkCorrect(AnswerBridge answerBridge, User user) {
-        if (answerBridge.isCorrect(user)) {
-            return true;
-        }
-        return false;
-    }
+
 
     public boolean retry() {
         String retryCommand;
@@ -84,18 +101,7 @@ public class BridgeGame {
         }
     }
 
-    public void move() {
-        while (true) {
-            try {
-                String choice = InputView.getInputChoice();
-                user.addChoice(choice);
-                OutputView.printMap(user.getChoices(), answerBridge.compareTo(user));
-                break;
-            } catch (IllegalArgumentException illegalArgumentException) {
-                OutputView.printError(illegalArgumentException);
-            }
-        }
-    }
+
 
     private void resetGame() {
         user.resetChoices();
