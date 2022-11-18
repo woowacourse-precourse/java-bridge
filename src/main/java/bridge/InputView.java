@@ -30,7 +30,26 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String inputCommand = Console.readLine();
+        validateNotLargeThenValidSize(inputCommand, 1);
+
+        for (int i = 0; i < inputSize.length(); i++) {
+            if (!Character.isDigit(inputSize.charAt(i))) {
+                throw new IllegalArgumentException("다리 길이는 양의숫자 여야 합니다.");
+            }
+        }
+        return Integer.parseInt(inputSize);
+    }
+
+    //확장성을 고려. [좀 더 서비스에 핏하게 짜는것이 맞나 라는 고민. -> ==1]
+    private void validateNotLargeThenValidSize(String input, int validSize) {
+        if (input.length() > validSize) {
+            throw new IllegalArgumentException("입력값이 잘못되었습니다.");
+        }
+    }
+
+    private void validateInput(String ) {
+
     }
 
     /**

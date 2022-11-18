@@ -1,12 +1,12 @@
 package bridge;
 
 public enum Command {
-    UP("1"), DOWN("0"),
+    UP("U"), DOWN("D"),RETRY("R"), EXIT("Q"),
     ;
 
-    private String commandNumber;
+    private String key;
 
-    Command(String commandNumber) {
-        this.commandNumber = commandNumber;
+    Command(String key) {
+        this.key = key;
     }
 }
