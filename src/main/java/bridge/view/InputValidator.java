@@ -11,7 +11,7 @@ public class InputValidator {
 	private static final String RETRY = "R";
 	private static final String QUIT = "Q";
 
-	public void validateBridgeLength(String string) {
+	public void validateBridgeSize(String string) {
 		assertStringIsPositiveNumber(string);
 		assertStringIsInValidRange(string);
 	}
