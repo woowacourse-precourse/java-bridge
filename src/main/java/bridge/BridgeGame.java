@@ -34,7 +34,8 @@ public class BridgeGame {
      */
     public void retry() {
     }
-    public int isFinish(int idx){
-
+    public int isFinish(int idx,String pos){
+        if(curbridge.get(idx).equals(pos)) return 1;
+        return 0;
     }
 }
