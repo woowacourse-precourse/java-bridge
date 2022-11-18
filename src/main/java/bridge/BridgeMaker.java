@@ -1,5 +1,8 @@
 package bridge;
 
+import static bridge.utils.constants.BridgeConstants.DOWN_CROSS;
+import static bridge.utils.constants.BridgeConstants.UP_CROSS;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +26,10 @@ public class BridgeMaker {
         for (int loc = 0; loc < size; loc++){
             int generate = bridgeNumberGenerator.generate();
             if (generate == 1){
-                bridge.add("U");
+                bridge.add(UP_CROSS);
             }
             if (generate == 0){
-                bridge.add("D");
+                bridge.add(DOWN_CROSS);
             }
         }
         return bridge;
