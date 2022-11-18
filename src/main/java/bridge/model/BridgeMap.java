@@ -6,11 +6,7 @@ import java.util.List;
 public class BridgeMap {
     private final List<String> upperBridgeMap = new ArrayList<>();
     private final List<String> lowerBridgeMap = new ArrayList<>();
-
-    public BridgeMap() {
-
-    }
-
+    
     public List<String> getUpperBridgeMap() {
         return upperBridgeMap;
     }
