@@ -3,6 +3,8 @@ package bridge.view;
 import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.constant.Constants.BridgeSign.QUIT;
+import static bridge.constant.Constants.BridgeSign.RETRY;
+import static bridge.constant.Constants.Error.RETRY_ERROR_MESSAGE;
 import static bridge.view.OutputView.printCheckRetryMessage;
 import static bridge.view.OutputView.printEnter;
 
@@ -41,10 +43,18 @@ public class InputView {
     public static boolean readGameCommand() {
         printCheckRetryMessage();
         String retryCheck = Console.readLine();
+        validateRetryCheckValue(retryCheck);
 
         if(retryCheck.equals(QUIT)){
             return false;
         }
         return true;
+    }
+
+    private static void validateRetryCheckValue(String retryCheck){
+        if(retryCheck.equals(QUIT) || retryCheck.equals(RETRY)){
+            return;
+        }
+        throw new IllegalArgumentException(RETRY_ERROR_MESSAGE);
     }
 }
