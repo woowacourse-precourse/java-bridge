@@ -25,4 +25,10 @@ public class InputValidator {
         }
     }
 
+    public void checkRetryInput(String input){
+        if (!(input.equals("Q") || input.equals("R"))) {
+            throw new IllegalArgumentException(BridgeConstant.RESTART_TYPE_EXCEPTION.getValue());
+        }
+    }
+
 }

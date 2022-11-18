@@ -7,7 +7,9 @@ public enum BridgeConstant {
     INPUT_TYPE_EXCEPTION("[ERROR] 숫자를 입력해주세요."),
     INPUT_BOUNDARY_EXCEPTION("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다."),
     GET_MOVEMENT("이동할 칸을 선택해주세요. (위: U, 아래: D)"),
-    MOVEMENT_EXCEPTION("U 또는 D만 입력 가능합니다.");
+    MOVEMENT_EXCEPTION("[ERROR] U 또는 D만 입력 가능합니다."),
+    RESTART("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"),
+    RESTART_TYPE_EXCEPTION("[ERROR] R 또는 Q만 입력 가능합니다.");
 
     private final String value;
 
