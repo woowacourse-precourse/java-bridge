@@ -31,6 +31,8 @@ public class Application {
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
 
         outputView.printInputMoveDirection();
+        String direction = inputView.readMoving();
+        System.out.println(direction);
 
 
     }

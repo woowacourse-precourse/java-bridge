@@ -8,7 +8,7 @@ import camp.nextstep.edu.missionutils.Console;
  * 반환 타입 변경 가능
  * 메서드 명 변경 가능
  * 메서드 추가 가능
- * 여기서만 입력 가능
+ * 여기서만 Console.readLine 가능
  * BridgeGame 클래스에서 사용 불가
  */
 
@@ -33,7 +33,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String direction = Console.readLine();
+
+        return direction;
     }
 
     /**
