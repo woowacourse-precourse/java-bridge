@@ -5,10 +5,11 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class InputView {
     static final int MIN_BRIDGE_SIZE = 3;
     static final int MAX_BRIDGE_SIZE = 20;
-    static final String IS_NOT_NUMBER = "다리 길이는 숫자여야 합니다.";
-    static final String IS_NOT_IN_RANGE = "다리 길이는 3 이상, 20 이하의 숫자여야 합니다.";
-    static final String IS_NOT_PROPER_MOVING = "이동할 칸은 대문자 U 또는 D 중 하나여야 합니다.";
-    static final String IS_NOT_PROPER_COMMAND = "게임 재시작 여부는 대문자 R 또는 Q 중 하나여야 합니다.";
+    static final String ERROR = "[ERROR] ";
+    static final String IS_NOT_NUMBER = ERROR + "다리 길이는 숫자(정수)여야 합니다.";
+    static final String IS_NOT_IN_RANGE = ERROR + "다리 길이는 3 이상, 20 이하의 숫자여야 합니다.";
+    static final String IS_NOT_PROPER_MOVING = ERROR + "이동할 칸은 대문자 U 또는 D 중 하나여야 합니다.";
+    static final String IS_NOT_PROPER_COMMAND = ERROR + "게임 재시작 여부는 대문자 R 또는 Q 중 하나여야 합니다.";
 
     public int readBridgeSize() {
         String bridgeSize = readLine();
