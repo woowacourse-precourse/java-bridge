@@ -11,7 +11,7 @@ public class PlayerBridge {
     private static final String DOWN_STEP = "D";
     private static final String CAN_MOVE_SHAPE = " O ";
     private static final String CANNOT_MOVE_SHAPE = " X ";
-    private static final String BLANK_SHAPE = "  ";
+    private static final String BLANK_SHAPE = "   ";
 
     private final List<String> upShape = new ArrayList<>();
     private final List<String> downShape = new ArrayList<>();
