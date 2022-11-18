@@ -1,6 +1,7 @@
 package bridge.ui.input;
 
 import bridge.ui.input.dto.BridgeSize;
+import bridge.ui.input.dto.MoveCommand;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -28,12 +29,12 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public MoveCommand readMoving() {
         PlaceHolderText placeHolderText = PlaceHolderText.READ_GAME_COMMAND;
         System.out.println(placeHolderText.toConsolePrintFormat());
 
         String moveCommand = Console.readLine();
-        return null;
+        return MoveCommand.from(moveCommand);
     }
 
     /**
