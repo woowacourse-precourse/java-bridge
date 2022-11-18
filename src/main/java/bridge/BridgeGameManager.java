@@ -52,7 +52,7 @@ public class BridgeGameManager {
     private void initialize() {
         outputView.printGameStart();
 
-        outputView.printInputBridgeLength();
+        outputView.printInputBridgeSize();
         InfiniteInput<Integer> bridgeSizeInfiniteInput = new InfiniteInput<>(0);
         int bridgeSize = bridgeSizeInfiniteInput.getInput(() -> inputView.readBridgeSize(), outputView);
 
