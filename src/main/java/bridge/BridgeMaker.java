@@ -28,8 +28,4 @@ public class BridgeMaker {
         }
         return bridge;
     }
-
-
-
-
 }
