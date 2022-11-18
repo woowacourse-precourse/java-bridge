@@ -25,7 +25,7 @@ public class BridgeGame {
      */
     public boolean move(String location) {
         bridgeGameHistory.addBridgeHistory(location);
-        return bridgeGameAnswer.isAnswer(location,bridgeGameHistory.getCurrentIndex());
+        return bridgeGameAnswer.isAnswer(location, bridgeGameHistory.getCurrentIndex());
     }
 
     /**
@@ -40,4 +40,7 @@ public class BridgeGame {
         bridgeGameAnswer = new BridgeGameAnswer(bridgeMaker.makeBridge(size));
     }
 
+    public List<List<String>> getResult() {
+        return bridgeGameAnswer.getResultByHistory(bridgeGameHistory.getBridgeHistory());
+    }
 }
