@@ -9,6 +9,10 @@ public class Validator {
 
     }
 
+    public void validateLength(String userInput) {
+
+    }
+
     public void validateMoving(String moving) {
 
     }
