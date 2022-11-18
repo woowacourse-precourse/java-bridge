@@ -43,8 +43,7 @@ public class BridgeGame {
      */
     public AfterMovingStatusConstant move(Bridge randomCreateBridge, Bridge thisTurnBridge, String upOrDownInput) {
         validation.bridgeMovingValidation(upOrDownInput);
-        UpDownConstant upDownConstant = UpDownConstant.of(upOrDownInput);
-        thisTurnBridge.addBridge(upDownConstant);
+        thisTurnBridge.addBridge(UpDownConstant.of(upOrDownInput));
         if (thisTurnBridge.equalsLast(randomCreateBridge)) {
             if (thisTurnBridge.equalsLength(randomCreateBridge)) {
                 return AfterMovingStatusConstant.SUCCESS;

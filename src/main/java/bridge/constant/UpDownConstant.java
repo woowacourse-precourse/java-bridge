@@ -17,9 +17,9 @@ public enum UpDownConstant {
     }
 
     public static UpDownConstant of(String symbol) {
-        if (symbol == UP.getSymbol()) {
+        if (Objects.equals(symbol, UP.getSymbol())) {
             return UP;
-        } else if (symbol == DOWN.getSymbol()) {
+        } else if (Objects.equals(symbol, DOWN.getSymbol())) {
             return DOWN;
         }
         throw new IllegalArgumentException(ErrorStringConstant.UP_OR_DOWN_INPUT_ERROR_MESSAGE.getError());
