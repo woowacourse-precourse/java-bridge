@@ -8,4 +8,13 @@ public class Bridge {
     public Bridge(List<String> spaces) {
         this.spaces = spaces;
     }
+
+    @Override public String toString() {
+        StringBuilder result = new StringBuilder();
+
+        for (String space : spaces) {
+            result.append(space);
+        }
+        return result.toString();
+    }
 }
