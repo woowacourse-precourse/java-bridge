@@ -11,7 +11,7 @@ public class Map {
         this.map = initializeMap();
     }
 
-    private List<String > initializeMap() {
+    private List<String> initializeMap() {
         final String MAP_BEGINNING = "[ ";
 
         List<String> map = new ArrayList<>(
