@@ -1,6 +1,7 @@
 package bridge;
 
 import static bridge.Validator.validateInputDIRECTION;
+import static bridge.Validator.validateInputLowerCase;
 import static bridge.Validator.validateInputNull;
 import static bridge.Validator.validateInputSize;
 import static bridge.Validator.validateInputType;
@@ -35,6 +36,7 @@ public class InputView {
         System.out.println(Message.SELECT_DIRECTION.getMessage());
         inputDirection = readLine();
         validateInputDIRECTION(inputDirection);
+        validateInputLowerCase(inputDirection);
         return inputDirection;
     }
 
