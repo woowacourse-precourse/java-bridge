@@ -24,9 +24,8 @@ public class BridgeGame {
     public void move(String choice) {
         bridge_input.add(choice);
         int num = bridge_input.size() - 1;
-        if(bridge_input.get(num).equals(bridge_answer.get(num))){
-            output.printMap(bridge_input,choice);
-        }
+        boolean same =  bridge_input.get(num).equals(bridge_answer.get(num));
+        output.printMap(bridge_input,choice,same);
     }
 
     /**

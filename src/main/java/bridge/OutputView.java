@@ -1,5 +1,6 @@
 package bridge;
 
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.List;
@@ -8,15 +9,14 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    String Map1 = "[";
-    String Map2 = "[";
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> temp , String check) {
-        String[] Bridge_out = beforeMap(temp);
+    public void printMap(List<String> bridge_input ,String choice, boolean same) {
+        String[] Bridge_out = beforeMap(bridge_input);
+        Bridge_out = addNow(Bridge_out,choice,same);
         Bridge_out[0] = "[" + Bridge_out[0] + "]";
         Bridge_out[1] = "[" + Bridge_out[1] + "]";
         System.out.println(Bridge_out[0]);
@@ -30,27 +30,45 @@ public class OutputView {
      */
     public void printResult() {
     }
-    public String[] beforeMap(List<String> temp){
-        String[] Map1 = new String[2];
-        Map1[0] = ""; Map1[1] ="";
-        for(int i = 0 ; i < temp.size() - 1 ; i++){
-            Map1 = addResult(Map1,temp.get(i));
-            Map1[0] += "|";
-            Map1[1] += "|";
+    public String[] beforeMap(List<String> bridge_input){
+        String[] Bridge_out = new String[2];
+        Bridge_out[0] = ""; Bridge_out[1] ="";
+        for(int i = 0 ; i < bridge_input.size() - 1 ; i++){
+            Bridge_out = addResult(Bridge_out,bridge_input.get(i));
+            Bridge_out[0] += "|";
+            Bridge_out[1] += "|";
         }
-        Map1 = addResult(Map1,temp.get(temp.size()-1));
-        return Map1;
+        return Bridge_out;
     }
 
-    public String[] addResult(String[] temp, String choice){
+    public String[] addResult(String[] Bridge_out , String choice){
         if(choice.equals("U")){
-            temp[0] += " O ";
-            temp[1] += "   ";
+            Bridge_out[0] += " O ";
+            Bridge_out[1] += "   ";
         } else if(choice.equals("D")){
-            temp[0] += "   ";
-            temp[1] += " O ";
+            Bridge_out[0] += "   ";
+            Bridge_out[1] += " O ";
         }
-        return temp;
+        return Bridge_out;
+    }
+
+    public String[] addNow(String[] Brdige_out, String choice ,boolean same){
+        if(same == true){
+            Brdige_out = add_OorX(Brdige_out,choice," O ");
+        }else if(same == false){
+            Brdige_out = add_OorX(Brdige_out,choice," X ");
+        }
+        return Brdige_out;
+    }
+    public String[] add_OorX(String[] Bridge_out,String choice, String OorX){
+        if(choice.equals("U")){
+            Bridge_out[0] += OorX;
+            Bridge_out[1] += "   ";
+        }else if(choice.equals("D")){
+            Bridge_out[0] += "   ";
+            Bridge_out[1] += OorX;
+        }
+        return Bridge_out;
     }
 
     public void printStart(){
