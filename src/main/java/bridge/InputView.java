@@ -47,12 +47,19 @@ public class InputView {
         String moving = "";
         while (true) {
             moving = readValue();
-            if (moving.equals("U") || moving.equals("D")) {
+            if (isReadMoving(moving)) {
                 break;
             }
-            ErrorMessage.inputMoveBridgeError();
         }
         return moving;
+    }
+
+    public boolean isReadMoving(String moving){
+        if (moving.equals("U") || moving.equals("D")) {
+            return true;
+        }
+        ErrorMessage.inputMoveBridgeError();
+        return false;
     }
 
     /**
