@@ -1,6 +1,6 @@
 package bridge.system.util;
 
-import bridge.vo.BridgeAnswer;
+import bridge.vo.BridgeStep;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +30,6 @@ public class BridgeMaker {
     }
 
     private String makeBridgeAnswer() {
-        return BridgeAnswer.getByNumber(bridgeNumberGenerator.generate());
+        return BridgeStep.getByNumber(bridgeNumberGenerator.generate());
     }
 }

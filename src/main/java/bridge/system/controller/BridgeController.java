@@ -5,8 +5,10 @@ import bridge.system.util.BridgeMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import bridge.vo.Bridge;
+import bridge.vo.BridgeStep;
 
 import java.util.Iterator;
+import java.util.List;
 
 public class BridgeController {
     private final InputView inputView;
@@ -27,11 +29,12 @@ public class BridgeController {
         outputView.printAskingBridgeSizeMessage();
         int bridgeSize = inputView.readBridgeSize();
 
-        Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
-        Iterator<String> bridgeIter = bridge.toIterator();
+        List<BridgeStep> bridgeSteps = BridgeStep.from(bridgeMaker.makeBridge(bridgeSize));
+        Bridge bridge = new Bridge(bridgeSteps);
+        Iterator<BridgeStep> bridgeIter = bridge.toIterator();
 
         outputView.printAskingNextStepMessage();
-        String nextMove = inputView.readMoving();
+        BridgeStep nextMove = BridgeStep.getByValue(inputView.readMoving());
 
         boolean result = bridgeGame.move(nextMove, bridgeIter);
     }

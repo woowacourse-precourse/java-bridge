@@ -5,13 +5,13 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Bridge {
-    private final List<String> bridge;
+    private final List<BridgeStep> bridge;
 
-    public Bridge(List<String> bridge) {
+    public Bridge(List<BridgeStep> bridge) {
         this.bridge = Collections.unmodifiableList(bridge);
     }
 
-    public Iterator<String> toIterator() {
+    public Iterator<BridgeStep> toIterator() {
         return bridge.iterator();
     }
 }
