@@ -20,4 +20,12 @@ public enum BridgeStatus {
         }
         return null;
     }
+
+    public int getStatusNumber() {
+        return this.statusNumber;
+    }
+
+    public String getStatusLetter() {
+        return this.statusLetter;
+    }
 }
