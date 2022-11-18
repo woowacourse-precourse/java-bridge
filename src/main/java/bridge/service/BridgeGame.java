@@ -52,4 +52,10 @@ public class BridgeGame {
      */
     public void retry() {
     }
+    public boolean isEnd() {
+        if (bridge.size() == tryCount) {
+            return true;
+        }
+        return false;
+    }
 }

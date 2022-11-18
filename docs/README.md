@@ -3,7 +3,7 @@
 - [x] 새로운 다리를 생성한다 - BridgeMaker#makeBridge()
 - [x] 이동할 다리를 선택한다 - InputView#readMoving()
 - [x] 입력받은 다리로 이동한다 - BridgeGame#Move()
-- [ ] 다리에 끝에 도달한다 - 미정
+- [x] 다리에 끝에 도달한다 - BridgeGame#isEnd()
 - [ ] 이동할 수 없는 칸에 도달한다 - 미정 
 - [ ] 현재까지 이동한 다리의 상태를 출력한다 - OutputView#printMap()
 - [ ] 게임 결과를 출력한다 - OutputView#printResult()
