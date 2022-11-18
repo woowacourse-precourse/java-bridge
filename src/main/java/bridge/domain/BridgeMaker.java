@@ -3,7 +3,10 @@ package bridge.domain;
 import bridge.BridgeNumberGenerator;
 import bridge.model.Direction;
 import bridge.model.ErrorMessage;
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -21,7 +24,9 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        return null;
+        isValidRange(size);
+        List<Integer> preBridge = makePreBridge(size);
+        return makeFinalBridge(preBridge);
     }
 
     public int getSizeInteger(String size){
@@ -50,4 +55,16 @@ public class BridgeMaker {
         return direction;
     }
 
+
+    private List<Integer> makePreBridge(int size){
+        return Stream.generate(bridgeNumberGenerator::generate)
+                .limit(size)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    private List<String> makeFinalBridge(List<Integer> preBridge){
+        return preBridge.stream()
+                .map(this::getEachBridge)
+                .collect(Collectors.toUnmodifiableList());
+    }
 }
