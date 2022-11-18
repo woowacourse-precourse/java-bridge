@@ -27,7 +27,7 @@ public class BridgeMaker {
         validateSize(size);
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            bridge.add(makeDirection().capitalLetter());
+            bridge.add(makeCapitalLetter());
         }
         return bridge;
     }
@@ -38,9 +38,10 @@ public class BridgeMaker {
         }
     }
 
-    private Direction makeDirection() {
+    private String makeCapitalLetter() {
         int bridgeNumber = bridgeNumberGenerator.generate();
         return Direction.from(bridgeNumber)
+                .map(Direction::capitalLetter)
                 .orElseThrow(() -> new IllegalStateException("다리 생성은 정해진 숫자로만 해야합니다"));
     }
 }
