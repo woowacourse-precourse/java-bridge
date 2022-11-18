@@ -109,4 +109,6 @@ Q
 - [ ] 이동 직후 다리의 상태를 출력한다. - OutputView#printMap
 - [X] 다리 건너기에 실패 시 사용자로부터 재시도 혹은 종료 입력을 받는다. - InputView#readGameCommand
   - [X] R, Q 이외의 값은 예외를 발생한다. - InputView#validateGameCommand
-- [ ] 사용자가 다리 건너기 실패 후 재시도 입력 시 다리는 재사용하고 처음부터 시작하며 재시도 횟수 증가한다. - BridgeGame#retry
+- [ ] 사용자가 다리 건너기 실패 후 재시도 입력 시 재시작 - BridgeGame#retry
+  - [ ] 이 때, 생성한 다리는 재사용하고 시도 횟수 증가한다.
+  - [ ] 출력에 사용할 다리 상태는 초기화한다.
