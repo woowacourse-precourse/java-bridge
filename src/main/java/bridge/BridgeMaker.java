@@ -25,14 +25,14 @@ public class BridgeMaker {
         return bridge;
     }
     private List<String> generateValue(List<String> bridge,int size){
+        if(size==0)return bridge;
         if(bridgeNumberGenerator.generate()==0)return generateValue(bridge,size,BridgeCase.NEGATIVE);
         return generateValue(bridge,size,BridgeCase.POSITIVE);
     }
     private List<String> generateValue(List<String> bridge,int size,BridgeCase bridgeCase){
         bridge.add(bridgeCase.getValue());
         size-=1;
-        if(size<0)return bridge;
-        return generateValue(bridge,size-1);
+        return generateValue(bridge,size);
     }
 
 }
