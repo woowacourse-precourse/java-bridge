@@ -11,11 +11,11 @@ public class AnswerBridge {
         this.answerBridge = bridge;
     }
 
-    public List<Boolean> compareTo(User user) {
-        List<String> userBridge = user.getChoices();
+    public List<Boolean> compareTo(final User user) {
         List<Boolean> result = new ArrayList<>();
-        for (int i = 0; i < userBridge.size(); i++) {
-            if (isSame(answerBridge.get(i), userBridge.get(i))) {
+        List<String> choices = user.getChoices();
+        for (int index = 0; index < choices.size(); index++) {
+            if (isSame(answerBridge.get(index), choices.get(index))) {
                 result.add(true);
                 continue;
             }
@@ -24,17 +24,17 @@ public class AnswerBridge {
         return result;
     }
 
-    private boolean isSame(String answerBridgeWord, String userBridgeWord) {
+    private boolean isSame(final String answerBridgeWord, final String userBridgeWord) {
         return answerBridgeWord.equals(userBridgeWord);
     }
 
-    public boolean isCorrect(User user) {
+    public boolean isCorrect(final User user) {
         int lastStep = user.getStep();
         String lastChoice = user.getLastChoice();
         return answerBridge.get(lastStep).equals(lastChoice);
     }
 
-    public boolean isApproachEnd(List<String> userChoices) {
+    public boolean isApproachEnd(final List<String> userChoices) {
         if (userChoices.size() == answerBridge.size()) {
             if (isSame(userChoices.get(userChoices.size()-1), answerBridge.get(answerBridge.size()-1))) {
                 return true;
