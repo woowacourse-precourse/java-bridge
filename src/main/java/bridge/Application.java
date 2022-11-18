@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 public class Application {
 
     public static void main(String[] args) {
@@ -8,6 +10,10 @@ public class Application {
         System.out.println("다리 건너기 게임을 시작합니다.");
 
         InputView inputView = new InputView();
-        inputView.readBridgeSize();
+        int bridgeSize = inputView.readBridgeSize();
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        System.out.println(bridge);
     }
 }
