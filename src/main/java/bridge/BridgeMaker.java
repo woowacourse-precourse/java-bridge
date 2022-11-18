@@ -10,13 +10,15 @@ public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
     private  int brigeSize=0;
+     Bridge bridge= new Bridge();
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
     public void startMakeBridge(int size){
         setBrigeSize(size);
-        generateBridge();
+        bridge=generateBridge();
+        makeBridge(size);
     }
     public void setBrigeSize(int size){
         brigeSize=size;
@@ -27,7 +29,19 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        return null;
+        List<Integer> bridgeNumbers=bridge.getBridgeAnswer();
+        List<String> bridgeShape=new ArrayList<>();
+        for(int i=0;i<bridgeNumbers.size();i++){
+            bridgeShape.add(numberToString(bridgeNumbers.get(i)));
+        }
+        System.out.println("다리 모양:"+bridgeShape);
+        return bridgeShape;
+    }
+
+    public String numberToString(int number){
+        if(number==0)
+            return "U";
+        return "D";
     }
 
     public Bridge generateBridge(){
