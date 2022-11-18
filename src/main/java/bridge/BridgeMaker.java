@@ -1,9 +1,6 @@
 package bridge;
 
-import static bridge.constant.BridgeConstants.DOWN_SIDE;
-import static bridge.constant.BridgeConstants.DOWN_SIDE_INDEX;
-import static bridge.constant.BridgeConstants.UP_SIDE;
-
+import bridge.domain.Direction;
 import java.util.List;
 
 /**
@@ -25,20 +22,9 @@ public class BridgeMaker {
         String bridgeBuilder = "";
 
         for(int step=0; step<size;step++){
-            bridgeBuilder += convertToBridgeSource(generateBridgeNumber());
+            bridgeBuilder += Direction.from(bridgeNumberGenerator.generate()).name();
         }
 
         return List.of(bridgeBuilder.split(""));
-    }
-
-    private int generateBridgeNumber() {
-        return bridgeNumberGenerator.generate();
-    }
-
-    private String convertToBridgeSource(int number) {
-        if (number == DOWN_SIDE_INDEX) {
-            return DOWN_SIDE;
-        }
-        return UP_SIDE;
     }
 }

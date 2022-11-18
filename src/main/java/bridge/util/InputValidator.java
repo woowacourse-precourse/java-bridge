@@ -1,9 +1,9 @@
 package bridge.util;
 
-import static bridge.constant.BridgeConstants.DOWN_SIDE;
 import static bridge.constant.BridgeConstants.MAX_BRIDGE_SIZE;
 import static bridge.constant.BridgeConstants.MIN_BRIDGE_SIZE;
-import static bridge.constant.BridgeConstants.UP_SIDE;
+
+import bridge.domain.Direction;
 
 public class InputValidator {
     private static final String BLANK_INPUT_MSG = "비어 있는 입력값 입니다.";
@@ -43,7 +43,7 @@ public class InputValidator {
     }
 
     private void validateOrder(String userInput) {
-        if (!userInput.equals(UP_SIDE) || !userInput.equals(DOWN_SIDE)) {
+        if (!userInput.equals(Direction.UPSIDE.shortcut()) || !userInput.equals(Direction.DOWNSIDE.shortcut())) {
             throw new IllegalArgumentException(INVALID_BRIDGE_MOVE_INPUT_MSG);
         }
     }
