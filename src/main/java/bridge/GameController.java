@@ -7,6 +7,14 @@ public class GameController {
     public void start() {
         output.printStart();
         output.printInputBridgeSize();
-        int bridgeSize = input.readBridgeSize();
+        int bridgeSize;
+        while (true) {
+            try {
+                bridgeSize = input.readBridgeSize();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR]" + e.getMessage());
+            }
+        }
     }
 }
