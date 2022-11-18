@@ -32,7 +32,7 @@ public class InputView {
 
     public String validateMove(String userInput) {
         if(!Pattern.matches("^U|D$", userInput)) {
-            throw new IllegalArgumentException("대문자 U와 대문자 D만 입력 가능합니다.");
+            throw new IllegalArgumentException("위:U, 아래: D");
         }
 
         if(userInput.equals("U")) {
@@ -46,6 +46,18 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        return validateRetry(Console.readLine());
+    }
+
+    public String validateRetry(String userInput) {
+        if(userInput.equals("R")) {
+            return "R";
+        }
+
+        if(userInput.equals("Q")) {
+            return "Q";
+        }
+
+        throw new IllegalArgumentException("재시도: R, 종료: Q");
     }
 }
