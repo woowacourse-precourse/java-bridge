@@ -35,4 +35,16 @@ public class BridgeGameResult {
     public void setSuccess() {
         gameResult = SUCCESS;
     }
+
+    public int getTryCount() {
+        return tryCount;
+    }
+
+    public String getGameResult() {
+        return gameResult;
+    }
+
+    public BridgeMoveResult getMoveResult() {
+        return moveResult;
+    }
 }
