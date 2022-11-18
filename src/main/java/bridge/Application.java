@@ -24,6 +24,10 @@ public class Application {
 
         List<String> bridge = bridgeMaker.makeBridge(size);
 
-        System.out.println(bridge);
+        outputView.printInputMoving();
+
+        String moving = inputView.readMoving();
+
+        System.out.println(moving);
     }
 }
