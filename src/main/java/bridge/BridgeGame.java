@@ -48,4 +48,11 @@ public class BridgeGame {
         }
         return " ";
     }
+
+    private String failureInBottom(String movement) {
+        if (movement.equals("D")) {
+            return "X";
+        }
+        return " ";
+    }
 }
