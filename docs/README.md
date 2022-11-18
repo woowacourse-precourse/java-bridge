@@ -107,7 +107,7 @@
 사용자에게 게임 진행 상황과 결과를 출력
 
 ### 기능
-- [ ] 게임 시작 메시지 출력 - printGameStart
+- [x] 게임 시작 메시지 출력 - printGameStart
 - [ ] 다리 길이 입력 메시지 출력 - printInputBridgeLength
 - [ ] 이동할 칸 입력 메시지 출력 - printInputMove
 - [ ] 게임 재시작 여부 입력 메시지 출력 - printInputRetry

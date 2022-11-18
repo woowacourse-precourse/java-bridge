@@ -24,7 +24,7 @@ public class OutputView {
     private final String ERROR_KEYWORD = "[ERROR]";
 
     public void printGameStart(){
-        // TODO: 게임 시작 메시지 출력
+        System.out.println(GAME_START_MESSAGE);
     }
 
     public void printInputBridgeLength(){
