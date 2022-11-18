@@ -3,10 +3,10 @@ package system;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.RealTimeBridge;
 import utils.EnumStrings;
 import controller.InputController;
 import view.OutputView;
-import bridge.RealTimeBridge;
 import java.util.List;
 
 /**
@@ -20,8 +20,8 @@ public class BridgeGame {
 
     int count = 1;
     int size;
+    boolean isAnswer = true;
     List<String> bridge;
-    boolean flag = true;
     public String[][] realTimeMap = realTimeBridge.getMap();
 
     public BridgeGame() {
@@ -47,17 +47,12 @@ public class BridgeGame {
      */
 
     private void retry() {
-        String gameCommand = inputController.getGameCommand();
-        if (gameCommand.equals("Q")) {
-            outputView.printResult(flag, count, realTimeMap);
-            return;
-        }
         initializeVariables();
         play(size, bridge);
     }
 
     private void initializeVariables() {
-        flag = true;
+        isAnswer = true;
         count++;
         realTimeBridge.initialize();
     }
@@ -76,8 +71,9 @@ public class BridgeGame {
                 break;
             }
         }
-        checkResult();
-        outputView.printResult(flag, count, realTimeMap);
+        if(!isAnswer){
+            askRetry();
+        }
     }
 
     private boolean compareInputActual(List<String> bridge, int index) {
@@ -86,16 +82,10 @@ public class BridgeGame {
         return isWrong(realTimeMap, userMove, moveResult);
     }
 
-    private void checkResult() {
-        if (!flag) {
-            retry();
-        }
-    }
-
     private boolean isWrong(String[][] realTimeMap, String userMove, String moveResult) {
         if (moveResult.equals(" X ")) {
             printRealTimeMap(realTimeMap, userMove, moveResult);
-            flag = false;
+            isAnswer = false;
             return true;
         }
         printRealTimeMap(realTimeMap, userMove, moveResult);
@@ -112,5 +102,13 @@ public class BridgeGame {
             return EnumStrings.SUCCESS.getValue();
         }
         return EnumStrings.FAIL.getValue();
+    }
+
+    private void askRetry() {
+        String gameCommand = inputController.getGameCommand();
+        if (gameCommand.equals("R")) {
+            retry();
+        }
+        outputView.printResult(isAnswer, count, realTimeMap);
     }
 }
