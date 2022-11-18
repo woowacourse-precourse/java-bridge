@@ -13,9 +13,9 @@ public enum FootPrint {
 		this.footPrint = footPrint;
 	}
 
-	public static List<String> makeFootPrints(int stairs, Boolean isRight) {
+	public static List<String> makeFootPrints(int stairsNumber, Boolean isRight) {
 		String footPrint = chooseFootPrint(isRight);
-		return chooseStairs(footPrint, stairs);
+		return chooseStairs(footPrint, stairsNumber);
 	}
 
 	public String getFootPrint() {
@@ -29,8 +29,8 @@ public enum FootPrint {
 		return WRONG.footPrint;
 	}
 
-	private static List<String> chooseStairs(String footPrint, int stairs) {
-		if (stairs == 0) {
+	private static List<String> chooseStairs(String footPrint, int stairsNumber) {
+		if (stairsNumber == 0) {
 			return List.of(footPrint, Blank.footPrint);
 		}
 		return List.of(Blank.footPrint, footPrint);
