@@ -24,20 +24,31 @@ public class OutputLogic {
     }
     public void printMapLogic(String side){
         print(START);
-        for(int position = 0; position< user.getPosition()-1;position++){
-            printGlass(position,side,NOT_LAST);
+        for(int position = 0; position< user.getPosition();position++){
+            printGlass(position,side);
             print(WALL);
         }
-        printGlass(user.getPosition(),side,LAST);
+        printLastGlass(user.getPosition(),side);
         print(END);
     }
-    private void printGlass(int position,String side,Boolean last){
-        outPut = CORRECT;
-        if(last&!user.getResult()) outPut = WRONG;
+    private void printGlass(int position,String side){
         if(bridge.getBridgeListIndex(position).equals(side)) {
-            print(outPut);
+            print(CORRECT);
             return;
         }
         print(SPACE);
+    }
+    private void printLastGlass(int position, String side){
+        if(!bridge.getBridgeListIndex(position).equals(side)) {
+            print(SPACE);
+            return;
+        }
+        if(user.getResult()){
+            print(CORRECT);
+            return;
+        }
+        if(!user.getResult()){
+            print(WRONG);
+        }
     }
 }
