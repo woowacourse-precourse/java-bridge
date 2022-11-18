@@ -17,6 +17,14 @@ public class BridgeMaker {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
+    public List<String> getMapUpper() {
+        return mapUpper;
+    }
+
+    public List<String> getMapLower() {
+        return mapLower;
+    }
+
     public List<String> makeBridge(int size) {
         List<String> crossable = new ArrayList<>();
         int addNumber;
