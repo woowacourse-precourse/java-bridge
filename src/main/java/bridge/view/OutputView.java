@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static bridge.domain.BridgeGame.RETRY_COUNT;
+import static bridge.domain.enumeration.Format.*;
 import static bridge.domain.enumeration.Message.*;
 import static bridge.domain.enumeration.MovingType.*;
 
@@ -14,13 +15,6 @@ import static bridge.domain.enumeration.MovingType.*;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private static final String CORRECT = " O ";
-    private static final String WRONG = " X ";
-    private static final String EMPTY = "   ";
-    private static final String SEPARATOR = "|";
-    private static final String FIRST_BRACKET = "[";
-    private static final String LAST_BRACKET = "]";
-
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -40,18 +34,18 @@ public class OutputView {
     private static void printRows(StringBuilder upRow, StringBuilder downRow) {
         upRow.deleteCharAt(upRow.length() - 1);
         downRow.deleteCharAt(downRow.length() - 1);
-        System.out.println(FIRST_BRACKET + upRow + LAST_BRACKET);
-        System.out.println(FIRST_BRACKET + downRow + LAST_BRACKET);
+        System.out.println(FIRST_BRACKET.getFormat() + upRow + LAST_BRACKET.getFormat());
+        System.out.println(FIRST_BRACKET.getFormat() + downRow + LAST_BRACKET.getFormat());
     }
 
     private static String makeUpRow(BridgeGameResult bridgeGameResult) {
         if (checkUp(bridgeGameResult.getUserMoving()) && bridgeGameResult.getIsMatched()) {
-            return makeRowWithFormat(CORRECT);
+            return makeRowWithFormat(CORRECT.getFormat());
         }
         if (checkUp(bridgeGameResult.getUserMoving()) && !bridgeGameResult.getIsMatched()) {
-            return makeRowWithFormat(WRONG);
+            return makeRowWithFormat(WRONG.getFormat());
         }
-        return makeRowWithFormat(EMPTY);
+        return makeRowWithFormat(EMPTY.getFormat());
     }
 
     private static boolean checkUp(String userMoving) {
@@ -60,12 +54,12 @@ public class OutputView {
 
     private static String makeDownRow(BridgeGameResult bridgeGameResult) {
         if (checkDown(bridgeGameResult.getUserMoving()) && bridgeGameResult.getIsMatched()) {
-            return makeRowWithFormat(CORRECT);
+            return makeRowWithFormat(CORRECT.getFormat());
         }
         if (checkDown(bridgeGameResult.getUserMoving()) && !bridgeGameResult.getIsMatched()) {
-            return makeRowWithFormat(WRONG);
+            return makeRowWithFormat(WRONG.getFormat());
         }
-        return makeRowWithFormat(EMPTY);
+        return makeRowWithFormat(EMPTY.getFormat());
     }
 
     private static boolean checkDown(String userMoving) {
@@ -73,7 +67,7 @@ public class OutputView {
     }
 
     private static String makeRowWithFormat(String result) {
-        return result + SEPARATOR;
+        return result + SEPARATOR.getFormat();
     }
 
     /**
