@@ -1,13 +1,15 @@
 package bridge;
 
 import java.util.regex.Pattern;
+import static bridge.Util.convertStringToInt;
 
 public class Validation {
-    public static void isPositiveInteger(String bridgeSize) {
+    public static int isPositiveInteger(String bridgeSize) {
         String pattern = "^[^0]\\d*";
         if (!Pattern.matches(pattern, bridgeSize)) {
             throw new IllegalArgumentException("[ERROR} 다리 개수는 양의 정수이어야 합니다.");
         }
+        return convertStringToInt(bridgeSize);
     }
 
     public static void isInRange(int bridgeSize) {
