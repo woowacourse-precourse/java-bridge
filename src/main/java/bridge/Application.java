@@ -18,7 +18,7 @@ public class Application {
 
                 if (available) {
                     if (position == bridgeSize - 1) {
-                        output.printResult(bridgeSize - 1, true, bridgeGame.bridge, trying);
+                        output.printResult(bridgeSize - 1, true, bridgeGame);
                         break;
                     }
                     position += 1;
@@ -27,12 +27,8 @@ public class Application {
 
                 if (!available) {
                     String retry = input.readGameCommand();
-                    if (retry.equals(Input.RETRY.toString())) {
-                        trying += 1;
-                        bridgeGame.retry();
-                    }
-                    if (retry.equals(Input.QUIT.toString())) {
-                        output.printResult(position, false, bridgeGame.bridge, trying);
+                    if (!bridgeGame.retry(retry)) {
+                        output.printResult(position, false, bridgeGame);
                         break;
                     }
                 }
