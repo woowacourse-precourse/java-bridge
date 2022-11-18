@@ -28,15 +28,15 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
-        String moveCommand = moveValidate(inputView.readMoving());
+    public String move(String moveCommand) {
+         return moveValidate(moveCommand);
     }
 
     private String moveValidate(String moveCommand) {
-        if (!(moveCommand == MOVE_UP_COMMAND && moveCommand == MOVE_DOWN_COMMAND)) {
-            throw new IllegalArgumentException(ERROR_INVALID_MOVE_COMMAND);
+        if (moveCommand.equals(MOVE_UP_COMMAND) || moveCommand.equals(MOVE_DOWN_COMMAND)) {
+            return moveCommand;
         }
-        return moveCommand;
+        throw new IllegalArgumentException(ERROR_INVALID_MOVE_COMMAND);
     }
 
     /**
