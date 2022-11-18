@@ -50,6 +50,17 @@
     * [x] getBridge() 메서드 만들기
 
 
+* [x] CustomStringBuilderForBridge 클래스
+  * OutputView에서 다리 출력에 쓰이기 위함
+  * 위 아래 구조를 갖기 위해 두개의 필드 필요 - upperBridge, lowerBridge
+  * [x] `[` 넣기
+  * [x] `]` 넣기
+  * [x] `|` 넣기
+  * [x] `O` 넣기
+  * [x] `X` 넣기
+  * [x] Getter
+
+
 ## 시나리오
 1. 게임 시작 메시지 출력 `다리 건너기 게임을 시작합니다.`
 2. 다리의 길이 입력 받기 `다리의 길이를 입력해주세요.`
