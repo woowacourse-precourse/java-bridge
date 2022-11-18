@@ -46,25 +46,16 @@ public class BridgeGame {
      */
     public MovingResultDto move(String commend) {
         String correctPosition = bridge.get(position);
-        boolean completeness = false;
-        boolean success = false;
 
         if (correctPosition.equals(commend)) {
+            position += 1;
             result.add("O");
 
-            position += 1;
-
-            if (position == bridge.size()) {
-                completeness = true;
-                success = true;
-            }
-
-            return new MovingResultDto(result, completeness, success);
+            return new MovingResultDto(result, position, false);
         }
 
         result.add("X");
-
-        return new MovingResultDto(result, true, false);
+        return new MovingResultDto(result, position, true);
     }
 
     /**

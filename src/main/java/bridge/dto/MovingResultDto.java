@@ -4,13 +4,13 @@ import java.util.List;
 
 public class MovingResultDto {
     private final List<String> result;
+    private final int position;
     private final boolean completeness;
-    private final boolean success;
 
-    public MovingResultDto(List<String> result, boolean completeness, boolean success) {
+    public MovingResultDto(List<String> result, int position, boolean completeness) {
         this.result = result;
+        this.position = position;
         this.completeness = completeness;
-        this.success = success;
     }
 
     public List<String> getResult() {
@@ -21,8 +21,8 @@ public class MovingResultDto {
     public boolean getCompleteness() {
         return completeness;
     }
-    
-    public boolean getSuccess() {
-        return success;
+
+    public int getPosition() {
+        return position;
     }
 }

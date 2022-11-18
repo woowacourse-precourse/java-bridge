@@ -61,22 +61,26 @@ public class BridgeController {
      * @return 끝까지 도달 여부
      */
     private boolean move() {
-        boolean success = false;
-        boolean completeness = false;
+        int position = 0;
+        boolean complete = false;
         List<String> bridge = bridgeGame.getBridge();
 
-        while (!completeness) {
+        while (!complete) {
             String moving = inputView.readMoving();
 
             MovingResultDto resultDto = bridgeGame.move(moving);
-            completeness = resultDto.getCompleteness();
-            success = resultDto.getSuccess();
+            complete = resultDto.getCompleteness();
             result = resultDto.getResult();
+            position = resultDto.getPosition();
 
             outputView.printMap(bridge, result);
+
+            if (position == bridge.size()) {
+                return true;
+            }
         }
 
-        return success;
+        return false;
     }
 
     /**
