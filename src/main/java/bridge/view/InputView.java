@@ -21,22 +21,40 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        int size = convert(input());
-        return checkSize(size);
+        while (true) {
+            try {
+                int size = convert(input());
+                return checkSize(size);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return checkMoving(input());
+        while (true) {
+            try {
+                return checkMoving(input());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return checkCommand(input());
+        while (true) {
+            try {
+                return checkCommand(input());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private String checkCommand(String command) {
