@@ -35,4 +35,16 @@ public class UserRoadMapTest {
                    .isEqualTo(0);
         });
     }
+
+    @DisplayName("이동할 칸에 대해 생성 및 저장한다.")
+    @Test
+    void testAddRoad(){
+        assertSimpleTest(() -> {
+            int originSize = userRoadMap.getSize();
+            String direction = "U";
+            userRoadMap.addRoad(direction);
+            assertThat(userRoadMap.getSize())
+                    .isEqualTo(originSize + 1);
+        });
+    }
 }

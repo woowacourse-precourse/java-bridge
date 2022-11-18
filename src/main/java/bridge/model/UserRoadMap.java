@@ -24,7 +24,7 @@ public class UserRoadMap extends RoadMap {
     }
 
     public void addRoad(String direction){
-        // TODO: 이동할 칸에 대해 생성 및 저장
+        this.roads.add(new Road(direction));
     }
 
     public boolean isFail(BridgeRoadMap bridgeRoadMap){
