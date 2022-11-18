@@ -2,6 +2,8 @@ package bridge.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import static bridge.view.OutputView.printEnter;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  * <p>
@@ -19,6 +21,7 @@ public class InputView {
      */
     public static int readBridgeSize() {
         String size = Console.readLine();
+        printEnter();
         return Integer.parseInt(size);
     }
 
@@ -26,7 +29,8 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public static String readMoving() {
-        return null;
+        String movingDirection = Console.readLine();
+        return movingDirection;
     }
 
     /**
