@@ -29,4 +29,12 @@ class ValidationTest {
         assertThatThrownBy(() -> Validation.validateBridgeSize("21"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("이동할 위치 입력 예외 테스트")
+    @ParameterizedTest
+    @CsvSource({"a","A","에이","1","UD"})
+    void validate_notUOrD(String userInput) {
+        assertThatThrownBy(() -> Validation.validateMovingChoice(userInput))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
