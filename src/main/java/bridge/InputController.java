@@ -1,28 +1,29 @@
 package bridge;
 
 public class InputController {
-    private final InputView inputView = new InputView();
-    private final Validation validation = new Validation();
+    private final InputView inputView;
+
+    public InputController(InputView inputView) {
+        this.inputView = inputView;
+    }
 
     public int getBridgeSize() throws IllegalArgumentException {
         String inputSize = inputView.readBridgeSize();
 
-        validation.isValidBridgeSize(inputSize);
-        validation.checkOnlyNumber(inputSize);
+        Validation.checkOnlyNumber(inputSize);
+        Validation.isValidBridgeSize(inputSize);
         return Integer.parseInt(inputSize);
     }
 
     public String getMovingDirection() throws IllegalArgumentException {
         String moving = inputView.readMoving();
-
-        validation.isValidDirection(moving);
+        Validation.isValidDirection(moving);
         return moving;
     }
 
     public String getGameCommand() throws IllegalArgumentException {
         String command = inputView.readGameCommand();
-
-        validation.isValidGameCommand(command);
+        Validation.isValidGameCommand(command);
         return command;
     }
 }
