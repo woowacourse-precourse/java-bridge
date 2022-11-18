@@ -43,17 +43,6 @@ class StairsTest {
 		assertEquals(Stairs.of("d").getNumber(), 0);
 	}
 
-	@DisplayName("getAnotherNumberTest")
-	@Test
-	void GetAnotherNumberTest() {
-		assertEquals(Stairs.of(1).getAnotherNumber(), 0);
-		assertEquals(Stairs.of(0).getAnotherNumber(), 1);
-		assertEquals(Stairs.of("U").getAnotherNumber(), 0);
-		assertEquals(Stairs.of("D").getAnotherNumber(), 1);
-		assertEquals(Stairs.of("u").getAnotherNumber(), 0);
-		assertEquals(Stairs.of("d").getAnotherNumber(), 1);
-	}
-
 	@DisplayName("U 혹은 D 외의 문자를을 입력하면 에러 메시지를 출력한다")
 	@Nested
 	class CommandTest {
@@ -179,6 +168,34 @@ class StairsTest {
 				Stairs.of(-100);
 			});
 			assertEquals(Error.LOCATION_NUMBER.getMessage(), exception.getMessage());
+		}
+	}
+
+	@DisplayName("Stairs의 command와 입력된 문자열이 같은지 여부를 리턴한다")
+	@Nested
+	class IsEqualTest {
+		@Test
+		void case1() {
+			assertTrue(Stairs.UP.isEquals("u"));
+			assertTrue(Stairs.UP.isEquals("U"));
+			assertTrue(Stairs.DOWN.isEquals("d"));
+			assertTrue(Stairs.DOWN.isEquals("D"));
+		}
+
+		@Test
+		void case2() {
+			assertFalse(Stairs.DOWN.isEquals("U"));
+			assertFalse(Stairs.DOWN.isEquals("u"));
+			assertFalse(Stairs.UP.isEquals("d"));
+			assertFalse(Stairs.UP.isEquals("D"));
+		}
+
+		@Test
+		void case3() {
+			assertFalse(Stairs.DOWN.isEquals("1"));
+			assertFalse(Stairs.DOWN.isEquals("0"));
+			assertFalse(Stairs.UP.isEquals("a"));
+			assertFalse(Stairs.UP.isEquals("Z"));
 		}
 	}
 
