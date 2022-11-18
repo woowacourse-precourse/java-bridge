@@ -10,8 +10,8 @@ public class Bridge {
         this.blocks = blocks;
     }
 
-    public boolean getResultIsCorrect(int round,
-                                      String message) {
+    public boolean isMoveSuccess(int round,
+                                 String message) {
         return blocks.get(round).equals(message);
     }
 

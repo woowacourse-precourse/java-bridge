@@ -22,8 +22,8 @@ public class BridgeGame {
 
     public MoveResult move(Bridge bridge,
                            String moveMessage) {
-        boolean isCorrect = bridge.getResultIsCorrect(round++, moveMessage);
-        return new MoveResult(moveMessage, isCorrect);
+        boolean moveSuccess = bridge.isMoveSuccess(round++, moveMessage);
+        return new MoveResult(moveMessage, moveSuccess);
     }
 
     public boolean retry(String retryMessage) {

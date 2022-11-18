@@ -13,9 +13,8 @@ public class MoveResult {
         return success;
     }
 
-    public MoveResult(String message, boolean correct) {
+    public MoveResult(String message, boolean success) {
         this.message = message;
-        this.success = correct;
+        this.success = success;
     }
-
 }
