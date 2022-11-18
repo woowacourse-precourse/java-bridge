@@ -4,20 +4,17 @@ import bridge.message.PrintCommon;
 import bridge.message.PrintError;
 import camp.nextstep.edu.missionutils.Console;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
+// 사용자로부터 입력을 받는 역할을 한다.
 public class InputView {
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
+    // 다리 길이를 입력 받는 메소드
     public int readBridgeSize() {
         PrintCommon.INPUT_SIZE.print();
 
         return inputBridgeSize();
     }
 
+    // 다리 길이를 실제적으로 입력받는 메소드, 에러 발생 시 함수를 재귀하여 다시 입력받는다.
     private int inputBridgeSize() {
         String bridgeSize = Console.readLine();
 
@@ -31,15 +28,14 @@ public class InputView {
         return Integer.parseInt(bridgeSize);
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
+    // 이동한 칸을 입력받는 메소드
     public String readMoving() {
         PrintCommon.INPUT_MOVING.print();
 
         return inputMoving();
     }
 
+    // 이동할 칸을 실제적으로 입력받는 메소드, 에러 발생 시 함수를 재귀하여 다시 입력받는다.
     private String inputMoving () {
         String moving = Console.readLine();
 
@@ -53,15 +49,14 @@ public class InputView {
         return moving;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
+    // 재시작 시 커맨드를 입력받는 메소드
     public String readGameCommand() {
         PrintCommon.INPUT_RETRY.print();
 
         return inputCommand();
     }
 
+    // 재시작 커맨드를 실제적으로 입력받는 메소드, 에러 발생 시 함수를 재귀하여 다시 입력받는다.
     private String inputCommand() {
         String command = Console.readLine();
 
@@ -75,6 +70,7 @@ public class InputView {
         return command;
     }
 
+    // 입력된 재시작 커맨드가 올바른 문자로 입력되었는지 확인 하는 메소드
     private void validateCommand (String command) {
         if (!command.equals("R") && !command.equals("Q")) {
             PrintError.COMMAND.print();
@@ -82,6 +78,7 @@ public class InputView {
         }
     }
 
+    // 입력된 이동할 칸이 올바른 문자로 입력되었는지 확인 하는 메소드
     private void validateMoving (String moving) {
         if (!moving.equals("U") && !moving.equals("D")) {
             PrintError.MOVING.print();
@@ -89,11 +86,13 @@ public class InputView {
         }
     }
 
+    // 입력된 다리 길이가 올바르게 입력되었는지 확인하는 메소드
     private void validateBridgeSize (String bridgeSize) {
         isRealNumber(bridgeSize);
         checkBridgeSizeNumberRange(bridgeSize);
     }
 
+    // 입력된 다리 길이가 숫자로만 입력되었는지 확인하는 메소드
     private void isRealNumber (String bridgeSize) {
         for (char element: bridgeSize.toCharArray()) {
             if (element < 48 || element > 57) {
@@ -103,6 +102,7 @@ public class InputView {
         }
     }
 
+    // 입력된 다리 길이가 주어진 범위를 충족하는지 확인하는 메소드
     private void checkBridgeSizeNumberRange (String bridgeSize) {
         int bridgeSizeNumber = Integer.parseInt(bridgeSize);
         if (bridgeSizeNumber < 3 || bridgeSizeNumber > 20) {
