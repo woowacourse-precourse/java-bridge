@@ -11,8 +11,8 @@ public class BridgeGame {
 
     private static final String QUIT = "Q";
     private static final String RETRY = "R";
-    private static final String UPPER_SIDE = "U";
-    private static final String LOWER_SIDE = "D";
+    private static final String UP = "U";
+    private static final String DOWN = "D";
 
     private final List<String> bridge;
     private int currentPosition;
@@ -57,7 +57,7 @@ public class BridgeGame {
     }
 
     private void validateMoveCommand(String moveCommand) {
-        if (moveCommand.equals(UPPER_SIDE) || moveCommand.equals(LOWER_SIDE)) {
+        if (moveCommand.equals(UP) || moveCommand.equals(DOWN)) {
             return;
         }
         throw new IllegalArgumentException();
