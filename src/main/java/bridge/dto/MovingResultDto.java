@@ -1,6 +1,7 @@
 package bridge.dto;
 
 import java.util.List;
+import java.util.Objects;
 
 public class MovingResultDto {
     private final List<String> result;
@@ -24,5 +25,24 @@ public class MovingResultDto {
 
     public int getPosition() {
         return position;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof MovingResultDto) {
+            MovingResultDto resultDto = (MovingResultDto) obj;
+
+            if (resultDto.result.equals(result) && resultDto.position == position
+                    && resultDto.completeness == completeness) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(result, position, completeness);
     }
 }
