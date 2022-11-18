@@ -28,7 +28,7 @@ class InputValidatorImplTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("입력된 이동 명령이 U, D 둘 중 하나에 해당하는 입력값인지 검증한다.")
+    @DisplayName("입력된 이동 명령이 U, D 둘 중 하나에 해당하지 않을때의 예외")
     @ParameterizedTest
     @ValueSource(strings = {"A", "B", "C", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
             "T", "V", "W", "X", "Y", "Z", "a", "b", "c", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
@@ -40,7 +40,7 @@ class InputValidatorImplTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("입력된 게임 재시작 명령이 R, Q 둘 중 하나에 해당하는 입력값인지 검증한다.")
+    @DisplayName("입력된 게임 재시작 명령이 R, Q 둘 중 하나에 해당하지 않을때의 예외")
     @ParameterizedTest
     @ValueSource(strings = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "S",
             "T", "V", "W", "X", "Y", "Z", "a", "b", "c", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
