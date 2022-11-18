@@ -86,4 +86,5 @@
     - [x]  printGameStart -> 게임 시작 메시지를 출력
     - [x]  printError -> 에러를 출력
 - [x]  InputValidator 입력 검증
-    - [x]  validateBridgeSize -> 다리 길이 검증 
+    - [x]  validateBridgeSize -> 다리 길이 검증
+    - [x]  validateMoving -> 이동 방향 검증

@@ -35,4 +35,18 @@ class InputValidatorTest {
     void validateBridgeSize_메서드는_범위_내_값을_입력하면_예외를_던지지_않는다(String inputSize) {
         inputValidator.validateBridgeSize(inputSize);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"u", "d", "위", "", " ", " U", "U "})
+    void validateMoving_메서드는_U와_D이외의_값을_입력받는_경우_IllegalArgumentException을_던진다(String inputMove) {
+        assertThatThrownBy(() -> inputValidator.validateMoving(inputMove))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이동 방향은 위: U, 아래: D 중 하나여야 합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"U", "D"})
+    void validateMoving_메서드는_메서드는_범위_내_값을_입력하면_예외를_던지지_않는다(String inputMove) {
+        inputValidator.validateMoving(inputMove);
+    }
 }
