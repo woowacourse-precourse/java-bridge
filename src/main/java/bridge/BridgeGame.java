@@ -27,11 +27,9 @@ public class BridgeGame {
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     *
-     * @param gameResult 다리 건너기 게임 결과
      */
-    public void retry(BridgeGameResult gameResult) {
-        gameResult.increaseTryCount();
-        gameResult.initMoveResult();
+    public void retry() {
+        bridgeGameResult.increaseTryCount();
+        bridgeGameResult.initMoveResult();
     }
 }
