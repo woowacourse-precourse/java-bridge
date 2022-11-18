@@ -3,12 +3,15 @@ package bridge.domain.maker;
 import static bridge.constant.Direction.LOWER;
 import static bridge.constant.Direction.UPPER;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import bridge.constant.Direction;
 
@@ -28,6 +31,14 @@ class BridgeMakerTest {
         List<String> bridge = new BridgeMaker(bridgeNumberIterator::next).makeBridge(bridgeDirections.size());
 
         assertThat(bridge).containsExactlyElementsOf(getCapitalLettersFrom(bridgeDirections));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 0, 2, 21})
+    void 잘못된_다리길이는_예외를_던진다(int size) {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+
+        assertThatIllegalArgumentException().isThrownBy(() -> bridgeMaker.makeBridge(size));
     }
 
     private List<Integer> getBridgeNumbersFrom(List<Direction> bridgeDirections) {
