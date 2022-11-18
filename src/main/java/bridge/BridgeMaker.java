@@ -20,10 +20,10 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        List<BridgePlace> bridgePlaces = List.of(BridgePlace.values());
+        List<BridgeSideIndex> bridgeSideIndices = List.of(BridgeSideIndex.values());
         for (int index = 0; index < size; index++){
             int bridgeNumber = bridgeNumberGenerator.generate();
-            bridge.add(bridgePlaces.get(bridgeNumber).name());
+            bridge.add(bridgeSideIndices.get(bridgeNumber).name());
         }
         return List.copyOf(bridge);
     }
