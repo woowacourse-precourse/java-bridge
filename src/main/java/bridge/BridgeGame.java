@@ -1,5 +1,8 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -12,6 +15,8 @@ public class BridgeGame {
         OutputView.printRequireSize();
         inputBridgeSize=InputView.readBridgeSize();
         bridgeMaker.startMakeBridge(inputBridgeSize);
+
+        move();
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -20,8 +25,24 @@ public class BridgeGame {
      */
 
     public void move() {
+        int moveCount=0;
+        List<String> userLocation=new ArrayList<>();
+        while(moveCount<inputBridgeSize){
+            String userMove=InputView.readMoving();
+            userLocation.add(userMove);
+            if(!isBridge(userMove, bridgeMaker.getBridge().getBridgeAnswer().get(moveCount)))
+                break;
+            //OutputView.printMap();
+            System.out.println("다리 정답:"+bridgeMaker.getBridge().getBridgeAnswer()+", 내가 입력한 길:"+userLocation);
+            moveCount++;
+        }
     }
 
+    public boolean isBridge(String userMove, String bridgeShape){
+        if(userMove.equals(bridgeShape))
+            return true;
+        return false;
+    }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>

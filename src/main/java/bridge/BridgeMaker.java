@@ -34,6 +34,10 @@ public class BridgeMaker {
         return bridgeShape;
     }
 
+    public Bridge getBridge(){
+        return bridge;
+    }
+
     public String numberToString(int number){
         if(number==0)
             return "U";
