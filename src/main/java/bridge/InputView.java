@@ -13,14 +13,23 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String Input=Console.readLine();
-        checkError(Input);
-        return Integer.parseInt(Input);
+        while(true) {
+        try{
+            String Input=Console.readLine();
+            checkError(Input);
+            return Integer.parseInt(Input);
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            continue;
+        }
+    }
     }
     public void checkError(String Input){
         isNumber(Input);
         int size=Integer.parseInt(Input);
         isRange(size);
+
+        System.out.println();
     }
     public void isNumber(String Input){
         try{

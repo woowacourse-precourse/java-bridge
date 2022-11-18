@@ -16,6 +16,7 @@ public class OutputView {
         if(Input.equals("D")){
             map= printDMap(map,"O",count);}
         System.out.println(map);
+        System.out.println();
         return map;
     }
     public String printFailMap(String map,String Input, int count){
@@ -24,22 +25,26 @@ public class OutputView {
         if(Input.equals("D")){
             map=printDMap(map,"X",count);}
         System.out.println(map);
+        System.out.println();
         return map;
     }
 
     public String printUMap(String map,String Input,int count){
         String answer="";
-    if(count==1){
-
+        if(count==1){
         answer="[ "+Input+" ]\n[   ]";
         return answer;
+        }
+    return mergeUMap(map,Input,count);
     }
-    answer+=map.substring(0,(count-1)*4);
-     answer+="| "+Input+" ]\n";
-     int index=map.indexOf("[",1);
+    public String mergeUMap(String map,String Input,int count){
+        String answer="";
+        answer+=map.substring(0,(count-1)*4);
+        answer+="| "+Input+" ]\n";
+        int index=map.indexOf("[",1);
         answer+=map.substring(index,index+(count-1)*4);
         answer+="|   ]";
-    return answer;
+        return answer;
     }
     public String printDMap(String map,String Input,int count){
         String answer="";
@@ -47,11 +52,15 @@ public class OutputView {
             answer="[   ]\n[ "+Input+" ]";
             return answer;
         }
+        return mergeDMap(map,Input,count);
+    }
+    public String mergeDMap(String map,String Input,int count){
+        String answer="";
         answer+=map.substring(0,(count-1)*4);
         answer+="|   ]\n";
         int index=map.indexOf("[",1);
         answer+=map.substring(index,index+(count-1)*4);
-        answer+="| "+Input+" ]\n";
+        answer+="| "+Input+" ]";
         return answer;
     }
     /**
@@ -59,16 +68,20 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(String result,int count) {
+    public void printResult(String result,int count,boolean gameResult) {
         System.out.println("최종 게임 결과");
         System.out.println(result);
         System.out.println();
-        System.out.println("게임 성공 여부: 성공");
+        if(gameResult){
+            System.out.println("게임 성공 여부: 성공");}
+        if(!gameResult){
+            System.out.println("게임 성공 여부: 실패");}
         System.out.println("총 시도한 횟수: "+count);
     }
 
     public void printStart(){
         System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println();
     }
 
     public void printInputSize(){
