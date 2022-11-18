@@ -8,10 +8,6 @@ import static bridge.common.message.ExceptionMessage.GAME_COMMAND_INCORRECT_MESS
 import static bridge.common.message.ExceptionMessage.READ_MOVING_INCORRECT_MESSAGE;
 
 import bridge.common.message.ConsoleOut;
-import bridge.domain.exception.BridgeSizeException;
-import bridge.domain.exception.BridgeSizeOutOfBoundaryException;
-import bridge.domain.exception.GameCommandException;
-import bridge.domain.exception.ReadMovingException;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -71,25 +67,30 @@ public class InputView {
 
     private void gameCommandValidation(ProcessHelper processHelper, String gameCommand) {
         if (!processHelper.checkCharIsROrQ(gameCommand)) {
-            throw new GameCommandException(ERROR_CODE + GAME_COMMAND_INCORRECT_MESSAGE);
+            // throw new GameCommandException(ERROR_CODE + GAME_COMMAND_INCORRECT_MESSAGE);
+            throw new IllegalArgumentException(ERROR_CODE + GAME_COMMAND_INCORRECT_MESSAGE);
         }
     }
 
     private void movingValidation(ProcessHelper processHelper, String moving) {
         if (!processHelper.checkCharIsUOrD(moving)) {
-            throw new ReadMovingException(ERROR_CODE + READ_MOVING_INCORRECT_MESSAGE);
+            // throw new ReadMovingException(ERROR_CODE + READ_MOVING_INCORRECT_MESSAGE);
+            throw new IllegalArgumentException(ERROR_CODE + READ_MOVING_INCORRECT_MESSAGE);
         }
     }
 
     private void bridgeSizeValidation(ProcessHelper processHelper, String str) {
         if (!processHelper.checkBridgeSize(str)) {
-            throw new BridgeSizeException(ERROR_CODE + BRIDGE_LENGTH_INCORRECT_CHARACTER_MESSAGE);
+            // throw new BridgeCorrectSizeInputException(ERROR_CODE + BRIDGE_LENGTH_INCORRECT_CHARACTER_MESSAGE);
+            throw new IllegalArgumentException(
+                ERROR_CODE + BRIDGE_LENGTH_INCORRECT_CHARACTER_MESSAGE);
         }
     }
 
     private void bridgeNumberValidation(String bridgeSize) {
         if (Integer.parseInt(bridgeSize) < 3 || Integer.parseInt(bridgeSize) > 20) {
-            throw new BridgeSizeOutOfBoundaryException(
+            // throw new BridgeSizeOutOfBoundaryException(ERROR_CODE + BRIDGE_LENGTH_OUT_OF_SIZE_MESSAGE);
+            throw new IllegalArgumentException(
                 ERROR_CODE + BRIDGE_LENGTH_OUT_OF_SIZE_MESSAGE);
         }
     }

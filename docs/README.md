@@ -35,6 +35,7 @@
       레벨을 낮춰 기능을 분리. Domain layer에선 명세만 정의하고 실제 구현은 Infrastructure layer에서 구현
       ! random, ui 작업이 필요한 InputView에선 테스트하기 어렵지만 기능을 떼어낸 ProcessHelper에선 쉽다.
 
+    <VO>
     - MatchResult : 게임 결과를 담고 결과를 산출하는 객체. upperSide와 downSide로 다리 위 아래를 표현하고
       생성 시 해당 필드들을 생성합니다. 필드는 String이 아닌 StringBuffer로 선언해 사용했습니다.
       이유는 결과를 출력하기 위해선 문자열을 유연하게 핸들링 할 수 있어야 하기 때문입니다.
@@ -53,7 +54,17 @@
             - matchIsFalseAndLastInputIsCapitalU : 마지막 문자가 Not hit이고 위치가 "U"일 경우
             - matchIsFalseAndLastInputIsCapitalD : 마지막 문자가 Not hit이고 위치가 "D"일 경우
             - appendPostfix : 맨 끝 문자열 붙이는 메서드
-            
+
+    <EXCEPTION> : domain layer에서 발생하는 예외 처리 모두 IllegalArgumentException을 상속받습니다.
+    요구 사항에서 "사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고" 나와있어
+    모든 예외는 IllegalArgumentException로 리팩토링을 진행했습니다.
+    아래 사항은 Custom Exception Class에 관한 명세입니다.
+        - BridgeCorrectSizeInputException : 다리 사이즈 입력 예외처리
+        - BridgeSizeOutOfBoundaryException : 다리 사이즈 범위 예외처리
+        - GameCommandException : 게임 진행 여부 문자 예외처리
+        - ReadMovingException : 이동 여부 문자 예외처리
+
+
 - Infrastructure layer
     - ProcessHelperImpl
 - Application layer
