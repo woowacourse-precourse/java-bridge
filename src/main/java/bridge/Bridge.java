@@ -3,7 +3,7 @@ package bridge;
 import java.util.List;
 
 public class Bridge {
-    private int playerPosition;
+    private int currentPosition;
     private final List<String> availableBlocks;
 
     public Bridge(List<String> availableBlocks) {
@@ -11,10 +11,14 @@ public class Bridge {
     }
 
     public boolean isNextAvailable(Position position) {
-        return availableBlocks.get(playerPosition + 1).equals(position);
+        return availableBlocks.get(currentPosition + 1).equals(position);
     }
 
     public void movePlayer() {
-        playerPosition++;
+        currentPosition++;
+    }
+
+    public void initializeCurrentPosition() {
+        currentPosition = 0;
     }
 }
