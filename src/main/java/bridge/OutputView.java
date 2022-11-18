@@ -1,7 +1,7 @@
 package bridge;
 
 public class OutputView {
-    private static StringBuilder[] map = new StringBuilder[2];
+    private static final StringBuilder[] map = new StringBuilder[2];
 
     private static void resetMap() {
         map[0].setLength(0);
@@ -39,14 +39,14 @@ public class OutputView {
         drawMap(bridgeGame);
         System.out.println(map[0].toString());
         System.out.println(map[1].toString());
+        System.out.println();
         resetMap();
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public static void printResult(BridgeGame bridgeGame) {
+        System.out.println("최종 게임 결과");
+        printMap(bridgeGame);
+        System.out.println("게임 성공 여부: 성공");
+        System.out.printf("총 시도한 횟수: %d", bridgeGame.getRetryNumber());
     }
 }
