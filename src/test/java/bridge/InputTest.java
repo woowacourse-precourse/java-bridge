@@ -39,6 +39,14 @@ public class InputTest extends NsTest {
         }, 1, 0, 1);
     }
 
+    @Test
+    void 잘못된_재시작_입력() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "U", "U");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        }, 1, 0, 1);
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
