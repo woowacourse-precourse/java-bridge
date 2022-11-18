@@ -31,60 +31,55 @@ public class OutputView {
     public void printResult(int position, boolean available, BridgeGame bridgeGame) {
         System.out.println(Sentence.OUTPUT_RESULT);
         printMap(position, available, bridgeGame.bridge);
-
-        if (available) {
-            System.out.println(Sentence.OUPTUT_SUCCESS.toString() + "성공");
-            System.out.println(Sentence.OUTPUT_TRY + Integer.toString(bridgeGame.trying));
-            return;
-        }
-
-        System.out.println(Sentence.OUPTUT_SUCCESS.toString() + "실패");
+        System.out.println(getSuccessOrFail(available));
         System.out.println(Sentence.OUTPUT_TRY + Integer.toString(bridgeGame.trying));
     }
 
     private void printUp(int position, boolean available, List<String> bridge) {
         System.out.print(Bridge.START);
-        for (int i = 0; i < position; i++) {
-            printBeforePosition(bridge.get(i), Input.UP);
-        }
-        printPosition(available, bridge.get(position), Input.UP);
+        printBeforePosition(position, Input.UP, bridge);
+        System.out.println(getPosition(available, bridge.get(position), Input.UP));
         System.out.print(Bridge.END);
         System.out.println();
     }
 
     private void printDown(int position, boolean available, List<String> bridge) {
         System.out.print(Bridge.START);
-        for (int i = 0; i < position; i++) {
-            printBeforePosition(bridge.get(i), Input.DOWN);
-        }
-        printPosition(available, bridge.get(position), Input.DOWN);
+        printBeforePosition(position, Input.DOWN, bridge);
+        System.out.println(getPosition(available, bridge.get(position), Input.DOWN));
         System.out.print(Bridge.END);
         System.out.println();
     }
 
-    private void printBeforePosition(String actual, Input type) {
-        if (actual == type.toString()) {
-            System.out.print(Bridge.AVAILABLE);
+    private void printBeforePosition(int position, Input type, List<String> bridge) {
+        for (int i = 0; i < position; i++) {
+            System.out.println(getBeforePosition(bridge.get(i), type));
             System.out.print(Bridge.DIVISION);
-            return;
         }
-        System.out.print(Bridge.BLANK);
-        System.out.print(Bridge.DIVISION);
     }
 
-    private void printPosition(Boolean available, String actual, Input type) {
+    private String getBeforePosition(String actual, Input type) {
+        if (actual.equals(type.toString())) {
+            return Bridge.AVAILABLE.toString();
+        }
+        return Bridge.BLANK.toString();
+    }
+
+    private String getPosition(Boolean available, String actual, Input type) {
         boolean equals = actual.equals(type.toString());
         if (available && equals) {
-            System.out.print(Bridge.AVAILABLE);
-        }
-        if (available && !equals) {
-            System.out.print(Bridge.BLANK);
-        }
-        if (!available && equals) {
-            System.out.print(Bridge.BLANK);
+            return Bridge.AVAILABLE.toString();
         }
         if (!available && !equals) {
-            System.out.print(Bridge.UNAVAILABLE);
+            return Bridge.UNAVAILABLE.toString();
         }
+        return Bridge.BLANK.toString();
+    }
+
+    private String getSuccessOrFail(Boolean available) {
+        if (available) {
+            return Sentence.OUPTUT_SUCCESS.toString();
+        }
+        return Sentence.OUTPUT_FAIL.toString();
     }
 }

@@ -6,7 +6,8 @@ public enum Sentence {
     INPUT_SPACE("이동할 칸을 선택해주세요. (위: U, 아래: D)"),
     INPUT_END("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"),
     OUTPUT_RESULT("최종 게임 결과"),
-    OUPTUT_SUCCESS("게임 성공 여부: "),
+    OUPTUT_SUCCESS("게임 성공 여부: 성공"),
+    OUTPUT_FAIL("게임 성공 여부: 실패"),
     OUTPUT_TRY("총 시도한 횟수: "),
     ;
 
