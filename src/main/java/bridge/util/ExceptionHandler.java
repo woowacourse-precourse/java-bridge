@@ -34,7 +34,7 @@ public class ExceptionHandler {
     }
 
     private static boolean isValidMoving(final String input) {
-        if (input.equals(OutputView.UP) || input.equals(OutputView.DOWN)) {
+        if (input.equals(Message.UP) || input.equals(Message.DOWN)) {
             return true;
         }
         return false;
