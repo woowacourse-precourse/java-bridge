@@ -18,4 +18,12 @@ class BridgeTest {
         Bridge bridge = new Bridge(new ArrayList<>(Arrays.asList("U", "D", "D")));
         assertThat(bridge.isCrossable(playerMovement, playerPosition)).isEqualTo(expected);
     }
+
+    @DisplayName("사용자가 다리를 끝까지 건넜는지 테스트")
+    @ParameterizedTest
+    @CsvSource({"1,false", "3,true"})
+    void 다리를_건널_수_있는지_테스트(int playerPosition, Boolean expected) {
+        Bridge bridge = new Bridge(new ArrayList<>(Arrays.asList("U", "D", "D")));
+        assertThat(bridge.isReachedTheEnd(playerPosition)).isEqualTo(expected);
+    }
 }
