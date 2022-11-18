@@ -10,6 +10,7 @@ public class BridgeGame {
     private final BridgeOfComputer computerMap;
     private BridgeOfUser userMap;
     private int stage;
+    private int tryCount;
     private boolean fail;
     private boolean done;
 
@@ -17,6 +18,7 @@ public class BridgeGame {
         this.computerMap = new BridgeOfComputer(answerBridgeMap);
         this.userMap = new BridgeOfUser();
         this.stage = 0;
+        this.tryCount = 1;
         this.done = false;
         this.fail = false;
     }
@@ -47,6 +49,7 @@ public class BridgeGame {
     private void restoreWrongMove(String moveSide) {
         userMap.restoreByWrong(moveSide);
         fail = true;
+        done = true;
     }
 
     public BridgeOfUser nowUserMapState() {
@@ -61,6 +64,7 @@ public class BridgeGame {
     public void retry() {
         this.userMap = new BridgeOfUser();
         this.stage = 0;
+        this.tryCount += 1;
         this.done = false;
         this.fail = false;
     }
@@ -71,5 +75,15 @@ public class BridgeGame {
 
     public boolean isFail() {
         return fail;
+    }
+    public String failOrSuccess() {
+        if (fail) {
+            return "실패";
+        }
+        return "성공";
+    }
+
+    public int getTryCount() {
+        return tryCount;
     }
 }

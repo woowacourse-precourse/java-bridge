@@ -32,5 +32,8 @@ public class BridgeGameProgram {
                 }
             }
         }
+        outputView.printResultComment();
+        outputView.printMap(bridgeGame.nowUserMapState());
+        outputView.printResult(bridgeGame.failOrSuccess(), bridgeGame.getTryCount());
     }
 }
