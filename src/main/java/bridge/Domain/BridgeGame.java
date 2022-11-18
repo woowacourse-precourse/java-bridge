@@ -11,9 +11,10 @@ public class BridgeGame {
     private Player player;
     private Bridge bridge;
 
-    public BridgeGame() {
+    public BridgeGame(Bridge bridge) {
         this.gameStartCount = 1;
         this.player = new Player();
+        this.bridge = bridge;
     }
 
     /**
