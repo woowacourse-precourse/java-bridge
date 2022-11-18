@@ -24,4 +24,9 @@ public class Bridge {
     public List<String> getBridgeAnswers() {
         return bridgeAnswers;
     }
+
+    public boolean isAnswer(String moving, int index) {
+        String answer = bridgeAnswers.get(index);
+        return answer.equals(moving);
+    }
 }
