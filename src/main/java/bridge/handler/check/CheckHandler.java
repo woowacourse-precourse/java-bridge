@@ -26,12 +26,19 @@ public class CheckHandler {
 
 	private static void isNumber(String input) {
 		if (!input.matches("^[0-9]+$")) {
-			ExceptionHandler.raisingException(Message.getMessage(Message.INPUT_NOT_NUMBER));
+			ExceptionHandler.raisingIllegalArgumentException(Message.getMessage(Message.INPUT_NOT_NUMBER));
 		}
 	}
 
 	private static void isValidNumber(String input) {
-		//TODO : 입력된 값이 3 이상 20 이하의 숫자가 아닐시 예외 발생
+		int inputNumber = Integer.parseInt(input);
+		if (isOutOfRange(inputNumber)) {
+			ExceptionHandler.raisingIllegalArgumentException(Message.getMessage(Message.INPUT_OUT_OF_RANGE));
+		}
+	}
+
+	private static boolean isOutOfRange(int inputNumber) {
+		return inputNumber < 3 || inputNumber > 20;
 	}
 
 	private static void isMoveCommand() {
