@@ -13,71 +13,88 @@ public class BridgeGameController {
     private final List<String> upBridgeResult = new ArrayList<>();
     private final List<String> downBridgeResult = new ArrayList<>();
 
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
-    BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-    BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-    BridgeGame bridgeGame = new BridgeGame();
+    private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+    private final BridgeGame bridgeGame = new BridgeGame();
 
     public void run() {
         setGame();
     }
 
     public void setGame() {
-        outputView.printStart();
+        OutputView.printStart();
         List<String> bridge = getBridge();
         while (true) {
-            String moving = getMoving();
+            String moving = getMoving(bridge);
             int index = movingData.size() - 1;
-            updateMovingData(bridge, index, moving);
-            outputView.printMap(upBridgeResult, downBridgeResult);
+            OutputView.printMap(upBridgeResult, downBridgeResult);
+            if (!bridgeGame.move(bridge, index, moving) && retry()) {
+                reset(index);
+                continue;
+            }
+            if (!bridgeGame.move(bridge, index, moving) && !retry()) {
+                printResult(LOSE_GAME);
+                break;
+            }
             if (winBridgeGame(bridge, index, moving)) {
+                printResult(WIN_GAME);
                 break;
             }
         }
     }
 
     private List<String> getBridge() {
-        List<String> bridge = new ArrayList<>();
-        int size;
         try {
-            size = inputView.readBridgeSize();
-            bridge = bridgeMaker.makeBridge(size);
+            int size = InputView.readBridgeSize();
+            return bridgeMaker.makeBridge(size);
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
-            getBridge();
+            return getBridge();
         }
-        return bridge;
     }
 
-    private String getMoving() {
-        String moving = null;
+    private String getMoving(List<String> bridge) {
         try {
-            moving = inputView.readMoving();
+            String moving = InputView.readMoving();
+            movingData.add(moving);
+            updateMovingData(bridge, movingData.size() - 1, moving);
+            return moving;
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
-            getMoving();
+            reset(movingData.size() - 1);
+            return getMoving(bridge);
         }
-        movingData.add(moving);
-        return moving;
     }
 
     private void updateMovingData(List<String> bridge, int index, String input) {
+        upBridgeResult.add(bridgeGame.getUpBridgeResult(bridge, index, input));
+        downBridgeResult.add(bridgeGame.getDownBridgeResult(bridge, index, input));
+    }
+
+    private boolean retry() {
+        boolean retry = true;
         try {
-            upBridgeResult.add(bridgeGame.getUpBridgeResult(bridge, index, input));
-            downBridgeResult.add(bridgeGame.getDownBridgeResult(bridge, index, input));
+            retry = bridgeGame.retry(InputView.readGameCommand());
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
-            getMoving();
+            retry();
         }
+        return retry;
+    }
+
+    private void reset(int index) {
+        trials++;
+        movingData.remove(index);
+        upBridgeResult.remove(index);
+        downBridgeResult.remove(index);
     }
 
     private boolean winBridgeGame(List<String> bridge, int index, String input) {
-        if (bridgeGame.isMovingCorrect(bridge, index, input) && bridge.size() == movingData.size()) {
-            outputView.printLastMap(upBridgeResult, downBridgeResult);
-            outputView.printResult(WIN_GAME, trials);
-        }
-        return false;
+        return bridgeGame.move(bridge, index, input) && bridge.size() == movingData.size();
     }
 
+    private void printResult(String gameResult) {
+        OutputView.printLastMap(upBridgeResult, downBridgeResult);
+        OutputView.printResult(gameResult, trials);
+    }
 }
