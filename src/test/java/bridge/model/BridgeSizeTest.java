@@ -17,4 +17,11 @@ class BridgeSizeTest {
         assertThatThrownBy(() -> new BridgeSize("1111111111111111111111111111111111111111111111111111"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 입력값이_문자열이면_예외가_발생한다() {
+        assertThatThrownBy(() -> new BridgeSize("aaaaaa")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new BridgeSize("2dafasd"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
