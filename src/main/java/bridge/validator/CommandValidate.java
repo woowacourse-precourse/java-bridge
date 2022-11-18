@@ -1,6 +1,6 @@
 package bridge.validator;
 
-public class MovementValidate {
+public class CommandValidate {
 
 	public static void validateCharacter(String input) {
 		if (input.length() != 1) {

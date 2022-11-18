@@ -2,7 +2,7 @@ package bridge;
 
 
 import bridge.validator.BridgeLengthValidate;
-import bridge.validator.MovementValidate;
+import bridge.validator.CommandValidate;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -43,10 +43,10 @@ public class InputView {
 	}
 
 	private static void checkMoving(String userInput) {
-		MovementValidate.validateCharacter(userInput);
-		MovementValidate.validateEnglish(userInput);
-		MovementValidate.validateUpperCase(userInput);
-		MovementValidate.validateExactCharacter(userInput);
+		CommandValidate.validateCharacter(userInput);
+		CommandValidate.validateEnglish(userInput);
+		CommandValidate.validateUpperCase(userInput);
+		CommandValidate.validateExactCharacter(userInput);
 	}
 
 	/**

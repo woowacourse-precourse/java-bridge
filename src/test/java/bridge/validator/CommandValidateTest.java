@@ -6,13 +6,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class MovementValidateTest {
+public class CommandValidateTest {
 	@DisplayName("여러 개의 문자를 입력한 경우 예외 발생")
 	@ParameterizedTest
 	@ValueSource(strings = {"UD", "UU", "DD", "UDUD", "UDDU", "Uu", "uU", "Dd", "dD", "U "})
 	void multipleCharacter(String input) {
 		assertThatThrownBy(() -> {
-			MovementValidate.validateCharacter(input);
+			CommandValidate.validateCharacter(input);
 		}).isInstanceOf(IllegalArgumentException.class);
 	}
 
@@ -21,7 +21,7 @@ public class MovementValidateTest {
 	@ValueSource(strings = {"1", "ㄱ", "가", " ", "", "@", "+", "1.5", "-1", "[", "`"})
 	void notEnglish(String input) {
 		assertThatThrownBy(() -> {
-			MovementValidate.validateEnglish(input);
+			CommandValidate.validateEnglish(input);
 		}).isInstanceOf(IllegalArgumentException.class);
 	}
 
@@ -30,7 +30,7 @@ public class MovementValidateTest {
 	@ValueSource(strings = {"u", "d"})
 	void lowerCase(String input) {
 		assertThatThrownBy(() -> {
-			MovementValidate.validateUpperCase(input);
+			CommandValidate.validateUpperCase(input);
 		}).isInstanceOf(IllegalArgumentException.class);
 	}
 
@@ -40,7 +40,7 @@ public class MovementValidateTest {
 		"T", "V", "W", "X", "Y", "Z"})
 	void notUD(String input) {
 		assertThatThrownBy(() -> {
-			MovementValidate.validateExactCharacter(input);
+			CommandValidate.validateExactCharacter(input);
 		}).isInstanceOf(IllegalArgumentException.class);
 	}
 }
