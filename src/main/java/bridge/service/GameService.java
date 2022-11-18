@@ -2,9 +2,7 @@ package bridge.service;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.domain.Bridge;
-import bridge.domain.BridgeGame;
-import bridge.domain.MatchResult;
+import bridge.domain.*;
 import bridge.dto.BridgeDto;
 
 public class GameService {
@@ -27,5 +25,17 @@ public class GameService {
 
     public BridgeDto getMyBridgeToPrint(MatchResult matchResult) {
         return bridgeGame.getMyBridgeToPrint(matchResult);
+    }
+
+    private void setReGame() {
+        bridgeGame.retry();
+    }
+
+    public GameResult setReGameOrQuit(String input) {
+        if (input.equals(Command.RETRY.getAbbreviation())) {
+            setReGame();
+            return GameResult.REGAME;
+        }
+        return GameResult.FAILURE;
     }
 }

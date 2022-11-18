@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.domain.GameResult;
 import bridge.domain.MatchResult;
 import bridge.dto.BridgeDto;
 import bridge.service.GameService;
@@ -22,11 +23,19 @@ public class GameController {
     }
 
     public void run() {
+        GameResult gameResult = GameResult.SUCCESS;
+        do {
+            doRound();
+            gameResult=chooseReGame();
+        } while(gameResult.equals(GameResult.REGAME));
+        System.out.println(gameResult);
+    }
+
+    private void doRound() {
         MatchResult matchResult;
         do {
             matchResult = chooseMovement();
         } while (matchResult.equals(MatchResult.SUCCESS));
-        viewService.askReGame();
     }
 
     private MatchResult chooseMovement() {
@@ -37,7 +46,12 @@ public class GameController {
         return recentResult;
     }
 
-//    private GameResult chooseReGame() {
-//
-//    }
+    private GameResult chooseReGame() {
+        String input= viewService.askReGame();
+        return gameService.setReGameOrQuit(input);
+    }
+
+    private void printGameResult(GameResult result) {
+        viewService.printTotalResult();
+    }
 }
