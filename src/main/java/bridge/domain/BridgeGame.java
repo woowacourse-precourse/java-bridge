@@ -1,16 +1,21 @@
 package bridge.domain;
 
-import bridge.ui.Exception;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
+
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final Exception exception = new Exception();
     private final int bridgeSize;
+    private final List<String> bridge;
 
     public BridgeGame(int bridgeSize) {
-        validateBridgeSize(bridgeSize);
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         this.bridgeSize = bridgeSize;
+        this.bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
     /**
@@ -29,10 +34,4 @@ public class BridgeGame {
     public void retry() {
     }
 
-    public void validateBridgeSize(int bridgeSize) {
-        if (3 <= bridgeSize && bridgeSize <= 20) {
-            return;
-        }
-        exception.exceptionBridgeSize();
-    }
 }
