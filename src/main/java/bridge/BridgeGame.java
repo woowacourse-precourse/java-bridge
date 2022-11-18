@@ -58,7 +58,7 @@ public class BridgeGame {
         return false;
     }
 
-    public boolean isCorrect(){
+    public boolean isSuccess(){
         return Arrays.equals(user_bridge.toArray(),answer_bridge.toArray());
     }
 }

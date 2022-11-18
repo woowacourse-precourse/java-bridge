@@ -10,7 +10,7 @@ public class GameController {
     private InputView inputView = new InputView();
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     public void begin(){
-        int trials = 0;
+        int trials = 1;
         outputView.gameStartMessage();
         outputView.bridgeSizeMessage();
 
@@ -25,7 +25,7 @@ public class GameController {
             moveStep(bridgeGame);
             isEnd = bridgeGame.isEnd();
         }
-        if(bridgeGame.isCorrect()) {
+        if(bridgeGame.isSuccess()) {
             outputView.printResult("성공",bridgeGame,trials);
             return;
         }
@@ -34,8 +34,8 @@ public class GameController {
         if(command.equals("R"))
             bridgeGame.retry();
 
-        //if(command.equals("Q"))
-            //outputView.printResult("실패");
+        if(command.equals("Q"))
+            outputView.printResult("실패",bridgeGame,trials);
     }
     private void moveStep(BridgeGame bridgeGame){
         //move message 출력
