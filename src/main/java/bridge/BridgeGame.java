@@ -36,17 +36,16 @@ public class BridgeGame {
         end();
     }
 
-
     private void setUp() {
-        outputView.gameStart();
+        outputView.printGameStart();
         Bridge bridge = createBridge();
         bridgeService = new BridgeService(bridge);
     }
 
-
     private Bridge createBridge() {
         outputView.inputBridgeSize();
         int bridgeSize = inputView.readBridgeSize();
+        outputView.printNewline();
         return new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
@@ -56,7 +55,6 @@ public class BridgeGame {
             retry();
         }
     }
-
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -85,5 +83,8 @@ public class BridgeGame {
     }
 
     private void end() {
+        outputView.printGameOver();
+        outputView.printMap(bridgeService.getResultCrossOver());
+        outputView.printResult(gameStatus, bridgeService.getNumberOfAttempts());
     }
 }

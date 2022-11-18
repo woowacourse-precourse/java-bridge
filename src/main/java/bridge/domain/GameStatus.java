@@ -7,15 +7,19 @@ public enum GameStatus {
     FAILED("실패", false, false),
     ONGOING("진행 중", true, false);
 
-    private String progress;
+    private String status;
 
     private boolean isCrossed;
     private boolean isReached;
 
-    GameStatus(String progress, boolean isCrossed, boolean isReached) {
-        this.progress = progress;
+    GameStatus(String status, boolean isCrossed, boolean isReached) {
+        this.status = status;
         this.isCrossed = isCrossed;
         this.isReached = isReached;
+    }
+
+    public String getStatus() {
+        return status;
     }
 
     public static GameStatus findByStatus(boolean isCrossed, boolean isReached) {
