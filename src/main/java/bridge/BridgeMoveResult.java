@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * 다리 건너기 결과를 관리하는 클래스
  */
-public class BridgeGameResult {
+public class BridgeMoveResult {
 
     private static final String UP = "U";
     private static final String DOWN = "D";
@@ -15,7 +15,7 @@ public class BridgeGameResult {
     private final List<String> upStates;
     private final List<String> downStates;
 
-    public BridgeGameResult() {
+    public BridgeMoveResult() {
         this.upStates = new ArrayList<>();
         this.downStates = new ArrayList<>();
     }

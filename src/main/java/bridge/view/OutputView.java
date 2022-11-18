@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.BridgeGameResult;
+import bridge.BridgeMoveResult;
 import java.util.List;
 
 /**
@@ -20,9 +20,9 @@ public class OutputView {
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      */
-    public void printMap(BridgeGameResult bridgeGameResult) {
-        List<String> upStates = bridgeGameResult.getUpStates();
-        List<String> downStates = bridgeGameResult.getDownStates();
+    public void printMap(BridgeMoveResult bridgeMoveResult) {
+        List<String> upStates = bridgeMoveResult.getUpStates();
+        List<String> downStates = bridgeMoveResult.getDownStates();
 
         System.out.println(format(upStates));
         System.out.println(format(downStates));
