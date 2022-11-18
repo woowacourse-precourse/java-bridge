@@ -1,12 +1,16 @@
 package view.validation.exception;
 
+import constants.BridgeConstant;
+import constants.CommandTable;
+import constants.DirectionTable;
+
 public enum IllegalArgument {
-
-    NOT_BRIDGE_INPUT("다리의 길이는 3 ~ 20 사이의 숫자중 하나를 입력해야 합니다."),
-    NOT_MOVING_INPUT("이동할 방향은 U, D중에서 하나를 입력해야 합니다."),
-    NOT_COMMAND_INPUT("진행 여부는 R, Q중에서 하나를 입력해야 합니다.");
-
-
+    NOT_BRIDGE_INPUT(String.format("다리의 길이는 %d ~ %d 사이의 숫자 중 하나를 입력해야 합니다."
+            , BridgeConstant.MIN_BRIDGE_SIZE, BridgeConstant.MAX_BRIDGE_SIZE)),
+    NOT_MOVING_INPUT(String.format("이동할 방향은 %s, %s 중에서 하나를 입력해야 합니다."
+            , DirectionTable.UP.getInitial(), DirectionTable.DOWN.getInitial())),
+    NOT_COMMAND_INPUT(String.format("진행 여부를 결정하려면 %s, %s 중에서 하나를 입력해야 합니다."
+            , CommandTable.QUIT.getInitial(), CommandTable.RETRY.getInitial()));
 
     private final String message;
 
@@ -14,11 +18,11 @@ public enum IllegalArgument {
         this.message = "[ERROR] " + message;
     }
 
-    public static void handleException(String message){
-        throw new IllegalArgumentException(message);
-    }
-
     public String getMessage() {
         return message;
+    }
+
+    public static void handleException(String message) {
+        throw new IllegalArgumentException(message);
     }
 }
