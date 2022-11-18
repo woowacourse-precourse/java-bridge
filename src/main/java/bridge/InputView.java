@@ -1,15 +1,24 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Console;
+import java.util.regex.Pattern;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private static final String regex = "^[0-9]+$";
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        System.out.println(Sentence.INPUT_LENGTH);
+        String input = Console.readLine().trim();
+        validateNumber(input);
+        int number = stringToInt(input);
+        validateNumberRange(number);
+        return number;
     }
 
     /**
@@ -24,5 +33,21 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private int stringToInt(String target) {
+        return Integer.parseInt(target);
+    }
+
+    private void validateNumber(String target) {
+        if (!Pattern.matches(regex, target)) {
+            throw new IllegalArgumentException(Error.INCLUDE_CAHRACTER.toString());
+        }
+    }
+
+    public void validateNumberRange(int number) {
+        if (number < 3 || number > 20) {
+            throw new IllegalArgumentException(Error.OUT_OF_RANGE.toString());
+        }
     }
 }
