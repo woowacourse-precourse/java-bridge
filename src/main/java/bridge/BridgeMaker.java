@@ -3,16 +3,14 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.Space.*;
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
-    private static final String UP_SPACE_STRING = "U";
-    private static final String DOWN_SPACE_STRING = "D";
-    private static final int UP_SPACE_INT = 1;
-    private static final int DOWN_SPACE_INT = 0;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -33,10 +31,10 @@ public class BridgeMaker {
     }
 
     private void addCrossableSpace(int crossabeleSpace, List<String> answerBridge) {
-        if (crossabeleSpace == DOWN_SPACE_INT) {
-            answerBridge.add(DOWN_SPACE_STRING);
-        } else if (crossabeleSpace == UP_SPACE_INT) {
-            answerBridge.add(UP_SPACE_STRING);
+        if (crossabeleSpace == DOWN.getIndex()) {
+            answerBridge.add(DOWN.getRepresented());
+        } else if (crossabeleSpace == UP.getIndex()) {
+            answerBridge.add(UP.getRepresented());
         }
     }
 }
