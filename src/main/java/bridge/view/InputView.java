@@ -11,14 +11,12 @@ public class InputView {
     }
 
     public String readMoving() {
-        System.out.println(INPUT_DIRECTION);
+        System.out.println(INPUT_MOVING);
         return Console.readLine();
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public String readGameCommand() {
-        return null;
+        System.out.println(INPUT_GAME_COMMAND);
+        return Console.readLine();
     }
 }
