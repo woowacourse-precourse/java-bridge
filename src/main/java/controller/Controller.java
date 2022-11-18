@@ -1,8 +1,12 @@
 package controller;
 
 import bridge.BridgeGame;
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
+
+import java.util.List;
 
 public class Controller {
 
@@ -15,4 +19,23 @@ public class Controller {
         this.inputView = inputView;
         this.outputView = outputView;
     }
+
+    public void run() {
+        System.out.println("다리 건너기 게임을 시작합니다.\n");
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        int index = 0; // 다리 길이 index
+        while (index < bridge.size()) {
+            outputView.printMap(index, inputView.readMoving(), bridge);
+            if (outputView.upOutputBoard.contains("X") || outputView.downOutputBoard.contains("X")) {
+                if (inputView.readGameCommand().equals("Q")) {
+                    index = 0;
+                    break;
+                }
+            }
+            index += 1;
+
+        }
+    }
 }
+

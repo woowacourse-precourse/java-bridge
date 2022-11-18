@@ -3,14 +3,15 @@ package view;
 import bridge.BridgeGame;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
     private final BridgeGame bridgeGame;
-    private final List<String> upOutputBoard;
-    private final List<String> downOutputBoard;
+    public final List<String> upOutputBoard;
+    public final List<String> downOutputBoard;
 
     public OutputView(BridgeGame bridgeGame, List<String> outputBoard, List<String> downOutputBoard) {
         this.bridgeGame = bridgeGame;
@@ -27,17 +28,19 @@ public class OutputView {
         goUpDown(movedPosition, moving, bridge);
 
         NotGoUpDown(movedPosition, moving, bridge);
+
+        System.out.println();
     }
 
     private void NotGoUpDown(int movedPosition, String moving, List<String> bridge) {
-        if (bridgeGame.move(movedPosition, moving, bridge)) {
-            if (!bridge.get(movedPosition).equals(moving) && moving.equals("U")) {
-                if (upOutputBoard.isEmpty()) printWhenFirstNotGoUp();
+        if (!bridgeGame.move(movedPosition, moving, bridge)) {
+            if (moving.equals("U")) {
                 if (!upOutputBoard.isEmpty()) printWhenNotGoUp();
+                if (upOutputBoard.isEmpty()) printWhenFirstNotGoUp();
             }
-            if (!bridge.get(movedPosition).equals(moving) && moving.equals("D")) {
-                if (upOutputBoard.isEmpty()) printWhenFirstNotGoDown();
+            if (moving.equals("D")) {
                 if (!upOutputBoard.isEmpty()) printWhenNotGoDown();
+                if (upOutputBoard.isEmpty()) printWhenFirstNotGoDown();
             }
         }
     }
@@ -45,12 +48,12 @@ public class OutputView {
     private void goUpDown(int movedPosition, String moving, List<String> bridge) {
         if (bridgeGame.move(movedPosition, moving, bridge)) {
             if (bridge.get(movedPosition).equals(moving) && moving.equals("U")) {
-                if (upOutputBoard.isEmpty()) printWhenFirstGoUp();
                 if (!upOutputBoard.isEmpty()) printWhenGoUp();
+                if (upOutputBoard.isEmpty()) printWhenFirstGoUp();
             }
             if (bridge.get(movedPosition).equals(moving) && moving.equals("D")) {
-                if (upOutputBoard.isEmpty()) printWhenFirstGoDown();
                 if (!upOutputBoard.isEmpty()) printWhenGoDown();
+                if (upOutputBoard.isEmpty()) printWhenFirstGoDown();
             }
         }
     }
@@ -68,6 +71,7 @@ public class OutputView {
         downOutputBoard.add("X");
         downOutputBoard.add(" ");
         downOutputBoard.add("]");
+        printBoard();
     }
 
     private void printWhenFirstNotGoDown() {
@@ -81,6 +85,7 @@ public class OutputView {
         downOutputBoard.add("X");
         downOutputBoard.add(" ");
         downOutputBoard.add("]");
+        printBoard();
     }
 
     private void printWhenNotGoUp() {
@@ -96,6 +101,7 @@ public class OutputView {
         downOutputBoard.add(" ");
         downOutputBoard.add(" ");
         downOutputBoard.add("]");
+        printBoard();
     }
 
     private void printWhenFirstNotGoUp() {
@@ -109,6 +115,7 @@ public class OutputView {
         downOutputBoard.add(" ");
         downOutputBoard.add(" ");
         downOutputBoard.add("]");
+        printBoard();
     }
 
     private void printWhenGoDown() {
@@ -124,6 +131,7 @@ public class OutputView {
         downOutputBoard.add("O");
         downOutputBoard.add(" ");
         downOutputBoard.add("]");
+        printBoard();
     }
 
     private void printWhenFirstGoDown() {
@@ -137,6 +145,7 @@ public class OutputView {
         downOutputBoard.add("O");
         downOutputBoard.add(" ");
         downOutputBoard.add("]");
+        printBoard();
     }
 
     private void printWhenGoUp() {
@@ -152,6 +161,7 @@ public class OutputView {
         downOutputBoard.add(" ");
         downOutputBoard.add(" ");
         downOutputBoard.add("]");
+        printBoard();
     }
 
     private void printWhenFirstGoUp() {
@@ -165,6 +175,12 @@ public class OutputView {
         downOutputBoard.add(" ");
         downOutputBoard.add(" ");
         downOutputBoard.add("]");
+        printBoard();
+    }
+
+    private void printBoard() {
+        System.out.println(upOutputBoard.stream().collect(Collectors.joining()));
+        System.out.println(downOutputBoard.stream().collect(Collectors.joining()));
     }
 
     /**

@@ -8,11 +8,9 @@ import java.util.List;
 public class BridgeGame {
 
     private final Player player;
-    private final BridgeMaker bridgeMaker;
 
-    public BridgeGame(Player player, BridgeMaker bridgeMaker) {
+    public BridgeGame(Player player) {
         this.player = player;
-        this.bridgeMaker = bridgeMaker;
     }
 
     /**
