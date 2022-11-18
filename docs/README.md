@@ -69,8 +69,8 @@ private String makeRandomUpDown()
 ### BridgeGame - 게임을 진행하는 주최자, 채점판을 가지고 있고 매 시도마다 채점판은 갱신됨
 ```
 [Field]<br>
-List<List<String>> gradingBoard - 채점판
-BridgeMaker bridgeMaker - 정답 bridge (주최자가 정답을 가지고 있는게 더 자연스러운 흐름이라고 생각된다)
+List<Map<UpDown,Boolean>> gradingBoard - 채점판 (final이 안된다 밖으로 빼서 처리하는게 나을까 고민)
+List<String> answerBridge - 정답 bridge (주최자가 정답을 가지고 있는게 더 자연스러운 흐름이라고 생각된다)
 
 [constructor]<br>
 this. 
@@ -86,7 +86,7 @@ private void validateNextStep(String nextStep)
 ### BridgeGameResultDto
 ```
 [Field]<br>
-List<List<String>> gradingBoard
+List<Map<UpDown,Boolean>> gradingBoard
 boolean isCorrect
 
 [constructor]<br>
