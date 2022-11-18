@@ -11,13 +11,25 @@ public class InputView {
     private static final String ERROR_MESSAGE_ONLY_NUMBER = "[ERROR] 숫자만 입력해주세요.";
     private static final String ERROR_MESSAGE_SIZE_RANGE = "[ERROR] 3이상 20이하로 입력해주세요.";
 
+    public int getBridgeSize() {
+        int result = 0;
+        OutputView.printMessage(ENTER_BRIDGE_SIZE);
+        while (readBridgeSize(Console.readLine()) == 0) {
+            result = readBridgeSize(Console.readLine());
+        }
+        return result;
+    }
+
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
-        OutputView.printMessage(ENTER_BRIDGE_SIZE);
-        String enterValue = Console.readLine();
-        isValidBridgeSize(enterValue);
+    public int readBridgeSize(String enterValue) {
+        try {
+            isValidBridgeSize(enterValue);
+        } catch (IllegalArgumentException e) {
+            OutputView.printMessage(e.getMessage());
+            return 0;
+        }
         return Integer.parseInt(enterValue);
     }
 
