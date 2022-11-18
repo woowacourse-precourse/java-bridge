@@ -12,7 +12,7 @@ public class OutputView {
 	 * <p>
 	 * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
-	public void printMap(List<Integer> bridge, List<Integer> currentBridgeState) {
+	public void printMap(List<String> bridge, List<String> currentBridgeState) {
 		String map = mapDraw(bridge, currentBridgeState);
 		System.out.println(map);
 	}
@@ -22,11 +22,11 @@ public class OutputView {
 	 * <p>
 	 * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
-	public void printFinalMapResult(List<Integer> bridge, List<Integer> currentBridgeState) {
+	public void printFinalMapResult(List<String> bridge, List<String> currentBridgeState) {
 		printMap(bridge, currentBridgeState);
 	}
 
-	private String mapDraw(List<Integer> bridge, List<Integer> currentBridgeState) {
+	private String mapDraw(List<String> bridge, List<String> currentBridgeState) {
 		StringBuilder upSb = new StringBuilder();
 		StringBuilder downSb = new StringBuilder();
 		sbBuilder(upSb, "[ ", downSb, "[ ");
@@ -44,7 +44,7 @@ public class OutputView {
 		sbBuilder(upSb, "]", downSb, "]");
 	}
 
-	private static void upAndDownDraw(List<Integer> bridge, List<Integer> currentBridgeState, StringBuilder upSb,
+	private static void upAndDownDraw(List<String> bridge, List<String> currentBridgeState, StringBuilder upSb,
 		StringBuilder downSb, int position) {
 		if (isUpper(currentBridgeState, position)) {
 			drawUpPosition(bridge, currentBridgeState, upSb, downSb, position);
@@ -53,7 +53,7 @@ public class OutputView {
 		drawDownPosition(bridge, currentBridgeState, upSb, downSb, position);
 	}
 
-	private static void drawDownPosition(List<Integer> bridge, List<Integer> currentBridgeState, StringBuilder upSb,
+	private static void drawDownPosition(List<String> bridge, List<String> currentBridgeState, StringBuilder upSb,
 		StringBuilder downSb, int position) {
 		if (isAnswer(bridge, currentBridgeState, position)) {
 			sbBuilder(upSb, "  ", downSb, "O ");
@@ -62,7 +62,7 @@ public class OutputView {
 		sbBuilder(upSb, "  ", downSb, "X ");
 	}
 
-	private static void drawUpPosition(List<Integer> bridge, List<Integer> currentBridgeState, StringBuilder upSb,
+	private static void drawUpPosition(List<String> bridge, List<String> currentBridgeState, StringBuilder upSb,
 		StringBuilder downSb, int position) {
 		if (isAnswer(bridge, currentBridgeState, position)) {
 			sbBuilder(upSb, "O ", downSb, "  ");
@@ -76,11 +76,11 @@ public class OutputView {
 		downSb.append(down);
 	}
 
-	private static boolean isUpper(List<Integer> currentBridgeState, int position) {
-		return currentBridgeState.get(position) == 1;
+	private static boolean isUpper(List<String> currentBridgeState, int position) {
+		return currentBridgeState.get(position).equals("U");
 	}
 
-	private static boolean isAnswer(List<Integer> bridge, List<Integer> currentBridgeState, int position) {
+	private static boolean isAnswer(List<String> bridge, List<String> currentBridgeState, int position) {
 		return bridge.get(position).equals(currentBridgeState.get(position));
 	}
 

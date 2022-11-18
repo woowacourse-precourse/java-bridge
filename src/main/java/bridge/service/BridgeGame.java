@@ -14,8 +14,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public List<Integer> move(List<Integer> currentBridgeState, String inputMoveCommand) {
-        currentBridgeState.add(moveCommandToInteger(inputMoveCommand));
+    public List<String> move(List<String> currentBridgeState, String inputMoveCommand) {
+        currentBridgeState.add(inputMoveCommand);
         return currentBridgeState;
     }
 
@@ -27,12 +27,5 @@ public class BridgeGame {
 	public boolean retry() {
         return true;
 	}
-
-    private int moveCommandToInteger(String inputMoveCommand) {
-        if (inputMoveCommand.equals("U")) {
-            return 1;
-        }
-        return 0;
-    }
 
 }
