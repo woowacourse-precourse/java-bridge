@@ -43,4 +43,15 @@ public class BridgeGameTest {
         Assertions.assertEquals(bridgeGame.getDownMove().size(), 0);
 
     }
+
+    @DisplayName("다리 끝까지 갔을 때 게임 종료")
+    @Test
+    void checkGameIsDone() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U","U","U"));
+        bridgeGame.move("U");
+        bridgeGame.move("U");
+        bridgeGame.move("U");
+        Assertions.assertEquals(bridgeGame.checkGameIsDone(), true);
+
+    }
 }
