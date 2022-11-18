@@ -10,8 +10,8 @@
     - run() : static으로 설정해 new 연산자 없이 호출해 사용 가능
 - Common
   - message : Bridge Game Process를 위한 메세지를 모아둔 Package
-    - ConsoleOut : 상수로 메세지를 선언, 모든 Layer에서 선언해 사용할 수 있습니다.
-  - exception
+    - ConsoleOut : 상수로 메세지를 선언, 모든 Layer에서 사용할 수 있습니다.
+    - ExceptionMessage : 상수로 예외처리 메세지 선언, 모든 Layer에서 사용할 수 있습니다.
 
 <!> `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 변경할 수 없다.
     위 요구사항이 있어 BridgeNumberGenerator 와 이를 implement한 BridgeRandomNumberGenerator
