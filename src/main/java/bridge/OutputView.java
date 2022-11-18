@@ -38,7 +38,7 @@ public class OutputView {
     private void printUp(int position, boolean available, List<String> bridge) {
         System.out.print(Bridge.START);
         printBeforePosition(position, Input.UP, bridge);
-        System.out.println(getPosition(available, bridge.get(position), Input.UP));
+        System.out.print(getPosition(available, bridge.get(position), Input.UP));
         System.out.print(Bridge.END);
         System.out.println();
     }
@@ -46,14 +46,14 @@ public class OutputView {
     private void printDown(int position, boolean available, List<String> bridge) {
         System.out.print(Bridge.START);
         printBeforePosition(position, Input.DOWN, bridge);
-        System.out.println(getPosition(available, bridge.get(position), Input.DOWN));
+        System.out.print(getPosition(available, bridge.get(position), Input.DOWN));
         System.out.print(Bridge.END);
         System.out.println();
     }
 
     private void printBeforePosition(int position, Input type, List<String> bridge) {
         for (int i = 0; i < position; i++) {
-            System.out.println(getBeforePosition(bridge.get(i), type));
+            System.out.print(getBeforePosition(bridge.get(i), type));
             System.out.print(Bridge.DIVISION);
         }
     }
