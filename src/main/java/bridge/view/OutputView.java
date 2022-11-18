@@ -15,6 +15,10 @@ public class OutputView {
 		System.out.println(InputViewConst.START_GAME_PHRASE);
 	}
 
+	public void printFinalResultPhrase() {
+		System.out.println(OutputViewConst.USER_FINAL_RESULT_PHRASE);
+	}
+
 	/**
 	 * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
 	 * <p>
@@ -22,7 +26,6 @@ public class OutputView {
 	 */
 	public void printMap(UserBridgeStatusDto userBridgeStatusDto) {
 		Integer bridgeSize = userBridgeStatusDto.getUserCurrentLocation();
-		System.out.println(OutputViewConst.USER_FINAL_RESULT_PHRASE);
 		printBridge(userBridgeStatusDto.getUserUpperBridge(), bridgeSize);
 		printBridge(userBridgeStatusDto.getUserLowerBridge(), bridgeSize);
 	}

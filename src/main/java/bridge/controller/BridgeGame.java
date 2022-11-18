@@ -35,6 +35,7 @@ public class BridgeGame {
 				break;
 			}
 		} while (!retry());
+		outputView.printFinalResultPhrase();
 		outputView.printMap(gameService.getUserBridgeStatusDto());
 		outputView.printResult(userResult, attemptCount);
 	}
@@ -45,13 +46,12 @@ public class BridgeGame {
 	 * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
 	public String move(Integer bridgeSize) {
-		boolean validMove;
 		Integer currentLocation = 0;
 		do {
 			String userLocation = inputController.getUserMoving();
-			validMove = gameService.checkValidSpace(userLocation, currentLocation);
-			if (validMove == false) {
+			if (gameService.checkValidSpace(userLocation, currentLocation) == false) {
 				gameService.saveUserSpace(false, userLocation);
+				outputView.printMap(gameService.getUserBridgeStatusDto());
 				return OutputViewConst.FAIL;
 			}
 			gameService.saveUserSpace(true, userLocation);
