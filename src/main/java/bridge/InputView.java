@@ -25,7 +25,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String input_str = Console.readLine();
+        if(input_str.isBlank()) throw new IllegalArgumentException("[ERROR] 빈 문자를 입력할 수 없습니다.");
+        return input_str;
     }
 
     /**
