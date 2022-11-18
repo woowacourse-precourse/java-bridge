@@ -1,5 +1,6 @@
 package bridge.model;
 
+import bridge.constant.message.GameErrorMessage;
 import java.util.List;
 
 public class UserRoadMap extends RoadMap {
@@ -12,8 +13,10 @@ public class UserRoadMap extends RoadMap {
     }
 
     public Road getRoad(int roadPosition){
-        // TODO: 위치에 해당하는 칸을 반환
-        return null;
+        if(roadPosition < getSize()){
+            return this.roads.get(roadPosition);
+        }
+        throw new IllegalStateException(GameErrorMessage.NO_SUCH_ROAD_POSITION.getMessage());
     }
 
     public void clear(){
