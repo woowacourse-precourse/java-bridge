@@ -5,29 +5,19 @@ import bridge.constant.Game;
 import java.util.List;
 
 public class GameController {
-    BridgeGame bridgeGame;
-    int attempts = 1;
-    boolean success = false;
-    OutputView outputView = new OutputView();
+    private final OutputView outputView = new OutputView();
+    private BridgeGame bridgeGame;
+    private boolean success = false;
 
     public void start() {
-//        System.out.println(Game.START_GAME_MESSAGE);
-        int bridgeSize = getBridgeSize();
+        int attempts = 1;
+        outputView.printStart();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        while (true) {
-            if (startCrossBridge(bridge)) {
-                break;
-            }
-
-            String commend = bridgeGame.retry();
-            if (commend.equals("Q")) {
-                break;
-            } else if (commend.equals("R")) {
-                attempts++;
-            }
+        List<String> bridge = bridgeMaker.makeBridge(getBridgeSize());
+        while (!startCrossBridge(bridge) && bridgeGame.retry().equals("Q")) {
+            attempts++;
         }
-        getGameResult();
+        getGameResult(attempts);
     }
 
     private int getBridgeSize() {
@@ -39,7 +29,6 @@ public class GameController {
         int count;
         this.bridgeGame = new BridgeGame(bridge);
         InputView inputView = new InputView();
-        OutputView outputView = new OutputView();
 
         for (count = 0; count < bridge.size(); count++) {
             String moving = inputView.readMoving();
@@ -58,9 +47,7 @@ public class GameController {
         return false;
     }
 
-    private void getGameResult() {
-        OutputView outputView = new OutputView();
-
+    private void getGameResult(int attempts) {
         outputView.printResult();
         outputView.printMap(bridgeGame.getResult());
         outputView.printSuccess(success);
