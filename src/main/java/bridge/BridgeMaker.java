@@ -29,14 +29,14 @@ public class BridgeMaker {
     }
 
     private List<String> addU(List<String> bridge, int answerNumber){
-        if (answerNumber == 0){
+        if (answerNumber == 1){
             bridge.add("U");
         }
         return bridge;
     }
 
     private List<String> addD(List<String> bridge, int answerNumber){
-        if (answerNumber == 1){
+        if (answerNumber == 0){
             bridge.add("D");
         }
         return bridge;
