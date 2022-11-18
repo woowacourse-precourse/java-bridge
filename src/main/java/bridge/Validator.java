@@ -31,7 +31,10 @@ public class Validator {
         }
     }
 
-    public void validateGameCommand(String gameCommand) {
-
+    public void validateGameCommand(char gameCommand) {
+        if (gameCommand != 'R' && gameCommand != 'Q') {
+            System.out.println(ErrorMessage.GAMECOMMAND_ERROR.getMessage());
+            throw new IllegalArgumentException();
+        }
     }
 }
