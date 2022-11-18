@@ -9,6 +9,10 @@ public class BridgeGameController {
     private static final String LOSE_GAME = "실패";
 
     private int trials = 1;
+    private List<String> bridge;
+    private String moving;
+    private int index;
+    private boolean retry = true;
     private final List<String> movingData = new ArrayList<>();
     private final List<String> upBridgeResult = new ArrayList<>();
     private final List<String> downBridgeResult = new ArrayList<>();
@@ -18,79 +22,84 @@ public class BridgeGameController {
     private final BridgeGame bridgeGame = new BridgeGame();
 
     public void run() {
-        setGame();
-    }
-
-    public void setGame() {
         OutputView.printStart();
-        List<String> bridge = getBridge();
+        getBridge();
         while (true) {
-            String moving = getMoving(bridge);
-            int index = movingData.size() - 1;
-            OutputView.printMap(upBridgeResult, downBridgeResult);
-            if (!bridgeGame.move(bridge, index, moving) && retry()) {
-                reset(index);
-                continue;
+            moveBridge();
+            if (!bridgeGame.isMovingCorrect(bridge, index, moving)) {
+                retryOrQuit();
             }
-            if (!bridgeGame.move(bridge, index, moving) && !retry()) {
-                printResult(LOSE_GAME);
+            if (!retry) {
                 break;
             }
-            if (winBridgeGame(bridge, index, moving)) {
+            if (winBridgeGame()) {
                 printResult(WIN_GAME);
                 break;
             }
         }
     }
 
-    private List<String> getBridge() {
+    public void moveBridge() {
+        getMoving();
+        updateBridgeResultData();
+        OutputView.printMap(upBridgeResult, downBridgeResult);
+    }
+
+    private void getBridge() {
         try {
             int size = InputView.readBridgeSize();
-            return bridgeMaker.makeBridge(size);
+            this.bridge = bridgeMaker.makeBridge(size);
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
-            return getBridge();
+            getBridge();
         }
     }
 
-    private String getMoving(List<String> bridge) {
+    private void getMoving() {
         try {
-            String moving = InputView.readMoving();
+            String moving = bridgeGame.move(InputView.readMoving());
             movingData.add(moving);
-            updateMovingData(bridge, movingData.size() - 1, moving);
-            return moving;
+            this.moving = moving;
+            this.index = movingData.size() - 1;
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
-            reset(movingData.size() - 1);
-            return getMoving(bridge);
+            getMoving();
         }
     }
 
-    private void updateMovingData(List<String> bridge, int index, String input) {
-        upBridgeResult.add(bridgeGame.getUpBridgeResult(bridge, index, input));
-        downBridgeResult.add(bridgeGame.getDownBridgeResult(bridge, index, input));
+    private void updateBridgeResultData() {
+        upBridgeResult.add(bridgeGame.getUpBridgeResult(bridge, index, moving));
+        downBridgeResult.add(bridgeGame.getDownBridgeResult(bridge, index, moving));
     }
 
-    private boolean retry() {
-        boolean retry = true;
+    private void retryOrQuit() {
+        askRetry();
+        if (retry) {
+            resetData();
+        }
+        if (!retry) {
+            printResult(LOSE_GAME);
+        }
+    }
+
+    private void askRetry() {
         try {
-            retry = bridgeGame.retry(InputView.readGameCommand());
+            this.retry = bridgeGame.retry(InputView.readGameCommand());
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
-            retry();
+            askRetry();
         }
-        return retry;
     }
 
-    private void reset(int index) {
+    private void resetData() {
         trials++;
         movingData.remove(index);
         upBridgeResult.remove(index);
         downBridgeResult.remove(index);
     }
 
-    private boolean winBridgeGame(List<String> bridge, int index, String input) {
-        return bridgeGame.move(bridge, index, input) && bridge.size() == movingData.size();
+    private boolean winBridgeGame() {
+        return bridgeGame.isMovingCorrect(bridge, index, moving) && bridge.size() == movingData.size();
     }
 
     private void printResult(String gameResult) {
