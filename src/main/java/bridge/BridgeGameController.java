@@ -17,7 +17,7 @@ public class BridgeGameController {
         while (status == BridgeGame.KEEP_GOING) {
             status = play();
         }
-        outputView.printResult(bridgeGame.getFootPrintsLog(), status, bridgeGame.getTryCount());
+        outputView.printResult(bridgeGame, status);
     }
 
     public void init() {
