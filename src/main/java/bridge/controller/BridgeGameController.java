@@ -19,6 +19,7 @@ public class BridgeGameController {
         outputView.printStartGame();
         int bridgeSize = getBridgeSize();
         bridgeGame.createBridge(bridgeSize);
+        bridgeGame.move(getMove());
     }
 
     public int getBridgeSize() {
@@ -31,13 +32,14 @@ public class BridgeGameController {
         }
     }
 
-    public int getMove() {
+    public String getMove() {
         while (true) {
             try {
-                return inputView.readBridgeSize();
+                return inputView.readMoving();
             } catch (IllegalArgumentException iae) {
                 outputView.printError(iae.getMessage());
             }
         }
     }
+
 }

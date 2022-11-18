@@ -9,4 +9,11 @@ public class BridgeGameAnswer {
     public BridgeGameAnswer(List<String> bridgeAnswer) {
         this.bridgeAnswer = bridgeAnswer;
     }
+
+    public boolean isAnswer(String answer, int index) {
+        if (bridgeAnswer.get(index) == answer) {
+            return true;
+        }
+        return false;
+    }
 }
