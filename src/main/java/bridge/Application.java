@@ -18,7 +18,7 @@ public class Application {
         try {
             bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
         }catch (NumberFormatException e){
-            System.out.println("[ERROR]");
+            System.out.println("[ERROR] 3~20 사이의 숫자만 입력이 가능합니다.");
         }
         validateMove();
         outputView.printResult();
