@@ -35,7 +35,7 @@ public class Player {
     }
 
     public boolean isPassedPosition(int position) {
-        return positionIndex < position;
+        return positionIndex >= position;
     }
 
     public Tile getMovingLogOf(int index) {
