@@ -9,6 +9,8 @@ import bridge.domain.Player;
  */
 public class OutputView {
 
+    private static final String FINISH_GAME_INFO_MESSAGE = "최종 게임 결과";
+
     private static final String BRIDGE_START_SIGN = "[";
     private static final String BRIDGE_END_SIGN = "]\n";
     private static final String BRIDGE_DIVIDE_SIGN = "|";
@@ -39,16 +41,20 @@ public class OutputView {
             bridgeMapBuilder.append(BRIDGE_DIVIDE_SIGN);
             index++;
         }
-        bridgeMapBuilder.replace(bridgeMapBuilder.length()-1, bridgeMapBuilder.length(), BRIDGE_END_SIGN);
+        bridgeMapBuilder.replace(bridgeMapBuilder.length() - 1, bridgeMapBuilder.length(), BRIDGE_END_SIGN);
         return bridgeMapBuilder.toString();
     }
 
+
+    public void printFinishGameInfoMessage() {
+        System.out.println(FINISH_GAME_INFO_MESSAGE);
+    }
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(boolean isWin, Player player) {
     }
 }

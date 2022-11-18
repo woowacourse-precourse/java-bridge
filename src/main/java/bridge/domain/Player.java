@@ -41,4 +41,8 @@ public class Player {
     public Tile getMovingLogOf(int index) {
         return movingLog.get(index);
     }
+
+    public int getTryCount() {
+        return this.tryCount;
+    }
 }

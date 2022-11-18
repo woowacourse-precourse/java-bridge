@@ -20,6 +20,7 @@ public class GameController {
     private final OutputView outputView;
     private final BridgeGame bridgeGame;
 
+    // todo: 초가화시 맵도 같이 초기화해서 final로 해 두는것도 어떨까 함
     public GameController() {
         bridgeGame = new BridgeGame();
         inputView = new InputView();
@@ -36,13 +37,14 @@ public class GameController {
             outputView.printMap(bridge, player);
             // isSurvival false -> 제시도 여부 확인
             if (!isSurvival) {
-                if(!askForTryAgain()){
+                if (!askForTryAgain()) {
                     break;
                 }
                 bridgeGame.retry(player);
             }
         } while (!bridgeGame.isWin(bridge, player));
         // 결과 출력
+        showResult(player, bridge);
     }
 
     private Bridge generateRandomBridge() {
@@ -84,7 +86,7 @@ public class GameController {
         return false;
     }
 
-    private String readTryAgainInput(){
+    private String readTryAgainInput() {
         String input = null;
         do {
             try {
@@ -94,6 +96,11 @@ public class GameController {
             }
         } while (input == null);
         return input;
+    }
+
+    private void showResult(Player player, Bridge bridge) {
+        outputView.printFinishGameInfoMessage();
+        outputView.printMap(bridge, player);
     }
 
 }
