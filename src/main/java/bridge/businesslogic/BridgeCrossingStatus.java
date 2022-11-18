@@ -17,7 +17,7 @@ public class BridgeCrossingStatus {
 
     public void clearAll(){
         upLine.delete(0,upLine.length());
-        downLine.delete(0,upLine.length());
+        downLine.delete(0,downLine.length());
     }
 
     public String getUpBridgeStatus(boolean isLastPickIsRight){
