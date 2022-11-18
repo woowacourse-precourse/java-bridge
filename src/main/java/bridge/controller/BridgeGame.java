@@ -94,6 +94,7 @@ public class BridgeGame {
         inputRetryOrEndCommand();
         if (retryOrEndCommand.equals(RETRY_COMMAND)) {
             tryCount++;
+            playerBridge.initializeShape();
             retry();
         }
         if (retryOrEndCommand.equals(END_COMMAND)) {
