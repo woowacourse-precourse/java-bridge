@@ -26,4 +26,14 @@ public class BridgeGameTest {
                 () -> bridgeGame.move("u")).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("이동 결과 변환")
+    @Test
+    void toResult() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "D"));
+        List<String> result = bridgeGame.toResult("U");
+        assertThat(result).isEqualTo(List.of("U", "O"));
+
+        result = bridgeGame.toResult("U");
+        assertThat(result).isEqualTo(List.of("U", "U", "X"));
+    }
 }
