@@ -22,6 +22,7 @@ public class Controller {
 	public void play(BridgeGame game) {
 		logic(game);
 		OutputView.printResultWin(state, game.getTryCount());
+		throw new IllegalArgumentException("게임을 종료합니다.");
 	}
 
 	private void logic(BridgeGame game) {
@@ -44,9 +45,5 @@ public class Controller {
 		if (command.equals(QUIT_GAME)) {
 			OutputView.printResultLose(state, game.getTryCount());
 		}
-	}
-
-	public BridgeGame getGame() {
-		return game;
 	}
 }

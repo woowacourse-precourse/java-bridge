@@ -2,15 +2,15 @@ package bridge;
 
 import static bridge.view.Validator.*;
 
-import bridge.controller.Controller;
+import bridge.controller.ControllerV2;
 
 public class Application {
 
 	public static void main(String[] args) {
-		Controller controller = new Controller();
+		ControllerV2 controllerV2 = new ControllerV2();
 		try {
-			controller.init();
-			controller.play(controller.getGame());
+			controllerV2.init();
+			controllerV2.run();
 		} catch (IllegalArgumentException e) {
 			System.out.println(INVALID_INPUT);
 		}
