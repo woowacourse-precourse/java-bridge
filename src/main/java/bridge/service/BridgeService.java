@@ -8,7 +8,6 @@ import bridge.domain.BridgeFlag;
 import bridge.domain.Map;
 import bridge.domain.UpDownFlag;
 import bridge.domain.User;
-import bridge.util.BridgeMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;

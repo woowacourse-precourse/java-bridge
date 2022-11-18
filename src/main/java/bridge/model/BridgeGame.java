@@ -1,5 +1,6 @@
-package bridge.controller;
+package bridge.model;
 
+import bridge.controller.GameFlag;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeFlag;
 import bridge.domain.Map;

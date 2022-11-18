@@ -6,7 +6,6 @@ import bridge.domain.Bridge;
 import bridge.domain.BridgeFlag;
 import bridge.domain.UpDownFlag;
 import bridge.domain.User;
-import bridge.util.BridgeMaker;
 import bridge.util.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;

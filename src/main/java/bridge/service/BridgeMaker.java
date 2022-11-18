@@ -1,8 +1,9 @@
-package bridge.util;
+package bridge.service;
 
 import static bridge.ExceptionConst.*;
 
 import bridge.domain.UpDownFlag;
+import bridge.util.BridgeNumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
