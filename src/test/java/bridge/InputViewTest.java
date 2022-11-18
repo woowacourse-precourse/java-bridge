@@ -11,18 +11,11 @@ public class InputViewTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
     private static final InputView inputView = new InputView();
 
-    @Test
-    void readBridgeSizeTest() {
-        int bridgeSize = inputView.readBridgeSize("13");
-
-        assertThat(bridgeSize).isEqualTo(13);
-    }
-
     @ParameterizedTest
     @ValueSource(strings = {"1", "21", "2147483648", "-2147483648", "이십칠", "5ㅋ", "@"})
-    void readBridgeSizeExceptionTest(String bridgeSize) {
+    void validateBridgeSizeExceptionTest(String bridgeSize) {
 
-        assertThatThrownBy(() -> inputView.readBridgeSize(bridgeSize))
+        assertThatThrownBy(() -> inputView.validateBridgeSize(bridgeSize))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -13,7 +13,9 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize(final String bridgeSize) {
+    public int readBridgeSize() {
+        String bridgeSize = Console.readLine();
+
         validateBridgeSize(bridgeSize);
         return Integer.parseInt(bridgeSize);
     }
@@ -32,7 +34,7 @@ public class InputView {
         return null;
     }
 
-    private void validateBridgeSize(final String bridgeSize) {
+    public void validateBridgeSize(final String bridgeSize) {
         final int parsedBridgeSize = Integer.parseInt(bridgeSize);
 
         validateNumber(bridgeSize);
@@ -40,13 +42,13 @@ public class InputView {
         validateRange(parsedBridgeSize);
     }
 
-    private void validateNumber(final String text) {
+    public void validateNumber(final String text) {
         if (!text.matches(NUMBER_REGEX)) {
             throw new IllegalArgumentException(ERROR_MESSAGE + "입력된 문자는 숫자가 아닙니다.");
         }
     }
 
-    private void validateInteger(final int integer) {
+    public void validateInteger(final int integer) {
         if (integer >= Integer.MAX_VALUE) {
             throw new IllegalArgumentException(ERROR_MESSAGE + "2^31 - 1 보다 큰 수를 입력할 수 없습니다.");
         }
@@ -55,7 +57,7 @@ public class InputView {
         }
     }
 
-    private void validateRange(final int bridgeSize) {
+    public void validateRange(final int bridgeSize) {
         if (bridgeSize > 20) {
             throw new IllegalArgumentException(ERROR_MESSAGE + "20 보다 큰 수를 입력할 수 없습니다.");
         }
