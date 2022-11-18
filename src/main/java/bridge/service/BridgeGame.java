@@ -166,6 +166,7 @@ public class BridgeGame {
      */
     private void retry() {
         resetGame();
+        tryCount++;
         start();
     }
 
@@ -174,7 +175,6 @@ public class BridgeGame {
      */
     private void resetGame() {
         isGameWin = true;
-        tryCount = 1;
         topGameBoard = new ArrayList<>();
         bottomGameBoard = new ArrayList<>();
     }
