@@ -10,13 +10,13 @@ public enum Node {
     private static final String INVALID_POSITION_FOR_BRIDGE_NODE =
             "다리의 위치는" + UP.position + " 또는 " + DOWN.position + "이어야 합니다.";
 
-    String position;
+    public String position;
 
     Node(String upOrDown) {
         position = upOrDown;
     }
 
-    public Node of(int position) {
+    public static Node of(int position) {
         if (position == UP_POSITION) {
             return UP;
         }
