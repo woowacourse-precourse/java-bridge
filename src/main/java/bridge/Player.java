@@ -33,4 +33,18 @@ public class Player {
         }
         return false;
     }
+
+    public int move(String step) {
+        int location = getLocation();
+        if (bridge.matchBlockLocation(location, step)) {
+            saveStep(step);
+            return getLocation();
+        }
+
+        return location;
+    }
+
+    private void saveStep(String step) {
+        stepsInTotalRound.get(round - 1).add(step);
+    }
 }

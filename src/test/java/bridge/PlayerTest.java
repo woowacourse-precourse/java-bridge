@@ -21,4 +21,16 @@ class PlayerTest {
         Player player = new Player(new Bridge(List.of("U", "U")));
         assertThat(player.movable()).isTrue();
     }
+
+    @Test
+    public void move_다리_시작점에서_움직이고_현재_위치_반환() throws Exception {
+        //given
+        Player player = new Player(new Bridge(List.of("U", "U")));
+
+        //when
+        int playerLocationAfterMove = player.move("U");
+
+        //then
+        assertThat(playerLocationAfterMove).isEqualTo(player.getLocation());
+    }
 }
