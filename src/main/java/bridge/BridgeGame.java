@@ -7,14 +7,28 @@ import java.util.*;
  */
 public class BridgeGame {
     private final InputView inputView = new InputView();
-
+    private final OutputView outputView = new OutputView();
     private int size;
-
     private List<String> answers;
+
+    public static StringJoiner upperBridge = new StringJoiner("|", "[", "]");
+    public static StringJoiner underBridge = new StringJoiner("|", "[", "]");
+    public static String success;
 
     public void gameSet() {
         size = inputView.readBridgeSize();
         answers = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
+    }
+    public void play() {
+        for (String answer : answers) {
+            String readMoving = inputView.readMoving();
+            move(answer, readMoving);
+            if (!answer.equals(readMoving)) {
+                success = "실패";
+                return;
+            }
+        }
+        success = "성공";
     }
 
     /**
@@ -22,7 +36,34 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public void move(String answer, String readMoving) {
+        moveUpperBridge(answer, readMoving);
+        moveUnderBridge(answer, readMoving);
+        outputView.printMap();
+    }
+
+    public void moveUpperBridge(String answer, String readMoving) {
+        if (answer.equals("D")) {
+            upperBridge.add("   ");
+            return ;
+        }
+        if (answer.equals(readMoving)) {
+            upperBridge.add(" O ");
+            return;
+        }
+        upperBridge.add(" X ");
+    }
+
+    public void moveUnderBridge(String answer, String readMoving) {
+        if (answer.equals("U")) {
+            underBridge.add("   ");
+            return ;
+        }
+        if (answer.equals(readMoving)) {
+            underBridge.add(" O ");
+            return;
+        }
+        underBridge.add(" X ");
     }
 
     /**
