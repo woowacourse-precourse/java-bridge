@@ -22,9 +22,9 @@ public class Validator {
         }
     }
 
-    public void restartValidate(String restart) {
-        if (!(RETRY.equals(restart) || QUIT.equals(restart))) {
-            throw new IllegalArgumentException(WRONG_RESTART_INPUT);
+    public void gameCommandValidate(String gameCommand) {
+        if (!(RETRY.equals(gameCommand) || QUIT.equals(gameCommand))) {
+            throw new IllegalArgumentException(WRONG_GAME_COMMAND_INPUT);
         }
     }
 

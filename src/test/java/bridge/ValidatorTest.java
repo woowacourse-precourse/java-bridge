@@ -4,8 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static bridge.ErrorCode.WRONG_BRIDGE_LENGTH_INPUT;
-import static bridge.ErrorCode.WRONG_MOVE_INPUT;
+import static bridge.ErrorCode.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ValidatorTest {
@@ -61,24 +60,24 @@ public class ValidatorTest {
     @DisplayName("재시작 입력이 유효한 경우")
     @ParameterizedTest
     @ValueSource(strings = {"R", "Q"})
-    void restartCorrectValue(String restart) {
+    void gameCommandCorrectValue(String gameCommand) {
         // given
         Validator validator = new Validator();
 
         // then
-        validator.restartValidate();
+        validator.gameCommandValidate(gameCommand);
     }
-    
+
     @DisplayName("재시작 입력이 유효하지 않은 경우")
     @ParameterizedTest
     @ValueSource(strings = {"r", "q", "z"})
-    void restartWrongValue(String restart) {
+    void gameCommandWrongValue(String gameCommand) {
         // given
         Validator validator = new Validator();
 
         // then
-        assertThatThrownBy(() -> validator.restartValidate())
+        assertThatThrownBy(() -> validator.gameCommandValidate(gameCommand))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(WRONG_RESTART_INPUT);
+                .hasMessageContaining(WRONG_GAME_COMMAND_INPUT);
     }
 }
