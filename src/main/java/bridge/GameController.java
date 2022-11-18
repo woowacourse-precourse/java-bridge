@@ -44,8 +44,16 @@ public class GameController {
             }
             outputView.printMap(bridgeGame.getResult());
         }
+
+        if (bridge.size() == count){
+            success = true;
+            return true;
+        }
+
+        return false;
     }
 
     private void getGameResult() {
+
     }
 }
