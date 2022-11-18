@@ -30,4 +30,12 @@ public class ValidationException {
         }
         throw new IllegalArgumentException(ERROR_MESSAGE + ERROR_INVALID_MOVEMENT);
     }
+
+    public boolean checkValidCommand(String command) {
+        List<String> validMovement = new ArrayList<>(List.of("Q", "R"));
+        if (validMovement.contains(command)) {
+            return true;
+        }
+        throw new IllegalArgumentException(ERROR_MESSAGE + ERROR_INVALID_RETRY);
+    }
 }
