@@ -36,4 +36,18 @@ public class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NOT_NUMERIC_INPUT_MSG);
     }
+
+    @ParameterizedTest
+    @DisplayName("다리생성을 위한 사용자 입력이 유효한 범위 내 값이 아닌 경우 경우 에러 메세지와 함께 IllegalArgumentException이 발생한다.")
+    @ValueSource(strings = {"0","1","2","21","30","100"})
+    public void validateRangedInputForBridgeSize(String userInput) throws Exception{
+        //given
+        InputValidator inputValidator = new InputValidator();
+        final String INVALID_BRIDGE_SIZE_INPUT = "유효하지 않은 다리 크기입니다.";
+        //when
+        //then
+        Assertions.assertThatThrownBy(() -> inputValidator.validateBridgeSize(userInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(INVALID_BRIDGE_SIZE_INPUT);
+    }
 }
