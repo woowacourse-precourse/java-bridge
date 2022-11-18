@@ -8,6 +8,7 @@ public class Application {
     private boolean runGame;
 
     private int tryNumber = 1;
+    private String lastText="";
 
     public Application() {
         inputView = new InputView();
@@ -29,6 +30,8 @@ public class Application {
         while (!bridgeGame.isGameOver()) {
             gameDo();
         }
+        if(bridgeGame.isWin())
+            return false;
         return judgeNewGame();
     }
 
@@ -50,16 +53,16 @@ public class Application {
     }
 
     private void gameDo() {
-        outputView.printMoveBridge();
         bridgeGame.gameOverChecker(bridgeGame.getNowOn());
-        String lastInput = inputView.readMoving();
-        outputView.printMap(bridgeGame.getBridge(), bridgeGame.getNowOn(), lastInput);
-        bridgeGame.move(lastInput);
         if(bridgeGame.isGameOver())
             return;
+        outputView.printMoveBridge();
+        String lastInput = inputView.readMoving();
+        lastText = outputView.printMap(bridgeGame.getBridge(), bridgeGame.getNowOn(), lastInput);
+        bridgeGame.move(lastInput);
     }
 
     public void gameResult(){
-        outputView.printResult(tryNumber,bridgeGame.getBridge(),bridgeGame.isWin());
+        outputView.printResult(tryNumber,lastText,bridgeGame.isWin());
     }
 }
