@@ -9,7 +9,7 @@ import bridge.view.OutputView;
 
 public class ControllerV2 {
 	private BridgeGame game;
-	List<String> state;
+	private List<String> state;
 	private String command = "";
 	private int size;
 	private boolean retry = true;
@@ -31,6 +31,10 @@ public class ControllerV2 {
 		} while (retry);
 	}
 
+	public void end() {
+		OutputView.printResultWin(state, game.getTryCount());
+	}
+
 	private int gameState(int index) {
 		String location = InputView.readMoving();
 		state = this.game.move(location, index);
@@ -41,7 +45,6 @@ public class ControllerV2 {
 
 	private void isWin(int index) {
 		if (index == size) {
-			OutputView.printResultWin(state, game.getTryCount());
 			this.retry = false;
 		}
 	}

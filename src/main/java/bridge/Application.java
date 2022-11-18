@@ -11,6 +11,7 @@ public class Application {
 		try {
 			controllerV2.init();
 			controllerV2.run();
+			controllerV2.end();
 		} catch (IllegalArgumentException e) {
 			System.out.println(INVALID_INPUT);
 		}
