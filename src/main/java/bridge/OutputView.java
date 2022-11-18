@@ -9,7 +9,7 @@ public class OutputView {
     }
 
     public void printInputBridgeSize() {
-        System.out.println("\n다리의 길이를 입력해주세요");
+        System.out.println("\n다리의 길이를 입력해주세요.");
     }
 
     public void printInputMoving() {
