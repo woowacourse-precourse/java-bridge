@@ -5,6 +5,7 @@ package bridge.view;
  */
 
 import camp.nextstep.edu.missionutils.Console;
+
 import static bridge.messages.ExceptionMessage.*;
 
 /**
@@ -17,7 +18,6 @@ public class InputView {
     private static final String BRIDGE_SIZE_INPUT_MESSAGE = "다리의 길이를 입력해주세요.";
     private static final String MOVE_INPUT_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String GAME_COMMAND_INPUT_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-    private static final int EMPTY_LENGTH_VALUE = 0;
 
     /**
      * 다리의 길이를 입력받는다.
@@ -44,10 +44,10 @@ public class InputView {
     }
 
     private String validateNotEmpty(String readLine) {
-        if (readLine.length() > EMPTY_LENGTH_VALUE) {
-            return readLine;
+        if (readLine.isBlank()) {
+            throw new IllegalArgumentException(ERROR_INPUT_LENGTH_ZERO.getMessage());
         }
-        throw new IllegalArgumentException(ERROR_INPUT_LENGTH_ZERO.getMessage());
+        return readLine;
     }
 
     private int validateStringToInt(String readLine) {
