@@ -2,7 +2,6 @@ package bridge.constant;
 
 public class Constants {
     public static class BridgeUtils {
-
         public static final String BRIDGE_SEPARATOR = " | ";
         public static final String BRIDGE_START = "[ ";
         public static final String BRIDGE_FINISH = " ]";

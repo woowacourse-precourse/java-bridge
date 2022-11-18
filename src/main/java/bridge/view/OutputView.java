@@ -60,17 +60,11 @@ public class OutputView {
         System.out.printf(TOTAL_TRY_CNT_MESSAGE, tryCnt);
     }
 
-    /**
-     * 게임 시작 메시지 출력
-     */
     public static void printStartMessage() {
         System.out.println(START_MESSAGE);
         printEnter();
     }
 
-    /**
-     * 한칸 띄기
-     */
     public static void printEnter() {
         System.out.println("");
     }

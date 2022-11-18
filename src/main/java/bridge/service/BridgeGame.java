@@ -28,9 +28,7 @@ public class BridgeGame {
     boolean isGameWin = true;
     int tryCount = 1;
 
-    /**
-     * 다리 게임 시작
-     */
+
     public void start() {
         resetGame();
         startMove(bridge);
@@ -60,12 +58,6 @@ public class BridgeGame {
         return FAIL;
     }
 
-
-    /**
-     * 다리 길이만큼 이동 시작
-     *
-     * @param bridge 다리
-     */
     private void startMove(List<String> bridge) {
         for (String nowBridge : bridge) {
             moveOneStep(nowBridge);
@@ -75,11 +67,6 @@ public class BridgeGame {
         }
     }
 
-    /**
-     * 한 걸음 이동
-     *
-     * @param nowBridge 이번 차례에 건널 다리 위치
-     */
     private void moveOneStep(String nowBridge) {
         String movingDirection = inputMovingDirection();
         String movingResult = move(nowBridge, movingDirection);
@@ -92,12 +79,6 @@ public class BridgeGame {
         }
     }
 
-    /**
-     * GameBoard에 이동결과 추가
-     *
-     * @param movingDirection 입력받은 이동 방향
-     * @param movingResult    이동 결과
-     */
     private void checkDirection(String movingDirection, String movingResult) {
         if (movingDirection.equals(UP)) {
             topGameBoard.add(movingResult);
@@ -108,9 +89,6 @@ public class BridgeGame {
         }
     }
 
-    /**
-     * 재시작 체크
-     */
     private boolean checkRetry() {
         boolean isRetry;
 
@@ -123,11 +101,6 @@ public class BridgeGame {
         return isRetry;
     }
 
-    /**
-     * 이동 방향 입력
-     *
-     * @return 입력받은 이동 방향
-     */
     private String inputMovingDirection() {
         console.movementDirectionInputRequestMessage();
         String movingDirection;
@@ -141,12 +114,6 @@ public class BridgeGame {
         return movingDirection;
     }
 
-    /**
-     * 다리 생성
-     *
-     * @param bridgeMaker 다리 생성 클래스
-     * @return 생성된 다리
-     */
     private List<String> generateBridge(BridgeMaker bridgeMaker) {
         console.bridgeSizeInputRequestMessage();
         List<String> bridge;
@@ -172,9 +139,6 @@ public class BridgeGame {
         start();
     }
 
-    /**
-     * 게임 관련 데이터 리셋
-     */
     private void resetGame() {
         isGameWin = true;
         topGameBoard = new ArrayList<>();

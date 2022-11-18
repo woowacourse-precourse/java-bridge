@@ -74,11 +74,6 @@ public class InputView {
         }
     }
 
-    /**
-     * 입력받은 이동 방향 검증
-     *
-     * @param direction 입력받은 이동 방향 [U or D]
-     */
     private static void validateDirection(String direction) {
         if (direction.equals(UP) || direction.equals(DOWN)) {
             return;
