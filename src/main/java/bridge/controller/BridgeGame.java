@@ -49,4 +49,12 @@ public class BridgeGame {
             return inputBridgeLength();
         }
     }
+
+    public void setUpBridge(int size) {
+        directions = bridgeMaker.makeBridge(size);
+    }
+
+    public void initialize() {
+        setUpBridge(inputBridgeLength());
+    }
 }
