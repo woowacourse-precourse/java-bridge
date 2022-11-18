@@ -2,12 +2,12 @@ package bridge;
 
 import java.util.NoSuchElementException;
 
-public class Bridge {
+public class BridgeSize {
     private static final String BRIDGE_SIZE_RANGE_EXCEPTION = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     private static final String BRIDGE_SIZE_NUMERIC_EXCEPTION = "[ERROR] 다리 길이는 숫자여야 합니다.";
     private final int bridgeSize;
 
-    public Bridge(String bridgeSize) {
+    public BridgeSize(String bridgeSize) {
         bridgeNumericException(bridgeSize);
         bridgeSizeRangeException(bridgeSize);
         this.bridgeSize = toInteger(bridgeSize);
