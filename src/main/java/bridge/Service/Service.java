@@ -21,4 +21,15 @@ public class Service {
     public void welcomeGame() {
         outputView.printWelcomeMessage();
     }
+
+    // 게임 초기화 기능
+    public void initGame() {
+        do {
+            try {
+                break;
+            } catch (IllegalArgumentException error) {
+                outputView.printErrorMessage(error);
+            }
+        } while (true);
+    }
 }
