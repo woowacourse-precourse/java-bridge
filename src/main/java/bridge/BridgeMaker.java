@@ -36,10 +36,17 @@ public class BridgeMaker {
     }
 
     public void addMovableSpace(List<String> bridge, int bridgeNumber) {
+        validateBridgeNumber(bridgeNumber);
         if (bridgeNumber == 1) {
             bridge.add("U");
             return;
         }
         bridge.add("D");
+    }
+
+    public void validateBridgeNumber(int bridgeNumber) {
+        if (bridgeNumber < 0 || 1 < bridgeNumber) {
+            throw new IllegalStateException("[ERROR] 생성된 다리번호가 유효하지 않습니다");
+        }
     }
 }
