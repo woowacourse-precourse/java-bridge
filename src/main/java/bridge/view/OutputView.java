@@ -23,7 +23,7 @@ public class OutputView {
     private static final String SQUARE_BRACKETS_SUFFIX = " ]";
     private static final String SPACE_DISPLAY = " ";
     private static final int BRIDGE_LINE_SIZE = 2;
-    private static final int NUMBER_OF_PLACES_NOT_TO_GO = 0;
+    private static final int NUMBER_THAT_MEANS_PLACES_NOT_TO_WENT = 0;
     
     public void printGameStartMessage() {
         printMessage(GAME_START_MESSAGE);
@@ -79,7 +79,7 @@ public class OutputView {
     }
     
     private boolean isNotPlaceToMove(final int lineIndex, final String currentMoving) {
-        return (currentMoving.charAt(0) + lineIndex) % 2 == NUMBER_OF_PLACES_NOT_TO_GO;
+        return (currentMoving.charAt(0) + lineIndex) % 2 == NUMBER_THAT_MEANS_PLACES_NOT_TO_WENT;
     }
     
     private MoveResultDisplay currentMoveResult(final GameResultDTO gameResultDTO, final int countOfMoving) {
