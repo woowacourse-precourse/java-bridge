@@ -1,9 +1,13 @@
 package bridge.view;
 
+import bridge.domain.BridgeGame;
 import bridge.model.Bridge;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -14,10 +18,12 @@ class OutputViewTest extends NsTest {
     void outputViewTest() {
         //given
         OutputView outputView = new OutputView();
+        List<String> bridge = new ArrayList<>(List.of("U", "D", "D", "U", "U"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
         StringBuilder upperBridge = new StringBuilder();
         StringBuilder lowerBridge = new StringBuilder();
         //when
-        outputView.writeInitUpperBridge(upperBridge, lowerBridge, true);
+        bridgeGame.writeInitUpperBridge(upperBridge, lowerBridge, true);
         //then
         outputView.printMap(upperBridge, lowerBridge);
         assertThat(output()).contains(
@@ -31,14 +37,16 @@ class OutputViewTest extends NsTest {
     void outputViewTest2() {
         //given
         OutputView outputView = new OutputView();
+        List<String> bridge = new ArrayList<>(List.of("U", "D", "D", "U", "U"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
         StringBuilder sb = new StringBuilder();
         StringBuilder sb2 = new StringBuilder();
-        Bridge bridge = new Bridge(sb, sb2);
-        StringBuilder upperBridge = bridge.getUpperBridge();
-        StringBuilder lowerBridge = bridge.getLowerBridge();
+        Bridge testBridge = new Bridge(sb, sb2);
+        StringBuilder upperBridge = testBridge.getUpperBridge();
+        StringBuilder lowerBridge = testBridge.getLowerBridge();
         //when
-        outputView.writeInitUpperBridge(upperBridge, lowerBridge, true);
-        outputView.writeUpperBridge(upperBridge, lowerBridge, true);
+        bridgeGame.writeInitUpperBridge(upperBridge, lowerBridge, true);
+        bridgeGame.writeUpperBridge(upperBridge, lowerBridge, true);
         //then
         outputView.printMap(upperBridge, lowerBridge);
         assertThat(output()).contains(
@@ -52,15 +60,17 @@ class OutputViewTest extends NsTest {
     void outputViewTest3() {
         //given
         OutputView outputView = new OutputView();
+        List<String> bridge = new ArrayList<>(List.of("U", "D", "D", "U", "U"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
         StringBuilder sb = new StringBuilder();
         StringBuilder sb2 = new StringBuilder();
-        Bridge bridge = new Bridge(sb, sb2);
-        StringBuilder upperBridge = bridge.getUpperBridge();
-        StringBuilder lowerBridge = bridge.getLowerBridge();
+        Bridge testBridge = new Bridge(sb, sb2);
+        StringBuilder upperBridge = testBridge.getUpperBridge();
+        StringBuilder lowerBridge = testBridge.getLowerBridge();
         //when
-        outputView.writeInitUpperBridge(upperBridge, lowerBridge, true);
-        outputView.writeUpperBridge(upperBridge, lowerBridge, true);
-        outputView.writeLowerBridge(upperBridge, lowerBridge, false);
+        bridgeGame.writeInitUpperBridge(upperBridge, lowerBridge, true);
+        bridgeGame.writeUpperBridge(upperBridge, lowerBridge, true);
+        bridgeGame.writeLowerBridge(upperBridge, lowerBridge, false);
         //then
         outputView.printMap(upperBridge, lowerBridge);
         assertThat(output()).contains(

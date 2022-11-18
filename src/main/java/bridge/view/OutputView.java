@@ -25,56 +25,6 @@ public class OutputView {
         System.out.println(lowerBridge);
     }
 
-    public void writeInitUpperBridge(StringBuilder upperBridge, StringBuilder lowerBridge, boolean success) {
-        if(success) {
-            upperBridge.append("[ ").append("O").append(" ]");
-            lowerBridge.append("[ ").append(" ").append(" ]");
-        }
-        if(!success) {
-            upperBridge.append("X").append(" ]");
-            lowerBridge.append(" ").append(" ]");
-        }
-    }
-
-    public void writeInitLowerBridge(StringBuilder upperBridge, StringBuilder lowerBridge, boolean success) {
-        if(success) {
-            upperBridge.append(" ").append(" ]");
-            lowerBridge.append("O").append(" ]");
-        }
-        if(!success) {
-            upperBridge.append(" ").append(" ]");
-            lowerBridge.append("X").append(" ]");
-        }
-    }
-
-    public void writeUpperBridge(StringBuilder upperBridge, StringBuilder lowerBridge, boolean success) {
-        bridgeLastCharRemove(upperBridge, lowerBridge);
-        if(success) {
-            upperBridge.append("| ").append("O").append(" ]");
-            lowerBridge.append("| ").append(" ").append(" ]");
-        }
-        if(!success) {
-            upperBridge.append("| ").append("X").append(" ]");
-            lowerBridge.append("| ").append(" ").append(" ]");
-        }
-    }
-
-    public void writeLowerBridge(StringBuilder upperBridge, StringBuilder lowerBridge, boolean success) {
-        bridgeLastCharRemove(upperBridge, lowerBridge);
-        if(success) {
-            upperBridge.append("| ").append(" ").append(" ]");
-            lowerBridge.append("| ").append("O").append(" ]");
-        }
-        if(!success) {
-            upperBridge.append("| ").append(" ").append(" ]");
-            lowerBridge.append("| ").append("X").append(" ]");
-        }
-    }
-
-    private void bridgeLastCharRemove(StringBuilder upperBridge, StringBuilder lowerBridge) {
-        upperBridge.deleteCharAt(upperBridge.length()-1);
-        lowerBridge.deleteCharAt(lowerBridge.length()-1);
-    }
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.

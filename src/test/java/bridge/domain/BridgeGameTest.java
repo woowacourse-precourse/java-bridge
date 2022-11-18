@@ -14,7 +14,8 @@ class BridgeGameTest {
     @Test
     void indexMoveTest() {
         //given
-        BridgeGame bridgeGame = new BridgeGame();
+        List<String> bridge = new ArrayList<>(List.of("U","U","D","D","D"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
         //when
         for(int i = 0; i < 5; i++){
             bridgeGame.move();
@@ -27,21 +28,22 @@ class BridgeGameTest {
     @Test
     void retryTest() {
         //given
-        BridgeGame bridgeGame = new BridgeGame();
+        List<String> bridge = new ArrayList<>(List.of("U","U","D","D","D"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
         //when
         String retry = "R";
         String quit = "Q";
         //then
-        assertThat(bridgeGame.retry(retry)).isTrue();
-        assertThat(bridgeGame.retry(quit)).isFalse();
+        assertThat(bridgeGame.checkRetry(retry)).isTrue();
+        assertThat(bridgeGame.checkRetry(quit)).isFalse();
     }
 
     @DisplayName("다리 배열과 input, index 가 주어졌을 때 return value 확인")
     @Test
     void checkStatusTest() {
         //given
-        BridgeGame bridgeGame = new BridgeGame();
         List<String> bridge = new ArrayList<>(List.of("U", "D", "D", "U", "U"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
         //when
         String input = "U";
         int index = 2;
