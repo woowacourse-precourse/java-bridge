@@ -33,12 +33,13 @@ public class BridgeGame {
      */
     public void retry() {
         tryCount++;
+        reset();
+    }
+    private void reset() {
+        BridgeTrack.clear();
     }
     public List<String> getBridgeTrack() {
         return new ArrayList<>(BridgeTrack);
-    }
-    public void reset() {
-        BridgeTrack.clear();
     }
     public boolean isRecentMoveSuccessful() {
         int lastMoveIndex = BridgeTrack.size() - 1;
