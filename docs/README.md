@@ -105,4 +105,4 @@ Q
   - [X] U, D 이외의 값은 예외를 발생한다. - BridgeGame#validateMoveCommand 
 - [X] 다리의 초기 상태를 저장한다. - BridgeGame#BridgeGame
 - [ ] 플레이어로부터 입력받은 이동할 칸의 가능 여부를 판단한다. - BridgeGame#move
-  - [ ] 다리에서 어느 칸의 값을 따져야하는 지 알기 위해 플레이어로부터 입력받은 이동 명령에 맞는 인덱스를 구한다. - BridgeGame#getIndex
+  - [X] 다리에서 어느 칸의 값을 따져야하는 지 알기 위해 플레이어로부터 입력받은 이동 명령에 맞는 인덱스를 구한다. - BridgeGame#getIndex

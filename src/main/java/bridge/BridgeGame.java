@@ -7,6 +7,8 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private static final int UP_INDEX = 0;
+    private static final int DOWN_INDEX = 1;
     private static final String MOVE_UP = "U";
     private static final String MOVE_DOWN = "D";
     private static final int MAX_HEIGHT = 2;
@@ -32,7 +34,9 @@ public class BridgeGame {
      */
     public boolean move(String command, int currentPosition) {
         validateMoveCommand(command);
-        return true;
+        int index = getIndex(command);
+
+        return false;
     }
 
     /**
@@ -60,6 +64,13 @@ public class BridgeGame {
             return;
         }
         throw new IllegalArgumentException(INPUT_COMMAND_ERROR);
+    }
+
+    private int getIndex(String command) {
+        if (command.equals(MOVE_UP)) {
+            return UP_INDEX;
+        }
+        return DOWN_INDEX;
     }
 
     public int getSize() {
