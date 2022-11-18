@@ -7,19 +7,19 @@ package bridge;
  */
 public class OutputView {
     private static final String START_GAME = "다리 건너기 게임을 시작합니다.";
-    public static final String ENTER_LENGTH = "다리의 길이를 입력해주세요.";
+    public static final String BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     public static final String ENTER_MOVE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     public static final String ENTER_RESTART = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     public static final String FINAL_RESULT = "최종 게임 결과";
     public static final String SUCCESS_OR_NOT = "게임 성공 여부: ";
     public static final String TOTAL_TRIAL = "\n총 시도한 횟수: ";
 
-    public static void printStart(){
+    public void printStart(){
         System.out.println(START_GAME);
     }
 
-    public static void printEnterLength(){
-        System.out.println(ENTER_LENGTH);
+    public void printEnterBridgeSize(){
+        System.out.println(BRIDGE_SIZE);
     }
     public void printEnterMove() {
         System.out.println(ENTER_MOVE);
@@ -45,7 +45,7 @@ public class OutputView {
         System.out.println(TOTAL_TRIAL + "%d");
     }
 
-    public static void printRestart(){
+    public void printRestart(){
         System.out.println(ENTER_RESTART);
     }
 }
