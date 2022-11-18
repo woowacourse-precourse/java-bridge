@@ -14,7 +14,7 @@ public class BridgeGame {
     private final InputView inputView;
     private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
-    private List<String> directions;
+    private Bridge bridge;
 
     public BridgeGame(InputView inputView, OutputView outputView, BridgeMaker bridgeMaker) {
         this.inputView = inputView;
@@ -61,7 +61,7 @@ public class BridgeGame {
     }
 
     public void setUpBridge(int size) {
-        directions = bridgeMaker.makeBridge(size);
+        bridge = new Bridge(bridgeMaker.makeBridge(size));
     }
 
     public void initialize() {
