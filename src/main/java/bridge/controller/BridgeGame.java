@@ -39,7 +39,7 @@ public class BridgeGame {
         bridgeService.printStartMessage();
         bridge = bridgeService.makeBridge();
         user = new User();
-        map = new Map();
+        map = new Map(bridge, user);
     }
 
     private GameFlag loop() {
@@ -63,7 +63,7 @@ public class BridgeGame {
     public void move() {
         UpDownFlag flag = bridgeService.receiveMoving();
         user.move(flag);
-        map.update(bridge, user);
+        map.update();
         bridgeService.printMap(map);
     }
 

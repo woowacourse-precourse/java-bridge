@@ -15,9 +15,9 @@ class MapTest {
 
     @BeforeEach
     void setUp() {
-        map = new Map();
         bridge = Bridge.of(List.of("U", "U", "U"));
         user = new User();
+        map = new Map(bridge, user);
     }
 
     @Test
@@ -29,7 +29,7 @@ class MapTest {
         user.move(UpDownFlag.UP);
         user.move(UpDownFlag.UP);
         // expect
-        assertThatThrownBy(() -> map.update(bridge, user))
+        assertThatThrownBy(() -> map.update())
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -41,7 +41,7 @@ class MapTest {
         user.move(UpDownFlag.DOWN);
         user.move(UpDownFlag.UP);
         // when
-        map.update(bridge, user);
+        map.update();
         // then
         assertThat(map.getUpper())
                 .isEqualTo(List.of(BridgeFlag.SUCCESS, BridgeFlag.NOTHING, BridgeFlag.SUCCESS));
@@ -57,7 +57,7 @@ class MapTest {
         user.move(UpDownFlag.UP);
         user.move(UpDownFlag.UP);
         // when
-        map.update(bridge, user);
+        map.update();
         // then
         assertThat(map.getUpper())
                 .isEqualTo(List.of(BridgeFlag.SUCCESS, BridgeFlag.SUCCESS, BridgeFlag.SUCCESS));
@@ -71,7 +71,7 @@ class MapTest {
         // given
 
         // when
-        map.update(bridge, user);
+        map.update();
 
         // then
         assertThat(map.getUpper())

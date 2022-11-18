@@ -4,15 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Map {
-    private final List<BridgeFlag> upper;
-    private final List<BridgeFlag> lower;
+    private final Bridge bridge;
+    private final User user;
+    private final List<BridgeFlag> upper = new ArrayList<>();
+    private final List<BridgeFlag> lower = new ArrayList<>();
 
-    public Map() {
-        upper = new ArrayList<>();
-        lower = new ArrayList<>();
+    public Map(Bridge bridge, User user) {
+        this.bridge = bridge;
+        this.user = user;
     }
 
-    public void update(Bridge bridge, User user) {
+    public void update() {
         if (user.getMovedLength() > bridge.getLength()) {
             throw new IllegalArgumentException("[ERROR] 유저가 건넌 다리의 길이가 다리의 길이보다 깁니다.");
         }
