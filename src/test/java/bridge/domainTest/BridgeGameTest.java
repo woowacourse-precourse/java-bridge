@@ -22,4 +22,38 @@ public class BridgeGameTest {
             Assertions.assertThat(result).isTrue();
         }
     }
+
+    @Test
+    @DisplayName("move()를 실행한 뒤 사용자의 입력이 history에 남는지 확인")
+    void moveTestFirst() {
+        List<String> bridge = List.of("U","D","D","U");
+        List<String> input = List.of("U","D","D", "U");
+
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+
+        for (int round = 0; round < input.size(); round++) {
+            bridgeGame.move(input.get(round), round);
+        }
+
+        List<String> history = bridgeGame.getHistory();
+
+        Assertions.assertThat(history).containsExactly("U","D","D","U");
+    }
+
+    @Test
+    @DisplayName("move()를 실행한 뒤 사용자의 입력이 중간에 틀려도 history에 남는지 확인")
+    void moveTestSecond() {
+        List<String> bridge = List.of("U","D","D","U");
+        List<String> input = List.of("U","D");
+
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+
+        for (int round = 0; round < input.size(); round++) {
+            bridgeGame.move(input.get(round), round);
+        }
+
+        List<String> history = bridgeGame.getHistory();
+
+        Assertions.assertThat(history).containsExactly("U","D");
+    }
 }
