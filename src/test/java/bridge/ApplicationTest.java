@@ -3,10 +3,12 @@ package bridge;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import bridge.model.BridgeMaker;
 import bridge.model.BridgeNumberGenerator;
+import bridge.view.InputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -47,6 +49,15 @@ class ApplicationTest extends NsTest {
             runException("a");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    void 다리길이_숫자_범위_테스트() {
+        int input = 21;
+        assertThatThrownBy(() -> {
+            InputView.bridgeLenRangeCheck(input);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
     }
 
     @Override
