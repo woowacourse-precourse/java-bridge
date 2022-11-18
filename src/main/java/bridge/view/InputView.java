@@ -15,14 +15,11 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println(INPUT_FOR_BRIDGE_SIZE);
-        int result = 0;
+        String input = Console.readLine();
 
-        try {
-            result = Integer.parseInt(Console.readLine());
-            return result;
-        } catch (NumberFormatException numberFormatException) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_IS_NUMERIC);
-        }
+        int result = convertBridgeSizeToInteger(input);
+
+        return result;
     }
 
     /**
@@ -37,5 +34,13 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private int convertBridgeSizeToInteger(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException numberFormatException) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_IS_NUMERIC);
+        }
     }
 }
