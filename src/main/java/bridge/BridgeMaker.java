@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.domain.Movement;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -27,6 +28,6 @@ public class BridgeMaker {
             bridge.add(Movement.findByMovement(code).name());
         }
 
-        return bridge;
+        return Collections.unmodifiableList(bridge);
     }
 }
