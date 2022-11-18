@@ -76,4 +76,15 @@ class BridgeMakerTest {
 
         assertThat(Math.round(Zero/trials)*2).isEqualTo(1);
     }
+
+    @DisplayName("값이 0인 경우 아래칸 1인 경우 위칸이 건널 수 있는 칸이 되는지 확인한다.")
+    @ValueSource(ints = {0,1})
+    @Test
+    void validate_Is_Zero_Down_And_One_Up(int input) {
+        assertThatThrownBy(()-> BridgeMaker.validateIsZeroDownAndOneUp(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
+
 }
