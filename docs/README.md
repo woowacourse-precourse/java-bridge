@@ -110,7 +110,7 @@
 - [x] 게임 시작 메시지 출력 - printGameStart
 - [x] 다리 길이 입력 메시지 출력 - printInputBridgeSize
 - [x] 이동할 칸 입력 메시지 출력 - printInputMove
-- [ ] 게임 재시작 여부 입력 메시지 출력 - printInputRetry
+- [x] 게임 재시작 여부 입력 메시지 출력 - printInputRetry
 - [ ] 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력 - printMap
   - [ ] 위치하고 있는 방향(위, 아래)과 다리의 상태를 비교하여 형식에 맞게 출력 - printDirectionRoadStateMap 
   - [ ] 칸 위치에 따른 구분자 출력 - printRoadSeparation

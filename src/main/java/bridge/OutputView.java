@@ -36,7 +36,7 @@ public class OutputView {
     }
 
     public void printInputRetry(){
-        // TODO: 게임 재시작 여부 입력 메시지 출력
+        System.out.println(INPUT_RETRY_MESSAGE);
     }
 
     /**
