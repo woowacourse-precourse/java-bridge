@@ -29,6 +29,10 @@ public class OutputView {
         System.out.println(Output.CONTINUE_OR_END_REQUEST.getOutput());
     }
 
+    public void printTitle() {
+        System.out.println(Output.GAME_RESULT_TITLE.getOutput());
+    }
+
     public void printResult(boolean isWin, int numberOfAttempt) {
         if (isWin) {
             System.out.println(Output.WIN_OR_LOSE.getOutput()+"성공");
