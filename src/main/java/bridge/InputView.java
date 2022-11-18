@@ -5,11 +5,13 @@ package bridge;
  */
 public class InputView {
 
+    Checker checker=new Checker();
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        return checker.checkValidate("");
     }
 
     /**
