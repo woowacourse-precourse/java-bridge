@@ -1,8 +1,9 @@
 package bridge;
 
-import bridge.ArchitecturalDesignOffice;
-import bridge.BridgeConverter;
-import bridge.BridgeNumberGenerator;
+import static bridge.constant.NumberConstant.MAXIMUM_BRIDGE_SIZE;
+import static bridge.constant.NumberConstant.MINIMUM_BRIDGE_SIZE;
+import static bridge.exception.ExceptionHandler.BRIDGE_SIZE;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,13 +26,30 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        List<String> bridgeBlueprint = new ArrayList<>();
+        validateBridgeSize(size);
 
+        List<String> bridgeBlueprint = new ArrayList<>();
         for (int i = 0; i < size; ++i) {
             bridgeBlueprint.add(BridgeConverter.covertToBridgeNumber(bridgeNumberGenerator.generate()));
         }
 
+        save(bridgeBlueprint);
+
         return bridgeBlueprint;
+    }
+
+    private void validateBridgeSize(int bridgeSize) {
+        if (bridgeSize < MINIMUM_BRIDGE_SIZE.getCode() || bridgeSize > MAXIMUM_BRIDGE_SIZE.getCode()) {
+            BRIDGE_SIZE.error();
+        }
+    }
+
+    public ArchitecturalDesignOffice save(final List<String> bridgeBlueprint) {
+       return new ArchitecturalDesignOffice(bridgeBlueprint);
+    }
+
+    public List<String> reload(final ArchitecturalDesignOffice architecturalDesignOffice) {
+        return architecturalDesignOffice.sendStoredBridgeBlueprint();
     }
 
 }
