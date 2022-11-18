@@ -10,6 +10,7 @@ public class OutputView {
     private static final String START_BRIDGE_GAME = "다리 건너기 게임을 시작합니다.";
     private static final String END_BRIDGE_GAME = "최종 게임 결과";
     private static final String GAME_SUCCESS_FLAG_MESSAGE = "게임 성공 여부: ";
+    private static final String TOTAL_NUMBER_OF_TRIES = "총 시도한 횟수: ";
 
     public void printGameStartMessage() {
         System.out.println(START_BRIDGE_GAME);
@@ -39,6 +40,7 @@ public class OutputView {
         System.out.println(END_BRIDGE_GAME);
         printMap(currentPosition, bridgeGame.getBridgeMap());
         System.out.println(GAME_SUCCESS_FLAG_MESSAGE + getResult(bridgeGame.isSuccess()));
+        System.out.print(TOTAL_NUMBER_OF_TRIES + bridgeGame.getNumberOfTries());
     }
 
     private String getResult(boolean isSuccess) {

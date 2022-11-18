@@ -115,4 +115,4 @@ Q
 - [X] 게임 종료 시 최종 게임 결과를 출력한다. - OutputView#printResult
   - [X] 종료 직전까지 진행한 다리 상태를 출력한다. - OutputView#printMap
   - [X] 게임 성공 여부를 구한다. - OutputView#getResult
-  - [ ] 총 시도 횟수를 출력한다.
+  - [X] 총 시도 횟수를 출력한다.
