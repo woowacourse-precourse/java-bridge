@@ -10,6 +10,7 @@ public class BridgeGame {
 
     private InputView inputView;
     private OutputView outputView;
+    private List<String> result;
 
     public BridgeGame(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -32,6 +33,7 @@ public class BridgeGame {
                 result.add("X");
             }
             outputView.printMap(result, bridge);
+            this.result = result;
             if (result.contains("X")) {
                 return "fail";
             }
@@ -55,10 +57,15 @@ public class BridgeGame {
                 result.add("X");
             }
             outputView.printMap(result, bridge);
+            this.result = result;
             if (result.contains("X")) {
-                return "fail";
+                return "실패";
             }
         }
-        return "success";
+        return "성공";
+    }
+
+    public List<String> getResult() {
+        return result;
     }
 }
