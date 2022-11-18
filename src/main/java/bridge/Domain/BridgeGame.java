@@ -10,11 +10,13 @@ public class BridgeGame {
     private int gameStartCount;
     private Player player;
     private Bridge bridge;
+    private GameResultGenerator gameResultGenerator;
 
     public BridgeGame(Bridge bridge) {
         this.gameStartCount = 1;
         this.player = new Player();
         this.bridge = bridge;
+        this.gameResultGenerator = new GameResultGenerator();
     }
 
     /**
@@ -39,5 +41,6 @@ public class BridgeGame {
      */
     public void retry() {
         this.gameStartCount++;
+        gameResultGenerator.initGameResult();
     }
 }

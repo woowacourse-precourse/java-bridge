@@ -1,7 +1,6 @@
 package bridge.Domain;
 
 import bridge.EnumCollections.BridgeResultType;
-import bridge.EnumCollections.BridgeType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +42,11 @@ public class GameResultGenerator {
 
     public String makeBridgeOutput(List<String> bridge) {
         return"[ " + String.join(" | ", bridge) + " ]";
+    }
+
+    public void initGameResult() {
+        this.upperBridge = new ArrayList<>();
+        this.lowerBridge = new ArrayList<>();
     }
 
 }
