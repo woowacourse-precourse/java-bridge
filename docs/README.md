@@ -87,7 +87,7 @@
 다리의 길이를 입력 받아서 다리를 생성
 
 ### 기능
-- [ ] 다리 생성 - makeBridge
+- [x] 다리 생성 - makeBridge
 
 ## 입력뷰(`InputView`)
 
