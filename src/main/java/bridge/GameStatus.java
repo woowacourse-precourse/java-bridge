@@ -20,6 +20,10 @@ public class GameStatus {
         return flag;
     }
 
+    public String getMessage() {
+        return flag.getMessage();
+    }
+
     public String getGameHistory() {
         return gameHistory;
     }
