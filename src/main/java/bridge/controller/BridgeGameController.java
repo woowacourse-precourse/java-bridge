@@ -26,6 +26,7 @@ public class BridgeGameController {
         outputView.printStartMessage();
         startGame();
         playGame();
+        finishGame();
     }
 
     private void startGame() {
@@ -43,46 +44,40 @@ public class BridgeGameController {
     private void playGame() {
         while (true) {
             try {
-                String direction = getInputDirection();
-                String action = decideWhatToDO(direction);
-                doAction(direction, action);
-                break;
+                while (true) {
+                    String direction = getInputDirection();
+                    boolean isMovable = bridgeGame.isMovable(direction);
+                    if (isMovable){
+                        successToMove(direction);
+                        if (bridgeGame.isArrived()) {
+                            return;
+                        }
+                    }
+                    if (!isMovable) {
+                        failToMove(direction);
+                        retryOrQuit();
+                        return;
+                    }
+                }
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(INVALID_MOVING);
             }
         }
     }
 
-    private String decideWhatToDO(String direction) {
-        boolean moveSucceed = bridgeGame.moveSucceed(direction);
-        boolean arrived = bridgeGame.isArrived();
-        if (arrived)
-            return FINISH;
-        if (moveSucceed)
-            return MOVE;
-        return CANNOT_MOVE;
-    }
-
-    private void doAction(String direction, String action) {
-        if (action == FINISH)
-            finishGame(bridgeGame.moveSucceed(direction));
-        if (action == MOVE) {
-            move(direction);
-            playGame();
-        }
-        if (action == CANNOT_MOVE) {
-            bridgeGame.updateRecords(direction, false);
-            printMap();
-            retryOrQuit();
-        }
-    }
-    private void move(String direction) {
+    private void successToMove(String direction) {
         bridgeGame.move(direction);
         printMap();
     }
 
-    private void finishGame(boolean lastSuccess) {
-        GameResultDto gameResultDto = bridgeGame.finish(lastSuccess);
+    private void failToMove(String direction) {
+        bridgeGame.updateRecords(direction, false);
+        printMap();
+    }
+
+    private void finishGame() {
+        boolean gameSuccess = bridgeGame.isArrived();
+        GameResultDto gameResultDto = bridgeGame.finish(gameSuccess);
         outputView.printResult(gameResultDto);
     }
 
@@ -115,19 +110,19 @@ public class BridgeGameController {
 
     private int getInputBridgeSize() {
         int bridgeSize = inputView.readBridgeSize();
-        validator.validateBridgeSizeAndThrowException(bridgeSize);
+        validator.validateBridgeSize(bridgeSize);
         return bridgeSize;
     }
 
     private String getInputDirection() {
         String moving = inputView.readMoving();
-        validator.validateMovingAndThrowException(moving);
+        validator.validateDirection(moving);
         return moving;
     }
 
     private String getInputCommandLetter() {
         String commandLetter = inputView.readGameCommand();
-        validator.validateCommandAndThrowException(commandLetter);
+        validator.validateCommand(commandLetter);
         return commandLetter;
     }
 }
