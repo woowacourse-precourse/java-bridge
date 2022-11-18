@@ -1,4 +1,4 @@
-package bridge.util.numbergenerator;
+package bridge;
 
 import camp.nextstep.edu.missionutils.Randoms;
 

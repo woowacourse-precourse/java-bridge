@@ -2,8 +2,6 @@ package bridge;
 
 import bridge.util.inputvalidator.InputValidator;
 import bridge.util.inputvalidator.InputValidatorImpl;
-import bridge.util.numbergenerator.BridgeNumberGenerator;
-import bridge.util.numbergenerator.BridgeRandomNumberGenerator;
 import bridge.util.numberhandler.RandomNumberHandler;
 import bridge.util.numberhandler.RandomNumberHandlerImpl;
 
