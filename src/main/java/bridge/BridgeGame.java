@@ -2,8 +2,8 @@ package bridge;
 
 import bridge.domain.Bridge;
 import bridge.domain.Command;
-import bridge.domain.Movement;
 import bridge.domain.GameStatus;
+import bridge.domain.Movement;
 import bridge.service.BridgeService;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -17,23 +17,25 @@ public class BridgeGame {
     private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
     private BridgeService bridgeService;
+    private GameStatus gameStatus;
 
     public BridgeGame(InputView inputView, OutputView outputView, BridgeNumberGenerator bridgeNumberGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
         bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-
+        gameStatus = GameStatus.ONGOING;
     }
 
     public void run() {
         setUp();
 
-        move();
-
-        retry();
+        while (gameStatus == GameStatus.ONGOING) {
+            play();
+        }
 
         end();
     }
+
 
     private void setUp() {
         outputView.gameStart();
@@ -48,6 +50,13 @@ public class BridgeGame {
         return new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
+    private void play() {
+        move();
+        if(gameStatus == GameStatus.FAILED) {
+            retry();
+        }
+    }
+
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -57,7 +66,7 @@ public class BridgeGame {
     private void move() {
         outputView.inputPlayerMove();
         Movement playerMove = inputView.readMoving();
-        bridgeService.movePlayer(playerMove);
+        gameStatus = bridgeService.movePlayer(playerMove);
         outputView.printMap(bridgeService.getResultCrossOver());
     }
 
@@ -69,9 +78,12 @@ public class BridgeGame {
     private void retry() {
         outputView.inputPlayerCommand();
         Command command = inputView.readGameCommand();
+        if(command == Command.RETRY) {
+            bridgeService.init();
+            gameStatus = GameStatus.ONGOING;
+        }
     }
 
     private void end() {
-
     }
 }
