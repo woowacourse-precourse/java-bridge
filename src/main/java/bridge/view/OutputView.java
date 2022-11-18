@@ -1,6 +1,6 @@
 package bridge.view;
 
-import static bridge.constant.Constants.Console.START_MESSAGE;
+import static bridge.constant.Constants.Console.*;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -17,7 +17,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public static void printMap() {
     }
 
     /**
@@ -25,13 +25,13 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public static void printResult() {
     }
 
     /**
      * 게임 시작 메시지 출력
      */
-    public void printStartMessage() {
+    public static void printStartMessage() {
         System.out.println(START_MESSAGE);
         printEnter();
     }
@@ -39,8 +39,16 @@ public class OutputView {
     /**
      * 한칸 띄기
      */
-    public void printEnter() {
+    public static void printEnter() {
         System.out.println("");
+    }
+
+    public static void printInputBridgeSizeMessage(){
+        System.out.println(INPUT_BRIDGE_SIZE_MESSAGE);
+    }
+
+    public static void printInputDirectionMessage(){
+        System.out.println(INPUT_DIRECTION_MESSAGE);
     }
 }
 
