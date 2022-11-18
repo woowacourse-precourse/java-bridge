@@ -27,4 +27,16 @@ class InputViewTest {
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> inputView.readBridgeSize());
     }
+
+    @Test
+    @DisplayName("잘못된 사용자 움직임 입력 테스트")
+    void readMoving() {
+        String input = "a";
+
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> inputView.readMoving());
+    }
 }
