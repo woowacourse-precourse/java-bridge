@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.model.Floor;
+import bridge.model.Direction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i =0 ; i < size; i++){
             int floor = bridgeNumberGenerator.generate();
-            bridge.add(Floor.getName(floor));
+            bridge.add(Direction.getName(floor));
         }
         return bridge;
     }

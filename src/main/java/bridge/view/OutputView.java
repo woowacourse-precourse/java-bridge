@@ -1,7 +1,7 @@
 package bridge.view;
 
 import bridge.model.BridgeGame;
-import bridge.model.Floor;
+import bridge.model.Direction;
 import bridge.model.GameState;
 
 import java.util.ArrayList;
@@ -19,11 +19,11 @@ public class OutputView {
      */
     public void printMap(BridgeGame game) {
         List<String> moved = game.getBridge().subList(0, game.getUserLocation()+1);
-        System.out.println("[ " + printBridge(Floor.U,moved, game.getGameState()) + " ]");
-        System.out.println("[ " + printBridge(Floor.D,moved, game.getGameState()) + " ]");
+        System.out.println("[ " + printBridge(Direction.U,moved, game.getGameState()) + " ]");
+        System.out.println("[ " + printBridge(Direction.D,moved, game.getGameState()) + " ]");
     }
 
-    private String printBridge(Floor type, List<String> bridge, GameState state){
+    private String printBridge(Direction type, List<String> bridge, GameState state){
         List<String> map = new ArrayList<>();
         for (String floor : bridge){
             makeMap(type, map, floor);
@@ -31,7 +31,7 @@ public class OutputView {
         return String.join(" | ", appendFail(map, state));
     }
 
-    private void makeMap(Floor type, List<String> map, String floor) {
+    private void makeMap(Direction type, List<String> map, String floor) {
         if (floor.equals(type.name())){
             map.add("O");
             return;
