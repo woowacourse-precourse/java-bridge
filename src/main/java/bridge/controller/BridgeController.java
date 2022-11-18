@@ -35,9 +35,9 @@ public class BridgeController {
         List<String> bridgeNumbers = bridgeMaker.makeBridge(size);
 
         Bridge bridge = new Bridge(bridgeNumbers);
-        bridge.getDirections().stream()
-                .map(Direction::getDirection)
-                .forEach(System.out::println);
+//        bridge.getDirections().stream()
+//                .map(Direction::getDirection)
+//                .forEach(System.out::println);
 
         BridgeGame bridgeGame = new BridgeGame();
         boolean isQuit = false;

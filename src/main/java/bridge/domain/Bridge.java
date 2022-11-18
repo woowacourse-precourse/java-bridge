@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,9 +42,5 @@ public class Bridge {
         if (!isValid) {
             throw new IllegalArgumentException(BRIDGE_COMPONENTS_INVALID_ERROR); // TODO: exception 타입
         }
-    }
-
-    public List<Direction> getDirections() {
-        return directions;
     }
 }
