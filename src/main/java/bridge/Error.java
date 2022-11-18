@@ -13,6 +13,6 @@ public enum Error {
 
     @Override
     public String toString() {
-        return this.message;
+        return "[ERROR]" + this.message;
     }
 }
