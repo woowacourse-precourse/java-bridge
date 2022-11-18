@@ -1,6 +1,7 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
+import view.validation.InputViewValidation;
 
 import java.util.Collections;
 
@@ -9,80 +10,62 @@ import java.util.Collections;
  */
 public class InputView {
 
-    //생성자에 예외처리 객체를 넣는다.
-
-    /**
-     * 다리의 길이를 입력받는다.
-     */
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         for (; ; ) {
             try {
                 System.out.println("다리의 길이를 입력해주세요.");
-                String sizeInput = Console.readLine();
-
-                if (sizeInput.length() < 1 || sizeInput.length() > 2) {
-                    throw new IllegalArgumentException();
-                }
-                if (!sizeInput.chars().allMatch(ch -> Character.isDigit(ch))) {
-                    throw new IllegalArgumentException("[ERROR]");
-                }
-
-                int size = Integer.parseInt(sizeInput);
-
-                if (size < 3 || size > 20) {
-                    throw new IllegalArgumentException("[ERROR]");
-                }
-
-                return size;
+                return changeStringToInteger(InputSize());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
-    public String readMoving() {
+    private static String InputSize() {
+        String sizeInput = Console.readLine();
+        InputViewValidation.validateBridgeSizeInput(sizeInput);
+        return sizeInput;
+    }
+
+    private static int changeStringToInteger(String sizeInput) {
+        int size = Integer.parseInt(sizeInput);
+        InputViewValidation.validateBridgeSize(size);
+        return size;
+    }
+
+    public static String readMoving() {
         for (; ; ) {
             try {
                 System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-                String moveInput = Console.readLine();
-
-                if (moveInput.length() != 1) {
-                    throw new IllegalArgumentException("[ERROR]");
-                }
-                if (!(moveInput.equals("U") || (moveInput.equals("D")))) {
-                    throw new IllegalArgumentException("[ERROR]");
-                }
-
-                return moveInput;
+                return InputMoving();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public String readGameCommand() {
+    private static String InputMoving() {
+        String movingInput = Console.readLine();
+        InputViewValidation.validateMovingInput(movingInput);
+        return movingInput;
+    }
+
+
+    public static String readGameCommand() {
         for (; ; ) {
             try {
                 System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-                String retryInput = Console.readLine();
-
-                if (retryInput.length() != 1) {
-                    throw new IllegalArgumentException("[ERROR]");
-                }
-                if (!(retryInput.equals("R") || (retryInput.equals("Q")))) {
-                    throw new IllegalArgumentException("[ERROR]");
-                }
-
-                return retryInput;
+                return inputCommand();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
+
+    private static String inputCommand() {
+        String commandInput = Console.readLine();
+        InputViewValidation.validateCommandInput(commandInput);
+        return commandInput;
+    }
+
 }
