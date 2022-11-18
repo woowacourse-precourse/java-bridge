@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class BridgeMaker {
     static final int UP_NUMBER = 1;
-    static final int DOWN_NUMBER = 1;
+    static final int DOWN_NUMBER = 0;
     static final String UP = "U";
     static final String DOWN = "D";
     //인스턴스 변수 추가 X
