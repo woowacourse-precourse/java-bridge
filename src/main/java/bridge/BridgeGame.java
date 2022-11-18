@@ -11,7 +11,7 @@ import static java.util.stream.Collectors.joining;
  */
 public class BridgeGame {
     private final List<String> scaffold;
-    private HashMap<String, List<String>> scaffoldMap = new HashMap<>();
+    private final HashMap<String, List<String>> scaffoldMap = new HashMap<>();
     private int gameRound = 0;
     private boolean survive = true;
 
@@ -24,13 +24,6 @@ public class BridgeGame {
         this.scaffoldMap.put("U", new ArrayList<>());
         this.scaffoldMap.put("D", new ArrayList<>());
     }
-//        Collections.nCopies(bridgeScaffold.size(), " ")
-//        for (int i = 0; i < bridgeScaffold.size(); i++) {
-//            scaffoldMap.get(bridgeScaffold.get(i)).set(i, "O");
-//        }
-//        System.out.println(scaffoldMap);
-//    }
-
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -38,26 +31,17 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public List<String> move(String direction) {
-        String roundResult = checkRoundResult(direction);
+        checkRoundResult(direction);
 
         List<String> movingProgress = getMovingProgress(direction);
 
         this.gameRound++;
 
-        movingProgress.add(roundResult);
-
         return movingProgress;
     }
 
-    private String checkRoundResult(String direction) {
-        if(!direction.equals(this.scaffold.get(gameRound))){
-            this.survive = false;
-            return "FAIL";
-        }
-        if (this.scaffold.size() == this.gameRound+1) {
-            return "FINISH";
-        }
-        return "SURVIVE";
+    private void checkRoundResult(String direction) {
+        this.survive = direction.equals(this.scaffold.get(gameRound));
     }
 
     private List<String> getMovingProgress(String direction) {
