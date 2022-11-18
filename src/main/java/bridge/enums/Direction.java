@@ -22,6 +22,15 @@ public enum Direction {
         return null;
     }
 
+    public static Direction getEnum(String inputDirection) {
+        for (Direction direction : Direction.values()) {
+            if (direction.getDirection().equals(inputDirection)) {
+                return direction;
+            }
+        }
+        return null;
+    }
+
     public int getValue() {
         return value;
     }
