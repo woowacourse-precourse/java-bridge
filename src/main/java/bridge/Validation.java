@@ -3,20 +3,20 @@ package bridge;
 import java.util.regex.Pattern;
 
 public class Validation {
-    private void isPositiveInteger(String bridgeSize) {
+    public static void isPositiveInteger(String bridgeSize) {
         String pattern = "^[^0]\\d*";
         if (!Pattern.matches(pattern, bridgeSize)) {
             throw new IllegalArgumentException("[ERROR} 다리 개수는 양의 정수이어야 합니다.");
         }
     }
 
-    private void isInRange(int bridgeSize) {
+    public static void isInRange(int bridgeSize) {
         if (!(3 <= bridgeSize && bridgeSize <= 20)) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
     }
 
-    private void validateMoveTo(String position) {
+    public static void validateMoveTo(String position) {
         if (!(position.equals("U") || position.equals("D"))) {
             throw new IllegalArgumentException("[ERROR] : 이동할 칸은 위(U) 또는 아래(D) 이어야 합니다.");
         }
