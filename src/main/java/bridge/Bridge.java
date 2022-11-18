@@ -25,8 +25,7 @@ public class Bridge {
         return bridgeAnswers;
     }
 
-    public boolean isAnswer(String moving, int index) {
-        String answer = bridgeAnswers.get(index);
-        return answer.equals(moving);
+    public boolean isAnswer(MoveDirection direction, int index) {
+        return direction.isEqualTo(bridgeAnswers.get(index));
     }
 }

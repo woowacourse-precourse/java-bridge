@@ -18,4 +18,8 @@ public class MoveDirection {
         }
         throw new IllegalArgumentException(INVALID_MOVING_SIGN_MESSAGE);
     }
+
+    public boolean isEqualTo(String answer) {
+        return this.direction.equals(answer);
+    }
 }
