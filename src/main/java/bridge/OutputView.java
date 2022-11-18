@@ -37,8 +37,8 @@ public class OutputView {
         }
     }
 
-    private boolean printBlank(List<String> usersMove, int idx, String d) {
-        if (!(usersMove.get(idx).equals(d))) {
+    private boolean printBlank(List<String> usersMove, int idx, String inputString) {
+        if (!(usersMove.get(idx).equals(inputString))) {
             if (idx != 0) {
                 System.out.print("|");
             }
