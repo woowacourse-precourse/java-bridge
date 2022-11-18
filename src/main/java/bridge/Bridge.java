@@ -1,0 +1,20 @@
+package bridge;
+
+import java.util.List;
+
+public class Bridge {
+
+    List<String> bridge;
+
+    public Bridge(List<String> bridge) {
+        this.bridge = bridge;
+    }
+
+    public List<String> getBridge() {
+        return bridge;
+    }
+
+    public int getBridgeSize() {
+        return bridge.size();
+    }
+}
