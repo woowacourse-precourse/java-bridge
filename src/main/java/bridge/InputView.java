@@ -19,19 +19,25 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String url = Console.readLine();
-
-         if(url.length() == 1)
-             if(url.equals("U") || url.equals("R"))
-                 return url;
-
-         throw new IllegalArgumentException("U 또는 R을 입력해주세요");
+        String userMove = Console.readLine();
+        return isCorrectInputByTwoCompareString(userMove, "U", "D");
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String userRestart = Console.readLine();
+        return isCorrectInputByTwoCompareString(userRestart, "R", "Q");
+    }
+
+    private String isCorrectInputByTwoCompareString(String userInput, String compareA, String compareB) {
+        if(userInput.length() == 1)
+            if(userInput.equals(compareA) || userInput.equals(compareB))
+                return userInput;
+
+        throw new IllegalArgumentException(
+                compareA + " 또는 " + compareB + "를 입력해주세요."
+        );
     }
 }
