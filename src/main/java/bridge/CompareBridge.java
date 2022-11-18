@@ -17,4 +17,19 @@ public class CompareBridge {
         }
         return new CompareBridge(" X ");
     }
+
+    public CompareBridge getDownSideMove(CompareBridge playerMove, String bridgeElement) {
+        if (playerMove.move.equals("D")) {
+            return new CompareBridge("   ");
+        }
+        if (playerMove.move.equals(bridgeElement)) {
+            return new CompareBridge(" O ");
+        }
+        return new CompareBridge(" X ");
+    }
+
+    @Override
+    public String toString() {
+        return move.toString();
+    }
 }
