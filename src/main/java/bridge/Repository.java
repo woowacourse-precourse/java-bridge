@@ -1,7 +1,6 @@
 package bridge;
 
-import java.util.ArrayList;
-import java.util.List;
+import bridge.domain.Game;
 
 public class Repository {
 

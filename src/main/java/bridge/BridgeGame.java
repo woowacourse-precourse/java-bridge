@@ -1,5 +1,9 @@
 package bridge;
 
+import bridge.domain.Game;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+
 import java.util.List;
 
 /**

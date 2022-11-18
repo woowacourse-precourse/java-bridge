@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 import bridge.validator.GameCommandValidator;
 import bridge.validator.MoveValidator;
