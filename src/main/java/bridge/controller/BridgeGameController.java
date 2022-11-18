@@ -22,7 +22,7 @@ public class BridgeGameController {
 		List<String> bridge = receiveBridgeSize();
 		BridgeGame bridgeGame = new BridgeGame(bridge);
 		List<List<String>> currentMap = startBridgeGame(bridgeGame);
-		outputView.printGameResult(currentMap, bridgeGame);
+		outputView.printResult(currentMap, bridgeGame);
 	}
 
 	private List<String> receiveBridgeSize() {

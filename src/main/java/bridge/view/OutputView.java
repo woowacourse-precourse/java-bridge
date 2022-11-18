@@ -23,7 +23,7 @@ public class OutputView {
 		return stringBuilder.append("]").toString();
 	}
 
-	public void printGameResult(List<List<String>> result, BridgeGame bridgeGame) {
+	public void printResult(List<List<String>> result, BridgeGame bridgeGame) {
 		if (result.get(0).size() == bridgeGame.getBridgeSize()) {
 			printClearMap(result, bridgeGame.getRepeatCount());
 		}
