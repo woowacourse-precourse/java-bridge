@@ -12,7 +12,7 @@ public class BridgeGameAnswer {
     }
 
     public boolean isAnswer(String answer, int index) {
-        if (bridgeAnswer.get(index) == answer) {
+        if (bridgeAnswer.get(index).equals(answer)) {
             return true;
         }
         return false;
@@ -31,7 +31,7 @@ public class BridgeGameAnswer {
     }
 
     private List<String> getCollectMessage(String answer, boolean isLast) {
-        if (answer == "U") {
+        if (answer.equals("U")) {
             if (isLast) {
                 return List.of(" O ", "   ");
             }
@@ -44,16 +44,16 @@ public class BridgeGameAnswer {
     }
 
     private List<String> getWrongMessage(String answer, boolean isLast) {
-        if (answer == "U") {
+        if (answer.equals("U")) {
             if (isLast) {
-                return List.of(" X ", "   ");
+                return List.of("  ", " X ");
             }
-            return List.of(" X |", "   |");
+            return List.of("   |", " X |");
         }
         if (isLast) {
-            return List.of("   ", " X ");
+            return List.of(" X ", "   ");
         }
-        return List.of("   |", " X |");
+        return List.of(" X |", "   |");
     }
 
     private boolean isLastIndex(List<String> history, int index) {
