@@ -1,11 +1,7 @@
 package exception;
 
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -13,26 +9,18 @@ class ExceptionTest {
 
     private static final String ERROR = "[ERROR]";
 
-    private BridgeMaker bridgeMaker;
-    private List<String> bridge;
-
-    @BeforeEach
-    void 객체_생성() {
-
-        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridge = bridgeMaker.makeBridge(21);
-    }
-
-    @Test
-    void 다리_길이_검증_테스트() {
-        assertThatThrownBy(() -> Exception.bridgeLengthValidation(bridge.size()))
+    @ValueSource(strings = {"1", "21"})
+    @ParameterizedTest
+    void 다리_길이_검증_테스트(Integer input) {
+        assertThatThrownBy(() -> Exception.bridgeLengthValidation(input))
                 .hasMessageContaining(ERROR + " 다리 길이는 3부터 20 사이의 숫자여야 합니다.")
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void 사용자_움직임_입력_검증_테스트() {
-        assertThatThrownBy(() -> Exception.readMoveValidation("FD"))
+    @ValueSource(strings = {"input", "F", "A"})
+    @ParameterizedTest
+    void 사용자_움직임_입력_검증_테스트(String input) {
+        assertThatThrownBy(() -> Exception.readMoveValidation(input))
                 .hasMessageContaining(ERROR + " U 또는 D 를 입력해 주세요.")
                 .isInstanceOf(IllegalArgumentException.class);
     }
