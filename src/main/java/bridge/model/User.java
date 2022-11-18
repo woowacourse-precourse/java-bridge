@@ -7,12 +7,12 @@ public class User {
 
     private List<String> choices;
     private int totalTryCount;
-    private String doesSuccess;
+    private boolean doesSuccess;
 
     public User() {
         this.choices = new ArrayList<>();
         totalTryCount = 0;
-        doesSuccess = "실패";
+        doesSuccess = false;
     }
 
     public void addChoice(final String choice) {
@@ -33,10 +33,10 @@ public class User {
     }
 
     public void doSuccess() {
-        this.doesSuccess = "성공";
+        this.doesSuccess = true;
     }
 
-    public String getDoesSuccess() {
+    public boolean getDoesSuccess() {
         return doesSuccess;
     }
 

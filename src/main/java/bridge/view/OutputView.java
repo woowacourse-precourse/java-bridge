@@ -71,8 +71,15 @@ public class OutputView {
         System.out.println("\n최종 게임 결과");
         printMap(user.getChoices(), compareResults);
 
-        System.out.println("\n게임 성공 여부: " + user.getDoesSuccess());
+        System.out.println("\n게임 성공 여부: " + booleanToString(user.getDoesSuccess()));
         System.out.println("총 시도한 횟수: " + user.getTotalTryCount());
+    }
+
+    private static String booleanToString(boolean isSuccess) {
+        if (isSuccess) {
+            return "성공";
+        }
+        return "실패";
     }
 
     public static void printError(IllegalArgumentException illegalArgumentException) {
