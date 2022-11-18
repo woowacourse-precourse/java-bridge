@@ -17,4 +17,10 @@ public class Player {
         this.attemptCount++;
     }
 
+    public void enterCommand(Command command) {
+        this.commands.add(command);
+    }
+
+
+
 }
