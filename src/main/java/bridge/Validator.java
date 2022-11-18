@@ -1,13 +1,11 @@
 package bridge;
 
-import static bridge.ErrorCode.WRONG_BRIDGE_LENGTH_INPUT;
-import static bridge.ErrorCode.WRONG_MOVE_INPUT;
+import static bridge.ErrorCode.*;
+import static bridge.Const.*;
 
 public class Validator {
     private final int SHORTEST_LEGNTH = 3;
     private final int LONGEST_LENGTH = 20;
-    private final String UP = "U";
-    private final String DOWN = "D";
 
     public Validator() {
     }

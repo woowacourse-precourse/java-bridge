@@ -5,7 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static bridge.ErrorCode.WRONG_BRIDGE_LENGTH_INPUT;
-import static org.assertj.core.api.Assertions.assertThat;
+import static bridge.ErrorCode.WRONG_MOVE_INPUT;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ValidatorTest {
