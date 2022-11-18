@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.domain.Bridge;
 import bridge.domain.Direction;
+import bridge.dto.GameResult;
 import bridge.dto.UserState;
 
 /**
@@ -9,6 +10,9 @@ import bridge.dto.UserState;
  */
 public class OutputView {
     private static final String GAME_BEGINNING_MESSAGE = "다리 건너기 게임을 시작합니다.";
+    private static final String GAME_RESULT_INTRO_MESSAGE = "최종 게임 결과";
+    private static final String IS_GAME_SUCCESS = "게임 성공 여부: %s";
+    private static final String NUMBER_OF_ATTEMPTS = "총 시도한 횟수: %d";
     private static final String BRIDGE_FRAME = "[%s]\n[%s]";
     private static final String CORRECT_DIRECTION = " O ";
     private static final String INCORRECT_DIRECTION = " X ";
@@ -82,7 +86,19 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(GameResult gameResult) {
+        System.out.println(GAME_RESULT_INTRO_MESSAGE);
+        printMap(gameResult.getUserState());
+        String isSuccessGame = getSuccessMessage(gameResult.isSuccess());
+        System.out.println(String.format(IS_GAME_SUCCESS, isSuccessGame));
+        System.out.println(String.format(NUMBER_OF_ATTEMPTS, gameResult.getNumberOfAttempts()));
+    }
+
+    private String getSuccessMessage(boolean success) {
+        if (success) {
+            return "성공";
+        }
+        return "실패";
     }
 
     public void printErrorMessage(String errorMessage) {
