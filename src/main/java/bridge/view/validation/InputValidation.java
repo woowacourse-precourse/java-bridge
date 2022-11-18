@@ -9,7 +9,7 @@ public enum InputValidation {
     BLANK(
             "아무것도 입력하지 않으셨습니다.",
             String::isBlank,
-            List.of("readBridgeSize","readMoving")
+            List.of("readBridgeSize", "readMoving", "readGameCommand")
     ),
     NOT_NUMBER(
             "숫자가 아닙니다.",
@@ -44,7 +44,7 @@ public enum InputValidation {
     }
 
     public String getErrorMessage() {
-        return "[ERROR]" + errorMessage;
+        return "[ERROR] " + errorMessage;
     }
 
     private static Optional<InputValidation> validate(String input, String validationGroup) {
@@ -57,9 +57,8 @@ public enum InputValidation {
     public static boolean checkValidation(String input, String validationGroup) {
         Optional<InputValidation> validation = validate(input, validationGroup);
         try {
-            if (validation.isPresent()) {
+            if (validation.isPresent())
                 throw new IllegalArgumentException();
-            }
             return VALIDATED;
         } catch (IllegalArgumentException e) {
             System.out.println(validation.get().getErrorMessage());
