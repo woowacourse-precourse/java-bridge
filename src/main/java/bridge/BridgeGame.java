@@ -14,11 +14,13 @@ public class BridgeGame {
     private BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
     private List<String> realBridge;
     private HashMap<String, List<Integer>> moveStatus;
+    private int currentLocation;
 
     public BridgeGame(int bridgeLength) {
         realBridge = generateBridge(bridgeLength);
         moveStatus.put("U", new ArrayList<Integer>());
         moveStatus.put("D", new ArrayList<Integer>());
+        currentLocation = 0;
     }
 
     private List<String> generateBridge(int bridgeLength) {
@@ -29,7 +31,15 @@ public class BridgeGame {
 
         return bridge;
     }
-    public void move(String direction) {
+    public boolean move(String direction) {
+        //방향이 맞는지 검증하고,
+        //그렇다면 moveStatus 에 O 추가하고 return true
+        //그렇지 않다면 moveStatus에 X 추가하고 return false
+
+        if (realBridge.get(currentLocation) == direction) {
+            return reflectMovement(true);
+        }
+        return reflectMovement(false);
     }
 
     public void retry() {
