@@ -14,7 +14,8 @@ public class BridgeGameConsole {
     public void run() {
         emcee.guideGame();
         BridgeGame bridgeGame = new BridgeGame(maker.makeBridge(createBridgeLength()));
-        emcee.showGameResult(bridgeGame.createMovementStatus(), bridgeGame.crossedBridge(), playGame(bridgeGame));
+        int attemptCount = playGame(bridgeGame);
+        emcee.showGameResult(bridgeGame.createMovementStatus(), bridgeGame.crossedBridge(), attemptCount);
     }
 
     private int createBridgeLength() {
