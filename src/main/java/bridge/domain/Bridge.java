@@ -20,4 +20,8 @@ public class Bridge {
         boolean isEqual = directions.get(position) == direction;
         return Answer.of(isEqual);
     }
+
+    public boolean isEnd(int position) {
+        return position == directions.size();
+    }
 }

@@ -3,6 +3,7 @@ package bridge;
 import bridge.domain.Answer;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeDirection;
+import bridge.domain.GameStatus;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -10,10 +11,17 @@ import bridge.domain.BridgeDirection;
 public class BridgeGame {
 
     private Bridge bridge;
-    private int position = 0;
+    private int position;
+    private GameStatus gameStatus;
 
     public BridgeGame(Bridge bridge) {
+        init();
         this.bridge = bridge;
+    }
+
+    private void init() {
+        position = 0;
+        gameStatus = GameStatus.PLAYING;
     }
 
     /**
@@ -31,10 +39,15 @@ public class BridgeGame {
 
     private Answer moveSuccess() {
         position++;
+
+        if (bridge.isEnd(position)) {
+            gameStatus = GameStatus.SUCCESS;
+        }
         return Answer.RIGHT;
     }
 
     private Answer moveFail() {
+        gameStatus = GameStatus.FAIL;
         return Answer.WRONG;
     }
 
