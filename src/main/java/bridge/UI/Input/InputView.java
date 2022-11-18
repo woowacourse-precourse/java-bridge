@@ -15,6 +15,22 @@ public class InputView {
         return Integer.parseInt(userInput);
     }
 
+    /**
+     * 사용자가 이동할 칸을 입력받는다.
+     */
+    public String readMoving() {
+        String userInput = Console.readLine();
+        validate(userInput, ValidateType.MOVE);
+        return userInput;
+    }
+
+    /**
+     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
+     */
+    public String readGameCommand() {
+        return null;
+    }
+
     private void validate(String s, ValidateType type){
         if(type == ValidateType.SIZE) checkSize(s);
 
@@ -33,21 +49,5 @@ public class InputView {
             if(e.getClass() == NumberFormatException.class) throw new IllegalArgumentException("[ERROR] 숫자가 아닙니다.");
             if(e.getClass() == IllegalArgumentException.class) throw e;
         }
-    }
-
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
-    public String readMoving() {
-        String userInput = Console.readLine();
-
-        return userInput;
-    }
-
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public String readGameCommand() {
-        return null;
     }
 }
