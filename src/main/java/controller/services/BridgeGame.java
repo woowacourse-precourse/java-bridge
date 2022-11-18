@@ -1,41 +1,36 @@
 package controller.services;
 
-import bridge.constants.BridgeConstant;
-import bridge.constants.CommandTable;
+import constants.BridgeConstant;
+import constants.CommandTable;
 import model.Bridge;
 import model.User;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
     private Bridge bridge;
     private User user;
-    private int position;
+    private int movingDistance = -1;
 
     public BridgeGame(Bridge bridge, User user) {
         this.bridge = bridge;
         this.user = user;
-        position = -1;
     }
 
     public boolean move(String direction) {
-        position++;
+        movingDistance++;
 
-        if (bridge.isAccessibleDirection(direction, position)) {
+        if (bridge.isAccessiblePosition(movingDistance, direction)) {
             user.markPosition(direction);
             return false;
         }
 
-        user.markPosition(BridgeConstant.WRONG_POSITION + direction);
+        user.markPosition(BridgeConstant.WRONG_DIRECTION_INITIAL + direction);
         return true;
     }
 
     public int retry(String retryInput) {
-        if (retryInput.equals(CommandTable.QUIT.getCommand())) {
+        if (retryInput.equals(CommandTable.QUIT.getInitial())) {
             return CommandTable.QUIT.getCommandNumber();
         }
         return CommandTable.RETRY.getCommandNumber();
     }
-
 }
