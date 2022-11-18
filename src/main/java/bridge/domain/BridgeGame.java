@@ -1,12 +1,13 @@
 package bridge.domain;
 
+import bridge.dto.GameResult;
 import bridge.dto.UserState;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private static final String MOVING_ERROR_MESSAGE="[ERROR] 유저가 이동할 수 없는 상태입니다.";
+    private static final String MOVING_ERROR_MESSAGE = "[ERROR] 유저가 이동할 수 없는 상태입니다.";
 
     private Bridge bridge;
     private int userPosition;
@@ -34,20 +35,20 @@ public class BridgeGame {
     }
 
     private void movingValidation() {
-        if (aliveUser == false || isEndGame()) {
+        if (isEndGame()) {
             throw new IllegalArgumentException(MOVING_ERROR_MESSAGE);
         }
     }
 
     public boolean isEndGame() {
-        if (!aliveUser || bridge.isEndOfBridge(userPosition)) {
+        if (!aliveUser || successGame()) {
             return true;
         }
         return false;
     }
 
     public boolean isNeedToQuit() {
-        if (bridge.isEndOfBridge(userPosition) && aliveUser) {
+        if (successGame()) {
             needToQuit = true;
         }
         return needToQuit;
@@ -57,10 +58,21 @@ public class BridgeGame {
         return new UserState(bridge, userPosition, aliveUser);
     }
 
+    public GameResult getGameResult() {
+        return new GameResult(getProgressUserState(),successGame(),numberOfAttempts);
+    }
+
     private void checkLife(Direction direction) {
         if (!bridge.isCorrectDirection(direction, userPosition)) {
             aliveUser = false;
         }
+    }
+
+    private boolean successGame() {
+        if (bridge.isEndOfBridge(userPosition) && aliveUser) {
+            return true;
+        }
+        return false;
     }
 
     /**
