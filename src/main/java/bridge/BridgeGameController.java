@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.Record;
 import bridge.view.InputView;
 
 public class BridgeGameController {
@@ -13,17 +14,18 @@ public class BridgeGameController {
 	}
 
 	public void gameStart() {
-		Boolean success = false;
-		while (bridgeGame.move(inputView.readMoving())) {
-			// move한 결과를 저장함
+		Record record = new Record();
+		Boolean gameResult = true;
+		for (int i = 0; i < bridgeGame.getBridgeSize(); i++) {
+			String move = inputView.readMoving();
+			gameResult = bridgeGame.move(move, i);
+			record.recordResult(move, gameResult);
+			if (gameResult == false) {
+				break;
+			}
 		}
-		if (success == false) {
-			if (inputView.readGameCommand() == "Q") {
-				return ;
-			}
-			if (inputView.readGameCommand() == "R") {
-				gameStart();
-			}
+		if (gameResult == false) {
+			bridgeGame.retry();
 		}
 	}
 }
