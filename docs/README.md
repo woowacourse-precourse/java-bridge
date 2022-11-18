@@ -48,8 +48,8 @@
 - [ ] 0,1 무작위로 리턴
  
 ### StringEnum
-- [] 이동 묻는 출력문
-- [ ] 재시도 묻는 출력문
+- [x] 이동 묻는 출력문
+- [x] 재시도 묻는 출력문
 - [x] Up, Down, Restart, Quit key 저장
 
 ### IntEnum
