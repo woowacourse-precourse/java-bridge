@@ -26,6 +26,8 @@ public class BridgeGame {
     private boolean canMove;
     private int nextStepIndex;
     private String inputNextStep;
+    private String currentPlayerBridgeUpShape;
+    private String currentPlayerBridgeDownShape;
     private boolean isGameSuccess;
     private String retryOrEndCommand;
 
@@ -59,9 +61,13 @@ public class BridgeGame {
         inputNextStep = inputView.inputMovingStep();
         canMove = generatedBridge.canMoveNextStep(nextStepIndex, inputNextStep);
         playerBridge.moveNextStep(inputNextStep, canMove);
-        String printUpShape = printBridge.generatePrintUpShape(playerBridge.getUpShape());
-        String printDownShape = printBridge.generatePrintDownShape(playerBridge.getDownShape());
-        outputView.printMap(printUpShape, printDownShape);
+    }
+
+    public void printCurrentBridge() {
+        currentPlayerBridgeUpShape = printBridge.generatePrintUpShape(playerBridge.getUpShape());
+        currentPlayerBridgeDownShape= printBridge.generatePrintDownShape(playerBridge.getDownShape());
+        outputView.printMap(currentPlayerBridgeUpShape, currentPlayerBridgeDownShape);
+
     }
 
     public void judgeGameStatus() {
