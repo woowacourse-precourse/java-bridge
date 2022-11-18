@@ -4,6 +4,7 @@ import bridge.BridgeMaker;
 import bridge.domain.Bridge;
 import bridge.domain.Bridges;
 import bridge.domain.GameState;
+import bridge.exception.NotFoundBridgeException;
 import bridge.service.dto.request.BridgeSizeRequestDto;
 import bridge.service.dto.request.PlayerMovementRequestDto;
 
@@ -40,7 +41,7 @@ public class BridgeGame {
     public void move(PlayerMovementRequestDto dto) {
         String movePlayer = dto.getMovePlayer();
         Bridge bridge = bridges.findByPositionToMove(gameState.getPlayerPosition())
-                .orElseThrow();
+                .orElseThrow(NotFoundBridgeException::new);
     }
 
     /**
