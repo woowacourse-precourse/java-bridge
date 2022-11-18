@@ -1,14 +1,13 @@
 package bridge.view;
 
+import bridge.BridgeMaker;
 import bridge.utill.TestBridgeGenerator;
 import bridge.model.BridgeGame;
-import bridge.utill.ConsoleTestUtil;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
@@ -44,10 +43,10 @@ class OutputViewTest extends NsTest {
     }
 
     public static void main(String[] args) {
-        TestBridgeGenerator testBridgeGenerator = new TestBridgeGenerator();
+        TestBridgeGenerator testBridgeGenerator = new TestBridgeGenerator(List.of(0, 1, 0, 1, 0, 1));
         OutputView outputView = new OutputView();
-
-        List<String> bridge = testBridgeGenerator.generate(List.of(0, 1, 0, 1, 0, 1));
+        BridgeMaker bridgeMaker = new BridgeMaker(testBridgeGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(6);
         BridgeGame game = new BridgeGame(bridge);
 
         for (String direction : directions) {
