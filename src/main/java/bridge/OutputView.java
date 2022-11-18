@@ -4,10 +4,11 @@ package bridge;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private static final String MESSAGE_GAME_START = "다리 건너기 게임을 시작합니다.";
+    public static final String MESSAGE_GAME_START = "다리 건너기 게임을 시작합니다.";
+    public static final String MESSAGE_INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
 
-    public void printGameStart() {
-        System.out.println(MESSAGE_GAME_START);
+    public void printOf(String message) {
+        System.out.println(message);
     }
 
     /**
