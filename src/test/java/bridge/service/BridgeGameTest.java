@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BridgeGameTest {
 
@@ -47,10 +48,10 @@ class BridgeGameTest {
     }
 
     @Test
-    @DisplayName("게임을 재시도하면 이동 기록을 초기화한다.")
+    @DisplayName("게임을 재시도하고 다리 상태를 확인하며 예외를 던진다.")
     void retry() {
         bridgeGame.retry();
-        String movementStatus = bridgeGame.createMovementStatus();
-        assertThat(movementStatus).isEqualTo("]\n]\n");
+        assertThatThrownBy(() -> bridgeGame.createMovementStatus())
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
