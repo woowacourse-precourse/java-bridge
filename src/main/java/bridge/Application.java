@@ -1,5 +1,6 @@
 package bridge;
 
+import dto.BridgeGameDto;
 import java.util.List;
 import view.InputView;
 import view.OutputView;
@@ -15,16 +16,29 @@ public class Application {
         try {
             int bridgeSize = inputView.readBridgeSize();
             BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-            List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+            Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+            //Result totalResult = new Result(bridge.sendDto);
 
-            do {
+            boolean guessResult = true;
+            for (int currentPosition = 0; currentPosition < bridgeSize && guessResult; currentPosition++) {
                 BridgeGame bridgeGame = new BridgeGame();
                 outputView.printEnterMove();
                 String direction = inputView.readMoving();
                 bridgeGame.move(direction);
-                // direction 정오 판단
-                // 현재까지의 결과 출력
-            } while (false); // 탈출 조건: 다 맞거나, 현 단계 예측 틀릴때까지
+                BridgeGameDto bridgeGameDto = bridgeGame.sendDto();
+                guessResult = bridge.isCorrectGuess(bridgeGameDto);
+                //totalResult.update(currentPosition,guessResult);
+                //현재까지의 결과 출력
+            }
+
+            /*
+            if (!guessResult) {
+                현 위치 초기화, totalResult 초기화
+                재시작 여부 결정
+            }
+            최종 결과 출력
+            게임 종료
+            */
 
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
