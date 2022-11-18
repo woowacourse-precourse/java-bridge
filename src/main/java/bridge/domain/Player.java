@@ -23,18 +23,4 @@ public class Player {
     public void gameFail() {
         this.result = GameResult.FAIL;
     }
-
-    public enum GameResult {
-        SUCCESS("성공"),
-        FAIL("실패");
-
-        private String name;
-
-        GameResult() {
-        }
-
-        GameResult(String name) {
-            this.name = name;
-        }
-    }
 }

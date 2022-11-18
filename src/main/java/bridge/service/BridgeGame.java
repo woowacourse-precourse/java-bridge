@@ -5,6 +5,7 @@ import bridge.domain.Bridges;
 import bridge.domain.Player;
 import bridge.service.dto.request.BridgeSizeRequestDto;
 import bridge.service.dto.request.PlayerMovementRequestDto;
+import bridge.service.dto.response.BridgeStateResponseDto;
 
 import java.util.List;
 
@@ -32,13 +33,17 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(PlayerMovementRequestDto dto) {
+    public BridgeStateResponseDto move(PlayerMovementRequestDto dto) {
         String positionByPlayerToMove = dto.getMovePlayer();
         String bridge = bridges.getBridgeByPositionToMove(player.getPosition());
 
+        List<String> movedBridges = bridges.getBridgesByPlayerPosition(player.getPosition());
         if(positionByPlayerToMove.equals(bridge)) {
             player.move();
+            return new BridgeStateResponseDto(movedBridges, true);
         }
+
+        return new BridgeStateResponseDto(movedBridges, false);
     }
 
     /**
