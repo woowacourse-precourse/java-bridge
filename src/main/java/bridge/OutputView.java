@@ -5,21 +5,14 @@ package bridge;
  */
 public class OutputView {
 
-    private final StringBuilder upViewMap;
-    private final StringBuilder downViewMap;
+    private final StringBuilder upViewBuilder;
+    private final StringBuilder downViewBuilder;
+    private boolean checkIsCalled;
 
     public OutputView() {
-        this.upViewMap = new StringBuilder();
-        this.downViewMap = new StringBuilder();
-    }
-
-    private void printStartMessage() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
-        System.out.println();
-    }
-
-    private void askBridgeSize() {
-        System.out.println("다리의 길이를 입력해주세요.");
+        this.upViewBuilder = new StringBuilder();
+        this.downViewBuilder = new StringBuilder();
+        this.checkIsCalled = Boolean.FALSE;
     }
 
     //application 에서 코드 줄이기 위해 병합.
@@ -37,18 +30,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
-
-    }
-
-    private void handleMap(StringBuilder builder, String result) {
-        builder.replace(builder.length() - 1, builder.length(), "|");
-
-    }
-    private void handleMapIfFirst(StringBuilder builder, String result) {
-        builder.append("[ ");
-        builder.append(result);
-        builder.append(" ]");
+    public void printMap(MapViewDto viewDto) {
+        final String notSelectedResult = " ";
+        MapViewModel selectedModel = createModel(selectBuilderUpOrDown(viewDto),
+                getResultToPrint(viewDto));
+        StringBuilder notSelectedBuilder = getNotSelectedBuilder(selectedModel.getViewBuilder());
+        MapViewModel notSelectedModel = createModel(notSelectedBuilder, notSelectedResult);
+        handleBuilderByModel(selectedModel, notSelectedModel);
+        printEachBuilder();
     }
 
     /**
@@ -58,4 +47,81 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    //printGettingStart
+    private void printStartMessage() {
+        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println();
+    }
+
+    //printGettingStart
+    private void askBridgeSize() {
+        System.out.println("다리의 길이를 입력해주세요.");
+    }
+
+    //printMap
+    private void handleBuilderByModel(MapViewModel selectedModel,
+                                      MapViewModel notSelectedModel) {
+        if (checkIsCalled) {
+            makeStringIfCalled(selectedModel.getViewBuilder(), selectedModel.getViewResult());
+            makeStringIfCalled(notSelectedModel.getViewBuilder(), notSelectedModel.getViewResult());
+            return;
+        }
+        makeStringIfNotCalled(selectedModel.getViewBuilder(), selectedModel.getViewResult());
+        makeStringIfNotCalled(notSelectedModel.getViewBuilder(), notSelectedModel.getViewResult());
+    }
+
+    //printMap
+    private MapViewModel createModel(StringBuilder builder, String result) {
+        return new MapViewModel(builder, result);
+    }
+
+    //printMap
+    private void printEachBuilder() {
+        System.out.println(upViewBuilder.toString());
+        System.out.println(downViewBuilder.toString());
+    }
+
+    //printMap
+    private StringBuilder getNotSelectedBuilder(StringBuilder selectedBuilder) {
+        if (selectedBuilder.equals(upViewBuilder)) {
+            return downViewBuilder;
+        }
+        return upViewBuilder;
+    }
+
+    //printMap
+    private String getResultToPrint(MapViewDto viewModel) {
+        if (viewModel.isResult()) {
+            return "O";
+        }
+        return "X";
+    }
+
+    //printMap
+    private StringBuilder selectBuilderUpOrDown(MapViewDto viewModel) {
+        if (viewModel.getSelectedBridge().equals("UP")) {
+            return upViewBuilder;
+        } else if (viewModel.getSelectedBridge().equals("DOWN")) {
+            return downViewBuilder;
+        }
+        //지워도 될거 같지만 일단 남겨둠.
+        throw new IllegalArgumentException("UP or DOWN 만 가능합니다.");
+    }
+
+    //printMap
+    private void makeStringIfCalled(StringBuilder builder, String result) {
+        builder.replace(builder.length() - 1, builder.length(), "| ");
+        builder.append(result);
+        builder.append(" ]");
+    }
+
+    //printMap
+    private void makeStringIfNotCalled(StringBuilder builder, String result) {
+        builder.append("[ ");
+        builder.append(result);
+        builder.append(" ]");
+        this.checkIsCalled = Boolean.TRUE;
+    }
+
 }

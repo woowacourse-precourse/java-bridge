@@ -26,9 +26,10 @@
   - [X] 시작 안내메세지 출력 - printGettingStart
     - printStartMessage
     - askBridgeSize
-  - [ ] 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력 - printMap
+  - [X] **현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력 - printMap**
     - 첫 입력일 경우 출력 해주는 기능 ex) "[ O ]"
     - 첫 입력이 아닐경우 ex)"[ O | X ]
+    
 - 다리의 길이를 숫자로 입력받고 생성한다. 
   - 다리 길이 입력 받는 기능 -> InputView - readBridgeSize()
     - [X] 입력 유효성 검사
