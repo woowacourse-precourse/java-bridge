@@ -2,7 +2,6 @@ package bridge.domain.operator;
 
 import bridge.domain.bridge.Bridge;
 import bridge.domain.player.Player;
-import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -19,12 +18,8 @@ public class BridgeGame {
         this.bridgeResult = new BridgeResult();
     }
 
-    public List<Boolean> getUpBridgeResult() {
-        return bridgeResult.getUpBridge();
-    }
-
-    public List<Boolean> getDownBridgeResult() {
-        return bridgeResult.getDownBridge();
+    public BridgeResult getBridgeResult() {
+        return bridgeResult;
     }
 
     /**
@@ -32,15 +27,22 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String userSelection) {
-        boolean passable = bridge.isPassable(player.getPlayerLocation(), userSelection);
-        bridgeResult.addResult(passable, player.getPlayerLocation(), userSelection);
+    public void move(String userSelection) {
+        int playerLocation = player.getPlayerLocation();
+        boolean passable = bridge.isPassable(playerLocation, userSelection);
+        bridgeResult.addResult(passable, playerLocation, userSelection);
+        handleAfterMove(passable);
+    }
+
+    private void handleAfterMove(boolean passable) {
         if (!passable) {
             player.resetPlayerLocation();
-            return false;
+            bridgeResult.plusAttempt();
+            player.setSuccess(false);
+            return;
         }
         player.movePlayerLocation();
-        return true;
+        player.setSuccess(true);
     }
 
     /**

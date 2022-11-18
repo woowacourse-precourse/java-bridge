@@ -8,6 +8,8 @@ public class BridgeResult {
     private final List<Boolean> upBridge;
     private final List<Boolean> downBridge;
 
+    private int attempt;
+
     public BridgeResult() {
         this.upBridge = new ArrayList<>();
         this.downBridge = new ArrayList<>();
@@ -21,6 +23,10 @@ public class BridgeResult {
         return downBridge;
     }
 
+    public int getAttempt() {
+        return attempt;
+    }
+
     public void addResult(boolean passable, int userLocation, String userSelection) {
         if (userSelection.equals("U")) {
             upBridge.add(userLocation, passable);
@@ -29,5 +35,9 @@ public class BridgeResult {
         }
         downBridge.add(userLocation, passable);
         upBridge.add(userLocation, null);
+    }
+
+    public void plusAttempt() {
+        attempt++;
     }
 }
