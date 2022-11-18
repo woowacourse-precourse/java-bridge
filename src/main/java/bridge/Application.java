@@ -9,15 +9,19 @@ public class Application {
     public static void main(String[] args) {
         play();
     }
+
     private static void play() {
-        bridgeGame=bridgeGameStart();
+        bridgeGame = bridgeGameStart();
     }
+
     private static BridgeGame bridgeGameStart() {
-        int bridgeSize= inputBridgeSize();
-        bridgeGame=new BridgeGame(bridgeSize);
+        int bridgeSize = inputBridgeSize();
+        bridgeGame = new BridgeGame(bridgeSize);
         return bridgeGame;
     }
+
     private static int inputBridgeSize() {
+        outputView.printStart();
         return inputView.readBridgeSize();
     }
 }
