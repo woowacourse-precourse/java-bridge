@@ -30,13 +30,13 @@ public class ExceptionBasket {
     }
 
     public static void invalidGameKey(String input) throws IllegalArgumentException {
-        if (!input.equals("U") || !input.equals("D")){
+        if (!input.equals("U") && !input.equals("D")){
             throw new IllegalArgumentException(ERROR_MESSAGE + " U나 D를 누르세요!");
         }
     }
 
     public static void invalidRetryRequestInputKey(String input) throws IllegalArgumentException{
-        if (!input.equals("R") || !input.equals("Q")){
+        if (!input.equals("R") && !input.equals("Q")){
             throw new IllegalArgumentException(ERROR_MESSAGE + " R이나 Q를 누르세요!");
         }
     }
