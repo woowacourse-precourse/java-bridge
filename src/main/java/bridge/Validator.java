@@ -76,4 +76,16 @@ public class Validator {
             inputView.inputGameRestart();
         }
     }
+
+    public static void validateInputGameRestartLowerCase(String inputRestart) {
+        char check = inputRestart.charAt(0);
+        try {
+            if (!Character.isUpperCase(check)) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(ErrorMessage.BRIDGE_MOVE_INPUT_LOWERCASE.getErrorMessage());
+            inputView.inputGameRestart();
+        }
+    }
 }
