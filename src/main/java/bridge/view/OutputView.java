@@ -53,6 +53,10 @@ public class OutputView {
             downPrint.append("   ");
         }
     }
+    private void addBar(StringBuilder upPrint, StringBuilder downPrint) {
+        upPrint.append("|");
+        downPrint.append("|");
+    }
 
     private void continuePrint(int duringIndex, StringBuilder upPrint, StringBuilder downPrint) {
         if (bridge.get(duringIndex).equals(UP.key())) {
