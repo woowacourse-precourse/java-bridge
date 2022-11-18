@@ -10,7 +10,7 @@ public class InputViewProxy extends InputView {
         try {
             return super.readBridgeSize();
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
+            printErrorMessage(e);
             return this.readBridgeSize();
         }
     }
@@ -20,7 +20,7 @@ public class InputViewProxy extends InputView {
         try {
             return super.readMoving();
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
+            printErrorMessage(e);
             return this.readMoving();
         }
     }
@@ -30,8 +30,12 @@ public class InputViewProxy extends InputView {
         try {
             return super.readGameCommand();
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
+            printErrorMessage(e);
             return this.readGameCommand();
         }
+    }
+
+    private void printErrorMessage(IllegalArgumentException e) {
+        System.out.println("[ERROR] " + e.getMessage());
     }
 }
