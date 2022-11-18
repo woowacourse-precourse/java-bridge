@@ -14,7 +14,7 @@ public class BridgeAnswer {
     }
 
     public BridgeAnswer makeBridgeAnswer(int size) {
-        return new BridgeAnswer(new Bridge(new BridgeMaker(() -> 0).makeBridge(size)));
+        return new BridgeAnswer(new Bridge(new BridgeMaker().makeBridge(size)));
     }
 
     public Bridge getBridgeAnswer() {

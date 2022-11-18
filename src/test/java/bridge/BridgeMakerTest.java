@@ -17,7 +17,7 @@ import static org.assertj.core.util.Lists.newArrayList;
 public class BridgeMakerTest extends NsTest {
 
     private final String RANDOM_BRIDGE_WORD = "makeRandomBridgeWord";
-    private final BridgeMaker maker = new BridgeMaker(() -> 0);
+    private final BridgeMaker maker = new BridgeMaker();
 
     private Method invokeMethod(String declared) throws NoSuchMethodException {
         Method method = maker.getClass().getDeclaredMethod(declared, int.class);

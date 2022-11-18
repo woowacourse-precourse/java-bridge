@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -9,6 +10,10 @@ import java.util.List;
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
+
+    public BridgeMaker() {
+        this.bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    }
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -22,7 +27,7 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
 
         for (int i = 1; i <= size; i++) {
-            bridge.add(makeRandomBridgeWord(new BridgeRandomNumberGenerator().generate()));
+            bridge.add(makeRandomBridgeWord(bridgeNumberGenerator.generate()));
         }
 
         return bridge;
