@@ -24,7 +24,9 @@ public class OutputView {
 
     private String replaceResult(HashMap<String, List<String>> bridgeGameResult, String position) {
         return Arrays.toString(bridgeGameResult.get(position).toArray())
-                .replace(", ", "|");
+                .replace("[", "[ ")
+                .replace("]", " ]")
+                .replace(", ", " | ");
     }
 
     /**
@@ -32,6 +34,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(HashMap<String, List<String>> bridgeGameResult) {
+        System.out.println(PrintWord.RESULT);
+        printMap(bridgeGameResult);
+        System.out.println(PrintWord.IS_SUCCESS+
+                IsSuccess.isSuccess(bridgeGameResult).getWord());
+        System.out.println(PrintWord.COUNT+BridgeGame.getTotalCount());
     }
 }
