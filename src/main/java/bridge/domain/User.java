@@ -4,6 +4,11 @@ public class User {
     private boolean isGameDoneStatus;
     private int gameTryCount;
 
+    public User() {
+        this.gameTryCount = 1;
+        this.isGameDoneStatus = false;
+    }
+
     public boolean isGameDoneStatus() {
         return isGameDoneStatus;
     }
