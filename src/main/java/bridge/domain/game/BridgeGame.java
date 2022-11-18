@@ -2,8 +2,7 @@ package bridge.domain.game;
 
 import bridge.domain.bridge.Bridge;
 import bridge.domain.bridgeMaker.BridgeMaker;
-import bridge.domain.player.ProcessCommand;
-import bridge.domain.player.MovementCommand;
+import bridge.domain.player.GameProceedCommand;
 import bridge.domain.result.ResultDescription;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -15,7 +14,6 @@ public class BridgeGame {
 
 	private static final String GAME_START_INFO = "다리 건너기 게임을 시작합니다.";
 	private static final String REQUEST_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
-	private static final String REQUEST_MOVEMENT = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
 	private static final String REQUEST_RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 	private static final String RESULT_PRESENTATION = "최종 게임 결과";
 	private static final String RESULT_FAIL_OR_SUCCESS = "게임 성공 여부: %s";
@@ -23,13 +21,11 @@ public class BridgeGame {
 	private static final String ENTER = "\n";
 	private static final String DOUBLE_ENTER = "\n\n";
 
-	private List<String> bridgeNowCrossing;
-	public static List<String> upperBridge = new ArrayList<>();
-	public static List<String> underBridge = new ArrayList<>();
-	private String commandChoice;
-	private String failOrSuccess = "실패";
-	private int trialCount;
-
+	public static List<String> upperBridge = new ArrayList<>();	// map
+	public static List<String> underBridge = new ArrayList<>();	// map
+//	private String commandChoice;
+	private String crossComplete = "실패";	// 얘가 고유
+	private int trialCount;					// 얘가 고유
 
 	public void play(InputView inputView, BridgeMaker bridgeMaker) {
 		OutputView.printGameInfo(GAME_START_INFO + ENTER);
@@ -37,65 +33,40 @@ public class BridgeGame {
 		OutputView.printRequest(REQUEST_BRIDGE_SIZE);
 		Bridge bridge = new Bridge(inputView.readBridgeSize(), bridgeMaker);
 
-		crossingTrialStart(inputView, bridge);
+		crossingTrial(inputView, bridge);
 
 		OutputView.printGameInfo(RESULT_PRESENTATION + ENTER + ResultDescription.getBridgeDescription()
-				+ DOUBLE_ENTER + String.format(RESULT_FAIL_OR_SUCCESS, failOrSuccess)
+				+ DOUBLE_ENTER + String.format(RESULT_FAIL_OR_SUCCESS, crossComplete)
 				+ ENTER + String.format(RESULT_TRIAL, trialCount));
 	}
 
-	private void crossingTrialStart(InputView inputView, Bridge bridge) {
-		bridgeNowCrossing = bridge.getBridgeToCross();
+	private void crossingTrial(InputView inputView, Bridge bridge) {
 		do {
 			trialCount++;
-			crossBridge(inputView);
-			retryOrQuit(inputView, bridge);
-		} while (continueToRetry());
+			List<String> bridgeNowCrossing = bridge.getBridgeToCross();
+			CrossingBridge crossingBridge = CrossingBridge.over(inputView, bridgeNowCrossing);
+			crossComplete = crossingBridge.isCrossComplete();
+
+		} while (isTrialContinue(retryOrQuit(inputView)));
 	}
 
-	private void crossBridge(InputView inputView) {
-		do {
-			OutputView.printRequest(REQUEST_MOVEMENT);
-			MovementCommand movementCommand = inputView.readMovement();
-			CrossingDecision crossingDecision = CrossingDecision.judgingBy(movementCommand, bridgeNowCrossing);
-			passThrough(crossingDecision);
-			OutputView.printGameInfo(ResultDescription.generatedBy(crossingDecision, movementCommand).getBridgeDescription() + ENTER);
-
-		} while (continueToPassThrough());
+	private boolean isTrialContinue(String commandChoice) {
+		return !(crossComplete.equals("성공") || GameProceedCommand.CQUIT.equals(commandChoice));
 	}
 
-	private void passThrough(CrossingDecision crossingDecision) {
-		if (crossingDecision.isCrossable()) {
-			bridgeNowCrossing.remove(0);
-		}
-	}
-
-	private boolean continueToPassThrough() {
-		return !(ResultDescription.getBridgeDescription().contains("X") || completeCrossing());
-	}
-
-	private boolean continueToRetry() {
-		return !(completeCrossing() || ProcessCommand.COMMAND_QUIT.equals(commandChoice));
-	}
-
-	private void retryOrQuit(InputView inputView, Bridge bridge) {
-		if (completeCrossing() || ProcessCommand.COMMAND_QUIT.equals(requestRetry(inputView).getGameCommand())) {
-			commandChoice = ProcessCommand.COMMAND_QUIT;
-			return;
+	private String retryOrQuit(InputView inputView) {
+		String commandChoice = "";
+		if (crossComplete.equals("성공") || GameProceedCommand.CQUIT.equals(requestRetry(inputView).getGameCommand())) {
+			 commandChoice = GameProceedCommand.CQUIT;
+			return commandChoice;
 		}
 		upperBridge.clear();
 		underBridge.clear();
-		bridgeNowCrossing = bridge.getBridgeToCross();
+		return commandChoice;
 	}
 
-	public ProcessCommand requestRetry(InputView inputView) {
+	public GameProceedCommand requestRetry(InputView inputView) {
 		OutputView.printRequest(REQUEST_RETRY);
 		return inputView.readGameCommand();
 	}
-
-	private boolean completeCrossing() {
-		failOrSuccess = "성공";
-		return (bridgeNowCrossing.isEmpty());
-	}
-
 }
