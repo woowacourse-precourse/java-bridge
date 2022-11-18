@@ -5,6 +5,8 @@
 
 
 - Domain layer
+  - Bridge : 자동 생성될 다리를 표현하는 객체
+    - bridgeSizeValidation : 다리 길이 검증 메서드
 - Application layer
   - BridgeGameProcess : Application 에서 호출해 게임을 총괄하는 역할을 담당하는 클래스
     - run() : static으로 설정해 new 연산자 없이 호출해 사용 가능
