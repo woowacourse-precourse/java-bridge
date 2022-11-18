@@ -53,4 +53,17 @@ public class Service {
             }
         } while (!bridgeGame.isBridgeEnd());
     }
+
+    // 다시 게임을 시도할지 물어보는 기능
+    public boolean retry() {
+        do {
+            try {
+                outputView.printInputRetry();
+                String input = inputView.readGameCommand();
+                break;
+            } catch (IllegalArgumentException error) {
+                outputView.printErrorMessage(error);
+            }
+        } while (true);
+    }
 }
