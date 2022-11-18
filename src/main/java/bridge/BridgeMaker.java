@@ -8,6 +8,9 @@ import java.util.List;
  */
 public class BridgeMaker {
 
+    // BridgeMaker의 필드(인스턴스 변수)를 변경할 수 없다.
+    // BridgeMaker의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 없다.
+
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {

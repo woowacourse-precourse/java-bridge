@@ -9,6 +9,9 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
+    // InputView의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 있다.
+    // 사용자 값 입력을 위해 필요한 메서드를 추가할 수 있다.
+
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -21,7 +24,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String input = Console.readLine();
+        // validation
+        return input;
     }
 
     /**

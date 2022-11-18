@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.model.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -21,4 +22,15 @@ public class InputController {
             setBridgeSize();
         }
     }
+
+    public void setMove() {
+        try {
+            BridgeGame bridgeGame = new BridgeGame();
+            bridgeGame.move(inputView.readMoving());
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception);
+            setMove();
+        }
+    }
+
 }
