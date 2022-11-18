@@ -28,21 +28,21 @@ public class MoveResult {
     private void up(boolean success) {
         if (success) {
             highBridge.add("O");
-            lowBridge.add("  ");
+            lowBridge.add(" ");
         }
         if (!success) {
             highBridge.add("X");
-            lowBridge.add("  ");
+            lowBridge.add(" ");
         }
     }
 
     private void down(boolean success) {
         if (success) {
-            highBridge.add("  ");
+            highBridge.add(" ");
             lowBridge.add("O");
         }
         if (!success) {
-            highBridge.add("  ");
+            highBridge.add(" ");
             lowBridge.add("X");
         }
     }
