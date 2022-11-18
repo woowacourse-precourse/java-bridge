@@ -46,4 +46,11 @@ public class DomainTest {
     }
 
 
+    @Test
+    void bridge_generate() {
+        BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(0,1,1));
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(3);
+        assertThat(bridge).containsExactly("D", "U", "U");
+    }
 }
