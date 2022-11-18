@@ -55,3 +55,7 @@
 - [ ] generate() 를 활용했는가
 - [ ] 클래스의 코드를 변경하지 않았는가
 
+### 테스트 사항
+
+- BridgeGameController 관련
+- [x] start 메서드 실행 시 시작 문구가 출력되는지
