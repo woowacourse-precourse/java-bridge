@@ -17,21 +17,19 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving(String moveButton) {
-        validateUserInput.checkReadMoving(moveButton);
-        return moveButton;
+    public String readMoving() {
+        return getReadMoving();
     }
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand(String gameCommandButton){
-        validateUserInput.checkGameCommand(gameCommandButton);
-        return gameCommandButton;
+    public String readGameCommand(){
+        return getReadCommand();
     }
     public String getBrideSize(){
         String bridgeSize;
         while(true){
-            try {
+        try {
                 bridgeSize = Console.readLine();
                 validateUserInput.checkBridgeLength(bridgeSize);
             }catch(IllegalArgumentException e){
@@ -41,5 +39,33 @@ public class InputView {
             break;
         }
         return bridgeSize;
+    }
+    public String getReadMoving(){
+        String movingCommand;
+        while(true){
+            try {
+                movingCommand = Console.readLine();
+                validateUserInput.checkReadMoving(movingCommand);
+            }catch(IllegalArgumentException e){
+                System.out.println("[ERROR] U, D 커멘드만 입력해주세요.");
+                continue;
+            }
+            break;
+        }
+        return movingCommand;
+    }
+    public String getReadCommand(){
+        String restartCommand;
+        while(true){
+            try {
+                restartCommand = Console.readLine();
+                validateUserInput.checkGameCommand(restartCommand);
+            }catch(IllegalArgumentException e){
+                System.out.println("[ERROR] R, Q 커멘드만 입력해주세요.");
+                continue;
+            }
+            break;
+        }
+        return restartCommand;
     }
 }

@@ -44,7 +44,7 @@ public class BridgeGame {
         retry(upCase, downCase, bridge);
     }
     public void retry(int [] upCase, int [] downCase, List<String> bridge) {
-        if(inputView.readGameCommand(Console.readLine()).equals("R")) {
+        if(inputView.readGameCommand().equals("R")) {
             gameCount += 1;
             gameLogic(bridge);
             return ;
@@ -60,7 +60,7 @@ public class BridgeGame {
     public void bridgeMatch(int [] upCase, int [] downCase, List<String> bridge){
         for (int i = 0; i < bridge.size(); i++) {
             printMessage.printAskMovingButton();
-            String input = inputView.readMoving(Console.readLine());
+            String input = inputView.readMoving();
             if(!move(upCase, downCase, bridge, input, i)){
                 return;
             }
