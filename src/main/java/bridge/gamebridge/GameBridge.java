@@ -17,6 +17,11 @@ public class GameBridge {
         this.answerBridge = new AnswerBridge(bridge);
     }
 
+    public boolean insertMove(Move move) {
+        Bridge insertedBridge = insertMoveInPlayerBridge(move);
+        return answerBridge.checkBridge(insertedBridge);
+    }
+
     public PlayerBridge getPlayerBridge() {
         return playerBridge;
     }
