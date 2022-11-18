@@ -86,5 +86,12 @@ class BridgeMakerTest {
                 .hasMessageContaining("[ERROR]");
     }
 
+    @DisplayName("위 칸을 건널 수 있는 경우 U, 아래 칸을 건널 수 있는 경우 D로 나타내는지 확인한다.")
+    @ValueSource(ints = {0,1})
+    @Test
+    void validate_Is_D_Down_And_U_Up(int input) {
+        assertThatThrownBy(()-> BridgeMaker.validateIsZeroDownAndOneUp(input))
+                .isEqualTo('D', 'U');
+    }
 
 }
