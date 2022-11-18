@@ -7,12 +7,13 @@ public class Controller {
     InputView inputView = new InputView();
     BridgeGame bridgeGame;
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    OutputView outputView;
+    OutputView outputView = new OutputView();
 
     void play() {
         String quit = "R";
-        System.out.println("겜 시작");
+        outputView.printGameStart();
         while(!quit.equals("Q")) {
+            outputView.printBridgeSize();
             int size = inputView.readBridgeSize();
             List<String> bridge = bridgeMaker.makeBridge(size);
             System.out.println(bridge.toString());
@@ -26,7 +27,6 @@ public class Controller {
         int attempt = 1;
         boolean failed;
         while(quit.equals("R")) {
-            outputView = new OutputView();
             bridgeGame = new BridgeGame();
             List<List<String>> bridges = bridgeGame.getBridges();
             failed = crossingBridge(bridges, bridge);
@@ -44,6 +44,7 @@ public class Controller {
 
             String direction = inputView.readMoving();
             count++;
+            outputView.printWhereToMove();
             bridgeGame.move(direction, bridge.get(count-1));
 
             outputView.printMap(bridges);
