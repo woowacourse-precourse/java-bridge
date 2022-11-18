@@ -3,6 +3,7 @@ package bridge.domain;
 import bridge.constant.ErrorMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -32,6 +33,15 @@ class BridgeSizeTest {
         Assertions.assertThatThrownBy(() -> new BridgeSize(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.NOT_NUMBER.getMessage());
+
+    }
+
+    @DisplayName("다리의 길이 값이 들어오지 않으면 예외가 발생한다.")
+    @Test
+    void bridgeSizeNotNumber() {
+        Assertions.assertThatThrownBy(() -> new BridgeSize(""))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.NO_INPUT_VALUE.getMessage());
 
     }
 }
