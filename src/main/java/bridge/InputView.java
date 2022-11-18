@@ -31,7 +31,15 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String move = Console.readLine();
+        checkReadMoving(move);
+        return move;
+    }
+
+    public void checkReadMoving(String move) {
+        if( !(move.equals("U") || move.equals("D")) ) {
+            throw new IllegalArgumentException("[ERROR] 잘못된 움직임 입력입니다.");
+        }
     }
 
     /**
