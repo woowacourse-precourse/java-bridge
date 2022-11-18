@@ -1,14 +1,10 @@
 package bridge.Controller.Service;
 
 import Utils.ValidateUtils;
-import bridge.BridgeRandomNumberGenerator;
 import bridge.Domain.Bridge;
 import bridge.Domain.BridgeGame;
-import bridge.Domain.BridgeMaker;
 import bridge.View.InputView;
 import bridge.View.OutputView;
-
-import java.util.List;
 
 public class StartGameService {
 
