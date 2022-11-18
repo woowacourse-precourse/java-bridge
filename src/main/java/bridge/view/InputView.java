@@ -1,5 +1,9 @@
 package bridge.view;
 
+import bridge.domain.stringenum.PrintMessage;
+import bridge.util.InputValidator;
+import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -9,7 +13,16 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        printMessage(PrintMessage.BRIDGE_LENGTH.printMessage());
+        int bridgeLength;
+        while (true) {
+            try {
+                bridgeLength = readNumber(Console.readLine());
+                return bridgeLength;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 
     /**
@@ -25,4 +38,14 @@ public class InputView {
     public String readGameCommand() {
         return null;
     }
+
+    private int readNumber(String input) throws IllegalArgumentException {
+        InputValidator.validateNumber(input);
+        return Integer.parseInt(input);
+    }
+
+    private void printMessage(String requestMessage) {
+        System.out.println(requestMessage);
+    }
+
 }
