@@ -1,8 +1,5 @@
 package bridge;
 
-import response.ErrorResponse;
-import response.UserInputException;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,33 +19,22 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-//        validateBridgeSize(size);
-        List<Integer> integerBridge = new ArrayList<>();
+        List<String> generatedBridge = new ArrayList<>();
+
         for (int i = 0; i < size; i++) {
             int generatedRandomNumber = this.bridgeNumberGenerator.generate();
-            integerBridge.add(generatedRandomNumber);
-        }
-        List<String> stringBridge = convertIntegerBridgeIntoStringBridge(integerBridge);
-
-        return stringBridge;
-    }
-
-    private void validateBridgeSize(int size) {
-        if (size < 3 || size > 20) {
-            throw new UserInputException(ErrorResponse.INPUT_BRIDE_SIZE_RANGE_ERROR);
-        }
-    }
-
-    private List<String> convertIntegerBridgeIntoStringBridge(List<Integer> integerBridge) {
-        List<String> stringBridge = new ArrayList<>();
-        for (Integer integer : integerBridge) {
-            if (integer.equals(0)) {
-                stringBridge.add("D");
-                continue;
-            }
-            stringBridge.add("U");
+            generatedBridge.add(convertGeneratedRandomNumberIntoBridgeValue(generatedRandomNumber));
         }
 
-        return stringBridge;
+        return generatedBridge;
     }
+
+    private String convertGeneratedRandomNumberIntoBridgeValue(Integer generatedRandomNumber) {
+        if (generatedRandomNumber.equals(0)) {
+            return "D";
+        }
+
+        return "U";
+    }
+
 }
