@@ -42,6 +42,25 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(BridgeGame bridgeGame) {
+        boolean reachedEnd = bridgeGame.hasPlayerReachedEnd();
+        System.out.println(getResultString(reachedEnd));
+
+        int attempts = bridgeGame.getNumberOfAttempts();
+        System.out.println(getAttemptString(attempts));
+    }
+
+    public String getResultString(boolean reachedEnd) {
+        StringBuilder stringBuilder = new StringBuilder(GameMessage.GAME_RESULT_BODY.getMessage());
+        if (reachedEnd) {
+            stringBuilder.append(GameMessage.SUCCESS.getMessage());
+            return stringBuilder.toString();
+        }
+        stringBuilder.append(GameMessage.FAIL.getMessage());
+        return stringBuilder.toString();
+    }
+
+    public String getAttemptString(int attempts) {
+        return GameMessage.GAME_RESULT_ATTEMPTS.getMessage() + attempts;
     }
 }

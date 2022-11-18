@@ -27,6 +27,7 @@ public class Controller {
     public void startGame() {
         BridgeGame bridgeGame = createNewGame();
         runGame(bridgeGame);
+        endGame(bridgeGame);
     }
 
     public void runGame(BridgeGame bridgeGame) {
@@ -35,11 +36,13 @@ public class Controller {
                 bridgeGame.move(getNextMove());
                 outputView.printMap(bridgeGame);
             } while (bridgeGame.canPlayerTakeNextStep());
-            if (bridgeGame.hasPlayerReachedEnd()) {
-                break;
-            }
-            bridgeGame.retry();
-        } while (getGameCommand().equals(GameCommand.RETRY.getValue()));
+        } while (retry(bridgeGame));
+    }
+
+    public void endGame(BridgeGame bridgeGame) {
+        outputView.printGameMessage(GameMessage.GAME_RESULT_HEADER);
+        outputView.printMap(bridgeGame);
+        outputView.printResult(bridgeGame);
     }
 
     public BridgeGame createNewGame() {
@@ -47,9 +50,16 @@ public class Controller {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         BridgeGame bridgeGame = new BridgeGame();
-        bridgeGame.initializeBridge(bridge);
-        bridgeGame.createNewPlayer();
+        bridgeGame.initializeGame(bridge);
         return bridgeGame;
+    }
+
+    public boolean retry(BridgeGame bridgeGame) {
+        if (bridgeGame.hasPlayerReachedEnd() || getGameCommand().equals(GameCommand.QUIT.getValue())) {
+            return false;
+        }
+        bridgeGame.retry();
+        return true;
     }
 
     public int getBridgeSize() {
