@@ -6,9 +6,10 @@ public enum ErrorMessage {
 
     private final String value;
     private static final String errorHead = "[ERROR] ";
+    private static final String errorTail = " 다시 입력하세요.";
 
     ErrorMessage(String value) {
-        this.value = errorHead + value;
+        this.value = errorHead + value + errorTail;
     }
 
     public String getValue() {
