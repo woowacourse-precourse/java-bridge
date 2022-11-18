@@ -49,7 +49,7 @@ public class BridgeGame {
         for (int i=0; i<bridgeNum; i++){
             String inputMove = move();
             outputview.printMap(inputMove, inputMove.equals(bridgeAnswer.get(i)));
-            if (!inputMove.equals(bridgeAnswer.get(i))){
+            if (!inputMove.equals(bridgeAnswer.get(i)) || i==(bridgeNum-1)){
                 retry(gameCount,inputMove.equals(bridgeAnswer.get(i)));
                 break;
             }
@@ -62,10 +62,12 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry(int gameNum, boolean correct) {
-        String retryStr = inputview.readGameCommand();
         printResult(gameNum, correct);
-        if (retryStr.equals("R")){
-            playGame(gameNum+1);
+        if (!correct){
+            String retryStr = inputview.readGameCommand();
+            if (retryStr.equals("R")){
+                playGame(gameNum+1);
+            }
         }
     }
 }

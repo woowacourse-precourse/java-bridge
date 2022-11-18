@@ -50,7 +50,10 @@ public class InputView {
     }
 
     public static void validReInput(String str){
-        if (str.equals("R") && str.equals("Q")){
+        if (str.length()>1){
+            throw new IllegalArgumentException("[ERROR]");
+        }
+        if (!str.equals("R") && !str.equals("Q")){
             throw new IllegalArgumentException("[ERROR]");
         }
     };
