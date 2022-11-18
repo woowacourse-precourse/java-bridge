@@ -14,18 +14,18 @@ public class BridgeGame {
     AnswerBridge answerBridge;
     User user = new User();
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    boolean flag = true;
 
     public void run() {
         startGame();
-        boolean flag = true;
         while (isRepeat(flag, user)) {
             move();
-            if (!answerBridge.isCorrect(user)) {
+            if (!isCorrect()) {
                 flag = retry();
             }
-            checkApproachEnd(answerBridge, user);
+            checkApproachEnd();
         }
-        OutputView.printResult(user, answerBridge.compareTo(user));
+        finishGame();
     }
 
     private void startGame() {
@@ -63,10 +63,8 @@ public class BridgeGame {
         }
     }
 
-    private void checkApproachEnd(AnswerBridge answerBridge, User user) {
-        if (answerBridge.isApproachEnd(user.getChoices())) {
-            user.doSuccess();
-        }
+    private boolean isCorrect() {
+        return !answerBridge.isCorrect(user);
     }
 
     public boolean retry() {
@@ -90,4 +88,13 @@ public class BridgeGame {
         return false;
     }
 
+    private void checkApproachEnd() {
+        if (answerBridge.isApproachEnd(user.getChoices())) {
+            user.doSuccess();
+        }
+    }
+
+    private void finishGame() {
+        OutputView.printResult(user, answerBridge.compareTo(user));
+    }
 }
