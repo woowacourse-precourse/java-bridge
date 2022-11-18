@@ -12,6 +12,10 @@ public class InputView {
      */
     public int readBridgeSize() {
         String size = Console.readLine();
+        String sizeRegex = "^([3-9]{1})$|^(1[0-9]{1})$|^20$";
+        if(!size.matches(sizeRegex)) {
+            throw new IllegalArgumentException("[ERROR] 3이상 20이하의 숫자를 입력해 주세요");
+        }
         return Integer.parseInt(size);
     }
 
