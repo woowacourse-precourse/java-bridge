@@ -10,7 +10,14 @@ public class InfiniteInput<T> {
     }
 
     public T getInput(Supplier<T> inputSupplier, OutputView outputView){
-        // TODO: 사용자가 알맞은 입력을 할 때까지 계속해서 입력
-        return null;
+        T value = defaultValue;
+        do {
+            try {
+                value = inputSupplier.get();
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }while(value.equals(defaultValue));
+        return value;
     }
 }
