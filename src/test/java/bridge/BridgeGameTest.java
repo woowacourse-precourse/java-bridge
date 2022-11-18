@@ -79,4 +79,12 @@ class BridgeGameTest {
                 .isNotInstanceOf(IllegalArgumentException.class)
                 .hasMessageNotContaining("[ERROR]");
     }
+
+    @DisplayName("사용자가 재시도를 할 때 재시도가 정상적으로 이루어지는지 확인한다.")
+    @ValueSource(strings = {"R"})
+    @Test
+    void validate_Is_Retry_Available() {
+        assertThatThrownBy(()-> BridgeGame.retry())
+                .hasMessageStartingWith("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    }
 }
