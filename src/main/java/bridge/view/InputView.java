@@ -39,7 +39,7 @@ public class InputView {
     public String readMoving() {
         String move = readValue();
         if (Objects.equals(move, "U") || Objects.equals(move, "D")) {
-            throw new IllegalArgumentException("입력은 U(위쪽) D(아래쪽) 중 하나만 입력하셔야 합니다!");
+            throw new IllegalArgumentException("허용되지 않는 값! U(위쪽) D(아래쪽) 중 하나를 입력하셔야 합니다!");
         }
         return move;
     }
@@ -48,6 +48,10 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String command = readValue();
+        if (Objects.equals(command, "Q") || Objects.equals(command, "R")) {
+            throw new IllegalArgumentException("허용되지 않는 값! R(재시작) Q(종료) 중 하나를 입력하셔야 합니다!");
+        }
+        return command;
     }
 }
