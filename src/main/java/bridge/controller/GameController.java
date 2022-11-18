@@ -101,6 +101,7 @@ public class GameController {
     private void showResult(Player player, Bridge bridge) {
         outputView.printFinishGameInfoMessage();
         outputView.printMap(bridge, player);
+        outputView.printResult(bridgeGame.isWin(bridge, player), player.getTryCount());
     }
 
 }

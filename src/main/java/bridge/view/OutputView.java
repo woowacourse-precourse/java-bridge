@@ -1,8 +1,8 @@
 package bridge.view;
 
 import bridge.domain.Bridge;
-import bridge.domain.Tile;
 import bridge.domain.Player;
+import bridge.domain.Tile;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -10,6 +10,10 @@ import bridge.domain.Player;
 public class OutputView {
 
     private static final String FINISH_GAME_INFO_MESSAGE = "최종 게임 결과";
+    private static final String GAME_SUCCESS_OR_NOT_MESSAGE_FORMAT = "게임 성공 여부: %s";
+    private static final String GAME_TRY_COUNT_MESSAGE_FORMAT = "총 시도한 횟수: %d";
+    private static final String SUCCESS_MESSAGE = "성공";
+    private static final String FAIL_MESSAGE = "실패";
 
     private static final String BRIDGE_START_SIGN = "[";
     private static final String BRIDGE_END_SIGN = "]\n";
@@ -55,6 +59,15 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(boolean isWin, Player player) {
+    public void printResult(boolean isWin, int playerTryCount) {
+        System.out.println(getSuccessOrNotMessage(isWin));
+        System.out.println(String.format(GAME_TRY_COUNT_MESSAGE_FORMAT, playerTryCount));
+    }
+
+    private String getSuccessOrNotMessage(boolean isWin) {
+        if (isWin) {
+            return String.format(GAME_SUCCESS_OR_NOT_MESSAGE_FORMAT, SUCCESS_MESSAGE);
+        }
+        return String.format(GAME_SUCCESS_OR_NOT_MESSAGE_FORMAT, FAIL_MESSAGE);
     }
 }
