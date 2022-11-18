@@ -32,7 +32,7 @@ public class BridgeGame {
     public void move(String key) {
         turn.increase();
         String upOrDown = bridge.get(position.getNext());
-        if (InputKey.isUp(key)) {
+        if (InputKey.matchUp(key)) {
             result.handleUpBridge(upOrDown, position);
             return;
         }

@@ -12,4 +12,12 @@ public enum ConstVariable {
     public int getValue() {
         return value;
     }
+
+    public static boolean isLowerThanMinBridgeLength(int length) {
+        return MIN_BRIDGE_LENGTH.getValue() > length;
+    }
+
+    public static boolean isGreaterThanMaxBridgeLength(int length) {
+        return MAX_BRIDGE_LENGTH.getValue() < length;
+    }
 }

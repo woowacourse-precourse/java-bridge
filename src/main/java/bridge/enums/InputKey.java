@@ -13,19 +13,19 @@ public enum InputKey {
         return value;
     }
 
-    public static boolean isUp(String input) {
+    public static boolean matchUp(String input) {
         return input.equals(U.getValue());
     }
 
-    public static boolean isDown(String input) {
+    public static boolean matchDown(String input) {
         return input.equals(D.getValue());
     }
 
-    public static boolean isRetry(String input) {
+    public static boolean matchRetry(String input) {
         return input.equals(R.getValue());
     }
 
-    public static boolean isQuit(String input) {
+    public static boolean matchQuit(String input) {
         return input.equals(Q.getValue());
     }
 }

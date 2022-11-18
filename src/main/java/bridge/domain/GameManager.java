@@ -37,7 +37,7 @@ public class GameManager {
     }
 
     private boolean retryOrNot() {
-        if (InputKey.isQuit(InputView.readGameCommand())) {
+        if (InputKey.matchQuit(InputView.readGameCommand())) {
             return false;
         }
         bridgeGame.retry();

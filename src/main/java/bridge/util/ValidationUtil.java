@@ -8,9 +8,9 @@ public class ValidationUtil {
 
     public static void isValidBridgeLength(String input) {
         int value = isDigit(input);
-        
-        if (value < ConstVariable.MIN_BRIDGE_LENGTH.getValue()
-                || value > ConstVariable.MAX_BRIDGE_LENGTH.getValue()) {
+
+        if (ConstVariable.isLowerThanMinBridgeLength(value)
+                || ConstVariable.isGreaterThanMaxBridgeLength(value)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LENGTH.getValue());
         }
     }
@@ -24,15 +24,13 @@ public class ValidationUtil {
     }
 
     public static void isUpOrDown(String input) {
-        if (!input.equals(InputKey.U.getValue()) &&
-                !input.equals(InputKey.D.getValue())) {
+        if (!InputKey.matchUp(input) && !InputKey.matchDown(input)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT.getValue());
         }
     }
 
     public static void isRetryOrQuit(String input) {
-        if (!input.equals(InputKey.R.getValue()) &&
-                !input.equals(InputKey.Q.getValue())) {
+        if (!InputKey.matchRetry(input) && !InputKey.matchQuit(input)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT.getValue());
         }
     }
