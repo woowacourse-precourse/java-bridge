@@ -35,8 +35,18 @@ public class Application {
         // 3.
         OutputView outputView = new OutputView();
         BridgeGame bridgeGame = new BridgeGame(inputView, outputView);
-
         String gameStatus = bridgeGame.move(bridge);
+
+        // 4.
+        String regameStatus = "";
+        while (!regameStatus.equals("Q")) {
+            if (gameStatus.equals("fail")) {
+                regameStatus = inputView.readGameCommand();
+            }
+            if (regameStatus.equals("R")) {
+                gameStatus = bridgeGame.retry(bridge);
+            }
+        }
 
 
     }
