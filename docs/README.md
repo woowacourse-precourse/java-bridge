@@ -116,3 +116,10 @@
 - [ ] 게임의 최종 결과를 정해진 형식에 맞춰 출력 - printResult
   - [ ] 정답과 해답을 비교해 성공 여부를 출력 - printSuccessOrFail
 - [ ] 에러 메시지 출력 - printErrorMessage
+
+## 무한 입력(`InfiniteInput`)
+
+사용자로부터 입력을 받음(특정 조건을 만족할때까지)
+
+### 기능
+- [ ] 사용자가 올바른 입력을 할 때까지 계속해서 입력 - getInput
