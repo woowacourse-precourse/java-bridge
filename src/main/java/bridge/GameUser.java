@@ -16,4 +16,8 @@ public class GameUser {
     public boolean hasSameBridge(Bridge otherBridge) {
         return userBridge.isSame(otherBridge);
     }
+
+    public boolean hasBridgeLength(int otherLength) {
+        return userBridge.length() == otherLength;
+    }
 }
