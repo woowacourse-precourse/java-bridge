@@ -64,4 +64,10 @@ public class BridgeTest {
         assertThatThrownBy(()->new SelectMove("A"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+    @DisplayName("R, Q를 입력 하지 않을 경우 예외가 발생한다.")
+    @Test
+    void 게임_재시작_값_입력(){
+        assertThatThrownBy(()->new GameCommand("A"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
