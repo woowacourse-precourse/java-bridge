@@ -1,5 +1,6 @@
 package bridge.validation;
 
+import bridge.type.CommandType;
 import bridge.type.Direction;
 import bridge.type.ErrorMessage;
 import bridge.type.NumberType;
@@ -34,5 +35,12 @@ public class Validator {
             return;
         }
         throw new IllegalArgumentException(ErrorMessage.WRONG_DIRECTION.getMessage());
+    }
+
+    public void checkCommand(String input) {
+        if (input.equals(CommandType.QUIT.getCommand()) || input.equals(CommandType.RETRY.getCommand())) {
+            return;
+        }
+        throw new IllegalArgumentException(ErrorMessage.WRONG_COMMAND.getMessage());
     }
 }

@@ -32,4 +32,17 @@ public class Player {
     public List<String> getBridge() {
         return Collections.unmodifiableList(bridge);
     }
+
+    public boolean isFailToMove() {
+        for (int i=0; i<moveHistory.size(); i++) {
+            String direction = moveHistory.get(i);
+            String answer = bridge.get(i);
+            if (!direction.equals(answer)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 }

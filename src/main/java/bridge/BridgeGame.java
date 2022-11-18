@@ -44,4 +44,8 @@ public class BridgeGame {
         CurrentPositionDto currentPositionDto = new CurrentPositionDto(bridge, moveHistory);
         return currentPositionDto;
     }
+
+    public boolean isPlayerFailToMove() {
+        return player.isFailToMove();
+    }
 }

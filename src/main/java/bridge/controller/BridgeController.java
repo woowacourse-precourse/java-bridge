@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.BridgeGame;
 import bridge.dto.CurrentPositionDto;
+import bridge.type.CommandType;
 import bridge.validation.Validator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -26,10 +27,54 @@ public class BridgeController {
     public void run() {
         printStartMessage();
         makeBridge();
+        moveToEndPoint();
+
+
+    }
+
+    private void moveToEndPoint() {
         while (true) {
             movePlayer();
+            if (checkPlayerStatus()) {
+                break;
+            }
         }
+    }
 
+    private boolean checkPlayerStatus() {
+        if (FailToMove()) {
+            if (isPlayerWantedToEnd()) {
+                return true;
+            }
+        }
+        if (CompleteToMove()) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isPlayerWantedToEnd() {
+        String input = getCommand();
+        if (input.equals(CommandType.QUIT.getCommand())) {
+            return true;
+        }
+    }
+
+    private String getCommand() {
+        while (true) {
+            String input = inputView.readGameCommand();
+            try {
+                validator.checkCommand(input);
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e);
+                continue;
+            }
+            return input;
+        }
+    }
+
+    private boolean FailToMove() {
+        return bridgeGame.isPlayerFailToMove();
     }
 
     private void movePlayer() {
