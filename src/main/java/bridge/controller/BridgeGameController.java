@@ -4,6 +4,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.BridgeGame;
 import bridge.view.InputView;
+import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeGameController {
@@ -12,6 +13,7 @@ public class BridgeGameController {
     private static int gameCount = 1;
     private final BridgeMaker bridgeMaker;
     private final BridgeGame bridgeGame;
+    private boolean gameResult;
 
     public BridgeGameController() {
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -25,14 +27,34 @@ public class BridgeGameController {
 
     public void run(){
         int bridgeSize = bridge.size();
-        boolean isMoveSuccess = true;
+        boolean isMoveSuccess;
         for (int moveCount = 0; moveCount < bridgeSize; moveCount++) {
             String moving = InputView.readMoving();
             isMoveSuccess = bridgeGame.move(bridge, moving);
             if (!isMoveSuccess){
-                bridgeGame.retry();
-                break;
+                gameResult = false;
+                retry();
+                return;
             }
         }
+        gameResult = true;
+        end();
+    }
+
+    public void retry() {
+        String gameCommand = InputView.readGameCommand();
+        boolean retry = bridgeGame.retry(gameCommand);
+
+        if (retry) {
+            gameCount++;
+            run();
+        }
+
+        end();
+    }
+
+    public void end() {
+        OutputView outputView = new OutputView();
+        outputView.printResult();
     }
 }
