@@ -5,18 +5,18 @@ import java.util.Map;
 
 public class BridgeGameResultDto {
     private List<StepStatus> gradingBoard;
-    private boolean isCorrect;
+    private GameStatus gameStatus;
 
-    public BridgeGameResultDto(List<StepStatus> gradingBoard, boolean isCorrect) {
+    public BridgeGameResultDto(List<StepStatus> gradingBoard, GameStatus gameStatus) {
         this.gradingBoard = gradingBoard;
-        this.isCorrect = isCorrect;
+        this.gameStatus = gameStatus;
     }
 
     public List<StepStatus> getGradingBoard() {
         return gradingBoard;
     }
 
-    public boolean isCorrect() {
-        return isCorrect;
+    public GameStatus getGameStatus() {
+        return gameStatus;
     }
 }
