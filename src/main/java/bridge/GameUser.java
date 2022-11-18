@@ -13,7 +13,7 @@ public class GameUser {
         userBridge.reset();
     }
 
-    public boolean isSame(Bridge otherBridge) {
+    public boolean hasSameBridge(Bridge otherBridge) {
         return userBridge.isSame(otherBridge);
     }
 }
