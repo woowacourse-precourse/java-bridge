@@ -9,17 +9,30 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class ValidatorTest {
+	@DisplayName("숫자인 다리 길이를 입력받는다.")
+	@ValueSource(strings = {"20", "0", "3", "12312412"})
+	@ParameterizedTest
+	void validateSizeIsNumberNormal(String strings) {
+		assertDoesNotThrow(() -> Validator.validateSizeIsNumber(strings));
+	}
 	@DisplayName("숫자가 아닌 다리 길이 입력에 대해 예외를 발생한다.")
 	@ValueSource(strings = {"25.1", "abcde", "가나다라", "1ㅁ2a3", "", "-1"})
 	@ParameterizedTest
-	void validateSizeIsNumber(String strings) {
+	void validateSizeIsNumberAbnormal(String strings) {
 		assertThatThrownBy(() -> Validator.validateSizeIsNumber(strings)).isInstanceOf(IllegalArgumentException.class);
+	}
+
+	@DisplayName("이동할 칸을 입력받는다.")
+	@ValueSource(strings = {"U", "D"})
+	@ParameterizedTest
+	void validateCellPositionNormal(String strings) {
+		assertDoesNotThrow(() -> Validator.validateCellPosition(strings));
 	}
 
 	@DisplayName("U와 D가 아닌 이동할 칸 입력에 대한 예외를 발생한다.")
 	@ValueSource(strings = {"25.1", "abcde", "가나다라", "1ㅁ2a3", "u"})
 	@ParameterizedTest
-	void validateCellPosition(String strings) {
+	void validateCellPositionAbnormal(String strings) {
 		assertThatThrownBy(() -> Validator.validateCellPosition(strings)).isInstanceOf(IllegalArgumentException.class);
 	}
 }
