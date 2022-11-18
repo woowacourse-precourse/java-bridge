@@ -37,4 +37,12 @@ public class Bridge {
 
         return bridgeMaker.makeBridge(size);
     }
+
+    public boolean calculatePlayerMoving(BridgeTile playerStep, int playerPosition) {
+        return bridge.get(playerPosition) == playerStep;
+    }
+
+    public boolean isEnd(int playerPosition) {
+        return bridge.size() == playerPosition;
+    }
 }
