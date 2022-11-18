@@ -11,6 +11,7 @@ public class BridgeGame {
         BridgeMaker bridgeMaker = new BridgeMaker(generator);
 
         answerBridge = new Bridge(bridgeMaker.makeBridge(size));
+        System.out.println("answerBridge: " + answerBridge);
         gameUser = new GameUser();
     }
 

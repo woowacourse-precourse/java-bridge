@@ -37,8 +37,8 @@ public class Bridge {
     }
 
     public boolean isPartOfList(List<String> other) {
-        List<String> temp = other.subList(0, length());
-        return temp.equals(bridge);
+        List<String> temp = bridge.subList(0, other.size());
+        return temp.equals(other);
     }
 
     @Override
