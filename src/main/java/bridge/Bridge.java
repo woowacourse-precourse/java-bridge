@@ -6,7 +6,7 @@ public class Bridge {
     private final List<String> bridge;
     private final int size;
     private int location = 0;
-    private int tryCount = 0;
+    private int tryCount = 1;
 
     public Bridge(List<String> bridge, int size) {
         this.bridge = bridge;
