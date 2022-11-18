@@ -48,7 +48,14 @@ public class OutputView {
     }
 
     private void printDirectionRoadStateMap(String direction, BridgeRoadMap bridgeRoadMap, UserRoadMap userRoadMap) {
-        // TODO: 위치하고 있는 방향(위, 아래)과 다리의 상태를 비교하여 형식에 맞게 출력
+        for(int roadPosition = 0; roadPosition < bridgeRoadMap.getSize(); roadPosition++){
+            printRoadSeparation(roadPosition);
+            if(userRoadMap.matchPositionWithDirection(roadPosition, direction)) {
+                printOorX(roadPosition, bridgeRoadMap, userRoadMap);
+                continue;
+            }
+            System.out.printf(ROAD_STATE[2]);
+        }
     }
 
     private void printRoadSeparation(int roadPosition) {
