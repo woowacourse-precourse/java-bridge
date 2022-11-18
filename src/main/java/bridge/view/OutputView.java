@@ -21,7 +21,6 @@ public class OutputView {
     }
 
     private String generateUpCase (List<String> passHistory) {
-        String upCaseResult;
 
         List<String> upCase = passHistory.stream()
                         .map((el) -> {
@@ -29,12 +28,11 @@ public class OutputView {
                             if (el.equals("UX")) return "X";
                             return " "; }).collect(Collectors.toList());
 
-        return upCaseResult = upCase.stream()
-                        .collect(Collectors.joining(" | ", "[ ", " ]"));
+        return upCase.stream()
+                .collect(Collectors.joining(" | ", "[ ", " ]"));
     }
 
     private String generateDownCase (List<String> passHistory) {
-        String downCaseResult;
 
         List<String> upCase = passHistory.stream()
                 .map((el) -> {
@@ -42,7 +40,7 @@ public class OutputView {
                     if (el.equals("DX")) return "X";
                     return " "; }).collect(Collectors.toList());
 
-        return downCaseResult = upCase.stream()
+        return upCase.stream()
                 .collect(Collectors.joining(" | ", "[ ", " ]"));
     }
 
