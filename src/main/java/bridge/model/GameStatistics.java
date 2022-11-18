@@ -1,19 +1,41 @@
 package bridge.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameStatistics {
     private String gameResult;
     private int totalTryCount;
+    private List<String> answerRoad;
+    private ArrayList<Boolean> checkRoad;
 
-    public GameStatistics(String gameResult, int totalTryCount) {
-        this.gameResult = gameResult;
-        this.totalTryCount = totalTryCount;
+    public GameStatistics() {
+        this.totalTryCount = 1;
+        checkRoad = new ArrayList<>();
+        answerRoad = new ArrayList<>();
     }
 
     public String getGameResult() {
         return gameResult;
     }
 
-    public int getTotalTryCount() {
-        return totalTryCount;
+    public String getTotalTryCount() {
+        return Integer.toString(totalTryCount);
+    }
+
+    public List<Boolean> getCheckRoad() {
+        return checkRoad;
+    }
+
+    public List<String> getAnswerRoad() {
+        return answerRoad;
+    }
+
+    public void setAnswerRoad(List<String> answerRoad) {
+        this.answerRoad = answerRoad;
+    }
+
+    public void setGameResult(String gameResult) {
+        this.gameResult = gameResult;
     }
 }
