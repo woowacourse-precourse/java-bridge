@@ -6,6 +6,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
@@ -17,7 +19,7 @@ class ApplicationTest extends NsTest {
 
     @Test
     @DisplayName("예외 1-1. 3 이상 20 이하의 숫자가 아닌 경우")
-    void test0(){
+    void test0() {
         assertSimpleTest(() -> {
             runException("1");
             assertThat(output()).contains(ERROR_MESSAGE);
@@ -30,11 +32,30 @@ class ApplicationTest extends NsTest {
 
     @Test
     @DisplayName("예외 1-2. 숫자가 아닌 경우")
-    void test1(){
+    void test1() {
         assertSimpleTest(() -> {
             runException("문자");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    @DisplayName("2-1. 1번 다리 생성")
+    void test2() {
+        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(3);
+        assertThat(bridge).containsExactly("U", "D", "D");
+    }
+
+    @Test
+    @DisplayName("2-2. 2번 다리 생성")
+    void test3() {
+        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(newArrayList(1, 0, 0));
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        List<String> firstBridge = Arrays.asList("U", "D", "D");
+        List<String> bridge = bridgeMaker.makeSecondBridge(firstBridge);
+        assertThat(bridge).containsExactly("D", "U", "U");
     }
 
     @Test
@@ -50,11 +71,11 @@ class ApplicationTest extends NsTest {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "U");
             assertThat(output()).contains(
-                "최종 게임 결과",
-                "[ O |   | O ]",
-                "[   | O |   ]",
-                "게임 성공 여부: 성공",
-                "총 시도한 횟수: 1"
+                    "최종 게임 결과",
+                    "[ O |   | O ]",
+                    "[   | O |   ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 1"
             );
 
             int upSideIndex = output().indexOf("[ O |   | O ]");
