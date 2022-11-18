@@ -1,5 +1,11 @@
 package bridge.controller;
 
+import java.util.List;
+
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.Bridge;
+
 public class GameController {
 
     InputController inputController;
@@ -9,11 +15,14 @@ public class GameController {
     }
 
     public void run() {
-        createBridge();
+        Bridge bridge = createBridge();
 
     }
 
-    private void createBridge() {
+    private Bridge createBridge() {
         int bridgeSizeInput = inputController.getBridgeSize();
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSizeInput);
+        return new Bridge(bridge);
     }
 }

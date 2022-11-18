@@ -10,18 +10,18 @@ public class InputController {
     public int getBridgeSize() {
         while(true) {
             try {
-                return getBridgeSizeInput();
+                return getAndParseBridgeSizeInput();
             } catch(IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    public int getBridgeSizeInput() {
-        MessageUtil.requestBridgeSizeMsg();
+    public int getAndParseBridgeSizeInput() {
+        MessageUtil.requestBridgeSize();
         String bridgeSizeInput = InputView.readBridgeSize();
         ParserUtil.parseBridgeSize(bridgeSizeInput);
-        int bridgeSize = Integer.parseInt(bridgeSizeInput)
+        int bridgeSize = Integer.parseInt(bridgeSizeInput);
         return bridgeSize;
     }
 
