@@ -25,4 +25,22 @@ public enum Direction {
     public int getIndex() {
         return this.index;
     }
+
+    public static Direction getDirection(String command) {
+        for (Direction dir : Direction.values()) {
+            if (dir.getCommand().equals(command)) {
+                return dir;
+            }
+        }
+        return null;
+    }
+
+    public static Direction getDirection(int value) {
+        for (Direction dir : Direction.values()) {
+            if (dir.getValue() == value) {
+                return dir;
+            }
+        }
+        return null;
+    }
 }

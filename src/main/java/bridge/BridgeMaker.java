@@ -24,17 +24,8 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int random = bridgeNumberGenerator.generate();
-            bridge.add(getDirection(random));
+            bridge.add(Direction.getDirection(random).getCommand());
         }
         return bridge;
-    }
-
-    private String getDirection(int number) {
-        for (Direction dir : Direction.values()) {
-            if (number == dir.getValue()) {
-                return dir.getCommand();
-            }
-        }
-        return "";
     }
 }
