@@ -38,6 +38,10 @@ public class OutputView {
 		System.out.printf(TOTAL_PLAY_COUNT_MESSAGE_FORMAT, tryCount);
 	}
 
+	public void printStartMessage() {
+		System.out.print(START_MESSAGE);
+	}
+
 	private String makeUpFloorMessage(List<ResultMessageStatus> bridgeStatuses) {
 		StringBuilder result = new StringBuilder();
 		result.append(BRIDGE_START_SYMBOL);
