@@ -52,11 +52,11 @@ public class AnswerBridgeTest {
     @Test
     void isCorrect() {
         user.addChoice("U");
-        boolean result = answerBridge.isCorrect(user);
+        boolean result = answerBridge.isCorrectChoice(user);
         assertThat(result).isTrue();
 
         user.addChoice("U");
-        result = answerBridge.isCorrect(user);
+        result = answerBridge.isCorrectChoice(user);
         assertThat(result).isFalse();
     }
 }

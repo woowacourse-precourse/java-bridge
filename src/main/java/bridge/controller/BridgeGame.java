@@ -21,7 +21,7 @@ public class BridgeGame {
         startGame();
         while (isRepeat(flag, user)) {
             move();
-            if (!isCorrect()) {
+            if (!isCorrectChoice()) {
                 flag = retry();
             }
             checkApproachEnd();
@@ -64,8 +64,8 @@ public class BridgeGame {
         }
     }
 
-    private boolean isCorrect() {
-        return !answerBridge.isCorrect(user);
+    private boolean isCorrectChoice() {
+        return !answerBridge.isCorrectChoice(user);
     }
 
     public boolean retry() {

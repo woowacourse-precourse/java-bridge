@@ -27,7 +27,7 @@ public class AnswerBridge {
         return answerBridgeWord.equals(userBridgeWord);
     }
 
-    public boolean isCorrect(final User user) {
+    public boolean isCorrectChoice(final User user) {
         int lastStep = user.getStep();
         String lastChoice = user.getLastChoice();
         return answerBridge.get(lastStep).equals(lastChoice);
