@@ -1,10 +1,12 @@
 package bridge.view;
 
 import static bridge.message.MessageConstants.*;
+import static bridge.message.OutputMessageConstants.*;
 
 import java.util.List;
 
 import bridge.domain.ResultMessageStatus;
+import bridge.domain.ResultStatus;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -24,13 +26,17 @@ public class OutputView {
 		System.out.println(downFloorResultMessage + "\n");
 	}
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult() {
-    }
+	/**
+	 * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
+	 * <p>
+	 * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+	 */
+	public void printResult(List<ResultMessageStatus> resultMessageStatuses, ResultStatus resultStatus, int tryCount) {
+		System.out.print(GAME_RESULT_TITLE_MESSAGE);
+		printMap(resultMessageStatuses);
+		System.out.printf(GAME_RESULT_MESSAGE_FORMAT, resultStatus.getResultStatusMessage());
+		System.out.printf(TOTAL_PLAY_COUNT_MESSAGE_FORMAT, tryCount);
+	}
 
 	private String makeUpFloorMessage(List<ResultMessageStatus> bridgeStatuses) {
 		StringBuilder result = new StringBuilder();
