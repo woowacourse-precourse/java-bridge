@@ -12,7 +12,7 @@ public enum ResultStatus {
 	}
 
 	public static ResultStatus makeResultStatus(String bridgeCommand, String command) {
-		if (bridgeCommand.equals(command)) {
+		if (bridgeCommand != null && bridgeCommand.equals(command)) {
 			return SUCCESS;
 		}
 		return FAILURE;
