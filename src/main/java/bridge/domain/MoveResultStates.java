@@ -2,30 +2,26 @@ package bridge.domain;
 
 import bridge.domain.state.Ready;
 import bridge.domain.state.State;
-import bridge.domain.strategy.BridgeNumberGenerator;
-import bridge.dto.BridgeSizeDTO;
 import bridge.dto.MovingDTO;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MovingResultStates {
-    private final Bridge bridge;
+public class MoveResultStates {
     private final LinkedList<State> states;
     
-    public MovingResultStates(final BridgeNumberGenerator bridgeNumberGenerator, final BridgeSizeDTO bridgeSizeDTO) {
-        bridge = new Bridge(bridgeNumberGenerator, bridgeSizeDTO.getBridgeSize());
+    public MoveResultStates() {
         states = new LinkedList<>();
-        System.out.println(bridge);
     }
     
-    public void move(final MovingDTO movingDTO) {
-        readyState();
+    public void move(final MovingDTO movingDTO, final Bridge bridge) {
+        System.out.println(bridge);
+        readyState(bridge);
         convertToNextState(movingDTO);
     }
     
-    private void readyState() {
+    private void readyState(final Bridge bridge) {
         states.add(new Ready(bridge));
     }
     
@@ -79,9 +75,8 @@ public class MovingResultStates {
     
     @Override
     public String toString() {
-        return "MovingResultStates{" +
-                "bridge=" + bridge +
-                ", movingResultStates=" + states +
+        return "MoveResultStates{" +
+                "states=" + states +
                 '}';
     }
 }

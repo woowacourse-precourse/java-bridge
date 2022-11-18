@@ -14,14 +14,14 @@ class BridgeGameTest {
     
     @BeforeEach
     void setUp() {
-        bridgeGame = new BridgeGame(() -> 1, new BridgeSizeDTO(2));
-        bridgeGame.move(new MovingDTO("U"));
+        bridgeGame = new BridgeGame();
+        bridgeGame.move(new MovingDTO("U"), BridgeTest.UPPER_BRIDGE);
     }
     
     @Test
     @DisplayName("이동 확인")
     void move() {
-        bridgeGame.move(new MovingDTO("U"));
+        bridgeGame.move(new MovingDTO("U"), BridgeTest.UPPER_BRIDGE);
         assertThat(bridgeGame.isGameFinished()).isTrue();
     }
     
@@ -30,7 +30,7 @@ class BridgeGameTest {
     void isGameFinished() {
         assertAll(
                 () -> assertThat(bridgeGame.isGameFinished()).isFalse(),
-                () -> bridgeGame.move(new MovingDTO("U")),
+                () -> bridgeGame.move(new MovingDTO("U"), BridgeTest.UPPER_BRIDGE),
                 () -> assertThat(bridgeGame.isGameFinished()).isTrue()
         );
     }
@@ -38,7 +38,7 @@ class BridgeGameTest {
     @Test
     @DisplayName("초기화 되는지 확인")
     void retry() {
-        bridgeGame.move(new MovingDTO("U"));
+        bridgeGame.move(new MovingDTO("U"), BridgeTest.UPPER_BRIDGE);
         
         assertAll(
                 () -> assertThat(bridgeGame.isGameFinished()).isTrue(),
@@ -52,7 +52,7 @@ class BridgeGameTest {
     void isMoveFail() {
         assertAll(
                 () -> assertThat(bridgeGame.isMoveFail()).isFalse(),
-                () -> bridgeGame.move(new MovingDTO("D")),
+                () -> bridgeGame.move(new MovingDTO("D"), BridgeTest.UPPER_BRIDGE),
                 () -> assertThat(bridgeGame.isMoveFail()).isTrue()
         );
     }

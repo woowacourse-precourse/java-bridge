@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.strategy.BridgeRandomNumberGenerator;
 import bridge.dto.BridgeSizeDTO;
@@ -19,31 +20,43 @@ public class BridgeGameController {
     }
     
     public void start() {
+        printGameStartMessage();
+        playBridgeGame(new BridgeGame(), createBridge());
+    }
+    
+    private void printGameStartMessage() {
         outputView.printGameStartMessage();
-        playBridgeGame(new BridgeGame(new BridgeRandomNumberGenerator(), inputBridgeSize()));
+    }
+    
+    private Bridge createBridge() {
+        return new Bridge(new BridgeRandomNumberGenerator(), bridgeSize());
+    }
+    
+    private int bridgeSize() {
+        return inputBridgeSize().getBridgeSize();
     }
     
     private BridgeSizeDTO inputBridgeSize() {
         return inputView.readBridgeSize(outputView);
     }
     
-    private void playBridgeGame(final BridgeGame bridgeGame) {
+    private void playBridgeGame(final BridgeGame bridgeGame, final Bridge bridge) {
         boolean isGameFinished = false;
         
         while (!isGameFinished) {
-            isGameFinished = onceMoving(bridgeGame);
+            isGameFinished = onceMoving(bridgeGame, bridge);
         }
         printResult(new GameResultDTO(bridgeGame));
     }
     
-    private boolean onceMoving(final BridgeGame bridgeGame) {
-        move(bridgeGame);
+    private boolean onceMoving(final BridgeGame bridgeGame, final Bridge bridge) {
+        move(bridgeGame, bridge);
         printResultMap(new GameResultDTO(bridgeGame));
         return isGameFinished(bridgeGame);
     }
     
-    private void move(final BridgeGame bridgeGame) {
-        bridgeGame.move(inputMoving());
+    private void move(final BridgeGame bridgeGame, final Bridge bridge) {
+        bridgeGame.move(inputMoving(), bridge);
     }
     
     private MovingDTO inputMoving() {
