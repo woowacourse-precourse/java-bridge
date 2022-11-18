@@ -46,6 +46,10 @@ public class OutputView {
 		System.out.println(exception.getMessage());
 	}
 
+	public void printEndl() {
+		System.out.println();
+	}
+
 	private String makeUpFloorMessage(List<ResultMessageStatus> bridgeStatuses) {
 		StringBuilder result = new StringBuilder();
 		result.append(BRIDGE_START_SYMBOL);
