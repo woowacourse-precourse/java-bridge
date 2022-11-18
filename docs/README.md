@@ -11,7 +11,7 @@
 
 ### 1. 다리 생성하기  
 - [ ✅ ] 다리 길이 입력요청문구를 출력한다 → OutputView.printBridgeSizeInputRequest
-- [  ] 다리 길이를 입력받는다 → InputView.readBridgeSize
+- [ ✅ ] 다리 길이를 입력받는다 → InputView.readBridgeSize
 - [  ] 입력받은 다리 길이에 대한 유효성을 검사한다 
 - [  ] 다리를 생성한다 → BridgeMaker.makeBridge
     - [  ] 각 다리가 U 또는 D로만 이루어졌는지 확인 후 생성하도록 한다 → Bridge.validateBridge

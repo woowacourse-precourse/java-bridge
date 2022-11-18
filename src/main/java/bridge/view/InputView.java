@@ -1,5 +1,7 @@
 package bridge.view;
 
+import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  * 패키지 및 메서드 시그니처와 리턴타입 변경 가능, 메서드 추가 가능
@@ -10,7 +12,9 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        String input = Console.readLine();
+        int bridgeSize = Integer.parseInt(input);
+        return bridgeSize;
     }
 
     /**
