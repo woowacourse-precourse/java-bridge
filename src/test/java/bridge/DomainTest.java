@@ -53,4 +53,13 @@ public class DomainTest {
         List<String> bridge = bridgeMaker.makeBridge(3);
         assertThat(bridge).containsExactly("D", "U", "U");
     }
+
+    @DisplayName("위아래 입력")
+    @Test
+    void inputUpValue() {
+        assertThat(inputView.checkMessage("U",ErrorMessage.WRONGMOVEINPUTEXCEPTION)).contains("PASS");
+        assertThat(inputView.checkMessage("D",ErrorMessage.WRONGMOVEINPUTEXCEPTION)).contains("PASS");
+        assertThat(inputView.checkMessage("dkfjsdkf",ErrorMessage.WRONGMOVEINPUTEXCEPTION)).contains("ERROR");
+    }
+
 }
