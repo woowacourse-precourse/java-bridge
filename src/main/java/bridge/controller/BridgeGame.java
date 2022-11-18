@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.User;
+import bridge.service.ExceptionService;
 import bridge.service.MapMakerService;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class BridgeGame {
      */
     public void initGame(String bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        //TODO : bridgeSize 예외처리
+        ExceptionService.checkBridgeSize(bridgeSize);
         this.user = new User(bridgeMaker.makeBridge(Integer.parseInt(bridgeSize)));
         mapMakerService = new MapMakerService(user.getBridge());
     }
