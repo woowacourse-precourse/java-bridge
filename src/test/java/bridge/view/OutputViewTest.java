@@ -22,8 +22,8 @@ class OutputViewTest {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
         printMap(topGameBoard, bottomGameBoard);
-        String expectString = "[ O |   | O ]"+newLine+"[   | O |   ]"+newLine;
+        String expect = "[ O |   | O ]"+newLine+"[   | O |   ]"+newLine;
 
-        assertThat(output.toString()).contains(expectString);
+        assertThat(output.toString()).contains(expect);
     }
 }
