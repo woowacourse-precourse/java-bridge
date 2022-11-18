@@ -20,8 +20,11 @@ public class BridgeGame {
         curbridge = bm.makeBridge(size);
         curidx = 0;
     }
-    public void move() {
-
+    public int move() {
+        InputView iv = new InputView();
+        String mov = iv.readMoving();
+        if(isFinish(curidx,mov) == 0) return 0;
+        else return 1;
     }
 
     /**
