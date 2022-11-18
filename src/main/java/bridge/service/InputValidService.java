@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import bridge.util.ErrorConst;
+import bridge.util.InputViewConst;
 
 public class InputValidService {
 
@@ -14,6 +15,13 @@ public class InputValidService {
 		Integer bridgeSizeNumber = Integer.valueOf(bridgeSize);
 		checkNumberRange(bridgeSizeNumber);
 		return bridgeSizeNumber;
+	}
+
+	public String validUserCommand(String userCommand) {
+		if (!userCommand.equals(InputViewConst.RESTART) && !userCommand.equals(InputViewConst.QUIT)) {
+			throw new IllegalArgumentException(ErrorConst.USER_COMMAND_ERROR);
+		}
+		return userCommand;
 	}
 
 	private void checkNumberRange(Integer bridgeSizeNumber) {

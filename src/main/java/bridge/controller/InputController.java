@@ -25,4 +25,13 @@ public class InputController {
 		}
 	}
 
+	public String getUserRestartCommand() {
+		try {
+			return inputValidService.validUserCommand(inputView.readGameCommand());
+		} catch (IllegalArgumentException e) {
+			outputView.printError(e.getMessage());
+			return getUserRestartCommand();
+		}
+	}
+
 }
