@@ -5,15 +5,15 @@ import java.util.Arrays;
 public enum GameCommand {
     QUIT("Q"), RETRY("R");
 
-    private final String inputLetter;
+    private final String command;
 
-    GameCommand(String inputLetter) {
-        this.inputLetter = inputLetter;
+    GameCommand(String command) {
+        this.command = command;
     }
 
     public static GameCommand from(String inputLetter) {
         return Arrays.stream(values())
-                .filter(retry -> retry.inputLetter.equals(inputLetter))
+                .filter(retry -> retry.command.equals(inputLetter))
                 .findFirst()
                 .get();
     }

@@ -63,9 +63,9 @@ public class InputView {
         }
     }
 
-    private String validateMoving(String moving) {
-        if (Direction.hasInputLetter(moving)) {
-            return moving;
+    private String validateMoving(String inputLetter) {
+        if (Direction.hasInputLetter(inputLetter)) {
+            return inputLetter;
         }
         throw new IllegalArgumentException(MOVING_DIRECTION_EXCEPTION_MESSAGE);
     }

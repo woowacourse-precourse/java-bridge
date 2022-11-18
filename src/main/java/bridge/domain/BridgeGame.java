@@ -45,7 +45,7 @@ public class BridgeGame {
     }
 
     public boolean tryForward(Direction direction) {
-        return bridge.isCurrentBridgeDirection(direction.getInputLetter());
+        return bridge.isCurrentBridgeDirection(direction.getCommand());
     }
 
     private void initGame() {
