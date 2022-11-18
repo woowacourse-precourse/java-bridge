@@ -21,7 +21,7 @@ public class InputTest {
     @DisplayName("아무것도 입력하지 않았을 때 예외가 발생한다.")
     void 입력값이_없으면_예외발생(String input) {
         assertThatIllegalArgumentException().isThrownBy(() -> inputView.validateIsNotEmpty(input))
-                .withMessage("[ERROR] 숫자를 입력해야 합니다.");
+                .withMessage("[ERROR] 입력이 비어있습니다.");
     }
 
     @ParameterizedTest
@@ -52,5 +52,13 @@ public class InputTest {
     @DisplayName("사용자가 U or D를 입력하면 해당 값을 Return한다.")
     void 입력값이_U_OR_D일때_정상_Return_한다(String input) {
         assertThat(inputView.readMoving(input)).isEqualTo(input);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"})
+    @DisplayName("정상 범위의 다리길이가 입력되면 해당 숫자를 Return한다.")
+    void 다리길이_입력값이_정상일때_정상_Return_한다(String length) {
+        assertThat(inputView.readBridgeSize(length))
+                .isEqualTo(Integer.valueOf(length));
     }
 }
