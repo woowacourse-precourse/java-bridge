@@ -50,6 +50,16 @@ public class BridgeGame {
         }
     }
 
+    public String inputDirection() {
+        try {
+            String direction = inputView.input();
+            return inputView.readMoving(direction);
+        } catch(IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputDirection();
+        }
+    }
+
     public void setUpBridge(int size) {
         directions = bridgeMaker.makeBridge(size);
     }
