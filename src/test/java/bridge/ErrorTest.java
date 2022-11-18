@@ -27,4 +27,11 @@ public class ErrorTest {
         assertThatThrownBy(() -> Error.validatePlayerMove("R"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("종료 재시작 선택이 R,Q가 아닌 경우")
+    @Test
+    void validateGameProgress() {
+        assertThatThrownBy(() -> Error.validateGameProgress("U"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
