@@ -24,6 +24,7 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int count = 0; count < size; count++) {
             int bridgeNumber = bridgeNumberGenerator.generate();
+            addMovableSpace(bridge, bridgeNumber);
         }
         return bridge;
     }
@@ -32,5 +33,13 @@ public class BridgeMaker {
         if (size < 3 || 20 < size) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3 ~ 20사이여야 합니다");
         }
+    }
+
+    public void addMovableSpace(List<String> bridge, int bridgeNumber) {
+        if (bridgeNumber == 1) {
+            bridge.add("U");
+            return;
+        }
+        bridge.add("D");
     }
 }
