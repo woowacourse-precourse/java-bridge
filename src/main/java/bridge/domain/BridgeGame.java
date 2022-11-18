@@ -1,4 +1,8 @@
-package bridge;
+package bridge.domain;
+
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
+import bridge.view.OutputView;
 
 import java.util.List;
 
@@ -6,17 +10,19 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private BridgeMaker bridgeMaker;
     private List<String> bridge;
     private int count;
     private int totalNumberOfAttempts;
 
-    public BridgeGame() {
+    public BridgeGame(BridgeNumberGenerator numberGenerator) {
+        this.bridgeMaker = new BridgeMaker(numberGenerator);
         this.count = 0;
         this.totalNumberOfAttempts = 1;
     }
 
-    public void setBridge(List<String> bridge) {
-        this.bridge = bridge;
+    public void setBridge(int size) {
+        this.bridge = bridgeMaker.makeBridge(size);
     }
 
     public int getCount() {
