@@ -10,7 +10,9 @@ public class Controller {
         this.service = new Service();
     }
 
+    // 게임 시작 기능
     public void startBridgeGame() {
-
+        service.welcomeGame();
+        service.initGame();
     }
 }
