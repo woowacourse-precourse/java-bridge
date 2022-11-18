@@ -37,7 +37,7 @@ public class InputView {
     public String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String retryCommand = Console.readLine();
-        //재시작 여부 입력값을 검증하는 함수를 호출하는 자리
+        validateRetryCommand(retryCommand);
         return retryCommand;
     }
 }
