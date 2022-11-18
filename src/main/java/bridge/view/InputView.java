@@ -13,47 +13,36 @@ import bridge.domain.constants.MoveCommands;
  */
 public class InputView {
 
-    private static final String ERROR_PREFIX = "[ERROR] ";
+    private final InputDataConverter inputDataConverter;
+
+    public InputView(InputDataConverter inputDataConverter) {
+        this.inputDataConverter = inputDataConverter;
+    }
 
     public BridgeSize bridgeSize() {
-        try {
-            return numberForBridgeSize();
-        } catch (IllegalArgumentException e) {
-            System.out.println(ERROR_PREFIX + e.getMessage());
-            return bridgeSize();
-        }
+        return inputDataConverter.bridgeSize(this::valueForBridgeSize);
     }
 
-    private BridgeSize numberForBridgeSize() {
+    private String valueForBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
-        return new BridgeSize(readLine());
+        return readLine();
     }
 
-    public MoveCommands moveCommands() {
-        try {
-            return oneStringForMoveCommands();
-        } catch (IllegalArgumentException e) {
-            System.out.println(ERROR_PREFIX + e.getMessage());
-            return moveCommands();
-        }
+    public MoveCommands moveCommand() {
+        return inputDataConverter.moveCommand(this::valueForMoveCommand);
     }
 
-    private MoveCommands oneStringForMoveCommands() {
+    private String valueForMoveCommand() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        return MoveCommands.of(readLine());
+        return readLine();
     }
 
     public GameCommands gameCommand() {
-        try {
-            return oneStringForGameCommand();
-        } catch (IllegalArgumentException e) {
-            System.out.println(ERROR_PREFIX + e.getMessage());
-            return gameCommand();
-        }
+        return inputDataConverter.gameCommand(this::valueForGameCommand);
     }
 
-    private GameCommands oneStringForGameCommand() {
+    private String valueForGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        return GameCommands.of(readLine());
+        return readLine();
     }
 }

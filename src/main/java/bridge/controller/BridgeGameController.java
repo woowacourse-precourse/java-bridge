@@ -7,11 +7,11 @@ import static bridge.domain.constants.MoveResultsSign.MOVE_FAIL;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeSize;
-import bridge.domain.move_result.MoveResults;
 import bridge.domain.Player;
 import bridge.domain.constants.GameCommands;
 import bridge.domain.constants.MoveCommands;
 import bridge.domain.make_bridge.BridgeMaker;
+import bridge.domain.move_result.MoveResults;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -66,7 +66,7 @@ public class BridgeGameController {
     }
 
     private String moveResult(final BridgeGame bridgeGame) {
-        MoveCommands moveCommand = inputView.moveCommands();
+        MoveCommands moveCommand = inputView.moveCommand();
         String moveResult = bridgeGame.matchResult(moveCommand);
 
         printCurrentPosition(bridgeGame, moveCommand, moveResult);
