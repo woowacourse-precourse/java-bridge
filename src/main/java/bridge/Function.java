@@ -7,15 +7,22 @@ public class Function {
     private static final int MIN_LENGTH = 3;
     private static final int MAX_LENGTH = 20;
 
-    public static boolean validBridgeSize(String BridgeSizes) {
+    public static boolean validCastingBridgeSize(String BridgeSizes) {
         try {
             int BridgeSize = Integer.parseInt(BridgeSizes);
+            return true;
+        } catch (NumberFormatException e) {
+            OutputView.printError("다리 길이로 숫자를 입력해주세요.");
+        }
+        return false;
+    }
+
+    public static boolean validBridgeSize(int BridgeSize) {
+        try {
             if (BridgeSize < MIN_LENGTH || BridgeSize > MAX_LENGTH) {
                 throw new IllegalArgumentException("올바른 다리 길이를 입력해주세요.");
             }
             return true;
-        } catch (NumberFormatException e) {
-            OutputView.printError("다리 길이로 숫자를 입력해주세요.");
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
         }

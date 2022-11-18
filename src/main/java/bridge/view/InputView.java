@@ -13,8 +13,11 @@ public class InputView {
      */
     public int readBridgeSize() {
         String BridgeSizes = Console.readLine();
-        if (Function.validBridgeSize(BridgeSizes)) {
-            return Integer.parseInt(BridgeSizes);
+        if (Function.validCastingBridgeSize(BridgeSizes)) {
+            int BridgeSize = Integer.parseInt(BridgeSizes);
+            if (Function.validBridgeSize(BridgeSize)) {
+                return BridgeSize;
+            }
         }
         return 0;
     }

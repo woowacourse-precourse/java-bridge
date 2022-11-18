@@ -7,9 +7,9 @@ public class Application {
         boolean success = false;
         Controller controller = new Controller();
         BridgeGame bridgeGame = controller.start();
-        while(true){
-            while(controller.play(bridgeGame));
-            if (!controller.finish(bridgeGame) || bridgeGame.check()){
+        while (true) {
+            while (controller.play(bridgeGame)) ;
+            if (!controller.finish(bridgeGame) || bridgeGame.check()) {
                 success = true;
                 break;
             }

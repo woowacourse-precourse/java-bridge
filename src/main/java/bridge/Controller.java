@@ -13,38 +13,55 @@ public class Controller {
     public BridgeGame start() {
         outputView.printStart();
         outputView.printGetLength();
-        int BridgeLength = inputView.readBridgeSize();
-        while (BridgeLength == 0) {
-            BridgeLength = inputView.readBridgeSize();
-        }
+        int BridgeLength = getBridgeLength();
         BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(BridgeLength));
         System.out.println(bridgeGame.getBridge());
         return bridgeGame;
     }
 
     public boolean play(BridgeGame bridgeGame) {
-        if (bridgeGame.check()){
+        if (bridgeGame.check()) {
             return false;
         }
         outputView.printGetMoving();
-        String moving = inputView.readMoving();
-        while (moving == null) {
-            moving = inputView.readMoving();
-        }
+        String moving = getMoving();
         boolean movement = bridgeGame.move(moving);
         outputView.printMap(bridgeGame, movement);
         return movement;
     }
-    public boolean finish(BridgeGame bridgeGame){
+
+    public boolean finish(BridgeGame bridgeGame) {
         outputView.printRetry();
-        String gameCommand = inputView.readGameCommand();
-        while (gameCommand == null){
-            gameCommand = inputView.readGameCommand();
-        }
+        String gameCommand = getCommand();
         return bridgeGame.retry(gameCommand);
     }
 
     public void result(BridgeGame bridgeGame, boolean success) {
         outputView.printResult(bridgeGame, success);
     }
+
+    private int getBridgeLength() {
+        int BridgeLength = inputView.readBridgeSize();
+        while (BridgeLength == 0) {
+            BridgeLength = inputView.readBridgeSize();
+        }
+        return BridgeLength;
+    }
+
+    private String getMoving() {
+        String moving = inputView.readMoving();
+        while (moving == null) {
+            moving = inputView.readMoving();
+        }
+        return moving;
+    }
+
+    private String getCommand() {
+        String gameCommand = inputView.readGameCommand();
+        while (gameCommand == null) {
+            gameCommand = inputView.readGameCommand();
+        }
+        return gameCommand;
+    }
+
 }
