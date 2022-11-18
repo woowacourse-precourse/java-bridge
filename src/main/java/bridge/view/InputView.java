@@ -71,7 +71,7 @@ public class InputView {
     private int convert(String number) {
         try {
             return Integer.parseInt(number);
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NUMBER_FORMAT_ERROR);
         }
     }
