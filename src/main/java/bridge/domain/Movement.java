@@ -6,33 +6,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Movement {
-    private final List<String> bridge;
+    private final Bridge bridge;
     private final BridgeMap bridgeMap = new BridgeMap();
     private List<String> movement = new ArrayList<>();
     private int tryCount = Constant.INITIAL_COUNT;
 
-    public Movement(List<String> bridge) {
+    public Movement(Bridge bridge) {
         this.bridge = bridge;
     }
 
     public boolean canMove() {
         int nowIndex = movement.size() - 1;
-        if (!movement.get(nowIndex).equals(bridge.get(nowIndex))) {
-            return false;
-        }
-        return true;
+        return bridge.canMove(nowIndex, movement.get(nowIndex));
     }
 
     public void saveMoving(String moving) {
         this.movement.add(moving);
         saveCompareResult(moving);
     }
-
     public boolean isFinish() {
-        if (bridge.size() == movement.size()) {
-            return true;
-        }
-        return false;
+        return bridge.isFinish(movement);
     }
 
     public void clearMoving() {

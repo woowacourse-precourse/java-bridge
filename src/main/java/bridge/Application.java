@@ -4,8 +4,6 @@ import bridge.constant.Messages;
 import bridge.service.BridgeMaker;
 import bridge.service.BridgeNumberGenerator;
 import bridge.service.BridgeRandomNumberGenerator;
-import bridge.view.InputView;
-import bridge.view.OutputView;
 
 public class Application {
 
