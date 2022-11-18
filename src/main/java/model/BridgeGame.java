@@ -4,6 +4,7 @@ import constant.GameConstant;
 import controller.BridgeController;
 import constant.StringConstant;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class BridgeGame {
@@ -20,12 +21,12 @@ public class BridgeGame {
     public List<String> move(List<String> bridge, String path) {
         BridgeController.printMoving(path);
         List<String> bridgeByUser = new ArrayList<>();
-        addPathInBridgeByUser(bridge, path, bridgeByUser);
+        addPathInBridgeByUser(bridge, bridgeByUser, path);
         countBridgeNumber();
-        return bridgeByUser;
+        return Collections.unmodifiableList(bridgeByUser);
     }
 
-    private void addPathInBridgeByUser(List<String> bridge, String path, List<String> bridgeByUser) {
+    private void addPathInBridgeByUser(List<String> bridge, List<String> bridgeByUser, String path) {
         if (isUserPathEqualsBridge(bridge, path)) {
             addCorrectPath(bridgeByUser, path);
         }
