@@ -20,10 +20,9 @@ public class InputView {
             value = readValue();
             if (isBridgeSizeNumber(value)) {
                 bridgeSize = toInts(value);
-                break;
-            }
-        }
-        return bridgeSize;
+                return bridgeSize;
+            } // end if
+        } // end while
     }
 
     public int toInts(String value) {
@@ -48,10 +47,9 @@ public class InputView {
         while (true) {
             moving = readValue();
             if (isReadMoving(moving)) {
-                break;
-            }
-        }
-        return moving;
+                return moving;
+            } // end if
+        } // end while
     }
 
     public boolean isReadMoving(String moving){
@@ -66,8 +64,16 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String retry = "";
+        while(true){
+            retry = readValue();
+            if(isRetry(retry)){
+                return retry;
+            } // end if
+        } // end while
     }
+
+
 
     public String readValue() {
         String value = Console.readLine();
