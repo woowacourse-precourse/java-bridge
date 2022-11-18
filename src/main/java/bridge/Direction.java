@@ -1,7 +1,7 @@
 package bridge;
 
 public class Direction {
-    private enum Code {
+     enum Code {
         UP(1, "U"), DOWN(0, "D");
         private final int number;
         private final String name;
@@ -9,6 +9,10 @@ public class Direction {
         Code(int number, String name) {
             this.number = number;
             this.name = name;
+        }
+
+        public String getName(){
+            return name;
         }
     }
 
