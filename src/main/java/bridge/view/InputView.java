@@ -1,7 +1,9 @@
 package bridge.view;
 
 import bridge.constant.Directive;
-import bridge.utils.InputParser;
+import bridge.constant.ViewStatus;
+import bridge.controller.BridgeGameController;
+import bridge.dto.MakeBridgeResponse;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -9,12 +11,24 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
+    private final BridgeGameController bridgeGameController;
+
+    private ViewStatus status = ViewStatus.DETERMINE_BRIDGE_SIZE;
+
+    public InputView(BridgeGameController bridgeGameController) {
+        this.bridgeGameController = bridgeGameController;
+    }
+
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
-        System.out.println(Directive.INPUT_LENGTH_OF_BRIDGE.getMessage());
-        return InputParser.parseToInteger(Console.readLine());
+    public void makeBridge() {
+        while (status == ViewStatus.DETERMINE_BRIDGE_SIZE) {
+            System.out.println(Directive.INPUT_SIZE_OF_BRIDGE.getMessage());
+            MakeBridgeResponse bridgeResponse =
+                    bridgeGameController.makeBridge(Console.readLine());
+            status = bridgeResponse.getViewStatus();
+        }
     }
 
     /**
