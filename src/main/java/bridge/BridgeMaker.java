@@ -29,7 +29,19 @@ public class BridgeMaker {
                 System.out.println(result);
             }
         }
+
         return result;
+    }
+
+    public String OXjudge(String search, int number, String Line){
+        char[] charInput = Line.toCharArray();
+        if(search.equals("O")){
+            charInput[number * 4 + 2] ='O';
+        }
+        if(search.equals("X")){
+            charInput[number * 4 + 2] = 'X';
+        }
+        return String.valueOf(charInput);
     }
 
 }
