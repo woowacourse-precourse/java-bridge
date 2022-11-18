@@ -39,7 +39,7 @@ public class OutputView {
         System.out.print(ENTER);
     }
 
-    public void printResult(MapMaker mapMaker, boolean gameResult, int count) {
+    public static void printResult(MapMaker mapMaker, boolean gameResult, int count) {
         System.out.println(OUTPUT_GAME_RESULT);
         printMap(mapMaker);
         System.out.println(OUTPUT_GAME_WIN_OR_LOSE + ((gameResult) ? OUTPUT_GAME_LOSE : OUTPUT_GAME_WIN));

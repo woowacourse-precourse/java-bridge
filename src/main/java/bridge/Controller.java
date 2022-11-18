@@ -10,6 +10,17 @@ public class Controller {
     private int count = 0;
     private boolean gameResult = true;
 
+    public Controller(){
+        try {
+            OutputView.printStartMessage();
+            createBridge();
+            movingBridge();
+            printResult();
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
+    }
+
     // TODO: 게임에 필요한 다리를 생성하고 초기화한다.
     private void bridgeGameSet(){
         bridgeGame = new BridgeGame(bridge);
