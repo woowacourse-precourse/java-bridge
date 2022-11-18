@@ -6,9 +6,11 @@ import java.util.List;
 public class Player {
 
     private final List<BridgeMark> record;
+    private int attempt;
 
     public Player() {
         this.record = new ArrayList<>();
+        this.attempt = 1;
     }
 
     public void record(BridgeMark bridgeMark) {
@@ -20,6 +22,10 @@ public class Player {
     }
 
     public PlayerResponseDto toResponseDto() {
-        return new PlayerResponseDto(new ArrayList<>(record));
+        return new PlayerResponseDto(new ArrayList<>(record), attempt);
+    }
+
+    public void increaseAttempt() {
+        attempt++;
     }
 }

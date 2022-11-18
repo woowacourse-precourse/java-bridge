@@ -37,4 +37,13 @@ public class PlayerTest {
 
         assertThat(record.size()).isEqualTo(0);
     }
+
+    @Test
+    void increaseAttempt() {
+        player.increaseAttempt();
+        player.increaseAttempt();
+        PlayerResponseDto responseDto = player.toResponseDto();
+
+        assertThat(responseDto.getAttempt()).isEqualTo(3);
+    }
 }
