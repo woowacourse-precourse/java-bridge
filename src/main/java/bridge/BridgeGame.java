@@ -1,16 +1,48 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
+    public final List<List<String>> bridges;
+    public final List<String> bridgeUp;
+    public final List<String> bridgeDown;
+
+    public BridgeGame() {
+        this.bridges = new ArrayList<>();
+        this.bridgeUp = new ArrayList<>();
+        this.bridgeDown = new ArrayList<>();
+        bridges.add(bridgeUp);
+        bridges.add(bridgeDown);
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public void move(String direction, String answer) {
+        String result = addOorX(direction, answer);
+        if(direction.equals("U")) {
+            bridgeUp.add(result);
+            bridgeDown.add(" ");
+            return;
+        }
+        bridgeUp.add(" ");
+        bridgeDown.add(result);
+        return;
+    }
+
+    public String addOorX(String direction, String answer) {
+        if(direction.equals(answer)) {
+            return "O";
+        }
+        return "X";
     }
 
     /**
@@ -18,6 +50,18 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public int retry(int attempt, String quit) {
+        if(Objects.equals(quit, "R")) {
+            attempt++;
+            return attempt;
+        }
+        if(quit.equals("Q")) {
+            return attempt;
+        }
+        throw new IllegalArgumentException("Q나 R을 입력해라");
+    }
+
+    public List<List<String>> getBridges() {
+        return bridges;
     }
 }
