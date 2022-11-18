@@ -42,4 +42,15 @@ public class BridgeGameService {
 			throw new IllegalArgumentException("[ERROR] 이동 커맨드는 U 또는 D 입니다.");
 		}
 	}
+
+	public boolean retryOrEnd(String command) {
+		validCommand(command);
+		return command.equals("R");
+	}
+
+	private void validCommand(String command) {
+		if (!command.equals("Q") && !command.equals("R")) {
+			throw new IllegalArgumentException("[ERROR] 재시작, 종료 커맨드는 R 또는 Q 입니다.");
+		}
+	}
 }
