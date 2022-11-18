@@ -29,19 +29,19 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String movement) {
-        String partOfBridge = bridge.get(movements.size());
-        addMovementHistory(movement, partOfBridge);
+        String nextBlock = bridge.get(movements.size());
+        addMovementHistory(movement, nextBlock);
         return movements.get(movements.size() - 1).isAvailable();
     }
 
-    private void addMovementHistory(String movement, String partOfBridge) {
-        if (movement.equals("U") && partOfBridge.equals("U")) {
+    private void addMovementHistory(String movement, String nextBlock) {
+        if (movement.equals("U") && nextBlock.equals("U")) {
             movements.add(Movement.UP_AND_O);
-        } else if (movement.equals("U") && partOfBridge.equals("D")) {
+        } else if (movement.equals("U") && nextBlock.equals("D")) {
             movements.add(Movement.UP_AND_X);
-        } else if (movement.equals("D") && partOfBridge.equals("D")) {
+        } else if (movement.equals("D") && nextBlock.equals("D")) {
             movements.add(Movement.DOWN_AND_O);
-        } else if (movement.equals("D") && partOfBridge.equals("U")) {
+        } else if (movement.equals("D") && nextBlock.equals("U")) {
             movements.add(Movement.DOWN_AND_X);
         }
     }
