@@ -47,6 +47,8 @@
 >>      - 종료 `Finish`
 
 
+<details><summary><strong>기능 요구 사항</strong></summary>
+
 ## 🚀 기능 요구 사항
 위아래 둘 중 하나의 칸만 건널 수 있는 다리를 끝까지 건너가는 게임이다.
 - 위아래 두 칸으로 이루어진 다리를 건너야 한다.
@@ -65,6 +67,9 @@
     - 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때까지 시도한 횟수를 나타낸다.
 - 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
     - `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
+
+</details>
+
 
 <details><summary><strong>I/O</strong></summary>
 
