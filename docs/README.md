@@ -28,6 +28,8 @@
   - [x] 입력한 문자가 verifier 와 동일한지 확인 - ErrorControl#validateLetter()
   - ~~[ ] 이동 위치 U,D 둘 중 하나인지 확인 (소문자는?)~~
   - ~~[ ] 재시도 여부 R,Q 둘 중 하나인지 확인~~
+- Application
+  - [x] main() 을 통해 최종 구현 - Application#main() 
 
 ## 구현 사항
 1. 생성할 다리의 길이를 입력받아 숫자 0, 1 로 이루어진 다리를 생성
