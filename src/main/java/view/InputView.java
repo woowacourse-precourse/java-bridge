@@ -24,7 +24,7 @@ public class InputView {
     public String readMoving() {
         System.out.println(ViewConstant.ASKING_INPUT_BRIDGE_SIZE_MESSAGE);
         String moving = Console.readLine();
-        Validator.validateCellPosition(moving);
+        Validator.validateMovingIsCellPosition(moving);
         return moving;
     }
 
@@ -32,6 +32,9 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println(ViewConstant.ASKING_INPUT_RESTART_OR_NOT_MESSAGE);
+        String gameCommand = Console.readLine();
+        Validator.validateGameCommand(gameCommand);
+        return gameCommand;
     }
 }
