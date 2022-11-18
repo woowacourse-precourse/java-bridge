@@ -26,4 +26,11 @@ class ValidatorTest {
         assertThatThrownBy(() -> Validator.validateMove("d"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("게임 재시작/종료 여부를 입력 시 R, Q 이외의 값이 입력되면 예외 처리한다.")
+    @Test
+    void inputInvalidCommand() {
+        assertThatThrownBy(() -> Validator.validateGameCommand("E"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
