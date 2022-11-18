@@ -1,11 +1,11 @@
 package bridge.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeRandomNumberGenerator;
-import bridge.domain.MoveMap;
 
 public class BridgeGameService {
 	private final BridgeMaker bridgeMaker;
@@ -19,8 +19,11 @@ public class BridgeGameService {
 		return bridgeMaker.makeBridge(size);
 	}
 
-	public MoveMap initGameMap() {
-		return new MoveMap();
+	public List<List<String>> initGameMap() {
+		List<List<String>> moveMap = new ArrayList<>();
+		moveMap.add(new ArrayList<>());
+		moveMap.add(new ArrayList<>());
+		return moveMap;
 	}
 
 	public void moveBridge(String moving, BridgeGame bridgeGame, List<List<String>> moveResult) {
