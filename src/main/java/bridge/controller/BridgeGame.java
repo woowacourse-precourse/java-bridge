@@ -33,6 +33,19 @@ public class BridgeGame {
         makeAnswerBridge();
     }
 
+    private void makeAnswerBridge() {
+        while (true) {
+            try {
+                int bridgeSize = InputView.getInputBridgeSize();
+                List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+                answerBridge = new AnswerBridge(bridge);
+                break;
+            } catch (IllegalArgumentException illegalArgumentException) {
+                OutputView.printError(illegalArgumentException);
+            }
+        }
+    }
+
     private boolean isRepeat(boolean flag, User user) {
         return (flag && !user.getDoesSuccess());
     }
@@ -77,16 +90,4 @@ public class BridgeGame {
         return false;
     }
 
-    private void makeAnswerBridge() {
-        while (true) {
-            try {
-                int bridgeSize = InputView.getInputBridgeSize();
-                List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-                answerBridge = new AnswerBridge(bridge);
-                break;
-            } catch (IllegalArgumentException illegalArgumentException) {
-                OutputView.printError(illegalArgumentException);
-            }
-        }
-    }
 }
