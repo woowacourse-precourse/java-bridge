@@ -34,14 +34,14 @@ public class GameResultGenerator {
         this.lowerBridge.add(lowerResult);
     }
 
-    public String getGameResult() {
+    public String getGameResultOutput() {
         String upBridge = makeBridgeOutput(this.upperBridge);
         String lowBridge = makeBridgeOutput(this.lowerBridge);
         return upBridge + '\n' + lowBridge;
     }
 
     public String makeBridgeOutput(List<String> bridge) {
-        return"[ " + String.join(" | ", bridge) + " ]";
+        return "[ " + String.join(" | ", bridge) + " ]";
     }
 
     public void initGameResult() {
@@ -49,4 +49,9 @@ public class GameResultGenerator {
         this.lowerBridge = new ArrayList<>();
     }
 
+    public String getBridgeStatus(GameResult gameResult) {
+        setLowerBridgeResult(gameResult);
+        setUpperBridgeResult(gameResult);
+        return getGameResultOutput();
+    }
 }
