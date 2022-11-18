@@ -14,6 +14,7 @@ public class InputView {
     final String exceptNumber = "[ERROR] 3이상 20이하의 숫자를 입력해주세요.";
     final String exceptMoving = "[ERROR] U 혹은 D를 입력해주세요.";
     final String exceptRetry = "[ERROR] R 혹은 Q를 입력해주세요.";
+    final String startGame = "다리 건너기 게임을 시작합니다.\n\n";
     int size;
     String input;
 
@@ -21,9 +22,9 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println(readBridgeSizeMs);
+        System.out.println(startGame + readBridgeSizeMs);
         try {
-            String input = Console.readLine();
+            String input = getInput();
             if (checkNumber(input)) getSize();
             size = Integer.parseInt(input);
             if (size < 3 || size > 20) getSize();
@@ -53,7 +54,7 @@ public class InputView {
     public String readMoving() {
         System.out.println(readMovingMs);
         try {
-            input = Console.readLine().toUpperCase();
+            input = getInput().toUpperCase();
             if (!Objects.equals(input, "U") && !Objects.equals(input, "D")) throw new IllegalArgumentException();
         } catch (IllegalArgumentException e) {
             System.out.println(exceptMoving);
@@ -68,12 +69,16 @@ public class InputView {
     public String readGameCommand() {
         System.out.println(readGameCommandMs);
         try {
-            input = Console.readLine();
+            input = getInput();
             if (!Objects.equals(input, "R") && !Objects.equals(input, "Q")) throw new IllegalArgumentException();
         } catch (IllegalArgumentException e) {
             System.out.println(exceptRetry);
             input = readGameCommand();
         }
         return input;
+    }
+
+    private String getInput(){
+        return Console.readLine();
     }
 }
