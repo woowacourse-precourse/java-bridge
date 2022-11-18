@@ -3,6 +3,7 @@ package bridge.view;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
+import bridge.domain.Command;
 import bridge.domain.Direction;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -16,6 +17,7 @@ public class InputView {
 
     private static final String INSERT_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
     private static final String INSERT_DIRECTION_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String INSERT_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private static final String REQUIRE_INTEGER_ERROR_MESSAGE = "[ERROR] 숫자를 입력해주세요.";
 
     OutputView outputView = new OutputView();
@@ -72,7 +74,15 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public Command readGameCommand() {
+        outputView.printMessage(INSERT_COMMAND_MESSAGE);
+        Command command = null;
+        try {
+            Command.getCommandByString(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            outputView.printMessage(e.getMessage());
+            readGameCommand();
+        }
+        return command;
     }
 }
