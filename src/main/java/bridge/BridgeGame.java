@@ -15,7 +15,6 @@ import org.assertj.core.api.ThrowableAssert;
  * 게임 진행을 위해 필요한 메서드를 추가 하거나 변경할 수 있다.
  */
 public class BridgeGame {
-    private final static InputView inputView = new InputView();
     private final static String ERROR_INVALID_MOVE_COMMAND = "[ERROR] 위: U, 아래: D 로 입력해 주세요.";
     private final static String ERROR_INVALID_GAME_COMMAND = "[ERROR] 재시작: R, 종료: Q 로 입력해 주세요.";
     private final static String MOVE_UP_COMMAND = "U";
@@ -23,13 +22,21 @@ public class BridgeGame {
     private final static String RETRY_GAME_COMMAND = "R";
     private final static String END_GAME_COMMAND = "Q";
 
+    public void run() {
+        try {
+
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
+        }
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public String move(String moveCommand) {
-         return moveValidate(moveCommand);
+        return moveValidate(moveCommand);
     }
 
     private String moveValidate(String moveCommand) {
