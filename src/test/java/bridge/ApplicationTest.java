@@ -69,11 +69,25 @@ class ApplicationTest extends NsTest {
 
     @Test
     @DisplayName(("4. 사용자가 이동할 때마다 다리 건너기 결과"))
-    void test5(){
+    void test5() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "U");
             int upSideIndex = output().indexOf("[ O |   | O ]");
             int downSideIndex = output().indexOf("[   | O |   ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 1);
+    }
+
+    @Test
+    @DisplayName(("5. 이동할 수 없는 칸을 입력받은 경우에는 게임 재시작/ 종료 여부를 입력"))
+    void test6() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "D", "D", "Q");
+            assertThat(output()).contains(
+                    "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
+            );
+            int upSideIndex = output().indexOf("[ O |   |   ]");
+            int downSideIndex = output().indexOf("[   | O | X ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 1);
     }
