@@ -9,7 +9,8 @@
     - [x] 다리의 길이 범위를 벗어나는 경우 예외 처리 기능 -UserException#numberRange()
 - [x] 다리를 랜덤 생성 하는 기능 -BridgeRandomNumberGenerator#generate()
 - [ ] 사다리 이동 기능 -BridgeGame#move()
-  - [ ] 이동할 칸 입력 기능 -InputView#readMoving()
+  - [x] 이동할 칸 입력 기능 -InputView#readMoving()
+  - [x] 이동할 칸 입력 예외 처리 기능 -UserException#movingException()
 - [ ] 다리 건너기 성공 실패 판별하는 기능 
 - [ ] 다리 건너기 진행 출력 기능 -OutputView#printMap()
 - [ ] 게임 재시도 기능 -BridgeGame#retry()

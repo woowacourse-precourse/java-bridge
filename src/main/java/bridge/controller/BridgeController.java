@@ -16,6 +16,7 @@ public class BridgeController {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         List<String> list = bridgeMaker.makeBridge(size);
-        System.out.println(list);
+
+        inputView.readMoving();
     }
 }

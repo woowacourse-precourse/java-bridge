@@ -20,4 +20,11 @@ public class UserException {
             throw new IllegalArgumentException();
         }
     }
+    
+    public static void movingException(String s) {
+        if (!s.contentEquals("U") && !s.contentEquals("D")) {
+            System.out.println("[ERROR] U 또는 D를 입력해 주세요.");
+            throw new IllegalArgumentException();
+        }
+    }
 }
