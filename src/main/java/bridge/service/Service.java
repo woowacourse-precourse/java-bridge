@@ -22,6 +22,6 @@ public class Service {
     }
 
     public void move(String moveInput) {
-        game.move(moveInput);
+       boolean moveSuccess = game.move(moveInput);
     }
 }
