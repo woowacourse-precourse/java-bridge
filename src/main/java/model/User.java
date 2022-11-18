@@ -17,4 +17,8 @@ public class User {
     public List<String> getUserMap() {
         return userMap;
     }
+
+    public int getUserMovingDistance(){
+        return userMap.size();
+    }
 }
