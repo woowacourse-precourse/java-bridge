@@ -1,9 +1,9 @@
 package bridge.service;
 
 import bridge.service.exception.BridgeSizeException;
+import bridge.service.exception.DirectionException;
 
 public class ExceptionService {
-    private static final String START_ERROR_MESSAGE = "[ERROR] ";
 
     public static void checkBridgeSize(String size) {
         BridgeSizeException.checkConvertToNumber(size);
@@ -11,7 +11,7 @@ public class ExceptionService {
     }
 
     public static void checkMoving(String move) {
-
+        DirectionException.checkMovingIsCorrectFormat(move);
     }
 
     public static void checkRetry(String retry) {
