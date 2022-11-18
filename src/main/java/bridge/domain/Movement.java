@@ -66,4 +66,15 @@ public class Movement {
         existsBridge.add(mark);
         blankBridge.add(Constant.BLANK);
     }
+
+    public int getTryCount() {
+        return tryCount;
+    }
+
+    public String isSuccess() {
+        if (canMove()) {
+            return Constant.SUCCESS;
+        }
+        return Constant.FAILURE;
+    }
 }
