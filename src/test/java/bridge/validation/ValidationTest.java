@@ -28,4 +28,13 @@ class ValidationTest {
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(ERROR_MESSAGE);
     }
+
+    @DisplayName("다리 이동 입력값이 U 혹은 D가 아니면 에러가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "1", "!", "ㄱ", "U1", "u", "d"})
+    void createMoveCommandOtherThanUOrD(String moveCommand) {
+        assertThatThrownBy(() -> Validation.checkMoveCommand(moveCommand))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(ERROR_MESSAGE);
+    }
 }
