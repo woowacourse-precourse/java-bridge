@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Bridge {
     private final static int MIN_BRIDGE_SIZE = 3;
-    private final static int MAX_BRIDGE_SIZE = 50;
+    private final static int MAX_BRIDGE_SIZE = 20;
     private final static String WRONG_RANGE_INPUT = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
 
 
