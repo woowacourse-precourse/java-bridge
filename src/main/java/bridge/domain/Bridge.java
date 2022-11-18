@@ -21,7 +21,7 @@ public class Bridge {
         }
     }
 
-    public boolean compare(int position, String userInput) {
-        return bridge.get(position).equals(userInput);
+    public boolean compareWithPosition(int position, String str) {
+        return bridge.get(position).equals(str);
     }
 }

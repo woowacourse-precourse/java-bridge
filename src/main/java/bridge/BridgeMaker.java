@@ -29,10 +29,8 @@ public class BridgeMaker {
     }
 
     private String upOrDown(int number) {
-        if (number == 0)
-            return "D";
         if (number == 1)
             return "U";
-        return "";
+        return "D";
     }
 }
