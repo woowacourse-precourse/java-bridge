@@ -1,5 +1,6 @@
-package bridge;
+package service;
 
+import generator.BridgeNumberGenerator;
 import constant.GameConstant;
 import constant.StringConstant;
 import java.util.ArrayList;
