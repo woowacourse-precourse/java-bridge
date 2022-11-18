@@ -25,6 +25,12 @@ public class BridgeGame {
         return input.equals("R");
     }
 
+    public void failure(List<String> topBridge, List<String> bottomBridge, String movement) {
+        next(topBridge, bottomBridge);
+        topBridge.add(failureInTop(movement));
+        bottomBridge.add(failureInBottom(movement));
+    }
+
     public boolean rightMove(String input, String bridge) {
 
         return input.equals(bridge);
