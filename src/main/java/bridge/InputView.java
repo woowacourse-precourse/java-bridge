@@ -3,13 +3,7 @@ package bridge;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
- * 패키지 변경 가능
- * 인자 변경 가능
- * 반환 타입 변경 가능
- * 메서드 명 변경 가능
- * 메서드 추가 가능
- * 여기서만 Console.readLine 가능
- * BridgeGame 클래스에서 사용 불가
+ * 패키지 변경 가능 인자 변경 가능 반환 타입 변경 가능 메서드 명 변경 가능 메서드 추가 가능 여기서만 Console.readLine 가능 BridgeGame 클래스에서 사용 불가
  */
 
 /**
@@ -34,7 +28,10 @@ public class InputView {
      */
     public String readMoving() {
         String direction = Console.readLine();
+        if (!(direction.equals("U") || direction.equals("D"))) {
+            throw new IllegalArgumentException("[ERROR] 위로가려면 U, 아래로 가려면 D를 입력해 주세요");
 
+        }
         return direction;
     }
 
