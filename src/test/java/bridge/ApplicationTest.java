@@ -47,6 +47,14 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 실수가_입력됐을_때() {
+        assertSimpleTest(() -> {
+            runException("4.5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
