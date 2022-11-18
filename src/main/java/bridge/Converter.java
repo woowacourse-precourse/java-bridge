@@ -7,6 +7,6 @@ public class Converter {
     }
 
     public static char convertToLetter(String userInput){
-
+        return userInput.charAt(0);
     }
 }
