@@ -6,7 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -26,7 +25,9 @@ public class BridgeGameTest{
     void reachLastSpace () {
         List<String> randomBridge = List.of("U", "D", "U", "U");
         BridgeGame bridgeGame = new BridgeGame(randomBridge);
-        bridgeGame.passHistory = new ArrayList<>(List.of("U", "D", "U"));
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("U");
 
         assertThat(bridgeGame.move("U")).isEqualTo(false);
     }
@@ -36,7 +37,9 @@ public class BridgeGameTest{
     void quitAfterSelectedIncorrectSpace () {
         List<String> randomBridge = List.of("U", "D", "U", "U");
         BridgeGame bridgeGame = new BridgeGame(randomBridge);
-        bridgeGame.passHistory = new ArrayList<>(List.of("U", "D", "U"));
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("U");
 
         String command = "Q";
         InputStream in = new ByteArrayInputStream(command.getBytes());
@@ -50,7 +53,9 @@ public class BridgeGameTest{
     void retryAfterSelectedIncorrectSpace() {
         List<String> randomBridge = List.of("U", "D", "U", "U");
         BridgeGame bridgeGame = new BridgeGame(randomBridge);
-        bridgeGame.passHistory = new ArrayList<>(List.of("U", "D", "U"));
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("U");
 
         String command = "R";
         InputStream in = new ByteArrayInputStream(command.getBytes());
