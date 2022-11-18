@@ -35,7 +35,7 @@ class BridgeSizeValidatorTest {
     @DisplayName("다리 길이가 유효하지 않은 값을 검증하면 예외가 발생한다.")
     @ParameterizedTest
     @CsvSource({"0", "1", "2", "21", "100", "9999"})
-    void validateInValidBridgeSize(String bridgeSize) {
+    void validateInvalidBridgeSize(String bridgeSize) {
         assertThatThrownBy(() -> validator.validate(bridgeSize))
                 .isInstanceOf(IllegalArgumentException.class);
     }
