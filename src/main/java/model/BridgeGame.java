@@ -1,5 +1,6 @@
 package model;
 
+import constant.GameConstant;
 import controller.BridgeController;
 import constant.StringConstant;
 import java.util.ArrayList;
@@ -30,11 +31,11 @@ public class BridgeGame {
         return bridgeByUser;
     }
 
-    public void countBridgeNumber(){
+    public void countBridgeNumber() {
         bridgeNumber++;
     }
 
-    public void countTryNumber(){
+    public void countTryNumber() {
         tryNumber++;
     }
 
@@ -113,19 +114,19 @@ public class BridgeGame {
     }
 
     public boolean userMoveEqualsU(List<String> userMove) {
-        return userMove.get(0).equals("U");
+        return userMove.get(GameConstant.FIRST_INDEX.getConstant()).equals(StringConstant.UP_SIDE.getConstant());
     }
 
     public boolean userMoveEqualsD(List<String> userMove) {
-        return userMove.get(0).equals("D");
+        return userMove.get(GameConstant.FIRST_INDEX.getConstant()).equals(StringConstant.DOWN_SIDE.getConstant());
     }
 
     public boolean userMoveCorrect(List<String> userMove) {
-        return userMove.get(1).equals("O");
+        return userMove.get(GameConstant.SECOND_INDEX.getConstant()).equals(StringConstant.CORRECT_PATH.getConstant());
     }
 
     public boolean userMoveWrong(List<String> userMove) {
-        return userMove.get(1).equals("X");
+        return userMove.get(GameConstant.SECOND_INDEX.getConstant()).equals(StringConstant.WRONG_PATH.getConstant());
     }
 
     public List<String> getUserMove(List<String> bridge) {
