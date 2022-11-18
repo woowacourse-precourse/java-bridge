@@ -28,7 +28,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printIsSuccess(BridgeGame bridgeGame, boolean success) {
+    public void printIsSuccess(BridgeGame bridgeGame, String success) {
         System.out.println("게임 성공 여부: " + success);
         System.out.println("총 시도한 횟수: " + bridgeGame.getCount());
     }

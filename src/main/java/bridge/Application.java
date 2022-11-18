@@ -44,6 +44,15 @@ public class Application {
         return input.readGameCommand();
     }
 
+    static String playGame(InputView input, BridgeGame bridgeGame, int bridgeSize, OutputView output) {
+        while (true) {
+            boolean gameResult = gameProgress(input, bridgeGame, bridgeSize, output);
+            if (gameResult) return "성공";
+            if (Objects.equals(readCommand(input), "Q")) return "실패";
+            bridgeGame.retry();
+        }
+    }
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         try {
@@ -53,18 +62,9 @@ public class Application {
             List<String> bridge = makeBridge(bridgeSize);
             BridgeGame bridgeGame = new BridgeGame(bridge);
             OutputView output = new OutputView();
-            boolean gameResult;
-            while (true) {
-                gameResult = gameProgress(input, bridgeGame, bridgeSize, output);
-                if (gameResult) {
-                    break;
-                }
-                if (Objects.equals(readCommand(input), "Q")) {
-                    break;
-                }
-                bridgeGame.retry();
-            }
+            String isSuccess = playGame(input, bridgeGame, bridgeSize, output);
             output.printResult(bridgeGame);
+            output.printIsSuccess(bridgeGame, isSuccess);
         } catch (IllegalArgumentException exception) {
             System.out.print("[ERROR] ");
             System.out.println(exception.getMessage());
