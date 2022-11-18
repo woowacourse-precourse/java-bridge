@@ -40,6 +40,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(BridgeGame game) {
+        System.out.println(Message.FINAL_STATE);
+        System.out.println(makeMap(game.getGameResultBoard().getState()));
+        System.out.println(Message.GAME_SUCCESS +game.getGameState().stateMsg());
+        System.out.println(Message.NUMBER_OF_TRY.toString()+game.getAttempts());
+    }
+
+    public void printStart(){
+        System.out.println(Message.GAME_START);
     }
 }

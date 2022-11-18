@@ -44,5 +44,7 @@ public class GameController {
             String command = inputView.loopInput(inputView::readGameCommand);
             game.retry(command);
         }
+        if (!game.getGameState().equals(GameState.NOT_FINISH))
+            outputView.printResult(game);
     }
 }
