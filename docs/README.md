@@ -23,7 +23,9 @@
   - move() [return Result.clss]
     - 커멘드를 입력받아 결과를 리턴한다.
 - 출력 - OutputView
-  - 
+  - [X] 시작 안내메세지 출력 - printGettingStart
+    - printStartMessage
+    - askBridgeSize
 - 다리의 길이를 숫자로 입력받고 생성한다. 
   - 다리 길이 입력 받는 기능 -> InputView - readBridgeSize()
     - [X] 입력 유효성 검사

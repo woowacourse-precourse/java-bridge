@@ -28,4 +28,6 @@ class BridgeGameTest {
         assertThat(player.getCommands().get(0)).isEqualTo(Command.UP);
         assertThat(result).isEqualTo(Result.SUCCESS);
     }
+
+    //에외 테스트.
 }
