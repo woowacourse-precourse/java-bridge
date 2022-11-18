@@ -63,21 +63,6 @@ public class OutputView {
         System.out.println("게임 성공 여부: " + result);
         System.out.println("총 시도한 횟수: " + bridgeGame.getTrial());
     }
-
-    public void printMapLine(BridgeGame bridgeGame, boolean success, String identifier) {
-        System.out.print("[ ");
-        for (int step = 0; step < bridgeGame.getLocate() - 1; step++) {
-            if (step > 1) {
-                System.out.print("| ");
-            }
-            if (bridgeGame.getBridge().get(step).equals(identifier)) {
-                System.out.print("O ");
-                continue;
-            }
-            System.out.print("  ");
-        }
-    }
-
     public void printStart() {
         System.out.println(Message.Start);
         System.out.println();

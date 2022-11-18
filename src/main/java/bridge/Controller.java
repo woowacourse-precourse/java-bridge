@@ -17,7 +17,9 @@ public class Controller {
         while (BridgeLength == 0) {
             BridgeLength = inputView.readBridgeSize();
         }
-        return new BridgeGame(bridgeMaker.makeBridge(BridgeLength));
+        BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(BridgeLength));
+        System.out.println(bridgeGame.getBridge());
+        return bridgeGame;
     }
 
     public boolean play(BridgeGame bridgeGame) {
@@ -27,15 +29,8 @@ public class Controller {
             moving = inputView.readMoving();
         }
         boolean movement = bridgeGame.move(moving);
-
-        if (!movement) {
-            outputView.printMap(bridgeGame, false);
-            outputView.printRetry();
-            result(bridgeGame, false);
-            return false;
-        }
-        outputView.printMap(bridgeGame, true);
-        return true;
+        outputView.printMap(bridgeGame, movement);
+        return movement;
     }
     public boolean finish(BridgeGame bridgeGame){
         outputView.printRetry();
