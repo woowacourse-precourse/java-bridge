@@ -1,6 +1,6 @@
 package bridge.controller;
 
-import bridge.BridgeGame;
+import bridge.game.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.validation.Validation;
 import bridge.view.OutputView;
@@ -13,30 +13,30 @@ public class Controller {
 	private static int tryCount = 0;
 	private static int moveCount = 0;
 
-	public void bridgeGame(BridgeMaker bridgeMaker) {
+	public static void bridgeGame(BridgeMaker bridgeMaker) {
 		bridgeGame.createBridge(bridgeMaker);
 		initTryCount();
 		startBridgeGame();
-		outputView.printResult(moveCount, tryCount);
+		outputView.printResult(tryCount);
 	}
 
-	private void initTryCount() {
+	private static void initTryCount() {
 		tryCount = 0;
 	}
 
-	private void startBridgeGame() {
-		boolean isReStart = false;
+	private static void startBridgeGame() {
+		boolean reStart = false;
 
 		do {
 			bridgeGame.initMap();
-			moveCount = crossBridge(outputView, bridgeGame, INIT_MOVE_COUNT);
-			isReStart = checkReStart(isReStart);
+			moveCount = crossBridge(INIT_MOVE_COUNT);
+			reStart = isReStart(reStart);
 
 			tryCount++;
-		} while (isReStart);
+		} while (reStart);
 	}
 
-	private static boolean checkReStart(boolean isReStart) {
+	private static boolean isReStart(boolean isReStart) {
 		if (bridgeGame.isClearCrossBridge()) {
 			isReStart = false;
 		}
@@ -47,12 +47,11 @@ public class Controller {
 		return isReStart;
 	}
 
-	private static int crossBridge(OutputView outputView, BridgeGame bridgeGame, int moveCount) {
+	private static int crossBridge(int moveCount) {
 		do {
 			String movingDirection = Validation.validateMoving(MOVING_DIRECTION_LENGTH);
 			bridgeGame.move(moveCount++, movingDirection);
-			outputView.printMap(moveCount);
-
+			outputView.printMap();
 		} while (!bridgeGame.isClearCrossBridge() && !bridgeGame.isFailCrossBridge());
 
 		return moveCount;

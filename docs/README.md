@@ -15,10 +15,10 @@
     - [x] 잘못된 값을 입력하면 IllegalArgumentException을 발생시킨다 - Validation#isMovingException()
     - [x] 그 부분부터 입력을 다시 받는다. - Validation#validateMoving()
   - [x] 플레이어가 칸을 이동한다 - BridgeGame#move()
-  - [x] 다리를 끝까지 건너거나 실패하면 게임이 종료된다 - BridgeGame#start()
+  - [x] 다리를 끝까지 건너거나 실패하면 게임이 종료된다 - Controller#crossBridge()
   - [x] 게임을 재시작하거나 종료할 수 있다 - BridgeGame#retry()
     - [x] 잘못된 값을 입력하면 IllegalArgumentException 발생시킨다 - Validation#validateReOrEnd()
-   - [x] 재시작해도 처음에 만든 다리로 재사용한다 - BridgeGame#start()
+   - [x] 재시작해도 처음에 만든 다리로 재사용한다 - Controller#startBridgeGame()
    - [x] 총 시도한 횟수를 출력한다 - OutputView#printResult()
 
 - [x] 출력

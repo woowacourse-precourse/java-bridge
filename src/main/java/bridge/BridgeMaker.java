@@ -3,11 +3,12 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+import bridge.gameInput.PlayerMove;
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-
 	private final BridgeNumberGenerator bridgeNumberGenerator;
 
 	public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -33,18 +34,17 @@ public class BridgeMaker {
 			setU(bridge, randomNumber);
 			setD(bridge, randomNumber);
 		}
-
 	}
 
 	private static void setD(List<String> bridge, int randomNumber) {
 		if (randomNumber == 0) {
-			bridge.add("D");
+			bridge.add(PlayerMove.DOWN.getDirection());
 		}
 	}
 
 	private static void setU(List<String> bridge, int randomNumber) {
 		if (randomNumber == 1) {
-			bridge.add("U");
+			bridge.add(PlayerMove.UP.getDirection());
 		}
 	}
 

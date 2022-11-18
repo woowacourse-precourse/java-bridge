@@ -8,24 +8,25 @@ import bridge.view.OutputView;
 public class Validation {
 	private static final int MIN_BRIDGE_SIZE = 3;
 	private static final int MAX_BRIDGE_SIZE = 20;
+	private static String bridgeSize;
+	private static String movingDirection;
+	private static String gameCommand;
 	private static InputView inputView = new InputView();
 	private static OutputView outputView = new OutputView();
 
 	public static int validateBridgeSize(int length) {
-		String input;
-
 		do {
-			input = inputView.readBridgeSize();
-		} while (isBridgeSizeException(length, input));
+			bridgeSize = inputView.readBridgeSize();
+		} while (isBridgeSizeException(length));
 
-		return Integer.parseInt(input);
+		return Integer.parseInt(bridgeSize);
 	}
 
-	private static boolean isBridgeSizeException(int length, String input) {
+	private static boolean isBridgeSizeException(int length) {
 		try {
-			validateLength(input, length);
-			validateNumberOnly(input);
-			validateRange(input);
+			validateLength(bridgeSize, length);
+			validateNumberOnly(bridgeSize);
+			validateRange(bridgeSize);
 		} catch (IllegalArgumentException exception) {
 			outputView.printExceptionMessage(exception);
 			return true;
@@ -33,16 +34,14 @@ public class Validation {
 		return false;
 	}
 
-	public static void validateRange(String input) {
-		int bridgeSize = Integer.parseInt(input);
-
-		if (isRangeException(bridgeSize)) {
+	public static void validateRange(String bridgeSize) {
+		if (isRangeException(Integer.parseInt(bridgeSize))) {
 			throw Exceptions.LENGTH_EXCEPTION.getException();
 		}
 	}
 
 	private static boolean isRangeException(int bridgeSize) {
-		return bridgeSize < MIN_BRIDGE_SIZE || bridgeSize > MAX_BRIDGE_SIZE;
+		return (bridgeSize < MIN_BRIDGE_SIZE || bridgeSize > MAX_BRIDGE_SIZE);
 	}
 
 	public static void validateLength(String input, int length) {
@@ -54,25 +53,23 @@ public class Validation {
 	public static void validateNumberOnly(String input) {
 		try {
 			Integer.parseInt(input);
-		} catch (Exception e) {
+		} catch (NumberFormatException exception) {
 			throw Exceptions.NUMBER_ONLY_EXCEPTION.getException();
 		}
 	}
 
 	public static String validateMoving(int length) {
-		String input;
-
 		do {
-			input = inputView.readMoving();
-		} while (isMovingException(input, length));
+			movingDirection = inputView.readMoving();
+		} while (isMovingException(length));
 
-		return input;
+		return movingDirection;
 	}
 
-	private static boolean isMovingException(String input, int length) {
+	private static boolean isMovingException(int length) {
 		try {
-			validateLength(input, length);
-			validateUOrD(input);
+			validateLength(movingDirection, length);
+			validateUOrD(movingDirection);
 		} catch (IllegalArgumentException exception) {
 			outputView.printExceptionMessage(exception);
 			return true;
@@ -80,31 +77,29 @@ public class Validation {
 		return false;
 	}
 
-	private static void validateUOrD(String input) {
-		if (isUOrDException(input)) {
+	private static void validateUOrD(String movingDirection) {
+		if (isUOrDException(movingDirection)) {
 			throw Exceptions.U_OR_D_EXCEPTION.getException();
 		}
 	}
 
-	private static boolean isUOrDException(String input) {
-		return !input.equals(PlayerMove.UP.getDirection()) &&
-			!input.equals(PlayerMove.DOWN.getDirection());
+	private static boolean isUOrDException(String movingDirection) {
+		return !movingDirection.equals(PlayerMove.UP.getDirection()) &&
+			!movingDirection.equals(PlayerMove.DOWN.getDirection());
 	}
 
 	public static String validateGameCommand(int length) {
-		String input;
-
 		do {
-			input = inputView.readGameCommand();
-		} while (isGameCommandException(input, length));
+			gameCommand = inputView.readGameCommand();
+		} while (isGameCommandException(length));
 
-		return input;
+		return gameCommand;
 	}
 
-	private static boolean isGameCommandException(String input, int length) {
+	private static boolean isGameCommandException(int length) {
 		try {
-			validateLength(input, length);
-			validateROrQ(input);
+			validateLength(gameCommand, length);
+			validateROrQ(gameCommand);
 		} catch (IllegalArgumentException exception) {
 			System.out.println(exception.getMessage());
 			return true;
@@ -112,14 +107,14 @@ public class Validation {
 		return false;
 	}
 
-	public static void validateROrQ(String input) {
-		if (isROrQException(input)) {
+	public static void validateROrQ(String gameCommand) {
+		if (isROrQException(gameCommand)) {
 			throw Exceptions.R_OR_Q_EXCEPTION.getException();
 		}
 	}
 
-	private static boolean isROrQException(String input) {
-		return !input.equals(GameCommand.RE_START.getCommand()) &&
-			!input.equals(GameCommand.QUIT.getCommand());
+	private static boolean isROrQException(String gameCommand) {
+		return !gameCommand.equals(GameCommand.RE_START.getCommand()) &&
+			!gameCommand.equals(GameCommand.QUIT.getCommand());
 	}
 }

@@ -5,7 +5,6 @@ import bridge.controller.Controller;
 public class Application {
 
 	public static void main(String[] args) {
-		Controller controller = new Controller();
-		controller.bridgeGame(new BridgeMaker(new BridgeRandomNumberGenerator()));
+		Controller.bridgeGame(new BridgeMaker(new BridgeRandomNumberGenerator()));
 	}
 }
