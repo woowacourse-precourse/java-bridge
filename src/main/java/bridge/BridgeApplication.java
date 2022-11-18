@@ -19,14 +19,14 @@ public class BridgeApplication {
                 retryGame = bridgeGame.retry(InputView.readGameCommand());
             }
         }
-        OutputView.printResult(bridgeGame.onGame(),bridgeGame.getRetryCount(),bridgeGame.getMap());
+        OutputView.printResult(bridgeGame.onGame(), bridgeGame.getRetryCount(), bridgeGame.getMap());
     }
 
     public static void run() {
         try {
             startBridgeGame();
-        }catch (IllegalArgumentException e){
-
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
     }
 }
