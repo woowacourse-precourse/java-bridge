@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,11 +24,12 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String userInputValue) {
+        user.refreshBridge();
         user.getUserBridge().add(makeField(userInputValue));
+        user.increaseGameCount();
     }
 
     private Field makeField(String userInputValue){
-
          if (answerBridge.get(user.getGameCount()).equals(userInputValue)){
              return new Field(userInputValue, true);
         }
@@ -52,6 +54,10 @@ public class BridgeGame {
         if(userInputValue != "R" && userInputValue != "Q"){
             throw new IllegalArgumentException("[ERROR] 재시작은 R, 종료는 Q를 입력해주세요.");
         }
+    }
+
+    public ArrayList<Field> getUserBridge(){
+        return user.getUserBridge();
     }
 
     public User getUser() {
