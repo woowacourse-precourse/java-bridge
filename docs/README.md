@@ -29,6 +29,10 @@
         - 다리 이동시 실패 유무를 판단해준다.
     - InputService (추가)
         - View를 호출해서 입력을 받고 리턴해준다.
+    - BridgeService
+      - Bridge 도메인을 만들어주고 관리한다.
+    - UserService
+      - User 도메인을 만들어주고 관리한다.
 
 - domain
     - Bridge (추가)
