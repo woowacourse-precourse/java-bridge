@@ -37,4 +37,14 @@ public class OutputView {
     public static String getOutputSystemMessage(OutputSystemMessage situation) {
         return OutputSystemMessage.getMessage(situation);
     }
+
+    public static void printGameSuccess(BridgeResultType resultType) {
+        String output = getOutputSystemMessage(OutputSystemMessage.GAME_SUCCESS_OUTPUT) + resultType.getResult();
+        System.out.println(output);
+    }
+
+    public static void printGameCount(int gameCount) {
+        String output = getOutputSystemMessage(OutputSystemMessage.RUN_GAME_NUMBER_OUTPUT) + gameCount;
+        System.out.println(output);
+    }
 }
