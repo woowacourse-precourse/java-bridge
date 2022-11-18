@@ -2,10 +2,12 @@ package bridge.ui;
 
 import bridge.Player;
 import bridge.Result;
+import bridge.message.ExceptionMessage;
 
 import java.util.List;
 
 import static bridge.Constants.*;
+import static bridge.message.ExceptionMessage.*;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -46,7 +48,7 @@ public class OutputView {
     }
 
     public void printExceptionMessage(IllegalArgumentException e) {
-        System.out.println(e.getMessage());
+        System.out.println(PREFIX + e.getMessage());
     }
 
     private String getView(Player player, String direction) {
