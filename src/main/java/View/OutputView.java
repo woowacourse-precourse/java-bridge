@@ -30,7 +30,24 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<List<String>> map) {
+    public void printResult(List<List<String>> result, boolean isSuccess, int gameCount) {
+        final String gameResultMessage = "최종 게임 결과";
+        final String isGameSuccessMessage = "게임 성공 여부: ";
+        final String totalGameCount = "총 시도한 횟수: ";
+
+        System.out.println(gameResultMessage);
+        printMap(result);
+        System.out.println(isGameSuccessMessage + printSuccessOrFailed(isSuccess));
+        System.out.println(totalGameCount + gameCount);
+    }
+
+    public String printSuccessOrFailed(boolean isSuccess){
+        final String success = "성공";
+        final String failed = "실패";
+        if(isSuccess){
+            return success;
+        }
+        return failed;
     }
 
     public void printStart(){
