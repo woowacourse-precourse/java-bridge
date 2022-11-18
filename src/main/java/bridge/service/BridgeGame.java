@@ -8,6 +8,8 @@ package bridge.service;
  * BridgeGame의 패키지는 변경할 수 있다.
  * BridgeGame의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
  * 게임 진행을 위해 필요한 메서드를 추가 하거나 변경할 수 있다.
+ *
+ * ★ BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.
  */
 public class BridgeGame {
 
