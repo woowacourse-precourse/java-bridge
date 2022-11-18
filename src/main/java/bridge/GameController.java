@@ -16,15 +16,11 @@ public class GameController {
     }
 
     private void gameStart(BridgeGame bridgeGame, Bridge randomBridge) {
-        int tryCount = 0;
-        boolean movable = true;
-        List<String> crossBridgeState = new ArrayList<>();
-        while (!randomBridge.isSize(tryCount) && movable) {
+        Result result = new Result();
+        while (!randomBridge.isSize(result.nowCount()) && result.movable()) {
             output.printMove();
             String inputMove = input.readMoving();
-            crossBridgeState.add(inputMove);
-            movable = bridgeGame.move(inputMove, tryCount);
-            tryCount++;
+            result.updateState(inputMove, bridgeGame.move(inputMove, result.nowCount()));
         }
     }
 
