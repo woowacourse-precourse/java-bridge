@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGame {
-    int tryNumber = 1;
-    private int bridgeNumber = 0;
+    private static int tryNumber = GameConstant.FIRST_TRY.getConstant();
+    private static int bridgeNumber = GameConstant.FIRST_INDEX.getConstant();
 
     public void run() {
         List<String> upSide = new ArrayList<>();
