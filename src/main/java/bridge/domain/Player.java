@@ -10,8 +10,8 @@ public class Player {
         movingMap = new ArrayList<>();
     }
 
-    public void move(String position) {
-        movingMap.add(position);
+    public void move(String moving) {
+        movingMap.add(moving);
     }
 
     public List<String> getMovingMap() {
@@ -23,7 +23,14 @@ public class Player {
             throw new IllegalStateException("아직 이동하지 않았습니다. 한번 이상은 이동 해야 합니다.");
         }
 
-        int latestIdx = movingMap.size() - 1;
-        return movingMap.get(latestIdx);
+        return movingMap.get(getPosition());
+    }
+
+    public int getPosition() {
+        return movingMap.size() - 1;
+    }
+
+    public void reset() {
+        movingMap.clear();
     }
 }
