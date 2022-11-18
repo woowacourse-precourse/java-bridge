@@ -36,6 +36,10 @@ public class BridgeGame {
         this.user.addMove(move);
     }
 
+    public boolean checkBridge() {
+        return this.user.checkBridge();
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>

@@ -40,4 +40,14 @@ public class User {
     public void addMove(String move) {
         this.userBridge.add(move);
     }
+
+    public boolean checkBridge() {
+        for (int i = 0; i < this.userBridge.size(); i++) {
+            if (!this.userBridge.get(i).equals(this.bridge.get(i))) {
+                this.userBridge.clear();
+                return true;
+            }
+        }
+        return false;
+    }
 }
