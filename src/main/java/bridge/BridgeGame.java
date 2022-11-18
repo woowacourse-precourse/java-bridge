@@ -47,13 +47,13 @@ public class BridgeGame {
         outputView.guideMovingCommandInput();
         String movingCommand = getMovingCommand();
         this.path.add(movingCommand);
-        outputView.printMap(this.path);
+        outputView.printMap(this.path, this.bridge);
     }
 
     /**
      * 게임을 끝내는 메소드
      */
-    private void end() { outputView.printResult(isEnd(), this.path, this.numberOfTry); }
+    private void end() { outputView.printResult(this.path, this.bridge, this.numberOfTry); }
 
     private String getMovingCommand() { return inputView.readMoving(); }
 
