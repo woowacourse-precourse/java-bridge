@@ -1,6 +1,5 @@
 package bridge.domain;
 
-import bridge.dto.BridgeSizeDTO;
 import bridge.dto.MovingDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

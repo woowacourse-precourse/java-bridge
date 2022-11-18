@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import bridge.domain.strategy.BridgeNumberGenerator;
-import bridge.dto.BridgeSizeDTO;
 import bridge.dto.MovingDTO;
 
 import java.util.List;
