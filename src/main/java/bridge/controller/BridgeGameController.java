@@ -52,7 +52,9 @@ public class BridgeGameController {
     }
 
     private void moveBridge(Bridge bridge) {
-        for (int moveCount = 0; moveCount < bridge.getSize(); moveCount++) {
+        int moveCount = 0;
+
+        for (moveCount = 0; moveCount < bridge.getSize(); moveCount++) {
             outputView.printMovingMsg();
 
             String moving = inputView.readMoving();
@@ -64,6 +66,11 @@ public class BridgeGameController {
             if (isFail(moveState)) {
                 break;
             }
+        }
+
+        if (moveCount == bridge.getSize()) {
+            gameResult.setSuccess();
+            play = false;
         }
     }
 
