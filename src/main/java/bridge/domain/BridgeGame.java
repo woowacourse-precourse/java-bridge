@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.setting.Setting;
+
 import java.util.List;
 
 /**
@@ -36,6 +38,11 @@ public class BridgeGame {
         return bridgeSize == userKeyListSize;
     }
 
-    public void retry() {
+    // 다시 시작할지 여부를 boolean값 으로 반환하는 기능
+    public boolean retry(String input) {
+        if (input.equals(Setting.RETRY_BUTTON)) {
+            return false;
+        }
+        return true;
     }
 }
