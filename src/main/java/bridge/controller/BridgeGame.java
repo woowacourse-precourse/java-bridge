@@ -34,6 +34,7 @@ public class BridgeGame {
     private boolean isGameSuccess;
     private String retryOrEndCommand;
     private int tryCount = 1;
+    private String successOrFailure;
 
     public void printBridgeGameStartMessage() {
         outputView.printBridgeGameStartMessage();
@@ -112,13 +113,17 @@ public class BridgeGame {
     public void retry() {
         initGame();
         moveUntilSuccessOrFailure();
-        if (isGameSuccess == false) {
-            successOrFailure = "실패";
-            retryOrEnd();
-        }
+        gameSuccessOrFailure();
+    }
+
+    private void gameSuccessOrFailure() {
         if (isGameSuccess) {
             successOrFailure = "성공";
             printGameResult();
+        }
+        if (isGameSuccess == false) {
+            successOrFailure = "실패";
+            retryOrEnd();
         }
     }
 
