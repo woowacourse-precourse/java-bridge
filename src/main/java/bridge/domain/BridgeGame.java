@@ -16,7 +16,7 @@ public class BridgeGame {
     }
 
     public boolean isWin(Bridge bridge, Player player) {
-        return player.isInEndOfBridge(bridge.getBridgeSize());
+        return player.isCurrentPosition(bridge.getBridgeSize());
     }
 
     /**

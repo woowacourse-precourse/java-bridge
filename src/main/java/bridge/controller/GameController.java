@@ -33,6 +33,7 @@ public class GameController {
 
         do {
             boolean isSurvival = playOneTurn(bridge, player);
+            outputView.printMap(bridge, player);
             // isSurvival false -> 제시도 여부 확인
             if (!isSurvival) {
                 if(!askForTryAgain()){

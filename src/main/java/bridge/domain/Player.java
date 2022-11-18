@@ -30,7 +30,15 @@ public class Player {
         this.positionIndex = -1;
     }
 
-    public boolean isInEndOfBridge(int bridgeSize) {
-        return positionIndex == bridgeSize - 1;
+    public boolean isCurrentPosition(int position) {
+        return positionIndex == position - 1;
+    }
+
+    public boolean isPassedPosition(int position) {
+        return positionIndex < position;
+    }
+
+    public BridgeTile getMovingLogOf(int index) {
+        return movingLog.get(index);
     }
 }
