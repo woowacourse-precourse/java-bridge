@@ -33,7 +33,9 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String input = readLine();
+        validateGameCommand(input);
+        return input;
     }
 
     private void validateBridgeSize(String input) {
@@ -44,7 +46,13 @@ public class InputView {
 
     private void validateMovingCommand(String input) {
         Validator.validateBlank(input);
-        Validator.validateMovingCommandLength(input);
+        Validator.validateCommandLength(input);
         Validator.validateMovingCommand(input);
+    }
+
+    private void validateGameCommand(String input) {
+        Validator.validateBlank(input);
+        Validator.validateCommandLength(input);
+        Validator.validateGameCommand(input);
     }
 }
