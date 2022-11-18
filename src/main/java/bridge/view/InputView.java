@@ -12,9 +12,14 @@ public class InputView extends InputException {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println("다리의 길이를 입력해주세요.");
-        String bridgeSize = Console.readLine();
-        validateBridgeSize(bridgeSize);
+        String bridgeSize = "";
+        try {
+            System.out.println("다리의 길이를 입력해주세요.");
+            bridgeSize = Console.readLine();
+            validateBridgeSize(bridgeSize);
+        } catch (IllegalArgumentException exception) {
+            readBridgeSize();
+        }
         return Integer.parseInt(bridgeSize);
     }
 
