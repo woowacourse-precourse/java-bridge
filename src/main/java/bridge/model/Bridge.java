@@ -1,5 +1,6 @@
 package bridge.model;
 
+import bridge.error.Error;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,7 +10,7 @@ public class Bridge {
 
     public Bridge(List<String> bridge) {
         if (Objects.isNull(bridge)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Error.SYSTEM_ERROR.getMessage());
         }
         validate(bridge);
 
