@@ -20,7 +20,7 @@
 ### ⚙️ Domain
 
 - [ ] 다리 생성 - BridgeMaker#makeBridge()
-    - [ ] 다리 길이 유효성 검증 및 예외처리
+    - [X] 다리 길이 유효성 검증 및 예외처리 - BridgeMaker#validateBrideSize()
     - [ ] 0 또는 1 중 무작위 값 생성 - BridgeMaker#BridgeNumberGenerator#generate()
     - [ ] 무작위 값(0 또는 1)에 대해 각각 아래 칸(D), 위 칸(U)으로 변환
 ***
