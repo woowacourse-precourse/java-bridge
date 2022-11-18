@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class Controller {
-    static final String startGame = "다리 건너기 게임을 시작합니다.\n";
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     BridgeGame bridgeGame = new BridgeGame();
@@ -12,11 +11,8 @@ public class Controller {
     int count = 1;
 
     public void start() {
-        InputView inputView = new InputView();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        System.out.println(startGame);
-        int bridgeSize = inputView.readBridgeSize();
-        List<String> bridgeList = bridgeMaker.makeBridge(bridgeSize);
+        List<String> bridgeList = bridgeMaker.makeBridge(inputView.readBridgeSize());
         System.out.println();
         processGame(bridgeList, 0);
     }
