@@ -6,16 +6,15 @@ import java.util.List;
 public class User {
 
     private List<String> choices;
-    private int totalCount;
+    private String doesSuccess;
 
     public User() {
         this.choices = new ArrayList<>();
-        totalCount = 0;
+        doesSuccess = "실패";
     }
 
     public void addChoice(final String choice) {
         this.choices.add(choice);
-        totalCount++;
     }
 
     public List<String> getChoices() {
@@ -24,10 +23,21 @@ public class User {
 
     public void resetChoices() {
         choices.clear();
-        totalCount = 0;
     }
 
     public int getStep() {
+        return choices.size() - 1;
+    }
+
+    public void doSuccess() {
+        this.doesSuccess = "성공";
+    }
+
+    public String getDoesSuccess() {
+        return doesSuccess;
+    }
+
+    public int getTotalTryCount() {
         return choices.size() - 1;
     }
 }

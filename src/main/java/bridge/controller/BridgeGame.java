@@ -26,16 +26,27 @@ public class BridgeGame {
             OutputView.printMap(user.getChoices(), answerBridge.compareTo(user));
 
             if (!answerBridge.isCorrect(choice, user.getStep())) {
-                boolean doesRetry = retry();
+                boolean doesRetry;
+                try {
+                    doesRetry = retry();
+                } catch (IllegalArgumentException illegalArgumentException) {
+                    doesRetry = retry();
+                }
+
                 if (doesRetry) {
                     resetGame();
                     continue;
                 }
                 break;
             }
+
+            if (answerBridge.isApproachEnd(user.getChoices())) {
+                user.doSuccess();
+                break;
+            }
         }
 
-        OutputView.printResult();
+        OutputView.printResult(user, answerBridge.compareTo(user));
     }
 
     /**
