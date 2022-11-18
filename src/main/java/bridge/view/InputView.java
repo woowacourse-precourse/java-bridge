@@ -21,13 +21,13 @@ public class InputView {
 
     private void validateBridgeSizeInputLength(String input) {
         if(input.length() > 2) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("validateBridgeSizeInputLength");
         }
     }
 
     private void validateSizeLimit(int bridgeSize) {
         if(bridgeSize < 3 || bridgeSize > 20) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("validateSizeLimit");
         }
     }
 
@@ -36,7 +36,7 @@ public class InputView {
         try {
             bridgeSize = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("getBridgeSize");
         }
         return bridgeSize;
     }
@@ -45,7 +45,23 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return Console.readLine();
+        String input = Console.readLine();
+
+        validateMovingInputLength(input);
+        validateMovingSpace(input);
+        return input;
+    }
+
+    private void validateMovingInputLength(String input) {
+        if(input.length() != 1) {
+            throw new IllegalArgumentException("validateMovingInputLength");
+        }
+    }
+
+    private void validateMovingSpace(String input) {
+        if(!input.equals("U") && !input.equals("D")) {
+            throw new IllegalArgumentException("validateMovingSpace");
+        }
     }
 
     /**
