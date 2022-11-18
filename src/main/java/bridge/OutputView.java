@@ -32,9 +32,12 @@ public class OutputView {
     public void printResult(boolean isWin, int numberOfAttempt) {
         if (isWin) {
             System.out.println(Output.WIN_OR_LOSE.getOutput()+"성공");
+            System.out.println(Output.HOW_MANY_ATTEMPTS.getOutput()+numberOfAttempt);
             return;
         }
         System.out.println(Output.HOW_MANY_ATTEMPTS.getOutput()+"실패");
+        System.out.println(Output.HOW_MANY_ATTEMPTS.getOutput()+numberOfAttempt);
+        return;
     }
 
 }
