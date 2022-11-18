@@ -14,7 +14,7 @@ class InputViewTest {
     @DisplayName("입력 받은 다리 길이에 대한 유효성 검사 테스트")
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "12ab", "ab12", "ab", "-ab", "-1ab", "0", "-12", "25", "1"})
-    void tmp(String input) {
+    void createBridgeLengthWrongInput(String input) {
         assertThatThrownBy(() -> InputView.validateBridgeLength(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
