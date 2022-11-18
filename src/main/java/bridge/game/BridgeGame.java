@@ -1,5 +1,7 @@
 package bridge.game;
 
+import bridge.enums.IntEnum;
+
 import java.util.List;
 
 /**
@@ -7,9 +9,10 @@ import java.util.List;
  */
 public class BridgeGame {
     private final List<String> bridge;
-
+    private int stage;
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
+        stage = IntEnum.RESET_STAGE.num();
     }
 
     /**
