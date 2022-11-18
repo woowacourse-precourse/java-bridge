@@ -20,7 +20,6 @@ public class DomainTest {
     private OutputView outputView = null;
     private InputView inputView = null;
     private BridgeGame bridgeGame = null;
-
     ArrayList<String> bridgeSet(){
         ArrayList<String> bridge = new ArrayList<>();
         bridge.add("U");
@@ -100,6 +99,13 @@ public class DomainTest {
     void MoveRight() {
         bridgeGame.move("U");
         assertThat(bridgeGame.isGameOver()).isFalse();
+    }
+
+    @DisplayName("게임 오버시 재시작 체크")
+    @Test
+    void RestartCheck() {
+        assertThat(bridgeGame.retry("R")).isTrue();
+        assertThat(bridgeGame.retry("F")).isFalse();
     }
 
 
