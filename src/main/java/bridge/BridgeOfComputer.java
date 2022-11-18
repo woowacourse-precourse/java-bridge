@@ -13,4 +13,8 @@ public class BridgeOfComputer {
         String answer = map.get(stage);
         return answer.equals(moveSide);
     }
+
+    public int getLength() {
+        return map.size();
+    }
 }

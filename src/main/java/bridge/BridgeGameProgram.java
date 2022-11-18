@@ -24,5 +24,12 @@ public class BridgeGameProgram {
             bridgeGame.move(inputView.readMoving());
             outputView.printMap(bridgeGame.nowUserMapState());
         }
+        if (bridgeGame.isSuccess()) {
+            outputView.printResult();
+        }
+        if (!bridgeGame.isSuccess()) {
+            outputView.printRequestRetryComment();
+            String s = inputView.readRetry();
+        }
     }
 }

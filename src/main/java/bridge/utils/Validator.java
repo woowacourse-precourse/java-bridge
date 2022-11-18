@@ -16,4 +16,12 @@ public class Validator {
             throw new IllegalArgumentException("선택할 수 있는 칸은 위(U) 또는 아래(D) 입니다.");
         }
     }
+
+    public static void checkIsRetry(String retry) {
+        String retryRegularExpression = "^[RQ]$";
+        boolean isNotRetry = !retry.matches(retryRegularExpression);
+        if (isNotRetry) {
+            throw new IllegalArgumentException("선택할 수 있는 값은 재시도(R) 또는 종료(Q) 입니다.");
+        }
+    }
 }

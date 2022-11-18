@@ -56,4 +56,8 @@ public class BridgeGame {
     public boolean isNotDone() {
         return !done;
     }
+
+    public boolean isSuccess() {
+       return userMap.equalsWithComputerMapLength(computerMap.getLength());
+    }
 }

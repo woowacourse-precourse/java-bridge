@@ -40,4 +40,8 @@ public class BridgeOfUser {
         String downSideString = "[" + String.join("|", downSide) + "]";
         return upSideString + "\n" + downSideString;
     }
+
+    public boolean equalsWithComputerMapLength(int length) {
+        return upSide.size() == length;
+    }
 }
