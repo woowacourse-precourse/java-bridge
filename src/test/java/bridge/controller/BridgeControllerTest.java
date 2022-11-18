@@ -28,9 +28,8 @@ class BridgeControllerTest {
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
 
-        Assertions.assertThatThrownBy(() -> {
-                    inputView.readBridgeSize();
-                }).isInstanceOf(IllegalArgumentException.class)
+        Assertions.assertThatThrownBy(() -> inputView.readBridgeSize())
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INPUT_IS_NUMERIC);
     }
 
