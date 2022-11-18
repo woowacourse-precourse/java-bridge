@@ -65,7 +65,7 @@ public class BridgeGame {
     }
 
     private boolean isCorrectChoice() {
-        return !answerBridge.isCorrectChoice(user);
+        return answerBridge.isCorrectChoice(user);
     }
 
     public boolean retry() {
