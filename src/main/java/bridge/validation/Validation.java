@@ -1,5 +1,6 @@
 package bridge.validation;
 
+import static bridge.command.GameCommand.*;
 import static bridge.command.MoveCommand.*;
 import static bridge.util.Constant.*;
 
@@ -26,6 +27,14 @@ public class Validation {
         if (!(moveInput.equals(MoveUp.getMoveDirection()) ||
             moveInput.equals(MoveDown.getMoveDirection()))) {
             throw new IllegalArgumentException(ERROR_MESSAGE_BRIDGE_MOVE_COMMAND_INPUT_ERROR);
+        }
+    }
+
+    // 게임을 재시작 및 종료할 때 입력값이 R 혹은 Q인지 검증하는 기능
+    public static void checkGameCommand(String gameCommand) {
+        if (!(gameCommand.equals(Restart.getGameCommand()) ||
+            gameCommand.equals(Quit.getGameCommand()))) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_BRIDGE_GAME_COMMAND_INPUT_ERROR);
         }
     }
 }
