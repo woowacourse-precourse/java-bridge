@@ -42,4 +42,10 @@ public class Exception {
             return bridgeLength;
         throw new IllegalArgumentException("[ERROR]" + ErrorMessage.AMOUNT_BOUNDS);
     }
+
+    public static String checkMove(String userInput) throws IllegalArgumentException{
+        if(userInput.equals(UP) || userInput.equals(DOWN))
+            return userInput;
+        throw new IllegalArgumentException("[ERROR]" + ErrorMessage.WRONG_INPUT);
+    }
 }
