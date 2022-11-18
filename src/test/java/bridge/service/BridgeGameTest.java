@@ -28,4 +28,15 @@ class BridgeGameTest {
         assertThat(list[0]).containsExactly("O", " ");
         assertThat(list[1]).containsExactly(" ", "O");
     }
+    @Test
+    void end_true_test() {
+        BridgeGame bridgeGame = new BridgeGame(Arrays.asList("U"));
+        bridgeGame.move("U");
+        assertThat(bridgeGame.isEnd()).isEqualTo(true);
+    }
+    @Test
+    void end_false_test() {
+        BridgeGame bridgeGame = new BridgeGame(Arrays.asList("U"));
+        assertThat(bridgeGame.isEnd()).isEqualTo(false);
+    }
 }
