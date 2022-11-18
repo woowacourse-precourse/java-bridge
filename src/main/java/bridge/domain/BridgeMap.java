@@ -2,26 +2,18 @@ package bridge.domain;
 
 import java.util.stream.IntStream;
 
-public class BridgeMap {
-    private static final String COVERT_STAND_WORD = "U";
-    private static final String LINE_FEED = "\n";
-    private static final int START_INDEX = 0;
-    private static final String DIVISION = "][";
-    private static final String REPLACE = "|";
-    private static final String SUCCESS_BRIDGE = "[ O ]";
-    private static final String BLANK_BRIDGE = "[   ]";
-    private static final String INCLUDE_END_WITH = "O ]";
-    private static final char BLANK_SPACE = ' ';
-    private static final char FAIL_MARK = 'X';
-    private static final int EXCHANGE_LENGTH = 3;
+import static bridge.domain.BridgeMapConstant.*;
+import static bridge.ui.ViewConstant.LINE_FEED;
 
+
+public class BridgeMap {
     private final Bridge bridge;
-    private final int count;
+    private final int gameStage;
     private final boolean winning;
 
-    public BridgeMap(Bridge bridge, int count, boolean winning) {
+    public BridgeMap(Bridge bridge, int gameStage, boolean winning) {
         this.bridge = bridge;
-        this.count = count;
+        this.gameStage = gameStage;
         this.winning = winning;
     }
 
@@ -31,7 +23,7 @@ public class BridgeMap {
     }
 
     private String buildBridge(StringBuilder upBridge, StringBuilder downBridge) {
-        IntStream.range(START_INDEX, this.count)
+        IntStream.range(START_INDEX, this.gameStage)
                 .forEach(value -> convertBridgeToMap(this.bridge.getBridge().get(value), upBridge, downBridge));
         checkWinningAndExchangeFailMap(upBridge, downBridge);
         return upBridge + LINE_FEED + downBridge;
