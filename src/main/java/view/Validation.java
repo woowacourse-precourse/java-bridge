@@ -1,9 +1,14 @@
 package view;
 
+import java.util.Arrays;
+
 public class Validation {
-    public void validate(String input) {
+    public void validate(String input, String message) {
         validateEmpty(input);
         validateContainBlank(input);
+        Arrays.stream(InputMessage.values())
+                .filter(inputMessage -> message.equals(inputMessage.getMessage()))
+                .forEach(inputMessage -> inputMessage.eachValidation(input));
     }
 
     public void validateEmpty(String input) {

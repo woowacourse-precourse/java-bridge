@@ -12,7 +12,6 @@ import camp.nextstep.edu.missionutils.Console;
  * 4. 사용자 값 입력을 위해 필요한 메서드를 추가할 수 있다.
  */
 public class InputView {
-    private static final String INPUT_BRIDGE_MOVE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final Validation validation = new Validation();
     public static String input = "";
 
@@ -39,7 +38,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return repeat(INPUT_BRIDGE_MOVE);
+        return repeat(InputMessage.INPUT_BRIDGE_MOVE.getMessage());
     }
 
     /**
