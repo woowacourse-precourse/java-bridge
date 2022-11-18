@@ -30,8 +30,8 @@ public class BridgeGame {
         move(moveKey.getKeySet());
     }
 
-    public void move(String moeveKey) {
-        userCrossBridge.add(moeveKey);
+    public void move(String moveKey) {
+        userCrossBridge.add(moveKey);
     }
 
     /**
@@ -41,5 +41,9 @@ public class BridgeGame {
      */
     public void retry() {
         userCrossBridge.clear();
+    }
+
+    public boolean isMovable(int userCrossBridgeIndex) {
+        return bridgeLine.get(userCrossBridgeIndex).equals(userCrossBridge.get(userCrossBridgeIndex));
     }
 }
