@@ -29,8 +29,20 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public static String readMoving() {
+        String move = "";
+        System.out.println("이동할 칸을 선택해주세요.");
+        try{
+            move = readLine();
+        }catch (IllegalArgumentException e){
+            System.out.println("[ERROR] 이동할 칸이 위면 U, 아래면 D여야 합니다.");
+        }
+
+        if(!move.equals("U") && !move.equals("D")){
+            throw new IllegalArgumentException("[ERROR] 이동할 칸이 위면 U, 아래면 D여야 합니다.");
+        }
+
+        return move;
     }
 
     /**
