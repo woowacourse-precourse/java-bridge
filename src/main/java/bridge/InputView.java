@@ -3,6 +3,7 @@ package bridge;
 import static bridge.constant.Config.*;
 
 import bridge.constant.command.DirectionCommand;
+import bridge.constant.command.GameCommand;
 import bridge.constant.message.InputErrorMessage;
 import bridge.utils.Validator;
 import camp.nextstep.edu.missionutils.Console;
@@ -57,10 +58,17 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String command = Console.readLine();
+        checkValidGameCommand(command);
+        return command;
     }
 
     private void checkValidGameCommand(String command) {
-        // TODO: 사용자의 입력값이 게임 관련 명령어인지 확인
+        for(GameCommand gameCommand : GameCommand.values()){
+            if(gameCommand.getValue().equals(command)){
+                return;
+            }
+        }
+        throw new IllegalArgumentException(InputErrorMessage.NO_VALID_GAME_COMMAND.getMessage());
     }
 }
