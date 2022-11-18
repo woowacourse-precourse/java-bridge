@@ -7,6 +7,7 @@ public class MainGame {
     private final InputView inputView = new InputView();
     private final List<String> bridge;
     private final BridgeGame bridgeGame;
+    private int countGame = 1;
     private boolean restart;
 
     public MainGame() {
@@ -37,17 +38,18 @@ public class MainGame {
             return;
         }
         if (!restart) {
+            outputView.printRetry();
             wrongAnswerPlayAgain();
-
         }
     }
 
     public void wrongAnswerPlayAgain() {
         String playAgain;
-        outputView.printRetry();
+
         playAgain = inputView.readGameCommand();
         if (playAgain.equals("R")) {
             bridgeGame.retry();
+            countGame += 1;
             restart = true;
             return;
         }
@@ -55,7 +57,7 @@ public class MainGame {
     }
 
     public void lostGame() {
-
+        outputView.printResult(bridgeGame.getUserBridge(), restart, countGame);
     }
 
 }

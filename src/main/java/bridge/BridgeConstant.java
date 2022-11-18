@@ -9,7 +9,11 @@ public enum BridgeConstant {
     GET_MOVEMENT("이동할 칸을 선택해주세요. (위: U, 아래: D)"),
     MOVEMENT_EXCEPTION("[ERROR] U 또는 D만 입력 가능합니다."),
     RESTART("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"),
-    RESTART_TYPE_EXCEPTION("[ERROR] R 또는 Q만 입력 가능합니다.");
+    RESTART_TYPE_EXCEPTION("[ERROR] R 또는 Q만 입력 가능합니다."),
+    END_GAME_RESULT("최종 게임 결과"),
+    GAME_NOT_SUCCESS("게임 성공 여부: 실패"),
+    GAME_SUCCESS("게임 성공 여부: 성공"),
+    TOTAL_GAME_PLAYS("총 시도한 횟수: ");
 
     private final String value;
 
