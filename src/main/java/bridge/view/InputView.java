@@ -24,7 +24,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String input = readLine();
+        validateMovingCommand(input);
+        return input;
     }
 
     /**
@@ -37,5 +39,11 @@ public class InputView {
     private void validateBridgeSize(String input) {
         Validator.validateBlank(input);
         Validator.validateInteger(input);
+    }
+
+    private void validateMovingCommand(String input) {
+        Validator.validateBlank(input);
+        Validator.validateMovingCommandLength(input);
+        Validator.validateMovingCommand(input);
     }
 }
