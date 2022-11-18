@@ -1,7 +1,7 @@
 package bridge;
 
 public enum RegValue {
-  ONLY_NUMBER("/^[0-9]+$");
+  ONLY_NUMBER("^[0-9]+$");
 
   private final String REG;
   RegValue(String REG) {
