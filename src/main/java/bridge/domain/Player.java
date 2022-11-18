@@ -1,11 +1,18 @@
 package bridge.domain;
 
+import java.util.List;
+
 public class Player {
 
     private final PlayResult playResult = new PlayResult();
+    private final Bridge bridge;
     private int position = 0;
 
-    public boolean canMove(Bridge bridge, String spaceToMove) {
+    public Player(List<String> bridge) {
+        this.bridge = new Bridge(bridge);
+    }
+
+    public boolean canMove(String spaceToMove) {
         boolean moveStatus = bridge.canMove(position, spaceToMove);
         move(MoveStatus.findBySpaceToMove(spaceToMove, moveStatus));
         return moveStatus;
@@ -21,8 +28,8 @@ public class Player {
         position--;
     }
 
-    public boolean crossTheBridge(int bridgeSize) {
-        return position == bridgeSize;
+    public boolean crossTheBridge() {
+        return bridge.isLastPosition(position);
     }
 
     public PlayResult getPlayResult() {

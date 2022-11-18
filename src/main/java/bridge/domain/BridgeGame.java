@@ -4,17 +4,14 @@ import static bridge.utils.Constants.RETRY;
 
 public class BridgeGame {
 
-    private final int bridgeSize;
-    private final Bridge bridge;
-    private final Player player = new Player();
+    private final Player player;
 
     public BridgeGame(int bridgeSize, BridgeMaker bridgeMaker) {
-        this.bridgeSize = bridgeSize;
-        this.bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+        this.player = new Player(bridgeMaker.makeBridge(bridgeSize));
     }
 
     public boolean move(String spaceToMove) {
-        return player.canMove(bridge, spaceToMove);
+        return player.canMove(spaceToMove);
     }
 
     public boolean retry(String retryCommand) {
@@ -26,7 +23,7 @@ public class BridgeGame {
     }
 
     public boolean gameEnd() {
-        return player.crossTheBridge(bridgeSize);
+        return player.crossTheBridge();
     }
 
     public Player getPlayer() {

@@ -13,4 +13,8 @@ public class Bridge {
     public boolean canMove(int position, String spaceToMove) {
         return bridge.get(position).equals(spaceToMove);
     }
+
+    public boolean isLastPosition(int position) {
+        return bridge.size() == position;
+    }
 }
