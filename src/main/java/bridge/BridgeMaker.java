@@ -90,28 +90,25 @@ public class BridgeMaker {
         return true;
     }
 
-    public boolean runMap(String gameCommand, String answer) {
-        boolean endGame = false;
-        if (gameCommand.equals("D")) {
-            endGame = checkWhenInputIsD(answer);
+    public boolean runMap(String moving, String answer) {
+        boolean isWin = false;
+        if (moving.equals("D")) {
+            isWin = checkWhenInputIsD(answer);
         }
-        if (gameCommand.equals("U")) {
-            endGame = checkWhenInputIsU(answer);
+        if (moving.equals("U")) {
+            isWin = checkWhenInputIsU(answer);
         }
-        return endGame;
+        return isWin;
     }
 
     public int makeMap(List<String> crossable) {
         String moving;
-        boolean endGame = false;
+        boolean isWin = true;
         int index = 0;
 
         startMap();
         while (true) {
-            if (index>=limitSize||endGame) {
-                if (endGame) {
-                    index=-1;
-                }
+            if (index>=limitSize||isWin) {
                 break;
             }
             outputView.printWhereToGoInputRequest();
@@ -119,11 +116,10 @@ public class BridgeMaker {
             if (index>0) {
                 extendMap();
             }
-            endGame = runMap(moving, crossable.get(index));
+            isWin= runMap(moving, crossable.get(index));
             index++;
             endMap();
             outputView.printMap(mapUpper,mapLower);
-            System.out.println(crossable.toString());
         }
         return index;
     }
