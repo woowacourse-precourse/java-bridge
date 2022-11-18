@@ -21,6 +21,6 @@ public class FootPrint {
 
     @Override
     public String toString() {
-        return footPrint.toString();
+        return String.format("[ %s ]\n", String.join(" | ", footPrint));
     }
 }

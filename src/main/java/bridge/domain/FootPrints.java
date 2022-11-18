@@ -35,8 +35,6 @@ public class FootPrints {
 
     @Override
     public String toString() {
-        return String.format("[ %s ]\n[ %s ]\n",
-                String.join(" | ", up.toString()),
-                String.join(" | ", down.toString()));
+        return up.toString() + down.toString();
     }
 }
