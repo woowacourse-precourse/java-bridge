@@ -103,4 +103,25 @@ class BridgeGameTest {
             assertThat(userState.isAliveUser()).isTrue();
         });
     }
+
+    @DisplayName("게임 재시작 세팅 테스트")
+    @Test
+    void 게임을_재시작_하기_위해서_게임_진행_변수를_변경해준다() {
+        Bridge bridge = new Bridge(List.of("U", "D", "U"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        assertAll(() -> {
+            bridgeGame.move(Direction.U);
+            bridgeGame.move(Direction.U);
+            assertThat(bridgeGame.isEndGame()).isTrue();
+            assertThat(bridgeGame).extracting("aliveUser").isEqualTo(false);
+            assertThat(bridgeGame).extracting("userPosition").isEqualTo(2);
+            assertThat(bridgeGame).extracting("numberOfAttempts").isEqualTo(1);
+
+            bridgeGame.retry(Command.Restart);
+            assertThat(bridgeGame.isEndGame()).isFalse();
+            assertThat(bridgeGame).extracting("aliveUser").isEqualTo(true);
+            assertThat(bridgeGame).extracting("userPosition").isEqualTo(0);
+            assertThat(bridgeGame).extracting("numberOfAttempts").isEqualTo(2);
+        });
+    }
 }
