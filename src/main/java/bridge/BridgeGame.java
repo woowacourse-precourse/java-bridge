@@ -46,4 +46,8 @@ public class BridgeGame {
     public boolean isMovable(int userCrossBridgeIndex) {
         return bridgeLine.get(userCrossBridgeIndex).equals(userCrossBridge.get(userCrossBridgeIndex));
     }
+
+    public int getRound() {
+        return userCrossBridge.size();
+    }
 }
