@@ -5,7 +5,7 @@ package bridge;
  */
 public class OutputView {
 
-    public void gameStart() {
+    public void printgameStart() {
         System.out.println("다리 건너기 게임을 시작합니다");
     }
 
