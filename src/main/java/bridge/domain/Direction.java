@@ -5,27 +5,29 @@ import java.util.Arrays;
 public enum Direction {
     UP("U", 1), DOWN("D", 0);
 
-    private final String directionString;
+    private final String inputLetter;
     private final int directionNumber;
 
     Direction(String directionButton, int directionNumber) {
-        this.directionString = directionButton;
+        this.inputLetter = directionButton;
         this.directionNumber = directionNumber;
     }
 
-    public static Direction from(String button) {
+    public static Direction from(String inputLetter) {
         return Arrays.stream(values())
-                .filter(direction -> direction.directionString.equals(button))
-                .findFirst().get();
+                .filter(direction -> direction.inputLetter.equals(inputLetter))
+                .findFirst()
+                .get();
     }
 
     public static Direction from(int number) {
         return Arrays.stream(values())
                 .filter(direction -> direction.directionNumber == number)
-                .findFirst().get();
+                .findFirst()
+                .get();
     }
 
-    public String getDirectionString() {
-        return directionString;
+    public String getInputLetter() {
+        return inputLetter;
     }
 }
