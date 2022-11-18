@@ -12,7 +12,7 @@
         - 게임 성공 여부를 성공으로 두고, 총 시도한 횟수를 반환한다.
 
 - 예외처리
-    - 다리의 길이는 오직 1이상의 숫자만 가능하다. (0도 안됨)
+    - 다리의 길이는 3 ~ 20의 숫자만 가능하다. (문자도 안됨)
     - 이동할 칸을 선택할 때에는 [U, D]만 입력이 가능하다.
     - 게임 재시작을 할 때에는 [R, Q]만 입력이 가능하다.
 
@@ -30,9 +30,9 @@
     - InputService (추가)
         - View를 호출해서 입력을 받고 리턴해준다.
     - BridgeService
-      - Bridge 도메인을 만들어주고 관리한다.
+        - Bridge 도메인을 만들어주고 관리한다.
     - UserService
-      - User 도메인을 만들어주고 관리한다.
+        - User 도메인을 만들어주고 관리한다.
 
 - domain
     - Bridge (추가)
@@ -52,7 +52,6 @@
     - BridgeNumberGenerator (interface)
     - BridgeMaker
         - size를 매개변수로 받아서 size에 해당하는 다리를 만들어준다. (랜덤하게)
-
     - BridgeRandomNumberGenerator
         - 0과 1을 랜덤하게 생성해준다. (다리의 값)
     - BridgeInputConverter (추가)
@@ -60,6 +59,6 @@
 
 - exception
     - BridgeGameException (추가)
-        - 다리의 길이는 오직 1이상의 숫자만 가능하다. (0도 안됨)
+        - 다리의 길이는 3 ~ 20의 숫자만 가능하다. (문자도 안됨)
         - 이동할 칸을 선택할 때에는 [U, D]만 입력이 가능하다.
         - 게임 재시작을 할 때에는 [R, Q]만 입력이 가능하다.
