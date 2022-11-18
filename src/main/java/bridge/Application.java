@@ -6,6 +6,7 @@ public class Application {
     private OutputView outputView;
     private BridgeMaker bridgeMaker;
     private boolean runGame;
+    private int tryNumber=0;
     public Application(){
         inputView  = new InputView();
         outputView = new OutputView();
