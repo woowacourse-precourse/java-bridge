@@ -42,6 +42,15 @@ public class Controller {
         return input;
     }
 
+    public String getGameCommand() {
+        String input;
+        do {
+            outputView.printGameMessage(GameMessage.ASK_RETRY);
+            input = inputView.readMoving();
+        } while (!validateInput(input, new NextMoveValidator(), ErrorMessage.INVALID_GAME_COMMAND));
+        return input;
+    }
+
     public boolean validateInput(String input, Validator inputValidator, ErrorMessage errorMessage) {
         try {
             inputValidator.validateInput(input);
