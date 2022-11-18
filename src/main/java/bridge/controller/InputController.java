@@ -27,9 +27,9 @@ public class InputController {
 		}
 	}
 
-	public static String getExitOption() {
+	public static ExitOption getExitOption() {
 		try {
-			return ExitOption.of(inputView.readGameCommand()).getCommand();
+			return ExitOption.of(inputView.readGameCommand());
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			return getExitOption();
