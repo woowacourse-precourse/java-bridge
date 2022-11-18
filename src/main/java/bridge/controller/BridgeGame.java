@@ -27,13 +27,11 @@ public class BridgeGame {
     }
 
     public void generateBridge() {
-        while (true) {
-            try {
-                BRIDGE_LENGTH = inputView.readBridgeSize();
-                break;
-            } catch (IllegalArgumentException e) {
-                inputView.printError(ErrorType.INPUT_BRIDGE_SIZE_ERROR_TYPE.getText());
-            }
+        try {
+            BRIDGE_LENGTH = inputView.readBridgeSize();
+        } catch (IllegalArgumentException e) {
+            inputView.printError(ErrorType.INPUT_BRIDGE_SIZE_ERROR_TYPE.getText());
+            generateBridge();
         }
         bridge.setBridge(BRIDGE_LENGTH);
     }
@@ -44,15 +42,13 @@ public class BridgeGame {
      */
     public void move() {
         String move;
-        while (true) {
-            try {
-                move = inputView.readMoving();
-                Validation.inputMoveSquareValid(move);
-                player.add(move);
-                break;
-            } catch (IllegalArgumentException e) {
-                inputView.printError(ErrorType.INPUT_BRIDGE_SIZE_ERROR_TYPE.getText());
-            }
+        try {
+            move = inputView.readMoving();
+            Validation.inputMoveSquareValid(move);
+            player.add(move);
+        } catch (IllegalArgumentException e) {
+            inputView.printError(ErrorType.INPUT_SQUARE_ERROR_TYPE.getText());
+            move();
         }
         outputView.printMap(bridge.getBridge(), ++progressCount, player.getChoices());
     }
