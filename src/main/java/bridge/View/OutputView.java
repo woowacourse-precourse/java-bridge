@@ -20,7 +20,7 @@ public class OutputView {
     private static final String RETRY_COUNT = "총 시도한 횟수: %d" + System.lineSeparator();
 
 
-    private String processSelectedStair(Player player, String stair) {
+    private String getSelectResult(Player player, String stair) {
         if (!stair.equals(player.getSelection())) {
             return NOT_SELECTION;
         }
@@ -32,7 +32,7 @@ public class OutputView {
         return RIGHT_SELECTION;
     }
 
-    private String processPassedStair(List<String> bridgeStates, int passedCount, String stair) {
+    private String getPassedResultMap(List<String> bridgeStates, int passedCount, String stair) {
         String result = "";
 
         for (int bridgeLocation = 0; bridgeLocation < passedCount; bridgeLocation++) {
@@ -48,8 +48,8 @@ public class OutputView {
 
     private void printStair(List<String> bridgeStates, Player player, String stair) {
         String result;
-        result = printPassedStair(bridgeStates, player.getNextLocation(), stair);
-        result += printSelectedStair(player, stair);
+        result = getPassedResultMap(bridgeStates, player.getPassedCount(), stair);
+        result += getSelectResult(player, stair);
 
         System.out.printf(BRIDGE_MAP, result);
     }
@@ -69,7 +69,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
 
-    private String processIsSuccess(BridgeGame bridgeGame) {
+    private String getIsSuccess(BridgeGame bridgeGame) {
         if (bridgeGame.isPlayerDead()) {
             return FAIL;
         }
@@ -77,7 +77,7 @@ public class OutputView {
         return SUCCESS;
     }
 
-    private String processLastStair(BridgeGame bridgeGame, String stair) {
+    private String getLastSelectResult(BridgeGame bridgeGame, String stair) {
         List<String> bridgeStates = bridgeGame.getBridgeStates();
         String bridgeState = bridgeStates.get(bridgeGame.getMaxPassedCount());
 
@@ -94,8 +94,8 @@ public class OutputView {
 
     private void printResultStair(BridgeGame bridgeGame, String stair) {
         String result;
-        result = processPassedStair(bridgeGame.getBridgeStates(), bridgeGame.getMaxPassedCount(), stair);
-        result += processLastStair(bridgeGame, stair);
+        result = getPassedResultMap(bridgeGame.getBridgeStates(), bridgeGame.getMaxPassedCount(), stair);
+        result += getLastSelectResult(bridgeGame, stair);
 
         System.out.printf(BRIDGE_MAP, result);
     }
@@ -106,7 +106,7 @@ public class OutputView {
         printResultStair(bridgeGame, SELECTION_UP);
         printResultStair(bridgeGame, SELECTION_DOWN);
 
-        System.out.printf(IS_SUCCESS, processIsSuccess(bridgeGame));
+        System.out.printf(IS_SUCCESS, getIsSuccess(bridgeGame));
         System.out.printf(RETRY_COUNT, bridgeGame.getRetryCount());
     }
 }
