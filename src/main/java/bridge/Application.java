@@ -15,8 +15,9 @@ public class Application {
 
         Result result = new Result();
         for (int i = 0; i < bridgeSize; i++) {
-            String moving = inputView.readMoving();
-            result.updateIsAnswers(bridgeGame.move(moving, i));
+            MoveDirection direction = inputView.readMoving();
+            result.updateIsAnswers(bridgeGame.move(direction, i));
         }
+
     }
 }
