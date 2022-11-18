@@ -8,6 +8,6 @@
 
 ### 다리 출력 `printMap()`
 위쪽 다리와 아래쪽 다리 리스트를 받아서 Arrays.toString() 한 값을 String 타입 변수에 저장한다. - `printMap()`
-콤마와 공백 한 칸(, )를 구분자(|)로 바꾼 값을 각기 출력한다. - `replaceResult()`
+콤마(,)를 구분자(|)로 바꾼 값을 각기 출력한다. - `replaceResult()`
 
 ### 게임 결과 출력 `printResult()`
