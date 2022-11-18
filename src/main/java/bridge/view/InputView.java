@@ -5,6 +5,7 @@ package bridge.view;
  */
 
 import camp.nextstep.edu.missionutils.Console;
+import static bridge.messages.ExceptionMessage.*;
 
 /**
  * 제공된 InputView 클래스를 활용해 구현해야 한다.
@@ -13,8 +14,6 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자 값 입력을 위해 필요한 메서드를 추가할 수 있다.
  */
 public class InputView {
-    private static final String ERROR_INPUT_LENGTH_ZERO = "[ERROR] 아무것도 입력하지 않았습니다.";
-    private static final String ERROR_NOT_INTEGER = "[ERROR] 숫자를 입력해야 합니다.";
     private static final String BRIDGE_SIZE_INPUT_MESSAGE = "다리의 길이를 입력해주세요.";
     private static final String MOVE_INPUT_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String GAME_COMMAND_INPUT_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
@@ -48,14 +47,14 @@ public class InputView {
         if (readLine.length() > EMPTY_LENGTH_VALUE) {
             return readLine;
         }
-        throw new IllegalArgumentException(ERROR_INPUT_LENGTH_ZERO);
+        throw new IllegalArgumentException(ERROR_INPUT_LENGTH_ZERO.getMessage());
     }
 
     private int validateStringToInt(String readLine) {
         try {
             return Integer.parseInt(validateNotEmpty(readLine));
         } catch (NumberFormatException numberFormatException) {
-            throw new IllegalArgumentException(ERROR_NOT_INTEGER);
+            throw new IllegalArgumentException(ERROR_NOT_INTEGER.getMessage());
         }
     }
 }

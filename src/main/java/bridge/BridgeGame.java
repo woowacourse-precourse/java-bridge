@@ -3,6 +3,9 @@ package bridge;
 import bridge.view.InputView;
 import org.assertj.core.api.ThrowableAssert;
 
+import static bridge.messages.ExceptionMessage.ERROR_INVALID_GAME_COMMAND;
+import static bridge.messages.ExceptionMessage.ERROR_INVALID_MOVE_COMMAND;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -15,8 +18,6 @@ import org.assertj.core.api.ThrowableAssert;
  * 게임 진행을 위해 필요한 메서드를 추가 하거나 변경할 수 있다.
  */
 public class BridgeGame {
-    private final static String ERROR_INVALID_MOVE_COMMAND = "[ERROR] 위: U, 아래: D 로 입력해 주세요.";
-    private final static String ERROR_INVALID_GAME_COMMAND = "[ERROR] 재시작: R, 종료: Q 로 입력해 주세요.";
     private final static String MOVE_UP_COMMAND = "U";
     private final static String MOVE_DOWN_COMMAND = "D";
     private final static String RETRY_GAME_COMMAND = "R";
@@ -43,7 +44,7 @@ public class BridgeGame {
         if (moveCommand.equals(MOVE_UP_COMMAND) || moveCommand.equals(MOVE_DOWN_COMMAND)) {
             return moveCommand;
         }
-        throw new IllegalArgumentException(ERROR_INVALID_MOVE_COMMAND);
+        throw new IllegalArgumentException(ERROR_INVALID_MOVE_COMMAND.getMessage());
     }
 
     /**
@@ -59,6 +60,6 @@ public class BridgeGame {
         if (gameCommand.equals(END_GAME_COMMAND) || gameCommand.equals(RETRY_GAME_COMMAND)) {
             return gameCommand;
         }
-        throw new IllegalArgumentException(ERROR_INVALID_GAME_COMMAND);
+        throw new IllegalArgumentException(ERROR_INVALID_GAME_COMMAND.getMessage());
     }
 }
