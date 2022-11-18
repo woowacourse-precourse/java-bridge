@@ -16,4 +16,8 @@ public class Bridge {
     public boolean canCrossBridge(int distance, String position) {
         return bridge.get(distance).equals(position); 
     }
+
+    public boolean isBridgeEnd(int distance) {
+        return this.bridge.size() == distance;
+    }
 }
