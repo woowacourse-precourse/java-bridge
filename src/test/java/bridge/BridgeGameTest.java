@@ -31,4 +31,16 @@ public class BridgeGameTest {
         bridgeGame.retry("R");
         Assertions.assertEquals(bridgeGame.getGameCnt(), 2);
     }
+
+    @DisplayName("게임 재시작 시 이동 기록된 리스트 초기화")
+    @Test
+    void retryClearList() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U","U","U"));
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.retry("R");
+        Assertions.assertEquals(bridgeGame.getUpMove().size(), 0);
+        Assertions.assertEquals(bridgeGame.getDownMove().size(), 0);
+
+    }
 }
