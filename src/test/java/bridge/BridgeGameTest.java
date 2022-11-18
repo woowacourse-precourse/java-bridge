@@ -23,7 +23,7 @@ public class BridgeGameTest {
 
     @DisplayName("재시도 물어볼때 R 입력 시 tryCount가 정상적으로 증가하는지 테스트")
     @Test
-    void bridgeGameretryTest() {
+    void bridgeGameRetryTest() {
         String input = "R";
         bridgeGame.retry(input);
         assertThat(bridge.getTryCount()).isGreaterThan(1);
