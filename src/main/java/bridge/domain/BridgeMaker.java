@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.bridge;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,9 @@ import java.util.List;
  */
 public class BridgeMaker {
 	private final int RANDOM_LOWER_INCLUSIVE = 0;
+	private final String DOWN_LOCATION = "D";
+	private final String UP_LOCATION = "U";
+
 	private final BridgeNumberGenerator bridgeNumberGenerator;
 
 	public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -24,16 +27,16 @@ public class BridgeMaker {
 		List<String> bridge = new ArrayList<>();
 		int currentSize = 0;
 		while (currentSize++ < size) {
-			String upOrDown = convertUpOrDown(bridgeNumberGenerator.generate());
-			bridge.add(upOrDown);
+			String bridgeLocation = getBridgeLocation(bridgeNumberGenerator.generate());
+			bridge.add(bridgeLocation);
 		}
 		return bridge;
 	}
 
-	private String convertUpOrDown(int number) {
-		if (number == RANDOM_LOWER_INCLUSIVE) {
-			return "D";
+	private String getBridgeLocation(int bridgeRandomnumber) {
+		if (bridgeRandomnumber == RANDOM_LOWER_INCLUSIVE) {
+			return DOWN_LOCATION;
 		}
-		return "U";
+		return UP_LOCATION;
 	}
 }
