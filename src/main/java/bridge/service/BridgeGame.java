@@ -7,8 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.constant.Constants.BridgeSign.*;
-import static bridge.view.InputView.*;
-import static bridge.view.OutputView.*;
+
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -22,7 +21,7 @@ import static bridge.view.OutputView.*;
  * ★ BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.
  */
 public class BridgeGame {
-
+    BridgeGameConsole console = new BridgeGameConsole();
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     List<String> topGameBoard, bottomGameBoard;
     List<String> bridge = generateBridge(bridgeMaker);
@@ -44,8 +43,8 @@ public class BridgeGame {
     }
 
     public void end(){
-        printResult(topGameBoard, bottomGameBoard);
-        printGameStatistics(isGameWin, tryCount);
+        console.gameResult(topGameBoard, bottomGameBoard);
+        console.gameStatistics(isGameWin, tryCount);
     }
 
     /**
@@ -86,7 +85,7 @@ public class BridgeGame {
         String movingResult = move(nowBridge, movingDirection);
 
         checkDirection(movingDirection, movingResult);
-        printMap(topGameBoard, bottomGameBoard);
+        console.map(topGameBoard, bottomGameBoard);
 
         if (movingResult.equals(FAIL)) {
             isGameWin = false;
@@ -116,7 +115,7 @@ public class BridgeGame {
         boolean isRetry;
 
         try {
-            isRetry = readGameCommand();
+            isRetry = console.askRetry();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             isRetry = checkRetry();
@@ -130,11 +129,11 @@ public class BridgeGame {
      * @return 입력받은 이동 방향
      */
     private String inputMovingDirection() {
-        printInputDirectionMessage();
+        console.movementDirectionInputRequestMessage();
         String movingDirection;
 
         try {
-            movingDirection = readMoving();
+            movingDirection = console.moveForward();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             movingDirection = inputMovingDirection();
@@ -149,11 +148,11 @@ public class BridgeGame {
      * @return 생성된 다리
      */
     private List<String> generateBridge(BridgeMaker bridgeMaker) {
-        printInputBridgeSizeMessage();
+        console.bridgeSizeInputRequestMessage();
         List<String> bridge;
 
         try {
-            bridge = bridgeMaker.makeBridge(readBridgeSize());
+            bridge = bridgeMaker.makeBridge(console.inputBridgeSize());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             bridge = generateBridge(bridgeMaker);
