@@ -17,9 +17,9 @@
 - play(Position userNextPosition)
   - UserStatus
   - return
-    - bridge가 userNextPosition을 포함하고 마지막 값일 때 : WIN
-    - bridge가 userNextPosition을 포함하고 마지막 값이 아닐 때 : KEEP
-    - bridge가 userNextPosition을 포함하지 않을 때 : LOSE
+    - bridge가 nextPosition을 포함하고 마지막 값일 때 : WIN
+    - bridge가 nextPosition을 포함하고 마지막 값이 아닐 때 : KEEP
+    - bridge가 nextPosition을 포함하지 않을 때 : LOSE
 4. UserPosition
 - 유저의 위치
 - List<String> position
