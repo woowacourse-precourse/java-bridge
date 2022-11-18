@@ -23,7 +23,19 @@ public class OutputView {
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     * @param status
      */
-    public void printResult() {
+    public void printResult(String footPrints, int status, int tryCount) {
+        System.out.println("최종 게임 결과");
+        System.out.println(footPrints);
+        System.out.printf("최종 성공 여부: %s\n", getStatus(status));
+        System.out.printf("총 시도한 횟수: %d\n", tryCount);
+    }
+
+    private String getStatus(int status) {
+        if (status == BridgeGame.LOSE) {
+            return "실패";
+        }
+        return "성공";
     }
 }

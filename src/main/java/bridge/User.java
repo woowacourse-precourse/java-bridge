@@ -41,4 +41,8 @@ public class User {
         currentLocation = 0;
         tryCount++;
     }
+
+    public int getTryCount() {
+        return tryCount;
+    }
 }

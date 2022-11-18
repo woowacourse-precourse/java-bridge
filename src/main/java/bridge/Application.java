@@ -30,6 +30,7 @@ public class Application {
                     status = bridgeGame.retry(gameCommand);
                 }
             }
+            outputView.printResult(bridgeGame.getFootPrintsLog(), status, bridgeGame.getTryCount());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

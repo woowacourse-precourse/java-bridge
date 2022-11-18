@@ -83,4 +83,8 @@ public class BridgeGame {
         }
         return LOSE;
     }
+
+    public int getTryCount() {
+        return user.getTryCount();
+    }
 }
