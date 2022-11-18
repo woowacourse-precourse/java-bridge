@@ -16,6 +16,7 @@ public class InputView {
 
     public void printStartMessage() {
         System.out.println(START_GAME);
+        System.out.println();
     }
 
     public int readBridgeSize() throws IllegalArgumentException {
