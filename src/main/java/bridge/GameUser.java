@@ -20,4 +20,9 @@ public class GameUser {
     public boolean hasBridgeLength(int otherLength) {
         return userBridge.length() == otherLength;
     }
+
+    @Override
+    public String toString() {
+        return userBridge.toString();
+    }
 }

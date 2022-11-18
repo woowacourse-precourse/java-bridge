@@ -29,4 +29,9 @@ public class Bridge {
     public int length() {
         return bridge.size();
     }
+
+    @Override
+    public String toString() {
+        return bridge.toString();
+    }
 }
