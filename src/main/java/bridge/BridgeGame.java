@@ -10,7 +10,7 @@ public class BridgeGame {
     private static final int BRIDGE_NUMBER = 2;
     private static final String CORRECT = " O ";
     private static final String WRONG = " X ";
-    private static final String EMPTY = " ";
+    private static final String EMPTY = "   ";
 
     private List<String> createdBridge;
     private List<List<String>> resultBridges;
@@ -81,6 +81,14 @@ public class BridgeGame {
             if(bridge.contains(WRONG)){
                 return true;
             }
+        }
+        return false;
+    }
+
+    public boolean isRetry(String userDecision){
+        final String RETRY = "R";
+        if(userDecision.equals(RETRY)){
+            return true;
         }
         return false;
     }
