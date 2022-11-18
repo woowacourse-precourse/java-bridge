@@ -15,7 +15,10 @@ public class BridgeGame {
     List<String> curbridge;  // 현재 게임이 진행되고 있는 다리 정보
     int curidx; // 현재 유저가 위치하고 있는 인덱스
     public BridgeGame(int size){
-
+        BridgeNumberGenerator bng = new BridgeRandomNumberGenerator();
+        BridgeMaker bm = new BridgeMaker(bng);
+        curbridge = bm.makeBridge(size);
+        curidx = 0;
     }
     public void move() {
     }
