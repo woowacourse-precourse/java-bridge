@@ -41,12 +41,12 @@ class OutputViewTest {
 
     @Test
     void printResultTest(){
-        outputView.printResult(game,2,"성공");
+        outputView.printResult(game,2);
         assertThat(outputStream.toString().trim()).contains(
                 "최종 게임 결과",
                 "[ O |   | O ]",
                 "[   | O |   ]",
-                "게임 성공 여부: 성공",
+                "게임 성공 여부: 실패",
                 "총 시도한 횟수: 2"
         );
     }
