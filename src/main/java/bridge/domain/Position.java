@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Position {
@@ -17,7 +18,8 @@ public class Position {
         return position.get(distance);
     }
 
-    public int getDistance() { // TODO: getter 사용 자제... 메시지를 보내기
-        return distance;
+    public boolean isSamePosition(List<Direction> directions) {
+        return directions.get(distance)
+                .isSameDirection(position.get(distance));
     }
 }
