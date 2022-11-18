@@ -73,15 +73,15 @@ public class OutputView {
     }
 
     public void printStartSquareBracket() {
-        System.out.print("[ ");
+        System.out.print(StringConstant.START_SQUARE_BRACKET.getConstant());
     }
 
     public void printDelimeter() {
-        System.out.print(" | ");
+        System.out.print(StringConstant.DELIMETER.getConstant());
     }
 
     public void printEndSquareBracket() {
-        System.out.println(" ]");
+        System.out.println(StringConstant.END_SQUARE_BRACKET.getConstant());
     }
 
     public void printResult(List<String> upSide, List<String> downSide, int countTryNumber) {
