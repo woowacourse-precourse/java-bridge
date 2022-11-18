@@ -76,4 +76,12 @@ public class BridgeGame {
     public int getBridgeSize() {
         return bridge.size();
     }
+
+    public void retry() {
+        repeatCount++;
+    }
+
+    public int getRepeatCount() {
+        return repeatCount;
+    }
 }

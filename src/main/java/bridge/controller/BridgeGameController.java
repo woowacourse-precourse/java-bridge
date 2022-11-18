@@ -42,6 +42,7 @@ public class BridgeGameController {
 				return currentMap;
 			}
 			playGame = askRetry();
+			bridgeGame.retry();
 		}
 		return  currentMap;
 	}
