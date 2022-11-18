@@ -25,9 +25,9 @@ public class OutputView {
         System.out.print("[ ");
         for(int i=0; i<moveMapList.size(); i++){
             if (i > 0) System.out.print(" | ");
-            if (bridge.get(i).equals("U") && moveMapList.get(i).equals("U")) System.out.print("O");
-            if (bridge.get(i).equals("U") && moveMapList.get(i).equals("D")) System.out.print(" ");
-            if (bridge.get(i).equals("D") && moveMapList.get(i).equals("U")) System.out.print("X");
+            if (bridge.get(i).equals("U") && moveMapList.get(i).equals("O")) System.out.print("O");
+            if (bridge.get(i).equals("U") && moveMapList.get(i).equals("X")) System.out.print(" ");
+            if (bridge.get(i).equals("D") && moveMapList.get(i).equals("X")) System.out.print("X");
         }
         System.out.println(" ]");
     }
@@ -36,9 +36,9 @@ public class OutputView {
         System.out.print("[ ");
         for(int i=0; i<moveMapList.size(); i++){
             if (i > 0) System.out.print(" | ");
-            if (bridge.get(i).equals("D") && moveMapList.get(i).equals("D")) System.out.print("O");
-            if (bridge.get(i).equals("D") && moveMapList.get(i).equals("U")) System.out.print(" ");
-            if (bridge.get(i).equals("U") && moveMapList.get(i).equals("D")) System.out.print("X");
+            if (bridge.get(i).equals("D") && moveMapList.get(i).equals("O")) System.out.print("O");
+            if (bridge.get(i).equals("D") && moveMapList.get(i).equals("X")) System.out.print(" ");
+            if (bridge.get(i).equals("U") && moveMapList.get(i).equals("X")) System.out.print("X");
         }
         System.out.println(" ]");
     }
