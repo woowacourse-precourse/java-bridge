@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
@@ -18,6 +19,17 @@ public class BridgeController {
 
     public void run() {
         outputView.printStartGame();
-        BridgeGame bridgeGame = new BridgeGame(new BridgeMaker(new BridgeRandomNumberGenerator()));
+        BridgeGame bridgeGame = makeBridgeGame(new BridgeRandomNumberGenerator());
+    }
+
+    public BridgeGame makeBridgeGame(BridgeNumberGenerator numberGenerator) {
+        int bridgeSize;
+        try {
+            bridgeSize = inputView.readBridgeSize();
+            return new BridgeGame(new BridgeMaker(numberGenerator));
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
+            return makeBridgeGame(numberGenerator);
+        }
     }
 }

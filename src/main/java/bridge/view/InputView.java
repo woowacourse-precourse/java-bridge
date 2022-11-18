@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.domain.message.ErrorMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -14,9 +15,14 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println(INPUT_FOR_BRIDGE_SIZE);
+        int result = 0;
 
-        String input = Console.readLine();
-        return Integer.parseInt(input);
+        try {
+            result = Integer.parseInt(Console.readLine());
+            return result;
+        } catch (NumberFormatException numberFormatException) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_IS_NUMERIC);
+        }
     }
 
     /**
