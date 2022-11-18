@@ -6,8 +6,6 @@ public class ExceptionHandler {
 
     static final int BRIDGE_SIZE_MIN = 3;
     static final int BRIDGE_SIZE_MAX = 20;
-    static final String UP = "U";
-    static final String DOWN = "D";
     static final String RE_START = "R";
     static final String QUIT = "Q";
 
@@ -35,7 +33,7 @@ public class ExceptionHandler {
     }
 
     private static boolean isValidMoving(final String input) {
-        if (input.equals(UP) || input.equals(DOWN)) {
+        if (input.equals(OutputView.UP) || input.equals(OutputView.DOWN)) {
             return true;
         }
         return false;
