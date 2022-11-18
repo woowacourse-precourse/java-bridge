@@ -47,7 +47,20 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        try {
+            String inputReadMoving = Console.readLine();
+            validReadMoving(inputReadMoving);
+            return inputReadMoving;
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+            return readMoving();
+        }
+    }
+
+    private void validReadMoving(String inputReadMoving) {
+        if (!inputReadMoving.matches("^[D|U]$")) {
+            throw new IllegalArgumentException("입력한 값이 D 또는 U가 아닙니다.");
+        }
     }
 
     /**
