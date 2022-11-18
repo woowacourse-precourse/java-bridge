@@ -52,6 +52,14 @@ public class BridgeGame {
         return referee.isStepSuccess(current.get(index), index);
     }
 
+    public boolean isSuccess() {
+        return referee.compareBridgeWith(current);
+    }
+
+    public int getAttempt() {
+        return attempt;
+    }
+
     public List<List<String>> analyzeResult() {
         Map<MoveCommand, List<String>> result = new EnumMap<>(MoveCommand.class);
         for (int i = 0; i < current.size(); i++) {
@@ -85,12 +93,5 @@ public class BridgeGame {
         return " ";
     }
 
-    public int getAttempt() {
-        return attempt;
-    }
-
-    public boolean isSuccess() {
-        return referee.compareBridgeWith(current);
-    }
 
 }
