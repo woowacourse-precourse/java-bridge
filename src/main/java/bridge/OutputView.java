@@ -28,7 +28,18 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(int position, boolean available, List<String> bridge, int trying) {
+        System.out.println(Sentence.OUTPUT_RESULT);
+        printMap(position, available, bridge);
+
+        if (available) {
+            System.out.println(Sentence.OUPTUT_SUCCESS.toString() + "성공");
+            System.out.println(Sentence.OUTPUT_TRY + Integer.toString(trying));
+            return;
+        }
+
+        System.out.println(Sentence.OUPTUT_SUCCESS.toString() + "실패");
+        System.out.println(Sentence.OUTPUT_TRY + Integer.toString(trying));
     }
 
     private void printUp(int position, boolean available, List<String> bridge) {

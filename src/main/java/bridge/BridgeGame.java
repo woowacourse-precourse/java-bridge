@@ -8,7 +8,6 @@ import java.util.List;
 public class BridgeGame {
 
     public final List<String> bridge;
-    private static int trying = 1;
 
     public BridgeGame(int size) {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
