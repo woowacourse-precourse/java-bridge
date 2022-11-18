@@ -12,6 +12,7 @@ public class Application {
         Application app = new Application();
 
         Bridge bridge = new Bridge(app.initializeBridge());
+        app.crossBridge(bridge);
     }
 
     private List<String> initializeBridge() {
@@ -21,11 +22,11 @@ public class Application {
     }
 
     private void crossBridge(Bridge bridge) {
-        boolean isGameOver = false;
+        boolean isGameContinued = true;
         BridgeGame bridgeGame = new BridgeGame();
 
-        while(isGameOver) {
-            bridgeGame.move(inputView.readMoving());
+        for(int i = 0; i < bridge.getBridge().size(); i++) {
+            outputView.printMap(bridge, bridgeGame.move(inputView.readMoving()));
         }
     }
 }

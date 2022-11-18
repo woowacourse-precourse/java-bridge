@@ -13,6 +13,10 @@ public class Bridge {
         this.bridge = bridge;
     }
 
+    public List<String> getBridge() {
+        return bridge;
+    }
+
     private void validateSize(List<String> bridge) {
         if(bridge.size() < 3 || 20 < bridge.size()) {
             throw new IllegalArgumentException(ErrorMessage.NotValidBridgeSize.getMessage());
