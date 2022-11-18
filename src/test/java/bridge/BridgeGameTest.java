@@ -3,6 +3,7 @@ package bridge;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -55,5 +56,49 @@ public class BridgeGameTest extends NsTest {
         );
     }
 
+    @Nested
+    @DisplayName("사용자 이동의 정상 동작을 확인함.")
+    class ValidateMove {
+        BridgeGame bridgeGame = new BridgeGame(Arrays.asList("U","D","U"));
 
+        @DisplayName("칸 건너기를 성공한 경우. 1번 케이스")
+        @Test
+        public void successOneMove() {
+            assertThat(bridgeGame.move("U"))
+                    .isTrue();
+        }
+
+        @DisplayName("칸 건너기를 성공한 경우. 2번 케이스")
+        @Test
+        public void successTwoMove() {
+            bridgeGame.move("U");
+            assertThat(bridgeGame.move("D"))
+                    .isTrue();
+        }
+
+        @DisplayName("칸 건너기를 실패한 경우. 1번케이스")
+        @Test
+        public void failOneMove() {
+            assertThat(bridgeGame.move("D"))
+                    .isFalse();
+        }
+
+        @DisplayName("칸 건너기를 실패한 경우. 2번케이스")
+        @Test
+        public void failTwoMove() {
+            bridgeGame.move("U");
+            assertThat(bridgeGame.move("U"))
+                    .isFalse();
+        }
+
+        @DisplayName("다리 전체를 다 건넌 경우.")
+        @Test
+        public void successAllMove(){
+            bridgeGame.move("U");
+            bridgeGame.move("D");
+            assertThat(bridgeGame.move("U"))
+                    .isFalse();
+        }
+
+    }
 }
