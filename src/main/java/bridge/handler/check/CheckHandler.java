@@ -17,8 +17,7 @@ public class CheckHandler {
 	}
 
 	public static String isGameCommandInput(String input) {
-		//TODO : 게임 종료 여부 입력 시 예외처리 구현 중
-		isGameCommand();
+		isGameCommand(input);
 		return input;
 	}
 
@@ -40,13 +39,19 @@ public class CheckHandler {
 	}
 
 	private static void isMoveCommand(String inputMoveCommand) {
-		if (!(inputMoveCommand.equals("U") || inputMoveCommand.equals("D"))) {
+		if (isCommand(inputMoveCommand, "U", "D")) {
 			ExceptionHandler.raisingIllegalArgumentException(Message.getMessage(Message.INPUT_NOT_MOVE_COMMAND));
 		}
 	}
 
-	private static void isGameCommand() {
-		//TODO : 게임 명령어 입력이 R/Q 가 아니면 예외 발생
+	private static void isGameCommand(String inputMoveCommand) {
+		if (isCommand(inputMoveCommand, "R", "Q")) {
+			ExceptionHandler.raisingIllegalArgumentException(Message.getMessage(Message.INPUT_NOT_GAME_COMMAND));
+		}
+	}
+
+	private static boolean isCommand(String inputCommand, String command1, String command2) {
+		return !(inputCommand.equals(command1) || !inputCommand.equals(command2));
 	}
 
 }

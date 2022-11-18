@@ -6,7 +6,7 @@ public enum Message {
 	INPUT_NOT_NUMBER("입력된 값이 숫자가 아닙니다."),
 	INPUT_OUT_OF_RANGE("입력된 값이 범위를 벗어납니다."),
 	INPUT_NOT_MOVE_COMMAND("입력된 값이 U나 D가 아닙니다."),
-	;
+	INPUT_NOT_GAME_COMMAND("입력된 값이 R나 Q가 아닙니다.");
 
 	private final String message;
 
