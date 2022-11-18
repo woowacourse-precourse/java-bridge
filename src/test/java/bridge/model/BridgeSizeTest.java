@@ -1,6 +1,7 @@
 package bridge.model;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,5 +24,12 @@ class BridgeSizeTest {
         assertThatThrownBy(() -> new BridgeSize("aaaaaa")).isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new BridgeSize("2dafasd"))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 입력_3이상_20이하면_성공한다() {
+        assertDoesNotThrow(() -> new BridgeSize("3"));
+        assertDoesNotThrow(() -> new BridgeSize("10"));
+        assertDoesNotThrow(() -> new BridgeSize("20"));
     }
 }
