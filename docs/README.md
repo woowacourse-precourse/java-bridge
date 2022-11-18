@@ -4,8 +4,8 @@
 
 ### 기능 구현 리스트
 
-- [ ] 다리의 길이 입력 받기  (InputView)
-  - 예외 발생 상황
+- [X] 다리의 길이 입력 받기  (InputView.getBridgeLength)
+  -  *예외 발생 상황*
   - [X] 3이상 20이하의 정수가 아닐시 예외 발생 (ValidityCheck.numberRangeChecker)
   - [X] 문자를 입력했을 경우 예외 발생 (ValidityCheck.stringChecker)
 
@@ -30,7 +30,7 @@
     [   ]
 
 - [ ] 게임 실패시 재도전 여부 입력 받기 (InputView)
-  - 예외 발생 상황
+  - *예외 발생 상황*
   - [ ] R or Q 가 아닌 경우 예외 발생
 
 
