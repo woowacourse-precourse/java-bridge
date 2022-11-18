@@ -21,4 +21,8 @@ public class User {
     public List<UpDownFlag> getMovedPosition() {
         return List.copyOf(movedPosition);
     }
+
+    public void reset() {
+        movedPosition.clear();
+    }
 }

@@ -74,6 +74,6 @@ public class BridgeGame {
      */
     public void retry() {
         tryCount++;
-        user = new User();
+        user.reset();
     }
 }
