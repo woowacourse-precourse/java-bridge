@@ -1,9 +1,11 @@
 package bridge.view;
 
 import bridge.enums.IntEnum;
+import bridge.enums.StringEnum;
 import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.enums.IntEnum.*;
+import static bridge.enums.StringEnum.*;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -44,7 +46,14 @@ public class InputView {
      */
     public String readMoving() {
         String movingInput = Console.readLine();
+        movingValidate(movingInput);
         return movingInput;
+    }
+
+    public void movingValidate(String movingInput) {
+        if(!(movingInput.equals(UP.key()) || movingInput.equals(DOWN.key()))){
+            throw new IllegalArgumentException("[ERROR] 이동값이 'U'이나 'D'가 아닙니다.");
+        }
     }
 
     /**
