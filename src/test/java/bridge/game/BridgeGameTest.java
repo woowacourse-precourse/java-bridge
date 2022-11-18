@@ -20,14 +20,13 @@ class BridgeGameTest {
     @BeforeEach
     void beforeEach() {
         character = new GameCharacter();
-        bridgeGame = new BridgeGame(character);
+        bridgeGame = new BridgeGame(character, 20);
     }
 
     @DisplayName("게임 캐릭터가 이동할 칸의 이동 가능 여부 체크 테스트")
     @ValueSource(strings = {"U", "D", "D", "U", "D"})
     @ParameterizedTest
     void isAbleToMove(String destination) {
-        bridgeGame.setBridge(bridgeMaker.makeBridge(20));
         character.setNextMove(destination);
         String nextRightDestination = bridgeGame.showRightDestinationInArea(character.showNextArea());
         boolean ableToMove = bridgeGame.isAbleToMove();
@@ -46,7 +45,7 @@ class BridgeGameTest {
         String destination = "U";
         boolean isSuccess = true;
         //when
-        Progress progress = bridgeGame.makeProgress(destination, isSuccess);
+        Progress progress = bridgeGame.makeMove(destination, isSuccess);
         //then
         assertThat(progress.getDestination()).isEqualTo(destination);
         assertThat(progress.isSuccess()).isEqualTo(isSuccess);
@@ -57,9 +56,8 @@ class BridgeGameTest {
     void saveProgress() {
         //given
         character.setNextMove("D");
-        bridgeGame.setBridge(bridgeMaker.makeBridge(20));
         //when
-        bridgeGame.saveProgress();
+        bridgeGame.saveMove();
         //then
         List<Progress> progresses = bridgeGame.showCurrentResult();
         assertThat(progresses.size()).isEqualTo(1);
@@ -70,10 +68,8 @@ class BridgeGameTest {
     @Test
     void move(){
         //given
-        character.setNextMove("D");
-        bridgeGame.setBridge(bridgeMaker.makeBridge(20));
         //when
-        bridgeGame.move();
+        bridgeGame.move("D");
         //then
         List<Progress> progresses = bridgeGame.showCurrentResult();
         assertThat(progresses.size()).isEqualTo(1);
