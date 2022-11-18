@@ -20,7 +20,7 @@ public class InputView {
      */
     public String readMoving() {
         String userMove = Console.readLine();
-        return isCorrectInputByTwoCompareString(userMove, "U", "D");
+        return isCorrectInputCompareByTwoString(userMove, "U", "D");
     }
 
     /**
@@ -28,16 +28,24 @@ public class InputView {
      */
     public String readGameCommand() {
         String userRestart = Console.readLine();
-        return isCorrectInputByTwoCompareString(userRestart, "R", "Q");
+        return isCorrectInputCompareByTwoString(userRestart, "R", "Q");
     }
 
-    private String isCorrectInputByTwoCompareString(String userInput, String compareA, String compareB) {
+    /**
+     * @param userInput 사용자 입력
+     * @param possibleFirstString 가능한 첫번째 문자열
+     * @param possibleSecondString 가능한 두번째 문자열
+     * @return 입력받은 문자열을 반환한다.
+     * @throws IllegalArgumentException
+                        possibleFirstString, possibleSecondString 아닌 문자열이 입력된 경우
+     */
+    private String isCorrectInputCompareByTwoString(String userInput, String possibleFirstString, String possibleSecondString) {
         if(userInput.length() == 1)
-            if(userInput.equals(compareA) || userInput.equals(compareB))
+            if(userInput.equals(possibleFirstString) || userInput.equals(possibleSecondString))
                 return userInput;
 
         throw new IllegalArgumentException(
-                compareA + " 또는 " + compareB + "를 입력해주세요."
+                possibleFirstString + " 또는 " + possibleSecondString + "를 입력해주세요."
         );
     }
 }
