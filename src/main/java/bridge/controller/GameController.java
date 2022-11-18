@@ -37,7 +37,7 @@ public class GameController {
         Player player = new Player();
 
         do {
-            boolean isSurvival = playOneTurn(bridge, player);
+            boolean isSurvival = playOneTurn(player);
             outputView.printMap(bridge, player);
             // isSurvival false -> 제시도 여부 확인
             if (!isSurvival) {
@@ -48,7 +48,7 @@ public class GameController {
             }
         } while (!bridgeGame.isWin(bridge, player));
         // 결과 출력
-        showResult(player, bridge);
+        showResult(player);
     }
 
     private Bridge generateRandomBridge() {
@@ -64,7 +64,7 @@ public class GameController {
         }
     }
 
-    private boolean playOneTurn(Bridge bridge, Player player) {
+    private boolean playOneTurn(Player player) {
         Tile movingTargetTile = readMovingTargetTile();
         boolean turnResult = bridgeGame.move(bridge, player, movingTargetTile);
         return turnResult;
@@ -102,7 +102,7 @@ public class GameController {
         return input;
     }
 
-    private void showResult(Player player, Bridge bridge) {
+    private void showResult(Player player) {
         outputView.printFinishGameInfoMessage();
         outputView.printMap(bridge, player);
         outputView.printResult(bridgeGame.isWin(bridge, player), player.getTryCount());
