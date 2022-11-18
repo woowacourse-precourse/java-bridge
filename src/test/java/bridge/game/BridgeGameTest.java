@@ -5,8 +5,13 @@ import bridge.generator.BridgeRandomNumberGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.*;
 
 class BridgeGameTest {
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -28,10 +33,52 @@ class BridgeGameTest {
         String nextRightDestination = bridgeGame.showRightDestinationInArea(character.showNextArea());
         boolean ableToMove = bridgeGame.isAbleToMove();
         if (nextRightDestination.equals(destination)) {
-            Assertions.assertThat(ableToMove).isTrue();
+            assertThat(ableToMove).isTrue();
         }
         if (!nextRightDestination.equals(destination)) {
-            Assertions.assertThat(ableToMove).isFalse();
+            assertThat(ableToMove).isFalse();
         }
+    }
+
+    @DisplayName("진행 결과 만들기")
+    @Test
+    void makeProgress() {
+        //given
+        String destination = "U";
+        boolean isSuccess = true;
+        //when
+        Progress progress = bridgeGame.makeProgress(destination, isSuccess);
+        //then
+        assertThat(progress.getDestination()).isEqualTo(destination);
+        assertThat(progress.getIsSuccess()).isEqualTo(isSuccess);
+    }
+
+    @DisplayName("진행 결과 저장")
+    @Test
+    void saveProgress() {
+        //given
+        character.setNextMove("D");
+        bridgeGame.setBridge(bridgeMaker.makeBridge(20));
+        //when
+        bridgeGame.saveProgress();
+        //then
+        List<Progress> progresses = bridgeGame.showCurrentResult();
+        assertThat(progresses.size()).isEqualTo(1);
+        assertThat(progresses.get(0).getDestination()).isEqualTo("D");
+    }
+
+    @DisplayName("캐릭터 이동, 결과 저장")
+    @Test
+    void move(){
+        //given
+        character.setNextMove("D");
+        bridgeGame.setBridge(bridgeMaker.makeBridge(20));
+        //when
+        bridgeGame.move();
+        //then
+        List<Progress> progresses = bridgeGame.showCurrentResult();
+        assertThat(progresses.size()).isEqualTo(1);
+        assertThat(progresses.get(0).getDestination()).isEqualTo("D");
+        assertThat(character.showCurrentLocation()).isEqualTo(0);
     }
 }
