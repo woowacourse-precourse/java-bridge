@@ -13,4 +13,11 @@ public class ErrorTest {
         assertThatThrownBy(() -> Error.validateBridgeSizeIsWrong("ㄱ"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("다리 길이 입력이 범위 내의 값이 아닌 경우")
+    @Test
+    void validateBridgeSizeNotInBoundary() {
+        assertThatThrownBy(() -> Error.validateBridgeSizeIsWrong("1"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
