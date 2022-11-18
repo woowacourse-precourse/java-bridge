@@ -1,12 +1,9 @@
 package bridge;
 
-import view.GameView;
-
 public class Application {
-    private final static GameView gameView = new GameView();
+    private final static BridgeGame bridgeGame = new BridgeGame();
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
-        gameView.init();
+        bridgeGame.start();
     }
 }
