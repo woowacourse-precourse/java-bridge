@@ -1,5 +1,2 @@
-package bridge.domain.vo;
-
-public class BridgeMap {
-
+package bridge.domain.vo;public class BridgeMap {
 }

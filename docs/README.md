@@ -57,11 +57,11 @@ OutputView
 
 BridgeGameController
 
-- [ ] inputBridgeSize
-- [ ] makeBridge
-- [ ] printMap
+- [x] inputBridgeSize
+- [x] makeBridge
 - [ ] startGame
 - [ ] inputMoving
+- [ ] printMap
 - [ ] inputGameCommand
 	- [ ] printResult
 
@@ -76,9 +76,9 @@ BridgeGameController
 
 
 
-- [ ] BridgeMaker.makeBridge(size) 다리는 사이즈 값 만큼 랜덤으로 생성된다. 0, 1로 이루어진 다리(리스트)
-	- [ ] bridgeNumberGenerator.generate(); 사용
-	- [ ] 무작위 값이 0인 경우 아래 칸, 1인 경우 위 칸이 건널 수 있는 칸이 된다.
+- [x] BridgeMaker.makeBridge(size) 다리는 사이즈 값 만큼 랜덤으로 생성된다. 0, 1로 이루어진 다리(리스트)
+	- [x] bridgeNumberGenerator.generate(); 사용
+	- [x] 무작위 값이 0인 경우 아래 칸, 1인 경우 위 칸이 건널 수 있는 칸이 된다.
 
 
 
