@@ -43,7 +43,7 @@ public class InputView {
 
     void getSize() {
         System.out.println(exceptNumber);
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(exceptNumber);
     }
 
     private boolean ThisIsNumber(String input) {
@@ -62,9 +62,8 @@ public class InputView {
         System.out.println(readMovingMs);
         try {
             input = getInput().toUpperCase();
-            if (ThisIsMove()) Except();
+            if (ThisIsMove()) getMoving();
         } catch (IllegalArgumentException e) {
-            System.out.println(exceptMoving);
             input = readMoving();
         }
         return input;
@@ -81,14 +80,16 @@ public class InputView {
         System.out.println(readGameCommandMs);
         try {
             input = getInput();
-            if (ThisIsRetry()) Except();
+            if (ThisIsRetry()) getRetry();
         } catch (IllegalArgumentException e) {
-            System.out.println(exceptRetry);
             input = readGameCommand();
         }
         return input;
     }
-
+    private void getRetry(){
+        System.out.println(exceptRetry);
+        throw new IllegalArgumentException(exceptRetry);
+    }
     private boolean ThisIsRetry() {
         return !Objects.equals(input, "R") && !Objects.equals(input, "Q");
     }
@@ -97,7 +98,8 @@ public class InputView {
         return Console.readLine();
     }
 
-    void Except() {
-        throw new IllegalArgumentException();
+    void getMoving() {
+        System.out.println(exceptMoving);
+        throw new IllegalArgumentException(exceptMoving);
     }
 }
