@@ -18,7 +18,7 @@ public class BridgeGame {
     List<String> bridge;
     List<List<String>> bridgeMap;
     int numberOfTries;
-    boolean isSuccess;
+    boolean isSuccess = true;
 
     public BridgeGame(int size, List<String> bridge) {
         this.size = size;
@@ -40,7 +40,7 @@ public class BridgeGame {
             return true;
         }
         bridgeMap.get(index).set(currentPosition, " X ");
-        isSuccess = false;
+        this.isSuccess = false;
         return false;
     }
 
@@ -52,6 +52,7 @@ public class BridgeGame {
     public void retry() {
         this.numberOfTries += 1;
         this.bridgeMap = makeBridgeMap(this.size);
+        this.isSuccess = true;
     }
 
     private List<List<String>> makeBridgeMap(int size) {
@@ -94,5 +95,9 @@ public class BridgeGame {
 
     public int getNumberOfTries() {
         return numberOfTries;
+    }
+
+    public boolean isSuccess() {
+        return isSuccess;
     }
 }
