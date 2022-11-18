@@ -22,8 +22,12 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public String readMoving() throws IllegalArgumentException {
+        String input = readLine();
+        if (!input.equals("U") && !input.equals("D")) {
+            throw new IllegalArgumentException("[ERROR] <임시 에러 메시지>");
+        }
+        return input;
     }
 
     /**
