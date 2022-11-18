@@ -25,7 +25,7 @@ public class OutputView {
      */
     public void printMap(String topMap, String bottomMap) {
         System.out.println("[ " + topMap + " ]");
-        System.out.println("[ " + bottomMap + " ]");
+        System.out.println("[ " + bottomMap + " ]\n");
     }
 
 
