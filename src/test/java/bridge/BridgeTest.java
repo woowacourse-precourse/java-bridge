@@ -20,4 +20,11 @@ public class BridgeTest {
         assertThatThrownBy(() -> new InputView().validateisDigit("abc"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("이동 칸이 U 혹은 D가 아닌 값이 들어오면 오류가 발생한다.")
+    @Test
+    void 이동할_칸의_값_테스트(){
+        assertThatThrownBy(()-> new InputView().validateUpOrDown("123123"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
