@@ -66,9 +66,11 @@ ___
   **=> 하지만, BridgeMaker 클래스의 makeBridge() 함수에서 리턴 타입이 List<String>이기에, Brige 클래스가 필요한지 의구심이 듦..**
 
 - \[X]사용자에게 다리의 길이를 입력받는 함수
-- \[ ]입력받은 다리의 길이를 검증하는 함수  
-  1. 숫자인가?
-  2. 3 이상 20 이하의 숫자인가? (bridgeLength >= 3 && bridgeLength <= 20)
+- \[X]입력받은 다리의 길이를 검증하는 함수  
+  1. 숫자인가? `validateIsNumber()`  
+  !!! 문득 든 생각인데, number(숫자)가 아니라 정수(Integer)인지 판단하는 거니까  
+  `validateIsInteger()`이 맞는 이름 아닐까? 고민해보자..
+  2. 3 이상 20 이하의 숫자인가? (bridgeLength >= 3 && bridgeLength <= 20) `validateBridgeLengthRange()`
 - \[ ]사용자에게 이동할 칸을 입력받는 함수  
 - \[ ]입력받은 이동할 칸을 검증하는 함수  
   1. `U` 또는 `D`인가?
