@@ -1,7 +1,7 @@
 ## 게임 시작
 - [ ] 게임 시작 출력
   - new BridgeGame();
-- [ ] BridgeGame class안에 필드 추가(성공여부, 시도횟수, 다리 성공 경로)
+- [X] BridgeGame class안에 필드 추가(성공여부, 시도횟수, 다리 성공 경로)
 
 ## 다리 생성
 - [ ] 게임  길이 입력받기(InputView 이용해서 Console.readLine()이용 )
