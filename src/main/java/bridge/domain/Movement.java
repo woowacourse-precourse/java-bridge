@@ -7,10 +7,9 @@ import java.util.List;
 
 public class Movement {
     private final List<String> bridge;
+    private final BridgeMap bridgeMap = new BridgeMap();
     private List<String> movement = new ArrayList<>();
     private int tryCount = Constant.INITIAL_COUNT;
-    List<String> topMap = new ArrayList<>();
-    List<String> bottomMap = new ArrayList<>();
 
     public Movement(List<String> bridge) {
         this.bridge = bridge;
@@ -38,16 +37,12 @@ public class Movement {
 
     public void clearMoving() {
         this.movement = new ArrayList<>();
-        this.topMap = new ArrayList<>();
-        this.bottomMap = new ArrayList<>();
+        bridgeMap.clearMap();
         tryCount++;
     }
 
     public String[] getMap() {
-        String top = String.join(" | ", topMap);
-        String bottom = String.join(" | ", bottomMap);
-
-        return new String[]{top, bottom};
+        return bridgeMap.getMap();
     }
 
     public void saveCompareResult(String moving) {
@@ -55,16 +50,7 @@ public class Movement {
         if (!canMove()) {
             mark = Constant.WRONG_MARK;
         }
-        if (moving.equals(Constant.UP)) {
-            addMap(topMap, bottomMap, mark);
-            return;
-        }
-        addMap(bottomMap, topMap, mark);
-    }
-
-    private void addMap(List<String> existsBridge, List<String> blankBridge, String mark) {
-        existsBridge.add(mark);
-        blankBridge.add(Constant.BLANK);
+        bridgeMap.addMap(moving, mark);
     }
 
     public int getTryCount() {
