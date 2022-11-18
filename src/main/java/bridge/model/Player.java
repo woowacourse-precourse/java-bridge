@@ -33,4 +33,19 @@ public class Player {
         }
         return Result.UNKNOWN.getValue();
     }
+
+    public boolean canTakeNextMove(List<String> bridge) {
+        return hasMadeCorrectMove(moves, bridge) && moves.size() < bridge.size();
+    }
+
+    public boolean hasReachedEnd(List<String> bridge) {
+        return hasMadeCorrectMove(moves, bridge) && moves.size() == bridge.size();
+    }
+
+    public boolean hasMadeCorrectMove(List<String> moves, List<String> bridge) {
+        int lastMoveIndex = moves.size() - 1;
+        String lastMove = moves.get(lastMoveIndex);
+        String bridgeDirection = bridge.get(lastMoveIndex);
+        return lastMove.equals(bridgeDirection);
+    }
 }

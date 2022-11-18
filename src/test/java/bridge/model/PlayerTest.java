@@ -2,6 +2,7 @@ package bridge.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -25,6 +26,22 @@ public class PlayerTest {
                 Arguments.of("U", "D", Direction.DOWN, " "),
                 Arguments.of("D", "D", Direction.DOWN, "O"),
                 Arguments.of("D", "U", Direction.DOWN, "X")
+        );
+    }
+
+    @ParameterizedTest
+    @DisplayName("플레이어가 이동할 수 없는 칸으로 이동했는지 확인한다.")
+    @MethodSource("provideParametersForCorrectMove")
+    void playerCannotCross(List<String> moves, List<String> bridge, boolean result) {
+        assertThat(new Player().hasMadeCorrectMove(moves, bridge)).isEqualTo(result);
+    }
+    private static Stream<Arguments> provideParametersForCorrectMove() {
+        return Stream.of(
+                Arguments.of(List.of("U", "U", "D"), List.of("U", "U", "D"), true),
+                Arguments.of(List.of("U"), List.of("U", "U", "D"), true),
+                Arguments.of(List.of("U", "U"), List.of("U", "D", "D"), false),
+                Arguments.of(List.of("U", "U", "D"), List.of("U", "U", "U"), false)
+
         );
     }
 }

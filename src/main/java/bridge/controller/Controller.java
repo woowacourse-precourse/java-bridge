@@ -1,5 +1,9 @@
 package bridge.controller;
 
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.model.BridgeGame;
+import bridge.model.GameCommand;
 import bridge.model.validator.BridgeSizeValidator;
 import bridge.model.validator.GameCommandValidator;
 import bridge.model.validator.NextMoveValidator;
@@ -8,6 +12,8 @@ import bridge.view.ErrorMessage;
 import bridge.view.GameMessage;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+
+import java.util.List;
 
 public class Controller {
     private final InputView inputView;
@@ -19,10 +25,27 @@ public class Controller {
     }
 
     public void startGame() {
-        /*BridgeGame bridgeGame = createNewGame();
+        BridgeGame bridgeGame = createNewGame();
         do {
+            do {
+                bridgeGame.move(getNextMove());
+                outputView.printMap(bridgeGame);
+            } while (bridgeGame.canPlayerTakeNextStep());
+            if (bridgeGame.hasPlayerReachedEnd()) {
+                break;
+            }
+            bridgeGame.retry();
+        } while(getGameCommand().equals(GameCommand.RETRY.getValue()));
+    }
 
-        } while(continue)*/
+    public BridgeGame createNewGame() {
+        int bridgeSize = getBridgeSize();
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.initializeBridge(bridge);
+        bridgeGame.createNewPlayer();
+        return bridgeGame;
     }
 
     public int getBridgeSize() {
