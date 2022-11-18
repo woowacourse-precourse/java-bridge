@@ -13,4 +13,11 @@ class BridgeSizeExceptionTest {
         assertThatThrownBy(() -> BridgeSizeException.validate(bridgeSize))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "1", "2", "21", "23"})
+    void bridgeSizeWrongRange(String bridgeSize) {
+        assertThatThrownBy(() -> BridgeSizeException.validate(bridgeSize))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
