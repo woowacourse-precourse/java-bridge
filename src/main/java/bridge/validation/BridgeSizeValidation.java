@@ -8,7 +8,7 @@ public class BridgeSizeValidation {
     public void validate(String bridgeSize) {
         validateNumber(bridgeSize);
         int convertBridgeSize = Integer.parseInt(bridgeSize);
-        rangeValidate(convertBridgeSize);
+        validateRange(convertBridgeSize);
     }
 
     public void validateNumber(String bridgeSize) {
@@ -19,7 +19,7 @@ public class BridgeSizeValidation {
         }
     }
 
-    private void rangeValidate(int bridgeSize) {
+    private void validateRange(int bridgeSize) {
         if(bridgeSize<3 || bridgeSize >20){
             throw new IllegalArgumentException(ERROR_MESSAGE + RANGE_ERROR_MSG);
         }
