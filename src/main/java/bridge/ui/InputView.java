@@ -17,6 +17,7 @@ public class InputView {
             input = Console.readLine();
         } while (!validateBridgeSize(input));
 
+        outputView.printNewLine();
         return Integer.parseInt(input);
     }
 

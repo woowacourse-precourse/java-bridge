@@ -26,7 +26,6 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             bridge.add(addBlock(bridgeNumberGenerator.generate()));
-            System.out.println(bridge.get(i));
         }
         return bridge;
     }

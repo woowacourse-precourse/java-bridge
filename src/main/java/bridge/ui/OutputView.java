@@ -12,6 +12,7 @@ public class OutputView {
     public void printGetBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
     }
+    public void printNewLine() { System.out.println(); }
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
