@@ -10,6 +10,7 @@ package bridge;
 
 import bridge.dto.UserDto;
 import bridge.validation.BridgeSizeValidation;
+import bridge.validation.MovingValidation;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -18,15 +19,17 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
  */
 public class InputView {
     private final String INPUT_BRIDGE_SIZE_MSG ="다리의 길이를 입력해주세요.";
+    private final String INPUT_MOVING_MSG="이동할 칸을 선택해주세요. (위: U, 아래: D)";
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         BridgeSizeValidation bridgeSizeValidation = new BridgeSizeValidation();
+        String bridgeSize;
 
         System.out.println(INPUT_BRIDGE_SIZE_MSG);
-        String bridgeSize = readLine();
+        bridgeSize = readLine();
         bridgeSizeValidation.validate(bridgeSize);
 
         return Integer.parseInt(bridgeSize);
@@ -36,7 +39,14 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        MovingValidation movingValidation = new MovingValidation();
+        String moving;
+
+        System.out.println(INPUT_MOVING_MSG);
+        moving = readLine();
+        movingValidation.validate(moving);
+
+        return moving;
     }
 
     /**
