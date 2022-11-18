@@ -1,4 +1,4 @@
-package bridge.controller;
+package bridge.util;
 
 public interface Callback<T> {
 

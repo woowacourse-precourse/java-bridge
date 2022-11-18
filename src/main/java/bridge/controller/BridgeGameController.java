@@ -8,6 +8,7 @@ import bridge.model.BridgeMoveLog;
 import bridge.model.BridgeType;
 import bridge.model.ContinueType;
 import bridge.model.GameStatus;
+import bridge.util.ExceptionHandle;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
