@@ -30,7 +30,7 @@ public class MapMakerService {
     }
 
     public String formatMap(String low) {
-        return BridgeMap.BRIDGE_START_MARK.getMark()+low+BridgeMap.BRIDGE_END_MARK;
+        return BridgeMap.BRIDGE_START_MARK.getMark()+low+BridgeMap.BRIDGE_END_MARK.getMark();
     }
 
     public String makeTopLow(int idx, String location) {

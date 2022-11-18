@@ -56,4 +56,9 @@ public class BridgeGame {
         }
         return false;
     }
+
+    public List<String> getMap() {
+        return mapMakerService.makeMap(this.user.getUserBridge());
+    }
+
 }

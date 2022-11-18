@@ -9,7 +9,7 @@ public class InputView {
     private static final String READ_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
     private static final String READ_MOVE_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String READ_GAME_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-
+    private static final String LINE_BREAK = "\r";
     /**
      *  게임 시작 메시지를 출력한다.
      */
@@ -21,6 +21,7 @@ public class InputView {
     public static String readBridgeSize() {
         System.out.println(READ_BRIDGE_SIZE_MESSAGE);
         String size = Console.readLine();
+        System.out.println(LINE_BREAK);
         return size;
     }
 
