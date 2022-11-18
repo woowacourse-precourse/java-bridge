@@ -58,4 +58,10 @@ public class BridgeTest {
         assertThatThrownBy(()->new BridgeSize("-1"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+    @DisplayName("U, D를 입력 하지 않을 경우 예외가 발생한다.")
+    @Test
+    void 이동_입력(){
+        assertThatThrownBy(()->new SelectMove("A"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

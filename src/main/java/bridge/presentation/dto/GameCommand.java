@@ -1,5 +1,7 @@
 package bridge.presentation.dto;
 
+import bridge.support.Validator;
+
 public class GameCommand {
     private String command;
     public GameCommand(String input){
@@ -7,7 +9,7 @@ public class GameCommand {
         command=input;
     }
     private void validate(String target){
-
+        Validator.checkCommandAlphabet(target);
     }
     public String getCommand() {
         return command;
