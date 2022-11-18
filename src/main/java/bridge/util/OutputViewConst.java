@@ -10,4 +10,6 @@ public class OutputViewConst {
 	public static String BLANK_SPACE = " ";
 	public static String RESULT_PARTITION = " | ";
 	public static String RESULT_SUFFIX = " ]";
+	public static String SUCCESS = "성공";
+	public static String FAIL = "실패";
 }
