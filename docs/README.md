@@ -6,7 +6,7 @@
   - [x] 입력받은 문자로 이동할 곳의 인덱스를 알아낸다 - BridgeGame#convertToIndex()
   - [x] 이동할 수 있는 곳이면 "O", 그렇지 않다면 "X"를 반환한다 - BridgeGame#calculateAnswer()
 - [x] 다리에 끝에 도달한다 - BridgeGame#isEnd()
-- [ ] 현재까지 이동한 다리의 상태를 출력한다 - OutputView#printMap()
+- [x] 현재까지 이동한 다리의 상태를 출력한다 - OutputView#printMap()
 - [ ] 게임 결과를 출력한다 - OutputView#printResult()
 - [ ] 재시작 유무를 입력받는다 - InputView#readGameCommand()
 - [ ] 총 시도 횟수를 증가시킨다 - 미정
