@@ -1,9 +1,25 @@
-package bridge;
+package bridge.view;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    private static final String NEWLINE = "\n";
+
+    private static final String GAME_START = "다리 건너기 게임을 시작합니다.";
+    private static final String INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
+
+    private void print(String printString) {
+        System.out.println(printString);
+    }
+
+    public void gameStart() {
+        print(GAME_START);
+    }
+    public void inputBridgeSize() {
+        print(NEWLINE + INPUT_BRIDGE_SIZE);
+    }
+
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
