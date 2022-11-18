@@ -1,11 +1,18 @@
 package bridge.constant.command;
 
+import bridge.constant.message.GameErrorMessage;
+
 public interface Command {
     int getKey();
     String getValue();
 
     static String convertKeyToValue(int key, Class<? extends Command> commandClass) {
-        // TODO: Command 인터페이스를 구현하는 Enum 클래스에서 key 값에 해당하는 value 값 반환
-        return null;
+        Command[] enumCommands = commandClass.getEnumConstants();
+        for(Command command : enumCommands){
+            if(key == command.getKey()){
+                return command.getValue();
+            }
+        }
+        throw new IllegalStateException(GameErrorMessage.NO_SUCH_COMMAND.getMessage());
     }
 }

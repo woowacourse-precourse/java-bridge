@@ -20,7 +20,7 @@
   - [x] 재시도 - RETRY
 
 ### 기능
-- [ ] 코드에 해당하는 명령어 값 반환 - convertKeyToValue
+- [x] 코드에 해당하는 명령어 값 반환 - convertKeyToValue
 
 ## 에러 메시지(`ErrorMessage`)
 
