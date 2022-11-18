@@ -5,9 +5,9 @@
 2. BridgeGame
    - move: 사용자의 칸 이동
    - retry: 사용자의 게임 재시도 
-3. BridgeMaker
+3. BridgeMaker (변경X)
    - makeBridge: 다리를 만들어 표현
-4. BridgeRandomNumberGenerator
+4. BridgeRandomNumberGenerator (변경X)
    - generate: 랜덤으로 특정 길이의 다리 생성
 5. InputView
     - readBridgeSize: 다리의 길이를 String으로 입력 받아서 int로 리턴
@@ -25,3 +25,4 @@
    - printGetLength: 다리 길이 입력 문구 출력
    - printGetMove: 이동칸 선택 입력 문구 출력
    - printGetCommand: 재시도 입력 문구 출력
+8. Tests
