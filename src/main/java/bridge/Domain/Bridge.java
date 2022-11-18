@@ -11,7 +11,7 @@ import java.util.List;
 public class Bridge {
     private final static int MIN_BRIDGE_SIZE = 3;
     private final static int MAX_BRIDGE_SIZE = 20;
-    private final static String WRONG_RANGE_INPUT = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+    private final static String WRONG_RANGE_INPUT = "[ERROR] 다리 길이는 %d부터 %d 사이의 숫자여야 합니다." + System.lineSeparator();
 
 
     final private List<String> bridgeStates;
@@ -33,7 +33,9 @@ public class Bridge {
 
     public void validate(int bridgeSize) throws IllegalArgumentException {
         if (bridgeSize < MIN_BRIDGE_SIZE || MAX_BRIDGE_SIZE < bridgeSize) {
-            throw new IllegalArgumentException(WRONG_RANGE_INPUT);
+            String rangeError = String.format(WRONG_RANGE_INPUT, MIN_BRIDGE_SIZE, MAX_BRIDGE_SIZE);
+
+            throw new IllegalArgumentException(rangeError);
         }
     }
 
