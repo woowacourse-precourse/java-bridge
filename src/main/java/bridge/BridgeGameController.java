@@ -53,6 +53,7 @@ public class BridgeGameController {
             System.out.println(ie.getMessage());
             getBridge();
         }
+        System.out.println();
     }
 
     private void getMoving() {
