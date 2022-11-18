@@ -20,23 +20,27 @@ public class BridgeMaker {
      * 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        List<String> randomBridgeGeneration = new ArrayList<>();
+        List<String> randomBridge = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
-            int generate = bridgeNumberGenerator.generate();
+            int word = bridgeNumberGenerator.generate();
             String randomWords = "";
+            randomWords = func(word, randomWords);
+            randomBridge.add(randomWords);
+        }
+        // TODO : 고쳐야 될 코드
+        // randomBridge.add("1");
+        return randomBridge;
+    }
 
-            if (generate == 1) {
-                randomWords = "U";
-            }
-
-            if (generate == 0) {
-                randomWords = "D";
-            }
-
-            randomBridgeGeneration.add(randomWords);
+    private String func(int word, String randomWords) {
+        if (word == 1) {
+            randomWords = "U";
         }
 
-        return randomBridgeGeneration;
+        if (word == 0) {
+            randomWords = "D";
+        }
+        return randomWords;
     }
 }
