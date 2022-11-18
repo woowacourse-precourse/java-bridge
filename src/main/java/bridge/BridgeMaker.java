@@ -8,7 +8,7 @@ import java.util.List;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-
+    private List<String> bridge;
     private BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -21,26 +21,25 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        List<String> bridge = new ArrayList<>();
+        bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             String randomNumber = String.valueOf(bridgeNumberGenerator.generate());
             bridge.add(randomNumber);
         }
-        bridge = makeUpDownBridge(bridge);
+        makeUpDownBridge();
         return bridge;
     }
 
-    public List<String> makeUpDownBridge(List<String> bridge) {
+    public void makeUpDownBridge() {
         for (int index = 0; index < bridge.size(); index++) {
             String blockOfBridge = bridge.get(index);
-            if (blockOfBridge == "0") {
+            if (blockOfBridge.equals("0")) {
                 bridge.set(index, "D");
             }
-            if (blockOfBridge == "1") {
+            if (blockOfBridge.equals("1")) {
                 bridge.set(index, "U");
             }
         }
-        return bridge;
     }
 
     public StringBuilder makeInitialBridge() {
