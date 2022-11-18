@@ -14,6 +14,11 @@ public class GameData {
 
     public int getTotalTry() { return this.totalTry; }
 
+    public void restartGame() {
+        clearStatus();
+        increaseTotalTry();
+    }
+
     public void clearStatus() {
         this.topStatus.clear();
         this.bottomStatus.clear();

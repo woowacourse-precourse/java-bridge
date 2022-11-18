@@ -37,6 +37,8 @@ public class BridgeGame {
 
         return false;
     }
+
+    public int getBridgeIndex() { return this.bridgeIndex; }
     
     public void increaseBridgeIndex() { this.bridgeIndex += 1; }
 
