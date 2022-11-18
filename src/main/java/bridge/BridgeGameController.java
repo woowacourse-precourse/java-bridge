@@ -68,14 +68,18 @@ public class BridgeGameController {
         outputView.printGameCommandInput();
         try {
             String gameCommand = inputView.readGameCommand();
-            if (bridgeGame.retry(gameCommand)) {
-                return true;
-            }
-            return false;
+            return isRetryCommand(gameCommand);
         } catch (IllegalArgumentException e) {
             System.out.println(ErrorMessage.RETRY_COMMAND_ERROR_MESSAGE);
             return retryGame();
         }
+    }
+
+    private boolean isRetryCommand(String gameCommand) {
+        if (bridgeGame.retry(gameCommand)) {
+            return true;
+        }
+        return false;
     }
 
     private boolean continueGame() {
