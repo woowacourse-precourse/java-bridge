@@ -8,29 +8,36 @@ import java.util.Map;
 
 public class Player {
     private Map<Movement, List<String>> movementStatus;
+    private int playerPosition;
 
     public Player() {
         this.movementStatus = new HashMap<>() {{
             put(Movement.U, new ArrayList<>());
             put(Movement.D, new ArrayList<>());
         }};
+        playerPosition = 0;
     }
+
     public Map<Movement, List<String>> getMovementStatus() {
         return Collections.unmodifiableMap(movementStatus);
     }
 
+    public int getPlayerPosition() {
+        return playerPosition;
+    }
 
-    public void crossOverBridge(Movement move, boolean isMoveble) {
+    public void crossOverBridge(Movement playerMove, boolean moveble) {
         for(Map.Entry<Movement, List<String>> bridge: movementStatus.entrySet()) {
             String status = " ";
-            if(bridge.getKey() == move) {
-                status = calculateStatusAfterMove(isMoveble);
+            if(bridge.getKey() == playerMove) {
+                status = toStatusAfterCrossOver(moveble);
             }
             bridge.getValue().add(status);
         }
+        playerPosition += 1;
     }
 
-    public String calculateStatusAfterMove(boolean isMoveble){
+    public String toStatusAfterCrossOver(boolean isMoveble){
         if(isMoveble) {
             return "O";
         }

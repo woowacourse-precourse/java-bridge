@@ -15,9 +15,9 @@ class BridgeTest {
     @DisplayName("사용자가 이동한 칸이 건너갈 수 있는지 테스트")
     @ParameterizedTest
     @CsvSource({"U,0,true", "U,1,false"})
-    void 다리를_건널_수_있는지_테스트(String user, int bridgePosition, Boolean expected) {
-        Movement userMovement = Movement.valueOf(user);
+    void 다리를_건널_수_있는지_테스트(String playerMove, int playerPosition, Boolean expected) {
+        Movement playerMovement = Movement.valueOf(playerMove);
         Bridge bridge = new Bridge(new ArrayList<>(Arrays.asList("U", "D", "D")));
-        assertThat(bridge.isMoveable(userMovement, bridgePosition)).isEqualTo(expected);
+        assertThat(bridge.isMoveable(playerMovement, playerPosition)).isEqualTo(expected);
     }
 }
