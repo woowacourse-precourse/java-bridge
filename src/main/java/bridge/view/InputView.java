@@ -17,8 +17,7 @@ public class InputView {
 
     public Moving readMoving() {
         System.out.println(Messages.MOVING_MESSAGE);
-        String s = Console.readLine();
-        return new Moving(s);
+        return new Moving(Console.readLine());
     }
 
     public Command readGameCommand() {
