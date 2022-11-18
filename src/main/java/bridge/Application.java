@@ -13,9 +13,13 @@ public class Application {
     private static String retryInput = "";
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        // 프로그램 구현
         outputView.printStart();
-        bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        try {
+            bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        }catch (NumberFormatException e){
+            System.out.println("[ERROR]");
+        }
         validateMove();
         outputView.printResult();
     }

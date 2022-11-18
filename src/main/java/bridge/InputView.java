@@ -1,6 +1,9 @@
 package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
+
+import java.util.regex.Pattern;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -13,12 +16,19 @@ public class InputView {
     private final static String readMovingError = "[ERROR] U, D 중 하나를 입력해야 합니다.";
     private final static String readGameCommand = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private final static String readGameCommandError = "[ERROR] R, Q 중 하나를 입력해야 합니다.";
+    private final static String pattern = "[a-z]";
+
+    public InputView() {
+    }
+
     /**
      * 다리의 길이를 입력받는다.
      */
+
     public int readBridgeSize() {
         System.out.println(redBridgeSize);
-        int result = Integer.parseInt(Console.readLine());
+        String input = Console.readLine();
+        int result = Integer.parseInt(input);
         if(result < 3 || result > 20){
             System.out.println(redBridgeSizeError);
             throw new IllegalArgumentException();
