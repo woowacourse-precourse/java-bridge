@@ -5,13 +5,12 @@ import java.util.List;
 public class GameController {
 
     public void start() {
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeSize();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        BridgeRandomNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        OutputView.printStart();
 
-        bridgeMaker.makeBridge(bridgeNumberGenerator.generate());
-        InputView.readMoving();
+        List<String> rightBridgeWay = bridgeMaker.makeBridge(InputView.readBridgeSize());
 
         BridgeGame bridgeGame = new BridgeGame();
-
     }
 }
