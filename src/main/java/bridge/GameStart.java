@@ -26,5 +26,10 @@ public class GameStart {
     public void run() {
 
     }
-    g
+
+    private void createBridge() {
+        outputView.printInputSizeMessage();
+        bridgeSize = inputView.readBridgeSize();
+        bridge = bridgeMaker.makeBridge(bridgeSize);
+    }
 }
