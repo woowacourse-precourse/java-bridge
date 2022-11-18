@@ -26,13 +26,14 @@ public class BridgeGameProcess {
             OutputView outputView = new OutputView();
             for (int index = 0; index < bridgeSize; index++) {
 
-                String moving = inputView.readMoving(processHelper);
+                String moving = inputView.readMoving(processHelper); // u or d 입력
 
-                if (bridgeGame.move(bridge, moving, index)) {
-                    outputView.printMap(matchResult);
+                // 입력이 매칭일 때
+                if (bridgeGame.move(bridge, moving)) {
+                    outputView.printMap(matchResult, bridgeGame.currentUserInput(), true);
                 }
-                if (!bridgeGame.move(bridge, moving, index)) {
-                    outputView.printMap(matchResult);
+                if (!bridgeGame.move(bridge, moving)) {
+                    outputView.printMap(matchResult, bridgeGame.currentUserInput(), false);
                     break;
                 }
             }

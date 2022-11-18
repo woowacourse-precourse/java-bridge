@@ -34,4 +34,11 @@ public class MatchResult {
         printUpperSide();
         printDownSide();
     }
+
+
+    public void matchProcess(List<String> userInput, boolean match) {
+        for (int i = 0; i < userInput.size(); i++) {
+
+        }
+    }
 }
