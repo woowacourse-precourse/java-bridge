@@ -7,6 +7,7 @@ import java.util.List;
 
 import static bridge.constant.Constants.BridgeSign.DOWN;
 import static bridge.constant.Constants.BridgeSign.UP;
+import static bridge.constant.Constants.Error.BRIDGE_SIZE_ERROR_MESSAGE;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -49,6 +50,6 @@ public class BridgeMaker {
         if (size >= 3 && size <= 20) {
             return;
         }
-        throw new IllegalArgumentException("[ERROR] 다리 길이가 3이상 20이하 범위의 값이 아닙니다.");
+        throw new IllegalArgumentException(BRIDGE_SIZE_ERROR_MESSAGE);
     }
 }

@@ -27,4 +27,11 @@ public class Constants {
         public static final String IS_GAME_WIN_MESSAGE = "게임 성공 여부: %s";
         public static final String TOTAL_TRY_CNT_MESSAGE = "총 시도한 횟수: $d";
     }
+
+    public static class Error {
+        public static final String ERROR_PREFIX = "[ERROR] ";
+        public static final String BRIDGE_SIZE_ERROR_MESSAGE = ERROR_PREFIX+"다리 길이가 3이상 20이하의 값이 아닙니다.";
+        public static final String MOVE_DIRECTION_ERROR_MESSAGE = ERROR_PREFIX+"입력값이 U 또는  D가 아닙니다.";
+        public static final String RETRY_ERROR_MESSAGE = ERROR_PREFIX+"입력값이 R 또는  Q가 아닙니다.";
+    }
 }
