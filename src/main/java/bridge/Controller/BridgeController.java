@@ -17,27 +17,19 @@ public class BridgeController {
     BridgeMaker bridgeMaker;
     BridgeMap result;
 
+    ViewController view;
+
     public BridgeController() {
         output = new OutputView();
         input = new InputView();
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         result = new BridgeMap();
+        view = new ViewController();
     }
 
-    public List<String> startAndGetAnswerBridge() {
-        output.printStart();
-        return getAnswerBridge();
-    }
-
-    private List<String> getAnswerBridge() {
-        try {
-            output.printGetBridgeSize();
-            int bridgeSize = input.readBridgeSize();
-            return bridgeMaker.makeBridge(bridgeSize);
-        } catch (IllegalArgumentException e) {
-            output.printError(e.getMessage());
-            return getAnswerBridge();
-        }
+    public List<String> getAnswerBridge() {
+        int bridgeSize = view.startAndGetBridgeSize();
+        return bridgeMaker.makeBridge(bridgeSize);
     }
 
     public String getMoving() {

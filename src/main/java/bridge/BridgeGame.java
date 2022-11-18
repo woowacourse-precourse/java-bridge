@@ -30,7 +30,7 @@ public class BridgeGame {
     public void play() {
         isPlaying = true;
         playCount++;
-        answerBridge = bridgeController.startAndGetAnswerBridge();
+        answerBridge = bridgeController.getAnswerBridge();
 
         while (isPlaying) {
             move();
