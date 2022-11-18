@@ -26,10 +26,10 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public BridgeMove readMoving() {
         String input = Console.readLine();
         validateReadMovingInput(input);
-        return input;
+        return BridgeMove.findByDirection(input).orElseThrow();
     }
     
     private void validateReadMovingInput(String input) {
@@ -41,10 +41,10 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public BridgeGameCommand readGameCommand() {
         String input = Console.readLine();
         validateReadGameCommandInput(input);
-        return input;
+        return BridgeGameCommand.findByCommand(input).orElseThrow();
     }
     
     private void validateReadGameCommandInput(String input) {
