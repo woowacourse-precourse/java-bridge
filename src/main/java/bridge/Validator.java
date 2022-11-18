@@ -17,7 +17,7 @@ public class Validator {
         }
     }
 
-    public static void validateInputType(String inputSize) {
+    public static void validateInputSizeType(String inputSize) {
         try {
             Integer.parseInt(inputSize);
         } catch (NumberFormatException e) {
@@ -26,9 +26,9 @@ public class Validator {
         }
     }
 
-    public static void validateInputNull(String input) {
+    public static void validateInputSizeNull(String inputSize) {
         try {
-            if (input.length() == 0) {
+            if (inputSize.length() == 0) {
                 throw new NullPointerException();
             }
         } catch (NullPointerException e) {
@@ -59,6 +59,17 @@ public class Validator {
             }
         } catch (IllegalArgumentException e) {
             System.out.println(ErrorMessage.BRIDGE_MOVE_INPUT_LOWERCASE.getErrorMessage());
+            inputView.inputMovingDirection();
+        }
+    }
+
+    public static void validateInputDirectionNull(String inputDirection) {
+        try {
+            if (inputDirection.length() == 0) {
+                throw new NullPointerException();
+            }
+        } catch (NullPointerException e) {
+            System.out.println(ErrorMessage.INPUT_NULL.getErrorMessage());
             inputView.inputMovingDirection();
         }
     }
