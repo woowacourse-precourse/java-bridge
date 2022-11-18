@@ -18,6 +18,7 @@ public class InputView {
         String input = Console.readLine();
 
         int result = convertBridgeSizeToInteger(input);
+        validateBridgeSizeIsZero(result);
 
         return result;
     }
@@ -42,5 +43,10 @@ public class InputView {
         } catch (NumberFormatException numberFormatException) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_IS_NUMERIC);
         }
+    }
+
+    private void validateBridgeSizeIsZero(int result) {
+        if (result == 0)
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_NOT_ZERO);
     }
 }
