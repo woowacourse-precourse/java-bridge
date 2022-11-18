@@ -1,28 +1,58 @@
 package bridge;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
+import bridge.util.Message;
+import camp.nextstep.edu.missionutils.Console;
+
 public class InputView {
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
+    private static final Integer MIN_BRIDGE_SIZE = 3;
+    private static final Integer MAX_BRIDGE_SIZE = 20;
+    private static final String UPPER_MOVE = "U";
+    private static final String LOWER_MOVE = "D";
+    private static final String GAME_RESTART_COMMAND = "R";
+    private static final String GAME_QUIT_COMMAND = "Q";
+    private String readLine()
+    {
+        return Console.readLine();
+    }
+    private void validateBridgeSize(int bridgeSize) {
+        if(MIN_BRIDGE_SIZE <= bridgeSize && bridgeSize <= MAX_BRIDGE_SIZE) return;
+
+        throw new IllegalArgumentException(Message.ILLEGAL_BRIDGE_SIZE_ERROR_MESSAGE);
+    }
     public int readBridgeSize() {
-        return 0;
+        try {
+            int bridgeSize = Integer.parseInt(readLine());
+            validateBridgeSize(bridgeSize);
+            return bridgeSize;
+        }
+        catch (NumberFormatException e) {
+            throw new IllegalArgumentException(Message.ILLEGAL_BRIDGE_SIZE_ERROR_MESSAGE);
+        }
+    }
+    private void validateUserInputForMove(String userInputForMove)
+    {
+        if(userInputForMove.equals(LOWER_MOVE) || userInputForMove.equals(UPPER_MOVE)) return;
+
+        throw new IllegalArgumentException(Message.ILLEGAL_MOVE_REQUEST_ERROR_MESSAGE);
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public String readMoving() {
-        return null;
+        String userInputForMove = readLine();
+        validateUserInputForMove(userInputForMove);
+        return userInputForMove;
+    }
+    private void validateGameCommand(String gameCommand)
+    {
+        if(gameCommand.equals(GAME_RESTART_COMMAND) || gameCommand.equals(GAME_QUIT_COMMAND)) return;
+
+        throw new IllegalArgumentException(Message.ILLEGAL_GAME_COMMAND_ERROR_MESSAGE);
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public String readGameCommand() {
-        return null;
+        String gameCommand = readLine();
+        validateGameCommand(gameCommand);
+        return gameCommand;
     }
+
 }
