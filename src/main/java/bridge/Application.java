@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Application {
     static void startMessage() {
@@ -38,6 +39,11 @@ public class Application {
         return input.readMoving();
     }
 
+    static String readCommand(InputView input){
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q");
+        return input.readGameCommand();
+    }
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         try {
@@ -47,7 +53,17 @@ public class Application {
             List<String> bridge = makeBridge(bridgeSize);
             BridgeGame bridgeGame = new BridgeGame(bridge);
             OutputView output = new OutputView();
-            boolean gameResult = gameProgress(input, bridgeGame, bridgeSize, output);
+            boolean gameResult;
+            while(true){
+                gameResult = gameProgress(input, bridgeGame, bridgeSize, output);
+                if(gameResult){
+                    break;
+                }
+                if(Objects.equals(readCommand(input), "Q")){
+                    break;
+                }
+            }
+
         } catch (IllegalArgumentException exception) {
             System.out.print("[ERROR] ");
             System.out.println(exception.getMessage());
