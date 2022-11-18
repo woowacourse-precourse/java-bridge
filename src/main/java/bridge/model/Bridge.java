@@ -1,5 +1,6 @@
 package bridge.model;
 
+import bridge.BridgeFactory;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,6 +10,10 @@ public class Bridge {
 
     public Bridge(List<String> bridge) {
         this.bridge = bridge;
+    }
+
+    public Bridge(BridgeFactory bridgeFactory, int size) {
+        this.bridge = bridgeFactory.makeBridge(size);
     }
 
     @Override
