@@ -64,4 +64,14 @@ class BridgeGameTest {
 			assertThat(message).isIn(UP_SUCCESS_RESULT, UP_FAILURE_RESULT, DOWN_SUCCESS_RESULT, DOWN_FAILURE_RESULT);
 		}
 	}
+
+	@Test
+	@DisplayName("시도 횟수는 retry 함수 호출할 때마다 증가")
+	void getTryCountTest() {
+		for (int tryCount = 1; tryCount <= 50; tryCount++) {
+			int count = bridgeGame.getTryCount();
+			assertThat(count).isEqualTo(tryCount);
+			bridgeGame.retry();
+		}
+	}
 }
