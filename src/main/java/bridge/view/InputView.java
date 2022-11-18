@@ -10,9 +10,9 @@ import bridge.domain.GameCommand;
  */
 public class InputView {
 
-    private static final String INPUT_BRIDGE_LENGTH_MESSAGE = "다리의 길이를 입력해주세요.";
-    private static final String INPUT_MOVE_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    private static final String INPUT_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private static final String INPUT_BRIDGE_LENGTH_MESSAGE = "\n다리의 길이를 입력해주세요.";
+    private static final String INPUT_MOVE_MESSAGE = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String INPUT_COMMAND_MESSAGE = "\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private static final String NOT_INT_MESSAGE = "입력이 정수가 아닙니다. 정수를 입력해 주세요.";
 
 
