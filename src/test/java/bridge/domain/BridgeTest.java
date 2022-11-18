@@ -9,26 +9,26 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class BridgeTest {
     private Bridge bridge;
-    private ExpectedBridge expectedBridge;
+    private UserPosition userPosition;
     @BeforeEach
     public void setUp() {
         bridge = Bridge.of(List.of("U","D"));
-        expectedBridge = ExpectedBridge.newInstance();
+        userPosition = UserPosition.newInstance();
     }
     @Test
     public void bridgeKeepTest() {
-        expectedBridge.expect("U");
-        assertThat(bridge.play(expectedBridge)).isEqualTo(Result.KEEP);
+        userPosition.move("U");
+        assertThat(bridge.play(userPosition)).isEqualTo(Result.KEEP);
     }
     @Test
     public void bridgeLoseTest() {
-        expectedBridge.expect("D");
-        assertThat(bridge.play(expectedBridge)).isEqualTo(Result.LOSE);
+        userPosition.move("D");
+        assertThat(bridge.play(userPosition)).isEqualTo(Result.LOSE);
     }
     @Test
     public void bridgeWinTest() {
-        expectedBridge.expect("U");
-        expectedBridge.expect("D");
-        assertThat(bridge.play(expectedBridge)).isEqualTo(Result.WIN);
+        userPosition.move("U");
+        userPosition.move("D");
+        assertThat(bridge.play(userPosition)).isEqualTo(Result.WIN);
     }
 }

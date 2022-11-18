@@ -8,22 +8,25 @@
 - 변경 X
 - generate()
   - return : 0 or 1
-3. Bridge
-- List<String> bridge
+3. Position
+- int distance : 시작점으로부터 거리
+- int verticalStatus : Up or Down
+4. Bridge
+- List<Position> bridge
 - of(List<String>)
-- play(ExpectedBridge expectedBridge)
-  - expectedBridge를 바탕으로 게임을 이어갈지 끝낼지를 판단
-  - return : Result 클래스 KEEP or LOSE or WIN
-4. ExpectedBridge
-- 실제 Bridge가 아닌 사용자가 예상한 Bridge
-- List<String> expectation
+- play(Position userNextPosition)
+  - UserStatus
+  - return
+    - bridge가 userNextPosition을 포함하고 마지막 값일 때 : WIN
+    - bridge가 userNextPosition을 포함하고 마지막 값이 아닐 때 : KEEP
+    - bridge가 userNextPosition을 포함하지 않을 때 : LOSE
+4. UserPosition
+- 유저의 위치
+- List<String> position
 - newInstance()
-  - 실제와 다르게 0에서 시작해서 하나씩 추가하기 때문
-- expect(String position)
-  - expectation에 예상값을 추가
-  - return : void
-- countTry()
-  - return : expectation의 길이를 반환
+  - 0에서 시작해서 하나씩 추가하기 때문
+- move(String command)
+  - command의 값을 position에 추가
 5. Result
 - KEEP : 사용자가 입력한 값이 정답이고 게임이 진행중일 때
 - LOSE : 사용자가 입력한 값이 정답이 아닐 때

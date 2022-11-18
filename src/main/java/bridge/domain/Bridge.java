@@ -13,20 +13,10 @@ public class Bridge {
         return new Bridge(generatedBridge);
     }
 
-    public Result play(ExpectedBridge expectedBridge) {
-        if (isSameWith(expectedBridge.getExpectation())) {
-            return Result.WIN;
-        }
-        if (isPartOf(expectedBridge.getExpectation())) {
-            return Result.KEEP;
-        }
-        return Result.LOSE;
-    }
+    public Result play(UserPosition userPosition) {
+        if (matchLastPosition(userPosition)) {
 
-    private boolean isSameWith(List<String> expectation) {
-        return bridge.equals(expectation);
-    }
-    private boolean isPartOf(List<String> expectation) {
-        return bridge.subList(0,expectation.size()).equals(expectation);
+        }
     }
 }
+
