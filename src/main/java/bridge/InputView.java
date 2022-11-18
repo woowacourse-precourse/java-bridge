@@ -11,11 +11,11 @@ public class InputView {
         return Console.readLine();
     }
 
-    private Integer convertToInteger(String value) {
+    private int convertToInteger(String value) {
         try {
             return Integer.parseInt(value);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException("[ERROR] 입력하신 값은 정수가 아닙니다.");
+            throw new IllegalArgumentException("입력하신 값은 정수가 아닙니다.");
         }
     }
 
@@ -23,13 +23,18 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return convertToInteger(readValue());
+        int bridgeSize = convertToInteger(readValue());
+        if (bridgeSize < BridgeRule.MIN_LENGTH.getValue() && bridgeSize > BridgeRule.MAX_LENGTH.getValue()) {
+            throw new IllegalArgumentException("다리 길이는 3 이상 20 이하여야 합니다!");
+        }
+        return 0;
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+
         return null;
     }
 
