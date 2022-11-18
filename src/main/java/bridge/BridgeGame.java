@@ -34,4 +34,11 @@ public class BridgeGame {
         }
         return " ";
     }
+
+    private String bridgeBottomExist(String movement) {
+        if (movement.equals("D")) {
+            return "O";
+        }
+        return " ";
+    }
 }
