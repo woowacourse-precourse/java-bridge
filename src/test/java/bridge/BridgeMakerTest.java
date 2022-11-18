@@ -14,14 +14,14 @@ class BridgeMakerTest {
 	@Test
 	void makeBridge() {
 		//given
-		BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(1, 0, 1));
+		BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(1, 0, 1, 1));
 
 		//when
 		BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-		List<String> bridge = bridgeMaker.makeBridge(3);
+		List<String> bridge = bridgeMaker.makeBridge(4);
 
 		//then
-		assertThat(bridge).containsExactly("U", "D", "U");
+		assertThat(bridge).containsExactly("U", "D", "U", "U");
 	}
 
 	@DisplayName("다리가 비정상적으로 생성되면 에러를 발생한다.")
