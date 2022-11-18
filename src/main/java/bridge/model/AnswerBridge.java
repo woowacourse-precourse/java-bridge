@@ -11,10 +11,6 @@ public class AnswerBridge {
         this.answerBridge = bridge;
     }
 
-    public List<String> getAnswerBridge() {
-        return answerBridge;
-    }
-
     public List<Boolean> compareTo(User user) {
         List<String> userBridge = user.getChoices();
         List<Boolean> result = new ArrayList<>();
