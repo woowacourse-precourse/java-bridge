@@ -17,7 +17,6 @@ public class OutputView {
 
     public static void printInputBridgeSizeMessage() {
         System.out.println(INPUT_BRIDGE_SIZE_MESSAGE);
-
     }
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -41,6 +40,8 @@ public class OutputView {
     public static void printResultMessage() {
         System.out.println(GAME_RESULT_MESSAGE);
     }
+
+//    public static void print
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
