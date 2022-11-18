@@ -1,5 +1,7 @@
 package bridge;
 
+import static bridge.ErrorCode.WRONG_BRIDGE_LENGTH_INPUT;
+
 public class Validator {
     private final int SHORTEST_LEGNTH = 3;
     private final int LONGEST_LENGTH = 20;
@@ -9,7 +11,7 @@ public class Validator {
 
     public void bridgeLengthValidate(String length) {
         if (!(isNotWrongLength(length) && isOnlyContainDigit(length) && isNotWrongRange(length))) {
-            throw new IllegalArgumentException(WRONG_INPUT);
+            throw new IllegalArgumentException(WRONG_BRIDGE_LENGTH_INPUT);
         }
     }
 
