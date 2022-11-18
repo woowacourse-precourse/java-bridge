@@ -1,15 +1,14 @@
 package bridge;
 
+import bridge.controller.BridgeController;
 import bridge.utils.message.ErrorMessage;
-import bridge.utils.message.FixedMessage;
 
 public class Application {
 
     public static void main(String[] args) {
         try {
-            InputView inputView = new InputView();
-            System.out.println(FixedMessage.GAME_START.getMessage() + "\n");
-            inputView.readBridgeSize();
+            BridgeController bridgeController = new BridgeController();
+            bridgeController.startGame();
         } catch (IllegalArgumentException exception) {
             System.out.println(ErrorMessage.EXIT.getMessage());
         }
