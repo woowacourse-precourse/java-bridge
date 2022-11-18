@@ -12,6 +12,11 @@ public enum InputMessage {
         public void validation(String input) {
             validation.validateMoving(input);
         }
+    },
+    INPUT_RESTART_CODE("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)") {
+        @Override
+        public void validation(String input) {
+        }
     };
 
     private static final Validation validation = new Validation();
