@@ -1,5 +1,6 @@
 package bridge;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -9,13 +10,17 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ValidatorTest {
 
+    private Validator validator;
+
+    @BeforeEach
+    void beforeEach() {
+        validator = new Validator();
+    }
+
     @DisplayName("다리 길이 입력이 유효한 경우")
     @ParameterizedTest
     @ValueSource(strings = {"3", "5"})
     void bridgeLengthCorrectValue(String length) {
-        // given
-        Validator validator = new Validator();
-
         // then
         validator.bridgeLengthValidate(length);
     }
@@ -24,9 +29,6 @@ public class ValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"1", "21", "a"})
     void bridgeLengthWrongValue(String length) {
-        // given
-        Validator validator = new Validator();
-
         // then
         assertThatThrownBy(() -> validator.bridgeLengthValidate(length))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -37,9 +39,6 @@ public class ValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"U", "D"})
     void moveCorrectValue(String move) {
-        // given
-        Validator validator = new Validator();
-
         // then
         validator.moveValidate(move);
     }
@@ -48,9 +47,6 @@ public class ValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"a", " ", "d"})
     void moveWrongValue(String move) {
-        // given
-        Validator validator = new Validator();
-
         // then
         assertThatThrownBy(() -> validator.moveValidate(move))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -61,9 +57,6 @@ public class ValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"R", "Q"})
     void gameCommandCorrectValue(String gameCommand) {
-        // given
-        Validator validator = new Validator();
-
         // then
         validator.gameCommandValidate(gameCommand);
     }
@@ -72,9 +65,6 @@ public class ValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"r", "q", "z"})
     void gameCommandWrongValue(String gameCommand) {
-        // given
-        Validator validator = new Validator();
-
         // then
         assertThatThrownBy(() -> validator.gameCommandValidate(gameCommand))
                 .isInstanceOf(IllegalArgumentException.class)
