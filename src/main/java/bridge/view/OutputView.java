@@ -33,6 +33,8 @@ public class OutputView {
         }
         System.out.println(upsideBridge + BRIDGE_END);
         System.out.println(downsideBridge + BRIDGE_END);
+        upsideBridge.append(BRIDGE_BOUNDARY);
+        downsideBridge.append(BRIDGE_BOUNDARY);
     }
 
     private void addMap(boolean isCorrect, StringBuilder sb, StringBuilder opposite) {
