@@ -30,7 +30,7 @@ class ViewMakerTest {
         outputView = mock(OutputView.class);
     }
 
-    @DisplayName("클라이언트의 다리 만들기 요청을 받는다. | 정상 시나리오 테스트")
+    @DisplayName("정상 시나리오 | 클라이언트의 다리 만들기 요청을 받는다. ")
     @Test
     void receiveClientRequestByBridgeConstruction() {
         try (MockedStatic<Console> console = mockStatic(Console.class)) {
@@ -42,6 +42,20 @@ class ViewMakerTest {
             viewMaker.receiveClientRequest();
 
             verify(bridgeMaker, times(1)).makeBridge(anyInt());
+        }
+    }
+
+    @DisplayName("정상 시나리오 | 클라이언트의 다리 사이즈 값이 정상 값이 아닐 시 재시도 한다.")
+    @Test
+    void retryReceiveClientRequest() {
+        try (MockedStatic<Console> console = mockStatic(Console.class)) {
+            String testIllegalValueBridgeSize = "IllegalValue";
+            String testBridgeSize = "3";
+
+            when(Console.readLine()).thenReturn(testIllegalValueBridgeSize);
+            when(Console.readLine()).thenReturn(testBridgeSize);
+
+            viewMaker.receiveClientRequest();
         }
     }
 
