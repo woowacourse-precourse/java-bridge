@@ -17,7 +17,7 @@ public class OutputView {
         System.out.println(map);
     }
 
-    public String makeWholeMap(List<String> bridge, List<String> userPath) {
+    private String makeWholeMap(List<String> bridge, List<String> userPath) {
         String upperMap = "" + makeUpperMap(bridge,
                 userPath, new StringBuilder("["));
         String lowerMap = "" + makeLowerMap(bridge,
@@ -25,7 +25,7 @@ public class OutputView {
 
         return upperMap + '\n' + lowerMap;
     }
-    public StringBuilder makeUpperMap(List<String> bridge, List<String> userPath, StringBuilder upperMap) {
+    private StringBuilder makeUpperMap(List<String> bridge, List<String> userPath, StringBuilder upperMap) {
         for (int position = 0; position < userPath.size(); position++) {
             upperMap.append(selectUpperBlock(bridge.get(position), userPath.get(position)));
             upperMap.append("|");
@@ -34,7 +34,7 @@ public class OutputView {
         return upperMap.append("]");
     }
 
-    public String selectUpperBlock(String nowBridge, String nowUser) {
+    private String selectUpperBlock(String nowBridge, String nowUser) {
         if (nowBridge.equals("D") && nowUser.equals("U")) {
             return " X ";
         }
@@ -44,7 +44,7 @@ public class OutputView {
         return "   ";
     }
 
-    public StringBuilder makeLowerMap(List<String> bridge, List<String> userPath, StringBuilder lowerMap) {
+    private StringBuilder makeLowerMap(List<String> bridge, List<String> userPath, StringBuilder lowerMap) {
         for (int position = 0; position < userPath.size(); position++) {
             lowerMap.append(selectLowerBlock(bridge.get(position), userPath.get(position)));
             lowerMap.append("|");
@@ -53,7 +53,7 @@ public class OutputView {
         return lowerMap.append("]");
     }
 
-    public String selectLowerBlock(String nowBridge, String nowUser) {
+    private String selectLowerBlock(String nowBridge, String nowUser) {
         if (nowBridge.equals("U") && nowUser.equals("D")) {
             return " X ";
         }
@@ -68,6 +68,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<String> bridge, List<String> userPath) {
+        printMap(bridge, userPath);
     }
 }

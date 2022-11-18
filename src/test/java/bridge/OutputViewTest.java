@@ -10,6 +10,6 @@ class OutputViewTest {
     @Test
     void printMapTest() {
         OutputView outputView = new OutputView();
-        outputView.printMap(List.of("U","D","U"), List.of("U", "U","D"));
+        outputView.printMap(List.of("U","D","D"), List.of("U", "D","D"));
     }
 }
