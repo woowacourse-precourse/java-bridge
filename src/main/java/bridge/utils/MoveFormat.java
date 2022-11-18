@@ -13,7 +13,7 @@ public enum MoveFormat {
         this.value = value;
     }
 
-    public String findLabelByValue(int value) {
+    public static String findLabelByValue(int value) {
         for (MoveFormat moveFormat : MoveFormat.values()) {
             if(moveFormat.value == value) {
                 return moveFormat.label;
