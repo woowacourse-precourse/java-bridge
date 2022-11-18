@@ -8,7 +8,7 @@ import java.util.List;
 public class Movement {
     private final List<String> bridge;
     private List<String> movement = new ArrayList<>();
-    private int tryCount;
+    private int tryCount = Constant.INITIAL_COUNT;
     List<String> topMap = new ArrayList<>();
     List<String> bottomMap = new ArrayList<>();
 
