@@ -22,7 +22,8 @@ class ExceptionMessageUtilsTest {
                     value = {
                         "WRONG_BRIDGE_SIZE:3:20",
                         "WRONG_PLAYER_MOVE:U:D",
-                        "WRONG_GAME_COMMAND:R:Q"
+                        "WRONG_GAME_COMMAND:R:Q",
+                        "WRONG_GENERATOR:0:1"
                     },
                     delimiter = ':'
             )
