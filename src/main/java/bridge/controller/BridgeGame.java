@@ -74,10 +74,18 @@ public class BridgeGame {
         if (isBridgeSizeNotDigit(bridgeSize)) {
             throw new IllegalArgumentException(ErrorConstant.ERROR_PREFIX + "다리 길이는 숫자여야합니다.");
         }
+        if (isWrongBridgeSizeRange(bridgeSize)) {
+            throw new IllegalArgumentException(ErrorConstant.ERROR_PREFIX + "다리 길이는 3이상 20이하여야합니다.");
+        }
     }
 
     private boolean isBridgeSizeNotDigit(String bridgeSize) {
         return !Pattern.compile("[0-9]+").matcher(bridgeSize).matches();
+    }
+
+    private boolean isWrongBridgeSizeRange(String bridgeSize) {
+        int convertedBridgeSize = Integer.parseInt(bridgeSize);
+        return convertedBridgeSize < 3 || convertedBridgeSize > 20;
     }
 
     public void generateBridge() {
