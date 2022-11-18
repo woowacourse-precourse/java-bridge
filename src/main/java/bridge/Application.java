@@ -1,7 +1,5 @@
 package bridge;
 
-import java.util.List;
-
 public class Application {
 
     public static void main(String[] args) {
@@ -19,9 +17,12 @@ public class Application {
             Bridge bridge = new Bridge(bridgeMaker.makeBridge(size));
 
             // 플레이어가 이동할 칸을 입력받는 기능
-            BridgeGame bridgeGame = new BridgeGame();
-            String moveCommand = inputView.readMoving();
-            bridgeGame.move(moveCommand);
+            BridgeGame bridgeGame = new BridgeGame(bridge);
+            int status;
+            do {
+                String moveCommand = inputView.readMoving();
+                status = bridgeGame.move(moveCommand);
+            } while (status == BridgeGame.KEEP_GOING);
 
             // 재시작 / 종료 명령을 입력받는 기능
             String gameCommand = inputView.readGameCommand();

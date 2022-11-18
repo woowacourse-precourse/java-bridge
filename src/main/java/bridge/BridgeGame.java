@@ -6,14 +6,39 @@ import bridge.constants.ErrorMessages;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
+    public static final int END = 0;
+    public static final int DIED = 1;
+    public static final int KEEP_GOING = 2;
+
+    private final Bridge bridge;
+    private int currentLocation;
+
+    public BridgeGame(Bridge bridge) {
+        this.bridge = bridge;
+        this.currentLocation = 0;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      * @param moveCommand
      */
-    public void move(String moveCommand) {
+    public int move(String moveCommand) {
         validateMoveCommand(moveCommand);
+        if (bridge.canCross(currentLocation, moveCommand)) {
+            currentLocation++;
+            if (isEnd(bridge.size())) {
+                return END;
+            }
+            return KEEP_GOING;
+        }
+        return DIED;
+    }
+
+    private boolean isEnd(int brideSize) {
+        return brideSize == currentLocation;
     }
 
     private void validateMoveCommand(String moveCommand) {
