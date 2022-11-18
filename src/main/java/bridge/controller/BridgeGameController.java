@@ -28,7 +28,7 @@ public class BridgeGameController {
     }
 
     private void play() {
-        while (!bridgeGame.isGameClear()) {
+        while (!bridgeGame.isGameClear() || !bridgeGame.isGameFail()) {
 
         }
     }

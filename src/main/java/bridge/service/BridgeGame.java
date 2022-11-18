@@ -2,6 +2,7 @@ package bridge.service;
 
 import bridge.BridgeMaker;
 import bridge.domain.Bridges;
+import bridge.domain.GameState;
 import bridge.service.dto.request.BridgeSizeRequestDto;
 import bridge.service.dto.request.BridgeSpaceRequestDto;
 
@@ -13,10 +14,12 @@ import java.util.List;
 public class BridgeGame {
     private final BridgeMaker bridgeMaker;
     private final Bridges bridges;
+    private final GameState gameState;
 
-    public BridgeGame(BridgeMaker bridgeMaker, Bridges bridges) {
+    public BridgeGame(BridgeMaker bridgeMaker, Bridges bridges, GameState gameState) {
         this.bridgeMaker = bridgeMaker;
         this.bridges = bridges;
+        this.gameState = gameState;
     }
 
     public void create(BridgeSizeRequestDto dto) {
@@ -26,6 +29,10 @@ public class BridgeGame {
 
     public boolean isGameClear() {
         return bridges.isGameClear();
+    }
+
+    public boolean isGameFail() {
+        return gameState.isFail();
     }
 
     /**
