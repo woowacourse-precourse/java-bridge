@@ -28,4 +28,8 @@ public class BridgeGame {
             return false;
         throw new IllegalArgumentException();
     }
+
+    public boolean isEndBridge(){
+        return (count == bridge.size());
+    }
 }
