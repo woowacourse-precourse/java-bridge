@@ -9,6 +9,10 @@ public class InputView {
 
     final InputHandler inputHandler = new InputHandler();
 
+    public void printStartBridgeGame() {
+        System.out.println("다리 건너기 게임을 시작합니다.\n");
+    }
+
     /**
      * 다리의 길이를 입력받는다.
      */
