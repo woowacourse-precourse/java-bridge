@@ -56,7 +56,7 @@ public class BridgeGame {
      */
     public void retry(List<String> history) {
         //        현 X 포함 out View
-        outputView.printMap(history);
 //        실패당시 Output View
+
     }
 }
