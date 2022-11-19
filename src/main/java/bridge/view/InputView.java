@@ -5,6 +5,7 @@ import static bridge.utils.command.MoveCommand.UP;
 
 import bridge.utils.message.FixedMessage;
 import bridge.validator.BridgeSizeValidator;
+import bridge.validator.MovingValidator;
 import bridge.validator.Validator;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -29,8 +30,11 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+        Validator movingValidator = new MovingValidator();
+
         System.out.println(String.format(FixedMessage.INPUT_MOVING.getMessage(), UP.getCommand(), DOWN.getCommand()));
         String moving = Console.readLine();
+        movingValidator.validate(moving);
         return moving;
     }
 
