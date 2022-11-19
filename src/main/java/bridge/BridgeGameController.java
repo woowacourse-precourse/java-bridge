@@ -1,9 +1,10 @@
 package bridge;
 
+import bridge.domain.ActionAfterGameStatus;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.FootrestLocation;
-import bridge.domain.GameStatus;
+import bridge.domain.GameResultStatus;
 import bridge.utils.BridgeMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -35,15 +36,10 @@ public class BridgeGameController {
     }
 
     private void play() {
-        GameStatus movingResult = moveUser();
+        GameResultStatus movingResult = moveUser();
         //결정하다 다음 행동을
-        if (movingResult == GameStatus.FAIL) { // 게임에 실패한 경우
-            try {
-                determineWhatToDo();
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR]" + e.getMessage());
-                determineWhatToDo();
-            }
+        if (movingResult == GameResultStatus.FAIL) { // 게임에 실패한 경우
+            determineWhatToDo();
         }
     }
 
@@ -52,28 +48,27 @@ public class BridgeGameController {
         play();
     }
     private void determineWhatToDo() {
-        String command = this.inputView.readGameCommand();
-        if (command.equals("R")) {
-            replay();
-        }
-        else if (command.equals("Q")) {
-            // 아무 일도 일어나지 않고 종료 로직으로 이동
-        } else {
-            throw new IllegalArgumentException("R, Q 이외에는 입력할 수 없습니다");
+        try {
+            ActionAfterGameStatus code = ActionAfterGameStatus.findByUserInput(this.inputView.readGameCommand());
+            if (code == ActionAfterGameStatus.RESTART) {
+                replay();
+            }
+        } catch (IllegalArgumentException e) {
+            determineWhatToDo();
         }
     }
 
 
 
-    private GameStatus moveUser() {
+    private GameResultStatus moveUser() {
         try {
             String command = inputView.readMoving();
             FootrestLocation footrestLocation = FootrestLocation.valueOfUsingUserInput(command);
-            GameStatus movingResult = game.move(footrestLocation);
+            GameResultStatus movingResult = game.move(footrestLocation);
 
             // game에게 발자취를 꺼낸다
             outputView.printMap(game.getFootPrint());
-            if (movingResult == GameStatus.MOVE_SUCCESS) {
+            if (movingResult == GameResultStatus.MOVE_SUCCESS) {
                 return moveUser();
             }
             System.out.println("움직임의 결과는 1:성공/0:다음/-1:실패 -- " + movingResult);

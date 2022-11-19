@@ -1,5 +1,5 @@
 package bridge.domain;
 
-public enum GameStatus {
+public enum GameResultStatus {
     FAIL, SUCCESS, MOVE_SUCCESS
 }

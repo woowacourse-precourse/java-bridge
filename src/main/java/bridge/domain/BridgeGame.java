@@ -23,7 +23,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      * @param footrestLocation
      */
-    public GameStatus move(FootrestLocation footrestLocation) {
+    public GameResultStatus move(FootrestLocation footrestLocation) {
         if (footPrint == null) {
             throw new IllegalStateException("초기화 안됨");
         }
@@ -32,14 +32,14 @@ public class BridgeGame {
         if (bridge.canMove(order, footrestLocation)) {
             if (bridge.isLast(order)) {
                 result.recordSuccess(footPrint);
-                return GameStatus.SUCCESS;
+                return GameResultStatus.SUCCESS;
             }
-            return GameStatus.MOVE_SUCCESS;
+            return GameResultStatus.MOVE_SUCCESS;
         } else {
             // 마지막 값을 X로 변경
             footPrint.failAtLast();
             result.recordFail(footPrint);
-            return GameStatus.FAIL;
+            return GameResultStatus.FAIL;
         }
         // Bridge 초기화 안됐으면 일단 예외 반환(모든 메서드 마찬가지)
 
