@@ -6,8 +6,6 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameController {
-    OutputView outputView = new OutputView();
-    InputView inputView = new InputView();
     BridgeGame bridgeGame = new BridgeGame();
     GameStatus gameStatus;
 
@@ -29,7 +27,7 @@ public class BridgeGameController {
     }
 
     private void askRetry() {
-        gameStatus = inputView.printAskRetry();
+        gameStatus = InputView.printAskRetry();
 
         if (gameStatus == GameStatus.RETRY) {
             play();
@@ -37,12 +35,12 @@ public class BridgeGameController {
     }
 
     private void moveBridge() {
-        gameStatus = bridgeGame.move(inputView.readMoving());
-        outputView.printMap(bridgeGame.getPlayerMoveResult());
+        gameStatus = bridgeGame.move(InputView.readMoving());
+        OutputView.printMap(bridgeGame.getPlayerMoveResult());
     }
 
     private void start() {
-        outputView.printStart();
-        bridgeGame.createBridge(inputView.readBridgeSize());
+        OutputView.printStart();
+        bridgeGame.createBridge(InputView.readBridgeSize());
     }
 }
