@@ -33,7 +33,8 @@ public class PassingSpace {
         crossSpaceRow.add(Movable.BLANK.getMark());
     }
 
-    public String draw() {
+    @Override
+    public String toString() {
         List<String> upRow = passingSpace.get(Space.U);
         String upRowDrawing = conformToForms(upRow);
 

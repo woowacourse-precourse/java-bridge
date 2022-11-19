@@ -17,7 +17,7 @@ public class BridgeGame {
     }
 
     public String drawPassingSpace() {
-        return passingSpace.draw();
+        return passingSpace.toString();
     }
 
     public boolean isRightSpace(int position, String selectedSpace) {
