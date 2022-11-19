@@ -11,10 +11,12 @@ import java.io.InputStream;
 
 class InputViewTest {
     InputView inputView;
+
     @BeforeEach
     void initInputView(){
         inputView = new InputView();
     }
+
     @Test
     @DisplayName("잘못된 다리 사이즈 입력 예외 테스트")
     void readBridgeSize() {
