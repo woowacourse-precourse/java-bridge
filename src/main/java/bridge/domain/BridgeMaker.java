@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.BridgeNumberGenerator;
+import bridge.utils.enums.Moving;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
+        for (int block = 0; block < size; block++) {
             bridge.add(toBridge(bridgeNumberGenerator.generate()));
         }
         return bridge;
@@ -29,8 +30,8 @@ public class BridgeMaker {
 
     private String toBridge(int bridgeNumber) {
         if (bridgeNumber == 0) {
-            return "D";
+            return Moving.DOWN.getValue();
         }
-        return "U";
+        return Moving.UP.getValue();
     }
 }
