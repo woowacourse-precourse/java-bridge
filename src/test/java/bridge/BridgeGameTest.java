@@ -5,6 +5,8 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
@@ -16,67 +18,57 @@ public class BridgeGameTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
     private static BridgeGame bridgeGame = new BridgeGame();
     
-    @Test
-    @DisplayName("결과_참_확인")
-    public void trueCheck() {
-        boolean actual = bridgeGame.move("U", List.of("U", "D", "U"), 0);
-        Assertions.assertThat(actual).isEqualTo(true);
+    @ParameterizedTest
+    @CsvSource({"U,U,D,U,0,true","D,U,D,U,0,false"})
+    @DisplayName("결과_확인")
+    public void trueCheck(String input, String list1, String list2, String list3, int idx, boolean expect) {
+        boolean actual = bridgeGame.move(input, List.of(list1, list2, list3), idx);
+        Assertions.assertThat(actual).isEqualTo(expect);
     }
-    
-    @Test
-    @DisplayName("결과_거짓_확인")
-    public void falseCheck() {
-        boolean actual = bridgeGame.move("D", List.of("U", "D", "U"), 0);
-        Assertions.assertThat(actual).isEqualTo(false);
+
+    @ParameterizedTest
+    @CsvSource({"G","0","59","..","ab"})
+    @DisplayName("다리길이_입력값_예외")
+    public void bridgeLengthNull(String length) {
+        assertSimpleTest(() -> {
+            run(length);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
     }
+
     @Test
     @DisplayName("다리길이_빈값_입력_예외")
-    public void bridgeLengthNull() {
+    public void bridgeLengthEmpty() {
         assertSimpleTest(() -> {
             run("");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 
-    @Test
-    @DisplayName("다리길이_최솟값_미달")
-    public void bridgeLengthMin() {
+    @ParameterizedTest
+    @CsvSource({"3,G","1,3","3,5"})
+    @DisplayName("이동_입력_예외")
+    public void moveFail1(String length, String input) {
         assertSimpleTest(() -> {
-            run("0");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    @DisplayName("다리길이_최대값_초과")
-    public void bridgeLengthOverMax() {
-        assertSimpleTest(() -> {
-            run("59");
+            run(length, input);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
     @Test
-    @DisplayName("이동_입력_예외1")
-    public void moveFail1() {
-        assertSimpleTest(() -> {
-            run("3", "G");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-    @Test
-    @DisplayName("이동_입력_예외2")
-    public void moveFail2() {
+    @DisplayName("이동_빈칸_입력")
+    public void moveEmpty() {
         assertSimpleTest(() -> {
             run("3", "");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 
-    @Test
+    @ParameterizedTest
+    @CsvSource({"3,U,D,D,o","3,U,D,D,D"})
     @DisplayName("다시시작_예외")
-    public void retryFail() {
+    public void retryFail(String length, String input1, String input2, String input3, String retry) {
         assertRandomNumberInRangeTest(() -> {
-            run("3", "U", "D", "D", "o");
+            run(length, input1, input2, input3, retry);
             assertThat(output()).contains(
                     (ERROR_MESSAGE)
             );
@@ -85,7 +77,7 @@ public class BridgeGameTest extends NsTest {
 
     @Test
     @DisplayName("다시시작_빈값")
-    public void retryNull() {
+    public void retryEmpty() {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "D", "");
             assertThat(output()).contains(
