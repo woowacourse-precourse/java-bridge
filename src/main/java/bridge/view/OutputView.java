@@ -46,27 +46,43 @@ public class OutputView {
 
     private void printUpMap(List<String> bridge, List<String> userThinkBridge){
         System.out.print(START_BRIDGE);
-        System.out.print(userThinkBridge.get(0));
+        printFirstUpBridge(bridge, userThinkBridge);
         for (int i = 1; i < userThinkBridge.size(); i++) {
             if (bridge.get(i).equals(Moving.UP.getDirection())){
                 System.out.print(DIVISION_BRIDGE + userThinkBridge.get(i));
                 continue;
             }
-            System.out.print(BLANK_BRIDGE);
+            System.out.print(DIVISION_BRIDGE + BLANK_BRIDGE);
         }
         System.out.println(END_BRIDGE);
     }
 
     private void printDownMap(List<String> bridge, List<String> userThinkBridge){
         System.out.print(START_BRIDGE);
-        System.out.print(userThinkBridge.get(0));
+        printFirstDownBridge(bridge, userThinkBridge);
         for (int i = 1; i < userThinkBridge.size(); i++) {
             if (bridge.get(i).equals(Moving.DOWN.getDirection())){
                 System.out.print(DIVISION_BRIDGE + userThinkBridge.get(i));
                 continue;
             }
-            System.out.print(BLANK_BRIDGE);
+            System.out.print(DIVISION_BRIDGE + BLANK_BRIDGE);
         }
         System.out.println(END_BRIDGE);
+    }
+
+    private void printFirstUpBridge(List<String> bridge, List<String> userThinkBridge){
+        if (bridge.get(0).equals(Moving.UP.getDirection())){
+            System.out.print(userThinkBridge.get(0));
+            return;
+        }
+        System.out.print(BLANK_BRIDGE);
+    }
+
+    private void printFirstDownBridge(List<String> bridge, List<String> userThinkBridge){
+        if (bridge.get(0).equals(Moving.DOWN.getDirection())){
+            System.out.print(userThinkBridge.get(0));
+            return;
+        }
+        System.out.print(BLANK_BRIDGE);
     }
 }
