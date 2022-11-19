@@ -9,6 +9,7 @@ import static org.mockito.Mockito.withSettings;
 
 import bridge.BridgeMaker;
 import bridge.dto.BridgeGameDto;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -41,6 +42,20 @@ public class BridgeGameTest {
                     Arguments.of(List.of("U","U","D","D"), "U", List.of("U")),
                     Arguments.of(List.of("U","U","D","D","D"), "D", List.of("D"))
             );
+        }
+    }
+
+    @Test
+    void clearTest() {
+        List<String> bridge = List.of("U","U","D","D");
+        try (MockedConstruction<BridgeMaker> mockBridgeMaker = mockedBridgeMaker(bridge)) {
+            BridgeGame bridgeGame = new BridgeGame(bridge.size());
+            bridgeGame.move("U");
+            bridgeGame.retry();
+
+            BridgeGameDto result = bridgeGame.move("D");
+
+            assertThat(result.getRoute()).isEqualTo(List.of("D"));
         }
     }
 
