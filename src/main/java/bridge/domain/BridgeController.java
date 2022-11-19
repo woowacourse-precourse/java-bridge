@@ -32,11 +32,12 @@ public class BridgeController {
     public Result inputPlayerMove() {
         try {
             outputView.printInputMoveMessage();
-            return bridgeService.insertMove(inputView.readMoving());
+            Result result = bridgeService.insertMove(inputView.readMoving());
+            outputView.printMap(result);
+            return result;
         } catch (IllegalArgumentException e) {
             outputView.printError(e);
-            inputPlayerMove();
+            return inputPlayerMove();
         }
-        return null;
     }
 }
