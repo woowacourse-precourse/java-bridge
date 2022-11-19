@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class PassingSpace {
-    private static final String FORM = "[ %s ]";
+    private static final String FORM = "[ %s ]\n";
     private final Map<Space, List<String>> passingSpace;
 
     public PassingSpace() {
@@ -35,12 +35,12 @@ public class PassingSpace {
 
     @Override
     public String toString() {
-        List<String> upRow = passingSpace.get(Space.U);
-        String upRowDrawing = conformToForms(upRow);
-
-        List<String> downRow = passingSpace.get(Space.D);
-        String downRowDrawing = conformToForms(upRow);
-        return upRowDrawing + "\n" + downRowDrawing;
+        StringBuilder drawingBuilder = new StringBuilder();
+        for (Space space : Space.values()) {
+            List<String> row = passingSpace.get(space);
+            drawingBuilder.append(conformToForms(row));
+        }
+        return drawingBuilder.toString();
     }
 
     private String conformToForms(List<String> contents) {
