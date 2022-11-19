@@ -28,7 +28,7 @@ public class BridgeGame {
         while (true) {
             boolean flag = false;
             boolean success = true;
-            countGame(gameCount);
+            gameCount = countGame(gameCount);
             List<String> upperBridge = new ArrayList<>();
             List<String> downBridge = new ArrayList<>();
             for (int i = 0; i < bridge.size(); i++) {
@@ -47,7 +47,7 @@ public class BridgeGame {
                     break;
                 }
             }
-            outputView.printResult(upperBridge, downBridge, success);
+            outputView.printResult(upperBridge, downBridge, success, gameCount);
             if (!flag) {
                 break;
             }
@@ -77,7 +77,8 @@ public class BridgeGame {
         return false;
     }
 
-    public void countGame(int gameCount) {
+    public int countGame(int gameCount) {
         gameCount += 1;
+        return gameCount;
     }
 }
