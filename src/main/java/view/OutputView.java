@@ -19,8 +19,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> moveBridgeResult) {
-        int upBridge = moveBridgeResult.size() - 1;
-        int downBridge = moveBridgeResult.size() - 2;
+        int upBridge = moveBridgeResult.size() - 2;
+        int downBridge = moveBridgeResult.size() - 1;
         System.out.println(moveBridgeResult.get(upBridge));
         System.out.println(moveBridgeResult.get(downBridge));
     }
