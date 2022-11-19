@@ -119,4 +119,8 @@ public class Bridge {
             return "성공";
         return "실패";
     }
+
+    public void resetLocation() {
+        this.location = 0;
+    }
 }
