@@ -1,24 +1,32 @@
 package bridge.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class User {
 
-    private Integer step = 0;
+    private final List<String> moveHistory = new ArrayList<>();
     private Integer tryCount = 1;
 
+    public List<String> getMoveHistory() {
+        return Collections.unmodifiableList(moveHistory);
+    }
+
     public Integer getStep() {
-        return step;
+        return moveHistory.size();
     }
 
     public Integer getTryCount() {
         return tryCount;
     }
 
-    public void stepForward() {
-        step++;
+    public void stepForward(String direction) {
+        moveHistory.add(direction);
     }
 
     public void stepInit() {
-        step = 0;
+        moveHistory.clear();
     }
 
     public void increaseRetryCount() {

@@ -31,7 +31,7 @@ class BridgeGameTest {
         void end_then_return_true() {
             // given
             for (int stepForward = 0; stepForward < bridge.getSize(); stepForward++) {
-                user.stepForward();
+                user.stepForward("U");
             }
 
             // when

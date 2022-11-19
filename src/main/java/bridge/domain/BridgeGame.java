@@ -22,7 +22,7 @@ public class BridgeGame {
      */
     public Boolean move(String direction) {
         if (bridge.canCross(user.getStep(), direction)) {
-            user.stepForward();
+            user.stepForward(direction);
             return true;
         }
         user.stepInit();
