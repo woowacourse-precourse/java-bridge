@@ -27,8 +27,10 @@ public class BridgeMaker {
         return bridge;
     }
 
-    private String checkUpAndDown(int number){
-        if (number==1)return "U";
+    private String checkUpAndDown(int number) {
+        if (number == 1) {
+            return "U";
+        }
         return "D";
     }
 }
