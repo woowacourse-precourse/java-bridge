@@ -3,8 +3,7 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.OutputMessage.GAME_START_MESSAGE;
-import static bridge.OutputMessage.TOTAL_TRY_COUNT_MESSAGE;
+import static bridge.OutputMessage.*;
 import static bridge.Result.*;
 
 /**
@@ -69,6 +68,12 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult() {
+        System.out.println(FINAL_GAME_RESULT_MESSAGE.getMessage());
+        List<List<String>> printForm = makePrintForm();
+        String up = String.join(" | ", printForm.get(0));
+        String down = String.join(" | ", printForm.get(1));
+        System.out.println("[ " + up + " ]");
+        System.out.println("[ " + down + " ]");
     }
 
     public void printTotalTryCount(int totalTryCount) {
