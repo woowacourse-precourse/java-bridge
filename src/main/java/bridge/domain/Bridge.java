@@ -16,11 +16,15 @@ public class Bridge {
     }
 
     public boolean canMove(Integer order, FootrestLocation footrestLocation) {
+        //order 크기 검증
+        if (structure.size() <= order || order < 0) {
+            throw new IllegalStateException("다리 인덱스를 벗어남");
+        }
         return structure.get(order) == footrestLocation;
     }
 
     public boolean isLast(Integer order) {
-        return structure.size() == order;
+        return structure.size() -1 == order;
     }
 
     public Integer size() {

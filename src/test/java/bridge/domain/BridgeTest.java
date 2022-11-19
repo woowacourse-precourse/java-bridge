@@ -56,24 +56,66 @@ class BridgeTest {
         Assertions.assertThatThrownBy(() -> new Bridge(temp)).isInstanceOf(IllegalArgumentException.class);
     }
 
+    // canMove 테스트
     @Test
-    void 정상_다리가_존재하는_인덱스_물어봄() {
-        Assertions.fail("TODO");
+    void 정상_해당_위치에_갈수_있음() {
+        List<String> temp = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            temp.add("U");
+        }
+        Bridge bridge = new Bridge(temp);
+        Assertions.assertThat(bridge.canMove(2, FootrestLocation.UP)).isTrue();
+    }
+
+    @Test
+    void 정상_해당_위치에_갈수_없음() {
+        List<String> temp = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            temp.add("U");
+        }
+        Bridge bridge = new Bridge(temp);
+        Assertions.assertThat(bridge.canMove(2, FootrestLocation.DOWN)).isFalse();
     }
 
     @Test
     void 예외_다리_범위_바깥_인덱스_물어봄() {
-        Assertions.fail("TODO");
+        List<String> temp = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            temp.add("U");
+        }
+        Bridge bridge = new Bridge(temp);
+        Assertions.assertThatThrownBy(() -> bridge.canMove(3, FootrestLocation.UP)).isInstanceOf(IllegalStateException.class);
     }
 
     @Test
     void 예외_0보다_작은_인덱스로_물어봄() {
-        Assertions.fail("TODO");
+        List<String> temp = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            temp.add("U");
+        }
+        Bridge bridge = new Bridge(temp);
+        Assertions.assertThatThrownBy(() -> bridge.canMove(-1, FootrestLocation.UP)).isInstanceOf(IllegalStateException.class);
+    }
+    // 입력값이 FootrestLocation 아닌 경우는 입력 자체가 불가능
+
+    //isLast
+    @Test
+    void 정상_해당_위치가_마지막_O() {
+        List<String> temp = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            temp.add("U");
+        }
+        Bridge bridge = new Bridge(temp);
+        Assertions.assertThat(bridge.isLast(2)).isTrue();
     }
 
     @Test
-    void 예외_입력값이_FootrestLocation_아님() {
-        Assertions.fail("TODO");
+    void 정상_해당_위치가_마지막_X() {
+        List<String> temp = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            temp.add("U");
+        }
+        Bridge bridge = new Bridge(temp);
+        Assertions.assertThat(bridge.isLast(1)).isFalse();
     }
-
 }
