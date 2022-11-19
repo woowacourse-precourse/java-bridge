@@ -23,6 +23,7 @@ public class BridgeGameController {
 
     private int bridgeSize;
     private String moving;
+    private String userRestart;
     List<String> bridge;
     private static BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     private BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
@@ -94,11 +95,21 @@ public class BridgeGameController {
     }
 
     private void restartGame(){
-        boolean restart = bridgeGame.retry(inputView.readGameCommand());
+        restartOrQuit();
+        boolean restart = bridgeGame.retry(userRestart);
         if(restart){
             run();
         }
         outputView.printResult(FAILED);
+    }
+
+    private void restartOrQuit(){
+        try{
+            userRestart = validateRestartAndQuit(inputView.readGameCommand());
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            restartOrQuit();
+        }
     }
 
 }
