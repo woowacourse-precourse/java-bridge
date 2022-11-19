@@ -15,4 +15,8 @@ public class Bridge {
     public List<String> getBridge() {
         return bridge;
     }
+
+    public String getBridgeIdx(int index) {
+        return bridge.get(index);
+    }
 }
