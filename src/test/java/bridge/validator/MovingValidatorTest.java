@@ -18,7 +18,7 @@ class MovingValidatorTest {
 
     @DisplayName("대문자 U, D가 아닌 값을 검증할 경우 예외가 발생한다.")
     @ParameterizedTest
-    @CsvSource({"1000", "u", "d", "Q", "R", "UP", "DOWN"})
+    @CsvSource({"1000", "Q", "R", "UP", "DOWN"})
     void validateInvalidValue(String inputValue) {
         assertThatThrownBy(() -> validator.validate(inputValue))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -29,6 +29,14 @@ class MovingValidatorTest {
     void validateBlankValue() {
         String blank = "";
         assertThatThrownBy(() -> validator.validate(blank))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("소문자 u, d를 검증할 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @CsvSource({"u", "d"})
+    void validateLowercaseValue(String inputValue) {
+        assertThatThrownBy(() -> validator.validate(inputValue))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
