@@ -2,7 +2,7 @@ package bridge.Utils.Validator;
 
 public class bridgeLengthValidator {
 
-    private static final String NUMBER_PATTERN = "^[0-9]*$";
+    private static final String NUMBER_PATTERN = "-?\\d+";
     private static final String ERROR_MESSAGE_NOT_NUMBER = "[ERROR] 입력값이 숫자가 아닙니다.";
     private static final String ERROR_MESSAGE_BRIDGE_LENGTH = "[ERROR] 다리의 길이가 3이상 20이하가 아닙니다.";
 
@@ -14,9 +14,16 @@ public class bridgeLengthValidator {
      * 다리의 길이 입력값이 맞는지 확인
      * @param input 다리의 길이
      */
-    public static void validateBridgeInput(String input){
-        validateNumber(input);
-        validateRange(input);
+    public static String validateBridgeInput(String input){
+        try{
+            validateNumber(input);
+            validateRange(input);
+            return input;
+        }catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            System.err.println(e);
+            return "3";
+        }
     }
 
 
@@ -25,8 +32,9 @@ public class bridgeLengthValidator {
      * @param input 다리의 길이
      */
     private static void validateNumber(String input){
-        if(!input.matches(NUMBER_PATTERN)){
-            throw new IllegalArgumentException(ERROR_MESSAGE_NOT_NUMBER);
+        if(!(input.matches(NUMBER_PATTERN))){
+            System.out.println(ERROR_MESSAGE_NOT_NUMBER);
+            throw new IllegalArgumentException();
         }
     }
 
@@ -39,7 +47,8 @@ public class bridgeLengthValidator {
             int bridgeLength = Integer.parseInt(input);
             bridgeLengthValid(bridgeLength);
         }
-        catch (NumberFormatException e){
+        catch (IllegalArgumentException e){
+            e.printStackTrace();
             System.err.println(e);
         }
     }
@@ -50,7 +59,8 @@ public class bridgeLengthValidator {
      */
     private static void bridgeLengthValid(int input){
         if(!(input>=BRIDGE_MIN_LENGTH && input<= BRIDGE_MAX_LENGTH)){
-            throw new IllegalArgumentException(ERROR_MESSAGE_BRIDGE_LENGTH);
+            System.out.println(ERROR_MESSAGE_BRIDGE_LENGTH);
+            throw new IllegalArgumentException();
         }
     }
 
