@@ -48,5 +48,22 @@ class InputUtilsTest {
         }
     }
 
+    @Nested
+    @DisplayName("isValidBridgePosition 메소드 테스트")
+    class TestIsValidBridgePosition {
 
+        @DisplayName("U, D를 입력하였을 경우")
+        @ValueSource(strings = {"U", "D"})
+        @ParameterizedTest
+        void case1(String input) {
+            assertThat(InputUtils.isValidBridgePosition(input)).isTrue();
+        }
+
+        @DisplayName("U, D 이외의 문자를 입력하였을 경우")
+        @ValueSource(strings = {"UP", "DOWN", "85", "???"})
+        @ParameterizedTest
+        void case2(String input) {
+            assertThat(InputUtils.isValidBridgePosition(input)).isFalse();
+        }
+    }
 }
