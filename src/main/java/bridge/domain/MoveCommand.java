@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import bridge.exception.BridgeGameError;
 import bridge.exception.CommandException;

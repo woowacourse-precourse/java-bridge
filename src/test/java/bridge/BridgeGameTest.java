@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.domain.BridgeGame;
+import bridge.domain.GameCommand;
+import bridge.domain.MoveCommand;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

@@ -1,5 +1,7 @@
-package bridge;
+package bridge.ui;
 
+import bridge.domain.GameCommand;
+import bridge.domain.MoveCommand;
 import bridge.exception.BridgeGameError;
 import bridge.exception.BridgeSizeException;
 import camp.nextstep.edu.missionutils.Console;

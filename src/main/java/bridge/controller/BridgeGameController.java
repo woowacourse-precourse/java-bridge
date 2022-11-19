@@ -1,7 +1,10 @@
-package bridge;
+package bridge.controller;
 
+import bridge.domain.*;
 import bridge.exception.BridgeSizeException;
 import bridge.exception.CommandException;
+import bridge.ui.InputView;
+import bridge.ui.OutputView;
 
 import java.util.List;
 
