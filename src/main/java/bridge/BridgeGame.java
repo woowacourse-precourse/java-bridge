@@ -19,12 +19,12 @@ public class BridgeGame {
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      *
-     * @param play   이동 횟수
-     * @param moving 이동할 칸
+     * @param moveCount 이동 횟수
+     * @param moving    이동할 칸
      * @return 이동 가능성
      */
-    public Boolean move(int play, String moving) {
-        boolean mobility = bridge.isPossibleMoving(play, moving);
+    public boolean move(int moveCount, String moving) {
+        boolean mobility = bridge.isPossibleMoving(moveCount, moving);
         bridgeGameResult.addMoveState(moving, mobility);
         return mobility;
     }
