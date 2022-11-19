@@ -8,13 +8,15 @@ import java.util.List;
  */
 public class BridgeMaker {
     public enum Input {
-        UP("U"),
-        DOWN("D");
+        UP("U", 1),
+        DOWN("D", 0);
 
         private String Data;
+        private int number;
 
-        private Input(String Data){
+        private Input(String Data, int number){
             this.Data = Data;
+            this.number = number;
         }
     }
     private final BridgeNumberGenerator bridgeNumberGenerator;
@@ -30,7 +32,7 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>(size);
         for(int i = 0; i < size; i++) {
-            if (bridgeNumberGenerator.generate() == 1) {
+            if (bridgeNumberGenerator.generate() == Input.UP.number) {
                 bridge.add(Input.UP.Data);
                 continue;
             }
