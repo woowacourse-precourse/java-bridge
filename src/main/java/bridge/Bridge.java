@@ -77,7 +77,6 @@ public class Bridge {
             length++;
         }
         buildLine(sb, length, lineFlag.FIRST);
-        sb.append("\n");
         buildLine(sb, length, lineFlag.SECOND);
         return sb.toString();
     }
@@ -93,7 +92,7 @@ public class Bridge {
                 sb.append(" | ");
             }
         }
-        sb.append(" ]");
+        sb.append(" ]\n");
     }
 
     /**
