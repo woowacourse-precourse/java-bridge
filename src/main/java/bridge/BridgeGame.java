@@ -1,7 +1,10 @@
 package bridge;
 
 import bridge.domain.Bridge;
+import bridge.type.GameStatus;
 import bridge.type.PassCondition;
+
+import java.util.List;
 
 public class BridgeGame {
 
@@ -11,6 +14,12 @@ public class BridgeGame {
     public BridgeGame(Bridge bridge, GameStatusOperator gameStatusOperator) {
         this.bridge = bridge;
         this.gameStatusOperator = gameStatusOperator;
+    }
+
+    public BridgeGame initBridgeGame(Integer bridgeLength) {
+        Bridge bridge = new Bridge(BridgeMaker.getBridgeMaker().makeBridge(bridgeLength));
+        GameStatusOperator gameStatusOperator = GameStatusOperator.initGameStatusOperator();
+        return new BridgeGame(bridge, gameStatusOperator);
     }
 
     public PassCondition move(String selectBlock) {
@@ -29,4 +38,5 @@ public class BridgeGame {
     public void quit() {
         gameStatusOperator.toQuit();
     }
+
 }

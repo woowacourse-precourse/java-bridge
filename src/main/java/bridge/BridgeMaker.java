@@ -28,4 +28,8 @@ public class BridgeMaker {
                 .mapToObj(i -> BridgeBlock.getBlockSymbol(bridgeNumberGenerator.generate()))
                 .collect(Collectors.toList());
     }
+
+    public static BridgeMaker getBridgeMaker() {
+        return new BridgeMaker(new BridgeRandomNumberGenerator());
+    }
 }

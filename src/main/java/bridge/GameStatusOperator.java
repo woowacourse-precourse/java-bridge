@@ -4,6 +4,9 @@ import bridge.type.GameStatus;
 
 public class GameStatusOperator {
 
+    private static final int START_POSITION = -1;
+    private static final int NUMBER_OF_TRY = 0;
+
     private Integer currentPosition;
     private Integer numberOfTry;
     private GameStatus gameStatus;
@@ -12,6 +15,10 @@ public class GameStatusOperator {
         this.currentPosition = currentPosition;
         this.numberOfTry = numberOfTry;
         this.gameStatus = gameStatus;
+    }
+
+    public static GameStatusOperator initGameStatusOperator() {
+        return new GameStatusOperator(START_POSITION, NUMBER_OF_TRY, GameStatus.START);
     }
 
     public void incrementNumberOfTry() {
