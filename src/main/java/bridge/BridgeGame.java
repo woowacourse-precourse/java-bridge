@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -23,5 +25,13 @@ public class BridgeGame {
     public void retry() {
         user.initializeUserPosition();
         user.addUserAttempt();
+    }
+
+    public boolean checkBridgeValueInUserPosition(String moving, List<String> bridge){
+        int userPosition = user.getUserPosition();
+        if(bridge.get(userPosition) == moving){
+            return true;
+        }
+        return false;
     }
 }
