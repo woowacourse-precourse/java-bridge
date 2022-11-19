@@ -1,11 +1,10 @@
 package bridge.controller;
 
 import bridge.domain.BridgeMaker;
+import bridge.domain.BridgeGame;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.domain.BridgeGame;
 import bridge.utils.InputHandler;
-import bridge.utils.enums.GameResult;
 import java.util.List;
 
 public class GameController {
