@@ -13,6 +13,19 @@ public class BridgeGame {
     private int movingCount = 0;
     private int gameCount = 1;
     private final List<List<String>> result = new ArrayList<>();
+    private final static String SUCCESS = "성공";
+    private final static String FAIL = "실패";
+
+    public String isSuccess() {
+        if (bridge.size() == movingCount) {
+            return SUCCESS;
+        }
+        return FAIL;
+    }
+
+    public int getGameCount() {
+        return gameCount;
+    }
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
