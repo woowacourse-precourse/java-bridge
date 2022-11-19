@@ -33,6 +33,7 @@ public class BridgeGame {
         RetryCommand retryCommand = RetryCommand.nameOf(input);
         if (retryCommand.equals(RetryCommand.RETRY)) {
             BridgeStatus bridgeStatus = bridgeStatusSaver.getBridgeStatus();
+            bridgeStatus.clearUserBridge();
             bridgeStatus.addTryCount();
             bridgeStatusSaver.setBridgeStatus(bridgeStatus);
             return true;
