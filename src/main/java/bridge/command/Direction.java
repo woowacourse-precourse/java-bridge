@@ -19,4 +19,40 @@ public enum Direction {
     public int getNumber() {
         return this.number;
     }
+
+    public static String convert(int direction) {
+        if (direction == Direction.UP.getNumber()) {
+            return Direction.UP.getText();
+        }
+
+        return Direction.DOWN.getText();
+    }
+
+    public static int convert(String direction) {
+        if (direction.equals(Direction.UP.getText())) {
+            return Direction.UP.getNumber();
+        }
+
+        return Direction.DOWN.getNumber();
+    }
+
+    public static boolean contains(int number) {
+        for (Direction i : Direction.values()) {
+            if (i.getNumber() == number) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean contains(String text) {
+        for (Direction i : Direction.values()) {
+            if (i.getText().equals(text)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

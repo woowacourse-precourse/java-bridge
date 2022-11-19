@@ -24,18 +24,11 @@ public class BridgeMaker {
 
         for (int i = 0; i < size; i++) {
             int direction = bridgeNumberGenerator.generate();
-            String upOrDown = setUpOrDown(direction);
+            String upOrDown = Direction.convert(direction);
             bridges.add(upOrDown);
         }
 
         return bridges;
     }
 
-    private String setUpOrDown(int direction) {
-        if (direction == Direction.UP.getNumber()) {
-            return Direction.UP.getText();
-        }
-
-        return Direction.DOWN.getText();
-    }
 }
