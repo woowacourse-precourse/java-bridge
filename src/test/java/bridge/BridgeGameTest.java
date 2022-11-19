@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.controller.BridgeController;
+import bridge.controller.BridgeGameController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,7 +14,7 @@ import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-class BridgeTest {
+class BridgeGameTest {
     private final String ERROR_MESSAGE = "[ERROR]";
     private final OutputStream out = new ByteArrayOutputStream();
 
@@ -23,7 +23,7 @@ class BridgeTest {
         System.setOut(new PrintStream(out));
     }
 
-    private final BridgeController bridgesController = new BridgeController();
+    private final BridgeGameController bridgesController = new BridgeGameController();
     @DisplayName("다리 사이즈가 올바른 형식이 아닌 경우")
     @ValueSource(strings = {"a", "가", "1", "-1", "21"})
     @ParameterizedTest
@@ -31,7 +31,7 @@ class BridgeTest {
         byte[] bridgeSize = String.join("\n", input).getBytes();
         System.setIn(new ByteArrayInputStream(bridgeSize));
         try {
-            bridgesController.generateBridge();
+            bridgesController.generateBridgeGame();
         } catch (NoSuchElementException ignore) {}
         assertThat(out.toString()).contains(ERROR_MESSAGE);
     }
