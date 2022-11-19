@@ -2,13 +2,9 @@ package bridge.controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.Judge;
 import bridge.model.*;
 import bridge.view.Input;
 import bridge.view.Output;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -18,10 +14,7 @@ public class BridgeGame {
     Input input;
     Output output;
 
-    List<String> bridge = new ArrayList<>();
-    List<String> userBridge = new ArrayList<>();
-
-    Judge judge = new Judge();
+    Judge judge;
 
     public BridgeGame(Input input, Output output) {
         this.input = input;
@@ -31,7 +24,7 @@ public class BridgeGame {
     public void run() {
         BridgeSize bridgeSize = input.readBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridge = bridgeMaker.makeBridge(bridgeSize.getBridgeSize());
+        judge = new Judge(bridgeMaker.makeBridge(bridgeSize.getBridgeSize()));
         play();
 
     }
@@ -40,7 +33,7 @@ public class BridgeGame {
         GameResult gameResult;
         GameCommand gameCommand = null;
         do {
-            userBridge = new ArrayList<>();
+            judge.initUserBridge();
             gameResult = moveAndPrintResult();
             if (gameResult == GameResult.LOSE) {
                 gameCommand = input.readGameCommand();
@@ -53,11 +46,12 @@ public class BridgeGame {
         MoveResult moveResult;
         do {
             moveResult = move();
-            printMapResult();
-        } while (moveResult == MoveResult.CORRECT && userBridge.size() != bridge.size());
+            output.printMap(judge.makeMap());
+        } while (judge.isGameEnd(moveResult));
         if (moveResult == MoveResult.CORRECT) return GameResult.WIN;
         return GameResult.LOSE;
     }
+
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -66,15 +60,10 @@ public class BridgeGame {
      */
     public MoveResult move() {
         Moving moving = input.readMoving();
-        userBridge.add(moving.getValue());
-        return judge.checkIsCorrectMoving(bridge, userBridge);
+        judge.addUserBridge(moving);
+        return judge.checkIsCorrectMoving(moving);
     }
 
-
-    private void printMapResult() {
-        judge.makeResult(bridge, userBridge);
-        output.printMap(judge.toString());
-    }
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
