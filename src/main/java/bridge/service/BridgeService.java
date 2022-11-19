@@ -10,6 +10,7 @@ public class BridgeService {
 
     private BridgeGame bridgeGame;
     private InputView inputView;
+    private boolean isCorrect;
 
     public BridgeService() {
         this.bridgeGame = new BridgeGame();
@@ -33,5 +34,19 @@ public class BridgeService {
             }
         } while (true);
     }
+
+    // 다리 이동
+    public void moveBridge() {
+        do {
+            try {
+                String moving = inputView.readMoving();
+                this.isCorrect = bridgeGame.move(moving);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        } while (true);
+    }
+
 
 }
