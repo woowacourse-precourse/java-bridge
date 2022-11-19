@@ -6,7 +6,7 @@ import java.util.List;
 public class ProgressMap {
 	private final List<List<String>> progressMap;
 	private final int clearSize;
-	private boolean clearFailed;
+	private boolean moveFail = false;
 
 	public ProgressMap(int bridgeSize) {
 		progressMap = new ArrayList<>();
@@ -24,7 +24,7 @@ public class ProgressMap {
 			correctMove(moving);
 		}
 		if (!isCorrectMove) {
-			clearFailed = true;
+			moveFail = true;
 			incorrectMove(moving);
 		}
 	}
@@ -67,8 +67,8 @@ public class ProgressMap {
 		progressMap.get(1).add(" X ");
 	}
 
-	public boolean isClearFailed() {
-		return clearFailed;
+	public boolean isMoveFail() {
+		return moveFail;
 	}
 
 	public int whatMapSize() {

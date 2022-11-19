@@ -72,7 +72,7 @@ public class BridgeGameController {
 
 	private void crossBridge(BridgeGame bridgeGame) {
 		progressMap = bridgeGameService.initGameMap(bridgeGame.getBridgeSize());
-		while (!progressMap.isClearFailed() && !progressMap.isClear()) {
+		while (!progressMap.isMoveFail() && !progressMap.isClear()) {
 			moveBridgeOneTime(bridgeGame);
 			outputView.printMap(progressMap.getProgressMap());
 		}
