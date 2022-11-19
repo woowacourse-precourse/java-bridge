@@ -31,6 +31,8 @@ public class BridgeMaker {
     }
 
     /**
+     * 랜덤으로 생성된 숫자를 문자로 바꿔주는 메서드
+     * @param randBridgeNumber 랜덤으로 생성된 숫자
      * @return 입력된 다리 정수를 문자열로 반환. 0이면 "D", 1이면 "U"으로 반환한다.
      */
     private String convertBridgeNumberToString(int randBridgeNumber) {

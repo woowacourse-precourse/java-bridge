@@ -30,42 +30,54 @@ public class OutputView {
     /**
      * 한 pos(상, 하)에 대한 PlayLog를 출력하는 메서드
      * @param playLog 플레이어의 행동 로그 리스트
-     * @param pos "U" - 위, "D" - 아래
+     * @param printPosition 출력할 위치 (U : 위, D : 아래)
      * @param lastMoveSuccess 마지막 스탭에서는 성공하였는지?
      */
-    private void printPlayLogOnPos(final List<String> playLog, String pos, boolean lastMoveSuccess) {
+    private void printPlayLogOnPos(final List<String> playLog, final String printPosition, boolean lastMoveSuccess) {
         System.out.print('[');
+        int lastPlayLogIndex = playLog.size() - 1;
 
-        for (int i = 0; i < playLog.size() - 1; i++){
-            System.out.print(checkOneStep(playLog, i, pos, lastMoveSuccess));
+        for (int i = 0; i < lastPlayLogIndex; i++){
+            System.out.print(checkOneStep(playLog.get(i), printPosition));
             System.out.print('|');
         }
 
-        System.out.print(checkOneStep(playLog, playLog.size() - 1, pos, lastMoveSuccess));
+        System.out.print(checkLastStep(playLog.get(lastPlayLogIndex), printPosition, lastMoveSuccess));
         System.out.println(']');
     }
 
     /**
      * 한 스탭에서 어떤 출력을 해야하는지 알려주는 메서드
-     * @param playLog 플레이어의 행동 로그 리스트
-     * @param playLogIdx 몇 번째 스탭인지
-     * @param pos "U" - 위, "D" - 아래
+     * @param curPlayLog 비교하려는 현재 플레이 로그
+     * @param printPosition 출력할 위치 (U : 위, D : 아래)
+     * @return 출력할 메서드를 반환
+     */
+    private String checkOneStep(final String curPlayLog, String printPosition) {
+        if(curPlayLog.equals(printPosition))
+            return " O ";
+        return "   ";
+    }
+
+    /**
+     * 마지막 스탭에서 어떤 출력을 해야하는지 알려주는 메서드(실패는 마지막만 존재하므로)
+     * @param curPlayLog 비교하려는 현재 플레이 로그
+     * @param printPosition 출력할 위치 (U : 위, D : 아래)
      * @param lastMoveSuccess 마지막 스탭에서는 성공하였는지?
      * @return 출력할 메서드를 반환
      */
-    private String checkOneStep(final List<String> playLog, int playLogIdx, String pos, boolean lastMoveSuccess) {
-        if(playLog.get(playLogIdx).equals(pos)){
-            if(playLogIdx == playLog.size() - 1 && !lastMoveSuccess)
+    private String checkLastStep(final String curPlayLog, final String printPosition, boolean lastMoveSuccess) {
+        if(curPlayLog.equals(printPosition)){
+            if(!lastMoveSuccess)
                 return " X ";
             return " O ";
         }
-
         return "   ";
     }
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * @param bridgeGame
+     * @param bridgeGame 현재 진행되는 브릿지게임
+     * @param lastMoveSuccess 마지막 스탭에서는 성공하였는지?
      */
     public void printResult(final BridgeGame bridgeGame, boolean lastMoveSuccess){
         System.out.println("최종 게임 결과");

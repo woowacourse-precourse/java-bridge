@@ -35,9 +35,9 @@ public class InputView {
      * @param userInput 사용자 입력
      * @param possibleFirstString 가능한 첫번째 문자열
      * @param possibleSecondString 가능한 두번째 문자열
+     * @throws IllegalArgumentException possibleFirstString, possibleSecondString 아닌 문자열이 입력된 경우
      * @return 입력받은 문자열을 반환한다.
-     * @throws IllegalArgumentException
-                        possibleFirstString, possibleSecondString 아닌 문자열이 입력된 경우
+
      */
     private String isCorrectInputCompareByTwoString(String userInput, String possibleFirstString, String possibleSecondString) {
         if(userInput.length() == 1)
