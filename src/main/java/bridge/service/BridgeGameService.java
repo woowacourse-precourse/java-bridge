@@ -30,8 +30,12 @@ public class BridgeGameService {
 		return moveMap;
 	}
 
-	public void moveBridge(String moving, BridgeGame bridgeGame, List<List<String>> moveResult) {
+	public String checkMoveCommand(String moving) {
 		validMoving(moving);
+		return moving;
+	}
+
+	public void moveBridge(String moving, BridgeGame bridgeGame, List<List<String>> moveResult) {
 		bridgeGame.move(moving, moveResult);
 	}
 

@@ -53,19 +53,19 @@ public class BridgeGameController {
 	private List<List<String>> makeResultMap(BridgeGame bridgeGame) {
 		List<List<String>> moveMap = bridgeGameService.initGameMap();
 		while (!failedClear(moveMap) && moveMap.get(0).size() < bridgeGame.getBridgeSize()) {
-			crossBridge(bridgeGame, moveMap);
+			String moving = receiveMoveCommand();
+			crossBridge(moving, bridgeGame, moveMap);
 		}
 		return moveMap;
 	}
 
-	private void crossBridge(BridgeGame bridgeGame, List<List<String>> currentMap) {
+	private String receiveMoveCommand() {
 		try {
 			String moving = inputView.readMoving();
-			bridgeGameService.moveBridge(moving, bridgeGame, currentMap);
-			outputView.printMap(currentMap);
+			return bridgeGameService.checkMoveCommand(moving);
 		} catch (IllegalArgumentException e) {
 			System.out.print(e.getMessage());
-			crossBridge(bridgeGame, currentMap);
+			return receiveMoveCommand();
 		}
 	}
 
@@ -73,6 +73,16 @@ public class BridgeGameController {
 		List<String> upMap = currentMap.get(0);
 		List<String> downMap = currentMap.get(1);
 		return (checkInCorrect(upMap) || checkInCorrect(downMap));
+	}
+
+	private void crossBridge(String moving, BridgeGame bridgeGame, List<List<String>> currentMap) {
+		try {
+			bridgeGameService.moveBridge(moving, bridgeGame, currentMap);
+			outputView.printMap(currentMap);
+		} catch (IllegalArgumentException e) {
+			System.out.print(e.getMessage());
+			crossBridge(moving, bridgeGame, currentMap);
+		}
 	}
 
 	private boolean checkInCorrect(List<String> map) {
