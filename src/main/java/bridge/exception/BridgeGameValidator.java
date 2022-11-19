@@ -22,14 +22,15 @@ public class BridgeGameValidator {
         }
     }
 
-    public static void validateUpAndDown(String str){
-        if(!(str=="U" || str=="D")){
+    public static String validateUpAndDown(String str){
+        if(!(str.equals("U") || str.equals("D"))){
             throw new IllegalArgumentException(ERROR_MESSAGE_UP_AND_DOWN);
         }
+        return str;
     }
 
     public static void validateRestartAndQuit(String str){
-        if(!(str=="R" || str=="Q")){
+        if(!(str.equals("R") || str.equals("Q"))){
             throw new IllegalArgumentException(ERROR_MESSAGE_RESTART_AND_QUIT);
         }
     }
