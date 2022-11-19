@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.Validator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -12,7 +13,10 @@ public class InputView {
      */
     public static int inputBridgeSize() {
         OutputView.printInputBridgeSizeMessage();
-        return Integer.parseInt(Console.readLine());
+        String inputSize = Console.readLine();
+        Validator.validateInputBridgeSizeType(inputSize);
+        Validator.validateInputBridgeSizeRange(inputSize);
+        return Integer.parseInt(inputSize);
     }
 
     /**
@@ -20,13 +24,18 @@ public class InputView {
      */
     public static String inputMoving() {
         OutputView.printMovingSelectMessage();
-        return Console.readLine();
+        String moveWord = Console.readLine();
+        return moveWord;
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public static String readGameCommand() {
+    public static String inputGameCommand() {
         return Console.readLine();
     }
+
+
+
+
 }
