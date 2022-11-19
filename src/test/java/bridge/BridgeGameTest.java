@@ -24,6 +24,17 @@ public class BridgeGameTest {
         assertThat(userBridge).isEqualTo(result);
     }
 
+    @Test
+    void 재시작_테스트() {
+        BridgeGameManager bridgeGameManager = new BridgeGameManager();
+        int count = bridgeGameManager.getCount();
+        bridgeGame.retry(bridgeGameManager, userBridge, "R");
+
+        assertThat(userBridge.getUpBridge().isEmpty()).isTrue();
+        assertThat(userBridge.getDownBridge().isEmpty()).isTrue();
+        assertThat(bridgeGameManager.getCount()).isEqualTo(count+1);
+    }
+
     private static void moveResult(UserBridge result, int i) {
         if (now[i].equals(Direction.D)) {
             result.moveDownBridge(directions[i]);
