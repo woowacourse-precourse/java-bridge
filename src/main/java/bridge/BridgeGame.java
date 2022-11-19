@@ -1,7 +1,6 @@
 package bridge;
 
 import java.util.List;
-import java.util.Map;
 
 import static bridge.Moving.UP;
 import static bridge.Result.*;
@@ -12,7 +11,6 @@ import static bridge.Result.*;
 public class BridgeGame {
 
     private final List<String> bridge;
-    private boolean isWrongApproach = false;
     private int tryCount = 1;
 
     public BridgeGame(List<String> bridge) {
@@ -31,7 +29,6 @@ public class BridgeGame {
             }
             return DOWN_SUCCESS;
         }
-        isWrongApproach = true;
         if (bridge.get(index) == UP.getMoving()) {
             return UP_FAIL;
         }
@@ -47,7 +44,10 @@ public class BridgeGame {
 
     }
 
-    public boolean isWrongApproach() {
-        return isWrongApproach;
+    public boolean isWrongApproach(Result result) {
+        if (result == DOWN_FAIL || result == UP_FAIL) {
+            return true;
+        }
+        return false;
     }
 }
