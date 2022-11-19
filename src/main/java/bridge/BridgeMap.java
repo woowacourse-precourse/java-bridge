@@ -43,4 +43,11 @@ public class BridgeMap {
         downStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.DIVISION);
         downStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.BLANK);
     }
+
+    private void failMoveDown() {
+        upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.DIVISION);
+        upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.BLANK);
+        downStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.DIVISION);
+        downStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.REFUSE_MOVE);
+    }
 }

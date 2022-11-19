@@ -4,6 +4,7 @@ public enum BridgeShape {
     STARTING_POINT("[ "),
     DIVISION(" | "),
     ENDING_POINT(" ]"),
+    BLANK(" "),
     ALLOW_MOVE("O"),
     REFUSE_MOVE("X");
 
