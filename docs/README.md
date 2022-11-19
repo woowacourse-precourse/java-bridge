@@ -32,9 +32,9 @@
   - [x] UP("U"), DOWN("D") 목록을 가진다
   - [x] 입력 문자열이 U 또는 D임을 검증하고 변환하는 기능
 
-- [ ] 재시작 요청(RetryCommand)
-  - [ ] Retry("R"), Quit("Q") 목록을 가진다
-  - [ ] 입력 값이 R 또는 Q임을 검증하고 반환하는 기능
+- [x] 재시작 요청(RetryCommand)
+  - [x] Retry("R"), Quit("Q") 목록을 가진다
+  - [x] 입력 값이 R 또는 Q임을 검증하고 반환하는 기능
 
 - [ ] 게임 상태(GameStatus)
   - [ ] SUCCESS, IN_PROGRESS, FAIL 3가지 상태를 가진다
