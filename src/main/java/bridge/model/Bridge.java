@@ -36,7 +36,7 @@ public class Bridge {
         return moving.equals(bridge.get(index));
     }
 
-    public boolean success(BridgeResult bridgeResult) {
-        return bridge.size() == bridgeResult.getSize();
+    public int getSize() {
+        return bridge.size();
     }
 }

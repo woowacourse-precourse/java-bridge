@@ -40,4 +40,8 @@ public class BridgeResult {
     public void countTry() {
         tryCount += 1;
     }
+
+    public boolean isEnd(Bridge bridge) {
+        return bridge.getSize() == result.size();
+    }
 }
