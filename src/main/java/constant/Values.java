@@ -2,8 +2,8 @@ package constant;
 
 public class Values {
     public enum BridgeCase {
-        POSITIVE(1, "U","성공"),
-        NEGATIVE(0, "D","실패");
+        POSITIVE(1, "U", "성공"),
+        NEGATIVE(0, "D", "실패");
         private int flag;
         private String value;
         private String message;

@@ -7,13 +7,13 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    Checker checker=new Checker();
+    Checker checker = new Checker();
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String bridgeSize= Console.readLine();
+        String bridgeSize = Console.readLine();
         return checker.checkValidate(bridgeSize);
     }
 

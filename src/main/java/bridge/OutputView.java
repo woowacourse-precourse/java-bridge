@@ -14,11 +14,11 @@ public class OutputView {
     }
 
     public void printInputSize() {
-        System.out.println("\n"+INPUT_SIZE.getMessage());
+        System.out.println("\n" + INPUT_SIZE.getMessage());
     }
 
     public void printSelectMove() {
-        System.out.println("\n"+SELECT_MOVE.getMessage());
+        System.out.println("\n" + SELECT_MOVE.getMessage());
     }
 
     /**
@@ -30,7 +30,7 @@ public class OutputView {
     }
 
     public void printSelectRetry() {
-        System.out.println("\n"+SELECT_RETRY.getMessage());
+        System.out.println("\n" + SELECT_RETRY.getMessage());
     }
 
     /**
@@ -43,15 +43,15 @@ public class OutputView {
     }
 
     public void printGameSuccess(BridgeCase bridgeCase) {
-        System.out.println("\n"+String.format(GAME_SUCCESS.getMessage(),bridgeCase.getMessage()));
+        System.out.println("\n" + String.format(GAME_SUCCESS.getMessage(), bridgeCase.getMessage()));
     }
 
     public void printGameTry(int tryCount) {
-        System.out.println("\n"+String.format(GAME_TRY.getMessage(),tryCount));
+        System.out.println("\n" + String.format(GAME_TRY.getMessage(), tryCount));
     }
 
     public void printErrorMessage(IllegalArgumentException illegalArgumentException) {
-        System.out.println("\n"+String.format(ERROR_MESSAGE.getMessage(),illegalArgumentException.getMessage()));
+        System.out.println("\n" + String.format(ERROR_MESSAGE.getMessage(), illegalArgumentException.getMessage()));
     }
 
 }

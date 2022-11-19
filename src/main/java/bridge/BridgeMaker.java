@@ -20,19 +20,25 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        List<String> bridge=new ArrayList<>();
-        generateValue(bridge,size);
+        List<String> bridge = new ArrayList<>();
+        generateValue(bridge, size);
         return bridge;
     }
-    private List<String> generateValue(List<String> bridge,int size){
-        if(size==0)return bridge;
-        if(bridgeNumberGenerator.generate()==0)return generateValue(bridge,size,BridgeCase.NEGATIVE);
-        return generateValue(bridge,size,BridgeCase.POSITIVE);
+
+    private List<String> generateValue(List<String> bridge, int size) {
+        if (size == 0) {
+            return bridge;
+        }
+        if (bridgeNumberGenerator.generate() == 0) {
+            return generateValue(bridge, size, BridgeCase.NEGATIVE);
+        }
+        return generateValue(bridge, size, BridgeCase.POSITIVE);
     }
-    private List<String> generateValue(List<String> bridge,int size,BridgeCase bridgeCase){
+
+    private List<String> generateValue(List<String> bridge, int size, BridgeCase bridgeCase) {
         bridge.add(bridgeCase.getValue());
-        size-=1;
-        return generateValue(bridge,size);
+        size -= 1;
+        return generateValue(bridge, size);
     }
 
 }
