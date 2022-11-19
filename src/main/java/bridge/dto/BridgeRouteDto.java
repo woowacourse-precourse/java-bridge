@@ -17,7 +17,7 @@ public class BridgeRouteDto {
         return bridge;
     }
 
-    public List<String> getMovingHistory() {
+    public List<String> getMoveHistory() {
         return moveHistory;
     }
 }
