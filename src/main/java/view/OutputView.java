@@ -25,6 +25,7 @@ public class OutputView {
 		updateGameStateMapVerticalBar();
 		updateGameStateMapWhenMovingUp(moving, movingResult);
 		updateGameStateMapWhenMovingDown(moving, movingResult);
+		updateGameStateMapCloseSquareBrackets();
 		String currentGameStateMap = combineGameStateUpMapAndDownMap();
 	}
 
@@ -62,6 +63,11 @@ public class OutputView {
 			currentGameStateUpMap += (OUTPUT_TEXT_DO_NOT_GO);
 			currentGameStarteDownMap += OUTPUT_TEXT_MOVING_FAIL;
 		}
+	}
+	
+	private void updateGameStateMapCloseSquareBrackets() {
+		currentGameStateUpMap += OUTPUT_TEXT_CLOSE_SQUARE_BRACKETS;
+		currentGameStarteDownMap += OUTPUT_TEXT_CLOSE_SQUARE_BRACKETS;
 	}
 	
 	/**
