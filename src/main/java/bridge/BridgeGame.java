@@ -10,6 +10,7 @@ public class BridgeGame {
     private final BridgeMaker bridgeMaker;
     private Movement movement;
     private final BridgeMap bridgeMap = new BridgeMap();
+    private int tryCount = Constant.INITIAL_COUNT;
 
     public BridgeGame(BridgeMaker bridgeMaker) {
         this.bridgeMaker = bridgeMaker;
@@ -29,7 +30,7 @@ public class BridgeGame {
                 isContinue = retry();
             }
         } while (!movement.isFinish() && isContinue);
-        OutputView.printResult(bridgeMap.getMap(), movement);
+        OutputView.printResult(bridgeMap.getMap(), movement.isSuccess(), tryCount);
     }
 
     private void move(Moving moving) {
@@ -43,6 +44,7 @@ public class BridgeGame {
         if (command.isRetry()) {
             movement.clearMoving();
             bridgeMap.clearMap();
+            tryCount++;
             return true;
         }
         return false;
