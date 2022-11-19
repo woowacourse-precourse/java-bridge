@@ -1,16 +1,17 @@
-package bridge.domain;
+package bridge.domain.entity;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Bridge {
-    private List<String> bridgeList;
-    private int bridgeSize;
+    private List<String> bridgeInfo;
+    private int tryCnt;
 
     private Bridge() {}
 
-    public void init (List<String> bridgeList, int bridgeSize) {
-        this.bridgeList = bridgeList;
-        this.bridgeSize = bridgeSize;
+    public void init (List<String> bridgeInfo, int tryCnt) {
+        this.bridgeInfo = Collections.unmodifiableList(bridgeInfo);
+        this.tryCnt = tryCnt;
     }
 
     private static class BridgeHelper {
@@ -20,4 +21,16 @@ public class Bridge {
     public static Bridge getInstance() {
         return BridgeHelper.INSTANCE;
     }
+
+    public List<String> getBridgeInfo() {
+        return bridgeInfo;
+    }
+
+    public int getTryCnt() {
+        return tryCnt;
+    }
+
+
+
+
 }

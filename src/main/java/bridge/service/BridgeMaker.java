@@ -1,5 +1,6 @@
-package bridge;
+package bridge.service;
 
+import bridge.domain.Bridge;
 import bridge.type.DirectionType;
 import utils.BridgeNumberGenerator;
 
@@ -12,6 +13,7 @@ import java.util.List;
 public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
+    private final int initialTryCnt = 0;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
@@ -22,6 +24,13 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
+        Bridge bridge = Bridge.getInstance();
+        bridge.init(getBridgeList(size), initialTryCnt);
+        return bridge.getBridgeInfo();
+    }
+
+
+    public List<String> getBridgeList(int size) {
         List<String> bridge = new ArrayList<>();
         for (int idx = 0; idx < size; idx++) {
             bridge.add(getCrossable());
