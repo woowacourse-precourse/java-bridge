@@ -59,9 +59,9 @@ public class OutputView {
 
     private void printIsGameCompleted(boolean isGameCompleted){
         if(isGameCompleted){
-            System.out.println("게임 성공 여부: 성공");
+            System.out.println("\n게임 성공 여부: 성공");
             return;
         }
-        System.out.println("게임 성공 여부: 실패");
+        System.out.println("\n게임 성공 여부: 실패");
     }
 }
