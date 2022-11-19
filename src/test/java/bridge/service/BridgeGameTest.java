@@ -1,8 +1,8 @@
 package bridge.service;
 
 import bridge.system.util.BridgeMessageMaker;
-import bridge.view.InputView;
-import bridge.view.OutputView;
+import bridge.view.inputview.InputView;
+import bridge.view.outputview.OutputView;
 import bridge.vo.Bridge;
 import bridge.vo.Step;
 import org.junit.jupiter.api.Assertions;

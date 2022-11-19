@@ -6,8 +6,13 @@ import bridge.system.util.BridgeMaker;
 import bridge.system.util.BridgeMessageMaker;
 import bridge.system.util.BridgeNumberGenerator;
 import bridge.system.util.BridgeRandomNumberGenerator;
-import bridge.view.InputView;
-import bridge.view.OutputView;
+import bridge.view.inputview.InputView;
+import bridge.view.inputview.InputViewExceptionHandlingProxy;
+import bridge.view.inputview.InputViewInterface;
+import bridge.view.outputview.OutputView;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Proxy;
 
 public class DependencyContainer {
     public static GameController gameController() {
@@ -22,8 +27,14 @@ public class DependencyContainer {
         return new BridgeMaker(bridgeNumberGenerator());
     }
 
-    public static InputView inputView() {
-        return new InputView();
+    public static InputViewInterface inputView() {
+        InputViewInterface target = new InputView();
+        InvocationHandler invocationHandler
+                = new InputViewExceptionHandlingProxy(target, outputView());
+        return (InputViewInterface) Proxy.newProxyInstance(
+                InputViewInterface.class.getClassLoader(),
+                new Class[]{InputViewInterface.class},
+                invocationHandler);
     }
 
     public static BridgeMessageMaker bridgeMessageMaker() {

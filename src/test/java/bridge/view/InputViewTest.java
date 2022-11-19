@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.mock.MockInputView;
 import bridge.system.validation.InputToBridgeSizeValidator;
+import bridge.view.inputview.InputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

@@ -1,7 +1,7 @@
 package bridge.mock;
 
 import bridge.mock.exception.MockInputNotFoundException;
-import bridge.view.InputView;
+import bridge.view.inputview.InputView;
 
 import java.util.Arrays;
 import java.util.Iterator;

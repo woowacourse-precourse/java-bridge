@@ -1,7 +1,7 @@
 package bridge.service;
 
-import bridge.view.InputView;
-import bridge.view.OutputView;
+import bridge.view.inputview.InputViewInterface;
+import bridge.view.outputview.OutputView;
 import bridge.vo.*;
 
 import java.util.ArrayList;
@@ -12,9 +12,9 @@ import java.util.List;
  */
 public class BridgeGame {
     private final OutputView outputView;
-    private final InputView inputView;
+    private final InputViewInterface inputView;
 
-    public BridgeGame(OutputView outputView, InputView inputView) {
+    public BridgeGame(OutputView outputView, InputViewInterface inputView) {
         this.outputView = outputView;
         this.inputView = inputView;
     }

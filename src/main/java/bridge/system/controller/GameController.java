@@ -2,8 +2,8 @@ package bridge.system.controller;
 
 import bridge.service.BridgeGame;
 import bridge.system.util.BridgeMaker;
-import bridge.view.InputView;
-import bridge.view.OutputView;
+import bridge.view.inputview.InputViewInterface;
+import bridge.view.outputview.OutputView;
 import bridge.vo.Bridge;
 import bridge.vo.GameResult;
 import bridge.vo.Step;
@@ -11,12 +11,12 @@ import bridge.vo.Step;
 import java.util.List;
 
 public class GameController {
-    private final InputView inputView;
+    private final InputViewInterface inputView;
     private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
     private final BridgeGame bridgeGame;
 
-    public GameController(InputView inputView, OutputView outputView, BridgeMaker bridgeMaker, BridgeGame bridgeGame) {
+    public GameController(InputViewInterface inputView, OutputView outputView, BridgeMaker bridgeMaker, BridgeGame bridgeGame) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.bridgeMaker = bridgeMaker;
