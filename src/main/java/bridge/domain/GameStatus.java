@@ -1,7 +1,7 @@
 package bridge.domain;
 
 public enum GameStatus {
-    SUCCESS(true),
+    SUCCESS(false),
     IN_PROGRESS(false),
     FAIL(true);
 
