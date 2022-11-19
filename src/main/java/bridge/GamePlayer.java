@@ -16,13 +16,11 @@ public class GamePlayer {
     public void run() {
         String restartOrQuit = "";
         boolean isNotMovalbe = false;
-        BridgeLog log = null;
 
         do {
             bridgeGame.move(inputView.readMoving());
 
-            log = bridgeGame.getLog();
-            outputView.printMap(log);
+            outputView.printMap(bridgeGame.getLog());
 
             if (bridgeGame.isEnd()) {
                 break;
@@ -39,7 +37,7 @@ public class GamePlayer {
 
         } while (restartOrQuit != GameKeySet.QUIT.getKeySet());
 
-        outputView.printResult(log, true, retryCount);
+        outputView.printResult(bridgeGame.getLog(), true, retryCount);
     }
 
     private int readBridgeSize() {

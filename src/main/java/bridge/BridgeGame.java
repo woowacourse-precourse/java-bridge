@@ -1,6 +1,5 @@
 package bridge;
 
-import java.net.PortUnreachableException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +10,7 @@ public class BridgeGame {
     private final BridgeMaker bridgeMaker;
     private final List<String> bridgeLine;
     private final List<String> userCrossBridge;
+    private final BridgeLog bridgeLog;
 
     public BridgeGame(int bridgeSize) {
         this(BridgeMaker.getInstanceByRandomGenerator(), bridgeSize);
@@ -20,6 +20,7 @@ public class BridgeGame {
         this.bridgeMaker = bridgeMaker;
         this.bridgeLine = bridgeMaker.makeBridge(bridgeSize);
         this.userCrossBridge = new ArrayList<>(bridgeSize);
+        this.bridgeLog = new BridgeLog();
     }
 
     /**
@@ -33,6 +34,7 @@ public class BridgeGame {
 
     public void move(String moveKey) {
         userCrossBridge.add(moveKey);
+        bridgeLog.addLog(bridgeLine.get(userCrossBridge.size() - 1), moveKey);
     }
 
     /**
@@ -42,6 +44,7 @@ public class BridgeGame {
      */
     public void retry() {
         userCrossBridge.clear();
+        bridgeLog.clear();
     }
 
     public boolean isMovable() {
@@ -67,6 +70,6 @@ public class BridgeGame {
     }
 
     public BridgeLog getLog() {
-        return new BridgeLog(bridgeLine, userCrossBridge);
+        return bridgeLog;
     }
 }

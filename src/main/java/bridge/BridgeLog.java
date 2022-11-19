@@ -6,20 +6,30 @@ import java.util.List;
 public class BridgeLog {
     private final List<List<String>> map;
 
-    public BridgeLog(List<String> bridgeLine, List<String> userCrossLog) {
+    private static final int UP_INDEX = 0;
+    private static final int DOWN_INDEX = 1;
+
+    public BridgeLog() {
         this.map = List.of(new ArrayList<>(), new ArrayList<>());
-        buildinBridgeLog(bridgeLine, userCrossLog);
     }
 
-    private void buildinBridgeLog(List<String> bridgeLine, List<String> userCrossLog) {
-        for (int index = 0; index < userCrossLog.size(); index++) {
-            map.get(0).add(" ");
-            map.get(1).add(" ");
+    public void addLog(String bridge, String userCross) {
+        map.get(UP_INDEX).add(" ");
+        map.get(DOWN_INDEX).add(" ");
 
-            int wentUserPlace = wentUserPlace(userCrossLog.get(index));
-            String moveResult = moveResult(bridgeLine.get(index), userCrossLog.get(index));
-            map.get(wentUserPlace).set(index, moveResult);
-        }
+        replace(bridge, userCross);
+    }
+
+    public void clear() {
+        map.get(UP_INDEX).clear();
+        map.get(DOWN_INDEX).clear();
+    }
+
+    private void replace(String bridge, String userCross) {
+        int wentUserPlace = wentUserPlace(userCross);
+        String moveResult = moveResult(bridge, userCross);
+
+        map.get(wentUserPlace).set(map.get(UP_INDEX).size() - 1, moveResult);
     }
 
     private String moveResult(String str1, String str2) {
@@ -31,9 +41,9 @@ public class BridgeLog {
 
     private int wentUserPlace(String moveKey) {
         if (moveKey.equals(GameKeySet.UP.getKeySet())) {
-            return 0;
+            return UP_INDEX;
         }
-        return 1;
+        return DOWN_INDEX;
     }
 
     public List<List<String>> getMap() {
@@ -43,6 +53,4 @@ public class BridgeLog {
     public List<String> getMap(int index) {
         return map.get(index);
     }
-
-
 }
