@@ -33,4 +33,20 @@ class InputViewTest {
         assertThat(result).isEqualTo(0);
     }
 
+    @DisplayName("이동할 칸 입력 테스트")
+    @ValueSource(strings = {"U", "D"})
+    @ParameterizedTest
+    void readMoving(String input) {
+        String result = inputView.readMoving(input);
+        assertThat(result).isEqualTo(input);
+    }
+
+    @DisplayName("잘못된 값 입력 예외 처리")
+    @ValueSource(strings = {"A", "a", "1"})
+    @ParameterizedTest
+    void unValidEnterMoving(String input) {
+        String result = inputView.readMoving(input);
+        assertThat(result).isEqualTo(null);
+    }
+
 }
