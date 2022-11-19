@@ -8,19 +8,18 @@ import java.util.Map;
 public class BridgeGameStarter {
 
     private final Map<String, Boolean> gameStatusFlag = new HashMap<>();
+    private final BridgeMaker bridgeMaker;
     private final InputView inputView;
     private final OutputView outputView;
-    private final BridgeMaker bridgeMaker;
     private final BridgeGame bridgeGame;
-
     private List<String> bridge = new ArrayList<>();
     private List<String> result = new ArrayList<>();
     private int tryCount = 1;
 
-    public BridgeGameStarter(InputView inputView, OutputView outputView, BridgeMaker bridgeMaker, BridgeGame bridgeGame) {
+    public BridgeGameStarter( BridgeMaker bridgeMaker, InputView inputView, OutputView outputView, BridgeGame bridgeGame) {
+        this.bridgeMaker = bridgeMaker;
         this.inputView = inputView;
         this.outputView = outputView;
-        this.bridgeMaker = bridgeMaker;
         this.bridgeGame = bridgeGame;
     }
 

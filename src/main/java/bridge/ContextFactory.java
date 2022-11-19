@@ -15,13 +15,14 @@ public class ContextFactory {
         return new RandomNumberHandlerImpl();
     }
 
+    public BridgeMaker getBridgeMaker() {
+        return new BridgeMaker(getBridgeNumberGenerator(), getRandomNumberHandler());
+    }
+
     public InputValidator getInputValidator() {
         return new InputValidatorImpl();
     }
 
-    public BridgeMaker getBridgeMaker() {
-        return new BridgeMaker(getBridgeNumberGenerator(), getRandomNumberHandler());
-    }
     public InputView getInputView() {
         return new InputView(getInputValidator());
     }
@@ -30,10 +31,11 @@ public class ContextFactory {
         return new OutputView();
     }
 
-    public BridgeGameStarter getBridgeGameStarter() {
-        return new BridgeGameStarter(getInputView(), getOutputView(), getBridgeMaker(), getBridgeGame());
-    }
     public BridgeGame getBridgeGame() {
         return new BridgeGame();
+    }
+
+    public BridgeGameStarter getBridgeGameStarter() {
+        return new BridgeGameStarter(getBridgeMaker(), getInputView(), getOutputView(), getBridgeGame());
     }
 }
