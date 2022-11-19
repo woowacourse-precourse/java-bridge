@@ -28,26 +28,32 @@ public class PassingPositions {
         for (Position position : passingPositions) {
             String compare = bridge.compare(position);
             if (position.getDirection().isUpper()) {
-                addUp(compare, upDirections, downDirections);
+                movableWithUp(compare, upDirections, downDirections);
             }
             if (!position.getDirection().isUpper()) {
-                addDown(compare, upDirections, downDirections);
+                movableWithDown(compare, upDirections, downDirections);
             }
         }
         return new Result(upDirections, downDirections);
     }
 
-    private void addUp(String compare, List<String> upDirections, List<String> downDirections) {
-        upDirections.add(SEPARATOR);
-        upDirections.add(compare);
-        downDirections.add(SEPARATOR);
-        downDirections.add(SPACE);
+    private void movableWithUp(String compare, List<String> upDirections, List<String> downDirections) {
+        addMovableDirection(upDirections, compare);
+        addWrongDirection(downDirections);
     }
 
-    private void addDown(String compare, List<String> upDirections, List<String> downDirections) {
-        upDirections.add(SEPARATOR);
-        upDirections.add(SPACE);
-        downDirections.add(SEPARATOR);
-        downDirections.add(compare);
+    private void movableWithDown(String compare, List<String> upDirections, List<String> downDirections) {
+        addMovableDirection(downDirections, compare);
+        addWrongDirection(upDirections);
+    }
+
+    private void addMovableDirection(List<String> directions, String compare) {
+        directions.add(SEPARATOR);
+        directions.add(compare);
+    }
+
+    private void addWrongDirection(List<String> directions) {
+        directions.add(SEPARATOR);
+        directions.add(SPACE);
     }
 }
