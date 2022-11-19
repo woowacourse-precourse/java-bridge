@@ -9,6 +9,12 @@ BridgeMaker : 다리의 길이를 입력 받아서 다리를 생성해주는 역
 InputView : 사용자로부터 입력을 받는 역할을 한다
 OutputView : 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다
 BridgeNumberGenerator : 0혹은 1의 값을 생성한다
+--
+MoveResult : 이동 결과에 대한 enum 정의
+BridgeType : 다리 위치에 대한 enum 정의
+--
+Bridge : 객체스러운 List<String>
+
 
 ## 기능 구현 설계  
 - [ ] 다리 길이를 입력받는다  
