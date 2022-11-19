@@ -31,4 +31,15 @@ class InputViewTest {
         }
     }
 
+    @Test
+    void 커맨드_예외_테스트() {
+        try{
+            InputView inputView = new InputView();
+            String command = "F";
+            inputView.commandValidate(command);
+        } catch (IllegalArgumentException e){
+            e.getMessage().contains(ERROR_MESSAGE);
+        }
+    }
+
 }
