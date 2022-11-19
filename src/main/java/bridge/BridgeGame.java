@@ -4,9 +4,12 @@ package bridge;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private static final String TEXT_GAME_START = "다리 건너기 게임을 시작합니다.";
 
     public void runGame() {
         // TODO: Implement the method.
+        System.out.println(TEXT_GAME_START);
+        System.out.println();
     }
 
     /**
