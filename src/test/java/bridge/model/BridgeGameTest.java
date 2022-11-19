@@ -3,7 +3,7 @@ package bridge.model;
 import static org.assertj.core.api.Assertions.*;
 
 import bridge.domain.Bridge;
-import bridge.domain.BridgeFlag;
+import bridge.domain.ResultFlag;
 import bridge.domain.UpDownFlag;
 import bridge.domain.User;
 import java.util.List;
@@ -30,7 +30,7 @@ class BridgeGameTest {
         bridgeGame.move(UpDownFlag.DOWN);
         // expect
         assertThat(bridgeGame.isCrossOver())
-                .isEqualTo(BridgeFlag.SUCCESS);
+                .isEqualTo(ResultFlag.SUCCESS);
     }
 
     @Test
@@ -41,7 +41,7 @@ class BridgeGameTest {
         bridgeGame.move(UpDownFlag.DOWN);
         // expect
         assertThat(bridgeGame.isCrossOver())
-                .isEqualTo(BridgeFlag.NOTHING);
+                .isEqualTo(ResultFlag.NOTHING);
     }
 
     @Test
@@ -53,7 +53,7 @@ class BridgeGameTest {
         bridgeGame.move(UpDownFlag.UP);
         // expect
         assertThat(bridgeGame.isCrossOver())
-                .isEqualTo(BridgeFlag.FAIL);
+                .isEqualTo(ResultFlag.FAIL);
     }
 
     @Test
@@ -65,7 +65,7 @@ class BridgeGameTest {
         bridgeGame.move(UpDownFlag.DOWN);
         // expect
         assertThat(bridgeGame.isCrossOver())
-                .isEqualTo(BridgeFlag.FAIL);
+                .isEqualTo(ResultFlag.FAIL);
     }
 
     @Test

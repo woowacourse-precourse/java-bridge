@@ -1,7 +1,7 @@
 package bridge.controller;
 
 import bridge.domain.Bridge;
-import bridge.domain.BridgeFlag;
+import bridge.domain.ResultFlag;
 import bridge.domain.User;
 import bridge.model.BridgeGame;
 import bridge.service.BridgeMaker;
@@ -35,11 +35,11 @@ public class BridgeController {
     private GameFlag loop() {
         bridgeGame.move(bridgeView.receiveMoving());
         bridgeView.printMap(bridgeGame.getMap());
-        BridgeFlag flag = bridgeGame.isCrossOver();
-        if (flag == BridgeFlag.SUCCESS) {
+        ResultFlag result = bridgeGame.isCrossOver();
+        if (result == ResultFlag.SUCCESS) {
             return GameFlag.QUIT;
         }
-        if (flag == BridgeFlag.FAIL) {
+        if (result == ResultFlag.FAIL) {
             return bridgeView.receiveRestart();
         }
         return loop();

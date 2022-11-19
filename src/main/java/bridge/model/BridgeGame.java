@@ -3,7 +3,7 @@ package bridge.model;
 import static bridge.ExceptionConst.*;
 
 import bridge.domain.Bridge;
-import bridge.domain.BridgeFlag;
+import bridge.domain.ResultFlag;
 import bridge.domain.Map;
 import bridge.domain.UpDownFlag;
 import bridge.domain.User;
@@ -23,17 +23,17 @@ public class BridgeGame {
         this.map = new Map(bridge, user);
     }
 
-    public BridgeFlag isCrossOver() {
+    public ResultFlag isCrossOver() {
         validateLength(bridge, user);
         for (int i = 0; i < user.getMovedLength(); i++) {
             if (bridge.getIndexOf(i) != user.getIndexOf(i)) {
-                return BridgeFlag.FAIL;
+                return ResultFlag.FAIL;
             }
         }
         if (bridge.getLength() == user.getMovedLength()) {
-            return BridgeFlag.SUCCESS;
+            return ResultFlag.SUCCESS;
         }
-        return BridgeFlag.NOTHING;
+        return ResultFlag.NOTHING;
     }
 
     private void validateLength(Bridge bridge, User user) {

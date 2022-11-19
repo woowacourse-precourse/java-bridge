@@ -8,8 +8,8 @@ import java.util.List;
 public class Map {
     private final Bridge bridge;
     private final User user;
-    private final List<BridgeFlag> upper = new ArrayList<>();
-    private final List<BridgeFlag> lower = new ArrayList<>();
+    private final List<ResultFlag> upper = new ArrayList<>();
+    private final List<ResultFlag> lower = new ArrayList<>();
 
     public Map(Bridge bridge, User user) {
         this.bridge = bridge;
@@ -59,30 +59,30 @@ public class Map {
     }
 
     private void crossUpperSuccess() {
-        upper.add(BridgeFlag.SUCCESS);
-        lower.add(BridgeFlag.NOTHING);
+        upper.add(ResultFlag.SUCCESS);
+        lower.add(ResultFlag.NOTHING);
     }
 
     private void crossLowerSuccess() {
-        upper.add(BridgeFlag.NOTHING);
-        lower.add(BridgeFlag.SUCCESS);
+        upper.add(ResultFlag.NOTHING);
+        lower.add(ResultFlag.SUCCESS);
     }
 
     private void crossUpperFail() {
-        upper.add(BridgeFlag.FAIL);
-        lower.add(BridgeFlag.NOTHING);
+        upper.add(ResultFlag.FAIL);
+        lower.add(ResultFlag.NOTHING);
     }
 
     private void crossLowerFail() {
-        upper.add(BridgeFlag.NOTHING);
-        lower.add(BridgeFlag.FAIL);
+        upper.add(ResultFlag.NOTHING);
+        lower.add(ResultFlag.FAIL);
     }
 
-    public List<BridgeFlag> getUpper() {
+    public List<ResultFlag> getUpper() {
         return List.copyOf(upper);
     }
 
-    public List<BridgeFlag> getLower() {
+    public List<ResultFlag> getLower() {
         return List.copyOf(lower);
     }
 }

@@ -1,7 +1,7 @@
 package bridge.view;
 
 import bridge.controller.GameFlag;
-import bridge.domain.BridgeFlag;
+import bridge.domain.ResultFlag;
 import bridge.domain.Map;
 import bridge.domain.UpDownFlag;
 
@@ -39,7 +39,7 @@ public class BridgeView {
         return GameFlag.ofString(input);
     }
 
-    public void printResult(Map map, BridgeFlag result, int tryCount) {
+    public void printResult(Map map, ResultFlag result, int tryCount) {
         outputView.printResult(map, result, tryCount);
     }
 }

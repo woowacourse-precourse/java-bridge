@@ -44,9 +44,9 @@ class MapTest {
         map.update();
         // then
         assertThat(map.getUpper())
-                .isEqualTo(List.of(BridgeFlag.SUCCESS, BridgeFlag.NOTHING, BridgeFlag.SUCCESS));
+                .isEqualTo(List.of(ResultFlag.SUCCESS, ResultFlag.NOTHING, ResultFlag.SUCCESS));
         assertThat(map.getLower())
-                .isEqualTo(List.of(BridgeFlag.NOTHING, BridgeFlag.FAIL, BridgeFlag.NOTHING));
+                .isEqualTo(List.of(ResultFlag.NOTHING, ResultFlag.FAIL, ResultFlag.NOTHING));
     }
 
     @Test
@@ -60,9 +60,9 @@ class MapTest {
         map.update();
         // then
         assertThat(map.getUpper())
-                .isEqualTo(List.of(BridgeFlag.SUCCESS, BridgeFlag.SUCCESS, BridgeFlag.SUCCESS));
+                .isEqualTo(List.of(ResultFlag.SUCCESS, ResultFlag.SUCCESS, ResultFlag.SUCCESS));
         assertThat(map.getLower())
-                .isEqualTo(List.of(BridgeFlag.NOTHING, BridgeFlag.NOTHING, BridgeFlag.NOTHING));
+                .isEqualTo(List.of(ResultFlag.NOTHING, ResultFlag.NOTHING, ResultFlag.NOTHING));
     }
 
     @Test

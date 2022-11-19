@@ -1,13 +1,13 @@
 package bridge.domain;
 
-public enum BridgeFlag {
+public enum ResultFlag {
     SUCCESS("O"),
     FAIL("X"),
     NOTHING(" ");
 
     private final String flag;
 
-    BridgeFlag(String flag) {
+    ResultFlag(String flag) {
         this.flag = flag;
     }
 
