@@ -2,7 +2,7 @@ package bridge.model;
 
 public class GameDTO {
     private static int startCount = 0;
-    private static boolean success = false;
+    private static boolean success = true;
     private static boolean reStart = false;
 
     public static int getStartCount() {

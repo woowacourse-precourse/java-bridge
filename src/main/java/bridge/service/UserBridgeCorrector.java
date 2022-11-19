@@ -8,6 +8,6 @@ public class UserBridgeCorrector {
     public List<String> addBridge(String movement) {
         List<String> bridge = BridgeDTO.getUserResult();
         bridge.add(movement);
-        return BridgeDTO.getUserResult();
+        return bridge;
     }// correctBridge
 } // end class

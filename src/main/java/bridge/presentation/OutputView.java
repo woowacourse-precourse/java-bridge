@@ -8,6 +8,7 @@ import java.util.List;
 public class OutputView {
     private final String STARTING_SENTENCE = "다리 건너기 게임을 시작합니다." + System.lineSeparator() + "다리의 길이를 입력해주세요.";
     private final String MOVING_SENTENCE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -24,11 +25,11 @@ public class OutputView {
     public void printResult() {
     }
 
-    public void startGuide(){
+    public void startGuide() {
         System.out.println(STARTING_SENTENCE);
     }//startGuide
 
-    public void moveGuide(){
+    public void moveGuide() {
         System.out.println(MOVING_SENTENCE);
     }//moveGuide
 }
