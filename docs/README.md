@@ -11,6 +11,7 @@
 
 ### [] 사용자 입력 기능
 - 사용자로부터 값을 입력받는다.
+  - *InputView#readBridgeSize()*
 
 ### [] 콘솔 출력 기능
 - 게임 진행에 필요한 안내 멘트를 출력한다.
@@ -27,13 +28,13 @@
 ### [☑️] 제한사항 검증 기능
 - 사용자가 입력한 값에 대한 검증 기능을 제공한다. 다음과 같은 경우 예외 사항으로 판단한다.
   - [예외] 입력받은 다리의 길이가 숫자인지 검증한다.☑️
-    - *ValidationUtil#checkNumberType*
+    - *ValidationUtil#checkNumberType()*
   - [예외] 입력받은 다리의 길이가 3~20 사이의 값을 가지는지 검증한다.
-    - *ValidationUtil#checkNumberRange*
+    - *ValidationUtil#checkNumberRange()*
   - [예외] 입력받은 플레이어가 이동할 칸이 U 혹은 D인지 검증한다.
-    - *ValidationUtil#validatePlayerMoveInput*
+    - *ValidationUtil#validatePlayerMoveInput()*
   - [예외] 입력받은 재시작/종료 여부가 R 혹은 Q인지 검증한다. 
-    - *ValidationUtil#validatePlayControlInput*
+    - *ValidationUtil#validatePlayControlInput()*
 - 예외 사항에 대해서는 `IllegalArgumentException`을 발생시킨다.
 
 ### [] 다리에 대한 랜덤 숫자 부여 기능
