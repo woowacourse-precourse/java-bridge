@@ -31,8 +31,6 @@ public class BridgeGameController {
         game.saveBridge(bridge);
 
         play();
-
-        // 종료(1인 경우, 성공적인 로직은 바로 종료)
         this.outputView.printResult(game.getResult());
     }
 
@@ -59,7 +57,7 @@ public class BridgeGameController {
             replay();
         }
         else if (command.equals("Q")) {
-            this.outputView.printResult(game.getResult());
+            // 아무 일도 일어나지 않고 종료 로직으로 이동
         } else {
             throw new IllegalArgumentException("R, Q 이외에는 입력할 수 없습니다");
         }
