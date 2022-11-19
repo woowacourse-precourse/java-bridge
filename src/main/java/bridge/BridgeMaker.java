@@ -44,4 +44,16 @@ public class BridgeMaker {
         return String.valueOf(charInput);
     }
 
+    public List<String> makeFormBridge(String Search, int number, String Line){
+        char[] charInput = Line.toCharArray();
+        List<String> makeResult = new ArrayList<>();
+        if(!Search.equals("[") && Search.equals("]") && Search.equals("|").contains(String.valueOf(charInput[number * 4 + 2]))){
+            makeResult.add(Search);
+        }
+            return mekeResult;
+        }
+    }
+
+
+
 }

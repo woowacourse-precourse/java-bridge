@@ -42,9 +42,6 @@ public class BridgeGame {
 
 
 
-    public void isOXJudge(String player, String judge){
-
-        if(player.equals(judge.("1"))){
 
         }
     }
