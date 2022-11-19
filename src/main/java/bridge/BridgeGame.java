@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
  */
 public class BridgeGame {
 
-    public static final String RETRY_COMMAND = "R";
+    private static final String RETRY_COMMAND = "R";
 
     private final List<String> bridge;
     private final List<String> userAnswer = new ArrayList<>();

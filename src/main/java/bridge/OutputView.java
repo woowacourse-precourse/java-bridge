@@ -8,13 +8,13 @@ import java.util.StringJoiner;
  */
 public class OutputView {
 
-    public static final String UP_BRIDGE = "U";
-    public static final String DOWN_BRIDGE = "D";
-    public static final String FINAL_TEST_RESULT = "\n최종 게임 결과";
-    public static final String NUMBER_OF_TRY_RESULT = "총 시도한 횟수: %d";
-    public static final String GAME_SUCCESS_OR_NOT = "\n게임 성공 여부: %s";
-    public static final String GAME_SUCCESS = "성공";
-    public static final String GAME_FAIL = "실패";
+    private static final String UP_BRIDGE = "U";
+    private static final String DOWN_BRIDGE = "D";
+    private static final String FINAL_TEST_RESULT = "\n최종 게임 결과";
+    private static final String NUMBER_OF_TRY_RESULT = "총 시도한 횟수: %d";
+    private static final String GAME_SUCCESS_OR_NOT = "\n게임 성공 여부: %s";
+    private static final String GAME_SUCCESS = "성공";
+    private static final String GAME_FAIL = "실패";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
