@@ -11,12 +11,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class BridgeGameTest {
 
+    private final int bridgeSize = 3;
     private BridgeGame bridgeGame;
 
     @BeforeEach
     void init() {
-        BridgeSize bridgeSize = new BridgeSize(3);
-        bridgeGame = new BridgeGame(bridgeSize);
+        bridgeGame = new BridgeGame();
     }
 
     @DisplayName("다리를 건넌다면 현재 위치가 1 증가한다.")
@@ -24,7 +24,7 @@ class BridgeGameTest {
     void increasePosition() {
         int curPosition = bridgeGame.getPosition();
 
-        bridgeGame.move();
+        bridgeGame.move(bridgeSize);
 
         assertThat(bridgeGame.getPosition()).isEqualTo(curPosition + 1);
     }
@@ -33,9 +33,9 @@ class BridgeGameTest {
     @Test
     void success() {
         IntStream.range(0, 3)
-                .forEach(x -> bridgeGame.move());
+                .forEach(x -> bridgeGame.move(bridgeSize));
 
-        boolean gameSuccess = bridgeGame.isGameSuccess();
+        boolean gameSuccess = bridgeGame.isGameSuccess(bridgeSize);
 
         assertThat(gameSuccess).isTrue();
     }
@@ -44,7 +44,7 @@ class BridgeGameTest {
     @DisplayName("재시작하는 경우 현재 위치가 0으로 초기화된다.")
     @Test
     void retryPosition() {
-        bridgeGame.move();
+        bridgeGame.move(bridgeSize);
 
         bridgeGame.retry();
 
@@ -55,7 +55,7 @@ class BridgeGameTest {
     @Test
     void retryCount() {
         int retryCount = bridgeGame.getRetryCount();
-        bridgeGame.move();
+        bridgeGame.move(bridgeSize);
 
         bridgeGame.retry();
 
