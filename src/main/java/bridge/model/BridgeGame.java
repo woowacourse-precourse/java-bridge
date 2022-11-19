@@ -2,6 +2,7 @@ package bridge.model;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.MapMaker;
 import bridge.model.bridge.Bridge;
 import bridge.model.bridge.Node;
 import java.util.List;
@@ -15,10 +16,10 @@ public class BridgeGame {
      * BridgeGame의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
      * 게임 진행을 위해 필요한 메서드를 추가 하거나 변경할 수 있다.
      */
-    private static Bridge bridge;
-    private static PlayerSteps steps;
+    private Bridge bridge;
+    private PlayerSteps steps;
 
-    private static BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
 
     public boolean survived() {
@@ -61,5 +62,9 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+    }
+
+    public List<String> makeResult() {
+        return MapMaker.make(bridge, steps);
     }
 }

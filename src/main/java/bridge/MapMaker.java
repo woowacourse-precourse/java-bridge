@@ -13,54 +13,48 @@ public class MapMaker {
     private static final String EMPTY = " ";
 
     public static List<String> make(Bridge bridge, PlayerSteps steps) {
-        Map mapWithoutLast = makeMapWithoutLastColumn(steps.getSteps());
-        MapColumn lastColumn = compareAndReturnLastColumn(bridge, steps);
-        Map completeMap = mapWithoutLast.add(lastColumn);
+        Map mapWithoutLastColumn = makeMapWithoutLastColumn(steps.getSteps());
+        MapColumn lastColumn = makeLastColumnByComparison(bridge, steps);
+
+        Map completeMap = mapWithoutLastColumn.add(lastColumn);
+
         String up = completeMap.upperRow();
         String down = completeMap.lowerRow();
+
         return List.of(up, down);
     }
 
-    private static MapColumn compareAndReturnLastColumn(Bridge bridge, PlayerSteps steps) {
-        String result = compareLastStepResult(bridge, steps);
-        return convertToColumn(steps, result);
+    private static MapColumn makeLastColumnByComparison(Bridge bridge, PlayerSteps steps) {
+        String comparisonResult = compareLastStepWithBridge(bridge, steps);
+        return convertToColumn(steps, comparisonResult);
     }
 
-    private static MapColumn convertToColumn(PlayerSteps steps, String result) {
-        String upWithoutLast = EMPTY;
-        String downWithoutLast = EMPTY;
-        if (lastPlayerStepIsUp(steps)) {
-            upWithoutLast = result;
-            return new MapColumn(upWithoutLast, downWithoutLast);
+    private static MapColumn convertToColumn(PlayerSteps steps, String lastStepResult) {
+        if (steps.lastStepEquals(Node.UP)) {
+            return new MapColumn(lastStepResult, EMPTY);
         }
-        downWithoutLast = result;
-        return new MapColumn(upWithoutLast, downWithoutLast);
+        return new MapColumn(EMPTY, lastStepResult);
     }
 
-    private static boolean lastPlayerStepIsUp(PlayerSteps steps) {
-        return steps.getLastStep().equals(Node.UP);
-    }
-
-    private static String compareLastStepResult(Bridge bridge, PlayerSteps steps) {
-        String result = INCORRECT_NODE;
+    private static String compareLastStepWithBridge(Bridge bridge, PlayerSteps steps) {
         if (steps.isLastStepSameWithBridge(bridge)) {
-            result = CORRECT_NODE;
+            return CORRECT_NODE;
         }
-        return result;
+        return INCORRECT_NODE;
     }
 
     private static Map makeMapWithoutLastColumn(List<Node> bridgeNodes) {
         Map mapWithOutLastColumn = new Map();
 
         for (int i = 0; i < bridgeNodes.size() - 1; i++) {
-            MapColumn columnOfMap = drawAColumnFromSteps(bridgeNodes, i);
+            MapColumn columnOfMap = makeAColumnFromSteps(bridgeNodes, i);
             mapWithOutLastColumn.add(columnOfMap);
         }
 
         return mapWithOutLastColumn;
     }
 
-    private static MapColumn drawAColumnFromSteps(List<Node> steps, int nodeIdx) {
+    private static MapColumn makeAColumnFromSteps(List<Node> steps, int nodeIdx) {
         String upAppend = EMPTY, downAppend = EMPTY;
         if (steps.get(nodeIdx).equals(Node.UP)) {
             upAppend = CORRECT_NODE;

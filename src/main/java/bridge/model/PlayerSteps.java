@@ -23,8 +23,8 @@ public class PlayerSteps {
         return bridge.compareNodeOf(compareIndex, lastStep);
     }
 
-    public Node getLastStep() {
-        return steps.get(steps.size() - 1);
+    public boolean lastStepEquals(Node node) {
+        return steps.get(steps.size() - 1).equals(node);
     }
 
     public List<Node> getSteps() {
