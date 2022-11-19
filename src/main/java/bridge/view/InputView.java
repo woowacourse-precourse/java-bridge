@@ -1,5 +1,6 @@
 package bridge.view;
 
+import static bridge.model.GameCommand.validateGameCommandInput;
 import static bridge.model.Position.validateMovingInput;
 import static bridge.util.Util.convertStringToInt;
 import static bridge.util.Util.validateBridgeSizeRange;
@@ -40,7 +41,7 @@ public class InputView {
      */
     public String readGameCommand() {
         String input = Console.readLine();
-        // validate
+        validateGameCommandInput(input);
         return input;
     }
 
