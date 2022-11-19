@@ -3,6 +3,11 @@ package bridge;
 public class BridgeGameSystem {
     private static final InputView inputView = new InputView();
 
+    public void bridgeGameSystem(){
+        startGame();
+        int bridgeSize = getBridgeSize();
+    }
+
     public static void startGame(){
         inputView.printStartMessage();
     }
