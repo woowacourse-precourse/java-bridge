@@ -1,6 +1,7 @@
 package bridge.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,6 +32,31 @@ class GameConditionTest {
 
         //then
         assertThat(quit.getCondition()).isEqualTo(condition);
+    }
+
+    @DisplayName("존재하는 조건이면 해당 조건을 반환한다.")
+    @Test
+    void getCondition() {
+        //given
+        GameCondition condition = GameCondition.RESTART;
+        String input = condition.getCondition();
+
+        //when
+        GameCondition result = GameCondition.from(input);
+
+        //then
+        assertThat(result).isEqualTo(condition);
+    }
+
+    @DisplayName("존재하지 않는 조건이면 예외가 발생한다.")
+    @Test
+    void getConditionWithException() {
+        //given
+        String input = "@";
+
+        //then
+        assertThatThrownBy(() -> GameCondition.from(input)).isInstanceOf(
+                IllegalArgumentException.class);
     }
 
 }
