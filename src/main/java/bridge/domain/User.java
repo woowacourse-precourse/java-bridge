@@ -78,4 +78,8 @@ public class User {
         moveTable.get(0).add(canGo);
         moveTable.get(1).add(new StringBuilder("   "));
     }
+
+    public boolean canGoAllBridges() {
+        return !moveTable.get(0).contains(" X ") && !moveTable.get(1).contains(" X ");
+    }
 }

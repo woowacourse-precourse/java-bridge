@@ -45,21 +45,9 @@ public class GameProcess {
             int userPosition = userMove(bridgeSize, bridge, user);
 
             // 실패시 재시작 여부
-            gameStart = retryOrNot(bridgeSize, userPosition, user);
+            gameStart = bridgeGame.retry(bridgeSize, userPosition, user,
+                    ()->inputView.readGameCommand(e-> outputView.printError(e.getMessage())));
         }
-    }
-
-    private boolean retryOrNot(Integer bridgeSize, int userPosition, User user) {
-        user.setGameCleared(cleared(bridgeSize, userPosition));
-
-        if (!user.getGameCleared()) {
-            return bridgeGame.retry(inputView.readGameCommand(e-> outputView.printError(e.getMessage())));
-        }
-        return false;
-    }
-
-    private boolean cleared(Integer bridgeSize, Integer userPosition) {
-        return userPosition == bridgeSize;
     }
 
     private int userMove(Integer bridgeSize, Bridge bridge, User user) {
