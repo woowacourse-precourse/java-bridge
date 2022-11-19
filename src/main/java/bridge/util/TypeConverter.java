@@ -6,4 +6,7 @@ public class TypeConverter {
         return Integer.parseInt(s);
     }
 
+    public static char stringToChar(String s) {
+        return s.charAt(0);
+    }
 }

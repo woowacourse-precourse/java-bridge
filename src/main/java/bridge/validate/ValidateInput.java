@@ -1,5 +1,7 @@
 package bridge.validate;
 
+import bridge.util.TypeConverter;
+
 import static bridge.util.Constants.ExceptionConstants.*;
 
 public class ValidateInput {
@@ -19,4 +21,16 @@ public class ValidateInput {
             throw new IllegalArgumentException(BRIDGE_SIZE_BETWEEN_3_AND_20);
         }
     }
+
+    public static void validateMovingBlock(String input) {
+        isInputLength1(input);
+    }
+
+    private static char isInputLength1(String input) {
+        if (input.length() != 1) {
+            throw new IllegalArgumentException(INPUT_LENGTH_ONLY_1);
+        }
+        return TypeConverter.stringToChar(input);
+    }
+
 }

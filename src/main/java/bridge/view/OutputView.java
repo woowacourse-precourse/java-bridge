@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.validate.ValidateInput;
+
 import static bridge.util.Constants.OutputViewConstants.*;
 
 /**
@@ -20,6 +22,7 @@ public class OutputView {
     public static String printSelectMovingBlock() {
         System.out.println(INPUT_SELECT_MOVE_BLOCK);
         String movingBlock = InputView.readMoving();
+        ValidateInput.validateMovingBlock(movingBlock);
     }
 
     /**
