@@ -6,8 +6,11 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    public static final String UP_DIRECTION = "U";
+    public static final String DOWN_DIRECTION = "D";
+
     private final List<String> bridge;
-    private GameResultLogger result;
+    private final GameResultLogger result;
     private int currentTryIndex;
     private boolean isStopped;
 

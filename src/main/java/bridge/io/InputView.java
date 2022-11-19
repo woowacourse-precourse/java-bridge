@@ -1,5 +1,6 @@
 package bridge.io;
 
+import bridge.domain.game.BridgeGame;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -8,8 +9,6 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     private static final int LOWER_BRIDGE_SIZE_INCLUSIVE = 3;
     private static final int UPPER_BRIDGE_SIZE_INCLUSIVE = 20;
-    private static final String UP_DIRECTION = "U";
-    private static final String DOWN_DIRECTION = "D";
     private static final String RETRY_COMMAND = "R";
     private static final String QUIT_COMMAND = "Q";
 
@@ -67,7 +66,8 @@ public class InputView {
     }
 
     private static boolean isUpOrDown(String direction) {
-        return direction.equals(UP_DIRECTION) || direction.equals(DOWN_DIRECTION);
+        return direction.equals(BridgeGame.UP_DIRECTION)
+                || direction.equals(BridgeGame.DOWN_DIRECTION);
     }
 
     /**

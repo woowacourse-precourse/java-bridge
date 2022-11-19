@@ -5,10 +5,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class GameResultLogger {
-    private static final String UP_DIRECTION = "U";
-
-    private List<CrossResult> topRoad;
-    private List<CrossResult> downRoad;
+    private final List<CrossResult> topRoad;
+    private final List<CrossResult> downRoad;
     private int numOfAttempts;
 
     public GameResultLogger() {
@@ -34,7 +32,7 @@ public class GameResultLogger {
     }
 
     private boolean isUpside(String direction) {
-        return direction.equals(UP_DIRECTION);
+        return direction.equals(BridgeGame.UP_DIRECTION);
     }
 
     public int getNumOfAttempts() {
