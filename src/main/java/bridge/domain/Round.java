@@ -11,6 +11,7 @@ public class Round {
 
     public static final int ROUND_LOWER_BOUND = 1;
     public static final int ROUND_UPPER_BOUND = 20;
+    private static final int ROUND_DIFFERENCE = 1;
     private static final Map<Integer, Round> CACHE = new HashMap<>();
     private static final String INVALID_ROUND_RANGE_MESSAGE = "허용된 라운드 범위를 벗어났습니다.";
 
@@ -32,19 +33,19 @@ public class Round {
         return CACHE.get(round);
     }
 
-    public static Round firstRound() {
-        return CACHE.get(ROUND_LOWER_BOUND);
-    }
-
     public Round nextRound() {
-        validate(round + 1);
-        return CACHE.get(round + 1);
+        validate(round + ROUND_DIFFERENCE);
+        return CACHE.get(round + ROUND_DIFFERENCE);
     }
 
     private static void validate(Integer round) {
         if (round < ROUND_LOWER_BOUND || ROUND_UPPER_BOUND < round) {
             throw new IllegalArgumentException(INVALID_ROUND_RANGE_MESSAGE);
         }
+    }
+
+    public static Round firstRound() {
+        return CACHE.get(ROUND_LOWER_BOUND);
     }
 
     public static List<Round> naturalOrder() {
