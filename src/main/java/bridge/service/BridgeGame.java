@@ -8,6 +8,7 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 import java.util.List;
+import java.util.Objects;
 
 public class BridgeGame {
 
@@ -39,5 +40,15 @@ public class BridgeGame {
 
     private boolean isFailed(int step, List<String> bridge, String movingBlock) {
         return user.changeStatusIsFailed(move(step, bridge, movingBlock));
+    }
+
+    private boolean move(int step, List<String> bridge, String movingBlock) {
+        user.addBridgeInfo(step, movingBlock);
+        if (Objects.equals(bridge.get(step), movingBlock)) {
+            OutputView.printMap(true, user, step);
+            return true;
+        }
+        OutputView.printMap(false, user, step);
+        return false;
     }
 }

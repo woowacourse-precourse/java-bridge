@@ -23,4 +23,8 @@ public class User {
         isRestartGame = true;
         return false;
     }
+
+    public void addBridgeInfo(int step, String movingBlock) {
+        pastResult.put(step, movingBlock);
+    }
 }
