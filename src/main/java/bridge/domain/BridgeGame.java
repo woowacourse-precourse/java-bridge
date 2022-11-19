@@ -18,12 +18,12 @@ public class BridgeGame {
     private int index = 0;
     private int retryNumber = 1;
 
-    public BridgeGame(List<String> bridge) {
+    public BridgeGame(final List<String> bridge) {
         this.bridge = bridge;
     }
 
     //사용자가 칸을 이동할 때 사용하는 메서드
-    public boolean move(String inputPosition) {
+    public boolean move(final String inputPosition) {
         boolean moveResult = inputPosition.equals(bridge.get(index));
         bridgeMessageAdder.addBridgeMessage(inputPosition, moveResult);
         if (moveResult) {

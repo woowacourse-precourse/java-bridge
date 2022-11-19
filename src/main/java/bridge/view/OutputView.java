@@ -12,7 +12,7 @@ import bridge.domain.BridgeGame;
 public class OutputView {
     private final BridgeGame bridgeGame;
 
-    public OutputView(BridgeGame bridgeGame) {
+    public OutputView(final BridgeGame bridgeGame) {
         this.bridgeGame = bridgeGame;
     }
 

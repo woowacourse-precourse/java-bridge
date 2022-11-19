@@ -10,17 +10,17 @@ public class BridgeMessageAdder {
     protected final List<String> upBridge;
     protected final List<String> downBridge;
 
-    public BridgeMessageAdder(List<String> upBridge, List<String> downBridge) {
+    public BridgeMessageAdder(final List<String> upBridge, final List<String> downBridge) {
         this.upBridge = upBridge;
         this.downBridge = downBridge;
         setConverter();
     }
 
-    private BridgeMessageAddStrategy choiceStrategy(String inputPosition) {
+    private BridgeMessageAddStrategy choiceStrategy(final String inputPosition) {
         return bridgeAddStrategyConverter.get(inputPosition);
     }
 
-    public void addBridgeMessage(String inputPosition, boolean moveResult) {
+    public void addBridgeMessage(final String inputPosition, final boolean moveResult) {
         BridgeMessageAddStrategy bridgeMessageAddStrategy = choiceStrategy(inputPosition);
         bridgeMessageAddStrategy.addMessage(saveMessageConverter.get(moveResult), this);
     }

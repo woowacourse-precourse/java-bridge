@@ -9,12 +9,12 @@ public enum BridgeInformation {
     private final int bridgeNumber;
     private final String bridgePosition;
 
-    BridgeInformation(int bridgeNumber, String bridgePosition) {
+    BridgeInformation(final int bridgeNumber, final String bridgePosition) {
         this.bridgeNumber = bridgeNumber;
         this.bridgePosition = bridgePosition;
     }
 
-    static BridgeInformation convertToBridgeInfo(int bridgeNumber) {
+    static BridgeInformation convertToBridgeInfo(final int bridgeNumber) {
         return Arrays.stream(BridgeInformation.values())
                 .filter(bridgeInfo -> Objects.equals(bridgeInfo.bridgeNumber, bridgeNumber))
                 .findAny()

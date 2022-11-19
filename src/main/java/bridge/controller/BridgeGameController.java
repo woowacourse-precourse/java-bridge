@@ -45,7 +45,7 @@ public class BridgeGameController {
         outputView.printResult();
     }
 
-    private boolean quitGame(boolean moveResult, BridgeGame bridgeGame) {
+    private boolean quitGame(final boolean moveResult, final BridgeGame bridgeGame) {
         boolean gameQuit = false;
         if (!moveResult) {
             gameQuit = Objects.equals(inputView.readGameCommand(), QUIT_GAME);
