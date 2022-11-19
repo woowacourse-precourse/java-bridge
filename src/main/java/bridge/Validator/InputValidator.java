@@ -4,10 +4,10 @@ public class InputValidator {
 
     public static void checkBridgeSize(String size) {
         if (!(checkOnlyNumber(size))) {
-            throw new IllegalArgumentException("숫자가 아닙니다.");
+            throw new IllegalArgumentException("[ERROR] 숫자가 아닙니다.");
         }
         if (!(checkBoundaryNumber(size))) {
-            throw new IllegalArgumentException("범위가 아닙니다.");
+            throw new IllegalArgumentException("[ERROR] 범위가 아닙니다.");
         }
     }
 
@@ -30,13 +30,13 @@ public class InputValidator {
 
     public static void checkMoving(String moving) {
         if (!(moving.equals("U") || moving.equals("D"))){
-            throw new IllegalArgumentException("유효한 값이 아닙니다.");
+            throw new IllegalArgumentException("[ERROR] 유효한 값이 아닙니다.");
         }
     }
 
     public static void checkRetry(String retryInput) {
         if(!(retryInput.equals("Q") || retryInput.equals("R"))){
-            throw new IllegalArgumentException("유효한 값이 아닙니다.");
+            throw new IllegalArgumentException("[ERROR] 유효한 값이 아닙니다.");
         }
     }
 }
