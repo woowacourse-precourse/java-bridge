@@ -13,6 +13,7 @@ public class BridgeGame {
     private List<Bridge> input = new ArrayList<>();
     private List<String> bridge;
     private int retry = 1;
+    private boolean retire = false;
 
     public BridgeGame() {
     }
@@ -65,5 +66,13 @@ public class BridgeGame {
 
     public boolean isEnd() {
         return bridge.size() == input.size();
+    }
+
+    public boolean isRetire() {
+        return retire;
+    }
+
+    public void setRetire(boolean retire) {
+        this.retire = retire;
     }
 }
