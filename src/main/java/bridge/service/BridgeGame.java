@@ -19,14 +19,14 @@ import java.util.List;
 public class BridgeGame {
     private final BridgeMaker bridgeMaker;
     private final Bridge bridge;
-    private final Player player;
-    private Result result;
+    private final Result result;
+    private Player player;
 
-    public BridgeGame(BridgeMaker bridgeMaker, Bridge bridge, Player player, Result result) {
+    public BridgeGame(BridgeMaker bridgeMaker, Bridge bridge, Result result) {
         this.bridgeMaker = bridgeMaker;
         this.bridge = bridge;
-        this.player = player;
         this.result = result;
+        this.player = new Player();
     }
 
     public void create(BridgeSizeRequestDto dto) {
@@ -82,7 +82,7 @@ public class BridgeGame {
     public boolean retry(GameRetryRequestDto dto) {
         if(dto.getRetry().equals("R")) {
             this.result.init();
-            player.init();
+            this.player = new Player();
             return true;
         }
         return false;
