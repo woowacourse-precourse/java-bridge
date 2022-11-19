@@ -17,7 +17,7 @@ public enum GameStatus {
         return this == FAIL;
     }
 
-    public boolean isSUCCESS() {
+    public boolean isSuccess() {
         return this == SUCCESS;
     }
 

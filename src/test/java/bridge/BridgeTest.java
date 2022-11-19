@@ -51,7 +51,7 @@ public class BridgeTest {
     void crossSuccessResultInLast() {
         Bridge bridge = new Bridge(List.of("U", "D", "U", "D"));
         GameStatus gameStatus = bridge.cross(4, BridgeMark.DOWN);
-        assertThat(gameStatus.isSUCCESS()).isTrue();
+        assertThat(gameStatus.isSuccess()).isTrue();
     }
 
     @DisplayName("다리를 한 라운드이자 마지막 라운드를 건널 때 게임 실패 결과 반환")

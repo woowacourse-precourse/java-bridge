@@ -39,7 +39,7 @@ class BridgeGameTest {
     @Test
     void moveResultSuccess() {
         GameStatus gameStatus = bridgeGame.move(6, "U");
-        assertThat(gameStatus.isSUCCESS()).isTrue();
+        assertThat(gameStatus.isSuccess()).isTrue();
     }
 
     @DisplayName("플레이어가 마지막 라운드 플레이하면 게임 실패 결과 반환")
