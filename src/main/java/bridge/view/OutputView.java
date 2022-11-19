@@ -10,10 +10,10 @@ public class OutputView {
             System.out.println("[ "+s+" ]");
         }
     }
-    public static void printResult(String[] map, Movement movement) {
+    public static void printResult(String[] map, String isSuccess, int tryCount) {
         System.out.println(Messages.FINISH_RESULT_MESSAGE.getMessage());
         printMap(map);
-        System.out.println(String.format(Messages.SUCCESS_INFO_MESSAGE.getMessage(), movement.isSuccess()));
-        System.out.println(String.format(Messages.TRY_COUNT_INFO_MESSAGE.getMessage(), movement.getTryCount()));
+        System.out.println(String.format(Messages.SUCCESS_INFO_MESSAGE.getMessage(), isSuccess));
+        System.out.println(String.format(Messages.TRY_COUNT_INFO_MESSAGE.getMessage(), tryCount));
     }
 }
