@@ -18,11 +18,11 @@ class BridgeMakerTest {
     @DisplayName("입력된 다리 길이에 따라 다리를 생성한다.")
     @ParameterizedTest
     @MethodSource("provideBridgeExample")
-    void makeBridge(Integer bridgeLength, List<Integer> bridgeValues, String[] blockTypes) {
-        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(bridgeValues);
+    void makeBridge(Integer bridgeLength, List<Integer> bridgeNumbers, String[] blockSymbols) {
+        BridgeNumberGenerator numberGenerator = new TestNumberGenerator(bridgeNumbers);
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(bridgeLength);
-        assertThat(bridge).containsExactly(blockTypes);
+        assertThat(bridge).containsExactly(blockSymbols);
     }
 
     static class TestNumberGenerator implements BridgeNumberGenerator {
