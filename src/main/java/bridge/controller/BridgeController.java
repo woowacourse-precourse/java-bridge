@@ -21,7 +21,13 @@ public class BridgeController {
     public void run() {
         BridgeGame game = initGame();
 
+        while (!game.isComplete()) {
+            boolean moveSuccess = move(game);
 
+            if(moveSuccess) {
+                continue;
+            }
+        }
     }
 
     public BridgeGame initGame() {
@@ -33,5 +39,16 @@ public class BridgeController {
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
 
         return new BridgeGame(bridge);
+    }
+
+    public boolean move(BridgeGame game) {
+        outputView.printInputMoveCellMsg();
+        String movement = inputView.readMoving();
+
+        return game.move(movement);
+    }
+
+    public boolean retry(BridgeGame game) {
+        return false;
     }
 }
