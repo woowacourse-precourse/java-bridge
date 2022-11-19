@@ -2,10 +2,12 @@ package bridge;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
+import static org.assertj.core.util.Lists.newArrayList;
 
 import bridge.service.BridgeGame;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import java.util.List;
 
 class BridgeGameTest {
 
@@ -24,5 +26,35 @@ class BridgeGameTest {
         //then
         assertThat(result1).isInstanceOf(IllegalArgumentException.class);
         assertThat(result2).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("플레이어가 선택한 방향으로 움직일 수 있게 한다.")
+    @Test
+    void 플레이어가_입력한_방향으로_움직이는_기능_테스트() {
+        //given
+        BridgeGame bridgeGameCase1 = new BridgeGame(new TestNumberGenerator(newArrayList(0,1,1)),3);
+        bridgeGameCase1.move("D");
+        bridgeGameCase1.move("U");
+        bridgeGameCase1.move("U");
+
+        //when
+        List<String> result1 = bridgeGameCase1.getRoundResult().get(0);
+
+        //then
+        assertThat(result1).isEqualTo(List.of("D", "U", "U"));
+    }
+
+    static class TestNumberGenerator implements BridgeNumberGenerator {
+
+        private final List<Integer> numbers;
+
+        TestNumberGenerator(List<Integer> numbers) {
+            this.numbers = numbers;
+        }
+
+        @Override
+        public int generate() {
+            return numbers.remove(0);
+        }
     }
 }
