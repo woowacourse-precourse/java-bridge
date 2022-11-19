@@ -88,4 +88,24 @@ public class InputValidatorTest {
         assertThatNoException()
                 .isThrownBy(() -> inputValidator.validateMovingPosition("D"));
     }
+
+    @DisplayName("재시작 여부 입력이 R이나 Q가 아니면 예외가 발생한다")
+    @Test
+    void getGameCommandByNotRorQ() {
+        InputValidator inputValidator = new InputValidator();
+
+        assertThatThrownBy(() -> inputValidator.validateGameCommand("A"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("재시작 여부 입력이 R이나 Q가 이면 예외가 발생하지 않는다")
+    @Test
+    void getGameCommandByRorQ() {
+        InputValidator inputValidator = new InputValidator();
+
+        assertThatNoException()
+                .isThrownBy(() -> inputValidator.validateGameCommand("R"));
+        assertThatNoException()
+                .isThrownBy(() -> inputValidator.validateGameCommand("Q"));
+    }
 }
