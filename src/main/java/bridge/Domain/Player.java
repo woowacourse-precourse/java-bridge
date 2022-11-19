@@ -3,9 +3,11 @@ package bridge.Domain;
 public class Player {
     private final int startPoint = -1;
     private int distance;
+    private Bridge bridge;
 
-    public Player() {
+    public Player(Bridge bridge) {
         this.distance = startPoint;
+        this.bridge = bridge;
     }
 
     public void movePlayer() {
@@ -17,7 +19,7 @@ public class Player {
         return this.distance;
     }
 
-    public boolean isPlayerInEndOfBridge(Bridge bridge) {
+    public boolean isPlayerInEndOfBridge() {
         return bridge.isBridgeEnd(distance);
     }
 
