@@ -9,6 +9,12 @@ public class Bridge {
     private static List<String> down = new ArrayList<>();
     private boolean rightAnswer = true; // X 결과가 나올 경우 게임 재시작 호출하기 위해서
 
+    public void init() {
+        up = new ArrayList<>();
+        down = new ArrayList<>();
+        this.rightAnswer = true;
+    }
+
     public void updateUp(String up) {
         Bridge.up.add(up);
     }
