@@ -1,12 +1,10 @@
 package bridge.domain;
 
-import bridge.domain.bridge.Bridge;
+import bridge.domain.bridge.BridgeSize;
 import bridge.domain.game.BridgeGame;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,8 +14,8 @@ class BridgeGameTest {
 
     @BeforeEach
     void init() {
-        Bridge bridge = Bridge.valueOf(List.of("U", "D", "U"));
-        bridgeGame = new BridgeGame(bridge);
+        BridgeSize bridgeSize = new BridgeSize(3);
+        bridgeGame = new BridgeGame(bridgeSize);
     }
 
     @DisplayName("다리를 건넌다면 현재 위치가 1 증가한다.")
