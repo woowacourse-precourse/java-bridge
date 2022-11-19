@@ -40,6 +40,7 @@ public class BridgeApplication {
                 BridgeUnit nextUnit = BridgeUnit.from(moving);
 
                 status = bridgeGame.move(nextUnit);
+                outputView.printMap(bridgeGame);
             }
         } catch (IllegalArgumentException e) {
 
