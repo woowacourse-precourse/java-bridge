@@ -7,7 +7,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static bridge.constant.BridgeGameConstant.*;
+
 public class OutputView {
+
+    private static final String SUCCESS_BRIDGE_BLOCK_VIEW = " O ";
+    private static final String FAIL_BRIDGE_BLOCK_VIEW = " X ";
+    private static final String EMPTY_BRIDGE_BLOCK_VIEW = "   ";
+    private static final String BRIDGE_START_VIEW = "[";
+    private static final String BRIDGE_END_VIEW = "]";
+    private static final String BRIDGE_MIDDLE_VIEW = "|";
 
     public void printGameStartScript() {
         System.out.println("다리 건너기 게임을 시작합니다.");
@@ -18,11 +27,11 @@ public class OutputView {
     }
 
     public void printMovingInputScript() {
-        System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println("\n이동할 칸을 선택해주세요. (위: " + UP_BRIDGE + ", 아래: " + DOWN_BRIDGE + ")");
     }
 
     public void printGameCommandInputScript() {
-        System.out.println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: " + RETRY_COMMAND + ", 종료: " + QUIT_COMMAND + ")");
     }
 
     public void printGameResultScript() {
@@ -40,28 +49,28 @@ public class OutputView {
     }
 
     private String getUpBridgeBlockView(String bridgeBlock, Status blockStatus) {
-        if (Objects.equals(bridgeBlock, "U")) {
-            if (blockStatus == Status.CROSSED) return " O ";
-            return "   ";
+        if (Objects.equals(bridgeBlock, UP_BRIDGE)) {
+            if (blockStatus == Status.CROSSED) return SUCCESS_BRIDGE_BLOCK_VIEW;
+            return EMPTY_BRIDGE_BLOCK_VIEW;
         }
-        if (blockStatus == Status.NOT_CROSSED) return " X ";
-        return "   ";
+        if (blockStatus == Status.NOT_CROSSED) return FAIL_BRIDGE_BLOCK_VIEW;
+        return EMPTY_BRIDGE_BLOCK_VIEW;
     }
 
     private String getDownBridgeBlockView(String bridgeBlock, Status blockStatus) {
-        if (Objects.equals(bridgeBlock, "D")) {
-            if (blockStatus == Status.CROSSED) return " O ";
-            return "   ";
+        if (Objects.equals(bridgeBlock, DOWN_BRIDGE)) {
+            if (blockStatus == Status.CROSSED) return SUCCESS_BRIDGE_BLOCK_VIEW;
+            return EMPTY_BRIDGE_BLOCK_VIEW;
         }
-        if (blockStatus == Status.NOT_CROSSED) return " X ";
-        return "   ";
+        if (blockStatus == Status.NOT_CROSSED) return FAIL_BRIDGE_BLOCK_VIEW;
+        return EMPTY_BRIDGE_BLOCK_VIEW;
     }
 
     private String buildBridgeView(List<String> bridgeBlockViews) {
         StringBuilder builder = new StringBuilder();
-        builder.append("[").append(bridgeBlockViews.remove(0));
-        bridgeBlockViews.forEach(view -> builder.append("|").append(view));
-        builder.append("]");
+        builder.append(BRIDGE_START_VIEW).append(bridgeBlockViews.remove(0));
+        bridgeBlockViews.forEach(view -> builder.append(BRIDGE_MIDDLE_VIEW).append(view));
+        builder.append(BRIDGE_END_VIEW);
         return builder.toString();
     }
 

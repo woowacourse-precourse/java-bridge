@@ -5,14 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static bridge.constant.BridgeGameConstant.*;
+
 public class BridgeMaker {
 
     private static final Map<Integer, String> bridgeBlocks = new HashMap<>();
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
-        bridgeBlocks.put(0, "D");
-        bridgeBlocks.put(1, "U");
+        bridgeBlocks.put(DOWN_BRIDGE_NUMBER, DOWN_BRIDGE);
+        bridgeBlocks.put(UP_BRIDGE_NUMBER, UP_BRIDGE);
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 

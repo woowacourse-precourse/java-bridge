@@ -8,6 +8,8 @@ import bridge.view.OutputView;
 import java.util.List;
 import java.util.Objects;
 
+import static bridge.constant.BridgeGameConstant.*;
+
 public class BridgeGameController {
 
     private final BridgeMaker bridgeMaker;
@@ -37,7 +39,7 @@ public class BridgeGameController {
     public void play() {
         while (!bridgeGame.isAllCrossed()) {
             if (playOneStage()) continue;
-            if (!retryIf(Objects.equals(selectGameCommand(), "R"))) break;
+            if (!retryIf(Objects.equals(selectGameCommand(), RETRY_COMMAND))) break;
         }
         printGameResult();
     }
