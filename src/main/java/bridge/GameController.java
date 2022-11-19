@@ -28,16 +28,8 @@ public class GameController {
     private boolean startCrossBridge(List<String> bridge) {
         int count;
         this.bridgeGame = new BridgeGame(bridge);
-        InputView inputView = new InputView();
 
-        for (count = 0; count < bridge.size(); count++) {
-            String moving = inputView.readMoving();
-            if (!bridgeGame.move(moving, count)) {
-                outputView.printMap(bridgeGame.getResult());
-                return false;
-            }
-            outputView.printMap(bridgeGame.getResult());
-        }
+        count = countRightMove(bridge);
 
         if (bridge.size() == count){
             success = true;
@@ -52,5 +44,19 @@ public class GameController {
         outputView.printMap(bridgeGame.getResult());
         outputView.printSuccess(success);
         outputView.printAttempts(attempts);
+    }
+
+    private int countRightMove(List<String> bridge) {
+        int count;
+        InputView inputView = new InputView();
+        for (count = 0; count < bridge.size(); count++) {
+            if (!bridgeGame.move(inputView.readMoving(), count)) {
+                outputView.printMap(bridgeGame.getResult());
+                return count;
+            }
+            outputView.printMap(bridgeGame.getResult());
+        }
+
+        return count;
     }
 }
