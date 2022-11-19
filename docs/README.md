@@ -24,3 +24,4 @@
 
 - BridgeGame Class
 1. Player 를 이동시키는 기능
+2. 재시작하는 기능
