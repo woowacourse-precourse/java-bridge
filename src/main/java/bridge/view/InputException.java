@@ -11,6 +11,6 @@ public class InputException extends IllegalArgumentException {
 
 	public InputException(String message) {
 		super(message);
-		OutputView.printException(message);
+		OutputView.withContentOf(message, false, false).ConsoleMessage();
 	}
 }

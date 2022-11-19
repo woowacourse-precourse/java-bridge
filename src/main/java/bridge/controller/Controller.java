@@ -15,6 +15,6 @@ public class Controller {
 		BridgeGame bridgeGame = new BridgeGame();
 
 		bridgeGame.play(inputView, bridgeMaker);
-		OutputView.printGameInfo(ResultRendering.renderFinalResult(bridgeGame.getGameResult()));
+		OutputView.withContentOf(ResultRendering.renderFinalResult(bridgeGame.getGameResult()), false, false).ConsoleMessage();
 	}
 }

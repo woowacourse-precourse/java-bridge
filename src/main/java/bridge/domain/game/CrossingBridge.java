@@ -24,11 +24,11 @@ public class CrossingBridge {
 
 	private void crossingTrial(InputView inputView, List<String> bridgeNowCrossing) {
 		do {
-			OutputView.printRequest(REQUEST_MOVEMENT);
+			OutputView.withContentOf(REQUEST_MOVEMENT, true, false).ConsoleMessage();
 			MovementCommand movementCommand = inputView.readMovement();
 			CrossingDecision crossingDecision = CrossingDecision.judgingBy(movementCommand, bridgeNowCrossing);
 			stepAhead(crossingDecision, bridgeNowCrossing);
-			OutputView.printGameInfo(ResultRendering.generatedBy(crossingDecision, movementCommand).getBridgeDescription());
+			OutputView.withContentOf(ResultRendering.generatedBy(crossingDecision, movementCommand).getBridgeDescription(), false, false).ConsoleMessage();
 
 		} while (isCrossToContinue(bridgeNowCrossing));
 	}

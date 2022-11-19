@@ -23,9 +23,9 @@ public class BridgeGame {
 	private int trialCount;
 
 	public void play(InputView inputView, BridgeMaker bridgeMaker) {
-		OutputView.printGameInfo(GAME_START_INFO + ENTER);
+		OutputView.withContentOf(GAME_START_INFO, false, true).ConsoleMessage();
 
-		OutputView.printRequest(REQUEST_BRIDGE_SIZE);
+		OutputView.withContentOf(REQUEST_BRIDGE_SIZE, false, false).ConsoleMessage();
 		Bridge bridge = new Bridge(inputView.readBridgeSize(), bridgeMaker);
 
 		crossingTrial(inputView, bridge);
@@ -56,7 +56,7 @@ public class BridgeGame {
 	}
 
 	public GameProceedCommand requestRetry(InputView inputView) {
-		OutputView.printRequest(REQUEST_RETRY);
+		OutputView.withContentOf(REQUEST_RETRY, false, false).ConsoleMessage();
 		return inputView.readGameCommand();
 	}
 

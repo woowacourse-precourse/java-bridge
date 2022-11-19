@@ -43,7 +43,7 @@ public class ResultRendering {
 		return RESULT_PRESENTATION + ENTER
 				+ BridgeDescription + ENTER
 				+ String.format(RESULT_FAIL_OR_SUCCESS, gameResult.keySet().toArray()[0]) + ENTER
-				+ String.format(RESULT_TRIAL, gameResult.values().toArray()[0]);
+				+ String.format(RESULT_TRIAL, (Integer) gameResult.values().toArray()[0]);
 	}
 
 	private void buildDescription(String crossingMark, List<String> passingSide, List<String> nonPassingSide) {
