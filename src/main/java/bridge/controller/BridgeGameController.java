@@ -16,7 +16,7 @@ public class BridgeGameController {
     private final InputView inputView;
     private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
-    private final BridgeGame bridgeGame;
+    private BridgeGame bridgeGame;
 
     private boolean play;
 
@@ -24,8 +24,6 @@ public class BridgeGameController {
         inputView = new InputView();
         outputView = new OutputView();
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridgeGame = new BridgeGame();
-        play = true;
     }
 
     public void play() {
@@ -39,6 +37,12 @@ public class BridgeGameController {
 
     private void start() {
         outputView.printGameStartMsg();
+        setUp();
+    }
+
+    private void setUp() {
+        play = true;
+        bridgeGame = new BridgeGame();
     }
 
     private void end() {
