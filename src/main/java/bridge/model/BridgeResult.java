@@ -9,12 +9,19 @@ public class BridgeResult {
 
     private List<Boolean> result;
 
+    private int tryCount;
+
     public List<Boolean> getResult() {
         return result;
     }
 
+    public int getTryCount() {
+        return tryCount;
+    }
+
     public BridgeResult() {
         this.result = new ArrayList<>();
+        this.tryCount = 1;
     }
 
     public BridgeResult(List<Boolean> result) {
@@ -30,7 +37,7 @@ public class BridgeResult {
         return result.get(result.size() - 1);
     }
 
-    public int getSize() {
-        return result.size();
+    public void countTry() {
+        tryCount += 1;
     }
 }
