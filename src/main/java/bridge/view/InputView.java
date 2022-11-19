@@ -8,6 +8,9 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
+    private final String RETRY = "R";
+    private final String QUIT = "Q";
+
     private static final String BRIDGE_GAME_START_MSG = "다리 건너기 게임을 시작합니다.";
     private static final String INPUT_BRIDGE_LENGTH = "다리의 길이를 입력해주세요.";
     private static final String INPUT_MOVE_UP_OR_DOWN = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
@@ -49,7 +52,14 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println(INPUT_RESTART_OR_QUIT);
-        return Console.readLine();
+        String input = Console.readLine();
+        try {
+            return throwExceptionIfNotRetryAndQuit(input);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            input = Console.readLine();
+            return throwExceptionIfNotRetryAndQuit(input);
+        }
     }
 
     public void getBridgeGameStartMsg(){
@@ -67,6 +77,13 @@ public class InputView {
     private String throwExceptionIfNotUpAndDown(String input){
         if (!input.equals(Moving.UP.getDirection()) && !input.equals(Moving.DOWN.getDirection())){
             throw new IllegalArgumentException(ERROR_MSG + "U, D 이외의 문자는 입력할 수 없습니다.");
+        }
+        return input;
+    }
+
+    private String throwExceptionIfNotRetryAndQuit(String input){
+        if (!input.equals(RETRY) && !input.equals(QUIT)){
+            throw new IllegalArgumentException(ERROR_MSG + "R, Q 이외의 문자는 입력할 수 없습니다.");
         }
         return input;
     }
