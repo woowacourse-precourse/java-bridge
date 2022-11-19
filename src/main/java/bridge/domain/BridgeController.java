@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.BridgeNumberGenerator;
+import bridge.result.Result;
 import bridge.size.BridgeSize;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -26,5 +27,16 @@ public class BridgeController {
             outputView.printError(e);
             inputBridgeSize();
         }
+    }
+
+    public Result inputPlayerMove() {
+        try {
+            outputView.printInputMoveMessage();
+            return bridgeService.insertMove(inputView.readMoving());
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e);
+            inputPlayerMove();
+        }
+        return null;
     }
 }
