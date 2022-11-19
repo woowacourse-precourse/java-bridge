@@ -3,6 +3,7 @@ package ui;
 public class Validator {
     static public String BRIDGE_SIZE_INPUT_ERROR = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     static public String MOVING_INPUT_ERROR = "[ERROR] U(위 칸) 와 D(아래 칸) 문자만 사용이 가능합니다.";
+    static public String GAME_COMMAND_INPUT_ERROR = "[ERROR] R(재시작) 과 Q(종료) 문자만 사용이 가능합니다.";
 
     public int validateBridgeSizeInput(String userInput) throws IllegalArgumentException {
         String digitUserInput = validateUserInputIsDigit(userInput);
@@ -50,6 +51,24 @@ public class Validator {
     private String validateUserMovingInputIsRightString(String userInput) {
         if (!userInput.equals("U") && !userInput.equals("D")) {
             throw new IllegalArgumentException(MOVING_INPUT_ERROR);
+        }
+        return userInput;
+    }
+
+    public String validateGameCommandInput(String userInput) {
+        //  R(재시작)과 Q(종료) 중 하나의 문자를 입력할 수 있으며
+        //  올바른 값이 아니면 예외 처리
+        if (!validateUserInputLengthIs1(userInput)) {
+            throw new IllegalArgumentException(GAME_COMMAND_INPUT_ERROR);
+        }
+
+        String validatedUserGameCommandInput = validateUserGameCommandInputIsRightString(userInput);
+        return validatedUserGameCommandInput;
+    }
+
+    private String validateUserGameCommandInputIsRightString(String userInput) {
+        if (!userInput.equals("R") && !userInput.equals("Q")) {
+            throw new IllegalArgumentException(GAME_COMMAND_INPUT_ERROR);
         }
         return userInput;
     }

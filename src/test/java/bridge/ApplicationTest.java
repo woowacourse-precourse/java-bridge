@@ -47,6 +47,20 @@ class ApplicationTest extends NsTest {
                 hasMessage(Validator.MOVING_INPUT_ERROR);
     }
 
+    @ParameterizedTest
+    @CsvSource({"R", "Q"})
+    void 유저_게임_커맨드_입력_정답_테스트(String userInput) {
+        assertThat(validator.validateGameCommandInput(userInput)).isEqualTo(userInput);
+    }
+
+    @ParameterizedTest
+    @CsvSource({"rraa", "abc", "'2,3'", "u", "d", "UU", "재시작", "종료", "DD", "-15", "10-", "1+4", "21", "2"})
+    void 유저_게임_커맨드_입력_예외처리_테스트(String userInput) {
+        assertThatThrownBy(() -> validator.validateGameCommandInput(userInput)).
+                isInstanceOf(IllegalArgumentException.class).
+                hasMessage(Validator.GAME_COMMAND_INPUT_ERROR);
+    }
+
     @Test
     void BridgeRandomNumberGenerator_출력_테스트() {
         BridgeRandomNumberGenerator bridgeRandomNumGen = new BridgeRandomNumberGenerator();
