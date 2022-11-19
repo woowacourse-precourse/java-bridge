@@ -8,9 +8,11 @@ import java.util.List;
 
 public class BridgeService {
 
+    private BridgeGame bridgeGame;
     private InputView inputView;
 
     public BridgeService() {
+        this.bridgeGame = new BridgeGame();
         this.inputView = new InputView();
     }
 
@@ -19,5 +21,17 @@ public class BridgeService {
         inputView.initBridgeGame();
     }
 
+    // 다리의 길이 생성
+    public void bridgeMake() {
+       do {
+            try {
+                int size = inputView.readBridgeSize();
+                bridgeGame.setBridgeMake(size);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        } while (true);
+    }
 
 }
