@@ -1,6 +1,7 @@
 package bridge;
 
-import domain.Direction;
+import bridge.type.DirectionType;
+import utils.BridgeNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +32,9 @@ public class BridgeMaker {
 
     public String getCrossable () {
         if (bridgeNumberGenerator.generate() == 0) {
-            return Direction.DOWN.getDirection();
+            return DirectionType.DOWN.getDirection();
         }
-        return Direction.UP.getDirection();
+        return DirectionType.UP.getDirection();
     }
 
 }

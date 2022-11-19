@@ -3,19 +3,21 @@ package domain;
 
 import bridge.BridgeMaker;
 
+import java.util.List;
+
 public class Bridge {
     BridgeMaker bridgeMaker;
 
-    private static Bridge bridge = null;
+    private static List<String> bridge;
 
     private Bridge(int bridgeSize){
-        this.bridge = (Bridge) bridgeMaker.makeBridge(bridgeSize);
+        bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
     public static Bridge getInstance(int bridgeSize) {
         if (bridge == null) {
-            bridge = new Bridge(bridgeSize);
+            bridge = (List<String>) new Bridge(bridgeSize);
         }
-        return bridge;
+        return (Bridge) bridge;
     }
 }
