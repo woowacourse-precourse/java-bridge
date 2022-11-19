@@ -15,6 +15,7 @@ public class GameController {
         outputView.printOpening();
         bridgeGame = new BridgeGame(makeBridge());
         crossToOtherSide();
+        // printFinalResult();
     }
 
     private Bridge makeBridge() {
@@ -49,15 +50,20 @@ public class GameController {
             outputView.printGameContinueOpening();
             try {
                 String cmd = inputView.readGameCommand();
-                // decideNextStep(cmd);
+                decideNextStep(cmd);
             } catch (IllegalArgumentException exception) {
                 outputView.printErrorMessage(exception.getMessage());
                 continueOrQuitIfFailed(success);
             }
 
-
         }
+    }
 
-
+    private void decideNextStep(String cmd) {
+        if (cmd.equals("R")) {
+            bridgeGame.refreshGameContext();
+            crossToOtherSide();
+        }
+        // printFinalResult();
     }
 }
