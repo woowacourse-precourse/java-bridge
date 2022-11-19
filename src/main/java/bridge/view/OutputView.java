@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.domain.BridgeGame;
+import bridge.domain.Player;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,13 +17,15 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap(List<String> bridge, boolean isMoving) {
-        List<List<String>> bridgeMap = drawSuccessBridge(bridge);
-        if (!isMoving) {
-            bridgeMap = drawFailedBridge(bridge);
-        }
-        System.out.println("[" + String.join(" | ", bridgeMap.get(0)) + "]");
-        System.out.println("[" + String.join(" | ", bridgeMap.get(1)) + "]");
+    public static void printMap(BridgeGame bridgeGame) {
+        List<String> bridge = bridgeGame.getBridge();
+        Player player = bridgeGame.getPlayer();
+        int currentPosition = player.getCurrentPosition();
+        boolean isMoving = player.getMoving();
+        List<String> upperLine = drawUpperLine(bridge, currentPosition, isMoving);
+        List<String> lowerLine = drawLowerLine(bridge, currentPosition, isMoving);
+        printOneLine(upperLine);
+        printOneLine(lowerLine);
     }
 
     /**
@@ -29,49 +33,53 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public static void printResult(BridgeGame bridgeGame) {
+        System.out.println("게임 종료");
+        System.out.println("retryCount = " + bridgeGame.getPlayer().getRetryCount());
     }
 
-    private static List<List<String>> drawSuccessBridge(List<String> bridge) {
-        List<List<String>> bridgeMap = new ArrayList<>(List.of(new ArrayList<>(), new ArrayList<>()));
-        for (int i = 0; i < bridge.size() - 1; i++) {
-            String cell = bridge.get(i);
-            drawCorrectCell(bridgeMap, cell);
+    private static List<String> drawUpperLine(List<String> bridge, int currentPosition, boolean isMoving) {
+        List<String> upperLine = new ArrayList<>();
+        for (int i = 0; i < currentPosition; i++) {
+            String correctDirection = bridge.get(i);
+            drawCell(upperLine, "U",correctDirection);
         }
-        return bridgeMap;
+        if (!isMoving) {
+            drawFailedCell(upperLine, "U", bridge.get(currentPosition));
+        }
+        return upperLine;
     }
 
-    private static List<List<String>> drawFailedBridge(List<String> bridge) {
-        List<List<String>> successBridge = drawSuccessBridge(bridge);
-        String lastCell = bridge.get(bridge.size() - 1);
-        drawFailedCell(successBridge, lastCell);
-        return successBridge;
+    private static List<String> drawLowerLine(List<String> bridge, int currentPosition, boolean isMoving) {
+        List<String> lowerLine = new ArrayList<>();
+        for (int i = 0; i < currentPosition; i++) {
+            String correctDirection = bridge.get(i);
+            drawCell(lowerLine, "D",correctDirection);
+        }
+        if (!isMoving) {
+            drawFailedCell(lowerLine, "D", bridge.get(currentPosition));
+        }
+        return lowerLine;
     }
 
-    private static void drawCorrectCell(List<List<String>> bridgeMap, String correctDirection) {
-        List<String> upperRow = bridgeMap.get(0);
-        List<String> lowerRow = bridgeMap.get(1);
-        if (correctDirection.equals("U")) {
-            upperRow.add("O");
-            lowerRow.add(" ");
+    private static void drawCell(List<String> line, String lineType, String correctDirection) {
+        if (correctDirection.equals(lineType)) {
+            line.add("O");
+            return;
         }
-        if (correctDirection.equals("D")) {
-            lowerRow.add("O");
-            upperRow.add(" ");
-        }
+        line.add(" ");
     }
 
-    private static void drawFailedCell(List<List<String>> bridgeMap, String correctDirection) {
-        List<String> upperRow = bridgeMap.get(0);
-        List<String> lowerRow = bridgeMap.get(1);
-        if (correctDirection.equals("U")) {
-            upperRow.add(" ");
-            lowerRow.add("X");
+    private static void drawFailedCell(List<String> line, String lineType, String correctDirection) {
+        if (!correctDirection.equals(lineType)) {
+            line.add("X");
+            return;
         }
-        if (correctDirection.equals("D")) {
-            lowerRow.add(" ");
-            upperRow.add("X");
-        }
+        line.add(" ");
+    }
+
+    private static void printOneLine(List<String> line) {
+        System.out.println("[" + String.join(" | ") + "]");
     }
 
     public static void printErrorMessage(Exception e) {
