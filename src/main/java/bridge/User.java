@@ -17,25 +17,27 @@ public class User {
         return pathOfLowerBridge;
     }
 
-    public void addPathOfBridge(String result) {
+    public void addPathOfBridge(String direction, String result) {
         firstOrNot();
-        if (result.equals("U")) {
+        if (direction.equals("U")) {
             this.pathOfUpperBridge += result;
             this.pathOfLowerBridge += " ";
         }
-        if (result.equals("D")) {
+        if (direction.equals("D")) {
             this.pathOfUpperBridge += " ";
             this.pathOfLowerBridge += result;
         }
     }
-    public boolean isFirst(){
+
+    public boolean isFirst() {
         return this.pathOfUpperBridge.isEmpty();
     }
+
     public void firstOrNot() {
         if (isFirst()) {
             return;
         }
-        pathOfUpperBridge += " " + " | " + " ";
-        pathOfLowerBridge += " " + " | " + " ";
+        pathOfUpperBridge += " | ";
+        pathOfLowerBridge += " | ";
     }
 }
