@@ -14,7 +14,8 @@ public class BridgeGame {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     List<String> bridge = new ArrayList<>();
-    int position;
+    int trial = 1;
+    int position = 0;
 
     public void start() {
         int size = inputView.readBridgeSize();
@@ -25,11 +26,11 @@ public class BridgeGame {
         position = 0;
     }
 
-    public String getMoving(){
+    private String getMoving() {
         return inputView.readMoving();
     }
 
-    public boolean checkMoving(String moving) {
+    private boolean checkMoving(String moving) {
         return bridge.get(position).equals(moving);
     }
 
@@ -41,9 +42,7 @@ public class BridgeGame {
     public boolean move() {
         boolean correct = checkMoving(getMoving());
         outputView.printMap(bridge, position, correct);
-        if (correct) {
-            position++;
-        }
+        position++;
         return correct;
     }
 
@@ -52,6 +51,25 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry() {
+        String input = inputView.readGameCommand();
+        boolean restart = false;
+        if (input.equals("R")) {
+            trial++;
+            position = 0;
+            restart = true;
+        } else if (input.equals("Q")) {
+            outputView.printResult(bridge, position, false, trial);
+            restart=false;
+        }
+        return restart;
+    }
+
+    public boolean gameSuccess() {
+        return position == bridge.size();
+    }
+
+    public void endGame(){
+        outputView.printResult(bridge, position, true, trial);
     }
 }
