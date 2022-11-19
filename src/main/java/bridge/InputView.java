@@ -34,8 +34,9 @@ public class InputView{
         String input = Console.readLine();
         try {
             upOrDownCheck(input);
-        } catch (IllegalArgumentException e) {
-            System.out.println("Error: wrong input");
+        } catch (IllegalArgumentException err) {
+            System.out.println(err.getMessage());
+            readMoving();
         }
         return input;
     }
@@ -49,7 +50,7 @@ public class InputView{
     }
 
     public static int catchException() {
-        int input = 0;
+        int input;
         try {
             input = isNumeric();
             rangeCheck(input);
@@ -67,8 +68,8 @@ public class InputView{
     }
 
     public static int isNumeric() {
-        String input = "";
-        int convertInt = 0;
+        String input;
+        int convertInt;
         try{
             input = Console.readLine();
             convertInt = Integer.parseInt(input);
