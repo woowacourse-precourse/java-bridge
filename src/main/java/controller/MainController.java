@@ -32,6 +32,11 @@ public class MainController {
 
     private int getBridgeSize() {
         printReceiveBridgeSize();
+        int bridgeSize = receiveBridgeSize();
+        return bridgeSize;
+    }
+
+    private int receiveBridgeSize() {
         int bridgeSize = -1;
         try {
             bridgeSize = readBridgeSize();
