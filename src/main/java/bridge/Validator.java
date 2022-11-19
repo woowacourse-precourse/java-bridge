@@ -7,7 +7,7 @@ public class Validator {
 
     public static void validatorOnlyNumber(String input){
         if(!NUMBER_PATTERN.matcher(input).matches()){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Error.NOT_NUMBER.getMessage());
         }
     }
 
@@ -15,19 +15,19 @@ public class Validator {
         int InputToInt = Integer.parseInt(input);
 
         if(InputToInt > 20 || InputToInt < 3){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Error.NOT_IN_RANGE.getMessage());
         }
     }
 
     public static void validatorMoving(String input){
         if(!(input.equals("U") || input.equals("D"))){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Error.NOT_U_OR_D.getMessage());
         }
     }
 
     public static void validatorRestartOREnd(String input){
         if(!(input.equals("R") || input.equals("Q"))){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Error.NOT_R_OR_Q.getMessage());
         }
     }
 }
