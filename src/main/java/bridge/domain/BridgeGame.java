@@ -54,8 +54,8 @@ public class BridgeGame {
 
     public String getSuccessOrFailure() {
         if (currentPosition == bridge.getSize() - 1) {
-            return ResultMessage.성공.name();
+            return ResultMessage.SUCCESS.toString();
         }
-        return ResultMessage.실패.name();
+        return ResultMessage.FAILURE.toString();
     }
 }
