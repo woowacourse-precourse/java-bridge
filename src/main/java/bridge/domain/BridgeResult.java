@@ -1,16 +1,42 @@
 package bridge.domain;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class BridgeResult {
-    private final Map<Square, MoveResult> bridgeResult;
+
+    private final List<MoveResult> upBridgeResult;
+    private final List<MoveResult> downBridgeResult;
 
     public BridgeResult() {
-        bridgeResult = new LinkedHashMap<>();
+        upBridgeResult = new ArrayList<>();
+        downBridgeResult = new ArrayList<>();
     }
 
     public void updateResult(Square square, boolean result) {
-        bridgeResult.put(square, MoveResult.of(result));
+        if (square.isUp()) {
+            upBridgeResult.add(MoveResult.of(result));
+            downBridgeResult.add(MoveResult.NOTHING);
+        }
+
+        if (square.isDown()) {
+            downBridgeResult.add(MoveResult.of(result));
+            upBridgeResult.add(MoveResult.NOTHING);
+        }
+    }
+
+    public List<String> getUpBridgeResult() {
+        return upBridgeResult
+                .stream()
+                .map(MoveResult::value)
+                .collect(Collectors.toList());
+    }
+
+    public List<String> getDownBridgeResult() {
+        return downBridgeResult
+                .stream()
+                .map(MoveResult::value)
+                .collect(Collectors.toList());
     }
 }
