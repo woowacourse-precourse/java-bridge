@@ -22,7 +22,6 @@ public enum BridgeDirection {
                 .orElseThrow(NoSuchElementException::new);
     }
 
-
     public static BridgeDirection fromSignature(String signature) {
         return Arrays.stream(BridgeDirection.values())
                 .filter(component -> component.signature.equals(signature))

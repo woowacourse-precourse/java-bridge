@@ -1,8 +1,8 @@
 package bridge;
 
 import bridge.domain.bridge.BridgeDirection;
-import bridge.domain.game.BridgeGame;
 import bridge.domain.bridge.BridgeMap;
+import bridge.domain.game.BridgeGame;
 import bridge.domain.game.GamePlayer;
 import bridge.ui.input.InputView;
 import bridge.ui.output.OutputView;
