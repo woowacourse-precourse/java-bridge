@@ -7,6 +7,7 @@ import bridge.model.GeneratedBridge;
 import bridge.model.PlayerBridge;
 import bridge.model.PrintBridge;
 import bridge.validator.InputBridgeSizeValidator;
+import bridge.validator.InputNextStepValidator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -18,9 +19,6 @@ import java.util.regex.Pattern;
  */
 public class BridgeGame {
 
-    private static final String DIGIT_VALIDATE_REGEX = "[0-9]+";
-    private static final int MIN_BRIDGE_SIZE = 3;
-    private static final int MAX_BRIDGE_SIZE = 20;
     private static final String RETRY_COMMAND = "R";
     private static final String END_COMMAND = "Q";
 
@@ -31,6 +29,7 @@ public class BridgeGame {
     private final PlayerBridge playerBridge = new PlayerBridge();
     private final PrintBridge printBridge = new PrintBridge();
     private final InputBridgeSizeValidator inputBridgeSizeValidator = new InputBridgeSizeValidator();
+    private final InputNextStepValidator inputNextStepValidator = new InputNextStepValidator();
 
     private String bridgeSize;
     private boolean canMove;
@@ -63,7 +62,7 @@ public class BridgeGame {
     }
 
     public void inputBridgeSize() {
-        while(true) {
+        while (true) {
             try {
                 outputView.printInputBridgeSizeMessage();
                 bridgeSize = inputView.inputBridgeSize();
@@ -90,8 +89,16 @@ public class BridgeGame {
     }
 
     public void inputNextStep() {
-        outputView.printInputMovingStepMessage();
-        inputNextStep = inputView.inputMovingStep();
+        while (true) {
+            try {
+                outputView.printInputMovingStepMessage();
+                inputNextStep = inputView.inputMovingStep();
+                inputNextStepValidator.validate(inputNextStep);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     /**
@@ -107,7 +114,7 @@ public class BridgeGame {
 
     public void printCurrentBridge() {
         currentPlayerBridgeUpShape = printBridge.generatePrintUpShape(playerBridge.getUpShape());
-        currentPlayerBridgeDownShape= printBridge.generatePrintDownShape(playerBridge.getDownShape());
+        currentPlayerBridgeDownShape = printBridge.generatePrintDownShape(playerBridge.getDownShape());
         outputView.printMap(currentPlayerBridgeUpShape, currentPlayerBridgeDownShape);
 
     }
