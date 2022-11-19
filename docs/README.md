@@ -40,7 +40,7 @@
 - [x] 게임 상태(GameStatus)
   - [x] SUCCESS, IN_PROGRESS, FAIL 3가지 목록을 가진다
   - [x] 상태에 따른 재실행 여부 기능 추가
-  - [ ] Details 상태 추가("성공", "진행중", "실패")
+  - [x] Details 상태 추가("성공", "진행중", "실패")
 
 - [x] View
   - [x] print() 기능을 가짐
