@@ -14,8 +14,15 @@ public class InputView {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
         System.out.println("다리의 길이를 입력해주세요.");
 
-        try { return Integer.parseInt(Console.readLine());}
-        catch(IllegalArgumentException e) { throw new IllegalArgumentException("숫자만 입력해주세요.");}
+        int bridgeSize = Integer.parseInt(Console.readLine());
+        validateBridgeSize(bridgeSize);
+
+        return bridgeSize;
+    }
+
+    private void validateBridgeSize(int bridgeSize) {
+        if (bridgeSize < 3 || bridgeSize > 20)
+            throw new IllegalArgumentException("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
     }
 
     /**
@@ -37,15 +44,15 @@ public class InputView {
     }
 
     /**
-     * @param userInput 사용자 입력
-     * @param possibleFirstString 가능한 첫번째 문자열
+     * @param userInput            사용자 입력
+     * @param possibleFirstString  가능한 첫번째 문자열
      * @param possibleSecondString 가능한 두번째 문자열
-     * @throws IllegalArgumentException possibleFirstString, possibleSecondString 아닌 문자열이 입력된 경우
      * @return 입력받은 문자열을 반환한다.
+     * @throws IllegalArgumentException possibleFirstString, possibleSecondString 아닌 문자열이 입력된 경우
      */
     private String isCorrectInputCompareByTwoString(String userInput, String possibleFirstString, String possibleSecondString) {
-        if(userInput.length() == 1)
-            if(userInput.equals(possibleFirstString) || userInput.equals(possibleSecondString))
+        if (userInput.length() == 1)
+            if (userInput.equals(possibleFirstString) || userInput.equals(possibleSecondString))
                 return userInput;
 
         throw new IllegalArgumentException(

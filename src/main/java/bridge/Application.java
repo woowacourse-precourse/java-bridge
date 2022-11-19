@@ -21,8 +21,10 @@ public class Application {
             BridgeGame bridgeGame = new BridgeGame(stageBridge);
 
             outputView.printResult(bridgeGame, playGame(bridgeGame));
+        } catch (NumberFormatException e){
+            System.out.println(errorMessage + ' ' + "숫자만 입력해주세요.");
         } catch (IllegalArgumentException e) {
-            System.out.println(errorMessage + e.getMessage());
+            System.out.println(errorMessage + ' ' + e.getMessage());
         }
     }
 
