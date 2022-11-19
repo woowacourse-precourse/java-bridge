@@ -19,7 +19,7 @@ public class InputView {
      */
     public int readBridgeSize(Consumer<IllegalArgumentException> exceptionHandler) {
         return inputUntilValid(
-                () -> validateInput(Integer::parseInt, Console.readLine(), "R와 Q 중 하나만 입력하세요"),
+                () -> validateInput(Integer::parseInt, Console.readLine(), "숫자를 입력하세요"),
                 exceptionHandler);
     }
 
