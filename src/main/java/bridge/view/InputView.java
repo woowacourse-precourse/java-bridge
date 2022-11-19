@@ -23,7 +23,9 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println(InputGuidePhrase.PANEL.get());
-        return null;
+        String panelInput = Console.readLine().trim();
+        ViewValidator.validatePanelInput(panelInput);
+        return panelInput;
     }
 
     /**
