@@ -13,8 +13,6 @@ public class GameManager {
     OutputView ouputView;
     BridgeMaker bridgeMaker;
     List<String> bridge;
-    List<String> upResult = new ArrayList<>();
-    List<String> downResult = new ArrayList<>();
 
     public GameManager(InputView input, OutputView output, BridgeRandomNumberGenerator generator) {
         this.inputView = input;
@@ -27,18 +25,21 @@ public class GameManager {
         boolean activation = true;
         int bridgeSize = inputView.readBridgeSize();
         bridge = bridgeMaker.makeBridge(bridgeSize);
+        System.out.println(bridge);
         BridgeGame bridgeGame = new BridgeGame(bridge);
         int round = 0;
 
         while (activation) {
             String moving = inputView.readMoving();
-            String[] result = bridgeGame.move(round, moving);
-            addGameResult(result);
+            List<List<String>> result = bridgeGame.move(round, moving);
+            List<String> upResult = result.get(0);
+            List<String> downResult = result.get(1);
             ouputView.printMap(upResult, downResult);
             round++;
 
-            if (Arrays.asList(result).contains(" X ")) {
+            if (upResult.contains(" X ") || downResult.contains(" X ")) {
                 activation = retry();
+                bridgeGame = new BridgeGame(bridge);
                 round = 0;
             }
 
@@ -46,14 +47,6 @@ public class GameManager {
                 activation = false;
             }
         }
-
-    }
-
-    public void addGameResult(String[] result) {
-        upResult.add(result[1]);
-        upResult.add("|");
-        downResult.add(result[0]);
-        downResult.add("|");
     }
 
     public boolean retry() {
