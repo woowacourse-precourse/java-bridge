@@ -1,8 +1,51 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        InputView inputView = new InputView();
+
+        System.out.println("다리 건너기 게임을 시작합니다");
+
+        System.out.println("다리의 길이를 입력해주세요");
+
+        int bridgeSize = inputView.readBridgeSize();
+
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+
+        Bridge userBridge = new Bridge(new ArrayList<>(), new ArrayList<>());
+
+        for (String s : bridge) {
+            String nextStep = inputView.readMoving();
+
+            boolean matchingFlag = true;
+
+            if (!nextStep.equals(s)) {
+                matchingFlag = false;
+            }
+
+            if (matchingFlag) {
+                if (nextStep.equals("U")) {
+                    userBridge.moveUpBridgeCorrect();
+                } else {
+                    userBridge.moveDownBridgeCorrect();
+                }
+            } else {
+                if (nextStep.equals("U")) {
+                    userBridge.moveUpBridgeInCorrect();
+                } else {
+                    userBridge.moveDownBridgeInCorrect();
+                }
+            }
+
+            System.out.println(userBridge);
+        }
     }
 }
