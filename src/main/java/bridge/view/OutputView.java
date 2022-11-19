@@ -44,6 +44,11 @@ public class OutputView {
         System.out.println(FAIL);
     }
 
+    private void printTries(int tries) {
+        System.out.print(TOTAL_TRIES);
+        System.out.println(tries);
+    }
+
     private String rowFormat(List<String> row) {
         String joinedRow = String.join(" | ", row);
         return "[ " + joinedRow + " ]";
