@@ -31,4 +31,8 @@ public class Bridge {
     public boolean isRightMoving(int index, String moving) {
         return moving.equals(bridge.get(index));
     }
+
+    public boolean success(BridgeResult bridgeResult) {
+        return bridge.size() == bridgeResult.getSize();
+    }
 }

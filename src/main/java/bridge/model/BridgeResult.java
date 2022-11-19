@@ -7,7 +7,7 @@ import java.util.List;
 
 public class BridgeResult {
 
-    public List<Boolean> result;
+    private List<Boolean> result;
 
     public BridgeResult() {
         this.result = new ArrayList<>();
@@ -24,5 +24,9 @@ public class BridgeResult {
 
     public boolean canMove() {
         return result.get(result.size() - 1);
+    }
+
+    public int getSize() {
+        return result.size();
     }
 }
