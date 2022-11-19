@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view.input;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -9,6 +9,8 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        print(InputMessage.READ_BRIDGE_SIZE);
+
         return 0;
     }
 
@@ -24,5 +26,9 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private void print(String message) {
+        System.out.println(message);
     }
 }
