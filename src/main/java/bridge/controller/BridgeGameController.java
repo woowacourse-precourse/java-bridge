@@ -44,12 +44,6 @@ public class BridgeGameController {
     }
 
     public void gameProcess() {
-        if (gamePlay()) {
-            OutputView.printSuccess();
-            OutputView.printResult(bridgeGame.getRetry());
-        } else {
-            OutputView.printFail();
-            OutputView.printResult(bridgeGame.getRetry());
-        }
+        OutputView.printResult(bridgeGame.getRetry(),gamePlay());
     }
 }
