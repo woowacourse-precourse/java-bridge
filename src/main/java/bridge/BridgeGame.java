@@ -36,5 +36,8 @@ public class BridgeGame {
     public void retry() {
         outputView.printMessageAfterFailure();
         String retryOrQuit = inputView.readGameCommand();
+        Validation.validateResponseAfterFailure(retryOrQuit);
+
+
     }
 }
