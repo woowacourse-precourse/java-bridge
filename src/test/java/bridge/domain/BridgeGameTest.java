@@ -4,6 +4,8 @@ import bridge.dto.MovingDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -54,5 +56,12 @@ class BridgeGameTest {
                 () -> bridgeGame.move(new MovingDTO("D"), BridgeTest.UPPER_BRIDGE),
                 () -> assertThat(bridgeGame.isMoveFail()).isTrue()
         );
+    }
+    
+    @DisplayName("재시도 선택 여부 확인")
+    @ParameterizedTest(name = "{displayName} : command => {0}, expected => {1}")
+    @CsvSource(value = {"Q, true", "R, false"})
+    void selectGameFinish(final String command, final boolean expected) {
+        assertThat(bridgeGame.selectGameFinish(command)).isEqualTo(expected);
     }
 }
