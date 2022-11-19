@@ -49,6 +49,6 @@ public class BridgeGameController {
         String makeGameResultMap = bridgeGame.makeCurrentResultMap(bridgeSize);
         outputView.printResult(makeGameResultMap);
         bridgeGame.isSuccess(bridge, bridgeGame.getLevel());
-        System.out.println("총 시도한 횟수: " + bridgeGame.getTryCount());
+        System.out.println(GameMessage.GAME_TRY_CNT_MESSAGE.getMessage() + bridgeGame.getTryCount());
     }
 }

@@ -6,6 +6,12 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private final String IS_CORRECT = " O ";
+    private final String IS_NOT_CORRECT = " X ";
+    private final String SPACE = "   ";
+    private final String START_BRACKET = "[";
+    private final String END_BRACKET = "]";
+    private final String MIDDLE_BRACKET = "|";
     private StringBuilder sb1 = new StringBuilder();
     private StringBuilder sb2 = new StringBuilder();
     private int level = 0;
@@ -18,7 +24,7 @@ public class BridgeGame {
 
     public void printResultMessage() {
         System.out.println();
-        System.out.println("최종 게임 결과");
+        System.out.println(GameMessage.GAME_RESULT_MESSAGE.getMessage());
     }
 
     /**
@@ -32,18 +38,18 @@ public class BridgeGame {
         isDown(bridge, moving, level);
         isLast(bridge, level);
 
-        String result = sb1.substring(0,sb1.length()-1) + "]";
-        String result2 = sb2.substring(0,sb2.length()-1) + "]";
+        String result = sb1.substring(0,sb1.length()-1) + END_BRACKET;
+        String result2 = sb2.substring(0,sb2.length()-1) + END_BRACKET;
 
         return result+System.getProperty("line.separator")+result2;
     }
 
     public void isSuccess(List<String> bridge, int level) {
         if (level == bridge.size()) {
-            System.out.println("게임 성공 여부: 성공");
+            System.out.println(GameMessage.GAME_SUC_MESSAGE.getMessage());
         }
         if (level != bridge.size()) {
-            System.out.println("게임 성공 여부: 실패");
+            System.out.println(GameMessage.GAME_FAIL_MESSAGE.getMessage());
         }
     }
 
@@ -57,8 +63,8 @@ public class BridgeGame {
 
     public void isStart(int level) {
         if (level == 0) {
-            sb1.append("[");
-            sb2.append("[");
+            sb1.append(START_BRACKET);
+            sb2.append(START_BRACKET);
         }
     }
 
@@ -66,13 +72,13 @@ public class BridgeGame {
         String compareBridgeAndMoving = compareBridgeAndMoving(bridge, moving, level);
 
         if (bridge.get(level).equals("U")) {
-            if (compareBridgeAndMoving.equals(" X ")) {
-                sb1.append("   ");
+            if (compareBridgeAndMoving.equals(IS_NOT_CORRECT)) {
+                sb1.append(SPACE);
                 sb2.append(compareBridgeAndMoving);
             }
-            if (compareBridgeAndMoving.equals(" O ")) {
+            if (compareBridgeAndMoving.equals(IS_CORRECT)) {
                 sb1.append(compareBridgeAndMoving);
-                sb2.append("   ");
+                sb2.append(SPACE);
             }
         }
     }
@@ -81,12 +87,12 @@ public class BridgeGame {
         String compareBridgeAndMoving = compareBridgeAndMoving(bridge, moving, level);
 
         if (bridge.get(level).equals("D")) {
-            if (compareBridgeAndMoving.equals(" X ")) {
+            if (compareBridgeAndMoving.equals(IS_NOT_CORRECT)) {
                 sb1.append(compareBridgeAndMoving);
-                sb2.append("   ");
+                sb2.append(SPACE);
             }
-            if (compareBridgeAndMoving.equals(" O ")) {
-                sb1.append("   ");
+            if (compareBridgeAndMoving.equals(IS_CORRECT)) {
+                sb1.append(SPACE);
                 sb2.append(compareBridgeAndMoving);
             }
         }
@@ -94,22 +100,22 @@ public class BridgeGame {
 
     public void isLast(List<String> bridge, int level) {
         if (bridge.size() - 1 != level) {
-            sb1.append("|");
-            sb2.append("|");
+            sb1.append(MIDDLE_BRACKET);
+            sb2.append(MIDDLE_BRACKET);
         }
         if (bridge.size() - 1 == level) {
-            sb1.append("]");
-            sb2.append("]");
+            sb1.append(END_BRACKET);
+            sb2.append(END_BRACKET);
         }
     }
 
     public String compareBridgeAndMoving(List<String> bridge, String moving, int level) {
         String result = "";
         if (bridge.get(level).equals(moving)) {
-            result = " O ";
+            result = IS_CORRECT;
         }
         if (!bridge.get(level).equals(moving)) {
-            result = " X ";
+            result = IS_NOT_CORRECT;
         }
         return result;
     }
@@ -129,15 +135,15 @@ public class BridgeGame {
             sb1.delete(sb1.length() - 4, sb1.length());
             sb2.delete(sb2.length() - 4, sb2.length());
 
-            System.out.println(sb1.substring(0,sb1.length()-1)+"]");
-            System.out.println(sb2.substring(0,sb2.length()-1)+"]");
+            System.out.println(sb1.substring(0,sb1.length()-1)+END_BRACKET);
+            System.out.println(sb2.substring(0,sb2.length()-1)+END_BRACKET);
         }
     }
 
     public String makeCurrentResultMap(int bridgeSize) {
-        String result = result = sb1 + "\n" + sb2;
+        String result = sb1 + "\n" + sb2;
         if (level != bridgeSize) {
-            result = sb1.deleteCharAt(sb1.length()-1)+"]" + "\n" + sb2.deleteCharAt(sb2.length()-1)+"]";
+            result = sb1.deleteCharAt(sb1.length()-1)+END_BRACKET + "\n" + sb2.deleteCharAt(sb2.length()-1)+END_BRACKET;
         }
 
         return result;
