@@ -2,6 +2,8 @@ package bridge;
 
 import java.util.List;
 
+import static bridge.Message.*;
+
 public class BridgeGameService {
 
     private final OutputView outputView = new OutputView();
@@ -23,7 +25,7 @@ public class BridgeGameService {
     }
 
     private void bridgeMoving() {
-        outputView.printOf(OutputView.MESSAGE_INPUT_BRIDGE_MOVING);
+        outputView.printOf(MESSAGE_INPUT_BRIDGE_MOVING.getMessage());
         bridgeGame.move(inputView.readMoving());
         outputView.printMap(bridgeGame.getResult());
     }
@@ -44,7 +46,7 @@ public class BridgeGameService {
     }
 
     private String selectRetryOrExit() {
-        outputView.printOf(OutputView.MESSAGE_RETRY_OR_EXIT);
+        outputView.printOf(MESSAGE_RETRY_OR_EXIT.getMessage());
         return inputView.readGameCommand();
     }
 }

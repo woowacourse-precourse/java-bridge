@@ -2,22 +2,16 @@ package bridge;
 
 import java.util.List;
 
+import static bridge.Message.*;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
 
-    public static final String MESSAGE_ERROR = "[ERROR] ";
-    public static final String MESSAGE_GAME_START = "다리 건너기 게임을 시작합니다.";
-    public static final String MESSAGE_INPUT_BRIDGE_SIZE = System.lineSeparator() + "다리의 길이를 입력해주세요.";
-    public static final String MESSAGE_INPUT_BRIDGE_MOVING = System.lineSeparator() + "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    public static final String MESSAGE_RETRY_OR_EXIT = System.lineSeparator() + "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-    public static final String MESSAGE_GAME_RESULT = "최종 게임 결과";
-    public static final String MESSAGE_GAME_END = System.lineSeparator() + "게임 성공 여부: %s" + System.lineSeparator() + "총 시도한 횟수: %d";
-
     public void printStart() {
-        System.out.println(MESSAGE_GAME_START);
-        System.out.println(MESSAGE_INPUT_BRIDGE_SIZE);
+        System.out.println(MESSAGE_GAME_START.getMessage());
+        System.out.println(MESSAGE_INPUT_BRIDGE_SIZE.getMessage());
     }
 
     public void printOf(String message) {
@@ -62,12 +56,12 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(List<List<String>> resultMap, String isSuccess, int gameCount) {
-        System.out.println(MESSAGE_GAME_RESULT);
+        System.out.println(MESSAGE_GAME_RESULT.getMessage());
         printMap(resultMap);
-        System.out.printf(MESSAGE_GAME_END, isSuccess, gameCount);
+        System.out.printf(MESSAGE_GAME_END.getMessage(), isSuccess, gameCount);
     }
 
     public static void printError(String message) {
-        System.out.println(MESSAGE_ERROR + message);
+        System.out.println(MESSAGE_ERROR.getMessage() + message);
     }
 }
