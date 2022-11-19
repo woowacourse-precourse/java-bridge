@@ -20,7 +20,11 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String direction) {
+    public boolean move(String direction) {
+        boolean resultOfStep = isResultOfStep(direction);
+        String OorX = convertResultOfStepToString(resultOfStep);
+        user.addPathOfBridge(direction, OorX);
+        return resultOfStep;
     }
 
     public boolean isResultOfStep(String direction) {
@@ -28,12 +32,13 @@ public class BridgeGame {
         return bridge.get(round).equals(direction);
     }
 
-    public String convertResultOfStepToString (boolean stepOfResult){
-        if (stepOfResult){
+    public String convertResultOfStepToString(boolean resultOfStep) {
+        if (resultOfStep) {
             return "O";
         }
         return "X";
     }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
