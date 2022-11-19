@@ -32,6 +32,7 @@ public class Service {
     private void createBridge() {
         outputView.printInputBridgeSize();
         bridgeGame.createBridge(inputView.readBridgeSize());
+        outputView.printEmpty();
     }
 
     // 유저 키입력 리스트 초기화 기능
@@ -69,5 +70,10 @@ public class Service {
     // 에러메세지 출력 기능
     public void catchError(IllegalArgumentException error) {
         outputView.printErrorMessage(error);
+    }
+
+    // 게임 결과 출력
+    public void gameResult() {
+        outputView.printResultMessage();
     }
 }
