@@ -11,38 +11,38 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private int round = 1;
-    private int tryCount = 1;
+    private final BridgeGameRepository bridgeGameRepository = new BridgeGameRepository();
 
     public Bridge getBridge(int size) {
+        bridgeGameRepository.setBridgeGameInfo(size);
         List<String> blocks = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
         return new Bridge(blocks);
     }
 
     public MoveResult move(Bridge bridge,
                            String moveMessage) {
-        boolean isSuccess = bridge.isMoveSuccess(round, moveMessage);
+        boolean isSuccess = bridge.isMoveSuccess(bridgeGameRepository.findRound(), moveMessage);
         return new MoveResult(moveMessage, isSuccess);
     }
 
     public boolean retry(String retryMessage) {
         if (retryMessage.equals(RESTART_GAME)) {
-            round = 1;
-            tryCount++;
+            bridgeGameRepository.retry();
             return true;
         }
         return false;
     }
 
     public boolean isGameClear(Bridge bridge) {
-        if (bridge.isGameClear(round)) {
+        if (bridge.isGameClear(bridgeGameRepository.findRound())) {
             return true;
         }
-        round++;
+        bridgeGameRepository.goToNextRound();
         return false;
     }
 
     public GameResult closeGame(Bridge bridge) {
-        return new GameResult(tryCount, bridge.isGameClear(round));
+        return new GameResult(bridgeGameRepository.findTryCount(),
+                bridge.isGameClear(bridgeGameRepository.findRound()));
     }
 }
