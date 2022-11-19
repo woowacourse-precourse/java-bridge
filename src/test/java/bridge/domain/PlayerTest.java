@@ -18,32 +18,30 @@ class PlayerTest {
     @Test
     void move_메서드는_방향을_입력받아_다리_건너기_게임을_진행한다() {
         Player player = new Player();
-        BridgeGame mock = mock(BridgeGame.class);
+        BridgeGame bridgeGame = mock(BridgeGame.class);
 
-        player.move(mock, Direction.UP);
+        player.move(bridgeGame, Direction.UP);
 
-        verify(mock, only()).move(any(Round.class), eq(Direction.UP));
+        verify(bridgeGame, only()).move(any(Round.class), eq(Direction.UP));
     }
 
     @Test
     void reset_메서드는_Round와_BridgeGameResult를_초기화하고_다음_게임_카운트를_증가시킨다() {
         GamePlayCount gamePlayCount = mock(GamePlayCount.class);
-        Round round = mock(Round.class);
         BridgeGameResult bridgeGameResult = mock(BridgeGameResult.class);
 
-        Player player = new Player(gamePlayCount, round, bridgeGameResult);
+        Player player = new Player(gamePlayCount, Round.firstRound(), bridgeGameResult);
 
         player.reset();
 
         verify(gamePlayCount, only()).nextGame();
-        verify(round, only()).reset();
         verify(bridgeGameResult, only()).reset();
     }
 
     @Test
     void getGameResult_메서드는_BridgeGameResult의_getResult를_호출한다() {
         BridgeGameResult bridgeGameResult = mock(BridgeGameResult.class);
-        Player player = new Player(GamePlayCount.firstGame(), new Round(), bridgeGameResult);
+        Player player = new Player(GamePlayCount.firstGame(), Round.firstRound(), bridgeGameResult);
 
         player.getBridgeGameResult();
 

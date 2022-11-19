@@ -16,7 +16,7 @@ class BridgeGameResultTest {
     @Test
     void addResult_메서드는_해당_라운드의_게임_결과를_입력한다() {
         BridgeGameResult bridgeGameResult = new BridgeGameResult();
-        bridgeGameResult.addResult(new Round(1), SUCCESS);
+        bridgeGameResult.addResult(Round.valueOf(1), SUCCESS);
 
         assertThat(bridgeGameResult.getResult()).containsExactly(SUCCESS);
     }
@@ -24,9 +24,9 @@ class BridgeGameResultTest {
     @Test
     void getResult_메서드는_1라운드_부터의_게임_결과를_반환한다() {
         BridgeGameResult bridgeGameResult = new BridgeGameResult();
-        bridgeGameResult.addResult(new Round(1), SUCCESS);
-        bridgeGameResult.addResult(new Round(2), FAIL);
-        bridgeGameResult.addResult(new Round(3), SUCCESS);
+        bridgeGameResult.addResult(Round.valueOf(1), SUCCESS);
+        bridgeGameResult.addResult(Round.valueOf(2), FAIL);
+        bridgeGameResult.addResult(Round.valueOf(3), SUCCESS);
 
         assertThat(bridgeGameResult.getResult()).containsExactly(SUCCESS, FAIL, SUCCESS);
     }
@@ -34,7 +34,7 @@ class BridgeGameResultTest {
     @Test
     void reset_메서드는_게임_결과를_초기화_시킨다() {
         BridgeGameResult bridgeGameResult = new BridgeGameResult();
-        bridgeGameResult.addResult(new Round(1), SUCCESS);
+        bridgeGameResult.addResult(Round.valueOf(1), SUCCESS);
 
         bridgeGameResult.reset();
 
