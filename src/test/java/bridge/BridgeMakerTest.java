@@ -34,7 +34,7 @@ class BridgeMakerTest {
     }
 
     @ParameterizedTest(name = "[{index}] 0과 1이 아닌 다른 숫자({arguments})로 생성되는 경우 예외가 발생한다.")
-    @ValueSource(ints = {-1, -0, 2, 10})
+    @ValueSource(ints = {-1, 2, 10})
     void createBridgeByNot0Or1(final int generatedNumber) {
         // given
         int length = 5;
