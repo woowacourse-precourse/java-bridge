@@ -4,8 +4,8 @@ package bridge;
  * 상하를 판단하는 열거 상수
  */
 public enum VerticalPositionValue {
-    DOWN (0, "D"),
-    UP (1, "U");
+    DOWN(0, "D"),
+    UP(1, "U");
     private final Integer number;
     private final String  sign;
 
