@@ -64,6 +64,7 @@
    * BridgeMove domain 구현
    * domain 내 범위 테스트 구현 (D, U)0
 4. input user answer
+   * input view 구현
 5. check user's submitted answer
 6. print turn's result
 7. ask retry

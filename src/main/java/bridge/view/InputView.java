@@ -20,8 +20,9 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public static String readMoving() {
+        System.out.println(Message.INPUT_DIRECTION.get());
+        return Console.readLine();
     }
 
     /**
