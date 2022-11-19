@@ -1,6 +1,8 @@
 package bridge;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -21,6 +23,16 @@ public class InputViewTest {
         });
     }
     @Test
+    void invalidRange() {
+        assertSimpleTest(() -> {
+            InputView test = new InputView();
+            String input = "253\n2\n5";
+            InputStream is = new ByteArrayInputStream(input.getBytes());
+            System.setIn(is);
+            test.readBridgeSize();
+        });
+    }
+    @Test
     void isValidMove() {
         assertSimpleTest(() -> {
             InputView test = new InputView();
@@ -28,6 +40,17 @@ public class InputViewTest {
             InputStream is = new ByteArrayInputStream(input.getBytes());
             System.setIn(is);
             test.readMoving();
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource (strings = {"3wq\nU\nR","Q"})
+    void isValidCommand(String input) {
+        assertSimpleTest(() -> {
+            InputView test = new InputView();
+            InputStream is = new ByteArrayInputStream(input.getBytes());
+            System.setIn(is);
+            test.readGameCommand();
         });
     }
 }

@@ -1,13 +1,14 @@
 package bridge;
 
+import Constant.BridgeInput;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.List;
 
-import static Constant.BridgeConstant.MIN_SIZE;
-import static Constant.BridgeConstant.MAX_SIZE;
-import static Constant.BridgeInput.MOVE_CHOICE;
+import static Constant.BridgeConstant.*;
+
 import static Constant.BridgeInput.GAME_RESTART;
+import static Constant.BridgeInput.MOVE_CHOICE;
 import static Constant.PrintText.*;
 import static Constant.ErrorMessage.*;
 /**
@@ -21,8 +22,11 @@ public class InputView {
     public int readBridgeSize() {
         String input;
         int size;
-        while(!isDigit(input=Console.readLine())){}
-        size = convertToInteger(input);
+        do{
+            while(!isDigit(input=Console.readLine())){}
+            size = convertToInteger(input);
+        }while(!isValidRange(size));
+
         return size;
     }
 
@@ -31,7 +35,7 @@ public class InputView {
      */
     public String readMoving() {
         String input;
-        while(!isValidChoice(input=Console.readLine() , MOVE_CHOICE.getValue()));
+        while(!isValidChoice(input=Console.readLine() , MOVE_CHOICE));
         return input;
     }
 
@@ -39,15 +43,18 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String input;
+        while(!isValidChoice(input=Console.readLine() , GAME_RESTART));
+        return input;
     }
 
-    private boolean isValidChoice(String input, List<String> choicePool){
+    private boolean isValidChoice(String input, BridgeInput enumChoice){
         try {
+            List<String> choicePool = enumChoice.getValue();
             if (choicePool.contains(input)) {
                 return true;
             }
-            throw new IllegalArgumentException(INVALID_MOVE.getErrorMsg());
+            throw new IllegalArgumentException(enumChoice.getErrorMsg());
         }catch (Exception e){
             System.out.println(e.getMessage());
             return false;
@@ -67,6 +74,17 @@ public class InputView {
     }
     private Integer convertToInteger(String input){
         return Integer.parseInt(input);
+    }
+    private boolean isValidRange(int input){
+        try{
+            if(input>= INPUT_RANGE.getMin() && input<= INPUT_RANGE.getMax()){
+                return true;
+            }
+            throw new IllegalArgumentException(INPUT_RANGE.getErrorMsg());
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
     private void testVaildRange(){
 
