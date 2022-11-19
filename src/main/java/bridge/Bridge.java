@@ -2,6 +2,12 @@ package bridge;
 
 import java.util.List;
 
+import static bridge.Constant.MOVING_DOWN;
+import static bridge.Constant.MOVING_UP;
+
+/**
+ * 다리의 정보를 저장하는 클래스
+ */
 public class Bridge {
     private final List<String> movableBlocks;
 
@@ -15,8 +21,14 @@ public class Bridge {
     }
 
     private void validate(List<String> movableBlocks) {
-        if (!movableBlocks.contains("D") && !movableBlocks.contains("U")) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 문자가 포함되어 있습니다.");
+        for (String block : movableBlocks) {
+            if (!isValidBlock(block)) {
+                throw new IllegalArgumentException("[ERROR] 유효하지 않은 문자가 포함되어 있습니다.");
+            }
         }
+    }
+
+    private boolean isValidBlock(String block) {
+        return block.equals(MOVING_UP) || block.equals(MOVING_DOWN);
     }
 }
