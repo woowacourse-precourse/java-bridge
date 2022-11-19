@@ -2,6 +2,7 @@ package bridge;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -51,7 +52,7 @@ class OutputViewTest {
 
             // then
             Assertions.assertThat(outputMessage.toString())
-                .isEqualTo("[" + upBridge + "]\r\n" + "[" + downBridge + "]\r\n");
+                .isEqualTo("[" + upBridge + "]\r\n" + "[" + downBridge + "]\r\n\r\n");
         }
 
         @Test
@@ -68,7 +69,7 @@ class OutputViewTest {
 
             // then
             Assertions.assertThat(outputMessage.toString())
-                .isEqualTo("[" + upBridge + "]\r\n" + "[" + downBridge + "]\r\n");
+                .isEqualTo("[" + upBridge + "]\r\n" + "[" + downBridge + "]\r\n\r\n");
         }
 
         @Test
@@ -85,7 +86,7 @@ class OutputViewTest {
 
             // then
             Assertions.assertThat(outputMessage.toString())
-                .isEqualTo("[" + upBridge + "]\r\n" + "[" + downBridge + "]\r\n");
+                .isEqualTo("[" + upBridge + "]\r\n" + "[" + downBridge + "]\r\n\r\n");
         }
 
         @Test
@@ -102,7 +103,91 @@ class OutputViewTest {
 
             // then
             Assertions.assertThat(outputMessage.toString())
-                .isEqualTo("[" + upBridge + "]\r\n" + "[" + downBridge + "]\r\n");
+                .isEqualTo("[" + upBridge + "]\r\n" + "[" + downBridge + "]\r\n\r\n");
+        }
+    }
+
+    @Nested
+    @DisplayName("printResult 테스트")
+    class PrintResultTest {
+
+        @Test
+        @DisplayName("게임 성공 여부: 실패 출력")
+        void printResultTest1() {
+            // given
+            BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "D"));
+            OutputView outputView = new OutputView();
+
+            // when
+            bridgeGame.move("U");
+            bridgeGame.move("U");
+
+            // then
+            outputView.printResult(bridgeGame.getUpBridgeToString(),
+                bridgeGame.getDownBridgeToString(), bridgeGame.isClear(),
+                bridgeGame.getCountOfTry());
+
+            String upBridge = SUCCESS + NEXT + FAILURE;
+            String downBridge = PASS + NEXT + PASS;
+
+            Assertions.assertThat(outputMessage.toString()).isEqualTo(
+                "[" + upBridge + "]\r\n" + "[" + downBridge + "]\r\n\r\n" + "게임 성공 여부: " + "실패\r\n"
+                    + "총 시도한 횟수: " + "1\r\n");
+        }
+
+        @Test
+        @DisplayName("게임 성공 여부: 성공 출력")
+        void printResultTest2() {
+            // given
+            BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "D"));
+            OutputView outputView = new OutputView();
+
+            // when
+            bridgeGame.move("U");
+            bridgeGame.move("D");
+            bridgeGame.move("D");
+
+            // then
+            outputView.printResult(bridgeGame.getUpBridgeToString(),
+                bridgeGame.getDownBridgeToString(), bridgeGame.isClear(),
+                bridgeGame.getCountOfTry());
+
+            String upBridge = SUCCESS + NEXT + PASS + NEXT + PASS;
+            String downBridge = PASS + NEXT + SUCCESS + NEXT + SUCCESS;
+
+            Assertions.assertThat(outputMessage.toString()).isEqualTo(
+                "[" + upBridge + "]\r\n" + "[" + downBridge + "]\r\n\r\n" + "게임 성공 여부: " + "성공\r\n"
+                    + "총 시도한 횟수: " + "1\r\n");
+        }
+
+        @Test
+        @DisplayName("재시도 후 성공 및 총 재시도 횟수 2 출력")
+        void printResultTest3() {
+            // given
+            BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "D"));
+            OutputView outputView = new OutputView();
+
+            // when
+            bridgeGame.move("U");
+            bridgeGame.move("U");
+
+            bridgeGame.retry();
+
+            bridgeGame.move("U");
+            bridgeGame.move("D");
+            bridgeGame.move("D");
+
+            // then
+            outputView.printResult(bridgeGame.getUpBridgeToString(),
+                bridgeGame.getDownBridgeToString(), bridgeGame.isClear(),
+                bridgeGame.getCountOfTry());
+
+            String upBridge = SUCCESS + NEXT + PASS + NEXT + PASS;
+            String downBridge = PASS + NEXT + SUCCESS + NEXT + SUCCESS;
+
+            Assertions.assertThat(outputMessage.toString()).isEqualTo(
+                "[" + upBridge + "]\r\n" + "[" + downBridge + "]\r\n\r\n" + "게임 성공 여부: " + "성공\r\n"
+                    + "총 시도한 횟수: " + "2\r\n");
         }
     }
 }

@@ -13,6 +13,7 @@ public class OutputView {
     public void printMap(String upBridge, String downBridge) {
         System.out.println("[" + upBridge + "]");
         System.out.println("[" + downBridge + "]");
+        System.out.println();
     }
 
     /**
