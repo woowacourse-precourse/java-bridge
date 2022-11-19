@@ -46,14 +46,14 @@ public class OutputView {
         System.out.println(Map);
     }
 
-    private String[] firstPrintMap(String[] splitMap,String right, int upOrDown){
+    private String[] firstPrintMap(String[] splitMap, String right, int upOrDown){
         this.isFirst = false;
         splitMap[upOrDown] = OPEN + right + CLOSE;
         splitMap[(upOrDown + 1) % 2] = OPEN + NONE + CLOSE;
         return splitMap;
     }
 
-    private String[] notFirstPrintMap(String[] splitMap,String right, int upOrDown){
+    private String[] notFirstPrintMap(String[] splitMap, String right, int upOrDown){
         splitMap[upOrDown] = splitMap[upOrDown].substring(0, splitMap[upOrDown].length() - 1) + DIVISION + right + CLOSE;
         splitMap[(upOrDown + 1) % 2] = splitMap[(upOrDown + 1) % 2].substring(0, splitMap[(upOrDown + 1) % 2].length() - 1) + DIVISION + NONE + CLOSE;
         return splitMap;

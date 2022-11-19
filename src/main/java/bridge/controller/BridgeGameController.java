@@ -52,7 +52,7 @@ public class BridgeGameController {
 
     private boolean crossBridge(int index){
         goUpOrDown();
-        if(bridgeGame.move(moving,index,bridge)){
+        if(bridgeGame.move(moving,bridge.get(index))){
             outputView.printMap(YES, bridgeUpDownNumber.upOrDown(bridge.get(index)));
             return true;
         }
