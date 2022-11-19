@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,11 +9,13 @@ import java.util.List;
 public class BridgeGame {
 
     private InputView inputView;
+    private OutputView outputView;
     private BridgeNumberGenerator bridgeNumberGenerator;
     private BridgeMaker bridgeMaker;
 
     public BridgeGame() {
         this.inputView = new InputView();
+        this.outputView = new OutputView();
         this.bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         this.bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     }
@@ -21,7 +24,17 @@ public class BridgeGame {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
         int bridgeSize = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        String moving = inputView.readMoving();
+        List<String> upperBridge = new ArrayList<>();
+        List<String> downBridge = new ArrayList<>();
+        for (int i = 0; i < bridge.size(); i++) {
+            String moving = inputView.readMoving();
+            if (move(moving, bridge.get(i))) {
+                outputView.makeMap(moving, "O", upperBridge, downBridge);
+            } else if (!move(moving, bridge.get(i))) {
+                outputView.makeMap(moving, "X", upperBridge, downBridge);
+            }
+            outputView.printMap(upperBridge, downBridge);
+        }
     }
 
     /**
