@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.game.BridgeGame;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -24,8 +25,8 @@ class BridgeMakerTest {
     void testBridgeString() {
         List<String> bridge = bridgeMaker.makeBridge(3);
         for (int i=0; i<3; i++) {
-            assertTrue(bridge.get(i).equals("U")
-                    || bridge.get(i).equals("D"));
+            assertTrue(bridge.get(i).equals(BridgeGame.UP_DIRECTION)
+                    || bridge.get(i).equals(BridgeGame.DOWN_DIRECTION));
         }
     }
 }
