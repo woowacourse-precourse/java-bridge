@@ -5,7 +5,7 @@ import java.util.List;
 
 public class BridgeStatus {
 
-    private static final String ERROR_EXCEED_BRIDGE_SIZE = "다리 길이보다 초과된 입력을 할 수 없습니다.";
+    private static final String ERROR_ADD_USER_COMMAND = "재시작이 필요한 게임 상태일 때 moving command를 추가 할 수 없습니다.";
     private final List<String> answerBridge;
     private final List<String> userBridge;
     private int tryCount;
@@ -25,8 +25,8 @@ public class BridgeStatus {
     public void addUserMovingCommand(MovingCommand movingCommand) {
         userBridge.add(movingCommand.toString());
         int userBridgeLastIndex = userBridge.size() - 1;
-        validateAddUserMovingCommand();
         checkGameStatus(userBridge.get(userBridgeLastIndex), answerBridge.get(userBridgeLastIndex));
+        validateAddUserMovingCommand();
     }
 
     private void checkGameStatus(String requestBridgeElement, String answerBridgeElement) {
@@ -40,8 +40,8 @@ public class BridgeStatus {
     }
 
     private void validateAddUserMovingCommand() {
-        if (answerBridge.size() < userBridge.size()) {
-            throw new IllegalStateException(ERROR_EXCEED_BRIDGE_SIZE);
+        if(gameStatus.needCallRetry()) {
+            throw new IllegalStateException(ERROR_ADD_USER_COMMAND);
         }
     }
 
