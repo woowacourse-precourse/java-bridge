@@ -11,9 +11,11 @@ public class InputView {
 
     private static final String READ_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
     private static final String READ_MOVING_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String READ_GAME_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private static final String PARSE_STR_TO_INT_ERROR_MESSAGE = "[ERROR] 숫자를 입력해 주세요.";
     private static final String VALIDATE_BRIDGE_SIZE_ERROR_MESSAGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     private static final String VALIDATE_MOVING_ERROR_MESSAGE = "[ERROR] U 또는 D를 입력해야 합니다.";
+    private static final String VALIDATE_GAME_COMMAND_ERROR_MESSAGE = "[ERROR] R 또는 Q를 입력해야 합니다.";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -45,7 +47,13 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println(READ_GAME_COMMAND_MESSAGE);
+        try {
+            return validateGameCommand(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readGameCommand();
+        }
     }
 
     /**
@@ -64,8 +72,9 @@ public class InputView {
      * 매개변수 size가 3 이상 20 이하가 아니면 IllegalArgumentException을 발생 시킨다.
      */
     private int validateBridgeSize(int size) {
-        if (size < BRIDGE_SIZE_MIN || size > BRIDGE_SIZE_MAX)
+        if (size < BRIDGE_SIZE_MIN || size > BRIDGE_SIZE_MAX) {
             throw new IllegalArgumentException(VALIDATE_BRIDGE_SIZE_ERROR_MESSAGE);
+        }
         return size;
     }
 
@@ -73,8 +82,16 @@ public class InputView {
      * 매개변수 str이 U나 D가 아니면 IllegalArgumentException을 발생 시킨다.
      */
     private String validateMoving(String str) {
-        if (!(str.equals("U") || str.equals("D")))
+        if (!(str.equals("U") || str.equals("D"))) {
             throw new IllegalArgumentException(VALIDATE_MOVING_ERROR_MESSAGE);
+        }
         return str;
+    }
+
+    private String validateGameCommand(String gameCommand) {
+        if (!(gameCommand.equals("R") || gameCommand.equals("Q"))) {
+            throw new IllegalArgumentException(VALIDATE_GAME_COMMAND_ERROR_MESSAGE);
+        }
+        return gameCommand;
     }
 }
