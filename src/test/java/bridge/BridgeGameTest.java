@@ -57,7 +57,7 @@ public class BridgeGameTest {
         // then
         assertThat(bridgeGameHost.getPlayerIndex()).isEqualTo(-1);
         assertThat(bridgeGameHost.getPlayerAlive()).isTrue();
-        assertThat(bridgeGameHost.getRetry()).isEqualTo(1);
+        assertThat(bridgeGameHost.getRetry()).isEqualTo(2);
     }
 
 }

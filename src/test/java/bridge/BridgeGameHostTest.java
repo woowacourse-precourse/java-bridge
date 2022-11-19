@@ -47,7 +47,7 @@ public class BridgeGameHostTest {
     @DisplayName("플레이어의 총 시도 횟수를 반환하는 기능")
     void getRetry() {
         // then
-        assertThat(bridgeGameHost.getRetry()).isEqualTo(0);
+        assertThat(bridgeGameHost.getRetry()).isEqualTo(1);
     }
 
     @Test
