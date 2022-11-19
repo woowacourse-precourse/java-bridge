@@ -3,8 +3,8 @@ package bridge.view;
 import bridge.view.enums.OutputString;
 
 public class OutputView {
-    private static String upBridge = "[]";
-    private static String downBridge = "[]";
+    private static String upBridge;
+    private static String downBridge;
 
     public void setBridge(String bridge) {
         upBridge = bridge;
