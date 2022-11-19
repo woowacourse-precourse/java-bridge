@@ -2,6 +2,7 @@ package bridge.domain;
 
 import static bridge.controller.BridgeGameController.restartGame;
 
+import bridge.messages.Message;
 import bridge.view.InputView;
 
 /**
@@ -9,9 +10,6 @@ import bridge.view.InputView;
  */
 public class BridgeGame {
     private static final InputView inputView = new InputView();
-    private static final String MOVE_SUCCESS = "O";
-    private static final String MOVE_FAIL = "X";
-    private static final String RESTART = "R";
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -20,9 +18,9 @@ public class BridgeGame {
      */
     public String move(String bridge, String inputDirection) {
         if (bridge.equals(inputDirection)) {
-            return MOVE_SUCCESS;
+            return Message.MOVE_SUCCESS.getMessage();
         }
-        return MOVE_FAIL;
+        return Message.MOVE_FAIL.getMessage();
     }
 
     /**
@@ -33,7 +31,7 @@ public class BridgeGame {
     public void retry(String moveResult) {
         if (moveResult.equals("X")) {
             String input = inputView.inputGameRestart();
-            if (input.equals(RESTART)) {
+            if (input.equals(Message.RESTART.getMessage())) {
                 restartGame();
             }
         }
