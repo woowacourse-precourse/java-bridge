@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameResultGenerator {
-    private List<String> upperBridge;
-    private List<String> lowerBridge;
+    private final List<String> upperBridge;
+    private final List<String> lowerBridge;
 
     public GameResultGenerator() {
         this.upperBridge = new ArrayList<>();
@@ -35,13 +35,13 @@ public class GameResultGenerator {
     }
 
     public void addBridgeStatus(String upperResult, String lowerResult) {
-        this.upperBridge.add(upperResult);
-        this.lowerBridge.add(lowerResult);
+        upperBridge.add(upperResult);
+        lowerBridge.add(lowerResult);
     }
 
     public String getGameResultOutput() {
-        String upBridge = makeBridgeOutput(this.upperBridge);
-        String lowBridge = makeBridgeOutput(this.lowerBridge);
+        String upBridge = makeBridgeOutput(upperBridge);
+        String lowBridge = makeBridgeOutput(lowerBridge);
         return upBridge + '\n' + lowBridge;
     }
 
@@ -50,8 +50,8 @@ public class GameResultGenerator {
     }
 
     public void initGameResult() {
-        this.upperBridge = new ArrayList<>();
-        this.lowerBridge = new ArrayList<>();
+        upperBridge.clear();
+        lowerBridge.clear();
     }
 
     public String getBridgeStatus(GameResult gameResult) {
