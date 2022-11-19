@@ -63,4 +63,18 @@ public class OutputView {
     public void printMapEnd(){
         System.out.print("]");
     }
+
+    public void printUserPositionValue(int userPosition, boolean checkBridge,  List<Integer> partOfBridge){
+        if(checkBridge == true && partOfBridge.get(userPosition) == RANDOM_UPPER_INCLUSIVE){
+            System.out.print(" O ");
+            return;
+        }
+
+        if(checkBridge == false && partOfBridge.get(userPosition) == RANDOM_LOWER_INCLUSIVE){
+            System.out.print(" X ");
+            return;
+        }
+
+        System.out.print("   ");
+    }
 }
