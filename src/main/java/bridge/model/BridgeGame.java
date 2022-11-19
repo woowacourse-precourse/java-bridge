@@ -6,20 +6,15 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private BridgeMaker bridgeMaker;
     private Player player;
     private GameStatistics gameStatistics;
     private Bridge bridge;
 
-    public BridgeGame(BridgeMaker bridgeMaker, Player player, GameStatistics gameStatistics, Bridge bridge) {
-        this.bridgeMaker = bridgeMaker;
+    public BridgeGame(Player player, GameStatistics gameStatistics, Bridge bridge) {
         this.player = player;
         this.gameStatistics = gameStatistics;
         this.bridge = bridge;
-    }
 
-    public BridgeMaker getBridgeMaker() {
-        return bridgeMaker;
     }
 
     /**
@@ -39,40 +34,12 @@ public class BridgeGame {
      */
     public void retry() {
         gameStatistics.increaseTotalTryCount();
-        backUpBridge();
+        bridge.resetBridge();
         getPlayer().initCurrentLocation();
         gameStatistics.initCheckRoad();
     }
 
-    public boolean constructBridge() {
-        boolean checkProcess;
-        List<Boolean> checkRoad = gameStatistics.getCheckRoad();
-        if (checkRoad.get(Player.currentLocation)) {
-            checkProcess = true;
-            if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals("D")) {
-                bridge.setDownBridge("O");
-            } else if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals("U")) {
-                bridge.setUpBridge("O");
-            }
-        } else { //false
-            checkProcess = false;
-            if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals("D")) {
-                bridge.setUpBridge("X");
-            } else if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals("U")) {
-                bridge.setDownBridge("X");
-            }
-        } return checkProcess;
-    }
-
-    public void backUpBridge() {
-        bridge.resetBridge();
-    }
-
     public Player getPlayer() {
         return player;
-    }
-
-    public Bridge getBridge() {
-        return bridge;
     }
 }
