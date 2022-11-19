@@ -23,12 +23,6 @@
 
 - 메소드 추가 가능 여부: O
 
-- size만큼 Bridge 생성 makeBridge(int size)
-    - [ ] 검증
-        - 입력된 값이 3 ~ 20 범위의 숫자
-        - 해당 범위가 아닐 경우 예외 처리
-            - [ ] IllegalArgumentException 처리
-
 - [ ] 위아래 중 하나로 이동 move()
     - 이동 할 때 마다 진행 상태 오른쪽에 이동 한 위치(위, 아래)에 O, X 기록
     - move의 결과가 X일 경우 현재 상태 BridgeStatus를 STOP으로 변경
@@ -76,7 +70,10 @@
 
 
 - [x] size만큼 Bridge 생성 makeBridge(int size)
-
+    - [ ] 검증
+        - 입력된 값이 3 ~ 20 범위의 숫자
+        - [ ] 해당 범위가 아닐 경우 IllegalArgumentException 처리
+      
 <br/>
 
 ### 다리 정답 난수 생성기 BridgeRandomNumberGenerator
