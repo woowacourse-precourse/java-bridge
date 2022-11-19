@@ -89,13 +89,14 @@ public class BridgeGame {
     private Bridge makeBridge() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         int bridgeSize = getBridgeSize();
+        BridgeValidator.checkBridgeSizeValid(bridgeSize);
         return new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
     private int getBridgeSize() {
         while (true) {
             try {
-                return BridgeValidator.checkBridgeSizeValid(this.inputView.readBridgeSize());
+                return this.inputView.readBridgeSize();
             } catch (IllegalArgumentException illegalArgumentException) {
                 ErrorView.printException(illegalArgumentException);
             }
