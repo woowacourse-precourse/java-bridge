@@ -16,7 +16,7 @@ class BridgeSizeValidatorTest {
         assertThrows(IllegalArgumentException.class, () -> BridgeSizeValidator.validate(""));
     }
 
-    @DisplayName("다리 길이 유효성 검사 - 3 미만, 30 초과시 예외")
+    @DisplayName("다리 길이 유효성 검사 - 3 미만, 20 초과시 예외")
     @ParameterizedTest
     @ValueSource(strings = {"1", "2", "31", "41"})
     void inputBridgeSizeUnderOrOverTest(String size) {
@@ -32,7 +32,7 @@ class BridgeSizeValidatorTest {
 
     @DisplayName("다리 길이 유효성 검사 테스트 - 성공")
     @ParameterizedTest
-    @ValueSource(strings = {"3", "7", "9", "30"})
+    @ValueSource(strings = {"3", "7", "9", "20"})
     void inputBridgeSizeSuccessTest(String size) {
         assertDoesNotThrow(() -> BridgeSizeValidator.validate(size));
     }
