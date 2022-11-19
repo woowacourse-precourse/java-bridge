@@ -8,33 +8,33 @@ import util.Validator;
  */
 public class InputView {
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
-    public int readBridgeSize() {
-        System.out.println(ViewConstant.ASKING_INPUT_BRIDGE_SIZE_MESSAGE);
-        String size = Console.readLine();
-        Validator.validateSizeIsNumber(size);
-        return Integer.parseInt(size);
-    }
+	/**
+	 * 다리의 길이를 입력받는다.
+	 */
+	public int readBridgeSize() {
+		System.out.println(ViewConstant.ASKING_INPUT_BRIDGE_SIZE_MESSAGE);
+		String size = Console.readLine();
+		Validator.validateSizeIsNumber(size);
+		return Integer.parseInt(size);
+	}
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
-    public String readMoving() {
-        System.out.println(ViewConstant.ASKING_INPUT_BRIDGE_SIZE_MESSAGE);
-        String moving = Console.readLine();
-        Validator.validateMovingIsCellPosition(moving);
-        return moving;
-    }
+	/**
+	 * 사용자가 이동할 칸을 입력받는다.
+	 */
+	public String readMoving() {
+		System.out.println(ViewConstant.ASKING_CHOOSE_CELL_POSITION_MESSAGE);
+		String moving = Console.readLine();
+		Validator.validateMovingIsCellPosition(moving);
+		return moving;
+	}
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public String readGameCommand() {
-        System.out.println(ViewConstant.ASKING_INPUT_RESTART_OR_NOT_MESSAGE);
-        String gameCommand = Console.readLine();
-        Validator.validateGameCommand(gameCommand);
-        return gameCommand;
-    }
+	/**
+	 * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
+	 */
+	public String readGameCommand() {
+		System.out.println(ViewConstant.ASKING_INPUT_RESTART_OR_NOT_MESSAGE);
+		String gameCommand = Console.readLine();
+		Validator.validateGameCommand(gameCommand);
+		return gameCommand;
+	}
 }
