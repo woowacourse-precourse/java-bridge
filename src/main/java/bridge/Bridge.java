@@ -8,9 +8,10 @@ public class Bridge {
 
     public Bridge(List<String> availableBlocks) {
         this.availableBlocks = availableBlocks;
+        this.currentPosition = -1;
     }
 
-    public boolean isNextAvailable(Position position) {
+    public boolean isNextAvailable(String position) {
         return availableBlocks.get(currentPosition + 1).equals(position);
     }
 
@@ -19,7 +20,7 @@ public class Bridge {
     }
 
     public void initializeCurrentPosition() {
-        currentPosition = 0;
+        currentPosition = -1;
     }
 
     public boolean isLastBlock() {
