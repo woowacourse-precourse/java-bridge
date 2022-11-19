@@ -4,6 +4,9 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class InputViewTest {
@@ -54,5 +57,17 @@ class InputViewTest {
 
     }
 
+    @Test
+    @DisplayName("이동할 칸에 대한 입력 - 실패")
+    public void move_fail() throws Exception{
+        List<String> command = new ArrayList<>(
+                List.of("A","B","C","d","E","F","G","H","I","J","K",
+                        "L","M","N","O","P","Q","R","S","T","u","V","W","X","Y","Z"));
+        command.stream()
+                .forEach(element->{
+                    Assertions.assertThatThrownBy(()->validation.moveCommand(element))
+                            .isInstanceOf(IllegalArgumentException.class);
+                });
+    }
 
 }
