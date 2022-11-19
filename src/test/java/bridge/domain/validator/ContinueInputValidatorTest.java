@@ -63,4 +63,21 @@ class ContinueInputValidatorTest {
                 .isThrownBy(() -> continueInputValidator.validateIsInvalid(inputValue))
                 .withMessage(Errors.INVALID_CONTINUE_VALUE.message());
     }
+
+    @Order(3)
+    @DisplayName("대문자 R/Q 값 입력 여부 검사")
+    @ParameterizedTest(name ="{displayName} 입력값({index}) : {0}")
+    @ValueSource(strings = {
+            "r",
+            "q",
+    })
+    void validateRange(String inputValue) {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> continueInputValidator.validateIsUpperCase(inputValue))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> continueInputValidator.validateIsUpperCase(inputValue))
+                .withMessage(Errors.NOT_UPPERCASE.message());
+    }
 }
