@@ -1,5 +1,7 @@
 package bridge.exception;
 
+import bridge.command.GameCommand;
+import bridge.command.MovingCommand;
 import bridge.exception.phrases.ExceptionPhrases;
 import bridge.view.InputView;
 
@@ -40,7 +42,7 @@ public class InputException {
     }
 
     private static void accurateValue(String value) {
-        if(!(value.equals("U") || value.equals("D"))) {
+        if(!(value.equals(MovingCommand.UpStairs.get()) || value.equals(MovingCommand.DownStairs.get()))) {
             throw new IllegalArgumentException(ExceptionPhrases.MovingValue.getPhrase());
         }
     }
@@ -56,7 +58,7 @@ public class InputException {
     }
 
     private static void accurateCommand(String command) {
-        if(!(command.equals("R") || command.equals("Q"))) {
+        if(!(command.equals(GameCommand.Restart.get()) || command.equals(GameCommand.Quit.get()))) {
             throw new IllegalArgumentException(ExceptionPhrases.GameCommand.getPhrase());
         }
     }

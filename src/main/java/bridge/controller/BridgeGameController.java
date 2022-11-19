@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.command.GameCommand;
 import bridge.exception.InputException;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -41,7 +42,7 @@ public class BridgeGameController {
     }
 
     private void retry() {
-        if(InputException.validateGameCommand(InputView.readGameCommand()).equals("R")) {
+        if(InputException.validateGameCommand(InputView.readGameCommand()).equals(GameCommand.Restart.get())) {
             bridgeGame.retry();
             progress();
         }

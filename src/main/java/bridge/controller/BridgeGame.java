@@ -1,9 +1,6 @@
 package bridge.controller;
 
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
-import bridge.view.InputView;
-
+import bridge.command.MarkCommand;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -27,11 +24,11 @@ public class BridgeGame {
      */
     public void move(int index, String square) {
         if(bridge.get(index).equals(square)) {
-            result.add("O");
+            result.add(MarkCommand.Possible.get());
             return;
         }
 
-        result.add("X");
+        result.add(MarkCommand.Impossible.get());
     }
 
     /**
@@ -44,16 +41,12 @@ public class BridgeGame {
     }
 
     public boolean success() {
-        if(result.get(result.size()-1).equals("O")) return true;
+        if(result.get(result.size()-1).equals(MarkCommand.Possible.get())) return true;
         return false;
     }
 
     public int getBridgeSize() {
         return bridge.size();
-    }
-
-    public int getResultSize() {
-        return result.size();
     }
 
     public List<String> getResult() {

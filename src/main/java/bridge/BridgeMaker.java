@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.command.MovingCommand;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,8 +24,8 @@ public class BridgeMaker {
 
         for(int i=0; i<size; i++) {
             int generateValue = bridgeNumberGenerator.generate();
-            if(generateValue == 0) bridge.add("D");
-            if(generateValue == 1) bridge.add("U");
+            if(generateValue == 0) bridge.add(MovingCommand.DownStairs.get());
+            if(generateValue == 1) bridge.add(MovingCommand.UpStairs.get());
         }
         return bridge;
     }

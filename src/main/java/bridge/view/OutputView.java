@@ -1,7 +1,8 @@
 package bridge.view;
 
+import bridge.command.MarkCommand;
+import bridge.command.MovingCommand;
 import bridge.view.phrases.OutputPhrases;
-
 import java.util.List;
 
 /**
@@ -20,11 +21,11 @@ public class OutputView {
     }
 
     private static String upstairs(List<String> bridge, List<String> result) {
-        return getString(bridge, result, "U");
+        return getString(bridge, result, MovingCommand.UpStairs.get());
     }
 
     private static String downstairs(List<String> bridge, List<String> result) {
-        return getString(bridge, result, "D");
+        return getString(bridge, result, MovingCommand.DownStairs.get());
     }
 
     private static String getString(List<String> bridge, List<String> result, String stair) {
@@ -32,11 +33,11 @@ public class OutputView {
 
         for(int i=0; i<result.size(); i++) {
             sb.append(" ");
-            if(bridge.get(i).equals(stair) && result.get(i).equals("O")) {
-                sb.replace(sb.length() - 1, sb.length(), "O");
+            if(bridge.get(i).equals(stair) && result.get(i).equals(MarkCommand.Possible.get())) {
+                sb.replace(sb.length() - 1, sb.length(), MarkCommand.Possible.get());
             }
-            if(!bridge.get(i).equals(stair) && result.get(i).equals("X")) {
-                sb.replace(sb.length() - 1, sb.length(), "X");
+            if(!bridge.get(i).equals(stair) && result.get(i).equals(MarkCommand.Impossible.get())) {
+                sb.replace(sb.length() - 1, sb.length(), MarkCommand.Impossible.get());
             }
             sb.append(" | ");
         }
@@ -58,7 +59,7 @@ public class OutputView {
     }
 
     private static String gameStatus(List<String> result) {
-        if(result.contains("X")) return "실패";
+        if(result.contains(MarkCommand.Impossible.get())) return "실패";
         return "성공";
     }
 
