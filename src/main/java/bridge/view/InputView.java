@@ -41,18 +41,10 @@ public class InputView {
         try {
             outputView.printMessage(INSERT_BRIDGE_SIZE_MESSAGE);
             String userInput = Console.readLine();
-            intValidation(userInput);
             return Integer.parseInt(userInput);
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
+        } catch (NumberFormatException e) {
+            outputView.printErrorMessage(REQUIRE_INTEGER_ERROR_MESSAGE);
             return getBridgeSizeByConsole();
-        }
-    }
-
-    private void intValidation(String input) {
-        final String intRegex = "^[0-9]*$";
-        if (!Pattern.matches(intRegex, input)) {
-            throw new IllegalArgumentException(REQUIRE_INTEGER_ERROR_MESSAGE);
         }
     }
 
