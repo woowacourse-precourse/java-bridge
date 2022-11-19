@@ -1,12 +1,13 @@
 package bridge;
 
-import bridge.enums.Number;
-
 import java.util.regex.Pattern;
 
 public class ValidityCheck {
 
     private static final String ZEROTONINE = "^[0-9]*$";
+    private static final int RANGE_MIN = 3;
+    private static final int RANGE_MAX = 20;
+
     public static boolean stringChecker(String testObject) {
         Pattern zeroToNine = Pattern.compile(ZEROTONINE);
         if (!zeroToNine.matcher(testObject).matches()) {
@@ -17,8 +18,8 @@ public class ValidityCheck {
 
     public static boolean numberRangeChecker(String testObject) {
         if (stringChecker(testObject)) {
-            if (Number.RANGE_MIN.getValue() > Integer.parseInt(testObject) ||
-                    Integer.parseInt(testObject) > Number.RANGE_MAX.getValue()) {
+            if (RANGE_MIN > Integer.parseInt(testObject) ||
+                    Integer.parseInt(testObject) > RANGE_MAX) {
                 return false;
             }
         }
