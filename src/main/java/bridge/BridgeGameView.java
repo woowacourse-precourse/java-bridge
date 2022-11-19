@@ -4,19 +4,32 @@ import java.util.List;
 
 public class BridgeGameView {
     BridgeGame bridgeGame = new BridgeGame();
-    String bridgeGameResult = "[";
+    String bridgeGameUpResult = "[";
+    String bridgeGameDownResult = "[";
 
-    public void printBridgeResult(boolean isMoving) {
-        if (!bridgeGameResult.equals("[")) {
-            bridgeGameResult += "|";
+    public void printBridgeResult(boolean isMoving, String moving) {
+        String movingResult = "";
+
+        if (!bridgeGameUpResult.equals("[")) {
+            bridgeGameUpResult += "|";
+            bridgeGameDownResult += "|";
         }
 
         if (isMoving) {
-            bridgeGameResult += " O ";
+            movingResult = " O ";
         } else {
-            bridgeGameResult += " X ";
+            movingResult = " X ";
         }
 
-        System.out.println(bridgeGameResult+"]");
+        if (moving.equals("U")) {
+            bridgeGameUpResult += movingResult;
+            bridgeGameDownResult += "   ";
+        } else {
+            bridgeGameUpResult += "   ";
+            bridgeGameDownResult += movingResult;
+        }
+
+        System.out.println(bridgeGameUpResult+"]");
+        System.out.println(bridgeGameDownResult+"]");
     }
 }

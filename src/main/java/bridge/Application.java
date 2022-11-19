@@ -23,12 +23,12 @@ public class Application {
         System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String moving1 = inputView.readMoving();
         isMoving = bridgeGame.move(bridge, moving1, 0);
-        bridgeGameView.printBridgeResult(isMoving);
+        bridgeGameView.printBridgeResult(isMoving, moving1);
 
         System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String moving2 = inputView.readMoving();
         isMoving = bridgeGame.move(bridge, moving2, 1);
-        bridgeGameView.printBridgeResult(isMoving);
+        bridgeGameView.printBridgeResult(isMoving, moving2);
 
 
     }
