@@ -26,12 +26,16 @@
 - [x] 움직일 수 있는 칸인지 평가하기 Bridge#isPossibleMove(int index, String upDown)
   - 예외. index가 0미만 또는 다리 크기 이상인 경우
   - 예외. upDonw이 "D" 또는 "U"가 아닌 경우
+- [x] 게임 시작하기 BrideGame#BridegeGame(Bridge bridge)
+  - 생성한 Bridge를 입력 받아 endIndex(마지막 칸)을 기록
+  - 현재 칸과 현재 시도 횟수 세팅
+  - 예외. Bridge가 null일 경우
 - [ ] 움직이기 BrideGame#move()
   - 현재 칸 index 증가
 - [ ] 다시 시도 BridgeGame#retry()
   - 진행 상황 리셋
   - 시도 횟수 증가
-- [ ] 성공 여부 얻기 BridgeGame#getSuccess()
+- [ ] 성공 여부 얻기 BridgeGame#isSuccess()
 - [ ] 시도 횟수 얻기 BridgeGame#getNumberOfTries()
 - 
 ### 추가 기능
