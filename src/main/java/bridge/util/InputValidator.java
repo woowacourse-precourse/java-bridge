@@ -21,7 +21,7 @@ public class InputValidator {
 
     public void validateBridgeMove(String userInput) {
         validateBlank(userInput);
-        validateOrder(userInput);
+        validateMoveOrder(userInput);
     }
 
     public void validateGameCommand(String userInput) {
@@ -50,8 +50,8 @@ public class InputValidator {
         }
     }
 
-    private void validateOrder(String userInput) {
-        if (!userInput.equals(Direction.UPSIDE.shortcut()) || !userInput.equals(Direction.DOWNSIDE.shortcut())) {
+    private void validateMoveOrder(String userInput) {
+        if (!userInput.equals(Direction.UPSIDE.shortcut()) && !userInput.equals(Direction.DOWNSIDE.shortcut())) {
             throw new IllegalArgumentException(INVALID_BRIDGE_MOVE_INPUT_MSG);
         }
     }

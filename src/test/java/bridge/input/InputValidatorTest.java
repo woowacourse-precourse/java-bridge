@@ -54,7 +54,7 @@ public class InputValidatorTest {
     @ParameterizedTest
     @DisplayName("다리 이동을 위한 사용자 입력이 유효한 값이 아닌 경우 에러 메세지와 함께 IllegalArgumentException이 발생한다.")
     @ValueSource(strings = { "U ","D "," U "," D ","u","d"})
-    public void validateRangedInputForCrossBridge(String userInput) throws Exception{
+    public void validateWrongInputForCrossBridge(String userInput) throws Exception{
         //given
         InputValidator inputValidator = new InputValidator();
         final String INVALID_BRIDGE_MOVE_INPUT = "유효하지 않은 다리 이동 명령입니다.";
@@ -63,6 +63,17 @@ public class InputValidatorTest {
         Assertions.assertThatThrownBy(() -> inputValidator.validateBridgeMove(userInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_BRIDGE_MOVE_INPUT);
+    }
+
+    @ParameterizedTest
+    @DisplayName("다리 이동을 위한 사용자 입력이 유효한 값인 경우 정상 종료된다.")
+    @ValueSource(strings = { "U","D"})
+    public void validateCorrectInputForCrossBridge(String userInput) throws Exception{
+        //given
+        InputValidator inputValidator = new InputValidator();
+        //when
+        //then
+        inputValidator.validateBridgeMove(userInput);
     }
 
     @ParameterizedTest
