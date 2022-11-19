@@ -42,12 +42,35 @@ public class BridgeGameController {
         run();
     }
 
+    private void startGame(){
+        outputView.printStart();
+        createBridgeSize();
+    }
+
     private void run(){
         outputView.initMap();
         bridge = bridgeMaker.makeBridge(bridgeSize);
         boolean go = true;
         for (int index = 0;index<bridgeSize && go;index++) go = crossBridge(index);
         retryOrEnd(go);
+    }
+
+    private void retryOrEnd(boolean go){
+        if (!go){
+            restartGame();
+        }
+        if (go) {
+            outputView.printResult(SUCCESS);
+        }
+    }
+
+    private void restartGame(){
+        restartOrQuit();
+        boolean restart = bridgeGame.retry(userRestart);
+        if(restart){
+            run();
+        }
+        outputView.printResult(FAILED);
     }
 
     private boolean crossBridge(int index){
@@ -60,18 +83,13 @@ public class BridgeGameController {
         return false;
     }
 
-    private void retryOrEnd(boolean go){
-        if (!go){
-            restartGame();
+    private void goUpOrDown(){
+        try{
+            moving = validateUpAndDown(inputView.readMoving());
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            goUpOrDown();
         }
-        if (go) {
-            outputView.printResult(SUCCESS);
-        }
-    }
-
-    private void startGame(){
-        outputView.printStart();
-        createBridgeSize();
     }
 
     private void createBridgeSize(){
@@ -82,24 +100,6 @@ public class BridgeGameController {
             System.out.println(e.getMessage());
             createBridgeSize();
         }
-    }
-
-    private void goUpOrDown(){
-        try{
-            moving = validateUpAndDown(inputView.readMoving());
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            goUpOrDown();
-        }
-    }
-
-    private void restartGame(){
-        restartOrQuit();
-        boolean restart = bridgeGame.retry(userRestart);
-        if(restart){
-            run();
-        }
-        outputView.printResult(FAILED);
     }
 
     private void restartOrQuit(){
