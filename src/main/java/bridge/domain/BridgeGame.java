@@ -16,7 +16,7 @@ public class BridgeGame {
 
     public static BridgeGame getInstance() {
         if(instance == null) {
-            return new BridgeGame();
+            instance = new BridgeGame();
         }
         return instance;
     }
