@@ -16,13 +16,17 @@ public enum BridgePosition {
         this.position = position;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public static String from(final int position) {
         BridgePosition bridge = Arrays.stream(values())
                 .filter(bridgePosition -> bridgePosition.isSamePosition(position))
                 .findFirst()
                 .orElseThrow(() -> new IllegalStateException(INVALID_PARAMETER.getMessage()));
 
-        return bridge.name;
+        return bridge.getName();
     }
 
     private boolean isSamePosition(final int position) {
