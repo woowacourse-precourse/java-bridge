@@ -17,19 +17,17 @@ public class InputView {
         printMessage(ViewMessage.INPUT_START_GAME, ViewMessage.INPUT_BRIDGE_LENGTH);
         int bridgeSize = -1;
         while (bridgeSize < 0) {
-            bridgeSize = getValidBridgeLength();
+            bridgeSize = getValidBridgeLength(Console.readLine());
         }
         return bridgeSize;
     }
 
-    private static int getValidBridgeLength() {
-        String input;
+    private static int getValidBridgeLength(String input) {
         try {
-            input = Console.readLine();
             ValidationUtil.isValidBridgeLength(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            input = "-1";
+            return -1;
         }
         return Integer.parseInt(input);
     }
@@ -41,21 +39,19 @@ public class InputView {
         printMessage(ViewMessage.INPUT_UP_DOWN);
         String inputKey = "";
         while (inputKey.isBlank()) {
-            inputKey = getValidMovingKey();
+            inputKey = getValidMovingKey(Console.readLine());
         }
         return inputKey;
     }
 
-    private static String getValidMovingKey() {
-        String inputKey;
+    private static String getValidMovingKey(String input) {
         try {
-            inputKey = Console.readLine();
-            ValidationUtil.isUpOrDown(inputKey);
+            ValidationUtil.isUpOrDown(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            inputKey = "";
+            return "";
         }
-        return inputKey;
+        return input;
     }
 
     /**
@@ -65,21 +61,19 @@ public class InputView {
         printMessage(ViewMessage.INPUT_RETRY_OR_QUIT);
         String inputKey = "";
         while (inputKey.isBlank()) {
-            inputKey = getValidReadGameCommand();
+            inputKey = getValidReadGameCommand(Console.readLine());
         }
         return inputKey;
     }
 
-    private static String getValidReadGameCommand() {
-        String inputKey;
+    private static String getValidReadGameCommand(String input) {
         try {
-            inputKey = Console.readLine();
-            ValidationUtil.isRetryOrQuit(inputKey);
+            ValidationUtil.isRetryOrQuit(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            inputKey = "";
+            return "";
         }
-        return inputKey;
+        return input;
     }
 
     private static void printMessage(ViewMessage... inputStartGame) {
