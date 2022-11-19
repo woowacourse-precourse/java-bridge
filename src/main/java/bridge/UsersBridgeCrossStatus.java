@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class UsersBridgeCrossStatus {
-    private final List<List<String>> currentBridge;
+    private List<List<String>> currentBridge;
     private final int size;
     private static final int FIRST_BRIDGE = 1;
     private static final int INITIAL_BRIDGE_SIZE = 2;
@@ -65,5 +65,6 @@ public class UsersBridgeCrossStatus {
 
     public void resetCurrentBridge() {
         this.currentBridge.clear();
+        currentBridge = BridgeMakerImpl.setHeadAndTail();
     }
 }
