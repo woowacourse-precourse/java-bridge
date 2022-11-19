@@ -33,6 +33,7 @@ public class InputView {
         System.out.println(INPUT_RETRY_OR_END);
 
         String command = Console.readLine();
+        InputValidator.inputGameCommandValidate(command);
         return command;
     }
 }
