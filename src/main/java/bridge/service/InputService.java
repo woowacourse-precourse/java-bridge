@@ -8,20 +8,35 @@ public class InputService {
     private final InputView inputView = new InputView();
 
     public int requestBridgeSize() {
-        outputView.printRequestBridgeSize();
-        int bridgeSize = inputView.readBridgeSize();
-        return bridgeSize;
+        try {
+            outputView.printRequestBridgeSize();
+            int bridgeSize = inputView.readBridgeSize();
+            return bridgeSize;
+        } catch (IllegalArgumentException exception) {
+            outputView.printError(exception.getMessage());
+            return requestBridgeSize();
+        }
     }
 
     public String requestMove() {
-        outputView.printRequestMove();
-        String moveDirection = inputView.readMoving();
-        return moveDirection;
+        try {
+            outputView.printRequestMove();
+            String moveDirection = inputView.readMoving();
+            return moveDirection;
+        } catch (IllegalArgumentException exception) {
+            outputView.printError(exception.getMessage());
+            return requestMove();
+        }
     }
 
     public String requestStatusOfGame() {
-        outputView.printRequestRestart();
-        String command = inputView.readGameCommand();
-        return command;
+        try {
+            outputView.printRequestRestart();
+            String command = inputView.readGameCommand();
+            return command;
+        } catch (IllegalArgumentException exception) {
+            outputView.printError(exception.getMessage());
+            return requestStatusOfGame();
+        }
     }
 }
