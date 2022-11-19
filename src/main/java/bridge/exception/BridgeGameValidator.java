@@ -29,9 +29,10 @@ public class BridgeGameValidator {
         return str;
     }
 
-    public static void validateRestartAndQuit(String str){
+    public static String validateRestartAndQuit(String str){
         if(!(str.equals("R") || str.equals("Q"))){
             throw new IllegalArgumentException(ERROR_MESSAGE_RESTART_AND_QUIT);
         }
+        return str;
     }
 }
