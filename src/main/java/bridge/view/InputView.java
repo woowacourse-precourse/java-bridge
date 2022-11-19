@@ -8,11 +8,13 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
+	public static final String GAME_START = "다리 건너기 게임을 시작합니다.";
+
 	/**
 	 * 다리의 길이를 입력받는다.
 	 */
 	public int readBridgeSize() {
-		// TODO : 다리 길이 입력시 정상 입력되었는지 확인
+		Message.printMessage(Message.INPUT_BRIDGE_LENGTH);
 		return Integer.parseInt(CheckHandler.isBridgeLengthInput(Console.readLine()));
 	}
 
@@ -20,7 +22,7 @@ public class InputView {
 	 * 사용자가 이동할 칸을 입력받는다.
 	 */
 	public String readMoving() {
-		// TODO : 이동 위치 입력시 정상 입력되었는지 확인
+		Message.printMessage(Message.INPUT_MOVE_COMMAND);
 		return CheckHandler.isMoveInput(Console.readLine());
 	}
 
@@ -28,7 +30,7 @@ public class InputView {
 	 * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
 	 */
 	public String readGameCommand() {
-		// TODO : 게임 종료 여부 입력시 정상 입력되었는지 확인
+		Message.printMessage(Message.INPUT_GAME_COMMAND);
 		return CheckHandler.isGameCommandInput(Console.readLine());
 	}
 
