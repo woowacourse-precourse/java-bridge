@@ -1,6 +1,8 @@
 package bridge.domain;
 
 import static bridge.constant.BridgeConstant.LOWER_BLOCK;
+import static bridge.constant.BridgeConstant.MAX_SIZE;
+import static bridge.constant.BridgeConstant.MIN_SIZE;
 import static bridge.constant.BridgeConstant.UPPER_BLOCK;
 
 import java.util.List;
@@ -36,7 +38,7 @@ public class Bridge {
     }
 
     private boolean isWrongSizeOfBlocks(List<String> blocks) {
-        return blocks.size() < 3 || blocks.size() > 20;
+        return blocks.size() < MIN_SIZE || blocks.size() > MAX_SIZE;
 
     }
 
