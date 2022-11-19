@@ -21,12 +21,19 @@ public class InputView {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String move = Console.readLine().strip();
         checkNull(move);
+        checkWrongMove(move);
         return move;
     }
 
     private static void checkNull(String userInput){
         if(userInput.length() == 0){
             throw new RuntimeException("[Error] 아무것도 입력하지 않았습니다. ");
+        }
+    }
+
+    private static void checkWrongMove(String move){
+        if(!move.equals("U") && !move.equals("D")){
+            throw new RuntimeException("[Error] 잘못된 이동입니다.");
         }
     }
     /**
