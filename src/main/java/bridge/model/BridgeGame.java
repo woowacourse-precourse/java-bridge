@@ -56,7 +56,7 @@ public class BridgeGame {
     }
 
     public void checkGameSuccess(){
-        if(round > bridge.getSize()){
+        if(round == bridge.getSize()){
             gameStatus = GameStatus.SUCCESS;
         }
     }
