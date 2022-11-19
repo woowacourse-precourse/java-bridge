@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class History {
-    private final List<String> choices;
+    private List<String> choices;
     private boolean success;
     private int tries;
 
@@ -37,5 +37,9 @@ public class History {
 
     public void gameTry() {
         tries += 1;
+    }
+
+    public void reset() {
+        choices = new ArrayList<>();
     }
 }
