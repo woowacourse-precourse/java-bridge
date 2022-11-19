@@ -27,6 +27,7 @@ public class BridgeGame {
         int gameCount = 0;
         while (true) {
             boolean flag = false;
+            boolean success = true;
             countGame(gameCount);
             List<String> upperBridge = new ArrayList<>();
             List<String> downBridge = new ArrayList<>();
@@ -36,6 +37,7 @@ public class BridgeGame {
                     outputView.makeMap(moving, "O", upperBridge, downBridge);
                     outputView.printMap(upperBridge, downBridge);
                 } else if (!move(moving, bridge.get(i))) {
+                    success = false;
                     outputView.makeMap(moving, "X", upperBridge, downBridge);
                     outputView.printMap(upperBridge, downBridge);
                     String gameCommand = inputView.readGameCommand();
@@ -45,7 +47,7 @@ public class BridgeGame {
                     break;
                 }
             }
-            outputView.printResult(upperBridge, downBridge);
+            outputView.printResult(upperBridge, downBridge, success);
             if (!flag) {
                 break;
             }
