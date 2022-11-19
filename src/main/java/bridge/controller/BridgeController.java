@@ -14,8 +14,19 @@ public class BridgeController {
     }
 
     public void startGame() {
-
+        bridgeService.initGame();
+        bridgeService.bridgeMake();
+        do {
+            playGame();
+            if (bridgeService.isSuccess()) break;
+        } while (bridgeService.isRetry());
+        exitGame();
     }
 
+    public void playGame() {
+    }
+
+    public void exitGame() {
+    }
 
 }
