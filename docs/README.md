@@ -102,14 +102,14 @@
 
 
 - 다리 길이 입력 readBridgeSize()
-    - [ ] 텍스트 출력
+    - [x] 텍스트 출력
       ```
       다리의 길이를 입력해주세요.
       ```
-    - [ ] 검증 사항
+    - [x] 검증 사항
         - Integer.parseInt로 변환 되는 수
         - 해당 범위가 아닐 경우 예외 처리
-            - [ ] IllegalArgumentException 처리
+            - [x] IllegalArgumentException 처리
 
 
 - 이동 칸 수 입력 readMoving()
