@@ -19,8 +19,8 @@ public class InputExceptionHandler {
         try {
             length = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalStateException(ERROR_PREFIX + "다리의 길이는 정수로 입력해주세요!");
+            throw new IllegalArgumentException(ERROR_PREFIX + "다리의 길이는 정수로 입력해주세요!");
         }
-        if (length <= 0) throw new IllegalStateException(ERROR_PREFIX + "다리의 길이는 1 이상이어야 합니다!");
+        if (length <= 0) throw new IllegalArgumentException(ERROR_PREFIX + "다리의 길이는 1 이상이어야 합니다!");
     }
 }

@@ -1,5 +1,6 @@
 package bridge.input;
 
+import static bridge.input.InputExceptionHandler.validateBridgeLengthInput;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 /**
@@ -10,11 +11,13 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class InputView {
 
     /**
-     * 다리의 길이를 입력받는다.
+     * 다리의 길이를 입력받고, 해당 다리의 길이를 반환합니다.
+     * @throws IllegalStateException 입력받은 다리의 길이가 1 이상의 정수가 아닌 경우
      */
     public int readBridgeSize() {
         String brideLength = readLine();
-        return 0;
+        validateBridgeLengthInput(brideLength);
+        return Integer.parseInt(brideLength);
     }
 
     /**
