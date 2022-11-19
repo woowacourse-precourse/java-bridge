@@ -1,6 +1,7 @@
 package bridge;
 
 import ui.InputView;
+import ui.OutputView;
 
 import java.util.List;
 
@@ -24,6 +25,19 @@ public class Application {
 
         return new BridgeGame(bridge);
     }
+
+    private static void startBridgeGame(BridgeGame currentBridgeGame, OutputView outputView) {
+        while (gamePlayFlag) {
+            String userMoving = input.readMoving();
+            String moveResult = currentBridgeGame.move(userMoving);
+            outputView.printCurrentGameResult(userMoving, moveResult);
+
+            checkUserWantToRetryIfMovingIsFail(currentBridgeGame, moveResult);
+
+            checkGameIsSuccess(currentBridgeGame, moveResult);
+        }
+    }
+
     private static void checkUserWantToRetryIfMovingIsFail(BridgeGame currentBridgeGame, String moveResult) {
         if (moveResult.equals(PASS)) {
             return;
