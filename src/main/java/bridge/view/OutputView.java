@@ -1,7 +1,7 @@
 package bridge.view;
 
-import bridge.domain.BridgeGame;
-import bridge.domain.BridgeRestart;
+import bridge.BridgeGame;
+import bridge.BridgeRestart;
 import java.util.List;
 
 /**
@@ -23,6 +23,11 @@ public class OutputView {
     public static String successFail = "성공";
 
     public void printMap(List<String> correctBridge) {
+        printStatus(correctBridge);
+        printResult();
+    }
+
+    public void printStatus(List<String> correctBridge) {
         for(int i=0; i<correctBridge.size(); i++) {
             bridgeGame.move(correctBridge.get(i), InputView.readMoving());
             printUpDown();
@@ -30,7 +35,7 @@ public class OutputView {
                 bridgerestart.bridgeRestartCheck(InputView.readGameCommand(),correctBridge);
                 break;
             }
-        } printResult();
+        }
     }
 
     public void printUpDown() {
@@ -54,7 +59,7 @@ public class OutputView {
      */
     public void printResult() {
         System.out.println(FINAL_MSG);
-        printUpDown(bridgeGame.getUpBridge(), bridgeGame.getDownBridge());
+        printUpDown();
         System.out.println(SUCCESS_FAIL_MSG + successFail);
         System.out.println(TRY_COUNT_MSG + tryCount);
     }

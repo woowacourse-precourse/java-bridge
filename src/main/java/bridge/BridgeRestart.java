@@ -1,10 +1,11 @@
-package bridge.domain;
+package bridge;
 
 import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeRestart {
     int quitRetryCommand = 0;
+
     public void bridgeRestartCheck(String playerCommand, List correctBridge) {
         quitRetryCommand = BridgeGame.retry(playerCommand);
         if (quitRetryCommand == 0) {
@@ -22,7 +23,6 @@ public class BridgeRestart {
 
     public void bridgeQuit() {
         OutputView.successFail = "실패";
-
     }
 
 }
