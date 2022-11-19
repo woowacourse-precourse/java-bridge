@@ -9,6 +9,7 @@ public class InputView {
 	private static final String INPUT_MAKE_BRIDGE_NUMBER = "다리의 길이를 입력해주세요.";
 	private static final int MINIMUM_BRIDGE_NUMBER = 3; 
 	private static final int MAXIMUM_BRIDGE_NUMBER = 20; 
+	private static final String INPUT_MOVING_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -28,7 +29,15 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+    	System.out.println(INPUT_MOVING_MESSAGE);
+    	String moving = Console.readLine();
+    	try {
+    		validateMovingString(moving);
+    	} catch(IllegalArgumentException e) {
+    		System.out.println(e);
+    		return readMoving();
+    	}
+        return moving;
     }
 
     /**
@@ -56,5 +65,11 @@ public class InputView {
 					+ MINIMUM_BRIDGE_NUMBER + "~" + MAXIMUM_BRIDGE_NUMBER + "입니다.");
 		}
 		return value;
+    }
+    private static String validateMovingString(String moving) {
+    	if (moving.equals("U") || moving.equals("D")) {
+    		return moving;
+    	}
+    	throw new IllegalArgumentException("[ERROR] 유효한 입력값은 U 혹은 D 만 가능합니다.");	
     }
 }
