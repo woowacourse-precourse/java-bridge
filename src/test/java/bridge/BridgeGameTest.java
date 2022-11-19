@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,6 +37,17 @@ class BridgeGameTest {
           Assertions.assertThat(currentBridge.getBridge(index))
                   .isEqualTo(expect);
      }
+
+     @Test
+     @DisplayName("다리 상태 변경 테스트 - BridgeStatus.SUCCESS")
+     public void changeStatusTest() throws Exception{
+          Bridge bridge = new Bridge(List.of("U","U","D"));
+          currentBridge.move("U");
+          currentBridge.changeStatus(bridge);
+          Assertions.assertThat(currentBridge.getBridgeStatus())
+                  .isEqualTo(BridgeStatus.SUCCESS);
+     }
+
 
 
 
