@@ -1,11 +1,12 @@
 package bridge;
 
 import bridge.controller.BridgeGame;
+import bridge.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        System.out.println(EnumStrings.PRINT_START.getValue());
+        new OutputView().printStartMessage();
         new BridgeGame().runGame();
     }
 }

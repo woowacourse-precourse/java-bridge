@@ -36,7 +36,11 @@ public class OutputView {
         System.out.println(EnumStrings.PRINT_COUNT.getValue() + count);
     }
 
-    public static void printError(String errorMessage) {
+    public void printError(String errorMessage) {
         System.out.println(errorMessage);
+    }
+
+    public void printStartMessage(){
+        System.out.println("다리 건너기 게임을 시작합니다.");
     }
 }
