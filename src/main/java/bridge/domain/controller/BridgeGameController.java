@@ -4,6 +4,7 @@ import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeRandomNumberGenerator;
+import bridge.domain.Direction;
 import bridge.domain.GameStatus;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -61,7 +62,7 @@ public class BridgeGameController {
     private GameStatus goForward() {
         while (true) {
             try {
-                String direction = inputView.readMoving();
+                Direction direction = inputView.readMoving();
                 return bridgeGame.move(direction);
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());

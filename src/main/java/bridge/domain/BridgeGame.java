@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import bridge.constants.ErrorMessages;
-
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -20,11 +18,10 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      *
-     * @param command
+     * @param direction
      */
-    public GameStatus move(String command) {
-        validateMoveCommand(command);
-        int userStatus = user.cross(bridge, command);
+    public GameStatus move(Direction direction) {
+        int userStatus = user.cross(bridge, direction);
         if (userStatus == User.LIVE) {
             if (isSuccess()) {
                 return GameStatus.WIN;
@@ -36,16 +33,6 @@ public class BridgeGame {
 
     private boolean isSuccess() {
         return user.isLocateAt(bridge.size());
-    }
-
-    private void validateMoveCommand(String moveCommand) {
-        if (!isMoveCommand(moveCommand)) {
-            throw new IllegalArgumentException(ErrorMessages.INVALID_MOVE_COMMAND);
-        }
-    }
-
-    private boolean isMoveCommand(String moveCommand) {
-        return moveCommand.equals("U") || moveCommand.equals("D");
     }
 
     public String getFootPrintsLog() {

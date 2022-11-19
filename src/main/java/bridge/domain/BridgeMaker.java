@@ -41,10 +41,10 @@ public class BridgeMaker {
     private String createBridge() {
         int randomNumber = bridgeNumberGenerator.generate();
 
-        if (randomNumber == 0) {
-            return "D";
+        if (randomNumber == Direction.DOWN.getNumber()) {
+            return Direction.DOWN.getCommand();
         }
-        return "U";
+        return Direction.UP.getCommand();
     }
 
 }

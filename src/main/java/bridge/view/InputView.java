@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.constants.ErrorMessages;
+import bridge.domain.Direction;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -15,7 +16,6 @@ public class InputView {
         System.out.println("다리의 길이를 입력해주세요.");
         String size = Console.readLine();
         System.out.println();
-
         try {
             return Integer.parseInt(size);
         } catch (NumberFormatException e) {
@@ -26,9 +26,9 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public Direction readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        return Console.readLine();
+        return Direction.of(Console.readLine());
     }
 
     /**

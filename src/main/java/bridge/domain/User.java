@@ -14,7 +14,7 @@ public class User {
         userData = new UserData();
     }
 
-    public int cross(Bridge bridge, String direction) {
+    public int cross(Bridge bridge, Direction direction) {
         if (bridge.canCross(userData.getPosition(), direction)) {
             userData.increasePosition();
             recordStep(LIVE, direction);
@@ -24,7 +24,7 @@ public class User {
         return DEAD;
     }
 
-    public void recordStep(int status, String direction) {
+    public void recordStep(int status, Direction direction) {
         footPrints.add(status, direction);
     }
 
