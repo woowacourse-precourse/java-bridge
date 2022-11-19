@@ -16,6 +16,10 @@ public class Bridge {
         return bridge.get(idx).equals(candidate);
     }
 
+    boolean isFinish(int idx) {
+        return bridge.size() - 1 == idx;
+    }
+
     public BridgeDto toPrint() {
         List<State> up = new ArrayList<>();
         List<State> down = new ArrayList<>();

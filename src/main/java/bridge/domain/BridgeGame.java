@@ -30,10 +30,18 @@ public class BridgeGame {
     private MatchResult match() {
         int bound = myBridge.size() - 1;
         if (bridge.matchWithIndex(bound, myBridge.get(bound))) {
-            return MatchResult.SUCCESS;
+            return isLastMatch(bound);
         }
         return MatchResult.FAILURE;
     }
+
+    private MatchResult isLastMatch(int idx) {
+        if (bridge.isFinish(idx)) {
+            return MatchResult.FINISH;
+        }
+        return MatchResult.SUCCESS;
+    }
+
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
