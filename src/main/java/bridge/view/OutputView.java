@@ -8,8 +8,7 @@ import java.util.List;
  */
 public class OutputView {
 
-    private static final String BRIDGE_START = "[";
-    private static final String BRIDGE_END = "]";
+    private static final String COMMA = ", ";
     private static final String BRIDGE_BOUNDARY = "|";
     private static final String BLANK = "   ";
     private static final String CORRECT = " O ";
@@ -19,12 +18,12 @@ public class OutputView {
     private static final String WIN = "성공";
     private static final String FAIL = "실패";
 
-    private StringBuilder upsideBridge;
-    private StringBuilder downsideBridge;
+    private List<String> upsideBridge;
+    private List<String> downsideBridge;
 
     public OutputView() {
-        upsideBridge = new StringBuilder(BRIDGE_START);
-        downsideBridge = new StringBuilder(BRIDGE_START);
+        upsideBridge = new ArrayList<>();
+        downsideBridge = new ArrayList<>();
     }
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -38,20 +37,18 @@ public class OutputView {
         if (selection.equals(DOWN)) {
             addMap(isCorrect, downsideBridge, upsideBridge);
         }
-        System.out.println(upsideBridge + BRIDGE_END);
-        System.out.println(downsideBridge + BRIDGE_END);
-        upsideBridge.append(BRIDGE_BOUNDARY);
-        downsideBridge.append(BRIDGE_BOUNDARY);
+        System.out.println(upsideBridge.toString().replace(COMMA, BRIDGE_BOUNDARY));
+        System.out.println(downsideBridge.toString().replace(COMMA, BRIDGE_BOUNDARY));
     }
 
-    private void addMap(boolean isCorrect, StringBuilder sb, StringBuilder opposite) {
+    private void addMap(boolean isCorrect, List side, List opposite) {
         if (isCorrect) {
-            sb.append(CORRECT);
-            opposite.append(BLANK);
+            side.add(CORRECT);
+            opposite.add(BLANK);
         }
         if (!isCorrect) {
-            sb.append(WRONG);
-            opposite.append(BLANK);
+            side.add(WRONG);
+            opposite.add(BLANK);
         }
     }
 
@@ -67,8 +64,8 @@ public class OutputView {
         }
         System.out.println(ViewConstants.GAME_END);
         System.out.println(ViewConstants.WIN_OR_FAIL + result);
-        System.out.println(upsideBridge);
-        System.out.println(downsideBridge);
+        System.out.println(upsideBridge.toString().replace(COMMA, BRIDGE_BOUNDARY));
+        System.out.println(downsideBridge.toString().replace(COMMA, BRIDGE_BOUNDARY));
         System.out.println(ViewConstants.PLAY_TIME + playTime);
     }
 

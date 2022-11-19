@@ -10,9 +10,7 @@ import java.util.List;
 
 public class GameController {
 
-    private static final int BUILDER_INITIALIZE = 0;
     private static final String RESTART = "R";
-    private static final String QUIT = "Q";
     private static final boolean CLEAR = true;
     private static final boolean FAILED = false;
     BridgeGame bridgeGame;
