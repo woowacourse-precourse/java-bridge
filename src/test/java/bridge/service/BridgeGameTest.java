@@ -41,6 +41,20 @@ public class BridgeGameTest {
         assertThat(user.isGameSuccess()).isEqualTo(true);
     }
 
+    @DisplayName("유저가 모든 턴을 성공적으로 돌았는지 확인해주는 userCorrectAllTurn 테스트")
+    @Test
+    public void userCorrectAllTurnTest() {
+        // given
+        Bridge bridge = new Bridge(List.of("U", "D", "D", "D", "U"));
+        bridge.setNowIndex(4);
+
+        // when
+        boolean result = bridgeGame.userCorrectAllTurn(bridge);
+
+        // then
+        assertThat(result).isEqualTo(true);
+    }
+
     @DisplayName("retry 테스트")
     @Test
     public void retryTest() {
