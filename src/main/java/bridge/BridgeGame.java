@@ -49,7 +49,15 @@ public class BridgeGame {
         return failBridgeDown(bridge);
     }
 
-    
+    public List<Bridge> successBridgeUp(List<Bridge> bridge) {
+        String bridgeUp = bridge.get(0).getBridge().get(bridgeCount).replace("   ", " O ");
+        bridge.get(0).getBridge().set(bridgeCount, bridgeUp);
+        bridgeCount++;
+        return bridge;
+    }
+
+
+
     public int BridgeNumberGenerator() {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         int randomNumber = bridgeRandomNumberGenerator.generate();
