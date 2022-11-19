@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.constant.ErrorMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -12,7 +13,15 @@ public class InputView {
      */
     public int readBridgeSize() {
         String input = Console.readLine();
+        validateInputIsNumericFormat(input);
         return Integer.parseInt(input);
+    }
+
+    public void validateInputIsNumericFormat(String input){
+        final String NUMERIC_REGULAR_EXPRESSION = "^[-]?[0-9]+$";
+        if(!input.matches(NUMERIC_REGULAR_EXPRESSION)){
+            throw new IllegalArgumentException(ErrorMessage.NOT_NUMERIC_TYPE);
+        }
     }
 
     /**

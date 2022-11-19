@@ -1,13 +1,13 @@
 package bridge.model;
 
 import bridge.constant.GameStatus;
-
-import java.util.List;
+import bridge.validator.ValueValidator;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private ValueValidator validator = new ValueValidator();
     private Bridge bridge;
     private int round = 0;
     private int tryCount = 0;
@@ -46,6 +46,7 @@ public class BridgeGame {
     }
     
     public void createBridge(int size){
+        validator.validateNumberRange(size);
         bridge = new Bridge(size);
     }
 
