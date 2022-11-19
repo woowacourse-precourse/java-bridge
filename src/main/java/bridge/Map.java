@@ -34,12 +34,9 @@ public class Map {
         this.limitSize = crossable.size();
     }
 
-    public void resetMap() {
+    public void startMap() {
         mapUpper.clear();
         mapLower.clear();
-    }
-
-    public void startMap() {
         mapUpper.add("[");
         mapLower.add("[");
     }

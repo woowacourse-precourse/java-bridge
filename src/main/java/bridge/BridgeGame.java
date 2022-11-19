@@ -11,17 +11,22 @@ public class BridgeGame {
     InputView inputView = new InputView();
     Util util = new Util();
 
-    public boolean move(List<String> crossable, Map map) {
+    public boolean move(Map map, List<String> crossable, int index) {
         boolean isWin;
         String moving;
+        moving = util.determineWhereToGo();
+        map.extendMap(index);
+        isWin = map.runMap(moving, crossable.get(index));
+        map.endMap();
+        return isWin;
+    }
+
+    public boolean play(List<String> crossable, Map map) {
+        boolean isWin;
         int index = 0;
-        map.resetMap();
         map.startMap();
         while (map.mapIndexOutOfRange(index)) {
-            moving = util.determineWhereToGo();
-            map.extendMap(index);
-            isWin = map.runMap(moving, crossable.get(index));
-            map.endMap();
+            isWin = move(map, crossable, index);
             index++;
             outputView.printMap(map.getMapUpper(), map.getMapLower());
             if (!isWin) {
@@ -36,15 +41,15 @@ public class BridgeGame {
         outputView.printContinueOrEndRequest();
         continueOrEnd = inputView.readGameCommand();
         if (continueOrEnd.equals("R")) {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     public void controller() {
         int attempts = 1;
         int limitSize;
-        boolean endGame = false;
+        boolean isContinue = true;
         boolean isWin;
         List<String> crossable;
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
@@ -52,12 +57,12 @@ public class BridgeGame {
         crossable = bridgeMaker.makeBridge(limitSize);
         Map map = new Map(crossable);
 
-        while (!endGame) {
-            isWin = move(crossable, map);
+        while (isContinue) {
+            isWin = play(crossable, map);
             if (!isWin) {
-                endGame = retry();
+                isContinue = retry();
             }
-            if (isWin||endGame) {
+            if (isWin||!isContinue) {
                     outputView.printTitle();
                     outputView.printMap(map.getMapUpper(),map.getMapLower());
                     outputView.printResult(isWin,attempts);
