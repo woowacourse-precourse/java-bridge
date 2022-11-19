@@ -108,6 +108,28 @@ class ApplicationTest extends NsTest {
         assertThat(Exception.validateInputValueForReStart(input).equals(input));
     }
 
+    @DisplayName("입력 받은 다리 사이즈가 올바르지 않다면 예외를 발생시킨다.")
+    @Test
+    void enterInvalidBridgeSize(){
+        assertThatThrownBy(() -> Validate.bridgeSize("25"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력 받은 다리 이동 문자가 올바르지 않다면 예외를 발생시킨다.")
+    @Test
+    void enterInvalidMoving(){
+        assertThatThrownBy(() -> Validate.moving("R"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력 받은 게임 재시작 문자가 올바르지 않다면 예외를 발생시킨다.")
+    @Test
+    void enterInvalidGameCommand(){
+        assertThatThrownBy(() -> Validate.gameCommend("D"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+
 
     @Override
     protected void runMain() {

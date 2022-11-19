@@ -44,4 +44,6 @@ public class Exception {
             return gameCommand;
         throw new IllegalArgumentException(ERROR_PREFIX + INVALID_INPUT_VALUE_FOR_MOVE);
     }
+
+
 }
