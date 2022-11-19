@@ -56,4 +56,16 @@ class BridgeGameTest {
 
         assertThat(tryCount).isEqualTo(1);
     }
+
+    @DisplayName("게임 재시작을 하면 시도 횟수가 증가한다.")
+    @Test
+    void gameRetry() {
+        bridgeGame.retry();
+
+        int tryCount = bridgeGame.getTryCount();
+        GameStatus status = bridgeGame.getStatus();
+
+        assertThat(tryCount).isEqualTo(2);
+        assertThat(status).isEqualTo(GameStatus.PLAYING);
+    }
 }
