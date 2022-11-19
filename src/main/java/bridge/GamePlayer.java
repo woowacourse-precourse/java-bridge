@@ -10,7 +10,7 @@ public class GamePlayer {
         this.inputView = new InputView();
         this.outputView = new OutputView();
         this.bridgeGame = new BridgeGame(readBridgeSize());
-        retryCount = 0;
+        retryCount = 1;
     }
 
     public void run() {
@@ -39,6 +39,8 @@ public class GamePlayer {
             }
 
         } while (restartOrQuit != GameKeySet.QUIT.getKeySet());
+
+        outputView.printResult(log, true, retryCount);
     }
 
     private int readBridgeSize() {
