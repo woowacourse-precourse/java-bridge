@@ -3,10 +3,12 @@ package bridge;
 public class User {
     private String pathOfUpperBridge;
     private String pathOfLowerBridge;
+    private int round;
 
     public User() {
         this.pathOfUpperBridge = "";
         this.pathOfLowerBridge = "";
+        this.round = 0;
     }
 
     public String getPathOfUpperBridge() {
@@ -27,17 +29,19 @@ public class User {
             this.pathOfUpperBridge += " ";
             this.pathOfLowerBridge += result;
         }
-    }
-
-    public boolean isFirst() {
-        return this.pathOfUpperBridge.isEmpty();
+        plusRound();
     }
 
     public void firstOrNot() {
-        if (isFirst()) {
+        if (round == 0) {
             return;
         }
         pathOfUpperBridge += " | ";
         pathOfLowerBridge += " | ";
     }
+
+    public void plusRound() {
+        this.round++;
+    }
+
 }
