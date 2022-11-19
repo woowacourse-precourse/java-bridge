@@ -12,7 +12,7 @@ public class BridgeSize {
     }
 
     private BridgeSize(String bridgeSize) {
-        validateBridegeSize(bridgeSize);
+        validateBridgeSize(bridgeSize);
         this.bridgeSize = parseInt(bridgeSize);
     }
 
@@ -20,7 +20,7 @@ public class BridgeSize {
         return this.bridgeSize;
     }
 
-    public void validateBridegeSize(String bridgeSize) {
+    public void validateBridgeSize(String bridgeSize) {
         if (!bridgeSize.chars().allMatch(Character::isDigit)) {
             throw new IllegalArgumentException(IS_NOT_NUMBER.getErrorMessage());
         }
