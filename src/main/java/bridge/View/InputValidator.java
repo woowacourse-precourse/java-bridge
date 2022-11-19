@@ -1,4 +1,4 @@
-package bridge;
+package bridge.View;
 
 public class InputValidator {
 
