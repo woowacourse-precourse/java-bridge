@@ -42,11 +42,21 @@ class UserTest {
 
     @Test
     @DisplayName("사용자가 올바른 다리를 건넜을 때 테스트")
-    void checkBridgeTest() {
+    void checkBridgeCorrectTest() {
         User user = new User(Arrays.asList("D","D","D"));
         user.addMove("D");
         user.addMove("D");
         assertThat(user.checkBridge())
                 .isEqualTo(false);
+    }
+
+    @Test
+    @DisplayName("사용자가 잘못된 다리를 건넜을 때 테스트")
+    void checkBridgeWrongTest() {
+        User user = new User(Arrays.asList("D","D","D"));
+        user.addMove("D");
+        user.addMove("U");
+        assertThat(user.checkBridge())
+                .isEqualTo(true);
     }
 }
