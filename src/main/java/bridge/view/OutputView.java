@@ -76,6 +76,10 @@ public class OutputView {
         System.out.println(separateLine() + GAME_COMMAND);
     }
 
+    public void print(String msg) {
+        System.out.println(msg);
+    }
+
     private String separateLine() {
         return System.lineSeparator();
     }
