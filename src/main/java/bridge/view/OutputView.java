@@ -5,6 +5,9 @@ import java.util.List;
 import bridge.domain.BridgeGame;
 
 public class OutputView {
+	private static final String PRINT_MAP_FIRST_LETTER = "[ ";
+	private static final String PRINT_MAP_LAST_LETTER = " ]";
+	private static final String PRINT_MAP_DELIMITER = " | ";
 
 	public void printMap(List<List<String>> result) {
 		String upBridge = createBridgeMap(result.get(0));
@@ -15,12 +18,12 @@ public class OutputView {
 	}
 
 	private String createBridgeMap(List<String> map) {
-		StringBuilder stringBuilder = new StringBuilder().append("[");
+		StringBuilder stringBuilder = new StringBuilder().append(PRINT_MAP_FIRST_LETTER);
 		for (String point : map) {
-			stringBuilder.append(point).append("|");
+			stringBuilder.append(point).append(PRINT_MAP_DELIMITER);
 		}
 		stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-		return stringBuilder.append("]").toString();
+		return stringBuilder.append(PRINT_MAP_LAST_LETTER).toString();
 	}
 
 	public void printResult(List<List<String>> result, BridgeGame bridgeGame) {
@@ -33,20 +36,19 @@ public class OutputView {
 	}
 
 	private void printClearMap(List<List<String>> result, int count) {
-		printResultIntro();
-		printMap(result);
+		printResultIntro(result);
 		System.out.println("게임 성공 여부: 성공");
 		System.out.printf("총 시도한 횟수: %d%n", count);
 	}
 
 	private void printFailedMap(List<List<String>> result, int count) {
-		printResultIntro();
-		printMap(result);
+		printResultIntro(result);
 		System.out.println("게임 성공 여부: 실패");
 		System.out.printf("총 시도한 횟수: %d%n", count);
 	}
 
-	private void printResultIntro() {
+	private void printResultIntro(List<List<String>> result) {
 		System.out.println("최종 게임 결과");
+		printMap(result);
 	}
 }
