@@ -28,7 +28,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         String input = Console.readLine();
         List<Condition> conditions = ConditionGenerator.getBridgeSizeCondition();
 
@@ -44,7 +44,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public static Direction readMoving() {
         String input = Console.readLine();
         List<Condition> conditions = ConditionGenerator.getGameActionCondition();
 
@@ -54,13 +54,13 @@ public class InputView {
             throw new IllegalArgumentException();
         }
 
-        return input;
+        return Direction.valueOf(input);
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public static SystemOperation readGameCommand() {
         String input = Console.readLine();
         List<Condition> conditions = ConditionGenerator.getSystemActionCondition();
 
@@ -70,6 +70,6 @@ public class InputView {
             throw new IllegalArgumentException();
         }
 
-        return input;
+        return SystemOperation.valueOf(input);
     }
 }
