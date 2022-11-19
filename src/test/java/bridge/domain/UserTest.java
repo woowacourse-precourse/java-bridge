@@ -1,12 +1,18 @@
 package bridge.domain;
 
+import bridge.Application;
+import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.OutputStream;
+
+import static bridge.util.Constants.OutputViewConstants.WHETHER_GAME_CLEAR;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-class UserTest {
+class UserTest extends NsTest {
 
     private User user;
 
@@ -35,5 +41,15 @@ class UserTest {
         assertEquals(user.ifUserInputQStopGameOrElseRestart("R"), true);;
     }
 
+    @DisplayName("게임 최종 결과 출력")
+    @Test
+    void 최종_다리_상태_출력() {
+        user.printResult();
+        assertThat(output()).contains(WHETHER_GAME_CLEAR);
+    }
 
+    @Override
+    protected void runMain() {
+        Application.main(new String[]{});
+    }
 }
