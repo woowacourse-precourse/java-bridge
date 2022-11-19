@@ -2,8 +2,8 @@ package bridge.controller;
 
 import bridge.model.BridgeGame;
 import bridge.util.Validator;
-import bridge.view.InputView;
-import bridge.view.OutputView;
+import bridge.ui.InputView;
+import bridge.ui.OutputView;
 
 import static bridge.util.ErrorCode.*;
 
@@ -24,6 +24,9 @@ public class BridgeGameController {
         try {
             bridgeSize = inputView.readBridgeSize();
             checkBridgeSize(bridgeSize);
+        } catch (NumberFormatException e) {
+            outputView.printErrorMessage(INVALID_BRIDGE_SIZE_TYPE);
+            getBridgeSizeInput();
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(INVALID_BRIDGE_SIZE_RANGE);
             getBridgeSizeInput();
@@ -32,7 +35,7 @@ public class BridgeGameController {
     }
 
     public void checkBridgeSize(int size) {
-        if (!validator.isValidBridgeSize(size)) {
+        if (!validator.isValidRange(size)) {
             throw new IllegalArgumentException();
         }
     }
