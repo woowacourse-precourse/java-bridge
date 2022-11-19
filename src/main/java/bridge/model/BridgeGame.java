@@ -10,7 +10,7 @@ public class BridgeGame {
     private ValueValidator validator = new ValueValidator();
     private Bridge bridge;
     private int round = 0;
-    private int tryCount = 0;
+    private int tryCount = 1;
     private GameStatus gameStatus = GameStatus.READY;
 
     /**
@@ -51,6 +51,7 @@ public class BridgeGame {
     }
 
     public void checkAnswerOfRound(String answer){
+        validator.validateUpOrDown(answer);
         if(!bridge.checkBlock(answer, round)){
             gameStatus = GameStatus.FAIL;
             return;
