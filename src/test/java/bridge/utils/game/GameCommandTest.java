@@ -1,0 +1,36 @@
+package bridge.utils.game;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
+class GameCommandTest {
+
+    @Nested
+    @DisplayName("findNextGameOver 메소드는")
+    class DescribeFindNextGameOverMethodTest {
+
+        @Nested
+        @DisplayName("만약 게임을 다시 시도할지에 대한 커맨드가 주어지면")
+        class ContextWithCommand {
+
+            @ParameterizedTest
+            @CsvSource(
+                    value = {
+                        "Q:GAME_EXIT",
+                        "R:GAME_PLAY"
+                    },
+                    delimiter = ':'
+            )
+            @DisplayName("커맨드와 일치하는 GameStatus를 반환한다")
+            void itReturnsGameStatus(String command, GameStatus expected) {
+                GameStatus actual = GameCommand.findNextGameOver(command);
+
+                assertThat(actual).isSameAs(expected);
+            }
+        }
+    }
+}
