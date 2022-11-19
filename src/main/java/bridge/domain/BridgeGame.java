@@ -29,17 +29,30 @@ public class BridgeGame {
         player.move(moving);
     }
 
-    private boolean isSuccess() {
+    public boolean canContinue() {
+        if (player.getPosition() > 0) {
+            return isLatestMovingSuccess() && !isPlayerLocatedEnd();
+        }
+
+        return true;
+    }
+
+    private boolean isPlayerLocatedEnd() {
+        int position = player.getPosition();
+        int endPosition = bridge.size() - 1;
+
+        return position == endPosition;
+    }
+
+    public boolean isLatestMovingSuccess() {
         String latestMoving = player.getLatestMoving();
         int position = player.getPosition();
 
         return bridge.get(position).equals(latestMoving);
     }
 
-    public boolean isFinished() {
-        int position = player.getPosition();
-
-        return position == bridge.size() - 1;
+    public boolean isClear() {
+        return isPlayerLocatedEnd() && isLatestMovingSuccess();
     }
 
     /**
@@ -54,5 +67,9 @@ public class BridgeGame {
 
     public int getTryCount() {
         return tryCount;
+    }
+
+    public List<String> getPlayerMovingMap() {
+        return player.getMovingMap();
     }
 }
