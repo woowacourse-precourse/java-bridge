@@ -18,13 +18,13 @@ class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(bridge);
         assertAll(() -> {
             bridgeGame.move(Direction.U);
-            assertThat(bridgeGame).extracting("userPosition").isEqualTo(1);
+            assertThat(bridgeGame).extracting("user").extracting("userPosition").isEqualTo(1);
 
             bridgeGame.move(Direction.D);
-            assertThat(bridgeGame).extracting("userPosition").isEqualTo(2);
+            assertThat(bridgeGame).extracting("user").extracting("userPosition").isEqualTo(2);
 
             bridgeGame.move(Direction.U);
-            assertThat(bridgeGame).extracting("userPosition").isEqualTo(3);
+            assertThat(bridgeGame).extracting("user").extracting("userPosition").isEqualTo(3);
         });
     }
 
@@ -34,7 +34,7 @@ class BridgeGameTest {
         Bridge bridge = new Bridge(List.of("U", "D", "U"));
         BridgeGame bridgeGame = new BridgeGame(bridge);
         bridgeGame.move(Direction.D);
-        assertThat(bridgeGame).extracting("aliveUser").isEqualTo(false);
+        assertThat(bridgeGame).extracting("user").extracting("aliveUser").isEqualTo(false);
     }
 
     @DisplayName("유저가 사망하면 게임의 턴은 종료된 것이다.")
@@ -113,14 +113,14 @@ class BridgeGameTest {
             bridgeGame.move(Direction.U);
             bridgeGame.move(Direction.U);
             assertThat(bridgeGame.isEndGame()).isTrue();
-            assertThat(bridgeGame).extracting("aliveUser").isEqualTo(false);
-            assertThat(bridgeGame).extracting("userPosition").isEqualTo(2);
+            assertThat(bridgeGame).extracting("user").extracting("aliveUser").isEqualTo(false);
+            assertThat(bridgeGame).extracting("user").extracting("userPosition").isEqualTo(2);
             assertThat(bridgeGame).extracting("numberOfAttempts").isEqualTo(1);
 
             bridgeGame.retry(Command.Restart);
             assertThat(bridgeGame.isEndGame()).isFalse();
-            assertThat(bridgeGame).extracting("aliveUser").isEqualTo(true);
-            assertThat(bridgeGame).extracting("userPosition").isEqualTo(0);
+            assertThat(bridgeGame).extracting("user").extracting("aliveUser").isEqualTo(true);
+            assertThat(bridgeGame).extracting("user").extracting("userPosition").isEqualTo(0);
             assertThat(bridgeGame).extracting("numberOfAttempts").isEqualTo(2);
         });
     }
@@ -133,10 +133,6 @@ class BridgeGameTest {
         assertAll(() -> {
             bridgeGame.move(Direction.U);
             bridgeGame.move(Direction.U);
-            assertThat(bridgeGame.isEndGame()).isTrue();
-            assertThat(bridgeGame).extracting("aliveUser").isEqualTo(false);
-            assertThat(bridgeGame).extracting("userPosition").isEqualTo(2);
-            assertThat(bridgeGame).extracting("numberOfAttempts").isEqualTo(1);
             assertThat(bridgeGame.isNeedToQuit()).isFalse();
 
             bridgeGame.retry(Command.Quit);
