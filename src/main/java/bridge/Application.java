@@ -12,13 +12,13 @@ public class Application {
 
     private static void gameStart() {
         outputView.printStartMessage();
-        int bridgeSize = getUserInput();
+        int bridgeSize = getBridgeSizeInput();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridgeMaker.makeBridge(bridgeSize);
         move(bridgeSize);
     }
 
-    private static int getUserInput() {
+    private static int getBridgeSizeInput() {
         int bridgeSize;
         while (true) {
             try {
