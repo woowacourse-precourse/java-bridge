@@ -24,7 +24,7 @@
         
         class 변수로 길이와 다리 모양을 포함한 map으로 선언
 2. BridgeMaker
-    - [ ]  다리 생성 → makeBridge
+    - [x]  다리 생성 → makeBridge
 3. InputValidator
     - [ ]  다리 길이 입력 값의 유효성 검사 → validateInputBridgeSize
     - [ ]  다리 이동 입력 값의 유효성 검사 → validateInputMoving
@@ -66,6 +66,11 @@
     - [ ]  게임 재시작 입력 및 검증 → inputStart
         1. 게임 재시작 입력
         2. 게임 재시작 유효성 검사
+
+### util
+
+1. convertData
+    - [x] 다리 칸 숫자에서 문자로 변환 기능 → mappingBridgeCellIntToString
 
 ---
 
