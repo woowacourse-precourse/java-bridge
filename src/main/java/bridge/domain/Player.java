@@ -12,4 +12,8 @@ public class Player {
     public String informMoving() {
         return movingInputs.get(movingInputs.size() - 1);
     }
+
+    public int informMovingIndex() {
+        return movingInputs.size() - 1;
+    }
 }

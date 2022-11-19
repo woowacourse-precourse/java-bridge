@@ -16,7 +16,7 @@ public class CompareBridge {
     }
 
     public String stepping(Player player, List<String> bridge) {
-        if (isSame(player, bridge.get(0))) {
+        if (isSame(player, bridge.get(player.informMovingIndex()))) {
             return " O ";
         }
         return " X ";
