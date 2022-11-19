@@ -20,6 +20,9 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> answerBridge = new ArrayList<>();
+        for(int answerBridgeIndex = 0; answerBridgeIndex < size; answerBridgeIndex++){
+
+        }
         return null;
     }
 }
