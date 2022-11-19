@@ -1,7 +1,4 @@
-package bridge.controller;
-
-import bridge.domain.Bridge;
-import bridge.domain.CurrentBridge;
+package bridge.domain;
 
 import java.util.HashMap;
 import java.util.Map;

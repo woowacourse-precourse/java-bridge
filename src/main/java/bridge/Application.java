@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.controller.BridgeGame;
+import bridge.domain.BridgeGame;
 import bridge.domain.CurrentBridge;
 import bridge.view.InputView;
 import bridge.view.OutputView;
