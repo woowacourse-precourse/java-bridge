@@ -26,10 +26,8 @@ public class OutputView {
     public static void printMap(BridgeGame bridgeGame) {
         List<String> bridge = bridgeGame.getBridge();
         Player player = bridgeGame.getPlayer();
-        int currentPosition = player.getCurrentPosition();
-        boolean isMoving = player.getMoving();
-        List<String> upperLine = drawUpperLine(bridge, currentPosition, isMoving);
-        List<String> lowerLine = drawLowerLine(bridge, currentPosition, isMoving);
+        List<String> upperLine = drawUpperLine(bridge, player);
+        List<String> lowerLine = drawLowerLine(bridge, player);
         printOneLine(upperLine);
         printOneLine(lowerLine);
         System.out.println();
@@ -49,26 +47,26 @@ public class OutputView {
         System.out.println(bridgeGame.getPlayer().getTryCount());
     }
 
-    private static List<String> drawUpperLine(List<String> bridge, int currentPosition, boolean isMoving) {
+    private static List<String> drawUpperLine(List<String> bridge, Player player) {
         List<String> upperLine = new ArrayList<>();
-        for (int i = 0; i < currentPosition; i++) {
+        for (int i = 0; i < player.getCurrentPosition(); i++) {
             String correctDirection = bridge.get(i);
             drawCell(upperLine, "U",correctDirection);
         }
-        if (!isMoving) {
-            drawFailedCell(upperLine, "U", bridge.get(currentPosition));
+        if (!player.getMoving()) {
+            drawFailedCell(upperLine, "U", bridge.get(player.getCurrentPosition()));
         }
         return upperLine;
     }
 
-    private static List<String> drawLowerLine(List<String> bridge, int currentPosition, boolean isMoving) {
+    private static List<String> drawLowerLine(List<String> bridge, Player player) {
         List<String> lowerLine = new ArrayList<>();
-        for (int i = 0; i < currentPosition; i++) {
+        for (int i = 0; i < player.getCurrentPosition(); i++) {
             String correctDirection = bridge.get(i);
             drawCell(lowerLine, "D",correctDirection);
         }
-        if (!isMoving) {
-            drawFailedCell(lowerLine, "D", bridge.get(currentPosition));
+        if (!player.getMoving()) {
+            drawFailedCell(lowerLine, "D", bridge.get(player.getCurrentPosition()));
         }
         return lowerLine;
     }
