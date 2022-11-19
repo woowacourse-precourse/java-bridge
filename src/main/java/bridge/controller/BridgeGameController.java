@@ -6,7 +6,7 @@ import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
-import bridge.Message;
+import bridge.messages.Message;
 import bridge.view.OutputView;
 
 import java.util.List;
@@ -31,6 +31,22 @@ public class BridgeGameController {
         outputView.printResult();
     }
 
+    public static void restartGame() {
+        bridgeLocation = 0;
+        count++;
+        status = true;
+        initBridge();
+        setGame();
+    }
+
+    public static boolean getStatus() {
+        return status;
+    }
+
+    public static int getCount() {
+        return count;
+    }
+
     private static void setGame() {
         while (status && bridgeLocation < inputSize) {
             String inputDirection = inputView.inputMovingDirection();
@@ -48,21 +64,5 @@ public class BridgeGameController {
         } else if (moveResult.equals(Message.MOVE_SUCCESS.getMessage())) {
             status = true;
         }
-    }
-
-    public static void restartGame() {
-        bridgeLocation = 0;
-        count++;
-        initBridge();
-        status = true;
-        setGame();
-    }
-
-    public static boolean getStatus() {
-        return status;
-    }
-
-    public static int getCount() {
-        return count;
     }
 }
