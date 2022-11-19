@@ -32,4 +32,16 @@ class ValidateInputTest {
             ValidateInput.validateMovingBlock("S");
         });
     }
+
+    @DisplayName("게임 재시작 여부를 입력받을 때 1자리의 문자열이 아니거나, R 또는 Q 이외의 문자 입력시 예외가 발생한다.")
+    @Test
+    void 게임_재시작_여부가_1자리_문자열이_아니거나_R_또는_Q가_아니라면_예외_발생() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            ValidateInput.validateMovingBlock("RR");
+        });
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            ValidateInput.validateMovingBlock("A");
+        });
+    }
 }
