@@ -9,7 +9,7 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println(Game.INPUT_BRIDGE_SIZE);
         int result = validateSize(Console.readLine());
-        if (result < 3 || result > 20) {
+        if (result < Game.MIN_SIZE || result > Game.MAX_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE_SIZE);
         }
         return result;
@@ -17,13 +17,11 @@ public class InputView {
 
     public String readMoving() {
         System.out.println(Game.INPUT_DIRECTION);
-        String result = validateMoving(Console.readLine());
-        return result;
+        return validateMoving(Console.readLine());
     }
 
     public String readGameCommand() {
-        String result = validateCommend(Console.readLine());
-        return result;
+        return validateCommend(Console.readLine());
     }
 
     private String validateCommend(String commend) {
