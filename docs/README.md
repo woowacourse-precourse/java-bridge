@@ -4,10 +4,10 @@
 ---
 ### <span style = "color:skyblue" >GAME_START</span> : 게임 시작
 - ✅ **`getInput`** → 사용자의 입력을 받아 온다.
-- 🟩 **`printGameStart`** → 맨 첫 게임 시작 시에만 출력
+- ✅ **`printGameStart`** → 맨 첫 게임 시작 시에만 출력
 - ✅ **`readBridgeSize`** → 다리의 길이를 입력값으로 받으며 맨 처음 한 번만 사용한다.
 - ✅ **`isCorrectLength`** → 다리의 길이가 올바른 범위인지 확인한다.
-- 🟩 **`makeBridge`** → 입력된 값에 따라 다리를 만든다. 
+- ✅ **`makeBridge`** → 입력된 값에 따라 다리를 만든다. 
 ---
 ### <span style = "color:skyblue" >RUN_PROCESS</span> : 플레이어를 이동시킨다.
 - 🟩 **`readMoving`** → 라운드마다 플레이어가 이동할 칸을 입력 받는다. 위, 아래 중 하나로 이동 가능하다.
