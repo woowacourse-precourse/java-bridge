@@ -13,6 +13,8 @@ public class BridgeGame {
     private static final String RETRY = "R";
     private static final String UP = "U";
     private static final String DOWN = "D";
+    private static final String INVALID_MOVE_COMMAND_ERROR = "U 또는 D를 입력해주세요.";
+    private static final String INVALID_GAME_COMMAND_ERROR = "R 또는 Q를 입력해주세요.";
 
     private final List<String> bridge;
     private int currentPosition;
@@ -54,14 +56,14 @@ public class BridgeGame {
         if (retryCommand.equals(QUIT)) {
             return false;
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(INVALID_GAME_COMMAND_ERROR);
     }
 
     private void validateMoveCommand(String moveCommand) {
         if (moveCommand.equals(UP) || moveCommand.equals(DOWN)) {
             return;
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(INVALID_MOVE_COMMAND_ERROR);
     }
 
     public boolean isReached() {

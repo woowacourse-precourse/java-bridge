@@ -9,6 +9,8 @@ import java.util.List;
 public class BridgeMaker {
 
     private static final int ZERO = 0;
+    private static final String INVALID_SIZE_ERROR = "3에서 20사이의 수를 입력해주세요.";
+
     private static final String UP = "U";
     private static final String DOWN = "D";
 
@@ -41,7 +43,7 @@ public class BridgeMaker {
 
     private void validateSize(int size) {
         if (size < 3 || size > 20) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_SIZE_ERROR);
         }
     }
 }
