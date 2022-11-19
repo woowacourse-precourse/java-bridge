@@ -29,8 +29,7 @@ public class BridgeGame {
     }
 
     public void retry() {
-        player.increaseTryCount();
-        player.initMoveHistory();
+        player.initForRetry();
     }
 
     public void makeBridge(int bridgeSize) {

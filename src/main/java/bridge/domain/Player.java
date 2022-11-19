@@ -53,6 +53,12 @@ public class Player {
         return true;
     }
 
+    public void initForRetry() {
+        increaseTryCount();
+        initMoveHistory();
+
+    }
+
     public void increaseTryCount() {
         tryCount++;
     }
