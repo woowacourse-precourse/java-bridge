@@ -15,10 +15,10 @@ public class BridgeGame {
     private final User user;
     private final Result result;
 
-    public BridgeGame(Bridge bridge, User user) {
+    public BridgeGame(Bridge bridge, User user, Result result) {
         this.bridge = bridge;
         this.user = user;
-        result = new Result();
+        this.result = result;
     }
 
     /**
@@ -46,5 +46,6 @@ public class BridgeGame {
     public void retry() {
         user.returnStart();
         result.updateNumberOfTrial();
+        result.reInit();
     }
 }
