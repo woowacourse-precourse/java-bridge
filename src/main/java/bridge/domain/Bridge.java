@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.validator.BridgeFormatValidator;
+
 import java.util.List;
 
 public class Bridge {
@@ -7,6 +9,7 @@ public class Bridge {
     private final List<String> bridge;
 
     public Bridge(List<String> bridge) {
+        BridgeFormatValidator.validate(bridge);
         this.bridge = bridge;
     }
 
