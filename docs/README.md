@@ -70,9 +70,9 @@
 
 
 - [x] size만큼 Bridge 생성 makeBridge(int size)
-    - [ ] 검증
+    - [x] 검증
         - 입력된 값이 3 ~ 20 범위의 숫자
-        - [ ] 해당 범위가 아닐 경우 IllegalArgumentException 처리
+        - [x] 해당 범위가 아닐 경우 IllegalArgumentException 처리
       
 <br/>
 
