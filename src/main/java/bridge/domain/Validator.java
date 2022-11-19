@@ -26,7 +26,13 @@ public class Validator {
 
     public void validateMoving(String moving) {
         if (!moving.equals(USER_UP_MOVING) && !moving.equals(USER_DOWN_MOVING)) {
-            throw new IllegalArgumentException(INVALID_MOVE_INPUT_MESSAGE);
+            throw new IllegalArgumentException(ERROR_MESSAGE + INVALID_MOVE_INPUT_MESSAGE);
+        }
+    }
+
+    public void validateGameCommand(String gameCommand) {
+        if (!gameCommand.equals(QUIT) && !gameCommand.equals(RESTART)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + INVALID_RETRY_MESSAGE);
         }
     }
 }
