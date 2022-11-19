@@ -43,9 +43,7 @@ public class BridgeController {
                     break;
                 }
 
-                Direction direction = null;
-                direction = createDirectionLoop(direction);
-
+                Direction direction = createDirectionLoop();
                 Position position = createPosition(pos, direction);
                 bridgeGame.move(position, passingPositions);
                 result = passingPositions.makeResultsGroup();
@@ -109,20 +107,21 @@ public class BridgeController {
         return new PassingPositions(bridge);
     }
 
-    private Direction createDirectionLoop(Direction direction) {
+    private Direction createDirectionLoop() {
+        Direction direction;
         do {
-            direction = createDirection(direction);
+            direction = createDirection();
         } while (direction == null);
         return direction;
     }
 
-    private Direction createDirection(Direction direction) {
+    private Direction createDirection() {
         try {
-            direction = new Direction(InputView.readMoving());
+            return new Direction(InputView.readMoving());
         } catch (IllegalArgumentException ex) {
             OutputView.printError(ex.getMessage());
         }
-        return direction;
+        return null;
     }
 
     private Position createPosition(int pos, Direction direction) {
