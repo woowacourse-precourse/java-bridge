@@ -52,4 +52,11 @@ public class Bridge {
     public List<String> getUserKeyList() {
         return this.userKeyList;
     }
+
+    // 입력한 키가 정답인지 아닌지 boolean 반환 기능
+    public boolean isAnswer() {
+        int index = userKeyList.size()-1;
+        String result = compareKey(bridge.get(index), userKeyList.get(index));
+        return result.equals(Setting.KEY_MATCH);
+    }
 }
