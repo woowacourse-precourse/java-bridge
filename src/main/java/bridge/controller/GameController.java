@@ -3,7 +3,6 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.BridgeNumberGenerator;
-import bridge.MoveResult;
 import bridge.model.AttemptNumber;
 import bridge.model.BridgeGame;
 import bridge.model.BridgeSize;
@@ -31,9 +30,7 @@ public class GameController {
 
         BridgeGame bridgeGame = new BridgeGame();
 
-        MoveResult moveResult = moveResult();
-
-        startWalk(bridgeGame, bridge, moveResult);
+        startWalk(bridgeGame, bridge);
     }
 
     private AttemptNumber attemptNumber() {
@@ -56,48 +53,46 @@ public class GameController {
         return new BridgeMaker(bridgeNumberGenerator);
     }
 
-    private void walk(BridgeGame bridgeGame, List<String> bridge, MoveResult moveResult) {
+    private void walk(BridgeGame bridgeGame, List<String> bridge) {
         for (String bridgeStatus : bridge) {
-            if (isMovePossible(bridgeGame, bridgeStatus, moveResult)) {
-                moveResult.printBridge(outputView);
+            if (isMovePossible(bridgeGame, bridgeStatus)) {
                 continue;
             }
-            moveResult.printBridge(outputView);
             return;
         }
         success = true;
     }
 
-    private void startWalk(BridgeGame bridgeGame, List<String> bridge, MoveResult moveResult) {
+    private void startWalk(BridgeGame bridgeGame, List<String> bridge) {
         AttemptNumber attemptNumber = attemptNumber(); // 리팩토링 대상
-        while (!isSuccess()) {
-            walk(bridgeGame, bridge, moveResult);
+        while (!success) {
+            walk(bridgeGame, bridge);
             if (isRetry()) {
                 bridgeGame.retry(attemptNumber);
-                moveResult.clearHistory();
                 continue;
             }
             break;
         }
+        finalGameResult(bridgeGame, attemptNumber);
+    }
+
+    private void finalGameResult(BridgeGame bridgeGame, AttemptNumber attemptNumber) {
         System.out.println("최종 게임 결과");
-        moveResult.printBridge(outputView);
-        attemptNumber.printAttemptNumber(outputView, isSuccess());
+        printBridge(bridgeGame);
+        attemptNumber.printAttemptNumber(outputView, success);
     }
 
-    private MoveResult moveResult() {
-        return new MoveResult();
+    private void printBridge(BridgeGame bridgeGame) {
+        List<String> lowBridge = bridgeGame.getLowBridge();
+        List<String> highBridge = bridgeGame.getHighBridge();
+        outputView.printMap(lowBridge, highBridge);
     }
 
-    private boolean isSuccess() {
-        return success;
-    }
-
-    private boolean isMovePossible(BridgeGame bridgeGame, String bridgeStatus, MoveResult moveResult) {
+    private boolean isMovePossible(BridgeGame bridgeGame, String bridgeStatus) {
         String moving = moving();
-        boolean movePossible = bridgeGame.move(moving, bridgeStatus);
-        moveResult.makeResultBridge(moving, movePossible);
-
-        return movePossible;
+        boolean move = bridgeGame.move(moving, bridgeStatus);
+        printBridge(bridgeGame);
+        return move;
     }
 
     private String moving() {
@@ -112,7 +107,7 @@ public class GameController {
     }
 
     private boolean isRetry() {
-        if (isSuccess()) {
+        if (success) {
             return false;
         }
         while (true) {

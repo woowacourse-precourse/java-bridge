@@ -4,7 +4,7 @@ public class Moving {
     private static final String MOVE_TO_UP = "U";
     private static final String MOVE_TO_DOWN = "D";
 
-    private String moving;
+    private final String moving;
 
     public Moving(String move) {
         validate(move);
