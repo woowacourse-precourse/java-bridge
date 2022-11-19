@@ -11,7 +11,7 @@ public class Application {
         OutputView outputView = new OutputView();
 
         Boolean endGame = false;
-        String successStatus = "실패";
+        String gameResult = "실패";
         int gameTryCount = 0;
 
         System.out.println("다리 건너기 게임을 시작합니다.");
@@ -35,7 +35,7 @@ public class Application {
                 bridgeIndex += 1;
             }
             if (bridgeIndex == bridgeSize) {
-                successStatus = "성공";
+                gameResult = "성공";
                 break;
             }
 
@@ -45,5 +45,7 @@ public class Application {
                 break;
             }
         }
+
+        outputView.printResult(gameResult, gameTryCount);
     }
 }
