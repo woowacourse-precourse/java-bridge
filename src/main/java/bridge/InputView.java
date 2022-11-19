@@ -15,13 +15,13 @@ public class InputView {
     }
 
     public static int getValidBridgeSize() {
-        int bridgeSize;
-
-        try {
-            bridgeSize = readBridgeSize();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            bridgeSize = getValidBridgeSize();
+        int bridgeSize = 0;
+        while (bridgeSize == 0) {
+            try {
+                bridgeSize = readBridgeSize();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
 
         return bridgeSize;
