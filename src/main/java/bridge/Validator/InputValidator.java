@@ -33,4 +33,10 @@ public class InputValidator {
             throw new IllegalArgumentException("유효한 값이 아닙니다.");
         }
     }
+
+    public static void checkRetry(String retryInput) {
+        if(!(retryInput.equals("Q") || retryInput.equals("R"))){
+            throw new IllegalArgumentException("유효한 값이 아닙니다.");
+        }
+    }
 }
