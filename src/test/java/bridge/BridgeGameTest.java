@@ -12,7 +12,7 @@ class BridgeGameTest {
     @Test
     void 게임_승리_테스트() {
         BridgeGame bridgeGame = new BridgeGame();
-        UserStatus userStatus = new UserStatus(new ArrayList<>(), 0, true);
+        UserStatus userStatus = new UserStatus(new ArrayList<>());
         List<String> answers = List.of("U", "U", "U");
 
         userStatus.addDirection("U");
@@ -34,7 +34,7 @@ class BridgeGameTest {
     @Test
     void 게임_패배_테스트() {
         BridgeGame bridgeGame = new BridgeGame();
-        UserStatus userStatus = new UserStatus(new ArrayList<>(), 0, true);
+        UserStatus userStatus = new UserStatus(new ArrayList<>());
 
         userStatus.addDirection("U");
         bridgeGame.move(List.of("U", "U", "U"), userStatus);
