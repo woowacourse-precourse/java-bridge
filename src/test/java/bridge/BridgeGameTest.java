@@ -37,7 +37,9 @@ class BridgeGameTest extends NsTest {
         run("D", "D", "R", "D", "U", "U");
         assertThat(output()).contains(
                 "D","X","R","D", "U", "U"
-        );
+        );/**
+         contain말고 다른 걸로 테스트하자
+         */
 
     }
 
