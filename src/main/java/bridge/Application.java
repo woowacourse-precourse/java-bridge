@@ -16,6 +16,8 @@ public class Application {
 
     private static List<String> topBridge;
 
+    private static List<String> bottomBridge;
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         prepareExceptionBeforeBridgeGame();
