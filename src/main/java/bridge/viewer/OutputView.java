@@ -22,8 +22,8 @@ public class OutputView {
     public static final String FAIL = " X ";
 
     public void printMap(PositionTable userTable) {
-        System.out.println(draw(userTable, position -> position.isUp()));
-        System.out.println(draw(userTable, position -> position.isDown()));
+        System.out.println(String.join("|",draw(userTable, position -> position.isUp())));
+        System.out.println(String.join("|",draw(userTable, position -> position.isDown())));
     }
 
     public void printResult(PositionTable userTable, Result result) {

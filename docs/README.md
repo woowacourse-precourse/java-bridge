@@ -44,7 +44,12 @@
 - printMap(UserPosition userPosition)
   - draw(userTable, position -> position.isUp())
   - draw(userTable, position -> position.isDown())
-- printResult(UserPosition userPosition)
+- printResult(Result result)
+  - result가 WIN이라면 그대로 printMap()과 같이 출력한다.
+  - result가 LOSE라면 replace를 사용해서 마지막 " O "를 " X "로 바꿔준다.
 - draw(PositionTable userTable, Predicate<Position p)
   - userTable을 바탕으로 Up 혹은 Down map을 그린다.
   - Up 칸의 bridge를 그릴지, Down 칸의 bridge를 그릴지 p를 통해 판단한다.
+- replace(List<String> map)
+  - 마지막이 "   "라면 그대로
+  - 마지막이 " O "라면 " X "로 변경한다.
