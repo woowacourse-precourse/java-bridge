@@ -23,7 +23,7 @@ public class RestartCommand {
         }
     }
 
-    public boolean isRestart() {
+    public boolean isRestartCommand() {
         if (restartCommand.equals("R")) {
             return true;
         }

@@ -8,33 +8,30 @@ import bridge.ui.input.InputView;
 import bridge.ui.output.OutputView;
 import java.util.List;
 
-public class BridgeGameController {
+public class BridgeGameConsole {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public BridgeGameController(InputView inputView, OutputView outputView) {
+    public BridgeGameConsole(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
-    public void launchGame() {
+    public void launchGame(BridgeNumberGenerator generator) {
         outputView.printInitMessage();
+        BridgeMap bridgeMap = setupBridge(generator);
+        playGameWith(bridgeMap);
     }
 
-    public BridgeMap generateBridgeGameMap(BridgeNumberGenerator generator) {
+    private BridgeMap setupBridge(BridgeNumberGenerator generator) {
         int bridgeSize = readBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(generator);
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-
         return BridgeMap.from(bridge);
     }
 
-    private int readBridgeSize() {
-        return inputView.readBridgeSize().toInteger();
-    }
-
-    public void playGame(BridgeMap bridgeMap) {
-        BridgeGame bridgeGame = setupGame(bridgeMap);
+    private void playGameWith(final BridgeMap bridgeMap) {
+        final BridgeGame bridgeGame = setupGame(bridgeMap);
 
         do {
             BridgeDirection bridgeDirection = readBridgeDirection();
@@ -43,6 +40,10 @@ public class BridgeGameController {
         } while (isPlayable(bridgeGame));
 
         outputView.printResult(bridgeGame.toBridgeGameResult());
+    }
+
+    private int readBridgeSize() {
+        return inputView.readBridgeSize().toInteger();
     }
 
     private BridgeGame setupGame(BridgeMap bridgeMap) {
@@ -63,10 +64,10 @@ public class BridgeGameController {
     }
 
     private boolean isRestart(BridgeGame bridgeGame) {
-        boolean restart = inputView.readGameCommand().isRestart();
-        if (restart) {
+        if (inputView.readGameCommand().isRestartCommand()) {
             bridgeGame.retry();
+            return true;
         }
-        return restart;
+        return false;
     }
 }
