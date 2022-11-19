@@ -161,10 +161,10 @@
 - BridgeRandomNumberGenerator
 - BridgeSize
 - MapRenderer
-- Cell
-- Constant
+- [x] Cell
+- [x] Constant
 - GameController
-- Validator
+- [x] Validator
 - [x] InputView
 - [x] OutputView
 - [X] ViewConstant
