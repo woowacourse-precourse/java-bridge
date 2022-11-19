@@ -2,7 +2,9 @@ package bridge;
 
 import java.util.regex.Pattern;
 
-import static bridge.constant.BridgeConst.*;
+import static bridge.constant.BridgeMove.*;
+import static bridge.constant.BridgeRange.*;
+import static bridge.constant.BridgeControl.*;
 import static bridge.constant.message.ExceptionMessage.*;
 
 public class ValidationUtil {
@@ -41,9 +43,9 @@ public class ValidationUtil {
      * @param input 사용자의 입력값
      */
     public void validatePlayerMoveInput(String input) {
-        if (!input.equals(UP.getLetter()) || !input.equals(DOWN.getLetter())) {
+        if (!input.equals(UP.getIdentifier()) || !input.equals(DOWN.getIdentifier())) {
             throw new IllegalArgumentException(String.format(PLAYER_MOVE.getMessage(),
-                    UP.getLetter(), DOWN.getLetter()));
+                    UP.getIdentifier(), DOWN.getIdentifier()));
         }
     }
 
@@ -53,9 +55,9 @@ public class ValidationUtil {
      * @param input 사용자의 입력값
      */
     public void validatePlayControlInput(String input) {
-        if (!input.equals(RESTART.getLetter()) || !input.equals(QUIT.getLetter())) {
+        if (!input.equals(RESTART.getIdentifier()) || !input.equals(QUIT.getIdentifier())) {
             throw new IllegalArgumentException(String.format(PLAY_CONTROL.getMessage(),
-                    RESTART.getLetter(), QUIT.getLetter()));
+                    RESTART.getIdentifier(), QUIT.getIdentifier()));
         }
     }
 }

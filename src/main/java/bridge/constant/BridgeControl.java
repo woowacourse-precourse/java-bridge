@@ -1,16 +1,13 @@
 package bridge.constant;
 
-public enum BridgeConst {
+public enum BridgeControl {
 
-    SUCCESS("성공")
-    , FAILURE("실패")
-    , POSSIBLE("O")
-    , IMPOSSIBLE("X")
-    ;
+    RESTART("R")
+    , QUIT("Q");
 
     private final String identifier;
 
-    BridgeConst(String identifier) {
+    BridgeControl(String identifier) {
         this.identifier = identifier;
     }
 

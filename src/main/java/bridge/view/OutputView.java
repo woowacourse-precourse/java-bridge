@@ -1,6 +1,7 @@
 package bridge.view;
 
-import static bridge.constant.BridgeConst.*;
+import static bridge.constant.BridgeMove.*;
+import static bridge.constant.BridgeControl.*;
 import static bridge.constant.message.InputMessage.*;
 
 /**
@@ -14,11 +15,11 @@ public class OutputView {
     }
 
     public void printPlayerMoveMessage() {
-        System.out.printf(SELECT_MOVE.getMessage(), UP.getLetter(), DOWN.getLetter());
+        System.out.printf(SELECT_MOVE.getMessage(), UP.getIdentifier(), DOWN.getIdentifier());
     }
 
     public void printPlayControlMessage() {
-        System.out.printf(PLAY_CONTROL.getMessage(), RESTART.getLetter(), QUIT.getLetter());
+        System.out.printf(PLAY_CONTROL.getMessage(), RESTART.getIdentifier(), QUIT.getIdentifier());
     }
 
     /**
