@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * 다리 건너기 결과를 관리하는 클래스
  */
-public class BridgeMoveResult {
+public class BridgeMoveState {
 
     private static final String UP = "U";
     private static final String DOWN = "D";
@@ -14,29 +14,29 @@ public class BridgeMoveResult {
     private static final String MOVE = "O";
     private static final String STOP = "X";
 
-    private final List<String> upStates;
-    private final List<String> downStates;
+    private final List<String> upState;
+    private final List<String> downState;
 
-    public BridgeMoveResult() {
-        this.upStates = new ArrayList<>();
-        this.downStates = new ArrayList<>();
+    public BridgeMoveState() {
+        this.upState = new ArrayList<>();
+        this.downState = new ArrayList<>();
     }
 
     /**
      * @param moving   이동할 칸
      * @param mobility 이동 가능성
      */
-    public void createResult(String moving, Boolean mobility) {
+    public void addMoveState(String moving, Boolean mobility) {
         String state = makeState(mobility);
 
         if (moving.equals(UP)) {
-            upStates.add(state);
-            downStates.add(BLANK);
+            upState.add(state);
+            downState.add(BLANK);
         }
 
         if (moving.equals(DOWN)) {
-            downStates.add(state);
-            upStates.add(BLANK);
+            downState.add(state);
+            upState.add(BLANK);
         }
     }
 
@@ -47,11 +47,11 @@ public class BridgeMoveResult {
         return STOP;
     }
 
-    public List<String> getUpStates() {
-        return upStates;
+    public List<String> getUpState() {
+        return upState;
     }
 
-    public List<String> getDownStates() {
-        return downStates;
+    public List<String> getDownState() {
+        return downState;
     }
 }

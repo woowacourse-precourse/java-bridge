@@ -1,7 +1,7 @@
 package bridge.view;
 
 import bridge.domain.BridgeGameResult;
-import bridge.domain.BridgeMoveResult;
+import bridge.domain.BridgeMoveState;
 import java.util.List;
 
 /**
@@ -25,28 +25,28 @@ public class OutputView {
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      */
     public void printMap(BridgeGameResult gameResult) {
-        BridgeMoveResult moveResult = gameResult.getMoveResult();
-        System.out.println(format(moveResult.getUpStates()));
-        System.out.println(format(moveResult.getDownStates()));
+        BridgeMoveState moveState = gameResult.getMoveState();
+        System.out.println(format(moveState.getUpState()));
+        System.out.println(format(moveState.getDownState()));
     }
 
-    private String format(List<String> states) {
+    private String format(List<String> state) {
         StringBuilder result = new StringBuilder();
 
         result.append(BRIDGE_START);
-        addState(states, result);
+        addState(state, result);
         result.append(BRIDGE_END);
 
         return result.toString();
     }
 
-    private static void addState(List<String> states, StringBuilder result) {
-        for (int count = 0; count < states.size(); count++) {
-            String state = BLANK + states.get(count) + BLANK;
-            if (count != 0) {
+    private static void addState(List<String> state, StringBuilder result) {
+        for (int moveCount = 0; moveCount < state.size(); moveCount++) {
+            String currentState = BLANK + state.get(moveCount) + BLANK;
+            if (moveCount != 0) {
                 result.append(BRIDGE_DIVIDE);
             }
-            result.append(state);
+            result.append(currentState);
         }
     }
 

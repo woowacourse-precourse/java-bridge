@@ -11,12 +11,12 @@ public class BridgeGameResult {
 
     private int tryCount;
     private String gameResult;
-    private BridgeMoveResult moveResult;
+    private BridgeMoveState moveState;
 
     public BridgeGameResult() {
         tryCount = FIRST_COUNT;
         gameResult = FAIL;
-        moveResult = new BridgeMoveResult();
+        moveState = new BridgeMoveState();
     }
 
     public int increaseTryCount() {
@@ -24,12 +24,12 @@ public class BridgeGameResult {
         return tryCount;
     }
 
-    public void initMoveResult() {
-        moveResult = new BridgeMoveResult();
+    public void initMoveState() {
+        moveState = new BridgeMoveState();
     }
 
-    public void makeMoveResult(String moving, Boolean mobility) {
-        moveResult.createResult(moving, mobility);
+    public void addMoveState(String moving, Boolean mobility) {
+        moveState.addMoveState(moving, mobility);
     }
 
     public void setSuccess() {
@@ -44,7 +44,7 @@ public class BridgeGameResult {
         return gameResult;
     }
 
-    public BridgeMoveResult getMoveResult() {
-        return moveResult;
+    public BridgeMoveState getMoveState() {
+        return moveState;
     }
 }

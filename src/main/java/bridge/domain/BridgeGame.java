@@ -21,7 +21,7 @@ public class BridgeGame {
      */
     public Boolean move(Bridge bridge, int play, String moving) {
         boolean mobility = bridge.isPossibleMoving(play, moving);
-        bridgeGameResult.makeMoveResult(moving, mobility);
+        bridgeGameResult.addMoveState(moving, mobility);
         return mobility;
     }
 
@@ -30,6 +30,6 @@ public class BridgeGame {
      */
     public void retry() {
         bridgeGameResult.increaseTryCount();
-        bridgeGameResult.initMoveResult();
+        bridgeGameResult.initMoveState();
     }
 }
