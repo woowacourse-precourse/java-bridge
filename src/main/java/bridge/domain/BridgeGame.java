@@ -1,9 +1,10 @@
-package bridge.controller;
+package bridge.domain;
 
 import static org.assertj.core.util.Lists.newArrayList;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
+import bridge.domain.bridge.Bridge;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -11,22 +12,11 @@ import bridge.view.OutputView;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final BridgeNumberGenerator bridgeNumberGenerator;
-    private final BridgeMaker bridgeMaker;
-    private final InputView inputView;
-    private final OutputView outputView;
-    private int bridgeSize;
 
-    public BridgeGame(BridgeNumberGenerator bridgeNumberGenerator) {
-        this.bridgeNumberGenerator = bridgeNumberGenerator;
-        this.bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        this.inputView = new InputView();
-        this.outputView = new OutputView();
-        this.bridgeSize = inputView.readBridgeSize();
-    }
+    Bridge bridge;
 
-    public void start() {
-
+    public BridgeGame(Bridge bridge) {
+        this.bridge = bridge;
     }
 
     /**
