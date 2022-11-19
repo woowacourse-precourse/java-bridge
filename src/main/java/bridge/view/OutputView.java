@@ -57,8 +57,7 @@ public class OutputView {
     private static List<String> drawLine(List<String> bridge, Player player, String lineType) {
         List<String> Line = new ArrayList<>();
         for (int i = 0; i < player.getCurrentPosition(); i++) {
-            String correctDirection = bridge.get(i);
-            drawCell(Line, lineType, correctDirection);
+            drawCell(Line, lineType, bridge.get(i));
         }
         if (!player.getMoving()) {
             drawFailedCell(Line, lineType, bridge.get(player.getCurrentPosition()));
