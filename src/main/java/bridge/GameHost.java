@@ -2,8 +2,7 @@ package bridge;
 
 import java.util.List;
 
-import static bridge.Const.FAIL;
-import static bridge.Const.SUCCESS;
+import static bridge.Const.*;
 
 public class GameHost {
 
@@ -26,6 +25,16 @@ public class GameHost {
         return bridge.get(index);
     }
 
+    public String getResult() {
+        String answer = FAIL;
+
+        if ((playerIndex - 1) == bridge.size()) {
+            answer = SUCCESS;
+        }
+
+        return answer;
+    }
+
     public boolean getPlayerAlive() {
         return playerAlive;
     }
@@ -36,15 +45,5 @@ public class GameHost {
 
     public int getRetry() {
         return numberOfRetry;
-    }
-
-    public String isGameSuccess() {
-        String answer = FAIL;
-
-        if ((playerIndex - 1) == bridge.size()) {
-            answer = SUCCESS;
-        }
-
-        return answer;
     }
 }
