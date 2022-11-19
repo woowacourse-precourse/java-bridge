@@ -32,9 +32,9 @@ class BridgeTest {
         @ValueSource(ints = {MIN_SIZE})
         @ParameterizedTest
         void test2(int rightSize) {
-            List<String> list = bridgeMaker.makeBridge(rightSize);
-            list.add("wrongValue");
-            assertThatThrownBy(() -> new Bridge(list))
+            List<String> blocks = bridgeMaker.makeBridge(rightSize);
+            blocks.add("wrongValue");
+            assertThatThrownBy(() -> new Bridge(blocks))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }

@@ -16,8 +16,8 @@ public class BridgeGame {
     private boolean gameClear = false;
 
     public Bridge getBridge(int size) {
-        List<String> bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
-        return new Bridge(bridge);
+        List<String> blocks = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
+        return new Bridge(blocks);
     }
 
     public MoveResult move(Bridge bridge,
