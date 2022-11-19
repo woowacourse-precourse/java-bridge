@@ -77,7 +77,7 @@ public class GameController {
     }
 
     private void finalGameResult(BridgeGame bridgeGame, AttemptNumber attemptNumber) {
-        System.out.println("최종 게임 결과");
+        outputView.printFinalGameResult();
         printBridge(bridgeGame);
         attemptNumber.printAttemptNumber(outputView, success);
     }

@@ -8,13 +8,14 @@ import java.util.List;
 public class OutputView {
     private static final String ERROR_MESSAGE = "[ERROR] ";
     private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
-    private static final String GAME_SUCCESS_WHETHER = "게임 성공 여부: ";
-    private static final String GAME_ATTEMPT_COUNT = "총 시도한 횟수: ";
+    private static final String GAME_SUCCESS_WHETHER = "게임 성공 여부";
+    private static final String GAME_ATTEMPT_COUNT = "총 시도한 횟수";
     private static final String GAME_SUCCESS = "성공";
     private static final String GAME_FAILURE = "실패";
-    private static final String START_BRIDGE = "[ ";
-    private static final String END_BRIDGE = " ]";
+    private static final String START_BRIDGE = "[";
+    private static final String END_BRIDGE = "]";
     private static final String BRIDGE_DIVISION = " | ";
+    private static final String FINAL_GAME_RESULT = "최종 게임 결과";
 
 
     /**
@@ -23,8 +24,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> lowBridge, List<String> highBridge) {
-        System.out.println(formatBridge(highBridge, new StringBuilder()));
-        System.out.println(formatBridge(lowBridge, new StringBuilder()));
+        System.out.println(formatBridge(highBridge));
+        System.out.println(formatBridge(lowBridge));
     }
 
     /**
@@ -33,33 +34,35 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(Integer attemptNumber, boolean isSuccess) {
-        System.out.println(GAME_SUCCESS_WHETHER + successOrNot(isSuccess));
-        System.out.println(GAME_ATTEMPT_COUNT + attemptNumber);
+        System.out.println(successOrNot(isSuccess));
+        System.out.println(attemptCount(attemptNumber));
     }
 
     public void printGameStartMessage() {
         System.out.println(GAME_START_MESSAGE);
     }
 
-    private String successOrNot(boolean success) {
-        if (success) {
-            return GAME_SUCCESS;
-        }
-        return GAME_FAILURE;
-    }
-
-    private String formatBridge(List<String> bridge, StringBuilder sb) {
-        sb.append(START_BRIDGE);
-        for (String bridgeStatus : bridge) {
-            sb.append(bridgeStatus);
-            sb.append(BRIDGE_DIVISION);
-        }
-        sb.setLength(sb.length() - BRIDGE_DIVISION.length());
-        sb.append(END_BRIDGE);
-        return sb.toString();
+    public void printFinalGameResult() {
+        System.out.println(FINAL_GAME_RESULT);
     }
 
     public void printErrorMessage(Exception e) {
         System.out.println(ERROR_MESSAGE + e.getMessage());
+    }
+
+    private String successOrNot(boolean success) {
+        if (success) {
+            return String.format("%s: %s", GAME_SUCCESS_WHETHER, GAME_SUCCESS);
+        }
+        return String.format("%s: %s", GAME_SUCCESS_WHETHER, GAME_FAILURE);
+    }
+
+    private String formatBridge(List<String> bridge) {
+        String bridgeStatus = String.join(BRIDGE_DIVISION, bridge);
+        return String.format("%s %s %s", START_BRIDGE, bridgeStatus, END_BRIDGE);
+    }
+
+    private String attemptCount(Integer attemptNumber) {
+        return String.format("%s: %d", GAME_ATTEMPT_COUNT, attemptNumber);
     }
 }
