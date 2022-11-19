@@ -9,8 +9,8 @@ import java.util.function.Consumer;
 public class OutputBuild {
     public static String buildMap(List<String> userPosition) {
         int size = userPosition.size();
-        List<String> up = new ArrayList<>();
-        List<String> down = new ArrayList<>();
+        List<StringBuilder> up = new ArrayList<>();
+        List<StringBuilder> down = new ArrayList<>();
         Deque<Integer> downIndex = new LinkedList<>();
 
         // U 인 부분
@@ -23,33 +23,33 @@ public class OutputBuild {
         return map;
     }
 
-    private static String buildDownLine(int size, List<String> down, Deque<Integer> downIndex) {
+    private static String buildDownLine(int size, List<StringBuilder> down, Deque<Integer> downIndex) {
         return buildLine(i -> addDown(down, downIndex, i), size, down, downIndex);
     }
 
-    private static void addDown(List<String> down, Deque<Integer> downIndex, Integer i) {
+    private static void addDown(List<StringBuilder> down, Deque<Integer> downIndex, Integer i) {
         if (!downIndex.isEmpty() && i == downIndex.getFirst()) {
-            down.add(" O ");
+            down.add(new StringBuilder(" O "));
             downIndex.removeFirst();
             return;
         }
-        down.add("   ");
+        down.add(new StringBuilder("   "));
     }
 
-    private static String buildUpLine(List<String> userPosition, int size, List<String> up, Deque<Integer> downIndex) {
+    private static String buildUpLine(List<String> userPosition, int size, List<StringBuilder> up, Deque<Integer> downIndex) {
         return buildLine(i -> addUp(userPosition, up, downIndex, i), size, up, downIndex);
     }
 
-    private static void addUp(List<String> userPosition, List<String> up, Deque<Integer> downIndex, Integer i) {
+    private static void addUp(List<String> userPosition, List<StringBuilder> up, Deque<Integer> downIndex, Integer i) {
         if (userPosition.get(i).equals("U")) {
-            up.add(" O ");
+            up.add(new StringBuilder(" O "));
             return;
         }
-        up.add("   ");
+        up.add(new StringBuilder("   "));
         downIndex.add(i);
     }
 
-    private static String buildLine(Consumer<Integer> callback, int size, List<String> upDown, Deque<Integer> downIndex) {
+    private static String buildLine(Consumer<Integer> callback, int size, List<StringBuilder> upDown, Deque<Integer> downIndex) {
         for (int i = 0; i < size; i++) {
             callback.accept(i);
         }
