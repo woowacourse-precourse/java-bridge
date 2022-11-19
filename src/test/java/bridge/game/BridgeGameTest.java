@@ -19,7 +19,7 @@ class BridgeGameTest {
         for(int bridgeIndex=0;bridgeIndex<bridge.size();bridgeIndex++){
             gameResult.add(bridgeGame.move("U"));
         }
-        Assertions.assertThat(gameResult).isEqualTo(List.of(1,1,1,0));
+        Assertions.assertThat(gameResult).isEqualTo(List.of(1,1,1,1));
 
     }
     @Test
@@ -31,8 +31,8 @@ class BridgeGameTest {
         bridgeGame.nowBridgeStage(IntEnum.GAME_CONTINUE.num());
         bridgeGame.nowBridgeStage(IntEnum.GAME_CONTINUE.num());
         bridgeGame.nowBridgeStage(IntEnum.GAME_CONTINUE.num());
-        StringBuilder result = new StringBuilder("[ o |   | o | o |   ]\n");
-        result.append("[   | o |   |   | o ]");
+        StringBuilder result = new StringBuilder("[ O |   | O | O |   ]\n");
+        result.append("[   | O |   |   | O ]");
         assertEquals(bridgeGame.nowBridgeStage(IntEnum.GAME_CONTINUE.num()),result.toString());
     }
 
