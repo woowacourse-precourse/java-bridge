@@ -13,6 +13,9 @@ public class BridgeMaker {
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
+    /**
+     * 이거는 어떻게 사용하는거지...?? 그냥 생성자인건가? 생성자를 따로 분리하는 이유가 뭐지..
+     */
 
     /**
      * @param size 다리의 길이
