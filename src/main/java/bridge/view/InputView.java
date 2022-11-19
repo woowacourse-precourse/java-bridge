@@ -29,6 +29,10 @@ public class InputView {
 
     // 사용자가 이동할 칸을 입력받는다.
     public static String readMoving() {
+        String select = readMessage();
+        if(possibleMovingSelect(select)) {
+            return select;
+        }
         return null;
     }
 

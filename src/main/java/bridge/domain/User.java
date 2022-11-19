@@ -11,4 +11,12 @@ public class User {
         this.totalTry = 0;
         this.select = new ArrayList<>();
     }
+
+    public void resetSelect() {
+        select = new ArrayList<>();
+    }
+
+    public void addSelect(String word) {
+        select.add(word);
+    }
 }

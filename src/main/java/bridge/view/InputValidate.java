@@ -20,7 +20,17 @@ public class InputValidate {
     }
 
     public static boolean possibleBridgeSize(int num) {
+        // constant로 대체
         if(num < 3 || num > 20) {
+            throw new IllegalArgumentException();
+        }
+
+        return true;
+    }
+
+    public static boolean possibleMovingSelect(String select) {
+        // constant로 대체
+        if(!select.equals("U") && !select.equals("D")) {
             throw new IllegalArgumentException();
         }
 
