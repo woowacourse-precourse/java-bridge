@@ -19,8 +19,19 @@ public class GameController {
         inputView.printMessage(inputMessage.START_GAME);
         int bridgeSize = inputView.readBridgeSize();
         setBridgeSize(bridgeSize);
+
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         String direction = inputView.readMoving();
+        setDirection(direction);
+    }
+    public void setDirection(String direction) {
+        try {
+            validator.validateDirection(direction);
+        } catch (IllegalArgumentException e) {
+            outputView.printMessage(e.getMessage());
+            direction = inputView.readMoving();
+            setDirection(direction);
+        }
     }
     public void setBridgeSize(int bridgeSize) {
         try {
