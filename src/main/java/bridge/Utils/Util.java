@@ -1,4 +1,4 @@
-package bridge.Utils.Constants;
+package bridge.Utils;
 
 import bridge.Utils.Constants.MoveInputAndNextInput;
 

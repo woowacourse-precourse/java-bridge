@@ -1,4 +1,4 @@
-package bridge.Controller;
+package bridge.Model;
 
 
 import bridge.Utils.Validator.BridgeMoveValidator;
