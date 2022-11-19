@@ -82,11 +82,11 @@ public class BridgeGameController {
 
     private void checkFailed(BridgeGame bridgeGame) {
         if (bridgeGame.isFailed()) {
-            askRetryOrFinish(bridgeGame);
+            retryOrFinish(bridgeGame);
         }
     }
 
-    private void askRetryOrFinish(BridgeGame bridgeGame) {
+    private void retryOrFinish(BridgeGame bridgeGame) {
         String gameCommand = getGameCommandInput();
     }
 
