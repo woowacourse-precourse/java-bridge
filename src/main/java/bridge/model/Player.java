@@ -9,9 +9,9 @@ public class Player {
         this.history = history;
     }
 
-    public PlayerStatus move(Moving choice, Bridges bridges) {
+    public PlayerStatus move(Moving choice, Bridge bridge) {
         history.add(choice);
-        return bridges.acceptPlayer(nextLocation(), choice);
+        return bridge.acceptPlayer(nextLocation(), choice);
     }
 
     private int nextLocation() {

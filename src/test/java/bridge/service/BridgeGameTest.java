@@ -2,13 +2,11 @@ package bridge.service;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.model.Bridges;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeGameTest {
     BridgeGame bridgeGame = new BridgeGame(new BridgeMaker(new BridgeRandomNumberGenerator()));
