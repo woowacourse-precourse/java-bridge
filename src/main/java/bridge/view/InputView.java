@@ -13,6 +13,8 @@ public class InputView {
         String beforeValidateBridgeSize = Console.readLine();
         ValidateInput.validateBridgeSize(beforeValidateBridgeSize);
         int bridgeSize = TypeConverter.stringToInt(beforeValidateBridgeSize);
+        OutputView.enter();
+        return bridgeSize;
     }
     /**
      * 사용자가 이동할 칸을 입력받는다.
