@@ -25,4 +25,8 @@ public enum Answer {
     public boolean isCorrect() {
         return isCorrect;
     }
+
+    public String getMessage() {
+        return message;
+    }
 }
