@@ -9,7 +9,7 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView extends OutputView {
 
-    public static final Validation validate = new Validation();
+    private static final Validation validate = new Validation();
 
     public InputView() {
         start();

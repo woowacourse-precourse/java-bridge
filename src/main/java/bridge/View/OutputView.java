@@ -13,7 +13,7 @@ import static bridge.Enums.View.*;
  * (추가) InputView의 부모클래스가 된다. InputView에서 입력을 받을때 관련된 메세지를 출력한다.
  */
 public class OutputView {
-    public Stringify stringify = new Stringify();
+    private final Stringify stringify = new Stringify();
 
     private String upperPath;
     private String lowerPath;
