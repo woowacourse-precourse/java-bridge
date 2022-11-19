@@ -26,4 +26,24 @@ public class BridgeTest {
 
         assertThat(possibleToMove).isEqualTo(false);
     }
+
+    @DisplayName("순서가 마지막이면 true를 반환한다")
+    @Test
+    void isEndPoint() {
+        Bridge bridge = new Bridge(List.of("U", "D", "U"));
+
+        boolean endPoint = bridge.isEndPoint(3);
+
+        assertThat(endPoint).isEqualTo(true);
+    }
+
+    @DisplayName("순서가 마지막이 아니면 false를 반환한다")
+    @Test
+    void isNotEndPoint() {
+        Bridge bridge = new Bridge(List.of("U", "D", "U"));
+
+        boolean endPoint = bridge.isEndPoint(2);
+
+        assertThat(endPoint).isEqualTo(false);
+    }
 }

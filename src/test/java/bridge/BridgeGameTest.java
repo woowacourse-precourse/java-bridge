@@ -52,4 +52,29 @@ public class BridgeGameTest {
 
         assertThat(bridgeGame.getMovementsInDownBridge()).isEqualTo(List.of(" O ", " X "));
     }
+
+    @DisplayName("마지막 순서면 true를 반환한다")
+    @Test
+    void isFinished() {
+        Bridge bridge = new Bridge(List.of("D", "U", "D"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+
+        bridgeGame.move("D");
+        bridgeGame.move("D");
+        bridgeGame.move("D");
+
+        assertThat(bridgeGame.isFinished()).isEqualTo(true);
+    }
+
+    @DisplayName("마지막 순서가 아니면 false를 반환한다")
+    @Test
+    void isNotFinished() {
+        Bridge bridge = new Bridge(List.of("D", "U", "D"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+
+        bridgeGame.move("D");
+        bridgeGame.move("D");
+
+        assertThat(bridgeGame.isFinished()).isEqualTo(false);
+    }
 }
