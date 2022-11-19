@@ -9,6 +9,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     private static final String enterBridgeSize = "다리의 길이를 입력해주세요.";
+    private static final String enterBridgeCourse = "이동할 칸을 입력해주세요. (위: U, 아래: D)";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -16,12 +17,12 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println(enterBridgeSize);
         String input = Console.readLine();
-        validateDigit(input);
+        isNumber(input);
         return Integer.parseInt(input);
     }
 
-    private void validateDigit(String input) {
-        if(!input.matches("[+-]?\\d*(\\.\\d+)?")) {
+    private void isNumber(String input) {
+        if (!input.matches("[+-]?\\d*(\\.\\d+)?")) {
             throw Exception.IS_NOT_NUMBER_EXCEPTION.getException();
         }
     }
@@ -30,8 +31,32 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(enterBridgeCourse);
+        String input = Console.readLine();
+        validateLength(input);
+        isLetter(input);
+        isCourse(input);
+        return input;
     }
+
+    private void validateLength(String input) {
+        if (input.length() != 1) {
+            throw Exception.WRONG_LENGTH_EXCEPTION.getException();
+        }
+    }
+
+    private void isLetter(String input) {
+        if (!Character.isLetter(input.charAt(0))) {
+            throw Exception.IS_NOT_LETTER_EXCEPTION.getException();
+        }
+    }
+
+    private void isCourse(String input) {
+        if (!input.equals("U") && !input.equals("D")) {
+            throw Exception.IS_NOT_COURSE_EXCEPTION.getException();
+        }
+    }
+
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
