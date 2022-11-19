@@ -58,4 +58,8 @@ public class BridgeGame {
     public void saveBridge(Bridge bridge) {
         this.bridge = bridge;
     }
+
+    public void initFootPrint() {
+        footPrint = new FootPrint();
+    }
 }

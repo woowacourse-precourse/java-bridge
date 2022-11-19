@@ -6,7 +6,6 @@ import bridge.domain.FootrestLocation;
 import bridge.utils.BridgeMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import java.util.List;
 
 public class BridgeGameController {
     private BridgeGame game;
@@ -29,30 +28,41 @@ public class BridgeGameController {
         System.out.println("다리 건너기 게임을 시작합니다"); // 위치 여기가 맞을까?
         Bridge bridge = this.makeBridge();
         game.saveBridge(bridge);
-        Integer movingResult = moveUser();
-        //결정하다 다음 행동을
-        if (movingResult == -1) {
-            determineWhatToDo();
-        }
+
+        play();
         // 종료(1인 경우, 성공적인 로직은 바로 종료)
         this.outputView.printResult();
     }
 
-    private void determineWhatToDo() {
-        String command = this.inputView.readGameCommand();
-        if (command.equals('R')) {
-            //발자취를 초기화하고
-            Integer movingResult = moveUser();
-            //결정하다 다음 행동을
-            if (movingResult == -1) {
+    private void play() {
+        Integer movingResult = moveUser();
+        //결정하다 다음 행동을
+        if (movingResult == -1) { // 게임에 실패한 경우
+            try {
+                determineWhatToDo();
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR]" + e.getMessage());
                 determineWhatToDo();
             }
-            this.outputView.printResult();
-        }
-        if (command.equals('Q')) {
-            this.outputView.printResult();
         }
     }
+
+    private void replay() {
+        game.initFootPrint();
+        play();
+    }
+    private void determineWhatToDo() {
+        String command = this.inputView.readGameCommand();
+        if (command.equals("R")) {
+            replay();
+        }
+        if (command.equals("Q")) {
+            this.outputView.printResult();
+        }
+        throw new IllegalArgumentException("R, Q 이외에는 입력할 수 없습니다");
+    }
+
+
 
     private Integer moveUser() {
         try {
@@ -64,6 +74,7 @@ public class BridgeGameController {
             if (movingResult == 0) {
                 return moveUser();
             }
+            System.out.println("우밎ㄱ임의 결과는 " + movingResult);
             return movingResult;
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR: 아웃풋으로 옮기기]" + e.getMessage());
