@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 public class Application {
 
     public static void main(String[] args) {
@@ -8,8 +10,12 @@ public class Application {
         InputView inputView = new InputView();
         int ladderLen = inputView.readBridgeSize();
         System.out.println("ladderLen = " + ladderLen);
-        String UD = inputView.readMoving();
-        System.out.println("UD = " + UD);
-        String RQ = inputView.readGameCommand();
+        BridgeNumberGenerator generator = new BridgeRandomNumberGenerator();
+        BridgeMaker maker = new BridgeMaker(generator);
+        List<String> ladder = maker.makeBridge(ladderLen);
+        System.out.println("ladder = " + ladder);
+//        String UD = inputView.readMoving();
+//        System.out.println("UD = " + UD);
+//        String RQ = inputView.readGameCommand();
     }
 }
