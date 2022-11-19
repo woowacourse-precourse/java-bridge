@@ -1,4 +1,11 @@
-package bridge.domain;
+package bridge.service;
+
+import java.util.List;
+
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.Bridge;
+import bridge.domain.BridgeResult;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -17,12 +24,16 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String blockToMove, int blockPosition) {
+    public String move(String blockToMove, int blockPosition) {
         String block = bridge.getBlock(blockPosition);
 
         if (blockToMove.equals(block)) {
-            resultBridge.addBlock(block);
+            resultBridge.addBlock(blockToMove, "O");
+            return "O";
         }
+
+        resultBridge.addBlock(blockToMove, "X");
+        return "X";
     }
 
     /**
@@ -31,7 +42,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String command) {
-        if (command.equals("U")) {
+        if (command.equals("R")) {
             return true;
         }
         return false;
