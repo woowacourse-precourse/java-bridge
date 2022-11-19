@@ -1,7 +1,8 @@
 package bridge.view;
 
 import bridge.util.Validation;
-import camp.nextstep.edu.missionutils.Console;
+
+import static camp.nextstep.edu.missionutils.Console.*;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -23,7 +24,7 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println(INPUT_LENGTH_MESSAGE);
-        String inputLength = Console.readLine();
+        String inputLength = readLine();
         try{
             validation.isValidateSize(inputLength);
             return Integer.parseInt(inputLength);
@@ -38,7 +39,7 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println(INPUT_MOVE_MESSAGE);
-        String inputMove = Console.readLine();
+        String inputMove = readLine();
         try{
             validation.isValidateMove(inputMove);
             return inputMove;
@@ -53,7 +54,7 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println(INPUT_RESET_COMMAND_MESSAGE);
-        String inputCommand = Console.readLine();
+        String inputCommand = readLine();
         try{
             validation.isValidateCommand(inputCommand);
             return inputCommand;

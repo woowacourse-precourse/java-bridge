@@ -1,5 +1,7 @@
 package bridge.util;
 
+import static bridge.util.Constant.*;
+
 public class Validation {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -11,10 +13,6 @@ public class Validation {
     private static final String LENGTH_ERROR_MESSAGE = " 유효한 길이가 아닙니다.";
     private static final String CHECK_NUMBER_REGEX = "^-?[0-9]+$";
 
-    private static final String RESET_COMMAND = "R";
-    private static final String QUIT_COMMAND = "Q";
-    private static final String MOVE_TO_UPPER = "U";
-    private static final String MOVE_TO_LOWER = "D";
     private static final int MIN_LENGTH = 3;
     private static final int MAX_LENGTH = 20;
 

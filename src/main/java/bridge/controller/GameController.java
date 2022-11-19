@@ -9,11 +9,9 @@ import bridge.view.OutputView;
 
 import java.util.List;
 
-public class GameController {
+import static bridge.util.Constant.*;
 
-    private static final String FAIL_SIGN = "X";
-    private static final String RESET_COMMAND = "R";
-    private static final String QUIT_COMMAND = "Q";
+public class GameController {
 
     private static boolean keepGoing = true;
     private static int currentPosition = 0;

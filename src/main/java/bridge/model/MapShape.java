@@ -3,12 +3,13 @@ package bridge.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.String.*;
+import static bridge.util.Constant.*;
+
 public class MapShape {
 
     private static final String SPLIT_UNIT = " | ";
     private static final String BLANK = " ";
-    private static final String MOVE_TO_UPPER = "U";
-    private static final String MOVE_TO_LOWER = "D";
 
     private static final List<String> upperMap = new ArrayList<>();
     private static final List<String> lowerMap = new ArrayList<>();
@@ -38,7 +39,7 @@ public class MapShape {
     }
 
     private String getJoin(List<String> shapeMap) {
-        return String.join(SPLIT_UNIT, shapeMap);
+        return join(SPLIT_UNIT, shapeMap);
     }
 
 }
