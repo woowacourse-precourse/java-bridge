@@ -15,19 +15,18 @@ public class GamePlayer {
 
     public void run() {
         String restartOrQuit = "";
-        String upOrDown;
         boolean isNotMovalbe = false;
         BridgeLog log = null;
 
         do {
-            upOrDown = inputView.readMoving();
-            bridgeGame.move(upOrDown);
+            bridgeGame.move(inputView.readMoving());
+
+            log = bridgeGame.getLog();
+            outputView.printMap(log);
 
             if (bridgeGame.isEnd()) {
                 break;
             }
-            log = bridgeGame.getLog();
-            outputView.printMap(log);
 
             if (!bridgeGame.isMovable()) {
                 restartOrQuit = inputView.readGameCommand();
