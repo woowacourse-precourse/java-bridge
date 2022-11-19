@@ -69,4 +69,8 @@ public class OutputView {
         System.out.println(String.format("게임 성공 여부: %s", status.getStatus()));
         System.out.println(String.format("총 시도 횟수: %d", bridgeGame.getAttempt()));
     }
+
+    public void printError(String errorMessage) {
+        System.out.println(String.format("[ERROR] %s", errorMessage));
+    }
 }

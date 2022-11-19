@@ -56,7 +56,7 @@ public class BridgeApplication {
             } while (PLAYING.equals(status));
             outputView.printResult(bridgeGame, status);
         } catch (IllegalArgumentException e) {
-
+            outputView.printError(e.getMessage());
         }
     }
 }
