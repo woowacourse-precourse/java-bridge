@@ -20,4 +20,15 @@ class InputViewTest {
         }
     }
 
+    @Test
+    void 이동칸_예외_테스트() {
+        try{
+            InputView inputView = new InputView();
+            String move = "f";
+            inputView.movingValidate(move);
+        } catch (IllegalArgumentException e){
+            e.getMessage().contains(ERROR_MESSAGE);
+        }
+    }
+
 }
