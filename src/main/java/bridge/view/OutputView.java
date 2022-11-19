@@ -6,12 +6,9 @@ public class OutputView {
     private static String upBridge = "[]";
     private static String downBridge = "[]";
 
-    public void setUpBridge(String upBridge) {
-        OutputView.upBridge = upBridge;
-    }
-
-    public void setDownBridge(String downBridge) {
-        OutputView.downBridge = downBridge;
+    public void setBridge(String bridge) {
+        upBridge = bridge;
+        downBridge = bridge;
     }
 
     public void start() {
