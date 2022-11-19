@@ -5,7 +5,7 @@ import java.util.List;
 
 public class BridgeStatus {
 
-    private static final String ERROR_ADD_USER_COMMAND = "재시작이 필요한 게임 상태일 때 moving command를 추가 할 수 없습니다.";
+    private static final String ERROR_ADD_USER_COMMAND = "게임 상태가 IN_PROGRESS가 아니면 moving command를 추가 할 수 없습니다.";
     private final List<String> answerBridge;
     private final List<String> userBridge;
     private int tryCount;
