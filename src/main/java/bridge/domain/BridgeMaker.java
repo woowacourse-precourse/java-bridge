@@ -28,7 +28,6 @@ public class BridgeMaker {
         }catch (NumberFormatException e){
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMERIC_VALUE.getOutput());
         }
-
     }
 
     private void isValidRange(int size){
@@ -36,10 +35,6 @@ public class BridgeMaker {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMERIC_VALUE.getOutput());
         }
     }
-
-    //Direction에 static 함수로 빼는게 낫지 않을까?
-
-
 
     private List<Integer> makePreBridge(int size){
         return Stream.generate(bridgeNumberGenerator::generate)
