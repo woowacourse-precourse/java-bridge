@@ -25,4 +25,8 @@ public class BridgeMap {
     public List<BridgeDirection> getBridgeDirections() {
         return bridgeDirections;
     }
+
+    public boolean isCorrectDirection(int position, BridgeDirection bridgeDirection) {
+        return bridgeDirections.get(position) == bridgeDirection;
+    }
 }

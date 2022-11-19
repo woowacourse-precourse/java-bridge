@@ -5,9 +5,8 @@ import bridge.BridgeNumberGenerator;
 import bridge.domain.bridge.model.BridgeDirection;
 import bridge.domain.bridge.model.BridgeGame;
 import bridge.domain.bridge.model.BridgeMap;
-import bridge.domain.player.GamePlayer;
+import bridge.domain.game.GamePlayer;
 import bridge.ui.input.InputView;
-import bridge.ui.input.dto.MoveCommand;
 import bridge.ui.output.OutputView;
 import java.util.List;
 
@@ -37,12 +36,17 @@ public class BridgeGameController {
     }
 
     public void playGame(BridgeMap bridgeMap) {
-        GamePlayer gamePlayer = new GamePlayer();
-        BridgeGame bridgeGame = new BridgeGame(bridgeMap, gamePlayer);
+        BridgeGame bridgeGame = setupGame(bridgeMap);
 
         do {
             BridgeDirection bridgeDirection = readBridgeDirection();
+            bridgeGame.move(bridgeDirection);
         } while (true);
+    }
+
+    private BridgeGame setupGame(BridgeMap bridgeMap) {
+        GamePlayer gamePlayer = GamePlayer.withDefaultValue();
+        return BridgeGame.of(bridgeMap, gamePlayer);
     }
 
     private BridgeDirection readBridgeDirection() {
