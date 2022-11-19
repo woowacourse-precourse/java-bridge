@@ -8,6 +8,7 @@ import java.util.List;
 public class BridgeController {
     private BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
     private List<String> moveBridgeResult;
+    private BridgeMaker bridgeMaker;
 
     public void run() {
         new OutputView().printStart();
@@ -15,8 +16,9 @@ public class BridgeController {
     }
 
     public void makeBridgeController() {
+        bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         int size = new InputView().readBridgeSize();
-        List<String> bridge = new BridgeMaker(bridgeRandomNumberGenerator).makeBridge(size);
+        List<String> bridge = bridgeMaker.makeBridge(size);
         int blockCount = bridge.size();
         moveController(bridge, blockCount);
     }

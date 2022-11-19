@@ -11,29 +11,20 @@ public class BridgeMaker {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    /**
-     * @param size 다리의 길이
-     * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
-     */
     public List<String> makeBridge(int size) {
         bridge = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            String randomNumber = String.valueOf(bridgeNumberGenerator.generate());
-            bridge.add(randomNumber);
-        }
-        makeUpDownBridge();
+        makeBridgeBlock(size);
         return bridge;
     }
 
-    public void makeUpDownBridge() {
-        for (int index = 0; index < bridge.size(); index++) {
-            String blockOfBridge = bridge.get(index);
-            if (blockOfBridge.equals("0")) {
-                bridge.set(index, "D");
+    public void makeBridgeBlock(int size) {
+        for (int i = 0; i < size; i++) {
+            String randomNumber = String.valueOf(bridgeNumberGenerator.generate());
+            if (randomNumber.equals("0")) {
+                bridge.add("D");
+                continue;
             }
-            if (blockOfBridge.equals("1")) {
-                bridge.set(index, "U");
-            }
+            bridge.add("U");
         }
     }
 
