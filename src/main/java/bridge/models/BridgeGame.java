@@ -14,11 +14,16 @@ import java.util.List;
 public class BridgeGame {
     private final List<String> bridge;
     private int bridgeIndex = -1;
+
     private boolean gameContinue = true;
     private int trialCount = 1;
 
     public BridgeGame(BridgeMaker bridgeMaker, int size) {
         this.bridge = bridgeMaker.makeBridge(size);
+    }
+
+    public int getBridgeIndex() {
+        return bridgeIndex;
     }
 
     public boolean isGameContinue() {
