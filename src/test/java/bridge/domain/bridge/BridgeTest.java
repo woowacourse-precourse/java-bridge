@@ -5,9 +5,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.value.BridgeCharacter;
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class BridgeTest {
+
+    private Bridge bridge;
+
+    @BeforeEach
+    void setUp() {
+        List<String> bridgeChars = List.of("U", "D", "U", "D");
+        this.bridge = Bridge.convert(bridgeChars);
+
+    }
 
     @Test
     void 다리_길이_테스트() {
@@ -21,8 +31,6 @@ class BridgeTest {
 
     @Test
     void 이동_결과_테스트() {
-        List<String> bridgeChars = List.of("U", "D", "U", "D");
-        Bridge bridge = Bridge.convert(bridgeChars);
 
         boolean canMove1 = bridge.canMove(0, BridgeCharacter.UP);
         boolean canMove2 = bridge.canMove(1, BridgeCharacter.DOWN);
@@ -40,8 +48,6 @@ class BridgeTest {
 
     @Test
     void 게임_성공_테스트() {
-        List<String> bridgeChars = List.of("U", "D", "U", "D");
-        Bridge bridge = Bridge.convert(bridgeChars);
 
         boolean isSuccess1 = bridge.isRange(5);
         boolean isSuccess2 = bridge.isRange(10);
@@ -55,5 +61,15 @@ class BridgeTest {
 
         assertThat(isNotSuccess1).isFalse();
         assertThat(isNotSuccess2).isFalse();
+    }
+
+    @Test
+    void 불변_테스트() {
+        List<BridgeCharacter> bridgeValue = bridge.bridge();
+        bridgeValue.set(0, null);
+
+        BridgeCharacter actual = bridge.bridge().get(0);
+
+        assertThat(actual).isNotNull();
     }
 }
