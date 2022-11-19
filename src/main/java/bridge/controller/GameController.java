@@ -29,7 +29,7 @@ public class GameController {
         outputView.printBrideSizeOpening();
         int bridgeSize = 0;
         try {
-            bridgeSize = inputView.readBridgeSize();
+            bridgeSize = inputView.readBridgeSize(inputView.userInput());
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
             makeBridge();
@@ -42,7 +42,7 @@ public class GameController {
         while (!bridgeGame.playerHasCrossed()) {
             outputView.printUserChoiceOpening();
             try {
-                String choice = inputView.readMoving();
+                String choice = inputView.readMoving(inputView.userInput());
                 bridgeGame.move(choice);
                 outputView.printMap(bridgeGame.matchResults(), bridgeGame.getPlayersMove());
                 continueOrQuitIfFailed(bridgeGame.lastMoveMatches());
@@ -56,7 +56,7 @@ public class GameController {
         if (!success) {
             outputView.printGameContinueOpening();
             try {
-                String cmd = inputView.readGameCommand();
+                String cmd = inputView.readGameCommand(inputView.userInput());
                 decideNextStep(cmd);
             } catch (IllegalArgumentException exception) {
                 outputView.printErrorMessage(exception.getMessage());
