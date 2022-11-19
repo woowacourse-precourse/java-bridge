@@ -18,12 +18,15 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        Validator bridgeSizeValidator = new BridgeSizeValidator();
-
-        System.out.println(FixedMessage.INPUT_BRIDGE_SIZE.getMessage());
-        String bridgeSize = Console.readLine();
-        bridgeSizeValidator.validate(bridgeSize);
-        return Integer.parseInt(bridgeSize);
+        try {
+            Validator bridgeSizeValidator = new BridgeSizeValidator();
+            System.out.println(FixedMessage.INPUT_BRIDGE_SIZE.getMessage());
+            String bridgeSize = Console.readLine();
+            bridgeSizeValidator.validate(bridgeSize);
+            return Integer.parseInt(bridgeSize);
+        } catch (IllegalArgumentException exception) {
+            return readBridgeSize();
+        }
     }
 
     /**
