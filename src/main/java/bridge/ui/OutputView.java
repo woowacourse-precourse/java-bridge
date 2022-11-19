@@ -16,8 +16,8 @@ public class OutputView {
     private static final String MESSAGE_TO_GET_WHETHER_RETRY_OR_NOT = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private static final String MESSAGE_TO_PRINT_RESULT = "\n최종 게임 결과";
     private static final String WHETHER_SUCCEED_OR_NOT = "게임 성공 여부: ";
-    private static final String SUCCEED = "성공";
-    private static final String FAILED = "실패";
+    private static final String SUCCEEDED_MESSAGE = "성공";
+    private static final String FAILED_MESSAGE = "실패";
     private static final String THE_NUMBER_OF_TRIAL = "총 시도한 횟수: ";
 
     // 시작 메시지, 다리 길이를 입력받기 위한 메시지 출력
@@ -36,9 +36,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(User status) {
-        List<String> up = status.getCurrentBridge().get(UP.getIndex());
-        List<String> down = status.getCurrentBridge().get(DOWN.getIndex());
+    public void printMap(User user) {
+        List<String> up = user.getCurrentBridge().get(UP.getIndex());
+        List<String> down = user.getCurrentBridge().get(DOWN.getIndex());
 
         up.forEach(System.out::print);
         System.out.println();
@@ -63,13 +63,13 @@ public class OutputView {
         System.out.print(THE_NUMBER_OF_TRIAL + user.getTheNumOfTrials());
     }
 
-    private static void printSucceedOrFailed(User userStatus) {
+    private static void printSucceedOrFailed(User user) {
         System.out.print(WHETHER_SUCCEED_OR_NOT);
-        if (userStatus.getSucceeded()) {
-            System.out.println(SUCCEED);
+        if (user.getSucceeded()) {
+            System.out.println(SUCCEEDED_MESSAGE);
             return;
         }
-        System.out.println(FAILED);
+        System.out.println(FAILED_MESSAGE);
     }
 
 }

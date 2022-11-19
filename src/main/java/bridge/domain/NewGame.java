@@ -7,13 +7,13 @@ import bridge.ui.OutputView;
 import java.util.List;
 
 import static bridge.domain.bridgemaking.BridgeComponent.*;
+import static bridge.ui.InputValue.RESTART;
 
 public class NewGame {
     private static final OutputView outputView = new OutputView();
     private static final InputView inputView = new InputView();
     private final BridgeMakerImpl bridgeMakerImpl = new BridgeMakerImpl();
     private final BridgeGame bridgeGame;
-    private static final String RETRY = "R";
     private List<String> answerBridge;
     private User user;
 
@@ -64,7 +64,7 @@ public class NewGame {
     private void handleFailedSituation() {
         outputView.printMessageAfterFailure();
         String response = inputView.readGameCommand();
-        if (response.equals(RETRY)) {
+        if (response.equals(RESTART.getValue())) {
             bridgeGame.retry(user);
             play();
             return;
