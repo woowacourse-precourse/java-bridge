@@ -1,4 +1,4 @@
-package bridge;
+package bridge.validation;
 
 import java.util.regex.Pattern;
 

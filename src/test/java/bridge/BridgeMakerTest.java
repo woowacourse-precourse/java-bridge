@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.game.BridgeMaker;
+import bridge.game.BridgeRandomNumberGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

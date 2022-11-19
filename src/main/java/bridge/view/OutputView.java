@@ -1,4 +1,7 @@
-package bridge;
+package bridge.view;
+
+import bridge.domain.GameResult;
+import bridge.domain.GameSession;
 
 import java.util.List;
 
