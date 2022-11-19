@@ -110,7 +110,7 @@ D
 
 ### printResult
 - [x] '최종 게임 결과'를 출력
-- [ ] 사용자 이동한 다리의 형태를 출력
+- [x] 사용자 이동한 다리의 형태를 출력
 
 ## BridgeMaker
 ### makeBridge
