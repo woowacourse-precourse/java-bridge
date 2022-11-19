@@ -6,6 +6,7 @@ import bridge.constant.ErrorConstant;
 import bridge.model.GeneratedBridge;
 import bridge.model.PlayerBridge;
 import bridge.model.PrintBridge;
+import bridge.validator.GameRetryOrEndCommandValidator;
 import bridge.validator.InputBridgeSizeValidator;
 import bridge.validator.InputNextStepValidator;
 import bridge.view.InputView;
@@ -30,6 +31,7 @@ public class BridgeGame {
     private final PrintBridge printBridge = new PrintBridge();
     private final InputBridgeSizeValidator inputBridgeSizeValidator = new InputBridgeSizeValidator();
     private final InputNextStepValidator inputNextStepValidator = new InputNextStepValidator();
+    private final GameRetryOrEndCommandValidator gameRetryOrEndCommandValidator = new GameRetryOrEndCommandValidator();
 
     private String bridgeSize;
     private boolean canMove;
@@ -138,8 +140,16 @@ public class BridgeGame {
     }
 
     public void inputRetryOrEndCommand() {
-        outputView.printRetryOrEndMessage();
-        retryOrEndCommand = inputView.inputRetryOrEndCommand();
+        while (true) {
+            try {
+                outputView.printRetryOrEndMessage();
+                retryOrEndCommand = inputView.inputRetryOrEndCommand();
+                gameRetryOrEndCommandValidator.validate(retryOrEndCommand);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     /**
