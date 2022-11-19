@@ -39,6 +39,17 @@ public class OutputView {
         printMapEnd();
     }
 
+    public void printLowerBridge(int userPosition, String moving, List<String> bridge){
+        printMapStart();
+        for(int i = 0; i < userPosition; i++){
+            printOnePartOfLowerBridge(userPosition, bridge);
+            printSeparation();
+        }
+
+        printWhetherUserDecisionIsCorrect(userPosition, moving, bridge);
+        printMapEnd();
+    }
+
     public void printWhetherUserDecisionIsCorrect(int userPosition, String moving, List<String> bridge){
         if(checkUserDirectionWithBridgeValue(userPosition, moving, bridge)){
             System.out.print(" O ");
