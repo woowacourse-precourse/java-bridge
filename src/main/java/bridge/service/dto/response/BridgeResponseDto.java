@@ -5,19 +5,19 @@ import bridge.domain.Result;
 import java.util.List;
 
 public class BridgeResponseDto {
-    private final List<String> upSpaces;
-    private final List<String> downSpaces;
+    private final List<String> upBlocks;
+    private final List<String> downBlocks;
 
     public BridgeResponseDto(Result result) {
-        this.upSpaces = result.getUpBlocks();
-        this.downSpaces = result.getDownBlocks();
+        this.upBlocks = result.getUpBlocks();
+        this.downBlocks = result.getDownBlocks();
     }
 
-    public List<String> getUpSpaces() {
-        return this.upSpaces;
+    public List<String> getUpBlocks() {
+        return this.upBlocks;
     }
 
-    public List<String> getDownSpaces() {
-        return this.downSpaces;
+    public List<String> getDownBlocks() {
+        return this.downBlocks;
     }
 }

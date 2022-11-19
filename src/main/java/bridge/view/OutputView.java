@@ -3,6 +3,9 @@ package bridge.view;
 import bridge.service.dto.response.BridgeResponseDto;
 import bridge.service.dto.response.GameResultResponseDto;
 
+import java.util.List;
+import java.util.stream.IntStream;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -26,27 +29,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeResponseDto dto) {
-        System.out.print(START_BRIDGE);
-        for (int i = 0; i < dto.getUpSpaces().size(); i++) {
-            System.out.print(dto.getUpSpaces().get(i));
-            if (i < dto.getUpSpaces().size() - 1) {
-                System.out.print(SPLIT_BRIDGE);
-            } else {
-                System.out.println(END_BRIDGE);
-                break;
-            }
-        }
-
-        System.out.print(START_BRIDGE);
-        for (int i = 0; i < dto.getDownSpaces().size(); i++) {
-            System.out.print(dto.getDownSpaces().get(i));
-            if (i < dto.getDownSpaces().size() - 1) {
-                System.out.print(SPLIT_BRIDGE);
-            } else {
-                System.out.println(END_BRIDGE);
-                break;
-            }
-        }
+        printBridge(dto.getUpBlocks());
+        printBridge(dto.getDownBlocks());
         System.out.println();
     }
 
@@ -56,30 +40,22 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(GameResultResponseDto dto) {
-        System.out.println(FINAL_GAME_RESULT);
-        System.out.print(START_BRIDGE);
-        for (int i = 0; i < dto.getUpSpaces().size(); i++) {
-            System.out.print(dto.getUpSpaces().get(i));
-            if (i < dto.getUpSpaces().size() - 1) {
-                System.out.print(SPLIT_BRIDGE);
-            } else {
-                System.out.println(END_BRIDGE);
-                break;
-            }
-        }
-
-        System.out.print(START_BRIDGE);
-        for (int i = 0; i < dto.getDownSpaces().size(); i++) {
-            System.out.print(dto.getDownSpaces().get(i));
-            if (i < dto.getDownSpaces().size() - 1) {
-                System.out.print(SPLIT_BRIDGE);
-            } else {
-                System.out.println(END_BRIDGE);
-                break;
-            }
-        }
+        printBridge(dto.getUpBlocks());
+        printBridge(dto.getDownBlocks());
         System.out.println();
         System.out.println(GAME_SUCCESS_OR_FAIL + dto.getGameSuccessOrFail());
         System.out.println(TOTAL_TRY_NUMBER + dto.getTotalTryNumber());
+    }
+
+    private void printBridge(List<String> blocks) {
+        System.out.print(START_BRIDGE);
+        IntStream.range(0, blocks.size())
+                .filter(index -> index < blocks.size()-1)
+                .forEach(index -> {
+                    System.out.print(blocks.get(index));
+                    System.out.print(SPLIT_BRIDGE);
+                });
+        System.out.print(blocks.get(blocks.size()-1));
+        System.out.println(END_BRIDGE);
     }
 }
