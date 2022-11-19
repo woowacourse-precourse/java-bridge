@@ -32,18 +32,6 @@ public class GameApplication {
     }
 
     /**
-     * 이동할 칸을 입력받고, 해당 방향으로 이동하는 메서드입니다.
-     * @return 현재 이동이 성공한지 여부 (true : 성공, false : 실패)
-     */
-    public boolean singleStage() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        bridgeGame.move(inputView.readMoving());
-        outputView.printMap(bridgeGame.getBridge(), bridgeGame.getUserInput());
-        return bridgeGame.getUserInput().get(bridgeGame.getUserInput().size() - 1)
-                .equals(bridgeGame.getBridge().get(bridgeGame.getUserInput().size() - 1));
-    }
-
-    /**
      * 재시작 여부를 입력받는 메서드입니다.
      * @return 재시작할지 여부 (true : 재시작, false : 종료)
      */
@@ -72,5 +60,24 @@ public class GameApplication {
         }
         return true;
     }
-    
+
+    /**
+     * 게임을 재시작할 때 초기화하는 메서드입니다.
+     */
+    public void restart() {
+        bridgeGame.retry();
+    }
+
+    /**
+     * 이동할 칸을 입력받고, 해당 방향으로 이동하는 메서드입니다.
+     * @return 현재 이동이 성공한지 여부 (true : 성공, false : 실패)
+     */
+    private boolean singleStage() {
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        bridgeGame.move(inputView.readMoving());
+        outputView.printMap(bridgeGame.getBridge(), bridgeGame.getUserInput());
+        return bridgeGame.getUserInput().get(bridgeGame.getUserInput().size() - 1)
+                .equals(bridgeGame.getBridge().get(bridgeGame.getUserInput().size() - 1));
+    }
+
 }
