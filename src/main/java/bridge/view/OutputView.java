@@ -16,8 +16,8 @@ import java.util.StringJoiner;
 public class OutputView {
 
     public static final String ERROR_PREFIX = "[ERROR]";
-    public static final String FINAL_RESULT_MESSAGE = "최종 게임 결과";
-    public static final String GAME_STATUS_MESSAGE = "게임 성공 여부: %s";
+    public static final String FINAL_RESULT_MESSAGE = "\n최종 게임 결과";
+    public static final String GAME_STATUS_MESSAGE = "\n게임 성공 여부: %s";
     public static final String TOTAL_ATTEMPTS_MESSAGE = "총 시도한 횟수: %d";
     public static final String SUCCESS_MESSAGE = "성공";
     public static final String FAIL_MESSAGE = "실패";
