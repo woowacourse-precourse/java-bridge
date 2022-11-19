@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.model.BridgeGame;
 import bridge.model.BridgeMaker;
+import bridge.model.MoveResult;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -14,6 +15,20 @@ public class Application {
 
     public static void main(String[] args) {
         init();
+        play();
+    }
+
+    private static void play() {
+        MoveResult result = null;
+        while (bridgeGame.canPlay()) {
+            result = bridgeGame.move(inputView.readDirection());
+            outputView.printMap(bridgeGame, result);
+            if (result.isFailed()) {
+                bridgeGame.inputCommand(inputView.readGameCommand());
+            }
+            bridgeGame.checkGameCleared();
+        }
+        outputView.printResult(bridgeGame, result);
     }
 
     private static void init() {
