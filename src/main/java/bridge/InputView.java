@@ -4,13 +4,17 @@ package bridge;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String bridgeSize = camp.nextstep.edu.missionutils.Console.readLine();
-        // input 오류처리 필요(숫자 아닌값 입력, 3이상 20이하 범위 벗어난 경우)
+        String bridgeSize;
+        while (true) {
+            bridgeSize = camp.nextstep.edu.missionutils.Console.readLine();
+            if (!errorHandling(bridgeSize)) {
+                break;
+            }
+        }
         return Integer.parseInt(bridgeSize);
     }
 
@@ -50,7 +54,7 @@ public class InputView {
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
         }
-        return true;
+        return false;
     }
 
 }
