@@ -27,7 +27,7 @@
 - [ ] 라운드마다 플레이어가 이동할 칸 입력 (U, D만 가능)
 - [ ] 게임 재시작/종료 여부를 입력 (R, Q만 가능)
 ### 입력 Exception 구현 사항
-- [ ] 다리 길이가 입력되지 않은 경우 IllegalArgumentException
+- [X] 다리 길이가 입력되지 않은 경우 IllegalArgumentException
 - [ ] 다리 길이가 숫자가 아닌 경우 IllegalArgumentException
 - [ ] 다리 길이가 3보다 작거나, 20보다 큰 경우 IllegalArgumentException
 - [ ] 플레이어가 이동할 칸이 입력되지 않은 경우 IllegalArgumentException
@@ -74,7 +74,7 @@
 - OutputView 메서드 이름은 변경 불가, 인자/반환 타입은 추가/변경 가능
 - 값 출력을 위한 메서드 추가 가능
 ### BridgeGame 클래스
-- BridgeGame 필드 추가
+- BridgeGame 필드 추가 가능
 - BridgeGame 패키지 변경 가능
 - BridgeGame 메서드 이름 변경 불가, 인자/반환 타입은 추가/변경 가능
 - 게임 진행을 위한 메서드 추가하거나 변경 가능
