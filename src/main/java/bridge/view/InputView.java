@@ -18,8 +18,9 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize(Consumer<IllegalArgumentException> exceptionHandler) {
+        System.out.println("다리의 길이를 입력해주세요.");
         return inputUntilValid(
-                () -> validateInput(Integer::parseInt, Console.readLine(), "숫자를 입력하세요"),
+                () -> validateInput(Integer::parseInt, readLine(), "숫자를 입력하세요"),
                 exceptionHandler);
     }
 
@@ -27,8 +28,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving(Consumer<IllegalArgumentException> exceptionHandler) {
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         return inputUntilValid(
-                () -> validateInput(Validation::validateMove, Console.readLine(), "U와 D 중 하나만 입력하세요"),
+                () -> validateInput(Validation::validateMove, readLine(), "U와 D 중 하나만 입력하세요"),
                 exceptionHandler
         );
     }
@@ -37,8 +39,9 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand(Consumer<IllegalArgumentException> exceptionHandler) {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         return inputUntilValid(
-                () -> validateInput(Validation::validateCommand, Console.readLine(), "R와 Q 중 하나만 입력하세요"),
+                () -> validateInput(Validation::validateCommand, readLine(), "R와 Q 중 하나만 입력하세요"),
                 exceptionHandler
         );
     }
@@ -66,5 +69,10 @@ public class InputView {
             exceptionHandler.accept(e);
             return null;
         }
+    }
+
+    private String readLine() {
+//        return new Scanner(System.in).nextLine();
+        return Console.readLine();
     }
 }

@@ -15,7 +15,7 @@ public class GameProcess {
     private BridgeMaker bridgeMaker;
     private InputView inputView;
     private OutputView outputView;
-    private Boolean clear;
+    private Boolean clear = false;
 
     public GameProcess(BridgeGame bridgeGame, BridgeMaker bridgeMaker, InputView inputView, OutputView outputView) {
         this.bridgeGame = bridgeGame;
@@ -25,8 +25,9 @@ public class GameProcess {
     }
 
     public void start() {
-        clear = false;
         User user = new User();
+
+        //테이블 생성
         List<List<StringBuilder>> moveTable = new ArrayList<>();
         moveTable.add(new ArrayList<>());
         moveTable.add(new ArrayList<>());
@@ -35,16 +36,20 @@ public class GameProcess {
 
         boolean gameStart = true;
 
-        repeat(gameStart, user, moveTable);
+        play(gameStart, user, moveTable);
 
         outputView.printResult(moveTable, user.getRetry(), clear);
     }
 
-    private void repeat(Boolean gameStart,User user, List<List<StringBuilder>> moveTable) {
+    private void play(Boolean gameStart, User user, List<List<StringBuilder>> moveTable) {
+        //다리 길이 입력, 다리 생성
+        Integer bridgeSize = inputView.readBridgeSize(e-> outputView.printError(e.getMessage()));
+        Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+
         while (gameStart) {
-            //다리 길이 입력, 다리 생성
-            Integer bridgeSize = inputView.readBridgeSize(e-> outputView.printError(e.getMessage()));
-            Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+            // 테이블 초기화
+            moveTable.get(0).clear();
+            moveTable.get(1).clear();
 
             // 사용자 최종 위치 계산
             int userPosition = userMove(bridgeSize, bridge, moveTable);
@@ -55,14 +60,15 @@ public class GameProcess {
     }
 
     private boolean retryOrNot(Integer bridgeSize, int userPosition, User user) {
-        return cleared(bridgeSize, userPosition)
-                && bridgeGame.retry(inputView.readGameCommand(
-                        e-> outputView.printError(e.getMessage())), user);
+        clear = cleared(bridgeSize, userPosition);
+        if (!clear) {
+            return bridgeGame.retry(inputView.readGameCommand(e-> outputView.printError(e.getMessage())), user);
+        }
+        return false;
     }
 
     private boolean cleared(Integer bridgeSize, Integer userPosition) {
-        clear = true;
-        return userPosition != bridgeSize;
+        return userPosition == bridgeSize;
     }
 
     private int userMove(Integer bridgeSize, Bridge bridge, List<List<StringBuilder>> moveTable) {
