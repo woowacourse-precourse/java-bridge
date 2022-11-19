@@ -2,7 +2,8 @@ package bridge.view.constant;
 
 public enum ValidationRegex {
     EMPTY_VALUE("^$"),
-    NUMBER("^[0-9]+$");
+    NUMBER("^[0-9]+$"),
+    VALID_PANEL("^[UD]+$");
 
     private final String regex;
 

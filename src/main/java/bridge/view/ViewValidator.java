@@ -23,4 +23,18 @@ public class ViewValidator {
             throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.get());
         }
     }
+
+    public static void validatePanelInput (String input) {
+        if (isEmpty(input)) {
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_VALUE.get());
+        }
+
+        if (!isValidPanel(input)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PANEL.get());
+        }
+    }
+
+    private static boolean isValidPanel (String input) {
+        return Pattern.matches(ValidationRegex.VALID_PANEL.get(), input);
+    }
 }
