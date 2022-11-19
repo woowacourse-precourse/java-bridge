@@ -19,8 +19,7 @@ public class Controller {
     private OutputView outputView;
 
     public void game() throws IllegalArgumentException{
-        System.out.println("Please input length of bridge");
-        int size = InputView.readBridgeSize();
+        int size = InputController.setBridgeSize();
 
         List<String> bridgeRoads = bridgeMaker.makeBridge(size);
         bridge = new Bridge(bridgeRoads);
@@ -35,8 +34,7 @@ public class Controller {
             tryNumbers++;
             for (int i = 0 ; i< size; i++) {
                 outputView.clearBuffer();
-                System.out.println("choice where to move");
-                String choice = InputView.readMoving();
+                String choice = InputController.setMoveChoice();
                 boolean moveIsValid = bridgeGame.move(bridge, choice, i);
                 choices.add(choice);
 
@@ -45,9 +43,7 @@ public class Controller {
 
                 if (!moveIsValid) {
                     choices.clear();
-                    System.out.println("please decide to try again");
-                    retryChoice = InputView.readGameCommand();
-
+                    retryChoice = InputController.setGameCommand();
                     break;
                 }
 
