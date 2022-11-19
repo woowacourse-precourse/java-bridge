@@ -8,11 +8,16 @@ import java.util.List;
  */
 public class BridgeGame {
     private final Bridge bridge;
-    private final PlayersMove playersMove;
+    private PlayersMove playersMove;
     private int moveCount;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
+        playersMove = new PlayersMove();
+        moveCount = 0;
+    }
+
+    public void refreshGameContext() {
         playersMove = new PlayersMove();
         moveCount = 0;
     }
@@ -27,9 +32,9 @@ public class BridgeGame {
         moveCount++;
     }
 
-    public List<Boolean> matchResults(){
+    public List<Boolean> matchResults() {
         List<Boolean> matchRecord = new ArrayList<>(moveCount);
-        for (int i = 0; i < moveCount; i++){
+        for (int i = 0; i < moveCount; i++) {
             boolean match = isMatch(bridge.getBridgeMove(i), playersMove.getPlayersMoveAtIdx(i));
             matchRecord.add(match);
         }
@@ -40,15 +45,15 @@ public class BridgeGame {
         return bridgeMove.equals(playersMove);
     }
 
-    public boolean lastMoveMatches(){
-        return playersMove.lastMoveEquals(bridge.getBridgeMove(moveCount));
+    public boolean lastMoveMatches() {
+        return playersMove.lastMoveEquals(bridge.getBridgeMove(moveCount-1));
     }
 
     public boolean playerHasCrossed() {
         return moveCount == bridge.getBridgeSize();
     }
 
-    public List<String> getPlayersMove(){
+    public List<String> getPlayersMove() {
         return playersMove.getPlayersMove();
     }
 
