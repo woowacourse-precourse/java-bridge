@@ -1,12 +1,17 @@
-package bridge;
+package bridge.domain;
 
 import static bridge.controller.BridgeGameController.restartGame;
+
+import bridge.view.InputView;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final InputView inputView = new InputView();
+    private static final InputView inputView = new InputView();
+    private static final String MOVE_SUCCESS = "O";
+    private static final String MOVE_FAIL = "X";
+    private static final String RESTART = "R";
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -15,9 +20,9 @@ public class BridgeGame {
      */
     public String move(String bridge, String inputDirection) {
         if (bridge.equals(inputDirection)) {
-            return Message.MOVE_SUCCESS.getMessage();
+            return MOVE_SUCCESS;
         }
-        return Message.MOVE_FAIL.getMessage();
+        return MOVE_FAIL;
     }
 
     /**
@@ -28,10 +33,8 @@ public class BridgeGame {
     public void retry(String moveResult) {
         if (moveResult.equals("X")) {
             String input = inputView.inputGameRestart();
-            if (input.equals(Message.RESTART.getMessage())) {
+            if (input.equals(RESTART)) {
                 restartGame();
-            } else if (input.equals(Message.QUIT.getMessage())) {
-                return;
             }
         }
     }
