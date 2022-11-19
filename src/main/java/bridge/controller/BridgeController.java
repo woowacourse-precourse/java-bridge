@@ -7,6 +7,8 @@ import bridge.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.msg.InputMsg.*;
+
 public class BridgeController {
 
     private InputView inputView = new InputView();
@@ -51,7 +53,7 @@ public class BridgeController {
         while (bridgeService.retryJudge(inputRetry)) {
             retryInit();
             playingGame();
-            if (!bridgeService.retryJudge(inputRetry)) {
+            if (!bridgeService.retryJudge(inputRetry) && !isMove) {
                 failGame();
             }
         }
@@ -67,10 +69,10 @@ public class BridgeController {
         outputView.printResult(upAndDown.get(0), upAndDown.get(1));
         outputView.printFailResult(attempt);
     }
-    
+
     private void successGame() {
         outputView.printResult(upAndDown.get(0), upAndDown.get(1));
         outputView.printSuccessResult(attempt);
-        return;
+        inputRetry = QUIT_MSG.getMsg();
     }
 }
