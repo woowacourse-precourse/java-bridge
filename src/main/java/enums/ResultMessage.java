@@ -14,4 +14,6 @@ public enum ResultMessage{
     public String getText(){
         return text;
     }
+
+
 }
