@@ -28,8 +28,8 @@ public class BridgeGameResult {
         moveState = new BridgeMoveState();
     }
 
-    public void addMoveState(String moving, Boolean mobility) {
-        moveState.addMoveState(moving, mobility);
+    public void updateMoveState(String moving, Boolean mobility) {
+        moveState.update(moving, mobility);
     }
 
     public void setSuccess() {
