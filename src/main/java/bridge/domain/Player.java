@@ -2,16 +2,12 @@ package bridge.domain;
 
 public class Player {
 
-    private int position;
-    private int numberOfChallenges;
+    private Position position;
+    private NumberOfChallenges numberOfChallenges;
 
-    public Player(final int position, final int numberOfChallenges) {
+    public Player(final Position position, final NumberOfChallenges numberOfChallenges) {
         this.position = position;
         this.numberOfChallenges = numberOfChallenges;
-    }
-
-    int position() {
-        return position;
     }
 
     boolean isOnTheBridge(final Bridge bridge) {
@@ -19,18 +15,22 @@ public class Player {
     }
 
     void move() {
-        position++;
+        position = position.increase();
     }
 
     void resetPosition() {
-        position = 0;
+        position = position.reset();
     }
 
     void increaseChallenges() {
-        numberOfChallenges++;
+        numberOfChallenges = numberOfChallenges.increase();
+    }
+
+    int position() {
+        return position.value();
     }
 
     int numberOfChallenges() {
-        return numberOfChallenges;
+        return numberOfChallenges.value();
     }
 }

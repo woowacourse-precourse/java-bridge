@@ -25,7 +25,9 @@ class BridgeGameTest {
 
     @BeforeEach
     void init() {
-        player = new Player(INIT_VALUE_OF_POSITION, INIT_VALUE_OF_CHALLENGES);
+        player = new Player(
+                new Position(INIT_VALUE_OF_POSITION),
+                new NumberOfChallenges(INIT_VALUE_OF_CHALLENGES));
         moveResults.addResults(MOVE_UP_COMMAND, "O");
         bridgeGame = new BridgeGame(bridge, player, moveResults);
     }

@@ -16,10 +16,6 @@ public class BridgeSize {
         this.bridgeSize = bridgeSize;
     }
 
-    boolean isMoreThan(final int position) {
-        return position < bridgeSize;
-    }
-
     public int bridgeSize() {
         return bridgeSize;
     }
