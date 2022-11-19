@@ -41,6 +41,10 @@ public class GameManager {
                 activation = retry();
                 round = 0;
             }
+
+            if (round == bridgeSize) {
+                activation = false;
+            }
         }
 
     }
