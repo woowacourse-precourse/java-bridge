@@ -43,4 +43,22 @@ class BridgeGameTest {
         assertThat(test).isTrue();
     }
 
+    @DisplayName("유저 : Q -> False")
+    @Test
+    void 재시작_테스트1() {
+        BridgeGame bridgeGame = new BridgeGame();
+        String User = "Q";
+        Boolean test = bridgeGame.retry(User);
+        assertThat(test).isFalse();
+    }
+
+    @DisplayName("유저 : R -> True")
+    @Test
+    void 재시작_테스트2() {
+        BridgeGame bridgeGame = new BridgeGame();
+        String User = "R";
+        Boolean test = bridgeGame.retry(User);
+        assertThat(test).isTrue();
+    }
+
 }
