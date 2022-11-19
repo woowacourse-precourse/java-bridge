@@ -10,39 +10,47 @@ public class BridgeGame {
     static List<String> map;
     static List<String> userMapUP = new ArrayList<>(); //OX
     static List<String> userMapDown = new ArrayList<>(); //OX
-    static int tryCnt=0;
+    static int tryCnt=1;
     static int size=0;
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
     public BridgeGame(){
+        outputView.startPrint();
         this.size = inputView.readBridgeSize();
         this.map = bridgeMaker.makeBridge(size);
     }
 
     public void progress(){
-        boolean retry = false;
+
+        boolean retry = true;
+        String result = "";
         int i=0;
-        while(true){
+        while(retry){
+            if(i==size){
+                result+="성공";
+                break;
+            }
             boolean success = play(i);
-            if(!success) {
+            if(!success) { //실패시 재시작 이면 초기화, 종료면 while 탈출
                 retry = retry();
+                if(!retry) result+="실패";
                 i=-1;
             }
-            if(!retry) break;
             i++;
         }
+        outputView.printResult(tryCnt, result, userMapUP.size(), userMapUP, userMapDown);
     }
     public boolean play(int idx){
 
         String direction = inputView.readMoving();
         boolean success = move(idx, direction);
         if(success){
-            outputView.printMap(idx, this.userMapUP, this.userMapDown);
+            outputView.printMap(idx+1, this.userMapUP, this.userMapDown);
             return true;
         }
-        outputView.printMap(idx, this.userMapUP, this.userMapDown);
+        outputView.printMap(idx+1, this.userMapUP, this.userMapDown);
         return false;
     }
     /**
@@ -61,15 +69,18 @@ public class BridgeGame {
             userMapDown.add("O");
             return true;
         }
-        else if(direction.equals("U") && !map.get(length).equals("D")){
+        else if(direction.equals("U") && map.get(length).equals("D")){
             userMapUP.add("X");
             userMapDown.add(" ");
+            return false;
         }
-        else if(direction.equals("D") && !map.get(length).equals("D")){
+        else if(direction.equals("D") && map.get(length).equals("U")){
             userMapUP.add(" ");
             userMapDown.add("X");
+            return false;
         }
-        return false;
+        System.out.println("[ERROR] 정상적인 입력이 아닙니다.");
+        throw new IllegalArgumentException();
     }
 
     /**
