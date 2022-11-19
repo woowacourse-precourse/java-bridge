@@ -20,6 +20,7 @@
 - [X] 이동할 칸에 대한 입력 validation (Validation Class)
 - [X] 이동할 칸에 대한 입력 (InputView Class)
 - [X] 다리 이동 (BridgeGame Class)
+- [ ] 다리 상태 변경 (BridgeGame Class)
 - [ ] 다리 이동 상태 출력 (OutputView Class)
 - [ ] 게임 다시 시도 여부 입력 Validation(Validation Class)
 - [ ] 게임 다시 시도 여부 입력 String 변환 (InputView Class)
