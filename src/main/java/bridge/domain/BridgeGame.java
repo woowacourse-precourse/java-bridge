@@ -31,7 +31,7 @@ public class BridgeGame {
         return bridge;
     }
 
-    // 다리 끝가지 돌아간 경우 boolean값 반환 기능
+    // 다리 끝까지 간 경우 boolean값 반환 기능
     public boolean isBridgeEnd() {
         int bridgeSize = bridge.getBridge().size();
         int userKeyListSize = bridge.getUserKeyList().size();
