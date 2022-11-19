@@ -83,18 +83,18 @@ public class BridgeController {
     }
 
     private boolean checkPlayerStatus() {
-        if (FailToMove()) {
+        if (isPlayerFailToMove()) {
             if (isPlayerWantedToEnd()) {
                 return true;
             }
         }
-        if (CompleteToMove()) {
+        if (isPlayerCompleteToMove()) {
             return true;
         }
         return false;
     }
 
-    private boolean FailToMove() {
+    private boolean isPlayerFailToMove() {
         return bridgeGame.isPlayerFailToMove();
     }
 
@@ -120,7 +120,7 @@ public class BridgeController {
         }
     }
 
-    private boolean CompleteToMove() {
+    private boolean isPlayerCompleteToMove() {
         return bridgeGame.isPlayerCompleteToMove();
     }
 
