@@ -2,9 +2,11 @@ package bridge.view;
 
 import static bridge.rule.BridgeSizeRange.isBridgeSizeOutOfRange;
 
+import bridge.exception.GameCommandNotAllowedException;
 import bridge.exception.InputNotNumberException;
-import bridge.exception.MovingOptionIsNullException;
 import bridge.exception.MovingOptionNotAllowedException;
+import bridge.exception.NotInputGameCommandException;
+import bridge.exception.NotInputMovingOptionException;
 import bridge.exception.NumberOutOfRangeException;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.NoSuchElementException;
@@ -36,8 +38,8 @@ public class InputView {
             String option = Console.readLine();
             validateMovingOption(option);
             return option;
-        } catch (NoSuchElementException e){
-            throw new MovingOptionIsNullException();
+        } catch (NoSuchElementException e) {
+            throw new NotInputMovingOptionException();
         }
     }
 
@@ -45,7 +47,13 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        try {
+            String command = Console.readLine();
+            validateGameCommand(command);
+            return command;
+        } catch (NoSuchElementException e) {
+            throw new NotInputGameCommandException();
+        }
     }
 
     private void validateBridgeSize(int number) {
@@ -59,19 +67,29 @@ public class InputView {
     }
 
     private void validateMovingOption(String option) {
-        validateOptionIsNull(option);
+        validateOptionNotInput(option);
         validateMovingAllowedOption(option);
     }
 
-    private void validateOptionIsNull(String option) {
+    private void validateOptionNotInput(String option) {
         if (option.equals("")) {
-            throw new MovingOptionIsNullException();
+            throw new NotInputMovingOptionException();
         }
     }
 
     private void validateMovingAllowedOption(String option) {
         if (!(option.equals("U") || option.equals("D"))) {
             throw new MovingOptionNotAllowedException();
+        }
+    }
+
+    private void validateGameCommand(String command) {
+        validateCommandAllowedOption(command);
+    }
+
+    private void validateCommandAllowedOption(String command) {
+        if (!(command.equals("Q") || command.equals("R"))) {
+            throw new GameCommandNotAllowedException();
         }
     }
 }
