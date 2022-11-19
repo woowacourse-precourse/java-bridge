@@ -12,7 +12,7 @@ public class InputRetry extends BridgeGameStep {
     }
 
     @Override
-    protected Step pureExecute() {
+    public Step pureExecute() {
         GameCommand gameCommand = context.requestInputRetry();
 
         return judgeNext(gameCommand);

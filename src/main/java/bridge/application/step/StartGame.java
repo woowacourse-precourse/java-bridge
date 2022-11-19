@@ -4,7 +4,7 @@ import bridge.application.context.BridgeGameContext;
 
 public class StartGame extends BridgeGameStep {
 
-    protected StartGame(BridgeGameContext context) {
+    public StartGame(BridgeGameContext context) {
         super(context);
     }
 
