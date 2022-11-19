@@ -30,9 +30,7 @@ public class BridgeController {
     public void playingGame() {
         playGame();
         if (isMove) successGame();
-        else if (!isMove) {
-            retryGame();
-        }
+        else if (!isMove) retryGame();
     }
 
     private void playGame() {
@@ -49,6 +47,7 @@ public class BridgeController {
 
     private void retryGame() {
         this.inputRetry = inputView.readGameCommand();
+
         while (bridgeService.retryJudge(inputRetry)) {
             retryInit();
             playingGame();
