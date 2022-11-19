@@ -21,8 +21,7 @@ public class BridgeController {
         BridgeNumberGenerator bridgeNumberGenerator = createBridgeNumberGenerator();
         BridgeMaker bridgeMaker = createBridgeMaker(bridgeNumberGenerator);
 
-        Length length = null;
-        length = createLengthLoop(length);
+        Length length = createLengthLoop();
         List<String> bridgeNumbers = length.makeBridgeNumbers(bridgeMaker);
 
         Bridge bridge = createBridge(bridgeNumbers);
@@ -81,20 +80,21 @@ public class BridgeController {
         return new BridgeMaker(bridgeNumberGenerator);
     }
 
-    private Length createLengthLoop(Length length) {
+    private Length createLengthLoop() {
+        Length length;
         do {
-            length = createLength(length);
+            length = createLength();
         } while (length == null);
         return length;
     }
 
-    private Length createLength(Length length) {
+    private Length createLength() {
         try {
-            length = new Length(InputView.readBridgeSize());
+            return new Length(InputView.readBridgeSize());
         } catch (IllegalArgumentException ex) {
             OutputView.printError(ex.getMessage());
         }
-        return length;
+        return null;
     }
 
     private Bridge createBridge(List<String> bridgeNumbers) {
