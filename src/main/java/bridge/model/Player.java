@@ -9,4 +9,17 @@ public class Player {
     public Player() {
         history = new Stack<>();
     }
+
+    public BridgeBlock move(Direction direction) {
+        history.add(new BridgeBlock(direction, getPosition()));
+        return currentBridgeBlock();
+    }
+
+    public int getPosition() {
+        return history.size();
+    }
+
+    public BridgeBlock currentBridgeBlock() {
+        return history.peek();
+    }
 }
