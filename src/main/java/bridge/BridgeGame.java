@@ -11,6 +11,7 @@ public class BridgeGame {
     // 이 클래스에서 InputView, OutputView 사용하지 않는다!
 
     private static final String UP = "U";
+    private static final String QUIT = "Q";
 
     private BridgeMap bridgeMap;
 
@@ -37,7 +38,13 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry(String gameCommand) {
+        if (gameCommand.equals(QUIT)) {
+            return false;
+        }
+
+        this.bridgeMap = new BridgeMap();
+        return true;
     }
 
     public String bridgeMapToString() {
