@@ -36,12 +36,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(BridgeGame bridgeGame) {
+    public void printResult(BridgeGame bridgeGame, boolean quitFlag, int userTry) {
         System.out.println(FINAL_GAME_RESULT);
         printMap(bridgeGame);
         System.out.println();
-        System.out.println(GAME_SUCCESS_OR_FAIL);
-        System.out.println(GAME_TRY);
+        System.out.println(GAME_SUCCESS_OR_FAIL + decisionSuccessOrFail(quitFlag));
+        System.out.println(GAME_TRY + userTry);
     }
 
     private void printUpMap(List<String> bridge, List<String> userThinkBridge){
@@ -84,5 +84,10 @@ public class OutputView {
             return;
         }
         System.out.print(BLANK_BRIDGE);
+    }
+
+    private String decisionSuccessOrFail(boolean quitFlag){
+        if (quitFlag) return "실패";
+        return "성공";
     }
 }
