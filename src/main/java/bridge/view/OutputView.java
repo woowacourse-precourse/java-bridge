@@ -1,6 +1,7 @@
 package bridge.view;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,6 +12,15 @@ public class OutputView {
     List<String> upList;
     List<String> downList;
 
+    // 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
+    public void printMap(List<String> makeBridgeList, List<String> userSelectList) {
+        this.upList = new ArrayList<>();
+        this.downList = new ArrayList<>();
+        addUpAndDownList(makeBridgeList, userSelectList);
+        printMapForm(upList);
+        printMapForm(downList);
+        System.out.println();
+    }
 
     // 주어진 List에 따라 다리의 그림을 출력하는 기능
     public void printMapForm(List<String> oxList) {
