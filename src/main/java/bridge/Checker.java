@@ -28,4 +28,11 @@ public class Checker {
         }
         return input;
     }
+
+    public String checkMoveValidate(String move) throws IllegalArgumentException {
+        if(!(move.equals("U")|move.equals("D"))) {
+            throw new IllegalArgumentException();
+        }
+        return move;
+    }
 }
