@@ -1,43 +1,52 @@
 package bridge.command;
 
-public enum Direction {
-    UP(1, "U"),
-    DOWN(0, "D");
+public class Direction {
 
-    private final String text;
-    private final int number;
 
-    private Direction(int number, String text) {
-        this.number = number;
-        this.text = text;
+    enum DirectionSource {
+        UP(1, "U"),
+
+        DOWN(0, "D");
+
+        private final String text;
+        private final int number;
+
+        private DirectionSource(int number, String text) {
+            this.number = number;
+            this.text = text;
+        }
+
+        private String getText() {
+            return this.text;
+        }
+
+        private int getNumber() {
+            return this.number;
+        }
     }
 
-    public String getText() {
-        return this.text;
-    }
-
-    public int getNumber() {
-        return this.number;
+    private Direction() {
+        
     }
 
     public static String convert(int direction) {
-        if (direction == Direction.UP.getNumber()) {
-            return Direction.UP.getText();
+        if (direction == DirectionSource.UP.getNumber()) {
+            return DirectionSource.UP.getText();
         }
 
-        return Direction.DOWN.getText();
+        return DirectionSource.DOWN.getText();
     }
 
     public static int convert(String direction) {
-        if (direction.equals(Direction.UP.getText())) {
-            return Direction.UP.getNumber();
+        if (direction.equals(DirectionSource.UP.getText())) {
+            return DirectionSource.UP.getNumber();
         }
 
-        return Direction.DOWN.getNumber();
+        return DirectionSource.DOWN.getNumber();
     }
 
     public static boolean contains(int number) {
-        for (Direction i : Direction.values()) {
+        for (DirectionSource i : DirectionSource.values()) {
             if (i.getNumber() == number) {
                 return true;
             }
@@ -47,7 +56,7 @@ public enum Direction {
     }
 
     public static boolean contains(String text) {
-        for (Direction i : Direction.values()) {
+        for (DirectionSource i : DirectionSource.values()) {
             if (i.getText().equals(text)) {
                 return true;
             }
