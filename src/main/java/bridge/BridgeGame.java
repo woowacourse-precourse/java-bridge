@@ -12,56 +12,40 @@ public class BridgeGame {
     private int movingCount;
     private int tryCount;
 
-    public boolean isSuccess;
-
     BridgeGame(List<String> bridge) {
         this.bridge = bridge;
     }
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public List<String> move(String moving) {
+    public boolean move(String moving) {
         validate(moving);
         userBridgeHistroy.add(moving);
-        isSuccess = canMove(moving);
-        movingCount++;
-        return toResult();
-    }
-
-    private List<String> toResult() {
-        List<String> result = new ArrayList<>(userBridgeHistroy);
-        if (isSuccess) {
-            result.add("O");
-        }
-        if (!isSuccess) {
-            result.add("X");
-        }
-        return result;
-    }
-
-    private boolean canMove(String moving) {
         if (bridge.get(movingCount).equals(moving)) {
+            movingCount++;
             return true;
         }
         return false;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry(String command) {
+    public boolean retry(String command) {
         validateCommand(command);
         if (command.equals("R")) {
             movingCount = 0;
             userBridgeHistroy.clear();
             tryCount++;
-            isSuccess = true;
+            return true;
         }
+        return false;
+    }
+
+//    public boolean checkWin() {
+//        if (bridge.equals(userBridgeHistroy)) {
+//            return true;
+//        }
+//        return false;
+//    }
+
+    public List<String> getUserBridgeHistroy() {
+        return userBridgeHistroy;
     }
 
     public int getTryCount() {
@@ -80,3 +64,4 @@ public class BridgeGame {
         }
     }
 }
+
