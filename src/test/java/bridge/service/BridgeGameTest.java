@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,15 +21,16 @@ class BridgeGameTest {
     @BeforeEach
     public void beforeEach() {
         bridgeGame = new BridgeGame();
-        bridgeGame.createBridge("5");
+        bridgeGame.createBridge(List.of("U", "D", "U", "D"));
         bridgeGame.createBridgeMap();
+
+
     }
 
     @Test
     void createBridge() {
         //Given
-        int except = 5;
-        bridgeGame.createBridge("5");
+        int except = 4;
         Bridge bridge = bridgeGame.getBridge();
 
         //When

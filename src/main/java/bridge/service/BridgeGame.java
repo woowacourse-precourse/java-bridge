@@ -3,6 +3,8 @@ package bridge.service;
 import bridge.model.entity.*;
 import bridge.model.value.BridgeIngredient;
 
+import java.util.List;
+
 /**
 
  */
@@ -30,8 +32,8 @@ public class BridgeGame {
      - [ ] 일치, 불일치 맵 추가 "O", "X" , " "
      *
      */
-    public void createBridge(String size) {
-        this.bridge = Bridge.of(size);
+    public void createBridge(List<String> answer) {
+        this.bridge = Bridge.of(answer);
     }
     public void createBridgeMap() {
         this.bridgeMap = BridgeMap.of();
@@ -43,13 +45,17 @@ public class BridgeGame {
     }
 
     public Boolean checkMove(int index, String move) { //정답과 일치하는지 확인
-        bridgeMap.setIndex(index+1); //TODO: Refactoring 해줄 것 return type 없앨 수 있는 방향 생각하기
+        updateIndex(index); //TODO: Refactoring 해줄 것 return type 없앨 수 있는 방향 생각하기
         if(bridge.getAnswer().get(index).equals(move)){
             addMatchMap(move);
             return null;
         }
         addNotMatchMap(move);
         return null;
+    }
+
+    private void updateIndex(int index) {
+        bridgeMap.setIndex(index +1);
     }
 
     public void addMatchMap(String move){
@@ -67,6 +73,13 @@ public class BridgeGame {
             bridgeMap.add(BridgeIngredient.BLANK.getIngredient(),  BridgeIngredient.NOT_MATCH.getIngredient());
         }
     }
+
+    public Boolean isEnd(int index){
+        return index == bridge.getAnswer().size();
+    }
+
+    public void success(){
+
     }
 
     /**
