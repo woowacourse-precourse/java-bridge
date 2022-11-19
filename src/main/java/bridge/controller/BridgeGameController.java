@@ -10,8 +10,7 @@ import bridge.view.OutputView;
 
 import java.util.List;
 
-import static bridge.exception.BridgeGameValidator.isValidGameNumber;
-import static bridge.exception.BridgeGameValidator.validateInt;
+import static bridge.exception.BridgeGameValidator.*;
 
 public class BridgeGameController {
 
@@ -23,6 +22,7 @@ public class BridgeGameController {
     private static final OutputView outputView = new OutputView();
 
     private int bridgeSize;
+    private String moving;
     List<String> bridge;
     private static BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     private BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
@@ -35,6 +35,7 @@ public class BridgeGameController {
 
     public void start(){
         bridgeSize=0;
+        moving = null;
         startGame();
         run();
     }
@@ -50,7 +51,7 @@ public class BridgeGameController {
     }
 
     private boolean crossBridge(int index){
-        String moving = inputView.readMoving();
+        goUpOrDown();
         if(bridgeGame.move(moving,index,bridge)){
             outputView.printMap(YES, bridgeUpDownNumber.upOrDown(bridge.get(index)));
             return true;
@@ -80,6 +81,15 @@ public class BridgeGameController {
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             createBridgeSize();
+        }
+    }
+
+    private void goUpOrDown(){
+        try{
+            moving = validateUpAndDown(inputView.readMoving());
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            goUpOrDown();
         }
     }
 
