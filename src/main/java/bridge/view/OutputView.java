@@ -1,5 +1,9 @@
 package bridge.view;
 
+import static bridge.model.Cell.BLANK;
+import static bridge.model.Cell.CORRECT;
+import static bridge.model.Cell.WRONG;
+
 import bridge.model.Bridge;
 import bridge.model.Direction;
 import bridge.model.Player;
@@ -25,36 +29,36 @@ public class OutputView {
      */
     public void printMap(Bridge bridge, Player player) {
         StringJoiner joiner = new StringJoiner("\n");
-        joiner.add(generateDirectionLineResult(bridge, player, Direction.UP));
-        joiner.add(generateDirectionLineResult(bridge, player, Direction.DOWN));
+        joiner.add(generateDirectionLine(bridge, player, Direction.UP));
+        joiner.add(generateDirectionLine(bridge, player, Direction.DOWN));
         System.out.println(joiner);
     }
 
-    private String generateDirectionLineResult(Bridge bridge, Player player, Direction direction) {
+    private String generateDirectionLine(Bridge bridge, Player player, Direction direction) {
         StringJoiner joiner = new StringJoiner(" ");
         joiner.add("[");
-        joiner.add(matchingMap(bridge.getBridge(), player.getDirections(), direction));
+        joiner.add(matchingLine(bridge.getBridge(), player.getDirections(), direction));
         joiner.add("]");
         return joiner.toString();
     }
 
-    public String matchingMap(List<String> bridge, List<String> directions, Direction direction) {
+    private String matchingLine(List<String> bridge, List<String> directions, Direction direction) {
         int size = Math.min(bridge.size(), directions.size());
         StringJoiner joiner = new StringJoiner(" | ");
         for (int i = 0; i < size; i++) {
-            joiner.add(generateResult(bridge.get(i), directions.get(i), direction.getDirection()));
+            joiner.add(matchingCell(bridge.get(i), directions.get(i), direction.getDirection()));
         }
         return joiner.toString();
     }
 
-    private String generateResult(String bridge, String direction, String target) {
+    private String matchingCell(String bridge, String direction, String target) {
         if (!direction.equals(target)) {
-            return " ";
+            return BLANK.getType();
         }
         if (direction.equals(bridge)) {
-            return "O";
+            return CORRECT.getType();
         }
-        return "X";
+        return WRONG.getType();
     }
 
     /**
@@ -65,11 +69,11 @@ public class OutputView {
     public void printResult(Bridge bridge, Player player) {
         System.out.println(FINAL_RESULT_MESSAGE);
         printMap(bridge, player);
-        System.out.printf((GAME_STATUS_MESSAGE) + "%n", getSuccessOrNot(bridge, player));
+        System.out.printf((GAME_STATUS_MESSAGE) + "%n", getSuccessOrFail(bridge, player));
         System.out.printf((TOTAL_ATTEMPTS_MESSAGE) + "%n", player.getAttempt());
     }
 
-    private String getSuccessOrNot(Bridge bridge, Player player) {
+    private String getSuccessOrFail(Bridge bridge, Player player) {
         if (bridge.isDone(player)) {
             return SUCCESS_MESSAGE;
         }
@@ -83,4 +87,5 @@ public class OutputView {
     public static void printErrorMessage(String message) {
         System.out.printf("%s %s%n", ERROR_PREFIX, message);
     }
+
 }
