@@ -14,9 +14,9 @@ class BridgeGameTest {
 
     @Test
     void move() {
-        Assertions.assertThat(bridgeGame.move(0, "U", bridge, user)).isTrue();
-        Assertions.assertThat(bridgeGame.move(1, "D", bridge, user)).isTrue();
-        Assertions.assertThat(bridgeGame.move(2, "U", bridge, user)).isTrue();
+        Assertions.assertThat(bridgeGame.move(0, "U", bridge)).isTrue();
+        Assertions.assertThat(bridgeGame.move(1, "U", bridge)).isFalse();
+        Assertions.assertThat(bridgeGame.move(2, "U", bridge)).isTrue();
     }
 
     @Test
