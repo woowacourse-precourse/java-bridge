@@ -8,6 +8,10 @@ import java.util.List;
  */
 public class BridgeMaker {
 
+    private static final int UPPER_NUMBER = 1;
+    private static final String CAN_MOVE_UP = "U";
+    private static final String CAN_MOVE_DOWN = "D";
+
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -21,19 +25,18 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
 
-        for (int i=0; i<size; i++) {
+        for (int i = 0; i < size; i++) {
             int number = bridgeNumber();
             bridge.add(convertPossibleLocation(number));
         }
-
         return bridge;
     }
 
     private String convertPossibleLocation(int number) {
-        if (number == 1) {
-            return "U";
+        if (number == UPPER_NUMBER) {
+            return CAN_MOVE_UP;
         }
-        return "D";
+        return CAN_MOVE_DOWN;
     }
 
     private int bridgeNumber() {
