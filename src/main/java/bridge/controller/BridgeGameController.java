@@ -64,10 +64,17 @@ public class BridgeGameController {
 		while (playGame && !bridgeGame.isClear(progressMap)) {
 			crossBridge(bridgeGame);
 			if (progressMap.isMoveFailed()) {
-				playGame = askRetry();
-				bridgeGame.retry();
+				playGame = failBridgeMove(bridgeGame);
 			}
 		}
+	}
+
+	private boolean failBridgeMove(BridgeGame bridgeGame) {
+		if (askRetry()) {
+			bridgeGame.retry();
+			return true;
+		}
+		return false;
 	}
 
 	private void crossBridge(BridgeGame bridgeGame) {
