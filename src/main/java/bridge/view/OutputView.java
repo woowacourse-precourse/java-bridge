@@ -12,6 +12,17 @@ public class OutputView {
     List<String> downList;
 
 
+    // 주어진 List에 따라 다리의 그림을 출력하는 기능
+    public void printMapForm(List<String> oxList) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[ ").append(oxList.get(0));
+        for (int i = 1 ; i < oxList.size(); i++) {
+            sb.append(" | ").append(oxList.get(i));
+        }
+        sb.append(" ]");
+        System.out.println(sb);
+    }
+
     // 유저 List의 U와 D를 비교하여 두개의 List에 저장하는 기능
     public void addUpAndDownList(List<String> makeBridgeList, List<String> userSelectList) {
         for (int i = 0 ; i < userSelectList.size(); i++) {
@@ -34,6 +45,5 @@ public class OutputView {
         }
         return "X";
     }
-
 
 }
