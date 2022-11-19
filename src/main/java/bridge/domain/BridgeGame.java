@@ -26,9 +26,13 @@ public class BridgeGame {
 
     private Bridge setBridge() {
         outputView.printBridgeSizeMessage();
-        int bridgeSize = inputView.readBridgeSize();
-
-        return new Bridge(bridgeSize);
+        try {
+            int bridgeSize = inputView.readBridgeSize();
+            return new Bridge(bridgeSize);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return setBridge();
+        }
     }
 
     /**
@@ -47,7 +51,12 @@ public class BridgeGame {
 
     private String setMoving() {
         outputView.printMovingMessage();
-        return inputView.readMoving();
+        try {
+            return inputView.readMoving();
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return setMoving();
+        }
     }
 
     private void saveIsCorrectState(boolean checkCorrectMoving) {
@@ -103,7 +112,12 @@ public class BridgeGame {
 
     private String setGameCommand() {
         outputView.printRetryMessage();
-        return inputView.readGameCommand();
+        try {
+            return inputView.readGameCommand();
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return setGameCommand();
+        }
     }
 
     private boolean checkGameCommand(String gameCommand) {
