@@ -3,31 +3,18 @@ package bridge;
 import java.util.List;
 
 public class Bridge {
-    private int currentPosition;
-    private final List<String> availableBlocks;
+    private final List<String> availableSquares;
 
-    public Bridge(List<String> availableBlocks) {
-        this.availableBlocks = availableBlocks;
-        this.currentPosition = -1;
+    public Bridge(List<String> availableSquares) {
+        this.availableSquares = availableSquares;
     }
 
-    public boolean isNextAvailable(String position) {
-        return availableBlocks.get(currentPosition + 1).equals(position);
+    public boolean isNextAvailable(String selectedSquare, int nextPosition) {
+        return availableSquares.get(nextPosition).equals(selectedSquare);
     }
 
-    public void movePlayer() {
-        currentPosition++;
+    public int getLastIndex() {
+        return availableSquares.size() - 1;
     }
 
-    public void initializeCurrentPosition() {
-        currentPosition = -1;
-    }
-
-    private int lastIndex() {
-        return availableBlocks.size() - 1;
-    }
-
-    public boolean isLastBlock() {
-        return lastIndex() == currentPosition;
-    }
 }
