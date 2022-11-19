@@ -12,10 +12,15 @@ public class BridgeGame {
     private Player player;
     private int trial;
 
-    public BridgeGame(List<String> availableSquares) {
-        this.bridge = new Bridge(availableSquares);
+    public BridgeGame() {
         this.player = new Player();
         this.trial = 0;
+    }
+
+    public void generateBridge(int bridgeSize) {
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        this.bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
     private GameStatus move() {
