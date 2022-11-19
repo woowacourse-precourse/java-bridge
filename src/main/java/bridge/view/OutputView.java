@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.dto.BridgeResultDto;
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -23,15 +25,25 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> upBridge, List<String> downBridge) {
-        printBridgeFormat(upBridge);
-        printBridgeFormat(downBridge);
+    public void printMap(BridgeResultDto resultDto) {
+        printBridgeFormat(resultDto.getUpResult());
+        printBridgeFormat(resultDto.getDownResult());
+    }
+
+    /**
+     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
+     * <p>
+     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     */
+    public void printResult(String success) {
+        printGameSuccess(success);
     }
 
     private void printBridgeFormat(List<String> bridge) {
         builder.append(BRIDGE_INIT);
         formatElements(bridge);
         builder.append(BRIDGE_END);
+
         System.out.println(builder);
         builder.setLength(0);
     }
@@ -41,16 +53,14 @@ public class OutputView {
         while (bridgeList.hasNext()) {
             builder.append(bridgeList.next());
 
-            if(bridgeList.hasNext()) {
+            if (bridgeList.hasNext()) {
                 builder.append(BRIDGE_MIDDLE);
             }
         }
     }
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult() {
+
+    private void printGameSuccess(String success) {
+        String result = String.format("게임 성공 여부: %s", success);
+        System.out.println(result);
     }
 }
