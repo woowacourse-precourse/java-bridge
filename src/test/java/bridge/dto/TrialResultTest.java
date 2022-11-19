@@ -13,4 +13,11 @@ public class TrialResultTest {
 
         assertThat(trialResult.wasSuccessful()).isTrue();
     }
+
+    @Test
+    void 시도방향을_알_수_있다() {
+        TrialResult trialResult = new TrialResult(UPPER, true);
+
+        assertThat(trialResult.getDirection()).isEqualTo(UPPER);
+    }
 }
