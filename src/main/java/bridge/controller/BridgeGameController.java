@@ -39,7 +39,7 @@ public class BridgeGameController {
     }
 
     private void retry() {
-        if(InputView.readGameCommand().equals("R")) {
+        if(InputException.validateGameCommand(InputView.readGameCommand()).equals("R")) {
             bridgeGame.retry();
             progress();
         }

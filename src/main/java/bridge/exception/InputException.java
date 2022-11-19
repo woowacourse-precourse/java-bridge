@@ -31,4 +31,15 @@ public class InputException {
             throw new IllegalArgumentException(ExceptionPhrases.MovingValue.getPhrase());
         }
     }
-}
+
+    public static String validateGameCommand(String command) {
+        accurateCommand(command);
+        return command;
+    }
+
+    private static void accurateCommand(String command) {
+        if(!(command.equals("R") || command.equals("Q"))) {
+            throw new IllegalArgumentException(ExceptionPhrases.GameCommand.getPhrase());
+        }
+    }
+ }
