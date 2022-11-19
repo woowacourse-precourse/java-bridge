@@ -4,6 +4,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
+import java.util.List;
 
 public class BridgeService {
     private final InputService inputService = new InputService();
@@ -11,12 +12,18 @@ public class BridgeService {
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
     public Bridge bridgeMaker() {
-        int bridgeSize = getBridgeSize();
-        Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+        int bridgeSize = askBridgeSize();
+        Bridge bridge = new Bridge(makeBridge(bridgeSize));
         return bridge;
     }
 
-    public int getBridgeSize() {
-        return inputService.requestBridgeSize();
+    public int askBridgeSize() {
+        int bridgeSize = inputService.requestBridgeSize();
+        return bridgeSize;
+    }
+
+    public List<String> makeBridge(int bridgeSize) {
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        return bridge;
     }
 }
