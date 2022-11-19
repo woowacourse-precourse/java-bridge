@@ -42,7 +42,7 @@ public class BridgeGameController {
     }
 
     private void end() {
-        outputView.printResult(bridgeGameResult);
+        outputView.printResult(bridgeGame.getBridgeGameResult());
     }
 
     private Bridge makeBridge() {
@@ -68,7 +68,7 @@ public class BridgeGameController {
 
             String moving = inputView.readMoving();
             Boolean mobility = bridgeGame.move(bridge, moveCount, moving);
-            outputView.printMap(bridgeGameResult);
+            outputView.printMap(bridgeGame.getBridgeGameResult());
 
             if (isFail(mobility)) {
                 break;

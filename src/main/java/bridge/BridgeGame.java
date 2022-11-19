@@ -39,4 +39,8 @@ public class BridgeGame {
     public void success() {
         bridgeGameResult.setSuccess();
     }
+
+    public BridgeGameResult getBridgeGameResult() {
+        return bridgeGameResult;
+    }
 }
