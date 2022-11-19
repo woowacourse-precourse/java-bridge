@@ -61,5 +61,12 @@ public class BridgeGame {
         clearGameResults();
         plusGameTryCount();
     }
+
+    public boolean isGamePassFlag() {
+        return gamePassFlag;
+    }
+
+    public void setGamePassFlag(boolean gamePassFlag) {
+        this.gamePassFlag = gamePassFlag;
     }
 }
