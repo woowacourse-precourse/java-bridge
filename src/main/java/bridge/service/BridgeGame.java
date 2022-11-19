@@ -1,54 +1,40 @@
 package bridge.service;
 
-import bridge.view.InputView;
-import bridge.view.OutputView;
-
-import java.util.ArrayList;
 import java.util.List;
+
+import static bridge.controller.BridgeController.*;
+import static bridge.domain.BridgeCommand.*;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
-    static String WIN = "성공";
-    static String LOSE = "실패";
+    private static final String WIN = "성공";
+    private static final String LOSE = "실패";
 
-    public static void wholeGame(List<String> generatedBridge) {
-        List<String> nowBridge = new ArrayList<>();
+    public static int gameManagement(List<String> nowBridge, List<String> generatedBridge) {
         int count = 0;
         do {
-            oneGame(nowBridge, generatedBridge);
+            gameService(nowBridge, generatedBridge);
             count++;
             if (isGameWin(nowBridge, generatedBridge).equals(WIN)) {
                 break;
             }
         } while (retry(nowBridge));
-        OutputView.printResult(count, nowBridge, generatedBridge);
+        return count;
     }
 
-    public static void oneGame(List<String> nowBridge, List<String> generatedBridge) {
+    public static void gameService(List<String> nowBridge, List<String> generatedBridge) {
         boolean gameSuccess;
         do {
-            move(chooseBridge(), nowBridge);
-            System.out.println(OutputView.printMap(nowBridge, generatedBridge));
+            move(readMovingController(), nowBridge);
+            System.out.println(printMapController(nowBridge, generatedBridge));
             gameSuccess = compareBridge(nowBridge, generatedBridge);
             if (nowBridge.size() == generatedBridge.size()) {
                 break;
             }
         } while (gameSuccess);
-    }
-
-    private static String chooseBridge() {
-        String pick;
-        while (true) {
-            try {
-                pick = InputView.readMoving();
-                return pick;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e);
-            }
-        }
     }
 
     public static String isGameWin(List<String> generatedBridge, List<String> nowBridge) {
@@ -75,7 +61,7 @@ public class BridgeGame {
      */
     public static boolean retry(List<String> nowBridge) {
         nowBridge.clear();
-        if (InputView.readGameCommand().equals("R")) {
+        if (readGameCommandController().equals(RETRY.getElement())) {
             return true;
         }
         return false;
@@ -87,17 +73,5 @@ public class BridgeGame {
             return true;
         }
         return false;
-    }
-
-    public static int inputBridgeSize() {
-        int size;
-        while (true) {
-            try {
-                size = InputView.readBridgeSize();
-                return size;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e);
-            }
-        }
     }
 }
