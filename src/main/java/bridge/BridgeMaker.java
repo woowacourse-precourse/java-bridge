@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.NumberGenerator.BridgeNumberGenerator;
+
 import java.util.List;
 
 /**
