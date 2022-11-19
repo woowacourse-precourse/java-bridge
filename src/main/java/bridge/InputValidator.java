@@ -17,6 +17,13 @@ public class InputValidator {
         return inputMoveCommande;
     }
 
+    public static String validateInputRestartOrEndGame(String inputRestartOREndGame){
+        validateCommandeLength(inputRestartOREndGame);
+        validateCommandUppercase(inputRestartOREndGame);
+        checkRorQ(inputRestartOREndGame);
+        return inputRestartOREndGame;
+    }
+
     public static int toInt (String inputLength){
         return Integer.parseInt(inputLength);
     }
@@ -29,7 +36,7 @@ public class InputValidator {
 
     public static void validateCommandeLength(String inputMoveCommande){
         if(!(inputMoveCommande.length() == 1)){
-            throw new IllegalArgumentException("[ERROR]명령어는 U 또는 R로 입력해 주세요.");
+            throw new IllegalArgumentException("[ERROR]명령어는 한글자입니다. ");
         }
     }
 
@@ -42,6 +49,12 @@ public class InputValidator {
     public static void checkUorR(String inputMoveCommande){
         if(!inputMoveCommande.equals("U") && !inputMoveCommande.equals("R")){
             throw new IllegalArgumentException("[ERROR]명령어는 U 또는 R로 입력해 주세요");
+        }
+    }
+
+    public static void checkRorQ(String inputRestartOrEndGame){
+        if(!inputRestartOrEndGame.equals("R") && !inputRestartOrEndGame.equals("Q")){
+            throw  new IllegalArgumentException("[ERROR]명령어는 R 또는 Q 로 입력해주세요");
         }
     }
 
