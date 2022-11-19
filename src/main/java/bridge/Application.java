@@ -2,25 +2,38 @@ package bridge;
 
 public class Application {
 
+    public static final String START_BRIDGE_GAME = "다리 건너기 게임을 시작합니다.\n";
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
 
-        System.out.println("다리 건너기 게임을 시작합니다.\n");
-        BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(inputView.readBridgeSize()));
+        BridgeGame bridgeGame = createBridgeGame(inputView);
         while (!bridgeGame.endGame()) {
-            if (bridgeGame.move(inputView.readMoving())) {
-                System.out.println(outputView.printMap(bridgeGame.currentBridge()));
-                continue;
-            }
-            System.out.println(outputView.printMap(bridgeGame.currentBridge()));
-            if (!bridgeGame.retry(inputView.readGameCommand())) {
-                break;
-            }
+            if (inputMoving(inputView, outputView, bridgeGame)) continue;
+            if (inputRetry(inputView, bridgeGame)) break;
         }
         System.out.println(outputView.printResult(bridgeGame.currentBridge(), bridgeGame.getNumberOfTry()));
+    }
+
+    private static boolean inputRetry(InputView inputView, BridgeGame bridgeGame) {
+        return !bridgeGame.retry(inputView.readGameCommand());
+    }
+
+    private static boolean inputMoving(InputView inputView, OutputView outputView, BridgeGame bridgeGame) {
+        if (bridgeGame.move(inputView.readMoving())) {
+            System.out.println(outputView.printMap(bridgeGame.currentBridge()));
+            return true;
+        }
+        System.out.println(outputView.printMap(bridgeGame.currentBridge()));
+        return false;
+    }
+
+    private static BridgeGame createBridgeGame(InputView inputView) {
+        System.out.println(START_BRIDGE_GAME);
+        return new BridgeGame(new BridgeMaker(new BridgeRandomNumberGenerator())
+                .makeBridge(inputView.readBridgeSize()));
     }
 
 }
