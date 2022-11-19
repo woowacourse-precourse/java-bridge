@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.utils.Converter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,7 @@ public class Result {
     private static final String NONE = "   ";
     private List<String> upBridgeResult;
     private List<String> downBridgeResult;
+    private int tryCount;
 
     public Result() {
         upBridgeResult = new ArrayList<>();
@@ -27,6 +30,13 @@ public class Result {
         results.add(getResultMessage(downBridgeResult));
 
         return results;
+    }
+
+    public List<String> getFinalResultToString() {
+        String winning = getWinResult();
+        String tryCount = Converter.toStringFromInt(this.tryCount);
+
+        return List.of(winning, tryCount);
     }
 
     private String getResultString(boolean moveSuccess) {
@@ -58,5 +68,16 @@ public class Result {
 
     private String getResultMessage(List<String> bridgeResult) {
         return String.join("|", bridgeResult);
+    }
+
+    private String getWinResult() {
+        int lastIndex = upBridgeResult.size() - 1;
+        String upLastValue = upBridgeResult.get(lastIndex);
+        String downLastValue = downBridgeResult.get(lastIndex);
+
+        if (upLastValue.equals(SUCCESS) || downLastValue.equals(SUCCESS)) {
+            return "성공";
+        }
+        return "실패";
     }
 }
