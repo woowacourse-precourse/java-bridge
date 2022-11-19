@@ -20,6 +20,12 @@ public class OutputView {
 
     }
 
+    private List<String> collectPanelsOfLine (List<String> bridge, int order, String line) {
+        return bridge.stream().limit(order)
+                .map(panel -> createPanelElement(panel, line))
+                .collect(Collectors.toList());
+    }
+
     private String createPanelElement (String panel, String line) {
         if (panel.equals(line)) {
             return BridgeStyle.CORRECT_PANEL.get();
