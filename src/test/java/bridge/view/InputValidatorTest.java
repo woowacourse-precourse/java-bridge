@@ -38,7 +38,7 @@ class InputValidatorTest {
         @ValueSource(strings = {"u", "d", "A", "0"})
         @EmptySource
         @DisplayName("사용자 입력이 U 또는 D가 아니면 예외가 발생한다.")
-        void toNumber_SizeIsNotNumeric_ExceptionThrown(String input) {
+        void validateMoving_InputIsNotUAndD_ExceptionThrown(String input) {
             assertThatThrownBy(() -> new InputValidator().validateMoving(input))
                     .isInstanceOf(IllegalArgumentException.class);
         }

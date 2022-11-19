@@ -15,7 +15,7 @@ public class InputView {
         try {
             new InputValidator().validateSize(input);
         } catch (IllegalArgumentException exception) {
-            readBridgeSize();
+            return readBridgeSize();
         }
         return Integer.parseInt(input);
     }
@@ -28,7 +28,7 @@ public class InputView {
         try {
             new InputValidator().validateMoving(input);
         } catch (IllegalArgumentException exception) {
-            readMoving();
+            return readMoving();
         }
         return input;
     }
