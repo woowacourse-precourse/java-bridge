@@ -4,21 +4,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BridgeGameResult {
-    private final Map<String, String> results;
+    private final Map<String, String> result;
 
     public BridgeGameResult() {
-        this.results = new HashMap<>();
+        this.result = new HashMap<>();
     }
 
-    public void putResult(String moving, String result) {
-        results.put(moving, result);
+    public void putMovingResult(String moving, String movingResult) {
+        result.put(moving, movingResult);
     }
 
     public boolean isSuccess(int bridgeSize) {
-        return results.size() == bridgeSize;
+        return result.size() == bridgeSize;
     }
 
     public Map<String, String> getResult() {
-        return results;
+        return result;
+    }
+
+    public void clearResult() {
+        result.clear();
     }
 }
