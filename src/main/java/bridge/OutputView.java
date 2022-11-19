@@ -9,6 +9,7 @@ package bridge;
  * BridgeGame 클래스에서 사용 불가
  */
 
+import bridge.Constants.OutputState;
 import java.util.List;
 
 /**
@@ -16,20 +17,20 @@ import java.util.List;
  */
 public class OutputView {
     public void printStartGame() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println(OutputState.START_GAME);
     }
 
 
     public void printInputBridgeLength() {
-        System.out.println("다리의 길이를 입력해주세요.");
+        System.out.println(OutputState.INPUT_BRIDGE_LENGTH);
     }
 
     public void printInputMoveDirection() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println(OutputState.INPUT_MOVE_DIRECTION);
     }
 
     public void printInputRetryCommand() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.println(OutputState.INPUT_RETRY_COMMAND);
     }
 
     /**
@@ -38,8 +39,10 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeGame bridgeGame) {
-        System.out.println("[" + String.join("|", bridgeGame.getUpLine()) + "]");
-        System.out.println("[" + String.join("|", bridgeGame.getDownLine()) + "]");
+        String upLineForm = String.join("|", bridgeGame.getUpLine());
+        String downLineForm = String.join("|", bridgeGame.getDownLine());
+        System.out.println("[" + upLineForm + "]");
+        System.out.println("[" + downLineForm + "]");
     }
 
     /**
@@ -48,9 +51,9 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(BridgeGame bridgeGame) {
-        System.out.println("최종 게임 결과");
+        System.out.println(OutputState.GAME_RESULT);
         printMap(bridgeGame);
-        System.out.println("게임 성공 여부: " + BridgeGame.result);
-        System.out.println("총 시도한 횟수: " + BridgeGame.getCountAttempt());
+        System.out.println(OutputState.SUCCESS_OR_NOT + BridgeGame.result);
+        System.out.println(OutputState.TOTAL_ATTEMPT + BridgeGame.getCountAttempt());
     }
 }
