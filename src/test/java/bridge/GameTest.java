@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static bridge.Enums.GameMessage.COUNT_OF_RETRY;
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -43,6 +45,25 @@ public class GameTest extends NsTest {
 
         assertThat(output()).contains(expectedUpperPath);
         assertThat(output()).contains(expectedLowerPath);
+    }
+
+    @Test
+    void countRetry() {
+        String[] runInputs = new String[]{
+                "3", "U", "U",
+                "R", "U",
+                "R", "U",
+                "R", "U",
+                "Q"
+        };
+        int expectedCount = 4;
+
+        assertRandomNumberInRangeTest(() -> {
+            run(runInputs);
+            String expectedMessage = COUNT_OF_RETRY.getMessage() + expectedCount;
+            assertThat(output()).contains(expectedMessage);
+        }, 1, 0, 0);
+
     }
 
     @Override
