@@ -16,4 +16,8 @@ public class BridgeGame {
         Integer currentPosition = gameStatusOperator.getCurrentPosition();
         gameStatusOperator.changePosition();
     }
+
+    public void retry() {
+        gameStatusOperator.toRestart();
+    }
 }

@@ -22,6 +22,10 @@ public class GameStatusOperator {
         currentPosition++;
     }
 
+    public void toRestart() {
+        gameStatus = GameStatus.RESTART;
+    }
+
     //== Getter ==//
     public Integer getCurrentPosition() {
         return currentPosition;
@@ -29,6 +33,10 @@ public class GameStatusOperator {
 
     public Integer getNumberOfTry() {
         return numberOfTry;
+    }
+
+    public GameStatus getGameStatus() {
+        return gameStatus;
     }
 
 }
