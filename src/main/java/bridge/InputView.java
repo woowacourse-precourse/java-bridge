@@ -12,15 +12,22 @@ public class InputView {
      */
     public int readBridgeSize() {
         String inputBridgeSize = readLine();
-
+        validateBrigeSize(inputBridgeSize);
         return changeInt(inputBridgeSize);
     }
 
     public int changeInt(String size) {
-        try{
+        try {
             return Integer.parseInt(size);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 길이는 정수만 입력해주세요." );
+            throw new IllegalArgumentException("[ERROR] 길이는 정수만 입력해주세요.");
+        }
+    }
+
+    public void validateBrigeSize(String size) {
+        int bridgeSize = Integer.parseInt(size);
+        if (bridgeSize < 3 || bridgeSize > 20) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3~ 20 사이만 가능합니다.");
         }
     }
 
