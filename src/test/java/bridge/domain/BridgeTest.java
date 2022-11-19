@@ -1,7 +1,7 @@
 package bridge.domain;
 
-import static bridge.constant.BridgeConstant.MAX_SIZE;
-import static bridge.constant.BridgeConstant.MIN_SIZE;
+import static bridge.domain.BridgeSize.MAX_SIZE;
+import static bridge.domain.BridgeSize.MIN_SIZE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import bridge.BridgeMaker;

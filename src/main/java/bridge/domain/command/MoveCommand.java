@@ -1,11 +1,11 @@
 package bridge.domain.command;
 
-import static bridge.constant.BridgeConstant.LOWER_BLOCK;
-import static bridge.constant.BridgeConstant.UPPER_BLOCK;
-
 import java.util.List;
 
 public class MoveCommand extends Command {
+
+    public static final String UPPER_BLOCK = "U";
+    public static final String LOWER_BLOCK = "D";
 
     public MoveCommand(String message) {
         super(message);

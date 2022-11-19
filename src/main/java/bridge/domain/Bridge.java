@@ -1,9 +1,10 @@
 package bridge.domain;
 
-import static bridge.constant.BridgeConstant.LOWER_BLOCK;
-import static bridge.constant.BridgeConstant.MAX_SIZE;
-import static bridge.constant.BridgeConstant.MIN_SIZE;
-import static bridge.constant.BridgeConstant.UPPER_BLOCK;
+
+import static bridge.domain.BridgeSize.MAX_SIZE;
+import static bridge.domain.BridgeSize.MIN_SIZE;
+import static bridge.domain.command.MoveCommand.LOWER_BLOCK;
+import static bridge.domain.command.MoveCommand.UPPER_BLOCK;
 
 import java.util.List;
 
@@ -18,9 +19,12 @@ public class Bridge {
         this.blocks = blocks;
     }
 
-    public boolean isMoveSuccess(int round,
-                                 String message) {
+    public boolean isMoveSuccess(int round, String message) {
         return blocks.get(round-ROUND_VALUE_TO_BLOCKS_INDEX).equals(message);
+    }
+
+    public List<String> getBlocks() {
+        return blocks;
     }
 
     private void validate(List<String> blocks) {

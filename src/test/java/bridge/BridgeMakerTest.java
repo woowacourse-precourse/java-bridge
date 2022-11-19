@@ -1,7 +1,7 @@
 package bridge;
 
-import static bridge.constant.BridgeConstant.LOWER_BLOCK;
-import static bridge.constant.BridgeConstant.UPPER_BLOCK;
+import static bridge.domain.command.MoveCommand.LOWER_BLOCK;
+import static bridge.domain.command.MoveCommand.UPPER_BLOCK;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;

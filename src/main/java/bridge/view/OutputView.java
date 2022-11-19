@@ -1,8 +1,9 @@
 package bridge.view;
 
-import static bridge.constant.BridgeConstant.LOWER_BLOCK;
-import static bridge.constant.BridgeConstant.UPPER_BLOCK;
 
+
+import static bridge.domain.command.MoveCommand.LOWER_BLOCK;
+import static bridge.domain.command.MoveCommand.UPPER_BLOCK;
 import bridge.domain.GameResult;
 import bridge.domain.MoveResult;
 import java.util.ArrayList;

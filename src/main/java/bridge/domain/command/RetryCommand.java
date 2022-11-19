@@ -1,12 +1,11 @@
 package bridge.domain.command;
 
-import static bridge.constant.BridgeConstant.CLOSE_GAME;
-import static bridge.constant.BridgeConstant.RESTART_GAME;
-
 import java.util.List;
 
 public class RetryCommand extends Command {
 
+    public static final String RESTART_GAME = "R";
+    public static final String CLOSE_GAME = "Q";
 
     public RetryCommand(String message) {
         super(message);

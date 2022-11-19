@@ -1,10 +1,11 @@
 package bridge.domain;
 
-import static bridge.constant.BridgeConstant.MAX_SIZE;
-import static bridge.constant.BridgeConstant.MIN_SIZE;
 import static java.text.MessageFormat.format;
 
 public class BridgeSize {
+
+    public static final int MAX_SIZE = 20;
+    public static final int MIN_SIZE = 3;
 
     private int size;
 
