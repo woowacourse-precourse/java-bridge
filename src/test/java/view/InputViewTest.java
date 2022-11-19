@@ -46,6 +46,7 @@ public class InputViewTest {
         assertThatThrownBy(inputView::readMoving).isInstanceOf(
                 IllegalArgumentException.class);
     }
+
     @Test
     @DisplayName("이동 방향의 입력이 문자가 아닐 경우 예외를 발생시킵니다.")
     void readMovingTest2() {
@@ -56,10 +57,37 @@ public class InputViewTest {
     }
 
     @Test
+    @DisplayName("이동 방향의 입력이 올바를 경우 잘 동작합니다.")
     void readMovingTest3() {
         setTestInput("U");
 
         assertThat(inputView.readMoving()).isEqualTo("U");
+    }
+
+    @Test
+    @DisplayName("게임 종료 여부 커맨드의 입력이 잘못된 문자일 경우 예외를 발생시킵니다.")
+    void readGameCommandTest1() {
+        setTestInput("U");
+
+        assertThatThrownBy(inputView::readGameCommand).isInstanceOf(
+                IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("게임 종료 여부 커맨드의 입력이 문자가 아닐 경우 예외를 발생시킵니다.")
+    void readGameCommandTest2() {
+        setTestInput("1");
+
+        assertThatThrownBy(inputView::readGameCommand).isInstanceOf(
+                IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("게임 종료 여부 커맨드의 입력이 올바를 경우 잘 동작합니다.")
+    void readGameCommandTest3() {
+        setTestInput("R");
+
+        assertThat(inputView.readGameCommand()).isEqualTo("R");
     }
 
     private void setTestInput(String testInput) {
