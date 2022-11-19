@@ -12,7 +12,7 @@ public class BridgeController {
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
     private int gameRound = 0;
-    private String gameResult = "성공";
+    private String gameResult = "";
     private List<String> commands = new ArrayList<>();
 
     public void settingGame() {
@@ -30,13 +30,14 @@ public class BridgeController {
 
     public void run(List<String> bridge) {
         gameRound++;
+        commands.clear();
         for (int i = 0; i < bridge.size(); i++) {
             String command = moveCommand();
             commands.add(command);
             if (!(bridge.get(i).equals(command))) break;
         }
         if (!(commands.equals(bridge))) restart(bridge);
-        commands.clear();
+        gameResult = "성공";
     }
 
 
