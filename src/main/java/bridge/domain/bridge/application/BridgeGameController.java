@@ -41,6 +41,7 @@ public class BridgeGameController {
         do {
             BridgeDirection bridgeDirection = readBridgeDirection();
             bridgeGame.move(bridgeDirection);
+            outputView.printMap(bridgeGame.toBridgeGameMapState());
         } while (true);
     }
 
