@@ -1,7 +1,12 @@
 package bridge;
 
 /**
- * 패키지 변경 가능 메서드 이름 변경 불가 인자 변경 가능 반환 타입 변경 가능 추가 메서드 구현 가능 BridgeGame 클래스에서 사용 불가
+ * 패키지 변경 가능
+ * 메서드 이름 변경 불가
+ * 인자 변경 가능
+ * 반환 타입 변경 가능
+ * 추가 메서드 구현 가능
+ * BridgeGame 클래스에서 사용 불가
  */
 
 import java.util.List;
@@ -23,12 +28,16 @@ public class OutputView {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
 
+    public void printInputRetryCommand() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> bridge, String direction, BridgeGame bridgeGame) {
+    public void printMap(BridgeGame bridgeGame) {
         System.out.println("[" + String.join("|", bridgeGame.getUpLine()) + "]");
         System.out.println("[" + String.join("|", bridgeGame.getDownLine()) + "]");
     }
@@ -38,7 +47,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
-
+    public void printResult(BridgeGame bridgeGame) {
+        System.out.println("최종 게임 결과");
+        printMap(bridgeGame);
+        System.out.println("게임 성공 여부: " + BridgeGame.result);
+        System.out.println("총 시도한 횟수: " + BridgeGame.getCountAttempt());
     }
 }

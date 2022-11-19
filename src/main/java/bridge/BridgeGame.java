@@ -23,10 +23,19 @@ public class BridgeGame {
 
     private static List<String> bridge;
     private static int countAttempt = 0;
+    public static String result = "실패";
 
     BridgeGame() {
         this.upLine = new ArrayList<String>();
         this.downLine = new ArrayList<String>();
+        this.bridgeIndex = 0;
+    }
+
+    public boolean isFinish() {
+        if(BridgeGame.bridge.size() == this.bridgeIndex) {
+            return true;
+        }
+        return false;
     }
 
     public List<String> getUpLine() {

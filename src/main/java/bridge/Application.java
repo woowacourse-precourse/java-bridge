@@ -71,6 +71,12 @@ public class Application {
                     break;
                 }
 
+                if(bridgeGame.isFinish()) {
+                    BridgeGame.result = "성공";
+                    outputView.printResult(bridgeGame);
+                    return;
+                }
+
             }
         }
     }
