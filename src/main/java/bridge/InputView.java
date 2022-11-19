@@ -11,11 +11,13 @@ public class InputView {
     private static final int MAX_BRIDGE_SIZE = 20;
     private static final String BRIDGE_SIZE_INPUT_ERROR_MESSAGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
 
+    private static final String READ_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        System.out.println(READ_BRIDGE_SIZE_MESSAGE);
+        return getValidBridgeSize();
     }
 
     /**
