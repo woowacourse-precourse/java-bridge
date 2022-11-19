@@ -1,13 +1,12 @@
 package bridge;
 
-import static bridge.BridgeExpression.START_POINT;
-import static bridge.BridgeStructure.BRIDGE_FIRST;
 import static bridge.Expression.DOWN;
 import static bridge.Expression.UP;
 
-import bridge.BridgeNumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -26,23 +25,22 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
 
-        List<String> bridge = new ArrayList<>();
-
-        for ( int i = 0; i < size; i++){
-            bridge.add(BRIDGE_FIRST.buildStructure());
-        }
+        List<String> bridge
+                = IntStream.generate(bridgeNumberGenerator::generate)
+                .limit(size)
+                .mapToObj(this::expressionByNumber)
+                .collect(Collectors.toList());
 
         return bridge;
 
     }
 
-
-    private String expressionByNumber() {
+    private String expressionByNumber(int bridgeNumber) {
         String expression = "";
-        if (bridgeNumberGenerator.generate() == 0 ) {
+        if (bridgeNumber == 0 ) {
             expression = DOWN.expressThat();
         }
-        if ( bridgeNumberGenerator.generate() == 1 ) {
+        if ( bridgeNumber == 1 ) {
             expression = UP.expressThat();
         }
 
