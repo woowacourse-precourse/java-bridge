@@ -1,18 +1,20 @@
 package bridge.constant;
 
-public enum Directions {
-    UP('U', 1),
-    DOWN('D', 0);
+import java.util.Arrays;
 
-    private final Character symbol;
+public enum Directions {
+    UP("U", 1),
+    DOWN("D", 0);
+
+    private final String symbol;
     private final int digit;
 
-    private Directions (Character symbol, int digit) {
+    private Directions (String symbol, int digit) {
         this.symbol = symbol;
         this.digit = digit;
     }
 
-    public Character getSymbol() {
+    public String getSymbol() {
         return symbol;
     }
 
