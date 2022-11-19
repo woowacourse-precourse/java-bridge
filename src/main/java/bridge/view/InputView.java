@@ -21,14 +21,12 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println(INPUT_BRIDGE_LENGTH);
         String bridgeLength = Console.readLine();
         try {
             return parseIntOrThrowException(bridgeLength);
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            bridgeLength = Console.readLine();
-            return parseIntOrThrowException(bridgeLength);
+            return readBridgeSize();
         }
     }
 
@@ -36,14 +34,12 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println(INPUT_MOVE_UP_OR_DOWN);
         String input = Console.readLine();
         try {
             return throwExceptionIfNotUpAndDown(input);
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            input = Console.readLine();
-            return throwExceptionIfNotUpAndDown(input);
+            return readMoving();
         }
     }
 
@@ -51,19 +47,29 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println(INPUT_RESTART_OR_QUIT);
         String input = Console.readLine();
         try {
             return throwExceptionIfNotRetryAndQuit(input);
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            input = Console.readLine();
-            return throwExceptionIfNotRetryAndQuit(input);
+            return readGameCommand();
         }
     }
 
     public void getBridgeGameStartMsg(){
         System.out.println(BRIDGE_GAME_START_MSG);
+    }
+
+    public void getInputBridgeLengthMsg(){
+        System.out.println(INPUT_BRIDGE_LENGTH);
+    }
+
+    public void getInputMoveUpOrDown() {
+        System.out.println(INPUT_MOVE_UP_OR_DOWN);
+    }
+
+    public void getInputRestartOrQuit() {
+        System.out.println(INPUT_RESTART_OR_QUIT);
     }
 
     private int parseIntOrThrowException(String input){
