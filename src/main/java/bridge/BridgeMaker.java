@@ -14,16 +14,8 @@ public class BridgeMaker {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    // TODO: 더 효율적으로 코드 작성할 수 있는 방법(ex.enum)생각해보기
     public String returnMove(int number) {
-        String direction = "";
-        if (number == 0) {
-            direction = "D";
-        }
-        if (number == 1) {
-            direction = "U";
-        }
-        return direction;
+        return BridgeMove.returnMoving(number);
     }
 
     /**
