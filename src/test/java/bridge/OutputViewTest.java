@@ -30,5 +30,12 @@ class OutputViewTest {
 
     @Test
     void printResult() {
+        OutputView outputView = new OutputView();
+        GameStatus gameStatus = new GameStatus();
+        gameStatus.setGameWon(true);
+        gameStatus.setRetryCount(4);
+        List<String> bridgeMoved = List.of("U", "D", "U", "U");
+
+        outputView.printResult(bridgeMoved, 4, gameStatus);
     }
 }
