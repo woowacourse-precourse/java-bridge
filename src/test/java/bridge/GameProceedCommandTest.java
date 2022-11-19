@@ -1,7 +1,7 @@
 package bridge;
 
 import bridge.domain.player.GameProceedCommand;
-import bridge.view.InputException;
+import bridge.view.input.InputException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

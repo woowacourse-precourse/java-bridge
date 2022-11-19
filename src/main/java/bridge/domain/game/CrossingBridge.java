@@ -2,8 +2,8 @@ package bridge.domain.game;
 
 import bridge.domain.player.MovementCommand;
 import bridge.domain.result.ResultRendering;
-import bridge.view.InputView;
-import bridge.view.OutputView;
+import bridge.view.input.InputCommandReader;
+import bridge.view.output.OutputView;
 
 import java.util.List;
 
@@ -13,19 +13,19 @@ public class CrossingBridge {
 
 	private final boolean crossComplete;
 
-	public CrossingBridge(InputView inputView, List<String> bridgeNowCrossing) {
-		crossingTrial(inputView, bridgeNowCrossing);
+	public CrossingBridge(List<String> bridgeNowCrossing) {
+		crossingTrial(bridgeNowCrossing);
 		this.crossComplete = isCompleteCrossing(bridgeNowCrossing);
 	}
 
-	public static CrossingBridge over(InputView inputView, List<String> bridgeNowCrossing) {
-		return new CrossingBridge(inputView, bridgeNowCrossing);
+	public static CrossingBridge over(List<String> bridgeNowCrossing) {
+		return new CrossingBridge(bridgeNowCrossing);
 	}
 
-	private void crossingTrial(InputView inputView, List<String> bridgeNowCrossing) {
+	private void crossingTrial(List<String> bridgeNowCrossing) {
 		do {
 			OutputView.withContentOf(REQUEST_MOVEMENT, true, false).ConsoleMessage();
-			MovementCommand movementCommand = inputView.readMovement();
+			MovementCommand movementCommand = (MovementCommand) InputCommandReader.read("Movement").command();
 			CrossingDecision crossingDecision = CrossingDecision.judgingBy(movementCommand, bridgeNowCrossing);
 			stepAhead(crossingDecision, bridgeNowCrossing);
 			OutputView.withContentOf(ResultRendering.generatedBy(crossingDecision, movementCommand).getBridgeDescription(), false, false).ConsoleMessage();

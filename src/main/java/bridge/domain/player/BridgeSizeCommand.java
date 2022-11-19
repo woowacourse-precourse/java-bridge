@@ -1,16 +1,16 @@
 package bridge.domain.player;
 
-import bridge.view.InputException;
-import bridge.view.InputValidator;
+import bridge.view.input.InputException;
+import bridge.view.input.InputValidator;
 
-public class BridgeSize implements InputValidator {
+public class BridgeSizeCommand implements InputValidator {
 
 	private static final int BRIDGE_SIZE_MIN = 3;
 	private static final int BRIDGE_SIZE_MAX = 20;
 
 	private final int bridgeSize;
 
-	public BridgeSize(int bridgeSize) {
+	public BridgeSizeCommand(int bridgeSize) {
 		validate(bridgeSize);
 		this.bridgeSize = bridgeSize;
 	}
@@ -20,9 +20,9 @@ public class BridgeSize implements InputValidator {
 		isNumberInBetween(inputBridgeSize);
 	}
 
-	public static BridgeSize valueOf(String inputBridgeSize) {
+	public static BridgeSizeCommand valueOf(String inputBridgeSize) {
 		try {
-			return new BridgeSize(Integer.parseInt(inputBridgeSize));
+			return new BridgeSizeCommand(Integer.parseInt(inputBridgeSize));
 		} catch (NumberFormatException e) {
 			throw new InputException(InputException.NOT_A_NUMBER);
 		}

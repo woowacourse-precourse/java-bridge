@@ -2,9 +2,10 @@ package bridge.domain.game;
 
 import bridge.domain.bridge.Bridge;
 import bridge.domain.bridgeMaker.BridgeMaker;
+import bridge.domain.player.BridgeSizeCommand;
 import bridge.domain.player.GameProceedCommand;
-import bridge.view.InputView;
-import bridge.view.OutputView;
+import bridge.view.input.InputCommandReader;
+import bridge.view.output.OutputView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -22,31 +23,31 @@ public class BridgeGame {
 	private String crossFailOrSuccess;
 	private int trialCount;
 
-	public void play(InputView inputView, BridgeMaker bridgeMaker) {
+	public void play(BridgeMaker bridgeMaker) {
 		OutputView.withContentOf(GAME_START_INFO, false, true).ConsoleMessage();
 
 		OutputView.withContentOf(REQUEST_BRIDGE_SIZE, false, false).ConsoleMessage();
-		Bridge bridge = new Bridge(inputView.readBridgeSize(), bridgeMaker);
+		Bridge bridge = new Bridge((BridgeSizeCommand) InputCommandReader.read("BridgeSize").command(), bridgeMaker);
 
-		crossingTrial(inputView, bridge);
+		crossingTrial(bridge);
 	}
 
-	private void crossingTrial(InputView inputView, Bridge bridge) {
+	private void crossingTrial(Bridge bridge) {
 		do {
 			trialCount++;
 			List<String> bridgeNowCrossing = bridge.getBridgeToCross();
-			CrossingBridge crossingBridge = CrossingBridge.over(inputView, bridgeNowCrossing);
+			CrossingBridge crossingBridge = CrossingBridge.over(bridgeNowCrossing);
 			crossFailOrSuccess = crossingBridge.isCrossComplete();
-		} while (isTrialContinue(retryOrQuit(inputView)));
+		} while (isTrialContinue(retryOrQuit()));
 	}
 
 	private boolean isTrialContinue(String commandChoice) {
 		return !(crossFailOrSuccess.equals(RESULT_SUCCESS) || GameProceedCommand.QUIT.equals(commandChoice));
 	}
 
-	private String retryOrQuit(InputView inputView) {
+	private String retryOrQuit() {
 		String commandChoice = "";
-		if (crossFailOrSuccess.equals(RESULT_SUCCESS) || GameProceedCommand.QUIT.equals(requestRetry(inputView).getGameCommand())) {
+		if (crossFailOrSuccess.equals(RESULT_SUCCESS) || GameProceedCommand.QUIT.equals(requestRetry().getGameCommand())) {
 			commandChoice = GameProceedCommand.QUIT;
 			return commandChoice;
 		}
@@ -55,9 +56,9 @@ public class BridgeGame {
 		return commandChoice;
 	}
 
-	public GameProceedCommand requestRetry(InputView inputView) {
-		OutputView.withContentOf(REQUEST_RETRY, false, false).ConsoleMessage();
-		return inputView.readGameCommand();
+	public GameProceedCommand requestRetry() {
+		OutputView.withContentOf(REQUEST_RETRY, true, false).ConsoleMessage();
+		return (GameProceedCommand) InputCommandReader.read("GameProceed").command();
 	}
 
 	public HashMap<String, Integer> getGameResult() {

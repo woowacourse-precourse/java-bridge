@@ -14,6 +14,7 @@ public class ResultRendering {
 	private static final String RESULT_FAIL_OR_SUCCESS = "게임 성공 여부: %s";
 	private static final String RESULT_TRIAL = "총 시도한 횟수: %d";
 	private static final String ENTER = "\n";
+	private static final String PARAGRAPH = "\n\n";
 
 	private static String BridgeDescription;
 	private static String upperBridgeDescription;
@@ -41,7 +42,7 @@ public class ResultRendering {
 
 	public static String renderFinalResult(HashMap<String, Integer> gameResult) {
 		return RESULT_PRESENTATION + ENTER
-				+ BridgeDescription + ENTER
+				+ BridgeDescription + PARAGRAPH
 				+ String.format(RESULT_FAIL_OR_SUCCESS, gameResult.keySet().toArray()[0]) + ENTER
 				+ String.format(RESULT_TRIAL, (Integer) gameResult.values().toArray()[0]);
 	}
@@ -85,7 +86,7 @@ public class ResultRendering {
 	}
 
 	public String constructTotalBridgeMap() {
-		return upperBridgeDescription + ENTER + underBridgeDescription + ENTER;
+		return upperBridgeDescription + ENTER + underBridgeDescription;
 	}
 
 	public static String getBridgeDescription() {

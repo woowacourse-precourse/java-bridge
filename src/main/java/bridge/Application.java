@@ -1,7 +1,7 @@
 package bridge;
 
 import bridge.controller.Controller;
-import bridge.view.OutputView;
+import bridge.view.output.OutputView;
 
 public class Application {
 

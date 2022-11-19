@@ -1,7 +1,7 @@
 package bridge.domain.player;
 
-import bridge.view.InputException;
-import bridge.view.InputValidator;
+import bridge.view.input.InputException;
+import bridge.view.input.InputValidator;
 
 public class GameProceedCommand implements InputValidator {
 

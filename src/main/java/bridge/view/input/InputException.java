@@ -1,4 +1,6 @@
-package bridge.view;
+package bridge.view.input;
+
+import bridge.view.output.OutputView;
 
 public class InputException extends IllegalArgumentException {
 
