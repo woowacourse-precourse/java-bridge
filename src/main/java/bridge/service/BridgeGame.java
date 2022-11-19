@@ -53,14 +53,14 @@ public class BridgeGame {
         return playState.nowState();
     }
 
-    public boolean isNotBridgeLength(int crossCount) {
-        checkBridge();
-        return bridge.isNotSize(crossCount);
-    }
-
     public boolean movable() {
         checkResult();
         return result.movable();
+    }
+
+    public boolean checkCross() {
+        checkResult();
+        return bridge.isNotSize(result.stateSize());
     }
 
     public Result recentResult() {
@@ -85,12 +85,6 @@ public class BridgeGame {
 
     private void checkResult() {
         if (result == null) {
-            throw new IllegalStateException(NO_START_GAME_ERROR);
-        }
-    }
-
-    private void checkBridge() {
-        if (bridge == null) {
             throw new IllegalStateException(NO_START_GAME_ERROR);
         }
     }
