@@ -1,11 +1,4 @@
 package bridge;
-/*
- ** 제공된 BridgeGame 클래스를 활용해 구현해야 한다.
- ** BridgeGame에 필드(인스턴스 변수)를 추가할 수 있다.
- ** BridgeGame의 패키지는 변경할 수 있다.
- ** BridgeGame의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
- ** 게임 진행을 위해 필요한 메서드를 추가 하거나 변경할 수 있다.
- */
 
 import java.util.List;
 
@@ -17,6 +10,7 @@ public class BridgeGame {
     private final Move move = new Move();
     private final OutputView outputView = new OutputView();
     private boolean isTrue = true;
+    //private boolean isClear = true;
 
     public static List<String> gameSet(int userInput) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
@@ -50,9 +44,13 @@ public class BridgeGame {
             move.clearMoving();
             return isTrue = true;
         }
+        printMovingAndResult();
+        return isTrue = false;
+    }
+
+    public void printMovingAndResult() {
         System.out.println(RESULT.getValue());
         move.printMoving();
         outputView.printResult();
-        return isTrue = false;
     }
 }
