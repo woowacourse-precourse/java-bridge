@@ -12,6 +12,14 @@ public class BridgeGameResult {
     public BridgeGameResult(List<String> bridge, List<String> playerInput) {
         checkTop(bridge, playerInput);
         checkBottom(bridge,playerInput);
+        makeGameResult();
+    }
+
+    public void makeGameResult(){
+        List1="["+List1+"]";
+        List2="["+List2+"]";
+        bridgeGameResult.add(List1);
+        bridgeGameResult.add(List2);
     }
 
     public void checkTop(List<String> bridge, List<String> playerInput) {
