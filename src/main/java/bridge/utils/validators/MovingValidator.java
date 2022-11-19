@@ -1,6 +1,6 @@
 package bridge.utils.validators;
 
-import bridge.utils.enums.Moving;
+import bridge.domain.enums.Moving;
 
 public class MovingValidator {
 

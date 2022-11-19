@@ -1,6 +1,6 @@
 package bridge.utils.validators;
 
-import bridge.utils.enums.GameCommand;
+import bridge.domain.enums.GameCommand;
 
 public class GameCommandValidator {
 
