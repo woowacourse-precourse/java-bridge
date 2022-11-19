@@ -6,67 +6,67 @@ import org.junit.jupiter.api.Test;
 
 public class UserInputExceptionsTest {
 	@DisplayName("다리길이 : 최소경계값") @Test public void 유효입력1() {
-		boolean lengthFlag = UserInputExceptions.isNotValidLength("3");
+		boolean lengthFlag = UserInputExceptions.isNotValidSize("3");
 		Assertions.assertThat(lengthFlag).isFalse();
 	}
 
 	@DisplayName("다리길이 : 최대경계값") @Test public void 유효입력2() {
-		boolean lengthFlag = UserInputExceptions.isNotValidLength("20");
+		boolean lengthFlag = UserInputExceptions.isNotValidSize("20");
 		Assertions.assertThat(lengthFlag).isFalse();
 	}
 
 	@DisplayName("다리길이 : 범위 내의 숫자") @Test public void 유효입력3() {
-		boolean lengthFlag = UserInputExceptions.isNotValidLength("14");
+		boolean lengthFlag = UserInputExceptions.isNotValidSize("14");
 		Assertions.assertThat(lengthFlag).isFalse();
 	}
 
 	@DisplayName("다리길이 : 범위 외의 수(세자리 수 입력)") @Test public void 유효하지_않은_숫자인_경우1() {
-		boolean lengthFlag = UserInputExceptions.isNotValidLength("333");
+		boolean lengthFlag = UserInputExceptions.isNotValidSize("333");
 		Assertions.assertThat(lengthFlag).isTrue();
 	}
 
 	@DisplayName("다리길이 : 범위 외의 수(두자리 수 입력)") @Test public void 유효하지_않은_숫자인_경우2() {
-		boolean lengthFlag = UserInputExceptions.isNotValidLength("21");
+		boolean lengthFlag = UserInputExceptions.isNotValidSize("21");
 		Assertions.assertThat(lengthFlag).isTrue();
 	}
 
 	@DisplayName("다리길이 : 범위 외의 수(한자리 수 입력)") @Test public void 유효하지_않은_숫자인_경우3() {
-		boolean lengthFlag = UserInputExceptions.isNotValidLength("2");
+		boolean lengthFlag = UserInputExceptions.isNotValidSize("2");
 		Assertions.assertThat(lengthFlag).isTrue();
 	}
 
 	@DisplayName("다리길이 : 한글입력") @Test public void 글자인_경우1() {
-		boolean lengthFlag = UserInputExceptions.isNotValidLength("가");
+		boolean lengthFlag = UserInputExceptions.isNotValidSize("가");
 		Assertions.assertThat(lengthFlag).isTrue();
 	}
 
 	@DisplayName("다리길이 : 영어입력") @Test public void 글자인_경우2() {
-		boolean lengthFlag = UserInputExceptions.isNotValidLength("A");
+		boolean lengthFlag = UserInputExceptions.isNotValidSize("A");
 		Assertions.assertThat(lengthFlag).isTrue();
 	}
 
 	@DisplayName("다리길이 : 소수점 입력") @Test public void 글자인_경우3() {
-		boolean lengthFlag = UserInputExceptions.isNotValidLength("3.4");
+		boolean lengthFlag = UserInputExceptions.isNotValidSize("3.4");
 		Assertions.assertThat(lengthFlag).isTrue();
 	}
 
 	@DisplayName("다리길이 : 음수 입력") @Test public void 글자인_경우4() {
-		boolean lengthFlag = UserInputExceptions.isNotValidLength("-22");
+		boolean lengthFlag = UserInputExceptions.isNotValidSize("-22");
 		Assertions.assertThat(lengthFlag).isTrue();
 	}
 
 	@DisplayName("다리길이 : 특수문자 입력") @Test public void 글자인_경우5() {
-		boolean lengthFlag = UserInputExceptions.isNotValidLength("!@$%#");
+		boolean lengthFlag = UserInputExceptions.isNotValidSize("!@$%#");
 		Assertions.assertThat(lengthFlag).isTrue();
 	}
 
 	@DisplayName("다리길이 : 스페이스바 입력") @Test public void 글자인_경우6() {
-		boolean lengthFlag = UserInputExceptions.isNotValidLength(" ");
+		boolean lengthFlag = UserInputExceptions.isNotValidSize(" ");
 		Assertions.assertThat(lengthFlag).isTrue();
 	}
 
 	@DisplayName("다리길이 : 아무값도 입력하지 않음") @Test public void 아무입력도_없는_경우() {
-		boolean lengthFlag = UserInputExceptions.isNotValidLength("");
+		boolean lengthFlag = UserInputExceptions.isNotValidSize("");
 		Assertions.assertThat(lengthFlag).isTrue();
 	}
 

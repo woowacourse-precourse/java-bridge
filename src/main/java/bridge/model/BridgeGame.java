@@ -14,12 +14,12 @@ public class BridgeGame {
 	private int totalTry;
 	private boolean gameClear;
 
-	public void initializeBridge(String bridgeLength) {
-		if (UserInputExceptions.isNotValidLength(bridgeLength)) {
-			throw new IllegalArgumentException(Messages.errorLength);
+	public void initializeBridge(String bridgeSize) {
+		if (UserInputExceptions.isNotValidSize(bridgeSize)) {
+			throw new IllegalArgumentException(ErrorMessages.errorLength);
 		}
 
-		int convertedLength = Utils.convertBridgeLengthToNumber(bridgeLength);
+		int convertedLength = Utils.convertBridgeLengthToNumber(bridgeSize);
 		this.bridge = GameSetting.setBridgeForStartGame(convertedLength);
 		currentStep = GameSetting.START_STEP;
 		totalTry = GameSetting.FIRST_TRY;
@@ -33,7 +33,7 @@ public class BridgeGame {
 	 */
 	public MoveCommandDto move(String moveCommand) {
 		if (UserInputExceptions.isNotValidMove(moveCommand)) {
-			throw new IllegalArgumentException(Messages.errorMovableCommand);
+			throw new IllegalArgumentException(ErrorMessages.errorMovableCommand);
 		}
 
 		boolean moveFlag = BridgeChecker.isMovableLocation(bridge, moveCommand, currentStep);
@@ -50,7 +50,7 @@ public class BridgeGame {
 	 */
 	public GameResultDto retry(String endCommand) {
 		if (UserInputExceptions.isNotValidEndCommand(endCommand)) {
-			throw new IllegalArgumentException(Messages.errorEndCommand);
+			throw new IllegalArgumentException(ErrorMessages.errorEndCommand);
 		}
 
 		if (endCommand.equals("R")) {
