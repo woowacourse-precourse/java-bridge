@@ -25,6 +25,11 @@ public class BridgeGameCycle {
 
 
     }
+    private void beforeGame() {
+        printGameStart();
+        printAskLength();
+        bridgeLength = inputView.readBridgeSize();
+    }
 
 
 }
