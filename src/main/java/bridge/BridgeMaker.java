@@ -72,9 +72,11 @@ public class BridgeMaker {
         }
     }
 
-    public void extendMap() {
-        mapUpper.set(mapUpper.size()-1,"|");
-        mapLower.set(mapLower.size()-1,"|");
+    public void extendMap(int index) {
+        if (index>0) {
+            mapUpper.set(mapUpper.size()-1,"|");
+            mapLower.set(mapLower.size()-1,"|");
+        }
     }
 
     public boolean checkWhenInputIsD(String answer) {
@@ -112,7 +114,7 @@ public class BridgeMaker {
 
     public boolean makeMap(List<String> crossable) {
         String moving;
-        boolean isWin = false;
+        boolean isWin;
         int index = 0;
 
         startMap();
@@ -122,12 +124,10 @@ public class BridgeMaker {
             }
             outputView.printWhereToGoInputRequest();
             moving = inputView.readMoving();
-            if (index>0) {
-                extendMap();
-            }
+            extendMap(index);
             isWin= runMap(moving, crossable.get(index));
-            index++;
             endMap();
+            index++;
             outputView.printMap(mapUpper,mapLower);
             if (!isWin) {
                 return false;
