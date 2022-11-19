@@ -1,5 +1,9 @@
 package bridge;
 
+import static bridge.Checker.*;
+
+import constant.Values.BridgeCase;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,12 +11,16 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    private Checker checker = new Checker();
     private List<String> bridge;
+    private List<String> moves;
+    private List<BridgeCase> results;
     private int index;
 
     public BridgeGame(int size) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = bridgeMaker.makeBridge(size);
+        moves=new ArrayList<>();
         index=0;
 
         System.out.println(bridge);
@@ -23,8 +31,11 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String choice) {
-
+    public BridgeCase move(String move) {
+        moves.add(move);
+        BridgeCase bridgeCase = checker.checkMoveSuccess(move,bridge.get(index));
+        results.add(bridgeCase);
+        return bridgeCase;
     }
 
     /**
@@ -33,5 +44,26 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        moves=new ArrayList<>();
+    }
+
+    public Checker getChecker() {
+        return checker;
+    }
+
+    public List<String> getBridge() {
+        return bridge;
+    }
+
+    public List<String> getMoves() {
+        return moves;
+    }
+
+    public List<BridgeCase> getResults() {
+        return results;
+    }
+
+    public int getIndex() {
+        return index;
     }
 }
