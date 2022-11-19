@@ -14,17 +14,6 @@ public class BridgeValue {
         return tryCounts;
     }
 
-    public static boolean checkReTry(String command) {
-        String retry = Information
-                .RE_TRY
-                .getValue();
-
-        if (retry.equals(command)) {
-            return true;
-        }
-
-        return false;
-    }
 
     public static String getDivisionOrBracket(int size, int index) {
         if (size == index) {

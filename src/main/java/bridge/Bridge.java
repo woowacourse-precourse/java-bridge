@@ -11,7 +11,7 @@ public class Bridge {
         this.states = states;
     }
 
-    public void bridgeDraw(Bridge userBridge, int tryCounts) {
+    public void bridgeDrawResult(Bridge userBridge, int tryCounts) {
         OutputView outputView = new OutputView();
         outputView.printResult(new Bridge(states), userBridge, tryCounts);
     }
@@ -76,7 +76,15 @@ public class Bridge {
 
     public boolean checkRetry() {
         String command = new InputView().readGameCommand();
-        return BridgeValue.checkReTry(command);
+        String retry = BridgeValue.Information
+                .RE_TRY
+                .getValue();
+
+        if (retry.equals(command)) {
+            return true;
+        }
+
+        return false;
     }
 
     private String getUpMap(Bridge bridge) {

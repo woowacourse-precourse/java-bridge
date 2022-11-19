@@ -53,7 +53,9 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     private void retry(Bridge userBridge, int tryCounts) {
-        boolean isRetry = userBridge.checkRetry();
+
+        boolean isRetry = checkRetry(userBridge);
+
         if (isRetry) {
             userBridge.removeState();
             play(userBridge, tryCounts+1);
@@ -63,7 +65,7 @@ public class BridgeGame {
     }
 
     private void draw(Bridge userBridge, int tryCounts) {
-        computerBridge.bridgeDraw(userBridge, tryCounts);
+        computerBridge.bridgeDrawResult(userBridge, tryCounts);
     }
 
     private boolean checkMoveAble(Bridge userBridge) {
@@ -72,4 +74,7 @@ public class BridgeGame {
         return checkMoveAble;
     }
 
+    private boolean checkRetry(Bridge userBridge) {
+        return userBridge.checkRetry();
+    }
 }
