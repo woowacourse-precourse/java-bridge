@@ -25,25 +25,26 @@ class BridgeGameTest {
         bridgeGame.move("D");
         assertThat(bridgeGame.isStepSuccess()).isEqualTo(false);
         assertThat(bridgeGame.analyzeResult())
-                .isEqualTo(Arrays.asList(Arrays.asList(" "), Arrays.asList("X")));
+                .isEqualTo(Arrays.asList(List.of(" "), List.of("X")));
 
     }
 
     @Test
     void checkMoveCorrectly() {
-        for(String direction:Arrays.asList("U","D","D")){
+        for (String direction : Arrays.asList("U", "D", "D")) {
             bridgeGame.move(direction);
         }
         assertThat(bridgeGame.isStepSuccess()).isEqualTo(true);
         assertThat(bridgeGame.analyzeResult())
-                .isEqualTo(Arrays.asList(Arrays.asList("O"," "," "), Arrays.asList(" ","O","O")));
+                .isEqualTo(Arrays.asList(Arrays.asList("O", " ", " "), Arrays.asList(" ", "O", "O")));
     }
+
     @Test
     void checkRetry() {
         bridgeGame.move("D");
         assertThat(bridgeGame.isStepSuccess()).isEqualTo(false);
         assertThat(bridgeGame.analyzeResult())
-                .isEqualTo(Arrays.asList(Arrays.asList(" "), Arrays.asList("X")));
+                .isEqualTo(Arrays.asList(List.of(" "), List.of("X")));
         bridgeGame.retry();
         assertThat(bridgeGame.getAttempt())
                 .isEqualTo(2);

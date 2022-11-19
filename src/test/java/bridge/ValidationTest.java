@@ -13,24 +13,27 @@ import org.junit.jupiter.params.provider.CsvSource;
 class ValidationTest {
     @ParameterizedTest
     @DisplayName("[ERROR] 적절하지 않은 값을 다리 사이즈로 입력시 예외 발생")
-    @CsvSource({"1a2","21","2"})
-    void invalidInputInBridgeSize(String userInput){
-        assertThatThrownBy(()->validateBridgeSize(userInput))
+    @CsvSource({"1a2", "21", "2"})
+    void invalidInputInBridgeSize(String userInput) {
+        assertThatThrownBy(() -> validateBridgeSize(userInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ERROR_INVALID_BRIDGE_SIZE);
     }
+
     @ParameterizedTest
     @DisplayName("[ERROR] U 또는 D 이외의 값 입력시 예외 발생")
-    @CsvSource({"1U","u","A"})
-    void invalidInputInMoveCommand(String userInput){
-        assertThatThrownBy(()->validateMoveCommand(userInput))
+    @CsvSource({"1U", "u", "A"})
+    void invalidInputInMoveCommand(String userInput) {
+        assertThatThrownBy(() -> validateMoveCommand(userInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ERROR_INVALID_MOVE_COMMAND);
-    }    @ParameterizedTest
+    }
+
+    @ParameterizedTest
     @DisplayName("[ERROR] R 또는 Q 이외의 값 입력시 예외 발생")
-    @CsvSource({"1Q","1R","QQ","RR"})
-    void invalidInputInGameCommand(String userInput){
-        assertThatThrownBy(()->validateMoveCommand(userInput))
+    @CsvSource({"1Q", "1R", "QQ", "RR"})
+    void invalidInputInGameCommand(String userInput) {
+        assertThatThrownBy(() -> validateMoveCommand(userInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ERROR_INVALID_MOVE_COMMAND);
     }

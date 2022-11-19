@@ -1,7 +1,6 @@
 package bridge;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,14 +21,21 @@ class BridgeTest {
         bridge = new Bridge(new ArrayList<>(Arrays.asList("U", "U", "U")));
     }
 
+    private static Stream<Arguments> generateBridgeExpectedData() {
+        return Stream.of(
+                Arguments.of(Arrays.asList("U", "U", "U"), true),
+                Arguments.of(Arrays.asList("U", "U", "D"), false)
+        );
+    }
+
     @Test
     void checkBridgeSizeEquals() {
         bridge.isSizeEquals(3);
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"U,0,true","D,0,false"},delimiter = ',')
-    void checkStepSuccess(String currentItem,int index,boolean expected) {
+    @CsvSource(value = {"U,0,true", "D,0,false"}, delimiter = ',')
+    void checkStepSuccess(String currentItem, int index, boolean expected) {
         assertThat(bridge.isStepSuccess(currentItem, index))
                 .isEqualTo(expected);
     }
@@ -39,12 +45,5 @@ class BridgeTest {
     void checkCompareBridgeWith(List<String> bridge, boolean expected) {
         assertThat(BridgeTest.bridge.compareBridgeWith(bridge))
                 .isEqualTo(expected);
-    }
-
-    private static Stream<Arguments> generateBridgeExpectedData() {
-        return Stream.of(
-                Arguments.of( Arrays.asList("U", "U", "U"), true),
-                Arguments.of( Arrays.asList("U", "U", "D"), false)
-        );
     }
 }

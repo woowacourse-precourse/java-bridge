@@ -48,7 +48,7 @@ public class InputView {
             String userInput = readLine();
             validateGameCommand(userInput);
             return userInput;
-        }catch (IllegalArgumentException exception) {
+        } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             System.out.println("다시 입력해주세요.");
             return readGameCommand();
