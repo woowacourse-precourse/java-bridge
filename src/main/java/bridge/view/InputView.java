@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.util.TypeConverter;
 import bridge.validate.ValidateInput;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -11,6 +12,7 @@ public class InputView {
     public static int readBridgeSize() {
         String beforeValidateBridgeSize = Console.readLine();
         ValidateInput.validateBridgeSize(beforeValidateBridgeSize);
+        int bridgeSize = TypeConverter.stringToInt(beforeValidateBridgeSize);
     }
     /**
      * 사용자가 이동할 칸을 입력받는다.
