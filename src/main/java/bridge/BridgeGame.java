@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.domain.Bridge;
+import bridge.type.FinishCondition;
 import bridge.type.PassCondition;
 
 
@@ -36,6 +37,13 @@ public class BridgeGame {
 
     public void quit() {
         gameStatusOperator.toQuit();
+    }
+
+    public FinishCondition checkWhetherFinished() {
+        if (bridge.checkWhetherLastBlock(gameStatusOperator.getCurrentPosition())) {
+            return FinishCondition.FINISHED;
+        }
+        return FinishCondition.NOT_FINISHED;
     }
 
 }

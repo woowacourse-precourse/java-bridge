@@ -16,4 +16,9 @@ public class Bridge {
         if (selectBlock == passableBlock) return true;
         return false;
     }
+
+    public Boolean checkWhetherLastBlock(Integer currentPosition) {
+        if (currentPosition == bridgeMap.size() - 1) return true;
+        return false;
+    }
 }
