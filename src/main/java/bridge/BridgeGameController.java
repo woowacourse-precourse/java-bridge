@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
+import bridge.domain.FootrestLocation;
 import bridge.utils.BridgeMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -27,6 +28,46 @@ public class BridgeGameController {
     public void run() {
         System.out.println("다리 건너기 게임을 시작합니다"); // 위치 여기가 맞을까?
         Bridge bridge = this.makeBridge();
+        game.saveBridge(bridge);
+        Integer movingResult = moveUser();
+        //결정하다 다음 행동을
+        if (movingResult == -1) {
+            determineWhatToDo();
+        }
+        // 종료(1인 경우, 성공적인 로직은 바로 종료)
+        this.outputView.printResult();
+    }
+
+    private void determineWhatToDo() {
+        String command = this.inputView.readGameCommand();
+        if (command.equals('R')) {
+            //발자취를 초기화하고
+            Integer movingResult = moveUser();
+            //결정하다 다음 행동을
+            if (movingResult == -1) {
+                determineWhatToDo();
+            }
+            this.outputView.printResult();
+        }
+        if (command.equals('Q')) {
+            this.outputView.printResult();
+        }
+    }
+
+    private Integer moveUser() {
+        try {
+            String command = inputView.readMoving();
+//            FootrestLocation footrestLocation = FootrestLocation.valueOf(command);
+            Integer movingResult = game.move(FootrestLocation.DOWN);
+            // game에게 발자취를 꺼낸다
+            System.out.println("movingResult is " + movingResult);
+            if (movingResult == 0) {
+                return moveUser();
+            }
+            return movingResult;
+        } catch (IllegalArgumentException e) {
+            return moveUser();
+        }
     }
 
     private Bridge makeBridge() {

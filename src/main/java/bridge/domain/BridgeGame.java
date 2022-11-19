@@ -8,13 +8,32 @@ package bridge.domain;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private FootPrint footPrint;
+    private Bridge bridge;
+
+    public BridgeGame() {
+        footPrint = new FootPrint();
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     * @param footrestLocation
      */
-    public void move() {
+    public Integer move(FootrestLocation footrestLocation) {
+        System.out.println("움직인다");
+        // Bridge 초기화 안됐으면 일단 예외 반환(모든 메서드 마찬가지)
+
+        // footPrint의 다음 차례를 꺼낸다
+        // board에 이동이 가능한지 확인
+        // 이동이 가능하면
+        //   footprint에 기록
+        //   이동한 곳이 X라면 -> 실패 반환(-1)
+        //   이동한 곳이 O라면 ->
+        //     만약 board의 끝점이었다면 -> 성공(1) 반환
+        //     아니라면 움직였다(0) 반환
+        return 0;
     }
 
     /**
@@ -23,5 +42,9 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+    }
+
+    public void saveBridge(Bridge bridge) {
+        this.bridge = bridge;
     }
 }
