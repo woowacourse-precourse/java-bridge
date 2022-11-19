@@ -49,7 +49,7 @@ public class BridgeGame {
         makeMap(nowState, upPrint, downPrint);
         upPrint.append("]");
         downPrint.append("]");
-        if(!isGameEnd())stage++;
+        stage++;
         upPrint.append("\n").append(downPrint);
         return upPrint.toString();
     }
@@ -65,10 +65,10 @@ public class BridgeGame {
     private void failPrint(StringBuilder upPrint, StringBuilder downPrint) {
         if (bridge.get(stage).equals(UP.key())) {
             upPrint.append("  ");
-            downPrint.append(" x ");
+            downPrint.append(" X ");
         }
         if (bridge.get(stage).equals(DOWN.key())) {
-            upPrint.append(" x ");
+            upPrint.append(" X ");
             downPrint.append("   ");
         }
     }
@@ -79,12 +79,12 @@ public class BridgeGame {
 
     private void continuePrint(int duringIndex, StringBuilder upPrint, StringBuilder downPrint) {
         if (bridge.get(duringIndex).equals(UP.key())) {
-            upPrint.append(" o ");
+            upPrint.append(" O ");
             downPrint.append("   ");
         }
         if (bridge.get(duringIndex).equals(DOWN.key())) {
             upPrint.append("   ");
-            downPrint.append(" o ");
+            downPrint.append(" O ");
         }
     }
     private void duringPrint(StringBuilder upPrint, StringBuilder downPrint) {
