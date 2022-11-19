@@ -6,7 +6,7 @@
   - [ ] 예외처리 (숫자가 아닐 때 / 범위 벗어났을 때) - InputView#validateBridgeSize
 - [ ] 다리를 생성하는 기능 - BridgeMaker
   - [ ] 위 칸을 건널 수 있는 경우 U, 아래 칸을 건널 수 있는 경우 D값으로 나타내기 - BridgeMaker#makeBridge
-  - [ ] 건널 수 있는 칸은 0(아래 칸)과 1(위 칸)중 무작위 값 이용해서 정하기 - BridgeRandomNumberGenerator#generate
+  - [x] 건널 수 있는 칸은 0(아래 칸)과 1(위 칸)중 무작위 값 이용해서 정하기 - BridgeRandomNumberGenerator#generate
 
 
 - [ ] 이동할 칸을 입력받는 기능 - InputView
