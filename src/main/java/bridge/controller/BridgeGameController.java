@@ -48,17 +48,17 @@ public class BridgeGameController {
         while (bridgeGame.canPlay()) {
             String moveLocation = getMove();
             bridgeGame.move(moveLocation);
-            outputView.printMap(bridgeGame.getResult());
             bridgeGame.updateGameStatus(moveLocation);
             checkRetry();
         }
     }
 
     private void checkRetry() {
-        if (bridgeGame.canPlay()) {
+        if (bridgeGame.checkStatus() == Status.SUCCESS.getMessage()) {
             return;
         }
-        if (bridgeGame.checkStatus() == Status.SUCCESS.getMessage()) {
+        outputView.printMap(bridgeGame.getResult());
+        if (bridgeGame.canPlay()) {
             return;
         }
         if (getRetryCommand().equals("R")) {
