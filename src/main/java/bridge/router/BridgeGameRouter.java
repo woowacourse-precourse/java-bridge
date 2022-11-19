@@ -5,6 +5,7 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameRouter {
+
     private final InputView inputView;
     private final OutputView outputView;
     private final BridgeGame bridgeGame;
