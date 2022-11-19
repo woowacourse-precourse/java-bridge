@@ -31,14 +31,14 @@ public class OutputView {
     public void printResult() {
     }
 
-    public void printFirstBridge(int userPosition, boolean checkBridge, List<Integer> firstBridge){
+    public void printPartOfBridge(int userPosition, boolean checkBridge, List<Integer> partOfBridge){
         printMapStart();
         for(int i = 0; i < userPosition; i++){
-            printNone(i, firstBridge);
-            printCorrect(i, firstBridge);
+            printNone(i, partOfBridge);
+            printCorrect(i, partOfBridge);
             printSeparation();
         }
-        printUserPositionValue(userPosition, checkBridge, firstBridge);
+        printUserPositionValue(userPosition, checkBridge, partOfBridge);
         printMapEnd();
     }
 
@@ -46,20 +46,20 @@ public class OutputView {
         System.out.print("[");
     }
 
-    public void printNone(int index, List<Integer> firstBridge){
-        if(firstBridge.get(index) == RANDOM_LOWER_INCLUSIVE){
+    public void printNone(int index, List<Integer> partOfBridge){
+        if(partOfBridge.get(index) == RANDOM_LOWER_INCLUSIVE){
             System.out.print("   ");
         }
     }
 
-    public void printCorrect(int index, List<Integer> firstBridge){
-        if(firstBridge.get(index) == RANDOM_UPPER_INCLUSIVE){
+    public void printCorrect(int index, List<Integer> partOfBridge){
+        if(partOfBridge.get(index) == RANDOM_UPPER_INCLUSIVE){
             System.out.print(" O ");
         }
     }
 
-    public void printIncorrect(int index, List<Integer> firstBridge){
-        if(firstBridge.get(index) == RANDOM_LOWER_INCLUSIVE){
+    public void printIncorrect(int index, List<Integer> partOfBridge){
+        if(partOfBridge.get(index) == RANDOM_LOWER_INCLUSIVE){
             System.out.print(" X ");
         }
     }
