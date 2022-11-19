@@ -15,6 +15,15 @@ public class GameController {
     private boolean gaming = true;
     private int bridgeNum = 0;
 
+    public void start() {
+        outputView.printStart();
+        int bridgeSize = inputBridgeSize();
+        List<String> correctBridge = prepareBridge(bridgeSize);
+        BridgeGame bridgeGame = new BridgeGame(correctBridge);
+        boolean isSuccess = play(bridgeSize, bridgeGame);
+        outputView.printResult(bridgeGame.getBridgeMap(), isSuccess, bridgeGame.getTryCount());
+    }
+
     private List<String> prepareBridge(int bridgeSize) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
