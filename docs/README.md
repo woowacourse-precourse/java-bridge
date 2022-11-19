@@ -7,3 +7,5 @@
     - 다리의 길이만큼 무작위 U, D의 조합을 갖는 List를 생성한다.
         - 예시 : 다리 길이 3일 때, `{"U", "U", "D"}`, `{"D", "U", "D"}` 와 같은 형태의 List 생성
     - 3에서 20 사이의 숫자가 입력되지 않으면 `IllegalArgumentException`을 발생시킨다.
+- [ ] 플레이어가 이동할 방향을 입력한다.
+    - U 또는 D가 입력되지 않으면 `IllegalArgumentException`을 발생시킨다.
