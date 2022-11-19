@@ -12,6 +12,9 @@ public class InputView {
         return move;
     }
 
-
+    public String inputReGame() {
+        String reGame=Console.readLine();
+        return reGame;
+    }
 
 }
