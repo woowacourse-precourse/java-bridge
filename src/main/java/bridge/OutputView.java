@@ -47,4 +47,26 @@ public class OutputView {
         }
         return "X";
     }
+
+    public void printGoUp(List<String> bridge, int step){
+        if(bridge.get(step).equals("U")){
+            sbUp.append(" O ");
+            sbDo.append("   ");
+        }
+        if(bridge.get(step).equals("D")){
+            sbUp.append(" X ");
+            sbDo.append("   ");
+        }
+    }
+
+    public void printGoDown(List<String> bridge, int step){
+        if(bridge.get(step).equals("U")){
+            sbUp.append("   ");
+            sbDo.append(" X ");
+        }
+        if(bridge.get(step).equals("D")){
+            sbUp.append("   ");
+            sbDo.append(" O ");
+        }
+    }
 }
