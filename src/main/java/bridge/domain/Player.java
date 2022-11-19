@@ -5,12 +5,12 @@ public class Player {
     private static final int ZERO = 0;
 
     private int currentPosition;
-    private int retryCount;
+    private int tryCount;
     private boolean isMoving;
 
     public Player() {
         this.currentPosition = 0;
-        this.retryCount = 1;
+        this.tryCount = 1;
         this.isMoving = false;
     }
 
@@ -26,12 +26,12 @@ public class Player {
         currentPosition = ZERO;
     }
 
-    public int getRetryCount() {
-        return retryCount;
+    public int getTryCount() {
+        return tryCount;
     }
 
     public void addOneRetryCount() {
-        retryCount++;
+        tryCount++;
     }
 
     public boolean getMoving() {

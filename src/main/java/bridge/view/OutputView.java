@@ -35,7 +35,7 @@ public class OutputView {
      */
     public static void printResult(BridgeGame bridgeGame) {
         System.out.println("게임 종료");
-        System.out.println("retryCount = " + bridgeGame.getPlayer().getRetryCount());
+        System.out.println("retryCount = " + bridgeGame.getPlayer().getTryCount());
     }
 
     private static List<String> drawUpperLine(List<String> bridge, int currentPosition, boolean isMoving) {
