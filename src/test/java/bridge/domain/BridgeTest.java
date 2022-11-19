@@ -62,4 +62,17 @@ public class BridgeTest {
         assertThat(bridge.getNowIndex()).isEqualTo(2);
     }
 
+    @DisplayName("getBridgeSize 테스트")
+    @Test
+    public void getBridgeSizeTest() {
+        // given
+        Bridge bridge = new Bridge(List.of("U", "D", "D"));
+
+        // when
+        int result = bridge.getBridgeSize();
+
+        // then
+        assertThat(result).isEqualTo(3);
+    }
+
 }
