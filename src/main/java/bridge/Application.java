@@ -7,22 +7,30 @@ public class Application {
     private static BridgeGame bridgeGame;
 
     public static void main(String[] args) {
-        play();
+        new Application().play();
     }
 
-    private static void play() {
+    private void play() {
         outputView.printStart();
         bridgeGame = bridgeGameStart();
     }
 
-    private static BridgeGame bridgeGameStart() {
+    private BridgeGame bridgeGameStart() {
         int bridgeSize = inputBridgeSize();
         bridgeGame = new BridgeGame(bridgeSize);
         return bridgeGame;
     }
 
-    private static int inputBridgeSize() {
+    private int inputBridgeSize() {
         outputView.printInputSize();
-        return inputView.readBridgeSize();
+        int bridgeSize;
+        try {
+            bridgeSize=inputView.readBridgeSize();
+        } catch (IllegalArgumentException illegalArgumentException) {
+            outputView.printErrorMessage(illegalArgumentException);
+            bridgeSize=inputBridgeSize();
+        }
+        return bridgeSize;
     }
+
 }
