@@ -4,6 +4,7 @@ import bridge.domain.Bridge;
 import bridge.type.GameStatus;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,22 +15,30 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeGameTest {
 
-    static Bridge bridge;
-    static GameStatusOperator gameStatusOperator;
+    Bridge bridge;
+    GameStatusOperator gameStatusOperator;
+    BridgeGame bridgeGame;
 
-    @BeforeAll
-    static void initBridgeGame() {
+    @BeforeEach
+    void initBridgeGame() {
         bridge = new Bridge(List.of("U", "D", "U", "D"));
         gameStatusOperator = new GameStatusOperator(-1, 0, GameStatus.START);
+        bridgeGame = new BridgeGame(bridge, gameStatusOperator);
     }
 
     @DisplayName("플레이어가 다리에서 한 칸 이동한다.")
     @Test
     void move() {
-        BridgeGame bridgeGame = new BridgeGame(bridge, gameStatusOperator);
         bridgeGame.move();
         Integer currentPosition = gameStatusOperator.getCurrentPosition();
         assertThat(currentPosition).isEqualTo(0);
     }
 
+    @DisplayName("플레이어가 게임을 재시작한다")
+    @Test
+    void retry() {
+        bridgeGame.retry();
+        GameStatus gameStatus = gameStatusOperator.getGameStatus();
+        assertThat(gameStatus).isEqualTo(GameStatus.RESTART);
+    }
 }
