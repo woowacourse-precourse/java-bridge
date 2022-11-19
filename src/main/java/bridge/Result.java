@@ -53,4 +53,8 @@ public class Result {
     public boolean isDownSignWrongAnswer(boolean isAnswer, MoveDirection direction) {
         return !isAnswer && direction.isEqualTo(DOWN_SIGN);
     }
+
+    public boolean hasWrong() {
+        return isAnswers.contains(false);
+    }
 }
