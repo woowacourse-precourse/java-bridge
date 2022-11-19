@@ -1,6 +1,7 @@
 package bridge;
 
 import static bridge.ui.MessageUtil.*;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,7 +20,7 @@ class InputTest {
     InputView inputView;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         inputView = new InputView();
     }
 
@@ -28,7 +29,7 @@ class InputTest {
         @ParameterizedTest
         @ValueSource(strings = {"aa", " ", "1b", "-."})
         @DisplayName("숫자가 아닌 값을 입력하면 예외 발생")
-        void exceptionTest_notNumeric(String input){
+        void exceptionTest_notNumeric(String input) {
             assertThatThrownBy(() -> inputView.readBridgeSize(input))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(INVALID_BRIDGE_SIZE.message);
@@ -37,7 +38,7 @@ class InputTest {
         @ParameterizedTest
         @ValueSource(strings = {"1", "67", "43"})
         @DisplayName("범위 밖의 숫자 입력 시 예외 발생")
-        void exceptionTest_overRange(String input){
+        void exceptionTest_overRange(String input) {
             assertThatThrownBy(() -> inputView.readBridgeSize(input))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(INVALID_BRIDGE_SIZE.message);
@@ -46,10 +47,30 @@ class InputTest {
         @ParameterizedTest
         @CsvSource(value = {"3", "20", "12"})
         @DisplayName("입력값과 같은 크기의 다리가 만들어졌는지 확인")
-        void validInputTest(String input){
+        void validInputTest(String input) {
             int size = inputView.readBridgeSize(input);
             Bridge bridge = new Bridge(size);
             assertEquals(bridge.getBridgeSize(), Integer.parseInt(input));
+        }
+    }
+
+    @Nested
+    class UserMovingInput {
+        @ParameterizedTest
+        @ValueSource(strings = {"k", "19", "--", "x"})
+        @DisplayName("U, D 이외의 값을 입력하면 예외 발생")
+        void exceptionTest(String input) {
+            assertThatThrownBy(() -> inputView.readMoving(input))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(INVALID_MOVE_CHOICE.message);
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"U", "D"})
+        @DisplayName("U, D 정상 입력 테스트")
+        void validInputTest(String input) {
+            String move = inputView.readMoving(input);
+            assertThat(move).containsAnyOf("U", "D");
         }
     }
 
