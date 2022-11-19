@@ -87,7 +87,7 @@ public class InputViewTest {
         @ParameterizedTest
         @ValueSource(strings = {"q", "r", "", " ", "3"})
         void wrongRetryInput(String wrongRetryInput) {
-            assertThatThrownBy(() -> inputView.validateRetryInput(wrongRetryInput))
+            assertThatThrownBy(() -> inputView.validateGameCommand(wrongRetryInput))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(ERROR_MESSAGE);
         }
