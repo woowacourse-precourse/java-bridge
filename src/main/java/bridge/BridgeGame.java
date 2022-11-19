@@ -43,6 +43,9 @@ public class BridgeGame {
 
         stage = 0;
     }
+
+    public boolean isContinue() {
+        return !bridge.isLast(stage);
     }
 
     /**

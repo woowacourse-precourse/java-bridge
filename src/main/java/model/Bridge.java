@@ -16,6 +16,10 @@ public class Bridge {
         return mark.canMove(bridge.get(stage));
     }
 
+    public boolean isLast(int stage) {
+        return bridge.size() == stage;
+    }
+
     @Override
     public String toString() {
         return bridge.toString();
