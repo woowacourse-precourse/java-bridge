@@ -39,4 +39,8 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public void countTry() {
+        bridgeResult.countTry();
+    }
 }
