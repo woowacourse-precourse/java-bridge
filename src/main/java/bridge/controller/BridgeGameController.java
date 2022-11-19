@@ -62,4 +62,8 @@ public class BridgeGameController {
             user.setGameOver();
         }
     }
+
+    public void printResult(User user) {
+        outputView.printResult(user);
+    }
 }
