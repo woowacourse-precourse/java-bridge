@@ -44,7 +44,7 @@ public class OutputView {
     }
 
     public void printGameFail(int totalTry){
-        System.out.println(Message.GAME_SUCCESS.getMessage()+" "+Message.FAIL);
+        System.out.println(Message.GAME_SUCCESS.getMessage()+" "+Message.FAIL.getMessage());
         printGameTry(totalTry);
     }
 
