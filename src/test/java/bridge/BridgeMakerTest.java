@@ -10,11 +10,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class BridgeMakerTest {
     BridgeMaker bridgeMaker;
-    BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
+    BridgeNumberGenerator bridgeNumberGenerator;
 
     @BeforeEach
     void setUp(){
-        bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
     @DisplayName("다리가 사용자에게 입력받은 길이대로 생성되는지 확인")
@@ -40,4 +40,27 @@ public class BridgeMakerTest {
         //then
         assertThat(actual.toString()).isEqualTo(expected);
     }
+
+    @DisplayName("다리 사이즈 만큼 함정이 생성되는 지 확인")
+    @Test
+    void checkBridgeTrapSize(){
+        //given
+        int bridgeSize = 4;
+        //when
+        List<Integer> actual = bridgeMaker.rawTrap(bridgeSize);
+        //then
+        assertThat(actual.size()).isEqualTo(bridgeSize);
+    }
+
+    @DisplayName("다리 첫번째 칸이 위 칸이 건널 수 있는지 확인")
+    @Test
+    void checkFisrtUpperBridgeIsSafe(){
+        //given
+        int bridgeSize = 3;
+        //when
+        List<Integer> actual = bridgeMaker.makeTrap(bridgeSize);
+        //then
+        assertThat(actual.get(0)).isEqualTo(1);
+    }
 }
+
