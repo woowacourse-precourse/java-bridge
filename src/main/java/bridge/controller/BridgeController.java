@@ -29,8 +29,7 @@ public class BridgeController {
 
     public void playingGame() {
         playGame();
-        if (isMove)
-            successGame();
+        if (isMove) successGame();
         else if (!isMove) {
             retryGame();
         }
@@ -53,9 +52,7 @@ public class BridgeController {
         while (bridgeService.retryJudge(inputRetry)) {
             retryInit();
             playingGame();
-            if (!bridgeService.retryJudge(inputRetry) && !isMove) {
-                failGame();
-            }
+            if (!bridgeService.retryJudge(inputRetry) && !isMove) failGame();
         }
     }
 
