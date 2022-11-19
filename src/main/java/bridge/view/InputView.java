@@ -1,6 +1,7 @@
 package bridge.view;
 
 import static bridge.enums.InputMsg.*;
+import static bridge.util.convertData.convertStringIntoInt;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -12,9 +13,9 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public String readBridgeSize() {
+    public int readBridgeSize() {
         System.out.println(INPUT_BRIDGE_SIZE.get());
-        return Console.readLine();
+        return convertStringIntoInt(Console.readLine());
     }
 
     /**

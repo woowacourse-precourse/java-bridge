@@ -32,7 +32,6 @@
 
 1. InputView
     - [x]  다리 길이 입력 기능 → readBridgeSize
-        1. 반환 타입 int에서 String으로 변경
     - [ ]  이동할 칸 입력 기능 → readMoving
     - [ ]  게임 재시작 입력 기능 →readGameCommand
 2. OutputView
@@ -58,6 +57,7 @@
     - [ ]  게임 종료 → endGame
         1. 게임 종료 결과 출력
 2.  InputController
+    - **잘못된 값 입력시 에러 메시지 출력 후 재입력**
     - [ ]  다리 길이 입력 및 검증 → inputBridgeSize
         1. 다리 길이 입력
         2. 다리 길이 유효성 검사
@@ -72,6 +72,7 @@
 
 1. convertData
     - [x] 다리 칸 숫자에서 문자로 변환 기능 → mappingBridgeCellIntToString
+    - [x] 입력 받은 문자를 정수로 변환 기능 → convertStringIntoInt
 
 ---
 
