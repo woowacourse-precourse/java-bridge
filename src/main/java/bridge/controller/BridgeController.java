@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeSize;
+import bridge.domain.UserBridge;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -35,10 +36,15 @@ public class BridgeController {
     }
 
     private void startRound() {
-        System.out.println(inputBridgeSpace());
+        String space = inputBridgeSpace().getUserInput();
     }
 
-    private String inputBridgeSpace() {
-        return inputView.readMoving();
+    private UserBridge inputBridgeSpace() {
+        try {
+            return new UserBridge(inputView.readMoving());
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return inputBridgeSpace();
+        }
     }
 }

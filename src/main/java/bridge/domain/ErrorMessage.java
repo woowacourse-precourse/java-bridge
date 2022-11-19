@@ -2,7 +2,8 @@ package bridge.domain;
 
 public enum ErrorMessage {
     SIZE_TYPE("[ERROR] 다리 길이는 숫자이어야 합니다."),
-    SIZE_RANGE("[ERROR] 다리 길이는 3~20 사이의 숫자이어야 합니다.");
+    SIZE_RANGE("[ERROR] 다리 길이는 3~20 사이의 숫자이어야 합니다."),
+    SPACE_TYPE("[ERROR] 이동할 칸은 U, D 중 하나만 입력 가능합니다.");
 
     private final String message;
 
