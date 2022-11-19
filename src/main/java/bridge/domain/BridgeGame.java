@@ -22,9 +22,11 @@ public class BridgeGame {
      * @param targetTile 이동할 방향 타일 입력
      */
     public void move(Player player, Tile targetTile) {
-        int movedPosition = player.moveForward(targetTile);
-        if (!bridge.checkBridgeTileAt(movedPosition, targetTile)) {
-            player.die();
+        if (player.isAlive()) {
+            int movedPosition = player.moveForward(targetTile);
+            if (!bridge.checkBridgeTileAt(movedPosition, targetTile)) {
+                player.die();
+            }
         }
     }
 
