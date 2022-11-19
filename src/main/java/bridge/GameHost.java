@@ -46,4 +46,12 @@ public class GameHost {
     public int getRetry() {
         return numberOfRetry;
     }
+
+    public void movePlayer() {
+        this.playerIndex++;
+    }
+
+    public void playerDie() {
+        this.playerAlive = false;
+    }
 }
