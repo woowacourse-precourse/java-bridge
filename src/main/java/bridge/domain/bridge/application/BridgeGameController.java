@@ -59,7 +59,7 @@ public class BridgeGameController {
             return isRestart(bridgeGame);
         }
 
-        return bridgeGame.isCrossedBridge();
+        return !bridgeGame.isCrossedBridge();
     }
 
     private boolean isRestart(BridgeGame bridgeGame) {
