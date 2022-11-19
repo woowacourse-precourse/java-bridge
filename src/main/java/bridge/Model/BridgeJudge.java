@@ -16,6 +16,7 @@ public class BridgeJudge {
         }
 
         if(!userInput.equals(madeBridge)) {
+            Bridge.bridge.setRightAnswer(false);
             if(userInput.equals("U")) {
                 bridge.updateUp("X");
                 bridge.updateDown(" ");
