@@ -22,6 +22,14 @@ class ResultTest {
     }
 
     @Test
+    @DisplayName("다리 건너기 실패시 움직임 확인")
+    void checkMovableAfterCross() {
+        result.updateState("U", false);
+
+        assertThat(result.movable()).isFalse();
+    }
+
+    @Test
     @DisplayName("게임 진행 상황 업데이트 사용자 입력값 확인")
     void checkUserInputUpdateState() {
         result.updateState("U", true);
@@ -43,5 +51,15 @@ class ResultTest {
         assertThat(result.getState(0)).isEqualTo("O");
         assertThat(result.getState(1)).isEqualTo("O");
         assertThat(result.getState(2)).isEqualTo("X");
+    }
+
+    @Test
+    @DisplayName("다리를 여러번 건넌 후 상태 크기 확인")
+    void checkStateSize() {
+        result.updateState("U", true);
+        result.updateState("U", true);
+        result.updateState("D", true);
+
+        assertThat(result.stateSize()).isEqualTo(3);
     }
 }
