@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.view.constant.InputGuidePhrase;
+import camp.nextstep.edu.missionutils.Console;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -12,7 +13,9 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println(InputGuidePhrase.BRIDGE_LENGTH.get());
-        return 0;
+        String bridgeLength = Console.readLine().trim();
+        ViewValidator.validateNumberInput(bridgeLength);
+        return Integer.parseInt(bridgeLength);
     }
 
     /**
