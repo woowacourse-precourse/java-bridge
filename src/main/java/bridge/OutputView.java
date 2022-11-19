@@ -3,6 +3,7 @@ package bridge;
 import static constant.Values.Message.*;
 
 import constant.Values.BridgeCase;
+import constant.Values.MoveCase;
 import java.util.List;
 
 /**
@@ -32,17 +33,31 @@ public class OutputView {
     }
 
     public String makeMap(BridgeGame bridgeGame) {
-        List<String> bridge = bridgeGame.getBridge();
-        List<String> moves = bridgeGame.getMoves();
-        StringBuffer stringBuffer = new StringBuffer(BRIDGE_OPEN.getMessage());
-        for(int index=0;index<bridge.size();++index) {
-
-        }
-        return "";
+        List<MoveCase> result = bridgeGame.getResults();
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("\n" + BRIDGE_OPEN.getMessage());
+        appendUpBridge(stringBuffer, result);
+        stringBuffer.append("\n" + BRIDGE_OPEN.getMessage());
+        appendDownBridge(stringBuffer, result);
+        return stringBuffer.toString();
     }
 
-    public void appendUpBridge(boolean equals,String value) {
+    public void appendUpBridge(StringBuffer stringBuffer, List<MoveCase> result) {
+        for (int index = 0; index < result.size(); ++index) {
+            stringBuffer.append(result.get(index).getUp());
+            stringBuffer.append(BRIDGE_SPLIT.getMessage());
+        }
+        stringBuffer.delete(stringBuffer.length() - 3, stringBuffer.length());
+        stringBuffer.append(BRIDGE_CLOSE.getMessage());
+    }
 
+    public void appendDownBridge(StringBuffer stringBuffer, List<MoveCase> result) {
+        for (int index = 0; index < result.size(); ++index) {
+            stringBuffer.append(result.get(index).getDown());
+            stringBuffer.append(BRIDGE_SPLIT.getMessage());
+        }
+        stringBuffer.delete(stringBuffer.length() - 3, stringBuffer.length());
+        stringBuffer.append(BRIDGE_CLOSE.getMessage());
     }
 
     public void printSelectRetry() {
