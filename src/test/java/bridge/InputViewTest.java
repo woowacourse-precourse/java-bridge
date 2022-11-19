@@ -29,6 +29,21 @@ class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
     }
+    @Test
+    @DisplayName("다리 길이에 대한 입력 Integer 변환 - 3미만 20초과인 경우 변환 실패")
+    public void Convert_fail_Range() throws Exception{
+        validation = new Validation();
+        String bridgeSizeThan = "21";
+        Assertions.assertThatThrownBy(()->
+            validation.bridgeLen(bridgeSizeThan))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        String bridgeSizeLess = "2";
+        Assertions.assertThatThrownBy(()->
+                        validation.bridgeLen(bridgeSizeLess))
+                .isInstanceOf(IllegalArgumentException.class);
+
+    }
 
 
 
