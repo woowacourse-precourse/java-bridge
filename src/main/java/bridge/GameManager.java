@@ -25,7 +25,9 @@ public class GameManager {
         List<String> bridge = initGame();
 
         while (!gameSession.isArrived()) {
-            if (moveAndCheck(bridge)) break;
+            if (moveAndCheck(bridge)) {
+                break;
+            }
         }
     }
 
@@ -40,59 +42,31 @@ public class GameManager {
     }
 
     private boolean moveAndCheck(List<String> bridge) {
-        output.printInputChooseCell();
-        String move = input.readMoving();
-        game.move(gameSession, move);
-        output.printMap(bridge, gameSession.getStep());
+        inputAndPrintStep(bridge);
         if (checkMoveSucceed(bridge)) {
             return true;
         }
         if (checkArrival(bridge)) {
+            handleArrival(bridge);
             return true;
         }
         return false;
+    }
+
+    private void inputAndPrintStep(List<String> bridge) {
+        output.printInputChooseCell();
+        String move = input.readMoving();
+        game.move(gameSession, move);
+        output.printMap(bridge, gameSession.getStep());
+    }
+
+    private void handleArrival(List<String> bridge) {
+        output.printResult(bridge, gameSession, GameResult.succeed);
+        newGame = false;
     }
 
     private boolean checkArrival(List<String> bridge) {
-        if (gameSession.isArrived()) {
-            output.printChooseRetry();
-            String command = input.readGameCommand();
-            if (handleRetry(bridge, command)) {
-                return true;
-            }
-            ;
-        }
-        return false;
-    }
-
-    private boolean handleRetry(List<String> bridge, String command) {
-        boolean isRetry = game.retry(command, gameSession);
-        if (ArriveAndQuit(bridge, isRetry)) {
-            return true;
-        }
-        if (ArriveAndRetry(isRetry)) {
-            return true;
-        }
-        return false;
-    }
-
-    private boolean ArriveAndRetry(boolean isRetry) {
-        if (isRetry) {
-            newGame = true;
-            gameSession.clearStep();
-            gameSession.clearTrial();
-            return true;
-        }
-        return false;
-    }
-
-    private boolean ArriveAndQuit(List<String> bridge, boolean isRetry) {
-        if (!isRetry) {
-            output.printResult(bridge, gameSession, GameResult.succeed);
-            newGame = false;
-            return true;
-        }
-        return false;
+        return gameSession.isArrived();
     }
 
     private boolean checkMoveSucceed(List<String> bridge) {
