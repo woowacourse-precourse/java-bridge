@@ -1,11 +1,12 @@
 package bridge.domain;
 
-import bridge.domain.dto.MovingResult;
+import bridge.utils.validator.MovingValidator;
 
-public class User {
+public class User extends MovingValidator {
 	private String moving;
 
 	public User(String moving) {
+		validateMoving(moving);
 		this.moving = moving;
 	}
 

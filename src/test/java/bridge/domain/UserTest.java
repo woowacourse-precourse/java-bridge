@@ -1,0 +1,77 @@
+package bridge.domain;
+
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+@DisplayName("User 클래스")
+class UserTest {
+	@Nested
+	@DisplayName("User 생성자는")
+	class Describe_User_constructor {
+
+		@Nested
+		@DisplayName("만약 매개변수가 U,D중 하나가 아니라면")
+		class Context_parameter_is_not_U_or_D {
+
+			@DisplayName("예외를 발생시킨다.")
+			@ValueSource(strings = {"A", "a", "31", "U3", " U"})
+			@ParameterizedTest
+			void it_returns_illegal_argument_exception(String input) {
+				assertThatThrownBy(() -> new User(input))
+					.isInstanceOf(IllegalArgumentException.class);
+			}
+		}
+	}
+
+	@Nested
+	@DisplayName("selectMoving 메소드는")
+	class Describe_selectMoving {
+		private final String MOVING_DIRECTION_UP = "U";
+		private final String MOVING_DIRECTION_DOWN = "D";
+		private List<String> inputBridge = new ArrayList<>(Arrays.asList("U", "U", "D"));
+		private Bridge bridge = new Bridge(inputBridge, inputBridge.size());
+
+		@Nested
+		@DisplayName("만약 해당 칸에 맞는 이동 방향을 선택하면")
+		class Context_select_right_moving_direction {
+			private String moving = MOVING_DIRECTION_UP;
+
+			@Test
+			@DisplayName("이동 결과가 true인 이동 결과 객체를 반환한다.")
+			void it_returns_moving_result() {
+				int currentLocation = 0;
+				User user = new User(moving);
+				MovingResult movingResult = user.selectMoving(currentLocation, bridge);
+				MovingResult expected = new MovingResult(moving, true);
+
+				assertThat(movingResult).usingRecursiveComparison().isEqualTo(expected);
+			}
+		}
+
+		@Nested
+		@DisplayName("만약 해당 칸에 맞지 않는 이동 방향을 선택하면")
+		class Context_select_wrong_moving_direction {
+			private String moving = MOVING_DIRECTION_DOWN;
+
+			@Test
+			@DisplayName("이동 결과가 false인 이동 결과 객체를 반환한다.")
+			void it_returns_moving_result() {
+				int currentLocation = 1;
+				User user = new User(moving);
+				MovingResult movingResult = user.selectMoving(currentLocation, bridge);
+				MovingResult expected = new MovingResult(moving, false);
+
+				assertThat(movingResult).usingRecursiveComparison().isEqualTo(expected);
+			}
+		}
+	}
+}
