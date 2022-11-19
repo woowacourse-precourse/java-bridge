@@ -65,6 +65,17 @@ public class BridgeTest {
         assertThat(throwable)
                 .isInstanceOf(IllegalArgumentException.class);
     }
+    @Test
+    void 길이가_0인_다리_생성_테스트() {
+        //given
+        //when
+        Throwable throwable = catchThrowable(() -> {
+            Bridge bridge = Bridge.of(List.of());
+        });
+        //then
+        assertThat(throwable)
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
     @Test
     void 정상_다리_생성_테스트() {

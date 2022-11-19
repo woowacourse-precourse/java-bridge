@@ -21,6 +21,9 @@ public class Bridge {
     }
 
     private static void validateBridge(List<String> bridge) {
+        if(bridge == null || bridge.size() == 0) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_BRIDGE_SIZE.getMessage());
+        }
         for(String space : bridge) {
             validateUpDown(space);
         }
@@ -40,7 +43,7 @@ public class Bridge {
 
     private void validateIndex(int index) {
         if (index < 0 || index >= bridge.size()) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_VALID_BRIDGE_SIZE.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.NOT_VALID_BRIDGE_SIZE_INPUT.getMessage());
         }
     }
 }
