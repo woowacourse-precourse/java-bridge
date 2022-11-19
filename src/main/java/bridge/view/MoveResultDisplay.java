@@ -1,5 +1,10 @@
 package bridge.view;
 
+import bridge.domain.state.State;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 public enum MoveResultDisplay {
     SUCCESS("성공", "O"),
     FAIL("실패", "X");
@@ -10,6 +15,24 @@ public enum MoveResultDisplay {
     MoveResultDisplay(final String gameResult, final String movingResult) {
         this.gameResult = gameResult;
         this.movingResult = movingResult;
+    }
+    
+    public static List<MoveResultDisplay> convertToMoveResult(final List<State> moveStates) {
+        return moveStates.stream()
+                .map(MoveResultDisplay::parseMoveResult)
+                .collect(Collectors.toUnmodifiableList());
+    }
+    
+    private static MoveResultDisplay parseMoveResult(final State state) {
+        if (isStateFailed(state)) {
+            return FAIL;
+        }
+        
+        return SUCCESS;
+    }
+    
+    private static boolean isStateFailed(final State state) {
+        return state.isMoveFailed();
     }
     
     public String getGameResult() {

@@ -1,7 +1,6 @@
 package bridge.dto;
 
 import bridge.domain.BridgeGame;
-import bridge.utils.MoveResultUtils;
 import bridge.view.MoveResultDisplay;
 
 import java.util.List;
@@ -12,7 +11,7 @@ public class GameResultDTO {
     private final int numberOfTry;
     
     public GameResultDTO(final BridgeGame bridgeGame) {
-        moveResultDisplays = MoveResultUtils.convertToMoveResult(bridgeGame.moveStates());
+        moveResultDisplays = MoveResultDisplay.convertToMoveResult(bridgeGame.moveStates());
         movings = bridgeGame.movings();
         numberOfTry = bridgeGame.numberOfTry();
     }
