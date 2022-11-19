@@ -34,7 +34,7 @@ public class Validator {
 
         if (count != size) {
             throw new IllegalArgumentException(
-                    ExceptionMessage.bridgeNotUorD.getMessage());
+                    ExceptionMessage.createBridgeWordNotUD.getMessage());
         }
     }
 

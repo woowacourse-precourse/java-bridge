@@ -26,7 +26,7 @@ public class InputView {
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String move = Console.readLine();
-        System.out.println(move);
+        move = move.toUpperCase();
 
         validateMove(move);
 
@@ -50,7 +50,6 @@ public class InputView {
     }
 
     private void validateMove(String move) {
-        move = move.toUpperCase();
         validator.checkMoveWord(move);
     }
 }
