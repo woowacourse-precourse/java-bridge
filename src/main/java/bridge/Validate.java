@@ -30,5 +30,12 @@ public class Validate {
         return move;
     }
 
+    public static String validateGameCommand(String gameCommand) {
+        if (!(Objects.equals(gameCommand, "R") || Objects.equals(gameCommand, "Q"))) {
+            throw new IllegalArgumentException("[ERROR] 입력 값은 R 또는 Q여야 합니다.");
+        }
+        return gameCommand;
+    }
+
 
 }
