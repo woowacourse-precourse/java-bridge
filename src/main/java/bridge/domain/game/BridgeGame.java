@@ -55,6 +55,10 @@ public class BridgeGame {
         setCurrentPosition(getCurrentPosition() + 1);
     }
     
+    public void fail(BridgeMove move) {
+        getHistory().addMoveHistory(getTryCount(), new BridgeMoveHistory(move, false));
+    }
+    
     public void retry() {
         setCurrentPosition(-1);
         setTryCount(getTryCount() + 1);
