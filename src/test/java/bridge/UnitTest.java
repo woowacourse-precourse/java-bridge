@@ -5,13 +5,14 @@ import bridge.model.Player;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class UnitTest {
 
 	@DisplayName("다리 생성 정상 테스트")
+	@ParameterizedTest
 	@ValueSource(ints = {3, 4, 5 , 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20})
-	@Test
 	void BridgeSizeTest(Integer input) {
 		Assertions.assertThatCode(() -> {
 			BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -20,8 +21,8 @@ public class UnitTest {
 	}
 
 	@DisplayName("다리 생성 예외 테스트")
+	@ParameterizedTest
 	@ValueSource(ints = {-1, 0, 1, 2, 21, 50, 100})
-	@Test
 	void BridgeSizeExceptionTest(Integer input) {
 		Assertions.assertThatThrownBy(() -> {
 			BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
