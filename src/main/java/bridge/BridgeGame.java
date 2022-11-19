@@ -9,8 +9,6 @@ public class BridgeGame {
     private final String WRONG = "X";
     private final String NOTHING = " ";
     private final List<String> correctBridge;
-    private final List<String> upBridge = new ArrayList<>();
-    private final List<String> downBridge = new ArrayList<>();
     private final List<List<String>> bridgeMap = new ArrayList<>();
 
     public BridgeGame(List<String> correctBridge) {
@@ -30,9 +28,7 @@ public class BridgeGame {
         return false;
     }
 
-    public List<List<String>> joinedBridge() {
-        this.bridgeMap.add(upBridge);
-        this.bridgeMap.add(downBridge);
+    public List<List<String>> getBridgeMap() {
         return this.bridgeMap;
     }
 
@@ -50,7 +46,7 @@ public class BridgeGame {
     }
 
     private void addMap(String mapUp, String mapDown) {
-        this.upBridge.add(mapUp);
-        this.downBridge.add(mapDown);
+        this.bridgeMap.get(0).add(mapUp);
+        this.bridgeMap.get(1).add(mapDown);
     }
 }
