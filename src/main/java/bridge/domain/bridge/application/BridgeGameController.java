@@ -42,7 +42,7 @@ public class BridgeGameController {
             BridgeDirection bridgeDirection = readBridgeDirection();
             bridgeGame.move(bridgeDirection);
             outputView.printMap(bridgeGame.toBridgeGameMapState());
-        } while (true);
+        } while (isPlayable(bridgeGame));
     }
 
     private BridgeGame setupGame(BridgeMap bridgeMap) {
@@ -52,5 +52,12 @@ public class BridgeGameController {
 
     private BridgeDirection readBridgeDirection() {
         return inputView.readMoving().toBridgeDirection();
+    }
+
+    private boolean isPlayable(BridgeGame bridgeGame) {
+        if (bridgeGame.isEndCondition()) {
+            return false;
+        }
+        return inputView.readGameCommand();
     }
 }

@@ -3,16 +3,16 @@ package bridge.domain.game;
 public class GamePlayer {
     private int position;
     private int trial;
-    private boolean movable;
+    private boolean isFailGame;
 
-    private GamePlayer(int position, int trial, boolean movable) {
+    private GamePlayer(int position, int trial, boolean isFailGame) {
         this.position = position;
         this.trial = trial;
-        this.movable = movable;
+        this.isFailGame = isFailGame;
     }
 
     public static GamePlayer withDefaultValue() {
-        return new GamePlayer(0, 1, true);
+        return new GamePlayer(0, 1, false);
     }
 
     public int getPosition() {
@@ -23,11 +23,11 @@ public class GamePlayer {
         this.position += 1;
     }
 
-    public void stopMoving() {
-        this.movable = false;
+    public void failGame() {
+        this.isFailGame = true;
     }
 
-    public boolean isMovable() {
-        return movable;
+    public boolean isFailGame() {
+        return isFailGame;
     }
 }

@@ -32,7 +32,7 @@ public class BridgeGame {
         int position = gamePlayer.getPosition();
         gamePlayer.move();
         if (!bridgeMap.isCorrectDirection(position, bridgeDirection)) {
-            gamePlayer.stopMoving();
+            gamePlayer.failGame();
         }
     }
 
@@ -48,7 +48,11 @@ public class BridgeGame {
         return new BridgeGameMapState(
                 bridgeMap,
                 gamePlayer.getPosition(),
-                gamePlayer.isMovable()
+                gamePlayer.isFailGame()
         );
+    }
+
+    public boolean isEndCondition() {
+        return gamePlayer.isFailGame();
     }
 }

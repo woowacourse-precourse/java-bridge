@@ -39,7 +39,7 @@ class BridgeGameTest {
         bridgeGame.move(BridgeDirection.UP);
 
         Assertions.assertThat(gamePlayer.getPosition()).isEqualTo(3);
-        Assertions.assertThat(gamePlayer.isMovable()).isFalse();
+        Assertions.assertThat(gamePlayer.isFailGame()).isFalse();
     }
 
 

@@ -10,12 +10,12 @@ import java.util.List;
 public class BridgeGameMapState implements ConsolePrintable {
     private final BridgeMap bridgeMap;
     private final int movedAmount;
-    private final boolean movable;
+    private final boolean isFailGame;
 
-    public BridgeGameMapState(BridgeMap bridgeMap, int movedAmount, boolean movable) {
+    public BridgeGameMapState(BridgeMap bridgeMap, int movedAmount, boolean isFailGame) {
         this.movedAmount = movedAmount;
         this.bridgeMap = bridgeMap;
-        this.movable = movable;
+        this.isFailGame = isFailGame;
     }
 
     @Override
@@ -24,7 +24,7 @@ public class BridgeGameMapState implements ConsolePrintable {
         List<String> downwardMap = new ArrayList<>();
 
         fillBridgeGameMap(upwardMap, downwardMap);
-        if (!movable) {
+        if (!isFailGame) {
             updateWrongSelection(upwardMap, downwardMap);
         }
         return joinToBridgeMap(upwardMap, downwardMap);
