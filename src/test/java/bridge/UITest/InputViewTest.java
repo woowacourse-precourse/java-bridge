@@ -40,8 +40,8 @@ public class InputViewTest {
         @DisplayName("다리의 길이가 올바르지 않은 형식이라면 예외를 던진다.")
         @ParameterizedTest
         @ValueSource(strings = {"2", "21", "", " ", "#", "q"})
-        void wrongBridgeLengthInput(String testCase) {
-            assertThatThrownBy(() -> inputView.validateBridgeLength(testCase))
+        void wrongBridgeLengthInput(String wrongBridgeLengthInput) {
+            assertThatThrownBy(() -> inputView.validateBridgeLength(wrongBridgeLengthInput))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(ERROR_MESSAGE);
         }
@@ -54,17 +54,17 @@ public class InputViewTest {
         @DisplayName("U나 D중 하나의 값을 받는다.")
         @ParameterizedTest
         @ValueSource(strings = {"U", "D"})
-        void wrightNextStepInput(String nextStep) {
-            InputStream in = new ByteArrayInputStream(nextStep.getBytes());
+        void wrightNextStepInput(String wrightNextStepInput) {
+            InputStream in = new ByteArrayInputStream(wrightNextStepInput.getBytes());
             System.setIn(in);
-            assertThat(inputView.readMoving()).isEqualTo(nextStep);
+            assertThat(inputView.readMoving()).isEqualTo(wrightNextStepInput);
         }
 
         @DisplayName("U나 D가 아닌 값을 받으면 예외 처리를 한다.")
         @ParameterizedTest
         @ValueSource(strings = {"q", "r", "", " ", "3"})
-        void wrongNextStepInput(String wrongInput) {
-            assertThatThrownBy(() -> inputView.validateNextStep(wrongInput))
+        void wrongNextStepInput(String wrongNextStepInput) {
+            assertThatThrownBy(() -> inputView.validateNextStep(wrongNextStepInput))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(ERROR_MESSAGE);
         }
