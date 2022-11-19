@@ -33,7 +33,7 @@ public class GameCommand {
         }
     }
 
-    public boolean isQuit() {
+    public boolean isSameQuit() {
         return command.equals("Q");
     }
 }
