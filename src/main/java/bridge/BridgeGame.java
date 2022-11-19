@@ -10,23 +10,21 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    public static final List<String> UP = Arrays.asList("U", "u");
-    public static final List<String> DOWN = Arrays.asList("D", "d");
+    public static final List<String> candidate = Arrays.asList("U", "D", "R", "Q");
     private static int currentPosition = -1;
     private static int totalTrial = 0;
     private static String direction = null;
 
     public void move(String direction) {
-        checkDirectionValidity(direction);
+        checkValidity(direction);
         currentPosition++;
         totalTrial++;
         BridgeGame.direction = direction;
     }
 
-    private void checkDirectionValidity(String direction) {
-        if (!UP.contains(direction)
-                && !DOWN.contains(direction)) {
-            throw new IllegalArgumentException("[ERROR] 유효한 방향은 U 또는 D 입니다.");
+    private void checkValidity(String word) {
+        if (!candidate.contains(word)) {
+            throw new IllegalArgumentException(ERROR_INVALID_INPUT);
         }
     }
 
