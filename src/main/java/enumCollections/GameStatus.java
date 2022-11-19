@@ -2,18 +2,18 @@ package enumCollections;
 
 public enum GameStatus {
     CONTINUE(""),
-    SUCCESS(""),
-    FAILURE(""),
+    SUCCESS("성공"),
+    FAILURE("실패"),
     QUIT("Q"),
     RESTART("R");
 
-    private String inputMessage;
+    private String message;
 
     GameStatus(String inputMessage) {
-        this.inputMessage = inputMessage;
+        this.message = inputMessage;
     }
 
-    public static String getInputMessage(GameStatus gameStatus) {
-        return gameStatus.inputMessage;
+    public static String getMessage(GameStatus gameStatus) {
+        return gameStatus.message;
     }
 }

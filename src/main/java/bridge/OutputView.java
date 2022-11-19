@@ -1,5 +1,6 @@
 package bridge;
 
+import enumCollections.GameStatus;
 import enumCollections.GuideMessage;
 
 /**
@@ -21,7 +22,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(GameStatus gameStatus) {
+        printGuideMessage(GuideMessage.GAME_RESULT ,GameStatus.getMessage(gameStatus));
     }
 
     public void printAskGameCommand() {
@@ -30,5 +32,9 @@ public class OutputView {
 
     public void printGuideMessage(GuideMessage situation) {
         System.out.println(GuideMessage.getMessage(situation));
+    }
+
+    public void printGuideMessage(GuideMessage situation, String gameStatus) {
+        System.out.printf(GuideMessage.getMessage(situation), gameStatus);
     }
 }
