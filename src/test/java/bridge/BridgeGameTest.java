@@ -38,7 +38,7 @@ public class BridgeGameTest {
         bridgeGame.move("U");
         bridgeGame.move("U");
 
-        assertThat(bridgeGame.getMovementsInUpBridge()).isEqualTo(List.of(" X ", " O "));
+        assertThat(bridgeGame.getMapOfUpBridge()).isEqualTo(List.of(" X ", " O "));
     }
 
     @DisplayName("아래쪽 다리의 결과를 가져온다")
@@ -50,7 +50,7 @@ public class BridgeGameTest {
         bridgeGame.move("D");
         bridgeGame.move("D");
 
-        assertThat(bridgeGame.getMovementsInDownBridge()).isEqualTo(List.of(" O ", " X "));
+        assertThat(bridgeGame.getMapOfDownBridge()).isEqualTo(List.of(" O ", " X "));
     }
 
     @DisplayName("마지막 순서면 true를 반환한다")

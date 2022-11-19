@@ -12,7 +12,7 @@ public class BridgeTest {
     void judgePossibleToMove() {
         Bridge bridge = new Bridge(List.of("U", "D", "U"));
 
-        boolean possibleToMove = bridge.isPossibleToMove("D", 1);
+        boolean possibleToMove = bridge.isMovable("D", 1);
 
         assertThat(possibleToMove).isEqualTo(true);
     }
@@ -22,7 +22,7 @@ public class BridgeTest {
     void judgeImpossibleToMove() {
         Bridge bridge = new Bridge(List.of("U", "D", "U"));
 
-        boolean possibleToMove = bridge.isPossibleToMove("U", 1);
+        boolean possibleToMove = bridge.isMovable("U", 1);
 
         assertThat(possibleToMove).isEqualTo(false);
     }
