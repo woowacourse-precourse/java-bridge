@@ -7,9 +7,13 @@ import java.util.List;
  */
 public class BridgeGame {
     private Bridge bridge;
+    private int trial;
 
-    public BridgeGame(List<String> availablePositions) {
-        this.bridge = new Bridge(availablePositions);
+    public BridgeGame(int bridgeSize) {
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+        this.bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+        this.trial = 0;
     }
 
     /**
@@ -18,11 +22,6 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
-        bridge.movePlayer();
-    }
-
-    public boolean canMoveTo(String next) {
-        return bridge.isNextAvailable(next);
     }
 
     /**
@@ -31,6 +30,5 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        bridge.initializeCurrentPosition();
     }
 }
