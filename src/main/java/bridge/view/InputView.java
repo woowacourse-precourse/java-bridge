@@ -27,7 +27,7 @@ public class InputView {
     public String readMoving() {
         String input = Console.readLine();
 
-        return (String) validateInput(Validation::validateCommand, input, "U와 D 중 하나만 입력하세요");
+        return (String) validateInput(Validation::validateMove, input, "U와 D 중 하나만 입력하세요");
     }
 
     /**
