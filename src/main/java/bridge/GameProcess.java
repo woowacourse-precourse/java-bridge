@@ -6,7 +6,6 @@ import bridge.domain.User;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-import java.util.function.Supplier;
 
 public class GameProcess {
     private BridgeGame bridgeGame;
@@ -37,7 +36,7 @@ public class GameProcess {
     private void repeat(Boolean gameStart,User user) {
         while (gameStart) {
             //다리 길이 입력, 다리 생성
-            Integer bridgeSize = input(()->inputView.readBridgeSize());
+            Integer bridgeSize = inputView.readBridgeSize(e-> outputView.printError(e.getMessage()));
             Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
 
             // 사용자 최종 위치 계산
@@ -50,7 +49,8 @@ public class GameProcess {
 
     private boolean retryOrNot(Integer bridgeSize, int userPosition, User user) {
         return cleared(bridgeSize, userPosition)
-                && bridgeGame.retry(input(()->inputView.readGameCommand()), user);
+                && bridgeGame.retry(inputView.readGameCommand(
+                        e-> outputView.printError(e.getMessage())), user);
     }
 
     private boolean cleared(Integer bridgeSize, Integer userPosition) {
@@ -64,7 +64,7 @@ public class GameProcess {
 
         do {
             // 움직일 방향 입력
-            way = input(()->inputView.readMoving());
+            way = inputView.readMoving((e)-> outputView.printError(e.getMessage()));
         } while (movable(index++, way, bridge, user) && index < bridgeSize );
 
         return index;
@@ -78,24 +78,5 @@ public class GameProcess {
         outputView.printMap(user.getPosition());
 
         return moved;
-    }
-
-    /**
-     * while 문으로 돌면 indent 규칙 위반
-     * 재귀를 사용하면 성능 저하 & 보안 위험
-     * 어떻게 해야 할까...
-     * @param readFunction
-     * @return
-     * @param <T>
-     */
-    private <T> T input(Supplier<T> readFunction){
-        T result;
-        try {
-            result =  readFunction.get();
-        }catch (IllegalArgumentException e){
-            outputView.printError(e.getMessage());
-            result = input(readFunction);
-        }
-        return result;
     }
 }
