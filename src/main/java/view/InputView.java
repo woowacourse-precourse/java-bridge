@@ -40,7 +40,7 @@ public class InputView {
     public String readMoving() {
         System.out.println(SELECT_UP_AND_DOWN);
         String movingNext = Console.readLine();
-        
+        validation.validMovingNext(movingNext);
         return movingNext;
     }
 
