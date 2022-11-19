@@ -19,8 +19,7 @@ public class InputView {
         String input = Console.readLine();
 
         InputValidator inputValidator = new InputValidator(input);
-        if (inputValidator.isEmptyOrBlank() || !inputValidator.isNumber()
-                || inputValidator.isOutOfInt()) {
+        if (!inputValidator.isInRangeSize()) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_NUMBER_ERROR.toString());
         }
         return Integer.parseInt(input);
