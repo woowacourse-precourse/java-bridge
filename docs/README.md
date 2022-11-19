@@ -1,0 +1,152 @@
+# 🚀 기능 요구 사항 정리
+
+### ❗ 체크 사항은 구현해야할 요소
+
+<hr>
+
+## 시나리오 실행
+
+- [ ] Application에서 BridgeScenario를 생성하여 전체 프로그램 흐름을 제어
+    - BridgeScenario에서 입출력 호출
+
+<br/>
+
+<hr>
+
+### 다리 게임 객체 BridgeGame
+
+- 수정 가능 사항:
+    - 필드, 패키지, 파라미터, 반환 타입
+
+- 제약 사항
+    - `InputView`, `OutputView` 사용 금지
+
+- 메소드 추가 가능 여부: O
+
+
+- size만큼 Bridge 생성 makeBridge(int size)
+- [ ] 위아래 중 하나로 이동 move()
+    - 이동 할 때 마다 진행 상태 오른쪽에 이동 한 위치(위, 아래)에 O, X 기록
+    - move의 결과가 X일 경우 현재 상태 BridgeStatus를 STOP으로 변경
+
+
+- [ ] 재시도 retry()
+    - 현재 진행 상태 초기화
+    - 초기화 후 시도 횟수 + 1
+    - [ ] 검증
+        - BridgeStatus STOP인 경우만 가능
+
+
+- [ ] 현재 상태 종류 반환 status()
+
+
+- [ ] 현재 다리 진행도 반환 progress()
+
+
+- [ ] 현재 총 시도 횟수 반환 tryTimes()
+
+<br/>
+
+### 다리 게임 상태 Enum BridgeStatus
+
+- [ ] 진행 중 RUNNING
+- [ ] 진행 불가 STOP
+- [ ] 진행 완료 FINISH
+
+<br/>
+
+### 다리 생성기 BridgeMaker
+
+- 수정 가능 사항
+    - 메소드 내 로직
+
+- 메소드 추가 가능 여부: X
+
+
+- size만큼 Bridge 생성 makeBridge(int size)
+
+<br/>
+
+### 다리 정답 난수 생성기 BridgeRandomNumberGenerator
+
+- 수정 가능 사항: X
+- 메소드 추가 가능 여부: X
+
+
+- 0, 1 생성기 generate()
+
+<br/>
+
+<hr>
+
+## 화면 입출력 View
+
+### 입력 시 출력 InputView
+
+- 수정 가능 사항
+    - 패키지, 메소드 파라미터, 메소드 반환 타입
+
+- 메소드 추가 가능 여부: O
+
+
+- 다리 길이 입력 readBridgeSize()
+    - [ ] 텍스트 출력
+      ```
+      다리의 길이를 입력해주세요.
+      ```
+    - [ ] 검증 사항
+        - 3 이상 20 이하의 숫자
+        - 해당 범위가 아닐 경우 예외 처리
+            - [ ] IllegalArgumentException 처리 후 재입력 시도
+
+
+- 이동 칸 수 입력 readMoving()
+    - [ ] 텍스트 출력
+      ```
+      이동할 칸을 선택해주세요. (위: U, 아래: D)
+      ```
+    - [ ] 검증 사항
+        - U 또는 D
+        - 해당 범위가 아닐 경우 예외 처리
+            - [ ] IllegalArgumentException 처리 후 재입력 시도
+
+
+- 재시도/종료 입력 readGameCommand()
+    - [ ] 텍스트 출력
+      ```
+      게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)
+      ```
+    - [ ] 검증 사항
+        - R 또는 Q
+        - 해당 범위가 아닐 경우 예외 처리
+            - [ ] IllegalArgumentException 처리 후 재입력 시도
+
+<br/>
+
+### 입력 시 출력 OutputView
+
+- 수정 가능 사항
+    - 패키지, 메소드 파라미터, 메소드 반환 타입
+
+- 메소드 추가 가능 여부: O
+
+
+- [ ] printStart()
+  ```
+  다리 건너기 게임을 시작합니다.
+  ```
+
+- [ ] printMap()
+  ```
+  [ O | X ]
+  [   |   ]
+  ```
+
+- [ ]  printResult()
+  ```
+  게임 성공 여부: 실패
+  총 시도한 횟수: 1
+  ```
+
+<br/>
+    
