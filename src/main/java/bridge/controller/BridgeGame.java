@@ -5,6 +5,7 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -49,5 +50,13 @@ public class BridgeGame {
 
     public int getResultSize() {
         return result.size();
+    }
+
+    public List<String> getResult() {
+        return Collections.unmodifiableList(result);
+    }
+
+    public List<String> getBridge() {
+        return Collections.unmodifiableList(bridge);
     }
 }

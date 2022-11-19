@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class BridgeGameController {
     private BridgeGame bridgeGame;
@@ -24,9 +25,8 @@ public class BridgeGameController {
         numberOfAttempts++;
 
         for(int i=0; i<bridgeGame.getBridgeSize(); i++) {
-            String square = InputView.readMoving();
-            if(!bridgeGame.move(i, square)) break;
-            //다리 건너기 결과 출력
+            if(!bridgeGame.move(i, InputView.readMoving())) break;
+            OutputView.printMap(bridgeGame.getBridge(), bridgeGame.getResult());
         }
 
         if(bridgeGame.getBridgeSize() != bridgeGame.getResultSize()) retry();

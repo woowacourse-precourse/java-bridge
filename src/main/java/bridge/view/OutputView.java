@@ -1,5 +1,7 @@
 package bridge.view;
 
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -10,7 +12,29 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public static void printMap(List<String> bridge, List<String> result) {
+        System.out.println(upstairs(bridge, result));
+        System.out.println(downstairs(bridge, result));
+    }
+
+    private static String upstairs(List<String> bridge, List<String> result) {
+        return getString(bridge, result, "U");
+    }
+
+    private static String downstairs(List<String> bridge, List<String> result) {
+        return getString(bridge, result, "D");
+    }
+
+    private static String getString(List<String> bridge, List<String> result, String stair) {
+        StringBuilder sb = new StringBuilder("[ ");
+
+        for(int i=0; i<result.size(); i++) {
+            if(bridge.get(i).equals(stair) && result.get(i).equals("O")) sb.append("O");
+            if(!bridge.get(i).equals(stair) && result.get(i).equals("X")) sb.append("X");
+            sb.append(" | ");
+        }
+
+        return sb.replace(sb.length()-2, sb.length()-1, "]").toString();
     }
 
     /**
@@ -18,6 +42,6 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public static void printResult() {
     }
 }
