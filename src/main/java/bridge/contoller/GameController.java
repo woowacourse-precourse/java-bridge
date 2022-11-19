@@ -30,18 +30,23 @@ public class GameController {
     private void crossBridge() {
         do {
             tryMove();
-        } while (!bridgeGame.isEnd() && bridgeGame.retry(inputView.readGameCommand()));
+
+            if (bridgeGame.isEnd()) {
+                break;
+            }
+        } while (bridgeGame.retry(inputView.readGameCommand()));
 
         outputView.printResult(bridgeGame);
     }
 
     private void tryMove() {
         while (!bridgeGame.isEnd()) {
-            if (!bridgeGame.move(inputView.readMoving())) {
+            if (bridgeGame.move(inputView.readMoving())) {
                 outputView.printMap(bridgeGame.getBridgeTokens());
-                break;
+                continue;
             }
             outputView.printMap(bridgeGame.getBridgeTokens());
+            break;
         }
     }
 
