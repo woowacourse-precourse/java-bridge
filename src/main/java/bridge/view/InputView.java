@@ -27,4 +27,11 @@ public class InputView {
             throw new IllegalArgumentException(NO_NUMBER_INPUT.toString());
         }
     }
+
+    private static void checkAlphabet(String input){
+        String pattern = "[a-zA-Z]+";
+        if (!Pattern.matches(pattern, input)){
+            throw new IllegalArgumentException(NO_ALPHABET_INPUT.toString());
+        }
+    }
 }
