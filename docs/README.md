@@ -42,7 +42,7 @@
 ### 추가 구현 목록
 - [ ] InputView 에서 입력 검사 메서드 분리
   - [x] InputValidator 인터페이스 추가
-  - [ ] BridgeSizeValidator 클래스 추가
+  - [x] BridgeSizeValidator 클래스 추가
   - [ ] MovingValidator 클래스 추가
   - [ ] GameCommandValidator 클래스 추가 
 
