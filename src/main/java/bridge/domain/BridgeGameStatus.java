@@ -16,6 +16,10 @@ public class BridgeGameStatus {
         return status.getStatus();
     }
 
+    public String getStatusMessage(){
+        return status.getMessage();
+    }
+
     public void updateStatus(Status status) {
         this.status = status;
     }
