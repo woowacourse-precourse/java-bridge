@@ -2,6 +2,7 @@ package bridge.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -27,5 +28,13 @@ class BridgeGameResultTest {
 
         boolean actual = moveState.equals(newMoveState);
         assertThat(actual).isFalse();
+    }
+
+    @DisplayName("다리 이동 상태를 업데이트 한다.")
+    @Test
+    void checkUpdateMoveState() {
+        gameResult.updateMoveState("U", true);
+        List<String> updatedResult = gameResult.getMoveState().getUpState();
+        assertThat(updatedResult).hasSize(1);
     }
 }
