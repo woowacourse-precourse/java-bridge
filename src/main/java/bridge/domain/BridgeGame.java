@@ -10,11 +10,13 @@ public class BridgeGame {
     private final Bridge bridge;
     private final MoveResult moveResult;
     private int currentBoardIndex;
+    private boolean isGameOver;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
-        currentBoardIndex = 0;
+        this.currentBoardIndex = 0;
         this.moveResult = new MoveResult();
+        this.isGameOver = false;
     }
 
     /**
@@ -25,7 +27,7 @@ public class BridgeGame {
     public void move(String nextPosition) throws IllegalArgumentException {
         MoveCondition.validateNextMove(nextPosition);
         boolean isSuccess = bridge.checkMoveSuccess(nextPosition, currentBoardIndex); //여기서 연산 하고, bridgeGame 에서 다시 그 결과에 따라 이동 내역 업데이트
-        updateCrossedBridge(nextPosition, isSuccess);
+        updateGameStatus(nextPosition, isSuccess);
     }
 
     /**
@@ -40,7 +42,25 @@ public class BridgeGame {
         return moveResult.getMap();
     }
 
-    private void updateCrossedBridge(String position, boolean isSuccess) {
+    public boolean isGameOver() {
+        return isGameOver;
+    }
+
+    public boolean isGamePass() {
+        return bridge.hasReachedEnd(currentBoardIndex);
+    }
+
+    private void updateGameStatus(String position, boolean isSuccess) {
         moveResult.updateMoveResult(isSuccess, position);
+        updateGameOverStatus(isSuccess);
+        updateBridgeIndex();
+    }
+
+    private void updateGameOverStatus(boolean isSuccess) {
+        isGameOver = !isSuccess;
+    }
+
+    private void updateBridgeIndex() {
+        currentBoardIndex += 1;
     }
 }

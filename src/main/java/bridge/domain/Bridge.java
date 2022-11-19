@@ -16,6 +16,10 @@ public class Bridge {
         return isNextPositionSame(nextPosition, bridge.get(index));
     }
 
+    public boolean hasReachedEnd(int index) {
+        return index == bridge.size();
+    }
+
     private void validate(List<String> bridge) throws IllegalArgumentException {
         if (isNotInRange(bridge.size())) {
             throw new IllegalArgumentException(ErrorMessage.NOT_IN_RANGE.printMessage());

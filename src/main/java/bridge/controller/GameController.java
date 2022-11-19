@@ -13,12 +13,14 @@ public class GameController {
     private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
     private BridgeGame bridgeGame;
+    private boolean isPlaying;
 
     public GameController() {
         inputView = new InputView();
         outputView = new OutputView();
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         initializeGame();
+        isPlaying = true;
     }
 
     private void initializeGame() {
@@ -38,6 +40,7 @@ public class GameController {
     public void play() {
         move();
         printMoveResult();
+        checkGameEnd();
     }
 
     private void move() {
@@ -64,5 +67,17 @@ public class GameController {
     private void printMoveResult() {
         outputView.printMap(bridgeGame.getCurrentMap());
     }
+
+    private void checkGameEnd() {
+        if (bridgeGame.isGameOver()) {
+            requestGameRestart();
+            return;
+        }
+        if (bridgeGame.isGamePass()) {
+            isPlaying = false;
+        }
+    }
+
+    private void requestGameRestart() {}
 
 }
