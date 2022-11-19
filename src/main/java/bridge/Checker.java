@@ -3,6 +3,7 @@ package bridge;
 import static constant.Values.Message.*;
 
 import constant.Values.BridgeCase;
+import constant.Values.MoveCase;
 
 public class Checker {
     public int checkValidate(String input) throws IllegalArgumentException {
@@ -42,15 +43,17 @@ public class Checker {
     public String checkMoveValidate(String move) {
         if (!(move.equals("U") | move.equals("D"))) {
             throw new IllegalArgumentException(
-                    String.format(ERROR_INPUT_VALUE.getMessage(), move) + ERROR_MOVE.getMessage() + ERROR_RE_INPUT.getMessage());
+                    String.format(ERROR_INPUT_VALUE.getMessage(), move) + ERROR_MOVE.getMessage()
+                            + ERROR_RE_INPUT.getMessage());
         }
         return move;
     }
 
-    public BridgeCase checkMoveSuccess(String move, String value) {
-        if(move.equals(value)){
-            return BridgeCase.POSITIVE;
-        }
-        return BridgeCase.NEGATIVE;
+    public MoveCase checkMoveSuccess(String value, String move) {
+        return MoveCase.findByValueAndMove(value, move);
+    }
+
+    public boolean checkBridgeGameResult(BridgeGame bridgeGame) {
+        return bridgeGame.getResults().get(bridgeGame.getIndex() - 1).isResult();
     }
 }
