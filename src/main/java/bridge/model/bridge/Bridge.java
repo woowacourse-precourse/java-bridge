@@ -15,8 +15,12 @@ public class Bridge {
     public static Bridge of(List<String> generatedBridge) {
         Bridge bridge = new Bridge(generatedBridge.size());
         for (String position : generatedBridge) {
-            bridge.nodes.add(Node.valueOf(position));
+            bridge.nodes.add(Node.of(position));
         }
         return bridge;
+    }
+
+    public boolean compareNodeOf(int index, Node other) {
+        return nodes.get(index).equals(other);
     }
 }
