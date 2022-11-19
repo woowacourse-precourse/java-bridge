@@ -64,5 +64,7 @@ public class GameController {
 		return result;
 	}
 
-
+	public void end(String result, BridgeGame bridgeGame) {
+		outputView.printResult(result, bridgeGame.isSuccess(), bridgeGame.getCount());
+	}
 }
