@@ -11,7 +11,7 @@ public class InputView {
         String bridgeSize;
         while (true) {
             bridgeSize = camp.nextstep.edu.missionutils.Console.readLine();
-            if (!errorHandling(bridgeSize)) {
+            if (!bridgeSizeErrorHandling(bridgeSize)) {
                 break;
             }
         }
@@ -47,7 +47,7 @@ public class InputView {
         }
     }
 
-    public Boolean errorHandling(String str) {
+    public Boolean bridgeSizeErrorHandling(String str) {
         try {
             checkNotDigit(str);
             checkOutOfBound(Integer.parseInt(str));
@@ -56,5 +56,13 @@ public class InputView {
         }
         return false;
     }
+
+    public void checkMovingInput(String str) {
+        if (!(str.equals("U") || str.equals("D"))) {
+            throw new IllegalArgumentException("[ERROR] 이동할 칸 입력은 U 또는 D 입니다");
+        }
+    }
+
+
 
 }
