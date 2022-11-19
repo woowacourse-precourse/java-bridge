@@ -6,8 +6,8 @@ import java.util.List;
 public class BridgeGameResult {
 
     private final List<String> bridgeGameResult = new ArrayList<>();
-    private String List1 = "";
-    private String List2 = "";
+    private String topResult = "";
+    private String bottomResult = "";
 
     public BridgeGameResult(List<String> bridge, List<String> playerInput) {
         checkTop(bridge, playerInput);
@@ -16,27 +16,27 @@ public class BridgeGameResult {
     }
 
     public void makeGameResult(){
-        List1="["+List1+"]";
-        List2="["+List2+"]";
-        bridgeGameResult.add(List1);
-        bridgeGameResult.add(List2);
+        topResult="["+topResult+"]";
+        bottomResult="["+bottomResult+"]";
+        bridgeGameResult.add(topResult);
+        bridgeGameResult.add(bottomResult);
     }
 
     public void checkTop(List<String> bridge, List<String> playerInput) {
         for (int i = 0; i < playerInput.size(); i++) {
             if (i != 0) {
-                List1 += "|";
+                topResult += "|";
             }
-            List1 += makeTopResult(bridge.get(i), playerInput.get(i));
+            topResult += makeTopResult(bridge.get(i), playerInput.get(i));
         }
     }
 
     public void  checkBottom(List<String>list,List<String>playerInput){
         for(int i=0;i<playerInput.size();i++){
             if(i!=0){
-                List2+="|";
+                bottomResult+="|";
             }
-            List2+=makeBottomResult(list.get(i),playerInput.get(i));
+            bottomResult+=makeBottomResult(list.get(i),playerInput.get(i));
         }
     }
 
