@@ -10,6 +10,7 @@ public class BridgeGameHost {
     private int playerIndex;
     private int numberOfRetry;
     private boolean playerAlive;
+    private boolean gameInProgress;
     private final OutputView outputView;
     private final InputView inputView;
     private final BridgeGame bridgeGame;
@@ -18,6 +19,7 @@ public class BridgeGameHost {
         numberOfRetry = 1;
         playerIndex = -1;
         playerAlive = true;
+        gameInProgress = true;
         outputView = new OutputView();
         inputView = new InputView();
         bridgeGame = new BridgeGame();
@@ -25,63 +27,91 @@ public class BridgeGameHost {
 
     public void gameStart() {
         outputView.printOpeningPhrase();
+        setBridge(new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(decideBridgeSize()));
+        while (gameInProgress) {
+            moving();
+            isPlayerDead();
+            gameSuccess();
+        }
+        outputView.printResult(this);
+    }
 
-        int bridgeSize = 0;
+    private void gameSuccess() {
+        if (getResult().equals(SUCCESS)) {
+            outputView.printResult(this);
+            gameInProgress = false;
+        }
+    }
 
+    private void isPlayerDead() {
+        String gameCommand = "";
+
+        if (!playerAlive) {
+            decideRetryOrQuit(gameCommand);
+        }
+    }
+
+    private void decideRetryOrQuit(String gameCommand) {
         while (true) {
             try {
-                outputView.printRequestBridgeSize();
-                bridgeSize = inputView.readBridgeSize();
+                gameCommand = getGameCommand();
                 break;
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
         }
+        parsingGameCommand(gameCommand);
+    }
 
-        setBridge(new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize));
+    private String getGameCommand() {
+        outputView.printRequestRestart();
+        return inputView.readGameCommand();
+    }
 
-        while (true) {
-            while (true) {
-                try {
-                    outputView.printRequestMoving();
-                    String moving = inputView.readMoving();
-                    bridgeGame.move(this, moving);
-                    outputView.printMap(this);
-                    break;
-                } catch (IllegalArgumentException exception) {
-                    System.out.println(exception.getMessage());
-                }
-            }
-
-            if (!playerAlive) {
-                String gameCommand = "";
-
-                while (true) {
-                    try {
-                        outputView.printRequestRestart();
-                        gameCommand = inputView.readGameCommand();
-                        break;
-                    } catch (IllegalArgumentException exception) {
-                        System.out.println(exception.getMessage());
-                    }
-                }
-
-                if (gameCommand.equals(RETRY)) {
-                    bridgeGame.retry(this);
-                }
-
-                if (gameCommand.equals(QUIT)) {
-                    break;
-                }
-            }
-
-            if (getResult().equals(SUCCESS)) {
-                outputView.printResult(this);
-                break;
-            }
+    private void parsingGameCommand(String gameCommand) {
+        if (gameCommand.equals(RETRY)) {
+            bridgeGame.retry(this);
         }
 
-        outputView.printResult(this);
+        if (gameCommand.equals(QUIT)) {
+            gameInProgress = false;
+        }
+    }
+
+    private int decideBridgeSize() {
+        int bridgeSize = 0;
+        while (true) {
+            try {
+                bridgeSize = printAndGetBridgeSize();
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+        return bridgeSize;
+    }
+
+    private int printAndGetBridgeSize() {
+        outputView.printRequestBridgeSize();
+        return inputView.readBridgeSize();
+    }
+
+    private void moving() {
+        while (true) {
+            try {
+                printAndDecideMoving();
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
+
+    private void printAndDecideMoving() {
+        outputView.printRequestMoving();
+        String moving = inputView.readMoving();
+        bridgeGame.move(this, moving);
+        outputView.printMap(this);
     }
 
     public void setBridge(List<String> bridge) {
