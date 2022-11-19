@@ -37,7 +37,7 @@ public class BridgeGame {
      * @return 다리 건너기 성공시 true, 실패시 false
      */
     public boolean isWin(Player player) {
-        return player.isCurrentPosition(bridge.getBridgeSize() - 1);
+        return player.isCurrentPosition(bridge.getBridgeSize() - 1) && player.isAlive();
     }
 
     /**
