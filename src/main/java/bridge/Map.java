@@ -12,9 +12,11 @@ public class Map {
     private static final String WRONG = "X";
     private static final String BLANK_SPACE = " ";
 
+    private final List<String> userPath;
     private List<String> map;
 
-    public Map() {
+    public Map(List<String> userPath) {
+        this.userPath = userPath;
         this.map = initializeMap();
     }
 
