@@ -6,13 +6,14 @@ import java.util.NoSuchElementException;
 public enum MoveResult {
 
     SUCCESS("O", true),
-    FAIL("X", false);
+    FAIL("X", false),
+    NOTHING(" ", null);
 
     private final String value;
 
-    private final boolean result;
+    private final Boolean result;
 
-    MoveResult(final String value, final boolean result) {
+    MoveResult(final String value, final Boolean result) {
         this.value = value;
         this.result = result;
     }

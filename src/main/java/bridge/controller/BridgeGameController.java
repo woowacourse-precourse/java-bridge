@@ -39,5 +39,10 @@ public class BridgeGameController {
 
         BridgeResult bridgeResult = new BridgeResult();
         bridgeResult.updateResult(userMove, result);
+
+        List<String> upBridgeResult = bridgeResult.getUpBridgeResult();
+        List<String> downBridgeResult = bridgeResult.getDownBridgeResult();
+
+        outputView.printMap(upBridgeResult, downBridgeResult);
     }
 }

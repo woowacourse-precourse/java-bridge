@@ -27,6 +27,14 @@ public class Square {
         }
     }
 
+    public boolean isUp() {
+        return Objects.equals(moveType, MoveType.U.name());
+    }
+
+    public boolean isDown() {
+        return Objects.equals(moveType, MoveType.D.name());
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {
