@@ -30,21 +30,30 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<List<String>> resultMap) {
+        System.out.print(resultMapToString(resultMap));
+    }
+
+    private StringBuilder resultMapToString(List<List<String>> resultMap) {
         StringBuilder sb = new StringBuilder();
         for (List<String> strings : resultMap) {
             sb.append("[");
-            for (int j = 0; j < strings.size(); j++) {
-                sb.append(" ");
-                sb.append(strings.get(j));
-                sb.append(" ");
-                if (j != strings.size() - 1) {
-                    sb.append("|");
-                }
-            }
+            addResultsToBuilder(strings, sb);
             sb.append("]");
             sb.append(System.lineSeparator());
         }
-        System.out.print(sb);
+        return sb;
+    }
+
+    private void addResultsToBuilder(List<String> results, StringBuilder builder) {
+        for (int i = 0; i < results.size(); i++) {
+            builder.append(Command.BLANK_SPACE.getMessage())
+                    .append(results.get(i))
+                    .append(Command.BLANK_SPACE.getMessage());
+
+            if (i != results.size() - 1) {
+                builder.append("|");
+            }
+        }
     }
 
     /**
