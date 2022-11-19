@@ -32,6 +32,14 @@ public class OutputView {
     }
 
     public void printFirstBridge(int userPosition, boolean checkBridge, List<Integer> firstBridge){
+        printMapStart();
+        for(int i = 0; i < userPosition; i++){
+            printNone(i, firstBridge);
+            printCorrect(i, firstBridge);
+            printSeparation();
+        }
+        printUserPositionValue(userPosition, checkBridge, firstBridge);
+        printMapEnd();
     }
 
     public void printMapStart(){
