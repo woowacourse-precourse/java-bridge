@@ -7,7 +7,7 @@ import static java.lang.String.format;
 public class ConsoleLogger implements Logger  {
 
     private static final String ERROR_PREFIX = "[ERROR]";
-    private static final String ERROR_FORMAT = "%s%s";
+    private static final String ERROR_FORMAT = "%s %s";
 
     @Override
     public void error(String message) {
