@@ -119,8 +119,11 @@ public class Bridge {
         return str.equals("D");
     }
 
-    public String getGameResult() {
-        if (location == size)
+    public boolean getGameResult() {
+        return location == size;
+    }
+    public String getGameResultString() {
+        if (getGameResult())
             return "성공";
         return "실패";
     }
