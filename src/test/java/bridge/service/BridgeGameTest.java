@@ -41,7 +41,7 @@ public class BridgeGameTest {
         assertThat(user.isGameWin()).isEqualTo(true);
     }
 
-    @DisplayName("유저가 맞히지 못한 경우 userFailCase 테스트 (Restart의 경우)")
+    @DisplayName("유저가 맞히지 못한 경우 doFailCaseWithQuitTest 테스트 (Restart의 경우)")
     @Test
     public void doFailCaseWithRestartTest() {
         // given
@@ -59,7 +59,7 @@ public class BridgeGameTest {
         assertThat(bridge.getNowIndex()).isEqualTo(0);
     }
 
-    @DisplayName("유저가 맞히지 못한 경우 userFailCase 테스트 (Quit의 경우)")
+    @DisplayName("유저가 맞히지 못한 경우 doFailCaseWithQuitTest 테스트 (Quit의 경우)")
     @Test
     public void doFailCaseWithQuitTest() {
         // given
@@ -75,7 +75,7 @@ public class BridgeGameTest {
         assertThat(user.isGameDoneStatus()).isEqualTo(true);
     }
 
-    @DisplayName("유저가 모든 턴을 성공적으로 돌았는지 확인해주는 userCorrectAllTurn 테스트")
+    @DisplayName("유저가 모든 턴을 성공적으로 돌았는지 확인해주는 isUserPassedAllTurnTest 테스트")
     @Test
     public void isUserPassedAllTurnTest() {
         // given
