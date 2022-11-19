@@ -1,37 +1,30 @@
 package bridge.domain;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static bridge.constant.Constant.*;
 
 public class CurrentBridge {
-    private final List<String> currentShape;
+    private List<String> currentShape;
     private final List<String> upperSection;
     private final List<String> lowerSection;
     private boolean isFailed = false;
 
-    public CurrentBridge(List<String> currentShape, String readMoving) {
+    public CurrentBridge() {
+        this.currentShape = new ArrayList<>();
+        this.lowerSection = new ArrayList<>();
+        this.upperSection = new ArrayList<>();
+    }
+
+    public void setSection(List<String> currentShape, String readMoving) {
         this.currentShape = currentShape;
-        this.upperSection = setSection(UP);
-        this.lowerSection = setSection(DOWN);
         if (readMoving.equals(UP)) {
             setUpperSectionLast(readMoving);
         }
         if (readMoving.equals(DOWN)) {
             setLowerSectionLast(readMoving);
         }
-    }
-
-    private List<String> setSection(String section) {
-        return currentShape.stream()
-                .map(zone -> {
-                    if (zone.equals(section)) {
-                        return section;
-                    }
-                    return WHITE_SPACE;
-                })
-                .collect(Collectors.toList());
     }
 
     private void setUpperSectionLast(String readMoving) {
@@ -45,13 +38,13 @@ public class CurrentBridge {
     private void setLastSection(String readMoving, List<String> firstSection, List<String> secondSection) {
         boolean sectionCanCross = isSectionCanCross(readMoving);
         if (sectionCanCross) {
-            firstSection.set(firstSection.size() - 1, OK);
+            firstSection.add(OK);
         }
         if (!sectionCanCross) {
-            firstSection.set(firstSection.size() - 1, X);
+            firstSection.add(X);
             isFailed = true;
         }
-        secondSection.set(secondSection.size() - 1, WHITE_SPACE);
+        secondSection.add(WHITE_SPACE);
     }
 
     private boolean isSectionCanCross(String readMoving) {
