@@ -44,5 +44,22 @@ class ValidatorTest {
 
 
     }
+    @Test
+    public void userRestartValidator() throws Exception{
+        //given
+        String restart1 = "RR";
+        String restart2 = "R1123";
+
+        //then
+        assertThatThrownBy(()-> validator.validateRestartChoice(restart1))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+
+        assertThatThrownBy(()-> validator.validateRestartChoice(restart2))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+
+
+    }
 
 }
