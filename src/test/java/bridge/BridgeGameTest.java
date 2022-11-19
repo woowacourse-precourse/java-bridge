@@ -31,4 +31,14 @@ public class BridgeGameTest {
         Result result = bridgeGame.move(0, "D");
         assertThat(result).isEqualTo(UP_FAIL);
     }
+
+    @Test
+    void 잘못된_길_접근_테스트() {
+        BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(1, 0, 0));
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(3);
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        Result result = bridgeGame.move(0, "D");
+        assertThat(bridgeGame.isWrongApproach(result)).isEqualTo(true);
+    }
 }
