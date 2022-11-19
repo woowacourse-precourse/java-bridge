@@ -1,6 +1,7 @@
 package bridge.controller;
 
 import bridge.domain.BridgeGame;
+import bridge.domain.Status;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -20,6 +21,7 @@ public class BridgeGameController {
         int bridgeSize = getBridgeSize();
         bridgeGame.createBridge(bridgeSize);
         tryMove();
+        outputView.printMap(bridgeGame.getResult());
     }
 
     public int getBridgeSize() {
@@ -43,11 +45,34 @@ public class BridgeGameController {
     }
 
     public void tryMove() {
-        while (true) {
+        while (bridgeGame.canPlay()) {
             String moveLocation = getMove();
             bridgeGame.move(moveLocation);
             outputView.printMap(bridgeGame.getResult());
             bridgeGame.updateGameStatus(moveLocation);
+            checkRetry();
+        }
+    }
+
+    private void checkRetry() {
+        if (bridgeGame.canPlay()) {
+            return;
+        }
+        if (bridgeGame.checkStatus() == Status.SUCCESS.getMessage()) {
+            return;
+        }
+        if (getRetryCommand().equals("R")) {
+            bridgeGame.retry();
+        }
+    }
+
+    private String getRetryCommand() {
+        while (true) {
+            try {
+                return inputView.readGameCommand();
+            } catch (IllegalArgumentException iae) {
+                outputView.printError(iae.getMessage());
+            }
         }
     }
 }
