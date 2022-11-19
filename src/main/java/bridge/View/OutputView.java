@@ -12,7 +12,39 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
+    private void printMapUntilPosition(List<String> bridge, int position, String upDown) {
+        System.out.print("[");
+        for (int i = 0; i < position; i++) {
+            String answer = bridge.get(i);
+            if (answer.equals(upDown)) {
+                System.out.print(" O ");
+            } else {
+                System.out.print("   ");
+            }
+            System.out.print("|");
+        }
+    }
+
+    private void printMapNowPosition(boolean print, boolean correct) {
+        if (print) {
+            if (correct) {
+                System.out.print(" O ");
+            } else {
+                System.out.print(" X ");
+            }
+        } else {
+            System.out.print("   ");
+        }
+        System.out.println("]");
+    }
+
     public void printMap(List<String> bridge, int position, boolean correct) {
+        for (String upDown : new String[]{"U", "D"}) {
+            printMapUntilPosition(bridge, position, upDown);
+            boolean print = bridge.get(position).equals(upDown);
+            printMapNowPosition(print, correct);
+        }
+
     }
 
     /**
