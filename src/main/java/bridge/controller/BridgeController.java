@@ -13,11 +13,10 @@ public class BridgeController {
 
     private static final int BRIDGE_ONE_SPACE_SIZE = 4;
     private static final String BRIDGE_ONE_SPACE_BLANK = "   ";
+    private static final String CLOSING_BRACKET = "]";
     private StringBuilder upsideResult = new StringBuilder("[]");
     private StringBuilder downsideResult = new StringBuilder("[]");
-
     private boolean BRIDGE_RESULT = true;
-    int tryCount = 1;
 
 
     public void run() {
@@ -26,20 +25,29 @@ public class BridgeController {
         int bridgeSize = InputView.inputBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         List<String> bridgeMakeResult = bridgeMaker.makeBridge(bridgeSize);
-        BridgeGame bridgeGame = new BridgeGame(bridgeMakeResult, tryCount);
-        System.out.println(bridgeMakeResult);
+        BridgeGame bridgeGame = new BridgeGame(bridgeMakeResult, 1);
         for (int i = 0; i < bridgeSize; i++) {
             replaceCloseBracket(i);
             String moveSide = Console.readLine();
             if (bridgeGame.move(moveSide, i)) {
                 moveSuccess(bridgeGame,moveSide, i);
+                continue;
             }
             if (!bridgeGame.move(moveSide, i)) {
                 moveFail(bridgeGame,moveSide, i);
-                BRIDGE_RESULT = false;
+                BRIDGE_RESULT = bridgeGame.retry();
+            }
+            if (BRIDGE_RESULT) {
+                bridgeGame.retryCount();
+                goBackOneBridge(i);
+                i--;
+            }
+            if (!BRIDGE_RESULT) {
+                break;
             }
         }
-        printBridgeResult(BRIDGE_RESULT);
+
+        printBridgeResult(BRIDGE_RESULT, bridgeGame.getTryCount());
     }
 
     private void replaceCloseBracket(int bracketIndex) {
@@ -49,14 +57,12 @@ public class BridgeController {
         }
     }
 
-    // 맞췄을 때, upside
     private void moveUpside(BridgeGame bridgeGame, String moveSide, int index) {
         upsideResult.insert(BRIDGE_ONE_SPACE_SIZE *index+1,bridgeGame.createMoveMark(moveSide, index));
         downsideResult.insert(BRIDGE_ONE_SPACE_SIZE *index+1, BRIDGE_ONE_SPACE_BLANK);
         OutputView.printMap(upsideResult, downsideResult);
     }
 
-    // 맞췄을 때, downside
     private void moveDownside(BridgeGame bridgeGame, String moveSide, int index) {
         upsideResult.insert(BRIDGE_ONE_SPACE_SIZE *index+1, BRIDGE_ONE_SPACE_BLANK);
         downsideResult.insert(BRIDGE_ONE_SPACE_SIZE *index+1,bridgeGame.createMoveMark(moveSide, index));
@@ -69,11 +75,21 @@ public class BridgeController {
         OutputView.printMap(upsideResult, downsideResult);
     }
 
-
     private void moveFailDownside(BridgeGame bridgeGame, String moveSide, int index) {
         upsideResult.insert(BRIDGE_ONE_SPACE_SIZE *index+1, BRIDGE_ONE_SPACE_BLANK);
         downsideResult.insert(BRIDGE_ONE_SPACE_SIZE *index+1,bridgeGame.createMoveMark(moveSide,index));
         OutputView.printMap(upsideResult, downsideResult);
+
+    }
+
+    private void goBackOneBridge(int index) {
+        upsideResult.delete(BRIDGE_ONE_SPACE_SIZE * index , 2*BRIDGE_ONE_SPACE_SIZE*index+1); // i =1 4 ~ 9
+        downsideResult.delete(BRIDGE_ONE_SPACE_SIZE * index , 2*BRIDGE_ONE_SPACE_SIZE*index+1);
+        upsideResult.append(CLOSING_BRACKET);
+        downsideResult.append(CLOSING_BRACKET);
+        System.out.println("지운 결과");
+        OutputView.printMap(upsideResult, downsideResult);
+
 
     }
 
@@ -93,11 +109,11 @@ public class BridgeController {
         if (!bridgeGame.move(moveSide, index) && moveSide.equals("D")) {
             moveFailDownside(bridgeGame, moveSide, index);
         }
-         bridgeGame.retry();
     }
 
+    // retry에서 R을 입력 받았을 때 다시 시도
 
-    private void printBridgeResult(boolean result) {
+    private void printBridgeResult(boolean result, int tryCount) {
         OutputView.printResultMessage();
         OutputView.printMap(upsideResult, downsideResult);
         OutputView.printResult(tryCount, result);
