@@ -1,6 +1,7 @@
 package bridge.controller;
 
 import bridge.domain.bridge.*;
+import bridge.domain.game.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -17,7 +18,17 @@ public class BridgeController {
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
 
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        bridgeGame.move(getBridgeBlock());
+        boolean hasMoved;
+        
+        do {
+            hasMoved = bridgeGame.move(getBridgeBlock());
+            getMoveInfo(bridgeGame.getCrossingResult());
+        } while (hasMoved);
+
+    }
+
+    private static void getMoveInfo(String moveInfo) {
+        outputView.print(moveInfo);
     }
 
     private static String getBridgeBlock() {

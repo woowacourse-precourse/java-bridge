@@ -1,20 +1,41 @@
 package bridge.domain.bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
-    final List<String> bridge;
+    List<String> upside;
+    List<String> downside;
 
     public Bridge(List<String> bridge) {
-        this.bridge = bridge;
+        upside = new ArrayList<>();
+        downside = new ArrayList<>();
+
+        createBridge(bridge);
+    }
+
+    private void createBridge(List<String> bridge) {
+        for (String block : bridge) {
+            if (block.equals(BridgeBlock.UP.direction)) {
+                upside.add(BridgeBlock.UP.direction);
+                downside.add(" ");
+                continue;
+            }
+            upside.add(" ");
+            downside.add(BridgeBlock.DOWN.direction);
+        }
     }
 
     public int getSize() {
-        return bridge.size();
+        return upside.size();
+    }
+
+    public boolean isSameBlock(int index, String direction) {
+        return upside.get(index).equals(direction);
     }
 
     @Override
     public String toString() {
-        return String.join("", bridge);
+        return String.join("", upside);
     }
 }
