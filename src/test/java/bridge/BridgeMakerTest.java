@@ -1,8 +1,8 @@
 package bridge;
 
+import bridge.domain.MoveType;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -19,5 +19,13 @@ public class BridgeMakerTest {
     public void createBridgeSizeTest(int size) {
         List<String> bridge = bridgeMaker.makeBridge(size);
         Assertions.assertThat(bridge.size()).isEqualTo(size);
+    }
+
+    @DisplayName("유효하지 않은 다리 타입 예외 테스트")
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 10, 2})
+    public void validateBridgeTypeTest(int typeNumber) {
+        Assertions.assertThatThrownBy(() -> MoveType.convertType(typeNumber))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
