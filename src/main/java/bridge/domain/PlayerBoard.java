@@ -12,17 +12,21 @@ public class PlayerBoard {
     private static final String UP = "U";
     private static final String DOWN = "D";
 
+    private final int endRound ;
     private int gameRound;
     private List<String> upBridge;
     private List<String> downBridge;
 
-    public PlayerBoard() {
+    public PlayerBoard(final int BRIDGE_SIZE) {
         gameRound = 0;
+        endRound = BRIDGE_SIZE;
         upBridge = new ArrayList<>();
         downBridge = new ArrayList<>();
     }
 
-
+    public boolean isOver(){
+        return gameRound == endRound;
+    }
     public int getGameRound() {
         return gameRound;
     }
