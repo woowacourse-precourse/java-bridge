@@ -4,6 +4,7 @@ import bridge.enums.Key;
 import bridge.enums.ViewMessage;
 
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,16 +12,23 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private final List<String> bridge;
+    private final List<Key> bridge;
     private final Result result;
     private final Position position;
     private final Turn turn;
 
     public BridgeGame(List<String> bridge) {
-        this.bridge = bridge;
+        this.bridge = new ArrayList<>();
+        mapBridge(bridge);
         result = new Result(bridge.size());
         position = new Position(bridge.size());
         turn = new Turn();
+    }
+
+    private void mapBridge(List<String> bridge) {
+        for (String s : bridge) {
+            this.bridge.add(Key.valueOf(s));
+        }
     }
 
     /**
@@ -30,7 +38,7 @@ public class BridgeGame {
      */
     void move(String input) {
         turn.increase();
-        String answer = bridge.get(position.getNext());
+        Key answer = bridge.get(position.getNext());
         if (Key.matchUp(input)) {
             result.handleUpBridge(answer, position);
             return;
