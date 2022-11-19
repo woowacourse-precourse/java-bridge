@@ -46,7 +46,7 @@ public class BridgeTest {
         bridge.resetGame();
 
         // then
-        assertThat(bridge.getNowIndex()).isEqualTo(1);
+        assertThat(bridge.getNowIndex()).isEqualTo(0);
     }
 
     @DisplayName("nowIndexUpdate 테스트")
@@ -59,7 +59,7 @@ public class BridgeTest {
         bridge.nowIndexUpdate();
 
         // then
-        assertThat(bridge.getNowIndex()).isEqualTo(2);
+        assertThat(bridge.getNowIndex()).isEqualTo(1);
     }
 
     @DisplayName("getBridgeSize 테스트")
