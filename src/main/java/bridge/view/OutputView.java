@@ -21,19 +21,20 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(BridgeRecord record) {
-		List<String[]> recordBoards = record.getBoards();
+    public void printMap(List<String[]> boards) {
         String upMap=OPEN_BRIDGE_FORMAT;
         String downMap=OPEN_BRIDGE_FORMAT;
 
-        for(String[] board: recordBoards){
-            makeMap(board,upMap,downMap);
+        for(String[] board: boards){
+            String[] map = makeMap(board,upMap,downMap);
+            upMap = map[0];
+            downMap=map[1];
         }
         System.out.println(upMap.substring(0,upMap.length()-1)+CLOSE_BRIDGE_FORMAT);
         System.out.println(downMap.substring(0,downMap.length()-1)+CLOSE_BRIDGE_FORMAT);
     }
 
-    private void makeMap(String[] board, String upMap,String downMap){
+    private String[] makeMap(String[] board, String upMap,String downMap){
         if(board[0].equals(GameRule.UP_BOARD)){
             upMap+=" "+board[1]+" "+BRIDGE_DIVISION_FORMAT;
             downMap+=" "+" "+" "+BRIDGE_DIVISION_FORMAT;
@@ -41,6 +42,7 @@ public class OutputView {
             downMap+=" "+board[1]+" "+BRIDGE_DIVISION_FORMAT;
             upMap+=" "+" "+" "+BRIDGE_DIVISION_FORMAT;
         }
+        return new String[]{upMap,downMap};
     }
 
 
