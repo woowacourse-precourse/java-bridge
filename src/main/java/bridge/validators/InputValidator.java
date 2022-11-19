@@ -16,6 +16,10 @@ public class InputValidator {
         return true;
     }
 
+    public static boolean isValidMoveDirection(String moveDirectionInput) {
+        return moveDirectionInput.equals("U") || moveDirectionInput.equals("D");
+    }
+
     static boolean isNumeric(String input) {
         if (input.charAt(0) == '0') {
             return false;

@@ -33,7 +33,20 @@ public class Application {
 
     private static void move(int bridgeSize) {
         for (int i = 0; i < bridgeSize; ++i) {
-            String moveDirection = inputView.readMoving();
+            String moveDirection = getMoveDirectionInput();
         }
+    }
+
+    private static String getMoveDirectionInput() {
+        String moveDirection;
+        while (true) {
+            try {
+                moveDirection = inputView.readMoving();
+                break;
+            } catch (IllegalArgumentException illegalArgumentException) {
+                outputView.printErrorMessage(illegalArgumentException.getMessage());
+            }
+        }
+        return moveDirection;
     }
 }

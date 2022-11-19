@@ -30,6 +30,9 @@ public class InputView {
     public String readMoving() {
         outputView.printChooseMovingInputMessage();
         String moveDirection = readLine();
+        if (!InputValidator.isValidMoveDirection(moveDirection)) {
+            throw new IllegalArgumentException();
+        }
         return moveDirection;
     }
 
