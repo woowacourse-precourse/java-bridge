@@ -8,7 +8,6 @@ package bridge;
  * 사용자 값 입력을 위해 필요한 메서드를 추가할 수 있다.
  */
 
-import bridge.dto.UserDto;
 import bridge.validation.BridgeSizeValidation;
 import bridge.validation.GameCommandValidation;
 import bridge.validation.MovingValidation;
