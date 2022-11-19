@@ -1,6 +1,5 @@
 package bridge.view;
 
-import static bridge.domain.UpDownBridge.addCenterBar;
 import static bridge.domain.UpDownBridge.getDownBridge;
 import static bridge.domain.UpDownBridge.getUpBridge;
 import static bridge.domain.UpDownBridge.makeUpDownBridge;
@@ -8,6 +7,8 @@ import static bridge.controller.BridgeGameController.getCount;
 import static bridge.controller.BridgeGameController.getStatus;
 
 import bridge.messages.Message;
+
+import java.util.List;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -39,8 +40,12 @@ public class OutputView {
     }
 
     private static void printProgress() {
-        System.out.println(Message.LEFT_BAR.getMessage() + addCenterBar(getUpBridge()) + Message.RIGHT_BAR.getMessage());
-        System.out.println(Message.LEFT_BAR.getMessage() + addCenterBar(getDownBridge()) + Message.RIGHT_BAR.getMessage());
+        System.out.println(Message.LEFT_BAR.getMessage() + printCenterBar(getUpBridge()) + Message.RIGHT_BAR.getMessage());
+        System.out.println(Message.LEFT_BAR.getMessage() + printCenterBar(getDownBridge()) + Message.RIGHT_BAR.getMessage());
+    }
+
+    private static String printCenterBar(List<String> toAddBridge) {
+        return String.join(Message.CENTER_BAR.getMessage(), toAddBridge);
     }
 
     private static String getSuccessOrFailure() {

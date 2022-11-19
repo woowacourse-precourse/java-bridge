@@ -19,10 +19,6 @@ public class UpDownBridge {
         downBridge.clear();
     }
 
-    public static String addCenterBar(List<String> toAddBridge) {
-        return String.join(Message.CENTER_BAR.getMessage(), toAddBridge);
-    }
-
     public static List<String> getUpBridge() {
         return upBridge;
     }
