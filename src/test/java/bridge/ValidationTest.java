@@ -64,6 +64,16 @@ class ValidationTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
     }
+    @Test
+    @DisplayName("이동할 칸에 대한 입력 validation - U 또는 D 인경우")
+    public void 성공_케이스() throws Exception{
+
+        Assertions.assertThatCode(()->moveCommand("U"))
+                .doesNotThrowAnyException();
+
+        Assertions.assertThatCode(()->moveCommand("D"))
+                .doesNotThrowAnyException();
+    }
     private void moveCommand(String cmd){
         if(!(cmd.equals("U") || cmd.equals("D"))) throw new IllegalArgumentException("[ERROR] 이동할 칸은 (위: U, 아래: D)만 입력해주세요.");
     }
