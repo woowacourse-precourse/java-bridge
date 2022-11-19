@@ -12,18 +12,21 @@ public class BridgeMaker {
     }
 
     public List<String> makeBridge(int size) {
+        this.bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         bridge = new ArrayList<>();
-        makeBridgeBlock(size);
+        for (int i = 0; i < size; i++) {
+            String randomNumber = String.valueOf(bridgeNumberGenerator.generate());
+            makeBridgeBlock(randomNumber);
+        }
+        System.out.println(bridge);
         return bridge;
     }
 
-    public void makeBridgeBlock(int size) {
-        for (int i = 0; i < size; i++) {
-            String randomNumber = String.valueOf(bridgeNumberGenerator.generate());
-            if (randomNumber.equals("0")) {
-                bridge.add("D");
-                continue;
-            }
+    public void makeBridgeBlock(String randomNumber) {
+        if (randomNumber.equals("0")) {
+            bridge.add("D");
+        }
+        if (randomNumber.equals("1")) {
             bridge.add("U");
         }
     }

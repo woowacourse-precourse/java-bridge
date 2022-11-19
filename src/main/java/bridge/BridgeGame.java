@@ -28,10 +28,10 @@ public class BridgeGame {
     public void moveUp(List<String> bridge, int tryCount, String sideToMove) {
         if (sideToMove.equals("U")) {
             if (bridge.get(tryCount).equals("U")) {
-                moveSuccess();
+                moveUpSuccess();
             }
             if (bridge.get(tryCount).equals("D")) {
-                moveFailed();
+                moveUpFailed();
             }
         }
     }
@@ -39,24 +39,36 @@ public class BridgeGame {
     public void moveDown(List<String> bridge, int tryCount, String sideToMove) {
         if (sideToMove.equals("D")) {
             if (bridge.get(tryCount).equals("D")) {
-                moveSuccess();
+                moveDownSuccess();
             }
             if (bridge.get(tryCount).equals("U")) {
-                moveFailed();
+                moveDownFailed();
             }
         }
     }
 
-    public void moveSuccess() {
+    public void moveDownSuccess() {
         int lastIndex = initialUpBridge.lastIndexOf("]");
         initialDownBridge.insert(lastIndex, MOVABLE);
         initialUpBridge.insert(lastIndex, SPACE);
     }
 
-    public void moveFailed() {
+    public void moveUpSuccess() {
+        int lastIndex = initialUpBridge.lastIndexOf("]");
+        initialUpBridge.insert(lastIndex, MOVABLE);
+        initialDownBridge.insert(lastIndex, SPACE);
+    }
+
+    public void moveDownFailed() {
         int lastIndex = initialUpBridge.lastIndexOf("]");
         initialDownBridge.insert(lastIndex, UNMOVABLE);
         initialUpBridge.insert(lastIndex, SPACE);
+    }
+
+    public void moveUpFailed() {
+        int lastIndex = initialUpBridge.lastIndexOf("]");
+        initialUpBridge.insert(lastIndex, UNMOVABLE);
+        initialDownBridge.insert(lastIndex, SPACE);
     }
 
     public void createSeparator(int tryCount) {
