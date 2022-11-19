@@ -3,8 +3,8 @@ package bridge.domain;
 
 import static bridge.domain.BridgeSize.MAX_SIZE;
 import static bridge.domain.BridgeSize.MIN_SIZE;
-import static bridge.domain.command.MoveCommand.LOWER_BLOCK;
-import static bridge.domain.command.MoveCommand.UPPER_BLOCK;
+import static bridge.domain.command.MoveCommand.MOVE_TO_LOWER_BLOCK;
+import static bridge.domain.command.MoveCommand.MOVE_TO_UPPER_BLOCK;
 
 import java.util.List;
 
@@ -44,6 +44,6 @@ public class Bridge {
 
     private boolean containWrongValues(List<String> blocks) {
         return blocks.stream()
-                .anyMatch(value -> !value.equals(UPPER_BLOCK) && !value.equals(LOWER_BLOCK));
+                .anyMatch(value -> !value.equals(MOVE_TO_UPPER_BLOCK) && !value.equals(MOVE_TO_LOWER_BLOCK));
     }
 }

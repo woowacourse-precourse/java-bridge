@@ -4,8 +4,8 @@ import java.util.List;
 
 public class RetryCommand extends Command {
 
-    public static final String RESTART_GAME = "R";
-    public static final String CLOSE_GAME = "Q";
+    public static final String RETRY = "R";
+    public static final String QUIT = "Q";
 
     public RetryCommand(String message) {
         super(message);
@@ -13,11 +13,11 @@ public class RetryCommand extends Command {
 
     @Override
     void addCorrectValues(List<String> correctValues) {
-        correctValues.add(RESTART_GAME);
-        correctValues.add(CLOSE_GAME);
+        correctValues.add(RETRY);
+        correctValues.add(QUIT);
     }
 
     public boolean isRetry() {
-        return getMessage().equals(RESTART_GAME);
+        return getMessage().equals(RETRY);
     }
 }

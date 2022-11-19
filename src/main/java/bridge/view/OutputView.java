@@ -2,8 +2,8 @@ package bridge.view;
 
 
 
-import static bridge.domain.command.MoveCommand.LOWER_BLOCK;
-import static bridge.domain.command.MoveCommand.UPPER_BLOCK;
+import static bridge.domain.command.MoveCommand.MOVE_TO_LOWER_BLOCK;
+import static bridge.domain.command.MoveCommand.MOVE_TO_UPPER_BLOCK;
 import bridge.domain.GameResult;
 import bridge.domain.MoveResult;
 import java.util.ArrayList;
@@ -49,12 +49,12 @@ public class OutputView {
     }
 
     private void setBlocks(String answer, String resultMark) {
-        if (answer.equals(UPPER_BLOCK)) {
+        if (answer.equals(MOVE_TO_UPPER_BLOCK)) {
             upperBlocks.add(resultMark);
             lowerBlocks.add(BLANK);
         }
 
-        if (answer.equals(LOWER_BLOCK)) {
+        if (answer.equals(MOVE_TO_LOWER_BLOCK)) {
             upperBlocks.add(BLANK);
             lowerBlocks.add(resultMark);
         }

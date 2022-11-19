@@ -1,7 +1,7 @@
 package bridge;
 
-import static bridge.domain.command.MoveCommand.LOWER_BLOCK;
-import static bridge.domain.command.MoveCommand.UPPER_BLOCK;
+import static bridge.domain.command.MoveCommand.MOVE_TO_LOWER_BLOCK;
+import static bridge.domain.command.MoveCommand.MOVE_TO_UPPER_BLOCK;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
@@ -21,12 +21,12 @@ class BridgeMakerTest {
         assertThat(bridge.size()).isEqualTo(anyValue);
     }
 
-    @DisplayName(UPPER_BLOCK + ", " + LOWER_BLOCK + " 2개의 값만 생성된다")
+    @DisplayName(MOVE_TO_UPPER_BLOCK + ", " + MOVE_TO_LOWER_BLOCK + " 2개의 값만 생성된다")
     @ValueSource(ints = 10)
     @ParameterizedTest
     void test2(int anyValue) {
         List<String> bridge = bridgeMaker.makeBridge(anyValue);
         assertThat(bridge.stream()
-                .allMatch(value -> value.equals(UPPER_BLOCK) || value.equals(LOWER_BLOCK))).isTrue();
+                .allMatch(value -> value.equals(MOVE_TO_UPPER_BLOCK) || value.equals(MOVE_TO_LOWER_BLOCK))).isTrue();
     }
 }

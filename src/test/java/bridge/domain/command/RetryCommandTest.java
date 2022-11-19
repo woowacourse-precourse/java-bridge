@@ -1,7 +1,7 @@
 package bridge.domain.command;
 
-import static bridge.domain.command.RetryCommand.CLOSE_GAME;
-import static bridge.domain.command.RetryCommand.RESTART_GAME;
+import static bridge.domain.command.RetryCommand.QUIT;
+import static bridge.domain.command.RetryCommand.RETRY;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -19,8 +19,8 @@ class RetryCommandTest {
     class test {
 
 
-        @DisplayName(RESTART_GAME +", " + CLOSE_GAME + "일시 정상적으로 생성한다")
-        @ValueSource(strings = {RESTART_GAME, CLOSE_GAME})
+        @DisplayName(RETRY +", " + QUIT + "일시 정상적으로 생성한다")
+        @ValueSource(strings = {RETRY, QUIT})
         @ParameterizedTest
         void test1(String input) {
             assertThatNoException()
@@ -28,7 +28,7 @@ class RetryCommandTest {
         }
 
 
-        @DisplayName(RESTART_GAME + "," + CLOSE_GAME + "가 아니라면 예외를 반환한다.")
+        @DisplayName(RETRY + "," + QUIT + "가 아니라면 예외를 반환한다.")
         @Test
         void test3() {
             assertThatThrownBy(() -> new RetryCommand("wrongValue"))
@@ -40,16 +40,16 @@ class RetryCommandTest {
     @Nested
     class test2 {
 
-        @DisplayName(RESTART_GAME + "일시 true를 반환한다.")
+        @DisplayName(RETRY + "일시 true를 반환한다.")
         @Test
         void test1() {
-            assertThat(new RetryCommand(RESTART_GAME).isRetry()).isTrue();
+            assertThat(new RetryCommand(RETRY).isRetry()).isTrue();
         }
 
-        @DisplayName(CLOSE_GAME + "일시 false 반환한다.")
+        @DisplayName(QUIT + "일시 false 반환한다.")
         @Test
         void test2() {
-            assertThat(new RetryCommand(CLOSE_GAME).isRetry()).isFalse();
+            assertThat(new RetryCommand(QUIT).isRetry()).isFalse();
         }
     }
 }

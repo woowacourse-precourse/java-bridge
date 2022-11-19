@@ -4,8 +4,8 @@ import java.util.List;
 
 public class MoveCommand extends Command {
 
-    public static final String UPPER_BLOCK = "U";
-    public static final String LOWER_BLOCK = "D";
+    public static final String MOVE_TO_UPPER_BLOCK = "U";
+    public static final String MOVE_TO_LOWER_BLOCK = "D";
 
     public MoveCommand(String message) {
         super(message);
@@ -13,7 +13,7 @@ public class MoveCommand extends Command {
 
     @Override
     void addCorrectValues(List<String> correctValues) {
-        correctValues.add(UPPER_BLOCK);
-        correctValues.add(LOWER_BLOCK);
+        correctValues.add(MOVE_TO_UPPER_BLOCK);
+        correctValues.add(MOVE_TO_LOWER_BLOCK);
     }
 }

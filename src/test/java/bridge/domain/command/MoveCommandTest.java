@@ -1,7 +1,7 @@
 package bridge.domain.command;
 
-import static bridge.domain.command.MoveCommand.LOWER_BLOCK;
-import static bridge.domain.command.MoveCommand.UPPER_BLOCK;
+import static bridge.domain.command.MoveCommand.MOVE_TO_LOWER_BLOCK;
+import static bridge.domain.command.MoveCommand.MOVE_TO_UPPER_BLOCK;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -17,8 +17,8 @@ class MoveCommandTest {
     @Nested
     class test {
 
-        @DisplayName(UPPER_BLOCK +", " + LOWER_BLOCK + "일시 정상적으로 생성한다")
-        @ValueSource(strings = {UPPER_BLOCK, LOWER_BLOCK})
+        @DisplayName(MOVE_TO_UPPER_BLOCK +", " + MOVE_TO_LOWER_BLOCK + "일시 정상적으로 생성한다")
+        @ValueSource(strings = {MOVE_TO_UPPER_BLOCK, MOVE_TO_LOWER_BLOCK})
         @ParameterizedTest
         void test1(String input) {
             assertThatNoException()
@@ -26,7 +26,7 @@ class MoveCommandTest {
         }
 
 
-        @DisplayName(UPPER_BLOCK + "," + LOWER_BLOCK + "가 아니라면 예외를 반환한다.")
+        @DisplayName(MOVE_TO_UPPER_BLOCK + "," + MOVE_TO_LOWER_BLOCK + "가 아니라면 예외를 반환한다.")
         @Test
         void test3() {
             assertThatThrownBy(() -> new MoveCommand("wrongValue"))

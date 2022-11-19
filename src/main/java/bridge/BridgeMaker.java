@@ -1,7 +1,7 @@
 package bridge;
 
-import static bridge.domain.command.MoveCommand.LOWER_BLOCK;
-import static bridge.domain.command.MoveCommand.UPPER_BLOCK;
+import static bridge.domain.command.MoveCommand.MOVE_TO_LOWER_BLOCK;
+import static bridge.domain.command.MoveCommand.MOVE_TO_UPPER_BLOCK;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,8 +26,8 @@ public class BridgeMaker {
 
     private String getBridgeBlock() {
         if (bridgeNumberGenerator.generate() == 1) {
-            return UPPER_BLOCK;
+            return MOVE_TO_UPPER_BLOCK;
         }
-        return LOWER_BLOCK;
+        return MOVE_TO_LOWER_BLOCK;
     }
 }
