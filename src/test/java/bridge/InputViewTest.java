@@ -20,5 +20,14 @@ public class InputViewTest {
             test.readBridgeSize();
         });
     }
-
+    @Test
+    void isValidMove() {
+        assertSimpleTest(() -> {
+            InputView test = new InputView();
+            String input = "3wq\nUD\nD";
+            InputStream is = new ByteArrayInputStream(input.getBytes());
+            System.setIn(is);
+            test.readMoving();
+        });
+    }
 }

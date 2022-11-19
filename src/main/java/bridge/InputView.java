@@ -2,6 +2,8 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.List;
+
 import static Constant.BridgeConstant.MIN_SIZE;
 import static Constant.BridgeConstant.MAX_SIZE;
 import static Constant.BridgeInput.MOVE_CHOICE;
@@ -28,7 +30,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String input;
+        while(!isValidChoice(input=Console.readLine() , MOVE_CHOICE.getValue()));
+        return input;
     }
 
     /**
@@ -38,8 +42,16 @@ public class InputView {
         return null;
     }
 
-    private void testInput(String input){
-
+    private boolean isValidChoice(String input, List<String> choicePool){
+        try {
+            if (choicePool.contains(input)) {
+                return true;
+            }
+            throw new IllegalArgumentException(INVALID_MOVE.getErrorMsg());
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
     private boolean isDigit(String input){
         try{
@@ -49,7 +61,7 @@ public class InputView {
             return true;
         }
         catch (Exception e){
-            System.out.println(INVALID_DIGIT.getErrorMsg());
+            System.out.println(e.getMessage());
             return false;
         }
     }
