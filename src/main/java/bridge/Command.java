@@ -9,6 +9,7 @@ public enum Command {
     FAILURE("X");
 
     private final String value;
+
     private Command(String value) {
         this.value = value;
     }

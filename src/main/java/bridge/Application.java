@@ -30,13 +30,20 @@ public class Application {
         while (!bridgeGame.isGameEnd()) {
             inputView.getValidMoving();
             outputView.printMap(bridgeGame.getUpperRoad(), bridgeGame.getLowerRoad());
-            if (!bridgeGame.isRightFoothold()) {
-                if (inputView.getValidGameCommand().equals(Command.QUIT.getValue())) {
-                    break;
-                }
-                bridgeGame.retry();
+            if (endGameState()) {
+                break;
             }
         }
+    }
+
+    private static boolean endGameState() {
+        if (!bridgeGame.isRightFoothold()) {
+            if (inputView.getValidGameCommand().equals(Command.QUIT.getValue())) {
+                return true;
+            }
+            bridgeGame.retry();
+        }
+        return false;
     }
 
     private static void endState() {
