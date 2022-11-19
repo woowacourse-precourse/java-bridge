@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.Moving;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -19,7 +20,13 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println(INPUT_BRIDGE_LENGTH);
         String bridgeLength = Console.readLine();
-        return parseIntOrThrowException(bridgeLength);
+        try {
+            return parseIntOrThrowException(bridgeLength);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            bridgeLength = Console.readLine();
+            return parseIntOrThrowException(bridgeLength);
+        }
     }
 
     /**
@@ -27,7 +34,14 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println(INPUT_MOVE_UP_OR_DOWN);
-        return Console.readLine();
+        String input = Console.readLine();
+        try {
+            return throwExceptionIfNotUpAndDown(input);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            input = Console.readLine();
+            return throwExceptionIfNotUpAndDown(input);
+        }
     }
 
     /**
@@ -45,8 +59,15 @@ public class InputView {
     private int parseIntOrThrowException(String input){
         try {
             return Integer.parseInt(input);
-        } catch (IllegalArgumentException e){
+        } catch (NumberFormatException e){
             throw new IllegalArgumentException(ERROR_MSG + "숫자가 아닌 값은 입력받을 수 없습니다.");
         }
+    }
+
+    private String throwExceptionIfNotUpAndDown(String input){
+        if (!input.equals(Moving.UP.getDirection()) && !input.equals(Moving.DOWN.getDirection())){
+            throw new IllegalArgumentException(ERROR_MSG + "U, D 이외의 문자는 입력할 수 없습니다.");
+        }
+        return input;
     }
 }
