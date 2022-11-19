@@ -22,7 +22,7 @@ public class BridgeCheckerTest {
 				break;
 			}
 
-			if (BridgeChecker.isNotMovableStep(bridge, "U", gameTurn)) {
+			if (!BridgeChecker.isMovableLocation(bridge, "U", gameTurn)) {
 				System.out.println("게임이 끝난 턴 : " + (gameTurn + 1));
 				Assertions.assertThat(gameTurn).isNotEqualTo(bridge.size());
 				break;
@@ -30,7 +30,7 @@ public class BridgeCheckerTest {
 			gameTurn++;
 		}
 
-		if (!BridgeChecker.isNotMovableStep(bridge, "U", gameTurn)) {
+		if (BridgeChecker.isMovableLocation(bridge, "U", gameTurn)) {
 			System.out.println("게임이 끝난 턴 : " + gameTurn);
 			Assertions.assertThat(gameTurn).isEqualTo(bridge.size());
 		}
