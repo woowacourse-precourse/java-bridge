@@ -48,8 +48,14 @@ public class InputView {
             boolean roundResult = bridgeGame.constructBridge();
             outputView.printMap();
             if (!roundResult) {
-                if (readGameCommand().equals("Q")) {
+                String retryGame = readGameCommand();
+                if (retryGame.equals("Q")) {
                     break;
+                } else if (retryGame.equals("R")) {
+                    gameStatistics.increaseTotalTryCount();
+                    bridgeGame.backUpBridge();
+                    bridgeGame.getPlayer().initCurrentLocation();
+                    gameStatistics.initCheckRoad();
                 }
             } else if (Player.currentLocation == bridgeGame.getBridge().getSize()) {
                 gameStatistics.setGameResult("성공");
