@@ -18,6 +18,7 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
+//        랜덤 다리 ( 'U' 와  'D' 로 구성된 리스트 ) 를 생성
         return null;
     }
 }
