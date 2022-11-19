@@ -16,10 +16,6 @@ public class BridgeGame {
         gameCount = 0;
     }
 
-    public int getGameCount() {
-        return this.gameCount;
-    }
-
     public List<String> getResult() {
         return result;
     }
@@ -29,11 +25,10 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public int move(List<String> bridge) {
+    public int move(List<String> bridge, List<String> input) {
         gameCount++;
         for (int i = 0; i < bridge.size(); i++) {
-            String to = inputView.readMoving();
-            result.add(compare(bridge.get(i),to)); // OX 결과 저장
+            result.add(compare(bridge.get(i),input.get(i))); // OX 결과 저장
             if(result.get(i).equals("XD") || result.get(i).equals("XU")) {
                 return -1;
             }
@@ -54,9 +49,8 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public int retry() {
-        String retryInput = inputView.readGameCommand();
-        if(retryInput.equals("Q")) return -1;
+    public int retry(String input) {
+        if(input.equals("Q")) return -1;
         return 1;
     }
 }
