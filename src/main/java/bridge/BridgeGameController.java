@@ -19,19 +19,23 @@ public class BridgeGameController {
 	
 	public void playGame(List<String> bridge) {
 		int bridgeLevel = 0;
-		System.out.println(bridge);
-		do {
-			if(bridge.size() == bridgeLevel) {
-				outputView.printResult(retryCount,true);
-				break;
-			}
-			if(!playOneTurn(bridge,bridgeLevel)) {
+		while(true) {
+			if(isGameEnd(bridge,bridgeLevel)) {
 				break;
 			}
 			++bridgeLevel;
-		}while(true);
+		}
 	}
-	
+	private boolean isGameEnd(List<String> bridge,int bridgeLevel) {
+		if(bridge.size() == bridgeLevel) {
+			outputView.printResult(retryCount,true);
+			return true;
+		}
+		if(!playOneTurn(bridge,bridgeLevel)) {
+			return true;
+		}
+		return false;
+	}
     private boolean isRetryOrNot(String command) {
     	if(command.equals("R")) {
     		retryCount++;
@@ -48,6 +52,7 @@ public class BridgeGameController {
 		if(!isRightMoving) {
 			return isRetryOrNot(inputView.readGameCommand());
     	}
+		
 		return true;
     }
 
