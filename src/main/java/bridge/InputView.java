@@ -19,7 +19,7 @@ public class InputView {
     private static final String ASK_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     private static final String ASK_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String ASK_RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-    private static final String NUMERIC_ERROR = "[ERROR] 올바른 숫자가 아닙니다.";
+    private static final String NUMERIC_ERROR = "[ERROR] 올바른 숫자가 아닙니다.\n";
     private static final String RANGE_ERROR = "[ERROR] 3에서 20까지의 숫자를 입력해 주시기 바랍니다.\n";
     private static final String MOVING_COMMAND_ERROR = "[ERROR] U 또는 D를 입력해 주시기 바랍니다.\n";
     private static final String GAME_COMMAND_ERROR = "[ERROR] R 또는 Q를 입력해 주시기 바랍니다.\n";

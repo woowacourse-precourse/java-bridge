@@ -9,8 +9,8 @@ public enum BridgeLocation {
     DOWN_TRUE(0, true, "D", "O");
 
     public static final String UN_CHOSEN_LOCATION = " ";
-    public static final String LOCATION_NUMBER_ERROR = "[ERROR] 존재하지 않는 정보입니다.";
-    public static final String LOCATION_ERROR = "[ERROR] U 또는 D를 입력해 주시기 바랍니다.";
+    public static final String LOCATION_NUMBER_ERROR = "[ERROR] 존재하지 않는 정보입니다.\n";
+    public static final String LOCATION_ERROR = "[ERROR] U 또는 D를 입력해 주시기 바랍니다.\n";
 
     private final int locationNumber;
     private final boolean correctLocation;

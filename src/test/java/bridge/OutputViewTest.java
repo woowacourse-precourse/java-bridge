@@ -22,7 +22,7 @@ class OutputViewTest {
     @DisplayName("게임의 최종 결과를 정해진 형식에 맞춰 출력")
     @Test
     void printResult() {
-        String result = "최종 게임 결과\n[ O |   |   ]\n[   | O | O ]" +
+        String result = "\n최종 게임 결과\n[ O |   |   ]\n[   | O | O ]" +
                 "\n\n게임 성공 여부: 성공\n총 시도한 횟수: 2";
         List<BridgeLocation> bridgeLocations = List
                 .of(BridgeLocation.UP_TRUE, BridgeLocation.DOWN_TRUE,BridgeLocation.DOWN_TRUE);
