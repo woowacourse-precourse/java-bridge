@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.model.Bridge;
 import bridge.model.Player;
+import bridge.model.Referee;
 import bridge.type.ErrorType;
 import bridge.valid.Validation;
 import bridge.view.InputView;
@@ -11,12 +12,14 @@ import bridge.view.OutputView;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private static int progressCount = 0;
+    private static int progressCount = 1;
     public static int BRIDGE_LENGTH = 0;
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
     private Bridge bridge = new Bridge();
     private Player player = new Player();
+
+    private Referee referee = new Referee();
 
     public void play() {
         OutputView.printStartGame();
@@ -41,16 +44,22 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
-        String move;
+        String moveType = "";
         try {
-            move = inputView.readMoving();
-            Validation.inputMoveSquareValid(move);
-            player.add(move);
+            moveType = inputView.readMoving();
+            Validation.inputMoveSquareValid(moveType);
+            player.add(moveType);
         } catch (IllegalArgumentException e) {
             inputView.printError(ErrorType.INPUT_SQUARE_ERROR_TYPE.getText());
             move();
         }
-        outputView.printMap(bridge.getBridge(), ++progressCount, player.getChoices());
+        printMove(moveType);
+    }
+
+    private void printMove(String moveType) {
+        referee.addPlayerChoiceResult(bridge.getBridge(), moveType, progressCount - 1);
+
+        outputView.printMap(referee.getUpSideBridgeResult(), referee.getDownSideBridgeResult());
     }
 
     /**

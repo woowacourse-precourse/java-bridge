@@ -7,52 +7,39 @@ import java.util.List;
  */
 public class OutputView {
     private static final String START_BRIDGE_GAME = "다리 건너기 게임을 시작합니다.";
+    private static final String BRIDGE_START ="[ ";
+    private static final String BRIDGE_END =" ]";
+    private static final String CORRECT = " O ";
+    private static final String WRONG = " X ";
+    private static final String BLANK = "  ";
+    private static final String BAR = " | ";
+    private StringBuilder sb = new StringBuilder();
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> bridge, int progress, List<String> choices) {
-        printUpSideBridge(bridge, progress, choices);
-        printDownSideBridge(bridge,progress,choices);
+    public void printMap(List<String> upSideBridge, List<String> downSideBridge) {
+        printUpSideBridge(upSideBridge);
+        printDownSideBridge(downSideBridge);
     }
 
-    private void printUpSideBridge(List<String> bridge, int progress, List<String> choices) {
-        System.out.print("[ ");
-        printBridgeProgress(progress, bridge, choices, "O | ", "  | ");
-        if (choices.get(progress - 1).equals("U")){
-            printLastSquare(bridge, progress, choices);
-            return;
+    private void printUpSideBridge(List<String> upSideBridge) {
+        System.out.print(BRIDGE_START);
+        for(int i = 0; i < upSideBridge.size() - 1; i++){
+            System.out.print(upSideBridge.get(i) + " | ");
         }
-        System.out.println("  ]");
+        System.out.print(upSideBridge.get(upSideBridge.size() - 1));
+        System.out.println(BRIDGE_END);
     }
 
-    private void printBridgeProgress(int progress, List<String> bridge, List<String> choices, String s, String s1) {
-        for(int i = 0; i < progress - 1; i++){
-            if (bridge.get(i).equals(choices.get(i))){
-                System.out.print(s);
-                continue;
-            }
-            System.out.print(s1);
+    private void printDownSideBridge(List<String> downSideBridge) {
+        System.out.print(BRIDGE_START);
+        for(int i = 0; i < downSideBridge.size() - 1; i++){
+            System.out.print(downSideBridge.get(i) + " | ");
         }
-    }
-
-    private void printDownSideBridge(List<String> bridge, int progress, List<String> choices) {
-        System.out.print("[ ");
-        printBridgeProgress(progress, bridge, choices, "  | ", "O | ");
-        if (choices.get(progress - 1).equals("D")){
-            printLastSquare(bridge, progress, choices);
-            return;
-        }
-        System.out.println("  ]");
-    }
-
-    private void printLastSquare(List<String> bridge, int progress, List<String> choices) {
-        if (bridge.get(progress - 1).equals(choices.get(progress - 1))){
-            System.out.println("O ]");
-            return;
-        }
-        System.out.println("X ]");
+        System.out.print(downSideBridge.get(downSideBridge.size() - 1));
+        System.out.println(BRIDGE_END);
     }
 
     /**
