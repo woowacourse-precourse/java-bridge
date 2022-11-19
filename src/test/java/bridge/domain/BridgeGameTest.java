@@ -91,7 +91,7 @@ class BridgeGameTest {
     class If_to_input_direction {
 
         @Test
-        @DisplayName("가능하면 사용자의 step을 올리고 true를 반환한다")
+        @DisplayName("가능하면 사용자를 이동시키고 true를 반환한다")
         void can_move_then_user_step_forward_and_return_true() {
             // given
             String direction = "U";
@@ -105,8 +105,8 @@ class BridgeGameTest {
         }
 
         @Test
-        @DisplayName("불가능하면 사용자의 step을 초기화하고 false를 반환한다")
-        void can_not_move_then_init_user_step_and_return_false() {
+        @DisplayName("불가능하면 사용자를 이동시키고 false를 반환한다")
+        void can_not_move_then_return_false() {
             // given
             String direction = "D";
 
@@ -114,7 +114,7 @@ class BridgeGameTest {
             Boolean isMoved = bridgeGame.move(direction);
 
             // then
-            assertThat(user.getStep()).isEqualTo(0);
+            assertThat(user.getStep()).isEqualTo(1);
             assertThat(isMoved).isFalse();
         }
     }
