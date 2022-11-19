@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import bridge.domain.Bridge;
-import bridge.exception.BridgeSizeException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,11 +16,13 @@ public class BridgeTest {
 
     int size;
     Bridge bridge;
+    BridgeRandomNumberGenerator bridgeNumberGenerator;
 
     @BeforeEach
     void setUp() {
         size = 3;
-        bridge = new Bridge(3);
+        bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        bridge = new Bridge(3, bridgeNumberGenerator);
     }
 
     @Test
@@ -33,7 +34,7 @@ public class BridgeTest {
     @ParameterizedTest
     @ValueSource(ints = {1,2,21,100})
     void 다리길이_예외_테스트(int size) {
-        assertThatThrownBy(()-> new Bridge(size))
+        assertThatThrownBy(()-> new Bridge(size, bridgeNumberGenerator))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("[ERROR]다리길이는 3보다 작거나 20보다 클 수 없습니다.");
     }

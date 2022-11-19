@@ -1,19 +1,19 @@
 package bridge.domain;
 
-import bridge.BridgeRandomNumberGenerator;
+import bridge.BridgeNumberGenerator;
 import bridge.exception.BridgeSizeException;
 import java.util.List;
 
 public class Bridge {
 
-    private List<String> steps;
-    private static final int MIN = 3;
     private static final int MAX = 20;
+    private static final int MIN = 3;
 
-    public Bridge(int size) {
+    private List<String> steps;
+
+    public Bridge(int size, BridgeNumberGenerator bridgeNumberGenerator) {
         validate(size);
-
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         this.steps = bridgeMaker.makeBridge(size);
     }
 
