@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.view.phrases.OutputPhrases;
+
 import java.util.List;
 
 /**

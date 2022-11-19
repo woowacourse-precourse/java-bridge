@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.view.phrases.InputPhrases;
+
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 /**

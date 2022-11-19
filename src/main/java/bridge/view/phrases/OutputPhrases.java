@@ -1,4 +1,4 @@
-package bridge.view;
+package bridge.view.phrases;
 
 public enum OutputPhrases {
     finalGameResult("최종 게임 결과"),

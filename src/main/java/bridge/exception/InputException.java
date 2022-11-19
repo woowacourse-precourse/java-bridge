@@ -1,5 +1,6 @@
 package bridge.exception;
 
+import bridge.exception.phrases.ExceptionPhrases;
 import bridge.view.InputView;
 
 public class InputException {
