@@ -20,11 +20,13 @@ public class BridgeController {
 
         outputView.printStartingPhrase();
         bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        //실행 예시와 맞추기 위해 한 칸 띄워준다.
+        System.out.println();
         bridgeGame = new BridgeGame(bridge);
 
         while (true) {
             bridgeGame.resetUserMoving();
-            System.out.println(bridgeGame.getBridge());
+            //System.out.println(bridgeGame.getBridge());
             count = startMove();
 
             if (bridgeGame.isSuccess()) {

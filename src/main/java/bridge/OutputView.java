@@ -38,6 +38,8 @@ public class OutputView {
     public void printMap(List<String> userMoving) {
         printUpperBridge(userMoving);
         printLowerBridge(userMoving);
+        //실행 예시와 맞추기 위해 한 칸 띄워준다.
+        System.out.println();
     }
 
     private void printUpperBridge(List<String> userMoving) {
@@ -83,6 +85,8 @@ public class OutputView {
         System.out.println(PRINT_RESULT_MSG);
         printUpperBridge(bridge);
         printLowerBridge(bridge);
+        //실행 예시와 맞추기 위해 한 칸 띄워준다.
+        System.out.println();
         System.out.println(GAME_SUCCESS_OR_NOT_MSG+successOrFail);
         System.out.println(TOTAL_NUMBER_MSG+count);
     }
