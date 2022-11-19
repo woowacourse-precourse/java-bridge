@@ -50,4 +50,20 @@ public class BridgeGame {
     public String bridgeMapToString() {
         return bridgeMap.toString();
     }
+
+    public String gameResultToString(boolean isSuccess, int tryCount) {
+        return "최종 게임 결과\n" + bridgeMap.toString() +
+                "\n" +
+                successOrNotToString(isSuccess) +
+                "총 시도한 횟수: " +
+                tryCount;
+    }
+
+    private String successOrNotToString(boolean isSuccess) {
+        if (isSuccess) {
+            return "\n게임 성공 여부: 성공\n";
+        }
+
+        return "\n게임 성공 여부: 실패\n";
+    }
 }

@@ -13,6 +13,8 @@ public class Application {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         BridgeGame bridgeGame = new BridgeGame();
+        boolean isSuccess = false;
+        int tryCount = 1;
 
         while (true) {
             int bridgeIdx = 0;
@@ -31,10 +33,17 @@ public class Application {
 
             if (bridgeIdx != bridgeSize &&
                     bridgeGame.retry(inputView.readGameCommand())) {
+                tryCount++;
                 continue;
+            }
+
+            if (bridgeIdx == bridgeSize) {
+                isSuccess = true;
             }
 
             break;
         }
+
+        outputView.printResult(bridgeGame.gameResultToString(isSuccess, tryCount));
     }
 }
