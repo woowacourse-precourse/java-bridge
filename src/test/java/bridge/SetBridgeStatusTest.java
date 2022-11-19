@@ -44,7 +44,8 @@ public class SetBridgeStatusTest {
         assertThat(output.toString()).isEqualTo("[ O |   |   ]\n[   | O | X ]");
 
         testBridge.resetCurrentBridge();
-        assertThat(testBridge.getCurrentBridge()).isEmpty();
+        assertThat(testBridge.getCurrentBridge().get(UP.getIndex())).isEqualTo(List.of("[", "]"));
+        assertThat(testBridge.getCurrentBridge().get(DOWN.getIndex())).isEqualTo(List.of("[", "]"));
     }
 
     @DisplayName("사용자가 선택한 칸이 이동 가능한 칸이면 O, 불가능한 칸이면 X를 반환한다.")
