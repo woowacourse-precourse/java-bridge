@@ -23,7 +23,7 @@ public class OutputView {
      */
     public void printResult(Diagram diagram, FinalResult finalResult) {
         String success = "실패";
-        if (finalResult.isFinalSuccess()) {
+        if (finalResult.isSuccess()) {
             success = "성공";
         }
         System.out.println("최종 게임 결과");
