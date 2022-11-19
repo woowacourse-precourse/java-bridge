@@ -28,6 +28,10 @@ public class Bridge {
         bridge.add(bridgeElement.toString());
     }
 
+    public void clear() {
+        bridge.clear();
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
