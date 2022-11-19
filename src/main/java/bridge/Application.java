@@ -1,11 +1,13 @@
 package bridge;
 
+import constant.Values.MoveCase;
+
 public class Application {
 
     private static InputView inputView = new InputView();
     private static OutputView outputView = new OutputView();
     private static Checker checker = new Checker();
-    private static BridgeGame bridgeGame;
+    private BridgeGame bridgeGame;
 
     public static void main(String[] args) {
         new Application().play();
@@ -14,7 +16,7 @@ public class Application {
     private void play() {
         outputView.printStart();
         bridgeGame = bridgeGameStart();
-        bridgeGame.move(inputMove());
+        bridgeGameContinue(bridgeGame);
     }
 
     private BridgeGame bridgeGameStart() {
@@ -25,10 +27,10 @@ public class Application {
 
     private int inputBridgeSize() {
         outputView.printInputSize();
-        int bridgeSize=-1;
-        while(bridgeSize<0) {
+        int bridgeSize = -1;
+        while (bridgeSize < 0) {
             try {
-                bridgeSize=checker.checkValidate(inputView.readBridgeSize());
+                bridgeSize = checker.checkValidate(inputView.readBridgeSize());
             } catch (IllegalArgumentException illegalArgumentException) {
                 outputView.printErrorMessage(illegalArgumentException);
             }
@@ -46,5 +48,14 @@ public class Application {
             move = inputMove();
         }
         return move;
+    }
+
+    private void bridgeGameContinue(BridgeGame bridgeGame) {
+        bridgeGame.move(inputMove());
+        outputMove(bridgeGame);
+    }
+
+    private void outputMove(BridgeGame bridgeGame) {
+        outputView.printMap(bridgeGame);
     }
 }
