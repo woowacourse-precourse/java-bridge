@@ -1,4 +1,6 @@
-package bridge.domain;
+package bridge.domain.bridge;
+
+import bridge.domain.Message;
 
 public class BridgeMove {
     private String move;
