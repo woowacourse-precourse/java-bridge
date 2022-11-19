@@ -63,6 +63,13 @@ public class InputView {
         }
     }
 
-
+    public Boolean movingErrorHandling(String str) {
+        try {
+            checkMovingInput(str);
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+        }
+        return false;
+    }
 
 }
