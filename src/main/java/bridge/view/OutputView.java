@@ -33,8 +33,8 @@ public class OutputView {
     public static void printMap(BridgeGame bridgeGame) {
         List<String> bridge = bridgeGame.getBridge();
         Player player = bridgeGame.getPlayer();
-        List<String> upperLine = drawUpperLine(bridge, player);
-        List<String> lowerLine = drawLowerLine(bridge, player);
+        List<String> upperLine = drawLine(bridge, player, UP);
+        List<String> lowerLine = drawLine(bridge, player, DOWN);
         printOneLine(upperLine);
         printOneLine(lowerLine);
         System.out.println();
@@ -54,28 +54,16 @@ public class OutputView {
         System.out.println(bridgeGame.getPlayer().getTryCount());
     }
 
-    private static List<String> drawUpperLine(List<String> bridge, Player player) {
-        List<String> upperLine = new ArrayList<>();
+    private static List<String> drawLine(List<String> bridge, Player player, String lineType) {
+        List<String> Line = new ArrayList<>();
         for (int i = 0; i < player.getCurrentPosition(); i++) {
             String correctDirection = bridge.get(i);
-            drawCell(upperLine, UP, correctDirection);
+            drawCell(Line, lineType, correctDirection);
         }
         if (!player.getMoving()) {
-            drawFailedCell(upperLine, UP, bridge.get(player.getCurrentPosition()));
+            drawFailedCell(Line, lineType, bridge.get(player.getCurrentPosition()));
         }
-        return upperLine;
-    }
-
-    private static List<String> drawLowerLine(List<String> bridge, Player player) {
-        List<String> lowerLine = new ArrayList<>();
-        for (int i = 0; i < player.getCurrentPosition(); i++) {
-            String correctDirection = bridge.get(i);
-            drawCell(lowerLine, DOWN, correctDirection);
-        }
-        if (!player.getMoving()) {
-            drawFailedCell(lowerLine, DOWN, bridge.get(player.getCurrentPosition()));
-        }
-        return lowerLine;
+        return Line;
     }
 
     private static void drawCell(List<String> line, String lineType, String correctDirection) {
