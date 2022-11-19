@@ -1,11 +1,12 @@
 package controller;
 
-import bridge.Bridge;
+import repository.Bridge;
 import bridge.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.BridgeSize;
 import bridge.MapRenderer;
+import repository.PlayCount;
 import view.InputView;
 import view.OutputView;
 
@@ -65,6 +66,6 @@ public class GameController {
 	}
 
 	public void end(String result, BridgeGame bridgeGame) {
-		outputView.printResult(result, bridgeGame.isSuccess(), bridgeGame.getCount());
+		outputView.printResult(result, bridgeGame.isSuccess(), PlayCount.getInstance().getCount());
 	}
 }
