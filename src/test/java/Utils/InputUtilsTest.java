@@ -66,4 +66,22 @@ class InputUtilsTest {
             assertThat(InputUtils.isValidBridgePosition(input)).isFalse();
         }
     }
+
+    @Nested
+    @DisplayName("isValidGameRestartInput 메소드 테스트")
+    class TestIsValidGameRestartInput {
+        @DisplayName("게임 재시작 시 R, Q를 입력하였을 경우")
+        @ValueSource(strings = {"R", "Q"})
+        @ParameterizedTest
+        void case1(String input) {
+            assertThat(InputUtils.isValidGameRestartInput(input)).isTrue();
+        }
+
+        @DisplayName("R, Q 이외의 값을 입력하였을 경우")
+        @ValueSource(strings = {"Restart", "Quit", "q", "1"})
+        @ParameterizedTest
+        void case2(String input) {
+            assertThat(InputUtils.isValidGameRestartInput(input)).isFalse();
+        }
+    }
 }
