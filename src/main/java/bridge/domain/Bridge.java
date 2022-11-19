@@ -13,6 +13,10 @@ public class Bridge {
         bridge = bridgeMaker.makeBridge(length.get());
     }
 
+    public boolean isCorrectPanel (int order, String choice) {
+        return bridge.get(--order).equals(choice);
+    }
+
     public List<String> getBridge() {
         return Collections.unmodifiableList(bridge);
     }
