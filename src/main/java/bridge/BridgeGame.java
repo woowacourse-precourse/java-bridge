@@ -11,6 +11,7 @@ public class BridgeGame {
     private final OutputView outputView = new OutputView();
     private boolean isTrue = true;
     private boolean isClear = true;
+    private int TRY_COUNT = 0;
 
     public static List<String> gameSet(int userInput) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
@@ -19,6 +20,7 @@ public class BridgeGame {
     }
 
     public void gamingSet(List<String> bridge) {
+        TRY_COUNT++;
         for (int i = 0; i < bridge.size(); i++) {
             String userMoveInput = getMoveString();
             move.moving(bridge.get(i), userMoveInput);
@@ -64,6 +66,7 @@ public class BridgeGame {
     public void printMovingAndResult() {
         System.out.println(RESULT.getValue());
         move.printMoving();
-        outputView.printResult();
+        outputView.printResult(returnSuccessOrFailure(!isClear), TRY_COUNT);
     }
+
 }

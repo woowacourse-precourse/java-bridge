@@ -21,7 +21,7 @@
 
     이동할 칸을 선택해주세요. (위: U, 아래: D)
 
-- [X] 입력 받은 U or D 를 이용해 이동 할 수 있으면 O, 없으면 X로 표기후 출력 ( OutputView )
+- [X] 입력 받은 U or D 를 이용해 이동 할 수 있으면 O, 없으면 X로 표기후 출력 ( OutputView.printMap )
 
 
     이동할 칸을 선택해주세요. (위: U, 아래: D)
@@ -29,14 +29,14 @@
     [ O ]
     [   ]
 
-- [X] 게임 실패시 재도전 여부 입력 받기 (InputView)
+- [X] 게임 실패시 재도전 여부 입력 받기 (InputView.getExitOrRestart)
   - *예외 발생 상황*
   - [X] R or Q 가 아닌 경우 예외 발생
 
 
     게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)
 
-- [ ] 게임 성공 여부 / 총 시도한 횟수 출력 (OutputView)
+- [X] 게임 성공 여부 / 총 시도한 횟수 출력 (OutputView.printResult)
 
 
     게임 성공 여부: 성공
