@@ -2,17 +2,20 @@ package bridge.view;
 
 public class OutputView {
 
-    private static final String NEW_LINE = "\n";
     private static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.";
     private static final String INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
+    private static final String INPUT_NEXT_MOVEMENT = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
 
     public void printStartMessage() {
         System.out.println(START_MESSAGE);
-        System.out.println(NEW_LINE);
     }
 
     public void printBridgeSizeInputMessage() {
         System.out.println(INPUT_BRIDGE_SIZE);
+    }
+
+    public void printNextMovementInputMessage() {
+        System.out.println(INPUT_NEXT_MOVEMENT);
     }
 
     /**
@@ -31,7 +34,7 @@ public class OutputView {
     public void printResult() {
     }
 
-    private static void printBlankLine() {
+    public void printBlankLine() {
         System.out.println();
     }
 }
