@@ -31,13 +31,12 @@ public class BridgeGameController {
 
     public void start() {
         System.out.println(Message.START_GAME.getMessage());
+        System.out.println();
         inputSize = inputView.inputBridgeSize();
         bridges = bridgeMaker.makeBridge(inputSize);
-        System.out.println(bridges);
         runGame();
         outputView.printResult();
     }
-
 
     public static boolean getStatus() {
         return status;
