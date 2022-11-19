@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.from;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeMakerTest {
@@ -16,11 +17,11 @@ class BridgeMakerTest {
     @DisplayName("다리가 길이에 맞게 생성되는지 테스트")
     @Test
     void createRandomBridge(){
+        int size = 3;
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        List<String> firstBridge = new ArrayList<>(bridgeMaker.makeBridge(3));
+        List<String> firstBridge = new ArrayList<>(bridgeMaker.makeBridge(size));
 
-        System.out.println(firstBridge);
-        assertThat(firstBridge.size() == 3);
+        assertEquals(firstBridge.size(),size);
     }
 }
