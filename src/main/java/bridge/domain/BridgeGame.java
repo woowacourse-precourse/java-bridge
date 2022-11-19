@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.utils.InputHandler;
+import bridge.utils.enums.GameCommand;
 import bridge.utils.enums.MovingResult;
 import bridge.view.OutputView;
 import java.util.List;
@@ -39,7 +40,7 @@ public class BridgeGame {
     private boolean retry() {
         if(!isAnswer){
             String gameCommand = inputHandler.getGameCommand();
-            return gameCommand.equals("R");
+            return gameCommand.equals(GameCommand.RETRY.getValue());
         }
         return false;
     }
