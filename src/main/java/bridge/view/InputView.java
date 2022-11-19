@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.domain.message.ErrorMessage;
+import bridge.domain.utils.BridgeCommand;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -29,7 +30,7 @@ public class InputView {
     public String readMoving() {
         System.out.println(INPUT_FOR_MOVING_BRIDGE);
         String input = Console.readLine();
-
+        validateUserInputIsUpAndDown(input);
         return input;
     }
 
@@ -51,5 +52,10 @@ public class InputView {
     private void validateBridgeSizeIsZero(int result) {
         if (result == 0)
             throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_NOT_ZERO);
+    }
+
+    private void validateUserInputIsUpAndDown(String input) {
+        if (!input.equals(BridgeCommand.DOWN.getCommand()) && !input.equals(BridgeCommand.UP.getCommand()))
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_INPUT_ONLY_UP_AND_DOWN);
     }
 }

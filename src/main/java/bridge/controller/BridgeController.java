@@ -24,7 +24,7 @@ public class BridgeController {
         outputView.printStartGame();
         BridgeGame bridgeGame = makeBridgeGame(new BridgeRandomNumberGenerator());
         while (gameState == GameState.START || gameState == GameState.RETRY) {
-            inputView.readMoving();
+            move();
         }
     }
 
@@ -36,6 +36,14 @@ public class BridgeController {
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
             return makeBridgeGame(numberGenerator);
+        }
+    }
+
+    public void move() {
+        try {
+            inputView.readMoving();
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
         }
     }
 }
