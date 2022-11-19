@@ -6,6 +6,15 @@ import bridge.domain.User;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    private static final String CORRECT = "O";
+    private static final String FAIL = "X";
+    private static final String SPACE = " ";
+    private static final String BETWEEN_SPACE = " | ";
+    private static final String UP = "U";
+    private static final String DOWN = "D";
+    private static final String START_MAP = "[ ";
+    private static final String END_MAP = " ]";
+
     private StringBuilder upView = new StringBuilder();
     private StringBuilder downView = new StringBuilder();
 
@@ -41,45 +50,45 @@ public class OutputView {
      */
     public void printMap(int indexOfNow, String moveDirection, boolean isUserCorrect) {
         if (indexOfNow >= 1) {
-            upView.append(" | ");
-            downView.append(" | ");
+            upView.append(BETWEEN_SPACE);
+            downView.append(BETWEEN_SPACE);
         }
         appendDirection(moveDirection, isUserCorrect);
         printResultMap();
     }
 
     public void printResultMap() {
-        System.out.println("[ " + upView + " ]");
-        System.out.println("[ " + downView + " ]");
+        System.out.println(START_MAP + upView + END_MAP);
+        System.out.println(START_MAP + downView + END_MAP);
     }
 
     private void appendDirection(String moveDirection, boolean isUserCorrect) {
-        if (moveDirection.equals("U")) {
+        if (moveDirection.equals(UP)) {
             appendUpView(isUserCorrect);
         }
-        if (moveDirection.equals("D")) {
+        if (moveDirection.equals(DOWN)) {
             appendDownView(isUserCorrect);
         }
     }
 
     private void appendUpView(boolean isUserCorrect) {
         if (isUserCorrect) {
-            upView.append("O");
+            upView.append(CORRECT);
         }
         if (!isUserCorrect) {
-            upView.append("X");
+            upView.append(FAIL);
         }
-        downView.append(" ");
+        downView.append(SPACE);
     }
 
     private void appendDownView(boolean check) {
         if (check) {
-            downView.append("O");
+            downView.append(CORRECT);
         }
         if (!check) {
-            downView.append("X");
+            downView.append(FAIL);
         }
-        upView.append(" ");
+        upView.append(SPACE);
     }
 
     /**
