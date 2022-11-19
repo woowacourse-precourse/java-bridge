@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -10,7 +11,14 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class BridgeTest {
 
-    private final Bridge bridge = new Bridge(List.of("D", "U", "U"));
+    private Bridge bridge;
+
+    @DisplayName("다리 길이가 3 ~ 20이 아닐 경우 예외가 발생한다.")
+    @Test
+    void makeWrongSize() {
+        assertThatThrownBy(() -> new Bridge(List.of("D", "D")))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
     @DisplayName("건널 수 있는 칸인지 확인한다.")
     @CsvSource(value = {
