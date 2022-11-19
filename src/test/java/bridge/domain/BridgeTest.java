@@ -8,6 +8,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.MockedStatic;
 
 import java.util.List;
@@ -67,5 +69,19 @@ public class BridgeTest {
         List<String> bridgeData = bridge.getBridge();
         assertThatThrownBy(() -> bridgeData.set(0, "D"))
                 .isInstanceOf(UnsupportedOperationException.class);
+    }
+
+    @DisplayName("isCorrectPanel 메서드는 order에 해당하는 칸의 다리를 맞추면 true를 반환한다.")
+    @ParameterizedTest(name = "{index}) Order : {0}, Choice: {1}")
+    @CsvSource({ "1, U", "2, D", "3, U" })
+    void checkCorrectPanel(int order, String choice) {
+        assertThat(bridge.isCorrectPanel(order, choice)).isTrue();
+    }
+
+    @DisplayName("isCorrectPanel 메서드는 order에 해당하는 칸의 다리를 맞추지 못하면 false를 반환한다.")
+    @ParameterizedTest(name = "{index}) Order : {0}, Choice: {1}")
+    @CsvSource({ "1, D", "2, U", "3, D" })
+    void checkIncorrectPanel(int order, String choice) {
+        assertThat(bridge.isCorrectPanel(order, choice)).isFalse();
     }
 }
