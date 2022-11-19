@@ -4,9 +4,9 @@
 ## 다리 건너기 기능 구현 목록
 - [x] 게임시작 문구 출력 MessageView#printBridgeStartBMessage
 - [x] 다리길이 입력 문구 출력 MessageView#printBridgeInputMessage
-- [ ] 다리의 길이 입력 InputView#readBridgeSize
-  - [ ] 숫자로만 입력 예외처리
-  - [ ] 3이상 20이하의 숫자 예외처리
+- [x] 다리의 길이 입력 InputView#readBridgeSize
+  - [x] 숫자로만 입력 예외처리
+  - [x] 3이상 20이하의 숫자 예외처리
 - [ ] 다리길이의 정답 다리 생성 BridgeMaker#makeBridge
   - [ ] 0과 1 무작위 값을 통해 정답 다리 생성
 - [ ] 이동할 칸 안내 메세지 출력 MessageView#printBridgeMoveMessage

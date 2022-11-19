@@ -2,12 +2,15 @@ package bridge;
 
 public class Controller {
     public void run(){
-        MessageView.printBridgeStartBMessage();
-        getBridgeSize();
+        int bridgeLength=0;
+        System.out.println(MessageView.START_GAME_MESSAGE);
+        bridgeLength = getBridgeSize();
     }
 
-    private void getBridgeSize(){
-        MessageView.printBridgeInputMessage();
+    private int getBridgeSize(){
+        InputView inputView = new InputView();
+        System.out.println(MessageView.PRINT_BRIDGE_INPUT_MESSAGE);
+        return inputView.readBridgeSize();
     }
     private void moveBridge(){
 
