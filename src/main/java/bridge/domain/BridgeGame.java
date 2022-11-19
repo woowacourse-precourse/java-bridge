@@ -42,7 +42,7 @@ public class BridgeGame {
     public GameCommand retry(GameCommand gameCommand) {
         if (gameCommand.equals(RETRY)) {
             this.moveResult.increaseTryCount();
-            this.moveResult.clearMoveResults();
+            this.moveResult.clearMoveHistory();
         }
         return gameCommand;
     }

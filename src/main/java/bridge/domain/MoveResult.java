@@ -43,7 +43,7 @@ public class MoveResult {
             .forEach(key -> moveHistory.get(key).add(EMPTY_MARK));
     }
 
-    public void clearMoveResults() {
+    public void clearMoveHistory() {
         this.moveHistory.forEach((key, value) -> value.clear());
     }
 
