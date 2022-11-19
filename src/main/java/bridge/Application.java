@@ -19,7 +19,7 @@ public class Application {
         try {
             List<String> stageBridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
             BridgeGame bridgeGame = new BridgeGame(stageBridge);
-            System.out.println(stageBridge.toString());
+            System.out.println(stageBridge.toString());  // TODO 지워야한다
             playGame(bridgeGame);
         } catch (IllegalArgumentException e) {
             System.out.println(errorMessage + e.getMessage());
@@ -29,17 +29,26 @@ public class Application {
     /**
      * 게임을 한판 진행하는 메서드
      * @param bridgeGame 현재 진행되는 브릿지게임
-     * @return 유저가 끝까지 도달하였는지 확인 (true : 도달 성공, false : 도달 실패)
      */
-    private static boolean playGame(final BridgeGame bridgeGame) {
+    private static void playGame(final BridgeGame bridgeGame) {
         for(int i = 0; i < bridgeGame.getBridgeSize(); i++) {
             boolean moveSuccess = bridgeGame.move(inputView.readMoving());
             outputView.printMap(bridgeGame.getPlayLog(), moveSuccess);
 
-            if(!moveSuccess)
-                return false;
+            if(!moveSuccess){
+                gameover(bridgeGame);
+                break;
+            }
         }
-        return true;
+    }
+
+    /**
+     * 게임 오버 시 진행되는 메서드
+     * @param bridgeGame 현재 진행되는 브릿지게임
+     */
+    private static void gameover(BridgeGame bridgeGame) {
+        if(bridgeGame.retry(inputView.readGameCommand()))
+            playGame(bridgeGame);
     }
 
 }
