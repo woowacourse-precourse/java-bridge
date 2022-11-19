@@ -35,7 +35,7 @@ public class OutputView {
         System.out.println(Message.GAME_RESULT.getMessage());
         printProgress();
         System.out.println();
-        System.out.println(getSuccessOrFailure());
+        printSuccessOrFailure();
         printTotalCount(getCount());
     }
 
@@ -48,11 +48,12 @@ public class OutputView {
         return String.join(Message.CENTER_BAR.getMessage(), toAddBridge);
     }
 
-    private static String getSuccessOrFailure() {
+    private static void printSuccessOrFailure() {
         if (getStatus()) {
-            return Message.GAME_SUCCESS.getMessage();
+            System.out.println(Message.GAME_SUCCESS.getMessage());
+        } else if (!getStatus()) {
+            System.out.println(Message.GAME_FAILURE.getMessage());
         }
-        return Message.GAME_FAILURE.getMessage();
     }
 
     private static void printTotalCount(int count) {
