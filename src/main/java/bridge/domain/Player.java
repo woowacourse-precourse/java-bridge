@@ -18,6 +18,10 @@ public class Player {
         gameHistory.clear();
     }
 
+    public int getPosition() {
+        return position;
+    }
+
     public int move() {
         return ++position;
     }
