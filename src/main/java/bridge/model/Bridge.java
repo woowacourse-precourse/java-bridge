@@ -22,4 +22,8 @@ public class Bridge {
         }
         return false;
     }
+
+    public int getSize(){
+        return blocks.size();
+    }
 }

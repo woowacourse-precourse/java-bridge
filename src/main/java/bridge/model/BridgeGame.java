@@ -38,4 +38,12 @@ public class BridgeGame {
         move();
         gameStatus = GameStatus.IN_PROGRESS;
     }
+
+    public boolean checkGameSuccess(){
+        if(round > bridge.getSize()){
+            gameStatus = GameStatus.SUCCESS;
+            return true;
+        }
+        return false;
+    }
 }
