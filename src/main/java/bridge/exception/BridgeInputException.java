@@ -39,5 +39,12 @@ public class BridgeInputException {
         }
     }
 
+    // 재시작할 때 입력값이 적절한지 판별하는 기능
+    public void validRetryBridge(String input) {
+        if(!(input.equals("R") || input.equals("Q"))) {
+            throw new IllegalArgumentException(ErrorMessage.GAME_RETRY_STRING_ERROR_MESSAGE);
+        }
+    }
+
 
 }
