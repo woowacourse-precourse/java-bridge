@@ -18,23 +18,27 @@ public class BridgeGameController {
     public void start() {
         BridgeMove selectMove = inputView.readMoving();
         boolean isSuccess = bridgeGameService.tryMove(selectMove);
-        
-        if (!isSuccess || bridgeGameService.isFinish()) {
-            fail();
+    
+        if (bridgeGameService.isFinish()) {
             return;
         }
-        start();
+        
+        next(isSuccess);
     }
     
-    private void fail() {
-        handleGameCommand(inputView.readGameCommand());
-    }
-    
-    private void handleGameCommand(BridgeGameCommand command) {
-        if (command.equals(BridgeGameCommand.RETRY)) {
+    private void next(boolean isSuccess) {
+        if (isSuccess) {
+            start();
+            return;
+        }
+        
+        if (isRetry()) {
             bridgeGameService.retry();
             start();
         }
     }
     
+    private boolean isRetry() {
+        return inputView.readGameCommand().equals(BridgeGameCommand.RETRY);
+    }
 }
