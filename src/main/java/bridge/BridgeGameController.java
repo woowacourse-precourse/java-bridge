@@ -6,8 +6,7 @@ public class BridgeGameController {
 	
 	private final InputView inputView = new InputView();
 	private final OutputView outputView = new OutputView();
-	private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-	private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+	private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 	private final BridgeGame bridgeGame = new BridgeGame();
 	private static List<String> bridge;
 	private static int retryCount = 1;
