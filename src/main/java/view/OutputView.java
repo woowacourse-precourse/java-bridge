@@ -9,7 +9,9 @@ public class OutputView {
     private final String START_GAME = "다리 건너기 게임을 시작합니다.";
     private final String FINAL_GAME_RESULT = "최종 게임 결과";
     private final String PRINT_GAME_FAILED = "게임 성공 여부: 실패";
+    private final String PRINT_GAME_SUCCESS = "게임 성공 여부: 성공";
     private final String TOTAL_TRY_COUNT = "총 시도한 횟수: ";
+
     public void printStart() {
         System.out.println(START_GAME);
         System.out.println();
@@ -40,7 +42,15 @@ public class OutputView {
         System.out.println(moveBridgeResult.get(upBridge));
         System.out.println(moveBridgeResult.get(downBridge));
         System.out.println();
+    }
+
+    public void printFailedResult(int tryCount) {
         System.out.println(PRINT_GAME_FAILED);
+        System.out.println(TOTAL_TRY_COUNT + tryCount);
+    }
+
+    public void printSuccessResult(int tryCount) {
+        System.out.println(PRINT_GAME_SUCCESS);
         System.out.println(TOTAL_TRY_COUNT + tryCount);
     }
 }
