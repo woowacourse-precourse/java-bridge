@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.service.BridgeGame;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
