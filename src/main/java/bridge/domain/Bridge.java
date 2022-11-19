@@ -1,5 +1,8 @@
 package bridge.domain;
 
+import static bridge.constant.BridgeConstant.LOWER_BLOCK;
+import static bridge.constant.BridgeConstant.UPPER_BLOCK;
+
 import java.util.List;
 
 public class Bridge {
@@ -9,6 +12,7 @@ public class Bridge {
     private final List<String> blocks;
 
     public Bridge(List<String> blocks) {
+        validate(blocks);
         this.blocks = blocks;
     }
 
@@ -19,5 +23,25 @@ public class Bridge {
 
     public boolean isGameClear(int round) {
         return blocks.size() == round;
+    }
+
+    private void validate(List<String> blocks) {
+        if (isWrongSizeOfBlocks(blocks)) {
+            throw new IllegalArgumentException();
+        }
+
+        if (containWrongValues(blocks)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private boolean isWrongSizeOfBlocks(List<String> blocks) {
+        return blocks.size() < 3 || blocks.size() > 20;
+
+    }
+
+    private boolean containWrongValues(List<String> blocks) {
+        return blocks.stream()
+                .anyMatch(value -> !value.equals(UPPER_BLOCK) && !value.equals(LOWER_BLOCK));
     }
 }
