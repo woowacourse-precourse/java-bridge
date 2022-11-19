@@ -38,4 +38,11 @@ class ValidationTest {
         Assertions.assertThatThrownBy(() ->bridgeLen("2"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("다리 기능 입력에 대한 validation - 20초과 ")
+    public void 다리길이가_20초과() throws Exception{
+        Assertions.assertThatThrownBy(() ->bridgeLen("21"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
