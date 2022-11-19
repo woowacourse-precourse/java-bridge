@@ -12,13 +12,14 @@ public class BridgeGame {
 
     public static final List<String> candidate = Arrays.asList("U", "D", "R", "Q");
     private static int currentPosition = -1;
-    private static int totalTrial = 0;
+    private static int totalTrial = 1;
     private static String direction = null;
+    public static final String ERROR_INVALID_INPUT = "[ERROR] 유효한 입력이 아닙니다.";
+    public static final String QUIT = "Q";
 
     public void move(String direction) {
         checkValidity(direction);
         currentPosition++;
-        totalTrial++;
         BridgeGame.direction = direction;
     }
 
@@ -37,6 +38,14 @@ public class BridgeGame {
         direction = null;
     }
 
-    public void retry() {
+    public void retry(Bridge bridge, String command) {
+        checkValidity(command);
+        if (command.equals(QUIT)) {
+            Application.endGame(bridge, false);
+            return;
+        }
+        totalTrial++;
+        Application.totalResult = new Result();
+        Application.launchGame(bridge);
     }
 }
