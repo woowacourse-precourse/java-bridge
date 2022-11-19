@@ -68,4 +68,8 @@ public class BridgeGame {
                 .count();
         return gameStages.size() == numberOfCrossedBlock;
     }
+
+    public List<BridgeGameStage> getCurrentGameStages() {
+        return new ArrayList<>(gameStages.subList(0, numberOfMoving));
+    }
 }
