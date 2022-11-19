@@ -22,8 +22,13 @@ public class Bridge {
         return shape.size();
     }
 
-    public boolean isCrossable() {
-        //TODO: 구현
+    public boolean isCrossable(String input, int progress) {
+        String currentShape = shape.get(progress);
+
+        if (currentShape.equals(input)) {
+            return true;
+        }
+
         return false;
     }
 }
