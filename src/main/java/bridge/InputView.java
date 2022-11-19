@@ -14,19 +14,19 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public BridgeSizeDTO readBridgeSize() {
+    public int readBridgeSize() {
         System.out.println("다리 길이를 입력해주세요");
         String inputBridgeLength = Console.readLine();
-        return new BridgeSizeDTO(InputValidator.validateInputBridgeLength(inputBridgeLength));
+        return InputValidator.validateInputBridgeLength(inputBridgeLength);
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public MoveCommandDTO readMoving() {
+    public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래 : D)");
         String inputMove = Console.readLine();
-        return new MoveCommandDTO(InputValidator.validateInputMoveCommande(inputMove));
+        return InputValidator.validateInputMoveCommande(inputMove);
     }
 
     /**
