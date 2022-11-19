@@ -7,17 +7,34 @@ import java.util.List;
  */
 public class OutputView {
 
-
     public static void printStart() {
         System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println("");
     }
+
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap(List<String> aa, List<String> bb) {
+    public static void printMap(List<String> upperBridge, List<String> lowerBridge) {
+        System.out.print("[ ");
+        System.out.print(printUpper(upperBridge));
+        System.out.print(" ]\n");
+        System.out.print("[ ");
+        System.out.print(printLower(lowerBridge));
+        System.out.print(" ]\n");
+    }
+
+    public static String printUpper(List<String> upperBridge) {
+        String result = String.join(" | ", upperBridge);
+        return result;
+    }
+
+    public static String printLower(List<String> lowerBridge) {
+        String result = String.join(" | ", lowerBridge);
+        return result;
     }
 
     /**
