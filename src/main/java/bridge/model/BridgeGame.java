@@ -49,7 +49,7 @@ public class BridgeGame {
      */
     public void retry() {
         retry += 1;
-        input.remove(getIndex());
+        input.clear();
     }
 
     public boolean isAnswer() {
