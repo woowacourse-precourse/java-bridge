@@ -3,8 +3,8 @@ package bridge.model;
 import bridge.Error;
 
 public class BridgeSize {
-	private static final int MIN_NUMBER = 3;
-	private static final int MAX_NUMBER = 20;
+	public static final int MIN_NUMBER = 3;
+	public static final int MAX_NUMBER = 20;
 
 	private final int bridgeSize;
 
