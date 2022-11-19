@@ -20,12 +20,18 @@ public class BridgeGameController {
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
-    public void makeGame() {
+    public void executeGame(){
+        makeGame();
+        startGame();
+        endGame();
+    }
+
+    private void makeGame() {
         bridgeGame = new BridgeGame(bridgeMaker.makeBridge(inputView.readBridgeSize()));
         outputView = new OutputView(bridgeGame);
     }
 
-    public void startGame() {
+    private void startGame() {
         while (true) {
             boolean moveResult = bridgeGame.move(inputView.readMoving());
             outputView.printMap();
@@ -35,7 +41,7 @@ public class BridgeGameController {
         }
     }
 
-    public void endGame() {
+    private void endGame() {
         outputView.printResult();
     }
 
