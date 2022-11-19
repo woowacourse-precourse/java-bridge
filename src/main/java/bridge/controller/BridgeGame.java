@@ -36,9 +36,11 @@ public class BridgeGame {
     public void move(Bridge bridge, BridgeResult bridgeResult) {
         while (count < bridge.getBridgeLength()) {
             if(canCross(bridge,count, bridgeResult)){
+                OutputView.printMap(bridgeResult);
                 count ++ ;
                 continue;
             }
+            OutputView.printMap(bridgeResult);
             return;
         }
     }

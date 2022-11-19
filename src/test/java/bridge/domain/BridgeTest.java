@@ -21,13 +21,13 @@ class BridgeTest {
     @Test
     void inputCanCross() {
         Bridge bridge = new Bridge(List.of("U","D","D"));
-        assertThat(bridge.judgeMoving("U",0)).isTrue();
+        assertThat(bridge.judgeMoving("U",0)).isEqualTo("O");
     }
 
     @DisplayName("이동하고자 하는 위치가 건널 수 없는 위치이면 false를 반환한다.")
     @Test
     void inputCanNotCross() {
         Bridge bridge = new Bridge(List.of("U","D","D"));
-        assertThat(bridge.judgeMoving("U",0)).isFalse();
+        assertThat(bridge.judgeMoving("U",0)).isEqualTo("X");
     }
 }
