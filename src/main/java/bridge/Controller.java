@@ -13,15 +13,14 @@ public class Controller {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         answerBridge = bridgeMaker.makeBridge(getBridgeSize());
         System.out.println(answerBridge);
-
-        while(!moveBridge()){
+        boolean tmp;
+        while(tmp = !moveBridge()){
             System.out.println(MessageView.PRINT_GAME_RESTART_MESSAGE);
-            InputView inputView = new InputView();
             if(!bridgeGame.retry())
                 break;
             tryNumber++;
         }
-        System.out.println(tryNumber);
+        printBridgeResult(tmp,tryNumber);
     }
 
     private int getBridgeSize(){
@@ -47,7 +46,9 @@ public class Controller {
         return true;
     }
 
-    private void printBridgeResult(){
-
+    private void printBridgeResult(boolean isSuccess,int tryNumber){
+        System.out.println(MessageView.PRINT_GAME_RESULT);
+        outputView.printMap(bridgeGame.upBridge,bridgeGame.downBridge);
+        outputView.printResult(isSuccess,tryNumber);
     }
 }
