@@ -11,7 +11,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class BridgeGameMapStateTest {
-    private GamePlayer gamePlayer;
     private BridgeGame bridgeGame;
 
     @BeforeEach
@@ -20,7 +19,6 @@ class BridgeGameMapStateTest {
         BridgeMap bridgeMap = BridgeMap.from(bridge);
         GamePlayer gamePlayer = GamePlayer.withDefaultValue();
 
-        this.gamePlayer = gamePlayer;
         this.bridgeGame = BridgeGame.of(bridgeMap, gamePlayer);
     }
 
