@@ -5,11 +5,11 @@ import java.util.List;
 
 public class BridgeMap {
 
-    private static final int INSERT_PIVOT = 2;
+    private static final int INSERT_PIVOT = 1;
+    private static final int INIT_SIZE = 2;
 
     private final List<BridgeShape> upStair = new ArrayList<>();
     private final List<BridgeShape> downStair = new ArrayList<>();
-
 
 
     public BridgeMap() {
@@ -23,29 +23,32 @@ public class BridgeMap {
         downStair.add(BridgeShape.ENDING_POINT);
     }
 
-    public void moveSussess(InputType inputType) {
+    public void moveSuccess(InputType inputType) {
         inputDivision();
-        if(inputType.equals(InputType.UP)) {
+        if (inputType.equals(InputType.UP)) {
             upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.ALLOW_MOVE);
-            downStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.BLANK);
+            downStair.add(downStair.size() - INSERT_PIVOT, BridgeShape.BLANK);
             return;
         }
         upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.BLANK);
-        downStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.ALLOW_MOVE);
+        downStair.add(downStair.size() - INSERT_PIVOT, BridgeShape.ALLOW_MOVE);
     }
 
     public void moveFail(InputType inputType) {
         inputDivision();
-        if(inputType.equals(InputType.UP)) {
+        if (inputType.equals(InputType.UP)) {
             upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.REFUSE_MOVE);
-            downStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.BLANK);
+            downStair.add(downStair.size() - INSERT_PIVOT, BridgeShape.BLANK);
             return;
         }
         upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.BLANK);
-        downStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.REFUSE_MOVE);
+        downStair.add(downStair.size() - INSERT_PIVOT, BridgeShape.REFUSE_MOVE);
     }
 
     private void inputDivision() {
+        if(upStair.size() == INIT_SIZE) {
+            return;
+        }
         upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.DIVISION);
         downStair.add(downStair.size() - INSERT_PIVOT, BridgeShape.DIVISION);
     }
@@ -56,6 +59,7 @@ public class BridgeMap {
         upStair.forEach(stringBuilder::append);
         stringBuilder.append("\n");
         downStair.forEach(stringBuilder::append);
+        stringBuilder.append("\n");
 
         return stringBuilder.toString();
     }
