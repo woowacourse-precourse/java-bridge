@@ -20,49 +20,45 @@ public class BridgeGame {
         makeMaps(maps, idx, bridge.get(idx));
         new OutputView().printMap(maps, idx);
         if(maps[0][idx] == 'X' || maps[1][idx] == 'X') {
-          if(retry()) { return move(bridge, cnt + 1); }
-          else {
-            new OutputView().printResult(maps, idx, false, cnt);
-            return false;
-          }
+          return retry(bridge, maps, idx, cnt);
         }
       }
       new OutputView().printResult(maps, bridge.size() - 1, true, cnt);
       return true;
     }
 
-  public char[][] initialMap(int size) {
-    char[][] maps = new char[2][size];
+    public char[][] initialMap(int size) {
+      char[][] maps = new char[2][size];
 
-    for(int idx = 0; idx < 2; idx++) {
-      Arrays.fill(maps[idx], ' ');
+      for(int idx = 0; idx < 2; idx++) {
+        Arrays.fill(maps[idx], ' ');
+      }
+      return maps;
     }
-    return maps;
-  }
 
-  public void makeMaps(char[][] maps, int idx, String ch) {
-    String input = new InputView().readMoving();
-    if(ch.equals(input)) {
-      makeO(maps, input, idx);
-    } else {
-      makeX(maps, input, idx);
+    public void makeMaps(char[][] maps, int idx, String ch) {
+      String input = new InputView().readMoving();
+      if(ch.equals(input)) {
+        makeO(maps, input, idx);
+      } else {
+        makeX(maps, input, idx);
+      }
     }
-  }
 
-  public void makeX(char[][] maps, String input, int idx) {
-    if(input.equals("U")) {
-      maps[0][idx] = 'X';
-    } else {
-      maps[1][idx] = 'X';
+    public void makeX(char[][] maps, String input, int idx) {
+      if(input.equals("U")) {
+        maps[0][idx] = 'X';
+      } else {
+        maps[1][idx] = 'X';
+      }
     }
-  }
 
-  public void makeO(char[][] maps, String input, int idx) {
-    if(input.equals("U")) {
-      maps[0][idx] = 'O';
-    } else {
-      maps[1][idx] = 'O';
-    }
+    public void makeO(char[][] maps, String input, int idx) {
+      if(input.equals("U")) {
+        maps[0][idx] = 'O';
+      } else {
+        maps[1][idx] = 'O';
+      }
     }
 
   /**
@@ -70,9 +66,13 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry() {
+    public boolean retry(List<String> bridge, char[][] maps, int idx, int cnt) {
       String comm = new InputView().readGameCommand();
-      if(comm.equals("Q")) return false;
-      return true;
+      if(comm.equals("R")) {
+        return move(bridge, cnt + 1);
+      } else {
+        new OutputView().printResult(maps, idx, false, cnt);
+        return false;
+      }
     }
 }
