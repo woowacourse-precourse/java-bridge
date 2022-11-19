@@ -30,4 +30,12 @@ public enum BridgeMark {
     private boolean isEqualMark(String mark) {
         return this.mark.equals(mark);
     }
+
+    public boolean isUp() {
+        return this == UP;
+    }
+
+    public boolean isDown() {
+        return this == DOWN;
+    }
 }
