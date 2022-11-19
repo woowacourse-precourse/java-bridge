@@ -28,6 +28,10 @@ public class BridgeGame {
     public void plusGameTryCount() {
         this.gameTryCount++;
     }
+    public void clearGameResults() {
+        this.currentGameResults = new ArrayList<>();
+        currentGameIndex = 0;
+    }
     }
 
     /**
