@@ -29,7 +29,8 @@ public class Validator {
     }
 
     public void canMove(String move) {
-        if (move == UP || move == DOWN) {
+        System.out.println(move);
+        if (move.equals(UP) || move.equals(DOWN)) {
             return;
         }
         throw new IllegalArgumentException(MOVE_ERROR);
