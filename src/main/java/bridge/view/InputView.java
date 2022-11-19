@@ -7,11 +7,13 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
  */
 public class InputView {
     private static final String ERROR_INPUT_INT = "[ERROR] 숫자만 입력 가능합니다.";
+    private static final String MESSAGE_INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        System.out.println(MESSAGE_INPUT_BRIDGE_SIZE);
         String input = readLine();
         try {
             return Integer.parseInt(input);
