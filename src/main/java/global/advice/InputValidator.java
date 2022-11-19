@@ -1,13 +1,13 @@
 package global.advice;
 
-public class SizeValidator {
+public class InputValidator {
 
     private static final int MIN_LENGTH = 1;
     private static final int MAX_LENGTH = 2;
     private static final int MIN_SIZE = 3;
     private static final int MAX_SIZE = 20;
 
-    private SizeValidator(){}
+    private InputValidator(){}
 
     public static void checkLength(String size) {
         if (size.length() < MIN_LENGTH || size.length() > MAX_LENGTH) {

@@ -1,19 +1,18 @@
 package global.advice;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class SizeValidatorTest {
+class InputValidatorTest {
 
     @DisplayName("입력되지 않거나, 두자리 초과하여 입력하면 예외가 발생한다.")
     @ParameterizedTest(name = "입력 : {0}")
     @ValueSource(strings = {"", "100", "14444"})
     void checkLength(String size) {
-        assertThatThrownBy(() -> SizeValidator.checkLength(size))
+        assertThatThrownBy(() -> InputValidator.checkLength(size))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -21,7 +20,7 @@ class SizeValidatorTest {
     @ParameterizedTest(name = "입력 : {0}")
     @ValueSource(strings = {".", "@", " ", "  ", "%", "B", "ㅎ", ";", "+" ,"-10"})
     void checkIsDigit(String size) {
-        assertThatThrownBy(() -> SizeValidator.checkIsDigit(size))
+        assertThatThrownBy(() -> InputValidator.checkIsDigit(size))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -29,7 +28,7 @@ class SizeValidatorTest {
     @ParameterizedTest(name = "입력 : {0}")
     @ValueSource(strings = {"0","1", "2", "21", "99" ,"-10"})
     void checkRange(String size) {
-        assertThatThrownBy(() -> SizeValidator.checkRange(size))
+        assertThatThrownBy(() -> InputValidator.checkRange(size))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
