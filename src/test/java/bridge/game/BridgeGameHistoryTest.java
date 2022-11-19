@@ -9,7 +9,9 @@ import bridge.domain.BridgeMoveHistory;
 import bridge.domain.TestNumberGenerator;
 import bridge.domain.bridge.Bridge;
 import bridge.domain.game.BridgeGameHistory;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -70,5 +72,37 @@ public class BridgeGameHistoryTest {
     void addMoveHistoryByNotCreatedHistory() {
         assertThatThrownBy(() -> bridgeGameHistory.addMoveHistory(1, new BridgeMoveHistory(BridgeMove.DOWN, true)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+    
+    @DisplayName("getMoveResultByTryCount 메소드는 성공한 이동의 경우 O, 선택되지 않은 경우 공백으로 된 방향별 HashMap을 반환한다.")
+    @Test
+    void getMoveResultByTryCountByValid() {
+        bridgeGameHistory.createHistory(1);
+        bridgeGameHistory.addMoveHistory(1, new BridgeMoveHistory(BridgeMove.DOWN, true));
+        bridgeGameHistory.addMoveHistory(1, new BridgeMoveHistory(BridgeMove.UP, true));
+        bridgeGameHistory.addMoveHistory(1, new BridgeMoveHistory(BridgeMove.UP, true));
+        
+        Map<BridgeMove, List<String>> expected = new HashMap<>();
+        
+        expected.put(BridgeMove.DOWN, List.of(" O ", "   ", "   "));
+        expected.put(BridgeMove.UP, List.of("   ", " O ", " O "));
+        
+        assertThat(bridgeGameHistory.getMoveResultByTryCount(1)).isEqualTo(expected);
+    }
+    
+    @DisplayName("getMoveResultByTryCount 메소드는 성공한 실패의 경우 X, 선택되지 않은 경우 공백으로 된 방향별 HashMap을 반환한다.")
+    @Test
+    void getMoveResultByTryCountWithFailure() {
+        bridgeGameHistory.createHistory(1);
+        bridgeGameHistory.addMoveHistory(1, new BridgeMoveHistory(BridgeMove.DOWN, true));
+        bridgeGameHistory.addMoveHistory(1, new BridgeMoveHistory(BridgeMove.UP, true));
+        bridgeGameHistory.addMoveHistory(1, new BridgeMoveHistory(BridgeMove.DOWN, false));
+        
+        Map<BridgeMove, List<String>> expected = new HashMap<>();
+        
+        expected.put(BridgeMove.DOWN, List.of(" O ", "   ", " X "));
+        expected.put(BridgeMove.UP, List.of("   ", " O ", "   "));
+        
+        assertThat(bridgeGameHistory.getMoveResultByTryCount(1)).isEqualTo(expected);
     }
 }
