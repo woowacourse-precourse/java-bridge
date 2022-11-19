@@ -7,6 +7,7 @@ import java.util.List;
 public class BridgeController {
     private final String SUCCESS = "성공";
     private final String FAILURE = "실패";
+    private final int START_OF_COUNT = 0;
     private OutputView outputView = new OutputView();
     private InputView inputView = new InputView();
     private BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
@@ -39,7 +40,7 @@ public class BridgeController {
     }
 
     public int startMove() {
-        int count=0;
+        int count=START_OF_COUNT;
 
         while (true) {
             count++;
@@ -54,7 +55,7 @@ public class BridgeController {
             }
             outputView.printMap(bridgeGame.getUserMoving());
         }
-
-        return count - 1;
+        //마지막 움직인 것은 count 하지 않는다.
+        return --count;
     }
 }
