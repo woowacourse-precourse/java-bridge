@@ -12,17 +12,19 @@ import java.io.InputStreamReader;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-
     /**
      * 다리의 길이를 입력받는다.
      */
-    BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-
     public int readBridgeSize() throws IOException {
-        int BridgeSize = Integer.parseInt(Console.readLine());
+        int BridgeSize = 0;
 
-        if(BridgeSize < 3 || BridgeSize>20)
-            throw new IllegalArgumentException("[ERROR]");
+        try {
+            BridgeSize = Integer.parseInt(Console.readLine());
+            if (BridgeSize < 3 || BridgeSize > 20)
+                throw new IllegalArgumentException("[ERROR]");
+        }catch (NumberFormatException e){
+            System.out.println("[ERROR]");
+        }
 
         return BridgeSize;
     }
@@ -32,7 +34,7 @@ public class InputView {
      */
     public String readMoving() {
 
-        System.out.println("이동할 칸을 선택해주세요.");
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String pInput = Console.readLine();
 
         return pInput;
