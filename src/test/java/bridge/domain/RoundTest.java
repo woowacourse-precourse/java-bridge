@@ -58,4 +58,20 @@ public class RoundTest {
 
         assertThat(Round.naturalOrder()).hasSameElementsAs(naturalOrderedRound);
     }
+
+    @Test
+    void naturalOrderWithSize_메서드는_size를_받아_Round를_오름차순으로_반환한다() {
+        List<Round> naturalOrderedRound = IntStream.rangeClosed(ROUND_LOWER_BOUND, 5)
+                .mapToObj(Round::valueOf)
+                .collect(Collectors.toList());
+
+        assertThat(Round.naturalOrderWithSize(5)).hasSameElementsAs(naturalOrderedRound);
+    }
+
+    @Test
+    void naturalOrderWithSize_메서드는_범위를_벗어난_값을_입력받으면_IllegalArugmentException을_던진다() {
+        Assertions.assertThatThrownBy(() -> Round.naturalOrderWithSize(21))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("허용된 라운드 범위를 벗어났습니다.");
+    }
 }

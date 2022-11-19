@@ -53,4 +53,11 @@ public class Round {
                 .mapToObj(Round::valueOf)
                 .collect(toList());
     }
+
+    public static List<Round> naturalOrderWithSize(int size) {
+        validate(size);
+        return IntStream.rangeClosed(ROUND_LOWER_BOUND, size)
+                .mapToObj(Round::valueOf)
+                .collect(toList());
+    }
 }
