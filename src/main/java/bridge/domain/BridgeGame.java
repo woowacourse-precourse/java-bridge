@@ -23,8 +23,8 @@ public class BridgeGame {
 		return bridge.get(index).equals(input);
 	}
 
-	public boolean isClear(ProgressMap progressMap) {
-		return bridge.size() == progressMap.whatMapSize() && !progressMap.isMoveFailed();
+	public boolean isNotFinish(ProgressMap progressMap) {
+		return bridge.size() != progressMap.whatMapSize() || progressMap.isMoveFailed();
 	}
 
 	public int getBridgeSize() {

@@ -61,7 +61,7 @@ public class BridgeGameController {
 
 	private void startBridgeGame(BridgeGame bridgeGame) {
 		boolean playGame = true;
-		while (playGame && !bridgeGame.isClear(progressMap)) {
+		while (playGame && bridgeGame.isNotFinish(progressMap)) {
 			crossBridge(bridgeGame);
 			if (progressMap.isMoveFailed()) {
 				playGame = failBridgeMove(bridgeGame);
@@ -79,7 +79,7 @@ public class BridgeGameController {
 
 	private void crossBridge(BridgeGame bridgeGame) {
 		progressMap = bridgeGameService.initGameMap(bridgeGame.getBridgeSize());
-		while (!progressMap.isMoveFailed() && !bridgeGame.isClear(progressMap)) {
+		while (!progressMap.isMoveFailed() && bridgeGame.isNotFinish(progressMap)) {
 			moveBridgeOneTime(bridgeGame);
 			outputView.printMap(progressMap.getProgressMap());
 		}
