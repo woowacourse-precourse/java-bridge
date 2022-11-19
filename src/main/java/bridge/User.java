@@ -29,7 +29,6 @@ public class User {
             this.pathOfUpperBridge += " ";
             this.pathOfLowerBridge += result;
         }
-        plusRound();
     }
 
     public void firstOrNot() {
@@ -44,4 +43,7 @@ public class User {
         this.round++;
     }
 
+    public int getRound() {
+        return this.round
+    }
 }
