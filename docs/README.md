@@ -41,10 +41,10 @@
 - readMoving()
 - readGameCommand()
 2. OutputView
-- printMap(UserPosition userPosition)
+- printMap(PositionTable userPosition)
   - draw(userTable, position -> position.isUp())
   - draw(userTable, position -> position.isDown())
-- printResult(Result result)
+- printResult(PositionTable userPosition, Result result)
   - result가 WIN이라면 그대로 printMap()과 같이 출력한다.
   - result가 LOSE라면 replace를 사용해서 마지막 " O "를 " X "로 바꿔준다.
 - draw(PositionTable userTable, Predicate<Position p)

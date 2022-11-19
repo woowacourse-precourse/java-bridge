@@ -27,7 +27,22 @@ public class OutputView {
     }
 
     public void printResult(PositionTable userTable, Result result) {
+        List<String> upBridge = draw(userTable, position -> position.isUp());
+        List<String> downBridge = draw(userTable, position -> position.isDown());
+        if (result.isLose()) {
+            replace(upBridge);
+            replace(downBridge);
+        }
+        System.out.println(String.join("|",draw(userTable, position -> position.isUp())));
+        System.out.println(String.join("|",draw(userTable, position -> position.isDown())));
+    }
 
+    private void replace(List<String> bridge) {
+        int lastIndex = bridge.size()-1;
+        if (bridge.get(lastIndex).equals(PASS)) {
+            bridge.remove(lastIndex);
+            bridge.add(FAIL);
+        }
     }
 
     private static List<String> draw(PositionTable userTable, Predicate<Position> p) {
