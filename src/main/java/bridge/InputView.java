@@ -9,7 +9,9 @@ import static bridge.GameMessage.*;
  */
 public class InputView {
 
-
+    public void printStartMessage(){
+        System.out.println(GAME_START_MESSAGE);
+    }
     /**
      * 다리의 길이를 입력받는다.
      */
