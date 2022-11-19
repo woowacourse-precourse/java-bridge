@@ -25,5 +25,12 @@ public class BridgeInputException {
         }
     }
 
+    // 값이 비어있는지 판별하는 기능
+    public void validEmpty(String input) {
+        if(input.equals("")) {
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_EMPTY_ERROR_MESSAGE);
+        }
+    }
+
 
 }
