@@ -7,8 +7,6 @@ import bridge.dto.UserState;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private static final String MOVING_ERROR_MESSAGE = "[ERROR] 유저가 이동할 수 없는 상태입니다.";
-
     private Bridge bridge;
     private User user;
     private boolean needToQuit;

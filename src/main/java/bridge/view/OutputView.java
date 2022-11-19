@@ -88,8 +88,7 @@ public class OutputView {
     public void printResult(GameResult gameResult) {
         System.out.println(GAME_RESULT_INTRO_MESSAGE);
         printMap(gameResult.getUserState());
-        String isSuccessGame = getSuccessMessage(gameResult.isSuccess());
-        System.out.println(String.format(IS_GAME_SUCCESS, isSuccessGame));
+        System.out.println(String.format(IS_GAME_SUCCESS, getSuccessMessage(gameResult.isSuccess())));
         System.out.println(String.format(NUMBER_OF_ATTEMPTS, gameResult.getNumberOfAttempts()));
     }
 

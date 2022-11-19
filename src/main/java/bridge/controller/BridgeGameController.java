@@ -28,8 +28,7 @@ public class BridgeGameController {
     private Bridge getRandomBridgeFromUserByBridge() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         int bridgeLength = inputView.readBridgeSize();
-        List<String> bridgeSourceData = bridgeMaker.makeBridge(bridgeLength);
-        return new Bridge(bridgeSourceData);
+        return new Bridge(bridgeMaker.makeBridge(bridgeLength));
     }
 
     private void playGameUntilEnd(BridgeGame bridgeGame) {
@@ -44,7 +43,6 @@ public class BridgeGameController {
         if (bridgeGame.isNeedToQuit()) {
             return;
         }
-        Command command = inputView.readGameCommand();
-        bridgeGame.retry(command);
+        bridgeGame.retry(inputView.readGameCommand());
     }
 }
