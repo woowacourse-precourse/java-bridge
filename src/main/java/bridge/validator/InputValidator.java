@@ -8,7 +8,8 @@ public class InputValidator {
     private static final String ONLY_NUMBER_REGEX = "^[0-9]*$";
     private static final int MIN_SIZE = 3;
     private static final int MAX_SIZE = 20;
-    private static final String SPACE_FORMAT = "^(U)|(D)*$";
+    private static final String SPACE_FORMAT = "^[UD]$";
+    private static final String GAME_RETRY_FORMAT = "^[RQ]$";
     private static final int SPACE_LENGTH = 1;
 
 
@@ -24,8 +25,14 @@ public class InputValidator {
 
     public static String checkMovingSpace(String space) {
         validateOneLength(space);
-        validateSpaceFormat(space);
+        validateInputFormat(space, SPACE_FORMAT);
         return space;
+    }
+
+    public static String checkGameRetry(String input) {
+        validateOneLength(input);
+        validateInputFormat(input, GAME_RETRY_FORMAT);
+        return input;
     }
 
     private static void validateOnlyNumber(String input) {
@@ -52,9 +59,9 @@ public class InputValidator {
         }
     }
 
-    private static void validateSpaceFormat(String space) {
-        if(!Pattern.matches(SPACE_FORMAT, space)) {
-            printNotSpaceFormatException();
+    private static void validateInputFormat(String space, String format) {
+        if(!Pattern.matches(format, space)) {
+            printNotFormatException();
         }
     }
 }

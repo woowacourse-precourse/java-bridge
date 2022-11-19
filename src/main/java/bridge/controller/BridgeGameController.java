@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.service.BridgeGame;
 import bridge.service.dto.request.BridgeSizeRequestDto;
+import bridge.service.dto.request.GameRetryRequestDto;
 import bridge.service.dto.request.SelectBlockRequestDto;
 import bridge.service.dto.response.BridgeResponseDto;
 import bridge.view.InputView;
@@ -36,6 +37,12 @@ public class BridgeGameController {
             outputView.printMap(responseDto);
         }
 
-        System.out.println("good");
+        validateGameFail();
+    }
+
+    private void validateGameFail() {
+        if(bridgeGame.isFail()) {
+            GameRetryRequestDto requestDto = inputView.readGameCommand();
+        }
     }
 }

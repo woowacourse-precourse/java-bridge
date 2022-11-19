@@ -38,6 +38,10 @@ public class Result {
         return !gameOver.equals(GameOver.PLAYING);
     }
 
+    public boolean isFail() {
+        return gameOver == GameOver.FAIL;
+    }
+
     public enum GameOver {
         SUCCESS,
         FAIL,
