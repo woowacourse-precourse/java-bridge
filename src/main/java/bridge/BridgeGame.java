@@ -21,16 +21,17 @@ public class BridgeGame {
         this.path = new ArrayList<>();
         this.numberOfTry = 1;
     }
-    
+
     /**
      * 게임을 실행하는 메소드
      */
     public void run() {
-        while (!isEnd()) {
+        String gameCommand = "R";
+        while (!isEnd() && !isQuitCommand(gameCommand)) {
             move();
             while (isWrong()) {
                 outputView.guideRetry();
-                String gameCommand = inputView.readGameCommand();
+                gameCommand = inputView.readGameCommand();
                 if (isQuitCommand(gameCommand)) break;
                 retry();
             }
