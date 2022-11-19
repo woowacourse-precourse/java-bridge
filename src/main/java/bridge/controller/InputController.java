@@ -26,4 +26,9 @@ public class InputController {
             return getUserSelection();
         }
     }
+
+    public static String getGameCommand() {
+        outputView.printGameCommandInput();
+        return inputView.readGameCommand();
+    }
 }

@@ -1,6 +1,7 @@
 package bridge.controller;
 
 import static bridge.controller.InputController.getBridgeSize;
+import static bridge.controller.InputController.getGameCommand;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
@@ -36,6 +37,11 @@ public class GameController {
         System.out.println(finalResult.isFinalSuccess());
         if (finalResult.isFinalSuccess()) {
             outputView.printResult(diagram, finalResult);
+        }
+        if (!finalResult.isFinalSuccess()) {
+            // 게임에 실패한 경우 사용자에게 "R", "Q" 중의 입력값을 받아 재시작 여부를 결정한다.
+            String restartOrQuit = getGameCommand();
+            System.out.println(restartOrQuit);
         }
 
 
