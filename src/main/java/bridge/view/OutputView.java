@@ -48,6 +48,7 @@ public class OutputView {
             String block = user.getPastResult().get(i);
             appendByPastBlock(block);
         }
+        appendByCurrentBlock(isSuccess, user);
         enter();
     }
 
@@ -63,6 +64,38 @@ public class OutputView {
         }
     }
 
+    private static void appendByCurrentBlock(boolean isSuccess, User user) {
+        if (isSuccess) {
+            appendBySuccessCurrentBlock(user);
+        }
+        if (!isSuccess) {
+            appendByFailedCurrentBlock(user);
+        }
+    }
+
+    private static void appendBySuccessCurrentBlock(User user) {
+        if (user.currentBlock == 0) {
+            TOP_BRIDGE.append(ZERO);
+            BOTTOM_BRIDGE.append(EMPTY);
+        }
+
+        if (user.currentBlock == 1) {
+            TOP_BRIDGE.append(EMPTY);
+            BOTTOM_BRIDGE.append(ZERO);
+        }
+    }
+
+    private static void appendByFailedCurrentBlock(User user) {
+        if (user.currentBlock == 0) {
+            TOP_BRIDGE.append(X);
+            BOTTOM_BRIDGE.append(EMPTY);
+        }
+
+        if (user.currentBlock == 1) {
+            TOP_BRIDGE.append(EMPTY);
+            BOTTOM_BRIDGE.append(X);
+        }
+    }
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
