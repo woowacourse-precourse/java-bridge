@@ -12,4 +12,9 @@ public class ValueValidator {
         }
     }
 
+    public void validateRetryOrQuit(String option){
+        if(!option.equals("R") && !option.equals("Q")){
+            throw new IllegalArgumentException(ErrorMessage.INVALID_OPTION);
+        }
+    }
 }
