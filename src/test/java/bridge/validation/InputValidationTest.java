@@ -25,7 +25,7 @@ class InputValidationTest {
 	}
 
 	@ParameterizedTest
-	@ValueSource(strings = {"1","-23","한글입니다","It's English","21000000000","21"})
+	@ValueSource(strings = {"1","-23","한글입니다","It's English","21000000000","21",""})
 	@DisplayName("유저의_다리길이_입력값_유효성검사")
 	void user_input_bridge_length_validation(String source){
 		try{
