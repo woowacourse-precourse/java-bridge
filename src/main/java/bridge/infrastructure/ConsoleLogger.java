@@ -10,7 +10,7 @@ public class ConsoleLogger implements Logger  {
     private static final String ERROR_FORMAT = "%s %s";
 
     @Override
-    public void error(String message) {
+    public void error(final String message) {
         String format = format(ERROR_FORMAT, ERROR_PREFIX, message);
         System.out.println(format);
     }

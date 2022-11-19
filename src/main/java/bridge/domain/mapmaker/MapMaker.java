@@ -31,7 +31,8 @@ public class MapMaker {
         bottomLine.add(START);
     }
 
-    public void addPath(Direction direction, CrossStatus status) {
+    public void addPath(final Direction direction,
+                        final CrossStatus status) {
         if (status == CrossStatus.FAIL) {
             addFailPath(direction);
             return;
@@ -39,7 +40,7 @@ public class MapMaker {
         addSuccessPath(direction);
     }
 
-    private void addSuccessPath(Direction direction) {
+    private void addSuccessPath(final Direction direction) {
         if (isUp(direction)) {
             drawTop(PATH);
             return;
@@ -47,7 +48,7 @@ public class MapMaker {
         drawBottom(PATH);
     }
 
-    private void addFailPath(Direction direction) {
+    private void addFailPath(final Direction direction) {
         if (isUp(direction)) {
             drawTop(FAIL_PATH);
             return;
@@ -55,18 +56,18 @@ public class MapMaker {
         drawBottom(FAIL_PATH);
     }
 
-    private boolean isUp(Direction direction) {
+    private boolean isUp(final Direction direction) {
         return direction == UP;
     }
 
-    private void drawTop(MapSymbol symbol) {
+    private void drawTop(final MapSymbol symbol) {
         topLine.add(SEPARATOR);
         bottomLine.add(SEPARATOR);
         topLine.add(symbol);
         bottomLine.add(EMPTY);
     }
 
-    private void drawBottom(MapSymbol symbol) {
+    private void drawBottom(final MapSymbol symbol) {
         topLine.add(SEPARATOR);
         bottomLine.add(SEPARATOR);
         bottomLine.add(symbol);
@@ -79,7 +80,7 @@ public class MapMaker {
         return topMap + NEW_LINT + bottomMap;
     }
 
-    private String mapToString(List<MapSymbol> topLine) {
+    private String mapToString(final List<MapSymbol> topLine) {
         StringBuilder sb = new StringBuilder();
         for (MapSymbol mapSymbol : topLine) {
             sb.append(mapSymbol.symbol());

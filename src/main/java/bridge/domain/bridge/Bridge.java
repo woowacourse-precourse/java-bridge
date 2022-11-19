@@ -19,7 +19,7 @@ public class Bridge {
         this.directions = directions;
     }
 
-    public static Bridge fromStrings(List<String> bridge) {
+    public static Bridge fromStrings(final List<String> bridge) {
         return new Bridge(bridge.stream()
                 .map(Direction::ofSymbol)
                 .collect(toList()));
@@ -38,7 +38,7 @@ public class Bridge {
         return judgeSuccessOrGoing(path.size());
     }
 
-    private boolean isFailPath(List<Direction> path) {
+    private boolean isFailPath(final List<Direction> path) {
         for (int i = 0; i < path.size(); i++) {
             if (isDifferent(path.get(i), directions.get(i))) {
                 return true;
@@ -54,7 +54,7 @@ public class Bridge {
         return GOING;
     }
 
-    private boolean isDifferent(Direction path, Direction target) {
+    private boolean isDifferent(final Direction path, final Direction target) {
         return path != target;
     }
 }

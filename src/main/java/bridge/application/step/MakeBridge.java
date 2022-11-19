@@ -5,7 +5,8 @@ import bridge.application.log.Logger;
 
 public class MakeBridge extends BridgeGameStep {
 
-    protected MakeBridge(BridgeGameContext context, Logger logger) {
+    protected MakeBridge(final BridgeGameContext context,
+                         final Logger logger) {
         super(context, logger);
     }
 

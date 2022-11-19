@@ -5,7 +5,8 @@ import bridge.application.log.Logger;
 
 public class StartGame extends BridgeGameStep {
 
-    public StartGame(BridgeGameContext context, Logger logger) {
+    public StartGame(final BridgeGameContext context,
+                     final Logger logger) {
         super(context, logger);
     }
 

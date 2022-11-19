@@ -30,7 +30,7 @@ public class InputView {
         return parseInt(input);
     }
 
-    private void validateBridgeSize(String input) {
+    private void validateBridgeSize(final String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -48,7 +48,7 @@ public class InputView {
         return input;
     }
 
-    private void validateCommand(String input) {
+    private void validateCommand(final String input) {
         if (!input.matches(COMMAND_REGEX)) {
             throw new IllegalArgumentException(COMMAND_ERROR);
         }

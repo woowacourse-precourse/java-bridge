@@ -12,7 +12,7 @@ public enum MapSymbol {
 
     private final String symbol;
 
-    MapSymbol(String symbol) {
+    MapSymbol(final String symbol) {
         this.symbol = symbol;
     }
 

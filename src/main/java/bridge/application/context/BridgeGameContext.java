@@ -22,7 +22,7 @@ public class BridgeGameContext {
     private TryCount tryCount;
     private BridgeGame bridgeGame;
 
-    public BridgeGameContext(BridgeGameConfig config) {
+    public BridgeGameContext(final BridgeGameConfig config) {
         this.inputView = config.inputView();
         this.outputView = config.outputView();
         this.bridgeMaker = config.bridgeMaker();

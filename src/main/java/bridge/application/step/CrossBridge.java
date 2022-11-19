@@ -9,7 +9,8 @@ import static bridge.domain.bridge.CrossStatus.GOING;
 
 public class CrossBridge extends BridgeGameStep {
 
-    protected CrossBridge(BridgeGameContext context, Logger logger) {
+    protected CrossBridge(final BridgeGameContext context,
+                          final Logger logger) {
         super(context, logger);
     }
 

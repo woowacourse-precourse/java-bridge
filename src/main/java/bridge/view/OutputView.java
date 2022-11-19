@@ -23,7 +23,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(String map) {
+    public void printMap(final String map) {
         System.out.println(map);
         System.out.println(EMPTY);
     }
@@ -33,14 +33,16 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(TryCount tryCount, CrossStatus status, String map) {
+    public void printResult(final TryCount tryCount,
+                            final CrossStatus status,
+                            final String map) {
         System.out.println(FINAL_GAME_RESULT);
         System.out.println(map);
         System.out.printf(GAME_STATUS_FORMAT, judgeResult(status));
         System.out.printf(GAME_TRY_COUNT_FORMAT, tryCount.count());
     }
 
-    private String judgeResult(CrossStatus status) {
+    private String judgeResult(final CrossStatus status) {
         if (status == SUCCESS) {
             return GAME_SUCCESS;
         }

@@ -9,6 +9,7 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameConfig {
+
     public InputView inputView() {
         return new InputView();
     }

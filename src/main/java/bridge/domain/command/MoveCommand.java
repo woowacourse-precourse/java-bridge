@@ -12,11 +12,11 @@ public enum MoveCommand {
 
     private final String command;
 
-    MoveCommand(String command) {
+    MoveCommand(final String command) {
         this.command = command;
     }
 
-    public static MoveCommand of(String command) {
+    public static MoveCommand of(final String command) {
         return stream(values())
                 .filter(c -> c.command.equals(command))
                 .findAny()

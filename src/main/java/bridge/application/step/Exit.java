@@ -7,7 +7,8 @@ public class Exit extends BridgeGameStep {
 
     private static final String CANNOT_EXECUTED_STATE = "실행되면 안되는 상태입니다.";
 
-    protected Exit(BridgeGameContext context, Logger logger) {
+    protected Exit(final BridgeGameContext context,
+                   final Logger logger) {
         super(context, logger);
     }
 

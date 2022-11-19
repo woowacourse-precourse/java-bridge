@@ -6,7 +6,7 @@ public class TryCount {
 
     private final int count;
 
-    private TryCount(int count) {
+    private TryCount(final int count) {
         this.count = count;
     }
 

@@ -9,7 +9,7 @@ public class BridgeGameApplication {
 
     private Step step;
 
-    public BridgeGameApplication(BridgeGameConfig config) {
+    public BridgeGameApplication(final BridgeGameConfig config) {
         BridgeGameContext context = new BridgeGameContext(config);
         this.step = new StartGame(context, config.logger());
     }

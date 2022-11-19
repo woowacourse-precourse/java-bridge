@@ -8,7 +8,8 @@ import static bridge.domain.command.GameCommand.RETRY;
 
 public class InputRetry extends BridgeGameStep {
 
-    protected InputRetry(BridgeGameContext context, Logger logger) {
+    protected InputRetry(final BridgeGameContext context,
+                         final Logger logger) {
         super(context, logger);
     }
 
@@ -19,7 +20,7 @@ public class InputRetry extends BridgeGameStep {
         return judgeNext(gameCommand);
     }
 
-    private Step judgeNext(GameCommand command) {
+    private Step judgeNext(final GameCommand command) {
         if (command == RETRY) {
             return new ReadyToRetry(context, logger);
         }

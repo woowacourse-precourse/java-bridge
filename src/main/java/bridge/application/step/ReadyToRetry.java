@@ -5,7 +5,8 @@ import bridge.application.log.Logger;
 
 public class ReadyToRetry extends BridgeGameStep {
 
-    protected ReadyToRetry(BridgeGameContext context, Logger logger) {
+    protected ReadyToRetry(final BridgeGameContext context,
+                           final Logger logger) {
         super(context, logger);
     }
 

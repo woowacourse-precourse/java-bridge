@@ -8,10 +8,8 @@ public abstract class BridgeGameStep implements Step {
     protected final BridgeGameContext context;
     protected final Logger logger;
 
-    protected BridgeGameStep(
-            final BridgeGameContext context,
-            final Logger logger
-    ) {
+    protected BridgeGameStep(final BridgeGameContext context,
+                             final Logger logger) {
         this.context = context;
         this.logger = logger;
     }

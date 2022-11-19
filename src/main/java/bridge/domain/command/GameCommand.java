@@ -12,11 +12,11 @@ public enum GameCommand {
 
     private final String command;
 
-    GameCommand(String command) {
+    GameCommand(final String command) {
         this.command = command;
     }
 
-    public static GameCommand of(String command) {
+    public static GameCommand of(final String command) {
         return stream(values())
                 .filter(c -> c.command.equals(command))
                 .findAny()
