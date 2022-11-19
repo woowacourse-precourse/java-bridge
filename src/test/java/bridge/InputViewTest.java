@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class InputViewTest {
 
-    private Validation validation;
+    private Validation validation =  new Validation();
     @Test
     @DisplayName("다리 길이에 대한 입력 Integer 변환 - 성공")
     public void Convert_Success() throws Exception{
@@ -45,6 +45,18 @@ class InputViewTest {
 
     }
 
+    @Test
+    @DisplayName("이동할 칸에 대한 입력 - 성공")
+    public void move_success() throws Exception{
+        validation = new Validation();
+        String command = "U";
+        validation.moveCommand(command);
+        Assertions.assertThat(command).isEqualTo(BridgeConst.UP);
+        command = "D";
+        validation.moveCommand(command);
+        Assertions.assertThat(command).isEqualTo(BridgeConst.DOWN);
+
+    }
 
 
 }
