@@ -10,6 +10,8 @@ import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeGameController {
+    private static final String RETRY = "R";
+
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -87,8 +89,7 @@ public class BridgeGameController {
     }
 
     private void retryOrFinish(BridgeGame bridgeGame) {
-        String gameCommand = getGameCommandInput();
-        if (gameCommand.equals("R")) {
+        if (getGameCommandInput() == RETRY) {
             bridgeGame.retry();
         }
     }
