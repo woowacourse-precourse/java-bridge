@@ -15,11 +15,11 @@ public class MapShape {
     private static final List<String> lowerMap = new ArrayList<>();
 
     public void addShape(String nextMove, String moveResult) {
-        if(nextMove.matches(MOVE_TO_UPPER)) {
+        if(nextMove.equals(MOVE_TO_UPPER)) {
             upperMap.add(moveResult);
             lowerMap.add(BLANK);
         }
-        if(nextMove.matches(MOVE_TO_LOWER)) {
+        if(nextMove.equals(MOVE_TO_LOWER)) {
             upperMap.add(BLANK);
             lowerMap.add(moveResult);
         }

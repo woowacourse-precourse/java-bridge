@@ -1,7 +1,6 @@
 package bridge.model;
 
 import bridge.controller.GameController;
-import bridge.view.InputView;
 
 import static bridge.util.Constant.*;
 
@@ -9,12 +8,6 @@ import static bridge.util.Constant.*;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-
-    private final InputView inputView;
-
-    public BridgeGame() {
-        this.inputView = new InputView();
-    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -24,7 +17,7 @@ public class BridgeGame {
      * @return 해당 움직임의 성공/ 실패를 전달한다.
      */
     public String move(String bridgeShape, String nextMove) {
-        if(bridgeShape.matches(nextMove))
+        if(bridgeShape.equals(nextMove))
             return PASS_SIGN;
         return FAIL_SIGN;
     }
@@ -34,7 +27,9 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
-        GameController.checkKeepGoing(inputView.readGameCommand());
+    public void retry(String retryCommand) {
+        if(retryCommand.equals(RESET_COMMAND)) GameController.resetGame();
+        if(retryCommand.equals(QUIT_COMMAND)) GameController.quitGame();
     }
+
 }

@@ -16,6 +16,8 @@ public class GameController {
     private static boolean keepGoing = true;
     private static int currentPosition = 0;
     private static int tryCount = 1;
+    private static int bridgeSize;
+    private static List<String> bridge;
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -31,31 +33,38 @@ public class GameController {
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
-    public void run() {
-        int bridgeSize = inputView.readBridgeSize();
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+    public void gameStart(){
+        inputView.printStartMessage();
+        setGame();
         while(keepGoing && currentPosition < bridgeSize){
-            String nextMove = inputView.readMoving();
-            String moveResult = bridgeGame.move(bridge.get(currentPosition), nextMove);
-            outputView.printMap(nextMove, moveResult);
-            currentPosition++;
-            if(moveResult.matches(FAIL_SIGN)) bridgeGame.retry();
+            playGame();
         }
         outputView.printResult(tryCount, keepGoing);
     }
 
-    public static void checkKeepGoing(String resetCommand) {
-        if(resetCommand.matches(RESET_COMMAND)) resetGame();
-        if(resetCommand.matches(QUIT_COMMAND)) quitGame();
+    private void setGame() {
+        bridgeSize = inputView.readBridgeSize();
+        bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
-    private static void resetGame() {
+    private void playGame() {
+        String nextMove = inputView.readMoving();
+        String moveResult = bridgeGame.move(bridge.get(currentPosition), nextMove);
+        outputView.printMap(nextMove, moveResult);
+        currentPosition++;
+        if(moveResult.equals(FAIL_SIGN)) {
+            String retryCommand = inputView.readGameCommand();
+            bridgeGame.retry(retryCommand);
+        }
+    }
+
+    public static void resetGame() {
         currentPosition = 0;
         tryCount++;
         mapShape.clearMap();
     }
 
-    private static void quitGame() {
+    public static void quitGame() {
         keepGoing = false;
     }
 
