@@ -1,7 +1,8 @@
-package bridge;
+package bridge.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import static bridge.domain.enums.BridgeConstants.*;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -29,14 +30,9 @@ public class BridgeMaker {
 
     private String judgeUpOrDown(int number){
         if(number == 1){
-            return "U";
+            return UPSIDE.getValue();
         }
-        return "D";
+        return DOWNSIDE.getValue();
     }
 
-    public void bridgeLengthValueValidation(int size){
-        if(size < 3 || size > 20){
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
-        }
-    }
 }

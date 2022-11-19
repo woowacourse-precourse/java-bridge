@@ -1,10 +1,13 @@
-package bridge;
+package bridge.domain;
 
 import bridge.View.InputView;
 import bridge.View.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static bridge.domain.enums.BridgeConstants.*;
+import static bridge.domain.enums.BridgeMsgs.*;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -47,11 +50,11 @@ public class BridgeGame {
         try{
             int result = Integer.parseInt(userInputValue);
             if(result < 3 || result > 20){
-                throw new IllegalArgumentException("[ERROR] 다리 길이는 3에서 20사이의 숫자만 가능합니다.");
+                throw new IllegalArgumentException(BRIDGE_LENGTH_ERR_MSG.getValue());
             }
             return result;
         } catch (NumberFormatException e){
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3에서 20사이의 숫자만 가능합니다.");
+            throw new IllegalArgumentException(BRIDGE_LENGTH_ERR_MSG.getValue());
         }
 
     }
@@ -94,10 +97,10 @@ public class BridgeGame {
     }
 
     public void fieldValueValidation(String userInputValue){
-        if (userInputValue.equals("U") || userInputValue.equals("D")) {
+        if (userInputValue.equals(UPSIDE.getValue()) || userInputValue.equals(DOWNSIDE.getValue())) {
             return;
         }
-        throw new IllegalArgumentException("[ERROR] 이동 칸은 U 또는 D만 입력 가능합니다.");
+        throw new IllegalArgumentException(FIELD_INPUTVALUE_ERR_MSG.getValue());
     }
 
     // Retry Part
@@ -132,7 +135,7 @@ public class BridgeGame {
     }
 
     private void retryLogic(String retryInput){
-        if (retryInput.equals("Q")) {
+        if (retryInput.equals(QUIT.getValue())) {
             gameSuccess = false;
             return;
         }
@@ -148,9 +151,9 @@ public class BridgeGame {
 
     private String getSuccessString(){
         if(gameSuccess){
-            return "성공";
+            return SUCCESS.getValue();
         }
-        return "실패";
+        return FAIL.getValue();
     }
 
     public void increaseGameTryNumber(){
@@ -158,10 +161,10 @@ public class BridgeGame {
     }
 
     public void retryValueValidation(String userInputValue) {
-        if(userInputValue.equals("R") || userInputValue.equals("Q")){
+        if(userInputValue.equals(RETRY.getValue()) || userInputValue.equals(QUIT.getValue())){
             return;
         }
-        throw new IllegalArgumentException("[ERROR] 재시작은 R, 종료는 Q를 입력해주세요.");
+        throw new IllegalArgumentException(RETRY_INPUTVALUE_ERR_MSG.getValue());
     }
 
     public ArrayList<Field> getUserBridge(){
