@@ -57,6 +57,7 @@ public class BridgeGame {
         if (!finalResult.isFinalSuccess()) {
             String restartOrQuit = getGameCommand();
             if (restartOrQuit.equals("R")) {
+                finalResult.addAttempts();
                 diagram = new Diagram();
                 retry();
             }
