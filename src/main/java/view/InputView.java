@@ -38,10 +38,17 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println(SELECT_UP_AND_DOWN);
-        String movingNext = Console.readLine();
-        validation.validMovingNext(movingNext);
-        return movingNext;
+        do {
+            System.out.println(SELECT_UP_AND_DOWN);
+            String movingNext = Console.readLine();
+            try {
+                validation.validMovingNext(movingNext);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            return movingNext;
+        } while (true);
     }
 
     /**
