@@ -1,10 +1,10 @@
-package bridge.router;
+package bridge.controller;
 
-import bridge.controller.BridgeGame;
+import bridge.domain.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-public class BridgeGameRouter {
+public class BridgeGameController {
 
     private static final String RESTART = "R";
 
@@ -12,7 +12,7 @@ public class BridgeGameRouter {
     private final OutputView outputView;
     private final BridgeGame bridgeGame;
 
-    public BridgeGameRouter(InputView inputView, OutputView outputView, BridgeGame bridgeGame) {
+    public BridgeGameController(InputView inputView, OutputView outputView, BridgeGame bridgeGame) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.bridgeGame = bridgeGame;
