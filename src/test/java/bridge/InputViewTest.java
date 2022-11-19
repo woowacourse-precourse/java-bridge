@@ -48,4 +48,17 @@ public class InputViewTest {
 
         assertThat(direct).isEqualTo(input);
     }
+
+    @DisplayName("U, D 이외의 값이 이동 방향으로 입력되면, 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {" ", "UU", "DD", "UD", "u", "d", "111111111111111111", "\n"})
+    public void 잘못된_이동_방향_입력에_대한_예외_테스트(String input) {
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        InputView inputView = new InputView();
+
+        assertThatThrownBy(() -> inputView.readMoving())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] U 또는 D만 입력 가능합니다.");
+    }
 }
