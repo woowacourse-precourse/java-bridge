@@ -16,7 +16,7 @@ public class BridgeGame {
         this.gameStatusOperator = gameStatusOperator;
     }
 
-    public BridgeGame initBridgeGame(Integer bridgeLength) {
+    public static BridgeGame initBridgeGame(Integer bridgeLength) {
         Bridge bridge = new Bridge(BridgeMaker.getBridgeMaker().makeBridge(bridgeLength));
         GameStatusOperator gameStatusOperator = GameStatusOperator.initGameStatusOperator();
         return new BridgeGame(bridge, gameStatusOperator);
