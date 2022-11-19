@@ -36,6 +36,24 @@ public class BridgeGameTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
+    @Test
+    @DisplayName("다리길이_최솟값_미달")
+    public void bridgeLengthMin() {
+        assertSimpleTest(() -> {
+            run("0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("다리길이_최대값_초과")
+    public void bridgeLengthOverMax() {
+        assertSimpleTest(() -> {
+            run("59");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
     @Test
     @DisplayName("이동_입력_예외1")
     public void moveFail1() {
