@@ -11,36 +11,41 @@ public class BridgeGame {
     private final static InputView inputView = new InputView();
 
     private List<String> bridge, path;
+    private String gameCommand;
     private int numberOfTry;
 
     /**
-     * 게임을 생성하는 메소드
+     * 생성자, 게임을 초기화 함
      */
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         this.path = new ArrayList<>();
         this.numberOfTry = 1;
+        this.gameCommand = "R";
     }
 
-    private void playSequence() {
-        while (!isEnd()) {
-            move();
-            while (isWrong()) {
-                outputView.guideRetry();
-                String gameCommand = getGameCommand();
-                if (isQuitCommand(gameCommand)) return;
-                retry();
-            }
-        }
+    private boolean wantToRetry() {
+        guideRetry();
+        this.gameCommand = getGameCommand();
+        return isRetryCommand();
     }
 
     /**
      * 게임을 실행하는 메소드
      */
     public void run() {
-        playSequence();
-        printResult();
+        while (!isEnd()) {
+            move();
+            printMap();
+            while (isWrong() && wantToRetry()) {
+                retry();
+                printMap();
+            }
+            if (!isRetryCommand()) return;
+        }
     }
+
+    private void updatePath(String movingCommand) { this.path.add(movingCommand); }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메소드
@@ -50,14 +55,17 @@ public class BridgeGame {
     private void move() {
         outputView.guideMovingCommandInput();
         String movingCommand = getMovingCommand();
-        this.path.add(movingCommand);
-        outputView.printMap(this.path, this.bridge);
+        updatePath(movingCommand);
     }
 
     /**
      * 게임 결과를 출력하는 메소드
      */
-    private void printResult() { outputView.printResult(this.path, this.bridge, this.numberOfTry); }
+    public void printResult() { outputView.printResult(this.path, this.bridge, this.numberOfTry); }
+
+    private void printMap() { outputView.printMap(this.path, this.bridge); }
+
+    private void guideRetry() { outputView.guideRetry(); }
 
     private String getMovingCommand() { return inputView.readMoving(); }
 
@@ -71,7 +79,7 @@ public class BridgeGame {
     /**
      * 종료 코드를 받았는지 확인하는 메소드
      */
-    private boolean isQuitCommand(String command) { return command.equals("Q"); }
+    private boolean isRetryCommand() { return this.gameCommand.equals("R"); }
 
     /**
      * 사용자가 올바른 칸으로 이동했는지 여부를 불린으로 반환하는 메소드
