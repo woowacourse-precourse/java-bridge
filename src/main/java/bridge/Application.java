@@ -10,15 +10,12 @@ public class Application {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
         int ladderLen = inputView.readBridgeSize();
-        System.out.println("ladderLen = " + ladderLen);
         BridgeNumberGenerator generator = new BridgeRandomNumberGenerator();
         BridgeMaker maker = new BridgeMaker(generator);
         List<String> ladder = maker.makeBridge(ladderLen);
-        System.out.println("ladder = " + ladder);
         BridgeGame bridgeGame = new BridgeGame(inputView, outputView);
-        bridgeGame.move(ladder);
-//
-//        System.out.println("UD = " + UD);
-//        String RQ = inputView.readGameCommand();
+
+
+
     }
 }
