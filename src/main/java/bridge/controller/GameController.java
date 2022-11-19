@@ -22,12 +22,18 @@ public class GameController {
         do {
             runRound(bridgeGame);
         } while (continueGame(bridgeGame));
-        // TODO: 결과를 출력하는 함수
+        printResult(bridgeGame);
     }
 
     private boolean continueGame(BridgeGame bridgeGame) {
         String selectRetry = selectRetryGame();
         return !bridgeGame.isSuccessCrossingBridge() && bridgeGame.retry(selectRetry);
+    }
+
+    private void printResult(BridgeGame bridgeGame) {
+        String drawing = bridgeGame.drawPassingSpace();
+        boolean isSuccess = bridgeGame.isSuccessCrossingBridge();
+        outputView.printResult(drawing, isSuccess, bridgeGame.getNumberOfTry());
     }
 
     private String selectRetryGame() {
@@ -39,7 +45,7 @@ public class GameController {
         }
     }
 
-    public void runRound(BridgeGame bridgeGame) {
+    private void runRound(BridgeGame bridgeGame) {
         String moving;
         do {
             moving = selectMoving();
