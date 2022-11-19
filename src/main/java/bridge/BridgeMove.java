@@ -1,7 +1,10 @@
 package bridge;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -53,5 +56,17 @@ public enum BridgeMove {
         return Arrays.stream(BridgeMove.values())
                 .filter(bridgeDirection -> bridgeDirection.generateNumber.equals(generateNumber))
                 .findAny();
-    }겨
+    }
+    
+    public static Map<BridgeMove, List<String>> getInitMoveResultByMoves(int size) {
+        Map<BridgeMove, List<String>> result = new HashMap<>();
+    
+        for (BridgeMove bridgeMove : BridgeMove.values()) {
+            List<String> list = Arrays.asList(new String[size]);
+            Collections.fill(list, "   ");
+            result.put(bridgeMove, list);
+        }
+        
+        return result;
+    }
 }
