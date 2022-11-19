@@ -8,21 +8,29 @@ import bridge.view.OutputView;
 import java.util.HashMap;
 import java.util.Map;
 
+import static bridge.constant.Constant.RESTART;
+
 public class Application {
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
     private static Map<String, Boolean> gameManager = new HashMap<>();
+    private static boolean gameStatus = true;
 
     public static void main(String[] args) {
-        outputView.printStartGame();
-        int bridgeSize = inputView.readBridgeSize();
-
-        BridgeGame bridgeGame = new BridgeGame(bridgeSize);
-        oneGame(bridgeGame);
-        restartOrStop(bridgeGame);
+        BridgeGame bridgeGame = startGame();
+        while (gameStatus) {
+            CurrentBridge gameBridge = oneGame(bridgeGame);
+            manageGame(bridgeGame, gameBridge);
+        }
     }
 
-    private static void oneGame(BridgeGame bridgeGame) {
+    private static BridgeGame startGame() {
+        outputView.printStartGame();
+        int bridgeSize = inputView.readBridgeSize();
+        return new BridgeGame(bridgeSize);
+    }
+
+    private static CurrentBridge oneGame(BridgeGame bridgeGame) {
         while (true) {
             String readMoving = inputView.readMoving();
             CurrentBridge currentBridge = bridgeGame.move(readMoving);
@@ -30,10 +38,27 @@ public class Application {
             gameManager = bridgeGame.getGameManager();
             boolean isEnd = gameManager.get("isGameEnd");
             if (isEnd)
-                break;
+                return currentBridge;
         }
     }
 
-    private static void restartOrStop(BridgeGame bridgeGame) {
+    private static void manageGame(BridgeGame bridgeGame, CurrentBridge gameBridge) {
+        boolean successGame = gameManager.get("isSuccessGame");
+        if (!successGame) {
+            gameStatus = restartOrStop(bridgeGame);
+        }
+        if (!gameStatus || successGame) {
+            outputView.printResult(gameBridge, successGame, bridgeGame.getTrialCount());
+            gameStatus = false;
+        }
+    }
+
+    private static boolean restartOrStop(BridgeGame bridgeGame) {
+        String readGameCommand = inputView.readGameCommand();
+        if (readGameCommand.equals(RESTART)) {
+            bridgeGame.retry();
+            return true;
+        }
+        return false;
     }
 }

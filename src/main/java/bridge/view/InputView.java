@@ -5,9 +5,6 @@ import camp.nextstep.edu.missionutils.Console;
 import static bridge.constant.Constant.LINE;
 import static bridge.view.validation.InputValidation.checkValidation;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 public class InputView {
     private boolean validate;
     private String input;
@@ -16,9 +13,6 @@ public class InputView {
         resetField();
     }
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
     public int readBridgeSize() {
         while (validate) {
             System.out.println(LINE + "다리의 길이를 입력해주세요.");
@@ -28,9 +22,6 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public String readMoving() {
         resetField();
         while (validate) {
@@ -41,9 +32,6 @@ public class InputView {
         return input;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public String readGameCommand() {
         resetField();
         while (validate) {
