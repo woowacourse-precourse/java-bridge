@@ -3,35 +3,37 @@
   - [x] 특정 길이의 다리 생성 - BridgeMaker#makeBridge()
   - [x] 입력한 이동 위치의 성공 여부 확인, 다리 이동시 사용할 메서드, (추가) 이동 위치 및 성공 여부에 따라 리스트에 데이터를 저장한다. - BridgeGame#move()
     - [x] 이동 위치에 따라 다른 리스트에 데이터 저장하는 클래스 생성 - BridgeMessageAdder, UpBridgeMessageAddStrategy, DownBridgeMessageAddStrategy
-    - ~~[x] upBridge, downBridge 리스트를 반환하는 getter 메서드 - BridgeGame#getUpBridge(), getDownBridge()~~
     - [x] 리스트를 활용해 출력할 메세지를 만들어 리턴 - BridgeGame#makeBridgeMessage()
   - [x] 게임을 다시 시도할 때 사용할 메서드 - BridgeGame#retry()
-  - [x] 게임의 성공 여부를 확인하는 메서드 - BridgeGame#checkCompleteOrFail()
+  - [x] 게임의 성공 여부를 확인하는 메서드 - BridgeGame#checkComplete()
   - [x] 게임 시도 횟수를 반환하는 getter 메서드 - BridgeGame#getRetyrNumber()
 - View
   - [x] 다리 길이 입력 - InputView#readBridgeSize()
   - [x] 이동할 위치 입력 - InputView#readMoving()
   - [x] 재시도 여부 입력 - InputView#readGameCommand()
   - [x] BridgeGame 의 객체로부터 bridgeMessage 를 받아 다리 출력하기 - OutputView#printMap()
-    - ~~[x] bridge 리스트에 저장된 데이터를 사용해 다리를 출력한다. - OutputView#printBridge()~~
-  - ~~[ ] 이동 위치, 성공 여부에 따른 위치 출력~~
   - [x] 기타 안내용 출력 메시지 (시작, 길이입력 등..) - InputView
-  - [x] 최종 결과, 성공여부, 시도 횟수 출력 - OutputView#printResult(())
-  - ~~[ ] 성공여부, 시도 횟수 출력~~
+  - [x] 최종 결과, 성공여부, 시도 횟수 출력 - OutputView#printResult()
 - Controller
   - [x] Domain 과 View 를 연결하기  - BridgeGameController
     - [x] bridge 및 BridgeGame, OutputView 객체 생성 - BridgeGameController#makeGame()
     - [x] makeGame 에서 생성한 객체로 게임 시작 및 진행하기 - BridgeGameController#startGame()
-    - [x] move 에 실패한 경우 게임 종료 여부 입력받아 반환하기 - BridgeGameController#finishGame()
+      - [x] move 에 실패한 경우 게임 종료 여부 입력받아 게임 진행 여부 반환하기 - BridgeGameController#quitGame()
     - [x] 게임 종료 메세지 출력하기 - BridgeGameController#endGame()
 - Error
   - [x] 다리 길이가 숫자인지, 3이상 20이하 인지 확인 - ErrorControl#validateNumberOrNot(), validateBridgeSize()
   - [x] 입력한 문자가 verifier 와 동일한지 확인 - ErrorControl#validateLetter()
-  - ~~[ ] 이동 위치 U,D 둘 중 하나인지 확인 (소문자는?)~~
-  - ~~[ ] 재시도 여부 R,Q 둘 중 하나인지 확인~~
   - [x] 에러 발생 시 재시도할 수 있도록 검사 결과를 반환 - ErrorControl
 - Application
   - [x] main() 을 통해 최종 구현 - Application#main() 
+
+## 삭제한 기능 목록
+- upBridge, downBridge 리스트를 반환하는 getter 메서드 - BridgeGame#getUpBridge(), getDownBridge()
+- bridge 리스트에 저장된 데이터를 사용해 다리를 출력한다. - OutputView#printBridge()
+- 이동 위치, 성공 여부에 따른 위치 출력
+- 성공여부, 시도 횟수 출력
+- 이동 위치 U,D 둘 중 하나인지 확인 (소문자는?)
+- 재시도 여부 R,Q 둘 중 하나인지 확인
 
 ## 구현 사항
 1. 생성할 다리의 길이를 입력받아 숫자 0, 1 로 이루어진 다리를 생성
@@ -65,3 +67,4 @@
 
 ## 개인 목표
 1. 객체를 객체답게 활용하기! getter 를 사용하기 전에 다른 방법이 있을지 고민해보기.
+2. if 문을 사용하는 경우, 단순 else 를 사용하지 않는게 아니라 코드에 대해 고민해보기. if 조건문 실패시 다른걸 하는 방식은 else 를 사용하는 것과 크게 다르지 않는 것 같다..
