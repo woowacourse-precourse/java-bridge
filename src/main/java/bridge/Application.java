@@ -11,11 +11,9 @@ public class Application {
     static boolean isGameOver = false;
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
         OutputView.printGameStartMessage();
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(InputView.readBridgeSize()));
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        System.out.println("bridge.getBridge() = " + bridge.getBridge());
         doBridgeGame(bridge, bridgeGame, isGameOver);
     }
 
