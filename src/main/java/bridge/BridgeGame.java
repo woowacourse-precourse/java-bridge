@@ -9,12 +9,14 @@ import java.util.List;
 public class BridgeGame {
     private final List<String> bridge;
     private int tryNumber = 0;
+    private int tryGame;
     private List<String> selectedFoothold = new ArrayList<>();
     private List<String> upperRoad = new ArrayList<>();
     private List<String> lowerRoad = new ArrayList<>();
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
+        this.tryGame = 1;
     }
 
     /**
@@ -92,6 +94,7 @@ public class BridgeGame {
         upperRoad.clear();
         lowerRoad.clear();
         tryNumber = 0;
+        tryGame++;
     }
 
     public List<String> getUpperRoad() {
@@ -102,7 +105,7 @@ public class BridgeGame {
         return lowerRoad;
     }
 
-    public int getTryNumber() {
-        return tryNumber;
+    public int getTryGame() {
+        return tryGame;
     }
 }
