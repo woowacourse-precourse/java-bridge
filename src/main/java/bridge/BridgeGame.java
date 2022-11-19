@@ -6,6 +6,12 @@ package bridge;
 public class BridgeGame {
     private static final String TEXT_GAME_START = "다리 건너기 게임을 시작합니다.";
 
+    private final InputView inputView;
+
+    public BridgeGame() {
+        this.inputView = new InputView();
+    }
+
     public void runGame() {
         // TODO: Implement the method.
         System.out.println(TEXT_GAME_START);
