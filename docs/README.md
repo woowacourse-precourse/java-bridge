@@ -7,6 +7,9 @@
         - [x] domain에서 다리 길이 Wrapping Class 생성
             - [x] domain 유효성 검증
 - [ ] 다리 생성 하기
+    - [ ] 이동할 칸에 해당하는 `enum` 생성
+    - [ ] `BridgeMaker`의 `makeBridge()` 구현
+    - [ ] `Bridge` 클래스
 - [ ] 유저의 다리 건너기 구현
     - [ ] 이동할 곳 입력 받기
         - [ ] 입력 문구 출력하기
