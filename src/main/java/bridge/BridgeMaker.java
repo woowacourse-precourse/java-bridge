@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,6 +8,8 @@ import java.util.List;
  */
 public class BridgeMaker {
 
+    public static final int UP = 1;
+    public static final int INITIAL_INDEX = 0;
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -20,5 +23,13 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         return null;
+    }
+
+    private void appendBridge(List<String> bridge) {
+        if (bridgeNumberGenerator.generate() == UP) {
+            bridge.add("U");
+            return;
+        }
+        bridge.add("D");
     }
 }
