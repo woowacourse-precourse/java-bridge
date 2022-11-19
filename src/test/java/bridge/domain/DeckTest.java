@@ -5,10 +5,9 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 import org.junit.jupiter.api.Test;
 
-public class DeckTest {
+import bridge.constant.Direction;
 
-    private static final String CAPITAL_LETTER_UPPER = "U";
-    private static final String CAPITAL_LETTER_LOWER = "D";
+public class DeckTest {
 
     @Test
     void 잘못된_생성_방향은_예외를_던진다() {
@@ -19,17 +18,9 @@ public class DeckTest {
 
     @Test
     void 위_아래_둘_중_하나만_이동가능하다() {
-        Deck deck = new Deck(CAPITAL_LETTER_UPPER);
+        Deck deck = new Deck(Direction.UPPER.capitalLetter());
 
-        assertThat(deck.isMovable(CAPITAL_LETTER_UPPER)).isTrue();
-        assertThat(deck.isMovable(CAPITAL_LETTER_LOWER)).isFalse();
-    }
-
-    @Test
-    void 잘못된_방향은_예외를_던진다() {
-        String anomalyDirection = "ASDF";
-        Deck deck = new Deck(CAPITAL_LETTER_UPPER);
-
-        assertThatIllegalArgumentException().isThrownBy(() -> deck.isMovable(anomalyDirection));
+        assertThat(deck.isMovable(Direction.UPPER)).isTrue();
+        assertThat(deck.isMovable(Direction.LOWER)).isFalse();
     }
 }

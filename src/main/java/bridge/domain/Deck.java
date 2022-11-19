@@ -10,8 +10,8 @@ public class Deck {
         this.movableDirection = directionFrom(capitalLetter);
     }
 
-    public boolean isMovable(String capitalLetter) {
-        return movableDirection.equals(directionFrom(capitalLetter));
+    public boolean isMovable(Direction direction) {
+        return movableDirection.equals(direction);
     }
 
     private Direction directionFrom(String capitalLetter) {

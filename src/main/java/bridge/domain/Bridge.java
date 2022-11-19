@@ -16,6 +16,6 @@ public class Bridge {
     }
 
     public boolean isMovable(int position, Direction direction) {
-        return decks.get(position).isMovable(direction.capitalLetter());
+        return decks.get(position).isMovable(direction);
     }
 }
