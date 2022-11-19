@@ -6,4 +6,8 @@ public class MoveCommandDTO {
     public MoveCommandDTO(String inputMoveCommande){
         this.moveCommande = inputMoveCommande;
     }
+
+    public String getMoveCommande(){
+        return moveCommande;
+    }
 }

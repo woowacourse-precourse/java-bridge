@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.DTO.BridgeSizeDTO;
+import bridge.DTO.MoveCommandDTO;
 import camp.nextstep.edu.missionutils.Console;
 import bridge.InputValidator;
 
@@ -22,10 +23,10 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public MoveCommandDTO readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래 : D)");
         String inputMove = Console.readLine();
-        return null;
+        return new MoveCommandDTO(InputValidator.validateInputMoveCommande(inputMove));
     }
 
     /**
