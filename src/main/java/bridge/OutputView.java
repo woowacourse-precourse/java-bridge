@@ -21,7 +21,24 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(Map map, boolean isGameCleared, int totalAttempts) {
+        String winOrLose = translateWinOrLose(isGameCleared);
+
+        printComment(Comment.FINAL_RESULT);
+        printMap(map);
+        printComment(Comment.WIN_OR_LOSE, winOrLose);
+        printComment(Comment.TOTAL_ATTEMPT, Integer.toString(totalAttempts));
+    }
+
+    /**
+     * @param isGameCleared 게임 클리어 유무
+     * @return true 는 "성공", false 는 "실패" 반환
+     */
+    private String translateWinOrLose(boolean isGameCleared) {
+        if (isGameCleared) {
+            return "성공";
+        }
+        return "실패";
     }
 
     /**
