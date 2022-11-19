@@ -11,9 +11,14 @@ public class CompareBridge {
         this.bridge = bridge;
     }
 
-    public void isSame() {
+    public boolean isSame(Player player, String panel) {
+        return player.informMoving().equals(panel);
     }
 
-    public void stepping() {
+    public String stepping(Player player, List<String> bridge) {
+        if (isSame(player, bridge.get(0))) {
+            return " O ";
+        }
+        return " X ";
     }
 }

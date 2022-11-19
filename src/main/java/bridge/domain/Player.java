@@ -3,9 +3,13 @@ package bridge.domain;
 import java.util.List;
 
 public class Player {
-    private final List<String> moving;
+    private List<String> movingInputs;
 
-    public Player(List<String> moving) {
-        this.moving = moving;
+    public Player(List<String> movingInputs) {
+        this.movingInputs = movingInputs;
+    }
+
+    public String informMoving() {
+        return movingInputs.get(movingInputs.size() - 1);
     }
 }
