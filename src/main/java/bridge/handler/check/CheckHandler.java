@@ -23,14 +23,14 @@ public class CheckHandler {
 
 	private static void isNumber(String input) {
 		if (!input.matches("^[0-9]+$")) {
-			ExceptionHandler.raisingIllegalArgumentException(Message.getMessage(Message.INPUT_NOT_NUMBER));
+			ExceptionHandler.raisingIllegalArgumentException(Message.getErrorMessage(Message.INPUT_NOT_NUMBER));
 		}
 	}
 
 	private static void isValidNumber(String input) {
 		int inputNumber = Integer.parseInt(input);
 		if (isOutOfRange(inputNumber)) {
-			ExceptionHandler.raisingIllegalArgumentException(Message.getMessage(Message.INPUT_OUT_OF_RANGE));
+			ExceptionHandler.raisingIllegalArgumentException(Message.getErrorMessage(Message.INPUT_OUT_OF_RANGE));
 		}
 	}
 
@@ -40,13 +40,13 @@ public class CheckHandler {
 
 	private static void isMoveCommand(String inputMoveCommand) {
 		if (isCommand(inputMoveCommand, "U", "D")) {
-			ExceptionHandler.raisingIllegalArgumentException(Message.getMessage(Message.INPUT_NOT_MOVE_COMMAND));
+			ExceptionHandler.raisingIllegalArgumentException(Message.getErrorMessage(Message.INPUT_NOT_MOVE_COMMAND));
 		}
 	}
 
 	private static void isGameCommand(String inputMoveCommand) {
 		if (isCommand(inputMoveCommand, "R", "Q")) {
-			ExceptionHandler.raisingIllegalArgumentException(Message.getMessage(Message.INPUT_NOT_GAME_COMMAND));
+			ExceptionHandler.raisingIllegalArgumentException(Message.getErrorMessage(Message.INPUT_NOT_GAME_COMMAND));
 		}
 	}
 
