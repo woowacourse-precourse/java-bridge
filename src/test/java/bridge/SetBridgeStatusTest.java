@@ -42,6 +42,9 @@ public class SetBridgeStatusTest {
         assertThat(down).isEqualTo(List.of("[", " ", " ", " ", "|", " ", "O", " ", "|", " ", "X", " ", "]"));
         outputView.printMap(testBridge);
         assertThat(output.toString()).isEqualTo("[ O |   |   ]\n[   | O | X ]");
+
+        testBridge.resetCurrentBridge();
+        assertThat(testBridge.getCurrentBridge()).isEmpty();
     }
 
     @DisplayName("사용자가 선택한 칸이 이동 가능한 칸이면 O, 불가능한 칸이면 X를 반환한다.")

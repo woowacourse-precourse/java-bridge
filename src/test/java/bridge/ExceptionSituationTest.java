@@ -17,7 +17,7 @@ public class ExceptionSituationTest {
 
     @DisplayName("다리의 길이로 정수가 아닌 값이 입력되면 예외가 발생한다.")
     @Test
-    void inputBridgeLengthNotIntTest() {
+    void inputBridgeSizeNotIntTest() {
         InputStream inputStream = setInputStream("notInt");
         System.setIn(inputStream);
         assertThatThrownBy(inputView::readBridgeSize).isInstanceOf(IllegalArgumentException.class);
@@ -25,11 +25,11 @@ public class ExceptionSituationTest {
 
     @DisplayName("입력된 다리의 길이가 3 미만, 20 초과이면 예외가 발생한다.")
     @Test
-    void inputBridgeLengthOutOfBoundsTest() {
+    void inputBridgeSizeOutOfBoundsTest() {
         InputStream inputStream = setInputStream("30");
         System.setIn(inputStream);
-        int illegalLength = inputView.readBridgeSize();
-        assertThatThrownBy(() -> Validation.validateLength(illegalLength))
+        int illegalSize = inputView.readBridgeSize();
+        assertThatThrownBy(() -> Validation.validateSize(illegalSize))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

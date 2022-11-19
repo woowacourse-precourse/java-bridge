@@ -11,7 +11,7 @@ public class BridgeMakerImpl {
     private static final String TAIL_OF_BRIDGE = "]";
 
     // 게임 시작 전 초기 다리 생성
-    public UsersBridgeCrossStatus makeInitialBridge(int length) {
+    public UsersBridgeCrossStatus makeInitialBridge(int size) {
         List<List<String>> newBridge = new ArrayList<>();
         List<String> initialUpSpace = new ArrayList<>();
         initialUpSpace.add(HEAD_OF_BRIDGE);
@@ -20,12 +20,12 @@ public class BridgeMakerImpl {
         newBridge.add(DOWN.getIndex(), initialUpSpace);
         newBridge.add(UP.getIndex(), initialDownSpace);
 
-        return new UsersBridgeCrossStatus(newBridge, length);
+        return new UsersBridgeCrossStatus(newBridge, size);
     }
 
-    public List<String> makeAnswerBridge(int length) {
+    public List<String> makeAnswerBridge(int size) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        return bridgeMaker.makeBridge(length);
+        return bridgeMaker.makeBridge(size);
     }
 }

@@ -6,15 +6,15 @@ import java.util.List;
 
 public class UsersBridgeCrossStatus {
     private final List<List<String>> currentBridge;
-    private final int length;
+    private final int size;
     private static final int FIRST_BRIDGE = 1;
     private static final int INITIAL_BRIDGE_SIZE = 2;
     private static final String BLANK = " ";
     private static final String DELIMITER = "|";
 
-    public UsersBridgeCrossStatus(List<List<String>> currentBridge, int length) {
+    public UsersBridgeCrossStatus(List<List<String>> currentBridge, int size) {
         this.currentBridge = currentBridge;
-        this.length = length;
+        this.size = size;
     }
 
     public void addCrossingResult(Space selectedSpace, int currBridgeOrder, String movingResult) {
@@ -59,7 +59,11 @@ public class UsersBridgeCrossStatus {
         return currentBridge;
     }
 
-    public int getLength() {
-        return length;
+    public int getSize() {
+        return size;
+    }
+
+    public void resetCurrentBridge() {
+        this.currentBridge.clear();
     }
 }
