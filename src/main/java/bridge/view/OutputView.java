@@ -21,6 +21,9 @@ public class OutputView {
     private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
     private static final String INPUT_BRIDGE_LENGTH_MESSAGE = "다리의 길이를 입력해주세요.";
     private static final String INPUT_MOVE_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    public static final String GAME_END_MESSAGE = "최종 게임 결과";
+    public static final String GAME_RESULT_MESSAGE = "게임 성공 여부: %s\n";
+    public static final String GAME_RESULT_ATTEMPT_MESSAGE = "총 시도한 횟수: %d\n";
 
     public static void printGameStart() {
         System.out.println(GAME_START_MESSAGE);
@@ -52,6 +55,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(GameStatus gameStatus, GameResultDto gameResultDto) {
+        System.out.println(GAME_END_MESSAGE);
+        printMap(gameStatus, gameResultDto);
+        System.out.printf(GAME_RESULT_MESSAGE, gameStatus.getMessage());
+        System.out.printf(GAME_RESULT_ATTEMPT_MESSAGE, gameResultDto.getAttempt());
     }
 }
