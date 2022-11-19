@@ -28,26 +28,22 @@ public class GameController {
     }
 
     private void crossBridge() {
-        do {
-            tryMove();
-
-            if (bridgeGame.isEnd()) {
+        while (!bridgeGame.isEnd()) {
+            if (!tryMove()) {
                 break;
             }
-        } while (bridgeGame.retry(inputView.readGameCommand()));
-
+        }
         outputView.printResult(bridgeGame);
     }
 
-    private void tryMove() {
-        while (!bridgeGame.isEnd()) {
-            if (bridgeGame.move(inputView.readMoving())) {
-                outputView.printMap(bridgeGame.getBridgeTokens());
-                continue;
-            }
-            outputView.printMap(bridgeGame.getBridgeTokens());
-            break;
+
+    private boolean tryMove() {
+        boolean moving = bridgeGame.move(inputView.readMoving());
+        outputView.printMap(bridgeGame.getBridgeTokens());
+        if (moving) {
+            return true;
         }
+        return bridgeGame.retry(inputView.readGameCommand());
     }
 
 }
