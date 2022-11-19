@@ -1,5 +1,12 @@
 package bridge.exception;
 
+import static bridge.common.BridgeGameConstants.MAX_SIZE;
+import static bridge.common.BridgeGameConstants.MIN_SIZE;
+import static bridge.common.BridgeGameConstants.UP;
+import static bridge.common.BridgeGameConstants.DOWN;
+import static bridge.common.BridgeGameConstants.RETRY;
+import static bridge.common.BridgeGameConstants.QUIT;
+
 public class BridgeGameValidator {
 
     private static final String ERROR_MESSAGE_BRIDGE_SIZE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
@@ -8,7 +15,7 @@ public class BridgeGameValidator {
 
 
     public static void isValidGameNumber(int number) {
-        if (!(number >= 3 && number <= 20)) {
+        if (!(number >= MIN_SIZE && number <= MAX_SIZE)) {
             throw new IllegalArgumentException(ERROR_MESSAGE_BRIDGE_SIZE);
         }
     }
@@ -23,14 +30,14 @@ public class BridgeGameValidator {
     }
 
     public static String validateUpAndDown(String str){
-        if(!(str.equals("U") || str.equals("D"))){
+        if(!(str.equals(UP) || str.equals(DOWN))){
             throw new IllegalArgumentException(ERROR_MESSAGE_UP_AND_DOWN);
         }
         return str;
     }
 
     public static String validateRestartAndQuit(String str){
-        if(!(str.equals("R") || str.equals("Q"))){
+        if(!(str.equals(RETRY) || str.equals(QUIT))){
             throw new IllegalArgumentException(ERROR_MESSAGE_RESTART_AND_QUIT);
         }
         return str;

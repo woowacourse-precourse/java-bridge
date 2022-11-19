@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import static bridge.common.BridgeGameConstants.DOWN;
+import static bridge.common.BridgeGameConstants.UP;
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
@@ -29,10 +32,10 @@ public class BridgeMaker {
     private String upOrDown(int number){
         String upOrDown = null;
         if(number==0) {
-            upOrDown = "D";
+            upOrDown = DOWN;
         }
         if(number==1){
-            upOrDown = "U";
+            upOrDown = UP;
         }
         return upOrDown;
     }
