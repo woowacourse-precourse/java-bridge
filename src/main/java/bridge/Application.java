@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.controller.BridgeGame;
-import bridge.utils.EnumStrings;
 
 public class Application {
     public static void main(String[] args) {

@@ -4,7 +4,6 @@ import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.RealTimeBridge;
-import bridge.utils.EnumStrings;
 import bridge.utils.InputHandler;
 import bridge.view.OutputView;
 import java.util.List;

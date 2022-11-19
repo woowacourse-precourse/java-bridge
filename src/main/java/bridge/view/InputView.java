@@ -1,6 +1,5 @@
 package bridge.view;
 
-import bridge.utils.EnumStrings;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
