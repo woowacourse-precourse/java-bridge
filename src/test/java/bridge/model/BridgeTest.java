@@ -3,6 +3,7 @@ package bridge.model;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import bridge.constants.MovingDirection;
 import bridge.constants.MovingPossibility;
 import bridge.domain.model.Bridge;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class BridgeTest {
@@ -40,11 +41,11 @@ public class BridgeTest {
 
     @DisplayName("건널 수 있는지 확인 기능 - 아직 초기화 되지 않은 다리에 대해 메소드를 호출할 경우, 예외가 발생한다.")
     @ParameterizedTest
-    @CsvSource({"0, 'U'"})
+    @ValueSource(ints = 0)
     @Order(3)
-    void canCrossNotInitializedExceptionTest(int space, String direction) {
+    void canCrossNotInitializedExceptionTest(int space) {
         assertThatThrownBy(() -> {
-            Bridge.checkMovingPossibility(space, direction);
+            Bridge.checkMovingPossibility(space, MovingDirection.UP);
         })
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessageContaining("[ERROR]");
@@ -62,23 +63,23 @@ public class BridgeTest {
 
     @DisplayName("건널 수 있는지 확인 기능 - 건널 수 있는 위치와 문자가 전달되면 CAN_MOVE 를 반환한다.")
     @ParameterizedTest
-    @CsvSource({"0, 'U'"})
+    @ValueSource(ints = 0)
     @Order(6)
-    void canMovePossibleTest(int space, String direction) {
+    void canMovePossibleTest(int space) {
         initializeBridge();
 
-        assertThat(Bridge.checkMovingPossibility(space, direction)).isEqualTo(
+        assertThat(Bridge.checkMovingPossibility(space, MovingDirection.UP)).isEqualTo(
                 MovingPossibility.CAN_MOVE);
     }
 
     @DisplayName("건널 수 있는지 확인 기능 - 건널 수 없는 위치와 문자가 전달되면 CAN_NOT_MOVE 를 반환한다.")
     @ParameterizedTest
-    @CsvSource({"1, 'U'"})
+    @ValueSource(ints = 1)
     @Order(7)
     void canMoveImpossibleTest(int space, String direction) {
         initializeBridge();
 
-        assertThat(Bridge.checkMovingPossibility(space, direction)).isEqualTo(
+        assertThat(Bridge.checkMovingPossibility(space, MovingDirection.UP)).isEqualTo(
                 MovingPossibility.CAN_NOT_MOVE);
     }
 }
