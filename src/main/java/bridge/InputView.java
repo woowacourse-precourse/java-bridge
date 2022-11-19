@@ -23,8 +23,14 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public int readMoving() {
+        String line = Console.readLine();
+
+        if (line.equals("U"))
+            return 1;
+        else if (line.equals("D"))
+            return 0;
+        throw new IllegalArgumentException("U 혹은 D를 입력해야 합니다.");
     }
 
     /**
