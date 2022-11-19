@@ -25,27 +25,21 @@ public class OutputView {
         Level(String id) { this.id = id; }
     }
 
-    private void printSign(String pathAtIndex, String bridgeAtIndex, Level level) {
-        if(!pathAtIndex.equals(level.id)) {
-            System.out.print(" ");
-            return;
-        }
-        if(pathAtIndex.equals(bridgeAtIndex)) {
-            System.out.print("O");
-            return;
-        }
-        System.out.print("X");
+    private String getSign(String pathAtIndex, String bridgeAtIndex, Level level) {
+        if(!pathAtIndex.equals(level.id)) return " ";
+        if(pathAtIndex.equals(bridgeAtIndex)) return "O";
+        return "X";
     }
 
     private void printMapByLevel(List<String> path, List<String> bridge, Level level) {
-        System.out.print("[");
+        StringBuilder stringBuilder = new StringBuilder("[");
         for (int index = 0; index < path.size(); index++) {
-            if(index != 0) System.out.print("|");
-            System.out.print(" ");
-            printSign(path.get(index), bridge.get(index), level);
-            System.out.print(" ");
+            if(index != 0) stringBuilder.append("|");
+            String sign = getSign(path.get(index), bridge.get(index), level);
+            stringBuilder.append(" ").append(sign).append(" ");
         }
-        System.out.print("]\n");
+        stringBuilder.append("]");
+        System.out.println(stringBuilder.toString());
     }
 
     /**
