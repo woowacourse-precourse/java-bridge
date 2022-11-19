@@ -12,7 +12,7 @@ import static java.util.stream.Collectors.joining;
 public class BridgeGame {
     private final List<String> scaffold;
     private final HashMap<String, List<String>> scaffoldMap = new HashMap<>();
-    private int gameRound = 0;
+    private int gameStep = 0;
     private boolean survive = true;
 
     public BridgeGame(List<String> bridgeScaffold) {
@@ -31,17 +31,17 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public List<String> move(String direction) {
-        checkRoundResult(direction);
+        checkStepResult(direction);
 
         List<String> movingProgress = getMovingProgress(direction);
 
-        this.gameRound++;
+        this.gameStep++;
 
         return movingProgress;
     }
 
-    private void checkRoundResult(String direction) {
-        this.survive = direction.equals(this.scaffold.get(gameRound));
+    private void checkStepResult(String direction) {
+        this.survive = direction.equals(this.scaffold.get(gameStep));
     }
 
     private List<String> getMovingProgress(String direction) {
@@ -85,6 +85,6 @@ public class BridgeGame {
      */
     public void retry() {
         initScaffoldMap();
-        gameRound = 0;
+        gameStep = 0;
     }
 }

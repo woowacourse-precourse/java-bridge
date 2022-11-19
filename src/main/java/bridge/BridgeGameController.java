@@ -35,24 +35,24 @@ public class BridgeGameController {
 
     private boolean crossBridge(BridgeGame bridgeGame, int bridgeSize) {
         for (int i = 0; i < bridgeSize; i++) {
-            if(crossOneRound(bridgeGame)){
+            if(moveOneStep(bridgeGame)){
                 return false;
             }
         }
         return true;
     }
 
-    private boolean crossOneRound(BridgeGame bridgeGame) {
+    private boolean moveOneStep(BridgeGame bridgeGame) {
         String direction = inputView.readMoving();
 
         List<String> movingProgress = bridgeGame.move(direction);
 
         outputView.printMap(movingProgress);
 
-        return checkRoundFailOrNot(movingProgress);
+        return checkStepFailOrNot(movingProgress);
     }
 
-    private boolean checkRoundFailOrNot(List<String> movingProgress) {
+    private boolean checkStepFailOrNot(List<String> movingProgress) {
         return movingProgress.stream()
                 .reduce(String::concat)
                 .orElse("X")
