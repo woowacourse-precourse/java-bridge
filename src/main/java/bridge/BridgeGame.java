@@ -11,12 +11,23 @@ public class BridgeGame {
     private int currentGameIndex;
     private List<String> currentGameResults;
     private boolean gamePassFlag;
+    private int gameTryCount;
 
     public BridgeGame(List<String> currentGameBridge) {
         this.currentGameBridge = currentGameBridge;
         this.currentGameResults = new ArrayList<>();
         this.currentGameIndex = 0;
         this.gamePassFlag = false;
+        this.gameTryCount = 1;
+    }
+
+    public int getGameTryCount() {
+        return gameTryCount;
+    }
+
+    public void plusGameTryCount() {
+        this.gameTryCount++;
+    }
     }
 
     /**
