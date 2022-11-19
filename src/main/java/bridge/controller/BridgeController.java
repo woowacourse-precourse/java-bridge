@@ -31,11 +31,22 @@ public class BridgeController {
         outputView.printResult(bridgeGame.getBridge(), bridgeGame.getPlayer());
     }
 
+    private BridgeGame generateBridgeGame() {
+        int size = inputView.readBridgeSize();
+        Bridge bridge = generateBridge(size);
+        return new BridgeGame(bridge);
+    }
+
+    private Bridge generateBridge(int size) {
+        List<String> bridge = bridgeMaker.makeBridge(size);
+        return new Bridge(bridge);
+    }
+
     private boolean isContinue(BridgeGame bridgeGame) {
         try {
             return canMove(bridgeGame);
         } catch (IllegalStateException e) {
-            return canRetry(bridgeGame);
+            return tryAgain(bridgeGame);
         }
     }
 
@@ -46,21 +57,10 @@ public class BridgeController {
         return result;
     }
 
-    private boolean canRetry(BridgeGame bridgeGame) {
+    private boolean tryAgain(BridgeGame bridgeGame) {
         outputView.printMap(bridgeGame.getBridge(), bridgeGame.getPlayer());
         GameCondition condition = inputView.readGameCommand();
         return bridgeGame.retry(condition);
-    }
-
-    private BridgeGame generateBridgeGame() {
-        int size = inputView.readBridgeSize();
-        Bridge bridge = generateBridge(size);
-        return new BridgeGame(bridge);
-    }
-
-    private Bridge generateBridge(int size) {
-        List<String> bridge = bridgeMaker.makeBridge(size);
-        return new Bridge(bridge);
     }
 
 }

@@ -15,4 +15,5 @@ public class Application {
         BridgeController controller = new BridgeController(inputView, outputView, bridgeMaker);
         controller.execute();
     }
+
 }
