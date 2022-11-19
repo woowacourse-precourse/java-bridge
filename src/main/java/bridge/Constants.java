@@ -20,4 +20,13 @@ public final class Constants {
 
         private OutputState() {}
     }
+
+    public final class BridgeShape {
+        public static final String START_LINE = "[";
+        public static final String END_LINE = "]";
+        public static final String SEPERATOR = "|";
+        public static final String MOVABLE = " O ";
+        public static final String UNMOVABLE = " X ";
+        private BridgeShape() {}
+    }
 }
