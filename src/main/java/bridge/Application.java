@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -12,11 +13,11 @@ public class Application {
 
     private static Error error;
 
-    private static List<String> bridgeShape;
+    private static List<String> bridgeShape = new ArrayList<>();
 
-    private static List<String> topBridge;
+    private static List<String> topBridge = new ArrayList<>();
 
-    private static List<String> bottomBridge;
+    private static List<String> bottomBridge = new ArrayList<>();
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
