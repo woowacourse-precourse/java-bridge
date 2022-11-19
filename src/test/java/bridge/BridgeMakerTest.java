@@ -46,7 +46,7 @@ class BridgeMakerTest {
 
         @ParameterizedTest
         @ValueSource(ints = {3, 10, 20})
-        @DisplayName("게임 규칙 범위 밖이면 예외를 던진다")
+        @DisplayName("게임 규칙 범위 안이면 예외를 던진다")
         void exception_is_not_thrown_inside_range_set_by_rule(Integer desiredSize) {
             // given
             BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
