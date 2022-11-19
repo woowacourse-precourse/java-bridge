@@ -47,7 +47,7 @@ class InputViewTest extends NsTest {
             System.out.println(e.getMessage());
         }
 
-        assertThat(output().trim()).contains(ExceptionPhrases.NOT_NUMBER.toString());
+        assertThat(output().trim()).contains(ErrorPhrases.NOT_NUMBER_STRING.toString());
     }
 
     @DisplayName("범위 밖의 숫자를 입력받으면 예외를 발생시킨다.")
@@ -63,7 +63,7 @@ class InputViewTest extends NsTest {
             System.out.println(e.getMessage());
         }
 
-        assertThat(output().trim()).contains(ExceptionPhrases.OUT_OF_RANGE.toString());
+        assertThat(output().trim()).contains(ErrorPhrases.NUMBER_STRING_OUT_OF_RANGE.toString());
     }
 
     @DisplayName("범위 밖의 숫자를 입력받으면 예외를 발생시킨다. - 메시지 테스트")
