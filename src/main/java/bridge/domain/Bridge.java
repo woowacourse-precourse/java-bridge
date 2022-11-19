@@ -5,9 +5,10 @@ import java.util.Objects;
 
 public class Bridge {
 
-    private static final int MIN_SIZE = 3;
     private static final int MAX_SIZE = 20;
-    private static final String SIZE_ERROR = "다리 길이는 " + MIN_SIZE + "부터 " + MAX_SIZE + "까지 가능합니다.";
+    private static final int MIN_SIZE = 3;
+    private static final String ERROR = "[ERROR] ";
+    private static final String SIZE_ERROR = ERROR + "다리 길이는 " + MIN_SIZE + "부터 " + MAX_SIZE + "까지 가능합니다.";
 
     private final List<String> shape;
 
