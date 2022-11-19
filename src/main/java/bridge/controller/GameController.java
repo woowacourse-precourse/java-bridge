@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.BridgeRandomNumberGenerator;
 import bridge.service.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -17,7 +18,7 @@ public class GameController {
     public void startGame() {
         outputView.printStartGame();
         outputView.printPleaseInputBridgeLength();
-        bridgeGame.makeBridge(inputView.readBridgeSize());
+        bridgeGame.makeBridge(inputView.readBridgeSize(), new BridgeRandomNumberGenerator());
         outputView.printNewline();
     }
 
@@ -31,7 +32,7 @@ public class GameController {
     }
 
     private boolean movePlayer() {
-        while (!bridgeGame.isEndGame()) {
+        while (!bridgeGame.isClearGame()) {
             outputView.printChoiceMove();
             if (!bridgeGame.move(inputView.readMoving())) {
                 outputView.printMap(bridgeGame.getPlayer());

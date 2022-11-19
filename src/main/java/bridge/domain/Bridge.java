@@ -24,4 +24,12 @@ public class Bridge {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE_OVER_SIZE);
         }
     }
+
+    public String getNowCompartment(int now){
+        return bridge.get(now);
+    }
+
+    public int getBridgeLength(){
+        return bridge.size();
+    }
 }

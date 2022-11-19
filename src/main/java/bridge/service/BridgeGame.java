@@ -11,6 +11,12 @@ import bridge.domain.Player;
  */
 public class BridgeGame {
 
+    private static final String FAIL = "실패";
+    private static final String EXCEPTION_MESSAGE_INVALID_MOVE = "[ERROR] 이동 가능 칸은 U 또는 D 만 있습니다.";
+    private static final String UP = "U";
+    private static final String DOWN = "D";
+    private static final String RETRY = "R";
+    private static final String QUIT = "Q";
     private final Bridge bridge;
     private final Player player;
 
@@ -19,31 +25,37 @@ public class BridgeGame {
         this.player = new Player();
     }
 
-    public void makeBridge(int size) {
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    public void makeBridge(int size, BridgeNumberGenerator bridgeNumberGenerator) {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         bridge.setBridge(bridgeMaker.makeBridge(size));
     }
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public boolean move(String moving) {
-        return false;
+    public boolean move(String move) {
+        validateMove(move);
+        player.updateMoveInfo(move);
+        player.setMoveResult(player.isPlayerMove(bridge));
+        return player.getIsMove();
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    private void validateMove(String move){
+        if(!(move.equals(UP) || move.equals(DOWN))){
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_INVALID_MOVE);
+        }
+    }
+
     public boolean retry(String gameCommand) {
         return false;
     }
 
-    public boolean isEndGame() {
-        return false;
+    public boolean isClearGame() {
+        return player.isClearGame(bridge);
+    }
+
+    public void initPlayer(){
+        player.InitRetryPlayer();
+    }
+
+    public Player getPlayer(){
+        return player;
     }
 }
