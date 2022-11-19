@@ -7,6 +7,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import bridge.util.ErrorConst;
+
 class InputValidServiceTest {
 
 	private InputValidService inputValidService;
@@ -21,7 +23,8 @@ class InputValidServiceTest {
 	@ParameterizedTest
 	void validBridgeSizeErrorTest(String bridgeSize) {
 		Assertions.assertThatThrownBy(() -> inputValidService.validBridgeSize(bridgeSize))
-			.isInstanceOf(IllegalArgumentException.class);
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessageContaining(ErrorConst.ERROR_PREFIX);
 	}
 
 	@DisplayName("bridgeSize 의 정상 값 테스트")
@@ -35,15 +38,17 @@ class InputValidServiceTest {
 	@ValueSource(strings = {"@!", " ", "2", "21", "A", "u", "r", ""})
 	@ParameterizedTest
 	void validUserMovingErrorTest(String userMoving) {
-		Assertions.assertThatThrownBy(() -> inputValidService.validBridgeSize(userMoving))
-			.isInstanceOf(IllegalArgumentException.class);
+		Assertions.assertThatThrownBy(() -> inputValidService.validUserMoving(userMoving))
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessageContaining(ErrorConst.ERROR_PREFIX);
 	}
 
 	@DisplayName("userMoving 의 정상 값 테스트")
 	@ParameterizedTest
 	@CsvSource(value = {"U, U", "D, D"})
 	void validUserMovingTest(String userMoving, String userMovingTest) {
-		Assertions.assertThat(inputValidService.validUserMoving(userMoving)).isEqualTo(userMovingTest);
+		Assertions.assertThat(inputValidService.validUserMoving(userMoving))
+			.isEqualTo(userMovingTest);
 	}
 
 	@DisplayName("인자로 들어온 userCommand 값이 R 또는 Q 이 아닌 경우")
@@ -51,13 +56,15 @@ class InputValidServiceTest {
 	@ParameterizedTest
 	void validUserCommandErrorTest(String userCommand) {
 		Assertions.assertThatThrownBy(() -> inputValidService.validUserCommand(userCommand))
-			.isInstanceOf(IllegalArgumentException.class);
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessageContaining(ErrorConst.ERROR_PREFIX);
 	}
 
 	@DisplayName("userCommand 의 정상 값 테스트")
 	@ParameterizedTest
 	@CsvSource(value = {"R, R", "Q, Q"})
 	void validUserCommandTest(String userCommand, String userCommandTest) {
-		Assertions.assertThat(inputValidService.validUserCommand(userCommand)).isEqualTo(userCommandTest);
+		Assertions.assertThat(inputValidService.validUserCommand(userCommand))
+			.isEqualTo(userCommandTest);
 	}
 }
