@@ -1,6 +1,7 @@
 package bridge.service;
 
 import bridge.BridgeMaker;
+import bridge.constance.GameConstance;
 import bridge.domain.BlockExpression;
 import bridge.domain.Bridge;
 import bridge.domain.Player;
@@ -80,7 +81,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(GameRetryRequestDto dto) {
-        if(dto.getRetry().equals("R")) {
+        if(dto.getRetry().equals(GameConstance.RETRY)) {
             this.result.init();
             this.player = new Player();
             return true;

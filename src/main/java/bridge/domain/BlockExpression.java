@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.constance.GameConstance;
+
 public enum BlockExpression {
     MOVE_UP("O", " "),
     MOVE_DOWN(" ", "O"),
@@ -15,14 +17,14 @@ public enum BlockExpression {
     }
 
     public static BlockExpression getBlockExpressionByMove(String bridgeBlock) {
-        if(bridgeBlock.equals("U")) {
+        if(bridgeBlock.equals(GameConstance.UP_BLOCK)) {
             return BlockExpression.MOVE_UP;
         }
         return BlockExpression.MOVE_DOWN;
     }
 
     public static BlockExpression getBlockExpressionByNotMove(String bridgeBlock) {
-        if(bridgeBlock.equals("U")) {
+        if(bridgeBlock.equals(GameConstance.UP_BLOCK)) {
             return BlockExpression.NOT_MOVE_UP;
         }
         return BlockExpression.NOT_MOVE_DOWN;

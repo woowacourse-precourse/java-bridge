@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.constance.GameConstance;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -29,8 +31,8 @@ public class BridgeMaker {
 
     private String createBlockByNumber(int number) {
         if(number == 1) {
-            return "U";
+            return GameConstance.UP_BLOCK;
         }
-        return "D";
+        return GameConstance.DOWN_BLOCK;
     }
 }
