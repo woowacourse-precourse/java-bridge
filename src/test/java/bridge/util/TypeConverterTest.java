@@ -12,4 +12,10 @@ class TypeConverterTest {
     void 문자열에서_정수로_형변환() {
         assertEquals(TypeConverter.stringToInt("1"), 1);
     }
+
+    @DisplayName("형변환 [문자열 -> 문자]")
+    @Test
+    void 문자열에서_문자로_형변환() {
+        assertEquals(TypeConverter.stringToChar("c"), 'c');
+    }
 }
