@@ -53,3 +53,5 @@
 - replace(List<String> map)
   - 마지막이 "   "라면 그대로
   - 마지막이 " O "라면 " X "로 변경한다.
+3. InputMessage
+4. OutputMessage

@@ -20,29 +20,35 @@ public class OutputView {
     public static final String PASS = " O ";
     public static final String EMPTY = "   ";
     public static final String FAIL = " X ";
+    public static final String OPEN = "[";
+    public static final String CLOSE = "]";
+    public static final String SEPARATOR = "|";
 
     public void printMap(PositionTable userTable) {
-        System.out.println(String.join("|",draw(userTable, position -> position.isUp())));
-        System.out.println(String.join("|",draw(userTable, position -> position.isDown())));
+        showMap(userTable, Position::isUp);
+        showMap(userTable, Position::isDown);
     }
 
     public void printResult(PositionTable userTable, Result result) {
-        List<String> upBridge = draw(userTable, position -> position.isUp());
-        List<String> downBridge = draw(userTable, position -> position.isDown());
         if (result.isLose()) {
-            replace(upBridge);
-            replace(downBridge);
+            showReviseMap(userTable, Position::isUp);
         }
-        System.out.println(String.join("|",draw(userTable, position -> position.isUp())));
-        System.out.println(String.join("|",draw(userTable, position -> position.isDown())));
     }
 
-    private void replace(List<String> bridge) {
+    private static void showMap(PositionTable userTable, Predicate<Position> p) {
+        System.out.println(OPEN+String.join(SEPARATOR,draw(userTable, p))+CLOSE);
+    }
+    private static void showReviseMap(PositionTable userTable, Predicate<Position> p) {
+        System.out.println(OPEN+String.join(SEPARATOR,replace(draw(userTable, p)))+CLOSE);
+    }
+
+    private static List<String> replace(List<String> bridge) {
         int lastIndex = bridge.size()-1;
         if (bridge.get(lastIndex).equals(PASS)) {
             bridge.remove(lastIndex);
             bridge.add(FAIL);
         }
+        return bridge;
     }
 
     private static List<String> draw(PositionTable userTable, Predicate<Position> p) {
