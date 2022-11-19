@@ -114,7 +114,6 @@ D
 
 ## BridgeMaker
 ### makeBridge
-- [ ] 사용자가 움직일 방향이 적힌 리스트를 리턴한다.
 - [ ] List<String> 타입의 변수를 선언
 - [ ] 매개변수의 크기만큼 변수를 반복문을 작성
 - [ ] BridgeRandomNumberGenerator.generate 함수를 통해 0또는 1의 랜덤한 값을 받아온다
