@@ -52,12 +52,10 @@ public class BridgeGame {
             gameStatus = GameStatus.FAIL;
             return;
         }
-        move();
         gameStatus = GameStatus.IN_PROGRESS;
-        checkGameSuccess();
     }
 
-    private void checkGameSuccess(){
+    public void checkGameSuccess(){
         if(round > bridge.getSize()){
             gameStatus = GameStatus.SUCCESS;
         }
