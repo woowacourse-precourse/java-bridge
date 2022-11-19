@@ -103,18 +103,18 @@ public class BridgeGame {
     }
 
     public String isSuccess() {
-        if (bridge.size() == movingCount) {
+        if (isFinishBridge()) {
             return SUCCESS;
         }
         return FAIL;
     }
 
-    public int getGameCount() {
-        return gameCount;
-    }
-
     public boolean isFinishBridge() {
         return bridge.size() == movingCount;
+    }
+
+    public int getGameCount() {
+        return gameCount;
     }
 
     public boolean isGameEnd() {
