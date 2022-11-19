@@ -22,6 +22,11 @@ public class BridgeMaker {
         List<String> answerBridge = new ArrayList<>();
         for(int answerBridgeIndex = 0; answerBridgeIndex < size; answerBridgeIndex++){
             int randomNumber = bridgeNumberGenerator.generate();
+            if(randomNumber == 0){
+                answerBridge.add("D");
+            }else{
+                answerBridge.add("U");
+            }
         }
         return null;
     }
