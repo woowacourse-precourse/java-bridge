@@ -79,19 +79,19 @@ D
 | 확인  | 내용                                                                                                |
 |:---:|---------------------------------------------------------------------------------------------------|
 |  ✔  | JDK 11 버전을 사용한다.                                                                                  |
-|  -  | indent(인덴트, 들여쓰기) depth가 3을 넘지 않는다. ( 2까지만 허용한다.)                                                 |
-|  -  | 하나의 메서드는 한 가지 기능만을 하도록 한다. ( 길이가 10줄이 넘지 않도록 한다. )                                                |
-|  -  | 패키지 이름을 수정하거나 이동하지 않는다.                                                                           |
-|  -  | Random 값 추출은 제공된 bridge.BridgeRandomNumberGenerator의 generate()를 활용한다.                            |
-|  -  | 사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용한다.                            |
-|  -  | InputView, OutputView, BridgeGame, BridgeMaker, BridgeRandomNumberGenerator 클래스의 요구사항을 참고하여 구현한다. |
-|  -  | InputView 클래스에서만 camp.nextstep.edu.missionutils.Console 의 readLine() 메서드를 이용해 사용자의 입력을 받을 수 있다.                                     |
+|  ✔  | indent(인덴트, 들여쓰기) depth가 3을 넘지 않는다. ( 2까지만 허용한다.)                                                 |
+|  ✔  | 하나의 메서드는 한 가지 기능만을 하도록 한다. ( 길이가 10줄이 넘지 않도록 한다. )                                                |
+|  ✔  | 패키지 이름을 수정하거나 이동하지 않는다.                                                                           |
+|  ✔  | Random 값 추출은 제공된 bridge.BridgeRandomNumberGenerator의 generate()를 활용한다.                            |
+|  ✔  | 사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용한다.                            |
+|  ✔  | InputView, OutputView, BridgeGame, BridgeMaker, BridgeRandomNumberGenerator 클래스의 요구사항을 참고하여 구현한다. |
+|  ✔  | InputView 클래스에서만 camp.nextstep.edu.missionutils.Console 의 readLine() 메서드를 이용해 사용자의 입력을 받을 수 있다.                                     |
 |  -  | BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.                                                                          |
-|  -  | 외부 라이브러리를 사용하지 않는다.                                                                               |
-|  -  | else 예약어를 쓰지 않는다.                                                                                 |
-|  -  | 3항 연산자를 쓰지 않는다.                                                                                   |
-|  -  | ApplicationTest의 모든 테스트가 성공하는지 확인한다.                                                              |
-|  -  | Java 코드 컨벤션 가이드를 준수하며 프로그래밍 할 것                                                                   |
+|  ✔  | 외부 라이브러리를 사용하지 않는다.                                                                               |
+|  ✔  | else 예약어를 쓰지 않는다.                                                                                 |
+|  ✔  | 3항 연산자를 쓰지 않는다.                                                                                   |
+|  ✔  | ApplicationTest의 모든 테스트가 성공하는지 확인한다.                                                              |
+|  ✔  | Java 코드 컨벤션 가이드를 준수하며 프로그래밍 할 것                                                                   |
 |  -  | 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다                           |
 |  -  | JUnit 5와 AssertJ를 이용하여 본인이 정리한 기능 목록이 정상 동작함을 테스트 코드로 확인한다.                                       |
 
