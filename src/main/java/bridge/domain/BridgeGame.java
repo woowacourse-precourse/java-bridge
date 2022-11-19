@@ -45,4 +45,9 @@ public class BridgeGame {
     public Boolean isEnd() {
         return bridge.getSize() == user.getStep();
     }
+
+    public Integer getTryCount() {
+        return user.getTryCount();
+    }
+
 }

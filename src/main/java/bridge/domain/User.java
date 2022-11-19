@@ -3,14 +3,14 @@ package bridge.domain;
 public class User {
 
     private Integer step = 0;
-    private Integer retryCount = 0;
+    private Integer tryCount = 1;
 
     public Integer getStep() {
         return step;
     }
 
-    public Integer getRetryCount() {
-        return retryCount;
+    public Integer getTryCount() {
+        return tryCount;
     }
 
     public void stepForward() {
@@ -22,6 +22,6 @@ public class User {
     }
 
     public void increaseRetryCount() {
-        retryCount++;
+        tryCount++;
     }
 }
