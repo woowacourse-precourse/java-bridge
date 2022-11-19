@@ -7,6 +7,7 @@ public class Bridge {
     public static final Bridge bridge = new Bridge();
     private static List<String> up = new ArrayList<>();
     private static List<String> down = new ArrayList<>();
+    private boolean rightAnswer = true; // X 결과가 나올 경우 게임 재시작 호출하기 위해서
 
     public void updateUp(String up) {
         Bridge.up.add(up);
@@ -22,5 +23,13 @@ public class Bridge {
 
     public List<String> getDown() {
         return down;
+    }
+
+    public void setRightAnswer(boolean rightAnswer) {
+        this.rightAnswer = rightAnswer;
+    }
+
+    public boolean isRightAnswer() {
+        return rightAnswer;
     }
 }
