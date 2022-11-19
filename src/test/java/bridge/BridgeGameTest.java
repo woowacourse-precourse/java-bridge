@@ -1,17 +1,12 @@
 package bridge;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Lists.newArrayList;
-import static org.junit.jupiter.api.Assertions.*;
 
-import bridge.ApplicationTest.TestNumberGenerator;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import camp.nextstep.edu.missionutils.test.NsTest;
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
-import java.io.PrintStream;
+
 import java.util.List;
-import org.junit.jupiter.api.BeforeAll;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -40,7 +35,13 @@ class BridgeGameTest extends NsTest {
 
         run("D", "D", "R", "D", "U", "U");
         assertThat(output()).contains(
-                "D", "X", "R", "D", "U", "U"
+                "이동할 칸을 선택해주세요. (위: U, 아래: D)",
+                "[   ]\n[ O ]",
+                "[   |   ]\n[ O | X ]",
+                "이동할 칸을 선택해주세요. (위: U, 아래: D)",
+                "[   ]\n[ O ]",
+                "[   | O ]\n[ O |   ]",
+                "[   | O | O ]\n[ O |   |   ]"
         );/**
          contain말고 다른 걸로 테스트하자
          */

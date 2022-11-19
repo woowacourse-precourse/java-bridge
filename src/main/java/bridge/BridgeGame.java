@@ -9,6 +9,7 @@ public class BridgeGame {
 
     InputView inputView = new InputView();
     BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+    OutputView outputView = new OutputView();
     boolean retryOrNot;
 
 
@@ -24,6 +25,7 @@ public class BridgeGame {
         // 맞는지 틀린지 확인
         this.retryOrNot = true;
         while(retryOrNot){
+            outputView.resetMap();
             bridgeMainGame(bridgeList,retryOrNot);
         }
     }
@@ -31,7 +33,7 @@ public class BridgeGame {
 
 
     private boolean bridgeMainGame(List<String> bridgeList, boolean retryOrNot){
-        OutputView outputView = new OutputView();
+
 
         for (int order = 0; order <bridgeList.size(); order++) {
 
@@ -73,10 +75,8 @@ public class BridgeGame {
     private boolean retry() {
         String retryUserInput = inputView.readGameCommand();
         if (retryUserInput.equals("R")){
-            System.out.println("R");
             return true;
         }
-        System.out.println("Q");
         return false;
     }
 }
