@@ -1,7 +1,5 @@
 package bridge;
 
-import java.util.ArrayList;
-import java.util.List;
 
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
@@ -14,33 +12,20 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-
-
-
-    public static int readBridgeSize(){
+    public static int readBridgeSize() {
         String input = readLine();
-        int inputToint = Integer.parseInt(input);
-        if(inputToint > 2 && inputToint < 21){
+        Validator.validatorOnlyNumber(input);
+        Validator.validatorRangeNumber(input);
 
-            return inputToint;
-        }
-        return 0;
+        return Integer.parseInt(input);
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving(List<Integer> player) {
+    public static String readMoving() {
         String readMovingToString = readLine();
-        for (int index = 0; index < player.size(); index++) {
-            if (player.equals("U")) {
-                readMovingToString.contains("U");
-            }
-            if (player.equals("D")) {
-                readMovingToString.contains("D");
-                System.out.println(readMovingToString);
-            }
-        }
+        Validator.validatorMoving(readMovingToString);
         return readMovingToString;
     }
 
@@ -48,12 +33,9 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-
-        String readGameCommandInput = readLine();
-        if(!readGameCommandInput.matches("(R|Q){1}")){
-            throw new IllegalArgumentException("[ERROR] R 또는 Q만 입력 가능합니다.");
-        }
-        return readGameCommandInput;
+    public static String readGameCommand() {
+        String readGameToString = readLine();
+        Validator.validatorRestartOREnd(readGameToString);
+        return readGameToString;
     }
 }

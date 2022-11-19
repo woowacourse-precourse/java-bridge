@@ -12,7 +12,7 @@ public class OutputView {
     public static void moveStepMessage(){
         System.out.println(Message.MOVING_REQUEST.getMessage());
     }
-    public static void  retryMessage() {System.out.println(Message.RETRY_REQUEST.getMessage());
+    public static void  retryMessage() {System.out.println(Message.RETRY_REQUEST.getMessage());}
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
