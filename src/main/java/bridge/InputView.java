@@ -2,6 +2,7 @@ package bridge;
 
 import static bridge.InputValidator.*;
 import static bridge.MessageUtil.INVALID_BRIDGE_SIZE;
+import static bridge.MessageUtil.INVALID_GAME_CMD;
 import static bridge.MessageUtil.INVALID_MOVE_CHOICE;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -37,6 +38,10 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return Console.readLine();
+        String cmd = Console.readLine();
+        if (!isValidCmd(cmd)){
+            throw new IllegalArgumentException(INVALID_GAME_CMD.message);
+        }
+        return cmd;
     }
 }

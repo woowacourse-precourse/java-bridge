@@ -40,6 +40,10 @@ public class BridgeGame {
         return bridgeMove.equals(playersMove);
     }
 
+    public boolean lastMoveMatches(){
+        return playersMove.lastMoveEquals(bridge.getBridgeMove(moveCount));
+    }
+
     public boolean playerHasCrossed() {
         return moveCount == bridge.getBridgeSize();
     }

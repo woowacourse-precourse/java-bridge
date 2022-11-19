@@ -1,6 +1,7 @@
 package bridge;
 
 import static bridge.MessageUtil.BRIDGE_SIZE_INPUT_INTRO;
+import static bridge.MessageUtil.CONTINUE_OR_QUIT;
 import static bridge.MessageUtil.POSITION_CHOICE_INPUT;
 import static bridge.MessageUtil.START_GAME_INTRO;
 
@@ -90,6 +91,10 @@ public class OutputView {
 
     public void printErrorMessage(String errorMsg) {
         System.out.println("[ERROR]" + errorMsg + "\n");
+    }
+
+    public void printGameContinueOpening() {
+        System.out.println(CONTINUE_OR_QUIT.message);
     }
 
     public void printEmptyLine() {

@@ -26,4 +26,8 @@ public class InputValidator {
         return move.matches("^[UD]$");
     }
 
+    public static boolean isValidCmd(String cmd){
+        return cmd.matches("^[RQ]$");
+    }
+
 }
