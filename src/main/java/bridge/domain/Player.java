@@ -33,4 +33,9 @@ public class Player  {
     public boolean isFinish() {
         return inputs.size() == bridgeLength;
     }
+
+    public boolean hasNotSameDirection(Bridge bridge) {
+        int lastIdx = inputs.size() - 1;
+        return !inputs.get(lastIdx).equals(bridge.canMoveDirection(lastIdx));
+    }
 }
