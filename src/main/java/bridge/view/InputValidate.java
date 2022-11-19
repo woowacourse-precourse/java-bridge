@@ -36,4 +36,13 @@ public class InputValidate {
 
         return true;
     }
+
+    public static boolean possibleRetryDecision(String decision) {
+        // constant로 대체
+        if(!decision.equals("R") && !decision.equals("Q")) {
+            throw new IllegalArgumentException();
+        }
+
+        return true;
+    }
 }
