@@ -39,14 +39,14 @@ class GameResultTest {
         @DisplayName("플레이어가 이동을 성공한 경우")
         void case1(){
             gameResult = new GameResult(BridgeType.UP, BridgeResultType.POSSIBLE);
-            assertThat(gameResult.isGameSuccess()).isTrue();
+            assertThat(gameResult.isMoveSuccess()).isTrue();
         }
 
         @Test
         @DisplayName("플레이어가 이동을 실패한 경우")
         void case2(){
             gameResult = new GameResult(BridgeType.DOWN, BridgeResultType.IMPOSSIBLE);
-            assertThat(gameResult.isGameSuccess()).isFalse();
+            assertThat(gameResult.isMoveSuccess()).isFalse();
         }
     }
 }

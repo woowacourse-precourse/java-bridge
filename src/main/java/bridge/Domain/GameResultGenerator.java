@@ -16,9 +16,9 @@ public class GameResultGenerator {
 
     public void setUpperBridgeResult(GameResult gameResult) {
         String upperResult = BridgeResultType.NONE.getResult();
-        if (gameResult.isGameSuccess() && gameResult.isPositionUpper()) {
+        if (gameResult.isMoveSuccess() && gameResult.isPositionUpper()) {
             upperResult = BridgeResultType.POSSIBLE.getResult();
-        } else if (!gameResult.isGameSuccess() && gameResult.isPositionUpper()) {
+        } else if (!gameResult.isMoveSuccess() && gameResult.isPositionUpper()) {
             upperResult = BridgeResultType.IMPOSSIBLE.getResult();
         }
         this.upperBridge.add(upperResult);
@@ -26,9 +26,9 @@ public class GameResultGenerator {
 
     public void setLowerBridgeResult(GameResult gameResult) {
         String lowerResult = BridgeResultType.NONE.getResult();
-        if (gameResult.isGameSuccess() && !gameResult.isPositionUpper()) {
+        if (gameResult.isMoveSuccess() && !gameResult.isPositionUpper()) {
             lowerResult = BridgeResultType.POSSIBLE.getResult();
-        } else if (!gameResult.isGameSuccess() && !gameResult.isPositionUpper()) {
+        } else if (!gameResult.isMoveSuccess() && !gameResult.isPositionUpper()) {
             lowerResult = BridgeResultType.IMPOSSIBLE.getResult();
         }
         this.lowerBridge.add(lowerResult);

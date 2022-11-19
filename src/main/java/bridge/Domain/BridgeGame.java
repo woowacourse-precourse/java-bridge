@@ -64,6 +64,6 @@ public class BridgeGame {
     }
 
     public boolean isMoveSuccess() {
-        return gameResult.isGameSuccess();
+        return gameResult.isMoveSuccess();
     }
 }
