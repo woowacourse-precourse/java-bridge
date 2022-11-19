@@ -10,8 +10,8 @@ public class BridgeGame {
     private final List<String> bridge;
     private int currentIndex = 0;
 
-    StringBuilder upBridge = new StringBuilder();
-    StringBuilder downBridge = new StringBuilder();
+    private final StringBuilder upBridge = new StringBuilder();
+    private final StringBuilder downBridge = new StringBuilder();
 
     private int countOfTry = 1;
 
