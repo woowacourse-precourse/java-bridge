@@ -1,4 +1,4 @@
-package bridge.view;
+package bridge.view.outputview;
 
 import bridge.system.util.BridgeMessageMaker;
 import bridge.vo.GameResult;
@@ -15,6 +15,7 @@ public class OutputView {
     public static final String GAME_STARTING_MESSAGE_FORMAT = "다리 건너기 게임을 시작합니다.%n%n";
     public static final String ASKING_BRIDGE_SIZE_MESSAGE_FORMAT = "다리의 길이를 입력해주세요.%n";
     public static final String ASKING_NEXT_STEP_MESSAGE_FORMAT = "이동할 칸을 선택해주세요. (위: U, 아래: D)%n";
+    public static final String ERROR_MESSAGE_FORMAT = "[ERROR] %s%n";
     private final BridgeMessageMaker bridgeMessageMaker;
 
     public OutputView(BridgeMessageMaker bridgeMessageMaker) {
@@ -69,5 +70,9 @@ public class OutputView {
 
     public void printAskingGameCommandMessage() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+    }
+
+    public void printErrorMessage(Throwable e) {
+        System.out.printf(ERROR_MESSAGE_FORMAT, e.getMessage());
     }
 }

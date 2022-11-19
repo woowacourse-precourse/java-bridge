@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.system.util.BridgeMessageMaker;
+import bridge.view.outputview.OutputView;
 import bridge.vo.GameResult;
 import bridge.vo.Step;
 import bridge.vo.StepResult;
@@ -168,8 +169,25 @@ class OutputViewTest {
             tryCount.addCount();
             tryCount.addCount();
 
-            GameResult gameResult = new GameResult(stepResults, tryCount);
-            return gameResult;
+            return new GameResult(stepResults, tryCount);
+        }
+    }
+
+    @Nested
+    @DisplayName("예외 발생시 [ERROR]로 시작하는 메시지를 출력하는 printErrorMessage 메서드")
+    class PrintErrorMessageTest {
+        @Test
+        @DisplayName("예외에서 메시지를 뽑은 후 [ERROR] 로 시작하는 메시지 포맷에 담아 출력한다.")
+        void givenException_whenPrintingErrorMessage_thenPrintMessage() {
+            //given
+            IllegalArgumentException exception = new IllegalArgumentException("테스트 예외입니다.");
+
+            //when
+            outputView.printErrorMessage(exception);
+
+            //then
+            assertThat(captor.toString())
+                    .isEqualTo("[ERROR] 테스트 예외입니다." + System.lineSeparator());
         }
     }
 }
