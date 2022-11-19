@@ -8,6 +8,8 @@ import java.util.List;
 public class BridgeGame {
     private static final String RETRY = "R";
     private static final String QUIT = "Q";
+    private static final boolean MOVE_POSSIBLE = true;
+    private static final boolean MOVE_IMPOSSIBLE = false;
     private static final boolean GAME_RETRY = true;
     private static final boolean GAME_QUIT = false;
     private static final boolean SUCCESS = true;
@@ -23,9 +25,9 @@ public class BridgeGame {
         int pathLastIndex = path.size() - 1;
         if (bridge.get(pathLastIndex).equals(path.get(pathLastIndex)))
             if (path.size() != bridge.size())
-                return true;
+                return MOVE_POSSIBLE;
 
-        return false;
+        return MOVE_IMPOSSIBLE;
     }
 
     /**
