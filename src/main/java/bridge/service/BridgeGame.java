@@ -24,19 +24,25 @@ public class BridgeGame {
     BridgeGameConsole console = new BridgeGameConsole();
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     List<String> topGameBoard, bottomGameBoard;
-    List<String> bridge = generateBridge(bridgeMaker);
+    List<String> bridge = new ArrayList<>();
     boolean isGameWin = true;
     int tryCount = 1;
 
 
     public void start() {
+        bridgeExistCheck();
         resetGame();
         startMove(bridge);
-
         if (isGameWin == false) {
             if (checkRetry()) {
                 retry();
             }
+        }
+    }
+
+    private void bridgeExistCheck(){
+        if(bridge.isEmpty()){
+            bridge = generateBridge(bridgeMaker);
         }
     }
 
