@@ -27,4 +27,11 @@ public enum BridgeState {
     public String getState() {
         return state;
     }
+
+    public boolean isSameState(String givenState) {
+        if(givenState.equals(this.state)) {
+            return true;
+        }
+        return false;
+    }
 }
