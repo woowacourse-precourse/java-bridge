@@ -2,8 +2,6 @@ package bridge.Controller.Service;
 
 import Utils.ValidateUtils;
 import bridge.Domain.BridgeGame;
-import bridge.Domain.GameResult;
-import bridge.Domain.GameResultGenerator;
 import bridge.View.InputView;
 import bridge.View.OutputView;
 
@@ -23,13 +21,13 @@ public class BridgeGameService {
     }
 
     public boolean severalPhaseBridgeGame() throws IllegalArgumentException {
-        while(true) {
+        while (true) {
             onePhaseBridgeGame();
 
-            if(bridgeGame.isMoveSuccess() && bridgeGame.isBridgeFinished()) {
+            if (bridgeGame.isMoveSuccess() && bridgeGame.isBridgeFinished()) {
                 return true;
             }
-            if(!bridgeGame.isMoveSuccess()) {
+            if (!bridgeGame.isMoveSuccess()) {
                 return false;
             }
         }

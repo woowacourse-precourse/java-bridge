@@ -34,7 +34,7 @@ public class GameController {
 
 
     public void playGame() throws IllegalArgumentException {
-        if(!bridgeGameService.severalPhaseBridgeGame() && endGameService.isGameRestart()) {
+        if (!bridgeGameService.severalPhaseBridgeGame() && endGameService.isGameRestart()) {
             endGameService.restartGame();
             playGame();
         }
