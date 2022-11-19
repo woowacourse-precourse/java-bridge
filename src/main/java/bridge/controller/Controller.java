@@ -32,6 +32,7 @@ public class Controller {
     // 게임 진행
     private void gamePlay() {
         do {
+            service.initBridgeUserKeyList();
             move();
             if (retry()) {
                 break;
@@ -41,10 +42,10 @@ public class Controller {
 
     // 다리를 건너는 기능
     private void move() {
-        service.initBridgeUserKeyList();
         do {
             try {
                 service.move();
+                if (!service.isAnswer()) break;
             } catch (IllegalArgumentException error) {
                 service.catchError(error);
             }
