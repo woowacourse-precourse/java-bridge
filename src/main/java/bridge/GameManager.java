@@ -25,7 +25,6 @@ public class GameManager {
         boolean activation = true;
         int bridgeSize = inputView.readBridgeSize();
         bridge = bridgeMaker.makeBridge(bridgeSize);
-        System.out.println(bridge);
         BridgeGame bridgeGame = new BridgeGame(bridge);
         int round = 0;
 
@@ -39,7 +38,7 @@ public class GameManager {
 
             if (upResult.contains(" X ") || downResult.contains(" X ")) {
                 activation = retry();
-                bridgeGame = new BridgeGame(bridge);
+                bridgeGame.retry();
                 round = 0;
             }
 
