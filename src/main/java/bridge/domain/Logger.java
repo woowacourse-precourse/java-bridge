@@ -32,7 +32,7 @@ final class Logger {
         addSign.append(WRONG_SIGN);
     }
 
-    public String calculateMap() {
+    public String calculateLog() {
         StringBuilder firstLine = new StringBuilder(up);
         StringBuilder secondLine = new StringBuilder(down);
         firstLine.setCharAt(firstLine.length() - 1, ']');

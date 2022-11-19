@@ -18,8 +18,8 @@ final class Visited {
         visited.add(moving);
     }
 
-    public String printVisited() {
-        return logger.calculateMap();
+    public String toPrintableLog() {
+        return logger.calculateLog();
     }
 
     public boolean isRemained(Bridge bridge) {

@@ -36,11 +36,11 @@ public class VisitedTest {
     }
 
     @Test
-    void printVisited_메서드는_플레이_결과를_출력_가능한_형태로_만들어준다() {
-        assertThat(visited1.printVisited()).isEqualTo("[ O ]\n[   ]");
-        assertThat(visited2.printVisited()).isEqualTo("[ O | O ]\n[   |   ]");
-        assertThat(visited3.printVisited()).isEqualTo("[ O | O |   ]\n[   |   | X ]");
-        assertThat(visited4.printVisited()).isEqualTo("[ O | O | O ]\n[   |   |   ]");
+    void toPrintableLog_메서드는_플레이_결과를_출력_가능한_형태로_만들어준다() {
+        assertThat(visited1.toPrintableLog()).isEqualTo("[ O ]\n[   ]");
+        assertThat(visited2.toPrintableLog()).isEqualTo("[ O | O ]\n[   |   ]");
+        assertThat(visited3.toPrintableLog()).isEqualTo("[ O | O |   ]\n[   |   | X ]");
+        assertThat(visited4.toPrintableLog()).isEqualTo("[ O | O | O ]\n[   |   |   ]");
     }
 
     @Test

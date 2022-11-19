@@ -40,6 +40,6 @@ public final class BridgeGame {
     }
 
     public String toPrintableLog() {
-        return visited.printVisited();
+        return visited.toPrintableLog();
     }
 }
