@@ -38,6 +38,24 @@ public class BridgeGameTest extends NsTest {
         System.setIn(stdin);
     }
 
+    @Test
+    void testRetry(){
+        String example = "R";
+        InputStream stream;
+        stream = new ByteArrayInputStream(example.getBytes(StandardCharsets.UTF_8));
+        InputStream stdin = System.in;
+
+        System.setIn(stream);
+        assertThat(bridgeGame.retry()).isTrue();
+
+        String example2 = "Q";
+        stream = new ByteArrayInputStream(example2.getBytes(StandardCharsets.UTF_8));
+        System.setIn(stream);
+        assertThat(bridgeGame.retry()).isFalse();
+
+        System.setIn(stdin);
+    }
+
     @Override
     protected void runMain() {
 
