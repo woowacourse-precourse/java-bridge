@@ -16,6 +16,12 @@ public class GameController {
         this.bridgeGame = initBridgeGame();
     }
 
+    public void start() {
+        do {
+            play();
+        } while (wantRestart());
+    }
+
     public void play() {
         do {
             bridgeGame.move(getValidBridgeMove());
@@ -69,5 +75,14 @@ public class GameController {
                 outputView.printError(e.getMessage());
             }
         }
+    }
+
+    private boolean wantRestart() {
+        if (bridgeGame.isSuccess()) {
+            return false;
+        }
+        outputView.printRetry();
+
+        return bridgeGame.retry(getValidGameRetryCommand());
     }
 }

@@ -2,6 +2,7 @@ package bridge.domain;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.constant.Command;
 import java.util.List;
 
 /**
@@ -30,6 +31,10 @@ public class BridgeGame {
         return result.isEnd(bridge);
     }
 
+    public boolean isSuccess() {
+        return result.isSuccess(bridge);
+    }
+
     public List<String> resultOfMoving() {
         return result.toStrings();
     }
@@ -39,6 +44,12 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry(String userInput) {
+        if (userInput.equals(Command.QUIT.shortCut())) {
+            return false;
+        }
+
+        result.reset();
+        return true;
     }
 }
