@@ -26,6 +26,25 @@ public class Game {
         this.bridgeGame = new BridgeGame(bridge);
     }
 
+    public void play(){
+        while(!this.bridgeGame.isEndOfBridge() && this.isPlaying){
+            outputController.printComment(Comment.INPUT_MOVEMENT);
+            String playerMovement = inputController.readMoving();
+            this.bridgeGame.move(playerMovement);
+            boolean isPlayerSafe = this.bridgeGame.checkBridgeAndPlayer();
+            this.map.update(playerMovement, isPlayerSafe);
+            outputController.printMap(this.map);
+
+            this.checkGameState(isPlayerSafe);
+        }
+    }
+
+    public void checkGameState(boolean isPlayerSafe) { // 플레이어가 죽었는지 확인
+        if (!isPlayerSafe){
+            resetOrQuitGame();
+        }
+    }
+
     private void resetOrQuitGame() {
         if (this.isPlayerRetrying()){
             this.bridgeGame.retry();
@@ -34,6 +53,7 @@ public class Game {
         }
         this.isPlaying = false;
     }
+
 
     private boolean isPlayerRetrying(){
         outputController.printComment(Comment.INPUT_GAME_COMMEND);
