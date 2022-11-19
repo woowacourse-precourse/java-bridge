@@ -89,7 +89,7 @@ public class BridgeGameController {
     }
 
     private void retryOrFinish(BridgeGame bridgeGame) {
-        if (getGameCommandInput() == RETRY) {
+        if (getGameCommandInput().equals(RETRY)) {
             bridgeGame.retry();
         }
     }
