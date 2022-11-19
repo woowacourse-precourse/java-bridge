@@ -21,7 +21,7 @@ public abstract class BridgeGameStep implements Step {
         while (true) {
             try {
                 return pureExecute();
-            } catch (RuntimeException e) {
+            } catch (IllegalArgumentException e) {
                 logger.error(e.getMessage());
             }
         }
