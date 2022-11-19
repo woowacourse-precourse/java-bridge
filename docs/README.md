@@ -122,7 +122,6 @@ D
 
 ## BridgeGame
 ### move
-- [ ] readMoving함수를 실행
 - [ ] 결과 다리와 비교
 - [ ] 같으면 true, 틀리면 false를 리턴
 
