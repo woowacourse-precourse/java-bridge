@@ -8,13 +8,16 @@ import util.ValidationUtil;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    final static String INPUT_BRDIGE_SIZE_PLEASE = "다리의 길이를 입력해주세요.";
+    final static String PLEASE_INPUT_BRDIGE_SIZE = "다리의 길이를 입력해주세요.";
+    final static String PLEASE_CHOOSE_MOVE_SPOT = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    public static final String consoleInput = Console.readLine();
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println(INPUT_BRDIGE_SIZE_PLEASE);
-        int bridgeSize = Integer.parseInt(Console.readLine());
+        System.out.println(PLEASE_INPUT_BRDIGE_SIZE);
+        int bridgeSize = Integer.parseInt(consoleInput);
         return ValidationUtil.isValidSize(bridgeSize);
     }
 
@@ -22,7 +25,10 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(PLEASE_CHOOSE_MOVE_SPOT);
+        String moving = consoleInput;
+
+        return ValidationUtil.isValidMoving(moving);
     }
 
     /**
