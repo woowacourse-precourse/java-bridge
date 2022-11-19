@@ -45,10 +45,29 @@ public class BridgeGame {
     }
 
     public String isMovable(int currentPosition) {
-        if (bridgeMoved.get(currentPosition - 1).equals(correctBridge.get(currentPosition - 1))) {
-            return " O ";
+        if (bridgeMoved.get(currentPosition).equals(correctBridge.get(currentPosition))) {
+            return "O";
         }
-        return " X ";
+        return "X";
+    }
+
+    public List<List<String>> decideBridgeValues() {
+        int bridgeMovedSize = bridgeMoved.size();
+        List<String> bridgeUpperValues = new ArrayList<>();
+        List<String> bridgeLowerValues = new ArrayList<>();
+
+        for (int idx = 0; idx < bridgeMovedSize; idx++) {
+            bridgeUpperValues.add(decideBridgeValue(idx, "U"));
+            bridgeLowerValues.add(decideBridgeValue(idx, "D"));
+        }
+        return List.of(bridgeUpperValues, bridgeLowerValues);
+    }
+
+    private String decideBridgeValue(int idx, String moveTo) {
+        if (bridgeMoved.get(idx).equals(moveTo)) {
+            return isMovable(idx);
+        }
+        return "blank";
     }
 
     public List<String> getBridgeMoved() {
@@ -59,8 +78,5 @@ public class BridgeGame {
         return correctBridge;
     }
 
-    //    public String decideValue() {
-//
-//    }
 
 }
