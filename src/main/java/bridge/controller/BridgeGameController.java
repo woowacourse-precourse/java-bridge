@@ -10,25 +10,26 @@ import bridge.view.OutputView;
 
 import java.util.List;
 
-import static bridge.exception.BridgeGameValidator.*;
+import static bridge.exception.BridgeGameValidator.validateInt;
+import static bridge.exception.BridgeGameValidator.isValidGameNumber;
+import static bridge.exception.BridgeGameValidator.validateUpAndDown;
+import static bridge.exception.BridgeGameValidator.validateRestartAndQuit;
 
 public class BridgeGameController {
-
     private static final String SUCCESS = "성공";
     private static final String FAILED = "실패";
     private static final String YES = "O";
     private static final String NO = "X";
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
-
-    private int bridgeSize;
-    private String moving;
-    private String userRestart;
-    List<String> bridge;
     private static BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     private BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     private BridgeGame bridgeGame = new BridgeGame();
     private BridgeUpDownNumber bridgeUpDownNumber = new BridgeUpDownNumber();
+    private int bridgeSize;
+    private String moving;
+    private String userRestart;
+    List<String> bridge;
 
     public static BridgeGameController create(){
         return new BridgeGameController();
@@ -45,9 +46,7 @@ public class BridgeGameController {
         outputView.initMap();
         bridge = bridgeMaker.makeBridge(bridgeSize);
         boolean go = true;
-        for (int index = 0;index<bridgeSize && go;index++) {
-            go = crossBridge(index);
-        }
+        for (int index = 0;index<bridgeSize && go;index++) go = crossBridge(index);
         retryOrEnd(go);
     }
 
@@ -106,10 +105,9 @@ public class BridgeGameController {
     private void restartOrQuit(){
         try{
             userRestart = validateRestartAndQuit(inputView.readGameCommand());
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             restartOrQuit();
         }
     }
-
 }
