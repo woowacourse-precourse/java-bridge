@@ -32,7 +32,7 @@ public class BridgeMaker {
      * @return 1이면 "U", 0이면 "D"로 표현해야 한다.
      */
     public String toString(int number) {
-        BridgeType bridge = BridgeType.valueOf(number);
+        BridgeType bridge = BridgeType.valueOfNumber(number);
         return bridge.getInitial();
     }
 }
