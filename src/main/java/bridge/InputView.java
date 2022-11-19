@@ -44,6 +44,6 @@ public class InputView {
 
         readGameCommandErrorCheck(command);
 
-        return null;
+        return command;
     }
 }
