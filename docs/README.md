@@ -97,3 +97,8 @@
 MVC 패턴을 적용해 Controller - Service - Domain으로 구현했다.
 
 Controller와 Service 간 DTO로 정보를 주고 받는다.
+
+#### TODO
+- 도메인 로직 서비스 로직으로 변경하기
+- Controller 로직 축소시키기
+- 테스트 코드 작성하기
