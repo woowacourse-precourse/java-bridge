@@ -7,6 +7,7 @@ import static bridge.constant.OutputViewConstant.SPACE;
 import static bridge.constant.OutputViewConstant.SUFFIX;
 
 import bridge.constant.BridgeMove;
+import bridge.constant.GameStatus;
 import bridge.constant.OutputViewConstant;
 import java.util.List;
 
@@ -89,22 +90,16 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<BridgeMap> bridgeMaps, boolean gameStatus, int countOfGame) {
+    public void printResult(BridgeGameStat bridgeGameStat) {
         System.out.println("최종 게임 결과");
 
-        printMap(bridgeMaps);
-        printGameStatus(gameStatus);
-        printCountOfGame(countOfGame);
+        printMap(bridgeGameStat.getBridgeMaps());
+        printGameStatus(bridgeGameStat.getGameStatus());
+        printCountOfGame(bridgeGameStat.getCountOfGame());
     }
 
-    private void printGameStatus(boolean gameStatus) {
-        if (gameStatus) {
-            System.out.println("게임 성공 여부: 성공");
-        }
-
-        if (!gameStatus) {
-            System.out.println("게임 성공 여부: 실패");
-        }
+    private void printGameStatus(GameStatus gameStatus) {
+        System.out.println("게임 성공 여부: " + gameStatus.getMessage());
     }
 
     private void printCountOfGame(int countOfGame) {
