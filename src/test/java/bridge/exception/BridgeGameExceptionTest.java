@@ -29,4 +29,15 @@ public class BridgeGameExceptionTest {
         assertThatThrownBy(() -> bridgeGameException.validateBridgeSizePermittedLength(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("다리 방향 입력이 적절한 문자인지 확인하는 예외 테스트")
+    public void validateDirectionTest() {
+        // given
+        String input = "A";
+
+        // when, then
+        assertThatThrownBy(() -> bridgeGameException.validateDirection(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
