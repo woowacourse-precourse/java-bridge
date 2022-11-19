@@ -47,4 +47,5 @@
   - [x] GameCommandValidator 클래스 추가 
 
 - [x] 잘못된 입력에 대해 에러 메시지 출력 후 재입력 받는 코드 중복 제거
-- [ ] 입력 검사 테스트 수정
+- [x] 입력 검사 테스트 수정
+- [ ] InputValidatorTest 중복 제거
