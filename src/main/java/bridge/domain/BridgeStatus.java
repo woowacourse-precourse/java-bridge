@@ -60,4 +60,13 @@ public class BridgeStatus {
     public List<String> getUserBridge() {
         return userBridge;
     }
+
+    public GameStatus getGameStatus() {
+        return gameStatus;
+    }
+
+    public void clearUserBridge() {
+        userBridge.clear();
+        gameStatus = GameStatus.IN_PROGRESS;
+    }
 }
