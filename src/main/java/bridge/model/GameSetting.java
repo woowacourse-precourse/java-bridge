@@ -9,7 +9,6 @@ public class GameSetting {
 	public static final int START_STEP = 0;
 	public static final int FIRST_TRY = 1;
 	public static final boolean GAME_FAIL = false;
-	public static final boolean GAME_SUCCESS = true;
 
 	public static List<String> setBridgeForStartGame(int bridgeLength) {
 		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());

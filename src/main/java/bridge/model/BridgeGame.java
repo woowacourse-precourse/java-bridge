@@ -38,9 +38,9 @@ public class BridgeGame {
 
 		boolean moveFlag = BridgeChecker.isMovableLocation(bridge, moveCommand, currentStep);
 		currentStep += addStepIfMove(moveFlag);
-		moveFlag = isClear();
+		gameClear = BridgeChecker.isGameClear(bridge, currentStep);
 
-		return new MoveCommandDto(moveCommand, moveFlag);
+		return new MoveCommandDto(moveCommand, moveFlag, gameClear);
 	}
 
 	/**
@@ -66,14 +66,6 @@ public class BridgeGame {
 			return 1;
 		}
 		return 0;
-	}
-
-	private boolean isClear() {
-		if (bridge.size() == currentStep) {
-			gameClear = GameSetting.GAME_SUCCESS;
-			return false;
-		}
-		return true;
 	}
 
 	@Override public String toString() {
