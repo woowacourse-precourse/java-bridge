@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.Constants.Command;
 import bridge.Constants.ErrorState;
 
 public class Validator {
@@ -13,13 +14,13 @@ public class Validator {
     }
 
     public static void direction(String direction) {
-        if (!(direction.equals("U") || direction.equals("D"))) {
+        if (!(direction.equals(Command.UP) || direction.equals(Command.DOWN))) {
             throw new IllegalArgumentException(ErrorState.DIRECTION);
         }
     }
 
     public static void command(String command) {
-        if(!(command.equals("R") || command.equals("Q"))) {
+        if(!(command.equals(Command.RETRY) || command.equals(Command.QUIT))) {
             throw new IllegalArgumentException(ErrorState.COMMAND);
         }
     }

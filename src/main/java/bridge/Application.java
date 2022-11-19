@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.Constants.Command;
 import java.util.List;
 
 public class Application {
@@ -63,7 +64,7 @@ public class Application {
                             System.out.println(e);
                         }
                     }
-                    if(command.equals("Q")){
+                    if(command.equals(Command.QUIT)){
                         outputView.printResult(bridgeGame);
                         return;
                     }
@@ -72,7 +73,7 @@ public class Application {
                 }
 
                 if(bridgeGame.isFinish()) {
-                    BridgeGame.result = "성공";
+                    BridgeGame.RESULT = "성공";
                     outputView.printResult(bridgeGame);
                     return;
                 }
