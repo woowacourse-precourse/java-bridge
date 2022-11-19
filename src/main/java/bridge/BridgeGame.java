@@ -2,6 +2,7 @@ package bridge;
 
 import static bridge.BridgeGameState.*;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -83,5 +84,13 @@ public class BridgeGame {
 
     public boolean isGameOver() {
         return state.equals(GAME_OVER);
+    }
+
+    public List<String> getBridge() {
+        return Collections.unmodifiableList(bridge);
+    }
+
+    public int getPosition() {
+        return position;
     }
 }
