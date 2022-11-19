@@ -1,7 +1,6 @@
 package bridge;
 
-import bridge.BridgeNumberGenerator;
-import bridge.domain.Direction;
+import bridge.domain.Movement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,10 +30,10 @@ public class BridgeMaker {
     }
 
     private String matchDirection(int randomDigit) {
-        if (Direction.UP.getRandomDigit() == randomDigit) {
-            return Direction.UP.getDirection();
+        if (Movement.UP.getRandomDigit() == randomDigit) {
+            return Movement.UP.getDirection();
         }
-        return Direction.DOWN.getDirection() ;
+        return Movement.DOWN.getDirection() ;
     }
 
 }

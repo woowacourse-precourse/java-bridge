@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.domain.Movement;
 import bridge.util.MessageUtil;
 import bridge.util.ParserUtil;
 import bridge.util.ValidationUtil;
@@ -25,7 +26,7 @@ public class InputController {
         return bridgeSize;
     }
 
-    public String getMovement() {
+    public Movement getMovement() {
         while(true) {
             try {
                 return readAndParseMovementInput();
@@ -35,11 +36,12 @@ public class InputController {
         }
     }
 
-    public String readAndParseMovementInput() {
+    public Movement readAndParseMovementInput() {
         MessageUtil.movementInputMsg();
         String movementInput = InputView.readMoving();
         ParserUtil.parseMovement(movementInput);
-        return movementInput;
+        Movement movement = getMovement(movementInput);
+        return movement;
     }
 
 
