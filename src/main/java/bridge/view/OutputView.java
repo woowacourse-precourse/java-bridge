@@ -1,11 +1,13 @@
-package bridge;
+package bridge.view;
 
-import static bridge.UpDownBridge.addCenterBar;
-import static bridge.UpDownBridge.getDownBridge;
-import static bridge.UpDownBridge.getUpBridge;
-import static bridge.UpDownBridge.makeUpDownBridge;
+import static bridge.domain.UpDownBridge.addCenterBar;
+import static bridge.domain.UpDownBridge.getDownBridge;
+import static bridge.domain.UpDownBridge.getUpBridge;
+import static bridge.domain.UpDownBridge.makeUpDownBridge;
 import static bridge.controller.BridgeGameController.getCount;
 import static bridge.controller.BridgeGameController.getStatus;
+
+import bridge.Message;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.

@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 import static bridge.Validator.validateInputDIRECTION;
 import static bridge.Validator.validateInputDirectionLowerCase;
@@ -11,6 +11,8 @@ import static bridge.Validator.validateInputSizeNull;
 import static bridge.Validator.validateInputSizeType;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+
+import bridge.Message;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
