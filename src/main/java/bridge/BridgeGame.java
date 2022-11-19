@@ -27,31 +27,31 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(List<String> rightBridgeWay, String movingValue) {
+    public void move(List<String> rightBridgeWay, String inputMoveValue) {
         String answer = rightBridgeWay.get(bridgeIndex);
 
-        makeUpperBridge(answer, movingValue);
-        makeLowerBridge(answer, movingValue);
+        makeUpperBridge(answer, inputMoveValue);
+        makeLowerBridge(answer, inputMoveValue);
 
         bridgeIndex++;
     }
 
-    public List<String> makeUpperBridge(String answer, String movingValue) {
-        if (movingValue.equals("D")) {
+    public List<String> makeUpperBridge(String answer, String inputMoveValue) {
+        if (inputMoveValue.equals("D")) {
             upperBridge.add(" ");
             return upperBridge;
         }
-        upperBridge.add(compareValue(answer, movingValue));
+        upperBridge.add(compareValue(answer, inputMoveValue));
 
         return upperBridge;
     }
 
-    public List<String> makeLowerBridge(String answer, String movingValue) {
-        if (movingValue.equals("U")) {
+    public List<String> makeLowerBridge(String answer, String inputMoveValue) {
+        if (inputMoveValue.equals("U")) {
             lowerBridge.add(" ");
             return lowerBridge;
         }
-        lowerBridge.add(compareValue(answer, movingValue));
+        lowerBridge.add(compareValue(answer, inputMoveValue));
 
         return lowerBridge;
     }

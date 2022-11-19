@@ -20,11 +20,11 @@ public class GameController {
 
     public void makeUpperAndLowerBridge (List<String> rightBridgeWay, BridgeGame bridgeGame) {
         int attempt = rightBridgeWay.size();
-        System.out.println(rightBridgeWay);  // 제거해야함
+
         boolean keepGoing = true;
         while(keepGoing) {
-            String movingValue = InputView.readMoving(); // movingValue -> inputMoveValue로 수정필요
-            bridgeGame.move(rightBridgeWay, movingValue);
+            String inputMoveValue = InputView.readMoving();
+            bridgeGame.move(rightBridgeWay, inputMoveValue);
             OutputView.printMap(bridgeGame.upperBridge, bridgeGame.lowerBridge);
 
             if (bridgeGame.upperBridge.contains("X") || bridgeGame.lowerBridge.contains("X")) {
