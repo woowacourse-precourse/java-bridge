@@ -1,12 +1,16 @@
 package bridge.view;
 
+import bridge.domain.BridgeSize;
+import bridge.domain.MoveCommand;
+import bridge.domain.RetryCommand;
+
 /**
  * 입력값 에러 발생시 다시 입력값을 받도록 해주는 클래스
  */
 public class InputViewProxy extends InputView {
 
     @Override
-    public int readBridgeSize() {
+    public BridgeSize readBridgeSize() {
         try {
             return super.readBridgeSize();
         } catch (IllegalArgumentException e) {
@@ -16,7 +20,7 @@ public class InputViewProxy extends InputView {
     }
 
     @Override
-    public String readMoving() {
+    public MoveCommand readMoving() {
         try {
             return super.readMoving();
         } catch (IllegalArgumentException e) {
@@ -26,7 +30,7 @@ public class InputViewProxy extends InputView {
     }
 
     @Override
-    public String readGameCommand() {
+    public RetryCommand readGameCommand() {
         try {
             return super.readGameCommand();
         } catch (IllegalArgumentException e) {

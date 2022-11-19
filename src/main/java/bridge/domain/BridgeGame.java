@@ -13,20 +13,21 @@ public class BridgeGame {
 
     private final BridgeGameRepository bridgeGameRepository = new BridgeGameRepository();
 
-    public Bridge getBridge(int size) {
-        bridgeGameRepository.setBridgeGameInfo(size);
-        List<String> blocks = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
+    public Bridge getBridge(BridgeSize bridgeSize) {
+        bridgeGameRepository.setBridgeGameInfo(bridgeSize);
+        List<String> blocks = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize.getSize());
         return new Bridge(blocks);
     }
 
     public MoveResult move(Bridge bridge,
-                           String moveMessage) {
-        boolean isSuccess = bridge.isMoveSuccess(bridgeGameRepository.findRound(), moveMessage);
-        return new MoveResult(moveMessage, isSuccess);
+                           MoveCommand command) {
+        boolean isSuccess = bridge.isMoveSuccess(bridgeGameRepository.findRound(), command.getMessage());
+        return new MoveResult(command, isSuccess);
     }
 
-    public boolean retry(String retryMessage) {
-        if (retryMessage.equals(RESTART_GAME)) {
+    //ENUM ?
+    public boolean retry(RetryCommand retryCommand) {
+        if (retryCommand.isRetry()) {
             bridgeGameRepository.retry();
             return true;
         }

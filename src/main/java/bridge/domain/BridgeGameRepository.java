@@ -14,10 +14,10 @@ public class BridgeGameRepository {
 
     private final Map<String, Integer> localDb = new HashMap<>();
 
-    public void setBridgeGameInfo(int size) {
+    public void setBridgeGameInfo(BridgeSize bridgeSize) {
         localDb.put(ROUND_KEY, ROUND_DEFAULT_VALUE);
         localDb.put(TRY_COUNT_KEY, TRY_COUNT_DEFAULT_VALUE);
-        localDb.put(FINAL_ROUND_KEY, size);
+        localDb.put(FINAL_ROUND_KEY, bridgeSize.getSize());
     }
 
     public int findRound() {

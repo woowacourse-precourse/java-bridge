@@ -1,5 +1,9 @@
 package bridge.view;
 
+import bridge.domain.BridgeSize;
+import bridge.domain.Command;
+import bridge.domain.MoveCommand;
+import bridge.domain.RetryCommand;
 import bridge.exception.Validator;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -8,31 +12,25 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
 
-    Validator validator = new Validator();
 
     public InputView() {
         System.out.println("다리 건너기 게임을 시작합니다.");
     }
 
-    public int readBridgeSize() {
+    public BridgeSize readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
-        int bridgeSize = convertInputToInt(Console.readLine());
-        validator.validateBridgeSize(bridgeSize);
-        return bridgeSize;
+        int size = convertInputToInt(Console.readLine());
+        return new BridgeSize(size);
     }
 
-    public String readMoving() {
+    public MoveCommand readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String moveMessage = Console.readLine();
-        validator.validateMoveMessage(moveMessage);
-        return moveMessage;
+        return new MoveCommand(Console.readLine());
     }
 
-    public String readGameCommand() {
+    public RetryCommand readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        String commandMessage = Console.readLine();
-        validator.validateGameRestartMessage(commandMessage);
-        return commandMessage;
+        return new RetryCommand(Console.readLine());
     }
 
     private int convertInputToInt(String input) {
