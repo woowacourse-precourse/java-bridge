@@ -1,8 +1,10 @@
 package bridge.view;
 
+import dto.Result;
+
+import static bridge.constant.Output.*;
 import static bridge.constant.Movement.DOWN;
 import static bridge.constant.Movement.UP;
-import static bridge.constant.Output.*;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -112,7 +114,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
-
+    public void printResult(Result result) {
+        System.out.println(GAME_RESULT);
+        System.out.println(upBridge);
+        System.out.println(downBridge);
+        System.out.println(SUCCESS_OR_FAILURE + result.getGameResult());
+        System.out.println(TOTAL_ATTEMPTS + result.getAttempt());
     }
 }
