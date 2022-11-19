@@ -13,4 +13,8 @@ public class Bridge {
     public Boolean canCross(Integer location, String direction) {
         return directions.get(location).equals(direction);
     }
+
+    public Integer getSize() {
+        return directions.size();
+    }
 }
