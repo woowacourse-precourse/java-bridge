@@ -28,7 +28,7 @@
 - [ ] 게임 재시작/종료 여부를 입력 (R, Q만 가능)
 ### 입력 Exception 구현 사항
 - [X] 다리 길이가 입력되지 않은 경우 IllegalArgumentException
-- [ ] 다리 길이가 숫자가 아닌 경우 IllegalArgumentException
+- [X] 다리 길이가 숫자가 아닌 경우 IllegalArgumentException
 - [ ] 다리 길이가 3보다 작거나, 20보다 큰 경우 IllegalArgumentException
 - [ ] 플레이어가 이동할 칸이 입력되지 않은 경우 IllegalArgumentException
 - [ ] 플레이어가 이동할 칸이 U, D가 아닌 경우 IllegalArgumentException
