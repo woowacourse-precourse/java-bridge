@@ -157,10 +157,10 @@
 - Bridge
 - BridgeGame
 - BridgeMaker
-- BridgeNumberGenerator
-- BridgeRandomNumberGenerator
+- [x] BridgeNumberGenerator
+- [x] BridgeRandomNumberGenerator
 - BridgeSize
-- MapRenderer
+- [x] MapRenderer
 - [x] Cell
 - [x] Constant
 - GameController
