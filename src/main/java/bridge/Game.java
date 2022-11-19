@@ -25,4 +25,11 @@ public class Game {
         List<String> bridge = this.bridgeMaker.makeBridge(size);
         this.bridgeGame = new BridgeGame(bridge);
     }
+
+
+    private boolean isPlayerRetrying(){
+        outputController.printComment(Comment.INPUT_GAME_COMMEND);
+        String retryInput = inputController.readGameCommand();
+        return retryInput.equals("R");
+    }
 }
