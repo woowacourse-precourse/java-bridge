@@ -36,6 +36,26 @@ class BridgeGameTest {
     public void checkBridgeFalse(String userMoving, String targetBridge) {
         assertThat(checkBridge(userMoving, targetBridge)).isFalse();
     }
+
+    static Stream<Arguments> generateData() {
+        return Stream.of(
+                Arguments.of(Arrays.asList("U", "D", "U")));
+    }
+
+    @DisplayName("위쪽으로 이동 했고, 그 다리가 건널 수 있을 때 결과값 검증")
+    @MethodSource("generateData")
+    @ParameterizedTest
+    public void upBridgeSuccessLogging(List<String> bridge) {
+        String moving = "U";
+        int index = 0;
+        System.out.println("bridge = " + bridge);
+        if (checkBridge(moving, bridge.get(index)) && moving.equals("U") && index < bridge.size() - 1) {
+            upLoggingResult.append(" O |");
+            downLoggingResult.append("   |");
+        }
+        assertThat(upLoggingResult.toString()).isEqualTo("[ O |");
+        assertThat(downLoggingResult.toString()).isEqualTo("[   |");
+    }
 //
 //    @Test
 //    public void leftBridgeSuccessFinalLogging(String moving, List<String> bridge, int index) {
