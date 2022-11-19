@@ -35,15 +35,21 @@ public class BridgeGameContext {
 
     public void requestInputBridgeSize() {
         int bridgeSize = inputView.readBridgeSize();
+
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+
         this.bridgeGame = new BridgeGame(Bridge.fromStrings(bridge));
     }
 
     public CrossStatus requestCrossBridge() {
         String input = inputView.readMoving();
+
         Direction direction = Direction.ofSymbol(input);
+
         CrossStatus status = this.bridgeGame.move(direction);
+
         outputView.printMap(bridgeGame.currentMap());
+
         return status;
     }
 
@@ -58,8 +64,7 @@ public class BridgeGameContext {
     }
 
     public void showResult() {
-        outputView.printResult(
-                tryCount,
+        outputView.printResult(tryCount,
                 bridgeGame.status(),
                 bridgeGame.currentMap());
     }

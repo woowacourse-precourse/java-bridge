@@ -6,6 +6,7 @@ import bridge.domain.direction.Direction;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.domain.bridge.CrossStatus.FAIL;
 import static bridge.domain.direction.Direction.UP;
 import static bridge.domain.mapmaker.MapSymbol.*;
 
@@ -21,19 +22,21 @@ public class MapMaker {
     public MapMaker() {
         topLine = new ArrayList<>();
         bottomLine = new ArrayList<>();
+
         init();
     }
 
     public void init() {
         topLine.clear();
         bottomLine.clear();
+
         topLine.add(START);
         bottomLine.add(START);
     }
 
     public void addPath(final Direction direction,
                         final CrossStatus status) {
-        if (status == CrossStatus.FAIL) {
+        if (status == FAIL) {
             addFailPath(direction);
             return;
         }
@@ -63,6 +66,7 @@ public class MapMaker {
     private void drawTop(final MapSymbol symbol) {
         topLine.add(SEPARATOR);
         bottomLine.add(SEPARATOR);
+
         topLine.add(symbol);
         bottomLine.add(EMPTY);
     }
@@ -70,6 +74,7 @@ public class MapMaker {
     private void drawBottom(final MapSymbol symbol) {
         topLine.add(SEPARATOR);
         bottomLine.add(SEPARATOR);
+
         bottomLine.add(symbol);
         topLine.add(EMPTY);
     }
@@ -77,6 +82,7 @@ public class MapMaker {
     public String getCurrentMap() {
         String topMap = mapToString(topLine);
         String bottomMap = mapToString(bottomLine);
+
         return topMap + NEW_LINT + bottomMap;
     }
 
@@ -85,7 +91,9 @@ public class MapMaker {
         for (MapSymbol mapSymbol : topLine) {
             sb.append(mapSymbol.symbol());
         }
+
         sb.append(END.symbol());
+
         return sb.toString().replaceFirst(SEPARATOR_REGEX, EMPTY_STRING);
     }
 }

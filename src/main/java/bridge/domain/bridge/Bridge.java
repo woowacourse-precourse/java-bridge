@@ -27,7 +27,7 @@ public class Bridge {
 
     private void validateSize(final int size) {
         if (size > MAX_LENGTH || size < MIN_LENGTH) {
-           throw new IllegalArgumentException(OUT_OF_RANGE_MESSAGE);
+            throw new IllegalArgumentException(OUT_OF_RANGE_MESSAGE);
         }
     }
 
@@ -54,7 +54,8 @@ public class Bridge {
         return GOING;
     }
 
-    private boolean isDifferent(final Direction path, final Direction target) {
+    private boolean isDifferent(final Direction path,
+                                final Direction target) {
         return path != target;
     }
 }

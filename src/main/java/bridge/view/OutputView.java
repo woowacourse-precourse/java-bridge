@@ -36,9 +36,13 @@ public class OutputView {
     public void printResult(final TryCount tryCount,
                             final CrossStatus status,
                             final String map) {
+
         System.out.println(FINAL_GAME_RESULT);
+
         System.out.println(map);
+
         System.out.printf(GAME_STATUS_FORMAT, judgeResult(status));
+
         System.out.printf(GAME_TRY_COUNT_FORMAT, tryCount.count());
     }
 
