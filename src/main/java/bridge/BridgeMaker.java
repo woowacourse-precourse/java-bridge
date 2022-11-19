@@ -45,12 +45,6 @@ public class BridgeMaker {
                 .collect(Collectors.toList());
     }
 
-    public void fisrtUpperBridgeIsSafe(List<Integer> trap){
-        if(!(trap.get(0) == 0)){
-            trap.set(0,1);
-        }
-    }
-
     public boolean upperBridge(int index){
         return index%2 ==0;
     }

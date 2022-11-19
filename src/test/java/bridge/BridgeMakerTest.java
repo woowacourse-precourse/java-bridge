@@ -43,24 +43,16 @@ public class BridgeMakerTest {
 
     @DisplayName("다리 사이즈 만큼 함정이 생성되는 지 확인")
     @Test
-    void checkBridgeTrapSize(){
+    void checkBridgeTrapSize() {
         //given
         int bridgeSize = 4;
         //when
         List<Integer> actual = bridgeMaker.rawTrap(bridgeSize);
         //then
         assertThat(actual.size()).isEqualTo(bridgeSize);
-    }
-
-    @DisplayName("다리 첫번째 칸이 위 칸이 건널 수 있는지 확인")
-    @Test
-    void checkFisrtUpperBridgeIsSafe(){
-        //given
-        int bridgeSize = 3;
-        //when
-        List<Integer> actual = bridgeMaker.makeTrap(bridgeSize);
-        //then
-        assertThat(actual.get(0)).isEqualTo(1);
+        
     }
 }
+
+
 
