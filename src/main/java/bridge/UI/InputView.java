@@ -6,9 +6,6 @@ import bridge.Constants.FrontMan;
 import bridge.Constants.ErrorMessages;
 import java.util.Objects;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 public class InputView {
 
     public int readBridgeLength() {
@@ -29,11 +26,6 @@ public class InputView {
         }
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
-
-
     public String readMoving() {
         System.out.println(FrontMan.CHOOSE_NEXT_STEP);
         String userInput = readLine();
@@ -48,6 +40,6 @@ public class InputView {
     }
 
     public String readGameCommand() {
-        return null;
+        
     }
 }
