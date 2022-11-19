@@ -4,15 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum MoveStatus {
+
     DOWN_SUCCESS(1, true, "D", "O"),
     DOWN_FAIL(1, false, "D", "X"),
     UP_SUCCESS(0, true, "U", "O"),
     UP_FAIL(0, false, "U", "X");
 
-    private static final Map<Boolean, Map<String,MoveStatus>> storage = new HashMap<>(){
+    private static final String WHITE_SPACE = " ";
+    private static final Map<Boolean, Map<String, MoveStatus>> storage = new HashMap<>() {
         {
             put(true, new HashMap<>());
-            put(false,new HashMap<>());
+            put(false, new HashMap<>());
         }
     };
 
@@ -40,5 +42,12 @@ public enum MoveStatus {
 
     public boolean didCross() {
         return this.didCross;
+    }
+
+    public String generateMark(String direction) {
+        if (this.direction.equals(direction)) {
+            return this.mark;
+        }
+        return WHITE_SPACE;
     }
 }

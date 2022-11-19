@@ -18,6 +18,23 @@ public class Result {
     }
 
     public boolean isEnd(Bridge bridge) {
-        return !status.get(status.size()-1).didCross() || bridge.isEnd(location);
+        return !status.get(status.size() - 1).didCross() || bridge.isEnd(location);
+    }
+
+    public List<String> toStrings() {
+        String upSide = buildBridge(Direction.UPSIDE.shortcut());
+        String downSide = buildBridge(Direction.DOWNSIDE.shortcut());
+
+        return List.of(upSide, downSide);
+    }
+
+    private String buildBridge(String direction) {
+        StringBuilder bridgeBuilder = new StringBuilder();
+
+        for (MoveStatus moveStatus : status) {
+            bridgeBuilder.append(moveStatus.generateMark(direction));
+        }
+
+        return bridgeBuilder.toString();
     }
 }

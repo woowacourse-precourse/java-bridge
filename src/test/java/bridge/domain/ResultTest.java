@@ -3,10 +3,32 @@ package bridge.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import java.util.stream.Stream;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class ResultTest {
+
+    private static Stream<Arguments> providePlayerDirectionsAndAnswer(){
+        return Stream.of(
+                Arguments.of(
+                        List.of("U", "U", "U", "D", "D", "D"),
+                        List.of("OOO   ", "   OOO")
+                ),
+                Arguments.of(
+                        List.of("D", "D", "D", "U", "U", "U"),
+                        List.of("   XXX", "XXX   ")
+                ),
+                Arguments.of(
+                        List.of("U", "U", "D", "U", "D", "D"),
+                        List.of("OO X  ", "  X OO")
+                )
+        );
+    }
 
     @Test
     @DisplayName("다리를 건너지 못하여 게임이 종료된 경우 true를 반환한다.")
@@ -52,5 +74,24 @@ public class ResultTest {
 
         //then
         assertThat(result.isEnd(bridge)).isEqualTo(false);
+    }
+
+    @ParameterizedTest
+    @DisplayName("출력을 위한 변환이 정상적으로 실행되었는지 확인한다.")
+    @MethodSource("providePlayerDirectionsAndAnswer")
+    public void resultToStrings(List<String> playerDirections, List<String> answer) throws Exception{
+        //given
+        Result result = new Result();
+        List<String> bridgeDirection = List.of("U", "U", "U", "D", "D", "D");
+        Bridge bridge = Bridge.from(bridgeDirection);
+
+        //when
+        for (String playerDirection : playerDirections) {
+            result.update(bridge, playerDirection);
+        }
+
+        //then
+        assertThat(result.toStrings().get(0)).isEqualTo(answer.get(0));
+        assertThat(result.toStrings().get(1)).isEqualTo(answer.get(1));
     }
 }
