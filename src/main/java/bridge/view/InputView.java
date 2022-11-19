@@ -43,6 +43,10 @@ public class InputView {
     }
 
     private void validateGameCommandInput(String gameCommandInput) {
+        String match = "^[R|Q]$";
+        if (!gameCommandInput.matches(match)) {
+            throw new IllegalStateException(WRONG_RETRY_INPUT_ERROR);
+        }
     }
 
     private String input() {
