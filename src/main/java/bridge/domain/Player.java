@@ -12,11 +12,6 @@ public class Player {
     
     private List<String> moveHistory = new ArrayList<>();
 
-    public void move(String direction) {
-        moveHistory.add(direction);
-    }
-    
-
     public int getTryCount() {
         return tryCount;
     }
@@ -25,26 +20,8 @@ public class Player {
         return Collections.unmodifiableList(moveHistory);
     }
 
-
-
-    public boolean isFailToMove() {
-        for (int i=0; i<moveHistory.size(); i++) {
-            String direction = moveHistory.get(i);
-            String answer = bridge.get(i);
-            if (!direction.equals(answer)) {
-                return true;
-            }
-        }
-        return false;
-    }
-    public boolean isCompleteToMove() {
-        if (moveHistory.size() != bridge.size()) {
-            return false;
-        }
-        if (isFailToMove()) {
-            return false;
-        }
-        return true;
+    public void move(String direction) {
+        moveHistory.add(direction);
     }
 
     public void initForRetry() {

@@ -8,9 +8,6 @@ import bridge.dto.ResultDto;
 
 import java.util.List;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
 
     private final BridgeMaker bridgeMaker;
@@ -44,16 +41,18 @@ public class BridgeGame {
     }
 
     public boolean isPlayerFailToMove() {
-        return player.isFailToMove();
+        List<String> moveHistory = player.getMoveHistory();
+        return bridgeJudge.isFailToMove(moveHistory);
     }
 
     public boolean isPlayerCompleteToMove() {
-        return player.isCompleteToMove();
+        List<String> moveHistory = player.getMoveHistory();
+        return bridgeJudge.isCompleteToMove(moveHistory);
     }
 
     public ResultDto getResultDto() {
         int tryCount = player.getTryCount();
-        boolean isComplete = player.isCompleteToMove();
+        boolean isComplete = isPlayerCompleteToMove();
         CurrentPositionDto currentPosition = getCurrentPosition();
         return new ResultDto(tryCount, isComplete, currentPosition);
     }
