@@ -8,11 +8,8 @@ import java.util.List;
 public class BridgeGame {
     private StringBuilder sb1 = new StringBuilder();
     private StringBuilder sb2 = new StringBuilder();
-
-    public void startGame() {
-        printGameStartMessage();
-        System.out.println();
-    }
+    private int level = 0;
+    private int tryCount = 1;
 
     public List<String> makeBridge(int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -30,10 +27,6 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public String move(List<String> bridge, String moving, int level) {
-
-    }
-
-    public String makeMap(List<String> bridge, String moving, int level) {
         isStart(level);
         isUp(bridge, moving, level);
         isDown(bridge, moving, level);
@@ -43,6 +36,15 @@ public class BridgeGame {
         String result2 = sb2.substring(0,sb2.length()-1) + "]";
 
         return result+System.getProperty("line.separator")+result2;
+    }
+
+    public void isSuccess(List<String> bridge, int level) {
+        if (level == bridge.size()) {
+            System.out.println("게임 성공 여부: 성공");
+        }
+        if (level != bridge.size()) {
+            System.out.println("게임 성공 여부: 실패");
+        }
     }
 
     public StringBuilder getSb1() {
@@ -118,7 +120,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(int level) {
+    public void printBeforeMap(int level) {
         if (level == 0) {
             sb1.delete(0, sb1.length());
             sb2.delete(0, sb2.length());
@@ -130,6 +132,15 @@ public class BridgeGame {
             System.out.println(sb1.substring(0,sb1.length()-1)+"]");
             System.out.println(sb2.substring(0,sb2.length()-1)+"]");
         }
+    }
+
+    public String makeCurrentResultMap(int bridgeSize) {
+        String result = result = sb1 + "\n" + sb2;
+        if (level != bridgeSize) {
+            result = sb1.deleteCharAt(sb1.length()-1)+"]" + "\n" + sb2.deleteCharAt(sb2.length()-1)+"]";
+        }
+
+        return result;
     }
 
     public void printGameStartMessage() {
@@ -148,4 +159,23 @@ public class BridgeGame {
     public void printRequestRetryMessage() {
         System.out.println(GameMessage.REQUEST_RETRY_MESSAGE.getMessage());
     }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getTryCount() {
+        return tryCount;
+    }
+
+    public void nextLevel() {
+        this.level = level+1;
+    }
+
+    public void goToBackStage() {
+        this.tryCount = tryCount+1;
+        this.level = level-1;
+    }
+
+
 }
