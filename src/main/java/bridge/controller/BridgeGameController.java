@@ -26,7 +26,7 @@ public class BridgeGameController {
         numberOfAttempts++;
 
         for(int i=0; i<bridgeGame.getBridgeSize(); i++) {
-            bridgeGame.move(i, InputView.readMoving());
+            bridgeGame.move(i, InputException.validateMovingValue(InputView.readMoving()));
             OutputView.printMap(bridgeGame.getBridge(), bridgeGame.getResult());
             if(!bridgeGame.success()) break;
         }

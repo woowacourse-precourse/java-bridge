@@ -20,4 +20,15 @@ public class InputException {
             throw new IllegalArgumentException(ExceptionPhrases.BridgeSizeRange.getPhrase());
         }
     }
+
+    public static String validateMovingValue(String input) {
+        accurateValue(input);
+        return input;
+    }
+
+    private static void accurateValue(String value) {
+        if(!(value.equals("U") || value.equals("D"))) {
+            throw new IllegalArgumentException(ExceptionPhrases.MovingValue.getPhrase());
+        }
+    }
 }
