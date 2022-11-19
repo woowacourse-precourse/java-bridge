@@ -1,12 +1,12 @@
-package bridge.utils.enums;
+package bridge.domain.enums;
 
-public enum MovingResult {
-    CORRECT(" O "),
-    WRONG(" X ");
+public enum GameResult {
+    SUCCESS("성공"),
+    FAIL("실패");
 
     private final String result;
 
-    MovingResult(String result) {
+    GameResult(String result) {
         this.result = result;
     }
 
@@ -14,3 +14,4 @@ public enum MovingResult {
         return result;
     }
 }
+

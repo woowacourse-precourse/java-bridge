@@ -1,4 +1,4 @@
-package bridge.utils.enums;
+package bridge.domain.enums;
 
 public enum GameCommand {
     RETRY("R"),
