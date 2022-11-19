@@ -56,4 +56,9 @@ public class OutputBuild {
         String status = "[" + String.join("|", upDown) + "]\n";
         return status;
     }
+
+    public static String resolveClear(Boolean clear) {
+        if(clear) return "성공";
+        return "실패";
+    }
 }

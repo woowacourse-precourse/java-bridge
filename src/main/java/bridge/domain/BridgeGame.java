@@ -45,4 +45,8 @@ public class BridgeGame {
     public List<String> getMap() {
         return user.getPosition();
     }
+
+    public Integer getRetry(){
+        return user.getRetry();
+    }
 }
