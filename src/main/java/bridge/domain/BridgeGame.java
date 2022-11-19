@@ -58,7 +58,7 @@ public class BridgeGame {
                             }
                             return Answer.NONE;
                         }
-                ).limit(step)
+                ).limit(step + 1)
                 .collect(Collectors.toUnmodifiableList());
     }
 
