@@ -30,6 +30,6 @@ public class BridgeGame {
     }
 
     public Boolean isEnd() {
-        return null;
+        return bridge.getSize() == user.getStep();
     }
 }
