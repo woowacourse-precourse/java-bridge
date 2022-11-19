@@ -14,12 +14,12 @@ import java.util.Map;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final Referee referee;
+    private final Bridge bridge;
     private List<String> current;
     private int attempt;
 
-    public BridgeGame(Referee referee, List<String> current, int attempt) {
-        this.referee = referee;
+    public BridgeGame(Bridge bridge, List<String> current, int attempt) {
+        this.bridge = bridge;
         this.current = current;
         this.attempt = attempt;
     }
@@ -44,16 +44,16 @@ public class BridgeGame {
     }
 
     public boolean isEnd() {
-        return referee.isSizeEquals(current.size());
+        return bridge.isSizeEquals(current.size());
     }
 
     public boolean isStepSuccess() {
         int index = current.size() - 1;
-        return referee.isStepSuccess(current.get(index), index);
+        return bridge.isStepSuccess(current.get(index), index);
     }
 
     public boolean isSuccess() {
-        return referee.compareBridgeWith(current);
+        return bridge.compareBridgeWith(current);
     }
 
     public int getAttempt() {
@@ -80,7 +80,7 @@ public class BridgeGame {
 
     private String setSymbol(int index) {
         String symbol = "X";
-        if (referee.isStepSuccess(current.get(index), index)) {
+        if (bridge.isStepSuccess(current.get(index), index)) {
             symbol = "O";
         }
         return symbol;

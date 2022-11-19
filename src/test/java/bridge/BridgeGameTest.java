@@ -9,15 +9,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class BridgeGameTest {
-    private List<String> bridge;
-    private Referee referee;
+    private List<String> blocks;
+    private Bridge bridge;
     private BridgeGame bridgeGame;
 
     @BeforeEach
     void init() {
-        bridge = new ArrayList<>(Arrays.asList("U", "D", "D", "D"));
-        referee = new Referee(bridge);
-        bridgeGame = new BridgeGame(referee, new ArrayList<>(), 1);
+        blocks = new ArrayList<>(Arrays.asList("U", "D", "D", "D"));
+        bridge = new Bridge(blocks);
+        bridgeGame = new BridgeGame(bridge, new ArrayList<>(), 1);
     }
 
     @Test

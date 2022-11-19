@@ -14,30 +14,30 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class RefereeTest {
-    private static Referee referee;
+class BridgeTest {
+    private static Bridge bridge;
 
     @BeforeAll
     static void init() {
-        referee = new Referee(new ArrayList<>(Arrays.asList("U", "U", "U")));
+        bridge = new Bridge(new ArrayList<>(Arrays.asList("U", "U", "U")));
     }
 
     @Test
     void checkBridgeSizeEquals() {
-        referee.isSizeEquals(3);
+        bridge.isSizeEquals(3);
     }
 
     @ParameterizedTest
     @CsvSource(value = {"U,0,true","D,0,false"},delimiter = ',')
     void checkStepSuccess(String currentItem,int index,boolean expected) {
-        assertThat(referee.isStepSuccess(currentItem, index))
+        assertThat(bridge.isStepSuccess(currentItem, index))
                 .isEqualTo(expected);
     }
 
     @ParameterizedTest
     @MethodSource("generateBridgeExpectedData")
     void checkCompareBridgeWith(List<String> bridge, boolean expected) {
-        assertThat(referee.compareBridgeWith(bridge))
+        assertThat(BridgeTest.bridge.compareBridgeWith(bridge))
                 .isEqualTo(expected);
     }
 
