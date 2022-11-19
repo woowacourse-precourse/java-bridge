@@ -2,26 +2,29 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 public class InputView {
+
+    Exception exception = new Exception();
 
     public int readBridgeSize() {
         String bridgeSize;
         bridgeSize = Console.readLine();
+        exception.validateIfInputIsNumber(bridgeSize);
+        exception.validateInputNumberRange(bridgeSize);
         return Integer.parseInt(bridgeSize);
     }
 
     public String readMoving() {
         String moving;
         moving = Console.readLine();
+        exception.validateMovingInput(moving);
         return moving;
     }
 
     public String readGameCommand() {
         String gameCommand;
         gameCommand = Console.readLine();
+        exception.validateRetryInput(gameCommand);
         return gameCommand;
     }
 }
