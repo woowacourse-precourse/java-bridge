@@ -93,7 +93,7 @@ public class InputView {
                 throw new IllegalArgumentException();
             }
         }catch (IllegalArgumentException e){
-            System.out.println(ErrorUi.ERRORMOVE.getMsg());
+            System.out.println(ErrorUi.ERRORRETRY.getMsg());
             readGameCommand();
         }
     }
