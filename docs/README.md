@@ -31,7 +31,8 @@
 ### view
 
 1. InputView
-    - [ ]  다리 길이 입력 기능 → readBridgeSize
+    - [x]  다리 길이 입력 기능 → readBridgeSize
+        1. 반환 타입 int에서 String으로 변경
     - [ ]  이동할 칸 입력 기능 → readMoving
     - [ ]  게임 재시작 입력 기능 →readGameCommand
 2. OutputView
