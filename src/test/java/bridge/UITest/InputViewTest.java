@@ -7,7 +7,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mock;
 
@@ -54,18 +53,18 @@ public class InputViewTest {
 
         @DisplayName("U나 D중 하나의 값을 받는다.")
         @ParameterizedTest
-        @CsvSource({"U,1", "D,0"})
-        void wrightNextStepInput(String nextStep, int expected) {
+        @ValueSource(strings = {"U", "D"})
+        void wrightNextStepInput(String nextStep) {
             InputStream in = new ByteArrayInputStream(nextStep.getBytes());
             System.setIn(in);
-            assertThat(inputView.readMoving()).isEqualTo(expected);
+            assertThat(inputView.readMoving()).isEqualTo(nextStep);
         }
 
         @DisplayName("U나 D가 아닌 값을 받으면 예외 처리를 한다.")
         @ParameterizedTest
         @ValueSource(strings = {"q", "r", "", " ", "3"})
         void wrongNextStepInput(String wrongInput) {
-            assertThatThrownBy(() -> inputView.validateBridgeLength(wrongInput))
+            assertThatThrownBy(() -> inputView.validateNextStep(wrongInput))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(ERROR_MESSAGE);
         }
