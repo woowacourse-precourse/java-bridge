@@ -15,6 +15,14 @@ public class Comparator {
         this.location = 0;
     }
 
+    public void addTryCount() {
+        tryCount++;
+    }
+
+    public int getTryCount() {
+        return tryCount;
+    }
+
     public boolean isPassable(List<String> bridge) {
         return bridge.size() > location;
     }
@@ -30,4 +38,5 @@ public class Comparator {
     public List<String> getPassedBridge(List<String> bridge) {
         return bridge.subList(0, location);
     }
+
 }

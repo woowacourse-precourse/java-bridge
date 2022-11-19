@@ -26,6 +26,10 @@ public class OutputView {
         System.out.println(GET_USER_MOVE_DIRECTION.getMessage());
     }
 
+    public void printGetUserRetry() {
+        System.out.println(GET_USER_RETRY_CHOICE.getMessage());
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>

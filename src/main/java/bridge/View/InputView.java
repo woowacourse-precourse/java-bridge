@@ -50,7 +50,15 @@ public class InputView extends OutputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        // TODO: 사용자 입력 검증
-        return null;
+        printGetUserRetry();
+        String retryInput = Console.readLine();
+
+        try {
+            validate.checkGameCommandInput(retryInput);
+            return retryInput;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return readGameCommand();
+        }
     }
 }

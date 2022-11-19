@@ -31,6 +31,17 @@ public class Bridge extends BridgeMaker {
         return passResult;
     }
 
+    public boolean retryPassBridge() {
+        String retryInput = userView.readGameCommand();
+
+        if (retryInput.equals("R")) {
+            comparator.addTryCount();
+            return true;
+        }
+
+        return false;
+    }
+
     public boolean isNotArrived() {
         return comparator.isPassable(bridge);
     }

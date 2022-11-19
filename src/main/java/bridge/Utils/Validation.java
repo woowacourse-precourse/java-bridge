@@ -24,11 +24,18 @@ public class Validation {
     }
 
     public void checkProperDirection(String direction) {
-        if(direction.equals("U") || direction.equals("D")) {
+        if (direction.equals("U") || direction.equals("D")) {
             return;
         }
 
         throw new IllegalArgumentException(ONLY_UD_INPUT_ALLOWED.getMessage());
+    }
+
+    public void checkGameCommandInput(String direction) {
+        if (direction.equals("R") || direction.equals("Q")) {
+            return;
+        }
+        throw new IllegalArgumentException(ONLY_RQ_INPUT_ALLOWED.getMessage());
     }
 
 }
