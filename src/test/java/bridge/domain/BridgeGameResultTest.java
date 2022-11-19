@@ -37,4 +37,12 @@ class BridgeGameResultTest {
         List<String> updatedResult = gameResult.getMoveState().getUpState();
         assertThat(updatedResult).hasSize(1);
     }
+
+    @DisplayName("게임 결과를 '성공'으로 세팅한다.")
+    @Test
+    void checkSetGameResult() {
+        gameResult.setSuccess();
+        String actual = gameResult.getGameResult();
+        assertThat(actual).isEqualTo("성공");
+    }
 }
