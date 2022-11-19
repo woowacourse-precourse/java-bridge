@@ -11,6 +11,9 @@ public class InputView {
     private static final String CHOOSE_MOVING_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String OUT_OF_RANGE_ERROR_MESSAGE = "[ERROR] 다리의 길이는 3 이상 20이하의 숫자여야 합니다.";
     private static final String NOT_NUMERIC_ERROR_MESSAGE = "[ERROR] 숫자만 입력해주세요.";
+    private static final String NOT_UP_OR_DOWN_ERROR_MESSAGE = "U 또는 D만 입력해주세요.";
+    private static final String UP = "U";
+    private static final String DOWN = "D";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -26,8 +29,13 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public String readMoving() throws IllegalArgumentException {
+        printChooseMoving();
+        String input = Console.readLine();
+        if (!(input.equals(UP) || input.equals(DOWN))) {
+            throw new IllegalArgumentException(NOT_UP_OR_DOWN_ERROR_MESSAGE);
+        }
+        return input;
     }
 
     /**
