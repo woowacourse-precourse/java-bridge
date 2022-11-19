@@ -33,18 +33,16 @@ public class Service {
         bridgeGame.createBridge(inputView.readBridgeSize());
     }
 
+    // 유저 키입력 리스트 초기화 기능
+    public void initBridgeUserKeyList() {
+        bridgeGame.initBridgeUserKeyList();
+    }
+
     // 다리를 건너는 기능
     public void move() {
-        bridgeGame.initBridgeUserKeyList();
-        do {
-            try {
-                outputView.printInputSpaceToMove();
-                Bridge bridge = bridgeGame.move(inputView.readMoving());
-                outputView.printBridge(bridge);
-            } catch (IllegalArgumentException error) {
-                outputView.printErrorMessage(error);
-            }
-        } while (!bridgeGame.isBridgeEnd());
+        outputView.printInputSpaceToMove();
+        Bridge bridge = bridgeGame.move(inputView.readMoving());
+        outputView.printBridge(bridge);
     }
 
     // 다시 게임을 시도할지 물어보는 기능
