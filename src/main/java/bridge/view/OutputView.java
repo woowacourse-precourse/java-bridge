@@ -4,8 +4,8 @@ package bridge.view;
 
 import static bridge.domain.command.MoveCommand.MOVE_TO_LOWER_BLOCK;
 import static bridge.domain.command.MoveCommand.MOVE_TO_UPPER_BLOCK;
-import bridge.domain.GameResult;
-import bridge.domain.MoveResult;
+import bridge.dto.GameResult;
+import bridge.dto.MoveResult;
 import java.util.ArrayList;
 import java.util.List;
 

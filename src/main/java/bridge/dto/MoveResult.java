@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.dto;
 
 import bridge.domain.command.Command;
 

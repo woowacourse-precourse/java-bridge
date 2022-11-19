@@ -4,6 +4,8 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.command.MoveCommand;
 import bridge.domain.command.RetryCommand;
+import bridge.dto.GameResult;
+import bridge.dto.MoveResult;
 import java.util.List;
 
 /**

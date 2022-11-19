@@ -2,8 +2,8 @@ package bridge;
 
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
-import bridge.domain.GameResult;
-import bridge.domain.MoveResult;
+import bridge.dto.GameResult;
+import bridge.dto.MoveResult;
 import bridge.view.InputView;
 import bridge.view.InputViewProxy;
 import bridge.view.OutputView;
