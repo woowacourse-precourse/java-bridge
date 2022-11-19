@@ -50,4 +50,26 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public List<List<String>> getRoundResult(){
+        List<List<String>> result = new ArrayList<>();
+        result.add(userBridge);
+        result.add(getBridgeLog());
+        return result;
+    }
+
+    private List<String> getBridgeLog(){
+        List<String> bridgeLog = new ArrayList<>();
+        for(int index=0; index<userBridge.size(); index++){
+            bridgeLog.add(getOXByUserMove(index));
+        }
+        return bridgeLog;
+    }
+
+    private String getOXByUserMove(int index){
+        if(systemBridge.get(index).equals(userBridge.get(index))){
+            return "O";
+        }
+        return "X";
+    }
 }
