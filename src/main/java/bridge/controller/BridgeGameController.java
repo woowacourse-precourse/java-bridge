@@ -35,7 +35,7 @@ public class BridgeGameController {
         boolean isPass = bridgeGame.move(movement);
         boolean isSuccess = bridgeGame.checkSuccess();
 
-        outputView.printMap();
+        outputView.printMap(bridgeGame);
 
         return isContinue(bridgeGame, isPass, isSuccess);
     }

@@ -59,4 +59,15 @@ public class BridgeGame {
         return false;
     }
 
+    public Bridge getBridge() {
+        return bridge;
+    }
+
+    public UserPath getUserPath() {
+        return userPath;
+    }
+
+    public int getUserPosition() {
+        return userPosition;
+    }
 }

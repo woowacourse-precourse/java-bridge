@@ -15,11 +15,7 @@ public class UserPath {
         userPath = new ArrayList<>();
     }
 
-    public boolean compare(Bridge bridge) {
-        for (int idx = 0; idx < userPath.size(); idx++) {
-            if (!bridge.compareWithPosition(idx, userPath.get(idx)))
-                return false;
-        }
-        return true;
+    public String find(int position) {
+        return userPath.get(position);
     }
 }
