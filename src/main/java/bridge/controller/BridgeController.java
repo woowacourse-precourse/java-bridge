@@ -47,14 +47,17 @@ public class BridgeController {
 
     private void failGame() {
         String inputRetry = inputView.readGameCommand();
-
-        while (bridgeService.retryJudge(inputRetry)) {
-            attempt++;
-            index = 0;
-            playGame();
+        if(bridgeService.retryJudge(inputRetry)) {
+            while (true) {
+                attempt++;
+                index = 0;
+                isMove = true;
+                playGame();
+            }
+        } else if (!bridgeService.retryJudge(inputRetry)) {
+            outputView.printResult(upAndDown.get(0), upAndDown.get(1));
+            outputView.printFailResult(attempt);
         }
-        outputView.printResult(upAndDown.get(0), upAndDown.get(1));
-        outputView.printFailResult(attempt);
     }
 
     private void successGame() {
