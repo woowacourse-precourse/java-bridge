@@ -1,4 +1,4 @@
-package view.validation.exception;
+package exception;
 
 import constants.BridgeConstant;
 import constants.CommandTable;
