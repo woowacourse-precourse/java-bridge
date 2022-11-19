@@ -1,5 +1,9 @@
 package bridge;
 
+import bridge.messages.ErrorMessage;
+import bridge.messages.Message;
+import bridge.view.InputView;
+
 public class Validator {
     private static final InputView inputView = new InputView();
 
@@ -42,7 +46,7 @@ public class Validator {
      */
     public static void validateInputDIRECTION(String inputDirection) {
         try {
-            if (!inputDirection.equals("U") && !inputDirection.equals("D")) {
+            if (!inputDirection.equals(Message.UP.getMessage()) && !inputDirection.equals(Message.Down.getMessage())) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
@@ -79,7 +83,7 @@ public class Validator {
      */
     public static void validateInputGameRestart(String inputRestart) {
         try {
-            if (!inputRestart.equals("R") && !inputRestart.equals("Q")) {
+            if (!inputRestart.equals(Message.RESTART.getMessage()) && !inputRestart.equals(Message.QUIT.getMessage())) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
