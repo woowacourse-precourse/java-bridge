@@ -1,6 +1,7 @@
 package bridge.domain.bridge;
 
 import bridge.value.BridgeCharacter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,5 +32,9 @@ public class Bridge {
             return false;
         }
         return bridge.get(index).equals(bridgeCharacter);
+    }
+
+    public List<BridgeCharacter> bridge() {
+        return new ArrayList<>(bridge);
     }
 }
