@@ -22,7 +22,7 @@ public class InputViewTest {
     InputView inputView = new InputView();
 
     @Nested
-    @DisplayName("다리 길이 입력값 테스트")
+    @DisplayName("다리 길이를 입력받을 때")
     class BridgeLengthInputTest {
 
         @Test
