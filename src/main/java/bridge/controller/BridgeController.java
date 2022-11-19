@@ -19,6 +19,10 @@ public class BridgeController {
 
     public void start() {
         createBridgeGame();
+        do {
+            playTurn();
+        } while (this.bridgeGame.isOnWay());
+        announceFinalResult();
     }
 
     private void createBridgeGame() {
@@ -27,4 +31,14 @@ public class BridgeController {
         List<String> bridge = bridgeMaker.makeBridge(inputSize);
         this.bridgeGame = new BridgeGame(bridge);
     }
+
+    private void playTurn() {
+        String bridgePicture = this.bridgeGame.move();
+        this.outputView.printMap(bridgePicture);
+        if (this.bridgeGame.isFail()) {
+            retryTurn();
+        }
+    }
+
+    private void
 }
