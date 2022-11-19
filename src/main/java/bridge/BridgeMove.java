@@ -6,8 +6,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public enum BridgeMove {
-    DOWN("D", 0),
-    UP("U", 1);
+    UP("U", 1),
+    DOWN("D", 0);
     
     private String direction;
     private Integer generateNumber;
@@ -53,5 +53,5 @@ public enum BridgeMove {
         return Arrays.stream(BridgeMove.values())
                 .filter(bridgeDirection -> bridgeDirection.generateNumber.equals(generateNumber))
                 .findAny();
-    }
+    }겨
 }
