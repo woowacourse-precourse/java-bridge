@@ -131,8 +131,8 @@ class OutputViewTest {
             String downBridge = PASS + NEXT + PASS;
 
             Assertions.assertThat(outputMessage.toString()).isEqualTo(
-                "[" + upBridge + "]\r\n" + "[" + downBridge + "]\r\n\r\n" + "게임 성공 여부: " + "실패\r\n"
-                    + "총 시도한 횟수: " + "1\r\n");
+                "최종 게임 결과\r\n" + "[" + upBridge + "]\r\n" + "[" + downBridge + "]\r\n\r\n"
+                    + "게임 성공 여부: " + "실패\r\n" + "총 시도한 횟수: " + "1\r\n");
         }
 
         @Test
@@ -156,8 +156,8 @@ class OutputViewTest {
             String downBridge = PASS + NEXT + SUCCESS + NEXT + SUCCESS;
 
             Assertions.assertThat(outputMessage.toString()).isEqualTo(
-                "[" + upBridge + "]\r\n" + "[" + downBridge + "]\r\n\r\n" + "게임 성공 여부: " + "성공\r\n"
-                    + "총 시도한 횟수: " + "1\r\n");
+                "최종 게임 결과\r\n" + "[" + upBridge + "]\r\n" + "[" + downBridge + "]\r\n\r\n"
+                    + "게임 성공 여부: " + "성공\r\n" + "총 시도한 횟수: " + "1\r\n");
         }
 
         @Test
@@ -186,8 +186,8 @@ class OutputViewTest {
             String downBridge = PASS + NEXT + SUCCESS + NEXT + SUCCESS;
 
             Assertions.assertThat(outputMessage.toString()).isEqualTo(
-                "[" + upBridge + "]\r\n" + "[" + downBridge + "]\r\n\r\n" + "게임 성공 여부: " + "성공\r\n"
-                    + "총 시도한 횟수: " + "2\r\n");
+                "최종 게임 결과\r\n" + "[" + upBridge + "]\r\n" + "[" + downBridge + "]\r\n\r\n"
+                    + "게임 성공 여부: " + "성공\r\n" + "총 시도한 횟수: " + "2\r\n");
         }
     }
 }
