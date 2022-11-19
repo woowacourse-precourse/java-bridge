@@ -1,6 +1,7 @@
 package bridge.model;
 
 import java.util.List;
+import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,12 +17,17 @@ class BridgeTest {
 
     @Test
     void 사용자_이동방향과_비교() {
-        Assertions.assertTrue(bridge.compareByIndex(1, "D"));
-        Assertions.assertFalse(bridge.compareByIndex(1, "U"));
+        Assertions.assertTrue(bridge.isSamePosition(1, "D"));
+        Assertions.assertFalse(bridge.isSamePosition(1, "U"));
     }
 
     @Test
     void 다리_길이_받아오기() {
         Assertions.assertEquals(3, bridge.getBridgeSize());
+    }
+
+    @Test
+    void 최종_성공_테스트() {
+        Assertions.assertTrue(bridge.survivedToTheLast(3));
     }
 }

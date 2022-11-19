@@ -27,14 +27,14 @@ public class BridgeGame {
         int index;
         for (index = 0; index < bridge.getBridgeSize(); index++) {
             String position = getUserSelection();
-            if (!bridge.compareByIndex(index, position)) {
+            if (!bridge.isSamePosition(index, position)) {
                 diagram.updateDiagrams(position, Status.DIE);
                 break;
             }
             diagram.updateDiagrams(position, Status.SURVIVE);
         }
 
-        if (index == bridge.getBridgeSize()) {
+        if (bridge.survivedToTheLast(index)) {
             finalResult.setSuccess();
         }
 
