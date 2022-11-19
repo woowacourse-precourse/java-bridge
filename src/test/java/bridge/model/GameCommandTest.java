@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class GameCommandTest { //6
+public class GameCommandTest {
 
     private static final String RETRY_COMMAND = "R";
     private static final String QUIT_COMMAND = "Q";

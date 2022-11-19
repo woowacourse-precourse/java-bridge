@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class DirectionTest { //1
+public class DirectionTest {
 
     private static final int RANDOM_LOWER_INCLUSIVE = 0;
     private static final int RANDOM_UPPER_INCLUSIVE = 1;
