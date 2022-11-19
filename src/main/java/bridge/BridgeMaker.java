@@ -32,11 +32,11 @@ public class BridgeMaker {
 
     private void addBridge(List<String> bridge, int randomNumber) {
         if (randomNumber == 1) {
-            bridge.add(UP);
+            bridge.add(UP.getMessage());
         }
 
         if (randomNumber == 0) {
-            bridge.add(DOWN);
+            bridge.add(DOWN.getMessage());
         }
     }
 }

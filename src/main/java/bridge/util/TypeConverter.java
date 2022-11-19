@@ -16,11 +16,11 @@ public class TypeConverter {
     }
 
     public static int blockToNumber(String movingBlock) {
-        if (Objects.equals(movingBlock, UP)) {
+        if (Objects.equals(movingBlock, UP.getMessage())) {
             return 0;
         }
 
-        if (Objects.equals(movingBlock, DOWN)) {
+        if (Objects.equals(movingBlock, DOWN.getMessage())) {
             return 1;
         }
 

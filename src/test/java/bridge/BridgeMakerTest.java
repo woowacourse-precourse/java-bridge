@@ -1,6 +1,5 @@
 package bridge;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,4 +20,5 @@ class BridgeMakerTest {
     void 랜덤한_숫자로_다리_생성() {
         assertEquals(bridgeMaker.makeBridge(16).size(), 16);
     }
+
 }

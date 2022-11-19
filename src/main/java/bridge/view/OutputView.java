@@ -5,8 +5,8 @@ import bridge.validate.ValidateInput;
 
 import java.util.Objects;
 
-import static bridge.util.Constants.ExceptionConstants.ERROR_TITLE;
 import static bridge.util.Constants.OutputViewConstants.*;
+import static bridge.util.ErrorCode.ERROR_TITLE;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -21,13 +21,13 @@ public class OutputView {
     }
 
     public static void printStartBridgeGame() {
-        System.out.println(START_BRIDGE_GAME);
+        System.out.println(START_BRIDGE_GAME.getMessage());
         OutputView.enter();
-        System.out.println(INPUT_BRIDGE_LENGTH);
+        System.out.println(INPUT_BRIDGE_LENGTH.getMessage());
     }
 
     public static String printSelectMovingBlock() {
-        System.out.println(INPUT_SELECT_MOVE_BLOCK);
+        System.out.println(INPUT_SELECT_MOVE_BLOCK.getMessage());
         String movingBlock = InputView.readMoving();
         ValidateInput.validateMovingBlock(movingBlock);
         return movingBlock;
@@ -39,8 +39,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printMap(boolean isSuccess, User user, int step) {
-        TOP_BRIDGE = new StringBuilder().append(BRIDGE_START);
-        BOTTOM_BRIDGE = new StringBuilder().append(BRIDGE_START);
+        TOP_BRIDGE = new StringBuilder().append(BRIDGE_START.getMessage());
+        BOTTOM_BRIDGE = new StringBuilder().append(BRIDGE_START.getMessage());
         printProcessResult(isSuccess, user, step);
     }
 
@@ -55,14 +55,14 @@ public class OutputView {
     }
 
     private static void appendByPastBlock(String block) {
-        if (Objects.equals(block, UP)) {
-            TOP_BRIDGE.append(ZERO_AND_STICK);
-            BOTTOM_BRIDGE.append(STICK);
+        if (Objects.equals(block, UP.getMessage())) {
+            TOP_BRIDGE.append(ZERO_AND_STICK.getMessage());
+            BOTTOM_BRIDGE.append(STICK.getMessage());
         }
 
-        if (Objects.equals(block, DOWN)) {
-            TOP_BRIDGE.append(STICK);
-            BOTTOM_BRIDGE.append(ZERO_AND_STICK);
+        if (Objects.equals(block, DOWN.getMessage())) {
+            TOP_BRIDGE.append(STICK.getMessage());
+            BOTTOM_BRIDGE.append(ZERO_AND_STICK.getMessage());
         }
     }
 
@@ -77,31 +77,31 @@ public class OutputView {
 
     private static void appendBySuccessCurrentBlock(User user) {
         if (user.currentBlock == 0) {
-            TOP_BRIDGE.append(ZERO);
-            BOTTOM_BRIDGE.append(EMPTY);
+            TOP_BRIDGE.append(ZERO.getMessage());
+            BOTTOM_BRIDGE.append(EMPTY.getMessage());
         }
 
         if (user.currentBlock == 1) {
-            TOP_BRIDGE.append(EMPTY);
-            BOTTOM_BRIDGE.append(ZERO);
+            TOP_BRIDGE.append(EMPTY.getMessage());
+            BOTTOM_BRIDGE.append(ZERO.getMessage());
         }
     }
 
     private static void appendByFailedCurrentBlock(User user) {
         if (user.currentBlock == 0) {
-            TOP_BRIDGE.append(X);
-            BOTTOM_BRIDGE.append(EMPTY);
+            TOP_BRIDGE.append(X.getMessage());
+            BOTTOM_BRIDGE.append(EMPTY.getMessage());
         }
 
         if (user.currentBlock == 1) {
-            TOP_BRIDGE.append(EMPTY);
-            BOTTOM_BRIDGE.append(X);
+            TOP_BRIDGE.append(EMPTY.getMessage());
+            BOTTOM_BRIDGE.append(X.getMessage());
         }
     }
 
     private static void finalPrintTask() {
-        TOP_BRIDGE.append(BRIDGE_END);
-        BOTTOM_BRIDGE.append(BRIDGE_END);
+        TOP_BRIDGE.append(BRIDGE_END.getMessage());
+        BOTTOM_BRIDGE.append(BRIDGE_END.getMessage());
         System.out.println(TOP_BRIDGE.toString());
         System.out.println(BOTTOM_BRIDGE.toString());
     }
@@ -118,20 +118,20 @@ public class OutputView {
 
     private static void printGameClearWhether(boolean isGameClear) {
         if (isGameClear) {
-            System.out.println(WHETHER_GAME_CLEAR + SUCCESS);
+            System.out.println(WHETHER_GAME_CLEAR.getMessage() + SUCCESS.getMessage());
         }
 
         if (!isGameClear) {
-            System.out.println(WHETHER_GAME_CLEAR + FAIL);
+            System.out.println(WHETHER_GAME_CLEAR.getMessage() + FAIL.getMessage());
         }
     }
 
     public static void printRetryCount(int retryCount) {
-        System.out.println(RETRY_COUNT + retryCount);
+        System.out.println(RETRY_COUNT.getMessage() + retryCount);
     }
 
     public static void printGameResult() {
-        System.out.println(GAME_RESULT);
+        System.out.println(GAME_RESULT.getMessage());
         printGameResultTask();
     }
 
@@ -141,6 +141,6 @@ public class OutputView {
     }
 
     public static void printError(String message) {
-        System.out.println(ERROR_TITLE + message);
+        System.out.println(ERROR_TITLE.getMessage() + message);
     }
 }

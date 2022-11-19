@@ -44,12 +44,12 @@ public class User {
     }
 
     public boolean ifUserInputQStopGameOrElseRestart(String restartGameWhether) {
-        if (Objects.equals(restartGameWhether, RESTART)) {
+        if (Objects.equals(restartGameWhether, RESTART.getMessage())) {
             retryCount++;
             return true;
         }
 
-        if (Objects.equals(restartGameWhether, QUIT)) {
+        if (Objects.equals(restartGameWhether, QUIT.getMessage())) {
             isRestartGame = true;
         }
         return false;
