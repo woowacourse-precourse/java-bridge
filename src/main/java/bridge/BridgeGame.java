@@ -9,11 +9,13 @@ public class BridgeGame {
     private List<String> bridge;
     private User user;
     private int attempt;
+    private boolean success;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
-        user = new User();
-        attempt = 1;
+        this.user = new User();
+        this.attempt = 1;
+        this.success = false;
     }
 
     /**
@@ -50,7 +52,13 @@ public class BridgeGame {
         plusAttempt();
     }
 
-    public void plusAttempt() {
+    private void plusAttempt() {
         attempt++;
+    }
+    public boolean isSuccess() {
+        return this.success;
+    }
+    public User getUser(){
+        return user;
     }
 }
