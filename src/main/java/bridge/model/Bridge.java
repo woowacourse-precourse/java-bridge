@@ -6,13 +6,20 @@ import bridge.BridgeRandomNumberGenerator;
 import java.util.List;
 
 public class Bridge {
-    private List<String> rounds;
+    private List<String> blocks;
     public Bridge(int size){
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        rounds = bridgeMaker.makeBridge(size);
+        blocks = bridgeMaker.makeBridge(size);
     }
 
-    public List<String> getRounds(){
-        return rounds;
+    public List<String> getBlocks(){
+        return blocks;
+    }
+
+    public boolean checkBlock(String answer, int round){
+        if(answer.equals(blocks.get(round))){
+            return true;
+        }
+        return false;
     }
 }
