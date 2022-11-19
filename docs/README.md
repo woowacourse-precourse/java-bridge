@@ -20,24 +20,20 @@
 
 - controller
     - BridgeController (추가)
-        - 다리를 만들고, 전체적인 게임의 흐름을 제어한다.
+        - 다리와 유저 만들고, 전체적인 게임의 흐름을 제어한다.
 
 - service
     - BridgeGame
-        - 다리의 이동과 게임 재시작 등을 담당해준다.
-    - BridgeCalculatorService (추가)
-        - 다리 이동시 실패 유무를 판단해준다.
+        - 다리의 이동 처리를 하고, 유저가 게임에서 틀린 경우 상태 처리를 담당한다.
     - InputService (추가)
-        - View를 호출해서 입력을 받고 리턴해준다.
+        - 질문을 출력하고, 유저로부터 입력을 받고 리턴해준다.
     - BridgeService
         - Bridge 도메인을 만들어주고 관리한다.
-    - UserService
-        - User 도메인을 만들어주고 관리한다.
 
 - domain
     - Bridge (추가)
         - 다리를 관리하는 도메인이다.
-        - 다리의 길이를 입력 받아서 List<Integer> 타입으로 다리의 길이를 각각 0, 1로 관리한다. (추후에 Enum으로 고민하기)
+        - 다리의 길이를 입력 받아서 List<String> 타입으로 ["U", "D"]의 값으로 다리를 관리하고, 다리 출력시 현재 자신의 위치를 나타낸다.
     - User (추가)
         - 게임 성공 여부를 관리한다.
         - 총 시도한 횟수를 관리한다.
@@ -55,7 +51,7 @@
     - BridgeRandomNumberGenerator
         - 0과 1을 랜덤하게 생성해준다. (다리의 값)
     - BridgeInputConverter (추가)
-        - 다리 생성 입력시 String값으로 들어온 입력을 int형으로 parsing 해준다.
+        - 다리 생성 입력시 String 값으로 들어온 입력을 int 타입으로 parsing 해준다.
 
 - exception
     - BridgeGameException (추가)
