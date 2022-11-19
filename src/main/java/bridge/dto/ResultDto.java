@@ -2,11 +2,11 @@ package bridge.dto;
 
 public class ResultDto {
 
-    private int tryCount;
+    private final int tryCount;
 
-    private boolean isComplete;
+    private final boolean isComplete;
 
-    private BridgeRouteDto bridgeRouteDto;
+    private final BridgeRouteDto bridgeRouteDto;
 
     public ResultDto(int tryCount, boolean isComplete, BridgeRouteDto bridgeRouteDto) {
         this.tryCount = tryCount;
