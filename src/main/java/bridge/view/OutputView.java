@@ -128,4 +128,14 @@ public class OutputView {
     public static void printRetryCount(int retryCount) {
         System.out.println(RETRY_COUNT + retryCount);
     }
+
+    public static void printGameResult() {
+        System.out.println(GAME_RESULT);
+        printGameResultTask();
+    }
+
+    private static void printGameResultTask() {
+        System.out.println(TOP_BRIDGE.toString());
+        System.out.println(BOTTOM_BRIDGE.toString());
+    }
 }
