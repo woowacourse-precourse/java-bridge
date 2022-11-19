@@ -23,7 +23,9 @@ public class InputView {
     public int readBridgeSize() {
         String bridgeLength = Console.readLine();
         try {
-            return parseIntOrThrowException(bridgeLength);
+            int parseInt = parseIntOrThrowException(bridgeLength);
+            validateBridgeSize(parseInt);
+            return parseInt;
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             return readBridgeSize();
@@ -77,6 +79,12 @@ public class InputView {
             return Integer.parseInt(input);
         } catch (NumberFormatException e){
             throw new IllegalArgumentException(ERROR_MSG + "숫자가 아닌 값은 입력받을 수 없습니다.");
+        }
+    }
+
+    private void validateBridgeSize(int size){
+        if (size < 3 || size > 20){
+            throw new IllegalArgumentException(ERROR_MSG + "다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
     }
 
