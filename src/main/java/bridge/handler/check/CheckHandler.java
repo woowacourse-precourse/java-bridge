@@ -51,7 +51,7 @@ public class CheckHandler {
 	}
 
 	private static boolean isCommand(String inputCommand, String command1, String command2) {
-		return !(inputCommand.equals(command1) || !inputCommand.equals(command2));
+		return !(inputCommand.equals(command1) || inputCommand.equals(command2));
 	}
 
 }
