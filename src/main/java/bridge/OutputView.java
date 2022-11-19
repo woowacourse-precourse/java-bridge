@@ -5,6 +5,15 @@ package bridge;
  */
 public class OutputView {
 
+    private static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
+
+    /**
+     * 게임 시작 문구를 출력한다.
+     */
+    public void printStart() {
+        System.out.println(START_MESSAGE);
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
