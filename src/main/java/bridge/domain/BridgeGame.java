@@ -13,9 +13,6 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private final static String SUCCESS = "성공";
-    private final static String FAIL = "실패";
-
     RealTimeBridge realTimeBridge = new RealTimeBridge();
     OutputView outputView = new OutputView();
     InputHandler inputHandler = new InputHandler();
@@ -23,10 +20,6 @@ public class BridgeGame {
     private int count = 0;
     boolean isAnswer = true;
     public String[][] realTimeMap = realTimeBridge.getMap();
-
-    public BridgeGame() {
-
-    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -96,12 +89,5 @@ public class BridgeGame {
     private void printRealTimeMap(String[][] realTimeMap, String userMove, String moveResult) {
         realTimeBridge.makeRealTimeBridge(userMove, moveResult);
         outputView.printMap(realTimeMap);
-    }
-
-    public String isSuccess(boolean flag) {
-        if (flag) {
-            return SUCCESS;
-        }
-        return FAIL;
     }
 }
