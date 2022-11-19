@@ -11,6 +11,6 @@ public class Bridge {
     }
 
     public Boolean canCross(Integer location, String direction) {
-        return null;
+        return directions.get(location).equals(direction);
     }
 }
