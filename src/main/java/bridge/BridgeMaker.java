@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -25,19 +26,14 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        String UP = "U";
-        String DOWN = "D";
 
         for (int i = 0; i < size; i++) {
-            int randomNumber = bridgeNumberGenerator.generate();
-
-            if (randomNumber == 1) {
-                bridge.add(UP);
-                continue;
-            }
-            bridge.add(DOWN);
+            bridge.add(Integer.toString(bridgeNumberGenerator.generate()));
         }
+        Collections.replaceAll(bridge, "1", "U");
+        Collections.replaceAll(bridge, "0", "D");
 
         return bridge;
     }
+
 }
