@@ -1,7 +1,9 @@
 package bridge;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 게임을 관리해주는 역할을 한다.
@@ -22,21 +24,36 @@ public class GameManager {
 
     public void start() {
         ouputView.printGameStart();
+        boolean activation = true;
         int bridgeSize = inputView.readBridgeSize();
         bridge = bridgeMaker.makeBridge(bridgeSize);
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        for (int round = 0; round < bridgeSize; round++) {
+        int round = 0;
+
+        while (activation) {
             String moving = inputView.readMoving();
             String[] result = bridgeGame.move(round, moving);
-            setGameResult(result);
+            addGameResult(result);
             ouputView.printMap(upResult, downResult);
+            round++;
+
+            if (Arrays.asList(result).contains(" X ")) {
+                activation = retry();
+                round = 0;
+            }
         }
+
     }
 
-    public void setGameResult(String[] result) {
+    public void addGameResult(String[] result) {
         upResult.add(result[1]);
         upResult.add("|");
         downResult.add(result[0]);
         downResult.add("|");
+    }
+
+    public boolean retry() {
+        String command = inputView.readGameCommand();
+        return Objects.equals(command, "R");
     }
 }
