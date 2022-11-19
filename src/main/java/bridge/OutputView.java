@@ -18,8 +18,23 @@ public class OutputView {
         cur = c;
         bridge = b;
     }
-    public void printMap(int last) {
-
+    public String selectLetter(String letter, int i, int last){
+        if(bridge.get(i).equals(letter)) {
+            if(i != cur) return "O";
+            if(last == 1) return "X";
+            return "O";
+        }
+        else return " ";
+    }
+    public void printMap(String letter, int last) {
+        System.out.print("[");
+        for(int i = 0; i < cur; i++){
+            System.out.print(" ");
+            System.out.print(selectLetter(letter,i, last));
+            System.out.print(" ");
+            if(i != cur - 1) System.out.print("|");
+        }
+        System.out.print("]");
     }
 
     /**
