@@ -12,6 +12,7 @@ public class BridgeGame {
 
     private Bridge bridge;
     private int position;
+    private int tryCount;
     private GameStatus gameStatus;
 
     public BridgeGame(Bridge bridge) {
@@ -20,6 +21,7 @@ public class BridgeGame {
     }
 
     private void init() {
+        tryCount = 1;
         position = 0;
         gameStatus = GameStatus.PLAYING;
     }
@@ -67,4 +69,7 @@ public class BridgeGame {
         return gameStatus;
     }
 
+    public int getTryCount() {
+        return tryCount;
+    }
 }
