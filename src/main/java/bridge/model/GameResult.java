@@ -5,10 +5,10 @@ public class GameResult {
 	private static final String FAIL = "실패";
 
 	private int numberOfAttempts;
-	private String gameResult;
+	private String result;
 
 	public GameResult() {
-		this.gameResult = SUCCESS;
+		this.result = SUCCESS;
 		this.numberOfAttempts = 0;
 	}
 
@@ -17,26 +17,26 @@ public class GameResult {
 	}
 
 	public void changeResultToSuccess() {
-		if (!gameResult.equals(SUCCESS)) {
-			gameResult = SUCCESS;
+		if (!result.equals(SUCCESS)) {
+			result = SUCCESS;
 		}
 	}
 
 	public void changeResultToFail() {
-		if (!gameResult.equals(FAIL)) {
-			gameResult = FAIL;
+		if (!result.equals(FAIL)) {
+			result = FAIL;
 		}
 	}
 
 	public boolean isGameLose() {
-		return gameResult.equals(FAIL);
+		return result.equals(FAIL);
 	}
 
 	public int getNumberOfAttempts() {
 		return numberOfAttempts;
 	}
 
-	public String getGameResult() {
-		return gameResult;
+	public String getResult() {
+		return result;
 	}
 }
