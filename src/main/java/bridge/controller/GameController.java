@@ -7,7 +7,7 @@ import bridge.domain.BridgeGame;
 import bridge.utils.InputHandler;
 import java.util.List;
 
-public class BridgeGameController {
+public class GameController {
 
     private final static String SUCCESS = "성공";
     private final static String FAIL = "실패";
