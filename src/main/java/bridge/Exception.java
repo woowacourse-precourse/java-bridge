@@ -8,4 +8,8 @@ public class Exception {
     public Boolean isRangeInThreeAndTwenty(int bridgeSize) {
         return bridgeSize < 3 || bridgeSize > 20;
     }
+
+    public Boolean isNumber(String bridgeSize) {
+        return bridgeSize.chars().allMatch(Character::isDigit);
+    }
 }
