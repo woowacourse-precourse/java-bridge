@@ -47,13 +47,13 @@ InputHandler
 InputView
 
  - [x] readBridgeSize
- - [ ] readMoving
- - [ ] readGameCommand
+ - [x] readMoving
+ - [x] readGameCommand
 
 OutputView
 
-	- [ ] printMap
-	- [ ] printResult
+	- [x] printMap
+	- [x] printResult
 
 ### Controller
 
@@ -93,14 +93,14 @@ BridgeGameController
 
 
 - [x] BridgeGame.move() 이동한다.
-	- [ ] OutputView.printMap()
-		- [ ] 이동한 칸을 건널 수 있다면 O로 표시한다. 건널 수 없다면 X로 표시한다.
-			- [ ] 이동할 수 있는 칸을 선택한 경우 O 표시
-			- [ ] 이동할 수 없는 칸을 선택한 경우 X 표시
-			- [ ] 선택하지 않은 칸은 공백 한 칸으로 표시
-			- [ ] 다리의 시작은 `[`, 다리의 끝은 `]`으로 표시
-			- [ ] 다리 칸의 구분은 ` | `(앞뒤 공백 포함) 문자열로 구분
-			- [ ] 현재까지 건넌 다리를 모두 출력
+	- [x] OutputView.printMap()
+		- [x] 이동한 칸을 건널 수 있다면 O로 표시한다. 건널 수 없다면 X로 표시한다.
+			- 이동할 수 있는 칸을 선택한 경우 O 표시
+			- 이동할 수 없는 칸을 선택한 경우 X 표시
+			- 선택하지 않은 칸은 공백 한 칸으로 표시
+			- 다리의 시작은 `[`, 다리의 끝은 `]`으로 표시
+			- 다리 칸의 구분은 ` | `(앞뒤 공백 포함) 문자열로 구분
+			- 현재까지 건넌 다리를 모두 출력
 
 
 
@@ -114,9 +114,9 @@ BridgeGameController
 
 - [x] 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때까지 시도한 횟수를 나타낸다.
 
-	- [ ] OutputView.printResult()
+	- [x] OutputView.printResult()
 
-	- [ ] ```
+	- [x] ```
 		최종 게임 결과
 		[ O | X ]
 		[   |   ]
