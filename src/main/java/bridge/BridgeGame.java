@@ -87,4 +87,11 @@ public class BridgeGame {
     public boolean getSuccess(){
         return success;
     }
+
+    public Map<String,List<String>> getResult(){
+        Map<String,List<String>> resultBridge = new HashMap<>();
+        resultBridge.put("up",upBridge);
+        resultBridge.put("down",downBridge);
+        return resultBridge;
+    }
 }
