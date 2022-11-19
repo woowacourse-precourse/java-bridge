@@ -24,4 +24,11 @@ class ResultTest {
         assertThat(result.getUp().get(1)).isEqualTo("X");
         assertThat(result.getDown().size()).isEqualTo(0);
     }
+
+    @DisplayName("시도 횟수 증가 확인")
+    @Test
+    void updateNumberOfTrial() {
+        result.updateNumberOfTrial();
+        assertThat(result.getNumberOfTrial()).isEqualTo(1);
+    }
 }
