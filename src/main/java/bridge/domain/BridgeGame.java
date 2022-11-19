@@ -51,13 +51,13 @@ public class BridgeGame {
         return bridgeGameStatus.canPlayGame();
     }
 
-    public String checkStatus(){
+    public String checkStatus() {
         return bridgeGameStatus.getStatusMessage();
     }
 
     public void updateGameStatus(String moveLocation) {
-        if (bridgeGameAnswer.isAnswer(moveLocation,bridgeGameHistory.getCurrentIndex())){
-            if (bridgeGameHistory.isEndGame()){
+        if (bridgeGameAnswer.isAnswer(moveLocation, bridgeGameHistory.getCurrentIndex())) {
+            if (bridgeGameHistory.isEndGame()) {
                 bridgeGameStatus.updateStatus(Status.SUCCESS);
                 return;
             }
@@ -65,5 +65,13 @@ public class BridgeGame {
             return;
         }
         bridgeGameStatus.updateStatus(Status.FAIL);
+    }
+
+    public String isSuccess() {
+        return bridgeGameStatus.getStatusMessage();
+    }
+
+    public int getTryCount() {
+        return bridgeGameStatus.getTryCount();
     }
 }
