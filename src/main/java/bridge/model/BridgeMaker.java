@@ -1,7 +1,7 @@
 package bridge.model;
 
 import bridge.BridgeNumberGenerator;
-import static bridge.util.convertData.mappingBridgeCellIntToString;
+import static bridge.util.ConvertData.mappingBridgeCellIntToString;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -2,7 +2,7 @@ package bridge.util;
 
 import static bridge.enums.ErrorMsg.*;
 
-public class convertData {
+public class ConvertData {
 
     public static String mappingBridgeCellIntToString(int number) {
         String value = new String();

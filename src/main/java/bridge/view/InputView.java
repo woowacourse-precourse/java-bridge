@@ -1,7 +1,7 @@
 package bridge.view;
 
 import static bridge.enums.InputMsg.*;
-import static bridge.util.convertData.convertStringIntoInt;
+import static bridge.util.ConvertData.convertStringIntoInt;
 
 import camp.nextstep.edu.missionutils.Console;
 

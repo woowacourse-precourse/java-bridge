@@ -70,7 +70,7 @@
 
 ### util
 
-1. convertData
+1. ConvertData
     - [x] 다리 칸 숫자에서 문자로 변환 기능 → mappingBridgeCellIntToString
     - [x] 입력 받은 문자를 정수로 변환 기능 → convertStringIntoInt
 
