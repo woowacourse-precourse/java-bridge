@@ -54,11 +54,24 @@ public class BridgeGame {
         }
         move();
         gameStatus = GameStatus.IN_PROGRESS;
+        checkGameSuccess();
     }
 
-    public boolean checkGameSuccess(){
+    private void checkGameSuccess(){
         if(round > bridge.getSize()){
             gameStatus = GameStatus.SUCCESS;
+        }
+    }
+
+    public boolean isGameFail(){
+        if(gameStatus == GameStatus.FAIL){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isGameSuccess(){
+        if(gameStatus == GameStatus.SUCCESS){
             return true;
         }
         return false;
