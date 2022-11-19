@@ -1,4 +1,6 @@
-package bridge;
+package bridge.view;
+
+import bridge.domain.BridgeLocation;
 
 import java.util.List;
 import java.util.StringJoiner;
