@@ -30,10 +30,10 @@ public class BridgeGame {
             Bridge moveResult = move(answerBridge, currentPosition);
             movedBridge.add(moveResult);
             outputController.printMap(movedBridge);
+            currentPosition++;
             if (isGameOver(moveResult)) {
                 return;
             }
-            currentPosition++;
         }
         outputController.printResult(movedBridge, GAME_WIN, tryCount);
     }
