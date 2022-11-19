@@ -95,9 +95,9 @@
     - 인스턴스 변경 X
     - 인자, 이름 반환 타입 변경 X
     
-- [ ] BridgeController
+- [x] BridgeController
   - View와 BridgeGame 클래스를 연결하는 역할
-  - [ ] 다리 생성, 움직이기, 재시작 여부를 요청하고 실제 View로 보여주는 기능
+  - [x] 다리 생성, 움직이기, 재시작 여부를 요청하고 실제 View로 보여주는 기능
 - BridgeRandomNumberGenerator
   - 인터페이스, 구현부 클래스 코드 변경 X
 
