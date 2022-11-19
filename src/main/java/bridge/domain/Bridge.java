@@ -17,6 +17,10 @@ public class Bridge {
         BridgeValidator.check(steps);
     }
 
+    public boolean canMove(int position, String moving) {
+        return steps.get(position).equals(moving);
+    }
+
     public int getSize() {
         return steps.size();
     }
