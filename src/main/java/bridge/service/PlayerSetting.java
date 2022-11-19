@@ -1,6 +1,6 @@
 package bridge.service;
 
-import bridge.Exception.InputException;
+import bridge.exception.InputException;
 import bridge.domain.Player;
 import bridge.dto.PlayerBridgeSizeDto;
 

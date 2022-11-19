@@ -1,7 +1,7 @@
-package bridge.Exception;
+package bridge.exception;
 
-import static bridge.Exception.ExceptionMessage.NOT_NUMBER;
-import static bridge.Exception.ExceptionMessage.NOT_RANGE;
+import static bridge.exception.ExceptionMessage.NOT_NUMBER;
+import static bridge.exception.ExceptionMessage.NOT_RANGE;
 
 public class InputException extends IllegalArgumentException {
     private static final int MAX_SIZE = 20;
