@@ -42,7 +42,7 @@
 ### controller
 
 1. GameController
-    - [ ]  게임 초기화 → initGame
+    - [x]  게임 초기화 → initGame
         1. 다리 길이 리턴
         2. 다리 생성
     - [ ]  게임 시작 → startGame
