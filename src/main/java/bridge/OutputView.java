@@ -11,6 +11,7 @@ public class OutputView {
     private static List<String> mapUp = new ArrayList<>(Arrays.asList(new String[]{"[ ", " ]"}));
     private static List<String> mapDown = new ArrayList<>(Arrays.asList(new String[]{"[ ", " ]"}));
     private static final String CONTOUR = " | ";
+    private static String str;
     String addOxContour;
     String emptyContour;
 
@@ -38,7 +39,7 @@ public class OutputView {
             mapDown.add(mapDown.size()-1,addOxContour);
         }
 
-        String str = String.join("", mapUp) + "\n" + String.join("", mapDown);
+        this.str = String.join("", mapUp) + "\n" + String.join("", mapDown);
 
         System.out.println(str);
     }
@@ -53,6 +54,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(int tryNumber, String failSuccess) {
+        System.out.println("최종 게임 결과");
+        System.out.println(this.str);
+
+        System.out.println("게임 성공 여부: "+failSuccess+"\n"
+                + "총 시도한 횟수: "+tryNumber);
+
     }
 }

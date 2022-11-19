@@ -11,6 +11,7 @@ public class BridgeGame {
     BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     OutputView outputView = new OutputView();
     boolean retryOrNot;
+    private String failSuccess;
 
 
     /**
@@ -24,10 +25,15 @@ public class BridgeGame {
         // 어디 건널지 입력 받기 (여기까지는 application에 만들어도 될듯?)
         // 맞는지 틀린지 확인
         this.retryOrNot = true;
+        int tryNumber = 0;
         while(retryOrNot){
             outputView.resetMap();
             bridgeMainGame(bridgeList,retryOrNot);
+            tryNumber++;
         }
+
+        outputView.printResult(tryNumber,failSuccess);
+
     }
 
 
@@ -45,12 +51,14 @@ public class BridgeGame {
                 this.retryOrNot = true;
                 if (order == bridgeList.size()-1){
                     this.retryOrNot = false;
+                    this.failSuccess = "성공";
                 }
                 continue;
             }
             String ox = "X";
             outputView.printMap(ox,order,upDownUserInput);
             this.retryOrNot = retry();
+            this.failSuccess = "실패";
             break;
         }
 
