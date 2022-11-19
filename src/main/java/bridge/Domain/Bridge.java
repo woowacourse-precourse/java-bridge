@@ -17,10 +17,10 @@ public class Bridge {
     }
 
     public boolean canCrossBridge(int distance, String position) {
-        return bridge.get(distance).equals(position); 
+        return bridge.get(distance).equals(position);
     }
 
     public boolean isBridgeEnd(int distance) {
-        return this.bridge.size() == distance;
+        return this.bridge.size() - 1 == distance;
     }
 }
