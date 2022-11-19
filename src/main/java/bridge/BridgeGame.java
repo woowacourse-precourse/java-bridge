@@ -12,11 +12,14 @@ public class BridgeGame {
     private final Bridge bridge;
     private final BridgeMaps maps;
     private int stage;
+    private boolean status;
+
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
         this.maps = new BridgeMaps();
         this.stage = 0;
+        this.status = true;
     }
 
     /**
@@ -25,9 +28,9 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(MoveMark mark) {
-        boolean move = bridge.canMove(stage, mark);
-        updateBridgeMaps(mark, move);
-        updateStage(move);
+        status = bridge.canMove(stage, mark);
+        updateBridgeMaps(mark, status);
+        updateStage(status);
     }
 
     private void updateBridgeMaps(MoveMark mark, boolean move) {
@@ -45,7 +48,11 @@ public class BridgeGame {
     }
 
     public boolean isContinue() {
-        return !bridge.isLast(stage);
+        return !bridge.isLast(stage) && isSuccess();
+    }
+
+    public boolean isSuccess() {
+        return status;
     }
 
     /**
@@ -55,5 +62,10 @@ public class BridgeGame {
      */
     public void retry() {
         maps.reset();
+        status = true;
+    }
+
+    public void quit() {
+        status = false;
     }
 }
