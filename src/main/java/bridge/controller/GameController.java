@@ -16,6 +16,13 @@ public class GameController {
         this.bridgeGame = initBridgeGame();
     }
 
+    public void play() {
+        do {
+            bridgeGame.move(getValidBridgeMove());
+            outputView.printMap(bridgeGame.resultOfMoving());
+        } while (bridgeGame.isEnd());
+    }
+
     private BridgeGame initBridgeGame() {
         outputView.printStart();
 
