@@ -9,14 +9,12 @@ public class InputView {
 
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
-        int bridgeLength = Integer.parseInt(Console.readLine());
-        return bridgeLength;
+        return Integer.parseInt(Console.readLine());
     }
 
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String move = Console.readLine();
-        return move;
+        return Console.readLine();
     }
 
     /**
