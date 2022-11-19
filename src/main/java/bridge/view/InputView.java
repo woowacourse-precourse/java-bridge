@@ -5,6 +5,10 @@ package bridge.view;
  */
 public class InputView {
 
+    public void printMessage(String message) {
+        System.out.println(message);
+    }
+
     /**
      * 다리의 길이를 입력받는다.
      */
