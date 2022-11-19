@@ -28,7 +28,7 @@ public class BridgeGame {
      */
     public boolean move(String moving) {
         boolean correct = false;
-        
+
         correct = isCorrect(moving);
         curStep++;
 
@@ -54,5 +54,9 @@ public class BridgeGame {
 
     public int getCurStep() {
         return curStep;
+    }
+
+    public boolean isFinished() {
+        return curStep == bridge.size();
     }
 }
