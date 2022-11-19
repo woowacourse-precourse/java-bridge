@@ -2,17 +2,17 @@ package bridge.Validator;
 
 public class InputValidator {
 
-    public static String checkBridgeSize(String size) {
-        try{
-            checkOnlyNumber(size);
-            checkBoundaryNumber(size);
-        }catch (IllegalArgumentException exception){
-            System.out.println(exception.getMessage());
-            System.out.println("다시 입력해주세요.");
-            return "error";
-        }
-        return size;
-    }
+//    public static String checkBridgeSize(String size) {
+//        try{
+//            checkOnlyNumber(size);
+//            checkBoundaryNumber(size);
+//        }catch (IllegalArgumentException exception){
+//            System.out.println(exception.getMessage());
+//            System.out.println("다시 입력해주세요.");
+//            return "error";
+//        }
+//        return size;
+//    }
 
     public static boolean checkBoundaryNumber(String size){
         Integer bridgeSize = Integer.parseInt(size);

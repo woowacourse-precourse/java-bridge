@@ -9,14 +9,15 @@ public class Bridge {
         this.bridgeStatus = bridgeStatus;
     }
 
-    public int getBridgeLength(){
+    public int getBridgeLength() {
         return bridgeStatus.size();
     }
 
-    public boolean canCross(Integer lastPosition, String moving) {
-        if(bridgeStatus.get(lastPosition).equals(moving)){
-            return true;
+    public String judgeMoving(String moving, int count) {
+        if (bridgeStatus.get(count).equals(moving)){
+            return "O";
         }
-        return false;
+        return "X";
+
     }
 }

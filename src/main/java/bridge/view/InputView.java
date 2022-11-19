@@ -13,8 +13,8 @@ public class InputView {
      */
     public static String readBridgeSize() {
         String size = Console.readLine();
-        String validSize = InputValidator.checkBridgeSize(size);
-        return validSize;
+//        String validSize = InputValidator.checkBridgeSize(size);
+        return size;
     }
 
     /**

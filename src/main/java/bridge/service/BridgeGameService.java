@@ -1,26 +1,19 @@
 package bridge.service;
 
+import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
+import bridge.domain.BridgeMaker;
 import bridge.domain.GameResult;
-import bridge.view.InputView;
 
 import java.util.ArrayList;
 
 public class BridgeGameService {
+    private static BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
-    public static Bridge initBridge() {
-        String bridgeSize;
-        do {
-            bridgeSize = InputView.readBridgeSize();
-        } while (bridgeSize == "error");
-        Bridge bridge = BridgeService.makeBridge(Integer.parseInt(bridgeSize));
+    public static Bridge initBridge(String size) {
+        Bridge bridge = bridgeMaker.makeBridge(Integer.parseInt(size));
         return bridge;
     }
-
-    public static GameResult initGameResult() {
-        return new GameResult(new ArrayList<>(), new ArrayList<>());
-    }
-
 
     public static int initTryCount() {
         return 1;

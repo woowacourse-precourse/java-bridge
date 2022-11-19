@@ -25,13 +25,13 @@ public class InputValidatorTest {
         assertThat(InputValidator.checkBoundaryNumber(input)).isFalse();
     }
 
-    @DisplayName("입력값이 유효범위숫자가 아닐 시 예외가 발생한다.")
-    @ParameterizedTest
-    @ValueSource(strings = {"123","2",""})
-    void inputBoundaryNumber(String input){
-        assertThatThrownBy(() -> InputValidator.checkBridgeSize(input))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
+//    @DisplayName("입력값이 유효범위숫자가 아닐 시 예외가 발생한다.")
+//    @ParameterizedTest
+//    @ValueSource(strings = {"123","2",""})
+//    void inputBoundaryNumber(String input){
+//        assertThatThrownBy(() -> InputValidator.checkBridgeSize(input))
+//                .isInstanceOf(IllegalArgumentException.class);
+//    }
 
     @DisplayName("입력값이 'U' 또는 'D'가 아닐 시 예외가 발생한다.")
     @ParameterizedTest
