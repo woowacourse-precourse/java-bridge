@@ -1,39 +1,29 @@
 package bridge.enums;
 
+import java.util.function.Function;
+import java.util.function.Supplier;
+
 public enum ControlKey {
-  UP("U", "위", 1){
-    public String getPair() {
-      return getKeyInKorean() + ": " + getKey();
-    }
-  },
-  DOWN("D", "아래", 0){
-    public String getPair() {
-      return getKeyInKorean() + ": " + getKey();
-    }
-  },
-  RETRY("R", "재시도"){
-    public String getPair() {
-      return getKeyInKorean() + ": " + getKey();
-    }
-  },
-  QUIT("Q", "종료"){
-    public String getPair() {
-      return getKeyInKorean() + ": " + getKey();
-    }
-  };
+  UP("U", "위", () -> "위: U", 1),
+  DOWN("D", "아래", () -> "아래: D", 0),
+  RETRY("R", "재시도", () -> "재시도: R"),
+  QUIT("Q", "종료", () -> "종료: Q");
 
   private String key;
   private String keyInKorean;
-  private int num;
+  private int bridgeNum;
+  private Supplier<String> getPair;
 
-  ControlKey(String key, String keyInKorean) {
+  ControlKey(String key, String keyInKorean, Supplier<String> getPair) {
     this.key = key;
     this.keyInKorean = keyInKorean;
+    this.getPair = getPair;
   }
-  ControlKey(String key, String keyInKorean, int num) {
+  ControlKey(String key, String keyInKorean, Supplier<String> getPair, int bridgeNum) {
     this.key = key;
     this.keyInKorean = keyInKorean;
-    this.num = num;
+    this.bridgeNum = bridgeNum;
+    this.getPair = getPair;
   }
 
   public String getKey() {
@@ -44,6 +34,8 @@ public enum ControlKey {
     return keyInKorean;
   }
 
-  public abstract String getPair();
+  public String getPair() {
+    return getPair.get();
+  }
 
 }
