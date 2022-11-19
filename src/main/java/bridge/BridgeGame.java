@@ -1,12 +1,11 @@
 package bridge;
 
 import java.util.List;
-import bridge.Map;
-import bridge.Util;
 
 public class BridgeGame {
 
     BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     OutputView outputView = new OutputView();
     InputView inputView = new InputView();
     Util util = new Util();
@@ -43,30 +42,35 @@ public class BridgeGame {
         return false;
     }
 
+    public boolean checkIfRetry(boolean isWin) {
+        boolean isContinue = true;
+        if (!isWin) {
+            isContinue = retry();
+        }
+        if (isWin||!isContinue) {
+            isContinue = false;
+        }
+        return isContinue;
+    }
+
     public void controller() {
         int attempts = 1;
-        int limitSize;
         boolean isContinue = true;
         boolean isWin;
-        List<String> crossable;
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        limitSize = util.determineBridgeSize();
-        crossable = bridgeMaker.makeBridge(limitSize);
+        int limitSize = util.determineBridgeSize();
+        List<String> crossable = bridgeMaker.makeBridge(limitSize);
         Map map = new Map(crossable);
 
         while (isContinue) {
             isWin = play(crossable, map);
-            if (!isWin) {
-                isContinue = retry();
+            isContinue = checkIfRetry(isWin);
+            if (!isContinue) {
+                outputView.printResult(map,isWin,attempts);
             }
-            if (isWin||!isContinue) {
-                    outputView.printTitle();
-                    outputView.printMap(map.getMapUpper(),map.getMapLower());
-                    outputView.printResult(isWin,attempts);
-                    return;
-                }
             attempts++;
-            }
         }
     }
+}
+
+
 
