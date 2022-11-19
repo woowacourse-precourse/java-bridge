@@ -10,29 +10,41 @@ public class Application {
     private static BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     private static BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 
-    public static void main(String[] args) {
-        // TODO: 프로그램 구현
-        BridgeGame bridgeGame = new BridgeGame();
-        // 게임을 시작하는 문구 출력
+    private static BridgeGame bridgeGame;
+
+    private static void startGame(){
         outputView.printStartGame();
+    }
 
-        // 다리 길이 입력 받는 안내 문구 출력
-        outputView.printInputBridgeLength();
+    private static int getBridgeSize() {
         int bridgeSize;
-
         // 다리길이 입력받기 + 예외 시 추가적으로 계속 입력
         while (true) {
             try {
                 bridgeSize = inputView.readBridgeSize();
-                break;
+                return bridgeSize;
             } catch (IllegalArgumentException e) {
-                System.out.println(e);
+                outputView.printErrorState(e);
             }
         }
-
-        // 다리 생성
+    }
+    private static void createBridge(int bridgeSize){
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         BridgeGame.setBridge(bridge);
+    }
+    private static void settingBridge() {
+        // 다리 길이 입력 받는 안내 문구 출력
+        outputView.printInputBridgeLength();
+        int bridgeSize = getBridgeSize();
+        // 다리 생성
+        createBridge(bridgeSize);
+    }
+    public static void main(String[] args) {
+        // TODO: 프로그램 구현
+        // 게임을 시작하는 문구 출력
+        startGame();
+        settingBridge();
+
 
         while(true){
             bridgeGame = new BridgeGame();
@@ -48,7 +60,7 @@ public class Application {
                         direction = inputView.readMoving();
                         break;
                     } catch (IllegalArgumentException e) {
-                        System.out.println(e);
+                        outputView.printErrorState(e);
                     }
                 }
                 boolean isCorrect = bridgeGame.move(direction);
@@ -61,7 +73,7 @@ public class Application {
                             command = inputView.readGameCommand();
                             break;
                         } catch (IllegalArgumentException e) {
-                            System.out.println(e);
+                            outputView.printErrorState(e);
                         }
                     }
                     if(command.equals(Command.QUIT)){
