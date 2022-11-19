@@ -28,9 +28,9 @@
   - bridgeStatus getter, setter 제공
   - bridgeStatus가 비어있는데 요청시 `IllegalStateException` 예외 발생
 
-- [ ] 움직임 명령(MovingCommand)
-  - [ ] UP("U"), DOWN("D") 목록을 가진다
-  - [ ] 입력 문자열이 U 또는 D임을 검증하고 변환하는 기능
+- [x] 움직임 명령(MovingCommand)
+  - [x] UP("U"), DOWN("D") 목록을 가진다
+  - [x] 입력 문자열이 U 또는 D임을 검증하고 변환하는 기능
 
 - [ ] 재시작 요청(RetryCommand)
   - [ ] Retry("R"), Quit("Q") 목록을 가진다
