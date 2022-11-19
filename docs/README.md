@@ -114,7 +114,7 @@ D
 
 ## BridgeMaker
 ### makeBridge
-- [ ] List<String> 타입의 변수를 선언
+- [x] List<String> 타입의 변수를 선언
 - [ ] 매개변수의 크기만큼 변수를 반복문을 작성
 - [ ] BridgeRandomNumberGenerator.generate 함수를 통해 0또는 1의 랜덤한 값을 받아온다
 - [ ] 0이면 D, 1이면 U를 리스트에 추가
