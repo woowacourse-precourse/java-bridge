@@ -53,6 +53,10 @@ public class Validation {
     }
 
     private void checkEmpty(String input) {
+        if (input == null) {
+            throw new IllegalArgumentException("[ERROR] null을 입력받았습니다.");
+        }
+
         if (input.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 입력값이 없습니다.");
         }
