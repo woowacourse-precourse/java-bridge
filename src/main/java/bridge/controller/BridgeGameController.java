@@ -66,7 +66,13 @@ public class BridgeGameController {
 
     private void crossBridgeUntilFinish(BridgeGame bridgeGame) {
         do {
-            다리건너기
-        } while (재시작종료여부가 재시작이라면);
+            crossBridge(bridgeGame);
+        } while (true);
+//        } while (재시작종료여부가 재시작이라면);
+    }
+
+    private void crossBridge(BridgeGame bridgeGame) {
+        outputView.printMovingInputRequest();
+        String spaceToMove = inputView.readMoving();
     }
 }

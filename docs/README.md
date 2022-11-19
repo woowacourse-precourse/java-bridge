@@ -23,7 +23,7 @@
 ### 2. 게임 진행하기 → BridgeGameController.crossBridgeUntilFinish
 #### 1) 다리 건너기 → BridgeGameController.crossBridge
 - [ ✅ ] 이동할 칸 입력요청문구를 출력한다 → OutputView.printMovingInputRequest
-- [  ] 이동할 칸을 입력받는다 → InputView.readMoving
+- [ ✅ ] 이동할 칸을 입력받는다 → InputView.readMoving
 - [  ] 이동한 칸에 대한 성공여부를 확인한다 Bridge.confirmMoving
 - [  ] 이 과정들에서 `IllegalArgument`오류가 나면 다시 입력요청문구 출력단계로 돌아간다
 - [  ] 이동한 지점까지의 다리상태를 출력한다 → OutputView.printMap
