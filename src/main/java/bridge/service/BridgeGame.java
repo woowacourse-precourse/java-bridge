@@ -38,10 +38,9 @@ public class BridgeGame {
     }
 
     public CurrentPositionDto getCurrentPosition() {
-        List<String> bridge = player.getBridge();
+        List<String> bridge = bridgeJudge.getBridge();
         List<String> moveHistory = player.getMoveHistory();
-        CurrentPositionDto currentPositionDto = new CurrentPositionDto(bridge, moveHistory);
-        return currentPositionDto;
+        return new CurrentPositionDto(bridge, moveHistory);
     }
 
     public boolean isPlayerFailToMove() {

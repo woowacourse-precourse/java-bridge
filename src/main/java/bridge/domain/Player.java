@@ -10,16 +10,12 @@ public class Player {
 
     private int tryCount = 1;
     
-    private List<String> bridge;
     private List<String> moveHistory = new ArrayList<>();
 
     public void move(String direction) {
         moveHistory.add(direction);
     }
     
-    public void addBridge(List<String> bridge) {
-        this.bridge = bridge;
-    }
 
     public int getTryCount() {
         return tryCount;
@@ -29,9 +25,7 @@ public class Player {
         return Collections.unmodifiableList(moveHistory);
     }
 
-    public List<String> getBridge() {
-        return Collections.unmodifiableList(bridge);
-    }
+
 
     public boolean isFailToMove() {
         for (int i=0; i<moveHistory.size(); i++) {
