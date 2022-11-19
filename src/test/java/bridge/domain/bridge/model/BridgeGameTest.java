@@ -73,6 +73,7 @@ class BridgeGameTest {
         bridgeGame.retry();
         Assertions.assertThat(gamePlayer.getPosition()).isEqualTo(0);
         Assertions.assertThat(gamePlayer.getTrial()).isEqualTo(2);
+        Assertions.assertThat(gamePlayer.isFailGame()).isFalse();
     }
 
 

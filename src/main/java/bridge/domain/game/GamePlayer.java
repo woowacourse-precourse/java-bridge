@@ -28,6 +28,7 @@ public class GamePlayer {
     public synchronized void retryGame() {
         this.trial += 1;
         this.position = 0;
+        this.isFailGame = false;
     }
 
     public int getPosition() {
