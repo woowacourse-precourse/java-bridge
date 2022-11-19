@@ -1,8 +1,7 @@
 package bridge.model.dto;
 
-import java.util.List;
-
 public class GameResultDto {
+
     private MapDto mapData;
     private int totalTrials;
     private String totalResult;

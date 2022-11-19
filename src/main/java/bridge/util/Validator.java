@@ -1,6 +1,7 @@
 package bridge.util;
 
 public class Validator {
+
     private static final int VALID_RANGE_START = 3;
     private static final int VALID_RANGE_END = 20;
     private static final String MOVING_UP_COMMAND_LETTER = "U";

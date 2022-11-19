@@ -97,7 +97,6 @@ public class BridgeGame {
         return mapMaker.makeMap();
     }
 
-
     private String judgeAnotherDirection(String moving) {
         if (moving.equals(UPSIDE)) {
             return DOWNSIDE;

@@ -22,6 +22,7 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         Map<Integer, String> bridgeValue = Map.of(1, "U", 0, "D");
         List<String> bridge = new ArrayList<>();
+
         for (int i = 0; i < size; i++) {
             int randomNumber = bridgeNumberGenerator.generate();
             bridge.add(bridgeValue.get(randomNumber));

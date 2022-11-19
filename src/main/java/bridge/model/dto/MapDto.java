@@ -1,6 +1,7 @@
 package bridge.model.dto;
 
 public class MapDto {
+
     private String upsideMap;
     private String downsideMap;
 
