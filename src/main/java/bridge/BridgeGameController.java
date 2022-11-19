@@ -49,11 +49,10 @@ public class BridgeGameController {
 
         outputView.printMap(movingProgress);
 
-        return checkStepFail(movingProgress);
+        return checkStepFail(bridgeGame,direction);
     }
 
-    private boolean checkStepFail(List<String> movingProgress) {
-        return movingProgress.stream()
-                .anyMatch(progress -> progress.contains("X"));
+    private boolean checkStepFail(BridgeGame bridgeGame, String direction) {
+        return "X".equals(bridgeGame.getStepResult(direction));
     }
 }

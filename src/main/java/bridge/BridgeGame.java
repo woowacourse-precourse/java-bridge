@@ -34,6 +34,15 @@ public class BridgeGame {
 
         return List.of(upDirectionProgress, downDirectionProgress);
     }
+    
+    public String getStepResult(String direction) {
+        int currentStep = stepProgress.size();
+
+        if(direction.equals(this.scaffold.get(currentStep))){
+            return "O";
+        }
+        return "X";
+    }
 
     private void updateStepProgress(String direction) {
         String oppositeDirection = getOppositeDirection(direction);
@@ -48,15 +57,6 @@ public class BridgeGame {
             return DOWN.getInitial();
         }
         return UP.getInitial();
-    }
-
-    private String getStepResult(String direction) {
-        int currentStep = stepProgress.size();
-
-        if(direction.equals(this.scaffold.get(currentStep))){
-            return "O";
-        }
-        return "X";
     }
 
     private String getProgressFormOfDirection(String direction) {
