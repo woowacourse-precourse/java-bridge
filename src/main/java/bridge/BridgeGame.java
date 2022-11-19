@@ -43,7 +43,8 @@ public class BridgeGame {
     }
 
     public boolean lastMoveMatches() {
-        return playersMove.lastMoveEquals(bridge.getBridgeMove(moveCount-1));
+        int lastMoveIdx = moveCount - 1;
+        return isMatch(bridge.getBridgeMove(lastMoveIdx), playersMove.getPlayersMoveAtIdx(lastMoveIdx));
     }
 
     public boolean playerHasCrossed() {

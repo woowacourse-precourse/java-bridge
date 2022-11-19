@@ -22,8 +22,4 @@ public class PlayersMove {
     public String getPlayersMoveAtIdx(int idx) {
         return playersMove.get(idx);
     }
-
-    public boolean lastMoveEquals(String bridgeMove) {
-        return playersMove.get(playersMove.size() - 1).equals(bridgeMove);
-    }
 }
