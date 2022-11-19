@@ -34,7 +34,7 @@ public class BridgeGameController {
     }
 
     private void end() {
-        //최종 결과 출력
+        OutputView.printResult(bridgeGame.getBridge(), bridgeGame.getResult(), numberOfAttempts);
     }
 
     private void retry() {
