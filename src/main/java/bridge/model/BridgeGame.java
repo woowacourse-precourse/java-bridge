@@ -9,13 +9,12 @@ public class BridgeGame {
 
     private int position;
     private long playTime;
-    public List<String> gameMap;
+    private final List<String> gameMap;
 
     public BridgeGame(List<String> gameMap) {
         this.gameMap = gameMap;
         position = 0;
         playTime = 1;
-        System.out.println(gameMap);
     }
 
     /**
