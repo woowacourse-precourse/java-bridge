@@ -18,14 +18,15 @@ public class BridgeGame {
         this.bridge = bridge;
     }
 
-    public void move(String direction, String bridgeLocation) {
+    public Boolean move(String direction, String bridgeLocation) {
         if (direction.equals(bridgeLocation)) {
             coordinate++;
-            isDirectionCorrect = true;
+            return true;
         }
         if (!direction.equals(bridgeLocation)) {
-            isDirectionCorrect = false;
+            return false;
         }
+        return null;
     }
 
     /**
