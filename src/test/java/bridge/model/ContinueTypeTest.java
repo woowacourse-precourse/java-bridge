@@ -1,19 +1,17 @@
 package bridge.model;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class ContinueTypeTest {
 
-    @ValueSource(strings = {"R", "Q"})
+    @EnumSource(ContinueType.class)
     @ParameterizedTest
-    public void 텍스트로_계속할지_확인(String text) {
-        Assertions.assertThatCode(() ->
-                        ContinueType.searchContinueTypeToText(text))
-                .doesNotThrowAnyException();
+    public void 텍스트로_계속할지_확인(ContinueType continueType) {
+        Assertions.assertThat(ContinueType.searchContinueTypeToText(continueType.getText()))
+                .isEqualTo(continueType);
     }
 
     @ValueSource(strings = {"UU", "DD", "Z", "U", "K", "W"})
