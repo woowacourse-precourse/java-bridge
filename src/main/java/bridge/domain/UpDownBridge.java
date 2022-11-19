@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.Message;
+import bridge.messages.Message;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,20 +12,6 @@ public class UpDownBridge {
     public static void makeUpDownBridge(String inputDirection, String moveResult) {
         addUpBridge(inputDirection, moveResult);
         addDownBridge(inputDirection, moveResult);
-    }
-
-    private static void addUpBridge(String inputDirection, String moveResult) {
-        if (inputDirection.equals(Message.UP.getMessage())) {
-            upBridge.add(moveResult);
-            downBridge.add(Message.BLANK.getMessage());
-        }
-    }
-
-    private static void addDownBridge(String inputDirection, String moveResult) {
-        if (inputDirection.equals(Message.Down.getMessage())) {
-            upBridge.add(Message.BLANK.getMessage());
-            downBridge.add(moveResult);
-        }
     }
 
     public static void initBridge() {
@@ -43,5 +29,19 @@ public class UpDownBridge {
 
     public static List<String> getDownBridge() {
         return downBridge;
+    }
+
+    private static void addUpBridge(String inputDirection, String moveResult) {
+        if (inputDirection.equals(Message.UP.getMessage())) {
+            upBridge.add(moveResult);
+            downBridge.add(Message.BLANK.getMessage());
+        }
+    }
+
+    private static void addDownBridge(String inputDirection, String moveResult) {
+        if (inputDirection.equals(Message.Down.getMessage())) {
+            upBridge.add(Message.BLANK.getMessage());
+            downBridge.add(moveResult);
+        }
     }
 }
