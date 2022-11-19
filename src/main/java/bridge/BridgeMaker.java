@@ -22,14 +22,20 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        Map<Integer, String> crossBridge = new HashMap<>();
-        crossBridge.put(0,"D");
-        crossBridge.put(1, "U");
+        Map<Integer, String> crossBridge = initCrossBridge();
 
         for (int i = 0; i < size; i++) {
             int commandNumber = bridgeNumberGenerator.generate();
             bridge.add(crossBridge.get(commandNumber));
         }
         return bridge;
+    }
+
+    private Map<Integer, String> initCrossBridge() {
+        Map<Integer, String> crossBridge = new HashMap<>();
+        crossBridge.put(0,"D");
+        crossBridge.put(1, "U");
+
+        return crossBridge;
     }
 }
