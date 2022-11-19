@@ -4,19 +4,15 @@ import bridge.Controller.Service.BridgeGameService;
 import bridge.Controller.Service.EndGameService;
 import bridge.Controller.Service.StartGameService;
 import bridge.Domain.BridgeGame;
-import bridge.Domain.GameResult;
-import bridge.Domain.GameResultGenerator;
 
 public class GameController {
     private StartGameService startGameService;
     private BridgeGameService bridgeGameService;
     private EndGameService endGameService;
-    private GameResultGenerator gameResultGenerator;
     private BridgeGame bridgeGame;
 
     public GameController() {
-        this.gameResultGenerator = new GameResultGenerator();
-        this.startGameService = new StartGameService(gameResultGenerator);
+        this.startGameService = new StartGameService();
     }
 
     public void play() {

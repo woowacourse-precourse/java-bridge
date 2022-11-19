@@ -13,11 +13,11 @@ public class BridgeGame {
     private GameResult gameResult;
     private GameResultGenerator gameResultGenerator;
 
-    public BridgeGame(Bridge bridge, GameResultGenerator gameResultGenerator) {
+    public BridgeGame(Bridge bridge) {
         this.gameStartCount = 1;
         this.player = new Player();
         this.bridge = bridge;
-        this.gameResultGenerator = gameResultGenerator;
+        this.gameResultGenerator = new GameResultGenerator();
     }
 
     /**
