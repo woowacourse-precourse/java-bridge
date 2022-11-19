@@ -62,15 +62,15 @@ public class GameController {
      * @param player 게임 플래이어
      */
     private void playUntilEnd(Player player) {
-        boolean isSurvival = true;
+        boolean isSurvive = true;
         do {
-            isSurvival = playOneTurn(player);
+            isSurvive = playOneTurn(player);
             outputView.printMap(bridgeGame, player);
-        } while (isContinueGame(player, isSurvival));
+        } while (isContinueGame(player, isSurvive));
     }
 
-    private boolean isContinueGame(Player player, boolean isSurvivalThisTurn) {
-        if (isSurvivalThisTurn) {
+    private boolean isContinueGame(Player player, boolean isSurviveThisTurn) {
+        if (isSurviveThisTurn) {
             return !bridgeGame.isWin(player);
         }
         return askForTryAgain();
