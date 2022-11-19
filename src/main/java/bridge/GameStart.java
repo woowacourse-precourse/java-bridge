@@ -66,6 +66,7 @@ public class GameStart {
 
     private boolean readRestart() {
         String restart = inputView.readGameCommand();
+        outputView.printRestartMessage();
         boolean isSuccess = bridgeGame.retry(restart);
         return isSuccess;
     }
