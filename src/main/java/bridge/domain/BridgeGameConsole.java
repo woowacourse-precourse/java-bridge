@@ -37,7 +37,6 @@ public class BridgeGameConsole {
         boolean shouldCrossMore = true;
         while (shouldCrossMore) {
             boolean availableMovement = crossBlock(bridgeGame);
-
             if (!availableMovement) {
                 return retryCrossing(bridgeGame);
             }
