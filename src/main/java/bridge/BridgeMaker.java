@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.model.BridgePosition;
+
 import java.util.ArrayList;
 import java.util.List;
 
