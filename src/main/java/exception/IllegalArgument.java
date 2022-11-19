@@ -22,7 +22,7 @@ public enum IllegalArgument {
         return message;
     }
 
-    public static void handleException(String message) {
+    public static void handleException(String message) throws IllegalArgumentException {
         throw new IllegalArgumentException(message);
     }
 }
