@@ -1,5 +1,7 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -28,6 +30,17 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    public int getValidBridgeSize() {
+        try {
+            String input = Console.readLine();
+            validateBridgeSize(input);
+            return Integer.parseInt(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getValidBridgeSize();
+        }
     }
 
     public void validateBridgeSize(String input) throws IllegalArgumentException {
