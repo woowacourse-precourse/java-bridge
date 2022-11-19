@@ -3,6 +3,7 @@ package bridge.domain;
 public class User {
     private int tryCount = 1;
     private boolean isSuccess;
+    private boolean gameOver;
 
     public int getTryCount() {
         return tryCount;
@@ -17,5 +18,9 @@ public class User {
 
     public boolean isSuccessComplete(){
         return isSuccess;
+    }
+
+    public void setGameOver(){
+        gameOver = true;
     }
 }
