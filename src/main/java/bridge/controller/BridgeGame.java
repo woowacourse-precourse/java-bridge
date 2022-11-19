@@ -3,9 +3,7 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.Judge;
-import bridge.model.BridgeSize;
-import bridge.model.MoveResult;
-import bridge.model.Moving;
+import bridge.model.*;
 import bridge.view.Input;
 import bridge.view.Output;
 
@@ -34,17 +32,28 @@ public class BridgeGame {
         BridgeSize bridgeSize = input.readBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = bridgeMaker.makeBridge(bridgeSize.getBridgeSize());
-        moveAndAddToUserBridge();
+        GameResult gameResult;
+        GameCommand gameCommand = null;
+        do {
+            userBridge = new ArrayList<>();
+            gameResult = moveAndPrintResult();
+            if (gameResult == GameResult.LOSE) {
+                gameCommand = input.readGameCommand();
+            }
+        } while (!(gameResult == GameResult.WIN || gameCommand == GameCommand.QUIT));
+
 
     }
 
 
-    private void moveAndAddToUserBridge() {
+    private GameResult moveAndPrintResult() {
         MoveResult moveResult;
         do {
             moveResult = move();
             printMapResult();
         } while (moveResult == MoveResult.CORRECT && userBridge.size() != bridge.size());
+        if (moveResult == MoveResult.CORRECT) return GameResult.WIN;
+        return GameResult.LOSE;
     }
 
     /**

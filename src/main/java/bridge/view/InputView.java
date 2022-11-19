@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.model.BridgeSize;
+import bridge.model.GameCommand;
 import bridge.model.Moving;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -10,6 +11,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView implements Input {
 
     String moveError = "[ERROR] 이동할 칸은 U나 D로만 입력해주세요.";
+    String gameCommandError = "[ERROR] 이동할 칸은 U나 D로만 입력해주세요.";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -52,7 +54,21 @@ public class InputView implements Input {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public GameCommand readGameCommand() {
+        while (true) {
+            try {
+                return getGameCommand();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private GameCommand getGameCommand() {
+        System.out.println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String inputMoving = Console.readLine();
+        if (GameCommand.RE_GAME.getValue().equals(inputMoving)) return GameCommand.RE_GAME;
+        if (GameCommand.QUIT.getValue().equals(inputMoving)) return GameCommand.QUIT;
+        throw new IllegalArgumentException(gameCommandError);
     }
 }
