@@ -11,7 +11,11 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        int len = Integer.parseInt(readLine());
+        int len = -1;
+        String s = readLine();
+        String sizerror = sizerror(s);
+        if(sizerror.equals("OKEY")) len = Integer.parseInt(s);
+        if(!sizerror.equals("OKEY")) System.out.println(sizerror);
         return len;
     }
 
@@ -20,6 +24,7 @@ public class InputView {
      */
     public String readMoving() {
         String move = readLine();
+        moveError(move);
         return move;
     }
 
@@ -28,6 +33,21 @@ public class InputView {
      */
     public String readGameCommand() {
         String startOrExit = readLine();
+        commandError(startOrExit);
         return startOrExit;
+    }
+
+    public String sizerror(String size) {
+        boolean matches = size.matches("[+-]?\\d*(\\.\\d+)?");
+        if (!matches) return "[ERROR]";
+        return "OKEY";
+    }
+
+    public void moveError(String move) {
+        if(!(move.equals("U") || move.equals("D"))) System.out.println("[ERROR]");
+    }
+
+    public void commandError(String command) {
+        if(!(command.equals("Q") || command.equals("U"))) System.out.println("[ERROR]");
     }
 }

@@ -56,6 +56,7 @@ public class Application {
     public static void 기능_테스트() {
         int retrySelect, decision = -1;
         randomBridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        if(randomBridge.size() == 0) return;
         while (true) { // 게임 반복
             decision = bridgeGame.move(randomBridge);
             if(decision != -1) break; // 게임 정답이 맞음
