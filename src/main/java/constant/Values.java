@@ -1,17 +1,18 @@
 package constant;
 
+import java.util.Arrays;
+
 public class Values {
     public enum BridgeCase {
-        POSITIVE(1, "U", "성공"),
-        NEGATIVE(0, "D", "실패");
+        POSITIVE(1, "U"),
+        NEGATIVE(0, "D");
         private int flag;
         private String value;
         private String message;
 
-        private BridgeCase(int flag, String value, String message) {
+        private BridgeCase(int flag, String value) {
             this.flag = flag;
             this.value = value;
-            this.message = message;
         }
 
         public String getValue() {
@@ -26,6 +27,38 @@ public class Values {
             return message;
         }
 
+    }
+    public enum MoveCase {
+        UP_UP("U","U","O"," "),
+        UP_DOWN("U","D","X"," "),
+        DOWN_DOWN("D","D","O"," "),
+        DOWN_UP("D","U","X"," "),
+        EMPTY(" "," "," "," ");
+        private String value;
+        private String move;
+        private String result;
+        private String current;
+
+        private MoveCase(String value,String move,String result,String current) {
+            this.value = value;
+            this.move = move;
+            this.result = result;
+            this.current = current;
+        }
+
+        public static MoveCase findByValueAndMove(String value, String move) {
+            return Arrays.stream(MoveCase.values())
+                    .filter(moveCase -> moveCase.getValue().equals(value)&moveCase.getMove().equals(move))
+                    .findAny().orElse(EMPTY);
+        }
+
+        public String getMove() {
+            return move;
+        }
+
+        public String getValue() {
+            return value;
+        }
     }
 
     public enum Message {
