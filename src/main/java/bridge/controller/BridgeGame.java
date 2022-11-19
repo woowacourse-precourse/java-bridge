@@ -67,10 +67,7 @@ public class BridgeGame {
     }
 
     private boolean reachFinalLine(Player player, Bridge bridge) {
-        int positionX = player.getXPosition();
-        int bridgeLength = bridge.getBridge()[0].length;
-
-        return positionX == bridgeLength - 1;
+        return player.getXPosition() == bridge.getBridge()[0].length - 1;
     }
 
     private boolean moveSuccess(Player player, Bridge bridge) {
@@ -107,7 +104,7 @@ public class BridgeGame {
         boolean continueCode = inputView.readGameCommand();
         if (continueCode) {
             player.initializePosition();
-            player.setTryCount();
+            player.addTryCount();
             bridgeMap.initializeBridges();
             return;
         }

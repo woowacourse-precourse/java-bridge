@@ -32,7 +32,7 @@ public class Player {
         return tryCount;
     }
 
-    public void setTryCount() {
+    public void addTryCount() {
         this.tryCount += 1;
     }
 
