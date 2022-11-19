@@ -16,7 +16,6 @@ public class BridgeGame {
 
     public BridgeGame() {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridgeGameHistory = new BridgeGameHistory();
         bridgeGameStatus = new BridgeGameStatus();
     }
 
@@ -40,6 +39,7 @@ public class BridgeGame {
     }
 
     public void createBridge(int size) {
+        bridgeGameHistory = new BridgeGameHistory(size);
         bridgeGameAnswer = new BridgeGameAnswer(bridgeMaker.makeBridge(size));
     }
 
@@ -47,12 +47,20 @@ public class BridgeGame {
         return bridgeGameAnswer.getResultByHistory(bridgeGameHistory.getBridgeHistory());
     }
 
-    public boolean checkGameStatus() {
+    public boolean canPlay() {
         return bridgeGameStatus.canPlayGame();
+    }
+
+    public String checkStatus(){
+        return bridgeGameStatus.getStatusMessage();
     }
 
     public void updateGameStatus(String moveLocation) {
         if (bridgeGameAnswer.isAnswer(moveLocation,bridgeGameHistory.getCurrentIndex())){
+            if (bridgeGameHistory.isEndGame()){
+                bridgeGameStatus.updateStatus(Status.SUCCESS);
+                return;
+            }
             bridgeGameStatus.updateStatus(Status.START);
             return;
         }
