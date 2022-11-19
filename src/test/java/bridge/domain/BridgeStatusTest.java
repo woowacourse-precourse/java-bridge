@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -39,5 +40,34 @@ class BridgeStatusTest {
         }).isInstanceOf(IllegalStateException.class);
     }
 
+    @DisplayName("게임 상태가 성공인 경우 재시작 요청 여부는 true")
+    @Test
+    void returnTrueWhenGameStatusIsSuccess() {
+        // given
+        List<String> bridge = List.of("U", "D", "U");
+        BridgeStatus bridgeStatus = BridgeStatus.createBridgeStatus(bridge);
 
+        // when
+        bridgeStatus.addUserMovingCommand(MovingCommand.UP);
+        bridgeStatus.addUserMovingCommand(MovingCommand.DOWN);
+        bridgeStatus.addUserMovingCommand(MovingCommand.UP);
+
+        // expect
+        assertThat(bridgeStatus.needCallRetryGame()).isEqualTo(true);
+    }
+
+    @DisplayName("게임 상태가 성공인 경우 재시작 요청 여부는 true")
+    @Test
+    void returnTrueWhenGameStatusIsFail() {
+        // given
+        List<String> bridge = List.of("U", "D", "U");
+        BridgeStatus bridgeStatus = BridgeStatus.createBridgeStatus(bridge);
+
+        // when
+        bridgeStatus.addUserMovingCommand(MovingCommand.UP);
+        bridgeStatus.addUserMovingCommand(MovingCommand.UP);
+
+        // expect
+        assertThat(bridgeStatus.needCallRetryGame()).isEqualTo(true);
+    }
 }
