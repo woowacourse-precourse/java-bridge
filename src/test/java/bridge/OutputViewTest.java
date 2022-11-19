@@ -15,20 +15,16 @@ class OutputViewTest {
     @Test
     void printMap() {
         String result = "[ O | X ]\n[   |   ]";
-        assertThat(outputView.printMap(List.of(BridgeLocation.UP_TRUE, BridgeLocation.UP_FALSE)))
-                .isEqualTo(result);
+        assertThat(outputView.printMap(List.of(BridgeLocation.UP_TRUE, BridgeLocation.UP_FALSE))).isEqualTo(result);
     }
 
     @DisplayName("게임의 최종 결과를 정해진 형식에 맞춰 출력")
     @Test
     void printResult() {
-        String result = "\n최종 게임 결과\n[ O |   |   ]\n[   | O | O ]" +
-                "\n\n게임 성공 여부: 성공\n총 시도한 횟수: 2";
+        String result = "\n최종 게임 결과\n[ O |   |   ]\n[   | O | O ]\n\n게임 성공 여부: 성공\n총 시도한 횟수: 2";
         List<BridgeLocation> bridgeLocations = List
-                .of(BridgeLocation.UP_TRUE, BridgeLocation.DOWN_TRUE,BridgeLocation.DOWN_TRUE);
-        assertThat(outputView
-                .printResult(bridgeLocations,2))
-                .isEqualTo(result);
+                .of(BridgeLocation.UP_TRUE, BridgeLocation.DOWN_TRUE, BridgeLocation.DOWN_TRUE);
+        assertThat(outputView.printResult(bridgeLocations, 2)).isEqualTo(result);
     }
 
 }
