@@ -121,6 +121,9 @@ D
 - [x] 리스트를 리턴
 
 ## BridgeGame
+- [ ] upBridge라는 인스턴스 변수 생성
+- [ ] downBridge라는 인스턴스 변수 생성
+
 ### move
 - [ ] 결과 다리와 비교
 - [ ] 같으면 true, 틀리면 false를 리턴
