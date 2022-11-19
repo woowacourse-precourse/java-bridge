@@ -32,8 +32,8 @@ public class BridgeMaker {
         int bridgeSide = bridgeNumberGenerator.generate();
 
         if (bridgeSide == 0) {
-            return Direction.D.name();
+            return Direction.LOWER.toString();
         }
-        return Direction.U.name();
+        return Direction.UPPER.toString();
     }
 }
