@@ -2,6 +2,11 @@ package view;
 
 import static view.OutputViewConstants.*;
 
+import static view.InputViewConstants.MOVING_UP;
+
+import static model.BridgeGameConstants.MOVING_SUCCESS;
+import static model.BridgeGameConstants.MOVING_FAIL_WRONG_MOVING;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -17,6 +22,7 @@ public class OutputView {
 	 */
 	public void printMap(String moving, int movingResult) {
 		updateGameStateMapVerticalBar();
+		updateGameStateMapWhenMovingUp(moving, movingResult);
 		String currentGameStateMap = combineGameStateUpMapAndDownMap();
 	}
 
@@ -32,6 +38,17 @@ public class OutputView {
 				OUTPUT_TEXT_VERTICAL_BAR);
 		currentGameStarteDownMap = currentGameStarteDownMap.replace(OUTPUT_TEXT_CLOSE_SQUARE_BRACKETS,
 				OUTPUT_TEXT_VERTICAL_BAR);
+	}
+	
+	private void updateGameStateMapWhenMovingUp(String moving, int movingResult) {
+		if (moving.equals(MOVING_UP) && movingResult == MOVING_SUCCESS) {
+			currentGameStateUpMap += OUTPUT_TEXT_MOVING_SUCCESS;
+			currentGameStarteDownMap += OUTPUT_TEXT_DO_NOT_GO;
+		}
+		if (moving.equals(MOVING_UP) && movingResult == MOVING_FAIL_WRONG_MOVING) {
+			currentGameStateUpMap += OUTPUT_TEXT_MOVING_FAIL;
+			currentGameStarteDownMap += (OUTPUT_TEXT_DO_NOT_GO);
+		}
 	}
 	
 	/**
