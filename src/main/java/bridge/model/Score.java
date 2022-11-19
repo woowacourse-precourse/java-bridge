@@ -1,12 +1,12 @@
 package bridge.model;
 
+import static global.advice.InputValidator.RETRY_SIGNAL;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Score {
-
-    private static final String RETRY_SIGNAL = "R";
 
     private List<String> userStep;
     private int retryCount;
