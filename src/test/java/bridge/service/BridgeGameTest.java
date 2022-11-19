@@ -26,24 +26,23 @@ class BridgeGameTest {
         @DisplayName("호출할 때마다 다리를 한 칸씩 앞으로 이동하면서 입력값과 값을 비교한다.")
         void givenInputAndBridge_whenMoving_thenReturnsMatchingYesOrNo() {
             //given
-            Iterator<Step> bridgeIter = getBridgeIter();
+            List<Step> steps = Step.from(List.of("U", "D", "U", "U", "D"));
+            Iterator<Step> bridgeIter = getBridgeIter(steps);
 
             //when
-            Assertions.assertTrue(bridgeGame.move(Step.U, bridgeIter.next()).isCorrect());
-            Assertions.assertTrue(bridgeGame.move(Step.D, bridgeIter.next()).isCorrect());
-            Assertions.assertTrue(bridgeGame.move(Step.U, bridgeIter.next()).isCorrect());
-            Assertions.assertTrue(bridgeGame.move(Step.U, bridgeIter.next()).isCorrect());
-            Assertions.assertTrue(bridgeGame.move(Step.D, bridgeIter.next()).isCorrect());
+            for (Step step : steps) {
+                Assertions.assertTrue(bridgeGame.move(step, bridgeIter.next()).isCorrect());
+            }
         }
 
         @Test
         @DisplayName("입력값이 해당 칸의 정답과 일치하지 않으면 false 값을 리턴한다.")
         void givenWrongInputAndBridge_whenMoving_thenReturnsFalse() {
             //given
-            Iterator<Step> bridgeIter = getBridgeIter();
+            List<Step> steps = Step.from(List.of("D", "U", "U", "D"));
+            Iterator<Step> bridgeIter = getBridgeIter(steps);
 
             //when.isCorrect()
-            Assertions.assertTrue(bridgeGame.move(Step.U, bridgeIter.next()).isCorrect());
             Assertions.assertTrue(bridgeGame.move(Step.D, bridgeIter.next()).isCorrect());
             Assertions.assertTrue(bridgeGame.move(Step.U, bridgeIter.next()).isCorrect());
             Assertions.assertFalse(bridgeGame.move(Step.D, bridgeIter.next()).isCorrect());
@@ -51,8 +50,8 @@ class BridgeGameTest {
         }
     }
 
-    private static Iterator<Step> getBridgeIter() {
-        Bridge bridge = new Bridge(Step.from(List.of("U", "D", "U", "U", "D")));
+    private static Iterator<Step> getBridgeIter(List<Step> steps) {
+        Bridge bridge = new Bridge(steps);
         return bridge.toIterator();
     }
 }

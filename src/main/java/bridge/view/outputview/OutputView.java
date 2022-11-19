@@ -9,8 +9,8 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    public static final String GAME_STARTING_MESSAGE_FORMAT = "다리 건너기 게임을 시작합니다.%n%n";
-    public static final String ASKING_BRIDGE_SIZE_MESSAGE_FORMAT = "다리의 길이를 입력해주세요.%n";
+    public static final String GAME_STARTING_MESSAGE = String.format("다리 건너기 게임을 시작합니다.%n%n");
+    public static final String ASKING_BRIDGE_SIZE_MESSAGE = String.format("다리의 길이를 입력해주세요.%n");
     public static final String ASKING_NEXT_STEP_MESSAGE
             = String.format("이동할 칸을 선택해주세요. (위: %s, 아래: %s)%n", Step.U, Step.D);
     public static final String ERROR_MESSAGE_FORMAT = "[ERROR] %s%n";
@@ -18,8 +18,8 @@ public class OutputView {
     public static final String ASKING_GAME_COMMAND_MESSAGE
             = String.format("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)%n", Command.R, Command.Q);
     public static final String GAME_RESULT_PREFIX = "최종 게임 결과";
-    public static final String GAME_SUCCESS_MESSAGE_FORMAT = "게임 성공 여부: 성공%n";
-    public static final String GAME_FAILURE_MESSAGE_FORMAT = "게임 성공 여부: 실패%n";
+    public static final String GAME_SUCCESS_MESSAGE = String.format("게임 성공 여부: 성공%n");
+    public static final String GAME_FAILURE_MESSAGE = String.format("게임 성공 여부: 실패%n");
 
     private final BridgeMessageMaker bridgeMessageMaker;
 
@@ -28,11 +28,11 @@ public class OutputView {
     }
 
     public void printGameStartMessage() {
-        System.out.printf(GAME_STARTING_MESSAGE_FORMAT);
+        System.out.print(GAME_STARTING_MESSAGE);
     }
 
     public void printAskingBridgeSizeMessage() {
-        System.out.printf(ASKING_BRIDGE_SIZE_MESSAGE_FORMAT);
+        System.out.print(ASKING_BRIDGE_SIZE_MESSAGE);
     }
 
     public void printAskingNextStepMessage() {
@@ -62,10 +62,10 @@ public class OutputView {
 
     private void printIsFinished(boolean isFinished) {
         if (isFinished) {
-            System.out.printf(GAME_SUCCESS_MESSAGE_FORMAT);
+            System.out.print(GAME_SUCCESS_MESSAGE);
         }
         if (!isFinished) {
-            System.out.printf(GAME_FAILURE_MESSAGE_FORMAT);
+            System.out.print(GAME_FAILURE_MESSAGE);
         }
     }
 

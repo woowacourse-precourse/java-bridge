@@ -3,9 +3,8 @@ package bridge.view;
 import bridge.mock.MockInputView;
 import bridge.system.validation.InputToBridgeSizeValidator;
 import bridge.system.validation.InputToCommandValidator;
+import bridge.system.validation.InputToMovingPointValidator;
 import bridge.view.inputview.InputView;
-import bridge.vo.Bridge;
-import bridge.vo.Command;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -54,10 +53,7 @@ class InputViewTest {
             //when && then
             assertThatThrownBy(inputView::readBridgeSize)
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(
-                            String.format(InputToBridgeSizeValidator.INVALID_NUMBER_RANGE_MESSAGE_FORMAT,
-                                    Bridge.BRIDGE_MIN_SIZE, Bridge.BRIDGE_MAX_SIZE)
-                    );
+                    .hasMessage(InputToBridgeSizeValidator.INVALID_NUMBER_RANGE_IN_BRIDGE_SIZE_MESSAGE);
         }
     }
 
@@ -87,7 +83,7 @@ class InputViewTest {
             //when && then
             assertThatThrownBy(inputView::readMoving)
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("이동할 칸으로는 대문자 U 또는 D 둘 중 하나만 입력하실 수 있습니다.");
+                    .hasMessage(InputToMovingPointValidator.INVALID_INPUT_VALUE_MESSAGE);
         }
     }
 
@@ -115,7 +111,7 @@ class InputViewTest {
             //when
             assertThatThrownBy(inputView::readGameCommand)
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(InputToCommandValidator.INVALID_INPUT_VALUE_MESSAGE, Command.R, Command.Q);
+                    .hasMessage(InputToCommandValidator.INVALID_INPUT_VALUE_MESSAGE);
         }
     }
 }

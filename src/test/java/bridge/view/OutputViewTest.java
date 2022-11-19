@@ -8,11 +8,13 @@ import bridge.vo.StepResult;
 import bridge.vo.TryCount;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -42,7 +44,7 @@ class OutputViewTest {
 
             //then
             assertThat(captor.toString())
-                    .isEqualTo(String.format(OutputView.GAME_STARTING_MESSAGE_FORMAT));
+                    .isEqualTo(OutputView.GAME_STARTING_MESSAGE);
         }
     }
 
@@ -57,7 +59,7 @@ class OutputViewTest {
 
             //then
             assertThat(captor.toString())
-                    .isEqualTo(String.format(OutputView.ASKING_BRIDGE_SIZE_MESSAGE_FORMAT));
+                    .isEqualTo(OutputView.ASKING_BRIDGE_SIZE_MESSAGE);
         }
     }
 
@@ -131,9 +133,9 @@ class OutputViewTest {
         }
 
         @ParameterizedTest(name = "입력값 -> isFinished: {0}")
-        @CsvSource(value = {"true:성공", "false:실패"}, delimiter = ':')
+        @MethodSource("bridge.view.OutputViewTest#sourceOfIsFinishedAndMessage")
         @DisplayName("게임 성공 여부를 출력한다.")
-        void givenGameResult_whenPrintingResult_thenPrintsGamePassingMessage(boolean isFinished, String description) {
+        void givenGameResult_whenPrintingResult_thenPrintsGamePassingMessage(boolean isFinished, String message) {
             //given
             GameResult gameResult = getGameResult();
 
@@ -141,8 +143,7 @@ class OutputViewTest {
             outputView.printResult(gameResult, isFinished);
 
             //then
-            assertThat(captor.toString())
-                    .contains(String.format("게임 성공 여부: %s", description));
+            assertThat(captor.toString()).contains(message);
         }
 
         @Test
@@ -156,7 +157,7 @@ class OutputViewTest {
 
             //then
             assertThat(captor.toString())
-                    .contains("총 시도한 횟수: 2");
+                    .contains(String.format(OutputView.TRY_COUNT_MESSAGE_FORMAT, 2));
         }
 
         private GameResult getGameResult() {
@@ -173,6 +174,13 @@ class OutputViewTest {
         }
     }
 
+    private static Stream<Arguments> sourceOfIsFinishedAndMessage() {
+        return Stream.of(
+                Arguments.of(true, OutputView.GAME_SUCCESS_MESSAGE),
+                Arguments.of(false, OutputView.GAME_FAILURE_MESSAGE)
+        );
+    }
+
     @Nested
     @DisplayName("예외 발생시 [ERROR]로 시작하는 메시지를 출력하는 printErrorMessage 메서드")
     class PrintErrorMessageTest {
@@ -180,14 +188,15 @@ class OutputViewTest {
         @DisplayName("예외에서 메시지를 뽑은 후 [ERROR] 로 시작하는 메시지 포맷에 담아 출력한다.")
         void givenException_whenPrintingErrorMessage_thenPrintMessage() {
             //given
-            IllegalArgumentException exception = new IllegalArgumentException("테스트 예외입니다.");
+            String exceptionMessage = "테스트 예외입니다.";
+            IllegalArgumentException exception = new IllegalArgumentException(exceptionMessage);
 
             //when
             outputView.printErrorMessage(exception);
 
             //then
             assertThat(captor.toString())
-                    .isEqualTo("[ERROR] 테스트 예외입니다." + System.lineSeparator());
+                    .isEqualTo(String.format(OutputView.ERROR_MESSAGE_FORMAT, exceptionMessage));
         }
     }
 }
