@@ -1,7 +1,6 @@
 package bridge.domain.game;
 
 import bridge.domain.bridge.Square;
-import bridge.domain.game.BridgeResult;
 import bridge.domain.move.MoveResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -27,7 +26,9 @@ class BridgeResultTest {
     @DisplayName("위쪽 다리의 결과만 가져온다.")
     @Test
     void getUpBridge() {
-        List<String> upBridgeResult = bridgeResult.getUpBridgeResult();
+        List<String> upBridgeResult = bridgeResult
+                .toDto()
+                .getUpResult();
 
         assertThat(upBridgeResult.get(0)).isEqualTo(MoveResult.SUCCESS.symbol());
         assertThat(upBridgeResult.get(1)).isEqualTo(MoveResult.SUCCESS.symbol());
@@ -37,7 +38,9 @@ class BridgeResultTest {
     @DisplayName("아래쪽 다리의 결과만 가져온다.")
     @Test
     void getDownBridge() {
-        List<String> downBridgeResult = bridgeResult.getDownBridgeResult();
+        List<String> downBridgeResult = bridgeResult
+                .toDto()
+                .getDownResult();
 
         assertThat(downBridgeResult.get(0)).isEqualTo(MoveResult.NOTHING.symbol());
         assertThat(downBridgeResult.get(1)).isEqualTo(MoveResult.NOTHING.symbol());

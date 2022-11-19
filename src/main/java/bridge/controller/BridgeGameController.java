@@ -8,6 +8,7 @@ import bridge.domain.bridge.Square;
 import bridge.domain.game.BridgeGame;
 import bridge.domain.game.BridgeResult;
 import bridge.domain.game.Command;
+import bridge.dto.BridgeResultDto;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -19,6 +20,8 @@ public class BridgeGameController {
     private final OutputView outputView = new OutputView();
 
     private final BridgeGame bridgeGame;
+
+    private BridgeResult bridgeResult;
 
     public BridgeGameController(BridgeGame bridgeGame) {
         this.bridgeGame = bridgeGame;
@@ -32,6 +35,7 @@ public class BridgeGameController {
         BridgeMaker bridgeMaker = new BridgeMaker(generator);
         List<String> tempBridge = bridgeMaker.makeBridge(bridgeSize.getSize());
         Bridge bridge = Bridge.valueOf(tempBridge);
+        bridgeResult = new BridgeResult();
 
         while (bridgeGame.inProgress()) {
             String move = inputView.readMoving();
@@ -40,23 +44,20 @@ public class BridgeGameController {
             int position = bridgeGame.getPosition();
             boolean result = bridge.canMoveForward(userMove, position);
 
-            BridgeResult bridgeResult = new BridgeResult();
             bridgeResult.updateResult(userMove, result);
+            BridgeResultDto bridgeResultDto = bridgeResult.toDto();
 
-            List<String> upBridgeResult = bridgeResult.getUpBridgeResult();
-            List<String> downBridgeResult = bridgeResult.getDownBridgeResult();
-
-            outputView.printMap(upBridgeResult, downBridgeResult);
+            outputView.printMap(bridgeResultDto);
 
             if (result) {
-                bridgeGame.move();
+                bridgeGame.move(bridgeSize.getSize());
             } else {
                 Command command = new Command(inputView.readGameCommand());
                 isExitSetGameStatus(command);
                 isRetryInitializeGame(command);
             }
 
-            if (bridgeGame.isGameSuccess()) {
+            if (bridgeGame.isGameSuccess(bridgeSize.getSize())) {
                 bridgeGame.exit();
             }
         }
@@ -71,6 +72,7 @@ public class BridgeGameController {
     private void isRetryInitializeGame(Command command) {
         if (command.isRetryCommand()) {
             bridgeGame.retry();
+            bridgeResult = new BridgeResult();
         }
     }
 }
