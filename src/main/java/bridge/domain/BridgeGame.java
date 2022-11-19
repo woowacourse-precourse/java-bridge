@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bridge.BridgeRandomNumberGenerator;
-import bridge.util.BridgeNumberGenerator;
-import bridge.view.InputView;
-import bridge.view.OutputView;
-import bridge.domain.BridgeMaker;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -93,5 +89,4 @@ public class BridgeGame {
         }
         return quitCommand;
     }
-
 }
