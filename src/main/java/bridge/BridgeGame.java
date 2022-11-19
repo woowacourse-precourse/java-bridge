@@ -28,7 +28,9 @@ public class BridgeGame {
      */
     public void move(String moveCommand) {
         currentBridge.move(moveCommand);
-
+    }
+    public void changeStatus(){
+        currentBridge.changeStatus(bridge);
     }
 
 
