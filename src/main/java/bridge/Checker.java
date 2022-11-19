@@ -2,6 +2,8 @@ package bridge;
 
 import static constant.Values.Message.*;
 
+import constant.Values.BridgeCase;
+
 public class Checker {
     public int checkValidate(String input) throws IllegalArgumentException {
         try {
@@ -43,5 +45,12 @@ public class Checker {
                     String.format(ERROR_INPUT_VALUE.getMessage(), move) + ERROR_MOVE.getMessage() + ERROR_RE_INPUT.getMessage());
         }
         return move;
+    }
+
+    public BridgeCase checkMoveSuccess(String move, String value) {
+        if(move.equals(value)){
+            return BridgeCase.POSITIVE;
+        }
+        return BridgeCase.NEGATIVE;
     }
 }
