@@ -45,4 +45,8 @@ public class PositionTable {
     public int hashCode() {
         return Objects.hash(positionTable);
     }
+
+    public List<Position> getTable() {
+        return positionTable;
+    }
 }

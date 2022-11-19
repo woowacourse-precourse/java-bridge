@@ -3,13 +3,20 @@ package bridge.domain;
 import java.util.Objects;
 
 public class Position {
-    private String position;
+    private final String position;
 
     private Position(String position) {
         this.position = position;
     }
     public static Position of(String position) {
         return new Position(position);
+    }
+
+    public boolean isUp() {
+        return position.equals("U");
+    }
+    public boolean isDown() {
+        return position.equals("D");
     }
 
     @Override

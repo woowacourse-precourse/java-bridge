@@ -42,4 +42,9 @@
 - readGameCommand()
 2. OutputView
 - printMap(UserPosition userPosition)
+  - draw(userTable, position -> position.isUp())
+  - draw(userTable, position -> position.isDown())
 - printResult(UserPosition userPosition)
+- draw(PositionTable userTable, Predicate<Position p)
+  - userTable을 바탕으로 Up 혹은 Down map을 그린다.
+  - Up 칸의 bridge를 그릴지, Down 칸의 bridge를 그릴지 p를 통해 판단한다.
