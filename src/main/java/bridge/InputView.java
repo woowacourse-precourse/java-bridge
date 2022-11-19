@@ -5,6 +5,10 @@ package bridge;
  */
 public class InputView {
 
+    private static final int MIN_BRIDGE_SIZE = 3;
+    private static final int MAX_BRIDGE_SIZE = 20;
+    private static final String BRIDGE_SIZE_INPUT_ERROR_MESSAGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -24,5 +28,21 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    public void validateBridgeSize(String input) throws IllegalArgumentException {
+        checkParsableInt(input);
+        int bridgeSize = Integer.parseInt(input);
+        if (bridgeSize < MIN_BRIDGE_SIZE || bridgeSize > MAX_BRIDGE_SIZE) {
+            throw new IllegalArgumentException(BRIDGE_SIZE_INPUT_ERROR_MESSAGE);
+        }
+    }
+
+    private void checkParsableInt(String input) throws IllegalArgumentException {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(BRIDGE_SIZE_INPUT_ERROR_MESSAGE);
+        }
     }
 }
