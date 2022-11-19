@@ -9,6 +9,18 @@ import org.junit.jupiter.api.Test;
 
 class BridgeStatusTest {
 
+    @DisplayName("처음 생성시 시도 횟수는 1로 초기화 해야함")
+    @Test
+    void initOneWhenCreateBridgeStatus() {
+        // given
+        List<String> bridge = List.of("U","D","U");
+
+        // when
+        BridgeStatus bridgeStatus = BridgeStatus.createBridgeStatus(bridge);
+
+        // then
+        assertThat(bridgeStatus.getTryCount()).isEqualTo(1);
+    }
     @DisplayName("이미 성공한 경우에 입력 요청한 경우 예외 발생")
     @Test
     void throwExceptionWhenGameStatusIsSuccess() {
