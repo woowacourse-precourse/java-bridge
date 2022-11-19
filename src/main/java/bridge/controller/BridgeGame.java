@@ -15,8 +15,7 @@ public class BridgeGame {
 	private final GameService gameService;
 	private final OutputView outputView;
 
-	public BridgeGame(InputController inputController, GameService gameService, OutputView outputView
-	) {
+	public BridgeGame(InputController inputController, GameService gameService, OutputView outputView) {
 		this.inputController = inputController;
 		this.gameService = gameService;
 		this.outputView = outputView;
@@ -55,15 +54,23 @@ public class BridgeGame {
 		do {
 			String userLocation = inputController.getUserMoving();
 			if (!gameService.checkValidSpace(userLocation, currentLocation)) {
-				UserBridgeStatusDto userBridgeStatusDto = gameService.saveUserWrongSpace(userLocation);
-				outputView.printMap(userBridgeStatusDto);
+				printWrongUserMap(userLocation);
 				return OutputViewConst.FAIL;
 			}
-			gameService.saveUserCorrectSpace(userLocation);
-			outputView.printMap(gameService.getUserBridgeStatusDto());
+			printCorrectMap(userLocation);
 			currentLocation++;
 		} while (!currentLocation.equals(bridgeSize));
 		return OutputViewConst.SUCCESS;
+	}
+
+	private void printCorrectMap(String userLocation) {
+		UserBridgeStatusDto userBridgeStatusDto = gameService.saveUserCorrectSpace(userLocation);
+		outputView.printMap(userBridgeStatusDto);
+	}
+
+	private void printWrongUserMap(String userLocation) {
+		UserBridgeStatusDto userBridgeStatusDto = gameService.saveUserWrongSpace(userLocation);
+		outputView.printMap(userBridgeStatusDto);
 	}
 
 	/**
