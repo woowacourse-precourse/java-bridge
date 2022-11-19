@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+
     private static final int BRIDGE_SIZE_LOWER = 3;
     private static final int BRIDGE_SIZE_UPPER = 20;
 
@@ -18,7 +19,7 @@ public class InputView {
             validBridgeSize(inputBridgeSize);
             return Integer.parseInt(inputBridgeSize);
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
+            OutputView.printError(e.getMessage());
             return readBridgeSize();
         }
     }
@@ -31,6 +32,7 @@ public class InputView {
     private void validIsNumber(String number) {
         boolean check = number.chars()
                 .allMatch(Character::isDigit);
+
         if (!check) {
             throw new IllegalArgumentException("입력한 값이 숫자가 아닙니다.");
         }
@@ -51,14 +53,14 @@ public class InputView {
             validReadMoving(inputReadMoving);
             return inputReadMoving;
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
+            OutputView.printError(e.getMessage());
             return readMoving();
         }
     }
 
     private void validReadMoving(String inputReadMoving) {
         if (!inputReadMoving.matches("^[D|U]$")) {
-            throw new IllegalArgumentException("입력한 값이 D 또는 U가 아닙니다.");
+            throw new IllegalArgumentException("입력한 값이 U 또는 D가 아닙니다.");
         }
     }
 
@@ -71,7 +73,7 @@ public class InputView {
             validReadGameCommand(gameCommand);
             return gameCommand;
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
+            OutputView.printError(e.getMessage());
             return readGameCommand();
         }
     }
