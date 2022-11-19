@@ -49,6 +49,7 @@ public class OutputView {
             appendByPastBlock(block);
         }
         appendByCurrentBlock(isSuccess, user);
+        finalPrintTask();
         enter();
     }
 
@@ -96,6 +97,14 @@ public class OutputView {
             BOTTOM_BRIDGE.append(X);
         }
     }
+
+    private static void finalPrintTask() {
+        TOP_BRIDGE.append(BRIDGE_END);
+        BOTTOM_BRIDGE.append(BRIDGE_END);
+        System.out.println(TOP_BRIDGE.toString());
+        System.out.println(BOTTOM_BRIDGE.toString());
+    }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
