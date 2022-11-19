@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class BridgeResult {
-
     private final List<MoveResult> upBridgeResult;
     private final List<MoveResult> downBridgeResult;
 
@@ -29,14 +28,14 @@ public class BridgeResult {
     public List<String> getUpBridgeResult() {
         return upBridgeResult
                 .stream()
-                .map(MoveResult::value)
+                .map(MoveResult::symbol)
                 .collect(Collectors.toList());
     }
 
     public List<String> getDownBridgeResult() {
         return downBridgeResult
                 .stream()
-                .map(MoveResult::value)
+                .map(MoveResult::symbol)
                 .collect(Collectors.toList());
     }
 }
