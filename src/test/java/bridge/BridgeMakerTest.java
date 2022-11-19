@@ -11,6 +11,6 @@ class BridgeMakerTest {
     void 다리_만들기_테스트() {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-
+        assertThat(bridgeMaker.makeBridge(3)).contains("U", "D");
     }
 }
