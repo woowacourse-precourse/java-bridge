@@ -25,10 +25,6 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(BridgeDirection bridgeDirection) {
-        movePlayerByDirection(bridgeDirection);
-    }
-
-    private void movePlayerByDirection(BridgeDirection bridgeDirection) {
         int position = gamePlayer.getPosition();
         gamePlayer.move();
         if (!bridgeMap.isCorrectDirection(position, bridgeDirection)) {
@@ -54,6 +50,18 @@ public class BridgeGame {
     }
 
     public boolean isEndCondition() {
-        return gamePlayer.isFailGame();
+        if (gamePlayer.isFailGame()) {
+            return true;
+        }
+
+        return isCrossedBridge();
+    }
+
+    private boolean isCrossedBridge() {
+        if (!gamePlayer.isFailGame()
+                && gamePlayer.getPosition() == bridgeMap.size()) {
+            return true;
+        }
+        return false;
     }
 }
