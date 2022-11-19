@@ -19,6 +19,9 @@ public class InputView {
     private static final String DOWN_BRIDGE = "D";
 
     private static final String MOVING_INPUT_ERROR_MESSAGE = "[ERROR] U(위), D(아래) 중 하나를 입력해야 합니다.";
+
+    private static final String READ_MOVING_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -31,7 +34,8 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(READ_MOVING_MESSAGE);
+        return getValidMoving();
     }
 
     /**
