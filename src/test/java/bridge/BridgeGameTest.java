@@ -52,6 +52,10 @@ class BridgeGameTest {
             "R, true", "Q, false"
     })
     void returnTrueWhenRequestRorReturnFalseWhenRequestQ(String input, boolean result) {
+        // given
+        when(bridgeMaker.makeBridge(anyInt())).thenReturn(List.of("U", "D", "U"));
+        bridgeGame.createBridge(3);
+
         // when
         boolean retry = bridgeGame.retry(input);
 
