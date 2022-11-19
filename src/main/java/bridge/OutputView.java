@@ -24,7 +24,13 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(boolean result, int gameCount) {
+    public void printResult(boolean result, int gameCount, BridgeGame bridgeGame) {
+        System.out.println();
+        System.out.println("최종 게임 결과");
+        List<String> upBridge = bridgeGame.getUpBridge();
+        List<String> downBridge =bridgeGame.getDownBridge();
+        bridgePrint(upBridge, upBridge.size());
+        bridgePrint(downBridge, downBridge.size());
         System.out.println();
         System.out.print("게임 성공 여부: ");
         if(result == true){
@@ -39,7 +45,6 @@ public class OutputView {
 
     }
 
-
     private void bridgePrint(List<String> bridge, int limit){
         System.out.print("[ ");
         for (int i = 0; i < limit; i++) {
@@ -49,6 +54,11 @@ public class OutputView {
             System.out.print(bridge.get(i));
         }
         System.out.print(" ]");
+        System.out.println();
+    }
+
+    public void printStart(){
+        System.out.println("다리 건너기 게임을 시작합니다.");
         System.out.println();
     }
 
