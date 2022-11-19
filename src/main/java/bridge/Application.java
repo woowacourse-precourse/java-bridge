@@ -10,5 +10,6 @@ public class Application {
         System.out.println("ladderLen = " + ladderLen);
         String UD = inputView.readMoving();
         System.out.println("UD = " + UD);
+        String RQ = inputView.readGameCommand();
     }
 }

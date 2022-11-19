@@ -8,7 +8,7 @@ public class Validate {
         } else if (num == 2) {
             checkUD(input);
         } else if (num == 3) {
-
+            checkRQ(input);
         }
     }
 
@@ -21,6 +21,12 @@ public class Validate {
 
     public static void checkUD(String input) {
         if (!input.equals("U") && !input.equals("D")) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void checkRQ(String input) {
+        if (!input.equals("R") && !input.equals("Q")) {
             throw new IllegalArgumentException();
         }
     }

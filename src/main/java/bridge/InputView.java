@@ -22,15 +22,6 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-    public boolean exceptionMsg (String input, String msg, int num) {
-        try {
-            Validate.check(input,num);
-        } catch (IllegalArgumentException e) {
-            System.out.println(msg);
-            return true;
-        }
-        return false;
-    }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
@@ -50,6 +41,23 @@ public class InputView {
     public String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요 (재시도: R,종료: Q)");
         String selectedResult = Console.readLine().toUpperCase();
+        if (exceptionMsg(selectedResult,"[ERROR] 재시도: R,종료: Q로 입력해야 합니다.",3)){
+            return readGameCommand();
+        }
         return selectedResult;
+    }
+
+    /**
+     *
+     * 유효값 검사 후 예외처리
+     */
+    public boolean exceptionMsg (String input, String msg, int num) {
+        try {
+            Validate.check(input,num);
+        } catch (IllegalArgumentException e) {
+            System.out.println(msg);
+            return true;
+        }
+        return false;
     }
 }
