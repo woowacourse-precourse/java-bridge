@@ -88,6 +88,17 @@ class ValidationTest {
                 .doesNotThrowAnyException();
 
     }
+    @Test
+    @DisplayName(" 게임 다시 시도 여부 입력 Validation - R 또는 Q가 아닌 경우")
+    public void retry_실패_케이스() throws Exception{
+        Assertions.assertThatThrownBy(()->retryCommand("U"))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        Assertions.assertThatThrownBy(()->retryCommand("D"))
+                .isInstanceOf(IllegalArgumentException.class);
+
+
+    }
     private void retryCommand(String cmd){
         if(!(cmd.equals("R") || cmd.equals("Q"))) throw new IllegalArgumentException("[ERROR] 다시 시도 여부는 (재시도: R, 종료: Q)만 입력해주세요.");
     }
