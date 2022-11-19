@@ -35,11 +35,21 @@ public class ExceptionSituationTest {
 
     @DisplayName("입력된 이동할 칸 정보가 U나 D가 아닌 경우 예외가 발생한다.")
     @Test
-    void InputForMoveNotUOrDTest() {
+    void inputForMoveNotUOrDTest() {
         InputStream inputStream = setInputStream("wrong input");
         System.setIn(inputStream);
         String wrongInput = inputView.readMoving();
         assertThatThrownBy(() -> Validation.validateSpace(wrongInput))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("재시도 여부에 대한 응답이 R 또는 Q가 아닌 경우 예외가 발생한다." )
+    @Test
+    void inputAfterFailureNotROrQTest() {
+        InputStream inputStream = setInputStream("wrong input");
+        System.setIn(inputStream);
+        String wrongInput = inputView.readGameCommand();
+        assertThatThrownBy(() -> Validation.validateResponseAfterFailure(wrongInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
