@@ -13,9 +13,9 @@ class ResultTest {
         Result result = new Result();
 
         //when
-        result.updateIsAnswers(true);
-        result.updateIsAnswers(false);
-        result.updateIsAnswers(true);
+        result.updateIsAnswers(new MoveDirection("U"), true);
+        result.updateIsAnswers(new MoveDirection("D"), true);
+        result.updateIsAnswers(new MoveDirection("D"), false);
 
         //then
         Assertions.assertThat(result.getTryCount())
@@ -23,8 +23,8 @@ class ResultTest {
         Assertions.assertThat(result.getIsAnswers()
                                     .get(0)).isTrue();
         Assertions.assertThat(result.getIsAnswers()
-                                    .get(1)).isFalse();
+                                    .get(1)).isTrue();
         Assertions.assertThat(result.getIsAnswers()
-                                    .get(2)).isTrue();
+                                    .get(2)).isFalse();
     }
 }

@@ -20,12 +20,12 @@ class BridgeGameTest {
     @Test
     void moveTrue() {
         //given
-        String moving = "U";
+        MoveDirection direction = new MoveDirection("U");
         int index = 2;
 
         BridgeGame bridgeGame = new BridgeGame(bridge);
         //when
-        boolean isMove = bridgeGame.move(moving, index);
+        boolean isMove = bridgeGame.move(direction, index);
         //then
         assertThat(isMove)
                 .isTrue();
@@ -35,12 +35,12 @@ class BridgeGameTest {
     @Test
     void moveFalse() {
         //given
-        String moving = "D";
+        MoveDirection direction = new MoveDirection("D");
         int index = 2;
 
         BridgeGame bridgeGame = new BridgeGame(bridge);
         //when
-        boolean isMove = bridgeGame.move(moving, index);
+        boolean isMove = bridgeGame.move(direction, index);
         //then
         assertThat(isMove)
                 .isFalse();

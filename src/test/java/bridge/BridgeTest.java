@@ -1,6 +1,5 @@
 package bridge;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -43,10 +42,10 @@ class BridgeTest {
     void isAnswer() {
         //given
         Bridge bridge = new Bridge(List.of("U", "D", "U"));
-        String moving = "U";
+        MoveDirection direction = new MoveDirection("U");
         int index = 2;
         //when
-        boolean answer = bridge.isAnswer(moving, index);
+        boolean answer = bridge.isAnswer(direction, index);
         //then
         assertThat(answer)
                 .isTrue();
