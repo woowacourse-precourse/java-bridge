@@ -26,7 +26,7 @@ public class OutputView {
     }
 
     public void printInputSizeMessage() {
-
+        System.out.println("다리의 길이를 입력해주세요.");
     }
 
     public void printInputMoveMessage() {
