@@ -3,6 +3,10 @@ package bridge;
 import java.util.List;
 
 public class CurrentBridge extends Bridge{
+    private String start = "[";
+    private String printFormat = " %c ";
+    private String end = "]";
+    private String inter = "|";
     private BridgeStatus bridgeStatus;
     public CurrentBridge(List<String> bridge) {
         super(bridge);
@@ -17,7 +21,7 @@ public class CurrentBridge extends Bridge{
     public void changeStatus(Bridge otherBridge){
         if(isMove(otherBridge) && this.bridgeLength() == otherBridge.bridgeLength())this.bridgeStatus = BridgeStatus.COMPLETE;
         if(isMove(otherBridge) && this.bridgeLength() != otherBridge.bridgeLength())this.bridgeStatus = BridgeStatus.SUCCESS;
-        if(!isMove(otherBridge))this.bridgeStatus = BridgeStatus.FAIL;
+        if(!isMove(otherBridge)) this.bridgeStatus = BridgeStatus.FAIL;
     }
 
     private boolean isMove(Bridge otherBridge){
@@ -26,4 +30,22 @@ public class CurrentBridge extends Bridge{
         return false;
     }
 
+    @Override
+    public String toString() {
+        StringBuffer buffer = new StringBuffer();
+        for(int i = 0;i<bridge.size();i++) buffer.append(returnString(BridgeConst.UP,i));
+        for(int i = 0;i<bridge.size();i++) buffer.append(returnString(BridgeConst.DOWN,i));
+        return buffer.toString();
+    }
+    private String returnString(String del,int index){
+        if(bridge.get(index).equals(del) && bridgeStatus == BridgeStatus.FAIL) return "X";
+        if(bridge.get(index).equals(del))return "O";
+        return " ";
+    }
+
+
 }
+/**
+ * [ O | X ]
+ * [   |   ]
+ */
