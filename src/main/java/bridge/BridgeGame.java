@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.view.InputView;
+import bridge.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +11,12 @@ import java.util.List;
 public class BridgeGame {
     private static final String NOT_VALID_BRIDGE_SIZE_INPUT = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     private static final String NOT_VALID_BRIDGE_INPUT = "[ERROR] 입력은 숫자 이어야 합니다.";
+    private static final String NOT_VALID_MOVE_INPUT = "[ERROR] 입력은 U,D 이어야 합니다.";
 
+    private int count = 0;
     private int bridgeSize;
+
+    private boolean loss = false;
 
     private BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
     private BridgeMaker bridgeMaker;
@@ -47,9 +52,31 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
+        while (count != bridgeSize && loss == false) {
+            String inputMove = InputView.readMoving();
+            try {
+                validateMoving(inputMove);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            printProcessBridge(inputMove);
+            processMove(inputMove);
+        }
 
     }
 
+    private void printProcessBridge(String inputMove) {
+        System.out.println(OutputView.printMap(bridge, inputMove, count));
+    }
+
+    public void processMove(String inputMove) {
+        if (!bridge.get(count).equals(inputMove)) {
+            loss = true;
+            count--;
+        }
+        count++;
+    }
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
@@ -66,6 +93,12 @@ public class BridgeGame {
         }
         if (Integer.parseInt(inputBridgeSize) < 3 || Integer.parseInt(inputBridgeSize) > 20) {
             throw new IllegalArgumentException(NOT_VALID_BRIDGE_SIZE_INPUT);
+        }
+    }
+
+    private void validateMoving(String inputMove) {
+        if (inputMove.charAt(0) != 'U' && inputMove.charAt(0) != 'D') {
+            throw new IllegalArgumentException(NOT_VALID_MOVE_INPUT);
         }
     }
 
