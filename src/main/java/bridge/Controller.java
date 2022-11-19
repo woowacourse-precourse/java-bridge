@@ -33,12 +33,11 @@ public class Controller {
 
     private void playGame() {
         move();
-        printMoveResult();
         boolean moveSuccess = checkMoveSuccess();
         boolean gameEnd = checkGameEnd();
 
         if (moveSuccess && gameEnd) {
-            // 게임 결과 출력
+            printFinalResult();
         }
 
         if (moveSuccess && !gameEnd) {
@@ -72,5 +71,12 @@ public class Controller {
 
     private boolean checkGameEnd() {
         return service.isFinishedGame();
+    }
+
+    private void printFinalResult() {
+        outputView.printFinalMessage();
+        printMoveResult();
+        List<String> finalResult = service.getFinalResult();
+        outputView.printResult(finalResult);
     }
 }

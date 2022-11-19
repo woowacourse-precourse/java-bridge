@@ -35,4 +35,8 @@ public class Service {
     public boolean isFinishedGame() {
         return game.checkFinish();
     }
+
+    public List<String> getFinalResult() {
+        return result.getFinalResultToString();
+    }
 }

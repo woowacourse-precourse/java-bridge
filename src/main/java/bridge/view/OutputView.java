@@ -22,6 +22,12 @@ public class OutputView {
         }
     }
 
-    public void printResult() {
+    public void printFinalMessage() {
+        System.out.println("\n최종 게임 결과");
+    }
+
+    public void printResult(List<String> results) {
+        System.out.printf("%n게임 성공 여부: %s", results.get(0));
+        System.out.printf("%n총 시도한 횟수: %s", results.get(1));
     }
 }
