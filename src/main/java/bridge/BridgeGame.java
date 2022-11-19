@@ -24,11 +24,20 @@ public class BridgeGame {
         System.out.println();
 
         //다리 생성
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> answerBridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        List<String> answerBridge = makeBridge();
 
         //다리 건너기
         crossBridge(answerBridge);
+    }
+
+    /**
+     * 다리 생성하는 메서드
+     * @return 입력받은 사이즈로 다리를 생성하여 반환한다.
+     */
+    private List<String> makeBridge()
+    {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        return bridgeMaker.makeBridge(inputView.readBridgeSize());
     }
 
     /**
