@@ -23,7 +23,7 @@ public class BridgeResult {
         }
     }
 
-    public void clearBridge() {
+    public void clear() {
         upBlocks.clear();
         downBlocks.clear();
     }
