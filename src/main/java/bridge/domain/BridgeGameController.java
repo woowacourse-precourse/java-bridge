@@ -6,7 +6,7 @@ import bridge.dto.PlayLogDto;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-public class BridgeGameController {
+public final class BridgeGameController {
 
     private static final String INPUT_VIEW_NULL_MESSAGE = "inputView 에는 null 이 올 수 없습니다";
     private static final String OUTPUT_VIEW_NULL_MESSAGE = "outputView 에는 null 이 올 수 없습니다";
