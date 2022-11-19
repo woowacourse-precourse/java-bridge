@@ -23,4 +23,10 @@ public class BridgeMap {
         downStair.add(BridgeShape.ENDING_POINT);
     }
 
+    private void moveUp() {
+        upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.DIVISION);
+        upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.ALLOW_MOVE);
+        downStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.DIVISION);
+        downStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.BLANK);
+    }
 }
