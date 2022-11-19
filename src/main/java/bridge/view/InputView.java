@@ -3,6 +3,7 @@ package bridge.view;
 import bridge.Parser;
 import bridge.constant.BridgeDirection;
 import bridge.constant.GameRetryCommand;
+import bridge.constant.InputMessage;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -14,6 +15,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        System.out.println(InputMessage.INPUT_BRIDGE_SIZE.getMessage());
         String input = Console.readLine();
         return Parser.parseToInt(input);
     }
@@ -22,6 +24,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+        System.out.println(InputMessage.INPUT_DIRECTION.getMessage());
         String input = Console.readLine();
         BridgeDirection.validateInputDirection(input);
         return input;
@@ -31,6 +34,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
+        System.out.println(InputMessage.INPUT_RETRY.getMessage());
         String input = Console.readLine();
         GameRetryCommand.validateInputCommand(input);
         return input;
