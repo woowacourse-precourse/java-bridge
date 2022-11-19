@@ -9,22 +9,6 @@ import org.junit.jupiter.api.Test;
 
 class BridgeTest {
 
-    @DisplayName("플레이어의 방향 개수가 다리 길이와 같다면 예외가 발생한다.")
-    @Test
-    void validatePlayerStatus1() {
-        //given
-        Bridge bridge = new Bridge(List.of("U", "D"));
-        Player player = new Player();
-
-        //when
-        player.move(Direction.UP);
-        player.move(Direction.DOWN);
-
-        //then
-        assertThatThrownBy(() -> bridge.validatePlayerStatus(player))
-                .isInstanceOf(IllegalStateException.class);
-    }
-
     @DisplayName("플레이어의 방향 개수가 다리 길이보다 크다면 예외가 발생한다.")
     @Test
     void validatePlayerStatus2() {
