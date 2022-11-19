@@ -7,6 +7,7 @@ public class OutputView {
     static final String INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     static final String INPUT_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     static final String INPUT_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    static final String RESULT = "최종 게임 결과";
     static final String IS_SUCCESSFUL = "게임 성공 여부: ";
     static final String SUCCESS = "성공";
     static final String FAIL = "실패";
@@ -29,13 +30,17 @@ public class OutputView {
         System.out.println(INPUT_COMMAND);
     }
 
-    public void printMap(List<List<String>> bridgePattern) {
-        for (List<String> row: bridgePattern) {
+    public void printMap(List<List<String>> bridgeMap) {
+        for (List<String> row: bridgeMap) {
             System.out.println(rowFormat(row));
         }
     }
 
-    public void printResult(boolean isSuccess, int tries) {
+    public void printResult(List<List<String>> bridgeMap, boolean isSuccess, int tries) {
+        System.out.println();
+        System.out.println(RESULT);
+        printMap(bridgeMap);
+
         System.out.println();
         printSuccess(isSuccess);
         printTries(tries);
