@@ -11,11 +11,13 @@ import java.util.List;
 public class BridgeGame {
     private final Bridge bridge;
     private final Result result;
+    private int playCount;
 
     public BridgeGame(int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         this.bridge = Bridge.from(bridgeMaker.makeBridge(bridgeSize));
         this.result = new Result();
+        this.playCount = 1;
     }
 
     /**
@@ -50,6 +52,11 @@ public class BridgeGame {
         }
 
         result.reset();
+        playCount++;
         return true;
+    }
+
+    public int calculatePlayCount() {
+        return this.playCount;
     }
 }
