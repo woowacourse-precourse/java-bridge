@@ -28,6 +28,6 @@ public class Player {
     }
 
     public boolean isArrived(List<String> bridge) {
-        return currentSpaceIndex == bridge.size();
+        return currentSpaceIndex == bridge.size() - 1;
     }
 }

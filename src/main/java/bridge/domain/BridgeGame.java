@@ -10,10 +10,6 @@ import java.util.List;
  * InputView, OutputView 사용 불가
  */
 public class BridgeGame {
-    private final static int ONGOING = 0;
-    private final static int SUCCESS = 1;
-    private final static int FAIL = -1;
-
     private final List<String> bridge;
     private final Player player;
 

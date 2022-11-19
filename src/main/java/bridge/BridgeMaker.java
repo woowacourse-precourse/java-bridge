@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -21,7 +22,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         validateSize(size);
-        List<String> bridge = new ArrayList<>();
+        List<String> bridge = new ArrayList<>(Arrays.asList(" "));
         for (int count = 0; count < size; count++) {
             int bridgeNumber = bridgeNumberGenerator.generate();
             addMovableSpace(bridge, bridgeNumber);
