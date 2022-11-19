@@ -99,7 +99,7 @@ public class OutputView {
     public void printResult(User user) {
         System.out.println("최종 게임 결과");
         printResultMap();
-        System.out.println("\n게임 성공 여부: " + getGameStatus(user.isGameSuccess()));
+        System.out.println("\n게임 성공 여부: " + getGameStatus(user.isGameWin()));
         System.out.println("총 시도한 횟수: " + user.getGameTryCount());
     }
 

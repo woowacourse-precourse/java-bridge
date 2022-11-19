@@ -72,7 +72,7 @@ public class UserTest {
         user.gameSuccess();
 
         // then
-        assertThat(user.isGameSuccess()).isEqualTo(true);
+        assertThat(user.isGameWin()).isEqualTo(true);
     }
 
     @Test
@@ -85,6 +85,6 @@ public class UserTest {
         user.gameFail();
 
         // then
-        assertThat(user.isGameSuccess()).isEqualTo(false);
+        assertThat(user.isGameWin()).isEqualTo(false);
     }
 }

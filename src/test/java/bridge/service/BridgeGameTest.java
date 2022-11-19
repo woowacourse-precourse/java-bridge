@@ -37,8 +37,8 @@ public class BridgeGameTest {
         bridgeGame.move(bridge, user);
 
         // then
-        assertThat(user.isGameSuccess()).isEqualTo(true);
-        assertThat(user.isGameSuccess()).isEqualTo(true);
+        assertThat(user.isGameWin()).isEqualTo(true);
+        assertThat(user.isGameWin()).isEqualTo(true);
     }
 
     @DisplayName("유저가 모든 턴을 성공적으로 돌았는지 확인해주는 userCorrectAllTurn 테스트")

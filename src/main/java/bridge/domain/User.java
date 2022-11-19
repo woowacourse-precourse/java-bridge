@@ -2,21 +2,21 @@ package bridge.domain;
 
 public class User {
     private boolean isGameDoneStatus;
-    private boolean isGameSuccess;
+    private boolean isGameWin;
     private int gameTryCount;
 
     public User() {
         this.gameTryCount = 1;
         this.isGameDoneStatus = false;
-        this.isGameSuccess = false;
+        this.isGameWin = false;
     }
 
-    public boolean isGameSuccess() {
-        return this.isGameSuccess;
+    public boolean isGameWin() {
+        return this.isGameWin;
     }
 
     public void setGameSuccess(boolean gameSuccess) {
-        isGameSuccess = gameSuccess;
+        isGameWin = gameSuccess;
     }
 
     public void gameSuccess() {
