@@ -29,4 +29,8 @@ public class PlayerBridge {
         val += "]";
         return val;
     }
+
+    public boolean successRoot(){
+        return !(upBridge.contains("X") || downBridge.contains("X"));
+    }
 }
