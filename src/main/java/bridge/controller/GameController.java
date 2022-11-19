@@ -20,6 +20,7 @@ public class GameController {
         int bridgeSize = inputView.readBridgeSize();
         setBridgeSize(bridgeSize);
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        String direction = inputView.readMoving();
     }
     public void setBridgeSize(int bridgeSize) {
         try {
