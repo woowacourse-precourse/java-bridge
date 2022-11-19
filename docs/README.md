@@ -165,9 +165,9 @@
 - Constant
 - GameController
 - Validator
-- InputView
-- OutputView
-- ViewConstant
+- [x] InputView
+- [x] OutputView
+- [X] ViewConstant
 
 - ApplicationTest
 - BridgeGameTest
