@@ -29,4 +29,10 @@ public class BridgeGameStat {
     public int getCountOfGame() {
         return countOfGame;
     }
+
+    public void restart() {
+        this.bridgeMaps = new ArrayList<>();
+        this.gameStatus = GameStatus.FAIL;
+        this.countOfGame++;
+    }
 }

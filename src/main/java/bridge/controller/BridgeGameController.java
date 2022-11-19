@@ -7,6 +7,7 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.InputView;
 import bridge.OutputView;
 import bridge.constant.BridgeMove;
+import bridge.constant.GameCommand;
 import bridge.constant.MoveResult;
 import java.util.List;
 
@@ -46,6 +47,8 @@ public class BridgeGameController {
         bridgeMaps.add(bridgeMap);
 
         outputView.printMap(bridgeMaps);
+
+        canNotMoveBridge(bridgeMap);
     }
 
     private BridgeMap movingBridge(List<String> bridge) {
@@ -55,5 +58,23 @@ public class BridgeGameController {
         MoveResult moveResult = bridgeGame.move(bridge, playerBridgeMove, countOfRound);
 
         return new BridgeMap(BridgeMove.findByInput(playerBridgeMove), moveResult);
+    }
+
+    private void canNotMoveBridge(BridgeMap bridgeMap) {
+        if (bridgeMap.getMoveResult().isCanNotMove()) {
+            doRestartOrQuit();
+        }
+    }
+
+    private void doRestartOrQuit() {
+        String gameCommand = inputView.readGameCommand();
+
+        if (gameCommand.equals(GameCommand.RESTART.getFirstLetter())) {
+            bridgeGame.retry();
+        }
+
+        if (gameCommand.equals(GameCommand.QUIT.getFirstLetter())) {
+            bridgeGame.quit();
+        }
     }
 }

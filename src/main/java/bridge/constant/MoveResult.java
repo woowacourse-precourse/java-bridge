@@ -15,4 +15,8 @@ public enum MoveResult {
     public String getSymbol() {
         return symbol;
     }
+
+    public boolean isCanNotMove() {
+        return this == CAN_NOT_MOVE;
+    }
 }
