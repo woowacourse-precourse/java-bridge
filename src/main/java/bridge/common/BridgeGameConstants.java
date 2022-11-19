@@ -13,4 +13,6 @@ public class BridgeGameConstants {
     public static final String YES = "O";
     public static final String NO = "X";
 
+    private BridgeGameConstants(){}
+
 }
