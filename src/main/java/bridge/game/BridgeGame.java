@@ -16,11 +16,19 @@ public class BridgeGame {
     private int totalTry;
     private Map map;
 
-    BridgeGame(List<String> bridge) {
+    public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         currentPosition = 0;
         totalTry = 1;
         map = new Map();
+    }
+
+    public int getTotalTry() {
+        return totalTry;
+    }
+
+    public Map getMap() {
+        return map;
     }
 
     /**

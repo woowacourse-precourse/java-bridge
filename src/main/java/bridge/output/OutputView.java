@@ -43,7 +43,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(Map map) {
+    public static void printMap(Map map) {
         System.out.println(map.toString());
     }
 
@@ -52,7 +52,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(Map map, boolean success, int totalTry) {
+    public static void printResult(Map map, boolean success, int totalTry) {
         System.out.println(Status.FINISH.getMessage());
         printMap(map);
         System.out.print(Status.SUCCESS_OR_NOT.getMessage());
@@ -61,7 +61,7 @@ public class OutputView {
         System.out.println(totalTry);
     }
 
-    private String successOrNotToString(boolean success) {
+    private static String successOrNotToString(boolean success) {
         if (success) {
             return Status.SUCCESS.getMessage();
         }
