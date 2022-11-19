@@ -1,11 +1,12 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
-	List<String> bridge;
-	List<String> upperBridge;
-	List<String> lowerBridge;
+	private List<String> bridge;
+	private List<String> upperBridge = new ArrayList<>();
+	private List<String> lowerBridge = new ArrayList<>();
 
 	Bridge(List<String> bridge) {
 		this.bridge = bridge;
