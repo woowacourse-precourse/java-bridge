@@ -1,6 +1,7 @@
 package bridge.model;
 
-import static bridge.util.BridgeConstant.*;
+import static bridge.util.BridgeConstant.UP_KEY;
+import static bridge.util.BridgeConstant.UP;
 import static bridge.util.BridgeConstant.DOWN;
 
 public class Position {

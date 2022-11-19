@@ -2,7 +2,8 @@ package bridge.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import static bridge.util.BridgeConstant.*;
+import static bridge.util.BridgeConstant.DOWN_KEY;
+import static bridge.util.BridgeConstant.UP_KEY;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -10,6 +11,9 @@ import static bridge.util.BridgeConstant.*;
 public class InputView {
     public final int MINIMUM_BRIDGE_SIZE = 3;
     public final int MAXIMUM_BRIDGE_SIZE = 20;
+    public final String GAME_RETRY_KEY = "R";
+    public final String GAME_QUIT_KEY = "Q";
+    public final String ERROR_PREFIX = "[ERROR] ";
     public final String INPUT_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
     public final String INPUT_MOVE_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     public final String INPUT_RETRY_OR_QUIT_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";

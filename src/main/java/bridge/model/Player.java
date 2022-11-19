@@ -1,7 +1,5 @@
 package bridge.model;
 
-import static bridge.util.BridgeConstant.*;
-
 public class Player {
     private Position position;
     private int tryCount;
