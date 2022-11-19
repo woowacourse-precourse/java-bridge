@@ -7,6 +7,7 @@ public class Application {
 
     public static void main(String[] args) {
         InputView inputView = new InputView();
+        BridgeGame bridgeGame = new BridgeGame();
 
         System.out.println("다리 건너기 게임을 시작합니다");
 
@@ -31,19 +32,7 @@ public class Application {
                 matchingFlag = false;
             }
 
-            if (matchingFlag) {
-                if (nextStep.equals("U")) {
-                    userBridge.moveUpBridgeCorrect();
-                } else {
-                    userBridge.moveDownBridgeCorrect();
-                }
-            } else {
-                if (nextStep.equals("U")) {
-                    userBridge.moveUpBridgeInCorrect();
-                } else {
-                    userBridge.moveDownBridgeInCorrect();
-                }
-            }
+            bridgeGame.move(userBridge, nextStep, matchingFlag);
 
             System.out.println(userBridge);
         }
