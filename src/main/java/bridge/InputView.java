@@ -61,7 +61,9 @@ public class InputView{
     }
 
     public static void rangeCheck(int number) {
-        if ((number < LOWER_BOUND || number > UPPER_BOUND)) throw new IllegalArgumentException(ERROR_NUMBER);
+        if ((number < LOWER_BOUND || number > UPPER_BOUND)){
+            throw new IllegalArgumentException(ERROR_NUMBER);
+        }
     }
 
     public static int isNumeric() {
