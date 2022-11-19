@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -20,35 +21,18 @@ public class BridgeMaker {
      * @param size 다리의 길이
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
+
     public List<String> makeBridge(int size) {
-        List<String> bridge = new ArrayList<>(size*2);
-        for(int i = 0; i<size*2; i++){
-          if(upperBridge(i)){
-              bridge.add(GameCommand.UPPER_BRIDGE);
-          }
-          if(lowerBridge(i)){
-              bridge.add(GameCommand.LOWER_BRIDEG);
-          }
-        }
-        return bridge;
-    }
-
-    public List<Integer> makeTrap(int size){
-        return rawTrap(size);
-    }
-
-    public List<Integer> rawTrap(int size){
-        return Stream.generate(bridgeNumberGenerator::generate)
-                .limit(size)
-                .collect(Collectors.toList());
-    }
-
-    public boolean upperBridge(int index){
-        return index%2 ==0;
-    }
-
-    public boolean lowerBridge(int index){
-        return index ==1 || index%2 ==1;
+        List<String> bridge = new ArrayList<>();
+        for(int i = 0; i<size; i++){
+            int number = bridgeNumberGenerator.generate();
+            if(number == 0){
+                bridge.add(GameCommand.LOWER_BRIDEG);
+            }
+            if(number == 1){
+                bridge.add(GameCommand.UPPER_BRIDGE);
+            }
+        }return bridge;
     }
 
 }
