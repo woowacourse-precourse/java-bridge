@@ -12,6 +12,10 @@ public class OutputView {
     public void printInputBridgeSize() {
         System.out.println(Message.BRIDGE_SIZE.getMessage());
     }
+
+    public void printSelectMove() {
+        System.out.println(Message.SELLECT_MOVING.getMessage());
+    }
     public void printMap(List<String> list) {
         for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i));
