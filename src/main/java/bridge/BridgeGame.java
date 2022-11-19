@@ -19,7 +19,7 @@ public class BridgeGame extends BridgeGameInit{
             if (gameResult.equals("Q")) {
                 return "F"; //실패
             } else if (gameResult.equals("R")) {
-                initViews();
+                outputView.initOutputFormat();
                 return "R"; //재시작
             }
         }
