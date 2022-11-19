@@ -24,4 +24,8 @@ public class Bridge {
     public void increaseLocation() {
         location++;
     }
+
+    public void initLocation(){
+        location = 0;
+    }
 }
