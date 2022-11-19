@@ -9,6 +9,14 @@ public enum Directions {
     private final String symbol;
     private final int digit;
 
+    public static String convertDigitToSymbol (int digit) {
+        return Arrays.stream(Directions.values())
+                .filter(directions -> directions.getDigit() == digit)
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.INVALID_DIRECTION_DIGIT_ARGUMENT.get()))
+                .getSymbol();
+    }
+
     private Directions (String symbol, int digit) {
         this.symbol = symbol;
         this.digit = digit;
