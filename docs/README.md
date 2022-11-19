@@ -10,18 +10,24 @@ InputView
         Console에서 line을 입력받아 문자열 하나 입력받아 리턴
         R과 Q 중 아무것도 아닌 경우 Exception
 OutputView
-    void printMap()
-        [ O ]
-        [   ]
-        이런식으로 출력해야됨
-    void printResult()
-        최종 게임 결과
-        [ O |   |   ]
-        [   | O | O ]
-        
-        게임 성공 여부: 성공
-        총 시도한 횟수: 2
-        이런 식으로 출력
+    field
+        int cur; 현재 출력 대상 위치한 곳
+        List<String> bridge; 출력 대상 다리 
+    method    
+        생성자(int cur, List<String> bridge) 
+            입력해서 저장
+        void printMap()
+            [ O ]
+            [   ]
+            이런식으로 출력해야됨
+        void printResult()
+            최종 게임 결과
+            [ O |   |   ]
+            [   | O | O ]
+            
+            게임 성공 여부: 성공
+            총 시도한 횟수: 2
+            이런 식으로 출력
 BridgeGame
     field
         List<String> curbridge : 현재 게임이 진행되고 있는 다리 정보  
