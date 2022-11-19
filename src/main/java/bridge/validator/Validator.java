@@ -3,6 +3,12 @@ package bridge.validator;
 import bridge.exception.ExceptionType;
 
 public class Validator {
+    public static void validateGameCommand(String input) {
+        if (!"Q".equals(input) && !"R".equals(input)) {
+            throw new IllegalArgumentException(ExceptionType.GAME_COMMAND_EXCEPTION.getErrorMessage());
+        }
+    }
+
     public static void validateMoving(String input) {
         if (!"U".equals(input) && !"D".equals(input)) {
             throw new IllegalArgumentException(ExceptionType.MOVE_TYPE_EXCEPTION.getErrorMessage());
