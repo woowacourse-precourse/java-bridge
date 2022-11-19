@@ -1,6 +1,8 @@
 package bridge;
 
 public class BridgeLengthValidator {
+    private static final int BRIDGE_LENGTH_LOWER_BOUND_INCLUSIVE = 3;
+    private static final int BRIDGE_LENGTH_UPPER_BOUND_INCLUSIVE = 20;
 
     private boolean hasNoIllegalCharacter(String bridgeLengthInput) {
         assert (bridgeLengthInput != null);
@@ -22,5 +24,10 @@ public class BridgeLengthValidator {
             return true;
         }
         return firstLetter >= '1' && firstLetter <= '9';
+    }
+
+    private boolean isWithinValidRange(int bridgeLength) {
+        return bridgeLength >= BRIDGE_LENGTH_LOWER_BOUND_INCLUSIVE
+                && bridgeLength <= BRIDGE_LENGTH_UPPER_BOUND_INCLUSIVE;
     }
 }
