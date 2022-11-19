@@ -13,15 +13,15 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println(ViewConstants.INPUT_SIZE);
-        String str = Console.readLine().trim();
+        String bridgeSize = Console.readLine().trim();
         try {
             validator = new SizeValidator();
-            validator.validate(str);
+            validator.validate(bridgeSize);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readBridgeSize();
         }
-        return Integer.parseInt(str);
+        return Integer.parseInt(bridgeSize);
     }
 
     /**
@@ -29,15 +29,15 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println(ViewConstants.INPUT_MOVE);
-        String str = Console.readLine().trim();
+        String moving = Console.readLine().trim();
         try {
             validator = new MoveValidator();
-            validator.validate(str);
+            validator.validate(moving);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readMoving();
         }
-        return str;
+        return moving;
     }
 
     /**
@@ -45,14 +45,14 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println(ViewConstants.RESTART_GAME);
-        String str = Console.readLine().trim();
+        String gameCommand = Console.readLine().trim();
         try {
             validator = new RestartValidator();
-            validator.validate(str);
+            validator.validate(gameCommand);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readGameCommand();
         }
-        return str;
+        return gameCommand;
     }
 }
