@@ -41,8 +41,12 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printResult(BridgeGame bridgeGame) {
-        System.out.println("게임 종료");
-        System.out.println("retryCount = " + bridgeGame.getPlayer().getTryCount());
+        System.out.println(GAME_RESULT);
+        printMap(bridgeGame);
+        System.out.print(SUCCESS_OR_NOT);
+        printSuccessOrFailure(bridgeGame.isReached());
+        System.out.print(TRY_COUNT);
+        System.out.println(bridgeGame.getPlayer().getTryCount());
     }
 
     private static List<String> drawUpperLine(List<String> bridge, int currentPosition, boolean isMoving) {
@@ -91,5 +95,14 @@ public class OutputView {
 
     public static void printErrorMessage(Exception e) {
         System.out.println(ERROR_PREFIX + e.getMessage());
+    }
+
+    private static void printSuccessOrFailure(boolean isSuccessful) {
+        if (isSuccessful) {
+            System.out.println(SUCCESS);
+        }
+        if (!isSuccessful) {
+            System.out.println(FAILURE);
+        }
     }
 }
