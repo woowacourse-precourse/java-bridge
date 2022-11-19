@@ -12,7 +12,6 @@ public class Application {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 
         BridgeGameController bridgeGameController = new BridgeGameController(inputView,outputView,bridgeMaker);
-
         bridgeGameController.run();
     }
 }

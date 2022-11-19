@@ -27,16 +27,18 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public List<String> move(String direction) {
-        updateStepProgress(direction);
+        String stepResult = getStepResult(direction);
+
+        updateStepProgress(stepResult, direction);
 
         String upDirectionProgress = getProgressFormOfDirection(UP.getInitial());
         String downDirectionProgress = getProgressFormOfDirection(DOWN.getInitial());
 
-        return List.of(upDirectionProgress, downDirectionProgress);
+        return new ArrayList<>(List.of(stepResult, upDirectionProgress, downDirectionProgress));
     }
-    
+
     public String getStepResult(String direction) {
-        int currentStep = stepProgress.size();
+        int currentStep = stepProgress.get(direction).size();
 
         if(direction.equals(this.scaffold.get(currentStep))){
             return "O";
@@ -44,9 +46,8 @@ public class BridgeGame {
         return "X";
     }
 
-    private void updateStepProgress(String direction) {
+    private void updateStepProgress(String stepResult, String direction) {
         String oppositeDirection = getOppositeDirection(direction);
-        String stepResult = getStepResult(direction);
 
         this.stepProgress.get(direction).add(stepResult);
         this.stepProgress.get(oppositeDirection).add(" ");

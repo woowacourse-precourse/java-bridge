@@ -3,6 +3,7 @@ package bridge;
 import bridge.View.InputView;
 import bridge.View.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGameController {
@@ -18,41 +19,65 @@ public class BridgeGameController {
     }
 
     public void run() {
-        int bridgeSize = getBridgeSize();
+        int bridgeSize = initBridge();
 
         BridgeGame bridgeGame = new BridgeGame(bridgeScaffold);
-        boolean crossBridgeResult = crossBridge(bridgeGame, bridgeSize);
-        if (!crossBridgeResult) {
 
-        }
+        List<String> finalResult = bridgeGameLoop(bridgeGame, bridgeSize);
+        System.out.println(finalResult);
     }
 
-    private int getBridgeSize() {
+    private int initBridge() {
         int bridgeSizeInput = inputView.readBridgeSize();
         this.bridgeScaffold = bridgeMaker.makeBridge(bridgeSizeInput);
+
         return bridgeSizeInput;
     }
 
-    private boolean crossBridge(BridgeGame bridgeGame, int bridgeSize) {
-        for (int i = 0; i < bridgeSize; i++) {
-            if(moveOneStep(bridgeGame)){
-                return false;
+    private List<String> bridgeGameLoop(BridgeGame bridgeGame, int bridgeSize) {
+        for (int i = 1; ; i++) {
+            List<String> crossBridgeResult = crossBridge(bridgeGame, bridgeSize);
+
+            if (checkGameEnd(crossBridgeResult.get(0))) {
+                crossBridgeResult.add(String.valueOf(i));
+                return crossBridgeResult;
             }
+            bridgeGame.retry();
         }
-        return true;
     }
 
-    private boolean moveOneStep(BridgeGame bridgeGame) {
+    private boolean checkGameEnd(String gameResult) {
+        if ("O".equals(gameResult)) {
+            return true;
+        }
+        return isCommandQuit();
+    }
+
+    private List<String> crossBridge(BridgeGame bridgeGame, int bridgeSize) {
+        List<String> stepResult = new ArrayList<>();
+
+        for (int i = 0; i < bridgeSize; i++) {
+            stepResult = moveOneStep(bridgeGame);
+            if ("X".equals(stepResult.get(0))) {
+                return stepResult;
+            }
+        }
+        return stepResult;
+    }
+
+    private List<String> moveOneStep(BridgeGame bridgeGame) {
         String direction = inputView.readMoving();
 
         List<String> movingProgress = bridgeGame.move(direction);
 
-        outputView.printMap(movingProgress);
+        outputView.printMap(movingProgress.subList(1, 3));
 
-        return checkStepFail(bridgeGame,direction);
+        return movingProgress;
     }
 
-    private boolean checkStepFail(BridgeGame bridgeGame, String direction) {
-        return "X".equals(bridgeGame.getStepResult(direction));
+    private boolean isCommandQuit() {
+        String gameCommand = inputView.readGameCommand();
+        return "Q".equals(gameCommand);
     }
+
 }
