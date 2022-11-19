@@ -93,7 +93,7 @@ class DirectionTest {
         int generateCode = direction.getGenerateCode();
 
         //when
-        Direction result = Direction.from(generateCode);
+        Direction result = Direction.numberToDirection(generateCode);
 
         //then
         assertThat(result).isEqualTo(direction);
@@ -106,7 +106,7 @@ class DirectionTest {
         int generateCode = -1;
 
         //then
-        assertThatThrownBy(() -> Direction.from(generateCode)).isInstanceOf(
+        assertThatThrownBy(() -> Direction.numberToDirection(generateCode)).isInstanceOf(
                 IllegalStateException.class);
     }
 
