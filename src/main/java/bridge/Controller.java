@@ -14,7 +14,8 @@ public class Controller {
 
     public void startGame(BridgeGame bridgeGame) {
         bridgeGame.generateBridge(getBridgeSize());
-        play(bridgeGame, GameStatus.CONTINUE);
+        GameStatus gameResult = play(bridgeGame, GameStatus.CONTINUE);
+        getResult(gameResult);
     }
 
     private int getBridgeSize() {
@@ -39,10 +40,14 @@ public class Controller {
 
     private GameStatus askRepeatGame(GameStatus gameStatus, BridgeGame bridgeGame) {
         outputView.printAskGameCommand();
-        if (inputView.readGameCommand() == GameStatus.getInputMessage(GameStatus.RESTART)) {
+        if (inputView.readGameCommand() == GameStatus.getMessage(GameStatus.RESTART)) {
             bridgeGame.retry();
             return GameStatus.CONTINUE;
         }
         return GameStatus.FAILURE;
+    }
+
+    private void getResult(GameStatus gameResult) {
+        outputView.printResult(gameResult);
     }
 }
