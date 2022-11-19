@@ -36,31 +36,31 @@ public class InputValidator {
     }
 
     private static void validateOnlyNumber(String input) {
-        if(!Pattern.matches(ONLY_NUMBER_REGEX, input)) {
+        if (!Pattern.matches(ONLY_NUMBER_REGEX, input)) {
             printNotOnlyNumberException();
         }
     }
 
     private static void validateMinSize(int size) {
-        if(size < MIN_SIZE) {
+        if (size < MIN_SIZE) {
             printNotMinSizeException();
         }
     }
 
     private static void validateMaxSize(int size) {
-        if(size > MAX_SIZE) {
+        if (size > MAX_SIZE) {
             printNotMaxSizeException();
         }
     }
 
     private static void validateOneLength(String space) {
-        if(space.length() != SPACE_LENGTH) {
+        if (space.length() != SPACE_LENGTH) {
             printNotOnlyOneLengthException();
         }
     }
 
     private static void validateInputFormat(String space, String format) {
-        if(!Pattern.matches(format, space)) {
+        if (!Pattern.matches(format, space)) {
             printNotFormatException();
         }
     }

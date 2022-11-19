@@ -14,7 +14,7 @@ public class GameResultResponseDto {
         this.upBlocks = result.getUpBlocks();
         this.downBlocks = result.getDownBlocks();
         this.gameSuccessOrFail = result.getGameOver().getName();
-        this.totalTryNumber = result.getTotalTryNumber()-1;
+        this.totalTryNumber = result.getTotalTryNumber() - 1;
     }
 
     public List<String> getUpBlocks() {

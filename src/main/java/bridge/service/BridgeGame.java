@@ -49,7 +49,7 @@ public class BridgeGame {
     }
 
     private BridgeResponseDto moveOrFail(String playerBlock, String bridgeBlock) {
-        if(bridgeBlock.equals(playerBlock)) {
+        if (bridgeBlock.equals(playerBlock)) {
             result.addBlocks(BlockExpression.getBlockExpressionByMove(bridgeBlock));
             player.move();
             validateGameSuccess(player.getPosition());
@@ -62,7 +62,7 @@ public class BridgeGame {
     }
 
     private void validateGameSuccess(int position) {
-        if(bridge.isDoneCrossingBridge(position)) {
+        if (bridge.isDoneCrossingBridge(position)) {
             result.success();
         }
     }
@@ -81,7 +81,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(GameRetryRequestDto dto) {
-        if(dto.getRetry().equals(GameConstance.RETRY)) {
+        if (dto.getRetry().equals(GameConstance.RETRY)) {
             this.result.init();
             this.player = new Player();
             return true;

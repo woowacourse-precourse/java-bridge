@@ -51,12 +51,12 @@ public class OutputView {
     private void printBridge(List<String> blocks) {
         System.out.print(START_BRIDGE);
         IntStream.range(0, blocks.size())
-                .filter(index -> index < blocks.size()-1)
+                .filter(index -> index < blocks.size() - 1)
                 .forEach(index -> {
                     System.out.print(blocks.get(index));
                     System.out.print(SPLIT_BRIDGE);
                 });
-        System.out.print(blocks.get(blocks.size()-1));
+        System.out.print(blocks.get(blocks.size() - 1));
         System.out.println(END_BRIDGE);
     }
 }

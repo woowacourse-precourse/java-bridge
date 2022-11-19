@@ -44,9 +44,9 @@ public class BridgeGameController {
     }
 
     private void gameRetry() {
-        if(bridgeGame.isFail()) {
+        if (bridgeGame.isFail()) {
             GameRetryRequestDto requestDto = inputView.readGameCommand();
-            if(bridgeGame.retry(requestDto)) {
+            if (bridgeGame.retry(requestDto)) {
                 play();
             }
         }
