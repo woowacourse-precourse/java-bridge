@@ -38,4 +38,8 @@ public class OutputView {
         }
         System.out.println("총 시도한 횟수: " + result.getTryCnt());
     }
+
+    public void showErrorMessage(IllegalArgumentException e) {
+        System.out.println("[ERROR]" + e.getMessage());
+    }
 }

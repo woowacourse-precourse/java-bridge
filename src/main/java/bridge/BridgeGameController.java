@@ -74,7 +74,7 @@ public class BridgeGameController {
             System.out.println("움직임의 결과는 1:성공/0:다음/-1:실패 -- " + movingResult);
             return movingResult;
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR: 아웃풋으로 옮기기]" + e.getMessage());
+            outputView.showErrorMessage(e);
             return moveUser();
         }
     }
@@ -84,6 +84,7 @@ public class BridgeGameController {
             Integer bridgeSize = inputView.readBridgeSize();
             return new Bridge(bridgeMaker.makeBridge(bridgeSize));
         } catch (IllegalArgumentException e ) {
+            outputView.showErrorMessage(e);
             return makeBridge();
         }
     }
