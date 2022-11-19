@@ -2,6 +2,7 @@ package bridge.model;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class BridgeTypeTest {
@@ -22,12 +23,11 @@ class BridgeTypeTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @ValueSource(strings = {"U", "D"})
+    @EnumSource(BridgeType.class)
     @ParameterizedTest
-    public void 텍스트로_건널_다리_찾기(String text) {
-        Assertions.assertThatCode(() ->
-                        BridgeType.searchBridgeToText(text))
-                .doesNotThrowAnyException();
+    public void 텍스트로_건널_다리_찾기(BridgeType bridgeType) {
+        Assertions.assertThat(BridgeType.searchBridgeToText(bridgeType.getText()))
+                .isEqualTo(bridgeType);
     }
 
     @ValueSource(strings = {"UU", "DD", "Z", "Q", "K", "W"})
