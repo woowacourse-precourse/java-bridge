@@ -61,8 +61,7 @@
   - [ ] 게임 재시작 여부(game command)
 
 ### BridgeMover
-- [ ] 이동 성공 여부 계산
-- [ ] 게임 성공 여부 계산
+- [x] 이동 결과 반환
 
 ### BridgeMonitor
 - [ ] 한 턴의 이동 후 현황 기록
