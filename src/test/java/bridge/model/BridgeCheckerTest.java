@@ -16,23 +16,23 @@ public class BridgeCheckerTest {
 		BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 		List<String> bridge = bridgeMaker.makeBridge(userInputLength);
 
-		int gameTurn = 0;
+		int currentStep = 0;
 		while(true) {
-			if (BridgeChecker.isEndGame(bridge, gameTurn)) {
+			if (BridgeChecker.isGameClear(bridge, currentStep)) {
 				break;
 			}
 
-			if (!BridgeChecker.isMovableLocation(bridge, "U", gameTurn)) {
-				System.out.println("게임이 끝난 턴 : " + (gameTurn + 1));
-				Assertions.assertThat(gameTurn).isNotEqualTo(bridge.size());
+			if (!BridgeChecker.isMovableLocation(bridge, "U", currentStep)) {
+				System.out.println("게임이 끝난 턴 : " + (currentStep + 1));
+				Assertions.assertThat(currentStep).isNotEqualTo(bridge.size());
 				break;
 			}
-			gameTurn++;
+			currentStep++;
 		}
 
-		if (BridgeChecker.isMovableLocation(bridge, "U", gameTurn)) {
-			System.out.println("게임이 끝난 턴 : " + gameTurn);
-			Assertions.assertThat(gameTurn).isEqualTo(bridge.size());
+		if (BridgeChecker.isMovableLocation(bridge, "U", currentStep)) {
+			System.out.println("게임이 끝난 턴 : " + currentStep);
+			Assertions.assertThat(currentStep).isEqualTo(bridge.size());
 		}
 	}
 }
