@@ -93,12 +93,13 @@ public class GameController {
         if (isSurviveThisTurn) {
             return !bridgeGame.isWin(player);
         }
-        return askForTryAgain();
+        return askForTryAgain(player);
     }
 
-    private boolean askForTryAgain() {
+    private boolean askForTryAgain(Player player) {
         String input = readTryAgainInput();
         if (input.equals(GAME_RETRY_INPUT)) {
+            bridgeGame.retry(player);
             return true;
         }
         return false;
