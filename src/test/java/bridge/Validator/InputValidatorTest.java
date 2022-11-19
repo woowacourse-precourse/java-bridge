@@ -1,4 +1,4 @@
-package bridge;
+package bridge.Validator;
 
 import bridge.Validator.InputValidator;
 import org.junit.jupiter.api.DisplayName;
