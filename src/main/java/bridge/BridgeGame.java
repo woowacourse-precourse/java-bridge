@@ -85,5 +85,16 @@ public class BridgeGame {
         tryNum += 1;
     }
 
+    public void printGameResult(){
+        outputView.printEnding();
+        printUpBridge();
+        printDownBridge();
+        boolean isSuccess = bridge.isCrossedBridge(visited);
+        String result = "실패";
+        if(isSuccess){
+            result = "성공";
+        }
+        outputView.printResult(result,tryNum);
+    }
 
 }
