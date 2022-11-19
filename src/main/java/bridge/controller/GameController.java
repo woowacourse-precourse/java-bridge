@@ -25,15 +25,21 @@ public class GameController {
 	public void run() {
 		outputView.printStartMessage();
 		List<String> bridges = bridgeGame.setUpGame(InputController.getBridgeSize());
-		playRound(bridges);
+		playGame(bridges);
 		outputView.printResult(map, gameResult);
 	}
 
+	private void playGame(List<String> bridges) {
+		do {
+			bridgeGame.setUpRound(gameResult, map);
+			playRound(bridges);
+		} while (isKeepGaming());
+	}
+
 	private void playRound(List<String> bridges) {
-		bridgeGame.setUpRound(gameResult, map);
 		for (String square : bridges) {
 			if (!isRightStep(square)) {
-				chooseRestartRound(bridges);
+				gameResult.changeResultToFail();
 				break;
 			}
 		}
@@ -47,12 +53,11 @@ public class GameController {
 		return stairs.isEquals(square);
 	}
 
-	private void chooseRestartRound(List<String> bridges) {
-		gameResult.changeResultToFail();
-
-		if (bridgeGame.retry(InputController.getExitOption())) {
-			playRound(bridges);
+	private boolean isKeepGaming() {
+		if (gameResult.isGameLose()) {
+			return bridgeGame.retry(InputController.getExitOption());
 		}
+		return false;
 	}
 }
 
