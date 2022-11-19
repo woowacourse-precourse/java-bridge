@@ -17,25 +17,11 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public String move(String moving, List<String> bridge, int currentIndex) {
-        if (moving.equals(bridge.get(currentIndex))){
-            if(moving.equals("U")){
-                upBridge.add("O");
-                downBridge.add(" ");
-            }
-            else if(moving.equals("D")){
-                upBridge.add(" ");
-                downBridge.add("O");
-            }
+        if (moving.equals(bridge.get(currentIndex))) {
+            setCorrectBridge(moving);
             return "O";
         }
-        if(moving.equals("U")){
-            upBridge.add("X");
-            downBridge.add(" ");
-        }
-        else if(moving.equals("D")){
-            upBridge.add(" ");
-            downBridge.add("X");
-        }
+        setWrongBridge(moving);
         return "X";
     }
 
@@ -44,10 +30,10 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(){
-            upBridge.clear();
-            downBridge.clear();
-        }
+    public void retry() {
+        upBridge.clear();
+        downBridge.clear();
+    }
 
     public List<String> getUpBridge() {
         return upBridge;
@@ -55,6 +41,26 @@ public class BridgeGame {
 
     public List<String> getDownBridge() {
         return downBridge;
+    }
+
+    private void setCorrectBridge(String moving){
+        if (moving.equals("U")) {
+            upBridge.add("O");
+            downBridge.add(" ");
+        } else if (moving.equals("D")) {
+            upBridge.add(" ");
+            downBridge.add("O");
+        }
+    }
+
+    private void setWrongBridge(String moving){
+        if (moving.equals("U")) {
+            upBridge.add("X");
+            downBridge.add(" ");
+        } else if (moving.equals("D")) {
+            upBridge.add(" ");
+            downBridge.add("X");
+        }
     }
 
 }
