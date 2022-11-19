@@ -24,9 +24,9 @@ public class BridgeGame {
 
 	public void startApplication() {
 		inputController.startGame();
-		Integer attemptCount = 0;
 		Integer bridgeSize = inputController.getBridgeSize();
 		gameService.makeBridge(bridgeSize);
+		Integer attemptCount = 0;
 		String userResult;
 		do {
 			userResult = move(bridgeSize);
@@ -35,6 +35,10 @@ public class BridgeGame {
 				break;
 			}
 		} while (retry());
+		printResult(attemptCount, userResult);
+	}
+
+	private void printResult(Integer attemptCount, String userResult) {
 		outputView.printFinalResultPhrase();
 		outputView.printMap(gameService.getUserBridgeStatusDto());
 		outputView.printResult(userResult, attemptCount);
