@@ -15,10 +15,10 @@ public class FootPrints {
     public void add(int status, Direction direction) {
         if (direction == Direction.UP) {
             up.addStep(status);
-            down.addStep(" ");
+            down.addBlank();
             return;
         }
-        up.addStep(" ");
+        up.addBlank();
         down.addStep(status);
     }
 

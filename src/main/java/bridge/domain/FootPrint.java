@@ -11,12 +11,12 @@ public class FootPrint {
         this.footPrint = new ArrayList<>();
     }
 
-    public void addStep(String step) {
-        footPrint.add(step);
+    public void addBlank() {
+        footPrint.add(" ");
     }
 
     public void addStep(int status) {
-        if (status != User.DEAD) {
+        if (status == User.LIVE) {
             footPrint.add("O");
             return;
         }
