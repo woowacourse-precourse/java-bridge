@@ -10,4 +10,15 @@ public class BridgeMapMaker {
         bridgeMap.concatComponent(BridgeComponent.BRIDGE_END);
         return bridgeMap;
     }
+
+    private String crossOrNot(final String moving, final String side) {
+        String failSide = MovingStatus.FAIL.getMovingKey() + side;
+        if (moving.equals(side)) {
+            return BridgeComponent.CAN_CROSS;
+        }
+        if (moving.equals(failSide)) {
+            return BridgeComponent.CANNOT_CROSS;
+        }
+        return BridgeComponent.BLANK;
+    }
 }
