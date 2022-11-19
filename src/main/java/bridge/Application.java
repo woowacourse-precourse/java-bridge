@@ -25,8 +25,11 @@ public class Application {
         boolean isGameContinued = true;
         BridgeGame bridgeGame = new BridgeGame();
 
-        for(int i = 0; i < bridge.getBridge().size(); i++) {
+        while(isGameContinued) {
             outputView.printMap(bridge, bridgeGame.move(inputView.readMoving()));
+            if (bridgeGame.isUserDead(bridge)) {
+                isGameContinued = bridgeGame.retry(inputView.readGameCommand());
+            }
         }
     }
 }

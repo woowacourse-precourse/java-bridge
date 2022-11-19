@@ -18,11 +18,11 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(Bridge bridge, List<String> userLog) {
-        System.out.println("[ " + printLine(bridge, userLog, Movement.UP) + " ]");
-        System.out.println("[ " + printLine(bridge, userLog, Movement.DOWN) + " ]");
+        System.out.println("[ " + printLine(bridge, userLog, Command.UP) + " ]");
+        System.out.println("[ " + printLine(bridge, userLog, Command.DOWN) + " ]");
     }
 
-    private String printLine(Bridge bridge, List<String> userLog, Movement direction) {
+    private String printLine(Bridge bridge, List<String> userLog, Command direction) {
         List<String> line = new ArrayList<>();
 
         for(int block = 0; block < userLog.size(); block++) {
@@ -32,7 +32,7 @@ public class OutputView {
         return String.join(" | ", line);
     }
 
-    private String compare(String bridgeMovement, String userMovement, Movement direction) {
+    private String compare(String bridgeMovement, String userMovement, Command direction) {
         if (! userMovement.equals(direction.getValue())) {
             return SPACE;
         }

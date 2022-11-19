@@ -40,7 +40,13 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+
+        String userCommand = Console.readLine();
+
+        validateUserCommand(userCommand);
+
+        return userCommand;
     }
 
     private void validateBridgeRange(int bridgeSize) {
@@ -50,7 +56,13 @@ public class InputView {
     }
 
     private void validateUserMovement(String userMovement) {
-        if(! (userMovement.equals(Movement.UP.getValue()) || userMovement.equals(Movement.DOWN.getValue()))) {
+        if(! (userMovement.equals(Command.UP.getValue()) || userMovement.equals(Command.DOWN.getValue()))) {
+            throw new IllegalArgumentException(ErrorMessage.NotValidUserMovement.getMessage());
+        }
+    }
+
+    private void validateUserCommand(String userCommand) {
+        if(! (userCommand.equals(Command.RETRY.getValue()) || userCommand.equals(Command.QUIT.getValue()))) {
             throw new IllegalArgumentException(ErrorMessage.NotValidUserMovement.getMessage());
         }
     }

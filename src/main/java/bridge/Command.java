@@ -1,12 +1,14 @@
 package bridge;
 
-public enum Movement {
+public enum Command {
     UP("U"),
-    DOWN("D");
+    DOWN("D"),
+    RETRY("R"),
+    QUIT("Q");
 
     private String movement;
 
-    Movement(String movement) {
+    Command(String movement) {
         this.movement = movement;
     }
 
