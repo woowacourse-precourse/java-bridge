@@ -20,8 +20,8 @@ public class BridgeMaker {
     }
     private void addBridge(List<String> bridge, int bridgeNumber) {
         for (BridgeState bridgeState : BridgeState.values()) {
-            if (bridgeState.bridgeNumber == bridgeNumber) {
-                bridge.add(bridgeState.bridgeMark);
+            if (bridgeState.getBridgeNumber() == bridgeNumber) {
+                bridge.add(bridgeState.getBridgeMark());
             }
         }
     }
