@@ -51,6 +51,10 @@ public class OutputView {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
 
+    public void printError(IllegalArgumentException e) {
+        System.out.println("[ERROR] "+ e.getMessage());
+    }
+
     private String getLane(boolean isUp, boolean isSuccess, List<Boolean> bridge){
         StringBuilder lane = drawLane(isUp, bridge);
         changeLastValue(isSuccess, lane);
