@@ -9,7 +9,10 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        String bridgeSize = camp.nextstep.edu.missionutils.Console.readLine();
+        // input 오류처리 필요(숫자 아닌값 입력, 3이상 20이하 범위 벗어난 경우)
+
+        return Integer.parseInt(bridgeSize);
     }
 
     /**
@@ -25,4 +28,15 @@ public class InputView {
     public String readGameCommand() {
         return null;
     }
+
+    public Boolean checkNotDigit(String str) {
+        for (int i = 0; i < str.length(); i++) {
+            char charUnit = str.charAt(i);
+            if ((int) charUnit < 48 || (int) charUnit > 58) {
+                throw new IllegalArgumentException();
+            }
+        }
+        return true;
+    }
+
 }
