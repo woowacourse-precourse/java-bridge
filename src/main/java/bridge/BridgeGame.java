@@ -8,21 +8,22 @@ import bridge.domain.BridgeGameResult;
  */
 public class BridgeGame {
 
+    private final Bridge bridge;
     private final BridgeGameResult bridgeGameResult;
 
-    public BridgeGame() {
-        bridgeGameResult = new BridgeGameResult();
+    public BridgeGame(Bridge bridge) {
+        this.bridge = bridge;
+        this.bridgeGameResult = new BridgeGameResult();
     }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      *
-     * @param bridge 다리
      * @param play   이동 횟수
      * @param moving 이동할 칸
      * @return 이동 가능성
      */
-    public Boolean move(Bridge bridge, int play, String moving) {
+    public Boolean move(int play, String moving) {
         boolean mobility = bridge.isPossibleMoving(play, moving);
         bridgeGameResult.addMoveState(moving, mobility);
         return mobility;
@@ -42,5 +43,9 @@ public class BridgeGame {
 
     public BridgeGameResult getBridgeGameResult() {
         return bridgeGameResult;
+    }
+
+    public int getBridgeSize() {
+        return bridge.getSize();
     }
 }

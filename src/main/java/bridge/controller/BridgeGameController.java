@@ -28,9 +28,8 @@ public class BridgeGameController {
 
     public void play() {
         start();
-        Bridge bridge = makeBridge();
         while (play) {
-            moveBridge(bridge);
+            moveBridge();
         }
         end();
     }
@@ -42,7 +41,7 @@ public class BridgeGameController {
 
     private void setUp() {
         play = true;
-        bridgeGame = new BridgeGame();
+        bridgeGame = new BridgeGame(makeBridge());
     }
 
     private void end() {
@@ -65,13 +64,13 @@ public class BridgeGameController {
         return bridgeMaker.makeBridge(size);
     }
 
-    private void moveBridge(Bridge bridge) {
+    private void moveBridge() {
         int moveCount;
-        for (moveCount = 0; moveCount < bridge.getSize(); moveCount++) {
+        for (moveCount = 0; moveCount < bridgeGame.getBridgeSize(); moveCount++) {
             outputView.printMovingMsg();
 
             String moving = inputView.readMoving();
-            Boolean mobility = bridgeGame.move(bridge, moveCount, moving);
+            Boolean mobility = bridgeGame.move(moveCount, moving);
             outputView.printMap(bridgeGame.getBridgeGameResult());
 
             if (isFail(mobility)) {
@@ -79,7 +78,7 @@ public class BridgeGameController {
             }
         }
 
-        if (moveCount == bridge.getSize()) {
+        if (moveCount == bridgeGame.getBridgeSize()) {
             bridgeGame.success();
             play = false;
         }
