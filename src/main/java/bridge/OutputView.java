@@ -9,6 +9,9 @@ public class OutputView {
 
     private static final int RANDOM_LOWER_INCLUSIVE = 0;
     private static final int RANDOM_UPPER_INCLUSIVE = 1;
+    private static final int FIRST_BRIDGE = 0;
+    private static final int SECOND_BRIDGE = 1;
+
 
     public void startGame(){
         System.out.println("다리 건너기 게임을 시작합니다.");
@@ -40,6 +43,10 @@ public class OutputView {
         }
         printUserPositionValue(userPosition, checkBridge, partOfBridge);
         printMapEnd();
+    }
+
+    public List<Integer> getOneInDoubleList(int partNumber, List<List<Integer>> map){
+        return map.get(partNumber);
     }
 
     public void printMapStart(){
