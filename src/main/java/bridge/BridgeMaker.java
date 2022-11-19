@@ -34,9 +34,7 @@ public class BridgeMaker {
     }
 
     public List<Integer> makeTrap(int size){
-        List<Integer> trap = rawTrap(size);
-        fisrtUpperBridgeIsSafe(trap);
-        return trap;
+        return rawTrap(size);
     }
 
     public List<Integer> rawTrap(int size){
