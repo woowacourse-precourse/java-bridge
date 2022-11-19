@@ -1,8 +1,11 @@
 package bridge;
 
+import bridge.view.InputView;
+import bridge.view.OutputView;
+
 import java.util.List;
 
-import static bridge.Message.*;
+import static bridge.view.Message.*;
 
 public class BridgeGameService {
 
