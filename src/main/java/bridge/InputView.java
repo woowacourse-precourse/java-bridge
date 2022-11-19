@@ -52,6 +52,17 @@ public class InputView {
         }
     }
 
+    public String getValidMoving() {
+        try {
+            String input = Console.readLine();
+            validateMoving(input);
+            return input;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getValidMoving();
+        }
+    }
+
     public void validateBridgeSize(String input) throws IllegalArgumentException {
         checkParsableInt(input);
         int bridgeSize = Integer.parseInt(input);
