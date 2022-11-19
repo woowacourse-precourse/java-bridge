@@ -49,4 +49,18 @@ public class BridgeService {
     }
 
 
+    // 재시작 입력받기
+    public String isRestartString() {
+        String isRestart;
+        do {
+            try {
+                isRestart = inputView.readGameCommand();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        } while (true);
+        return isRestart;
+    }
+
 }
