@@ -66,10 +66,10 @@ public class OutputView {
 
     private void printBridgeBottom(List<String> bottomBridge) {
         System.out.print("[ ");
-        for (String bottom : bottomBridge) {
-            System.out.println(bottom);
+        for (int i = 0; i < bottomBridge.size() - 1; i++) {
+            System.out.print(bottomBridge.get(i) + " | ");
         }
-        System.out.println(" ]");
+        System.out.println(bottomBridge.get(bottomBridge.size() - 1) + " ]");
         System.out.println();
     }
 }
