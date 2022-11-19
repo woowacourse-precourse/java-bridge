@@ -4,7 +4,7 @@ import bridge.utils.enums.GameResult;
 
 public class Result {
 
-    public String getResult(boolean isAnswer) {
+    public String returnResult(boolean isAnswer) {
         if (isAnswer) {
             return GameResult.SUCCESS.getValue();
         }
