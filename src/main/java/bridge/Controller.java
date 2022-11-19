@@ -5,9 +5,9 @@ public class Controller {
         int bridgeLength=0;
         System.out.println(MessageView.START_GAME_MESSAGE);
         bridgeLength = getBridgeSize();
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeNumberGenerator);
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridgeMaker.makeBridge(bridgeLength);
-        
+
     }
 
     private int getBridgeSize(){
