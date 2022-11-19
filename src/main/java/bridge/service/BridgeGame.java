@@ -32,6 +32,7 @@ public class BridgeGame {
 
     public boolean retry(String input) {
         checkRestartQuitCommand(input);
+        checkResult();
         if (input.equals(RESTART_COMMAND)) {
             this.result = new Result();
             count = count.increase();
@@ -67,6 +68,7 @@ public class BridgeGame {
     }
 
     public String printPlayCount() {
+        checkCount();
         return count.printCount();
     }
 
@@ -94,6 +96,12 @@ public class BridgeGame {
 
     private void checkState() {
         if (playState == null) {
+            throw new IllegalStateException(NO_START_GAME_ERROR);
+        }
+    }
+
+    private void checkCount() {
+        if (count == null) {
             throw new IllegalStateException(NO_START_GAME_ERROR);
         }
     }
