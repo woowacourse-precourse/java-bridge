@@ -18,6 +18,8 @@ public class BridgeGame {
 
     private boolean success;  //성공 여부
 
+    private int retryCount; //재시작 수
+
     public void init(int size){
         success = true;
         upBridge = new ArrayList<>();
@@ -25,6 +27,7 @@ public class BridgeGame {
         user.init();
         bridge.init();
         bridge.setBridge(size);
+        retryCount=1;
     }
 
     /**
@@ -81,11 +84,8 @@ public class BridgeGame {
             upBridge = new ArrayList<>();
             downBridge = new ArrayList<>();
             user.init();
+            retryCount++;
         }
-    }
-
-    public boolean getSuccess(){
-        return success;
     }
 
     public Map<String,List<String>> getResult(){
@@ -93,5 +93,13 @@ public class BridgeGame {
         resultBridge.put("up",upBridge);
         resultBridge.put("down",downBridge);
         return resultBridge;
+    }
+
+    public boolean getSuccess(){
+        return success;
+    }
+
+    public int getRetryCount(){
+        return retryCount;
     }
 }
