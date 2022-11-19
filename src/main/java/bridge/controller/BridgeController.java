@@ -24,6 +24,10 @@ public class BridgeController {
     }
 
     public void playGame() {
+        do {
+            bridgeService.moveBridge();
+            bridgeService.presentMap();
+        } while (bridgeService.isKeepGoing());
     }
 
     public void exitGame() {
