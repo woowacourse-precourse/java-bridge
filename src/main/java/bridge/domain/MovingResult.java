@@ -1,4 +1,4 @@
-package bridge.domain.dto;
+package bridge.domain;
 
 public class MovingResult {
 	private final String UP_DIRECTION = "U";
