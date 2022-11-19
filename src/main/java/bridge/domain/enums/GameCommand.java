@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.enums;
 
 import bridge.constants.ErrorMessages;
 import java.util.Arrays;

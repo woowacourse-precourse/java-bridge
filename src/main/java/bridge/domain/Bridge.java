@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.domain.enums.Direction;
 import java.util.List;
 
 public class Bridge {

@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.domain.enums.Direction;
+
 public class FootPrints {
 
     private final FootPrint up;

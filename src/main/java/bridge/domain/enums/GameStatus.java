@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.enums;
 
 public enum GameStatus {
     WIN("성공"),

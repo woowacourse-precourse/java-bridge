@@ -3,10 +3,10 @@ package bridge.domain.controller;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
-import bridge.domain.BridgeRandomNumberGenerator;
-import bridge.domain.Direction;
-import bridge.domain.GameCommand;
-import bridge.domain.GameStatus;
+import bridge.domain.enums.Direction;
+import bridge.domain.enums.GameCommand;
+import bridge.domain.enums.GameStatus;
+import bridge.domain.generator.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 

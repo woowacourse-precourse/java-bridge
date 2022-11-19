@@ -1,8 +1,8 @@
 package bridge.view;
 
 import bridge.constants.ErrorMessages;
-import bridge.domain.Direction;
-import bridge.domain.GameCommand;
+import bridge.domain.enums.Direction;
+import bridge.domain.enums.GameCommand;
 import camp.nextstep.edu.missionutils.Console;
 
 /**

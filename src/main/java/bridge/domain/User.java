@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.domain.enums.Direction;
+
 public class User {
 
     public static final int DEAD = 0;
