@@ -29,7 +29,7 @@ public class OutputView {
      * @param result
      */
     public void printResult(Result result) {
-        System.out.println("최종 게임 결과");
+        System.out.println("\n최종 게임 결과");
         System.out.println(result.getFinalResult()+"\n");
         if (result.getSuccess()) {
             System.out.println("게임 성공 여부: 성공");

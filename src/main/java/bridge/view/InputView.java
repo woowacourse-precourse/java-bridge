@@ -14,7 +14,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public Integer readBridgeSize() {
-        System.out.println("\n다리의 길이를 입력해주세요");
+        System.out.println("\n다리의 길이를 입력해주세요.");
         String input = Console.readLine();
         if (!input.matches("^[0-9]*$")) {
             throw new IllegalArgumentException("숫자를 입력해주세요");
@@ -36,5 +36,9 @@ public class InputView {
     public String readGameCommand() {
         System.out.println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         return Console.readLine();
+    }
+
+    public void showStartGameMessage() {
+        System.out.println("다리 건너기 게임을 시작합니다.");
     }
 }

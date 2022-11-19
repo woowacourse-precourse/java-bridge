@@ -27,7 +27,7 @@ public class BridgeGameController {
     }
 
     public void run() {
-        System.out.println("다리 건너기 게임을 시작합니다"); // 위치 여기가 맞을까?
+        inputView.showStartGameMessage();
         Bridge bridge = this.makeBridge();
         game.saveBridge(bridge);
 
@@ -54,6 +54,7 @@ public class BridgeGameController {
                 replay();
             }
         } catch (IllegalArgumentException e) {
+            outputView.showErrorMessage(e);
             determineWhatToDo();
         }
     }
@@ -71,7 +72,6 @@ public class BridgeGameController {
             if (movingResult == GameResultStatus.MOVE_SUCCESS) {
                 return moveUser();
             }
-            System.out.println("움직임의 결과는 1:성공/0:다음/-1:실패 -- " + movingResult);
             return movingResult;
         } catch (IllegalArgumentException e) {
             outputView.showErrorMessage(e);
