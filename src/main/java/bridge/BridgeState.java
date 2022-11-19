@@ -21,6 +21,11 @@ public class BridgeState {
         stateOfBridge.add(resultOfMoving);
     }
 
+    public void clearAllBridgeState() {
+        directions.clear();
+        stateOfBridge.clear();
+    }
+
     @Override
     public String toString() {
         clearBridgeFigure();

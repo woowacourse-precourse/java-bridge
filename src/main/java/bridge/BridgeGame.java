@@ -20,6 +20,7 @@ public class BridgeGame {
     }
 
     public void retry() {
+        bridgeState.clearAllBridgeState();
     }
 
     public Bridge generateBridge(int bridgeSize) {
