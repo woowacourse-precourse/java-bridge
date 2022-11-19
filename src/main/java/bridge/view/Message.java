@@ -13,8 +13,7 @@ public enum Message {
 	INPUT_GAME_COMMAND("게임을 다시 시도할지 여부를 입력해주세요, (재시도 : R, 종료 : Q)\n"),
 	FINAL_GAME_RESULT("최종 게임 결과\n"),
 	WHETHER_GAME_SUCCESSFUL("게임 성공 여부: "),
-	TOTAL_ATTEMPTS("총 시도한 횟수 : ")
-	;
+	TOTAL_ATTEMPTS("총 시도한 횟수: ");
 
 	private final String message;
 
@@ -27,7 +26,17 @@ public enum Message {
 	}
 
 	public static void printMessage(Message message) {
-		System.out.print(message);
+		System.out.print(message.message);
+	}
+
+	public static void printFinalMessage(boolean isSuccess, int gameCount) {
+		if (isSuccess) {
+			System.out.println(WHETHER_GAME_SUCCESSFUL.message + "성공");
+			System.out.println(TOTAL_ATTEMPTS.message + gameCount);
+			return;
+		}
+		System.out.println(WHETHER_GAME_SUCCESSFUL.message + "실패");
+		System.out.println(TOTAL_ATTEMPTS.message + gameCount);
 	}
 
 }
