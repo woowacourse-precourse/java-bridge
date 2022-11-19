@@ -14,6 +14,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받고, 해당 다리의 길이를 반환합니다.
      * 이때 비정상적인 입력이 들어올 경우, 다시 재귀를 통해 입력을 받습니다.
+     * @return 입력받은 다리의 길이
      */
     public int readBridgeSize() {
         String brideLength;
@@ -29,6 +30,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받고, 해당 칸을 반환합니다.
      * 이때 비정상적인 입력이 들어올 경우, 다시 재귀를 통해 입력을 받습니다.
+     * @return 다음에 이동할 칸 (U: 위, D: 아래)
      */
     public String readMoving() {
         String nextCell;
