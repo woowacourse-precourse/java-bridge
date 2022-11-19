@@ -1,0 +1,21 @@
+package bridge;
+
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class InputViewTest {
+
+    private Validation validation;
+    @Test
+    @DisplayName("다리 길이에 대한 입력 Integer 변환 - 성공")
+    public void Convert_Success() throws Exception{
+        validation = new Validation();
+        String bridgeSize = "4";
+        validation.bridgeLen(bridgeSize);
+        Integer len = Integer.parseInt(bridgeSize);
+        Assertions.assertThat(len).isEqualTo(4);
+    }
+}
