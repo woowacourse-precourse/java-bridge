@@ -41,4 +41,14 @@ public class BridgeGameTest {
         Result result = bridgeGame.move(0, "D");
         assertThat(bridgeGame.isWrongApproach(result)).isEqualTo(true);
     }
+
+    @Test
+    void 총_시도_횟수_증가_테스트() {
+        BridgeNumberGenerator numberGenerator = new ApplicationTest.TestNumberGenerator(newArrayList(1, 0, 0));
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(3);
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        bridgeGame.retry();
+        assertThat(bridgeGame.getTryCount()).isEqualTo(2);
+    }
 }
