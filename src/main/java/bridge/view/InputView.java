@@ -2,6 +2,8 @@ package bridge.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import bridge.util.InputSizeValidator;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -18,11 +20,8 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println(MESSAGE_INPUT_BRIDGE_SIZE);
         String input = readLine();
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ERROR_INPUT_INT);
-        }
+        InputSizeValidator.validator(input);
+        return Integer.parseInt(input);
     }
 
     /**
