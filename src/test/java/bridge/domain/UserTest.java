@@ -59,4 +59,17 @@ class UserTest {
         assertThat(user.checkBridge())
                 .isEqualTo(true);
     }
+
+    @Test
+    @DisplayName("게임 재시작 테스트")
+    void restartGameTest() {
+        User user = new User(Arrays.asList("D","D","D"));
+        user.addMove("D");
+        user.addMove("U");
+        user.restartGame();
+        assertThat(user.getNumberOfAttempts())
+                .isEqualTo(2);
+        assertThat(user.getUserBridge())
+                .isEmpty();
+    }
 }
