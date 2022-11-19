@@ -12,6 +12,7 @@ public class BridgeMoving {
     private BridgeMaker bridgeMaker;
     private List<String> makeBridgeList;
     private int size;
+    private int moveCount = 0;
 
     public BridgeMoving() {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
@@ -21,6 +22,16 @@ public class BridgeMoving {
     public void setBridgeMaker(int size) {
         this.size = size;
         this.makeBridgeList = bridgeMaker.makeBridge(size);
+    }
+
+    public void setMoveCount() {
+        this.moveCount = 0;
+    }
+
+    // 움직인 횟수와 다리의 길이가 같으면 true return
+    public boolean movingCount() {
+        moveCount += 1;
+        return moveCount == size;
     }
 
     public List<String> getMakeBridgeList() {
