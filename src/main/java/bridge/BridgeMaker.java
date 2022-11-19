@@ -20,8 +20,12 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        String val = makeOneStep(bridgeNumberGenerator.generate());
-        bridge.add(val);
+        
+        for(int index = 0; index < size; index++) {
+            String val = makeOneStep(bridgeNumberGenerator.generate());
+            bridge.add(val);
+        }
+        
         return bridge;
     }
 
