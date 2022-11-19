@@ -20,12 +20,15 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        int randomNum = bridgeNumberGenerator.generate();
-        if (randomNum == 0) {
-            bridge.add("D");
-        }
-        if (randomNum == 1) {
-            bridge.add("U");
+        while (size > 0) {
+            int randomNum = bridgeNumberGenerator.generate();
+            if (randomNum == 0) {
+                bridge.add("D");
+            }
+            if (randomNum == 1) {
+                bridge.add("U");
+            }
+            size--;
         }
         return bridge;
     }
