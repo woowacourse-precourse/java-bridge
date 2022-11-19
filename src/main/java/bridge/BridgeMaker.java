@@ -30,8 +30,8 @@ public class BridgeMaker extends BridgeRandomNumberGenerator{
     public String decideString(){
         int number = bridgeNumberGenerator.generate();
         if(number == 0){
-            return "U";
+            return "D";
         }
-        return "D";
+        return "U";
     }
 }

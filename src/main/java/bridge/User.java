@@ -5,7 +5,7 @@ public class User {
     private int attempt;
 
     User(){
-        this.position = 0;
+        this.position = -1;
         this.attempt = 0;
     }
 
@@ -26,7 +26,7 @@ public class User {
     }
 
     public void initializeUserPosition(){
-        this.position = 0;
+        this.position = -1;
     }
 
 }
