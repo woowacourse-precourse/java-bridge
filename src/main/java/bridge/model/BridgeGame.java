@@ -27,6 +27,10 @@ public class BridgeGame {
         return movable.isMovable();
     }
 
+    public boolean isSuccessCrossingBridge(int position) {
+        return bridge.size() == position;
+    }
+
     public boolean retry(String selectRetry) {
         Retry retry = Retry.valueOf(selectRetry);
         return retry.isRetry();
