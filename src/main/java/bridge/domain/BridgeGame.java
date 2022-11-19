@@ -3,6 +3,7 @@ package bridge.domain;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.validator.InputValidator;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -12,7 +13,7 @@ public class BridgeGame {
     private final Bridge bridge;
     private final int bridgeSize;
     private UserPath userPath;
-    private int userPostion;
+    private int userPosition;
 
     public BridgeGame(int size) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
@@ -28,10 +29,10 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String userInput) {
-        boolean isPass = bridge.compareWithPosition(userPostion, userInput);
+        boolean isPass = bridge.compareWithPosition(userPosition, userInput);
 
         userPath.move(userInput);
-        userPostion++;
+        userPosition++;
 
         return isPass;
     }
@@ -42,8 +43,8 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String command) {
-        if (command.equals("R")) {
-            userPostion = 0;
+        if (command.equals(InputValidator.RETRY)) {
+            userPosition = 0;
             userPath.initialize();
             return true;
         }
@@ -51,7 +52,7 @@ public class BridgeGame {
     }
 
     public boolean checkSuccess() {
-        if (userPostion == bridgeSize)
+        if (userPosition == bridgeSize)
             return true;
         return false;
     }

@@ -8,7 +8,6 @@ public class UserPath {
     private List<String> userPath = new ArrayList<>();
 
     public void move(String input) {
-        validateMovingInput(input);
         userPath.add(input);
     }
 
@@ -22,11 +21,5 @@ public class UserPath {
                 return false;
         }
         return true;
-    }
-
-    private void validateMovingInput(String input) {
-        if (!input.equals(Bridge.down) && !input.equals(Bridge.up)) {
-            throw new IllegalArgumentException("다리는 위, 아래 두 칸만으로 이루어져 있습니다.");
-        }
     }
 }
