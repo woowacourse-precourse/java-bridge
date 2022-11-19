@@ -86,4 +86,15 @@ class ResultTest {
         assertThat(downSignWrongAnswer)
                 .isTrue();
     }
+
+    @DisplayName("사용자가 입력한 값 중 오답이 포함되어 있다면, 참을 반환하는지 테스트")
+    @Test
+    void hasWrong() {
+        //given
+        result.updateIsAnswers(new MoveDirection(UP_SIGN), false);
+        //when
+        boolean hasWrong = result.hasWrong();
+        //then
+        assertThat(hasWrong).isTrue();
+    }
 }
