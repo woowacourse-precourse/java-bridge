@@ -43,6 +43,8 @@ public class BridgeGameController {
             bridgeGame.move(bridgeDirection);
             outputView.printMap(bridgeGame.toBridgeGameMapState());
         } while (isPlayable(bridgeGame));
+
+        outputView.printResult(bridgeGame.toBridgeGameResult());
     }
 
     private BridgeGame setupGame(BridgeMap bridgeMap) {

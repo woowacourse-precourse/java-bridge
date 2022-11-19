@@ -2,6 +2,7 @@ package bridge.domain.bridge.model;
 
 import bridge.domain.game.GamePlayer;
 import bridge.ui.output.dto.BridgeGameMapState;
+import bridge.ui.output.dto.BridgeGameResult;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -59,5 +60,13 @@ public class BridgeGame {
             return true;
         }
         return false;
+    }
+
+    public BridgeGameResult toBridgeGameResult() {
+        return new BridgeGameResult(
+                toBridgeGameMapState().toConsolePrintFormat(),
+                isCrossedBridge(),
+                gamePlayer.getTrial()
+        );
     }
 }
