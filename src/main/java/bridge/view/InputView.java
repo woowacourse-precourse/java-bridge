@@ -28,7 +28,6 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println();
         System.out.println(MOVING_INPUT_MESSAGE);
 
         String movingInput = Console.readLine();
@@ -40,7 +39,6 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println();
         System.out.println(COMMAND_INPUT_MESSAGE);
 
         String command = Console.readLine();

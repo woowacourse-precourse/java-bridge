@@ -32,15 +32,24 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeGame bridgeGame) {
+        StringBuilder output = new StringBuilder();
+
+        output.append(printMapOneLine(bridgeGame, "U"));
+        output.append(printMapOneLine(bridgeGame, "D"));
+
+        System.out.println(output);
+    }
+
+    private StringBuilder printMapOneLine(BridgeGame bridgeGame, String upDown) {
+        StringBuilder output = new StringBuilder();
         Bridge bridge = bridgeGame.getBridge();
         UserPath userPath = bridgeGame.getUserPath();
-
-        StringBuilder output = new StringBuilder(BRIDGE_PREFIX);
-
         int userPosition = bridgeGame.getUserPosition();
+
+        output.append(BRIDGE_PREFIX);
         for (int i = 0; i < userPosition; i++) {
-            if (bridge.compareWithPosition(i, "U")) {
-                if (userPath.find(i).equals("U")) {
+            if (userPath.find(i).equals(upDown)) {
+                if (bridge.compareWithPosition(i, upDown)) {
                     output.append(PASS);
                 }
                 else output.append(NO_PASS);
@@ -51,8 +60,9 @@ public class OutputView {
                 output.append(DELIMITER);
         }
         output.append(BRIDGE_SUFFIX);
+        output.append("\n");
 
-        System.out.println(output);
+        return output;
     }
 
     /**
@@ -64,11 +74,10 @@ public class OutputView {
         System.out.println(TOTAL_RESULT);
         printMap(bridgeGame);
 
-        System.out.println();
-        System.out.println(IS_SUCCESS);
+        System.out.print(IS_SUCCESS);
         System.out.println(IsSuccess(bridgeGame));
 
-        System.out.println(TRY_NUMBER);
+        System.out.print(TRY_NUMBER);
         System.out.println(bridgeGame.getTryNumber());
     }
 
