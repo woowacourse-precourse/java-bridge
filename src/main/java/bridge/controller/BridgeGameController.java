@@ -39,6 +39,29 @@ public class BridgeGameController {
 		}
 	}
 
+	private void startBridgeGame(BridgeGame bridgeGame) {
+		boolean startGame = true;
+		while (startGame && bridgeGame.isNotFinish(progressMap)) {
+			crossBridge(bridgeGame);
+			if (progressMap.isMoveFailed()) {
+				startGame = failBridgeMove(bridgeGame);
+			}
+		}
+	}
+
+	private void crossBridge(BridgeGame bridgeGame) {
+		progressMap = bridgeGameService.initGameMap(bridgeGame.getBridgeSize());
+		while (!progressMap.isMoveFailed() && bridgeGame.isNotFinish(progressMap)) {
+			moveBridgeOneTime(bridgeGame);
+			outputView.printMap(progressMap.getProgressMap());
+		}
+	}
+
+	private void moveBridgeOneTime(BridgeGame bridgeGame) {
+		String moving = receiveMoveCommand();
+		bridgeGameService.moveBridge(moving, bridgeGame, progressMap);
+	}
+
 	private String receiveMoveCommand() {
 		try {
 			String moving = inputView.readMoving();
@@ -59,33 +82,11 @@ public class BridgeGameController {
 		}
 	}
 
-	private void startBridgeGame(BridgeGame bridgeGame) {
-		boolean startGame = true;
-		while (startGame && bridgeGame.isNotFinish(progressMap)) {
-			crossBridge(bridgeGame);
-			if (progressMap.isMoveFailed()) {
-				startGame = failBridgeMove(bridgeGame);
-			}
-		}
-	}
-
 	private boolean failBridgeMove(BridgeGame bridgeGame) {
 		if (askRetry()) {
 			bridgeGame.retry();
 			return true;
 		}
 		return false;
-	}
-
-	private void crossBridge(BridgeGame bridgeGame) {
-		progressMap = bridgeGameService.initGameMap(bridgeGame.getBridgeSize());
-		while (!progressMap.isMoveFailed() && bridgeGame.isNotFinish(progressMap)) {
-			moveBridgeOneTime(bridgeGame);
-			outputView.printMap(progressMap.getProgressMap());
-		}
-	}
-	private void moveBridgeOneTime(BridgeGame bridgeGame) {
-		String moving = receiveMoveCommand();
-		bridgeGameService.moveBridge(moving, bridgeGame, progressMap);
 	}
 }
