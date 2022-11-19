@@ -9,7 +9,7 @@ public class Bridge {
         this.bridgeBlocks = bridgeBlocks;
     }
 
-    public boolean isPossibleToMove(String bridgePosition, int order) {
+    public boolean isMovable(String bridgePosition, int order) {
         return bridgeBlocks.get(order).equals(bridgePosition);
     }
 

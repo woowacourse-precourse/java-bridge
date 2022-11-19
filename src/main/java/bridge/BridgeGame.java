@@ -23,7 +23,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String movingPosition) {
-        boolean possibleToMove = bridge.isPossibleToMove(movingPosition, movements.size());
+        boolean possibleToMove = bridge.isMovable(movingPosition, movements.size());
         movements.add(movingPosition);
         return possibleToMove;
     }
@@ -50,13 +50,13 @@ public class BridgeGame {
         this.movements = new ArrayList<>();
     }
 
-    public List<String> getMovementsInUpBridge() {
+    public List<String> getMapOfUpBridge() {
         return IntStream.range(0, movements.size())
                 .mapToObj(index -> getBlockResult(BridgePosition.UP, index))
                 .collect(Collectors.toList());
     }
 
-    public List<String> getMovementsInDownBridge() {
+    public List<String> getMapOfDownBridge() {
         return IntStream.range(0, movements.size())
                 .mapToObj(index -> getBlockResult(BridgePosition.DOWN, index))
                 .collect(Collectors.toList());
@@ -74,7 +74,7 @@ public class BridgeGame {
     }
 
     private String getMovedResult(String movingPosition, int index) {
-        if (bridge.isPossibleToMove(movingPosition, index)) {
+        if (bridge.isMovable(movingPosition, index)) {
             return " O ";
         }
         return " X ";
