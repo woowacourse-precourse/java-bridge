@@ -17,6 +17,11 @@ public class ValidationChecker {
     public void checkInputIsInteger(String target){return;}
 
     /**
+     * 입력 값이 자연수로 이루어져 있는지 확인한다.
+     */
+    public void checkInputIsNaturalNumber(String target){return;}
+
+    /**
      * 입력 값이 특정 문자로 이루어져 있는지 확인한다.
      */
     public void checkInputIsSpecificString(String target, List<String> specificString){return;}
