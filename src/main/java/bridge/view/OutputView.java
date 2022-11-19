@@ -9,6 +9,7 @@ public class OutputView {
 
     public void printGameStartMsg() {
         System.out.println(OutputMessage.GAME_START_MSG);
+        System.out.println();
     }
 
     public void printInputBridgeSizeMsg() {
