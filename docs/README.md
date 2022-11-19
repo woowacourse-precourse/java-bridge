@@ -16,11 +16,13 @@ OutputView
     method    
         생성자(int cur, List<String> bridge) 
             입력해서 저장
-        void printMap(int last)
+        void printMap(String letter, int last)
             [ O ]
             [   ]
             이런식으로 출력해야됨
         last가 1일 경우 마지막 X
+
+
         void printResult()
             최종 게임 결과
             [ O |   |   ]
