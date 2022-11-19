@@ -4,7 +4,7 @@ import bridge.utils.enums.Moving;
 
 public class RealTimeBridge {
 
-    private final String BLANK ="";
+    private final String BLANK = "";
     private final String SPACE = "   ";
     private final String DIVIDE = "|";
 
@@ -15,33 +15,32 @@ public class RealTimeBridge {
         return realTimeBridge;
     }
 
-    public String[][] makeRealTimeBridge(String userMove, String bridgeText) {
+    public void makeRealTimeBridge(String userMove, String bridgeText) {
         if (userMove.equals(Moving.UP.getValue())) {
-            return moveUpper(bridgeText);
+            moveUpper(bridgeText);
+            return;
         }
-        return moveDown(bridgeText);
+        moveDown(bridgeText);
     }
 
-    private String[][] moveDown(String bridgeText) {
+    private void moveDown(String bridgeText) {
         if (realTimeBridge[0][1].equals(BLANK)) {
             realTimeBridge[1][1] += bridgeText;
             realTimeBridge[0][1] += SPACE;
-            return realTimeBridge;
+            return;
         }
         realTimeBridge[1][1] += DIVIDE + bridgeText;
         realTimeBridge[0][1] += DIVIDE + SPACE;
-        return realTimeBridge;
     }
 
-    private String[][] moveUpper(String bridgeText) {
+    private void moveUpper(String bridgeText) {
         if (realTimeBridge[0][1].equals(BLANK)) {
             realTimeBridge[0][1] += bridgeText;
             realTimeBridge[1][1] += SPACE;
-            return realTimeBridge;
+            return;
         }
         realTimeBridge[0][1] += DIVIDE + bridgeText;
         realTimeBridge[1][1] += DIVIDE + SPACE;
-        return realTimeBridge;
     }
 
     public void initialize() {
