@@ -45,7 +45,7 @@ class UserTest extends NsTest {
     @Test
     void 최종_다리_상태_출력() {
         user.printResult();
-        assertThat(output()).contains(WHETHER_GAME_CLEAR);
+        assertThat(output()).contains(WHETHER_GAME_CLEAR.getMessage());
     }
 
     @Override
