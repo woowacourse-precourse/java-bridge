@@ -20,7 +20,7 @@ public class UserTest {
     }
 
     @Test
-    @DisplayName("사용자를 생성한 뒤 게임 시도가 0회인지 테스트")
+    @DisplayName("사용자를 생성한 뒤 게임 시도가 1회인지 테스트")
     void init_retryCount_is_zero_after_create_user() {
         // given
 
@@ -28,6 +28,6 @@ public class UserTest {
         User user = new User();
 
         // then
-        assertThat(user.getRetryCount()).isEqualTo(0);
+        assertThat(user.getTryCount()).isEqualTo(1);
     }
 }
