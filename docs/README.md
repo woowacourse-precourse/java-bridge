@@ -31,4 +31,9 @@
 ### 설명
 - BridgeRandomNumberGenerator 클래스 활용
 
-## 게임 진행
+## 기능5 : 게임 진행
+### 기능 요구 사항
+사용자 입력에 따른 게임 진행
+
+### 설명
+- BridgeGame, InputView, OutputView 이용하기
