@@ -16,7 +16,11 @@ public class Bridge {
         return this.answerSheet.size();
     }
 
-    public String getElementByIndex(int index) {
-        return this.answerSheet.get(BridgeValidator.checkBridgeIndexValid(this.answerSheet.size(), index));
+    public boolean getResult(String answer, int index) {
+        BridgeValidator.checkBridgeIndexValid(this.answerSheet.size(), index);
+        if (this.answerSheet.get(index).equals(answer)) {
+            return true;
+        }
+        return false;
     }
 }

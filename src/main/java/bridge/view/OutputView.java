@@ -14,7 +14,7 @@ public class OutputView {
     private static final String DOWN_ROW = "D";
     private static final String ROW_START_BRACKET = "[ ";
     private static final String ROW_END_BRACKET = " ]";
-    private static final String ROW_DELIMITER = " | ";
+    private static final String DELIMITER = " | ";
     private static final String ANSWER_CORRECT = "O";
     private static final String ANSWER_INCORRECT = "X";
     private static final String ANSWER_WHITE_SPACE = " ";
@@ -55,21 +55,34 @@ public class OutputView {
     private void printRow(final Bridge bridge, final List<String> userAnswerSheet, final String thisRow) {
         System.out.print(ROW_START_BRACKET);
         for (int i = INDEX_ZERO; i < userAnswerSheet.size(); ++i) {
-            if (i != INDEX_ZERO) {
-                System.out.print(ROW_DELIMITER);
+            if (isIgnoreResult(userAnswerSheet.get(i), thisRow, i)) {
+                continue;
             }
-            System.out.print(getElementResult(bridge.getElementByIndex(i), userAnswerSheet.get(i), thisRow));
+            System.out.print(printElementResult(bridge, userAnswerSheet.get(i), i));
         }
         System.out.println(ROW_END_BRACKET);
     }
 
-    private String getElementResult(final String bridgeElement, final String userElement, final String thisRow) {
-        if (!userElement.equals(thisRow)) {
-            return ANSWER_WHITE_SPACE;
+    private boolean isIgnoreResult(final String userAnswer, final String thisRow, final int index) {
+        if (!userAnswer.equals(thisRow)) {
+            printDelimiter(index);
+            System.out.print(ANSWER_WHITE_SPACE);
+            return true;
         }
-        if (bridgeElement.equals(userElement)) {
+        return false;
+    }
+
+    private String printElementResult(final Bridge bridge, final String userAnswer, final int index) {
+        printDelimiter(index);
+        if (bridge.getResult(userAnswer, index)) {
             return ANSWER_CORRECT;
         }
         return ANSWER_INCORRECT;
+    }
+
+    private void printDelimiter(final int index) {
+        if (index != INDEX_ZERO) {
+            System.out.print(DELIMITER);
+        }
     }
 }

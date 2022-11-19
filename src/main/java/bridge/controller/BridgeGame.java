@@ -79,7 +79,7 @@ public class BridgeGame {
 
     public boolean isWin() {
         for (int i = INDEX_ZERO; i < this.userAnswerSheet.size(); ++i) {
-            if (!this.userAnswerSheet.get(i).equals(this.bridge.getElementByIndex(i))) {
+            if (!this.bridge.getResult(this.userAnswerSheet.get(i), i)) {
                 return false;
             }
         }

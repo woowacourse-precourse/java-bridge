@@ -5,6 +5,7 @@ import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -38,7 +39,7 @@ class BridgeTest {
             ArrayList<String> expected = new ArrayList<>(List.of(element0, element1, element2));
             Bridge actual = new Bridge(expected);
             for (int i = 0; i < expected.size(); ++i) {
-                assertThat(actual.getElementByIndex(i)).isEqualTo(expected.get(i));
+                assertThat(actual.getResult(expected.get(i), i)).isEqualTo(true);
             }
         }
     }
@@ -47,24 +48,27 @@ class BridgeTest {
     @Nested
     class BridgeIndexTest {
 
-        @DisplayName("유효한 인덱스가 들어 왔을 때 요소를 정확히 반환하는지 확인")
-        @ParameterizedTest(name = "[{index}] 번째 테스트 인자 : {0}")
-        @ValueSource(ints = {0, 1, 2})
-        void bridgeAccessWithValidIndex(int index) {
-            List<String> sample = new ArrayList<>(List.of("U", "U", "U"));
-            Bridge bridge = new Bridge(sample);
-            String actual = bridge.getElementByIndex(index);
-            String expected = sample.get(index);
-            assertThat(actual).isEqualTo(expected);
+        @DisplayName("유효한 인덱스가 들어 왔을 때 결과를 정확히 반환하는지 확인")
+        @Test
+        void bridgeAccessWithValidIndex() {
+            List<String> expected = new ArrayList<>(List.of("U", "U", "U"));
+            Bridge bridge = new Bridge(expected);
+            for (int i = 0; i < expected.size(); ++i) {
+                assertThat(bridge.getResult(expected.get(i), i)).isEqualTo(true);
+            }
         }
 
         @DisplayName("유효하지 않은 인덱스가 들어 왔을 때 Exception 을 던지는지 확인")
         @ParameterizedTest(name = "[{index}] 번째 테스트 인자 : {0}")
-        @ValueSource(ints = {4, 5, 6})
-        void bridgeAccessWithInvalidIndex(int index) {
-            List<String> sample = new ArrayList<>(List.of("U", "U", "U"));
-            Bridge bridge = new Bridge(sample);
-            assertThatThrownBy(() -> bridge.getElementByIndex(index)).isInstanceOf(IndexOutOfBoundsException.class);
+        @ValueSource(ints = {3, 4, 5})
+        void bridgeAccessWithInvalidIndex(final int invalidIndex) {
+            List<String> expected = new ArrayList<>(List.of("U", "U", "U"));
+            Bridge bridge = new Bridge(expected);
+            for (int i = 0; i < expected.size(); ++i) {
+                assertThatThrownBy(() -> bridge.getResult("U", invalidIndex))
+                        .isInstanceOf(IndexOutOfBoundsException.class);
+            }
+
         }
     }
 }
