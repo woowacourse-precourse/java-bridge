@@ -23,7 +23,7 @@ public class BridgeGame {
     public int move() {
         InputView iv = new InputView();
         String mov = iv.readMoving();
-        if(isFinish(curidx,mov) == 0) return 0;
+        if(isFinish(curidx,mov) == 0) {return 0;}
         else {
             curidx++;
             return 1;
@@ -39,7 +39,12 @@ public class BridgeGame {
         curidx = 0;
     }
     public int isFinish(int idx,String pos){
-        if(curbridge.get(idx).equals(pos)) return 1;
+        OutputView ov = new OutputView(idx,curbridge);
+        if(curbridge.get(idx).equals(pos)) {
+            ov.printMaps(0);
+            return 1;
+        }
+        ov.printMaps(1);
         return 0;
     }
 }
