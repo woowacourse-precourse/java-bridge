@@ -5,6 +5,7 @@ package bridge;
  */
 public class BridgeGame {
     private final Bridge bridge;
+    private PlayersMove playersMove;
     private int moveCount;
 
     public BridgeGame(Bridge bridge) {
@@ -17,15 +18,15 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public void move(String choice) {
         moveCount++;
     }
 
-    public boolean matches(String choice){
+    private boolean matches(String choice) {
         return bridge.isEqualToChoice(moveCount, choice);
     }
 
-    public boolean playerHasCrossed(){
+    public boolean playerHasCrossed() {
         return moveCount == bridge.getBridgeSize();
     }
 

@@ -1,12 +1,9 @@
 package bridge;
 
-import static bridge.MessageUtil.INVALID_GAME_CMD;
-
 public class GameController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private Bridge bridge;
     private BridgeGame bridgeGame;
 
     public GameController() {
@@ -16,8 +13,7 @@ public class GameController {
 
     public void executeGame() {
         outputView.printOpening();
-        bridge = makeBridge();
-        bridgeGame = new BridgeGame(bridge);
+        bridgeGame = new BridgeGame(makeBridge());
         crossToOtherSide();
     }
 
@@ -37,18 +33,14 @@ public class GameController {
     private void crossToOtherSide() {
         while (!bridgeGame.playerHasCrossed()) {
             outputView.printUserChoiceOpening();
-            String choice = "";
+            String choice = null;
             try {
                 choice = inputView.readMoving();
+                bridgeGame.move(choice); //얘가 책임질 범위?? -> [--일단 움직이기--], 움직이고 나서 결과 비교하고 출력하기, 그 결과에 따라서 게임 재시
             } catch (IllegalArgumentException exception) {
                 outputView.printErrorMessage(exception.getMessage());
                 continue;
             }
-            if (!bridgeGame.matches(choice)){
-                chooseNextStep();
-                continue;
-            }
-            bridgeGame.move();
         }
     }
 
