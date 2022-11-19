@@ -31,6 +31,7 @@ public class OutputView {
     public void printMap(BridgeMap bridgeMap) {
         System.out.println(getJoinElements(bridgeMap.getUpperBridgeMap()));
         System.out.println(getJoinElements(bridgeMap.getLowerBridgeMap()));
+        System.out.println();
     }
 
     private String getJoinElements(List<String> bridgeMap) {
