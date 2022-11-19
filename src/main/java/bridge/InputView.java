@@ -92,21 +92,21 @@ public class InputView {
         if(s.length() == 1) {
             return true;
         }
-        throw new IllegalArgumentException("1 글자만 입력해주세요");
+        throw new IllegalArgumentException("[ERROR] 1 글자만 입력해주세요");
     }
 
     public boolean checkMoveString(String s) {
         if(s.charAt(0) == 'U' || s.charAt(0) == 'D') {
             return true;
         }
-        throw new IllegalArgumentException("U, D 중에서 입력해주세요");
+        throw new IllegalArgumentException("[ERROR] U, D 중에서 입력해주세요");
     }
 
     public boolean checkFinishGameString(String s) {
         if(s.charAt(0) == 'R' || s.charAt(0) == 'Q') {
             return true;
         }
-        throw new IllegalArgumentException("R, Q 중에서 입력해주세요");
+        throw new IllegalArgumentException("[ERROR] R, Q 중에서 입력해주세요");
     }
 
 
