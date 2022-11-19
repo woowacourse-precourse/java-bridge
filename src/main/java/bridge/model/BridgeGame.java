@@ -31,17 +31,6 @@ public class BridgeGame {
         board.add(direction);
     }
 
-    public int isSuccess(List<String> board, List<String> bridge) {
-        int boardIndex = board.size() - 1;
-        int bridgeIndex = bridge.size() - 1;
-
-        if ((boardIndex == bridgeIndex) && board.get(boardIndex)
-                .equals(bridge.get(bridgeIndex))) {
-            return 1;  //성공
-        }
-        return 0;  //실패
-    }
-
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
@@ -56,5 +45,16 @@ public class BridgeGame {
             return true;
         }
         return false;
+    }
+
+    public int isSuccess(List<String> board, List<String> bridge) {
+        int boardIndex = board.size() - 1;
+        int bridgeIndex = bridge.size() - 1;
+
+        if ((boardIndex == bridgeIndex) && board.get(boardIndex)
+                .equals(bridge.get(bridgeIndex))) {
+            return 1;  //성공
+        }
+        return 0;  //실패
     }
 }
