@@ -21,7 +21,7 @@ class ValidatorTest {
     void checkInvalidFormatBridgeSizeTest() {
         assertThatThrownBy(() -> validator.checkValidBridgeSize("a"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorType.INVALID_FORMAT.getErrorMsg());
+                .hasMessageContaining(ErrorType.INVALID_FORMAT.getMessage());
     }
 
     @Test
@@ -29,7 +29,7 @@ class ValidatorTest {
     void checkInvalidRangeBridgeSizeTest() {
         assertThatThrownBy(() -> validator.checkValidBridgeSize("50"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorType.INVALID_RANGE.getErrorMsg());
+                .hasMessageContaining(ErrorType.INVALID_RANGE.getMessage());
     }
 
     @Test
@@ -43,7 +43,7 @@ class ValidatorTest {
     void checkInValidMoveInput() {
         assertThatThrownBy(() -> validator.checkValidMoveInput("a"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorType.INVALID_MOVE_INPUT.getErrorMsg());
+                .hasMessageContaining(ErrorType.INVALID_MOVE_INPUT.getMessage());
     }
 
     @Test
@@ -57,6 +57,6 @@ class ValidatorTest {
     void checkInvalidRetryInput() {
         assertThatThrownBy(() -> validator.checkValidRetryInput("2"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorType.INVALID_RETRY_INPUT.getErrorMsg());
+                .hasMessageContaining(ErrorType.INVALID_RETRY_INPUT.getMessage());
     }
 }

@@ -13,11 +13,8 @@ public class BridgeService {
 
     public void startService() {
         initService();
-        playBridgeGame();
-
-        if (checkRestart()) {
-            startService();
-        }
+        playService();
+        printResult();
     }
 
     private void initService() {
@@ -27,32 +24,44 @@ public class BridgeService {
         bridgeGame.initGame(bridge);
     }
 
-    private void playBridgeGame() {
-        boolean fail = true;
+    private void playService() {
+        boolean success = playBridgeGame();
+
+        if (!success && checkRestart()) {
+            playService();
+        }
+    }
+
+    private boolean playBridgeGame() {
+        boolean success = false;
 
         do {
-            fail = playOneTurn();
-        } while (!isGameEnd(fail));
+            success = playOneTurn();
+        } while (!isGameEnd(success));
 
-        outputView.printResult();
+        return success;
     }
 
     private boolean playOneTurn() {
-        boolean fail;
+        boolean success;
 
         String moving = inputView.readMoving();
-        fail = !bridgeGame.move(moving);
-        outputView.printMap(bridgeGame.getBridge(), bridgeGame.getUserMoving(), fail);
+        success = bridgeGame.move(moving);
+        outputView.printMap(bridgeGame.getBridge(), bridgeGame.getUserMoving());
 
-        return fail;
+        return success;
     }
 
-    private boolean isGameEnd(boolean fail) {
-        return fail || bridgeGame.isFinished();
+    private boolean isGameEnd(boolean success) {
+        return !success || bridgeGame.isFinished();
     }
 
     private boolean checkRestart() {
         String gameCommand = inputView.readGameCommand();
         return bridgeGame.retry(gameCommand);
+    }
+
+    private void printResult() {
+        outputView.printResult(bridgeGame.getBridge(), bridgeGame.getUserMoving(), bridgeGame.getAttemptCount());
     }
 }

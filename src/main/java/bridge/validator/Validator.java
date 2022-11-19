@@ -13,20 +13,20 @@ public class Validator {
 
     public void checkValidMoveInput(String moveInput) {
         if (!MovingType.isValidInput(moveInput)) {
-            throw new IllegalArgumentException(ErrorType.INVALID_MOVE_INPUT.getErrorMsg());
+            throw new IllegalArgumentException(ErrorType.INVALID_MOVE_INPUT.getMessage());
         }
     }
 
     public void checkValidRetryInput(String moveInput) {
-        if (!RetryInput.isValidInput(moveInput)) {
-            throw new IllegalArgumentException(ErrorType.INVALID_RETRY_INPUT.getErrorMsg());
+        if (!RetryType.isValidInput(moveInput)) {
+            throw new IllegalArgumentException(ErrorType.INVALID_RETRY_INPUT.getMessage());
         }
     }
 
     private static void checkNumberFormat(String str) {
         for (int i = 0; i < str.length(); i++) {
             if (!isNumber(str.charAt(i))) {
-                throw new IllegalArgumentException(ErrorType.INVALID_FORMAT.getErrorMsg());
+                throw new IllegalArgumentException(ErrorType.INVALID_FORMAT.getMessage());
             }
         }
     }
@@ -39,7 +39,7 @@ public class Validator {
         int number = Integer.parseInt(str);
 
         if (!isValidRange(number)) {
-            throw new IllegalArgumentException(ErrorType.INVALID_RANGE.getErrorMsg());
+            throw new IllegalArgumentException(ErrorType.INVALID_RANGE.getMessage());
         }
     }
 

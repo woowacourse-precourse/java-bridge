@@ -1,12 +1,12 @@
 package bridge.validator;
 
-public enum RetryInput{
+public enum RetryType {
     RETRY("R"),
     QUIT("Q");
 
     private final String value;
 
-    RetryInput(String value) {
+    RetryType(String value) {
         this.value = value;
     }
 

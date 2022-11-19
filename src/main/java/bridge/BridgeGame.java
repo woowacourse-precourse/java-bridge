@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.validator.RetryInput;
+import bridge.validator.RetryType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +48,7 @@ public class BridgeGame {
     public boolean retry(String gameCommand) {
         userMoving = new ArrayList<>();
         attemptCount++;
-        return RetryInput.RETRY.getValue().equals(gameCommand);
+        return RetryType.RETRY.getValue().equals(gameCommand);
     }
 
     public boolean isFinished() {
