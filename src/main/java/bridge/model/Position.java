@@ -1,5 +1,8 @@
 package bridge.model;
 
+import static bridge.util.BridgeConstant.*;
+import static bridge.util.BridgeConstant.DOWN;
+
 public class Position {
     private int x, y;
 
@@ -16,11 +19,15 @@ public class Position {
         return y;
     }
 
-    public void addPositionX() {
+    public void setPositionX() {
         x += 1;
     }
 
-    public void changePositionY(int number) {
-        y = number;
+    public void setPositionY(String moveTo) {
+        if (moveTo.equals(UP_KEY)) {
+            this.y = UP;
+            return;
+        }
+        this.y = DOWN;
     }
 }

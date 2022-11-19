@@ -35,10 +35,7 @@ public class InputView {
      */
     public boolean readGameCommand() {
         printInputMessage(INPUT_RETRY_OR_QUIT_MESSAGE);
-        String readGameCommand = Console.readLine();
-        String gameStatus = getGameCommand(readGameCommand);
-
-        return gameStatus.equals(GAME_RETRY_KEY);
+        return getGameCommand().equals(GAME_RETRY_KEY);
     }
 
     private int getBridgeSize() {
@@ -79,7 +76,6 @@ public class InputView {
 
     private String getBridgeMove() {
         String readBridgeMove = Console.readLine();
-
         while (true) {
             try {
                 validateBridgeMove(readBridgeMove);
@@ -101,7 +97,8 @@ public class InputView {
         return readBridgeMove.equals(DOWN_KEY) || readBridgeMove.equals(UP_KEY);
     }
 
-    private String getGameCommand(String readGameCommand) {
+    private String getGameCommand() {
+        String readGameCommand = Console.readLine();
         while (true) {
             try {
                 validateGameCommand(readGameCommand);

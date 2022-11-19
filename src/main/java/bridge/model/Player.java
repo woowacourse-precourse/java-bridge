@@ -20,12 +20,8 @@ public class Player {
     }
 
     public void setPosition(String moveTo) {
-        position.addPositionX();
-        if (moveTo.equals(UP_KEY)) {
-            position.changePositionY(UP);
-        } else if (moveTo.equals(DOWN_KEY)) {
-            position.changePositionY(DOWN);
-        }
+        position.setPositionX();
+        position.setPositionY(moveTo);
     }
 
     public int getTryCount() {

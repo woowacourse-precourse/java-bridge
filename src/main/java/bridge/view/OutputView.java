@@ -46,14 +46,16 @@ public class OutputView {
     public void printResult(Player player, BridgeMap bridgeMap, boolean win) {
         System.out.println(GAME_FINAL_RESULT_MESSAGE);
         printMap(bridgeMap);
-        String result = FAIL;
 
-        if (win) {
-            result = SUCCESS;
-        }
-
-        System.out.printf(GAME_SUCCESS_OR_NOT_MESSAGE, result);
+        System.out.printf(GAME_SUCCESS_OR_NOT_MESSAGE, judgeGameResult(win));
         System.out.printf(GAME_TOTAL_TRY_COUNT_MESSAGE, player.getTryCount());
+    }
+
+    private String judgeGameResult(boolean win) {
+        if (win) {
+            return SUCCESS;
+        }
+        return FAIL;
     }
 
 }
