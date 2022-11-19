@@ -2,10 +2,11 @@ package bridge;
 
 import bridge.domain.Bridge;
 import bridge.domain.User;
+import bridge.utils.GameStatus;
 
 import java.util.List;
 
-import static bridge.GameStatus.PLAYING;
+import static bridge.utils.GameStatus.PLAYING;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

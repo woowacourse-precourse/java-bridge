@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
-import static bridge.GameStatus.*;
+import static bridge.utils.GameStatus.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
