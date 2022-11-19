@@ -58,4 +58,15 @@ public class Player {
     public boolean getIsMove() {
         return isMove;
     }
+
+    public String getMoveResultString(){
+        if(getIsMove()){
+            return SUCCESS;
+        }
+        return FAIL;
+    }
+
+    public int getTotalTry(){
+        return totalTry;
+    }
 }
