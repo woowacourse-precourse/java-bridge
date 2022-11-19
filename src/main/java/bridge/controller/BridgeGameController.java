@@ -49,12 +49,10 @@ public class BridgeGameController {
 
         List<BridgeMap> bridgeMaps = bridgeGame.getBridgeGameStat().getBridgeMaps();
         bridgeMaps.add(bridgeMap);
-
         outputView.printMap(bridgeMaps);
 
         canNotMoveBridge(bridgeMap);
-        bridgeGame.checkGameWin(bridgeSize);
-        bridgeGame.nextRound();
+        canMoveBridge(bridgeMap, bridgeSize);
     }
 
     private BridgeMap movingBridge(List<String> bridge) {
@@ -81,6 +79,13 @@ public class BridgeGameController {
 
         if (gameCommand.equals(GameCommand.QUIT.getFirstLetter())) {
             bridgeGame.quit();
+        }
+    }
+
+    private void canMoveBridge(BridgeMap bridgeMap, int bridgeSize) {
+        if (bridgeMap.getMoveResult().isCanMove()) {
+            bridgeGame.checkGameWin(bridgeSize);
+            bridgeGame.nextRound();
         }
     }
 }

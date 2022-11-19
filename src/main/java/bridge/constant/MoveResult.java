@@ -19,4 +19,8 @@ public enum MoveResult {
     public boolean isCanNotMove() {
         return this == CAN_NOT_MOVE;
     }
+
+    public boolean isCanMove() {
+        return this == CAN_MOVE;
+    }
 }
