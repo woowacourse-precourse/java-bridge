@@ -32,4 +32,12 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("U와 D 중 하나를 입력해주세요.");
     }
+
+    @DisplayName("게임 재시작, 종료 입력 시 R과 D가 아닐 경우 예외가 발생한다.")
+    @Test
+    void isRAndD() {
+        assertThatThrownBy(() -> validator.validateRestartOrQuit("X"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("R와 Q 중 하나를 입력해주세요.");
+    }
 }
