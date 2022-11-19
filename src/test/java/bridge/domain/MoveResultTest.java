@@ -3,6 +3,7 @@ package bridge.domain;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -22,9 +23,11 @@ class MoveResultTest {
         String upper = "U";
         String lower = "D";
 
+        List<List<String>> map = moveResult.getMap();
+
         assertAll(
-                () -> assertThat(moveResult.getCrossedStatus(upper)).containsExactly(upperResult),
-                () -> assertThat(moveResult.getCrossedStatus(lower)).containsOnly(lowerResult)
+                () -> assertThat(map.get(0)).containsExactly(upperResult),
+                () -> assertThat(map.get(1)).containsOnly(lowerResult)
         );
     }
 }
