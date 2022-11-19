@@ -56,6 +56,10 @@ public class BridgeGame {
         }
     }
 
+    public void nextRound() {
+        this.countOfRound++;
+    }
+
     public BridgeGameStat getBridgeGameStat() {
         return bridgeGameStat;
     }
