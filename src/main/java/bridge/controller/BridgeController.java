@@ -21,7 +21,7 @@ public class BridgeController {
         createBridgeGame();
 //        do {
 //            playTurn();
-//        } while (this.bridgeGame.isOnWay());
+//        } while (!this.bridgeGame.isEnd());
 //        announceFinalResult();
     }
 
