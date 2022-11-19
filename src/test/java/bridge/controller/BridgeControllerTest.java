@@ -42,4 +42,26 @@ class BridgeControllerTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.BRIDGE_SIZE_NOT_ZERO);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"U", "D"})
+    void 다리를_이동할때는_U또는D만_입력할수있다(String input) {
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+
+        InputView inputView = new InputView();
+        Assertions.assertThat(inputView.readMoving()).isEqualTo(input);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"A", "1234"})
+    void 다리를_이동할때_정해진값이_아니면_에러를발생한다(String input) {
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+
+        InputView inputView = new InputView();
+        Assertions.assertThatThrownBy(() -> inputView.readMoving())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.BRIDGE_INPUT_ONLY_UP_AND_DOWN);
+    }
 }
