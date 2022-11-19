@@ -8,4 +8,11 @@ public class Bridge {
     public Bridge(List<String> bridge) {
         this.bridge = bridge;
     }
+
+    public boolean isRightTrack(int location, String direction) {
+        if (bridge.get(location).equals(direction)) {
+            return true;
+        }
+        return false;
+    }
 }

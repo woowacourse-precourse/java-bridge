@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.dto.BridgeCrossingDTO;
 import bridge.service.BridgeService;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -36,7 +37,8 @@ public class BridgeController {
         try {
             OutputView.printInputMoving();
             bridgeMoving = InputView.inputBridgeMove();
-            // 사용자가 이동하는 부분
+
+            BridgeCrossingDTO bridgeCrossingDTO = bridgeService.moveUser(bridgeMoving);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             moveBridge();
