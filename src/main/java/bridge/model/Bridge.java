@@ -42,9 +42,8 @@ public class Bridge {
                 || (bridgeLength > Rules.BRIDGE_MAX_LENGTH);
     }
 
-    public boolean possibleNextStep(int bridgeIndex, String inputPlate) {
-        Plate userNextStep = Plate.findBySymbol(inputPlate);
-        Plate currentPlate = this.bridge.get(bridgeIndex);
-        return userNextStep.equals(currentPlate);
+    public boolean possibleNextStep(int nextBridgeIndex, Plate nextPlate) {
+        Plate bridgePlate = this.bridge.get(nextBridgeIndex);
+        return nextPlate.equals(bridgePlate);
     }
 }

@@ -3,17 +3,27 @@ package bridge.model;
 import bridge.util.Rules;
 
 public class Player {
-    private int playerPosition;
+    private PlayerPath playerPath;
+    private int gameTryCount = 0;
 
     public Player() {
-        initPosition();
+        newTry();
     }
 
-    public void initPosition() {
-        playerPosition = Rules.PLAYER_START_POSITION;
+    public int getPlayerPosition() {
+        return playerPath.currentPosition();
     }
 
-    public int nextStep() {
-        return (playerPosition = playerPosition + 1);
+    public Plate getCurrentPlate() {
+        return playerPath.currentPlate();
+    }
+
+    public void nextStep(Plate nextPlate) {
+        playerPath.nextStep(nextPlate);
+    }
+
+    public void newTry() {
+        playerPath = new PlayerPath();
+        gameTryCount = gameTryCount + 1;
     }
 }
