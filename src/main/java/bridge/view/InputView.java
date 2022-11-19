@@ -5,6 +5,7 @@ import static bridge.util.ConsoleInput.readLine;
 
 import bridge.model.BridgeSize;
 import bridge.model.Direction;
+import bridge.model.GameCommand;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -40,8 +41,18 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public GameCommand readGameCommand() {
+        try {
+            printReadGameCommand();
+            return GameCommand.fromCommand(readLine());
+        } catch (IllegalArgumentException e) {
+            print(e.getMessage());
+            return readGameCommand();
+        }
+    }
+
+    private void printReadGameCommand() {
+        print("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
 
     private void printReadMovingMenu() {
