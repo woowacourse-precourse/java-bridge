@@ -22,7 +22,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String move = readLine();
+        movingValidate(move);
+        return move;
     }
 
     /**
@@ -53,5 +55,12 @@ public class InputView {
             }
         }
         return answer;
+    }
+
+    void movingValidate(String move){
+        if(!move.equals("U") && !move.equals("D")){
+            System.out.println(ERROR_PREFIX + MOVE_ERROR);
+            throw new IllegalArgumentException(ERROR_PREFIX + MOVE_ERROR);
+        }
     }
 }
