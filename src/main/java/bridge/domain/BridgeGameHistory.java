@@ -29,4 +29,9 @@ public class BridgeGameHistory {
     private void updateCurrentIndex() {
         currentIndex = bridgeHistory.size()-1;
     }
+
+    public void initBridgeHistory() {
+        bridgeHistory = new ArrayList<>();
+        currentIndex = 0;
+    }
 }
