@@ -39,6 +39,11 @@ public class UserState {
                 (upLine.get(last).equals("O") || downLine.get(last).equals("O"));
     }
 
+    public void resetMove() {
+        upLine.clear();
+        downLine.clear();
+    }
+
     public void quitChange() {
         quit = !quit;
     }
