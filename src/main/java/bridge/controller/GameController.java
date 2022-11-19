@@ -15,6 +15,7 @@ public class GameController {
     private final BridgeMaker bridgeMaker;
     private BridgeGame bridgeGame;
     private boolean isPlaying;
+    private int tryCount;
 
     public GameController() {
         inputView = new InputView();
@@ -26,6 +27,7 @@ public class GameController {
     private void initializeGame() {
         bridgeGame = new BridgeGame(createNewBridge());
         isPlaying = true;
+        tryCount = 1;
     }
 
     private Bridge createNewBridge() {
@@ -44,6 +46,7 @@ public class GameController {
             printMoveResult();
             checkGameEnd();
         }
+        printFinalResult();
     }
 
     private void move() {
@@ -51,7 +54,7 @@ public class GameController {
         while (true) {
             try {
                 nextPosition = inputView.readMoving();
-                bridgeGame.move(nextPosition); //그리고 bridgeGame 내에서 성공 여부 연산, 이동한 내역 업데이트
+                bridgeGame.move(nextPosition);
                 break;
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
@@ -98,7 +101,12 @@ public class GameController {
         isPlaying = Restart.isRestart(command);
         if (isPlaying) {
             bridgeGame.retry();
+            tryCount += 1;
         }
+    }
+
+    private void printFinalResult() {
+        outputView.printResult(bridgeGame.getCurrentMap(), tryCount, bridgeGame.isGamePass());
     }
 
 }

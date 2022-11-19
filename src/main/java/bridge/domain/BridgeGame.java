@@ -48,7 +48,7 @@ public class BridgeGame {
     }
 
     public boolean isGamePass() {
-        return bridge.hasReachedEnd(currentBoardIndex);
+        return !isGameOver && bridge.hasReachedEnd(currentBoardIndex);
     }
 
     private void initializeGame() {
