@@ -54,4 +54,10 @@ public class BridgeGameHost {
     public void playerDie() {
         this.playerAlive = false;
     }
+
+    public void retry() {
+        this.playerIndex = -1;
+        this.playerAlive = true;
+        this.numberOfRetry++;
+    }
 }
