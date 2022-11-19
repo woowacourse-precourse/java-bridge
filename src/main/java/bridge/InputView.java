@@ -8,17 +8,23 @@ public class InputView {
             System.out.println(Constant.READ_BRIDGE_SIZE);
             String input = Console.readLine();
             return Validator.validatedBridgeSize(input);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException bridgeSizeError) {
+            System.out.println(bridgeSizeError.getMessage());
             readBridgeSize();
         }
         return 0;
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public String readMoving() {
+        try {
+            System.out.println(Constant.READ_MOVING);
+            String input = Console.readLine();
+            Validator.validateMoving(input);
+            return input;
+        } catch (IllegalArgumentException movingError) {
+            System.out.println(movingError.getMessage());
+            readMoving();
+        }
         return null;
     }
 
