@@ -4,6 +4,9 @@ import java.util.List;
 
 public class OutputView {
 
+	private static StringBuilder upSb = new StringBuilder();
+	private static StringBuilder downSb = new StringBuilder();
+
 	public boolean printMap(List<String> bridge, List<String> currentBridgeState) {
 		String map = mapDraw(bridge, currentBridgeState);
 		System.out.println(map + '\n');
@@ -15,52 +18,48 @@ public class OutputView {
 	}
 
 	private String mapDraw(List<String> bridge, List<String> currentBridgeState) {
-		StringBuilder upSb = new StringBuilder();
-		StringBuilder downSb = new StringBuilder();
-		sbBuilder(upSb, "[ ", downSb, "[ ");
+		upSb = new StringBuilder();
+		downSb = new StringBuilder();
+		sbBuilder("[ ", "[ ");
 		for (int position = 0; position < currentBridgeState.size(); position++) {
-			upAndDownDraw(bridge, currentBridgeState, upSb, downSb, position);
-			sbBuilder(upSb, "| ", downSb, "| ");
+			upAndDownDraw(bridge, currentBridgeState, position);
+			sbBuilder("| ", "| ");
 		}
-		lastPositionDraw(upSb, downSb);
+		lastPositionDraw();
 		return upSb.append('\n').append(downSb).toString();
 	}
 
-	private void lastPositionDraw(StringBuilder upSb, StringBuilder downSb) {
+	private void lastPositionDraw() {
 		upSb.delete(upSb.length() - 2, upSb.length());
 		downSb.delete(downSb.length() - 2, downSb.length());
-		sbBuilder(upSb, "]", downSb, "]");
+		sbBuilder("]", "]");
 	}
 
-	//TODO : 리팩터링 - 메서드의 파라미터 개수는 최대 3개까지만 허용한다.
-	private static void upAndDownDraw(List<String> bridge, List<String> currentBridgeState, StringBuilder upSb,
-		StringBuilder downSb, int position) {
+	private static void upAndDownDraw(List<String> bridge, List<String> currentBridgeState, int position) {
 		if (isUpper(currentBridgeState, position)) {
-			drawUpPosition(bridge, currentBridgeState, upSb, downSb, position);
+			drawUpPosition(bridge, currentBridgeState, position);
 			return;
 		}
-		drawDownPosition(bridge, currentBridgeState, upSb, downSb, position);
+		drawDownPosition(bridge, currentBridgeState, position);
 	}
 
-	private static void drawDownPosition(List<String> bridge, List<String> currentBridgeState, StringBuilder upSb,
-		StringBuilder downSb, int position) {
+	private static void drawDownPosition(List<String> bridge, List<String> currentBridgeState, int position) {
 		if (isAnswer(bridge, currentBridgeState, position)) {
-			sbBuilder(upSb, "  ", downSb, "O ");
+			sbBuilder("  ", "O ");
 			return;
 		}
-		sbBuilder(upSb, "  ", downSb, "X ");
+		sbBuilder("  ", "X ");
 	}
 
-	private static void drawUpPosition(List<String> bridge, List<String> currentBridgeState, StringBuilder upSb,
-		StringBuilder downSb, int position) {
+	private static void drawUpPosition(List<String> bridge, List<String> currentBridgeState, int position) {
 		if (isAnswer(bridge, currentBridgeState, position)) {
-			sbBuilder(upSb, "O ", downSb, "  ");
+			sbBuilder("O ", "  ");
 			return;
 		}
-		sbBuilder(upSb, "X ", downSb, "  ");
+		sbBuilder("X ", "  ");
 	}
 
-	private static void sbBuilder(StringBuilder upSb, String up, StringBuilder downSb, String down) {
+	private static void sbBuilder(String up, String down) {
 		upSb.append(up);
 		downSb.append(down);
 	}
