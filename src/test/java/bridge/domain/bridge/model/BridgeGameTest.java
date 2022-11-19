@@ -39,7 +39,40 @@ class BridgeGameTest {
         bridgeGame.move(BridgeDirection.UP);
 
         Assertions.assertThat(gamePlayer.getPosition()).isEqualTo(3);
-        Assertions.assertThat(gamePlayer.isFailGame()).isFalse();
+        Assertions.assertThat(gamePlayer.isFailGame()).isTrue();
+    }
+
+    @Test
+    public void 게임_종료_조건_테스트_건너는_중_틀린_경우() {
+        // 다리 정보 {"U", "D", "D", "U"}
+        bridgeGame.move(BridgeDirection.UP);
+        bridgeGame.move(BridgeDirection.DOWN);
+        bridgeGame.move(BridgeDirection.UP);
+
+        Assertions.assertThat(bridgeGame.isEndCondition()).isTrue();
+    }
+
+    @Test
+    public void 게임_종료_조건_테스트_모두_건넌_경우() {
+        // 다리 정보 {"U", "D", "D", "U"}
+        bridgeGame.move(BridgeDirection.UP);
+        bridgeGame.move(BridgeDirection.DOWN);
+        bridgeGame.move(BridgeDirection.DOWN);
+        bridgeGame.move(BridgeDirection.UP);
+
+        Assertions.assertThat(bridgeGame.isEndCondition()).isTrue();
+    }
+
+
+    @Test
+    public void 재시작_테스트() {
+        // 다리 정보 {"U", "D", "D", "U"}
+        bridgeGame.move(BridgeDirection.UP);
+        bridgeGame.move(BridgeDirection.DOWN);
+
+        bridgeGame.retry();
+        Assertions.assertThat(gamePlayer.getPosition()).isEqualTo(0);
+        Assertions.assertThat(gamePlayer.getTrial()).isEqualTo(2);
     }
 
 
