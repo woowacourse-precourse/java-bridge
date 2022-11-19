@@ -4,6 +4,8 @@ import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class BridgeTest {
 
@@ -32,6 +34,34 @@ public class BridgeTest {
 
         //when
         boolean result = bridge.canMove(nextDirection, location);
+
+        //then
+        Assertions.assertThat(result).isEqualTo(false);
+    }
+
+    @Test
+    @DisplayName("다리의 끝에 도달하였으면 true를 반환한다.")
+    public void isEndOfBridge_then_true() throws Exception{
+        //given
+        Bridge bridge = Bridge.from(List.of("U", "D", "U"));
+        int location =3;
+
+        //when
+        boolean result = bridge.isEnd(location);
+
+        //then
+        Assertions.assertThat(result).isEqualTo(true);
+    }
+
+    @ParameterizedTest
+    @DisplayName("다리의 끝에 도달하지 않았다면 false를 반환한다.")
+    @ValueSource(ints = {1,2,3,4,5})
+    public void isNotEndOfBridge_then_false(int location ) throws Exception{
+        //given
+        Bridge bridge = Bridge.from(List.of("U", "D", "U","U", "D", "U"));
+
+        //when
+        boolean result = bridge.isEnd(location);
 
         //then
         Assertions.assertThat(result).isEqualTo(false);
