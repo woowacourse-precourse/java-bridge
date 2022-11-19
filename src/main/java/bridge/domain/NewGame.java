@@ -26,9 +26,7 @@ public class NewGame {
 
     private int getSizeInput() {
         outputView.printInitialMessages();
-        int bridgeSize = inputView.readBridgeSize();
-        Validation.validateSize(bridgeSize);
-        return bridgeSize;
+        return inputView.readBridgeSize();
     }
 
     private void makeBridges(int bridgeSize) {
@@ -37,7 +35,8 @@ public class NewGame {
     }
 
     private void play() {
-        String movingResult = CROSS_SUCCEEDED; // CROSS_SUCCEEDED = "O"
+        String movingResult = "O";
+
         for (int round = 1; round <= user.getBridgeSize() && movingResult.equals(CROSS_SUCCEEDED); round++) {
             outputView.printMessageToGetSpaceToMove();
             movingResult = bridgeGame.processEachRound(round, inputView.readMoving());

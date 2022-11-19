@@ -30,8 +30,7 @@ public class ExceptionSituationTest {
     void inputBridgeSizeOutOfBoundsTest() {
         InputStream inputStream = setInputStream("30");
         System.setIn(inputStream);
-        int illegalSize = inputView.readBridgeSize();
-        assertThatThrownBy(() -> Validation.validateSize(illegalSize))
+        assertThatThrownBy(inputView::readBridgeSize)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

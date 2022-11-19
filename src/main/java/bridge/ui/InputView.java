@@ -12,11 +12,8 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() throws IllegalArgumentException {
-        try {
-            return Integer.parseInt(Console.readLine());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("다리의 길이는 정수로 입력되어야 합니다.");
-        }
+        String response = Console.readLine();
+        return Validation.validateBridgeSize(response);
     }
 
     /**

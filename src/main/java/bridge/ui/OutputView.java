@@ -20,11 +20,13 @@ public class OutputView {
     private static final String FAILED = "실패";
     private static final String THE_NUMBER_OF_TRIAL = "총 시도한 횟수: ";
 
+    // 시작 메시지, 다리 길이를 입력받기 위한 메시지 출력
     public void printInitialMessages() {
         System.out.println(STARTING_MESSAGE);
         System.out.println(MESSAGE_TO_GET_SIZE);
     }
 
+    // 이동할 칸을 입력받기 위한 메시지 출력
     public void printMessageToGetSpaceToMove() {
         System.out.println(MESSAGE_TO_GET_SPACE);
     }
@@ -44,6 +46,7 @@ public class OutputView {
         System.out.print("\n\n");
     }
 
+    // 재시도 여부를 입력받기 위한 메시지 출력
     public void printMessageAfterFailure() {
         System.out.println(MESSAGE_TO_GET_WHETHER_RETRY_OR_NOT);
     }

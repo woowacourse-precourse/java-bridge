@@ -22,18 +22,14 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public String move(int currBridgeOrder, List<String> answerBridge, String userInput) {
-        String currCrossableBridge = answerBridge.get(currBridgeOrder - 1);
-        return checkCrossability(currCrossableBridge, userInput);
-    }
-
-    // 건널 수 있는 다리를 선택한 경우 "O", 건널 수 없는 다리를 선택한 경우 "X" 반환.
-    private static String checkCrossability(String answerBridge, String usersSelection) {
-        if (answerBridge.equals(usersSelection)) {
+        String currentAnswerSpace = answerBridge.get(currBridgeOrder - 1);
+        if (currentAnswerSpace.equals(userInput)) {
             return CROSS_SUCCEEDED;
         }
         return CROSS_FAILED;
     }
 
+    // 각 라운드 진행(move() 호출하여 칸 이동, 이동 결과 저장)
     public String processEachRound(int round, String selectedSpace) {
         String movingResult = move(round, answerBridge, selectedSpace);
         user.addCrossingResult(Space.getIndexByRepresented(selectedSpace), round, movingResult);
