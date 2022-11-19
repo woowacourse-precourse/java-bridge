@@ -18,4 +18,10 @@ class TypeConverterTest {
     void 문자열에서_문자로_형변환() {
         assertEquals(TypeConverter.stringToChar("c"), 'c');
     }
+
+    @DisplayName("입력받은 블럭(Up, Down)을 정수로 변환")
+    @Test
+    void 블럭에서_정수로_변환() {
+        assertEquals(TypeConverter.blockToNumber("U"), 0);
+    }
 }
