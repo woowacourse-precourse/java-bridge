@@ -1,5 +1,11 @@
 package bridge;
 
 public enum GameRetry {
-    R , Q
+    R("R") , Q("Q");
+
+    public String command;
+
+    GameRetry(String command) {
+        this.command = command;
+    }
 }
