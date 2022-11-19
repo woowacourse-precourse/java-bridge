@@ -1,24 +1,24 @@
 package bridge;
 
 import bridge.view.OutputView;
+
 import java.util.List;
 
-public class BridgeRestart {
-    int quitRetryCommand = 0;
 
-    public void bridgeRestartCheck(String playerCommand, List correctBridge) {
-        quitRetryCommand = BridgeGame.retry(playerCommand);
+public class BridgeRestart {
+    public int bridgeRestartCheck(String playerCommand) {
+        int quitCommand = 0;
+        int quitRetryCommand = BridgeGame.retry(playerCommand);
         if (quitRetryCommand == 0) {
-            bridgeReStart(correctBridge);
+            bridgeReStart();
         } if(quitRetryCommand == 1) {
             bridgeQuit();
-        }
+            quitCommand = 1;
+        } return quitCommand;
     }
 
-    public void bridgeReStart(List correctBridge) {
+    public void bridgeReStart() {
         OutputView.tryCount += 1;
-        OutputView outputView = new OutputView();
-        outputView.printMap(correctBridge);
     }
 
     public void bridgeQuit() {

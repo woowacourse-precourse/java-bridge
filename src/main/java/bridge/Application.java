@@ -11,6 +11,10 @@ public class Application {
         BridgeGame bridgeGame = new BridgeGame();
         List<String> correctBridge = bridgeGame.makeCorrectBridge(InputView.readBridgeSize());
         OutputView outputView = new OutputView();
-        outputView.printMap(correctBridge);
+        while(true) {
+            int stopPlaying = outputView.printMap(correctBridge);
+            if(stopPlaying == 1 ) { break; }
+            if(stopPlaying == 2 ) { break; }
+        } outputView.printResult();
     }
 }

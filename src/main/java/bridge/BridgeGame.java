@@ -75,6 +75,11 @@ public class BridgeGame {
         return this.needRestart;
     }
 
+    public void clearBridge() {
+        this.upBridge.clear();
+        this.downBridge.clear();
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
