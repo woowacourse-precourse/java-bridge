@@ -85,8 +85,9 @@ public class Bridge {
 //        downBridge.remove(Player.currentLocation * 2);
 //    }
     public void resetBridge() {
-
+        initBridge();
     }
+
     public int getSize() {
         return size;
     }
