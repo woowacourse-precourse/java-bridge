@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.domain.Bridge;
+import bridge.type.FinishCondition;
 import bridge.type.GameStatus;
 import bridge.type.PassCondition;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -20,7 +22,7 @@ class BridgeGameTest {
     @BeforeEach
     void initBridgeGame() {
         bridge = new Bridge(List.of("U", "D", "U", "D"));
-        gameStatusOperator = new GameStatusOperator(-1, 0, GameStatus.START);
+        gameStatusOperator = GameStatusOperator.initGameStatusOperator();
         bridgeGame = new BridgeGame(bridge, gameStatusOperator);
     }
 
@@ -48,5 +50,14 @@ class BridgeGameTest {
         bridgeGame.retry();
         GameStatus gameStatus = gameStatusOperator.getGameStatus();
         assertThat(gameStatus).isEqualTo(GameStatus.RESTART);
+    }
+
+    @DisplayName("플레이어가 다리의 마지막 칸에 도달하면 FINISHED를 반환한다.")
+    @Test
+    void checkWhetherFinished() {
+        IntStream.range(0, 4)
+                .forEach(i -> gameStatusOperator.changePosition());
+        FinishCondition finishCondition = bridgeGame.checkWhetherFinished();
+        assertThat(finishCondition).isEqualTo(FinishCondition.FINISHED);
     }
 }
