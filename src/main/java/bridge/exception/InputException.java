@@ -1,6 +1,8 @@
 package bridge.exception;
 
 import static bridge.exception.ExceptionMessage.*;
+import static bridge.service.PlayerCommend.MOVE_LOWER;
+import static bridge.service.PlayerCommend.MOVE_UPPER;
 
 public class InputException extends IllegalArgumentException {
     private static final int MAX_SIZE = 20;
@@ -12,6 +14,15 @@ public class InputException extends IllegalArgumentException {
         validateInputLength(readLine);
         notDigit(readLine);
         outOfRange(readLine);
+    }
+
+    public void ValidateMoveCommend(String commend) {
+        if (commend.length() != ONE_WORD) {
+            throw new IllegalArgumentException(NOT_LENGTH.getMessage());
+        }
+        if (!commend.equals(MOVE_LOWER.getCommend()) || !commend.equals(MOVE_UPPER.getCommend())) {
+            throw new IllegalArgumentException(NOT_MOVE_COMMEND.getMessage());
+        }
     }
 
     private void notDigit(String readLine) {
@@ -30,7 +41,7 @@ public class InputException extends IllegalArgumentException {
     }
 
     private void validateInputLength(String readLine) {
-        if(readLine.length() > TWO_WORD || readLine.length() < ONE_WORD) {
+        if (readLine.length() > TWO_WORD || readLine.length() < ONE_WORD) {
             throw new IllegalArgumentException(NOT_LENGTH.getMessage());
         }
     }
