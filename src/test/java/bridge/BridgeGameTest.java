@@ -116,4 +116,18 @@ class BridgeGameTest {
         assertThat(upMovingLoggingResult.toString()).isEqualTo("[ X ]");
         assertThat(downMovingLoggingResult.toString()).isEqualTo("[   ]");
     }
+
+    @DisplayName("아래쪽으로 이동 했고, 그 위치가 건널 수 없을 다리일 때의 결과값 검증")
+    @MethodSource("generateBridgeForUpMoving")
+    @ParameterizedTest
+    public void downBridgeFailLogging(List<String> bridge) {
+        String moving = "D";
+        int index = 0;
+        if (!checkBridge(moving, bridge.get(index)) && moving.equals("D")) {
+            upMovingLoggingResult.append("   ]");
+            downMovingLoggingResult.append(" X ]");
+        }
+        assertThat(upMovingLoggingResult.toString()).isEqualTo("[   ]");
+        assertThat(downMovingLoggingResult.toString()).isEqualTo("[ X ]");
+    }
 }
