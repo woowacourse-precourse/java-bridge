@@ -12,6 +12,6 @@ public class BridgeMakerTest {
         BridgeMaker tester = new BridgeMaker(generator);
         List<String> testBridge = tester.makeBridge(5);
         assertThat(testBridge.size()).isEqualTo(5);
-        assertThat(testBridge.contains("D") || testBridge.contains("U"));
+        assertThat(testBridge).containsOnly("U", "D");
     }
 }
