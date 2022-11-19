@@ -4,11 +4,15 @@ public class GameStatus {
 
     private int tryCount;
     private boolean gameWon;
+    private boolean gameEnd;
 
     public GameStatus() {
         tryCount = 1;
         gameWon = false;
+        gameEnd = false;
     }
+
+
 
     public int getTryCount() {
         return tryCount;
@@ -16,6 +20,14 @@ public class GameStatus {
 
     public void setTryCount(int tryCount) {
         this.tryCount = tryCount;
+    }
+
+    public boolean isGameEnd() {
+        return gameEnd;
+    }
+
+    public void setGameEnd(boolean gameEnd) {
+        this.gameEnd = gameEnd;
     }
 
     public String isGameWon() {

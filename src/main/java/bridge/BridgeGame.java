@@ -39,6 +39,8 @@ public class BridgeGame {
     public boolean retry(String retryStatus) {
         if (retryStatus.equals("R")) {
             bridgeMoved.clear();
+            gameStatus.setGameEnd(false);
+            gameStatus.setTryCount(gameStatus.getTryCount() + 1);
             return true;
         }
         return false;
@@ -48,7 +50,12 @@ public class BridgeGame {
         if (bridgeMoved.get(currentPosition).equals(correctBridge.get(currentPosition))) {
             return "O";
         }
+        gameStatus.setGameEnd(true);
         return "X";
+    }
+
+    public boolean isGameEnd() {
+        return gameStatus.isGameEnd();
     }
 
     public List<List<String>> decideBridgeValues() {
