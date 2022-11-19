@@ -43,4 +43,8 @@ public class BridgeGame {
     public void countTry() {
         bridgeResult.countTry();
     }
+
+    public boolean canMove() {
+        return bridgeResult.getLast() && !bridgeResult.isEnd(bridge);
+    }
 }
