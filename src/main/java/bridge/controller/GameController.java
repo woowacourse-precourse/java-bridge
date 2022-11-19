@@ -1,11 +1,23 @@
 package bridge.controller;
 
+import bridge.BridgeGame;
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.List;
+
 public class GameController {
-    static InputView inputView = new InputView();
-    static OutputView outputView = new OutputView();
+    InputView inputView = new InputView();
+    OutputView outputView = new OutputView();
+
+    private List<String> prepareBridge(int bridgeSize) {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        return bridgeMaker.makeBridge(bridgeSize);
+    }
 
     private int inputBridgeSize() {
         outputView.printInputBridgeSize();
