@@ -11,11 +11,27 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public static int readBridgeSize() {
+    public static int readBridgeSize() throws IllegalArgumentException {
         System.out.println(BridgeGameInfo.INPUT_BRIDGE_SIZE.message);
         // 다리 길이 입력받기
         String userInputBridgeSize = Console.readLine();
-        return Integer.parseInt(userInputBridgeSize);
+
+        // 숫자 형태가 아니면 예외
+        for (int i = 0; i < userInputBridgeSize.length(); i++) {
+            char input = userInputBridgeSize.charAt(i);
+            if ((int) input < 48 || (int) input > 57) {
+                throw new IllegalArgumentException();
+            }
+        }
+
+        int size = Integer.parseInt(userInputBridgeSize);
+
+        // 범위 벗어나면 예외
+        if (size < 3 ||  19 < size) {
+            throw new IllegalArgumentException();
+        }
+
+        return size;
     }
 
     /**

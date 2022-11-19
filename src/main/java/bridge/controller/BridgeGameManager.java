@@ -11,12 +11,22 @@ import java.util.List;
 
 public class BridgeGameManager {
     public void run() {
+        int bridgeSize;
+
         BridgeGame bridgeGame = new BridgeGame();
         bridgeGame.start();
 
         OutputView.printStart();
 
-        int bridgeSize = InputView.readBridgeSize(); // 다리 사이즈에 대한 예외처리 필요
+        while (true) {
+            try {
+                bridgeSize = InputView.readBridgeSize();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            }
+        }
+
 
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
