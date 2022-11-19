@@ -2,6 +2,8 @@ package bridge.domain.direction;
 
 public class Direction {
 
+    public static final String UPWARD_DIRECTION = "U";
+    public static final String DOWNWARD_DIRECTION = "D";
     private final String direction;
 
     public Direction(String direction) {
