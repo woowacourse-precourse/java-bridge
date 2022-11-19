@@ -70,7 +70,12 @@ public class BridgeGame {
         return bridge;
     }
 
-
+    public List<Bridge> failBridgeDown(List<Bridge> bridge) {
+        String bridgeDown = bridge.get(1).getBridge().get(bridgeCount).replace("   ", " X ");
+        bridge.get(1).getBridge().set(bridgeCount, bridgeDown);
+        bridgeCount++;
+        return bridge;
+    }
 
     public int BridgeNumberGenerator() {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
