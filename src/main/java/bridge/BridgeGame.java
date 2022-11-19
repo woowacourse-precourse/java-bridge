@@ -1,21 +1,35 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Console;
+
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
+    private UserStatus userStatus;
+    private Bridge bridge;
     private int gameTryCount;
-
-    public BridgeGame() {
+    private CurrentBridgeStatusMaker currentBridgeStatusMaker = new CurrentBridgeStatusMaker();
+    public BridgeGame(int length) {
         gameTryCount = 1;
+        userStatus = new UserStatus();
+        List<String> createdBridge
+                = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(length);
+        bridge = new Bridge(createdBridge);
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public List<StringBuilder> move(String direct) {
+        userStatus.addCrossedHistory(direct);
+
+        return currentBridgeStatusMaker
+                .convertCurrentBridgeStatus(userStatus.getCurrentCrossedBridge(), bridge.getBridge());
     }
 
     /**
@@ -23,15 +37,35 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
-        checkGameTryCountOverIntegerMaxValue();
-        gameTryCount++;
+    public boolean retry() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String input = Console.readLine();
+
+        if(input.equals("R")) {
+            checkGameTryCountOverIntegerMaxValue();
+            gameTryCount++;
+            userStatus.clear();
+            return true;
+        }
+
+        return false;
     }
 
     public void checkGameTryCountOverIntegerMaxValue() {
         if(gameTryCount == Integer.MAX_VALUE) {
             throw new IllegalArgumentException("[ERROR] 너무 많은 게임 시도는 건강에 해롭습니다. 게임을 종료합니다.");
         }
+    }
+
+    public boolean isEnd() {
+
+        return (!isUserDead() && userStatus.getCurrentCrossedBridge().size() == bridge.getBridge().size()
+        );
+    }
+
+    public boolean isUserDead() {
+        return userStatus.getCurrentIndex() != -1 &&
+                !userStatus.getCurrentPosition().equals(bridge.getBridge().get(userStatus.getCurrentIndex()));
     }
 
     public int getGameTryCount() {

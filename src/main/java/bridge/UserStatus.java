@@ -19,4 +19,16 @@ public class UserStatus {
         currentCrossedBridge.add(c);
     }
 
+    public int getCurrentIndex() {
+        return currentCrossedBridge.size() - 1;
+    }
+
+    public String getCurrentPosition() {
+        return currentCrossedBridge.get(getCurrentIndex());
+    }
+
+    public void clear() {
+        currentCrossedBridge = new ArrayList<>();
+    }
+
 }
