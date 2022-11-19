@@ -4,6 +4,7 @@ import bridge.View.InputView;
 import bridge.View.OutputView;
 import bridge.BridgeRandomNumberGenerator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,13 +13,16 @@ import java.util.List;
 public class BridgeGame {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
+    List<String> bridge = new ArrayList<>();
+    int position;
 
     public void start() {
         int size = inputView.readBridgeSize();
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator= new BridgeRandomNumberGenerator();
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-        List<String> bridge=bridgeMaker.makeBridge(size);
+        bridge = bridgeMaker.makeBridge(size);
         System.out.println(bridge);
+        position = 0;
     }
 
     /**
@@ -27,6 +31,16 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
+        String moving = inputView.readMoving();
+        boolean correct = bridge.get(position).equals(moving);
+        if (correct) {
+            outputView.printMap(bridge, position, correct);
+            position++;
+        } else if (!correct) {
+            outputView.printMap(bridge, position, correct);
+        }
+
+
     }
 
     /**
