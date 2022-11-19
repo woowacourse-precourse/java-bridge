@@ -68,8 +68,6 @@ public class OutputView {
      * @param bridgeGame
      */
     public void printResult(final BridgeGame bridgeGame, boolean lastMoveSuccess){
-
-
         System.out.println("최종 게임 결과");
         printMap(bridgeGame.getPlayLog(), lastMoveSuccess);
         System.out.println("\n게임 성공 여부: " + result.get(lastMoveSuccess));

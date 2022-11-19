@@ -19,7 +19,8 @@ public class Application {
         try {
             List<String> stageBridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
             BridgeGame bridgeGame = new BridgeGame(stageBridge);
-            playGame(bridgeGame);
+
+            outputView.printResult(bridgeGame, playGame(bridgeGame));
         } catch (IllegalArgumentException e) {
             System.out.println(errorMessage + e.getMessage());
         }
@@ -28,25 +29,27 @@ public class Application {
     /**
      * 게임을 한판 진행하는 메서드
      * @param bridgeGame 현재 진행되는 브릿지게임
+     * @return 클리어 여부
      */
-    private static void playGame(final BridgeGame bridgeGame) {
+    private static boolean playGame(final BridgeGame bridgeGame) {
         for(int i = 0; i < bridgeGame.getBridgeSize(); i++) {
             boolean moveSuccess = bridgeGame.move(inputView.readMoving());
             outputView.printMap(bridgeGame.getPlayLog(), moveSuccess);
 
-            if(!moveSuccess){
-                gameover(bridgeGame);
-                break;
-            }
+            if(!moveSuccess)
+                return gameover(bridgeGame);
         }
+        return true;
     }
 
     /**
      * 게임 오버 시 진행되는 메서드
      * @param bridgeGame 현재 진행되는 브릿지게임
+     * @return 클리어 여부
      */
-    private static void gameover(BridgeGame bridgeGame) {
+    private static boolean gameover(BridgeGame bridgeGame) {
         if(bridgeGame.retry(inputView.readGameCommand()))
-            playGame(bridgeGame);
+            return playGame(bridgeGame);
+        return false;
     }
 }
