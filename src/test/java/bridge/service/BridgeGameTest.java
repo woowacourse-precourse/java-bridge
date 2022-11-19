@@ -25,11 +25,11 @@ class BridgeGameTest {
                 .isInstanceOf(IllegalStateException.class);
         assertThatThrownBy(game::movable)
                 .isInstanceOf(IllegalStateException.class);
+        assertThatThrownBy(game::checkCross)
+                .isInstanceOf(IllegalStateException.class);
         assertThatThrownBy(() -> game.move("test", 0))
                 .isInstanceOf(IllegalStateException.class);
         assertThatThrownBy(() -> game.retry("R"))
-                .isInstanceOf(IllegalStateException.class);
-        assertThatThrownBy(() -> game.isNotBridgeLength(0))
                 .isInstanceOf(IllegalStateException.class);
         assertThatThrownBy(game::printPlayCount)
                 .isInstanceOf(IllegalStateException.class);
