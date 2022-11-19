@@ -51,6 +51,15 @@ public class Application {
             boolean isCorrect = bridgeGame.move(direction);
             outputView.printMap(bridge, direction, bridgeGame);
             if(!isCorrect) {
+                String command;
+                while(true) {
+                    try {
+                        command = inputView.readGameCommand();
+                        break;
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(e);
+                    }
+                }
             }
         }
         
