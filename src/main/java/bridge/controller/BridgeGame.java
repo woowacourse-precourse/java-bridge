@@ -20,7 +20,7 @@ public class BridgeGame {
     BridgeMap bridgeMap = new BridgeMap();
     BridgeMapMaker bridgeMapMaker = new BridgeMapMaker();
     boolean isContinue = true;
-    boolean isWin;
+    boolean isWin = false;
     Bridge bridge;
 
     public void init() {
@@ -75,8 +75,7 @@ public class BridgeGame {
      * @param player
      */
     public void move(Player player) {
-        String moveTo = inputView.readMoving();
-        bridgeMove.movePlayer(player, moveTo);
+        bridgeMove.movePlayer(player);
     }
 
     /**
