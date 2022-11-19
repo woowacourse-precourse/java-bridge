@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class PlayerTest {
 
-    @DisplayName("처음 생성된 플레이어의 시도 횟수는 0이다.")
+    @DisplayName("처음 생성된 플레이어의 시도 횟수는 1이다.")
     @Test
     void initAttempt() {
         //given
@@ -18,7 +18,7 @@ class PlayerTest {
         int attempt = player.getAttempt();
 
         //then
-        assertThat(attempt).isEqualTo(0);
+        assertThat(attempt).isEqualTo(1);
     }
 
     @DisplayName("플레이어의 시도 횟수가 증가한다.")
@@ -32,7 +32,7 @@ class PlayerTest {
         int attempt = player.getAttempt();
 
         //then
-        assertThat(attempt).isEqualTo(1);
+        assertThat(attempt).isEqualTo(2);
     }
 
     @DisplayName("플레이어의 시도 횟수가 증가하면 방향이 초기화된다.")
@@ -47,7 +47,7 @@ class PlayerTest {
         int attempt = player.getAttempt();
 
         //then
-        assertThat(attempt).isEqualTo(1);
+        assertThat(attempt).isEqualTo(2);
         assertThat(player.getDirections()).isEmpty();
     }
 
