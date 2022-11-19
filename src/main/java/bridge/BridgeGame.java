@@ -43,4 +43,13 @@ public class BridgeGame {
         return bridge;
     }
 
+    public boolean checkFail(List<String> list){
+        for(int i=0;i<list.size();i++){
+            if(list.get(i).contains("X")){
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
