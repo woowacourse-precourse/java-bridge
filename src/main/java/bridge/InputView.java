@@ -29,13 +29,26 @@ public class InputView {
         return false;
     }
 
+    public boolean checkMoveNextState(String s) {
+        if(checkStringSize(s) && checkMoveString(s)){
+            return true;
+        }
+        return false;
+    }
 
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-
+        while (true) {
+            try {
+                String moveNextState = Console.readLine();
+                if (checkMoveNextState(moveNextState)) return moveNextState;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
+        }
     }
 
     /**
@@ -59,6 +72,20 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요");
         }
+    }
+
+    public boolean checkStringSize(String s) {
+        if(s.length() == 1) {
+            return true;
+        }
+        throw new IllegalArgumentException("1 글자만 입력해주세요");
+    }
+
+    public boolean checkMoveString(String s) {
+        if(s.charAt(0) == 'U' || s.charAt(0) == 'D') {
+            return true;
+        }
+        throw new IllegalArgumentException("U, D 중에서 입력해주세요");
     }
 
 
