@@ -6,8 +6,6 @@ import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeGame {
-
-
     private static final StringBuilder SUCCESS_MOVE_MARK = new StringBuilder(" O ");
     private static final StringBuilder FAIL_MOVE_MARK = new StringBuilder(" X ");
     private final List<String> bridgeGame;

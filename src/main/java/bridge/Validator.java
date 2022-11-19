@@ -1,11 +1,6 @@
 package bridge;
 
 public class Validator {
-
-    /*
-    - 다리의 길이는 3 ~ 20 의 숫자임
-    */
-
     private static final String SIZE_INPUT_TYPE_ERROR = "[ERROR] 다리 길이는 정수형 입력만 가능합니다.";
     private static final String SIZE_RANGE_ERROR = "[ERROR] 다리의 길이는 3 이상 20 이하의 숫자만 입력할 수 있습니다.";
     private static final String MOVING_WORD_INPUT_ERROR = "[ERROR] 위 칸('U') 혹은 아래 칸('D')만 입력할 수 있습니다.";

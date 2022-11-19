@@ -41,7 +41,6 @@ public class OutputView {
         System.out.println(GAME_RESULT_MESSAGE);
     }
 
-
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
