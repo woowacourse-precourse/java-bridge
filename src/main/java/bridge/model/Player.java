@@ -27,7 +27,7 @@ public class Player {
     }
 
     public void addTryCount() {
-        this.tryCount += 1;
+        this.tryCount++;
     }
 
     public void initializePosition() {

@@ -21,7 +21,7 @@ public class Position {
     }
 
     public void setPositionX() {
-        x += 1;
+        x++;
     }
 
     public void setPositionY(String moveTo) {
