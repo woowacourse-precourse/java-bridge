@@ -71,6 +71,19 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println(Data.GAME_COMMAND.start_message);
+        String input = Console.readLine();
+        validateGameCommand(input);
+        return input;
+    }
+
+    private void validateGameCommand(String input){
+        try{
+            if(!input.matches(Data.GAME_COMMAND.pattern))
+                throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e){
+            System.out.println(Data.GAME_COMMAND.error_message);
+            readGameCommand();
+        }
     }
 }
