@@ -11,6 +11,7 @@ public class GameLogic {
     private OutputView outputView;
     private BridgeGame bridgeGame;
     private String inputMove;
+    private String inputRetry;
     GameLogic(){
         bridgeGame = new BridgeGame();
         inputView =new InputView(new InputConsole());
@@ -59,13 +60,21 @@ public class GameLogic {
     }
 
     private void askRetry(){
-        String inputRetry = inputView.readGameCommand();
+        catchRetryException();
         if(inputRetry.equals(RESTART)){
             bridgeGame.retry();
             playOneGame();
             return;
         }
         showResult();
+    }
+    private void catchRetryException(){
+        try{
+            this.inputRetry = inputView.readGameCommand();
+        }catch (IllegalArgumentException error){
+            System.out.println(error);
+            catchRetryException();
+        }
     }
     private void showResult(){
         outputView.printResult(bridgeGame.getUser().getResult(),bridgeGame.getUser().getCount(),this.inputMove);

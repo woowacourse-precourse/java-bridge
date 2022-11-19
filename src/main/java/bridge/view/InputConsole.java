@@ -20,6 +20,7 @@ public class InputConsole implements Input{
     @Override
     public String inputRetry(){
         input = Console.readLine();
+        catchRetryInputException(input);
         return input;
     }
 }

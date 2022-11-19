@@ -1,11 +1,12 @@
 package bridge.exeption;
 
-import static bridge.exeption.ExceptionMessage.MOVE_INPUT_ERROR;
-import static bridge.exeption.ExceptionMessage.NOT_NUM_ERROR;
+import static bridge.exeption.ExceptionMessage.*;
 
 public class Exception {
     private static final String UPPER = "U";
     private static final String LOWER = "D";
+    private static final String RETRY = "R";
+    private static final String QUIT = "Q";
     private static void throwException(Boolean bool,String error){
         if(bool) throw new IllegalArgumentException(error);
     }
@@ -14,5 +15,8 @@ public class Exception {
     }
     public static void catchMoveInputException(String input){
         throwException(!input.equals(UPPER)&!input.equals(LOWER),MOVE_INPUT_ERROR.getError());
+    }
+    public static void catchRetryInputException(String input){
+        throwException(!input.equals(RETRY)&!input.equals(QUIT), RETRY_INPUT_ERROR.getError());
     }
 }
