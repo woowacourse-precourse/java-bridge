@@ -21,8 +21,9 @@ public class BridgeGameCycle {
 
 
     public void play() throws IllegalArgumentException {
-
-
+        beforeGame();
+        brideGamePlay();
+        afterGame(nowState, coin, finalMap);
     }
 
     private void beforeGame() {
@@ -49,7 +50,7 @@ public class BridgeGameCycle {
         if (nowState == GAME_LOSE.num()) {
             String inputCommand = askInputCommand();
             if (inputCommand.equals(QUIT.key())) {
-                return false;
+                return FINISH;
             }
             coin++;
             game.retry();
@@ -57,4 +58,13 @@ public class BridgeGameCycle {
         return CONTINUE;
     }
 
+    private void brideGamePlay() {
+        List<String> bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeLength);
+        BridgeGame game = new BridgeGame(bridge);
+        while (CONTINUE) {
+            oneTurnCycle(game);
+            if (nowState == GAME_WIN.num()) return;
+            if (!loseCycle(game)) return;
+        }
+    }
 }
