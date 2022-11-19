@@ -47,6 +47,22 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void bridgeLengthRangeError(){
+        assertSimpleTest(() -> {
+            runException("30");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void crossInputError(){
+        assertSimpleTest(() -> {
+            runException("3","T");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
