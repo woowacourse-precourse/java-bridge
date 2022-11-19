@@ -122,7 +122,7 @@ D
 
 ## BridgeGame
 - [x] upBridge라는 인스턴스 변수 생성
-- [ ] downBridge라는 인스턴스 변수 생성
+- [x] downBridge라는 인스턴스 변수 생성
 
 ### move
 - [ ] 결과 다리와 비교
