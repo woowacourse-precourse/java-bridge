@@ -1,6 +1,7 @@
 package bridge.domain;
 
 public enum MovingCommand {
+
     UP("U"),
     DOWN("D");
 
@@ -9,5 +10,15 @@ public enum MovingCommand {
 
     MovingCommand(String name) {
         this.name = name;
+    }
+
+    public static MovingCommand nameOf(String input) {
+        for (MovingCommand movingCommand : MovingCommand.values()) {
+            String name = movingCommand.name;
+            if (name.equals(input)) {
+                return movingCommand;
+            }
+        }
+        throw new IllegalArgumentException(ERROR_MOVING_INPUT);
     }
 }
