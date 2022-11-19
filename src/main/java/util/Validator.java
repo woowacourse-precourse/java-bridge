@@ -40,4 +40,10 @@ public class Validator {
 			throw new IllegalArgumentException("[ERROR] 입력은 R과 Q 둘 중 하나여야 합니다.");
 		}
 	}
+
+	public static void validateBridgeComponent(List<String> bridge) {
+		if (bridge.stream().anyMatch(x -> !x.equals("U") && !x.equals("D"))) {
+			throw new IllegalArgumentException("[ERROR] 다리는 U와 D로 이루어져야 합니다.");
+		}
+	}
 }
