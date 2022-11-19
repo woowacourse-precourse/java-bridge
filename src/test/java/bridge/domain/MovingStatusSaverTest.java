@@ -20,7 +20,7 @@ public class MovingStatusSaverTest {
             saver.saveMovingStatus(randomBridge, moving);
         }
         assertThat(saver.getMovingStatus())
-                .containsExactly("U", "D", "-");
+                .containsExactly("U", "D", "-D");
     }
 
     @Test
