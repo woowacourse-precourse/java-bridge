@@ -20,10 +20,6 @@ public class BridgeMaker {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    /**
-     * @param size 다리의 길이
-     * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
-     */
     public List<String> makeBridge(int size) {
 
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
@@ -34,57 +30,72 @@ public class BridgeMaker {
             if (a == 1)
                 bridge_answer.add("D");
         }
-        return bridge_answer;
+        return null;
     }
 
-    public void resultBridge(List<String> user_answer ) {
-        System.out.println("나우 사이즈 = " + now_size);
+    public void resultBridge(List<String> user_answer) {
+        initBridgeStringBuilder();
+        for (int i = 0; i < now_size + 1; i++) {
+            if (checkAnswer(bridge_answer.get(i), user_answer.get(i))) {
+                addAnswer(bridge_answer.get(i), i);
+            }
+            if (!checkAnswer(bridge_answer.get(i), user_answer.get(i))) {
+                addWrongAnswer(bridge_answer.get(i), i);
+            }
+        }
+        now_size++;
+        showBridge();
+    }
+
+    public static void showBridge() {
+        System.out.println(upBridge.toString());
+        System.out.println(downBridge.toString());
+    }
+
+    public static void initBridgeStringBuilder() {
         upBridge.setLength(0);
         downBridge.setLength(0);
         upBridge.append("[ ");
         downBridge.append("[ ");
-            for (int i = 0; i < now_size + 1; i++) {
-                System.out.println("브릿지 앤서 = " + bridge_answer.get(i) + ", 유저앤서 = " + user_answer.get(i));
-                if (Objects.equals(bridge_answer.get(i), user_answer.get(i))) {
-                    if (Objects.equals(bridge_answer.get(i), "U")) {
-                        System.out.println("U 정답");
-                        upBridge.append("O ");
-                        downBridge.append("  ");
-                    } else if (Objects.equals(bridge_answer.get(i), "D")) {
-                        System.out.println("D 정답");
-                        upBridge.append("  ");
-                        downBridge.append("O ");
-                    }
-                } else {
-                    if (Objects.equals(user_answer.get(i), "U")) {
-                        System.out.println("U O답");
-                        upBridge.append("X ");
-                        downBridge.append("  ");
-                    } else if (Objects.equals(user_answer.get(i), "D")) {
-                        System.out.println("D O답");
-                        upBridge.append("  ");
-                        downBridge.append("X ");
-                    }
-                }
-                if (now_size == i) {
-                    System.out.println("U 정답 끝");
-                    upBridge.append("]");
-                    downBridge.append("]");
-                } else {
-                    System.out.println("U 정답 안끝");
-                    upBridge.append("| ");
-                    downBridge.append("| ");
-                }
-            }
-
-            now_size++;
-            showBridge();
-    }
-    public static void showBridge(){
-        System.out.println(upBridge.toString());
-        System.out.println(downBridge.toString());
-
     }
 
+    public static Boolean checkAnswer(String a, String b) {
+        return a.equals(b);
+    }
 
+    public static void addAnswer(String a, int i) {
+        if (Objects.equals(a, "U")) {
+            upBridge.append("O ");
+            downBridge.append("  ");
+        }
+        if (Objects.equals(a, "D")) {
+            upBridge.append("  ");
+            downBridge.append("O ");
+        }
+        addAndOr(now_size, i);
+    }
+
+    public static void addWrongAnswer(String a, int i) {
+        if (Objects.equals(a, "D")) {
+            upBridge.append("X ");
+            downBridge.append("  ");
+        }
+        if (Objects.equals(a, "U")) {
+            upBridge.append("  ");
+            downBridge.append("X ");
+        }
+        addAndOr(now_size, i);
+    }
+
+    public static void addAndOr(int a, int b) {
+        if (a == b) {
+            System.out.println("U 정답 끝");
+            upBridge.append("]");
+            downBridge.append("]");
+            return;
+        }
+        System.out.println("U 정답 안끝");
+        upBridge.append("| ");
+        downBridge.append("| ");
+    }
 }
