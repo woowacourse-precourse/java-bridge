@@ -12,13 +12,13 @@ public class Validator {
     }
 
     public void checkValidMoveInput(String moveInput) {
-        if (!InputType.MOVE.isValidInput(moveInput)) {
+        if (!MovingType.isValidInput(moveInput)) {
             throw new IllegalArgumentException(ErrorType.INVALID_MOVE_INPUT.getErrorMsg());
         }
     }
 
     public void checkValidRetryInput(String moveInput) {
-        if (!InputType.RETRY.isValidInput(moveInput)) {
+        if (!RetryInput.isValidInput(moveInput)) {
             throw new IllegalArgumentException(ErrorType.INVALID_RETRY_INPUT.getErrorMsg());
         }
     }
