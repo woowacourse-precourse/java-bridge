@@ -20,6 +20,7 @@ public class Controller {
     public void run(){
         startGame();
         playGame();
+        showGameResult();
     }
 
     public void startGame(){
@@ -86,5 +87,9 @@ public class Controller {
             return getRetryOrQuitCommand();
         }
         return command;
+    }
+
+    public void showGameResult(){
+        outputView.printResult(bridgeGame);
     }
 }
