@@ -25,7 +25,10 @@ public class OutputView {
     public void printResult(Integer tryCount, List<String> bridgeDirections, List<String> userMoveHistory) {
         System.out.println(OutputMessage.GAME_FINAL_RESULT.getMessage());
         printMap(bridgeDirections, userMoveHistory);
-        System.out.println(OutputMessage.FINAL_SUCCESS_STATUS.getMessage() + bridgeDirections.equals(userMoveHistory));
+        System.out.println(
+                OutputMessage.FINAL_SUCCESS_STATUS.getMessage()
+                        + OutputMessage.convertToFinalStatus(bridgeDirections.equals(userMoveHistory))
+        );
         System.out.println(OutputMessage.NUMBER_OF_GAME_TRY.getMessage() + tryCount);
     }
 }
