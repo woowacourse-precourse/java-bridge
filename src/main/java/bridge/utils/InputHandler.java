@@ -16,7 +16,7 @@ public class InputHandler {
             new BridgeSizeValidator(size);
             return Integer.parseInt(size);
         } catch (IllegalArgumentException e) {
-            OutputView.printError(e.getMessage());
+            new OutputView().printError(e.getMessage());
             return getBridgeSize();
         }
     }
@@ -27,7 +27,7 @@ public class InputHandler {
             new MovingValidator(moving);
             return moving;
         } catch (IllegalArgumentException e) {
-            OutputView.printError(e.getMessage());
+            new OutputView().printError(e.getMessage());
             return getMoving();
         }
     }
@@ -38,7 +38,7 @@ public class InputHandler {
             new GameCommandValidator(gameCommand);
             return gameCommand;
         } catch (IllegalArgumentException e) {
-            OutputView.printError(e.getMessage());
+            new OutputView().printError(e.getMessage());
             return getGameCommand();
         }
     }
