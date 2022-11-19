@@ -3,7 +3,6 @@ package bridge;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -12,6 +11,8 @@ import java.util.List;
 public class BridgeGame {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
+    List<String> upBridge = new ArrayList<>();
+    List<String> downBridge = new ArrayList<>();
     int gameTryCount = 1;
 
     /**
