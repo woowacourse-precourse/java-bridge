@@ -46,7 +46,7 @@ public class BridgeController {
                 Direction direction = createDirectionLoop();
                 Position position = createPosition(pos, direction);
                 bridgeGame.move(position, passingPositions);
-                result = passingPositions.makeResultsGroup();
+                result = passingPositions.makeResult();
             } while (!OutputView.printMap(result));
 
             if (isQuit) {

@@ -22,7 +22,7 @@ public class PassingPositions {
         passingPositions.add(position);
     }
 
-    public Result makeResultsGroup() {
+    public Result makeResult() {
         List<String> upDirections = new ArrayList<>();
         List<String> downDirections = new ArrayList<>();
         for (Position position : passingPositions) {
