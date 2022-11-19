@@ -64,4 +64,18 @@ public class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_BRIDGE_MOVE_INPUT);
     }
+
+    @ParameterizedTest
+    @DisplayName("게임 재시작을 위한 사용자 입력이 유효한 값이 아닌 경우 에러 메세지와 함께 IllegalArgumentException이 발생한다.")
+    @ValueSource(strings = {" R", "R "," R ", " Q","Q "," Q ", "q","r","123","abc","가나다"})
+    public void validateRangedInputForRestartGame(String userInput) throws Exception{
+        //given
+        InputValidator inputValidator = new InputValidator();
+        final String INVALID_GAME_COMMAND_INPUT_MSG = "유효하지 않은 게임 재시작 명령입니다.";
+        //when
+        //then
+        Assertions.assertThatThrownBy(() -> inputValidator.validateGameCommand(userInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(INVALID_GAME_COMMAND_INPUT_MSG);
+    }
 }
