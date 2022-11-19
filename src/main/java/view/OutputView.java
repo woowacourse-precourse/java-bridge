@@ -26,4 +26,7 @@ public class OutputView {
             System.out.println(list.get(i));
         }
     }
+    public void printReStart() {
+        System.out.println(Message.RE_START.getMessage());
+    }
 }
