@@ -15,6 +15,18 @@ public class BridgeGame {
 	public boolean move(List<String> subBridge, String moving) {
 		isSuccess = subBridge.get(subBridge.size() - 1).equals(moving);
 		return isSuccess;
-	}}
+	}
 
+	/**
+	 * 사용자가 게임을 다시 시도할 때 사용하는 메서드
+	 */
+	public String retry(String gameCommand, String result) {
+		if (gameCommand.equals("R")) {
+			count++;
+			return "";
+		}
+		return result;
+	}
 
+	
+}
