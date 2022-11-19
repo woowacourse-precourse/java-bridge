@@ -24,10 +24,10 @@
 -[x] 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다. - class BridgeMaker
   - [x] 입력받은 길이에 해당하는 다리 모양 만들기. - makeBridge()
 
--[x] 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 함 - class InputProcessing
-  - [x] 랜덤으로 입력된 브릿지를 매개변수로 사용자의 입력과 매치하는 기능. - matchInput()
+-[x] 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 함 - class MovingProcessing
+  - [x] 랜덤으로 입력된 브릿지를 매개변수로 사용자의 입력과 매치하는 기능. - compareBridgeToInput()
+  - [x] 사용자의 입력을 읽어내는 기능 - readNextMoving()
   - [x] 맞췄는가 아닌가의 분기로 나누는 기능 - jumpToBridge()
   - [x] 맞췄을 경우 그것이 U인지 Q인지 분기로 나눈다 - selectedBridgeIsSucceed()
   - [x] 맞추지 못했을 경우 그것이 U인지 Q인지 분기로 나눈다. - selectedBridgeIsFail()
   - [x] 다리 상황을 출력하는 기능 - printBridge()
-
