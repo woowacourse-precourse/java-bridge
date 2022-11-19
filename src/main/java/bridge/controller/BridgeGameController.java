@@ -38,9 +38,13 @@ public class BridgeGameController {
                 bridgeGame.retry();
             }
         }
+        gameFinalBridgeState();
+        return bridgeGame.isAnswer();
+    }
+
+    public void gameFinalBridgeState(){
         OutputView.printFinal();
         OutputView.printMap(bridgeGame.getInput(), WIDTH);
-        return bridgeGame.isAnswer();
     }
 
     public void gameResult() {
