@@ -9,11 +9,15 @@ public class Stringify {
     public String getPathToString(List<String> bridge, String position) {
         StringBuilder result = new StringBuilder();
 
+        if(bridge.isEmpty()) {
+            return result.toString();
+        }
+
         for (String block : bridge) {
             result.append(getBlockToString(block, position));
         }
 
-        return result.substring(1);
+        return result.toString();
     }
 
     public String changeToFail(String path, String position, String direction) {
