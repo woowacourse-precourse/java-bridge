@@ -13,6 +13,8 @@ public class BridgeMapViewCreator {
     private static final String BRIDGE_SUCCESS_MARK = " O ";
     private static final String BRIDGE_BLANK_MARK = "   ";
     private static final String BRIDGE_FAIL_MARK = "X";
+    public static final int PREFIX_IDX_VALUE = 1;
+    public static final int SUFFIX_IDX_VALUE = 2;
 
     private BridgeMapViewCreator() {
     }
@@ -99,10 +101,10 @@ public class BridgeMapViewCreator {
         int downLastIdx = downBridge.lastIndexOf(BRIDGE_SUCCESS_MARK);
 
         if (upLastIdx > downLastIdx) {
-            upBridge.replace(upLastIdx, upLastIdx + 1, BRIDGE_FAIL_MARK);
+            upBridge.replace(upLastIdx + PREFIX_IDX_VALUE, upLastIdx + SUFFIX_IDX_VALUE, BRIDGE_FAIL_MARK);
         }
         if (upLastIdx < downLastIdx) {
-            downBridge.replace(downLastIdx, downLastIdx + 1, BRIDGE_FAIL_MARK);
+            downBridge.replace(downLastIdx + PREFIX_IDX_VALUE, downLastIdx + SUFFIX_IDX_VALUE, BRIDGE_FAIL_MARK);
         }
     }
 
