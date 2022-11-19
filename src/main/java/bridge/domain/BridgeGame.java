@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.utils.InputHandler;
+import bridge.utils.enums.MovingResult;
 import bridge.view.OutputView;
 import java.util.List;
 
@@ -24,9 +25,9 @@ public class BridgeGame {
      */
     private String move(String bridgeText, String userMove) {
         if (!bridgeText.equals(userMove)) {
-            return " X ";
+            return MovingResult.WRONG.getValue();
         }
-        return " O ";
+        return MovingResult.CORRECT.getValue();
     }
 
     /**
@@ -59,8 +60,8 @@ public class BridgeGame {
 
     private void play(int size, List<String> bridge) {
         initializeVariables();
-        for (int i = 0; i < size; i++) {
-            if (compareInputActual(bridge, i)) {
+        for (int block = 0; block < size; block++) {
+            if (compareInputActual(bridge, block)) {
                 break;
             }
         }
@@ -73,7 +74,7 @@ public class BridgeGame {
     }
 
     private boolean isWrong(String[][] realTimeMap, String userMove, String moveResult) {
-        if (moveResult.equals(" X ")) {
+        if (moveResult.equals(MovingResult.WRONG.getValue())) {
             printRealTimeMap(realTimeMap, userMove, moveResult);
             isAnswer = false;
             return true;
