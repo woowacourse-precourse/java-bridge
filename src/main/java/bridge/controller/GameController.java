@@ -39,8 +39,7 @@ public class GameController {
     }
 
     private void restartGame() {
-        outputView.upsideBridge.setLength(BUILDER_INITIALIZE);
-        outputView.downsideBridge.setLength(BUILDER_INITIALIZE);
+        outputView = new OutputView();
         bridgeGame.retry();
         movePlayer();
     }
