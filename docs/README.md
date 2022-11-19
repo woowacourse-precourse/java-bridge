@@ -13,7 +13,7 @@
 - [ ] 다리 건너기 BridgeGame#move
   - [x] 사용자로부터 U와 D 방향 입력받기 InputView#readMoving
   - [x] 사용자 입력 예외처리 InputView#validateMove
-  - [ ] 방향에 따라 정답 다리와 비교 
+  - [x] 방향에 따라 정답 다리와 비교 
   - [ ] 사용자 결과 출력 OutputView#printMap
 - [ ] 실패 시 게임 재시도 여부 출력 MessageView#PRINT_GAME_RESTART_MESSAGE
 - [ ] 게임 재시도 BridgeGame#retry
