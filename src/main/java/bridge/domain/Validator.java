@@ -23,4 +23,10 @@ public class Validator {
             throw new IllegalArgumentException(ERROR_MESSAGE + BRIDGE_SIZE_NOT_DIGIT_MESSAGE);
         }
     }
+
+    public void validateMoving(String moving) {
+        if (!moving.equals(USER_UP_MOVING) && !moving.equals(USER_DOWN_MOVING)) {
+            throw new IllegalArgumentException(INVALID_MOVE_INPUT_MESSAGE);
+        }
+    }
 }
