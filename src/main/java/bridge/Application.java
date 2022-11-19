@@ -1,53 +1,71 @@
 package bridge;
 
-import dto.BridgeDto;
 import dto.BridgeGameDto;
-import java.util.List;
 import view.InputView;
 import view.OutputView;
 
 public class Application {
+    static OutputView outputView = new OutputView();
+    static InputView inputView = new InputView();
+    static BridgeGame bridgeGame = new BridgeGame();
+    static Result totalResult = new Result();
 
-    public static void main(String[] args) {
-        OutputView outputView = new OutputView();
-        InputView inputView = new InputView();
+    public static void failGame(Bridge bridge) {
+        bridgeGame.initializeValues();
+        outputView.printRestart();
+        String command = inputView.readGameCommand();
+        bridgeGame.retry(bridge, command);
+    }
 
+    public static void endGame(Bridge bridge, Boolean successGame) {
+        outputView.printResult(bridge.sendDto(), totalResult.sendDto());
+        BridgeGameDto bridgeGameDto = bridgeGame.sendDto();
+        outputView.printReport(successGame, bridgeGameDto.totalTrial);
+    }
+
+    public static boolean judgeMove(Bridge bridge) {
+        Boolean guessResult = bridge.isCorrectGuess(bridgeGame.sendDto());
+        totalResult.update(guessResult);
+        return guessResult;
+    }
+
+    public static void makeMove() {
+        outputView.printEnterMove();
+        String direction = inputView.readMoving();
+        bridgeGame.move(direction);
+    }
+
+    public static boolean runGuessLoop(Bridge bridge) {
+        boolean currentGuess = true;
+        for (int currentPosition = 0; currentPosition < bridge.size() && currentGuess; currentPosition++) {
+            makeMove();
+            currentGuess = judgeMove(bridge);
+            outputView.printMap(bridge.sendDto(), totalResult.sendDto());
+        }
+        return currentGuess;
+    }
+
+    public static void launchGame(Bridge bridge) {
+        Boolean successGame = runGuessLoop(bridge);
+        if (!successGame) {
+            failGame(bridge);
+            return;
+        }
+        endGame(bridge, successGame);
+    }
+
+    public static Bridge buildBridge() {
         outputView.printStart();
         outputView.printEnterBridgeSize();
+        int bridgeSize = inputView.readBridgeSize();
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        return new Bridge(bridgeMaker.makeBridge(bridgeSize));
+    }
+
+    public static void main(String[] args) {
         try {
-            BridgeGame bridgeGame = new BridgeGame();
-            int bridgeSize = inputView.readBridgeSize();
-            BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-            Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
-            BridgeDto bridgeDto = bridge.sendDto();
-            Result totalResult = new Result();
-
-            boolean guessResult = true;
-            for (int currentPosition = 0; currentPosition < bridgeSize && guessResult; currentPosition++) {
-                outputView.printEnterMove();
-                String direction = inputView.readMoving();
-                bridgeGame.move(direction);
-                BridgeGameDto bridgeGameDto = bridgeGame.sendDto();
-                guessResult = bridge.isCorrectGuess(bridgeGameDto);
-                totalResult.update(guessResult);
-                outputView.printMap(bridgeDto,totalResult.sendDto());
-            }
-
-            if (!guessResult) {
-                bridgeGame.initializeValues();
-                totalResult = new Result();
-                bridgeGame.retry();
-                outputView.printRestart();
-                String command = inputView.readGameCommand();
-                if(command=="R") {
-                    //재시작
-                }
-            }
-
-            outputView.printResult(bridgeDto,totalResult.sendDto());
-            BridgeGameDto bridgeGameDto = bridgeGame.sendDto();
-            outputView.printReport(guessResult,bridgeGameDto.totalTrial);
-
+            Bridge bridge = buildBridge();
+            launchGame(bridge);
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
         }
