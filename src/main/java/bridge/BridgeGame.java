@@ -13,6 +13,8 @@ public class BridgeGame {
     StringBuilder upBridge = new StringBuilder();
     StringBuilder downBridge = new StringBuilder();
 
+    private int countOfTry = 1;
+
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
     }
@@ -54,6 +56,10 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        currentIndex = 0;
+        upBridge.setLength(0);
+        downBridge.setLength(0);
+        countOfTry++;
     }
 
     public String getUpBridgeToString() {
@@ -62,5 +68,13 @@ public class BridgeGame {
 
     public String getDownBridgeToString() {
         return downBridge.toString();
+    }
+
+    public boolean isClear() {
+        return !upBridge.toString().contains("X") && !downBridge.toString().contains("X");
+    }
+
+    public int getCountOfTry() {
+        return countOfTry;
     }
 }
