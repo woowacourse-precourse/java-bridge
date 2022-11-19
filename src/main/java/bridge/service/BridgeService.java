@@ -74,4 +74,9 @@ public class BridgeService {
         return isRestart;
     }
 
+    // 정답일치 여부
+    public boolean isKeepGoing() {
+        return isCorrect;
+    }
+
 }
