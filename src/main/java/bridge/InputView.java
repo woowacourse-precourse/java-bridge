@@ -14,7 +14,7 @@ public class InputView {
         this.bridgeGame = bridgeGame;
     }
 
-    public int getValidBridgeSize() {
+    public static int getValidBridgeSize() {
         int bridgeSize;
 
         try {
@@ -27,10 +27,23 @@ public class InputView {
         return bridgeSize;
     }
 
+    public void getValidMoving() {
+        String input = "";
+        while (input.length() == 0) {
+            try {
+                input = readMoving();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        bridgeGame.move(input);
+    }
+
     /**
      * 다리의 길이를 입력받는다.
      */
-    private int readBridgeSize() {
+    private static int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
         String input = Console.readLine();
         System.out.println();
@@ -46,13 +59,12 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public void readMoving() {
+    public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String input = Console.readLine();
-
         isValidFootHold(input);
 
-        bridgeGame.move(input);
+        return input;
     }
 
     /**

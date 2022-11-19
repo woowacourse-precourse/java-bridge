@@ -28,7 +28,7 @@ public class Application {
 
     private static void gameState() {
         while (!bridgeGame.isGameEnd()) {
-            inputView.readMoving();
+            inputView.getValidMoving();
             outputView.printMap(bridgeGame.getUpperRoad(), bridgeGame.getLowerRoad());
             if (!bridgeGame.isRightFoothold()) {
                 if (inputView.readGameCommand().equals(Command.QUIT.getValue())) {
