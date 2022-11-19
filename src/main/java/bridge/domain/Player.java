@@ -25,4 +25,9 @@ public class Player {
     public void saveHistory() {
         gameHistory.add(lastChoice);
     }
+
+    public void saveLastChoice(String lastChoice, boolean result) {
+        this.lastChoice = lastChoice;
+        this.checkAnswer = result;
+    }
 }
