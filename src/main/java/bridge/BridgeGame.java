@@ -9,11 +9,13 @@ public class BridgeGame {
     private final List<String> bridge;
     private final Player player;
     private int playerCurrentStep;
+    private int totalAttempts;
 
     BridgeGame(List<String> bridge){
         this.bridge = bridge;
         this.player = new Player();
         this.playerCurrentStep = 0;
+        this.totalAttempts = 1;
     }
 
     /**
@@ -33,6 +35,7 @@ public class BridgeGame {
      */
     public void retry() {
         this.playerCurrentStep = 0;
+        this.totalAttempts++;
     }
 
     public boolean checkBridgeAndPlayer(){
@@ -42,7 +45,11 @@ public class BridgeGame {
         return safeDirection.equals(playerCurrentDirection);
     }
 
-    public boolean isNotFinished(){
-        return this.playerCurrentStep < this.bridge.size();
+    public boolean isEndOfBridge(){
+        return this.playerCurrentStep >= this.bridge.size();
+    }
+
+    public int getTotalAttempts(){
+        return this.totalAttempts;
     }
 }
