@@ -12,17 +12,22 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private static final String UP = "U" ;
+    private static final String DOWN = "D" ;
     private final List<String> bridge;
     private final InputView input;
     private final OutputView output;
+    private final BridgeCalculator bridgeCalculator;
     private final ResultConverter resultConverter;
     private PlayerBoard playerBoard;
+
     private int attempts;
     public BridgeGame(final OutputView output, final InputView input, final List<String> bridge) {
         this.input = input;
         this.output = output;
         this.bridge = bridge;
-        this.playerBoard = new PlayerBoard();
+        this.playerBoard = new PlayerBoard(bridge.size());
+        this.bridgeCalculator = new BridgeCalculator(bridge);
         this.resultConverter = new ResultConverter();
         this.attempts = 1;
     }
@@ -31,10 +36,22 @@ public class BridgeGame {
 
     public void initBoard() {
         attempts++;
-        playerBoard = new PlayerBoard();
+        playerBoard = new PlayerBoard(bridge.size());
     }
 
+    public boolean startRound() {
+        String inputMoving = getMoving();
+        int recentRound = playerBoard.getGameRound();
 
+        boolean isCrossable = bridgeCalculator.isCrossable(recentRound, inputMoving);
+        String resultValue = resultConverter.convertToMark(isCrossable);
+
+        move(inputMoving, resultValue);
+        String upsideBridge = playerBoard.getBridgeStatus(UP);
+        String downsideBridge = playerBoard.getBridgeStatus(DOWN);
+        output.printMap(upsideBridge, downsideBridge);
+        return isCrossable;
+    }
 
 
     /**
