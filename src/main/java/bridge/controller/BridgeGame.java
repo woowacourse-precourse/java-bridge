@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.repository.UserBridgeStatusDto;
 import bridge.service.GameService;
 import bridge.util.InputViewConst;
 import bridge.util.OutputViewConst;
@@ -54,8 +55,8 @@ public class BridgeGame {
 		do {
 			String userLocation = inputController.getUserMoving();
 			if (!gameService.checkValidSpace(userLocation, currentLocation)) {
-				gameService.saveUserWrongSpace(userLocation);
-				outputView.printMap(gameService.getUserBridgeStatusDto());
+				UserBridgeStatusDto userBridgeStatusDto = gameService.saveUserWrongSpace(userLocation);
+				outputView.printMap(userBridgeStatusDto);
 				return OutputViewConst.FAIL;
 			}
 			gameService.saveUserCorrectSpace(userLocation);

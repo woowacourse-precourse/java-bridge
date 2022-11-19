@@ -31,12 +31,14 @@ public class GameService {
 		return bridgeRepository.checkValidSpace(userSpace, currentSpace);
 	}
 
-	public void saveUserCorrectSpace(String userLocation) {
+	public UserBridgeStatusDto saveUserCorrectSpace(String userLocation) {
 		userBridgeRepository.saveUserSpace(userLocation, OutputViewConst.USER_CORRECT_SPACE);
+		return userBridgeRepository.findUserBridgeStatusDto();
 	}
 
-	public void saveUserWrongSpace(String userLocation) {
+	public UserBridgeStatusDto saveUserWrongSpace(String userLocation) {
 		userBridgeRepository.saveUserSpace(userLocation, OutputViewConst.USER_WRONG_SPACE);
+		return userBridgeRepository.findUserBridgeStatusDto();
 	}
 
 	public UserBridgeStatusDto getUserBridgeStatusDto() {
