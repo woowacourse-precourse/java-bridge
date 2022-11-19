@@ -14,23 +14,28 @@ public class GameResultGenerator {
         this.lowerBridge = new ArrayList<>();
     }
 
-    public void setUpperBridgeResult(GameResult gameResult) {
-        String upperResult = BridgeResultType.NONE.getResult();
-        if (gameResult.isMoveSuccess() && gameResult.isPositionUpper()) {
-            upperResult = BridgeResultType.POSSIBLE.getResult();
-        } else if (!gameResult.isMoveSuccess() && gameResult.isPositionUpper()) {
-            upperResult = BridgeResultType.IMPOSSIBLE.getResult();
+    public String getUpperBridgeResult(GameResult gameResult) {
+        if (!gameResult.isPositionUpper()) {
+            return BridgeResultType.NONE.getResult();
         }
-        this.upperBridge.add(upperResult);
+        if (gameResult.isMoveSuccess()) {
+            return BridgeResultType.POSSIBLE.getResult();
+        }
+        return BridgeResultType.IMPOSSIBLE.getResult();
     }
 
-    public void setLowerBridgeResult(GameResult gameResult) {
-        String lowerResult = BridgeResultType.NONE.getResult();
-        if (gameResult.isMoveSuccess() && !gameResult.isPositionUpper()) {
-            lowerResult = BridgeResultType.POSSIBLE.getResult();
-        } else if (!gameResult.isMoveSuccess() && !gameResult.isPositionUpper()) {
-            lowerResult = BridgeResultType.IMPOSSIBLE.getResult();
+    public String getLowerBridgeResult(GameResult gameResult) {
+        if (gameResult.isPositionUpper()) {
+            return BridgeResultType.NONE.getResult();
         }
+        if (gameResult.isMoveSuccess()) {
+            return BridgeResultType.POSSIBLE.getResult();
+        }
+        return BridgeResultType.IMPOSSIBLE.getResult();
+    }
+
+    public void addBridgeStatus(String upperResult, String lowerResult) {
+        this.upperBridge.add(upperResult);
         this.lowerBridge.add(lowerResult);
     }
 
@@ -50,8 +55,9 @@ public class GameResultGenerator {
     }
 
     public String getBridgeStatus(GameResult gameResult) {
-        setLowerBridgeResult(gameResult);
-        setUpperBridgeResult(gameResult);
+        String lowerResult = getLowerBridgeResult(gameResult);
+        String upperResult = getUpperBridgeResult(gameResult);
+        addBridgeStatus(upperResult, lowerResult);
         return getGameResultOutput();
     }
 }
