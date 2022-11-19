@@ -4,7 +4,8 @@ import java.util.Arrays;
 
 public enum MovingStatus {
     UP(1, "U"),
-    DOWN(0, "D");
+    DOWN(0, "D"),
+    FAIL(-1, "-");
 
     private final int statusNumber;
     private final String movingKey;
