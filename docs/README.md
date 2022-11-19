@@ -23,14 +23,16 @@
 
 - 메소드 추가 가능 여부: O
 
-- [ ] 위아래 중 하나로 이동 move()
+- [x] 위아래 중 하나로 이동 move()
     - 이동 할 때 마다 진행 상태 오른쪽에 이동 한 위치(위, 아래)에 O, X 기록
     - move의 결과가 X일 경우 현재 상태 BridgeStatus를 STOP으로 변경
-    - [ ] 검증
+    - [x] 검증
         - BridgeStatus STOP인 경우만 가능
-            - [ ] 해당 상태가 아닐 경우 IllegalStateException 처리
+            - [x] 해당 상태가 아닐 경우 IllegalStateException 처리
         - 입력된 값이 U 또는 D 검사
-            - [ ] 해당 값이 아닐 경우 IllegalArgumentException 처리
+            - [x] 해당 값이 아닐 경우 IllegalArgumentException 처리
+        - 현재 Bridge 위아래 size가 일치 하는지 검사
+            - [x] 해당 상태가 아닐 경우 IllegalStateException 처리
 
 
 - [ ] 재시도 retry()
@@ -55,9 +57,9 @@
 
 ### 다리 게임 상태 Enum BridgeStatus
 
-- [ ] 진행 중 RUNNING
-- [ ] 진행 불가 STOP
-- [ ] 진행 완료 FINISH
+- [x] 진행 중 RUNNING
+- [x] 진행 불가 STOP
+- [x] 진행 완료 FINISH
 
 <br/>
 
@@ -73,7 +75,7 @@
     - [x] 검증
         - 입력된 값이 3 ~ 20 범위의 숫자
         - [x] 해당 범위가 아닐 경우 IllegalArgumentException 처리
-      
+
 <br/>
 
 ### 다리 정답 난수 생성기 BridgeRandomNumberGenerator

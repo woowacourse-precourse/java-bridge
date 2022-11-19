@@ -26,9 +26,30 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String direction) {
+        validateMove(direction);
         int currentIndex = bridgeUpper.size();
         String answer = bridgeAnswer.get(currentIndex);
 
+        matchBridge(answer, direction);
+
+        //TODO
+        //index out of bound, currentIndex != bridgeLower.size()
+
+    }
+
+    private void validateMove(String direction) {
+        if (!status.equals(BridgeGameStatus.STOP)) {
+            throw new IllegalStateException("[ERROR]");
+        }
+        if (!direction.equals("U") && !direction.equals("D")) {
+            throw new IllegalArgumentException("[ERROR]");
+        }
+        if (bridgeUpper.size() != bridgeLower.size()) {
+            throw new IllegalStateException("[ERROR]");
+        }
+    }
+
+    private void matchBridge(String answer, String direction) {
         if (answer.equals("U") && answer.equals(direction)) {
             updateBridge("O", " ");
         }
@@ -41,10 +62,6 @@ public class BridgeGame {
         if (answer.equals("D") && !answer.equals(direction)) {
             updateBridge("X", " ");
         }
-
-        //TODO
-        //index out of bound, currentIndex != bridgeLower.size()
-
     }
 
     private void updateBridge(String upperAnswer, String lowerAnswer) {
