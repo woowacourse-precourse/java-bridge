@@ -28,5 +28,11 @@ public class BridgeGame {
 		return result;
 	}
 
-	
+	public boolean isSuccess() {
+		return isSuccess;
+	}
+
+	public int getCount() {
+		return count;
+	}
 }
