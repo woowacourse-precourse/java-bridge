@@ -39,6 +39,13 @@
 ---
 
 ## Domain
+### BridgeMaker
+- [x] 다리 생성
+  - [x] 숫자를 이동 방향으로 변환
+
+### BridgeRandomNumberGenerator
+- [x] 랜덤 숫자 생성 (기작성된 코드)
+
 ### BridgeGame
 - [ ] 한 턴의 이동 후 현황 반환
 - [ ] 재시작 여부 판별
