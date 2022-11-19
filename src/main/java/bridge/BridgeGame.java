@@ -27,11 +27,9 @@ public class BridgeGame {
 
     private void gameLoop(List<String> answerBridge, int bridgeSize) {
         while (currentPosition < bridgeSize) {
-            Bridge moveResult = move(answerBridge, currentPosition);
-            movedBridge.add(moveResult);
+            boolean isGameOver = move(answerBridge);
             outputController.printMap(movedBridge);
-            currentPosition++;
-            if (isGameOver(moveResult)) {
+            if (isGameOver) {
                 return;
             }
         }
@@ -61,9 +59,12 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public Bridge move(List<String> answerBridge, int currentPosition) {
+    public boolean move(List<String> answerBridge) {
         String moving = inputController.inputMoving();
-        return Calculator.moveCalculate(answerBridge.get(currentPosition), moving);
+        Bridge moveResult = Calculator.moveCalculate(answerBridge.get(currentPosition), moving);
+        movedBridge.add(moveResult);
+        currentPosition++;
+        return isGameOver(moveResult);
     }
 
     /**
