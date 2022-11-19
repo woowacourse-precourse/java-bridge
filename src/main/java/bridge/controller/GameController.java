@@ -43,13 +43,17 @@ public class GameController {
             outputView.printUserChoiceOpening();
             try {
                 String choice = inputView.readMoving(inputView.userInput());
-                bridgeGame.move(choice);
-                outputView.printMap(bridgeGame.matchResults(), bridgeGame.getPlayersMove());
+                move(choice);
                 continueOrQuitIfFailed(bridgeGame.lastMoveMatches());
             } catch (IllegalArgumentException exception) {
                 outputView.printErrorMessage(exception.getMessage());
             }
         }
+    }
+
+    private void move(String choice) {
+        bridgeGame.move(choice);
+        outputView.printMap(bridgeGame.matchResults(), bridgeGame.getPlayersMove());
     }
 
     private void continueOrQuitIfFailed(boolean success) {
