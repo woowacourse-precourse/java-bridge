@@ -30,8 +30,11 @@
   - 생성한 Bridge를 입력 받아 endIndex(마지막 칸)을 기록
   - 현재 칸과 현재 시도 횟수 세팅
   - 예외. Bridge가 null일 경우
-- [ ] 움직이기 BrideGame#move()
-  - 현재 칸 index 증가
+- [x] 움직이기 BrideGame#move()
+  - 현재까지 움직인 칸 index++
+  - 마지막 칸까지 도달했다면, 1 리턴
+  - 마지막 칸까지 도달하지 않았다면, 0리턴
+  - 예외. 마지막 칸을 넘어서 움직인 경우
 - [ ] 다시 시도 BridgeGame#retry()
   - 진행 상황 리셋
   - 시도 횟수 증가
