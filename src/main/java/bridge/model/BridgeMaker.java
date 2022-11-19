@@ -25,7 +25,6 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int number = bridgeNumberGenerator.generate();
-            validateBridgeNumber(number);
             bridge.add(topOrBottom(number));
         }
         return bridge;
@@ -43,7 +42,8 @@ public class BridgeMaker {
         }
     }
 
-    private String topOrBottom(int num) {
+    public String topOrBottom(int num) {
+        validateBridgeNumber(num);
         if(num == Course.TOP.getNumber()) {
             return Course.TOP.getDirection();
         }
