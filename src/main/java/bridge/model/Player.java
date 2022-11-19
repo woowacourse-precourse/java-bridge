@@ -4,10 +4,13 @@ public class Player {
     public static int currentLocation;
 
     public Player() {
-        currentLocation = -1;
+        initCurrentLocation();
     }
 
-    public void moveStraight() {
+    public void moveForward() {
         currentLocation += 1;
+    }
+    public void initCurrentLocation() {
+        currentLocation = -1;
     }
 }
