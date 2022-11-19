@@ -7,6 +7,11 @@ import bridge.controller.BridgeGame;
  */
 public class OutputView {
 
+    private static final String PRINT_END = "최종 게임 결과";
+    private static final String PRINT_RESULT = "게임 성공 여부: ";
+    private static final String PRINT_COUNT = "총 시도한 횟수: ";
+    private static final String PRINT_START = "다리 건너기 게임을 시작합니다.";
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -29,11 +34,11 @@ public class OutputView {
     public void printResult(boolean flag, int count, String[][] realTimeMap) {
         String result = new BridgeGame().isSuccess(flag);
         System.out.println();
-        System.out.println(EnumStrings.PRINT_END.getValue());
+        System.out.println(PRINT_END);
         printMap(realTimeMap);
         System.out.println();
-        System.out.println(EnumStrings.PRINT_RESULT.getValue() + result);
-        System.out.println(EnumStrings.PRINT_COUNT.getValue() + count);
+        System.out.println(PRINT_RESULT + result);
+        System.out.println(PRINT_COUNT + count);
     }
 
     public void printError(String errorMessage) {
@@ -41,6 +46,6 @@ public class OutputView {
     }
 
     public void printStartMessage(){
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println(PRINT_START);
     }
 }

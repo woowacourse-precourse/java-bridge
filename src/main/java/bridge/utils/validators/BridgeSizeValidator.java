@@ -5,8 +5,9 @@ import java.util.regex.Pattern;
 public class BridgeSizeValidator {
 
     String size;
-    public final static int MIN_LENGTH = 3;
-    public final static int MAX_LENGTH = 20;
+    private final static String PATTERN = "^[0-9]*$";
+    private final static int MIN_LENGTH = 3;
+    private final static int MAX_LENGTH = 20;
 
     public BridgeSizeValidator(String size) {
         this.size = size;
@@ -26,7 +27,7 @@ public class BridgeSizeValidator {
     }
 
     private void validateInputType() {
-        if (!Pattern.matches(EnumStrings.PATTERN.getValue(), size)) {
+        if (!Pattern.matches(PATTERN, size)) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력해야 합니다.");
         }
     }

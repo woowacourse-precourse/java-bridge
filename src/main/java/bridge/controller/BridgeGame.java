@@ -13,14 +13,15 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    private final static String SUCCESS = "성공";
+    private final static String FAIL = "실패";
+
     RealTimeBridge realTimeBridge = new RealTimeBridge();
     OutputView outputView = new OutputView();
     InputHandler inputHandler = new InputHandler();
 
-    int count = 0;
-    int size;
+    private int count = 0;
     boolean isAnswer = true;
-    List<String> bridge;
     public String[][] realTimeMap = realTimeBridge.getMap();
 
     public BridgeGame() {
@@ -59,18 +60,18 @@ public class BridgeGame {
         realTimeBridge.initialize();
     }
 
-    private void start() {
+    private void start(int size, List<String> bridge) {
         do {
             play(size, bridge);
         } while(retry());
     }
 
     public void runGame() {
-        this.size = inputHandler.getBridgeSize();
+        int size = inputHandler.getBridgeSize();
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        this.bridge = bridgeMaker.makeBridge(size);
-        start();
+        List<String>bridge = bridgeMaker.makeBridge(size);
+        start(size, bridge);
         outputView.printResult(isAnswer, count, realTimeMap);
     }
 
@@ -106,8 +107,8 @@ public class BridgeGame {
 
     public String isSuccess(boolean flag) {
         if (flag) {
-            return EnumStrings.SUCCESS.getValue();
+            return SUCCESS;
         }
-        return EnumStrings.FAIL.getValue();
+        return FAIL;
     }
 }
