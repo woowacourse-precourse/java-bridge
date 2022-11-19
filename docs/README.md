@@ -16,12 +16,12 @@
 
 - 다리 게임 정보(BridgeStatus)
   - 브리지 게임의 정보를 담은 객체
-  - [ ] 정답 bridge, 사용자 입력 bridge, 시도 횟수, 게임 상태 대한 정보를 가짐
-  - [ ] 사용자 입력 추가 시 정답 bridge와 match 여부에 따라 게임 상태 업데이트
-  - [ ] 게임 재시작 요청 여부에 대한 boolean 값 제공
+  - [x] 정답 bridge, 사용자 입력 bridge, 시도 횟수, 게임 상태 대한 정보를 가짐
+  - [x] 사용자 입력 추가 시 정답 bridge와 match 여부에 따라 게임 상태 업데이트
+  - [x] 게임 재시작 요청 여부에 대한 boolean 값 제공
     - GameStatus가 SUCCESS, FAIL인 경우 true, IN_PROCESS인 경우 false
-  - [ ] 시도 횟수 업데이트
-  - [ ] 시도 횟수 제공
+  - [x] 시도 횟수 업데이트
+  - [x] 시도 횟수 제공
 
 - [ ] 다리 상태 정보 저장(BridgeStatusSaver)
   - bridgeStatus 상태를 저장하는 클래스
