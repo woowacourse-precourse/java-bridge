@@ -46,3 +46,19 @@
       * 프로그램은 총 시도한 횟수를 출력한다.
         - 시도한 횟수는 __A.3__ 프로세스가 실행된 횟수이다.
         - 만약 한 번에 정답을 모두 맞출 경우, __A.3__ 프로세스는 1번 실행될 것이다.
+
+
+## B. 프로그램 기능 목록도
+<hr>
+
+1. input bridge size
+2. make bridge
+3. move bridge
+4. input user answer
+5. check user's submitted answer
+6. print turn's result
+7. ask retry
+8. retry game
+9. end game
+10. print whole game result
+11. print count of game tried
