@@ -14,13 +14,14 @@ public enum BlockExpression {
         this.downBlock = downBlock;
     }
 
-    public static BlockExpression getBlockExpressionByPosition(String bridgeBlock, boolean canMove) {
-        if(canMove) {
-            if(bridgeBlock.equals("U")) {
-                return BlockExpression.MOVE_UP;
-            }
-            return BlockExpression.MOVE_DOWN;
+    public static BlockExpression getBlockExpressionByMove(String bridgeBlock) {
+        if(bridgeBlock.equals("U")) {
+            return BlockExpression.MOVE_UP;
         }
+        return BlockExpression.MOVE_DOWN;
+    }
+
+    public static BlockExpression getBlockExpressionByNotMove(String bridgeBlock) {
         if(bridgeBlock.equals("U")) {
             return BlockExpression.NOT_MOVE_UP;
         }
