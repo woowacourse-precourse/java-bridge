@@ -1,6 +1,6 @@
 package bridge;
 
-public class validator {
+public class Validator {
     private final static int MIN_BRIDGE_SIZE = 3;
     private final static int MAX_BRIDGE_SIZE = 20;
     private final static String NON_NUMERIC_ERROR_MESSAGE = "[ERROR] 숫자만 입력 가능합니다.";
