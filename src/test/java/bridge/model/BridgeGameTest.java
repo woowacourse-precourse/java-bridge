@@ -16,8 +16,8 @@ public class BridgeGameTest {
     @DisplayName("다리가 위 칸일 때, 사용자가 U과 D을 입력한 경우 테스트")
     @Test
     void saveStageWhenBridgeStageIsUp() {
-        bridgeGame.move("U", "U");
-        bridgeGame.move("D", "U");
+        bridgeGame.move("U", "U", 5);
+        bridgeGame.move("D", "U", 5);
 
         Assertions.assertThat(bridgeGame.getCurrentPositions()).isEqualTo(List.of(List.of(" ", "O"), List.of("X", " ")));
     }
@@ -25,8 +25,8 @@ public class BridgeGameTest {
     @DisplayName("다리가 아래 칸일 때, 사용자가 U과 D을 입력한 경우 테스트")
     @Test
     void saveStageWhenBridgeStageIsDown() {
-        bridgeGame.move("U", "D");
-        bridgeGame.move("D", "D");
+        bridgeGame.move("U", "D", 5);
+        bridgeGame.move("D", "D", 5);
 
         Assertions.assertThat(bridgeGame.getCurrentPositions()).isEqualTo(List.of(List.of(" ", "X"), List.of("O", " ")));
     }
@@ -35,8 +35,8 @@ public class BridgeGameTest {
     @DisplayName("재시작하는 경우 초기화 확인 테스트")
     @Test
     void retryThenCurrentMapClear() {
-        bridgeGame.move("D", "U");
-        bridgeGame.move("D", "D");
+        bridgeGame.move("D", "U", 5);
+        bridgeGame.move("D", "D", 5);
         bridgeGame.retry();
 
         Assertions.assertThat(bridgeGame.getCurrentPositions()).isEmpty();
@@ -45,8 +45,8 @@ public class BridgeGameTest {
     @DisplayName("맞히기만 경우 canNotCross()가 false 반환 테스트")
     @Test
     void success() {
-        bridgeGame.move("U", "U");
-        bridgeGame.move("D", "D");
+        bridgeGame.move("U", "U", 5);
+        bridgeGame.move("D", "D", 5);
         assertThat(bridgeGame.isFail()).isFalse();
         assertThat(bridgeGame.nextIndex()).isEqualTo(2);
     }
@@ -54,9 +54,9 @@ public class BridgeGameTest {
     @DisplayName("틀린 경우 canNotCross()가 True 반환 테스트")
     @Test
     void fail() {
-        bridgeGame.move("U", "U");
-        bridgeGame.move("D", "D");
-        bridgeGame.move("U", "D");
+        bridgeGame.move("U", "U", 5);
+        bridgeGame.move("D", "D", 5);
+        bridgeGame.move("U", "D", 5);
 
         assertThat(bridgeGame.isFail()).isTrue();
         assertThat(bridgeGame.nextIndex()).isEqualTo(3);
@@ -66,9 +66,9 @@ public class BridgeGameTest {
     @DisplayName("틀려서 초기화한 경우 사이즈와 시도 횟수를 확인하는 테스트")
     @Test
     void retry() {
-        bridgeGame.move("U", "U");
-        bridgeGame.move("D", "D");
-        bridgeGame.move("U", "D");
+        bridgeGame.move("U", "U", 5);
+        bridgeGame.move("D", "D", 5);
+        bridgeGame.move("U", "D", 5);
         bridgeGame.retry();
 
         assertThat(bridgeGame.nextIndex()).isEqualTo(0);

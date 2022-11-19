@@ -11,14 +11,14 @@ import java.util.List;
 
 public class BridgeGameController {
     private final BridgeGame game = new BridgeGame();
-    private final OutputView print = new OutputView();
+    private final OutputView output = new OutputView();
     private final InputView input = new InputView();
 
     private List<String> bridge;
 
     public BridgeGameController() {
-        print.guideStart();
-        print.guideInputBridgeSize();
+        output.guideStart();
+        output.guideInputBridgeSize();
     }
 
     public int getBridgeSize() {
@@ -27,36 +27,29 @@ public class BridgeGameController {
 
     public void setBridge(List<String> bridge) {
         this.bridge = bridge;
-        print.emptyLine();
+        output.emptyLine();
     }
 
     public void start() {
         do {
             moveOneStage();
-            if (isFailAndNotWantRetry()) {
+            if (game.isFail()&&!wantRetry()) {
                 break;
             }
-        } while (game.isInProgress(bridge.size()));
+        } while (!game.isSuccess());
         exitGame();
     }
 
 
     private void moveOneStage() {
-        print.guideInputMoving();
-        game.move(input.readMoving(), bridge.get(game.nextIndex()));
-        print.printMap(game.getCurrentPositions());
+        output.guideInputMoving();
+        game.move(input.readMoving(), bridge.get(game.nextIndex()), bridge.size());
+        output.printMap(game.getCurrentPositions());
     }
 
-    private boolean isFailAndNotWantRetry() {
-        if (game.isFail()) {
-            print.guideInputGameCommand();
-            return !wantRetry(input.readGameCommand());
-        }
-        return false;
-    }
-
-    private boolean wantRetry(String gameCommand) {
-        if (gameCommand.equals(GameForm.RESTART_CODE)) {
+    private boolean wantRetry() {
+        output.guideInputGameCommand();
+        if (input.readGameCommand().equals(GameForm.RESTART_CODE)) {
             game.retry();
             return true;
         }
@@ -64,7 +57,7 @@ public class BridgeGameController {
     }
 
     private void exitGame() {
-        print.printResult(game.getCurrentPositions(),
+        output.printResult(game.getCurrentPositions(),
                 game.getNumberOfAttempts(),
                 game.getOutcome());
     }
