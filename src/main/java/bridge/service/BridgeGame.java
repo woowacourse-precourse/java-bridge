@@ -1,10 +1,8 @@
 package bridge.service;
 
 import bridge.BridgeMaker;
-import bridge.model.Bridge;
+import bridge.model.Moving;
 import bridge.model.Bridges;
-
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
@@ -21,7 +19,7 @@ public class BridgeGame {
 
     public Bridges makeBridges(int bridgesSize) {
         return bridgeMaker.makeBridge(bridgesSize).stream()
-                .map(Bridge::valueOf)
+                .map(Moving::valueOf)
                 .collect(collectingAndThen(toList(), Bridges::new));
     }
 

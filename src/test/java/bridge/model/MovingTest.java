@@ -6,22 +6,21 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
-class BridgeTest {
+class MovingTest {
 
     @ParameterizedTest(name = "{0}를 Bridge로 변환하려 하면 예외를 던진다.")
     @ValueSource(strings = {"u","d"," ","","U1"," D"})
     void toBridge_인자_형식이_잘못되면_예외_던지는_기능(String format) {
         assertThatThrownBy(() -> {
-            Bridge.toBridge(format);
+            Moving.toMoving(format);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
 
     @ParameterizedTest(name = "{0}를 Bridge로 변환하면 {1}")
     @CsvSource({"U,U","D,D"})
-    void toBridge_문자열을_Bridge로_변환하는_기능(String format, Bridge expected) {
-        assertThat(Bridge.toBridge(format)).isEqualTo(expected);
+    void toBridge_문자열을_Bridge로_변환하는_기능(String format, Moving expected) {
+        assertThat(Moving.toMoving(format)).isEqualTo(expected);
     }
 }

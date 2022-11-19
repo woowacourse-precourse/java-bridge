@@ -3,13 +3,13 @@ package bridge.model;
 import java.util.List;
 
 public class Player {
-    private final List<Bridge> history;
+    private final List<Moving> history;
 
-    public Player(List<Bridge> history) {
+    public Player(List<Moving> history) {
         this.history = history;
     }
 
-    public PlayerStatus move(Bridge choice, Bridges bridges) {
+    public PlayerStatus move(Moving choice, Bridges bridges) {
         history.add(choice);
         return bridges.acceptPlayer(nextLocation(), choice);
     }
