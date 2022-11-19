@@ -29,7 +29,7 @@ public class Application {
         if (!bridgeGame.isGameClear(bridge)) {
             play(bridge);
         }
-        return bridgeGame.closeGame();
+        return bridgeGame.closeGame(bridge);
     }
 
     private static MoveResult moveToBridge(Bridge bridge) {
@@ -43,6 +43,6 @@ public class Application {
             outputView.resetMap();
             play(bridge);
         }
-        return bridgeGame.closeGame();
+        return bridgeGame.closeGame(bridge);
     }
 }

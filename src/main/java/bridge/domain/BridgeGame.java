@@ -13,7 +13,6 @@ public class BridgeGame {
 
     private int round = 1;
     private int tryCount = 1;
-    private boolean gameClear = false;
 
     public Bridge getBridge(int size) {
         List<String> blocks = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
@@ -37,14 +36,13 @@ public class BridgeGame {
 
     public boolean isGameClear(Bridge bridge) {
         if (bridge.isGameClear(round)) {
-            gameClear = true;
             return true;
         }
         round++;
         return false;
     }
 
-    public GameResult closeGame() {
-        return new GameResult(tryCount, gameClear);
+    public GameResult closeGame(Bridge bridge) {
+        return new GameResult(tryCount, bridge.isGameClear(round));
     }
 }
