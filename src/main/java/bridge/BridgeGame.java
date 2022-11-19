@@ -26,7 +26,14 @@ public class BridgeGame {
         return false;
     }
 
+ 
 
+    public String bridgeMoveFail(String bridgeMove) {
+        if (bridgeMove.equals("U")) {
+            return "[ X ]";
+        }
+        return "[ X ]";
+    }
 
     public int BridgeNumberGenerator() {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
