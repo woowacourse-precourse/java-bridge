@@ -67,8 +67,8 @@ public class BridgeGameCycle {
         BridgeGame game = new BridgeGame(bridge);
         while (CONTINUE) {
             oneTurnCycle(game);
-            if (nowState == GAME_WIN.num()) return;
-            if (!loseCycle(game)) return;
+            if (nowState == GAME_WIN.num()) break;
+            if (!loseCycle(game)) break;
         }
     }
 }
