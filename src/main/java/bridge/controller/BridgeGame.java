@@ -4,11 +4,11 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeMapMaker;
 import bridge.domain.BridgeMove;
+import bridge.domain.BridgeResult;
+import bridge.domain.BridgeRetry;
 import bridge.model.Bridge;
 import bridge.model.BridgeMap;
 import bridge.model.Player;
-import bridge.view.InputView;
-import bridge.view.OutputView;
 
 import static bridge.util.BridgeConstant.FALL_POSITION;
 
@@ -16,19 +16,17 @@ import static bridge.util.BridgeConstant.FALL_POSITION;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-    InputView inputView = InputView.getInputView();
-    OutputView outputView = OutputView.getOutputView();
     BridgeMove bridgeMove = new BridgeMove();
-    BridgeMap bridgeMap = new BridgeMap();
-    BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+    BridgeRetry bridgeRetry = new BridgeRetry();
     BridgeMapMaker bridgeMapMaker = new BridgeMapMaker();
+    BridgeResult bridgeResult = new BridgeResult();
+    BridgeMap bridgeMap = BridgeMap.getBridgeMap();
+    Bridge bridge;
     boolean isContinue = true;
     boolean isWin = false;
-    Bridge bridge;
 
     public void init() {
-        bridge = bridgeMaker.inputMakeBridge();
+        bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).inputMakeBridge();
         start(new Player());
     }
 
@@ -41,13 +39,13 @@ public class BridgeGame {
                 isWin = true;
             }
         }
-        outputView.printResult(player, bridgeMap, isWin);
+        bridgeResult.printResult(player, isWin);
     }
 
     private void checkPlayerPosition(Player player) {
         boolean success = moveSuccess(player, bridge);
         bridgeMapMaker.addBridgeMapBlock(player, bridgeMap, success);
-        outputView.printMap(bridgeMap);
+        bridgeResult.printMap();
         if (!success) {
             retry(player);
         }
@@ -81,8 +79,8 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry(Player player) {
-        boolean continueCode = inputView.readGameCommand();
-        if (continueCode) {
+        boolean continueCommand = bridgeRetry.getContinueCode(player);
+        if (continueCommand == true) {
             updateGameStatus(player);
             return;
         }

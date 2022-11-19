@@ -38,7 +38,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(BridgeMap bridgeMap) {
+    public void printMap() {
+        BridgeMap bridgeMap = BridgeMap.getBridgeMap();
         System.out.println(getJoinElements(bridgeMap.getUpperBridgeMap()));
         System.out.println(getJoinElements(bridgeMap.getLowerBridgeMap()));
         System.out.println();
@@ -53,9 +54,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(Player player, BridgeMap bridgeMap, boolean win) {
+    public void printResult(Player player, boolean win) {
         System.out.println(GAME_FINAL_RESULT_MESSAGE);
-        printMap(bridgeMap);
+        printMap();
 
         System.out.printf(GAME_SUCCESS_OR_NOT_MESSAGE, judgeGameResult(win));
         System.out.printf(GAME_TOTAL_TRY_COUNT_MESSAGE, player.getTryCount());
