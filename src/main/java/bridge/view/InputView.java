@@ -11,6 +11,13 @@ public class InputView {
         System.out.println(START_MESSAGE);
     }
 
+    public int inputBridgeSize() {
+        System.out.println(BRIDGE_SIZE_MESSAGE);
+        String input = Console.readLine();
+        checkEmpty(input);
+        return checkAndConvertToInt(input);
+    }
+
     private static void checkEmpty(String input){
         if (input == null || input.isBlank()){
             throw new IllegalArgumentException(EMPTY_INPUT.toString());
