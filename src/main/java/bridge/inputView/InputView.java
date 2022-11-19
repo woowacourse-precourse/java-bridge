@@ -1,6 +1,7 @@
 package bridge.inputView;
 
 import bridge.inputView.exception.IllegalReadGameCommandException;
+import bridge.inputView.exception.IllegalReadMovingException;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
@@ -25,7 +26,15 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        try {
+            final String command = readLine();
+            validateElseThrow(command.length() == SIZE, IllegalReadMovingException::new);
+            validateElseThrow(command, Arrays.asList("U", "D"), IllegalReadMovingException::new);
+            return command;
+        } catch (IllegalReadMovingException e) {
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
     }
 
     /**

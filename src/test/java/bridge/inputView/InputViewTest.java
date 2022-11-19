@@ -38,7 +38,37 @@ class InputViewTest extends NsTest {
             assertThat(expected).isEqualTo(result);
         }
     }
-    
+
+    @ParameterizedTest
+    @ValueSource(strings = {"r", "q", "1"})
+    void readMovingErrorTest(String input) {
+        try {
+
+            final byte[] buf = String.join("\n", input).getBytes();
+            System.setIn(new ByteArrayInputStream(buf));
+            String expected = new InputView().readMoving();
+        } catch (NoSuchElementException e) {
+        } finally {
+            assertThat(output()).contains(ErrorMessage.ILLEGAL_READ_MOVING.getTagMessage());
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"D", "U"})
+    void readMovingRunTest(String input) {
+        String expected = null;
+        String result = input;
+        try {
+            final byte[] buf = input.getBytes();
+            System.setIn(new ByteArrayInputStream(buf));
+            expected = new InputView().readMoving();
+        } catch (NoSuchElementException e) {
+        } finally {
+            assertThat(expected).isEqualTo(result);
+        }
+    }
+
+
     @Override
     protected void runMain() {
 
