@@ -64,10 +64,10 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(BridgeGame bridgeGame, GameStatus status) {
-        System.out.println("게임 최종 결과");
+        System.out.println("최종 게임 결과");
         printMap(bridgeGame);
         System.out.println(String.format("게임 성공 여부: %s", status.getStatus()));
-        System.out.println(String.format("총 시도 횟수: %d", bridgeGame.getAttempt()));
+        System.out.println(String.format("총 시도한 횟수: %d", bridgeGame.getAttempt()));
     }
 
     public void printError(String errorMessage) {
