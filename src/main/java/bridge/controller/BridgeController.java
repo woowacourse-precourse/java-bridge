@@ -19,10 +19,10 @@ public class BridgeController {
 
     public void start() {
         createBridgeGame();
-        do {
-            playTurn();
-        } while (this.bridgeGame.isOnWay());
-        announceFinalResult();
+//        do {
+//            playTurn();
+//        } while (this.bridgeGame.isOnWay());
+//        announceFinalResult();
     }
 
     private void createBridgeGame() {
@@ -33,11 +33,11 @@ public class BridgeController {
     }
 
     private void playTurn() {
-        String bridgePicture = this.bridgeGame.move();
-        this.outputView.printMap(bridgePicture);
-        if (this.bridgeGame.isFail()) {
-            retryTurn();
-        }
+//        String bridgePicture = this.bridgeGame.move();
+//        this.outputView.printMap(bridgePicture);
+//        if (this.bridgeGame.isFail()) {
+//            retryTurn();
+//        }
     }
 
     private void
