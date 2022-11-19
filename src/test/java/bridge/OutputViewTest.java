@@ -24,5 +24,16 @@ public class OutputViewTest {
         outputView.printMap(bridgeTrack, answerBridge);
         assertThat(out.toString()).isEqualTo("[ O |   |   ]\n[   | O | O ]");
     }
+    @DisplayName("UDD로 이루어진 다리를 UU로 실패한 경우")
+    @Test
+    void bridgeUDDFailByUU() {
+        OutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        List<String> answerBridge = List.of("U", "D", "D");
+        List<String> bridgeTrack = List.of("U", "U");
+        outputView.printMap(bridgeTrack, answerBridge);
+        assertThat(out.toString()).isEqualTo("[ O | X ]\n[   |   ]");
+    }
+
 
 }
