@@ -28,10 +28,10 @@ public class GameController {
         OutputView.printBlank();
 
         bridgeGame.createBridge(bridgeSize, new BridgeRandomNumberGenerator());
-        recursive(START_ROUND);
+        recursiveGameRound(START_ROUND);
     }
 
-    public void recursive(int round) {
+    public void recursiveGameRound(int round) {
         OutputView.printMove();
         String mark = InputView.readMoving();
 
@@ -50,7 +50,7 @@ public class GameController {
             checkRestart(gameStatus, gameResult);
         }
         if (gameStatus.isContinue()) {
-            recursive(round + ROUND_INCREMENT);
+            recursiveGameRound(round + ROUND_INCREMENT);
         }
     }
 
@@ -60,7 +60,7 @@ public class GameController {
 
         if (restart.equals(RESTART)) {
             bridgeGame.retry();
-            recursive(START_ROUND);
+            recursiveGameRound(START_ROUND);
         }
         if (restart.equals(QUIT)) {
             OutputView.printResult(gameStatus, gameResult);
