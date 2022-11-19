@@ -43,11 +43,11 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printResult(List<String> bridge, List<String> result, int numberOfAttempts) {
-        System.out.println(OutputPhrases.finalGameResult);
+        System.out.println(OutputPhrases.finalGameResult.getPhrase());
         printMap(bridge, result);
         System.out.println();
-        System.out.println(OutputPhrases.gameStatus.toString().concat(gameStatus(result)));
-        System.out.println(OutputPhrases.numberOfAttempts.toString().concat(Integer.toString(numberOfAttempts)));
+        System.out.println(OutputPhrases.gameStatus.getPhrase().concat(gameStatus(result)));
+        System.out.println(OutputPhrases.numberOfAttempts.getPhrase().concat(Integer.toString(numberOfAttempts)));
     }
 
     private static String gameStatus(List<String> result) {

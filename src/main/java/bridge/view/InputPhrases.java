@@ -11,4 +11,8 @@ public enum InputPhrases {
     InputPhrases(String phrase) {
         this.phrase = phrase;
     }
+
+    public String getPhrase() {
+        return phrase;
+    }
 }

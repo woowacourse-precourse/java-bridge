@@ -10,4 +10,8 @@ public enum OutputPhrases {
     OutputPhrases(String phrase) {
         this.phrase = phrase;
     }
+
+    public String getPhrase() {
+        return phrase;
+    }
 }
