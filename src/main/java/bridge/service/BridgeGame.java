@@ -10,12 +10,20 @@ public class BridgeGame {
 
     private Player player;
     private BridgeMap bridgeMap;
-    private Bridge bridge;
+    private  Bridge bridge;
 
-    /*
-    *
-     */
 
+    public Player getPlayer() {
+        return player;
+    }
+
+    public BridgeMap getBridgeMap() {
+        return bridgeMap;
+    }
+
+    public Bridge getBridge() {
+        return bridge;
+    }
 
     /**
      - [ ] `"U"`, `"D"` 문자 정답과 비교
