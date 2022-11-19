@@ -10,7 +10,7 @@ public class InputViewConst {
 	public static String MOVING_UP = "U";
 	public static String MOVING_DOWN = "D";
 	public static Integer MAX_NUMBER = 9;
-	public static Integer MIN_NUMBER = 1;
+	public static Integer MIN_NUMBER = 0;
 	public static Integer MAX_BRIDGE_SIZE = 20;
 	public static Integer MIN_BRIDGE_SIZE = 3;
 }
