@@ -1,25 +1,27 @@
 package bridge.Domain;
 
 public class Player {
-    private int position;
+    private final int startPoint = -1;
+    private int distance;
 
     public Player() {
-        this.position = 0;
+        this.distance = startPoint;
     }
 
     public void movePlayer() {
-        this.position++;
+        distance++;
+
     }
 
     public int getPosition() {
-        return this.position;
+        return this.distance;
     }
 
     public boolean isPlayerInEndOfBridge(Bridge bridge) {
-        return bridge.isBridgeEnd(position);
+        return bridge.isBridgeEnd(distance);
     }
 
     public void initPosition() {
-        this.position = 0;
+        this.distance = startPoint;
     }
 }
