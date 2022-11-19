@@ -19,7 +19,7 @@ public class Bridge {
     }
 
     public boolean survivedToTheLast(int index) {
-        return index == bridge.size();
+        return index == bridge.size() - 1;
     }
 
 }

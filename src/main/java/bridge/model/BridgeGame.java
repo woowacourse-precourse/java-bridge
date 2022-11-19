@@ -24,19 +24,16 @@ public class BridgeGame {
      */
     public void move() {
 
-        int index;
-        for (index = 0; index < bridge.getBridgeSize(); index++) {
+        for (int index = 0; index < bridge.getBridgeSize(); index++) {
             String position = getUserSelection();
             if (!bridge.isSamePosition(index, position)) {
                 diagram.updateDiagrams(position, Status.DIE);
                 break;
             }
             diagram.updateDiagrams(position, Status.SURVIVE);
+            handleSuccess(index);
         }
 
-        if (bridge.survivedToTheLast(index)) {
-            finalResult.setSuccess();
-        }
 
     }
 
@@ -49,4 +46,9 @@ public class BridgeGame {
         return finalResult.retry();
     }
 
+    private void handleSuccess(int index) {
+        if (bridge.survivedToTheLast(index)) {
+            finalResult.setSuccess();
+        }
+    }
 }
