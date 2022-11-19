@@ -58,4 +58,13 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public boolean isPlaying() {
+        return gameStatus == GameStatus.PLAYING;
+    }
+
+    public GameStatus getStatus() {
+        return gameStatus;
+    }
+
 }
