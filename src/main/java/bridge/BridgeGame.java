@@ -21,7 +21,7 @@ public class BridgeGame {
         bridge.movePlayer();
     }
 
-    public boolean canMoveTo(Position next) {
+    public boolean canMoveTo(String next) {
         return bridge.isNextAvailable(next);
     }
 
