@@ -1,17 +1,18 @@
 package view;
 
+import camp.nextstep.edu.missionutils.Console;
 import constants.CommandTable;
 import constants.DirectionTable;
-import view.validation.InputViewValidation;
-
-import camp.nextstep.edu.missionutils.Console;
+import view.vo.Command;
+import view.vo.Moving;
+import view.vo.Size;
 
 public class InputView {
     public static int readBridgeSize() {
         for (; ; ) {
             try {
                 printInputBridgeSize();
-                return changeStringToInteger(InputSize());
+                return new Size(input()).getSize();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -22,23 +23,11 @@ public class InputView {
         System.out.println("다리의 길이를 입력해주세요.");
     }
 
-    private static String InputSize() {
-        String sizeInput = Console.readLine();
-        InputViewValidation.validateBridgeSizeInput(sizeInput);
-        return sizeInput;
-    }
-
-    private static int changeStringToInteger(String sizeInput) {
-        int size = Integer.parseInt(sizeInput);
-        InputViewValidation.validateBridgeSize(size);
-        return size;
-    }
-
     public static String readMoving() {
         for (; ; ) {
             try {
                 printInputMoving();
-                return InputMoving();
+                return new Moving(input()).getMoving();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -50,17 +39,11 @@ public class InputView {
                 , DirectionTable.UP.getInitial(), DirectionTable.DOWN.getInitial()));
     }
 
-    private static String InputMoving() {
-        String movingInput = Console.readLine();
-        InputViewValidation.validateMovingInput(movingInput);
-        return movingInput;
-    }
-
     public static String readGameCommand() {
         for (; ; ) {
             try {
                 printInputCommand();
-                return inputCommand();
+                return new Command(input()).getCommand();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -72,9 +55,7 @@ public class InputView {
                 , CommandTable.RETRY.getInitial(), CommandTable.QUIT.getInitial()));
     }
 
-    private static String inputCommand() {
-        String commandInput = Console.readLine();
-        InputViewValidation.validateCommandInput(commandInput);
-        return commandInput;
+    private static String input() {
+        return Console.readLine();
     }
 }
