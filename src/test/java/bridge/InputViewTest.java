@@ -1,8 +1,10 @@
 package bridge;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -26,7 +28,22 @@ class InputViewTest {
             System.setIn(in);
 
             // then
-            Assertions.assertThat(inputView.readBridgeSize()).isEqualTo(Integer.parseInt(string));
+            assertThat(inputView.readBridgeSize()).isEqualTo(Integer.parseInt(string));
+        }
+
+        @ParameterizedTest
+        @DisplayName("실패")
+        @ValueSource(strings = {"A", "3.0", "2", "21"})
+        void readBridgeSize_InvalidInput_ExceptionThrown(String string) {
+            // given
+            InputStream in = new ByteArrayInputStream(string.getBytes());
+            InputView inputView = new InputView();
+
+            // when
+            System.setIn(in);
+
+            // then
+            assertThrows(IllegalArgumentException.class, inputView::readBridgeSize);
         }
     }
 }
