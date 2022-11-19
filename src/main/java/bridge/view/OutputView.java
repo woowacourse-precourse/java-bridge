@@ -49,13 +49,13 @@ public class OutputView {
         printMap(topGameBoard, bottomGameBoard);
     }
 
-    public static void printGameStatistics(boolean gameResult, int tryCnt) {
-        String isGameWin = LOSE;
-        if (gameResult == true) {
-            isGameWin = WIN;
+    public static void printGameStatistics(boolean isGameLose, int tryCnt) {
+        String gameResult = WIN;
+        if (isGameLose) {
+            gameResult = LOSE;
         }
 
-        System.out.printf(IS_GAME_WIN_MESSAGE, isGameWin);
+        System.out.printf(IS_GAME_WIN_MESSAGE, gameResult);
         printEnter();
         System.out.printf(TOTAL_TRY_CNT_MESSAGE, tryCnt);
     }
@@ -66,7 +66,7 @@ public class OutputView {
     }
 
     public static void printEnter() {
-        System.out.println("");
+        System.out.println();
     }
 
     public static void printInputBridgeSizeMessage() {

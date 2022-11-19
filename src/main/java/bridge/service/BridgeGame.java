@@ -25,7 +25,7 @@ public class BridgeGame {
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     List<String> topGameBoard, bottomGameBoard;
     List<String> bridge = new ArrayList<>();
-    boolean isGameWin = true;
+    boolean isGameLose = false;
     int tryCount = 1;
 
 
@@ -34,7 +34,7 @@ public class BridgeGame {
         resetGame();
         startMove(bridge);
 
-        if (isGameWin == false) {
+        if (isGameLose) {
             if (checkRetry()) {
                 retry();
             }
@@ -49,7 +49,7 @@ public class BridgeGame {
 
     public void end(){
         console.gameResult(topGameBoard, bottomGameBoard);
-        console.gameStatistics(isGameWin, tryCount);
+        console.gameStatistics(isGameLose, tryCount);
     }
 
     /**
@@ -66,15 +66,15 @@ public class BridgeGame {
         console.map(topGameBoard, bottomGameBoard);
 
         if (movingResult.equals(FAIL)) {
-            isGameWin = false;
+            isGameLose = true;
         }
     }
 
     private void startMove(List<String> bridge) {
         for (String nowBridge : bridge) {
             move(nowBridge);
-            
-            if (isGameWin == false) {
+
+            if (isGameLose) {
                 break;
             }
         }
@@ -148,7 +148,7 @@ public class BridgeGame {
     }
 
     private void resetGame() {
-        isGameWin = true;
+        isGameLose = false;
         topGameBoard = new ArrayList<>();
         bottomGameBoard = new ArrayList<>();
     }
