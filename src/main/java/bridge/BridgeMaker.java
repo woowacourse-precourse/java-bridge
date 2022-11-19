@@ -28,7 +28,7 @@ public class BridgeMaker {
     }
 
     public String changeNumber(int randomValue) {
-        String rightWay = null;
+        String rightWay = "";
         if (randomValue == 0) {
             rightWay = "D";
         }
@@ -37,4 +37,5 @@ public class BridgeMaker {
         }
         return rightWay;
     }
+
 }

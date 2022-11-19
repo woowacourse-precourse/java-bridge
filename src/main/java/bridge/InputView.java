@@ -15,6 +15,7 @@ public class InputView {
     public static int readBridgeSize() {
         System.out.println(INPUT_BRIDGE_LENGTH_INTRO);
         String input = Console.readLine();
+
         int convertedNumber = convertToNumber(input);
         validRange(convertedNumber);
         return convertedNumber;
@@ -39,16 +40,16 @@ public class InputView {
      */
     public static String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String input = Console.readLine().trim();
-        return validValue(input);
+        String inputMoving = Console.readLine().trim();
+        return validValue(inputMoving);
     }
 
-    public static String validValue(String inputChoice) {
+    public static String validValue(String inputMoving) {
         try {
-            if (!inputChoice.equals("D") && !inputChoice.equals("U")) {
+            if (!inputMoving.equals("D") && !inputMoving.equals("U")) {
                 throw new IllegalArgumentException("[ERROR] 값은 D 혹은 U로만 입력이 가능합니다.");
             }
-            return inputChoice;
+            return inputMoving;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readMoving();
