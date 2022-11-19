@@ -13,7 +13,7 @@ class BridgeGameTest {
      * 정상적으로 다리가 생성되는지에 관련된 테스트입니다.
      */
     @Test
-    void makeBridge() {
+    void makeBridgeTest() {
         BridgeGame bridgeGame = new BridgeGame();
         bridgeGame.makeBridge(6);
         assertThat(bridgeGame.getBridge().size()).isEqualTo(6);
@@ -23,7 +23,7 @@ class BridgeGameTest {
      * 정상적으로 사용자의 움직임이 반영되는지에 관련된 테스트입니다.
      */
     @Test
-    void move() {
+    void moveTest() {
         BridgeGame bridgeGame = new BridgeGame();
         bridgeGame.makeBridge(6);
         bridgeGame.move("U");
@@ -34,7 +34,7 @@ class BridgeGameTest {
      * 정상적으로 게임의 초기화가 이루어지는지에 관련된 테스트입니다.
      */
     @Test
-    void retry() {
+    void retryTest() {
         BridgeGame bridgeGame = new BridgeGame();
         bridgeGame.makeBridge(6);
         bridgeGame.move("U");
