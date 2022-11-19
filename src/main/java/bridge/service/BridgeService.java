@@ -9,4 +9,9 @@ public class BridgeService {
     public void initBridge(BridgeDto bridgeDto) {
         bridgeRepository.update(bridgeDto.toEntity());
     }
+
+    public boolean isPassable(int distance, String movingDirection) {
+        String passableDirection = bridgeRepository.getPassableDirectionAt(distance);
+        return movingDirection.equals(passableDirection);
+    }
 }
