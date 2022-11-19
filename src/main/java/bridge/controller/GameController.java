@@ -46,7 +46,7 @@ public class GameController {
 
     private void checkStatus(boolean isClear) {
         if (isClear) {
-            outputView.printResult(CLEAR);
+            outputView.printResult(CLEAR, bridgeGame.getPlayTime());
             return;
         }
         askRestart();
@@ -58,6 +58,6 @@ public class GameController {
             restartGame();
             return;
         }
-        outputView.printResult(FAILED);
+        outputView.printResult(FAILED, bridgeGame.getPlayTime());
     }
 }

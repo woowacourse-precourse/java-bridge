@@ -16,6 +16,8 @@ public class OutputView {
     private static final String WRONG = " X ";
     private static final String UP = "U";
     private static final String DOWN = "D";
+    private static final String WIN = "성공";
+    private static final String FAIL = "실패";
 
     private StringBuilder upsideBridge;
     private StringBuilder downsideBridge;
@@ -58,7 +60,16 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(boolean isClear) {
+    public void printResult(boolean isClear, long playTime) {
+        String result = FAIL;
+        if (isClear) {
+            result = WIN;
+        }
+        System.out.println(ViewConstants.GAME_END);
+        System.out.println(ViewConstants.WIN_OR_FAIL + result);
+        System.out.println(upsideBridge);
+        System.out.println(downsideBridge);
+        System.out.println(ViewConstants.PLAY_TIME + playTime);
     }
 
     public void printGameStart() {
