@@ -5,7 +5,7 @@ import bridge.system.ExceptionMessage;
 import java.util.regex.Pattern;
 
 public class GameCommandVerifier {
-    private String alphabetPattern = "^[a-zA-Z]*$";
+    private final String alphabetPattern = "^[a-zA-Z]*$";
 
     public void check(String target) {
         isNotAlphabetic(target);
@@ -13,13 +13,13 @@ public class GameCommandVerifier {
     }
 
     private void isNotAlphabetic(String target) {
-        if (!Pattern.matches(target, alphabetPattern)) {
+        if (!Pattern.matches(alphabetPattern, target)) {
             throw new IllegalArgumentException(ExceptionMessage.IS_NOT_ALPHABETIC);
         }
     }
 
     private void isNotUnderstandable(String target) {
-        if (target.equals("R") || target.equals("Q")) {
+        if (!target.equals("R") && !target.equals("Q")) {
             throw new IllegalArgumentException(ExceptionMessage.IS_NOT_UNDERSTANDABLE_COMMAND);
         }
     }
