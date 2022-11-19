@@ -25,16 +25,20 @@ public class PassingPositions {
     public Result makeResult() {
         List<String> upDirections = new ArrayList<>();
         List<String> downDirections = new ArrayList<>();
-        for (Position position : passingPositions) {
-            String compare = bridge.compare(position);
-            if (position.getDirection().isUpper()) {
-                movableWithUp(compare, upDirections, downDirections);
-            }
-            if (!position.getDirection().isUpper()) {
-                movableWithDown(compare, upDirections, downDirections);
-            }
-        }
+        movableWithUpOrDown(upDirections, downDirections);
         return new Result(upDirections, downDirections);
+    }
+
+    private void movableWithUpOrDown(List<String> upDirections, List<String> downDirections) {
+        passingPositions
+                .forEach(position -> {
+                    if (position.getDirection().isUpper()) {
+                        movableWithUp(bridge.compare(position), upDirections, downDirections);
+                    }
+                    if (!position.getDirection().isUpper()) {
+                        movableWithDown(bridge.compare(position), upDirections, downDirections);
+                    }
+                });
     }
 
     private void movableWithUp(String compare, List<String> upDirections, List<String> downDirections) {
