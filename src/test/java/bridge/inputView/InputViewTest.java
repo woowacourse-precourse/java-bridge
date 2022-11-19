@@ -1,0 +1,46 @@
+package bridge.inputView;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import bridge.common.ErrorMessage;
+import camp.nextstep.edu.missionutils.test.NsTest;
+import java.io.ByteArrayInputStream;
+import java.util.NoSuchElementException;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+class InputViewTest extends NsTest {
+    @ParameterizedTest
+    @ValueSource(strings = {"r", "q", "1"})
+    void readGameCommandErrorTest(String input) {
+        try {
+
+            final byte[] buf = String.join("\n", input).getBytes();
+            System.setIn(new ByteArrayInputStream(buf));
+            String expected = new InputView().readGameCommand();
+        } catch (NoSuchElementException e) {
+        } finally {
+            assertThat(output()).contains(ErrorMessage.ILLEGAL_READ_GAME_COMMAND.getTagMessage());
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"R", "Q"})
+    void readGameCommandRunTest(String input) {
+        String expected = null;
+        String result = input;
+        try {
+            final byte[] buf = input.getBytes();
+            System.setIn(new ByteArrayInputStream(buf));
+            expected = new InputView().readGameCommand();
+        } catch (NoSuchElementException e) {
+        } finally {
+            assertThat(expected).isEqualTo(result);
+        }
+    }
+    
+    @Override
+    protected void runMain() {
+
+    }
+}
