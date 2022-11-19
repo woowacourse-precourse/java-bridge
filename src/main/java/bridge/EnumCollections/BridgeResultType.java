@@ -3,7 +3,7 @@ package bridge.EnumCollections;
 public enum BridgeResultType {
     POSSIBLE("O", "성공"),
     IMPOSSIBLE("X", "실패"),
-    NONE("", "");
+    NONE(" ", "");
 
 
     private String result;
