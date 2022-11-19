@@ -1,9 +1,29 @@
 package bridge.service;
 
+import bridge.BridgeMaker;
+import bridge.model.Bridge;
+import bridge.model.Bridges;
+
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private final BridgeMaker bridgeMaker;
+
+    public BridgeGame(BridgeMaker bridgeMaker) {
+        this.bridgeMaker = bridgeMaker;
+    }
+
+    public Bridges makeBridges(int bridgesSize) {
+        return bridgeMaker.makeBridge(bridgesSize).stream()
+                .map(Bridge::valueOf)
+                .collect(collectingAndThen(toList(), Bridges::new));
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
