@@ -18,6 +18,10 @@ public class Player {
         return bridgeSize;
     }
 
+    public String getBridgeCorrectLocation(int location) {
+        return bridge.get(location);
+    }
+
     public List<String> getBridge() {
         return bridge;
     }

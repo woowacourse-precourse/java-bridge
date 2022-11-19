@@ -21,7 +21,7 @@ public class Application {
 
     private static void setPlayer() {
         String bridgeLength = inputView.readBridgeSize();
-        playerSetting.setBridgeSizeToPlayer(bridgeLength);
+        PlayerSetting.setBridgeSizeToPlayer(bridgeLength);
     }
 
     private static void choiceMove() {
