@@ -1,13 +1,15 @@
 package bridge.exception;
 
-import static bridge.exception.ExceptionMessage.NOT_NUMBER;
-import static bridge.exception.ExceptionMessage.NOT_RANGE;
+import static bridge.exception.ExceptionMessage.*;
 
 public class InputException extends IllegalArgumentException {
     private static final int MAX_SIZE = 20;
     private static final int MIN_SIZE = 3;
+    private static final int ONE_WORD = 1;
+    private static final int TWO_WORD = 2;
 
     public void validateBridgeSize(String readLine) {
+        validateInputLength(readLine);
         notDigit(readLine);
         outOfRange(readLine);
     }
@@ -24,6 +26,12 @@ public class InputException extends IllegalArgumentException {
         int size = Integer.parseInt(readLine);
         if (size < MIN_SIZE || size > MAX_SIZE) {
             throw new IllegalArgumentException(NOT_RANGE.getMessage());
+        }
+    }
+
+    private void validateInputLength(String readLine) {
+        if(readLine.length() > TWO_WORD || readLine.length() < ONE_WORD) {
+            throw new IllegalArgumentException(NOT_LENGTH.getMessage());
         }
     }
 }
