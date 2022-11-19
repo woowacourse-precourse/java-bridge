@@ -32,7 +32,7 @@ public class BridgeGameController implements GameController {
     @Override
     public void play() {
         int crossCount = 0;
-        while (!game.isBridgeLength(crossCount) && game.crossState()) {
+        while (game.isNotBridgeLength(crossCount) && game.movable()) {
             output.printMove();
             ExceptionTemplate template = input::readMoving;
             String inputMove = (String) template.check();

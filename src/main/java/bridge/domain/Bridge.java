@@ -15,8 +15,8 @@ public class Bridge {
         return bridge.get(index).equals(input);
     }
 
-    public boolean isSize(int size) {
-        return bridge.size() == size;
+    public boolean isNotSize(int size) {
+        return bridge.size() != size;
     }
 
     private void checkBridgeLength(List<String> randomBridge) {

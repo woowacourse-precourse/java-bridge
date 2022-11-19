@@ -73,7 +73,7 @@ public class OutputView {
         System.out.println("최종 게임 결과");
         printMap(bridgeGame.recentResult());
         System.out.println();
-        System.out.println("게임 성공 여부: " + changeSuccessOrFail(bridgeGame.crossState()));
+        System.out.println("게임 성공 여부: " + changeSuccessOrFail(bridgeGame.movable()));
         System.out.println("총 시도한 횟수: " + bridgeGame.printPlayCount());
     }
 

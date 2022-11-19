@@ -54,12 +54,12 @@ public class BridgeGame {
         return playState.nowState();
     }
 
-    public boolean isBridgeLength(int crossCount) {
+    public boolean isNotBridgeLength(int crossCount) {
         checkBridge();
-        return bridge.isSize(crossCount);
+        return bridge.isNotSize(crossCount);
     }
 
-    public boolean crossState() {
+    public boolean movable() {
         checkResult();
         return result.movable();
     }
