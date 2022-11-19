@@ -30,6 +30,20 @@ public class BridgeGame {
         bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
     }
 
+    public void start() {
+        System.out.printf(OutputView.START_MESSAGE);
+        setUp();
+        bridge();
+        while (playGame) {
+            move();
+            if (successGame()) {
+                break;
+            }
+            retry();
+        }
+        System.out.println(OutputView.printResult(successGame(), retryCount));
+    }
+
     public void bridge() {
         while (true) {
             String inputBridgeSize = InputView.readBridgeSize();
@@ -114,6 +128,13 @@ public class BridgeGame {
         retryCount++;
         OutputView.reset();
         loss = false;
+    }
+
+    public boolean successGame() {
+        if (count == bridgeSize) {
+            return true;
+        }
+        return false;
     }
 
     private void validateRetry(String inputRetry) {
