@@ -70,9 +70,14 @@ public class BridgeGameController {
     }
 
     private void crossBridge(BridgeGame bridgeGame) {
+        String spaceToMove = getSpaceToMove();
+        bridgeGame.move(spaceToMove);
+    }
+
+    private String getSpaceToMove() {
         outputView.printMovingInputRequest();
         String spaceToMove = inputView.readMoving();
-        bridgeGame.move(spaceToMove);
+        return spaceToMove;
     }
 
     private void checkFailed(BridgeGame bridgeGame) {
