@@ -5,7 +5,7 @@ public class BridgeGameProcessor {
     private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
 
-    public BridgeGameProcessor(InputView inputView, OutputView outputView, BridgeGame bridgeGame, BridgeMaker bridgeMaker) {
+    public BridgeGameProcessor(InputView inputView, OutputView outputView, BridgeMaker bridgeMaker) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.bridgeMaker = bridgeMaker;
@@ -13,22 +13,20 @@ public class BridgeGameProcessor {
 
     public void play() {
         outputView.printStartMessage();
-
-        while (oneStage(setBridgeGame(setBridge()))) {
+        BridgeGame bridgeGame = setBridgeGame(setBridge());
+        while (oneStage(bridgeGame)) {
         }
 
     }
 
     private boolean oneStage(BridgeGame bridgeGame) {
-        if (isMoving(bridgeGame)) {
+        boolean moving = isMoving(bridgeGame);
+        outputView.printResult(bridgeGame.getMovementsInUpBridge(), bridgeGame.getMovementsInDownBridge());
+        if (moving) {
             return true;
         }
 
-        if (isRetry(bridgeGame)) {
-            return true;
-        }
-
-        return false;
+        return isRetry(bridgeGame);
     }
 
     private boolean isRetry(BridgeGame bridgeGame) {

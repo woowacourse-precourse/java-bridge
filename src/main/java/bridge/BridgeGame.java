@@ -2,6 +2,8 @@ package bridge;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -21,11 +23,8 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String movingPosition) {
-        if (bridge.isPossibleToMove(movingPosition, movements.size())) {
-            movements.add(movingPosition);
-            return true;
-        }
-        return false;
+        movements.add(movingPosition);
+        return bridge.isPossibleToMove(movingPosition, movements.size());
     }
 
     /**
@@ -43,5 +42,31 @@ public class BridgeGame {
         }
 
         throw new IllegalArgumentException();
+    }
+
+    public List<String> getMovementsInUpBridge() {
+        return IntStream.range(0, movements.size())
+                .mapToObj(index -> getBlockResult(BridgePosition.UP, index))
+                .collect(Collectors.toList());
+    }
+
+    public List<String> getMovementsInDownBridge() {
+        return IntStream.range(0, movements.size())
+                .mapToObj(index -> getBlockResult(BridgePosition.DOWN, index))
+                .collect(Collectors.toList());
+    }
+
+    private String getBlockResult(BridgePosition bridgePosition, int index) {
+        if (bridgePosition.isEqualToBridgePosition(movements.get(index))) {
+            return getMovedResult(movements.get(index), index);
+        }
+        return "   ";
+    }
+
+    private String getMovedResult(String movingPosition, int index) {
+        if (bridge.isPossibleToMove(movingPosition, index)) {
+            return " O ";
+        }
+        return " X ";
     }
 }
