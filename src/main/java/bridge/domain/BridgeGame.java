@@ -7,7 +7,6 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-	InputView inputView = new InputView();
 	List<List<String>> upDownBridgeList = new ArrayList<>();
 	ArrayList<String> upBridge = new ArrayList<>();
 	ArrayList<String> downBridge = new ArrayList<>();
@@ -31,11 +30,9 @@ public class BridgeGame {
 		boolean compareResult = compareMoving(inputMoving, madeBridge, order);
 		if(compareResult) {
 			addSuccessStateToBridge(inputMoving);
-			//System.out.println(outputView.printMap(upDownBridgeList));
 			return true;
 		}
 		addFailureStateToBridge(inputMoving);
-		//System.out.println(outputView.printMap(upDownBridgeList));
 		return false;
 	}
 	
@@ -65,17 +62,6 @@ public class BridgeGame {
 		downBridge.add("X");
 		upBridge.add(" ");
 	}
-	
-	/*public void currentStateBridgeSavePrint() {
-		currentStateBridge = outputView.printMap(upDownBridgeList);
-		System.out.println(currentStateBridge);
-	}
-	
-	public String getCurrentStateBridge() {
-		return currentStateBridge;
-	}
-	*/
-	
 	public List<List<String>> getUpDownBridgeList(){
 		return this.upDownBridgeList;
 	}
