@@ -1,7 +1,8 @@
 package ui;
 
 public class Validator {
-    String BRIDGE_SIZE_INPUT_ERROR = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+    static public String BRIDGE_SIZE_INPUT_ERROR = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+    static public String MOVING_INPUT_ERROR = "[ERROR] U(위 칸) 와 D(아래 칸) 문자만 사용이 가능합니다.";
 
     public int validateBridgeSizeInput(String userInput) throws IllegalArgumentException {
         String digitUserInput = validateUserInputIsDigit(userInput);
