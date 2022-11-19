@@ -85,4 +85,13 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] 다시 시도 여부 입력은 R 또는 Q 입니다");
         }
     }
+
+    public Boolean gameCommandErrorHandling(String str) {
+        try {
+            checkGameCommandInput(str);
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+        }
+        return false;
+    }
 }
