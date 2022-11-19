@@ -12,10 +12,12 @@ import java.util.List;
 public class BridgeGame {
     private final Bridge bridge;
     private final BridgeMoving bridgeMoving;
+    private final BridgeGameResult bridgeGameResult;
 
     public BridgeGame(int size) {
         this.bridge = generateBridge(size);
         this.bridgeMoving = new BridgeMoving(bridge);
+        this.bridgeGameResult = new BridgeGameResult();
     }
 
     public Bridge generateBridge(int size) {
@@ -30,7 +32,10 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public BridgeGameResult move(String moving, int movingIndex) {
+        String movingResult = bridgeMoving.move(moving, movingIndex);
+        bridgeGameResult.putResult(moving, movingResult);
+        return bridgeGameResult;
     }
 
     /**
