@@ -1,8 +1,11 @@
 package bridge.view;
 
+ import bridge.domain.BridgeType;
 import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.exception.InputViewExceptionMessage.*;
+import static bridge.view.InputViewMessage.READ_BRIDGE_SIZE;
+import static bridge.view.InputViewMessage.READ_MOVE_BOARD;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -13,6 +16,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        System.out.print(READ_BRIDGE_SIZE.getMessage());
         String readBridgeSize = Console.readLine();
         validateDigit(readBridgeSize);
         int bridgeSize = parseToIntegerFrom(readBridgeSize);
@@ -23,8 +27,10 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public BridgeType readMoving() {
+        System.out.print(READ_MOVE_BOARD.getMessage());
+        String readMoveBridgeType = Console.readLine();
+        return BridgeType.of(readMoveBridgeType);
     }
 
     /**
