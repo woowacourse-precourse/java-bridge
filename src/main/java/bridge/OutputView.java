@@ -37,4 +37,13 @@ public class OutputView {
         System.out.print("   ");
     }
 
+    public void printOnePartOfLowerBridge(int index, List<String> bridge){
+        if(bridge.get(index) == "D"){
+            System.out.print(" O ");
+            return;
+        }
+
+        System.out.print("   ");
+    }
+
 }
