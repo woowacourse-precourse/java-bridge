@@ -15,19 +15,20 @@ public class GameApplication {
     private final OutputView outputView;
     private int gameCount;
 
-    public GameApplication(BridgeGame bridgeGame) {
+    public GameApplication() {
         this.bridgeGame = new BridgeGame();
         this.inputView = new InputView();
         this.outputView = new OutputView();
         this.gameCount = 0;
     }
 
-    public void startGame() {
-
-    }
-
+    /**
+     * 게임 시작 시, 다리의 길이를 입력받고, 해당 길이만큼의 다리를 생성하는 메서드입니다.
+     */
     public void inputBridgeLength() {
-
+        System.out.println("다리 건너기 게임을 시작합니다.\n");
+        System.out.println("다리의 길이를 입력해주세요.");
+        bridgeGame.makeBridge(inputView.readBridgeSize());
     }
 
     /**
@@ -58,4 +59,18 @@ public class GameApplication {
         outputView.printResult(bridgeGame.getBridge(), bridgeGame.getUserInput(), gameCount);
     }
 
+    /**
+     * 한 번의 일련의 게임을 수행하는 메서드입니다.
+     * @return 해당 게임에서 성공했는지 여부
+     */
+    public boolean singleGame() {
+        gameCount++;
+        for (int i = 0; i < bridgeGame.getBridge().size(); i++) {
+            if (!singleStage()) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
 }
