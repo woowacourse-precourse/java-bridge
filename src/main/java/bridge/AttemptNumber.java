@@ -10,5 +10,4 @@ public class AttemptNumber {
     public void printAttemptNumber(OutputView outputView, boolean success) {
         outputView.printResult(attemptNumber, success);
     }
-
 }

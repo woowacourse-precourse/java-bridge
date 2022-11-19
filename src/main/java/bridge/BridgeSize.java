@@ -1,6 +1,8 @@
 package bridge;
 
 public class BridgeSize {
+    private static final Integer MIN_NUMBER = 3;
+    private static final Integer MAX_NUMBER = 20;
     private final Integer brideSize;
 
     public BridgeSize(int number) {
@@ -15,7 +17,7 @@ public class BridgeSize {
     }
 
     private boolean isValidRange(int number) {
-        return 3 <= number && number <= 20;
+        return MIN_NUMBER <= number && number <= MAX_NUMBER;
     }
 
     public Integer getBrideSize() {

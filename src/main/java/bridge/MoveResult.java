@@ -4,21 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MoveResult {
+    private static final String MOVE_TO_UP = "U";
+    private static final String MOVE_TO_DOWN = "D";
+    private static final String SPACE = " ";
+    private static final String MOVE_POSSIBLE = "O";
+    private static final String MOVE_IMPOSSIBLE = "X";
     private List<String> highBridge = new ArrayList<>();
     private List<String> lowBridge = new ArrayList<>();
 
     public void makeResultBridge(String moving, boolean movingPossible) {
-        if (moving.equals("U")) {
+        if (moving.equals(MOVE_TO_UP)) {
             up(movingPossible);
         }
-        if (moving.equals("D")) {
+        if (moving.equals(MOVE_TO_DOWN)) {
             down(movingPossible);
         }
     }
 
     public void clearHistory() {
-        lowBridge.clear();
         highBridge.clear();
+        lowBridge.clear();
     }
 
     public void printBridge(OutputView outputView) {
@@ -27,23 +32,23 @@ public class MoveResult {
 
     private void up(boolean success) {
         if (success) {
-            highBridge.add("O");
-            lowBridge.add(" ");
+            highBridge.add(MOVE_POSSIBLE);
+            lowBridge.add(SPACE);
         }
         if (!success) {
-            highBridge.add("X");
-            lowBridge.add(" ");
+            highBridge.add(MOVE_IMPOSSIBLE);
+            lowBridge.add(SPACE);
         }
     }
 
     private void down(boolean success) {
         if (success) {
-            highBridge.add(" ");
-            lowBridge.add("O");
+            highBridge.add(SPACE);
+            lowBridge.add(MOVE_POSSIBLE);
         }
         if (!success) {
-            highBridge.add(" ");
-            lowBridge.add("X");
+            highBridge.add(SPACE);
+            lowBridge.add(MOVE_IMPOSSIBLE);
         }
     }
 }
