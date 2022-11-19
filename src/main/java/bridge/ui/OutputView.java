@@ -29,9 +29,16 @@ public class OutputView {
     }
 
     /**
-     * 게임의 다리 길이 입력 문구를 정해진 형식에 맞춰 출력한다.
+     * 게임의 다리 길이를 입력하라는 문구를 정해진 형식에 맞춰 출력한다.
      */
     public void printBridgeLengthInput() {
         System.out.println("다리의 길이를 입력해주세요.");
+    }
+
+    /**
+     * 이동할 다리 칸을 입력하라는 문구를 정해진 형식에 맞춰 출력한다.
+     */
+    public void printChoiceMovingSpace() {
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
 }
