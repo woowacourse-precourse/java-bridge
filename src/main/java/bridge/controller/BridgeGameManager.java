@@ -16,7 +16,7 @@ public class BridgeGameManager {
         String retryAnswer;
 
         BridgeGame bridgeGame = new BridgeGame();
-        bridgeGame.start();
+        bridgeGame.setTryNumber();
 
         OutputView.printStart();
 
@@ -84,11 +84,10 @@ public class BridgeGameManager {
         }
 
         OutputView.printResult();
-        // 여기다가 다리 상태 출력
         OutputView.printMap(targetBridge, bridgeGame.getPreStatus());
         OutputView.printSuccessFailure(targetBridge, bridgeGame.getPreStatus());
         OutputView.printTryNumber(bridgeGame.getTryNumber());
 
-        bridgeGame.end();
+        bridgeGame.resetTryNumber();
     }
 }
