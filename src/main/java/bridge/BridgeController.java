@@ -7,6 +7,7 @@ import java.util.List;
 
 public class BridgeController {
     private BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
+    private List<String> moveBridgeResult;
 
     public void run() {
         new OutputView().printStart();
@@ -21,10 +22,19 @@ public class BridgeController {
     }
 
     public void moveController(List<String> bridge, int blockCount) {
-        List<String> moveBridgeResult = new BridgeGame().move(bridge, blockCount);
-        String gameCommand = new InputView().readGameCommand();
-        if (gameCommand.equals("Q")) {
-            new OutputView().printResult(moveBridgeResult, blockCount);
+        BridgeGame bridgeGame = new BridgeGame();
+        for (int tryCount = 0; tryCount < blockCount; tryCount++) {
+            String sideToMove = new InputView().readMoving();
+            moveBridgeResult = bridgeGame.move(bridge, tryCount, sideToMove);
+            new OutputView().printMap(moveBridgeResult);
+            int resultSize = moveBridgeResult.size();
+            if (moveBridgeResult.get(resultSize - 1).contains("X") || moveBridgeResult.get(resultSize - 2).contains("X")) {
+                String gameCommand = new InputView().readGameCommand();
+                if (gameCommand.equals("Q")) {
+                    new OutputView().printResult(moveBridgeResult, tryCount + 1);
+                }
+                break;
+            }
         }
     }
 }
