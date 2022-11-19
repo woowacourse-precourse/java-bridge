@@ -61,6 +61,7 @@ public class BridgeGame {
     }
 
     public void start(int size, List<String> bridge) {
+        outputView.printStartMessage();
         do {
             play(size, bridge);
         } while(retry());
