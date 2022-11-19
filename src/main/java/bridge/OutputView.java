@@ -20,14 +20,19 @@ public class OutputView {
         upBridge(visited, direction, result);
         downBridge(visited, direction, result);
     }
-
+    public void printMap(List<String> visited) {
+        upBridge(visited, "","");
+        downBridge(visited, "","");
+    }
     private void upBridge(List<String> visited, String direction, String result) {
         System.out.println("[");
         for (String visit : visited) {
             checkEqual(visit, UP,SUCCESS);
             System.out.println("|");
         }
-        checkEqual(direction,UP,result);
+        if(!result.isEmpty()){
+            checkEqual(direction,UP,result);
+        }
         System.out.println("]");
     }
 
@@ -37,7 +42,9 @@ public class OutputView {
             checkEqual(visit, DOWN, SUCCESS);
             System.out.println("|");
         }
-        checkEqual(direction, DOWN, result);
+        if(!result.isEmpty()){
+            checkEqual(direction, DOWN, result);
+        }
         System.out.println("]");
     }
 
@@ -53,6 +60,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<String> visited, String result, int tryNum) {
+        System.out.println("최종 게임 결과");
+        printMap(visited);
+        System.out.println("게임 성공 여부: " + result);
+        System.out.println("총 시도한 횟수: " + tryNum);
     }
 }
