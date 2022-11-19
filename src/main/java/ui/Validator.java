@@ -56,8 +56,6 @@ public class Validator {
     }
 
     public String validateGameCommandInput(String userInput) {
-        //  R(재시작)과 Q(종료) 중 하나의 문자를 입력할 수 있으며
-        //  올바른 값이 아니면 예외 처리
         if (!validateUserInputLengthIs1(userInput)) {
             throw new IllegalArgumentException(GAME_COMMAND_INPUT_ERROR);
         }
