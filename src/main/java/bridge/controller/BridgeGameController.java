@@ -72,7 +72,11 @@ public class BridgeGameController {
     }
 
     private void crossBridge(BridgeGame bridgeGame) {
-        outputView.printMovingInputRequest();
-        String spaceToMove = inputView.readMoving();
+        // while (게임을 진행중이라면)
+        while (true) {
+            outputView.printMovingInputRequest();
+            String spaceToMove = inputView.readMoving();
+            bridgeGame.move(spaceToMove);
+        }
     }
 }

@@ -25,7 +25,7 @@
 - [ ✅ ] 이동할 칸 입력요청문구를 출력한다 → OutputView.printMovingInputRequest
 - [ ✅ ] 이동할 칸을 입력받는다 → InputView.readMoving
 - [ ✅ ] 그 칸으로 이동한다 → Player.move
-- [  ] 이 과정들에서 `IllegalArgument`오류가 나면 다시 입력요청문구 출력단계로 돌아간다
+- [ ✅ ] 이 과정들에서 `IllegalArgument`오류가 나면 다시 입력요청문구 출력단계로 돌아간다
 - [  ] 이동한 지점까지의 다리상태를 출력한다 → OutputView.printMap
 - [  ] 건너야 할 다리가 남았는지 비교한다
     - [  ] 안 남았으면 게임을 종료한다
