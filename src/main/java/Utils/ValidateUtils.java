@@ -10,13 +10,13 @@ public class ValidateUtils {
     }
 
     public static void isValidatePosition(String input) {
-        if (!InputUtils.isCharacter(input) || !InputUtils.isValidBridgePosition(input)) {
+        if (!InputUtils.isValidBridgePosition(input)) {
             throw new IllegalArgumentException(ExceptionType.BRIDGE_POSITION_ERROR.getErrorMessage());
         }
     }
 
     public static void isValidateGameRestart(String input) {
-        if (!InputUtils.isCharacter(input) || !InputUtils.isValidGameRestartInput(input)) {
+        if (!InputUtils.isValidGameRestartInput(input)) {
             throw new IllegalArgumentException(ExceptionType.BRIDGE_RESTART_ERROR.getErrorMessage());
         }
     }

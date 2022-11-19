@@ -28,8 +28,4 @@ public class InputUtils {
     public static boolean isValidGameRestartInput(String input) {
         return GameRestartType.isRestartStatus(input);
     }
-
-    public static boolean isCharacter(String input) {
-        return input.length() == 1;
-    }
 }
