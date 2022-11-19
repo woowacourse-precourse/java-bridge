@@ -22,4 +22,12 @@ public class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
     }
+
+    @ValueSource(strings = {"q", "A", "5", "RR", " "})
+    @ParameterizedTest
+    void 게임_다시_시도_여부_입력이_올바르지_않은_경우(String input) {
+        assertThatThrownBy(() -> InputValidator.inputGameCommandValidate(input))
+                .isInstanceOf(IllegalArgumentException.class);
+
+    }
 }
