@@ -1,5 +1,8 @@
 package bridge.view;
 
+import bridge.dto.StepResponseDto;
+import global.config.AppConfig;
+
 public enum OutputMessage {
     START_LINE("["),
     END_LINE("]"),
@@ -14,5 +17,15 @@ public enum OutputMessage {
         this.message = message;
     }
 
+    public static String getStepMessage(StepResponseDto stepResponseDto) {
+        MessageFactory messageFactory = new AppConfig().messageFactory(stepResponseDto.getStep());
+        if (stepResponseDto.isSuccess()) {
+            return messageFactory.successMessage();
+        }
+        return messageFactory.failMessage();
+    }
 
+    public static String findMessage(OutputMessage outputMessage) {
+        return outputMessage.message;
+    }
 }
