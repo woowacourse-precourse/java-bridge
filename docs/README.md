@@ -21,6 +21,7 @@
 - BridgeGame
     - [x] 앞으로 움직이는 기능 구현
     - [x] 재시작시 이동한 것을 초기화하는 기능 구현
+    - [x] 현재 계속 건널 수 있는 상태인지 확인하는 기능 구현
 - BridgeMaker
     - [x] bridge를 만듦
       - BridgeNumberGenerator 에서 0을 전달하면 아래를 추가, 1을 전달하면 위를 추가함

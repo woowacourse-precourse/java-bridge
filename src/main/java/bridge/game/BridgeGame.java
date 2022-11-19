@@ -5,6 +5,7 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.dto.BridgeGameDto;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -36,5 +37,19 @@ public class BridgeGame {
      */
     public void retry() {
         route.clear();
+    }
+
+    public boolean isContinue() {
+        if (route.size() == 0) {
+            return true;
+        }
+
+        return IntStream.range(0, route.size())
+                .mapToObj(index -> isCorrectRoute(index))
+                .reduce(true, Boolean::logicalAnd);
+    }
+
+    private boolean isCorrectRoute(int index) {
+        return route.get(index).equals(bridge.get(index));
     }
 }
