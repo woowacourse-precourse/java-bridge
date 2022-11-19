@@ -25,7 +25,7 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
 
-        for (int i = 0; i < size; i++) {
+        for (int bridgeIndex = 0; bridgeIndex < size; bridgeIndex++) {
             if (Objects.equals(DOWN.getNumber(), bridgeNumberGenerator.generate())) {
                 bridge.add(DOWN.getCommand());
                 continue;
