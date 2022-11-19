@@ -21,6 +21,9 @@ public enum BridgeState {
         return bridgeState;
     }
 
+    public int getStateValue() {
+        return stateValue;
+    }
     public String getState() {
         return state;
     }
