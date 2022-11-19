@@ -302,7 +302,8 @@ int number = bridgeNumberGenerator.generate();
 유저가 다리의 끝까지 갔을 때 -> while true
 
 ### BridgeMaker  
-  BridgeRandomNumberGenerator 클래스를 이용해 자동으로 랜덤 넘버를 생성한다.  
+  BridgeRandomNumberGenerator 클래스를 이용해 자동으로 랜덤 넘버를 생성한다. 
+  
   인스턴스 변수: BridgeNumberGenerator (Interface)
   #### 기능목록
   - [x] 다리 사이즈를 입력 받아 이에 해당하는 길이의 다리를 생성. (List<String>)
@@ -314,6 +315,8 @@ int number = bridgeNumberGenerator.generate();
 
 ### Bridge  
   BridgeMaker를 통해 만들어진 다리를 다시 포장하는 용도이며 BridgeGame의 인스턴스 변수로 만들 예정  
+  bridge의 값은 변하지 않는데 사용자의 입력 값에 따라 bridgeShape는 바뀜. -> BridgeGame에서 BridgeMaker를 기반으로 게임이 재시도될 때마다 새로 생성돼야함.  
+
   멤버변수: 다리 (List<String>), 다리 모양 (String[][])
   #### 기능목록
   - [x] D와 U를 입력 받아 다리와 비교
@@ -329,7 +332,7 @@ int number = bridgeNumberGenerator.generate();
   - [ ] 사용자가 오답을 입력하고 게임을 다시 시도하면 시도한 횟수가 늘어나야 함
 
 ### BridgeGame
-  인스턴스변수: Player, Bridge
+  인스턴스변수: Player
   - [ ] 사용자의 이동할 칸을 입력 받아 Bridge의 정답과 비교하고 현재까지의 다리 모양과 정답 여부를 출력
   - [ ] 정답을 입력하면 사용자로부터 입력한 칸을 다시 입력 받음. 답이 틀리면 다시 시도할 지 여부를 물어봐야 함
   - [ ] 사용자가 답을 틀린 후 R을 입력하면 사용자의 위치와 다리의 모양을 초기화하고 시도한 횟수 + 1
