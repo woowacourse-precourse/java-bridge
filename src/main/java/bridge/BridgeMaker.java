@@ -24,8 +24,8 @@ public class BridgeMaker {
                 .limit(size)
                 .map(integer -> {
                     if (integer == 0)
-                        return "U";
-                    return "D";
+                        return "D";
+                    return "U";
                 })
                 .collect(Collectors.toList());
     }
