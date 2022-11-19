@@ -49,4 +49,16 @@ public class BridgeGame {
     private void quit() {
         canPlay = false;
     }
+
+    public boolean canPlay() {
+        return canPlay;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public int getPlayCount() {
+        return playCount;
+    }
 }
