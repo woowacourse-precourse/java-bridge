@@ -84,10 +84,25 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult() {
+        System.out.println(GAME_RESULT_MESSAGE);
+        // 게임 결과 출력!
+
     }
 
     public void printGameStart() {
         System.out.println(GAME_START_MESSAGE);
+    }
+
+    public void printInputBridgeSize() {
+        System.out.println(INPUT_BRIDGE_SIZE_MESSAGE);
+    }
+
+    public void printInputMoveDirection() {
+        System.out.println(INPUT_MOVE_DIRECTION_MESSAGE);
+    }
+
+    public void printInputGameRetry() {
+        System.out.println(INPUT_GAME_RETRY_MESSAGE);
     }
 
     private void printOpenSquareBracket(StringBuilder sb) {
