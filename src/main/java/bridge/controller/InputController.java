@@ -1,9 +1,9 @@
 package bridge.controller;
 
 import bridge.BridgeMaker;
-import bridge.InputView;
-import bridge.OutputView;
-import bridge.Validation;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+import bridge.view.Validation;
 
 import java.util.List;
 

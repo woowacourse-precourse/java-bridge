@@ -4,6 +4,8 @@ import bridge.*;
 import bridge.controller.InputController;
 import bridge.controller.OutputController;
 import bridge.util.Constant;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.HashMap;

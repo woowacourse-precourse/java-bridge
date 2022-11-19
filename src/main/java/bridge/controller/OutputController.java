@@ -1,6 +1,6 @@
 package bridge.controller;
 
-import bridge.OutputView;
+import bridge.view.OutputView;
 import bridge.util.Constant;
 import bridge.util.GuideMessage;
 
