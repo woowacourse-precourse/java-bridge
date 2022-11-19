@@ -37,7 +37,6 @@ public class BridgeGame {
 
     private boolean retryOrEnd() {
         if(inputView.readGameCommand().equals("Q")) {
-            success = true;
             return true;
         }
         retry();
@@ -46,6 +45,7 @@ public class BridgeGame {
 
     public boolean checkEnd(AllBridge allBridge) {
         if(userPos == allBridge.getBridge().size()) {
+            success = true;
             return true;
         }
         return false;
