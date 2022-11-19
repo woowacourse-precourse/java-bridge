@@ -1,13 +1,14 @@
 package bridge;
 
 public class Player {
+    private final int START_POSITION = -1;
     int currentPosition;
-
-    public Player() {
-        currentPosition = -1;
-    }
 
     public void moveForward() {
         currentPosition++;
+    }
+
+    public void initializePosition() {
+        currentPosition = START_POSITION;
     }
 }
