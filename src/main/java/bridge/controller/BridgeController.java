@@ -16,7 +16,7 @@ public class BridgeController {
 
     public void startGame() {
         List<String> bridge;
-        int count;
+        int count = START_OF_COUNT;
 
         outputView.printStartingPhrase();
         bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
@@ -25,9 +25,10 @@ public class BridgeController {
         bridgeGame = new BridgeGame(bridge);
 
         while (true) {
+            count++;
             bridgeGame.resetUserMoving();
             //System.out.println(bridgeGame.getBridge());
-            count = startMove();
+            startMove();
 
             if (bridgeGame.isSuccess()) {
                 outputView.printResult(bridgeGame.getUserMoving(),SUCCESS,count);
@@ -41,12 +42,8 @@ public class BridgeController {
         }
     }
 
-    public int startMove() {
-        int count=START_OF_COUNT;
-
+    public void startMove() {
         while (true) {
-            count++;
-
             if (bridgeGame.move(inputView.readMoving()) == false) {
                 outputView.printMap(bridgeGame.getUserMoving());
                 break;
@@ -57,7 +54,5 @@ public class BridgeController {
             }
             outputView.printMap(bridgeGame.getUserMoving());
         }
-        //마지막 움직인 것은 count 하지 않는다.
-        return --count;
     }
 }
