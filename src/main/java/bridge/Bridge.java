@@ -9,8 +9,12 @@ public class Bridge {
         this.bridges = bridge;
     }
 
-    public boolean matchStep(int round, String controlKey) {
-        return bridges.get(round).matches(controlKey);
+    public MoveResult moveResult(int round, String controlKey) {
+        return new MoveResult(controlKey, bridges.get(round).matches(controlKey));
+    }
+
+    public int bridgeSize() {
+        return bridges.size();
     }
 
 }

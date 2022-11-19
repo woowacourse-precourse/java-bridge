@@ -2,6 +2,7 @@ package bridge;
 
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class BridgeGameTest {
@@ -12,11 +13,13 @@ class BridgeGameTest {
         BridgeMaker bridgeMaker = new BridgeMaker(upNumberGenerator);
         int size = 1;
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(size));
-        BridgeGame bridgeGame = new BridgeGame(bridge);
+        MoveResults moveResults = new MoveResults();
+        BridgeGame bridgeGame = new BridgeGame(bridge, moveResults);
 
-        MoveResult result = bridgeGame.move(0, "U");
+        bridgeGame.move(0, "U");
+        MoveResults movedResult = bridgeGame.moveResults();
 
-        assertTrue(result.isMatchResult());
+        assertThat(movedResult.getMoveResults()).hasSize(1);
     }
 
     @Test
