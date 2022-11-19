@@ -13,9 +13,13 @@ public enum GameRetryCommand {
         this.firstLetter = firstLetter;
     }
 
+    public String getFirstLetter() {
+        return firstLetter;
+    }
+
     public static void validateInputCommand(String input) {
         boolean match = Arrays.stream(GameRetryCommand.values())
-                .anyMatch(command -> command.equals(input));
+                .anyMatch(command -> command.firstLetter.equals(input));
         if (!match) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_FORMAT_IS_INCORRECT.getMessage());
         }
