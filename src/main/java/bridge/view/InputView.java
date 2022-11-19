@@ -1,7 +1,7 @@
 package bridge.view;
 
-import bridge.domain.Command;
-import bridge.domain.Error;
+import bridge.domain.enums.Command;
+import bridge.domain.enums.Error;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.NoSuchElementException;
 

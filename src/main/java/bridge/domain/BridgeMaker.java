@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.domain.enums.Command;
 import java.util.ArrayList;
 import java.util.List;
 
