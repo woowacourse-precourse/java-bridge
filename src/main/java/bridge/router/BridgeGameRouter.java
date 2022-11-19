@@ -44,6 +44,8 @@ public class BridgeGameRouter {
     }
 
     private void routeEachTurn() {
-
+        outputView.printNextMovementInputMessage();
+        String nextMovement = inputView.readMoving();
+        bridgeGame.move(nextMovement);
     }
 }

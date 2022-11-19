@@ -11,11 +11,13 @@ import bridge.domain.BridgeRandomNumberGenerator;
 public class BridgeGame {
 
     private Bridge bridge;
+    private int currentSquareIndex;
 
     public void setBridge(int bridgeSize) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+        currentSquareIndex = 0;
     }
 
     /**
@@ -23,8 +25,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String input, int squareIndex) {
-
+    public void move(String input) {
+        moveToNextSquare();
     }
 
     /**
@@ -33,5 +35,13 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+    }
+
+    private void moveToNextSquare() {
+        currentSquareIndex++;
+    }
+
+    private boolean isLastSquare() {
+        return bridge.isLastIndex(currentSquareIndex);
     }
 }

@@ -60,7 +60,7 @@ public class InputValidatorTest {
                 .hasMessageContaining("[ERROR] \"U\"와 \"D\" 만 입력 가능합니다.");
     }
 
-    @DisplayName("재시작에 대한 입력이 \"R\"이나 \"Q\"를 입력하면 정상 작동")
+    @DisplayName("재시작에 대한 입력이 \"R\"이나 \"Q\"면 정상 작동")
     @ParameterizedTest
     @ValueSource(strings = {"R", "Q"})
     void validateRestartInputOfSuccessCase(String restartInput) {
