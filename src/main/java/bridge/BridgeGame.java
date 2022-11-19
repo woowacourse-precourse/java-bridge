@@ -1,9 +1,47 @@
 package bridge;
 
+import bridge.view.InputView;
+import bridge.view.OutputView;
+
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
+    private InputView inputView;
+    private OutputView outputView;
+    private BridgeMaker bridgeMaker;
+    private List<String> bridge;
+
+    public BridgeGame() {
+        inputView = new InputView();
+        outputView = new OutputView();
+        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    }
+
+    public void start() {
+        // 게임 시작
+        
+        // 다리 길이 입력받음, 다리 생성
+        generateBridge();
+        
+        // U, D 입력 받으며 다리 위 이동
+        
+        // 결과 출력 및 종료
+    }
+
+    private void generateBridge() {
+        try {
+            outputView.printInputBridgeSize();
+            int size = inputView.readBridgeSize();
+            bridge = bridgeMaker.makeBridge(size);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            generateBridge();
+        }
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
