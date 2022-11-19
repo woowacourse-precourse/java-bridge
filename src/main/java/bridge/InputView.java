@@ -40,9 +40,22 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String moveCommand = Console.readLine();
+        try {
+            isVaildMove(moveCommand);
+        } catch (IllegalArgumentException e) {
+            e.getMessage();
+            moveCommand = readMoving();
+        }
+        return moveCommand;
     }
 
+    public boolean isVaildMove(String moveCommand) {
+        if(!(moveCommand == "U" || moveCommand == "D")) {
+            throw new IllegalArgumentException("[ERROR] 알맞은 이동 명령이 아닙니다.");
+        }
+        return true;
+    }
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
