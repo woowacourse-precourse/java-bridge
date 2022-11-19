@@ -58,6 +58,7 @@ public class BridgeGameController implements GameController {
 
     private void initGame() {
         Bridge randomBridge = makeBridge();
+        output.newLine();
         game = new BridgeGame(randomBridge);
     }
 
