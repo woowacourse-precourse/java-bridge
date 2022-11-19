@@ -21,7 +21,7 @@ public class InputView {
 
         inputValidator.validateDigit(input);
         int size = Integer.parseInt(input);
-        
+
         inputValidator.validateSize(size);
 
         return size;
@@ -31,7 +31,13 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println();
+
+        String input = Console.readLine();
+
+        inputValidator.validateMoving(input);
+
+        return input;
     }
 
     /**
