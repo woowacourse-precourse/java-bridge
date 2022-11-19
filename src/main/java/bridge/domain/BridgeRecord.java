@@ -31,6 +31,10 @@ public class BridgeRecord {
 		boards.remove(boards.size()-1);
 	}
 
+	public void increaseTry() {
+		this.tryCount++;
+	}
+
 	public List<String[]> getBoards() {
 		return boards;
 	}

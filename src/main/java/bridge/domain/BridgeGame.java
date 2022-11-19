@@ -37,6 +37,7 @@ public class BridgeGame {
     public boolean retry(String command) {
         if(command.equals(GameRule.RETRY_COMMAND)){
             record.deleteBoard();
+            record.increaseTry();
         } else if (command.equals(GameRule.QUIT_COMMAND)) {
             return true;
         }
