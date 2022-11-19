@@ -25,4 +25,4 @@
 - [X] 게임 다시 시도 여부 입력 Validation(Validation Class)
 - [X] 게임 다시 시도 여부 입력  (InputView Class)
 - [X] 게임 다시 시도 (BridgeGame Class)
-- [ ] 최종 게임 결과 출력 (OutputView Class)
+- [X] 최종 게임 결과 출력 (OutputView Class)
