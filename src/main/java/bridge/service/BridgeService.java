@@ -6,8 +6,7 @@ import bridge.view.InputView;
 
 import java.util.List;
 
-import static bridge.view.Message.ERROR_NOT_INTEGER;
-import static bridge.view.Message.ERROR_OVER_RANGE;
+import static bridge.view.Message.*;
 
 public class BridgeService {
     private static int inputSize;
@@ -28,6 +27,25 @@ public class BridgeService {
     public static List<String> makeBridge() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         return bridgeMaker.makeBridge(inputSize);
+    }
+
+    public static Character getInitMoveRow(){
+        while (true) {
+            String input = InputView.readMoving();
+            try {
+                char inputMoveRow = checkUpDown(input);
+                return inputMoveRow;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public static Character checkUpDown(String input){
+        if(input.equals("U") || input.equals("D")){
+            return input.charAt(0);
+        }
+        throw new IllegalArgumentException(ERROR_NOT_UP_DOWN);
     }
 
     public static int checkInteger(String input) {

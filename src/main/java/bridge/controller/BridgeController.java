@@ -11,4 +11,8 @@ public class BridgeController {
     public static void makeBridge() {
         BridgeService.makeBridge();
     }
+
+    public static void initMoveRow(){
+        BridgeService.getInitMoveRow();
+    }
 }
