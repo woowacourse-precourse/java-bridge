@@ -1,7 +1,6 @@
 package bridge;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -24,7 +23,6 @@ public class BridgeMaker {
         for (int i = 0; i < size; i++) {
             generateRandomUpDown(bridge);
         }
-
         return bridge;
     }
 
