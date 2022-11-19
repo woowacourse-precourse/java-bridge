@@ -35,8 +35,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(String success) {
+    public void printResult(String success, int retryCount) {
         printGameSuccess(success);
+        printTotalRetryCount(retryCount);
     }
 
     private void printBridgeFormat(List<String> bridge) {
@@ -61,6 +62,11 @@ public class OutputView {
 
     private void printGameSuccess(String success) {
         String result = String.format("게임 성공 여부: %s", success);
+        System.out.println(result);
+    }
+
+    private void printTotalRetryCount(int retryCount) {
+        String result = String.format("총 시도한 횟수: %d", retryCount);
         System.out.println(result);
     }
 }
