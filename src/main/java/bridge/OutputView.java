@@ -12,7 +12,13 @@ public class OutputView {
     public static final String MESSAGE_INPUT_BRIDGE_SIZE = System.lineSeparator() + "다리의 길이를 입력해주세요.";
     public static final String MESSAGE_INPUT_BRIDGE_MOVING = System.lineSeparator() + "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     public static final String MESSAGE_RETRY_OR_EXIT = System.lineSeparator() + "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    public static final String MESSAGE_GAME_RESULT = "최종 게임 결과";
     public static final String MESSAGE_GAME_END = System.lineSeparator() + "게임 성공 여부: %s" + System.lineSeparator() + "총 시도한 횟수: %d";
+
+    public void printStart() {
+        printOf(OutputView.MESSAGE_GAME_START);
+        printOf(OutputView.MESSAGE_INPUT_BRIDGE_SIZE);
+    }
 
     public void printOf(String message) {
         System.out.println(message);
@@ -46,7 +52,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(String isSuccess, int gameCount) {
+    public void printResult(List<List<String>> resultMap, String isSuccess, int gameCount) {
+        System.out.println(MESSAGE_GAME_RESULT);
+        printMap(resultMap);
         System.out.printf(MESSAGE_GAME_END, isSuccess, gameCount);
     }
 
