@@ -28,6 +28,6 @@ public class BridgeMaker {
                 answerBridge.add("U");
             }
         }
-        return null;
+        return answerBridge;
     }
 }
