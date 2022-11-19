@@ -88,11 +88,19 @@ public class BridgeGameController {
 
     private void retryOrFinish(BridgeGame bridgeGame) {
         String gameCommand = getGameCommandInput();
+        if (gameCommand.equals("R")) {
+            bridgeGame.retry();
+        }
     }
 
     private String getGameCommandInput() {
-        outputView.printGameCommandInputRequest();
-        String gameCommand = inputView.readGameCommand();
-        return gameCommand;
+        while (true) {
+            try {
+                outputView.printGameCommandInputRequest();
+                return inputView.readGameCommand();
+            } catch (IllegalArgumentException exception) {
+                outputView.printError(exception);
+            }
+        }
     }
 }

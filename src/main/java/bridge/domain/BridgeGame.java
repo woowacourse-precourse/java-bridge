@@ -42,12 +42,15 @@ public class BridgeGame {
         player.move(bridge, spaceToMove);
     }
 
-    private void validate(String spaceToMove) {
+    private void validate(String spaceToMove) { // 플레이어의 무브에서 U도 D도 아니면 오류는 내는 식으로 고치기
         if (!spaceToMove.equals("U") && !spaceToMove.equals("D")) {
             throw new IllegalArgumentException("[ERROR] 입력된 값이 U나 D가 아닙니다");
         }
     }
 
+    public void retryByGameCommand() {
+
+    }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
