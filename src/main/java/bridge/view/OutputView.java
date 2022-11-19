@@ -45,7 +45,9 @@ public class OutputView {
     public void printResult(BridgeGame bridgeGame) {
         System.out.println("최종 게임 결과");
         printMap(bridgeGame.getBridgeTokens());
-        extracted(bridgeGame.isEnd());
+
+        System.out.println(printSuccessStatus(bridgeGame.isEnd()));
+
         System.out.println("총 시도한 횟수: " + bridgeGame.getRetryCount());
     }
 
@@ -57,12 +59,11 @@ public class OutputView {
         System.out.println(BRIDGE_GAME_START_MESSAGE);
     }
 
-    private static void extracted(boolean status) {
+    private String printSuccessStatus(boolean status) {
         if (status) {
-            System.out.println("게임 성공 여부: 성공");
-        } else {
-            System.out.println("게임 성공 여부: 실패");
+            return "게임 성공 여부: 성공";
         }
+        return "게임 성공 여부: 실패";
     }
 
     private String toSign(Direction direction, BridgeToken bridgeToken) {
@@ -71,6 +72,7 @@ public class OutputView {
         } else if (direction.equals(bridgeToken.getDirection()) && !bridgeToken.isCorrect()) {
             return IMMOVABLE_SIGN;
         }
+
         return UNCHOSEN_SIGN;
     }
 }
