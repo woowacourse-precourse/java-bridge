@@ -10,6 +10,7 @@ public enum Direction {
     ;
 
     private static final String NOT_MATCH_SYMBOL_BY_NUMBER = "%d에 대응되는 심볼이 없습니다.";
+    private static final String NOT_MATCH_DIRECTION_BY_SYMBOL = "%d에 대응되는 방향이 없습니다.";
     private final String symbol;
     private final int mappingNumber;
 
@@ -25,5 +26,13 @@ public enum Direction {
                 .findAny()
                 .orElseThrow(() ->
                         new IllegalArgumentException(format(NOT_MATCH_SYMBOL_BY_NUMBER, number)));
+    }
+
+    public static Direction ofSymbol(final String symbol) {
+        return stream(values())
+                .filter(direction -> direction.symbol.equals(symbol))
+                .findAny()
+                .orElseThrow(() ->
+                        new IllegalArgumentException(format(NOT_MATCH_DIRECTION_BY_SYMBOL, symbol)));
     }
 }

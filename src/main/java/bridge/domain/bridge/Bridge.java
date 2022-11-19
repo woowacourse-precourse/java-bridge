@@ -5,6 +5,7 @@ import bridge.domain.direction.Direction;
 import java.util.List;
 
 import static bridge.domain.bridge.CrossStatus.*;
+import static java.util.stream.Collectors.toList;
 
 public class Bridge {
 
@@ -16,6 +17,12 @@ public class Bridge {
     public Bridge(final List<Direction> directions) {
         validateSize(directions.size());
         this.directions = directions;
+    }
+
+    public static Bridge fromStrings(List<String> bridge) {
+        return new Bridge(bridge.stream()
+                .map(Direction::ofSymbol)
+                .collect(toList()));
     }
 
     private void validateSize(final int size) {

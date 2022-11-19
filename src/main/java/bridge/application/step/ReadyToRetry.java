@@ -10,7 +10,7 @@ public class ReadyToRetry extends BridgeGameStep {
 
     @Override
     protected Step pureExecute() {
-        context.init();
+        context.retry();
         return new CrossBridge(context);
     }
 

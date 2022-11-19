@@ -8,6 +8,8 @@ import bridge.domain.mapmaker.MapMaker;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.domain.bridge.CrossStatus.SUCCESS;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -57,5 +59,9 @@ public class BridgeGame {
     public void retry() {
         this.currentPath.clear();
         this.maker.init();
+    }
+
+    public CrossStatus status() {
+        return bridge.cross(currentPath);
     }
 }
