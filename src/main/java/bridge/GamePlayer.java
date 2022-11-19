@@ -14,30 +14,40 @@ public class GamePlayer {
     }
 
     public void run() {
-        String restartOrQuit = "";
-        boolean isNotMovalbe = false;
-
         do {
-            bridgeGame.move(inputView.readMoving());
-
-            outputView.printMap(bridgeGame.getLog());
+            move();
 
             if (bridgeGame.isEnd()) {
                 break;
             }
 
-            if (!bridgeGame.isMovable()) {
-                restartOrQuit = inputView.readGameCommand();
+        } while (!movable().equals(GameKeySet.QUIT.getKeySet()));
 
-                if (restartOrQuit.equals(GameKeySet.RESTART.getKeySet())) {
-                    bridgeGame.retry();
-                    retryCount++;
-                }
+        outputView.printResult(bridgeGame.getLog(), bridgeGame.isEnd(), retryCount);
+    }
+
+    private void move() {
+        bridgeGame.move(inputView.readMoving());
+        outputView.printMap(bridgeGame.getLog());
+    }
+
+    private String movable() {
+        String restartOrQuit = "";
+
+        if (!bridgeGame.isMovable()) {
+            restartOrQuit = inputView.readGameCommand();
+
+            if (restartOrQuit.equals(GameKeySet.RESTART.getKeySet())) {
+                retry();
             }
+        }
 
-        } while (restartOrQuit != GameKeySet.QUIT.getKeySet());
+        return restartOrQuit;
+    }
 
-        outputView.printResult(bridgeGame.getLog(), true, retryCount);
+    private void retry() {
+        bridgeGame.retry();
+        retryCount++;
     }
 
     private int readBridgeSize() {
