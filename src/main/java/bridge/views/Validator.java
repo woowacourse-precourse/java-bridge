@@ -25,4 +25,16 @@ public class Validator {
                             Setting.BRIDGE_SIZE_LOWER_BOUND, Setting.BRIDGE_SIZE_UPPER_BOUND));
         }
     }
+
+    public static void isUOrD(String input) {
+        if (!(input.equals("U") || input.equals("D"))) {
+            throw new IllegalArgumentException("[ERROR] (위: U, 아래: D) 두 영어 대문자 중 하나를 입력해주세요.");
+        }
+    }
+
+    public static void isROrQ(String input) {
+        if (!(input.equals("R") || input.equals("Q"))) {
+            throw new IllegalArgumentException("[ERROR] (재시도: R, 종료: Q) 두 영어 대문자 중 하나를 입력해주세요.");
+        }
+    }
 }
