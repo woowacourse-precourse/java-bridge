@@ -31,6 +31,13 @@ public class BridgeGame {
         for (int step = 0; step < bridge.size(); step++) {
             String movingBlock = OutputView.printSelectMovingBlock();
             user.currentBlock = TypeConverter.blockToNumber(movingBlock);
+            if (isFailed(step, bridge, movingBlock)) {
+                break;
+            }
         }
+    }
+
+    private boolean isFailed(int step, List<String> bridge, String movingBlock) {
+        return user.changeStatusIsFailed(move(step, bridge, movingBlock));
     }
 }
