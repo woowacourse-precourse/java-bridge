@@ -66,6 +66,7 @@ public class BridgeGameController {
 
     private void printGameResult() {
         outputView.printGameResultScript();
+        outputView.printMap(bridgeGame.getCurrentGameStages());
         outputView.printResult(bridgeGame.isAllCrossed(), bridgeGame.getNumberOfAttempt());
     }
 }
