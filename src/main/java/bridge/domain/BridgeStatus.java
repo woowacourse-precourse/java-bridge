@@ -40,7 +40,7 @@ public class BridgeStatus {
     }
 
     private void validateAddUserMovingCommand() {
-        if(gameStatus.needCallRetry()) {
+        if (gameStatus.needCallRetry()) {
             throw new IllegalStateException(ERROR_ADD_USER_COMMAND);
         }
     }
