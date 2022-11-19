@@ -8,6 +8,7 @@ public class Application {
     public static void main(String[] args) {
         InputView inputView = new InputView();
         BridgeGame bridgeGame = new BridgeGame();
+        OutputView outputView = new OutputView();
 
         System.out.println("다리 건너기 게임을 시작합니다");
 
@@ -34,7 +35,7 @@ public class Application {
 
             bridgeGame.move(userBridge, nextStep, matchingFlag);
 
-            System.out.println(userBridge);
+            outputView.printMap(userBridge);
         }
     }
 }
