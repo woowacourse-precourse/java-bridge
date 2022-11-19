@@ -14,10 +14,8 @@ public class BridgeGame {
     private BridgeGameStatus status;
     private int tryCount;
 
-    public BridgeGame(List<String> bridgeAnswer){
+    public BridgeGame(List<String> bridgeAnswer) {
         this.bridgeAnswer = bridgeAnswer;
-        bridgeUpper.clear();
-        bridgeLower.clear();
         status = BridgeGameStatus.RUNNING;
         tryCount = 1;
     }
@@ -28,8 +26,32 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String direction) {
+        int currentIndex = bridgeUpper.size();
+        String answer = bridgeAnswer.get(currentIndex);
+
+        if (answer.equals("U") && answer.equals(direction)) {
+            updateBridge("O", " ");
+        }
+        if (answer.equals("U") && !answer.equals(direction)) {
+            updateBridge(" ", "X");
+        }
+        if (answer.equals("D") && answer.equals(direction)) {
+            updateBridge(" ", "O");
+        }
+        if (answer.equals("D") && !answer.equals(direction)) {
+            updateBridge("X", " ");
+        }
+
+        //TODO
+        //index out of bound, currentIndex != bridgeLower.size()
 
     }
+
+    private void updateBridge(String upperAnswer, String lowerAnswer) {
+        bridgeUpper.add(upperAnswer);
+        bridgeLower.add(lowerAnswer);
+    }
+
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
