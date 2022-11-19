@@ -1,6 +1,6 @@
 package bridge.domain;
 
-public class MapConstant {
+public class BridgeMapConstant {
     public static final String COVERT_STAND_WORD = "U";
     public static final String DIVISION = "][";
     public static final String REPLACE = "|";
