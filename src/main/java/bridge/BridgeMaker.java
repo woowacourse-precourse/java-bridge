@@ -29,7 +29,7 @@ public class BridgeMaker {
         return bridge;
     }
 
-    private void appendBridge(List<String> bridge) {
+    public void appendBridge(List<String> bridge) {
         if (bridgeNumberGenerator.generate() == UP) {
             bridge.add("U");
             return;
