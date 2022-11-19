@@ -31,4 +31,16 @@ class ResultTest {
         result.updateNumberOfTrial();
         assertThat(result.getNumberOfTrial()).isEqualTo(1);
     }
+
+    @DisplayName("up과 down 리스트 초기화")
+    @Test
+    void reInitialList() {
+        result.update("O", "U");
+        result.update("O", "D");
+        assertThat(result.getUp().size()).isEqualTo(1);
+        assertThat(result.getDown().size()).isEqualTo(1);
+        result.reInit();
+        assertThat(result.getUp().size()).isEqualTo(0);
+        assertThat(result.getDown().size()).isEqualTo(0);
+    }
 }
