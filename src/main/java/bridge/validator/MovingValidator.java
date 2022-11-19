@@ -10,8 +10,8 @@ import java.util.Objects;
 public class MovingValidator implements Validator {
     @Override
     public void validate(String inputValue) {
-        checkInvalidMoving(inputValue);
         checkBlankValue(inputValue);
+        checkInvalidMoving(inputValue);
     }
 
     private void checkInvalidMoving(String inputValue) {
