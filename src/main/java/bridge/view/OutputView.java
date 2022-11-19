@@ -32,7 +32,7 @@ public class OutputView {
         for (String value: bridge.getDownBridge()) {
             System.out.print(value + "");
         }
-        System.out.println();
+        System.out.println("\n");
     }
 
     /**
@@ -49,7 +49,7 @@ public class OutputView {
         for (String value: bridge.getDownBridge()) {
             System.out.print(value + "");
         }
-        System.out.println();
+        System.out.println("\n");
         System.out.println(MessageView.WHETHER_GAME_SUCCESS.getMessage() + gameStatistics.getGameResult());
         System.out.println(MessageView.TOTAL_ATTEMPTS.getMessage() + gameStatistics.getTotalTryCount());
     }
