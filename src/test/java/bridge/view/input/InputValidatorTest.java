@@ -4,6 +4,8 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatNoException
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class InputValidatorTest {
 
@@ -47,5 +49,28 @@ class InputValidatorTest {
     void 입력이_범위내의_숫자라면_성공() {
         assertThatNoException()
                 .isThrownBy(() -> InputValidator.checkBridgeSizeOrElseThrowException("15"));
+    }
+
+
+    @ParameterizedTest
+    @ValueSource(strings = {"u", "d", "A", "B", "S", "s", "b", "a"})
+    void 방향_입력이_U_또는_D가_아니라면_예외_발생(String direction) {
+        assertThatThrownBy(() -> InputValidator.checkDirectionOrElseThrowException(direction))
+                .isInstanceOf(IllegalArgumentException.class);
+
+    }
+
+    @Test
+    void 방향_입력이_U_라면_성공() {
+        assertThatNoException()
+                .isThrownBy(() -> InputValidator.checkDirectionOrElseThrowException("U"));
+
+    }
+
+    @Test
+    void 방향_입력이_D_라면_성공() {
+        assertThatNoException()
+                .isThrownBy(() -> InputValidator.checkDirectionOrElseThrowException("D"));
+
     }
 }
