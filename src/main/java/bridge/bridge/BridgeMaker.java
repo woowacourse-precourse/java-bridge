@@ -36,7 +36,7 @@ public class BridgeMaker {
      * @return 각 경우에 맞는 알파벳 (U, D)입니다.
      */
     private String convertNumberToBridge(int randomNumber) {
-        if (randomNumber == 0) return "U";
-        return "D";
+        if (randomNumber == 0) return "D";
+        return "U";
     }
 }
