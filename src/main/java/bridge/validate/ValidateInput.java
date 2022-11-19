@@ -9,7 +9,7 @@ public class ValidateInput {
         isBridgeSizeBetween3And20(validateInputBridgeSize(input));
     }
 
-    public static int validateInputBridgeSize(String input) {
+    private static int validateInputBridgeSize(String input) {
         if (!input.matches(INTEGER_ONLY_REGEX)) {
             throw new IllegalArgumentException(INPUT_ONLY_INTEGER);
         }
