@@ -23,7 +23,7 @@ public class InputView {
     }
 
     private void isNumber(String input) {
-        if (!input.matches("[+-]?\\d*(\\.\\d+)?")) {
+        if (!input.matches("\\d+")) {
             throw Exception.IS_NOT_NUMBER_EXCEPTION.getException();
         }
     }
