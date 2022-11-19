@@ -3,6 +3,12 @@ package bridge.validator;
 import bridge.exception.ExceptionType;
 
 public class Validator {
+    public static void validateMoving(String input) {
+        if (!"U".equals(input) && !"D".equals(input)) {
+            throw new IllegalArgumentException(ExceptionType.MOVE_TYPE_EXCEPTION.getErrorMessage());
+        }
+    }
+
     public static void validateBridgeSize(String input) {
         validateIntegerType(input);
         validateRange(Integer.parseInt(input));
