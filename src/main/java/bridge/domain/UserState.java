@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserState {
-    private boolean quit;
-    private int tryCount;
+
     private final List<String> upLine;
     private final List<String> downLine;
+    private boolean quit;
+    private int tryCount;
 
     public UserState() {
         this.quit = false;

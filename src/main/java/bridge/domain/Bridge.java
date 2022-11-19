@@ -3,6 +3,7 @@ package bridge.domain;
 import java.util.List;
 
 public class Bridge {
+
     private final List<String> bridge;
 
     public Bridge(List<String> bridge) {
@@ -13,5 +14,7 @@ public class Bridge {
         return bridge.get(step).equals(command);
     }
 
-    public int getSize() { return bridge.size(); }
+    public int getSize() {
+        return bridge.size();
+    }
 }
