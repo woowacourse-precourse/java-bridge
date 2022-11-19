@@ -73,4 +73,17 @@ public class InputViewTest {
 
         assertThat(restartOrNotInput).isEqualTo(input);
     }
+
+    @DisplayName("R, Q 이외의 값이 게임 재시작 여부에 대한 값으로 입력되면, 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {" ", "RR", "QQ", "RQ", "r", "q", "111111111111111111", "\n"})
+    public void 잘못된_게임_재시작_여부_입력_값에_대한_예외_테스트(String input) {
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        InputView inputView = new InputView();
+
+        assertThatThrownBy(() -> inputView.readGameCommand())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] R 또는 Q만 입력 가능합니다.");
+    }
 }
