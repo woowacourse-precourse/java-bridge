@@ -1,13 +1,14 @@
 package bridge.service;
 
 import bridge.domain.Bridge;
+import bridge.domain.PlayState;
 import bridge.domain.Result;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private boolean playingState = true;
+    private PlayState playState;
     private int playCount = 1;
     private Bridge bridge;
     private Result result;
@@ -18,6 +19,7 @@ public class BridgeGame {
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
         this.result = new Result();
+        this.playState = new PlayState(true);
     }
 
     public void move(String input, int count) {
@@ -30,12 +32,12 @@ public class BridgeGame {
             playCount++;
             return true;
         }
-        playingState = false;
+        end();
         return false;
     }
 
     public void end() {
-        this.playingState = false;
+        playState.end();
     }
 
     public void newResult() {
@@ -43,7 +45,7 @@ public class BridgeGame {
     }
 
     public boolean state() {
-        return playingState;
+        return playState.nowState();
     }
 
     private void updateResult(String input, int index) {
