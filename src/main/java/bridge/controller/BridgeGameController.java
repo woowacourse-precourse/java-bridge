@@ -62,7 +62,7 @@ public class BridgeGameController {
 		boolean playGame = true;
 		while (playGame) {
 			bridgeGame.retry();
-			makeResultMap(bridgeGame);
+			crossBridge(bridgeGame);
 			if (progressMap.isClear()) {
 				break;
 			}
@@ -70,7 +70,7 @@ public class BridgeGameController {
 		}
 	}
 
-	private void makeResultMap(BridgeGame bridgeGame) {
+	private void crossBridge(BridgeGame bridgeGame) {
 		progressMap = bridgeGameService.initGameMap(bridgeGame.getBridgeSize());
 		while (!progressMap.isClearFailed() && !progressMap.isClear()) {
 			moveBridgeOneTime(bridgeGame);
