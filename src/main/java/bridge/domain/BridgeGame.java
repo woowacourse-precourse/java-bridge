@@ -4,6 +4,7 @@ import bridge.model.Answer;
 import bridge.model.Direction;
 import bridge.model.ErrorMessage;
 import bridge.model.Restart;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,7 +39,19 @@ public class BridgeGame {
         return result;
     }
 
-    public List<Answer> getCorrectBridge(Direction direction){
+    public List<List<Answer>> getCurrentBridge(Answer answer){
+        List<List<Answer>> result = new LinkedList<>();
+        if(answer == Answer.CORRECT || answer == Answer.END){
+            result.add(getCorrectBridge(Direction.UP));
+            result.add(getCorrectBridge(Direction.DOWN));
+            return result;
+        }
+        result.add(getFailedBridge(Direction.UP));
+        result.add(getFailedBridge(Direction.DOWN));
+        return result;
+    }
+
+    private List<Answer> getCorrectBridge(Direction direction){
         return answer.stream().map( dir -> {
                             if(dir == direction){
                                 return Answer.CORRECT;
@@ -49,7 +62,7 @@ public class BridgeGame {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public List<Answer> getFailedBridge(Direction direction){
+    private List<Answer> getFailedBridge(Direction direction){
         List<Answer> result = getCorrectBridge(direction);
         if(direction == answer.get(step)){
             result.add(Answer.NONE);
