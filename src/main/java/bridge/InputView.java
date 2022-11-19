@@ -28,6 +28,7 @@ public class InputView {
     public String readGameCommand() {
         String command = Console.readLine().strip();
         checkNullGameCommand(command);
+        checkWrongGameCommand(command);
         return command;
     }
 
@@ -37,4 +38,9 @@ public class InputView {
         }
     }
 
+    private static void checkWrongGameCommand(String command) {
+        if(command.strip().length() > 0){
+            throw new RuntimeException("[Error] 잘못된 커맨드를 입력하셨습니다. 다시 입력해주세요.");
+        }
+    }
 }
