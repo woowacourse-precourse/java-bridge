@@ -112,15 +112,15 @@
             - [x] IllegalArgumentException 처리
 
 
-- 이동 칸 수 입력 readMoving()
-    - [ ] 텍스트 출력
+- 이동 칸 방향 입력 readMoving()
+    - [x] 텍스트 출력
       ```
       이동할 칸을 선택해주세요. (위: U, 아래: D)
       ```
-    - [ ] 검증 사항
+    - [x] 검증 사항
         - U 또는 D
         - 해당 범위가 아닐 경우 예외 처리
-            - [ ] IllegalArgumentException 처리
+            - [x] IllegalArgumentException 처리
 
 
 - 재시도/종료 입력 readGameCommand()
