@@ -1,45 +1,57 @@
 package bridge;
 
-import javax.swing.text.StyledEditorKit;
-
 import bridge.domain.Record;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameController {
 	private final BridgeGame bridgeGame;
-	private final InputView inputView;
-	private final OutputView outputView;
+	private final InputView inputView = new InputView();
+	private final OutputView outputView = new OutputView();
 
 	BridgeGameController() {
-		this.outputView = new OutputView();
-		this.inputView = new InputView();
 		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 		this.bridgeGame = new BridgeGame(bridgeMaker.makeBridge(inputView.readBridgeSize()));
 	}
 
 	public void gameStart(int repeat) {
 		Record record = new Record();
-		Boolean gameResult = true;
+		crossTheBridge(record);
+		if (isFall(record)) {
+			if (isRetry()) {
+				gameStart(repeat + 1);
+				return;
+			}
+		}
+		gameEnd(record, repeat);
+	}
+
+	private boolean isRetry() {
+		return bridgeGame.retry(inputView.readGameCommand());
+	}
+
+	private static boolean isFall(Record record) {
+		return !record.isSuccess();
+	}
+
+	private void crossTheBridge(Record record) {
 		for (int i = 0; i < bridgeGame.getBridgeSize(); i++) {
-			String move = inputView.readMoving();
-			gameResult = bridgeGame.move(move, i);
-			record.recordResult(move, gameResult);
+			crossOneStep(record, i);
 			outputView.printMap(record.getResult());
-			if (gameResult == false) {
-				Boolean isRetry = bridgeGame.retry(inputView.readGameCommand());
-				if (isRetry) {
-					gameStart(repeat + 1);
-				}
-				if (!isRetry) {
-					gameEnd(record, repeat);
-				}
+			if (!record.isSuccess()) {
 				break;
 			}
 		}
-		if (gameResult == true) {
-			gameEnd(record, repeat);
-		}
+	}
+
+	private void crossOneStep(Record record, int i) {
+		String move = decideUpOrDown();
+		Boolean resultOfMove = bridgeGame.move(move, i);
+		record.recordOneMove(move, resultOfMove);
+	}
+
+	private String decideUpOrDown() {
+		return inputView.readMoving();
 	}
 
 	private void gameEnd(Record record, int repeat) {
