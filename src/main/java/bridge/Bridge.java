@@ -10,15 +10,19 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public boolean validateMove(String userDirection, int location) {
-        if (bridge.get(location).equals(userDirection)) {
+    public boolean validateMove(String userDirection, int index) {
+        if (bridge.get(index).equals(userDirection)) {
             return true;
         }
 
         return false;
     }
-//
-//    public long returnBridgeLength() { // 다리 길이 길것 대비하여 Long 사용
-//        return bridge.size();
-//    }
+
+    public String returnCertainIndexUpOrDown(int index) {
+        return bridge.get(index);
+    }
+
+    public int returnBridgeLength() {
+        return bridge.size();
+    }
 }
