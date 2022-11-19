@@ -18,11 +18,17 @@ public class BridgeMaker {
      * @param size 다리의 길이
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
+    // 인자, 이름, 반환 타입이 변경 불가한 메서드
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             bridge.add("[   ]");
         }
         return bridge;
+    }
+
+    public int getRandomNumber(){
+        int randomNumber = bridgeNumberGenerator.generate();
+        return randomNumber;
     }
 }
