@@ -31,7 +31,8 @@ public class GameController {
     private static void moveAndPrintResult() {
         Node to = input.readMoving();
         game.move(to);
-        output.printMap();
+        // TODO: map 만들어와서 printMap() 인자로 넣어주기
+//        output.printMap();
     }
 
     private static void quitOrRetry() {
