@@ -26,7 +26,12 @@ public class BridgeGame {
         return false;
     }
 
-
+    public String bridgeMove(boolean isMove, String bridgeMove) {
+        if (isMove) {
+            return bridgeMoveSuccess(bridgeMove);
+        }
+        return bridgeMoveFail(bridgeMove);
+    }
 
     public String bridgeMoveSuccess(String bridgeMove) {
         if (bridgeMove.equals("U")) {
