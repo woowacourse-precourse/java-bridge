@@ -12,7 +12,7 @@ public class BridgeGame {
 
     private Bridge bridge;
     private int position;
-    private int tryCount;
+    private int tryCount = 1;
     private GameStatus gameStatus;
 
     public BridgeGame(Bridge bridge) {
@@ -21,7 +21,6 @@ public class BridgeGame {
     }
 
     private void init() {
-        tryCount = 1;
         position = 0;
         gameStatus = GameStatus.PLAYING;
     }
@@ -59,6 +58,8 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        tryCount++;
+        init();
     }
 
     public boolean isPlaying() {
