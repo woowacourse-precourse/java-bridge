@@ -10,12 +10,13 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 import java.util.List;
+import java.util.function.Function;
 
 /**
  * 다리 건너기 게임의 플래이어와 맵 등록, 입력등을 관리하는 클래스
  */
 // todo: 다른 클래스로 분리할 기능들 확인
-public class GameController {
+public class GameController implements ValidateReader {
 
     public static final String GAME_RETRY_INPUT = "R";
     public static final String GAME_QUIT_INPUT = "Q";
@@ -38,15 +39,11 @@ public class GameController {
     }
 
     private Bridge generateRandomBridge() {
-        while (true) {
-            try {
-                int bridgeSize = inputView.readBridgeSize();
-                List<String> bridgePositions = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
-                return Bridge.from(bridgePositions);
-            } catch (IllegalArgumentException exception) {
-                System.out.println(exception.getMessage());
-            }
-        }
+        return readUntilValidate((unused -> {
+            int bridgeSize = inputView.readBridgeSize();
+            List<String> bridgePositions = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
+            return Bridge.from(bridgePositions);
+        }));
     }
 
 
@@ -71,22 +68,9 @@ public class GameController {
     }
 
     private boolean playOneTurn(Player player) {
-        Tile movingTargetTile = readMovingTargetTile();
+        Tile movingTargetTile = readUntilValidate((unused -> Tile.findByPositionSign(inputView.readMoving())));
         boolean turnResult = bridgeGame.move(player, movingTargetTile);
         return turnResult;
-    }
-
-    private Tile readMovingTargetTile() {
-        Tile movingTile = null;
-        do {
-            try {
-                movingTile = Tile.findByPositionSign(inputView.readMoving());
-            } catch (IllegalArgumentException exception) {
-                System.out.println(exception.getMessage());
-            }
-        } while (movingTile == null);
-
-        return movingTile;
     }
 
     private boolean isContinueGame(Player player, boolean isSurviveThisTurn) {
@@ -97,25 +81,12 @@ public class GameController {
     }
 
     private boolean askForTryAgain(Player player) {
-        String input = readTryAgainInput();
+        String input = readUntilValidate((unused) -> inputView.readGameCommand(GAME_RETRY_INPUT, GAME_QUIT_INPUT));
         if (input.equals(GAME_RETRY_INPUT)) {
             bridgeGame.retry(player);
             return true;
         }
         return false;
-    }
-
-    private String readTryAgainInput() {
-        String input = null;
-        do {
-            try {
-                input = inputView.readGameCommand(GAME_RETRY_INPUT, GAME_QUIT_INPUT);
-            } catch (IllegalArgumentException exception) {
-                System.out.println(exception.getMessage());
-            }
-        } while (input == null);
-
-        return input;
     }
 
     private void showResult(Player player) {
@@ -124,4 +95,17 @@ public class GameController {
         outputView.printResult(bridgeGame.isWin(player), player.getTryCount());
     }
 
+    @Override
+    public <T> T readUntilValidate(Function<Void, T> expression) {
+        T input = null;
+        do {
+            try {
+                input = expression.apply(null);
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        } while (input == null);
+
+        return input;
+    }
 }
