@@ -27,6 +27,7 @@ public final class Constants {
         public static final String SEPERATOR = "|";
         public static final String MOVABLE = " O ";
         public static final String UNMOVABLE = " X ";
+        public static final String BLANK = "   ";
         private BridgeShape() {}
     }
 

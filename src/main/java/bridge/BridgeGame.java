@@ -9,6 +9,8 @@ package bridge;
  * 추가 메서드 구현 가능
  */
 
+import bridge.Constants.BridgeShape;
+import bridge.Constants.Command;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +25,7 @@ public class BridgeGame {
 
     private static List<String> bridge;
     private static int countAttempt = 0;
-    public static String result = "실패";
+    public static String RESULT = "실패";
 
     BridgeGame() {
         this.upLine = new ArrayList<String>();
@@ -64,26 +66,26 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String direction) {
-        if(direction.equals("U")) {
-            if(bridge.get(bridgeIndex).equals("U")) {
-                this.upLine.add(" O ");
-                this.downLine.add("   ");
+        if(direction.equals(Command.UP)) {
+            if(bridge.get(bridgeIndex).equals(Command.UP)) {
+                this.upLine.add(BridgeShape.MOVABLE);
+                this.downLine.add(BridgeShape.BLANK);
                 bridgeIndex += 1;
                 return true;
             }
-            this.upLine.add(" X ");
-            this.downLine.add("   ");
+            this.upLine.add(BridgeShape.UNMOVABLE);
+            this.downLine.add(BridgeShape.BLANK);
             bridgeIndex += 1;
             return false;
         }
-        if(bridge.get(bridgeIndex).equals("U")) {
-            this.downLine.add(" X ");
-            this.upLine.add("   ");
+        if(bridge.get(bridgeIndex).equals(Command.UP)) {
+            this.downLine.add(BridgeShape.UNMOVABLE);
+            this.upLine.add(BridgeShape.BLANK);
             bridgeIndex += 1;
             return false;
         }
-        this.downLine.add(" O ");
-        this.upLine.add("   ");
+        this.downLine.add(BridgeShape.MOVABLE);
+        this.upLine.add(BridgeShape.BLANK);
         bridgeIndex += 1;
         return true;
     }
