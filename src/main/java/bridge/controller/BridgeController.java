@@ -2,6 +2,8 @@ package bridge.controller;
 
 import bridge.*;
 
+import java.util.List;
+
 public class BridgeController {
     private OutputView outputView = new OutputView();
     private InputView inputView = new InputView();
@@ -10,22 +12,46 @@ public class BridgeController {
     private BridgeGame bridgeGame;
 
     public void startGame() {
+        List<String> bridge;
+        int count;
+
         outputView.printStartingPhrase();
-        bridgeGame = new BridgeGame(bridgeMaker.makeBridge(inputView.readBridgeSize()));
-        System.out.println(bridgeGame.getBridge());
-        startMove();
+        bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        bridgeGame = new BridgeGame(bridge);
+
+        while (true) {
+            bridgeGame.resetUserMoving();
+            System.out.println(bridgeGame.getBridge());
+            count = startMove();
+
+            if (bridgeGame.isSuccess()) {
+                outputView.printResult(bridgeGame.getUserMoving(),"성공",count);
+                break;
+            }
+            if (bridgeGame.retry(inputView.readGameCommand()) == false) {
+                outputView.printResult(bridgeGame.getUserMoving(),"실패",count);
+                break;
+            }
+        }
     }
 
-    public void startMove() {
+    public int startMove() {
+        int count=0;
+
         while (true) {
+            count++;
+
             if (bridgeGame.move(inputView.readMoving()) == false) {
                 outputView.printMap(bridgeGame.getUserMoving());
                 break;
             }
-            if(bridgeGame.isEndOfBridge() == true){
+            if (bridgeGame.isEndOfBridge() == true) {
+                outputView.printMap(bridgeGame.getUserMoving());
                 break;
             }
             outputView.printMap(bridgeGame.getUserMoving());
         }
+
+        return count - 1;
     }
 }
