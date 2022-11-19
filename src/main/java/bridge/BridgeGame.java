@@ -24,8 +24,10 @@ public class BridgeGame {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
         int bridgeSize = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        int gameCount = 0;
         while (true) {
             boolean flag = false;
+            countGame(gameCount);
             List<String> upperBridge = new ArrayList<>();
             List<String> downBridge = new ArrayList<>();
             for (int i = 0; i < bridge.size(); i++) {
@@ -70,5 +72,9 @@ public class BridgeGame {
             return false;
         }
         return false;
+    }
+
+    public void countGame(int gameCount) {
+        gameCount += 1;
     }
 }
