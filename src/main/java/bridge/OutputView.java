@@ -31,4 +31,8 @@ public class OutputView {
         System.out.println();
         System.out.println(InputMessage.BRIDGE_SIZE_INPUT_MESSAGE.getMessage());
     }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }
