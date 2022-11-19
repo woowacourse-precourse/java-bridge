@@ -6,18 +6,21 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Application {
+    static InputView inputView = new InputView();
+    static BridgeGame bridgeGame = new BridgeGame();
 
     public static void main(String[] args) {
-        InputView inputView = new InputView();
-        BridgeGame bridgeGame = new BridgeGame();
-        // TODO: 프로그램 구현
         inputView.readBridgeSize();
         bridgeGame.move();
-        while(true) {
+        retry();
+    }
+
+    public static void retry() {
+        while (true) {
             if (bridgeGame.failOrTure.equals("실패")) {
                 bridgeGame.retry();
             }
-            if(bridgeGame.failOrTure.equals("성공") || bridgeGame.retry().equals("Q")){
+            if (bridgeGame.failOrTure.equals("성공") || bridgeGame.retry().equals("Q")) {
                 break;
             }
         }
