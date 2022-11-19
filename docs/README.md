@@ -119,3 +119,9 @@ D
 - [ ] BridgeRandomNumberGenerator.generate 함수를 통해 0또는 1의 랜덤한 값을 받아온다
 - [ ] 0이면 D, 1이면 U를 리스트에 추가
 - [ ] 리스트를 리턴
+
+## BridgeGame
+### move
+- [ ] readMoving함수를 실행
+- [ ] 결과 다리와 비교
+- [ ] 같으면 true, 틀리면 false를 리턴
