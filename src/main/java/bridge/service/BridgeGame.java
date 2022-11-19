@@ -60,5 +60,9 @@ public class BridgeGame {
     private void retry(List<String> bridge) {
         String restartGameWhether = InputView.readGameCommand();
         ValidateInput.validateRestartGameWhether(restartGameWhether);
+
+        if (user.ifUserInputQStopGameOrElseRestart(restartGameWhether)) {
+            processCrossingBridge(bridge);
+        }
     }
 }

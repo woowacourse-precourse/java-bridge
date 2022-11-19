@@ -1,6 +1,10 @@
 package bridge.domain;
 
 import java.util.HashMap;
+import java.util.Objects;
+
+import static bridge.util.Constants.InputViewConstants.QUIT;
+import static bridge.util.Constants.InputViewConstants.RESTART;
 
 public class User {
 
@@ -8,6 +12,7 @@ public class User {
     public int currentBlock;
     private boolean isGameClear = true;
     private boolean isRestartGame = true;
+    private static int retryCount = 1;
 
     public User() {
         pastResult = new HashMap<>();
@@ -34,5 +39,17 @@ public class User {
 
     public boolean isRestartGame() {
         return isRestartGame;
+    }
+
+    public boolean ifUserInputQStopGameOrElseRestart(String restartGameWhether) {
+        if (Objects.equals(restartGameWhether, RESTART)) {
+            retryCount++;
+            return true;
+        }
+
+        if (Objects.equals(restartGameWhether, QUIT)) {
+            isRestartGame = true;
+        }
+        return false;
     }
 }
