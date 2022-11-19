@@ -35,6 +35,12 @@ public class InputView {
         return null;
     }
 
+    private void validateReadMoving(String moving) {
+        if (!moving.equals("U") && !moving.equals("D")) {
+            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U 또는 D 여야 합니다.");
+        }
+    }
+
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
