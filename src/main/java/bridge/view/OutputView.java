@@ -26,6 +26,7 @@ public class OutputView {
     public void printMap(List<String> lowBridge, List<String> highBridge) {
         System.out.println(formatBridge(highBridge));
         System.out.println(formatBridge(lowBridge));
+        System.out.println();
     }
 
     /**
