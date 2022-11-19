@@ -1,6 +1,6 @@
 package bridge.controller;
 
-import bridge.BridgeGame;
+import bridge.service.BridgeGame;
 import bridge.dto.CurrentPositionDto;
 import bridge.dto.ResultDto;
 import bridge.type.CommandType;

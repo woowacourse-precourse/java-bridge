@@ -1,5 +1,7 @@
-package bridge;
+package bridge.service;
 
+import bridge.domain.BridgeMaker;
+import bridge.domain.Player;
 import bridge.dto.CurrentPositionDto;
 import bridge.dto.ResultDto;
 
