@@ -12,7 +12,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(List<String> movementsInUpBridge, List<String> movementsInDownBridge) {
+        printUpBridgeMap(movementsInUpBridge);
+        printDownBridgeMap(movementsInDownBridge);
     }
 
     /**
@@ -20,16 +22,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<String> movementsInUpBridge, List<String> movementsInDownBridge) {
-        printUpBridgeResult(movementsInUpBridge);
-        printDownBridgeResult(movementsInDownBridge);
+    public void printResult() {
     }
 
-    private void printUpBridgeResult(List<String> movementsInUpBridge) {
+    private void printUpBridgeMap(List<String> movementsInUpBridge) {
         System.out.println("[" + String.join("|", movementsInUpBridge) + "]");
     }
 
-    private void printDownBridgeResult(List<String> movementsInDownBridge) {
+    private void printDownBridgeMap(List<String> movementsInDownBridge) {
         System.out.println("[" + String.join("|", movementsInDownBridge) + "]");
     }
 

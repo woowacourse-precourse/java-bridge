@@ -21,7 +21,7 @@ public class BridgeGameProcessor {
 
     private boolean oneStage(BridgeGame bridgeGame) {
         boolean moving = isMoving(bridgeGame);
-        outputView.printResult(bridgeGame.getMovementsInUpBridge(), bridgeGame.getMovementsInDownBridge());
+        outputView.printMap(bridgeGame.getMovementsInUpBridge(), bridgeGame.getMovementsInDownBridge());
         if (moving) {
             return true;
         }
