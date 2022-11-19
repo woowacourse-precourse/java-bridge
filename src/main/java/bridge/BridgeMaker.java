@@ -22,9 +22,9 @@ public class BridgeMaker {
         List<String> map = new ArrayList<>();
         for(int i=0; i<size; i++){
             int index = bridgeNumberGenerator.generate();
-            if(index == 0){
+            if(index == 1){
                 map.add("U");
-            }else if(index == 1) {
+            }else if(index == 0) {
                 map.add("D");
             }
         }
