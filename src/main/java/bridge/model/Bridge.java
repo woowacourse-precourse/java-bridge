@@ -12,34 +12,42 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public void validatePlayerStatus(Player player) {
+    public void validatePlayer(Player player) {
         List<String> directions = player.getDirections();
+        validateCount(directions);
+        validateMatch(directions);
+    }
+
+    private void validateCount(List<String> directions) {
         if (directions.size() > bridge.size()) {
             throw new IllegalStateException(
-                    String.format("선택한 방향의 개수가 존재하는 다리를 초과했습니다. 다리 길이 : %d / 현재 위치 : %d", bridge.size(),
-                            directions.size()));
-        }
-        if (hasMisMatchDirection(directions)) {
-            throw new IllegalStateException(
-                    String.format("이동이 불가능한 다리 방향을 가지고 있습니다. 방향 : %s", directions));
+                    String.format("방향의 개수가 존재하는 다리를 초과했습니다. 다리 길이 : %d / 현재 위치 : %d",
+                            bridge.size(), directions.size()));
         }
     }
 
-    private boolean hasMisMatchDirection(List<String> directions) {
+    private void validateMatch(List<String> directions) {
+        if (hasMismatchDirection(directions)) {
+            throw new IllegalStateException(
+                    String.format("다리와 일치하지 않는 방향을 가지고 있습니다. 방향 : %s", directions));
+        }
+    }
+
+    private boolean hasMismatchDirection(List<String> directions) {
         return IntStream.range(0, directions.size())
                 .anyMatch(i -> !directions.get(i).equals(bridge.get(i)));
     }
 
     public boolean isDone(Player player) {
         List<String> directions = player.getDirections();
-        return isSameLength(directions.size()) && isSameDirections(directions);
+        return isSameCount(directions) && isMatchDirections(directions);
     }
 
-    private boolean isSameLength(int length) {
-        return bridge.size() == length;
+    private boolean isSameCount(List<String> directions) {
+        return bridge.size() == directions.size();
     }
 
-    private boolean isSameDirections(List<String> directions) {
+    private boolean isMatchDirections(List<String> directions) {
         return IntStream.range(0, directions.size())
                 .allMatch(i -> directions.get(i).equals(bridge.get(i)));
     }
