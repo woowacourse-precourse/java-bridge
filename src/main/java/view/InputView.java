@@ -14,7 +14,7 @@ public class InputView {
 	public int readBridgeSize() {
 		System.out.println(ViewConstant.ASKING_INPUT_BRIDGE_SIZE_MESSAGE);
 		String size = Console.readLine();
-		Validator.validateSizeIsNumber(size);
+		Validator.validateSizeIsNaturalNumber(size);
 		System.out.println();
 		return Integer.parseInt(size);
 	}
@@ -23,7 +23,7 @@ public class InputView {
 	 * 사용자가 이동할 칸을 입력받는다.
 	 */
 	public String readMoving() {
-		System.out.println(ViewConstant.ASKING_CHOOSE_CELL_POSITION_MESSAGE);
+		System.out.println(ViewConstant.ASKING_CHOOSE_MOVING_MESSAGE);
 		String moving = Console.readLine();
 		Validator.validateMovingIsCellPosition(moving);
 		return moving;

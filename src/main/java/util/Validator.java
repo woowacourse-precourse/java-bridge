@@ -23,9 +23,9 @@ public class Validator {
 		}
 	}
 
-	public static void validateSizeIsNumber(String number) {
+	public static void validateSizeIsNaturalNumber(String number) {
 		if (!number.matches(NUMBER_REGEX)) {
-			throw new IllegalArgumentException("[ERROR] 다리의 길이는 숫자여야 합니다.");
+			throw new IllegalArgumentException("[ERROR] 다리의 길이는 자연수여야 합니다.");
 		}
 	}
 

@@ -12,14 +12,14 @@ class ValidatorTest {
 	@ValueSource(strings = {"20", "0", "3", "12312412"})
 	@ParameterizedTest
 	void validateSizeIsNumberNormal(String strings) {
-		assertDoesNotThrow(() -> Validator.validateSizeIsNumber(strings));
+		assertDoesNotThrow(() -> Validator.validateSizeIsNaturalNumber(strings));
 	}
 
 	@DisplayName("숫자가 아닌 다리 길이 입력에 대해 예외를 발생한다.")
 	@ValueSource(strings = {"25.1", "abcde", "가나다라", "1ㅁ2a3", "", "-1"})
 	@ParameterizedTest
 	void validateSizeIsNumberAbnormal(String strings) {
-		assertThatThrownBy(() -> Validator.validateSizeIsNumber(strings)).isInstanceOf(IllegalArgumentException.class);
+		assertThatThrownBy(() -> Validator.validateSizeIsNaturalNumber(strings)).isInstanceOf(IllegalArgumentException.class);
 	}
 
 	@DisplayName("이동할 칸을 입력받는다.")
