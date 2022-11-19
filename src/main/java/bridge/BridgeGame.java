@@ -18,7 +18,8 @@ public class BridgeGame {
 
     public void startGame() {
         BridgeSize bridgeSize = InputView.readBridgeSize();
-        movement = new Movement(new Bridge(bridgeMaker.makeBridge(bridgeSize.getSize())));
+        Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize.getSize()));
+        movement = new Movement(bridge);
         repeatGame();
     }
 
@@ -39,7 +40,7 @@ public class BridgeGame {
         OutputView.printMap(bridgeMap.getMap());
     }
 
-    public boolean retry() {
+    private boolean retry() {
         Command command = InputView.readGameCommand();
         if (command.isRetry()) {
             tryCount++;
