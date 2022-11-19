@@ -37,12 +37,12 @@ public class BridgeGame {
         return false;
     }
 
-//    public boolean checkWin() {
-//        if (bridge.equals(userBridgeHistroy)) {
-//            return true;
-//        }
-//        return false;
-//    }
+    public boolean checkWin() {
+        if (bridge.equals(userBridgeHistroy)) {
+            return true;
+        }
+        return false;
+    }
 
     public List<String> getUserBridgeHistroy() {
         return userBridgeHistroy;
