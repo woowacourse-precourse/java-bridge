@@ -9,18 +9,17 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private List<String> upBridge = new ArrayList<>(List.of("[ ", " ]"));
-    private List<String> downBridge = new ArrayList<>(List.of("[ ", " ]"));
-    private int count = 1;
+    public List<String> upBridge = new ArrayList<>(List.of("[ ", " ]"));
+    public List<String> downBridge = new ArrayList<>(List.of("[ ", " ]"));
+    public int count = 1;
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String bridge) {
-        String user = InputView.readMoving();
+    public void move(String bridge, String user) {
         if (user.equals("U")) {uplist(bridge, user);}
-        if (user.equals("D")) {downlist(bridge, user);}
+        downlist(bridge, user);
     }
 
     /**
@@ -28,8 +27,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public int retry(int bridgeSize, int i) {
-        String user = InputView.readGameCommand();
+    public int retry(int bridgeSize, int i, String user) {
         if (user.equals("Q")){
             upBridge.remove(upBridge.size()-1);
             downBridge.remove(upBridge.size()-1);
@@ -69,16 +67,14 @@ public class BridgeGame {
 
     public void gameStart(List<String> bridge){
         for(int i=0 ; i<bridge.size() ; i++){
-            move(bridge.get(i));
+            move(bridge.get(i), InputView.readMoving());
             OutputView.printMap(upBridge, downBridge);
             if (i != bridge.size() - 1 ){ midStick();}
-            if (upBridge.contains("X") || downBridge.contains("X")) {i = retry(bridge.size(), i);}
+            if (upBridge.contains("X") || downBridge.contains("X")) {i = retry(bridge.size(), i, InputView.readGameCommand());}
         }
         OutputView.printResult(upBridge, downBridge);
     }
 
-    public int gameCount(){
-        return count;
-    }
+    public int gameCount() {return count;}
 
 }
