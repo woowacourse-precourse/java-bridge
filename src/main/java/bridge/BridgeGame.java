@@ -45,4 +45,27 @@ public class BridgeGame {
                 .map(Direction::fromSymbol)
                 .collect(Collectors.toList());
     }
+
+    public boolean isSuccess() {
+        return history.size() == bridge.size();
+    }
+
+
+
+    public void getCurrentState(){
+
+    }
+
+    public boolean isFail() {
+        int currentIdx = history.size()-1;
+        return !history.get(currentIdx).equals(bridge.get(currentIdx));
+    }
+
+    public boolean isEnd() {
+        return giveUp || isSuccess();
+    }
+
+    public void setGiveUp(boolean b) {
+        this.giveUp = b;
+    }
 }
