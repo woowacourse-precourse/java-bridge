@@ -21,6 +21,19 @@ public class GameController {
         return bridgeMaker.makeBridge(bridgeSize);
     }
 
+    private boolean play(int bridgeSize, BridgeGame bridgeGame) {
+        boolean isCorrect = false;
+        while (bridgeNum < bridgeSize && gaming) {
+            String moving = inputMoving();
+            isCorrect = bridgeGame.checkMove(bridgeNum, moving);
+            outputView.printMap(bridgeGame.getBridgeMap());
+
+            if (!isCorrect) failed(bridgeGame);
+            if (isCorrect) bridgeNum++;
+        }
+        return isCorrect;
+    }
+
     private void failed(BridgeGame bridgeGame) {
         String command = inputCommand();
         if (command.equals("R")) {
