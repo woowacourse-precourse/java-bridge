@@ -63,7 +63,7 @@ public class BridgeGameController {
 		while (playGame) {
 			bridgeGame.retry();
 			makeResultMap(bridgeGame);
-			if (progressMap.whatMapSize() == bridgeGame.getBridgeSize()) {
+			if (progressMap.isClear()) {
 				break;
 			}
 			playGame = askRetry();
@@ -74,11 +74,11 @@ public class BridgeGameController {
 		progressMap = bridgeGameService.initGameMap(bridgeGame.getBridgeSize());
 		while (!progressMap.isClearFailed() && !progressMap.isClear()) {
 			moveBridgeOneTime(bridgeGame);
+			outputView.printMap(progressMap.getProgressMap());
 		}
 	}
 	private void moveBridgeOneTime(BridgeGame bridgeGame) {
 		String moving = receiveMoveCommand();
 		bridgeGameService.moveBridge(moving, bridgeGame, progressMap);
-		outputView.printMap(progressMap.getProgressMap());
 	}
 }
