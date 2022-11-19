@@ -2,6 +2,7 @@ package game;
 
 import bridge.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -9,7 +10,10 @@ public class BridgeController {
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    private int count = 0;
+
+    private int gameRound = 0;
+    private String gameResult = "성공";
+    private List<String> commands = new ArrayList<>();
 
     public void settingGame() {
         System.out.println("다리 건너기 게임을 시작합니다.");
@@ -17,43 +21,30 @@ public class BridgeController {
         List<String> bridge = getBridge();
         System.out.println("bridge = " + bridge);
 
-        String result = run(bridge);
+        run(bridge);
 
-        int gameRound= restart(bridge);
+        System.out.println(gameResult);
         System.out.println(gameRound);
     }
 
 
-    public String run(List<String> bridge) {
-        String result = "실패";
-        int i = 0;
-        for (i = 0; i < bridge.size(); i++) {
+    public void run(List<String> bridge) {
+        gameRound++;
+        for (int i = 0; i < bridge.size(); i++) {
             String command = moveCommand();
+            commands.add(command);
             if (!(bridge.get(i).equals(command))) break;
-
-            if (command.equals("U")) outputView.commandIsU(bridge, i);
-            if (command.equals("D")) outputView.commandIsD(bridge, i);
-
-            if (gameResult(bridge, i+1)) result = "성공";
         }
-        return result;
+        if (!(commands.equals(bridge))) restart(bridge);
+        commands.clear();
     }
 
-    private boolean gameResult(List<String> bridge, int round) {
-        System.out.println("round = " + round);
-        return bridge.size() == round;
-    }
 
-    public int restart(List<String> bridge) {
-        while (true) {
-            count++;
-            String retry = retryCommand();
-            if (retry.equals("Q")) break;
-            if (retry.equals("R")) run(bridge);
-        }
-        return count;
+    public void restart(List<String> bridge) {
+        String retry = retryCommand();
+        if (retry.equals("R")) run(bridge);
+        if (retry.equals("Q")) gameResult = "실패";
     }
-
 
     private List<String> getBridge() {
         List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
@@ -68,6 +59,7 @@ public class BridgeController {
 
     private String retryCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        gameResult = "실패";
         String command = inputView.readGameCommand();
         return command;
     }
