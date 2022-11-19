@@ -16,7 +16,7 @@ public class Application {
         while (true) {
             outputView.printOf(OutputView.MESSAGE_INPUT_BRIDGE_MOVING);
             bridgeGame.move(inputView.readMoving());
-            outputView.printMap(bridgeGame.resultBridgeMoving());
+            outputView.printMap(bridgeGame.getResult());
             if (bridgeGame.isFinishBridge()) {
                 break;
             }
