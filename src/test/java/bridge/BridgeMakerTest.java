@@ -2,8 +2,6 @@ package bridge;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.service.BridgeMaker;
-import bridge.service.BridgeRandomNumberGenerator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

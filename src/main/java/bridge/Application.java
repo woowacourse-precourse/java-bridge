@@ -2,8 +2,6 @@ package bridge;
 
 import bridge.controller.BridgeGameController;
 import bridge.controller.GameController;
-import bridge.service.BridgeNumberGenerator;
-import bridge.service.BridgeRandomNumberGenerator;
 
 public class Application {
 

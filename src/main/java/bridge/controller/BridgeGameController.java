@@ -1,9 +1,9 @@
 package bridge.controller;
 
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.service.BridgeGame;
-import bridge.service.BridgeMaker;
-import bridge.service.BridgeNumberGenerator;
 import bridge.ui.InputView;
 import bridge.ui.OutputView;
 
