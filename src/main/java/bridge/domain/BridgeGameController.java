@@ -93,7 +93,7 @@ public final class BridgeGameController {
     }
 
     private ControllerCommand askRetry(BridgeGame bridgeGame) {
-        if (bridgeGame.result() == GameResult.SUCCESS) {
+        if (isGameCleared(bridgeGame)) {
             return ControllerCommand.QUIT;
         }
         try {
@@ -103,5 +103,9 @@ public final class BridgeGameController {
             outputView.printError(e.getMessage());
             return askRetry(bridgeGame);
         }
+    }
+
+    private boolean isGameCleared(BridgeGame bridgeGame) {
+        return bridgeGame.result() == GameResult.SUCCESS;
     }
 }
