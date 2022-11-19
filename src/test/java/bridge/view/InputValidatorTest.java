@@ -47,7 +47,7 @@ public class InputValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"U", "D"})
     void validateNextMoveOfSuccessCase(String movement) {
-        assertThatCode(() -> InputValidator.validateMoveInput(movement))
+        assertThatCode(() -> InputValidator.validateMovementInput(movement))
                 .doesNotThrowAnyException();
     }
 
@@ -55,8 +55,25 @@ public class InputValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"A", "B", "C", "1"})
     void validateNextMoveOfExceptionCase(String movement) {
-        assertThatThrownBy(() -> InputValidator.validateMoveInput(movement))
+        assertThatThrownBy(() -> InputValidator.validateMovementInput(movement))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] \"U\"와 \"D\" 만 입력 가능합니다.");
+    }
+
+    @DisplayName("재시작에 대한 입력이 \"R\"이나 \"Q\"를 입력하면 정상 작동")
+    @ParameterizedTest
+    @ValueSource(strings = {"R", "Q"})
+    void validateRestartInputOfSuccessCase(String restartInput) {
+        assertThatCode(() -> InputValidator.validateRestartInput(restartInput))
+                .doesNotThrowAnyException();
+    }
+
+    @DisplayName("재시작에 대한 입력이 \"R\"이나 \"Q\"가 아니면 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"D", "U", "AB", "1"})
+    void validateRestartInputOfExceptionCase(String restartInput) {
+        assertThatThrownBy(() -> InputValidator.validateRestartInput(restartInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] \"R\"과 \"Q\" 만 입력 가능합니다.");
     }
 }

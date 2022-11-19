@@ -13,6 +13,7 @@ public class InputValidator {
     private static final String NOT_DIGIT = "정수형의 숫자가 아닙니다.";
     private static final String INVALID_BRIDGE_SIZE = "다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     private static final String INVALID_MOVE = "\"U\"와 \"D\" 만 입력 가능합니다.";
+    private static final String INVALID_RESTART_INPUT = "\"R\"과 \"Q\" 만 입력 가능합니다.";
 
     public static int changeInputToInt(String input) {
         validateIsNumber(input);
@@ -25,7 +26,7 @@ public class InputValidator {
         }
     }
 
-    public static void validateMoveInput(String input) {
+    public static void validateMovementInput(String input) {
         if (!(input.equals(UP) || input.equals(DOWN))) {
             throw new IllegalArgumentException(getErrorMessage(INVALID_MOVE));
         }
@@ -33,7 +34,7 @@ public class InputValidator {
 
     public static void validateRestartInput(String input) {
         if (!(input.equals(RESTART) || input.equals(QUIT))) {
-            throw new IllegalArgumentException(getErrorMessage(INVALID_MOVE));
+            throw new IllegalArgumentException(getErrorMessage(INVALID_RESTART_INPUT));
         }
     }
 
