@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 import bridge.controller.InputController;
 import bridge.domain.Bridge;
 import bridge.domain.Movement;
@@ -10,17 +12,36 @@ import bridge.domain.Player;
  */
 public class BridgeGame {
 
-    Bridge bridge;
-    Player player;
 
-    public BridgeGame(Bridge bridge, Player player) {
+    private final Bridge bridge;
+    private final Player player;
+    private final InputController inputController;
+
+    public BridgeGame(Bridge bridge, Player player, InputController inputController) {
         this.bridge = bridge;
         this.player = player;
+        this.inputController =inputController;
     }
 
-    public void move(InputController inputController) {
-        Movement movement = inputController.getDirection();
-        player.updateMovement(movement);
+    public void move(int bridgeSize) {
+        for (int trialNum = 0; trialNum < bridgeSize; trialNum++) {
+            Movement movementInput = inputController.getDirection();
+            player.updateMovement(movementInput);
+            if (!checkAnswer(player.getDistance())) {
+                break;
+            }
+        }
+    }
+
+    private boolean checkAnswer(int distance) {
+        List<String> bridgeValues = bridge.getBridge();
+        List<Movement> playerRoute = player.getRoute();
+        for (int i = 0; i < distance; i++ ) {
+            if (!bridgeValues.get(i).equals(playerRoute.get(i).getDirection())) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**

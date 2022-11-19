@@ -37,8 +37,8 @@ public class GameController {
     }
 
     private void crossABridge(Bridge bridge, Player player) {
-        BridgeGame bridgeGame = new BridgeGame(bridge, player);
-        bridgeGame.move(inputController);
+        BridgeGame bridgeGame = new BridgeGame(bridge, player, inputController);
+        bridgeGame.move(bridge.getBridgeSize());
 
 
     }

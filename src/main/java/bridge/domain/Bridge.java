@@ -9,4 +9,12 @@ public class Bridge {
     public Bridge(List<String> bridge) {
         this.bridge = bridge;
     }
+
+    public List<String> getBridge() {
+        return bridge;
+    }
+
+    public int getBridgeSize() {
+        return bridge.size();
+    }
 }
