@@ -31,7 +31,9 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String command = readLine();
+        commandValidate(command);
+        return command;
     }
 
     void bridgeValidate(String bridgeSize){
@@ -61,6 +63,13 @@ public class InputView {
         if(!move.equals("U") && !move.equals("D")){
             System.out.println(ERROR_PREFIX + MOVE_ERROR);
             throw new IllegalArgumentException(ERROR_PREFIX + MOVE_ERROR);
+        }
+    }
+
+    void commandValidate(String command){
+        if(!command.equals(RETRY) && !command.equals(QUIT)){
+            System.out.println(ERROR_PREFIX + COMMAND_ERROR);
+            throw new IllegalArgumentException(ERROR_PREFIX + COMMAND_ERROR);
         }
     }
 }
