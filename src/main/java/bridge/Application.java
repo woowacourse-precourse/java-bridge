@@ -13,7 +13,20 @@ public class Application {
         int bridgeSize = inputView.getBridgeSize();
 
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> stringList = bridgeMaker.makeBridge(bridgeSize);
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        System.out.println("bridge = " + bridge);
+
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        int nowBridgeIndex = 0;
+        while (nowBridgeIndex < bridgeSize) {
+            boolean isMoved = bridgeGame.move(nowBridgeIndex, inputView.getMoving());
+            if (isMoved) {
+                nowBridgeIndex++;
+            } else {
+                System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+                break;
+            }
+        }
     }
 
 }
