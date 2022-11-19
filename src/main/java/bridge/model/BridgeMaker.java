@@ -12,6 +12,18 @@ public class BridgeMaker {
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
+    private void isUp(List<String> newBridge, int randomNumber){
+        if (randomNumber == 1) {
+            newBridge.add("U");
+        }
+    }
+
+    private void isDown(List<String> newBridge, int randomNumber){
+        if (randomNumber == 0) {
+            newBridge.add("D");
+        }
+    }
+
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
@@ -24,13 +36,8 @@ public class BridgeMaker {
         List<String> newBridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int randomNumber = bridgeNumberGenerator.generate();
-            if (randomNumber == 1) {
-                newBridge.add("U");
-            }
-
-            if (randomNumber == 0) {
-                newBridge.add("D");
-            }
+            isUp(newBridge, randomNumber);
+            isDown(newBridge, randomNumber);
         }
         return newBridge;
     }
