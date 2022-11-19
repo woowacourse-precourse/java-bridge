@@ -124,14 +124,14 @@
 
 
 - 재시도/종료 입력 readGameCommand()
-    - [ ] 텍스트 출력
+    - [x] 텍스트 출력
       ```
       게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)
       ```
-    - [ ] 검증 사항
+    - [x] 검증 사항
         - R 또는 Q
         - 해당 범위가 아닐 경우 예외 처리
-            - [ ] IllegalArgumentException 처리
+            - [x] IllegalArgumentException 처리
 
 <br/>
 
