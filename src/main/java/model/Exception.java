@@ -1,4 +1,4 @@
-package bridge;
+package model;
 
 public class Exception {
     public Boolean isEmpty(String checkEmpty) {

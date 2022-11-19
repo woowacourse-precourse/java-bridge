@@ -1,5 +1,6 @@
-package bridge;
+package view;
 
+import model.Exception;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
