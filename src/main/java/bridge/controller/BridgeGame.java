@@ -17,8 +17,8 @@ import static bridge.util.BridgeConstant.FALL_POSITION;
  */
 public class BridgeGame {
     BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
+    InputView inputView = InputView.getInputView();
+    OutputView outputView = OutputView.getOutputView();
     BridgeMove bridgeMove = new BridgeMove();
     BridgeMap bridgeMap = new BridgeMap();
     BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);

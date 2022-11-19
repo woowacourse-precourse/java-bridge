@@ -15,8 +15,8 @@ import static bridge.util.BridgeConstant.*;
  */
 public class BridgeMaker {
     private final BridgeNumberGenerator bridgeNumberGenerator;
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
+    InputView inputView = InputView.getInputView();
+    OutputView outputView = OutputView.getOutputView();
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
