@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.Objects;
+
 public enum BridgeType {
     DOWN(0, "D"),
     UP(1, "U");
@@ -20,12 +22,23 @@ public enum BridgeType {
         return initial;
     }
 
-    public static BridgeType valueOf(int number) {
+    public static BridgeType valueOfNumber(int number) {
         BridgeType bridge = null;
         if (number == 0) {
             bridge = DOWN;
         }
         if (number == 1) {
+            bridge = UP;
+        }
+        return bridge;
+    }
+
+    public static BridgeType valueOfString(String initial) {
+        BridgeType bridge = null;
+        if (Objects.equals(initial, "D")) {
+            bridge = DOWN;
+        }
+        if (Objects.equals(initial, "U")) {
             bridge = UP;
         }
         return bridge;
