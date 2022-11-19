@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.BridgeSizeConstant;
+import bridge.domain.CommandType;
 import bridge.domain.MoveType;
 
 public class ViewController {
@@ -25,16 +26,7 @@ public class ViewController {
             }
         }
     }
-    public MoveType readMoving() {
-        while (true) {
-            try {
-                String inputMove = inputView.readMoving();
-                return MoveType.create(inputMove);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
+
     private void validateIsNumber(String inputSize) {
         if (!inputSize.matches("[0-9]+")) {
             throw new IllegalArgumentException("[ERROR] 정수만 입력해야 합니다.");
@@ -47,4 +39,25 @@ public class ViewController {
         }
     }
 
+    public MoveType readMoving() {
+        while (true) {
+            try {
+                String inputMove = inputView.readMoving();
+                return MoveType.create(inputMove);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public CommandType readGameCommand() {
+        while (true) {
+            try {
+                String inputGameCommand = inputView.readGameCommand();
+                return CommandType.create(inputGameCommand);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }
