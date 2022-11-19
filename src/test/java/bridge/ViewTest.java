@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.model.Bridge;
-import bridge.model.User;
 import bridge.view.Input;
 import bridge.view.InputView;
 import bridge.view.OutputView;

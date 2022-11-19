@@ -1,7 +1,5 @@
 package bridge.view;
 
-import bridge.model.Bridge;
-import bridge.model.User;
 
 import java.util.List;
 

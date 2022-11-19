@@ -9,6 +9,7 @@ public class InputConsole implements Input{
     public Integer inputInteger() {
         input = Console.readLine();
         catchNotNumberException(input);
+        catchZeroInputException(input);
         return Integer.parseInt(input);
     }
     @Override

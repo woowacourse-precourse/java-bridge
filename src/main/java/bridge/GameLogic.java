@@ -15,6 +15,9 @@ public class GameLogic {
     GameLogic(){
         bridgeGame = new BridgeGame();
         inputView =new InputView(new InputConsole());
+
+    }
+    public void start(){
         System.out.println("다리 건너기 게임을 시작합니다.");
         catchSizeException();
         outputView = new OutputView(bridgeGame.getBridge().getBridgeList());

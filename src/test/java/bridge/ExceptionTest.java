@@ -30,4 +30,12 @@ public class ExceptionTest extends ApplicationTest{
             );
         }, 1);
     }
+    @Test
+    void 영입력시_오류() {
+        assertRandomNumberInRangeTest(() -> {
+            run("0", "1", "U");
+            assertThat(output()).contains(ZERO_INPUT_ERROR.getError()
+            );
+        }, 1);
+    }
 }
