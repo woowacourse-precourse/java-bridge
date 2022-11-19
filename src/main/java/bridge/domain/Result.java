@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.utils.enums.GameResult;
+import bridge.domain.enums.GameResult;
 
 public class Result {
 

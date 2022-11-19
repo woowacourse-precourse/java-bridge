@@ -1,6 +1,7 @@
 package bridge.domain;
 
-import bridge.utils.enums.Moving;
+import bridge.domain.enums.Moving;
+import bridge.domain.enums.MovingResult;
 
 public class RealTimeBridge {
 
@@ -46,5 +47,15 @@ public class RealTimeBridge {
     public void initialize() {
         realTimeBridge[0][1] = BLANK;
         realTimeBridge[1][1] = BLANK;
+    }
+
+    public void makeCorrectMap(String userMove) {
+        String realTimeBlock = MovingResult.CORRECT.getValue();
+        makeRealTimeBridge(userMove, realTimeBlock);
+    }
+
+    public void makeWrongMap(String userMove) {
+        String realTimeBlock = MovingResult.WRONG.getValue();
+        makeRealTimeBridge(userMove, realTimeBlock);
     }
 }
