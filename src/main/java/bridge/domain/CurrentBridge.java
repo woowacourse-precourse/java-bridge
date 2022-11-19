@@ -51,6 +51,12 @@ public class CurrentBridge {
         return currentShape.get(currentShape.size() - 1).equals(readMoving);
     }
 
+    public boolean isSuccessLastSection() {
+        boolean isUpperSuccess = upperSection.get(upperSection.size() - 1).equals(OK);
+        boolean isLowerSuccess = lowerSection.get(lowerSection.size() - 1).equals(OK);
+        return isUpperSuccess || isLowerSuccess;
+    }
+
     public List<String> getUpperSection() {
         return upperSection;
     }

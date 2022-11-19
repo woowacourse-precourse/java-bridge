@@ -15,7 +15,9 @@ public class BridgeGame {
     private final Bridge bridge;
     private final CurrentBridge currentBridge;
     private int currentSection = 1;
+    private int trialCount = 0;
     private static final boolean IS_END = true;
+    private boolean isSuccess = true;
 
     public BridgeGame() {
         this.inputView = new InputView();
@@ -31,6 +33,7 @@ public class BridgeGame {
         currentSection++;
         outputView.printMap(currentBridge);
         if (currentBridge.isFailed() || bridge.getBridgeLength() == currentBridge.getCurrentBridgeLength()) {
+            trialCount++;
             return IS_END;
         }
         return !IS_END;
