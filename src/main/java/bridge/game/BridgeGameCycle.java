@@ -45,4 +45,16 @@ public class BridgeGameCycle {
         return inputCommand;
     }
 
+    private boolean loseCycle(BridgeGame game) {
+        if (nowState == GAME_LOSE.num()) {
+            String inputCommand = askInputCommand();
+            if (inputCommand.equals(QUIT.key())) {
+                return false;
+            }
+            coin++;
+            game.retry();
+        }
+        return CONTINUE;
+    }
+
 }
