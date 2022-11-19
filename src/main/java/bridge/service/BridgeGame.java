@@ -1,6 +1,7 @@
 package bridge.service;
 
 import bridge.domain.Bridge;
+import bridge.domain.Count;
 import bridge.domain.PlayState;
 import bridge.domain.Result;
 
@@ -9,7 +10,7 @@ import bridge.domain.Result;
  */
 public class BridgeGame {
     private PlayState playState;
-    private int playCount = 1;
+    private Count count;
     private Bridge bridge;
     private Result result;
 
@@ -20,6 +21,7 @@ public class BridgeGame {
         this.bridge = bridge;
         this.result = new Result();
         this.playState = new PlayState(true);
+        this.count = new Count();
     }
 
     public void move(String input, int count) {
@@ -29,7 +31,7 @@ public class BridgeGame {
     public boolean retry(String input) {
         if (input.equals("R")) {
             this.result = new Result();
-            playCount++;
+            count = count.increase();
             return true;
         }
         end();
@@ -70,6 +72,6 @@ public class BridgeGame {
     }
 
     public String printPlayCount() {
-        return String.valueOf(playCount);
+        return count.printCount();
     }
 }
