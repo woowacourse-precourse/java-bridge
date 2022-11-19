@@ -77,4 +77,22 @@ class ValidationTest {
     private void moveCommand(String cmd){
         if(!(cmd.equals("U") || cmd.equals("D"))) throw new IllegalArgumentException("[ERROR] 이동할 칸은 (위: U, 아래: D)만 입력해주세요.");
     }
+
+    @Test
+    @DisplayName(" 게임 다시 시도 여부 입력 Validation - R 또는 Q인 경우")
+    public void retry_성공_케이스() throws Exception{
+        Assertions.assertThatCode(()->retryCommand("R"))
+                .doesNotThrowAnyException();
+
+        Assertions.assertThatCode(()->retryCommand("Q"))
+                .doesNotThrowAnyException();
+
+    }
+    private void retryCommand(String cmd){
+        if(!(cmd.equals("R") || cmd.equals("Q"))) throw new IllegalArgumentException("[ERROR] 다시 시도 여부는 (재시도: R, 종료: Q)만 입력해주세요.");
+    }
+
+
+
+
 }
