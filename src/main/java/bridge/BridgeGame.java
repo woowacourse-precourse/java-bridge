@@ -3,7 +3,6 @@ package bridge;
 import bridge.domain.BridgeStatus;
 import bridge.domain.MovingCommand;
 import bridge.domain.RetryCommand;
-import com.sun.net.httpserver.Authenticator.Retry;
 import java.util.List;
 
 public class BridgeGame {
@@ -32,6 +31,12 @@ public class BridgeGame {
 
     public boolean retry(String input) {
         RetryCommand retryCommand = RetryCommand.nameOf(input);
-        return retryCommand.equals(RetryCommand.RETRY);
+        if (retryCommand.equals(RetryCommand.RETRY)) {
+            BridgeStatus bridgeStatus = bridgeStatusSaver.getBridgeStatus();
+            bridgeStatus.addTryCount();
+            bridgeStatusSaver.setBridgeStatus(bridgeStatus);
+            return true;
+        }
+        return false;
     }
 }
