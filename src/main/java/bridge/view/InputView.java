@@ -2,6 +2,7 @@ package bridge.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import bridge.util.InputCommandValidator;
 import bridge.util.InputMovingValidator;
 import bridge.util.InputSizeValidator;
 
@@ -39,6 +40,8 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println(MESSAGE_INPUT_RESTART);
-        return readLine();
+        String input = readLine();
+        InputCommandValidator.validator(input);
+        return input;
     }
 }
