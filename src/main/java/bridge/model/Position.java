@@ -10,16 +10,16 @@ public enum Position {
     DOWN("D", 0);
 
     public static final List<String> MOVING_OPTIONS = List.of("U", "D");
-    private final String position;
+    private final String abbreviation;
     private final int generatedNumber;
 
-    Position(String position, int generatedNumber) {
-        this.position = position;
+    Position(String abbreviation, int generatedNumber) {
+        this.abbreviation = abbreviation;
         this.generatedNumber = generatedNumber;
     }
 
-    public static String numberToPosition(int generatedNumber) {
-        return findPosition(generatedNumber).position;
+    public static String getAbbreviationByNumber(int generatedNumber) {
+        return findPosition(generatedNumber).abbreviation;
     }
 
     private static Position findPosition(int generatedNumber) {
