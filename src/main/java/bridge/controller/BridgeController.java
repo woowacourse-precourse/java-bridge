@@ -21,6 +21,7 @@ public class BridgeController {
     public void start() {
         outputView.printStart();
         getBridge(getBridgeSize());
+        getMoveDirection();
     }
 
     private int getBridgeSize() {
@@ -37,5 +38,16 @@ public class BridgeController {
     private void getBridge(int size) {
         List<String> bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
 
+    }
+
+    private String getMoveDirection() {
+        String direction = null;
+        try {
+            direction = inputView.readMoving();
+        } catch (IllegalArgumentException ex) {
+            outputView.printMessage(ex.getMessage());
+            getMoveDirection();
+        }
+        return direction;
     }
 }
