@@ -4,6 +4,8 @@ import bridge.domain.direction.Direction;
 
 import java.util.List;
 
+import static bridge.domain.bridge.CrossStatus.*;
+
 public class Bridge {
 
     private static final String OUT_OF_RANGE_MESSAGE = "다리 길이는 3에서 20 사이의 숫자여야 합니다.";
@@ -20,5 +22,32 @@ public class Bridge {
         if (size > MAX_LENGTH || size < MIN_LENGTH) {
            throw new IllegalArgumentException(OUT_OF_RANGE_MESSAGE);
         }
+    }
+
+    public CrossStatus cross(final List<Direction> path) {
+        if (isFailPath(path)) {
+            return FAIL;
+        }
+        return judgeSuccessOrGoing(path.size());
+    }
+
+    private boolean isFailPath(List<Direction> path) {
+        for (int i = 0; i < path.size(); i++) {
+            if (isDifferent(path.get(i), directions.get(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private CrossStatus judgeSuccessOrGoing(final int size) {
+        if (directions.size() == size) {
+            return SUCCESS;
+        }
+        return GOING;
+    }
+
+    private boolean isDifferent(Direction path, Direction target) {
+        return path != target;
     }
 }
