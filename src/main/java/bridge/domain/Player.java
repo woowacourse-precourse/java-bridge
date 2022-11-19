@@ -27,9 +27,11 @@ public class Player {
     }
 
     public void resurrect() {
-        initPosition();
-        tryCount++;
-        this.aliveState = true;
+        if (!isAlive()) {
+            initPosition();
+            tryCount++;
+            this.aliveState = true;
+        }
     }
 
     private void initPosition() {

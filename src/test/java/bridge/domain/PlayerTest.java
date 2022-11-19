@@ -27,12 +27,13 @@ class PlayerTest {
         assertThat(player.isCurrentPosition(expectedPosition)).isEqualTo(expectedResult);
     }
 
-    @DisplayName(value = "사망처리 후 위치 초기화 테스트")
+    @DisplayName(value = "사망 후 부활처리 후 위치 초기화 테스트")
     @Test
     void dieTest() {
         for (int i = 0; i < 4; i++) {
             player.moveForward(Tile.UP);
         }
+        player.die();
         player.resurrect();
 
         assertThat(player.isCurrentPosition(-1)).isTrue();
@@ -54,6 +55,7 @@ class PlayerTest {
         int dieCount = 3;
         for (int i = 0; i < dieCount; i++) {
             player.moveForward(Tile.UP);
+            player.die();
             player.resurrect();
         }
         int expectedTryCount = dieCount + 1;
