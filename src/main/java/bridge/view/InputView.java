@@ -20,8 +20,8 @@ public class InputView {
     }
 
     private static void validateSizeRange(String bridgeSize) {
-        if (Integer.parseInt(bridgeSize) < BRIDGE_MAXIMUM_SIZE ||
-            Integer.parseInt(bridgeSize) > BRIDGE_MINIMUM_SIZE) {
+        if (Integer.parseInt(bridgeSize) < BRIDGE_MINIMUM_SIZE ||
+            Integer.parseInt(bridgeSize) > BRIDGE_MAXIMUM_SIZE) {
             throw new IllegalArgumentException(OutputMessage.BRIDGE_HAS_RANGE.getErrorMessage());
         }
     }
