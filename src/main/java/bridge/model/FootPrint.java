@@ -3,7 +3,7 @@ package bridge.model;
 import java.util.List;
 
 public enum FootPrint {
-	Blank("   |"),
+	BLANK("   |"),
 	RIGHT(" O |"),
 	WRONG(" X |"),
 	;
@@ -32,8 +32,8 @@ public enum FootPrint {
 
 	private static List<String> chooseStairs(String footPrint, int stairsNumber) {
 		if (stairsNumber == 0) {
-			return List.of(footPrint, Blank.footPrint);
+			return List.of(footPrint, BLANK.footPrint);
 		}
-		return List.of(Blank.footPrint, footPrint);
+		return List.of(BLANK.footPrint, footPrint);
 	}
 }
