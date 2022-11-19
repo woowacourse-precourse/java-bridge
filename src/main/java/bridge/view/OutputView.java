@@ -19,9 +19,9 @@ public class OutputView {
     public void printMap(Bridge bridge, int round, GameStatus status) {
         String map = drawMapToPreviousRound(bridge, round);
         map += drawMapForCurrentRound(bridge.getBlocks().get(round), status);
-        String firstLineMap = map.replace("D", " ").replace("d", " ");
+        String firstLineMap = map.replace("D", " ").replace("d", " ").replace("[|", "[");
         firstLineMap = firstLineMap.replace("U", "O").replace("u", "X");
-        String secondLineMap = map.replace("U", " ").replace("u", " ");
+        String secondLineMap = map.replace("U", " ").replace("u", " ").replace("[|", "[");
         secondLineMap = secondLineMap.replace("D", "O").replace("d", "X");
         System.out.println(firstLineMap);
         System.out.println(secondLineMap);
@@ -32,10 +32,7 @@ public class OutputView {
         List<String> blocks = bridge.getBlocks();
         String line = "[";
         for(int i = 0 ; i < round; i++){
-            if(i != 0){
-                line += "|";
-            }
-            line += " " + blocks.get(i) + " ";
+            line += "| " + blocks.get(i) + " ";
         }
         return line;
     }
