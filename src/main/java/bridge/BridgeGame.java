@@ -20,6 +20,8 @@ public class BridgeGame {
 
     private GameStatus move() {
         player.moveForward();
+        System.out.println(bridge.getLastIndex());
+        System.out.println(player.getCurrentPosition());
         if (bridge.getLastIndex() == player.getCurrentPosition()) {
             return GameStatus.SUCCESS;
         }
@@ -43,6 +45,6 @@ public class BridgeGame {
     }
 
     public void retry() {
-        player.initializePosition();
+        player = new Player();
     }
 }
