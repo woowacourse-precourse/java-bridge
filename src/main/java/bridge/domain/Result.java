@@ -17,7 +17,7 @@ public class Result {
         this.resultInformation = new ResultInformation(size);
     }
 
-    void handleUpBridge(String input, Position position) {
+    void handleUpBridge(Key input, Position position) {
         if (Key.matchUp(input)) {
             resultInformation.updateUpBridge(position, O_FLAG);
             return;
@@ -26,7 +26,7 @@ public class Result {
         position.fail();
     }
 
-    void handleDownBridge(String input, Position position) {
+    void handleDownBridge(Key input, Position position) {
         if (Key.matchDown(input)) {
             resultInformation.updateDownBridge(position, O_FLAG);
             return;

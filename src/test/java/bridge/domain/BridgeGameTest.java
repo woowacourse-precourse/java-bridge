@@ -15,7 +15,7 @@ class BridgeGameTest {
 
     @BeforeEach
     void init() {
-        bridgeGame = new BridgeGame(Arrays.asList("U", "U", "D"));
+        bridgeGame = new BridgeGame(new Bridge(Arrays.asList("U", "U", "D")));
     }
 
 

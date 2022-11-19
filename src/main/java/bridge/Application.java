@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.domain.BridgeMaker;
+import bridge.util.BridgeMaker;
 import bridge.domain.GameManager;
 
 public class Application {

@@ -1,23 +1,17 @@
 package bridge.domain;
 
 import bridge.enums.Key;
+import bridge.util.BridgeMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-import java.util.List;
-
 public class GameManager {
-    private final List<String> bridge;
+
     private final BridgeGame bridgeGame;
 
     public GameManager(BridgeMaker bridgeMaker) {
-        bridge = bridgeMaker.makeBridge(InputView.readBridgeSize());
+        Bridge bridge = new Bridge(bridgeMaker.makeBridge(InputView.readBridgeSize()));
         bridgeGame = new BridgeGame(bridge);
-    }
-
-    protected GameManager(List<String> bridge) {
-        this.bridge = bridge;
-        this.bridgeGame = new BridgeGame(bridge);
     }
 
     public void play() {

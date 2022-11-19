@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.util;
 
 import bridge.BridgeNumberGenerator;
 import bridge.enums.Key;

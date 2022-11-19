@@ -4,31 +4,22 @@ import bridge.enums.Key;
 import bridge.enums.ViewMessage;
 
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
-    private final List<Key> bridge;
+    private final Bridge bridge;
     private final Result result;
     private final Position position;
     private final Turn turn;
 
-    public BridgeGame(List<String> bridge) {
-        this.bridge = new ArrayList<>();
-        mapBridge(bridge);
+    public BridgeGame(Bridge bridge) {
+        this.bridge = bridge;
         result = new Result(bridge.size());
         position = new Position(bridge.size());
         turn = new Turn();
-    }
-
-    private void mapBridge(List<String> bridge) {
-        for (String s : bridge) {
-            this.bridge.add(Key.valueOf(s));
-        }
     }
 
     /**
