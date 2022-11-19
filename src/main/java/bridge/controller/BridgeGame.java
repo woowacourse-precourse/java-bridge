@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.domain.BridgeMapMaker;
 import bridge.domain.BridgeMove;
 import bridge.model.Bridge;
 import bridge.model.BridgeMap;
@@ -8,19 +9,16 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 import static bridge.util.BridgeConstant.FALL_POSITION;
-import static bridge.util.BridgeConstant.UP;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    public final String SUCCESS_BLOCK = "O";
-    public final String FAIL_BLOCK = "X";
-
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     BridgeMove bridgeMove = new BridgeMove();
     BridgeMap bridgeMap = new BridgeMap();
+    BridgeMapMaker bridgeMapMaker = new BridgeMapMaker();
     boolean isContinue = true;
     boolean isWin;
     Bridge bridge;
@@ -45,28 +43,11 @@ public class BridgeGame {
 
     private void checkPlayerPosition(Player player) {
         boolean success = moveSuccess(player, bridge);
-        addBridgeMapBlock(player, success);
+        bridgeMapMaker.addBridgeMapBlock(player, bridgeMap, success);
         outputView.printMap(bridgeMap);
         if (!success) {
             retry(player);
         }
-    }
-
-    private void addBridgeMapBlock(Player player, boolean success) {
-        String block = getBlock(success);
-
-        if (player.getYPosition() == UP) {
-            bridgeMap.addUpperBridgeMap(block);
-            return;
-        }
-        bridgeMap.addLowerBridgeMap(block);
-    }
-
-    private String getBlock(boolean success) {
-        if (success) {
-            return SUCCESS_BLOCK;
-        }
-        return FAIL_BLOCK;
     }
 
     private boolean reachFinalLine(Player player) {
