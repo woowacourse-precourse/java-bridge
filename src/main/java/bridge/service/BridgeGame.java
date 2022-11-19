@@ -18,7 +18,7 @@ public class BridgeGame {
     private int distance = 0;
 
     public void createBridge(int bridgeSize) {
-        Bridge bridge = Bridge.from(bridgeMaker.makeBridge(bridgeSize));
+        Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
     /**
