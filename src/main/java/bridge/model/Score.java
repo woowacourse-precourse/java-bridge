@@ -38,6 +38,14 @@ public class Score {
         return retry;
     }
 
+    public List<String> getUserStep() {
+        return userStep;
+    }
+
+    public int getRetryCount() {
+        return retryCount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
