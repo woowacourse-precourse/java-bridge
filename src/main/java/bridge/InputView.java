@@ -47,8 +47,8 @@ public class InputView {
     }
 
     private static void checkWrongGameCommand(String command) {
-        if(command.strip().length() > 0){
-            throw new RuntimeException("[Error] 잘못된 커맨드를 입력하셨습니다. 다시 입력해주세요.");
+        if(!command.equals("R") && !command.equals("Q")){
+            throw new RuntimeException("[Error] 잘못된 커맨드를 입력하셨습니다.");
         }
     }
 }
