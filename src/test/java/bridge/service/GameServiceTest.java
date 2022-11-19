@@ -134,15 +134,17 @@ class GameServiceTest {
 		//given
 		userBridgeRepository.saveUserSpace("U", "X");
 		userBridgeRepository.saveUserSpace("D", "X");
-		UserBridgeStatusDto userBridgeStatusDto = userBridgeRepository.findUserBridgeStatusDto();
-		List<String> userUpperBridge = userBridgeStatusDto.getUserUpperBridge();
-		List<String> userLowerBridge = userBridgeStatusDto.getUserLowerBridge();
 
 		//when
 		gameService.clearUserBridge();
+		UserBridgeStatusDto userBridgeStatusDto = userBridgeRepository.findUserBridgeStatusDto();
+		List<String> userUpperBridge = userBridgeStatusDto.getUserUpperBridge();
+		List<String> userLowerBridge = userBridgeStatusDto.getUserLowerBridge();
+		Integer userCurrentLocation = userBridgeStatusDto.getUserCurrentLocation();
 
 		//then
 		Assertions.assertThat(userUpperBridge).isEmpty();
 		Assertions.assertThat(userLowerBridge).isEmpty();
+		Assertions.assertThat(userCurrentLocation).isEqualTo(0);
 	}
 }
