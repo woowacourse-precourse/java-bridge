@@ -57,7 +57,6 @@
    * BridgeSize domain 구현
    * domain 내 숫자, 범위 테스트 구현
 2. make bridge
-   * Bridge domain 구현
    * makeBridge() 구현
    * Direction enum 구현
 3. move bridge
