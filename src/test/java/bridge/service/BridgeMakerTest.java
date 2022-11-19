@@ -3,7 +3,6 @@ package bridge.service;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
