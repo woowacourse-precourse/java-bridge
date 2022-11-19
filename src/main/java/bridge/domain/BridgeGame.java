@@ -75,7 +75,7 @@ public class BridgeGame {
         return bridge;
     }
 
-    public int getRetryCount() {
-        return player.getRetryCount();
+    public Player getPlayer() {
+        return player;
     }
 }
