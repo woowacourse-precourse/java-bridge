@@ -3,6 +3,7 @@ package bridge.domain;
 import bridge.constant.Constant;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BridgeMap {
@@ -34,9 +35,7 @@ public class BridgeMap {
         bottomMap = new ArrayList<>();
     }
 
-    public String[] getMap() {
-        String top = String.join(" | ", topMap);
-        String bottom = String.join(" | ", bottomMap);
-        return new String[]{top, bottom};
+    public List<List<String>> getMap() {
+        return Arrays.asList(topMap, bottomMap);
     }
 }
