@@ -18,16 +18,24 @@ public class Map {
 	}
 
 	public void resetMap() {
-		downstairs.setLength(0);
-		upstairs.setLength(0);
+		resetStairs(downstairs);
+		resetStairs(upstairs);
 	}
 
 	public String getDownstairs() {
-		return downstairs.substring(0, downstairs.length() - 1);
+		return removeEndChar(downstairs);
 	}
 
 	public String getUpstairs() {
-		return upstairs.substring(0, upstairs.length() - 1);
+		return removeEndChar(upstairs);
+	}
+
+	private void resetStairs(StringBuilder stringBuilder) {
+		stringBuilder.setLength(0);
+	}
+
+	private String removeEndChar(StringBuilder stringBuilder) {
+		return stringBuilder.substring(0, stringBuilder.length() - 1);
 	}
 
 }
