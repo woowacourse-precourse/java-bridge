@@ -79,7 +79,7 @@ public class OutputView {
     }
 
     private static void printOneLine(List<String> line) {
-        System.out.println("[" + String.join(" | ", line) + "]");
+        System.out.println("[ " + String.join(" | ", line) + " ]");
     }
 
     public static void printErrorMessage(Exception e) {
