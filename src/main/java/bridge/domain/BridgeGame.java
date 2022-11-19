@@ -33,7 +33,7 @@ public class BridgeGame {
         return player.positionIsNotMoreThan(bridgeSize);
     }
 
-    public String matchResult(final MoveCommands moveCommand) {
+    public String moveResult(final MoveCommands moveCommand) {
         if (bridge.isMatched(player, moveCommand)) {
             return MOVE_SUCCESS;
         }
@@ -63,7 +63,7 @@ public class BridgeGame {
 
     private void retry() {  // TODO 혹시 제출 테스트 케이스 실패하면 여기의 private를 의심하렴..
         moveResults.reset();
-        player.initPosition();
+        player.resetPosition();
         player.increaseChallenges();
     }
 

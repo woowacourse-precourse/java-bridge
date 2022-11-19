@@ -22,7 +22,7 @@ public class Player {
         position++;
     }
 
-    void initPosition() {
+    void resetPosition() {
         position = 0;
     }
 

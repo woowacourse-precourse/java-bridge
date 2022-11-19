@@ -67,7 +67,7 @@ public class BridgeGameController {
 
     private String moveResult(final BridgeGame bridgeGame) {
         MoveCommands moveCommand = inputView.moveCommand();
-        String moveResult = bridgeGame.matchResult(moveCommand);
+        String moveResult = bridgeGame.moveResult(moveCommand);
 
         printCurrentPosition(bridgeGame, moveCommand, moveResult);
         bridgeGame.move(moveResult);
