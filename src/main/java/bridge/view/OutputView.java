@@ -1,5 +1,6 @@
 package bridge.view;
 
+import java.util.HashMap;
 import java.util.List;
 
 import static bridge.domain.BridgeCommand.DOWN;
@@ -18,39 +19,51 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static StringBuffer printMap(List<String> nowBridge, List<String> generatedBridge) {
-        StringBuffer up = new StringBuffer(START.getElement());
-        StringBuffer down = new StringBuffer(START.getElement());
+        HashMap<String, String> bridgeScreen = initializeBridgeScreen();
+        return buildBridgeMap(nowBridge, generatedBridge, bridgeScreen);
+    }
+
+    public static HashMap<String, String> initializeBridgeScreen() {
+        HashMap<String, String> bridgeScreen = new HashMap<>();
+        bridgeScreen.put(UP.getElement(), START.getElement());
+        bridgeScreen.put(DOWN.getElement(), START.getElement());
+        return bridgeScreen;
+    }
+
+    private static StringBuffer buildBridgeMap(List<String> nowBridge, List<String> generatedBridge, HashMap<String, String> bridgeScreen) {
         for (int i = 0; i < nowBridge.size(); i++) {
-            consistentCase(nowBridge, generatedBridge, i, up, down);
-            inconsistentCase(nowBridge, generatedBridge, i, up, down);
+            consistentCase(nowBridge.get(i), generatedBridge.get(i), bridgeScreen);
+            inconsistentCase(nowBridge.get(i), generatedBridge.get(i), bridgeScreen);
         }
+        StringBuffer up = new StringBuffer(bridgeScreen.get(UP.getElement()));
+        StringBuffer down = new StringBuffer(bridgeScreen.get(DOWN.getElement()));
         up.replace(up.length() - 1, up.length(), END.getElement()).append("\n");
         down.replace(down.length() - 1, down.length(), END.getElement()).append(("\n"));
         return up.append(down);
     }
 
-    public static void consistentCase(List<String> nowBridge, List<String> generatedBridge, int i, StringBuffer up, StringBuffer down) {
-        if (nowBridge.get(i).equals(generatedBridge.get(i))) {
-            if (nowBridge.get(i).equals(UP.getElement())) {
-                up.append(CORRECT.getElement());
-                down.append(BLANK.getElement());
+    public static void consistentCase(String nowBridge, String generatedBridge, HashMap<String, String> bridgeScreen) {
+        if (nowBridge.equals(generatedBridge)) {
+            if (nowBridge.equals(UP.getElement())) {
+                bridgeScreen.replace(UP.getElement(), bridgeScreen.get(UP.getElement()) + CORRECT.getElement());
+                bridgeScreen.replace(DOWN.getElement(), bridgeScreen.get(DOWN.getElement()) + BLANK.getElement());
             }
-            if (nowBridge.get(i).equals(DOWN.getElement())) {
-                up.append(BLANK.getElement());
-                down.append(CORRECT.getElement());
+            if (nowBridge.equals(DOWN.getElement())) {
+                bridgeScreen.replace(UP.getElement(), bridgeScreen.get(UP.getElement()) + BLANK.getElement());
+                bridgeScreen.replace(DOWN.getElement(), bridgeScreen.get(DOWN.getElement()) + CORRECT.getElement());
             }
         }
     }
 
-    public static void inconsistentCase(List<String> nowBridge, List<String> generatedBridge, int i, StringBuffer up, StringBuffer down) {
-        if (!nowBridge.get(i).equals(generatedBridge.get(i))) {
-            if (nowBridge.get(i).equals(UP.getElement())) {
-                up.append(INCORRECT.getElement());
-                down.append(BLANK.getElement());
+    public static void inconsistentCase(String nowBridge, String generatedBridge, HashMap<String, String> bridgeScreen) {
+        if (!nowBridge.equals(generatedBridge)) {
+            if (nowBridge.equals(UP.getElement())) {
+                bridgeScreen.replace(UP.getElement(), bridgeScreen.get(UP.getElement()) + INCORRECT.getElement());
+                bridgeScreen.replace(DOWN.getElement(), bridgeScreen.get(DOWN.getElement()) + BLANK.getElement());
             }
-            if (nowBridge.get(i).equals(DOWN.getElement())) {
-                up.append(BLANK.getElement());
-                down.append(INCORRECT.getElement());
+            if (nowBridge.equals(DOWN.getElement())) {
+                bridgeScreen.replace(UP.getElement(), bridgeScreen.get(UP.getElement()) + BLANK.getElement());
+                bridgeScreen.replace(DOWN.getElement(), bridgeScreen.get(DOWN.getElement()) + INCORRECT.getElement());
             }
         }
     }
