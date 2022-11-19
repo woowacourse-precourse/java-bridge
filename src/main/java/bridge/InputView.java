@@ -1,8 +1,9 @@
 package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
-import static bridge.validator.NumberValidator.validateNonNumeric;
-import static bridge.validator.NumberValidator.validateRange;
+import static bridge.NumberValidator.validateNonNumeric;
+import static bridge.NumberValidator.validateRange;
+import static bridge.validator.TextValidator.validateMoveWay;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -33,7 +34,16 @@ public class InputView {
      */
     public String readMoving() {
         OutputView.printMoveInputMessage();
-        String moveWay = Console.readLine();;
+        String moveWay;
+        while (true) {
+            try {
+                moveWay = Console.readLine();
+                validateMoveWay(moveWay);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         return moveWay;
     }
 

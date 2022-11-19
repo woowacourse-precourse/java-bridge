@@ -1,10 +1,11 @@
 package bridge;
 
-public class Validator {
+public class NumberValidator {
     private final static int MIN_BRIDGE_SIZE = 3;
     private final static int MAX_BRIDGE_SIZE = 20;
     private final static String NON_NUMERIC_ERROR_MESSAGE = "[ERROR] 숫자만 입력 가능합니다.";
     private final static String RANGE_ERROR_MESSAGE = "[ERROR] 다리 길이는 3~20 중의 숫자여야 합니다.";
+
     public static void validateNonNumeric(String input) {
         try {
             Integer.parseInt(input);
