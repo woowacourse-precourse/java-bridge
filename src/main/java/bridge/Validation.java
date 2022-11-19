@@ -20,7 +20,7 @@ public class Validation {
         if(!(cmd.equals(BridgeConst.UP) || cmd.equals(BridgeConst.DOWN)))
             throw new IllegalArgumentException(MOVE_MESSAGE);
     }
-    private void retryCommand(String cmd){
+    public void retryCommand(String cmd){
         if(!(cmd.equals("R") || cmd.equals("Q")))
             throw new IllegalArgumentException(RETRY_MESSAGE);
     }
