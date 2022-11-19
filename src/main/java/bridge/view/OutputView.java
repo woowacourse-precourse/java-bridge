@@ -21,7 +21,11 @@ public class OutputView {
 	public void printResult() {
 	}
 
-	public void printProgressMessage(ProgressMessage progress) {
+	public static void printProgressMessage(ProgressMessage progress) {
 		System.out.println(progress.getMessage());
+	}
+
+	public static void printErrorMessage(String message) {
+		System.out.println(message);
 	}
 }
