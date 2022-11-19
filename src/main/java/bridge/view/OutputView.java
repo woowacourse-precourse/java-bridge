@@ -35,6 +35,11 @@ public class OutputView {
         }
     }
 
+    public void printResult(boolean isSuccess, int tries) {
+        printSuccess(isSuccess);
+        printTries(tries);
+    }
+
     private void printSuccess(boolean isSuccess) {
         System.out.print(IS_SUCCESSFUL);
         if (isSuccess) {
@@ -52,8 +57,5 @@ public class OutputView {
     private String rowFormat(List<String> row) {
         String joinedRow = String.join(" | ", row);
         return "[ " + joinedRow + " ]";
-    }
-
-    public void printResult() {
     }
 }
