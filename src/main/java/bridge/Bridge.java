@@ -16,4 +16,8 @@ public class Bridge {
     public void setBridge(String component){
         bridge.add(component);
     }
+
+    public void clearAll(){
+        bridge.clear();
+    }
 }
