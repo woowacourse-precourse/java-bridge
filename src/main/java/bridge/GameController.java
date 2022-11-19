@@ -33,11 +33,10 @@ public class GameController {
     private void crossToOtherSide() {
         while (!bridgeGame.playerHasCrossed()) {
             outputView.printUserChoiceOpening();
-            String choice = null;
             try {
-                choice = inputView.readMoving();
+                String choice = inputView.readMoving();
                 bridgeGame.move(choice);
-                // bridgeGame.matchResults(); //-> 이걸 출력해야댐 -> OutputView로 넘기기!!
+                outputView.printMap(bridgeGame.matchResults(), bridgeGame.getPlayersMove());
             } catch (IllegalArgumentException exception) {
                 outputView.printErrorMessage(exception.getMessage());
                 continue;
