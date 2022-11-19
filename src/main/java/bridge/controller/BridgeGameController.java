@@ -63,7 +63,7 @@ public class BridgeGameController {
             crossBridge(bridgeGame);
             outputView.printMap(bridgeGame);
             if (bridgeGame.isFailed()) {
-                askRetryOrFinish();
+                askRetryOrFinish(bridgeGame);
             }
         }
     }
@@ -72,5 +72,9 @@ public class BridgeGameController {
         outputView.printMovingInputRequest();
         String spaceToMove = inputView.readMoving();
         bridgeGame.move(spaceToMove);
+    }
+
+    private void askRetryOrFinish(BridgeGame bridgeGame) {
+        outputView.printGameCommandInputRequest();
     }
 }
