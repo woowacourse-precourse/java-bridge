@@ -7,6 +7,7 @@ import static bridge.constant.OutputViewConstant.SPACE;
 import static bridge.constant.OutputViewConstant.SUFFIX;
 
 import bridge.constant.BridgeMove;
+import bridge.constant.OutputViewConstant;
 import java.util.List;
 
 /**
@@ -108,5 +109,12 @@ public class OutputView {
 
     private void printCountOfGame(int countOfGame) {
         System.out.println("총 시도한 횟수: " + countOfGame);
+    }
+
+    /**
+     * 게임의 시작 문구를 정해진 형식에 맞춰 출력한다.
+     */
+    public void printIntroMessage() {
+        System.out.println(OutputViewConstant.INTRO_MESSAGE.getSymbol());
     }
 }
