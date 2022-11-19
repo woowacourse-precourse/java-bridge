@@ -14,15 +14,7 @@ public class InputView {
      */
     public int readBridgeSize() {
         printMessage(PrintMessage.BRIDGE_LENGTH.printMessage());
-        int bridgeLength;
-        while (true) {
-            try {
-                bridgeLength = readNumber(Console.readLine());
-                return bridgeLength;
-            } catch (IllegalArgumentException exception) {
-                System.out.println(exception.getMessage());
-            }
-        }
+        return readNumber(Console.readLine());
     }
 
     /**
