@@ -19,7 +19,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(final List<String> randomBridge, final String moving) {
-
+        saveMovingStatus(randomBridge, moving);
     }
 
     /**
@@ -28,6 +28,15 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+    }
+
+    private void saveMovingStatus(final List<String> randomBridge, final String moving) {
+        if (isCorrectBridge(randomBridge, moving)) {
+            movingStatus.add(moving);
+        }
+        if (!isCorrectBridge(randomBridge, moving)) {
+            movingStatus.add(BridgeComponent.FAIL_SIGNATURE);
+        }
     }
 
     private boolean isCorrectBridge(final List<String> randomBridge, final String moving) {
