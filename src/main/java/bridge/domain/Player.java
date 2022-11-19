@@ -17,4 +17,8 @@ public class Player {
         position = -1;
         gameHistory.clear();
     }
+
+    public int move() {
+        return ++position;
+    }
 }
