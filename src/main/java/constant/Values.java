@@ -28,27 +28,30 @@ public class Values {
         }
 
     }
+
     public enum MoveCase {
-        UP_UP("U","U","O"," "),
-        UP_DOWN("U","D","X"," "),
-        DOWN_DOWN("D","D","O"," "),
-        DOWN_UP("D","U","X"," "),
-        EMPTY(" "," "," "," ");
+        UP_UP("U", "U", "O", " ", true),
+        UP_DOWN("U", "D", " ", "X", false),
+        DOWN_DOWN("D", "D", " ", "O", true),
+        DOWN_UP("D", "U", " ", "X", false),
+        EMPTY(" ", " ", " ", " ", false);
         private String value;
         private String move;
-        private String result;
-        private String current;
+        private String up;
+        private String down;
+        private boolean result;
 
-        private MoveCase(String value,String move,String result,String current) {
+        private MoveCase(String value, String move, String up, String down, boolean result) {
             this.value = value;
             this.move = move;
+            this.up = up;
+            this.down = down;
             this.result = result;
-            this.current = current;
         }
 
         public static MoveCase findByValueAndMove(String value, String move) {
             return Arrays.stream(MoveCase.values())
-                    .filter(moveCase -> moveCase.getValue().equals(value)&moveCase.getMove().equals(move))
+                    .filter(moveCase -> moveCase.getValue().equals(value) & moveCase.getMove().equals(move))
                     .findAny().orElse(EMPTY);
         }
 
@@ -58,6 +61,18 @@ public class Values {
 
         public String getValue() {
             return value;
+        }
+
+        public String getUp() {
+            return up;
+        }
+
+        public String getDown() {
+            return down;
+        }
+
+        public boolean isResult() {
+            return result;
         }
     }
 
