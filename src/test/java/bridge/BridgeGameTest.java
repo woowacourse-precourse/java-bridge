@@ -48,4 +48,12 @@ class BridgeGameTest {
 
         assertThat(status).isEqualTo(GameStatus.PLAYING);
     }
+
+    @DisplayName("게임 시도 횟수를 반환한다.")
+    @Test
+    void gameTryCount() {
+        int tryCount = bridgeGame.getTryCount();
+
+        assertThat(tryCount).isEqualTo(1);
+    }
 }
