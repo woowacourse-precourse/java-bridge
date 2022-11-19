@@ -8,4 +8,13 @@ public class Player {
     private List<String> gameHistory = new ArrayList<>();
     private String lastChoice;
     private boolean checkAnswer;
+
+    public Player() {
+        initialize();
+    }
+
+    public void initialize() {
+        position = -1;
+        gameHistory.clear();
+    }
 }
