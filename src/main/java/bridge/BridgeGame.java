@@ -141,6 +141,13 @@ public class BridgeGame {
     public static String saveMap(List<Integer> bridge) {
         StringBuilder map = new StringBuilder("[ ");
 
+        judgement(map, bridge);
+        map.append(" ]");
+
+        return map.toString();
+    }
+
+    private static void judgement(StringBuilder map, List<Integer> bridge) {
         for (int i = 0; i < bridge.size(); i++) {
             map.append(Bridge.findOrder(bridge.get(i)).getResult());
 
@@ -148,11 +155,7 @@ public class BridgeGame {
                 map.append(" | ");
             }
         }
-        map.append(" ]");
-
-        return map.toString();
     }
-
     private static boolean isNotEqual(String bridge, String moving) {
         return !bridge.equals(moving);
     }
