@@ -2,6 +2,7 @@ package bridge.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.constant.GameRetryCommand;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -116,5 +117,36 @@ class BridgeGameTest {
             assertThat(user.getStep()).isEqualTo(0);
             assertThat(isMoved).isFalse();
         }
+    }
+
+    @Nested
+    @DisplayName("게임을")
+    class If_game_ {
+
+        @Test
+        @DisplayName("재시작 안하면 시도 횟수는 1이다")
+        void does_not_restart_then_try_count_is_one() {
+            // given
+
+            // when
+            Integer tryCount = bridgeGame.getTryCount();
+
+            // then
+            assertThat(tryCount).isEqualTo(1);
+        }
+
+        @Test
+        @DisplayName("재시작하면 시도 횟수는 2이다")
+        void restarts_then_try_count_is_two() {
+            // given
+            bridgeGame.retry(GameRetryCommand.RETRY.getFirstLetter());
+
+            // when
+            Integer tryCount = bridgeGame.getTryCount();
+
+            // then
+            assertThat(tryCount).isEqualTo(2);
+        }
+
     }
 }
