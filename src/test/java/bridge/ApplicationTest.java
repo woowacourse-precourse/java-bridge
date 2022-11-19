@@ -1,6 +1,5 @@
 package bridge;
 
-import static bridge.view.Message.MESSAGE_ERROR;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -10,7 +9,6 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 
 import java.util.List;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -58,7 +56,7 @@ class ApplicationTest extends NsTest {
     void 다리_이동값_예외_테스트(String input) throws Exception {
         assertSimpleTest(() -> {
             runException("3", input);
-            assertThat(output()).contains(MESSAGE_ERROR.getMessage());
+            assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 
