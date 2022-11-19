@@ -17,6 +17,19 @@ public class Controller {
 
     public void play() {
         outputView.printGameStart();
+
+        generateBridge();
+    }
+
+    private void generateBridge() {
+        int bridgeSize = 0;
+
+        try {
+            bridgeSize = inputView.readBridgeSize();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            generateBridge();
+        }
     }
 
 }
