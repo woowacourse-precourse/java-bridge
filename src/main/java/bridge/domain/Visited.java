@@ -5,17 +5,17 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 final class Visited {
-    private final List<Position> visited;
+    private final List<Position> positions;
     private final Logger logger;
 
     public Visited() {
-        visited = new ArrayList<>();
+        positions = new ArrayList<>();
         logger = new Logger();
     }
 
     public void move(Position moving, Bridge bridge) {
-        logger.put(moving, bridge.isEqualAtIndex(visited.size(), moving));
-        visited.add(moving);
+        logger.put(moving, bridge.isEqualAtIndex(positions.size(), moving));
+        positions.add(moving);
     }
 
     public String toPrintableLog() {
@@ -30,12 +30,12 @@ final class Visited {
     }
 
     private boolean isEnd(Bridge bridge) {
-        return visited.size() == bridge.size();
+        return positions.size() == bridge.size();
     }
 
     private boolean isAllStepCorrect(Bridge bridge) {
-        return IntStream.range(0, visited.size())
-                .allMatch(index -> bridge.isEqualAtIndex(index, visited.get(index)));
+        return IntStream.range(0, positions.size())
+                .allMatch(index -> bridge.isEqualAtIndex(index, positions.get(index)));
     }
 
     public GameResult result(Bridge bridge) {

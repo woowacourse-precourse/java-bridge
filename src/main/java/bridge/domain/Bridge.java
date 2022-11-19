@@ -3,17 +3,17 @@ package bridge.domain;
 import java.util.List;
 
 final class Bridge {
-    private final List<String> bridge;
+    private final List<String> positions;
 
-    public Bridge(List<String> bridge) {
-        this.bridge = bridge;
+    public Bridge(List<String> positions) {
+        this.positions = positions;
     }
 
     public int size() {
-        return bridge.size();
+        return positions.size();
     }
 
     public boolean isEqualAtIndex(int index, Position position) {
-        return position == Position.from(bridge.get(index));
+        return position == Position.from(positions.get(index));
     }
 }
