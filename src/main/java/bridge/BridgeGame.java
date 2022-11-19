@@ -12,10 +12,8 @@ public class BridgeGame {
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     *
-     * @return
      */
-    public List<Integer> move(List<Integer> bridge, String moving, boolean isWrong) {
+    public void move(List<Integer> bridge, String moving, boolean isWrong) {
         if (isWrong) {
            moving = setWrongMoving(moving);
         }
@@ -23,8 +21,6 @@ public class BridgeGame {
 
         bridge.add(solution.getTop());
         bridge.add(solution.getBottom());
-
-        return bridge;
     }
 
     /**
@@ -33,7 +29,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry(List<String> bridge) {
-        String result = "";
+        String result;
         int count = 0;
 
         do {
@@ -41,7 +37,6 @@ public class BridgeGame {
             count++;
         } while (!isNotFinish(result));
 
-        //종료하기!
         stop(count, result);
     }
 
@@ -49,16 +44,15 @@ public class BridgeGame {
         InputView input = new InputView();
 
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String moving = input.readMoving();
 
-        return moving;
+        return input.readMoving();
     }
 
     private boolean isWrongMove(String shape, String moving) {
         boolean isWrong = false;
 
         if (isNotEqual(shape, moving)) {
-            return isWrong = true;
+            return true;
         }
 
         return isWrong;
@@ -75,32 +69,51 @@ public class BridgeGame {
     }
 
     public String run(List<String> bridge) {
-        String result = "";
-        boolean isWrong;
         List<Integer> bottomBridge = new ArrayList<>();
         List<Integer> topBridge = new ArrayList<>();
 
+        compareBridge(bridge, topBridge, bottomBridge);
 
-        for (int i = 0; i < bridge.size(); i++) {
+        return saveBridge(topBridge, bottomBridge);
+    }
+
+    private String saveBridge(List<Integer> topBridge, List<Integer> bottomBridge) {
+       return topBridge + "\n" + bottomBridge;
+    }
+
+    private void compareBridge(List<String> bridge, List<Integer> topBridge, List<Integer> bottomBridge) {
+        for (String s : bridge) {
             List<Integer> userMove = new ArrayList<>();
 
-            String moving = moveUser();
-
-            isWrong = isWrongMove(bridge.get(i), moving);
-
-            move(userMove, moving, isWrong);
-            topBridge.add(userMove.get(0));
-            bottomBridge.add(userMove.get(1));
-
-            result = requestPrintMap(saveMap(topBridge), saveMap(bottomBridge));
+            boolean isWrong = checkUserMoving(s, userMove);
+            notYetName(userMove, topBridge, bottomBridge);
 
             if (isWrong) {
                 break;
             }
         }
-
-        return result;
     }
+
+    private void notYetName(List<Integer> userMove, List<Integer> top, List<Integer> bottom) {
+        saveBridge(userMove, top, bottom);
+
+        requestPrintMap(saveMap(top), saveMap(bottom));
+    }
+
+    private boolean checkUserMoving(String s, List<Integer> userMove) {
+        String moving = moveUser();
+        boolean isWrong = isWrongMove(s, moving);
+
+        move(userMove, moving, isWrong);
+
+        return isWrong;
+    }
+
+    private void saveBridge(List<Integer> userMove, List<Integer> topBridge, List<Integer> bottomBridge) {
+        topBridge.add(userMove.get(0));
+        bottomBridge.add(userMove.get(1));
+    }
+
 
     private boolean isNotFinish(String result) {
         boolean isClear = true;
@@ -118,34 +131,30 @@ public class BridgeGame {
     }
 
 
-    private static String requestPrintMap(String up, String down) {
+    private static void requestPrintMap(String up, String down) {
         OutputView output = new OutputView();
 
         output.printMap(up);
         output.printMap(down);
-
-        return up + "\n" +  down;
     }
 
     public static String saveMap(List<Integer> bridge) {
-        String map = "[ ";
+        StringBuilder map = new StringBuilder("[ ");
 
         for (int i = 0; i < bridge.size(); i++) {
-            map += Bridge.findOrder(bridge.get(i)).getResult();
+            map.append(Bridge.findOrder(bridge.get(i)).getResult());
 
             if (i < bridge.size() - 1) {
-                map += " | ";
+                map.append(" | ");
             }
         }
-        map += " ]";
+        map.append(" ]");
 
-        return map;
+        return map.toString();
     }
 
     private static boolean isNotEqual(String bridge, String moving) {
-        if (!bridge.equals(moving))
-            return true;
-        return false;
+        return !bridge.equals(moving);
     }
 
     public void stop(int count, String result) {
@@ -161,7 +170,6 @@ public class BridgeGame {
         InputView input = new InputView();
         int bridgeSize = input.readBridgeSize();
 
-        // 다리를 생성하기
         BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
         retry(maker.makeBridge(bridgeSize));
