@@ -64,14 +64,6 @@ public class BridgeGame {
         do {
             play(size, bridge);
         } while(retry());
-    }
-
-    public void runGame() {
-        int size = inputHandler.getBridgeSize();
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        List<String>bridge = bridgeMaker.makeBridge(size);
-        start(size, bridge);
         outputView.printResult(isAnswer, count, realTimeMap);
     }
 
