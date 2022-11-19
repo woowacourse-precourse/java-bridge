@@ -13,11 +13,13 @@ public class BridgeGame {
 
     private InputView inputView;
     private OutputView outputView;
-    private List<String> history;
-    public BridgeGame(List<String> value) {
+
+    private Integer gameCount;
+
+    public BridgeGame() {
         inputView = new InputView();
         outputView = new OutputView();
-        history = value;
+        gameCount = 0;
     }
 
     /**
@@ -32,7 +34,7 @@ public class BridgeGame {
             move(stair, history);
             historyCount++;
             if(historyCount == bridge.size()){
-                retry(history);
+                retry(bridge,true);
             }
         }
     }
@@ -45,8 +47,9 @@ public class BridgeGame {
         String movement = inputView.readMoving();
         if ( stair.equals(movement) ) {
             outputView.printMap(history);
+        } else {
+            retry(history,false);
         }
-        retry(history);
     }
 
     /**
@@ -54,9 +57,11 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(List<String> history) {
-        //        현 X 포함 out View
-//        실패당시 Output View
-
+    public void retry(List<String> bridge,boolean isSuccess) {
+        if(inputView.readGameCommand().equals('R')){
+            gameCount++;
+            play(bridge);
+        }
+        outputView.printResult(isSuccess,gameCount);
     }
 }
