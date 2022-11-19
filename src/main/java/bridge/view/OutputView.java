@@ -14,23 +14,36 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
+    private final String FINAL_MSG = "\n최종 게임 결과";
+    private final String SUCCESS_FAIL_MSG  = "\n게임 성공 여부: ";
+    private final String TRY_COUNT_MSG = "총 시도한 횟수: ";
+
     private BridgeGame bridgeGame = new BridgeGame();
     private BridgeRestart bridgerestart = new BridgeRestart();
+    public static int tryCount = 1;
+    public static String successFail = "성공";
 
     public void printMap(List<String> correctBridge) {
         for(int i=0; i<correctBridge.size(); i++) {
             bridgeGame.move(correctBridge.get(i), InputView.readMoving());
             printUpDown();
             if(bridgeGame.getNeedRestart() == 1) {
-                bridgerestart.bridgeRestart(InputView.readGameCommand(),correctBridge);
+                bridgerestart.bridgeRestartCheck(InputView.readGameCommand(),correctBridge);
                 break;
             }
-        }
+        } printResult();
     }
 
     public void printUpDown() {
         String strUp =  String.join("|", bridgeGame.getUpBridge());
         String strDown =  String.join("|", bridgeGame.getDownBridge());
+        System.out.println("["+strUp+"]");
+        System.out.println("["+strDown+"]");
+    }
+
+    public void printUpDown(List<String> upBridge, List<String> downBridge) {
+        String strUp =  String.join("|", upBridge);
+        String strDown =  String.join("|", downBridge);
         System.out.println("["+strUp+"]");
         System.out.println("["+strDown+"]");
     }
@@ -41,5 +54,9 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult() {
+        System.out.println(FINAL_MSG);
+        printUpDown(bridgeGame.getUpBridge(), bridgeGame.getDownBridge());
+        System.out.println(SUCCESS_FAIL_MSG + successFail);
+        System.out.println(TRY_COUNT_MSG + tryCount);
     }
 }
