@@ -15,7 +15,10 @@ public class InputView {
     }
 
     private void validateBridgeSizeInput(String bridgeSizeInput) {
-        // TODO: 다리 길이 입력 형식적 검증
+        String match = "^\\d{1,2}$";
+        if (!bridgeSizeInput.matches(match)) {
+            throw new IllegalArgumentException(BRIDGE_SIZE_FORM_ERROR);
+        }
     }
 
     /**
