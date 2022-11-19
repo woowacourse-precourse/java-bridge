@@ -44,10 +44,14 @@ public class BridgeGame {
         String playerBlock = dto.getBlock();
         String bridgeBlock = bridge.getBlockByPlayerPosition(player.getPosition());
 
+        return moveOrFail(playerBlock, bridgeBlock);
+    }
+
+    private BridgeResponseDto moveOrFail(String playerBlock, String bridgeBlock) {
         if(bridgeBlock.equals(playerBlock)) {
             result.addBlocks(BlockExpression.getBlockExpressionByMove(bridgeBlock));
             player.move();
-            validateGameClear(player.getPosition());
+            validateGameSuccess(player.getPosition());
             return new BridgeResponseDto(result);
         }
 
@@ -56,7 +60,7 @@ public class BridgeGame {
         return new BridgeResponseDto(result);
     }
 
-    private void validateGameClear(int position) {
+    private void validateGameSuccess(int position) {
         if(bridge.isDoneCrossingBridge(position)) {
             result.success();
         }
