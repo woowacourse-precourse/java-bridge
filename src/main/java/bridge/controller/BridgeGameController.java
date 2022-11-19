@@ -6,9 +6,12 @@ import bridge.view.InputView;
 
 public class BridgeGameController {
     private BridgeGame bridgeGame;
+    private int numberOfAttempts = 0;
 
     public void start() {
         set();
+        progress();
+        end();
     }
 
     private void set() {
@@ -18,6 +21,8 @@ public class BridgeGameController {
     }
 
     private void progress() {
+        numberOfAttempts++;
+
         for(int i=0; i<bridgeGame.getBridgeSize(); i++) {
             String square = InputView.readMoving();
             if(!bridgeGame.move(i, square)) break;
@@ -31,5 +36,9 @@ public class BridgeGameController {
     }
 
     private void retry() {
+        if(InputView.readGameCommand().equals("R")) {
+            bridgeGame.retry();
+            progress();
+        }
     }
 }
