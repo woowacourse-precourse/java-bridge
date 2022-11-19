@@ -8,6 +8,7 @@ public class Application {
     static BridgeGame bridgeGame;
 
     public static void main(String[] args) {
+        System.out.println("다리 건너기 게임을 시작합니다.\n");
         try {
             startState();
             gameState();
