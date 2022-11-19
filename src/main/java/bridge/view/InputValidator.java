@@ -20,18 +20,18 @@ public class InputValidator {
         }
     }
 
+    private static void validateIsNumber(String input) {
+        if (!isNumeric(input)) {
+            throw new IllegalArgumentException(getErrorMessage(NOT_DIGIT));
+        }
+    }
+
     private static boolean isNumeric(String input) {
         try {
             Integer.parseInt(input);
             return true;
         } catch (NumberFormatException exception) {
             return false;
-        }
-    }
-
-    private static void validateIsNumber(String input) {
-        if (isNumeric(input)) {
-            throw new IllegalArgumentException(getErrorMessage(NOT_DIGIT));
         }
     }
 
