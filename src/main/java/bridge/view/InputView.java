@@ -26,6 +26,14 @@ public class InputView {
         return input;
     }
 
+    public String inputGameCommand() {
+        System.out.println(RETRY_OR_END_MESSAGE.toString());
+        String input = Console.readLine();
+        checkEmpty(input);
+        checkAlphabet(input);
+        return input;
+    }
+
     private static void checkEmpty(String input){
         if (input == null || input.isBlank()){
             throw new IllegalArgumentException(EMPTY_INPUT.toString());
