@@ -38,7 +38,7 @@ public class BridgeGameController {
         BridgeSize bridgeSize = inputView.bridgeSize();
         BridgeGame bridgeGame = bridgeGame(bridgeSize);
 
-        String gameResult = gameResult(bridgeGame, bridgeSize);
+        String gameResult = gameResult(bridgeGame);
         outputView.printResult(bridgeGame, gameResult);
     }
 
@@ -49,11 +49,11 @@ public class BridgeGameController {
         return new BridgeGame(bridge, player, new MoveResults());
     }
 
-    private String gameResult(final BridgeGame bridgeGame, final BridgeSize bridgeSize) {
+    private String gameResult(final BridgeGame bridgeGame) {
         GameCommands gameCommand = NOTHING;
         String gameResult = GAME_SUCCESS;
 
-        while (!gameCommand.is(QUIT) && bridgeGame.positionIsNotMoreThan(bridgeSize)) {
+        while (!gameCommand.is(QUIT) && bridgeGame.playerIsOnTheBridge()) {
             String moveResult = moveResult(bridgeGame);
 
             if (moveResult.equals(MOVE_FAIL)) {

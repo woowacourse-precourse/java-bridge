@@ -15,4 +15,8 @@ public class Bridge {
         String bridgeCommand = bridge.get(player.position());
         return moveCommand.is(bridgeCommand);
     }
+
+    public boolean isLongerThan(int position) {
+        return position < bridge.size();
+    }
 }
