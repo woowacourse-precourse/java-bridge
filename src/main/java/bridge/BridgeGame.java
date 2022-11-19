@@ -9,11 +9,14 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private static final int START_COUNT = 1;
     private List<String> bridge = new ArrayList<>();
     private List<String> userMoving = new ArrayList<>();
+    private int attemptCount = START_COUNT;
 
     public void initGame(List<String> bridge) {
         userMoving = new ArrayList<>();
+        attemptCount = START_COUNT;
         this.bridge = bridge;
     }
 
@@ -43,6 +46,8 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String gameCommand) {
+        userMoving = new ArrayList<>();
+        attemptCount++;
         return RetryInput.RETRY.getValue().equals(gameCommand);
     }
 
@@ -60,5 +65,9 @@ public class BridgeGame {
 
     public List<String> getUserMoving() {
         return userMoving;
+    }
+
+    public int getAttemptCount() {
+        return attemptCount;
     }
 }
