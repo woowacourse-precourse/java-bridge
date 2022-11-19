@@ -52,11 +52,15 @@ public class UserStatus {
     public String getUserScoreByDirectionOrElseSpace(String compareDirection, int position) {
         String userDirection = this.directions.get(position);
 
-        if (userDirection.equals(compareDirection) && this.available) {
+        if (userDirection.equals(compareDirection) && getPosition() > position) {
             return ON_SUCCESS;
         }
 
-        if (userDirection.equals(compareDirection) && !this.available) {
+        if (userDirection.equals(compareDirection) && isAvailable() && getPosition() == position) {
+            return ON_SUCCESS;
+        }
+
+        if (userDirection.equals(compareDirection) && !isAvailable() && getPosition() == position) {
             return ON_FAILED;
         }
 
