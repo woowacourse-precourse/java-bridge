@@ -10,19 +10,18 @@ import java.util.Map;
 
 public class CrossRecord {
 
-    private Map<MovingDirection, List<String>> crossedBridge = new HashMap<>();
-    private boolean isFirst = true;
+    private static Map<MovingDirection, List<String>> crossedBridge = initCrossedBridge();
+    private static boolean isFirst = true;
 
-    public CrossRecord() {
-        initCrossedBridge();
+    private static Map<MovingDirection, List<String>> initCrossedBridge() {
+        Map<MovingDirection, List<String>> emptyBridge = new HashMap<>();
+        emptyBridge.put(MovingDirection.UP, makeEmptyBridge());
+        emptyBridge.put(MovingDirection.DOWN, makeEmptyBridge());
+
+        return emptyBridge;
     }
 
-    private void initCrossedBridge() {
-        crossedBridge.put(MovingDirection.UP, makeEmptyBridge());
-        crossedBridge.put(MovingDirection.DOWN, makeEmptyBridge());
-    }
-
-    private List<String> makeEmptyBridge() {
+    private static List<String> makeEmptyBridge() {
         List<String> emptyBridge = new ArrayList<>();
         emptyBridge.add(BridgeDrawer.START_OF_BRIDGE.getCharacter());
         emptyBridge.add(BridgeDrawer.END_OF_BRIDGE.getCharacter());
@@ -30,7 +29,7 @@ public class CrossRecord {
         return emptyBridge;
     }
 
-    public void recordCrossedBridge(MovingDirection MOVE_TO,
+    public static void recordCrossedBridge(MovingDirection MOVE_TO,
             MovingPossibility MOVING_POSSIBILITY) {
         if (isFirst) {
             recordFirstTime(MOVE_TO, MOVING_POSSIBILITY);
@@ -40,7 +39,7 @@ public class CrossRecord {
         recordAfterFirstTime(MOVE_TO, MOVING_POSSIBILITY);
     }
 
-    private void recordFirstTime(MovingDirection MOVE_TO, MovingPossibility MOVING_POSSIBILITY) {
+    private static void recordFirstTime(MovingDirection MOVE_TO, MovingPossibility MOVING_POSSIBILITY) {
         isFirst = false;
         for (MovingDirection BRIDGE_DIRECTION : MovingDirection.values()) {
             if (BRIDGE_DIRECTION == MOVE_TO) {
@@ -51,7 +50,7 @@ public class CrossRecord {
         }
     }
 
-    private void recordAfterFirstTime(MovingDirection MOVE_TO,
+    private static void recordAfterFirstTime(MovingDirection MOVE_TO,
             MovingPossibility MOVING_POSSIBILITY) {
         for (MovingDirection BRIDGE_DIRECTION : MovingDirection.values()) {
             recordDivideSpace(BRIDGE_DIRECTION);
@@ -63,7 +62,7 @@ public class CrossRecord {
         }
     }
 
-    private void recordOOrX(MovingDirection BRIDGE_DIRECTION,
+    private static void recordOOrX(MovingDirection BRIDGE_DIRECTION,
             MovingPossibility MOVING_POSSIBILITY) {
         int insertIndex = crossedBridge.get(BRIDGE_DIRECTION).size() - 1;
         crossedBridge
@@ -71,26 +70,26 @@ public class CrossRecord {
                 .add(insertIndex, MOVING_POSSIBILITY.getCharacter());
     }
 
-    private void recordEmptySpace(MovingDirection BRIDGE_DIRECTION) {
+    private static void recordEmptySpace(MovingDirection BRIDGE_DIRECTION) {
         int insertIndex = crossedBridge.get(BRIDGE_DIRECTION).size() - 1;
         crossedBridge
                 .get(BRIDGE_DIRECTION)
                 .add(insertIndex, BridgeDrawer.EMPTY_SPACE.getCharacter());
     }
 
-    private void recordDivideSpace(MovingDirection BRIDGE_DIRECTION) {
+    private static void recordDivideSpace(MovingDirection BRIDGE_DIRECTION) {
         int insertIndex = crossedBridge.get(BRIDGE_DIRECTION).size() - 1;
         crossedBridge
                 .get(BRIDGE_DIRECTION)
                 .add(insertIndex, BridgeDrawer.DIVIDE_SPACE.getCharacter());
     }
 
-    public void resetCrossedBridge() {
+    public static void resetCrossedBridge() {
         isFirst = true;
-        initCrossedBridge();
+        crossedBridge = initCrossedBridge();
     }
 
-    public Map<MovingDirection, String> getCrossedBridge() {
+    public static Map<MovingDirection, String> getCrossedBridge() {
         Map<MovingDirection, String> crossedBridgeForReturn = new HashMap<>();
 
         for (MovingDirection BRIDGE_DIRECTION : MovingDirection.values()) {
