@@ -38,7 +38,7 @@ public final class OutputView {
 
         System.out.print("게임 성공 여부: ");
         System.out.println(bridgeGameResultDto.getGameResult().toResultMessage());
-        System.out.printf("총 시도한 횟수: %d\n", bridgeGameResultDto.getTriedCount());
+        System.out.printf("총 시도한 횟수: %d%n", bridgeGameResultDto.getTriedCount());
     }
 
     private void validateGameResult(BridgeGameResultDto bridgeGameResultDto) {
