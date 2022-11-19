@@ -27,4 +27,17 @@ public class BridgeResult {
         upBlocks.clear();
         downBlocks.clear();
     }
+
+    @Override
+    public String toString() {
+        return toBridgeString(upBlocks) + toBridgeString(downBlocks);
+    }
+
+    private String toBridgeString(List<String> blocks) {
+        String bridge = "[ ";
+        for (String block : blocks) {
+            bridge += block + " | ";
+        }
+        return bridge.substring(0, bridge.length() - 3) + " ]\n";
+    }
 }
