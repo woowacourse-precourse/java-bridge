@@ -3,7 +3,7 @@ package bridge.domain;
 import java.util.Arrays;
 
 public enum UpDown {
-    UP("U"), DOWN("D"), NONE("N");
+    DOWN("D"), UP("U"), NONE("N");
 
     private String direction;
 
