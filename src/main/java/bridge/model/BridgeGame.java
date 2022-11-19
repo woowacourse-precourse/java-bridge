@@ -40,6 +40,12 @@ public class BridgeGame {
         playCount++;
     }
 
+    public void checkGameCleared() {
+        if (player.isCrossComplete(bridge)) {
+            quit();
+        }
+    }
+
     private void quit() {
         canPlay = false;
     }
