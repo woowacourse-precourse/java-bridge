@@ -8,6 +8,10 @@ import java.util.List;
 public class BridgeGame {
     private static final String RETRY = "R";
     private static final String QUIT = "Q";
+    private static final boolean GAME_RETRY = true;
+    private static final boolean GAME_QUIT = false;
+    private static final boolean SUCCESS = true;
+    private static final boolean FAILURE = false;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -31,21 +35,21 @@ public class BridgeGame {
      */
     public boolean retry(String gameRetryCommand) {
         if (gameRetryCommand.equals(RETRY))
-            return true;
+            return GAME_RETRY;
         if (gameRetryCommand.equals(QUIT))
-            return false;
+            return GAME_QUIT;
 
         throw new IllegalArgumentException();
     }
 
     public boolean judgeSuccessFailure(List<String> bridge, List<String> path){
         if(bridge.size() != path.size())
-            return false;
+            return FAILURE;
 
         for( int i = 0 ; i < bridge.size() ;i++)
             if( !bridge.get(i).equals( path.get(i) ) )
-                return false;
+                return FAILURE;
 
-        return true;
+        return SUCCESS;
     }
 }
