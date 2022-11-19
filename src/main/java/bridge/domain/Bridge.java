@@ -12,9 +12,14 @@ public class Bridge {
     }
 
     private void makeBridge(List<String> bridge) {
-        for(String square: bridge) {
-            BridgeState state = BridgeState.makeBridgeState(square);
+        for(String tile: bridge) {
+            BridgeState state = BridgeState.makeBridgeState(tile);
             this.bridge.add(state);
         }
+    }
+
+    public boolean isSameTile(String givenTile, int stage) {
+        BridgeState bridgeState = bridge.get(stage);
+        return bridgeState.isSameState(givenTile);
     }
 }
