@@ -7,15 +7,15 @@ import java.util.stream.Collectors;
 public enum BridgeBlock {
     D(0), U(1);
 
-    private final int phase;
+    private final int block;
 
     BridgeBlock(int phaseNum) {
-        this.phase = phaseNum;
+        this.block = phaseNum;
     }
 
     public static String convertType(int generateNum) {
         return Arrays.stream(BridgeBlock.values())
-                .filter(value -> value.phase == generateNum)
+                .filter(value -> value.block == generateNum)
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new).toString();
     }

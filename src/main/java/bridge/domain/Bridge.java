@@ -5,14 +5,12 @@ import java.util.List;
 public class Bridge {
 
     private final List<BridgeBlock> bridge;
-    private int bridgeCnt;
 
-    public Bridge(List<BridgeBlock> bridge, int bridgeCnt) {
+    public Bridge(List<BridgeBlock> bridge) {
         this.bridge = bridge;
-        this.bridgeCnt = bridgeCnt;
     }
 
-    public boolean isSameBy(String bridgeBlock) {
-        return bridgeBlock.equals(bridge.get(bridgeCnt));
+    public boolean isSameBy(BridgeBlock bridgeBlock, Phase phase) {
+        return bridgeBlock.equals(this.bridge.get(phase.getCurrentPhase()));
     }
 }
