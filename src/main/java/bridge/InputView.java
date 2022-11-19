@@ -18,10 +18,10 @@ public class InputView {
      */
     public int readBridgeSize() {
         String input;
-        while(!isDigit(input=Console.readLine())){
-
-        }
-        return 0;
+        int size;
+        while(!isDigit(input=Console.readLine())){}
+        size = convertToInteger(input);
+        return size;
     }
 
     /**
@@ -43,7 +43,9 @@ public class InputView {
     }
     private boolean isDigit(String input){
         try{
-            Integer.parseInt(input);
+            if(!input.chars().allMatch(Character::isDigit)) {
+                throw new IllegalArgumentException(INVALID_DIGIT.getErrorMsg());
+            }
             return true;
         }
         catch (Exception e){
@@ -52,7 +54,7 @@ public class InputView {
         }
     }
     private Integer convertToInteger(String input){
-        return 0;
+        return Integer.parseInt(input);
     }
     private void testVaildRange(){
 
