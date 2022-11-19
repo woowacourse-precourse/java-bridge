@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.stream.Stream;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -26,6 +25,40 @@ public class ResultTest {
                 Arguments.of(
                         List.of("U", "U", "D", "U", "D", "D"),
                         List.of("OO X  ", "  X OO")
+                )
+        );
+    }
+
+    private static Stream<Arguments> provideSuccessBridgeDirectionAndPlayerDirection() {
+        return Stream.of(
+                Arguments.of(
+                        List.of("U", "U", "U", "D", "D", "D"),
+                        List.of("U", "U", "U", "D", "D", "D")
+                        ),
+                Arguments.of(
+                        List.of("D", "D", "D", "U", "U", "U"),
+                        List.of("D", "D", "D", "U", "U", "U")
+                ),
+                Arguments.of(
+                        List.of("U", "D", "U", "D", "U", "D"),
+                        List.of("U", "D", "U", "D", "U", "D")
+                )
+        );
+    }
+
+    private static Stream<Arguments> provideFailBridgeDirectionAndPlayerDirection() {
+        return Stream.of(
+                Arguments.of(
+                        List.of("U", "U", "U", "D", "D", "D"),
+                        List.of("U", "U", "U", "D", "D", "U")
+                ),
+                Arguments.of(
+                        List.of("D", "D", "D", "U", "U", "U"),
+                        List.of("U")
+                ),
+                Arguments.of(
+                        List.of("U", "D", "U", "D", "U", "D"),
+                        List.of("U", "U")
                 )
         );
     }
@@ -93,5 +126,39 @@ public class ResultTest {
         //then
         assertThat(result.toStrings().get(0)).isEqualTo(answer.get(0));
         assertThat(result.toStrings().get(1)).isEqualTo(answer.get(1));
+    }
+
+    @ParameterizedTest
+    @DisplayName("게임을 성공했을 경우 true를 반환한다.")
+    @MethodSource("provideSuccessBridgeDirectionAndPlayerDirection")
+    public void gameSuccessThenTrue(List<String> bridgeDirections, List<String> playerDirections) throws Exception{
+        //given
+        Result result = new Result();
+        Bridge bridge = Bridge.from(bridgeDirections);
+
+        //when
+        for (String playerDirection : playerDirections) {
+            result.update(bridge, playerDirection);
+        }
+
+        //then
+        assertThat(result.isSuccess(bridge)).isEqualTo(true);
+    }
+
+    @ParameterizedTest
+    @DisplayName("게임에 실패했을 경우 false를 반환한다.")
+    @MethodSource("provideFailBridgeDirectionAndPlayerDirection")
+    public void gameFailThenFalse(List<String> bridgeDirections, List<String> playerDirections) throws Exception{
+        //given
+        Result result = new Result();
+        Bridge bridge = Bridge.from(bridgeDirections);
+
+        //when
+        for (String playerDirection : playerDirections) {
+            result.update(bridge, playerDirection);
+        }
+
+        //then
+        assertThat(result.isSuccess(bridge)).isEqualTo(false);
     }
 }

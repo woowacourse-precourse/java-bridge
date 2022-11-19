@@ -21,6 +21,10 @@ public class Result {
         return !status.get(status.size() - 1).didCross() || bridge.isEnd(location);
     }
 
+    public boolean isSuccess(Bridge bridge) {
+        return status.get(status.size() - 1).didCross() && bridge.isEnd(location);
+    }
+
     public List<String> toStrings() {
         String upSide = buildBridge(Direction.UPSIDE.shortcut());
         String downSide = buildBridge(Direction.DOWNSIDE.shortcut());
