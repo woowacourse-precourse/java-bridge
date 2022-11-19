@@ -42,31 +42,28 @@ public class BridgeGame {
 
     private void checkPlayerPosition(Player player) {
         if (!moveSuccess(player, bridge)) {
-            if (player.getYPosition() == 1) {
-                bridgeMap.getUpperBridgeMap().add(FAIL_BLOCK);
-                bridgeMap.getLowerBridgeMap().add(BLANK_BLOCK);
-            } else {
-                bridgeMap.getUpperBridgeMap().add(BLANK_BLOCK);
-                bridgeMap.getLowerBridgeMap().add(FAIL_BLOCK);
-            }
+            addBridgeMapBlock(player, FAIL_BLOCK);
             outputView.printMap(bridgeMap);
             retry(player);
             return;
         }
-
-        if (player.getYPosition() == 1) {
-            bridgeMap.getUpperBridgeMap().add(SUCCESS_BLOCK);
-            bridgeMap.getLowerBridgeMap().add(BLANK_BLOCK);
-        } else {
-            bridgeMap.getUpperBridgeMap().add(BLANK_BLOCK);
-            bridgeMap.getLowerBridgeMap().add(SUCCESS_BLOCK);
-        }
+        addBridgeMapBlock(player, SUCCESS_BLOCK);
         outputView.printMap(bridgeMap);
 
         if (reachFinalLine(player, bridge)) {
             isContinue = false;
             isWin = true;
         }
+    }
+
+    private void addBridgeMapBlock(Player player, String block) {
+        if (player.getYPosition() == 1) {
+            bridgeMap.getUpperBridgeMap().add(block);
+            bridgeMap.getLowerBridgeMap().add(BLANK_BLOCK);
+            return;
+        }
+        bridgeMap.getUpperBridgeMap().add(BLANK_BLOCK);
+        bridgeMap.getLowerBridgeMap().add(block);
     }
 
     private boolean reachFinalLine(Player player, Bridge bridge) {
