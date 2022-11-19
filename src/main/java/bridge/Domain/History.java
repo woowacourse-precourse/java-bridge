@@ -22,4 +22,8 @@ public class History {
         }
         return result.toString();
     }
+
+    public void move(String moveTo) {
+        choices.add(moveTo);
+    }
 }
