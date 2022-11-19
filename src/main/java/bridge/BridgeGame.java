@@ -21,6 +21,20 @@ public class BridgeGame {
         this.retry=retry;
     }
 
+    public int getBridgeSize(){
+        return Integer.valueOf(bridgeSize);
+    }
+
+    public List<String> getMoveList(){
+        return userMove;
+    }
+
+    public String getRetry(){
+        return retry;
+    }
+
+
+
 
 
 }
