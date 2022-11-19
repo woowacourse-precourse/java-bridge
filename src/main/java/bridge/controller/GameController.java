@@ -18,6 +18,18 @@ public class GameController {
         return new BridgeGame(bridge, passingSpace);
     }
 
+    public void run(BridgeGame bridgeGame) {
+    }
+
+    private String selectRetryGame() {
+        try {
+            outputView.printSelectRetryOrNotInput();
+            return inputView.readGameCommand();
+        } catch (IllegalArgumentException illegalArgumentException) {
+            return selectRetryGame();
+        }
+    }
+
     public void runRound(BridgeGame bridgeGame) {
         String moving;
         do {
