@@ -27,7 +27,7 @@ public class Controller {
     }
 
     // TODO: 다리를 생성한다.
-    public void createBridge(){
+    private void createBridge(){
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
@@ -37,7 +37,7 @@ public class Controller {
     }
 
     // TODO: 다리를 이동하며 게임을 진행한다.
-    public void movingBridge(){
+    private void movingBridge(){
         do {
             count++;
             bridgeGameSet();
@@ -45,7 +45,7 @@ public class Controller {
     }
 
     // TODO: 다리 이동 루틴을 구현한다.
-    public boolean bridgeMoveRoutine(){
+    private boolean bridgeMoveRoutine(){
         mapMaker = new MapMaker(bridge);
         while (true){
             OutputView.printInputDirectionToMove();
