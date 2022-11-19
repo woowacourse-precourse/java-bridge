@@ -2,7 +2,6 @@ package bridge.view;
 
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeRestart;
-
 import java.util.List;
 
 /**
