@@ -16,7 +16,7 @@ public class MovingStatusSaver {
             this.movingStatus.add(moving);
         }
         if (!correctBridge) {
-            this.movingStatus.add("-");
+            this.movingStatus.add(MovingStatus.FAIL.getMovingKey() + moving);
         }
     }
 
