@@ -59,7 +59,7 @@ public class BridgeGameController {
 
 	private void moveBridgeOneTime(BridgeGame bridgeGame) {
 		String moving = receiveMoveCommand();
-		bridgeGameService.moveBridge(moving, bridgeGame, progressMap);
+		bridgeGame.move(moving, progressMap);
 	}
 
 	private String receiveMoveCommand() {

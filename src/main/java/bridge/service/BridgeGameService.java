@@ -33,10 +33,6 @@ public class BridgeGameService {
 		return moving;
 	}
 
-	public void moveBridge(String moving, BridgeGame bridgeGame, ProgressMap moveMap) {
-		bridgeGame.move(moving, moveMap);
-	}
-
 	private void validSize(int size) {
 		if (size < 3 || size > 20) {
 			throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
