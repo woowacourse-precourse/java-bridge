@@ -39,4 +39,16 @@ class BridgeMakerTest {
                 arguments(new NumberOneGenerator(), "U")
         );
     }
+
+    @Test
+    void 입력받은_크기만큼_다리를_생성하는지_테스트() {
+        //given
+        BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
+
+        //when
+        bridge = maker.makeBridge(5);
+
+        //then
+        assertThat(bridge).hasSize(5);
+    }
 }
