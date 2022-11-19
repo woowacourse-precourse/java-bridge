@@ -12,10 +12,11 @@ public class GameController {
 
     private final InputHandler inputHandler = new InputHandler();
 
-    public void runGame(){
+    BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+
+    public void runGame() {
         int size = inputHandler.getBridgeSize();
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(size);
         new BridgeGame().start(size, bridge);
     }
