@@ -3,6 +3,7 @@ package bridge.model;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.bridge.Bridge;
+import bridge.model.bridge.Node;
 import java.util.List;
 
 /**
@@ -15,6 +16,7 @@ public class BridgeGame {
      * 게임 진행을 위해 필요한 메서드를 추가 하거나 변경할 수 있다.
      */
     private static Bridge bridge;
+    private static PlayerSteps steps;
 
     private static BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
@@ -32,6 +34,7 @@ public class BridgeGame {
     public void init(int bridgeSize) {
         List<String> bridgePositions = bridgeMaker.makeBridge(bridgeSize);
         bridge = Bridge.of(bridgePositions);
+        steps = new PlayerSteps(bridgeSize);
     }
 
     /**
@@ -39,10 +42,11 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String to) {
+    public void move(Node to) {
+        steps.add(to);
     }
 
-    public boolean lastChoiceMismatch() {
+    public boolean lastStepMismatch() {
         // TODO
         return false;
     }

@@ -5,6 +5,8 @@ import bridge.model.bridge.Node;
 import bridge.view.GameCommand;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameController {
     private static final BridgeGame game = new BridgeGame();
@@ -12,27 +14,40 @@ public class GameController {
     private static final OutputView output = new OutputView();
 
     public static void run() {
-        output.printStart();
-        int bridgeSize = input.readBridgeSize();
-        game.init(bridgeSize);
+        startGameAndBuildBridge();
         while (game.isEnd()) {
-            goOneStep();
+            goOneStepAndPrintResult();
+            checkLastStepAndDecideToContinue();
         }
         output.printResult();
     }
 
-    private static void goOneStep() {
-        moveAndPrintResult();
-        if (game.lastChoiceMismatch()) {
+    private static void startGameAndBuildBridge() {
+        output.printStart();
+        int bridgeSize = input.readBridgeSize();
+        game.init(bridgeSize);
+    }
+
+    private static void goOneStepAndPrintResult() {
+        readInputAndMove();
+        printResultAfterMove();
+    }
+
+    private static void printResultAfterMove() {
+        List<String> result = new ArrayList<>(2);
+        // TODO: game 안에서 bridge 랑 steps를 비교해야함
+        output.printMap(result);
+    }
+
+    private static void checkLastStepAndDecideToContinue() {
+        if (game.lastStepMismatch()) {
             quitOrRetry();
         }
     }
 
-    private static void moveAndPrintResult() {
+    private static void readInputAndMove() {
         Node to = input.readMoving();
         game.move(to);
-        // TODO: map 만들어와서 printMap() 인자로 넣어주기
-//        output.printMap();
     }
 
     private static void quitOrRetry() {
