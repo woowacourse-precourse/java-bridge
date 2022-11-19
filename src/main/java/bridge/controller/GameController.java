@@ -86,11 +86,18 @@ public class GameController {
         while (true) {
             try {
                 restartCommand = inputView.readGameCommand();
-                isPlaying = Restart.isRestart(restartCommand);
+                checkGameRestart(restartCommand);
                 break;
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
+        }
+    }
+
+    private void checkGameRestart(String command) {
+        isPlaying = Restart.isRestart(command);
+        if (isPlaying) {
+            bridgeGame.retry();
         }
     }
 

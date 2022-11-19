@@ -20,4 +20,8 @@ public class CrossedBridge {
         return Collections.unmodifiableList(crossedBridge);
     }
 
+    public void initialize() {
+        this.crossedBridge.clear();
+    }
+
 }

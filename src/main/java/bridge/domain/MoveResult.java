@@ -25,6 +25,11 @@ public class MoveResult {
         return List.of(upperBridge.getCrossedBridge(), lowerBridge.getCrossedBridge());
     }
 
+    public void clearResult() {
+        upperBridge.initialize();
+        lowerBridge.initialize();
+    }
+
     private void updateEachBridge(Boolean upperResult, Boolean lowerResult) {
         upperBridge.updateMoveResult(upperResult);
         lowerBridge.updateMoveResult(lowerResult);
