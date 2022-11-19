@@ -51,7 +51,7 @@ public class BridgeGame {
     }
 
     private void check(Player player) {
-        boolean moveSuccess = getMoveSuccess(player, bridge);
+        boolean moveSuccess = getMoveSuccess(player);
         bridgeMapMaker.addBridgeMapBlock(player, moveSuccess);
         bridgeResult.printMap();
         if (!moveSuccess) {
@@ -60,10 +60,10 @@ public class BridgeGame {
     }
 
     private boolean reachFinalLine(Player player) {
-        return player.getXPosition() == bridge.getBridge()[0].length - 1;
+        return player.getXPosition() == bridge.getBridge()[0].length - 1 && getMoveSuccess(player);
     }
 
-    private boolean getMoveSuccess(Player player, Bridge bridge) {
+    private boolean getMoveSuccess(Player player) {
         int positionX = player.getXPosition();
         int positionY = player.getYPosition();
         return bridge.getBridge()[positionY][positionX].equals(FALL_POSITION);
