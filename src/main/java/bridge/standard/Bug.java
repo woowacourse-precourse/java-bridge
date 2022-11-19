@@ -27,4 +27,5 @@ public class Bug {
             throw new IllegalArgumentException(Bug.ERROR_MESSAGE + errorMessage);
         }
     }
+
 }

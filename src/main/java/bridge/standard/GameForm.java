@@ -1,6 +1,7 @@
 package bridge.standard;
 
 public class GameForm {
+
     public static final int UP_LAYER = 1;
     public static final int DOWN_LAYER = 0;
 

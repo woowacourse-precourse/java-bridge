@@ -14,4 +14,5 @@ public class Application {
         gameController.setBridge(bridgeMaker.makeBridge(gameController.getBridgeSize()));
         gameController.start();
     }
+
 }

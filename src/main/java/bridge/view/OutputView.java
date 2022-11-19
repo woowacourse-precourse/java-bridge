@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.StringJoiner;
 
 public class OutputView {
+
     private static final String EMPTY_LINE = "";
     private static final String GUIDE_START = "다리 건너기 게임을 시작합니다.\n";
     private static final String GUIDE_INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
@@ -62,4 +63,5 @@ public class OutputView {
         map = upStairMap + downStairMap.toString();
         return map;
     }
+
 }

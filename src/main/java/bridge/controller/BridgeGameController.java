@@ -1,15 +1,15 @@
 package bridge.controller;
 
+import bridge.standard.GameForm;
 import bridge.model.BridgeGame;
 
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-import bridge.standard.GameForm;
-
 import java.util.List;
 
 public class BridgeGameController {
+
     private final BridgeGame game = new BridgeGame();
     private final OutputView output = new OutputView();
     private final InputView input = new InputView();
@@ -33,13 +33,12 @@ public class BridgeGameController {
     public void start() {
         do {
             moveOneStage();
-            if (game.isFail()&&!wantRetry()) {
+            if (game.isFail() && !wantRetry()) {
                 break;
             }
         } while (!game.isSuccess());
         exitGame();
     }
-
 
     private void moveOneStage() {
         output.guideInputMoving();
@@ -61,4 +60,5 @@ public class BridgeGameController {
                 game.getNumberOfAttempts(),
                 game.getOutcome());
     }
+
 }
