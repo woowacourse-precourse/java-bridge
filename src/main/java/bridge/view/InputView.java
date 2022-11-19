@@ -36,8 +36,7 @@ public class InputView {
     public String readMoving() {
         try {
             Validator movingValidator = new MovingValidator();
-            System.out.println(
-                    String.format(INPUT_MOVING.getMessage(), UP.getCommand(), DOWN.getCommand()));
+            System.out.println("\n" + String.format(INPUT_MOVING.getMessage(), UP.getCommand(), DOWN.getCommand()));
             String moving = Console.readLine();
             movingValidator.validate(moving);
             return moving;
