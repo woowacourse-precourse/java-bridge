@@ -36,7 +36,13 @@ public class InputView {
     }
 
     public String readGameCommand() {
-        return null;
+        String gameCommandInput = input();
+
+        validateGameCommandInput(gameCommandInput);
+        return gameCommandInput;
+    }
+
+    private void validateGameCommandInput(String gameCommandInput) {
     }
 
     private String input() {
