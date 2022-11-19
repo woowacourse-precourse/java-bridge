@@ -24,4 +24,12 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
     }
+
+    @DisplayName("다리 이동 입력 시 U와 D가 아닐 경우 예외가 발생한다.")
+    @Test
+    void isUAndD() {
+        assertThatThrownBy(() -> validator.validateMovement("X"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("U와 D 중 하나를 입력해주세요.");
+    }
 }
