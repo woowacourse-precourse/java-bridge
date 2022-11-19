@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.view.enums.MapType;
 import java.util.List;
 
 public class CompareBridge {
@@ -17,8 +18,8 @@ public class CompareBridge {
 
     public String stepping(Player player, List<String> bridge) {
         if (isSame(player, bridge.get(player.informMovingIndex()))) {
-            return " O ";
+            return MapType.CAN_STEP.getType();
         }
-        return " X ";
+        return MapType.CAN_NOT_STEP.getType();
     }
 }
