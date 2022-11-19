@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.constant.Game;
-
 import java.util.List;
 
 public class GameController {
