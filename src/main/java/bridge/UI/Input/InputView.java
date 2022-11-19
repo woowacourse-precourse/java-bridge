@@ -28,7 +28,9 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String userInput = Console.readLine();
+        validate(userInput, ValidateType.COMMAND);
+        return userInput;
     }
 
     private void validate(String s, ValidateType type){
@@ -36,7 +38,7 @@ public class InputView {
 
         if(type == ValidateType.MOVE) checkMove(s);
 
-        if(type == ValidateType.COMMAND);
+        if(type == ValidateType.COMMAND) checkCommand(s);
     }
 
     private void checkSize(String s) {
@@ -54,5 +56,10 @@ public class InputView {
     private void checkMove(String s) {
         if(s.length() > 1) throw new IllegalArgumentException("[ERROR] 입력 값이 단일 문자가 아닙니다.");
         if(!(s.charAt(0) == 'U' || s.charAt(0) == 'D')) throw new IllegalArgumentException("[ERROR] 방향을 잘못 입력하셨습니다.");
+    }
+
+    private void checkCommand(String s) {
+        if(s.length() > 1) throw new IllegalArgumentException("[ERROR] 입력 값이 단일 문자가 아닙니다.");
+        if(!(s.charAt(0) == 'R' || s.charAt(0) == 'Q')) throw new IllegalArgumentException("[ERROR] 재시작 여부를 잘못 입력하셨습니다.");
     }
 }
