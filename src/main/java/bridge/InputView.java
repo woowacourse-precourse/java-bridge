@@ -16,6 +16,14 @@ import java.util.List;
  * InputView 클래스에서만 camp.nextstep.edu.missionutils.Console 의 readLine() 메서드를 이용해 사용자의 입력을 받을 수 있다.
  */
 public class InputView {
+    private static final InputView instance = new InputView();
+
+    private InputView() {
+    }
+
+    public static InputView getInstance() {
+        return instance;
+    }
 
     /**
      * 다리의 길이를 입력받는다.
@@ -37,7 +45,16 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String input = Console.readLine();
+        List<Condition> conditions = ConditionGenerator.getGameActionCondition();
+
+        Condition notPassCondition = Validator.getNotPassCondition(conditions, input);
+
+        if (notPassCondition == null) {
+            throw new IllegalArgumentException();
+        }
+
+        return input;
     }
 
     /**
