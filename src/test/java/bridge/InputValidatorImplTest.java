@@ -1,5 +1,7 @@
-package bridge.util.inputvalidator;
+package bridge;
 
+import bridge.util.inputvalidator.InputValidator;
+import bridge.util.inputvalidator.InputValidatorImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
