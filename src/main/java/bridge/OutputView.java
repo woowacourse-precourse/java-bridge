@@ -51,7 +51,7 @@ public class OutputView {
         return sb.toString();
     }
 
-    public void errorMessage(Exception e) {
-        System.out.println("[ERROR] " + e.toString());
+    public void printErrorMessage(Exception e) {
+        System.out.println("[ERROR] " + e.getMessage());
     }
 }

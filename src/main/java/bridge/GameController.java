@@ -29,8 +29,14 @@ public class GameController {
     }
 
     private BridgeSize readBridgeSize() {
-        Integer size = inputView.readBridgeSize();
-        return new BridgeSize(size);
+        while (true) {
+            try {
+                Integer size = inputView.readBridgeSize();
+                return new BridgeSize(size);
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e);
+            }
+        }
     }
 
     private BridgeMaker bridgeMaker() {
@@ -83,16 +89,28 @@ public class GameController {
     }
 
     private String moving() {
-        String moving = inputView.readMoving();
-        return new Moving(moving).getMoving();
+        while (true) {
+            try {
+                String moving = inputView.readMoving();
+                return new Moving(moving).getMoving();
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e);
+            }
+        }
     }
 
     private boolean isRetry() {
         if (isSuccess()) {
             return false;
         }
-        String command = inputView.readGameCommand();
-        GameCommand gameCommand = new GameCommand(command);
-        return gameCommand.isRetry();
+        while (true) {
+            try {
+                String command = inputView.readGameCommand();
+                GameCommand gameCommand = new GameCommand(command);
+                return gameCommand.isRetry();
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e);
+            }
+        }
     }
 }
