@@ -76,4 +76,8 @@ public class BridgeGame {
         }
         return false;
     }
+
+    public int getTryCount(){
+        return tryCount;
+    }
 }
