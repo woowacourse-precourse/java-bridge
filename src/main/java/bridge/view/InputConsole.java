@@ -12,7 +12,14 @@ public class InputConsole implements Input{
         return Integer.parseInt(input);
     }
     @Override
-    public String inputString() {
-        return Console.readLine();
+    public String inputMove() {
+        input = Console.readLine();
+        catchMoveInputException(input);
+        return input;
+    }
+    @Override
+    public String inputRetry(){
+        input = Console.readLine();
+        return input;
     }
 }

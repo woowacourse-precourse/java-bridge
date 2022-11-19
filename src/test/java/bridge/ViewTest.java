@@ -82,7 +82,11 @@ public class ViewTest extends ApplicationTest {
         }
 
         @Override
-        public String inputString() {
+        public String inputMove() {
+            return this.inputStr;
+        }
+        @Override
+        public String inputRetry() {
             return this.inputStr;
         }
     }

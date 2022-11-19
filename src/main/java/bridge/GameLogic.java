@@ -14,32 +14,37 @@ public class GameLogic {
     GameLogic(){
         bridgeGame = new BridgeGame();
         inputView =new InputView(new InputConsole());
-
-    }
-    public void start(){
         System.out.println("다리 건너기 게임을 시작합니다.");
-        catchException();
+        catchSizeException();
+        outputView = new OutputView(bridgeGame.getBridge().getBridgeList());
+        changeLine();
+        playOneGame();
     }
-    private void catchException(){
+    private void catchSizeException(){
         try{
             int input = inputView.readBridgeSize();
             bridgeGame.inputBridgeSize(input);
-            outputView = new OutputView(bridgeGame.getBridge().getBridgeList());
-            changeLine();
-            playOneGame();
         }catch (IllegalArgumentException error){
             System.out.println(error);
-            catchException();
+            catchSizeException();
         }
     }
     private void playOneGame(){
-        this.inputMove = inputView.readMoving();
+        catchMoveException();
         bridgeGame.isCorrect(inputMove);
         changeLine();
         outputView.printMap(bridgeGame.getUser().getResult(),bridgeGame.getUser().getPosition(),inputMove);
         bridgeGame.move();
         changeLine();
         checkEnd();
+    }
+    private void catchMoveException(){
+        try{
+            this.inputMove = inputView.readMoving();
+        }catch (IllegalArgumentException error){
+            System.out.println(error);
+            catchMoveException();
+        }
     }
     private void checkEnd(){
         if(!bridgeGame.isEnd()) {
