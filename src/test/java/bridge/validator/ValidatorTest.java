@@ -1,7 +1,8 @@
 package bridge.validator;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,52 +10,59 @@ import static org.junit.jupiter.api.Assertions.*;
 class ValidatorTest {
     Validator validator = new Validator();
 
-    @Test
     @DisplayName("다리 크기 정상 입력 테스트")
-    void checkValidBridgeSizeTest() {
-        assertDoesNotThrow(() -> validator.checkValidBridgeSize("10"));
+    @ValueSource(strings = {"3", "5", "19", "20"})
+    @ParameterizedTest
+    void checkValidBridgeSizeTest(String input) {
+        assertDoesNotThrow(() -> validator.checkValidBridgeSize(input));
     }
 
-    @Test
     @DisplayName("다리 크기가 숫자가 아닌 형식으로 올 경우 예외 테스트")
-    void checkInvalidFormatBridgeSizeTest() {
-        assertThatThrownBy(() -> validator.checkValidBridgeSize("a"))
+    @ValueSource(strings = {"a", "b", ",", "P", "-"})
+    @ParameterizedTest
+    void checkInvalidFormatBridgeSizeTest(String input) {
+        assertThatThrownBy(() -> validator.checkValidBridgeSize(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorType.INVALID_FORMAT.getMessage());
     }
 
-    @Test
     @DisplayName("다리 크기가 범위에서 벗어난 수로 올 경우 예외 테스트")
-    void checkInvalidRangeBridgeSizeTest() {
-        assertThatThrownBy(() -> validator.checkValidBridgeSize("50"))
+    @ValueSource(strings = {"1", "0", "2", "21", "1004"})
+    @ParameterizedTest
+    void checkInvalidRangeBridgeSizeTest(String input) {
+        assertThatThrownBy(() -> validator.checkValidBridgeSize(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorType.INVALID_RANGE.getMessage());
     }
 
-    @Test
     @DisplayName("다음 이동 정상 입력 테스트")
-    void checkValidMoveInput() {
-        assertDoesNotThrow(() -> validator.checkValidMoveInput("U"));
+    @ValueSource(strings = {"U", "D"})
+    @ParameterizedTest
+    void checkValidMoveInput(String input) {
+        assertDoesNotThrow(() -> validator.checkValidMoveInput(input));
     }
 
-    @Test
     @DisplayName("다음 이동 입력이 'U'나 'D'가 아닐 경우 예외 테스트")
-    void checkInValidMoveInput() {
-        assertThatThrownBy(() -> validator.checkValidMoveInput("a"))
+    @ValueSource(strings = {"P", "1", "d", ","})
+    @ParameterizedTest
+    void checkInValidMoveInput(String input) {
+        assertThatThrownBy(() -> validator.checkValidMoveInput(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorType.INVALID_MOVE_INPUT.getMessage());
     }
 
-    @Test
     @DisplayName("게임 재시작 정상 입력 테스트")
-    void checkValidRetryInput() {
-        assertDoesNotThrow(() -> validator.checkValidRetryInput("R"));
+    @ValueSource(strings = {"R", "Q"})
+    @ParameterizedTest
+    void checkValidRetryInput(String input) {
+        assertDoesNotThrow(() -> validator.checkValidRetryInput(input));
     }
 
-    @Test
     @DisplayName("게임 재시작 입력이 'R'이나 'Q'가 아닐 경우 예외 테스트")
-    void checkInvalidRetryInput() {
-        assertThatThrownBy(() -> validator.checkValidRetryInput("2"))
+    @ValueSource(strings = {"P", "9", "q", "."})
+    @ParameterizedTest
+    void checkInvalidRetryInput(String input) {
+        assertThatThrownBy(() -> validator.checkValidRetryInput(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorType.INVALID_RETRY_INPUT.getMessage());
     }

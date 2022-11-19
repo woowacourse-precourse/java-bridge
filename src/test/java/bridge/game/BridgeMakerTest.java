@@ -3,19 +3,21 @@ package bridge.game;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
 class BridgeMakerTest {
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
-    @Test
     @DisplayName("원하는 길이를 반환했는지 확인하는 테스트")
-    void makeBridgeLengthTest() {
-        int expectedLength = 9;
-        List<String> bridge = bridgeMaker.makeBridge(expectedLength);
+    @ValueSource(ints = {3, 5, 10, 20})
+    @ParameterizedTest
+    void makeBridgeLengthTest(Integer input) {
+        List<String> bridge = bridgeMaker.makeBridge(input);
 
-        Assertions.assertThat(bridge.size()).isEqualTo(expectedLength);
+        Assertions.assertThat(bridge.size()).isEqualTo(input);
     }
 
     @Test
