@@ -4,7 +4,7 @@
 
 ![Generic badge](https://img.shields.io/badge/precourse-week4-green.svg)
 ![Generic badge](https://img.shields.io/badge/test-6_passed-blue.svg)
-![Generic badge](https://img.shields.io/badge/version-1.0.10-brightgreen.svg)
+![Generic badge](https://img.shields.io/badge/version-1.0.11-brightgreen.svg)
 
 > 우테코 5기 4주차 미션 다리게임을 구현한 저장소입니다
 
@@ -43,7 +43,7 @@ ___
 - [x] 시작 메시지
 - [x] 길이 입력 메시지
 - [x] 이동할 칸 선택 메시지 <span style="color:red">**[Loop 내부에 사용]**
-- [ ] 결과 출력 메시지 <span style="color:red">**[Loop 내부에 사용]**
+- [x] 결과 출력 메시지 <span style="color:red">**[Loop 내부에 사용]**
 - [x] 게임 재시작 메시지
 - [X] 에러 출력 메시지
 
@@ -81,8 +81,8 @@ ___
 
 #### 6. 결과 출력 ( Class: Result -> OutputView )
 
-- [ ] 진행 중(기본 출력 로직) <span style="color:red">**[Loop 내부 로직]**
-    - 루프: 두번 MAP을 돌며 출력(한번은 UP, 한번은 DOWN)
+- [x] 진행 중(기본 출력 로직) <span style="color:red">**[Loop 내부 로직]**
+    - 루프: 두번 List를 돌며 출력(한번은 UP, 한번은 DOWN)
         * 한 줄 내에서: START -> HIT, MISS -> END
           (LOOP는 전달받은 현위치까지 출력)
 - [ ] 게임 종료
