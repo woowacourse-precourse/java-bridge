@@ -14,6 +14,7 @@ public class InputView {
         System.out.println("다리의 길이를 입력해주세요.");
         String input = Console.readLine();
         System.out.println();
+
         return convertBridgeSize(input);
     }
 
@@ -29,7 +30,20 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return Console.readLine();
+        System.out.println("다리의 길이를 입력해주세요.");
+        String input = Console.readLine();
+        System.out.println();
+
+        validateMoving(input);
+
+        return input;
+    }
+
+    private void validateMoving(String input) {
+        if (input.equals("U") || input.equals("D")) {
+            return;
+        }
+        throw new IllegalArgumentException("[ERROR]");
     }
 
     /**
