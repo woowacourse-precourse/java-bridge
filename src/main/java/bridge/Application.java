@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Application {
     static final String PASS = "O";
+    static final String FAIL = "X";
     static final String STOP_GAME = "Q";
     static InputView input = new InputView();
     static boolean gamePlayFlag = true;
@@ -35,6 +36,18 @@ public class Application {
 
         currentBridgeGame.retry();
     }
+
+    private static void checkGameIsSuccess(BridgeGame currentBridgeGame, String moveResult) {
+        if (moveResult.equals(FAIL)) {
+            return;
+        }
+
+        if (currentBridgeGame.isSuccessGame()) {
+            currentBridgeGame.setGamePassFlag(true);
+            stopBridgeGame();
+        }
+    }
+
     private static void stopBridgeGame() {
         gamePlayFlag = false;
     }
