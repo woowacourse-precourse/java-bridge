@@ -4,7 +4,7 @@ public class BridgeLengthValidator {
 
     private static final int MIN_RANGE = 3;
     private static final int MAX_RANGE = 20;
-    public static final String BRIDGE_LENGTH_MESSAGE = "[ERROR] 다리 길이는 3 이상 20 이하 자연수여야 합니다.";
+    public static final String BRIDGE_LENGTH_MESSAGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
 
     public static void validateNaturalNumber(String input) {
         try {
