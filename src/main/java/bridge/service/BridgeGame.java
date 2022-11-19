@@ -3,11 +3,11 @@ package bridge.service;
 import bridge.BridgeMaker;
 import bridge.domain.Bridges;
 import bridge.domain.Player;
+import bridge.domain.Result;
 import bridge.service.dto.request.BridgeSizeRequestDto;
 import bridge.service.dto.request.PlayerMovementRequestDto;
 import bridge.service.dto.response.BridgeStateResponseDto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,11 +17,13 @@ public class BridgeGame {
     private final BridgeMaker bridgeMaker;
     private final Bridges bridges;
     private final Player player;
+    private final Result result;
 
-    public BridgeGame(BridgeMaker bridgeMaker, Bridges bridges, Player player) {
+    public BridgeGame(BridgeMaker bridgeMaker, Bridges bridges, Player player, Result result) {
         this.bridgeMaker = bridgeMaker;
         this.bridges = bridges;
         this.player = player;
+        this.result = result;
     }
 
     public void create(BridgeSizeRequestDto dto) {
@@ -38,32 +40,27 @@ public class BridgeGame {
         String positionByPlayerToMove = dto.getMovePlayer();
         String bridge = bridges.getBridgeByPositionToMove(player.getPosition());
 
-        List<String> upSpaces = new ArrayList<>();
-        List<String> downSpaces = new ArrayList<>();
+
         if(bridge.equals(positionByPlayerToMove)) {
             if(bridge.equals("U")) {
-                upSpaces.add("O");
-                downSpaces.add(" ");
+                result.addBlocks("O", " ");
             }
             else {
-                upSpaces.add(" ");
-                downSpaces.add("O");
+                result.addBlocks(" ", "O");
             }
 
             player.move();
         }
         else {
             if(bridge.equals("U")) {
-                upSpaces.add(" ");
-                downSpaces.add("X");
+                result.addBlocks(" ", "X");
             }
             else {
-                upSpaces.add("X");
-                downSpaces.add(" ");
+                result.addBlocks("X", " ");
             }
         }
 
-        return new BridgeStateResponseDto(upSpaces, downSpaces);
+        return new BridgeStateResponseDto(result);
     }
 
     /**
