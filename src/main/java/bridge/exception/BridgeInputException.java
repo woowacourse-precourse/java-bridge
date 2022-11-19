@@ -32,5 +32,12 @@ public class BridgeInputException {
         }
     }
 
+    // 이동할 때 입력값이 적절한지 판별하는 기능
+    public void validMovingBridge(String input) {
+        if(!(input.equals("U") || input.equals("D"))) {
+            throw new IllegalArgumentException(ErrorMessage.MOVING_BRIDGE_STRING_ERROR_MESSAGE);
+        }
+    }
+
 
 }
