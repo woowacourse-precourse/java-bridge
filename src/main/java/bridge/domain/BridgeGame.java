@@ -42,6 +42,19 @@ public class BridgeGame {
      */
     public void retry() {
         countGameTry += 1;
+        userPosition = 0;
+    }
+
+    public List<String> getBridge() {
+        return bridge;
+    }
+
+    public int getCurrentPosition() {
+        return userPosition;
+    }
+
+    public Boolean isEnd() {
+        return bridgeSize == userPosition;
     }
 
     private Boolean canMove(String inputGoingBlock) {
