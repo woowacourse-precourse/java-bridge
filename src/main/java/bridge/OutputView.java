@@ -11,7 +11,7 @@ public class OutputView {
         System.out.println(GAME_START_MESSAGE);
     }
 
-    public void printBridgeLengthInputMessage() {
+    public static void printBridgeSizeInputMessage() {
         System.out.println(BRIDGE_SIZE_INPUT_MESSAGE);
     }
     /**
