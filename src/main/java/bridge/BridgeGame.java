@@ -1,5 +1,8 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -23,8 +26,17 @@ public class BridgeGame {
         moveCount++;
     }
 
-    private boolean matches(String choice) {
-        return bridge.isEqualToChoice(moveCount, choice);
+    public List<Boolean> matchResults(){
+        List<Boolean> matchRecord = new ArrayList<>(moveCount);
+        for (int i = 0; i < moveCount; i++){
+            boolean match = isMatch(bridge.getBridgeMove(i), playersMove.getPlayersMove(i));
+            matchRecord.add(match);
+        }
+        return matchRecord;
+    }
+
+    private boolean isMatch(String bridgeMove, String playersMove) {
+        return bridgeMove.equals(playersMove);
     }
 
     public boolean playerHasCrossed() {

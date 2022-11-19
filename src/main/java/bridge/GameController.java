@@ -36,7 +36,8 @@ public class GameController {
             String choice = null;
             try {
                 choice = inputView.readMoving();
-                bridgeGame.move(choice); //얘가 책임질 범위?? -> [--일단 움직이기--], 움직이고 나서 결과 비교하고 출력하기, 그 결과에 따라서 게임 재시
+                bridgeGame.move(choice);
+                // bridgeGame.matchResults(); //-> 이걸 출력해야댐 -> OutputView로 넘기기!!
             } catch (IllegalArgumentException exception) {
                 outputView.printErrorMessage(exception.getMessage());
                 continue;

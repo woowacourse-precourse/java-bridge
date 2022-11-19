@@ -18,4 +18,8 @@ public class PlayersMove {
     public void initialize() {
         playersMove.clear();
     }
+
+    public String getPlayersMove(int idx) {
+        return playersMove.get(idx);
+    }
 }
