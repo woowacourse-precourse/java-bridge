@@ -33,6 +33,11 @@ public class BridgeGame {
         return isRightPath(userLocation++, userPath);
     }
 
+    private boolean isRightPath(int location, String userPath) {
+        String currentPath = bridge.get(location);
+        return currentPath.equals(userPath);
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
@@ -44,21 +49,19 @@ public class BridgeGame {
         tryCount++;
     }
 
-    public int getTryCount() {
-        return tryCount;
-    }
-
-    private boolean isRightPath(int location, String userPath) {
-        String currentPath = bridge.get(location);
-        return currentPath.equals(userPath);
-    }
-
-    public List<String> getPassedPath() {
-        return userPaths;
-    }
-
     private void initializeUserPaths() {
         userPaths = new ArrayList<>();
+    }
+
+    public List<String> getPassedPaths() {
+        return userPaths;
+    }
+    public int getBridgeLength() {
+        return this.bridge.size();
+    }
+
+    public int getTryCount() {
+        return tryCount;
     }
 
     public boolean doesCrossedBridge() {
@@ -69,5 +72,4 @@ public class BridgeGame {
         return false;
         //return userLocatoion >= bridge.size() 가능
     }
-
 }

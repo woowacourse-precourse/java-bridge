@@ -14,10 +14,11 @@ public class Application {
         int bridgeSize = inputView.readBridgeSize();
         BridgeGame bridgeGame = new BridgeGame(bridgeSize);
 
+        boolean roundResult = false;
         while (!(bridgeGame.doesCrossedBridge())) {
             String userPath = inputView.readMoving(); //InputView 클래스 사용
-            boolean roundResult = bridgeGame.move(userPath); //BridgeGame 클래스 사용
-            outputView.printMap(bridgeGame.getPassedPath(), roundResult); //OutputView 클래스 사용
+            roundResult = bridgeGame.move(userPath); //BridgeGame 클래스 사용
+            outputView.printMap(bridgeGame.getPassedPaths(), roundResult); //OutputView 클래스 사용
             if (roundResult == false) {
                 String retryOrEnd = inputView.readGameCommand();
                 if (retryOrEnd.equals("R")) {
@@ -33,7 +34,7 @@ public class Application {
 
         System.out.println();
 
-        outputView.printResult(bridgeGame.getPassedPath(), currentLocation, tryCount);
+        outputView.printResult(bridgeGame, roundResult);
 
     }
 }
