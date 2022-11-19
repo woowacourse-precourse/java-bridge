@@ -6,7 +6,7 @@ public class Application {
 
     public static void main(String[] args) {
         try {
-            int len = new InputView().readBridgeSize();
+            int len = new InputView().readSize();
             List<String> bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(len);
             new BridgeGame().move(bridge, 1);
         } catch (IllegalArgumentException e) {

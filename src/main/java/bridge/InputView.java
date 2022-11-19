@@ -55,4 +55,34 @@ public class InputView {
                 "\n" +
                 "다리의 길이를 입력해주세요.");
     }
+
+    public String readRetry() {
+        String comm;
+        try {
+            comm = readGameCommand();
+        } catch (IllegalArgumentException e) {
+            return readRetry();
+        }
+        return comm;
+    }
+
+    public String readMove() {
+        String comm;
+        try {
+            comm = readMoving();
+        } catch (IllegalArgumentException e) {
+            return readMove();
+        }
+        return comm;
+    }
+
+    public int readSize() {
+        int comm;
+        try {
+            comm = readBridgeSize();
+        } catch (IllegalArgumentException e) {
+            return readSize();
+        }
+        return comm;
+    }
 }
