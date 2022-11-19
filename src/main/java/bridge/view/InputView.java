@@ -10,8 +10,9 @@ public class InputView {
     private static final String BRIDGE_LENGTH_MSG  = "다리의 길이를 입력해주세요.";
     private static final String BRIDGE_LENGTH_ERROR_MSG  = "다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     private static final String BRIDGE_SQUARE_MSG  = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    private static final String BRIDGE_SQUARE_ERROR_MSG  = "위: U, 아래: D 값을 입력해 주세요.";
+    private static final String BRIDGE_SQUARE_ERROR_MSG  = "위: U, 아래: D 를 입력해 주세요.";
     private static final String BRIDGE_RESTART_MSG  = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private static final String BRIDGE_RESTART_ERROR_MSG  = "재시도: R, 종료: Q 를 입력해 주세요.";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -47,7 +48,15 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println(BRIDGE_RESTART_MSG);
+        String gameCommand =  Console.readLine();
+        try {
+            validateBridgeRestart(gameCommand);
+        } catch (IllegalArgumentException exception) {
+            System.out.println("[ERROR] " + exception.getMessage());
+            return readGameCommand();
+        }
+        return gameCommand;
     }
 
     private static void validateBridgeSize(String size) {
@@ -60,6 +69,12 @@ public class InputView {
     private static void validateBridgeMoveSquare(String square) {
         if (square.equals("U") != true && square.equals("D") != true) {
             throw new IllegalArgumentException(BRIDGE_SQUARE_ERROR_MSG);
+        }
+    }
+
+    private static void validateBridgeRestart(String command) {
+        if (command.equals("R") != true && command.equals("Q") != true) {
+            throw new IllegalArgumentException(BRIDGE_RESTART_ERROR_MSG);
         }
     }
 
