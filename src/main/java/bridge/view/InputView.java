@@ -10,6 +10,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public static String readBridgeSize() {
+        System.out.println(Phrases.startGame);
         System.out.println(Phrases.readBridgeSize);
         return readLine();
     }
