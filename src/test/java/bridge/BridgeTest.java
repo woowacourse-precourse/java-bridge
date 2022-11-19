@@ -9,7 +9,7 @@ class BridgeTest {
 
     @Test
     void Bridge_테스트() {
-        assertThat(new Bridge("U", " "));
+        assertThat(new Bridge("O", " "));
     }
 
     @Test
