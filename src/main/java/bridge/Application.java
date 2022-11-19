@@ -36,7 +36,7 @@ public class Application {
     private static boolean playGame(final BridgeGame bridgeGame) {
         for(int i = 0; i < bridgeGame.getBridgeSize(); i++) {
             boolean moveSuccess = bridgeGame.move(inputView.readMoving());
-            outputView.printMap(bridgeGame.getPlayLog(), moveSuccess);
+            outputView.printMap(bridgeGame, moveSuccess);
 
             if(!moveSuccess)
                 return gameover(bridgeGame);

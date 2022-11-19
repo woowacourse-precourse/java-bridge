@@ -12,25 +12,28 @@ public class BridgeGame {
     private final List<String> stageBridge;
     private final List<String> playLog;
     private int currentPosition;
-    private int playCount;
+    private int tryCount;
 
     public BridgeGame(List<String> stageBridge) {
         this.stageBridge = stageBridge;
         this.playLog = new ArrayList<>();
         this.currentPosition = 0;
-        this.playCount = 1;
+        this.tryCount = 1; // 게임 플레이 횟수
     }
 
     public int getBridgeSize(){
         return this.stageBridge.size();
     }
-
-    public int getPlayCount() {
-        return playCount;
+    public int getPlayLogSize(){
+        return this.playLog.size();
     }
 
-    public final List<String> getPlayLog() {
-        return playLog;
+    public int getTryCount() {
+        return tryCount;
+    }
+
+    public String getPlayLogAtIndex(int index){
+        return playLog.get(index);
     }
 
     /**
@@ -40,7 +43,7 @@ public class BridgeGame {
      * @return 유저가 움직이는데 성공하였는지 반환 (true : 이동 성공, false : 이동 실패)
      */
     public boolean move(String userMove) {
-        if(currentPosition == stageBridge.size())
+        if(currentPosition >= stageBridge.size())
             throw new IllegalStateException("더 이상 이동할 수 없습니다.");
         playLog.add(userMove);
         return stageBridge.get(currentPosition++).equals(userMove);
@@ -55,7 +58,7 @@ public class BridgeGame {
         if(userInput.equals(RETRY)) {
             playLog.clear();
             currentPosition = 0;
-            playCount++;
+            tryCount++;
             return true;
         }
 
