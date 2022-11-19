@@ -3,7 +3,7 @@ package bridge.service;
 import bridge.domain.BridgeJudge;
 import bridge.domain.BridgeMaker;
 import bridge.domain.Player;
-import bridge.dto.CurrentPositionDto;
+import bridge.dto.BridgeRouteDto;
 import bridge.dto.ResultDto;
 
 import java.util.List;
@@ -34,10 +34,10 @@ public class BridgeGame {
         bridgeJudge.addBridge(bridge);
     }
 
-    public CurrentPositionDto getCurrentPosition() {
+    public BridgeRouteDto getBridgeRouteDto() {
         List<String> bridge = bridgeJudge.getBridge();
         List<String> moveHistory = player.getMoveHistory();
-        return new CurrentPositionDto(bridge, moveHistory);
+        return new BridgeRouteDto(bridge, moveHistory);
     }
 
     public boolean isPlayerFailToMove() {
@@ -53,7 +53,7 @@ public class BridgeGame {
     public ResultDto getResultDto() {
         int tryCount = player.getTryCount();
         boolean isComplete = isPlayerCompleteToMove();
-        CurrentPositionDto currentPosition = getCurrentPosition();
+        BridgeRouteDto currentPosition = getBridgeRouteDto();
         return new ResultDto(tryCount, isComplete, currentPosition);
     }
 }

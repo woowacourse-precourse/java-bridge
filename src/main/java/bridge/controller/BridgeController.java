@@ -1,7 +1,7 @@
 package bridge.controller;
 
 import bridge.service.BridgeGame;
-import bridge.dto.CurrentPositionDto;
+import bridge.dto.BridgeRouteDto;
 import bridge.dto.ResultDto;
 import bridge.type.CommandType;
 import bridge.validation.Validator;
@@ -65,8 +65,8 @@ public class BridgeController {
     private void movePlayer() {
         String direction = getDirection();
         bridgeGame.move(direction);
-        CurrentPositionDto currentPosition = bridgeGame.getCurrentPosition();
-        outputView.printMap(currentPosition);
+        BridgeRouteDto bridgeRouteDto = bridgeGame.getBridgeRouteDto();
+        outputView.printMap(bridgeRouteDto);
     }
 
     private String getDirection() {

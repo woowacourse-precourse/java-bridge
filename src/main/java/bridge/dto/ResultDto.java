@@ -6,12 +6,12 @@ public class ResultDto {
 
     private boolean isComplete;
 
-    private CurrentPositionDto currentPositionDto;
+    private BridgeRouteDto bridgeRouteDto;
 
-    public ResultDto(int tryCount, boolean isComplete, CurrentPositionDto currentPositionDto) {
+    public ResultDto(int tryCount, boolean isComplete, BridgeRouteDto bridgeRouteDto) {
         this.tryCount = tryCount;
         this.isComplete = isComplete;
-        this.currentPositionDto = currentPositionDto;
+        this.bridgeRouteDto = bridgeRouteDto;
     }
 
     public int getTryCount() {
@@ -22,7 +22,7 @@ public class ResultDto {
         return isComplete;
     }
 
-    public CurrentPositionDto getCurrentPositionDto() {
-        return currentPositionDto;
+    public BridgeRouteDto getCurrentPositionDto() {
+        return bridgeRouteDto;
     }
 }
