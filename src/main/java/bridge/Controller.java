@@ -25,11 +25,24 @@ public class Controller {
     private GameStatus play(BridgeGame bridgeGame, GameStatus gameStatus) {
         while (gameStatus == GameStatus.CONTINUE) {
             gameStatus = bridgeGame.tryMoveTo(getMoving());
+            if (gameStatus == GameStatus.FAILURE) {
+                gameStatus = askRepeatGame(gameStatus, bridgeGame);
+            }
         }
+        return gameStatus;
     }
 
     private String getMoving() {
         outputView.printGuideMessage(GuideMessage.GET_MOVING);
         return inputView.readMoving();
+    }
+
+    private GameStatus askRepeatGame(GameStatus gameStatus, BridgeGame bridgeGame) {
+        outputView.printAskGameCommand();
+        if (inputView.readGameCommand() == GameStatus.getInputMessage(GameStatus.RESTART)) {
+            bridgeGame.retry();
+            return GameStatus.CONTINUE;
+        }
+        return GameStatus.FAILURE;
     }
 }
