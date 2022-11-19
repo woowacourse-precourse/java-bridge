@@ -12,10 +12,10 @@
   - [x] 다리를 생성할 때 이동가능유무는 0, 1 둘 중 무작위 값을 선택해서 만든다. BridgeMaker#makeBridge()
 - [x] 위 칸(1)을 건널 수 있으면 U, 아래 칸(0)을 건널 수 있으면 D로 표현한다. BridgePosition
 - [x] 움직임 기능을 추가한다. BridgeGame#move()
-  - [ ] 이동은 U, D로 이동할 수 있다.
-  - [ ] 이동을 할 수 있으면 O로 표시한다.
-  - [ ] 이동을 할 수 없으면 X로 표시한다.
-  - [ ] 선택하지 않은 칸은 공백 한 칸으로 표시한다.
+  - [x] 이동은 U, D로 이동할 수 있다. BridgePosition#compare()
+  - [x] 이동을 할 수 있으면 O로 표시한다. BridgePosition#compare()
+  - [x] 이동을 할 수 없으면 X로 표시한다. BridgePosition#compare()
+  - [x] 선택하지 않은 칸은 공백 한 칸으로 표시한다. BridgePosition#compare()
 - [ ] 다리를 출력한다.
   - [ ] 다리의 시작은 `[`, 끝은 `]`로 표현한다.
   - [ ] 다리 칸의 구분은 ` | ` 로 표현한다.

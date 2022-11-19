@@ -18,14 +18,22 @@ class BridgeGameTest {
     @Test
     void judgeMoveIfMoveable() {
         //given
-        BridgeGame bridgeGame = BridgeGame.of(3, new TestNumberGenerator(Lists.newArrayList(1, 0, 0)));
+        BridgeGame bridgeGame = BridgeGame.of(
+                3, new TestNumberGenerator(Lists.newArrayList(1, 0, 0))
+        );
 
         //when
         //then
         assertAll(
-                () -> assertThat(bridgeGame.move(0, BRIDGE_POSITION_UP.getCommand())).isTrue(),
-                () -> assertThat(bridgeGame.move(1, BRIDGE_POSITION_UP.name())).isFalse(),
-                () -> assertThat(bridgeGame.move(2, BRIDGE_POSITION_UP.name())).isFalse()
+                () -> assertThat(
+                        bridgeGame.move(0, BRIDGE_POSITION_UP.getCommand())).isEqualTo(List.of("O", " ")
+                ),
+                () -> assertThat(
+                        bridgeGame.move(1, BRIDGE_POSITION_UP.getCommand())).isEqualTo(List.of("X", " ")
+                ),
+                () -> assertThat(
+                        bridgeGame.move(2, BRIDGE_POSITION_UP.getCommand())).isEqualTo(List.of("X", " ")
+                )
         );
     }
 
