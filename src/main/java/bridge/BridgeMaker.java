@@ -3,6 +3,8 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.UpDown.convertsquare;
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
@@ -22,17 +24,9 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for(int i = 0; i<size ;i++) {
             int square = bridgeNumberGenerator.generate();
-            bridge.add(convertBridge(square));
+            bridge.add(convertsquare(square));
         }
+        System.out.println(bridge);
         return bridge;
     }
-
-    private String convertBridge(int square) {
-        if (square == 1) {
-            return "U";
-        }
-        return "D";
-    }
-
-
 }

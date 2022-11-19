@@ -2,6 +2,8 @@ package bridge.view;
 
 public class ExceptionMessage {
 
+    public static String isProper;
+
     public static String isNumberMsg() {
         return "입력하신 값이 숫자가 아닙니다.";
     }
