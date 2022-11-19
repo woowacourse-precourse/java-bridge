@@ -2,8 +2,6 @@ package bridge;
 
 import bridge.domain.Bridge;
 import bridge.domain.User;
-import bridge.support.BridgeMaker;
-import bridge.support.BridgeRandomNumberGenerator;
 
 import java.util.List;
 
@@ -19,9 +17,9 @@ public class BridgeGame {
     private final User user;
     private final Bridge bridge;
 
-    BridgeGame(int bridgeSize) {
+    BridgeGame(List<String> floors) {
         user = new User();
-        bridge = new Bridge(bridgeSize);
+        bridge = new Bridge(floors);
     }
 
     /**
