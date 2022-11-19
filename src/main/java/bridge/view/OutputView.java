@@ -5,6 +5,13 @@ package bridge.view;
  */
 public class OutputView {
 
+    private static final String SURVIVE = " O |";
+    private static final String SKIP = "   |";
+    private static final String FALL = " X |";
+
+    private StringBuilder upFloor;
+    private StringBuilder downFloor;
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
