@@ -5,7 +5,7 @@ import java.util.List;
 
 public class History {
     private final List<String> choices;
-    private final boolean success;
+    private boolean success;
     private final int tries;
 
     public History() {
@@ -29,5 +29,9 @@ public class History {
 
     public String getSpaceByLocation(int location) {
         return choices.get(location);
+    }
+
+    public void gameSuccess() {
+        success = true;
     }
 }
