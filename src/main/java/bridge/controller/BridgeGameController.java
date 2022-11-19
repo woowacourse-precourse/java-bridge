@@ -47,7 +47,7 @@ public class BridgeGameController {
     private BridgeGame bridgeGame(final BridgeSize bridgeSize) {
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize.bridgeSize()));
         Player player = new Player(
-                new Position(INIT_VALUE_OF_POSITION),
+                Position.of(INIT_VALUE_OF_POSITION),
                 new NumberOfChallenges(INIT_VALUE_OF_CHALLENGES));
 
         return new BridgeGame(bridge, player, new MoveResults());
