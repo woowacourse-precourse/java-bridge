@@ -14,4 +14,8 @@ public class User {
     public void setSuccess(){
         isSuccess = true;
     }
+
+    public boolean isSuccessComplete(){
+        return isSuccess;
+    }
 }
