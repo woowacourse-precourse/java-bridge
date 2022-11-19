@@ -55,14 +55,14 @@
 - `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 변경할 수 없다.
 ---
 ### service(입력 제공및 출력에 대한 형식 제공)
-- [] Bridge 생성
-- [] Bridge를 성공적으로 이동했는지 반환
-- [] 입력받은 moveInput과 다리 길이를 이용해서 유저가 몇 번째 다리를 건너는지 다리를 성공적으로 건넜는지 List에 저장해서 반환한다.
-  - [] 다리의 Up과 Down으로 나누어서 List로 저장한다.
-  - [] 출력을 위해 Up과 Down을 저장한 List를 반환한다.
-- [] 게임 재시작을 위한 기능
-  - [] List를 초기화한다.
-  - [] retry를 할껀지 판단하는 기능
+- [x] Bridge 생성
+- [x] Bridge를 성공적으로 이동했는지 반환
+- [x] 입력받은 moveInput과 다리 길이를 이용해서 유저가 몇 번째 다리를 건너는지 다리를 성공적으로 건넜는지 List에 저장해서 반환한다.
+  - [x] 다리의 Up과 Down으로 나누어서 List로 저장한다.
+  - [x] 출력을 위해 Up과 Down을 저장한 List를 반환한다.
+- [x] 게임 재시작을 위한 기능
+  - [x] List를 초기화한다.
+  - [x] retry를 할껀지 판단하는 기능
 ---
 ### controller
 - [] 게임을 시작하고 다리를 생성한다.
