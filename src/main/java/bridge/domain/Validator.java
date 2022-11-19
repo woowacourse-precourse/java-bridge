@@ -10,8 +10,14 @@ public class Validator {
     }
 
     public static void validateMoving(String moving) {
-        if(!moving.matches("^[U]$|^[D]$")){
+        if (!moving.matches("^[U]$|^[D]$")) {
             throwIllegalArgumentException(ErrorMessage.MOVING_WRONG_INPUT);
+        }
+    }
+
+    public static void validateRestartChoice(String restartChoice) {
+        if (!restartChoice.matches("^[R]$|^[Q]$")) {
+            throwIllegalArgumentException(ErrorMessage.RESTART_WRONG_INPUT);
         }
     }
 
