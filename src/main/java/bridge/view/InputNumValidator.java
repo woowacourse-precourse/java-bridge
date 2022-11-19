@@ -1,7 +1,7 @@
 package bridge.view;
 
 public class InputNumValidator {
-	public String INPUT_VALUE;
+	private String INPUT_VALUE;
 
 	public InputNumValidator(String input) {
 		isValidate(input);
