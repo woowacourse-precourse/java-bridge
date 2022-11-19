@@ -32,4 +32,8 @@ public class OutputView {
     public void printPositionSelectionMessage() {
         System.out.println(InformationMessage.POSITION_SELECTION.getMessage());
     }
+
+    public void printGameCommandSelectionMessage() {
+        System.out.println(InformationMessage.GAME_COMMAND_SELECTION.getMessage());
+    }
 }
