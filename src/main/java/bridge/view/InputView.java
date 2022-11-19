@@ -31,15 +31,19 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public String readMoving(String message, String end) {
+        OutputView.getInstance().printMessage(message, end);
+        String userInput = Console.readLine();
+        return validateCommand(userInput, "U", "D");
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public String readGameCommand(String message, String end) {
+        OutputView.getInstance().printMessage(message, end);
+        String userInput = Console.readLine();
+        return validateCommand(userInput, "R", "Q");
     }
 
     /*
@@ -54,6 +58,12 @@ public class InputView {
         int bridgeLength = Integer.parseInt(userInput);
         rangeIsValid(bridgeLength);
         return bridgeLength;
+    }
+
+    public String validateCommand(String userInput, String command1, String command2) throws IllegalArgumentException {
+        isSingleCharacter(userInput);
+        isValidCommand(userInput, command1, command2);
+        return userInput;
     }
 
     private void lengthIsValid(String userInput) throws IllegalArgumentException {
@@ -80,6 +90,20 @@ public class InputView {
                     + " ~ "
                     + BRIDGE_LENGTH_RANGE_END
                     + "사이의 정수이어야 합니다.");
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void isSingleCharacter(String userInput) throws IllegalArgumentException {
+        if (userInput.length() != 1) {
+            OutputView.getInstance().printErrorMessage("입력한 명령의 형식이 올바르지 않습니다.");
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void isValidCommand(String userInput, String command1, String command2) throws IllegalArgumentException {
+        if(!userInput.equals(command1) && !userInput.equals(command2)) {
+            OutputView.getInstance().printErrorMessage("사용할 수 있는 명령이 아닙니다.");
             throw new IllegalArgumentException();
         }
     }
