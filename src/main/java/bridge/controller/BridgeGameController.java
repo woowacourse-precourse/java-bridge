@@ -20,17 +20,7 @@ public class BridgeGameController {
             BridgeGame bridgeGame = new BridgeGame(bridgeSize);
 
             while (true) {
-                String movement = inputView.readMoving();
-                boolean isPass = bridgeGame.move(movement);
-
-                if (!isPass) {
-                    String command = inputView.readGameCommand();
-                    if (!bridgeGame.retry(command)) {
-                        outputView.printResult();
-                        return;
-                    }
-                }
-                if (bridgeGame.checkSuccess()) {
+                if (!continueGame(bridgeGame)) {
                     outputView.printResult();
                     return;
                 }
@@ -38,5 +28,28 @@ public class BridgeGameController {
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
         }
+    }
+
+    private boolean continueGame(BridgeGame bridgeGame) {
+        String movement = inputView.readMoving();
+        boolean isPass = bridgeGame.move(movement);
+        boolean isSuccess = bridgeGame.checkSuccess();
+
+        outputView.printMap();
+
+        return isContinue(bridgeGame, isPass, isSuccess);
+    }
+
+    private boolean isContinue(BridgeGame bridgeGame, boolean isPass, boolean isSuccess) {
+        if (isPass && isSuccess) {
+            return false;
+        }
+
+        if (!isPass) {
+            String command = inputView.readGameCommand();
+            return bridgeGame.retry(command);
+        }
+
+        return true;
     }
 }

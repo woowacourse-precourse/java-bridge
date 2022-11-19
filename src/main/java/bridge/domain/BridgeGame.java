@@ -12,7 +12,7 @@ public class BridgeGame {
 
     private final Bridge bridge;
     private final int bridgeSize;
-    private UserPath userPath;
+    private final UserPath userPath;
     private int userPosition;
 
     public BridgeGame(int size) {
@@ -21,6 +21,8 @@ public class BridgeGame {
 
         this.bridge = new Bridge(bridgeMaker.makeBridge(size));
         this.bridgeSize = size;
+        this.userPath = new UserPath();
+        this.userPosition = 0;
     }
 
     /**
@@ -28,10 +30,10 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String userInput) {
-        boolean isPass = bridge.compareWithPosition(userPosition, userInput);
+    public boolean move(String movement) {
+        boolean isPass = bridge.compareWithPosition(userPosition, movement);
 
-        userPath.move(userInput);
+        userPath.move(movement);
         userPosition++;
 
         return isPass;
