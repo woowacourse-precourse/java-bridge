@@ -20,6 +20,8 @@ public class GameController {
         do {
             play();
         } while (wantRestart());
+
+        outputView.printResult(bridgeGame.resultOfMoving(), bridgeGame.calculatePlayCount(),bridgeGame.isSuccess());
     }
 
     public void play() {
@@ -27,8 +29,6 @@ public class GameController {
             bridgeGame.move(getValidBridgeMove());
             outputView.printMap(bridgeGame.resultOfMoving());
         } while (!bridgeGame.isEnd());
-
-        outputView.printResult(bridgeGame.resultOfMoving(), bridgeGame.calculatePlayCount(),bridgeGame.isSuccess());
     }
 
     private BridgeGame initBridgeGame() {
