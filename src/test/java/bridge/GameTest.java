@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
@@ -37,24 +38,18 @@ public class GameTest extends NsTest {
                 .isInstanceOf(NumberFormatException.class);
     }
 
-    @Test
     @DisplayName("다리의 표현을 확인합니다.")
-    void bridgeToString() {
-        List<String> testBridge = List.of("U", "U", "D", "D");
-        String expectedUpperPath = "[ O | O |   |   ]";
-        String expectedLowerPath = "[   |   | O | O ]";
-
+    @CsvSource(value = {
+            "[ O | O |   |   ],[   |   | O | O ],true",
+            "[ O | O |   |   |   ],[   |   | O | O | X ],false"})
+    @ParameterizedTest
+    void bridgeToString(String upperPath, String lowerPath, boolean isPassed) {
         OutputView output = new OutputView();
-        output.printMap(testBridge, "X", true);
-        assertThat(output()).contains(expectedUpperPath);
-        assertThat(output()).contains(expectedLowerPath);
-
-        expectedUpperPath = "[ O | O |   |   |   ]";
-        expectedLowerPath = "[   |   | O | O | X ]";
-
-        output.printMap(testBridge, "D", false);
-        assertThat(output()).contains(expectedUpperPath);
-        assertThat(output()).contains(expectedLowerPath);
+        List<String> bridge = List.of("U", "U", "D", "D");
+        output.printMap(bridge, "D", isPassed);
+        
+        assertThat(output()).contains(upperPath);
+        assertThat(output()).contains(lowerPath);
     }
 
     @Test
