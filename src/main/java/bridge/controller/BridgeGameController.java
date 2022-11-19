@@ -23,26 +23,31 @@ public class BridgeGameController {
 
         bridgeGame.setBridge(bridgeMaker.makeBridge(InputView.readBridgeSize()));
 
-        while (!bridgeGame.isEnd()) {
-            while (true) {
-                bridgeGame.move(InputView.readMoving());
+        while (!bridgeGame.isEnd() && !bridgeGame.isRetire()) gameProcess();
 
-                OutputView.printMap(bridgeGame.getInput(), WIDTH);
-
-                if (bridgeGame.isAnswer()) {
-                    break;
-                }
-                if (!isRetry(InputView.readGameCommand())) {
-                    return false;
-                }
-                bridgeGame.retry();
-            }
-        }
         gameFinalBridgeState();
         return bridgeGame.isAnswer();
     }
 
-    public void gameFinalBridgeState(){
+    public void gameProcess() {
+        do {
+            bridgeGame.move(InputView.readMoving());
+            OutputView.printMap(bridgeGame.getInput(), WIDTH);
+
+            if (bridgeGame.isAnswer()) break;
+        } while (gameRetry());
+    }
+
+    public boolean gameRetry() {
+        if (!isRetry(InputView.readGameCommand())) {
+            bridgeGame.setRetire(true);
+            return false;
+        }
+        bridgeGame.retry();
+        return true;
+    }
+
+    public void gameFinalBridgeState() {
         OutputView.printFinal();
         OutputView.printMap(bridgeGame.getInput(), WIDTH);
     }
