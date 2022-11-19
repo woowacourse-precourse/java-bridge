@@ -2,22 +2,26 @@ package bridge.domain.game;
 
 import bridge.BridgeMove;
 import bridge.InputView;
+import bridge.OutputView;
 import bridge.domain.bridge.Bridge;
 import java.util.List;
 
 public class BridgeGameController {
     
     private final InputView inputView;
+    private final OutputView outputView;
     private final BridgeGameService bridgeGameService;
     
     public BridgeGameController(List<String> bridge, InputView inputView) {
         bridgeGameService = new BridgeGameService(new BridgeGame(new Bridge(bridge)));
         this.inputView = inputView;
+        this.outputView = new OutputView();
     }
     
     public void start() {
         BridgeMove selectMove = inputView.readMoving();
         boolean isSuccess = bridgeGameService.tryMove(selectMove);
+        outputView.printMap(bridgeGameService.getGame());
     
         if (bridgeGameService.isFinish()) {
             return;

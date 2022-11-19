@@ -10,6 +10,10 @@ public class BridgeGameService {
         this.game = game;
     }
     
+    public BridgeGame getGame() {
+        return game;
+    }
+    
     public boolean tryMove(BridgeMove selectMove) {
         if (game.canMoveToNextPosition(selectMove)) {
             game.move(selectMove);
