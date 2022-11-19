@@ -15,9 +15,8 @@ public class Validator {
 
     public static void validateRange(String input) {
         int number = Integer.parseInt(input);
-        if (number < MAX_BRIDGE_SIZE || number > MAX_BRIDGE_SIZE) {
+        if (number < MIN_BRIDGE_SIZE || number > MAX_BRIDGE_SIZE) {
             throw new IllegalArgumentException(RANGE_ERROR_MESSAGE);
         }
     }
-
 }

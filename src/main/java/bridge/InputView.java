@@ -1,8 +1,8 @@
 package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
-import static bridge.Validator.validateNonNumeric;
-import static bridge.Validator.validateRange;
+import static bridge.validator.NumberValidator.validateNonNumeric;
+import static bridge.validator.NumberValidator.validateRange;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
