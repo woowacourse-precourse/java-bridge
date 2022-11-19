@@ -28,6 +28,7 @@ public class GameController {
             if (movePlayer()) {
                 return;
             }
+            outputView.printPleaseInputRetry();
         } while (bridgeGame.retry(inputView.readGameCommand()));
     }
 

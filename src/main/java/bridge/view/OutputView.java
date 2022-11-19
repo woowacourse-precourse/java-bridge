@@ -12,6 +12,7 @@ public class OutputView {
     private static final String MESSAGE_GAME_START = "다리 건너기 게임을 시작합니다.";
     private static final String MESSAGE_INPUT_BRIDGE = "다리의 길이를 입력해주세요.";
     private static final String MESSAGE_INPUT_MOVE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String MESSAGE_INPUT_RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private static final String START_MAP = "[ ";
     private static final String FINISH_MAP = " ]";
     private static final String INTERVAL_BRIDGE = " | ";
@@ -69,6 +70,10 @@ public class OutputView {
             return COLLECT;
         }
         return BLANK;
+    }
+
+    public void printPleaseInputRetry(){
+        System.out.println(MESSAGE_INPUT_RETRY);
     }
 
     /**

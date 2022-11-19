@@ -11,8 +11,8 @@ import bridge.domain.Player;
  */
 public class BridgeGame {
 
-    private static final String FAIL = "실패";
     private static final String EXCEPTION_MESSAGE_INVALID_MOVE = "[ERROR] 이동 가능 칸은 U 또는 D 만 있습니다.";
+    private static final String EXCEPTION_MESSAGE_INVALID_RETRY = "[ERROR] 재시도 여부는 R 또는 Q 만 입력해야 됩니다.";
     private static final String UP = "U";
     private static final String DOWN = "D";
     private static final String RETRY = "R";
@@ -44,7 +44,14 @@ public class BridgeGame {
     }
 
     public boolean retry(String gameCommand) {
-        return false;
+        validateRetry(gameCommand);
+        return gameCommand.equals(RETRY);
+    }
+
+    private void validateRetry(String gameCommand){
+        if(!(gameCommand.equals(RETRY) || gameCommand.equals(QUIT))){
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_INVALID_RETRY);
+        }
     }
 
     public boolean isClearGame() {
