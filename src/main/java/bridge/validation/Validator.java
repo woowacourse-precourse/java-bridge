@@ -7,13 +7,10 @@ import bridge.type.NumberType;
 
 public class Validator {
 
-
-
     public void checkBridgeSize(String input) {
         isNumeric(input);
         isCorrectBoundary(input);
     }
-
 
     public void isNumeric(String input) {
         try {
