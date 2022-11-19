@@ -9,8 +9,8 @@ public class Bridge {
         this.bridges = bridges;
     }
 
-    public MoveResult crossBridge(int distance, String direction) {
-        return MoveResult.move(bridges.get(distance), direction);
+    public MoveResult crossBridge(int distance, Move moveTo) {
+        return MoveResult.move(Move.from(bridges.get(distance)), moveTo);
     }
 
     @Override

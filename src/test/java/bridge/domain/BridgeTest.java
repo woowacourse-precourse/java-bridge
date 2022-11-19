@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static bridge.domain.Move.*;
 import static bridge.domain.MoveResult.*;
 import static org.assertj.core.api.Assertions.*;
 
@@ -17,7 +18,7 @@ class BridgeTest {
     @DisplayName("입력에 따라 다리 건너기 테스트")
     @MethodSource("crossBridgeData")
     @ParameterizedTest(name = "bridge= {0}, input= {1}, results= {2}")
-    public void crossBridgeTest(Bridge bridge, List<String> input, List<MoveResult> expectResults) {
+    public void crossBridgeTest(Bridge bridge, List<Move> input, List<MoveResult> expectResults) {
         List<MoveResult> realResults = new ArrayList<>();
 
         for (int i = 0; i < input.size(); i++) {
@@ -31,11 +32,11 @@ class BridgeTest {
         Bridge bridge = new Bridge(List.of("U", "D", "U", "D"));
         return Stream.of(
                 Arguments.of(bridge,
-                        List.of("U", "D", "U", "D"), List.of(SUCCESS, SUCCESS, SUCCESS, SUCCESS)),
+                        List.of(UP, DOWN, UP, DOWN), List.of(SUCCESS, SUCCESS, SUCCESS, SUCCESS)),
                 Arguments.of(bridge,
-                        List.of("D", "U", "D", "U"), List.of(FAIL, FAIL, FAIL, FAIL)),
+                        List.of(DOWN, UP, DOWN, UP), List.of(FAIL, FAIL, FAIL, FAIL)),
                 Arguments.of(bridge,
-                        List.of("U", "D", "D", "U"), List.of(SUCCESS, SUCCESS, FAIL, FAIL))
+                        List.of(UP, DOWN, DOWN, UP), List.of(SUCCESS, SUCCESS, FAIL, FAIL))
         );
     }
 }

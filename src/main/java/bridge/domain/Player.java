@@ -7,8 +7,13 @@ import java.util.Map;
 
 public class Player {
     private int moveDistance;
-    private Map<Move, List<MoveResult>> moveResults = new EnumMap<>(Move.class);
+    private Map<Move, List<MoveResult>> moveResults;
     private int lifeCount;
+
+    public Player() {
+        this.moveResults = new EnumMap<>(Move.class);
+        initMoveResults();
+    }
 
     public Map<Move, List<MoveResult>> getMoveResults() {
         return moveResults;
@@ -26,11 +31,11 @@ public class Player {
         initMoveResults();
     }
 
-    public boolean move(Bridge bridge, String direction) {
-        moveResults.get(Move.reverseMove(direction)).add(MoveResult.OTHER);
+    public boolean move(Bridge bridge, Move moveTo) {
+        moveResults.get(Move.reverseMove(moveTo)).add(MoveResult.OTHER);
 
-        MoveResult moveResult = bridge.crossBridge(moveDistance, direction);
-        moveResults.get(Move.from(direction)).add(moveResult);
+        MoveResult moveResult = bridge.crossBridge(moveDistance, moveTo);
+        moveResults.get(moveTo).add(moveResult);
         moveDistance++;
 
         return moveResult.canMove;

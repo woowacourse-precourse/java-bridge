@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.Map;
 
+import static bridge.domain.Move.*;
 import static bridge.domain.MoveResult.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,16 +17,16 @@ class PlayerTest {
         Player player = new Player();
 
         //when
-        player.move(bridge, "U");
-        player.move(bridge, "U");
-        player.move(bridge, "D");
-        player.move(bridge, "D");
+        player.move(bridge, UP);
+        player.move(bridge, UP);
+        player.move(bridge, DOWN);
+        player.move(bridge, DOWN);
 
         //then
         Map<Move, List<MoveResult>> playerMoved = player.getMoveResults();
-        assertThat(playerMoved.get(Move.UP))
+        assertThat(playerMoved.get(UP))
                 .isEqualTo(List.of(SUCCESS, SUCCESS, OTHER, OTHER));
-        assertThat(playerMoved.get(Move.DOWN))
+        assertThat(playerMoved.get(DOWN))
                 .isEqualTo(List.of(OTHER, OTHER, SUCCESS, FAIL));
     }
 }

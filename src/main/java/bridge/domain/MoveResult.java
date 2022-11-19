@@ -13,8 +13,8 @@ public enum MoveResult {
         this.canMove = canMove;
     }
 
-    public static MoveResult move(String realDirection, String moveDirection) {
-        if (realDirection.equals(moveDirection)) {
+    public static MoveResult move(Move destination, Move moveTo) {
+        if (destination == moveTo) {
             return SUCCESS;
         }
 
