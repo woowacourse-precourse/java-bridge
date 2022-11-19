@@ -17,4 +17,11 @@ public class Player {
         position += 1;
         return isMovable;
     }
+
+    public boolean isArrived() {
+        if(bridge.isArrived(position)){
+            return true;
+        }
+        return false;
+    }
 }
