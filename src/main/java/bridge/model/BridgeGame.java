@@ -15,6 +15,7 @@ public class BridgeGame {
         this.gameMap = gameMap;
         position = 0;
         playTime = 1;
+        System.out.println(gameMap);
     }
 
     /**
@@ -35,9 +36,10 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public long retry() {
         position = 0;
         playTime++;
+        return playTime;
     }
 
     public boolean isClear() {

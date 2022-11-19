@@ -25,4 +25,12 @@ class BridgeGameTest {
 
         assertThat(test).isEqualTo(false);
     }
+
+    @Test
+    void retry() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("D,U,U,D"));
+        bridgeGame.retry();
+        bridgeGame.retry();
+        assertThat(bridgeGame.retry()).isEqualTo(4);
+    }
 }
