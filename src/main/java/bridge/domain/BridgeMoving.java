@@ -34,6 +34,11 @@ public class BridgeMoving {
         return moveCount == size;
     }
 
+    // 움직인 위치가 다리의 위치와 같으면 true return
+    public boolean compareList(String moving) {
+        return moving.equals(makeBridgeList.get(moveCount-1));
+    }
+
     public List<String> getMakeBridgeList() {
         return makeBridgeList;
     }
