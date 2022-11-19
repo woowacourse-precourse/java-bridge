@@ -20,11 +20,7 @@ class BridgeMakerTest {
 
         assertEquals(size, bridge.size());
         for (int round = 0; round < size; round++) {
-            assertTrue(isDirection(bridge, round));
+            assertTrue(Direction.isDirection(bridge.get(round)));
         }
-    }
-
-    private boolean isDirection(List<String> bridge, int round) {
-        return bridge.get(round).contains(DOWN.getName()) || bridge.get(round).contains(UP.getName());
     }
 }

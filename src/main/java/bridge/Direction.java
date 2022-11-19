@@ -19,4 +19,8 @@ public enum Direction {
     public int getValue() {
         return value;
     }
+
+    public static boolean isDirection(String input){
+        return input.equals(DOWN.getName()) || input.equals(UP.getName());
+    }
 }

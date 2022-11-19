@@ -15,13 +15,9 @@ public class Bridge {
     }
 
     private void validateDirection(List<String> path) {
-        if (!path.stream().allMatch(isDirection())) {
+        if (!path.stream().allMatch(Direction::isDirection)) {
             throw new IllegalArgumentException(INCORRECT_BRIDGE_DIRECTION);
         }
-    }
-
-    private Predicate<String> isDirection() {
-        return s -> s.equals(DOWN.getName()) || s.equals(UP.getName());
     }
 
     public boolean isPassable(int round, String move) {

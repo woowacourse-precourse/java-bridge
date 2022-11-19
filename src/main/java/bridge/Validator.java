@@ -57,7 +57,4 @@ public class Validator {
         }
     }
 
-    private boolean isDirection(String input) {
-        return input.equals(DOWN.getName()) || input.equals(UP.getName());
-    }
 }
