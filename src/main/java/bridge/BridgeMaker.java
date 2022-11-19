@@ -25,6 +25,11 @@ public class BridgeMaker {
         return mapLower;
     }
 
+    public void resetMap() {
+        mapUpper.clear();
+        mapLower.clear();
+    }
+
     public List<String> makeBridge(int size) {
         limitSize = size;
         List<String> crossable = new ArrayList<>();
@@ -116,7 +121,7 @@ public class BridgeMaker {
         String moving;
         boolean isWin;
         int index = 0;
-
+        resetMap();
         startMap();
         while (true) {
             if (index>=limitSize) {

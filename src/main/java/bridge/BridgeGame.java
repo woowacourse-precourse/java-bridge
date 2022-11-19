@@ -29,27 +29,18 @@ public class BridgeGame {
         return true;
     }
 
-    public boolean play(int limitSize, BridgeMaker bridgeMaker) {
-        boolean isWin;
-        List<String> crossable;
-
-        crossable = bridgeMaker.makeBridge(limitSize);
-        isWin = bridgeMaker.makeMap(crossable);
-
-        return isWin;
-    }
-
     public void controller() {
         int attempts = 1;
         int limitSize;
         boolean endGame = false;
         boolean isWin;
-
+        List<String> crossable;
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         limitSize = determineBridgeSize();
+        crossable = bridgeMaker.makeBridge(limitSize);
 
         while (!endGame) {
-            BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-            isWin = play(limitSize, bridgeMaker);
+            isWin = bridgeMaker.makeMap(crossable);
             if (!isWin) {
                 endGame = retry();
             }
