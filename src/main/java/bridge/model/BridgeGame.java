@@ -30,13 +30,6 @@ public class BridgeGame {
         count = 1;
     }
 
-    private void initialize(List<String> board, Map<String, Integer> resultBoard) {
-        board = new ArrayList<>();
-        resultBoard = new HashMap<>();
-        resultBoard.put(Constant.SUCCESS_OR_FAIL, null);
-        resultBoard.put(Constant.NUMBER_OF_ATTEMPTS, count);
-    }
-
     public void start(List<String> board, Map<String, Integer> resultBoard) throws IllegalArgumentException {
         int size = inputController.getBridgeSize(inputController.getBridgeSizeInput());
         List<String> bridge = inputController.getBridge(size);
@@ -44,7 +37,16 @@ public class BridgeGame {
         play(board, bridge, resultBoard);
     }
 
-    private void play(List<String> board, List<String> bridge, Map<String, Integer> resultBoard) throws IllegalArgumentException {
+    private void initialize(List<String> board, Map<String, Integer> resultBoard) {
+        board = new ArrayList<>();
+        resultBoard = new HashMap<>();
+        resultBoard.put(Constant.SUCCESS_OR_FAIL, null);
+        resultBoard.put(Constant.NUMBER_OF_ATTEMPTS, count);
+    }
+
+    private void play(List<String> board,
+                      List<String> bridge,
+                      Map<String, Integer> resultBoard) throws IllegalArgumentException {
         int result;
         while (isContinue(board, bridge, resultBoard)) {
             move(board);
@@ -55,7 +57,9 @@ public class BridgeGame {
         outputController.getFinalResult(board, bridge, resultBoard);
     }
 
-    private boolean isContinue(List<String> board, List<String> bridge, Map<String, Integer> resultBoard) throws IllegalArgumentException {
+    private boolean isContinue(List<String> board,
+                               List<String> bridge,
+                               Map<String, Integer> resultBoard) throws IllegalArgumentException {
         int index = board.size() - 1;
         if (index < 0) {
             return true;
