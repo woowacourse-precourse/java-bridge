@@ -17,7 +17,16 @@ public class Application {
             boolean successOrFailure = bridgeGame.move(currentLocation, userPath);
             outputView.printMap(bridgeGame.getPassedPath(), successOrFailure);
             if (successOrFailure == false) {
-                break;
+                String retryOrEnd = inputView.readGameCommand();
+                if (retryOrEnd.equals("R")) {
+                    currentLocation = 0;
+                    bridgeGame.initializeUserPaths();
+                    continue;
+                }
+
+                if (retryOrEnd.equals("Q")) {
+                    break;
+                }
             }
 
             currentLocation++;
@@ -26,7 +35,6 @@ public class Application {
         System.out.println();
 
         outputView.printResult(bridgeGame.getPassedPath(), currentLocation);
-
 
     }
 }

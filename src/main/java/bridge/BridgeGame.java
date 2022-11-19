@@ -9,7 +9,7 @@ import java.util.List;
 public class BridgeGame {
     private final List<String> bridge;
 
-    private final List<String> userPaths;
+    private List<String> userPaths;
 
     String upTunnel;
     String downTunnel;
@@ -46,6 +46,10 @@ public class BridgeGame {
 
     public List<String> getPassedPath() {
         return userPaths;
+    }
+
+    public void initializeUserPaths() {
+        userPaths = new ArrayList<>();
     }
 
 
