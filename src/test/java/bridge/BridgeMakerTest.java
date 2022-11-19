@@ -28,4 +28,12 @@ class BridgeMakerTest {
         return false;
     }
 
+    @DisplayName("다리가 지정한 길이대로 생성되었는지 테스트")
+    @Test
+    void makeBridgeSizeTest(){
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> bridge = bridgeMaker.makeBridge(5);
+        assertEquals(5, bridge.size());
+    }
+
 }
