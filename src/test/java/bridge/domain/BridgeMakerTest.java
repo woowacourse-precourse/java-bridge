@@ -15,8 +15,8 @@ class BridgeMakerTest {
     @Test
     void makeBridge() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        Bridge bridge = bridgeMaker.makeBridge(3);
-        assertThat(bridge.getBridgeLength()).isEqualTo(3);
+        List<String> bridgeStatus = bridgeMaker.makeBridge(3);
+        assertThat(bridgeStatus.size()).isEqualTo(3);
 
     }
 }
