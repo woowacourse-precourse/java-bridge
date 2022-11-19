@@ -16,6 +16,23 @@ public class UserState {
         this.downLine = new ArrayList<>();
     }
 
+    public void moveToNext(boolean isSafe, String moveLocation) {
+        if (moveLocation.equals(Command.UP.getCommand())) {
+            upLine.add(moveOrFall(isSafe));
+            downLine.add(" ");
+            return;
+        }
+        downLine.add(moveOrFall(isSafe));
+        upLine.add(" ");
+    }
+
+    private String moveOrFall(boolean isSafe) {
+        if (isSafe) {
+            return "O";
+        }
+        return "X";
+    }
+
     public void quitChange() {
         quit = !quit;
     }
