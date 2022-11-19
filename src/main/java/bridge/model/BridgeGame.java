@@ -1,6 +1,8 @@
 package bridge.model;
 
 import bridge.*;
+import bridge.controller.InputController;
+import bridge.controller.OutputController;
 import bridge.util.Constant;
 
 import java.util.ArrayList;
