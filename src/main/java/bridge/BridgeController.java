@@ -33,7 +33,7 @@ public class BridgeController {
 
     public static int setRetryInput(List<String> bridge, int index) {
         retryInput = inputView.readGameCommand();
-        if (bridgeGame.retry(retryInput, bridge, BridgeGame.moveMapList, index).equals("R")) {
+        if (bridgeGame.retry(retryInput, index).equals("R")) {
             index -= 1;
             return index;
         }
