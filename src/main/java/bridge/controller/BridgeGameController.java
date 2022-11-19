@@ -25,7 +25,10 @@ public class BridgeGameController {
 
                 if (!isPass) {
                     String command = inputView.readGameCommand();
-                    bridgeGame.retry();
+                    if (!bridgeGame.retry(command)) {
+                        outputView.printResult();
+                        return;
+                    }
                 }
                 if (bridgeGame.checkSuccess()) {
                     outputView.printResult();
