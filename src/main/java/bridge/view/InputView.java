@@ -25,10 +25,12 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public void readBridgeSize() {
-        System.out.println(MessageView.PLAY_BRIDGE_GAME.getMessage());
-        System.out.println(MessageView.INPUT_BRIDGE_LENGTH.getMessage());
-        String bridgeLength = Console.readLine();
-        bridgeException.invalidLengthInputValue(bridgeLength);
+        String bridgeLength;
+        do {
+            System.out.println(MessageView.PLAY_BRIDGE_GAME.getMessage());
+            System.out.println(MessageView.INPUT_BRIDGE_LENGTH.getMessage());
+            bridgeLength = Console.readLine();
+        } while(bridgeException.invalidLengthInputValue(bridgeLength));
         bridgeGame.getBridge().setSize(Integer.parseInt(bridgeLength));
         this.gameStatistics.setAnswerRoad(bridgeGame.getBridgeMaker().makeBridge(Integer.parseInt(bridgeLength)));
     }
@@ -38,9 +40,11 @@ public class InputView {
      */
     public void readMoving() {
         while (true) {
-            System.out.println(MessageView.SELECT_TO_MOVE.getMessage());
-            String moveDirection = Console.readLine();
-            bridgeException.invalidMovingInputValue(moveDirection);
+            String moveDirection;
+            do {
+                System.out.println(MessageView.SELECT_TO_MOVE.getMessage());
+                moveDirection = Console.readLine();
+            } while(bridgeException.invalidMovingInputValue(moveDirection));
             gameStatistics.getCheckRoad().add(bridgeGame.move(moveDirection, gameStatistics.getAnswerRoad(), bridgeGame.getPlayer()));
             //
             System.out.println(gameStatistics.getCheckRoad());
@@ -70,9 +74,11 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println(MessageView.INPUT_RETRY_OR_NOT_GAME.getMessage());
-        String retryGame = Console.readLine();
-        bridgeException.invalidRetryGame(retryGame);
+        String retryGame;
+        do {
+            System.out.println(MessageView.INPUT_RETRY_OR_NOT_GAME.getMessage());
+            retryGame = Console.readLine();
+        } while(bridgeException.invalidRetryGame(retryGame));
         if (retryGame.equals("Q")) {
             gameStatistics.setGameResult("실패");
             outputView.printResult();
