@@ -3,8 +3,8 @@ package bridge.constant;
 import java.util.Arrays;
 
 public enum Direction {
-    UPPER(0, "U"),
-    LOWER(1, "D");
+    LOWER(0, "D"),
+    UPPER(1, "U");
 
     private final int value;
     private final String direction;
@@ -19,5 +19,10 @@ public enum Direction {
                 .filter(values -> values.value == randomValue)
                 .findAny()
                 .orElse(null);
+    }
+
+    @Override
+    public String toString() {
+        return direction;
     }
 }
