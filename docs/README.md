@@ -58,7 +58,7 @@
         1. 게임 종료 결과 출력
 2.  InputController
     - **잘못된 값 입력시 에러 메시지 출력 후 재입력**
-    - [ ]  다리 길이 입력 및 검증 → inputBridgeSize
+    - [x]  다리 길이 입력 및 검증 → inputBridgeSize
         1. 다리 길이 입력
         2. 다리 길이 유효성 검사
     - [ ]  이동할 칸 입력 및 검증 → inputMoving

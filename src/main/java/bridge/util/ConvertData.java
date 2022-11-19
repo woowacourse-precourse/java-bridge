@@ -21,9 +21,7 @@ public class ConvertData {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException exception) {
-            String errorMsg = ERROR_PREFIX.get() + ERROR_INPUT_VALUE_IS_NOT_NUMBER.get();
-            System.out.println(errorMsg);
-            throw new IllegalArgumentException(errorMsg);
+            throw new IllegalArgumentException(ERROR_PREFIX.get() + ERROR_INPUT_VALUE_IS_NOT_NUMBER.get());
         }
     }
 }
