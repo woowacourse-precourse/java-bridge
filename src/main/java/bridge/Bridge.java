@@ -54,6 +54,9 @@ public class Bridge {
     public int getTryCount() {
         return this.tryCount;
     }
+    public boolean getCorrect() {
+        return this.correct;
+    }
 
     public void setCorrect(boolean correct) {
         this.correct = correct;
