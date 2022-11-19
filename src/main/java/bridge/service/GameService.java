@@ -6,6 +6,7 @@ import bridge.domain.BridgeMaker;
 import bridge.repository.BridgeRepository;
 import bridge.repository.UserBridgeRepository;
 import bridge.repository.UserBridgeStatusDto;
+import bridge.util.OutputViewConst;
 
 public class GameService {
 
@@ -32,10 +33,10 @@ public class GameService {
 
 	public void saveUserSpace(boolean isCorrectMoving, String userLocation) {
 		if (isCorrectMoving == true) {
-			userBridgeRepository.saveUserSpace(userLocation, "O");
+			userBridgeRepository.saveUserSpace(userLocation, OutputViewConst.USER_CORRECT_SPACE);
 			return;
 		}
-		userBridgeRepository.saveUserSpace(userLocation, "X");
+		userBridgeRepository.saveUserSpace(userLocation, OutputViewConst.USER_WRONG_SPACE);
 	}
 
 	public UserBridgeStatusDto getUserBridgeStatusDto() {

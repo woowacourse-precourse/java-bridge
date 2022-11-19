@@ -3,6 +3,9 @@ package bridge.repository;
 import java.util.ArrayList;
 import java.util.List;
 
+import bridge.util.InputViewConst;
+import bridge.util.OutputViewConst;
+
 public class UserBridgeRepository {
 
 	private List<String> userUpperBridge;
@@ -17,12 +20,12 @@ public class UserBridgeRepository {
 
 	public void saveUserSpace(String Location, String userCurrentTrace) {
 		userCurrentLocation++;
-		if (Location.equals("U")) {
+		if (Location.equals(InputViewConst.MOVING_UP)) {
 			this.userUpperBridge.add(userCurrentTrace);
-			this.userLowerBridge.add(" ");
+			this.userLowerBridge.add(OutputViewConst.BLANK_SPACE);
 			return;
 		}
-		this.userUpperBridge.add(" ");
+		this.userUpperBridge.add(OutputViewConst.BLANK_SPACE);
 		this.userLowerBridge.add(userCurrentTrace);
 	}
 

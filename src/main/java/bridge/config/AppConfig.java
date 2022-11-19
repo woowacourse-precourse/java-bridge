@@ -15,11 +15,11 @@ public class AppConfig {
 	public BridgeGame config() {
 		InputView inputView = new InputView();
 		OutputView outputView = new OutputView();
+
 		InputController inputController = new InputController(inputView, new InputValidService(), outputView);
 		UserBridgeRepository userBridgeRepository = new UserBridgeRepository();
-		GameService gameService = new GameService(new BridgeMaker(new BridgeRandomNumberGenerator()),
-			new BridgeRepository(),
-			userBridgeRepository);
+		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+		GameService gameService = new GameService(bridgeMaker, new BridgeRepository(), userBridgeRepository);
 		return new BridgeGame(inputController, gameService, outputView);
 	}
 }

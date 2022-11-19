@@ -9,9 +9,7 @@ import bridge.util.InputViewConst;
 public class InputValidService {
 
 	public Integer validBridgeSize(String bridgeSize) {
-		//각 자리 char 이 숫자 여야 한다
 		checkIsNumber(bridgeSize);
-		//3부터 20 이어야 한다
 		Integer bridgeSizeNumber = Integer.valueOf(bridgeSize);
 		checkNumberRange(bridgeSizeNumber);
 		return bridgeSizeNumber;
@@ -32,14 +30,16 @@ public class InputValidService {
 	}
 
 	private void checkNumberRange(Integer bridgeSizeNumber) {
-		if (bridgeSizeNumber < 3 || 20 < bridgeSizeNumber) {
+		if (bridgeSizeNumber < InputViewConst.MIN_BRIDGE_SIZE || InputViewConst.MAX_BRIDGE_SIZE < bridgeSizeNumber) {
 			throw new IllegalArgumentException(ErrorConst.OUT_OF_RANGE_BRIDGE_SIZE_ERROR);
 		}
 	}
 
 	private void checkIsNumber(String bridgeSize) {
 		List<Integer> bridgeSizeNumbers = bridgeSize.chars().mapToObj(i -> i - 48).collect(Collectors.toList());
-		long count = bridgeSizeNumbers.stream().filter(i -> 0 < i && i < 10).count();
+		long count = bridgeSizeNumbers.stream()
+			.filter(i -> InputViewConst.MIN_NUMBER <= i && i <= InputViewConst.MAX_NUMBER)
+			.count();
 		if (bridgeSize.length() != count) {
 			throw new IllegalArgumentException(ErrorConst.NOT_NUMBER_ERROR);
 		}
