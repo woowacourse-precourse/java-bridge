@@ -17,7 +17,14 @@ public class Bridge {
     }
 
     public boolean isMovable(Position position, Direction direction) {
+        if (isArrived(position)) {
+            return false;
+        }
         Deck deck = decks.get(position.getPosition());
+        return isDeckMovable(deck, direction);
+    }
+
+    private boolean isDeckMovable(Deck deck, Direction direction) {
         if (Objects.nonNull(deck)) {
             return deck.isMovable(direction);
         }

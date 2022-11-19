@@ -21,6 +21,15 @@ public class BridgeTest {
         assertThat(bridge.isMovable(new Position(1), LOWER)).isTrue();
     }
 
+    @Test
+    void 잘못된_위치는_이동가능하지않다() {
+        List<Direction> bridgeDirections = List.of(UPPER, LOWER, UPPER, LOWER, UPPER);
+        Bridge bridge = new Bridge(getCapitalLetters(bridgeDirections));
+        int bridgeSize = bridgeDirections.size();
+
+        assertThat(bridge.isMovable(new Position(bridgeSize), LOWER)).isFalse();
+    }
+
     private List<String> getCapitalLetters(List<Direction> bridgeDirections) {
         return bridgeDirections.stream()
                 .map(Direction::capitalLetter)
