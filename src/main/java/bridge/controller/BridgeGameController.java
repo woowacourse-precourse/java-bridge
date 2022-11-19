@@ -51,7 +51,7 @@ public class BridgeGameController {
 	}
 
 	private List<List<String>> makeResultMap(BridgeGame bridgeGame) {
-		List<List<String>> moveMap = bridgeGameService.initGameMap();
+		List<List<String>> moveMap = bridgeGameService.initGameMap().getProgressMap();
 		while (!failedClear(moveMap) && moveMap.get(0).size() < bridgeGame.getBridgeSize()) {
 			String moving = receiveMoveCommand();
 			crossBridge(moving, bridgeGame, moveMap);

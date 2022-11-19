@@ -6,6 +6,7 @@ import java.util.List;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeRandomNumberGenerator;
+import bridge.domain.ProgressMap;
 
 public class BridgeGameService {
 	private final BridgeMaker bridgeMaker;
@@ -23,11 +24,8 @@ public class BridgeGameService {
 		return bridgeMaker.makeBridge(size);
 	}
 
-	public List<List<String>> initGameMap() {
-		List<List<String>> moveMap = new ArrayList<>();
-		moveMap.add(new ArrayList<>());
-		moveMap.add(new ArrayList<>());
-		return moveMap;
+	public ProgressMap initGameMap() {
+		return new ProgressMap();
 	}
 
 	public String checkMoveCommand(String moving) {
