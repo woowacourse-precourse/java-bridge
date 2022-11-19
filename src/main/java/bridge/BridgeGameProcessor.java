@@ -32,6 +32,7 @@ public class BridgeGameProcessor {
     }
 
     private boolean isRetry(BridgeGame bridgeGame) {
+        outputView.printGameCommandSelectionMessage();
         return bridgeGame.retry(inputView.readGameCommand());
     }
 
