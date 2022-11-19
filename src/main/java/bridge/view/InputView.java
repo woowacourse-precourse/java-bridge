@@ -1,10 +1,8 @@
 package bridge.view;
 
 import bridge.domain.BridgeSize;
-import bridge.domain.Command;
-import bridge.domain.MoveCommand;
-import bridge.domain.RetryCommand;
-import bridge.exception.Validator;
+import bridge.domain.command.MoveCommand;
+import bridge.domain.command.RetryCommand;
 import camp.nextstep.edu.missionutils.Console;
 
 /**

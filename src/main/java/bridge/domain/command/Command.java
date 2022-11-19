@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.command;
 
 import static java.text.MessageFormat.format;
 

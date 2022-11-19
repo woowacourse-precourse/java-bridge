@@ -1,9 +1,7 @@
-package bridge.domain;
+package bridge.domain.command;
 
 import static bridge.constant.BridgeConstant.CLOSE_GAME;
-import static bridge.constant.BridgeConstant.LOWER_BLOCK;
 import static bridge.constant.BridgeConstant.RESTART_GAME;
-import static bridge.constant.BridgeConstant.UPPER_BLOCK;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

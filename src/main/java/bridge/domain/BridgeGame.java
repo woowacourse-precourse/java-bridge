@@ -1,9 +1,9 @@
 package bridge.domain;
 
-import static bridge.constant.BridgeConstant.RESTART_GAME;
-
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.command.MoveCommand;
+import bridge.domain.command.RetryCommand;
 import java.util.List;
 
 /**

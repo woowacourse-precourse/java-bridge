@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.domain.command.Command;
+
 public class MoveResult {
 
     private Command command;

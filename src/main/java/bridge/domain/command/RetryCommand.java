@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.command;
 
 import static bridge.constant.BridgeConstant.CLOSE_GAME;
 import static bridge.constant.BridgeConstant.RESTART_GAME;

@@ -1,12 +1,11 @@
-package bridge.domain;
+package bridge.domain.command;
 
 import static bridge.constant.BridgeConstant.LOWER_BLOCK;
-import static bridge.constant.BridgeConstant.MAX_SIZE;
-import static bridge.constant.BridgeConstant.MIN_SIZE;
 import static bridge.constant.BridgeConstant.UPPER_BLOCK;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import bridge.domain.command.MoveCommand;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

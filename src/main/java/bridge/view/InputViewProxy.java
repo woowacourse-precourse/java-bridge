@@ -1,8 +1,8 @@
 package bridge.view;
 
 import bridge.domain.BridgeSize;
-import bridge.domain.MoveCommand;
-import bridge.domain.RetryCommand;
+import bridge.domain.command.MoveCommand;
+import bridge.domain.command.RetryCommand;
 
 /**
  * 입력값 에러 발생시 다시 입력값을 받도록 해주는 클래스

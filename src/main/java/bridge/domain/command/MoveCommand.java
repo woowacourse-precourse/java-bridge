@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.command;
 
 import static bridge.constant.BridgeConstant.LOWER_BLOCK;
 import static bridge.constant.BridgeConstant.UPPER_BLOCK;
