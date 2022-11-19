@@ -4,6 +4,8 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 import bridge.view.SystemView;
 
+import static bridge.config.BaseException.INVALID_INPUT;
+
 public class GameController {
 
     private final BridgeGame bridgeGame = new BridgeGame();
@@ -15,18 +17,20 @@ public class GameController {
 
     public boolean runGame() {
 
-        systemView.printStartGame();
-        game = new Game();
-        return game.getRunStatus().isStatus();
+            systemView.printStartGame();
+            game = new Game();
+            return game.getRunStatus().isStatus();
 
     }
 
     public boolean retryGame() {
-
-        game.setRunStatus(inputView.readGameCommand());
-        bridgeGame.retry(game);
-        return game.getRunStatus().isStatus();
-
+        try {
+            game.setRunStatus(inputView.readGameCommand());
+            bridgeGame.retry(game);
+            return game.getRunStatus().isStatus();
+        } catch (Exception e) {
+            throw new IllegalArgumentException(INVALID_INPUT.getMessage());
+        }
     }
 
     public void moveBridge() {

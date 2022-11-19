@@ -8,4 +8,7 @@ public class SystemView {
         System.out.println(START_GAME);
     }
 
+    public void printErrorMessage(String message) {
+        System.out.println(message);
+    }
 }
