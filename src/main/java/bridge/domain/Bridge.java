@@ -7,8 +7,9 @@ import java.util.List;
 
 public class Bridge {
 
-    private List<String> bridge;
+    private final List<String> bridge;
     private List<String> userKeyList;
+    private int numberOfAttempts = 0;
 
     public Bridge(List<String> bridge) {
         this.bridge = bridge;
@@ -17,6 +18,7 @@ public class Bridge {
     // 유저가 입력할 키 리스트 초기화
     public void initUserKeyList() {
         userKeyList = new ArrayList<>();
+        this.numberOfAttempts += 1;
     }
 
     // 움직인 키 입력받기
@@ -58,5 +60,10 @@ public class Bridge {
         int index = userKeyList.size()-1;
         String result = compareKey(bridge.get(index), userKeyList.get(index));
         return result.equals(Setting.KEY_MATCH);
+    }
+
+    // 시도한 횟수 반환 기능
+    public int getNumberOfAttempts() {
+        return this.numberOfAttempts;
     }
 }
