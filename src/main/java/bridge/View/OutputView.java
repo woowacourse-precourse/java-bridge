@@ -1,5 +1,6 @@
 package bridge.View;
 
+import bridge.Enums.GameMessage;
 import bridge.Utils.Stringify;
 
 import java.util.List;
@@ -13,6 +14,9 @@ import static bridge.Enums.View.*;
  */
 public class OutputView {
     public Stringify stringify = new Stringify();
+
+    private String upperPath;
+    private String lowerPath;
 
     public void start() {
         System.out.println(GAME_START.getMessage());
@@ -36,16 +40,17 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> bridge, String direction, boolean isPassed) {
-        String upperPath = stringify.getPathToString(bridge, UPPER_POSITION.toString());
-        String lowerPath = stringify.getPathToString(bridge, LOWER_POSITION.toString());
-
+        String upper = stringify.getPathToString(bridge, UPPER_POSITION.toString());
+        String lower = stringify.getPathToString(bridge, LOWER_POSITION.toString());
         if (!isPassed) {
-            upperPath = stringify.changeToFail(upperPath, UPPER_POSITION.toString(), direction);
-            lowerPath = stringify.changeToFail(lowerPath, LOWER_POSITION.toString(), direction);
+            upper = stringify.changeToFail(upper, UPPER_POSITION.toString(), direction);
+            lower = stringify.changeToFail(lower, LOWER_POSITION.toString(), direction);
         }
 
-        System.out.println("[" + upperPath.substring(1) + "]");
-        System.out.println("[" + lowerPath.substring(1) + "]");
+        upperPath = "[" + upper.substring(1) + "]";
+        lowerPath = "[" + lower.substring(1) + "]\n";
+        System.out.println(upperPath);
+        System.out.println(lowerPath);
     }
 
     /**
@@ -53,6 +58,20 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(boolean isNotArrived, int tryCount) {
+        String result = getResultToString(isNotArrived);
+
+        System.out.println(GAME_END.getMessage());
+        System.out.println(upperPath);
+        System.out.println(lowerPath);
+        System.out.println(GAME_RESULT.getMessage() + result);
+        System.out.println(COUNT_OF_RETRY.getMessage() + tryCount);
+    }
+
+    private String getResultToString(boolean isNotArrived) {
+        if (isNotArrived) {
+            return GameMessage.FAIL.getMessage();
+        }
+        return GameMessage.SUCCESS.getMessage();
     }
 }

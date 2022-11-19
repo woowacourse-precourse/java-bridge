@@ -46,4 +46,8 @@ public class Bridge extends BridgeMaker {
         return comparator.isPassable(bridge);
     }
 
+    public void showResult() {
+        userView.printResult(isNotArrived(), comparator.getTryCount());
+    }
+
 }

@@ -43,6 +43,6 @@ public class BridgeGame {
     }
 
     private void endGame() {
-
+        bridge.showResult();
     }
 }
