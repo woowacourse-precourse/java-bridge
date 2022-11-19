@@ -9,9 +9,9 @@
 - 플레이어는 이동할 칸을 선택한다(U or D)(에러 발생시키기) - 다시 입력받음 - [ x ] InputView#readMoving()
 - 플레이어 이동 현황 o/x (다리 출력) - [ x ] OutputView#printMap()
 - 다리를 건너다가 실패 했다면 재시작 or 종료(R or Q)(에러 발생시키기) - 다시 입력받음 - [ x ] InputView#readGameCommand()
-- 최종 게임 결과 출력 - OutputView#printResult()
-- 게임 성공 여부: 출력 - OutputView#printSuccessFailure()
-- 총 시도한 횟수: 출력 - OutputView#printTryNumber()
+- 최종 게임 결과 출력 - [ x ] OutputView#printResult()
+- 게임 성공 여부: 출력 - [ x ] OutputView#printSuccessFailure()
+- 총 시도한 횟수: 출력 - [ x ] OutputView#printTryNumber()
 
 ### domain
 - 다리를 생성할 수 있다 - [ x ] BridgeMaker#makeBridge()

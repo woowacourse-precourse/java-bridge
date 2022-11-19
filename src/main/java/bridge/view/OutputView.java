@@ -99,8 +99,22 @@ public class OutputView {
     }
 
     // 성공 여부 출력
-    public static void printSuccessFailure() {
-        System.out.println(BridgeGameInfo.SUCSSES_FAILURE.message);
+    public static void printSuccessFailure(List<String> targetBridge, List<String> preStatus) {
+        System.out.println(targetBridge);
+        System.out.println(preStatus);
 
+        System.out.print(BridgeGameInfo.SUCSSES_FAILURE.message);
+        if (preStatus.size() != targetBridge.size()) {
+            System.out.println("실패");
+            return;
+        }
+
+        for (int i = 0; i < preStatus.size(); i++) {
+            if (!preStatus.get(i).equals(targetBridge.get(i))) {
+                System.out.println("실패");
+                return;
+            }
+        }
+        System.out.println("성공");
     }
 }
