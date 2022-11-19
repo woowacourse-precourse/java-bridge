@@ -8,4 +8,12 @@ public class MovingResult {
         this.bridgeBlock = bridgeBlock;
         this.State = state;
     }
+
+    public BridgeBlock getBridgeBlock() {
+        return bridgeBlock;
+    }
+
+    public String getState() {
+        return State;
+    }
 }

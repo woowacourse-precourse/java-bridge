@@ -1,13 +1,16 @@
 package bridge.view;
 
-import bridge.domain.Bridge;
 import bridge.domain.BridgeBlock;
 import bridge.domain.MovingResult;
 import bridge.util.BridgeMessageMaker;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 public class OutputView {
+
+    public static final String BLANK = " ";
 
     private final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
     private final String INIT_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
@@ -19,7 +22,6 @@ public class OutputView {
         this.bridgeMessageMaker = bridgeMessageMaker;
     }
 
-
     public void printGameStartMessage() {
         System.out.println(GAME_START_MESSAGE);
         System.out.println(INIT_BRIDGE_SIZE_MESSAGE);
@@ -29,8 +31,26 @@ public class OutputView {
         System.out.println(SELECT_BLOCK_MESSAGE);
     }
 
-    public void printMap(List<MovingResult> movingResult) {
+    public void printMap(List<MovingResult> movingResults) {
+        Iterator<MovingResult> resultIter = movingResults.iterator();
+        while (resultIter.hasNext()){
+            makeMessage(resultIter);
+        }
+        System.out.println("[ " + bridgeMessageMaker.getUpperLine() + " ]");
+        System.out.println("[ " + bridgeMessageMaker.getLowerLine() + " ]");
+    }
 
+    //TODO : 좀 더 깔끔하게 처리 불가능한가?
+    private void makeMessage(Iterator<MovingResult> resultIter) {
+        String state = resultIter.next().getState();
+        if (resultIter.next().getBridgeBlock().equals(BridgeBlock.U)) {
+            bridgeMessageMaker.upLineMessageMaker(state, resultIter.hasNext());
+            bridgeMessageMaker.downLineMessageMaker(BLANK, resultIter.hasNext());
+        }
+        if (resultIter.next().getBridgeBlock().equals(BridgeBlock.D)) {
+            bridgeMessageMaker.downLineMessageMaker(state, resultIter.hasNext());
+            bridgeMessageMaker.upLineMessageMaker(BLANK, resultIter.hasNext());
+        }
     }
 
     /**

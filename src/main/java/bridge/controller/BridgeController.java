@@ -35,8 +35,9 @@ public class BridgeController {
         Phase phase = new Phase();
 
         //다리 선택
-        doGame(bridge, phase);
-
+        while (true) {
+            doGame(bridge, phase);
+        }
     }
 
     //TODO : 메서드명 변경 필요

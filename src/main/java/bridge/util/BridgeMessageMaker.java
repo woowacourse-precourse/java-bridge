@@ -1,22 +1,31 @@
 package bridge.util;
 
-import java.util.List;
-
 public class BridgeMessageMaker {
 
-    private final String OPEN_BRACKET = "[";
-    private final String BLANK = " ";
-    private final String CLOSE_BRACKET = "]";
-    private final String PARTITION = "|";
+    private final String PARTITION = " | ";
 
-    private StringBuilder upperLine;
-    private StringBuilder underLine;
+    private StringBuilder upperLine = new StringBuilder();
+    private StringBuilder lowerLine = new StringBuilder();
 
-    public String upLineMessageMaker(List<String> moveResult) {
-        return "";
+    public void upLineMessageMaker(String moveResult, boolean b) {
+        upperLine.append(moveResult);
+        if (b) {
+            upperLine.append(PARTITION);
+        }
     }
 
-    public String downLineMessageMaker(List<String> moveResult) {
-        return "";
+    public void downLineMessageMaker(String moveResult, boolean b) {
+        lowerLine.append(moveResult);
+        if (b) {
+            lowerLine.append(PARTITION);
+        }
+    }
+
+    public StringBuilder getUpperLine() {
+        return upperLine;
+    }
+
+    public StringBuilder getLowerLine() {
+        return lowerLine;
     }
 }
