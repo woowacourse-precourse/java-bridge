@@ -44,4 +44,9 @@
   - 사용자가 게임을 다시 시작할 때 사용하는 메서드
 ## Viewer
 1. InputView
+- readBridgeSize()
+- readMoving()
+- readGameCommand()
 2. OutputView
+- printMap(UserPosition userPosition)
+- printResult(UserPosition userPosition)
