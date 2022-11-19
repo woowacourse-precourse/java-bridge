@@ -3,6 +3,7 @@ package view;
 import static view.OutputViewConstants.*;
 
 import static view.InputViewConstants.MOVING_UP;
+import static view.InputViewConstants.MOVING_DOWN;
 
 import static model.BridgeGameConstants.MOVING_SUCCESS;
 import static model.BridgeGameConstants.MOVING_FAIL_WRONG_MOVING;
@@ -23,6 +24,7 @@ public class OutputView {
 	public void printMap(String moving, int movingResult) {
 		updateGameStateMapVerticalBar();
 		updateGameStateMapWhenMovingUp(moving, movingResult);
+		updateGameStateMapWhenMovingDown(moving, movingResult);
 		String currentGameStateMap = combineGameStateUpMapAndDownMap();
 	}
 
@@ -48,6 +50,17 @@ public class OutputView {
 		if (moving.equals(MOVING_UP) && movingResult == MOVING_FAIL_WRONG_MOVING) {
 			currentGameStateUpMap += OUTPUT_TEXT_MOVING_FAIL;
 			currentGameStarteDownMap += (OUTPUT_TEXT_DO_NOT_GO);
+		}
+	}
+	
+	private void updateGameStateMapWhenMovingDown(String moving, int movingResult) {
+		if (moving.equals(MOVING_DOWN) && movingResult == MOVING_SUCCESS) {
+			currentGameStateUpMap += OUTPUT_TEXT_DO_NOT_GO;
+			currentGameStarteDownMap += OUTPUT_TEXT_MOVING_SUCCESS;
+		}
+		if (moving.equals(MOVING_DOWN) && movingResult == MOVING_FAIL_WRONG_MOVING) {
+			currentGameStateUpMap += (OUTPUT_TEXT_DO_NOT_GO);
+			currentGameStarteDownMap += OUTPUT_TEXT_MOVING_FAIL;
 		}
 	}
 	
