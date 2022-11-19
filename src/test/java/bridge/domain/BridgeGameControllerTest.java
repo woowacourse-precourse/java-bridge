@@ -18,7 +18,7 @@ import static org.mockito.Mockito.when;
 
 @DisplayName("BridgeGameController 클래스")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-public class BridgeGameControllerTest {
+class BridgeGameControllerTest {
     private final OutputView outputView = new OutputView();
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private InputView inputView;

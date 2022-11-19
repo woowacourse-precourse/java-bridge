@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 @DisplayName("BridgeGameResultDto 클래스")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-public class BridgeGameResultDtoTest {
+class BridgeGameResultDtoTest {
     private final PlayLogDto logDto = new PlayLogDto("log");
     private final GameResult result = GameResult.SUCCESS;
 

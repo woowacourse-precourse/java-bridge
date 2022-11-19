@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 @DisplayName("Position 클래스")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-public class PositionTest {
+class PositionTest {
     @Test
     void from_메서드는_U_D_를_받으면_해당하는_enum_을_반환한다() {
         assertThat(Position.from("U")).isEqualTo(Position.UP);

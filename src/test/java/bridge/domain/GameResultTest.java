@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("GameResult 클래스")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-public class GameResultTest {
+class GameResultTest {
     private static Stream<Arguments> generateResult() {
         return Stream.of(
                 Arguments.of(true, GameResult.SUCCESS),

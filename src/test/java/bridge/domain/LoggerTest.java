@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 @DisplayName("Logger 클래스")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-public class LoggerTest {
+class LoggerTest {
     @Test
     void put_메서드에_null_이_들어오면_예외가_발생한다() {
         Logger logger = new Logger();

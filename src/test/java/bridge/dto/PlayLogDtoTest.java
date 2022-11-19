@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 @DisplayName("PlayLogDto 클래스")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-public class PlayLogDtoTest {
+class PlayLogDtoTest {
     @Test
     void PlayLogDto_클래스는_잘_생성됨() {
         assertDoesNotThrow(() -> new PlayLogDto("log"));

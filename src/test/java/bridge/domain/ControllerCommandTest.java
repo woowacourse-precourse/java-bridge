@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 @DisplayName("ControllerCommand 클래스")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-public class ControllerCommandTest {
+class ControllerCommandTest {
     private static Stream<Arguments> generateSource() {
         return Stream.of(
                 Arguments.of("R", ControllerCommand.RETRY),

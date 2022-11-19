@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("Bridge 클래스")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-public class BridgeTest {
+class BridgeTest {
     @Test
     void size_메서드는_생성된_다리의_길이를_반환한다() {
         assertThat(new Bridge(List.of("U", "D", "D", "U")).size()).isEqualTo(4);

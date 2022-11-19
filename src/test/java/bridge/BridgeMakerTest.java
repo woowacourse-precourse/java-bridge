@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("BridgeMaker 클래스")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-public class BridgeMakerTest {
+class BridgeMakerTest {
     private BridgeNumberGenerator generator;
 
     @BeforeEach
