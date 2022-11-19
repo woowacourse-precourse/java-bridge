@@ -23,4 +23,8 @@ public class BridgeGameController {
         User user = new User();
         movingBridge(bridge, user);
     }
+
+    public void printStartGame() {
+        outputView.printStartGame();
+    }
 }
