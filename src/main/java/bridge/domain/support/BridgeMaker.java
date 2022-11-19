@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain.support;
 
 import bridge.utils.MoveCommand;
 
@@ -31,7 +31,7 @@ public class BridgeMaker {
             int generate = bridgeNumberGenerator.generate();
             bridge.add(MoveCommand.of(generate));
         }
-        
+
         return bridge;
     }
 
