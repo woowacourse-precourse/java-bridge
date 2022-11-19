@@ -1,6 +1,6 @@
-package bridge;
+package bridge.domain;
 
-import static bridge.Space.*;
+import static bridge.domain.Space.*;
 
 public class Validation {
     private static final int SIZE_FLOOR = 3;

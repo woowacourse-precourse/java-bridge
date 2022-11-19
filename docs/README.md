@@ -9,8 +9,8 @@
 3. [x] 다리 생성 (매 라운드마다 사용자가 건넌 다리를 출력하기 위함)
    1. [x] Utils 클래스에 makeInitialBridge() 메서드 생성
    2. [x] 메서드 내부에 List<List<String\>> 타입의 리스트인 currentBridge 생성(currentBridge[1] : 위 칸, currentBridge[0] : 아래 칸)
-   3. [x] 사용자가 건넌 다리 정보를 저장할 UsersBridgeCrossStatus 클래스 생성
-   4. [x] makeIntialBridge()에서 UsersBridgeCrossStatus의 객체 생성, currentBridge를 생성자 파라미터로 넘겨 줌
+   3. [x] 사용자가 건넌 다리 정보를 저장할 User 클래스 생성
+   4. [x] makeIntialBridge()에서 User의 객체 생성, currentBridge를 생성자 파라미터로 넘겨 줌
 4. [x] 건널 수 있는 다리 무작위로 설정
    1. [x] Utils.makeAnswerBridge() 생성, 구현
       1. [x] BridgeRandomNumberGenerator의 객체 생성
@@ -31,7 +31,7 @@
       2. [x] answerBridge.get(n + 1)이 사용자의 입력과 같은지 확인
       3. [x] 같으면 O, 다르면 X 반환
    3. [x] 이동 가능한 칸이라면 해당 칸에 O, 가능하지 않은 칸이라면 X 저장
-      1. [x] UsersBridgeCrossStatus의 객체에 addNewCrossingResult() 메서드 추가
+      1. [x] User의 객체에 addNewCrossingResult() 메서드 추가
          1. [x] 해당 이동이 첫 번째 다리 이동이 아닌 경우 위 칸과 아래 칸에 모두 구분 문자열인 "|" 추가
          2. [x] 사용자가 선택한 칸의 경우 currentBridge 사이에 " ", "(O 또는 X)", " "  추가
          3. [x] 사용자가 선택하지 않은 칸의 경우 currentBridge 사이에 " ", " ", " " 추가
@@ -47,6 +47,6 @@
 3. [x] 다리를 모두 건넌 경우 결과 출력 메서드 호출
 
 
-4. [x] **결과 출력**
-   1. [x] **성공 여부 출력**
-   2. [x] **총 시도 횟수 출력**
+4. [x] 결과 출력
+   1. [x] 성공 여부 출력
+   2. [x] 총 시도 횟수 출력

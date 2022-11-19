@@ -1,5 +1,9 @@
 package bridge;
 
+import bridge.bridgemaking.BridgeMakerImpl;
+import bridge.domain.User;
+import bridge.domain.BridgeGame;
+import bridge.ui.OutputView;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -13,14 +17,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static bridge.Space.*;
+import static bridge.domain.Space.*;
 import static org.assertj.core.api.Assertions.*;
 
 public class SetBridgeStatusTest {
-    private final BridgeGame bridgeGame = new BridgeGame();
+    private static BridgeGame bridgeGame;
     private static final OutputView outputView = new OutputView();
     private static final ByteArrayOutputStream output = new ByteArrayOutputStream();
-    private static UsersBridgeCrossStatus testBridge;
+    private static User testBridge;
     private static String userInput;
     private static List<String> testAnswerBridge;
 
@@ -30,7 +34,8 @@ public class SetBridgeStatusTest {
         userInput = "D";
         testAnswerBridge = new ArrayList<>(Arrays.asList("U", "D", "U", "D"));
         BridgeMakerImpl bridgeMakerImpl = new BridgeMakerImpl();
-        testBridge = bridgeMakerImpl.makeInitialBridge(3);
+        testBridge = bridgeMakerImpl.makeNewUser(3);
+        bridgeGame = new BridgeGame(testBridge, testAnswerBridge);
     }
 
     @AfterAll
@@ -40,7 +45,7 @@ public class SetBridgeStatusTest {
 
         assertThat(up).isEqualTo(List.of("[", " ", "O", " ", "|", " ", " ", " ", "|", " ", " ", " ", "]"));
         assertThat(down).isEqualTo(List.of("[", " ", " ", " ", "|", " ", "O", " ", "|", " ", "X", " ", "]"));
-        OutputView.printMap(testBridge);
+        outputView.printMap(testBridge);
         assertThat(output.toString()).isEqualTo("[ O |   |   ]\n[   | O | X ]");
 
         testBridge.resetCurrentBridge();

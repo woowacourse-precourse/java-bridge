@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.bridgemaking.BridgeMakerImpl;
+import bridge.domain.User;
+import bridge.ui.OutputView;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -15,16 +18,14 @@ public class OutputTest {
     private static final OutputView outputView = new OutputView();
     private static final ByteArrayOutputStream output = new ByteArrayOutputStream();
     private static final BridgeMakerImpl bridgeMakerImpl = new BridgeMakerImpl();
-    private static int trials;
-    private static UsersBridgeCrossStatus testUserStatus;
+    private static User testUserStatus;
 
     @BeforeAll
     static void setTest() {
         System.setOut(new PrintStream(output));
         List<String> answerBridge = new ArrayList<>(List.of("U", "D", "U", "D"));
         int bridgeSize = answerBridge.size();
-        testUserStatus = bridgeMakerImpl.makeInitialBridge(bridgeSize);
-        trials = 3;
+        testUserStatus = bridgeMakerImpl.makeNewUser(bridgeSize);
     }
 
     @AfterAll
@@ -33,9 +34,9 @@ public class OutputTest {
                 "[ O |   | O |   ]\n[   | O |   | X ]" +
                 "\n\n게임 성공 여부: " +
                 "실패" +
-                "\n총 시도한 횟수: 3";
+                "\n총 시도한 횟수: 1";
 
-        outputView.printResult(trials, testUserStatus);
+        outputView.printResult(testUserStatus);
         assertThat(output.toString()).isEqualTo(expected);
     }
 

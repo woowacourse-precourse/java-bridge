@@ -1,5 +1,6 @@
-package bridge;
+package bridge.ui;
 
+import bridge.domain.Validation;
 import camp.nextstep.edu.missionutils.Console;
 
 /**

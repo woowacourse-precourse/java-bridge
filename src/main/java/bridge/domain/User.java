@@ -1,24 +1,28 @@
-package bridge;
+package bridge.domain;
+
+import bridge.bridgemaking.BridgeMakerImpl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static bridge.Space.*;
+import static bridge.domain.Space.*;
 
-public class UsersBridgeCrossStatus {
+public class User {
     private List<List<String>> currentBridge;
-    private final int size;
+    private final int bridgeSize;
+    private boolean isSucceeded;
+    private int theNumOfTrials;
     private static final int FIRST_BRIDGE = 1;
     private static final int INITIAL_BRIDGE_SIZE = 2;
     private static final String BLANK = " ";
     private static final String DELIMITER = "|";
-    private boolean isSucceeded;
 
-    public UsersBridgeCrossStatus(List<List<String>> currentBridge, int size) {
+    public User(List<List<String>> currentBridge, int bridgeSize) {
         this.currentBridge = currentBridge;
-        this.size = size;
-        this.isSucceeded = false;
+        this.bridgeSize = bridgeSize;
+        this.isSucceeded = false; // 다리를 끝까지 건너서 게임을 성공하면 true로 변경.
+        this.theNumOfTrials = 1;
     }
 
     public void addCrossingResult(int selectedSpaceIdx, int currBridgeOrder, String movingResult) {
@@ -41,34 +45,49 @@ public class UsersBridgeCrossStatus {
         return charsNeededToAdd;
     }
 
-    private void addDelimiter(int size) {
-        currentBridge.get(UP.getIndex()).add(size - 1, DELIMITER);
-        currentBridge.get(DOWN.getIndex()).add(size - 1, DELIMITER);
+    private void addDelimiter(int currentSize) {
+        currentBridge.get(UP.getIndex()).add(currentSize - 1, DELIMITER);
+        currentBridge.get(DOWN.getIndex()).add(currentSize - 1, DELIMITER);
     }
 
     private void updateCurrentBridge(int selectedIdx, List<String> forSelected, List<String> forNotSelected) {
-        int currBridgeSize = currentBridge.get(selectedIdx).size();
-        int addPoint = -1;
-        if (currBridgeSize == INITIAL_BRIDGE_SIZE) {
-            addPoint = 1;
-        } else if (currBridgeSize > INITIAL_BRIDGE_SIZE) {
-            addPoint = currBridgeSize - 1;
-        }
+        int addPoint = getAddPoint(selectedIdx); // 라운드별 이동 결과를 추가할 위치(인덱스 값) 반환.
+
         currentBridge.get(selectedIdx).addAll(addPoint, forSelected);
         currentBridge.get(getOtherSpaceIndex(selectedIdx)).addAll(addPoint, forNotSelected);
+    }
+
+    private int getAddPoint(int selectedIdx) {
+        int currentSize = currentBridge.get(selectedIdx).size();
+
+        if (currentSize == INITIAL_BRIDGE_SIZE) {
+            return 1;
+        }
+        return currentSize - 1;
+    }
+
+    // 게임을 재시도하기 전 currentBridge를 비움.
+    public void resetCurrentBridge() {
+        this.currentBridge.clear();
+
+        // 처음과 끝에 "["와 "]" 추가.
+        currentBridge = BridgeMakerImpl.makeInitialBridge();
+    }
+
+    // 실패 후 재시도할 때마다 시도 횟수 증가
+    public void increaseTrialCount() {
+        this.theNumOfTrials++;
     }
 
     public List<List<String>> getCurrentBridge() {
         return currentBridge;
     }
 
-    public int getSize() {
-        return size;
+    public int getBridgeSize() {
+        return bridgeSize;
     }
-
-    public void resetCurrentBridge() {
-        this.currentBridge.clear();
-        currentBridge = BridgeMakerImpl.setHeadAndTail();
+    public int getTheNumOfTrials() {
+        return theNumOfTrials;
     }
 
     public boolean getSucceeded() {
