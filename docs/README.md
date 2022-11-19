@@ -22,7 +22,7 @@
 - [X] 다리 이동 (BridgeGame Class)
 - [X] 다리 상태 변경 (BridgeGame Class)
 - [X] 다리 이동 상태 출력 (OutputView Class)
-- [ ] 게임 다시 시도 여부 입력 Validation(Validation Class)
+- [X] 게임 다시 시도 여부 입력 Validation(Validation Class)
 - [ ] 게임 다시 시도 여부 입력 String 변환 (InputView Class)
 - [ ] 게임 다시 시도 (BridgeGame Class)
 - [ ] 최종 게임 결과 출력 (OutputView Class)
