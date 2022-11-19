@@ -143,18 +143,18 @@
 - 메소드 추가 가능 여부: O
 
 
-- [ ] printStart()
+- [x] printStart()
   ```
   다리 건너기 게임을 시작합니다.
   ```
 
-- [ ] printMap()
+- [x] printMap()
   ```
   [ O | X ]
   [   |   ]
   ```
 
-- [ ]  printResult()
+- [x]  printResult()
   ```
   게임 성공 여부: 실패
   총 시도한 횟수: 1
