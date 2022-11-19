@@ -34,4 +34,16 @@ public class OutputView {
         System.out.println(Message.GAME_RESULT.getMessage());
     }
 
+    public void printGameSucess() {
+        System.out.print(Message.GAME_SUCCESS.getMessage());
+    }
+
+    public void printSucess(){
+        System.out.println(" "+Message.SUCCESS.getMessage());
+    }
+
+    public void printFail(){
+        System.out.println(" "+Message.FAIL.getMessage());
+    }
+
 }
