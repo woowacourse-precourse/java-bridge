@@ -15,7 +15,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class BridgeGameTest {
 
-
     @DisplayName("뱡향을 받아 다리를 건넌 후, 해당 결과 상태를 반환할 수 있다.")
     @Test
     void crossBridgeAndReturnStatus() {
@@ -40,5 +39,26 @@ class BridgeGameTest {
             CrossStatus move = failBridgeGame.move(failDirections.get(i));
             assertThat(move).isEqualTo(failStatuses.get(i));
         }
+    }
+
+    @DisplayName("retry 시 다리는 유지되며 현재까지 이동한 경로는 초기화된다.")
+    @Test
+    void retryGameTest() {
+        // given
+        List<Direction> directions = List.of(DOWN, UP, UP, UP, UP, UP, UP);
+        Bridge bridge = new Bridge(directions);
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+
+        bridgeGame.move(DOWN);
+        bridgeGame.move(UP);
+        bridgeGame.move(DOWN);
+        bridgeGame.move(DOWN);
+
+        // when
+        bridgeGame.retry();
+        CrossStatus status = bridgeGame.move(DOWN);
+
+        // then
+        assertThat(status).isEqualTo(GOING);
     }
 }
