@@ -23,4 +23,19 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    /**
+     * enum Comment value의 line 을 출력. 추가로 붙이고 싶은 문자열은 다음 인자로 넣는다.
+     *
+     * @param comment  enum Comment의 value
+     * @param addition 추가로 붙이고 싶은 문자열
+     */
+    public void printComment(Comment comment, String... addition) {
+        StringBuilder additionalInputs = new StringBuilder();
+        for (String add : addition) {
+            additionalInputs.append(add);
+        }
+        System.out.println(comment.line + additionalInputs.toString());
+    }
+
 }
