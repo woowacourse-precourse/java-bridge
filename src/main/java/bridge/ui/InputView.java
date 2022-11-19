@@ -7,30 +7,46 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private static final String ERROR_MESSAGE = "[ERROR] ";
 
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() throws IllegalArgumentException {
-        String response = Console.readLine();
-        return Validation.validateBridgeSize(response);
+    public int readBridgeSize() {
+        try {
+            String response = Console.readLine();
+            return Validation.validateBridgeSize(response);
+        } catch (IllegalArgumentException e) {
+            System.out.println(ERROR_MESSAGE + e);
+            return readBridgeSize();
+        }
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String response = Console.readLine();
-        Validation.validateSpace(response);
-        return response;
+        try {
+            String response = Console.readLine();
+            Validation.validateSpace(response);
+            return response;
+        } catch (IllegalArgumentException e) {
+            System.out.println(ERROR_MESSAGE + e);
+            return readMoving();
+        }
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        String response = Console.readLine();
-        Validation.validateResponseAfterFailure(response);
-        return response;
+        try {
+            String response = Console.readLine();
+            Validation.validateResponseAfterFailure(response);
+            return response;
+        } catch (IllegalArgumentException e) {
+            System.out.println(ERROR_MESSAGE + e);
+            return readGameCommand();
+        }
     }
 }
