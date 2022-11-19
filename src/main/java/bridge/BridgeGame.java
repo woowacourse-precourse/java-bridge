@@ -28,16 +28,6 @@ public class BridgeGame {
         return userLog;
     }
 
-    public boolean isUserDead(Bridge bridge) {
-        int lastBlockNumber = userLog.size() - 1;
-
-        if (userLog.get(lastBlockNumber).equals(bridge.getBridge().get(lastBlockNumber))) {
-            return false;
-        }
-
-        return true;
-    }
-
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
@@ -50,5 +40,23 @@ public class BridgeGame {
         }
 
         return false;
+    }
+
+    public boolean isOver(Bridge bridge) {
+        if (bridge.getBridge().equals(userLog)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean isUserDead(Bridge bridge) {
+        int lastBlockNumber = userLog.size() - 1;
+
+        if (userLog.get(lastBlockNumber).equals(bridge.getBridge().get(lastBlockNumber))) {
+            return false;
+        }
+
+        return true;
     }
 }

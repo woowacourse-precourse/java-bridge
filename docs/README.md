@@ -21,7 +21,7 @@
     - OutputView에서 printMap 메서드를 구현
 
 
-- [ ] 이동에 따른 조치
+- [x] 이동에 따른 조치
   - [x] 실패하는 경우 게임 재시도 여부를 묻고 이에 따른 진행을 한다.
     - InputView의 readGameCommand 메서드를 구현
     - [x] 재시작
@@ -30,6 +30,6 @@
     - [x] 종료
       - 최종 게임 결과를 출력한다.
       - OutputView의 printResult 메서드 구현
-  - [ ] 끝까지 이동하는 경우 결과창을 출력하며 종료한다.
+  - [x] 끝까지 이동하는 경우 결과창을 출력하며 종료한다.
     - OutputView의 printResult 메서드 구현
 
