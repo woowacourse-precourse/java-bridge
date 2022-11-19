@@ -36,4 +36,8 @@ public class OutputView {
     private void checkTryCount(int tryCount){
 
     }
+
+    public static void printStart(){
+        System.out.println("다리의 길이를 입력해주세요.");
+    }
 }

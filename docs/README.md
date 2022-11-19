@@ -1,8 +1,8 @@
 # 기능 요구 사항
 
- - [ ] 사용자에게 다리 길이를 입력 받을 수 있다. InputView#readBridgeSize()
-   - [ ] 3 이상 20이하의 숫자를 입력할 수 있다. InputView#numberRange()
-   - [ ] 올바른 값이 아니면 예외 처리를 할 수 있다. InputView#checkNumber()
+ - [x] 사용자에게 다리 길이를 입력 받을 수 있다. InputView#readBridgeSize()
+   - [x] 3 이상 20이하의 숫자를 입력할 수 있다. InputView#numberRange()
+   - [x] 올바른 값이 아니면 예외 처리를 할 수 있다. InputView#checkNumber()
  
 
  - [ ] 시도한 횟수를 셀 수 있다. Count# tryCount()

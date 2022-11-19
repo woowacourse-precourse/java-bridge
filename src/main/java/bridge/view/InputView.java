@@ -1,5 +1,9 @@
 package bridge.view;
 
+import java.util.Random;
+
+import static camp.nextstep.edu.missionutils.Console.readLine;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -9,7 +13,13 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        OutputView.printStart();
+
+        int bridgeSize = Integer.parseInt(readLine());
+
+        checkNumber(bridgeSize);
+
+        return bridgeSize;
     }
 
     /**
@@ -26,13 +36,9 @@ public class InputView {
         return null;
     }
 
-    private int numberRange(int UserNumber){
-        return 0;
-    }
-
-
-
-    private void checkNumber(int UserNumber){
-
+    public void checkNumber(int userNumber){
+        if(3> userNumber || userNumber > 20){
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
     }
 }
