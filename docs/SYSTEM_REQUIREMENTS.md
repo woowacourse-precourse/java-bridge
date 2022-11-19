@@ -15,7 +15,7 @@
 - `InputView`의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 있다.
 - 사용자 값 입력을 위해 필요한 메서드를 추가할 수 있다.
 
-```
+```java
 public class InputView {
 
     public int readBridgeSize() {
@@ -37,7 +37,7 @@ public class InputView {
 - `OutputView`의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
 - 값 출력을 위해 필요한 메서드를 추가할 수 있다.
 
-```
+```java
 public class OutputView {
 
     public void printMap() {
@@ -57,7 +57,7 @@ public class OutputView {
 - `BridgeGame`의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
 - 게임 진행을 위해 필요한 메서드를 추가 하거나 변경할 수 있다.
 
-```
+```java
 public class BridgeGame {
 
     public void move() {
@@ -75,7 +75,7 @@ public class BridgeGame {
 - `BridgeMaker`의 필드(인스턴스 변수)를 변경할 수 없다.
 - `BridgeMaker`의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 없다.
 
-```
+```java
 public class BridgeMaker {
 
     public List<String> makeBridge(int size) {
@@ -93,7 +93,7 @@ public class BridgeMaker {
 
 - 다리 칸을 생성하기 위한 Random 값은 아래와 같이 추출한다.
 
-```
+```java
 int number = bridgeNumberGenerator.generate();
 ```
 
