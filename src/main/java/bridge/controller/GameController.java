@@ -54,4 +54,20 @@ public class GameController {
             }
         }
     }
+
+    private String getValidGameRetryCommand() {
+        outputView.printRetry();
+
+        return readValidGameCommand();
+    }
+
+    private String readValidGameCommand() {
+        while(true){
+            try {
+                return inputView.readGameCommand();
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+            }
+        }
+    }
 }

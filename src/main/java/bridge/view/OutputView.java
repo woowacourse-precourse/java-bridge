@@ -9,6 +9,7 @@ public class OutputView {
     private static final String GAME_START_MSG = "다리 건너기 게임을 시작합니다.\n";
     private static final String BRIDGE_SIZE_DEMAND_MSG = "다리의 길이를 입력해주세요.";
     private static final String BRIDGE_MOVE_DEMAND_MSG = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String RETRY_DEMAND_MSG = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private static final String ERROR_PREFIX = "[ERROR] ";
     private static final String MAP_PREFIX = "[ ";
     private static final String MAP_SUFFIX = " ]";
@@ -73,5 +74,9 @@ public class OutputView {
 
     public void printOrder() {
         System.out.println(BRIDGE_MOVE_DEMAND_MSG);
+    }
+
+    public void printRetry() {
+        System.out.println(RETRY_DEMAND_MSG);
     }
 }
