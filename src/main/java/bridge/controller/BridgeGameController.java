@@ -7,6 +7,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import java.util.List;
 
 public class BridgeGameController {
 
@@ -32,7 +33,7 @@ public class BridgeGameController {
 
     public void play() {
         start();
-        Bridge bridge = makeBridge(makeBridgeSize());
+        Bridge bridge = makeBridge();
         while (play) {
             moveBridge(bridge);
         }
@@ -47,13 +48,14 @@ public class BridgeGameController {
         outputView.printResult(bridgeGameResult);
     }
 
-    private Bridge makeBridge(int size) {
-        return new Bridge(bridgeMaker.makeBridge(size));
+    private Bridge makeBridge() {
+        outputView.printBridgeSizeMsg();
+        int size = inputView.readBridgeSize();
+        return bridgeMaker.makeBridge(makeShape(size));
     }
 
-    private int makeBridgeSize() {
-        outputView.printBridgeSizeMsg();
-        return inputView.readBridgeSize();
+    private List<String> makeShape(int size) {
+        return bridgeMaker.makeBridge(size);
     }
 
     private void moveBridge(Bridge bridge) {
