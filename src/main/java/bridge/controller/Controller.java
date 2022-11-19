@@ -9,11 +9,20 @@ public class Controller {
         InputView inputView = new InputView();
         System.out.println(GAME_START);
         startGame(inputView);
+        playingGame(inputView);
     }
 
     private void startGame(InputView inputView) {
         try {
             inputView.readBridgeSize();
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    private void playingGame(InputView inputView){
+        try {
+            inputView.readMoving();
         } catch (IllegalArgumentException ex) {
             System.out.println(ex.getMessage());
         }

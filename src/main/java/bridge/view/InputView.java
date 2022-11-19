@@ -10,6 +10,7 @@ public class InputView {
     private static final String MOVE_INPUT = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String SIZE_INPUT_TYPE_ERROR = "[ERROR] 숫자를 입력해주세요";
     private static final String BRIDGE_SIZE_ERROR = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+    private static final String MOVE_MESSAGE_ERROR = "[ERROR] 이동할 칸은 U(위)와 D(아래)만 입력하여야 합니다.";
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -42,7 +43,14 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(MOVE_INPUT);
+
+        String moveMessage = readPlayerInput();
+        if (!(moveMessage.equals("U") || moveMessage.equals("D"))) {
+            throw new IllegalArgumentException(MOVE_MESSAGE_ERROR);
+        }
+
+        return moveMessage;
     }
 
     /**
