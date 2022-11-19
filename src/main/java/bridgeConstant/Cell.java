@@ -1,8 +1,8 @@
 package bridgeConstant;
 
 public enum Cell {
-	UP(1, "U"),
-	DOWN(0, "D");
+	UP(1, Constant.UPPER_POSITION),
+	DOWN(0, Constant.LOWER_POSITION);
 
 	private final int number;
 	private final String position;
