@@ -21,14 +21,20 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> newBridge = new ArrayList<>();
         for(int bridgeIndex=0; bridgeIndex<size; bridgeIndex++){
-            int number = bridgeNumberGenerator.generate();
-            if(number == 0){
-                newBridge.add(bridgeIndex,"D");
-            }
-            if(number == 1){
-                newBridge.add(bridgeIndex,"U");
-            }
+            int randomNumber = bridgeNumberGenerator.generate();
+            newBridge.add(bridgeIndex,convertNumbersToDorU(randomNumber, bridgeIndex));
         }
         return newBridge;
+    }
+
+    public String convertNumbersToDorU(int randomNumber, int bridgeIndex){
+        List<String> newBridge = new ArrayList<>();
+        if(randomNumber == 0){
+            return "D";
+        }
+        if(randomNumber == 1){
+            return "U";
+        }
+        return null; //TODO 예외처리
     }
 }
