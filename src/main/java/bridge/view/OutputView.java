@@ -9,6 +9,10 @@ public class OutputView {
     private StringBuilder upView = new StringBuilder();
     private StringBuilder downView = new StringBuilder();
 
+    public void printError(String message) {
+        System.out.println(message);
+    }
+
     public void initMapView() {
         upView = new StringBuilder();
         downView = new StringBuilder();
