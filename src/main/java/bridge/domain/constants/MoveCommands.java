@@ -2,6 +2,7 @@ package bridge.domain.constants;
 
 import java.util.Arrays;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public enum MoveCommands {
@@ -12,8 +13,7 @@ public enum MoveCommands {
 
     private static final Map<String, MoveCommands> MOVE_COMMANDS = Arrays.stream(values())
             .collect(Collectors.toUnmodifiableMap(
-                    moveCommandsVer2 -> moveCommandsVer2.command,
-                    moveCommandsVer2 -> moveCommandsVer2));
+                    moveCommands -> moveCommands.command, Function.identity()));
 
     private final String command;
 
