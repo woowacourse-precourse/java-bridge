@@ -6,6 +6,9 @@ import java.util.stream.Collectors;
 
 public class BridgeMaker {
 
+    private static final String DOWN_COMMAND = "D";
+    private static final String UP_COMMAND = "U";
+    private static final int ZERO = 0;
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -28,9 +31,9 @@ public class BridgeMaker {
     }
 
     private String changeUpDown(int random) {
-        if (random == 0) {
-            return "D";
+        if (random == ZERO) {
+            return DOWN_COMMAND;
         }
-        return "U";
+        return UP_COMMAND;
     }
 }
