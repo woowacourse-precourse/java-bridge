@@ -9,6 +9,10 @@ public class BridgeResult {
 
     private List<Boolean> result;
 
+    public List<Boolean> getResult() {
+        return result;
+    }
+
     public BridgeResult() {
         this.result = new ArrayList<>();
     }
