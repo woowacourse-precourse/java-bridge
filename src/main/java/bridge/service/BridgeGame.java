@@ -10,7 +10,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public void move(String commend) {
+        validateMoveCommend(commend);
     }
 
     /**
@@ -19,5 +20,11 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+    }
+
+    private void validateMoveCommend(String commend) {
+        // 예외 처리 구현
+        // 1. commend 의 길이가 1이 아니면 예외를 던짐
+        // 2. commend 가 U 또는 D 가 아니면 예외를 던짐
     }
 }
