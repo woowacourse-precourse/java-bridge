@@ -7,7 +7,7 @@ public enum MoveType {
     U(1),
     D(0);
 
-    private int num;
+    private final int num;
 
     MoveType(final int num) {
         this.num = num;

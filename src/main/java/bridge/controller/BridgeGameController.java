@@ -33,7 +33,7 @@ public class BridgeGameController {
 
         int position = bridgeGame.getPosition();
         if (bridge.canMoveForward(userMove, position)) {
-
+            bridgeGame.move();
         }
     }
 }

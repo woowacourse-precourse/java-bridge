@@ -22,4 +22,8 @@ public class Bridge {
     public boolean canMoveForward(Square other, int position) {
          return bridge.get(position).equals(other);
     }
+
+    public int getSize() {
+        return bridge.size();
+    }
 }
