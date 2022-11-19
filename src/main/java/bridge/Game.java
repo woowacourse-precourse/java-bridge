@@ -26,6 +26,14 @@ public class Game {
         this.bridgeGame = new BridgeGame(bridge);
     }
 
+    private void resetOrQuitGame() {
+        if (this.isPlayerRetrying()){
+            this.bridgeGame.retry();
+            this.map.clear();
+            return;
+        }
+        this.isPlaying = false;
+    }
 
     private boolean isPlayerRetrying(){
         outputController.printComment(Comment.INPUT_GAME_COMMEND);
