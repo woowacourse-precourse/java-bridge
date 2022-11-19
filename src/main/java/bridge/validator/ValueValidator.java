@@ -17,4 +17,10 @@ public class ValueValidator {
             throw new IllegalArgumentException(ErrorMessage.INVALID_OPTION);
         }
     }
+
+    public void validateUpOrDown(String option){
+        if(!option.equals("U") && !option.equals("D")){
+            throw new IllegalArgumentException(ErrorMessage.INVALID_OPTION);
+        }
+    }
 }
