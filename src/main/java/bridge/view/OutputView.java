@@ -28,6 +28,7 @@ public class OutputView {
 
     public static void printGameStart() {
         System.out.println(GAME_START_MESSAGE);
+        printBlank();
     }
 
     public static void printBridgeSize() {
@@ -49,6 +50,7 @@ public class OutputView {
 
         System.out.println(bridgeMap.getUpBridge());
         System.out.println(bridgeMap.getDownBridge());
+        printBlank();
     }
 
     /**
@@ -59,6 +61,7 @@ public class OutputView {
     public static void printResult(GameStatus gameStatus, GameResultDto gameResultDto) {
         System.out.println(GAME_END_MESSAGE);
         printMap(gameStatus, gameResultDto);
+        printBlank();
         System.out.printf(GAME_RESULT_MESSAGE, gameStatus.getMessage());
         System.out.printf(GAME_RESULT_ATTEMPT_MESSAGE, gameResultDto.getAttempt());
     }
