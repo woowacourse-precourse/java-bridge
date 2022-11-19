@@ -15,7 +15,7 @@ public enum ResultType {
         this.mark = mark;
     }
 
-    public static ResultType getByBoolean(boolean move) {
+    public static ResultType getByBoolean(Boolean move) {
         return Arrays.stream(values())
                 .filter(type -> type.move == move)
                 .findAny()
