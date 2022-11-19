@@ -30,7 +30,7 @@ public class OutputTest {
 
     @AfterAll
     static void testResult() {
-        String expected = "최종 게임 결과\n" +
+        String expected = "\n최종 게임 결과\n" +
                 "[ O |   | O |   ]\n[   | O |   | X ]" +
                 "\n\n게임 성공 여부: " +
                 "실패" +

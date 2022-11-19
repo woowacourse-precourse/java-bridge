@@ -40,8 +40,7 @@ public class ExceptionSituationTest {
     void inputForMoveNotUOrDTest() {
         InputStream inputStream = setInputStream("wrong input");
         System.setIn(inputStream);
-        String wrongInput = inputView.readMoving();
-        assertThatThrownBy(() -> Validation.validateSpace(wrongInput))
+        assertThatThrownBy(inputView::readMoving)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -50,8 +49,7 @@ public class ExceptionSituationTest {
     void inputAfterFailureNotROrQTest() {
         InputStream inputStream = setInputStream("wrong input");
         System.setIn(inputStream);
-        String wrongInput = inputView.readGameCommand();
-        assertThatThrownBy(() -> Validation.validateResponseAfterFailure(wrongInput))
+        assertThatThrownBy(inputView::readGameCommand)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

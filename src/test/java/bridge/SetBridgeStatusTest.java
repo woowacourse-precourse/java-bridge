@@ -46,7 +46,7 @@ public class SetBridgeStatusTest {
         assertThat(up).isEqualTo(List.of("[", " ", "O", " ", "|", " ", " ", " ", "|", " ", " ", " ", "]"));
         assertThat(down).isEqualTo(List.of("[", " ", " ", " ", "|", " ", "O", " ", "|", " ", "X", " ", "]"));
         outputView.printMap(testBridge);
-        assertThat(output.toString()).isEqualTo("[ O |   |   ]\n[   | O | X ]");
+        assertThat(output.toString()).isEqualTo("[ O |   |   ]\n[   | O | X ]\n\n");
 
         testBridge.resetCurrentBridge();
         assertThat(testBridge.getCurrentBridge().get(UP.getIndex())).isEqualTo(List.of("[", "]"));
