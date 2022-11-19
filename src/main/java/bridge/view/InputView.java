@@ -10,14 +10,14 @@ import static java.lang.Integer.parseInt;
 public class InputView {
 
     private static final String INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
-    private static final String NEW_LINE = "\n";
+    private static final String EMPTY = "";
     private static final String INPUT_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String INPUT_RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     private static final String BRIDGE_SIZE_ERROR = "정수만 입력 가능합니다.";
     private static final String COMMAND_ERROR = "명령어 형식이 올바르지 않습니다.";
 
-    private static final String COMMAND_REGEX = "$[a-zA-Z]^";
+    private static final String COMMAND_REGEX = "^[a-zA-Z]$";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -25,7 +25,7 @@ public class InputView {
     public int readBridgeSize() {
         System.out.println(INPUT_BRIDGE_SIZE);
         String input = Console.readLine();
-        System.out.println(NEW_LINE);
+        System.out.println(EMPTY);
         validateBridgeSize(input);
         return parseInt(input);
     }
