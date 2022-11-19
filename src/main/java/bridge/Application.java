@@ -11,5 +11,6 @@ public class Application {
         BridgeGame newGame = new BridgeGame(newBridge.makeBridge(input.readBridgeSize()));
         output.printAskMovement();
         newGame.move(input.readMoving());
+        output.printMap(newGame.bridge, newGame.moveResult);
     }
 }
