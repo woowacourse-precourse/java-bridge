@@ -32,8 +32,14 @@ public class BridgeGameController {
     }
 
     private int selectBridgeSize() {
-        outputView.printBridgeSizeInputScript();
-        return inputView.readBridgeSize();
+        while (true) {
+            try {
+                outputView.printBridgeSizeInputScript();
+                return inputView.readBridgeSize();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public void play() {
@@ -52,13 +58,25 @@ public class BridgeGameController {
     }
 
     private String selectMoving() {
-        outputView.printMovingInputScript();
-        return inputView.readMoving();
+        while (true) {
+            try {
+                outputView.printMovingInputScript();
+                return inputView.readMoving();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private String selectGameCommand() {
-        outputView.printGameCommandInputScript();
-        return inputView.readGameCommand();
+        while (true) {
+            try {
+                outputView.printGameCommandInputScript();
+                return inputView.readGameCommand();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private boolean retryIf(boolean isRetry) {

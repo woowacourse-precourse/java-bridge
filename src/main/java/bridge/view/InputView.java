@@ -18,40 +18,22 @@ public class InputView {
         private static final String INVALID_GAME_COMMAND = "게임 재시도 여부는 " + RETRY_COMMAND + " 또는 " + QUIT_COMMAND + " 이어야 합니다.";
     }
 
-    public int readBridgeSize() {
-        while (true) {
-            try {
-                String bridgeSize = Console.readLine();
-                validateBridgeSize(bridgeSize);
-                return Integer.parseInt(bridgeSize);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+    public int readBridgeSize() throws IllegalArgumentException {
+        String bridgeSize = Console.readLine();
+        validateBridgeSize(bridgeSize);
+        return Integer.parseInt(bridgeSize);
     }
 
-    public String readMoving() {
-        while (true) {
-            try {
-                String moving = Console.readLine();
-                validateMoving(moving);
-                return moving;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+    public String readMoving() throws IllegalArgumentException {
+        String moving = Console.readLine();
+        validateMoving(moving);
+        return moving;
     }
 
-    public String readGameCommand() {
-        while (true) {
-            try {
-                String gameCommand = Console.readLine();
-                validateGameCommand(gameCommand);
-                return gameCommand;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+    public String readGameCommand() throws IllegalArgumentException {
+        String gameCommand = Console.readLine();
+        validateGameCommand(gameCommand);
+        return gameCommand;
     }
 
     private void validateBridgeSize(String bridgeSize) {
