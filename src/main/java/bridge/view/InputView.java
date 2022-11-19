@@ -1,7 +1,5 @@
 package bridge.view;
 
-import bridge.domain.ControllerCommand;
-import bridge.domain.Position;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.regex.Pattern;
@@ -33,16 +31,14 @@ public final class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public Position readMoving() {
-        String input = Console.readLine();
-        return Position.from(input);
+    public String readMoving() {
+        return Console.readLine();
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public ControllerCommand readGameCommand() {
-        String input = Console.readLine();
-        return ControllerCommand.from(input);
+    public String readGameCommand() {
+        return Console.readLine();
     }
 }

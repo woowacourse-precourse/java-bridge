@@ -85,7 +85,7 @@ public final class BridgeGameController {
     private Position askMoving() {
         try {
             outputView.printMoving();
-            return inputView.readMoving();
+            return Position.from(inputView.readMoving());
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             return askMoving();
@@ -98,7 +98,7 @@ public final class BridgeGameController {
         }
         try {
             outputView.printAskRetry();
-            return inputView.readGameCommand();
+            return ControllerCommand.from(inputView.readGameCommand());
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             return askRetry(bridgeGame);
