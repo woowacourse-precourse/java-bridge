@@ -15,14 +15,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class UserTest {
 
     Bridge bridge = new Bridge(
-            List.of(
-                    new Floor("U"),
-                    new Floor("U"),
-                    new Floor("U"),
-                    new Floor("U"),
-                    new Floor("U"),
-                    new Floor("U")
-            ));
+            List.of("U", "U", "U", "U", "U", "U", "U")
+    );
 
     @Test
     @DisplayName("사용자의 초기값: step = 0, live = true")

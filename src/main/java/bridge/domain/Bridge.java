@@ -6,11 +6,9 @@ import java.util.stream.Collectors;
 public class Bridge {
     private final List<Floor> floors;
 
-    public Bridge(int size) {
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> bridge = bridgeMaker.makeBridge(size);
-        this.floors = bridge.stream()
-                .map(each -> new Floor(each))
+    public Bridge(List<String> floors) {
+        this.floors = floors.stream()
+                .map(Floor::new)
                 .collect(Collectors.toList());
     }
 
