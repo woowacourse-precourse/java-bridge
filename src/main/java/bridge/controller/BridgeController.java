@@ -13,6 +13,7 @@ public class BridgeController {
 
     public static final int RANGE_START = 3;
     public static final int RANGE_END = 20;
+    public static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.";
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -25,10 +26,21 @@ public class BridgeController {
     }
 
     public void execute() {
-        BridgeGame bridgeGame = generateBridgeGame();
+        OutputView.printMessage(START_MESSAGE);
+        BridgeGame bridgeGame = getValidBridgeGame();
         while (isContinue(bridgeGame))
             ;
         outputView.printResult(bridgeGame.getBridge(), bridgeGame.getPlayer());
+    }
+
+    private BridgeGame getValidBridgeGame() {
+        while (true) {
+            try {
+                return generateBridgeGame();
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 
     private BridgeGame generateBridgeGame() {
