@@ -8,7 +8,7 @@ import bridge.view.OutputView;
 
 public class InputHandler {
 
-    InputView inputView = new InputView();
+    private final InputView inputView = new InputView();
 
     public int getBridgeSize() {
         try {
