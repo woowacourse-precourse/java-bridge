@@ -44,7 +44,7 @@ public class BridgeGameResult {
         if (bridge.equals("U") && playInput.equals("U")) {
             return " O ";
         }
-        if (bridge.equals("U") && playInput.equals("D")) {
+        if (bridge.equals("D") && playInput.equals("U")) {
             return " X ";
         }
         return "   ";
@@ -53,7 +53,7 @@ public class BridgeGameResult {
         if(list.equals("D")&&playInput.equals("D")){
             return " O ";
         }
-        if(list.equals("D")&&playInput.equals("U")){
+        if(list.equals("U")&&playInput.equals("D")){
             return " X ";
         }
         return "   ";
