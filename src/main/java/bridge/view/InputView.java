@@ -26,7 +26,7 @@ public class InputView {
         return size;
     }
     private boolean isDigit(String read) {
-        if (read.matches("^[0-9]*$")) {
+        if (read.matches("[^0-9]*$")) {
             return false;
         }
         return true;
