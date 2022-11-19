@@ -32,10 +32,18 @@ public class BridgeGameCycle {
 
     private void beforeGame() {
         printGameStart();
-        printAskLength();
-        bridgeLength = inputView.readBridgeSize();
+        bridgeLength = checkReadBridgeSize();
     }
-
+    private int checkReadBridgeSize(){
+        while(CONTINUE){
+            try{
+                printAskLength();
+                return inputView.readBridgeSize();
+            }catch (IllegalArgumentException exception){
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
     private int oneTurnCycle(BridgeGame game) {
         printAskMoving();
         String inputMoving = inputView.readMoving();
@@ -65,10 +73,9 @@ public class BridgeGameCycle {
     private String checkInputCommand() {
         while(CONTINUE){
             try{
-                String inputCommand = askInputCommand();
-                return inputCommand;
+                return  askInputCommand();
             }catch (IllegalArgumentException exception){
-                exception.getMessage();
+                System.out.println(exception.getMessage());
             }
         }
     }
