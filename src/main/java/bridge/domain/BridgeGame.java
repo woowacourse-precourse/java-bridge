@@ -57,4 +57,8 @@ public class BridgeGame {
     public boolean isRetry(String gameCommand) {
         return bridgeGameRetry.retry(gameCommand);
     }
+
+    public void increaseGameCount() {
+        bridgeGameCount.increaseCount();
+    }
 }
