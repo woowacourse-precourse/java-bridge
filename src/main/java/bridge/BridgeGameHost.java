@@ -4,14 +4,14 @@ import java.util.List;
 
 import static bridge.Const.*;
 
-public class GameHost {
+public class BridgeGameHost {
 
     private List<String> bridge;
     private int playerIndex;
     private int numberOfRetry;
     private boolean playerAlive;
 
-    public GameHost() {
+    public BridgeGameHost() {
         numberOfRetry = 0;
         playerIndex = -1;
         playerAlive = true;
@@ -28,7 +28,7 @@ public class GameHost {
     public String getResult() {
         String answer = FAIL;
 
-        if ((playerIndex - 1) == bridge.size()) {
+        if ((playerIndex - 1) == bridge.size() && playerAlive) {
             answer = SUCCESS;
         }
 

@@ -1,5 +1,6 @@
 package bridge;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,19 +11,36 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class BridgeGameTest {
 
-    @Test
-    @DisplayName("사용자를 움직이는 기능")
-    void movePlayer() {
-        // given
-        GameHost gameHost = new GameHost();
-        BridgeGame bridgeGame = new BridgeGame();
-        gameHost.setBridge(List.of("U", "D", "D", "U"));
+    private BridgeGameHost bridgeGameHost;
+    private BridgeGame bridgeGame;
+    private final List<String> testBridge = List.of("U", "D", "D", "U");
 
+    @BeforeEach
+    void beforeEach() {
+        bridgeGameHost = new BridgeGameHost();
+        bridgeGame = new BridgeGame();
+        bridgeGameHost.setBridge(testBridge);
+    }
+
+    @Test
+    @DisplayName("사용자를 움직여서 사는 경우")
+    void movePlayerAndPlayerAlive() {
         // when
-        bridgeGame.move(gameHost, UP);
+        bridgeGame.move(bridgeGameHost, UP);
 
         // then
-        assertThat(gameHost.getPlayerIndex()).isEqualTo(0);
-        assertThat(gameHost.getPlayerAlive()).isTrue();
+        assertThat(bridgeGameHost.getPlayerIndex()).isEqualTo(0);
+        assertThat(bridgeGameHost.getPlayerAlive()).isTrue();
+    }
+
+    @Test
+    @DisplayName("사용자가 움직여서 죽는 경우")
+    void movePlayerAndPlayerDie() {
+        // when
+        bridgeGame.move(bridgeGameHost, DOWN);
+
+        // then
+        assertThat(bridgeGameHost.getPlayerIndex()).isEqualTo(0);
+        assertThat(bridgeGameHost.getPlayerAlive()).isFalse();
     }
 }

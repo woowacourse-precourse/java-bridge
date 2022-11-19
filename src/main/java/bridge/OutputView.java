@@ -12,58 +12,58 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(GameHost gameHost) { // 여기서 player 위치는 index 로 따졌을 때 현재 위치인 것
-        System.out.println(getPrintOfMap(gameHost, UP));
-        System.out.println(getPrintOfMap(gameHost, DOWN));
+    public void printMap(BridgeGameHost bridgeGameHost) { // 여기서 player 위치는 index 로 따졌을 때 현재 위치인 것
+        System.out.println(getPrintOfMap(bridgeGameHost, UP));
+        System.out.println(getPrintOfMap(bridgeGameHost, DOWN));
         System.out.println();
     }
 
-    private StringBuilder getPrintOfMap(GameHost gameHost, String position) {
+    private StringBuilder getPrintOfMap(BridgeGameHost bridgeGameHost, String position) {
         StringBuilder printOfMap = new StringBuilder();
-        appendPastMap(gameHost, printOfMap, position);
-        appendNowMap(gameHost, printOfMap, position);
+        appendPastMap(bridgeGameHost, printOfMap, position);
+        appendNowMap(bridgeGameHost, printOfMap, position);
         translateLastLetter(printOfMap);
         return printOfMap;
     }
 
-    private void appendPastMap(GameHost gameHost, StringBuilder printOfMap, String position) {
-        for (int index = 0; index < gameHost.getPlayerIndex(); index++) {
-            if (gameHost.stepOfIndexInBridge(index).equals(position)) {
+    private void appendPastMap(BridgeGameHost bridgeGameHost, StringBuilder printOfMap, String position) {
+        for (int index = 0; index < bridgeGameHost.getPlayerIndex(); index++) {
+            if (bridgeGameHost.stepOfIndexInBridge(index).equals(position)) {
                 printOfMap.append("| ").append("O ");
             }
 
-            if (!gameHost.stepOfIndexInBridge(index).equals(position)) {
+            if (!bridgeGameHost.stepOfIndexInBridge(index).equals(position)) {
                 printOfMap.append("| ").append("  ");
             }
         }
     }
 
-    private void appendNowMap(GameHost gameHost, StringBuilder printOfMap,String position) {
-        if (gameHost.getPlayerAlive()) { // 플레이어가 살아있을 떄
-            appendNowMapWhenAlive(gameHost, printOfMap, position);
+    private void appendNowMap(BridgeGameHost bridgeGameHost, StringBuilder printOfMap, String position) {
+        if (bridgeGameHost.getPlayerAlive()) { // 플레이어가 살아있을 떄
+            appendNowMapWhenAlive(bridgeGameHost, printOfMap, position);
         }
 
-        if (!gameHost.getPlayerAlive()) { // 플레이어가 죽었을 때
-            appendNowMapWhenNotAlive(gameHost, printOfMap, position);
+        if (!bridgeGameHost.getPlayerAlive()) { // 플레이어가 죽었을 때
+            appendNowMapWhenNotAlive(bridgeGameHost, printOfMap, position);
         }
     }
 
-    private void appendNowMapWhenAlive(GameHost gameHost, StringBuilder printOfMap, String position) {
-        if (gameHost.stepOfIndexInBridge(gameHost.getPlayerIndex()).equals(position)) {
+    private void appendNowMapWhenAlive(BridgeGameHost bridgeGameHost, StringBuilder printOfMap, String position) {
+        if (bridgeGameHost.stepOfIndexInBridge(bridgeGameHost.getPlayerIndex()).equals(position)) {
             printOfMap.append("| ").append("O ");
         }
 
-        if (!gameHost.stepOfIndexInBridge(gameHost.getPlayerIndex()).equals(position)) {
+        if (!bridgeGameHost.stepOfIndexInBridge(bridgeGameHost.getPlayerIndex()).equals(position)) {
             printOfMap.append("| ").append("  ");
         }
     }
 
-    private void appendNowMapWhenNotAlive(GameHost gameHost, StringBuilder printOfMap, String position) {
-        if (gameHost.stepOfIndexInBridge(gameHost.getPlayerIndex()).equals(position)) {
+    private void appendNowMapWhenNotAlive(BridgeGameHost bridgeGameHost, StringBuilder printOfMap, String position) {
+        if (bridgeGameHost.stepOfIndexInBridge(bridgeGameHost.getPlayerIndex()).equals(position)) {
             printOfMap.append("| ").append("  ");
         }
 
-        if (!gameHost.stepOfIndexInBridge(gameHost.getPlayerIndex()).equals(position)) {
+        if (!bridgeGameHost.stepOfIndexInBridge(bridgeGameHost.getPlayerIndex()).equals(position)) {
             printOfMap.append("| ").append("X ");
         }
     }
@@ -78,24 +78,24 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(GameHost gameHost) {
-        printFinalMap(gameHost);
-        printWhetherFailOrSuccess(gameHost);
-        printNumberOfRetry(gameHost);
+    public void printResult(BridgeGameHost bridgeGameHost) {
+        printFinalMap(bridgeGameHost);
+        printWhetherFailOrSuccess(bridgeGameHost);
+        printNumberOfRetry(bridgeGameHost);
     }
 
-    private void printFinalMap(GameHost gameHost) {
+    private void printFinalMap(BridgeGameHost bridgeGameHost) {
         System.out.println("최종 게임 결과");
-        printMap(gameHost);
+        printMap(bridgeGameHost);
     }
 
-    private void printWhetherFailOrSuccess(GameHost gameHost) {
+    private void printWhetherFailOrSuccess(BridgeGameHost bridgeGameHost) {
         System.out.print("게임 성공 여부: ");
-        System.out.println(gameHost.getResult());
+        System.out.println(bridgeGameHost.getResult());
     }
 
-    private void printNumberOfRetry(GameHost gameHost) {
+    private void printNumberOfRetry(BridgeGameHost bridgeGameHost) {
         System.out.print("총 시도한 횟수: ");
-        System.out.println(gameHost.getRetry());
+        System.out.println(bridgeGameHost.getRetry());
     }
 }
