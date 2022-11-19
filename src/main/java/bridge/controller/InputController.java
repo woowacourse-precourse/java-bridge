@@ -3,7 +3,6 @@ package bridge.controller;
 import bridge.domain.Movement;
 import bridge.util.MessageUtil;
 import bridge.util.ParserUtil;
-import bridge.util.ValidationUtil;
 import bridge.view.InputView;
 
 public class InputController {
@@ -26,7 +25,7 @@ public class InputController {
         return bridgeSize;
     }
 
-    public Movement getMovement() {
+    public Movement getDirection() {
         while(true) {
             try {
                 return readAndParseMovementInput();
@@ -38,9 +37,9 @@ public class InputController {
 
     public Movement readAndParseMovementInput() {
         MessageUtil.movementInputMsg();
-        String movementInput = InputView.readMoving();
-        ParserUtil.parseMovement(movementInput);
-        Movement movement = getMovement(movementInput);
+        String directionInput = InputView.readMoving();
+        ParserUtil.parseMovement(directionInput);
+        Movement movement = Movement.getMovement(directionInput);
         return movement;
     }
 

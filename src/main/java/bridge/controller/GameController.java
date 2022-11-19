@@ -27,7 +27,7 @@ public class GameController {
 
     private Bridge createBridge() {
         int bridgeSizeInput = inputController.getBridgeSize();
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeNumberGenerator);
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSizeInput);
         return new Bridge(bridge);
     }
@@ -38,10 +38,8 @@ public class GameController {
 
     private void crossABridge(Bridge bridge, Player player) {
         BridgeGame bridgeGame = new BridgeGame(bridge, player);
+        bridgeGame.move(inputController);
 
-        Movement movementInput = inputController.getMovement();
-        player.updateMovement(movementInput);
-        bridgeGame.move(player.getDistance());
 
     }
 }

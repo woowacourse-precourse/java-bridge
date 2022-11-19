@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.controller.InputController;
 import bridge.domain.Bridge;
 import bridge.domain.Movement;
 import bridge.domain.Player;
@@ -17,8 +18,9 @@ public class BridgeGame {
         this.player = player;
     }
 
-    public void move(Movement movementInput) {
-        player.updateMovement(movementInput);
+    public void move(InputController inputController) {
+        Movement movement = inputController.getDirection();
+        player.updateMovement(movement);
     }
 
     /**

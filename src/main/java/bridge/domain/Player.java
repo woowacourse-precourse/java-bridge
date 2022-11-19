@@ -1,14 +1,15 @@
 package bridge.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
 
-    private int distance;
-    private List<Movement> route;
+    private int distance = 0;
+    private List<Movement> route = new ArrayList<>();
 
     public void updateMovement(Movement movement) {
-        distance++;
+        distance += 1;
         route.add(movement);
     }
 

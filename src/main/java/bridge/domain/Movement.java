@@ -29,23 +29,11 @@ public enum Movement {
     }
 
     private static Movement findBy(String direction) {
-        for ( Movement movement : Movement.values()) {
+        for (Movement movement : Movement.values()) {
             if (movement.direction.equals(direction)) {
                 return movement;
             }
         }
         return null;
     }
-    /*
-    public static Movement getMovementFromDirection(String direction) {
-        return Arrays.stream(values())
-                .filter(Movement -> matchDirection(direction))
-                .findFirst();
-    }
-
-    private boolean matchDirection(String direction) {
-        return this.direction.equals(direction);
-
-    }
-    */
 }
