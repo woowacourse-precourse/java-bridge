@@ -20,6 +20,18 @@ public class InputExceptionHandler {
     }
 
     /**
+     * 입력받은 다음 이동할 칸이 정상적인 입력 (U 또는 D)인지 판단하는 메서드입니다.
+     * @param input 입력받은 다음 이동할 칸에 해당하는 문자열
+     * @throws IllegalArgumentException U 또는 D가 아닌 경우
+     */
+    public static void validateNextCell(String input) {
+        if (!(input.equals("U") || input.equals("D"))) {
+            System.out.println(ERROR_PREFIX + "위: U 또는 아래: D를 입력해주세요!");
+            throw new IllegalArgumentException(ERROR_PREFIX + "위: U 또는 아래: D를 입력해주세요!");
+        }
+    }
+
+    /**
      * 다리의 길이가 문자로 이루어지지 않은 정수형인지 판단하는 메서드입니다.
      * @param input 입력받은 다리의 길이에 해당하는 문자열
      * @throws IllegalArgumentException 입력받은 다리가 정수로 이루어지지 않은 경우
