@@ -1,11 +1,10 @@
 package bridge.system;
 
-import bridge.system.controller.BridgeController;
-import bridge.system.service.BridgeGame;
-import bridge.system.util.BridgeMaker;
-import bridge.system.util.BridgeMessageMaker;
-import bridge.system.util.BridgeNumberGenerator;
-import bridge.system.util.BridgeRandomNumberGenerator;
+import bridge.controller.BridgeController;
+import bridge.service.BridgeGame;
+import bridge.util.BridgeMaker;
+import bridge.util.BridgeMessageMaker;
+import bridge.util.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 

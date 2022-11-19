@@ -1,7 +1,8 @@
-package bridge.system.service;
+package bridge.service;
 
 import bridge.domain.Bridge;
 import bridge.domain.BridgeBlock;
+import bridge.domain.MovingResult;
 import bridge.domain.Phase;
 
 /**
@@ -9,14 +10,13 @@ import bridge.domain.Phase;
  */
 public class BridgeGame {
 
-    public String move(Bridge bridge, BridgeBlock bridgeBlock, Phase phase) {
+    public MovingResult move(Bridge bridge, BridgeBlock bridgeBlock, Phase phase) {
         if (bridge.isSameBy(bridgeBlock, phase)) {
             phase.nextPhase();
-            //TODO : Enum타입으로 변경 예정
-            return "O";
+            return new MovingResult(bridgeBlock, "O");
         }
         phase.resetPhase();
-        return "X";
+        return new MovingResult(bridgeBlock, "X");
     }
 
     /**

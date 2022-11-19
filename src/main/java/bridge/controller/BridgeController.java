@@ -1,13 +1,15 @@
-package bridge.system.controller;
+package bridge.controller;
 
 import bridge.domain.Bridge;
 import bridge.domain.BridgeBlock;
+import bridge.domain.MovingResult;
 import bridge.domain.Phase;
-import bridge.system.service.BridgeGame;
-import bridge.system.util.BridgeMaker;
+import bridge.service.BridgeGame;
+import bridge.util.BridgeMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.domain.BridgeBlock.*;
@@ -33,12 +35,19 @@ public class BridgeController {
         Phase phase = new Phase();
 
         //다리 선택
+        doGame(bridge, phase);
+
+    }
+
+    //TODO : 메서드명 변경 필요
+    private void doGame(Bridge bridge, Phase phase) {
         outputView.printSelectBlock();
-        BridgeBlock bridgeBlock = valueOf(inputView.readMoving());
+        BridgeBlock inputBlock = valueOf(inputView.readMoving());
 
-        //선택한 다리 확인
-        String move = bridgeGame.move(bridge, bridgeBlock, phase);
-
+        MovingResult movingResult = bridgeGame.move(bridge, inputBlock, phase);
+        List<MovingResult> movingResults = new ArrayList<>();
+        movingResults.add(movingResult);
+        outputView.printMap(movingResults);
     }
 
     private List<String> makeBridgeByInputSize() {

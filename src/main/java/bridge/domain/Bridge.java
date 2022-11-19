@@ -13,4 +13,8 @@ public class Bridge {
     public boolean isSameBy(BridgeBlock bridgeBlock, Phase phase) {
         return bridgeBlock.equals(this.bridge.get(phase.getCurrentPhase()));
     }
+
+    public int size() {
+        return bridge.size();
+    }
 }
