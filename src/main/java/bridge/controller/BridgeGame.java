@@ -18,7 +18,6 @@ public class BridgeGame {
     private OutputView outputView = new OutputView();
     private Bridge bridge = new Bridge();
     private Player player = new Player();
-
     private Referee referee = new Referee();
 
     public void play() {
