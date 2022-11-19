@@ -21,7 +21,8 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        printMessage(PrintMessage.MOVE.printMessage());
+        return readString(Console.readLine());
     }
 
     /**
@@ -34,6 +35,11 @@ public class InputView {
     private int readNumber(String input) throws IllegalArgumentException {
         InputValidator.validateNumber(input);
         return Integer.parseInt(input);
+    }
+
+    private String readString(String input) throws IllegalArgumentException {
+        InputValidator.validateOnlyString(input);
+        return input;
     }
 
     private void printMessage(String requestMessage) {
