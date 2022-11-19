@@ -16,10 +16,16 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        outputView.printBridgeSizeInputMessage();
-        String bridgeSizeInput = readLine();
-        if (!InputValidator.isValidBridgeSize(bridgeSizeInput)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_BRIDGE_SIZE.getMessage());
+        String bridgeSizeInput;
+        while (true) {
+            outputView.printBridgeSizeInputMessage();
+            bridgeSizeInput = readLine();
+            try {
+                InputValidator.validateBridgeSize(bridgeSizeInput);
+                break;
+            } catch (IllegalArgumentException illegalArgumentException) {
+                outputView.printErrorMessage(illegalArgumentException.getMessage());
+            }
         }
         return Integer.parseInt(bridgeSizeInput);
     }

@@ -1,19 +1,20 @@
 package bridge.validators;
 
+import bridge.messages.ErrorMessage;
+
 public class InputValidator {
 
     private static final int MINIMUM_BRIDGE_SIZE = 3;
     private static final int MAXIMUM_BRIDGE_SIZE = 20;
 
-    public static boolean isValidBridgeSize(String bridgeSizeInput) {
+    public static void validateBridgeSize(String bridgeSizeInput) {
         if (!isNumeric(bridgeSizeInput)) {
-            return false;
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BRIDGE_SIZE.getMessage());
         }
         int bridgeSize = Integer.parseInt(bridgeSizeInput);
         if (isOutOfRange(bridgeSize)) {
-            return false;
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BRIDGE_SIZE.getMessage());
         }
-        return true;
     }
 
     public static boolean isValidMoveDirection(String moveDirectionInput) {
