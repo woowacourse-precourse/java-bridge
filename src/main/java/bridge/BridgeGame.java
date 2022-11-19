@@ -10,8 +10,6 @@ import static bridge.Enum.Direction.*;
 public class BridgeGame {
     private final List<String> scaffold;
     private final HashMap<String, List<String>> stepProgress = new HashMap<>();
-    private int gameStep = 0;
-    private boolean survive = true;
 
     public BridgeGame(List<String> bridgeScaffold) {
         this.scaffold = bridgeScaffold;
@@ -29,26 +27,20 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public List<String> move(String direction) {
-        checkStepResult(direction);
-
-        List<String> movingProgress = getMovingProgress(direction);
-
-        this.gameStep++;
-
-        return movingProgress;
-    }
-
-    private void checkStepResult(String direction) {
-        this.survive = direction.equals(this.scaffold.get(gameStep));
-    }
-
-    private List<String> getMovingProgress(String direction) {
         updateStepProgress(direction);
 
         String upDirectionProgress = getProgressOfDirection(UP.getInitial());
         String downDirectionProgress = getProgressOfDirection(DOWN.getInitial());
 
-        return new ArrayList<>(List.of(upDirectionProgress, downDirectionProgress));
+        return List.of(upDirectionProgress, downDirectionProgress);
+    }
+
+    private void updateStepProgress(String direction) {
+        String oppositeDirection = getOppositeDirection(direction);
+        String stepResult = getStepResult(direction);
+
+        this.stepProgress.get(direction).add(stepResult);
+        this.stepProgress.get(oppositeDirection).add(" ");
     }
 
     private String getOppositeDirection(String direction) {
@@ -58,15 +50,13 @@ public class BridgeGame {
         return UP.getInitial();
     }
 
-    private void updateStepProgress(String direction) {
-        String oppositeDirection = getOppositeDirection(direction);
-        if (!this.survive) {
-            this.stepProgress.get(direction).add("X");
-            this.stepProgress.get(oppositeDirection).add(" ");
-            return;
+    private String getStepResult(String direction) {
+        int currentStep = stepProgress.size();
+
+        if(direction.equals(this.scaffold.get(currentStep))){
+            return "O";
         }
-        this.stepProgress.get(direction).add("O");
-        this.stepProgress.get(oppositeDirection).add(" ");
+        return "X";
     }
 
     private String getProgressOfDirection(String direction) {
@@ -81,6 +71,5 @@ public class BridgeGame {
      */
     public void retry() {
         initStepProgress();
-        gameStep = 0;
     }
 }
