@@ -23,14 +23,33 @@ public class BridgeGame {
      */
     public boolean move() {
         String direction = inputView.readMoving();
-        boolean isRightDirection = bridge.isRightDirection(visited.size(),direction);
-        if(isRightDirection){
-            outputView.printMap(visited,direction,"O");
-            visited.add(direction);
-            return true;
+        visited.add(direction);
+        printUpBridge();
+        printDownBridge();
+        int idx = visited.size()-1;
+        return bridge.isRightDirection(idx, direction);
+    }
+
+    private void printDownBridge() {
+        for(int i=0; i<visited.size(); i++){
+            boolean rightDirection = bridge.isRightDirection(i, visited.get(i));
+            String result = "X";
+            if(rightDirection){
+                result = "O";
+            }
+            outputView.printMap(visited.get(i),"D",result);
         }
-        outputView.printMap(visited, direction, "X");
-        return false;
+    }
+
+    private void printUpBridge() {
+        for(int i=0; i<visited.size(); i++){
+            boolean rightDirection = bridge.isRightDirection(i, visited.get(i));
+            String result = "X";
+            if(rightDirection){
+                result = "O";
+            }
+            outputView.printMap(visited.get(i),"U",result);
+        }
     }
 
     public boolean isGameCompleted(){
@@ -56,4 +75,6 @@ public class BridgeGame {
         visited = new ArrayList<>();
         tryNum += 1;
     }
+
+
 }
