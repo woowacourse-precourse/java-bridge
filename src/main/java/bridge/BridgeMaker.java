@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.Bridge;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,14 @@ public class BridgeMaker {
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
+    }
+
+    /**
+     * @param shapes 만들 다리의 모양
+     * @return 다리
+     */
+    public Bridge makeBridge(List<String> shapes) {
+        return new Bridge(shapes);
     }
 
     /**
