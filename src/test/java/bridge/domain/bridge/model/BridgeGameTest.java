@@ -1,5 +1,8 @@
 package bridge.domain.bridge.model;
 
+import bridge.domain.bridge.BridgeDirection;
+import bridge.domain.bridge.BridgeMap;
+import bridge.domain.game.BridgeGame;
 import bridge.domain.game.GamePlayer;
 import java.util.List;
 import org.assertj.core.api.Assertions;

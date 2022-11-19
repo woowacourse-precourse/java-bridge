@@ -1,7 +1,7 @@
 package bridge.ui.output.dto;
 
-import bridge.domain.bridge.model.BridgeDirection;
-import bridge.domain.bridge.model.BridgeMap;
+import bridge.domain.bridge.BridgeDirection;
+import bridge.domain.bridge.BridgeMap;
 import bridge.ui.ConsolePrintable;
 import bridge.ui.output.ResultOutputConstants;
 import java.util.ArrayList;

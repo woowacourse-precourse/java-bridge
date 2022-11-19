@@ -1,4 +1,4 @@
-package bridge.domain.bridge.model;
+package bridge.domain.bridge;
 
 import java.util.Arrays;
 import java.util.NoSuchElementException;

@@ -1,6 +1,7 @@
-package bridge.domain.bridge.model;
+package bridge.domain.game;
 
-import bridge.domain.game.GamePlayer;
+import bridge.domain.bridge.BridgeDirection;
+import bridge.domain.bridge.BridgeMap;
 import bridge.ui.output.dto.BridgeGameMapState;
 import bridge.ui.output.dto.BridgeGameResult;
 

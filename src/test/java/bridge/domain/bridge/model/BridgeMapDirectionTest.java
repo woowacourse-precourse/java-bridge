@@ -1,5 +1,6 @@
 package bridge.domain.bridge.model;
 
+import bridge.domain.bridge.BridgeDirection;
 import java.util.NoSuchElementException;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;

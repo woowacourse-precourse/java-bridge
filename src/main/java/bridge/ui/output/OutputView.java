@@ -1,6 +1,5 @@
 package bridge.ui.output;
 
-import bridge.domain.bridge.model.BridgeGame;
 import bridge.ui.ConsolePrintable;
 
 /**

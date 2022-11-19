@@ -3,6 +3,8 @@ package bridge.domain.bridge.model;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.bridge.BridgeDirection;
+import bridge.domain.bridge.BridgeMap;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.util.Lists;

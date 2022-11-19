@@ -1,10 +1,8 @@
-package bridge.domain.bridge.application;
+package bridge;
 
-import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
-import bridge.domain.bridge.model.BridgeDirection;
-import bridge.domain.bridge.model.BridgeGame;
-import bridge.domain.bridge.model.BridgeMap;
+import bridge.domain.bridge.BridgeDirection;
+import bridge.domain.game.BridgeGame;
+import bridge.domain.bridge.BridgeMap;
 import bridge.domain.game.GamePlayer;
 import bridge.ui.input.InputView;
 import bridge.ui.output.OutputView;

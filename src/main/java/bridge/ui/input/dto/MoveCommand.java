@@ -1,6 +1,6 @@
 package bridge.ui.input.dto;
 
-import bridge.domain.bridge.model.BridgeDirection;
+import bridge.domain.bridge.BridgeDirection;
 import bridge.ui.input.InputErrorText;
 import java.util.regex.Pattern;
 
