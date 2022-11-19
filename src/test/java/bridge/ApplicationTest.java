@@ -86,11 +86,26 @@ class ApplicationTest extends NsTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("입력 받은 문자열이 U혹은 D가 아닐 시 예외를 발생시킨다.")
+    @DisplayName("입력 받은 문자열이 U혹은 D일 시 입력 값을 반환 한다.")
     @Test
     void enterValidInputValueToMove(){
         String input = "D";
         assertThat(Exception.validateInputValueForMove(input).equals(input));
+    }
+
+    @DisplayName("입력 받은 문자열이 R혹은 Q가 아닐 시 예외를 발생시킨다.")
+    @Test
+    void enterInvalidInputValueToRetry(){
+        String input = "D";
+        assertThatThrownBy(() -> Exception.validateInputValueForReStart(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력 받은 문자열이 R혹은 Q일 시 입력 값을 반환 한다.")
+    @Test
+    void enterValidInputValueToRetry(){
+        String input = "Q";
+        assertThat(Exception.validateInputValueForReStart(input).equals(input));
     }
 
 
