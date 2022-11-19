@@ -23,7 +23,7 @@ public class InputView {
         System.out.println();
 
         isNumber(input);
-        int size = Integer.valueOf(input);
+        int size = Integer.parseInt(input);
 
         isValidNumber(size);
         return size;
