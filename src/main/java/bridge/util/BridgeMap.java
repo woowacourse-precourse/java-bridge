@@ -54,15 +54,11 @@ public class BridgeMap {
         lowerBridge.removeLast();
     }
 
-
-
-
     @Override
     public String toString()
     {
-        return String.join("\n",
-                upperBridge.toString(),lowerBridge.toString());
-
+        return upperBridge.toString() +
+                lowerBridge.toString();
     }
 
 

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class BridgeMapComponent {
     private static final String DELIMITER = " | ";
-    private List<String> bridgeMapComponent;
+    private final List<String> bridgeMapComponent;
 
     public BridgeMapComponent()
     {
@@ -26,7 +26,7 @@ public class BridgeMapComponent {
     @Override
     public String toString()
     {
-        return "[ " + String.join(DELIMITER,bridgeMapComponent) + " ]";
+        return "[ " + String.join(DELIMITER,bridgeMapComponent) + " ]\n";
     }
 
 

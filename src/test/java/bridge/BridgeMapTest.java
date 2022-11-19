@@ -15,8 +15,8 @@ public class BridgeMapTest {
     void moveSuccessDisplayTest()
     {
         setData(List.of("U","D","D","U","U","D"));
-        setAnswer(  "[ O |   |   | O | O |   ]",
-                    "[   | O | O |   |   | O ]");
+        setAnswer(  "[ O |   |   | O | O |   ]\n",
+                    "[   | O | O |   |   | O ]\n");
 
         for (String nextMove : moves) bridgeMap.extendMap(nextMove,true);
 
@@ -27,8 +27,8 @@ public class BridgeMapTest {
     void moveFailDisplayTest()
     {
         setData(List.of("D","U","D","D","D","U"));
-        setAnswer(  "[   | O |   |   |   | O |   ]",
-                    "[ O |   | O | O | O |   | X ]");
+        setAnswer(  "[   | O |   |   |   | O |   ]\n",
+                    "[ O |   | O | O | O |   | X ]\n");
         for (String nextMove : moves) bridgeMap.extendMap(nextMove,true);
         bridgeMap.extendMap("D",false);
 
@@ -39,8 +39,8 @@ public class BridgeMapTest {
     void displayTest()
     {
         setData(List.of("D","U","D","U","U","U","D"));
-        setAnswer(  "[   | X |   | O | X | O |   ]",
-                    "[ O |   | X |   |   |   | X ]");
+        setAnswer(  "[   | X |   | O | X | O |   ]\n",
+                    "[ O |   | X |   |   |   | X ]\n");
         List<Boolean> moveResult = List.of(true,false,false,true,false,true,false);
 
         for (int position = 0; position < moveResult.size(); position++)
@@ -57,7 +57,7 @@ public class BridgeMapTest {
 
     void setAnswer(String upperComponent,String lowerComponent)
     {
-        this.answer = String.join("\n",upperComponent,lowerComponent);
+        this.answer = upperComponent + lowerComponent;
     }
 
 }
