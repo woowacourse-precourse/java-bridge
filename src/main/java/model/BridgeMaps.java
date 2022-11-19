@@ -28,6 +28,7 @@ public class BridgeMaps {
     private void updateMap(BridgeType type, Boolean result) {
         BridgeMap map = maps.getOrDefault(type, new BridgeMap());
         map.updateMap(result);
+        maps.put(type, map);
     }
 
     public String getPrintMap(BridgeType type) {
