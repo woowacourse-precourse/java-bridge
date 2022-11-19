@@ -14,6 +14,7 @@ public class BridgeGame {
     private final OutputView outputView;
     private final Bridge bridge;
     private int currentSection = 1;
+    private static final boolean IS_END = true;
 
     public BridgeGame() {
         this.inputView = new InputView();
@@ -24,10 +25,13 @@ public class BridgeGame {
 
     public boolean move() {
         String readMoving = inputView.readMoving();
-        CurrentBridge currentBridge = new CurrentBridge(bridge.showCurrentShape(currentSection), readMoving);
+        CurrentBridge currentBridge = new CurrentBridge(bridge.askCurrentShape(currentSection), readMoving);
         currentSection++;
         outputView.printMap(currentBridge);
-        return currentBridge.isFailed();
+        if (currentBridge.isFailed() || bridge.getBridgeLength() == currentBridge.getCurrentBridgeLength()) {
+            return IS_END;
+        }
+        return !IS_END;
     }
 
     /**

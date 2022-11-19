@@ -13,7 +13,11 @@ public class Bridge {
         this.shape = bridgeMaker.makeBridge(size);
     }
 
-    public List<String> showCurrentShape(int currentSection) {
+    public List<String> askCurrentShape(int currentSection) {
         return shape.subList(0, currentSection);
+    }
+
+    public int getBridgeLength() {
+        return shape.size();
     }
 }

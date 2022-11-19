@@ -9,7 +9,7 @@ public class CurrentBridge {
     private final List<String> currentShape;
     private final List<String> upperSection;
     private final List<String> lowerSection;
-    private boolean failed = false;
+    private boolean isFailed = false;
 
     public CurrentBridge(List<String> currentShape, String readMoving) {
         this.currentShape = currentShape;
@@ -49,7 +49,7 @@ public class CurrentBridge {
         }
         if (!sectionCanCross) {
             firstSection.set(firstSection.size() - 1, X);
-            failed = true;
+            isFailed = true;
         }
         secondSection.set(secondSection.size() - 1, WHITE_SPACE);
     }
@@ -67,6 +67,10 @@ public class CurrentBridge {
     }
 
     public boolean isFailed() {
-        return failed;
+        return isFailed;
+    }
+
+    public int getCurrentBridgeLength() {
+        return currentShape.size();
     }
 }
