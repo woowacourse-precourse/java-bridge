@@ -25,8 +25,8 @@ public class BridgeStatus {
     public void addUserMovingCommand(MovingCommand movingCommand) {
         userBridge.add(movingCommand.toString());
         int userBridgeLastIndex = userBridge.size() - 1;
-        checkGameStatus(userBridge.get(userBridgeLastIndex), answerBridge.get(userBridgeLastIndex));
         validateAddUserMovingCommand();
+        checkGameStatus(userBridge.get(userBridgeLastIndex), answerBridge.get(userBridgeLastIndex));
     }
 
     private void checkGameStatus(String requestBridgeElement, String answerBridgeElement) {
