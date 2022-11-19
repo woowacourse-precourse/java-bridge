@@ -72,4 +72,8 @@ public class BridgeGame {
         }
         return "X";
     }
+
+    public boolean isGameOver(){
+        return !systemBridge.subList(0,userBridge.size()).equals(userBridge);
+    }
 }
