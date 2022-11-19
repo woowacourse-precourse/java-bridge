@@ -23,7 +23,11 @@ public class BridgeGameCycle {
     public void play() throws IllegalArgumentException {
         beforeGame();
         brideGamePlay();
-        afterGame(nowState, coin, finalMap);
+        afterGame();
+    }
+
+    private void afterGame() {
+        printResult(nowState, coin, finalMap);
     }
 
     private void beforeGame() {
