@@ -1,6 +1,5 @@
 package bridge.service;
 
-import bridge.util.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +9,9 @@ import java.util.List;
 public class BridgeMaker {
 
 	private final static int UP_NUMBER = 1;
+	private final static String UP_STRING = "U";
+	private final static String DOWN_STRING = "D";
+	private final static String ERROR_MESSAGE_RANGE ="다리 길이는 3부터 20 사이의 숫자여야 합니다.";
 	private final BridgeNumberGenerator bridgeNumberGenerator;
 
 	public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -31,15 +33,14 @@ public class BridgeMaker {
 
 	private String isUpAndDown(int bridgeNumber) {
 		if (bridgeNumber == UP_NUMBER) {
-			return "D";
+			return UP_STRING;
 		}
-		return "U";
+		return DOWN_STRING;
 	}
 
 	private void validateRange(int size) {
 		if (size < 3 || 20 < size) {
-			Logger.error("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException(ERROR_MESSAGE_RANGE);
 		}
 	}
 }
