@@ -4,9 +4,9 @@ import bridge.utils.enums.Moving;
 
 public class RealTimeBridge {
 
-    private final String BLANK = "";
-    private final String SPACE = "   ";
-    private final String DIVIDE = "|";
+    private static final String BLANK = "";
+    private static final String SPACE = "   ";
+    private static final String DIVIDE = "|";
 
     String[][] realTimeBridge = {{"[", "", "]"}
             , {"[", "", "]"}};

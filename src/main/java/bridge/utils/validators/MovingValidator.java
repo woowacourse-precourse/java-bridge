@@ -1,6 +1,11 @@
 package bridge.utils.validators;
 
+import bridge.utils.enums.Moving;
+
 public class MovingValidator {
+
+    private static final String ERROR_BLANK = "[ERROR] 값을 입력해주세요.";
+    private static final String ERROR_ILLEGAL = "[ERROR] 대문자 U 또는 대문자 D를 입력해야 합니다.";
 
     String moving;
 
@@ -16,13 +21,13 @@ public class MovingValidator {
 
     private void validateInputNonBlank() {
         if (moving.equals("")) {
-            throw new IllegalArgumentException("[ERROR] 값을 입력해주세요.");
+            throw new IllegalArgumentException(ERROR_BLANK);
         }
     }
 
     private void validateInputValue() {
-        if (!moving.equals("U") && !moving.equals("D")) {
-            throw new IllegalArgumentException("[ERROR] 대문자 U 또는 대문자 D를 입력해야 합니다.");
+        if (!moving.equals(Moving.UP.getValue()) && !moving.equals(Moving.DOWN.getValue())) {
+            throw new IllegalArgumentException(ERROR_ILLEGAL);
         }
     }
 }
