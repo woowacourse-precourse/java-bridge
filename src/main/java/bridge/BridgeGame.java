@@ -18,10 +18,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String moving, List<String> bridge) {
-        if (moving.equals(bridge.get(0))){
-            System.out.println("성공");
-            bridge.remove(0);
+    public boolean move(String moving, List<String> bridge, int currentIndex) {
+        if (moving.equals(bridge.get(currentIndex))){
             if(moving.equals("U")){
                 upBridge.add("O");
                 downBridge.add(" ");
@@ -30,9 +28,8 @@ public class BridgeGame {
                 upBridge.add(" ");
                 downBridge.add("O");
             }
-            return;
+            return true;
         }
-        System.out.println("실패");
         if(moving.equals("U")){
             upBridge.add("X");
             downBridge.add(" ");
@@ -41,6 +38,7 @@ public class BridgeGame {
             upBridge.add(" ");
             downBridge.add("X");
         }
+        return false;
     }
 
     /**
@@ -57,5 +55,10 @@ public class BridgeGame {
 
     public List<String> getDownBridge() {
         return downBridge;
+    }
+
+    public void listClear(List<String> upBridge, List<String> downBridge){
+        upBridge.clear();
+        downBridge.clear();
     }
 }

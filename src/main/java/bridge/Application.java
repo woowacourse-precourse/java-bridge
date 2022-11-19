@@ -17,11 +17,23 @@ public class Application {
         System.out.println(bridge);
         BridgeGame bridgeGame = new BridgeGame();
         OutputView outputView = new OutputView();
-        for (int i = 0; i < bridgeSize; i++) {
-            String moving = inputView.readMoving();
-            bridgeGame.move(moving, bridge);
-            outputView.printMap(bridgeGame.getUpBridge(), bridgeGame.getDownBridge(), i);
+        String gameCommand = "R";
+        boolean result = true;
+        int gameCount = 0;
+        while (gameCommand.equals("R")) {
+            gameCount++;
+            bridgeGame.listClear(bridgeGame.getUpBridge(), bridgeGame.getDownBridge());
+            for (int i = 0; i < bridgeSize; i++) {
+                String moving = inputView.readMoving();
+                 result = bridgeGame.move(moving, bridge, i);
+                outputView.printMap(bridgeGame.getUpBridge(), bridgeGame.getDownBridge(), i);
+                if (result == false) {
+                    gameCommand = inputView.readGameCommand();
+                    break;
+                }
+                gameCommand = "Q";
+            }
         }
-        System.out.println("끝");
+        outputView.printResult(result, gameCount);
     }
 }
