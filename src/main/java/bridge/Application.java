@@ -8,7 +8,7 @@ public class Application {
         try {
             int len = new InputView().readBridgeSize();
             List<String> bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(len);
-            new BridgeGame().move(bridge);
+            new BridgeGame().move(bridge, 1);
         } catch (IllegalArgumentException e) {
         }
     }
