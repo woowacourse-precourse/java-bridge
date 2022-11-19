@@ -9,11 +9,11 @@ import bridge.dto.UserState;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private static final String GAME_BEGINNING_MESSAGE = "다리 건너기 게임을 시작합니다.";
+    private static final String GAME_BEGINNING_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
     private static final String GAME_RESULT_INTRO_MESSAGE = "최종 게임 결과";
     private static final String IS_GAME_SUCCESS = "게임 성공 여부: %s";
     private static final String NUMBER_OF_ATTEMPTS = "총 시도한 횟수: %d";
-    private static final String BRIDGE_FRAME = "[%s]\n[%s]";
+    private static final String BRIDGE_FRAME = "[%s]\n[%s]\n";
     private static final String CORRECT_DIRECTION = " O ";
     private static final String INCORRECT_DIRECTION = " X ";
     private static final String EMPTY_SPACE = "   ";
