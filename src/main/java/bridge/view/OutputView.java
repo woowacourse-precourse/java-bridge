@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeUnit;
+import bridge.domain.GameStatus;
 import bridge.domain.MapUnit;
 
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class OutputView {
      */
     public void printMap(BridgeGame bridgeGame) {
         System.out.println(getMap(bridgeGame));
+        System.out.println();
     }
 
     private String getMap(BridgeGame bridgeGame) {
@@ -61,6 +63,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(BridgeGame bridgeGame, GameStatus status) {
+        System.out.println("게임 최종 결과");
+        printMap(bridgeGame);
+        System.out.println(String.format("게임 성공 여부: %s", status.getStatus()));
+        System.out.println(String.format("총 시도 횟수: %d", bridgeGame.getAttempt()));
     }
 }
