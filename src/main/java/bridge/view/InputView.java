@@ -12,12 +12,8 @@ public class InputView {
      */
     public int readBridgeSize() {
         String bridgeSize = Console.readLine();
-        if (bridgeSize.chars().allMatch(Character::isDigit)) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자를 입력해야 합니다.");
-        }
-        if (Integer.parseInt(bridgeSize) < 3 || Integer.parseInt(bridgeSize) > 20) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
-        }
+        isNumber(bridgeSize);
+        checkScope(bridgeSize);
         return Integer.parseInt(bridgeSize);
     }
 
@@ -33,5 +29,17 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    public void isNumber(String number) {
+        if (number.chars().allMatch(Character::isDigit)) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자를 입력해야 합니다.");
+        }
+    }
+
+    public void checkScope(String number) {
+        if (Integer.parseInt(number) < 3 || Integer.parseInt(number) > 20) {
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
     }
 }
