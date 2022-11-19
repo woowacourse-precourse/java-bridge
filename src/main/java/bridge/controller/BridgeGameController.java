@@ -60,11 +60,11 @@ public class BridgeGameController {
 	}
 
 	private void startBridgeGame(BridgeGame bridgeGame) {
-		boolean playGame = true;
-		while (playGame && bridgeGame.isNotFinish(progressMap)) {
+		boolean startGame = true;
+		while (startGame && bridgeGame.isNotFinish(progressMap)) {
 			crossBridge(bridgeGame);
 			if (progressMap.isMoveFailed()) {
-				playGame = failBridgeMove(bridgeGame);
+				startGame = failBridgeMove(bridgeGame);
 			}
 		}
 	}
