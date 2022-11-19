@@ -31,6 +31,7 @@ public class BridgeController {
     }
 
     public void exitGame() {
+        bridgeService.exitGame();
     }
 
 }
