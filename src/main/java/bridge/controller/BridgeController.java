@@ -3,7 +3,7 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.InputView;
+import bridge.view.InputView;
 import bridge.utils.message.FixedMessage;
 import java.util.ArrayList;
 import java.util.List;

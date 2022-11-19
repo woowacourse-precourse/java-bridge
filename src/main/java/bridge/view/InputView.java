@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 import bridge.utils.message.FixedMessage;
 import bridge.validator.BridgeSizeValidator;
