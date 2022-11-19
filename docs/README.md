@@ -23,11 +23,20 @@
 
 - 메소드 추가 가능 여부: O
 
-
 - size만큼 Bridge 생성 makeBridge(int size)
+    - [ ] 검증
+        - 입력된 값이 3 ~ 20 범위의 숫자
+        - 해당 범위가 아닐 경우 예외 처리
+            - [ ] IllegalArgumentException 처리
+
 - [ ] 위아래 중 하나로 이동 move()
     - 이동 할 때 마다 진행 상태 오른쪽에 이동 한 위치(위, 아래)에 O, X 기록
     - move의 결과가 X일 경우 현재 상태 BridgeStatus를 STOP으로 변경
+    - [ ] 검증
+        - BridgeStatus STOP인 경우만 가능
+            - [ ] 해당 상태가 아닐 경우 IllegalStateException 처리
+        - 입력된 값이 U 또는 D 검사
+            - [ ] 해당 값이 아닐 경우 IllegalArgumentException 처리
 
 
 - [ ] 재시도 retry()
@@ -35,6 +44,9 @@
     - 초기화 후 시도 횟수 + 1
     - [ ] 검증
         - BridgeStatus STOP인 경우만 가능
+            - [ ] 해당 상태가 아닐 경우 IllegalStateException 처리
+        - 입력된 값이 R 또는 Q 검사
+            - [ ] 해당 값이 아닐 경우 IllegalArgumentException 처리
 
 
 - [ ] 현재 상태 종류 반환 status()
@@ -95,9 +107,9 @@
       다리의 길이를 입력해주세요.
       ```
     - [ ] 검증 사항
-        - 3 이상 20 이하의 숫자
+        - Integer.parseInt로 변환 되는 수
         - 해당 범위가 아닐 경우 예외 처리
-            - [ ] IllegalArgumentException 처리 후 재입력 시도
+            - [ ] IllegalArgumentException 처리
 
 
 - 이동 칸 수 입력 readMoving()
@@ -108,7 +120,7 @@
     - [ ] 검증 사항
         - U 또는 D
         - 해당 범위가 아닐 경우 예외 처리
-            - [ ] IllegalArgumentException 처리 후 재입력 시도
+            - [ ] IllegalArgumentException 처리
 
 
 - 재시도/종료 입력 readGameCommand()
@@ -119,7 +131,7 @@
     - [ ] 검증 사항
         - R 또는 Q
         - 해당 범위가 아닐 경우 예외 처리
-            - [ ] IllegalArgumentException 처리 후 재입력 시도
+            - [ ] IllegalArgumentException 처리
 
 <br/>
 
