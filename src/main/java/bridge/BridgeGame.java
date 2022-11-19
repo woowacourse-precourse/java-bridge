@@ -28,6 +28,13 @@ public class BridgeGame {
     public void plusGameTryCount() {
         this.gameTryCount++;
     }
+    public String printGamePassStateByKorean() {
+        if (isGamePassFlag()) {
+            return "성공";
+        }
+        return "실패";
+    }
+
     public void clearGameResults() {
         this.currentGameResults = new ArrayList<>();
         currentGameIndex = 0;
