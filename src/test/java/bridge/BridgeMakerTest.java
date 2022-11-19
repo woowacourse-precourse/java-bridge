@@ -1,5 +1,7 @@
 package bridge;
 
+import static bridge.constant.BridgeConstant.LOWER_BLOCK;
+import static bridge.constant.BridgeConstant.UPPER_BLOCK;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
@@ -17,5 +19,14 @@ class BridgeMakerTest {
     void test1(int anyValue) {
         List<String> bridge = bridgeMaker.makeBridge(anyValue);
         assertThat(bridge.size()).isEqualTo(anyValue);
+    }
+
+    @DisplayName(UPPER_BLOCK + ", " + LOWER_BLOCK + " 2개의 값만 생성된다")
+    @ValueSource(ints = 10)
+    @ParameterizedTest
+    void test2(int anyValue) {
+        List<String> bridge = bridgeMaker.makeBridge(anyValue);
+        assertThat(bridge.stream()
+                .allMatch(value -> value.equals(UPPER_BLOCK) || value.equals(LOWER_BLOCK))).isTrue();
     }
 }
