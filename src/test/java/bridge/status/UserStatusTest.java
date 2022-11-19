@@ -85,7 +85,7 @@ class UserStatusTest {
         userStatus.addDirection("D");
         userStatus.addDirection("D");
 
-        assertThat(userStatus.getStatusMessage()).isEqualTo("게임 성공 여부: 성공");
+        assertThat(userStatus.getStatusMessage()).contains("게임 성공 여부: 성공");
     }
 
     @Test
@@ -95,7 +95,7 @@ class UserStatusTest {
         userStatus.addDirection("D");
 
         userStatus.lose();
-        assertThat(userStatus.getStatusMessage()).isEqualTo("게임 성공 여부: 실패");
+        assertThat(userStatus.getStatusMessage()).contains("게임 성공 여부: 실패");
     }
 
 
