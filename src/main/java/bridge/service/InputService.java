@@ -22,4 +22,10 @@ public class InputService {
         String moveDirection = inputView.readMoving();
         return moveDirection;
     }
+
+    public String requestStatusOfGame() {
+        outputView.printRequestRestart();
+        String command = inputView.readGameCommand();
+        return command;
+    }
 }
