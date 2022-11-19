@@ -37,13 +37,6 @@ public class GameController {
         bridgeGame = BridgeGame.from(generateRandomBridge());
     }
 
-    public void startGame() {
-        Player player = new Player();
-
-        playUntilEnd(player);
-        showResult(player);
-    }
-
     private Bridge generateRandomBridge() {
         while (true) {
             try {
@@ -54,6 +47,14 @@ public class GameController {
                 System.out.println(exception.getMessage());
             }
         }
+    }
+
+
+    public void startGame() {
+        Player player = new Player();
+
+        playUntilEnd(player);
+        showResult(player);
     }
 
     /**
@@ -67,13 +68,6 @@ public class GameController {
             isSurvive = playOneTurn(player);
             outputView.printMap(bridgeGame, player);
         } while (isContinueGame(player, isSurvive));
-    }
-
-    private boolean isContinueGame(Player player, boolean isSurviveThisTurn) {
-        if (isSurviveThisTurn) {
-            return !bridgeGame.isWin(player);
-        }
-        return askForTryAgain();
     }
 
     private boolean playOneTurn(Player player) {
@@ -93,6 +87,13 @@ public class GameController {
         } while (movingTile == null);
 
         return movingTile;
+    }
+
+    private boolean isContinueGame(Player player, boolean isSurviveThisTurn) {
+        if (isSurviveThisTurn) {
+            return !bridgeGame.isWin(player);
+        }
+        return askForTryAgain();
     }
 
     private boolean askForTryAgain() {
