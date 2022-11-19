@@ -38,7 +38,10 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(SELECT_UP_AND_DOWN);
+        String movingNext = Console.readLine();
+        
+        return movingNext;
     }
 
     /**
