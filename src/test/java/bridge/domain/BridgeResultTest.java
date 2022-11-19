@@ -1,5 +1,8 @@
 package bridge.domain;
 
+import bridge.domain.bridge.Square;
+import bridge.domain.game.BridgeResult;
+import bridge.domain.move.MoveResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

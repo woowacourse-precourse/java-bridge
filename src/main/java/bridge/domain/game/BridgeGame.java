@@ -1,4 +1,6 @@
-package bridge.domain;
+package bridge.domain.game;
+
+import bridge.domain.bridge.Bridge;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

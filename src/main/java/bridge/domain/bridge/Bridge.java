@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.bridge;
 
 import java.util.List;
 import java.util.stream.Collectors;

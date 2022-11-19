@@ -1,4 +1,7 @@
-package bridge.domain;
+package bridge.domain.game;
+
+import bridge.domain.bridge.Square;
+import bridge.domain.move.MoveResult;
 
 import java.util.ArrayList;
 import java.util.List;

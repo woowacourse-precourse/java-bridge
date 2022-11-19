@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.move;
 
 import java.util.Arrays;
 import java.util.NoSuchElementException;

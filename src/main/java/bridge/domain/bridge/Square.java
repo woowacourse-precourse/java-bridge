@@ -1,4 +1,6 @@
-package bridge.domain;
+package bridge.domain.bridge;
+
+import bridge.domain.move.MoveType;
 
 import java.util.Objects;
 

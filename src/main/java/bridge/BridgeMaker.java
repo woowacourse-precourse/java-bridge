@@ -1,7 +1,6 @@
 package bridge;
 
-import bridge.BridgeNumberGenerator;
-import bridge.domain.MoveType;
+import bridge.domain.move.MoveType;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.domain.bridge.Square;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.domain.bridge.BridgeSize;
 import bridge.view.InputView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
