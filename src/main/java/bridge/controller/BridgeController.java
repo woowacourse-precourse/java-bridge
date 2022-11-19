@@ -10,13 +10,13 @@ import bridge.view.OutputView;
 
 public class BridgeController {
 
-    private InputView inputView;
+    private final InputView inputView;
 
-    private OutputView outputView;
+    private final OutputView outputView;
 
-    private BridgeGame bridgeGame;
+    private final BridgeGame bridgeGame;
 
-    private Validator validator;
+    private final Validator validator;
 
     public BridgeController(InputView inputView, OutputView outputView, BridgeGame bridgeGame, Validator validator) {
         this.inputView = inputView;
