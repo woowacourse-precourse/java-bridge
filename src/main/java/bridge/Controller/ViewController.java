@@ -48,4 +48,11 @@ public class ViewController {
         }
     }
 
+    public void printResult(String result) {
+        output.printMap(result);
+    }
+
+    public void quit(String result, boolean isSuccess, int playCount) {
+        output.printResult(result, isSuccess, playCount);
+    }
 }

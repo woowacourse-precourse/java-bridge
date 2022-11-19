@@ -5,7 +5,7 @@ import static bridge.Utils.Constants.RETRY;
 
 import bridge.Controller.BridgeController;
 import bridge.Controller.ViewController;
-import java.util.ArrayList;
+import bridge.Domain.Bridge;
 import java.util.List;
 
 /**
@@ -15,8 +15,7 @@ public class BridgeGame {
 
     BridgeController bridgeController;
     ViewController viewController;
-    List<String> answerBridge;
-    List<String> userBridge;
+    Bridge user;
     int playCount = 0;
     boolean isPlaying;
 
@@ -24,8 +23,6 @@ public class BridgeGame {
     BridgeGame() {
         bridgeController = new BridgeController();
         viewController = new ViewController();
-        answerBridge = new ArrayList<>();
-        userBridge = new ArrayList<>();
 
         play();
     }
@@ -33,11 +30,16 @@ public class BridgeGame {
     public void play() {
         isPlaying = true;
         playCount++;
-        answerBridge = bridgeController.getAnswerBridge();
+        setAnswer();
 
         while (isPlaying) {
             move();
         }
+    }
+
+    private void setAnswer() {
+        List<String> answerMovings = bridgeController.getAnswerBridge();
+        user = new Bridge(answerMovings);
     }
 
     /**
@@ -46,10 +48,10 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
-        String moving = viewController.getMoving();
-        userBridge.add(moving);
-        if (bridgeController.checkMatching(answerBridge, userBridge)) {
-            if (userBridge.size() == answerBridge.size()) {
+        user.addMoving(viewController.getMoving());
+        if (user.isMatchAboutThisMoving()) {
+            viewController.printResult(user.getResult());
+            if (user.isFinish()) {
                 quit(true);
             }
             return;
@@ -69,7 +71,8 @@ public class BridgeGame {
 
     public void quit(boolean isSuccess) {
         isPlaying = false;
-        bridgeController.quit(isSuccess, playCount);
+        String result = user.getResult();
+        viewController.quit(result, isSuccess, playCount);
     }
 
     /**
@@ -79,7 +82,6 @@ public class BridgeGame {
      */
     public void retry() {
         playCount++;
-        userBridge.clear();
-        bridgeController.resultClear();
+        user.clear();
     }
 }

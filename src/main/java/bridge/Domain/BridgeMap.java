@@ -22,11 +22,11 @@ public class BridgeMap {
     }
 
     public void add(String upOrDown, String isCorrect) {
-        if(upOrDown.equals(UP)) {
+        if (upOrDown.equals(UP)) {
             upMap.add(isCorrect);
             downMap.add(BLANK);
         }
-        if(upOrDown.equals(DOWN)) {
+        if (upOrDown.equals(DOWN)) {
             upMap.add(BLANK);
             downMap.add(isCorrect);
         }
@@ -43,11 +43,11 @@ public class BridgeMap {
     private String toStringAboutMap(List<String> map) {
         StringBuilder builder = new StringBuilder();
         builder.append(MAP_START_PART);
-        for(int i=0; i<map.size() -1; i++){
+        for (int i = 0; i < map.size() - 1; i++) {
             builder.append(map.get(i));
             builder.append(MAP_MIDDLE_PART);
         }
-        builder.append(map.get(map.size()-1));
+        builder.append(map.get(map.size() - 1));
         builder.append(MAP_END_PART);
         return builder.toString();
     }
