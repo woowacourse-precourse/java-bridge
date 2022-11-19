@@ -9,14 +9,14 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class BridgeGameTest {
 
-    private final BridgeGame bridgeGame = new BridgeGame();
+    private final BridgeGame bridgeGame = new BridgeGame(new BridgeGameResult());
 
-    @DisplayName("이동이 가능하면 O, 불가능하면 X로 표시한다.")
-    @CsvSource(value = {"D, O", "U, X"})
+    @DisplayName("이동이 가능하면 ture, 이동이 불가능하면 false 확인")
+    @CsvSource(value = {"D, true", "U, false"})
     @ParameterizedTest
-    void move(String moving, String expected) {
+    void move(String moving, boolean expected) {
         Bridge bridge = new Bridge(List.of("D", "U", "U"));
-        String actual = bridgeGame.move(bridge, 0, moving);
+        Boolean actual = bridgeGame.move(bridge, 0, moving);
         assertThat(actual).isEqualTo(expected);
     }
 }
