@@ -1,4 +1,4 @@
-package bridge;
+package bridge.game;
 
 public enum Bridge {
     UPPER_DIRECTION("U", 1),

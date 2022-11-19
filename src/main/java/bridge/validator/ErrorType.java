@@ -1,4 +1,4 @@
-package bridge;
+package bridge.validator;
 
 public enum ErrorType {
     INVALID_FORMAT ("[ERROR] 입력이 숫자가 아닙니다."),

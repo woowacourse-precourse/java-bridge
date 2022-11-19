@@ -1,7 +1,5 @@
 package bridge.validator;
 
-import bridge.ErrorType;
-
 public class Validator {
     public static final int LOWER_BRIDGE_SIZE_BOUND = 3;
     public static final int UPPER_BRIDGE_SIZE_BOUND = 20;
