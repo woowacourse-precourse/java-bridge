@@ -6,6 +6,7 @@ package bridge.model;
 public class BridgeGame {
     private final Bridge bridge;
     private final PassingSpace passingSpace;
+    private int numberOfTry;
 
     public BridgeGame(Bridge bridge, PassingSpace passingSpace) {
         this.bridge = bridge;
@@ -27,12 +28,20 @@ public class BridgeGame {
         return movable.isMovable();
     }
 
+    public boolean retry(String selectRetry) {
+        Retry retry = Retry.valueOf(selectRetry);
+
+        if (retry.isRetry()) {
+            numberOfTry += 1;
+        }
+        return retry.isRetry();
+    }
+
     public boolean isSuccessCrossingBridge(int position) {
         return bridge.size() == position;
     }
 
-    public boolean retry(String selectRetry) {
-        Retry retry = Retry.valueOf(selectRetry);
-        return retry.isRetry();
+    public int getNumberOfTry() {
+        return numberOfTry;
     }
 }
