@@ -16,15 +16,12 @@ public class BridgeGame {
 	}
 
 	public boolean isAnswerBridge(List<String> bridge, List<String> currentBridgeState) {
-		boolean state = true;
 		for (int i = 0; i < bridge.size(); i++) {
-			state = isNotAnswer(bridge, currentBridgeState, i);
+			if (!bridge.get(i).equals(currentBridgeState.get(i))) {
+				return false;
+			}
 		}
-		return state;
-	}
-
-	private static boolean isNotAnswer(List<String> bridge, List<String> currentBridgeState, int i) {
-		return !bridge.get(i).equals(currentBridgeState.get(i));
+		return true;
 	}
 
 }
