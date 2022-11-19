@@ -31,4 +31,20 @@ public class GameController {
             }
         }
     }
+
+    private String getValidBridgeMove() {
+        outputView.printOrder();
+
+        return readValidBridgeMove();
+    }
+
+    private String readValidBridgeMove() {
+        while(true){
+            try {
+                return inputView.readMoving();
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+            }
+        }
+    }
 }

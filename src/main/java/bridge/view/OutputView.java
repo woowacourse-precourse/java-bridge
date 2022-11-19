@@ -8,6 +8,7 @@ import java.sql.SQLOutput;
 public class OutputView {
     private static final String GAME_START_MSG = "다리 건너기 게임을 시작합니다.\n";
     private static final String BRIDGE_SIZE_DEMAND_MSG = "다리의 길이를 입력해주세요.";
+    private static final String BRIDGE_MOVE_DEMAND_MSG = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String ERROR_PREFIX = "[ERROR] ";
 
 
@@ -34,5 +35,9 @@ public class OutputView {
 
     public void printError(String errorMsg) {
         System.out.println(ERROR_PREFIX + errorMsg);
+    }
+
+    public void printOrder() {
+        System.out.println(BRIDGE_MOVE_DEMAND_MSG);
     }
 }
