@@ -26,6 +26,7 @@ public class OutputView {
         List<String> lowerLine = drawLowerLine(bridge, currentPosition, isMoving);
         printOneLine(upperLine);
         printOneLine(lowerLine);
+        System.out.println();
     }
 
     /**
