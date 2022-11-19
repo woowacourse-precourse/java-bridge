@@ -34,7 +34,10 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String command = Console.readLine();
+        checkCommand(command);
+
+        return command;
     }
 
     public void checkIsDigit(String checkNumber) {
@@ -58,6 +61,12 @@ public class InputView {
     public void checkMoving(String moving) {
         if (!(moving.equals("U") || moving.equals("D"))) {
             throw new IllegalArgumentException("[ERROR] 이동은 U 또는 D만 입력 가능합니다.");
+        }
+    }
+
+    public void checkCommand(String command) {
+        if (!(command.equals("R") || command.equals("Q"))) {
+            throw new IllegalArgumentException("[ERROR] 입력은 R 또는 Q만 가능합니다.");
         }
     }
 }
