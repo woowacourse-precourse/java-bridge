@@ -13,8 +13,7 @@ public class Application {
         try {
             Bridge bridge = bridgeController.generate();
             gameController.run(bridge);
-
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.err.print(e.getMessage());
         }
     }
