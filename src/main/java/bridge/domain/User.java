@@ -6,4 +6,8 @@ public class User {
     public int getTryCount() {
         return tryCount;
     }
+
+    public void increaseTryCount(){
+        tryCount++;
+    }
 }
