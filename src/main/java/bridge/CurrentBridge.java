@@ -38,7 +38,7 @@ public class CurrentBridge extends Bridge{
         return buffer.toString();
     }
     private String returnString(String del,int index){
-        if(bridge.get(index).equals(del) && bridgeStatus == BridgeStatus.FAIL) return "X";
+        if(bridge.get(index).equals(del) && bridgeStatus == BridgeStatus.FAIL && index == bridgeLength() - 1) return "X";
         if(bridge.get(index).equals(del))return "O";
         return " ";
     }
