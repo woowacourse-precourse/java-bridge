@@ -12,8 +12,16 @@ public class InputView {
      */
     public int readBridgeSize() {
         String inputBridgeSize = readLine();
-        int bridgeSize = Integer.parseInt(inputBridgeSize);
-        return bridgeSize;
+
+        return changeInt(inputBridgeSize);
+    }
+
+    public int changeInt(String size) {
+        try{
+            return Integer.parseInt(size);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 길이는 정수만 입력해주세요." );
+        }
     }
 
     /**
