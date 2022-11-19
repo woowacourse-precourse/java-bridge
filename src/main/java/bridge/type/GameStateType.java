@@ -7,9 +7,13 @@ import java.util.stream.Collectors;
 
 public enum GameStateType {
 
-    INIT(0), PLAY(1), FAIL(2), RESULT(3), DONE(4);
+    STATE_INIT(0),
+    STATE_PLAY(1),
+    STATE_FAIL(2),
+    STATE_RESULT(3),
+    STATE_DONE(4);
 
-    private static final String NULL_ERROR = "존재하지 않는 GameState를 호출했습니다.";
+    private static final String NULL_ERROR = "존재하지 않는 STATE 순서 번호입니다.";
     private final int order;
 
     GameStateType(int order) {
