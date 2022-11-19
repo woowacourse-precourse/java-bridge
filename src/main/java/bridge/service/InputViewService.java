@@ -18,4 +18,15 @@ public class InputViewService {
         }
         return inputBridgeSize();
     }
+
+    public String inputMoving() {
+        try {
+            outputView.printChoiceUpOrDown();
+            String move = inputView.readMoving();
+            return move;
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
+        return inputMoving();
+    }
 }
