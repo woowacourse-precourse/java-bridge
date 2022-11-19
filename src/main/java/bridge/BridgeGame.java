@@ -1,10 +1,19 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-
+    private List<String> bridgeMap;
+    private List<String> userRoute;
+    private boolean isFinish;
+    private int tryCount;
+    public static final String CMD_UP = "U";
+    public static final String CMD_DOWN = "D";
+    public static final String CMD_RETRY = "R";
+    public static final String CMD_QUIT = "Q";
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
