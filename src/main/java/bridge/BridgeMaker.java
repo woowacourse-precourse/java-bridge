@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.command.Direction;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,14 +32,10 @@ public class BridgeMaker {
     }
 
     private String setUpOrDown(int direction) {
-        int upDirection = 1;
-        String up = "U";
-        String down = "D";
-
-        if (direction == upDirection) {
-            return up;
+        if (direction == Direction.UP.getNumber()) {
+            return Direction.UP.getText();
         }
 
-        return down;
+        return Direction.DOWN.getText();
     }
 }
