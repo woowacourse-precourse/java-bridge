@@ -6,7 +6,7 @@ import bridge.BridgeRandomNumberGenerator;
 public class BridgeGame {
     private Bridge answerBridge;
     private GameUser gameUser;
-    private BridgeGameCounter gameCounter;
+    private Counter gameCounter;
 
     public void initialize(int size) {
         BridgeRandomNumberGenerator generator = new BridgeRandomNumberGenerator();
@@ -14,7 +14,7 @@ public class BridgeGame {
 
         answerBridge = new Bridge(bridgeMaker.makeBridge(size));
         gameUser = new GameUser();
-        gameCounter = new BridgeGameCounter();
+        gameCounter = new Counter();
     }
 
     public GameStatus getMovingResult(String moving) {
