@@ -1,14 +1,15 @@
 package bridge.application.step;
 
 import bridge.application.context.BridgeGameContext;
+import bridge.application.log.Logger;
 import bridge.domain.command.GameCommand;
 
 import static bridge.domain.command.GameCommand.RETRY;
 
 public class InputRetry extends BridgeGameStep {
 
-    protected InputRetry(BridgeGameContext context) {
-        super(context);
+    protected InputRetry(BridgeGameContext context, Logger logger) {
+        super(context, logger);
     }
 
     @Override
@@ -20,9 +21,9 @@ public class InputRetry extends BridgeGameStep {
 
     private Step judgeNext(GameCommand command) {
         if (command == RETRY) {
-            return new ReadyToRetry(context);
+            return new ReadyToRetry(context, logger);
         }
-        return new ShowResult(context);
+        return new ShowResult(context, logger);
     }
 
     @Override

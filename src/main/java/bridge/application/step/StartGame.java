@@ -1,17 +1,18 @@
 package bridge.application.step;
 
 import bridge.application.context.BridgeGameContext;
+import bridge.application.log.Logger;
 
 public class StartGame extends BridgeGameStep {
 
-    public StartGame(BridgeGameContext context) {
-        super(context);
+    public StartGame(BridgeGameContext context, Logger logger) {
+        super(context, logger);
     }
 
     @Override
     protected Step pureExecute() {
         context.printStart();
-        return new MakeBridge(context);
+        return new MakeBridge(context, logger);
     }
 
     @Override

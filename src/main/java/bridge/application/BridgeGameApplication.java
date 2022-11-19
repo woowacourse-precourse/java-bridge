@@ -11,7 +11,7 @@ public class BridgeGameApplication {
 
     public BridgeGameApplication(BridgeGameConfig config) {
         BridgeGameContext context = new BridgeGameContext(config);
-        this.step = new StartGame(context);
+        this.step = new StartGame(context, config.logger());
     }
 
     public void start() {

@@ -1,6 +1,7 @@
 package bridge.application.step;
 
 import bridge.application.context.BridgeGameContext;
+import bridge.application.log.Logger;
 import bridge.domain.bridge.CrossStatus;
 
 import static bridge.domain.bridge.CrossStatus.FAIL;
@@ -8,8 +9,8 @@ import static bridge.domain.bridge.CrossStatus.GOING;
 
 public class CrossBridge extends BridgeGameStep {
 
-    protected CrossBridge(BridgeGameContext context) {
-        super(context);
+    protected CrossBridge(BridgeGameContext context, Logger logger) {
+        super(context, logger);
     }
 
     @Override
@@ -21,12 +22,12 @@ public class CrossBridge extends BridgeGameStep {
 
     private Step judgeNextStep(CrossStatus status) {
         if (status == FAIL) {
-            return new InputRetry(context);
+            return new InputRetry(context, logger);
         }
         if (status == GOING) {
-            return new CrossBridge(context);
+            return new CrossBridge(context, logger);
         }
-        return new ShowResult(context);
+        return new ShowResult(context, logger);
     }
 
     @Override
