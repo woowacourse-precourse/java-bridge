@@ -19,4 +19,5 @@ public class FinalResult {
     public int getAttempts() {
         return attempts;
     }
+
 }
