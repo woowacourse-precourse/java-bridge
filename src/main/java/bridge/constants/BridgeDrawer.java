@@ -4,8 +4,7 @@ public enum BridgeDrawer {
     START_OF_BRIDGE("[ "),
     END_OF_BRIDGE(" ]"),
     DIVIDE_SPACE(" | "),
-    CAN_MOVE("O"),
-    CAN_NOT_MOVE("X");
+    EMPTY_SPACE(" ");
 
     private final String character;
 
