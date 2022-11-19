@@ -1,7 +1,7 @@
 package bridge.bridge;
 
 import bridge.BridgeRandomNumberGenerator;
-
+import bridge.output.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,14 +12,23 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private List<String> bridge = new ArrayList<>();
+    private final BridgeMaker bridgeMaker;
+    private final OutputView outputView;
+    private List<String> bridge;
+    private final List<String> userInput;
+
+    public BridgeGame(OutputView outputView) {
+        this.outputView = new OutputView();
+        this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        this.bridge = new ArrayList<>();
+        this.userInput = new ArrayList<>();
+    }
 
     /**
      * 다리를 생성하는 메서드입니다.
      * @param size 다리의 크기
      */
     public void makeBridge(int size) {
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = bridgeMaker.makeBridge(size);
     }
 
@@ -31,12 +40,12 @@ public class BridgeGame {
      * @param cellIndex 현재 몇 번째 칸인지를 표현하는 index
      */
     public void move(String direction, int cellIndex) {
+        userInput.add(direction);
+        outputView.printMap(bridge, userInput);
         if (bridge.get(cellIndex).equals(direction)) {
-            printResult(cellIndex, true);
-            moveSuccess();
+            moveSuccess(cellIndex);
             return;
         }
-        printResult(cellIndex, false);
         moveFail();
     }
 
@@ -47,15 +56,10 @@ public class BridgeGame {
 
     }
 
-    private void moveSuccess() {
+    private void moveSuccess(int cellIndex) {
 
     }
 
     private void moveFail() {
-
-    }
-
-    private void printResult(int currentIndex, boolean isSuccess) {
-
     }
 }
