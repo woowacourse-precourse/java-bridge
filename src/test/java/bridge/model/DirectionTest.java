@@ -1,6 +1,7 @@
 package bridge.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -43,7 +44,7 @@ class DirectionTest {
         Direction down = Direction.DOWN;
 
         //then
-        assertThat(down.isMatchGenerateCode(code)).isTrue();
+        assertThat(down.getGenerateCode() == code).isTrue();
     }
 
     @DisplayName("1은 위 방향을 생성하는 코드이다.")
@@ -56,7 +57,57 @@ class DirectionTest {
         Direction up = Direction.UP;
 
         //then
-        assertThat(up.isMatchGenerateCode(code)).isTrue();
+        assertThat(up.getGenerateCode() == code).isTrue();
+    }
+
+    @DisplayName("존재하는 방향이면 해당 방향을 반환한다.")
+    @Test
+    void getDirection() {
+        //given
+        Direction direction = Direction.UP;
+        String input = direction.getDirection();
+
+        //when
+        Direction result = Direction.from(input);
+
+        //then
+        assertThat(result).isEqualTo(direction);
+    }
+
+    @DisplayName("존재하지 않는 방향이면 예외가 발생한다.")
+    @Test
+    void getDirectionWithException() {
+        //given
+        String input = "@";
+
+        //then
+        assertThatThrownBy(() -> Direction.from(input)).isInstanceOf(
+                IllegalArgumentException.class);
+    }
+
+    @DisplayName("존재하는 생성 코드면 해당 방향을 반환한다.")
+    @Test
+    void getDirectionByCode() {
+        //given
+        Direction direction = Direction.UP;
+        int generateCode = direction.getGenerateCode();
+
+        //when
+        Direction result = Direction.from(generateCode);
+
+        //then
+        assertThat(result).isEqualTo(direction);
+    }
+
+    @DisplayName("존재하지 않는 생성 코드면 예외가 발생한다.")
+    @Test
+    void getDirectionByCodeWithException() {
+        //given
+        int generateCode = -1;
+
+        //then
+        assertThatThrownBy(() -> Direction.from(generateCode)).isInstanceOf(
+                IllegalStateException.class);
     }
 
 }

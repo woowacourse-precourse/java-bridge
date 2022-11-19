@@ -1,5 +1,7 @@
 package bridge.model;
 
+import java.util.Arrays;
+
 public enum Direction {
 
     UP("U", 1),
@@ -17,12 +19,24 @@ public enum Direction {
         return direction;
     }
 
-    public boolean isMatchDirection(String direction) {
-        return this.direction.equals(direction);
+    public int getGenerateCode() {
+        return generateCode;
     }
 
-    public boolean isMatchGenerateCode(int code) {
-        return generateCode == code;
+    public static Direction from(String input) {
+        return Arrays.stream(Direction.values())
+                .filter(direction -> direction.getDirection().equals(input))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(
+                        String.format("해당하는 방향이 존재하지 않습니다. 입력 : %s", input)));
+    }
+
+    public static Direction from(int code) {
+        return Arrays.stream(Direction.values())
+                .filter(direction -> direction.getGenerateCode() == code)
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException(
+                        String.format("생성 불가능한 코드입니다. 입력 : %d", code)));
     }
 
 }
