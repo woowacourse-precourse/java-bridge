@@ -37,7 +37,11 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String doRestart = Console.readLine();
+
+        validateRestartOrQuit(doRestart);
+
+        return doRestart;
     }
 
     public void validateOverSize(int bridgeSize){
@@ -57,6 +61,12 @@ public class InputView {
     public void validateUpOrDown(String moving){
         if(!moving.equals("U") && !moving.equals("D")){
             throw new IllegalArgumentException("[ERROR] 이동하는 칸은 U 혹은 D 으로만 선택 가능합니다.");
+        }
+    }
+
+    public void validateRestartOrQuit(String doRestart){
+        if(!doRestart.equals("R") && !doRestart.equals("Q")){
+            throw new IllegalArgumentException("[ERROR] 게임 종료 후에는 R 또는 Q만 입력 가능합니다.");
         }
     }
 }
