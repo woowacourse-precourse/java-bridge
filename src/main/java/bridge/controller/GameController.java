@@ -18,11 +18,20 @@ public class GameController {
         return new BridgeGame(bridge, passingSpace);
     }
 
-    public void playGame(BridgeGame bridgeGame) {
-        // TODO: 게임을 플레이하는 기능
+    public void runRound(BridgeGame bridgeGame) {
+        String moving;
+        do {
+            moving = selectMoving();
+            bridgeGame.move(moving);
+            outputView.printMap(bridgeGame.drawPassingSpace());
+        } while (continueRound(bridgeGame, moving));
     }
 
-    public String selectMoving() {
+    private boolean continueRound(BridgeGame bridgeGame, String moving) {
+        return bridgeGame.isRightSpace() && !bridgeGame.isSuccessCrossingBridge();
+    }
+
+    private String selectMoving() {
         try {
             outputView.printSelectUpOrDownInput();
             String readMoving = inputView.readMoving();
