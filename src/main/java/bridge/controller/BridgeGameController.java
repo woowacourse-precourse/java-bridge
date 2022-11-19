@@ -43,7 +43,7 @@ public class BridgeGameController {
         return bridgeGame.isAnswer();
     }
 
-    public void gameProcess() {
-        OutputView.printResult(bridgeGame.getRetry(),gamePlay());
+    public void gameResult() {
+        OutputView.printResult(bridgeGame.getRetry(), gamePlay());
     }
 }
