@@ -5,11 +5,11 @@ import java.util.List;
 
 public class User {
 	private final List<String> selections;
-	private int tryCount;
+	private int trialCount;
 
 	public User() {
 		selections = new ArrayList<>();
-		tryCount = 1;
+		trialCount = 1;
 	}
 
 	public void move(String movePosition) {
@@ -34,10 +34,10 @@ public class User {
 
 	public void retry() {
 		selections.clear();
-		tryCount++;
+		trialCount++;
 	}
 
-	public int getTryCount() {
-		return tryCount;
+	public int getTrialCount() {
+		return trialCount;
 	}
 }

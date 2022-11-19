@@ -58,11 +58,15 @@ public class BridgeGame {
 		return DOWN_BRIDGE_NUMBER.getConstValue();
 	}
 
-	public boolean isFail() {
+	public boolean isEnd() {
+		return match() && !matchLength();
+	}
+
+	private boolean match() {
 		return bridge.match(user.getCurrentSelectionIndex(), user.getCurrentSelection());
 	}
 
-	public boolean isClear() {
+	private boolean matchLength() {
 		return bridge.length() == user.getSelectionCount();
 	}
 
@@ -75,12 +79,12 @@ public class BridgeGame {
 		user.retry();
 	}
 
-	public int tryCount() {
-		return user.getTryCount();
+	public int trialCount() {
+		return user.getTrialCount();
 	}
 
 	public String result() {
-		if (isClear()) {
+		if (match() || matchLength()) {
 			return CLEAR.getConstant();
 		}
 		return FAIL.getConstant();

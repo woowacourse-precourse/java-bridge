@@ -38,26 +38,12 @@ class BridgeGameTest {
 	}
 
 	@Test
-	@DisplayName("현재 사용자의 위치가 다리랑 일치하는지 확인해준다 - 성공")
-	void checkCurrentSelectionMatching() {
-		bridgeGame.move("U");
-		assertThat(bridgeGame.isFail()).isTrue();
-	}
-
-	@Test
-	@DisplayName("현재 사용자의 위치가 다리랑 일치하는지 확인해준다 - 실패")
-	void checkCurrentSelectionMatchingFailure() {
-		bridgeGame.move("D");
-		assertThat(bridgeGame.isFail()).isFalse();
-	}
-
-	@Test
 	@DisplayName("클리어 했는지 확인해준다. - 성공")
 	void checkClear() {
-		List<String> map = new ArrayList<>(List.of("U", "U", "U", "D", "D"));
+		List<String> map = new ArrayList<>(List.of("U", "U", "D", "D", "D"));
 		for (int i = 0; i < 5; i++) {
 			bridgeGame.move(map.get(i));
-			if (!bridgeGame.isFail()) {
+			if (!bridgeGame.isEnd()) {
 				break;
 			}
 		}
@@ -70,7 +56,8 @@ class BridgeGameTest {
 		List<String> map = new ArrayList<>(List.of("U", "U", "U", "U", "D"));
 		for (int i = 0; i < 5; i++) {
 			bridgeGame.move(map.get(i));
-			if (!bridgeGame.isFail()) {
+			System.out.println(bridgeGame.result());
+			if (!bridgeGame.isEnd()) {
 				break;
 			}
 		}
@@ -83,7 +70,7 @@ class BridgeGameTest {
 		List<Integer> retryCounts = new ArrayList<>();
 		for (int i = 0; i < 3; i++) {
 			bridgeGame.retry();
-			retryCounts.add(bridgeGame.tryCount());
+			retryCounts.add(bridgeGame.trialCount());
 		}
 		assertThat(retryCounts).containsExactly(2, 3, 4);
 	}

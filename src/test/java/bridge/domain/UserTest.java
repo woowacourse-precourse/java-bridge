@@ -45,9 +45,9 @@ class UserTest {
 	@DisplayName("재시도를 하면 재시도 횟수가 증가한다")
 	void checkRetryCount() {
 		Assertions.assertAll(
-			() -> assertThat(user.getTryCount()).isEqualTo(1),
+			() -> assertThat(user.getTrialCount()).isEqualTo(1),
 			() -> user.retry(),
-			() -> assertThat(user.getTryCount()).isEqualTo(2)
+			() -> assertThat(user.getTrialCount()).isEqualTo(2)
 		);
 
 	}
