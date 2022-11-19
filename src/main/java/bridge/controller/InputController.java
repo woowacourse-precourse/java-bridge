@@ -11,17 +11,13 @@ public class InputController {
     private static InputView inputView = new InputView();
     private static OutputView outputView = new OutputView();
 
-    public static List<String> setBridgeSize() {
+    public static int setBridgeSize() {
         try {
-            outputView.printBridgeSizeInput();
-            BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-            BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-            return bridgeMaker.makeBridge(inputView.readBridgeSize());
+            return inputView.readBridgeSize();
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception);
-            setBridgeSize();
+            return setBridgeSize();
         }
-        return null;
     }
 
     public static String setUserSelection() {

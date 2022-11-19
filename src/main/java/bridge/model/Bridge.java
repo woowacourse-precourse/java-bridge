@@ -7,8 +7,8 @@ import java.util.List;
 public class Bridge {
     private final List<String> bridge;
 
-    public Bridge() {
-        this.bridge = setBridgeSize();
+    public Bridge(List<String> bridge) {
+        this.bridge = bridge;
         System.out.println(bridge);
     }
 

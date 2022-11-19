@@ -6,7 +6,6 @@ public class Util {
     private static final Pattern INPUT_REGEX = Pattern.compile("^[0-9]*$");
 
     public static int convertStringToInt(String input) {
-        validateBridgeSizeType(input);
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException exception) {
@@ -20,5 +19,10 @@ public class Util {
         }
     }
 
+    public static void validateBridgeSizeRange(int size) {
+        if (size < 3 || size > 20) {
+            throw new IllegalArgumentException("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
+    }
 
 }
