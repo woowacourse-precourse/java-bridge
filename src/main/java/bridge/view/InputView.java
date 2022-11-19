@@ -13,9 +13,11 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        int bridgeSize;
+
         OutputView.printStart();
 
-        int bridgeSize = Integer.parseInt(readLine());
+        bridgeSize = Integer.parseInt(readLine());
 
         checkNumber(bridgeSize);
 
@@ -26,7 +28,15 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String userMove;
+
+        OutputView.printUserMove();
+
+        userMove = readLine();
+
+        checkText(userMove);
+
+        return userMove;
     }
 
     /**
@@ -39,6 +49,12 @@ public class InputView {
     public void checkNumber(int userNumber){
         if(3> userNumber || userNumber > 20){
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
+    }
+
+    public void checkText(String userMove){
+        if(!(userMove.equals("U") || userMove.equals("D"))){
+            throw new IllegalArgumentException("[ERROR] 입력 값은 U와 D여야 합니다.");
         }
     }
 }
