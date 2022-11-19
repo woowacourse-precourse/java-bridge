@@ -25,19 +25,19 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public GameStatus move(String squareToMove) {
-        if (canMoveTo(squareToMove)) {
-            return moveForward();
-        }
-        return GameStatus.FAILURE;
-    }
-
-    public GameStatus moveForward() {
+    private GameStatus move() {
         player.moveForward();
         if (bridge.getLastIndex() == player.getCurrentPosition()) {
             return GameStatus.SUCCESS;
         }
         return GameStatus.CONTINUE;
+    }
+
+    public GameStatus tryMoveTo(String squareToMove) {
+        if (canMoveTo(squareToMove)) {
+            return move();
+        }
+        return GameStatus.FAILURE;
     }
 
     private boolean canMoveTo(String squareToMove) {
