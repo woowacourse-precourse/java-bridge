@@ -60,6 +60,9 @@
    * makeBridge() 구현
    * Direction enum 구현
 3. move bridge
+   * BridgeGame 내 move() 로직 구현
+   * BridgeMove domain 구현
+   * domain 내 범위 테스트 구현 (D, U)0
 4. input user answer
 5. check user's submitted answer
 6. print turn's result
