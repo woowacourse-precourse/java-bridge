@@ -49,10 +49,6 @@ public class BridgeGame {
         playState.end();
     }
 
-    public void newResult() {
-        this.result = new Result();
-    }
-
     public boolean state() {
         checkState();
         return playState.nowState();

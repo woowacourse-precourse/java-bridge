@@ -24,7 +24,6 @@ public class BridgeGameController implements GameController {
         output.printStart();
         initGame();
         while (game.state()) {
-            game.newResult();
             play();
         }
         output.printResult(game);
