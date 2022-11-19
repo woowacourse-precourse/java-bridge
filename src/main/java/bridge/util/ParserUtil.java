@@ -16,6 +16,15 @@ public class ParserUtil {
         }
     }
 
+    public static void parseMovement(String input) {
+        if (input.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 입력값이 존재하지 않습니다.");
+        }
+        if (!input.equals("U") && !input.equals("D")) {
+            throw new IllegalArgumentException("[ERROR] U 또는 D가 아닙니다.");
+        }
+    }
+
 }
 
 
