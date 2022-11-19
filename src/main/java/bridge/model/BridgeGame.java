@@ -1,6 +1,8 @@
 package bridge.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -8,6 +10,8 @@ import java.util.List;
 public class BridgeGame {
 
     private static final int INITIAL_PLAY_COUNT = 1;
+
+    private final Map<GameCommand, Runnable> gameCommandMap = new HashMap<>();
 
     private final Bridge bridge;
     private Player player;
@@ -19,6 +23,12 @@ public class BridgeGame {
         this.bridge = new Bridge(bridge);
         this.playCount = INITIAL_PLAY_COUNT;
         this.canPlay = true;
+        initGameCommandMap();
+    }
+
+    private void initGameCommandMap() {
+        gameCommandMap.put(GameCommand.RETRY, this::retry);
+        gameCommandMap.put(GameCommand.QUIT, this::quit);
     }
 
     /**
