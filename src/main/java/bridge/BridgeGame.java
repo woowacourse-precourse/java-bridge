@@ -24,7 +24,7 @@ public class BridgeGame {
         return bridgeMaker.makeBridge(userInput);
     }
 
-    public void gaming(List<String> bridge) {
+    public void gamingSet(List<String> bridge) {
         for (int i = 0; i < bridge.size(); i++) {
             String userMoveInput = getMoveString();
             move.moving(bridge.get(i), userMoveInput);
