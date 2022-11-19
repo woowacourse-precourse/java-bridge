@@ -23,10 +23,6 @@ public class Bridge {
         return blocks.get(round-ROUND_VALUE_TO_BLOCKS_INDEX).equals(message);
     }
 
-    public boolean isGameClear(int round) {
-        return blocks.size() == round;
-    }
-
     private void validate(List<String> blocks) {
         if (isWrongSizeOfBlocks(blocks)) {
             throw new IllegalArgumentException();

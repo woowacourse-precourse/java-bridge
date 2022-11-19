@@ -26,10 +26,10 @@ public class Application {
             return selectWhetherToRetry(bridge);
         }
 
-        if (!bridgeGame.isGameClear(bridge)) {
+        if (!bridgeGame.isGameClear()) {
             play(bridge);
         }
-        return bridgeGame.closeGame(bridge);
+        return bridgeGame.closeGame();
     }
 
     private static MoveResult moveToBridge(Bridge bridge) {
@@ -43,6 +43,6 @@ public class Application {
             outputView.resetMap();
             play(bridge);
         }
-        return bridgeGame.closeGame(bridge);
+        return bridgeGame.closeGame();
     }
 }

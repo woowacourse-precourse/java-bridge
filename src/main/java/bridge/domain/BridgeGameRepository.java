@@ -33,6 +33,10 @@ public class BridgeGameRepository {
         localDb.computeIfPresent(TRY_COUNT_KEY, (key, tryCount) -> tryCount + 1);
     }
 
+    public boolean isFinalRound() {
+        return localDb.get(ROUND_KEY).equals(localDb.get(FINAL_ROUND_KEY));
+    }
+
     public void goToNextRound() {
         localDb.computeIfPresent(ROUND_KEY, (key, roundValue) -> roundValue + 1);
     }

@@ -33,16 +33,16 @@ public class BridgeGame {
         return false;
     }
 
-    public boolean isGameClear(Bridge bridge) {
-        if (bridge.isGameClear(bridgeGameRepository.findRound())) {
+    public boolean isGameClear() {
+        if (bridgeGameRepository.isFinalRound()) {
             return true;
         }
         bridgeGameRepository.goToNextRound();
         return false;
     }
 
-    public GameResult closeGame(Bridge bridge) {
+    public GameResult closeGame() {
         return new GameResult(bridgeGameRepository.findTryCount(),
-                bridge.isGameClear(bridgeGameRepository.findRound()));
+                bridgeGameRepository.isFinalRound());
     }
 }
