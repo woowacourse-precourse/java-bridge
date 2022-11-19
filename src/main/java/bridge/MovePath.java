@@ -1,6 +1,6 @@
 package bridge;
 
-public enum MoveCommand {
+public enum MovePath {
     D,
     U
 }

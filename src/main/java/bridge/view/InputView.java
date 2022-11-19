@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.MoveCommand;
+import bridge.MovePath;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -32,12 +32,12 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public MoveCommand readMoving() {
+    public MovePath readMoving() {
         printInputMessageMoving();
         String input = Console.readLine();
         validateMovingInput(input);
-        MoveCommand moveCommand = convertToCommand(input);
-        return moveCommand;
+        MovePath movePath = convertToCommand(input);
+        return movePath;
     }
 
     /**
@@ -47,11 +47,11 @@ public class InputView {
         return null;
     }
 
-    private MoveCommand convertToCommand(String input) {
+    private MovePath convertToCommand(String input) {
         if (input.equals("D")) {
-            return MoveCommand.D;
+            return MovePath.D;
         }
-        return MoveCommand.U;
+        return MovePath.U;
     }
 
     private int convertToIntSize(String input) {

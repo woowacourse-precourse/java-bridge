@@ -9,6 +9,7 @@ package bridge.view;
  * 값 출력을 위해 필요한 메서드를 추가할 수 있다.
  */
 public class OutputView {
+    private static final String OUTPUT_MESSAGE_START_GAME = "다리 건너기 게임을 시작합니다.";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -25,4 +26,9 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    public void printStartMassage() {
+        System.out.println(OUTPUT_MESSAGE_START_GAME);
+    }
+
 }
