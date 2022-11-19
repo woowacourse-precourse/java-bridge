@@ -1,9 +1,10 @@
 package bridge.view;
 
+import bridge.model.BridgeSize;
 import bridge.model.Moving;
 
 public interface Input {
-    String readBridgeSize();
+    BridgeSize readBridgeSize();
 
     Moving readMoving();
 }

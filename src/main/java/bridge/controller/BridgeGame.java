@@ -1,7 +1,6 @@
 package bridge.controller;
 
 import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.Judge;
 import bridge.model.BridgeSize;
@@ -32,32 +31,10 @@ public class BridgeGame {
     }
 
     public void run() {
-
-        // 사용자에게 다리길이를 입력 받는다
-
-        BridgeSize bridgeSize = null;
-        do {
-            try {
-                bridgeSize = new BridgeSize(input.readBridgeSize());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        } while (bridgeSize == null);
-
-
-        // 다리리스트를 생성하고 사용자가 입력한 길이만큼 랜덤번호가 0이면 D를 1이면 U를 반복하여 담아준다
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        BridgeSize bridgeSize = input.readBridgeSize();
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = bridgeMaker.makeBridge(bridgeSize.getBridgeSize());
-
-
-        // 사용자의 결과값을 알려줄 결과다리리스트를 생성한다
-        userBridge = new ArrayList<>();
-
-        // 사용자에게 이동할 칸을 입력 받아서 유저 다리리스트에 담아준다
         moveAndAddToUserBridge();
-        printMapResult();
-
 
     }
 
@@ -66,6 +43,7 @@ public class BridgeGame {
         MoveResult moveResult;
         do {
             moveResult = move();
+            printMapResult();
         } while (moveResult == MoveResult.CORRECT && userBridge.size() != bridge.size());
     }
 

@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.model.BridgeSize;
 import bridge.model.Moving;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -14,9 +15,15 @@ public class InputView implements Input {
      * 다리의 길이를 입력받는다.
      */
     @Override
-    public String readBridgeSize() {
-        System.out.println("\n다리의 길이를 입력해주세요.");
-        return Console.readLine();
+    public BridgeSize readBridgeSize() {
+        while (true){
+            try {
+                System.out.println("\n다리의 길이를 입력해주세요.");
+                return new BridgeSize(Console.readLine());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     /**

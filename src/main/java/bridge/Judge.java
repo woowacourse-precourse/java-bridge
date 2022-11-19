@@ -20,6 +20,9 @@ public class Judge {
 
     public void makeResult(List<String> bridge, List<String> userBridge) {
 
+        upLine = "";
+        downLine = "";
+
         for (int i = 0; i < userBridge.size(); i++) {
 
             if(i==0){
