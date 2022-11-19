@@ -35,6 +35,8 @@
 - [ ✅ ] 재시작/종료여부를 입력받는다 → Input.readGameCommand 
 - [  ] 입력받은 값이 "Q"면 종료한다 → BridgeGame.finish
 - [  ] 입력받은 값이 "R"이면 처음부터 재시작한다 → BridgeGame.retry
+    - [  ] 플레이어를 부활시킨다
+    - [  ] 게임시도횟수를 1 늘린다
 - [  ] 이 과정들에서 `IllegalArgument`오류가 나면 다시 입력요청문구 출력단계로 돌아간다
 
 ### 3. 게임결과 출력하기
