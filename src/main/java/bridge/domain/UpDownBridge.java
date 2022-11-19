@@ -1,4 +1,6 @@
-package bridge;
+package bridge.domain;
+
+import bridge.Message;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,14 +14,14 @@ public class UpDownBridge {
         addDownBridge(inputDirection, moveResult);
     }
 
-    public static void addUpBridge(String inputDirection, String moveResult) {
+    private static void addUpBridge(String inputDirection, String moveResult) {
         if (inputDirection.equals(Message.UP.getMessage())) {
             upBridge.add(moveResult);
             downBridge.add(Message.BLANK.getMessage());
         }
     }
 
-    public static void addDownBridge(String inputDirection, String moveResult) {
+    private static void addDownBridge(String inputDirection, String moveResult) {
         if (inputDirection.equals(Message.Down.getMessage())) {
             upBridge.add(Message.BLANK.getMessage());
             downBridge.add(moveResult);
