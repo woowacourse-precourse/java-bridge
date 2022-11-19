@@ -20,6 +20,7 @@ public class InputValidator {
         validateOnlyNumber(size);
         validateMinSize(Integer.parseInt(size));
         validateMaxSize(Integer.parseInt(size));
+        System.out.println();
         return Integer.parseInt(size);
     }
 

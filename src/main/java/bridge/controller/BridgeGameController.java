@@ -29,7 +29,6 @@ public class BridgeGameController {
 
     private void createBridge() {
         BridgeSizeRequestDto requestDto = inputView.readBridgeSize();
-        System.out.println();
         bridgeGame.create(requestDto);
     }
 
