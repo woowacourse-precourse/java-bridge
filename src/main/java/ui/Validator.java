@@ -33,4 +33,25 @@ public class Validator {
 
         return userInput;
     }
+
+    public String validateMovingInput(String userInput) throws IllegalArgumentException {
+        if (!validateUserInputLengthIs1(userInput)) {
+            throw new IllegalArgumentException(MOVING_INPUT_ERROR);
+        }
+
+        String validatedUserInput = validateUserInputIsRightString(userInput);
+        return validatedUserInput;
+
+    }
+
+    private boolean validateUserInputLengthIs1(String userInput) {
+        return userInput.length() == 1;
+    }
+
+    private String validateUserInputIsRightString(String userInput) {
+        if (!userInput.equals("U") && !userInput.equals("D")) {
+            throw new IllegalArgumentException(MOVING_INPUT_ERROR);
+        }
+        return userInput;
+    }
 }

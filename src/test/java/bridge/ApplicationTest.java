@@ -32,6 +32,21 @@ class ApplicationTest extends NsTest {
                 isInstanceOf(IllegalArgumentException.class).
                 hasMessage(Validator.BRIDGE_SIZE_INPUT_ERROR);
     }
+
+    @ParameterizedTest
+    @CsvSource({"U", "D"})
+    void 유저_이동_입력_정답_테스트(String userInput) {
+        assertThat(validator.validateMovingInput(userInput)).isEqualTo(userInput);
+    }
+
+    @ParameterizedTest
+    @CsvSource({"rraa", "abc", "'2,3'", "u", "d", "UU", "다운", "업", "DD", "-15", "10-", "1+4", "21", "2"})
+    void 유저_이동_입력_예외처리_테스트(String userInput) {
+        assertThatThrownBy(() -> validator.validateMovingInput(userInput)).
+                isInstanceOf(IllegalArgumentException.class).
+                hasMessage(Validator.MOVING_INPUT_ERROR);
+    }
+
     @Test
     void BridgeRandomNumberGenerator_출력_테스트() {
         BridgeRandomNumberGenerator bridgeRandomNumGen = new BridgeRandomNumberGenerator();
