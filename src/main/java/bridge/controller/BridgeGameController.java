@@ -21,7 +21,8 @@ public class BridgeGameController {
         int bridgeSize = getBridgeSize();
         bridgeGame.createBridge(bridgeSize);
         tryMove();
-        outputView.printMap(bridgeGame.getResult());
+        outputView.printResult(bridgeGame.getResult(), bridgeGame.isSuccess(),
+                bridgeGame.getTryCount());
     }
 
     public int getBridgeSize() {
