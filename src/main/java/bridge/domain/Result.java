@@ -38,6 +38,11 @@ public class Result {
         numberOfTrial++;
     }
 
+    public void reInit() {
+        up.clear();
+        down.clear();
+    }
+
     public boolean getIsSuccess() {
         return this.isSuccess;
     }
