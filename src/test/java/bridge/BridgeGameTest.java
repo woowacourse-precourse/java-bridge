@@ -2,6 +2,7 @@ package bridge;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import bridge.constant.Error;
 import bridge.constant.State;
 import java.util.Arrays;
 import java.util.Collection;
@@ -71,7 +72,9 @@ class BridgeGameTest {
 
     private static Collection<Arguments> param4() {
         return Arrays.asList(
-            Arguments.of("3번 이동 후 도착", List.of("D", "D", "D"), List.of("D", "D", "A"))
+            Arguments.of("3번째 이동에 익셉션", List.of("D", "D", "D"), List.of("D", "D", "A")),
+            Arguments.of("3번째 이동에 익셉션", List.of("U", "D", "D"), List.of("T", "D", "U")),
+            Arguments.of("3번째 이동에 익셉션", List.of("D", "D", "D"), List.of("1"))
         );
     }
 
@@ -80,6 +83,7 @@ class BridgeGameTest {
     @DisplayName("이상한 방향으로 움직이면 익셉션")
     void test4(String description, List<String> result, List<String> directions) {
         BridgeGame game = new BridgeGame();
-        assertThatThrownBy(() -> directions.forEach(i -> game.move(result, i))).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> directions.forEach(i -> game.move(result, i))).isInstanceOf(
+            IllegalArgumentException.class).hasMessageContaining("[ERROR]");
     }
 }
