@@ -32,4 +32,34 @@ public class BridgeGameController {
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(inputViewService.inputBridgeSize()));
         return bridge;
     }
+
+    public void movingBridge(Bridge bridge, User user) {
+        while (!user.isGameOver()) {
+            String moveUpOrDown = inputViewService.inputMoving();
+            boolean pass = bridge.isPass(moveUpOrDown);
+            outputView.printMap(bridge.getLocation(), pass, moveUpOrDown);
+            passOrFail(pass, bridge, user);
+        }
+        printResult(user);
+    }
+
+    public void passOrFail(boolean pass, Bridge bridge, User user) {
+        if (pass) {
+            bridgeGame.move(bridge, user);
+        }
+        if (!pass) {
+            fail(bridge, user);
+        }
+    }
+
+    public void fail(Bridge bridge, User user) {
+        String gameCommand = inputViewService.inputGameCommand();
+        if (gameCommand.equals("R")) {
+            outputView.initUpOrDownState();
+            bridgeGame.retry(bridge, user);
+        }
+        if (gameCommand.equals("Q")) {
+            user.setGameOver();
+        }
+    }
 }
