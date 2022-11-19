@@ -1,9 +1,22 @@
-package bridge;
+package bridge.view;
+
+import static bridge.util.Constants.OutputViewConstants.INPUT_BRIDGE_LENGTH;
+import static bridge.util.Constants.OutputViewConstants.START_BRIDGE_GAME;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+
+    public static void enter() {
+        System.out.println();
+    }
+
+    public static void printStartBridgeGame() {
+        System.out.println(START_BRIDGE_GAME);
+        OutputView.enter();
+        System.out.println(INPUT_BRIDGE_LENGTH);
+    }
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
