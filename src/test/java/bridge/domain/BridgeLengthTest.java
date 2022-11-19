@@ -1,7 +1,6 @@
 package bridge.domain;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -14,7 +13,7 @@ public class BridgeLengthTest {
     @ValueSource(ints = { 3, 7, 10, 14, 20 })
     void createBridgeLength(int length) {
         BridgeLength bridgeLength = new BridgeLength(length);
-        assertThat(bridgeLength.getLength()).isEqualTo(length);
+        assertThat(bridgeLength.get()).isEqualTo(length);
     }
 
     @DisplayName("유효하지 않은 범위의 다리 길이를 생성 시 IllegalArgumentException 에러를 발생시킨다.")

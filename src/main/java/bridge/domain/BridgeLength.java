@@ -21,7 +21,7 @@ public class BridgeLength {
         return length >= BridgeProperties.MIN_LENGTH.get() && length <= BridgeProperties.MAX_LENGTH.get();
     }
 
-    public int getLength() {
+    public int get() {
         return length;
     }
 }
