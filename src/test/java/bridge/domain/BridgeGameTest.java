@@ -13,10 +13,10 @@ import org.junit.jupiter.api.Test;
 class BridgeGameTest {
 
     private final AnswerBridge bridge = new AnswerBridge(List.of("U", "D", "U"));
-    private final BridgeGame bridgeGame = new BridgeGame(bridge);
 
     @Test
     void move는_라운드와_방향을_입력받아_정답인_경우_MoveResult_SUCCESS를_반환한다() {
+        BridgeGame bridgeGame = new BridgeGame(bridge);
         MoveResult result = bridgeGame.move(Round.valueOf(1), Direction.UP);
 
         assertThat(result).isEqualTo(MoveResult.SUCCESS);
@@ -24,22 +24,32 @@ class BridgeGameTest {
 
     @Test
     void move는_라운드와_방향을_입력받아_오답인_경우_MoveResult_FAIL을_반환한다() {
+        BridgeGame bridgeGame = new BridgeGame(bridge);
         MoveResult result = bridgeGame.move(Round.valueOf(1), Direction.DOWN);
 
         assertThat(result).isEqualTo(MoveResult.FAIL);
     }
 
     @Test
-    void isPlayable_메서드는_진행_가능한_라운드를_입력받으면_true를_반환한다() {
-        boolean result = bridgeGame.isPlayable(Round.valueOf(1));
+    void retry_메서드는_PLAY를_입력받는다면_게임을_계속_진행시킨다() {
+        BridgeGame bridgeGame = new BridgeGame(bridge, BridgeGameStatus.STOP);
 
-        assertThat(result).isEqualTo(true);
+        bridgeGame.retry(BridgeGameStatus.PLAY);
+
+        assertThat(bridgeGame.isPlayable()).isTrue();
     }
 
     @Test
-    void isPlayable_메서드는_진행_불가능한_라운드를_입력받으면_false를_반환한다() {
-        boolean result = bridgeGame.isPlayable(Round.valueOf(4));
+    void isPlayable_메서드는_게임진행이_가능하다면_true를_반환한다() {
+        BridgeGame bridgeGame = new BridgeGame(bridge);
 
-        assertThat(result).isEqualTo(false);
+        assertThat(bridgeGame.isPlayable()).isTrue();
+    }
+
+    @Test
+    void isPlayable_메서드는_게임진행이_불가능하다면_false를_반환한다() {
+        BridgeGame bridgeGame = new BridgeGame(bridge, BridgeGameStatus.STOP);
+
+        assertThat(bridgeGame.isPlayable()).isFalse();
     }
 }

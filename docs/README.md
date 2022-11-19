@@ -70,6 +70,7 @@
     - [x]  getGameResult -> 게임 결과 확인
 - [x]  BridgeGame 다리 건너기 게임을 관리하는 클래스
     - [x]  move -> 움직이는 방향에 대한 결과 확인
+    - [x]  retry -> 게임 진행할지 결정
     - [x]  isPlayable -> 게임 진행 여부를 확인
 - [x]  BridgeMaker 다리를 생성하는 클래스
     - [x]  makeBridge -> 다리의 길이를 입력받아 U와 D로 표현된 다리를 반환
