@@ -38,4 +38,15 @@ class BridgeGameTest {
         assertThat(bridgeGame.getGameCount()).isEqualTo(2);
         assertThat(bridgeGame.isGameEnd()).isFalse();
     }
+
+    @Test
+    void 게임_종료() {
+        //given
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "U", "U"));
+        //when
+        boolean check = bridgeGame.retry("Q");
+        //then
+        assertThat(check).isFalse();
+        assertThat(bridgeGame.getGameCount()).isEqualTo(1);
+    }
 }
