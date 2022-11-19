@@ -17,7 +17,7 @@ public class Validation {
         }
     }
     public void moveCommand(String cmd){
-        if(!(cmd.equals("U") || cmd.equals("D")))
+        if(!(cmd.equals(BridgeConst.UP) || cmd.equals(BridgeConst.DOWN)))
             throw new IllegalArgumentException(MOVE_MESSAGE);
     }
 }

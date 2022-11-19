@@ -1,6 +1,6 @@
 package bridge;
 
-public class BridgeConst {
-    public final String UP = "U";
-    public final String DOWN = "D";
+public abstract class BridgeConst {
+    public static final String UP = "U";
+    public static final String DOWN = "D";
 }
