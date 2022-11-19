@@ -2,6 +2,7 @@ package bridge.View;
 
 import bridge.Utils.Parser;
 import bridge.Validator.Integarated.BridgeSizeValidator;
+import bridge.Validator.Integarated.PlayerMoveValidator;
 import bridge.Validator.NumericValidator;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -11,6 +12,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     public InputView() {}
     BridgeSizeValidator bridgeSizeValidator = new BridgeSizeValidator();
+    PlayerMoveValidator playerMoveValidator = new PlayerMoveValidator();
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -27,8 +29,8 @@ public class InputView {
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String input = getInput();
-
-        return null;
+        playerMoveValidator.validate(input);
+        return input;
     }
 
     /**

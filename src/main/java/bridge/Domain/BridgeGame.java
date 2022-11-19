@@ -1,10 +1,16 @@
 package bridge.Domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
     private int bridgeSize;
+    private List<String> bridge;
+    private List<Boolean> matchResult = new ArrayList<>();
 
     public int getBridgeSize() {
         return bridgeSize;
@@ -12,6 +18,14 @@ public class BridgeGame {
 
     public void setBridgeSize(int bridgeSize) {
         this.bridgeSize = bridgeSize;
+    }
+
+    public List<String> getBridge() {
+        return bridge;
+    }
+
+    public void setBridge(List<String> bridge) {
+        this.bridge = bridge;
     }
 
     /**
@@ -30,5 +44,12 @@ public class BridgeGame {
     public void retry() {
     }
 
+    public List<Boolean> getMatchResult() {
+        return matchResult;
+    }
 
+    public void setMatchResult(List<Boolean> matchResult) {
+        this.matchResult = matchResult;
+    }
 }
+
