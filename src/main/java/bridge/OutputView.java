@@ -16,7 +16,7 @@ public class OutputView {
     private static final String WIN_OR_NOT_NOTICE = "게임 성공 여부: %s";
     private static final String TOTAL_TRY_COUNT_NOTICE = "총 시도한 횟수: %d";
     private static final String NEW_LINE = "\n";
-    private static final String WIN = "승리";
+    private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";
 
     public void printMap(List<String> map) {
@@ -35,7 +35,7 @@ public class OutputView {
         printMap(map);
         String winOrNot = FAIL;
         if (hasWin) {
-            winOrNot = WIN;
+            winOrNot = SUCCESS;
         }
         System.out.printf(WIN_OR_NOT_NOTICE + NEW_LINE, winOrNot);
         System.out.printf(TOTAL_TRY_COUNT_NOTICE + NEW_LINE, tryCount);

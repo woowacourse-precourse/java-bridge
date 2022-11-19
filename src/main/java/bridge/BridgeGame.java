@@ -14,6 +14,7 @@ public class BridgeGame {
 
     BridgeGame(List<String> bridge) {
         this.bridge = bridge;
+        tryCount++;
     }
 
     public boolean move(String moving) {
