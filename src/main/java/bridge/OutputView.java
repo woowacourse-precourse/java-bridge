@@ -33,5 +33,16 @@ public class OutputView {
      */
     public void printResult(List<String> userResultMap) {
         System.out.println("최종 게임 결과");
+        StringBuilder printUserMap = new StringBuilder();
+        printUserMap.append("[ ");
+        for(int userMapIndex = 0; userMapIndex < userResultMap.size(); userMapIndex++){
+            printUserMap.append(userResultMap.get(userMapIndex));
+            if(userMapIndex == userResultMap.size()-1){
+                printUserMap.append(" ]");
+                break;
+            }
+            printUserMap.append(" | ");
+        }
+        System.out.println(printUserMap.toString());
     }
 }
