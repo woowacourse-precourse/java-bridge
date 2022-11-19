@@ -1,6 +1,11 @@
 package bridge;
 
+import bridge.utils.constant.Constant;
 import camp.nextstep.edu.missionutils.Console;
+
+import java.util.NoSuchElementException;
+
+import static bridge.utils.constant.Constant.*;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -12,15 +17,16 @@ public class InputView {
      */
     public int readBridgeSize() {
         String size = Console.readLine();
-        char[] chars = size.toCharArray();
-
-        for (char aChar : chars) {
-            if(!(0 <= aChar - '0' &&  9>= aChar - '0')) {
-                throw new IllegalArgumentException("[ERROR] Invalid input");
+        int length;
+        try {
+            length =  Integer.parseInt(size);
+            if(length <3 || length > 20) {
+                throw new IllegalArgumentException("[ERROR] Not in range 3 to 20");
             }
+        } catch(NumberFormatException | NoSuchElementException e) {
+            throw new IllegalArgumentException("[ERROR] " + e.getMessage());
         }
-
-        return Integer.parseInt(size);
+        return length;
     }
 
     /**
@@ -28,7 +34,7 @@ public class InputView {
      */
     public String readMoving() {
         String move = Console.readLine();
-        if(!(move.equals("U") || move.equals("D"))) {
+        if(!(move.equals(UP.getValue()) || move.equals(DOWN.getValue()))) {
             throw new IllegalArgumentException("[ERROR] invalid input not U or D");
         }
         return move;
@@ -40,7 +46,7 @@ public class InputView {
     public String readGameCommand() {
         String quit =  Console.readLine();
 
-        if(!(quit.equals("Q") || quit.equals("R"))) {
+        if(!(quit.equals(QUIT.getValue()) || quit.equals(RESTART.getValue()))) {
             throw new IllegalArgumentException("[ERROR] invalid input not Q or R");
         }
         return quit;

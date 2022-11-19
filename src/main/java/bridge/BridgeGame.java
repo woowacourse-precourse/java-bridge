@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static bridge.utils.constant.Constant.*;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -28,21 +30,20 @@ public class BridgeGame {
      */
     public void move(String direction, String answer) {
         String result = addOorX(direction, answer);
-        if(direction.equals("U")) {
+        if(direction.equals(UP.getValue())) {
             bridgeUp.add(result);
-            bridgeDown.add(" ");
+            bridgeDown.add(BLANK.getValue());
             return;
         }
-        bridgeUp.add(" ");
+        bridgeUp.add(BLANK.getValue());
         bridgeDown.add(result);
-        return;
     }
 
     public String addOorX(String direction, String answer) {
         if(direction.equals(answer)) {
-            return "O";
+            return O.getValue();
         }
-        return "X";
+        return X.getValue();
     }
 
     /**
@@ -51,11 +52,11 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public int retry(int attempt, String quit) {
-        if(Objects.equals(quit, "R")) {
+        if(Objects.equals(quit, RESTART.getValue())) {
             attempt++;
             return attempt;
         }
-        if(quit.equals("Q")) {
+        if(quit.equals(QUIT.getValue())) {
             return attempt;
         }
         throw new IllegalArgumentException("Q나 R을 입력해라");
