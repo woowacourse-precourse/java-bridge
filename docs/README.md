@@ -14,7 +14,7 @@
   - [x] O, X 판별 기능 -BridgeGame#moveMatch()
     - [x] 이동할 칸 입력 기능 -InputView#readMoving()
     - [x] 이동할 칸 입력 예외 처리 기능 -UserException#movingException()
-- [ ] 다리 건너기 진행 출력 기능 -OutputView#printMap()
+- [x] 진행중인 다리 건너기 출력 기능 -OutputView#printMap()
   - [x] 진행중인 위 다리 가져오는 기능 -BridgeGame#getUp()
   - [x] 진행중인 아래 다리 가져오는 기능 -BridgeGame#getUp()
 - [ ] 게임 재시도 기능 -BridgeGame#retry()
