@@ -61,4 +61,11 @@ public class BridgeTest {
         assertThat(BridgeGame.getUpSideBridge().toString())
                 .contains("X");
     }
+
+    @DisplayName("재시작 여부를 입력 받을 때, Q 혹은 R가 아닌 다른 값이 들어오면 오류가 발생한다.")
+    @Test
+    void 재시작_입력_테스트(){
+        assertThatThrownBy(()-> new InputView().validateRestartOrQuit("A"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
