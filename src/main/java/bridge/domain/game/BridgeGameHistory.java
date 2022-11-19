@@ -1,5 +1,6 @@
 package bridge.domain.game;
 
+import bridge.BridgeMove;
 import bridge.domain.BridgeMoveHistory;
 import bridge.domain.bridge.Bridge;
 import java.util.ArrayList;
@@ -51,5 +52,23 @@ public class BridgeGameHistory {
     public int getFailCount(Integer tryCount) {
         List<BridgeMoveHistory> histories = getMoveHistoriesByTryCount(tryCount);
         return (int) histories.stream().filter((history) -> !history.isSuccess()).count();
+    }
+    
+    public Map<BridgeMove, List<String>> getMoveResultByTryCount(Integer tryCount) {
+        List<BridgeMoveHistory> histories = getMoveHistoriesByTryCount(tryCount);
+        
+        Map<BridgeMove, List<String>> result = BridgeMove.getInitMoveResultByMoves(histories.size());
+        updateMoveResultByMoveHistories(result, histories);
+        
+        return result;
+    }
+    
+    private void updateMoveResultByMoveHistories(Map<BridgeMove, List<String>> moveResults,
+            List<BridgeMoveHistory> histories) {
+        for (int i = 0; i < histories.size(); i++) {
+            BridgeMoveHistory bridgeMoveHistory = histories.get(i);
+            List<String> strings = moveResults.get(bridgeMoveHistory.getBridgeMove());
+            strings.set(i, bridgeMoveHistory.getMoveResult());
+        }
     }
 }
