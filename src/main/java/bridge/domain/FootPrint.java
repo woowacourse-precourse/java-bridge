@@ -11,8 +11,16 @@ public class FootPrint {
         this.footPrint = new ArrayList<>();
     }
 
-    public void add(String step) {
+    public void addStep(String step) {
         footPrint.add(step);
+    }
+
+    public void addStep(int status) {
+        if (status != User.DEAD) {
+            footPrint.add("O");
+            return;
+        }
+        footPrint.add("X");
     }
 
     public void clear() {

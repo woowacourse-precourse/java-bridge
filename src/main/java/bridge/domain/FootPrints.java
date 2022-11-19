@@ -10,22 +10,14 @@ public class FootPrints {
         down = new FootPrint();
     }
 
-    public void add(int status, String direction) {
-        if (direction.equals("U")) {
-            reflectStatus(status, up);
-            down.add(" ");
+    public void add(int status, Direction direction) {
+        if (direction == Direction.UP) {
+            up.addStep(status);
+            down.addStep(" ");
             return;
         }
-        reflectStatus(status, down);
-        up.add(" ");
-    }
-
-    private void reflectStatus(int status, FootPrint footPrint) {
-        if (status != User.DEAD) {
-            footPrint.add("O");
-            return;
-        }
-        footPrint.add("X");
+        up.addStep(" ");
+        down.addStep(status);
     }
 
     public void reset() {
