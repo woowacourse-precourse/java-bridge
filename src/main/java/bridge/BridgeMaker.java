@@ -23,12 +23,12 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for(int i = 0 ; i<size; i++) {
             int randomNumber = bridgeNumberGenerator.generate();
-            bridge.add(makeSquare(randomNumber));
+            bridge.add(makeTile(randomNumber));
         }
         return bridge;
     }
 
-    public String makeSquare(int randomNumber) {
+    public String makeTile(int randomNumber) {
         if(randomNumber == BridgeState.UP.getStateValue()) {
             return BridgeState.UP.getState();
         }
