@@ -30,4 +30,11 @@ public class InputValidator {
             throw new IllegalArgumentException();
         }
     }
+
+    public void validateGameCommand(String gameCommand) {
+        if (!GameCommand.RETRY.isEqual(gameCommand) &&
+                !GameCommand.QUIT.isEqual(gameCommand)) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
