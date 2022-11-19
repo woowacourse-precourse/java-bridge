@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.enums.InputKey;
+import bridge.enums.Key;
 import bridge.enums.ViewMessage;
 
 import java.text.MessageFormat;
@@ -18,7 +18,7 @@ public class Result {
     }
 
     void handleUpBridge(String input, Position position) {
-        if (InputKey.matchUp(input)) {
+        if (Key.matchUp(input)) {
             resultInformation.updateUpBridge(position, O_FLAG);
             return;
         }
@@ -27,7 +27,7 @@ public class Result {
     }
 
     void handleDownBridge(String input, Position position) {
-        if (InputKey.matchDown(input)) {
+        if (Key.matchDown(input)) {
             resultInformation.updateDownBridge(position, O_FLAG);
             return;
         }
@@ -45,8 +45,7 @@ public class Result {
 
     @Override
     public String toString() {
-        boolean flag = resultInformation.isWin();
-        if (flag) {
+        if (resultInformation.isWin()) {
             return MessageFormat.format(ViewMessage.OUTPUT_PRINT_FINAL_RESULT.getValue(), WIN, resultInformation.getTryCount());
         }
         return MessageFormat.format(ViewMessage.OUTPUT_PRINT_FINAL_RESULT.getValue(), FAIL, resultInformation.getTryCount());

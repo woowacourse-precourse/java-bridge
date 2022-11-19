@@ -2,7 +2,7 @@ package bridge.util;
 
 import bridge.enums.ConstVariable;
 import bridge.enums.ErrorMessage;
-import bridge.enums.InputKey;
+import bridge.enums.Key;
 
 public class ValidationUtil {
 
@@ -24,13 +24,13 @@ public class ValidationUtil {
     }
 
     public static void isUpOrDown(String input) {
-        if (!InputKey.matchUp(input) && !InputKey.matchDown(input)) {
+        if (!Key.matchUp(input) && !Key.matchDown(input)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT.getValue());
         }
     }
 
     public static void isRetryOrQuit(String input) {
-        if (!InputKey.matchRetry(input) && !InputKey.matchQuit(input)) {
+        if (!Key.matchRetry(input) && !Key.matchQuit(input)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT.getValue());
         }
     }

@@ -1,7 +1,7 @@
 package bridge.domain;
 
 import bridge.BridgeNumberGenerator;
-import bridge.enums.InputKey;
+import bridge.enums.Key;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +25,8 @@ public class BridgeMaker {
         List<String> list = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int generate = bridgeNumberGenerator.generate();
-            if (generate == 1) list.add(InputKey.U.getValue());
-            if (generate == 0) list.add(InputKey.D.getValue());
+            if (generate == 1) list.add(Key.U.getValue());
+            if (generate == 0) list.add(Key.D.getValue());
         }
         return list;
     }

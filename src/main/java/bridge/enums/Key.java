@@ -1,11 +1,11 @@
 package bridge.enums;
 
-public enum InputKey {
+public enum Key {
     U("U"), D("D"), R("R"), Q("Q");
 
     private final String value;
 
-    InputKey(String value) {
+    Key(String value) {
         this.value = value;
     }
 

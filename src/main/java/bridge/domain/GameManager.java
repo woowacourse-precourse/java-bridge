@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.enums.InputKey;
+import bridge.enums.Key;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -38,7 +38,7 @@ public class GameManager {
     }
 
     private boolean retryOrNot() {
-        if (InputKey.matchQuit(InputView.readGameCommand())) {
+        if (Key.matchQuit(InputView.readGameCommand())) {
             return false;
         }
         bridgeGame.retry();
