@@ -11,10 +11,15 @@ public class BridgeMoving {
 
     public String move(String moving, int movingIndex) {
         validateMoving(moving);
-        if (bridge.isMove(moving, movingIndex)) {
+        if (isMove(moving, movingIndex)) {
             return "O";
         }
         return "X";
+    }
+
+    private boolean isMove (String moving, int movingIndex) {
+        String shape = bridge.getShape(movingIndex);
+        return shape.equals(moving);
     }
 
     private void validateMoving(String moving) {
