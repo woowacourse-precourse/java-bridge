@@ -20,11 +20,15 @@ public class BridgeGame {
     private PlayerBoard playerBoard;
 
     private int attempts;
+    private boolean isComplete;
+    private boolean wannaRetry;
     public BridgeGame(final OutputView output, final InputView input, final List<String> bridge) {
         this.input = input;
         this.output = output;
         this.bridge = bridge;
         this.attempts = 1;
+        this.isComplete = true;
+        this.wannaRetry = true;
         this.playerBoard = new PlayerBoard(bridge.size());
         this.bridgeCalculator = new BridgeCalculator(bridge);
         this.resultConverter = new ResultConverter();
@@ -34,6 +38,16 @@ public class BridgeGame {
         output.printResult(isComplete, attempts, playerBoard);
     }
     public void run() {
+        do {
+            if (!startRound()) {
+                wannaRetry = retry();
+            }
+            if (!wannaRetry) {
+                isComplete = false;
+                break;
+            }
+        } while (!playerBoard.isOver());
+        quitGame(isComplete);
     }
 
     public void initBoard() {
