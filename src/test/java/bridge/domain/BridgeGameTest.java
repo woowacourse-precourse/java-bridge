@@ -21,7 +21,7 @@ class BridgeGameTest {
 
     @Test
     void retry(){
-        Assertions.assertThat(bridgeGame.retry("R", user)).isTrue();
-        Assertions.assertThat(bridgeGame.retry("Q",user)).isFalse();
+        Assertions.assertThat(bridgeGame.retry("R")).isTrue();
+        Assertions.assertThat(bridgeGame.retry("Q")).isFalse();
     }
 }
