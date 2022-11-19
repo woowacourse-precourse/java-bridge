@@ -5,6 +5,9 @@ package bridge;
  */
 public class OutputView {
 
+    private static final String CLEAR_MSG = "성공";
+    private static final String NON_CLEAR_MSG = "실패";
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -22,8 +25,16 @@ public class OutputView {
     public void printResult(String map, boolean isClear, int tryNumbers) {
         System.out.println("최종 게임 결과");
         printMap(map);
-        System.out.println("게임 성공 여부: ");
+        printClear(isClear);
         System.out.println("총 시도한 횟수: " + tryNumbers);
+    }
+
+    private void printClear(boolean isClear) {
+        if (isClear) {
+            System.out.println("게임 성공 여부: " + CLEAR_MSG);
+            return ;
+        }
+        System.out.println("게임 성공 여부: " + NON_CLEAR_MSG);
     }
 
     public void printStartMsg() {
