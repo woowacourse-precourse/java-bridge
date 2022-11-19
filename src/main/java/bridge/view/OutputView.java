@@ -1,8 +1,5 @@
 package bridge.view;
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
 public class OutputView {
     public void printStartGame() {
         System.out.println(Constants.START_GAME_OUTPUT);
@@ -20,18 +17,19 @@ public class OutputView {
         System.out.println(Constants.SELECT_RETRY_OR_NOT_INPUT);
     }
 
-    public void printFinalGameResult() {
-        System.out.println(Constants.FINAL_GAME_RESULT_OUTPUT);
-    }
-
     public void printMap(String map) {
         System.out.println(map);
     }
 
     public void printResult(String map, boolean isSuccess, int numberOfTry) {
+        printFinalGameResult();
         printMap(map);
         printSuccess(isSuccess);
         printNumberOfTry(numberOfTry);
+    }
+
+    private void printFinalGameResult() {
+        System.out.println(Constants.FINAL_GAME_RESULT_OUTPUT);
     }
 
     private void printSuccess(boolean isSuccess) {
@@ -43,6 +41,6 @@ public class OutputView {
     }
 
     private void printNumberOfTry(int numberOfTry) {
-        System.out.println(Constants.TOTAL_NUMBER_OF_TRY_OUTPUT);
+        System.out.printf(Constants.TOTAL_NUMBER_OF_TRY_OUTPUT,numberOfTry);
     }
 }
