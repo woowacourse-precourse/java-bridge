@@ -49,4 +49,20 @@ class InputViewTest {
         assertThat(result).isEqualTo(null);
     }
 
+    @DisplayName("재시도 입력 테스트")
+    @ValueSource(strings = {"R", "Q"})
+    @ParameterizedTest
+    void readGameCommand(String input) {
+        String result = inputView.readGameCommand(input);
+        assertThat(result).isEqualTo(input);
+    }
+
+    @DisplayName("잘못된 값 입력 예외 처리")
+    @ValueSource(strings = {"A", "a", "1"})
+    @ParameterizedTest
+    void unValidEnterGameCommand(String input) {
+        String result = inputView.readGameCommand(input);
+        assertThat(result).isEqualTo(null);
+    }
+
 }
