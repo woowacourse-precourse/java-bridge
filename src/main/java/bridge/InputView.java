@@ -18,7 +18,7 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
         }
         if(inputLength < 3 || inputLength > 20 ) {
-            throw new IllegalArgumentException("[ERROR] 3~20 사이의 수를 입력해 주세요.");
+            throw new IllegalArgumentException("[ERROR] 3~20 사이의 수를 입력해주세요.");
         }
         return inputLength;
     }
@@ -27,7 +27,11 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String input = Console.readLine();
+        if(input != "U" || input != "D"){
+            throw new IllegalArgumentException("[ERROR] U 또는 D를 입력해주세요.");
+        }
+        return input;
     }
 
     /**
