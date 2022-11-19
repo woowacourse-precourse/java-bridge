@@ -13,4 +13,8 @@ public enum MoveResult {
     public String getInitialLetter() {
         return initialLetter;
     }
+
+    public boolean isFail() {
+        return this.equals(FAIL);
+    }
 }

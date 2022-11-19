@@ -53,6 +53,7 @@
 
 - [x]  MoveResult 성공, 실패 표현하는 Enum
     - [x]  getInitialLetter -> initialLetter를 반환
+    - [x]  isFail -> 실패인지 확인
 - [x]  Round 각 라운드를 표현하는 클래스
     - [x]  nextRound -> round 값을 1 증가시킨다.
     - [x]  reset -> round 값을 1로 초기화
