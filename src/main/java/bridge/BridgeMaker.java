@@ -2,7 +2,6 @@ package bridge;
 
 import bridge.constance.GameConstance;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -34,10 +33,10 @@ public class BridgeMaker {
     private Map<Integer, String> createBlockExpression() {
         final int UP_BLOCK = 1;
         final int DOWN_BLOCK = 0;
-        Map<Integer, String> block = new HashMap<>();
-        block.put(UP_BLOCK, GameConstance.UP_BLOCK_EXPRESSION);
-        block.put(DOWN_BLOCK, GameConstance.DOWN_BLOCK_EXPRESSION);
-        return block;
+        return Map.of(
+                UP_BLOCK, GameConstance.UP_BLOCK_EXPRESSION,
+                DOWN_BLOCK, GameConstance.DOWN_BLOCK_EXPRESSION
+        );
     }
 
     private String changeExpressionByNumber(int number) {
