@@ -7,9 +7,11 @@ public class BridgeGame {
     private static final String TEXT_GAME_START = "다리 건너기 게임을 시작합니다.";
 
     private final InputView inputView;
+    private final BridgeLengthValidator bridgeLengthValidator;
 
     public BridgeGame() {
         this.inputView = new InputView();
+        this.bridgeLengthValidator = new BridgeLengthValidator();
     }
 
     public void runGame() {
