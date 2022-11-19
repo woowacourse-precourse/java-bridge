@@ -1,6 +1,9 @@
 package bridge.domain;
 
 import bridge.BridgeNumberGenerator;
+import bridge.model.Bridge;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,12 +14,18 @@ import static bridge.util.BridgeConstant.*;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-    private final int BRIDGE_WIDTH = 2;
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
+    InputView inputView = new InputView();
+    OutputView outputView = new OutputView();
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
+    }
+
+    public Bridge inputMakeBridge() {
+        outputView.printStartMessage();
+        int bridgeSize = inputView.readBridgeSize();
+        return new Bridge(bridgeSize);
     }
 
     /**
@@ -40,7 +49,7 @@ public class BridgeMaker {
     }
 
     public String[][] make2DBridge(List<String> bridge) {
-        String[][] bridge2D = new String[BRIDGE_WIDTH][bridge.size()];
+        String[][] bridge2D = new String[2][bridge.size()];
         for (int x = 0; x < bridge.size(); x++) {
             if (bridge.get(x).equals(DOWN_KEY)) {
                 bridge2D[UP_POSITION][x] = FALL_POSITION;

@@ -1,5 +1,7 @@
 package bridge.controller;
 
+import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeMapMaker;
 import bridge.domain.BridgeMove;
 import bridge.model.Bridge;
@@ -14,18 +16,19 @@ import static bridge.util.BridgeConstant.FALL_POSITION;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     BridgeMove bridgeMove = new BridgeMove();
     BridgeMap bridgeMap = new BridgeMap();
+    BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
     BridgeMapMaker bridgeMapMaker = new BridgeMapMaker();
     boolean isContinue = true;
     boolean isWin = false;
     Bridge bridge;
 
     public void init() {
-        outputView.printStartMessage();
-        makeBridge();
+        bridge = bridgeMaker.inputMakeBridge();
         start(new Player());
     }
 
@@ -58,12 +61,6 @@ public class BridgeGame {
         int positionX = player.getXPosition();
         int positionY = player.getYPosition();
         return bridge.getBridge()[positionY][positionX].equals(FALL_POSITION);
-    }
-
-
-    private void makeBridge() {
-        int bridgeSize = inputView.readBridgeSize();
-        bridge = new Bridge(bridgeSize);
     }
 
 
