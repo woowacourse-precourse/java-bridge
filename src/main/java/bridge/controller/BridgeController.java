@@ -15,6 +15,17 @@ public class BridgeController {
 
     public void start() {
         outputView.printStart();
-        BridgeSize bridgeSize = new BridgeSize(inputView.readBridgeSize());
+
+        System.out.println(inputBridgeSize().getBridgeSize());
+
+    }
+
+    public BridgeSize inputBridgeSize() {
+        try {
+            return new BridgeSize(inputView.readBridgeSize());
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return inputBridgeSize();
+        }
     }
 }
