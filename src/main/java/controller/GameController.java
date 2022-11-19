@@ -30,4 +30,19 @@ public class GameController {
 		return new Bridge(bridgeMaker.makeBridge(bridgeSize.getBridgeSize()));
 	}
 
+	public String run(Bridge bridge, BridgeGame bridgeGame) {
+		MapRenderer mapRenderer = new MapRenderer();
+		String result = "";
+
+		while (result.equals("")) {
+			result = play(bridge, bridgeGame, mapRenderer);
+			if (result.chars().filter(x -> x == 'O').count() == bridge.getBridgeSize()) {
+				return result;
+			}
+			String gameCommand = inputView.readGameCommand();
+			result = bridgeGame.retry(gameCommand, result);
+		}
+		return result;
+	}
+
 }
