@@ -9,12 +9,12 @@ import bridge.view.OutputView;
 public class BridgeGameController {
 
     public void run() {
+        OutputView.printStartMessage();
         BridgeGame bridgeGame = init();
         play(bridgeGame);
     }
 
     private static BridgeGame init() {
-        OutputView.printStartMessage();
         while (true) {
             try {
                 int size = InputView.readBridgeSize();
@@ -28,21 +28,21 @@ public class BridgeGameController {
 
     private void play(BridgeGame bridgeGame) {
         while (!bridgeGame.isGameEnd() && bridgeGame.isPlayerAlive()) {
-
-            String playerChoice = getPlayerChoice();
-            bridgeGame.move(playerChoice);
-
-            if (bridgeGame.isPlayerAlive()) {
-                OutputView.printMap(bridgeGame);
-                bridgeGame.nextRound();
-                continue;
-            }
+            playRounds(bridgeGame);
             if (!bridgeGame.isPlayerAlive()) {
-                OutputView.printMap(bridgeGame);
+                getGameCommand(bridgeGame);
             }
-            getGameCommand(bridgeGame);
         }
         OutputView.printResult(bridgeGame);
+    }
+
+    private static void playRounds(BridgeGame bridgeGame) {
+        while (!bridgeGame.isGameEnd() && bridgeGame.isPlayerAlive()) {
+            String playerChoice = getPlayerChoice();
+            bridgeGame.move(playerChoice);
+            OutputView.printMap(bridgeGame);
+            bridgeGame.nextRound();
+        }
     }
 
     private static String getPlayerChoice() {
@@ -60,12 +60,12 @@ public class BridgeGameController {
             try {
                 if (InputView.readGameCommand()) {
                     bridgeGame.retry();
+                    return;
                 }
+                return;
             } catch (IllegalArgumentException error) {
                 System.out.println(error.getMessage());
             }
         }
     }
-
-
 }
