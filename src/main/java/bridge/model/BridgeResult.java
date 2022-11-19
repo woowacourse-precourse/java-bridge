@@ -33,7 +33,7 @@ public class BridgeResult {
         result.add(bridge.isRightMoving(result.size(), moving));
     }
 
-    public boolean canMove() {
+    public boolean getLast() {
         return result.get(result.size() - 1);
     }
 
