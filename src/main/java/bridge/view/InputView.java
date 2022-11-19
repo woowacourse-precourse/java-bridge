@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.domain.GameStatus;
 import bridge.domain.Move;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -9,6 +10,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     private static final String INPUT_BRIDGE_LENGTH = "다리의 길이를 입력해주세요.";
     private static final String INPUT_MOVE_DIRECTION = "이동할 칸을 선택해주세요. (위:U, 아래:D";
+    private static final String INPUT_ASK_RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도:R, 종료:Q)";
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -49,5 +51,11 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    public GameStatus printAskRetry() {
+        System.out.println(INPUT_ASK_RETRY);
+
+        return GameStatus.receiveInputAfterGameOver(Console.readLine());
     }
 }
