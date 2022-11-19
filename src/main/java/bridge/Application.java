@@ -2,7 +2,9 @@ package bridge;
 
 public class Application {
 
+    private static OutputView output = new OutputView();
+
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        output.printGameStart();
     }
 }
