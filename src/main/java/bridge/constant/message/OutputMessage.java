@@ -7,7 +7,7 @@ public enum OutputMessage {
     , TOTAL_ATTEMPTS("총 시도한 횟수: %d")
     ;
 
-    private String message;
+    private final String message;
 
     OutputMessage(String message) {
         this.message = message;

@@ -8,7 +8,7 @@ public enum InputMessage {
     , PLAY_CONTROL("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)\n")
     ;
 
-    private String message;
+    private final String message;
 
     InputMessage(String message) {
         this.message = message;
