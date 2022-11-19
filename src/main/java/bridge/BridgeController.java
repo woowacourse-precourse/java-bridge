@@ -37,9 +37,14 @@ public class BridgeController {
                     tryCount = blockCount;
                 }
                 if (gameCommand.equals("Q")) {
-                    new OutputView().printResult(moveBridgeResult, tryCount + 1);
+                    new OutputView().printResult(moveBridgeResult);
+                    new OutputView().printFailedResult(tryCount + 1);
                     break;
                 }
+            }
+            if (tryCount == blockCount - 1) {
+                new OutputView().printResult(moveBridgeResult);
+                new OutputView().printSuccessResult(tryCount + 1);
             }
         }
     }
