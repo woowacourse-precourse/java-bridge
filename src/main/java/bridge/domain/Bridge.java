@@ -11,7 +11,7 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public boolean isMatched(final Player player, final MoveCommands moveCommand) {
+    boolean isMatched(final Player player, final MoveCommands moveCommand) {
         String bridgeCommand = bridge.get(player.position());
         return moveCommand.is(bridgeCommand);
     }

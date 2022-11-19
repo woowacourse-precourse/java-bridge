@@ -64,7 +64,7 @@ public class BridgeGame {
     private void retry() {  // TODO 혹시 제출 테스트 케이스 실패하면 여기의 private를 의심하렴..
         moveResults.reset();
         player.initPosition();
-        player.increaseNumberOfChallenges();
+        player.increaseChallenges();
     }
 
     public MoveResults moveResults() {
@@ -72,7 +72,7 @@ public class BridgeGame {
     }
 
     public int totalNumberOfChallenges() {
-        return player.totalNumberOfChallenges();
+        return player.numberOfChallenges();
     }
 
 }

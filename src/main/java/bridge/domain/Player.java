@@ -3,11 +3,11 @@ package bridge.domain;
 public class Player {
 
     private int position;
-    private int totalNumberOfChallenges;
+    private int numberOfChallenges;
 
-    public Player(final int position, final int totalNumberOfChallenges) {
+    public Player(final int position, final int numberOfChallenges) {
         this.position = position;
-        this.totalNumberOfChallenges = totalNumberOfChallenges;
+        this.numberOfChallenges = numberOfChallenges;
     }
 
     int position() {
@@ -26,11 +26,11 @@ public class Player {
         position = 0;
     }
 
-    void increaseNumberOfChallenges() {
-        totalNumberOfChallenges++;
+    void increaseChallenges() {
+        numberOfChallenges++;
     }
 
-    int totalNumberOfChallenges() {
-        return totalNumberOfChallenges;
+    int numberOfChallenges() {
+        return numberOfChallenges;
     }
 }
