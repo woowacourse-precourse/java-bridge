@@ -14,6 +14,7 @@
   - 예외사항
     - R/Q 외의 문자가 입력된 경우
 
+---
 
 ### 출력 - ClassName : OutputView
 - [ ] 현재까지 이동한 다리의 상태를 출력 - `#printMap()`
@@ -28,16 +29,25 @@
 - [ ] 사용자의 게임 재시도 입력을 받는다. - `#readGameCommand()`
     - 예외사항
         - R/Q 외의 문자가 입력된 경우
+      
+---
         
 ### 다리 만들기 - ClassName : BridgeMaker
 - [ ] 입력받은 길이만큼의 다리 생성 - `#makeBridge()`
   - [ ] 위 칸 (1) 인 경우 U, 아래 칸 (0) 인 경우 D 로 변환 - `#convertNumberToBridge()`
 
+---
+
 ### 브릿지 게임 진행 - ClassName : BridgeGame
-- [ ] 이동하기 - #move()
-    - [ ] 이동할 수 있는지 없는지 확인 - `#isMovableBlock()`
+- [ ] 이동하기 - `#move()`
 - [ ] 게임을 재시도하는 경우 - `#retry()`
 
+---
+
+### 다리 정보를 저장하는 일급 컬랙션 - ClassName : Bridge
+- [ ] 이동할 수 있는지 없는지 확인 - `#isMovableBlock()`
+
+---
 
 ### 예외처리
 - 잘못된 값을 입력하는 경우 `IllegalArgumentException` 을 발생
