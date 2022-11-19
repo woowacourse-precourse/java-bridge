@@ -10,16 +10,19 @@ public class BridgeGame {
 
     private int userPos;
     private int attempts;
+    private boolean success;
 
     public BridgeGame() {
         userPos = 0;
         attempts = 1;
+        success = false;
     }
 
     public int getUserPos() {
         return userPos;
     }
     public int getAttempts() { return attempts; }
+    public boolean getSuccess() { return success; }
 
     public boolean move(String choice,AllBridge allBridge) {
         if(choice.equals(allBridge.getBridge().get(userPos))) {
@@ -34,6 +37,7 @@ public class BridgeGame {
 
     private boolean retryOrEnd() {
         if(inputView.readGameCommand().equals("Q")) {
+            success = true;
             return true;
         }
         retry();
