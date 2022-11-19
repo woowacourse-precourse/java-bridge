@@ -23,9 +23,7 @@ OutputView
         last가 1일 경우 마지막 X
         String selectLetter(String letter,int i,int last)
             printMap 할 때 안에 O인지 X인지 공란인지 선택하는 함수
-
-
-        void printResult()
+        void printResult(int last,int cnt)
             최종 게임 결과
             [ O |   |   ]
             [   | O | O ]
