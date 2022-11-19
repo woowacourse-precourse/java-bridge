@@ -13,7 +13,6 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(List<String> topBridge, List<String> bottomBridge, String movement) {
-        next(topBridge, bottomBridge);
         topBridge.add(bridgeTopExist(movement));
         bottomBridge.add(bridgeBottomExist(movement));
     }
@@ -29,7 +28,6 @@ public class BridgeGame {
     }
 
     public void failure(List<String> topBridge, List<String> bottomBridge, String movement) {
-        next(topBridge, bottomBridge);
         topBridge.add(failureInTop(movement));
         bottomBridge.add(failureInBottom(movement));
     }
@@ -65,10 +63,5 @@ public class BridgeGame {
             return "X";
         }
         return " ";
-    }
-
-    private void next(List<String> topBridge, List<String> bottomBridge) {
-        topBridge.add(" | ");
-        bottomBridge.add(" | ");
     }
 }
