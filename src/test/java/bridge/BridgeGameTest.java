@@ -54,6 +54,14 @@ class BridgeGameTest {
           unit(bridge,"U",BridgeStatus.SUCCESS);
           unit(bridge,"D",BridgeStatus.FAIL);
      }
+     @Test
+     @DisplayName("다리 상태 변경 테스트 - BridgeStatus.COMPLETE")
+     public void changeStatusTest_COMPLETEl() throws Exception{
+          Bridge bridge = new Bridge(List.of("U","U","D"));
+          unit(bridge,"U",BridgeStatus.SUCCESS);
+          unit(bridge,"U",BridgeStatus.SUCCESS);
+          unit(bridge,"D",BridgeStatus.COMPLETE);
+     }
 
      private void unit(Bridge bridge,String cmd,BridgeStatus expect){
           currentBridge.move(cmd);
