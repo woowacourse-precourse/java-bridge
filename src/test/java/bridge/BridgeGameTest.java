@@ -29,9 +29,7 @@ class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(bridge, gameStatusOperator);
         bridgeGame.move();
         Integer currentPosition = gameStatusOperator.getCurrentPosition();
-        Integer numberOfTry = gameStatusOperator.getNumberOfTry();
         assertThat(currentPosition).isEqualTo(0);
-        assertThat(numberOfTry).isEqualTo(1);
     }
 
 }

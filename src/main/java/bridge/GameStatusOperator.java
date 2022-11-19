@@ -14,7 +14,7 @@ public class GameStatusOperator {
         this.gameStatus = gameStatus;
     }
 
-    public void tryOnce() {
+    public void incrementNumberOfTry() {
         numberOfTry++;
     }
 
@@ -22,6 +22,7 @@ public class GameStatusOperator {
         currentPosition++;
     }
 
+    //== Getter ==//
     public Integer getCurrentPosition() {
         return currentPosition;
     }
