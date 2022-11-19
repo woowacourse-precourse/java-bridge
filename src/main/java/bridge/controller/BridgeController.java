@@ -23,8 +23,7 @@ public class BridgeController {
 
         Length length = null;
         length = createLengthLoop(length);
-        int size = length.getLength();
-        List<String> bridgeNumbers = bridgeMaker.makeBridge(size);
+        List<String> bridgeNumbers = length.makeBridgeNumbers(bridgeMaker);
 
         Bridge bridge = createBridge(bridgeNumbers);
 //        bridge.getDirections().stream()
@@ -44,7 +43,7 @@ public class BridgeController {
             pos = -1;
             do {
                 pos++;
-                if (pos == size) {
+                if (length.isSameLength(pos)) {
                     isQuit = true;
                     break;
                 }

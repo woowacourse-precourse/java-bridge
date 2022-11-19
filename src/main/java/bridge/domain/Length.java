@@ -1,5 +1,8 @@
 package bridge.domain;
 
+import bridge.BridgeMaker;
+import java.util.List;
+
 public class Length {
 
     private static final int MINIMUM_BRIDGE_LENGTH = 3;
@@ -20,8 +23,12 @@ public class Length {
         checkRangeValid(answer);
     }
 
-    public int getLength() { // TODO: 메시지 보내기
-        return length;
+    public List<String> makeBridgeNumbers(BridgeMaker bridgeMaker) {
+        return bridgeMaker.makeBridge(length);
+    }
+
+    public boolean isSameLength(int length) {
+        return this.length == length;
     }
 
     private void checkNotBlank(String answer) {
