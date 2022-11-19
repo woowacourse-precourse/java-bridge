@@ -10,6 +10,9 @@ import java.util.List;
  */
 public class BridgeGame {
 
+
+    private static final StringBuilder SUCCESS_MOVE_MARK = new StringBuilder(" O ");
+    private static final StringBuilder FAIL_MOVE_MARK = new StringBuilder(" X ");
     private List<String> bridgGame;
     private int tryCount;
 
@@ -36,22 +39,12 @@ public class BridgeGame {
         return bridgGame.get(index).equals(moveSide);
     }
 
-    public StringBuilder successMove(int index ,String moveWord) {
+    public StringBuilder createMoveMark(int index , String moveWord) {
         if (move(index, moveWord)) {
-            return new StringBuilder(" O ");
+            return SUCCESS_MOVE_MARK;
         }
-        return new StringBuilder();
+        return FAIL_MOVE_MARK;
     }
-
-
-    // 다리 길이가 3 [U D D] 일떄
-    /*
-    1. 위로 갔을 떄 성공하는 경우 - moveUpside
-    3. 아래로 갔을 때 성공하는 경우
-    4. 아래로 갔을 때 실패하는 경우
-
-     */
-
 
 
     public void retryCount() {

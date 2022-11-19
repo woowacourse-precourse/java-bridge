@@ -13,8 +13,8 @@ public class BridgeController {
 
     private static final int BRIDGE_ONE_SPACE_SIZE = 4;
     private static final String BRIDGE_ONE_SPACE_BLANK = "   ";
-    private StringBuilder upSideResult = new StringBuilder("[]");
-    private StringBuilder downSideResult = new StringBuilder("[]");
+    private StringBuilder upsideResult = new StringBuilder("[]");
+    private StringBuilder downsideResult = new StringBuilder("[]");
     int tryCount = 1;
 
 
@@ -37,30 +37,47 @@ public class BridgeController {
 
     private void replaceBracket(int bracketIndex) {
         if(bracketIndex > 0) {
-            upSideResult.replace(BRIDGE_ONE_SPACE_SIZE *bracketIndex, BRIDGE_ONE_SPACE_SIZE *bracketIndex, "|" );
-            downSideResult.replace(BRIDGE_ONE_SPACE_SIZE *bracketIndex, BRIDGE_ONE_SPACE_SIZE *bracketIndex, "|" );
+            upsideResult.replace(BRIDGE_ONE_SPACE_SIZE *bracketIndex, BRIDGE_ONE_SPACE_SIZE *bracketIndex, "|" );
+            downsideResult.replace(BRIDGE_ONE_SPACE_SIZE *bracketIndex, BRIDGE_ONE_SPACE_SIZE *bracketIndex, "|" );
         }
     }
 
     private void moveUp(BridgeGame bridgeGame, String moveSide, int index) {
         if (bridgeGame.move(index,moveSide) && moveSide.equals("U")) {
-            upSideResult.insert(BRIDGE_ONE_SPACE_SIZE *index+1,bridgeGame.successMove(index, moveSide));
-            downSideResult.insert(BRIDGE_ONE_SPACE_SIZE *index+1, BRIDGE_ONE_SPACE_BLANK);
-            OutputView.printMap(upSideResult,downSideResult);
+            upsideResult.insert(BRIDGE_ONE_SPACE_SIZE *index+1,bridgeGame.createMoveMark(index, moveSide));
+            downsideResult.insert(BRIDGE_ONE_SPACE_SIZE *index+1, BRIDGE_ONE_SPACE_BLANK);
+            OutputView.printMap(upsideResult, downsideResult);
         }
     }
 
     private void moveDown(BridgeGame bridgeGame, String moveSide, int index) {
         if (bridgeGame.move(index,moveSide) && moveSide.equals("D")) {
-            upSideResult.insert(BRIDGE_ONE_SPACE_SIZE *index+1, BRIDGE_ONE_SPACE_BLANK);
-            downSideResult.insert(BRIDGE_ONE_SPACE_SIZE *index+1,bridgeGame.successMove(index, moveSide));
-            OutputView.printMap(upSideResult,downSideResult);
+            upsideResult.insert(BRIDGE_ONE_SPACE_SIZE *index+1, BRIDGE_ONE_SPACE_BLANK);
+            downsideResult.insert(BRIDGE_ONE_SPACE_SIZE *index+1,bridgeGame.createMoveMark(index, moveSide));
+            OutputView.printMap(upsideResult, downsideResult);
+        }
+    }
+
+    private void moveFailUpside(BridgeGame bridgeGame, String moveSide, int index) {
+        if (!bridgeGame.move(index,moveSide) && moveSide.equals("U")) {
+            upsideResult.insert(BRIDGE_ONE_SPACE_SIZE *index+1,bridgeGame.createMoveMark(index, moveSide));
+            downsideResult.insert(BRIDGE_ONE_SPACE_SIZE *index+1, BRIDGE_ONE_SPACE_BLANK);
+            OutputView.printMap(upsideResult, downsideResult);
+        }
+    }
+
+
+    private void moveFailDownside(BridgeGame bridgeGame, String moveSide, int index) {
+        if (!bridgeGame.move(index,moveSide) && moveSide.equals("D")) {
+            upsideResult.insert(BRIDGE_ONE_SPACE_SIZE *index+1, BRIDGE_ONE_SPACE_BLANK);
+            downsideResult.insert(BRIDGE_ONE_SPACE_SIZE *index+1,bridgeGame.createMoveMark(index, moveSide));
+            OutputView.printMap(upsideResult, downsideResult);
         }
     }
 
     private void printResult() {
         OutputView.printResultMessage();
-        OutputView.printMap(upSideResult, downSideResult);
+        OutputView.printMap(upsideResult, downsideResult);
         OutputView.printResult(tryCount, true);
     }
 }
