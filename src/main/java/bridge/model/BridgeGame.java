@@ -39,4 +39,8 @@ public class BridgeGame {
         player = new Player();
         playCount++;
     }
+
+    private void quit() {
+        canPlay = false;
+    }
 }
