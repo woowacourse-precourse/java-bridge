@@ -1,11 +1,13 @@
 package bridge.domain;
 
-import bridge.ui.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
 
 public class PlayerBoard {
+    private static final String PREFIX = "[ ";
+    private static final String SUFFIX = " ]\n";
+    private static final String DELIMITER = " | ";
     private static final String BLANK = " ";
     private static final String UP = "U";
     private static final String DOWN = "D";
@@ -37,5 +39,16 @@ public class PlayerBoard {
         gameRound++;
     }
 
-
+    public String getBridgeStatus(String side){
+        StringJoiner joiner = new StringJoiner(DELIMITER,PREFIX,SUFFIX);
+        for(int i = 0; i< gameRound; i++) {
+            if (side.equals(UP)){
+                joiner.add(upBridge.get(i));
+            }
+            if (side.equals(DOWN)){
+                joiner.add(downBridge.get(i));
+            }
+        }
+        return joiner.toString();
+    }
 }
