@@ -47,13 +47,12 @@ public class BridgeGameCycle {
 
     private String askInputCommand() {
         printAskCommand();
-        String inputCommand = inputView.readGameCommand();
-        return inputCommand;
+        return inputView.readGameCommand();
     }
 
     private boolean loseCycle(BridgeGame game) {
         if (nowState == GAME_LOSE.num()) {
-            String inputCommand = askInputCommand();
+            String inputCommand = checkInputCommand();
             if (inputCommand.equals(QUIT.key())) {
                 return FINISH;
             }
@@ -61,6 +60,17 @@ public class BridgeGameCycle {
             game.retry();
         }
         return CONTINUE;
+    }
+
+    private String checkInputCommand() {
+        while(CONTINUE){
+            try{
+                String inputCommand = askInputCommand();
+                return inputCommand;
+            }catch (IllegalArgumentException exception){
+                exception.getMessage();
+            }
+        }
     }
 
     private void brideGamePlay() {

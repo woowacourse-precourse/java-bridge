@@ -29,7 +29,7 @@ public class InputView {
     private void bridgeInputRangeValidate(String bridgeSizeInput) {
         int bridgeSize = Integer.parseInt(bridgeSizeInput);
         if(BRIDGE_START.num()>bridgeSize || BRIDGE_LAST.num()<bridgeSize){
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 "+ BRIDGE_START.num()+"부터"+ BRIDGE_START.num()+
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 "+ BRIDGE_START.num()+"부터 "+ BRIDGE_LAST.num()+
                     "사이의 숫자여야 합니다.");
         }
     }
