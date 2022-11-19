@@ -28,4 +28,12 @@ class InputViewTest {
         assertThatThrownBy(() -> InputView.errorBridgeSizeOverRange("!!"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("이동할 칸을 U,D가 아닌 것을 입력시 예외처리")
+    @Test
+    void checkMoveInputNotUOrD(){
+        assertThatThrownBy(() -> InputView.errorInputNotUOrD("a"))
+                .isInstanceOf(IllegalArgumentException.class);
+
+    }
 }
