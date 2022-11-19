@@ -20,8 +20,7 @@ public class BridgeGameResult {
     }
 
     public int increaseTryCount() {
-        tryCount++;
-        return tryCount;
+        return ++tryCount;
     }
 
     public void initMoveState() {
