@@ -16,10 +16,7 @@ public class InputView {
      */
     public int readBridgeSize() {
         String size = Console.readLine();
-        String sizeRegex = "^([3-9]{1})$|^(1[0-9]{1})$|^20$";
-        if (!size.matches(sizeRegex)) {
-            throw new IllegalArgumentException("[ERROR] 3이상 20이하의 숫자를 입력해 주세요");
-        }
+        Validator.size(size);
         return Integer.parseInt(size);
     }
 
@@ -28,10 +25,7 @@ public class InputView {
      */
     public String readMoving() {
         String direction = Console.readLine();
-        if (!(direction.equals("U") || direction.equals("D"))) {
-            throw new IllegalArgumentException("[ERROR] 위로가려면 U, 아래로 가려면 D를 입력해 주세요");
-
-        }
+        Validator.direction(direction);
         return direction;
     }
 
@@ -40,9 +34,7 @@ public class InputView {
      */
     public String readGameCommand() {
         String command = Console.readLine();
-        if(!(command.equals("R") || command.equals("Q"))) {
-            throw new IllegalArgumentException("[ERROR] 재시도를 하려면 R, 종료하려면 Q를 입력해 주세요");
-        }
+        Validator.command(command);
         return command;
     }
 }
