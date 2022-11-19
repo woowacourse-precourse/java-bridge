@@ -14,7 +14,7 @@ public class Bridge {
     }
 
     public boolean canMove(String direction, int location) {
-        return !(bridge.get(location) == direction);
+        return bridge.get(location).equals(direction);
     }
 
     public boolean isEnd(int location) {

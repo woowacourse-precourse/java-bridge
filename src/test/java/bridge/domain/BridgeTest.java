@@ -10,8 +10,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class BridgeTest {
 
     @Test
-    @DisplayName("주어진 방향으로 진행이 안되는 경우")
-    public void canMoveImpossible() throws Exception{
+    @DisplayName("주어진 방향으로 진행이 안되는 경우 false를 반환한다.")
+    public void canMoveImpossibleThenFalse() throws Exception{
         //given
         Bridge bridge = Bridge.from(List.of("U", "D", "U"));
         String nextDirection = "D";
@@ -21,12 +21,12 @@ public class BridgeTest {
         boolean result = bridge.canMove(nextDirection, location);
 
         //then
-        Assertions.assertThat(result).isEqualTo(true);
+        Assertions.assertThat(result).isEqualTo(false);
     }
 
     @Test
-    @DisplayName("주어진 방향으로 진행이 가능한 경우")
-    public void canMovePossible() throws Exception{
+    @DisplayName("주어진 방향으로 진행이 가능한 경우 true를 반환한다.")
+    public void canMovePossibleThenTrue() throws Exception{
         //given
         Bridge bridge = Bridge.from(List.of("U", "D", "U"));
         String nextDirection = "D";
@@ -36,7 +36,7 @@ public class BridgeTest {
         boolean result = bridge.canMove(nextDirection, location);
 
         //then
-        Assertions.assertThat(result).isEqualTo(false);
+        Assertions.assertThat(result).isEqualTo(true);
     }
 
     @Test
