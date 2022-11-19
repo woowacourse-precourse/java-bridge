@@ -1,6 +1,8 @@
 package bridge;
 
 
+import java.util.List;
+
 public class Game {
     private BridgeGame bridgeGame;
     private final BridgeMaker bridgeMaker;
@@ -16,4 +18,11 @@ public class Game {
         this.isPlaying = true;
     }
 
+    public void makeBridgeGame(){
+        outputController.printComment(Comment.START_GAME);
+        outputController.printComment(Comment.INPUT_SIZE_OF_BRIDGE);
+        int size = inputController.readBridgeSize();
+        List<String> bridge = this.bridgeMaker.makeBridge(size);
+        this.bridgeGame = new BridgeGame(bridge);
+    }
 }
