@@ -22,7 +22,8 @@
     - GameStatus가 SUCCESS, FAIL인 경우 true, IN_PROCESS인 경우 false
   - [x] 시도 횟수 업데이트
   - [x] 시도 횟수 제공
-  - [ ] userBridge 초기화 기능
+  - [ ] userBridge를 빈 값으로 초기화 및 GameStatus을 진행 중 으로 초기화
+  - [ ] 초기화시 1로 초기화 해야함
 
 - [x] 다리 상태 정보 저장(BridgeStatusSaver)
   - bridgeStatus 상태를 저장하는 클래스
