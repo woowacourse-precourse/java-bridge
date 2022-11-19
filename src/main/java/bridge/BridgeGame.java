@@ -22,21 +22,24 @@ public class BridgeGame {
         this.numberOfTry = 1;
     }
 
+    private void playSequence() {
+        while (!isEnd()) {
+            move();
+            while (isWrong()) {
+                outputView.guideRetry();
+                String gameCommand = getGameCommand();
+                if (isQuitCommand(gameCommand)) return;
+                retry();
+            }
+        }
+    }
+
     /**
      * 게임을 실행하는 메소드
      */
     public void run() {
-        String gameCommand = "R";
-        while (!isEnd() && !isQuitCommand(gameCommand)) {
-            move();
-            while (isWrong()) {
-                outputView.guideRetry();
-                gameCommand = inputView.readGameCommand();
-                if (isQuitCommand(gameCommand)) break;
-                retry();
-            }
-        }
-        end();
+        playSequence();
+        printResult();
     }
 
     /**
@@ -52,11 +55,13 @@ public class BridgeGame {
     }
 
     /**
-     * 게임을 끝내는 메소드
+     * 게임 결과를 출력하는 메소드
      */
-    private void end() { outputView.printResult(this.path, this.bridge, this.numberOfTry); }
+    private void printResult() { outputView.printResult(this.path, this.bridge, this.numberOfTry); }
 
     private String getMovingCommand() { return inputView.readMoving(); }
+
+    private String getGameCommand() { return inputView.readGameCommand(); }
 
     /**
      * 플레이어가 다리 끝에 도달했는지 그 여부를 불린형으로 반환하는 메소드
