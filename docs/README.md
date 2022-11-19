@@ -68,7 +68,7 @@
 
 ## Constant
 ### (enum) GameStatus : 게임 진행 상황
-- [ ] 구현하기
+- [x] 구현하기
 
 ### Moving : 이동 방향
 - [x] 구현하기
