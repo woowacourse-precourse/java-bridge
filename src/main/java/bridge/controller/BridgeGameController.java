@@ -28,10 +28,11 @@ public class BridgeGameController {
         for(int i=0; i<bridgeGame.getBridgeSize(); i++) {
             bridgeGame.move(i, InputException.validateMovingValue(InputView.readMoving()));
             OutputView.printMap(bridgeGame.getBridge(), bridgeGame.getResult());
-            if(!bridgeGame.success()) break;
+            if(!bridgeGame.success()) {
+                retry();
+                break;
+            }
         }
-
-        if(!bridgeGame.success()) retry();
     }
 
     private void end() {
