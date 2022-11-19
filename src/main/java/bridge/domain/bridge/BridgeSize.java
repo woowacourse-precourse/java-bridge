@@ -1,11 +1,17 @@
-package bridge.domain;
+package bridge.domain.bridge;
+
+import bridge.domain.Message;
 
 public class BridgeSize {
     private int size;
 
     public BridgeSize(String s) {
         validate(s);
-        this.size = size;
+        this.size = Integer.parseInt(s);
+    }
+
+    public int get() {
+        return this.size;
     }
 
     private void validate(String s) {
