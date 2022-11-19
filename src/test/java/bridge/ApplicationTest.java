@@ -64,6 +64,19 @@ class ApplicationTest extends NsTest {
         assertThat(Exception.convertStringToInteger(input) == Integer.parseInt(input));
     }
 
+    @DisplayName("입력 받은 정수형이 3이상 20이하가 아닐 시 예외를 발생시킨다.")
+    @Test
+    void enterInputValueOutRangeOf3to20(){
+        assertThatThrownBy(() -> Exception.validateRangeThreeToTwenty(30))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력 받은 정수형이 3이상 20이하일 시 입력 값을 반환한다.")
+    @Test
+    void enterInputValueInRangeOf3to20(){
+        int input = 13;
+        assertThat(Exception.validateRangeThreeToTwenty(input) == input);
+    }
 
 
     @Override
