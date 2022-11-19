@@ -1,6 +1,6 @@
 package bridge.io.validation;
 
-import bridge.constant.ExceptionMessage;
+import bridge.enums.ExceptionMessage;
 
 public class UOrDValidation extends ValidationDecorator{
 
