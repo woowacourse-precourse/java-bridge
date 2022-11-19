@@ -12,10 +12,12 @@ public class BridgeGame {
     private final BridgeMaker bridgeMaker;
     private BridgeGameHistory bridgeGameHistory;
     private BridgeGameAnswer bridgeGameAnswer;
+    private BridgeGameStatus bridgeGameStatus;
 
     public BridgeGame() {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridgeGameHistory = new BridgeGameHistory();
+        bridgeGameStatus = new BridgeGameStatus();
     }
 
     /**
@@ -23,9 +25,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String location) {
+    public void move(String location) {
         bridgeGameHistory.addBridgeHistory(location);
-        return bridgeGameAnswer.isAnswer(location, bridgeGameHistory.getCurrentIndex());
     }
 
     /**
@@ -42,5 +43,15 @@ public class BridgeGame {
 
     public List<List<String>> getResult() {
         return bridgeGameAnswer.getResultByHistory(bridgeGameHistory.getBridgeHistory());
+    }
+
+    public boolean checkGameStatus() {
+        return bridgeGameStatus.canPlayGame();
+    }
+
+    public void updateGameStatus(String moveLocation) {
+        bridgeGameStatus.updateStatus(
+                bridgeGameAnswer.isAnswer(moveLocation,
+                        bridgeGameHistory.getCurrentIndex()));
     }
 }

@@ -19,7 +19,7 @@ public class BridgeGameController {
         outputView.printStartGame();
         int bridgeSize = getBridgeSize();
         bridgeGame.createBridge(bridgeSize);
-        bridgeGame.move(getMove());
+        tryMove();
     }
 
     public int getBridgeSize() {
@@ -42,4 +42,12 @@ public class BridgeGameController {
         }
     }
 
+    public void tryMove() {
+        while (true) {
+            String moveLocation = getMove();
+            bridgeGame.move(moveLocation);
+            outputView.printMap(bridgeGame.getResult());
+            bridgeGame.updateGameStatus(moveLocation);
+        }
+    }
 }

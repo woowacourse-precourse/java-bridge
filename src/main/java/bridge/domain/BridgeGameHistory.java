@@ -15,14 +15,18 @@ public class BridgeGameHistory {
 
     public void addBridgeHistory(String next) {
         bridgeHistory.add(next);
-        currentIndex++;
     }
 
     public int getCurrentIndex() {
+        updateCurrentIndex();
         return currentIndex;
     }
 
     public List<String> getBridgeHistory() {
         return bridgeHistory;
+    }
+
+    private void updateCurrentIndex() {
+        currentIndex = bridgeHistory.size()-1;
     }
 }
