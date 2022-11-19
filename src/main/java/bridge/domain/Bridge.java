@@ -21,13 +21,21 @@ public class Bridge {
         return new Bridge(bridges);
     }
 
+    public String moveResult(Move move, int distance, String direction) {
+        if (move.direction.equals(direction)) {
+            return bridges.get(move).get(distance);
+        }
+
+        return " ";
+    }
+
     private static void makeBlock(Map<Move, List<String>> bridges, String direction) {
         for (Move move : Move.values()) {
             if (move.direction.equals(direction)) {
                 bridges.get(move).add("O");
                 continue;
             }
-            bridges.get(move).add(" ");
+            bridges.get(move).add("X");
         }
     }
 
