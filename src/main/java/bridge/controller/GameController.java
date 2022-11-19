@@ -4,6 +4,7 @@ import static bridge.controller.InputController.setBridgeSize;
 
 import bridge.model.Bridge;
 import bridge.model.BridgeGame;
+import bridge.model.Diagram;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
@@ -21,8 +22,12 @@ public class GameController {
         BridgeGame bridgegame = new BridgeGame(bridge);
         bridgegame.move();
 
-    }
+        Diagram diagram = new Diagram();
 
+        outputView.printResult(diagram, bridgegame.isFinalSuccess(), bridgegame.getAttemptsNumber());
+
+
+    }
 
 
 }

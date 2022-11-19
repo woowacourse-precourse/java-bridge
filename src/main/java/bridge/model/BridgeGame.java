@@ -9,6 +9,8 @@ import static bridge.model.Diagram.updateDiagram;
  */
 public class BridgeGame {
     private final Bridge bridge;
+    private int attemptsNumber;
+    private boolean finalSuccess;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
@@ -24,7 +26,8 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
-        int attemptsNumber = 1;
+        attemptsNumber = 1;
+        finalSuccess = false;
         int index;
         for (index = 0; index < bridge.getBridgeSize(); index++) {
             String position = setUserSelection();
@@ -42,9 +45,10 @@ public class BridgeGame {
             break;
         }
         if (index == bridge.getBridgeSize()) {
-            System.out.println("성공");
             // 성공 처리 (success)
+            finalSuccess = true;
             // 최종 게임 결과 (다리의 전체 다이어그램, 성공 여부, 시도 횟수 출력)
+
         }
         if (index < bridge.getBridgeSize()) {
             System.out.println("실패");
@@ -60,5 +64,13 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+    }
+
+    public int getAttemptsNumber() {
+        return attemptsNumber;
+    }
+
+    public boolean isFinalSuccess() {
+        return finalSuccess;
     }
 }

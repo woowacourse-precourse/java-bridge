@@ -36,5 +36,13 @@ public class Diagram {
     public static void printDiagrams() {
         System.out.println(upDiagram);
         System.out.println(downDiagram);
+
+    }
+    public static List<String> getUpDiagram() {
+        return upDiagram;
+    }
+
+    public static List<String> getDownDiagram() {
+        return downDiagram;
     }
 }
