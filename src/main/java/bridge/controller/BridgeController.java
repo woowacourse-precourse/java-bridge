@@ -5,6 +5,8 @@ import bridge.*;
 import java.util.List;
 
 public class BridgeController {
+    private final String SUCCESS = "성공";
+    private final String FAILURE = "실패";
     private OutputView outputView = new OutputView();
     private InputView inputView = new InputView();
     private BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
@@ -25,11 +27,12 @@ public class BridgeController {
             count = startMove();
 
             if (bridgeGame.isSuccess()) {
-                outputView.printResult(bridgeGame.getUserMoving(),"성공",count);
+                outputView.printResult(bridgeGame.getUserMoving(),SUCCESS,count);
                 break;
             }
+            // 성공 하지도 못했는데 재시작도 안하면 실패
             if (bridgeGame.retry(inputView.readGameCommand()) == false) {
-                outputView.printResult(bridgeGame.getUserMoving(),"실패",count);
+                outputView.printResult(bridgeGame.getUserMoving(),FAILURE,count);
                 break;
             }
         }
