@@ -2,6 +2,7 @@ package bridge.service;
 
 import bridge.domain.BridgeMap;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,28 +15,38 @@ public class MapMakerService {
     }
 
     public List<String> makeMap(List<String> userBridge) {
-        String topLow = "";
-        String bottomLow = "";
+        List<String> map = new ArrayList<>(Arrays.asList("", ""));
         for (int i = 0; i < userBridge.size(); i++) {
-            topLow += makeTopLow(i,userBridge.get(i));
-            bottomLow += makeBottomLow(i,userBridge.get(i));
-            if (i != userBridge.size()-1) {
-                topLow += BridgeMap.BRIDGE_DIVISION_MARK.getMark();
-                bottomLow += BridgeMap.BRIDGE_DIVISION_MARK.getMark();
+            map = makeLow(map,userBridge,i);
+            if (i != userBridge.size() - 1) {
+                map = addDivisionMark((map));
             }
         }
-        topLow = formatMap(topLow);
-        bottomLow = formatMap(bottomLow);
-        return Arrays.asList(topLow,bottomLow);
+        return formatMap(map);
     }
 
-    public String formatMap(String low) {
-        return BridgeMap.BRIDGE_START_MARK.getMark()+low+BridgeMap.BRIDGE_END_MARK.getMark();
+    public List<String> addDivisionMark(List<String> map) {
+        map.set(0, map.get(0) + BridgeMap.BRIDGE_DIVISION_MARK.getMark());
+        map.set(1, map.get(1) + BridgeMap.BRIDGE_DIVISION_MARK.getMark());
+        return map;
+    }
+
+    public List<String> formatMap(List<String> map) {
+        map.set(0, BridgeMap.BRIDGE_START_MARK.getMark() + map.get(0) + BridgeMap.BRIDGE_END_MARK.getMark());
+        map.set(1, BridgeMap.BRIDGE_START_MARK.getMark() + map.get(1) + BridgeMap.BRIDGE_END_MARK.getMark());
+        return map;
+    }
+
+
+    public List<String> makeLow(List<String> map, List<String> userBridge, int idx) {
+        map.set(0, map.get(0) + makeTopLow(idx, userBridge.get(idx)));
+        map.set(1, map.get(1) + makeBottomLow(idx, userBridge.get(idx)));
+        return map;
     }
 
     public String makeTopLow(int idx, String location) {
-        if (this.bridge.get(idx).equals(location)){
-            if (location.equals("U")){
+        if (this.bridge.get(idx).equals(location)) {
+            if (location.equals("U")) {
                 return BridgeMap.SUCCESS_MARK.getMark();
             }
             return BridgeMap.BLANK_MARK.getMark();
@@ -47,8 +58,8 @@ public class MapMakerService {
     }
 
     public String makeBottomLow(int idx, String location) {
-        if (this.bridge.get(idx).equals(location)){
-            if (location.equals("U")){
+        if (this.bridge.get(idx).equals(location)) {
+            if (location.equals("U")) {
                 return BridgeMap.BLANK_MARK.getMark();
             }
             return BridgeMap.SUCCESS_MARK.getMark();
