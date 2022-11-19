@@ -1,8 +1,10 @@
 package bridge.view;
 
 import static bridge.util.ConsoleInput.readInt;
+import static bridge.util.ConsoleInput.readLine;
 
 import bridge.model.BridgeSize;
+import bridge.model.Direction;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -25,8 +27,14 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public Direction readDirection() {
+        try {
+            printReadMovingMenu();
+            return Direction.from(readLine());
+        } catch (IllegalArgumentException e) {
+            print(e.getMessage());
+            return readDirection();
+        }
     }
 
     /**
@@ -34,6 +42,10 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private void printReadMovingMenu() {
+        print("이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
 
     private void printReadBridgeSizeMenu() {
