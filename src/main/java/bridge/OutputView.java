@@ -5,6 +5,7 @@ import java.util.List;
 import static bridge.enums.Sentence.*;
 
 public class OutputView {
+    private final Move move = new Move();
 
     public static void printStartGame() {
         System.out.println(GAME_START.getValue());
@@ -22,5 +23,9 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult() {
+        // printf 로 변경예정
+        System.out.println();
+        System.out.println(SUCCESS_OR_FAILURE.getValue());
+        System.out.println(TRY_COUNT.getValue());
     }
 }
