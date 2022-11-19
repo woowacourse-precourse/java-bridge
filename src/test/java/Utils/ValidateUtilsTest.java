@@ -21,4 +21,17 @@ class ValidateUtilsTest {
         }
     }
 
+    @Nested
+    @DisplayName("isValidatePosition 메소드 테스트")
+    class TestIsValidatePosition {
+        @DisplayName("U, D 이외의 값을 입력하였을 때")
+        @ValueSource(strings = {"UP", "DOWN", "Up~~", "3", "?"})
+        @ParameterizedTest
+        void case1(String input) {
+            assertThatThrownBy(() -> ValidateUtils.isValidatePosition(input))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining("[ERROR]");
+        }
+    }
+
 }
