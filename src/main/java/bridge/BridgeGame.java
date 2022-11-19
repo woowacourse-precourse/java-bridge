@@ -9,10 +9,10 @@ public class BridgeGame {
 
     final static String REDO = "R";
     final static String QUIT = "Q";
-    static boolean isComplete;
+    static boolean isComplete = true;
     static String lastUserInput;
     static int totalCount;
-    static int attempt;
+    static int attempt = 1;
     static InputView iv = new InputView();
 
     /**
@@ -23,7 +23,7 @@ public class BridgeGame {
     public String move() {
         String userInput = iv.readMoving();
         totalCount++;
-        attempt++;
+//        attempt++;
         return lastUserInput = userInput;
     }
 
@@ -35,7 +35,7 @@ public class BridgeGame {
     public boolean retry() {
         String retryOrQuit = iv.readGameCommand();
         if (retryOrQuit.equals(REDO)) {
-            attempt = 0;
+            totalCount = 0; attempt++;
             return isComplete = true;
         }
         if (retryOrQuit.equals(QUIT)) isComplete = false;

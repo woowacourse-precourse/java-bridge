@@ -20,9 +20,9 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> upOrDown = new ArrayList<>();
-        BridgeRandomNumberGenerator numGenerator = new BridgeRandomNumberGenerator();
+//        BridgeRandomNumberGenerator numGenerator = new BridgeRandomNumberGenerator();
         for (int index = 0; index < size; index++) {
-            upOrDown.add(convert(numGenerator.generate()));
+            upOrDown.add(convert(bridgeNumberGenerator.generate()));
         }
         return upOrDown;
     }

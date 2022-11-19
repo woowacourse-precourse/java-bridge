@@ -50,7 +50,6 @@ public class OutputView {
         }
         return false;
     }
-
     public boolean startLadder(int index, List<String> upOrDown, String userInput) {
         System.out.print(ladder.START.getSign());
         boolean isFirstRowTrue = firstRow(index, upOrDown, userInput);
@@ -117,8 +116,8 @@ public class OutputView {
      */
     public void printResult(List<String> bridgeMaker) {
         System.out.println(FINAL_RESULT);
-        startLadder(BridgeGame.attempt - 1, bridgeMaker, BridgeGame.lastUserInput);
-        if (!BridgeGame.isComplete) System.out.println(SUCCEEDED + FAIL + ATTEMPT + BridgeGame.totalCount);
-        if (BridgeGame.isComplete) System.out.println(SUCCEEDED + SUCCESS + ATTEMPT + BridgeGame.totalCount);
+        startLadder(BridgeGame.totalCount - 1, bridgeMaker, BridgeGame.lastUserInput);
+        if (!BridgeGame.isComplete) System.out.println(SUCCEEDED + FAIL + ATTEMPT + BridgeGame.attempt);
+        if (BridgeGame.isComplete) System.out.println(SUCCEEDED + SUCCESS + ATTEMPT + BridgeGame.attempt);
     }
 }
