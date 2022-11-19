@@ -1,6 +1,5 @@
 package bridge.view;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,10 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.lang.reflect.Method;
 import java.util.List;
 
-class OutputViewTest extends NsTest{
+class OutputViewTest{
 
     OutputView outputView = new OutputView();
 
@@ -41,8 +39,15 @@ class OutputViewTest extends NsTest{
         );
     }
 
-    @Override
-    protected void runMain() {
-
+    @Test
+    void printResult(){
+        outputView.printResult(List.of("U", "U", "D", "D", "U", "U"), 7, true);
+        Assertions.assertThat(outContent.toString()).contains(
+                "최종 게임 결과",
+                "[ O | O |   |   | O | O ]",
+                "[   |   | O | O |   |   ]",
+                "게임 성공 여부: 성공",
+                "총 시도한 횟수: 7"
+        );
     }
 }
