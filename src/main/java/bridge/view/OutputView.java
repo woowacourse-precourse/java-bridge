@@ -17,10 +17,10 @@ public class OutputView {
         printDownBridge(result);
     }
 
-    public static void printResult(boolean gameStatus, Player player) {
+    public static void printResult(boolean gameContinue, Player player) {
         System.out.println(OUTPUT_MESSAGE_FINAL_GAME_RESULT);
         printMap(player);
-        printSuccessMessage(gameStatus, player.getPlayResult());
+        printSuccessMessage(gameContinue, player.getPlayResult());
     }
 
     private static void printUpBridge(List<MoveStatus> result) {
@@ -31,25 +31,25 @@ public class OutputView {
         System.out.println(makeDownBridge(result));
     }
 
-    private static void printSuccessMessage(boolean gameStatus, PlayResult playResult) {
-        System.out.println(OUTPUT_MESSAGE_IS_SUCCESS_GAME + makeSuccessMessage(gameStatus));
+    private static void printSuccessMessage(boolean gameContinue, PlayResult playResult) {
+        System.out.println(OUTPUT_MESSAGE_IS_SUCCESS_GAME + makeSuccessMessage(gameContinue));
         System.out.println(OUTPUT_MESSAGE_TOTAL_TRY_COUNT + playResult.getTryCount());
     }
 
     private static String makeUpBridge(List<MoveStatus> result) {
         return OPEN_BRACKET + result.stream()
-                .map(MoveStatus::isUpperSide)
+                .map(MoveStatus::getUpperSideMoveMessage)
                 .collect(Collectors.joining(SEPARATOR)) + CLOSE_BRACKET;
     }
 
     private static String makeDownBridge(List<MoveStatus> result) {
         return OPEN_BRACKET + result.stream()
-                .map(MoveStatus::isDownSide)
+                .map(MoveStatus::getDownSideMoveMessage)
                 .collect(Collectors.joining(SEPARATOR)) + CLOSE_BRACKET;
     }
 
-    private static String makeSuccessMessage(boolean gameStatus) {
-        if (gameStatus) {
+    private static String makeSuccessMessage(boolean gameContinue) {
+        if (gameContinue) {
             return OUTPUT_MESSAGE_SUCCESS;
         }
         return OUTPUT_MESSAGE_FAIL;

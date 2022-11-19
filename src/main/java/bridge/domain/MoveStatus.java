@@ -37,14 +37,14 @@ public enum MoveStatus {
         return DOWN_FAIL;
     }
 
-    public String isUpperSide() {
+    public String getUpperSideMoveMessage() {
         if (this == UP || this == UP_FAIL) {
             return this.moveMessage;
         }
         return Constants.BLANK;
     }
 
-    public String isDownSide() {
+    public String getDownSideMoveMessage() {
         if (this == DOWN || this == DOWN_FAIL) {
             return this.moveMessage;
         }
