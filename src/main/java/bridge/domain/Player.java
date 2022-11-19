@@ -34,7 +34,7 @@ public class Player {
         retryCount++;
     }
 
-    public boolean isMoving() {
+    public boolean getMoving() {
         return isMoving;
     }
 
