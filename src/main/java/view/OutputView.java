@@ -46,4 +46,8 @@ public class OutputView {
         System.out.println(" "+Message.FAIL.getMessage());
     }
 
+    public void printGameTry(int totalTry) {
+        System.out.printf(Message.TOTAL_TRY.getMessage() + "%d\n", totalTry);
+    }
+
 }
