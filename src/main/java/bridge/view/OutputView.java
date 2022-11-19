@@ -24,12 +24,10 @@ public class OutputView {
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      */
-    public void printMap(BridgeMoveResult bridgeMoveResult) {
-        List<String> upStates = bridgeMoveResult.getUpStates();
-        List<String> downStates = bridgeMoveResult.getDownStates();
-
-        System.out.println(format(upStates));
-        System.out.println(format(downStates));
+    public void printMap(BridgeGameResult gameResult) {
+        BridgeMoveResult moveResult = gameResult.getMoveResult();
+        System.out.println(format(moveResult.getUpStates()));
+        System.out.println(format(moveResult.getDownStates()));
     }
 
     private String format(List<String> states) {
@@ -57,7 +55,7 @@ public class OutputView {
      */
     public void printResult(BridgeGameResult gameResult) {
         System.out.println(separateLine() + GAME_RESULT);
-        printMap(gameResult.getMoveResult());
+        printMap(gameResult);
         System.out.println(separateLine() + GAME_SUCCESS + gameResult.getGameResult());
         System.out.println(GAME_TRY_COUNT + gameResult.getTryCount());
     }

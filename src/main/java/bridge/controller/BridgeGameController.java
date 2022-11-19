@@ -63,7 +63,7 @@ public class BridgeGameController {
 
             String moving = inputView.readMoving();
             Boolean mobility = bridgeGame.move(bridge, moveCount, moving);
-            outputView.printMap(bridgeGameResult.getMoveResult());
+            outputView.printMap(bridgeGameResult);
 
             if (isFail(mobility)) {
                 break;
