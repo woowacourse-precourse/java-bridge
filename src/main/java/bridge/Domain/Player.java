@@ -12,7 +12,10 @@ public class Player {
 
     public void movePlayer() {
         distance++;
+    }
 
+    public boolean isPlayerMoveSuccess(String position) {
+        return bridge.isValidDistance(distance) && bridge.canCrossBridge(distance, position);
     }
 
     public int getPosition() {
