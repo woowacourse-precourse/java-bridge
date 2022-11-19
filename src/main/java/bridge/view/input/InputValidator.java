@@ -2,6 +2,7 @@ package bridge.view.input;
 
 import bridge.status.Bridge;
 import bridge.status.Direction;
+import bridge.status.Retry;
 
 public class InputValidator {
 
@@ -20,6 +21,12 @@ public class InputValidator {
             throw new IllegalArgumentException("방향 입력은 U 또는 D만 허용됩니다.");
         }
 
+    }
+
+    public static void checkRetryOrElseThrowException(String retryCommand) {
+        if (!Retry.contains(retryCommand)) {
+            throw new IllegalArgumentException("재시작 입력은 R 또는 Q만 허용됩니다.");
+        }
     }
 
 

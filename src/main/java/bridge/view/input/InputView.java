@@ -34,8 +34,10 @@ public class InputView {
      */
     public String readGameCommand() {
         print(InputMessage.READ_RETRY_OR_QUIT);
+        String retry = Console.readLine();
+        InputValidator.checkRetryOrElseThrowException(retry);
 
-        return null;
+        return retry;
     }
 
     private void print(String message) {
