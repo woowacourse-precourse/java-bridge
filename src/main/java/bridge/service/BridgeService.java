@@ -10,14 +10,9 @@ public class BridgeService {
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 
     public Bridge bridgeMaker() {
-        gameStart();
         int bridgeSize = getBridgeSize();
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
         return bridge;
-    }
-
-    public void gameStart() {
-        inputService.printGameStart();
     }
 
     public int getBridgeSize() {
