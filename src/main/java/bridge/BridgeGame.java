@@ -31,19 +31,23 @@ public class BridgeGame {
 
 
     private boolean bridgeMainGame(List<String> bridgeList, boolean retryOrNot){
+        OutputView outputView = new OutputView();
+
         for (int order = 0; order <bridgeList.size(); order++) {
 
             String upDownUserInput = inputView.readMoving();
-            if (Compare(bridgeList,upDownUserInput, order)){
 
+            if (Compare(bridgeList,upDownUserInput, order)){
+                String ox = "O";
+                outputView.printMap(ox,order,upDownUserInput);
                 this.retryOrNot = true;
                 if (order == bridgeList.size()-1){
                     this.retryOrNot = false;
                 }
                 continue;
             }
-            System.out.println("X");
-            //출력
+            String ox = "X";
+            outputView.printMap(ox,order,upDownUserInput);
             this.retryOrNot = retry();
             break;
         }
