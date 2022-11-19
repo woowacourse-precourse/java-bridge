@@ -30,10 +30,10 @@ public class BridgeMaker {
     private void makeOneSpaceOfBridge(List<String> bridge) {
         int bridgeNumber =  bridgeNumberGenerator.generate();
         if (bridgeNumber == 0) {
-            bridge.add("U");
+            bridge.add("D");
         }
         if (bridgeNumber == 1) {
-            bridge.add("D");
+            bridge.add("U");
         }
     }
 }
