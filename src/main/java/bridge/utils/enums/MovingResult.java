@@ -6,11 +6,11 @@ public enum MovingResult {
 
     private final String result;
 
-    MovingResult(String result){
-        this.result=result;
+    MovingResult(String result) {
+        this.result = result;
     }
 
-    public String getValue(){
+    public String getValue() {
         return result;
     }
 }

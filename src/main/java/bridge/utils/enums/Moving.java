@@ -6,11 +6,11 @@ public enum Moving {
 
     private final String moving;
 
-    Moving(String moving){
-        this.moving=moving;
+    Moving(String moving) {
+        this.moving = moving;
     }
 
-    public String getValue(){
+    public String getValue() {
         return moving;
     }
 }

@@ -6,11 +6,11 @@ public enum GameCommand {
 
     private final String command;
 
-    GameCommand(String command){
+    GameCommand(String command) {
         this.command = command;
     }
 
-    public String getValue(){
+    public String getValue() {
         return command;
     }
 }

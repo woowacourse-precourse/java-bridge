@@ -45,7 +45,7 @@ public class OutputView {
         System.out.println(errorMessage);
     }
 
-    public void printStartMessage(){
+    public void printStartMessage() {
         System.out.println(PRINT_START);
     }
 }

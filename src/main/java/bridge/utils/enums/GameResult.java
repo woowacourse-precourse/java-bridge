@@ -6,11 +6,11 @@ public enum GameResult {
 
     private final String result;
 
-    GameResult(String result){
+    GameResult(String result) {
         this.result = result;
     }
 
-    public String getValue(){
+    public String getValue() {
         return result;
     }
 }
