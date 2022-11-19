@@ -2,14 +2,16 @@ package bridge.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import static bridge.support.ErrorMessage.INVALID_INPUT;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
 
-    public static final String READ_BRIDGE_SIZE = "다리 길이를 입력해주세요.";
-    public static final String READ_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    public static final String READ_GAME_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private static final String READ_BRIDGE_SIZE = "다리 길이를 입력해주세요.";
+    private static final String READ_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String READ_GAME_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -23,7 +25,7 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("올바른 입력이 아닙니다.", e);
+            throw new IllegalArgumentException(INVALID_INPUT, e);
         }
     }
 

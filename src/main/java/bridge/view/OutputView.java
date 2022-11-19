@@ -13,7 +13,17 @@ import java.util.List;
  */
 public class OutputView {
 
-    public static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.";
+    private static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.";
+    private static final String MAP_UNIT = "[%s]\n[%s]";
+    private static final String BRIDGE_UNIT_DELIMITER = "|";
+    private static final String SYMBOL = " %s ";
+    private static final String BLANK = "   ";
+    private static final String SUCCESS = "O";
+    private static final String FAIL = "X";
+    private static final String GAME_RESULT = "최종 게임 결과";
+    private static final String RESULT_WHETHER_SUCCESS = "게임 성공 여부: %s";
+    private static final String TOTAL_ATTEMPT = "총 시도한 횟수: %d";
+    private static final String ERROR_FORMAT = "[ERROR] %s";
 
     public void printStartMessage() {
         System.out.println(START_MESSAGE);
@@ -33,7 +43,7 @@ public class OutputView {
     private String getMap(BridgeGame bridgeGame) {
         String upSide = toPrintFormat(bridgeGame, BridgeUnit.UP);
         String downSide = toPrintFormat(bridgeGame, BridgeUnit.DOWN);
-        return String.format("[%s]\n[%s]", upSide, downSide);
+        return String.format(MAP_UNIT, upSide, downSide);
     }
 
     private String toPrintFormat(BridgeGame bridgeGame, BridgeUnit bridgeUnit) {
@@ -41,21 +51,21 @@ public class OutputView {
         bridgeGame.getGameMap().stream()
                 .map(mapUnit -> getFormat(mapUnit, bridgeUnit))
                 .forEach(results::add);
-        return String.join("|", results);
+        return String.join(BRIDGE_UNIT_DELIMITER, results);
     }
 
     private String getFormat(MapUnit unit, BridgeUnit bridgeUnit) {
         if (bridgeUnit.equals(unit.getBridgeUnit())) {
-            return String.format(" %s ", getSign(unit.isSuccess()));
+            return String.format(SYMBOL, getSymbol(unit.isSuccess()));
         }
-        return "   ";
+        return BLANK;
     }
 
-    private String getSign(boolean success) {
+    private String getSymbol(boolean success) {
         if (success) {
-            return "O";
+            return SUCCESS;
         }
-        return "X";
+        return FAIL;
     }
 
     /**
@@ -64,13 +74,13 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(BridgeGame bridgeGame, GameStatus status) {
-        System.out.println("최종 게임 결과");
+        System.out.println(GAME_RESULT);
         printMap(bridgeGame);
-        System.out.println(String.format("게임 성공 여부: %s", status.getStatus()));
-        System.out.println(String.format("총 시도한 횟수: %d", bridgeGame.getAttempt()));
+        System.out.println(String.format(RESULT_WHETHER_SUCCESS, status.getStatus()));
+        System.out.println(String.format(TOTAL_ATTEMPT, bridgeGame.getAttempt()));
     }
 
     public void printError(String errorMessage) {
-        System.out.println(String.format("[ERROR] %s", errorMessage));
+        System.out.println(String.format(ERROR_FORMAT, errorMessage));
     }
 }
