@@ -45,4 +45,24 @@ public class GameController {
 		return result;
 	}
 
+	private String play(Bridge bridge, BridgeGame bridgeGame, MapRenderer mapRenderer) {
+		String result = "";
+		for (int index = 0; index < bridge.getBridgeSize(); index++) {
+			String moving = inputView.readMoving();
+			boolean isSafe = bridgeGame.move(bridge.getBridge().subList(0, index + 1), moving);
+			String map = mapRenderer.render(bridge.getBridge().subList(0, index + 1), isSafe);
+			outputView.printMap(map);
+			if (bridge.isCorrectMoving(index, moving)) {
+				if (index == bridge.getBridgeSize() - 1) {
+					return map;
+				}
+				continue;
+			}
+			result = map;
+			break;
+		}
+		return result;
+	}
+
+
 }
