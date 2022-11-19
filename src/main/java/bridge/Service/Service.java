@@ -24,14 +24,7 @@ public class Service {
 
     // 게임 초기화 기능
     public void initGame() {
-        do {
-            try {
-                createBridge();
-                break;
-            } catch (IllegalArgumentException error) {
-                outputView.printErrorMessage(error);
-            }
-        } while (true);
+        createBridge();
     }
 
     // 다리 만드는 기능
@@ -74,5 +67,10 @@ public class Service {
             return true;
         }
         return false;
+    }
+
+    // 에러메세지 출력 기능
+    public void catchError(IllegalArgumentException error) {
+        outputView.printErrorMessage(error);
     }
 }
