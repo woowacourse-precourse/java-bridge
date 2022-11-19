@@ -14,3 +14,8 @@
 - OutputView Class
 1. 맵을 출력하는 기능
 2. 게임 결과를 출력하는 기능
+
+- GameHost Class
+1. 해당 Index 의 다리 위치를 추출하는 기능
+2. Player 의 생사유무를 반환하는 기능
+3. 현재 Player 의 Index 를 반환하는 기능
