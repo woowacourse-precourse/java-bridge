@@ -2,12 +2,12 @@ package bridge.domain;
 
 import java.util.List;
 
-public class GameResult {
+public class BridgeResult {
 
     private List<String> upSpace;
     private List<String> downSpace;
 
-    public GameResult(List<String> upSpace, List<String> downSpace){
+    public BridgeResult(List<String> upSpace, List<String> downSpace){
         this.upSpace = upSpace;
         this.downSpace =downSpace;
     }

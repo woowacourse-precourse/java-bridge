@@ -1,7 +1,7 @@
 package bridge.controller;
 
 import bridge.domain.Bridge;
-import bridge.domain.GameResult;
+import bridge.domain.BridgeResult;
 import bridge.service.BridgeGameService;
 import bridge.service.GameResultService;
 import bridge.view.InputView;
@@ -11,7 +11,7 @@ import bridge.view.OutputView;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private  int count;
+    private int count;
     private int tryCount;
 
     public void runGame() {
@@ -23,48 +23,43 @@ public class BridgeGame {
     }
 
     private void startGame(Bridge bridge) {
-        GameResult gameResult = GameResultService.initGameResult();
+        BridgeResult bridgeResult = GameResultService.initGameResult();
         count = BridgeGameService.initCount();
-        move(bridge, gameResult);
+        move(bridge, bridgeResult);
 
-        if(count == bridge.getBridgeLength()){
+        if(count==bridge.getBridgeLength()){
             return;
         }
         retry(bridge);
     }
 
-    public void move(Bridge bridge, GameResult gameResult) {
+    public void move(Bridge bridge, BridgeResult bridgeResult) {
         while (count < bridge.getBridgeLength()) {
-            if(canCross(bridge,count,gameResult)){
-                return;
+            if(canCross(bridge,count, bridgeResult)){
+                count ++ ;
+                continue;
             }
-            count ++;
+            return;
         }
     }
 
-    private boolean canCross(Bridge bridge, int count,GameResult gameResult) {
+    private boolean canCross(Bridge bridge, int count, BridgeResult bridgeResult) {
         String userMoving = InputView.readMoving();
-        String d = bridge.judgeMoving(userMoving,count);
-        gameResult.recordResult(d,userMoving);
+        String movingResult = bridge.judgeMoving(userMoving,count);
+        bridgeResult.recordResult(movingResult,userMoving);
 
-        if(d.equals("X")){
-            return false;
-        }
-        return true;
-    }
-
-    public void retry(Bridge bridge) {
-        String retryInput = InputView.readRetry();
-        if(judgeRetry(retryInput)){
-            tryCount += 1;
-            startGame(bridge);
-        }
-    }
-
-    private boolean judgeRetry(String retryInput) {
-        if(retryInput.equals("R")){
+        if(movingResult.equals("O")){
             return true;
         }
         return false;
     }
+
+    public void retry(Bridge bridge) {
+        String retryInput = InputView.readRetry();
+        if(retryInput.equals("R")){
+            tryCount ++ ;
+            startGame(bridge);
+        }
+    }
+
 }

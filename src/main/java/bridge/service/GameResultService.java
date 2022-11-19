@@ -1,12 +1,12 @@
 package bridge.service;
 
-import bridge.domain.GameResult;
+import bridge.domain.BridgeResult;
 
 import java.util.ArrayList;
 
 public class GameResultService {
 
-    public static GameResult initGameResult() {
-        return new GameResult(new ArrayList<>(), new ArrayList<>());
+    public static BridgeResult initGameResult() {
+        return new BridgeResult(new ArrayList<>(), new ArrayList<>());
     }
 }
