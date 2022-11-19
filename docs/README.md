@@ -75,7 +75,7 @@
 - 메소드 추가 가능 여부: X
 
 
-- size만큼 Bridge 생성 makeBridge(int size)
+- [x] size만큼 Bridge 생성 makeBridge(int size)
 
 <br/>
 
