@@ -1,5 +1,6 @@
 package bridge.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -13,9 +14,9 @@ public class Bridge {
 
     public void validatePlayerStatus(Player player) {
         List<String> directions = player.getDirections();
-        if (directions.size() >= bridge.size()) {
+        if (directions.size() > bridge.size()) {
             throw new IllegalStateException(
-                    String.format("더 이상 진행할 다리가 없습니다. 다리 길이 : %d / 현재 위치 : %d", bridge.size(),
+                    String.format("선택한 방향의 개수가 존재하는 다리를 초과했습니다. 다리 길이 : %d / 현재 위치 : %d", bridge.size(),
                             directions.size()));
         }
         if (hasMisMatchDirection(directions)) {
@@ -41,6 +42,10 @@ public class Bridge {
     private boolean isSameDirections(List<String> directions) {
         return IntStream.range(0, directions.size())
                 .allMatch(i -> directions.get(i).equals(bridge.get(i)));
+    }
+
+    public List<String> getBridge() {
+        return new ArrayList<>(bridge);
     }
 
 }
