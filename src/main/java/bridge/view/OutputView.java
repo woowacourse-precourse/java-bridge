@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 // 패키지 변경 가능
 // 메서드의 이름 변경 불가
