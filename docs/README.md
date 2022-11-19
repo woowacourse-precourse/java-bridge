@@ -37,6 +37,7 @@
     - 사용자 입력이 잘못된 경우 IllegalArgumentException을 발생 후 다시 입력 받는다. ✅
     - 함수(메서드) 길이 10이하 ✅
     - 메서드 파라미터 최대 3개 ✅
+    - BridgeGame에서 outputview, inputview 사용 금지
     - BridgeMaker
         -BridgeMaker의 필드(인스턴스 변수)를 변경 불가
         -메서드의 시그니처(인자, 이름)와 반환 타입은 변경 불가
