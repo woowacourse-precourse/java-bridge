@@ -37,4 +37,15 @@ public class BridgeGame {
 
         throw new IllegalArgumentException();
     }
+
+    public boolean judgeSuccessFailure(List<String> bridge, List<String> path){
+        if(bridge.size() != path.size())
+            return false;
+
+        for( int i = 0 ; i < bridge.size() ;i++)
+            if( !bridge.get(i).equals( path.get(i) ) )
+                return false;
+
+        return true;
+    }
 }
