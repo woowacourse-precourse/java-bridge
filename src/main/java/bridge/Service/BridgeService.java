@@ -5,6 +5,7 @@ import bridge.game.BridgeMaker;
 import bridge.game.BridgeRandomNumberGenerator;
 import bridge.io.InputView;
 import bridge.io.OutputView;
+import bridge.validator.RetryType;
 
 import java.util.List;
 
@@ -35,6 +36,7 @@ public class BridgeService {
         boolean success = playBridgeGame();
 
         if (!success && checkRestart()) {
+            bridgeGame.retry();
             playService();
         }
     }
@@ -65,7 +67,7 @@ public class BridgeService {
 
     private boolean checkRestart() {
         String gameCommand = inputView.readGameCommand();
-        return bridgeGame.retry(gameCommand);
+        return gameCommand.equals(RetryType.RETRY.getValue());
     }
 
     private void printResult() {
