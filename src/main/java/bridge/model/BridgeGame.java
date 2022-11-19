@@ -10,7 +10,7 @@ public class BridgeGame {
     public BridgeGame(Bridge bridge, PassingSpace passingSpace) {
         this.bridge = bridge;
         this.passingSpace = passingSpace;
-        numberOfTry = 0;
+        numberOfTry = 1;
         reset();
     }
 
@@ -48,7 +48,7 @@ public class BridgeGame {
     }
 
     public boolean isSuccessCrossingBridge() {
-        return bridge.size() == position;
+        return bridge.size() == position && isRightSpace;
     }
 
     public int getNumberOfTry() {
