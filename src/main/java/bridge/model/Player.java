@@ -1,5 +1,7 @@
 package bridge.model;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Stack;
 
 public class Player {
@@ -15,11 +17,19 @@ public class Player {
         return currentBridgeBlock();
     }
 
+    public boolean isCrossComplete(Bridge bridge) {
+        return getPosition() == bridge.getBridgeSize();
+    }
+
     public int getPosition() {
         return history.size();
     }
 
     public BridgeBlock currentBridgeBlock() {
         return history.peek();
+    }
+
+    public List<BridgeBlock> getHistory() {
+        return Collections.unmodifiableList(history);
     }
 }
