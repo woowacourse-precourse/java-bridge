@@ -5,20 +5,16 @@ import java.util.List;
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
-public class BridgeGame {
+public class BridgeGame extends BridgeGameInit{
 
-    private final InputView inputView;
-    private final OutputView outputView;
 
-    public BridgeGame(InputView inputView, OutputView outputView) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public BridgeGame() {
+        super();
     }
 
-
-    public String play(List<String> ladder) {
-        for (int i=0; i < ladder.size(); i++) {
-            String gameResult = move(ladder,i);
+    public String play() {
+        for (int i=0; i < bridge.size(); i++) {
+            String gameResult = move(bridge,i);
             if (gameResult == "Q") {
                 return "F"; //실패
             } else if (gameResult == "R") {
