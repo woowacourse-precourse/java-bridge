@@ -27,6 +27,11 @@ public class BridgeGame {
         return passingSpace.draw();
     }
 
+    public boolean isRightSpace(int position, String selectedSpace) {
+        Movable movable = bridge.compareSpace(position, selectedSpace);
+        return movable.isMovable();
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
