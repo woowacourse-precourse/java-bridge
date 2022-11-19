@@ -20,8 +20,19 @@ class OutputViewTest extends NsTest {
         assertThat(output()).contains(
                 "[ O ]"
         );
+    }
 
+    @Test
+    void 맵_생성_테스트_두번째(){
+        this.ox = "O";
+        this.order = 0;
+        run();
 
+        this.order++;
+        run();
+        assertThat(output()).contains(
+                "[ O | O ]"
+        );
     }
 
 

@@ -17,13 +17,14 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(String ox, int order) {
-        if(order >0){
-            map.add(map.size()-2,CONTOUR);
+        String addOxContour = CONTOUR + ox;
+        if(order == 0){
+            addOxContour = ox;
         }
-        map.add(map.size()-1,ox);
+
+        map.add(map.size()-1,addOxContour);
 
         String str = String.join("",map);
-
 
         System.out.println(str);
     }
