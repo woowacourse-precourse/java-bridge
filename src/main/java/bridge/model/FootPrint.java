@@ -5,7 +5,8 @@ import java.util.List;
 public enum FootPrint {
 	Blank("   |"),
 	RIGHT(" O |"),
-	WRONG(" X |");
+	WRONG(" X |"),
+	;
 
 	private final String footPrint;
 

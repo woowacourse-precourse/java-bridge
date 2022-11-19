@@ -13,8 +13,8 @@ public class Map {
 	}
 
 	public void drawMap(List<String> footPrints) {
-		downstairs.append(footPrints.get(0));
-		upstairs.append(footPrints.get(1));
+		downstairs.append(footPrints.get(Stairs.DOWN.getNumber()));
+		upstairs.append(footPrints.get(Stairs.UP.getNumber()));
 	}
 
 	public void resetMap() {
@@ -23,12 +23,10 @@ public class Map {
 	}
 
 	public String getDownstairs() {
-		String value = downstairs.toString();
-		return value.substring(0, value.length() - 1);
+		return downstairs.substring(0, downstairs.length() - 1);
 	}
 
 	public String getUpstairs() {
-		String value = upstairs.toString();
 		return upstairs.substring(0, upstairs.length() - 1);
 	}
 

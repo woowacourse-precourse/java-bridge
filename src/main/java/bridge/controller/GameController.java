@@ -27,7 +27,6 @@ public class GameController {
 		List<String> bridges = bridgeGame.setUpGame(InputController.getBridgeSize());
 		playRound(bridges);
 		outputView.printResult(map, gameResult);
-
 	}
 
 	private void playRound(List<String> bridges) {
@@ -55,6 +54,5 @@ public class GameController {
 			playRound(bridges);
 		}
 	}
-
 }
 
