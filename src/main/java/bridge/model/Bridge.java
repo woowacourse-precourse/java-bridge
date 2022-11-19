@@ -16,4 +16,8 @@ public class Bridge {
         }
         return Movable.X;
     }
+
+    public int size() {
+        return bridge.size();
+    }
 }
