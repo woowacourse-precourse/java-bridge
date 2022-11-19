@@ -46,8 +46,8 @@ public class OutputView {
         String[] bridgeMap = bridge.getBridgeMap();
         StringBuilder topRow = createSingleLineMap(bridge, bridgeMap, Setting.MOVE_UP_KEY);
         StringBuilder bottomRow = createSingleLineMap(bridge, bridgeMap, Setting.MOVE_DOWN_KEY);
-        System.out.println(topRow.toString());
-        System.out.println(bottomRow.toString()+"\n");
+        System.out.println(topRow);
+        System.out.println(bottomRow+"\n");
     }
 
     // Bridge 맵 한줄 생성 기능
@@ -83,5 +83,10 @@ public class OutputView {
     // 공백 출력 기능
     public void printEmpty() {
         System.out.println();
+    }
+
+    // 총 시도한 횟수 출력 기능
+    public void printNumberOfAttempts(Bridge bridge) {
+        System.out.println("총 시도한 횟수: " + bridge.getNumberOfAttempts());
     }
 }
