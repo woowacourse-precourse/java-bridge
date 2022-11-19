@@ -34,6 +34,7 @@ public class OutputView {
     public void printResult(UserStatus userStatus) {
         print(OutputMessage.GAME_RESULT);
         printMap(userStatus);
+        print(userStatus.getStatusMessage());
     }
 
     private String makeMap(UserStatus userStatus, String directionToDraw) {

@@ -10,6 +10,8 @@ public class UserStatus {
     private static final String ON_SUCCESS = " O ";
     private static final String ON_FAILED = " X ";
     private static final String ON_NOTHING = "   ";
+    private static final String STATUS_SUCCESS = "게임 성공 여부: 성공";
+    private static final String STATUS_FAILED = "게임 성공 여부: 실패";
 
     public UserStatus(List<String> directions, int position, boolean available) {
         this.directions = directions;
@@ -41,6 +43,14 @@ public class UserStatus {
 
     public void lose() {
         this.available = false;
+    }
+
+    public String getStatusMessage() {
+        if (isAvailable()) {
+            return STATUS_SUCCESS;
+        }
+
+        return STATUS_FAILED;
     }
 
     public void tryAgain() {
