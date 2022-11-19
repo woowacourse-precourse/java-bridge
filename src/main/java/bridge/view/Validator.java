@@ -1,8 +1,7 @@
-package bridge;
+package bridge.view;
 
 import bridge.messages.ErrorMessage;
 import bridge.messages.Message;
-import bridge.view.InputView;
 
 public class Validator {
     private static final InputView inputView = new InputView();
