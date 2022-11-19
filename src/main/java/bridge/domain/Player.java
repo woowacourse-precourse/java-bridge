@@ -7,7 +7,7 @@ public class Player {
     private int position;
     private List<String> gameHistory = new ArrayList<>();
     private String lastChoice;
-    private boolean checkAnswer;
+    private boolean result;
 
     public Player() {
         initialize();
@@ -28,6 +28,6 @@ public class Player {
 
     public void saveLastChoice(String lastChoice, boolean result) {
         this.lastChoice = lastChoice;
-        this.checkAnswer = result;
+        this.result = result;
     }
 }
