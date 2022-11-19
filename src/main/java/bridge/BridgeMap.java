@@ -32,7 +32,14 @@ public class BridgeMap {
 
     private void moveDown() {
         upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.DIVISION);
-        upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.ALLOW_MOVE);
+        upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.BLANK);
+        downStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.DIVISION);
+        downStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.ALLOW_MOVE);
+    }
+
+    private void failMoveUp() {
+        upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.DIVISION);
+        upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.REFUSE_MOVE);
         downStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.DIVISION);
         downStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.BLANK);
     }
