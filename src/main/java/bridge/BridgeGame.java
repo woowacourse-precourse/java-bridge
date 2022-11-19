@@ -22,7 +22,6 @@ public class BridgeGame {
         lowerBridge = new ArrayList<>();
     }
 
-
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -31,9 +30,13 @@ public class BridgeGame {
     public void move(List<String> rightBridgeWay, String inputMoveValue) {
         String answer = rightBridgeWay.get(bridgeIndex);
 
+        makeProgressBridge(answer,inputMoveValue);
+        bridgeIndex++;
+    }
+
+    public void makeProgressBridge(String answer, String inputMoveValue) {
         makeUpperBridge(answer, inputMoveValue);
         makeLowerBridge(answer, inputMoveValue);
-        bridgeIndex++;
     }
 
     public List<String> makeUpperBridge(String answer, String inputMoveValue) {
@@ -56,7 +59,6 @@ public class BridgeGame {
         return lowerBridge;
     }
 
-
     public String compareValue(String answer, String movingValue) {
         if (answer.equals(movingValue)) {
             return "O";
@@ -75,6 +77,7 @@ public class BridgeGame {
             upperBridge = new ArrayList<>();
             lowerBridge = new ArrayList<>();
             attempt++;
+
             return true;
         }
         return false;

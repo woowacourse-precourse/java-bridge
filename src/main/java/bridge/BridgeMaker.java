@@ -21,21 +21,20 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> rightBridgeWay = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            int inputNumber = bridgeNumberGenerator.generate();
-            rightBridgeWay.add(changeNumber(inputNumber));
+            int randomNumber = bridgeNumberGenerator.generate();
+            rightBridgeWay.add(changeNumber(randomNumber));
         }
         return rightBridgeWay;
     }
 
-    public String changeNumber(int randomValue) {
+    public String changeNumber(int randomNumber) {
         String rightWay = "";
-        if (randomValue == 0) {
+        if (randomNumber == 0) {
             rightWay = "D";
         }
-        if (randomValue == 1) {
+        if (randomNumber == 1) {
             rightWay = "U";
         }
         return rightWay;
     }
-
 }
