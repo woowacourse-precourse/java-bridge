@@ -20,9 +20,10 @@ public class InputException extends IllegalArgumentException {
         if (commend.length() != ONE_WORD) {
             throw new IllegalArgumentException(NOT_LENGTH.getMessage());
         }
-        if (!commend.equals(MOVE_LOWER.getCommend()) || !commend.equals(MOVE_UPPER.getCommend())) {
-            throw new IllegalArgumentException(NOT_MOVE_COMMEND.getMessage());
+        if (commend.equals(MOVE_LOWER.getCommend()) || commend.equals(MOVE_UPPER.getCommend())) {
+            return;
         }
+        throw new IllegalArgumentException(NOT_MOVE_COMMEND.getMessage());
     }
 
     private void notDigit(String readLine) {

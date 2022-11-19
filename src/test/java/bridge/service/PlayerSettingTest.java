@@ -22,7 +22,7 @@ public class PlayerSettingTest {
         @ParameterizedTest
         @MethodSource("data")
         void test(String readBridgeSize, int validate) {
-            playerSetting.setBridgeSizeToPlayer(readBridgeSize);
+            PlayerSetting.setBridgeSizeToPlayer(readBridgeSize);
             int playerBridgeSize = playerSetting.getPlayerBridgeSize();
             Assertions.assertThat(playerBridgeSize).isEqualTo(validate);
         }
@@ -44,7 +44,7 @@ public class PlayerSettingTest {
                 "ab", ".!"
         })
         void test(String readBridgeSize) {
-            Assertions.assertThatThrownBy(() -> playerSetting.setBridgeSizeToPlayer(readBridgeSize))
+            Assertions.assertThatThrownBy(() -> PlayerSetting.setBridgeSizeToPlayer(readBridgeSize))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
@@ -57,7 +57,7 @@ public class PlayerSettingTest {
                 "-9", "-1", "0", "2", "21", "99"
         })
         void test(String readBridgeSize) {
-            Assertions.assertThatThrownBy(() -> playerSetting.setBridgeSizeToPlayer(readBridgeSize))
+            Assertions.assertThatThrownBy(() -> PlayerSetting.setBridgeSizeToPlayer(readBridgeSize))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
@@ -70,7 +70,7 @@ public class PlayerSettingTest {
                 "-10","100","1000"
         })
         void test(String readBridgeSize) {
-            Assertions.assertThatThrownBy(() -> playerSetting.setBridgeSizeToPlayer(readBridgeSize))
+            Assertions.assertThatThrownBy(() -> PlayerSetting.setBridgeSizeToPlayer(readBridgeSize))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
