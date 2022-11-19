@@ -1,6 +1,8 @@
-package bridge;
+package bridge.domain;
 
 public enum BridgeMap {
+    START("["),
+    END("]"),
     CORRECT(" O |"),
     INCORRECT(" X ]"),
     BLANK("   |");

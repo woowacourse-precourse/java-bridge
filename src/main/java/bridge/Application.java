@@ -1,9 +1,8 @@
 package bridge;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.BridgeGame.*;
+import static bridge.service.BridgeGame.*;
 
 public class Application {
 

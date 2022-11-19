@@ -6,6 +6,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import bridge.service.BridgeGame;
+import bridge.view.OutputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
 
 import java.util.ArrayList;

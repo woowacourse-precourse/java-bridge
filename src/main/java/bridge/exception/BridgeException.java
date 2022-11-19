@@ -1,4 +1,6 @@
-package bridge;
+package bridge.exception;
+
+import static bridge.domain.BridgeCommand.*;
 
 public class BridgeException {
 
@@ -17,7 +19,7 @@ public class BridgeException {
         if (input.length() != 1) {
             throw new IllegalArgumentException("[ERROR] U, D 중에서 하나의 문자를 입력하시오.");
         }
-        if (input.charAt(0) != 'U' && input.charAt(0) != 'D') {
+        if (!input.equals(UP.getElement()) && !input.equals(DOWN.getElement())) {
             throw new IllegalArgumentException("[ERROR] U, D 중에서 하나의 문자를 입력하시오.");
         }
         return input;
@@ -27,7 +29,7 @@ public class BridgeException {
         if (input.length() != 1) {
             throw new IllegalArgumentException("[ERROR] R, Q 중에서 하나의 문자를 입력하시오.");
         }
-        if (input.charAt(0) != 'R' && input.charAt(0) != 'Q') {
+        if (!input.equals(RETRY.getElement()) && !input.equals(QUIT.getElement())) {
             throw new IllegalArgumentException("[ERROR] R, Q 중에서 하나의 문자를 입력하시오.");
         }
         return input;
