@@ -42,9 +42,8 @@ public class BridgeGame {
     public boolean retry() {
         Command command = InputView.readGameCommand();
         if (command.isRetry()) {
-            movement.clearMoving();
-            bridgeMap.clearMap();
             tryCount++;
+            clearGame();
             return true;
         }
         return false;
@@ -56,5 +55,9 @@ public class BridgeGame {
             mark = Constant.WRONG_MARK;
         }
         bridgeMap.addMap(moving, mark);
+    private void clearGame() {
+        movement.clearMoving();
+        bridgeMap.clearMap();
+    }
     }
 }
