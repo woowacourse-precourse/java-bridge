@@ -13,15 +13,17 @@ public class BridgeGame extends BridgeGameInit{
     }
 
     public String play() {
+        System.out.println("bridge = " + bridge);
         for (int i=0; i < bridge.size(); i++) {
-            String gameResult = move(bridge,i);
-            if (gameResult == "Q") {
+            String gameResult = move(i);
+            if (gameResult.equals("Q")) {
                 return "F"; //실패
-            } else if (gameResult == "R") {
+            } else if (gameResult.equals("R")) {
+                initViews();
                 return "R"; //재시작
             }
         }
-        return "S"; //성공
+        return "S";
     }
 
 
@@ -31,9 +33,9 @@ public class BridgeGame extends BridgeGameInit{
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String move(List<String> ladder, int i) {
+    public String move(int i) {
         String moveDir = inputView.readMoving();
-        if (!moveDir.equals(ladder.get(i))) {
+        if (!moveDir.equals(bridge.get(i))) {
             outputView.printMap(moveDir+"X");
             return inputView.readGameCommand();
         }

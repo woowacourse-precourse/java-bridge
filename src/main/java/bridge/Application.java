@@ -12,7 +12,7 @@ public class Application{
         while (true){
             tryCount += 1;
             String gameResult = bridgeGame.play();
-            if (gameResult != "R") {
+            if (!gameResult.equals("R")) {
                 break;
             }
         }
