@@ -29,7 +29,7 @@ public class BridgeController {
             } catch (IllegalArgumentException ex) {
                 OutputView.printError(ex.getMessage());
             }
-        } while(length == null);
+        } while (length == null);
 
         int size = length.getLength();
         List<String> bridgeNumbers = bridgeMaker.makeBridge(size);
@@ -48,7 +48,7 @@ public class BridgeController {
         Result result = null;
 
         game:
-        while(true) {
+        while (true) {
             pos = -1;
             do {
                 pos++;
@@ -64,14 +64,12 @@ public class BridgeController {
                     } catch (IllegalArgumentException ex) {
                         OutputView.printError(ex.getMessage());
                     }
-                } while(direction == null);
-
+                } while (direction == null);
 
                 Position position = new Position(pos, direction);
                 bridgeGame.move(position, passingPositions);
                 result = passingPositions.makeResultsGroup();
             } while (!OutputView.printMap(result));
-
 
             if (isQuit) {
                 break;
@@ -87,7 +85,7 @@ public class BridgeController {
                 } catch (IllegalArgumentException ex) {
                     OutputView.printError(ex.getMessage());
                 }
-            } while(gameCommand == null);
+            } while (gameCommand == null);
 
             bridgeGame.retry(passingPositions);
             attempt++;
