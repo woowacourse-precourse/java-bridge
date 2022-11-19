@@ -22,21 +22,25 @@ class BridgeGameTest extends NsTest {
     }
 
     @Test
-    void 브릿지_리스트와_유저_인풋에_따른_게임_진행확인_맞췄을때(){
+    void 브릿지_리스트와_유저_인풋에_따른_게임_진행확인_맞췄을때() {
 
         run("D", "U", "U");
         assertThat(output()).contains(
-                "D","U","U"
+                "이동할 칸을 선택해주세요. (위: U, 아래: D)",
+                "[   ]\n[ O ]",
+                "[   | O ]\n[ O |   ]",
+                "[   | O | O ]\n[ O |   |   ]"
+
         );
 
     }
 
     @Test
-    void 브릿지_리스트와_유저_인풋에_따른_게임_진행확인_틀렸을때(){
+    void 브릿지_리스트와_유저_인풋에_따른_게임_진행확인_틀렸을때() {
 
         run("D", "D", "R", "D", "U", "U");
         assertThat(output()).contains(
-                "D","X","R","D", "U", "U"
+                "D", "X", "R", "D", "U", "U"
         );/**
          contain말고 다른 걸로 테스트하자
          */
