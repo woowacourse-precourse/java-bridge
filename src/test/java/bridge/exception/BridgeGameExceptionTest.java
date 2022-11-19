@@ -40,4 +40,15 @@ public class BridgeGameExceptionTest {
         assertThatThrownBy(() -> bridgeGameException.validateDirection(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("게임 재시작 혹은 종료 문자가 적절한지 확인하는 예외 테스트")
+    public void validateGameStatusCommandTest() {
+        // given
+        String input = "N";
+
+        // when, then
+        assertThatThrownBy(() -> bridgeGameException.validateGameStatusCommand(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
