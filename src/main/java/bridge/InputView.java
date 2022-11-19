@@ -38,7 +38,7 @@ public class InputView {
             throw new IllegalArgumentException(ERROR_PREFIX + BRIDGE_ERROR);
         }
         int convertedBridgeSize = Integer.parseInt(bridgeSize);
-        if(convertedBridgeSize < 3 || convertedBridgeSize > 20){
+        if(convertedBridgeSize < SMALLEST_BRIDGE || convertedBridgeSize > BIGGEST_BRIDGE){
             System.out.println(ERROR_PREFIX + BRIDGE_ERROR);
             throw new IllegalArgumentException(ERROR_PREFIX + BRIDGE_ERROR);
 
