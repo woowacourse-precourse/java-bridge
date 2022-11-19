@@ -26,4 +26,12 @@ class BridgeGameTest {
         Boolean actual = bridgeGame.move(0, moving);
         assertThat(actual).isEqualTo(expected);
     }
+
+    @DisplayName("이동할 다리가 남았다면 true, 없으면 false 확인")
+    @CsvSource(value = {"0, true", "1, true", "2, true", "3, false"})
+    @ParameterizedTest
+    void hasBridgeToMove(int moveCount, boolean expected) {
+        boolean actual = bridgeGame.hasBridgeToMove(moveCount);
+        assertThat(actual).isEqualTo(expected);
+    }
 }
