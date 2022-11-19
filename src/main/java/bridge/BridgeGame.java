@@ -33,6 +33,9 @@ public class BridgeGame {
         currentBridge.changeStatus(bridge);
     }
 
+    public String returnMap(){
+        return currentBridge.toString();
+    }
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
