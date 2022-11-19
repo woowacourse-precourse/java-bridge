@@ -23,7 +23,7 @@ public class GameService {
 
 	public List<String> makeBridge(Integer bridgeSize) {
 		List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-		bridgeRepository.initBridge(bridge, bridgeSize);
+		bridgeRepository.initBridge(bridge);
 		return bridge;
 	}
 
@@ -32,7 +32,7 @@ public class GameService {
 	}
 
 	public void saveUserSpace(boolean isCorrectMoving, String userLocation) {
-		if (isCorrectMoving == true) {
+		if (isCorrectMoving) {
 			userBridgeRepository.saveUserSpace(userLocation, OutputViewConst.USER_CORRECT_SPACE);
 			return;
 		}

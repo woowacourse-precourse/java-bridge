@@ -49,7 +49,7 @@ public class BridgeGame {
 		Integer currentLocation = 0;
 		do {
 			String userLocation = inputController.getUserMoving();
-			if (gameService.checkValidSpace(userLocation, currentLocation) == false) {
+			if (!gameService.checkValidSpace(userLocation, currentLocation)) {
 				gameService.saveUserSpace(false, userLocation);
 				outputView.printMap(gameService.getUserBridgeStatusDto());
 				return OutputViewConst.FAIL;
@@ -57,7 +57,7 @@ public class BridgeGame {
 			gameService.saveUserSpace(true, userLocation);
 			currentLocation++;
 			outputView.printMap(gameService.getUserBridgeStatusDto());
-		} while (currentLocation != bridgeSize);
+		} while (!currentLocation.equals(bridgeSize));
 		return OutputViewConst.SUCCESS;
 	}
 

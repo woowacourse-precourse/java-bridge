@@ -10,7 +10,7 @@ public class UserBridgeRepository {
 
 	private List<String> userUpperBridge;
 	private List<String> userLowerBridge;
-	private Integer userCurrentLocation; // 이거 integer 로 받아도 크기 충분한지 체크해야함
+	private Integer userCurrentLocation;
 
 	public UserBridgeRepository() {
 		this.userUpperBridge = new ArrayList<>();
