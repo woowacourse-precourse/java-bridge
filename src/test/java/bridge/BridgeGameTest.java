@@ -28,10 +28,10 @@ class BridgeGameTest {
     @Test
     @DisplayName("게임 초기화 시 현재 위치가 되는지 확인하는 테스트")
     void initGameCurStepTest() {
-        bridgeGame.initGame(new ArrayList<>());
+        bridgeGame.initGame(List.of("U", "D"));
         int firstStep = 0;
 
-        Assertions.assertThat(bridgeGame.getCurStep()).isEqualTo(firstStep);
+        Assertions.assertThat(bridgeGame.getUserMoving().size()).isEqualTo(firstStep);
     }
 
     @Test

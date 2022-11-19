@@ -34,7 +34,7 @@ public class BridgeService {
             fail = playOneTurn();
         } while (!isGameEnd(fail));
 
-        outputView.printResult(bridgeGame.getBridge(), bridgeGame.getCurStep(), fail);
+        outputView.printResult();
     }
 
     private boolean playOneTurn() {
@@ -42,7 +42,7 @@ public class BridgeService {
 
         String moving = inputView.readMoving();
         fail = !bridgeGame.move(moving);
-        outputView.printMap(bridgeGame.getBridge(), bridgeGame.getCurStep(), fail);
+        outputView.printMap(bridgeGame.getBridge(), bridgeGame.getUserMoving(), fail);
 
         return fail;
     }
