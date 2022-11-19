@@ -1,5 +1,7 @@
 package bridge.inputView;
 
+import bridge.common.ErrorMessage;
+import bridge.inputView.exception.IllegalReadBridgeSizeException;
 import bridge.inputView.exception.IllegalReadGameCommandException;
 import bridge.inputView.exception.IllegalReadMovingException;
 import camp.nextstep.edu.missionutils.Console;
@@ -13,13 +15,23 @@ import java.util.function.Supplier;
 public class InputView {
 
     private static final int SIZE = 1;
+    private static final int BRIDGE_MIN_SIZE = 3;
+    private static final int BRIDGE_MAX_SIZE = 20;
 
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        try {
+            final int command = Integer.parseInt(readLine());
+            validateElseThrow(BRIDGE_MIN_SIZE <= command && command <= BRIDGE_MAX_SIZE,
+                    IllegalReadBridgeSizeException::new);
+            return command;
+        } catch (NumberFormatException | IllegalReadBridgeSizeException e) {
+            System.out.println(ErrorMessage.ILLEGAL_READ_BRIDGE_SIZE.getTagMessage());
+            return readBridgeSize();
+        }
     }
 
     /**
@@ -68,10 +80,8 @@ public class InputView {
         throw exception.get();
     }
 
-
-    protected String readLine() {
+    private String readLine() {
         return Console.readLine();
     }
-
 
 }
