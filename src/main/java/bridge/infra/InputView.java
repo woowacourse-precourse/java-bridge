@@ -3,6 +3,7 @@ package bridge.infra;
 import bridge.constant.Message;
 import bridge.domain.Input;
 import bridge.domain.command.BridgeMoveCommand;
+import bridge.domain.command.ReTryCommand;
 import bridge.domain.command.SetBridgeSizeCommand;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -42,8 +43,15 @@ public class InputView implements Input {
   /**
    * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
    */
-  public String readGameCommand() {
-    return null;
+  @Override
+  public ReTryCommand readGameCommand() {
+    printGuideMessage(Message.REQUEST_INPUT_RETRY_SIGNAL);
+    try {
+      return new ReTryCommand(getInput());
+    } catch (IllegalArgumentException e) {
+      System.out.println("[ERROR]" + e.getMessage());
+      return readGameCommand();
+    }
   }
 
 
