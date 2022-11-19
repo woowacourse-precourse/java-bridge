@@ -10,6 +10,7 @@ public class BridgeGame {
     private final BridgeMaker bridgeMaker;
     private Movement movement;
     private final BridgeMap bridgeMap = new BridgeMap();
+    private int tryCount = Constant.INITIAL_COUNT;
 
     public BridgeGame(BridgeMaker bridgeMaker) {
         this.bridgeMaker = bridgeMaker;
@@ -17,7 +18,8 @@ public class BridgeGame {
 
     public void startGame() {
         BridgeSize bridgeSize = InputView.readBridgeSize();
-        movement = new Movement(new Bridge(bridgeMaker.makeBridge(bridgeSize.getSize())));
+        Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize.getSize()));
+        movement = new Movement(bridge);
         repeatGame();
     }
 
@@ -29,30 +31,31 @@ public class BridgeGame {
                 isContinue = retry();
             }
         } while (!movement.isFinish() && isContinue);
-        OutputView.printResult(bridgeMap.getMap(), movement);
+        OutputView.printResult(bridgeMap.getMap(), movement.isSuccess(), tryCount);
     }
 
     private void move(Moving moving) {
-        movement.saveMoving(moving.getMoving());
-        saveCompareResult(moving.getMoving());
+        movement.saveMoving(moving);
+        saveCompareResult(moving);
         OutputView.printMap(bridgeMap.getMap());
     }
 
-    public boolean retry() {
+    private boolean retry() {
         Command command = InputView.readGameCommand();
         if (command.isRetry()) {
-            movement.clearMoving();
-            bridgeMap.clearMap();
+            tryCount++;
+            clearGame();
             return true;
         }
         return false;
     }
 
-    public void saveCompareResult(String moving) {
-        String mark = Constant.CORRECT_MARK;
-        if (!movement.canMove()) {
-            mark = Constant.WRONG_MARK;
-        }
-        bridgeMap.addMap(moving, mark);
+    private void clearGame() {
+        movement.clearMoving();
+        bridgeMap.clearMap();
+    }
+
+    private void saveCompareResult(Moving moving) {
+        bridgeMap.addMap(moving, movement.canMove());
     }
 }

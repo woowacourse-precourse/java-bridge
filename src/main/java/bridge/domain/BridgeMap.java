@@ -9,17 +9,24 @@ public class BridgeMap {
     List<String> topMap = new ArrayList<>();
     List<String> bottomMap = new ArrayList<>();
 
-    public void addMap(String direction, String mark) {
+    public void addMap(Moving direction, boolean result) {
         if (direction.equals(Constant.UP)) {
-            addMark(topMap, bottomMap, mark);
+            addMark(topMap, bottomMap, getMark(result));
             return;
         }
-        addMark(bottomMap, topMap, mark);
+        addMark(bottomMap, topMap, getMark(result));
     }
 
     private void addMark(List<String> existsBridge, List<String> blankBridge, String mark) {
         existsBridge.add(mark);
         blankBridge.add(Constant.BLANK);
+    }
+
+    private String getMark(boolean result) {
+        if (result) {
+            return Constant.CORRECT_MARK;
+        }
+        return Constant.WRONG_MARK;
     }
 
     public void clearMap() {

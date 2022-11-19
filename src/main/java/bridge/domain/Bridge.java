@@ -9,14 +9,14 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public boolean isFinish(List<String> movement) {
+    public boolean isFinish(List<Moving> movement) {
         if (this.bridge.size() == movement.size()) {
             return true;
         }
         return false;
     }
 
-    public boolean canMove(int nowIndex, String status) {
+    public boolean canMove(int nowIndex, Moving status) {
         if (!status.equals(bridge.get(nowIndex))) {
             return false;
         }

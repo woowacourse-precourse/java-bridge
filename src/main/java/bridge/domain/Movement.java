@@ -1,15 +1,13 @@
 package bridge.domain;
 
 import bridge.constant.Constant;
-import bridge.domain.Bridge;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Movement {
     private final Bridge bridge;
-    private List<String> movement = new ArrayList<>();
-    private int tryCount = Constant.INITIAL_COUNT;
+    private List<Moving> movement = new ArrayList<>();
 
     public Movement(Bridge bridge) {
         this.bridge = bridge;
@@ -20,7 +18,7 @@ public class Movement {
         return bridge.canMove(nowIndex, movement.get(nowIndex));
     }
 
-    public void saveMoving(String moving) {
+    public void saveMoving(Moving moving) {
         this.movement.add(moving);
     }
 
@@ -30,11 +28,6 @@ public class Movement {
 
     public void clearMoving() {
         this.movement = new ArrayList<>();
-        tryCount++;
-    }
-
-    public int getTryCount() {
-        return tryCount;
     }
 
     public String isSuccess() {
