@@ -28,7 +28,7 @@ public class BridgeController {
         outputView.printGameStartMsg();
 
         outputView.printInputBridgeSizeMsg();
-        int bridgeSize = inputView.readBridgeSize(3, 20);
+        int bridgeSize = inputView.readBridgeSize(BridgeMaker.BRIDGE_MIN_SIZE, BridgeMaker.BRIDGE_MAX_SIZE);
 
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
 
