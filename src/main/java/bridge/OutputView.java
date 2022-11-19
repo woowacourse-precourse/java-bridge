@@ -13,49 +13,17 @@ public class OutputView {
     private static final String FINAL_RESULT_NOTICE = "최종 게임 결과";
 
     private static final String MOVING_DIRECTION_INPUT_NOTICE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String WIN_OR_NOT_NOTICE = "게임 성공 여부: %s";
+    private static final String TOTAL_TRY_COUNT_NOTICE = "총 시도한 횟수: %d";
+    private static final String NEW_LINE = "\n";
+    private static final String WIN = "승리";
+    private static final String FAIL = "실패";
 
     public void printMap(List<String> map) {
         for (int i = 0; i < map.size(); i++) {
             System.out.println(map.get(i));
         }
     }
-//
-//    public String toMap(CharSequence result) {
-//        String map = sperateByDelimiter(result, DELIMITER);
-//        map = addBracket(map, PREFIX_BRACKET, SUFFIX_BRACKET);
-//        return sperateByDelimiter(map, BLANK);
-//
-//    }
-//
-//    private void addHistory(StringBuilder top, StringBuilder bottom, String moving) {
-//        if (moving.equals(Direction.Code.UP.getName())) {
-//            top.append(SUCCESS_CODE);
-//            bottom.append(BLANK);
-//        }
-//        if (moving.equals(Direction.Code.DOWN.getName())) {
-//            top.append(BLANK);
-//            bottom.append(SUCCESS_CODE);
-//        }
-//    }
-//
-//    private void checkResult(StringBuilder line, boolean didmove) {
-//        int endIndex = line.length() - 1;
-//        if (!didmove && String.valueOf(line.charAt(endIndex)).equals(SUCCESS_CODE)) {
-//            line.replace(endIndex, endIndex + 1, FAIL_CODE);
-//        }
-//    }
-//
-//    public String sperateByDelimiter(CharSequence charSequence, String delimiter) {
-//        StringJoiner stringJoiner = new StringJoiner(delimiter);
-//        for (int i = 0; i < charSequence.length(); i++) {
-//            stringJoiner.add(String.valueOf(charSequence.charAt(i)));
-//        }
-//        return stringJoiner.toString();
-//    }
-//
-//    public String addBracket(CharSequence charSequence, String prefix, String suffix) {
-//        return prefix + charSequence + suffix;
-//    }
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
@@ -65,7 +33,12 @@ public class OutputView {
     public void printResult(List<String> map, boolean hasWin, int tryCount) {
         printResultNotice();
         printMap(map);
-        System.out.println("게임 성공 여부:");
+        String winOrNot = FAIL;
+        if (hasWin) {
+            winOrNot = WIN;
+        }
+        System.out.printf(WIN_OR_NOT_NOTICE + NEW_LINE, winOrNot);
+        System.out.printf(TOTAL_TRY_COUNT_NOTICE + NEW_LINE, tryCount);
     }
 
     public void printStartNotice() {
