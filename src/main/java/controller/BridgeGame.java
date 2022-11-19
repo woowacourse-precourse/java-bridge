@@ -1,11 +1,11 @@
-package system;
+package controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.RealTimeBridge;
 import utils.EnumStrings;
-import controller.InputController;
+import utils.InputHandler;
 import view.OutputView;
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class BridgeGame {
 
     RealTimeBridge realTimeBridge = new RealTimeBridge();
     OutputView outputView = new OutputView();
-    InputController inputController = new InputController();
+    InputHandler inputHandler = new InputHandler();
 
     int count = 0;
     int size;
@@ -48,7 +48,7 @@ public class BridgeGame {
 
     private boolean retry() {
         if(!isAnswer){
-            String gameCommand = inputController.getGameCommand();
+            String gameCommand = inputHandler.getGameCommand();
             return gameCommand.equals("R");
         }
         return false;
@@ -66,8 +66,8 @@ public class BridgeGame {
         } while(retry());
     }
 
-    public void game() {
-        this.size = inputController.getBridgeSize();
+    public void runGame() {
+        this.size = inputHandler.getBridgeSize();
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         this.bridge = bridgeMaker.makeBridge(size);
@@ -85,7 +85,7 @@ public class BridgeGame {
     }
 
     private boolean compareInputActual(List<String> bridge, int index) {
-        String userMove = inputController.getMoving();
+        String userMove = inputHandler.getMoving();
         String moveResult = move(userMove, bridge.get(index));
         return isWrong(realTimeMap, userMove, moveResult);
     }
