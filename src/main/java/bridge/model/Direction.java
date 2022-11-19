@@ -12,6 +12,14 @@ public enum Direction {
         this.randomValue = randomValue;
     }
 
+    public static Direction fromInput(String input) {
+        try {
+            return valueOf(input);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(BridgeGameExceptionMessage.DIRECTION_NOT_MATCH.getMessage());
+        }
+    }
+
     public static Direction findDirectionByRandomValue(int randomValue) {
         return Arrays.stream(values())
                 .filter(movingType -> movingType.randomValue == randomValue)
