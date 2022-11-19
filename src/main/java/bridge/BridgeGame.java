@@ -1,9 +1,27 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private final int bridgeSize;
+    private final List<String> bridge;
+
+    /**
+     * BridgeGame 클래스 생성자
+     * 다리의 길이를 입력받고 다리를 생성한다.
+     */
+    public BridgeGame() {
+        InputView inputView = new InputView();
+        OutputView outputView = new OutputView();
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+
+        outputView.printStartGame();
+        bridgeSize = inputView.readBridgeSize();
+        bridge = bridgeMaker.makeBridge(bridgeSize);
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
