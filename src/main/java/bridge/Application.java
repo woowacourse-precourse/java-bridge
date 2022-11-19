@@ -8,9 +8,10 @@ public class Application {
         InputView inputView = new InputView();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         BridgeGame bridgeGame = new BridgeGame();
-        BridgeGameView bridgeGameView = new BridgeGameView();
+        OutputView outputView = new OutputView();
 
-        Boolean isMoving;
+        Boolean isMoving = true;
+        int bridgeIndex = 0;
 
         System.out.println("다리 건너기 게임을 시작합니다.");
         System.out.println("\n다리의 길이를 입력해주세요.");
@@ -20,16 +21,12 @@ public class Application {
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         System.out.println(bridge);
 
-        System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String moving1 = inputView.readMoving();
-        isMoving = bridgeGame.move(bridge, moving1, 0);
-        bridgeGameView.printBridgeResult(isMoving, moving1);
-
-        System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        String moving2 = inputView.readMoving();
-        isMoving = bridgeGame.move(bridge, moving2, 1);
-        bridgeGameView.printBridgeResult(isMoving, moving2);
-
-
+        while (isMoving && bridgeIndex < bridgeSize) {
+            System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            String moving = inputView.readMoving();
+            isMoving = bridgeGame.move(bridge, moving, bridgeIndex);
+            outputView.printMap(isMoving, moving);
+            bridgeIndex += 1;
+        }
     }
 }
