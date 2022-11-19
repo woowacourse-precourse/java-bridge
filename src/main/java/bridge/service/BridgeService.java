@@ -10,12 +10,14 @@ public class BridgeService {
 
     private BridgeGame bridgeGame;
     private InputView inputView;
+    private OutputView outputView;
     private boolean isCorrect;
     private int gameCount = 1;
 
     public BridgeService() {
         this.bridgeGame = new BridgeGame();
         this.inputView = new InputView();
+        this.outputView = new OutputView();
     }
 
     // 게임 시작
@@ -49,6 +51,12 @@ public class BridgeService {
         } while (true);
     }
 
+    // 다리 출력
+    public void presentMap() {
+        List<String> makeBridgeList = bridgeGame.getMakeBridgeList();
+        List<String> userSelectList = bridgeGame.getUserSelectList();
+        outputView.printMap(makeBridgeList,userSelectList);
+    }
 
     // 재시작 여부
     public boolean isRetry() {
