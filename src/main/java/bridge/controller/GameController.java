@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
+import bridge.domain.bridgeenum.Restart;
 import bridge.util.BridgeMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -20,11 +21,11 @@ public class GameController {
         outputView = new OutputView();
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         initializeGame();
-        isPlaying = true;
     }
 
     private void initializeGame() {
         bridgeGame = new BridgeGame(createNewBridge());
+        isPlaying = true;
     }
 
     private Bridge createNewBridge() {
@@ -38,9 +39,11 @@ public class GameController {
     }
 
     public void play() {
-        move();
-        printMoveResult();
-        checkGameEnd();
+        while (isPlaying) {
+            move();
+            printMoveResult();
+            checkGameEnd();
+        }
     }
 
     private void move() {
@@ -78,6 +81,17 @@ public class GameController {
         }
     }
 
-    private void requestGameRestart() {}
+    private void requestGameRestart() {
+        String restartCommand;
+        while (true) {
+            try {
+                restartCommand = inputView.readGameCommand();
+                isPlaying = Restart.isRestart(restartCommand);
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
 
 }
