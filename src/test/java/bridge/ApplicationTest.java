@@ -3,10 +3,13 @@ package bridge;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -46,6 +49,22 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
+    @DisplayName("입력 값에 문자가 포함되어 있을 시 예외를 발생시킨다.")
+    @Test
+    void enterInputValueContainCharacter(){
+        assertThatThrownBy(() -> Exception.convertStringToInteger("1d"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력 값이 숫자일 시 정수형으로 변환하여 반환한다.")
+    @Test
+    void enterInputValueInteger(){
+        String input = "12";
+        assertThat(Exception.convertStringToInteger(input) == Integer.parseInt(input));
+    }
+
+
 
     @Override
     protected void runMain() {
