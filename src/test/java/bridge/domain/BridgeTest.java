@@ -21,9 +21,9 @@ class BridgeTest {
     void isEqualAtIndex_메서드는_특정_index_의_다리_위치가_맞는지를_반환한다() {
         Bridge bridge = new Bridge(List.of("U", "D", "D", "U"));
 
-        assertThat(bridge.isEqualAtIndex(0, Position.UP)).isEqualTo(true);
-        assertThat(bridge.isEqualAtIndex(1, Position.UP)).isEqualTo(false);
-        assertThat(bridge.isEqualAtIndex(2, Position.UP)).isEqualTo(false);
-        assertThat(bridge.isEqualAtIndex(3, Position.UP)).isEqualTo(true);
+        assertThat(bridge.isEqualAtIndex(0, Position.UP)).isTrue();
+        assertThat(bridge.isEqualAtIndex(1, Position.UP)).isFalse();
+        assertThat(bridge.isEqualAtIndex(2, Position.UP)).isFalse();
+        assertThat(bridge.isEqualAtIndex(3, Position.UP)).isTrue();
     }
 }
