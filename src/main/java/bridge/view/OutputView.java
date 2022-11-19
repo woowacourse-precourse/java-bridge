@@ -1,7 +1,7 @@
 package bridge.view;
 
-import bridge.BridgeGameResult;
-import bridge.BridgeMoveResult;
+import bridge.domain.BridgeGameResult;
+import bridge.domain.BridgeMoveResult;
 import java.util.List;
 
 /**
