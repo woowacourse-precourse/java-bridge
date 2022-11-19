@@ -28,6 +28,14 @@ public class OutputView {
     public void printResult() {
     }
 
+    public void printWhetherUserDecisionIsCorrect(int userPosition, String moving, List<String> bridge){
+        if(checkUserDirectionWithBridgeValue(userPosition, moving, bridge)){
+            System.out.print(" O ");
+            return;
+        }
+        System.out.print(" X ");
+    }
+
     public boolean checkUserDirectionWithBridgeValue(int userPosition, String moving, List<String> bridge){
         if(bridge.get(userPosition) == moving){
             return true;
