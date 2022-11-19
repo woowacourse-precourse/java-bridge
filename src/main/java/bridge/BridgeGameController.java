@@ -1,5 +1,7 @@
 package bridge;
 
+import javax.swing.text.StyledEditorKit;
+
 import bridge.domain.Record;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -25,8 +27,12 @@ public class BridgeGameController {
 			record.recordResult(move, gameResult);
 			outputView.printMap(record.getResult());
 			if (gameResult == false) {
-				if (bridgeGame.retry(inputView.readGameCommand())) {
+				Boolean isRetry = bridgeGame.retry(inputView.readGameCommand());
+				if (isRetry) {
 					gameStart(repeat + 1);
+				}
+				if (!isRetry) {
+					gameEnd(record, repeat);
 				}
 				break;
 			}
