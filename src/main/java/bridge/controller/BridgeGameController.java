@@ -21,7 +21,7 @@ public class BridgeGameController {
 
             while (true) {
                 if (!continueGame(bridgeGame)) {
-                    outputView.printResult();
+                    outputView.printResult(bridgeGame);
                     return;
                 }
             }
