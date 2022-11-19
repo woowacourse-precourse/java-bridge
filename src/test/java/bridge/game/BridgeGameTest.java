@@ -50,15 +50,24 @@ class BridgeGameTest {
     }
 
     @Test
-    @DisplayName("재시작을 한다고 할 경우 true를 반환해야 한다.")
+    @DisplayName("재시작을 한다고 할 경우 attempt가 증가해야 한다.")
     void retryCorrectTest() {
-        Assertions.assertThat(bridgeGame.retry("R")).isEqualTo(true);
+        int attemptCount = bridgeGame.getAttemptCount();
+
+        bridgeGame.retry();
+
+        Assertions.assertThat(bridgeGame.getAttemptCount()).isEqualTo(attemptCount + 1);
     }
 
     @Test
-    @DisplayName("다음 다리를 틀렸을 경우")
+    @DisplayName("재시작을 할 경우 userMoving이 초기화돼야 한다")
     void retryIncorrectTest() {
-        Assertions.assertThat(bridgeGame.retry("D")).isEqualTo(false);
+        bridgeGame.initGame(List.of("U", "D", "U"));
+        bridgeGame.move("U");
+
+        bridgeGame.retry();
+
+        Assertions.assertThat(bridgeGame.getUserMoving().size()).isEqualTo(0);
     }
 
     @Test
