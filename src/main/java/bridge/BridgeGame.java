@@ -8,10 +8,10 @@ import java.util.List;
  */
 public class BridgeGame {
     static List<String> map;
-    static List<String> userMapUP = new ArrayList<>(); //OX
-    static List<String> userMapDown = new ArrayList<>(); //OX
+    static List<List<String>> userMap = new ArrayList<>();
     static int tryCnt=1;
     static int size=0;
+    static String result = "";
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -20,37 +20,32 @@ public class BridgeGame {
         outputView.startPrint();
         this.size = inputView.readBridgeSize();
         this.map = bridgeMaker.makeBridge(size);
+        userMap.add(new ArrayList<>());
+        userMap.add(new ArrayList<>());
     }
 
     public void progress(){
-
         boolean retry = true;
-        String result = "";
         int i=0;
-        while(retry){
-            if(i==size){
-                result+="성공";
-                break;
-            }
-            boolean success = play(i);
-            if(!success) { //실패시 재시작 이면 초기화, 종료면 while 탈출
+        result = "성공";
+        while(retry && i<size){
+            if(!play(i)) { //실패시 재시작 이면 초기화, 종료면 while 탈출
                 retry = retry();
-                if(!retry) result+="실패";
                 i=-1;
             }
             i++;
         }
-        outputView.printResult(tryCnt, result, userMapUP.size(), userMapUP, userMapDown);
+        outputView.printResult(tryCnt, result, userMap);
     }
     public boolean play(int idx){
 
         String direction = inputView.readMoving();
         boolean success = move(idx, direction);
         if(success){
-            outputView.printMap(idx+1, this.userMapUP, this.userMapDown);
+            outputView.printMap(idx+1, this.userMap.get(0), this.userMap.get(1));
             return true;
         }
-        outputView.printMap(idx+1, this.userMapUP, this.userMapDown);
+        outputView.printMap(idx+1, this.userMap.get(0), this.userMap.get(1));
         return false;
     }
     /**
@@ -60,27 +55,26 @@ public class BridgeGame {
      */
     public boolean move(int length, String direction) {
         if(direction.equals("U") && map.get(length).equals("U")){
-            userMapUP.add("O");
-            userMapDown.add(" ");
+            userMap.get(0).add("O");
+            userMap.get(1).add(" ");
             return true;
         }
         else if(direction.equals("D") && map.get(length).equals("D")){
-            userMapUP.add(" ");
-            userMapDown.add("O");
+            userMap.get(0).add(" ");
+            userMap.get(1).add("O");
             return true;
         }
         else if(direction.equals("U") && map.get(length).equals("D")){
-            userMapUP.add("X");
-            userMapDown.add(" ");
+            userMap.get(0).add("X");
+            userMap.get(1).add(" ");
             return false;
         }
         else if(direction.equals("D") && map.get(length).equals("U")){
-            userMapUP.add(" ");
-            userMapDown.add("X");
+            userMap.get(0).add(" ");
+            userMap.get(1).add("X");
             return false;
         }
-        System.out.println("[ERROR] 정상적인 입력이 아닙니다.");
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("[ERROR] 정상적인 입력이 아닙니다.");
     }
 
     /**
@@ -92,10 +86,12 @@ public class BridgeGame {
         String command = inputView.readGameCommand();
         if(command.equals("R")){
             tryCnt+=1;
-            userMapUP = new ArrayList<>();
-            userMapDown = new ArrayList<>();
+            userMap = new ArrayList<>();
+            userMap.add(new ArrayList<>());
+            userMap.add(new ArrayList<>());
             return true;
         }
+        result = "실패";
         return false;
 
 
