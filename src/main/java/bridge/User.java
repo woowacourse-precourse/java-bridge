@@ -3,27 +3,34 @@ package bridge;
 import java.util.ArrayList;
 
 public class User {
+    private ArrayList<Field> recentUserBridge = new ArrayList<>();
     private ArrayList<Field> userBridge = new ArrayList<>();
-    private ArrayList<Field> recentBridge = new ArrayList<>();
     private int gameCount = 0;
 
-    public int getGameCount() {
-        return gameCount;
+    public ArrayList<Field> getRecentUserBridge() {
+        return recentUserBridge;
     }
-
     public ArrayList<Field> getUserBridge() {
         return userBridge;
     }
-
-    public ArrayList<Field> getRecentBridge() {
-        return recentBridge;
-    }
-
-    public void refreshBridge(){
-        recentBridge = userBridge;
+    public int getGameCount() {
+        return gameCount;
     }
 
     public void increaseGameCount(){
         gameCount+=1;
     }
+
+    public void updateBridge(){
+        recentUserBridge.clear();
+        recentUserBridge.addAll(userBridge);
+    }
+
+    public void restoreBridge(){
+        userBridge.clear();
+        userBridge.addAll(recentUserBridge);
+    }
+
+
+
 }
