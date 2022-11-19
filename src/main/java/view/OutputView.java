@@ -4,31 +4,29 @@ import dto.BridgeDto;
 import dto.ResultDto;
 import java.util.List;
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- * OutputView의 패키지는 변경할 수 있다.
- * OutputView의 메서드의 이름은 변경할 수 없다.
- */
 public class OutputView {
-    private static final String START_GAME = "다리 건너기 게임을 시작합니다.";
+    private static final String START_GAME = "다리 건너기 게임을 시작합니다.\n";
     public static final String BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
-    public static final String ENTER_MOVE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    public static final String ENTER_MOVE = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)";
     public static final String ENTER_RESTART = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-    public static final String FINAL_RESULT = "최종 게임 결과";
-    public static final String SUCCESS_OR_NOT = "게임 성공 여부: ";
+    public static final String FINAL_RESULT = "\n최종 게임 결과";
+    public static final String SUCCESS_OR_NOT = "\n게임 성공 여부: ";
     public static final String TOTAL_TRIAL = "\n총 시도한 횟수: ";
     public static final String LINE_START = "[";
     public static final String CORRECT = " O ";
     public static final String MISS = " X ";
-    public static final String SPACE = "|";
+    public static final String VERTICAL_BAR = "|";
     public static final String LINE_END = "]";
     public static final String ERROR = "[ERROR]";
+    public static final String SPACE = "   ";
+    public static final String FAIL = "실패";
+    public static final String SUCCESS = "성공";
 
-    public void printStart(){
+    public void printStart() {
         System.out.println(START_GAME);
     }
 
-    public void printEnterBridgeSize(){
+    public void printEnterBridgeSize() {
         System.out.println(BRIDGE_SIZE);
     }
 
@@ -43,7 +41,7 @@ public class OutputView {
         if (!answer.equals(target) && !hit) {
             return MISS;
         }
-        throw new IllegalArgumentException(ERROR);
+        return SPACE;
     }
 
     private void printSingleLine(List<String> answer, List<Boolean> guess, String target) {
@@ -55,7 +53,7 @@ public class OutputView {
                 System.out.println(LINE_END);
                 break;
             }
-            System.out.print(SPACE);
+            System.out.print(VERTICAL_BAR);
         }
     }
 
@@ -74,15 +72,22 @@ public class OutputView {
     public void printResult(BridgeDto bridgeDto, ResultDto resultDto) {
         System.out.println(FINAL_RESULT);
         printMap(bridgeDto, resultDto);
-        // System.out.printf(SUCCESS_OR_NOT + "%b");
-        // System.out.println(TOTAL_TRIAL + "%d");
     }
 
-    public void printRestart(){
+    public void printReport(boolean result, int trial){
+        String judgement = FAIL;
+        if(result){
+            judgement= SUCCESS;
+        }
+        System.out.printf(SUCCESS_OR_NOT + judgement);
+        String totalTrial = Integer.toString(trial);
+        System.out.println(TOTAL_TRIAL + totalTrial);
+    }
+    public void printRestart() {
         System.out.println(ENTER_RESTART);
     }
 
-    public void printError(String error){
+    public void printError(String error) {
         System.out.println(error);
     }
 }

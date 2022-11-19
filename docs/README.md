@@ -4,7 +4,7 @@
 
 ![Generic badge](https://img.shields.io/badge/precourse-week4-green.svg)
 ![Generic badge](https://img.shields.io/badge/test-6_passed-blue.svg)
-![Generic badge](https://img.shields.io/badge/version-1.0.11-brightgreen.svg)
+![Generic badge](https://img.shields.io/badge/version-1.0.12-brightgreen.svg)
 
 > 우테코 5기 4주차 미션 다리게임을 구현한 저장소입니다
 
@@ -77,7 +77,7 @@ ___
     2) [x] RESULT의 List<bool>에 Add
 * 추후 조치
     - [x] 정답으로 끝난 경우: MAP의 SIZE와 다리길이 비교해 탈출여부 결정
-    - [ ] 오답으로 중도에 끝난 경우: 결과 출력 / 현위치, 결과 MAP 초기화 / 재시작결정함수 호출
+    - [x] 오답으로 중도에 끝난 경우: 결과 출력 / 현위치, 결과 MAP 초기화 / 재시작결정함수 호출
 
 #### 6. 결과 출력 ( Class: Result -> OutputView )
 
@@ -86,7 +86,7 @@ ___
         * 한 줄 내에서: START -> HIT, MISS -> END
           (LOOP는 전달받은 현위치까지 출력)
 - [ ] 게임 종료
-    * [ ] 성공조건 : MAP-SIZE 다리길이 도달 && 마지막 VALUE는 TRUE
+    * [X] 성공조건 : MAP-SIZE 다리길이 도달 && 마지막 VALUE는 TRUE
     * [ ] 실패조건 : 재시작함수에서 Q눌렀을 때
 
 #### 7. 재시작 ( Class : BridgeGame )
