@@ -46,6 +46,10 @@ public class OutputView {
         if(isDraw) return isDraw_true;
         return isDraw_false;
     }
+    public void removePrintMap(){
+        this.printUp = new StringBuilder();
+        this.printDown = new StringBuilder();
+    }
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
