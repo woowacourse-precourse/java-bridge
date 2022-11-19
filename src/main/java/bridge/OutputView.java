@@ -5,6 +5,14 @@ package bridge;
  */
 public class OutputView {
 
+    public static void bridgeGameStart(){
+        System.out.println(Message.GAME_START_MESSAGE.getMessage());
+    }
+    public static void bridgeLengthMessage(){System.out.println(Message.BRIDGE_LENGTH_REQUEST.getMessage());}
+    public static void moveStepMessage(){
+        System.out.println(Message.MOVING_REQUEST.getMessage());
+    }
+    public static void  retryMessage() {System.out.println(Message.RETRY_REQUEST.getMessage());
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
