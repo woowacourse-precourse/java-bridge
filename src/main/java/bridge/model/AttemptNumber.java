@@ -1,4 +1,6 @@
-package bridge;
+package bridge.model;
+
+import bridge.view.OutputView;
 
 public class AttemptNumber {
     private Integer attemptNumber = 1;

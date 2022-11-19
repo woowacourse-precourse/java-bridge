@@ -1,4 +1,4 @@
-package bridge;
+package bridge.model;
 
 public class Moving {
     private static final String MOVE_TO_UP = "U";

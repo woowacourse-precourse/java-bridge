@@ -1,4 +1,4 @@
-package bridge;
+package bridge.model;
 
 public class BridgeSize {
     private static final Integer MIN_NUMBER = 3;

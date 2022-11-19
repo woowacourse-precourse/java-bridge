@@ -1,4 +1,9 @@
-package bridge;
+package bridge.controller;
+
+import bridge.*;
+import bridge.model.*;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 import java.util.List;
 

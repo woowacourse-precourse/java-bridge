@@ -1,4 +1,4 @@
-package bridge;
+package bridge.model;
 
 public class GameCommand {
     private static final String RE_START_MESSAGE = "R";
