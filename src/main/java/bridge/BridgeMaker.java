@@ -24,7 +24,7 @@ public class BridgeMaker {
             int index = bridgeNumberGenerator.generate();
             if(index == 0){
                 map.add("U");
-            }else if(index==1) {
+            }else if(index == 1) {
                 map.add("D");
             }
         }
