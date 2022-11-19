@@ -21,7 +21,7 @@ public class BridgeGame {
     OutputView outputView = new OutputView();
     BridgeMove bridgeMove = new BridgeMove();
     BridgeMap bridgeMap = new BridgeMap();
-    boolean isContinue;
+    boolean isContinue = true;
     boolean isWin;
     Bridge bridge;
 
@@ -32,10 +32,13 @@ public class BridgeGame {
     }
 
     public void start(Player player) {
-        isContinue = true;
         while (isContinue) {
             move(player);
             checkPlayerPosition(player);
+            if (reachFinalLine(player)) {
+                isContinue = false;
+                isWin = true;
+            }
         }
         outputView.printResult(player, bridgeMap, isWin);
     }
@@ -49,11 +52,6 @@ public class BridgeGame {
         }
         addBridgeMapBlock(player, SUCCESS_BLOCK);
         outputView.printMap(bridgeMap);
-
-        if (reachFinalLine(player, bridge)) {
-            isContinue = false;
-            isWin = true;
-        }
     }
 
     private void addBridgeMapBlock(Player player, String block) {
@@ -66,7 +64,7 @@ public class BridgeGame {
         bridgeMap.getLowerBridgeMap().add(block);
     }
 
-    private boolean reachFinalLine(Player player, Bridge bridge) {
+    private boolean reachFinalLine(Player player) {
         return player.getXPosition() == bridge.getBridge()[0].length - 1;
     }
 
