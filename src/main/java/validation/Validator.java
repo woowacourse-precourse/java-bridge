@@ -1,5 +1,7 @@
 package validation;
 
+import static bridge.constant.ChoiceGame.QUIT;
+import static bridge.constant.ChoiceGame.RESTART;
 import static bridge.constant.Movement.DOWN;
 import static bridge.constant.Movement.UP;
 import static bridge.constant.Validation.*;
@@ -18,6 +20,12 @@ public class Validator {
     public void validateMovement(String movement) {
         if (!movement.equals(UP.getUpAndDownSide()) && !movement.equals(DOWN.getUpAndDownSide())) {
             throw new IllegalArgumentException(INPUT_U_OR_D);
+        }
+    }
+
+    public void validateRestartOrQuit(String restartOrQuit) {
+        if (!restartOrQuit.equals(RESTART) && !restartOrQuit.equals(QUIT)) {
+            throw new IllegalArgumentException(INPUT_R_OR_Q);
         }
     }
 }
