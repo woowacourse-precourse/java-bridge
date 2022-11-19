@@ -4,6 +4,7 @@ import bridge.Bridge;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import java.util.List;
+import model.User;
 import view.InputView;
 import view.OutputView;
 
@@ -54,7 +55,17 @@ public class MainController {
     private String getUserOneStairs(){
         outputView.printSelectMove();
         String usersOneStairs = inputView.readOneStairs();
-        inputView.validateCharacter(usersOneStairs);
+        validUsersOneStairs(usersOneStairs);
         return usersOneStairs;
+    }
+
+    private void validUsersOneStairs(String usersInput) {
+        try {
+            inputView.validateCharacter(usersInput);
+            User.validateUserInput(usersInput);
+        } catch (IllegalArgumentException exception) {
+            outputView.printError(exception.getMessage());
+            getUserOneStairs();
+        }
     }
 }
