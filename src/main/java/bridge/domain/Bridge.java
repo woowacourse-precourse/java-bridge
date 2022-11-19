@@ -1,13 +1,13 @@
-package bridge.repository;
+package bridge.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BridgeRepository {
+public class Bridge {
 
 	private List<String> bridge;
 
-	public BridgeRepository() {
+	public Bridge() {
 		this.bridge = new ArrayList<>();
 	}
 

@@ -10,10 +10,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import bridge.domain.Bridge;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeNumberGenerator;
 import bridge.domain.BridgeRandomNumberGenerator;
-import bridge.repository.BridgeRepository;
 import bridge.repository.UserBridgeRepository;
 import bridge.repository.dto.UserBridgeStatusDto;
 
@@ -21,7 +21,7 @@ class GameServiceTest {
 
 	private BridgeNumberGenerator bridgeNumberGenerator;
 	private BridgeMaker bridgeMaker;
-	private BridgeRepository bridgeRepository;
+	private Bridge bridge;
 	private UserBridgeRepository userBridgeRepository;
 	private GameService gameService;
 
@@ -29,9 +29,9 @@ class GameServiceTest {
 	void setUp() {
 		bridgeNumberGenerator = new BridgeRandomNumberGenerator();
 		bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-		bridgeRepository = new BridgeRepository();
+		bridge = new Bridge();
 		userBridgeRepository = new UserBridgeRepository();
-		gameService = new GameService(bridgeMaker, bridgeRepository, userBridgeRepository);
+		gameService = new GameService(bridgeMaker, bridge, userBridgeRepository);
 	}
 
 	@AfterEach
@@ -61,7 +61,7 @@ class GameServiceTest {
 		List<String> bridge = List.of("U", "D", "U", "U");
 
 		//when
-		bridgeRepository.initBridge(bridge);
+		this.bridge.initBridge(bridge);
 		boolean checkValidSpace = gameService.checkValidSpace(userSpace, currentSpace);
 
 		//then
