@@ -21,7 +21,12 @@ public class MapMaker {
     public MapMaker() {
         topLine = new ArrayList<>();
         bottomLine = new ArrayList<>();
+        init();
+    }
 
+    public void init() {
+        topLine.clear();
+        bottomLine.clear();
         topLine.add(START);
         bottomLine.add(START);
     }
