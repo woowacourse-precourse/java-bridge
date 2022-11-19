@@ -1,7 +1,5 @@
 package bridge.model;
 
-import bridge.model.BridgeNumberGenerator;
-
 import java.util.List;
 
 /**
@@ -23,8 +21,17 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         return null;
     }
-    public void validateSize(int size){
-        if(size < 3 || 20 < size){
+
+    public void validateSize(int size) {
+        if (size < 3 || 20 < size) {
             throw new IllegalArgumentException();
-        }}
+        }
+    }
+
+    public void validateBridgeNumber() {
+        int number = bridgeNumberGenerator.generate();
+        if (number != 0 || number != 1) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
