@@ -22,7 +22,7 @@ public class GameController {
     public void play() {
         try {
             beginBridgeGame();
-            playBridgeGame();
+            playGame();
             endGameService.endGame();
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
@@ -36,20 +36,23 @@ public class GameController {
         this.endGameService = new EndGameService(bridgeGame);
     }
 
-    public void playBridgeGame() throws IllegalArgumentException {
+    public boolean playBridgeGame() throws IllegalArgumentException {
         while(true) {
             bridgeGameService.onePhaseBridgeGame();
 
             if(bridgeGame.isMoveSuccess() && bridgeGame.isBridgeFinished()) {
-                return;
+                return true;
             }
             if(!bridgeGame.isMoveSuccess()) {
-                if(endGameService.isGameRestart()) {
-                    endGameService.restartGame();
-                }else{
-                    return;
-                }
+                return false;
             }
+        }
+    }
+
+    public void playGame() throws IllegalArgumentException {
+        if(!playBridgeGame() && endGameService.isGameRestart()) {
+            endGameService.restartGame();
+            playGame();
         }
     }
 }
