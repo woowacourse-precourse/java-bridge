@@ -37,18 +37,17 @@ class BridgeGameTest {
         assertThat(checkBridge(userMoving, targetBridge)).isFalse();
     }
 
-    static Stream<Arguments> generateData() {
+    static Stream<Arguments> generateBridgeForUpMoving() {
         return Stream.of(
                 Arguments.of(Arrays.asList("U", "D", "U")));
     }
 
     @DisplayName("위쪽으로 이동 했고, 그 다리가 건널 수 있을 때 결과값 검증")
-    @MethodSource("generateData")
+    @MethodSource("generateBridgeForUpMoving")
     @ParameterizedTest
     public void upBridgeSuccessLogging(List<String> bridge) {
         String moving = "U";
         int index = 0;
-        System.out.println("bridge = " + bridge);
         if (checkBridge(moving, bridge.get(index)) && moving.equals("U") && index < bridge.size() - 1) {
             upLoggingResult.append(" O |");
             downLoggingResult.append("   |");
@@ -58,7 +57,7 @@ class BridgeGameTest {
     }
 
     @DisplayName("위쪽으로 이동 했고, 그 위치가 다리의 끝자락 일때의 결과값 검증")
-    @MethodSource("generateData")
+    @MethodSource("generateBridgeForUpMoving")
     @ParameterizedTest
     public void leftBridgeSuccessFinalLogging(List<String> bridge) {
         String moving = "U";
@@ -70,14 +69,25 @@ class BridgeGameTest {
         assertThat(upLoggingResult.toString()).isEqualTo("[ O ]");
         assertThat(downLoggingResult.toString()).isEqualTo("[   ]");
     }
-//
-//    @Test
-//    public void rightBridgeSuccessLogging(String moving, List<String> bridge, int index) {
-//        if (checkBridge(moving, bridge.get(index)) && moving.equals("D") && index < bridge.size() - 1) {
-//            leftLoggingResult.append("   |");
-//            rightLoggingResult.append(" O |");
-//        }
-//    }
+
+    static Stream<Arguments> generateBridgeForDownMoving() {
+        return Stream.of(
+                Arguments.of(Arrays.asList("D", "U", "D")));
+    }
+
+    @DisplayName("아래쪽으로 이동 했고, 그 다리가 건널 수 있을 때 결과값 검증")
+    @MethodSource("generateBridgeForDownMoving")
+    @ParameterizedTest
+    public void downBridgeSuccessLogging(List<String> bridge) {
+        String moving = "D";
+        int index = 0;
+        if (checkBridge(moving, bridge.get(index)) && moving.equals("D") && index < bridge.size() - 1) {
+            upLoggingResult.append(" O |");
+            downLoggingResult.append("   |");
+        }
+        assertThat(upLoggingResult.toString()).isEqualTo("[ O |");
+        assertThat(downLoggingResult.toString()).isEqualTo("[   |");
+    }
 //
 //    @Test
 //    public void rightBridgeSuccessFinalLogging(String moving, List<String> bridge, int index) {
