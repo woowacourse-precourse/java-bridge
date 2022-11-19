@@ -2,6 +2,7 @@ package bridge;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import static bridge.constant.BridgeMove.*;
 
@@ -22,15 +23,17 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-
         for (int i = 0; i < size; i++) {
             int crossBridgeNum = bridgeNumberGenerator.generate();
-            if (crossBridgeNum == UP.getNumber()) {
-                bridge.add(UP.getIdentifier());
-                continue;
-            }
-            bridge.add(DOWN.getIdentifier());
+            bridge.add(getBridgeIdentifier(crossBridgeNum));
         }
         return bridge;
+    }
+
+    private String getBridgeIdentifier(int crossNumber) {
+        if (crossNumber == UP.getNumber()) {
+            return UP.getIdentifier();
+        }
+        return DOWN.getIdentifier();
     }
 }
