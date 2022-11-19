@@ -3,8 +3,8 @@
 ---
 
 ![Generic badge](https://img.shields.io/badge/precourse-week4-green.svg)
-![Generic badge](https://img.shields.io/badge/test-3_passed-blue.svg)
-![Generic badge](https://img.shields.io/badge/version-1.0.9-brightgreen.svg)
+![Generic badge](https://img.shields.io/badge/test-6_passed-blue.svg)
+![Generic badge](https://img.shields.io/badge/version-1.0.10-brightgreen.svg)
 
 > 우테코 5기 4주차 미션 다리게임을 구현한 저장소입니다
 
@@ -74,7 +74,7 @@ ___
 
 * 메인 로직
     1) [X] "다리"의 해당 인덱스에 해당 문자 있는지 체크
-    2) [ ] RESULT의 MAP<int,bool>에 Add
+    2) [x] RESULT의 List<bool>에 Add
 * 추후 조치
     - [x] 정답으로 끝난 경우: MAP의 SIZE와 다리길이 비교해 탈출여부 결정
     - [ ] 오답으로 중도에 끝난 경우: 결과 출력 / 현위치, 결과 MAP 초기화 / 재시작결정함수 호출
