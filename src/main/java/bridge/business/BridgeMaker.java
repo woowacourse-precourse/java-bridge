@@ -1,4 +1,6 @@
-package bridge;
+package bridge.business;
+
+import bridge.BridgeNumberGenerator;
 
 import java.util.List;
 
