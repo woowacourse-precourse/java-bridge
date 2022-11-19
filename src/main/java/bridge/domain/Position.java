@@ -3,7 +3,7 @@ package bridge.domain;
 import java.util.Arrays;
 import java.util.Objects;
 
-public enum Position {
+enum Position {
     UP("U"),
     DOWN("D");
 

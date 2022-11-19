@@ -3,7 +3,7 @@ package bridge.domain;
 import java.util.Arrays;
 import java.util.Objects;
 
-public enum ControllerCommand {
+enum ControllerCommand {
     RETRY("R"),
     QUIT("Q");
 
