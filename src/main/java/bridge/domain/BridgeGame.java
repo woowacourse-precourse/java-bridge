@@ -23,8 +23,9 @@ public class BridgeGame {
         String nextAnswer = answer.get(step).getInput();
         if(input.equals(nextAnswer)){
             step++;
-            return Answer.CORRECT;
+            return checkClearCondition();
         }
+
         return Answer.INCORRECT;
     }
 
@@ -72,6 +73,13 @@ public class BridgeGame {
             return;
         }
         throw new IllegalArgumentException(ErrorMessage.INVALID_RESTART_VALUE.getOutput());
+    }
+
+    private Answer checkClearCondition(){
+        if(step == answer.size() - 1){
+            return Answer.END;
+        }
+        return Answer.CORRECT;
     }
 
 }
