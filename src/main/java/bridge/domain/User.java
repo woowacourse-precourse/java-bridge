@@ -27,4 +27,8 @@ public class User {
     public void addBridgeInfo(int step, String movingBlock) {
         pastResult.put(step, movingBlock);
     }
+
+    public HashMap<Integer, String> getPastResult() {
+        return pastResult;
+    }
 }

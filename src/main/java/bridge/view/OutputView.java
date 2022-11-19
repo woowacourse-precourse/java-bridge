@@ -3,6 +3,8 @@ package bridge.view;
 import bridge.domain.User;
 import bridge.validate.ValidateInput;
 
+import java.util.Objects;
+
 import static bridge.util.Constants.OutputViewConstants.*;
 
 /**
@@ -38,6 +40,27 @@ public class OutputView {
     public static void printMap(boolean isSuccess, User user, int step) {
         TOP_BRIDGE = new StringBuilder().append(BRIDGE_START);
         BOTTOM_BRIDGE = new StringBuilder().append(BRIDGE_START);
+        printProcessResult(isSuccess, user, step);
+    }
+
+    private static void printProcessResult(boolean isSuccess, User user, int step) {
+        for (int i = 0; i < step; i++) {
+            String block = user.getPastResult().get(i);
+            appendByPastBlock(block);
+        }
+        enter();
+    }
+
+    private static void appendByPastBlock(String block) {
+        if (Objects.equals(block, UP)) {
+            TOP_BRIDGE.append(ZERO_AND_STICK);
+            BOTTOM_BRIDGE.append(STICK);
+        }
+
+        if (Objects.equals(block, DOWN)) {
+            TOP_BRIDGE.append(STICK);
+            BOTTOM_BRIDGE.append(ZERO_AND_STICK);
+        }
     }
 
     /**
