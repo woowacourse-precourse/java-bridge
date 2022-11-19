@@ -1,4 +1,7 @@
-package bridge;
+package bridge.view;
+
+import bridge.model.BridgeGameStage;
+import bridge.model.Status;
 
 import java.util.ArrayList;
 import java.util.List;
