@@ -43,7 +43,7 @@ public class BridgeGameTest {
 
     @DisplayName("유저가 맞히지 못한 경우 userFailCase 테스트 (Restart의 경우)")
     @Test
-    public void userFailCaseWithRestartTest() {
+    public void doFailCaseWithRestartTest() {
         // given
         Bridge bridge = new Bridge(List.of("U", "D", "D"));
         User user = new User();
@@ -52,7 +52,7 @@ public class BridgeGameTest {
         String command = "R";
 
         // when
-        bridgeGame.userFailCase(bridge, user, command);
+        bridgeGame.doFailCase(bridge, user, command);
 
         // then
         assertThat(user.getGameTryCount()).isEqualTo(11);
@@ -61,14 +61,14 @@ public class BridgeGameTest {
 
     @DisplayName("유저가 맞히지 못한 경우 userFailCase 테스트 (Quit의 경우)")
     @Test
-    public void userFailCaseWithQuitTest() {
+    public void doFailCaseWithQuitTest() {
         // given
         Bridge bridge = new Bridge(List.of("U", "D", "D"));
         User user = new User();
         String command = "Q";
 
         // when
-        bridgeGame.userFailCase(bridge, user, command);
+        bridgeGame.doFailCase(bridge, user, command);
 
         // then
         assertThat(user.isGameWin()).isEqualTo(false);
@@ -77,13 +77,13 @@ public class BridgeGameTest {
 
     @DisplayName("유저가 모든 턴을 성공적으로 돌았는지 확인해주는 userCorrectAllTurn 테스트")
     @Test
-    public void userCorrectAllTurnTest() {
+    public void isUserPassedAllTurnTest() {
         // given
         Bridge bridge = new Bridge(List.of("U", "D", "D", "D", "U"));
         bridge.setNowIndex(4);
 
         // when
-        boolean result = bridgeGame.userCorrectAllTurn(bridge);
+        boolean result = bridgeGame.isUserPassedAllTurn(bridge);
 
         // then
         assertThat(result).isEqualTo(true);
