@@ -1,7 +1,6 @@
 package bridge.input;
 
-import static bridge.input.InputExceptionHandler.validateBridgeLengthInput;
-import static bridge.input.InputExceptionHandler.validateNextCell;
+import static bridge.input.InputExceptionHandler.*;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 /**
@@ -44,11 +43,18 @@ public class InputView {
     }
 
     /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
+     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받습니다.
+     * 이때 비정상적인 입력이 들어올 경우, 다시 재귀를 통해 입력을 받습니다.
+     * @return 재시작 여부 (R: 재시도, Q: 종료)
      */
     public String readGameCommand() {
-
-        //String ifRestart;
-        return null;
+        String ifRestart;
+        try {
+            ifRestart = readLine();
+            validateRestartInput(ifRestart);
+        } catch (IllegalArgumentException e) {
+            return readGameCommand();
+        }
+        return ifRestart;
     }
 }

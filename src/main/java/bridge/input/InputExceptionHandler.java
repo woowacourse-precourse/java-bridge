@@ -32,6 +32,18 @@ public class InputExceptionHandler {
     }
 
     /**
+     * 입력받은 재시작 여부 문자열이 정상적인 입력 (R 또는 Q)인지 판단하는 메서드입니다.
+     * @param input 입력받은 재시작 여부에 해당하는 문자열
+     * @throws IllegalArgumentException R 또는 Q가 아닌 경우
+     */
+    public static void validateRestartInput(String input) {
+        if (!(input.equals("R") || input.equals("Q"))) {
+            System.out.println(ERROR_PREFIX + "재시도: R 또는 종료: Q를 입력해주세요!");
+            throw new IllegalArgumentException(ERROR_PREFIX + "재시도: R 또는 종료: Q를 입력해주세요!");
+        }
+    }
+
+    /**
      * 다리의 길이가 문자로 이루어지지 않은 정수형인지 판단하는 메서드입니다.
      * @param input 입력받은 다리의 길이에 해당하는 문자열
      * @throws IllegalArgumentException 입력받은 다리가 정수로 이루어지지 않은 경우
