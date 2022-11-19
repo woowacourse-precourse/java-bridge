@@ -32,9 +32,13 @@ public class GameController {
     }
 
     private BridgeGame initBridgeGame() {
+        return new BridgeGame(getValidBridgeSize());
+    }
+
+    private int getValidBridgeSize() {
         outputView.printStart();
 
-        return new BridgeGame(readValidBridgeSize());
+        return readValidBridgeSize();
     }
 
     private int readValidBridgeSize() {
@@ -83,7 +87,6 @@ public class GameController {
         if (bridgeGame.isSuccess()) {
             return false;
         }
-        outputView.printRetry();
 
         return bridgeGame.retry(getValidGameRetryCommand());
     }
