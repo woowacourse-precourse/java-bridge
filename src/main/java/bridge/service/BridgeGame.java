@@ -44,11 +44,23 @@ public class BridgeGame {
         if(bridgeBlock.equals(playerBlock)) {
             result.addBlocks(BlockExpression.getBlockExpressionByMove(bridgeBlock));
             player.move();
+            validateGameClear(player.getPosition());
             return new BridgeResponseDto(result);
         }
 
         result.addBlocks(BlockExpression.getBlockExpressionByNotMove(bridgeBlock));
+        result.fail();
         return new BridgeResponseDto(result);
+    }
+
+    private void validateGameClear(int position) {
+        if(bridge.isDoneCrossingBridge(position)) {
+            result.success();
+        }
+    }
+
+    public boolean gameOver() {
+        return result.gameOver();
     }
 
     /**

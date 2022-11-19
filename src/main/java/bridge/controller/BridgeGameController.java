@@ -30,10 +30,12 @@ public class BridgeGameController {
     }
 
     private void play() {
-        while (true) {
+        while (!bridgeGame.gameOver()) {
             SelectBlockRequestDto requestDto = inputView.readMoving();
             BridgeResponseDto responseDto = bridgeGame.move(requestDto);
             outputView.printMap(responseDto);
         }
+
+        System.out.println("good");
     }
 }

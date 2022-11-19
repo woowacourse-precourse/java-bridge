@@ -12,4 +12,8 @@ public class Bridge {
     public String getBlockByPlayerPosition(int position) {
         return bridge.get(position);
     }
+
+    public boolean isDoneCrossingBridge(int position) {
+        return position == bridge.size();
+    }
 }

@@ -6,6 +6,7 @@ import java.util.List;
 public class Result {
     private final List<String> upBlocks;
     private final List<String> downBlocks;
+    private GameOver gameOver = GameOver.PLAYING;
 
     public Result() {
         upBlocks = new ArrayList<>();
@@ -23,5 +24,26 @@ public class Result {
 
     public List<String> getDownBlocks() {
         return this.downBlocks;
+    }
+
+    public void success() {
+        this.gameOver = GameOver.SUCCESS;
+    }
+
+    public void fail() {
+        this.gameOver = GameOver.FAIL;
+    }
+
+    public boolean gameOver() {
+        return !gameOver.equals(GameOver.PLAYING);
+    }
+
+    public enum GameOver {
+        SUCCESS,
+        FAIL,
+        PLAYING;
+
+        GameOver() {
+        }
     }
 }
