@@ -21,9 +21,8 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            //TODO: 이넘 클래스에 메소드만들어서 값 가져오기
-            int number = bridgeNumberGenerator.generate();
-            bridge.add(Direction.values()[number].getSymbol());
+            int bridgeNumber = bridgeNumberGenerator.generate();
+            bridge.add(Direction.fromBridgeNumber(bridgeNumber).getSymbol());
         }
 
         return bridge;
