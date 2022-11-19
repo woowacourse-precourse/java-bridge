@@ -9,7 +9,12 @@ public class BridgeRetry {
     private static final String END = "Q";
 
     public boolean retry(String gameCommand) {
+        validateGameCommand(gameCommand);
+        return isRetry(gameCommand);
+    }
 
+    private boolean isRetry(String gameCommand) {
+        return gameCommand.equals(RETRY);
     }
 
     private void validateGameCommand(String gameCommand) {
