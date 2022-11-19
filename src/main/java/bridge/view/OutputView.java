@@ -59,4 +59,8 @@ public class OutputView {
         if(result.contains("X")) return "실패";
         return "성공";
     }
+
+    public static void printStart() {
+        System.out.println(OutputPhrases.startGame);
+    }
 }

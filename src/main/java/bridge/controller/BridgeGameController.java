@@ -17,6 +17,7 @@ public class BridgeGameController {
     }
 
     private void set() {
+        OutputView.printStart();
         int size = InputException.validateBridgeSize(InputView.readBridgeSize());
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridgeGame = new BridgeGame(bridgeMaker.makeBridge(size));
