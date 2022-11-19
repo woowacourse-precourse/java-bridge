@@ -28,7 +28,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        return validateMoveType(read());
     }
 
     /**
@@ -48,5 +48,12 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자만 입력 가능합니다.");
         }
+    }
+
+    private String validateMoveType(String target) {
+        if (!(target.equals("U") || target.equals("D"))) {
+            throw new IllegalArgumentException("[ERROR] 이동할 수 있는 위치는 위(U) 혹은 아래(D) 뿐입니다.");
+        }
+        return target;
     }
 }
