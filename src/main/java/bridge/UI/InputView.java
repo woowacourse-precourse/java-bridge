@@ -35,7 +35,16 @@ public class InputView {
 
 
     public String readMoving() {
-        return null;
+        System.out.println(FrontMan.CHOOSE_NEXT_STEP);
+        String userInput = readLine();
+        validateNextStep(userInput);
+        return userInput;
+    }
+
+    public void validateNextStep(String userInput) {
+        if(!Objects.equals(userInput, "U") && !Objects.equals(userInput, "D")) {
+            throw new IllegalArgumentException(ErrorMessages.SHOULD_MOVE_TO_UPSIZE_OR_DOWN_SIZE);
+        }
     }
 
     /**
