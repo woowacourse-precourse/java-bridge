@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.constant.Updown;
+
+import java.util.ArrayList;
 import java.util.List;
 
 // 필드(인스턴스 변수) 변경 불가
@@ -22,6 +25,19 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
+        List<String> bridge = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            int number = bridgeNumberGenerator.generate();
+            bridge.add(toKey(number));
+        }
+        return bridge;
+    }
+
+    private String toKey(int number) {
+        if (number == 1)
+            return Updown.UP.getKey();
+        if (number == 0)
+            return Updown.DOWN.getKey();
         return null;
     }
 }
