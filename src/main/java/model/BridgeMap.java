@@ -19,4 +19,8 @@ public class BridgeMap {
     public String getPrintMap() {
         return map.toString().replace(LIST_CONNECT, BRIDGE_CONNECT);
     }
+
+    public void reset() {
+        map.clear();
+    }
 }

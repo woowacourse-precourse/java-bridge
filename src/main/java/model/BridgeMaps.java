@@ -33,4 +33,8 @@ public class BridgeMaps {
     public String getPrintMap(BridgeType type) {
         return maps.get(type).getPrintMap();
     }
+
+    public void reset() {
+        maps.forEach((type, map) -> map.reset());
+    }
 }
