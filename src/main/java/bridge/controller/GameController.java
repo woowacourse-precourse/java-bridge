@@ -6,11 +6,11 @@ import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.Player;
 import bridge.domain.Tile;
+import bridge.util.ValidateReader;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 import java.util.List;
-import java.util.function.Function;
 
 /**
  * 다리 건너기 게임의 플래이어와 맵 등록, 입력등을 관리하는 클래스

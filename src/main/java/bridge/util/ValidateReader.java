@@ -1,4 +1,4 @@
-package bridge.controller;
+package bridge.util;
 
 import java.util.function.Function;
 
