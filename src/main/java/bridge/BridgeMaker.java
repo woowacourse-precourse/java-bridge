@@ -35,10 +35,10 @@ public class BridgeMaker {
         int number = bridgeNumberGenerator.generate();
 
         if (number == 0) {
-            return GameKeySet.UP.getKeySet();
+            return GameKeySet.DOWN.getKeySet();
         }
         if (number == 1) {
-            return GameKeySet.DOWN.getKeySet();
+            return GameKeySet.UP.getKeySet();
         }
 
         throw new IllegalStateException("[ERROR] 랜덤 생성 오류");
