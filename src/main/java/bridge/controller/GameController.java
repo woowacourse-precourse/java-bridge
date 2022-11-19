@@ -9,6 +9,11 @@ import bridge.view.OutputView;
 
 public class GameController {
 
+    public static final int START_ROUND = 1;
+    public static final int ROUND_INCREMENT = 1;
+    public static final String RESTART = "R";
+    public static final String QUIT = "Q";
+
     private final BridgeGame bridgeGame;
 
     public GameController(BridgeGame bridgeGame) {
@@ -23,8 +28,7 @@ public class GameController {
         OutputView.printBlank();
 
         bridgeGame.createBridge(bridgeSize, new BridgeRandomNumberGenerator());
-
-        recursive(1);
+        recursive(START_ROUND);
     }
 
     public void recursive(int round) {
@@ -39,14 +43,14 @@ public class GameController {
     }
 
     private void checkGameStatus(int round, GameStatus gameStatus, GameResultDto gameResult) {
-        if (gameStatus.isFail()) {
-            checkRestart(gameStatus, gameResult);
-        }
         if (gameStatus.isSuccess()) {
             OutputView.printResult(gameStatus, gameResult);
         }
+        if (gameStatus.isFail()) {
+            checkRestart(gameStatus, gameResult);
+        }
         if (gameStatus.isContinue()) {
-            recursive(round + 1);
+            recursive(round + ROUND_INCREMENT);
         }
     }
 
@@ -54,11 +58,11 @@ public class GameController {
         OutputView.printRestart();
         String restart = InputView.readGameCommand();
 
-        if (restart.equals("R")) {
+        if (restart.equals(RESTART)) {
             bridgeGame.retry();
-            recursive(1);
+            recursive(START_ROUND);
         }
-        if (restart.equals("Q")) {
+        if (restart.equals(QUIT)) {
             OutputView.printResult(gameStatus, gameResult);
         }
     }
