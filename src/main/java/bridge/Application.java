@@ -53,9 +53,15 @@ public class Application {
     private void bridgeGameContinue(BridgeGame bridgeGame) {
         bridgeGame.move(inputMove());
         outputMove(bridgeGame);
+        boolean isContinue=true;
+        isContinue=
     }
 
     private void outputMove(BridgeGame bridgeGame) {
         outputView.printMap(bridgeGame);
+    }
+
+    private void bridgeGameResult(BridgeGame bridgeGame) {
+        checker.
     }
 }
