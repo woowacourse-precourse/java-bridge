@@ -34,6 +34,8 @@ public class Controller {
 
     public void playGame(){
         movePlayer();
+        showRoundResult();
+        playGame();
     }
 
     private void movePlayer(){
@@ -43,5 +45,10 @@ public class Controller {
             System.out.println("[ERROR] 이동 방향은 'U'/'D' 중 한가지로 입력되어야 합니다. 다시 입력해 주십시오.");
             movePlayer();
         }
+    }
+
+    private void showRoundResult(){
+        outputView.printMap(bridgeGame.getRoundResult(),"U");
+        outputView.printMap(bridgeGame.getRoundResult(),"D");
     }
 }
