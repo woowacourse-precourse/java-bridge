@@ -33,8 +33,8 @@ public class BridgeGameService {
 		return moving;
 	}
 
-	public void moveBridge(String moving, BridgeGame bridgeGame, List<List<String>> moveResult) {
-		bridgeGame.move(moving, moveResult);
+	public void moveBridge(String moving, BridgeGame bridgeGame, ProgressMap moveMap) {
+		bridgeGame.move(moving, moveMap);
 	}
 
 	private void validSize(int size) {

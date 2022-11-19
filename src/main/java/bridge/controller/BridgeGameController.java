@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bridge.domain.BridgeGame;
+import bridge.domain.ProgressMap;
 import bridge.service.BridgeGameService;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -22,8 +23,8 @@ public class BridgeGameController {
 		int bridgeSize = receiveBridgeSize();
 		List<String> bridge = bridgeGameService.initBridge(bridgeSize);
 		BridgeGame bridgeGame = new BridgeGame(bridge);
-		List<List<String>> currentMap = startBridgeGame(bridgeGame);
-		outputView.printResult(currentMap, bridgeGame);
+		ProgressMap currentMap = startBridgeGame(bridgeGame);
+		outputView.printResult(currentMap.getProgressMap() , bridgeGame);
 	}
 
 	private int receiveBridgeSize() {
@@ -56,41 +57,30 @@ public class BridgeGameController {
 		}
 	}
 
-	private List<List<String>> startBridgeGame(BridgeGame bridgeGame) {
+	private ProgressMap startBridgeGame(BridgeGame bridgeGame) {
 		boolean playGame = true;
-		List<List<String>> currentMap = new ArrayList<>();
+		ProgressMap currentMap = null;
 		while (playGame) {
 			bridgeGame.retry();
 			currentMap = makeResultMap(bridgeGame);
-			if (currentMap.get(0).size() == bridgeGame.getBridgeSize()) {
-				return currentMap;
+			if (currentMap.whatMapSize() == bridgeGame.getBridgeSize()) {
+				break;
 			}
 			playGame = askRetry();
 		}
 		return currentMap;
 	}
 
-	private List<List<String>> makeResultMap(BridgeGame bridgeGame) {
-		List<List<String>> moveMap = bridgeGameService.initGameMap().getProgressMap();
-		while (!failedClear(moveMap) && moveMap.get(0).size() < bridgeGame.getBridgeSize()) {
-			String moving = receiveMoveCommand();
-			crossBridge(moving, bridgeGame, moveMap);
+	private ProgressMap makeResultMap(BridgeGame bridgeGame) {
+		ProgressMap moveMap = bridgeGameService.initGameMap();
+		while (!moveMap.isClearFailed() && moveMap.whatMapSize() < bridgeGame.getBridgeSize()) {
+			moveBridgeOneTime(bridgeGame, moveMap);
 		}
 		return moveMap;
 	}
-
-	private boolean failedClear(List<List<String>> currentMap) {
-		List<String> upMap = currentMap.get(0);
-		List<String> downMap = currentMap.get(1);
-		return (checkInCorrect(upMap) || checkInCorrect(downMap));
-	}
-
-	private void crossBridge(String moving, BridgeGame bridgeGame, List<List<String>> currentMap) {
+	private void moveBridgeOneTime(BridgeGame bridgeGame, ProgressMap currentMap) {
+		String moving = receiveMoveCommand();
 		bridgeGameService.moveBridge(moving, bridgeGame, currentMap);
-		outputView.printMap(currentMap);
-	}
-
-	private boolean checkInCorrect(List<String> map) {
-		return map.stream().anyMatch(m -> m.contains("X"));
+		outputView.printMap(currentMap.getProgressMap());
 	}
 }
