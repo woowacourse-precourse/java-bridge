@@ -58,10 +58,10 @@ class GameServiceTest {
 	@CsvSource(value = {"U, 0, true", "D, 1, true", "U, 2, true", "D, 3, false"})
 	void checkValidSpace(String userSpace, Integer currentSpace, boolean isValid) {
 		//given
-		List<String> bridge = List.of("U", "D", "U", "U");
+		List<String> bridgeTest = List.of("U", "D", "U", "U");
 
 		//when
-		this.bridge.initBridge(bridge);
+		bridge.initBridge(bridgeTest);
 		boolean checkValidSpace = gameService.checkValidSpace(userSpace, currentSpace);
 
 		//then
