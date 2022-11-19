@@ -27,7 +27,7 @@
     - 이동 할 때 마다 진행 상태 오른쪽에 이동 한 위치(위, 아래)에 O, X 기록
     - move의 결과가 X일 경우 현재 상태 BridgeStatus를 STOP으로 변경
     - [x] 검증
-        - BridgeStatus STOP인 경우만 가능
+        - BridgeStatus RUNNING인 경우만 가능
             - [x] 해당 상태가 아닐 경우 IllegalStateException 처리
         - 입력된 값이 U 또는 D 검사
             - [x] 해당 값이 아닐 경우 IllegalArgumentException 처리

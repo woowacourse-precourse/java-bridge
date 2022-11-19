@@ -31,14 +31,10 @@ public class BridgeGame {
         String answer = bridgeAnswer.get(currentIndex);
 
         matchBridge(answer, direction);
-
-        //TODO
-        //index out of bound, currentIndex != bridgeLower.size()
-
     }
 
     private void validateMove(String direction) {
-        if (!status.equals(BridgeGameStatus.STOP)) {
+        if (!status.equals(BridgeGameStatus.RUNNING)) {
             throw new IllegalStateException("[ERROR]");
         }
         if (!direction.equals("U") && !direction.equals("D")) {
@@ -53,14 +49,17 @@ public class BridgeGame {
         if (answer.equals("U") && answer.equals(direction)) {
             updateBridge("O", " ");
         }
+
         if (answer.equals("U") && !answer.equals(direction)) {
             updateBridge(" ", "X");
+            this.status = BridgeGameStatus.STOP;
         }
         if (answer.equals("D") && answer.equals(direction)) {
             updateBridge(" ", "O");
         }
         if (answer.equals("D") && !answer.equals(direction)) {
             updateBridge("X", " ");
+            this.status = BridgeGameStatus.STOP;
         }
     }
 
