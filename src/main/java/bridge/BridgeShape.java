@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class BridgeShape {
@@ -9,22 +11,16 @@ public class BridgeShape {
     private final String PASS_STEP = " O ";
     private final String FAIL_STEP = " X ";
     private final String EMPTY_STEP = "   ";
-    private final String ONE_STEP_OPEN ="[";
-    private final String ONE_STEP_CLOSE ="]";
-
-    private final StringBuilder upBridgeShape = new StringBuilder();
-    private final StringBuilder downBridgeShape = new StringBuilder();
+    private final List<String> upBridgeShape = new ArrayList<>();
+    private final List<String> downBridgeShape = new ArrayList<>();
 
     public void moveBridge(String whereBridge, boolean checkBridge){
-        upBridgeShape.append(ONE_STEP_OPEN);
-        downBridgeShape.append(ONE_STEP_OPEN);
+
         moveNextStep(whereBridge, checkBridge);
-        upBridgeShape.append(ONE_STEP_CLOSE);
-        downBridgeShape.append(ONE_STEP_CLOSE);
+
     }
 
     private void moveNextStep(String whereBridge, boolean checkBridge){
-
         if(Objects.equals(whereBridge, UP_BRIDGE)){
             moveUpBridge(checkBridge);
             notMoveDownBridge();
@@ -33,46 +29,44 @@ public class BridgeShape {
             moveDownBridge(checkBridge);
             notMoveUpBridge();
         }
-
     }
 
     private void moveUpBridge(boolean checkBridge){
         if(checkBridge){
-            upBridgeShape.append(PASS_STEP);
+            upBridgeShape.add(PASS_STEP);
         }
         if(!checkBridge){
-            upBridgeShape.append(FAIL_STEP);
+            upBridgeShape.add(FAIL_STEP);
         }
-
     }
 
     private void moveDownBridge(boolean checkBridge){
         if(checkBridge){
-            downBridgeShape.append(PASS_STEP);
+            downBridgeShape.add(PASS_STEP);
         }
         if(!checkBridge){
-            downBridgeShape.append(FAIL_STEP);
+            downBridgeShape.add(FAIL_STEP);
         }
     }
 
     private void notMoveUpBridge(){
-        upBridgeShape.append(EMPTY_STEP);
+        upBridgeShape.add(EMPTY_STEP);
     }
 
     private void notMoveDownBridge(){
-        downBridgeShape.append(EMPTY_STEP);
+        downBridgeShape.add(EMPTY_STEP);
     }
 
-    public void returnShape(){
-        upBridgeShape.delete(0, upBridgeShape.length());
-        downBridgeShape.delete(0, downBridgeShape.length());
+    public void initializeBridgeShape(){
+        upBridgeShape.clear();
+        downBridgeShape.clear();
     }
 
-    public StringBuilder getUpBridge(){
+    public List<String> getUpBridge(){
         return upBridgeShape;
     }
 
-    public StringBuilder getDownBridge(){
+    public List<String> getDownBridge(){
         return downBridgeShape;
     }
 }
