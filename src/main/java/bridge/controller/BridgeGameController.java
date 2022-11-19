@@ -76,7 +76,7 @@ public class BridgeGameController {
         }
 
         if (moveCount == bridge.getSize()) {
-            bridgeGameResult.setSuccess();
+            bridgeGame.success();
             play = false;
         }
     }

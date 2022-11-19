@@ -35,4 +35,8 @@ public class BridgeGame {
         bridgeGameResult.increaseTryCount();
         bridgeGameResult.initMoveState();
     }
+
+    public void success() {
+        bridgeGameResult.setSuccess();
+    }
 }
