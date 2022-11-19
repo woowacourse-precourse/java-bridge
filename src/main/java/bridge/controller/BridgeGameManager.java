@@ -12,6 +12,8 @@ import java.util.List;
 public class BridgeGameManager {
     public void run() {
         int bridgeSize;
+        String upDown;
+        String retryAnswer;
 
         BridgeGame bridgeGame = new BridgeGame();
         bridgeGame.start();
@@ -37,11 +39,15 @@ public class BridgeGameManager {
         int step = 0;
         while (step < targetBridge.size()) {
             // 이동 할 칸 입력받음
-            try {
-                String upDown = InputView.readMoving();
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 이동할 칸은 U 또는 D 여야 합니다.");
+            while (true) {
+                try {
+                    upDown = InputView.readMoving();
+                    break;
+                } catch (IllegalArgumentException e) {
+                    System.out.println("[ERROR] 이동할 칸은 U 또는 D 여야 합니다.");
+                }
             }
+
 
             System.out.println(upDown);
 
@@ -54,7 +60,15 @@ public class BridgeGameManager {
 
             // 만약 새로 간 칸이 잘 못된 칸이라면
             if (!targetBridge.get(step).equals(upDown)) {
-                String retryAnswer = InputView.readGameCommand();
+                while (true) {
+                    try {
+                        retryAnswer = InputView.readGameCommand();
+                        break;
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("[ERROR] 재시작/종료는 Q 또는 R이어야 합니다.");
+                    }
+                }
+
 
                 if (retryAnswer.equals("R")) {
                     bridgeGame.back(step);

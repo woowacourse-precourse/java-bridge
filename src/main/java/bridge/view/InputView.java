@@ -27,7 +27,7 @@ public class InputView {
         int size = Integer.parseInt(userInputBridgeSize);
 
         // 범위 벗어나면 예외
-        if (size < 3 ||  19 < size) {
+        if (size < 3 || 19 < size) {
             throw new IllegalArgumentException();
         }
 
@@ -52,9 +52,15 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public static String readGameCommand() {
+    public static String readGameCommand() throws IllegalArgumentException {
         System.out.println(BridgeGameInfo.RESTART.message);
         // 다시 시도지 종료할지 입력받는다.
-        return Console.readLine();
+        String input = Console.readLine();
+
+        if (!(input.equals("Q") || input.equals("R"))) {
+            throw new IllegalArgumentException();
+        }
+
+        return input;
     }
 }
