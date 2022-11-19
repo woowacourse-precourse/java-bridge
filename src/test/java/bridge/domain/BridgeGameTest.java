@@ -16,10 +16,10 @@ class BridgeGameTest {
     @CsvSource(value = {"U, U, O,' '", "U, D,' ',X", "D, U,X,' '", "D, D,' ',O"})
     public void move_test(String bridgeValue, String playerValue, String firstResult,
             String secondResult) {
-        PlayerMap playerMap = new PlayerMap();
+        PlayerMap playerMap;
         BridgeMap bridgeMap = new BridgeMap(List.of(bridgeValue));
         BridgeGame bridgeGame = new BridgeGame(bridgeMap);
-        playerMap = bridgeGame.move(new GameMoving(playerValue).toString(), playerMap);
+        playerMap = bridgeGame.move(new GameMoving(playerValue).toString());
         List<List> estimatedResult = List.of(List.of(firstResult), List.of(secondResult));
         assertThat(playerMap.getPlayerMap()).isEqualTo(estimatedResult);
     }
@@ -27,21 +27,31 @@ class BridgeGameTest {
     @Test
     public void retry_R_0() {
         BridgeGame bridgeGame = new BridgeGame(new BridgeMap(List.of("U", "U", "U")));
-        PlayerMap playerMap = new PlayerMap();
-        playerMap = bridgeGame.move(new GameMoving("U").toString(), playerMap);
-        playerMap = bridgeGame.move(new GameMoving("D").toString(), playerMap);
-        playerMap = bridgeGame.retry("R", playerMap);
+        PlayerMap playerMap;
+        playerMap = bridgeGame.move(new GameMoving("U").toString());
+        playerMap = bridgeGame.move(new GameMoving("D").toString());
+        playerMap = bridgeGame.retry("R");
         assertThat(playerMap.getSize()).isEqualTo(0);
     }
 
     @Test
     public void retry_Q_Test() {
         BridgeGame bridgeGame = new BridgeGame(new BridgeMap(List.of("U", "U", "U")));
-        PlayerMap playerMap = new PlayerMap();
-        playerMap = bridgeGame.move(new GameMoving("U").toString(), playerMap);
-        playerMap = bridgeGame.move(new GameMoving("D").toString(), playerMap);
-        playerMap = bridgeGame.retry("Q", playerMap);
+        PlayerMap playerMap;
+        playerMap = bridgeGame.move(new GameMoving("U").toString());
+        playerMap = bridgeGame.move(new GameMoving("D").toString());
+        playerMap = bridgeGame.retry("Q");
         List<List> estimatedResult = List.of(List.of("O", " "), List.of(" ", "X"));
         assertThat(playerMap.getPlayerMap()).isEqualTo(estimatedResult);
+    }
+
+    @ParameterizedTest(name = "[{index}] input {0} {1} \"{2}\"")
+    @CsvSource(value = {"U, U, true", "U, D, true"})
+    public void isEnd_testisEnd_test(String bridgeValue, String playerValue, boolean value) {
+        PlayerMap playerMap;
+        BridgeMap bridgeMap = new BridgeMap(List.of(bridgeValue));
+        BridgeGame bridgeGame = new BridgeGame(bridgeMap);
+        bridgeGame.move(new GameMoving(playerValue).toString());
+        assertThat(bridgeGame.isEnd()).isEqualTo(value);
     }
 }
