@@ -1,9 +1,12 @@
 ## ✨ 기능 목록
 
 - 사용자 입력 기능
-    - 다리 길이 입력
-    - 이동할 칸 입력
-    - 재시도 여부 입력
+    - readBridgeSize() : 다리 길이 입력
+      - checkBridgeSize() : 다리 길이 입력 예외 : 3미만 20초과의 입력
+    - readMoving() : 이동할 칸 입력
+      - checkMoving() : 이동할 칸 입력 예외 : U 또는 D 외의 입력
+    - readGameCommand() : 재시도 여부 입력
+      - checkGameCommand() : 재시도 여부 입력 예외 : R 또는 Q 외의 입력
 <br><br>
 
 - 출력 기능
