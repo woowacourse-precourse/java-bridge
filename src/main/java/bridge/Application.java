@@ -19,7 +19,6 @@ public class Application {
         try {
             List<String> stageBridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
             BridgeGame bridgeGame = new BridgeGame(stageBridge);
-            System.out.println(stageBridge.toString());  // TODO 지워야한다
             playGame(bridgeGame);
         } catch (IllegalArgumentException e) {
             System.out.println(errorMessage + e.getMessage());
@@ -50,5 +49,4 @@ public class Application {
         if(bridgeGame.retry(inputView.readGameCommand()))
             playGame(bridgeGame);
     }
-
 }

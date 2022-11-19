@@ -10,7 +10,7 @@ public class BridgeGame {
     private final static String RETRY = "R";
 
     private final List<String> stageBridge;
-    private List<String> playLog;
+    private final List<String> playLog;
     private int currentPosition;
     private int playCount;
 
