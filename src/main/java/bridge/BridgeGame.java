@@ -7,16 +7,18 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    int stepNum = 0;
-    int tryNum = 0;
-    List<String> answer;
-    List<String> playerMove;
+    private int stepNum;
+    private int tryNum;
+    private List<String> answer;
+    private List<String> playerMove;
+    private boolean currentState;
 
     BridgeGame() {
         stepNum = 0;
-        tryNum = 0;
+        tryNum = 1;
         answer = null;
         playerMove = new ArrayList<>();
+        currentState = false;
     }
 
     /**
@@ -26,11 +28,12 @@ public class BridgeGame {
      */
     public boolean move(String playerMoveInput) {
         setMoveValue(playerMoveInput);
-        return checkSucces(playerMoveInput);
+        this.currentState = checkSucces(playerMoveInput);
+        return this.currentState;
     }
 
     private boolean checkSucces(String playerMoveInput) {
-        if (answer.get(stepNum - 1) == playerMoveInput)
+        if (answer.get(stepNum - 1).equals(playerMoveInput))
             return true;
         return false;
     }
@@ -59,14 +62,14 @@ public class BridgeGame {
     public String createResultMap() {
         List<StringBuilder> sides = new ArrayList<>();
         makeEmptySides(sides, 2);
-        
+
         for (int playerfoot = 0; playerfoot < playerMove.size(); playerfoot++) {
             String currentMove = playerMove.get(playerfoot);
             putOOnSides(sides, playerfoot, currentMove);
         }
-        
-        putXOnSides(sides, stepNum, playerMove.get(stepNum));
-        
+
+        putXOnSides(sides, stepNum - 1, playerMove.get(stepNum - 1));
+
         StringBuilder result = makeResultMap(sides, 2);
 
         return result.toString();
@@ -74,26 +77,26 @@ public class BridgeGame {
 
     private StringBuilder makeResultMap(List<StringBuilder> sides, int size) {
         StringBuilder result = new StringBuilder();
-        for(int index = 0; index < size -1 ;index++) {
+        for (int index = 0; index < size - 1; index++) {
             result.append(sides.get(index));
             result.append('\n');
         }
-        result.append(sides.get(size-1));
+        result.append(sides.get(size - 1));
         return result;
     }
 
     private void putOOnSides(List<StringBuilder> sides, int playerfoot, String currentMove) {
-        if (currentMove == "U")
+        if (currentMove.equals("U"))
             putOXInSide(sides.get(0), playerfoot, 'O');
-        if (currentMove == "D")
+        if (currentMove.equals("D"))
             putOXInSide(sides.get(1), playerfoot, 'O');
     }
 
     private void putXOnSides(List<StringBuilder> sides, int playerfoot, String currentMove) {
         if (!checkSucces(currentMove)) {
-            if (currentMove == "U")
+            if (currentMove.equals("U"))
                 putOXInSide(sides.get(0), playerfoot, 'X');
-            if (currentMove == "D")
+            if (currentMove.equals("D"))
                 putOXInSide(sides.get(1), playerfoot, 'X');
         }
     }
@@ -103,6 +106,7 @@ public class BridgeGame {
         for (int index = 0; index < size; index++) {
             sides.add(new StringBuilder(emptySide));
         }
+        emptySide = null;
     }
 
     private void putOXInSide(StringBuilder side, int index, char put) {
@@ -119,6 +123,20 @@ public class BridgeGame {
         }
         tempBuilder.append("]");
         return tempBuilder;
+    }
+
+    public boolean gameSucces() {
+        if(this.answer.size() == stepNum && answer.get(stepNum - 1).equals(playerMove.get(stepNum - 1)))
+            return true;
+        return false;
+    }
+
+    public boolean getCurrentState() {
+        return this.currentState;
+    }
+
+    public int getTryNum() {
+        return this.tryNum;
     }
 
 }
