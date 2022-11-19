@@ -32,8 +32,12 @@ public class BridgeGameController {
         Square userMove = new Square(move);
 
         int position = bridgeGame.getPosition();
-        if (bridge.canMoveForward(userMove, position)) {
+        boolean result = bridge.canMoveForward(userMove, position);
+        if (result) {
             bridgeGame.move();
         }
+
+        BridgeResult bridgeResult = new BridgeResult();
+        bridgeResult.updateResult(userMove, result);
     }
 }
