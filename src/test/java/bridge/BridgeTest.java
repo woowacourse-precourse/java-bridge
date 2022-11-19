@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -33,11 +34,31 @@ public class BridgeTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("입력 값과 다리 이동 정답이 일치하는지 판단한다.")
+    @DisplayName("입력 값과 다리 이동 정답이 일치하는지 여부를 판단한다")
     @Test
     void 정답_매치_테스트(){
         BridgeGame bridgeGame = new BridgeGame();
         assertTrue(bridgeGame.checkAnswer("U","U"));
         assertFalse(bridgeGame.checkAnswer("U","D"));
+    }
+
+    @DisplayName("사용자의 입력이 답과 같을 때, O 표시로 이동하는지를 확인한다.")
+    @Test
+    void 사용자_이동_성공_테스트(){
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.move("U");
+
+        assertThat(BridgeGame.getUpSideBridge().toString())
+                .contains("O");
+    }
+
+    @DisplayName("사용자의 입력이 답과 다를 때, X로 실패하는지를 확인한다.")
+    @Test
+    void 사용자_이동_실패_테스트(){
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.moveFailed("U");
+
+        assertThat(BridgeGame.getUpSideBridge().toString())
+                .contains("X");
     }
 }
