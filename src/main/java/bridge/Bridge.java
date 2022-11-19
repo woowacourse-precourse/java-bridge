@@ -6,7 +6,6 @@ public class Bridge {
     private final List<String> bridge;
     private final int size;
     private int location = 0;
-    private int tryCount = 1;
     private boolean correct;
     private String lastMoving;
 
@@ -23,9 +22,6 @@ public class Bridge {
         return this.location;
     }
 
-    public int getTryCount() {
-        return this.tryCount;
-    }
     public boolean getCorrect() {
         return this.correct;
     }
@@ -54,13 +50,6 @@ public class Bridge {
      */
     public void locationUpdate() {
         this.location++;
-    }
-
-    /**
-     * 트라이 횟수를 1 증가시킨다.
-     */
-    public void tryCountUpdate() {
-        this.tryCount++;
     }
 
     /**

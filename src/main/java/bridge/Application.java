@@ -9,8 +9,8 @@ public class Application {
     public static void main(String[] args) {
         int size = inputView.readBridgeSize();
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(size), size);
-        OutputView outputView = new OutputView(bridge);
         BridgeGame bridgeGame = new BridgeGame(bridge);
+        OutputView outputView = new OutputView(bridge, bridgeGame);
         playGame(bridge, bridgeGame, outputView);
         outputView.printResult();
     }

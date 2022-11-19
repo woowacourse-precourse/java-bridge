@@ -5,9 +5,14 @@ package bridge;
  */
 public class BridgeGame {
     private final Bridge bridge;
+    private int tryCount = 1;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
+    }
+
+    public int getTryCount() {
+        return tryCount;
     }
 
     /**
@@ -32,7 +37,7 @@ public class BridgeGame {
      */
     public boolean retry(String input) {
         if (input.equals("R")) {
-            bridge.tryCountUpdate();
+            tryCount++;
             return true;
         }
         return false;

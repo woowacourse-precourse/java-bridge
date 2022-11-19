@@ -26,6 +26,6 @@ public class BridgeGameTest {
     void bridgeGameRetryTest() {
         String input = "R";
         bridgeGame.retry(input);
-        assertThat(bridge.getTryCount()).isGreaterThan(1);
+        assertThat(bridgeGame.getTryCount()).isGreaterThan(1);
     }
 }
