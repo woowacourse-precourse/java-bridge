@@ -26,7 +26,7 @@ public class BridgeMoveState {
      * @param moving   이동할 칸
      * @param mobility 이동 가능성
      */
-    public void update(String moving, Boolean mobility) {
+    public void update(String moving, boolean mobility) {
         String state = makeState(mobility);
 
         if (moving.equals(UP)) {
@@ -40,7 +40,7 @@ public class BridgeMoveState {
         }
     }
 
-    private String makeState(Boolean mobility) {
+    private String makeState(boolean mobility) {
         if (mobility) {
             return MOVE;
         }
