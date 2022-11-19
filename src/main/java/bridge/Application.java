@@ -14,7 +14,9 @@ public class Application {
         BridgeMaker maker = new BridgeMaker(generator);
         List<String> ladder = maker.makeBridge(ladderLen);
         System.out.println("ladder = " + ladder);
-//        String UD = inputView.readMoving();
+        BridgeGame bridgeGame = new BridgeGame(inputView);
+        bridgeGame.move(ladder);
+//
 //        System.out.println("UD = " + UD);
 //        String RQ = inputView.readGameCommand();
     }
