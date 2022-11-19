@@ -18,4 +18,7 @@ public class Player  {
     public void inputDirection(String direction) {
         inputs.add(direction);
     }
+    public void initialize() {
+        inputs = new ArrayList<>();
+    }
 }
