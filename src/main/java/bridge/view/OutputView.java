@@ -31,9 +31,9 @@ public class OutputView {
     }
 
     private String getMap(BridgeGame bridgeGame) {
-        String upBridge = toPrintFormat(bridgeGame, BridgeUnit.UP);
-        String downBridge = toPrintFormat(bridgeGame, BridgeUnit.DOWN);
-        return String.format("[%s]\n[%s]", upBridge, downBridge);
+        String upSide = toPrintFormat(bridgeGame, BridgeUnit.UP);
+        String downSide = toPrintFormat(bridgeGame, BridgeUnit.DOWN);
+        return String.format("[%s]\n[%s]", upSide, downSide);
     }
 
     private String toPrintFormat(BridgeGame bridgeGame, BridgeUnit bridgeUnit) {
