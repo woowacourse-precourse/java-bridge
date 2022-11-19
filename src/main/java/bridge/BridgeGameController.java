@@ -21,10 +21,18 @@ public class BridgeGameController {
             String move = inputView.readMoving();
             moveFlag = bridgeGame.move(move);
             outputView.printMap(bridgeGame.toString());
-            if (bridgeGame.isGameEnd())
+            if (bridgeGame.isGameEnd()) {
                 break;
+            }
+            if (!moveFlag)
+            {
+                outputView.printRestart();
+                String restart = inputView.readGameCommand();
+                if (bridgeGame.retry(restart))
+                    moveFlag = true;
+            }
         }
 
-        outputView.printResult(bridgeGame.toString(), bridgeGame.isFail(), 0);
+        outputView.printResult(bridgeGame.toString(), !bridgeGame.isFail(), bridgeGame.getTryNumber());
     }
 }
