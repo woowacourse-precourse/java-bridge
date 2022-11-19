@@ -14,12 +14,8 @@ public class ProgressMap {
 		clearSize = bridgeSize;
 	}
 
-	public boolean isClear() {
-		return (clearSize == progressMap.get(0).size() && isMoveSuccess());
-	}
-
-	public boolean isMoveSuccess() {
-		return (!progressMap.get(0).contains(" X ") && !progressMap.get(1).contains(" X "));
+	public boolean isMoveFailed() {
+		return (progressMap.get(0).contains(" X ") || progressMap.get(1).contains(" X "));
 	}
 
 	public void updateProgressMap(String moving, boolean isCorrectMove) {

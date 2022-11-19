@@ -1,7 +1,5 @@
 package bridge.controller;
 
-import java.util.List;
-
 import bridge.domain.BridgeGame;
 import bridge.domain.ProgressMap;
 import bridge.service.BridgeGameService;
@@ -20,10 +18,15 @@ public class BridgeGameController {
 
 	public void start() {
 		inputView.printIntroMessage();
-		int bridgeSize = receiveBridgeSize();
-		BridgeGame bridgeGame = bridgeGameService.initBridgeGame(bridgeSize);
+		BridgeGame bridgeGame = settingBridgeGame();
 		startBridgeGame(bridgeGame);
 		outputView.printResult(progressMap.getProgressMap(), bridgeGame);
+	}
+
+	private BridgeGame settingBridgeGame() {
+		int bridgeSize = receiveBridgeSize();
+		progressMap = new ProgressMap(bridgeSize);
+		return bridgeGameService.initBridgeGame(bridgeSize);
 	}
 
 	private int receiveBridgeSize() {
@@ -41,7 +44,7 @@ public class BridgeGameController {
 			String moving = inputView.readMoving();
 			return bridgeGameService.checkMoveCommand(moving);
 		} catch (IllegalArgumentException e) {
-			System.out.print(e.getMessage());
+			System.out.println(e.getMessage());
 			return receiveMoveCommand();
 		}
 	}
@@ -58,19 +61,18 @@ public class BridgeGameController {
 
 	private void startBridgeGame(BridgeGame bridgeGame) {
 		boolean playGame = true;
-		while (playGame) {
-			bridgeGame.retry();
+		while (playGame && !bridgeGame.isClear(progressMap)) {
 			crossBridge(bridgeGame);
-			if (progressMap.isClear()) {
-				break;
+			if (progressMap.isMoveFailed()) {
+				playGame = askRetry();
+				bridgeGame.retry();
 			}
-			playGame = askRetry();
 		}
 	}
 
 	private void crossBridge(BridgeGame bridgeGame) {
 		progressMap = bridgeGameService.initGameMap(bridgeGame.getBridgeSize());
-		while (progressMap.isMoveSuccess() && !progressMap.isClear()) {
+		while (!progressMap.isMoveFailed() && !bridgeGame.isClear(progressMap)) {
 			moveBridgeOneTime(bridgeGame);
 			outputView.printMap(progressMap.getProgressMap());
 		}
