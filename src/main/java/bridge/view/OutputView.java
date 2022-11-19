@@ -8,6 +8,8 @@ import java.util.List;
  */
 public class OutputView {
 
+    private static final String ERROR_PREFIX = "[ERROR]";
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -70,5 +72,9 @@ public class OutputView {
             lowerRow.add(" ");
             upperRow.add("X");
         }
+    }
+
+    public static void printErrorMessage(Exception e) {
+        System.out.println(ERROR_PREFIX + e.getMessage());
     }
 }
