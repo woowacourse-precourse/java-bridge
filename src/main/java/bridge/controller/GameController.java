@@ -14,20 +14,17 @@ public class GameController {
 
     public void run() {
         initialize();
-        GameStatus gameStatus;
-        do {
-            gameStatus = getOneGameResult();
-            if (gameStatus.getFlag() == GameFlag.CLEAR) {
-                break;
-            }
-            String gameCommand = inputView.readGameCommand();
-            if (gameCommand.equals("Q")) {
-                break;
-            }
-            bridgeGame.retry();
-        } while (gameStatus.getFlag() != GameFlag.CLEAR);
-
+        GameStatus gameStatus = getFinalGameResult();
         outputView.printResult(gameStatus, bridgeGame.getCount());
+    }
+
+    private GameStatus getFinalGameResult() {
+        GameStatus finalGameResult;
+        do {
+            finalGameResult = getOneGameResult();
+        } while (finalGameResult.getFlag() != GameFlag.CLEAR && !needExit());
+
+        return finalGameResult;
     }
 
     private GameStatus getOneGameResult() {
@@ -38,6 +35,15 @@ public class GameController {
             outputView.printMap(gameResult);
         } while(gameResult.getFlag() == GameFlag.PLAYING);
         return gameResult;
+    }
+
+    private boolean needExit() {
+        String gameCommand = inputView.readGameCommand();
+        if (gameCommand.equals("Q")) {
+            return true;
+        }
+        bridgeGame.retry();
+        return false;
     }
 
     private void initialize() {
