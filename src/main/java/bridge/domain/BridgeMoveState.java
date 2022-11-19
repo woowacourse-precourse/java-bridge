@@ -2,6 +2,7 @@ package bridge.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 다리 건너기 결과를 관리하는 클래스
@@ -53,5 +54,22 @@ public class BridgeMoveState {
 
     public List<String> getDownState() {
         return downState;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        BridgeMoveState that = (BridgeMoveState) o;
+        return Objects.equals(upState, that.upState) && Objects.equals(downState, that.downState);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(upState, downState);
     }
 }
