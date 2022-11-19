@@ -11,6 +11,12 @@ public class InputView {
 	private static final int MAXIMUM_BRIDGE_NUMBER = 20; 
 	private static final String INPUT_MOVING_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
 	private static final String INPUT_RETRY_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+	private static final String NOT_NUMBER_ERROR_MESSAGE = "[ERROR] 숫자를 입력해주셔야 합니다.";
+	private static final String NOT_VALID_MOVING_STRING_ERROR_MESSAGE = "[ERROR] 유효한 입력값은 U 혹은 D 만 가능합니다.";
+	private static final String NOT_VALID_RETRY_STRING_ERROR_MESSAGE = "[ERROR] 유효한 입력값은 R 혹은 Q 만 가능합니다.";
+	private static final String NOT_VALID_NUMBER_RANGE_ERROR_MESSAGE = 
+			"[ERROR] 유효한 숫자 범위는 "+ MINIMUM_BRIDGE_NUMBER + "~" + MAXIMUM_BRIDGE_NUMBER + "입니다.";
+	
 	
     /**
      * 다리의 길이를 입력받는다.
@@ -64,15 +70,14 @@ public class InputView {
     
     private static String validateInteger(final String bridgeNumber) {
     	if (!bridgeNumber.chars().allMatch(Character::isDigit)) {
-			throw new IllegalArgumentException("[ERROR] 숫자를 입력해주셔야 합니다.");
+			throw new IllegalArgumentException(NOT_NUMBER_ERROR_MESSAGE);
 		}
     	return bridgeNumber;
     }
     
     private static int validateNumberRange(final int value) {
 		if (value < MINIMUM_BRIDGE_NUMBER || MAXIMUM_BRIDGE_NUMBER < value) {
-			throw new IllegalArgumentException("[ERROR] 유효한 숫자 범위는 "
-					+ MINIMUM_BRIDGE_NUMBER + "~" + MAXIMUM_BRIDGE_NUMBER + "입니다.");
+			throw new IllegalArgumentException(NOT_VALID_NUMBER_RANGE_ERROR_MESSAGE);
 		}
 		return value;
     }
@@ -81,13 +86,13 @@ public class InputView {
     	if (moving.equals("U") || moving.equals("D")) {
     		return moving;
     	}
-    	throw new IllegalArgumentException("[ERROR] 유효한 입력값은 U 혹은 D 만 가능합니다.");	
+    	throw new IllegalArgumentException(NOT_VALID_MOVING_STRING_ERROR_MESSAGE);	
     }
     
     private static String validateCommand(String command) {
     	if(command.equals("R") || command.equals("Q")) {
     		return command;
     	}
-    	throw new IllegalArgumentException("[ERROR] 유효한 입력값은 R 혹은 Q 만 가능합니다.");	
+    	throw new IllegalArgumentException(NOT_VALID_RETRY_STRING_ERROR_MESSAGE);	
     }
 }
