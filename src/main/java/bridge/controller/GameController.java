@@ -23,27 +23,36 @@ public class GameController {
     }
 
     public void run() {
-        GameResult gameResult = GameResult.SUCCESS;
+        GameResult gameResult;
         int count = 0;
         do {
             count++;
-            doRound();
+            if (doRound().equals(MatchResult.FINISH)) {
+                gameResult = GameResult.SUCCESS;
+                break;
+            }
             gameResult = chooseReGame();
         } while (gameResult.equals(GameResult.REGAME));
+        finish(gameResult, count);
+    }
+
+    private void finish(GameResult gameResult, int count) {
         BridgeDto recentBridge = gameService.getRecentBridge();
         viewService.printTotalResult(recentBridge, gameResult, count);
     }
 
-    private void doRound() {
+    private MatchResult doRound() {
         MatchResult matchResult;
         do {
             matchResult = chooseMovement();
         } while (matchResult.equals(MatchResult.SUCCESS));
+        return matchResult;
     }
 
     private MatchResult chooseMovement() {
         String movement = viewService.askMovement();
         MatchResult recentResult = gameService.moveForward(movement);
+
         BridgeDto dto = gameService.getMyBridgeToPrint(recentResult);
         viewService.printBridge(dto);
         return recentResult;
