@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.domain.Command;
+import bridge.domain.Error;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.NoSuchElementException;
 
@@ -19,7 +20,7 @@ public class InputView {
             validateNumberRange(input);
             return Integer.parseInt(input);
         } catch (NoSuchElementException | NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Error.NULL_INPUT.getMessage());
         }
     }
 
@@ -30,7 +31,7 @@ public class InputView {
             validateMoveCommand(input);
             return input;
         } catch (NoSuchElementException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Error.NULL_INPUT.getMessage());
         }
     }
 
@@ -41,32 +42,32 @@ public class InputView {
             validateGameCommand(input);
             return input;
         } catch (NoSuchElementException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Error.NULL_INPUT.getMessage());
         }
     }
 
     public void validateAllNumber(String input) {
         if (!input.matches("[0-9]*")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Error.ONLY_NUMBER.getMessage());
         }
     }
 
     public void validateNumberRange(String input) {
         int number = Integer.parseInt(input);
         if (number < SIZE_MIN || number > SIZE_MAX) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Error.NUMBER_RANGE_OVER.getMessage());
         }
     }
 
     public void validateMoveCommand(String input) {
         if (!input.equals(Command.UP.getCommand()) && !input.equals(Command.DOWN.getCommand())) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Error.INVALID_COMMAND.getMessage());
         }
     }
 
     public void validateGameCommand(String input) {
         if (!input.equals(Command.RETRY.getCommand()) && !input.equals(Command.QUIT.getCommand())) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Error.INVALID_COMMAND.getMessage());
         }
     }
 }
