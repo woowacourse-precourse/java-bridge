@@ -26,7 +26,7 @@ public class BridgeGameController {
         bridgeLocation = 0;
         status = true;
         initBridge();
-        setGame();
+        runGame();
     }
 
     public void start() {
@@ -34,19 +34,10 @@ public class BridgeGameController {
         inputSize = inputView.inputBridgeSize();
         bridges = bridgeMaker.makeBridge(inputSize);
         System.out.println(bridges);
-        setGame();
+        runGame();
         outputView.printResult();
     }
 
-    public static void restartGame(String moveResult) {
-        if (moveResult.equals("X")) {
-            String input = inputView.inputGameRestart();
-            if (input.equals(Message.RESTART.getMessage())) {
-                bridgeGame.retry();
-                count++;
-            }
-        }
-    }
 
     public static boolean getStatus() {
         return status;
@@ -56,7 +47,7 @@ public class BridgeGameController {
         return count;
     }
 
-    private static void setGame() {
+    private static void runGame() {
         while (status && bridgeLocation < inputSize) {
             String inputDirection = inputView.inputMovingDirection();
             String moveResult = bridgeGame.move(bridges.get(bridgeLocation), inputDirection);
@@ -64,6 +55,16 @@ public class BridgeGameController {
             outputView.printMap(inputDirection, moveResult);
             restartGame(moveResult);
             bridgeLocation++;
+        }
+    }
+
+    private static void restartGame(String moveResult) {
+        if (moveResult.equals("X")) {
+            String input = inputView.inputGameRestart();
+            if (input.equals(Message.RESTART.getMessage())) {
+                bridgeGame.retry();
+                count++;
+            }
         }
     }
 
