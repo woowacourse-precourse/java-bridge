@@ -9,7 +9,6 @@ public class Validator {
     private static final int BRIDGE_MAX_LENGTH = 2;
     private static final int BRIDGE_MIN_BOUNDARY = 3;
     private static final int BRIDGE_MAX_BOUNDARY = 20;
-    private static final int MOVING_LENGTH = 1;
 
     public void validateBridgeSize(String input) {
         validateBridgeLength(input);
@@ -41,17 +40,6 @@ public class Validator {
     }
 
     public void validateMoving(String input) {
-        validateMovingLength(input);
-        validateMovingCharacter(input);
-    }
-
-    private void validateMovingLength(String input) {
-        if (input.length() != MOVING_LENGTH){
-            throw new IllegalArgumentException(INCORRECT_MOVING);
-        }
-    }
-
-    private void validateMovingCharacter(String input) {
         if (!isDirection(input)){
             throw new IllegalArgumentException(INCORRECT_MOVING);
         }
