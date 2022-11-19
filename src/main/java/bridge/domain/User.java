@@ -12,15 +12,19 @@ public class User {
     public void increaseTryCount() {
         tryCount++;
     }
-    public void setSuccess(){
+
+    public void setSuccess() {
         isSuccess = true;
     }
 
-    public boolean isSuccessComplete(){
+    public boolean isSuccessComplete() {
         return isSuccess;
     }
 
-    public void setGameOver(){
+    public void setGameOver() {
         gameOver = true;
+    }
+    public boolean isGameOver(){
+        return gameOver;
     }
 }
