@@ -47,4 +47,8 @@ public class BridgeGame {
     public boolean canMove() {
         return bridgeResult.getLast() && !bridgeResult.isEnd(bridge);
     }
+
+    public boolean success() {
+        return bridgeResult.checkSuccess(bridge);
+    }
 }
