@@ -23,4 +23,8 @@ public class GameCommand {
             throw new IllegalArgumentException(WRONG_GAME_OPTION.toString());
         }
     }
+
+    public String getGameCommand() {
+        return gameCommand;
+    }
 }
