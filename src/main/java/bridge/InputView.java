@@ -34,7 +34,11 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String input;
+        do {
+            input = Console.readLine();
+        } while (!checkGameCommand(input));
+        return input;
     }
 
     public int bridgeSizeStringToInt(String input){
@@ -53,6 +57,18 @@ public class InputView {
     public boolean checkMoving(String input){
         try{
             if(!input.equals("U") || !input.equals("D")){
+                throw new IllegalArgumentException();
+            }
+            return true;
+        } catch (IllegalArgumentException e){
+            System.out.println(errorMsg);
+            return false;
+        }
+    }
+
+    public boolean checkGameCommand(String input){
+        try{
+            if(!input.equals("R") || !input.equals("Q")){
                 throw new IllegalArgumentException();
             }
             return true;
