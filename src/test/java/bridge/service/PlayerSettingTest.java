@@ -6,11 +6,15 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-public class PlayerSettingTest extends PlayerSetting {
+public class PlayerSettingTest {
+
+    private final PlayerSetting playerSetting = new PlayerSetting();
+
     @Nested
     @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     @DisplayName("플레이어의 다리 크기 입력받은 뒤 저장")
@@ -18,8 +22,8 @@ public class PlayerSettingTest extends PlayerSetting {
         @ParameterizedTest
         @MethodSource("data")
         void test(String readBridgeSize, int validate) {
-            setBridgeSizeToPlayer(readBridgeSize);
-            int playerBridgeSize = getPlayerBridgeSize();
+            playerSetting.setBridgeSizeToPlayer(readBridgeSize);
+            int playerBridgeSize = playerSetting.getPlayerBridgeSize();
             Assertions.assertThat(playerBridgeSize).isEqualTo(validate);
         }
 
@@ -29,6 +33,19 @@ public class PlayerSettingTest extends PlayerSetting {
                     Arguments.of("10", 10),
                     Arguments.of("20", 20)
             );
+        }
+    }
+
+    @Nested
+    @DisplayName("숫자가 아닌 다리의 크기를 입력 받을시 예외를 던짐")
+    class setReadBridgeSizeToPlayerNotDigitTest {
+        @ParameterizedTest
+        @CsvSource({
+                "ab", ".!"
+        })
+        void test(String readBridgeSize) {
+            Assertions.assertThatThrownBy(() -> playerSetting.setBridgeSizeToPlayer(readBridgeSize))
+                    .isInstanceOf(IllegalArgumentException.class);
         }
     }
 }

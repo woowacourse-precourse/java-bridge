@@ -6,8 +6,8 @@ import bridge.dto.PlayerBridgeSizeDto;
 
 public class PlayerSetting {
 
+    private final InputException inputException = new InputException();
     private Player player;
-    private InputException inputException;
 
     public void setBridgeSizeToPlayer(String readBridgeSize) {
         player = new Player(new PlayerBridgeSizeDto(bridgeSizeToInt(readBridgeSize)));

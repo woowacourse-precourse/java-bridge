@@ -20,7 +20,7 @@ public class InputException extends IllegalArgumentException {
         }
     }
 
-    public void outOfRange(String readLine) {
+    private void outOfRange(String readLine) {
         int size = Integer.parseInt(readLine);
         if (size < MIN_SIZE || size > MAX_SIZE) {
             throw new IllegalArgumentException(NOT_RANGE.getMessage());
