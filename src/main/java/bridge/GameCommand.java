@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.exception.BridgeGameError;
+import bridge.exception.CommandException;
+
 public enum GameCommand {
     REPLAY,
     QUIT;
@@ -14,6 +17,6 @@ public enum GameCommand {
         if (input.equals("Q")) {
             return GameCommand.QUIT;
         }
-        throw new IllegalArgumentException("[ERROR] R,Q를 입력해 주세요.");
+        throw new CommandException(BridgeGameError.INVALID_GAME_COMMAND_INPUT);
     }
 }

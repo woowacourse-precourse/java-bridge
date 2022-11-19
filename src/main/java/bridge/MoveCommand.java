@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.exception.BridgeGameError;
+import bridge.exception.CommandException;
+
 public enum MoveCommand {
     UP("U"),
     DOWN("D");
@@ -21,7 +24,7 @@ public enum MoveCommand {
         if (number == 0) {
             return MoveCommand.DOWN;
         }
-        throw new IllegalArgumentException();
+        throw new CommandException(BridgeGameError.NOT_ZERO_OR_ONE);
     }
 
     public static MoveCommand setCommand(String input) {
@@ -31,6 +34,6 @@ public enum MoveCommand {
         if (input.equals("D")) {
             return MoveCommand.DOWN;
         }
-        throw new IllegalArgumentException("[ERROR] U,D를 입력해 주세요.");
+        throw new CommandException(BridgeGameError.INVALID_MOVE_COMMAND_INPUT);
     }
 }

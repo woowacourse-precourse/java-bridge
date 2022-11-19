@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.exception.BridgeGameError;
+import bridge.exception.BridgeSizeException;
 import camp.nextstep.edu.missionutils.Console;
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -44,13 +46,13 @@ public class InputView {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자를 입력해야 합니다.");
+            throw new BridgeSizeException(BridgeGameError.BRIDGE_SIZE_NOT_INTEGER);
         }
     }
 
     private static void validationBridgeSize(int bridgeSize) {
         if (bridgeSize > 20 || bridgeSize < 3) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            throw new BridgeSizeException(BridgeGameError.BRIDGE_SIZE_EXCLUDE_RANGE);
         }
     }
 }

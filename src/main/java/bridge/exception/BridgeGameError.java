@@ -1,6 +1,6 @@
-package bridge;
+package bridge.exception;
 
-public enum Error {
+public enum BridgeGameError {
     BRIDGE_SIZE_NOT_INTEGER("[ERROR] 다리 길이는 숫자를 입력해야 합니다."),
     BRIDGE_SIZE_EXCLUDE_RANGE("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다."),
     INVALID_GAME_COMMAND_INPUT("[ERROR] R,Q를 입력해 주세요."),
@@ -9,7 +9,7 @@ public enum Error {
 
     private final String errorMessage;
 
-    Error(String errorMessage) {
+    BridgeGameError(String errorMessage) {
         this.errorMessage = errorMessage;
     }
 

@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.exception.BridgeSizeException;
+import bridge.exception.CommandException;
+
 import java.util.List;
 
 public class BridgeGameController {
@@ -40,8 +43,8 @@ public class BridgeGameController {
     private static int inputBridgeSize() {
         try {
             return InputView.readBridgeSize();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        } catch (BridgeSizeException e) {
+            e.printErrorMessage();
             return inputBridgeSize();
         }
     }
@@ -49,8 +52,8 @@ public class BridgeGameController {
     private static MoveCommand inputMoveCommand() {
         try {
             return InputView.readMoving();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        } catch (CommandException e) {
+            e.printErrorMessage();
             return inputMoveCommand();
         }
     }
@@ -58,8 +61,8 @@ public class BridgeGameController {
     private static GameCommand inputGameCommand() {
         try {
             return InputView.readGameCommand();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        } catch (CommandException e) {
+            e.printErrorMessage();
             return inputGameCommand();
         }
     }
