@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.domain.SuccessOrNot;
+
 import java.util.List;
 
 /**
@@ -42,8 +44,8 @@ public class OutputView {
 
     public static String checkSuccess(boolean successOrNot) {
         if (successOrNot) {
-            return "실패";
+            return SuccessOrNot.FAIL.getMessage();
         }
-        return "성공";
+        return SuccessOrNot.SUCCESS.getMessage();
     }
 }
