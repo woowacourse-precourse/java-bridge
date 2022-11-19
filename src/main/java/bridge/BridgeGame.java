@@ -56,6 +56,12 @@ public class BridgeGame {
         return bridge;
     }
 
+    public List<Bridge> successBridgeDown(List<Bridge> bridge) {
+        String bridgeUp = bridge.get(1).getBridge().get(bridgeCount).replace("   ", " O ");
+        bridge.get(1).getBridge().set(bridgeCount, bridgeUp);
+        bridgeCount++;
+        return bridge;
+    }
 
 
     public int BridgeNumberGenerator() {
