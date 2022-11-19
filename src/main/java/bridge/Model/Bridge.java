@@ -7,12 +7,12 @@ public class Bridge {
     private static List<String> up = new ArrayList<>();
     private static List<String> down = new ArrayList<>();
 
-    public void setUp(List<String> up) {
-        Bridge.up = up;
+    public void updateUp(String up) {
+        Bridge.up.add(up);
     }
 
-    public void setDown(List<String> down) {
-        Bridge.down = down;
+    public void updateDown(String down) {
+        Bridge.down.add(down);
     }
 
     public List<String> getUp() {
