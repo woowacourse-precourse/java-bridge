@@ -29,7 +29,6 @@ class InputViewTest {
         },bridgeSizeInput);
     }
 
-
     @DisplayName("이동방향 입력 성공 케이스 테스트")
     @ParameterizedTest(name = "{index} {displayName} message={0}")
     @ValueSource(strings = {"U","D","U","D"})
@@ -46,5 +45,23 @@ class InputViewTest {
         assertInputByMockingTest(()->{
             assertThrows(IllegalArgumentException.class, () -> inputView.readMoving());
         },movingDirection);
+    }
+
+    @DisplayName("재시작 or 종료 입력 성공 케이스 테스트")
+    @ParameterizedTest(name = "{index} {displayName} message={0}")
+    @ValueSource(strings = {"R", "Q"})
+    void 재시작_종료_입력_성공케이스_테스트(String gameCommand) {
+        assertInputByMockingTest(()->{
+            assertEquals(inputView.readGameCommand(),gameCommand);
+        },gameCommand);
+    }
+
+    @DisplayName("재시작 or 종료 입력 실패 케이스 테스트")
+    @ParameterizedTest(name = "{index} {displayName} message={0}")
+    @ValueSource(strings = {"QR","RQ","r","q","마","1","#"})
+    void 재시작_종료_입력_실패케이스_테스트(String gameCommand) {
+        assertInputByMockingTest(()->{
+            assertThrows(IllegalArgumentException.class, () -> inputView.readGameCommand());
+        },gameCommand);
     }
 }
