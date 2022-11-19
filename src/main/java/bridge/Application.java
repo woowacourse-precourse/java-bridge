@@ -9,6 +9,7 @@ public class Application {
         try {
             BridgeController bridgeController = new BridgeController();
             bridgeController.startGame();
+            bridgeController.playGame();
         } catch (IllegalArgumentException exception) {
             System.out.println(ErrorMessage.EXIT.getMessage());
         }

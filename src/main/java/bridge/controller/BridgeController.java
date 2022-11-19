@@ -3,8 +3,8 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.view.InputView;
 import bridge.utils.message.FixedMessage;
+import bridge.view.InputView;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,5 +18,9 @@ public class BridgeController {
 
         System.out.println(FixedMessage.GAME_START.getMessage() + "\n");
         bridge.addAll(bridgeMaker.makeBridge(inputView.readBridgeSize()));
+    }
+
+    public void playGame() {
+        inputView.readMoving();
     }
 }

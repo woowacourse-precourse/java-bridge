@@ -1,5 +1,8 @@
 package bridge.view;
 
+import static bridge.utils.command.MoveCommand.DOWN;
+import static bridge.utils.command.MoveCommand.UP;
+
 import bridge.utils.message.FixedMessage;
 import bridge.validator.BridgeSizeValidator;
 import bridge.validator.Validator;
@@ -26,7 +29,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(String.format(FixedMessage.INPUT_MOVING.getMessage(), UP.getCommand(), DOWN.getCommand()));
+        String moving = Console.readLine();
+        return moving;
     }
 
     /**
