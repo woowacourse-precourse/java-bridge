@@ -29,5 +29,24 @@ class InputUtilsTest {
         }
     }
 
+    @Nested
+    @DisplayName("isValidRangeDigit")
+    class TestIsValidRangeDigit {
+
+        @DisplayName("3~20 사이의 수를 입력받은 경우")
+        @ValueSource(strings = {"3", "10", "20"})
+        @ParameterizedTest
+        void case1(String input) {
+            assertThat(InputUtils.isValidRangeDigit(input)).isTrue();
+        }
+
+        @DisplayName("3~20 사이의 수가 아닌 경우")
+        @ValueSource(strings = {"-3", "100", "21"})
+        @ParameterizedTest
+        void case2(String input) {
+            assertThat(InputUtils.isValidRangeDigit(input)).isFalse();
+        }
+    }
+
 
 }
