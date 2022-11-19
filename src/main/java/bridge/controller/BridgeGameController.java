@@ -79,7 +79,7 @@ public class BridgeGameController {
 
     private void finish(int moveCount) {
         if (bridgeGame.isSuccess(moveCount)) {
-            bridgeGame.success();
+            bridgeGame.succeed();
             play = false;
             return;
         }

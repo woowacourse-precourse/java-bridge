@@ -45,7 +45,7 @@ public class BridgeGame {
         return moveCount == bridge.getSize();
     }
 
-    public void success() {
+    public void succeed() {
         bridgeGameResult.setSuccess();
     }
 
