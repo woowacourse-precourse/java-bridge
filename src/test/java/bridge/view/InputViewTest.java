@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+
 public class InputViewTest {
 
     InputView inputView = new InputView();
@@ -78,8 +79,8 @@ public class InputViewTest {
 
     private static Stream<Arguments> provideValidMoving() {
         return Stream.of(
-                Arguments.of("U","U"),
-                Arguments.of("D","D")
+                Arguments.of("U", "U"),
+                Arguments.of("D", "D")
         );
     }
 
