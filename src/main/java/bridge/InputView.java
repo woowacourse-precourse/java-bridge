@@ -22,7 +22,14 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String moving;
+        while (true) {
+            moving = camp.nextstep.edu.missionutils.Console.readLine();
+            if (!movingErrorHandling(moving)) {
+                break;
+            }
+        }
+        return moving;
     }
 
     /**
