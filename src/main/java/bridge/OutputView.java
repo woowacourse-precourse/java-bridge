@@ -31,7 +31,7 @@ public class OutputView {
     public void printResult() {
         System.out.println(GAME_RESULT_MESSAGE);
         printMap();
-        System.out.println(GAME_SUCCESS_MESSAGE + bridge.getGameResult());
+        System.out.println(GAME_SUCCESS_MESSAGE + bridge.getGameResultString());
         System.out.println(TRY_COUNT_MESSAGE + bridge.getTryCount());
     }
 }
