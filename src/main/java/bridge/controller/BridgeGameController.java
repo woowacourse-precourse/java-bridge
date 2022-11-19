@@ -1,6 +1,7 @@
 package bridge.controller;
 
 import bridge.BridgeGame;
+import bridge.BridgeGameStat;
 import bridge.BridgeMaker;
 import bridge.BridgeMap;
 import bridge.BridgeRandomNumberGenerator;
@@ -32,6 +33,9 @@ public class BridgeGameController {
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
 
         doGame(bridge, bridgeSize);
+
+        BridgeGameStat bridgeGameStat = bridgeGame.getBridgeGameStat();
+        outputView.printResult(bridgeGameStat);
     }
 
     private void doGame(List<String> bridge, int bridgeSize) {
