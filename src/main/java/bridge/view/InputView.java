@@ -14,6 +14,7 @@ public class InputView {
     public int readBridgeSize() {
         String bridgeSize = Console.readLine();
         Validator.validateBridgeSize(bridgeSize);
+
         return Integer.parseInt(bridgeSize);
     }
 
@@ -23,6 +24,7 @@ public class InputView {
     public String readMoving() {
         String moving = Console.readLine();
         Validator.validateMoving(moving);
+
         return moving;
     }
 
@@ -30,6 +32,9 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String restartChoice = Console.readLine();
+        Validator.validateRestartChoice(restartChoice);
+
+        return restartChoice;
     }
 }
