@@ -44,7 +44,7 @@ public class GameStart {
     }
 
     private boolean play() {
-        boolean isSucess = false;
+        boolean isSuccess = false;
         boolean isRestart = true;
         do {
             countOfPlay++;
@@ -58,15 +58,15 @@ public class GameStart {
                 }
             }
             if (!isRestart) {
-                isSucess = true;
+                isSuccess = true;
             }
-        } while (!isSucess && isRestart);
-        return isSucess;
+        } while (!isSuccess && isRestart);
+        return isSuccess;
     }
 
     private boolean readRestart() {
         String restart = inputView.readGameCommand();
-        boolean isRestart = bridgeGame.retry(restart);
-        return isRestart;
+        boolean isSuccess = bridgeGame.retry(restart);
+        return isSuccess;
     }
 }
