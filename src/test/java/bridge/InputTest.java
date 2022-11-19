@@ -18,4 +18,14 @@ class InputTest {
         assertThat(false).isEqualTo(Validation.bridgeSizeValidationTest("-1"));
         assertThat(false).isEqualTo(Validation.bridgeSizeValidationTest("50"));
     }
+    @DisplayName("사용자의 이동 방향의 입력에 따른 기능 테스트")
+    @Test
+    void 이동_입력_테스트(){
+        assertThat(true).isEqualTo(Validation.moveDirectionTest("U"));
+        assertThat(true).isEqualTo(Validation.moveDirectionTest("D"));
+        assertThat(false).isEqualTo(Validation.moveDirectionTest("9"));
+        assertThat(false).isEqualTo(Validation.moveDirectionTest("70"));
+        assertThat(false).isEqualTo(Validation.moveDirectionTest("u"));
+        assertThat(false).isEqualTo(Validation.moveDirectionTest("x"));
+    }
 }
