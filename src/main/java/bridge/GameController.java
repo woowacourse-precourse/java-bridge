@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.Validation.*;
@@ -13,8 +14,11 @@ public class GameController {
         Validation.isInRange(bridgeSize);
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        BridgeGame bridgeGame = new BridgeGame(bridge);
-
+        while(true) {
+            BridgeGame bridgeGame = new BridgeGame(bridge);
+            List<String> userPath = new ArrayList<String>();
+            bridgeGame.move();
+        }
     }
 
     public int createBridgeSize(InputView inputView) {

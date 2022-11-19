@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,6 +37,17 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public List<String> retry(List<String> userPath) {
+        this.bridge.add(selectOppositePosition(userPath.get(userPath.size()-1)));
+        for(int position = userPath.size() - 2; position >= 0; position--) {
+            this.bridge.add(userPath.get(position));
+        }
+        return userPath;
+    }
+    public String selectOppositePosition(String position) {
+        if (position.equals("U")) {
+            return "D";
+        }
+        return "U";
     }
 }
