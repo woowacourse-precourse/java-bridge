@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import java.io.InputStream;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -54,10 +53,10 @@ public class bridgeTest {
 
         @Test
         void bridgeShape가_제대로_생성되는지_테스트_모두성공() {
-            bridge.generateShape("U", 0);
-            bridge.generateShape("D", 1);
-            bridge.generateShape("U", 2);
-            bridge.generateShape("D", 3);
+            bridge.generateShapeAndReturnWhetherUserGetTheRightAnswer("U", 0);
+            bridge.generateShapeAndReturnWhetherUserGetTheRightAnswer("D", 1);
+            bridge.generateShapeAndReturnWhetherUserGetTheRightAnswer("U", 2);
+            bridge.generateShapeAndReturnWhetherUserGetTheRightAnswer("D", 3);
             assertThat(bridge.getBridgeUpperSide().contains("[O, ,O, ]"));
             assertThat(bridge.getBridgeUpperSide().contains("[ ,O, ,O]"));
             System.out.println(bridge.getBridgeUpperSide());
@@ -66,10 +65,10 @@ public class bridgeTest {
 
         @Test
         void bridgeShape가_제대로_생성되는지_테스트_실패포함() {
-            bridge.generateShape("U", 0);
-            bridge.generateShape("U", 1);
-            bridge.generateShape("D", 2);
-            bridge.generateShape("D", 3);
+            bridge.generateShapeAndReturnWhetherUserGetTheRightAnswer("U", 0);
+            bridge.generateShapeAndReturnWhetherUserGetTheRightAnswer("U", 1);
+            bridge.generateShapeAndReturnWhetherUserGetTheRightAnswer("D", 2);
+            bridge.generateShapeAndReturnWhetherUserGetTheRightAnswer("D", 3);
             assertThat(bridge.getBridgeUpperSide().contains("[O,X, , ]"));
             assertThat(bridge.getBridgeUpperSide().contains("[ , ,X,O]"));
             System.out.println(bridge.getBridgeUpperSide());
@@ -79,8 +78,66 @@ public class bridgeTest {
         @Test
         void 인풋이_D나_U가_아닐_때_오류_던지는지_테스트() {
             assertThatThrownBy(() -> {
-                bridge.generateShape("ItHavaToThrowException", 0);
+                bridge.generateShapeAndReturnWhetherUserGetTheRightAnswer("ItHavaToThrowException", 0);
             }).isInstanceOf(IllegalArgumentException.class);
+        }
+    }
+
+    @Nested
+    class BridgeGameTest {
+        BridgeGame bridgeGame;
+        @BeforeEach
+        void setUp() {
+            List<String> testBridge = List.of("U", "D", "U", "D");
+            Player player = new Player();
+            Bridge bridge = new Bridge(testBridge);
+            this.bridgeGame = new BridgeGame(bridge, player);
+        }
+
+        @Test
+        void playGame에서_정상적으로_불린값_리턴하는지_테스트() {
+            String supposedToBeTrue = "U";
+            assertThat(bridgeGame.playGame(supposedToBeTrue)).isEqualTo(true);
+        }
+
+        @Test
+        void playGame에서_Player의_위치가_정상적으로_변하는지_테스트() {
+            String correctPosition = "U";
+            bridgeGame.playGame(correctPosition);
+            assertThat(bridgeGame.getCurrentLocation()).isEqualTo(0);
+        }
+
+        @Test
+        void playGame에서_정상적으로_불린값_리턴하는지_테스트2() {
+            String supposedToBeFalse = "D";
+            assertThat(bridgeGame.playGame(supposedToBeFalse)).isEqualTo(false);
+        }
+
+        @Test
+        void 위치가_정상적으로_초기화_되고_시도_횟수가_늘어나는지_테스트() {
+            String correctPosition = "U";
+            bridgeGame.playGame(correctPosition);
+            String correctPosition2 = "D";
+            bridgeGame.playGame(correctPosition2);
+            bridgeGame.retry("R");
+            String correctPosition3 = "U";
+            bridgeGame.playGame(correctPosition3);
+            String correctPosition4 = "D";
+            bridgeGame.playGame(correctPosition4);
+            assertThat(bridgeGame.getCountOfTry()).isEqualTo(2);
+        }
+
+        @Test
+        void 플레이어가_정답을_모두_맞췄을_때_true가_반환되는지_테스트() {
+            String correctPosition = "U";
+            bridgeGame.playGame(correctPosition);
+            String correctPosition2 = "D";
+            bridgeGame.playGame(correctPosition2);
+            String correctPosition3 = "U";
+            bridgeGame.playGame(correctPosition3);
+            String correctPosition4 = "D";
+            bridgeGame.playGame(correctPosition4);
+            assertThat(bridgeGame.isUserReachedToEndOfTheBridge(4)).isEqualTo(true);
         }
     }
 
@@ -112,10 +169,10 @@ public class bridgeTest {
             this.outputView = new OutputView();
             List<String> testBridge = List.of("U", "D", "U", "D");
             this.bridge = new Bridge(testBridge);
-            bridge.generateShape("U", 0);
-            bridge.generateShape("D", 1);
-            bridge.generateShape("U", 2);
-            bridge.generateShape("D", 3);
+            bridge.generateShapeAndReturnWhetherUserGetTheRightAnswer("U", 0);
+            bridge.generateShapeAndReturnWhetherUserGetTheRightAnswer("D", 1);
+            bridge.generateShapeAndReturnWhetherUserGetTheRightAnswer("U", 2);
+            bridge.generateShapeAndReturnWhetherUserGetTheRightAnswer("D", 3);
         }
         @Test
         void printMapTest() {

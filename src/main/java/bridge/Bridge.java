@@ -1,7 +1,6 @@
 package bridge;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Bridge {
@@ -15,32 +14,47 @@ public class Bridge {
         }
     }
 
-    public void generateShape(String userInput, int idx) {
+    public boolean generateShapeAndReturnWhetherUserGetTheRightAnswer(String userInput, int idx) {
         validateInputIsUOrD(userInput);
-        caseWhenUserInputIsU(userInput, idx);
-        caseWhenUserInputIsD(userInput, idx);
+        boolean isUserGetTheRightAnswer = true;
+        if (userInput == "U") {
+            isUserGetTheRightAnswer = caseWhenUserInputIsU(idx);
+        }
+        if (userInput == "D") {
+            isUserGetTheRightAnswer = caseWhenUserInputIsD(idx);
+        }
+        return isUserGetTheRightAnswer;
     }
 
-    private void caseWhenUserInputIsU(String userInput, int idx) {
-        if (userInput == "U" && bridge.get(idx) == "U") {
+    private boolean caseWhenUserInputIsU(int idx) {
+        if (bridge.get(idx) == "U") {
             bridgeShape.get(0).add("O");
             bridgeShape.get(1).add(" ");
         }
-        if (userInput == "U" && bridge.get(idx) == "D") {
+        if (bridge.get(idx) == "D") {
             bridgeShape.get(0).add("X");
             bridgeShape.get(1).add(" ");
+            return false;
         }
+        return true;
     }
 
-    private void caseWhenUserInputIsD(String userInput, int idx) {
-        if (userInput == "D" && bridge.get(idx) == "U") {
+    private boolean caseWhenUserInputIsD(int idx) {
+        if (bridge.get(idx) == "U") {
             bridgeShape.get(1).add("X");
             bridgeShape.get(0).add(" ");
+            return false;
         }
-        if (userInput == "D" && bridge.get(idx) == "D") {
+        if (bridge.get(idx) == "D") {
             bridgeShape.get(1).add("O");
             bridgeShape.get(0).add(" ");
         }
+        return true;
+    }
+
+    public void retry() {
+        bridgeShape.get(0).clear();
+        bridgeShape.get(1).clear();
     }
 
     private void validateInputIsUOrD(String userInput) {
