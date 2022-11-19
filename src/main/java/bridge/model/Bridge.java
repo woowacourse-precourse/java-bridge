@@ -8,14 +8,7 @@ public class Bridge {
     private ArrayList<String> downBridge;
     private int size;
     public Bridge() {
-        upBridge = new ArrayList<>(){{
-            add("[");
-            add("]");
-        }};
-        downBridge = new ArrayList<>(){{
-            add("[");
-            add("]");
-        }};
+        initBridge();
     }
 
     public ArrayList<String> getUpBridge() {
@@ -24,6 +17,17 @@ public class Bridge {
 
     public ArrayList<String> getDownBridge() {
         return downBridge;
+    }
+
+    public void initBridge() {
+        upBridge = new ArrayList<>(){{
+            add("[");
+            add("]");
+        }};
+        downBridge = new ArrayList<>(){{
+            add("[");
+            add("]");
+        }};
     }
 
     public void setUpBridge(String mark) {
@@ -74,6 +78,15 @@ public class Bridge {
         }
     }
 
+//    public void downSizeBridge() {
+//        upBridge.remove(Player.currentLocation * 2);
+//        upBridge.remove(Player.currentLocation * 2);
+//        downBridge.remove(Player.currentLocation * 2);
+//        downBridge.remove(Player.currentLocation * 2);
+//    }
+    public void resetBridge() {
+
+    }
     public int getSize() {
         return size;
     }
