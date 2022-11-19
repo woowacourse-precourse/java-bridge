@@ -25,6 +25,7 @@ public class BridgeGameController {
     }
 
     public void playTurn() {
-
+        String nextStep = inputView.readMoving();
+        bridgeGame.move(nextStep);
     }
 }

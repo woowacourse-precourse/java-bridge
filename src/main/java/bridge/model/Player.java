@@ -1,18 +1,19 @@
 package bridge.model;
 
+import bridge.util.Rules;
+
 public class Player {
-    private int position;
+    private int playerPosition;
 
     public Player() {
         initPosition();
     }
 
     public void initPosition() {
-        this.position = -1;
+        playerPosition = Rules.PLAYER_START_POSITION;
     }
 
     public int nextStep() {
-        this.position = this.position + 1;
-        return this.position;
+        return (playerPosition = playerPosition + 1);
     }
 }

@@ -11,6 +11,10 @@ import java.util.List;
 public class Bridge {
     private final List<Plate> bridge;
 
+    public Bridge() {
+        bridge = new ArrayList<>();
+    }
+
     public Bridge(int bridgeLength) {
         validateLength(bridgeLength);
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
