@@ -10,12 +10,15 @@ import java.util.List;
  */
 public class BridgeGame {
     private static final String NOT_VALID_BRIDGE_SIZE_INPUT = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+    private static final String NOT_VALID_RETRY_INPUT = "[ERROR] 입력은 Q,R 이어야 합니다.";
     private static final String NOT_VALID_BRIDGE_INPUT = "[ERROR] 입력은 숫자 이어야 합니다.";
     private static final String NOT_VALID_MOVE_INPUT = "[ERROR] 입력은 U,D 이어야 합니다.";
 
+    private int retryCount = 1;
     private int count = 0;
     private int bridgeSize;
 
+    private boolean playGame = true;
     private boolean loss = false;
 
     private BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
@@ -84,7 +87,39 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        while (true) {
+            String inputRetry = InputView.readGameCommand();
+            try {
+                validateRetry(inputRetry);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            playGame = checkRetry(inputRetry);
+            break;
+        }
 
+    }
+
+    private boolean checkRetry(String inputRetry) {
+        if (inputRetry.equals("Q")) {
+            return false;
+        }
+        resetScore();
+        return true;
+    }
+
+    private void resetScore() {
+        count = 0;
+        retryCount++;
+        OutputView.reset();
+        loss = false;
+    }
+
+    private void validateRetry(String inputRetry) {
+        if (inputRetry.charAt(0) != 'Q' && inputRetry.charAt(0) != 'R') {
+            throw new IllegalArgumentException(NOT_VALID_RETRY_INPUT);
+        }
     }
 
     private void validateBridgeSize(String inputBridgeSize) {
