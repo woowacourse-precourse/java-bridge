@@ -1,30 +1,27 @@
 package bridge.domain;
 
 public class BridgeGameStatus {
-    private boolean status;
+    private Status status;
     private int tryCount;
 
     public BridgeGameStatus() {
-        this.status = true;
+        this.status = Status.START;
         this.tryCount = 1;
     }
 
     public void addTryCount() {
     }
 
-    public void endGame() {
-    }
-
     public boolean canPlayGame() {
-        return status;
+        return status.getStatus();
     }
 
-    public void updateStatus(boolean status) {
+    public void updateStatus(Status status) {
         this.status = status;
     }
 
     public void retryStatus() {
         tryCount+=1;
-        status = true;
+        status = Status.START;
     }
 }

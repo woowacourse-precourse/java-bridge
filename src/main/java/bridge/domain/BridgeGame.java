@@ -52,8 +52,10 @@ public class BridgeGame {
     }
 
     public void updateGameStatus(String moveLocation) {
-        bridgeGameStatus.updateStatus(
-                bridgeGameAnswer.isAnswer(moveLocation,
-                        bridgeGameHistory.getCurrentIndex()));
+        if (bridgeGameAnswer.isAnswer(moveLocation,bridgeGameHistory.getCurrentIndex())){
+            bridgeGameStatus.updateStatus(Status.START);
+            return;
+        }
+        bridgeGameStatus.updateStatus(Status.FAIL);
     }
 }
