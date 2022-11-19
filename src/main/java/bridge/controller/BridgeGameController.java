@@ -4,7 +4,6 @@ import bridge.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
-import bridge.domain.BridgeGameResult;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import java.util.List;
@@ -18,7 +17,6 @@ public class BridgeGameController {
     private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
     private final BridgeGame bridgeGame;
-    private final BridgeGameResult bridgeGameResult;
 
     private boolean play;
 
@@ -26,8 +24,7 @@ public class BridgeGameController {
         inputView = new InputView();
         outputView = new OutputView();
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        bridgeGameResult = new BridgeGameResult();
-        bridgeGame = new BridgeGame(bridgeGameResult);
+        bridgeGame = new BridgeGame();
         play = true;
     }
 
