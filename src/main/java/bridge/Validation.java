@@ -5,7 +5,7 @@ import static bridge.Util.convertStringToInt;
 
 public class Validation {
     public static int isPositiveInteger(String bridgeSize) {
-        String pattern = "^[^0]\\d*";
+        String pattern = "^[1-9]+[0-9]*$";
         if (!Pattern.matches(pattern, bridgeSize)) {
             throw new IllegalArgumentException("[ERROR} 다리 개수는 양의 정수이어야 합니다.");
         }
