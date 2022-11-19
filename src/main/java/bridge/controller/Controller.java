@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.dto.Bridge;
 import bridge.service.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -18,17 +19,16 @@ public class Controller {
     public void play() {
         outputView.printGameStart();
 
-        generateBridge();
+        Bridge bridge = generateBridge();
     }
 
-    private void generateBridge() {
-        int bridgeSize = 0;
-
+    private Bridge generateBridge() {
         try {
-            bridgeSize = inputView.readBridgeSize();
+            int bridgeSize = inputView.readBridgeSize();
+            return bridgeGame.generateBridge(bridgeSize);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            generateBridge();
+            return generateBridge();
         }
     }
 
