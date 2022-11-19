@@ -11,6 +11,10 @@ public class InputView {
     private static final int MIN_LENGTH = 3;
     private static final int MAX_LENGTH = 20;
 
+    private static final String QUIT = "Q";
+
+    private static final String RESTART = "R";
+
     public String input() {
         return Console.readLine();
     }
@@ -36,8 +40,9 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public String readGameCommand(String decision) throws IllegalArgumentException {
+        validateDecision(decision);
+        return decision;
     }
 
     public void validateIsNotEmpty(String size) {
@@ -69,5 +74,11 @@ public class InputView {
 
     public boolean isExistDirection(String direction) {
         return Arrays.asList("U", "D").contains(direction);
+    }
+
+    public void validateDecision(String decision) {
+        if(!decision.equals(RESTART) && !decision.equals(QUIT)) {
+            throw new IllegalArgumentException("[ERROR] R(재시도) 또는 Q(종료)만을 입력해야 합니다.");
+        }
     }
 }
