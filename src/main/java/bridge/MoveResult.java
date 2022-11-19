@@ -9,8 +9,8 @@ public class MoveResult {
     private static final String SPACE = " ";
     private static final String MOVE_POSSIBLE = "O";
     private static final String MOVE_IMPOSSIBLE = "X";
-    private List<String> highBridge = new ArrayList<>();
-    private List<String> lowBridge = new ArrayList<>();
+    private final List<String> highBridge = new ArrayList<>();
+    private final List<String> lowBridge = new ArrayList<>();
 
     public void makeResultBridge(String moving, boolean movingPossible) {
         if (moving.equals(MOVE_TO_UP)) {
@@ -33,22 +33,20 @@ public class MoveResult {
     private void up(boolean success) {
         if (success) {
             highBridge.add(MOVE_POSSIBLE);
-            lowBridge.add(SPACE);
         }
         if (!success) {
             highBridge.add(MOVE_IMPOSSIBLE);
-            lowBridge.add(SPACE);
         }
+        lowBridge.add(SPACE);
     }
 
     private void down(boolean success) {
         if (success) {
-            highBridge.add(SPACE);
             lowBridge.add(MOVE_POSSIBLE);
         }
         if (!success) {
-            highBridge.add(SPACE);
             lowBridge.add(MOVE_IMPOSSIBLE);
         }
+        highBridge.add(SPACE);
     }
 }
