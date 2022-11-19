@@ -8,12 +8,14 @@ import java.util.List;
 public class BridgeGame {
 
     private static final int NUMBER_OF_BRIDGE = 2;
-    private List<String> bridge;
+    private final List<String> bridge;
     private int currentStage = 0;
+    private int tryNumber = 0;
     private boolean isFail = false;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
+        this.tryNumber++;
     }
 
     public boolean isFail() {
@@ -38,15 +40,23 @@ public class BridgeGame {
         return bridge.size() == currentStage;
     }
 
+    public int getTryNumber() {
+        return tryNumber;
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
-        bridge = null;
-        currentStage = 0;
-        isFail = false;
+    public boolean retry(String restart) {
+        if (restart.equals("R")) {
+            currentStage = 0;
+            isFail = false;
+            tryNumber++;
+            return true;
+        }
+        return false;
     }
 
     @Override
