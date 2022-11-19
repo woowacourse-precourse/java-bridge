@@ -21,9 +21,6 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public String readMoving() {
         String input;
         do {
@@ -33,11 +30,16 @@ public class InputView {
         return input;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public String readGameCommand() {
-        return null;
+    public int readGameCommand() {
+        String input;
+        do {
+            outputView.printRetry();
+            input = Console.readLine();
+        } while (!validateGameCommand(input));
+        if (input.equals("R")){
+            return Constant.GAME_RESTART;
+        }
+        return Constant.GAME_FAIL;
     }
 
     // 검증 메소드
@@ -64,6 +66,18 @@ public class InputView {
         }
     }
 
+    private Boolean validateGameCommand(String input) {
+        try {
+            if (!isRorQ(input)){
+                throw new IllegalArgumentException();
+            }
+            return true;
+        } catch (IllegalArgumentException e){
+            return exception.exceptionMoving();
+        }
+    }
+
+
     private Boolean isNumeric(String input) {
         try {
             Integer.parseInt(input);
@@ -76,6 +90,14 @@ public class InputView {
     private Boolean isUorD(String input) {
         try {
             return input.equals("U") || input.equals("D");
+        } catch (NullPointerException e){
+            return false;
+        }
+    }
+
+    private Boolean isRorQ(String input) {
+        try {
+            return input.equals("R") || input.equals("Q");
         } catch (NullPointerException e){
             return false;
         }
