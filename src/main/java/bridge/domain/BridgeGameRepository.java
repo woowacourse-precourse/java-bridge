@@ -12,7 +12,7 @@ public class BridgeGameRepository {
     private static final Integer ROUND_DEFAULT_VALUE = 1;
     private static final Integer TRY_COUNT_DEFAULT_VALUE = 1;
 
-    Map<String, Integer> localDb = new HashMap<>();
+    private final Map<String, Integer> localDb = new HashMap<>();
 
     public void setBridgeGameInfo(int size) {
         localDb.put(ROUND_KEY, ROUND_DEFAULT_VALUE);
