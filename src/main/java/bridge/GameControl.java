@@ -21,6 +21,39 @@ public class GameControl {
         OutputView.printGameMessage(GAME_START_MESSAGE + "\n");
         int size = inputView.readBridgeSize();
         bridgeGame.initBridge(size);
+        moveControl();
+    }
+
+    private void moveControl() {
+        String UorD = inputView.readMoving();
+        Progress result = bridgeGame.move(UorD);
+        printMap();
+        if (result == Progress.FAILURE) {
+            restartControl();
+        } else if(result == Progress.PROGRESSION) {
+            moveControl();
+        } else if(result == Progress.SUCCESS) {
+            ending(Progress.SUCCESS.getStateMessage());
+        }
+    }
+
+    private void restartControl() {
+        String RorQ = inputView.readGameCommand();
+        if(RorQ == "R") {
+            bridgeGame.retry();
+        } else if (RorQ == "Q") {
+            ending(Progress.FAILURE.getStateMessage());
+        }
+    }
+
+    private void ending(String result) {
+        OutputView.printGameMessage(FINAL_RESULT_MESSAGE);
+        printMap();
+        outputView.printResult(result, bridgeGame.getAttempt());
+    }
+
+    private void printMap() {
+        outputView.printMap(bridgeGame.getBridge(), bridgeGame.getUserAnswer());
     }
 
 }
