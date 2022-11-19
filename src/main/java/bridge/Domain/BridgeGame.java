@@ -59,5 +59,11 @@ public class BridgeGame {
         return gameResultGenerator.getGameResultOutput();
     }
 
+    public boolean isBridgeFinished() {
+        return player.isPlayerInEndOfBridge(bridge);
+    }
 
+    public boolean isMoveSuccess() {
+        return gameResult.isGameSuccess();
+    }
 }
