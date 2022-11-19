@@ -15,7 +15,7 @@ public class BridgeGame {
 
     public BridgeGame(Bridge bridge) {
         this.gameStartCount = 1;
-        this.player = new Player();
+        this.player = new Player(bridge);
         this.bridge = bridge;
         this.gameResultGenerator = new GameResultGenerator();
     }
@@ -26,14 +26,12 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String position) {
-        BridgeType positionType = BridgeType.getBridgeType(position);
-        int distance = player.getPosition();
         player.movePlayer();
-        if (bridge.isValidDistance(distance) && bridge.canCrossBridge(distance, position)) {
-            this.gameResult = new GameResult(positionType, BridgeResultType.POSSIBLE);
+        if (player.isPlayerMoveSuccess(position)) {
+            this.gameResult = new GameResult(BridgeType.getBridgeType(position), BridgeResultType.POSSIBLE);
             return;
         }
-        this.gameResult = new GameResult(positionType, BridgeResultType.IMPOSSIBLE);
+        this.gameResult = new GameResult(BridgeType.getBridgeType(position), BridgeResultType.IMPOSSIBLE);
     }
 
     /**
@@ -60,7 +58,7 @@ public class BridgeGame {
     }
 
     public boolean isBridgeFinished() {
-        return player.isPlayerInEndOfBridge(bridge);
+        return player.isPlayerInEndOfBridge();
     }
 
     public boolean isMoveSuccess() {
