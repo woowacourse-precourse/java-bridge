@@ -1,6 +1,7 @@
 package bridge.view.input;
 
 import bridge.command.Bridge;
+import bridge.command.Direction;
 
 public class InputValidator {
 
@@ -12,6 +13,13 @@ public class InputValidator {
         if (!isNumber(bridgeSize) || !Bridge.isInRange(Integer.parseInt(bridgeSize))) {
             throw new IllegalArgumentException("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
+    }
+
+    public static void checkDirectionOrElseThrowException(String direction) {
+        if (!Direction.contains(direction)) {
+            throw new IllegalArgumentException("방향 입력은 U 또는 D만 허용됩니다.");
+        }
+
     }
 
 

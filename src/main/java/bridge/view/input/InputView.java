@@ -23,7 +23,10 @@ public class InputView {
      */
     public String readMoving() {
         print(InputMessage.READ_MOVING_DIRECTION);
-        return null;
+        String direction = Console.readLine();
+        InputValidator.checkDirectionOrElseThrowException(direction);
+
+        return direction;
     }
 
     /**

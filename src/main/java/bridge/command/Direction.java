@@ -26,7 +26,7 @@ public class Direction {
     }
 
     private Direction() {
-        
+
     }
 
     public static String convert(int direction) {
@@ -35,24 +35,6 @@ public class Direction {
         }
 
         return DirectionSource.DOWN.getText();
-    }
-
-    public static int convert(String direction) {
-        if (direction.equals(DirectionSource.UP.getText())) {
-            return DirectionSource.UP.getNumber();
-        }
-
-        return DirectionSource.DOWN.getNumber();
-    }
-
-    public static boolean contains(int number) {
-        for (DirectionSource i : DirectionSource.values()) {
-            if (i.getNumber() == number) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     public static boolean contains(String text) {
