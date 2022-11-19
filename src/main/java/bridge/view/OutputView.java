@@ -47,6 +47,7 @@ public class OutputView {
                 break;
             }
         }
+        System.out.println();
     }
 
     /**
@@ -77,7 +78,7 @@ public class OutputView {
                 break;
             }
         }
-
+        System.out.println();
         System.out.println(GAME_SUCCESS_OR_FAIL + dto.getGameSuccessOrFail());
         System.out.println(TOTAL_TRY_NUMBER + dto.getTotalTryNumber());
     }
