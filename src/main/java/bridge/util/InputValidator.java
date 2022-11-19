@@ -57,7 +57,7 @@ public class InputValidator {
     }
 
     private void validateCommandOrder(String userInput) {
-        if (!userInput.equals(Command.RETRY.shortCut()) || !userInput.equals(Command.QUIT.shortCut())) {
+        if (!userInput.equals(Command.RETRY.shortCut()) && !userInput.equals(Command.QUIT.shortCut())) {
             throw new IllegalArgumentException(INVALID_GAME_COMMAND_INPUT_MSG);
         }
     }
