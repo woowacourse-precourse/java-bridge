@@ -16,5 +16,4 @@ public class UpAndDown {
         //TODO: 예외 작성
     }
 
-
 }
