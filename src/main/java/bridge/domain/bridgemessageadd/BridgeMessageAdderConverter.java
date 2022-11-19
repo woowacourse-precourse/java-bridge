@@ -1,4 +1,4 @@
-package bridge.domain.bridgeadd;
+package bridge.domain.bridgemessageadd;
 
 import static bridge.Constants.DOWN_BRIDGE;
 import static bridge.Constants.FAIL_MESSAGE;

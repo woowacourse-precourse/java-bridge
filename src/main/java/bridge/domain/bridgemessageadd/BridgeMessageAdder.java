@@ -1,8 +1,8 @@
-package bridge.domain.bridgeadd;
+package bridge.domain.bridgemessageadd;
 
-import static bridge.domain.bridgeadd.BridgeMessageAdderConverter.bridgeAddStrategyConverter;
-import static bridge.domain.bridgeadd.BridgeMessageAdderConverter.saveMessageConverter;
-import static bridge.domain.bridgeadd.BridgeMessageAdderConverter.setConverter;
+import static bridge.domain.bridgemessageadd.BridgeMessageAdderConverter.bridgeAddStrategyConverter;
+import static bridge.domain.bridgemessageadd.BridgeMessageAdderConverter.saveMessageConverter;
+import static bridge.domain.bridgemessageadd.BridgeMessageAdderConverter.setConverter;
 
 import java.util.List;
 

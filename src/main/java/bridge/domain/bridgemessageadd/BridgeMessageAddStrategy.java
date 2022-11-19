@@ -1,4 +1,4 @@
-package bridge.domain.bridgeadd;
+package bridge.domain.bridgemessageadd;
 
 public interface BridgeMessageAddStrategy {
     String EMPTY_MESSAGE = "   ";

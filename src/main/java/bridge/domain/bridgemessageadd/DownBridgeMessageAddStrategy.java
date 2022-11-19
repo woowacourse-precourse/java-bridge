@@ -1,4 +1,4 @@
-package bridge.domain.bridgeadd;
+package bridge.domain.bridgemessageadd;
 
 class DownBridgeMessageAddStrategy implements BridgeMessageAddStrategy {
     public void addMessage(String message, BridgeMessageAdder bridgeMessageAdder) {

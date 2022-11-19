@@ -3,7 +3,7 @@ package bridge.domain;
 import static bridge.Constants.COMPLETE;
 import static bridge.Constants.FAIL;
 
-import bridge.domain.bridgeadd.BridgeMessageAdder;
+import bridge.domain.bridgemessageadd.BridgeMessageAdder;
 import java.util.ArrayList;
 import java.util.List;
 
