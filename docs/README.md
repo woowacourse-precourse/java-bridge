@@ -6,8 +6,9 @@
 - [ ] 다리 길이 입력 받기 InputView#readBridgeSize()
   - 유효성 검사에 실패하면 다시 입력 받기
   - [ ] 입력 받은 값 유효성 검사 InputView#validateBridgeSize(int size)
-- [ ] 다리 생성 하기 BridgeMaker#makeBridge(int size)
-    - 제공된 BridgeNumberGenerator를 통해 List 생성
+- [x] 다리 생성 하기 BridgeMaker#GenerateBridge(int size)
+    - 제공된 BridgeNumberGenerator를 통해 Bridge 객체 리턴
+    - 예외. 0 또는 1 이외의 값이 생성될 경우 예외 발생
 - [x] 생성된 List로 Bride객체 생성하기 Bridge#of(List<String> bridge)
   - 예외. U와 D로만 이뤄진 리스트가 아닌 경우 예외 발생
 
