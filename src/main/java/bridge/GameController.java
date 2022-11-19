@@ -26,17 +26,12 @@ public class GameController {
     }
 
     private boolean startCrossBridge(List<String> bridge) {
-        int count;
         this.bridgeGame = new BridgeGame(bridge);
+        return (success = isSuccessfullyCross(bridge));
+    }
 
-        count = countRightMove(bridge);
-
-        if (bridge.size() == count){
-            success = true;
-            return true;
-        }
-
-        return false;
+    private boolean isSuccessfullyCross(List<String> bridge) {
+        return (bridge.size() == countRightMove(bridge));
     }
 
     private void getGameResult(int attempts) {
