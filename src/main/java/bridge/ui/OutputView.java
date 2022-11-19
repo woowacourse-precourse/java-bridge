@@ -27,7 +27,7 @@ public class OutputView {
     public void printResult(Result result) {
         System.out.println(LINE_FEED + GAME_RESULT);
         System.out.println(result.getBridgeMap().getMap() + LINE_FEED);
-        System.out.println(GAME_SUCCESS_WHETHER + result.getSuccessWhether());
+        System.out.println(GAME_SUCCESS_WHETHER + result.getWinning());
         System.out.println(GAME_COUNT + result.getGameCount());
     }
 
