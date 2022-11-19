@@ -19,4 +19,11 @@ public class BridgeMoveHistory {
     public boolean isSuccess() {
         return isSuccess;
     }
+    
+    public String getMoveResult() {
+        if (isSuccess) {
+            return " O ";
+        }
+        return " X ";
+    }
 }
