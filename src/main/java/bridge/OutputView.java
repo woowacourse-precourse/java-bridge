@@ -65,7 +65,7 @@ public class OutputView {
     public void printResult(List<String> path, List<String> bridge, int numberOfTry) {
         System.out.println("최종 게임 결과");
         printMap(path, bridge);
-        String passOrFail = getPassOrFail(path.size() == bridge.size());
+        String passOrFail = getPassOrFail(path.equals(bridge));
         System.out.println("게임 성공 여부: " + passOrFail);
         System.out.printf("총 시도한 횟수: %d\n", numberOfTry);
     }
