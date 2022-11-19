@@ -62,7 +62,7 @@
     - [x]  toEnum -> D와 U를 입력받아 Enum 인스턴스를 반환
 - [x]  AnswerBridge 다리를 표현하는 클래스
     - [x]  check -> 라운드와 방향을 입력받아 MoveResult를 반환
-    - [x]  isValidRound -> 진행 가능한 라운드인지 확인
+    - [x]  isLastRound -> 마지막 라운드인지 확인
 - [x]  Player 사용자 클래스
     - [x]  move -> 다리 건너기
     - [x]  reset -> 해당 게임을 리셋

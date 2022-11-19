@@ -46,20 +46,21 @@ public class AnswerBridge {
     }
 
     public MoveResult check(Round round, Direction direction) {
-        if (!isValidRound(round)) {
-            throw new IllegalArgumentException(INVALID_ROUND_MESSAGE);
-        }
-        return checkGameResult(round, direction);
-    }
-
-    public boolean isValidRound(Round round) {
-        return bridge.containsKey(round);
-    }
-
-    private MoveResult checkGameResult(Round round, Direction direction) {
-        if (bridge.get(round) == direction) {
+        validateRound(round);
+        if (bridge.get(round).equals(direction)) {
             return SUCCESS;
         }
         return FAIL;
+    }
+
+    private void validateRound(Round round) {
+        if (!bridge.containsKey(round)) {
+            throw new IllegalArgumentException(INVALID_ROUND_MESSAGE);
+        }
+    }
+    
+    public boolean isLastRound(Round round) {
+        Round lastRound = Round.valueOf(bridge.size());
+        return lastRound.equals(round);
     }
 }

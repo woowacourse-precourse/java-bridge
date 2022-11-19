@@ -69,16 +69,16 @@ class AnswerBridgeTest {
     }
 
     @Test
-    void isValidRound_메서드는_진행할_수_없는_라운드의_경우_false를_반환한다() {
+    void isLastRound_메서드는_라운드를_입력받아_마지막_라운드가_아닌_경우_false를_반환한다() {
         AnswerBridge answerBridge = new AnswerBridge(List.of("U", "D", "U"));
 
-        assertThat(answerBridge.isValidRound(Round.valueOf(4))).isFalse();
+        assertThat(answerBridge.isLastRound(Round.valueOf(1))).isFalse();
     }
 
     @Test
-    void isValidRound_메서드는_진행할_수_있는_라운드의_경우_true를_반환한다() {
+    void isLastRound_메서드는_라운드를_입력받아_마지막_라운드인_경우_true를_반환한다() {
         AnswerBridge answerBridge = new AnswerBridge(List.of("U", "D", "U"));
 
-        assertThat(answerBridge.isValidRound(Round.valueOf(1))).isTrue();
+        assertThat(answerBridge.isLastRound(Round.valueOf(3))).isTrue();
     }
 }
