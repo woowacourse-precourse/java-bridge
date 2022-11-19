@@ -7,6 +7,8 @@ import java.util.List;
  */
 public class OutputView {
     private final List<String> bridge;
+    private StringBuilder up;
+    private StringBuilder down;
 
     public OutputView(List<String> bridge) {
         this.bridge = bridge;
@@ -14,44 +16,68 @@ public class OutputView {
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
+     * @param nowLocation 현재 출력해야할 다리 순서
+     * @param isSucceed 성공여부
+     * @param selectedMoving 이동한 칸 ("U" or "D")
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(int nowLocation, boolean isSucceed, String selectedMoving) {
-        StringBuilder up = new StringBuilder("[");
-        StringBuilder down = new StringBuilder("[");
-        for (int i = 0; i < nowLocation; i++) {
-            // 최근
-            if (nowLocation -1 == i) {
-                if (selectedMoving.equals("U")) {
-                    if (isSucceed) {
-                        up.append(" O ]");
-                        down.append("   ]");
-                    } else {
-                        up.append(" X ]");
-                        down.append("   ]");
-                    }
-                } else {
-                    if (isSucceed) {
-                        up.append("   ]");
-                        down.append(" O ]");
-                    } else {
-                        up.append("   ]");
-                        down.append(" X ]");
-                    }
-                }
-            } else {
-                if (bridge.get(i).equals("U")) {
-                    up.append(" O |");
-                    down.append("   |");
-                } else {
-                    up.append("   |");
-                    down.append(" O |");
-                }
-            }
-        }
+        up = new StringBuilder("[");
+        down = new StringBuilder("[");
+
+        printPreMap(nowLocation - 1);
+        printNowMap(isSucceed, selectedMoving);
+
         System.out.println(up);
         System.out.println(down);
+    }
+
+    private void printPreMap(int nowLocation) {
+        for (int i = 0; i < nowLocation; i++) {
+            if (bridge.get(i).equals("U")) {
+                up.append(" O |");
+                down.append("   |");
+            }
+            if (bridge.get(i).equals("D")) {
+                up.append("   |");
+                down.append(" O |");
+            }
+        }
+    }
+
+    private void printNowMap(boolean isSucceed, String selectedMoving) {
+        upSucceed(isSucceed, selectedMoving);
+        upFailed(isSucceed, selectedMoving);
+        downSucceed(isSucceed, selectedMoving);
+        downFailed(isSucceed, selectedMoving);
+    }
+
+    private void upSucceed(boolean isSucceed, String selectedMoving) {
+        if (selectedMoving.equals("U") && isSucceed) {
+            up.append(" O ]");
+            down.append("   ]");
+        }
+    }
+
+    private void upFailed(boolean isSucceed, String selectedMoving) {
+        if (selectedMoving.equals("U") && !isSucceed) {
+            up.append(" X ]");
+            down.append("   ]");
+        }
+    }
+
+    private void downSucceed(boolean isSucceed, String selectedMoving) {
+        if (selectedMoving.equals("D") && isSucceed) {
+            up.append("   ]");
+            down.append(" O ]");
+        }
+    }
+
+    private void downFailed(boolean isSucceed, String selectedMoving) {
+        if (selectedMoving.equals("D") && !isSucceed) {
+            up.append("   ]");
+            down.append(" X ]");
+        }
     }
 
     /**
