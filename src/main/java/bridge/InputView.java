@@ -60,9 +60,9 @@ public class InputView {
      * String을 Integer로 파싱한다.
      * 숫자가 아닌 문자일 경우 IllegalArgumentException을 발생 시킨다.
      */
-    private int parseStrToInt(String str) {
+    private int parseStrToInt(String input) {
         try {
-            return Integer.parseInt(str);
+            return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(PARSE_STR_TO_INT_ERROR_MESSAGE);
         }
@@ -81,11 +81,11 @@ public class InputView {
     /**
      * 매개변수 str이 U나 D가 아니면 IllegalArgumentException을 발생 시킨다.
      */
-    private String validateMoving(String str) {
-        if (!(str.equals("U") || str.equals("D"))) {
+    private String validateMoving(String moving) {
+        if (!(moving.equals("U") || moving.equals("D"))) {
             throw new IllegalArgumentException(VALIDATE_MOVING_ERROR_MESSAGE);
         }
-        return str;
+        return moving;
     }
 
     private String validateGameCommand(String gameCommand) {
