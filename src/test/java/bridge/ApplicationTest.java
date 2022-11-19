@@ -30,6 +30,15 @@ class ApplicationTest extends NsTest {
     void 다리_사이즈_입력_예외처리_테스트(String userInput) {
         assertThatThrownBy(() -> validator.validateBridgeSizeInput(userInput)).isInstanceOf(IllegalArgumentException.class);
     }
+    
+    @Test
+    void BridgeRandomNumberGenerator_출력_테스트() {
+        BridgeRandomNumberGenerator bridgeRandomNumGen = new BridgeRandomNumberGenerator();
+        for (int i = 0; i < 20; i++) {
+            int tempValue = bridgeRandomNumGen.generate();
+            assertThat(tempValue).isIn(List.of(0, 1));
+        }
+    }
 
     @Test
     void 다리_생성_테스트() {
