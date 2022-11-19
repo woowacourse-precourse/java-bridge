@@ -314,8 +314,6 @@ int number = bridgeNumberGenerator.generate();
 
 
 ### Bridge  
-  BridgeMaker를 통해 만들어진 다리를 다시 포장하는 용도이며 BridgeGame의 인스턴스 변수로 만들 예정  
-  bridge의 값은 변하지 않는데 사용자의 입력 값에 따라 bridgeShape는 바뀜. -> BridgeGame에서 BridgeMaker를 기반으로 게임이 재시도될 때마다 새로 생성돼야함.  
 
   멤버변수: 다리 (List<String>), 다리 모양 (String[][])
   #### 기능목록
@@ -326,7 +324,7 @@ int number = bridgeNumberGenerator.generate();
   
 
 ### Player
-  멤버변수: 현재 위치(in), 시도한 횟수(int)
+  멤버변수: 현재 위치(int), 시도한 횟수(int)
   #### 기능목록
   - [x] 사용자가 이동할 칸을 입력하면 플레이어의 위치가 한칸씩 이동해야 함
   - [x] 사용자가 오답을 입력하고 게임을 다시 시도하면 시도한 횟수가 늘어나야 함
