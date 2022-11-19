@@ -33,6 +33,12 @@ class InputViewTest {
 
     @Nested
     class MovingNextInputTest extends NsTest {
+        @ParameterizedTest
+        @ValueSource(strings = {"u,d,UU,U ,U"})
+        void U_or_D를_건널칸으로_입력값을때까지_입력받는지_테스트(String input) {
+            run(input.split(","));
+        }
+
         @Override
         public void runMain() {
             inputView.readMoving();
