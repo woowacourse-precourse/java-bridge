@@ -11,3 +11,17 @@
 7. 다리를 끝까지 건너는데 성공한 경우 최종 게임 결과와 시도한 횟수를 출력하고 종료한다.
 
 
+
+## 기능 목록
+
+- [ ] 다리 길이에 대한 입력 validation (Validation Class)
+- [ ] 다리 길이에 대한 입력 Integer 변환 (InputView Class)
+- [ ] 다리 만들기 (BridgeMaker Class)
+- [ ] 이동할 칸에 대한 입력 validation (Validation Class)
+- [ ] 이동할 칸에 대한 입력 String 변환 (InputView Class)
+- [ ] 다리 이동 (BridgeGame Class)
+- [ ] 다리 이동 상태 출력 (OutputView Class)
+- [ ] 게임 다시 시도 여부 입력 Validation(Validation Class)
+- [ ] 게임 다시 시도 여부 입력 String 변환 (InputView Class)
+- [ ] 게임 다시 시도 (BridgeGame Class)
+- [ ] 최종 게임 결과 출력 (OutputView Class)
