@@ -3,17 +3,13 @@ package bridge.domain;
 import java.util.List;
 
 public class Bridge {
-    private final List<Integer> bridge;
+    private final List<String> bridge;
 
-    public Bridge(List<Integer> bridge) {
+    public Bridge(List<String> bridge) {
         this.bridge = bridge;
     }
 
-    public boolean isPossibleMove (int index, String moving) {
-        int movingSpace = bridge.get(index);
-        if (moving.equals("U")) {
-            return movingSpace == 1;
-        }
-        return movingSpace == 0;
+    public String getShape(int index) {
+        return bridge.get(index);
     }
 }
