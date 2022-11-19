@@ -31,6 +31,10 @@ public class Bridge {
         return bridge.get(step.size() - 1).equals(userPick);
     }
 
+    public boolean isCrossing(int step) {
+        return this.bridge.size() == step;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
