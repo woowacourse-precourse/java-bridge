@@ -22,7 +22,7 @@ class BridgeGameTest {
     @Test
     void 현재_건넌_상태_추가() {
         List<String> preStatus = new ArrayList<>();
-        bridgeGame.move(preStatus, "U");
+        bridgeGame.move("U");
         assertThat(preStatus).isEqualTo(Arrays.asList("U"));
     }
 

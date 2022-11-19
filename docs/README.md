@@ -1,7 +1,7 @@
 
 ## 🚀 기능 목록
 
-- 전체 애플리케이션 실행 #BridgeGameManager#run()
+- 전체 애플리케이션 실행 [ x ] #BridgeGameManager#run()
 
 ### view
 - 다리 건너기 게임 시작 출력 - [ x ] OutputView#printStart()
@@ -17,7 +17,6 @@
 - 다리를 생성할 수 있다 - [ x ] BridgeMaker#makeBridge()
   - 생성 시 무작위로  0, 1 중 무작위로 건널 수 있는지 없는지 생성 [ x ] BridgeRandomNumberGenerator#generate()
 - 플레이어 이동(현재 이동상태 리스트에 U, D 삽입) - [ x ] BridgeGame#move()
-  - 현재 까지 이동한 다리 모양을 생성 - ???
 - 총 시도한 횟수 반환한다. [ x ] BridgeGame#getTryNumber()
 
 ### controlloer
