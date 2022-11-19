@@ -43,4 +43,18 @@ public class GameHostTest {
         assertThat(gameHost.whereIsPlayer()).isEqualTo(-1);
     }
 
+    // Game 총 시도 횟수
+    @Test
+    @DisplayName("플레이어의 총 시도 횟수를 반환하는 기능")
+    void getRetry() {
+        assertThat(gameHost.getRetry()).isEqualTo(0);
+    }
+    // Game 을 실패했는지 성공했는지 여부 (이것은 Player Index - 1 == Bridge.size() 이면 됨)
+
+    @Test
+    @DisplayName("플레이어의 게임 성공 여부를 반환하는 기능")
+    void getResult() {
+        assertThat(gameHost.getResult()).isFalse();
+    }
+
 }
