@@ -16,6 +16,7 @@ public class Bridge {
     }
 
     public boolean isLastIndex(int index) {
-        return bridge.size() == index;
+        int lastIndex = bridge.size() - 1;
+        return lastIndex == index;
     }
 }
