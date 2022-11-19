@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class BridgeTest {
@@ -41,6 +42,16 @@ class BridgeTest {
         Bridge bridge = new Bridge(innerBridge);
 
         assertThat(bridge).isInstanceOf(Bridge.class);
+    }
+
+    @DisplayName("이동한 칸의 이동 성공 여부를 계산한다")
+    @ParameterizedTest
+    @CsvSource(value = {"U:true:0", "D:true:1", "U:false:2", "D:false:3", "U:false:4"}, delimiter = ':')
+    void calculateMoveSuccess(String inputPosition, boolean isSuccess, int index) {
+        List<String> innerBridge = List.of("U", "D", "D", "U", "D");
+        Bridge bridge = new Bridge(innerBridge);
+
+        assertThat(bridge.checkMoveSuccess(inputPosition, index)).isEqualTo(isSuccess);
     }
 
 }
