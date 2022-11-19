@@ -33,7 +33,7 @@ class PlayerTest {
         for (int i = 0; i < 4; i++) {
             player.moveForward(Tile.UP);
         }
-        player.die();
+        player.resurrect();
 
         assertThat(player.isCurrentPosition(-1)).isTrue();
     }
@@ -54,7 +54,7 @@ class PlayerTest {
         int dieCount = 3;
         for (int i = 0; i < dieCount; i++) {
             player.moveForward(Tile.UP);
-            player.die();
+            player.resurrect();
         }
         int expectedTryCount = dieCount + 1;
 

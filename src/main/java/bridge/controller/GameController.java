@@ -59,23 +59,21 @@ public class GameController {
      * @param player 게임 플래이어
      */
     private void playUntilEnd(Player player) {
-        boolean isSurvive = true;
         do {
-            isSurvive = playOneTurn(player);
+            playOneTurn(player);
             outputView.printMap(bridgeGame, player);
-        } while (isContinueGame(player, isSurvive));
+        } while (isContinueGame(player));
     }
 
-    private boolean playOneTurn(Player player) {
+    private void playOneTurn(Player player) {
         Tile movingTargetTile = ValidateReader.readUntilValidate(() ->
                 Tile.findByPositionSign(inputView.readMoving()));
 
-        boolean turnResult = bridgeGame.move(player, movingTargetTile);
-        return turnResult;
+        bridgeGame.move(player, movingTargetTile);
     }
 
-    private boolean isContinueGame(Player player, boolean isSurviveThisTurn) {
-        if (isSurviveThisTurn) {
+    private boolean isContinueGame(Player player) {
+        if (player.isAlive()) {
             return !bridgeGame.isWin(player);
         }
         return askForTryAgain(player);

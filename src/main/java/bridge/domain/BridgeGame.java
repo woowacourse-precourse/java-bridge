@@ -20,11 +20,12 @@ public class BridgeGame {
      *
      * @param player     이동할 플래이어 입력
      * @param targetTile 이동할 방향 타일 입력
-     * @return 이동 결과 생존했는지 아닌지 반환 true false로 반환
      */
-    public boolean move(Player player, Tile targetTile) {
+    public void move(Player player, Tile targetTile) {
         int movedPosition = player.moveForward(targetTile);
-        return bridge.checkBridgeTileAt(movedPosition, targetTile);
+        if (!bridge.checkBridgeTileAt(movedPosition, targetTile)) {
+            player.die();
+        }
     }
 
     /**
@@ -43,7 +44,7 @@ public class BridgeGame {
      * @param player 게임을 재시도 할 player 입력
      */
     public void retry(Player player) {
-        player.die();
+        player.resurrect();
     }
 
     /**

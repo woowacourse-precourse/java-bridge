@@ -25,14 +25,12 @@ class BridgeGameTest {
     @CsvSource(value = {"UDDUD,true", "UDDUU,false"})
     void moveTest(String movingPath, boolean expectedResult) {
 
-        boolean actualResult = false;
-
         for (String movingDirection : movingPath.split("")) {
             Tile targetTile = Tile.findByPositionSign(movingDirection);
-            actualResult = bridgeGame.move(player, targetTile);
+            bridgeGame.move(player, targetTile);
         }
 
-        assertThat(actualResult).isEqualTo(expectedResult);
+        assertThat(player.isAlive()).isEqualTo(expectedResult);
     }
 
     @ParameterizedTest(name = "다리건너기 성공 여부 테스트 [{index}] : 성공여부 - {1}")
