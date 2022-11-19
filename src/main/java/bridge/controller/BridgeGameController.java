@@ -6,8 +6,8 @@ import bridge.view.OutputView;
 
 public class BridgeGameController {
 
-    private InputView inputView;
-    private OutputView outputView;
+    private final InputView inputView;
+    private final OutputView outputView;
 
     public BridgeGameController() {
         this.inputView = new InputView();
