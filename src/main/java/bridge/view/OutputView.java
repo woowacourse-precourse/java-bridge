@@ -3,7 +3,6 @@ package bridge.view;
 import java.util.List;
 
 import bridge.repository.UserBridgeStatusDto;
-import bridge.util.InputViewConst;
 import bridge.util.OutputViewConst;
 
 /**
@@ -12,7 +11,7 @@ import bridge.util.OutputViewConst;
 public class OutputView {
 
 	public void printGameStart() {
-		System.out.println(InputViewConst.START_GAME_PHRASE);
+		System.out.println(OutputViewConst.START_GAME_PHRASE);
 	}
 
 	public void printFinalResultPhrase() {
