@@ -52,24 +52,9 @@ public class Service {
 
     // 다시 게임을 시도할지 물어보는 기능
     public boolean retry() {
-        do {
-            try {
-                outputView.printInputRetry();
-                String input = inputView.readGameCommand();
-                return getRetry(input);
-            } catch (IllegalArgumentException error) {
-                outputView.printErrorMessage(error);
-            }
-        } while (true);
-    }
-
-
-    // retry boolean값 가져오는 기능
-    private boolean getRetry(String input) {
-        if (bridgeGame.retry(input)) {
-            return true;
-        }
-        return false;
+        outputView.printInputRetry();
+        String input = inputView.readGameCommand();
+        return bridgeGame.retry(input);
     }
 
     // 에러메세지 출력 기능
