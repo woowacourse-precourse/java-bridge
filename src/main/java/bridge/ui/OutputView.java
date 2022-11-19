@@ -1,11 +1,11 @@
-package bridge;
+package bridge.ui;
 
-import static bridge.BridgeConstants.DOWN;
-import static bridge.BridgeConstants.UP;
-import static bridge.MessageUtil.BRIDGE_SIZE_INPUT_INTRO;
-import static bridge.MessageUtil.CONTINUE_OR_QUIT;
-import static bridge.MessageUtil.POSITION_CHOICE_INPUT;
-import static bridge.MessageUtil.START_GAME_INTRO;
+import static bridge.domain.BridgeConstants.DOWN;
+import static bridge.domain.BridgeConstants.UP;
+import static bridge.ui.MessageUtil.BRIDGE_SIZE_INPUT_INTRO;
+import static bridge.ui.MessageUtil.CONTINUE_OR_QUIT;
+import static bridge.ui.MessageUtil.POSITION_CHOICE_INPUT;
+import static bridge.ui.MessageUtil.START_GAME_INTRO;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 public class BridgeConstants {
     public static final String UP = "U";

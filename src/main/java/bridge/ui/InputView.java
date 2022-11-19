@@ -1,9 +1,9 @@
-package bridge;
+package bridge.ui;
 
-import static bridge.InputValidator.*;
-import static bridge.MessageUtil.INVALID_BRIDGE_SIZE;
-import static bridge.MessageUtil.INVALID_GAME_CMD;
-import static bridge.MessageUtil.INVALID_MOVE_CHOICE;
+import static bridge.ui.InputValidator.*;
+import static bridge.ui.MessageUtil.INVALID_BRIDGE_SIZE;
+import static bridge.ui.MessageUtil.INVALID_GAME_CMD;
+import static bridge.ui.MessageUtil.INVALID_MOVE_CHOICE;
 
 import camp.nextstep.edu.missionutils.Console;
 

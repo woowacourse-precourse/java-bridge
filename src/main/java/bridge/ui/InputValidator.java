@@ -1,9 +1,9 @@
-package bridge;
+package bridge.ui;
 
-import static bridge.BridgeConstants.DOWN;
-import static bridge.BridgeConstants.QUIT;
-import static bridge.BridgeConstants.RETRY;
-import static bridge.BridgeConstants.UP;
+import static bridge.domain.BridgeConstants.DOWN;
+import static bridge.domain.BridgeConstants.QUIT;
+import static bridge.domain.BridgeConstants.RETRY;
+import static bridge.domain.BridgeConstants.UP;
 
 public class InputValidator {
     private static final int SIZE_LIMIT_START = 3;

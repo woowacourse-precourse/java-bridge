@@ -1,4 +1,9 @@
-package bridge;
+package bridge.controller;
+
+import bridge.domain.Bridge;
+import bridge.BridgeGame;
+import bridge.ui.InputView;
+import bridge.ui.OutputView;
 
 public class GameController {
     private static final String CONTINUE = "R";

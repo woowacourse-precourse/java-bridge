@@ -1,7 +1,7 @@
 package bridge;
 
-import static bridge.BridgeConstants.DOWN;
-import static bridge.BridgeConstants.UP;
+import static bridge.domain.BridgeConstants.DOWN;
+import static bridge.domain.BridgeConstants.UP;
 
 import java.util.ArrayList;
 import java.util.List;

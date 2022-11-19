@@ -1,4 +1,4 @@
-package bridge;
+package bridge.ui;
 
 public enum MessageUtil {
     // 출력 관련
