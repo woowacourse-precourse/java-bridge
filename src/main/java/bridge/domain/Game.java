@@ -9,7 +9,6 @@ public class Game {
     private String success;
     private int location;
 
-    private String currentAnswer;
 
     public Game() {
         location = 0;
@@ -20,19 +19,15 @@ public class Game {
         playing.add(up);
         playing.add(down);
     }
-    public void write(String direction, String answer){
-        currentAnswer = answer;
-        if (direction.equals("U")){
+
+    public void write(String direction, String answer) {
+        if (direction.equals("U")) {
             playing.get(0).add(answer);
             playing.get(1).add(BLANK);
             return;
         }
         playing.get(1).add(answer);
         playing.get(0).add(BLANK);
-    }
-
-    public String getCurrentAnswer() {
-        return currentAnswer;
     }
 
     public void setPlaying(List<List<String>> playing) {
@@ -42,6 +37,7 @@ public class Game {
     public String getSuccess() {
         return success;
     }
+
     public void setSuccess(String success) {
         this.success = success;
     }
@@ -54,9 +50,7 @@ public class Game {
         this.location = location;
     }
 
-    public void forward(){
-        this.location += 1;
-    }
+    public void forward() { this.location += 1;}
 
     public List<List<String>> getPlaying() {
         return playing;

@@ -14,17 +14,6 @@ class BridgeGameTest {
         bridgeGame = new BridgeGame();
     }
 
-    @Test
-    void checkGameTest(){
-        Game game = new Game();
-        game.write("U","O");
-        game.forward();
-        game.write("U","X");
-
-        boolean check = bridgeGame.checkGame(game, 3);
-
-        assertThat(check).isEqualTo(true);
-    }
 
     @Test
     void matchTest(){

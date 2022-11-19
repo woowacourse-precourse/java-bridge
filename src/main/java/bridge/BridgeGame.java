@@ -1,8 +1,6 @@
 package bridge;
 
 import bridge.domain.Game;
-import bridge.view.InputView;
-import bridge.view.OutputView;
 
 import java.util.List;
 
@@ -11,52 +9,25 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private InputView inputView;
-    private OutputView outputView;
     private BridgeMaker bridgeMaker;
     private List<String> bridge;
 
     private Game game;
-    private Repository repository;
 
     public BridgeGame() {
-        repository = new Repository();
-        outputView = new OutputView();
-        inputView = new InputView();
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
-    private void createBridge() {
-        try {
-            outputView.printBridgeSize();
-            int size = inputView.readBridgeSize();
-            bridge = bridgeMaker.makeBridge(size);
-        }catch (IllegalArgumentException e){
-            outputView.printError(e.getMessage());
-            createBridge();
-        }
+    public Game getGame() {
+        return game;
     }
 
-    public void play() {
-        outputView.printStart();
-        createBridge();
-        do {
-            newGame();
-            move();
-            repository.save(game);
-        } while(endCheck());
-        outputView.printResult(repository.getResult(), repository.getTimes());
+    public void createBridge(int size) {
+        bridge = bridgeMaker.makeBridge(size);
     }
-    private boolean endCheck(){
-        repository.save(game);
-        if (game.getSuccess().equals("실패") && retry().equals("R")){
-            return true;
-        }
-        return false;
-    }
-    private void newGame() {
+
+    public void newGame() {
         game = new Game();
-        repository.setTimes(repository.getTimes()+1);
     }
 
     /**
@@ -64,37 +35,35 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    private void move() {
-        while (true){
-            int location = game.getLocation();
-            if (checkGame(game, bridge.size())) break;
-            moveChoice(location);
-            game.forward();
+    public String move(String direction) {
+        int location = game.getLocation();
+        String match = match(direction, bridge.get(location));
+        game.write(direction, match);
+        if (match.equals("O")) game.forward();
+        checkGame();
+        return match;
+    }
+    public void checkGame(){
+        if (game.getLocation() == bridge.size()){
+            game.setSuccess("성공");
         }
     }
 
-    public boolean checkGame(Game game,int size) {
-        if (game.getLocation() == size){
-            game.setSuccess("성공");
-            return true;
-        }
-        if (game.getLocation()>0 &&game.getCurrentAnswer().equals("X")) {
+    public boolean success() {
+        if (game.getSuccess().equals("성공")) {
             return true;
         }
         return false;
     }
 
-    private void moveChoice(int location) {
-        try {
-            outputView.printMove();
-            String direction = inputView.readMoving();
-            String match = match(direction, bridge.get(location));
-            game.write(direction, match);
-            outputView.printMap(game);
-        }catch (IllegalArgumentException e){
-            outputView.printError(e.getMessage());
-            moveChoice(location);
+    public boolean wrong(String match){
+        if (success()){
+            return false;
         }
+        if (match.equals("X")){
+            return false;
+        }
+        return true;
     }
 
     public String match(String user, String answer) {
@@ -107,15 +76,10 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String retry() {
-        String command ="";
-        try {
-            outputView.printGame();
-            command = inputView.readGameCommand();
-        } catch (IllegalArgumentException e){
-            outputView.printError(e.getMessage());
-            retry();
+    public boolean retry(String command) {
+        if (game.getSuccess().equals("실패") && command.equals("R")) {
+            return true;
         }
-        return command;
+        return false;
     }
 }
