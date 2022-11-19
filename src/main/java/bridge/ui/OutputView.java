@@ -27,4 +27,11 @@ public class OutputView {
     public void printGameStart() {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
     }
+
+    /**
+     * 게임의 다리 길이 입력 문구를 정해진 형식에 맞춰 출력한다.
+     */
+    public void printBridgeLengthInput() {
+        System.out.println("다리의 길이를 입력해주세요.");
+    }
 }
