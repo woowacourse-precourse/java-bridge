@@ -14,7 +14,7 @@ public class BridgeGameProcessor {
     public void play() {
         outputView.printStartMessage();
         BridgeGame bridgeGame = setBridgeGame(setBridge());
-        while (oneStage(bridgeGame)) {
+        while (oneStage(bridgeGame) && !bridgeGame.isFinished()) {
         }
 
     }

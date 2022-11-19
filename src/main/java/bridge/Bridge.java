@@ -12,4 +12,8 @@ public class Bridge {
     public boolean isPossibleToMove(String bridgePosition, int order) {
         return bridgeBlocks.get(order).equals(bridgePosition);
     }
+
+    public boolean isEndPoint(int order) {
+        return bridgeBlocks.size() == order;
+    }
 }

@@ -62,6 +62,10 @@ public class BridgeGame {
                 .collect(Collectors.toList());
     }
 
+    public boolean isFinished() {
+        return bridge.isEndPoint(movements.size());
+    }
+
     private String getBlockResult(BridgePosition bridgePosition, int index) {
         if (bridgePosition.isEqualToBridgePosition(movements.get(index))) {
             return getMovedResult(movements.get(index), index);
