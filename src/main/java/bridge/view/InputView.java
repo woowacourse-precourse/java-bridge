@@ -6,14 +6,11 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    private static final int MIN_SIZE = 3;
-    private static final int MAX_SIZE = 20;
     private static final String UP = "U";
     private static final String DOWN = "D";
     private static final String RESTART = "R";
     private static final String QUIT = "Q";
     private static final String ERROR = "[ERROR] ";
-    private static final String SIZE_ERROR = ERROR + "다리 길이는 " + MIN_SIZE + "부터 " + MAX_SIZE + "까지 가능합니다.";
     private static final String MOVING_ERROR = ERROR + UP + " 또는 " + DOWN + "를 입력해주세요.";
     private static final String COMMAND_ERROR = ERROR + RESTART + " 또는 " + QUIT + "를 입력해주세요.";
     private static final String NUMBER_FORMAT_ERROR = ERROR + "숫자를 입력해주세요.";
@@ -24,8 +21,7 @@ public class InputView {
     public int readBridgeSize() {
         while (true) {
             try {
-                int size = checkNumberFormat(input());
-                return checkSize(size);
+                return checkNumberFormat(input());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -78,13 +74,6 @@ public class InputView {
 
     private boolean isWrongMoving(String moving) {
         return !(moving.equals(UP) || moving.equals(DOWN));
-    }
-
-    private int checkSize(int size) {
-        if (size < MIN_SIZE || MAX_SIZE < size) {
-            throw new IllegalArgumentException(SIZE_ERROR);
-        }
-        return size;
     }
 
     private int checkNumberFormat(String number) {
