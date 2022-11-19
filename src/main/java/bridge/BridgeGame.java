@@ -9,6 +9,7 @@ public class BridgeGame {
     private String bridgeSize;
     private List<String> userMove=new ArrayList<>();
     private String retry;
+    private List<String> bridge=new ArrayList<>();
 
     public void bridgeSize(String bridgeSize){
         this.bridgeSize=bridgeSize;
@@ -19,6 +20,10 @@ public class BridgeGame {
 
     public void retry(String retry){
         this.retry=retry;
+    }
+
+    public void bridge(List<String>bridge){
+        this.bridge=bridge;
     }
 
     public int getBridgeSize(){
@@ -32,6 +37,8 @@ public class BridgeGame {
     public String getRetry(){
         return retry;
     }
+
+
 
 
 
