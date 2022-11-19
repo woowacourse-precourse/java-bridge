@@ -1,6 +1,6 @@
 package view;
 
-import system.BridgeGame;
+import controller.BridgeGame;
 import utils.EnumStrings;
 
 /**
