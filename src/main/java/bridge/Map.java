@@ -22,13 +22,6 @@ public class Map {
         return mapLower;
     }
 
-    public boolean mapIndexOutOfRange(int index) {
-        if (limitSize>index) {
-            return true;
-        }
-        return false;
-    }
-
     public Map(List<String> crossable) {
         this.crossable = crossable;
         this.limitSize = crossable.size();

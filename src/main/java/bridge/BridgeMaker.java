@@ -16,7 +16,7 @@ public class BridgeMaker {
     }
 
     public List<String> makeBridge(int size) {
-        limitSize = size;
+        this.limitSize = size;
         List<String> crossable = new ArrayList<>();
         int addNumber;
         for (int index = 0; index < size; index++) {

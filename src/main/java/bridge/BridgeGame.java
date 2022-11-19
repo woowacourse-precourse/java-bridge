@@ -20,7 +20,7 @@ public class BridgeGame {
         return isWin;
     }
 
-    public boolean play(List<String> crossable, Map map) {
+    public boolean checkIfWin(List<String> crossable, Map map) {
         map.startMap();
         for (int index=0; index<crossable.size(); index++) {
             boolean isWin = move(map, crossable, index);
@@ -53,23 +53,6 @@ public class BridgeGame {
         return isContinue;
     }
 
-    public void controller() {
-        int attempts = 1;
-        boolean isContinue = true;
-        boolean isWin;
-        int limitSize = util.determineBridgeSize();
-        List<String> crossable = bridgeMaker.makeBridge(limitSize);
-        Map map = new Map(crossable);
-
-        while (isContinue) {
-            isWin = play(crossable, map);
-            isContinue = checkIfRetry(isWin);
-            if (!isContinue) {
-                outputView.printResult(map,isWin,attempts);
-            }
-            attempts++;
-        }
-    }
 }
 
 
