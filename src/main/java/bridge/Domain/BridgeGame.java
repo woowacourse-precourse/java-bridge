@@ -19,6 +19,7 @@ public class BridgeGame {
     public BridgeGame() {
         System.out.println(FrontMan.BRIDGE_GAME_IS_BEGINNING + "\n");
         bridgeData.setBridge(bridgeMaker.makeBridge(inputView.readBridgeLength()));
+        bridgeData.increaseAttempts();
     }
 
     /**
