@@ -2,6 +2,9 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
+/**
+ * 사용자로부터 입력을 받는 역할을 한다.
+ */
 public class InputView {
 
     public int readBridgeSize() {
@@ -11,7 +14,9 @@ public class InputView {
     }
 
     public String readMoving() {
-        return null;
+        String input = Console.readLine();
+        validateMoveInput(input);
+        return input;
     }
 
     public String readGameCommand() {
@@ -29,5 +34,11 @@ public class InputView {
             return false;
         }
         return true;
+    }
+
+    public void validateMoveInput(String input) {
+        if (!input.equals("U") && !input.equals("D")) {
+            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U 또는 D만 입력할 수 있습니다.");
+        }
     }
 }
