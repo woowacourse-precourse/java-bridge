@@ -11,11 +11,17 @@ import bridge.view.OutputView;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private static int count = 0;
+    private static int count;
+    private int tryCount;
 
     public void runGame() {
         Bridge bridge = initBridge();
+        initTryCount();
         startGame(bridge);
+    }
+
+    private void initTryCount() {
+        tryCount = 1;
     }
 
     private Bridge initBridge() {
@@ -26,8 +32,17 @@ public class BridgeGame {
 
     private void startGame(Bridge bridge) {
         GameResult gameResult = initGameResult();
+        initCount();
         move(bridge, gameResult);
+        if(count == bridge.getBridgeLength()){
+            OutputView.printGameResult(tryCount);
+            return;
+        }
         retry(bridge);
+    }
+
+    private void initCount() {
+        count = 0;
     }
 
     private GameResult initGameResult() {
@@ -65,8 +80,9 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry(Bridge bridge) {
-        String retryInput = InputView.readMoving();
+        String retryInput = InputView.readRetry();
         if(judgeRetry(retryInput)){
+            tryCount += 1;
             startGame(bridge);
         }
     }

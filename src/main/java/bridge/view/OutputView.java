@@ -17,6 +17,10 @@ public class OutputView {
         System.out.println("[ "+String.join(" | ",gameResult.getDownSpace())+" ]");
     }
 
+    public static void printGameResult(int tryCount) {
+        System.out.println(tryCount+"번 만에 클리어!");
+    }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
