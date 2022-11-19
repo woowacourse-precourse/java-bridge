@@ -17,6 +17,7 @@ public final class OutputView {
     public void printMap(PlayLogDto log) {
         validateVisited(log);
         System.out.println(log.getLog());
+        System.out.println();
     }
 
     private void validateVisited(PlayLogDto log) {
@@ -60,7 +61,7 @@ public final class OutputView {
     }
 
     public void printInitialMessage() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println("다리 건너기 게임을 시작합니다.\n");
     }
 
     public void printAskBridgeLength() {
