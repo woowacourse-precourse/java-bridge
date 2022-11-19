@@ -4,8 +4,6 @@ import static bridge.controller.InputController.setUserSelection;
 import static bridge.model.Diagram.printDiagrams;
 import static bridge.model.Diagram.updateDiagram;
 
-import bridge.model.Diagram.Status;
-
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */

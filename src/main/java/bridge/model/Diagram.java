@@ -5,21 +5,7 @@ import java.util.List;
 
 public class Diagram {
 
-    public enum Status {
-        SURVIVE("O"),
-        DIE("X");
 
-        private final String display;
-
-        Status(String display) {
-            this.display = display;
-        }
-
-        public String getDisplay(Status status) {
-            return status.display;
-        }
-
-    }
 
     private static List<String> upDiagram = new ArrayList<>();
     private static List<String> downDiagram = new ArrayList<>();
