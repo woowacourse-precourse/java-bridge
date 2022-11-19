@@ -37,7 +37,16 @@
 
 3. **Controller**
     + GameController
-        - play
+        - 게임 전체 돌리기
+        - 게임 시작
+            * size 받기
+            * 게임에 사용될 답안 bridge 만들기
+        - 게임 한 사이클 돌리기
+            * InputView에서 칸 입력
+            * 이동
+            * 결과 검증
+            * 게임오버 시 재시작 여부 검증
+        - 종료 시 결과 출력
     
 4. **Model**
     + Direction
@@ -51,6 +60,7 @@
         - CORRECT("O")
         - INCORRECT("X")
         - NONE(" ")
+        - END("END")
     + Restart
         - TRUE("R")
         - FALSE("Q")
