@@ -18,7 +18,7 @@ public class BridgeController {
 
     public void run() {
         begin();
-        makeBridge();
+        initGame();
         play();
         end();
     }
@@ -27,9 +27,11 @@ public class BridgeController {
         outputView.printBegin();
     }
 
-    private void makeBridge() {
+    private void initGame() {
+        OutputView.askSize();
         int size = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(size);
+        bridgeGame.setBridge(bridge);
     }
 
     private void play() {
