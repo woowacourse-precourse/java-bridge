@@ -6,7 +6,7 @@ import java.util.List;
 public class Player {
 
     private final List<String> directions = new ArrayList<>();
-    private int attempt = 0;
+    private int attempt = 1;
 
     public void attempt() {
         attempt += 1;
