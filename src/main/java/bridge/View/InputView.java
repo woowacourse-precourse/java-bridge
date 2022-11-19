@@ -1,9 +1,8 @@
 package bridge.View;
 
-import bridge.Utils.Parser;
 import bridge.Validator.Integarated.BridgeSizeValidator;
 import bridge.Validator.Integarated.PlayerMoveValidator;
-import bridge.Validator.NumericValidator;
+import bridge.Validator.Integarated.RestartDecisionValidator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -13,6 +12,7 @@ public class InputView {
     public InputView() {}
     BridgeSizeValidator bridgeSizeValidator = new BridgeSizeValidator();
     PlayerMoveValidator playerMoveValidator = new PlayerMoveValidator();
+    RestartDecisionValidator restartDecisionValidator = new RestartDecisionValidator();
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -37,7 +37,10 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요 (재시도: R, 종료: Q");
+        String input = getInput();
+        restartDecisionValidator.validate(input);
+        return input;
     }
 
 

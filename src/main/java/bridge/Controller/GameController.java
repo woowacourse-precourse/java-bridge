@@ -5,6 +5,9 @@ import bridge.Domain.BridgeGame;
 import bridge.Domain.BridgeMaker;
 import bridge.View.InputView;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class GameController {
@@ -30,10 +33,17 @@ public class GameController {
             bridgeGame.setMatchResult(matchResult);
             printBridge(matchResult, bridge);
             if (!match) {
-                System.out.println("게임종료");
                 break;
             }
         }
+    }
+
+    public boolean SELECTRESTART() {
+        String input = inputView.readGameCommand();
+        if (input.equals("R")) {
+            bridgeGame.setMatchResult(new ArrayList<>());
+        }
+        return input.equals("R");
     }
 
     public void printBridge(List<Boolean> matchResult, List<String> bridge) {
@@ -80,4 +90,5 @@ public class GameController {
         }
 
     }
+
 }
