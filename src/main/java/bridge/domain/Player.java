@@ -21,4 +21,8 @@ public class Player {
     public int move() {
         return ++position;
     }
+
+    public void saveHistory() {
+        gameHistory.add(lastChoice);
+    }
 }
