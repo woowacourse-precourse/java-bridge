@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.domain.BridgeStatus;
+import bridge.domain.MovingCommand;
 import java.util.List;
 
 public class BridgeGame {
@@ -19,7 +20,12 @@ public class BridgeGame {
         bridgeStatusSaver.setBridgeStatus(bridgeStatus);
     }
 
-    public void move() {
+    public BridgeStatus move(String input) {
+        MovingCommand movingCommand = MovingCommand.nameOf(input);
+        BridgeStatus bridgeStatus = bridgeStatusSaver.getBridgeStatus();
+        bridgeStatus.addUserMovingCommand(movingCommand);
+        bridgeStatusSaver.setBridgeStatus(bridgeStatus);
+        return bridgeStatus;
     }
 
     /**
