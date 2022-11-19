@@ -15,7 +15,6 @@ import java.util.List;
 /**
  * 다리 건너기 게임의 플래이어와 맵 등록, 입력등을 관리하는 클래스
  */
-// todo: 다른 클래스로 분리할 기능들 확인
 public class GameController {
 
     public static final String GAME_RETRY_INPUT = "R";
@@ -39,7 +38,7 @@ public class GameController {
     }
 
     private Bridge generateRandomBridge() {
-        return ValidateReader.readUntilValidate(()-> {
+        return ValidateReader.readUntilValidate(() -> {
             int bridgeSize = inputView.readBridgeSize();
             List<String> bridgePositions = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
             return Bridge.from(bridgePositions);
@@ -55,7 +54,7 @@ public class GameController {
     }
 
     /**
-     * End if player die and select quit game or clear the game
+     * player가 죽은 후 종료를 선택하거나, 클리어를 할 때 까지 플래이
      *
      * @param player 게임 플래이어
      */

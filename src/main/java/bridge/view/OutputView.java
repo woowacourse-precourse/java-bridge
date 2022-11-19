@@ -53,15 +53,19 @@ public class OutputView {
         return bridgeMapBuilder.toString();
     }
 
-
+    /**
+     * "최종 게임 결과"
+     * 메시지 출력
+     */
     public void printFinishGameInfoMessage() {
         System.out.println(FINISH_GAME_INFO_MESSAGE);
     }
 
     /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     * 게임의 최종 성공 여부와 시도 횟수를 출력
+     *
+     * @param isWin          성공시 true, 실패시 false 입력
+     * @param playerTryCount 총 시도 횟수 입력
      */
     public void printResult(boolean isWin, int playerTryCount) {
         System.out.println(getSuccessOrNotMessage(isWin));

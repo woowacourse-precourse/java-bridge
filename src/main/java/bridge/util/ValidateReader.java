@@ -2,6 +2,11 @@ package bridge.util;
 
 public class ValidateReader {
 
+    /**
+     * @param expression
+     * @param <T>
+     * @return
+     */
     public static <T> T readUntilValidate(InputFunction<T> expression) {
         T input = null;
         do {
