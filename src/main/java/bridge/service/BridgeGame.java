@@ -15,10 +15,11 @@ public class BridgeGame {
      */
     public void move(Bridge bridge, User user) {
         bridge.increaseLocation();
-        isComplete(bridge,user);
+        isComplete(bridge, user);
     }
-    private void isComplete(Bridge bridge, User user){
-        if (bridge.getLocation() == bridge.getBridge().size()){
+
+    private void isComplete(Bridge bridge, User user) {
+        if (bridge.getLocation() == bridge.getBridge().size()) {
             user.setSuccess();
             user.setGameOver();
         }
@@ -29,7 +30,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(Bridge bridge ,User user) {
+    public void retry(Bridge bridge, User user) {
         bridge.initLocation();
         user.increaseTryCount();
     }
