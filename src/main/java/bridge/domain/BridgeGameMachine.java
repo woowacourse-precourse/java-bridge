@@ -7,55 +7,81 @@ import bridge.input.InputView;
 import bridge.output.OutputView;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BridgeGameMachine {
 
     public void run() {
         InputView inputView = new InputView();
-        // 총길이
-        int bridgeLength = inputView.readBridgeSize();
+        int bridgeLength = inputView.readBridgeSize(); // 총길이
 
         BridgeRandomNumberGenerator randomGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(randomGenerator);
-        // [U, D, U]
-        List<String> designBridge = bridgeMaker.makeBridge(bridgeLength);
+        List<String> designBridge = bridgeMaker.makeBridge(bridgeLength);// 무작위 [U, D, U]
 
         HashMap<String, StringBuilder> bridgeState = new HashMap<>();
 
-        bridgeState.put(Command.UP.getCommand(), new StringBuilder("[ "));
-        bridgeState.put(Command.DOWN.getCommand(), new StringBuilder("[ "));
 
-        PlayerAndRandom playerAndRandom = new PlayerAndRandom();
+
         BridgeGame bridgeGame = new BridgeGame(bridgeState);
+        OutputView outputView = new OutputView();
 
-        for (int i = 0; i < bridgeLength; i++) {
-            String playerMoving = inputView.readMoving();
+        String playerRetry = "";
+        boolean gameSuccess = true;
+        int gameCount = 0;
 
-            String bridgeJudgment = playerAndRandom.Judgment(playerMoving, designBridge.get(i));
+        Loop1:
+        while (!(playerRetry.equals(Command.END.getCommand()))) {
 
-            HashMap<String, StringBuilder> bridgePlace = bridgeGame.move(playerMoving, bridgeJudgment);
+            bridgeState.put(Command.UP.getCommand(), new StringBuilder("[ "));
+            bridgeState.put(Command.DOWN.getCommand(), new StringBuilder("[ "));
 
-            bridgeConnection(bridgeLength, bridgeState, i);
+            //TODO: i명칭 수정 하기.
+            Loop2:
+            for (int bridgeIndex = 0; bridgeIndex < bridgeLength; bridgeIndex++) {
+                gameCount++;
+                String playerMoving = inputView.readMoving();
 
-            //TODO: 게임을 다시 시도할지 여부를 입력해주세요. -> 구현해야됨.
+                String bridgeJudgment = bridgeGame.judgment(playerMoving,
+                        designBridge.get(bridgeIndex)); // U == U -> 'O' 반환
+
+                HashMap<String, StringBuilder> bridgePlace = bridgeGame.move(playerMoving,
+                        bridgeJudgment); // 다리 만들기
+
+                HashMap<String, StringBuilder> bridgeConnection = bridgeGame.bridgeConnection(
+                        bridgeLength, bridgeJudgment, bridgeIndex);
+
+                outputView.printMap(bridgeConnection);
+
+                if (bridgeJudgment.equals("X")) {
+
+                    System.out.println("게임을 다시 시도할지 여부를 입력해주세요.");
+                    String gameCommand = inputView.readGameCommand();
+
+                    playerRetry = bridgeGame.retry(gameCommand);
+
+                    if (playerRetry.equals(Command.RE_START.getCommand())) {
+                        break Loop2;
+                    }
+
+                    if (playerRetry.equals(Command.END.getCommand())) {
+                        gameSuccess = false;
+                        outputView.printResult(bridgeState, gameCount, gameSuccess);
+                        break;
+                    }
+                }
+
+                //TODO: 이름수정하기.
+                for (Map.Entry<String, StringBuilder> entry : bridgeConnection.entrySet()) {
+                    if (entry.getKey().contains("]")) {
+                        outputView.printResult(bridgeState, gameCount, gameSuccess);
+                        break;
+                    }
+                }
+            }
         }
     }
 
-
-
-
-
-    private void bridgeConnection(int bridgeLength, HashMap<String, StringBuilder> bridgeState, int i) {
-        if (i != bridgeLength -1) {
-            bridgeState.get(0).append(" |");
-            bridgeState.get(1).append(" |");
-        }
-
-        if (i == bridgeLength -1) {
-            bridgeState.get(0).append(" ]");
-            bridgeState.get(1).append(" ]");
-        }
-    }
 }
 
 
