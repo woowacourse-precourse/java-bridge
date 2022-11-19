@@ -17,6 +17,7 @@ public class GameController {
     }
 
     public void start() {
+        outputView.printNewLine();
         do {
             play();
         } while (wantRestart());

@@ -29,6 +29,7 @@ public class OutputView {
     public void printMap(final List<String> bridges) {
         System.out.println(MAP_PREFIX + toPrintForm(bridges.get(0)) + MAP_SUFFIX);
         System.out.println(MAP_PREFIX + toPrintForm(bridges.get(1)) + MAP_SUFFIX);
+        System.out.println();
     }
 
     private String toPrintForm(String bridge) {
@@ -78,5 +79,9 @@ public class OutputView {
 
     public void printRetry() {
         System.out.println(RETRY_DEMAND_MSG);
+    }
+
+    public void printNewLine() {
+        System.out.println();
     }
 }
