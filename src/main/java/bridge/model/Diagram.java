@@ -37,8 +37,12 @@ public class Diagram {
     }
 
     public void printDiagrams() {
-        System.out.println(upDiagram);
-        System.out.println(downDiagram);
+        System.out.println(formatDiagram(upDiagram));
+        System.out.println(formatDiagram(downDiagram));
+    }
+
+    private String formatDiagram(List<String> diagram) {
+        return "[ " + String.join(" | ", diagram) + " ]";
     }
 
 }
