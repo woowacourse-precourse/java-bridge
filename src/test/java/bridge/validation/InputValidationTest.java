@@ -30,10 +30,13 @@ class InputValidationTest {
 	void user_input_bridge_length_validation(String source){
 		try{
 			assertThatThrownBy(()-> {
+				//given
 				String bridge_size =iv.userInputBridgeSizeValidation(source);
+				//when
 				if(bridge_size.equals("[ERROR]")) throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
 			});
 		}catch (IllegalArgumentException e){
+			//then
 			assertThat(e.getMessage()).isEqualTo("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
 		}
 	}
