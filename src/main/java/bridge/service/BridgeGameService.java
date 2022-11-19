@@ -24,8 +24,8 @@ public class BridgeGameService {
 		return bridgeMaker.makeBridge(size);
 	}
 
-	public ProgressMap initGameMap() {
-		return new ProgressMap();
+	public ProgressMap initGameMap(int bridgeSize) {
+		return new ProgressMap(bridgeSize);
 	}
 
 	public String checkMoveCommand(String moving) {

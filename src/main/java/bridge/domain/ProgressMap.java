@@ -5,12 +5,18 @@ import java.util.List;
 
 public class ProgressMap {
 	private final List<List<String>> progressMap;
+	private final int clearSize;
 	private boolean clearFailed;
 
-	public ProgressMap() {
+	public ProgressMap(int bridgeSize) {
 		progressMap = new ArrayList<>();
 		progressMap.add(new ArrayList<>());
 		progressMap.add(new ArrayList<>());
+		clearSize = bridgeSize;
+	}
+
+	public boolean isClear() {
+		return clearSize == progressMap.get(0).size();
 	}
 
 	public void updateProgressMap(String moving, boolean isCorrectMove) {

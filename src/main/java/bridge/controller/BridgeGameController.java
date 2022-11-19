@@ -13,6 +13,7 @@ public class BridgeGameController {
 	private final InputView inputView = new InputView();
 	private final OutputView outputView = new OutputView();
 	private final BridgeGameService bridgeGameService;
+	private ProgressMap progressMap;
 
 	public BridgeGameController() {
 		this.bridgeGameService = new BridgeGameService();
@@ -23,8 +24,8 @@ public class BridgeGameController {
 		int bridgeSize = receiveBridgeSize();
 		List<String> bridge = bridgeGameService.initBridge(bridgeSize);
 		BridgeGame bridgeGame = new BridgeGame(bridge);
-		ProgressMap currentMap = startBridgeGame(bridgeGame);
-		outputView.printResult(currentMap.getProgressMap() , bridgeGame);
+		startBridgeGame(bridgeGame);
+		outputView.printResult(progressMap.getProgressMap() , bridgeGame);
 	}
 
 	private int receiveBridgeSize() {
@@ -57,30 +58,27 @@ public class BridgeGameController {
 		}
 	}
 
-	private ProgressMap startBridgeGame(BridgeGame bridgeGame) {
+	private void startBridgeGame(BridgeGame bridgeGame) {
 		boolean playGame = true;
-		ProgressMap currentMap = null;
 		while (playGame) {
 			bridgeGame.retry();
-			currentMap = makeResultMap(bridgeGame);
-			if (currentMap.whatMapSize() == bridgeGame.getBridgeSize()) {
+			makeResultMap(bridgeGame);
+			if (progressMap.whatMapSize() == bridgeGame.getBridgeSize()) {
 				break;
 			}
 			playGame = askRetry();
 		}
-		return currentMap;
 	}
 
-	private ProgressMap makeResultMap(BridgeGame bridgeGame) {
-		ProgressMap moveMap = bridgeGameService.initGameMap();
-		while (!moveMap.isClearFailed() && moveMap.whatMapSize() < bridgeGame.getBridgeSize()) {
-			moveBridgeOneTime(bridgeGame, moveMap);
+	private void makeResultMap(BridgeGame bridgeGame) {
+		progressMap = bridgeGameService.initGameMap(bridgeGame.getBridgeSize());
+		while (!progressMap.isClearFailed() && !progressMap.isClear()) {
+			moveBridgeOneTime(bridgeGame);
 		}
-		return moveMap;
 	}
-	private void moveBridgeOneTime(BridgeGame bridgeGame, ProgressMap currentMap) {
+	private void moveBridgeOneTime(BridgeGame bridgeGame) {
 		String moving = receiveMoveCommand();
-		bridgeGameService.moveBridge(moving, bridgeGame, currentMap);
-		outputView.printMap(currentMap.getProgressMap());
+		bridgeGameService.moveBridge(moving, bridgeGame, progressMap);
+		outputView.printMap(progressMap.getProgressMap());
 	}
 }
