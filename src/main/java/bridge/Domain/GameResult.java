@@ -3,9 +3,6 @@ package bridge.Domain;
 import bridge.EnumCollections.BridgeResultType;
 import bridge.EnumCollections.BridgeType;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class GameResult {
    private BridgeType position;
    private BridgeResultType result;
