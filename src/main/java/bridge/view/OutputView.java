@@ -40,17 +40,21 @@ public class OutputView {
 	private static void printClearMap(List<List<String>> result, int count) {
 		printResultIntro(result);
 		System.out.println("게임 성공 여부: 성공");
-		System.out.printf("총 시도한 횟수: %d%n", count);
+		printResultOutro(count);
 	}
 
 	private static void printFailedMap(List<List<String>> result, int count) {
 		printResultIntro(result);
 		System.out.println("게임 성공 여부: 실패");
-		System.out.printf("총 시도한 횟수: %d%n", count);
+		printResultOutro(count);
 	}
 
 	private static void printResultIntro(List<List<String>> result) {
 		System.out.println("최종 게임 결과");
 		printMap(result);
+	}
+
+	private static void printResultOutro(int count) {
+		System.out.printf("총 시도한 횟수: %d%n", count);
 	}
 }
