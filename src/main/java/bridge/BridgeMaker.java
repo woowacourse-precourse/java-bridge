@@ -2,7 +2,9 @@ package bridge;
 
 import bridge.constance.GameConstance;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -24,15 +26,22 @@ public class BridgeMaker {
         return IntStream.range(0, size)
                 .mapToObj(action -> {
                     int randomNumber = bridgeNumberGenerator.generate();
-                    return createBlockByNumber(randomNumber);
+                    return changeExpressionByNumber(randomNumber);
                 })
                 .collect(Collectors.toList());
     }
 
-    private String createBlockByNumber(int number) {
-        if(number == 1) {
-            return GameConstance.UP_BLOCK;
-        }
-        return GameConstance.DOWN_BLOCK;
+    private Map<Integer, String> createBlockExpression() {
+        final int UP_BLOCK = 1;
+        final int DOWN_BLOCK = 0;
+        Map<Integer, String> block = new HashMap<>();
+        block.put(UP_BLOCK, GameConstance.UP_BLOCK_EXPRESSION);
+        block.put(DOWN_BLOCK, GameConstance.DOWN_BLOCK_EXPRESSION);
+        return block;
+    }
+
+    private String changeExpressionByNumber(int number) {
+        Map<Integer, String> block = createBlockExpression();
+        return block.get(number);
     }
 }

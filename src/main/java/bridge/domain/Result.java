@@ -19,6 +19,7 @@ public class Result {
         upBlocks = new ArrayList<>();
         downBlocks = new ArrayList<>();
         gameOver = GameOver.PLAYING;
+        totalTryNumber = 0;
     }
 
     public void addBlocks(BlockExpression blockExpression) {
