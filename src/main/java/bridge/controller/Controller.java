@@ -58,6 +58,9 @@ public class Controller {
     }
 
     private void continueOrFinishGame(){
+        if(bridgeGame.isGameCompleted()) {
+            return;
+        }
         if(bridgeGame.isGameOver()){
             replayOrExit();
             return;
