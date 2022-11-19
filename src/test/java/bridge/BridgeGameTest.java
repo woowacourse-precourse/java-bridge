@@ -3,6 +3,7 @@ package bridge;
 import bridge.service.BridgeGame;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -87,6 +88,7 @@ public class BridgeGameTest extends NsTest {
     }
 
     @Override
+    @AfterEach
     protected void runMain() {
         Application.main(new String[]{});
     }
