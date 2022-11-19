@@ -25,14 +25,21 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int number = bridgeNumberGenerator.generate();
+            validateBridgeNumber(number);
             bridge.add(topOrBottom(number));
         }
         return bridge;
     }
 
+    private void validateBridgeNumber(int number) {
+        if(number < Space.BOTTOM.getNumber() || number > Space.TOP.getNumber()) {
+            throw Exception.BRIDGE_NUMBER_RANGE_EXCEPTION.getException();
+        }
+    }
+
     private void validateSize(int size) {
         if(size < 3 ||size > 20) {
-            throw Exception.RANGE_EXCEPTION.getException();
+            throw Exception.SIZE_RANGE_EXCEPTION.getException();
         }
     }
 
