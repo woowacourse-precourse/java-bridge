@@ -8,8 +8,10 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     private static final String ENTER_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
+    private static final String ENTER_SELECT_BLOCK = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String ERROR_MESSAGE_ONLY_NUMBER = "[ERROR] 숫자만 입력해주세요.";
     private static final String ERROR_MESSAGE_SIZE_RANGE = "[ERROR] 3이상 20이하로 입력해주세요.";
+    private static final String ERROR_MESSAGE_MOVING_BLOCK = "[ERROR] 올바른 값을 입력해주세요. (위: U, 아래: D)";
 
     public int getBridgeSize() {
         OutputView.printMessage(ENTER_BRIDGE_SIZE);
@@ -48,11 +50,32 @@ public class InputView {
         }
     }
 
+    public String getMoving() {
+        OutputView.printMessage(ENTER_SELECT_BLOCK);
+        String result = readMoving(Console.readLine());
+        while (result == null) {
+            result = readMoving(Console.readLine());
+        }
+        return result;
+    }
+
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public String readMoving(String enterValue) {
+        try {
+            isValidMoving(enterValue);
+        } catch (IllegalArgumentException e) {
+            OutputView.printMessage(e.getMessage());
+            return null;
+        }
+        return enterValue;
+    }
+
+    private void isValidMoving(String str) {
+        if (!(str.equals("U") || str.equals("D"))) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_MOVING_BLOCK);
+        }
     }
 
     /**
