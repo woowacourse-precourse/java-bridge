@@ -1,5 +1,9 @@
 package bridge;
 
+import bridge.domain.BridgeGame;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+
 public class Application {
 
     public static void main(String[] args) {
@@ -10,19 +14,14 @@ public class Application {
         int bridgeSize = inputView.readBridgeSize();
         BridgeGame bridgeGame = new BridgeGame(bridgeSize);
 
-
-        int currentLocation = 0;
-        int tryCount = 1;
-        while (currentLocation < bridgeSize) {
-            String userPath = inputView.readMoving();
-            boolean successOrFailure = bridgeGame.move(currentLocation, userPath);
-            outputView.printMap(bridgeGame.getPassedPath(), successOrFailure);
-            if (successOrFailure == false) {
+        while (!(bridgeGame.doesCrossedBridge())) {
+            String userPath = inputView.readMoving(); //InputView 클래스 사용
+            boolean roundResult = bridgeGame.move(userPath); //BridgeGame 클래스 사용
+            outputView.printMap(bridgeGame.getPassedPath(), roundResult); //OutputView 클래스 사용
+            if (roundResult == false) {
                 String retryOrEnd = inputView.readGameCommand();
                 if (retryOrEnd.equals("R")) {
-                    tryCount++;
-                    currentLocation = 0;
-                    bridgeGame.initializeUserPaths();
+                    bridgeGame.retry();
                     continue;
                 }
 
@@ -30,8 +29,6 @@ public class Application {
                     break;
                 }
             }
-
-            currentLocation++;
         }
 
         System.out.println();
