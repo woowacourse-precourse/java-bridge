@@ -35,6 +35,7 @@ public class OutputView {
     }
 
     public static void askMovingDirection() {
+        System.out.print(NEW_LINE);
         System.out.println(REQUEST_MOVING_DIRECTION_MESSAGE);
     }
 }
