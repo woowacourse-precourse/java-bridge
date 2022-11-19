@@ -46,16 +46,20 @@ public class AnswerBridge {
     }
 
     public MoveResult check(Round round, Direction direction) {
-        validateKeyContains(round);
+        if (!isValidRound(round)) {
+            throw new IllegalArgumentException(INVALID_ROUND_MESSAGE);
+        }
+        return checkGameResult(round, direction);
+    }
+
+    public boolean isValidRound(Round round) {
+        return bridge.containsKey(round);
+    }
+
+    private MoveResult checkGameResult(Round round, Direction direction) {
         if (bridge.get(round) == direction) {
             return SUCCESS;
         }
         return FAIL;
-    }
-
-    private void validateKeyContains(Round round) {
-        if (!bridge.containsKey(round)) {
-            throw new IllegalArgumentException(INVALID_ROUND_MESSAGE);
-        }
     }
 }

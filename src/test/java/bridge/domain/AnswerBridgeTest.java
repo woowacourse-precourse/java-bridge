@@ -67,4 +67,18 @@ class AnswerBridgeTest {
 
         assertThat(result).isEqualTo(MoveResult.FAIL);
     }
+
+    @Test
+    void isValidRound_메서드는_진행할_수_없는_라운드의_경우_false를_반환한다() {
+        AnswerBridge answerBridge = new AnswerBridge(List.of("U", "D", "U"));
+
+        assertThat(answerBridge.isValidRound(new Round(4))).isFalse();
+    }
+
+    @Test
+    void isValidRound_메서드는_진행할_수_있는_라운드의_경우_true를_반환한다() {
+        AnswerBridge answerBridge = new AnswerBridge(List.of("U", "D", "U"));
+
+        assertThat(answerBridge.isValidRound(new Round(1))).isTrue();
+    }
 }
