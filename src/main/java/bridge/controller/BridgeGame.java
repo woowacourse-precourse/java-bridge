@@ -5,6 +5,8 @@ import bridge.domain.CurrentBridge;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.Map;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -16,8 +18,6 @@ public class BridgeGame {
     private final CurrentBridge currentBridge;
     private int currentSection = 1;
     private int trialCount = 0;
-    private static final boolean IS_END = true;
-    private boolean isSuccess = true;
 
     public BridgeGame() {
         this.inputView = new InputView();
@@ -27,16 +27,12 @@ public class BridgeGame {
         this.currentBridge = new CurrentBridge();
     }
 
-    public boolean move() {
+    public Map<String, Boolean> move() {
         String readMoving = inputView.readMoving();
         currentBridge.setSection(bridge.askCurrentShape(currentSection), readMoving);
         currentSection++;
         outputView.printMap(currentBridge);
-        if (currentBridge.isFailed() || bridge.getBridgeLength() == currentBridge.getCurrentBridgeLength()) {
-            trialCount++;
-            return IS_END;
-        }
-        return !IS_END;
+        return getGameManager();
     }
 
     /**
@@ -50,5 +46,15 @@ public class BridgeGame {
     private Bridge createBridge() {
         int bridgeSize = inputView.readBridgeSize();
         return new Bridge(bridgeSize);
+    }
+
+    private Map<String, Boolean> getGameManager() {
+        boolean isSuccessGame = currentBridge.isSuccessLastSection();
+        boolean isLastSection = bridge.getBridgeLength() == currentBridge.getCurrentBridgeLength();
+        if (!isSuccessGame || isLastSection) {
+            trialCount++;
+            return Map.of("isGameEnd", true, "isSuccessGame", isSuccessGame);
+        }
+        return Map.of("isGameEnd", false, "isSuccessGame", false);
     }
 }

@@ -9,7 +9,6 @@ public class CurrentBridge {
     private List<String> currentShape;
     private final List<String> upperSection;
     private final List<String> lowerSection;
-    private boolean isFailed = false;
 
     public CurrentBridge() {
         this.currentShape = new ArrayList<>();
@@ -42,7 +41,6 @@ public class CurrentBridge {
         }
         if (!sectionCanCross) {
             firstSection.add(X);
-            isFailed = true;
         }
         secondSection.add(WHITE_SPACE);
     }
@@ -63,10 +61,6 @@ public class CurrentBridge {
 
     public List<String> getLowerSection() {
         return lowerSection;
-    }
-
-    public boolean isFailed() {
-        return isFailed;
     }
 
     public int getCurrentBridgeLength() {
