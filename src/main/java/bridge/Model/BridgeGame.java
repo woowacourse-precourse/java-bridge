@@ -22,8 +22,8 @@ public class BridgeGame {
         List<String> result = new ArrayList<>();
         int index = BridgeMoveValidator.compareMoveInputAndNextMove(inputMove, currentMove).getIndex();
 
-        for(int i = 0; i < 2; i++){
-            if(index==i){
+        for (int i = 0; i < 2; i++) {
+            if (index == i) {
                 result.add(BridgeMoveValidator.compareMoveInputAndNextMove(inputMove, currentMove).getOorX());
             }
             result.add(BLANK);
