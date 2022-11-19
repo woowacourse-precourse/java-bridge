@@ -16,4 +16,15 @@ public class InputView {
             throw new IllegalArgumentException(EMPTY_INPUT.toString());
         }
     }
+
+    private static int checkAndConvertToInt(String input){
+//        if (!Pattern.matches("[0-9]+", input)){
+//            throw new IllegalArgumentException(NO_NUMBER_INPUT.toString());
+//        }
+        try {
+            return Integer.parseInt(input);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(NO_NUMBER_INPUT.toString());
+        }
+    }
 }
