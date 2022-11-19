@@ -1,6 +1,7 @@
 package bridge.model;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -35,6 +36,13 @@ class BridgeTypeTest {
     public void 텍스트로_건널_다리_검색불가(String text) {
         Assertions.assertThatThrownBy(() ->
                         BridgeType.searchBridgeToText(text))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    public void 텍스트로_건널_다리_null() {
+        Assertions.assertThatThrownBy(() ->
+                        BridgeType.searchBridgeToText(null))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
