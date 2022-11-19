@@ -1,5 +1,9 @@
 package bridge.view;
 
+import static bridge.util.ConsoleInput.readInt;
+
+import bridge.model.BridgeSize;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -9,7 +13,13 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        try {
+            printReadBridgeSizeMenu();
+            return new BridgeSize(readInt()).intValue();
+        } catch (IllegalArgumentException e) {
+            print(e.getMessage());
+            return readBridgeSize();
+        }
     }
 
     /**
@@ -24,5 +34,13 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private void printReadBridgeSizeMenu() {
+        print("다리 길이를 입력해 주세요.");
+    }
+
+    private void print(String message) {
+        System.out.println(message);
     }
 }
