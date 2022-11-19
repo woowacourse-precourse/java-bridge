@@ -7,7 +7,6 @@ public class Validator {
 
     public static void validIsNum(String userInput) {
         if (!NUMBER_PATTERN.matcher(userInput).matches()) {
-            System.out.println(ErrorMessage.IS_NOT_NUMBER.getMessage());
             throw new IllegalArgumentException(ErrorMessage.IS_NOT_NUMBER.getMessage());
         }
     }
@@ -16,7 +15,6 @@ public class Validator {
         int userInputToInt = Integer.parseInt(userInput);
 
         if (userInputToInt > 20 || userInputToInt < 3) {
-            System.out.println(ErrorMessage.IS_NOT_IN_RANGE.getMessage());
             throw new IllegalArgumentException(ErrorMessage.IS_NOT_IN_RANGE.getMessage());
         }
     }
