@@ -28,7 +28,7 @@ public class Player {
         this.lastSelection = playerSelection;
     }
 
-    public void dead() {
+    public void die() {
         this.isAlive = false;
     }
 
