@@ -41,5 +41,4 @@ public class BridgeSizeValidator {
             throw new IllegalArgumentException(ERROR_RANGE);
         }
     }
-
 }

@@ -28,5 +28,4 @@ public class BridgeGame {
     public boolean retry(String command) {
         return command.equals(GameCommand.RETRY.getValue());
     }
-
 }

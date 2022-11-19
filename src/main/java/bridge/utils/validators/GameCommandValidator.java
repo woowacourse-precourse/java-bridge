@@ -30,5 +30,4 @@ public class GameCommandValidator {
             throw new IllegalArgumentException(ERROR_ILLEGAL);
         }
     }
-
 }

@@ -28,7 +28,7 @@ public class GameController {
         outputView.printStartMessage();
         int size = inputHandler.getBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(size);
-        while (isAnswer&&index<size) {
+        while (isAnswer && index < size) {
             play(bridge);
         }
         String gameResult = new Result().returnResult(isAnswer);
@@ -62,14 +62,14 @@ public class GameController {
     private void initialize() {
         count++;
         realTimeBridge.initialize();
-        index=0;
-        isAnswer=true;
+        index = 0;
+        isAnswer = true;
     }
 
     private void stopPlaying(String userMove) {
         realTimeBridge.makeWrongMap(userMove);
         outputView.printMap(realTimeMap);
-        isAnswer=false;
+        isAnswer = false;
     }
 
     private void keepPlaying(String userMove) {
