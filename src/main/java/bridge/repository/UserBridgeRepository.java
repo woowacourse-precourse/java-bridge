@@ -18,9 +18,9 @@ public class UserBridgeRepository {
 		this.userCurrentLocation = 0;
 	}
 
-	public void saveUserSpace(String Location, String userCurrentTrace) {
+	public void saveUserSpace(String location, String userCurrentTrace) {
 		userCurrentLocation++;
-		if (Location.equals(InputViewConst.MOVING_UP)) {
+		if (location.equals(InputViewConst.MOVING_UP)) {
 			this.userUpperBridge.add(userCurrentTrace);
 			this.userLowerBridge.add(OutputViewConst.BLANK_SPACE);
 			return;
