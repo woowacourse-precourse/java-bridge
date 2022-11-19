@@ -22,11 +22,11 @@ public class BridgeGame {
     private final Player player;
     private Result result;
 
-    public BridgeGame(BridgeMaker bridgeMaker, Bridge bridge, Player player) {
+    public BridgeGame(BridgeMaker bridgeMaker, Bridge bridge, Player player, Result result) {
         this.bridgeMaker = bridgeMaker;
         this.bridge = bridge;
         this.player = player;
-        this.result = new Result();
+        this.result = result;
     }
 
     public void create(BridgeSizeRequestDto dto) {
@@ -77,7 +77,7 @@ public class BridgeGame {
      */
     public boolean retry(GameRetryRequestDto dto) {
         if(dto.getRetry().equals("R")) {
-            this.result = new Result();
+            this.result.init();
             player.init();
             return true;
         }

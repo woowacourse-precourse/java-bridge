@@ -4,12 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Result {
-    private final List<String> upBlocks;
-    private final List<String> downBlocks;
+    private List<String> upBlocks;
+    private List<String> downBlocks;
     private GameOver gameOver;
-    private int totalTryNumber = 0;
+    private int totalTryNumber;
 
     public Result() {
+        upBlocks = new ArrayList<>();
+        downBlocks = new ArrayList<>();
+        gameOver = GameOver.PLAYING;
+    }
+
+    public void init() {
         upBlocks = new ArrayList<>();
         downBlocks = new ArrayList<>();
         gameOver = GameOver.PLAYING;
