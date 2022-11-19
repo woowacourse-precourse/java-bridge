@@ -39,6 +39,10 @@ public class Game {
         }
     }
 
+    public void printGameResult(){
+        outputController.printResult(this.map, this.bridgeGame.isEndOfBridge(), this.bridgeGame.getTotalAttempts());
+    }
+
     public void checkGameState(boolean isPlayerSafe) { // 플레이어가 죽었는지 확인
         if (!isPlayerSafe){
             resetOrQuitGame();
