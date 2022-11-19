@@ -27,4 +27,8 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public boolean isPlayable(Round round) {
+        return answerBridge.isValidRound(round);
+    }
 }
