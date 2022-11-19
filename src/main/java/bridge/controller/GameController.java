@@ -11,7 +11,6 @@ public class GameController {
 
     private final static String SUCCESS = "성공";
     private final static String FAIL = "실패";
-
     private final InputHandler inputHandler = new InputHandler();
 
     public void runGame(){
