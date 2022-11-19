@@ -5,6 +5,7 @@ public class Constant {
     public static final String LEFT_BRACKET = "[";
     public static final String RIGHT_BRACKET = "]";
     public static final String VERTICAL_BAR = "|";
+    public static final String LINE = "\n";
 
     public static final String UP = "U";
     public static final String DOWN = "D";
