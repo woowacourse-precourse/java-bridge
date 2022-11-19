@@ -82,8 +82,8 @@
     - 인자, 반환 타입은 필요에 따라 추가 및 변경 가능
     - 구현에 필요한 메서드 추가 가능
 
-- [ ] BridgeMaker
-  - [ ] BridgeRandomNumberGenerator를 활용해서 데이터를 생성해야함
+- [x] BridgeMaker
+  - [x] BridgeRandomNumberGenerator를 활용해서 데이터를 생성해야함
     - 응답은 문자열 형태이며 1 -> "U", 0 -> "D" 형태로 생성함
     - 3에서 20사이의 숫자만 입력받아서 데이터 생성
   - 추가 사항
