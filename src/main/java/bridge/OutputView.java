@@ -46,4 +46,16 @@ public class OutputView {
         System.out.print("   ");
     }
 
+    public void printMapStart(){
+        System.out.print("[");
+    }
+
+    public void printSeparation(){
+        System.out.print("|");
+    }
+
+    public void printMapEnd(){
+        System.out.println("]");
+    }
+
 }
