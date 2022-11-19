@@ -38,6 +38,7 @@
 
 - [ ] 게임 상태(GameStatus)
   - [ ] SUCCESS, IN_PROGRESS, FAIL 3가지 상태를 가진다
+  - [ ] 상태에 따른 재실행 여부 기능 추가
 
 - [ ] InputView
   - [ ] bridgeSize를 입력 받음
