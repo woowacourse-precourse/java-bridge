@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import bridge.domain.Answer;
 import bridge.domain.Bridge;
+import bridge.domain.BridgeDirection;
 import bridge.domain.GameStatus;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,18 +24,18 @@ class BridgeGameTest {
 
     @DisplayName("사용자가 입력한 값에 따라 정답을 반환한다")
     @ParameterizedTest
-    @CsvSource(value = {"RIGHT,U", "WRONG,D"})
-    void finishTest(Answer answer, String userSelect) {
-        Answer result = bridgeGame.move(userSelect);
+    @CsvSource(value = {"RIGHT,UP", "WRONG,DOWN"})
+    void finishTest(Answer answer, BridgeDirection direction) {
+        Answer result = bridgeGame.move(direction);
 
         assertThat(result).isEqualTo(answer);
     }
 
     @DisplayName("게임이 끝나면 게임 상태를 반환한다")
     @ParameterizedTest
-    @CsvSource(value = {"SUCCESS,U", "FAIL,D"})
-    void gameStatus(GameStatus status, String userSelect) {
-        bridgeGame.move(userSelect);
+    @CsvSource(value = {"SUCCESS,UP", "FAIL,DOWN"})
+    void gameStatus(GameStatus status,  BridgeDirection direction) {
+        bridgeGame.move(direction);
 
         GameStatus result = bridgeGame.getStatus();
 
