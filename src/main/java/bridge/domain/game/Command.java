@@ -24,7 +24,7 @@ public class Command {
     }
 
     private void validateCommandSize(String command) {
-        if (command.length() == COMMAND_SIZE) {
+        if (command.length() != COMMAND_SIZE) {
             throw new IllegalArgumentException("[ERROR] 재시작 여부 명령어는 R와 Q 문자 중 하나만 입력 가능합니다.");
         }
     }
