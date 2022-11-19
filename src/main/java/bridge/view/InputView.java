@@ -24,7 +24,7 @@ public class InputView {
     public int readBridgeSize() {
         while (true) {
             try {
-                int size = convert(input());
+                int size = checkNumberFormat(input());
                 return checkSize(size);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -87,7 +87,7 @@ public class InputView {
         return size;
     }
 
-    private int convert(String number) {
+    private int checkNumberFormat(String number) {
         try {
             return Integer.parseInt(number);
         } catch (NumberFormatException e) {
