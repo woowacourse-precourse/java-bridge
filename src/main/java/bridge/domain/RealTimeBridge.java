@@ -15,31 +15,31 @@ public class RealTimeBridge {
         return realTimeBridge;
     }
 
-    public void makeRealTimeBridge(String userMove, String bridgeText) {
+    public void makeRealTimeBridge(String userMove, String moveResult) {
         if (userMove.equals(Moving.UP.getValue())) {
-            moveUpper(bridgeText);
+            moveUpper(moveResult);
             return;
         }
-        moveDown(bridgeText);
+        moveDown(moveResult);
     }
 
-    private void moveDown(String bridgeText) {
+    private void moveDown(String moveResult) {
         if (realTimeBridge[0][1].equals(BLANK)) {
-            realTimeBridge[1][1] += bridgeText;
+            realTimeBridge[1][1] += moveResult;
             realTimeBridge[0][1] += SPACE;
             return;
         }
-        realTimeBridge[1][1] += DIVIDE + bridgeText;
+        realTimeBridge[1][1] += DIVIDE + moveResult;
         realTimeBridge[0][1] += DIVIDE + SPACE;
     }
 
-    private void moveUpper(String bridgeText) {
+    private void moveUpper(String moveResult) {
         if (realTimeBridge[0][1].equals(BLANK)) {
-            realTimeBridge[0][1] += bridgeText;
+            realTimeBridge[0][1] += moveResult;
             realTimeBridge[1][1] += SPACE;
             return;
         }
-        realTimeBridge[0][1] += DIVIDE + bridgeText;
+        realTimeBridge[0][1] += DIVIDE + moveResult;
         realTimeBridge[1][1] += DIVIDE + SPACE;
     }
 
