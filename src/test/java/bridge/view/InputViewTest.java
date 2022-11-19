@@ -25,4 +25,15 @@ class InputViewTest {
         assertEquals(input, inputView.readMoving());
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"R", "Q"})
+    void 재시도_여부_입력_옳은_경우(String input) {
+        inputView = new InputView();
+
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        assertEquals(input, inputView.readGameCommand());
+    }
+
 }

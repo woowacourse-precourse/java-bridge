@@ -34,11 +34,21 @@ class ValidatorTest {
 
 
     @ParameterizedTest
-    @ValueSource(strings = {"A","3","s"})
+    @ValueSource(strings = {"A","3","s", " "})
     void 이동할_칸_입력_예외_처리(String input) {
         validator = new Validator();
 
         assertThatThrownBy(() -> validator.validateMoving(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+
+    @ParameterizedTest
+    @ValueSource(strings = {"A","3","s", " "})
+    void 재시도_여부_입력_예외_처리(String input) {
+        validator = new Validator();
+
+        assertThatThrownBy(() -> validator.validateGameCommand(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
