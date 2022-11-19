@@ -65,4 +65,8 @@ public class BridgeGame {
     public int getRound() {
         return userCrossBridge.size();
     }
+
+    public BridgeLog getLog() {
+        return new BridgeLog(bridgeLine, userCrossBridge);
+    }
 }
