@@ -29,7 +29,7 @@ public class BridgeGame {
         BridgeType positionType = BridgeType.getBridgeType(position);
         int distance = player.getPosition();
         player.movePlayer();
-        if (bridge.isBridgeFinished(distance) && bridge.canCrossBridge(distance, position)) {
+        if (bridge.isValidDistance(distance) && bridge.canCrossBridge(distance, position)) {
             this.gameResult = new GameResult(positionType, BridgeResultType.POSSIBLE);
             return;
         }

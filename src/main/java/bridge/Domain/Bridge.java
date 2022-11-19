@@ -12,7 +12,7 @@ public class Bridge {
         this.bridge = bridgeMaker.makeBridge(size);
     }
 
-    public boolean isBridgeFinished(int distance) {
+    public boolean isValidDistance(int distance) {
         return this.bridge.size() > distance;
     }
 
