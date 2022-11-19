@@ -62,10 +62,11 @@
 3. move bridge
    * BridgeGame 내 move() 로직 구현
    * BridgeMove domain 구현
-   * domain 내 범위 테스트 구현 (D, U)0
+   * domain 내 범위 테스트 구현 (D, U)
 4. input user answer
    * input view 구현
 5. check user's submitted answer
+   * controller 에 
 6. print turn's result
 7. ask retry
 8. retry game

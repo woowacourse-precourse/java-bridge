@@ -3,8 +3,8 @@ package bridge.domain;
 import java.util.Arrays;
 
 public enum Direction {
-    DOWN(0, "D"),
-    UP(1, "U");
+    UP(0, "U"),
+    DOWN(1, "D");
 
     private int key;
     private String symbol;
@@ -13,13 +13,26 @@ public enum Direction {
         this.key = key;
         this.symbol = symbol;
     }
-    public String get() {
+    public String getSymbol() {
         return this.symbol;
     }
+
+    public int getKey() {
+        return this.key;
+    }
+
     public static Direction getByKey(int key) {
         return Arrays.stream(values())
                 .filter(Direction -> Direction.key == key)
                 .findFirst()
                 .orElseThrow();
     }
+
+    public static Direction getBySymbol(String symbol) {
+        return Arrays.stream(values())
+                .filter(Direction -> symbol.equals(Direction.symbol))
+                .findFirst()
+                .orElseThrow();
+    }
+
 }

@@ -26,7 +26,7 @@ public class BridgeMaker {
         for (int i = 0; i < size; i ++) {
             int num = bridgeNumberGenerator.generate();
             Direction direction = Direction.getByKey(num);
-            bridge.add(direction.get());
+            bridge.add(direction.getSymbol());
         }
         return bridge;
     }

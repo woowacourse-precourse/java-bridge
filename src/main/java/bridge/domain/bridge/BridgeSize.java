@@ -24,7 +24,6 @@ public class BridgeSize {
             Double.parseDouble(s);
             return true;
         } catch(NumberFormatException e) {
-            System.out.printf(Message.ERROR_SIZE_NOT_INTEGER.get());
             throw new IllegalArgumentException();
         }
     }
