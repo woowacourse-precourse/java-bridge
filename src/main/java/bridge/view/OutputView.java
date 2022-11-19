@@ -65,7 +65,7 @@ public class OutputView {
     public void printResult(BridgeGame bridgeGame) {
         System.out.println("최종 게임 결과");
         printMap(bridgeGame.getBridge(), bridgeGame.getRound(), bridgeGame.getGameStatus());
-        System.out.println("게임 성공 여부: " + bridgeGame.getGameStatus());
+        System.out.println("게임 성공 여부: " + bridgeGame.getGameStatus().korean());
         System.out.println("총 시도한 횟수: " + bridgeGame.getTryCount());
     }
 
