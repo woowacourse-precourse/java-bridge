@@ -4,6 +4,9 @@ import bridge.domain.BridgeGame;
 import bridge.domain.BridgeUnit;
 import bridge.domain.MapUnit;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -28,22 +31,22 @@ public class OutputView {
     private String getMap(BridgeGame bridgeGame) {
         String upBridge = toPrintFormat(bridgeGame, BridgeUnit.UP);
         String downBridge = toPrintFormat(bridgeGame, BridgeUnit.DOWN);
-        return String.format("%s\n%s", upBridge, downBridge);
+        return String.format("[%s]\n[%s]", upBridge, downBridge);
     }
 
     private String toPrintFormat(BridgeGame bridgeGame, BridgeUnit bridgeUnit) {
-        StringBuilder sb = new StringBuilder();
+        List<String> results = new ArrayList<>();
         bridgeGame.getGameMap().stream()
                 .map(mapUnit -> getFormat(mapUnit, bridgeUnit))
-                .forEach(sb::append);
-        return sb.toString();
+                .forEach(results::add);
+        return String.join("|", results);
     }
 
     private String getFormat(MapUnit unit, BridgeUnit bridgeUnit) {
         if (bridgeUnit.equals(unit.getBridgeUnit())) {
-            return String.format("[%s]", getSign(unit.isSuccess()));
+            return String.format(" %s ", getSign(unit.isSuccess()));
         }
-        return "[ ]";
+        return "   ";
     }
 
     private String getSign(boolean success) {
