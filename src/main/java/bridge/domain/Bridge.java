@@ -34,4 +34,8 @@ public class Bridge {
     public List<String> getBridge() {
         return bridge;
     }
+
+    public boolean isCorrectMoveDirection(String moveDirection) {
+        return getBridge().get(nowIndex).equals(moveDirection);
+    }
 }
