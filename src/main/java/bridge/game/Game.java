@@ -13,15 +13,13 @@ public class Game {
     private GameStatus gameStatus;
 
     public Game() {
-        count = 0;
+        count = 1;
         runStatus = ON;
         gameStatus = FAIL;
     }
 
-    public void AddCount() {
-        if (count > 0) {
-            count++;
-        }
+    public void addCount() {
+        count++;
     }
 
     public int getCount() {

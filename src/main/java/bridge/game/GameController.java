@@ -10,18 +10,21 @@ public class GameController {
     private final SystemView systemView = new SystemView();
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final Game game = new Game();
+
+    private Game game;
 
     public boolean runGame() {
-        systemView.printStartGame();
-        bridgeGame.AddGameCount(game);
 
+        systemView.printStartGame();
+        game = new Game();
         return game.getRunStatus().isStatus();
+
     }
 
     public boolean retryGame() {
 
         game.setRunStatus(inputView.readGameCommand());
+        bridgeGame.retry(game);
         return game.getRunStatus().isStatus();
 
     }
