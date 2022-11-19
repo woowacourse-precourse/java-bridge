@@ -38,18 +38,12 @@ public class BridgeGameController {
 
     private boolean playFail(String moving) {
         if (bridgeGameService.fail(moving)) {
-            if (retryOrNot()) {
+            outputView.printRetry();
+            String retry = inputView.readGameCommand();
+
+            if (playQuit(retry)) {
                 return true;
             }
-        }
-        return false;
-    }
-
-    private boolean retryOrNot() {
-        outputView.printRetry();
-        String retry = inputView.readGameCommand();
-        if (playQuit(retry)) {
-            return true;
         }
         return false;
     }
