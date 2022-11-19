@@ -13,11 +13,12 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
-
         String bridgeSizeStr = Console.readLine();
-        int bridgeSize = Integer.parseInt(bridgeSizeStr);
+        if(!bridgeSizeStr.matches("\\d{1,2}"))
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
 
-        if (!bridgeSizeStr.matches("\\d{1,2}") || bridgeSize < 3 || bridgeSize > 20)
+        int bridgeSize = Integer.parseInt(bridgeSizeStr);
+        if (bridgeSize < 3 || bridgeSize > 20)
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
 
         return bridgeSize;
