@@ -12,14 +12,18 @@ public class Application {
         BridgeGame bridgeGame = new BridgeGame();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         GameController gameController = new GameController(inputView,bridgeGame,bridgeMaker);
+        try {
+            gameController.GAMESTART();
+            do {
+                gameController.RUNPROCESS();
+                if (bridgeGame.isSuccecs()) {
+                    break;
+                }
+            } while (gameController.SELECTRESTART());
+            gameController.STOPGAME();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
 
-        gameController.GAMESTART();
-        do {
-            gameController.RUNPROCESS();
-            if (bridgeGame.isSuccecs()) {
-                break;
-            }
-        } while (gameController.SELECTRESTART());
-        gameController.STOPGAME();
     }
 }
