@@ -27,4 +27,8 @@ public enum InputType {
     public static InputType getType(Character value) {
         return mapping.get(value);
     }
+
+    public Character getValue() {
+        return value;
+    }
 }
