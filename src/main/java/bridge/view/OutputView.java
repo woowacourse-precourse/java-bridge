@@ -7,7 +7,7 @@ import static bridge.domain.UpDownBridge.makeUpDownBridge;
 import static bridge.controller.BridgeGameController.getCount;
 import static bridge.controller.BridgeGameController.getStatus;
 
-import bridge.Message;
+import bridge.messages.Message;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -25,11 +25,6 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printProgress() {
-        System.out.println(Message.LEFT_BAR.getMessage() + addCenterBar(getUpBridge()) + Message.RIGHT_BAR.getMessage());
-        System.out.println(Message.LEFT_BAR.getMessage() + addCenterBar(getDownBridge()) + Message.RIGHT_BAR.getMessage());
-    }
-
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -43,6 +38,11 @@ public class OutputView {
         printTotalCount(getCount());
     }
 
+    private static void printProgress() {
+        System.out.println(Message.LEFT_BAR.getMessage() + addCenterBar(getUpBridge()) + Message.RIGHT_BAR.getMessage());
+        System.out.println(Message.LEFT_BAR.getMessage() + addCenterBar(getDownBridge()) + Message.RIGHT_BAR.getMessage());
+    }
+
     private static String getSuccessOrFailure() {
         if (getStatus()) {
             return Message.GAME_SUCCESS.getMessage();
@@ -50,7 +50,7 @@ public class OutputView {
         return Message.GAME_FAILURE.getMessage();
     }
 
-    public static void printTotalCount(int count) {
+    private static void printTotalCount(int count) {
         System.out.print(Message.TRY_ATTEMPTS.getMessage() + count);
     }
 }
