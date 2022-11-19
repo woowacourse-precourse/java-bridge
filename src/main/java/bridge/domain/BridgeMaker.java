@@ -1,6 +1,5 @@
 package bridge.domain;
 
-import bridge.BridgeRandomNumberGenerator;
 import bridge.util.BridgeNumberGenerator;
 
 import java.util.ArrayList;
@@ -27,7 +26,6 @@ public class BridgeMaker {
             int number = bridgeNumberGenerator.generate();
             canCrossSquare.add(upDownRandom(number));
         }
-
         return canCrossSquare;
     }
 
