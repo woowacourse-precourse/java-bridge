@@ -4,7 +4,7 @@
 
 ![Generic badge](https://img.shields.io/badge/precourse-week4-green.svg)
 ![Generic badge](https://img.shields.io/badge/test-6_passed-blue.svg)
-![Generic badge](https://img.shields.io/badge/version-1.0.12-brightgreen.svg)
+![Generic badge](https://img.shields.io/badge/version-1.0.13-brightgreen.svg)
 
 > 우테코 5기 4주차 미션 다리게임을 구현한 저장소입니다
 

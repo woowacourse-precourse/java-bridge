@@ -22,6 +22,10 @@ public class Bridge {
         return false;
     }
 
+    public int size() {
+        return bridge.size();
+    }
+
     public BridgeDto sendDto() {
         return new BridgeDto(this.bridge);
     }
