@@ -24,9 +24,9 @@
 2. BridgeMaker
     - [x]  다리 생성 → makeBridge
 3. InputValidator
-    - [ ]  다리 길이 입력 값의 유효성 검사 → validateInputBridgeSize
-    - [ ]  다리 이동 입력 값의 유효성 검사 → validateInputMoving
-    - [ ]  게임 재시작/종료 여부 입력 값의 유효성 검사 → validateInput
+    - [x]  다리 길이 입력 값의 유효성 검사 → BridgeSize
+    - [ ]  다리 이동 입력 값의 유효성 검사 → Moving
+    - [ ]  게임 재시작/종료 여부 입력 값의 유효성 검사 → GameCommand
 
 ### view
 
@@ -78,10 +78,10 @@
 
 ## 🚫예외 처리 목록
 
-- 다리 길이는 3~20 사이의 숫자만 입력 가능
-- 플레이어가 이동할 칸은 U와 D만 입력 가능
-- 게임 재시작/종료 여부는 R과 D만 입력 가능
-- 예외 처리시 “[ERROR]”로 시작하는 에러 문구 출력
+- [ ] 다리 길이는 3~20 사이의 숫자만 입력 가능
+- [ ] 플레이어가 이동할 칸은 U와 D만 입력 가능
+- [ ] 게임 재시작/종료 여부는 R과 D만 입력 가능
+- [ ] 예외 처리시 “[ERROR]”로 시작하는 에러 문구 출력
     - try catch문 사용시 `Exception` 은 사용 금지
 
 ---
