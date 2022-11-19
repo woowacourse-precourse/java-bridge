@@ -6,6 +6,7 @@ import static bridge.util.Constants.MAX_BRIDGE_SIZE;
 import static bridge.util.Constants.MIN_BRIDGE_SIZE;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -27,7 +28,7 @@ public class BridgeMaker {
         for (int i = 0; i < size; i++) {
             bridge.add(getAbbreviationByNumber(bridgeNumberGenerator.generate()));
         }
-        return bridge;
+        return Collections.unmodifiableList(bridge);
     }
 
     public static void validateBridgeSizeType(String input) {

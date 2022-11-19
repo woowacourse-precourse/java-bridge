@@ -29,7 +29,7 @@ public class GameController {
 
         BridgeGame bridgegame = new BridgeGame(bridge, diagram, finalResult);
 
-        while (finalResult.retry()) {
+        while (bridgegame.retry()) {
             bridgegame.move();
             if (finalResult.isSuccess()) {
                 outputView.printResult(diagram, finalResult);

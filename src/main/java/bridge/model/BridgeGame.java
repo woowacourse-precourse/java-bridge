@@ -27,7 +27,7 @@ public class BridgeGame {
         int index;
         for (index = 0; index < bridge.getBridgeSize(); index++) {
             String position = getUserSelection();
-            if (!bridge.isUserSelectionCorrect(position, bridge.currentBridge(index))) {
+            if (!bridge.compareByIndex(index, position)) {
                 diagram.updateDiagrams(position, Status.DIE);
                 break;
             }
@@ -45,8 +45,8 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
-
+    public boolean retry() {
+        return finalResult.retry();
     }
 
 }

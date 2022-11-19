@@ -10,15 +10,12 @@ public class Bridge {
         System.out.println(bridge);
     }
 
-    public boolean isUserSelectionCorrect(String correctOption, String userSelection) {
-        return correctOption.equals(userSelection);
+    public boolean compareByIndex(int index, String userSelection) {
+        return bridge.get(index).equals(userSelection);
     }
 
     public int getBridgeSize() {
         return bridge.size();
     }
 
-    public String currentBridge(int index) {
-        return bridge.get(index);
-    }
 }
