@@ -1,10 +1,10 @@
 package bridge;
 
-import static bridge.constant.BridgeMatch.CAN_MOVE;
-import static bridge.constant.BridgeMatch.CAN_NOT_MOVE;
+import static bridge.constant.MoveResult.CAN_MOVE;
+import static bridge.constant.MoveResult.CAN_NOT_MOVE;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.constant.BridgeMatch;
+import bridge.constant.MoveResult;
 import java.util.List;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -20,7 +20,7 @@ class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame();
 
         // when
-        BridgeMatch result = bridgeGame.move(bridge, player, count);
+        MoveResult result = bridgeGame.move(bridge, player, count);
 
         // then
         assertThat(result).isEqualTo(CAN_MOVE);
@@ -35,7 +35,7 @@ class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame();
 
         // when
-        BridgeMatch result = bridgeGame.move(bridge, player, count);
+        MoveResult result = bridgeGame.move(bridge, player, count);
 
         // then
         assertThat(result).isEqualTo(CAN_MOVE);
@@ -50,7 +50,7 @@ class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame();
 
         // when
-        BridgeMatch result = bridgeGame.move(bridge, player, count);
+        MoveResult result = bridgeGame.move(bridge, player, count);
 
         // then
         assertThat(result).isEqualTo(CAN_NOT_MOVE);

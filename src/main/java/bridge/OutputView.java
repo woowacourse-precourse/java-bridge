@@ -54,14 +54,14 @@ public class OutputView {
 
     private void bridgeMapIsUp(StringBuilder upStringBuilder, StringBuilder downStringBuilder, BridgeMap bridgeMap) {
         if (bridgeMap.getBridgeMove() == BridgeMove.UP) {
-            upStringBuilder.append(bridgeMap.getBridgeMatch().getSymbol());
+            upStringBuilder.append(bridgeMap.getMoveResult().getSymbol());
             downStringBuilder.append(SPACE.getSymbol());
         }
     }
 
     private void bridgeMapIsDown(StringBuilder upStringBuilder, StringBuilder downStringBuilder, BridgeMap bridgeMap) {
         if (bridgeMap.getBridgeMove() == BridgeMove.DOWN) {
-            downStringBuilder.append(bridgeMap.getBridgeMatch().getSymbol());
+            downStringBuilder.append(bridgeMap.getMoveResult().getSymbol());
             upStringBuilder.append(SPACE.getSymbol());
         }
     }

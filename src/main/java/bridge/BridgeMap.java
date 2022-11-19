@@ -1,24 +1,24 @@
 package bridge;
 
-import bridge.constant.BridgeMatch;
+import bridge.constant.MoveResult;
 import bridge.constant.BridgeMove;
 
 public class BridgeMap {
 
     private final BridgeMove bridgeMove;
 
-    private final BridgeMatch bridgeMatch;
+    private final MoveResult moveResult;
 
-    public BridgeMap(BridgeMove bridgeMove, BridgeMatch bridgeMatch) {
+    public BridgeMap(BridgeMove bridgeMove, MoveResult moveResult) {
         this.bridgeMove = bridgeMove;
-        this.bridgeMatch = bridgeMatch;
+        this.moveResult = moveResult;
     }
 
     public BridgeMove getBridgeMove() {
         return bridgeMove;
     }
 
-    public BridgeMatch getBridgeMatch() {
-        return bridgeMatch;
+    public MoveResult getMoveResult() {
+        return moveResult;
     }
 }
