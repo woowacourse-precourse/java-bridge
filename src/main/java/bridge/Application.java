@@ -17,7 +17,7 @@ public class Application {
             int bridgeSize = inputView.readBridgeSize();
             BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
             Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
-            //Result totalResult = new Result(bridge.sendDto);
+            Result totalResult = new Result();
 
             boolean guessResult = true;
             for (int currentPosition = 0; currentPosition < bridgeSize && guessResult; currentPosition++) {
@@ -27,7 +27,7 @@ public class Application {
                 bridgeGame.move(direction);
                 BridgeGameDto bridgeGameDto = bridgeGame.sendDto();
                 guessResult = bridge.isCorrectGuess(bridgeGameDto);
-                //totalResult.update(currentPosition,guessResult);
+                totalResult.update(guessResult);
                 //현재까지의 결과 출력
             }
 

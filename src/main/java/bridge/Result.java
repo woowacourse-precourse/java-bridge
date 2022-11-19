@@ -1,5 +1,6 @@
 package bridge;
 
+import dto.ResultDto;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,5 +14,9 @@ public class Result {
 
     public int size(){
         return result.size();
+    }
+
+    public ResultDto sendDto(){
+        return new ResultDto(result);
     }
 }
