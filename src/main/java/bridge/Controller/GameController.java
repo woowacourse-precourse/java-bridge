@@ -25,4 +25,21 @@ public class GameController {
         this.bridgeGameService = new BridgeGameService(bridgeGame);
         this.endGameService = new EndGameService(bridgeGame);
     }
+
+    public void playBridgeGame() {
+        while(true) {
+            bridgeGameService.onePhaseBridgeGame();
+
+            if(bridgeGame.isMoveSuccess() && bridgeGame.isBridgeFinished()) {
+                return;
+            }
+            if(!bridgeGame.isMoveSuccess()) {
+                if(endGameService.isGameRestart()) {
+                    endGameService.restartGame();
+                }else{
+                    return;
+                }
+            }
+        }
+    }
 }
