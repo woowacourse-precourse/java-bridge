@@ -17,8 +17,6 @@ public class GameController {
         do {
             bridgeGame.move();
         } while (!bridgeGame.isQuit());
-
-
     }
 
 }
