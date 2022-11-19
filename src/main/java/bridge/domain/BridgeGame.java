@@ -60,7 +60,7 @@ public class BridgeGame {
         realTimeBridge.initialize();
     }
 
-    private void start(int size, List<String> bridge) {
+    public void start(int size, List<String> bridge) {
         do {
             play(size, bridge);
         } while(retry());
