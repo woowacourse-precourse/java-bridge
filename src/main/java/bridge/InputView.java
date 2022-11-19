@@ -27,6 +27,14 @@ public class InputView {
      */
     public String readGameCommand() {
         String command = Console.readLine().strip();
+        checkNullGameCommand(command);
         return command;
     }
+
+    private static void checkNullGameCommand(String command) {
+        if(command.length() == 0){
+            throw new RuntimeException("[Error] 아무것도 입력하지 않았습니다. R 혹은 Q를 입력해주세요.");
+        }
+    }
+
 }
