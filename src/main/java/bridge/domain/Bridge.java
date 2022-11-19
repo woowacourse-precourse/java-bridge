@@ -8,7 +8,7 @@ public class Bridge {
 
     public Bridge(List<String> bridge) {
         this.bridge = bridge;
-        this.nowIndex = 1;
+        this.nowIndex = 0;
     }
 
     public int getNowIndex() {
@@ -28,7 +28,7 @@ public class Bridge {
     }
 
     public void resetGame() {
-        setNowIndex(1);
+        setNowIndex(0);
     }
 
     public List<String> getBridge() {
