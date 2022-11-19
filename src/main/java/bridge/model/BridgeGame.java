@@ -7,12 +7,16 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    private static final int INITIAL_PLAY_COUNT = 1;
+
     private final Bridge bridge;
     private Player player;
+    private int playCount;
 
     public BridgeGame(List<String> bridge) {
         this.player = new Player();
         this.bridge = new Bridge(bridge);
+        this.playCount = INITIAL_PLAY_COUNT;
     }
 
     /**
