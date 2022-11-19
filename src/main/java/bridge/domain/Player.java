@@ -27,6 +27,12 @@ public class Player {
         answer.add(Answer);
     }
 
+    public void resetPlayer() {
+        distance = 0;
+        route = new ArrayList<>();
+        answer = new ArrayList<>();
+    }
+
     public int getDistance() {
         return distance;
     }

@@ -40,8 +40,6 @@ public class GameController {
     private void crossABridge(Bridge bridge, Player player) {
         BridgeGame bridgeGame = new BridgeGame(bridge, player, inputController);
         bridgeGame.move();
-        if (bridgeGame.retry()) {
-        }
 
         // 결과 출력
     }
