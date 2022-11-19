@@ -1,0 +1,25 @@
+package bridge.validator;
+
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
+class MovingValidatorTest {
+    private Validator validator;
+
+    @BeforeEach
+    void setUp() {
+        validator = new MovingValidator();
+    }
+
+    @DisplayName("대문자 U, D가 아닌 값을 검증할 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @CsvSource({"1000", "u", "d", "Q", "R", "UP", "DOWN"})
+    void validateInvalidValue(String inputValue) {
+        assertThatThrownBy(() -> validator.validate(inputValue))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+}
