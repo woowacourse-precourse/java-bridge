@@ -21,41 +21,37 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
 
-    // 외부에 새 currentBridge를 선언하고, 하나씩 추가하는 방식은 어떨까ㅏㅏ..
-    // 정답과 유저의 값이 일치하면 현재 다리에 O를 추가하고,
-    // 이외의 경우에는 공백을 추가한다.
-    // 정답과 유저의 값이 일치하지 않을 경우 -> 예외 발생 후 다시 재입력 받도록 한다.
-    public boolean move(List<String> bridgeMap, List<String> upperBridge, List<String> lowerBridge, String userMoving) {
+    public boolean move(List<String> bridgeMap, String userMoving) {
         if (userMoving.equals("U")) {
-            if (bridgeMap.get(upperBridge.size()).equals(userMoving)) {
-                upperBridge.add("O");
-                lowerBridge.add(" ");
+            if (bridgeMap.get(upBridge.size()).equals(userMoving)) {
+                upBridge.add("O");
+                downBridge.add(" ");
                 return true;
             }
         }
         if (userMoving.equals("D")) {
-            if (bridgeMap.get(lowerBridge.size()).equals(userMoving)) {
-                upperBridge.add(" ");
-                lowerBridge.add("O");
+            if (bridgeMap.get(downBridge.size()).equals(userMoving)) {
+                upBridge.add(" ");
+                downBridge.add("O");
                 return true;
             }
         }
         return false;
     }
 
-    public void failMove(List<String> bridgeMap, List<String> upperBridge, List<String> lowerBridge, String userMoving, int i) {
+    public void failMove(List<String> bridgeMap, String userMoving, int i) {
         if (userMoving.equals("U")) {
             if (!bridgeMap.get(i).equals(userMoving)) {
-                upperBridge.add("X");
-                lowerBridge.add(" ");
-                failResult(upperBridge, lowerBridge, bridgeMap);
+                upBridge.add("X");
+                downBridge.add(" ");
+                failResult(upBridge, downBridge, bridgeMap);
             }
         }
         if (userMoving.equals("D")) {
             if (!bridgeMap.get(i).equals(userMoving)) {
-                upperBridge.add(" ");
-                lowerBridge.add("X");
-                failResult(upperBridge, lowerBridge, bridgeMap);
+                upBridge.add(" ");
+                downBridge.add("X");
+                failResult(upBridge, downBridge, bridgeMap);
             }
         }
     }
@@ -97,10 +93,10 @@ public class BridgeGame {
 
         Message.tryCount(gameTryCount);
     }
-    public void result(List<String> upperBridge, List<String> lowerBridge, int gameTryCount) {
+    public void result(int gameTryCount) {
         Message.gameResultMesaage();
-        outputView.printMap(upperBridge);
-        outputView.printMap(lowerBridge);
+        outputView.printMap(upBridge);
+        outputView.printMap(downBridge);
         Message.result();
         Message.success();
         Message.tryCount(gameTryCount);
@@ -118,20 +114,20 @@ public class BridgeGame {
     }
     public void test (List<String> answer) {
         Message.requestMovingMessage();
-        List<String> upperCurrentBridge = new ArrayList<>(); // 위쪽 다리
-        List<String> lowerCurrentBridge = new ArrayList<>(); // 아래쪽 다리
+        upBridge = new ArrayList<>();
+        downBridge = new ArrayList<>();
 
         System.out.println("answer = " + answer);
 
         for (int i = 0; i < answer.size(); i++) {
             String userMovingValue = inputView.readMoving();
-            if(!move(answer, upperCurrentBridge, lowerCurrentBridge, userMovingValue)) { // 정답을 맞추면 현재 다리에 O를 추가한다
-                failMove(answer, upperCurrentBridge, lowerCurrentBridge, userMovingValue, i);
+            if(!move(answer,userMovingValue)) { // 정답을 맞추면 현재 다리에 O를 추가한다
+                failMove(answer, userMovingValue, i);
                 return ;
             }
-            outputView.printMap(upperCurrentBridge); // 추가된 다리만큼만 출력한다
-            outputView.printMap(lowerCurrentBridge);
+            outputView.printMap(upBridge); // 추가된 다리만큼만 출력한다
+            outputView.printMap(downBridge);
         }
-        result(upperCurrentBridge, lowerCurrentBridge, gameTryCount);
+        result(gameTryCount);
     }
 }
