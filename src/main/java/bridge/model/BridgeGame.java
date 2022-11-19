@@ -1,9 +1,14 @@
 package bridge.model;
+
+import bridge.constant.GameStatus;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
     private Bridge bridge;
+    private int round = 0;
+    private GameStatus gameStatus = GameStatus.READY;
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -22,5 +27,14 @@ public class BridgeGame {
     
     public void createBridge(int size){
         bridge = new Bridge(size);
+    }
+
+    public void checkAnswerOfRound(String answer){
+        if(!bridge.checkBlock(answer, round)){
+            gameStatus = GameStatus.FAIL;
+            return;
+        }
+        move();
+        gameStatus = GameStatus.IN_PROGRESS;
     }
 }
