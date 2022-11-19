@@ -71,7 +71,7 @@ public class OutputView {
             line.add(CROSSABLE_SIGN);
             return;
         }
-        line.add(" ");
+        line.add(BLANK);
     }
 
     private static void drawFailedCell(List<String> line, String lineType, String correctDirection) {
@@ -79,7 +79,7 @@ public class OutputView {
             line.add(UNABLE_TO_CROSS_SIGN);
             return;
         }
-        line.add(" ");
+        line.add(BLANK);
     }
 
     private static void printOneLine(List<String> line) {
