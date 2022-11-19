@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.controller.BridgeController;
 import bridge.domain.BridgeMaker;
+import bridge.domain.BridgeNumberGenerator;
 import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.domain.Player;
 import bridge.service.BridgeGame;
@@ -17,9 +18,21 @@ public class Application {
     }
 
     public static BridgeController getBridgeController() {
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        BridgeGame bridgeGame = new BridgeGame(bridgeMaker, new Player());
-        BridgeController bridgeController = new BridgeController(new InputView(), new OutputView(), bridgeGame, new Validator());
-        return bridgeController;
+        BridgeGame bridgeGame = getBridgeGame();
+        InputView inputView = new InputView();
+        OutputView outputView = new OutputView();
+        Validator validator = new Validator();
+        return new BridgeController(inputView, outputView, bridgeGame, validator);
+    }
+
+    private static BridgeGame getBridgeGame() {
+        BridgeMaker bridgeMaker = getBridgeMaker();
+        Player player = new Player();
+        return new BridgeGame(bridgeMaker, player);
+    }
+
+    private static BridgeMaker getBridgeMaker() {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        return new BridgeMaker(bridgeNumberGenerator);
     }
 }
