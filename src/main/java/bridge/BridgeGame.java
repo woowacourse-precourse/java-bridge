@@ -1,5 +1,11 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Console;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -10,7 +16,19 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public void move(List<String> makeBridge) {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        OutputView outputView = new OutputView();
+        String flag = "";
+
+        for(int i = 0;i< makeBridge.size();i++) {
+            String pInput = Console.readLine();
+
+            if (pInput == makeBridge.get(i)) flag = "O";
+            if (pInput != makeBridge.get(i)) flag = "X";
+
+            outputView.printMap(flag);
+        }
     }
 
     /**
