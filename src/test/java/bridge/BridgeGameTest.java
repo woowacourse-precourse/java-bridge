@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 
+import java.util.List;
+
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,6 +28,66 @@ public class BridgeGameTest extends NsTest {
         }
     }
 
+    @DisplayName("이동 입력 후, 맵 출력에 대한 테스트")
+    @Nested
+    class moveAndPrintMapTest {
+        @Test
+        void moveUpSuccessTest() {
+            assertRandomNumberInRangeTest(() -> {
+                runException("3", "U");
+                assertThat(output()).contains(
+                        "[ O ]",
+                        "[   ]"
+                );
+
+                int upSideIndex = output().indexOf("[ O ]");
+                int downSideIndex = output().indexOf("[   ]");
+                assertThat(upSideIndex).isLessThan(downSideIndex);
+            }, 1, 1, 1);
+        }
+        @Test
+        void moveUpFailTest() {
+            assertRandomNumberInRangeTest(() -> {
+                runException("3", "U");
+                assertThat(output()).contains(
+                        "[ X ]",
+                        "[   ]"
+                );
+
+                int upSideIndex = output().indexOf("[ X ]");
+                int downSideIndex = output().indexOf("[   ]");
+                assertThat(upSideIndex).isLessThan(downSideIndex);
+            }, 0, 0, 0);
+        }
+        @Test
+        void moveDownSuccessTest() {
+            assertRandomNumberInRangeTest(() -> {
+                runException("3", "D");
+                assertThat(output()).contains(
+                        "[   ]",
+                        "[ O ]"
+                );
+
+                int upSideIndex = output().indexOf("[   ]");
+                int downSideIndex = output().indexOf("[ O ]");
+                assertThat(upSideIndex).isLessThan(downSideIndex);
+            }, 0, 0, 0);
+        }
+        @Test
+        void moveDownFailTest() {
+            assertRandomNumberInRangeTest(() -> {
+                runException("3", "D");
+                assertThat(output()).contains(
+                        "[   ]",
+                        "[ X ]"
+                );
+
+                int upSideIndex = output().indexOf("[   ]");
+                int downSideIndex = output().indexOf("[ X ]");
+                assertThat(upSideIndex).isLessThan(downSideIndex);
+            }, 1, 1, 1);
+        }
+    }
 
     @Override
     protected void runMain() {
