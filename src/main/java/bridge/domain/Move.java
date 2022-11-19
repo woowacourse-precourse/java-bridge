@@ -14,6 +14,10 @@ public enum Move {
         this.number = number;
     }
 
+    public String getDirection() {
+        return direction;
+    }
+
     public static Move reverseMove(String direction) {
         return Arrays.stream(values())
                 .filter(move -> !move.direction.equals(direction))
@@ -21,16 +25,12 @@ public enum Move {
                 .get();
     }
 
-    public String getDirection() {
-        return direction;
-    }
-
     public static String convertDirection(int number) {
         return Arrays.stream(Move.values())
                 .filter(move -> move.number == number)
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("잘못된 숫자 입력"))
-                .getDirection();
+                .direction;
     }
 
     public static Move from(String direction) {
