@@ -41,4 +41,20 @@ public class InputViewTest {
         assertThatNoException()
                 .isThrownBy(() -> inputView.validateMoving(input));
     }
+
+    @DisplayName("잘못된 게임 재시작/종료 여부를 입력 받으면 예외가 발생한다")
+    @ParameterizedTest
+    @ValueSource(strings = {"r", "q", ""})
+    void invalidGameCommandInputTest(String input) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> inputView.validateGameCommand(input));
+    }
+
+    @DisplayName("올바른 게임 재시작/종료 여부를 입력 받으면 예외가 발생하지 않는다")
+    @ParameterizedTest
+    @ValueSource(strings = {"R", "Q"})
+    void validGameCommandInputTest(String input) {
+        assertThatNoException()
+                .isThrownBy(() -> inputView.validateGameCommand(input));
+    }
 }

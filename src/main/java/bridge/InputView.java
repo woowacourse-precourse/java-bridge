@@ -22,6 +22,10 @@ public class InputView {
 
     private static final String READ_MOVING_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
 
+    private static final String RETRY = "R";
+    private static final String QUIT = "Q";
+    private static final String GAME_COMMAND_ERROR_MESSAGE = "[ERROR] R(재시작), Q(종료) 중 하나를 입력해야 합니다.";
+
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -79,6 +83,13 @@ public class InputView {
         List<String> movingOptions = List.of(UP_BRIDGE, DOWN_BRIDGE);
         if(!movingOptions.contains(input)) {
             throw new IllegalArgumentException(MOVING_INPUT_ERROR_MESSAGE);
+        }
+    }
+
+    public void validateGameCommand(String input) throws IllegalArgumentException {
+        List<String> gameCommandOptions = List.of(RETRY, QUIT);
+        if(!gameCommandOptions.contains(input)) {
+            throw new IllegalArgumentException(GAME_COMMAND_ERROR_MESSAGE);
         }
     }
 
