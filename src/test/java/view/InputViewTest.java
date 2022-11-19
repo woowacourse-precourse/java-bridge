@@ -72,4 +72,30 @@ class InputViewTest {
         assertThatThrownBy(inputView::readMoving)
                 .isInstanceOf(NoSuchElementException.class);
     }
+
+    @DisplayName("재시작/종료 여부가 R 혹은 Q일 경우 입력받는데 성공한다.")
+    @Test
+    void 재시작_종료_여부가_R_혹은_Q일_경우() {
+        // given
+        InputView inputView = new InputView();
+        System.setIn(new ByteArrayInputStream("R".getBytes()));
+
+        // when
+        String command = inputView.readGameCommand();
+
+        // then
+        assertThat(command).isEqualTo("R");
+    }
+
+    @DisplayName("재시작/종료 여부가 R 혹은 Q일 경우 입력받는데 성공한다.")
+    @Test
+    void 재시작_종료_여부가_R_혹은_Q가_아닐_경우() {
+        // given
+        InputView inputView = new InputView();
+        System.setIn(new ByteArrayInputStream("D".getBytes()));
+
+        // when & then
+        assertThatThrownBy(inputView::readGameCommand)
+                .isInstanceOf(NoSuchElementException.class);
+    }
 }
