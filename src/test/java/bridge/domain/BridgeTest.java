@@ -30,7 +30,7 @@ class BridgeTest {
             "2, U, true"})
     @ParameterizedTest
     void checkMobility(int play, String moving, boolean expected) {
-        boolean actual = bridge.isPossibleMoving(play, moving);
+        boolean actual = bridge.canMove(play, moving);
         assertThat(actual).isEqualTo(expected);
     }
 

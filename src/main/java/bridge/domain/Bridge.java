@@ -20,7 +20,7 @@ public class Bridge {
         return shape.size();
     }
 
-    public boolean isPossibleMoving(int play, String moving) {
+    public boolean canMove(int play, String moving) {
         return findShape(play).equals(moving);
     }
 

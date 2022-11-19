@@ -23,11 +23,11 @@ public class BridgeMoveState {
     }
 
     /**
-     * @param moving   이동할 칸
-     * @param mobility 이동 가능성
+     * @param moving  이동할 칸
+     * @param canMove 이동 가능여부
      */
-    public void update(String moving, boolean mobility) {
-        String state = makeState(mobility);
+    public void update(String moving, boolean canMove) {
+        String state = makeState(canMove);
 
         if (moving.equals(UP)) {
             upState.add(state);
@@ -40,8 +40,8 @@ public class BridgeMoveState {
         }
     }
 
-    private String makeState(boolean mobility) {
-        if (mobility) {
+    private String makeState(boolean canMove) {
+        if (canMove) {
             return MOVE;
         }
         return STOP;

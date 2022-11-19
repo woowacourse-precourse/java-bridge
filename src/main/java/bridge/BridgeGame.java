@@ -21,12 +21,12 @@ public class BridgeGame {
      *
      * @param moveCount 이동 횟수
      * @param moving    이동할 칸
-     * @return 이동 가능성
+     * @return 이동 가능여부
      */
     public boolean move(int moveCount, String moving) {
-        boolean mobility = bridge.isPossibleMoving(moveCount, moving);
-        bridgeGameResult.updateMoveState(moving, mobility);
-        return mobility;
+        boolean canMove = bridge.canMove(moveCount, moving);
+        bridgeGameResult.updateMoveState(moving, canMove);
+        return canMove;
     }
 
     /**
