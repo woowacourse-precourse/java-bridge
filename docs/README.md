@@ -20,9 +20,7 @@
         
         재시도 회수 저장
         
-    - [ ]  생성한 다리 저장 → initialize
-        
-        class 변수로 길이와 다리 모양을 포함한 map으로 선언
+    - [x]  생성한 다리 저장 → BridgeGame 생성자로 해결
 2. BridgeMaker
     - [x]  다리 생성 → makeBridge
 3. InputValidator
