@@ -20,12 +20,12 @@ public class Bridge {
         return shape.size();
     }
 
-    public boolean canMove(int play, String moving) {
-        return findShape(play).equals(moving);
+    public boolean canMove(int place, String moving) {
+        return findShape(place).equals(moving);
     }
 
-    private String findShape(int play) {
-        return shape.get(play);
+    private String findShape(int place) {
+        return shape.get(place);
     }
 
     private void validateSize(int size) {
