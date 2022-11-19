@@ -26,19 +26,21 @@ public class GameHostTest {
     @ValueSource(ints = {0, 1, 2})
     void stepOfIndexInBridge(int index) {
         // then
-        assertThat(gameHost.stepOfIndexInBridge(index)).isEqualsTo(testBridge.get(index));
+        assertThat(gameHost.stepOfIndexInBridge(index)).isEqualTo(testBridge.get(index));
     }
 
     @Test
     @DisplayName("플레이어가 살아있는지 반환하는 기능")
     void isPlayerAlive() {
+        // then
         assertThat(gameHost.isPlayerAlive()).isTrue();
     }
 
     @Test
     @DisplayName("플레이어의 Index 를 반환하는 기능")
     void getInitialPlayerIndex() {
-        assertThat(gameHost.getPlayerIndex()).isEqualTo(-1);
+        // then
+        assertThat(gameHost.whereIsPlayer()).isEqualTo(-1);
     }
 
 }

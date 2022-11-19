@@ -1,7 +1,5 @@
 package bridge;
 
-import java.util.List;
-
 import static bridge.Const.*;
 
 /**
@@ -28,7 +26,7 @@ public class OutputView {
     }
 
     private void appendPastMap(GameHost gameHost, StringBuilder printOfMap, String position) {
-        for (int index = 0; index < gameHost.getPlayerIndex(); index++) {
+        for (int index = 0; index < gameHost.whereIsPlayer(); index++) {
             if (gameHost.stepOfIndexInBridge(index).equals(position)) {
                 printOfMap.append("| ").append("O ");
             }
@@ -40,31 +38,31 @@ public class OutputView {
     }
 
     private void appendNowMap(GameHost gameHost, StringBuilder printOfMap,String position) {
-        if (gameHost.playerAlive()) { // 플레이어가 살아있을 떄
+        if (gameHost.isPlayerAlive()) { // 플레이어가 살아있을 떄
             appendNowMapWhenAlive(gameHost, printOfMap, position);
         }
 
-        if (!gameHost.playerAlive()) { // 플레이어가 죽었을 때
+        if (!gameHost.isPlayerAlive()) { // 플레이어가 죽었을 때
             appendNowMapWhenNotAlive(gameHost, printOfMap, position);
         }
     }
 
     private void appendNowMapWhenAlive(GameHost gameHost, StringBuilder printOfMap, String position) {
-        if (gameHost.stepOfIndexInBridge(gameHost.getPlayerIndex()).equals(position)) {
+        if (gameHost.stepOfIndexInBridge(gameHost.whereIsPlayer()).equals(position)) {
             printOfMap.append("| ").append("O ");
         }
 
-        if (!gameHost.stepOfIndexInBridge(gameHost.getPlayerIndex()).equals(position)) {
+        if (!gameHost.stepOfIndexInBridge(gameHost.whereIsPlayer()).equals(position)) {
             printOfMap.append("| ").append("  ");
         }
     }
 
     private void appendNowMapWhenNotAlive(GameHost gameHost, StringBuilder printOfMap, String position) {
-        if (gameHost.stepOfIndexInBridge(gameHost.getPlayerIndex()).equals(position)) {
+        if (gameHost.stepOfIndexInBridge(gameHost.whereIsPlayer()).equals(position)) {
             printOfMap.append("| ").append("  ");
         }
 
-        if (!gameHost.stepOfIndexInBridge(gameHost.getPlayerIndex()).equals(position)) {
+        if (!gameHost.stepOfIndexInBridge(gameHost.whereIsPlayer()).equals(position)) {
             printOfMap.append("| ").append("X ");
         }
     }
