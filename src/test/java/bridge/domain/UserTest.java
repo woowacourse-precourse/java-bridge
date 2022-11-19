@@ -28,4 +28,15 @@ class UserTest {
         assertThat(user.onGame())
                 .isEqualTo(true);
     }
+
+    @Test
+    @DisplayName("사용자의 이동 저장 테스트")
+    void addMoveTest() {
+        User user = new User(Arrays.asList("D","D","D"));
+        user.addMove("D");
+        assertThat(user.getUserBridge().size())
+                .isEqualTo(1);
+        assertThat(user.getUserBridge())
+                .contains("D");
+    }
 }
