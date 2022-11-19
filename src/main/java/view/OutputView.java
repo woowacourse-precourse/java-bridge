@@ -33,6 +33,10 @@ public class OutputView {
         System.out.println(Message.BRIDGE_MOVING_INPUT_MESSAGE);
     }
 
+    public void printAskToRestart() {
+        System.out.println(Message.ASK_TO_RESTART_MESSAGE);
+    }
+
     public static void printException(IllegalArgumentException e) {
         System.out.println(e.getMessage());
     }

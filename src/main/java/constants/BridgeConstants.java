@@ -7,6 +7,7 @@ public abstract class BridgeConstants {
     public static final String UP_DIRECTION = "U";
     public static final String DOWN_DIRECTION = "D";
     public static final String RESTART = "R";
+    public static final String QUIT = "Q";
     public static final String RIGHT_ANSWER = "O";
     public static final String WRONG_ANSWER = "X";
 

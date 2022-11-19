@@ -2,6 +2,7 @@ package controller;
 
 import bridge.Bridge;
 import bridge.BridgeGame;
+import constants.BridgeConstants;
 import view.InputView;
 import view.OutputView;
 
@@ -22,18 +23,42 @@ public class BridgeController {
         return inputView.readBridgeSize();
     }
 
+    private boolean askToRestart() {
+        outputView.printAskToRestart();
+        String command = inputView.readGameCommand();
+        if (command.equals(BridgeConstants.RESTART)) {
+            bridgeGame.retry();
+            return true;
+        }
+        return false;
+    }
+
+    private void playGame(Bridge bridge, int bridgeSize) {
+        boolean isSuccessiveMove = true;
+
+        isSuccessiveMove = isSuccessiveMove(bridge, bridgeSize, isSuccessiveMove);
+        if (!isSuccessiveMove) {
+            if (askToRestart()) {
+                playGame(bridge, bridgeSize);
+                return;
+            }
+        }
+        outputView.printResult();
+    }
+
+    private boolean isSuccessiveMove(Bridge bridge, int bridgeSize, boolean isSuccessiveMove) {
+        for (int round = 0; isSuccessiveMove && round < bridgeSize; round++) {
+            outputView.printMovingInputMessage();
+            isSuccessiveMove = bridgeGame.move(bridge, inputView.readMoving(), round);
+            outputView.printMap(bridgeGame.getStateOfBridge());
+        }
+        return isSuccessiveMove;
+    }
+
     public void start() {
         int bridgeSize = getBridgeSizeFromUser();
         Bridge bridge = bridgeGame.generateBridge(bridgeSize);
 
         playGame(bridge, bridgeSize);
-    }
-
-    private void playGame(Bridge bridge, int bridgeSize) {
-        for (int round = 0; round < bridgeSize; round++) {
-            outputView.printMovingInputMessage();
-            bridgeGame.move(bridge, inputView.readMoving(), round);
-            outputView.printMap(bridgeGame.getStateOfBridge());
-        }
     }
 }

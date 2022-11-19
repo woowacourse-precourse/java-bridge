@@ -29,9 +29,19 @@ public class InputView {
         validateBridgeSizeRange(Integer.parseInt(userInput));
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
+    private void validateExistsString(String userInput) {
+        if (!userInput.matches(DIGIT_REGEX.pattern())) {
+            throw new IllegalArgumentException(Message.INPUT_PATTERN_ERROR_MESSAGE);
+        }
+    }
+
+    private void validateBridgeSizeRange(int bridgeSize) {
+        if (bridgeSize < BridgeConstants.MIN_BRIDGE_SIZE
+                || bridgeSize > BridgeConstants.MAX_BRIDGE_SIZE) {
+            throw new IllegalArgumentException(Message.BRIDGE_SIZE_ERROR_MESSAGE);
+        }
+    }
+
     public String readMoving() {
         try {
             String userInput = Console.readLine();
@@ -53,23 +63,25 @@ public class InputView {
         }
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public String readGameCommand() {
-        return null;
-    }
+        try {
+            String userInput = Console.readLine();
 
-    private void validateExistsString(String userInput) {
-        if (!userInput.matches(DIGIT_REGEX.pattern())) {
-            throw new IllegalArgumentException(Message.INPUT_PATTERN_ERROR_MESSAGE);
+            validateGameCommand(userInput);
+
+            return userInput;
+        } catch (IllegalArgumentException e) {
+            OutputView.printException(e);
+            return readGameCommand();
         }
     }
 
-    private void validateBridgeSizeRange(int bridgeSize) {
-        if (bridgeSize < BridgeConstants.MIN_BRIDGE_SIZE
-                || bridgeSize > BridgeConstants.MAX_BRIDGE_SIZE) {
-            throw new IllegalArgumentException(Message.BRIDGE_SIZE_ERROR_MESSAGE);
+    private void validateGameCommand(String userInput) {
+        List<String> commands = List.of(
+                BridgeConstants.RESTART, BridgeConstants.QUIT);
+
+        if (!commands.contains(userInput)) {
+            throw new IllegalArgumentException(Message.COMMAND_ERROR_MESSAGE);
         }
     }
 }
