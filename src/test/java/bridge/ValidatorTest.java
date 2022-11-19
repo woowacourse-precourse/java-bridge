@@ -1,18 +1,29 @@
 package bridge;
 
-import static bridge.Validator.validateInputSize;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.DisplayName;
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+
+import bridge.messages.ErrorMessage;
+
+import camp.nextstep.edu.missionutils.test.NsTest;
+
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.api.DisplayName;
 
-public class ValidatorTest {
+public class ValidatorTest extends NsTest {
 
     @DisplayName("다리 길이 숫자 범위 테스트")
-    @ValueSource(ints = {-1, 0, 46})
     @Test
-    void validateInputSizeTest(int input) {
-        validateInputSize(input);
+    void validateInputSizeTest() {
+        assertSimpleTest(() -> {
+            runException("1");
+            assertThat(output()).contains(ErrorMessage.BRIDGE_SIZE_INPUT_RANGE.getErrorMessage());
+        });
+    }
+
+    @Override
+    protected void runMain() {
+        Application.main(new String[]{});
     }
 }
