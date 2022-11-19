@@ -15,9 +15,7 @@ public class GamePlayer {
         return new GamePlayer(0, 1, false);
     }
 
-    public int getPosition() {
-        return position;
-    }
+
 
     public synchronized void move() {
         this.position += 1;
@@ -27,7 +25,20 @@ public class GamePlayer {
         this.isFailGame = true;
     }
 
+    public synchronized void retryGame() {
+        this.trial += 1;
+        this.position = 0;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+    public int getTrial() {
+        return trial;
+    }
+
     public boolean isFailGame() {
         return isFailGame;
     }
+
 }
