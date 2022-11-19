@@ -53,9 +53,7 @@ public class BridgeController {
                 break;
             }
 
-            GameCommand gameCommand = null;
-            gameCommand = createGameCommandLoop(gameCommand);
-
+            GameCommand gameCommand = createGameCommandLoop();
             if (gameCommand.isSameQuit()) {
                 break;
             }
@@ -128,20 +126,21 @@ public class BridgeController {
         return new Position(pos, direction);
     }
 
-    private GameCommand createGameCommandLoop(GameCommand gameCommand) {
+    private GameCommand createGameCommandLoop() {
+        GameCommand gameCommand;
         do {
-            gameCommand = createGameCommand(gameCommand);
+            gameCommand = createGameCommand();
         } while (gameCommand == null);
         return gameCommand;
     }
 
-    private GameCommand createGameCommand(GameCommand gameCommand) {
+    private GameCommand createGameCommand() {
         try {
-            gameCommand = new GameCommand(InputView.readGameCommand());
+            return new GameCommand(InputView.readGameCommand());
         } catch (IllegalArgumentException ex) {
             OutputView.printError(ex.getMessage());
         }
-        return gameCommand;
+        return null;
     }
 
 
