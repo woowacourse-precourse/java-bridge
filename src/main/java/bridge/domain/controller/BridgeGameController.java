@@ -5,6 +5,7 @@ import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.domain.Direction;
+import bridge.domain.GameCommand;
 import bridge.domain.GameStatus;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -73,7 +74,7 @@ public class BridgeGameController {
     private GameStatus retry() {
         while (true) {
             try {
-                String gameCommand = inputView.readGameCommand();
+                GameCommand gameCommand = inputView.readGameCommand();
                 return bridgeGame.retry(gameCommand);
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
