@@ -25,7 +25,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         return IntStream.range(0, size)
-                .mapToObj(i -> BridgeBlock.getBlockType(bridgeNumberGenerator.generate()))
+                .mapToObj(i -> BridgeBlock.getBlockSymbol(bridgeNumberGenerator.generate()))
                 .collect(Collectors.toList());
     }
 }

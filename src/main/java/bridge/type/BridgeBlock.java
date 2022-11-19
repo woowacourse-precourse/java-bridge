@@ -13,7 +13,7 @@ public enum BridgeBlock {
         this.blockSymbol = blockSymbol;
     }
 
-    public static String getBlockType(Integer blockNumber) {
+    public static String getBlockSymbol(Integer blockNumber) {
         if (blockNumber == DOWN.blockNumber) return DOWN.blockSymbol;
         if (blockNumber == UP.blockNumber) return UP.blockSymbol;
         return null;
