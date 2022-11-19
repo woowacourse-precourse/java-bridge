@@ -8,10 +8,18 @@ import java.util.List;
  */
 public class BridgeMaker {
 
+    private List<String> makeBridgeList;
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
+    }
+
+    // 다리 길이에 따라 랜덤 list를 최종 저장하는 기능
+    public List<String> makeBridge(int size) {
+        List<Integer> numberList = makeBridgeInteger(size);
+        this.makeBridgeList = intBridgeToStringBridge(numberList);
+        return makeBridgeList;
     }
 
     // 다리 길이에 따라 0,1 을 무작위로 추출하는 기능
