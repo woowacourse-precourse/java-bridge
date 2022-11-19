@@ -25,8 +25,7 @@ public class GameController {
         repeatProgress();
         if (!tf) {
             if (re) {
-                outputView.setDownBridge("[]");
-                outputView.setUpBridge("[]");
+                outputView.setBridge("[]");
                 gameTotalProgress();
                 return;
             }
@@ -53,8 +52,7 @@ public class GameController {
 
     private void gameStart() {
         outputView.start();
-        outputView.setUpBridge("[]");
-        outputView.setDownBridge("[]");
+        outputView.setBridge("[]");
         bridgeSize = inputView.readBridgeSize();
         bridge = bridgeMaker.makeBridge(bridgeSize);
     }
