@@ -11,13 +11,17 @@ public class PassingSpace {
 
     public PassingSpace() {
         passingSpace = new EnumMap<>(Space.class);
-        init();
+        initialization();
     }
 
-    public void init() {
+    private void initialization() {
         passingSpace.clear();
         passingSpace.put(Space.U, new ArrayList<>());
         passingSpace.put(Space.D, new ArrayList<>());
+    }
+
+    public void reset() {
+        initialization();
     }
 
     public void add(Space space, Movable movable) {
