@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,6 +14,11 @@ class BridgeTest {
 
     private Bridge bridge;
 
+    @BeforeEach
+    void setUp() {
+        bridge = new Bridge(List.of("D", "D", "D"));
+    }
+
     @DisplayName("다리 길이가 3 ~ 20이 아닐 경우 예외가 발생한다.")
     @Test
     void makeWrongSize() {
@@ -20,17 +26,17 @@ class BridgeTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("건널 수 있는 칸인지 확인한다.")
+    @DisplayName("이동할 수 있다면 ture, 이동할 수 없다면 false를 확인한다.")
     @CsvSource(value = {
             "0, D, true",
+            "1, D, true",
+            "2, D, true",
             "0, U, false",
-            "1, D, false",
-            "1, U, true",
-            "2, D, false",
-            "2, U, true"})
+            "1, U, false",
+            "2, U, false"})
     @ParameterizedTest
-    void checkMobility(int play, String moving, boolean expected) {
-        boolean actual = bridge.canMove(play, moving);
+    void canMove(int place, String moving, boolean expected) {
+        boolean actual = bridge.canMove(place, moving);
         assertThat(actual).isEqualTo(expected);
     }
 
