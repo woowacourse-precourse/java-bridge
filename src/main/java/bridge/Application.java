@@ -3,6 +3,13 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+import bridge.domain.BridgeGame;
+import bridge.domain.BridgeMaker;
+import bridge.domain.BridgeNumberGenerator;
+import bridge.domain.BridgeRandomNumberGenerator;
+import bridge.domain.InputView;
+import bridge.domain.OutputView;
+
 public class Application {
 	static List<String> madeBridge = new ArrayList<>();
 	static int bridgeSize = 0;
