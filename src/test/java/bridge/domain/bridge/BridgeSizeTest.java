@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.bridge;
 
 import bridge.domain.bridge.BridgeSize;
 import bridge.view.InputView;

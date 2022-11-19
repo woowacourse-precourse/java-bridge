@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.bridge;
 
 import bridge.domain.bridge.Bridge;
 import bridge.domain.bridge.Square;
