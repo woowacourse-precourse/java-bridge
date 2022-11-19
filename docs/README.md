@@ -33,8 +33,8 @@
 ---
         
 ### 다리 만들기 - ClassName : BridgeMaker
-- [ ] 입력받은 길이만큼의 다리 생성 - `#makeBridge()`
-  - [ ] 위 칸 (1) 인 경우 U, 아래 칸 (0) 인 경우 D 로 변환 - `#convertNumberToBridge()`
+- [x] 입력받은 길이만큼의 다리 생성 - `#makeBridge()`
+  - [x] 위 칸 (1) 인 경우 U, 아래 칸 (0) 인 경우 D 로 변환 - `#convertNumberToBridge()`
 
 ---
 
@@ -45,7 +45,7 @@
 ---
 
 ### 다리 정보를 저장하는 일급 컬랙션 - ClassName : Bridge
-- [ ] 이동할 수 있는지 없는지 확인 - `#isMovableBlock()`
+- [x] 이동할 수 있는지 없는지 확인 - `#isMovableBlock()`
 
 ---
 
