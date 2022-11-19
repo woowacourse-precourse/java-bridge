@@ -10,7 +10,7 @@ public class BridgeGame {
     private final Move move = new Move();
     private final OutputView outputView = new OutputView();
     private boolean isTrue = true;
-    //private boolean isClear = true;
+    private boolean isClear = true;
 
     public static List<String> gameSet(int userInput) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
@@ -26,6 +26,19 @@ public class BridgeGame {
             if (move.checkWrong()) {
                 return;
             }
+        }
+        isClear = false;
+    }
+
+    public void playTheGaming() {
+        List<String> bridge = gameSet(getBridgeLength());
+        while (isTrue) {
+            gamingSet(bridge);
+            if (!isClear) {
+                printMovingAndResult();
+                break;
+            }
+            retry();
         }
     }
 
