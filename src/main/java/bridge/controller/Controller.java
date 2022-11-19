@@ -11,7 +11,6 @@ public class Controller {
 	private static OutputView outputView = new OutputView();
 	private static BridgeGame bridgeGame = new BridgeGame();
 	private static int tryCount = 0;
-	private static int moveCount = 0;
 
 	public static void bridgeGame(BridgeMaker bridgeMaker) {
 		bridgeGame.createBridge(bridgeMaker);
@@ -29,7 +28,7 @@ public class Controller {
 
 		do {
 			bridgeGame.initMap();
-			moveCount = crossBridge(INIT_MOVE_COUNT);
+			crossBridge(INIT_MOVE_COUNT);
 			reStart = isReStart(reStart);
 
 			tryCount++;
@@ -47,13 +46,11 @@ public class Controller {
 		return isReStart;
 	}
 
-	private static int crossBridge(int moveCount) {
+	private static void crossBridge(int moveCount) {
 		do {
 			String movingDirection = Validation.validateMoving(MOVING_DIRECTION_LENGTH);
 			bridgeGame.move(moveCount++, movingDirection);
 			outputView.printMap();
 		} while (!bridgeGame.isClearCrossBridge() && !bridgeGame.isFailCrossBridge());
-
-		return moveCount;
 	}
 }

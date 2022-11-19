@@ -77,7 +77,7 @@ public class Validation {
 		return false;
 	}
 
-	private static void validateUOrD(String movingDirection) {
+	public static void validateUOrD(String movingDirection) {
 		if (isUOrDException(movingDirection)) {
 			throw Exceptions.U_OR_D_EXCEPTION.getException();
 		}

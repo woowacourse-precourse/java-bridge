@@ -6,11 +6,11 @@ import org.junit.jupiter.api.Test;
 
 import bridge.validation.Validation;
 
-public class ValidationTest{
+public class ValidationTest {
 
-	@DisplayName("input이 숫자만으로 이루어져있는지 테스트")
+	@DisplayName("input의 범위 테스트")
 	@Test
-	private void validateRange_메서드_테스트() {
+	void validateRange_메서드_테스트() {
 		String input = "22";
 		Assertions.assertThrows(IllegalArgumentException.class,
 			() -> Validation.validateRange(input));
@@ -32,12 +32,19 @@ public class ValidationTest{
 			() -> Validation.validateLength(input, 1));
 	}
 
-
 	@DisplayName("R 혹은 Q이외의 입력이 들어오면 예외처리")
 	@Test
 	void validateROrQ_메서드_테스트() {
 		String input = "T";
 		Assertions.assertThrows(IllegalArgumentException.class,
 			() -> Validation.validateROrQ(input));
+	}
+
+	@DisplayName("U 혹은 D이외의 입력이 들어오면 예외처리")
+	@Test
+	void validateUOrD_메서드_테스트() {
+		String input = "Z";
+		Assertions.assertThrows(IllegalArgumentException.class,
+			() -> Validation.validateUOrD(input));
 	}
 }
