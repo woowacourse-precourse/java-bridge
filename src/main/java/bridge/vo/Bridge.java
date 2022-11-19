@@ -5,6 +5,9 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Bridge {
+    public static final int BRIDGE_MIN_SIZE = 3;
+    public static final int BRIDGE_MAX_SIZE = 20;
+
     private final List<Step> steps;
 
     public Bridge(List<Step> steps) {

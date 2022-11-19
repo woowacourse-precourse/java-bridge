@@ -2,7 +2,10 @@ package bridge.view;
 
 import bridge.mock.MockInputView;
 import bridge.system.validation.InputToBridgeSizeValidator;
+import bridge.system.validation.InputToCommandValidator;
 import bridge.view.inputview.InputView;
+import bridge.vo.Bridge;
+import bridge.vo.Command;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -51,7 +54,10 @@ class InputViewTest {
             //when && then
             assertThatThrownBy(inputView::readBridgeSize)
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(String.format(InputToBridgeSizeValidator.INVALID_NUMBER_RANGE_MESSAGE_FORMAT, 3, 20));
+                    .hasMessage(
+                            String.format(InputToBridgeSizeValidator.INVALID_NUMBER_RANGE_MESSAGE_FORMAT,
+                                    Bridge.BRIDGE_MIN_SIZE, Bridge.BRIDGE_MAX_SIZE)
+                    );
         }
     }
 
@@ -109,7 +115,7 @@ class InputViewTest {
             //when
             assertThatThrownBy(inputView::readGameCommand)
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("게임 재시작/종료 여부로는 대문자 R 또는 Q 둘 중 하나만 입력하실 수 있습니다.");
+                    .hasMessage(InputToCommandValidator.INVALID_INPUT_VALUE_MESSAGE, Command.R, Command.Q);
         }
     }
 }

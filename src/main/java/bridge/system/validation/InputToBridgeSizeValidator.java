@@ -1,5 +1,7 @@
 package bridge.system.validation;
 
+import bridge.vo.Bridge;
+
 public class InputToBridgeSizeValidator {
 
     public static final String NOT_ONLY_NATURAL_NUMBER_MESSAGE = "자연수만 입력 가능합니다.";
@@ -9,7 +11,7 @@ public class InputToBridgeSizeValidator {
     public static void validate(String target) {
         isTargetOnlyNaturalNumber(target);
         int targetNumber = convertToNumber(target);
-        isTargetInValidRange(targetNumber, 3, 20);
+        isTargetInValidRange(targetNumber);
     }
 
     private static void isTargetOnlyNaturalNumber(String target) {
@@ -22,10 +24,10 @@ public class InputToBridgeSizeValidator {
         return Integer.parseInt(target);
     }
 
-    private static void isTargetInValidRange(int targetNumber, int minRange, int maxRange) {
-        if (targetNumber < minRange || maxRange < targetNumber) {
+    private static void isTargetInValidRange(int targetNumber) {
+        if (targetNumber < Bridge.BRIDGE_MIN_SIZE || Bridge.BRIDGE_MAX_SIZE < targetNumber) {
             throw new IllegalArgumentException(
-                    String.format(INVALID_NUMBER_RANGE_MESSAGE_FORMAT, minRange, maxRange)
+                    String.format(INVALID_NUMBER_RANGE_MESSAGE_FORMAT, Bridge.BRIDGE_MIN_SIZE, Bridge.BRIDGE_MAX_SIZE)
             );
         }
     }

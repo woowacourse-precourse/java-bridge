@@ -15,8 +15,8 @@ class StepTest {
         @DisplayName("1은 U로, 0은 D로 변환한다.")
         void givenOneOrZero_whenGettingByNumber_thenReturnsUOrD() {
             //when && then
-            assertThat(Step.getByNumber(0)).isEqualTo("D");
-            assertThat(Step.getByNumber(1)).isEqualTo("U");
+            assertThat(Step.getByNumber(0)).isEqualTo(Step.D.toString());
+            assertThat(Step.getByNumber(1)).isEqualTo(Step.U.toString());
         }
 
         @Test

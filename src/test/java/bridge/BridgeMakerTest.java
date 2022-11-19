@@ -3,6 +3,7 @@ package bridge;
 import bridge.mock.MockNumberGenerator;
 import bridge.system.util.BridgeMaker;
 import bridge.system.util.BridgeRandomNumberGenerator;
+import bridge.vo.Step;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,10 @@ import java.util.stream.Collectors;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BridgeMakerTest {
+
+    public static final String DOWN = Step.D.toString();
+    public static final String UP = Step.U.toString();
+
     @Nested
     @DisplayName("입력받은 갈이를 가진 다리를 생성하는 makeBridge 메서드")
     class makeBridge {
@@ -41,7 +46,7 @@ class BridgeMakerTest {
             List<String> target = bridgeMaker.makeBridge(10);
 
             //then
-            assertThat(target).containsOnly("U", "D");
+            assertThat(target).containsOnly(UP, DOWN);
         }
 
         @Test
@@ -54,8 +59,7 @@ class BridgeMakerTest {
             List<String> target = bridgeMaker.makeBridge(8);
 
             //then
-            assertThat(target).containsExactly("D", "U", "D", "D", "U", "U", "U", "D");
-
+            assertThat(target).containsExactly(DOWN, UP, DOWN, DOWN, UP, UP, UP, DOWN);
         }
     }
 

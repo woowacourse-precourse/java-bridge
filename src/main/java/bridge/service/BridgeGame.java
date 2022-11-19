@@ -37,10 +37,10 @@ public class BridgeGame {
             if (!stepResult.isCorrect()) {
                 outputView.printAskingGameCommandMessage();
                 String command = inputView.readGameCommand();
-                if (command.equals("R")) {
+                if (command.equals(Command.R.toString())) {
                     return retry(bridge, tryCount);
                 }
-                if (command.equals("Q")) {
+                if (command.equals(Command.Q.toString())) {
                     return stepHistory;
                 }
             }

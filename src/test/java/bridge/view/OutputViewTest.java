@@ -72,7 +72,7 @@ class OutputViewTest {
 
             //then
             assertThat(captor.toString())
-                    .isEqualTo(String.format("이동할 칸을 선택해주세요. (위: U, 아래: D)%n"));
+                    .isEqualTo(OutputView.ASKING_NEXT_STEP_MESSAGE);
         }
     }
 
@@ -107,7 +107,7 @@ class OutputViewTest {
 
             //then
             assertThat(captor.toString())
-                    .isEqualTo(String.format("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)%n"));
+                    .isEqualTo(OutputView.ASKING_GAME_COMMAND_MESSAGE);
         }
     }
 
