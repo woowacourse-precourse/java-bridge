@@ -18,6 +18,12 @@ public class BridgeGameMapState implements ConsolePrintable {
         this.isFailGame = isFailGame;
     }
 
+    /**
+     * 다리 지도와 진행된 단계를 비교하며 플레이어의 게임 진행 결과를 출력 형식으로 변환합니다.
+     * 크기가 5인 다리를 3만큼 진행했을 경우, 플레이어는 3만큼 정상적으로 건넜다고 간주합니다.
+     *
+     * 만약 게임을 실패한 상태 였다면, 플레이어가 건넌 마지막 칸은 원래 지도와 반대되는 위치에 "X"로 수정합니다
+     */
     @Override
     public String toConsolePrintFormat() {
         List<String> upwardMap = new ArrayList<>();
