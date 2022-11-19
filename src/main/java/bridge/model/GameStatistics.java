@@ -11,8 +11,8 @@ public class GameStatistics {
 
     public GameStatistics() {
         this.totalTryCount = 1;
-        checkRoad = new ArrayList<>();
         answerRoad = new ArrayList<>();
+        initCheckRoad();
     }
 
     public String getGameResult() {
@@ -37,5 +37,13 @@ public class GameStatistics {
 
     public void setGameResult(String gameResult) {
         this.gameResult = gameResult;
+    }
+
+    public void increaseTotalTryCount() {
+        this.totalTryCount += 1;
+    }
+
+    public void initCheckRoad() {
+        checkRoad = new ArrayList<>();
     }
 }
