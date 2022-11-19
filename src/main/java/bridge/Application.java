@@ -22,13 +22,14 @@ public class Application {
 
     private static GameResult play(Bridge bridge) {
         MoveResult moveResult = moveToBridge(bridge);
-        if (moveResult.isSuccess()) {
-            if (!bridgeGame.isGameClear(bridge)) {
-                play(bridge);
-            }
-            return bridgeGame.closeGame();
+        if (!moveResult.isSuccess()) {
+            return selectWhetherToRetry(bridge);
         }
-        return selectWhetherToRetry(bridge);
+
+        if (!bridgeGame.isGameClear(bridge)) {
+            play(bridge);
+        }
+        return bridgeGame.closeGame();
     }
 
     private static MoveResult moveToBridge(Bridge bridge) {
