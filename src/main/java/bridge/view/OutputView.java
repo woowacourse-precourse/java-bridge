@@ -29,6 +29,9 @@ public class OutputView {
     }
 
     private String drawMapToPreviousRound(Bridge bridge, int round){
+        if(round == bridge.getSize()){
+            round--;
+        }
         List<String> blocks = bridge.getBlocks();
         String line = "[";
         for(int i = 0 ; i < round; i++){
