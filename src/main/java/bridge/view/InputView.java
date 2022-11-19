@@ -18,7 +18,7 @@ public class InputView {
         System.out.println("다리의 길이를 입력해주세요.");
         String bridgeSize = Console.readLine();
 
-        validate(bridgeSize);
+        validateBridgeSize(bridgeSize);
 
         return Integer.parseInt(bridgeSize);
     }
@@ -37,7 +37,7 @@ public class InputView {
         return null;
     }
 
-    private void validate(String bridgeSize) {
+    private void validateBridgeSize(String bridgeSize) {
         if (!BRIDGE_SIZE_REGX.matcher(bridgeSize).matches()) {
             throw new IllegalArgumentException(NOT_BRIDGE_SIZE);
         }
