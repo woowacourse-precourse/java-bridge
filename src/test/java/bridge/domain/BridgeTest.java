@@ -75,4 +75,18 @@ public class BridgeTest {
         assertThat(result).isEqualTo(3);
     }
 
+
+    @DisplayName("isCorrectMoveDirection 테스트")
+    @Test
+    public void isCorrectMoveDirectionTest() {
+        // given
+        Bridge bridge = new Bridge(List.of("U", "D", "D"));
+        String moveDirection = "U";
+
+        // when
+        boolean result = bridge.isCorrectMoveDirection(moveDirection);
+
+        // then
+        assertThat(result).isEqualTo(true);
+    }
 }
