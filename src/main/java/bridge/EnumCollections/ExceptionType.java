@@ -13,6 +13,6 @@ public enum ExceptionType {
     }
 
     public String getErrorMessage() {
-        return errorMessage;
+        return "[ERROR] " + errorMessage;
     }
 }
