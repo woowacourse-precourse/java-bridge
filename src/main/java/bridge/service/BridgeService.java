@@ -66,7 +66,7 @@ public class BridgeService {
     }
 
     public boolean retryJudge(String inputRetry) {
-        if(inputRetry.equals(RESTART_MSG)){
+        if(inputRetry.equals(RESTART_MSG.getMsg())){
             cleanSide();
             return true;
         }
