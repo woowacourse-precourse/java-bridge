@@ -52,12 +52,12 @@ D
 [ O |   |   ]
 [   | O | O ]
 ````
-- [ ] 게임 성공 여부와 총 시도한 회수를 출력한다.
+- [x] 게임 성공 여부와 총 시도한 회수를 출력한다.
 ````
 게임 성공 여부: 성공
 총 시도한 횟수: 2
 ````
-- [ ] 예외 발생 시 "[ERROR]"로 시작하는 에러 메세지를 출력한다.
+- [x] 예외 발생 시 "[ERROR]"로 시작하는 에러 메세지를 출력한다.
 
   <br>
 
@@ -86,7 +86,7 @@ D
 |  ✔  | 사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용한다.                            |
 |  ✔  | InputView, OutputView, BridgeGame, BridgeMaker, BridgeRandomNumberGenerator 클래스의 요구사항을 참고하여 구현한다. |
 |  ✔  | InputView 클래스에서만 camp.nextstep.edu.missionutils.Console 의 readLine() 메서드를 이용해 사용자의 입력을 받을 수 있다.                                     |
-|  -  | BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.                                                                          |
+|  ✔  | BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.                                                                          |
 |  ✔  | 외부 라이브러리를 사용하지 않는다.                                                                               |
 |  ✔  | else 예약어를 쓰지 않는다.                                                                                 |
 |  ✔  | 3항 연산자를 쓰지 않는다.                                                                                   |
