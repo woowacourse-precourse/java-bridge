@@ -18,11 +18,12 @@ public class OutputView {
     public void printMap(List<String> bridgeView) {
         upPrintMap(bridgeView);
         downPrintMap(bridgeView);
+        System.out.println();
     }
 
     public void upPrintMap(List<String> bridgeView) {
         System.out.print("[");
-        for(int i = 1; i<upBridgeMap(bridgeView).size()-1; i++){
+        for(int i = 0; i<upBridgeMap(bridgeView).size()-1; i++){
             System.out.print(" "+upBridgeMap(bridgeView).get(i)+" |");
         }
         System.out.println(" "+upBridgeMap(bridgeView).get(upBridgeMap(bridgeView).size()-1)+" ]");
@@ -30,7 +31,7 @@ public class OutputView {
 
     public void downPrintMap(List<String> bridgeView) {
         System.out.print("[");
-        for(int i = 1; i<downBridgeMap(bridgeView).size()-1; i++){
+        for(int i = 0; i<downBridgeMap(bridgeView).size()-1; i++){
             System.out.print(" "+downBridgeMap(bridgeView).get(i)+" |");
         }
         System.out.println(" "+downBridgeMap(bridgeView).get(downBridgeMap(bridgeView).size()-1)+" ]");
