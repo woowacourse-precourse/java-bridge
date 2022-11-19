@@ -19,6 +19,15 @@ public class GameController {
     }
 
     public void run(BridgeGame bridgeGame) {
+        do {
+            runRound(bridgeGame);
+        } while (continueGame(bridgeGame));
+        // TODO: 결과를 출력하는 함수
+    }
+
+    private boolean continueGame(BridgeGame bridgeGame) {
+        String selectRetry = selectRetryGame();
+        return !bridgeGame.isSuccessCrossingBridge() && bridgeGame.retry(selectRetry);
     }
 
     private String selectRetryGame() {
