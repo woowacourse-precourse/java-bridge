@@ -13,7 +13,7 @@ public class Application {
     private void play() {
         outputView.printStart();
         bridgeGame = bridgeGameStart();
-        bridgeGame.move(inputSelectMove());
+        bridgeGame.move(inputMove());
     }
 
     private BridgeGame bridgeGameStart() {
@@ -34,15 +34,15 @@ public class Application {
         return bridgeSize;
     }
 
-    private String inputSelectMove() {
+    private String inputMove() {
         outputView.printSelectMove();
-        String selectMove;
+        String move;
         try {
-            selectMove=inputView.readMoving();
+            move=inputView.readMoving();
         } catch (IllegalArgumentException illegalArgumentException) {
             outputView.printErrorMessage(illegalArgumentException);
-            selectMove=inputSelectMove();
+            move=inputMove();
         }
-        return selectMove;
+        return move;
     }
 }
