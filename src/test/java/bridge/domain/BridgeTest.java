@@ -24,11 +24,11 @@ class BridgeTest {
 
         assertThatThrownBy(() -> new Bridge(length2))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(" 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+                .hasMessage("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
 
         assertThatThrownBy(() -> new Bridge(length21))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(" 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+                .hasMessage("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
     }
 
     @Test
