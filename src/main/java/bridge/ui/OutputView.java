@@ -20,4 +20,11 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    /**
+     * 게임 시작을 정해진 형식에 맞춰 출력한다.
+     */
+    public void printGameStart() {
+        System.out.println("다리 건너기 게임을 시작합니다.\n");
+    }
 }
