@@ -32,6 +32,9 @@ public class BridgeGame {
         this.currentGameResults = new ArrayList<>();
         currentGameIndex = 0;
     }
+
+    public boolean isSuccessGame() {
+        return currentGameIndex >= currentGameBridge.size();
     }
 
     /**
