@@ -5,6 +5,8 @@ import ui.InputView;
 import java.util.List;
 
 public class Application {
+    static final String PASS = "O";
+    static final String STOP_GAME = "Q";
     static InputView input = new InputView();
     static boolean gamePlayFlag = true;
 
@@ -20,6 +22,18 @@ public class Application {
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
 
         return new BridgeGame(bridge);
+    }
+    private static void checkUserWantToRetryIfMovingIsFail(BridgeGame currentBridgeGame, String moveResult) {
+        if (moveResult.equals(PASS)) {
+            return;
+        }
+
+        if (input.readGameCommand().equals(STOP_GAME)) {
+            stopBridgeGame();
+            return;
+        }
+
+        currentBridgeGame.retry();
     }
     private static void stopBridgeGame() {
         gamePlayFlag = false;
