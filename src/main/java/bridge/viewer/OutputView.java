@@ -32,7 +32,13 @@ public class OutputView {
     public void printResult(PositionTable userTable, Result result) {
         if (result.isLose()) {
             showReviseMap(userTable, Position::isUp);
+            showReviseMap(userTable, Position::isDown);
         }
+        if (result.isWin()) {
+            showMap(userTable, Position::isUp);
+            showMap(userTable, Position::isDown);
+        }
+
     }
 
     private static void showMap(PositionTable userTable, Predicate<Position> p) {

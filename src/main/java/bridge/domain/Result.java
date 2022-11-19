@@ -6,4 +6,7 @@ public enum Result {
     public boolean isLose() {
         return this.equals(LOSE);
     }
+    public boolean isWin() {
+        return this.equals(WIN);
+    }
 }
