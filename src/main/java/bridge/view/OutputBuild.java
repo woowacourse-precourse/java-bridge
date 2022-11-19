@@ -8,7 +8,7 @@ public class OutputBuild {
         return format(moveTable);
     }
 
-    private static String format(List<List<StringBuilder>> moveTable) {
+    public static String format(List<List<StringBuilder>> moveTable) {
         String upLine = "[" + String.join("|", moveTable.get(1)) + "]\n";
         String downLine = "[" + String.join("|", moveTable.get(0)) + "]";
 
@@ -17,23 +17,26 @@ public class OutputBuild {
 
     private static void append(boolean canGo, String way, List<List<StringBuilder>> moveTable) {
         if (canGo) {
-            // moveTable[0] 이 Down, moveTable[1] 이 Up
-            if (way.equals("U")) {
-                moveTable.get(1).add(new StringBuilder(" O "));
-                moveTable.get(0).add(new StringBuilder("   "));
-            } else {
-                moveTable.get(0).add(new StringBuilder(" O "));
-                moveTable.get(1).add(new StringBuilder("   "));
-            }
+            updateTable(way, moveTable, " O ");
+            return;
         }
-        else{
-            if (way.equals("U")) {
-                moveTable.get(1).add(new StringBuilder(" X "));
-                moveTable.get(0).add(new StringBuilder("   "));
-            } else {
-                moveTable.get(0).add(new StringBuilder(" X "));
-                moveTable.get(1).add(new StringBuilder("   "));
-            }
+        updateTable(way, moveTable, " X ");
+    }
+
+    private static void updateTable(String way, List<List<StringBuilder>> moveTable, String correctness) {
+        if (way.equals("U")) {
+            moveTable.get(1).add(new StringBuilder(correctness));
+            moveTable.get(0).add(new StringBuilder("   "));
+            return;
         }
+        moveTable.get(0).add(new StringBuilder(correctness));
+        moveTable.get(1).add(new StringBuilder("   "));
+    }
+
+    public static String resolveClear(Boolean clear) {
+        if(clear){
+            return "성공";
+        }
+        return "실패";
     }
 }

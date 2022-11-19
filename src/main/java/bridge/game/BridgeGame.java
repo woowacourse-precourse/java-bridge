@@ -29,7 +29,7 @@ public class BridgeGame {
     public boolean retry(String decision, User user) {
         boolean gameRetry = Retry.getValue(decision);
         if (gameRetry) {
-            user.resetPosition();
+            user.retry();
         }
 
         return gameRetry;
