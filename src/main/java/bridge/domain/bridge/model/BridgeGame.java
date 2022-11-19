@@ -49,15 +49,11 @@ public class BridgeGame {
         );
     }
 
-    public boolean isEndCondition() {
-        if (gamePlayer.isFailGame()) {
-            return true;
-        }
-
-        return isCrossedBridge();
+    public boolean isFailGame() {
+        return gamePlayer.isFailGame();
     }
 
-    private boolean isCrossedBridge() {
+    public boolean isCrossedBridge() {
         if (!gamePlayer.isFailGame()
                 && gamePlayer.getPosition() == bridgeMap.size()) {
             return true;

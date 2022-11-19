@@ -55,10 +55,14 @@ public class BridgeGameController {
     }
 
     private boolean isPlayable(BridgeGame bridgeGame) {
-        if (bridgeGame.isEndCondition()) {
-            return false;
+        if (bridgeGame.isFailGame()) {
+            return isRestart(bridgeGame);
         }
 
+        return bridgeGame.isCrossedBridge();
+    }
+
+    private boolean isRestart(BridgeGame bridgeGame) {
         boolean restart = inputView.readGameCommand().isRestart();
         if (restart) {
             bridgeGame.retry();

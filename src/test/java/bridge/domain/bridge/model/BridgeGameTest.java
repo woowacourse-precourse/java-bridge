@@ -49,7 +49,7 @@ class BridgeGameTest {
         bridgeGame.move(BridgeDirection.DOWN);
         bridgeGame.move(BridgeDirection.UP);
 
-        Assertions.assertThat(bridgeGame.isEndCondition()).isTrue();
+        Assertions.assertThat(bridgeGame.isFailGame()).isTrue();
     }
 
     @Test
@@ -60,7 +60,7 @@ class BridgeGameTest {
         bridgeGame.move(BridgeDirection.DOWN);
         bridgeGame.move(BridgeDirection.UP);
 
-        Assertions.assertThat(bridgeGame.isEndCondition()).isTrue();
+        Assertions.assertThat(bridgeGame.isCrossedBridge()).isTrue();
     }
 
 
