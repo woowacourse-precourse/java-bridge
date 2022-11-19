@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,7 +15,7 @@ public class BridgeMaker {
     }
 
     public List<String> makeBridge(int size) {
-        List<String> bridge = new LinkedList<>();
+        List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int bridgeNumber = bridgeNumberGenerator.generate();
             bridge.add(convertNumberToString(bridgeNumber));
