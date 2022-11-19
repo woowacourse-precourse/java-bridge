@@ -6,4 +6,8 @@ public class Player {
     public Player() {
         currentPosition = -1;
     }
+
+    public void moveForward() {
+        currentPosition++;
+    }
 }
