@@ -36,6 +36,7 @@ public class OutputView {
     }
 
     public void printResult(boolean isSuccess, int tries) {
+        System.out.println();
         printSuccess(isSuccess);
         printTries(tries);
     }
