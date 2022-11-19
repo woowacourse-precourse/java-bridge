@@ -21,4 +21,11 @@ class UserTest {
         boolean result = user.changeStatusIsFailed(false);
         assertEquals(result, true);
     }
+
+    @DisplayName("플레이어에 대한 다리 정보를 Map에 저장한다.")
+    @Test
+    void 플레이어_다리_정보_저장() {
+        user.addBridgeInfo(2, "U");
+        assertEquals(user.getPastResult().get(2), "U");
+    }
 }
