@@ -5,7 +5,7 @@ import java.util.List;
 
 public class User {
     private List<String > position = new ArrayList<>();
-    private Integer retry = 0;
+    private Integer retry = 1;
 
     public List<String> getPosition() {
         return position;
@@ -22,10 +22,5 @@ public class User {
     public void resetPosition() {
         position.clear();
         retry++;
-    }
-
-    @Override
-    public String toString() {
-        return null;
     }
 }
