@@ -33,12 +33,16 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        Validator movingValidator = new MovingValidator();
-
-        System.out.println(String.format(FixedMessage.INPUT_MOVING.getMessage(), UP.getCommand(), DOWN.getCommand()));
-        String moving = Console.readLine();
-        movingValidator.validate(moving);
-        return moving;
+        try {
+            Validator movingValidator = new MovingValidator();
+            System.out.println(
+                    String.format(FixedMessage.INPUT_MOVING.getMessage(), UP.getCommand(), DOWN.getCommand()));
+            String moving = Console.readLine();
+            movingValidator.validate(moving);
+            return moving;
+        } catch (IllegalArgumentException exception) {
+            return readMoving();
+        }
     }
 
     /**
