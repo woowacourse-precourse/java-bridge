@@ -1,10 +1,8 @@
 package bridge;
 
 import bridge.domain.Bridge;
-import bridge.type.GameStatus;
 import bridge.type.PassCondition;
 
-import java.util.List;
 
 public class BridgeGame {
 
@@ -32,6 +30,7 @@ public class BridgeGame {
     }
 
     public void retry() {
+        gameStatusOperator.toInitialPosition();
         gameStatusOperator.toRestart();
     }
 

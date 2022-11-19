@@ -37,6 +37,10 @@ public class GameStatusOperator {
         gameStatus = GameStatus.RESTART;
     }
 
+    public void toInitialPosition() {
+        currentPosition = START_POSITION;
+    }
+
     //== Getter ==//
     public Integer getCurrentPosition() {
         return currentPosition;
