@@ -36,9 +36,9 @@
   - [x] Retry("R"), Quit("Q") 목록을 가진다
   - [x] 입력 값이 R 또는 Q임을 검증하고 반환하는 기능
 
-- [ ] 게임 상태(GameStatus)
-  - [ ] SUCCESS, IN_PROGRESS, FAIL 3가지 상태를 가진다
-  - [ ] 상태에 따른 재실행 여부 기능 추가
+- [x] 게임 상태(GameStatus)
+  - [x] SUCCESS, IN_PROGRESS, FAIL 3가지 상태를 가진다
+  - [x] 상태에 따른 재실행 여부 기능 추가
 
 - [ ] InputView
   - [ ] bridgeSize를 입력 받음
