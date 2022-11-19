@@ -15,6 +15,7 @@ public class BridgeMapComponent {
     public void removeLast() throws IndexOutOfBoundsException
     {
         int lastIndex = bridgeMapComponent.size()-1;
+        if(lastIndex < 0) return;
         bridgeMapComponent.remove(lastIndex);
     }
 
