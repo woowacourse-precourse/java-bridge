@@ -35,8 +35,16 @@ public class History {
         success = true;
     }
 
+    public boolean isSuccess() {
+        return success;
+    }
+
     public void gameTry() {
         tries += 1;
+    }
+
+    public int getTries() {
+        return tries;
     }
 
     public void reset() {
