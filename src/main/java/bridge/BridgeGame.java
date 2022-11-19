@@ -64,7 +64,7 @@ public class BridgeGame {
     }
 
     private void refreshGameContext() {
-        playersMove = new PlayersMove();
+        playersMove.initialize();
         moveCount = 0;
     }
 }

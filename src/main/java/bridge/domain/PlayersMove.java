@@ -11,10 +11,6 @@ public class PlayersMove {
         playersMove.add(choice);
     }
 
-    public void backtrack() {
-        playersMove.remove(playersMove.size() - 1);
-    }
-
     public void initialize() {
         playersMove.clear();
     }
