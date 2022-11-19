@@ -30,11 +30,6 @@ public class Player {
          return flag;
     }
 
-    public void restart()
-    {
-        position--;
-    }
-
     public boolean isFinish()
     {
         return bridge.isFinish(position);
