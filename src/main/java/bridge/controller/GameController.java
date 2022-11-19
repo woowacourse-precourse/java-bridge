@@ -26,7 +26,7 @@ public class GameController {
         do {
             bridgeGame.move(getValidBridgeMove());
             outputView.printMap(bridgeGame.resultOfMoving());
-        } while (bridgeGame.isEnd());
+        } while (!bridgeGame.isEnd());
 
         outputView.printResult(bridgeGame.resultOfMoving(), bridgeGame.calculatePlayCount(),bridgeGame.isSuccess());
     }
