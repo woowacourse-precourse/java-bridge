@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static bridge.Const.*;
+import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BridgeGameTest {
@@ -43,4 +44,21 @@ public class BridgeGameTest {
         assertThat(bridgeGameHost.getPlayerIndex()).isEqualTo(0);
         assertThat(bridgeGameHost.getPlayerAlive()).isFalse();
     }
+
+    @Test
+    @DisplayName("재시작을 하는 경우")
+    void playerRetry() {
+        // given
+        bridgeGameHost.movePlayer();
+        bridgeGameHost.playerDie();
+
+        // when
+        bridgeGame.retry(bridgeGameHost);
+
+        // then
+        assertThat(bridgeGameHost.getPlayerIndex()).isEqualTo(-1);
+        assertThat(bridgeGameHost.getPlayerAlive()).isTrue();
+        assertThat(bridgeGameHost.getRetry()).isEqualTo(1);
+    }
+
 }
