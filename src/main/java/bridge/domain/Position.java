@@ -30,4 +30,8 @@ public class Position {
     public boolean isGreaterOrEqualThan(int position) {
         return this.position >= position;
     }
+
+    int getPosition() {
+        return position;
+    }
 }

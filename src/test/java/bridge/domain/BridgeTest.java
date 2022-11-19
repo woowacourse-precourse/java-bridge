@@ -18,7 +18,7 @@ public class BridgeTest {
         List<Direction> bridgeDirections = List.of(UPPER, LOWER, UPPER, LOWER, UPPER);
         Bridge bridge = new Bridge(getCapitalLetters(bridgeDirections));
 
-        assertThat(bridge.isMovable(0, UPPER)).isTrue();
+        assertThat(bridge.isMovable(new Position(1), LOWER)).isTrue();
     }
 
     private List<String> getCapitalLetters(List<Direction> bridgeDirections) {

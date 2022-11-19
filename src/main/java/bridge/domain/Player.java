@@ -5,23 +5,24 @@ import bridge.constant.Direction;
 public class Player {
 
     private final Bridge bridge;
-    private int position;
+    private Position position;
 
     public Player(Bridge bridge) {
         this.bridge = bridge;
-        this.position = 0;
+        this.position = new Position();
     }
 
     public boolean moveNext(Direction direction) {
         boolean isMovable = bridge.isMovable(position, direction);
-        position += 1;
+        increasePosition();
         return isMovable;
     }
 
+    private void increasePosition() {
+        position = position.increase();
+    }
+
     public boolean isArrived() {
-        if(bridge.isArrived(position)){
-            return true;
-        }
-        return false;
+        return bridge.isArrived(position);
     }
 }
