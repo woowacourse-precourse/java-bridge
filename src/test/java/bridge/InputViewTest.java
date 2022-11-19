@@ -7,7 +7,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayInputStream;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class InputViewTest {
 
@@ -48,7 +49,7 @@ class InputViewTest {
     @Test
     void inputGameCommand() {
         System.setIn(new ByteArrayInputStream("R".getBytes()));
-        assertThat(inputView.readGameCommand()).isTrue();
+        assertThat(inputView.readGameCommand()).isEqualTo("R");
     }
 
     @DisplayName("잘못된 재시작 여부를 입력받으면 예외 반환")
