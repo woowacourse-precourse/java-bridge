@@ -30,6 +30,12 @@ public class BridgeGameCycle {
         printAskLength();
         bridgeLength = inputView.readBridgeSize();
     }
-
+    private void oneTurnCycle(BridgeGame game) {
+        printAskMoving();
+        String inputMoving = inputView.readMoving();
+        nowState = game.move(inputMoving);
+        finalMap = game.nowBridgeStage(nowState);
+        printMap(finalMap);
+    }
 
 }
