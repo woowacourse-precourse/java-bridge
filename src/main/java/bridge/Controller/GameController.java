@@ -19,6 +19,11 @@ public class GameController {
         this.startGameService = new StartGameService(gameResultGenerator);
     }
 
+    public void play() {
+        beginBridgeGame();
+        playBridgeGame();
+        endGameService.endGame();
+    }
 
     public void beginBridgeGame() {
         this.bridgeGame = startGameService.startGame();
