@@ -10,9 +10,7 @@
 - [x] 게임 실패 유무를 파악한다 - BridgeGame#isGameFail()
 - [x] 게임 결과를 출력한다 - OutputView#printResult()
 - [x] 재시작 유무를 입력받는다 - InputView#readGameCommand()
-- [ ] 게임을 종료한다 - 미정
-- [ ] 게임을 재시작한다 - BridgeGame#retry()
-- [ ] 총 시도 횟수를 출력한다 - 미정 
+- [x] 게임을 재시작한다 - BridgeGame#retry()
 - [ ] 잘못된 입출력에 대한 에러 메시지를 출력한다 - 미정 
 
 
