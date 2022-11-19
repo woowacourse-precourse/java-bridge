@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
+    public static final Bridge bridge = new Bridge();
     private static List<String> up = new ArrayList<>();
     private static List<String> down = new ArrayList<>();
 
