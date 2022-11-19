@@ -50,7 +50,15 @@ public class OutputView {
     public static void printFinal() {
         System.out.println(Final_OUTPUT_MESSAGE);
     }
-    
+
+    public static void printSuccess() {
+        System.out.println(SUCCESS_OUTPUT_MESSAGE);
+    }
+
+    public static void printFail() {
+        System.out.println(FAIL_OUTPUT_MESSAGE);
+    }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
