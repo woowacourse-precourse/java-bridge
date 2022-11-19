@@ -31,25 +31,34 @@ public class BridgeGame {
     }
 
     private void printDownBridge() {
+        List<String> downString = new ArrayList<>();
         for(int i=0; i<visited.size(); i++){
             boolean rightDirection = bridge.isRightDirection(i, visited.get(i));
-            String result = "X";
-            if(rightDirection){
-                result = "O";
-            }
-            outputView.printMap(visited.get(i),"D",result);
+            String result = getResult(i,"D", rightDirection);
+            downString.add(result);
         }
+        outputView.printMap(downString);
     }
 
     private void printUpBridge() {
+        List<String> upString = new ArrayList<>();
         for(int i=0; i<visited.size(); i++){
             boolean rightDirection = bridge.isRightDirection(i, visited.get(i));
-            String result = "X";
-            if(rightDirection){
-                result = "O";
-            }
-            outputView.printMap(visited.get(i),"U",result);
+            String result = getResult(i,"U", rightDirection);
+            upString.add(result);
         }
+        outputView.printMap(upString);
+    }
+
+    private String getResult(int i, String direction, boolean rightDirection) {
+        String result = "X";
+        if(rightDirection){
+            result = "O";
+        }
+        if(!visited.get(i).equals(direction)){
+            result =" ";
+        }
+        return result;
     }
 
     public boolean isGameCompleted(){
