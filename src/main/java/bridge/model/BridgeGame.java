@@ -34,11 +34,13 @@ public class BridgeGame {
                 // 한 칸 이동 성공 (survive)
                 // O을 보내서 다이어그램 출력
                 updateDiagram(position, Status.SURVIVE);
+                printDiagrams();
                 continue;
             }
             // 한 칸 이동 실패 (death)
             // X을 보내서 다이어그램 출력
             updateDiagram(position, Status.DIE);
+            printDiagrams();
             break;
         }
         if (index == bridge.getBridgeSize()) {
