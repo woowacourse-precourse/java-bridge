@@ -8,6 +8,10 @@ public class BridgeGameMachine {
     private final String RETRY = "R";
     private BridgeGame bridgeGame;
 
+    public void turnOn() {
+        totalView.out().start();
+    }
+
     public void setGame() {
         totalView.out().enterBridgeSize();
         int bridgeSize = totalView.in().reReadBridgeSizeWhenError();
@@ -25,6 +29,10 @@ public class BridgeGameMachine {
         }
     }
 
+    public boolean isGameSuccess() {
+        return bridgeGame.isSuccess();
+    }
+
     public void retryGame() {
         bridgeGame.retry();
         playGame();
@@ -33,14 +41,11 @@ public class BridgeGameMachine {
     public int moveOnce() {
         totalView.out().enterMove();
         bridgeGame.move(totalView.in().reReadMovingWhenError());
-        totalView.out().printMap(bridgeGame);
+        totalView.out().printMap(bridgeGame.showCurrentResult());
         return bridgeGame.moveResult();
     }
 
-    public boolean askRetry() {
-        if (bridgeGame.isSuccess()) {
-            return false;
-        }
+    public boolean wantRetry() {
         totalView.out().enterGameCommand();
         if (totalView.in().reReadGameCommandWhenError().equals(RETRY)) {
             return true;
