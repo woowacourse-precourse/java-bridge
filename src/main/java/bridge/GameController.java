@@ -9,8 +9,7 @@ public class GameController {
     private static InputView inputView = new InputView();
     private static OutputView outputView = new OutputView();
     private static BridgeGame bridgeGame = new BridgeGame();
-    private static BridgeNumberGenerator BridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-    private static BridgeMaker bridgeMaker = new BridgeMaker(BridgeRandomNumberGenerator);
+    private static BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private int bridgeSize;
     private int count = 0;
     private String move;
@@ -32,7 +31,7 @@ public class GameController {
         gameResult();
     }
 
-    public void repeatProgress() {
+    private void repeatProgress() {
         for (int idx = 0; idx < bridge.size(); idx++) {
             gameProgress(idx);
             if (!tf) {
@@ -43,13 +42,13 @@ public class GameController {
         }
     }
 
-    public void countUp() {
+    private void countUp() {
         if (count == 0)
             gameStart();
         count++;
     }
 
-    public void gameStart() {
+    private void gameStart() {
         outputView.start();
         outputView.setUpBridge("[]");
         outputView.setDownBridge("[]");
@@ -57,7 +56,7 @@ public class GameController {
         bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
-    public void gameProgress(int idx) {
+    private void gameProgress(int idx) {
         outputView.choice();
         move = inputView.readMoving();
         tf = bridgeGame.move(move, bridge, idx);
@@ -65,12 +64,12 @@ public class GameController {
         outputView.printMove();
     }
 
-    public boolean reStart() {
+    private boolean reStart() {
         re = bridgeGame.retry(inputView.readGameCommand());
         return re;
     }
 
-    public void gameResult() {
+    private void gameResult() {
         if (!tf) {
             outputView.printFail(count);
             return;

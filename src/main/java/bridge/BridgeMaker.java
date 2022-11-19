@@ -20,7 +20,7 @@ public class BridgeMaker {
         return bridge;
     }
 
-    public List<String> compareBridge(List<Integer> temporaryBridge) {
+    private List<String> compareBridge(List<Integer> temporaryBridge) {
         List<String> bridge = new ArrayList<>();
         for (int idx = 0; idx < temporaryBridge.size(); idx++) {
             if (temporaryBridge.get(idx) == 0) {

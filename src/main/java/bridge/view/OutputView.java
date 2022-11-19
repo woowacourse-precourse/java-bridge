@@ -35,12 +35,12 @@ public class OutputView {
             replaceFirst();
     }
 
-    public void replaceFirst() {
+    private void replaceFirst() {
         upBridge = upBridge.replace("|", "");
         downBridge = downBridge.replace("|", "");
     }
 
-    public void printTrue(String input) {
+    private void printTrue(String input) {
         if (input.equals("U")) {
             upBridge = upBridge.replace("]", "| O ]");
             downBridge = downBridge.replace("]", "|   ]");
@@ -53,7 +53,7 @@ public class OutputView {
         }
     }
 
-    public void printFalse(String input) {
+    private void printFalse(String input) {
         if (input.equals("U")) {
             upBridge = upBridge.replace("]", "| X ]");
             downBridge = downBridge.replace("]", "|   ]");
@@ -71,7 +71,7 @@ public class OutputView {
         System.out.println(downBridge);
     }
 
-    public void lastPrint() {
+    private void lastPrint() {
         System.out.println();
         System.out.println(OutputString.LAST.getPrint());
         System.out.println(upBridge);
