@@ -1,7 +1,6 @@
 package bridge.controller;
 
 import static bridge.controller.InputController.getBridgeSize;
-import static bridge.controller.InputController.getGameCommand;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;

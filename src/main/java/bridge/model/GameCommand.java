@@ -1,6 +1,5 @@
 package bridge.model;
 
-import java.util.Arrays;
 import java.util.List;
 
 public enum GameCommand {
@@ -15,7 +14,7 @@ public enum GameCommand {
     }
 
     public static void validateGameCommandInput(String input) {
-        if(!COMMAND_OPTIONS.contains(input)){
+        if (!COMMAND_OPTIONS.contains(input)) {
             throw new IllegalArgumentException("R/Q 중 재시작 여부를 입력해 주세요.");
         }
     }

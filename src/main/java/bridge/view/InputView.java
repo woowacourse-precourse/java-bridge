@@ -1,10 +1,10 @@
 package bridge.view;
 
+import static bridge.BridgeMaker.convertStringToInt;
+import static bridge.BridgeMaker.validateBridgeSizeRange;
+import static bridge.BridgeMaker.validateBridgeSizeType;
 import static bridge.model.GameCommand.validateGameCommandInput;
 import static bridge.model.Position.validateMovingInput;
-import static bridge.util.Util.convertStringToInt;
-import static bridge.util.Util.validateBridgeSizeRange;
-import static bridge.util.Util.validateBridgeSizeType;
 
 import camp.nextstep.edu.missionutils.Console;
 

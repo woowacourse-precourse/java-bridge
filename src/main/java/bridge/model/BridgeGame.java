@@ -3,8 +3,6 @@ package bridge.model;
 import static bridge.controller.InputController.getGameCommand;
 import static bridge.controller.InputController.getUserSelection;
 
-import bridge.BridgeMaker;
-
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
