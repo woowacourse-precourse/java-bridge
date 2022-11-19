@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.constant.Constants;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,9 +9,7 @@ import java.util.List;
  */
 public class BridgeMaker {
 
-    private static final String UP = "U";
-    private static final String DOWN = "D";
-    private static final List<String> INDEX_TO_DIRECTION = List.of(DOWN, UP);
+    private static final List<String> INDEX_TO_DIRECTION = List.of(Constants.DOWN, Constants.UP);
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
