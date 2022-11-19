@@ -14,27 +14,15 @@ public class InputView {
     }
 
     public String readMoving() {
-        while (true) {
-            try {
-                String input = Console.readLine();
-                checkUpDown(input);
-                return input;
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR]" + e.getMessage());
-            }
-        }
+        String input = Console.readLine();
+        checkUpDown(input);
+        return input;
     }
 
     public String readGameCommand() {
-        while (true) {
-            try {
-                String input = Console.readLine();
-                checkRestartStop(input);
-                return input;
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR]" + e.getMessage());
-            }
-        }
+        String input = Console.readLine();
+        checkRestartStop(input);
+        return input;
     }
 
     private void checkUpDown(String input) {

@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
+import bridge.ExceptionTemplate;
 import bridge.domain.Bridge;
 import bridge.service.BridgeGame;
 import bridge.ui.InputView;
@@ -34,7 +35,8 @@ public class BridgeGameController implements GameController {
         int crossCount = 0;
         while (!game.isBridgeLength(crossCount) && game.crossState()) {
             output.printMove();
-            String inputMove = input.readMoving();
+            ExceptionTemplate template = input::readMoving;
+            String inputMove = (String) template.check();
             game.move(inputMove, crossCount);
             output.printMap(game.recentResult());
             crossCount++;
@@ -52,8 +54,8 @@ public class BridgeGameController implements GameController {
     private boolean checkRestart() {
         if (!game.recentResult().movable()) {
             output.printRestart();
-            String inputMove = input.readGameCommand();
-            return game.retry(inputMove);
+            ExceptionTemplate template = input::readGameCommand;
+            return game.retry((String) template.check());
         }
         return false;
     }
@@ -65,13 +67,7 @@ public class BridgeGameController implements GameController {
 
     private Bridge makeBridge() {
         output.printInputBridgeSize();
-        while (true) {
-            try {
-                int bridgeSize = input.readBridgeSize();
-                return new Bridge(bridgeMaker.makeBridge(bridgeSize));
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR]" + e.getMessage());
-            }
-        }
+        ExceptionTemplate template = () -> new Bridge(bridgeMaker.makeBridge(input.readBridgeSize()));
+        return (Bridge) template.check();
     }
 }

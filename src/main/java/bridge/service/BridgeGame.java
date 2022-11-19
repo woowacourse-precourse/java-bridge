@@ -18,10 +18,17 @@ public class BridgeGame {
     }
 
     public BridgeGame(Bridge bridge) {
+        validate(bridge);
         this.bridge = bridge;
         this.result = new Result();
         this.playState = new PlayState(true);
         this.count = new Count();
+    }
+
+    private void validate(Bridge bridge) {
+        if (bridge == null) {
+            throw new IllegalArgumentException("[ERROR] 다리가 생성되지 않아 게임이 만들어 지지 않아요");
+        }
     }
 
     public void move(String input, int count) {
