@@ -15,6 +15,10 @@ public class Bridge {
         return nowIndex;
     }
 
+    public int getBridgeSize() {
+        return this.bridge.size();
+    }
+
     public void setNowIndex(int index) {
         this.nowIndex = index;
     }
