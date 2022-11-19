@@ -37,7 +37,7 @@ public class UserTest {
     }
 
     @Test
-    @DisplayName("게임 성공 메서드 테스트")
+    @DisplayName("게임 종료 메서드 테스트")
     public void gameDoneSuccessTest() {
         // given
         User user = new User();
@@ -60,5 +60,31 @@ public class UserTest {
 
         // then
         assertThat(user.getGameTryCount()).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("게임 성공 테스트")
+    public void isGameSuccessTest() {
+        // given
+        User user = new User();
+
+        // when
+        user.gameSuccess();
+
+        // then
+        assertThat(user.isGameSuccess()).isEqualTo(true);
+    }
+
+    @Test
+    @DisplayName("게임 실패 테스트")
+    public void isGameFailTest() {
+        // given
+        User user = new User();
+
+        // when
+        user.gameFail();
+
+        // then
+        assertThat(user.isGameSuccess()).isEqualTo(false);
     }
 }
