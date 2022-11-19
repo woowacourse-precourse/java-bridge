@@ -22,4 +22,12 @@ public class RestartCommand {
             throw new IllegalArgumentException(InputErrorText.ERROR_RESTART_COMMAND.errorText());
         }
     }
+
+    public boolean isRestart() {
+        if (restartCommand.equals("R")) {
+            return true;
+        }
+
+        return false;
+    }
 }

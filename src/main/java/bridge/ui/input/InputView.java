@@ -30,7 +30,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public MoveCommand readMoving() {
-        PlaceHolderText placeHolderText = PlaceHolderText.READ_GAME_COMMAND;
+        PlaceHolderText placeHolderText = PlaceHolderText.READ_MOVE_COMMAND;
         System.out.println(placeHolderText.toConsolePrintFormat());
 
         try {
@@ -46,6 +46,15 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public RestartCommand readGameCommand() {
-        return null;
+        PlaceHolderText placeHolderText = PlaceHolderText.READ_RESTART_COMMAND;
+        System.out.println(placeHolderText.toConsolePrintFormat());
+
+        try {
+            String userInput = Console.readLine();
+            return RestartCommand.from(userInput);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
+            return this.readGameCommand();
+        }
     }
 }

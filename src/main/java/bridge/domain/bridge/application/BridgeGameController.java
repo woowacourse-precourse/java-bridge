@@ -58,6 +58,6 @@ public class BridgeGameController {
         if (bridgeGame.isEndCondition()) {
             return false;
         }
-        return inputView.readGameCommand();
+        return inputView.readGameCommand().isRestart();
     }
 }
