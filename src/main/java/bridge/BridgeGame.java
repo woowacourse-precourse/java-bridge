@@ -30,6 +30,13 @@ public class BridgeGame {
         return false;
     }
 
+    public boolean isGameCompleted(){
+        if(bridge.isCrossedBridge(visited)){
+            return true;
+        }
+        return false;
+    }
+
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
