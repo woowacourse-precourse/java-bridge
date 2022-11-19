@@ -13,17 +13,13 @@ public class InputView {
         String InputVal = Console.readLine();
         try {
             int BridgeSize = Integer.parseInt(InputVal);
-            if (InputVal.replaceAll(Regex, "").length() != InputVal.length()) {
-                throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
-            }
-
             if (BridgeSize < 3 || BridgeSize > 20) {
                 throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
             }
         }
         catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
-            readBridgeSize();
+            return -1;
         }
         return Integer.parseInt(InputVal);
     }
@@ -35,13 +31,15 @@ public class InputView {
 
         String InputVal = Console.readLine();
         try {
-            if (((!InputVal.contains("U") && !InputVal.contains("D"))) || InputVal.length() > 1) {
+            if ( InputVal.length() > 1)
+                throw new IllegalArgumentException("[ERROR] 길이가 2 이상입니다.");
+            if (!InputVal.contains("U") && !InputVal.contains("D")) {
                 throw new IllegalArgumentException("[ERROR] U,D 이외의 값을 입력하였습니다.");
             }
         }
         catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
-            readMoving();
+            System.out.println("[ERROR] U,D 이외의 값을 입력하였습니다.");
+            return "EXIT";
         }
         return InputVal;
 
@@ -52,9 +50,17 @@ public class InputView {
      */
     public String readGameCommand() {
         String InputVal = Console.readLine();
-        if ((InputVal.contains("R") || InputVal.contains("Q")) && InputVal.length()==1) {
-            return InputVal;
+        try {
+            if ( InputVal.length() > 1)
+                throw new IllegalArgumentException("[ERROR] 길이가 2 이상입니다.");
+            if (!InputVal.contains("R") && !InputVal.contains("Q")) {
+                throw new IllegalArgumentException("[ERROR] R,Q 이외의 값을 입력하였습니다.");
+            }
         }
-        throw new IllegalArgumentException("[ERROR] R,Q 이외의 값을 입력하였습니다.");
+        catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] R,Q 이외의 값을 입력하였습니다.");
+            return "EXIT";
+        }
+        return InputVal;
     }
 }
