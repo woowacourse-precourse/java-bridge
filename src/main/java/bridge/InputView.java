@@ -32,7 +32,14 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String movePointer = Console.readLine();
+        validateMove(movePointer);
+        return movePointer;
+    }
+    private void validateMove(String movePointer){
+        if(!movePointer.equals("U") && !movePointer.equals("D")){
+            throw new IllegalArgumentException();
+        }
     }
 
     /**
