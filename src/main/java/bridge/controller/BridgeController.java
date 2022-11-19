@@ -5,21 +5,27 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
+import bridge.domain.utils.GameState;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeController {
     private final InputView inputView;
     private final OutputView outputView;
+    private final GameState gameState;
 
     public BridgeController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
+        gameState = GameState.START;
     }
 
     public void run() {
         outputView.printStartGame();
         BridgeGame bridgeGame = makeBridgeGame(new BridgeRandomNumberGenerator());
+        while (gameState == GameState.START || gameState == GameState.RETRY) {
+            inputView.readMoving();
+        }
     }
 
     public BridgeGame makeBridgeGame(BridgeNumberGenerator numberGenerator) {
