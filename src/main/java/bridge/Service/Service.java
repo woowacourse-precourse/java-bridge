@@ -46,6 +46,11 @@ public class Service {
         outputView.printBridge(bridge);
     }
 
+    // 정답 유무 boolean값으로 반환
+    public boolean isAnswer() {
+        return bridgeGame.isAnswer();
+    }
+
     // 다리 마지막까지 도달했는지 boolean값 반환
     public boolean isBridgeEnd() {
         return bridgeGame.isBridgeEnd();
