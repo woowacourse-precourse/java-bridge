@@ -18,6 +18,7 @@ public class OutputView {
 
     public static void printGameStartMessage() {
         System.out.println(GAME_START);
+        System.out.printf(NEW_LINE);
     }
 
     public static void printInputBridgeSize() {
