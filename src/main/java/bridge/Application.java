@@ -41,11 +41,11 @@ public class Application {
     	for(int order = 0; order < bridgeSize; order++) {      	
         	inputMoving = inputView.readMoving();
         	if(!bridgeGame.move(inputMoving, madeBridge, order)) {
-        		currentStateBridge = bridgeGame.getCurrentStateBridge();
+        		currentStateBridge = outputView.getCurrentStateBridge();
         		return bridgeGame.retry();                   // 재시도할 경우 return true. 게임 종료의 경우 return false.
         	}
         }
-    	currentStateBridge = bridgeGame.getCurrentStateBridge();
+    	currentStateBridge = outputView.getCurrentStateBridge();
     	checkSuccessOrFailure(bridgeGame);
     	return false;   // 다리를 다 건넜을 때 return false.
     }

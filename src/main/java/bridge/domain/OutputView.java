@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class OutputView {
 	private StringBuilder result;
+	private String currentStateBridge = "";
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -18,14 +19,18 @@ public class OutputView {
     	for(List<String> bridge : upDownBridgeList) {	
     		result.append("[");
     		for(int i = 0; i < bridge.size(); i++) {
-    			result.append(" " + bridge.get(i) + " ");
-    			result.append("|");
+    			result.append(" " + bridge.get(i) + " |");
     		}
     		result.replace(result.length() - 1, result.length(), "]\n");
     	}
+    	this.currentStateBridge = result.toString();
     	return result.toString();
     }
 
+    public String getCurrentStateBridge() {
+		return this.currentStateBridge;
+	}
+    
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>

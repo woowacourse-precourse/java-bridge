@@ -12,7 +12,6 @@ public class BridgeGame {
 	List<List<String>> upDownBridgeList = new ArrayList<>();
 	ArrayList<String> upBridge = new ArrayList<>();
 	ArrayList<String> downBridge = new ArrayList<>();
-	private String currentStateBridge = "";
 	private int bridgeSize = 0;
 	
 	public BridgeGame(int bridgeSize) {
@@ -33,11 +32,11 @@ public class BridgeGame {
 		boolean compareResult = compareMoving(inputMoving, madeBridge, order);
 		if(compareResult) {
 			addSuccessStateToBridge(inputMoving);
-			currentStateBridgeSavePrint();
+			System.out.println(outputView.printMap(upDownBridgeList));
 			return true;
 		}
 		addFailureStateToBridge(inputMoving);
-		currentStateBridgeSavePrint();
+		System.out.println(outputView.printMap(upDownBridgeList));
 		return false;
 	}
 	
@@ -68,7 +67,7 @@ public class BridgeGame {
 		upBridge.add(" ");
 	}
 	
-	public void currentStateBridgeSavePrint() {
+	/*public void currentStateBridgeSavePrint() {
 		currentStateBridge = outputView.printMap(upDownBridgeList);
 		System.out.println(currentStateBridge);
 	}
@@ -76,7 +75,7 @@ public class BridgeGame {
 	public String getCurrentStateBridge() {
 		return currentStateBridge;
 	}
-	
+	*/
 	public String checkSuccessFailure() {
 		if(upBridge.contains("X") || downBridge.contains("X")) {
 			return "실패";
