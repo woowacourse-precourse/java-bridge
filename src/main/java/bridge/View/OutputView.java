@@ -52,6 +52,18 @@ public class OutputView {
         return bridgeMap;
     }
 
+    public String getString() {
+        String output = "";
+        for(String input: bridgeMapUp) {
+            output += input;
+        }
+        output += '\n';
+        for(String input: bridgeMapDown) {
+            output += input;
+        }
+        return output;
+    }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
