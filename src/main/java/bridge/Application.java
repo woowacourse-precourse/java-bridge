@@ -21,7 +21,7 @@ public class Application {
         for (int round = 1; round < bridgeSize; round++) {
             outputView.printMessageToGetSpaceToMove();
             if (!processEachRound(round)) {
-                // 실패한 경우
+                retryOrQuit();
             }
         }
         outputView.printResult();
@@ -50,5 +50,11 @@ public class Application {
             return false;
         }
         return true;
+    }
+
+    private static void retryOrQuit() {
+        outputView.printMessageAfterFailure();
+        String retryOrQuit = inputView.readGameCommand();
+        Validation.validateResponseAfterFailure(retryOrQuit);
     }
 }
