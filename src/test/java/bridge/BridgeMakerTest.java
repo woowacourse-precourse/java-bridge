@@ -18,21 +18,29 @@ class BridgeMakerTest {
         bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         int size = 5;
         List<String> bridge = new ArrayList<>();
-        List<Integer> generateNumber = new ArrayList<>();
+        List<Integer> generateNumbers = new ArrayList<>();
         while(size != 0){
-            int uNd = bridgeNumberGenerator.generate();
-            generateNumber.add(uNd);
-            if(uNd == 1)
-                bridge.add("U");
-            else
-                bridge.add("D");
+            bridge.add(generate(generateNumbers));
             size -=1;
         }
-        for(int i = 0;i<generateNumber.size();i++){
-            if(generateNumber.get(i) == 1 )
-                Assertions.assertThat(bridge.get(i)).isEqualTo("U");
-            else
-                Assertions.assertThat(bridge.get(i)).isEqualTo("D");
+        for(int i = 0 ;i<generateNumbers.size();i++){
+            isCorrect(generateNumbers.get(i), bridge.get(i));
         }
     }
+    private void isCorrect(Integer value , String uNd){
+        if(value == 1)Assertions.assertThat(uNd).isEqualTo("U");
+        if(value == 0)Assertions.assertThat(uNd).isEqualTo("D");
+    }
+    private String generate(List<Integer> generateNumbers){
+        if(bridgeNumberGenerator.generate() == 1) {
+            generateNumbers.add(1);
+            return "U";
+        }
+        generateNumbers.add(0);
+        return "D";
+    }
+
+
+
+
 }
