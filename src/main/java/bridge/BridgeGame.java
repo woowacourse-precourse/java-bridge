@@ -42,6 +42,10 @@ public class BridgeGame {
         return this.countOfRound < bridgeSize;
     }
 
+    public BridgeGameStat getBridgeGameStat() {
+        return bridgeGameStat;
+    }
+
     public int getCountOfRound() {
         return countOfRound;
     }

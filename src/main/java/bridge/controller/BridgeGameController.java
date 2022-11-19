@@ -41,6 +41,11 @@ public class BridgeGameController {
 
     private void round(List<String> bridge) {
         BridgeMap bridgeMap = movingBridge(bridge);
+
+        List<BridgeMap> bridgeMaps = bridgeGame.getBridgeGameStat().getBridgeMaps();
+        bridgeMaps.add(bridgeMap);
+
+        outputView.printMap(bridgeMaps);
     }
 
     private BridgeMap movingBridge(List<String> bridge) {
