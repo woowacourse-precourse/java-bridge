@@ -35,4 +35,8 @@ public class BridgeGameStat {
         this.gameStatus = GameStatus.FAIL;
         this.countOfGame++;
     }
+
+    public void gameWin() {
+        this.gameStatus = GameStatus.SUCCESS;
+    }
 }

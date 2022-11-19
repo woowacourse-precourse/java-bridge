@@ -50,6 +50,12 @@ public class BridgeGame {
         return this.countOfRound < bridgeSize;
     }
 
+    public void checkGameWin(int bridgeSize) {
+        if (this.countOfRound == bridgeSize - 1) {
+            this.bridgeGameStat.gameWin();
+        }
+    }
+
     public BridgeGameStat getBridgeGameStat() {
         return bridgeGameStat;
     }
