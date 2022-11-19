@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.domain.BridgeGame;
+import bridge.domain.BridgeRestart;
 
 import java.util.List;
 
@@ -14,16 +15,24 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     private BridgeGame bridgeGame = new BridgeGame();
+    private BridgeRestart bridgerestart = new BridgeRestart();
 
     public void printMap(List<String> correctBridge) {
         for(int i=0; i<correctBridge.size(); i++) {
-            String playerMove = InputView.readMoving();
-            bridgeGame.move(correctBridge.get(i), playerMove);
-            String strUp =  String.join("|", bridgeGame.getUpBridge());
-            String strDown =  String.join("|", bridgeGame.getDownBridge());
-            System.out.println("["+strUp+"]");
-            System.out.println("["+strDown+"]");
+            bridgeGame.move(correctBridge.get(i), InputView.readMoving());
+            printUpDown();
+            if(bridgeGame.getNeedRestart() == 1) {
+                bridgerestart.bridgeRestart(InputView.readGameCommand(),correctBridge);
+                break;
+            }
         }
+    }
+
+    public void printUpDown() {
+        String strUp =  String.join("|", bridgeGame.getUpBridge());
+        String strDown =  String.join("|", bridgeGame.getDownBridge());
+        System.out.println("["+strUp+"]");
+        System.out.println("["+strDown+"]");
     }
 
     /**
