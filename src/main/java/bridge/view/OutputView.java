@@ -29,8 +29,13 @@ public class OutputView {
         StringBuilder sb = new StringBuilder("[ ");
 
         for(int i=0; i<result.size(); i++) {
-            if(bridge.get(i).equals(stair) && result.get(i).equals("O")) sb.append("O");
-            if(!bridge.get(i).equals(stair) && result.get(i).equals("X")) sb.append("X");
+            sb.append(" ");
+            if(bridge.get(i).equals(stair) && result.get(i).equals("O")) {
+                sb.replace(sb.length() - 1, sb.length(), "O");
+            }
+            if(!bridge.get(i).equals(stair) && result.get(i).equals("X")) {
+                sb.replace(sb.length() - 1, sb.length(), "X");
+            }
             sb.append(" | ");
         }
 
