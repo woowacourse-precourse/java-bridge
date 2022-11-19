@@ -8,16 +8,19 @@ public class BridgeGame {
     private final OutputView outputView;
     private final InputView inputView;
     private final Validator validator;
+    private final BridgeMaker bridgeMaker;
 
     public BridgeGame() {
-        this.outputView = new OutputView();
-        this.inputView = new InputView();
-        this.validator = new Validator();
+        outputView = new OutputView();
+        inputView = new InputView();
+        validator = new Validator();
+        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
     public void run() {
         outputView.printStartNotice();
-        inputBridgeSize();
+        int size = inputBridgeSize();
+        Bridge bridge = new Bridge(bridgeMaker.makeBridge(size));
 
     }
 
