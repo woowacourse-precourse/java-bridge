@@ -21,6 +21,10 @@ public class BridgeGame {
         return this.stageBridge.size();
     }
 
+    public final List<String> getPlayLog() {
+        return playLog;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * @param userMove 유저가 입력한 이동 메시지
@@ -30,17 +34,15 @@ public class BridgeGame {
     public boolean move(String userMove) {
         if(currentPosition == stageBridge.size())
             throw new IllegalStateException("더 이상 이동할 수 없습니다.");
-
         playLog.add(userMove);
-
         return stageBridge.get(currentPosition++).equals(userMove);
     }
 
     /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
+     * 사용자가 게임을 다시 시도할 때 사용하는 메서드(필드 초기화)
      */
     public void retry() {
-        currentPosition = 0;
         playLog.clear();
+        currentPosition = 0;
     }
 }
