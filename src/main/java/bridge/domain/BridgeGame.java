@@ -53,12 +53,16 @@ public class BridgeGame {
         return userPosition;
     }
 
-    public Boolean isEnd() {
+    public int getCountGameTry() {
+        return countGameTry;
+    }
+
+    public Boolean isClear() {
         return bridgeSize == userPosition;
     }
 
     private Boolean canMove(String inputGoingBlock) {
-        return inputGoingBlock.equals(bridge.get(userPosition + 1));
+        return inputGoingBlock.equals(bridge.get(userPosition));
     }
 
 }
