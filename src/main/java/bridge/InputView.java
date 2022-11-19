@@ -11,9 +11,20 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String userInput = readLine();
-        Validator.validIsNum(userInput);
-        Validator.validRange(userInput);
+        BridgeGame bridgeGame = new BridgeGame();
+        String userInput = "";
+        while (true) {
+            bridgeGame.printRequestBridgeSizeMessage();
+            try {
+                userInput = readLine();
+                Validator.validIsNum(userInput);
+                Validator.validRange(userInput);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
         return Integer.parseInt(userInput);
     }
 
@@ -21,8 +32,17 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String userInput = readLine();
-        Validator.validMovingInput(userInput);
+        String userInput = "";
+        while (true) {
+            try {
+                 userInput = readLine();
+                Validator.validMovingInput(userInput);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+
+        }
         return userInput;
     }
 
@@ -30,8 +50,18 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        String userInput = readLine();
-        Validator.validGameCommandInput(userInput);
+        BridgeGame bridgeGame = new BridgeGame();
+        String userInput = "";
+        while (true) {
+            bridgeGame.printRequestRetryMessage();
+            try {
+                userInput = readLine();
+                Validator.validGameCommandInput(userInput);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         return userInput;
     }
 }
