@@ -4,9 +4,10 @@ public enum Answer {
 
     CORRECT("O"),
     INCORRECT("X"),
-    NONE(" ");
+    NONE(" "),
+    END("END");
 
-    private String output;
+    private final String output;
 
     Answer(String output){
         this.output = output;
