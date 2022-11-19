@@ -24,7 +24,7 @@ class BridgeTest {
     }
 
     @Test
-    void createBridge(){
+    void createBridge() {
         assertThat(new Bridge(List.of("U", "D,", "D"))).isEqualTo(new Bridge(List.of("U", "D,", "D")));
     }
 
@@ -43,4 +43,17 @@ class BridgeTest {
         assertFalse(new Bridge(List.of("U", "D", "D")).canGoOrNot(List.of(step.split("")), userPick));
     }
 
+    @DisplayName("다리를 건넜다면 true를 반환한다.")
+    @ParameterizedTest(name = "bridge [U | D | D]  step : {0}, pick : {1}")
+    @CsvSource({"4, UDDD", "10, UDUDUUDDUD", "20, UDUUUUDDDDDDDUUDUUDU"})
+    void isCrossing(int finalStep, String bridge) {
+        assertTrue(new Bridge(List.of(bridge.split(""))).isCrossing(finalStep));
+    }
+
+    @DisplayName("다리를 건너지 않았다면 false를 반환한다.")
+    @ParameterizedTest(name = "bridge [U | D | D]  step : {0}, pick : {1}")
+    @CsvSource({"3, UDDD", "5, UDUDUUDDUD", "4, UDUUUUDDDDDDDUUDUUDU"})
+    void isNotCrossing(int finalStep, String bridge) {
+        assertFalse(new Bridge(List.of(bridge.split(""))).isCrossing(finalStep));
+    }
 }
