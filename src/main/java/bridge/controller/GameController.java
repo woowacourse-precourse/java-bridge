@@ -5,16 +5,20 @@ import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.util.BridgeMaker;
 import bridge.view.InputView;
+import bridge.view.OutputView;
 import java.util.List;
 
 public class GameController {
     private final InputView inputView;
+    private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
     private BridgeGame bridgeGame;
 
     public GameController() {
         inputView = new InputView();
+        outputView = new OutputView();
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        initializeGame();
     }
 
     private void initializeGame() {
@@ -33,6 +37,7 @@ public class GameController {
 
     public void play() {
         move();
+        printMoveResult();
     }
 
     private void move() {
@@ -54,6 +59,10 @@ public class GameController {
 
     private int requestBridgeLength() {
         return inputView.readBridgeSize();
+    }
+
+    private void printMoveResult() {
+        outputView.printMap(bridgeGame.getCurrentMap());
     }
 
 }

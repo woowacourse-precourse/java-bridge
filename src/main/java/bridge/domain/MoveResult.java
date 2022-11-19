@@ -21,11 +21,8 @@ public class MoveResult {
         }
     }
 
-    public List<String> getCrossedStatus(String position) {
-        if (position.equals(MoveCondition.UPPER.getPosition())) {
-            return upperBridge.getCrossedBridge();
-        }
-        return lowerBridge.getCrossedBridge();
+    public List<List<String>> getMap() {
+        return List.of(upperBridge.getCrossedBridge(), lowerBridge.getCrossedBridge());
     }
 
     private void updateEachBridge(Boolean upperResult, Boolean lowerResult) {
