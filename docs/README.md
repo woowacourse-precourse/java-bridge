@@ -41,6 +41,66 @@
 
 ___
 
+## 미션을 구현할 때 지켜야 할 것들
+
+!!! 주의: 강조할 것들은 타 문단과 중복 있음
+- 다리 길이는 3 이상 20 이하여야 한다.
+- 다리는 위 칸 또는 아래 칸 중 하나로만 지나갈 수 있다.
+- 게임 재시작 시 새로 다리를 생성하는 것이 아닌, 기존에 사용하던 다리를 사용한다.
+
+- indent(들여쓰기) depth는 2까지 허용한다.  
+```java
+//아래 예시 코드는 indent depth가 2이다.
+public void testMethod() {
+    for(int i=0;i< 10;i++) {
+        if (i == 5) {
+            System.out.println("5가 등장했다.");
+        }
+    }
+}
+```
+- 3항 연산자를 사용하지 않는다.
+- **else 예약어를 허용하지 않는다.**  
+=> 해당 제약 사항의 의도를 생각했을 때, `else if`도 사용하지 않으려고 한다.  
+=> switch/case도 허용하지 않는다.
+- 도메인 로직에 단위 테스트를 구현한다. UI 로직은 필수가 아니다.  
+=> 도메인 로직과 UI 담당 로직을 분리하여 구현한다.
+- **함수(메소드)의 길이는 10라인 이하로 제한한다.**
+- **메소드의 파라미터 개수는 3개까지 허용한다.**
+- `InputView` 클래스에서만 `readLine()` 메소드를 이용해 사용자의 입력을 받을 수 있다.
+- **`BridgeNumberGenerator` 인터페이스, `BridgeRandomNumberGenerator` 클래스는 코드를 변경할 수 없다.**
+- **`BridgeGame` 클래스에서 `InputView`, `OutputView`를 사용할 수 없다.**
+
+**주어진 클래스들에 대한 자세한 제한 사항은 아래와 같다.**
+
+_Note_: 메소드 시그니처는 메소드의 이름과 파라미터 조합을 뜻한다.  
+자바 컴파일러가 메소드를 구분하는 데 메소드 시그니처를 사용한다.
+
+- `InputView` 클래스
+  1. 제공된 `InputView` 클래스를 활용해 구현해야 한다.
+  2. `InputView`의 패키지는 변경할 수 있다.
+  3. `InputView`의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 있다.
+  4. 사용자 값 입력을 위해 필요한 메서드를 추가할 수 있다.
+- `OutputView` 클래스
+  1. 제공된 `OutputView` 클래스를 활용해 구현해야 한다.
+  2. `OutputView`의 패키지는 변경할 수 있다.
+  3. `OutputView`의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다. 
+  4. 값 출력을 위해 필요한 메서드를 추가할 수 있다.
+- `BridgeGame` 클래스
+  1. 제공된 `BridgeGame` 클래스를 활용해 구현해야 한다.
+  2. `BridgeGame`의 패키지는 변경할 수 있다.
+  3. `BridgeGame`의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
+  4. 게임 진행을 위해 필요한 메서드를 추가 하거나 변경할 수 있다.
+- `BridgeMaker` 클래스
+  1. 제공된 `BridgeMaker` 클래스를 활용해 구현해야 한다. 
+  2. `BridgeMaker`의 필드(인스턴스 변수)를 변경할 수 없다. 
+  3. `BridgeMaker`의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 없다.
+- `BridgeRandomNumberGenerator` 클래스
+  1. Random 값 추출은 제공된 `bridge.BridgeRandomNumberGenerator`의 `generate()`를 활용한다. 
+  2. `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 변경할 수 없다.
+
+___
+
 ## 구현할 기능 목록
 
 - \[X]다리 관련 데이터를 저장하는 클래스(_Bridge_ 라고 하자.)  
