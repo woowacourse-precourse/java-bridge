@@ -21,7 +21,7 @@ public class GameCommand {
         return this.gameCommand;
     }
 
-    public void validateGameCommand(String gameCommand) {
+    private void validateGameCommand(String gameCommand) {
         if (gameCommand.length() != GAME_COMMAND_MAX_LENGTH) {
             throw new IllegalArgumentException(GAME_COMMAND_LENGTH_IS_NOT_ONE.getErrorMessage());
         }

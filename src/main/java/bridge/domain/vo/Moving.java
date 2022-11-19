@@ -23,7 +23,7 @@ public class Moving {
         return this.moving;
     }
 
-    public void validateMoving(String moving) {
+    private void validateMoving(String moving) {
         if (moving.length() != MOVING_MAX_LENGTH) {
             throw new IllegalArgumentException(MOVING_LENGTH_IS_NOT_ONE.getErrorMessage());
         }

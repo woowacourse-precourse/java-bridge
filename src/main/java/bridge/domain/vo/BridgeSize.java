@@ -20,7 +20,7 @@ public class BridgeSize {
         return this.bridgeSize;
     }
 
-    public void validateBridgeSize(String bridgeSize) {
+    private void validateBridgeSize(String bridgeSize) {
         if (!bridgeSize.chars().allMatch(Character::isDigit)) {
             throw new IllegalArgumentException(IS_NOT_NUMBER.getErrorMessage());
         }
