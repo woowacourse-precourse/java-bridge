@@ -12,11 +12,13 @@ public class BridgeGame {
     private final Bridge bridge;
     private Player player;
     private int playCount;
+    private boolean canPlay;
 
     public BridgeGame(List<String> bridge) {
         this.player = new Player();
         this.bridge = new Bridge(bridge);
         this.playCount = INITIAL_PLAY_COUNT;
+        this.canPlay = true;
     }
 
     /**
