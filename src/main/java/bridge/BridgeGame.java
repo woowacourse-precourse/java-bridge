@@ -34,4 +34,11 @@ public class BridgeGame {
         }
         return false;
     }
+
+    public boolean checkGameIsOver(String moving, int size, List<String> bridge){
+        if(checkBridgeValueInUserPosition(moving,bridge) && user.getUserPosition() == size){
+            return true;
+        }
+        return false;
+    }
 }
