@@ -1,5 +1,7 @@
 package bridge.model;
 
+import bridge.BridgeRandomNumberGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,24 +9,20 @@ public class Bridge {
     private ArrayList<String> upBridge;
     private ArrayList<String> downBridge;
     private int size;
-    public Bridge() {
+    private GameStatistics gameStatistics;
+    private BridgeMaker bridgeMaker;
+    public Bridge(GameStatistics gameStatistics) {
+        this.gameStatistics = gameStatistics;
+        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         initBridge();
     }
 
-    public ArrayList<String> getUpBridge() {
-        return upBridge;
-    }
-
-    public ArrayList<String> getDownBridge() {
-        return downBridge;
-    }
-
     public void initBridge() {
-        upBridge = new ArrayList<>(){{
+        upBridge = new ArrayList<>() {{
             add("[");
             add("]");
         }};
-        downBridge = new ArrayList<>(){{
+        downBridge = new ArrayList<>() {{
             add("[");
             add("]");
         }};
@@ -78,21 +76,49 @@ public class Bridge {
         }
     }
 
-//    public void downSizeBridge() {
-//        upBridge.remove(Player.currentLocation * 2);
-//        upBridge.remove(Player.currentLocation * 2);
-//        downBridge.remove(Player.currentLocation * 2);
-//        downBridge.remove(Player.currentLocation * 2);
-//    }
     public void resetBridge() {
         initBridge();
-    }
-
-    public int getSize() {
-        return size;
     }
 
     public void setSize(int size) {
         this.size = size - 1;
     }
+
+    public boolean buildBridge() {
+        boolean checkProcess;
+        List<Boolean> checkRoad = gameStatistics.getCheckRoad();
+        if (checkRoad.get(Player.currentLocation)) {
+            checkProcess = true;
+            if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals("D")) {
+                setDownBridge("O");
+            } else if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals("U")) {
+                setUpBridge("O");
+            }
+        } else { //false
+            checkProcess = false;
+            if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals("D")) {
+                setUpBridge("X");
+            } else if (gameStatistics.getAnswerRoad().get(Player.currentLocation).equals("U")) {
+                setDownBridge("X");
+            }
+        }
+        return checkProcess;
+    }
+
+    public BridgeMaker getBridgeMaker() {
+        return bridgeMaker;
+    }
+
+    public ArrayList<String> getUpBridge() {
+        return upBridge;
+    }
+
+    public ArrayList<String> getDownBridge() {
+        return downBridge;
+    }
+
+    public int getSize() {
+        return size;
+    }
 }
+
