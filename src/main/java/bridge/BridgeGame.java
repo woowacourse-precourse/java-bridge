@@ -4,9 +4,16 @@ package bridge;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    
+
+    private InputView inputView;
+
+    public BridgeGame() {
+        this.inputView = new InputView();
+    }
+
     public void startGame() {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
+        int bridgeSize = inputView.readBridgeSize();
     }
 
     /**
