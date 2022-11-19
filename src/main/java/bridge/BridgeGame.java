@@ -11,6 +11,8 @@ public class BridgeGame {
     private static final String BLANK = " ";
     private static final String CORRECT = "O";
     private static final String WRONG = "X";
+    private static final String UP = "U";
+    private static final String DOWN = "D";
 
 
     private final List<String> bridge;
@@ -36,28 +38,44 @@ public class BridgeGame {
         }
         return true;
     }
+    public void markCorrect(String userInput){
+        if ( userInput.equals(UP)) {
+            upperLine.add(CORRECT);
+            lowerLine.add(BLANK);
+        }
+        if ( userInput.equals(DOWN)){
+            upperLine.add(BLANK);
+            lowerLine.add(CORRECT);
+        }
+    }
+
+    public void markIncorrect(String userInput){
+        if ( userInput.equals(UP)) {
+            upperLine.add(WRONG);
+            lowerLine.add(BLANK);
+        }
+        if ( userInput.equals(DOWN)){
+            upperLine.add(BLANK);
+            lowerLine.add(WRONG);
+        }
+    }
+
+    public void makeMap(boolean correct,String userInput){
+        if ( correct ){
+            markCorrect(userInput);
+        }
+        if ( !correct ){
+            markIncorrect(userInput);
+        }
+    }
 
     public boolean moveOne(int index) {
         String userInput = inputView.readMoving();
         if(bridge.get(index).equals(userInput)){
-            if ( userInput.equals("U")) {
-                upperLine.add(CORRECT);
-                lowerLine.add(BLANK);
-            }
-            if ( userInput.equals("D")){
-                upperLine.add(BLANK);
-                lowerLine.add(CORRECT);
-            }
+            makeMap(true,userInput);
             return true;
         }
-        if ( userInput.equals("U")) {
-            upperLine.add(WRONG);
-            lowerLine.add(BLANK);
-        }
-        if ( userInput.equals("D")){
-            upperLine.add(BLANK);
-            lowerLine.add(WRONG);
-        }
+        makeMap(false,userInput);
         return false;
     }
 
