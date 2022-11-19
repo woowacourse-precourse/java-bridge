@@ -21,6 +21,7 @@ public class InputView {
         System.out.println(INPUT_MOVING);
 
         String moving = Console.readLine();
+        InputValidator.inputMovingValidate(moving);
         return moving;
     }
 
