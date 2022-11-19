@@ -5,6 +5,7 @@ import bridge.service.dto.request.BridgeSizeRequestDto;
 import bridge.service.dto.request.GameRetryRequestDto;
 import bridge.service.dto.request.SelectBlockRequestDto;
 import bridge.service.dto.response.BridgeResponseDto;
+import bridge.service.dto.response.GameResultResponseDto;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -23,6 +24,7 @@ public class BridgeGameController {
         outputView.printStart();
         createBridge();
         play();
+        gameResult();
     }
 
     private void createBridge() {
@@ -38,7 +40,6 @@ public class BridgeGameController {
         }
 
         gameRetry();
-        gameResult();
     }
 
     private void gameRetry() {
@@ -51,6 +52,7 @@ public class BridgeGameController {
     }
 
     private void gameResult() {
-
+        GameResultResponseDto responseDto = bridgeGame.result();
+        outputView.printResult(responseDto);
     }
 }

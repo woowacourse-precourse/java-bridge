@@ -7,6 +7,7 @@ public class Result {
     private final List<String> upBlocks;
     private final List<String> downBlocks;
     private GameOver gameOver;
+    private int totalTryNumber = 0;
 
     public Result() {
         upBlocks = new ArrayList<>();
@@ -43,12 +44,34 @@ public class Result {
         return gameOver == GameOver.FAIL;
     }
 
+    public void tryMove() {
+        this.totalTryNumber += 1;
+    }
+
+    public GameOver getGameOver() {
+        return gameOver;
+    }
+
+    public int getTotalTryNumber() {
+        return totalTryNumber;
+    }
+
     public enum GameOver {
-        SUCCESS,
-        FAIL,
-        PLAYING;
+        SUCCESS("성공"),
+        FAIL("실패"),
+        PLAYING("진행중");
+
+        private String name;
 
         GameOver() {
+        }
+
+        GameOver(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
         }
     }
 }
