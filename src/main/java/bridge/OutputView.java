@@ -33,7 +33,9 @@ public class OutputView {
         System.out.println(Output.GAME_RESULT_TITLE.getOutput());
     }
 
-    public void printResult(boolean isWin, int numberOfAttempt) {
+    public void printResult(Map map,boolean isWin, int numberOfAttempt) {
+        printTitle();
+        printMap(map.getMapUpper(),map.getMapLower());
         if (isWin) {
             System.out.println(Output.WIN_OR_LOSE.getOutput()+"성공");
             System.out.println(Output.HOW_MANY_ATTEMPTS.getOutput()+numberOfAttempt);
