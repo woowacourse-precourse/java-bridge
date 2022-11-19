@@ -8,6 +8,8 @@ import java.util.List;
  */
 public class BridgeMaker {
 
+    private final static int UP = 1;
+
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -28,12 +30,11 @@ public class BridgeMaker {
 
     private void addBridge(List<String> bridge) {
         int number = bridgeNumberGenerator.generate();
-        if (number == 1) {
+        if (number == UP) {
             bridge.add("U");
             return;
         }
-        if (number == 0) {
-            bridge.add("D");
-        }
+
+        bridge.add("D");
     }
 }
