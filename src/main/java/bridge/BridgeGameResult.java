@@ -59,4 +59,8 @@ public class BridgeGameResult {
         return "   ";
     }
 
+    public List<String>getList(){
+        return bridgeGameResult;
+    }
+
 }
