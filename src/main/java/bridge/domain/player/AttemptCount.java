@@ -1,4 +1,4 @@
-package bridge.domain.bridgegame;
+package bridge.domain.player;
 
 public class AttemptCount {
     private final int attemptCount;

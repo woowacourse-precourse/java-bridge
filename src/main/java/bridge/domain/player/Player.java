@@ -1,7 +1,5 @@
 package bridge.domain.player;
 
-import bridge.domain.bridgegame.AttemptCount;
-
 public class Player {
     public static final int INIT_DISTANCE = 0;
 
