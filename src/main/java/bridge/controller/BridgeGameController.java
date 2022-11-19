@@ -29,31 +29,48 @@ public class BridgeGameController {
         BridgeSize bridgeSize = new BridgeSize(inputView.readBridgeSize());
 
         BridgeRandomNumberGenerator generator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker =  new BridgeMaker(generator);
+        BridgeMaker bridgeMaker = new BridgeMaker(generator);
         List<String> tempBridge = bridgeMaker.makeBridge(bridgeSize.getSize());
         Bridge bridge = Bridge.valueOf(tempBridge);
 
-        String move = inputView.readMoving();
-        Square userMove = new Square(move);
+        while (bridgeGame.inProgress()) {
+            String move = inputView.readMoving();
+            Square userMove = new Square(move);
 
-        int position = bridgeGame.getPosition();
-        boolean result = bridge.canMoveForward(userMove, position);
-        if (result) {
-            bridgeGame.move();
+            int position = bridgeGame.getPosition();
+            boolean result = bridge.canMoveForward(userMove, position);
+
+            BridgeResult bridgeResult = new BridgeResult();
+            bridgeResult.updateResult(userMove, result);
+
+            List<String> upBridgeResult = bridgeResult.getUpBridgeResult();
+            List<String> downBridgeResult = bridgeResult.getDownBridgeResult();
+
+            outputView.printMap(upBridgeResult, downBridgeResult);
+
+            if (result) {
+                bridgeGame.move();
+            } else {
+                Command command = new Command(inputView.readGameCommand());
+                isExitSetGameStatus(command);
+                isRetryInitializeGame(command);
+            }
+
+            if (bridgeGame.isGameSuccess()) {
+                bridgeGame.exit();
+            }
         }
+    }
 
-        BridgeResult bridgeResult = new BridgeResult();
-        bridgeResult.updateResult(userMove, result);
-
-        List<String> upBridgeResult = bridgeResult.getUpBridgeResult();
-        List<String> downBridgeResult = bridgeResult.getDownBridgeResult();
-
-        outputView.printMap(upBridgeResult, downBridgeResult);
-
-        if (bridgeGame.isGameSuccess()) {
-            //OutputView.printResult();
+    private void isExitSetGameStatus(Command command) {
+        if (command.isExitCommand()) {
+            bridgeGame.exit();
         }
+    }
 
-        Command command = new Command(inputView.readGameCommand());
+    private void isRetryInitializeGame(Command command) {
+        if (command.isRetryCommand()) {
+            bridgeGame.retry();
+        }
     }
 }
