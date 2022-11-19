@@ -6,9 +6,10 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class BridgeMakerTest {
+
     @DisplayName("다리 생성 성공")
     @Test
     void createBridgeSuccess() {
