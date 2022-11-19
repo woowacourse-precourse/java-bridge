@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class BridgeResult {
@@ -10,6 +11,14 @@ public class BridgeResult {
     public BridgeResult() {
         this.upBlocks = new ArrayList<>();
         this.downBlocks = new ArrayList<>();
+    }
+
+    public int countCorrectCrossing() {
+        int count = 0;
+        count += Collections.frequency(upBlocks, "O");
+        count += Collections.frequency(downBlocks, "O");
+
+        return count;
     }
 
     public void addBlock(String blockToMove, String correct) {
