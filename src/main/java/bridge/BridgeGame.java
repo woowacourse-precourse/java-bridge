@@ -13,11 +13,14 @@ public class BridgeGame {
     }
 
     public void move() {
-        Integer currentPosition = gameStatusOperator.getCurrentPosition();
         gameStatusOperator.changePosition();
     }
 
     public void retry() {
         gameStatusOperator.toRestart();
+    }
+
+    public void quit() {
+        gameStatusOperator.toQuit();
     }
 }

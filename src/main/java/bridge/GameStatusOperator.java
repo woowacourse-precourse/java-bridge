@@ -22,6 +22,10 @@ public class GameStatusOperator {
         currentPosition++;
     }
 
+    public void toQuit() {
+        gameStatus = GameStatus.QUIT;
+    }
+
     public void toRestart() {
         gameStatus = GameStatus.RESTART;
     }
