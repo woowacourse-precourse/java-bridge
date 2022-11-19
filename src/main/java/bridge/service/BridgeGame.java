@@ -65,4 +65,9 @@ public class BridgeGame {
             processCrossingBridge(bridge);
         }
     }
+
+    public void printResult() {
+        System.out.println();
+        user.printResult();
+    }
 }
