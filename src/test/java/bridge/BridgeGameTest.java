@@ -47,14 +47,14 @@ public class BridgeGameTest {
         assertThatThrownBy(
                 () -> bridgeGame.retry("q")).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("승리 확인")
+    @Test
+    void checkwin() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "D"));
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("D");
+        assertThat(bridgeGame.checkWin()).isEqualTo(true);
+    }
 }
-//    @DisplayName("승리 확인")
-//    @Test
-//    void checkwin() {
-//        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "D"));
-//        bridgeGame.move("U");
-//        bridgeGame.move("D");
-//        bridgeGame.move("D");
-//        assertThat(bridgeGame.checkWin()).isEqualTo(true);
-//    }
-//}
