@@ -20,7 +20,7 @@ public class GameCommand {
         }
     }
 
-    public boolean isRestart() {
+    public boolean isRetry() {
         return CommandType.isRetry(command);
     }
 }

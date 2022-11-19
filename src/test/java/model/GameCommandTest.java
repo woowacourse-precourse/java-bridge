@@ -35,13 +35,13 @@ class GameCommandTest {
     @Test
     void isRetry() {
         GameCommand gameCommand = new GameCommand("R");
-        assertTrue(gameCommand.isRestart());
+        assertTrue(gameCommand.isRetry());
     }
 
     @DisplayName("종료를 선택했을 때 재시도 여부 FALSE 반환")
     @Test
     void isQuit() {
         GameCommand gameCommand = new GameCommand("Q");
-        assertFalse(gameCommand.isRestart());
+        assertFalse(gameCommand.isRetry());
     }
 }
