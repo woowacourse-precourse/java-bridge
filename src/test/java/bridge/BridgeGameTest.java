@@ -6,10 +6,11 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import bridge.domain.BridgeStatus;
-import java.lang.reflect.Field;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class BridgeGameTest {
 
@@ -44,4 +45,18 @@ class BridgeGameTest {
         // then
         assertThat(bridgeStatusSaver.getBridgeStatus()).isNotNull();
     }
+
+    @DisplayName("retry 요청시 R인 경우 true, Q인 경우 false 반환")
+    @ParameterizedTest
+    @CsvSource({
+            "R, true", "Q, false"
+    })
+    void returnTrueWhenRequestRorReturnFalseWhenRequestQ(String input, boolean result) {
+        // when
+        boolean retry = bridgeGame.retry(input);
+
+        // then
+        assertThat(retry).isEqualTo(result);
+    }
+
 }
