@@ -12,4 +12,16 @@ public class User {
     public Integer getRetryCount() {
         return retryCount;
     }
+
+    public void stepForward() {
+        step++;
+    }
+
+    public void stepInit() {
+        step = 0;
+    }
+
+    public void gameRetry() {
+        retryCount++;
+    }
 }
