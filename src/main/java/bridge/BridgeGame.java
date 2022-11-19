@@ -26,8 +26,11 @@ public class BridgeGame {
      */
     public boolean move(String playerMoveInput) {
         setMoveValue(playerMoveInput);
-        int step = stepNum - 1;
-        if(answer.get(step) == playerMoveInput)
+        return checkSucces(playerMoveInput);
+    }
+
+    private boolean checkSucces(String playerMoveInput) {
+        if (answer.get(stepNum - 1) == playerMoveInput)
             return true;
         return false;
     }
@@ -51,6 +54,71 @@ public class BridgeGame {
 
     public void setBridge(List<String> bridge) {
         this.answer = bridge;
+    }
+
+    public String createResultMap() {
+        List<StringBuilder> sides = new ArrayList<>();
+        makeEmptySides(sides, 2);
+        
+        for (int playerfoot = 0; playerfoot < playerMove.size(); playerfoot++) {
+            String currentMove = playerMove.get(playerfoot);
+            putOOnSides(sides, playerfoot, currentMove);
+        }
+        
+        putXOnSides(sides, stepNum, playerMove.get(stepNum));
+        
+        StringBuilder result = makeResultMap(sides, 2);
+
+        return result.toString();
+    }
+
+    private StringBuilder makeResultMap(List<StringBuilder> sides, int size) {
+        StringBuilder result = new StringBuilder();
+        for(int index = 0; index < size -1 ;index++) {
+            result.append(sides.get(index));
+            result.append('\n');
+        }
+        result.append(sides.get(size-1));
+        return result;
+    }
+
+    private void putOOnSides(List<StringBuilder> sides, int playerfoot, String currentMove) {
+        if (currentMove == "U")
+            putOXInSide(sides.get(0), playerfoot, 'O');
+        if (currentMove == "D")
+            putOXInSide(sides.get(1), playerfoot, 'O');
+    }
+
+    private void putXOnSides(List<StringBuilder> sides, int playerfoot, String currentMove) {
+        if (!checkSucces(currentMove)) {
+            if (currentMove == "U")
+                putOXInSide(sides.get(0), playerfoot, 'X');
+            if (currentMove == "D")
+                putOXInSide(sides.get(1), playerfoot, 'X');
+        }
+    }
+
+    private void makeEmptySides(List<StringBuilder> sides, int size) {
+        StringBuilder emptySide = makeEmptyLine();
+        for (int index = 0; index < size; index++) {
+            sides.add(new StringBuilder(emptySide));
+        }
+    }
+
+    private void putOXInSide(StringBuilder side, int index, char put) {
+        side.setCharAt(2 + index * 4, put);
+    }
+
+    private StringBuilder makeEmptyLine() {
+        StringBuilder tempBuilder = new StringBuilder();
+        tempBuilder.append("[");
+        for (int index = 0; index < playerMove.size(); index++) {
+            tempBuilder.append("   ");
+            if (index + 1 < playerMove.size())
+                tempBuilder.append("|");
+        }
+        tempBuilder.append("]");
+        return tempBuilder;
     }
 
 }
