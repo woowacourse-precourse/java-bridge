@@ -22,8 +22,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeStateResponseDto dto) {
+        System.out.print(START_BRIDGE);
         for (int i = 0; i < dto.getUpSpaces().size(); i++) {
-            System.out.print(START_BRIDGE);
             System.out.print(dto.getUpSpaces().get(i));
             if (i < dto.getUpSpaces().size() - 1) {
                 System.out.print(SPLIT_BRIDGE);
@@ -33,8 +33,8 @@ public class OutputView {
             }
         }
 
+        System.out.print(START_BRIDGE);
         for (int i = 0; i < dto.getDownSpaces().size(); i++) {
-            System.out.print(START_BRIDGE);
             System.out.print(dto.getDownSpaces().get(i));
             if (i < dto.getDownSpaces().size() - 1) {
                 System.out.print(SPLIT_BRIDGE);
