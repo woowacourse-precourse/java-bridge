@@ -49,6 +49,12 @@ public class BridgeGame {
                 break;
             }
         }
+
+        System.out.println("최종 게임 결과");
+        OutputView.getInstance.printResult();
+
+        System.out.println("\n게임 성공 여부: " + gameResult);
+        System.out.println("총 시도한 횟수: " + tried);
     }
 
     /**
@@ -61,8 +67,9 @@ public class BridgeGame {
             System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
             String cont = InputView.getInstance.readGameCommand(Console.readLine());
             if (cont.equals("R")) {
-                this.init();
-                tried++;
+                Bridge.bridge.init();
+                OutputView.getInstance.init();
+                this.tried++;
                 return true;
             }
             if (cont.equals("Q")) {
@@ -71,10 +78,5 @@ public class BridgeGame {
             }
         }
         return true;
-    }
-
-    private void init() {
-        index = 0;
-        count = 1;
     }
 }
