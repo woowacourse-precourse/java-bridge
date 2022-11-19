@@ -106,12 +106,16 @@ public class BridgeGame {
     public void retry(Player player) {
         boolean continueCode = inputView.readGameCommand();
         if (continueCode) {
-            player.initializePosition();
-            player.addTryCount();
-            bridgeMap.initializeBridges();
+            updateGameStatus(player);
             return;
         }
         isWin = false;
         isContinue = false;
+    }
+
+    private void updateGameStatus(Player player) {
+        player.initializePosition();
+        player.addTryCount();
+        bridgeMap.initializeBridges();
     }
 }
