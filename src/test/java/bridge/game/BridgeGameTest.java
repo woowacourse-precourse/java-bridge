@@ -23,14 +23,14 @@ public class BridgeGameTest {
 
     @ParameterizedTest(name = "move test Case {index}")
     @ArgumentsSource(MovingTestData.class)
-    void moveTest(List<String> bridge, String moveRoute, List<String> exceptRoute) {
+    void moveTest(List<String> bridge, List<String> movingRoute) {
         try (MockedConstruction<BridgeMaker> mockBridgeMaker = mockedBridgeMaker(bridge)) {
             BridgeGame bridgeGame = new BridgeGame(bridge.size());
 
-            BridgeGameDto result = bridgeGame.move(moveRoute);
+            BridgeGameDto result = moveByMovingRoute(movingRoute, bridgeGame);
 
             assertThat(result.getBridge()).isEqualTo(bridge);
-            assertThat(result.getRoute()).isEqualTo(exceptRoute);
+            assertThat(result.getRoute()).isEqualTo(movingRoute);
         }
     }
 
@@ -39,8 +39,10 @@ public class BridgeGameTest {
         @Override
         public Stream<? extends Arguments> provideArguments(ExtensionContext context) throws Exception {
             return Stream.of(
-                    Arguments.of(List.of("U","U","D","D"), "U", List.of("U")),
-                    Arguments.of(List.of("U","U","D","D","D"), "D", List.of("D"))
+                    Arguments.of(List.of("U","U","D","D"), List.of("U")),
+                    Arguments.of(List.of("U","U","D","D","D"),  List.of("D")),
+                    Arguments.of(List.of("U","U","D","D"), List.of("U","U")),
+                    Arguments.of(List.of("U","U","D","D","D"),  List.of("U","U","D","U"))
             );
         }
     }
