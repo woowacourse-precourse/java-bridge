@@ -1,7 +1,5 @@
 package bridge.model;
 
-import static bridge.controller.InputController.setBridgeSize;
-
 import java.util.List;
 
 public class Bridge {

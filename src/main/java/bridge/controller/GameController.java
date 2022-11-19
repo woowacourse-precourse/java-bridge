@@ -1,6 +1,6 @@
 package bridge.controller;
 
-import static bridge.controller.InputController.setBridgeSize;
+import static bridge.controller.InputController.getBridgeSize;
 import static bridge.model.FinalResult.isFinalSuccess;
 
 import bridge.BridgeMaker;
@@ -10,7 +10,6 @@ import bridge.model.Bridge;
 import bridge.model.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import java.util.List;
 
 public class GameController {
     private static InputView inputView = new InputView();
@@ -19,21 +18,22 @@ public class GameController {
     public void play() {
 
         outputView.printStartGame();
-        outputView.printBridgeSizeInput();
 
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
         // 다리 길이 입력해 다리 만들기
-        List<String> createdBridge = bridgeMaker.makeBridge(setBridgeSize());
-
-        Bridge bridge = new Bridge(createdBridge);
+        Bridge bridge = new Bridge(bridgeMaker.makeBridge(getBridgeSize()));
 
         // 다리 게임
         BridgeGame bridgegame = new BridgeGame(bridge);
-
         bridgegame.move();
+
+        // 성공, 실패 여부가 결정
         System.out.println(isFinalSuccess());
+        if(isFinalSuccess()) {
+            outputView.printResult();
+        }
 
 
     }

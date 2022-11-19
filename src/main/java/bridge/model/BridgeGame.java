@@ -1,6 +1,6 @@
 package bridge.model;
 
-import static bridge.controller.InputController.setUserSelection;
+import static bridge.controller.InputController.getUserSelection;
 import static bridge.model.Diagram.paintDiagrams;
 import static bridge.model.FinalResult.setFinalSuccess;
 
@@ -28,7 +28,7 @@ public class BridgeGame {
 
         int index;
         for (index = 0; index < bridge.getBridgeSize(); index++) {
-            String position = setUserSelection();
+            String position = getUserSelection();
             if (!bridge.isUserSelectionCorrect(position, bridge.currentBridge(index))) {
                 paintDiagrams(position, Status.DIE);
                 break;
