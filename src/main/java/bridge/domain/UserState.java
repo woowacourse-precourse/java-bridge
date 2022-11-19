@@ -33,6 +33,12 @@ public class UserState {
         return "X";
     }
 
+    public boolean isSuccessOrFail(int bridgeSize) {
+        int last = upLine.size() - 1;
+        return upLine.size() == bridgeSize &&
+                (upLine.get(last).equals("O") || downLine.get(last).equals("O"));
+    }
+
     public void quitChange() {
         quit = !quit;
     }
