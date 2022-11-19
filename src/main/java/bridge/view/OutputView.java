@@ -1,5 +1,6 @@
 package bridge.view;
 
+import static bridge.constant.Output.INPUT_BRIDGE_LENGTH;
 import static bridge.constant.Output.START_GAME;
 
 /**
@@ -20,6 +21,10 @@ public class OutputView {
 
     public void printStart() {
         System.out.println(START_GAME);
+    }
+
+    public void printInputBridgeLength() {
+        System.out.println(INPUT_BRIDGE_LENGTH);
     }
 
     /**
