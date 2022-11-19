@@ -4,10 +4,7 @@ package bridge;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    static final int DOWN_NUM = 0;
-    static final int UP_NUM = 1;
-    static final String DOWN_STRING = "D";
-    static final String UP_STRING = "U";
+
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드

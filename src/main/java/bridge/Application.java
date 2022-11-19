@@ -4,32 +4,60 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
-    private static final int ERROR = -1;
 
     private static int size;
+    private static InputView userInput;
+    private static Bridge bridge;
+    private static String moving;
 
-    static int checkAndGetBridgeSize(InputView inputView) {
+    static void init () {
+        userInput = new InputView();
+        size = initBridgeSize();
+        bridge = initBridge();
+    }
+
+    static int readValidBridgeSize() {
         try {
-            return inputView.readBridgeSize();
+            return userInput.readBridgeSize();
         } catch (IllegalArgumentException e) {
-            OutputView.printException(e);
-            return ERROR;
+            ExceptionHandler.printException(e);
+            return ExceptionHandler.ERROR;
         }
     }
 
-    static Bridge checkAndMakeBridge(InputView inputView) {
-        size = checkAndGetBridgeSize(inputView);
-        while(size == ERROR) {
-            size = checkAndGetBridgeSize(inputView);
+    static int initBridgeSize() {
+        int size = readValidBridgeSize();
+        while(size == ExceptionHandler.ERROR) {
+            size = readValidBridgeSize();
         }
+        return size;
+    }
+
+    static Bridge initBridge() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(size);
         return new Bridge(bridge, size);
     }
 
-    public static void main(String[] args) {
-        InputView inputView = new InputView();
-        Bridge bridge = checkAndMakeBridge(inputView);
+    static String readValidMoving() {
+        try {
+            return userInput.readMoving();
+        } catch (IllegalArgumentException e) {
+            ExceptionHandler.printException(e);
+            return null;
+        }
+    }
 
+    static String setNextMoving() {
+        String moving = readValidMoving();
+        while(moving == null) {
+            moving = readValidMoving();
+        }
+        return moving;
+    }
+
+    public static void main(String[] args) {
+        init();
+        setNextMoving();
     }
 }
