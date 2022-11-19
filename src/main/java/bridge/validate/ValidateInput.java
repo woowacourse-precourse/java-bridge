@@ -38,4 +38,14 @@ public class ValidateInput {
             throw new IllegalArgumentException(INPUT_ONLY_U_OR_D);
         }
     }
+
+    public static void validateRestartGameWhether(String restartGameWhether) {
+        isOnlyROrQ(isInputLength1(restartGameWhether));
+    }
+
+    private static void isOnlyROrQ(char input) {
+        if (input != 'R' && input != 'Q') {
+            throw new IllegalArgumentException(INPUT_ONLY_U_OR_D);
+        }
+    }
 }
