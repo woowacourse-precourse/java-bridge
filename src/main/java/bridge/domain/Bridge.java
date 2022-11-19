@@ -39,9 +39,4 @@ public class Bridge {
     public int hashCode() {
         return Objects.hash(shapes);
     }
-
-    @Override
-    public String toString() {
-        return shapes.toString();
-    }
 }
