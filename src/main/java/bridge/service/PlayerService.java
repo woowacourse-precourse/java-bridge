@@ -17,4 +17,9 @@ public class PlayerService {
         Player player = playerRepository.get();
         return player.getMovedDistance().toInt();
     }
+
+    public void increaseMovedDistance() {
+        Player player = playerRepository.get();
+        playerRepository.update(player.increaseMovedDistance());
+    }
 }

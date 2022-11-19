@@ -19,6 +19,9 @@ public class Application {
 
         String movingDirection = playerController.getMovingDirection();
         int currentDistance = playerController.getCurrentDistance();
-        boolean passResult = bridgeController.isPassable(currentDistance, movingDirection);
+        boolean isPassable = bridgeController.isPassable(currentDistance, movingDirection);
+        if (isPassable) {
+            playerController.increaseMovedDistance();
+        }
     }
 }

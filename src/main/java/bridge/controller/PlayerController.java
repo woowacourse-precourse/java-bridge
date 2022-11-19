@@ -26,4 +26,8 @@ public class PlayerController {
             return getMovingDirection();
         }
     }
+
+    public void increaseMovedDistance() {
+        playerService.increaseMovedDistance();
+    }
 }
