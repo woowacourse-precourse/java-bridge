@@ -44,4 +44,8 @@ public class BridgeResult {
     public boolean isEnd(Bridge bridge) {
         return bridge.getSize() == result.size();
     }
+
+    public boolean checkSuccess(Bridge bridge) {
+        return isEnd(bridge) && result.get(bridge.getSize() - 1);
+    }
 }
