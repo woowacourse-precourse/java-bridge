@@ -36,6 +36,13 @@ public class InputView {
         return false;
     }
 
+    public boolean checkInputCommand(String inputCommand) {
+        if(checkStringSize(inputCommand) && checkFinishGameString(inputCommand)) {
+            return true;
+        }
+        return false;
+    }
+
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
@@ -55,7 +62,14 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-
+        while (true) {
+            try {
+                String userCommand = Console.readLine();
+                if(checkInputCommand(userCommand)) return userCommand;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
+        }
     }
 
     public boolean checkInRange(int input) {
@@ -86,6 +100,13 @@ public class InputView {
             return true;
         }
         throw new IllegalArgumentException("U, D 중에서 입력해주세요");
+    }
+
+    public boolean checkFinishGameString(String s) {
+        if(s.charAt(0) == 'R' || s.charAt(0) == 'Q') {
+            return true;
+        }
+        throw new IllegalArgumentException("R, Q 중에서 입력해주세요");
     }
 
 
