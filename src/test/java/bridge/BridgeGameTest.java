@@ -59,5 +59,4 @@ public class BridgeGameTest {
         assertThat(bridgeGameHost.getPlayerAlive()).isTrue();
         assertThat(bridgeGameHost.getRetry()).isEqualTo(2);
     }
-
 }

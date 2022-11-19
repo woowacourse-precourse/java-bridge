@@ -56,5 +56,4 @@ public class BridgeGameHostTest {
         // then
         assertThat(bridgeGameHost.getResult()).isEqualTo("실패");
     }
-
 }
