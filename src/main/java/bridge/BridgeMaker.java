@@ -25,5 +25,14 @@ public class BridgeMaker {
         return numberList;
     }
 
+    // 0,1로 저장되어있는 list를 D,U list로 변환시켜주는 기능
+    private List<String> intBridgeToStringBridge(List<Integer> numberList) {
+        List<String> bridgeStringList = new ArrayList<>();
+        for(int num : numberList) {
+            if(num == 0) bridgeStringList.add("D");
+            if(num == 1) bridgeStringList.add("U");
+        }
+        return bridgeStringList;
+    }
 
 }
