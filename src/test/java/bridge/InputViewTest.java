@@ -36,4 +36,16 @@ public class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
     }
+
+    @DisplayName("U 또는 D의 입력 방향을 입력했을 때, 정상적으로 값을 읽어들여야 한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"U", "D"})
+    public void 이동_방향_입력_테스트(String input) {
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        InputView inputView = new InputView();
+        String direct = inputView.readMoving();
+
+        assertThat(direct).isEqualTo(input);
+    }
 }
