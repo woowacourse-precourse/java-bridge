@@ -3,22 +3,22 @@ package bridge.service;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
-import bridge.domain.Move;
-
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
+import bridge.domain.Player;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private final Player player = new Player();
     private Bridge bridge;
-    private int distance = 0;
 
     public void createBridge(int bridgeSize) {
-        Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+        bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+    }
+
+    public void newGame() {
+        player.newLife();
     }
 
     /**
@@ -26,7 +26,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String direction) {
+    public boolean move(String direction) {
+        return player.move(bridge, direction);
     }
 
     /**

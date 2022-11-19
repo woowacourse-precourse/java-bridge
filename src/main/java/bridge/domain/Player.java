@@ -7,21 +7,23 @@ import java.util.Map;
 
 public class Player {
     private int moveDistance;
-    private Map<Move, List<MoveResult>> moveResults;
-
-    public Player() {
-        this.moveDistance = 0;
-        this.moveResults = new EnumMap<>(Move.class);
-        initMap();
-    }
+    private Map<Move, List<MoveResult>> moveResults = new EnumMap<>(Move.class);
+    private int lifeCount;
 
     public Map<Move, List<MoveResult>> getMoveResults() {
         return moveResults;
     }
 
-    private void initMap() {
+    private void initMoveResults() {
+        moveResults.clear();
         moveResults.put(Move.UP, new ArrayList<>());
         moveResults.put(Move.DOWN, new ArrayList<>());
+    }
+
+    public void newLife() {
+        lifeCount++;
+        moveDistance = 0;
+        initMoveResults();
     }
 
     public boolean move(Bridge bridge, String direction) {
