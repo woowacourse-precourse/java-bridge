@@ -15,13 +15,12 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(Result result) {
+        printFirstBridge(result);
+        printSecondBridge(result);
+    }
+
+    private void printFirstBridge(Result result) {
         StringBuilder sb = new StringBuilder();
-        printFirstBridge(sb, result);
-        printSecondBridge(sb, result);
-        System.out.println(sb);
-    }
-
-    private void printFirstBridge(StringBuilder sb, Result result) {
         printOpenSquareBracket(sb);
         List<Boolean> isAnswers = result.getIsAnswers();
         List<MoveDirection> directions = result.getDirections();
@@ -43,9 +42,11 @@ public class OutputView {
             }
         }
         printCloseSquareBracket(sb);
+        System.out.print(sb);
     }
 
-    private void printSecondBridge(StringBuilder sb, Result result) {
+    private void printSecondBridge(Result result) {
+        StringBuilder sb = new StringBuilder();
         printOpenSquareBracket(sb);
         List<Boolean> isAnswers = result.getIsAnswers();
         List<MoveDirection> directions = result.getDirections();
@@ -67,6 +68,7 @@ public class OutputView {
             }
         }
         printCloseSquareBracket(sb);
+        System.out.print(sb);
     }
 
     /**
