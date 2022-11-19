@@ -16,6 +16,9 @@ import bridge.Constants.OutputState;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    public void printErrorState(IllegalArgumentException e) {
+        System.out.println(e);
+    }
     public void printStartGame() {
         System.out.println(OutputState.START_GAME);
     }
