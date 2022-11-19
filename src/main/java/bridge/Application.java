@@ -10,9 +10,9 @@ public class Application {
         InputView inputView = new InputView(new Validation());
         OutputView outputView = new OutputView();
 
-        outputView.printStartMessage();
-
         BridgeGame game = new BridgeGame(inputView, outputView);
+
+        outputView.printStartMessage();
         game.start();
     }
 }
