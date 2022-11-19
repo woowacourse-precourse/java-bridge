@@ -35,10 +35,8 @@ public class BridgeMaker {
     private String addBridge(int key) {
         if (key == DOWN) {
             return DOWN_KEY;
-        } else if (key == UP) {
-            return UP_KEY;
         }
-        throw new IllegalArgumentException("0 혹은 1의 값을 입력받아야 합니다.");
+        return UP_KEY;
     }
 
     public String[][] make2DBridge(List<String> bridge) {
