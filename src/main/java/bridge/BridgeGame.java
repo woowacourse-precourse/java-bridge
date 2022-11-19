@@ -18,7 +18,7 @@ public class BridgeGame {
         newBridgePattern();
     }
 
-    public boolean move(int bridgeNum, String moving) {
+    public boolean checkMove(int bridgeNum, String moving) {
         String correctAnswer = correctBridge.get(bridgeNum);
         if (moving.equals(correctAnswer)) {
             if (moving.equals("U")) addMap(CORRECT, NOTHING);
