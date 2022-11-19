@@ -14,7 +14,14 @@ public class Application {
         BridgeMaker maker = new BridgeMaker(generator);
         List<String> ladder = maker.makeBridge(ladderLen);
         BridgeGame bridgeGame = new BridgeGame(inputView, outputView);
-
+        int tryCount = 0;
+        while (true){
+            tryCount += 1;
+            String gameResult = bridgeGame.play(ladder);
+            if (gameResult != "R") {
+                break;
+            }
+        }
 
 
     }

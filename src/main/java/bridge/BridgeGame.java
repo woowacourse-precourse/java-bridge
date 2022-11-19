@@ -16,12 +16,16 @@ public class BridgeGame {
     }
 
 
-    public void play(List<String> ladder) {
+    public String play(List<String> ladder) {
         for (int i=0; i < ladder.size(); i++) {
             String gameResult = move(ladder,i);
-            if (gameResult != "C") { break; }
+            if (gameResult == "Q") {
+                return "F"; //실패
+            } else if (gameResult == "R") {
+                return "R"; //재시작
+            }
         }
-
+        return "S"; //성공
     }
 
 
