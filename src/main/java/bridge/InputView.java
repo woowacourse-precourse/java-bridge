@@ -1,7 +1,7 @@
 package bridge;
 
 import bridge.Util.STATE_CONSTANTS;
-import bridge.Util.Validator;
+import bridge.Util.InputValidator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -13,20 +13,20 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public static int readBridgeSize() {
-        return Validator.validateBridgeInput(Console.readLine());
+        return InputValidator.validateBridgeInput(Console.readLine());
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public static String readMoving() {
-        return Validator.validateCommand(Console.readLine(), STATE_CONSTANTS.MOVE_STATE);
+        return InputValidator.validateCommand(Console.readLine(), STATE_CONSTANTS.MOVE_STATE);
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public static String readGameCommand() {
-        return Validator.validateCommand(Console.readLine(), STATE_CONSTANTS.RETRY_STATE);
+        return InputValidator.validateCommand(Console.readLine(), STATE_CONSTANTS.RETRY_STATE);
     }
 }

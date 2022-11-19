@@ -1,7 +1,7 @@
 package bridge.Util;
 
-public class Validator {
-    private Validator(){}
+public class InputValidator {
+    private InputValidator(){}
 
     public static int validateBridgeInput(String input){
         try{
