@@ -9,14 +9,11 @@ public class BridgeGameStatus {
         this.tryCount = 1;
     }
 
-    public void addTryCount() {
-    }
-
     public boolean canPlayGame() {
         return status.getStatus();
     }
 
-    public String getStatusMessage(){
+    public String getStatusMessage() {
         return status.getMessage();
     }
 
@@ -25,7 +22,11 @@ public class BridgeGameStatus {
     }
 
     public void retryStatus() {
-        tryCount+=1;
+        tryCount += 1;
         status = Status.START;
+    }
+
+    public int getTryCount() {
+        return tryCount;
     }
 }
