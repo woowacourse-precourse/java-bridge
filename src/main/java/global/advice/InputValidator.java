@@ -38,4 +38,16 @@ public class InputValidator {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void checkMoving(String moving) {
+        if (!TOP_ROW.equals(moving) && !UNDER_ROW.equals(moving)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void checkRetryWhether(String retry) {
+        if (!RETRY_SIGNAL.equals(retry) && !QUIT_SIGNAL.equals(retry)) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

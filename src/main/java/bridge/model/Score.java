@@ -1,6 +1,8 @@
 package bridge.model;
 
 import static global.advice.InputValidator.RETRY_SIGNAL;
+import static global.advice.InputValidator.checkMoving;
+import static global.advice.InputValidator.checkRetryWhether;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,7 @@ public class Score {
     }
 
     public boolean goOneStep(Bridge bridge, String moving) {
+        checkMoving(moving);
         this.userStep.add(moving);
         return bridge.canGoOrNot(this.userStep, moving);
     }
@@ -31,6 +34,7 @@ public class Score {
     }
 
     public String judgeRetry(String retry) {
+        checkRetryWhether(retry);
         if (RETRY_SIGNAL.equals(retry)) {
             this.userStep = new ArrayList<>();
             this.retryCount += 1;
