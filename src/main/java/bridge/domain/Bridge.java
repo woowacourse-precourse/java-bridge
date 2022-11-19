@@ -12,6 +12,10 @@ public class Bridge {
         this.bridge = bridge;
     }
 
+    public boolean checkMoveSuccess(String nextPosition, int index) {
+        return isNextPositionSame(nextPosition, bridge.get(index));
+    }
+
     private void validate(List<String> bridge) throws IllegalArgumentException {
         if (isNotInRange(bridge.size())) {
             throw new IllegalArgumentException(ErrorMessage.NOT_IN_RANGE.printMessage());
@@ -20,5 +24,9 @@ public class Bridge {
 
     private boolean isNotInRange(int size) {
         return size < BridgeCondition.MIN.getValue() || size > BridgeCondition.MAX.getValue();
+    }
+
+    private boolean isNextPositionSame(String nextPosition, String bridgePosition) {
+        return nextPosition.equals(bridgePosition);
     }
 }
