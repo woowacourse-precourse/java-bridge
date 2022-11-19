@@ -1,19 +1,19 @@
 # 미션 - 다리 건너기
 
 ## 구현 목록
-* [ ] 다리의 길이 받기 getBridgeSize #GameController
-  * [ ] 멘트 출력 printReadBridgeSize #OutputView
-  * [ ] 입력 받기 readBridgeSize #InputView
-* [ ] 다리 건너기 시작하기 crossBridge #GameController
-  * [ ] 방향 입력 받기 readMoving #InputView
-  * [ ] 방향에 따른 판단하기 judgeMoving 
-  * [ ] 시도한 결과 보여주기 printMap #OutputView
-    * [ ] bridge의 시작과 끝, 구분 부분 출력하기 printDivisionOfBridge
-    * [ ] O, X 올바른 위치에 넣기 printOX
-  * [ ] 틀렸다면 재시도 여부 묻기 retry
-* [ ] 최종 게임 결과 출력하기 printResult
-  * [ ] 게임 성공 여부 출력 printGameSuccess
-  * [ ] 총 시도 횟수 출력 printAttempts
+* [x] 다리의 길이 받기 getBridgeSize #GameController
+  * [x] 멘트 출력 printReadBridgeSize #OutputView
+  * [x] 입력 받기 readBridgeSize #InputView
+* [x] 다리 건너기 시작하기 crossBridge #GameController
+  * [x] 방향 입력 받기 readMoving #InputView
+  * [x] 방향에 따른 판단하기 judgeMoving 
+  * [x] 시도한 결과 보여주기 printMap #OutputView
+    * [x] bridge의 시작과 끝, 구분 부분 출력하기 printDivisionOfBridge
+    * [x] O, X 올바른 위치에 넣기 printOX
+  * [x] 틀렸다면 재시도 여부 묻기 retry
+* [x] 최종 게임 결과 출력하기 printResult
+  * [x] 게임 성공 여부 출력 printGameSuccess
+  * [x] 총 시도 횟수 출력 printAttempts
 
 ## 테스트 항목
   * 다리 길이 입력
