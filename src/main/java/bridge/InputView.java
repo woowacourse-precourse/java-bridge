@@ -11,6 +11,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        new OutputView().printStartGame();
         int bridgeLength = Integer.parseInt(Console.readLine());
         return bridgeLength;
     }
@@ -19,7 +20,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        new OutputView().printMoveDirection();
+        String direction = Console.readLine();
+        return direction;
     }
 
     /**
