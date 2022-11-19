@@ -57,7 +57,7 @@ public class BridgeGame {
                             }
                             return Answer.NONE;
                         }
-                ).limit(step + 1)
+                ).limit(step)
                 .collect(Collectors.toList());
     }
 
@@ -88,7 +88,7 @@ public class BridgeGame {
     }
 
     private Answer checkClearCondition(){
-        if(step == answer.size() - 1){
+        if(step == answer.size()){
             return Answer.END;
         }
         return Answer.CORRECT;
