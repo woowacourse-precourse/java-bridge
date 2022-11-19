@@ -39,9 +39,8 @@ public class BridgeController {
         if (!isUserAnswerCorrect) {
             String gameStatus = inputService.requestStatusOfGame();
             bridgeGame.doFailCase(bridge, user, gameStatus);
+            return;
         }
-        if (isUserAnswerCorrect) {
-            bridgeGame.move(bridge, user);
-        }
+        bridgeGame.move(bridge, user);
     }
 }
