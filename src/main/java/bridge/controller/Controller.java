@@ -33,6 +33,15 @@ public class Controller {
     }
 
     public void playGame(){
-        bridgeGame.move(inputView.readMoving());
+        movePlayer();
+    }
+
+    private void movePlayer(){
+        try{
+            bridgeGame.move(inputView.readMoving());
+        } catch (IllegalArgumentException error){
+            System.out.println("[ERROR] 이동 방향은 'U'/'D' 중 한가지로 입력되어야 합니다. 다시 입력해 주십시오.");
+            movePlayer();
+        }
     }
 }

@@ -9,4 +9,11 @@ public final class Validator {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void validateIsStringOneCharacter(String string, String character1, String character2)
+            throws IllegalArgumentException{
+        if(!string.equals(character1) && !string.equals(character2)){
+            throw new IllegalArgumentException();
+        }
+    }
 }

@@ -14,6 +14,8 @@ public class BridgeGame {
     private final int BRIDGE_MIN_LENGTH = 3;
     private final int BRIDGE_MAX_LENGTH = 20;
     private final int COUNT_ZERO = 0;
+    private final String UPPER_BRIDGE = "U";
+    private final String DOWNER_BRIDGE = "D";
 
     private final List<String> systemBridge;
     private List<String> userBridge = new ArrayList<>();
@@ -36,7 +38,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String nextMove) {
+    public void move(String nextMove) throws IllegalArgumentException{
+        Validator.validateIsStringOneCharacter(nextMove, UPPER_BRIDGE, DOWNER_BRIDGE);
         userBridge.add(nextMove);
     }
 
