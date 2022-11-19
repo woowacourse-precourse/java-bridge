@@ -25,11 +25,11 @@ public class Bridge {
         }
     }
 
-    public String getNowCompartment(int now){
+    public String getNowSpace(int now) {
         return bridge.get(now);
     }
 
-    public int getBridgeLength(){
+    public int getBridgeLength() {
         return bridge.size();
     }
 }

@@ -18,7 +18,7 @@ public class Player {
         isMove = false;
     }
 
-    public void InitRetryPlayer() {
+    public void initRetryPlayer() {
         moveInfo.clear();
 
         validateTotalTry();
@@ -27,8 +27,8 @@ public class Player {
         isMove = false;
     }
 
-    private void validateTotalTry(){
-        if(totalTry >= Integer.MAX_VALUE){
+    private void validateTotalTry() {
+        if (totalTry >= Integer.MAX_VALUE) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE_OVER_NUMBER);
         }
     }
@@ -44,7 +44,7 @@ public class Player {
     public boolean isPlayerMove(Bridge bridge) {
         int now = moveInfo.size() - 1;
         return (moveInfo.get(now))
-                .equals(bridge.getNowCompartment(now));
+                .equals(bridge.getNowSpace(now));
     }
 
     public boolean isClearGame(Bridge bridge) {
@@ -59,14 +59,14 @@ public class Player {
         return isMove;
     }
 
-    public String getMoveResultString(){
-        if(getIsMove()){
+    public String getMoveResultString() {
+        if (getIsMove()) {
             return SUCCESS;
         }
         return FAIL;
     }
 
-    public int getTotalTry(){
+    public int getTotalTry() {
         return totalTry;
     }
 }

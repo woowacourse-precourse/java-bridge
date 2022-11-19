@@ -30,6 +30,14 @@ public class BridgeGame {
         bridge.setBridge(bridgeMaker.makeBridge(size));
     }
 
+    public void initPlayer() {
+        player.initRetryPlayer();
+    }
+
+    public boolean isClearGame() {
+        return player.isClearGame(bridge);
+    }
+
     public boolean move(String move) {
         validateMove(move);
         player.updateMoveInfo(move);
@@ -37,8 +45,8 @@ public class BridgeGame {
         return player.getIsMove();
     }
 
-    private void validateMove(String move){
-        if(!(move.equals(UP) || move.equals(DOWN))){
+    private void validateMove(String move) {
+        if (!(move.equals(UP) || move.equals(DOWN))) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE_INVALID_MOVE);
         }
     }
@@ -48,21 +56,13 @@ public class BridgeGame {
         return gameCommand.equals(RETRY);
     }
 
-    private void validateRetry(String gameCommand){
-        if(!(gameCommand.equals(RETRY) || gameCommand.equals(QUIT))){
+    private void validateRetry(String gameCommand) {
+        if (!(gameCommand.equals(RETRY) || gameCommand.equals(QUIT))) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE_INVALID_RETRY);
         }
     }
 
-    public boolean isClearGame() {
-        return player.isClearGame(bridge);
-    }
-
-    public void initPlayer(){
-        player.InitRetryPlayer();
-    }
-
-    public Player getPlayer(){
+    public Player getPlayer() {
         return player;
     }
 }

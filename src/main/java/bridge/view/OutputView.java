@@ -72,7 +72,7 @@ public class OutputView {
         return BLANK;
     }
 
-    public void printPleaseInputRetry(){
+    public void printPleaseInputRetry() {
         System.out.println(MESSAGE_INPUT_RETRY);
     }
 
