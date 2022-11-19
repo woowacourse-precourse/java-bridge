@@ -9,7 +9,7 @@ public class Bridge {
         this.twoWays = twoWays;
     }
 
-    boolean canGo(Integer index, String way){
+    public boolean canGo(Integer index, String way){
         return twoWays.get(index).equals(way);
     }
 }
