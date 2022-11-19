@@ -21,9 +21,10 @@ public class GameManager {
         ouputView.printGameStart();
         int bridgeSize = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        String moving = "";
-        for (int i = 0; i < bridgeSize; i++) {
-            moving = inputView.readMoving();
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        for (int round = 0; round < bridgeSize; round++) {
+            String moving = inputView.readMoving();
+            String result = bridgeGame.move(round, moving);
         }
     }
 }
