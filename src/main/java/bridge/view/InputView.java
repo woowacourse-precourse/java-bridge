@@ -8,6 +8,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class InputView {
     private static final String ERROR_INPUT_INT = "[ERROR] 숫자만 입력 가능합니다.";
     private static final String MESSAGE_INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
+    private static final String MESSAGE_INPUT_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -17,7 +18,7 @@ public class InputView {
         String input = readLine();
         try {
             return Integer.parseInt(input);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ERROR_INPUT_INT);
         }
     }
@@ -26,6 +27,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+        System.out.println(MESSAGE_INPUT_MOVING);
         return readLine();
     }
 
