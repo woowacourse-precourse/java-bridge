@@ -3,14 +3,23 @@ package bridge;
 import java.util.List;
 
 public class BridgeGame {
+    private static BridgeGame bridgeGame;
+
     private final InputView inputView;
     private final BridgeSizeValidator bridgeSizeValidator;
     private final BridgeMaker bridgeMaker;
 
-    public BridgeGame() {
+    private BridgeGame() {
         this.inputView = new InputView();
         this.bridgeSizeValidator = new BridgeSizeValidator();
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    }
+
+    public static BridgeGame getBridgeGame() {
+        if (bridgeGame == null) {
+            bridgeGame = new BridgeGame();
+        }
+        return bridgeGame;
     }
 
     public void runGame() {
