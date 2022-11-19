@@ -127,6 +127,20 @@ class BridgeGameTest {
         assertThat(result1.get(1)).isEqualTo(List.of("O", "O", "O"));
     }
 
+    @DisplayName("총 시도한 횟수를 계산한다.")
+    @Test
+    void 총_시도한_횟수를_계산하는_기능_테스트() {
+        //given
+        BridgeGame bridgeGameCase1 = new BridgeGame(new TestNumberGenerator(newArrayList(0,1,1)),3);
+        bridgeGameCase1.retry();
+        bridgeGameCase1.retry();
+        //when
+        int result1 = bridgeGameCase1.getTotalAttempt();
+
+        //then
+        assertThat(result1).isEqualTo(3);
+    }
+
     static class TestNumberGenerator implements BridgeNumberGenerator {
 
         private final List<Integer> numbers;
