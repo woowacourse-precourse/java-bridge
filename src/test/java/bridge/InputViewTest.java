@@ -6,9 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class InputViewTest {
     private InputView inputView;
@@ -34,5 +32,11 @@ class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-
+    @DisplayName(" U 와 D 중 하나가 아닐때 예외처리")
+    @ValueSource(strings = {"0", "-1", "u", "R"})
+    @ParameterizedTest
+    void movingValidate(String input) {
+        assertThatThrownBy(() -> inputView.movingValidate(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
