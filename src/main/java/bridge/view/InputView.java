@@ -20,7 +20,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String moving = receiveInput();
+        validateMovingInput(moving);
+        return moving;
     }
 
     /**
@@ -37,6 +39,12 @@ public class InputView {
     private void validateNumber(String input) {
         if (!input.matches("^\\d*$")) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
+        }
+    }
+
+    private void validateMovingInput(String input) {
+        if (!input.equals("U") && !input.equals("D")) {
+            throw new IllegalArgumentException("[ERROR] U 또는 D를 입력해 주세요.");
         }
     }
 }
