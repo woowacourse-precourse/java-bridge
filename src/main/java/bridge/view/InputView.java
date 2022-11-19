@@ -2,8 +2,6 @@ package bridge.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.Scanner;
-
 import static bridge.validator.BlockValidator.validateInvalidRetryType;
 import static bridge.validator.BlockValidator.validateInvalidType;
 import static bridge.validator.NumberValidator.validateNonNumeric;
