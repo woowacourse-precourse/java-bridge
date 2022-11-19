@@ -15,4 +15,18 @@ public class PlayerBridge {
     public void addDownRoot(String moving){
         downBridge.add(moving);
     }
+
+    public String makePlayerBridgeForm(){
+        return makeBridgeForm(upBridge) +"\n"+makeBridgeForm(downBridge);
+    }
+
+    private static String makeBridgeForm(List<String> upList) {
+        String val = "[";
+        for (String s : upList) {
+            val+=" " + s+" |";
+        }
+        val = val.substring(0, val.length()-1);
+        val += "]";
+        return val;
+    }
 }
