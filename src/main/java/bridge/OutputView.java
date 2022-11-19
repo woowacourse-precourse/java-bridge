@@ -34,7 +34,7 @@ public class OutputView {
             System.out.print(" ");
             if(i != cur - 1) System.out.print("|");
         }
-        System.out.print("]");
+        System.out.print("]\n");
     }
 
     /**
@@ -42,6 +42,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(int last, int cnt) {
+        System.out.print("최종 게임 결과\n");
+        printMap("U",last);
+        printMap("D",last);
+        System.out.println();
+        System.out.print("게임 성공 여부: ");
+        if(last == 0) System.out.println("성공");
+        else System.out.println("실패");
+        System.out.printf("총 시도한 횟수: %d\n",cnt);
     }
 }
