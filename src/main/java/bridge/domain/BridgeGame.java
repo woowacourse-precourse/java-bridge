@@ -46,7 +46,4 @@ public class BridgeGame {
         user.resetCurrentBridge();
         user.increaseTrialCount();
     }
-
-
-
 }
