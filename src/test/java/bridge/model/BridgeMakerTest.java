@@ -18,4 +18,13 @@ class BridgeMakerTest {
         assertThatThrownBy(() -> bridgeMaker.validateSize(size))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("무작위로 생성된 값이 0이나 1이 아닌 경우 예외 처리")
+    @ParameterizedTest
+    @CsvSource({"-1", "2", "1.5"})
+    void validateBridgeRandomNumberGenerator() {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        assertThatThrownBy(() -> bridgeMaker.validateBridgeNumber())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
