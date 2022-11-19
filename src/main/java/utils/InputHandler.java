@@ -1,4 +1,4 @@
-package controller;
+package utils;
 
 import utils.validators.BridgeSizeValidator;
 import utils.validators.GameCommandValidator;
@@ -6,7 +6,7 @@ import utils.validators.MovingValidator;
 import view.InputView;
 import view.OutputView;
 
-public class InputController {
+public class InputHandler {
 
     InputView inputView = new InputView();
 
