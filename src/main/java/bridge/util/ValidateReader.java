@@ -12,7 +12,7 @@ public class ValidateReader {
         T input = null;
         do {
             try {
-                input = expression.apply();
+                input = expression.read();
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
