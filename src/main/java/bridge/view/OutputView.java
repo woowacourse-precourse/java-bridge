@@ -32,17 +32,21 @@ public class OutputView {
         StringBuilder sb = new StringBuilder("[ ");
 
         for(int i=0; i<result.size(); i++) {
-            sb.append(" ");
-            if(bridge.get(i).equals(stair) && result.get(i).equals(MarkCommand.Possible.get())) {
-                sb.replace(sb.length() - 1, sb.length(), MarkCommand.Possible.get());
-            }
-            if(!bridge.get(i).equals(stair) && result.get(i).equals(MarkCommand.Impossible.get())) {
-                sb.replace(sb.length() - 1, sb.length(), MarkCommand.Impossible.get());
-            }
+            sb.append(getMarkCommand(bridge.get(i), result.get(i), stair));
             sb.append(" | ");
         }
 
         return sb.replace(sb.length()-2, sb.length()-1, "]").toString();
+    }
+
+    private static String getMarkCommand(String bridgeMark, String resultMark, String stair) {
+        if(bridgeMark.equals(stair) && resultMark.equals(MarkCommand.Possible.get())) {
+            return MarkCommand.Possible.get();
+        }
+        if(!bridgeMark.equals(stair) && resultMark.equals(MarkCommand.Impossible.get())) {
+            return MarkCommand.Impossible.get();
+        }
+        return " ";
     }
 
     /**
