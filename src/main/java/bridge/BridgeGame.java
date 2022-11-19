@@ -8,9 +8,11 @@ import java.util.List;
 public class BridgeGame {
 
     private final InputView inputView;
+    private final OutputView outputView;
 
-    public BridgeGame(InputView inputView) {
+    public BridgeGame(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
+        this.outputView = outputView;
     }
 
 
@@ -20,9 +22,9 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(List<String> ladder) {
-        for (String dir : ladder) {
+        for (int i=0; i < ladder.size(); i++) {
             String moveDir = inputView.readMoving();
-            if (moveDir.equals(dir)) {
+            if (moveDir.equals(ladder.get(i))) {
                 System.out.println("건널 수 있음.");
                 continue;
             }
