@@ -1,7 +1,5 @@
 package bridge.view;
 
-import static bridge.ExceptionConst.*;
-
 import bridge.domain.ResultFlag;
 import bridge.domain.Map;
 import java.util.List;
@@ -46,18 +44,8 @@ public class OutputView {
     public void printResult(Map map, ResultFlag result, int tryCount) {
         System.out.println("최종 게임 결과");
         printMap(map);
-        System.out.printf("게임 성공 여부: %s%n", successOrFail(result));
+        System.out.printf("게임 성공 여부: %s%n", result.getMean());
         System.out.printf("총 시도한 횟수: %d", tryCount);
-    }
-
-    private String successOrFail(ResultFlag result) {
-        if (result == ResultFlag.SUCCESS) {
-            return "성공";
-        }
-        if (result == ResultFlag.FAIL) {
-            return "실패";
-        }
-        throw new IllegalArgumentException(EXCEPTION_MESSAGE_SUCCESS_OR_FAIL);
     }
 
     public void printGameStartMessage() {
