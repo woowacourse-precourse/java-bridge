@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.domain.constant.BridgeComponent;
+import bridge.domain.constant.Direction;
 import java.util.Objects;
 
 public class BridgeGameResult {

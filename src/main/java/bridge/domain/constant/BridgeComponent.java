@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.constant;
 
 public enum BridgeComponent {
     BRIDGE_START("["),

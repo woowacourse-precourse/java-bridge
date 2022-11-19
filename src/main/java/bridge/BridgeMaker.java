@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.domain.Direction;
+import bridge.domain.constant.Direction;
 import java.util.ArrayList;
 import java.util.List;
 
