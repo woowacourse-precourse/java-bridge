@@ -1,13 +1,13 @@
 package bridge.controller;
 
+import static bridge.domain.BridgeConstants.RETRY;
+
 import bridge.domain.Bridge;
 import bridge.BridgeGame;
 import bridge.ui.InputView;
 import bridge.ui.OutputView;
 
 public class GameController {
-    private static final String CONTINUE = "R";
-    private static final String QUIT = "Q";
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -43,35 +43,35 @@ public class GameController {
             outputView.printUserChoiceOpening();
             try {
                 String choice = inputView.readMoving(inputView.userInput());
-                move(choice);
-                continueOrQuitIfFailed(bridgeGame.lastMoveMatches());
+                moveNextStep(choice);
+                retryOrQuitIfFailed(bridgeGame.lastMoveMatches());
             } catch (IllegalArgumentException exception) {
                 outputView.printErrorMessage(exception.getMessage());
             }
         }
     }
 
-    private void move(String choice) {
+    private void moveNextStep(String choice) {
         bridgeGame.move(choice);
         outputView.printMap(bridgeGame.matchResults(), bridgeGame.getPlayersMove());
     }
 
-    private void continueOrQuitIfFailed(boolean success) {
+    private void retryOrQuitIfFailed(boolean success) {
         if (!success) {
             outputView.printGameContinueOpening();
             try {
                 String cmd = inputView.readGameCommand(inputView.userInput());
-                decideNextStep(cmd);
+                decideAction(cmd);
             } catch (IllegalArgumentException exception) {
                 outputView.printErrorMessage(exception.getMessage());
-                continueOrQuitIfFailed(success);
+                retryOrQuitIfFailed(success);
             }
 
         }
     }
 
-    private void decideNextStep(String cmd) {
-        if (cmd.equals(CONTINUE)) {
+    private void decideAction(String cmd) {
+        if (cmd.equals(RETRY)) {
             bridgeGame.retry();
             crossToOtherSide();
         }
