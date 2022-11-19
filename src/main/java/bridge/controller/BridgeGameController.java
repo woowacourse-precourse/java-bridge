@@ -32,5 +32,29 @@ public class BridgeGameController {
         return new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
+    public void startGame() {
+        play();
+        outputView.printResult();   // TODO 최종 결과 출력 기능 추가 해야함
+    }
+
+    private void play() {
+        Boolean isMoved;
+        do {
+            String direction = inputView.readMoving();
+            isMoved = bridgeGame.move(direction);
+            outputView.printMap(); // TODO 진행 중인 맵을 출력하는 기능 추가 해야함
+            if (bridgeGame.isEnd()) {
+                return;
+            }
+        } while (isMoved);
+        retry();
+    }
+
+    private void retry() {
+        String command = inputView.readGameCommand();
+        if (bridgeGame.retry(command)) {
+            play();
+        }
+    }
 
 }
