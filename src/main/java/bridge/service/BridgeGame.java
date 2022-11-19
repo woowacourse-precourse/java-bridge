@@ -28,30 +28,29 @@ public class BridgeGame {
     private List<StepResult> crossBridge(Bridge bridge, TryCount tryCount) {
         tryCount.addCount();
         List<StepResult> stepHistory = new ArrayList<>();
-
         for (Step step : bridge.getSteps()) {
-            StepResult stepResult = stepForward(step);
-            stepHistory.add(stepResult);
-            outputView.printMap(stepHistory);
-
+            StepResult stepResult = moveForward(step, stepHistory);
             if (!stepResult.isCorrect()) {
-                outputView.printAskingGameCommandMessage();
-                String command = inputView.readGameCommand();
-                if (command.equals(Command.R.toString())) {
-                    return retry(bridge, tryCount);
-                }
-                if (command.equals(Command.Q.toString())) {
-                    return stepHistory;
-                }
+                return handleFailure(bridge, tryCount, stepHistory);
             }
         }
-
         return stepHistory;
     }
 
-    private StepResult stepForward(Step answerStep) {
-        Step nextStep = getNextStep();
-        return move(nextStep, answerStep);
+    private List<StepResult> handleFailure(Bridge bridge, TryCount tryCount, List<StepResult> stepHistory) {
+        outputView.printAskingGameCommandMessage();
+        String command = inputView.readGameCommand();
+        if (command.equals(Command.R.toString())) {
+            return retry(bridge, tryCount);
+        }
+        return stepHistory;
+    }
+
+    private StepResult moveForward(Step answerStep, List<StepResult> stepHistory) {
+        StepResult stepResult = move(getNextStep(), answerStep);
+        stepHistory.add(stepResult);
+        outputView.printMap(stepHistory);
+        return stepResult;
     }
 
     private Step getNextStep() {

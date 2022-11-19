@@ -1,4 +1,4 @@
-package bridge.system.controller;
+package bridge.controller;
 
 import bridge.service.BridgeGame;
 import bridge.system.util.BridgeMaker;
@@ -28,16 +28,15 @@ public class GameController {
 
         Bridge bridge = makeBridge();
         GameResult gameResult = bridgeGame.doGame(bridge);
+
         handleGameResult(bridge, gameResult);
     }
 
     private void handleGameResult(Bridge bridge, GameResult gameResult) {
-        if (bridge.size() == gameResult.getStepResults().size()) {
+        if (gameResult.isFinishedFrom(bridge)) {
             handleSuccess(gameResult);
         }
-        if (bridge.size() != gameResult.getStepResults().size()) {
-            handleFailure(gameResult);
-        }
+        handleFailure(gameResult);
     }
 
     private void handleSuccess(GameResult gameResult) {
@@ -46,7 +45,6 @@ public class GameController {
 
     private void handleFailure(GameResult gameResult) {
         outputView.printResult(gameResult, false);
-
     }
 
     private Bridge makeBridge() {

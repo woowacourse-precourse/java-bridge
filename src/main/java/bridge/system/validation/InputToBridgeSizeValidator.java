@@ -12,8 +12,7 @@ public class InputToBridgeSizeValidator {
 
     public static void validate(String target) {
         isTargetOnlyNaturalNumber(target);
-        int targetNumber = convertToNumber(target);
-        isTargetInValidBridgeSize(targetNumber);
+        isTargetInValidBridgeSize(convertToNumber(target));
     }
 
     private static void isTargetOnlyNaturalNumber(String target) {

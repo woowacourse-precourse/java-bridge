@@ -1,7 +1,7 @@
 package bridge.system;
 
 import bridge.service.BridgeGame;
-import bridge.system.controller.GameController;
+import bridge.controller.GameController;
 import bridge.system.util.BridgeMaker;
 import bridge.system.util.BridgeMessageMaker;
 import bridge.system.util.BridgeNumberGenerator;
@@ -29,8 +29,7 @@ public class DependencyContainer {
 
     public static InputViewInterface inputView() {
         InputViewInterface target = new InputView();
-        InvocationHandler invocationHandler
-                = new InputViewExceptionHandlingProxy(target, outputView());
+        InvocationHandler invocationHandler = new InputViewExceptionHandlingProxy(target, outputView());
         return (InputViewInterface) Proxy.newProxyInstance(
                 InputViewInterface.class.getClassLoader(),
                 new Class[]{InputViewInterface.class},

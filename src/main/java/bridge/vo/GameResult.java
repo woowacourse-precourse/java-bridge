@@ -19,4 +19,8 @@ public class GameResult {
     public TryCount getTryCount() {
         return tryCount;
     }
+
+    public boolean isFinishedFrom(Bridge bridge) {
+        return stepResults.size() == bridge.size();
+    }
 }

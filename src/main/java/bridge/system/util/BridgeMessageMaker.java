@@ -20,24 +20,30 @@ public class BridgeMessageMaker {
         StringBuilder downBridgeBuilder = new StringBuilder();
 
         makeStartOfBridge(upBridgeBuilder, downBridgeBuilder);
-
-        Iterator<StepResult> iterator = results.iterator();
-        while (iterator.hasNext()) {
-            StepResult result = iterator.next();
-            if (result.isCorrect()) {
-                handleCorrect(upBridgeBuilder, downBridgeBuilder, result.getBridgeStep());
-            }
-            if (!result.isCorrect()) {
-                handleFailure(upBridgeBuilder, downBridgeBuilder, result.getBridgeStep());
-            }
-            if (iterator.hasNext()) {
-                addSeparator(upBridgeBuilder, downBridgeBuilder);
-            }
-        }
-
+        makeStepsOfBridge(results, upBridgeBuilder, downBridgeBuilder);
         makeEndOfBridge(upBridgeBuilder, downBridgeBuilder);
 
         return makeResult(upBridgeBuilder, downBridgeBuilder);
+    }
+
+    private void makeStepsOfBridge(List<StepResult> results, StringBuilder upBridgeBuilder, StringBuilder downBridgeBuilder) {
+        Iterator<StepResult> iterator = results.iterator();
+        while (iterator.hasNext()) {
+            makeEachStepOfBridge(upBridgeBuilder, downBridgeBuilder, iterator);
+        }
+    }
+
+    private void makeEachStepOfBridge(StringBuilder upBridgeBuilder, StringBuilder downBridgeBuilder, Iterator<StepResult> iterator) {
+        StepResult result = iterator.next();
+        if (result.isCorrect()) {
+            handleCorrect(upBridgeBuilder, downBridgeBuilder, result.getBridgeStep());
+        }
+        if (!result.isCorrect()) {
+            handleFailure(upBridgeBuilder, downBridgeBuilder, result.getBridgeStep());
+        }
+        if (iterator.hasNext()) {
+            addSeparator(upBridgeBuilder, downBridgeBuilder);
+        }
     }
 
     private void handleCorrect(StringBuilder upBridgeBuilder, StringBuilder downBridgeBuilder, Step step) {
