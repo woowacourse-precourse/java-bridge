@@ -36,9 +36,15 @@ public class BridgeGame {
     public void retry() {
     }
 
-    public int getBridgeLength() {
+    public int getBridgeLength() throws IllegalArgumentException {
         this.inputView.printPromptForBridgeLength();
         String input = inputView.readBridgeLength();
+
+        BridgeLengthValidationCode validationResult = this.bridgeLengthValidator.validateBridgeLength(input);
+
+        if (validationResult != BridgeLengthValidationCode.VALID) {
+            throw new IllegalArgumentException(validationResult.getErrorMessage());
+        }
 
         return Integer.parseInt(input);
     }
