@@ -6,6 +6,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import bridge.domain.BridgeStatus;
+import bridge.domain.GameStatus;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -63,4 +64,18 @@ class BridgeGameTest {
         assertThat(retry).isEqualTo(result);
     }
 
+    @DisplayName("retry 요청시 true인 경우 userBridge 정보 및 게임 상태 초기화")
+    @Test
+    void resetUserBridgeAndGameStatusWhenRetryEqualsTrue() {
+        // given
+        when(bridgeMaker.makeBridge(anyInt())).thenReturn(List.of("U", "D", "U"));
+        bridgeGame.createBridge(3);
+
+        // when
+        bridgeGame.retry("R");
+
+        // then
+        assertThat(bridgeStatusSaver.getBridgeStatus().getUserBridge()).isEmpty();
+        assertThat(bridgeStatusSaver.getBridgeStatus().getGameStatus()).isEqualTo(GameStatus.IN_PROGRESS);
+    }
 }
