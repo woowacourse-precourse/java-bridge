@@ -12,9 +12,9 @@ public class InputView {
     private static final String ERROR_MESSAGE_SIZE_RANGE = "[ERROR] 3이상 20이하로 입력해주세요.";
 
     public int getBridgeSize() {
-        int result = 0;
         OutputView.printMessage(ENTER_BRIDGE_SIZE);
-        while (readBridgeSize(Console.readLine()) == 0) {
+        int result = readBridgeSize(Console.readLine());
+        while (result == 0) {
             result = readBridgeSize(Console.readLine());
         }
         return result;
