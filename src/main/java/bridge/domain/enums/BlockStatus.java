@@ -1,5 +1,8 @@
 package bridge.domain.enums;
 
+import static bridge.messages.ErrorMessage.BLOCK_SYMBOL_ERROR;
+import static bridge.messages.ErrorMessage.RANDOM_NUMBER_ERROR;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,7 +29,7 @@ public enum BlockStatus {
         return Arrays.stream(BlockStatus.values())
                 .filter(blockStatus -> blockStatus.hasCrossableSymbol(symbolBlock))
                 .findFirst()
-                .get();
+                .orElseThrow(() -> new IllegalArgumentException(BLOCK_SYMBOL_ERROR));
     }
 
     private boolean hasCrossableSymbol(final String symbolBlock) {
@@ -44,7 +47,7 @@ public enum BlockStatus {
         return Arrays.stream(BlockStatus.values())
                 .filter(blockStatus -> blockStatus.hasCrossableNumber(crossableNumber))
                 .findFirst()
-                .orElseThrow()
+                .orElseThrow(() -> new IllegalArgumentException(RANDOM_NUMBER_ERROR))
                 .crossableSymbol;
     }
 
