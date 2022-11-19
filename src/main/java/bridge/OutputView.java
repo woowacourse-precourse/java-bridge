@@ -22,7 +22,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<String> movementsInUpBridge, List<String> movementsInDownBridge,
+                            int trialCount, InformationMessage successOrNot) {
+        printEndMessage();
+        printMap(movementsInUpBridge, movementsInDownBridge);
+        System.out.println(InformationMessage.GAME_IS_SUCCESSFUL.getMessage() + successOrNot.getMessage());
+        System.out.println(InformationMessage.TRIAL_COUNT.getMessage() + trialCount);
     }
 
     private void printUpBridgeMap(List<String> movementsInUpBridge) {
@@ -35,6 +40,10 @@ public class OutputView {
 
     public void printStartMessage() {
         System.out.println(InformationMessage.START.getMessage());
+    }
+
+    public void printEndMessage() {
+        System.out.println(InformationMessage.END.getMessage());
     }
 
     public void printBridgeSizeInputMessage() {

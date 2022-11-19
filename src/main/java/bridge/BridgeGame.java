@@ -11,9 +11,11 @@ import java.util.stream.IntStream;
 public class BridgeGame {
     private final Bridge bridge;
     private List<String> movements;
+    private int trialCount;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
+        trialCount = 1;
         initMovements();
     }
 
@@ -36,6 +38,7 @@ public class BridgeGame {
     public boolean retry(String selectedProgress) {
         if (GameCommand.RETRY.isEqual(selectedProgress)) {
             initMovements();
+            trialCount++;
             return true;
         }
 
@@ -64,6 +67,10 @@ public class BridgeGame {
 
     public boolean isFinished() {
         return bridge.isEndPoint(movements.size());
+    }
+
+    public int getTrialCount() {
+        return trialCount;
     }
 
     private String getBlockResult(BridgePosition bridgePosition, int index) {

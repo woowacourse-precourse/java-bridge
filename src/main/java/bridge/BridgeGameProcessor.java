@@ -14,12 +14,24 @@ public class BridgeGameProcessor {
     public void play() {
         outputView.printStartMessage();
         BridgeGame bridgeGame = setBridgeGame(setBridge());
-        while (oneStage(bridgeGame) && !bridgeGame.isFinished()) {
+        while (isContinue(bridgeGame)) {
         }
 
     }
 
-    private boolean oneStage(BridgeGame bridgeGame) {
+    private boolean isContinue(BridgeGame bridgeGame) {
+        if (!isPlayStage(bridgeGame)) {
+            outputView.printResult(bridgeGame.getMapOfUpBridge(), bridgeGame.getMapOfDownBridge(), bridgeGame.getTrialCount(), InformationMessage.FAILURE);
+            return false;
+        }
+        if (bridgeGame.isFinished()) {
+            outputView.printResult(bridgeGame.getMapOfUpBridge(), bridgeGame.getMapOfDownBridge(), bridgeGame.getTrialCount(), InformationMessage.SUCCESS);
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isPlayStage(BridgeGame bridgeGame) {
         boolean moving = isMoving(bridgeGame);
         outputView.printMap(bridgeGame.getMapOfUpBridge(), bridgeGame.getMapOfDownBridge());
         if (moving) {
