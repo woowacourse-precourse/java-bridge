@@ -36,6 +36,8 @@ public class BridgeGame {
             }
             return GameStatus.MOVE_SUCCESS;
         } else {
+            // 마지막 값을 X로 변경
+            footPrint.failAtLast();
             result.recordFail(footPrint);
             return GameStatus.FAIL;
         }
@@ -66,5 +68,9 @@ public class BridgeGame {
 
     public Result getResult() {
         return result;
+    }
+
+    public FootPrint getFootPrint() {
+        return footPrint;
     }
 }

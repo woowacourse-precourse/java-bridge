@@ -72,7 +72,7 @@ public class BridgeGameController {
             GameStatus movingResult = game.move(footrestLocation);
 
             // game에게 발자취를 꺼낸다
-            System.out.println("movingResult is " + movingResult);
+            outputView.printMap(game.getFootPrint());
             if (movingResult == GameStatus.MOVE_SUCCESS) {
                 return moveUser();
             }
