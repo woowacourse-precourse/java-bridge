@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.condition.Condition;
 import bridge.condition.ConditionGenerator;
+import bridge.enums.SystemOperation;
 import bridge.validator.Validator;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -34,7 +35,7 @@ public class InputView {
 
         Condition notPassCondition = Validator.getNotPassCondition(conditions, input);
 
-        if (notPassCondition == null) {
+        if (notPassCondition != null) {
             throw new IllegalArgumentException();
         }
 
@@ -44,17 +45,17 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public static Direction readMoving() {
+    public static String readMoving() {
         String input = Console.readLine();
         List<Condition> conditions = ConditionGenerator.getGameActionCondition();
 
         Condition notPassCondition = Validator.getNotPassCondition(conditions, input);
 
-        if (notPassCondition == null) {
+        if (notPassCondition != null) {
             throw new IllegalArgumentException();
         }
 
-        return Direction.valueOf(input);
+        return input;
     }
 
     /**
@@ -66,7 +67,7 @@ public class InputView {
 
         Condition notPassCondition = Validator.getNotPassCondition(conditions, input);
 
-        if (notPassCondition == null) {
+        if (notPassCondition != null) {
             throw new IllegalArgumentException();
         }
 
