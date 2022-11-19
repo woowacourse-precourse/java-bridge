@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.domain.Bridge;
 import bridge.type.GameStatus;
+import bridge.type.PassCondition;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,11 +24,21 @@ class BridgeGameTest {
         bridgeGame = new BridgeGame(bridge, gameStatusOperator);
     }
 
-    @DisplayName("플레이어가 다리에서 한 칸 이동한다.")
+    @DisplayName("플레이어가 건널 수 없는 칸을 선택한 경우 FAIL을 반환한다.")
     @Test
-    void move() {
-        bridgeGame.move();
+    void moveNonPassableBlock() {
+        PassCondition passCondition = bridgeGame.move("D");
         Integer currentPosition = gameStatusOperator.getCurrentPosition();
+        assertThat(passCondition).isEqualTo(PassCondition.FAIL);
+        assertThat(currentPosition).isEqualTo(-1);
+    }
+
+    @DisplayName("플레이어가 건널 수 있는 칸을 선택한 경우 PASS를 반환한다.")
+    @Test
+    void movePassableBlock() {
+        PassCondition passCondition = bridgeGame.move("U");
+        Integer currentPosition = gameStatusOperator.getCurrentPosition();
+        assertThat(passCondition).isEqualTo(PassCondition.PASS);
         assertThat(currentPosition).isEqualTo(0);
     }
 
