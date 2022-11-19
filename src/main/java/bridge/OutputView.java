@@ -17,11 +17,13 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> bridgeMoved, int currentPosition) {
-        int bridgeSize = currentPosition;
+    public void printMap(List<List<String>> bridgeValues) {
 
-        printBridgeUpper(bridgeMoved, bridgeSize);
-        printBridgeLower(bridgeMoved, bridgeSize);
+        List<String> bridgeUpperValues = bridgeValues.get(0);
+        List<String> bridgeLowerValues = bridgeValues.get(1);
+
+        printBridge(bridgeUpperValues);
+        printBridge(bridgeLowerValues);
     }
 
     /**
@@ -29,43 +31,19 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<String> bridgeMoved, int currentPosition, GameStatus gameStatus) {
+    public void printResult(List<List<String>> bridgeValues, GameStatus gameStatus) {
         System.out.println("최종 게임 결과");
 
-        printMap(bridgeMoved, currentPosition);
+        printMap(bridgeValues);
 
         System.out.println("게임 성공 여부: " + gameStatus.isGameWon());
         System.out.println("총 시도한 횟수: " + gameStatus.getTryCount());
     }
 
-    private void printBridgeUpper(List<String> bridgeMoved, int bridgeSize) {
-        System.out.print("[");
-
-        for (int idx = 0; idx < bridgeSize - 1; idx++) {
-            System.out.print(moveBridge(bridgeMoved, idx, "U"));
-            System.out.print("|");
-        }
-        System.out.print(moveBridge(bridgeMoved, bridgeSize - 1, "U"));
-
-        System.out.print("]\n");
-    }
-
-    private void printBridgeLower(List<String> bridgeMoved, int bridgeSize) {
-        System.out.print("[");
-
-        for (int idx = 0; idx < bridgeSize - 1; idx++) {
-            System.out.print(moveBridge(bridgeMoved, idx, "D"));
-            System.out.print("|");
-        }
-        System.out.print(moveBridge(bridgeMoved, bridgeSize - 1, "D"));
-
-        System.out.print("]\n");
-    }
-
-    private String moveBridge(List<String> bridgeMoved, int idx, String moveTo) {
-        if (bridgeMoved.get(idx).equals(moveTo)) {
-            return " O ";
-        }
-        return "   ";
+    private void printBridge(List<String> bridgeValues) {
+        System.out.print("[ ");
+        String join = String.join(" | ", bridgeValues);
+        System.out.print(join);
+        System.out.println(" ]");
     }
 }

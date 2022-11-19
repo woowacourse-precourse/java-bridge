@@ -74,7 +74,7 @@ public class BridgeGame {
         if (bridgeMoved.get(idx).equals(moveTo)) {
             return isMovable(idx);
         }
-        return "blank";
+        return " ";
     }
 
     public List<String> getBridgeMoved() {

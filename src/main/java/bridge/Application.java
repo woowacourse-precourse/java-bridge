@@ -16,7 +16,7 @@ public class Application {
         for (int i = 0; i < bridgeSize; i++) {
             String moveTo = inputView.readMoving();
             List<String> bridgeMoved = bridgeGame.move(moveTo);
-            outputView.printMap(bridgeMoved, bridgeMoved.size());
+//            outputView.printMap(bridgeMoved, bridgeMoved.size());
         }
 
 

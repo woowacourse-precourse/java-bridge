@@ -19,11 +19,10 @@ class OutputViewTest {
     void printMap() {
         OutputView outputView = new OutputView();
 
-        List<String> bridgeMoved = List.of("U", "D", "U", "U");
-        for (int curPos = 1; curPos <= bridgeMoved.size(); curPos++) {
-            outputView.printMap(bridgeMoved, curPos);
-            System.out.println();
-        }
+        List<List<String>> bridgeValues = List.of(List.of("O", " ", "O", "X"), List.of(" ", "O", " ", " "));
+
+        outputView.printMap(bridgeValues);
+        System.out.println();
     }
 
     @Test
@@ -32,8 +31,8 @@ class OutputViewTest {
         GameStatus gameStatus = new GameStatus();
         gameStatus.setGameWon(true);
         gameStatus.setTryCount(4);
-        List<String> bridgeMoved = List.of("U", "D", "U", "U");
+        List<List<String>> bridgeValues = List.of(List.of("O", " ", "O", "O"), List.of(" ", "O", " ", " "));
 
-        outputView.printResult(bridgeMoved, 4, gameStatus);
+        outputView.printResult(bridgeValues, gameStatus);
     }
 }
