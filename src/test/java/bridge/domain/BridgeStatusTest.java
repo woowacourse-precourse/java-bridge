@@ -40,7 +40,7 @@ class BridgeStatusTest {
         }).isInstanceOf(IllegalStateException.class);
     }
 
-    @DisplayName("게임 상태가 성공인 경우 재시작 요청 여부는 true")
+    @DisplayName("게임 상태가 성공인 경우 재시작 요청 여부는 false")
     @Test
     void returnTrueWhenGameStatusIsSuccess() {
         // given
@@ -53,7 +53,7 @@ class BridgeStatusTest {
         bridgeStatus.addUserMovingCommand(MovingCommand.UP);
 
         // expect
-        assertThat(bridgeStatus.needCallRetryGame()).isEqualTo(true);
+        assertThat(bridgeStatus.needCallRetryGame()).isEqualTo(false);
     }
 
     @DisplayName("게임 상태가 성공인 경우 재시작 요청 여부는 true")
