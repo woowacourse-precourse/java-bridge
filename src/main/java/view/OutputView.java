@@ -118,9 +118,11 @@ public class OutputView {
 
     public void printFail(int countTryNumber) {
         System.out.print(View.WIN_FAIL_STATUS.message());
+        System.out.print(View.BLANK.message());
         System.out.println(StringConstant.FAIL.getConstant());
 
         System.out.print(View.TOTAL_TRY_NUMBER.message());
+        System.out.print(View.BLANK.message());
         System.out.println(countTryNumber);
     }
 
