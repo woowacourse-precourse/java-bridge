@@ -11,8 +11,8 @@ import java.util.List;
 public class BridgeGame {
 
     private final List<String> bridge;
-    private List<String> upperClass;
-    private List<String> lowerClass;
+    private final List<String> upperClass;
+    private final List<String> lowerClass;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
