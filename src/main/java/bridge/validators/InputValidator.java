@@ -17,7 +17,7 @@ public class InputValidator {
         }
     }
 
-    public static boolean isValidMoveDirection(String moveDirectionInput) {
+    public static boolean validateMoveDirection(String moveDirectionInput) {
         return moveDirectionInput.equals("U") || moveDirectionInput.equals("D");
     }
 

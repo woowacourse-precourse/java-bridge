@@ -34,10 +34,16 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        outputView.printChooseMovingInputMessage();
-        String moveDirection = readLine();
-        if (!InputValidator.isValidMoveDirection(moveDirection)) {
-            throw new IllegalArgumentException();
+        String moveDirection;
+        while (true) {
+            outputView.printChooseMovingInputMessage();
+            moveDirection = readLine();
+            try {
+                InputValidator.validateMoveDirection(moveDirection);
+                break;
+            } catch (IllegalArgumentException illegalArgumentException) {
+                outputView.printErrorMessage(ErrorMessage.INVALID_MOVE_DIRECTION.getMessage());
+            }
         }
         return moveDirection;
     }

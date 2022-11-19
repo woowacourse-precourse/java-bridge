@@ -22,9 +22,17 @@ public class BridgeGame {
         int bridgeSize = inputView.readBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        play(bridgeSize, bridge);
     }
 
-
+    /**
+     * 실제 게임이 진행되는 메서드
+     */
+    private void play(int bridgeSize, List<String> bridge) {
+        for (int i = 0; i < bridgeSize; ++i) {
+            String moveDirection = inputView.readMoving();
+        }
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드

@@ -12,23 +12,4 @@ public class Application {
         BridgeGame bridgeGame = new BridgeGame(inputView, outputView);
         bridgeGame.start();
     }
-
-    private static void move(int bridgeSize) {
-        for (int i = 0; i < bridgeSize; ++i) {
-            String moveDirection = getMoveDirectionInput();
-        }
-    }
-
-    private static String getMoveDirectionInput() {
-        String moveDirection;
-        while (true) {
-            try {
-                moveDirection = inputView.readMoving();
-                break;
-            } catch (IllegalArgumentException illegalArgumentException) {
-                outputView.printErrorMessage(illegalArgumentException.getMessage());
-            }
-        }
-        return moveDirection;
-    }
 }
