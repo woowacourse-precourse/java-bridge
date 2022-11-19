@@ -1,0 +1,57 @@
+package bridge.Utils.Validator;
+
+public class bridgeLengthValidator {
+
+    private static final String NUMBER_PATTERN = "^[0-9]*$";
+    private static final String ERROR_MESSAGE_NOT_NUMBER = "[ERROR] 입력값이 숫자가 아닙니다.";
+    private static final String ERROR_MESSAGE_BRIDGE_LENGTH = "[ERROR] 다리의 길이가 3이상 20이하가 아닙니다.";
+
+    private static final int BRIDGE_MIN_LENGTH = 3;
+    private static final int BRIDGE_MAX_LENGTH = 20;
+
+
+    /**
+     * 다리의 길이 입력값이 맞는지 확인
+     * @param input 다리의 길이
+     */
+    public static void validateBridgeInput(String input){
+        validateNumber(input);
+        validateRange(input);
+    }
+
+
+    /**
+     *
+     * @param input 다리의 길이
+     */
+    private static void validateNumber(String input){
+        if(!input.matches(NUMBER_PATTERN)){
+            throw new IllegalArgumentException(ERROR_MESSAGE_NOT_NUMBER);
+        }
+    }
+
+    /**
+     * 예외처리(정수변환+ 다리 길이의 범위)
+     * @param input 다리의 길이
+     */
+    private static void validateRange(String input){
+        try{
+            int bridgeLength = Integer.parseInt(input);
+            bridgeLengthValid(bridgeLength);
+        }
+        catch (NumberFormatException e){
+            System.err.println(e);
+        }
+    }
+
+    /**
+     * 예외처리(다리 길이의 범위)
+     * @param input 다리의 길이
+     */
+    private static void bridgeLengthValid(int input){
+        if(!(input>=BRIDGE_MIN_LENGTH && input<= BRIDGE_MAX_LENGTH)){
+            throw new IllegalArgumentException(ERROR_MESSAGE_BRIDGE_LENGTH);
+        }
+    }
+
+}
