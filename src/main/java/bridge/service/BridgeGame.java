@@ -5,9 +5,6 @@ import bridge.domain.Count;
 import bridge.domain.PlayState;
 import bridge.domain.Result;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
     private static final String NO_BRIDGE_ERROR = "[ERROR] 다리가 생성되지 않아 게임이 만들어 지지 않아요";
     private static final String NO_START_GAME_ERROR = "[ERROR] 게임이 시작되지 않았습니다";
