@@ -9,3 +9,4 @@
     - 3에서 20 사이의 숫자가 입력되지 않으면 `IllegalArgumentException`을 발생시킨다.
 - [ ] 플레이어가 이동할 방향을 입력한다.
     - U 또는 D가 입력되지 않으면 `IllegalArgumentException`을 발생시킨다.
+    - 플레이어가 이동한 방향을 기록한다.
