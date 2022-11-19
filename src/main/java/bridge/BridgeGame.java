@@ -22,6 +22,8 @@ public class BridgeGame {
 
     public void init(int size){
         success = true;
+        user = new User();
+        bridge = new Bridge();
         upBridge = new ArrayList<>();
         downBridge = new ArrayList<>();
         user.init();
