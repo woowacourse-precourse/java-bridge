@@ -10,4 +10,12 @@ public class BridgeStateResponseDto {
         this.upSpaces = upSpaces;
         this.downSpaces = downSpaces;
     }
+
+    public List<String> getUpSpaces() {
+        return this.upSpaces;
+    }
+
+    public List<String> getDownSpaces() {
+        return this.downSpaces;
+    }
 }

@@ -43,10 +43,10 @@ public class BridgeGame {
         if(bridge.equals(positionByPlayerToMove)) {
             if(bridge.equals("U")) {
                 upSpaces.add("O");
-                downSpaces.add("    ");
+                downSpaces.add(" ");
             }
             else {
-                upSpaces.add("    ");
+                upSpaces.add(" ");
                 downSpaces.add("O");
             }
 
@@ -54,12 +54,12 @@ public class BridgeGame {
         }
         else {
             if(bridge.equals("U")) {
-                upSpaces.add("    ");
+                upSpaces.add(" ");
                 downSpaces.add("X");
             }
             else {
                 upSpaces.add("X");
-                downSpaces.add("    ");
+                downSpaces.add(" ");
             }
         }
 

@@ -33,6 +33,7 @@ public class BridgeGameController {
         while (true) {
             PlayerMovementRequestDto requestDto = inputView.readMoving();
             BridgeStateResponseDto responseDto = bridgeGame.move(requestDto);
+            outputView.printMap(responseDto);
         }
     }
 }
