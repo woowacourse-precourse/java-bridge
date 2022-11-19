@@ -44,5 +44,9 @@ public class BridgeGameController {
         List<String> downBridgeResult = bridgeResult.getDownBridgeResult();
 
         outputView.printMap(upBridgeResult, downBridgeResult);
+
+        if (bridgeGame.isGameSuccess()) {
+            //OutputView.printResult();
+        }
     }
 }
