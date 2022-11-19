@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.domain.Bridge;
 import bridge.domain.GameResult;
+import bridge.service.BridgeGameService;
 import bridge.service.BridgeService;
 import bridge.service.MovingService;
 import bridge.view.InputView;
@@ -15,44 +16,21 @@ public class BridgeGame {
     private int tryCount;
 
     public void runGame() {
-        Bridge bridge = initBridge();
-        initTryCount();
+        Bridge bridge = BridgeGameService.initBridge();
+        tryCount = BridgeGameService.initTryCount();
         startGame(bridge);
         OutputView.printResult(tryCount);
     }
 
-    private void initTryCount() {
-        tryCount = 1;
-    }
-
-    private Bridge initBridge() {
-        Integer bridgeSize;
-        do {
-            bridgeSize = InputView.readBridgeSize();
-        } while (bridgeSize == -1);
-        Bridge bridge = BridgeService.makeBridge(bridgeSize);
-        return bridge;
-    }
-
     private void startGame(Bridge bridge) {
-        GameResult gameResult = initGameResult();
-        initCount();
+        GameResult gameResult = BridgeGameService.initGameResult();
+        count = BridgeGameService.initCount();
         move(bridge, gameResult);
         if(count == bridge.getBridgeLength()){
             return;
         }
         retry(bridge);
     }
-
-    private void initCount() {
-        count = 0;
-    }
-
-    private GameResult initGameResult() {
-        return BridgeService.makeInitialGameResult();
-    }
-
-
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>

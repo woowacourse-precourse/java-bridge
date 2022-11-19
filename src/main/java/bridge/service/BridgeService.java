@@ -4,6 +4,7 @@ import bridge.domain.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.GameResult;
+import bridge.view.InputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,4 @@ public class BridgeService {
         return new Bridge(bridgeStatus);
     }
 
-    public static GameResult makeInitialGameResult() {
-        return new GameResult(new ArrayList<>(),new ArrayList<>());
-    }
 }
