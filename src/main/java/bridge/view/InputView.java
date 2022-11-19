@@ -1,5 +1,6 @@
-package bridge;
+package bridge.view;
 
+import bridge.domain.Move;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -7,23 +8,23 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
     private static final String INPUT_BRIDGE_LENGTH = "다리의 길이를 입력해주세요.";
-
+    private static final String INPUT_MOVE_DIRECTION = "이동할 칸을 선택해주세요. (위:U, 아래:D";
     /**
      * 다리의 길이를 입력받는다.
      */
-    public BridgeLength readBridgeSize() {
+    public int readBridgeSize() {
         System.out.println(INPUT_BRIDGE_LENGTH);
 
-        return new BridgeLength(convertToInt(Console.readLine()));
+        return convertToInt(Console.readLine());
     }
 
     private int convertToInt(String input) {
-        canConvertInt(input);
+        validateInt(input);
 
         return Integer.parseInt(input);
     }
 
-    private void canConvertInt(String string) {
+    private void validateInt(String string) {
         if (!isAllDigit(string)) {
             throw new IllegalArgumentException();
         }
@@ -38,7 +39,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println(INPUT_MOVE_DIRECTION);
+
+        return Move.from(Console.readLine()).getDirection();
     }
 
     /**
