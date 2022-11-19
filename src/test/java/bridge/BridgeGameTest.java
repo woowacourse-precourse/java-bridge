@@ -12,9 +12,9 @@ class BridgeGameTest {
 
     @Test
     void move() {
-        BridgeGame bridgeGame = new BridgeGame(new GameStatus());
         List<String> bridgeMovedHistory = List.of("U", "D", "U");
-        List<String> bridgeMoved = bridgeGame.move(bridgeMovedHistory, "U");
+        BridgeGame bridgeGame = new BridgeGame(new GameStatus(), bridgeMovedHistory);
+        List<String> bridgeMoved = bridgeGame.move("U");
 
         assertThat(bridgeMoved).containsExactly("U", "D", "U", "U");
     }
