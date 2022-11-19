@@ -4,6 +4,9 @@
 
 ### BridgeMaker
 
+* [x] 0이면 "U", 1이면 "D"로 반환
+    * [x] 올바르지않으면, 예외발생
+
 ### InputView
 
 * [x] 다리의 길이를 입력받는다. #readBridgeSize()
