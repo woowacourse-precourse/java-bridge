@@ -37,17 +37,23 @@ public class Application {
         outputView.printInputMoveDirection();
         String direction;
         
-        // 이동할 칸 입력 받기
+        // 이동이 성공했을 시에 계속 입력 받기
         while(true) {
-            try {
-                direction = inputView.readMoving();
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e);
+            // 이동할 칸 입력 받기
+            while(true) {
+                try {
+                    direction = inputView.readMoving();
+                    break;
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e);
+                }
+            }
+            boolean isCorrect = bridgeGame.move(direction);
+            outputView.printMap(bridge, direction, bridgeGame);
+            if(!isCorrect) {
             }
         }
-        boolean isCorrect = bridgeGame.move(direction);
-        outputView.printMap(bridge, direction, bridgeGame);
+        
 
 
 

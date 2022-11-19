@@ -19,9 +19,9 @@ public class BridgeGame {
 
     private List<String> upLine;
     private List<String> downLine;
-    private List<String> bridge;
+    private int bridgeIndex;
 
-    private int bridgeIndex = 0;
+    private static List<String> bridge;
     private static int countAttempt = 0;
 
     BridgeGame() {
@@ -37,16 +37,16 @@ public class BridgeGame {
     }
 
     public static int getCountAttempt() {
-        return countAttempt;
+        return BridgeGame.countAttempt;
     }
 
     public static void setCountAttempt() {
-        countAttempt += 1;
+        BridgeGame.countAttempt += 1;
     }
 
 
-    public void setBridge(List<String> bridge) {
-        this.bridge = bridge;
+    public static void setBridge(List<String> bridge) {
+        BridgeGame.bridge = bridge;
     }
 
     /**
