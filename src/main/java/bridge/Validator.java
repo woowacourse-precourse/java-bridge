@@ -1,5 +1,6 @@
 package bridge;
 
+import static bridge.Direction.*;
 import static bridge.ErrorMessage.INCORRECT_BRIDGE_SIZE;
 import static bridge.ErrorMessage.INCORRECT_MOVING;
 
@@ -39,9 +40,24 @@ public class Validator {
         }
     }
 
+    public void validateMoving(String input) {
+        validateMovingLength(input);
+        validateMovingCharacter(input);
+    }
+
     private void validateMovingLength(String input) {
         if (input.length() != MOVING_LENGTH){
             throw new IllegalArgumentException(INCORRECT_MOVING);
         }
+    }
+
+    private void validateMovingCharacter(String input) {
+        if (!isDirection(input)){
+            throw new IllegalArgumentException(INCORRECT_MOVING);
+        }
+    }
+
+    private boolean isDirection(String input) {
+        return input.equals(DOWN.getName()) || input.equals(UP.getName());
     }
 }
