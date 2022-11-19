@@ -2,6 +2,8 @@ package bridge.domain.mapmaker;
 
 import bridge.domain.bridge.CrossStatus;
 import bridge.domain.direction.Direction;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -57,5 +59,22 @@ class MapMakerTest {
         // then
         assertThat(currentMap)
                 .isEqualTo(map);
+    }
+
+    @DisplayName("clear 시 지금까지 그린 지도를 모두 비운다.")
+    @Test
+    void initTest() {
+        // given
+        MapMaker maker = new MapMaker();
+        maker.addPath(UP, SUCCESS);
+        maker.addPath(DOWN, SUCCESS);
+
+        // when
+        maker.init();
+
+        // then
+        assertThat(maker.getCurrentMap())
+                .isEqualTo("[]\n[]");
+
     }
 }
