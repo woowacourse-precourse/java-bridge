@@ -13,11 +13,13 @@ public class GameApplication {
     private final BridgeGame bridgeGame;
     private final InputView inputView;
     private final OutputView outputView;
+    private int gameCount;
 
     public GameApplication(BridgeGame bridgeGame) {
         this.bridgeGame = new BridgeGame();
         this.inputView = new InputView();
         this.outputView = new OutputView();
+        this.gameCount = 0;
     }
 
     public void startGame() {
@@ -47,6 +49,13 @@ public class GameApplication {
     public boolean inputIfRestart() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         return inputView.readGameCommand().equals("R");
+    }
+
+    /**
+     * 게임이 종료되었을 때, 최종 출력을 하는 메서드입니다.
+     */
+    public void printTotalResult() {
+        outputView.printResult(bridgeGame.getBridge(), bridgeGame.getUserInput(), gameCount);
     }
 
 }
