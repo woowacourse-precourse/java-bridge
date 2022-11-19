@@ -31,11 +31,11 @@ public class GameService {
 		return bridgeRepository.checkValidSpace(userSpace, currentSpace);
 	}
 
-	public void saveUserSpace(boolean isCorrectMoving, String userLocation) {
-		if (isCorrectMoving) {
-			userBridgeRepository.saveUserSpace(userLocation, OutputViewConst.USER_CORRECT_SPACE);
-			return;
-		}
+	public void saveUserCorrectSpace(String userLocation) {
+		userBridgeRepository.saveUserSpace(userLocation, OutputViewConst.USER_CORRECT_SPACE);
+	}
+
+	public void saveUserWrongSpace(String userLocation) {
 		userBridgeRepository.saveUserSpace(userLocation, OutputViewConst.USER_WRONG_SPACE);
 	}
 
