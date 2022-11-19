@@ -27,7 +27,7 @@ public class Bridge {
 
     // Bridge (정답) 과 input 을 비교해 O 또는 X 를 반환
     public String compare(Position position) {
-        if (position.isSamePosition(directions)) {
+        if (position.canMove(directions)) {
             return "O";
         }
         return "X";
