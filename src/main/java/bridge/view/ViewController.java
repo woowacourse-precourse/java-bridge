@@ -36,7 +36,7 @@ public class ViewController {
         }
     }
     private void validateIsNumber(String inputSize) {
-        if (inputSize.matches("^[0-9]$")) {
+        if (!inputSize.matches("[0-9]+")) {
             throw new IllegalArgumentException("[ERROR] 정수만 입력해야 합니다.");
         }
     }
