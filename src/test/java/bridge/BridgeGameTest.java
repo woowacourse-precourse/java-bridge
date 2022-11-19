@@ -16,8 +16,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 class BridgeGameTest {
 
     private List<String> loggiingResult = new ArrayList<>();
-    private StringBuilder upLoggingResult = new StringBuilder("[");
-    private StringBuilder downLoggingResult = new StringBuilder("[");
+    private StringBuilder upMovingLoggingResult = new StringBuilder("[");
+    private StringBuilder downMovingLoggingResult = new StringBuilder("[");
 
     public boolean checkBridge(String userMoving, String targetBridge) {
         return userMoving.equals(targetBridge);
@@ -49,11 +49,11 @@ class BridgeGameTest {
         String moving = "U";
         int index = 0;
         if (checkBridge(moving, bridge.get(index)) && moving.equals("U") && index < bridge.size() - 1) {
-            upLoggingResult.append(" O |");
-            downLoggingResult.append("   |");
+            upMovingLoggingResult.append(" O |");
+            downMovingLoggingResult.append("   |");
         }
-        assertThat(upLoggingResult.toString()).isEqualTo("[ O |");
-        assertThat(downLoggingResult.toString()).isEqualTo("[   |");
+        assertThat(upMovingLoggingResult.toString()).isEqualTo("[ O |");
+        assertThat(downMovingLoggingResult.toString()).isEqualTo("[   |");
     }
 
     @DisplayName("위쪽으로 이동 했고, 그 위치가 다리의 끝자락 일때의 결과값 검증")
@@ -63,11 +63,11 @@ class BridgeGameTest {
         String moving = "U";
         int index = 2;
         if (checkBridge(moving, bridge.get(index)) && moving.equals("U") && index == bridge.size() - 1) {
-            upLoggingResult.append(" O ]");
-            downLoggingResult.append("   ]");
+            upMovingLoggingResult.append(" O ]");
+            downMovingLoggingResult.append("   ]");
         }
-        assertThat(upLoggingResult.toString()).isEqualTo("[ O ]");
-        assertThat(downLoggingResult.toString()).isEqualTo("[   ]");
+        assertThat(upMovingLoggingResult.toString()).isEqualTo("[ O ]");
+        assertThat(downMovingLoggingResult.toString()).isEqualTo("[   ]");
     }
 
     static Stream<Arguments> generateBridgeForDownMoving() {
@@ -82,11 +82,11 @@ class BridgeGameTest {
         String moving = "D";
         int index = 0;
         if (checkBridge(moving, bridge.get(index)) && moving.equals("D") && index < bridge.size() - 1) {
-            upLoggingResult.append("   |");
-            downLoggingResult.append(" O |");
+            upMovingLoggingResult.append("   |");
+            downMovingLoggingResult.append(" O |");
         }
-        assertThat(upLoggingResult.toString()).isEqualTo("[   |");
-        assertThat(downLoggingResult.toString()).isEqualTo("[ O |");
+        assertThat(upMovingLoggingResult.toString()).isEqualTo("[   |");
+        assertThat(downMovingLoggingResult.toString()).isEqualTo("[ O |");
     }
 
     @DisplayName("아래쪽으로 이동 했고, 그 위치가 다리의 끝자락 일때의 결과값 검증")
@@ -96,31 +96,24 @@ class BridgeGameTest {
         String moving = "D";
         int index = 2;
         if (checkBridge(moving, bridge.get(index)) && moving.equals("D") && index == bridge.size() - 1) {
-            upLoggingResult.append("   ]");
-            downLoggingResult.append(" O ]");
+            upMovingLoggingResult.append("   ]");
+            downMovingLoggingResult.append(" O ]");
         }
-        assertThat(upLoggingResult.toString()).isEqualTo("[   ]");
-        assertThat(downLoggingResult.toString()).isEqualTo("[ O ]");
+        assertThat(upMovingLoggingResult.toString()).isEqualTo("[   ]");
+        assertThat(downMovingLoggingResult.toString()).isEqualTo("[ O ]");
     }
-//
-//    @Test
-//    public void leftBridgeFailLogging(String moving, List<String> bridge, int index) {
-//        if (!checkBridge(moving, bridge.get(index)) && moving.equals("U")) {
-//            leftLoggingResult.append(" X ]");
-//            rightLoggingResult.append("   ]");
-//        }
-//    }
-//
-//    @Test
-//    public void rightBridgeFailLogging(String moving, List<String> bridge, int index) {
-//        if (!checkBridge(moving, bridge.get(index)) && moving.equals("D")) {
-//            leftLoggingResult.append("   ]");
-//            rightLoggingResult.append(" X ]");
-//        }
-//    }
-//
-//    @Test
-//    List<String> move(String moving, int index) {
-//        return loggingGameResult(moving, index);
-//    }
+
+    @DisplayName("위쪽으로 이동 했고, 그 위치가 건널 수 없을 다리일 때의 결과값 검증")
+    @MethodSource("generateBridgeForDownMoving")
+    @ParameterizedTest
+    public void upBridgeFailLogging(List<String> bridge) {
+        String moving = "U";
+        int index = 0;
+        if (!checkBridge(moving, bridge.get(index)) && moving.equals("U")) {
+            upMovingLoggingResult.append(" X ]");
+            downMovingLoggingResult.append("   ]");
+        }
+        assertThat(upMovingLoggingResult.toString()).isEqualTo("[ X ]");
+        assertThat(downMovingLoggingResult.toString()).isEqualTo("[   ]");
+    }
 }
