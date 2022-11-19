@@ -25,4 +25,8 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    public void printErrorMessage(String message) {
+        System.out.println(message);
+    }
 }
