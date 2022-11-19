@@ -1,5 +1,7 @@
 package bridge.vo;
 
+import java.util.Objects;
+
 public class StepResult {
     private final Step step;
     private final boolean isCorrect;
@@ -15,5 +17,18 @@ public class StepResult {
 
     public boolean isCorrect() {
         return isCorrect;
+    }
+
+    @Override
+    public boolean equals(Object target) {
+        if (this == target) return true;
+        if (!(target instanceof StepResult)) return false;
+        StepResult anotherStepResult = (StepResult) target;
+        return isCorrect == anotherStepResult.isCorrect && step == anotherStepResult.step;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(step, isCorrect);
     }
 }
