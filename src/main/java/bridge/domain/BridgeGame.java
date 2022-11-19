@@ -9,8 +9,8 @@ public class BridgeGame {
     private final User user;
 
     public BridgeGame(Bridge bridge) {
-        this.user = new User();
         this.bridge = bridge;
+        this.user = new User();
     }
 
     /**
