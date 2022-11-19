@@ -8,11 +8,11 @@ import java.util.StringJoiner;
  */
 public class OutputView {
     private static final String BLANK = " ";
-    private static final String O = "O";
-    private static final String X = "X";
+    private static final String SUCCESS_CODE = "O";
+    private static final String FAIL_CODE = "X";
     private static final String DELIMITER = "|";
-    private static final String START_BRACKET = "[";
-    private static final String END_BRACKET = "]";
+    private static final String PREFIX_BRACKET = "[";
+    private static final String SUFFIX_BRACKET = "]";
 
     private static final String START_NOTICE = "다리 건너기 게임을 시작합니다.";
     private static final String BRIDGE_SIZE_INPUT_NOTICE = "다리의 길이를 입력해주세요.";
@@ -22,39 +22,54 @@ public class OutputView {
     private static final String MOVING_DIRECTION_INPUT_NOTICE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
 
 
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printMap(List<String> result) {
-
-        StringBuilder a = new StringBuilder("[");
-        StringBuilder b = new StringBuilder("[");
-        String c = result.get(result.size() - 1);
-        String d = result.get(result.size() - 2);
-        for (int i = 0; i < result.size() - 1; i++) {
-            if (result.get(i).equals("U")) {
-                a.append(" O |");
-                b.append("   |");
-            }
-            if (result.get(i).equals("D")) {
-                a.append("   |");
-                b.append(" O |");
-            }
+    public void printMap(List<String> userBridgeHistroy, boolean didmove) {
+        StringBuilder top = new StringBuilder();
+        StringBuilder bottom = new StringBuilder();
+        for (int i = 0; i < userBridgeHistroy.size(); i++) {
+            addHistory(top, bottom, userBridgeHistroy.get(i));
         }
-        if (c.equals("X") && d.equals("U")) {
-            a.replace(a.length() - 3, a.length() - 2, "X");
-        }
-        if (c.equals("X") && d.equals("D")) {
-            b.replace(b.length() - 3, b.length() - 2, "X");
-        }
-        a.replace(a.length() - 1, a.length(), "]");
-        b.replace(b.length() - 1, b.length(), "]");
-        System.out.println(a);
-        System.out.println(b);
+        checkResult(top, didmove);
+        checkResult(bottom, didmove);
+        System.out.println(toMap(top));
+        System.out.println(toMap(bottom));
     }
 
+    public String toMap(CharSequence result) {
+        String map = sperateByDelimiter(result, DELIMITER);
+        map = addBracket(map, PREFIX_BRACKET, SUFFIX_BRACKET);
+        return sperateByDelimiter(map, BLANK);
+
+    }
+
+    private void addHistory(StringBuilder top, StringBuilder bottom, String moving) {
+        if (moving.equals(Direction.Code.UP.getName())) {
+            top.append(SUCCESS_CODE);
+            bottom.append(BLANK);
+        }
+        if (moving.equals(Direction.Code.DOWN.getName())) {
+            top.append(BLANK);
+            bottom.append(SUCCESS_CODE);
+        }
+    }
+
+    private void checkResult(StringBuilder line, boolean didmove) {
+        int endIndex = line.length() - 1;
+        if (!didmove && String.valueOf(line.charAt(endIndex)).equals(SUCCESS_CODE)) {
+            line.replace(endIndex, endIndex + 1, FAIL_CODE);
+        }
+    }
+
+    public String sperateByDelimiter(CharSequence charSequence, String delimiter) {
+        StringJoiner stringJoiner = new StringJoiner(delimiter);
+        for (int i = 0; i < charSequence.length(); i++) {
+            stringJoiner.add(String.valueOf(charSequence.charAt(i)));
+        }
+        return stringJoiner.toString();
+    }
+
+    public String addBracket(CharSequence charSequence, String prefix, String suffix) {
+        return prefix + charSequence + suffix;
+    }
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
