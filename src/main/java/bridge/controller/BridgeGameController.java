@@ -36,11 +36,11 @@ public class BridgeGameController {
 
     private void doGame(List<String> bridge, int bridgeSize) {
         do {
-            round(bridge);
+            round(bridge, bridgeSize);
         } while (bridgeGame.isCountOfRoundLessThan(bridgeSize));
     }
 
-    private void round(List<String> bridge) {
+    private void round(List<String> bridge, int bridgeSize) {
         BridgeMap bridgeMap = movingBridge(bridge);
 
         List<BridgeMap> bridgeMaps = bridgeGame.getBridgeGameStat().getBridgeMaps();
@@ -49,6 +49,8 @@ public class BridgeGameController {
         outputView.printMap(bridgeMaps);
 
         canNotMoveBridge(bridgeMap);
+        bridgeGame.checkGameWin(bridgeSize);
+        bridgeGame.nextRound();
     }
 
     private BridgeMap movingBridge(List<String> bridge) {
