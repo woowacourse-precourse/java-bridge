@@ -36,6 +36,8 @@ GameCommand
 
 Moving
 
+playerMap
+
 ## View
 
 InputHandler
@@ -82,15 +84,15 @@ BridgeGameController
 
 
 
-- [ ] InputView.readBridgeSize() : 다리가 생성되면 플레이어가 이동할 칸을 선택한다.
-	- [ ] 이동할 때 위 칸은 대문자 U, 아래 칸은 대문자 D를 입력한다.
-		- [ ] 플레이어는 U, D 만 입력할 수 있다.
-			- [ ] 다른 값 입력시  `IllegalArgumentException` 발생 후 메시지 출력 후 그 부분부터 입력을 다시 받는다.
-			- [ ] "[ERROR]이동할 때 위 칸은 대문자 U, 아래 칸은 대문자 D 만 가능합니다." : 다른 값, 소문자 입력
+- [x] InputView.readBridgeSize() : 다리가 생성되면 플레이어가 이동할 칸을 선택한다.
+	- [x] 이동할 때 위 칸은 대문자 U, 아래 칸은 대문자 D를 입력한다.
+		- [x] 플레이어는 U, D 만 입력할 수 있다.
+			- [x] 다른 값 입력시  `IllegalArgumentException` 발생 후 메시지 출력 후 그 부분부터 입력을 다시 받는다.
+			- [x] "[ERROR]이동할 때 위 칸은 대문자 U, 아래 칸은 대문자 D 만 가능합니다." : 다른 값, 소문자 입력
 
 
 
-- [ ] BridgeGame.move() 이동한다.
+- [x] BridgeGame.move() 이동한다.
 	- [ ] OutputView.printMap()
 		- [ ] 이동한 칸을 건널 수 있다면 O로 표시한다. 건널 수 없다면 X로 표시한다.
 			- [ ] 이동할 수 있는 칸을 선택한 경우 O 표시
@@ -102,15 +104,15 @@ BridgeGameController
 
 
 
-- [ ] 다리를 끝까지 건너면 게임이 종료된다.
-- [ ] BridgeGame.retry() : 다리를 건너다 실패하면 게임을 재시작하거나 종료할 수 있다. (재시도: R, 종료: Q)
-	- [ ] 다른 값 입력시  `IllegalArgumentException` 발생 후 메시지 출력 후 그 부분부터 입력을 다시 받는다.
-		- [ ] "[ERROR] 재시도 여부 값은 대문자 R, 대문자 Q 만 가능합니다." : 다른 값, 소문자 입력
-	- [ ] 재시작시 처음에 만든 다리로 재사용한다.
+- [x] 다리를 끝까지 건너면 게임이 종료된다.
+- [x] BridgeGame.retry() : 다리를 건너다 실패하면 게임을 재시작하거나 종료할 수 있다. (재시도: R, 종료: Q)
+	- [x] 다른 값 입력시  `IllegalArgumentException` 발생 후 메시지 출력 후 그 부분부터 입력을 다시 받는다.
+		- [x] "[ERROR] 재시도 여부 값은 대문자 R, 대문자 Q 만 가능합니다." : 다른 값, 소문자 입력
+	- [x] 재시작시 처음에 만든 다리로 재사용한다.
 
 
 
-- [ ] 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때까지 시도한 횟수를 나타낸다.
+- [x] 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때까지 시도한 횟수를 나타낸다.
 
 	- [ ] OutputView.printResult()
 
