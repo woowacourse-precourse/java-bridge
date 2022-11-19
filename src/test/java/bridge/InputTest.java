@@ -1,5 +1,9 @@
 package bridge;
 
+import static bridge.domain.BridgeConstants.DOWN;
+import static bridge.domain.BridgeConstants.QUIT;
+import static bridge.domain.BridgeConstants.RETRY;
+import static bridge.domain.BridgeConstants.UP;
 import static bridge.ui.MessageUtil.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -66,11 +70,31 @@ class InputTest {
         }
 
         @ParameterizedTest
-        @ValueSource(strings = {"U", "D"})
+        @ValueSource(strings = {UP, DOWN})
         @DisplayName("U, D 정상 입력 테스트")
         void validInputTest(String input) {
             String move = inputView.readMoving(input);
-            assertThat(move).containsAnyOf("U", "D");
+            assertThat(move).containsAnyOf(UP, DOWN);
+        }
+    }
+
+    @Nested
+    class GameCmdInput {
+        @ParameterizedTest
+        @ValueSource(strings = {"99", "m", "##", " "})
+        @DisplayName("R, Q 이외의 값을 입력하면 예외 발생")
+        void exceptionTest(String input) {
+            assertThatThrownBy(() -> inputView.readGameCommand(input))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(INVALID_GAME_CMD.message);
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {RETRY, QUIT})
+        @DisplayName("R, Q 정상 입력 테스트")
+        void validInputTest(String input) {
+            String move = inputView.readGameCommand(input);
+            assertThat(move).containsAnyOf(RETRY, QUIT);
         }
     }
 
