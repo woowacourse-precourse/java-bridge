@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.validator.BridgeLengthValidator;
+import bridge.validator.SpaceToMoveValidator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -16,11 +17,10 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     public String readMoving() {
-        return null;
+        String input = Console.readLine();
+        SpaceToMoveValidator.validateSpaceToMove(input);
+        return input;
     }
 
     /**
