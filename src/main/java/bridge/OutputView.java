@@ -16,8 +16,8 @@ public class OutputView {
     public static final String MESSAGE_GAME_END = System.lineSeparator() + "게임 성공 여부: %s" + System.lineSeparator() + "총 시도한 횟수: %d";
 
     public void printStart() {
-        printOf(OutputView.MESSAGE_GAME_START);
-        printOf(OutputView.MESSAGE_INPUT_BRIDGE_SIZE);
+        System.out.println(MESSAGE_GAME_START);
+        System.out.println(MESSAGE_INPUT_BRIDGE_SIZE);
     }
 
     public void printOf(String message) {
