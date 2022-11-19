@@ -11,7 +11,6 @@ import org.mockito.Mock;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.Assertions.in;
 
 public class InputViewTest {
 
@@ -37,7 +36,7 @@ public class InputViewTest {
     @ParameterizedTest
     @ValueSource(strings = {"2", "21", "", " ", "#", "q"})
     void readBridgeLengthExceptionHandlingTest(String testCase) {
-        assertThatThrownBy(() -> inputView.validateBridgeLengthInput(testCase))
+        assertThatThrownBy(() -> inputView.validateBridgeLength(testCase))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE);
     }
