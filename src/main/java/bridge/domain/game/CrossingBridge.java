@@ -1,5 +1,6 @@
 package bridge.domain.game;
 
+import bridge.domain.player.CommandReader;
 import bridge.domain.player.MovementCommand;
 import bridge.domain.result.ResultRendering;
 import bridge.view.input.InputCommandReader;
@@ -25,7 +26,7 @@ public class CrossingBridge {
 	private void crossingTrial(List<String> bridgeNowCrossing) {
 		do {
 			OutputView.withContentOf(REQUEST_MOVEMENT, true, false).ConsoleMessage();
-			MovementCommand movementCommand = (MovementCommand) InputCommandReader.read("Movement").command();
+			MovementCommand movementCommand = (MovementCommand) InputCommandReader.read(CommandReader.GAME_MOVEMENT).command();
 			CrossingDecision crossingDecision = CrossingDecision.judgingBy(movementCommand, bridgeNowCrossing);
 			stepAhead(crossingDecision, bridgeNowCrossing);
 			OutputView.withContentOf(ResultRendering.generatedBy(crossingDecision, movementCommand).getBridgeDescription(), false, false).ConsoleMessage();

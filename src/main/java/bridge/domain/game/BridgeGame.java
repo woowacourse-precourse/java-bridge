@@ -3,6 +3,7 @@ package bridge.domain.game;
 import bridge.domain.bridge.Bridge;
 import bridge.domain.bridgeMaker.BridgeMaker;
 import bridge.domain.player.BridgeSizeCommand;
+import bridge.domain.player.CommandReader;
 import bridge.domain.player.GameProceedCommand;
 import bridge.view.input.InputCommandReader;
 import bridge.view.output.OutputView;
@@ -15,7 +16,6 @@ public class BridgeGame {
 	private static final String GAME_START_INFO = "다리 건너기 게임을 시작합니다.";
 	private static final String REQUEST_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
 	private static final String REQUEST_RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-	private static final String ENTER = "\n";
 
 	public static final String RESULT_SUCCESS = "성공";
 	public static final String RESULT_FAIL = "실패";
@@ -27,7 +27,7 @@ public class BridgeGame {
 		OutputView.withContentOf(GAME_START_INFO, false, true).ConsoleMessage();
 
 		OutputView.withContentOf(REQUEST_BRIDGE_SIZE, false, false).ConsoleMessage();
-		Bridge bridge = new Bridge((BridgeSizeCommand) InputCommandReader.read("BridgeSize").command(), bridgeMaker);
+		Bridge bridge = new Bridge((BridgeSizeCommand) InputCommandReader.read(CommandReader.BRIDGE_SIZE).command(), bridgeMaker);
 
 		crossingTrial(bridge);
 	}
@@ -58,7 +58,7 @@ public class BridgeGame {
 
 	public GameProceedCommand requestRetry() {
 		OutputView.withContentOf(REQUEST_RETRY, true, false).ConsoleMessage();
-		return (GameProceedCommand) InputCommandReader.read("GameProceed").command();
+		return (GameProceedCommand) InputCommandReader.read(CommandReader.GAME_PROCEED).command();
 	}
 
 	public HashMap<String, Integer> getGameResult() {
