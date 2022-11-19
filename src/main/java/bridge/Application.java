@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Application {
     static InputView input = new InputView();
+    static boolean gamePlayFlag = true;
 
     public static void main(String[] args) {
         makeBridgeGame();
@@ -20,5 +21,7 @@ public class Application {
 
         return new BridgeGame(bridge);
     }
+    private static void stopBridgeGame() {
+        gamePlayFlag = false;
     }
 }
