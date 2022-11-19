@@ -5,9 +5,9 @@ import java.util.List;
 import bridge.domain.BridgeGame;
 
 public class OutputView {
-	private static final String PRINT_MAP_FIRST_LETTER = "[ ";
-	private static final String PRINT_MAP_LAST_LETTER = " ]";
-	private static final String PRINT_MAP_DELIMITER = " | ";
+	private static final String PRINT_MAP_FIRST_LETTER = "[";
+	private static final String PRINT_MAP_LAST_LETTER = "]";
+	private static final String PRINT_MAP_DELIMITER = "|";
 
 	public void printMap(List<List<String>> result) {
 		String upBridge = createBridgeMap(result.get(0));
