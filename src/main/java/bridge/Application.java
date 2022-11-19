@@ -14,7 +14,7 @@ public class Application {
 
     private static List<String> bridgeShape;
 
-    private static List<String> bridge;
+    private static List<String> topBridge;
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
