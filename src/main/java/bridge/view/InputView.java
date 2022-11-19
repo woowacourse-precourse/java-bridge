@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Scanner;
 
+import static bridge.validator.BlockValidator.validateInvalidRetryType;
 import static bridge.validator.BlockValidator.validateInvalidType;
 import static bridge.validator.NumberValidator.validateNonNumeric;
 import static bridge.validator.NumberValidator.validateRange;
@@ -53,8 +54,18 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public static String readGameCommand() {
         OutputView.printAskRetryMessage();
-        return null;
+        String retry;
+        while (true) {
+            try {
+                retry = Console.readLine();
+                validateInvalidRetryType(retry);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return retry;
     }
 }
