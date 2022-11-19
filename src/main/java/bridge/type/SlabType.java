@@ -2,7 +2,7 @@ package bridge.type;
 
 import java.util.Arrays;
 
-public enum BridgeType {
+public enum SlabType {
     DOWN(0, "D"),
     UP(1, "U"),
     UNKNOWN(-1, "N");
@@ -10,16 +10,16 @@ public enum BridgeType {
     private final int id;
     private final String typeName;
 
-    public static BridgeType create(int id) {
-        return Arrays.stream(BridgeType.values())
+    public static SlabType create(int id) {
+        return Arrays.stream(SlabType.values())
                 .filter(type -> type.id == purifyId(id))
                 .findFirst()
-                .orElse(BridgeType.UNKNOWN);
+                .orElse(SlabType.UNKNOWN);
     }
 
     private static int purifyId(int id) {
-        boolean hasId = Arrays.stream(BridgeType.values())
-                .anyMatch(bridgeType -> bridgeType.id == id);
+        boolean hasId = Arrays.stream(SlabType.values())
+                .anyMatch(slabType -> slabType.id == id);
 
         if (!hasId) {
             return -1;
@@ -28,7 +28,7 @@ public enum BridgeType {
         return id;
     }
 
-    BridgeType(int id, String typeName) {
+    SlabType(int id, String typeName) {
         this.id = id;
         this.typeName = typeName;
     }
