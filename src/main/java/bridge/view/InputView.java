@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.domain.InputException;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -13,8 +14,15 @@ public class InputView {
     public int readBridgeSize() {
         String userBridgeSize = Console.readLine();
         // TODO Bridge 길이 에러 처리
+        validateBridgeInputIsBlank(userBridgeSize);
         int bridgeSize = changeStringToInt(userBridgeSize);
         return bridgeSize;
+    }
+
+    public void validateBridgeInputIsBlank(String uncheckedInput) {
+        if(uncheckedInput.isBlank()) {
+            throw new IllegalArgumentException(InputException.BLANK_BRIDGE_LENGTH.getExceptionMessage());
+        }
     }
 
     public int changeStringToInt(String checkedInput) {
