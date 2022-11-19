@@ -106,18 +106,20 @@ public class GameController {
         }
     }
 
+    private boolean gameCommand() {
+        String command = inputView.readGameCommand();
+        GameCommand gameCommand = new GameCommand(command);
+        return gameCommand.isRetry();
+    }
+
     private boolean isRetry() {
-        if (success) {
-            return false;
-        }
-        while (true) {
+        while (!success) {
             try {
-                String command = inputView.readGameCommand();
-                GameCommand gameCommand = new GameCommand(command);
-                return gameCommand.isRetry();
+                return gameCommand();
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e);
             }
         }
+        return false;
     }
 }
