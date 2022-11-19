@@ -44,6 +44,6 @@ public class User {
     }
 
     public int getRound() {
-        return this.round
+        return this.round;
     }
 }
