@@ -1,5 +1,6 @@
 package bridge;
 
+import dto.BridgeDto;
 import dto.BridgeGameDto;
 import java.util.List;
 
@@ -19,5 +20,9 @@ public class Bridge {
             return true;
         }
         return false;
+    }
+
+    public BridgeDto sendDto() {
+        return new BridgeDto(this.bridge);
     }
 }
