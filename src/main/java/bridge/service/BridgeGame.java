@@ -78,4 +78,12 @@ public class BridgeGame {
     public boolean isGameOver(){
         return !systemBridge.subList(0,userBridge.size()).equals(userBridge);
     }
+
+    public boolean isGameCompleted(){
+        return systemBridge.equals(userBridge);
+    }
+
+    public int getTotalAttempt(){
+        return totalAttempt;
+    }
 }
