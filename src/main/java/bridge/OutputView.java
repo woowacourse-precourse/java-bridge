@@ -9,9 +9,11 @@ public class OutputView {
     private final String END = "]";
 
     public void printMap(String map) {
+        StringBuffer builder = new StringBuffer();
         int len = map.length();
-        System.out.println(printMap(map,0,len / 2));
-        System.out.println(printMap(map,len / 2  ,len));
+        builder.append(printMap(map,0,len / 2) + "\n");
+        builder.append(printMap(map,len / 2  ,len));
+        System.out.println(builder);
     }
     private String printMap(String map,int s,int e){
         StringBuffer builder = new StringBuffer();
@@ -24,11 +26,21 @@ public class OutputView {
         builder.append(END);
         return builder.toString();
     }
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult() {
+    public void printResult(String map , Integer count) {
+        StringBuffer builder = new StringBuffer();
+        int len = map.length();
+        builder.append("최종 게임 결과\n");
+        builder.append(printMap(map,0,len / 2) + "\n");
+        builder.append(printMap(map,len / 2  ,len) +"\n");
+        builder.append("\n");
+        builder.append("게임 성공 여부: ");
+        builder.append(isSuccess(map) + "\n");
+        builder.append("총 시도한 횟수: ");
+        builder.append(count + "\n");
+        System.out.println(builder);
+    }
+    private String isSuccess(String map){
+        if(map.contains("X"))return "실패";
+        return "성공";
     }
 }
