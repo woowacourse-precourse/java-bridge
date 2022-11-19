@@ -1,6 +1,5 @@
 package bridge.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import bridge.domain.BridgeGame;
@@ -72,7 +71,7 @@ public class BridgeGameController {
 
 	private void crossBridge(BridgeGame bridgeGame) {
 		progressMap = bridgeGameService.initGameMap(bridgeGame.getBridgeSize());
-		while (!progressMap.isMoveFail() && !progressMap.isClear()) {
+		while (progressMap.isMoveSuccess() && !progressMap.isClear()) {
 			moveBridgeOneTime(bridgeGame);
 			outputView.printMap(progressMap.getProgressMap());
 		}
