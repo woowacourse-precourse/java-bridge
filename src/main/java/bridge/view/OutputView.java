@@ -50,6 +50,7 @@ public class OutputView {
         System.out.println(bottomRow.toString());
     }
 
+    // Bridge 맵 한줄 생성 기능
     private StringBuilder createSingleLineMap(Bridge bridge, String[] bridgeMap, String key) {
         StringBuilder row = new StringBuilder("[ ");
         for (int i = 0; i < bridge.getBridgeMap().length; i++) {
@@ -69,7 +70,7 @@ public class OutputView {
         System.out.println(error.getMessage());
     }
 
-    // 게임을 다시 시도할지 여부를 입력하는 기능
+    // 게임을 다시 시도할지 여부를 입력하라는 메세지 출력 기능
     public void printInputRetry() {
         System.out.println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
     }
