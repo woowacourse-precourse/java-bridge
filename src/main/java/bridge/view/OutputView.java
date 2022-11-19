@@ -112,6 +112,7 @@ public class OutputView {
      */
     public static void printResult(boolean isGameClear, int retryCount) {
         printGameClearWhether(isGameClear);
+        printRetryCount(retryCount);
     }
 
     private static void printGameClearWhether(boolean isGameClear) {
@@ -122,5 +123,9 @@ public class OutputView {
         if (!isGameClear) {
             System.out.println(WHETHER_GAME_CLEAR + FAIL);
         }
+    }
+
+    public static void printRetryCount(int retryCount) {
+        System.out.println(RETRY_COUNT + retryCount);
     }
 }
