@@ -14,15 +14,13 @@ public class GameController {
         BridgeGame bridgeGame = new BridgeGame();
         makeUpperAndLowerBridge(rightBridgeWay,bridgeGame);
 
-        //
-        //
+        OutputView.printResult(bridgeGame);
+
     }
 
     public void makeUpperAndLowerBridge (List<String> rightBridgeWay, BridgeGame bridgeGame) {
-        int attempt = rightBridgeWay.size();
-
         boolean keepGoing = true;
-        while(keepGoing) {
+        while(keepGoing && bridgeGame.bridgeIndex < rightBridgeWay.size()) {
             String inputMoveValue = InputView.readMoving();
             bridgeGame.move(rightBridgeWay, inputMoveValue);
             OutputView.printMap(bridgeGame.upperBridge, bridgeGame.lowerBridge);
@@ -34,8 +32,8 @@ public class GameController {
     }
 
     public boolean retryGame(BridgeGame bridgeGame) {
-        String inputRegame = InputView.readGameCommand();
-        return bridgeGame.retry(inputRegame);
+        String inputReGame = InputView.readGameCommand();
+        return bridgeGame.retry(inputReGame);
     }
 
 }
