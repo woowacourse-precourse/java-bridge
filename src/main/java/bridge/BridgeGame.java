@@ -29,8 +29,8 @@ public class BridgeGame {
     public List<String> move(String direction) {
         updateStepProgress(direction);
 
-        String upDirectionProgress = getProgressOfDirection(UP.getInitial());
-        String downDirectionProgress = getProgressOfDirection(DOWN.getInitial());
+        String upDirectionProgress = getProgressFormOfDirection(UP.getInitial());
+        String downDirectionProgress = getProgressFormOfDirection(DOWN.getInitial());
 
         return List.of(upDirectionProgress, downDirectionProgress);
     }
@@ -59,9 +59,9 @@ public class BridgeGame {
         return "X";
     }
 
-    private String getProgressOfDirection(String direction) {
-        String progress = String.join(" | ", this.stepProgress.get(direction));
-        return "[ " + progress + " ]";
+    private String getProgressFormOfDirection(String direction) {
+        String progressJoinedByDelimiter = String.join(" | ", this.stepProgress.get(direction));
+        return "[ " + progressJoinedByDelimiter + " ]";
     }
 
     /**
