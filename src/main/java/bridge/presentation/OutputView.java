@@ -4,6 +4,7 @@ package bridge.presentation;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    private final String guide = "다리 건너기 게임을 시작합니다." + System.lineSeparator() + "다리의 길이를 입력해주세요.";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -20,4 +21,8 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    public void startGuide(){
+        System.out.println(guide);
+    }//startGuide
 }
