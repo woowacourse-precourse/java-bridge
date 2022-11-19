@@ -9,29 +9,24 @@ public class BridgeGameController {
     
     private final InputView inputView;
     private final BridgeGameService bridgeGameService;
-    private final BridgeGame bridgeGame;
     
     public BridgeGameController(List<String> bridge, InputView inputView) {
-        this.bridgeGame = new BridgeGame(new Bridge(bridge));
-        bridgeGameService = new BridgeGameService(bridgeGame);
+        bridgeGameService = new BridgeGameService(new BridgeGame(new Bridge(bridge)));
         this.inputView = inputView;
     }
     
     public void start() {
-        while (!bridgeGameService.isFinish()) {
-            BridgeMove selectMove = inputView.readMoving();
-            boolean isSuccess = bridgeGameService.tryMove(selectMove);
-            
-            if (!isSuccess) {
-                handleFail(selectMove);
-                return;
-            }
-            
+        BridgeMove selectMove = inputView.readMoving();
+        boolean isSuccess = bridgeGameService.tryMove(selectMove);
+        
+        if (!isSuccess || bridgeGameService.isFinish()) {
+            fail();
+            return;
         }
+        start();
     }
     
-    private void handleFail(BridgeMove selectMove) {
-        bridgeGame.fail(selectMove);
+    private void fail() {
         handleGameCommand(inputView.readGameCommand());
     }
     

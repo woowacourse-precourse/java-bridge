@@ -15,6 +15,7 @@ public class BridgeGameService {
             game.move(selectMove);
             return true;
         }
+        game.fail(selectMove);
         return false;
     }
     
