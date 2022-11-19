@@ -2,7 +2,6 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.function.IntPredicate;
 import java.util.regex.Pattern;
 
 /**
@@ -14,22 +13,19 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        Message.inputBridgeSizeMessage(); // 입력 요구 문구 출력
         String value = "";
         int bridgeSize = 0;
         while (true) {
-            value = readValue();
+            value = Console.readLine();
             if (isBridgeSizeNumber(value)) {
-                bridgeSize = toInts(value);
+                bridgeSize = Integer.parseInt(value);
                 return bridgeSize;
             } // end if
         } // end while
     }
 
-    public int toInts(String value) {
-        int size = Integer.parseInt(value);
-        return size;
-    }
-
+    // 3 이상 20 이하의 숫자인지 검사
     public boolean isBridgeSizeNumber(String value) {
         final String REGEX = "^[3-9]{1}$|^[1]{1}[0-9]{1}$|^2{1}[0]{1}$";
         if (!Pattern.matches(REGEX, value)) {
@@ -43,9 +39,10 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+        Message.inputMoveBridgeMessage();
         String moving = "";
         while (true) {
-            moving = readValue();
+            moving = Console.readLine();
             if (isReadMoving(moving)) {
                 return moving;
             } // end if
@@ -66,7 +63,7 @@ public class InputView {
     public String readGameCommand() {
         String retry = "";
         while(true){
-            retry = readValue();
+            retry = Console.readLine();
             if(isRetry(retry)){
                 return retry;
             } // end if
@@ -78,11 +75,6 @@ public class InputView {
             return true;
         ErrorMessage.inputRetryError();
         return false;
-    }
-
-    public String readValue() {
-        String value = Console.readLine();
-        return value;
     }
 
 }
