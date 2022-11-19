@@ -17,4 +17,12 @@ public class Bridge {
         return true;
     }
 
+    public static boolean isAvailable(String bridgeDirection, String userDirection) {
+        if (!bridgeDirection.equals(userDirection)) {
+            return false;
+        }
+
+        return true;
+    }
+
 }
