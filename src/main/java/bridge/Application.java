@@ -13,7 +13,14 @@ public class Application {
     static boolean gamePlayFlag = true;
 
     public static void main(String[] args) {
-        makeBridgeGame();
+        BridgeGame currentBridgeGame = makeBridgeGame();
+
+        OutputView outputView = new OutputView(currentBridgeGame);
+        startBridgeGame(currentBridgeGame, outputView);
+
+        outputView.printResult();
+    }
+
     private static BridgeGame makeBridgeGame() {
         System.out.println("다리 건너기 게임을 시작합니다.");
         int bridgeSize = input.readBridgeSize();
