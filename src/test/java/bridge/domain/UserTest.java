@@ -28,4 +28,12 @@ class UserTest {
         user.addBridgeInfo(2, "U");
         assertEquals(user.getPastResult().get(2), "U");
     }
+
+    @DisplayName("만약 R를 입력하면 게임 재시작 상태를 true, Q를 입력한다면 false로 상태를 변경한다.")
+    @Test
+    void 입력값에_따라_플레이어_상태_변경() {
+        assertEquals(user.ifUserInputQStopGameOrElseRestart("R"), true);;
+    }
+
+
 }
