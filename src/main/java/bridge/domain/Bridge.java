@@ -9,14 +9,8 @@ public class Bridge {
         this.bridges = bridges;
     }
 
-    public String moveResult(Move move, int distance, String direction) {
-        if (move.direction.equals(direction)) {
-            if (bridges.get(distance).equals(direction)) {
-                return "O";
-            }
-            return "X";
-        }
-        return " ";
+    public MoveResult crossBridge(int distance, String direction) {
+        return MoveResult.move(bridges.get(distance), direction);
     }
 
     @Override

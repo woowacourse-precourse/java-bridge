@@ -7,27 +7,30 @@ import java.util.Map;
 
 public class Player {
     private int moveDistance;
-    private Map<Move, List<String>> moveResult;
+    private Map<Move, List<MoveResult>> moveResults;
 
     public Player() {
         this.moveDistance = 0;
-        this.moveResult = new EnumMap<>(Move.class);
+        this.moveResults = new EnumMap<>(Move.class);
         initMap();
     }
 
-    public Map<Move, List<String>> getPlayerMoved() {
-        return moveResult;
+    public Map<Move, List<MoveResult>> getMoveResults() {
+        return moveResults;
     }
 
     private void initMap() {
-        moveResult.put(Move.UP, new ArrayList<>());
-        moveResult.put(Move.DOWN, new ArrayList<>());
+        moveResults.put(Move.UP, new ArrayList<>());
+        moveResults.put(Move.DOWN, new ArrayList<>());
     }
 
-    public void move(Bridge bridge, String direction) {
-        for (Move move : Move.values()) {
-            moveResult.get(move).add(bridge.moveResult(move, moveDistance, direction));
-        }
+    public boolean move(Bridge bridge, String direction) {
+        moveResults.get(Move.reverseMove(direction)).add(MoveResult.OTHER);
+
+        MoveResult moveResult = bridge.crossBridge(moveDistance, direction);
+        moveResults.get(Move.from(direction)).add(moveResult);
         moveDistance++;
+
+        return moveResult.canMove;
     }
 }

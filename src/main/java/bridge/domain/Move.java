@@ -14,6 +14,13 @@ public enum Move {
         this.number = number;
     }
 
+    public static Move reverseMove(String direction) {
+        return Arrays.stream(values())
+                .filter(move -> !move.direction.equals(direction))
+                .findAny()
+                .get();
+    }
+
     public String getDirection() {
         return direction;
     }
