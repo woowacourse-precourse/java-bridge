@@ -3,6 +3,7 @@ package bridge.model;
 import bridge.model.bridge.Bridge;
 import bridge.model.bridge.Node;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PlayerSteps {
@@ -16,9 +17,17 @@ public class PlayerSteps {
         steps.add(node);
     }
 
-    public boolean compareLastStepWithBridge(Bridge bridge) {
-        int compareIndex = steps.size()-1;
+    public boolean isLastStepSameWithBridge(Bridge bridge) {
+        int compareIndex = steps.size() - 1;
         Node lastStep = steps.get(compareIndex);
         return bridge.compareNodeOf(compareIndex, lastStep);
+    }
+
+    public Node getLastStep() {
+        return steps.get(steps.size() - 1);
+    }
+
+    public List<Node> getSteps() {
+        return Collections.unmodifiableList(steps);
     }
 }
