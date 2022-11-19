@@ -2,6 +2,7 @@ package bridge.controller;
 
 import static bridge.controller.InputController.setBridgeSize;
 
+import bridge.model.Bridge;
 import bridge.model.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -14,14 +15,14 @@ public class GameController {
     public void play() {
         // 다리 생성
         outputView.printStartGame();
-        List<String> bridge = setBridgeSize();
-        System.out.println(bridge);
+        Bridge bridge = new Bridge();
 
         // 다리 게임
-        BridgeGame bridgegame = new BridgeGame();
-        bridgegame.move(bridge);
+        BridgeGame bridgegame = new BridgeGame(bridge);
+        bridgegame.move();
 
     }
+
 
 
 }

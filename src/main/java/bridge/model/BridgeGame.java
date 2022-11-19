@@ -2,13 +2,15 @@ package bridge.model;
 
 import static bridge.controller.InputController.setUserSelection;
 
-import java.util.List;
-
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private final Bridge bridge;
 
+    public BridgeGame(Bridge bridge) {
+        this.bridge = bridge;
+    }
     // BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.
     // BridgeGame에 필드(인스턴스 변수)를 추가할 수 있다
     // BridgeGame의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
@@ -19,26 +21,23 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(List<String> bridge) {
+    public void move() {
         int attemptsNumber = 1;
         int index;
-        for (index = 0; index < bridge.size(); index++) {
-            if (isUserSelectionCorrect(setUserSelection(), bridge.get(index))) {
+        for (index = 0; index < bridge.getBridgeSize(); index++) {
+            if (bridge.isUserSelectionCorrect(setUserSelection(), bridge.currentBridge(index))) {
                 continue;
             }
             break;
         }
-        if (index == bridge.size()) {
+        if (index == bridge.getBridgeSize()) {
             System.out.println("성공");
         }
-        if (index < bridge.size()) {
+        if (index < bridge.getBridgeSize()) {
             System.out.println("실패");
         }
     }
 
-    private boolean isUserSelectionCorrect(String correctOption, String userSelection) {
-        return correctOption.equals(userSelection);
-    }
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
