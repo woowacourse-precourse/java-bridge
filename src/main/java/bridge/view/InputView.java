@@ -31,7 +31,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public static String readMoving() {
         System.out.println(BRIDGE_SQUARE_MSG);
         String moveSquare =  Console.readLine();
         try {
@@ -58,7 +58,7 @@ public class InputView {
     }
 
     private static void validateBridgeMoveSquare(String square) {
-        if (square != "U" || square != "D") {
+        if (square.equals("U") != true && square.equals("D") != true) {
             throw new IllegalArgumentException(BRIDGE_SQUARE_ERROR_MSG);
         }
     }
