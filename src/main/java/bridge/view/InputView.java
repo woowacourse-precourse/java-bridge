@@ -14,14 +14,23 @@ public class InputView {
     public int readBridgeSize() {
         String userBridgeSize = Console.readLine();
         // TODO Bridge 길이 에러 처리
-        validateBridgeInputIsBlank(userBridgeSize);
+        validateBridgeSizeIsBlank(userBridgeSize);
+        validateBridgeInputFormat(userBridgeSize);
         int bridgeSize = changeStringToInt(userBridgeSize);
         return bridgeSize;
     }
 
-    public void validateBridgeInputIsBlank(String uncheckedInput) {
+    public void validateBridgeSizeIsBlank(String uncheckedInput) {
         if(uncheckedInput.isBlank()) {
             throw new IllegalArgumentException(InputException.BLANK_BRIDGE_LENGTH.getExceptionMessage());
+        }
+    }
+
+    public void validateBridgeInputFormat(String uncheckedInput) {
+        try {
+            changeStringToInt(uncheckedInput);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(InputException.NOT_NUMBER_BRIDGE_LENGTH.getExceptionMessage());
         }
     }
 
