@@ -29,13 +29,25 @@ public class Controller {
         } while (true);
     }
 
-    // 게임 다리건너기 기능
+    // 게임 진행
     private void gamePlay() {
         do {
-            service.move();
+            move();
             if (service.retry()) {
                 break;
             }
         } while (true);
+    }
+
+    // 다리를 건너는 기능
+    private void move() {
+        service.initBridgeUserKeyList();
+        do {
+            try {
+                service.move();
+            } catch (IllegalArgumentException error) {
+                service.catchError(error);
+            }
+        } while (!service.isBridgeEnd());
     }
 }
