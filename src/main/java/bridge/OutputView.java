@@ -74,11 +74,44 @@ public class OutputView {
     private void printEnding() {
         System.out.print(MAP_ENDING.getMessage());
     }
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult() {
+
+    public void printResult(List<String> bridgeTrack, List<String> answerBridge, int tryCount) {
+        printGameEndingHead();
+        printMap(bridgeTrack, answerBridge);
+        System.out.print("\n");
+        printGameSuccessStatus(bridgeTrack, answerBridge);
+        System.out.print("\n");
+        printTryCount(tryCount);
+    }
+
+    private void printGameEndingHead(){
+        System.out.print(GAME_ENDING_HEAD.getMessage() + "\n");
+    }
+    private void  printGameSuccessStatus(List<String> bridgeTrack, List<String> answerBridge){
+        System.out.print(GAME_SUCCESS_STATUS.getMessage());
+        if(isGameSuccess(bridgeTrack, answerBridge)){
+            printGameSuccess();
+            return;
+        }
+        if(isGameFail(bridgeTrack, answerBridge)){
+            printGameFail();
+            return;
+        }
+    }
+    private boolean isGameSuccess(List<String> bridgeTrack, List<String> answerBridge){
+        return bridgeTrack.equals(answerBridge);
+    }
+    private boolean isGameFail(List<String> bridgeTrack, List<String> answerBridge){
+        return !bridgeTrack.equals(answerBridge);
+    }
+    private void printGameSuccess(){
+        System.out.print(GAME_SUCCESS.getMessage());
+    }
+    private void printGameFail(){
+        System.out.print(GAME_FAIL.getMessage());
+    }
+    private void printTryCount(int tryCount) {
+        System.out.print(TRY_COUNT.getMessage());
+        System.out.print(tryCount);
     }
 }
