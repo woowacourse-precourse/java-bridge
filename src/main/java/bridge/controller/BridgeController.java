@@ -27,20 +27,20 @@ public class BridgeController {
     public void playGame(User user, Bridge bridge) {
         while (!user.isGameDoneStatus()) {
             String moveDirection = inputService.requestMove();
-            boolean isSuccess = bridge.isCorrectMoveDirection(moveDirection);
-            outputView.printMap(bridge.getNowIndex(), moveDirection, isSuccess);
-            gameProcess(bridge, user, isSuccess);
+            boolean isUserAnswerCorrect = bridge.isCorrectMoveDirection(moveDirection);
+            outputView.printMap(bridge.getNowIndex(), moveDirection, isUserAnswerCorrect);
+            gameProcess(bridge, user, isUserAnswerCorrect);
             continue;
         }
         outputView.printResult(user);
     }
 
-    public void gameProcess(Bridge bridge, User user, boolean isSuccess) {
-        if (!isSuccess) {
-            String command = inputService.requestStatusOfGame();
-            bridgeGame.userFailCase(bridge, user, command);
+    public void gameProcess(Bridge bridge, User user, boolean isUserAnswerCorrect) {
+        if (!isUserAnswerCorrect) {
+            String gameStatus = inputService.requestStatusOfGame();
+            bridgeGame.userFailCase(bridge, user, gameStatus);
         }
-        if (isSuccess) {
+        if (isUserAnswerCorrect) {
             bridgeGame.move(bridge, user);
         }
     }

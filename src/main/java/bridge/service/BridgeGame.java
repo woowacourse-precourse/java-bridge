@@ -27,11 +27,11 @@ public class BridgeGame {
         return false;
     }
 
-    public void userFailCase(Bridge bridge, User user, String command) {
-        if (command.equals(RESTART_GAME)) {
+    public void userFailCase(Bridge bridge, User user, String gameStatus) {
+        if (gameStatus.equals(RESTART_GAME)) {
             retry(bridge, user);
         }
-        if (command.equals(QUIT_GAME)) {
+        if (gameStatus.equals(QUIT_GAME)) {
             user.gameDoneSuccess();
             user.gameFail();
         }
