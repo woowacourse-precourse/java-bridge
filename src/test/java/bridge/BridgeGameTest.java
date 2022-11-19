@@ -21,5 +21,10 @@ class BridgeGameTest {
 
     @Test
     void retry() {
+        List<String> bridgeMovedHistory = List.of("U", "D", "U");
+        BridgeGame bridgeGame = new BridgeGame(new GameStatus(), bridgeMovedHistory);
+        boolean retryStatus = bridgeGame.retry("R");
+
+        assertThat(retryStatus).isTrue();
     }
 }
