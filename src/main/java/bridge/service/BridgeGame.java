@@ -24,7 +24,7 @@ public class BridgeGame {
      */
     public boolean move(Direction direction) {
         player.move(direction);
-        bridge.validatePlayerStatus(player);
+        bridge.validatePlayer(player);
         return !bridge.isDone(player);
     }
 
