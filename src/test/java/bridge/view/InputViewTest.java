@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.InputView;
+import bridge.Move;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -79,15 +80,15 @@ public class InputViewTest {
 
     private static Stream<Arguments> provideValidMoving() {
         return Stream.of(
-                Arguments.of("U", "U"),
-                Arguments.of("D", "D")
+                Arguments.of("U", Move.U),
+                Arguments.of("D", Move.D)
         );
     }
 
     @DisplayName("움직일 위치로 U 혹은 D 한글자를 입력한 경우 해당 문자를 반환한다")
     @ParameterizedTest
     @MethodSource("provideValidMoving")
-    void inputMovingValid(String input, String expectedMoving) {
+    void inputMovingValid(String input, Move expectedMoving) {
         InputStream inputStream = generateUserInput(input);
         System.setIn(inputStream);
 

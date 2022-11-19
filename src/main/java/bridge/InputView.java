@@ -38,11 +38,12 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public Move readMoving() {
         String userInput = Console.readLine();
 
         isValidMoving(userInput);
-        return userInput;
+
+        return Move.valueOf(userInput);
     }
 
     private void isValidMoving(String userInput) {
