@@ -1,9 +1,23 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private final List<String> currentGameBridge;
+    private int currentGameIndex;
+    private List<String> currentGameResults;
+    private boolean gamePassFlag;
+
+    public BridgeGame(List<String> currentGameBridge) {
+        this.currentGameBridge = currentGameBridge;
+        this.currentGameResults = new ArrayList<>();
+        this.currentGameIndex = 0;
+        this.gamePassFlag = false;
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
