@@ -11,4 +11,12 @@ public enum BridgeBlock {
         this.number = number;
         this.direction = direction;
     }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public String getDirection() {
+        return direction;
+    }
 }
