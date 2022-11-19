@@ -11,7 +11,7 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
-public class BridgeTest extends NsTest {
+public class BridgeTest extends ApplicationTest {
     @Test
     void moveTest(){
         Bridge bridge =new Bridge(newArrayList("U","U","D"));
@@ -30,9 +30,5 @@ public class BridgeTest extends NsTest {
             runException("1","U");
             Assertions.assertThat(output()).contains();
         });
-    }
-    @Override
-    protected void runMain() {
-        Application.main(new String[]{});
     }
 }

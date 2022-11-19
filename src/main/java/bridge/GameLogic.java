@@ -18,11 +18,19 @@ public class GameLogic {
     }
     public void start(){
         System.out.println("다리 건너기 게임을 시작합니다.");
-        int input = inputView.readBridgeSize();
-        bridgeGame.inputBridgeSize(input);
-        outputView = new OutputView(bridgeGame.getBridge().getBridgeList());
-        changeLine();
-        playOneGame();
+        catchException();
+    }
+    private void catchException(){
+        try{
+            int input = inputView.readBridgeSize();
+            bridgeGame.inputBridgeSize(input);
+            outputView = new OutputView(bridgeGame.getBridge().getBridgeList());
+            changeLine();
+            playOneGame();
+        }catch (IllegalArgumentException error){
+            System.out.println(error);
+            catchException();
+        }
     }
     private void playOneGame(){
         this.inputMove = inputView.readMoving();
