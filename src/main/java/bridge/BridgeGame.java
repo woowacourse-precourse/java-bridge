@@ -1,15 +1,18 @@
 package bridge;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
     List<String> bridge;
+    User user;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
+        user = new User();
     }
 
     /**
@@ -17,7 +20,17 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public void move(String direction) {
+
+    }
+
+    public String getResultOfStep(String direction) {
+        int round = user.getRound();
+        String resultOfStep = "X";
+        if (bridge.get(round).equals(direction)) {
+            resultOfStep = "O";
+        }
+        return resultOfStep;
     }
 
     /**
