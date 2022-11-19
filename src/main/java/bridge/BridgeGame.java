@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.constant.Constant;
 import bridge.domain.*;
 import bridge.service.BridgeMaker;
 import bridge.view.InputView;
@@ -8,6 +9,7 @@ import bridge.view.OutputView;
 public class BridgeGame {
     private final BridgeMaker bridgeMaker;
     private Movement movement;
+    private final BridgeMap bridgeMap = new BridgeMap();
 
     public BridgeGame(BridgeMaker bridgeMaker) {
         this.bridgeMaker = bridgeMaker;
@@ -27,20 +29,30 @@ public class BridgeGame {
                 isContinue = retry();
             }
         } while (!movement.isFinish() && isContinue);
-        OutputView.printResult(movement);
+        OutputView.printResult(bridgeMap.getMap(), movement);
     }
 
     private void move(Moving moving) {
         movement.saveMoving(moving.getMoving());
-        OutputView.printMap(movement);
+        saveCompareResult(moving.getMoving());
+        OutputView.printMap(bridgeMap.getMap());
     }
 
     public boolean retry() {
         Command command = InputView.readGameCommand();
         if (command.isRetry()) {
             movement.clearMoving();
+            bridgeMap.clearMap();
             return true;
         }
         return false;
+    }
+
+    public void saveCompareResult(String moving) {
+        String mark = Constant.CORRECT_MARK;
+        if (!movement.canMove()) {
+            mark = Constant.WRONG_MARK;
+        }
+        bridgeMap.addMap(moving, mark);
     }
 }
