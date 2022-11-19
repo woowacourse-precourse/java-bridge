@@ -40,8 +40,6 @@ public class BridgeGame {
             setFinalSuccess();
         }
 
-        if (index < bridge.getBridgeSize()) {
-        }
     }
 
     /**

@@ -1,6 +1,6 @@
 package bridge.controller;
 
-import static bridge.model.FinalResult.getFinalSuccess;
+import static bridge.model.FinalResult.isFinalSuccess;
 
 import bridge.model.Bridge;
 import bridge.model.BridgeGame;
@@ -20,7 +20,7 @@ public class GameController {
         BridgeGame bridgegame = new BridgeGame(bridge);
 
         bridgegame.move();
-        System.out.println(getFinalSuccess());
+        System.out.println(isFinalSuccess());
 
 
     }

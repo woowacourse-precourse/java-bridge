@@ -7,10 +7,12 @@ public class FinalResult {
     public static void addAttempts() {
         attempts++;
     }
+
     public static void setFinalSuccess() {
         finalSuccess = true;
     }
-    public  static boolean getFinalSuccess() {
+
+    public static boolean isFinalSuccess() {
         return finalSuccess;
     }
 }
