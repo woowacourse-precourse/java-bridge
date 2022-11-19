@@ -21,23 +21,19 @@ public class BridgeMaker {
     // 인자, 이름, 반환 타입이 변경 불가한 메서드
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < 2; i++) {
             bridge.add("[   ]");
         }
         return bridge;
     }
 
-    public List<Bridge> makeBridgeList(int size) {
-
-        List<Bridge> bridgeList = new ArrayList<>();
-        final int BRIDGE_DEPTH = 2;
-
-        for (int i = 0; i < BRIDGE_DEPTH; i++) {
-            List<String> makeBridge = makeBridge(size);
-            Bridge bridge = new Bridge(makeBridge);
+    public boolean isBridgeSize(List<String> bridge, int bridgeSize){
+        if(bridge.size() >= bridgeSize){
+            return true;
         }
-        return bridgeList;
+        return false;
     }
+
 
     // BridgeMaker를 선언하는 곳에서 구현해야 함
     public int bridgeRandomNumber() {
