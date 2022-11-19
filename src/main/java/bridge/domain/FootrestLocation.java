@@ -3,26 +3,16 @@ package bridge.domain;
 import java.util.Arrays;
 
 public enum FootrestLocation {
-    UP(1, "U"),
-    DOWN(0, "D");
+    UP("U"),
+    DOWN("D");
 
-    private Integer boardStatus;
     private String userInput;
 
-    FootrestLocation(Integer boardStatus, String userInput) {
-        this.boardStatus = boardStatus;
+    FootrestLocation(String userInput) {
         this.userInput = userInput;
     }
 
-    public Integer getBoardStatus() {
-        return boardStatus;
-    }
-
-    public String getUserInput() {
-        return userInput;
-    }
-
-    public static FootrestLocation valueOfUsingUserInput(String userInput) {
+    public static FootrestLocation findByUserInput(String userInput) {
         return Arrays.stream(FootrestLocation.values())
                 .filter(each -> each.userInput.equals(userInput))
                 .findAny()

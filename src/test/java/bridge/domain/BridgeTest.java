@@ -84,7 +84,8 @@ class BridgeTest {
             temp.add("U");
         }
         Bridge bridge = new Bridge(temp);
-        Assertions.assertThatThrownBy(() -> bridge.canMove(3, FootrestLocation.UP)).isInstanceOf(IllegalStateException.class);
+        Assertions.assertThatThrownBy(() -> bridge.canMove(3, FootrestLocation.UP))
+                .isInstanceOf(IllegalStateException.class);
     }
 
     @Test
@@ -94,7 +95,8 @@ class BridgeTest {
             temp.add("U");
         }
         Bridge bridge = new Bridge(temp);
-        Assertions.assertThatThrownBy(() -> bridge.canMove(-1, FootrestLocation.UP)).isInstanceOf(IllegalStateException.class);
+        Assertions.assertThatThrownBy(() -> bridge.canMove(-1, FootrestLocation.UP))
+                .isInstanceOf(IllegalStateException.class);
     }
     // 입력값이 FootrestLocation 아닌 경우는 입력 자체가 불가능
 

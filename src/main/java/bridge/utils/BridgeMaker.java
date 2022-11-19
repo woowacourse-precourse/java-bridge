@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // TODO 주의! 필드(인스턴스 변수), 메서드의 시그니처(인자, 이름)와 반환 타입은 변경 불가능합니다
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
@@ -22,7 +23,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        for(int i=0;i<size;i++) {
+        for (int i = 0; i < size; i++) {
             if (bridgeNumberGenerator.generate() == 0) {
                 bridge.add("D");
             } else {

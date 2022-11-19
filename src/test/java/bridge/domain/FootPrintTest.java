@@ -11,6 +11,7 @@ class FootPrintTest {
         FootPrint footPrint = new FootPrint();
         Assertions.assertThat(footPrint.getOrder()).isEqualTo(0);
     }
+
     @Test
     void 정상_움직이는게_저장() {
         FootPrint footPrint = new FootPrint();

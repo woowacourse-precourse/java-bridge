@@ -4,7 +4,7 @@ import bridge.domain.ActionAfterGameStatus;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.FootrestLocation;
-import bridge.domain.GameResultStatus;
+import bridge.domain.GameResultCode;
 import bridge.utils.BridgeMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -36,9 +36,8 @@ public class BridgeGameController {
     }
 
     private void play() {
-        GameResultStatus movingResult = moveUser();
-        //결정하다 다음 행동을
-        if (movingResult == GameResultStatus.FAIL) { // 게임에 실패한 경우
+        GameResultCode movingResult = moveUser();
+        if (movingResult == GameResultCode.FAIL) { // 게임에 실패한 경우
             determineWhatToDo();
         }
     }
@@ -47,6 +46,7 @@ public class BridgeGameController {
         game.retry();
         play();
     }
+
     private void determineWhatToDo() {
         try {
             ActionAfterGameStatus code = ActionAfterGameStatus.findByUserInput(this.inputView.readGameCommand());
@@ -59,20 +59,17 @@ public class BridgeGameController {
         }
     }
 
-
-
-    private GameResultStatus moveUser() {
+    private GameResultCode moveUser() { // TODO 코드 분리하기...
         try {
             String command = inputView.readMoving();
-            FootrestLocation footrestLocation = FootrestLocation.valueOfUsingUserInput(command);
-            GameResultStatus movingResult = game.move(footrestLocation);
+            FootrestLocation footrestLocation = FootrestLocation.findByUserInput(command);
+            GameResultCode gameResult = game.move(footrestLocation);
 
-            // game에게 발자취를 꺼낸다
             outputView.printMap(game.getFootPrint());
-            if (movingResult == GameResultStatus.MOVE_SUCCESS) {
+            if (gameResult == GameResultCode.MOVE_SUCCESS) {
                 return moveUser();
             }
-            return movingResult;
+            return gameResult;
         } catch (IllegalArgumentException e) {
             outputView.showErrorMessage(e);
             return moveUser();
@@ -83,7 +80,7 @@ public class BridgeGameController {
         try {
             Integer bridgeSize = inputView.readBridgeSize();
             return new Bridge(bridgeMaker.makeBridge(bridgeSize));
-        } catch (IllegalArgumentException e ) {
+        } catch (IllegalArgumentException e) {
             outputView.showErrorMessage(e);
             return makeBridge();
         }

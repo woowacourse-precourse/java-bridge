@@ -11,9 +11,9 @@ public class Bridge {
             throw new IllegalArgumentException("3 이상, 20 이하의 크기로만 입력이 가능합니다");
         }
         this.structure = structure.stream().map(each ->
-                        FootrestLocation.valueOfUsingUserInput(each))
+                        FootrestLocation.findByUserInput(each))
                 .collect(Collectors.toList());
-        System.out.println("bridge is " + structure);
+        System.out.println("bridge is " + structure); //TODO 마지막에 해당 문장 삭제. 테스트의 편의를 위해서 존재함
     }
 
     public boolean canMove(Integer order, FootrestLocation footrestLocation) {
@@ -25,7 +25,7 @@ public class Bridge {
     }
 
     public boolean isLast(Integer order) {
-        return structure.size() -1 == order;
+        return structure.size() - 1 == order;
     }
 
     public Integer size() {
