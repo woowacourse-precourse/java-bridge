@@ -12,7 +12,7 @@ public class Player {
         currentPosition++;
     }
 
-    public int getCurrentPosition() {
-        return currentPosition;
+    public int getNextPosition() {
+        return currentPosition + 1;
     }
 }

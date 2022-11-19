@@ -20,9 +20,7 @@ public class BridgeGame {
 
     private GameStatus move() {
         player.moveForward();
-        System.out.println(bridge.getLastIndex());
-        System.out.println(player.getCurrentPosition());
-        if (bridge.getLastIndex() == player.getCurrentPosition()) {
+        if (bridge.getLastIndex() == player.getNextPosition()) {
             return GameStatus.SUCCESS;
         }
         return GameStatus.CONTINUE;
@@ -41,7 +39,7 @@ public class BridgeGame {
     }
 
     private boolean canMoveTo(String squareToMove) {
-        return bridge.isNextAvailable(squareToMove, player.getCurrentPosition());
+        return bridge.isNextAvailable(squareToMove, player.getNextPosition());
     }
 
     public void retry() {
