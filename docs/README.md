@@ -9,7 +9,7 @@
   - [x] 3이상 20이하의 숫자 예외처리
 - [x] 다리길이의 정답 다리 생성 BridgeMaker#makeBridge
   - [x] 0과 1 무작위 값을 통해 정답 다리 생성
-- [ ] 이동할 칸 안내 메세지 출력 MessageView#PRINT_BRIDGE_MOVE_MESSAGE
+- [x] 이동할 칸 안내 메세지 출력 MessageView#PRINT_BRIDGE_MOVE_MESSAGE
 - [ ] 다리 건너기 BridgeGame#move
   - [ ] 사용자로부터 U와 D 방향 입력받기 InputView#readMoving
   - [ ] 방향에 따라 정답 다리와 비교 

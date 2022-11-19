@@ -17,7 +17,7 @@ public class Controller {
     }
 
     private void moveBridge(){
-
+        System.out.println(MessageView.PRINT_BRIDGE_MOVE_MESSAGE);
     }
     private void printBridgeResult(){
 
