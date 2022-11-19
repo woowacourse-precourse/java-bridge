@@ -4,7 +4,6 @@ import bridge.config.InputConfig;
 import bridge.domain.Command;
 import camp.nextstep.edu.missionutils.Console;
 
-import javax.swing.text.html.Option;
 import java.util.Optional;
 
 /**
@@ -29,9 +28,9 @@ public class InputView {
         System.out.println(BRIDGE_LENGTH_INPUT_MESSAGE);
         try {
             String input = Console.readLine().trim();
+            System.out.println();
             inputConfig.checkBridgeLength(input);
-            int size = Integer.parseInt(input);
-            return Optional.of(size);
+            return Optional.of(Integer.parseInt(input));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return Optional.empty();

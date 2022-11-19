@@ -23,6 +23,7 @@ public class OutputView {
 
     public void printStartingMessage() {
         System.out.println(GAME_START_MESSAGE);
+        System.out.println();
     }
 
     /**
@@ -40,6 +41,7 @@ public class OutputView {
             printBridgeMark(stateOfBridge);
             printEndOfBridge();
         }
+        System.out.println();
     }
 
     private void printBridgeMark(List<State> stateOfBridge) {
@@ -73,7 +75,7 @@ public class OutputView {
 
     private void printTryCount(int count) {
         String formatted = String.format(TOTAL_TRY_COUNT_MESSAGE, count);
-        System.out.println(formatted);
+        System.out.print(formatted);
     }
 
     public void printStartOfBridge() {
