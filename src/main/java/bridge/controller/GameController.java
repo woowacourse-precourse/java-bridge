@@ -39,11 +39,11 @@ public class GameController {
     }
 
     private Bridge generateRandomBridge() {
-        return ValidateReader.readUntilValidate((unused -> {
+        return ValidateReader.readUntilValidate(()-> {
             int bridgeSize = inputView.readBridgeSize();
             List<String> bridgePositions = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
             return Bridge.from(bridgePositions);
-        }));
+        });
     }
 
 
@@ -68,7 +68,7 @@ public class GameController {
     }
 
     private boolean playOneTurn(Player player) {
-        Tile movingTargetTile = ValidateReader.readUntilValidate((unused) ->
+        Tile movingTargetTile = ValidateReader.readUntilValidate(() ->
                 Tile.findByPositionSign(inputView.readMoving()));
 
         boolean turnResult = bridgeGame.move(player, movingTargetTile);
@@ -83,7 +83,7 @@ public class GameController {
     }
 
     private boolean askForTryAgain(Player player) {
-        String input = ValidateReader.readUntilValidate((unused) ->
+        String input = ValidateReader.readUntilValidate(() ->
                 inputView.readGameCommand(GAME_RETRY_INPUT, GAME_QUIT_INPUT));
 
         if (input.equals(GAME_RETRY_INPUT)) {

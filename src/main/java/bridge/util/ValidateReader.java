@@ -1,14 +1,12 @@
 package bridge.util;
 
-import java.util.function.Function;
-
 public class ValidateReader {
 
-    public static <T> T readUntilValidate(Function<Void, T> expression) {
+    public static <T> T readUntilValidate(InputFunction<T> expression) {
         T input = null;
         do {
             try {
-                input = expression.apply(null);
+                input = expression.apply();
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
