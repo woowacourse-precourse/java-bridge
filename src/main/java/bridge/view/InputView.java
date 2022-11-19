@@ -7,10 +7,6 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    public void gameStart() {
-        System.out.println(BridgeGameMessage.GAME_START.getMessage());
-    }
-
     /**
      * 다리의 길이를 입력받는다.
      */
