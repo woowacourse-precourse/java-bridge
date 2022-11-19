@@ -22,7 +22,11 @@ public class BridgeMaker {
      * @test 입력받은 숫자 길이만큼 다리를 생성하는 지 테스트한다.
      */
     public List<String> makeBridge(int size) {
-        return null;
+        List<String> bridge = new ArrayList<>();
+        for (int index = INITIAL_INDEX; index < size; index++) {
+            appendBridge(bridge);
+        }
+        return bridge;
     }
 
     private void appendBridge(List<String> bridge) {
