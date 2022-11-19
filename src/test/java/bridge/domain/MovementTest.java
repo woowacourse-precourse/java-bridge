@@ -5,8 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 class MovementTest {
 
@@ -15,7 +13,7 @@ class MovementTest {
     void getMovement() {
         String input = "D";
 
-        Movement movement = Movement.getMovement(input);
+        Movement movement = Movement.getMovementByDirection(input);
 
         assertThat(movement).isEqualTo(Movement.DOWN);
     }

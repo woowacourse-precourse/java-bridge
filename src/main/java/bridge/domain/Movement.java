@@ -1,8 +1,5 @@
 package bridge.domain;
 
-import java.util.Arrays;
-import java.util.Optional;
-
 public enum Movement {
     UP("U", 1),
     DOWN("D", 0);
@@ -23,7 +20,7 @@ public enum Movement {
         return randomDigit;
     }
 
-    public static Movement getMovement(String direction) {
+    public static Movement getMovementByDirection(String direction) {
         Movement movement = Movement.findBy(direction);
         return movement;
     }

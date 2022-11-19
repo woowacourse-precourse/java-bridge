@@ -24,12 +24,12 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int randomDigit = bridgeNumberGenerator.generate();
-            bridge.add(matchDirection(randomDigit));
+            bridge.add(ConvertDigitToString(randomDigit));
         }
         return bridge;
     }
 
-    private String matchDirection(int randomDigit) {
+    private String ConvertDigitToString(int randomDigit) {
         if (Movement.UP.getRandomDigit() == randomDigit) {
             return Movement.UP.getDirection();
         }

@@ -16,11 +16,12 @@ public class GameController {
     InputController inputController;
 
     public GameController(InputController inputController) {
-        this.inputController =inputController;
+        this.inputController = inputController;
     }
 
     public void run() {
         Bridge bridge = createBridge();
+        System.out.println(bridge.getBridge());
         Player player = setPlayer();
         crossABridge(bridge, player);
     }
@@ -38,8 +39,10 @@ public class GameController {
 
     private void crossABridge(Bridge bridge, Player player) {
         BridgeGame bridgeGame = new BridgeGame(bridge, player, inputController);
-        bridgeGame.move(bridge.getBridgeSize());
+        bridgeGame.move();
+        if (bridgeGame.retry()) {
+        }
 
-
+        // 결과 출력
     }
 }

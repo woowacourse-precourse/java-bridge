@@ -39,7 +39,7 @@ public class InputController {
         MessageUtil.movementInputMsg();
         String directionInput = InputView.readMoving();
         ParserUtil.parseMovement(directionInput);
-        Movement movement = Movement.getMovement(directionInput);
+        Movement movement = Movement.getMovementByDirection(directionInput);
         return movement;
     }
 
