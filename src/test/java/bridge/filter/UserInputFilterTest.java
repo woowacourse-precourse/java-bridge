@@ -28,4 +28,19 @@ class UserInputFilterTest {
 		Assertions.assertThatThrownBy(() -> filter.bindingBridgeSize(userInput))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
+
+	@Test
+	@DisplayName("이동 커맨드 검사")
+	void checkMoveCommandTest() {
+		filter.checkMoveCommand("U");
+		filter.checkMoveCommand("D");
+	}
+
+	@ParameterizedTest
+	@DisplayName("이동 커맨드가 아닌 경우 예외 발생")
+	@ValueSource(strings = {"", "1", "A", "Q", "R", "AA"})
+	void checkMoveCommandExceptionTest(String userInput) {
+		Assertions.assertThatThrownBy(() -> filter.checkMoveCommand(userInput))
+			.isInstanceOf(IllegalArgumentException.class);
+	}
 }
