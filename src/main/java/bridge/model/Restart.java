@@ -3,7 +3,8 @@ package bridge.model;
 public enum Restart {
 
     TRUE("R"),
-    FALSE("Q");
+    FALSE("Q"),
+    NULL("");
 
     private final String input;
 
