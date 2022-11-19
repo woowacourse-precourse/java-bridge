@@ -34,7 +34,11 @@ public class BridgeGameController {
 
     public void startGame() {
         play();
-        outputView.printResult();   // TODO 최종 결과 출력 기능 추가 해야함
+        outputView.printResult(
+                bridgeGame.getTryCount(),
+                bridgeGame.getBridgeDirections(),
+                bridgeGame.getUserMoveHistory()
+        );
     }
 
     private void play() {
@@ -42,7 +46,7 @@ public class BridgeGameController {
         do {
             String direction = inputView.readMoving();
             isMoved = bridgeGame.move(direction);
-            outputView.printMap(); // TODO 진행 중인 맵을 출력하는 기능 추가 해야함
+            outputView.printMap(bridgeGame.getBridgeDirections(), bridgeGame.getUserMoveHistory());
             if (bridgeGame.isEnd()) {
                 return;
             }
