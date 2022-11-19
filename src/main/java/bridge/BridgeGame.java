@@ -2,6 +2,10 @@ package bridge;
 
 import bridge.domain.Bridge;
 import bridge.domain.User;
+import bridge.support.BridgeMaker;
+import bridge.support.BridgeRandomNumberGenerator;
+
+import java.util.List;
 
 import static bridge.GameStatus.PLAYING;
 

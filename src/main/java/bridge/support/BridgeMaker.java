@@ -1,4 +1,4 @@
-package bridge.domain.support;
+package bridge.support;
 
 import bridge.utils.MoveCommand;
 
