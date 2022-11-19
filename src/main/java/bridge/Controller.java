@@ -15,6 +15,10 @@ public class Controller {
         System.out.println(answerBridge);
 
         while(!moveBridge()){
+            System.out.println(MessageView.PRINT_GAME_RESTART_MESSAGE);
+            InputView inputView = new InputView();
+            if(!bridgeGame.retry())
+                break;
             tryNumber++;
         }
         System.out.println(tryNumber);

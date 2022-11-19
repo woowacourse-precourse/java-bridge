@@ -10,14 +10,15 @@
 - [x] 다리길이의 정답 다리 생성 BridgeMaker#makeBridge
   - [x] 0과 1 무작위 값을 통해 정답 다리 생성
 - [x] 이동할 칸 안내 메세지 출력 MessageView#PRINT_BRIDGE_MOVE_MESSAGE
-- [ ] 다리 건너기 BridgeGame#move
+- [x] 다리 건너기 BridgeGame#move
   - [x] 사용자로부터 U와 D 방향 입력받기 InputView#readMoving
   - [x] 사용자 입력 예외처리 InputView#validateMove
   - [x] 방향에 따라 정답 다리와 비교 
   - [x] 사용자 결과 출력 OutputView#printMap
-- [ ] 실패 시 게임 재시도 여부 출력 MessageView#PRINT_GAME_RESTART_MESSAGE
-- [ ] 게임 재시도 BridgeGame#retry
-  - [ ] 사용자로부터 R과 Q 시도여부 입력받기 InputView#readGameCommand
+- [x] 실패 시 게임 재시도 여부 출력 MessageView#PRINT_GAME_RESTART_MESSAGE
+- [x] 게임 재시도 BridgeGame#retry
+  - [x] 사용자로부터 R과 Q 시도여부 입력받기 InputView#readGameCommand
+  - [ ] 사용자로부터 재시도 입력 에러처리 
 - [ ] 최종 게임 결과 출력 OutputView#printResult
   - [ ] 게임 성공 여부 출력 OutputView#printGameSuccess
   - [ ] 총 시도한 횟수 출력 OutputView#printGameAttempts
