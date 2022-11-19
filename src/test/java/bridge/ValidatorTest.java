@@ -49,4 +49,58 @@ public class ValidatorTest {
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
+
+    @Nested
+    class IsOneString {
+        @DisplayName("입력값이 한 문자인 경우 예외를 반환하지 않는다.")
+        @Test
+        void inputOneString() {
+            Assertions.assertThatNoException()
+                    .isThrownBy(() -> Validator.isOneString("F"));
+        }
+
+        @DisplayName("입력값이 한 문자가 아닌 경우 예외를 반환한다.")
+        @Test
+        void inputNotOneString() {
+            Assertions.assertThatThrownBy(() -> Validator.isOneString("ABC"))
+                    .hasMessageContaining("[ERROR] 이동할 칸은 한 문자여야 합니다.")
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+    }
+
+    @Nested
+    class IsUppercase {
+        @DisplayName("입력값이 대문자인 경우 예외를 반환하지 않는다.")
+        @Test
+        void inputUppercaseString() {
+            Assertions.assertThatNoException()
+                    .isThrownBy(() -> Validator.isUppercase("F"));
+        }
+
+        @DisplayName("입력값이 대문자가 아닌 경우 예외를 반환한다.")
+        @Test
+        void inputNotOneString() {
+            Assertions.assertThatThrownBy(() -> Validator.isUppercase("d"))
+                    .hasMessageContaining("[ERROR] 이동할 칸은 대문자여야 합니다.")
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+    }
+
+    @Nested
+    class IsUpOrDown {
+        @DisplayName("입력값이 U 또는 D인 경우 예외를 반환하지 않는다.")
+        @Test
+        void inputOneString() {
+            Assertions.assertThatNoException()
+                    .isThrownBy(() -> Validator.isUpOrDown("U"));
+        }
+
+        @DisplayName("입력값이 U 또는 D가 아닌 경우 예외를 반환한다.")
+        @Test
+        void inputNotOneString() {
+            Assertions.assertThatThrownBy(() -> Validator.isUpOrDown("R"))
+                    .hasMessageContaining("[ERROR] 이동할 칸은 U 또는 D여야 합니다.")
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+    }
 }
