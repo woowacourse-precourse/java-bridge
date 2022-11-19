@@ -55,7 +55,18 @@ public class BridgeGame {
         return bridge.getBridge();
     }
 
-    public String getResult() {
+    public String getResultBridge() {
         return resultBridge.toString();
+    }
+
+    public void initialize() {
+        resultBridge.clear();
+    }
+
+    public boolean completeCrossing(int bridgeSize) {
+        if (bridgeSize == resultBridge.countCorrectCrossing()) {
+            return true;
+        }
+        return false;
     }
 }
