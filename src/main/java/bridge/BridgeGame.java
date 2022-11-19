@@ -48,6 +48,10 @@ public class BridgeGame {
         totalBridge.put("down",downBridge);
         return totalBridge;
     }
+
+    /**
+     * 입력값을 받아서 일치하는 쪽에 O 더하기
+     */
     private void checkEqual(String input ,String bridgeInput){
         if(input.equals(bridgeInput)){
             if(input.equals("U")){
@@ -61,6 +65,10 @@ public class BridgeGame {
         }
     }
 
+
+    /**
+     * 입력값을 받아서 일치 하지 않는 쪽에 X 더하기
+     */
     private void checkNoEqual(String input ,String bridgeInput){
         if(!input.equals(bridgeInput)){
             if(input.equals("U")){
@@ -90,6 +98,10 @@ public class BridgeGame {
         }
     }
 
+
+    /**
+     * 최종 결과 출력 메서드
+     */
     public Map<String,List<String>> getResult(){
         Map<String,List<String>> resultBridge = new HashMap<>();
         resultBridge.put("up",upBridge);

@@ -27,6 +27,9 @@ public class OutputView {
         printSubBridge(downBridge);
     }
 
+    /**
+     * up , down 문자열을 sub라 두고 출력
+     */
     private void printSubBridge(List<String> subBridge){
         System.out.print("[ ");
         int size = subBridge.size();
@@ -50,6 +53,10 @@ public class OutputView {
         printSubBridge(downBridge);
     }
 
+
+    /**
+     * 최종 실패여부와 시도 횟수 출력
+     */
     public void printgetInfo(){
         boolean success = bridgeGame.getSuccess();
         int retryCount = bridgeGame.getRetryCount();
