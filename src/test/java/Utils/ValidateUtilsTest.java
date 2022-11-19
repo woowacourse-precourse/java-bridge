@@ -34,4 +34,17 @@ class ValidateUtilsTest {
         }
     }
 
+    @Nested
+    @DisplayName("isValidateGameRestart 메소드 테스트")
+    class TestIsValidateGameRestart {
+        @DisplayName("R, Q 이외의 값을 입력하였을 때")
+        @ValueSource(strings = {"RESTART", "QUIT", "재시작~~", "51", "??"})
+        @ParameterizedTest
+        void case1(String input) {
+            assertThatThrownBy(() -> ValidateUtils.isValidatePosition(input))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining("[ERROR]");
+        }
+    }
+
 }
