@@ -27,7 +27,20 @@ public class BridgeMaker {
         return bridge;
     }
 
-    public int getRandomNumber(){
+    public List<Bridge> makeBridgeList(int size) {
+
+        List<Bridge> bridgeList = new ArrayList<>();
+        final int BRIDGE_DEPTH = 2;
+
+        for (int i = 0; i < BRIDGE_DEPTH; i++) {
+            List<String> makeBridge = makeBridge(size);
+            Bridge bridge = new Bridge(makeBridge);
+        }
+        return bridgeList;
+    }
+
+    // BridgeMaker를 선언하는 곳에서 구현해야 함
+    public int bridgeRandomNumber() {
         int randomNumber = bridgeNumberGenerator.generate();
         return randomNumber;
     }
