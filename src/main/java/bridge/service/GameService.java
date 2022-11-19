@@ -42,4 +42,8 @@ public class GameService {
 		return userBridgeRepository.findUserBridgeStatusDto();
 	}
 
+	public void clearUserBridge() {
+		userBridgeRepository.clear();
+	}
+
 }

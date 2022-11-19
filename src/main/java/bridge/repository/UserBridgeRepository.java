@@ -30,12 +30,9 @@ public class UserBridgeRepository {
 		return new UserBridgeStatusDto(userUpperBridge, userLowerBridge, userCurrentLocation);
 	}
 
-	public Integer findUserCurrentLocation() {
-		return this.userCurrentLocation;
+	public void clear() {
+		userUpperBridge.clear();
+		userLowerBridge.clear();
+		userCurrentLocation = 0;
 	}
-
-	public List<String> findUserBridge() {
-		return userUpperBridge;
-	}
-
 }

@@ -68,6 +68,10 @@ public class BridgeGame {
 	 */
 	public boolean retry() {
 		String userRestartCommand = inputController.getUserRestartCommand();
-		return userRestartCommand.equals(InputViewConst.QUIT);
+		if (userRestartCommand.equals(InputViewConst.QUIT)) {
+			return false;
+		}
+		gameService.clearUserBridge();
+		return true;
 	}
 }

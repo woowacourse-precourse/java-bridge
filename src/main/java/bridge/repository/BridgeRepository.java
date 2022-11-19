@@ -21,7 +21,4 @@ public class BridgeRepository {
 		return bridge.get(currentSpace).equals(userSpace);
 	}
 
-	public List<String> findBridge() {
-		return bridge;
-	}
 }
