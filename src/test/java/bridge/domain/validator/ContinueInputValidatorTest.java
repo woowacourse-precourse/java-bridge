@@ -1,7 +1,9 @@
 package bridge.domain.validator;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import bridge.util.Errors;
@@ -21,6 +23,39 @@ class ContinueInputValidatorTest {
 
     private static final  ContinueInputValidator continueInputValidator  = new ContinueInputValidator();
 
+    @Order(4)
+    @DisplayName("통합 유효성 검사")
+    @ParameterizedTest(name ="{displayName} 입력값({index}) : {1}")
+    @MethodSource("paramsForTotalValidate")
+    void validate(String inputValue, String testOutputMessage) {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> continueInputValidator.validate(inputValue))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+    private static Stream<Arguments> paramsForTotalValidate() {
+        return Stream.of(
+                Arguments.of("    ", "(공백 값)"),
+                Arguments.of("abcd", "abcd"),
+                Arguments.of("1234", "1234"),
+                Arguments.of("r", "r"),
+                Arguments.of("q", "q"),
+                Arguments.of("u", "u"),
+                Arguments.of("U", "U"),
+                Arguments.of("D", "D")
+        );
+    }
+    @Order(5)
+    @DisplayName("통합 유효성 검사 - 통과 case")
+    @ParameterizedTest(name ="{displayName} 입력값({index}) : {0}")
+    @ValueSource(strings = {
+            "R",
+            "Q"
+    })
+    void validate(String inputValue) {
+        assertThatCode(()-> continueInputValidator.validate(inputValue)).doesNotThrowAnyException();
+        assertThatNoException().isThrownBy(()-> continueInputValidator.validate(inputValue));
+    }
 
     @Order(1)
     @DisplayName("공백 여부 검사")
