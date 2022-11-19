@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.domain.Bridge;
+import bridge.type.PassCondition;
 
 public class BridgeGame {
 
@@ -12,8 +13,13 @@ public class BridgeGame {
         this.gameStatusOperator = gameStatusOperator;
     }
 
-    public void move() {
-        gameStatusOperator.changePosition();
+    public PassCondition move(String selectBlock) {
+        Integer currentPosition = gameStatusOperator.getCurrentPosition();
+        if (bridge.checkPassableBlock(currentPosition, selectBlock)) {
+            gameStatusOperator.changePosition();
+            return PassCondition.PASS;
+        }
+        return PassCondition.FAIL;
     }
 
     public void retry() {
