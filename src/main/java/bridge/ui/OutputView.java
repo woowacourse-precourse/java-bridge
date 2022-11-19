@@ -1,5 +1,7 @@
 package bridge.ui;
 
+import java.util.ArrayList;
+import java.util.List;
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -34,6 +36,26 @@ public class OutputView {
     }
 
     public void printNewLine() { System.out.println(); }
+
+    private String createToken() {
+        String token = "O";
+        // 위, 아래, 참, 거짓을 판단해서 토큰을 반환해줌
+        return token;
+    }
+
+    private String createPrintBridge(String upOrDown, String currentUpOrDown, String token) {
+        // 위, 아래를 입력받고,
+        String printBridge = "[";
+        printBridge = printBridge.concat(" " + token + " ");
+
+        return printBridge;
+    }
+
+    private List<String> createPrintBridges(String upOrDown, String currentUpOrDown, String token) {
+        List<String> createPrintBridge = new ArrayList<>();
+        String temp = "";
+        return createPrintBridge;
+    }
 
 
     // 여기부터 에러 메시지들
