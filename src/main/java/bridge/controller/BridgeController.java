@@ -5,9 +5,9 @@ import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import camp.nextstep.edu.missionutils.Console;
 
 import java.util.List;
+
 
 public class BridgeController {
 
@@ -28,7 +28,7 @@ public class BridgeController {
         BridgeGame bridgeGame = new BridgeGame(bridgeMakeResult, 1);
         for (int i = 0; i < bridgeSize; i++) {
             replaceCloseBracket(i);
-            String moveSide = Console.readLine();
+            String moveSide = InputView.inputMoving();
             if (bridgeGame.move(moveSide, i)) {
                 moveSuccess(bridgeGame,moveSide, i);
                 continue;
@@ -79,7 +79,6 @@ public class BridgeController {
         upsideResult.insert(BRIDGE_ONE_SPACE_SIZE *index+1, BRIDGE_ONE_SPACE_BLANK);
         downsideResult.insert(BRIDGE_ONE_SPACE_SIZE *index+1,bridgeGame.createMoveMark(moveSide,index));
         OutputView.printMap(upsideResult, downsideResult);
-
     }
 
     private void goBackOneBridge(int index) {
@@ -87,10 +86,6 @@ public class BridgeController {
         downsideResult.delete(BRIDGE_ONE_SPACE_SIZE * index , 2*BRIDGE_ONE_SPACE_SIZE*index+1);
         upsideResult.append(CLOSING_BRACKET);
         downsideResult.append(CLOSING_BRACKET);
-        System.out.println("지운 결과");
-        OutputView.printMap(upsideResult, downsideResult);
-
-
     }
 
     private void moveSuccess(BridgeGame bridgeGame, String moveSide, int index) {
@@ -110,8 +105,6 @@ public class BridgeController {
             moveFailDownside(bridgeGame, moveSide, index);
         }
     }
-
-    // retry에서 R을 입력 받았을 때 다시 시도
 
     private void printBridgeResult(boolean result, int tryCount) {
         OutputView.printResultMessage();
