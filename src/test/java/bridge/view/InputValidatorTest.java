@@ -49,4 +49,18 @@ class InputValidatorTest {
     void validateMoving_메서드는_메서드는_범위_내_값을_입력하면_예외를_던지지_않는다(String inputMove) {
         inputValidator.validateMoving(inputMove);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"r", "q", "위", "", " ", " Q", "Q "})
+    void validateCommand_메서드는_R와_Q이외의_값을_입력받는_경우_IllegalArgumentException을_던진다(String inputCommand) {
+        assertThatThrownBy(() -> inputValidator.validateCommand(inputCommand))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("재시도 입력은 재시도: R, 종료: Q 중 하나여야 합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"R", "Q"})
+    void validateCommand_메서드는_메서드는_범위_내_값을_입력하면_예외를_던지지_않는다(String inputCommand) {
+        inputValidator.validateCommand(inputCommand);
+    }
 }
