@@ -26,7 +26,7 @@ public class InputView {
      */
     public String readMoving() {
         outputView.printMessage(Message.MOVING_CHOOSE);
-        return null;
+        return Console.readLine();
     }
 
     /**
