@@ -12,9 +12,10 @@ public class BridgeGameView {
         this.outputView = outputView;
     }
 
-    public BridgeSize requestNewBridgeSize() {
+    public int requestNewBridgeSize() {
         outputView.printStartPrompt();
+        BridgeSize bridgeSize = inputView.readBridgeSize();
 
-        return inputView.readBridgeSize();
+        return bridgeSize.getBridgeSize();
     }
 }
