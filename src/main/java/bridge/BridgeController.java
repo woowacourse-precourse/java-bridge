@@ -35,11 +35,26 @@ public class BridgeController {
     }
 
     private void play() {
+        while(!bridgeGame.isEnd()){
+            move();
+            if(bridgeGame.isFail()){
+                askRetry();
+            }
+        }
+    }
+
+    private void askRetry() {
+
+    }
+
+
+    private void move() {
+        outputView.askDirection();
+        Direction direction = inputView.readMoving();
+        bridgeGame.move(direction);
     }
 
     private void end() {
         outputView.printResult();
-        //TODO: GameCommand enum class
-        String retryCommand = inputView.readGameCommand();
     }
 }
