@@ -1,23 +1,22 @@
 package bridge.domain;
 
-import bridge.domain.Bridge;
-import bridge.domain.BridgeMaker;
-import bridge.domain.BridgeNumberGenerator;
-import bridge.domain.BridgeRandomNumberGenerator;
-
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
     private Bridge bridge;
-    private int currentSquareIndex;
+    private Location location;
 
     public void setBridge(int bridgeSize) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
-        currentSquareIndex = 0;
+    }
+
+    public void setLocation() {
+        location = new Location();
+        location.init();
     }
 
     /**
@@ -25,8 +24,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String input) {
-        moveToNextSquare();
+    public void move() {
+        location.moveNext();
     }
 
     /**
@@ -37,11 +36,8 @@ public class BridgeGame {
     public void retry() {
     }
 
-    private void moveToNextSquare() {
-        currentSquareIndex++;
-    }
-
-    private boolean isLastSquare() {
-        return bridge.isLastIndex(currentSquareIndex);
+    public boolean isLastSquare() {
+        int squareIndex = location.getLocation();
+        return bridge.isLastIndex(squareIndex);
     }
 }

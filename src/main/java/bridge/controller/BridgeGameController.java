@@ -19,31 +19,32 @@ public class BridgeGameController {
     }
 
     public void process() {
-        routeInitiation();
-        routeGaming();
+        initiation();
+        inGame();
     }
 
-    private void routeInitiation() {
+    private void initiation() {
         outputView.printStartMessage();
         outputView.printBlankLine();
-        routeSettingBridgeSize();
+        setBridgeSize();
+        bridgeGame.setLocation();
     }
 
-    private void routeSettingBridgeSize() {
+    private void setBridgeSize() {
         outputView.printBridgeSizeInputMessage();
         int bridgeSize = inputView.readBridgeSize();
         outputView.printBlankLine();
         bridgeGame.setBridge(bridgeSize);
     }
 
-    private void routeGaming() {
-        routeEachTurn();
+    private void inGame() {
+        takeTurn();
         while (inputView.readGameCommand().equals(RESTART)) {
-            routeEachTurn();
+            takeTurn();
         }
     }
 
-    private void routeEachTurn() {
+    private void takeTurn() {
         outputView.printNextMovementInputMessage();
         String nextMovement = inputView.readMoving();
         bridgeGame.move(nextMovement);
