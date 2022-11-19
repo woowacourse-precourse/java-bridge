@@ -12,6 +12,11 @@ import java.util.StringJoiner;
 public class OutputView {
 
     public static final String ERROR_PREFIX = "[ERROR]";
+    public static final String FINAL_RESULT_MESSAGE = "최종 게임 결과";
+    public static final String GAME_STATUS_MESSAGE = "게임 성공 여부: %s";
+    public static final String TOTAL_ATTEMPTS_MESSAGE = "총 시도한 횟수: %d";
+    public static final String SUCCESS_MESSAGE = "성공";
+    public static final String FAIL_MESSAGE = "실패";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -57,7 +62,18 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(Bridge bridge, Player player) {
+        System.out.println(FINAL_RESULT_MESSAGE);
+        printMap(bridge, player);
+        System.out.printf((GAME_STATUS_MESSAGE) + "%n", getSuccessOrNot(bridge, player));
+        System.out.printf((TOTAL_ATTEMPTS_MESSAGE) + "%n", player.getAttempt());
+    }
+
+    private String getSuccessOrNot(Bridge bridge, Player player) {
+        if (bridge.isDone(player)) {
+            return SUCCESS_MESSAGE;
+        }
+        return FAIL_MESSAGE;
     }
 
     public static void printMessage(String message) {

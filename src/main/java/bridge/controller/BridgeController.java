@@ -28,6 +28,7 @@ public class BridgeController {
         BridgeGame bridgeGame = generateBridgeGame();
         while (isContinue(bridgeGame))
             ;
+        outputView.printResult(bridgeGame.getBridge(), bridgeGame.getPlayer());
     }
 
     private boolean isContinue(BridgeGame bridgeGame) {
