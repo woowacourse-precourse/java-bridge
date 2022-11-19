@@ -39,9 +39,10 @@ public class GameControl {
 
     private void restartControl() {
         String RorQ = inputView.readGameCommand();
-        if(RorQ == "R") {
+        if(RorQ.equals("R")) {
             bridgeGame.retry();
-        } else if (RorQ == "Q") {
+            moveControl();
+        } else if (RorQ.equals("Q")) {
             ending(Progress.FAILURE.getStateMessage());
         }
     }
