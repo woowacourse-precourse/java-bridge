@@ -24,9 +24,9 @@ public class BridgeGame {
         outputView.printContinueOrEndRequest();
         continueOrEnd = inputView.readGameCommand();
         if (continueOrEnd.equals("R")) {
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
     public boolean play(int limitSize, BridgeMaker bridgeMaker) {
@@ -42,7 +42,6 @@ public class BridgeGame {
     public void controller() {
         int attempts = 1;
         int limitSize;
-        String gameCommand;
         boolean endGame = false;
         boolean isWin;
 
@@ -51,26 +50,17 @@ public class BridgeGame {
         while (!endGame) {
             BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
             isWin = play(limitSize, bridgeMaker);
-            if (isWin) {
-                outputView.printTitle();
-                outputView.printMap(bridgeMaker.getMapUpper(),bridgeMaker.getMapLower());
-                outputView.printResult(isWin,attempts);
-                endGame = true;
-
-            }
             if (!isWin) {
-                outputView.printContinueOrEndRequest();
-                gameCommand = inputView.readGameCommand();
-                if (gameCommand.equals("R")) {
-                    attempts++;
-                    continue;
-                } else {
+                endGame = retry();
+            }
+            if (isWin||endGame) {
                     outputView.printTitle();
                     outputView.printMap(bridgeMaker.getMapUpper(),bridgeMaker.getMapLower());
                     outputView.printResult(isWin,attempts);
-                    endGame = true;
+                    return;
                 }
+            attempts++;
             }
         }
     }
-}
+
