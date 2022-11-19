@@ -25,10 +25,10 @@ public class BridgeGame {
         for (int i=0; i < ladder.size(); i++) {
             String moveDir = inputView.readMoving();
             if (moveDir.equals(ladder.get(i))) {
-                System.out.println("건널 수 있음.");
+                outputView.printMap(moveDir+"O");
                 continue;
             }
-            System.out.println("건널 수 없음.");
+            outputView.printMap(moveDir+"X");
         }
     }
 

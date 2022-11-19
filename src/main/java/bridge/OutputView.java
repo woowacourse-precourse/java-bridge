@@ -17,16 +17,25 @@ public class OutputView {
         char dir = result.charAt(0);
         char ox = result.charAt(1);
         addState(dir,ox);
-        System.out.println("resultStateUp = " + resultStateUp);
-        System.out.println("resultStateDown = " + resultStateDown);
+        System.out.println(resultStateUp);
+        System.out.println(resultStateDown);
     }
 
     private void addState(char dir, char ox) {
-        resultStateUp.replace("]","|");
+        changFormat();
         if (dir == 'U') {
             resultStateUp += " " + ox + " ]";
+            resultStateDown += "   ]";
         } else if (dir == 'D') {
             resultStateDown += " " + ox + " ]";
+            resultStateUp += "   ]";
+        }
+    }
+
+    private void changFormat(){
+        if (resultStateUp.length() >= 5){
+            resultStateUp = resultStateUp.substring(0, resultStateUp.length()-1) + "|";
+            resultStateDown = resultStateDown.substring(0, resultStateDown.length()-1) + "|";
         }
     }
 
