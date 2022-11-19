@@ -10,5 +10,8 @@ public class CurrentBridge extends Bridge{
     public BridgeStatus getBridgeStatus(){
         return bridgeStatus;
     }
+    public void move(String moveCommand){
+        bridge.add(moveCommand);
+    }
 
 }
