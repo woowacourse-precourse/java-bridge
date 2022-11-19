@@ -30,7 +30,9 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String command = Console.readLine();
+        checkCommand(command);
+        return command;
     }
 
     public void isNumber(String number) {
@@ -48,6 +50,12 @@ public class InputView {
     public void checkAlphabet(String alphabet) {
         if (!(alphabet.equals("U") || alphabet.equals("D"))) {
             throw new IllegalArgumentException("[ERROR] 윗칸(U)과 아래칸(D) 중 하나를 입력해야 합니다.");
+        }
+    }
+
+    private void checkCommand(String command) {
+        if (!(command.equals("U") || command.equals("D"))) {
+            throw new IllegalArgumentException("[ERROR] 재시작(R)과 종료(Q) 중 하나를 입력해야 합니다.");
         }
     }
 }
