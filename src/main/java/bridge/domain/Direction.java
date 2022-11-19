@@ -18,18 +18,10 @@ public enum Direction {
         this.directionNumber = directionNumber;
     }
 
-    public String getDirectionString() {
-        return directionString;
-    }
-
-    public int getDirectionNumber() {
-        return directionNumber;
-    }
-
     public static String getDirectionStringByNumber(int directionNumber) {
         Optional<String> resultDirection = Arrays.stream(Direction.values())
-                .filter(dir -> dir.getDirectionNumber() == directionNumber)
-                .map(dir -> dir.getDirectionString())
+                .filter(dir -> dir.directionNumber == directionNumber)
+                .map(dir -> dir.directionString)
                 .findAny();
         resultDirection.orElseThrow(() -> new IllegalArgumentException(INVALID_INTEGER_ERROR_MESSAGE));
         return resultDirection.get();
@@ -37,7 +29,7 @@ public enum Direction {
 
     public static Direction getDirectionByString(String direction) {
         Optional<Direction> resultDirection = Arrays.stream(Direction.values())
-                .filter(dir -> dir.getDirectionString().equals(direction))
+                .filter(dir -> dir.directionString.equals(direction))
                 .findAny();
         resultDirection.orElseThrow(() -> new IllegalArgumentException(INVALID_STRING_ERROR_MESSAGE));
         return resultDirection.get();

@@ -68,7 +68,6 @@ public class InputView {
             outputView.printMessage(e.getMessage());
             return readDirection();
         }
-
     }
 
     /**
