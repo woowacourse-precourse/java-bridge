@@ -16,4 +16,8 @@ public class Result {
         status.add(MoveStatus.of(bridge.canMove(userDirection, location), userDirection));
         location++;
     }
+
+    public boolean isEnd(Bridge bridge) {
+        return !status.get(status.size()-1).didCross() || bridge.isEnd(location);
+    }
 }

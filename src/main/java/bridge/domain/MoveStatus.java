@@ -1,10 +1,7 @@
 package bridge.domain;
 
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public enum MoveStatus {
     DOWN_SUCCESS(1, true, "D", "O"),
@@ -39,5 +36,9 @@ public enum MoveStatus {
         this.didCross = didCross;
         this.direction = direction;
         this.mark = mark;
+    }
+
+    public boolean didCross() {
+        return this.didCross;
     }
 }
