@@ -13,7 +13,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        int bridgeSize = parseInt(Console.readLine());
+        int bridgeSize = parseInt(read());
         validateBridgeSize(bridgeSize);
         return bridgeSize;
     }
@@ -36,6 +36,10 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private String read() {
+        return Console.readLine();
     }
 
     private int parseInt(String input) {
