@@ -4,7 +4,6 @@ import static bridge.controller.BridgeController.RANGE_END;
 import static bridge.controller.BridgeController.RANGE_START;
 
 import bridge.model.Direction;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -28,29 +27,21 @@ public class BridgeMaker {
         validate(size);
         return IntStream.range(0, size)
                 .map(i -> bridgeNumberGenerator.generate())
-                .mapToObj(this::generateDirection)
+                .mapToObj(Direction::from)
+                .map(Direction::getDirection)
                 .collect(Collectors.toList());
     }
 
     private void validate(int size) {
         if (outOfRange(size)) {
             throw new IllegalArgumentException(
-                    String.format("다리 길이는 %d부터 %d 사이의 숫자여야 합니다. 입력 : %d", RANGE_START,
-                            RANGE_END, size));
+                    String.format("다리 길이는 %d부터 %d 사이의 숫자여야 합니다. 입력 : %d",
+                            RANGE_START, RANGE_END, size));
         }
     }
 
     private boolean outOfRange(int size) {
         return RANGE_START > size || RANGE_END < size;
-    }
-
-    private String generateDirection(int number) {
-        return Arrays.stream(Direction.values())
-                .filter(direction -> direction.isMatchGenerateCode(number))
-                .findFirst()
-                .map(Direction::getDirection)
-                .orElseThrow(() -> new IllegalStateException(
-                        String.format("생성 불가능한 코드입니다. 입력 : %d", number)));
     }
 
 }
