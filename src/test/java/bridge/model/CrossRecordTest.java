@@ -3,53 +3,79 @@ package bridge.model;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.constants.MovingDirection;
+import bridge.constants.MovingPossibility;
 import bridge.domain.model.CrossRecord;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.EnumSource;
 
 public class CrossRecordTest {
 
     CrossRecord crossRecord = new CrossRecord();
-    final String UP_DIRECTION = MovingDirection.UP.getDirection();
-    final String DOWN_DIRECTION = MovingDirection.DOWN.getDirection();
     final String EMPTY_BRIDGE = "[  ]";
 
     @DisplayName("반환 기능 - 다리 기록을 반환한다.")
     @Test
     void getCrossedBridgeTest() {
-        List<String> expectedBridge = new ArrayList<>(List.of(EMPTY_BRIDGE, EMPTY_BRIDGE));
+        Map<MovingDirection, String> expectedBridge = new HashMap<>();
+        expectedBridge.put(MovingDirection.UP, EMPTY_BRIDGE);
+        expectedBridge.put(MovingDirection.DOWN, EMPTY_BRIDGE);
 
         assertThat(crossRecord.getCrossedBridge()).isEqualTo(expectedBridge);
     }
 
-    @DisplayName("기록 기능 - 전달된 파라미터에 따라 다리 문자열을 기록한다.")
+    @DisplayName("기록 기능 - 이동 가능한 경우 O 문자를 기록한다.")
     @ParameterizedTest
-    @CsvSource({"true, '[ O |   ]', '[   | O ]'",
-            "false, '[ X |   ]', '[   | X ]'"})
-    void recordCrossedBridgeTest(boolean isSuccess, String upBridge, String downBridge) {
-        List<String> expectedBridge = new ArrayList<>(List.of(upBridge, downBridge));
+    @EnumSource(value = MovingPossibility.class, names = "CAN_MOVE")
+    void recordCrossedBridgeWithCanMoveTest(MovingPossibility MOVING_POSSIBILITY) {
+        final String UP_BRIDGE = "[ O |   ]";
+        final String DOWN_BRIDGE = "[   | O ]";
 
-        crossRecord.recordCrossedBridge(UP_DIRECTION, isSuccess);
-        crossRecord.recordCrossedBridge(DOWN_DIRECTION, isSuccess);
+        Map<MovingDirection, String> expectedBridge = setExpectedBridge(UP_BRIDGE, DOWN_BRIDGE);
+
+        crossRecord.recordCrossedBridge(MovingDirection.UP, MOVING_POSSIBILITY);
+        crossRecord.recordCrossedBridge(MovingDirection.DOWN, MOVING_POSSIBILITY);
 
         assertThat(crossRecord.getCrossedBridge()).isEqualTo(expectedBridge);
+    }
+
+    @DisplayName("기록 기능 - 이동 불가능한 경우 X 문자를 기록한다.")
+    @ParameterizedTest
+    @EnumSource(value = MovingPossibility.class, names = "CAN_NOT_MOVE")
+    void recordCrossedBridgeWithCanNotMoveTest(MovingPossibility MOVING_POSSIBILITY) {
+        final String UP_BRIDGE = "[ X |   ]";
+        final String DOWN_BRIDGE = "[   | X ]";
+
+        Map<MovingDirection, String> expectedBridge = setExpectedBridge(UP_BRIDGE, DOWN_BRIDGE);
+
+        crossRecord.recordCrossedBridge(MovingDirection.UP, MOVING_POSSIBILITY);
+        crossRecord.recordCrossedBridge(MovingDirection.DOWN, MOVING_POSSIBILITY);
+
+        assertThat(crossRecord.getCrossedBridge()).isEqualTo(expectedBridge);
+    }
+
+    Map<MovingDirection, String> setExpectedBridge(String upBridge, String downBridge) {
+        Map<MovingDirection, String> expectedBridge = new HashMap<>();
+        expectedBridge.put(MovingDirection.UP, upBridge);
+        expectedBridge.put(MovingDirection.DOWN, downBridge);
+
+        return expectedBridge;
     }
 
     @DisplayName("초기화 기능 - 지금까지 기록된 다리 문자열을 초기화 한다.")
     @Test
     void resetCrossedBridgeTest() {
-        List<String> expectedEmptyBridge = new ArrayList<>(List.of(EMPTY_BRIDGE, EMPTY_BRIDGE));
+        Map<MovingDirection, String> expectedEmptyBridge = new HashMap<>();
+        expectedEmptyBridge.put(MovingDirection.UP, EMPTY_BRIDGE);
+        expectedEmptyBridge.put(MovingDirection.DOWN, EMPTY_BRIDGE);
 
-        crossRecord.recordCrossedBridge(UP_DIRECTION, true);
-
+        crossRecord.recordCrossedBridge(MovingDirection.UP, MovingPossibility.CAN_MOVE);
         assertThat(crossRecord.getCrossedBridge()).isNotEqualTo(expectedEmptyBridge);
 
         crossRecord.resetCrossedBridge();
-
         assertThat(crossRecord.getCrossedBridge()).isEqualTo(expectedEmptyBridge);
     }
 
