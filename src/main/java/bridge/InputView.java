@@ -39,4 +39,11 @@ public class InputView {
         return true;
     }
 
+    public Boolean checkOutOfBound(int bridgeSize) {
+        if ((bridgeSize < 3) || (bridgeSize > 20)) {
+            throw new IllegalArgumentException();
+        }
+        return true;
+    }
+
 }
