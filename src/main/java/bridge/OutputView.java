@@ -28,6 +28,17 @@ public class OutputView {
     public void printResult() {
     }
 
+    public void printUpperBridge(int userPosition, String moving, List<String> bridge){
+        printMapStart();
+        for(int i = 0; i < userPosition; i++){
+            printOnePartOfUpperBridge(userPosition, bridge);
+            printSeparation();
+        }
+
+        printWhetherUserDecisionIsCorrect(userPosition, moving, bridge);
+        printMapEnd();
+    }
+
     public void printWhetherUserDecisionIsCorrect(int userPosition, String moving, List<String> bridge){
         if(checkUserDirectionWithBridgeValue(userPosition, moving, bridge)){
             System.out.print(" O ");
