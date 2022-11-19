@@ -21,4 +21,27 @@ public class BridgeStatus {
     public static BridgeStatus createBridgeStatus(List<String> answerBridge) {
         return new BridgeStatus(answerBridge, new ArrayList<>(), 0, GameStatus.IN_PROGRESS);
     }
+
+    public void addUserMovingCommand(MovingCommand movingCommand) {
+        userBridge.add(movingCommand.toString());
+        int userBridgeLastIndex = userBridge.size() - 1;
+        validateAddUserMovingCommand();
+        checkGameStatus(userBridge.get(userBridgeLastIndex), answerBridge.get(userBridgeLastIndex));
+    }
+
+    private void checkGameStatus(String requestBridgeElement, String answerBridgeElement) {
+        if (!requestBridgeElement.equals(answerBridgeElement)) {
+            gameStatus = GameStatus.FAIL;
+            return;
+        }
+        if (answerBridge.size() == userBridge.size()) {
+            gameStatus = GameStatus.SUCCESS;
+        }
+    }
+
+    private void validateAddUserMovingCommand() {
+        if (answerBridge.size() < userBridge.size()) {
+            throw new IllegalStateException(ERROR_EXCEED_BRIDGE_SIZE);
+        }
+    }
 }
