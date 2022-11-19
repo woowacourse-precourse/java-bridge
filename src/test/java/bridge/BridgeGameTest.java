@@ -47,7 +47,20 @@ class BridgeGameTest {
           Assertions.assertThat(currentBridge.getBridgeStatus())
                   .isEqualTo(BridgeStatus.SUCCESS);
      }
+     @Test
+     @DisplayName("다리 상태 변경 테스트 - BridgeStatus.FAIL")
+     public void changeStatusTest_Fail() throws Exception{
+          Bridge bridge = new Bridge(List.of("U","U","D"));
+          unit(bridge,"U",BridgeStatus.SUCCESS);
+          unit(bridge,"D",BridgeStatus.FAIL);
+     }
 
+     private void unit(Bridge bridge,String cmd,BridgeStatus expect){
+          currentBridge.move(cmd);
+          currentBridge.changeStatus(bridge);
+          Assertions.assertThat(currentBridge.getBridgeStatus())
+                  .isEqualTo(expect);
+     }
 
 
 
