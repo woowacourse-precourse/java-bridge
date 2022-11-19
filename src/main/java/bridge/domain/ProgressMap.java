@@ -5,13 +5,11 @@ import java.util.List;
 
 public class ProgressMap {
 	private final List<List<String>> progressMap;
-	private final int clearSize;
 
-	public ProgressMap(int bridgeSize) {
+	public ProgressMap() {
 		progressMap = new ArrayList<>();
 		progressMap.add(new ArrayList<>());
 		progressMap.add(new ArrayList<>());
-		clearSize = bridgeSize;
 	}
 
 	public boolean isMoveFailed() {
