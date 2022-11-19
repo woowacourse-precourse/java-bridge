@@ -1,9 +1,14 @@
 package bridge.Domain;
 
+import bridge.Constants.FrontMan;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    public BridgeGame() {
+        System.out.println(FrontMan.BRIDGE_GAME_IS_BEGINNING);
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
