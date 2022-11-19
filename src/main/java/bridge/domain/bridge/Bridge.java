@@ -21,4 +21,15 @@ public class Bridge {
             throw new IllegalArgumentException("다리의 길이가 범위에 해당되지 않습니다.");
         }
     }
+
+    public boolean isRange(int index) {
+        return bridge.size() <= index;
+    }
+
+    public boolean canMove(int index, BridgeCharacter bridgeCharacter) {
+        if(isRange(index)) {
+            return false;
+        }
+        return bridge.get(index).equals(bridgeCharacter);
+    }
 }
