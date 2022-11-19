@@ -40,9 +40,9 @@
   - [x] SUCCESS, IN_PROGRESS, FAIL 3가지 상태를 가진다
   - [x] 상태에 따른 재실행 여부 기능 추가
 
-- [ ] View
-  - print() 기능을 가짐
-  - inputView와 outputView는 view를 상속받음
+- [x] View
+  - [x] print() 기능을 가짐
+  - [x] inputView와 outputView는 view를 상속받음
 
 - [ ] InputView
   - [ ] bridgeSize를 입력 받음
