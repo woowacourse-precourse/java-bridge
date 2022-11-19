@@ -9,16 +9,19 @@ import java.util.List;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    private BridgeGame bridgeGame;
     private BridgeException bridgeException;
     private GameStatistics gameStatistics;
     private OutputView outputView;
+    private Bridge bridge;
+    private BridgeGame bridgeGame;
 
-    public InputView(BridgeGame bridgeGame, BridgeException bridgeException, GameStatistics gameStatistics, OutputView outputView) {
-        this.bridgeGame = bridgeGame;
+    public InputView(Bridge bridge, BridgeGame bridgeGame, BridgeException bridgeException,
+                     GameStatistics gameStatistics, OutputView outputView) {
+        this.bridge = bridge;
         this.bridgeException = bridgeException;
         this.gameStatistics = gameStatistics;
         this.outputView = outputView;
+        this.bridgeGame = bridgeGame;
     }
 
     /**
@@ -31,8 +34,8 @@ public class InputView {
             System.out.println(MessageView.INPUT_BRIDGE_LENGTH.getMessage());
             bridgeLength = Console.readLine();
         } while(bridgeException.invalidLengthInputValue(bridgeLength));
-        bridgeGame.getBridge().setSize(Integer.parseInt(bridgeLength));
-        this.gameStatistics.setAnswerRoad(bridgeGame.getBridgeMaker().makeBridge(Integer.parseInt(bridgeLength)));
+        bridge.setSize(Integer.parseInt(bridgeLength));
+        this.gameStatistics.setAnswerRoad(bridge.getBridgeMaker().makeBridge(Integer.parseInt(bridgeLength)));
     }
 
     /**
@@ -49,19 +52,16 @@ public class InputView {
             //
             System.out.println(gameStatistics.getCheckRoad());
             //
-            boolean roundResult = bridgeGame.constructBridge();
+            boolean roundResult = bridge.buildBridge();
             outputView.printMap();
             if (!roundResult) {
                 String retryGame = readGameCommand();
                 if (retryGame.equals("Q")) {
                     break;
                 } else if (retryGame.equals("R")) {
-                    gameStatistics.increaseTotalTryCount();
-                    bridgeGame.backUpBridge();
-                    bridgeGame.getPlayer().initCurrentLocation();
-                    gameStatistics.initCheckRoad();
+                    bridgeGame.retry();
                 }
-            } else if (Player.currentLocation == bridgeGame.getBridge().getSize()) {
+            } else if (Player.currentLocation == bridge.getSize()) {
                 gameStatistics.setGameResult("성공");
                 System.out.println();
                 outputView.printResult();
