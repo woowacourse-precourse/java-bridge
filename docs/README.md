@@ -30,8 +30,8 @@
     - [ ] 'U', 'D' 이외의 입력 시, 예외 발생 : `IllegalArgumentException` 
         - 에러 메세지 출력하고 입력 다시 받기
 - [X] 다리와 사용자 움직임 비교하기 -> BridgeGame
-- [ ] 비교 결과 출력하기 -> Controller
-- [ ] 재시도 여부 입력 받기
+- [X] 비교 결과 출력하기 -> Controller
+- [ ] 틀렸다면 재시도 여부 입력 받기
     - 'R', 'Q' 이외의 입력 시, 예외 발생 : `IllegalArgumentException`
         - 에러 메세지 출력하고 입력 다시 받기
         
