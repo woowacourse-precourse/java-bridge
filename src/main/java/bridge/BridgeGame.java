@@ -7,15 +7,24 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    private InputView inputView;
+    private OutputView outputView;
+
+    public BridgeGame(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+    }
     /**
      * 사용자가 게임을 시작할 때 사용하는 메서드
      */
-    public void start(InputView inputView, OutputView outputView) {
+    public void start() {
         outputView.printStartMessage();
         int bridgeSize = inputView.readBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
     }
+
+
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드

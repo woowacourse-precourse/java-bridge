@@ -9,8 +9,8 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        BridgeGame bridgeGame = new BridgeGame();
-        bridgeGame.start(inputView, outputView);
+        BridgeGame bridgeGame = new BridgeGame(inputView, outputView);
+        bridgeGame.start();
     }
 
     private static void move(int bridgeSize) {
