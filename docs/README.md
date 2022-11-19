@@ -151,3 +151,13 @@
 [] final 값을 적절히 사용했는가?
 [] 인스턴스 변수의 접근 제한을 private으로 했는가?
 [] 단위테스트하기 어려운 코드를 적절히 리팩터링 했는가?
+
+## 리펙터링 완료 클래스 체크
+- Application
+- Bridge
+- BridgeGame
+- BridgeMaker
+- BridgeNumberGenerator
+- BridgeRandomNumberGenerator
+- BridgeSize
+- MapRenderer
