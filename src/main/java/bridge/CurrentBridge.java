@@ -7,4 +7,8 @@ public class CurrentBridge extends Bridge{
     public CurrentBridge(List<String> bridge) {
         super(bridge);
     }
+    public BridgeStatus getBridgeStatus(){
+        return bridgeStatus;
+    }
+
 }
