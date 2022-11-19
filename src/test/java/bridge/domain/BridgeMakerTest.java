@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import static org.assertj.core.api.Assertions.*;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,16 +15,16 @@ class BridgeMakerTest {
 	void makeBridge() {
 		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
-		Assertions.assertThatThrownBy(
+		assertThatCode(
 			() -> bridgeMaker.makeBridge(3)
-		).isInstanceOf(IllegalArgumentException.class);
+		).doesNotThrowAnyException();
 	}
 
 	@Test
 	@DisplayName("bridgeNumberGenerator의 생성 숫자 범위가 0~1이 아닐경우 예외처리된다. - 실패")
 	void makeBridgeFailureWhenNotRangeOfRandomNumber() {
 		BridgeMaker bridgeMaker = new BridgeMaker(() -> Randoms.pickNumberInRange(2, 3));
-		Assertions.assertThatThrownBy(
+		assertThatThrownBy(
 			() -> bridgeMaker.makeBridge(3)
 		).isInstanceOf(IllegalArgumentException.class);
 	}
