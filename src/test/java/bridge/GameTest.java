@@ -42,12 +42,19 @@ public class GameTest extends NsTest {
 
         OutputView output = new OutputView();
         output.printMap(testBridge, "X", true);
+        assertThat(output()).contains(expectedUpperPath);
+        assertThat(output()).contains(expectedLowerPath);
 
+        expectedUpperPath = "[ O | O |   |   |   ]";
+        expectedLowerPath = "[   |   | O | O | X ]";
+
+        output.printMap(testBridge, "D", false);
         assertThat(output()).contains(expectedUpperPath);
         assertThat(output()).contains(expectedLowerPath);
     }
 
     @Test
+    @DisplayName("재시도 횟수를 확인합니다.")
     void countRetry() {
         String[] runInputs = new String[]{
                 "3", "U", "U",
