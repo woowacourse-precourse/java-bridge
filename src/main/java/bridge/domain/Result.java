@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Result {
+    private static final String FAIL = "X";
+    private static final String SUCCESS = "O";
     private final List<String> state = new ArrayList<>();
     private final List<String> input = new ArrayList<>();
     private boolean movable;
@@ -22,16 +24,16 @@ public class Result {
         this.movable = movable;
     }
 
-    private void addMove(boolean movable) {
-        if (movable) {
-            this.state.add("O");
-            return;
-        }
-        this.state.add("X");
+    public int stateSize() {
+        return state.size();
     }
 
-    public List<String> getState() {
-        return state;
+    private void addMove(boolean movable) {
+        if (movable) {
+            this.state.add(SUCCESS);
+            return;
+        }
+        this.state.add(FAIL);
     }
 
     public String getState(int index) {
