@@ -1,4 +1,8 @@
-package bridge;
+package bridge.domain;
+
+import bridge.View.InputView;
+import bridge.View.OutputView;
+import bridge.BridgeRandomNumberGenerator;
 
 import java.util.List;
 

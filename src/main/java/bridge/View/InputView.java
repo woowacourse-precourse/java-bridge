@@ -1,4 +1,4 @@
-package bridge;
+package bridge.View;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 /**
