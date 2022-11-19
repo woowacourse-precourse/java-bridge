@@ -7,7 +7,7 @@ public class GamePlayer {
     private int retryCount;
 
     public GamePlayer() {
-        this.inputView = new InputView();
+        this.inputView = new InputViewAdapter();
         this.outputView = new OutputView();
         this.bridgeGame = new BridgeGame(readBridgeSize());
         retryCount = 1;
