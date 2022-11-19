@@ -2,7 +2,18 @@ package bridge.controller;
 
 import java.util.function.Function;
 
-public interface ValidateReader {
+public class ValidateReader {
 
-    <T> T readUntilValidate(Function<Void, T> expression);
+    public static <T> T readUntilValidate(Function<Void, T> expression) {
+        T input = null;
+        do {
+            try {
+                input = expression.apply(null);
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        } while (input == null);
+
+        return input;
+    }
 }

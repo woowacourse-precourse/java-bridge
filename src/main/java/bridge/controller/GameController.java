@@ -16,7 +16,7 @@ import java.util.function.Function;
  * 다리 건너기 게임의 플래이어와 맵 등록, 입력등을 관리하는 클래스
  */
 // todo: 다른 클래스로 분리할 기능들 확인
-public class GameController implements ValidateReader {
+public class GameController {
 
     public static final String GAME_RETRY_INPUT = "R";
     public static final String GAME_QUIT_INPUT = "Q";
@@ -39,7 +39,7 @@ public class GameController implements ValidateReader {
     }
 
     private Bridge generateRandomBridge() {
-        return readUntilValidate((unused -> {
+        return ValidateReader.readUntilValidate((unused -> {
             int bridgeSize = inputView.readBridgeSize();
             List<String> bridgePositions = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
             return Bridge.from(bridgePositions);
@@ -68,7 +68,9 @@ public class GameController implements ValidateReader {
     }
 
     private boolean playOneTurn(Player player) {
-        Tile movingTargetTile = readUntilValidate((unused -> Tile.findByPositionSign(inputView.readMoving())));
+        Tile movingTargetTile = ValidateReader.readUntilValidate((unused) ->
+                Tile.findByPositionSign(inputView.readMoving()));
+
         boolean turnResult = bridgeGame.move(player, movingTargetTile);
         return turnResult;
     }
@@ -81,7 +83,9 @@ public class GameController implements ValidateReader {
     }
 
     private boolean askForTryAgain(Player player) {
-        String input = readUntilValidate((unused) -> inputView.readGameCommand(GAME_RETRY_INPUT, GAME_QUIT_INPUT));
+        String input = ValidateReader.readUntilValidate((unused) ->
+                inputView.readGameCommand(GAME_RETRY_INPUT, GAME_QUIT_INPUT));
+
         if (input.equals(GAME_RETRY_INPUT)) {
             bridgeGame.retry(player);
             return true;
@@ -95,17 +99,4 @@ public class GameController implements ValidateReader {
         outputView.printResult(bridgeGame.isWin(player), player.getTryCount());
     }
 
-    @Override
-    public <T> T readUntilValidate(Function<Void, T> expression) {
-        T input = null;
-        do {
-            try {
-                input = expression.apply(null);
-            } catch (IllegalArgumentException exception) {
-                System.out.println(exception.getMessage());
-            }
-        } while (input == null);
-
-        return input;
-    }
 }
