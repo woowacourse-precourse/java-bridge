@@ -20,8 +20,8 @@ public class InputView {
 	}
 
 	private static void validSize(String input) {
-		if (!checkDigit(input) || input.equals("0")) {
-			throw new IllegalArgumentException("[ERROR] 다리의 길이는 자연수여야 합니다.");
+		if (!checkDigit(input)) {
+			throw new IllegalArgumentException("[ERROR] 다리의 길이는 숫자여야 합니다.");
 		}
 	}
 
