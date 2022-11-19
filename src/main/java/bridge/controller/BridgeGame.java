@@ -35,7 +35,7 @@ public class BridgeGame {
         initCount();
         move(bridge, gameResult);
         if(count == bridge.getBridgeLength()){
-            OutputView.printGameResult(tryCount);
+            OutputView.printResult(tryCount);
             return;
         }
         retry(bridge);
