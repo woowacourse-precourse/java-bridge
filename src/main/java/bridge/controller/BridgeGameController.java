@@ -12,13 +12,13 @@ import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeGameController {
-    private static List<String> bridges;
-    private static int inputSize;
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
     private static final BridgeGame bridgeGame = new BridgeGame();
     private static final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private static List<String> bridges;
     private static boolean status = true;
+    private static int inputSize;
     private static int bridgeLocation = 0;
     private static int count = 1;
 
