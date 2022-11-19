@@ -1,5 +1,7 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.regex.Pattern;
 
 /**
@@ -10,7 +12,9 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize(String userInput){
+    public int readBridgeSize() {
+        String userInput = Console.readLine();
+
         isDigit(userInput);
 
         int bridgeSize = Integer.parseInt(userInput);
@@ -34,7 +38,9 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving(String userInput) {
+    public String readMoving() {
+        String userInput = Console.readLine();
+
         isValidMoving(userInput);
         return userInput;
     }
@@ -44,10 +50,13 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] D 혹은 U 한 문자를 입력해야 합니다");
         }
     }
+
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand(String userInput) {
+    public String readGameCommand() {
+        String userInput = Console.readLine();
+
         isValidGameCommand(userInput);
         return userInput;
     }
