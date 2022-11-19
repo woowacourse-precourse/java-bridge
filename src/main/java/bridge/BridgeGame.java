@@ -18,15 +18,31 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(final List<String> result, final String direction) {
-        require(!"U".equals(direction) && !"D".equals(direction), Error.MOVE);
-        require(state != State.Progress, Error.STATE);
-        if (!result.get(position).equals(direction)) {
+        require(isNotUpOrDown(direction), Error.MOVE);
+        require(isNotProgress(), Error.STATE);
+        if (isSame(result.get(position), direction)) {
             state = State.Loss;
             return false;
         }
         position++;
-        if (result.size() == position) state = State.Win;
+        if (isEnd(result)) state = State.Win;
         return true;
+    }
+
+    private boolean isNotProgress() {
+        return state != State.Progress;
+    }
+
+    private boolean isNotUpOrDown(String direction) {
+        return !"U".equals(direction) && !"D".equals(direction);
+    }
+
+    private boolean isEnd(List<String> result) {
+        return result.size() == position;
+    }
+
+    private boolean isSame(String result, String direction) {
+        return !result.equals(direction);
     }
 
     private void require(boolean condition, Error error) {
