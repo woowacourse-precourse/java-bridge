@@ -11,6 +11,7 @@ public class GameResults {
     private static final int SIZE_AND_INDEX_DIFFERENCE = 1;
 
     private final List<TrialResult> trialResults;
+    private boolean isFinished = false;
 
     public GameResults() {
         this.trialResults = new ArrayList<>();
@@ -27,5 +28,13 @@ public class GameResults {
 
     private int lastIndex() {
         return trialResults.size() - SIZE_AND_INDEX_DIFFERENCE;
+    }
+
+    public void finish() {
+        isFinished = true;
+    }
+
+    public boolean isFinished() {
+        return isFinished;
     }
 }

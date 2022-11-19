@@ -14,4 +14,12 @@ public class GameResultsTest {
         gameResult.add(UPPER, true);
         assertThat(gameResult.wasLastSuccessful()).isTrue();
     }
+
+    @Test
+    void 게임이_끝났는지_알_수_있다() {
+        GameResults gameResult = new GameResults();
+
+        gameResult.finish();
+        assertThat(gameResult.isFinished()).isTrue();
+    }
 }
