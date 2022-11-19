@@ -29,13 +29,13 @@ public class BridgeController {
             String moveDirection = inputService.requestMove();
             boolean isUserAnswerCorrect = bridge.isCorrectMoveDirection(moveDirection);
             outputView.printMap(bridge.getNowIndex(), moveDirection, isUserAnswerCorrect);
-            gameProcess(bridge, user, isUserAnswerCorrect);
+            processGame(bridge, user, isUserAnswerCorrect);
             continue;
         }
         outputView.printResult(user);
     }
 
-    public void gameProcess(Bridge bridge, User user, boolean isUserAnswerCorrect) {
+    public void processGame(Bridge bridge, User user, boolean isUserAnswerCorrect) {
         if (!isUserAnswerCorrect) {
             String gameStatus = inputService.requestStatusOfGame();
             bridgeGame.userFailCase(bridge, user, gameStatus);
