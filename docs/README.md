@@ -57,18 +57,14 @@
     - [ ]  retry
         - [ ]  재시작하면 처음 만든 다리 재사용
 - BridgeMaker
-    - [] BridgeRandomNumberGenerator의 랜덤 값 가져오기
     - [v] 사용자에게 입력 받은 길이대로 위아래 다리 생성
-      - 짝수는 위, 홀수는 아래
-    - [] 생성한 다리에 함정 설치 
+      - `int number = bridgeNumberGenerator.generate();`을 사용해 0이면 D, 1이면 U 로 다리 생성
   
 - BridgeRandomNumberGenerator
-    - [ ]  다리 칸 건널 수 있는지 여부 생 
-      - [ ]  위 칸 과 아래 칸 중 건널 수 있는 칸은 0과 1 중 무작위 값 이용해서 정하기
+    - [v]  위 칸 과 아래 칸 중 건널 수 있는 칸은 0과 1 중 무작위 값 이용해서 정하기
+              `int number = bridgeNumberGenerator.generate();`
 
-          `int number = bridgeNumberGenerator.generate();`
-
-- BridgeCheck
+- BridgeSafetyCheck
     - [ ]  사용자가 선택 한 칸 건널 수 있는지 확인
 - GameResult
     - [ ]  게임 결과 판단
