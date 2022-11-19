@@ -30,6 +30,7 @@ public class BridgeGame {
     boolean isWin = false;
 
     public void init() {
+        BridgeMap.getBridgeMap().initializeBridges();
         bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).inputMakeBridge();
         start(new Player());
     }
@@ -66,7 +67,7 @@ public class BridgeGame {
     private boolean getMoveSuccess(Player player) {
         int positionX = player.getXPosition();
         int positionY = player.getYPosition();
-        return bridge.getBridge()[positionY][positionX].equals(FALL_POSITION);
+        return !bridge.getBridge()[positionY][positionX].equals(FALL_POSITION);
     }
 
 

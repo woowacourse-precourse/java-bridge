@@ -3,7 +3,7 @@ package bridge.domain;
 import bridge.model.BridgeMap;
 import bridge.model.Player;
 
-import static bridge.util.BridgeConstant.UP;
+import static bridge.util.BridgeConstant.UP_POSITION;
 
 public class BridgeMapMaker {
     public final String SUCCESS_BLOCK = "O";
@@ -13,7 +13,7 @@ public class BridgeMapMaker {
         BridgeMap bridgeMap = BridgeMap.getBridgeMap();
         String block = getBlock(success);
 
-        if (player.getYPosition() == UP) {
+        if (player.getYPosition() == UP_POSITION) {
             bridgeMap.addUpperBridgeMap(block);
             return;
         }
