@@ -2,6 +2,16 @@ package bridge.util;
 
 public class Constants {
 
+    public static class ExceptionConstants {
+        public static final String ERROR_TITLE = "[ERROR] ";
+
+        public static final String INTEGER_ONLY_REGEX = "[0-9]+";
+        public static final String INPUT_ONLY_INTEGER = "정수만 입력할 수 있습니다.";
+        public static final String BRIDGE_SIZE_BETWEEN_3_AND_20 = "다리의 길이는 3 이상 20 이하만 입력할 수 있습니다.";
+        public static final String INPUT_LENGTH_ONLY_1 = "하나의 알파벳만 입력할 수 있습니다.";
+        public static final String INPUT_ONLY_U_OR_D = "U 또는 D만 입력할 수 있습니다.";
+    }
+
     public static class OutputViewConstants {
         public static final String BRIDGE_START = "[";
         public static final String BRIDGE_END = "]";
