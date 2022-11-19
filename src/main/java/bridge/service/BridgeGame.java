@@ -1,6 +1,11 @@
 package bridge.service;
 
-import bridge.*;
+import bridge.Bridge;
+import bridge.BridgeMaker;
+import bridge.BridgeMark;
+import bridge.BridgeNumberGenerator;
+import bridge.GameStatus;
+import bridge.Player;
 import bridge.dto.GameResultDto;
 
 /**
