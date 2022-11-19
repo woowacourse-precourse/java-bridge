@@ -44,23 +44,25 @@ public class BridgeGameController {
     private void playGame() {
         while (true) {
             try {
-                    String direction = getInputDirection();
-                    boolean isMovable = bridgeGame.isMovable(direction);
-                    if (isMovable){
-                        successToMove(direction);
-                        if (bridgeGame.isArrived()) {
-                            return;
-                        }
-                    }
-                    if (!isMovable) {
-                        failToMove(direction);
-                        retryOrQuit();
-                        return;
-                    }
+                if (!continueGettingInput())
+                    return;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(INVALID_MOVING);
             }
         }
+    }
+
+    public boolean continueGettingInput() {
+        String direction = getInputDirection();
+        boolean isMovable = bridgeGame.isMovable(direction);
+        if (isMovable) {
+            successToMove(direction);
+            if (bridgeGame.isArrived()) return false;
+            return true;
+        }
+        failToMove(direction);
+        retryOrQuit();
+        return false;
     }
 
     private void successToMove(String direction) {
