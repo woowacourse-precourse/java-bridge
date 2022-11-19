@@ -14,7 +14,7 @@ public class OutputView {
     }
 
     public void printSelectMove() {
-        System.out.println(Message.SELLECT_MOVING.getMessage());
+        System.out.println(Message.SELECT_MOVING.getMessage());
     }
     public void printMap(List<String> list) {
         for (int i = 0; i < list.size(); i++) {
