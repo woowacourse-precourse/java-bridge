@@ -57,4 +57,26 @@ class BridgeTest {
             );
         }
     }
+
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    @Nested
+    @DisplayName("toString 메소드 테스트")
+    class ToString {
+        @ParameterizedTest
+        @MethodSource("parameterProvider")
+        void 브리지_정보가_스트링으로_변환되는_기능을_테스트(Bridge source, String target) {
+            assertThat(source.toString()).isEqualTo(target);
+        }
+
+
+        private Stream<Arguments> parameterProvider() {
+            return Stream.of(
+                    Arguments.of(new Bridge(List.of()), "[]"),
+                    Arguments.of(new Bridge(List.of("U")), "[U]"),
+                    Arguments.of(new Bridge(List.of("U", "D")), "[U, D]"),
+                    Arguments.of(new Bridge(List.of("U", "D", "D")), "[U, D, D]"),
+                    Arguments.of(new Bridge(List.of("U", "D", "D", "D")), "[U, D, D, D]")
+            );
+        }
+    }
 }
