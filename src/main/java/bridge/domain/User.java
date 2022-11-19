@@ -10,7 +10,6 @@ public class User {
     private final FootPrints footPrints;
     private final UserData userData;
 
-
     public User() {
         footPrints = new FootPrints();
         userData = new UserData();
