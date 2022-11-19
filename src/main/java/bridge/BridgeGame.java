@@ -14,6 +14,10 @@ public class BridgeGame {
         this.userLog = new ArrayList<>();
     }
 
+    public List<String> getUserLog() {
+        return userLog;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
