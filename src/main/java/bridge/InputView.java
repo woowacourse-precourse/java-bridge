@@ -23,11 +23,26 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-
-
-
-        return null;
+        String nextStepInput;
+        nextStepInput = Console.readLine();
+        return nextStepInput;
     }
+
+/*    public String readMoving() {
+        String nextStepInput;
+        while(true) {
+            try {
+                nextStepInput = Console.readLine();
+                if (nextStepInput.length() > 1) {
+                    throw new IllegalArgumentException("[ERROR] 한자리 숫자만 입력하세요"); //TODO 예외 종류 알아보기
+                }
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return nextStepInput;
+    }*/
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
@@ -35,4 +50,7 @@ public class InputView {
     public String readGameCommand() {
         return null;
     }
+
+
+
 }
