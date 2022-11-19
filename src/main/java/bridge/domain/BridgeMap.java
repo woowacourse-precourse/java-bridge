@@ -9,7 +9,7 @@ public class BridgeMap {
     List<String> topMap = new ArrayList<>();
     List<String> bottomMap = new ArrayList<>();
 
-    public void addMap(String direction, boolean result) {
+    public void addMap(Moving direction, boolean result) {
         if (direction.equals(Constant.UP)) {
             addMark(topMap, bottomMap, getMark(result));
             return;
@@ -28,6 +28,7 @@ public class BridgeMap {
         }
         return Constant.WRONG_MARK;
     }
+
     public void clearMap() {
         topMap = new ArrayList<>();
         bottomMap = new ArrayList<>();

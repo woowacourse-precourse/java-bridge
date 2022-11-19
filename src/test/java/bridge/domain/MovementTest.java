@@ -17,7 +17,7 @@ class MovementTest {
     void canMoveTest(String input, boolean expected) {
         Bridge bridge = new Bridge(List.of("U"));
         Movement movement = new Movement(bridge);
-        movement.saveMoving(input);
+        movement.saveMoving(new Moving(input));
         Assertions.assertThat(movement.canMove()).isEqualTo(expected);
     }
 
@@ -26,9 +26,9 @@ class MovementTest {
     void isSuccessFinishTest() {
         Bridge bridge = new Bridge(List.of("U", "D", "D"));
         Movement movement = new Movement(bridge);
-        movement.saveMoving("U");
-        movement.saveMoving("D");
-        movement.saveMoving("D");
+        movement.saveMoving(new Moving("U"));
+        movement.saveMoving(new Moving("D"));
+        movement.saveMoving(new Moving("D"));
         Assertions.assertThat(movement.isSuccess()).isEqualTo(Constant.SUCCESS);
     }
 
@@ -38,9 +38,9 @@ class MovementTest {
     void isFailureFinishTest() {
         Bridge bridge = new Bridge(List.of("U", "D", "D"));
         Movement movement = new Movement(bridge);
-        movement.saveMoving("U");
-        movement.saveMoving("D");
-        movement.saveMoving("U");
+        movement.saveMoving(new Moving("U"));
+        movement.saveMoving(new Moving("D"));
+        movement.saveMoving(new Moving("U"));
         Assertions.assertThat(movement.isSuccess()).isEqualTo(Constant.FAILURE);
     }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Movement {
     private final Bridge bridge;
-    private List<String> movement = new ArrayList<>();
+    private List<Moving> movement = new ArrayList<>();
 
     public Movement(Bridge bridge) {
         this.bridge = bridge;
@@ -18,7 +18,7 @@ public class Movement {
         return bridge.canMove(nowIndex, movement.get(nowIndex));
     }
 
-    public void saveMoving(String moving) {
+    public void saveMoving(Moving moving) {
         this.movement.add(moving);
     }
 

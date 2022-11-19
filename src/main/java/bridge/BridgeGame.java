@@ -35,8 +35,8 @@ public class BridgeGame {
     }
 
     private void move(Moving moving) {
-        movement.saveMoving(moving.getMoving());
-        saveCompareResult(moving.getMoving());
+        movement.saveMoving(moving);
+        saveCompareResult(moving);
         OutputView.printMap(bridgeMap.getMap());
     }
 
@@ -54,7 +54,8 @@ public class BridgeGame {
         movement.clearMoving();
         bridgeMap.clearMap();
     }
-    private void saveCompareResult(String moving) {
+
+    private void saveCompareResult(Moving moving) {
         bridgeMap.addMap(moving, movement.canMove());
     }
 }
