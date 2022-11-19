@@ -17,4 +17,23 @@ public class FootPrint {
     public void record(FootrestLocation footrestLocation) {
         footPrint.add(footrestLocation);
     }
+
+    @Override
+    public String toString() {
+        String result = "";
+        List<String> footPrintFromTop = new ArrayList<>();
+        List<String> footPrintFromBot = new ArrayList<>();
+        for (FootrestLocation each : footPrint) {
+            if (each == FootrestLocation.UP) {
+                footPrintFromTop.add(" O ");
+                footPrintFromBot.add("   ");
+            } else {
+                footPrintFromTop.add("   ");
+                footPrintFromBot.add(" O ");
+            }
+        }
+        result += "[" + String.join("|", footPrintFromTop) + "]\n";
+        result += "[" + String.join("|", footPrintFromBot) + "]";
+        return result;
+    }
 }

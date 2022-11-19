@@ -21,4 +21,16 @@ public class Result {
         tryCnt += 1;
         this.finalResult = finalResult;
     }
+
+    public Boolean getSuccess() {
+        return isSuccess;
+    }
+
+    public Integer getTryCnt() {
+        return tryCnt;
+    }
+
+    public FootPrint getFinalResult() {
+        return finalResult;
+    }
 }

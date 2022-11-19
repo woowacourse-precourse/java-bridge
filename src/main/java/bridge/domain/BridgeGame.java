@@ -8,11 +8,13 @@ package bridge.domain;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private FootPrint footPrint;
+    private FootPrint footPrint; //TODO Result 안으로 옮기기
     private Bridge bridge;
+    private Result result;
 
     public BridgeGame() {
         footPrint = new FootPrint();
+        result = new Result();
     }
 
     /**
@@ -21,7 +23,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      * @param footrestLocation
      */
-    public Integer move(FootrestLocation footrestLocation) {
+    public GameStatus move(FootrestLocation footrestLocation) {
         if (footPrint == null) {
             throw new IllegalStateException("초기화 안됨");
         }
@@ -29,11 +31,12 @@ public class BridgeGame {
         footPrint.record(footrestLocation);
         if (bridge.canMove(order, footrestLocation)) {
             if (bridge.isLast(order)) {
-                return 1;
+                result.recordSuccess(footPrint);
+                return GameStatus.SUCCESS;
             }
-            return 0;
+            return GameStatus.MOVE_SUCCESS;
         } else {
-            return -1;
+            return GameStatus.FAIL;
         }
         // Bridge 초기화 안됐으면 일단 예외 반환(모든 메서드 마찬가지)
 
@@ -53,13 +56,15 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        result.recordFail(footPrint);
+        footPrint = new FootPrint();
     }
 
     public void saveBridge(Bridge bridge) {
         this.bridge = bridge;
     }
 
-    public void initFootPrint() {
-        footPrint = new FootPrint();
+    public Result getResult() {
+        return result;
     }
 }

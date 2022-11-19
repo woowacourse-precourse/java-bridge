@@ -13,6 +13,7 @@ public class Bridge {
         this.structure = structure.stream().map(each ->
                         FootrestLocation.valueOfUsingUserInput(each))
                 .collect(Collectors.toList());
+        System.out.println("bridge is " + structure);
     }
 
     public boolean canMove(Integer order, FootrestLocation footrestLocation) {
