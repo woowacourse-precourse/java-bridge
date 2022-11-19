@@ -7,6 +7,7 @@ import bridge.service.dto.request.BridgeSizeRequestDto;
 import bridge.service.dto.request.PlayerMovementRequestDto;
 import bridge.service.dto.response.BridgeStateResponseDto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,13 +38,32 @@ public class BridgeGame {
         String positionByPlayerToMove = dto.getMovePlayer();
         String bridge = bridges.getBridgeByPositionToMove(player.getPosition());
 
-        List<String> movedBridges = bridges.getBridgesByPlayerPosition(player.getPosition());
-        if(positionByPlayerToMove.equals(bridge)) {
+        List<String> upSpaces = new ArrayList<>();
+        List<String> downSpaces = new ArrayList<>();
+        if(bridge.equals(positionByPlayerToMove)) {
+            if(bridge.equals("U")) {
+                upSpaces.add("O");
+                downSpaces.add("    ");
+            }
+            else {
+                upSpaces.add("    ");
+                downSpaces.add("O");
+            }
+
             player.move();
-            return new BridgeStateResponseDto(movedBridges, true);
+        }
+        else {
+            if(bridge.equals("U")) {
+                upSpaces.add("    ");
+                downSpaces.add("X");
+            }
+            else {
+                upSpaces.add("X");
+                downSpaces.add("    ");
+            }
         }
 
-        return new BridgeStateResponseDto(movedBridges, false);
+        return new BridgeStateResponseDto(upSpaces, downSpaces);
     }
 
     /**
