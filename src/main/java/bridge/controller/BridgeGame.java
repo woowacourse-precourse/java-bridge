@@ -32,6 +32,11 @@ public class BridgeGame {
         BridgeSize bridgeSize = input.readBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = bridgeMaker.makeBridge(bridgeSize.getBridgeSize());
+        play();
+
+    }
+
+    private void play() {
         GameResult gameResult;
         GameCommand gameCommand = null;
         do {
@@ -40,9 +45,7 @@ public class BridgeGame {
             if (gameResult == GameResult.LOSE) {
                 gameCommand = input.readGameCommand();
             }
-        } while (!(gameResult == GameResult.WIN || gameCommand == GameCommand.QUIT));
-
-
+        } while (retry(gameResult, gameCommand));
     }
 
 
@@ -78,7 +81,8 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry(GameResult gameResult, GameCommand gameCommand) {
+        return gameResult == GameResult.LOSE && gameCommand == GameCommand.RE_GAME;
     }
 
 
