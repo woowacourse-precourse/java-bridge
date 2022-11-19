@@ -3,17 +3,17 @@ package bridge.domain;
 import java.util.List;
 
 public class Bridge {
-    private List<String> twoWays;
+    private List<String> map;
 
     public Bridge(List<String> twoWays) {
-        this.twoWays = twoWays;
+        this.map = twoWays;
     }
 
-    public List<String> getTwoWays() {
-        return twoWays;
+    public List<String> getMap() {
+        return map;
     }
 
     public boolean canGo(Integer index, String way){
-        return twoWays.get(index).equals(way);
+        return map.get(index).equals(way);
     }
 }

@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.domain.User;
+
 import java.util.List;
 
 /**
@@ -12,8 +14,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> bridge, Integer index, String way, List<List<StringBuilder>> moveTable) {
-        String map = OutputBuild.buildMap(bridge, index, way, moveTable);
+    public void printMap(List<String> bridge, User user,  Integer index, String way) {
+        String map = user.move(bridge, index, way);
         // 출력
         System.out.println(map);
     }
@@ -23,11 +25,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<List<StringBuilder>> moveTable, Integer retry, Boolean clear) {
+    public void printResult(User user) {
         System.out.println("최종 게임 결과");
-        System.out.println(OutputBuild.format(moveTable));
-        System.out.printf("게임 성공 여부: %s%n", OutputBuild.resolveClear(clear));
-        System.out.printf("총 시도한 횟수: %d%n", retry);
+        System.out.println(user.footPrints());
+        System.out.printf("게임 성공 여부: %s%n", user.clear());
+        System.out.printf("총 시도한 횟수: %d%n", user.getRound());
     }
 
     public void println(String message) {
