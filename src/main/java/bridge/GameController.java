@@ -47,16 +47,13 @@ public class GameController {
     }
 
     private int countRightMove(List<String> bridge) {
-        int count;
         InputView inputView = new InputView();
-        for (count = 0; count < bridge.size(); count++) {
-            if (!bridgeGame.move(inputView.readMoving(), count)) {
-                outputView.printMap(bridgeGame.getResult());
-                return count;
-            }
+        boolean correct;
+        int count = 0;
+        do {
+            correct = bridgeGame.move(inputView.readMoving(), count++);
             outputView.printMap(bridgeGame.getResult());
-        }
-
+        } while (correct && (count < bridge.size()));
         return count;
     }
 }
