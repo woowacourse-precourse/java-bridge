@@ -5,11 +5,10 @@ import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.Judge;
 import bridge.model.BridgeSize;
+import bridge.model.MoveResult;
 import bridge.model.Moving;
 import bridge.view.Input;
-import bridge.view.InputView;
 import bridge.view.Output;
-import bridge.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +18,18 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    Input input = new InputView();
-    Output output = new OutputView();
+    Input input;
+    Output output;
+
+    List<String> bridge = new ArrayList<>();
+    List<String> userBridge = new ArrayList<>();
+
+    Judge judge = new Judge();
+
+    public BridgeGame(Input input, Output output) {
+        this.input = input;
+        this.output = output;
+    }
 
     public void run() {
 
@@ -39,40 +48,25 @@ public class BridgeGame {
         // 다리리스트를 생성하고 사용자가 입력한 길이만큼 랜덤번호가 0이면 D를 1이면 U를 반복하여 담아준다
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize.getBridgeSize());
+        bridge = bridgeMaker.makeBridge(bridgeSize.getBridgeSize());
 
 
         // 사용자의 결과값을 알려줄 결과다리리스트를 생성한다
-        List<String> userBridge = new ArrayList<>();
+        userBridge = new ArrayList<>();
+
+        // 사용자에게 이동할 칸을 입력 받아서 유저 다리리스트에 담아준다
+        moveAndAddToUserBridge();
+        printMapResult();
 
 
-        // 사용자에게 이동할 칸을 입력 받아서 결과다리리스트에 담아준다 // 나중에 move()에 넣자
-        Moving moving = null;
-        boolean isCorrectMoving = false;
+    }
 
+
+    private void moveAndAddToUserBridge() {
+        MoveResult moveResult;
         do {
-            do {
-                try {
-                    moving = new Moving(input.readMoving());
-                } catch (IllegalArgumentException e) {
-                    System.out.println(e.getMessage());
-                }
-            } while (moving == null);
-            userBridge.add(moving.toString());
-
-
-            // 입력받은 이동할 칸과 다리리스트를 비교한다
-            Judge judge = new Judge();
-            isCorrectMoving = judge.checkIsCorrectMoving(bridge, userBridge);
-
-
-            // 사용자에게 결과를 보여준다
-            judge.makeResult(bridge, userBridge);
-            output.printMap(judge.toString());
-
-        } while (isCorrectMoving || userBridge.size() != bridge.size());
-
-
+            moveResult = move();
+        } while (moveResult == MoveResult.CORRECT && userBridge.size() != bridge.size());
     }
 
     /**
@@ -80,7 +74,27 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public MoveResult move() {
+        Moving moving = createMoving();
+        userBridge.add(moving.toString());
+        return judge.checkIsCorrectMoving(bridge, userBridge);
+    }
+
+    private Moving createMoving() {
+        Moving moving = null;
+        do {
+            try {
+                return new Moving(input.readMoving());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                return null;
+            }
+        } while (moving == null);
+    }
+
+    private void printMapResult() {
+        judge.makeResult(bridge, userBridge);
+        output.printMap(judge.toString());
     }
 
     /**

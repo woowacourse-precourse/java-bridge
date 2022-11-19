@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.model.MoveResult;
+
 import java.util.List;
 
 public class Judge {
@@ -8,9 +10,12 @@ public class Judge {
     String downLine = "";
 
 
-    public boolean checkIsCorrectMoving(List<String> bridge, List<String> userBridge) {
+    public MoveResult checkIsCorrectMoving(List<String> bridge, List<String> userBridge) {
         int compareIndex = userBridge.size() - 1;
-        return bridge.get(compareIndex).equals(userBridge.get(compareIndex));
+        if (bridge.get(compareIndex).equals(userBridge.get(compareIndex))) {
+            return MoveResult.CORRECT;
+        }
+        return MoveResult.NOT_CORRECT;
     }
 
     public void makeResult(List<String> bridge, List<String> userBridge) {
