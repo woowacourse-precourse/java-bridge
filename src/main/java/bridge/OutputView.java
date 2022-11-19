@@ -28,11 +28,11 @@ public class OutputView {
     }
     public void printMap(String letter, int last) {
         System.out.print("[");
-        for(int i = 0; i < cur; i++){
+        for(int i = 0; i <= cur; i++){
             System.out.print(" ");
             System.out.print(selectLetter(letter,i, last));
             System.out.print(" ");
-            if(i != cur - 1) System.out.print("|");
+            if(i != cur) System.out.print("|");
         }
         System.out.print("]\n");
     }
