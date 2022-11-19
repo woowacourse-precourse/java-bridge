@@ -1,24 +1,11 @@
 package bridge.model;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
 
 public enum BridgeType {
     UP_BRIDGE("U", "위", 1),
-    DOWN_BRIDGE("D", "아래",  0),
+    DOWN_BRIDGE("D", "아래", 0),
     ;
-
-    private static final Map<Integer, String> bridgeNumberText = new HashMap<>() {{
-        for (BridgeType type : BridgeType.values()) {
-            put(type.bridgeNumber, type.text);
-        }
-    }};
-
-    private static final Map<String, BridgeType> textBridge = new HashMap<>() {{
-        for (BridgeType type : BridgeType.values()) {
-            put(type.text, type);
-        }
-    }};
 
     private final String text;
 
@@ -33,23 +20,20 @@ public enum BridgeType {
     }
 
     public static String convertRandomNumberToText(int randomNumber) {
-        String bridgeText = bridgeNumberText.get(randomNumber);
-
-        if (bridgeText == null) {
-            throw new IllegalArgumentException("허용되지 않는 랜덤 숫자입니다. 일치하는 텍스트를 찾을 수 없습니다.");
-        }
-
-        return bridgeText;
+        return Arrays.stream(BridgeType.values())
+                .filter(bt -> bt.bridgeNumber == randomNumber)
+                .findFirst()
+                .orElseThrow(() ->
+                        new IllegalArgumentException("허용되지 않는 랜덤 숫자입니다. 일치하는 텍스트를 찾을 수 없습니다."))
+                .text;
     }
 
     public static BridgeType searchBridgeToText(String text) {
-        BridgeType bridge = textBridge.get(text);
-
-        if (bridge == null) {
-            throw new IllegalArgumentException("허용되지 않는 글자입니다. 일치하는 다리를 찾을 수 없습니다.");
-        }
-
-        return bridge;
+        return Arrays.stream(BridgeType.values())
+                .filter(bt -> bt.text.equals(text))
+                .findFirst()
+                .orElseThrow(() ->
+                        new IllegalArgumentException("허용되지 않는 글자입니다. 일치하는 다리를 찾을 수 없습니다."));
     }
 
     public String getText() {
