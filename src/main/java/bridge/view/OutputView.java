@@ -7,6 +7,10 @@ public class OutputView {
     static final String INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     static final String INPUT_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     static final String INPUT_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    static final String IS_SUCCESSFUL = "게임 성공 여부: ";
+    static final String SUCCESS = "성공";
+    static final String FAIL = "실패";
+    static final String TOTAL_TRIES = "총 시도한 횟수: ";
 
     public void printStart() {
         System.out.println(START_GAME);
@@ -29,6 +33,15 @@ public class OutputView {
         for (List<String> row: bridgePattern) {
             System.out.println(rowFormat(row));
         }
+    }
+
+    private void printSuccess(boolean isSuccess) {
+        System.out.print(IS_SUCCESSFUL);
+        if (isSuccess) {
+            System.out.println(SUCCESS);
+            return;
+        }
+        System.out.println(FAIL);
     }
 
     private String rowFormat(List<String> row) {
