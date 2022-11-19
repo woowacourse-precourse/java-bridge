@@ -42,4 +42,12 @@ public class BridgeGame {
     public boolean isAnswer() {
         return bridge.isAnswer();
     }
+
+    // 게임 재시작 여부 boolean값 반환 기능
+    public boolean retry(String input) {
+        if (input.equals(Setting.RETRY_BUTTON)) {
+            return false;
+        }
+        return true;
+    }
 }
