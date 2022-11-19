@@ -13,6 +13,7 @@ public class GameController {
         Validation.isInRange(bridgeSize);
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        BridgeGame bridgeGame = new BridgeGame(bridge);
 
     }
 
@@ -21,7 +22,7 @@ public class GameController {
             return Validation.isPositiveInteger(inputView.readBridgeSize());
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return Validation.isPositiveInteger(inputView.readBridgeSize());
+            return createBridgeSize(inputView);
         }
     }
 }
