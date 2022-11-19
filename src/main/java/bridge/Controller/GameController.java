@@ -20,18 +20,23 @@ public class GameController {
     }
 
     public void play() {
-        beginBridgeGame();
-        playBridgeGame();
-        endGameService.endGame();
+        try {
+            beginBridgeGame();
+            playBridgeGame();
+            endGameService.endGame();
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
+
     }
 
-    public void beginBridgeGame() {
+    public void beginBridgeGame() throws IllegalArgumentException {
         this.bridgeGame = startGameService.startGame();
         this.bridgeGameService = new BridgeGameService(bridgeGame);
         this.endGameService = new EndGameService(bridgeGame);
     }
 
-    public void playBridgeGame() {
+    public void playBridgeGame() throws IllegalArgumentException {
         while(true) {
             bridgeGameService.onePhaseBridgeGame();
 
