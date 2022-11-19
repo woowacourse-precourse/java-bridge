@@ -20,4 +20,9 @@ public enum MoveResult {
 
         return FAIL;
     }
+
+    @Override
+    public String toString() {
+        return result;
+    }
 }

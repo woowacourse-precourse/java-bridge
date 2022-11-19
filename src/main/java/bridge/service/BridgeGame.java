@@ -3,7 +3,12 @@ package bridge.service;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
+import bridge.domain.Move;
+import bridge.domain.MoveResult;
 import bridge.domain.Player;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -28,6 +33,10 @@ public class BridgeGame {
      */
     public boolean move(String direction) {
         return player.move(bridge, direction);
+    }
+
+    public Map<Move, List<MoveResult>> getPlayerMoveResult() {
+        return player.getMoveResults();
     }
 
     /**
