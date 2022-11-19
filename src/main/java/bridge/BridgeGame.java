@@ -39,20 +39,20 @@ public class BridgeGame {
         if (moving.equals(bridge.get(count))) {
             upperClass.add(count, "O");
             lowerClass.add(count, " ");
-        } else {
-            upperClass.add(count,"X");
-            lowerClass.add(count, " ");
+            return;
         }
+        upperClass.add(count,"X");
+        lowerClass.add(count, " ");
     }
 
     private void moveDown(String moving, int count) {
         if (moving.equals(bridge.get(count))) {
             lowerClass.add("O");
             upperClass.add(" ");
-        } else {
-            lowerClass.add("X");
-            upperClass.add(" ");
+            return;
         }
+        lowerClass.add("X");
+        upperClass.add(" ");
     }
 
     /**
