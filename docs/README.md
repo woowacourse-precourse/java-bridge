@@ -12,18 +12,15 @@
 - String position : "U" or "D"
 4. PositionTable
 - List<Position> positionTable: Poistion의 List를 가진 일급콜렉션. Bridge와 UserPosition에 사용된다.
-- play(PositionTable userPositionTable)
-  - return
-    - WIN : usePositionTable과 positionTable의 길이가 같고 마지막 요소가 같을 때
-    - KEEP : userPositionTable의 마지막 요소가 같은 위치에서 positionTable의 요소와 대응함
-    - LOSE : userPositionTable의 마지막 요소가 같은 위치에서 positionTable의 요소와 다르다.
-4. Bridge
-- PositionTable bridgePositionTable
+5. Bridge
+- PositionTable bridgeTable
 - of(List<String>) : bridgeMaker로부터 생성된 List<String>을 PositionTable로 mapping
-- play(PositionTable userPositionTable)
-  - User의 위치를 기록한 userPositionTable을 입력한다.
-  - bridgePositionTable에서 play(userPositionTable)을 실행한다.
-5. Result
+- play(PositionTable userTable)
+  - return
+    - WIN : useTable과 bridgeTable의 길이가 같고 마지막 요소가 같을 때
+    - KEEP : userTable의 마지막 요소가 같은 위치에서 bridgeTable의 요소와 대응함
+    - LOSE : userTable의 마지막 요소가 같은 위치에서 bridgeTable의 요소와 다르다.
+6. Result
 - KEEP : 사용자가 입력한 값이 정답이고 게임이 진행중일 때
 - LOSE : 사용자가 입력한 값이 정답이 아닐 때
 - WIN : 사용자가 입력한 값이 정답이고 게임이 끝났을 때

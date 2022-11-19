@@ -11,13 +11,23 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class BridgeTest {
     private Bridge bridge;
+    private PositionTable userTable;
     @BeforeEach
     public void setUp() {
         bridge = Bridge.of(List.of("U","D"));
+        userTable = PositionTable.newInstance();
+
     }
     @ParameterizedTest
-    @CsvSource({"1,U,KEEP","2,D,WIN","2,U,LOSE"})
-    public void bridgeTest(int distance, String verticalStatus, String result) {
-        assertThat(bridge.play(Position.of(distance,verticalStatus))).isEqualTo(Result.valueOf(result));
+    @CsvSource({"U,KEEP","D,LOSE"})
+    public void bridgeTest(String position, String result) {
+        userTable.add(Position.of(position));
+        assertThat(bridge.play(userTable)).isEqualTo(Result.valueOf(result));
+    }
+    @Test
+    public void bridgeTest() {
+        userTable.add(Position.of("U"));
+        userTable.add(Position.of("D"));
+        assertThat(bridge.play(userTable)).isEqualTo(Result.WIN);
     }
 }
