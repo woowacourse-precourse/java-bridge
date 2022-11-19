@@ -23,11 +23,10 @@ public class BridgeMaker {
 	public List<String> makeBridge(int size) {
 		List<String> bridge = new ArrayList<>();
 
-		for (int i = 0; i < size; i++) {    // stream으로 변경하기
+		for (int i = 0; i < size; i++) {
 			int number = bridgeNumberGenerator.generate();
 			bridge.add(BridgeConfiguration.findCodeName(number));
 		}
-
 		return bridge;
 	}
 }
