@@ -1,5 +1,6 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -8,9 +9,10 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.io.ByteArrayInputStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class InputViewTest {
+class InputViewTest extends NsTest {
+
+    private static final String ERROR_MESSAGE = "[ERROR]";
 
     private static final InputView inputView = new InputView();
 
@@ -25,8 +27,8 @@ class InputViewTest {
     @ValueSource(strings = {"03", "21", "3j"})
     @ParameterizedTest
     void inputBridgeSizeException(String input) {
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-        assertThatThrownBy(inputView::readBridgeSize).isInstanceOf(IllegalArgumentException.class);
+        runException(input);
+        assertThat(output()).contains(ERROR_MESSAGE);
     }
 
     @DisplayName("건널 다리의 위치를 입력받아서 반환")
@@ -41,8 +43,8 @@ class InputViewTest {
     @ValueSource(strings = {"u", "d", "D3"})
     @ParameterizedTest
     void inputBridgeMovingException(String input) {
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-        assertThatThrownBy(inputView::readMoving).isInstanceOf(IllegalArgumentException.class);
+        runException("3", input);
+        assertThat(output()).contains(ERROR_MESSAGE);
     }
 
     @DisplayName("재시작 여부를 입력받아서 반환")
@@ -56,7 +58,14 @@ class InputViewTest {
     @ValueSource(strings = {"r", "q", "R3"})
     @ParameterizedTest
     void inputGameCommandException(String input) {
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-        assertThatThrownBy(inputView::readGameCommand).isInstanceOf(IllegalArgumentException.class);
+        runException("3", "U", input);
+        assertThat(output()).contains(ERROR_MESSAGE);
+    }
+
+    @Override
+    protected void runMain() {
+        inputView.readBridgeSize();
+        inputView.readMoving();
+        inputView.readGameCommand();
     }
 }
