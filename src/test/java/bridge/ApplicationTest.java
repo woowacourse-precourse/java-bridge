@@ -28,9 +28,10 @@ class ApplicationTest extends NsTest {
     @ParameterizedTest
     @CsvSource({"rraa", "abc", "'2,3'", "100", "1", "일", "이", "-15", "10-", "1+4", "21", "2"})
     void 다리_사이즈_입력_예외처리_테스트(String userInput) {
-        assertThatThrownBy(() -> validator.validateBridgeSizeInput(userInput)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.validateBridgeSizeInput(userInput)).
+                isInstanceOf(IllegalArgumentException.class).
+                hasMessage(Validator.BRIDGE_SIZE_INPUT_ERROR);
     }
-    
     @Test
     void BridgeRandomNumberGenerator_출력_테스트() {
         BridgeRandomNumberGenerator bridgeRandomNumGen = new BridgeRandomNumberGenerator();
