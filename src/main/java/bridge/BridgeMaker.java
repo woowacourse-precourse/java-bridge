@@ -19,15 +19,14 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        BridgeRandomNumberGenerator generator = new BridgeRandomNumberGenerator();
         List<String> result = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            mapBinaryIntToBridge(generator, result);
+            mapBinaryIntToBridge(bridgeNumberGenerator, result);
         }
         return result;
     }
 
-    private void mapBinaryIntToBridge(BridgeRandomNumberGenerator generator, List<String> result) {
+    private void mapBinaryIntToBridge(BridgeNumberGenerator generator, List<String> result) {
         int generated = generator.generate();
         if (generated == 0) {
             result.add("D");
