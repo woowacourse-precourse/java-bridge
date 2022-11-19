@@ -16,8 +16,7 @@ public class BridgeSystem {
     public void runGame() {
         OutputView.printRunGameText();
 
-        int bridgeSize = InputView.readBridgeSize();
-        gamePlay = new GamePlay(initializeBridge(bridgeSize));
+        gamePlay = new GamePlay(initializeBridge(InputView.readBridgeSize()));
 
         gameResult = gamePlay.playGame();
         OutputView.printGameResult(gameResult);

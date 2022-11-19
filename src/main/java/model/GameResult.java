@@ -1,7 +1,5 @@
 package model;
 
-import controller.MapConverter;
-
 public class GameResult {
     private User user;
     private int resultNumber;

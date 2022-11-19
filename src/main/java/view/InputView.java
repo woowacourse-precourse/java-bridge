@@ -2,8 +2,9 @@ package view;
 
 import constants.CommandTable;
 import constants.DirectionTable;
-import camp.nextstep.edu.missionutils.Console;
 import view.validation.InputViewValidation;
+
+import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
     public static int readBridgeSize() {

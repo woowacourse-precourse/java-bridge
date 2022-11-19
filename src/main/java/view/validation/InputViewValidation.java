@@ -3,7 +3,7 @@ package view.validation;
 import constants.BridgeConstant;
 import constants.CommandTable;
 import constants.DirectionTable;
-import view.validation.exception.IllegalArgument;
+import exception.IllegalArgument;
 
 public class InputViewValidation {
     public static void validateBridgeSizeInput(String sizeInput) {
