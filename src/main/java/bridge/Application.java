@@ -13,7 +13,7 @@ public class Application {
         try {
             List<String> board = new ArrayList<>();
             Map<String, Integer> resultBoard = new HashMap<>();
-            BridgeGame bridgeGame = new BridgeGame(new BridgeRandomNumberGenerator());
+            BridgeGame bridgeGame = new BridgeGame();
             bridgeGame.start(board, resultBoard);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

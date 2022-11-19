@@ -20,11 +20,11 @@ public class BridgeGame {
     private final OutputController outputController;
     private int count;
 
-    public BridgeGame(BridgeNumberGenerator numberGenerator) {
+    public BridgeGame() {
         this.inputController = new InputController(
                 new InputView(),
                 new OutputView(),
-                new BridgeMaker(numberGenerator)
+                new BridgeMaker(new BridgeRandomNumberGenerator())
         );
         this.outputController = new OutputController(new OutputView());
         count = 1;
