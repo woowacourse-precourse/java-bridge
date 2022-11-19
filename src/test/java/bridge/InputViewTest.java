@@ -70,4 +70,31 @@ class InputViewTest {
                 });
     }
 
+    @Test
+    @DisplayName("게임 다시 시도 여부 입력 - 성공")
+    public void retry_success() throws Exception{
+        String command = "R";
+        validation.retryCommand(command);
+        Assertions.assertThat(command).isEqualTo(BridgeConst.RETRY);
+        command = "Q";
+        validation.retryCommand(command);
+        Assertions.assertThat(command).isEqualTo(BridgeConst.QUIT);
+
+    }
+
+    @Test
+    @DisplayName("게임 다시 시도 여부 입력 - 실패")
+    public void retry_fail() throws Exception{
+        List<String> command = new ArrayList<>(
+                List.of("A","B","C","d","E","F","G","H","I","J","K",
+                        "L","M","N","O","P","q","r","S","T","u","V","W","X","Y","Z"));
+        command.stream()
+                .forEach(element->{
+                    Assertions.assertThatThrownBy(()->validation.moveCommand(element))
+                            .isInstanceOf(IllegalArgumentException.class);
+                });
+    }
+
+
+
 }
