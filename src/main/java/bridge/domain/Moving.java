@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 public enum Moving {
     UP("U", 1),
