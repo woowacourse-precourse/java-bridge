@@ -35,7 +35,7 @@ public class InputView {
         while (true) {
             try {
                 System.out.println(INPUT_MOVING_SPACE);
-                return new SelectBlockRequestDto(InputValidator.checkMovingSpace(Console.readLine()));
+                return new SelectBlockRequestDto(InputValidator.checkBlock(Console.readLine()));
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

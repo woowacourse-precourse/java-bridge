@@ -5,11 +5,11 @@ import java.util.regex.Pattern;
 import static bridge.exception.InputException.*;
 
 public class InputValidator {
-    private static final String ONLY_NUMBER_REGEX = "^[0-9]*$";
+    private static final Pattern ONLY_NUMBER_REGEX = Pattern.compile("^[0-9]*$");
     private static final int MIN_SIZE = 3;
     private static final int MAX_SIZE = 20;
-    private static final String SPACE_FORMAT = "^[UD]$";
-    private static final String GAME_RETRY_FORMAT = "^[RQ]$";
+    private static final Pattern BLOCK_FORMAT = Pattern.compile("^[UD]$");
+    private static final Pattern GAME_RETRY_FORMAT = Pattern.compile("^[RQ]$");
     private static final int SPACE_LENGTH = 1;
 
 
@@ -23,10 +23,10 @@ public class InputValidator {
         return Integer.parseInt(size);
     }
 
-    public static String checkMovingSpace(String space) {
-        validateOneLength(space);
-        validateInputFormat(space, SPACE_FORMAT);
-        return space;
+    public static String checkBlock(String block) {
+        validateOneLength(block);
+        validateInputFormat(block, BLOCK_FORMAT);
+        return block;
     }
 
     public static String checkGameRetry(String input) {
@@ -36,7 +36,7 @@ public class InputValidator {
     }
 
     private static void validateOnlyNumber(String input) {
-        if (!Pattern.matches(ONLY_NUMBER_REGEX, input)) {
+        if (!ONLY_NUMBER_REGEX.matcher(input).matches()) {
             printNotOnlyNumberException();
         }
     }
@@ -59,8 +59,8 @@ public class InputValidator {
         }
     }
 
-    private static void validateInputFormat(String space, String format) {
-        if (!Pattern.matches(format, space)) {
+    private static void validateInputFormat(String block, Pattern format) {
+        if (!format.matcher(block).matches()) {
             printNotFormatException();
         }
     }
