@@ -34,7 +34,6 @@ public class BridgeGame {
             }
             outputView.printMap(upperLine,lowerLine);
         }
-        outputView.printMap(upperLine,lowerLine);
         return true;
     }
 

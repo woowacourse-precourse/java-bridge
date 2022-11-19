@@ -11,7 +11,6 @@ public class Application {
     public static void main(String[] args) {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
-        System.out.println(bridge);
 
         int gameCount = 1;
         boolean game =true;
