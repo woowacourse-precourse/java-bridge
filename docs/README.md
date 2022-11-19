@@ -14,7 +14,7 @@
 
 ## 기능 목록
 
-- [ ] 다리 길이에 대한 입력 validation (Validation Class)
+- [x] 다리 길이에 대한 입력 validation (Validation Class)
 - [ ] 다리 길이에 대한 입력 Integer 변환 (InputView Class)
 - [ ] 다리 만들기 (BridgeMaker Class)
 - [ ] 이동할 칸에 대한 입력 validation (Validation Class)
