@@ -79,7 +79,7 @@ public class InputView {
     }
 
     /**
-     * 매개변수 str이 U나 D가 아니면 IllegalArgumentException을 발생 시킨다.
+     * 매개변수 moving이 U나 D가 아니면 IllegalArgumentException을 발생 시킨다.
      */
     private String validateMoving(String moving) {
         if (!(moving.equals("U") || moving.equals("D"))) {
@@ -88,6 +88,9 @@ public class InputView {
         return moving;
     }
 
+    /**
+     * 매개변수 gameCommand가 R이나 Q가 아니면 IllegalArgumentException을 발생 시킨다.
+     */
     private String validateGameCommand(String gameCommand) {
         if (!(gameCommand.equals("R") || gameCommand.equals("Q"))) {
             throw new IllegalArgumentException(VALIDATE_GAME_COMMAND_ERROR_MESSAGE);
