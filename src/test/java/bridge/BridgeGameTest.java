@@ -36,6 +36,17 @@ class BridgeGameTest {
     }
 
     @Test
+    @DisplayName("브릿지 게임 이동 횟수 초과 예외")
+    void moveException() {
+        Assertions.assertThatThrownBy(() -> {
+            bridgeGame.move("U");
+            bridgeGame.move("D");
+            bridgeGame.move("D");
+            bridgeGame.move("D");
+        }).isInstanceOf(IllegalStateException.class);
+    }
+
+    @Test
     @DisplayName("브릿지 게임 재시작 성공")
     void retrySuccess() {
         Assertions.assertThat(bridgeGame.retry("R")).isEqualTo(true);
