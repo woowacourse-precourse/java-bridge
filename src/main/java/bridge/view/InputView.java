@@ -1,7 +1,9 @@
 package bridge.view;
 
-import static bridge.model.Direction.*;
-import static bridge.model.GameCondition.*;
+import static bridge.model.Direction.DOWN;
+import static bridge.model.Direction.UP;
+import static bridge.model.GameCondition.QUIT;
+import static bridge.model.GameCondition.RESTART;
 
 import bridge.model.Direction;
 import bridge.model.GameCondition;
@@ -35,7 +37,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public Direction readMoving() {
         while (true) {
             try {
                 String input = inputMoving();
@@ -53,11 +55,10 @@ public class InputView {
         return Console.readLine();
     }
 
-    private String findMoving(String input) {
+    private Direction findMoving(String input) {
         return Arrays.stream(Direction.values())
                 .filter(direction -> direction.isMatchDirection(input))
                 .findFirst()
-                .map(Direction::getDirection)
                 .orElseThrow(() -> new IllegalArgumentException(
                         String.format("해당하는 이동 칸이 존재하지 않습니다. 입력 : %s", input)));
     }
@@ -65,7 +66,7 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public GameCondition readGameCommand() {
         while (true) {
             try {
                 String input = inputGameCommand();
@@ -83,11 +84,10 @@ public class InputView {
         return Console.readLine();
     }
 
-    private String findGameCommand(String input) {
+    private GameCondition findGameCommand(String input) {
         return Arrays.stream(GameCondition.values())
                 .filter(condition -> condition.isMatchCondition(input))
                 .findFirst()
-                .map(GameCondition::getCondition)
                 .orElseThrow(() -> new IllegalArgumentException(
                         String.format("해당하는 시도가 존재하지 않습니다. 입력 : %s", input)));
     }
