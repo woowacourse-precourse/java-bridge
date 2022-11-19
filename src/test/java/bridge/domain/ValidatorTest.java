@@ -27,4 +27,22 @@ class ValidatorTest {
 
     }
 
+    @Test
+    public void userMovingValidator() throws Exception{
+        //given
+        String moving1 = "UU";
+        String moving2 = "1a2b3";
+
+        //then
+        assertThatThrownBy(()-> validator.validateMoving(moving1))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+
+        assertThatThrownBy(()-> validator.validateMoving(moving2))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+
+
+    }
+
 }
