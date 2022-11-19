@@ -22,7 +22,7 @@ public class InputView {
      */
     public String readMoving() {
         String upDown = Console.readLine();
-        checkAlphabet(upDown);
+        isMovingCommand(upDown);
         return upDown;
     }
 
@@ -36,7 +36,7 @@ public class InputView {
     }
 
     public void isNumber(String number) {
-        if (number.chars().allMatch(Character::isDigit)) {
+        if (!number.chars().allMatch(Character::isDigit)) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자를 입력해야 합니다.");
         }
     }
@@ -47,13 +47,13 @@ public class InputView {
         }
     }
 
-    public void checkAlphabet(String alphabet) {
+    public void isMovingCommand(String alphabet) {
         if (!(alphabet.equals("U") || alphabet.equals("D"))) {
             throw new IllegalArgumentException("[ERROR] 윗칸(U)과 아래칸(D) 중 하나를 입력해야 합니다.");
         }
     }
 
-    private void checkCommand(String command) {
+    public void checkCommand(String command) {
         if (!(command.equals("U") || command.equals("D"))) {
             throw new IllegalArgumentException("[ERROR] 재시작(R)과 종료(Q) 중 하나를 입력해야 합니다.");
         }
