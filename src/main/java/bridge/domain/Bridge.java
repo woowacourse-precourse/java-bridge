@@ -11,7 +11,7 @@ public class Bridge {
         makeBridge(bridge);
     }
 
-    public void makeBridge(List<String> bridge) {
+    private void makeBridge(List<String> bridge) {
         for(String square: bridge) {
             BridgeState state = BridgeState.makeBridgeState(square);
             this.bridge.add(state);
