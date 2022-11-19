@@ -36,21 +36,9 @@ public class GameController {
         this.endGameService = new EndGameService(bridgeGame);
     }
 
-    public boolean playBridgeGame() throws IllegalArgumentException {
-        while(true) {
-            bridgeGameService.onePhaseBridgeGame();
-
-            if(bridgeGame.isMoveSuccess() && bridgeGame.isBridgeFinished()) {
-                return true;
-            }
-            if(!bridgeGame.isMoveSuccess()) {
-                return false;
-            }
-        }
-    }
 
     public void playGame() throws IllegalArgumentException {
-        if(!playBridgeGame() && endGameService.isGameRestart()) {
+        if(!bridgeGameService.severalPhaseBridgeGame() && endGameService.isGameRestart()) {
             endGameService.restartGame();
             playGame();
         }

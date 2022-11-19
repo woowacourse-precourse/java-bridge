@@ -21,4 +21,17 @@ public class BridgeGameService {
         String bridgeStatus = bridgeGame.getBridgeStatusAfterMove();
         OutputView.printMap(bridgeStatus);
     }
+
+    public boolean severalPhaseBridgeGame() throws IllegalArgumentException {
+        while(true) {
+            onePhaseBridgeGame();
+
+            if(bridgeGame.isMoveSuccess() && bridgeGame.isBridgeFinished()) {
+                return true;
+            }
+            if(!bridgeGame.isMoveSuccess()) {
+                return false;
+            }
+        }
+    }
 }
