@@ -39,7 +39,7 @@ public class InputView {
      */
     public String readMoving() {
         do {
-            System.out.println(SELECT_UP_AND_DOWN);
+            System.out.println(String.format(SELECT_UP_AND_DOWN, UP, DOWN));
             String movingNext = Console.readLine();
             try {
                 validation.validMovingNext(movingNext);
