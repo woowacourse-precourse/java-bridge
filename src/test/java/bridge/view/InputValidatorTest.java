@@ -2,6 +2,8 @@ package bridge.view;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -25,19 +27,36 @@ public class InputValidatorTest {
     }
 
     @DisplayName("다리의 길이가 3~20의 숫자이면 정상 작동")
-    @Test
-    void validateBridgeSizeOfSuccessCase() {
-        int size = 10;
+    @ParameterizedTest
+    @ValueSource(ints = {3, 5, 10, 15, 20})
+    void validateBridgeSizeOfSuccessCase(int size) {
         assertThatCode(() -> InputValidator.validateBridgeSize(size))
                 .doesNotThrowAnyException();
     }
 
     @DisplayName("다리의 길이가 3~20의 숫자가 아니면 예외 처리")
-    @Test
-    void validateBridgeSizeOfExceptionCase() {
-        int size = 30;
+    @ParameterizedTest
+    @ValueSource(ints = {0, 2, 21, 30})
+    void validateBridgeSizeOfExceptionCase(int size) {
         assertThatThrownBy(() -> InputValidator.validateBridgeSize(size))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+    }
+
+    @DisplayName("다음에 이동할 칸에 \"U\"나 \"D\"를 입력하면 정상 작동")
+    @ParameterizedTest
+    @ValueSource(strings = {"U", "D"})
+    void validateNextMoveOfSuccessCase(String movement) {
+        assertThatCode(() -> InputValidator.validateMoveInput(movement))
+                .doesNotThrowAnyException();
+    }
+
+    @DisplayName("다음에 이동할 칸에 대한 입력이 \"U\"나 \"D\"가 아니면 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"A", "B", "C", "1"})
+    void validateNextMoveOfExceptionCase(String movement) {
+        assertThatThrownBy(() -> InputValidator.validateMoveInput(movement))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] \"U\"와 \"D\" 만 입력 가능합니다.");
     }
 }
