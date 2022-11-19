@@ -6,6 +6,7 @@ import bridge.constant.ErrorConstant;
 import bridge.model.GeneratedBridge;
 import bridge.model.PlayerBridge;
 import bridge.model.PrintBridge;
+import bridge.validator.InputBridgeSizeValidator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -29,6 +30,7 @@ public class BridgeGame {
     private GeneratedBridge generatedBridge;
     private final PlayerBridge playerBridge = new PlayerBridge();
     private final PrintBridge printBridge = new PrintBridge();
+    private final InputBridgeSizeValidator inputBridgeSizeValidator = new InputBridgeSizeValidator();
 
     private String bridgeSize;
     private boolean canMove;
@@ -65,30 +67,12 @@ public class BridgeGame {
             try {
                 outputView.printInputBridgeSizeMessage();
                 bridgeSize = inputView.inputBridgeSize();
-                validateBridgeSize(bridgeSize);
+                inputBridgeSizeValidator.validate(bridgeSize);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-    }
-
-    private void validateBridgeSize(String bridgeSize) {
-        if (isBridgeSizeNotDigit(bridgeSize)) {
-            throw new IllegalArgumentException(ErrorConstant.ERROR_PREFIX + "다리 길이는 숫자여야합니다.");
-        }
-        if (isWrongBridgeSizeRange(bridgeSize)) {
-            throw new IllegalArgumentException(ErrorConstant.ERROR_PREFIX + "다리 길이는 3이상 20이하여야합니다.");
-        }
-    }
-
-    private boolean isBridgeSizeNotDigit(String bridgeSize) {
-        return !Pattern.compile(DIGIT_VALIDATE_REGEX).matcher(bridgeSize).matches();
-    }
-
-    private boolean isWrongBridgeSizeRange(String bridgeSize) {
-        int convertedBridgeSize = Integer.parseInt(bridgeSize);
-        return convertedBridgeSize < MIN_BRIDGE_SIZE || convertedBridgeSize > MAX_BRIDGE_SIZE;
     }
 
     public void generateBridge() {
