@@ -13,9 +13,7 @@ public class GameController {
     private static OutputView outputView = new OutputView();
     private static BridgeGame bridgeGame = new BridgeGame();
     private static BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    private int bridgeSize;
     private int count = 0;
-    private String move;
     private List<String> bridge;
     private boolean tf = true;
     private boolean re;
@@ -53,13 +51,13 @@ public class GameController {
     private void gameStart() {
         outputView.start();
         outputView.setBridge("[]");
-        bridgeSize = inputView.readBridgeSize();
+        int bridgeSize = inputView.readBridgeSize();
         bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
     private void gameProgress(int idx) {
         outputView.choice();
-        move = inputView.readMoving();
+        String move = inputView.readMoving();
         tf = bridgeGame.move(move, bridge, idx);
         outputView.printMap(move, tf, idx);
         outputView.printMove();
