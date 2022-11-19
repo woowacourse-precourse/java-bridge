@@ -5,12 +5,14 @@ import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeUnit;
+import bridge.domain.Command;
 import bridge.domain.GameStatus;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 import java.util.List;
 
+import static bridge.domain.GameStatus.FAILED;
 import static bridge.domain.GameStatus.PLAYING;
 
 public class BridgeApplication {
@@ -41,6 +43,10 @@ public class BridgeApplication {
 
                 status = bridgeGame.move(nextUnit);
                 outputView.printMap(bridgeGame);
+            }
+            if (FAILED.equals(status)) {
+                String code = inputView.readGameCommand();
+                Command command = Command.from(code);
             }
         } catch (IllegalArgumentException e) {
 
