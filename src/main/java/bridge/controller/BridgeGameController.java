@@ -65,20 +65,19 @@ public class BridgeGameController {
     }
 
     private void moveBridge() {
-        boolean mobility = true;
+        boolean canMove = true;
         int moveCount = 0;
-
-        while (mobility && bridgeGame.hasBridgeToMove(moveCount)) {
+        while (canMove && bridgeGame.hasBridgeToMove(moveCount)) {
             outputView.printMovingMsg();
-            mobility = bridgeGame.move(moveCount, inputView.readMoving());
+            canMove = bridgeGame.move(moveCount, inputView.readMoving());
             outputView.printMap(bridgeGame.getBridgeGameResult());
             moveCount++;
         }
-        finish(moveCount);
+        finish(canMove);
     }
 
-    private void finish(int moveCount) {
-        if (bridgeGame.isSuccess(moveCount)) {
+    private void finish(boolean canMove) {
+        if (canMove) {
             bridgeGame.succeed();
             play = false;
             return;
