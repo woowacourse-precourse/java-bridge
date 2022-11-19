@@ -8,6 +8,7 @@ import bridge.util.BridgeMaker;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -52,6 +53,17 @@ class BridgeTest {
         Bridge bridge = new Bridge(innerBridge);
 
         assertThat(bridge.checkMoveSuccess(inputPosition, index)).isEqualTo(isSuccess);
+    }
+
+    @DisplayName("다리를 모두 건넜을 때 게임 종료를 테스트한다")
+    @Test
+    void checkGameEndWhenReachedEnd() {
+        List<String> innerBridge = List.of("U", "D", "D", "U", "D");
+        Bridge bridge = new Bridge(innerBridge);
+
+        int last = innerBridge.size();
+
+        assertThat(bridge.hasReachedEnd(last)).isTrue();
     }
 
 }
