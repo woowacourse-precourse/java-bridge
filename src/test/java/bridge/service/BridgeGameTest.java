@@ -40,4 +40,19 @@ public class BridgeGameTest {
         assertThat(user.isGameSuccess()).isEqualTo(true);
         assertThat(user.isGameSuccess()).isEqualTo(true);
     }
+
+    @DisplayName("retry 테스트")
+    @Test
+    public void retryTest() {
+        // given
+        Bridge bridge = new Bridge(List.of("U", "D", "D", "D", "U"));
+        User user = new User();
+        bridge.setNowIndex(3);
+
+        // when
+        bridgeGame.retry(bridge, user);
+
+        // then
+        assertThat(bridge.getNowIndex()).isEqualTo(0);
+    }
 }
