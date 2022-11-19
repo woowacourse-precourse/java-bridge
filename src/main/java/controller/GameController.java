@@ -21,5 +21,13 @@ public class GameController {
 		end(result, bridgeGame);
 	}
 
+	public Bridge init() {
+		outputView.printStartMessage();
+
+		BridgeRandomNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
+		BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+		BridgeSize bridgeSize = new BridgeSize(inputView.readBridgeSize());
+		return new Bridge(bridgeMaker.makeBridge(bridgeSize.getBridgeSize()));
+	}
 
 }
