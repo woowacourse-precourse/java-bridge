@@ -35,6 +35,7 @@ public class OutputView {
         print(OutputMessage.GAME_RESULT);
         printMap(userStatus);
         print(userStatus.getStatusMessage());
+        print(userStatus.getTryCountMessage());
     }
 
     private String makeMap(UserStatus userStatus, String directionToDraw) {

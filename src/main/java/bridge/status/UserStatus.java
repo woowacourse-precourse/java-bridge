@@ -7,17 +7,20 @@ public class UserStatus {
     private final List<String> directions;
     private int position;
     private boolean available;
+    private long tryCount;
 
     private static final String ON_SUCCESS = " O ";
     private static final String ON_FAILED = " X ";
     private static final String ON_NOTHING = "   ";
     private static final String STATUS_SUCCESS = "\n게임 성공 여부: 성공";
     private static final String STATUS_FAILED = "\n게임 성공 여부: 실패";
+    private static final String TRY_COUNT = "총 시도한 횟수: ";
 
     public UserStatus(List<String> directions) {
         this.directions = directions;
         this.position = 0;
         this.available = true;
+        this.tryCount = 1L;
     }
 
     public void addDirection(String direction) {
@@ -54,10 +57,15 @@ public class UserStatus {
         return STATUS_FAILED;
     }
 
+    public String getTryCountMessage() {
+        return TRY_COUNT + this.tryCount;
+    }
+
     public void tryAgain() {
         this.directions.clear();
         this.position = 0;
         this.available = true;
+        this.tryCount++;
     }
 
     public String getUserScoreByDirectionOrElseSpace(String compareDirection, int position) {
