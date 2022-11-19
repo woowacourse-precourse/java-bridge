@@ -8,17 +8,15 @@ import java.util.List;
 public class GameSetting {
 	public static final int START_STEP = 0;
 	public static final int FIRST_TRY = 1;
+	public static final boolean GAME_FAIL = false;
+	public static final boolean GAME_SUCCESS = true;
 
 	public static List<String> setBridgeForStartGame(int bridgeLength) {
 		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 		return bridgeMaker.makeBridge(bridgeLength);
 	}
 
-	public static int setBridgeStepForRestartGame() {
-		return START_STEP;
-	}
-
-	public static GameResultDto setDataForEndGame(int totalTry, boolean successFlag) {
-		return new GameResultDto(totalTry, successFlag);
+	public static GameResultDto setDataForRetryGame(int totalTry, boolean gameClear) {
+		return new GameResultDto(totalTry, gameClear);
 	}
 }
