@@ -45,6 +45,11 @@ public class Service {
         outputView.printBridge(bridge);
     }
 
+    // 다리 마지막까지 도달했는지 boolean값 반환
+    public boolean isBridgeEnd() {
+        return bridgeGame.isBridgeEnd();
+    }
+
     // 다시 게임을 시도할지 물어보는 기능
     public boolean retry() {
         do {
