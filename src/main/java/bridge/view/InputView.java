@@ -31,5 +31,13 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
+    // 사용자가 이동할 칸을 입력받는다.
+    public String readMoving() {
+        System.out.println(ProgressMessage.BRIDGE_MOVE_MESSAGE);
+        String input = Console.readLine();
+        bridgeInputException.validMovingBridge(input);
+        return input;
+    }
+
 
 }
