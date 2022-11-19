@@ -21,4 +21,15 @@ public class Application {
             }
         }
     }
+
+    private static int getMove() {
+        output.printRequestInputMove();
+        while (true) {
+            try {
+                return input.readMoving();
+            } catch (IllegalArgumentException e) {
+                output.printErrorMessage(e.getMessage());
+            }
+        }
+    }
 }
