@@ -27,7 +27,7 @@ public class BridgeMaker {
 
         List<String> bridge = new ArrayList<>();
         while (bridge.size() < size) {
-            bridge.add(createBridge()); // bridge 생성
+            bridge.add(createMaterial());
         }
         return bridge;
     }
@@ -38,7 +38,7 @@ public class BridgeMaker {
         }
     }
 
-    private String createBridge() {
+    private String createMaterial() {
         int randomNumber = bridgeNumberGenerator.generate();
 
         if (randomNumber == Direction.DOWN.getNumber()) {
