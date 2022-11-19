@@ -6,7 +6,8 @@ public enum Exception {
     IS_NOT_NUMBER_EXCEPTION(new IllegalArgumentException("[ERROR] " + "입력이 숫자가 아닙니다.")),
     WRONG_LENGTH_EXCEPTION(new IllegalArgumentException("[ERROR] " + "입력의 길이가 다릅니다.")),
     IS_NOT_LETTER_EXCEPTION(new IllegalArgumentException("[ERROR] " + "입력이 문자가 아닙니다.")),
-    IS_NOT_COURSE_EXCEPTION(new IllegalArgumentException("[ERROR] " + "U 또는 D를 입력해주세요."));
+    IS_NOT_COURSE_EXCEPTION(new IllegalArgumentException("[ERROR] " + "U 또는 D를 입력해주세요.")),
+    IS_NOT_FLAG_EXCEPTION(new IllegalArgumentException("[ERROR] " + "R 또는 Q를 입력해주세요."));
     private IllegalArgumentException exception;
 
     Exception(IllegalArgumentException exception) {
