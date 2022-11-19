@@ -1,6 +1,6 @@
 package bridge;
 
-import static bridge.BridgeNumber.generatePosition;
+import static bridge.BridgeConverter.generatePosition;
 
 import java.util.ArrayList;
 import java.util.List;
