@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,11 +14,16 @@ public class BridgeMaker {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    /**
-     * @param size 다리의 길이
-     * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
-     */
-    public List<String> makeBridge(int size) {
-        return null;
+    // 다리 길이에 따라 0,1 을 무작위로 추출하는 기능
+    private List<Integer> makeBridgeInteger(int size) {
+        List<Integer> numberList = new ArrayList<>();
+        while (size != 0) {
+            int number = bridgeNumberGenerator.generate();
+            numberList.add(number);
+            size -= 1;
+        }
+        return numberList;
     }
+
+
 }
