@@ -42,14 +42,11 @@ public class InputView {
     }
 
     public void validateNextStep(String userInput) {
-        if(!Objects.equals(userInput, "U") && !Objects.equals(userInput, "D")) {
+        if (!Objects.equals(userInput, "U") && !Objects.equals(userInput, "D")) {
             throw new IllegalArgumentException(ErrorMessages.SHOULD_MOVE_TO_UPSIZE_OR_DOWN_SIZE);
         }
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public String readGameCommand() {
         return null;
     }
