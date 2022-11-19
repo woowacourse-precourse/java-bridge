@@ -10,7 +10,9 @@ public enum InputViewData {
     MOVING_ROUTE(String.format("\n이동할 칸을 선택해주세요. (위: %s, 아래: %s)", Constants.UP, Constants.DOWN),
             input -> input.equals(Constants.UP) || input.equals(Constants.DOWN),
             "[ERROR] 해당하는 문자만 입력할 수 있습니다."),
-    ;
+    RETRY(String.format("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)", Constants.RETRY, Constants.QUIT),
+            input -> input.equals(Constants.RETRY) || input.equals(Constants.QUIT),
+            "[ERROR] 해당하는 문자만 입력할 수 있습니다.");
 
     private String requestMessage;
     private InputFormCheck inputFormCheck;

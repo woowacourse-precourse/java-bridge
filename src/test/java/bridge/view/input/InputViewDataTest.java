@@ -54,4 +54,25 @@ public class InputViewDataTest {
             );
         }
     }
+
+    @ParameterizedTest(name = "RETRY_isCorrectTest Case : {0}")
+    @ArgumentsSource(RetryTestData.class)
+    void RETRY_isCorrectTest(String input, boolean expected) {
+        boolean result = InputViewData.RETRY.isCorrect(input);
+
+        assertThat(result).isEqualTo(expected);
+    }
+
+    private static class RetryTestData implements ArgumentsProvider {
+
+        @Override
+        public Stream<? extends Arguments> provideArguments(ExtensionContext context) throws Exception {
+            return Stream.of(
+                    Arguments.of("R", true),
+                    Arguments.of("Q", true),
+                    Arguments.of("3", false),
+                    Arguments.of("P", false)
+            );
+        }
+    }
 }
