@@ -25,11 +25,11 @@
 - [ ✅ ] 이동할 칸 입력요청문구를 출력한다 → OutputView.printMovingInputRequest
 - [ ✅ ] 이동할 칸을 입력받는다 → InputView.readMoving
 - [ ✅ ] 그 칸으로 이동한다 → Player.move
-    - [ ✅ ] 이동한 칸에 발판이 없다면 떨어진다.   
-    - [ ✅ ] 이 과정에서 `IllegalArgument`오류가 나면 다시 입력요청문구 출력단계로 돌아간다
-- [  ] 다 건넜는지 파악한다 
+    - [ ✅ ] 이동한 칸에 발판이 없다면 떨어진다 → Player.fallOff   
+    - [ ✅ ] 이 과정에서 `IllegalArgument`오류가 나면 다시 입력요청문구 출력단계로 돌아간다 
 - [  ] 이동한 지점까지의 다리상태를 출력한다 → OutputView.printMap
-- [  ] 남았으면 남은 칸들에 대해 이 과정들을 반복한다
+- [ ✅ ] 실패했는지 파악한다 → BridgeGame.isFailed
+    - [  ] 실패했다면 재시작/종료여부를 묻는다 → BridgeGameController.askRetryOrFinish
 
 #### 2) 재시작 또는 종료하기  
 - [  ] 실패한 경우, 재시작/종료여부 입력요청문구를 출력한다 → OutputView.printGameCommandInputRequest
