@@ -1,15 +1,13 @@
 package bridge.validation;
 
 import static bridge.command.GameCommand.*;
-import static bridge.command.MoveCommand.*;
+import static bridge.command.LocationCommand.*;
 import static bridge.util.Constant.*;
-
-import bridge.command.MoveCommand;
 
 public class Validation {
 
-    public static void checkBridgeLengthConsistOfNum(String bridgeLength){
-        if(!bridgeLength.matches(BRIDGE_LENGTH_REGEX)){
+    public static void checkBridgeLengthConsistOfNum(String bridgeLength) {
+        if (!bridgeLength.matches(BRIDGE_LENGTH_REGEX)) {
             throw new IllegalArgumentException(ERROR_MESSAGE_BRIDGE_LENGTH_CONSIST_OF_NUM);
         }
     }
@@ -24,8 +22,8 @@ public class Validation {
 
     // 다리를 이동할 때 입력값이 U 혹은 D인지 검증하는 기능
     public static void checkMoveCommand(String moveInput) {
-        if (!(moveInput.equals(MoveUp.getMoveDirection()) ||
-            moveInput.equals(MoveDown.getMoveDirection()))) {
+        if (!(moveInput.equals(Up.getDirection()) ||
+            moveInput.equals(Down.getDirection()))) {
             throw new IllegalArgumentException(ERROR_MESSAGE_BRIDGE_MOVE_COMMAND_INPUT_ERROR);
         }
     }
