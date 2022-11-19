@@ -18,7 +18,7 @@
 - [x] 실패 시 게임 재시도 여부 출력 MessageView#PRINT_GAME_RESTART_MESSAGE
 - [x] 게임 재시도 BridgeGame#retry
   - [x] 사용자로부터 R과 Q 시도여부 입력받기 InputView#readGameCommand
-  - [ ] 사용자로부터 재시도 입력 에러처리 
+  - [x] 사용자로부터 재시도 입력 에러처리 
 - [ ] 최종 게임 결과 출력 OutputView#printResult
   - [ ] 게임 성공 여부 출력 OutputView#printGameSuccess
   - [ ] 총 시도한 횟수 출력 OutputView#printGameAttempts

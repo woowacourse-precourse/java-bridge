@@ -47,10 +47,15 @@ public class InputView {
      */
     public boolean readGameCommand() {
         String command = Console.readLine();
-//        Validate
+        validateCommand(command);
         if(command.equals("Q")){
             return false;
         }
         return true;
+    }
+
+    private void validateCommand(String command){
+        if (!((command.charAt(0) == 'R' || command.charAt(0) == 'Q') && command.length()==1))
+            throw new IllegalArgumentException();
     }
 }
