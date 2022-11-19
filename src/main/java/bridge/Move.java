@@ -19,6 +19,15 @@ public class Move {
         downLine.add(addRightOrWrong(computer, userInput).get(1));
     }
 
+    public void clearMoving() {
+        upLine.clear();
+        downLine.clear();
+    }
+
+    public boolean checkWrong() {
+        return !upLine.contains(WRONG) && !downLine.contains(WRONG);
+    }
+
     public void printMoving() {
         OutputView.printMap(upLine, downLine);
     }
