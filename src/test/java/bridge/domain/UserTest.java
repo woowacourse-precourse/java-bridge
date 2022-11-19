@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,5 +19,13 @@ class UserTest {
         assertThat(user.getNumberOfAttempts())
                 .isPositive()
                 .isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("게임 종료 여부 테스트")
+    void onGameTest() {
+        User user = new User(Arrays.asList("D","D","D"));
+        assertThat(user.onGame())
+                .isEqualTo(true);
     }
 }
