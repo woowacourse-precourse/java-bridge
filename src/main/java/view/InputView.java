@@ -7,6 +7,10 @@ public class InputView {
         String bridgeSize=Console.readLine();
         return bridgeSize;
     }
+    public String inputUserMoving() {
+        String move=Console.readLine();
+        return move;
+    }
 
 
 
