@@ -45,6 +45,6 @@ class BridgeMakerTest {
             bridgeMaker.validateBridge(4, bridge);
 
         }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.bridgeNotUorD.getMessage());
+                .hasMessage(ExceptionMessage.createBridgeWordNotUD.getMessage());
     }
 }
