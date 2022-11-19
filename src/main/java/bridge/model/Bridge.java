@@ -15,7 +15,19 @@ public class Bridge {
         bridgeSize = new BridgeSize(blocks.size());
     }
 
-    public int getBridgeSize(){
+    public MoveResult cross(BridgeBlock bridgeBlock) {
+        if (canCross(bridgeBlock)) {
+            return MoveResult.SUCCESS;
+        }
+        return MoveResult.FAIL;
+    }
+
+    private boolean canCross(BridgeBlock bridgeBlock) {
+        return blocks.stream()
+            .anyMatch((b) -> b.equals(bridgeBlock));
+    }
+
+    public int getBridgeSize() {
         return bridgeSize.intValue();
     }
 }
