@@ -1,9 +1,5 @@
 package bridge.domain;
 
-import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
-import bridge.BridgeRandomNumberGenerator;
-import bridge.RealTimeBridge;
 import bridge.utils.InputHandler;
 import bridge.view.OutputView;
 import java.util.List;

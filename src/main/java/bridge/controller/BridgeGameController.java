@@ -1,6 +1,6 @@
 package bridge.controller;
 
-import bridge.BridgeMaker;
+import bridge.domain.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
