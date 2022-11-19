@@ -23,7 +23,7 @@ public class ValidateInput {
     }
 
     public static void validateMovingBlock(String input) {
-        isInputLength1(input);
+        isOnlyUOrD(isInputLength1(input));
     }
 
     private static char isInputLength1(String input) {
@@ -33,4 +33,9 @@ public class ValidateInput {
         return TypeConverter.stringToChar(input);
     }
 
+    private static void isOnlyUOrD(char input) {
+        if (input != 'U' && input != 'D') {
+            throw new IllegalArgumentException(INPUT_ONLY_U_OR_D);
+        }
+    }
 }
