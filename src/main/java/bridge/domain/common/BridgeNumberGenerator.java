@@ -1,7 +1,6 @@
-package bridge;
+package bridge.domain.common;
 
 @FunctionalInterface
 public interface BridgeNumberGenerator {
-
     int generate();
 }

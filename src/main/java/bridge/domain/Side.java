@@ -1,8 +1,8 @@
-package bridge;
+package bridge.domain;
 
 public enum Side {
-    UP(0,"U"),
-    DOWN(1,"D"),
+    UP(1,"U"),
+    DOWN(0,"D"),
     ;
 
     private int sideOfNumber;
@@ -13,11 +13,11 @@ public enum Side {
         this.sideOfString = sideOfString;
     }
 
-    int ofNumber() {
+    public int ofNumber() {
         return sideOfNumber;
     }
 
-    String ofString() {
+    public String ofString() {
         return sideOfString;
     }
 }

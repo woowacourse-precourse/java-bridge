@@ -1,5 +1,10 @@
-package bridge;
+package bridge.program;
 
+import bridge.domain.BridgeMaker;
+import bridge.domain.common.BridgeRandomNumberGenerator;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+import bridge.domain.BridgeGame;
 import java.util.List;
 
 public class BridgeGameProgram {
