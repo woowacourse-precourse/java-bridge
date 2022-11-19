@@ -1,8 +1,6 @@
 package bridge.domain;
 
-import bridge.view.InputView;
 import bridge.view.OutputView;
-
 import java.util.List;
 
 public class BridgeRestart {
