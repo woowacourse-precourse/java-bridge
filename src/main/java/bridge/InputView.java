@@ -53,4 +53,10 @@ public class InputView {
     public String readGameCommand() {
         return null;
     }
+
+    private void validateGameCommand(String gameCommand) {
+        if (!gameCommand.equals("R") && !gameCommand.equals("Q")) {
+            throw new IllegalArgumentException("[ERROR] 게임을 다시 시도할지 여부는 R 또는 Q 여야 합니다.");
+        }
+    }
 }
