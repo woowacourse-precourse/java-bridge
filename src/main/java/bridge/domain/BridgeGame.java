@@ -22,6 +22,7 @@ public class BridgeGame {
      * @param footrestLocation
      */
     public Integer move(FootrestLocation footrestLocation) {
+        System.out.println(footrestLocation);
         System.out.println("움직인다");
         // Bridge 초기화 안됐으면 일단 예외 반환(모든 메서드 마찬가지)
 

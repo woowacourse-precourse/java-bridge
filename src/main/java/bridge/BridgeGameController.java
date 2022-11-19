@@ -57,8 +57,8 @@ public class BridgeGameController {
     private Integer moveUser() {
         try {
             String command = inputView.readMoving();
-//            FootrestLocation footrestLocation = FootrestLocation.valueOf(command);
-            Integer movingResult = game.move(FootrestLocation.DOWN);
+            FootrestLocation footrestLocation = FootrestLocation.valueOfUsingUserInput(command);
+            Integer movingResult = game.move(footrestLocation);
             // game에게 발자취를 꺼낸다
             System.out.println("movingResult is " + movingResult);
             if (movingResult == 0) {
@@ -66,6 +66,7 @@ public class BridgeGameController {
             }
             return movingResult;
         } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR: 아웃풋으로 옮기기]" + e.getMessage());
             return moveUser();
         }
     }
