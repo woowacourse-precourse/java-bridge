@@ -63,6 +63,28 @@ class BridgeGameTest {
         assertThat(result2).isEqualTo(List.of("O", "O", "X"));
     }
 
+    @DisplayName("게임 오버 여부를 판단한다.")
+    @Test
+    void 플레이어가_움직인_후_게임오버_여부를_판단하는_기능_테스트() {
+        //given
+        BridgeGame bridgeGameCase1 = new BridgeGame(new TestNumberGenerator(newArrayList(0,1,1)),3);
+        bridgeGameCase1.move("D");
+        bridgeGameCase1.move("U");
+        bridgeGameCase1.move("U");
+
+        BridgeGame bridgeGameCase2 = new BridgeGame(new TestNumberGenerator(newArrayList(0,1,1)),3);
+        bridgeGameCase2.move("D");
+        bridgeGameCase2.move("D");
+
+        //when
+        boolean result1 = bridgeGameCase1.isGameOver();
+        boolean result2 = bridgeGameCase2.isGameOver();
+
+        //then
+        assertThat(result1).isEqualTo(false);
+        assertThat(result2).isEqualTo(true);
+    }
+
     static class TestNumberGenerator implements BridgeNumberGenerator {
 
         private final List<Integer> numbers;
