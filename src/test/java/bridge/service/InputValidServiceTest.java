@@ -3,7 +3,6 @@ package bridge.service;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -29,26 +28,36 @@ class InputValidServiceTest {
 	@ParameterizedTest
 	@CsvSource(value = {"3, 3", "20, 20", "5, 5"})
 	void validBridgeSizeTest(String bridgeSize, Integer bridgeSizeNumber) {
-		System.out.println(bridgeSize);
-		System.out.println(bridgeSizeNumber);
 		Assertions.assertThat(inputValidService.validBridgeSize(bridgeSize)).isEqualTo(bridgeSizeNumber);
 	}
 
-	@Test
-	void validUserMoving() {
-		//given
-
-		//when
-
-		//then
+	@DisplayName("인자로 들어온 userMoving 값이 U 또는 D 이 아닌 경우")
+	@ValueSource(strings = {"@!", " ", "2", "21", "A", "u", "r", ""})
+	@ParameterizedTest
+	void validUserMovingErrorTest(String userMoving) {
+		Assertions.assertThatThrownBy(() -> inputValidService.validBridgeSize(userMoving))
+			.isInstanceOf(IllegalArgumentException.class);
 	}
 
-	@Test
-	void validUserCommand() {
-		//given
+	@DisplayName("userMoving 의 정상 값 테스트")
+	@ParameterizedTest
+	@CsvSource(value = {"U, U", "D, D"})
+	void validUserMovingTest(String userMoving, String userMovingTest) {
+		Assertions.assertThat(inputValidService.validUserMoving(userMoving)).isEqualTo(userMovingTest);
+	}
 
-		//when
+	@DisplayName("인자로 들어온 userCommand 값이 R 또는 Q 이 아닌 경우")
+	@ValueSource(strings = {"@!", " ", "2", "21", "A", "r", "q", ""})
+	@ParameterizedTest
+	void validUserCommandErrorTest(String userCommand) {
+		Assertions.assertThatThrownBy(() -> inputValidService.validUserCommand(userCommand))
+			.isInstanceOf(IllegalArgumentException.class);
+	}
 
-		//then
+	@DisplayName("userCommand 의 정상 값 테스트")
+	@ParameterizedTest
+	@CsvSource(value = {"R, R", "Q, Q"})
+	void validUserCommandTest(String userCommand, String userCommandTest) {
+		Assertions.assertThat(inputValidService.validUserCommand(userCommand)).isEqualTo(userCommandTest);
 	}
 }
