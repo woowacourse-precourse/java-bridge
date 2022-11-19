@@ -1,4 +1,4 @@
-package bridge;
+package bridge.valid;
 
 import java.util.List;
 

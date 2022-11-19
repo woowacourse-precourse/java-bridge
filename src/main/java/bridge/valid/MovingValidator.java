@@ -1,4 +1,6 @@
-package bridge;
+package bridge.valid;
+
+import bridge.valid.InputValidator;
 
 import java.util.List;
 

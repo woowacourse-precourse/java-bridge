@@ -1,5 +1,9 @@
-package bridge;
+package bridge.valid;
 
+import bridge.valid.BridgeSizeValidator;
+import bridge.valid.GameCommandValidator;
+import bridge.valid.InputValidator;
+import bridge.valid.MovingValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
