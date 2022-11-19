@@ -7,6 +7,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.in;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ValidatorTest {
@@ -31,4 +32,13 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+
+    @ParameterizedTest
+    @ValueSource(strings = {"A","3","s"})
+    void 이동할_칸_입력_예외_처리(String input) {
+        validator = new Validator();
+
+        assertThatThrownBy(() -> validator.validateMoving(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
