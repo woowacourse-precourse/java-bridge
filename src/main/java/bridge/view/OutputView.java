@@ -16,6 +16,12 @@ public class OutputView {
     private static final String NO_PASS = "X";
     private static final String EMPTY = " ";
 
+    private static final String TOTAL_RESULT = "최종 게임 결과";
+    private static final String IS_SUCCESS = "게임 성공 여부: ";
+    private static final String SUCCESS = "성공";
+    private static final String FAIL = "실패";
+    private static final String TRY_NUMBER = "총 시도한 횟수: ";
+
     public void printErrorMessage(String errorMessage) {
         System.out.println(errorMessage);
     }
@@ -55,6 +61,21 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(BridgeGame bridgeGame) {
+        System.out.println(TOTAL_RESULT);
         printMap(bridgeGame);
+
+        System.out.println();
+        System.out.println(IS_SUCCESS);
+        System.out.println(IsSuccess(bridgeGame));
+
+        System.out.println(TRY_NUMBER);
+        System.out.println(bridgeGame.getTryNumber());
+    }
+
+    private String IsSuccess(BridgeGame bridgeGame) {
+        if (bridgeGame.checkSuccess()) {
+            return SUCCESS;
+        }
+       return FAIL;
     }
 }

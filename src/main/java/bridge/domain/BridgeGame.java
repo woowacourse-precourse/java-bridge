@@ -14,6 +14,7 @@ public class BridgeGame {
     private final int bridgeSize;
     private final UserPath userPath;
     private int userPosition;
+    private int tryNumber;
 
     public BridgeGame(int size) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
@@ -23,6 +24,7 @@ public class BridgeGame {
         this.bridgeSize = size;
         this.userPath = new UserPath();
         this.userPosition = 0;
+        this.tryNumber = 1;
     }
 
     /**
@@ -46,6 +48,7 @@ public class BridgeGame {
      */
     public boolean retry(String command) {
         if (command.equals(InputValidator.RETRY)) {
+            tryNumber++;
             userPosition = 0;
             userPath.initialize();
             return true;
@@ -69,5 +72,9 @@ public class BridgeGame {
 
     public int getUserPosition() {
         return userPosition;
+    }
+
+    public int getTryNumber() {
+        return tryNumber;
     }
 }
