@@ -61,4 +61,16 @@ public class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] U 또는 D만 입력 가능합니다.");
     }
+
+    @DisplayName("게임 재시작 여부에 대한 입력 값이 R 또는 Q일 때, 정상적으로 값을 읽어들여야 한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"R", "Q"})
+    public void 게임_재시작_여부_입력_테스트(String input) {
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        InputView inputView = new InputView();
+        String restartOrNotInput = inputView.readGameCommand();
+
+        assertThat(restartOrNotInput).isEqualTo(input);
+    }
 }
