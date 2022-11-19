@@ -1,5 +1,7 @@
 package bridge.view;
 
+import static bridge.constant.Movement.DOWN;
+import static bridge.constant.Movement.UP;
 import static bridge.constant.Output.*;
 
 /**
@@ -39,7 +41,70 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(boolean result, String movement) {
+        if (result) {
+            isSuccess(movement);
+        }
+        if (!result) {
+            isFailure(movement);
+        }
+    }
+
+    private void isSuccess(String movement) {
+        succeedUpMovement(movement);
+        succeedDownMovement(movement);
+    }
+
+    private void succeedDownMovement(String movement) {
+        if (isD(movement)) {
+            upBridge = upBridge.replace("]", "|   ]");
+            downBridge = downBridge.replace("]", "| O ]");
+            printUpAndDownBridge();
+        }
+    }
+
+    private void succeedUpMovement(String movement) {
+        if (isU(movement)) {
+            upBridge = upBridge.replace("]", "| O ]");
+            downBridge = downBridge.replace("]", "|   ]");
+            printUpAndDownBridge();
+        }
+    }
+
+    private void isFailure(String movement) {
+        failUpMovement(movement);
+        failDownMovement(movement);
+    }
+
+    private void failDownMovement(String movement) {
+        if (isD(movement)) {
+            upBridge = upBridge.replace("]", "|   ]");
+            downBridge = downBridge.replace("]", "| X ]");
+            printUpAndDownBridge();
+        }
+    }
+
+    private void failUpMovement(String movement) {
+        if (isU(movement)) {
+            upBridge = upBridge.replace("]", "| X ]");
+            downBridge = downBridge.replace("]", "|   ]");
+            printUpAndDownBridge();
+        }
+    }
+
+    private void printUpAndDownBridge() {
+        upBridge = upBridge.replace("[|", "[");
+        downBridge = downBridge.replace("[|", "[");
+        System.out.println(upBridge);
+        System.out.println(downBridge);
+    }
+
+    private boolean isU(String movement) {
+        return movement.equals(UP.getUpAndDownSide());
+    }
+
+    private boolean isD(String movement) {
+        return movement.equals(DOWN.getUpAndDownSide());
     }
 
     /**
@@ -48,5 +113,6 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult() {
+
     }
 }
