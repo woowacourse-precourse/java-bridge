@@ -8,6 +8,7 @@ import java.util.List;
 public class BridgeController {
     private BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
     private List<String> moveBridgeResult;
+    int totalTryCount;
 
     public void run() {
         new OutputView().printStart();
@@ -44,7 +45,7 @@ public class BridgeController {
             }
             if (tryCount == blockCount - 1) {
                 new OutputView().printResult(moveBridgeResult);
-                new OutputView().printSuccessResult(tryCount + 1);
+                new OutputView().printSuccessResult(totalTryCount);
             }
         }
     }
