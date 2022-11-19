@@ -1,4 +1,4 @@
-package bridge;
+package bridge.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,6 @@ public class BridgeMaker {
 
     public List<String> makeBridge(int size) {
         List<Integer> randomNumbers = makeRandomIntegers(size);
-        System.out.println("randomNumbers = " + randomNumbers);
         return randomNumbers.stream()
                 .map(this::changeUpDown)
                 .collect(Collectors.toList());
@@ -30,8 +29,8 @@ public class BridgeMaker {
 
     private String changeUpDown(int random) {
         if (random == 0) {
-            return "U";
+            return "D";
         }
-        return "D";
+        return "U";
     }
 }
