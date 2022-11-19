@@ -2,6 +2,8 @@ package bridge;
 
 
 import camp.nextstep.edu.missionutils.Console;
+import org.w3c.dom.ranges.RangeException;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -36,11 +38,11 @@ public class InputView {
     }
 
     private static void validateNotNumber(String input){
-        try{
-            int len = Integer.parseInt(input);
-        }catch (NumberFormatException e){
-            System.out.println("[ERROR] 숫자를 입력하셔야 합니다.");
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력하셔야 합니다.");
+        for (int i = 0; i < input.length(); i++) {
+            if(!Character.isDigit(input.charAt(i))){
+                System.out.println("[ERROR] 숫자를 입력해야 합니다.");
+                throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
+            }
         }
     }
 
