@@ -38,6 +38,10 @@ public class BridgeGame {
         bridgeMoving.setBridgeMaker(size);
     }
 
+    public List<String> getUserSelectList() {
+        return userSelectList;
+    }
+
     public List<String> getMakeBridgeList() {
         return bridgeMoving.getMakeBridgeList();
     }
