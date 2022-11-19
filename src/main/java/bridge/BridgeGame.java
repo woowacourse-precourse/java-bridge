@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -11,6 +13,8 @@ public class BridgeGame {
     public void start(InputView inputView, OutputView outputView) {
         outputView.printStartMessage();
         int bridgeSize = inputView.readBridgeSize();
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
     /**
