@@ -19,7 +19,7 @@ public class BridgeStatus {
     }
 
     public static BridgeStatus createBridgeStatus(List<String> answerBridge) {
-        return new BridgeStatus(answerBridge, new ArrayList<>(), 0, GameStatus.IN_PROGRESS);
+        return new BridgeStatus(answerBridge, new ArrayList<>(), 1, GameStatus.IN_PROGRESS);
     }
 
     public void addUserMovingCommand(MovingCommand movingCommand) {
