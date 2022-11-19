@@ -18,6 +18,14 @@ public class InputView {
         return checkAndConvertToInt(input);
     }
 
+    public String inputMoving() {
+        System.out.println(BLANK_TO_MOVE_MESSAGE.toString());
+        String input = Console.readLine();
+        checkEmpty(input);
+        checkAlphabet(input);
+        return input;
+    }
+
     private static void checkEmpty(String input){
         if (input == null || input.isBlank()){
             throw new IllegalArgumentException(EMPTY_INPUT.toString());
