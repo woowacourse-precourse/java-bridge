@@ -15,23 +15,24 @@ public class CrossingBridge {
 	private final boolean crossComplete;
 
 	public CrossingBridge(List<String> bridgeNowCrossing) {
-		crossingTrial(bridgeNowCrossing);
-		this.crossComplete = isCompleteCrossing(bridgeNowCrossing);
+		cross(bridgeNowCrossing);
+		this.crossComplete = isCrossComplete(bridgeNowCrossing);
 	}
 
 	public static CrossingBridge over(List<String> bridgeNowCrossing) {
 		return new CrossingBridge(bridgeNowCrossing);
 	}
 
-	private void crossingTrial(List<String> bridgeNowCrossing) {
+	private void cross(List<String> bridgeNowCrossing) {
 		do {
 			OutputView.withContentOf(REQUEST_MOVEMENT, true, false).ConsoleMessage();
 			MovementCommand movementCommand = (MovementCommand) InputCommandReader.read(CommandReader.GAME_MOVEMENT).command();
 			CrossingDecision crossingDecision = CrossingDecision.judgingBy(movementCommand, bridgeNowCrossing);
 			stepAhead(crossingDecision, bridgeNowCrossing);
-			OutputView.withContentOf(ResultRendering.generatedBy(crossingDecision, movementCommand).getBridgeDescription(), false, false).ConsoleMessage();
-
-		} while (isCrossToContinue(bridgeNowCrossing));
+			OutputView.withContentOf(
+					ResultRendering.generatedBy(crossingDecision, movementCommand).getBridgeDescription(), false, false)
+					.ConsoleMessage();
+		} while (isCrossContinue(bridgeNowCrossing));
 	}
 
 	private void stepAhead(CrossingDecision crossingDecision, List<String> bridgeNowCrossing) {
@@ -40,11 +41,11 @@ public class CrossingBridge {
 		}
 	}
 
-	private boolean isCrossToContinue(List<String> bridgeNowCrossing) {
-		return !(ResultRendering.getBridgeDescription().contains("X") || isCompleteCrossing(bridgeNowCrossing));
+	private boolean isCrossContinue(List<String> bridgeNowCrossing) {
+		return !(ResultRendering.getBridgeDescription().contains("X") || isCrossComplete(bridgeNowCrossing));
 	}
 
-	private boolean isCompleteCrossing(List<String> bridgeNowCrossing) {
+	private boolean isCrossComplete(List<String> bridgeNowCrossing) {
 		return (bridgeNowCrossing.isEmpty());
 	}
 

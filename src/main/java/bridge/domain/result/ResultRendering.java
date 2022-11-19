@@ -34,17 +34,17 @@ public class ResultRendering {
 
 	public void renderEachResult(CrossingDecision crossingDecision, MovementCommand movementCommand) {
 		String crossingMark = MovementDescription.of(crossingDecision).getMark();
-		List<String> passingSide = BridgeSideDescription.of(movementCommand).getSide();
-		List<String> nonPassingSide = BridgeSideDescription.of(movementCommand).getOtherSide();
+		List<String> crossingSide = BridgeSideDescription.of(movementCommand).getSide();
+		List<String> nonCrossingSide = BridgeSideDescription.of(movementCommand).getOtherSide();
 
-		buildDescription(crossingMark, passingSide, nonPassingSide);
+		buildDescription(crossingMark, crossingSide, nonCrossingSide);
 	}
 
 	public static String renderFinalResult(HashMap<String, Integer> gameResult) {
-		return RESULT_PRESENTATION + ENTER
-				+ BridgeDescription + PARAGRAPH
-				+ String.format(RESULT_FAIL_OR_SUCCESS, gameResult.keySet().toArray()[0]) + ENTER
-				+ String.format(RESULT_TRIAL, (Integer) gameResult.values().toArray()[0]);
+		return RESULT_PRESENTATION
+				+ ENTER + BridgeDescription
+				+ PARAGRAPH + String.format(RESULT_FAIL_OR_SUCCESS, gameResult.keySet().toArray()[0])
+				+ ENTER + String.format(RESULT_TRIAL, (Integer) gameResult.values().toArray()[0]);
 	}
 
 	private void buildDescription(String crossingMark, List<String> passingSide, List<String> nonPassingSide) {
@@ -63,17 +63,17 @@ public class ResultRendering {
 		side.set(prevElementIdx, preElement.substring(0, idxToLastCharacter));
 	}
 
-	private static void buildFollowingBeginning(String crossingMark, List<String> passingSide, List<String> nonPassingSide) {
-		fixFormatting(passingSide);
-		fixFormatting(nonPassingSide);
+	private static void buildFollowingBeginning(String crossingMark, List<String> crossingSide, List<String> nonCrossingSide) {
+		fixFormatting(crossingSide);
+		fixFormatting(nonCrossingSide);
 
-		passingSide.add(String.format("| %s ]", crossingMark));
-		nonPassingSide.add("|   ]");
+		crossingSide.add(String.format("| %s ]", crossingMark));
+		nonCrossingSide.add("|   ]");
 	}
 
-	private static void buildFromBeginning(String crossingMark, List<String> passingSide, List<String> nonPassingSide) {
-		passingSide.add(String.format("[ %s ]", crossingMark));
-		nonPassingSide.add("[   ]");
+	private static void buildFromBeginning(String crossingMark, List<String> crossingSide, List<String> nonCrossingSide) {
+		crossingSide.add(String.format("[ %s ]", crossingMark));
+		nonCrossingSide.add("[   ]");
 	}
 
 	public String constructUpperBridgeMap() {
