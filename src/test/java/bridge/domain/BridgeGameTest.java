@@ -2,11 +2,9 @@ package bridge.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,16 +19,23 @@ public class BridgeGameTest {
         commandStorage = new ArrayList<>();
     }
 
-    @DisplayName("사용자가 입력한 명령에 따라 이동정보를 잘 등록하는 지 테스트")
-    @ValueSource(strings = { "U", "D", "U", "D", "U" })
-    @ParameterizedTest
-    void moving_command_test(String command) {
-        gameManager.move(command);
-        commandStorage.add(command);
+    @DisplayName("현재의 이동명령이 이동가능한 경우 True를 반환하는지 테스트")
+    @Test
+    void isMovalble_test() {
+        List<String> bridgeStatus = new ArrayList<>(List.of("U", "D", "D", "U", "U"));
+        gameManager.setBridgeStatus(bridgeStatus);
 
-        assertThat(gameManager.getMovingStatus())
-                .hasSize(commandStorage.size())
-                .isInstanceOf(ArrayList.class)
-                .isEqualTo(commandStorage);
+        assertThat(gameManager.move("U"))
+                .isTrue();
+    }
+
+    @DisplayName("현재의 이동명령이 불가한 경우 False를 반환하는 지 테스트")
+    @Test
+    void isNotMovable_test() {
+        List<String> bridgeStatus = new ArrayList<>(List.of("U", "D", "D", "U", "U"));
+        gameManager.setBridgeStatus(bridgeStatus);
+
+        assertThat(gameManager.move("U"))
+                .isFalse();
     }
 }

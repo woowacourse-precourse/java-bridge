@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class BridgeGame {
     private static BridgeGame instance;
+    private List<String> bridgeStatus; // 다리의 상태 저장
     private final List<String> movingStatus; // 사용자 이동상태 저장
 
     private BridgeGame() { // for singleton pattern
@@ -26,12 +27,28 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String command) {
-        movingStatus.add(command);
+    public boolean move(String command) {
+        boolean result = isMovable(command, bridgeStatus);
+        if(result) {
+            movingStatus.add(command);
+        }
+        return result;
+    }
+
+    public void setBridgeStatus(List<String> bridgeStatus) {
+        this.bridgeStatus = bridgeStatus;
     }
 
     public List<String> getMovingStatus() {
         return this.movingStatus;
+    }
+
+    /*
+     * 현재의 이동 명령이 수행 가능한 명령인 지 확인하는 기능
+     * 이동이 가능한 경우 true, 불가한 경우 false를 반환함
+     */
+    public boolean isMovable(String command, List<String> bridge) {
+        return command.equals(bridge.get(movingStatus.size()));
     }
 
     /**
