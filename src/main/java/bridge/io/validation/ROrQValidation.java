@@ -1,5 +1,6 @@
 package bridge.io.validation;
 
+import bridge.enums.ControlKey;
 import bridge.enums.ExceptionMessage;
 
 public class ROrQValidation extends ValidationDecorator{
@@ -11,7 +12,7 @@ public class ROrQValidation extends ValidationDecorator{
   @Override
   public void validate(String input) {
     super.validate(input);
-    if (!input.equals("R") && !input.equals("Q")) {
+    if (!input.equals(ControlKey.RETRY.getKey()) && !input.equals(ControlKey.QUIT.getKey())) {
       throw new IllegalArgumentException(ExceptionMessage.NOT_R_OR_Q.getMessage());
     }
   }
