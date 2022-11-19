@@ -26,7 +26,17 @@ public class BridgeGame {
      *
      * @return
      */
-    public void move() {
+    public boolean move(String moving) {
+        boolean correct = false;
+        
+        correct = isCorrect(moving);
+        curStep++;
+
+        return correct;
+    }
+
+    private boolean isCorrect(String moving) {
+        return bridge.get(curStep).equals(moving);
     }
 
     /**
