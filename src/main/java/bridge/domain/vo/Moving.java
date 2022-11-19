@@ -14,7 +14,7 @@ public class Moving {
         return new Moving(moving);
     }
 
-    public Moving(String moving) {
+    private Moving(String moving) {
         validateMoving(moving);
         this.moving = moving;
     }

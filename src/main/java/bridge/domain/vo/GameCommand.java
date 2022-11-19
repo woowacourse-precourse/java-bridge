@@ -12,7 +12,7 @@ public class GameCommand {
         return new GameCommand(gameCommand);
     }
 
-    public GameCommand(String gameCommand){
+    private GameCommand(String gameCommand){
         validateGameCommand(gameCommand);
         this.gameCommand = gameCommand;
     }
