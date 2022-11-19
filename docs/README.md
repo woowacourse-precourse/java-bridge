@@ -32,7 +32,7 @@
 
 #### 2) 재시작 또는 종료하기  
 - [ ✅ ] 실패한 경우, 재시작/종료여부 입력요청문구를 출력한다 → OutputView.printGameCommandInputRequest
-- [  ] 재시작/종료여부를 입력받는다 → Input.readGameCommand 
+- [ ✅ ] 재시작/종료여부를 입력받는다 → Input.readGameCommand 
 - [  ] 입력받은 값이 "Q"면 종료한다 → BridgeGame.finish
 - [  ] 입력받은 값이 "R"이면 처음부터 재시작한다 → BridgeGame.retry
 - [  ] 이 과정들에서 `IllegalArgument`오류가 나면 다시 입력요청문구 출력단계로 돌아간다

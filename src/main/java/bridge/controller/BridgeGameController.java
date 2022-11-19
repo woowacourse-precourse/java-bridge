@@ -76,5 +76,6 @@ public class BridgeGameController {
 
     private void askRetryOrFinish(BridgeGame bridgeGame) {
         outputView.printGameCommandInputRequest();
+        String gameCommand = inputView.readGameCommand();
     }
 }
