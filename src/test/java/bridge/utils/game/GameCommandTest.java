@@ -15,18 +15,18 @@ class GameCommandTest {
 
         @Nested
         @DisplayName("만약 게임을 다시 시도할지에 대한 커맨드가 주어지면")
-        class ContextWithCommand {
+        class ContextWithCommandTest {
 
             @ParameterizedTest
             @CsvSource(
-                    value = {
-                        "Q:GAME_EXIT",
-                        "R:GAME_PLAY"
-                    },
-                    delimiter = ':'
+                value = {
+                    "Q:GAME_EXIT",
+                    "R:GAME_PLAY"
+                },
+                delimiter = ':'
             )
             @DisplayName("커맨드와 일치하는 GameStatus를 반환한다")
-            void itReturnsGameStatus(String command, GameStatus expected) {
+            void it_returns_gameStatus(String command, GameStatus expected) {
                 GameStatus actual = GameCommand.findNextGameOver(command);
 
                 assertThat(actual).isSameAs(expected);

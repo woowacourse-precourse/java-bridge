@@ -18,18 +18,18 @@ class BridgeTileTest {
 
         @Nested
         @DisplayName("만약 이동할 칸에 대한 커맨드가 주어진다면")
-        class ContextWithCommand {
+        class ContextWithCommandTest {
 
             @ParameterizedTest
             @CsvSource(
-                    value = {
-                        "D:DOWN",
-                        "U:UP"
-                    },
-                    delimiter = ':'
+                value = {
+                    "D:DOWN",
+                    "U:UP"
+                },
+                delimiter = ':'
             )
             @DisplayName("커맨드가 일치하는 BridgeTile을 반환한다")
-            void itReturnsBridgeTile(String command, BridgeTile expectedTile) {
+            void it_returns_bridgeTile(String command, BridgeTile expectedTile) {
                 BridgeTile actualTile = BridgeTile.findTile(command);
 
                 assertThat(actualTile).isSameAs(expectedTile);
@@ -39,22 +39,22 @@ class BridgeTileTest {
 
     @Nested
     @DisplayName("mapToCommand 커맨드는")
-    class DescribeMapToCommand {
+    class DescribeMapToCommandMethodTest {
 
         @Nested
         @DisplayName("만약 다리의 칸에 해당하는 값이 주어지면")
-        class ContextWithValidValue {
+        class ContextWithValidValueTest {
 
             @ParameterizedTest
             @CsvSource(
-                    value = {
-                        "0:D",
-                        "1:U"
-                    },
-                    delimiter = ':'
+                value = {
+                    "0:D",
+                    "1:U"
+                },
+                delimiter = ':'
             )
             @DisplayName("다리의 칸에 해당하는 커맨드를 반환한다")
-            void itReturnsCommand(int validValue, String expectedCommand) {
+            void it_returns_bridgeCommand(int validValue, String expectedCommand) {
                 String actualCommand = BridgeTile.mapToCommand(validValue);
 
                 assertThat(actualCommand).isEqualTo(expectedCommand);
@@ -63,14 +63,14 @@ class BridgeTileTest {
 
         @Nested
         @DisplayName("만약 다리의 칸에 해당하지 않는 값이 주어지면")
-        class ContextWithInvalidValue {
+        class ContextWithInvalidValueTest {
 
             @ParameterizedTest
             @ValueSource(ints = {2, 3, 4, 5, 6, 7, 8, 9, 10})
             @DisplayName("WrongGeneratorException 예외가 발생한다.")
-            void itThrowsException(int invalidValue) {
+            void it_throws_exception(int invalidValue) {
                 assertThatThrownBy(() -> BridgeTile.mapToCommand(invalidValue))
-                        .isInstanceOf(WrongGeneratorException.class);
+                    .isInstanceOf(WrongGeneratorException.class);
             }
         }
     }

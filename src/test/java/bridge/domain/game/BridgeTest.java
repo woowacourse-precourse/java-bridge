@@ -7,6 +7,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.exception.domain.WrongGeneratorException;
+import bridge.helper.common.CommonBridgeField;
 import bridge.helper.stub.StubBridgeNumberGenerator;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -23,72 +24,66 @@ class BridgeTest {
     class DescribeIntGeneratorConstructorTest {
 
         private final int defaultSize = 3;
+        private final BridgeNumberGenerator validGenerator = new BridgeRandomNumberGenerator();
 
         @Nested
         @DisplayName("만약 유효한 다리의 크기와 다리를 생성하는 전략이 주어지면")
-        class ContextWithValidSizeAndGenerator {
+        class ContextWithValidSizeAndGeneratorTest {
 
             @Test
             @DisplayName("다리를 생성해 Bridge를 초기화하고 반환한다.")
-            void itReturnsBridge() {
-                BridgeNumberGenerator validGenerator = new BridgeRandomNumberGenerator();
-
+            void it_returns_bridge() {
                 assertThatCode(() -> new Bridge(defaultSize, validGenerator))
-                        .doesNotThrowAnyException();
+                    .doesNotThrowAnyException();
             }
         }
 
         @Nested
         @DisplayName("만약 유효한 다리의 크기와 유효하지 않은 다리를 생성하는 전략이 주어지면")
-        class ContextWithSizeAndInvalidGenerator {
+        class ContextWithSizeAndInvalidGeneratorTest {
 
             @Test
             @DisplayName("WrongGeneratorException 예외가 발생한다")
-            void itThrowsException() {
+            void it_throws_exception() {
                 BridgeNumberGenerator invalidGenerator = new StubBridgeNumberGenerator(List.of(2, 3, 4));
 
                 assertThatThrownBy(() -> new Bridge(defaultSize, invalidGenerator))
-                        .isInstanceOf(WrongGeneratorException.class);
+                    .isInstanceOf(WrongGeneratorException.class);
             }
         }
 
         @Nested
         @DisplayName("만약 유효하지 않은 다리의 크기와 유효한 다리를 생성하는 전략이 주어지면")
-        class ContextWithInvalidSizeAndGenerator {
+        class ContextWithInvalidSizeAndGeneratorTest {
 
             @ParameterizedTest
             @ValueSource(ints = {-1, 0, 1, 2, 21})
             @DisplayName("IllegalArgumentException 예외가 발생한다")
-            void itThrowsException(int size) {
-                BridgeNumberGenerator validGenerator = new BridgeRandomNumberGenerator();
-
+            void it_throws_exception(int size) {
                 assertThatThrownBy(() -> new Bridge(size, validGenerator))
-                        .isInstanceOf(IllegalArgumentException.class);
+                    .isInstanceOf(IllegalArgumentException.class);
             }
         }
     }
 
     @Nested
     @DisplayName("calculatePlayerMoving 메소드는")
-    class DescribeCalculatePlayerMovingMethodTest {
+    class DescribeCalculatePlayerMovingMethodTest extends CommonBridgeField {
 
         @Nested
         @DisplayName("만약 플레이어가 이동할 다리 방향과 플레이어의 현재 위치가 주어지면")
-        class ContextWithBridgeTileAndPlayerPosition {
+        class ContextWithBridgeTileAndPlayerPositionTest {
 
             @ParameterizedTest
             @CsvSource(
-                    value = {
-                        "UP:false",
-                        "DOWN:true"
-                    },
-                    delimiter = ':'
+                value = {
+                    "UP:false",
+                    "DOWN:true"
+                },
+                delimiter = ':'
             )
             @DisplayName("건널 수 있는지 여부를 반환한다")
-            void itReturnsBoolean(BridgeTile playerStep, boolean expected) {
-                BridgeNumberGenerator generator = new StubBridgeNumberGenerator(List.of(0, 0, 0));
-                Bridge bridge = new Bridge(3, generator);
-
+            void it_returns_movable(BridgeTile playerStep, boolean expected) {
                 boolean actual = bridge.calculatePlayerMoving(playerStep, 0);
 
                 assertThat(actual).isSameAs(expected);
@@ -98,27 +93,26 @@ class BridgeTest {
 
     @Nested
     @DisplayName("isEnd 메소드는")
-    class DescribeIsEndMethodTest {
+    class DescribeIsEndMethodTest extends CommonBridgeField {
 
         @Nested
         @DisplayName("만약 플레이어의 현재 위치가 주어지면")
-        class ContextWithPlayerPosition {
+        class ContextWithPlayerPositionTest {
 
             @ParameterizedTest
             @CsvSource(
-                    value = {
-                        "1:false",
-                        "2:false",
-                        "3:true"
-                    },
-                    delimiter = ':'
+                value = {
+                    "1:false",
+                    "2:false",
+                    "3:true"
+                },
+                delimiter = ':'
             )
             @DisplayName("플레이어의 현재 위치가 다리의 끝인지 여부를 반환한다")
-            void itReturnsBoolean() {
-                BridgeNumberGenerator generator = new StubBridgeNumberGenerator(List.of(0, 0, 0));
-                Bridge bridge = new Bridge(3, generator);
+            void it_returns_bridge_end(int position, boolean expected) {
+                boolean actual = bridge.isEnd(position);
 
-                bridge.isEnd(3);
+                assertThat(actual).isSameAs(expected);
             }
         }
     }

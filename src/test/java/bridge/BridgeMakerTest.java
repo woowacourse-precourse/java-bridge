@@ -17,13 +17,13 @@ class BridgeMakerTest {
 
     @Nested
     @DisplayName("makeBridge 메소드는")
-    class Describe {
+    class DescribeMakeBridgeMethodTest {
 
         private BridgeMaker bridgeMaker;
 
         @Nested
         @DisplayName("만약 유효한 generator가 초기화된 상태에서 다리의 크기가 주어지면")
-        class ContextWithValidGeneratorAndSize {
+        class ContextWithValidGeneratorAndSizeTest {
 
             @BeforeEach
             void initBridgeMaker() {
@@ -34,16 +34,16 @@ class BridgeMakerTest {
             @ParameterizedTest
             @ValueSource(ints = {3, 4, 5, 6, 7})
             @DisplayName("주어진 크기만큼 다리를 생성해 반환한다")
-            void itReturnsBridge(int size) {
-                List<String> actualBridge = bridgeMaker.makeBridge(size);
+            void it_returns_bridge(int input) {
+                List<String> bridge = bridgeMaker.makeBridge(input);
 
-                assertThat(actualBridge.size()).isSameAs(size);
+                assertThat(bridge.size()).isSameAs(input);
             }
         }
 
         @Nested
         @DisplayName("만약 유효하지 않은 generator가 초기화된 상태에서 다리의 크기가 주어지면")
-        class ContextWithInvalidGeneratorAndSize {
+        class ContextWithInvalidGeneratorAndSizeTest {
 
             @BeforeEach
             void initInvalidBridgeMaker() {
@@ -53,9 +53,9 @@ class BridgeMakerTest {
 
             @Test
             @DisplayName("WrongGeneratorException 예외가 발생한다")
-            void itThrowsException() {
+            void it_throws_exception() {
                 assertThatThrownBy(() -> bridgeMaker.makeBridge(3))
-                        .isInstanceOf(WrongGeneratorException.class);
+                    .isInstanceOf(WrongGeneratorException.class);
             }
         }
     }

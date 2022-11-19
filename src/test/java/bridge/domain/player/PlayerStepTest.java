@@ -17,24 +17,24 @@ class PlayerStepTest {
 
         @Nested
         @DisplayName("만약 BridgeTile이 주어지면")
-        class ContextWithoutParameter {
+        class ContextWithoutParameterTest {
 
             @ParameterizedTest
             @CsvSource(
-                    value = {
-                        "true:DOWN:' '",
-                        "true:UP:O",
-                        "false:UP:X"
-                    },
-                    delimiter = ':'
+                value = {
+                    "true:DOWN:' '",
+                    "true:UP:O",
+                    "false:UP:X"
+                },
+                delimiter = ':'
             )
             @DisplayName("PlayerStep에 저장된 BridgeTile과 비교해 이동 결과를 정해진 규칙대로 반환한다")
-            void itReturnsBoolean(boolean result, BridgeTile bridgeTile, String expectedLog) {
+            void it_returns_moveHistory(boolean result, BridgeTile bridgeTile, String expected) {
                 PlayerStep playerStep = new PlayerStep(BridgeTile.UP, result);
 
-                String actualLog = playerStep.getMoveResultLog(bridgeTile);
+                String actual = playerStep.getMoveResultLog(bridgeTile);
 
-                assertThat(actualLog).isEqualTo(expectedLog);
+                assertThat(actual).isEqualTo(expected);
             }
         }
     }
@@ -45,17 +45,17 @@ class PlayerStepTest {
 
         @Nested
         @DisplayName("만약 호출되면")
-        class ContextWithoutParameter {
+        class ContextWithoutParameterTest {
 
             @ParameterizedTest
             @ValueSource(booleans = {true, false})
             @DisplayName("플레이어가 입력한 칸으로 움직였는지 여부를 반환한다")
-            void itReturnsMovingResult(boolean expectedMoving) {
-                PlayerStep playerStep = new PlayerStep(BridgeTile.UP, expectedMoving);
+            void it_returns_movable(boolean expected) {
+                PlayerStep playerStep = new PlayerStep(BridgeTile.UP, expected);
 
-                boolean actualMoving = playerStep.isMoving();
+                boolean actual = playerStep.isMoving();
 
-                assertThat(actualMoving).isSameAs(expectedMoving);
+                assertThat(actual).isSameAs(expected);
             }
         }
     }

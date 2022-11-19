@@ -19,11 +19,11 @@ class PrintResultDtoTest {
 
         @Nested
         @DisplayName("만약 호출하면")
-        class ContextWithoutParameter {
+        class ContextWithoutParameterTest {
 
             @Test
             @DisplayName("플레이어의 이동 경로가 있는 PrintMapDto를 반환한다")
-            void itReturnsPrintMapDto() {
+            void it_returns_printMapDto() {
                 PrintMapDto printMapDto = printResultDto.getPrintMapDto();
 
                 assertThat(printMapDto.getUpBridgeHistory()).contains("X");
@@ -38,11 +38,11 @@ class PrintResultDtoTest {
 
         @Nested
         @DisplayName("만약 호출하면")
-        class ContextWithoutParameter {
+        class ContextWithoutParameterTest {
 
             @Test
             @DisplayName("게임 종료 정보가 있는 PrintGameInfoDto를 반환한다")
-            void it() {
+            void it_returns_printGameInfoDto() {
                 PrintGameInfoDto printGameInfoDto = printResultDto.getPrintGameInfoDto();
 
                 assertThat(printGameInfoDto.getTryCount()).isOne();

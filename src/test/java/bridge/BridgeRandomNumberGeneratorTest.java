@@ -17,16 +17,16 @@ class BridgeRandomNumberGeneratorTest {
 
         @Nested
         @DisplayName("만약 호출하면")
-        class ContextWithoutParameter {
+        class ContextWithoutParameterTest {
 
             @RepeatedTest(10)
             @DisplayName("지정한 범위 내의 랜덤한 숫자를 생성해 반환한다")
-            void it() {
+            void it_returns_randomNumber() {
                 int actual = generator.generate();
 
                 assertThat(actual)
-                        .isLessThanOrEqualTo(BridgeConst.UP_TILE_VALUE)
-                        .isGreaterThanOrEqualTo(BridgeConst.DOWN_TILE_VALUE);
+                    .isLessThanOrEqualTo(BridgeConst.UP_TILE_VALUE)
+                    .isGreaterThanOrEqualTo(BridgeConst.DOWN_TILE_VALUE);
             }
         }
     }

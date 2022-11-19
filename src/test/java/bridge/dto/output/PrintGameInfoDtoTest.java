@@ -18,11 +18,11 @@ class PrintGameInfoDtoTest {
 
         @Nested
         @DisplayName("만약 호출하면")
-        class ContextWithoutParameter {
+        class ContextWithoutParameterTest {
 
             @Test
             @DisplayName("플레이어의 게임 시도 횟수를 반환한다")
-            void itReturnsLong() {
+            void it_returns_tryCount() {
                 assertThat(printGameInfoDto.getTryCount()).isOne();
             }
         }
@@ -34,11 +34,11 @@ class PrintGameInfoDtoTest {
 
         @Nested
         @DisplayName("만약 호출하면")
-        class ContextWithoutParameter {
+        class ContextWithoutParameterTest {
 
             @Test
-            @DisplayName("플레이어의 게임 시도 횟수를 반환한다")
-            void itReturnsBoolean() {
+            @DisplayName("플레이어가 게임을 성공했는지 유무를 반환한다")
+            void it_returns_successful() {
                 assertThat(printGameInfoDto.isSuccess()).isFalse();
             }
         }

@@ -18,11 +18,11 @@ class PrintMapDtoTest {
 
         @Nested
         @DisplayName("만약 호출하면")
-        class ContextWithoutParameter {
+        class ContextWithoutParameterTest {
 
             @Test
             @DisplayName("플레이어가 위쪽 다리로 이동한 경로를 반환한다")
-            void itReturnsString() {
+            void it_returns_upHistory() {
                 String actual = printMapDto.getUpBridgeHistory();
 
                 assertThat(actual).contains("X");
@@ -36,11 +36,11 @@ class PrintMapDtoTest {
 
         @Nested
         @DisplayName("만약 호출하면")
-        class ContextWithoutParameter {
+        class ContextWithoutParameterTest {
 
             @Test
             @DisplayName("플레이어가 아래쪽 다리로 이동한 경로를 반환한다")
-            void itReturnsString() {
+            void it_returns_downHistory() {
                 String actual = printMapDto.getDownBridgeHistory();
 
                 assertThat(actual).contains("O");
