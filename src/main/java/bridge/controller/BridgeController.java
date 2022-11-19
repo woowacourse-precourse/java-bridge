@@ -12,6 +12,8 @@ public class BridgeController {
     private final BridgeGame bridgeGame = new BridgeGame();
     private final OutputView outputView = new OutputView();
     private final InputService inputService = new InputService();
+    private static final String RESTART_GAME = "R";
+    private static final String QUIT_GAME = "Q";
 
     public void start() {
         gameStartMessage();
@@ -37,19 +39,19 @@ public class BridgeController {
 
     public void gameProcess(Bridge bridge, User user, boolean isSuccess) {
         if (!isSuccess) {
-            failCase(bridge, user);
+            String command = inputService.requestStatusOfGame();
+            failCase(bridge, user, command);
         }
         if (isSuccess) {
             bridgeGame.move(bridge, user);
         }
     }
 
-    public void failCase(Bridge bridge, User user) {
-        String command = inputService.requestStatusOfGame();
-        if (command.equals("R")) {
+    public void failCase(Bridge bridge, User user, String command) {
+        if (command.equals(RESTART_GAME)) {
             retry(bridge, user);
         }
-        if (command.equals("Q")) {
+        if (command.equals(QUIT_GAME)) {
             user.gameDoneSuccess();
             user.gameFail();
         }
