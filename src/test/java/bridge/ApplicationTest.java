@@ -78,6 +78,21 @@ class ApplicationTest extends NsTest {
         assertThat(Exception.validateRangeThreeToTwenty(input) == input);
     }
 
+    @DisplayName("입력 받은 문자열이 U혹은 D가 아닐 시 예외를 발생시킨다.")
+    @Test
+    void enterInvalidInputValueToMove(){
+        String input = "QD";
+        assertThatThrownBy(() -> Exception.validateInputValueForMove(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력 받은 문자열이 U혹은 D가 아닐 시 예외를 발생시킨다.")
+    @Test
+    void enterValidInputValueToMove(){
+        String input = "D";
+        assertThat(Exception.validateInputValueForMove(input).equals(input));
+    }
+
 
     @Override
     protected void runMain() {
