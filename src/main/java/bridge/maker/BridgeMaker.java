@@ -2,12 +2,13 @@ package bridge.maker;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -20,24 +21,14 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> randomBridge = new ArrayList<>();
+        Map<Integer, String> convertIntToString = new TreeMap<>(); // 랜덤으로 생성된 숫자를 문자로 바꿔주는 Map
 
-        for(int i = 0; i < size; i++){
-            int randBridgeNumber = bridgeNumberGenerator.generate();
+        convertIntToString.put(0, "D");
+        convertIntToString.put(1, "U");
 
-            randomBridge.add(convertBridgeNumberToString(randBridgeNumber));
-        }
+        for(int i = 0; i < size; i++)
+            randomBridge.add(convertIntToString.get(bridgeNumberGenerator.generate()));
 
         return randomBridge;
-    }
-
-    /**
-     * 랜덤으로 생성된 숫자를 문자로 바꿔주는 메서드
-     * @param randBridgeNumber 랜덤으로 생성된 숫자
-     * @return 입력된 다리 정수를 문자열로 반환. 0이면 "D", 1이면 "U"으로 반환한다.
-     */
-    private String convertBridgeNumberToString(int randBridgeNumber) {
-        if(randBridgeNumber == 0)
-            return "D";
-        return "U";
     }
 }
