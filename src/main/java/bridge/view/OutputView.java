@@ -15,7 +15,14 @@ public class OutputView {
     private static final String SUCCESS = "성공";
     private static final String FAILURE = "실패";
     private static final String TRY_COUNT = "총 시도한 횟수: ";
-
+    private static final String UP = "U";
+    private static final String DOWN = "D";
+    private static final String CROSSABLE_SIGN = "O";
+    private static final String UNABLE_TO_CROSS_SIGN = "X";
+    private static final String BLANK = " ";
+    private static final String DELIMITER = " | ";
+    private static final String BRIDGE_PREFIX = "[ ";
+    private static final String BRIDGE_SUFFIX = " ]";
     private static final String ERROR_PREFIX = "[ERROR]";
 
     /**
@@ -51,10 +58,10 @@ public class OutputView {
         List<String> upperLine = new ArrayList<>();
         for (int i = 0; i < player.getCurrentPosition(); i++) {
             String correctDirection = bridge.get(i);
-            drawCell(upperLine, "U",correctDirection);
+            drawCell(upperLine, UP, correctDirection);
         }
         if (!player.getMoving()) {
-            drawFailedCell(upperLine, "U", bridge.get(player.getCurrentPosition()));
+            drawFailedCell(upperLine, UP, bridge.get(player.getCurrentPosition()));
         }
         return upperLine;
     }
@@ -63,17 +70,17 @@ public class OutputView {
         List<String> lowerLine = new ArrayList<>();
         for (int i = 0; i < player.getCurrentPosition(); i++) {
             String correctDirection = bridge.get(i);
-            drawCell(lowerLine, "D",correctDirection);
+            drawCell(lowerLine, DOWN, correctDirection);
         }
         if (!player.getMoving()) {
-            drawFailedCell(lowerLine, "D", bridge.get(player.getCurrentPosition()));
+            drawFailedCell(lowerLine, DOWN, bridge.get(player.getCurrentPosition()));
         }
         return lowerLine;
     }
 
     private static void drawCell(List<String> line, String lineType, String correctDirection) {
         if (correctDirection.equals(lineType)) {
-            line.add("O");
+            line.add(CROSSABLE_SIGN);
             return;
         }
         line.add(" ");
@@ -81,14 +88,14 @@ public class OutputView {
 
     private static void drawFailedCell(List<String> line, String lineType, String correctDirection) {
         if (!correctDirection.equals(lineType)) {
-            line.add("X");
+            line.add(UNABLE_TO_CROSS_SIGN);
             return;
         }
         line.add(" ");
     }
 
     private static void printOneLine(List<String> line) {
-        System.out.println("[ " + String.join(" | ", line) + " ]");
+        System.out.println(BRIDGE_PREFIX + String.join(DELIMITER, line) + BRIDGE_SUFFIX);
     }
 
     public static void printErrorMessage(Exception e) {
