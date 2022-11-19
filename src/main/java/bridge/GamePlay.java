@@ -15,19 +15,18 @@ public class GamePlay {
         int bridgeSize = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         System.out.println(bridge); // 삭제
-        boolean result = true;
+        String result = null;
         boolean restart = true;
         int gameCount = 0;
         while (restart) {
-            bridgeGame.getUpBridge().clear();
-            bridgeGame.getDownBridge().clear();
             gameCount++;
             for (int i = 0; i < bridgeSize; i++) {
                 String moving = inputView.readMoving();
                 result = bridgeGame.move(moving, bridge, i);
                 outputView.printMap(bridgeGame.getUpBridge(), bridgeGame.getDownBridge(), i);
-                if (result == false) {
+                if (result.equals("X")){
                     restart = inputView.readGameCommand();
+                    bridgeGame.retry();
                     break;
                 }
                 restart = false;

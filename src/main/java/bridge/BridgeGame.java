@@ -8,8 +8,6 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    //BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.
-
     private final List<String> upBridge = new ArrayList<>();
     private final List<String> downBridge = new ArrayList<>();
 
@@ -18,7 +16,7 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String moving, List<String> bridge, int currentIndex) {
+    public String move(String moving, List<String> bridge, int currentIndex) {
         if (moving.equals(bridge.get(currentIndex))){
             if(moving.equals("U")){
                 upBridge.add("O");
@@ -28,7 +26,7 @@ public class BridgeGame {
                 upBridge.add(" ");
                 downBridge.add("O");
             }
-            return true;
+            return "O";
         }
         if(moving.equals("U")){
             upBridge.add("X");
@@ -38,7 +36,7 @@ public class BridgeGame {
             upBridge.add(" ");
             downBridge.add("X");
         }
-        return false;
+        return "X";
     }
 
     /**
@@ -46,13 +44,10 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(boolean result, List<String> upBridge, List<String> downBridge) {
-        if(result == false){
+    public void retry(){
             upBridge.clear();
             downBridge.clear();
         }
-
-    }
 
     public List<String> getUpBridge() {
         return upBridge;
