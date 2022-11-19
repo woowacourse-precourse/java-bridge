@@ -16,6 +16,11 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private final String UP = "U";
+    private final String DOWN = "D";
+    private final String WRONG_WHEN_INPUT_UP = "UX";
+    private final String WRONG_WHEN_INPUT_DOWN = "DX";
+    private final String RETRY = "R";
     private final List<String> bridge;
     private List<String> userMoving;
 
@@ -35,12 +40,12 @@ public class BridgeGame {
             return true;
         }
 
-        if(moving.equals("U")) {
-            userMoving.add("UX");
+        if(moving.equals(UP)) {
+            userMoving.add(WRONG_WHEN_INPUT_UP);
         }
 
-        if(moving.equals("D")){
-            userMoving.add("DX");
+        if(moving.equals(DOWN)){
+            userMoving.add(WRONG_WHEN_INPUT_DOWN);
         }
         return false;
     }
@@ -51,7 +56,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String gameCommand) {
-        return gameCommand.equals("R");
+        return gameCommand.equals(RETRY);
     }
 
     public void resetUserMoving(){
@@ -64,7 +69,7 @@ public class BridgeGame {
 
     public boolean isSuccess(){
         //끝에 도착했으면서 마지막 입력이 틀리지 않을 때 성공
-        return isEndOfBridge() && (userMoving.get(userMoving.size()-1).equals("U") || userMoving.get(userMoving.size()-1).equals("D"));
+        return isEndOfBridge() && (userMoving.get(userMoving.size()-1).equals(UP) || userMoving.get(userMoving.size()-1).equals(DOWN));
     }
 
     public List<String> getUserMoving() {
