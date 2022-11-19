@@ -28,15 +28,15 @@ public class BridgeApplication {
         outputView.printResult(bridgeGame.getResult());
     }
 
+    private boolean checkWinning(BridgeGame bridgeGame) {
+        return !bridgeGame.isWinningBrideGame();
+    }
+
     private boolean checkGameStatus(BridgeGame bridgeGame) {
         return bridgeGame.checkStatus();
     }
 
     private boolean checkRestart(BridgeGame bridgeGame) {
         return bridgeGame.retry(inputView.readGameCommand());
-    }
-
-    private boolean checkWinning(BridgeGame bridgeGame) {
-        return !bridgeGame.isWinningBrideGame();
     }
 }
