@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,6 +20,11 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
 //        랜덤 다리 ( 'U' 와  'D' 로 구성된 리스트 ) 를 생성
-        return null;
+        List<String> bridge = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            int generate = bridgeNumberGenerator.generate();
+            boolean b = generate == 1 ? bridge.add("U") : bridge.add("D");
+        }
+        return bridge;
     }
 }

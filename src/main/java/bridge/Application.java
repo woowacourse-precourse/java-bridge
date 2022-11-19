@@ -9,8 +9,7 @@ public class Application {
         InputView inputView = new InputView();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> strings = bridgeMaker.makeBridge(inputView.readBridgeSize());
-
-        BridgeGame bridgeGame = new BridgeGame();
-        bridgeGame.play(strings);
+//        BridgeGame bridgeGame = new BridgeGame();
+//        bridgeGame.play(strings);
     }
 }
