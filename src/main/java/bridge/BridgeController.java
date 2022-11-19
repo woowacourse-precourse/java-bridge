@@ -23,7 +23,6 @@ public class BridgeController {
 
     public void moveController(List<String> bridge, int blockCount) {
         BridgeGame bridgeGame = new BridgeGame();
-        System.out.println(bridge);
         for (int tryCount = 0; tryCount < blockCount; tryCount++) {
             String sideToMove = new InputView().readMoving();
             moveBridgeResult = bridgeGame.move(bridge, tryCount, sideToMove);

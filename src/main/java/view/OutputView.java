@@ -25,6 +25,7 @@ public class OutputView {
         int downBridge = moveBridgeResult.size() - 1;
         System.out.println(moveBridgeResult.get(upBridge));
         System.out.println(moveBridgeResult.get(downBridge));
+        System.out.println();
     }
 
     /**
