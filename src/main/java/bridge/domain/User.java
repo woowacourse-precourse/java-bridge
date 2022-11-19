@@ -19,7 +19,7 @@ public class User {
         isGameWin = gameSuccess;
     }
 
-    public void gameSuccess() {
+    public void gameWin() {
         setGameSuccess(true);
     }
 

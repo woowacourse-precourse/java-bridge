@@ -69,7 +69,7 @@ public class UserTest {
         User user = new User();
 
         // when
-        user.gameSuccess();
+        user.gameWin();
 
         // then
         assertThat(user.isGameWin()).isEqualTo(true);

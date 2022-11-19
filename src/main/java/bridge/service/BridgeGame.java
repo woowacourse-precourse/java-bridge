@@ -13,7 +13,7 @@ public class BridgeGame {
     public void move(Bridge bridge, User user) {
         if (userCorrectAllTurn(bridge)) {
             user.gameDoneSuccess();
-            user.gameSuccess();
+            user.gameWin();
         }
         bridge.nowIndexUpdate();
     }
