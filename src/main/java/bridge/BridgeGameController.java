@@ -9,27 +9,48 @@ public class BridgeGameController {
 	private final BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
 	private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
 	private final BridgeGame bridgeGame = new BridgeGame();
-	
+	private static List<String> bridge;
+	private static int retryCount = 1;
 	public void startGame() {
 		outputView.gameStartMessage();
-		List<String> bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+		bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
 		playGame(bridge);
 		
 	}
 	
-	private void playGame(List<String> bridge) {
-		boolean flag = true;
+	public void playGame(List<String> bridge) {
 		int bridgeLevel = 0;
 		System.out.println(bridge);
 		do {
 			if(bridge.size() == bridgeLevel) {
+				outputView.printResult(retryCount,true);
 				break;
 			}
-			boolean isCorrect = bridgeGame.move(bridge.get(bridgeLevel),inputView.readMoving());
-			outputView.printMap(bridgeLevel, isCorrect, bridge);
-			bridgeLevel++;
-		}while(flag);
+			if(!playOneTurn(bridge,bridgeLevel)) {
+				break;
+			}
+			++bridgeLevel;
+		}while(true);
 	}
 	
+    private boolean isRetryOrNot(String command) {
+    	if(command.equals("R")) {
+    		retryCount++;
+			playGame(bridge);
+			return false;
+		}
+    	outputView.printResult(retryCount,false);
+    	return false;
+    }
+    
+    private boolean playOneTurn(List<String> bridge,int bridgeLevel) {
+    	boolean isRightMoving = bridgeGame.move(bridge.get(bridgeLevel),inputView.readMoving());
+		outputView.printMap(bridgeLevel, isRightMoving, bridge);
+		if(!isRightMoving) {
+			return isRetryOrNot(inputView.readGameCommand());
+    	}
+		return true;
+    }
+
 	
 }
