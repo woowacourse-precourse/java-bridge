@@ -21,21 +21,8 @@ class BridgeMakerTest {
     private final BridgeMaker bridgeMaker = new BridgeMaker(generator);
 
     @ParameterizedTest(name = "[{index}] 입력받은 길이({arguments})에 대하여 다리를 생성할 수 있다.")
-    @ValueSource(ints = {3, 10, 20})
+    @ValueSource(ints = {3, 10, 20, 21})
     void createBridgeByNumber(final int length) {
-        // given
-        when(generator.generate()).thenReturn(1);
-
-        // when
-        List<String> bridge = bridgeMaker.makeBridge(length);
-
-        // then
-        assertThat(bridge.size()).isEqualTo(length);
-    }
-
-    @ParameterizedTest(name = "[{index}] 입력받은 길이({arguments})가 3~20 사이에 없다면 예외가 발생한다.")
-    @ValueSource(ints = {-1, -0, 0, 2, 21})
-    void createBridgeByIllegalNumber(final int length) {
         // given
         when(generator.generate()).thenReturn(1);
 
