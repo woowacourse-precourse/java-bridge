@@ -34,7 +34,7 @@ public class BridgeGame {
 			if (userResult.equals(OutputViewConst.SUCCESS)) {
 				break;
 			}
-		} while (!retry());
+		} while (retry());
 		outputView.printFinalResultPhrase();
 		outputView.printMap(gameService.getUserBridgeStatusDto());
 		outputView.printResult(userResult, attemptCount);
