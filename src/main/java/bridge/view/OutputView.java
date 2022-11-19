@@ -5,6 +5,7 @@ import bridge.validate.ValidateInput;
 
 import java.util.Objects;
 
+import static bridge.util.Constants.ExceptionConstants.ERROR_TITLE;
 import static bridge.util.Constants.OutputViewConstants.*;
 
 /**
@@ -137,5 +138,9 @@ public class OutputView {
     private static void printGameResultTask() {
         System.out.println(TOP_BRIDGE.toString());
         System.out.println(BOTTOM_BRIDGE.toString());
+    }
+
+    public static void printError(String message) {
+        System.out.println(ERROR_TITLE + message);
     }
 }
