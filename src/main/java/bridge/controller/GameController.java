@@ -10,9 +10,8 @@ import java.util.List;
 public class GameController {
 
     private final InputHandler inputHandler = new InputHandler();
-
-    BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-    BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+    private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
     public void runGame() {
         int size = inputHandler.getBridgeSize();
