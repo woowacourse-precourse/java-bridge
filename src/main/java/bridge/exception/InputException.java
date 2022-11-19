@@ -16,7 +16,7 @@ public class InputException extends IllegalArgumentException {
         outOfRange(readLine);
     }
 
-    public void ValidateMoveCommend(String commend) {
+    public void validateMoveCommend(String commend) {
         if (commend.length() != ONE_WORD) {
             throw new IllegalArgumentException(NOT_LENGTH.getMessage());
         }
