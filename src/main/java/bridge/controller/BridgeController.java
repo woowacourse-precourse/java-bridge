@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.domain.*;
 import bridge.domain.generator.BridgeRandomNumberGenerator;
+import bridge.domain.vo.BridgeGameResult;
 
 import java.util.ArrayList;
 import java.util.List;

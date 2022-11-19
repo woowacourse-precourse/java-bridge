@@ -1,6 +1,4 @@
-package bridge.domain;
-
-import bridge.domain.vo.GameCommand;
+package bridge.domain.vo;
 
 import java.util.Objects;
 

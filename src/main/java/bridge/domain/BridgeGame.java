@@ -1,11 +1,12 @@
 package bridge.domain;
 
+import bridge.domain.vo.BridgeGameResult;
 import bridge.domain.vo.Moving;
 
 import java.util.List;
 import java.util.Objects;
 
-import static bridge.domain.BridgeGameResult.createBridgeGameResult;
+import static bridge.domain.vo.BridgeGameResult.createBridgeGameResult;
 import static bridge.view.InputView.readGameCommand;
 import static bridge.view.InputView.readMoving;
 
