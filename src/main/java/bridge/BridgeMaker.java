@@ -3,8 +3,7 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.Moving.Down;
-import static bridge.Moving.Up;
+import static bridge.Moving.*;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -25,11 +24,11 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int randomNumber = bridgeNumberGenerator.generate();
-            if (randomNumber == Down.getNumber()) {
-                bridge.add(Down.getMoving());
+            if (randomNumber == DOWN.getNumber()) {
+                bridge.add(DOWN.getMoving());
             }
-            if (randomNumber == Up.getNumber()) {
-                bridge.add(Up.getMoving());
+            if (randomNumber == UP.getNumber()) {
+                bridge.add(UP.getMoving());
             }
         }
         return bridge;
