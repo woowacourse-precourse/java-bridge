@@ -8,6 +8,7 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 import static bridge.util.BridgeConstant.FALL_POSITION;
+import static bridge.util.BridgeConstant.UP;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -43,22 +44,29 @@ public class BridgeGame {
     }
 
     private void checkPlayerPosition(Player player) {
-        if (!moveSuccess(player, bridge)) {
-            addBridgeMapBlock(player, FAIL_BLOCK);
-            outputView.printMap(bridgeMap);
-            retry(player);
-            return;
-        }
-        addBridgeMapBlock(player, SUCCESS_BLOCK);
+        boolean success = moveSuccess(player, bridge);
+        addBridgeMapBlock(player, success);
         outputView.printMap(bridgeMap);
+        if (!success) {
+            retry(player);
+        }
     }
 
-    private void addBridgeMapBlock(Player player, String block) {
-        if (player.getYPosition() == 1) {
+    private void addBridgeMapBlock(Player player, boolean success) {
+        String block = getBlock(success);
+
+        if (player.getYPosition() == UP) {
             bridgeMap.addUpperBridgeMap(block);
             return;
         }
         bridgeMap.addLowerBridgeMap(block);
+    }
+
+    private String getBlock(boolean success) {
+        if (success) {
+            return SUCCESS_BLOCK;
+        }
+        return FAIL_BLOCK;
     }
 
     private boolean reachFinalLine(Player player) {
