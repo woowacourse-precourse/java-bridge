@@ -11,7 +11,7 @@ public class UserState {
 
     public UserState() {
         this.quit = false;
-        this.tryCount = 1;
+        this.tryCount = 0;
         this.upLine = new ArrayList<>();
         this.downLine = new ArrayList<>();
     }
