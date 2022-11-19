@@ -40,6 +40,7 @@ public class GameController {
     private boolean tryMove() {
         boolean moving = bridgeGame.move(inputView.readMoving());
         outputView.printMap(bridgeGame.getBridgeTokens());
+
         if (moving) {
             return true;
         }

@@ -42,6 +42,7 @@ public class BridgeGame {
             initGame();
             return true;
         }
+
         return false;
     }
 
