@@ -60,6 +60,15 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @ValueSource(strings = {"A!", "!", "3 ", " ", "3A", "33"})
+    @ParameterizedTest
+    void 다리_길이_입력_예외_테스트(String input) {
+        assertSimpleTest(() -> {
+            runException(input);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
