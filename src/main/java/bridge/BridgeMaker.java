@@ -20,4 +20,11 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         return null;
     }
+
+    private String getPostionToBridgeNumberGenerator(int number) {
+        if (number == 1) {
+            return "U";
+        }
+        return "D";
+    }
 }
