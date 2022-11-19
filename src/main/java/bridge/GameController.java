@@ -1,6 +1,8 @@
 package bridge;
 
 public class GameController {
+    private static final String CONTINUE = "R";
+    private static final String QUIT = "Q";
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -60,7 +62,7 @@ public class GameController {
     }
 
     private void decideNextStep(String cmd) {
-        if (cmd.equals("R")) {
+        if (cmd.equals(CONTINUE)) {
             bridgeGame.refreshGameContext();
             crossToOtherSide();
         }

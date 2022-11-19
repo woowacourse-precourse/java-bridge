@@ -1,5 +1,7 @@
 package bridge;
 
+import static bridge.BridgeConstants.DOWN;
+import static bridge.BridgeConstants.UP;
 import static bridge.MessageUtil.BRIDGE_SIZE_INPUT_INTRO;
 import static bridge.MessageUtil.CONTINUE_OR_QUIT;
 import static bridge.MessageUtil.POSITION_CHOICE_INPUT;
@@ -11,6 +13,12 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    private static final String MATCH = "O";
+    private static final String MISS = "X";
+
+    private static final String START_BRACKET = "[";
+    private static final String END_BRACKET = "]";
+    private static final String WALL = "|";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -24,25 +32,25 @@ public class OutputView {
     }
 
     private void printMapUpper(List<Boolean> moveResult, List<String> playersMove) {
-        System.out.print('[');
+        System.out.print(START_BRACKET);
         for (int i = 0; i < playersMove.size(); i++) {
-            printMoveAtIdx(moveResult, playersMove, i, "U");
+            printMoveAtIdx(moveResult, playersMove, i, UP);
             if (printWallIfNotEnd(playersMove, i)) {
                 break;
             }
         }
-        System.out.println(']');
+        System.out.println(END_BRACKET);
     }
 
     private void printMapLower(List<Boolean> moveResult, List<String> playersMove) {
-        System.out.print('[');
+        System.out.print(START_BRACKET);
         for (int i = 0; i < playersMove.size(); i++) {
-            printMoveAtIdx(moveResult, playersMove, i, "D");
+            printMoveAtIdx(moveResult, playersMove, i, DOWN);
             if (printWallIfNotEnd(playersMove, i)) {
                 break;
             }
         }
-        System.out.println(']');
+        System.out.println(END_BRACKET);
     }
 
     private void printMoveAtIdx(List<Boolean> moveResult, List<String> playersMove, int i, String d) {
@@ -57,15 +65,15 @@ public class OutputView {
         if (i == playersMove.size() - 1) {
             return true;
         }
-        System.out.print("|");
+        System.out.print(WALL);
         return false;
     }
 
     private String resultMapper(boolean result) {
         if (result) {
-            return "O";
+            return MATCH;
         }
-        return "X";
+        return MISS;
     }
 
 
