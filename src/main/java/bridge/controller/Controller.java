@@ -12,13 +12,13 @@ public class Controller {
 
     // 게임 시작 기능
     public void startBridgeGame() {
-        service.welcomeGame();
         initBridgeGame();
         gamePlay();
     }
 
     // 게임 초기화 기능
     private void initBridgeGame() {
+        service.welcomeGame();
         do {
             try {
                 service.initGame();
@@ -55,7 +55,7 @@ public class Controller {
     private boolean retry() {
         do {
             try {
-                return service.retry();
+                return service.isRetry();
             } catch (IllegalArgumentException error) {
                 service.catchError(error);
             }
