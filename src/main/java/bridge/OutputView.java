@@ -36,7 +36,7 @@ public class OutputView {
             sb.append("]");
             sb.append(System.lineSeparator());
         }
-        System.out.println(sb);
+        System.out.print(sb);
     }
 
     /**
