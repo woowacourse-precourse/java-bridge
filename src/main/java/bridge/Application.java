@@ -30,7 +30,7 @@ public class Application {
         for (int i = 0; i < bridge.size(); i++) {
             if (bridgeGame.move(bridge.get(i), inputView.readMoving()).equals("X")) {
                 outputView.printMap(bridge, BridgeGame.moveMapList);
-
+                i = setRetryInput(bridge, i);
             }
             if (retryInput.equals("Q")) return;
             if (i == bridge.size() - 1) System.out.println(resultMessage);
@@ -38,5 +38,15 @@ public class Application {
         }
     }
 
-
+    public static int setRetryInput(List<String> bridge, int index) {
+        retryInput = inputView.readGameCommand();
+        if (bridgeGame.retry(retryInput, bridge, BridgeGame.moveMapList, index).equals("R")) {
+            index -= 1;
+            return index;
+        }
+        System.out.println(resultMessage);
+        outputView.printMap(bridge, BridgeGame.moveMapList);
+        outputView.printResult();
+        return index;
+    }
 }
