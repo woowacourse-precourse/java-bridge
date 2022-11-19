@@ -1,6 +1,6 @@
 package bridge.domain.game;
 
-import bridge.BridgeMove;
+import bridge.domain.BridgeMoveHistory;
 import bridge.domain.bridge.Bridge;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class BridgeGameHistory {
     
-    private final Map<Integer, List<BridgeMove>> moveHistories = new HashMap<>();
+    private final Map<Integer, List<BridgeMoveHistory>> moveHistories = new HashMap<>();
     private final Bridge bridge;
     
     public BridgeGameHistory(Bridge bridge) {
@@ -21,12 +21,12 @@ public class BridgeGameHistory {
         moveHistories.put(tryCount, new ArrayList<>());
     }
     
-    public void addMoveHistory(Integer tryCount, BridgeMove move) {
+    public void addMoveHistory(Integer tryCount, BridgeMoveHistory moveHistory) {
         validateExist(tryCount);
-        moveHistories.get(tryCount).add(move);
+        moveHistories.get(tryCount).add(moveHistory);
     }
     
-    private List<BridgeMove> getMoveHistoriesByTryCount(Integer tryCount) {
+    public List<BridgeMoveHistory> getMoveHistoriesByTryCount(Integer tryCount) {
         validateExist(tryCount);
         return moveHistories.get(tryCount);
     }
@@ -44,13 +44,12 @@ public class BridgeGameHistory {
     }
     
     public int getMoveCount(Integer tryCount) {
-        int result = 0;
-        List<BridgeMove> histories = getMoveHistoriesByTryCount(tryCount);
-        for (; result < histories.size(); result++) {
-            if (!bridge.canMoveToPosition(histories.get(result), result)) {
-                break;
-            }
-        }
-        return result;
+        List<BridgeMoveHistory> histories = getMoveHistoriesByTryCount(tryCount);
+        return (int) histories.stream().filter(BridgeMoveHistory::isSuccess).count();
+    }
+    
+    public int getFailCount(Integer tryCount) {
+        List<BridgeMoveHistory> histories = getMoveHistoriesByTryCount(tryCount);
+        return (int) histories.stream().filter((history) -> !history.isSuccess()).count();
     }
 }

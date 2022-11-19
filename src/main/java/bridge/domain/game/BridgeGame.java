@@ -1,6 +1,7 @@
 package bridge.domain.game;
 
 import bridge.BridgeMove;
+import bridge.domain.BridgeMoveHistory;
 import bridge.domain.bridge.Bridge;
 
 public class BridgeGame {
@@ -50,7 +51,7 @@ public class BridgeGame {
     
     public void move(BridgeMove move) {
         if (isReachedLastPosition()) return;
-        getHistory().addMoveHistory(getTryCount(), move);
+        getHistory().addMoveHistory(getTryCount(), new BridgeMoveHistory(move, true));
         setCurrentPosition(getCurrentPosition() + 1);
     }
     

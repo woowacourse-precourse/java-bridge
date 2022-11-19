@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import bridge.BridgeMaker;
 import bridge.BridgeMove;
+import bridge.domain.BridgeMoveHistory;
 import bridge.domain.TestNumberGenerator;
 import bridge.domain.bridge.Bridge;
 import bridge.domain.game.BridgeGameHistory;
@@ -47,12 +48,12 @@ public class BridgeGameHistoryTest {
     @Test
     void getMoveCountByValid() {
         bridgeGameHistory.createHistory(1);
-        bridgeGameHistory.addMoveHistory(1, BridgeMove.DOWN);
-        bridgeGameHistory.addMoveHistory(1, BridgeMove.UP);
-        bridgeGameHistory.addMoveHistory(1, BridgeMove.UP);
-        bridgeGameHistory.addMoveHistory(1, BridgeMove.DOWN);
-        bridgeGameHistory.addMoveHistory(1, BridgeMove.DOWN);
-        bridgeGameHistory.addMoveHistory(1, BridgeMove.DOWN);
+        bridgeGameHistory.addMoveHistory(1, new BridgeMoveHistory(BridgeMove.DOWN, true));
+        bridgeGameHistory.addMoveHistory(1, new BridgeMoveHistory(BridgeMove.UP, true));
+        bridgeGameHistory.addMoveHistory(1, new BridgeMoveHistory(BridgeMove.UP, true));
+        bridgeGameHistory.addMoveHistory(1, new BridgeMoveHistory(BridgeMove.DOWN, false));
+        bridgeGameHistory.addMoveHistory(1, new BridgeMoveHistory(BridgeMove.DOWN, false));
+        bridgeGameHistory.addMoveHistory(1, new BridgeMoveHistory(BridgeMove.DOWN, false));
         
         assertThat(bridgeGameHistory.getMoveCount(1)).isEqualTo(3);
     }
@@ -67,7 +68,7 @@ public class BridgeGameHistoryTest {
     @DisplayName("addMoveHistory 메소드는 생성되지 않은 history를 대상으로 실행하면 예외를 던진다.")
     @Test
     void addMoveHistoryByNotCreatedHistory() {
-        assertThatThrownBy(() -> bridgeGameHistory.addMoveHistory(1, BridgeMove.DOWN))
+        assertThatThrownBy(() -> bridgeGameHistory.addMoveHistory(1, new BridgeMoveHistory(BridgeMove.DOWN, true)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
