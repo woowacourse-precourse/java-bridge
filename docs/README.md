@@ -60,7 +60,7 @@
   - [ ] 이동할 방향(moving)
   - [ ] 게임 재시작 여부(game command)
 
-### BridgeCalculate
+### BridgeMover
 - [ ] 이동 성공 여부 계산
 - [ ] 게임 성공 여부 계산
 

@@ -12,13 +12,13 @@ import java.util.List;
 public class BridgeGame {
     private GameStatus gameStatus;
     private int tryCount;
-    private BridgeCalculator bridgeCalculator;
+    private BridgeMover bridgeCalculator;
     private BridgeMonitor bridgeMonitor;
 
     public BridgeGame(List<String> bridge) {
         this.gameStatus = ON_WAY;
         this.tryCount = 1;
-        this.bridgeCalculator = new BridgeCalculator(bridge);
+        this.bridgeCalculator = new BridgeMover(bridge);
         this.bridgeMonitor = new BridgeMonitor();
     }
 
