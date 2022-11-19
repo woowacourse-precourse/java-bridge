@@ -61,11 +61,11 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      * 메서드 명 변경 불가
      */
-    public void printResult() {
+    public void printResult(BridgeDto bridgeDto, GameResult gameResult, int count) {
         System.out.println(GAME_RESULT_MESSAGE);
-        // 다리 출력
-        // 성공 여부
-        // 시도횟수
+        getMap(bridgeDto);
+        printSuccessOrFailure(gameResult);
+        printTryCount(count);
     }
 
     private void printSuccessOrFailure(GameResult gameResult) {

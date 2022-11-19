@@ -24,11 +24,14 @@ public class GameController {
 
     public void run() {
         GameResult gameResult = GameResult.SUCCESS;
+        int count = 0;
         do {
+            count++;
             doRound();
-            gameResult=chooseReGame();
-        } while(gameResult.equals(GameResult.REGAME));
-        System.out.println(gameResult);
+            gameResult = chooseReGame();
+        } while (gameResult.equals(GameResult.REGAME));
+        BridgeDto recentBridge = gameService.getRecentBridge();
+        viewService.printTotalResult(recentBridge, gameResult, count);
     }
 
     private void doRound() {
@@ -47,11 +50,7 @@ public class GameController {
     }
 
     private GameResult chooseReGame() {
-        String input= viewService.askReGame();
+        String input = viewService.askReGame();
         return gameService.setReGameOrQuit(input);
-    }
-
-    private void printGameResult(GameResult result) {
-        viewService.printTotalResult();
     }
 }
