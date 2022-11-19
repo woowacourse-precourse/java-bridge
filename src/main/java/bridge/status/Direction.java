@@ -1,4 +1,4 @@
-package bridge.command;
+package bridge.status;
 
 public class Direction {
 

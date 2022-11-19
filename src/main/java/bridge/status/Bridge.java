@@ -1,4 +1,4 @@
-package bridge.command;
+package bridge.status;
 
 public class Bridge {
 
@@ -6,7 +6,7 @@ public class Bridge {
     private static final int BRIDGE_UPPER_INCLUSIVE = 20;
 
     private Bridge() {
-        
+
     }
 
     public static boolean isInRange(int bridgeSize) {

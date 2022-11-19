@@ -1,7 +1,7 @@
 package bridge.view.input;
 
-import bridge.command.Bridge;
-import bridge.command.Direction;
+import bridge.status.Bridge;
+import bridge.status.Direction;
 
 public class InputValidator {
 
