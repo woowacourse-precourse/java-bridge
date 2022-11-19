@@ -25,4 +25,20 @@ public class InputViewTest {
         assertThatNoException()
                 .isThrownBy(() -> inputView.validateBridgeSize(input));
     }
+
+    @DisplayName("잘못된 이동할 칸을 입력 받으면 예외가 발생한다")
+    @ParameterizedTest
+    @ValueSource(strings = {"u", "d", ""})
+    void invalidMovingInputTest(String input) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> inputView.validateMoving(input));
+    }
+
+    @DisplayName("올바른 이동할 칸을 입력 받으면 예외가 발생하지 않는다")
+    @ParameterizedTest
+    @ValueSource(strings = {"U", "D"})
+    void validMovingInputTest(String input) {
+        assertThatNoException()
+                .isThrownBy(() -> inputView.validateMoving(input));
+    }
 }

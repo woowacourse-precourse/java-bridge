@@ -2,6 +2,8 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.List;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -12,6 +14,11 @@ public class InputView {
     private static final String BRIDGE_SIZE_INPUT_ERROR_MESSAGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
 
     private static final String READ_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
+
+    private static final String UP_BRIDGE = "U";
+    private static final String DOWN_BRIDGE = "D";
+
+    private static final String MOVING_INPUT_ERROR_MESSAGE = "[ERROR] U(위), D(아래) 중 하나를 입력해야 합니다.";
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -50,6 +57,13 @@ public class InputView {
         int bridgeSize = Integer.parseInt(input);
         if (bridgeSize < MIN_BRIDGE_SIZE || bridgeSize > MAX_BRIDGE_SIZE) {
             throw new IllegalArgumentException(BRIDGE_SIZE_INPUT_ERROR_MESSAGE);
+        }
+    }
+
+    public void validateMoving(String input) throws IllegalArgumentException {
+        List<String> movingOptions = List.of(UP_BRIDGE, DOWN_BRIDGE);
+        if(!movingOptions.contains(input)) {
+            throw new IllegalArgumentException(MOVING_INPUT_ERROR_MESSAGE);
         }
     }
 
