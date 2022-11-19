@@ -14,22 +14,22 @@ class ExitOptionTest {
 	@DisplayName("R 혹은 Q를 입력하면 Boolean을 리턴한다.")
 	@Nested
 	class BooleanTest {
-		@ValueSource(strings = {"R", "r"})
 		@ParameterizedTest
+		@ValueSource(strings = {"R", "r"})
 		void trueCase(String value) {
 			assertTrue(ExitOption.of(value).isReplay());
 		}
 
-		@ValueSource(strings = {"Q", "q"})
 		@ParameterizedTest
+		@ValueSource(strings = {"Q", "q"})
 		void falseCase(String value) {
 			assertFalse(ExitOption.of(value).isReplay());
 		}
 	}
 
 	@DisplayName("R 혹은 Q 외의 것을 입력하면 에러 메시지를 출력한다")
-	@ValueSource(strings = {"", " ", "a", "d", "u", "D", "U", "Z", "0", "-1", "100000"})
 	@ParameterizedTest
+	@ValueSource(strings = {"", " ", "a", "d", "u", "D", "U", "Z", "0", "-1", "100000"})
 	void exceptionCase(String value) {
 		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
 			ExitOption.of(value);

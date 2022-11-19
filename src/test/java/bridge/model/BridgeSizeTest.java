@@ -19,8 +19,8 @@ class BridgeSizeTest {
 	}
 
 	@DisplayName("3 에서 20 사이의 자연수 외에 정수를 입력하면 에러 메시지를 출력한다")
-	@ValueSource(ints = {-1, 0, 1, 2, 21, 10000})
 	@ParameterizedTest
+	@ValueSource(ints = {-1, 0, 1, 2, 21, 10000})
 	void notInRangeTest(int value) {
 		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
 			BridgeSize bridgeSize = new BridgeSize(value);

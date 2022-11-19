@@ -3,45 +3,26 @@ package bridge.model;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class FootPrintTest {
 	@DisplayName("층수와 정답 여부를 입력하면 footPrints를 리턴한다.")
-	@Nested
-	class MakeFootPrintsTest {
-		@Test
-		void case1() {
-			int stairs = 0;
-			Boolean isRight = true;
-			assertEquals(FootPrint.makeFootPrints(stairs, isRight),
-				List.of(FootPrint.RIGHT.getFootPrint(), FootPrint.Blank.getFootPrint()));
-		}
+	@ParameterizedTest
+	@MethodSource("parametersProvider")
+	void makeFootPrintsTest(int stairs, Boolean isRight, List<String> list) {
+		assertEquals(FootPrint.makeFootPrints(stairs, isRight), list);
+	}
 
-		@Test
-		void case2() {
-			int stairs = 1;
-			Boolean isRight = true;
-			assertEquals(FootPrint.makeFootPrints(stairs, isRight),
-				List.of(FootPrint.Blank.getFootPrint(), FootPrint.RIGHT.getFootPrint()));
-		}
-
-		@Test
-		void case3() {
-			int stairs = 0;
-			Boolean isRight = false;
-			assertEquals(FootPrint.makeFootPrints(stairs, isRight),
-				List.of(FootPrint.WRONG.getFootPrint(), FootPrint.Blank.getFootPrint()));
-		}
-
-		@Test
-		void case4() {
-			int stairs = 1;
-			Boolean isRight = false;
-			assertEquals(FootPrint.makeFootPrints(stairs, isRight),
-				List.of(FootPrint.Blank.getFootPrint(), FootPrint.WRONG.getFootPrint()));
-		}
+	static Stream<Arguments> parametersProvider() {
+		return Stream.of(
+			Arguments.arguments(0, true, List.of(FootPrint.RIGHT.getFootPrint(), FootPrint.Blank.getFootPrint())),
+			Arguments.arguments(1, true, List.of(FootPrint.Blank.getFootPrint(), FootPrint.RIGHT.getFootPrint())),
+			Arguments.arguments(0, false, List.of(FootPrint.WRONG.getFootPrint(), FootPrint.Blank.getFootPrint())),
+			Arguments.arguments(1, false, List.of(FootPrint.Blank.getFootPrint(), FootPrint.WRONG.getFootPrint())));
 	}
 }
