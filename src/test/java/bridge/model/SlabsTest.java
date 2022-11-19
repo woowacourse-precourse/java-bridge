@@ -1,5 +1,6 @@
 package bridge.model;
 
+import bridge.type.SlabType;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
@@ -17,7 +18,7 @@ class SlabsTest {
     @Test
     void DB_모두_넣기() {
         Slabs slabs = Slabs.getInstance();
-        List<String> slabsValues = List.of("U", "D", "U");
+        List<SlabType> slabsValues = List.of(SlabType.DOWN, SlabType.DOWN, SlabType.UP);
 
         assertThat(slabs.insertAll(slabsValues)).isTrue();
     }
@@ -25,7 +26,7 @@ class SlabsTest {
     @Test
     void DB_모두_가져오기() {
         Slabs slabs = Slabs.getInstance();
-        List<String> slabsValues = List.of("U", "D", "U");
+        List<SlabType> slabsValues = List.of(SlabType.DOWN, SlabType.DOWN, SlabType.UP);
         slabs.insertAll(slabsValues);
 
         assertThat(slabs.getAll()).isEqualTo(slabsValues);

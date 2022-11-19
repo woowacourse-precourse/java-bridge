@@ -1,6 +1,7 @@
 package bridge;
 
-import bridge.type.BridgeType;
+import bridge.type.SlabType;
+import bridge.type.LangType;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -13,28 +14,26 @@ public class BridgeMaker {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    public List<String> makeBridge(int size) {
-        List<String> bridge = new LinkedList<>();
+    public List<SlabType> makeBridge(int size) {
+        List<SlabType> bridge = new LinkedList<>();
 
         for (int tries = 0; tries < size; tries++) {
-            bridge.add(this.getBridgeTypeName());
+            bridge.add(this.getSlabType());
         }
 
         return bridge;
     }
 
-    private String getBridgeTypeName() {
-        String bridgeTypeName = BridgeType
-                .create(this.bridgeNumberGenerator.generate())
-                .getTypeName();
-        this.checkBridgeTypeName(bridgeTypeName);
+    private SlabType getSlabType() {
+        SlabType bridgeTypeName = SlabType.create(this.bridgeNumberGenerator.generate());
+        this.checkSlabValid(bridgeTypeName);
 
         return bridgeTypeName;
     }
 
-    private void checkBridgeTypeName(String bridgeTypeName) {
-        if (bridgeTypeName.equals(BridgeType.UNKNOWN.getTypeName())) {
-            throw new RuntimeException("알 수 없는 브리지 타입이 입력되었습니다.");
+    private void checkSlabValid(SlabType slab) {
+        if (slab.equals(SlabType.UNKNOWN)) {
+            throw new RuntimeException(LangType.get(LangType.THROW_UNKNOWN_BRIDGE_TYPE));
         }
     }
 }

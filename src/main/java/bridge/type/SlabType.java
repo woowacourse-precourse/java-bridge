@@ -10,6 +10,15 @@ public enum SlabType {
     private final int id;
     private final String typeName;
 
+    SlabType(int id, String typeName) {
+        this.id = id;
+        this.typeName = typeName;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
     public static SlabType create(int id) {
         return Arrays.stream(SlabType.values())
                 .filter(type -> type.id == purifyId(id))
@@ -26,14 +35,5 @@ public enum SlabType {
         }
 
         return id;
-    }
-
-    SlabType(int id, String typeName) {
-        this.id = id;
-        this.typeName = typeName;
-    }
-
-    public String getTypeName() {
-        return typeName;
     }
 }
