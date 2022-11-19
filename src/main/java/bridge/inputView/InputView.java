@@ -5,7 +5,6 @@ import bridge.inputView.exception.IllegalReadBridgeSizeException;
 import bridge.inputView.exception.IllegalReadGameCommandException;
 import bridge.inputView.exception.IllegalReadMovingException;
 import camp.nextstep.edu.missionutils.Console;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -24,10 +23,8 @@ public class InputView {
      */
     public int readBridgeSize() {
         try {
-            final int command = Integer.parseInt(readLine());
-            validateElseThrow(BRIDGE_MIN_SIZE <= command && command <= BRIDGE_MAX_SIZE,
-                    IllegalReadBridgeSizeException::new);
-            return command;
+            System.out.println("다리의 길이를 입력해주세요.");
+            return InputEngine.readBridgeSize();
         } catch (NumberFormatException | IllegalReadBridgeSizeException e) {
             System.out.println(ErrorMessage.ILLEGAL_READ_BRIDGE_SIZE.getTagMessage());
             return readBridgeSize();
@@ -39,10 +36,8 @@ public class InputView {
      */
     public String readMoving() {
         try {
-            final String command = readLine();
-            validateElseThrow(command.length() == SIZE, IllegalReadMovingException::new);
-            validateElseThrow(command, Arrays.asList("U", "D"), IllegalReadMovingException::new);
-            return command;
+            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            return InputEngine.readMoving();
         } catch (IllegalReadMovingException e) {
             System.out.println(e.getMessage());
             return readMoving();
@@ -54,10 +49,8 @@ public class InputView {
      */
     public String readGameCommand() {
         try {
-            final String command = readLine();
-            validateElseThrow(command.length() == SIZE, IllegalReadGameCommandException::new);
-            validateElseThrow(command, Arrays.asList("R", "Q"), IllegalReadGameCommandException::new);
-            return command;
+            System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+            return InputEngine.readGameCommand();
         } catch (IllegalReadGameCommandException e) {
             System.out.println(e.getMessage());
             return readGameCommand();

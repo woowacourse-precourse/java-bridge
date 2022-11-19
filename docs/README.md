@@ -4,18 +4,18 @@
 
 ### BridgeMaker
 
-* [x] 0이면 "U", 1이면 "D"로 반환
-    * [x] 올바르지않으면, 예외발생
+* [x] 0이면 "U", 1이면 "D"로 반환 #makeBridge(int size)
+    * [x] 0,1이 아닌 경우, 예외발생 NotFoundBridgeException
 
 ### InputView
 
 * [x] 다리의 길이를 입력받는다. #readBridgeSize()
-    * [x] 3이상,20이하의 숫자를 입력하지않은 경우 예외 발생.
-    * [x] 숫자가 아닌경우, 예외 발생
+    * [x] 3이상,20이하의 숫자를 입력하지않은 경우 예외 발생. IllegalReadBridgeSizeException
+    * [x] 숫자가 아닌경우, 예외 발생 IllegalReadBridgeSizeException
 * [x] 사용자가 이동할 칸을 입력받는다. #readMoving()
-    * [x] 올바르지 않은 입력(U나 D가 아닌경우) 예외 발생.
+    * [x] 올바르지 않은 입력(U나 D가 아닌경우) 예외 발생.IllegalReadMovingException
 * [x] 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다. readGameCommand()
-    * [x] 올바르지 않은 입력(R나 Q가 아닌경우) 예외 발생.
+    * [x] 올바르지 않은 입력(R나 Q가 아닌경우) 예외 발생. IllegalReadGameCommandException
 
 ### OutputView
 
