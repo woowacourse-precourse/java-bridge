@@ -18,6 +18,7 @@ public class InputView {
 
         validateisDigit(bridgeSize);
         validateOverSize(Integer.parseInt(bridgeSize));
+        validateisEmpty(bridgeSize);
 
         return Integer.parseInt(bridgeSize);
     }
@@ -29,6 +30,7 @@ public class InputView {
         String moving = Console.readLine();
 
         validateUpOrDown(moving);
+        validateisEmpty(moving);
 
         return moving;
     }
@@ -40,6 +42,7 @@ public class InputView {
         String doRestart = Console.readLine();
 
         validateRestartOrQuit(doRestart);
+        validateisEmpty(doRestart);
 
         return doRestart;
     }
@@ -57,6 +60,12 @@ public class InputView {
             }
         }
     }
+
+    public void validateisEmpty(String input){
+        if(input.isBlank()) {
+                throw new IllegalArgumentException("[ERROR] 공백은 입력할 수 없습니다.");
+            }
+        }
 
     public void validateUpOrDown(String moving){
         if(!moving.equals("U") && !moving.equals("D")){
