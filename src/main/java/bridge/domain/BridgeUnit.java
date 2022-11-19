@@ -1,6 +1,9 @@
 package bridge.domain;
 
 import java.util.Arrays;
+import java.util.function.Predicate;
+
+import static bridge.support.ErrorMessage.INVALID_BRIDGE_UNIT_CODE_ERROR;
 
 public enum BridgeUnit {
     DOWN("D", 0),
@@ -15,18 +18,18 @@ public enum BridgeUnit {
     }
 
     public static BridgeUnit from(String code) {
-        return Arrays.stream(BridgeUnit.values())
-                .filter(bridgeUnit -> code.equals(bridgeUnit.code))
-                .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 코드입니다."));
+        return from((bridgeUnit) -> bridgeUnit.code.equals(code));
     }
 
-    public static String numberToCode(Integer number) {
+    public static BridgeUnit from(int number) {
+        return from((bridgeUnit) -> bridgeUnit.number == number);
+    }
+
+    private static BridgeUnit from(Predicate<BridgeUnit> bridgeUnitPredicate) {
         return Arrays.stream(BridgeUnit.values())
-                .filter(bridgeUnit -> number.equals(bridgeUnit.number))
+                .filter(bridgeUnitPredicate)
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 코드입니다."))
-                .getCode();
+                .orElseThrow(() -> new IllegalArgumentException(INVALID_BRIDGE_UNIT_CODE_ERROR));
     }
 
     public String getCode() {
