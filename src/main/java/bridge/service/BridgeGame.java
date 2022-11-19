@@ -22,7 +22,7 @@ public class BridgeGame {
     private void processCrossingBridge(List<String> bridge) {
         for (int step = 0; step < bridge.size(); step++) {
             String movingBlock = OutputView.printSelectMovingBlock();
-
+            user.currentBlock = TypeConverter.blockToNumber(movingBlock);
         }
     }
 }

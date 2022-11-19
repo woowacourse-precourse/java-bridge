@@ -23,6 +23,7 @@ public class OutputView {
         System.out.println(INPUT_SELECT_MOVE_BLOCK);
         String movingBlock = InputView.readMoving();
         ValidateInput.validateMovingBlock(movingBlock);
+        return movingBlock;
     }
 
     /**
