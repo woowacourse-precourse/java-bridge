@@ -47,6 +47,7 @@ public class OutputView {
      */
     public void printResult(int last, int cnt) {
         System.out.print("최종 게임 결과\n");
+        cur--;
         printMap("U",last);
         printMap("D",last);
         System.out.println();
