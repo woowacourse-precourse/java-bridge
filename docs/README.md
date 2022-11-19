@@ -17,6 +17,8 @@ OutputView
         생성자(int cur, List<String> bridge) 
             입력해서 저장
         void printMap(String letter, int last)
+            개별 한 줄 출력 "U" 또는 "D"에 대해
+        void printMaps(int last)
             [ O ]
             [   ]
             이런식으로 출력해야됨
