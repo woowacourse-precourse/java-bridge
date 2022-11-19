@@ -65,33 +65,26 @@ public class BridgeGameController {
     }
 
     private void moveBridge() {
-        int moveCount;
-        for (moveCount = 0; moveCount < bridgeGame.getBridgeSize(); moveCount++) {
+        boolean mobility = true;
+        int moveCount = 0;
+
+        while (mobility && bridgeGame.hasBridgeToMove(moveCount)) {
             outputView.printMovingMsg();
-
-            String moving = inputView.readMoving();
-            Boolean mobility = bridgeGame.move(moveCount, moving);
+            mobility = bridgeGame.move(moveCount, inputView.readMoving());
             outputView.printMap(bridgeGame.getBridgeGameResult());
-
-            if (isFail(mobility)) {
-                break;
-            }
+            moveCount++;
         }
-
-        if (moveCount == bridgeGame.getBridgeSize()) {
-            bridgeGame.success();
-            play = false;
-        }
+        finish(moveCount);
     }
 
-    private boolean isFail(Boolean mobility) {
-        if (mobility.equals(false)) {
-            outputView.printGameCommandMsg();
-            checkPlay(inputView.readGameCommand());
-            return true;
+    private void finish(int moveCount) {
+        if (bridgeGame.isSuccess(moveCount)) {
+            bridgeGame.success();
+            play = false;
+            return;
         }
-
-        return false;
+        outputView.printGameCommandMsg();
+        checkPlay(inputView.readGameCommand());
     }
 
     private void checkPlay(String command) {
