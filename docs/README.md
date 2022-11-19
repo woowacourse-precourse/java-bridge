@@ -37,8 +37,34 @@
     - 사용자 입력이 잘못된 경우 IllegalArgumentException을 발생 후 다시 입력 받는다. ✅
     - 함수(메서드) 길이 10이하 ✅
     - 메서드 파라미터 최대 3개 ✅
-    - BridgeGame에서 outputview, inputview 사용 금지
+    - BridgeGame에서 outputview, inputview 사용 금₩
     - BridgeMaker
         -BridgeMaker의 필드(인스턴스 변수)를 변경 불가
         -메서드의 시그니처(인자, 이름)와 반환 타입은 변경 불가
+````
+````
+🖐 학습 사항
+    - java.lang.String
+        ‼️학습 계기
+            - 다리건너기 게임의 결과를 출력할 때 '|' 구분 기호를 넣는 과정에서 학습하게 되었다.
+            - 문자열 처리를 조금 더 유연하게 하기 위해서 찾아보았다.
+        -문자열 처리를 돕는 클래스
+        -자바의 String은 객체 인스턴스이다.
+        - join, replace, indexOf 등 다양한 기능이있다.
+        👉join기능을 사용해 구분자를 |로 하여 List에 들어있는 문자열들을 출력 요소로 처리해줬다.
+    - 자바의 String, StringBuilder 와 StringBuffer
+        ‼️학습 계기
+            - 위의 API를 공부하다 추가적인 궁금증
+        - String
+            - 불변의 속성
+                ex) 처음에 String s = 'hello'라는 문자열을 선언하면 메모리에 공간할당을 받는다.
+                    하지만 s+='world'를 하게 되면 'helloworld'라는 문자열로 새롭게 메모리를 할당 받는다.
+            - 위의 속성 때문에 문자열의 수정,추가,삭제가 빈번히 일어나면 가비지가 많아져 성능에 영향을 미치게 된다.
+        - StringBuffer
+            - 멀티 쓰레드 환경에서 안전하다(thread-safe) // String 또한 불변 객체이기 때문에 thread-safe하다.
+        - StringBuilder
+            - 동기화를 지원하지 않기 때문에 멀티 쓰레드 환경에서는 사용하지 않는게 좋다.
+            - 하지만 단일 쓰레드에서는 StringBuffer보다 성능이 좋다.
+        👉 문자열의 연산이 많아진다면 StringBuffer나 StringBulider를 사용하자
+            쓰레드 환경에 따라 Buffer와 Builder를 선택하여 사용
 ````
