@@ -8,11 +8,13 @@ public class Application {
     static BridgeGame bridgeGame;
 
     public static void main(String[] args) {
-        startState();
-
-        gameState();
-
-        endState();
+        try {
+            startState();
+            gameState();
+            endState();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private static void startState() {
