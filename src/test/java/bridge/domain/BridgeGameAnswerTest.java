@@ -44,4 +44,17 @@ class BridgeGameAnswerTest {
         List<List<String>> return_answer = bridgeGameAnswer.getResultByHistory(history);
         assertEquals(answer,return_answer);
     }
+
+    @DisplayName("정답을 틀렸을때 테스트")
+    @Test
+    public void check_wrong_result() {
+        List<List<String>> answer = new ArrayList<>();
+        answer.add(List.of(" O |", "   |"));
+        answer.add(List.of("   |", " O |"));
+        answer.add(List.of(" O |", "   |"));
+        answer.add(List.of(" X ", "   "));
+        List<String> history = List.of("U", "D", "U", "U");
+        List<List<String>> return_answer = bridgeGameAnswer.getResultByHistory(history);
+        assertEquals(answer,return_answer);
+    }
 }
