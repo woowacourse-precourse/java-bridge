@@ -22,8 +22,19 @@ public class BridgeGame {
      * @param footrestLocation
      */
     public Integer move(FootrestLocation footrestLocation) {
-        System.out.println(footrestLocation);
-        System.out.println("움직인다");
+        if (footPrint == null) {
+            throw new IllegalStateException("초기화 안됨");
+        }
+        Integer order = footPrint.getOrder(); //차례
+        footPrint.record(footrestLocation);
+        if (bridge.canMove(order, footrestLocation)) {
+            if (bridge.isLast(order)) {
+                return 1;
+            }
+            return 0;
+        } else {
+            return -1;
+        }
         // Bridge 초기화 안됐으면 일단 예외 반환(모든 메서드 마찬가지)
 
         // footPrint의 다음 차례를 꺼낸다
@@ -34,7 +45,6 @@ public class BridgeGame {
         //   이동한 곳이 O라면 ->
         //     만약 board의 끝점이었다면 -> 성공(1) 반환
         //     아니라면 움직였다(0) 반환
-        return 0;
     }
 
     /**
