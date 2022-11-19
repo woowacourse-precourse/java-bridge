@@ -22,7 +22,7 @@ public class BridgeMaker {
 	 */
 	public List<String> makeBridge(int size) {
 		List<String> bridgeSquare = new ArrayList<>();
-		for (int i = 0; i < size; i++) {
+		for (int count = 0; count < size; count++) {
 			Stairs stairs = Stairs.of(bridgeNumberGenerator.generate());
 			bridgeSquare.add(stairs.getCommand());
 		}

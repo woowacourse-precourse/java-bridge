@@ -20,9 +20,13 @@ class FootPrintTest {
 
 	static Stream<Arguments> parametersProvider() {
 		return Stream.of(
-			Arguments.arguments(0, true, List.of(FootPrint.RIGHT.getFootPrint(), FootPrint.BLANK.getFootPrint())),
-			Arguments.arguments(1, true, List.of(FootPrint.BLANK.getFootPrint(), FootPrint.RIGHT.getFootPrint())),
-			Arguments.arguments(0, false, List.of(FootPrint.WRONG.getFootPrint(), FootPrint.BLANK.getFootPrint())),
-			Arguments.arguments(1, false, List.of(FootPrint.BLANK.getFootPrint(), FootPrint.WRONG.getFootPrint())));
+			Arguments.arguments(Stairs.DOWN.getNumber(), true,
+				List.of(FootPrint.RIGHT.getFootPrint(), FootPrint.BLANK.getFootPrint())),
+			Arguments.arguments(Stairs.UP.getNumber(), true,
+				List.of(FootPrint.BLANK.getFootPrint(), FootPrint.RIGHT.getFootPrint())),
+			Arguments.arguments(Stairs.DOWN.getNumber(), false,
+				List.of(FootPrint.WRONG.getFootPrint(), FootPrint.BLANK.getFootPrint())),
+			Arguments.arguments(Stairs.UP.getNumber(), false,
+				List.of(FootPrint.BLANK.getFootPrint(), FootPrint.WRONG.getFootPrint())));
 	}
 }

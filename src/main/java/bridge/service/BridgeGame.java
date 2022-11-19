@@ -3,7 +3,6 @@ package bridge.service;
 import java.util.List;
 
 import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.BridgeSize;
 import bridge.model.ExitOption;
@@ -18,8 +17,7 @@ import bridge.model.Stairs;
 public class BridgeGame {
 	public List<String> setUpGame(int userInput) {
 		BridgeSize bridgeSize = new BridgeSize(userInput);
-		BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-		BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 		return bridgeMaker.makeBridge(bridgeSize.getSize());
 	}
 
@@ -35,8 +33,8 @@ public class BridgeGame {
 	 * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
 	public List<String> move(Stairs stairs, String square) {
-		boolean isEqual = stairs.isEquals(square);
 		int stairsNumber = stairs.getNumber();
+		boolean isEqual = stairs.isEquals(square);
 		return FootPrint.makeFootPrints(stairsNumber, isEqual);
 	}
 

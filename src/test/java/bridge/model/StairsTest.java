@@ -27,7 +27,7 @@ class StairsTest {
 			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
 				Stairs.of(value);
 			});
-			Assertions.assertEquals(Error.LOCATION_COMMAND.getMessage(), exception.getMessage());
+			Assertions.assertEquals(Error.STAIRS_COMMAND.getMessage(), exception.getMessage());
 		}
 	}
 
@@ -46,7 +46,7 @@ class StairsTest {
 			Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
 				Stairs.of(value);
 			});
-			Assertions.assertEquals(Error.LOCATION_NUMBER.getMessage(), exception.getMessage());
+			Assertions.assertEquals(Error.STAIRS_NUMBER.getMessage(), exception.getMessage());
 		}
 	}
 

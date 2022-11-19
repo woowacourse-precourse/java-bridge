@@ -50,7 +50,7 @@ public enum Stairs {
 		List<String> locationStrings = List.of(UP.command, DOWN.command);
 
 		if (!locationStrings.contains(inputValue)) {
-			throw new IllegalArgumentException(Error.LOCATION_COMMAND.getMessage());
+			throw new IllegalArgumentException(Error.STAIRS_COMMAND.getMessage());
 		}
 	}
 
@@ -58,7 +58,7 @@ public enum Stairs {
 		List<Integer> locationStrings = List.of(UP.number, DOWN.number);
 
 		if (!locationStrings.contains(inputValue)) {
-			throw new IllegalArgumentException(Error.LOCATION_NUMBER.getMessage());
+			throw new IllegalArgumentException(Error.STAIRS_NUMBER.getMessage());
 		}
 	}
 
