@@ -1,5 +1,9 @@
 package bridge.view;
 
+import bridge.domain.Result;
+
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -7,10 +11,10 @@ public class OutputView {
 
     private final String START_GAME_MESSAGE = "다리 건너기 게임을 시작합니다.";
     private final String INPUT_BRIDGE_SIZE_MESSAGE = "\n다리의 길이를 입력해주세요.";
-    private final String INPUT_MOVE_TO_MESSAGE = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    private final String INPUT_RETRY_MESSAGE = "\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-    private final String FINAL_GAME_RESULT_GUIDE_MESSAGE = "\n최종 게임 결과";
-    private final String GAME_RESULT_MESSAGE= "\n게임 성공 여부: ";
+    private final String INPUT_MOVE_TO_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private final String INPUT_RETRY_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private final String FINAL_GAME_RESULT_GUIDE_MESSAGE = "최종 게임 결과";
+    private final String GAME_RESULT_MESSAGE= "게임 성공 여부: ";
     private final String TOTAL_NUMBER_OF_TRIAL_MESSAGE = "총 시도한 횟수: ";
     private final String SUCCESS = "성공";
     private final String FAILED = "실패";
@@ -20,7 +24,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(Result result) {
+        List<String> up = result.getUp();
+        List<String> down = result.getDown();
+
+        printUpAndDown(up);
+        printUpAndDown(down);
     }
 
     /**
@@ -28,7 +37,23 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(Result result) {
+        printMap(result);
+        printFinalGameResultGuideMessage();
+        printResultMessage(result.getIsSuccess(), result.getNumberOfTrial());
+    }
+
+    private void printUpAndDown(List<String> bridge) {
+        System.out.print("[");
+        for (int i=0; i < bridge.size(); i++) {
+            System.out.print(" " + bridge.get(i) + " ");
+            if (i == bridge.size()-1) {
+                System.out.println("]");
+                break;
+            }
+            System.out.println("|");
+        }
+        System.out.println();
     }
 
     public void printStartGameMessage() {
@@ -51,8 +76,15 @@ public class OutputView {
         System.out.println(FINAL_GAME_RESULT_GUIDE_MESSAGE);
     }
 
-    public void printResultMessage() {
-        System.out.println(GAME_RESULT_MESSAGE);
-        System.out.println(TOTAL_NUMBER_OF_TRIAL_MESSAGE);
+    public void printResultMessage(boolean isSuccess, int numberOfTrial) {
+        System.out.print(GAME_RESULT_MESSAGE);
+        if (isSuccess) {
+            System.out.println(SUCCESS);
+        }
+        if (!isSuccess) {
+            System.out.println(FAILED);
+        }
+        System.out.print(TOTAL_NUMBER_OF_TRIAL_MESSAGE);
+        System.out.println(numberOfTrial);
     }
 }
