@@ -35,12 +35,12 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(int index, String moveSide) {
+    public boolean move(String moveSide, int index) {
         return bridgGame.get(index).equals(moveSide);
     }
 
-    public StringBuilder createMoveMark(int index , String moveWord) {
-        if (move(index, moveWord)) {
+    public StringBuilder createMoveMark(String moveWord, int index) {
+        if (move(moveWord, index)) {
             return SUCCESS_MOVE_MARK;
         }
         return FAIL_MOVE_MARK;
@@ -58,16 +58,15 @@ public class BridgeGame {
      */
     public boolean retry() {
         OutputView.printRetryMessage();
-        while (true) {
-            String command = InputView.readGameCommand();
-            if (command.equals("R")){
-                retryCount();
-                return true;
-            }
-            if (command.equals("Q")){
-                return false;
-            }
-            throw new IllegalArgumentException("[ERROR] 'R' 또는 'Q'를 입력해 주세요.");
+        String command = InputView.readGameCommand();
+        if (command.equals("R")){
+            retryCount();
+            return true;
         }
+        if (command.equals("Q")){
+            return false;
+        }
+        throw new IllegalArgumentException("[ERROR] 'R' 또는 'Q'를 입력해 주세요.");
+
     }
 }

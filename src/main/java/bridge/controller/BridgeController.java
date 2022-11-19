@@ -15,6 +15,8 @@ public class BridgeController {
     private static final String BRIDGE_ONE_SPACE_BLANK = "   ";
     private StringBuilder upsideResult = new StringBuilder("[]");
     private StringBuilder downsideResult = new StringBuilder("[]");
+
+    private boolean BRIDGE_RESULT = true;
     int tryCount = 1;
 
 
@@ -23,24 +25,24 @@ public class BridgeController {
         OutputView.printGameStartMessage();
         int bridgeSize = InputView.inputBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-        List<String> bridgeResult = bridgeMaker.makeBridge(bridgeSize);
-        BridgeGame bridgeGame = new BridgeGame(bridgeResult, tryCount);
-        System.out.println(bridgeResult);
+        List<String> bridgeMakeResult = bridgeMaker.makeBridge(bridgeSize);
+        BridgeGame bridgeGame = new BridgeGame(bridgeMakeResult, tryCount);
+        System.out.println(bridgeMakeResult);
         for (int i = 0; i < bridgeSize; i++) {
-            replaceBracket(i);
+            replaceCloseBracket(i);
             String moveSide = Console.readLine();
             if (bridgeGame.move(moveSide, i)) {
                 moveSuccess(bridgeGame,moveSide, i);
             }
             if (!bridgeGame.move(moveSide, i)) {
-                moveSuccess(bridgeGame,moveSide, i);
+                moveFail(bridgeGame,moveSide, i);
+                BRIDGE_RESULT = false;
             }
-
         }
-        printResult();
+        printBridgeResult(BRIDGE_RESULT);
     }
 
-    private void replaceBracket(int bracketIndex) {
+    private void replaceCloseBracket(int bracketIndex) {
         if(bracketIndex > 0) {
             upsideResult.replace(BRIDGE_ONE_SPACE_SIZE *bracketIndex, BRIDGE_ONE_SPACE_SIZE *bracketIndex, "|" );
             downsideResult.replace(BRIDGE_ONE_SPACE_SIZE *bracketIndex, BRIDGE_ONE_SPACE_SIZE *bracketIndex, "|" );
@@ -91,12 +93,13 @@ public class BridgeController {
         if (!bridgeGame.move(moveSide, index) && moveSide.equals("D")) {
             moveFailDownside(bridgeGame, moveSide, index);
         }
+         bridgeGame.retry();
     }
 
 
-    private void printResult() {
+    private void printBridgeResult(boolean result) {
         OutputView.printResultMessage();
         OutputView.printMap(upsideResult, downsideResult);
-        OutputView.printResult(tryCount, true);
+        OutputView.printResult(tryCount, result);
     }
 }
