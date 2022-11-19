@@ -1,8 +1,7 @@
 package bridge.view;
 
-import java.util.List;
-
-import static bridge.enums.IntEnum.*;
+import static bridge.enums.IntEnum.GAME_LOSE;
+import static bridge.enums.IntEnum.GAME_WIN;
 import static bridge.enums.StringEnum.*;
 
 /**
@@ -24,7 +23,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printResult(int result, int total, String resultStage) {
-        System.out.println(GAME_FINAL);
+        System.out.println(GAME_FINAL.key());
         printMap(resultStage);
         successGamePrint(result);
         challengeTotal(total);
@@ -32,15 +31,15 @@ public class OutputView {
 
     public static void successGamePrint(int result) {
         if (result == GAME_WIN.num()) {
-            System.out.println(SUCCESS_GAME + "성공");
+            System.out.println(SUCCESS_GAME.key() + "성공");
         }
         if (result == GAME_LOSE.num()) {
-            System.out.println(SUCCESS_GAME + "실패");
+            System.out.println(SUCCESS_GAME.key() + "실패");
         }
     }
 
     public static void challengeTotal(int total) {
-        System.out.println(CHALLENGE + String.valueOf(total));
+        System.out.println(CHALLENGE.key() + String.valueOf(total));
     }
 
     public static void printGameStart() {
