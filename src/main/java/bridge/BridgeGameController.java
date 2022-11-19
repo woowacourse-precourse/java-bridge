@@ -49,13 +49,11 @@ public class BridgeGameController {
 
         outputView.printMap(movingProgress);
 
-        return checkStepFailOrNot(movingProgress);
+        return checkStepFail(movingProgress);
     }
 
-    private boolean checkStepFailOrNot(List<String> movingProgress) {
+    private boolean checkStepFail(List<String> movingProgress) {
         return movingProgress.stream()
-                .reduce(String::concat)
-                .orElse("X")
-                .contains("X");
+                .anyMatch(progress -> progress.contains("X"));
     }
 }

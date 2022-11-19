@@ -22,9 +22,10 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridgeScaffold = new ArrayList<>();
+
         for (int i = 0; i < size; i++) {
             int directionNumber = bridgeNumberGenerator.generate();
-            String direction = Direction.getDirectionOfNumber(directionNumber).getInitial();
+            String direction = Direction.getDirectionInitialOfNumber(directionNumber);
             bridgeScaffold.add(direction);
         }
         return bridgeScaffold;

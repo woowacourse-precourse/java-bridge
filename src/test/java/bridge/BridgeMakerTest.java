@@ -23,7 +23,7 @@ class BridgeMakerTest {
 
         List<String> bridge = bridgeMaker.makeBridge(mockedBridge.size());
         List<String> bridgeCompare = mockedBridge.stream()
-                .map(number -> Direction.getDirectionOfNumber(number).getInitial())
+                .map(Direction::getDirectionInitialOfNumber)
                 .collect(Collectors.toList());
 
         assertThat(bridge).isEqualTo(bridgeCompare);

@@ -8,10 +8,10 @@ public enum Direction {
     UP(1, "U"),
     ;
 
-    private static final Map<Integer, Direction> numberToDirection = new HashMap<>();
+    private static final Map<Integer, String> numberToInitial = new HashMap<>();
     static {
         for (Direction dir : values()) {
-            numberToDirection.put(dir.number,dir);
+            numberToInitial.put(dir.number,dir.initial);
         }
     }
 
@@ -27,7 +27,7 @@ public enum Direction {
         return initial;
     }
 
-    public static Direction getDirectionOfNumber(int number) {
-        return numberToDirection.get(number);
+    public static String getDirectionInitialOfNumber(int number) {
+        return numberToInitial.get(number);
     }
 }

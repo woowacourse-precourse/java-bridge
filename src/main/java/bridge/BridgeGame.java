@@ -2,6 +2,8 @@ package bridge;
 
 import java.util.*;
 
+import static bridge.Enum.Direction.*;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -17,8 +19,8 @@ public class BridgeGame {
     }
 
     private void initStepProgress() {
-        this.stepProgress.put("U", new ArrayList<>());
-        this.stepProgress.put("D", new ArrayList<>());
+        this.stepProgress.put(UP.getInitial(), new ArrayList<>());
+        this.stepProgress.put(DOWN.getInitial(), new ArrayList<>());
     }
 
     /**
@@ -43,17 +45,17 @@ public class BridgeGame {
     private List<String> getMovingProgress(String direction) {
         updateStepProgress(direction);
 
-        String upDirectionProgress = getProgressOfDirection("U");
-        String downDirectionProgress = getProgressOfDirection("D");
+        String upDirectionProgress = getProgressOfDirection(UP.getInitial());
+        String downDirectionProgress = getProgressOfDirection(DOWN.getInitial());
 
         return new ArrayList<>(List.of(upDirectionProgress, downDirectionProgress));
     }
 
     private String getOppositeDirection(String direction) {
-        if ("U".equals(direction)) {
-            return "D";
+        if (UP.getInitial().equals(direction)) {
+            return DOWN.getInitial();
         }
-        return "U";
+        return UP.getInitial();
     }
 
     private void updateStepProgress(String direction) {
@@ -61,18 +63,16 @@ public class BridgeGame {
         if (!this.survive) {
             this.stepProgress.get(direction).add("X");
             this.stepProgress.get(oppositeDirection).add(" ");
-        } else {
-            this.stepProgress.get(direction).add("O");
-            this.stepProgress.get(oppositeDirection).add(" ");
+            return;
         }
+        this.stepProgress.get(direction).add("O");
+        this.stepProgress.get(oppositeDirection).add(" ");
     }
-
 
     private String getProgressOfDirection(String direction) {
         String progress = String.join(" | ", this.stepProgress.get(direction));
         return "[ " + progress + " ]";
     }
-
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
