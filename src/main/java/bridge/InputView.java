@@ -49,7 +49,15 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        String input = Console.readLine();
+        ValidateMove(input);
+        return input;
+    }
+
+    private void ValidateMove(String input) {
+        if(!input.equals("U") && !input.equals("D"))
+            throw new IllegalArgumentException("이동 칸은 U(위 칸)와 D(아래 칸) 중 하나의 문자를 입력하셔야 합니다.");
     }
 
     /**
