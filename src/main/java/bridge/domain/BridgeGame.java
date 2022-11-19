@@ -16,22 +16,23 @@ public class BridgeGame {
     List<String> bridge = new ArrayList<>();
     int trial = 1;
     int position = 0;
+    String lastMoving;
 
     public void start() {
         int size = inputView.readBridgeSize();
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         bridge = bridgeMaker.makeBridge(size);
-        System.out.println(bridge);
+        //System.out.println(bridge);
         position = 0;
     }
 
-    private String getMoving() {
-        return inputView.readMoving();
+    private void getMoving() {
+        lastMoving = inputView.readMoving();
     }
 
     private boolean checkMoving(String moving) {
-        return bridge.get(position).equals(moving);
+        return bridge.get(position - 1).equals(moving);
     }
 
     /**
@@ -40,9 +41,10 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move() {
-        boolean correct = checkMoving(getMoving());
-        outputView.printMap(bridge, position, correct);
+        getMoving();
         position++;
+        boolean correct = checkMoving(lastMoving);
+        outputView.printMap(bridge, position, correct, lastMoving);
         return correct;
     }
 
@@ -59,17 +61,17 @@ public class BridgeGame {
             position = 0;
             restart = true;
         } else if (input.equals("Q")) {
-            outputView.printResult(bridge, position, false, trial);
-            restart=false;
+            endGame(false);
+            restart = false;
         }
         return restart;
     }
 
     public boolean gameSuccess() {
-        return position == bridge.size();
+        return ((position == bridge.size()) && checkMoving(lastMoving));
     }
 
-    public void endGame(){
-        outputView.printResult(bridge, position, true, trial);
+    public void endGame(boolean success) {
+        outputView.printResult(bridge, position, success, trial);
     }
 }

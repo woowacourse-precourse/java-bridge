@@ -10,11 +10,13 @@ public class Application {
         boolean play = true;
         while (play) {
             boolean correct = bridgeGame.move();
-            while (correct && !bridgeGame.gameSuccess()) {
+            boolean success = bridgeGame.gameSuccess();
+            while (correct && !success) {
                 correct = bridgeGame.move();
+                success = bridgeGame.gameSuccess();
             }
-            if (bridgeGame.gameSuccess()) {
-                bridgeGame.endGame();
+            if (success) {
+                bridgeGame.endGame(true);
                 play = false;
             } else {
                 play = bridgeGame.retry();
