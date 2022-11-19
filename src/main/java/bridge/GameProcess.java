@@ -13,8 +13,6 @@ public class GameProcess {
     private InputView inputView;
     private OutputView outputView;
 
-    private User user;
-
     public GameProcess(BridgeGame bridgeGame, BridgeMaker bridgeMaker, InputView inputView, OutputView outputView) {
         this.bridgeGame = bridgeGame;
         this.bridgeMaker = bridgeMaker;
@@ -23,7 +21,7 @@ public class GameProcess {
     }
 
     public void start() {
-        user = new User();
+        User user = new User();
 
         outputView.println("다리 건너기 게임을 시작합니다.");
 
@@ -44,15 +42,16 @@ public class GameProcess {
             user.startRound();
 
             // 사용자 최종 위치 계산
-            int userPosition = userMove(bridgeSize, bridge);
+            int userPosition = userMove(bridgeSize, bridge, user);
 
             // 실패시 재시작 여부
-            gameStart = retryOrNot(bridgeSize, userPosition);
+            gameStart = retryOrNot(bridgeSize, userPosition, user);
         }
     }
 
-    private boolean retryOrNot(Integer bridgeSize, int userPosition) {
+    private boolean retryOrNot(Integer bridgeSize, int userPosition, User user) {
         user.setGameCleared(cleared(bridgeSize, userPosition));
+
         if (!user.getGameCleared()) {
             return bridgeGame.retry(inputView.readGameCommand(e-> outputView.printError(e.getMessage())));
         }
@@ -63,21 +62,20 @@ public class GameProcess {
         return userPosition == bridgeSize;
     }
 
-    private int userMove(Integer bridgeSize, Bridge bridge) {
+    private int userMove(Integer bridgeSize, Bridge bridge, User user) {
         int index = 0;
-
         String way;
 
         do {
             // 움직일 방향 입력
             way = inputView.readMoving((e)-> outputView.printError(e.getMessage()));
-        } while (movable(index++, way, bridge) && index < bridgeSize );
+        } while (movable(index++, way, bridge, user) && index < bridgeSize );
 
         return index;
     }
 
 
-    private boolean movable(int index, String way, Bridge bridge) {
+    private boolean movable(int index, String way, Bridge bridge, User user) {
         // 이동 가능한지 확인
         boolean moved = bridgeGame.move(index, way, bridge);
         // 이동 결과 출력
