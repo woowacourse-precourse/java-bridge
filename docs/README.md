@@ -21,6 +21,8 @@ OutputView
             [   ]
             이런식으로 출력해야됨
         last가 1일 경우 마지막 X
+        String selectLetter(String letter,int i,int last)
+            printMap 할 때 안에 O인지 X인지 공란인지 선택하는 함수
 
 
         void printResult()
