@@ -48,7 +48,7 @@ public class InputValidator {
     }
 
     private static void validateMaxSize(int size) {
-        if (size > MAX_SIZE) {
+        if (size >= MAX_SIZE) {
             printNotMaxSizeException();
         }
     }
