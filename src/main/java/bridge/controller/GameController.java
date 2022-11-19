@@ -33,10 +33,18 @@ public class GameController {
         }
     }
 
-    public void restartGame() {
+    private void restartGame() {
         outputView.upsideBridge.setLength(BUILDER_INITIALIZE);
         outputView.downsideBridge.setLength(BUILDER_INITIALIZE);
         bridgeGame.retry();
         movePlayer();
+    }
+
+    private void checkStatus(boolean isClear) {
+        if (isClear) {
+            outputView.printResult(isClear);
+            return;
+        }
+        askRestart();
     }
 }
