@@ -9,6 +9,8 @@ public class Constants {
 
     public static final int UP = 1;
     public static final int DOWN = 0;
+    public static final int SMALLEST_BRIDGE = 3;
+    public static final int BIGGEST_BRIDGE = 20;
     public static final String RETRY = "R";
     public static final String QUIT = "Q";
     public static final String CAN_CROSS = "O";
