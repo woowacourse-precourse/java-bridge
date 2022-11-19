@@ -6,6 +6,7 @@ import bridge.OutputView;
 
 public class Map {
 
+    Util util = new Util();
     private List<String> mapUpper = new ArrayList<>();
     private List<String> mapLower = new ArrayList<>();
     private List<String> crossable;
@@ -19,6 +20,13 @@ public class Map {
 
     public List<String> getMapLower() {
         return mapLower;
+    }
+
+    public boolean mapIndexOutOfRange(int index) {
+        if (limitSize>index) {
+            return true;
+        }
+        return false;
     }
 
     public Map(List<String> crossable) {
@@ -101,29 +109,6 @@ public class Map {
             isWin = checkWhenInputIsU(answer);
         }
         return isWin;
-    }
-
-    public boolean makeMap(List<String> crossable) {
-        String moving;
-        boolean isWin;
-        int index = 0;
-        resetMap();
-        startMap();
-        while (true) {
-            if (index>=limitSize) {
-                return true;
-            }
-            outputView.printWhereToGoInputRequest();
-            moving = inputView.readMoving();
-            extendMap(index);
-            isWin= runMap(moving, crossable.get(index));
-            endMap();
-            index++;
-            outputView.printMap(mapUpper,mapLower);
-            if (!isWin) {
-                return false;
-            }
-        }
     }
 
 }
