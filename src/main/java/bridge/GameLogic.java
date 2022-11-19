@@ -5,6 +5,8 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class GameLogic {
+    private static final String RESTART = "R";
+    private static final String QUIT = "Q";
     private InputView inputView;
     private OutputView outputView;
     private BridgeGame bridgeGame;
@@ -45,8 +47,8 @@ public class GameLogic {
 
     private void askRetry(){
         String inputRetry = inputView.readGameCommand();
-        bridgeGame.retry(inputRetry);
-        if(bridgeGame.getRetryInput()){
+        if(inputRetry.equals(RESTART)){
+            bridgeGame.retry();
             playOneGame();
             return;
         }

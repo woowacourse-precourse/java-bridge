@@ -22,9 +22,7 @@ public class User {
     public void addPosition(){this.position++;}
     public void failResult(){this.result = FAIL;}
     public Boolean getResult(){return this.result;}
-    public void resetUser(){
-        this.result = SUCCESS;
-        this.position = START_POSITION;
-        this.count++;
-    }
+    public void successResult(){this.result = SUCCESS;}
+    public void setStartPosition(){this.position = START_POSITION;}
+    public void addCount(){this.count++;}
 }

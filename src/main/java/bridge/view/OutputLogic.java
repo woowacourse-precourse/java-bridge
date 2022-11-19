@@ -41,13 +41,13 @@ public class OutputLogic {
         print(SPACE);
     }
     private void printLastGlass(Boolean userResult){
+        output = CORRECT;
         if(!userResult)output = WRONG;
         if(!input.equals(side)) {
             print(SPACE);
             return;
         }
         print(output);
-        output = CORRECT;
     }
     public void setInput(String input){this.input = input;}
 }
