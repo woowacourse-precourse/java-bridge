@@ -22,7 +22,7 @@ public class OutputView {
         for (int i = 0; i < downResult.size() - 1; i++) {
             System.out.print(downResult.get(i));
         }
-        System.out.println("]\n");
+        System.out.println("]");
     }
 
     /**
