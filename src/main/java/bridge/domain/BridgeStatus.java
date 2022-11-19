@@ -44,11 +44,16 @@ public class BridgeStatus {
             throw new IllegalStateException(ERROR_EXCEED_BRIDGE_SIZE);
         }
     }
+
     public void addTryCount() {
         tryCount++;
     }
 
     public int getTryCount() {
         return this.tryCount;
+    }
+
+    public boolean needCallRetryGame() {
+        return gameStatus.needCallRetry();
     }
 }
