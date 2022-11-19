@@ -38,7 +38,7 @@ public class BridgeController {
     public void processGame(Bridge bridge, User user, boolean isUserAnswerCorrect) {
         if (!isUserAnswerCorrect) {
             String gameStatus = inputService.requestStatusOfGame();
-            bridgeGame.userFailCase(bridge, user, gameStatus);
+            bridgeGame.doFailCase(bridge, user, gameStatus);
         }
         if (isUserAnswerCorrect) {
             bridgeGame.move(bridge, user);
