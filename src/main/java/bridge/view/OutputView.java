@@ -38,7 +38,7 @@ public class OutputView {
 
     // 이동할 칸을 선택하라는 메세지 출력 기능
     public void printInputSpaceToMove() {
-        System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
 
     // Bridge 맵 출력
@@ -47,7 +47,7 @@ public class OutputView {
         StringBuilder topRow = createSingleLineMap(bridge, bridgeMap, Setting.MOVE_UP_KEY);
         StringBuilder bottomRow = createSingleLineMap(bridge, bridgeMap, Setting.MOVE_DOWN_KEY);
         System.out.println(topRow.toString());
-        System.out.println(bottomRow.toString());
+        System.out.println(bottomRow.toString()+"\n");
     }
 
     // Bridge 맵 한줄 생성 기능
@@ -72,6 +72,16 @@ public class OutputView {
 
     // 게임을 다시 시도할지 여부를 입력하라는 메세지 출력 기능
     public void printInputRetry() {
-        System.out.println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+    }
+
+    // 최종 게임 결과 안내 메세지 출력 기능
+    public void printResultMessage() {
+        System.out.println("최종 게임 결과");
+    }
+
+    // 공백 출력 기능
+    public void printEmpty() {
+        System.out.println();
     }
 }
