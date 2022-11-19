@@ -15,7 +15,6 @@ import static bridge.util.BridgeConstant.FALL_POSITION;
 public class BridgeGame {
     public final String SUCCESS_BLOCK = "O";
     public final String FAIL_BLOCK = "X";
-    public final String BLANK_BLOCK = " ";
 
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
@@ -56,12 +55,10 @@ public class BridgeGame {
 
     private void addBridgeMapBlock(Player player, String block) {
         if (player.getYPosition() == 1) {
-            bridgeMap.getUpperBridgeMap().add(block);
-            bridgeMap.getLowerBridgeMap().add(BLANK_BLOCK);
+            bridgeMap.addUpperBridgeMap(block);
             return;
         }
-        bridgeMap.getUpperBridgeMap().add(BLANK_BLOCK);
-        bridgeMap.getLowerBridgeMap().add(block);
+        bridgeMap.addLowerBridgeMap(block);
     }
 
     private boolean reachFinalLine(Player player) {
