@@ -21,7 +21,7 @@ public class User {
         step = 0;
     }
 
-    public void gameRetry() {
+    public void increaseRetryCount() {
         retryCount++;
     }
 }
