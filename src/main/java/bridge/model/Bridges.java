@@ -18,4 +18,22 @@ public class Bridges {
             throw new IllegalArgumentException(ERR_BRIDGES_SIZE);
         }
     }
+
+    public PlayerStatus acceptPlayer(int location, Bridge choice) {
+        if (isCrossed(location)) {
+            return PlayerStatus.CROSSED;
+        }
+        if (isSurviving(location, choice)) {
+            return PlayerStatus.SURVIVING;
+        }
+        return PlayerStatus.DEAD;
+    }
+
+    private boolean isCrossed(int location) {
+        return bridges.size() <= location;
+    }
+
+    private boolean isSurviving(int location, Bridge choice) {
+        return bridges.get(location) == choice;
+    }
 }
