@@ -1,11 +1,9 @@
 package bridge;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import bridge.GameCommand;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -33,6 +31,24 @@ public class BridgeMaker {
           }
         }
         return bridge;
+    }
+
+    public List<Integer> makeTrap(int size){
+        List<Integer> trap = rawTrap(size);
+        fisrtUpperBridgeIsSafe(trap);
+        return trap;
+    }
+
+    public List<Integer> rawTrap(int size){
+        return Stream.generate(bridgeNumberGenerator::generate)
+                .limit(size)
+                .collect(Collectors.toList());
+    }
+
+    public void fisrtUpperBridgeIsSafe(List<Integer> trap){
+        if(!(trap.get(0) == 0)){
+            trap.set(0,1);
+        }
     }
 
     public boolean upperBridge(int index){
