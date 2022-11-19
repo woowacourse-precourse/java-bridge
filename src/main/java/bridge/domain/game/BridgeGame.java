@@ -13,7 +13,7 @@ public class BridgeGame {
     
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
-        this.history = new BridgeGameHistory(bridge);
+        this.history = new BridgeGameHistory();
         history.createHistory(tryCount);
     }
     
