@@ -69,4 +69,27 @@ public class InputViewTest {
                     .hasMessageContaining(ERROR_MESSAGE);
         }
     }
+
+    @Nested
+    @DisplayName("게임 재시도 여부를 입력받을 때")
+    class RetryInputTest {
+
+        @DisplayName("R이나 Q중 하나의 값을 받는다.")
+        @ParameterizedTest
+        @ValueSource(strings = {"R", "Q"})
+        void wrightRetryInput(String wrightRetryInput) {
+            InputStream in = new ByteArrayInputStream(wrightRetryInput.getBytes());
+            System.setIn(in);
+            assertThat(inputView.readGameCommand()).isEqualTo(wrightRetryInput);
+        }
+
+        @DisplayName("R이나 Q가 아닌 값을 받으면 예외 처리한다.")
+        @ParameterizedTest
+        @ValueSource(strings = {"q", "r", "", " ", "3"})
+        void wrongRetryInput(String wrongRetryInput) {
+            assertThatThrownBy(() -> inputView.validateRetryInput(wrongRetryInput))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(ERROR_MESSAGE);
+        }
+    }
 }
