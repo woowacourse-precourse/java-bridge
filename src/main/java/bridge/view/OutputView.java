@@ -16,7 +16,6 @@ public class OutputView {
     
     public static void enterBridgeSize() {
         System.out.println(ENTER_BRIDGE_SIZE_MESSAGE);
-        printError();
     }
 
     public static void printError(String message) {

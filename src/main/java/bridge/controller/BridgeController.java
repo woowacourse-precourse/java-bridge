@@ -11,26 +11,20 @@ import bridge.view.OutputView;
 public class BridgeController {
 
     public void start() {
-        try {
-            OutputView.startBridgeGame();
-            BridgeGame bridgeGame = new BridgeGame(init());
-            BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-            BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        } catch (RuntimeException e) {
-            OutputView.printError(e.getMessage());
-            start();
-        }
-
+        OutputView.startBridgeGame();
+        BridgeGame bridgeGame = new BridgeGame(initBridge());
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     }
 
-    private Bridge init() {
+    private Bridge initBridge() {
         try {
             OutputView.enterBridgeSize();
             int size = InputView.readBridgeSize();
             return new Bridge(size);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
-            return init();
+            return initBridge();
         }
     }
 }
