@@ -1,6 +1,7 @@
 package bridge.repository;
 
 import bridge.domain.Bridge;
+import bridge.domain.enums.BlockStatus;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,10 +16,11 @@ public class BridgeGameRepository {
         return instance;
     }
 
-    public List<String> storeBridge(final List<String> symbolBlocks) {
+    public List<BlockStatus> storeBridge(final List<String> symbolBlocks) {
         clearStore();
-        store.add(new Bridge(symbolBlocks));
-        return symbolBlocks;
+        List<BlockStatus> blocks = BlockStatus.convertToBlockStatues(symbolBlocks);
+        store.add(new Bridge(blocks));
+        return blocks;
     }
 
     public void clearStore() {
