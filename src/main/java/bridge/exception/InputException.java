@@ -1,10 +1,17 @@
 package bridge.exception;
 
+import bridge.view.InputView;
+
 public class InputException {
     public static int validateBridgeSize(String input) {
-        int size = convertToNumber(input);
-        accurateRange(size);
-        return size;
+        try {
+            int size = convertToNumber(input);
+            accurateRange(size);
+            return size;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return validateBridgeSize(InputView.readBridgeSize());
+        }
     }
 
     private static int convertToNumber(String input) {
@@ -22,8 +29,13 @@ public class InputException {
     }
 
     public static String validateMovingValue(String input) {
-        accurateValue(input);
-        return input;
+        try {
+            accurateValue(input);
+            return input;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return validateMovingValue(InputView.readMoving());
+        }
     }
 
     private static void accurateValue(String value) {
@@ -33,8 +45,13 @@ public class InputException {
     }
 
     public static String validateGameCommand(String command) {
-        accurateCommand(command);
-        return command;
+        try {
+            accurateCommand(command);
+            return command;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return validateGameCommand(InputView.readGameCommand());
+        }
     }
 
     private static void accurateCommand(String command) {
