@@ -20,7 +20,6 @@ public class BridgeShape {
     public void moveBridge(String whereBridge, boolean checkBridge) {
 
         moveNextStep(whereBridge, checkBridge);
-
     }
 
     private void moveNextStep(String whereBridge, boolean checkBridge) {
