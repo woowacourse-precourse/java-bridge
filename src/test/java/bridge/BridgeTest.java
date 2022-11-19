@@ -34,6 +34,13 @@ public class BridgeTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("입력에 공백이 들어오면 오류가 발생한다.")
+    @Test
+    void 공백_입력_테스트(){
+        assertThatThrownBy(() -> new InputView().validateisEmpty(""))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("입력 값과 다리 이동 정답이 일치하는지 여부를 판단한다")
     @Test
     void 정답_매치_테스트(){
