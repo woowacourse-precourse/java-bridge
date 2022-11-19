@@ -3,12 +3,11 @@ package bridge.controller;
 import bridge.BridgeGame;
 import bridge.GameFlag;
 import bridge.GameStatus;
-import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class GameController {
     BridgeGame bridgeGame = new BridgeGame();
-    InputView inputView = new InputView();
+    InputController inputController = new InputController();
     OutputView outputView = new OutputView();
 
 
@@ -30,7 +29,7 @@ public class GameController {
     private GameStatus getOneGameResult() {
         GameStatus gameResult;
         do {
-            String moving = inputView.readMoving();
+            String moving = inputController.readMovingUntilSucceed();
             gameResult = bridgeGame.getMovingResult(moving);
             outputView.printMap(gameResult);
         } while(gameResult.getFlag() == GameFlag.PLAYING);
@@ -38,7 +37,7 @@ public class GameController {
     }
 
     private boolean needExit() {
-        String gameCommand = inputView.readGameCommand();
+        String gameCommand = inputController.readGameCommandUntilSucceed();
         if (gameCommand.equals("Q")) {
             return true;
         }
@@ -47,7 +46,7 @@ public class GameController {
     }
 
     private void initialize() {
-        int size = inputView.readBridgeSize();
+        int size = inputController.readBridgeSizeUntilSucceed();
         bridgeGame.initialize(size);
     }
 }
