@@ -14,8 +14,12 @@ public class BridgeGameService {
 		this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 	}
 
-	public List<String> initBridge(int size) {
+	public int checkBridgeSize(int size) {
 		validSize(size);
+		return size;
+	}
+
+	public List<String> initBridge(int size) {
 		return bridgeMaker.makeBridge(size);
 	}
 

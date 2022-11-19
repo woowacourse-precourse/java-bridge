@@ -19,16 +19,17 @@ public class BridgeGameController {
 
 	public void start() {
 		inputView.printIntroMessage();
-		List<String> bridge = receiveBridgeSize();
+		int bridgeSize = receiveBridgeSize();
+		List<String> bridge = bridgeGameService.initBridge(bridgeSize);
 		BridgeGame bridgeGame = new BridgeGame(bridge);
 		List<List<String>> currentMap = startBridgeGame(bridgeGame);
 		outputView.printResult(currentMap, bridgeGame);
 	}
 
-	private List<String> receiveBridgeSize() {
+	private int receiveBridgeSize() {
 		try {
 			int size = inputView.readBridgeSize();
-			return bridgeGameService.initBridge(size);
+			return bridgeGameService.checkBridgeSize(size);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			return receiveBridgeSize();
