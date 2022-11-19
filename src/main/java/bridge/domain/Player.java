@@ -21,4 +21,12 @@ public class Player  {
     public void initialize() {
         inputs = new ArrayList<>();
     }
+
+    public void tryGame() {
+        this.temp++;
+    }
+
+    public int getTryGameCount() {
+        return temp;
+    }
 }
