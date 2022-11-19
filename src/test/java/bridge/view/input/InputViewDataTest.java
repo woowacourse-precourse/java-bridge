@@ -33,4 +33,25 @@ public class InputViewDataTest {
             );
         }
     }
+
+    @ParameterizedTest(name = "MOVING_ROUTE_isCorrectTest Case : {0}")
+    @ArgumentsSource(MovingRouteTestData.class)
+    void MOVING_ROUTE_isCorrectTest(String input, boolean expected) {
+        boolean result = InputViewData.MOVING_ROUTE.isCorrect(input);
+
+        assertThat(result).isEqualTo(expected);
+    }
+
+    private static class MovingRouteTestData implements ArgumentsProvider {
+
+        @Override
+        public Stream<? extends Arguments> provideArguments(ExtensionContext context) throws Exception {
+            return Stream.of(
+                    Arguments.of("U", true),
+                    Arguments.of("D", true),
+                    Arguments.of("3", false),
+                    Arguments.of("P", false)
+            );
+        }
+    }
 }
