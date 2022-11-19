@@ -65,5 +65,20 @@ class InputViewTest {
             // then
             assertThat(inputView.readMoving()).isEqualTo(string);
         }
+
+        @ParameterizedTest
+        @DisplayName("실패")
+        @ValueSource(strings = {"A", "Hello, world!"})
+        void readMoving_InvalidInput_ExceptionThrown(String string) {
+            // given
+            InputStream in = new ByteArrayInputStream(string.getBytes());
+            InputView inputView = new InputView();
+
+            // when
+            System.setIn(in);
+
+            // then
+            assertThrows(IllegalArgumentException.class, inputView::readMoving);
+        }
     }
 }
