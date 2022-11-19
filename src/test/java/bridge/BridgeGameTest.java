@@ -125,6 +125,17 @@ class BridgeGameTest {
                   .isEqualTo("O   OO");
      }
 
+     @Test
+     @DisplayName("게임 다시 시도 테스트")
+     public void retry() throws Exception{
+          Bridge bridge = new Bridge(List.of("U","D","D"));
+          unit(bridge,"U",BridgeStatus.SUCCESS);
+          unit(bridge,"U",BridgeStatus.FAIL);
+          currentBridge.reset();
+          Assertions.assertThat(currentBridge.bridgeLength()).isEqualTo(0);
+          Assertions.assertThat(currentBridge.getBridgeStatus()).isEqualTo(BridgeStatus.SUCCESS);
+     }
+
 
 
 
