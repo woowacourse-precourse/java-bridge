@@ -1,5 +1,8 @@
 package bridge.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static bridge.domain.GameStatus.FAILED;
 import static bridge.domain.GameStatus.PLAYING;
 import static bridge.domain.GameStatus.SUCCESS;
@@ -10,11 +13,11 @@ import static bridge.domain.GameStatus.SUCCESS;
 public class BridgeGame {
 
     private final Bridge bridge;
-    private int position;
+    private final List<MapUnit> gameMap;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
-        this.position = 0;
+        this.gameMap = new ArrayList<>();
     }
 
     /**
@@ -24,16 +27,18 @@ public class BridgeGame {
      */
     public GameStatus move(BridgeUnit nextUnit) {
         if (!canMove(nextUnit)) {
+            gameMap.add(new MapUnit(nextUnit, false));
             return FAILED;
         }
-        position++;
-        if (position == bridge.getSize()) {
+        gameMap.add(new MapUnit(nextUnit, true));
+        if (gameMap.size() == bridge.getSize()) {
             return SUCCESS;
         }
         return PLAYING;
     }
 
     private boolean canMove(BridgeUnit nextUnit) {
+        int position = gameMap.size();
         return bridge.getUnit(position).equals(nextUnit);
     }
 
@@ -43,5 +48,9 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+    }
+
+    public List<MapUnit> getGameMap() {
+        return gameMap;
     }
 }
