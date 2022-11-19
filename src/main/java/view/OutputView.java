@@ -13,10 +13,17 @@ public class OutputView {
     }
 
     public static void printGameResult(GameResult gameResult) {
+        printExceededAttempt(gameResult.getResultNumber());
         printResultText();
         printMap(MapConverter.convertMap(gameResult.getUser().getUserMap()));
         printResult(gameResult.getResultNumber());
         printCountOfAttempt(gameResult.getCountOfAttempt());
+    }
+
+    private static void printExceededAttempt(int resultNumber) {
+        if (resultNumber == ResultTable.END.getResultNumber()) {
+            System.out.println("가능한 시도 횟수를 초과하여 게임을 종료합니다.");
+        }
     }
 
     private static void printResultText() {
