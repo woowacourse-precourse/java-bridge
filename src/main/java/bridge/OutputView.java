@@ -7,16 +7,17 @@ import java.util.List;
  */
 public class OutputView {
     private static final String STARTING_MESSAGE = "다리 건너기 게임을 시작합니다.";
-    private static final String MESSAGE_FOR_GET_LENGTH = "다리의 길이를 입력해 주세요.";
-    private static final String MESSAGE_FOR_GET_SPACE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String MESSAGE_TO_GET_LENGTH = "다리의 길이를 입력해 주세요.";
+    private static final String MESSAGE_TO_GET_SPACE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String MESSAGE_TO_GET_WHETHER_RETRY_OR_NOT = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     public void printInitialMessages() {
         System.out.println(STARTING_MESSAGE);
-        System.out.println(MESSAGE_FOR_GET_LENGTH);
+        System.out.println(MESSAGE_TO_GET_LENGTH);
     }
 
     public void printMessageToGetSpaceToMove() {
-        System.out.println(MESSAGE_FOR_GET_SPACE);
+        System.out.println(MESSAGE_TO_GET_SPACE);
     }
 
     /**
@@ -30,6 +31,10 @@ public class OutputView {
         up.forEach(System.out::print);
         System.out.println();
         down.forEach(System.out::print);
+    }
+
+    public void printMessageAfterFailure() {
+        System.out.println(MESSAGE_TO_GET_WHETHER_RETRY_OR_NOT);
     }
 
     /**
