@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static bridge.domain.BridgeGame.RETRY_COUNT;
+import static bridge.domain.BridgeGameResult.*;
 import static bridge.domain.enumeration.Format.*;
 import static bridge.domain.enumeration.Message.*;
 import static bridge.domain.enumeration.MovingType.*;
@@ -48,10 +49,6 @@ public class OutputView {
         return makeRowWithFormat(EMPTY.getFormat());
     }
 
-    private static boolean checkUp(String userMoving) {
-        return Objects.equals(userMoving, UP.getMovingType());
-    }
-
     private static String makeDownRow(BridgeGameResult bridgeGameResult) {
         if (checkDown(bridgeGameResult.getUserMoving()) && bridgeGameResult.getIsMatched()) {
             return makeRowWithFormat(CORRECT.getFormat());
@@ -60,10 +57,6 @@ public class OutputView {
             return makeRowWithFormat(WRONG.getFormat());
         }
         return makeRowWithFormat(EMPTY.getFormat());
-    }
-
-    private static boolean checkDown(String userMoving) {
-        return Objects.equals(userMoving, DOWN.getMovingType());
     }
 
     private static String makeRowWithFormat(String result) {

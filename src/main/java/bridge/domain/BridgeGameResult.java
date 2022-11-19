@@ -15,6 +15,14 @@ public class BridgeGameResult {
         this.userMoving = userMoving;
     }
 
+    public static boolean checkUp(String userMoving) {
+        return Objects.equals(userMoving, UP.getMovingType());
+    }
+
+    public static boolean checkDown(String userMoving) {
+        return Objects.equals(userMoving, DOWN.getMovingType());
+    }
+
     public boolean getIsMatched() {
         return this.isMatched;
     }
