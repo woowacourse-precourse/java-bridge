@@ -86,9 +86,9 @@ class ApplicationTest extends NsTest {
 	void 이동_테스트() {
 		BridgeGame bridgeGame = new BridgeGame();
 		List<String> currentBridgeState = new ArrayList<>(List.of("U", "D", "U"));
-		List<String> currentBridge = bridgeGame.move(currentBridgeState, "U");
+		bridgeGame.move(currentBridgeState, "U");
 
-		assertThat(currentBridge.containsAll(List.of("U", "D", "U", "U"))).isTrue();
+		assertThat(currentBridgeState.containsAll(List.of("U", "D", "U", "U"))).isTrue();
 	}
 
 	@Test
