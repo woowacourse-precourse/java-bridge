@@ -4,13 +4,16 @@ public class BridgeGame {
     private final Bridge bridge;
     private final PassingSpace passingSpace;
     private int numberOfTry;
+    private int position;
 
     public BridgeGame(Bridge bridge, PassingSpace passingSpace) {
         this.bridge = bridge;
         this.passingSpace = passingSpace;
+        numberOfTry = 0;
+        position = 0;
     }
 
-    public void move(int position, String selectedSpace) {
+    public void move(String selectedSpace) {
         Space space = Space.valueOf(selectedSpace);
         Movable movable = bridge.compareSpace(position, selectedSpace);
         passingSpace.add(space, movable);
@@ -20,7 +23,7 @@ public class BridgeGame {
         return passingSpace.toString();
     }
 
-    public boolean isRightSpace(int position, String selectedSpace) {
+    public boolean isRightSpace(String selectedSpace) {
         Movable movable = bridge.compareSpace(position, selectedSpace);
         return movable.isMovable();
     }
@@ -35,7 +38,7 @@ public class BridgeGame {
         return retry.isRetry();
     }
 
-    public boolean isSuccessCrossingBridge(int position) {
+    public boolean isSuccessCrossingBridge() {
         return bridge.size() == position;
     }
 
