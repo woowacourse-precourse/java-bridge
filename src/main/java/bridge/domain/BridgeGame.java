@@ -22,13 +22,13 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(Direction value) {
-        if (tryForward(value)) {
-            bridgeTokens.add(new BridgeToken(value, true));
+    public boolean move(Direction direction) {
+        if (tryForward(direction)) {
+            bridgeTokens.add(new BridgeToken(direction, true));
             bridge.moveForward();
             return true;
         }
-        bridgeTokens.add(new BridgeToken(value, false));
+        bridgeTokens.add(new BridgeToken(direction, false));
         return false;
     }
 
@@ -45,7 +45,7 @@ public class BridgeGame {
         return false;
     }
 
-    public boolean tryForward(Direction direction) {
+    private boolean tryForward(Direction direction) {
         return bridge.isCurrentBridgeDirection(direction.getCommand());
     }
 

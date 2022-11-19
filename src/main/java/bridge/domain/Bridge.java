@@ -7,7 +7,7 @@ public class Bridge {
     private static final int POSITION_INIT_NUMBER = 0;
 
     private final List<String> bridge;
-    private int currentPosition = 0;
+    private int currentPosition = POSITION_INIT_NUMBER;
 
     public Bridge(List<String> bridge) {
         bridge.forEach(System.out::println);
