@@ -50,4 +50,8 @@ public class BridgeGame {
     public MoveResult getMoveResult() {
         return moveResult;
     }
+
+    public int getBridgeSize() {
+        return bridge.size();
+    }
 }

@@ -28,18 +28,18 @@ public class Application {
 
     private static void playUntilQuit(BridgeMaker bridgeMaker, InputView inputView, OutputView outputView) {
         outputView.printGameStartMessage();
-        int bridgeSize = inputView.readBridgeSize();
-        BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(bridgeSize), new MoveResult());
+
+        BridgeGame bridgeGame = new BridgeGame(bridgeMaker.makeBridge(inputView.readBridgeSize()), new MoveResult());
         while (true) {
-            if (play(bridgeGame, bridgeSize, inputView, outputView).equals(QUIT)) {
+            if (play(bridgeGame, inputView, outputView).equals(QUIT)) {
                 outputView.printResult(bridgeGame.getMoveResult());
                 break;
             }
         }
     }
 
-    public static GameCommand play(BridgeGame bridgeGame, int bridgeSize, InputView inputView, OutputView outputView) {
-        for (int i = 0; i < bridgeSize; i++) {
+    public static GameCommand play(BridgeGame bridgeGame, InputView inputView, OutputView outputView) {
+        for (int i = 0; i < bridgeGame.getBridgeSize(); i++) {
             bridgeGame.move(i, inputView.readMoving());
             outputView.printMap(bridgeGame.getMoveResult());
             if (!bridgeGame.getMoveResult().isSuccess()) {
