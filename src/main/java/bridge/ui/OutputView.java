@@ -25,11 +25,12 @@ public class OutputView {
     private void printEachBridge(List<Answer> bridge){
         StringBuilder result = new StringBuilder();
         result.append(Bridge.START.getView());
-        bridge.forEach(answer -> {
-                    result.append(answer.getOutput());
-                    result.append(Bridge.MID.getView());
-                }
-                );
+        for(int answerCount = 0; answerCount < bridge.size(); answerCount++){
+            result.append(bridge.get(answerCount).getOutput());
+            if(answerCount != bridge.size() - 1){
+                result.append(Bridge.MID.getView());
+            }
+        }
         result.append(Bridge.END.getView());
         System.out.println(result);
     }
