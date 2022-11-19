@@ -19,8 +19,23 @@ public class GameController {
 		outputView.printStart();
 		game.start(inputView.readBridgeSize());
 
-		game.move(inputView.readMoving());
-		outputView.printMap(game.getRecord());
+		while (!tryMove()){
+		}
+
+	}
+
+	private boolean tryMove() {
+		boolean success=game.move(inputView.readMoving());
+		boolean isEnd = false;
+
+		if(success) {
+			outputView.printMap(game.getRecord().getBoards());
+		} else if (!success) {
+			outputView.printMap(game.getRecord().getBoards());
+			isEnd=game.retry(inputView.readGameCommand());
+		}
+
+		return isEnd;
 	}
 
 }

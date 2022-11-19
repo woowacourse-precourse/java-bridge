@@ -5,8 +5,6 @@ import bridge.exception.ErrorMessage;
 
 public class BridgeSizeValidator {
 
-
-
 	public static String validate(String size) {
 		isNumber(size);
 		isRightRange(Integer.parseInt(size));

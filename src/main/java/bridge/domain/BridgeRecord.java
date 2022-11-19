@@ -11,21 +11,29 @@ public class BridgeRecord {
 
 	public BridgeRecord() {
 		boards= new ArrayList<>();
-		tryCount=0;
+		tryCount=1;
 	}
 
-	public void addBoard(Bridge bridge, String board){
+	public boolean addBoard(Bridge bridge, String board){
 		List<String> bridgeBoards = bridge.getBoards();
+		boolean success = true;
 
 		if(bridgeBoards.get(boards.size()).equals(board)){
 			boards.add(new String[]{board, GameRule.ANSWER_MARK});
 		} else if (!bridgeBoards.get(boards.size()).equals(board)){
 			boards.add(new String[]{board, GameRule.WRONG_MARK});
+			success = false;
 		}
-		tryCount++;
+		return success;
+	}
+
+	public void deleteBoard() {
+		boards.remove(boards.size()-1);
 	}
 
 	public List<String[]> getBoards() {
 		return boards;
 	}
+
+
 }
