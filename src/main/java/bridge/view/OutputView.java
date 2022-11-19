@@ -12,7 +12,7 @@ public class OutputView {
 
     public static OutputView getInstance() {
         if (instance == null) {
-            return new OutputView();
+            instance = new OutputView();
         }
         return instance;
     }
