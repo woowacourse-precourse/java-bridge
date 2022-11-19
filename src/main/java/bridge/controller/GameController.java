@@ -8,5 +8,6 @@ public class GameController {
     private final InputMessage inputMessage = new InputMessage();
     public void startGame() {
         inputView.printMessage(inputMessage.START_GAME);
+        int bridgeSize = inputView.readBridgeSize();
     }
 }
