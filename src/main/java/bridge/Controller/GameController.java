@@ -1,13 +1,10 @@
 package bridge.Controller;
 
-import bridge.BridgeRandomNumberGenerator;
 import bridge.Domain.BridgeGame;
 import bridge.Domain.BridgeMaker;
 import bridge.View.InputView;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 public class GameController {
@@ -74,14 +71,16 @@ public class GameController {
             if (i == 0) {
                 System.out.print("[");
             }
-            if (bridge.get(i).equals("U")) {
-                if (matchResult.get(i) ) {
+            if (bridge.get(i).equals("U") && matchResult.get(i)) {
                     System.out.print(" O ");
-                } if (!matchResult.get(i)) {
-                    System.out.print(" X ");
-                }
             }
-            if (bridge.get(i).equals("D")) {
+            if (bridge.get(i).equals("U") && !matchResult.get(i)) {
+                    System.out.print("   ");
+            }
+            if (bridge.get(i).equals("D") && !matchResult.get(i)) {
+                System.out.print(" X ");
+            }
+            if (bridge.get(i).equals("D") && matchResult.get(i)) {
                 System.out.print("   ");
             }
             if (i == matchResult.size()-1) {
@@ -95,18 +94,20 @@ public class GameController {
             if (i == 0) {
                 System.out.print("[");
             }
-            if (bridge.get(i).equals("D")) {
-                if (matchResult.get(i)) {
-                    System.out.print(" O ");
-                } if (!matchResult.get(i)) {
-                    System.out.print(" X ");
-                }
+            if (bridge.get(i).equals("D") && matchResult.get(i)) {
+                System.out.print(" O ");
             }
-            if (bridge.get(i).equals("U")) {
+            if (bridge.get(i).equals("D") && !matchResult.get(i)) {
+                System.out.print("   ");
+            }
+            if (bridge.get(i).equals("U") && !matchResult.get(i)) {
+                System.out.print(" X ");
+            }
+            if (bridge.get(i).equals("U") && matchResult.get(i)) {
                 System.out.print("   ");
             }
             if (i == matchResult.size()-1) {
-                System.out.println("]");
+                System.out.println("]\n");
                 break;
             }
             System.out.print("|");
