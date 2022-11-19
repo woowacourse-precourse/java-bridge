@@ -1,5 +1,12 @@
 package bridge.domain;
 
+import static bridge.Constant.BOUNDARY_BETWEEN_FOOTPRINT;
+import static bridge.Constant.BRIDGE_LEFT_BOUNDARY;
+import static bridge.Constant.BRIDGE_RIGHT_BOUNDARY;
+import static bridge.Constant.BROKEN_FOOTPRINT;
+import static bridge.Constant.NOT_BROKEN_FOOTPRINT;
+import static bridge.Constant.NOT_PASS_FOOTPRINT;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,22 +36,22 @@ public class FootPrint {
         List<String> footPrintFromBot = new ArrayList<>();
         for (FootrestLocation each : footPrint) {
             if (each == FootrestLocation.UP) {
-                footPrintFromTop.add(" O ");
-                footPrintFromBot.add("   ");
+                footPrintFromTop.add(NOT_BROKEN_FOOTPRINT);
+                footPrintFromBot.add(NOT_PASS_FOOTPRINT);
             } else {
-                footPrintFromTop.add("   ");
-                footPrintFromBot.add(" O ");
+                footPrintFromTop.add(NOT_PASS_FOOTPRINT);
+                footPrintFromBot.add(NOT_BROKEN_FOOTPRINT);
             }
         }
         if (failAtLast) {
             if (footPrint.get(footPrint.size() - 1) == FootrestLocation.UP) {
-                footPrintFromTop.set(footPrint.size() - 1, " X ");
+                footPrintFromTop.set(footPrint.size() - 1, BROKEN_FOOTPRINT);
             } else {
-                footPrintFromBot.set(footPrint.size() - 1, " X ");
+                footPrintFromBot.set(footPrint.size() - 1, BROKEN_FOOTPRINT);
             }
         }
-        result += "[" + String.join("|", footPrintFromTop) + "]\n";
-        result += "[" + String.join("|", footPrintFromBot) + "]";
+        result += BRIDGE_LEFT_BOUNDARY + String.join(BOUNDARY_BETWEEN_FOOTPRINT, footPrintFromTop) + BRIDGE_RIGHT_BOUNDARY+ "\n";
+        result += BRIDGE_LEFT_BOUNDARY + String.join(BOUNDARY_BETWEEN_FOOTPRINT, footPrintFromBot) + BRIDGE_RIGHT_BOUNDARY;
         return result;
     }
 

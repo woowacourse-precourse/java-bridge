@@ -1,5 +1,9 @@
 package bridge.domain;
 
+import static bridge.Constant.BRIDGE_MAX_RANGE;
+import static bridge.Constant.BRIDGE_MIN_RANGE;
+import static bridge.Constant.MIN_INDEX;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -7,7 +11,7 @@ public class Bridge {
     private List<FootrestLocation> structure;
 
     public Bridge(List<String> structure) {
-        if (structure.size() < 3 || 20 < structure.size()) {
+        if (structure.size() < BRIDGE_MIN_RANGE || BRIDGE_MAX_RANGE < structure.size()) {
             throw new IllegalArgumentException("3 이상, 20 이하의 크기로만 입력이 가능합니다");
         }
         this.structure = structure.stream().map(each ->
@@ -18,7 +22,7 @@ public class Bridge {
 
     public boolean canMove(Integer order, FootrestLocation footrestLocation) {
         //order 크기 검증
-        if (structure.size() <= order || order < 0) {
+        if (structure.size() <= order || order < MIN_INDEX) {
             throw new IllegalStateException("다리 인덱스를 벗어남");
         }
         return structure.get(order) == footrestLocation;
