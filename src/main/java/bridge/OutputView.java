@@ -16,6 +16,10 @@ public class OutputView {
 	private final static String END_MESSAGE = "최종 게임 결과";
 	private final static String RESULT_MESSAGE = "게임 성공 여부: ";
 	private final static String RETRY_COUNT_MESSAGE = "총 시도한 횟수: ";
+	private final static String SUCCESS = "성공";
+	private final static String FAIL = "실패";
+	private final static String UP = "U";
+	private final static String DOWN = "D";
 	private static String bridgeMap;
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -49,10 +53,10 @@ public class OutputView {
     	String upBridge = START_MAP;
     	for(int i=0;i<=count;i++) {
     		if(i < count) {
-    			upBridge += isBlankOrNot(bridge.get(i),"U");
+    			upBridge += isBlankOrNot(bridge.get(i),UP);
     		}
     		if(i == count) {
-    			upBridge += isRightMovingOrBlank(bridge.get(i),"U", isRightMoving);
+    			upBridge += isRightMovingOrBlank(bridge.get(i),UP, isRightMoving);
     		}
     	}
     	return upBridge;
@@ -62,10 +66,10 @@ public class OutputView {
     	String downBridge = START_MAP;
     	for(int i=0;i<=count;i++) {
     		if(i < count) {
-    			downBridge += isBlankOrNot(bridge.get(i),"D");
+    			downBridge += isBlankOrNot(bridge.get(i),DOWN);
     		}
     		if(i == count) {
-    			downBridge += isRightMovingOrBlank(bridge.get(i),"D", isRightMoving);
+    			downBridge += isRightMovingOrBlank(bridge.get(i),DOWN, isRightMoving);
     		}
     	}
     	return downBridge;
@@ -90,9 +94,9 @@ public class OutputView {
     
     private String isGameSuccsess(boolean result) {
     	if(result) {
-    		return RESULT_MESSAGE+"성공";
+    		return RESULT_MESSAGE+SUCCESS;
     	}
-    	return RESULT_MESSAGE+"실패";
+    	return RESULT_MESSAGE+FAIL;
     }
     
 }
