@@ -11,7 +11,7 @@ public class Game {
         bridgeGame.init(sizeInput);
         while(bridgeGame.getSuccess()){
             int i;
-            for(i=1 ;i<=sizeInput;i++){
+            for(i = 0 ; i < sizeInput ; i++){
                 if(!bridgeGame.getSuccess()){
                     break;
                 }

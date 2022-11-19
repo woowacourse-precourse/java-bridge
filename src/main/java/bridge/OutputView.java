@@ -28,10 +28,10 @@ public class OutputView {
     }
 
     private void printSubBridge(List<String> subBridge){
-        System.out.println("[ ");
+        System.out.print("[ ");
         int size = subBridge.size();
         for(int i = 0; i < size-1 ; i++ ){
-            System.out.println(subBridge.get(i)+" | ");
+            System.out.print(subBridge.get(i)+" | ");
         }
         System.out.println(subBridge.get(size-1)+" ]");
     }
