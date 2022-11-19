@@ -10,11 +10,7 @@ public class Bridge {
         this.directions = directions;
     }
 
-    public boolean hasSameDirection(Player player) {
-        return !isDifferent(player.getLastInput(), directions.get(player.getLastIndex()));
-    }
-
-    public boolean isDifferent(String original, String expected) {
-        return !original.equals(expected);
+    public String canMoveDirection(int idx) {
+        return directions.get(idx);
     }
 }
