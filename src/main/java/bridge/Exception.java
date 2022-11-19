@@ -20,13 +20,13 @@ public class Exception {
         }
     }
 
-    public void validateMovingInput(String moving) {
+    public void validateMovingInput(String moving) throws IllegalArgumentException {
         if(!(moving.equals("U")||moving.equals("D"))) {
             throwIllegalArgumentError(ExceptionMessage.UNEXPECTED_INPUT_MESSAGE.getMessage());
         }
     }
 
-    public void validateRetryInput(String gameCommand) {
+    public void validateRetryInput(String gameCommand) throws IllegalArgumentException {
         if(!(gameCommand.equals("R")||gameCommand.equals("Q"))) {
             throwIllegalArgumentError(ExceptionMessage.UNEXPECTED_INPUT_MESSAGE.getMessage());
         }
