@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class InputBridgeSizeValidator {
 
-    private static final String DIGIT_VALIDATE_REGEX = "[0-9]+";
+    private static final String DIGIT_VALIDATE_REGEX = "-?[0-9]+";
     private static final int MIN_BRIDGE_SIZE = 3;
     private static final int MAX_BRIDGE_SIZE = 20;
 
