@@ -11,7 +11,6 @@ public class InputView {
     public int readBridgeSize() {
         String bridgeSize = camp.nextstep.edu.missionutils.Console.readLine();
         // input 오류처리 필요(숫자 아닌값 입력, 3이상 20이하 범위 벗어난 경우)
-
         return Integer.parseInt(bridgeSize);
     }
 
@@ -29,19 +28,27 @@ public class InputView {
         return null;
     }
 
-    public Boolean checkNotDigit(String str) {
+    public void checkNotDigit(String str) throws IllegalArgumentException {
         for (int i = 0; i < str.length(); i++) {
             char charUnit = str.charAt(i);
             if ((int) charUnit < 48 || (int) charUnit > 58) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("[ERROR] 다리 길이는 숫자여야 합니다");
             }
         }
-        return true;
     }
 
-    public Boolean checkOutOfBound(int bridgeSize) {
+    public void checkOutOfBound(int bridgeSize) throws IllegalArgumentException {
         if ((bridgeSize < 3) || (bridgeSize > 20)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
+    }
+
+    public Boolean errorHandling(String str) {
+        try {
+            checkNotDigit(str);
+            checkOutOfBound(Integer.parseInt(str));
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
         }
         return true;
     }
