@@ -14,4 +14,12 @@ public class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
     }
+
+    @ValueSource(strings = {"u", "A", "5", "DD", " "})
+    @ParameterizedTest
+    void 이동할_칸의_입력이_올바르지_않은_경우(String input) {
+        assertThatThrownBy(() -> InputValidator.inputMovingValidate(input))
+                .isInstanceOf(IllegalArgumentException.class);
+
+    }
 }
