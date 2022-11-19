@@ -26,20 +26,12 @@ public class OutputView {
     private static void printRoad(List<CrossResult> road) {
         System.out.print("[ ");
         for (int i=0; i<road.size(); i++) {
-            System.out.print(convertToStr(road.get(i)));
+            System.out.print(road.get(i).toString());
             System.out.print(" ");
             if (i != road.size() - 1)
                 System.out.print("| ");
         }
         System.out.println("]");
-    }
-
-    private static String convertToStr(CrossResult crossResult) {
-        if (crossResult == CrossResult.SUCCESS)
-            return "O";
-        else if (crossResult == CrossResult.FAILURE)
-            return "X";
-        return " ";
     }
 
     /**
