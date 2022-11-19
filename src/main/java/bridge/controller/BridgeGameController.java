@@ -36,7 +36,7 @@ public class BridgeGameController {
                 }
             }
         } catch (IllegalArgumentException e) {
-
+            outputView.printErrorMessage(e.getMessage());
         }
     }
 }

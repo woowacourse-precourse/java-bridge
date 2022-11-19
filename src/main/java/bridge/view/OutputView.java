@@ -12,6 +12,10 @@ public class OutputView {
     private static final String NO_PASS = "X";
     private static final String EMPTY = " ";
 
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
