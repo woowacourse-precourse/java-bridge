@@ -55,4 +55,8 @@ public class BridgeGame {
     public int getPosition() {
         return position;
     }
+
+    public int getRetryCount() {
+        return retryCount;
+    }
 }
