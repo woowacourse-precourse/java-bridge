@@ -1,6 +1,6 @@
 package bridge.view;
 
-import java.util.List;
+import bridge.view.enums.OutputString;
 
 public class OutputView {
     private static String upBridge = "[]";
@@ -26,17 +26,18 @@ public class OutputView {
     public void printMap(String input, boolean tf, int idx) {
         if (tf == true) {
             printTrue(input);
-            if (idx == 0) {
-                upBridge = upBridge.replace("|", "");
-                downBridge = downBridge.replace("|", "");
-            }
+            if (idx == 0)
+                replaceFirst();
             return;
         }
         printFalse(input);
-        if (idx == 0) {
-            upBridge = upBridge.replace("|", "");
-            downBridge = downBridge.replace("|", "");
-        }
+        if (idx == 0)
+            replaceFirst();
+    }
+
+    public void replaceFirst() {
+        upBridge = upBridge.replace("|", "");
+        downBridge = downBridge.replace("|", "");
     }
 
     public void printTrue(String input) {

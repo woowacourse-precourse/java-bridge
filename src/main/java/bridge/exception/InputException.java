@@ -1,6 +1,6 @@
 package bridge.exception;
 
-import bridge.ExceptionString;
+import bridge.view.enums.ExceptionString;
 
 import java.util.regex.Pattern;
 
