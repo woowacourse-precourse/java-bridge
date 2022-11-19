@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import static bridge.utils.ErrorMessage.INVALID_INPUT_VALUE;
+
 public class User {
     private int step = 0;
     private boolean live = true;
@@ -22,7 +24,7 @@ public class User {
 
     private void validateStatus(String status) {
         if (isNotStatus(status)) {
-            throw new IllegalArgumentException("[ERROR]");
+            throw new IllegalArgumentException(INVALID_INPUT_VALUE.getMessage());
         }
     }
 
