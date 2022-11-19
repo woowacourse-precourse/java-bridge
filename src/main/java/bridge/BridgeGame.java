@@ -3,18 +3,12 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.Command.*;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-
-    private final static String SUCCESS = "성공";
-    private final static String FAIL = "실패";
-    private final static String RESULT_SUCCESS = "O";
-    private final static String RESULT_FAIL = "X";
-    private final static String UP = "U";
-    private final static String RETRY = "R";
-    private final static String BLANK_SPACE = " ";
 
     private final List<List<String>> result = new ArrayList<>();
     private final List<String> bridge;
@@ -34,7 +28,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String moving) {
-        if (isBridgeEqulas(moving)) {
+        if (isBridgeEquals(moving)) {
             addMovingResult(moving);
             return;
         }
@@ -43,7 +37,7 @@ public class BridgeGame {
         gameEnd = true;
     }
 
-    private boolean isBridgeEqulas(String moving) {
+    private boolean isBridgeEquals(String moving) {
         if (bridge.get(movingCount).equals(moving)) {
             movingCount++;
             return true;
@@ -53,31 +47,31 @@ public class BridgeGame {
     }
 
     private void addMovingResult(String moving) {
-        if (moving.equals(UP)) {
-            addLetterToFirstFloor(RESULT_SUCCESS);
+        if (UP.isEquals(moving)) {
+            addLetterToFirstFloor(RESULT_SUCCESS.getMessage());
             return;
         }
 
-        addLetterToSecondFloor(RESULT_SUCCESS);
+        addLetterToSecondFloor(RESULT_SUCCESS.getMessage());
     }
 
     private void addLetterToFirstFloor(String letter) {
         result.get(0).add(letter);
-        result.get(1).add(BLANK_SPACE);
+        result.get(1).add(BLANK_SPACE.getMessage());
     }
 
     private void addLetterToSecondFloor(String letter) {
-        result.get(0).add(BLANK_SPACE);
+        result.get(0).add(BLANK_SPACE.getMessage());
         result.get(1).add(letter);
     }
 
     private void addFailMovingResult(String moving) {
-        if (moving.equals(UP)) {
-            addLetterToFirstFloor(RESULT_FAIL);
+        if (UP.isEquals(moving)) {
+            addLetterToFirstFloor(RESULT_FAIL.getMessage());
             return;
         }
 
-        addLetterToSecondFloor(RESULT_FAIL);
+        addLetterToSecondFloor(RESULT_FAIL.getMessage());
     }
 
     /**
@@ -96,7 +90,7 @@ public class BridgeGame {
     }
 
     private boolean isRetryEquals(String command) {
-        return command.equals(RETRY);
+        return command.equals(RETRY.getMessage());
     }
 
     private void initRetryGame() {
@@ -108,10 +102,10 @@ public class BridgeGame {
 
     public String isSuccess() {
         if (isFinishBridge()) {
-            return SUCCESS;
+            return SUCCESS.getMessage();
         }
 
-        return FAIL;
+        return FAIL.getMessage();
     }
 
     public boolean isFinishBridge() {
