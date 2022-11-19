@@ -33,7 +33,7 @@ public class Controller {
     private void gamePlay() {
         do {
             move();
-            if (service.retry()) {
+            if (retry()) {
                 break;
             }
         } while (true);
@@ -49,5 +49,16 @@ public class Controller {
                 service.catchError(error);
             }
         } while (!service.isBridgeEnd());
+    }
+
+    // 다시 시작 여부를 묻는 기능
+    private boolean retry() {
+        do {
+            try {
+                return service.retry();
+            } catch (IllegalArgumentException error) {
+                service.catchError(error);
+            }
+        } while (true);
     }
 }
