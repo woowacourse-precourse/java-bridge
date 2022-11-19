@@ -25,20 +25,20 @@ public class CustomStringBuilderForBridge {
     }
 
     public void addO(String UorD) {
-        if (UorD == "U") {
+        if (UorD.equals("U")) {
             upperBridge.append(" O ");
             lowerBridge.append("   ");
-        } else if (UorD == "D") {
+        } else if (UorD.equals("D")) {
             upperBridge.append("   ");
             lowerBridge.append(" O ");
         }
     }
 
     public void addX(String UorD) {
-        if (UorD == "U") {
+        if (UorD.equals("U")) {
             upperBridge.append(" X ");
             lowerBridge.append("   ");
-        } else if (UorD == "D") {
+        } else if (UorD.equals("D")) {
             upperBridge.append("   ");
             lowerBridge.append(" X ");
         }
