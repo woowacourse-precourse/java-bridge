@@ -41,4 +41,13 @@ class ValidatorTest {
         assertThatThrownBy(() -> Validator.validatedBridgeSize(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    public void validateMoving() {
+        assertThatThrownBy(() -> Validator.validateMoving("Q"))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        Validator.validateMoving("u");
+        Validator.validateMoving("D");
+    }
 }
