@@ -25,4 +25,10 @@ public class Validator {
             throw new IllegalArgumentException(SIZE_RANGE_ERROR);
         }
     }
+
+    public static void validateMovingWord(String word) {
+        if (!word.equals("U") && !word.equals("D")) {
+            throw new IllegalArgumentException(MOVING_WORD_INPUT_ERROR);
+        }
+    }
 }

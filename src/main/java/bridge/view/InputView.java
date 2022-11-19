@@ -25,6 +25,7 @@ public class InputView {
     public static String inputMoving() {
         OutputView.printMovingSelectMessage();
         String moveWord = Console.readLine();
+        Validator.validateMovingWord(moveWord);
         return moveWord;
     }
 
