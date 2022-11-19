@@ -29,8 +29,13 @@ public class BridgeGame {
     }
 
     public boolean isMovementSuccess(String input) {
-        int currentLocation = location.getLocation();
-        return bridge.isAvailableSquare(input, currentLocation);
+        int squareIndex = getSquareIndex();
+        return bridge.isAvailableSquare(input, squareIndex);
+    }
+
+    public boolean isLastSquare() {
+        int squareIndex = getSquareIndex();
+        return bridge.isLastIndex(squareIndex);
     }
 
     /**
@@ -39,5 +44,10 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+    }
+
+    private int getSquareIndex() {
+        int currentLocation = location.getLocation();
+        return currentLocation - 1;
     }
 }

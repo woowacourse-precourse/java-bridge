@@ -42,12 +42,18 @@ public class BridgeGameController {
         while (inputView.readGameCommand().equals(RESTART)) {
             bridgeGame.retry();
             takeTrial();
+            if (isFinish()) {
+                return;
+            }
         }
     }
 
     private void takeTrial() {
         String movement;
         do {
+            if (isFinish()) {
+                return;
+            }
             movement = getMovement();
         } while (bridgeGame.isMovementSuccess(movement));
     }
@@ -57,5 +63,9 @@ public class BridgeGameController {
         String nextMovement = inputView.readMoving();
         bridgeGame.move();
         return nextMovement;
+    }
+
+    private boolean isFinish() {
+        return bridgeGame.isLastSquare();
     }
 }
