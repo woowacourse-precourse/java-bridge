@@ -11,9 +11,16 @@ import java.util.Collections;
 import java.util.List;
 
 public class GameController {
-    InputView inputView = new InputView();
-    BridgeGame bridgeGame = new BridgeGame();
-    BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    InputView inputView;
+    BridgeGame bridgeGame;
+    BridgeMaker bridgeMaker;
+
+    public GameController(InputView inputView, BridgeGame bridgeGame, BridgeMaker bridgeMaker) {
+        this.inputView = inputView;
+        this.bridgeGame = bridgeGame;
+        this.bridgeMaker = bridgeMaker;
+    }
+
 
     public void GAMESTART() {
         System.out.println("다리 건너기 게임을 시작합니다.");
@@ -24,6 +31,7 @@ public class GameController {
     }
 
     public void RUNPROCESS() {
+        bridgeGame.increaseGameCount();
         for (int i = 0; i < bridgeGame.getBridgeSize(); i++) {
             String input = inputView.readMoving();
             List<String> bridge = bridgeGame.getBridge();
@@ -34,6 +42,9 @@ public class GameController {
             printBridge(matchResult, bridge);
             if (!match) {
                 break;
+            }
+            if (i == bridgeGame.getBridgeSize() - 1) {
+                bridgeGame.gameSuccecs();
             }
         }
     }
@@ -46,7 +57,19 @@ public class GameController {
         return input.equals("R");
     }
 
+    public void STOPGAME() {
+        System.out.println("최종 게임 결과");
+        printBridge(bridgeGame.getMatchResult(),bridgeGame.getBridge());
+        String success = "성공";
+        if (!bridgeGame.isSuccecs()) {
+            success = "실패";
+        }
+        System.out.println("게임 성공 여부: "+success);
+        System.out.println("총 시도한 횟수: "+bridgeGame.getGameCount());
+    }
+
     public void printBridge(List<Boolean> matchResult, List<String> bridge) {
+        // 첫째줄 출력
         for (int i = 0; i < matchResult.size(); i++) {
             if (i == 0) {
                 System.out.print("[");
@@ -67,13 +90,13 @@ public class GameController {
             }
             System.out.print("|");
         }
-
+        // 둘째줄 출력
         for (int i = 0; i < matchResult.size(); i++) {
             if (i == 0) {
                 System.out.print("[");
             }
             if (bridge.get(i).equals("D")) {
-                if (matchResult.get(i) ) {
+                if (matchResult.get(i)) {
                     System.out.print(" O ");
                 } if (!matchResult.get(i)) {
                     System.out.print(" X ");
