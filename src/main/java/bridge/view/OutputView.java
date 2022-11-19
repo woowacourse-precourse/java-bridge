@@ -27,9 +27,8 @@ public class OutputView {
         System.out.println(SELECT_TO_MOVE_PLAYER_MESSAGE);
     }
 
-    public static void printAskRetryMessage() {
-        System.out.println(ASK_RETRY_MESSAGE);
-    }
+    public static void printAskRetryMessage() { System.out.println(ASK_RETRY_MESSAGE); }
+    public static void printErrorMessage(IllegalArgumentException e) { System.out.println(e.getMessage()); }
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.

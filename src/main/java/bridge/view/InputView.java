@@ -25,7 +25,7 @@ public class InputView {
                 validateRange(bridgeSize);
                 break;
             } catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
+                OutputView.printErrorMessage(e);
             }
         }
         return Integer.parseInt(bridgeSize);
@@ -43,7 +43,7 @@ public class InputView {
                 validateInvalidType(moveCommand);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.printErrorMessage(e);
             }
         }
         return moveCommand;
@@ -61,7 +61,7 @@ public class InputView {
                 validateInvalidRetryType(retry);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.printErrorMessage(e);
             }
         }
         return retry;
