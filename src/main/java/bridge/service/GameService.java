@@ -25,14 +25,11 @@ public class GameService {
     }
 
     public MatchResult moveForward(String input) {
-        return bridgeGame.move(input);
+        MatchResult move = bridgeGame.move(input);
+        setBridgeDto(input);
+        return move;
     }
 
-    public BridgeDto getMyBridgeToPrint(MatchResult matchResult) {
-        BridgeDto dto = bridgeGame.getMyBridgeToPrint(matchResult);
-        cache.add(dto);
-        return dto;
-    }
 
     private void setReGame() {
         cache.clear();
@@ -48,6 +45,19 @@ public class GameService {
     }
 
     public BridgeDto getRecentBridge() {
+        if(cache.isEmpty()) {
+            return new BridgeDto();
+        }
         return cache.get(cache.size() - 1);
+    }
+
+    private void setBridgeDto(String input) {
+        BridgeDto recentDto = getRecentBridge();
+
+        State state = bridgeGame.matchRecentInput();
+        Command command = Command.getByAbbreviation(input);
+
+        recentDto.setBridge(command, state);
+        cache.add(recentDto);
     }
 }

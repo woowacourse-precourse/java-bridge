@@ -1,8 +1,6 @@
 package bridge.domain;
 
-import bridge.dto.BridgeDto;
-
-import java.util.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,6 +40,11 @@ public class BridgeGame {
         return MatchResult.SUCCESS;
     }
 
+    public State matchRecentInput() {
+        int idx = myBridge.size() - 1;
+        return bridge.getStateOf(idx, myBridge.get(idx));
+    }
+
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
@@ -50,13 +53,5 @@ public class BridgeGame {
      */
     public void retry() {
         myBridge.clear();
-    }
-
-    public BridgeDto getMyBridgeToPrint(MatchResult recentResult) {
-        BridgeDto bridgeDto = new Bridge(myBridge).toPrint();
-        if (recentResult.equals(MatchResult.FAILURE)) {
-            bridgeDto.swap(myBridge.get(myBridge.size() - 1));
-        }
-        return bridgeDto;
     }
 }

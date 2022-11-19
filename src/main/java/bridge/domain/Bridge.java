@@ -1,8 +1,5 @@
 package bridge.domain;
 
-import bridge.dto.BridgeDto;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
@@ -20,19 +17,11 @@ public class Bridge {
         return bridge.size() - 1 == idx;
     }
 
-    public BridgeDto toPrint() {
-        List<State> up = new ArrayList<>();
-        List<State> down = new ArrayList<>();
-        for (String s : bridge) {
-            if (s.equals(Command.UP.getAbbreviation())) {
-                up.add(State.CORRECT);
-                down.add(State.NONE);
-            }
-            if (s.equals(Command.DOWN.getAbbreviation())) {
-                up.add(State.NONE);
-                down.add(State.CORRECT);
-            }
+
+    public State getStateOf(int idx, String candidate) {
+        if (matchWithIndex(idx, candidate)) {
+            return State.CORRECT;
         }
-        return new BridgeDto(up, down);
+        return State.WRONG;
     }
 }

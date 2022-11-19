@@ -53,7 +53,7 @@ public class GameController {
         String movement = viewService.askMovement();
         MatchResult recentResult = gameService.moveForward(movement);
 
-        BridgeDto dto = gameService.getMyBridgeToPrint(recentResult);
+        BridgeDto dto = gameService.getRecentBridge();
         viewService.printBridge(dto);
         return recentResult;
     }

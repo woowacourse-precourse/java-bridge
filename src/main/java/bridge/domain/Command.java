@@ -23,6 +23,13 @@ public enum Command {
         return Command.DOWN.getAbbreviation();
     }
 
+    public static Command getByAbbreviation(String abbreviation) {
+        if (abbreviation.equals(Command.UP.getAbbreviation())) {
+            return Command.UP;
+        }
+        return Command.DOWN;
+    }
+
     public String getKor() {
         return this.korExplanation;
     }
