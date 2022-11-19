@@ -63,6 +63,8 @@
 - [ ] 이동한 칸과 위치 저장하기
 - [ ] FootPrint 초기화하기
 - [ ] BridgeCrossingDTO 반환하기
+- BridgeCrossingStatus
+- [x] 횡단 상태 메시지 정리 
 
 ### service
 - BridgeService

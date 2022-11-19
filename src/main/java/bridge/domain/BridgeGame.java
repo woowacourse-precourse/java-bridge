@@ -6,20 +6,20 @@ public class BridgeGame {
     private final Bridge bridge;
     private int nowLocation = 0;
     private int tryCount = 1;
-    private boolean isSuccess = false;
+    private BridgeCrossingStatus crossingStatus;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
     }
 
     public void move(String movingDirection) {
-        if (bridge.isRightTrack(nowLocation, movingDirection)) {
-            nowLocation++;
-        }
+        crossingStatus = bridge.isRightTrack(nowLocation, movingDirection);
+        nowLocation++;
     }
 
     public void retry() {
         nowLocation = 0;
+        tryCount++;
     }
 
     public BridgeCrossingDTO toResponseDto() {

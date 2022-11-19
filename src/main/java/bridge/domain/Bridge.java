@@ -9,10 +9,13 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public boolean isRightTrack(int location, String direction) {
-        if (bridge.get(location).equals(direction)) {
-            return true;
+    public BridgeCrossingStatus isRightTrack(int location, String direction) {
+        if (!bridge.get(location).equals(direction)) {
+            return BridgeCrossingStatus.FAIL;
         }
-        return false;
+        if (location + 1 == bridge.size()) {
+            return BridgeCrossingStatus.SUCCESS;
+        }
+        return BridgeCrossingStatus.PROGRESS;
     }
 }

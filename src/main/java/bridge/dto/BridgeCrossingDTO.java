@@ -5,11 +5,11 @@ import java.util.List;
 public class BridgeCrossingDTO {
     private final List<List<String>> footPrint;
     private final int tryCount;
-    private final boolean crossComplete;
+    private final String crossStatus;
 
-    public BridgeCrossingDTO(List<List<String>> footPrint, int tryCount, boolean crossComplete) {
+    public BridgeCrossingDTO(List<List<String>> footPrint, int tryCount, String crossStatus) {
         this.footPrint = footPrint;
-        this.crossComplete = crossComplete;
+        this.crossStatus = crossStatus;
         this.tryCount = tryCount;
     }
 
@@ -21,7 +21,7 @@ public class BridgeCrossingDTO {
         return tryCount;
     }
 
-    public boolean isCrossComplete() {
-        return crossComplete;
+    public String isCrossComplete() {
+        return crossStatus;
     }
 }
