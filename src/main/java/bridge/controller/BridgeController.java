@@ -22,6 +22,7 @@ public class BridgeController {
         outputView.printStart();
 
         List<String> bridge = bridgeGame.setBridge(inputBridgeSize().getBridgeSize());
+        startRound();
     }
 
     public BridgeSize inputBridgeSize() {
@@ -31,5 +32,13 @@ public class BridgeController {
             outputView.printError(e.getMessage());
             return inputBridgeSize();
         }
+    }
+
+    private void startRound() {
+        System.out.println(inputBridgeSpace());
+    }
+
+    private String inputBridgeSpace() {
+        return inputView.readMoving();
     }
 }
