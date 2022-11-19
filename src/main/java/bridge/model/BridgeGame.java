@@ -60,6 +60,10 @@ public class BridgeGame {
         canPlay = false;
     }
 
+    public void inputCommand(GameCommand gameCommand) {
+        gameCommandMap.get(gameCommand).run();
+    }
+
     public boolean canPlay() {
         return canPlay;
     }
