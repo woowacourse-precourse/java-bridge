@@ -30,4 +30,9 @@ public class Player {
     public boolean isArrived(List<String> bridge) {
         return currentSpaceIndex == bridge.size() - 1;
     }
+
+    public void reVive() {
+        currentSpaceIndex = 0;
+        alive = true;
+    }
 }
