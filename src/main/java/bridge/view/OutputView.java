@@ -63,9 +63,9 @@ public class OutputView {
             result = WIN;
         }
         System.out.println(ViewConstants.GAME_END);
-        System.out.println(ViewConstants.WIN_OR_FAIL + result);
         System.out.println(upsideBridge.toString().replace(COMMA, BRIDGE_BOUNDARY));
         System.out.println(downsideBridge.toString().replace(COMMA, BRIDGE_BOUNDARY));
+        System.out.println(ViewConstants.WIN_OR_FAIL + result);
         System.out.println(ViewConstants.PLAY_TIME + playTime);
     }
 
