@@ -2,6 +2,7 @@ package bridge.service;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.util.TypeConverter;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -15,5 +16,13 @@ public class BridgeGame {
 
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        processCrossingBridge(bridge);
+    }
+
+    private void processCrossingBridge(List<String> bridge) {
+        for (int step = 0; step < bridge.size(); step++) {
+            String movingBlock = OutputView.printSelectMovingBlock();
+
+        }
     }
 }

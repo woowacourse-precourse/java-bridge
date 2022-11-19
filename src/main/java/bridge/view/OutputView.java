@@ -1,7 +1,6 @@
 package bridge.view;
 
-import static bridge.util.Constants.OutputViewConstants.INPUT_BRIDGE_LENGTH;
-import static bridge.util.Constants.OutputViewConstants.START_BRIDGE_GAME;
+import static bridge.util.Constants.OutputViewConstants.*;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -16,6 +15,11 @@ public class OutputView {
         System.out.println(START_BRIDGE_GAME);
         OutputView.enter();
         System.out.println(INPUT_BRIDGE_LENGTH);
+    }
+
+    public static String printSelectMovingBlock() {
+        System.out.println(INPUT_SELECT_MOVE_BLOCK);
+        String movingBlock = InputView.readMoving();
     }
 
     /**
