@@ -12,8 +12,6 @@ public class Application {
         int size = inputBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> generatedBridge = bridgeMaker.makeBridge(size);
-        List<String> nowBridge = new ArrayList<>();
-        int count = wholeGame(generatedBridge, nowBridge);
-        OutputView.printResult(count, nowBridge, generatedBridge);
+        wholeGame(generatedBridge);
     }
 }

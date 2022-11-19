@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,22 +11,23 @@ public class BridgeGame {
     static String WIN = "성공";
     static String LOSE = "실패";
 
-    public static int wholeGame(List<String> generatedBridge, List<String> nowBridge) {
+    public static void wholeGame(List<String> generatedBridge) {
+        List<String> nowBridge = new ArrayList<>();
         int count = 0;
         do {
-            nowBridge.clear();
             oneGame(nowBridge, generatedBridge);
             count++;
-            if (isGameWin(nowBridge, generatedBridge).equals(WIN)) break;
-        } while (retry());
-        return count;
+            if (isGameWin(nowBridge, generatedBridge).equals(WIN)) {
+                break;
+            }
+        } while (retry(nowBridge));
+        OutputView.printResult(count, nowBridge, generatedBridge);
     }
 
     public static void oneGame(List<String> nowBridge, List<String> generatedBridge) {
         boolean gameSuccess;
         do {
-            String pick = inputUpAndDown();
-            move(pick, nowBridge);
+            move(chooseBridge(), nowBridge);
             System.out.println(OutputView.printMap(nowBridge, generatedBridge));
             gameSuccess = compareBridge(nowBridge, generatedBridge);
             if (nowBridge.size() == generatedBridge.size()) {
@@ -34,7 +36,7 @@ public class BridgeGame {
         } while (gameSuccess);
     }
 
-    private static String inputUpAndDown() {
+    private static String chooseBridge() {
         String pick;
         while (true) {
             try {
@@ -68,7 +70,8 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static boolean retry() {
+    public static boolean retry(List<String> nowBridge) {
+        nowBridge.clear();
         if (InputView.readGameCommand().equals("R")) {
             return true;
         }
