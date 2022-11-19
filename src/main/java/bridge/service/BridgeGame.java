@@ -1,6 +1,7 @@
 package bridge.service;
 
 import bridge.BridgeMaker;
+import bridge.domain.BlockExpression;
 import bridge.domain.Bridge;
 import bridge.domain.Player;
 import bridge.domain.Result;
@@ -38,27 +39,12 @@ public class BridgeGame {
      */
     public BridgeResponseDto move(SelectBlockRequestDto dto) {
         String playerBlock = dto.getBlock();
-        String bridgeBlock = bridge.getBridgeByPositionToMove(player.getPosition());
+        String bridgeBlock = bridge.getBlockByPlayerPosition(player.getPosition());
 
-        if(bridgeBlock.equals(playerBlock)) {
-            if(bridgeBlock.equals("U")) {
-                result.addBlocks("O", " ");
-            }
-            else {
-                result.addBlocks(" ", "O");
-            }
-
-            player.move();
-        }
-        else {
-            if(bridgeBlock.equals("U")) {
-                result.addBlocks(" ", "X");
-            }
-            else {
-                result.addBlocks("X", " ");
-            }
-        }
-
+        boolean canMove = bridgeBlock.equals(playerBlock);
+        BlockExpression blockExpression = bridge.getBlockExpressionByPosition(bridgeBlock, canMove);
+        result.addBlocks(blockExpression);
+        player.move();
         return new BridgeResponseDto(result);
     }
 

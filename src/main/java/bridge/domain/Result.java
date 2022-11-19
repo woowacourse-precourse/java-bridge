@@ -12,9 +12,9 @@ public class Result {
         downBlocks = new ArrayList<>();
     }
 
-    public void addBlocks(String upBlock, String downBlock) {
-        this.upBlocks.add(upBlock);
-        this.downBlocks.add(downBlock);
+    public void addBlocks(BlockExpression blockExpression) {
+        this.upBlocks.add(blockExpression.getUpBlock());
+        this.downBlocks.add(blockExpression.getDownBlock());
     }
 
     public List<String> getUpBlocks() {
