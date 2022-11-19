@@ -1,9 +1,14 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private static final String PASS = "O";
+    private static final String FAIL = "X";
 
     private final OutputView outputView;
     private final InputView inputView;
@@ -21,7 +26,20 @@ public class BridgeGame {
         outputView.printStartNotice();
         int size = inputBridgeSize();
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(size));
+        crossBridge(size, bridge);
+        //결과 출력
+    }
 
+    private void crossBridge(int size, Bridge bridge) {
+        while (true) {
+            boolean end = false;
+            end = move(size, bridge, end);
+            //TODO 재시도 여부 입력
+            //종료면 end = true;
+            if (end){
+                break;
+            }
+        }
     }
 
     private int inputBridgeSize() {
@@ -40,7 +58,45 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public boolean move(int size, Bridge bridge, boolean end) {
+        List<PathDTO> pathDTO = new ArrayList<>();
+        for (int round = 0; round < size; round++) {
+            if (getPassable(bridge, pathDTO, round).equals(FAIL)) {
+                break;
+            }
+            end = isEnd(size, round);
+        }
+        return end;
+    }
+
+    private String getPassable(Bridge bridge, List<PathDTO> pathDTO, int round) {
+        String moving = inputMoving();
+        String pass = getPass(bridge, round, moving);
+        pathDTO.add(new PathDTO(moving, pass));
+        outputView.printMap(new MapDTO(pathDTO));
+        return pass;
+    }
+
+    private boolean isEnd(int size, int round) {
+        return round == size - 1;
+    }
+
+    private String getPass(Bridge bridge, int round, String moving) {
+        if (bridge.isPassable(round, moving)){
+            return PASS;
+        }
+        return FAIL;
+    }
+
+    private String inputMoving() {
+        try {
+            String moving = inputView.readMoving();
+            validator.validateMoving(moving);
+            return moving;
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return inputMoving();
+        }
     }
 
     /**
