@@ -1,56 +1,36 @@
-package bridge;
+package bridge.ui;
+
+import bridge.util.Converter;
+import camp.nextstep.edu.missionutils.Console;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
-
-import camp.nextstep.edu.missionutils.Console;
-
 public class InputView {
+    private static final String READ_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
+
+    private final Converter converter = new Converter();
 
     /**
      * 다리의 길이를 입력받는다.
      */
-
     public int readBridgeSize() {
-        int bridgeSize = Integer.parseInt(Console.readLine());
-        checkBridgeSize(bridgeSize);
-        return bridgeSize;
+        System.out.println(READ_BRIDGE_SIZE_MESSAGE);
+        String input = Console.readLine();
+        return converter.convertToInt(input);
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String moving = Console.readLine();
-        checkMoving(moving);
-        return moving;
+        return null;
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        String gameCommand = Console.readLine();
-        checkGameCommand(gameCommand);
-        return gameCommand;
-    }
-
-    private void checkBridgeSize(int bridgeSize) {
-        if(bridgeSize < 3 || bridgeSize > 20) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void checkMoving(String moving) {
-        if(moving != "U" || moving != "D") {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void checkGameCommand(String gameCommand) {
-        if(gameCommand != "R" || gameCommand != "Q") {
-            throw new IllegalArgumentException();
-        }
+        return null;
     }
 }
