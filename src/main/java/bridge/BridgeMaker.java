@@ -1,6 +1,8 @@
 package bridge;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -20,12 +22,13 @@ public class BridgeMaker {
      */
     // 10줄 초과 리팩토링 필요 //
     public List<String> makeBridge(int size) {
-        List<String> bridge = new ArrayList<>();
+        List<String> bridge = new ArrayList<>(size);
         for(int i = 0 ; i < size; i++){
-            if(bridgeNumberGenerator.generate() == 0){
+            int randomNumber = bridgeNumberGenerator.generate();
+            if(randomNumber == 0){
                 bridge.add("D");
             }
-            if(bridgeNumberGenerator.generate() == 1){
+            if(randomNumber == 1){
                 bridge.add("U");
             }
         }
