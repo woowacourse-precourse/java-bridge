@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 public enum GameFlag {
     PLAYING("게임 진행중"),

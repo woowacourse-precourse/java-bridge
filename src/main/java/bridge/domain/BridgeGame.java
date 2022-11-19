@@ -1,4 +1,7 @@
-package bridge;
+package bridge.domain;
+
+import bridge.BridgeMaker;
+import bridge.BridgeRandomNumberGenerator;
 
 public class BridgeGame {
     private Bridge answerBridge;

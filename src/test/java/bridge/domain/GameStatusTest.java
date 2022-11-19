@@ -1,7 +1,9 @@
-package bridge;
+package bridge.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.domain.GameStatus;
+import bridge.domain.GameUser;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.TestInstance;

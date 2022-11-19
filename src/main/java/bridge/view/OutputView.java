@@ -1,7 +1,7 @@
 package bridge.view;
 
-import bridge.GameFlag;
-import bridge.GameStatus;
+import bridge.domain.GameFlag;
+import bridge.domain.GameStatus;
 
 import java.util.ArrayList;
 import java.util.List;

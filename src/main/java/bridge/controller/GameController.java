@@ -1,8 +1,8 @@
 package bridge.controller;
 
-import bridge.BridgeGame;
-import bridge.GameFlag;
-import bridge.GameStatus;
+import bridge.domain.BridgeGame;
+import bridge.domain.GameFlag;
+import bridge.domain.GameStatus;
 import bridge.view.OutputView;
 
 public class GameController {

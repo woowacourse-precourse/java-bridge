@@ -1,7 +1,8 @@
-package bridge;
+package bridge.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.domain.BlockConverter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
