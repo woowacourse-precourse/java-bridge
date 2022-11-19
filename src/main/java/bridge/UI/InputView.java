@@ -4,8 +4,8 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import bridge.Constants.FrontMan;
 import bridge.Constants.ErrorMessages;
+import bridge.Constants.StandardTools;
 import java.util.Objects;
-import org.mockito.internal.matchers.Null;
 
 public class InputView {
 
@@ -17,8 +17,8 @@ public class InputView {
     }
 
     public void validateBridgeLength(String userInput) {
-        if (Objects.equals(userInput, ErrorMessages.NULL) || !userInput.matches(
-                ErrorMessages.ONLY_NUMBER)) {
+        if (Objects.equals(userInput, StandardTools.NULL) || !userInput.matches(
+                StandardTools.ONLY_NUMBER)) {
             throw new IllegalArgumentException(ErrorMessages.SHOULD_ENTER_NUMBER);
         }
         if (Integer.parseInt(userInput) < 3 || Integer.parseInt(userInput) > 20) {
