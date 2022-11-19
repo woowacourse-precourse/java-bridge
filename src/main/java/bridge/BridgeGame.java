@@ -9,24 +9,31 @@ public class BridgeGame {
     private final String WRONG = "X";
     private final String NOTHING = " ";
     private final List<String> correctBridge;
-    public final List<List<String>> bridgePattern = new ArrayList<>();
+    private final List<String> upBridge = new ArrayList<>();
+    private final List<String> downBridge = new ArrayList<>();
+    private final List<List<String>> bridgeMap = new ArrayList<>();
 
     public BridgeGame(List<String> correctBridge) {
         this.correctBridge = correctBridge;
         newBridgePattern();
     }
 
-    public boolean move(String moving, int bridgeNum) {
-        int moveNum = toMovingNumber(moving);
-        String answer = this.correctBridge.get(bridgeNum);
-        this.bridgePattern.get(1 - moveNum).add(NOTHING);
-
-        if (moving.equals(answer)) {
-            this.bridgePattern.get(moveNum).add(CORRECT);
+    public boolean move(int bridgeNum, String moving) {
+        String correctAnswer = correctBridge.get(bridgeNum);
+        if (moving.equals(correctAnswer)) {
+            if (moving.equals("U")) addMap(CORRECT, NOTHING);
+            if (moving.equals("D")) addMap(NOTHING, CORRECT);
             return true;
         }
-        this.bridgePattern.get(moveNum).add(WRONG);
+        if (moving.equals("U")) addMap(WRONG, NOTHING);
+        if (moving.equals("D")) addMap(NOTHING, WRONG);
         return false;
+    }
+
+    public List<List<String>> joinedBridge() {
+        this.bridgeMap.add(upBridge);
+        this.bridgeMap.add(downBridge);
+        return this.bridgeMap;
     }
 
     public int retry() {
@@ -36,14 +43,14 @@ public class BridgeGame {
     }
 
     private void newBridgePattern() {
-        this.bridgePattern.clear();
-        for (int i = 0; i < 2; i++)
-            this.bridgePattern.add(new ArrayList<>());
+        this.bridgeMap.clear();
+        for (int i = 0; i < 2; i++) {
+            this.bridgeMap.add(new ArrayList<>());
+        }
     }
 
-    private int toMovingNumber(String moving) {
-        if (moving.equals("D"))
-            return 1;
-        return 0;
+    private void addMap(String mapUp, String mapDown) {
+        this.upBridge.add(mapUp);
+        this.downBridge.add(mapDown);
     }
 }
