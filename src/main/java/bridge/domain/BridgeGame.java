@@ -1,7 +1,6 @@
 package bridge.domain;
 
 
-
 import java.util.List;
 
 import static bridge.msg.InputMsg.*;

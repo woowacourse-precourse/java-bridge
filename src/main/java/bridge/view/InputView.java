@@ -1,7 +1,5 @@
 package bridge.view;
 
-import bridge.msg.ErrorMsg;
-import bridge.msg.InputMsg;
 import camp.nextstep.edu.missionutils.Console;
 
 import static bridge.msg.ErrorMsg.*;
@@ -86,12 +84,12 @@ public class InputView {
     }
 
     public void validateMove(String inputMove) {
-        if (!inputMove.equals(UP_MSG.getMsg()) || !inputMove.equals(DOWN_MSG.getMsg()))
+        if (!inputMove.equals(UP_MSG.getMsg()) && !inputMove.equals(DOWN_MSG.getMsg()))
             throw new IllegalArgumentException(MOVE_ERR.getMsg());
     }
 
     public void validateCommand(String restartInput) {
-        if (!restartInput.equals(RESTART_MSG.getMsg()) || !restartInput.equals(QUIT_MSG.getMsg()))
+        if (!restartInput.equals(RESTART_MSG.getMsg()) && !restartInput.equals(QUIT_MSG.getMsg()))
             throw new IllegalArgumentException(RESTART_ERR.getMsg());
     }
 }
