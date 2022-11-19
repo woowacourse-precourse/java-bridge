@@ -25,7 +25,7 @@ public class OutputView {
         printUp.append(printFirstMap(index));
         printDown.append(printFirstMap(index));
         printUp.append(printUpMap(user,isDraw));
-        printDown.append(PrintDownMap(user,isDraw));
+        printDown.append(printDownMap(user,isDraw));
         System.out.println(printUp.toString()+isDraw_SquareBracket_Right);
         System.out.println(printDown.toString()+isDraw_SquareBracket_Right);
     }
@@ -33,7 +33,7 @@ public class OutputView {
         if(!user.equals("U")) return isDraw_Blank;
         return printUserMap(isDraw);
     }
-    public String PrintDownMap(String user, boolean isDraw){
+    public String printDownMap(String user, boolean isDraw){
         if(!user.equals("D")) return isDraw_Blank;
         return printUserMap(isDraw);
 
