@@ -70,6 +70,61 @@ class BridgeGameTest {
                   .isEqualTo(expect);
      }
 
+     @Test
+     @DisplayName("다리 이동 상태 출력 테스트")
+     public void printV1() throws Exception{
+          Bridge bridge = new Bridge(List.of("U","U","D"));
+          unit(bridge,"U",BridgeStatus.SUCCESS);
+          unit(bridge,"U",BridgeStatus.SUCCESS);
+          unit(bridge,"D",BridgeStatus.COMPLETE);
+          Assertions.assertThat(currentBridge.toString())
+                  .isEqualTo("OO   O");
+     }
+     @Test
+     @DisplayName("다리 이동 상태 출력 테스트")
+     public void printV2() throws Exception{
+          Bridge bridge = new Bridge(List.of("U","U","D"));
+          unit(bridge,"U",BridgeStatus.SUCCESS);
+          unit(bridge,"U",BridgeStatus.SUCCESS);
+          unit(bridge,"U",BridgeStatus.FAIL);
+          Assertions.assertThat(currentBridge.toString())
+                  .isEqualTo("OOX   ");
+     }
+     @Test
+     @DisplayName("다리 이동 상태 출력 테스트")
+     public void printV3() throws Exception{
+          Bridge bridge = new Bridge(List.of("U","U","D"));
+          unit(bridge,"U",BridgeStatus.SUCCESS);
+          Assertions.assertThat(currentBridge.toString())
+                  .isEqualTo("O ");
+
+     }@Test
+     @DisplayName("다리 이동 상태 출력 테스트")
+     public void printV4() throws Exception{
+          Bridge bridge = new Bridge(List.of("D"));
+          unit(bridge,"U",BridgeStatus.FAIL);
+          Assertions.assertThat(currentBridge.toString())
+                  .isEqualTo("X ");
+     }
+     @Test
+     @DisplayName("다리 이동 상태 출력 테스트")
+     public void printV5() throws Exception{
+          Bridge bridge = new Bridge(List.of("U"));
+          unit(bridge,"D",BridgeStatus.FAIL);
+          Assertions.assertThat(currentBridge.toString())
+                  .isEqualTo(" X");
+     }
+     @Test
+     @DisplayName("다리 이동 상태 출력 테스트")
+     public void printV6() throws Exception{
+          Bridge bridge = new Bridge(List.of("U","D","D"));
+          unit(bridge,"U",BridgeStatus.SUCCESS);
+          unit(bridge,"D",BridgeStatus.SUCCESS);
+          unit(bridge,"D",BridgeStatus.COMPLETE);
+          Assertions.assertThat(currentBridge.toString())
+                  .isEqualTo("O   OO");
+     }
+
 
 
 
