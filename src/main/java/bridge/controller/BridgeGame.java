@@ -16,11 +16,15 @@ import static bridge.util.BridgeConstant.FALL_POSITION;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private final Boolean CONTINUE = true;
+    private final Boolean QUIT = false;
+    private final Boolean WIN = true;
+    private final Boolean LOSE = false;
+
     BridgeMove bridgeMove = new BridgeMove();
     BridgeRetry bridgeRetry = new BridgeRetry();
     BridgeMapMaker bridgeMapMaker = new BridgeMapMaker();
     BridgeResult bridgeResult = new BridgeResult();
-    BridgeMap bridgeMap = BridgeMap.getBridgeMap();
     Bridge bridge;
     boolean isContinue = true;
     boolean isWin = false;
@@ -33,20 +37,24 @@ public class BridgeGame {
     public void start(Player player) {
         while (isContinue) {
             move(player);
-            checkPlayerPosition(player);
+            check(player);
             if (reachFinalLine(player)) {
-                isContinue = false;
-                isWin = true;
+                gameSet(WIN);
             }
         }
         bridgeResult.printResult(player, isWin);
     }
 
-    private void checkPlayerPosition(Player player) {
-        boolean success = moveSuccess(player, bridge);
-        bridgeMapMaker.addBridgeMapBlock(player, bridgeMap, success);
+    private void gameSet(boolean winOrLose) {
+        isWin = winOrLose;
+        isContinue = QUIT;
+    }
+
+    private void check(Player player) {
+        boolean moveSuccess = getMoveSuccess(player, bridge);
+        bridgeMapMaker.addBridgeMapBlock(player, moveSuccess);
         bridgeResult.printMap();
-        if (!success) {
+        if (!moveSuccess) {
             retry(player);
         }
     }
@@ -55,7 +63,7 @@ public class BridgeGame {
         return player.getXPosition() == bridge.getBridge()[0].length - 1;
     }
 
-    private boolean moveSuccess(Player player, Bridge bridge) {
+    private boolean getMoveSuccess(Player player, Bridge bridge) {
         int positionX = player.getXPosition();
         int positionY = player.getYPosition();
         return bridge.getBridge()[positionY][positionX].equals(FALL_POSITION);
@@ -80,17 +88,16 @@ public class BridgeGame {
      */
     public void retry(Player player) {
         boolean continueCommand = bridgeRetry.getContinueCode(player);
-        if (continueCommand == true) {
+        if (continueCommand == CONTINUE) {
             updateGameStatus(player);
             return;
         }
-        isWin = false;
-        isContinue = false;
+        gameSet(LOSE);
     }
 
     private void updateGameStatus(Player player) {
         player.initializePosition();
         player.addTryCount();
-        bridgeMap.initializeBridges();
+        BridgeMap.getBridgeMap().initializeBridges();
     }
 }

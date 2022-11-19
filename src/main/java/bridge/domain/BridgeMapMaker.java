@@ -8,8 +8,9 @@ import static bridge.util.BridgeConstant.UP;
 public class BridgeMapMaker {
     public final String SUCCESS_BLOCK = "O";
     public final String FAIL_BLOCK = "X";
-    
-    public void addBridgeMapBlock(Player player, BridgeMap bridgeMap, boolean success) {
+
+    public void addBridgeMapBlock(Player player, boolean success) {
+        BridgeMap bridgeMap = BridgeMap.getBridgeMap();
         String block = getBlock(success);
 
         if (player.getYPosition() == UP) {
