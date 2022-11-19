@@ -8,10 +8,17 @@ public class BridgeGame {
     InputView inputView = new InputView();
     private final int bridgeSize;
 
-    public BridgeGame(){
+    public BridgeGame() {
         outputView.printMessage(Message.START);
         outputView.enterLine();
         bridgeSize = inputView.readBridgeSize();
+        validate(bridgeSize);
+    }
+
+    void validate(int bridgeSize) {
+        if (bridgeSize > 20 || bridgeSize < 3) {
+            throw new IllegalArgumentException(Message.ERROR_BRIDGE_SIZE_RANGE.getMessage());
+        }
     }
 
     /**

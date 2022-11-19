@@ -14,7 +14,11 @@ public class InputView {
     public int readBridgeSize() {
         outputView.printMessage(Message.BRIDGE_SIZE);
         String sizeInput = Console.readLine();
-        return Integer.parseInt(sizeInput);
+        try {
+            return Integer.parseInt(sizeInput);
+        } catch (NumberFormatException e){
+            throw new IllegalArgumentException(Message.ERROR_NOT_NUMBER.getMessage());
+        }
     }
 
     /**
