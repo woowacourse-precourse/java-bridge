@@ -18,7 +18,7 @@ public class BridgeGameRepository {
         this.bridgeGame = bridgeGame;
     }
 
-    public String getPassableDirection(int distance) {
-        return bridgeGame.move(distance);
+    public BridgeGame get() {
+        return bridgeGame;
     }
 }
