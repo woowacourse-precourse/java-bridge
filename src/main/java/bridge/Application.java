@@ -31,7 +31,7 @@ public class Application {
             inputView.getValidMoving();
             outputView.printMap(bridgeGame.getUpperRoad(), bridgeGame.getLowerRoad());
             if (!bridgeGame.isRightFoothold()) {
-                if (inputView.readGameCommand().equals(Command.QUIT.getValue())) {
+                if (inputView.getValidGameCommand().equals(Command.QUIT.getValue())) {
                     break;
                 }
                 bridgeGame.retry();
