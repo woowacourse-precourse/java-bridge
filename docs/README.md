@@ -36,3 +36,16 @@
 - [ ] 총 시도 횟수 반환
 
 - [ ] 최종 게임 결과 출력
+
+
+---
+### 추가 구현 목록
+- [ ] InputView 에서 입력 검사 메서드 분리
+  - [x] InputValidator 인터페이스 추가
+  - [ ] BridgeSizeValidator 클래스 추가
+  - [ ] MovingValidator 클래스 추가
+  - [ ] GameCommandValidator 클래스 추가 
+
+- [ ] 잘못된 입력에 대해 에러 메시지 출력 후 재입력 받는 코드 중복 제거
+- [ ] 입력 검사 테스트 수정
+- [ ] InputView 수정
