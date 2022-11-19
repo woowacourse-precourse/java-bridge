@@ -37,4 +37,17 @@ public class BridgeGameTest {
                     .hasMessageContaining("[ERROR]");
         }
     }
+
+    @Nested
+    @DisplayName("입력한 이동할 칸의 문자가 \"D\" 또는 \"U\"인 경우")
+    class moveCommendEqual_DorE {
+        @ParameterizedTest
+        @CsvSource({
+                "D", "U"
+        })
+        void test(String moveCommend) {
+            Assertions.assertThatCode(() -> bridgeGame.move(moveCommend))
+                    .doesNotThrowAnyException();
+        }
+    }
 }
