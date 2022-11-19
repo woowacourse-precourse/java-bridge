@@ -8,6 +8,7 @@ public class Application {
     private static InputView inputView = new InputView();
     private static BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     private static BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+    private static BridgeGame bridgeGame = new BridgeGame();
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -29,11 +30,14 @@ public class Application {
             }
         }
 
+        // 다리 생성
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        bridgeGame.setBridge(bridge);
 
         outputView.printInputMoveDirection();
         String direction;
-
+        
+        // 이동할 칸 입력 받기
         while(true) {
             try {
                 direction = inputView.readMoving();
@@ -42,6 +46,8 @@ public class Application {
                 System.out.println(e);
             }
         }
+        boolean isCorrect = bridgeGame.move(direction);
+        outputView.printMap(bridge, direction, bridgeGame);
 
 
 
