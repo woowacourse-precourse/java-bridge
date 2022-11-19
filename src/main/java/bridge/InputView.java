@@ -71,6 +71,17 @@ public class InputView {
         }
     }
 
+    public String getValidGameCommand() {
+        try {
+            String input = Console.readLine();
+            validateGameCommand(input);
+            return input;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getValidGameCommand();
+        }
+    }
+
     public void validateBridgeSize(String input) throws IllegalArgumentException {
         checkParsableInt(input);
         int bridgeSize = Integer.parseInt(input);
