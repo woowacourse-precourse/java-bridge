@@ -1,6 +1,6 @@
 package bridge.Utils.Validator;
 
-public class bridgeLengthValidator {
+public class BridgeLengthValidator {
 
     private static final String NUMBER_PATTERN = "-?\\d+";
     private static final String ERROR_MESSAGE_NOT_NUMBER = "[ERROR] 입력값이 숫자가 아닙니다.";
@@ -8,6 +8,7 @@ public class bridgeLengthValidator {
 
     private static final int BRIDGE_MIN_LENGTH = 3;
     private static final int BRIDGE_MAX_LENGTH = 20;
+    private static final String INIT_NUMBER = "3";
 
 
     /**
@@ -22,7 +23,7 @@ public class bridgeLengthValidator {
         }catch (IllegalArgumentException e) {
             e.printStackTrace();
             System.err.println(e);
-            return "3";
+            return INIT_NUMBER;
         }
     }
 

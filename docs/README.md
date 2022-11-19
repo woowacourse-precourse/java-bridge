@@ -3,8 +3,8 @@
 
 
 - ## 기능 중심
-  - [ ] 길이를 입력받고 다리의 길이를 생성한다. ( readBridgeLine() -> BridgeMaker() )
-  - [ ] 0과 1중 무작위 값을 이용하여 정한다.( generate() -> makeBridge() )
+  - [x] 길이를 입력받고 다리의 길이를 생성한다. ( readBridgeLine() -> BridgeMaker() )
+  - [x] 0과 1중 무작위 값을 이용하여 정한다.( generate() -> makeBridge() )
   - [ ] 플레이어가 U와 D를 입력한다.( readMoving() -> move() )
   - [ ] 이동한 칸을 건널 수 있다면 O로 표시하고 건널수 없다면 X를 표시한다.(-> printMap())
   - [ ] 다리를 모두 건너면 게임은 종료된다.
@@ -17,17 +17,16 @@
 ## 객체 중심으로
 
 - 입력 inPutView
-  - [ ] 다리의 길이를 입력받는다. readBridgeSize()
-  - [ ] 플레이어가 위로 갈지 아래로 갈지, U와 D를 입력한다. readMoving()
-  - [ ] 다리를 건너는 게 실패했을 때, 게임의 재시작, 종료를 R, Q로 입력받는다. readGameCommand()
+  - [x] 다리의 길이를 입력받는다. readBridgeSize()
+  - [x] 플레이어가 위로 갈지 아래로 갈지, U와 D를 입력한다. readMoving()
+  - [x] 다리를 건너는 게 실패했을 때, 게임의 재시작, 종료를 R, Q로 입력받는다. readGameCommand()
 
 - 출력 outPutView
   - [ ] 다리의 형식에 맞게 출력한다. printMap()
   - [ ] 게임의 최종 결과를 출력한다. printResult()
 
 - 다리 만들기 BridgeMaker
-  - [ ] 입력받은 다리의 길이에 맞춰 윗칸은 U, 아랫칸은 D가 나오게 한다.
-  - [ ] 랜덤으로 0과 1을 만든 숫자를 받아 0이면 아래칸, 1이면 위칸을 건널 수 있게 다리 정보에 넣던지 아니면 따로 정보를 얻어온다.
+  - [x] 입력받은 다리의 길이에 맞춰 랜덤으로 0과 1을 만든 숫자를 받아 0이면 아래칸, 1이면 위칸을 건널 수 있게 윗칸은 U, 아랫칸은 D가 나오게 한다.
 
 
 - 게임 BridgeGame
