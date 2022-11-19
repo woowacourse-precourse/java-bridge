@@ -66,11 +66,11 @@ public class InputView {
         System.out.println(INPUT_BRIDGE_LENGTH);
     }
 
-    public void getInputMoveUpOrDown() {
+    public void getInputMoveUpOrDownMsg() {
         System.out.println(INPUT_MOVE_UP_OR_DOWN);
     }
 
-    public void getInputRestartOrQuit() {
+    public void getInputRestartOrQuitMsg() {
         System.out.println(INPUT_RESTART_OR_QUIT);
     }
 
