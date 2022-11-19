@@ -1,5 +1,6 @@
 package bridge.model;
 
+import bridge.constant.BridgeConstant;
 import bridge.constant.ErrorMessage;
 
 public class Validation {
@@ -7,6 +8,15 @@ public class Validation {
     public static boolean bridgeSizeValidationTest(String input){
         try{
             valueInRange(isNumber(input));
+            return true;
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+    public static boolean moveDirectionTest(String input){
+        try{
+            valueTest( formatTest(input));
             return true;
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
@@ -24,4 +34,23 @@ public class Validation {
             throw new IllegalArgumentException(ERROR+ ErrorMessage.NUMBER_RANGE_IS_WRONG.getErrorMessage());
         }
     }
+    private static String formatTest(String input) throws IllegalArgumentException{
+        if(input.length()!=1){
+            throw new IllegalArgumentException(ERROR+ErrorMessage.WRONG_LENGTH.getErrorMessage());
+        }
+        if(!Character.isUpperCase(input.charAt(0))){
+            throw new IllegalArgumentException(ERROR+ErrorMessage.WRONG_FORMAT.getErrorMessage());
+        }
+        return input;
+    }
+    private static void valueTest(String input) throws IllegalArgumentException{
+        if(input.equals(BridgeConstant.CAN_GO_UP.getString())){
+            return;
+        }
+        if(input.equals(BridgeConstant.CANT_GO_UP.getString())){
+            return;
+        }
+        throw new IllegalArgumentException(ERROR + ErrorMessage.WRONG_FORMAT.getErrorMessage());
+    }
+
 }
