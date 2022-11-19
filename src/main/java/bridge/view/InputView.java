@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+
     private static final String GET_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
     private static final String GET_PLAYER_MOVE_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String GET_GAME_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
@@ -39,27 +40,21 @@ public class InputView {
     public static String readMoving() {
         System.out.println(GET_PLAYER_MOVE_MESSAGE);
         String input = Console.readLine();
-        validateMove(input);
+        validate(input, UP_STAIR, DOWN_STAIR);
         return input;
     }
 
     public static boolean readGameCommand() {
         System.out.println(GET_GAME_COMMAND_MESSAGE);
         String input = Console.readLine();
-        validateCommand(input);
+        validate(input, GAME_REPLAY, GAME_QUIT);
         return input.equals(GAME_REPLAY);
     }
 
-    private static void validateMove(String input) {
+    private static void validate(String input, String option, String otherOption) {
         validateBlank(input);
         validateStringForm(input);
-        validateOption(input,UP_STAIR,DOWN_STAIR);
-    }
-
-    private static void validateCommand(String input) {
-        validateBlank(input);
-        validateStringForm(input);
-        validateOption(input,GAME_REPLAY,GAME_QUIT);
+        validateOption(input, option, otherOption);
     }
 
     private static void validateStringForm(String input) {
@@ -70,7 +65,8 @@ public class InputView {
 
     private static void validateOption(String input, String format1, String format2) {
         if (!input.equals(format1) && !input.equals(format2)) {
-            throw new IllegalArgumentException(String.format(FORMAT_OPTION_ERROR_MESSAGE,format1,format2));
+            throw new IllegalArgumentException(
+                String.format(FORMAT_OPTION_ERROR_MESSAGE, format1, format2));
         }
     }
 
