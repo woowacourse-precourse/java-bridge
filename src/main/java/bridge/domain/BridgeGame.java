@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.constant.GameRetryCommand;
+import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -50,4 +51,11 @@ public class BridgeGame {
         return user.getTryCount();
     }
 
+    public List<String> getBridgeDirections() {
+        return bridge.getDirections();
+    }
+
+    public List<String> getUserMoveHistory() {
+        return user.getMoveHistory();
+    }
 }
