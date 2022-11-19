@@ -15,7 +15,6 @@ import static bridge.validator.BlockValidator.validateInvalidType;
 public class BridgeGameController {
     private static List<String> bridge;
     List<Boolean> currentBridge = new ArrayList<>();
-
     private static int retryCount = 0;
 
     public void gameStart() {
@@ -30,7 +29,13 @@ public class BridgeGameController {
             String retryCommand = initGameCommand();
             play = bridgeGame.retry(retryCommand);
         } while (play);
-        OutputView.printResult(currentBridge, bridge, retryCount, gameResult);
+        printGameResult(gameResult);
+    }
+
+    private void printGameResult(boolean gameResult) {
+        OutputView.printMapResult(currentBridge, bridge);
+        OutputView.printResult(gameResult);
+        OutputView.printTotalCountResult(retryCount);
     }
 
     private List<String> gameSetUp() {

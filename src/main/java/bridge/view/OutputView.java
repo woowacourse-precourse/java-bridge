@@ -28,6 +28,7 @@ public class OutputView {
     }
 
     public static void printAskRetryMessage() { System.out.println(ASK_RETRY_MESSAGE); }
+
     public static void printErrorMessage(IllegalArgumentException e) { System.out.println(e.getMessage()); }
 
     /**
@@ -62,6 +63,10 @@ public class OutputView {
                 continue;
             }
         }
+        printMapToString(topLayer, bottomLayer);
+    }
+
+    private static void printMapToString(StringJoiner topLayer, StringJoiner bottomLayer) {
         System.out.println(topLayer.toString());
         System.out.println(bottomLayer.toString());
     }
@@ -71,13 +76,20 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(List<Boolean> currentBridge, List<String> bridge, int retryCount, boolean gameResult) {
-        String result = "";
+
+    public static void printMapResult(List<Boolean> currentBridge, List<String> bridge) {
         System.out.println(GAME_ENDING_MESSAGE);
         printMap(currentBridge, bridge);
+    }
+
+    public static void printResult(boolean gameResult) {
+        String result = "";
         if (gameResult) result = "성공";
         if (!gameResult) result = "실패";
         System.out.printf(GAME_RESULT_MESSAGE + "%n", result);
+    }
+
+    public static void printTotalCountResult(int retryCount) {
         System.out.printf(TRY_COUNT_MESSAGE + "%n", retryCount);
     }
 }
