@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +12,6 @@ public class Result {
     public Result() {
         this.count = 0;
         this.movable = true;
-    }
-
-
-    public int nowCount() {
-        return count;
     }
 
     public boolean movable() {
