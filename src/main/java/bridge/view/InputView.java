@@ -21,7 +21,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String upDown = Console.readLine();
+        checkAlphabet(upDown);
+        return upDown;
     }
 
     /**
@@ -40,6 +42,12 @@ public class InputView {
     public void checkScope(String number) {
         if (Integer.parseInt(number) < 3 || Integer.parseInt(number) > 20) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
+    }
+
+    public void checkAlphabet(String alphabet) {
+        if (!(alphabet.equals("U") || alphabet.equals("D"))) {
+            throw new IllegalArgumentException("[ERROR] 윗칸(U)과 아래칸(D) 중 하나를 입력해야 합니다.");
         }
     }
 }
