@@ -1,18 +1,18 @@
 package bridge.validation;
 
-import bridge.Message.ErrorMessage;
+import bridge.message.ErrorMessage;
 
-public class RestartQuickValidation implements Validation{
-    private static final String restart = "R";
-    private static final String quick = "Q";
+public class RestartQuickValidation implements Validation {
+    private static final String RESTART = "R";
+    private static final String QUICK = "Q";
 
     @Override
     public void validate(String value) {
         isUpOrDown(value);
     }
 
-    private void isUpOrDown(String move){
-        if(!(move.equals(restart) || move.equals(quick))) {
+    private void isUpOrDown(String move) {
+        if (!(move.equals(RESTART) || move.equals(QUICK))) {
             throw new IllegalArgumentException(ErrorMessage.NOT_RESTART_QUICK_VALID_STRING.getMessage());
         }
     }

@@ -1,4 +1,4 @@
-package bridge.Message;
+package bridge.message;
 
 public enum ErrorMessage {
     NOT_NUMBER_BRIDGE_SIZE("[ERROR] 다리 길이는 숫자입니다."),

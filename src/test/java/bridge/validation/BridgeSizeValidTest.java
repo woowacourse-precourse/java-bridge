@@ -1,6 +1,6 @@
 package bridge.validation;
 
-import bridge.Message.ErrorMessage;
+import bridge.message.ErrorMessage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -11,12 +11,12 @@ public class BridgeSizeValidTest {
     private static Validation validation;
 
     @BeforeAll
-    public static void init(){
+    public static void init() {
         validation = new BridgeSizeValidation();
     }
 
     @Test
-    void 다리_크기_테스트(){
+    void 다리_크기_테스트() {
         // given
         String size = "10";
 
@@ -25,7 +25,7 @@ public class BridgeSizeValidTest {
     }
 
     @Test
-    void 다리_크기_범위_미만_예외_테스트(){
+    void 다리_크기_범위_미만_예외_테스트() {
         // given
         String size = "2";
 
@@ -36,7 +36,7 @@ public class BridgeSizeValidTest {
     }
 
     @Test
-    void 다리_크기_범위_초과_예외_테스트(){
+    void 다리_크기_범위_초과_예외_테스트() {
         // given
         String size = "21";
 
@@ -47,7 +47,7 @@ public class BridgeSizeValidTest {
     }
 
     @Test
-    void 다리_크기_문자_예외_테스트(){
+    void 다리_크기_문자_예외_테스트() {
         // given
         String size = "T";
 

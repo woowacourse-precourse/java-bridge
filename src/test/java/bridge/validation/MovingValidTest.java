@@ -1,6 +1,6 @@
 package bridge.validation;
 
-import bridge.Message.ErrorMessage;
+import bridge.message.ErrorMessage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -11,12 +11,12 @@ public class MovingValidTest {
     private static Validation validation;
 
     @BeforeAll
-    public static void init(){
+    public static void init() {
         validation = new MovingValidation();
     }
 
     @Test
-    void 위로_움직임_확인_테스트(){
+    void 위로_움직임_확인_테스트() {
         // given
         String move = "U";
 
@@ -25,7 +25,7 @@ public class MovingValidTest {
     }
 
     @Test
-    void 아래로_움직임_확인_테스트(){
+    void 아래로_움직임_확인_테스트() {
         // given
         String move = "D";
 
@@ -34,7 +34,7 @@ public class MovingValidTest {
     }
 
     @Test
-    void 움직임_방향_숫자_예외_테스트(){
+    void 움직임_방향_숫자_예외_테스트() {
         // given
         String size = "4";
 
@@ -45,7 +45,7 @@ public class MovingValidTest {
     }
 
     @Test
-    void 움직임_방향_문자_예외_테스트(){
+    void 움직임_방향_문자_예외_테스트() {
         // given
         String size = "UD";
 

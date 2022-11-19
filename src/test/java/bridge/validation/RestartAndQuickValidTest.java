@@ -1,6 +1,6 @@
 package bridge.validation;
 
-import bridge.Message.ErrorMessage;
+import bridge.message.ErrorMessage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -11,12 +11,12 @@ public class RestartAndQuickValidTest {
     private static Validation validation;
 
     @BeforeAll
-    public static void init(){
+    public static void init() {
         validation = new RestartQuickValidation();
     }
 
     @Test
-    void 재시작_확인_테스트(){
+    void 재시작_확인_테스트() {
         // given
         String move = "R";
 
@@ -25,7 +25,7 @@ public class RestartAndQuickValidTest {
     }
 
     @Test
-    void 종료_확인_테스트(){
+    void 종료_확인_테스트() {
         // given
         String move = "Q";
 
@@ -34,7 +34,7 @@ public class RestartAndQuickValidTest {
     }
 
     @Test
-    void 재시작_종료_숫자_예외_테스트(){
+    void 재시작_종료_숫자_예외_테스트() {
         // given
         String size = "4";
 
@@ -45,7 +45,7 @@ public class RestartAndQuickValidTest {
     }
 
     @Test
-    void 재시작_종료_문자_예외_테스트(){
+    void 재시작_종료_문자_예외_테스트() {
         // given
         String size = "RQ";
 
