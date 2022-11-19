@@ -29,7 +29,7 @@ public class Valid {
 
     public static void isLengthValid(String length) {
         if (isLengthEmpty(length) || isLengthNotNumber(length) || isLengthNotInRange(length)) {
-            throw new IllegalArgumentException("[ERROR] 다리 길이는 3~20 중 하나인 숫자입니다.");
+            throw new IllegalArgumentException(ValidMessage.ValidLength.getMessage());
         }
     }
 
@@ -60,7 +60,7 @@ public class Valid {
 
     public static void isEnterValid(String enter) {
         if (isEnterEmpty(enter) || isEnterNotLetter(enter) || isEnterNotRequiredLetter(enter)) {
-            throw new IllegalArgumentException("입력시 U, D 중 하나를 입력해주세요.");
+            throw new IllegalArgumentException(ValidMessage.ValidMove.getMessage());
         }
     }
 
@@ -74,7 +74,7 @@ public class Valid {
 
     public static void isEnterFinishValid(String enter) {
         if (isEnterEmpty(enter) || isEnterNotLetter(enter) || isLastEnterNotRequiredLetter(enter)) {
-            throw new IllegalArgumentException("입력시 Q, R 중 하나를 입력해주세요.");
+            throw new IllegalArgumentException(ValidMessage.ValidFinish.getMessage());
         }
     }
 
