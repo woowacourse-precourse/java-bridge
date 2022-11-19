@@ -6,13 +6,30 @@ package bridge;
 public class BridgeGame {
 
     private final OutputView outputView;
+    private final InputView inputView;
+    private final Validator validator;
 
-    public BridgeGame(OutputView outputView) {
-        this.outputView = outputView;
+    public BridgeGame() {
+        this.outputView = new OutputView();
+        this.inputView = new InputView();
+        this.validator = new Validator();
     }
 
     public void run() {
         outputView.printStartNotice();
+        inputBridgeSize();
+
+    }
+
+    private int inputBridgeSize() {
+        try {
+            String input = inputView.readBridgeSize();
+            validator.validateBridgeSize(input);
+            return Integer.parseInt(input);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return inputBridgeSize();
+        }
     }
 
     /**
