@@ -1,7 +1,5 @@
 package bridge.service;
 
-
-
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeRandomNumberGenerator;
@@ -13,43 +11,66 @@ import static bridge.msg.InputMsg.*;
 
 public class BridgeService {
 
-    private BridgeGame bridgeGame = new BridgeGame();
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private BridgeGame bridgeGame = new BridgeGame();
     private List<String> upside = new ArrayList<>();
     private List<String> downside = new ArrayList<>();
-    private int attempt = 0;
+    private int index = 0;
 
 
-    private List<String> upsideProgress(List<String> bridge, boolean moveSuccess) {
-        if (bridge.get(upside.size()).equals(UP_MSG.getMsg()))
-            upside.add(ENABLE_MSG.getMsg());
-        else if (bridge.get(upside.size()).equals(UP_MSG.getMsg()) && !moveSuccess)
-            upside.add(UNABLE_MSG.getMsg());
-
-        upside.add(" ");
-
-        return upside;
+    public List<String> bridgeMake(int size) {
+        return bridgeMaker.makeBridge(size);
     }
 
-    private List<String> downsideProgress(List<String> bridge, boolean moveSuccess) {
-        if (bridge.get(downside.size()).equals(DOWN_MSG.getMsg()))
-            downside.add(ENABLE_MSG.getMsg());
-        else if (bridge.get(downside.size()).equals(DOWN_MSG.getMsg()) && !moveSuccess)
-            downside.add(UNABLE_MSG.getMsg());
+    public boolean isMove(String inputMove, List<String> bridge) {
+        return bridgeGame.move(inputMove, bridge, index);
+    }
 
+    public List<List<String>> upAndDownProgress(String inputMove, boolean isMove) {
+        List<List<String>> upAndDown = new ArrayList<>();
+
+        if (inputMove.equals(UP_MSG.getMsg())) upProgress(isMove);
+        else if (inputMove.equals(DOWN_MSG.getMsg())) downProgress(isMove);
+
+        upAndDown.add(upside);
+        upAndDown.add(downside);
+
+        return upAndDown;
+    }
+
+    private void upProgress(boolean isMove) {
+        if (isMove) {
+            upside.add(ENABLE_MSG.getMsg());
+        } else if (!isMove) {
+            upside.add(UNABLE_MSG.getMsg());
+        }
         downside.add(" ");
 
-        return downside;
+        index++;
     }
 
-    public int restartGame() {
+    private void downProgress(boolean isMove) {
+        if (isMove) {
+            downside.add(ENABLE_MSG.getMsg());
+        } else if (!isMove) {
+            downside.add(UNABLE_MSG.getMsg());
+        }
+        upside.add(" ");
+
+        index++;
+    }
+
+    private void cleanSide() {
         upside.clear();
         downside.clear();
-
-        return attempt++;
     }
 
-    public int quitGame() {
-        return attempt++;
+    public boolean retryJudge(String inputRetry) {
+        if(inputRetry.equals(RESTART_MSG)){
+            cleanSide();
+            return true;
+        }
+
+        return false;
     }
 }
