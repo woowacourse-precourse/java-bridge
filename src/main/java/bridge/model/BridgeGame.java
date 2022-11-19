@@ -2,6 +2,8 @@ package bridge.model;
 
 import bridge.constant.GameStatus;
 
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -77,5 +79,17 @@ public class BridgeGame {
 
     public int getTryCount(){
         return tryCount;
+    }
+
+    public GameStatus getGameStatus(){
+        return gameStatus;
+    }
+
+    public Bridge getBridge(){
+        return bridge;
+    }
+
+    public int getRound(){
+        return round;
     }
 }
