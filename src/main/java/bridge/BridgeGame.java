@@ -1,9 +1,27 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
+    private List<Direction> bridge;
+    private List<Direction> history = new ArrayList<>();
+    private boolean giveUp = false;
+
+    public BridgeGame() {
+    }
+
+    public BridgeGame(List<String> bridge) {
+        this.bridge = bridge.stream()
+                .map(Direction::fromSymbol)
+                .collect(Collectors.toList());
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
