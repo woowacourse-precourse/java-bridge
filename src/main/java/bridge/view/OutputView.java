@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.controller.GameController;
+import bridge.domain.Result;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -32,7 +32,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(boolean isAnswer, int count, String[][] realTimeMap) {
-        String result = new GameController().isSuccess(isAnswer);
+        String result = new Result().result(isAnswer);
         System.out.println();
         System.out.println(PRINT_END);
         printMap(realTimeMap);

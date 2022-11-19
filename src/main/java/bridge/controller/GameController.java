@@ -20,11 +20,4 @@ public class GameController {
         List<String> bridge = bridgeMaker.makeBridge(size);
         new BridgeGame().start(size, bridge);
     }
-
-    public String isSuccess(boolean isAnswer) {
-        if (isAnswer) {
-            return GameResult.SUCCESS.getValue();
-        }
-        return GameResult.FAIL.getValue();
-    }
 }
