@@ -31,7 +31,7 @@ public class BridgeMaker {
 
         return bridge;
     }
-    public String generateUpDown(int number) {
+    private String generateUpDown(int number) {
         if (number == DOWN)
             return "D";
         if (number == UP )
