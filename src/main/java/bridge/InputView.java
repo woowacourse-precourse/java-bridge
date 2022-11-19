@@ -1,116 +1,43 @@
 package bridge;
 
-import camp.nextstep.edu.missionutils.Console;
-
-import java.util.List;
-
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
 
-    private static final int MIN_BRIDGE_SIZE = 3;
-    private static final int MAX_BRIDGE_SIZE = 20;
-    private static final String BRIDGE_SIZE_INPUT_ERROR_MESSAGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+    private static final String BRIDGE_SIZE_INPUT_MESSAGE = "다리의 길이를 입력해주세요.";
 
-    private static final String READ_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
+    private static final String MOVING_INPUT_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
 
-    private static final String UP_BRIDGE = "U";
-    private static final String DOWN_BRIDGE = "D";
-
-    private static final String MOVING_INPUT_ERROR_MESSAGE = "[ERROR] U(위), D(아래) 중 하나를 입력해야 합니다.";
-
-    private static final String READ_MOVING_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-
-    private static final String RETRY = "R";
-    private static final String QUIT = "Q";
-    private static final String GAME_COMMAND_ERROR_MESSAGE = "[ERROR] R(재시작), Q(종료) 중 하나를 입력해야 합니다.";
-
-    private static final String READ_GAME_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private static final String GAME_COMMAND_INPUT_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println(READ_BRIDGE_SIZE_MESSAGE);
-        return getValidBridgeSize();
+        System.out.println(BRIDGE_SIZE_INPUT_MESSAGE);
+
+        InputValidator inputValidator = new BridgeSizeValidator();
+        String validInput = inputValidator.getValidInput();
+        return Integer.parseInt(validInput);
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println(READ_MOVING_MESSAGE);
-        return getValidMoving();
+        System.out.println(MOVING_INPUT_MESSAGE);
+
+        InputValidator inputValidator = new MovingValidator();
+        return inputValidator.getValidInput();
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println(READ_GAME_COMMAND_MESSAGE);
-        return getValidGameCommand();
-    }
+        System.out.println(GAME_COMMAND_INPUT_MESSAGE);
 
-    public int getValidBridgeSize() {
-        try {
-            String input = Console.readLine();
-            validateBridgeSize(input);
-            return Integer.parseInt(input);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return getValidBridgeSize();
-        }
-    }
-
-    public String getValidMoving() {
-        try {
-            String input = Console.readLine();
-            validateMoving(input);
-            return input;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return getValidMoving();
-        }
-    }
-
-    public String getValidGameCommand() {
-        try {
-            String input = Console.readLine();
-            validateGameCommand(input);
-            return input;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return getValidGameCommand();
-        }
-    }
-
-    public void validateBridgeSize(String input) throws IllegalArgumentException {
-        checkParsableInt(input);
-        int bridgeSize = Integer.parseInt(input);
-        if (bridgeSize < MIN_BRIDGE_SIZE || bridgeSize > MAX_BRIDGE_SIZE) {
-            throw new IllegalArgumentException(BRIDGE_SIZE_INPUT_ERROR_MESSAGE);
-        }
-    }
-
-    public void validateMoving(String input) throws IllegalArgumentException {
-        List<String> movingOptions = List.of(UP_BRIDGE, DOWN_BRIDGE);
-        if(!movingOptions.contains(input)) {
-            throw new IllegalArgumentException(MOVING_INPUT_ERROR_MESSAGE);
-        }
-    }
-
-    public void validateGameCommand(String input) throws IllegalArgumentException {
-        List<String> gameCommandOptions = List.of(RETRY, QUIT);
-        if(!gameCommandOptions.contains(input)) {
-            throw new IllegalArgumentException(GAME_COMMAND_ERROR_MESSAGE);
-        }
-    }
-
-    private void checkParsableInt(String input) throws IllegalArgumentException {
-        try {
-            Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(BRIDGE_SIZE_INPUT_ERROR_MESSAGE);
-        }
+        InputValidator inputValidator = new GameCommandValidator();
+        return inputValidator.getValidInput();
     }
 }
