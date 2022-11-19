@@ -1,28 +1,33 @@
 package bridge.domain;
 
+import java.util.List;
+
 import bridge.dto.BridgeCrossingDTO;
 
 public class BridgeGame {
+    private static List<String> footPrint;
+
     private final Bridge bridge;
-    private int nowLocation = 0;
-    private int tryCount = 1;
+    private int tryCount;
     private BridgeCrossingStatus crossingStatus;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
+        tryCount = 1;
     }
 
     public void move(String movingDirection) {
-        crossingStatus = bridge.isRightTrack(nowLocation, movingDirection);
-        nowLocation++;
-    }
-
-    public void retry() {
-        nowLocation = 0;
-        tryCount++;
+        crossingStatus = bridge.isRightTrack(footPrint.size(), movingDirection);
+        footPrint.add(movingDirection);
     }
 
     public BridgeCrossingDTO toResponseDto() {
+
         return null;
     }
+
+    public void retry() {
+        tryCount++;
+    }
+
 }
