@@ -1,4 +1,4 @@
-package bridge.constant;
+package bridge.enums;
 
 public enum ControlKey {
   UP("U", "위"){
