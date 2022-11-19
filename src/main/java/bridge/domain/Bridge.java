@@ -21,4 +21,13 @@ public class Bridge {
     private List<String> setBridgeInfo(int bridgeSize) {
         return bridgeMaker.makeBridge(bridgeSize);
     }
+
+    public int getBridgeSize() {
+        return bridgeSize;
+    }
+
+    public String getBridge(int index) {
+        return bridge.get(index);
+    }
+
 }
