@@ -48,7 +48,7 @@ class BridgeGameTest {
     @DisplayName("재시작시 위치 초기화 테스트")
     @Test
     void retryTest() {
-        String movingPath = "UDDUDDUD";
+        String movingPath = "UDDUDDUU";
 
         for (String movingDirection : movingPath.split("")) {
             Tile targetTile = Tile.findByPositionSign(movingDirection);
@@ -56,7 +56,8 @@ class BridgeGameTest {
         }
         bridgeGame.retry(player);
 
-        assertThat(bridgeGame.isWin(player)).isFalse();
+        final int initialPosition = -1;
+        assertThat(player.isCurrentPosition(initialPosition)).isTrue();
     }
 
     @ParameterizedTest(name = "다리게임 다리 타일 체크 테스트 [{index}] : 테스트 결과 반환 - {2}")
