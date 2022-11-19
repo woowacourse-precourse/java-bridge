@@ -45,4 +45,13 @@ class ValidationTest {
         Assertions.assertThatThrownBy(() ->bridgeLen("21"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+
+    @Test
+    @DisplayName("다리 기능 입력에 대한 validation - 성공 ")
+    public void 다리_길이_성공() throws Exception{
+        Assertions.assertThatCode(() ->bridgeLen("15"))
+                .doesNotThrowAnyException();
+
+    }
 }
