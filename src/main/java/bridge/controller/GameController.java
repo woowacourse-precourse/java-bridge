@@ -53,11 +53,6 @@ public class GameController {
         showResult(player);
     }
 
-    /**
-     * player가 죽은 후 종료를 선택하거나, 클리어를 할 때 까지 플래이
-     *
-     * @param player 게임 플래이어
-     */
     private void playUntilEnd(Player player) {
         do {
             playOneTurn(player);
