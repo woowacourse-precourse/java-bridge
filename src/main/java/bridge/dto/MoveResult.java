@@ -6,6 +6,7 @@ public class MoveResult {
 
     private Command command;
     private boolean success;
+    private int round;
 
     public String getMessage() {
         return command.getMessage();
@@ -15,8 +16,13 @@ public class MoveResult {
         return success;
     }
 
-    public MoveResult(Command command, boolean success) {
+    public int getRound() {
+        return round;
+    }
+
+    public MoveResult(Command command, boolean success, int round) {
         this.command = command;
         this.success = success;
+        this.round = round;
     }
 }

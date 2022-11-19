@@ -17,32 +17,32 @@ public class Application {
     public static void main(String[] args) {
         Bridge bridge = bridgeGame.getBridge(inputView.readBridgeSize());
         GameResult gameResult = play(bridge);
-        outputView.printResult(gameResult);
+        outputView.printResult(bridge,gameResult);
     }
 
     private static GameResult play(Bridge bridge) {
         MoveResult moveResult = moveToBridge(bridge);
         if (!moveResult.isSuccess()) {
-            return selectWhetherToRetry(bridge);
+            return selectWhetherToRetry(bridge, moveResult);
         }
 
         if (!bridgeGame.isGameClear()) {
-            play(bridge);
+            return play(bridge);
         }
-        return bridgeGame.closeGame();
+        return bridgeGame.closeGame(moveResult);
     }
 
     private static MoveResult moveToBridge(Bridge bridge) {
         MoveResult moveResult = bridgeGame.move(bridge, inputView.readMoving());
-        outputView.printMap(moveResult);
+        outputView.printMap(bridge,moveResult);
         return moveResult;
     }
 
-    private static GameResult selectWhetherToRetry(Bridge bridge) {
+    private static GameResult selectWhetherToRetry(Bridge bridge, MoveResult moveResult) {
         if (bridgeGame.retry(inputView.readGameCommand())) {
-            outputView.resetMap();
-            play(bridge);
+            return play(bridge);
         }
-        return bridgeGame.closeGame();
+        return bridgeGame.closeGame(moveResult);
     }
+
 }

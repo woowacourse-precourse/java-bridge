@@ -3,18 +3,22 @@ package bridge.dto;
 public class GameResult {
 
     private int tryCount;
-    private boolean gameClear;
+    private MoveResult moveResult;
 
-    public GameResult(int tryCount, boolean gameClear) {
-        this.tryCount = tryCount;
-        this.gameClear = gameClear;
+    public boolean isGameClear() {
+        return moveResult.isSuccess();
     }
 
     public int getTryCount() {
         return tryCount;
     }
 
-    public boolean isGameClear() {
-        return gameClear;
+    public MoveResult getMoveResult() {
+        return moveResult;
+    }
+
+    public GameResult(int tryCount, MoveResult moveResult) {
+        this.tryCount = tryCount;
+        this.moveResult = moveResult;
     }
 }

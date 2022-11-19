@@ -23,11 +23,11 @@ public class BridgeGame {
 
     public MoveResult move(Bridge bridge,
                            MoveCommand command) {
-        boolean isSuccess = bridge.isMoveSuccess(bridgeGameRepository.findRound(), command.getMessage());
-        return new MoveResult(command, isSuccess);
+        int round = bridgeGameRepository.findRound();
+        boolean isSuccess = bridge.isMoveSuccess(round, command.getMessage());
+        return new MoveResult(command, isSuccess, round);
     }
 
-    //ENUM ?
     public boolean retry(RetryCommand retryCommand) {
         if (retryCommand.isRetry()) {
             bridgeGameRepository.retry();
@@ -44,8 +44,7 @@ public class BridgeGame {
         return false;
     }
 
-    public GameResult closeGame() {
-        return new GameResult(bridgeGameRepository.findTryCount(),
-                bridgeGameRepository.isFinalRound());
+    public GameResult closeGame(MoveResult moveResult) {
+        return new GameResult(bridgeGameRepository.findTryCount(), moveResult);
     }
 }
