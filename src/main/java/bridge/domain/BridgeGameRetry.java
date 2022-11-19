@@ -1,10 +1,8 @@
 package bridge.domain;
 
-import java.util.Objects;
-
 import static bridge.utils.ErrorMessages.ERROR_INVALID_GAME_COMMAND;
 
-public class BridgeRetry {
+public class BridgeGameRetry {
     private static final String RETRY = "R";
     private static final String END = "Q";
 
