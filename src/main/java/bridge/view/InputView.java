@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.Moving;
+import bridge.domain.Moving;
 import camp.nextstep.edu.missionutils.Console;
 
 /**

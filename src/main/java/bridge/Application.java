@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.controller.Controller;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
