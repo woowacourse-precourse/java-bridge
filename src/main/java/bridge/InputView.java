@@ -9,6 +9,10 @@ public class InputView {
 
     private static final int BRIDGE_SIZE_LOWER = 3;
     private static final int BRIDGE_SIZE_UPPER = 20;
+    private static final String ERROR_NOT_NUMBER = "입력한 값이 숫자가 아닙니다.";
+    private static final String ERROR_NOT_BRIDGE_SIZE = "다리 길이가 3 이상 20 이하가 아닙니다.";
+    private static final String ERROR_NOT_READ_MOVING = "입력한 값이 U 또는 D가 아닙니다.";
+    private static final String ERROR_NOT_GAME_COMMAND = "입력한 값이 R 또는 Q가 아닙니다.";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -34,13 +38,13 @@ public class InputView {
                 .allMatch(Character::isDigit);
 
         if (!check) {
-            throw new IllegalArgumentException("입력한 값이 숫자가 아닙니다.");
+            throw new IllegalArgumentException(ERROR_NOT_NUMBER);
         }
     }
 
     private void validBridgeSizeInRange(int number) {
         if (BRIDGE_SIZE_LOWER > number || number > BRIDGE_SIZE_UPPER) {
-            throw new IllegalArgumentException("다리 길이가 3 이상 20 이하가 아닙니다.");
+            throw new IllegalArgumentException(ERROR_NOT_BRIDGE_SIZE);
         }
     }
 
@@ -60,7 +64,7 @@ public class InputView {
 
     private void validReadMoving(String inputReadMoving) {
         if (!inputReadMoving.matches("^[D|U]$")) {
-            throw new IllegalArgumentException("입력한 값이 U 또는 D가 아닙니다.");
+            throw new IllegalArgumentException(ERROR_NOT_READ_MOVING);
         }
     }
 
@@ -80,7 +84,7 @@ public class InputView {
 
     private void validReadGameCommand(String gameCommand) {
         if (!gameCommand.matches("^[R|Q]$")) {
-            throw new IllegalArgumentException("입력한 값이 R 또는 Q가 아닙니다.");
+            throw new IllegalArgumentException(ERROR_NOT_GAME_COMMAND);
         }
     }
 }
