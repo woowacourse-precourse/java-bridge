@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,13 +19,14 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String move(int round, String moving) {
-        String result = " X ";
-
-        if (Objects.equals(moving, bridge.get(round))) {
-            result = " O ";
+    public String[] move(int round, String moving) {
+        String[] result = {"   ", "   "};
+        String current = bridge.get(round);
+        BridgeType bridgeByMoving = BridgeType.valueOfString(moving);
+        result[bridgeByMoving.getNumber()] = " X ";
+        if (Objects.equals(moving, current)) {
+            result[bridgeByMoving.getNumber()] = " O ";
         }
-
         return result;
     }
 
