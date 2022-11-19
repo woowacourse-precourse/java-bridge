@@ -11,11 +11,8 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize(String input) {
-        if(!input.matches("^[0-9]")){
-            throw new IllegalArgumentException();
-        }
-        return 0;
+    public String readBridgeSize() {
+        return null;
     }
 
     /**
