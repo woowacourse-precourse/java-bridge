@@ -43,7 +43,7 @@ public class BridgeGame {
 
     public void end() {
         checkState();
-        playState.end();
+        playState = playState.end();
     }
 
     public boolean state() {

@@ -1,7 +1,9 @@
 package bridge.domain;
 
+import java.util.Objects;
+
 public class PlayState {
-    private boolean state;
+    private final boolean state;
 
     public PlayState(boolean state) {
         this.state = state;
@@ -11,7 +13,24 @@ public class PlayState {
         return this.state;
     }
 
-    public void end() {
-        this.state = false;
+    public PlayState end() {
+        return new PlayState(false);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PlayState playState = (PlayState) o;
+        return state == playState.state;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(state);
     }
 }
