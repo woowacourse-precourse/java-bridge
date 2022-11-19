@@ -23,9 +23,8 @@ public class OutputView {
     private final List<String> lowerBlocks = new ArrayList<>();
 
     public void printMap(MoveResult moveResult) {
-        String answer = moveResult.getMessage();
         String resultMark = getResultMark(moveResult.isSuccess());
-        setBlocks(answer, resultMark);
+        setBlocks(moveResult.getMessage(), resultMark);
         printJoiningMessage();
     }
 
@@ -37,7 +36,7 @@ public class OutputView {
     public void printResult(GameResult gameResult) {
         System.out.println("최종 게임 결과");
         printJoiningMessage();
-        System.out.printf("게임 성공 여부: %s\n", getIsGameClear(gameResult));
+        System.out.printf("게임 성공 여부: %s\n", getGameClearResultMessage(gameResult));
         System.out.printf("총 시도한 횟수: %s\n", gameResult.getTryCount());
     }
 
@@ -65,8 +64,7 @@ public class OutputView {
         System.out.printf("[ %s ]\n", String.join(" | ", lowerBlocks));
     }
 
-    //TODO 메소드명 수정
-    private String getIsGameClear(GameResult gameResult) {
+    private String getGameClearResultMessage(GameResult gameResult) {
         if (gameResult.isGameClear()) {
             return GAME_CLEAR_SUCCESS;
         }
