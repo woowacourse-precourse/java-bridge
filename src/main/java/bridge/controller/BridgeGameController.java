@@ -27,4 +27,9 @@ public class BridgeGameController {
     public void printStartGame() {
         outputView.printStartGame();
     }
+
+    public Bridge setBridge() {
+        Bridge bridge = new Bridge(bridgeMaker.makeBridge(inputViewService.inputBridgeSize()));
+        return bridge;
+    }
 }
