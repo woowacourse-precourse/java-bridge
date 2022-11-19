@@ -10,16 +10,16 @@ import bridge.view.OutputView;
 
 import java.util.List;
 
+import static bridge.common.BridgeGameConstants.NO;
+import static bridge.common.BridgeGameConstants.YES;
+import static bridge.common.BridgeGameConstants.SUCCESS;
+import static bridge.common.BridgeGameConstants.FAILED;
 import static bridge.exception.BridgeGameValidator.validateInt;
 import static bridge.exception.BridgeGameValidator.isValidGameNumber;
 import static bridge.exception.BridgeGameValidator.validateUpAndDown;
 import static bridge.exception.BridgeGameValidator.validateRestartAndQuit;
 
 public class BridgeGameController {
-    private static final String SUCCESS = "성공";
-    private static final String FAILED = "실패";
-    private static final String YES = "O";
-    private static final String NO = "X";
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
     private static BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
