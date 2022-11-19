@@ -4,7 +4,7 @@
 
 - InputView
   - [x] 공통 : 에러 발생시, 값을 다시 입력받음
-  - [ ] 다리의 길이를 입력
+  - [x] 다리의 길이를 입력받음
       - 3 이상 20 이하의 숫자를 입력하지 않으면 `IllegalArgumentException` 에러 발생
   - [ ] 플레이어가 이동할 칸을 입력받음
       - 주어진 특정문자(U, D)외의 문자를 입력받으면 `IllegalArgumentException` 에러 발생
