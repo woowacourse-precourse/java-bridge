@@ -8,7 +8,7 @@ public class OutputView {
     private static final String START_GAME = "다리 건너기 게임을 시작합니다.\n";
     public static final String BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     public static final String ENTER_MOVE = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    public static final String ENTER_RESTART = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    public static final String ENTER_RESTART = "\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     public static final String FINAL_RESULT = "\n최종 게임 결과";
     public static final String SUCCESS_OR_NOT = "\n게임 성공 여부: ";
     public static final String TOTAL_TRIAL = "\n총 시도한 횟수: ";
@@ -81,7 +81,7 @@ public class OutputView {
         }
         System.out.printf(SUCCESS_OR_NOT + judgement);
         String totalTrial = Integer.toString(trial);
-        System.out.println(TOTAL_TRIAL + totalTrial);
+        System.out.print(TOTAL_TRIAL + totalTrial);
     }
     public void printRestart() {
         System.out.println(ENTER_RESTART);
