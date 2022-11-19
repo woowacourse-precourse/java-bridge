@@ -16,8 +16,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(int userPosition, String moving, boolean checkUserDecision, List<String> bridge) {
-
+    public void printMap(int userPosition, String moving, List<String> bridge) {
+        printUpperBridge(userPosition, moving, bridge);
+        printLowerBridge(userPosition, moving, bridge);
     }
 
     /**
