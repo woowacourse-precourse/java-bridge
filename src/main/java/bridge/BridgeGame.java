@@ -32,10 +32,13 @@ public class BridgeGame {
         return this.bridgeMap;
     }
 
-    public int retry() {
+    public int getTryCount() {
+        return tryCount;
+    }
+
+    public void retry() {
         newBridgePattern();
         this.tryCount += 1;
-        return tryCount;
     }
 
     private void newBridgePattern() {
