@@ -26,7 +26,7 @@ public class BridgeController {
         int bridgeSize;
         try {
             bridgeSize = inputView.readBridgeSize();
-            return new BridgeGame(new BridgeMaker(numberGenerator));
+            return new BridgeGame(new BridgeMaker(numberGenerator), bridgeSize);
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
             return makeBridgeGame(numberGenerator);

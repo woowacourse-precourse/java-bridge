@@ -1,5 +1,9 @@
 package bridge.domain;
 
+import bridge.domain.message.ErrorMessage;
+import bridge.domain.utils.BridgeCommand;
+import bridge.exception.IllegalGenerateException;
+
 import java.util.List;
 
 public class Bridge {
@@ -7,5 +11,11 @@ public class Bridge {
 
     public Bridge(List<String> bridge) {
         this.bridge = bridge;
+        validateInNothing(bridge);
+    }
+
+    private void validateInNothing(List<String> bridge) {
+        if (bridge.contains(BridgeCommand.NOTING.getCommand()))
+            throw new IllegalGenerateException(ErrorMessage.BRIDGE_GENERATE_ERROR);
     }
 }

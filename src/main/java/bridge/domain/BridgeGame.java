@@ -8,8 +8,9 @@ public class BridgeGame {
     private Bridge bridge;
     private final BridgeMaker bridgeMaker;
 
-    public BridgeGame(BridgeMaker bridgeMaker) {
+    public BridgeGame(BridgeMaker bridgeMaker, int bridgeSize) {
         this.bridgeMaker = bridgeMaker;
+        bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
     /**

@@ -20,4 +20,12 @@ public enum BridgeCommand {
             return UP.command;
         return NOTING.command;
     }
+
+    public int getRandomNumber() {
+        return randomNumber;
+    }
+
+    public String getCommand() {
+        return command;
+    }
 }
