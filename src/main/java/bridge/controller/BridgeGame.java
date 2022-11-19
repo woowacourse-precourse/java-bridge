@@ -14,9 +14,9 @@ public class BridgeGame {
     private final Bridge bridge;
     private final Score score;
 
-    public BridgeGame(String size) {
+    public BridgeGame(InputRequestDto sizeDto) {
         AppConfig appConfig = new AppConfig();
-        this.bridge = new Bridge(appConfig.bridgeFactory(), size);
+        this.bridge = new Bridge(appConfig.bridgeFactory(), sizeDto.getInput());
         this.score = new Score();
     }
 
