@@ -52,6 +52,7 @@ public class GameManager {
         }
 
         boolean isSuccess = isSuccess(upResult, downResult);
+        ouputView.printResult(Arrays.asList(upResult, downResult), isSuccess, tried);
     }
 
     public boolean retry() {
