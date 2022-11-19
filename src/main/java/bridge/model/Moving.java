@@ -1,29 +1,15 @@
 package bridge.model;
 
-public class Moving {
-    private final String moving;
+public enum Moving {
+    UP("U"), DOWN("D");
 
-    public Moving(String moving) {
+    private final String value;
 
-        validateNotNull(moving);
-        validateUOrD(moving);
-        this.moving = moving;
+    Moving(String value) {
+        this.value = value;
     }
 
-    private void validateNotNull(String moving) {
-        if (moving == null || "".equals(moving)) {
-            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U나 D로만 입력해주세요.");
-        }
-    }
-
-    private void validateUOrD(String moving) {
-        if (!("U".equals(moving) || "D".equals(moving))) {
-            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U나 D로만 입력해주세요.");
-        }
-    }
-
-    @Override
-    public String toString() {
-        return moving;
+    public String getValue() {
+        return value;
     }
 }
