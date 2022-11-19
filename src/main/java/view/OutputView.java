@@ -12,6 +12,7 @@ public class OutputView {
 	 */
 	public void printMap(String map) {
 		System.out.println(map);
+		System.out.println();
 	}
 
 	/**
@@ -22,6 +23,7 @@ public class OutputView {
 	public void printResult(String result, boolean isSuccess, int count) {
 		System.out.println(ViewConstant.FINAL_RESULT_MESSAGE);
 		System.out.println(result);
+		System.out.println();
 		System.out.print(ViewConstant.SUCCESS_OR_FAIL_MESSAGE);
 		if (isSuccess) {
 			System.out.println(ViewConstant.SUCCESS);
@@ -35,5 +37,6 @@ public class OutputView {
 
 	public void printStartMessage() {
 		System.out.println(ViewConstant.GAME_START_MESSAGE);
+		System.out.println();
 	}
 }
