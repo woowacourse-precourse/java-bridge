@@ -2,7 +2,7 @@ package bridge.handler.exception;
 
 public class ExceptionHandler {
 
-	public static void raisingException(String message) {
+	public static void raisingIllegalArgumentException(String message) {
 		throw new IllegalArgumentException(message);
 	}
 
