@@ -1,12 +1,14 @@
 package bridge.model;
 
 public class GameResult {
+	private static final String SUCCESS = "성공";
+	private static final String FAIL = "실패";
 
 	private String result;
 	private int numberOfAttempts;
 
 	public GameResult() {
-		this.result = "";
+		this.result = SUCCESS;
 		this.numberOfAttempts = 0;
 	}
 
@@ -15,14 +17,14 @@ public class GameResult {
 	}
 
 	public void changeResultToSuccess() {
-		if (!result.equals("성공")) {
-			result = "성공";
+		if (!result.equals(SUCCESS)) {
+			result = SUCCESS;
 		}
 	}
 
 	public void changeResultToFail() {
-		if (!result.equals("실패")) {
-			result = "실패";
+		if (!result.equals(FAIL)) {
+			result = FAIL;
 		}
 	}
 
