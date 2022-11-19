@@ -29,4 +29,8 @@ public class Player  {
     public int getTryGameCount() {
         return temp;
     }
+
+    public boolean isFinish() {
+        return inputs.size() == bridgeLength;
+    }
 }
