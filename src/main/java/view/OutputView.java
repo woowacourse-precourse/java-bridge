@@ -29,4 +29,9 @@ public class OutputView {
     public void printReStart() {
         System.out.println(Message.RE_START.getMessage());
     }
+
+    public void printGameResult() {
+        System.out.println(Message.GAME_RESULT.getMessage());
+    }
+
 }
