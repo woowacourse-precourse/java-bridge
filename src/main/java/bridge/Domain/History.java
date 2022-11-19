@@ -26,4 +26,8 @@ public class History {
     public void move(String moveTo) {
         choices.add(moveTo);
     }
+
+    public String getSpaceByLocation(int location) {
+        return choices.get(location);
+    }
 }
