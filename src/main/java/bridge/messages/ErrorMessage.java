@@ -1,4 +1,4 @@
-package bridge;
+package bridge.messages;
 
 public enum ErrorMessage {
     BRIDGE_SIZE_INPUT_RANGE("[ERROR] 3이상 20이하의 숫자를 입력해야합니다."),

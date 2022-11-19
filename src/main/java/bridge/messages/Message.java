@@ -1,4 +1,4 @@
-package bridge;
+package bridge.messages;
 
 public enum Message {
     LEFT_BAR ("[ "),
@@ -6,6 +6,8 @@ public enum Message {
     CENTER_BAR(" | "),
     MOVE_SUCCESS("O"),
     MOVE_FAIL("X"),
+    RESTART("R"),
+    QUIT("Q"),
     START_GAME("다리 건너기 게임을 시작합니다."),
     INPUT_SIZE("다리의 길이를 입력해주세요."),
     SELECT_DIRECTION("이동할 칸을 선택해주세요. (위: U, 아래: D)"),
@@ -16,8 +18,6 @@ public enum Message {
     BLANK(" "),
     GAME_SUCCESS("게임 성공 여부: 성공"),
     GAME_FAILURE("게임 성공 여부: 실패"),
-    RESTART("R"),
-    QUIT("Q"),
     TRY_ATTEMPTS("총 시도한 횟수: ");
 
     private final String message;
