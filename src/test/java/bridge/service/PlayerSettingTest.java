@@ -48,4 +48,30 @@ public class PlayerSettingTest {
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
+
+    @Nested
+    @DisplayName("다리의 길이가 3보다 작거나 20보다 큰 경우 예외를 던짐")
+    class setReadBridgeSizeToPlayerNotRangeTest {
+        @ParameterizedTest
+        @CsvSource({
+                "-9", "-1", "0", "2", "21", "99"
+        })
+        void test(String readBridgeSize) {
+            Assertions.assertThatThrownBy(() -> playerSetting.setBridgeSizeToPlayer(readBridgeSize))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+    }
+
+    @Nested
+    @DisplayName("입력받은 다리의 길이 문자의 길이가 1또는 2가 아니면 예외를 던짐")
+    class setReadBridgeSizeToPlayerNotLengthTest {
+        @ParameterizedTest
+        @CsvSource({
+                "-10","100","1000"
+        })
+        void test(String readBridgeSize) {
+            Assertions.assertThatThrownBy(() -> playerSetting.setBridgeSizeToPlayer(readBridgeSize))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+    }
 }
