@@ -15,7 +15,7 @@ public class InputView {
         String input;
         do {
             input = Console.readLine();
-        } while(bridgeSizeStringToInt(input) == -1);
+        } while (bridgeSizeStringToInt(input) == -1);
         return Integer.parseInt(input);
     }
 
@@ -23,7 +23,10 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String input = Console.readLine();
+        String input;
+        do {
+            input = Console.readLine();
+        } while (!checkMoving(input));
         return input;
     }
 
@@ -44,6 +47,18 @@ public class InputView {
         } catch (IllegalArgumentException e) {
             System.out.println(errorMsg);
             return -1;
+        }
+    }
+
+    public boolean checkMoving(String input){
+        try{
+            if(!input.equals("U") || !input.equals("D")){
+                throw new IllegalArgumentException();
+            }
+            return true;
+        } catch (IllegalArgumentException e){
+            System.out.println(errorMsg);
+            return false;
         }
     }
 }
