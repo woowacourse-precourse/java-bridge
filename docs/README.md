@@ -81,7 +81,7 @@ D
 총 시도한 횟수: 2
 ```
 
-# 🚀 기능 목록
+# 🚀기능 목록
 ## 입력
 ### readBridgeSize
 - [ ] '다리의 길이를 입력해주세요.'를 출력
@@ -125,3 +125,7 @@ D
 - [ ] readMoving함수를 실행
 - [ ] 결과 다리와 비교
 - [ ] 같으면 true, 틀리면 false를 리턴
+
+### retry
+- [ ] readGameCommand함수를 실행
+- [ ] 위의 함수의 리턴값이 R이면 true, Q이면 false를 리턴
