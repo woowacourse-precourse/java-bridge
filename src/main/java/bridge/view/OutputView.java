@@ -62,6 +62,10 @@ public class OutputView {
         return moveResults(gameResultDTO).size();
     }
     
+    private List<MoveResultDisplay> moveResults(final GameResultDTO gameResultDTO) {
+        return gameResultDTO.getMoveResults();
+    }
+    
     private String parseMovingDisplay(final GameResultDTO gameResultDTO, final int countOfMoving, final int lineIndex) {
         if (isNotPlaceToMove(lineIndex, currentMoving(gameResultDTO, countOfMoving))) {
             return SPACE_DISPLAY;
@@ -92,10 +96,6 @@ public class OutputView {
     
     private MoveResultDisplay currentMoveResult(final GameResultDTO gameResultDTO, final int countOfMoving) {
         return moveResults(gameResultDTO).get(countOfMoving);
-    }
-    
-    private List<MoveResultDisplay> moveResults(final GameResultDTO gameResultDTO) {
-        return gameResultDTO.getMoveResults();
     }
     
     public void printGameCommandInputMessage() {
