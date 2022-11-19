@@ -1,8 +1,16 @@
 package bridge;
 
+import static constant.Values.Message.*;
+
 public class Checker {
     public int checkValidate(String input) throws IllegalArgumentException {
-        return checkNumeric(input);
+        try {
+            return checkNumeric(input);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            throw new IllegalArgumentException(
+                    String.format(ERROR_INPUT_VALUE.getMessage(), input) + ERROR_SIZE.getMessage()
+                            + ERROR_RE_INPUT.getMessage());
+        }
     }
 
     public int checkNumeric(String input) throws IllegalArgumentException {
@@ -29,9 +37,10 @@ public class Checker {
         return input;
     }
 
-    public String checkMoveValidate(String move) throws IllegalArgumentException {
-        if(!(move.equals("U")|move.equals("D"))) {
-            throw new IllegalArgumentException();
+    public String checkMoveValidate(String move) {
+        if (!(move.equals("U") | move.equals("D"))) {
+            throw new IllegalArgumentException(
+                    String.format(ERROR_INPUT_VALUE.getMessage(), move) + ERROR_MOVE.getMessage() + ERROR_RE_INPUT.getMessage());
         }
         return move;
     }
