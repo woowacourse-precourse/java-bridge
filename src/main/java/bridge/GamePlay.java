@@ -26,7 +26,7 @@ public class GamePlay {
                 outputView.printMap(bridgeGame.getUpBridge(), bridgeGame.getDownBridge(), i);
                 if (result.equals("X")) {
                     restart = inputView.readGameCommand();
-                    bridgeGame.retry();
+                    bridgeGame.retry(restart);
                     break;
                 }
                 restart = "Q";
