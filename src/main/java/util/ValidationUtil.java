@@ -16,4 +16,9 @@ public class ValidationUtil {
         return moving;
     }
 
+    public static String isValidRetry(String retrial) {
+        if( !Pattern.matches("^[RG]$", retrial) ) throw new IllegalArgumentException(ErrorMessage.INVALID_RETRIAL.getValue());
+        return retrial;
+    }
+
 }
