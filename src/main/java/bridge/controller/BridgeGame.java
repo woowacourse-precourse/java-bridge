@@ -37,10 +37,10 @@ public class BridgeGame {
         boolean isLastSection = bridge.getBridgeLength() == currentBridge.getCurrentBridgeLength();
         if (!isSuccessGame || isLastSection) {
             trialCount++;
-            gameManager.putAll(Map.of("isGameEnd", true, "isSuccessGame", isSuccessGame));
+            gameManager.putAll(Map.of("isOneGameEnd", true, "isSuccessGame", isSuccessGame));
             return;
         }
-        gameManager.put("isGameEnd", false);
+        gameManager.put("isOneGameEnd", false);
     }
 
     public Map<String, Boolean> getGameManager() {

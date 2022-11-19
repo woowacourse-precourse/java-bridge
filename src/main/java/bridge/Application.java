@@ -8,13 +8,13 @@ import bridge.view.OutputView;
 import java.util.HashMap;
 import java.util.Map;
 
-import static bridge.constant.Constant.RESTART;
+import static bridge.constant.Constant.*;
 
 public class Application {
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
     private static Map<String, Boolean> gameManager = new HashMap<>();
-    private static boolean gameStatus = true;
+    private static boolean gameStatus = ON_GOING;
 
     public static void main(String[] args) {
         BridgeGame bridgeGame = startGame();
@@ -36,29 +36,29 @@ public class Application {
             CurrentBridge currentBridge = bridgeGame.move(readMoving);
             outputView.printMap(currentBridge);
             gameManager = bridgeGame.getGameManager();
-            boolean isEnd = gameManager.get("isGameEnd");
-            if (isEnd)
+            if (gameManager.get("isOneGameEnd")) {
                 return currentBridge;
+            }
         }
     }
 
     private static void manageGame(BridgeGame bridgeGame, CurrentBridge gameBridge) {
         boolean successGame = gameManager.get("isSuccessGame");
         if (!successGame) {
-            gameStatus = restartOrStop(bridgeGame);
+            gameStatus = restartOrQuit(bridgeGame);
         }
         if (!gameStatus || successGame) {
             outputView.printResult(gameBridge, successGame, bridgeGame.getTrialCount());
-            gameStatus = false;
+            gameStatus = QUIT;
         }
     }
 
-    private static boolean restartOrStop(BridgeGame bridgeGame) {
+    private static boolean restartOrQuit(BridgeGame bridgeGame) {
         String readGameCommand = inputView.readGameCommand();
         if (readGameCommand.equals(RESTART)) {
             bridgeGame.retry();
-            return true;
+            return RE;
         }
-        return false;
+        return QUIT;
     }
 }

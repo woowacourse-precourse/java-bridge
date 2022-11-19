@@ -65,7 +65,7 @@ class InputValidationTest extends NsTest {
 
         // then
         assertTrue(checkValidation);
-        assertEquals("[ERROR] 3 ~ 20의 숫자를 입력해주세요.", output());
+        assertEquals("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.", output());
     }
 
     @Test

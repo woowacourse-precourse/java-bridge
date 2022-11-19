@@ -17,7 +17,7 @@ public enum InputValidation {
             List.of("readBridgeSize")
     ),
     NOT_3_TO_20(
-            "3 ~ 20의 숫자를 입력해주세요.",
+            "다리 길이는 3부터 20 사이의 숫자여야 합니다.",
             input -> !input.matches("^[3-9]$|^1[0-9]$|^20$"),
             List.of("readBridgeSize")
     ),

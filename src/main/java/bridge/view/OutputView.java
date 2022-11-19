@@ -30,12 +30,12 @@ public class OutputView {
     }
 
     public void printResult(CurrentBridge currentBridge, boolean successGame, int trialCount) {
-        System.out.println("최종 게임 결과");
+        System.out.println(LINE + "최종 게임 결과");
         printMap(currentBridge);
         if (successGame)
-            System.out.println("게임 성공 여부: 성공");
+            System.out.println(LINE + "게임 성공 여부: 성공");
         if (!successGame)
-            System.out.println("게임 성공 여부: 실패");
+            System.out.println(LINE + "게임 성공 여부: 실패");
         System.out.println("총 시도한 횟수: " + trialCount);
     }
 }

@@ -14,5 +14,7 @@ public class Constant {
     public static final String X = "X";
 
     public static final String RESTART = "R";
-    public static final String QUIT = "Q";
+    public static final boolean RE = true;
+    public static final boolean QUIT = false;
+    public static final boolean ON_GOING = true;
 }
