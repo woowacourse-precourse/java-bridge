@@ -19,6 +19,29 @@ public class Bridge {
         this.size = size;
     }
 
+    public int getLocation() {
+        return this.location;
+    }
+
+    public int getTryCount() {
+        return this.tryCount;
+    }
+    public boolean getCorrect() {
+        return this.correct;
+    }
+
+    public void setCorrect(boolean correct) {
+        this.correct = correct;
+    }
+
+    public void setLastMoving(String moving) {
+        this.lastMoving = moving;
+    }
+
+    public List<String> getBridge() {
+        return this.bridge;
+    }
+
     /**
      * 이동 가능한지 여부를 확인한다.
      */
@@ -45,29 +68,6 @@ public class Bridge {
      */
     private String getAnswer(int current) {
         return this.bridge.get(current);
-    }
-
-    public int getLocation() {
-        return this.location;
-    }
-
-    public int getTryCount() {
-        return this.tryCount;
-    }
-    public boolean getCorrect() {
-        return this.correct;
-    }
-
-    public void setCorrect(boolean correct) {
-        this.correct = correct;
-    }
-
-    public void setLastMoving(String moving) {
-        this.lastMoving = moving;
-    }
-
-    public List<String> getBridge() {
-        return this.bridge;
     }
 
     /**
