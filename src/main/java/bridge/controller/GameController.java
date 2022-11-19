@@ -11,6 +11,10 @@ import java.util.List;
 public class GameController {
 
     private static final int BUILDER_INITIALIZE = 0;
+    private static final String RESTART = "R";
+    private static final String QUIT = "Q";
+    private static final boolean CLEAR = true;
+    private static final boolean FAILED = false;
     BridgeGame bridgeGame;
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
@@ -31,6 +35,7 @@ public class GameController {
             isClear = bridgeGame.isClear();
             outputView.printMap(selection, isCorrect);
         }
+        checkStatus(isClear);
     }
 
     private void restartGame() {
@@ -42,9 +47,18 @@ public class GameController {
 
     private void checkStatus(boolean isClear) {
         if (isClear) {
-            outputView.printResult(isClear);
+            outputView.printResult(CLEAR);
             return;
         }
         askRestart();
+    }
+
+    private void askRestart() {
+        String restart = inputView.readGameCommand();
+        if (restart.equals(RESTART)) {
+            restartGame();
+            return;
+        }
+        outputView.printResult(FAILED);
     }
 }
