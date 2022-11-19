@@ -5,8 +5,12 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.*;
 import bridge.dto.BridgeDto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameService {
     private final BridgeGame bridgeGame;
+    private final List<BridgeDto> cache = new ArrayList<>();
 
     public GameService(BridgeGame bridgeGame) {
         this.bridgeGame = bridgeGame;
@@ -25,10 +29,13 @@ public class GameService {
     }
 
     public BridgeDto getMyBridgeToPrint(MatchResult matchResult) {
-        return bridgeGame.getMyBridgeToPrint(matchResult);
+        BridgeDto dto = bridgeGame.getMyBridgeToPrint(matchResult);
+        cache.add(dto);
+        return dto;
     }
 
     private void setReGame() {
+        cache.clear();
         bridgeGame.retry();
     }
 
@@ -38,5 +45,9 @@ public class GameService {
             return GameResult.REGAME;
         }
         return GameResult.FAILURE;
+    }
+
+    public BridgeDto getRecentBridge() {
+        return cache.get(cache.size() - 1);
     }
 }
