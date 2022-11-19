@@ -74,7 +74,14 @@ public class BridgeGame {
     }
 
     public boolean compareRetryGameComman(char c) {
-
+        if(c == 'R') {
+            return true;
+        }
+        if(c == 'Q') {
+            endGame();
+            return false;
+        }
+        return true;
     }
 
     public List<String> setBridgeBySize() {
