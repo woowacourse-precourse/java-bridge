@@ -53,7 +53,7 @@ class InputValidatorTest {
 
 
     @ParameterizedTest
-    @ValueSource(strings = {"u", "d", "A", "B", "S", "s", "b", "a"})
+    @ValueSource(strings = {"u", "   ", " U", "d", "A", "B", "S", "s", "b", "a"})
     void 방향_입력이_U_또는_D가_아니라면_예외_발생(String direction) {
         assertThatThrownBy(() -> InputValidator.checkDirectionOrElseThrowException(direction))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -72,5 +72,25 @@ class InputValidatorTest {
         assertThatNoException()
                 .isThrownBy(() -> InputValidator.checkDirectionOrElseThrowException("D"));
 
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"u", "   ", " R", "Q  ", "d", "A", "B", "S", "s", "b", "a"})
+    void 재시작_입력이_R_또는_Q가_아니라면_예외_발생(String retry) {
+        assertThatThrownBy(() -> InputValidator.checkRetryOrElseThrowException(retry))
+                .isInstanceOf(IllegalArgumentException.class);
+
+    }
+
+    @Test
+    void 재시작_입력이_R_이라면_성공() {
+        assertThatNoException()
+                .isThrownBy(() -> InputValidator.checkRetryOrElseThrowException("R"));
+    }
+
+    @Test
+    void 재시작_입력이_Q_이라면_성공() {
+        assertThatNoException()
+                .isThrownBy(() -> InputValidator.checkRetryOrElseThrowException("Q"));
     }
 }
