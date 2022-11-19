@@ -11,11 +11,12 @@ import camp.nextstep.edu.missionutils.Console;
  * - 사용자 값 입력을 위해 필요한 메서드를 추가할 수 있다.
  */
 public class InputView {
+    public static final String LINE_SPLIT = "%n";
     /**
      * 다리의 길이를 입력받는다.
      */
     public static int readBridgeSize() {
-        System.out.println("다리의 길이를 입력해주세요.");
+        System.out.printf(LINE_SPLIT + "다리의 길이를 입력해주세요." + LINE_SPLIT);
         String input = Console.readLine();
         return Validator.validateBridgeSize(input);
     }
@@ -24,7 +25,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public static String readMoving() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.printf(LINE_SPLIT + "이동할 칸을 선택해주세요. (위: U, 아래: D)" + LINE_SPLIT);
         String input = Console.readLine();
         Validator.isUOrD(input);
         return input;
@@ -34,7 +35,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public static String readGameCommand() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.printf(LINE_SPLIT + "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)" + LINE_SPLIT);
         String input = Console.readLine();
         Validator.isROrQ(input);
         return input;
