@@ -11,6 +11,9 @@ public class OutputView {
     private final static String BRIDGE_LENGTH_INPUT_MESSAGE = "다리의 길이를 입력해주세요.";
     private final static String SELECT_TO_MOVE_PLAYER_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private final static String ASK_RETRY_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private final static String GAME_ENDING_MESSAGE = "최종 게임 결과";
+    private final static String GAME_RESULT_MESSAGE = "게임 성공 여부: %s";
+    private final static String TRY_COUNT_MESSAGE = "총 시도한 횟수: %d";
 
     public static void printGameStartMessage() {
         System.out.println(GAME_START_MESSAGE);
@@ -35,8 +38,8 @@ public class OutputView {
      */
     public static void printMap(List<Boolean> currentBridge, List<String> bridge) {
         int index = -1;
-        StringJoiner topLayer = new StringJoiner(" | ", " [ ", " ] ");
-        StringJoiner bottomLayer = new StringJoiner(" | ", " [ ", " ] ");
+        StringJoiner topLayer = new StringJoiner(" | ", "[ ", " ]");
+        StringJoiner bottomLayer = new StringJoiner(" | ", "[ ", " ]");
         for (boolean current : currentBridge) {
             index++;
             if (current && "U".equals(bridge.get(index))) {
@@ -69,6 +72,13 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public static void printResult(List<Boolean> currentBridge, List<String> bridge, int retryCount, boolean gameResult) {
+        String result = "";
+        System.out.println(GAME_ENDING_MESSAGE);
+        printMap(currentBridge, bridge);
+        if (gameResult) result = "성공";
+        if (!gameResult) result = "실패";
+        System.out.printf(GAME_RESULT_MESSAGE + "%n", result);
+        System.out.printf(TRY_COUNT_MESSAGE + "%n", retryCount);
     }
 }
