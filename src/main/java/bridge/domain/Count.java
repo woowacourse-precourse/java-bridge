@@ -3,14 +3,16 @@ package bridge.domain;
 import java.util.Objects;
 
 public class Count {
+    private static final String MINIMUM_COUNT_ERROR = "[ERROR] 게임 총 횟수는 1미만이 될 수 없습니다";
+    private static final int MINIMUM_COUNT = 1;
     private final int count;
 
     public Count() {
-        this(1);
+        this(MINIMUM_COUNT);
     }
 
     public Count(int count) {
-        validate(count);
+        validateCount(count);
         this.count = count;
     }
 
@@ -22,9 +24,9 @@ public class Count {
         return String.valueOf(this.count);
     }
 
-    private void validate(int count) {
-        if (count < 1) {
-            throw new IllegalArgumentException("[ERROR] 게임 총 횟수는 1미만이 될 수 없습니다");
+    private void validateCount(int count) {
+        if (count < MINIMUM_COUNT) {
+            throw new IllegalArgumentException(MINIMUM_COUNT_ERROR);
         }
     }
 

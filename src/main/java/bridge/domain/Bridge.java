@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class Bridge {
+    private static final int MINIMUM_LENGTH = 3;
+    private static final int MAXIMUM_LENGTH = 20;
+    private static final String BRIDGE_LENGTH_ERROR = " 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     private final List<String> bridge;
 
     public Bridge(List<String> randomBridge) {
@@ -20,8 +23,8 @@ public class Bridge {
     }
 
     private void checkBridgeLength(List<String> randomBridge) {
-        if (randomBridge.size() < 3 || randomBridge.size() > 20) {
-            throw new IllegalArgumentException(" 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        if (randomBridge.size() < MINIMUM_LENGTH || randomBridge.size() > MAXIMUM_LENGTH) {
+            throw new IllegalArgumentException(BRIDGE_LENGTH_ERROR);
         }
     }
 
