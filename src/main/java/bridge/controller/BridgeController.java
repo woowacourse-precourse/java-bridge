@@ -14,6 +14,7 @@ public class BridgeController {
     public void run() {
         OutputView.printGameStart();
         createBridge();
+        moveBridge();
     }
 
     private void createBridge() {
@@ -26,6 +27,19 @@ public class BridgeController {
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             createBridge();
+        }
+    }
+
+    private void moveBridge() {
+        String bridgeMoving;
+
+        try {
+            OutputView.printInputMoving();
+            bridgeMoving = InputView.inputBridgeMove();
+            // 사용자가 이동하는 부분
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            moveBridge();
         }
     }
 

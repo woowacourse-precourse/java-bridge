@@ -5,9 +5,11 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     private static final int BRIDGE_MAXIMUM_SIZE = 20;
     private static final int BRIDGE_MINIMUM_SIZE = 3;
+    private static final String BRIDGE_UPPER_DIRECTION = "U";
+    private static final String BRIDGE_DOWN_DIRECTION = "D";
 
     public static int inputBridgeSize() {
-        String bridgeSize = Console.readLine();
+        String bridgeSize = Console.readLine().trim();
         validateSizeNumber(bridgeSize);
         validateSizeRange(bridgeSize);
         return Integer.parseInt(bridgeSize);
@@ -26,17 +28,16 @@ public class InputView {
         }
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
-    public String readMoving() {
-        return null;
+    public static String inputBridgeMove() {
+        String bridgeDirection = Console.readLine().trim();
+        validateMoveCell(bridgeDirection);
+        return bridgeDirection;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public String readGameCommand() {
-        return null;
+    private static void validateMoveCell(String bridgeDirection) {
+        if (!bridgeDirection.equals(BRIDGE_UPPER_DIRECTION)
+            && !bridgeDirection.equals(BRIDGE_DOWN_DIRECTION)) {
+            throw new IllegalArgumentException(OutputMessage.MOVING_IS_U_OR_D.getErrorMessage());
+        }
     }
 }
