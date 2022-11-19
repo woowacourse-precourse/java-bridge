@@ -20,4 +20,8 @@ public class Bridge {
     public int getLocation() {
         return location;
     }
+
+    public void increaseLocation() {
+        location++;
+    }
 }
