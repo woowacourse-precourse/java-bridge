@@ -104,6 +104,8 @@ D
 ### OutputView
 1. `printMap`
 2. `printResult`
+3. `printMessage`
+4. `printTryCount`
 
 ### INPUT class
 1. `readBridgeSize`
@@ -161,8 +163,8 @@ D
 
 - controller
   - output
+  - input
   - service
-    - input
     - entity
     - value
     
