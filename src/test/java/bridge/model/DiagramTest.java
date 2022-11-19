@@ -7,6 +7,6 @@ class DiagramTest {
     @Test
     void 잘_작동하나() {
         Diagram.printDiagrams();
-        Diagram.updateDiagram("U", Status.SURVIVE);
+        Diagram.paintDiagrams("U", Status.SURVIVE);
     }
 }

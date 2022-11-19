@@ -1,13 +1,11 @@
 package bridge.controller;
 
-import static bridge.controller.InputController.setBridgeSize;
+import static bridge.model.FinalResult.getFinalSuccess;
 
 import bridge.model.Bridge;
 import bridge.model.BridgeGame;
-import bridge.model.Diagram;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import java.util.List;
 
 public class GameController {
     private static InputView inputView = new InputView();
@@ -20,14 +18,11 @@ public class GameController {
 
         // 다리 게임
         BridgeGame bridgegame = new BridgeGame(bridge);
+
         bridgegame.move();
-
-        Diagram diagram = new Diagram();
-
-        outputView.printResult(diagram, bridgegame.isFinalSuccess(), bridgegame.getAttemptsNumber());
+        System.out.println(getFinalSuccess());
 
 
     }
-
 
 }
