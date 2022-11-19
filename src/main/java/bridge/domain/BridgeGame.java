@@ -19,6 +19,10 @@ public class BridgeGame {
         this.bridgeGameResult = new BridgeGameResult();
     }
 
+    public Bridge getBridge() {
+        return bridge;
+    }
+
     public int getCurrentPosition() {
         return currentPosition;
     }
