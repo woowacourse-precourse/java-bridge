@@ -2,6 +2,7 @@ package bridge.infra;
 
 import bridge.constant.Message;
 import bridge.domain.Input;
+import bridge.domain.command.BridgeMoveCommand;
 import bridge.domain.command.SetBridgeSizeCommand;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -27,8 +28,15 @@ public class InputView implements Input {
   /**
    * 사용자가 이동할 칸을 입력받는다.
    */
-  public String readMoving() {
-    return null;
+  @Override
+  public BridgeMoveCommand readMoving() {
+    printGuideMessage(Message.REQUEST_INPUT_BRIDGE_MOVE);
+    try {
+      return new BridgeMoveCommand(getInput());
+    } catch (IllegalArgumentException e) {
+      System.out.println("[ERROR]" + e.getMessage());
+      return readMoving();
+    }
   }
 
   /**
