@@ -25,10 +25,10 @@ public class OutputView {
         printGameResult();
         printMap(bridgeGameResult);
         if(flag==true){
-            printGameSuccess(totalTry);
+            printGameFail(totalTry);
             return;
         }
-        printGameFail(totalTry);
+        printGameSuccess(totalTry);
     }
     public void printReStart() {
         System.out.println(Message.RE_START.getMessage());
@@ -39,12 +39,12 @@ public class OutputView {
     }
 
     public void printGameSuccess(int totalTry) {
-        System.out.print(Message.GAME_SUCCESS.getMessage()+" "+Message.SUCCESS);
+        System.out.println(Message.GAME_SUCCESS.getMessage()+" "+Message.SUCCESS.getMessage());
         printGameTry(totalTry);
     }
 
     public void printGameFail(int totalTry){
-        System.out.print(Message.GAME_SUCCESS.getMessage()+" "+Message.FAIL);
+        System.out.println(Message.GAME_SUCCESS.getMessage()+" "+Message.FAIL);
         printGameTry(totalTry);
     }
 
