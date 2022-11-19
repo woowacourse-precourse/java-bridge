@@ -12,7 +12,4 @@ public class MovingService {
         return "X";
     }
 
-    private static void recordCrossResult(String crossOrNot) {
-    }
-
 }

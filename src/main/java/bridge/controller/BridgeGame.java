@@ -18,8 +18,13 @@ public class BridgeGame {
         startGame(bridge);
     }
 
+    private Bridge initBridge() {
+        Integer bridgeSize = InputView.readBridgeSize();
+        Bridge bridge = BridgeService.makeBridge(bridgeSize);
+        return bridge;
+    }
+
     private void startGame(Bridge bridge) {
-        System.out.println(bridge.bridgeStatus);
         GameResult gameResult = initGameResult();
         move(bridge, gameResult);
 
@@ -29,11 +34,6 @@ public class BridgeGame {
         return BridgeService.makeInitialGameResult();
     }
 
-    private Bridge initBridge() {
-        Integer bridgeSize = InputView.readBridgeSize();
-        Bridge bridge = BridgeService.makeBridge(bridgeSize);
-        return bridge;
-    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -42,15 +42,20 @@ public class BridgeGame {
      */
     public void move(Bridge bridge, GameResult gameResult) {
         while (count < bridge.getBridgeLength()) {
-            String moving = InputView.readMoving();
-            String passOrNot = MovingService.crossBridge(bridge, moving, count);
-            gameResult.recordResult(passOrNot, moving);
-            OutputView.printMap(gameResult);
-            if (passOrNot.equals("X")){
+            String moveOrStop = judgeMoving(bridge, gameResult);
+            if (moveOrStop.equals("X")){
                 break;
             }
             count ++;
         }
+    }
+
+    private static String judgeMoving(Bridge bridge, GameResult gameResult) {
+        String moving = InputView.readMoving();
+        String passOrNot = MovingService.crossBridge(bridge, moving, count);
+        gameResult.recordResult(passOrNot, moving);
+        OutputView.printMap(gameResult);
+        return passOrNot;
     }
 
 
