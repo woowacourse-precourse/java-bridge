@@ -1,7 +1,7 @@
 package bridge.exception;
 
 import static bridge.constant.Constant.*;
-import static bridge.constant.ErrorConstant.*;
+import static bridge.constant.ErrorMessage.*;
 import static bridge.constant.NumericConstant.*;
 
 public class InputExceptionHandler {

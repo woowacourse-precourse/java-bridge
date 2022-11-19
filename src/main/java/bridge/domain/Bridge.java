@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import static bridge.constant.ErrorConstant.*;
+import static bridge.constant.ErrorMessage.*;
 
 import java.util.List;
 

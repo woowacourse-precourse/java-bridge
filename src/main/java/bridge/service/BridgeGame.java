@@ -36,11 +36,11 @@ public class BridgeGame {
 	public List<List<String>> currentMap() {
 		List<String> userMap = user.getSelections();
 		return IntStream.range(0, userMap.size())
-			.mapToObj(i -> putOneSpace(userMap, i))
+			.mapToObj(i -> addMap(userMap, i))
 			.collect(Collectors.toList());
 	}
 
-	private List<String> putOneSpace(List<String> userMap, int index) {
+	private List<String> addMap(List<String> userMap, int index) {
 		List<String> space = new ArrayList<>();
 		space.add(BLANK_SPACE.getConstant());
 		if (bridge.match(index, userMap.get(index))) {
@@ -58,7 +58,7 @@ public class BridgeGame {
 		return DOWN_BRIDGE_NUMBER.getConstValue();
 	}
 
-	public boolean isEnd() {
+	public boolean end() {
 		return match() && !matchLength();
 	}
 

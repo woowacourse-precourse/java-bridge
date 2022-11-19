@@ -43,7 +43,7 @@ class BridgeGameTest {
 		List<String> map = new ArrayList<>(List.of("U", "U", "D", "D", "D"));
 		for (int i = 0; i < 5; i++) {
 			bridgeGame.move(map.get(i));
-			if (!bridgeGame.isEnd()) {
+			if (!bridgeGame.end()) {
 				break;
 			}
 		}
@@ -57,7 +57,7 @@ class BridgeGameTest {
 		for (int i = 0; i < 5; i++) {
 			bridgeGame.move(map.get(i));
 			System.out.println(bridgeGame.result());
-			if (!bridgeGame.isEnd()) {
+			if (!bridgeGame.end()) {
 				break;
 			}
 		}

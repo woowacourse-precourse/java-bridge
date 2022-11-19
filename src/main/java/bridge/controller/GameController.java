@@ -4,7 +4,6 @@ import static bridge.constant.Constant.*;
 
 import java.util.List;
 
-import bridge.constant.Constant;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeRandomNumberGenerator;
@@ -32,11 +31,11 @@ public class GameController {
 	}
 
 	private void progress() {
-		boolean isEnd = true;
-		while (isEnd) {
+		boolean end = true;
+		while (end) {
 			bridgeGame.move(InputView.readMoving());
 			OutputView.printMap(bridgeGame.currentMap());
-			isEnd = bridgeGame.isEnd();
+			end = bridgeGame.end();
 		}
 		if (bridgeGame.result().equals(FAIL.getConstant())) {
 			retry();

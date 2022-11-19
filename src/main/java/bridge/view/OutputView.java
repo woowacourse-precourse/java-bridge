@@ -6,8 +6,6 @@ import static bridge.constant.NumericConstant.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import bridge.constant.NumericConstant;
-
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
