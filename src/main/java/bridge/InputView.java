@@ -12,20 +12,26 @@ public class InputView {
      */
     public int readBridgeSize() {
         String bridgeSizeString = Console.readLine();
-        int bridgeSize = checkBridgeSizeString(bridgeSizeString);
+        int bridgeSize = 0;
+        try {
+            bridgeSize = checkBridgeSizeString(bridgeSizeString);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return 0;
+        }
         return bridgeSize;
     }
 
     private int checkBridgeSizeString(String bridgeSizeString) {
         int bridgeSize = stringToInt(bridgeSizeString);
-        if(bridgeSize < 3 || bridgeSize > 20)
+        if (!(bridgeSize >= 3 || bridgeSize <= 20))
             throw new IllegalArgumentException("[ERROR] 3이상 20이하의 숫자를 입력해주세요.");
         return bridgeSize;
     }
 
     private int stringToInt(String bridgeSizeString) {
         try {
-            int result =  Integer.parseInt(bridgeSizeString);
+            int result = Integer.parseInt(bridgeSizeString);
             return result;
         } catch (Exception e) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
@@ -37,12 +43,18 @@ public class InputView {
      */
     public String readMoving() {
         String moveInput = Console.readLine();
-        checkMoveInput(moveInput);
+        try {
+            checkMoveInput(moveInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return "";
+        }
+
         return moveInput;
     }
 
     private void checkMoveInput(String moveInput) {
-        if(moveInput != "U" || moveInput != "D")
+        if (!(moveInput.equals("U") || moveInput.equals("D")))
             throw new IllegalArgumentException("[ERROR] 위 : U 또는 아래 : D 를 입력해주세요.");
     }
 
@@ -51,13 +63,18 @@ public class InputView {
      */
     public String readGameCommand() {
         String gameInput = Console.readLine();
-        checkGameInput(gameInput);
+        try {
+            checkGameInput(gameInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return "";
+        }
         return gameInput;
     }
 
     private void checkGameInput(String gameInput) {
-        if(gameInput != "R" || gameInput != "Q")
+        if (!(gameInput.equals("R") || gameInput.equals("Q")))
             throw new IllegalArgumentException("[ERROR] 재시작 : R 또는 종료 : Q 를 입력해주세요.");
     }
-    
+
 }
