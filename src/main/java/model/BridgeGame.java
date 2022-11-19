@@ -10,8 +10,6 @@ import java.util.List;
 
 public class BridgeGame {
     private static int tryNumber = GameConstant.FIRST_TRY.getConstant();
-    private static int bridgeNumber = GameConstant.FIRST_INDEX.getConstant();
-    private static int count = 0;
 
     public void run() {
         List<String> upSide = new ArrayList<>();
@@ -24,7 +22,7 @@ public class BridgeGame {
     public List<String> move(String path) {
         List<String> bridgeByUser = new ArrayList<>();
         addPathInBridgeByUser(bridgeByUser, path);
-        countBridgeNumber();
+//        countBridgeNumber();
         return Collections.unmodifiableList(bridgeByUser);
     }
 
@@ -88,10 +86,6 @@ public class BridgeGame {
 
     private boolean isUserInputRetry(String retryOrQuit) {
         return retryOrQuit.equals(StringConstant.RETRY.getConstant());
-    }
-
-    private void countBridgeNumber() {
-        bridgeNumber++;
     }
 
     private void countTryNumber() {
