@@ -20,9 +20,12 @@ public class OutputView {
         if(order >0){
             map.add(map.size()-2,CONTOUR);
         }
-        map.add(map.size()-2,ox);
+        map.add(map.size()-1,ox);
 
-        System.out.println(map);
+        String str = String.join("",map);
+
+
+        System.out.println(str);
     }
 
     /**
