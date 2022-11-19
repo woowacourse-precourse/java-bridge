@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import static bridge.Constants.COMPLETE;
-import static bridge.Constants.FAIL;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.lang.reflect.Field;
@@ -15,6 +13,7 @@ import org.junit.jupiter.api.Test;
 class BridgeGameTest {
     BridgeGame bridgeGame;
 
+    // UDUD를 bridge로 갖는 bridgeGame 생성하기
     @BeforeEach
     void initAll() {
         List<String> bridge = new ArrayList<>(Arrays.asList("U", "D", "U", "D"));
@@ -40,15 +39,16 @@ class BridgeGameTest {
     @DisplayName("bridge 가 U 일때 같은 position 으로 이동하면 upBridge 에 ' O ', downBridge 에 '   ' 를 저장한다.")
     @Test
     void moveTest3() {
-        BridgeGame bridgeGame = new BridgeGame(List.of("U"));
-        bridgeGame.move("U");
+        BridgeGame newBridgeGame = new BridgeGame(List.of("U"));
+        newBridgeGame.move("U");
+        // private 변수에 접근하기
         try {
-            Field field1 = bridgeGame.getClass().getDeclaredField("upBridge");
+            Field field1 = newBridgeGame.getClass().getDeclaredField("upBridge");
             field1.setAccessible(true);
-            Field field2 = bridgeGame.getClass().getDeclaredField("downBridge");
+            Field field2 = newBridgeGame.getClass().getDeclaredField("downBridge");
             field2.setAccessible(true);
-            List<String> value1 = (List<String>) field1.get(bridgeGame);
-            List<String> value2 = (List<String>) field2.get(bridgeGame);
+            List<String> value1 = (List<String>) field1.get(newBridgeGame);
+            List<String> value2 = (List<String>) field2.get(newBridgeGame);
             assertThat(value1).isEqualTo(List.of(" O "));
             assertThat(value2).isEqualTo(List.of("   "));
         } catch (NoSuchFieldException | IllegalAccessException e) {
@@ -59,15 +59,16 @@ class BridgeGameTest {
     @DisplayName("bridge 가 U 일때 다른 position 으로 이동하면 upBridge 에 '   ', downBridge 에 ' X ' 를 저장한다.")
     @Test
     void moveTest4() {
-        BridgeGame bridgeGame = new BridgeGame(List.of("U"));
-        bridgeGame.move("D");
+        BridgeGame newBridgeGame = new BridgeGame(List.of("U"));
+        newBridgeGame.move("D");
+        // private 변수에 접근하기
         try {
-            Field field1 = bridgeGame.getClass().getDeclaredField("upBridge");
+            Field field1 = newBridgeGame.getClass().getDeclaredField("upBridge");
             field1.setAccessible(true);
-            Field field2 = bridgeGame.getClass().getDeclaredField("downBridge");
+            Field field2 = newBridgeGame.getClass().getDeclaredField("downBridge");
             field2.setAccessible(true);
-            List<String> value1 = (List<String>) field1.get(bridgeGame);
-            List<String> value2 = (List<String>) field2.get(bridgeGame);
+            List<String> value1 = (List<String>) field1.get(newBridgeGame);
+            List<String> value2 = (List<String>) field2.get(newBridgeGame);
             assertThat(value1).isEqualTo(List.of("   "));
             assertThat(value2).isEqualTo(List.of(" X "));
         } catch (NoSuchFieldException | IllegalAccessException e) {
@@ -78,15 +79,16 @@ class BridgeGameTest {
     @DisplayName("bridge 가 D 일때 같은 position 으로 이동하면 upBridge 에 '   ', downBridge 에 ' O ' 를 저장한다.")
     @Test
     void moveTest5() {
-        BridgeGame bridgeGame = new BridgeGame(List.of("D"));
-        bridgeGame.move("D");
+        BridgeGame newBridgeGame = new BridgeGame(List.of("D"));
+        newBridgeGame.move("D");
+        // private 변수에 접근하기
         try {
-            Field field1 = bridgeGame.getClass().getDeclaredField("upBridge");
+            Field field1 = newBridgeGame.getClass().getDeclaredField("upBridge");
             field1.setAccessible(true);
-            Field field2 = bridgeGame.getClass().getDeclaredField("downBridge");
+            Field field2 = newBridgeGame.getClass().getDeclaredField("downBridge");
             field2.setAccessible(true);
-            List<String> value1 = (List<String>) field1.get(bridgeGame);
-            List<String> value2 = (List<String>) field2.get(bridgeGame);
+            List<String> value1 = (List<String>) field1.get(newBridgeGame);
+            List<String> value2 = (List<String>) field2.get(newBridgeGame);
             assertThat(value1).isEqualTo(List.of("   "));
             assertThat(value2).isEqualTo(List.of(" O "));
         } catch (NoSuchFieldException | IllegalAccessException e) {
@@ -97,15 +99,16 @@ class BridgeGameTest {
     @DisplayName("bridge 가 D 일때 다른 position 으로 이동하면 upBridge 에 ' X ', downBridge 에 '   ' 를 저장한다.")
     @Test
     void moveTest6() {
-        BridgeGame bridgeGame = new BridgeGame(List.of("D"));
-        bridgeGame.move("U");
+        BridgeGame newBridgeGame = new BridgeGame(List.of("D"));
+        newBridgeGame.move("U");
+        // private 변수에 접근하기
         try {
-            Field field1 = bridgeGame.getClass().getDeclaredField("upBridge");
+            Field field1 = newBridgeGame.getClass().getDeclaredField("upBridge");
             field1.setAccessible(true);
-            Field field2 = bridgeGame.getClass().getDeclaredField("downBridge");
+            Field field2 = newBridgeGame.getClass().getDeclaredField("downBridge");
             field2.setAccessible(true);
-            List<String> value1 = (List<String>) field1.get(bridgeGame);
-            List<String> value2 = (List<String>) field2.get(bridgeGame);
+            List<String> value1 = (List<String>) field1.get(newBridgeGame);
+            List<String> value2 = (List<String>) field2.get(newBridgeGame);
             assertThat(value1).isEqualTo(List.of(" X "));
             assertThat(value2).isEqualTo(List.of("   "));
         } catch (NoSuchFieldException | IllegalAccessException e) {
@@ -116,9 +119,11 @@ class BridgeGameTest {
     @DisplayName("move()를 통해 증가한 index 값이 retry()를 통해 0으로 초기화 된다.")
     @Test
     void retryTest() {
-        bridgeGame.move("U");
-        bridgeGame.move("D");
-        bridgeGame.move("D");
+        String moveInput = "UDD";
+        for (char input : moveInput.toCharArray()) {
+            bridgeGame.move(String.valueOf(input));
+        }
+        // private 변수에 접근하기
         try {
             Field field = bridgeGame.getClass().getDeclaredField("index");
             field.setAccessible(true);
@@ -128,6 +133,7 @@ class BridgeGameTest {
             e.printStackTrace();
         }
         bridgeGame.retry();
+        // private 변수에 접근하기
         try {
             Field field = bridgeGame.getClass().getDeclaredField("index");
             field.setAccessible(true);
@@ -138,24 +144,23 @@ class BridgeGameTest {
         }
     }
 
-    @DisplayName("게임 성공시 checkCompleteOrFail()가 COMPLETE 를 반환한다.")
+    @DisplayName("게임 성공시 checkCompleteOrFail()가 true 를 반환한다.")
     @Test
-    void checkCompleteOrFailTest1() {
-        bridgeGame.move("U");
-        bridgeGame.move("D");
-        bridgeGame.move("U");
-        bridgeGame.move("D");
-        assertThat(bridgeGame.checkCompleteOrFail()).isEqualTo(COMPLETE);
+    void checkCompleteOrFailTest1() { String moveInput = "UDUD";
+        for (char input : moveInput.toCharArray()) {
+            bridgeGame.move(String.valueOf(input));
+        }
+        assertThat(bridgeGame.checkComplete()).isEqualTo(true);
     }
 
-    @DisplayName("게임 실패시 checkCompleteOrFail()가 FAIL 을 반환한다.")
+    @DisplayName("게임 실패시 checkCompleteOrFail()가 false 을 반환한다.")
     @Test
     void checkCompleteOrFailTest2() {
-        bridgeGame.move("U");
-        bridgeGame.move("D");
-        bridgeGame.move("U");
-        bridgeGame.move("U");
-        assertThat(bridgeGame.checkCompleteOrFail()).isEqualTo(FAIL);
+        String moveInput = "UDUU";
+        for (char input : moveInput.toCharArray()) {
+            bridgeGame.move(String.valueOf(input));
+        }
+        assertThat(bridgeGame.checkComplete()).isEqualTo(false);
     }
 
 }
