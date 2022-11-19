@@ -29,8 +29,7 @@ public class BridgeGameController implements GameController {
         output.printResult(game);
     }
 
-    @Override
-    public void play() {
+    private void play() {
         while (game.checkCross() && game.movable()) {
             output.printMove();
             ExceptionTemplate template = input::readMoving;
