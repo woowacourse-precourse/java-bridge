@@ -44,8 +44,8 @@ public class UserState {
         downLine.clear();
     }
 
-    public void quitChange() {
-        quit = !quit;
+    public void quitChange(boolean isRetry) {
+        quit = isRetry;
     }
 
     public void tryCountIncrease() {
