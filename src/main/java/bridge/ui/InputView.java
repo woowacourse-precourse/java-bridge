@@ -11,7 +11,10 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String movingBridge = Console.readLine();
+        validateMovingSpaceLength(movingBridge);
+        validateMovingSpaceWord(movingBridge);
+        return movingBridge;
     }
 
     /**
@@ -60,5 +63,27 @@ public class InputView {
         if (size < 3 || size > 20) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
+    }
+
+    /**
+     * 검증 로직 : 이동할 칸 문자 길이를 검증한다.
+     */
+    private void validateMovingSpaceLength(String movingBridge) {
+        if (movingBridge.length() != 1) {
+            throw new IllegalArgumentException("[ERROR] 'U' 또는 'D' 중 하나의 문자를 입력하셔야 합니다.");
+        }
+    }
+
+    /**
+     * 검증 로직 : 이동할 칸 문자를 'U' 또는 'D' 중에 하나를 선택했는지 검증한다.
+     */
+    private void validateMovingSpaceWord(String movingBridge) {
+        if (movingBridge.equals("U")) {
+            return;
+        }
+        if (!movingBridge.equals("D")) {
+            return;
+        }
+        throw new IllegalArgumentException("[ERROR] 'U' 또는 'D' 중 하나의 문자를 입력하셔야 합니다.");
     }
 }
