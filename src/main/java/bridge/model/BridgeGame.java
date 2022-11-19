@@ -1,6 +1,10 @@
 package bridge.model;
 
 import static bridge.controller.InputController.setUserSelection;
+import static bridge.model.Diagram.printDiagrams;
+import static bridge.model.Diagram.updateDiagram;
+
+import bridge.model.Diagram.Status;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -25,16 +29,27 @@ public class BridgeGame {
         int attemptsNumber = 1;
         int index;
         for (index = 0; index < bridge.getBridgeSize(); index++) {
-            if (bridge.isUserSelectionCorrect(setUserSelection(), bridge.currentBridge(index))) {
+            String position = setUserSelection();
+            if (bridge.isUserSelectionCorrect(position, bridge.currentBridge(index))) {
+                // 한 칸 이동 성공 (survive)
+                // O을 보내서 다이어그램 출력
+                updateDiagram(position, Status.SURVIVE);
                 continue;
             }
+            // 한 칸 이동 실패 (death)
+            // X을 보내서 다이어그램 출력
+            updateDiagram(position, Status.DIE);
             break;
         }
         if (index == bridge.getBridgeSize()) {
             System.out.println("성공");
+            // 성공 처리 (success)
+            // 최종 게임 결과 (다리의 전체 다이어그램, 성공 여부, 시도 횟수 출력)
         }
         if (index < bridge.getBridgeSize()) {
             System.out.println("실패");
+            // 실패 처리 (fail)
+            // 게임 재시작 or 종료 선택
         }
     }
 
