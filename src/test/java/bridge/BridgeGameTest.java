@@ -44,6 +44,25 @@ class BridgeGameTest {
         assertThat(result1).isEqualTo(List.of("D", "U", "U"));
     }
 
+    @DisplayName("플레이어가 움직이고 난 후 결과를 계산한다.")
+    @Test
+    void 플레이어가_움직인_후_결과를_계산하는_기능_테스트() {
+        //given
+        BridgeGame bridgeGameCase1 = new BridgeGame(new TestNumberGenerator(newArrayList(0,1,1)),3);
+
+        //when
+        bridgeGameCase1.move("D");
+        bridgeGameCase1.move("U");
+        List<String> result1 = bridgeGameCase1.getRoundResult().get(1);
+
+        bridgeGameCase1.move("D");
+        List<String> result2 = bridgeGameCase1.getRoundResult().get(1);
+
+        //then
+        assertThat(result1).isEqualTo(List.of("O", "O"));
+        assertThat(result2).isEqualTo(List.of("O", "O", "X"));
+    }
+
     static class TestNumberGenerator implements BridgeNumberGenerator {
 
         private final List<Integer> numbers;
