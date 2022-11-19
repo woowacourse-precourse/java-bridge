@@ -1,5 +1,7 @@
 package bridge.views;
 
+import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  * InputView 클래스에서만 camp.nextstep.edu.missionutils.Console 의 readLine() 메서드를 이용해 사용자의 입력을 받을 수 있다.
@@ -9,12 +11,13 @@ package bridge.views;
  * - 사용자 값 입력을 위해 필요한 메서드를 추가할 수 있다.
  */
 public class InputView {
-
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
-        return 0;
+    public static int readBridgeSize() {
+        System.out.println("다리의 길이를 입력해주세요.");
+        String input = Console.readLine();
+        return Validator.validateBridgeSize(input);
     }
 
     /**
