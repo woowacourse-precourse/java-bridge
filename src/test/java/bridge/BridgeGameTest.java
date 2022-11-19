@@ -9,6 +9,11 @@ import org.junit.jupiter.api.Test;
 
 class BridgeGameTest {
 
+    private static final String NEXT = BridgeResultString.NEXT.getString();
+    private static final String SUCCESS = BridgeResultString.SUCCESS.getString();
+    private static final String FAILURE = BridgeResultString.FAILURE.getString();
+    private static final String PASS = BridgeResultString.PASS.getString();
+
     @Nested
     @DisplayName("move 테스트")
     class MoveTest {
@@ -19,11 +24,13 @@ class BridgeGameTest {
             // given
             List<String> bridge = List.of("U", "D", "D");
             BridgeGame bridgeGame = new BridgeGame(bridge);
+
             // when
             bridgeGame.move("U");
+
             // then
-            assertThat(bridgeGame.getUpBridgeToString()).isEqualTo(" O ");
-            assertThat(bridgeGame.getDownBridgeToString()).isEqualTo("   ");
+            assertThat(bridgeGame.getUpBridgeToString()).isEqualTo(SUCCESS);
+            assertThat(bridgeGame.getDownBridgeToString()).isEqualTo(PASS);
         }
 
         @Test
@@ -32,12 +39,14 @@ class BridgeGameTest {
             // given
             List<String> bridge = List.of("U", "D", "D");
             BridgeGame bridgeGame = new BridgeGame(bridge);
+
             // when
             bridgeGame.move("U");
             bridgeGame.move("U");
+
             // then
-            assertThat(bridgeGame.getUpBridgeToString()).isEqualTo(" O | X ");
-            assertThat(bridgeGame.getDownBridgeToString()).isEqualTo("   |   ");
+            assertThat(bridgeGame.getUpBridgeToString()).isEqualTo(SUCCESS + NEXT + FAILURE);
+            assertThat(bridgeGame.getDownBridgeToString()).isEqualTo(PASS + NEXT + PASS);
         }
 
         @Test
@@ -46,12 +55,14 @@ class BridgeGameTest {
             // given
             List<String> bridge = List.of("U", "D", "D");
             BridgeGame bridgeGame = new BridgeGame(bridge);
+
             // when
             bridgeGame.move("U");
             bridgeGame.move("D");
+
             // then
-            assertThat(bridgeGame.getUpBridgeToString()).isEqualTo(" O |   ");
-            assertThat(bridgeGame.getDownBridgeToString()).isEqualTo("   | O ");
+            assertThat(bridgeGame.getUpBridgeToString()).isEqualTo(SUCCESS + NEXT + PASS);
+            assertThat(bridgeGame.getDownBridgeToString()).isEqualTo(PASS + NEXT + SUCCESS);
         }
 
         @Test
@@ -60,13 +71,17 @@ class BridgeGameTest {
             // given
             List<String> bridge = List.of("U", "D", "D");
             BridgeGame bridgeGame = new BridgeGame(bridge);
+
             // when
             bridgeGame.move("U");
             bridgeGame.move("D");
             bridgeGame.move("D");
+
             // then
-            assertThat(bridgeGame.getUpBridgeToString()).isEqualTo(" O |   |   ");
-            assertThat(bridgeGame.getDownBridgeToString()).isEqualTo("   | O | O ");
+            assertThat(bridgeGame.getUpBridgeToString()).isEqualTo(
+                SUCCESS + NEXT + PASS + NEXT + PASS);
+            assertThat(bridgeGame.getDownBridgeToString()).isEqualTo(
+                PASS + NEXT + SUCCESS + NEXT + SUCCESS);
         }
     }
 }

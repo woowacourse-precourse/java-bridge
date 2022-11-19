@@ -24,8 +24,8 @@ public class BridgeGame {
      */
     public void move(String moving) {
         if (currentIndex != 0) {
-            upBridge.append(BridgeStatus.NEXT.string);
-            downBridge.append(BridgeStatus.NEXT.string);
+            upBridge.append(BridgeResultString.NEXT.getString());
+            downBridge.append(BridgeResultString.NEXT.getString());
         }
 
         upBridge.append(getBridgeStatusString("U", moving));
@@ -38,14 +38,14 @@ public class BridgeGame {
         if (upDown.equals(moving)) {
             return getBridgeSuccessOrFailure(moving);
         }
-        return BridgeStatus.PASS.string;
+        return BridgeResultString.PASS.getString();
     }
 
     private String getBridgeSuccessOrFailure(String moving) {
         if (bridge.get(currentIndex).equals(moving)) {
-            return BridgeStatus.SUCCESS.string;
+            return BridgeResultString.SUCCESS.getString();
         }
-        return BridgeStatus.FAILURE.string;
+        return BridgeResultString.FAILURE.getString();
     }
 
     /**
@@ -62,15 +62,5 @@ public class BridgeGame {
 
     public String getDownBridgeToString() {
         return downBridge.toString();
-    }
-
-    private enum BridgeStatus {
-        PASS("   "), SUCCESS(" O "), FAILURE(" X "), NEXT("|");
-
-        private final String string;
-
-        BridgeStatus(String string) {
-            this.string = string;
-        }
     }
 }
