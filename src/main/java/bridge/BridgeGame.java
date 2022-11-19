@@ -10,6 +10,8 @@ public class BridgeGame {
     InputView inputView = new InputView();
     BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
 
+
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -20,20 +22,29 @@ public class BridgeGame {
         // 랜덤 다리 만들기
         // 어디 건널지 입력 받기 (여기까지는 application에 만들어도 될듯?)
         // 맞는지 틀린지 확인
-
-        for (int i = 0; i<bridgeList.size();i++) {
-            String upDownUserInput = inputView.readMoving();
-
-            if (Compare(bridgeList,upDownUserInput,i)){
-                continue;
+        boolean retryOrNot = true;
+        while(retryOrNot){
+            for (int order = 0; order <bridgeList.size(); order++) {
+                String upDownUserInput = inputView.readMoving();
+                if (Compare(bridgeList,upDownUserInput, order)){
+                    //출력
+                    continue;
+                }
+                //출력
+                retryOrNot = retry();
+                break;
             }
-            break;
         }
     }
 
-    private boolean Compare(List<String> bridgeList, String s,int number) {
-        return true;
-
+    private boolean Compare(List<String> bridgeList, String upDownUserInput,int number) {
+        if (bridgeList.get(number).equals(upDownUserInput)){
+            /** get을 사용하지 않는다?
+             *
+             */
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -41,6 +52,14 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry() {
+
+        if (inputView.readGameCommand() == "R"){
+            return true;
+        }
+
+        return false;
     }
+
+
 }
