@@ -16,7 +16,6 @@ public class BridgeController {
     public void makeBridgeController() {
         int size = new InputView().readBridgeSize();
         List<String> bridge = new BridgeMaker(bridgeRandomNumberGenerator).makeBridge(size);
-        System.out.println(bridge);
         int blockCount = bridge.size();
         moveController(bridge, blockCount);
     }

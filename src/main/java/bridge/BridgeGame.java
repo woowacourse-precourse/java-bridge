@@ -88,7 +88,10 @@ public class BridgeGame {
     }
 
     public boolean isGameFailed() {
-        if (moveBridgeResult.contains(MOVABLE)) {
+        if (initialUpBridge.toString().contains(UNMOVABLE)) {
+            return true;
+        }
+        if (initialDownBridge.toString().contains(UNMOVABLE)) {
             return true;
         }
         return false;
