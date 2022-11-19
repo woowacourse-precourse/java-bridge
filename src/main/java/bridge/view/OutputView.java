@@ -24,6 +24,7 @@ public class OutputView {
     public static final String GAME_END_MESSAGE = "최종 게임 결과";
     public static final String GAME_RESULT_MESSAGE = "게임 성공 여부: %s\n";
     public static final String GAME_RESULT_ATTEMPT_MESSAGE = "총 시도한 횟수: %d\n";
+    public static final String GAME_RESTART_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     public static void printGameStart() {
         System.out.println(GAME_START_MESSAGE);
@@ -60,5 +61,9 @@ public class OutputView {
         printMap(gameStatus, gameResultDto);
         System.out.printf(GAME_RESULT_MESSAGE, gameStatus.getMessage());
         System.out.printf(GAME_RESULT_ATTEMPT_MESSAGE, gameResultDto.getAttempt());
+    }
+
+    public void printRestart() {
+        System.out.println(GAME_RESTART_MESSAGE);
     }
 }
