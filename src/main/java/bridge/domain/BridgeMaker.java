@@ -9,9 +9,11 @@ import java.util.List;
  */
 public class BridgeMaker {
 	private final int RANDOM_LOWER_INCLUSIVE = 0;
-	private final String DOWN_LOCATION = "D";
-	private final String UP_LOCATION = "U";
-
+	private final int RANDOM_UPPER_INCLUSIVE = 1;
+	private final int CURRENT_SIZE_RESET = 0;
+	private final String DOWN_DIRECTION = "D";
+	private final String UP_DIRECTION = "U";
+	private final String INVALID_RANDOM_NUMBER = "[ERROR] 랜덤 숫자의 범위(0-1)가 아닙니다.";
 	private final BridgeNumberGenerator bridgeNumberGenerator;
 
 	public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -26,18 +28,30 @@ public class BridgeMaker {
 	 */
 	public List<String> makeBridge(int size) {
 		List<String> bridge = new ArrayList<>();
-		int currentSize = 0;
+		int currentSize = CURRENT_SIZE_RESET;
 		while (currentSize++ < size) {
-			String bridgeLocation = getBridgeLocation(bridgeNumberGenerator.generate());
-			bridge.add(bridgeLocation);
+			addBridgeDirection(bridge);
 		}
 		return bridge;
 	}
 
-	private String getBridgeLocation(int bridgeRandomnumber) {
-		if (bridgeRandomnumber == RANDOM_LOWER_INCLUSIVE) {
-			return DOWN_LOCATION;
+	private void addBridgeDirection(List<String> bridge) {
+		int bridgeRandomNumber = bridgeNumberGenerator.generate();
+		validateBridgeNumber(bridgeRandomNumber);
+		String bridgeDirection = convertBridgeNumber(bridgeRandomNumber);
+		bridge.add(bridgeDirection);
+	}
+
+	private void validateBridgeNumber(int number) {
+		if (number != RANDOM_LOWER_INCLUSIVE && number != RANDOM_UPPER_INCLUSIVE) {
+			throw new IllegalArgumentException(INVALID_RANDOM_NUMBER);
 		}
-		return UP_LOCATION;
+	}
+
+	private String convertBridgeNumber(int bridgeRandomNumber) {
+		if (bridgeRandomNumber == RANDOM_LOWER_INCLUSIVE) {
+			return DOWN_DIRECTION;
+		}
+		return UP_DIRECTION;
 	}
 }
