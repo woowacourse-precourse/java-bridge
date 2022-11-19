@@ -46,4 +46,24 @@ class InputViewTest {
             assertThrows(IllegalArgumentException.class, inputView::readBridgeSize);
         }
     }
+
+    @Nested
+    @DisplayName("readMoving 테스트")
+    class ReadMovingTest {
+
+        @ParameterizedTest
+        @DisplayName("성공")
+        @ValueSource(strings = {"U", "D"})
+        void readMoving_validInput_returnString(String string) {
+            // given
+            InputStream in = new ByteArrayInputStream(string.getBytes());
+            InputView inputView = new InputView();
+
+            // when
+            System.setIn(in);
+
+            // then
+            assertThat(inputView.readMoving()).isEqualTo(string);
+        }
+    }
 }
