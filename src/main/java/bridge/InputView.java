@@ -1,5 +1,7 @@
 package bridge;
 
+import static camp.nextstep.edu.missionutils.Console.readLine;
+
 public class InputView {
     private static final String PROMPT_FOR_BRIDGE_LENGTH = "다리의 길이를 입력해주세요.";
 
@@ -7,8 +9,8 @@ public class InputView {
         System.out.println(PROMPT_FOR_BRIDGE_LENGTH);
     }
 
-    public int readBridgeSize() {
-        return 0;
+    public String readBridgeLength() {
+        return readLine();
     }
 
     public String readMoving() {
