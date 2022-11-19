@@ -8,6 +8,8 @@ import java.util.List;
 public class OutputView {
     private final String START_GAME = "다리 건너기 게임을 시작합니다.";
     private final String FINAL_GAME_RESULT = "최종 게임 결과";
+    private final String PRINT_GAME_FAILED = "게임 성공 여부: 실패";
+    private final String TOTAL_TRY_COUNT = "총 시도한 횟수: ";
     public void printStart() {
         System.out.println(START_GAME);
         System.out.println();
@@ -30,11 +32,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<String> moveBridgeResult) {
+    public void printResult(List<String> moveBridgeResult, int tryCount) {
         System.out.println(FINAL_GAME_RESULT);
         int upBridge = moveBridgeResult.size() - 2;
         int downBridge = moveBridgeResult.size() - 1;
         System.out.println(moveBridgeResult.get(upBridge));
         System.out.println(moveBridgeResult.get(downBridge));
+        System.out.println();
+        System.out.println(PRINT_GAME_FAILED);
+        System.out.println(TOTAL_TRY_COUNT + tryCount);
     }
 }

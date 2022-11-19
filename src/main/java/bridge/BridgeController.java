@@ -24,7 +24,7 @@ public class BridgeController {
         List<String> moveBridgeResult = new BridgeGame().move(bridge, blockCount);
         String gameCommand = new InputView().readGameCommand();
         if (gameCommand.equals("Q")) {
-            new OutputView().printResult(moveBridgeResult);
+            new OutputView().printResult(moveBridgeResult, blockCount);
         }
     }
 }
