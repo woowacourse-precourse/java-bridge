@@ -22,12 +22,9 @@ public class BridgeGame {
     }
 
     public boolean play(List<String> crossable, Map map) {
-        boolean isWin;
-        int index = 0;
         map.startMap();
-        while (map.mapIndexOutOfRange(index)) {
-            isWin = move(map, crossable, index);
-            index++;
+        for (int index=0; index<crossable.size(); index++) {
+            boolean isWin = move(map, crossable, index);
             outputView.printMap(map.getMapUpper(), map.getMapLower());
             if (!isWin) {
                 return false;
