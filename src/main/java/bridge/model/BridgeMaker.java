@@ -32,7 +32,7 @@ public class BridgeMaker {
     }
 
     private void validateBridgeNumber(int number) {
-        if(number < Space.BOTTOM.getNumber() || number > Space.TOP.getNumber()) {
+        if(number < Course.BOTTOM.getNumber() || number > Course.TOP.getNumber()) {
             throw Exception.BRIDGE_NUMBER_RANGE_EXCEPTION.getException();
         }
     }
@@ -44,9 +44,9 @@ public class BridgeMaker {
     }
 
     private String topOrBottom(int num) {
-        if(num == Space.TOP.getNumber()) {
-            return Space.TOP.getDirection();
+        if(num == Course.TOP.getNumber()) {
+            return Course.TOP.getDirection();
         }
-        return Space.BOTTOM.getDirection();
+        return Course.BOTTOM.getDirection();
     }
 }
