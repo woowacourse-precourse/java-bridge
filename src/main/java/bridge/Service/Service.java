@@ -2,6 +2,7 @@ package bridge.Service;
 
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
+import bridge.setting.Setting;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -51,10 +52,13 @@ public class Service {
     }
 
     // 다시 게임을 시도할지 물어보는 기능
-    public boolean retry() {
+    public boolean isRetry() {
         outputView.printInputRetry();
         String input = inputView.readGameCommand();
-        return bridgeGame.retry(input);
+        if (input.equals(Setting.RETRY_BUTTON)) {
+            return false;
+        }
+        return true;
     }
 
     // 에러메세지 출력 기능

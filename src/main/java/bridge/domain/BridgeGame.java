@@ -25,7 +25,7 @@ public class BridgeGame {
         bridge.initUserKeyList();
     }
 
-    // 이동 기능
+    // 유저가 입력한 키 리스트 추가 기능
     public Bridge move(String key) {
         bridge.move(key);
         return bridge;
@@ -36,13 +36,5 @@ public class BridgeGame {
         int bridgeSize = bridge.getBridge().size();
         int userKeyListSize = bridge.getUserKeyList().size();
         return bridgeSize == userKeyListSize;
-    }
-
-    // 다시 시작할지 여부를 boolean값 으로 반환하는 기능
-    public boolean retry(String input) {
-        if (input.equals(Setting.RETRY_BUTTON)) {
-            return false;
-        }
-        return true;
     }
 }
