@@ -6,6 +6,7 @@ import bridge.domain.Bridge;
 import bridge.domain.Player;
 import bridge.domain.Result;
 import bridge.service.dto.request.BridgeSizeRequestDto;
+import bridge.service.dto.request.GameRetryRequestDto;
 import bridge.service.dto.request.SelectBlockRequestDto;
 import bridge.service.dto.response.BridgeResponseDto;
 
@@ -18,13 +19,13 @@ public class BridgeGame {
     private final BridgeMaker bridgeMaker;
     private final Bridge bridge;
     private final Player player;
-    private final Result result;
+    private Result result;
 
-    public BridgeGame(BridgeMaker bridgeMaker, Bridge bridge, Player player, Result result) {
+    public BridgeGame(BridgeMaker bridgeMaker, Bridge bridge, Player player) {
         this.bridgeMaker = bridgeMaker;
         this.bridge = bridge;
         this.player = player;
-        this.result = result;
+        this.result = new Result();
     }
 
     public void create(BridgeSizeRequestDto dto) {
@@ -72,6 +73,12 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry(GameRetryRequestDto dto) {
+        if(dto.getRetry().equals("R")) {
+            this.result = new Result();
+            player.init();
+            return true;
+        }
+        return false;
     }
 }

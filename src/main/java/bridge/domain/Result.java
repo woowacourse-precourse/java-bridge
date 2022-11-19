@@ -6,11 +6,12 @@ import java.util.List;
 public class Result {
     private final List<String> upBlocks;
     private final List<String> downBlocks;
-    private GameOver gameOver = GameOver.PLAYING;
+    private GameOver gameOver;
 
     public Result() {
         upBlocks = new ArrayList<>();
         downBlocks = new ArrayList<>();
+        gameOver = GameOver.PLAYING;
     }
 
     public void addBlocks(BlockExpression blockExpression) {

@@ -15,7 +15,7 @@ public class Application {
     }
 
     private static BridgeGame bridgeGame() {
-        return new BridgeGame(bridgeMaker(), bridges(), player(), result());
+        return new BridgeGame(bridgeMaker(), bridges(), player());
     }
 
     private static BridgeMaker bridgeMaker() {
@@ -33,6 +33,4 @@ public class Application {
     private static Player player() {
         return new Player();
     }
-
-    private static Result result() { return new Result(); }
 }

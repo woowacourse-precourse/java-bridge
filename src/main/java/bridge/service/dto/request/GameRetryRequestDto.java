@@ -6,4 +6,8 @@ public class GameRetryRequestDto {
     public GameRetryRequestDto(String retry) {
         this.retry = retry;
     }
+
+    public String getRetry() {
+        return this.retry;
+    }
 }

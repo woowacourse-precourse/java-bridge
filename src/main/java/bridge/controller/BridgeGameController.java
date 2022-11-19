@@ -37,12 +37,20 @@ public class BridgeGameController {
             outputView.printMap(responseDto);
         }
 
-        validateGameFail();
+        gameRetry();
+        gameResult();
     }
 
-    private void validateGameFail() {
+    private void gameRetry() {
         if(bridgeGame.isFail()) {
             GameRetryRequestDto requestDto = inputView.readGameCommand();
+            if(bridgeGame.retry(requestDto)) {
+                play();
+            }
         }
+    }
+
+    private void gameResult() {
+
     }
 }

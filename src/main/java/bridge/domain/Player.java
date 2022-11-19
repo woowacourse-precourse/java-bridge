@@ -14,4 +14,8 @@ public class Player {
     public void move() {
         this.position += 1;
     }
+
+    public void init() {
+        this.position = 0;
+    }
 }
