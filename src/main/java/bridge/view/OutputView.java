@@ -18,6 +18,10 @@ public class OutputView {
         System.out.println(exception.getMessage());
     }
 
+    public void printMovingInputRequest() {
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>

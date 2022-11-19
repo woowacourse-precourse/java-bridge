@@ -22,6 +22,7 @@ public class BridgeGameController {
         outputView.printGameStart();
         try {
             BridgeGame bridgeGame = generateGame();
+            playGame(bridgeGame);
         } catch(IllegalStateException exception) {
             outputView.printError(exception);
         }
@@ -47,5 +48,25 @@ public class BridgeGameController {
         outputView.printBridgeSizeInputRequest();
         int bridgeSize = inputView.readBridgeSize();
         return bridgeSize;
+    }
+
+    private void playGame(BridgeGame bridgeGame) {
+        // do - while구조로 바꿀 생각해보기
+        // while 조건 식에 게임 상태가 종료가 아니면 이렇게 하는건?
+        while (true) {
+            try {
+                crossBridgeUntilFinish(bridgeGame);
+                // 다리 건너기(crossBridgeUntilExit);
+                // 재시작/종료 여부 입력받기(askRetryOrFinish)
+            } catch (IllegalArgumentException exception) {
+                outputView.printError(exception);
+            }
+        }
+    }
+
+    private void crossBridgeUntilFinish(BridgeGame bridgeGame) {
+        do {
+            다리건너기
+        } while (재시작종료여부가 재시작이라면);
     }
 }
