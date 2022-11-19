@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge.controller;
 
 import bridge.BridgeNumberGenerator;
 import bridge.view.InputView;
