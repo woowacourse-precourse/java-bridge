@@ -3,10 +3,12 @@ package bridge.view;
 import static bridge.BridgeMaker.TOP_ROW;
 import static bridge.view.OutputMessage.*;
 
+import bridge.dto.StepResponseDto;
 import java.util.List;
 
 public class MessageMaker implements MessageFactory{
 
+    public static final String RETRY_MESSAGE = "총 시도한 횟수: ";
     private final StringBuilder upperBridge;
     private final StringBuilder underBridge;
     private final List<String> steps;
@@ -37,15 +39,23 @@ public class MessageMaker implements MessageFactory{
         return replaceFinalMessage(upperBridge, underBridge);
     }
 
-    private void judgeMessageLocation(int step, OutputMessage message) {
-        if (steps.get(step).equals(TOP_ROW)) {
-            appendMessage(findMessage(message), findMessage(EMPTY));
-            return;
+    @Override
+    public String finalMessage(StepResponseDto stepResponseDto) {
+        if (stepResponseDto.isFinal()) {
+            return findMessage(FINAL_SUCCESS) + "\n" + RETRY_MESSAGE + stepResponseDto.getRetryCount();
         }
-        appendMessage(findMessage(EMPTY), findMessage(message));
+        return findMessage(FINAL_FAIL) + "\n" + RETRY_MESSAGE + stepResponseDto.getRetryCount();
     }
 
-    private void appendMessage(String upperMessage, String underMessage) {
+    private void judgeMessageLocation(int step, OutputMessage message) {
+        if (steps.get(step).equals(TOP_ROW)) {
+            appendStepMessage(findMessage(message), findMessage(EMPTY));
+            return;
+        }
+        appendStepMessage(findMessage(EMPTY), findMessage(message));
+    }
+
+    private void appendStepMessage(String upperMessage, String underMessage) {
         upperBridge.append(upperMessage).append(findMessage(SPLIT));
         underBridge.append(underMessage).append(findMessage(SPLIT));
     }

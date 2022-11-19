@@ -9,9 +9,12 @@ public enum OutputMessage {
     SUCCESS(" O "),
     FAIL(" X "),
     EMPTY("   "),
-    SPLIT("|");
+    SPLIT("|"),
+    FINAL_SUCCESS("게임 성공 여부: 성공"),
+    FINAL_FAIL("게임 성공 여부: 실패");
 
     private final String message;
+
 
     OutputMessage(String message) {
         this.message = message;
@@ -24,6 +27,15 @@ public enum OutputMessage {
         }
         return messageFactory.failMessage();
     }
+
+    public static String getFinalMessage(StepResponseDto stepResponseDto) {
+        MessageFactory messageFactory = new AppConfig().messageFactory(stepResponseDto.getStep());
+        if (stepResponseDto.isFinal()) {
+            return messageFactory.successMessage() + "\n" +messageFactory.finalMessage(stepResponseDto);
+        }
+        return messageFactory.failMessage() + "\n" + messageFactory.finalMessage(stepResponseDto);
+    }
+
 
     public static String findMessage(OutputMessage outputMessage) {
         return outputMessage.message;
