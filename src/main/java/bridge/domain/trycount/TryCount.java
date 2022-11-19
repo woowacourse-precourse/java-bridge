@@ -17,4 +17,8 @@ public class TryCount {
     public TryCount up() {
         return new TryCount(this.count + 1);
     }
+
+    public int count() {
+        return count;
+    }
 }
