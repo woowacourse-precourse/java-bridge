@@ -3,6 +3,9 @@ package bridge.model;
 import bridge.Error;
 
 public class BridgeSize {
+	private static final int MIN_NUMBER = 3;
+	private static final int MAX_NUMBER = 20;
+
 	private final int bridgeSize;
 
 	public BridgeSize(int value) {
@@ -21,6 +24,6 @@ public class BridgeSize {
 	}
 
 	private static boolean isInRange(int value) {
-		return 3 <= value && value <= 20;
+		return MIN_NUMBER <= value && value <= MAX_NUMBER;
 	}
 }
