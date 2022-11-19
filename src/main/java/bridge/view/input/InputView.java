@@ -38,10 +38,9 @@ public class InputView {
     }
 
     private void validateMoving(String input) {
-        if (input.equals("U") || input.equals("D")) {
-            return;
+        if (!input.equals("U") && !input.equals("D")) {
+            throw new IllegalArgumentException("[ERROR]");
         }
-        throw new IllegalArgumentException("[ERROR]");
     }
 
     /**
@@ -57,9 +56,8 @@ public class InputView {
     }
 
     private void validateGameCommand(String input) {
-        if (input.equals("R") || input.equals("Q")) {
-            return;
+        if (!input.equals("R") && !input.equals("Q")) {
+            throw new IllegalArgumentException("[ERROR]");
         }
-        throw new IllegalArgumentException("[ERROR]");
     }
 }
