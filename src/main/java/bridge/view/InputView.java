@@ -13,33 +13,44 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public static int readBridgeSize() {
-        String bridgeSize = Console.readLine();
-
-        isValidBridgeSizeType(bridgeSize);
-        isValidBridgeSizeRange(bridgeSize);
-
-        return Integer.parseInt(bridgeSize);
+        try {
+            OutputView.printInputBridgeSize();
+            String bridgeSize = Console.readLine();
+            isValidBridgeSize(bridgeSize);
+            return Integer.parseInt(bridgeSize);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readBridgeSize();
+        }
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public static String readMoving() {
-        String movementDirection = Console.readLine();
-
-        isValidMovementDirection(movementDirection);
-
-        return movementDirection;
+        try {
+            OutputView.printSelectMovementDirection();
+            String movementDirection = Console.readLine();
+            isValidMovementDirection(movementDirection);
+            return movementDirection;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public static String readGameCommand() {
-        String command = Console.readLine();
-
-        isValidRestartOrQuitCommand(command);
-
-        return command;
+        try {
+            OutputView.printInputRestartOrQuitCommand();
+            String command = Console.readLine();
+            isValidRestartOrQuitCommand(command);
+            return command;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readGameCommand();
+        }
     }
 }

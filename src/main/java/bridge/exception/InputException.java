@@ -12,6 +12,11 @@ public class InputException {
     private static final Integer MIN_BRIDGE_SIZE = 3;
     private static final Integer MAX_BRIDGE_SIZE = 20;
 
+    public static void isValidBridgeSize(String bridgeSize) {
+        isValidBridgeSizeType(bridgeSize);
+        isValidBridgeSizeRange(bridgeSize);
+    }
+
     public static void isValidBridgeSizeType(String bridgeSize) {
         try {
             Integer.parseInt(bridgeSize);
