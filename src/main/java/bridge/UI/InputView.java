@@ -5,6 +5,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 import bridge.Constants.FrontMan;
 import bridge.Constants.ErrorMessages;
 import java.util.Objects;
+import org.mockito.internal.matchers.Null;
 
 public class InputView {
 
@@ -40,6 +41,15 @@ public class InputView {
     }
 
     public String readGameCommand() {
-        
+        System.out.println(FrontMan.INPUT_RETRY_OR_QUIT);
+        String userInput = readLine();
+        validateGameCommand(userInput);
+        return userInput;
+    }
+
+    public void validateGameCommand(String userInput) {
+        if (!Objects.equals(userInput, "R") && !Objects.equals(userInput, "Q")) {
+            throw new IllegalArgumentException(ErrorMessages.SHOULD_CHOOSE_ONLY_BETWEEN_RETRY_AND_QUIT);
+        }
     }
 }
