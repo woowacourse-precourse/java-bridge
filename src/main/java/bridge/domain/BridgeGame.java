@@ -26,7 +26,6 @@ public class BridgeGame {
             step++;
             return checkClearCondition();
         }
-
         return Answer.INCORRECT;
     }
 
@@ -59,7 +58,7 @@ public class BridgeGame {
                             return Answer.NONE;
                         }
                 ).limit(step + 1)
-                .collect(Collectors.toUnmodifiableList());
+                .collect(Collectors.toList());
     }
 
     private List<Answer> getFailedBridge(Direction direction){
