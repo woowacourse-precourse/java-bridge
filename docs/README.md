@@ -23,10 +23,10 @@
   - [x] 시도 횟수 업데이트
   - [x] 시도 횟수 제공
 
-- [ ] 다리 상태 정보 저장(BridgeStatusSaver)
+- [x] 다리 상태 정보 저장(BridgeStatusSaver)
   - bridgeStatus 상태를 저장하는 클래스
-  - bridgeStatus getter, setter 제공
-  - bridgeStatus가 비어있는데 요청시 `IllegalStateException` 예외 발생
+  - [x] bridgeStatus getter, setter 제공
+  - [x] bridgeStatus가 비어있는데 요청시 `IllegalStateException` 예외 발생
 
 - [x] 움직임 명령(MovingCommand)
   - [x] UP("U"), DOWN("D") 목록을 가진다
