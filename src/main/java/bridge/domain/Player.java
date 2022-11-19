@@ -1,29 +1,21 @@
 package bridge.domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-public class Player {
-    private final List<String> inputs;
+public class Player  {
+    private List<String> inputs;
 
-    public Player() {
+    private final int bridgeLength;
+    private int temp;
+
+    public Player(int length) {
         this.inputs = new ArrayList<>();
+        this.temp = 0;
+        this.bridgeLength = length;
     }
 
     public void inputDirection(String direction) {
         inputs.add(direction);
-    }
-
-    public int getLastIndex() {
-        return inputs.size() - 1;
-    }
-
-    public String getLastInput() {
-        return inputs.get(inputs.size() - 1);
-    }
-
-    public List<String> getInputs() {
-        return Collections.unmodifiableList(inputs);
     }
 }
