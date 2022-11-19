@@ -1,5 +1,8 @@
 package bridge;
 
+
+import bridge.constant.ErrorMessage;
+
 public class InputValidator {
     private static final String BRIDGE_SIZE_LIMIT = "^[3-9]{1}$|^1{1}[0-9]{1}$|^2{1}0{1}$";
 
@@ -9,7 +12,9 @@ public class InputValidator {
         this.input = input;
     }
 
-    public boolean isInRangeSize() {
-        return input.matches(BRIDGE_SIZE_LIMIT);
+    public void isInRangeSize() {
+        if (!input.matches(BRIDGE_SIZE_LIMIT)) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_BRIDGE_SIZE_ERROR.toString());
+        }
     }
 }

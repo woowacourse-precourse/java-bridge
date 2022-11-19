@@ -1,6 +1,5 @@
 package bridge.view;
 
-import bridge.constant.ErrorMessage;
 import bridge.InputValidator;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -16,12 +15,9 @@ public class InputView {
      */
     public int readBridgeSize() {
         new OutputView().printMessage(ENTER_BRIDGE_LENGTH);
-        String input = Console.readLine();
+        String input = Console.readLine().strip();
 
-        InputValidator inputValidator = new InputValidator(input);
-        if (!inputValidator.isInRangeSize()) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_NUMBER_ERROR.toString());
-        }
+        new InputValidator(input.strip()).isInRangeSize();
         return Integer.parseInt(input);
     }
 
