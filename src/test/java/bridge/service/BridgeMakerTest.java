@@ -27,28 +27,18 @@ public class BridgeMakerTest {
     }
 
     @Test
-    @DisplayName("isDown 테스트")
-    public void isDownTest() {
+    @DisplayName("getDirection 테스트")
+    public void getDirectionTest() {
         // given
         int number = 0;
 
         // when
-        boolean result = bridgeMaker.isDown(number);
+        String result1 = bridgeMaker.getDirection(0);
+        String result2 = bridgeMaker.getDirection(1);
 
         // then
-        assertThat(result).isEqualTo(true);
-    }
+        assertThat(result1).isEqualTo("D");
+        assertThat(result2).isEqualTo("U");
 
-    @Test
-    @DisplayName("generatorNumber 테스트")
-    public void generatorNumberTest() {
-        // given
-        List<Integer> resultList = List.of(0, 1);
-
-        // when
-        int result = bridgeMaker.generatorNumber(() -> bridgeRandomNumberGenerator.generate());
-
-        // then
-        assertThat(resultList.contains(result)).isEqualTo(true);
     }
 }
