@@ -24,12 +24,16 @@
 - 게임의 성공 여부를 출력한다.
   - `게임 성공 여부: (성공/실패)` 및 `총 시도한 횟수: x`를 출력한다.
 
-### [] 제한사항 검증 기능
+### [☑️] 제한사항 검증 기능
 - 사용자가 입력한 값에 대한 검증 기능을 제공한다. 다음과 같은 경우 예외 사항으로 판단한다.
-  - [예외] 입력받은 다리의 길이가 숫자인지 검증한다.
+  - [예외] 입력받은 다리의 길이가 숫자인지 검증한다.☑️
+    - *ValidationUtil#checkNumberType*
   - [예외] 입력받은 다리의 길이가 3~20 사이의 값을 가지는지 검증한다.
+    - *ValidationUtil#checkNumberRange*
   - [예외] 입력받은 플레이어가 이동할 칸이 U 혹은 D인지 검증한다.
+    - *ValidationUtil#validatePlayerMoveInput*
   - [예외] 입력받은 재시작/종료 여부가 R 혹은 Q인지 검증한다. 
+    - *ValidationUtil#validatePlayControlInput*
 - 예외 사항에 대해서는 `IllegalArgumentException`을 발생시킨다.
 
 ### [] 다리에 대한 랜덤 숫자 부여 기능
