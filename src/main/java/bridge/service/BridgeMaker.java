@@ -9,7 +9,7 @@ import java.util.List;
 public class BridgeMaker {
 
 	private final static int UP_NUMBER = 1;
-	private final static String UP_STRING = "U";
+	public final static String UP_STRING = "U";
 	private final static String DOWN_STRING = "D";
 	private final static String ERROR_MESSAGE_RANGE ="다리 길이는 3부터 20 사이의 숫자여야 합니다.";
 	private final BridgeNumberGenerator bridgeNumberGenerator;

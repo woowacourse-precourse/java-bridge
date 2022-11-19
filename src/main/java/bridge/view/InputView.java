@@ -13,12 +13,11 @@ public class InputView {
     public int readBridgeSize() {
         return Integer.parseInt(Console.readLine());
     }
-
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        return Console.readLine();
     }
 
     /**
