@@ -30,6 +30,11 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
+    public void moveResult(List<String> bridge, int blockCount) {
+        move(bridge, blockCount);
+
+    }
+
     public void move(List<String> bridge, int blockCount) {
         for (int i = 0; i < blockCount; i++) {
             String sideToMove = new InputView().readMoving();
@@ -39,6 +44,9 @@ public class BridgeGame {
             moveBridgeResult.add(initialUpBridge.toString());
             moveBridgeResult.add(initialDownBridge.toString());
             new OutputView().printMap(moveBridgeResult);
+            if (isGameFailed()) {
+                break;
+            }
         }
     }
 
@@ -79,6 +87,14 @@ public class BridgeGame {
             initialDownBridge.insert(lastIndex, SPLIT_BY);
         }
     }
+
+    public boolean isGameFailed() {
+        if (moveBridgeResult.contains(MOVABLE)) {
+            return true;
+        }
+        return false;
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
