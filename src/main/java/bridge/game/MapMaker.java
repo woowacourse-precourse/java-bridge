@@ -1,7 +1,6 @@
 package bridge.game;
 
 import bridge.generator.AreaStatus;
-
 import java.util.ArrayList;
 import java.util.List;
 

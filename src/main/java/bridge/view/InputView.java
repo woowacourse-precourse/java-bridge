@@ -15,7 +15,7 @@ public class InputView {
         try{
             return readBridgeSize();
         } catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            OutputView.printError(e);
             return reReadBridgeSizeWhenError();
         }
     }
@@ -30,7 +30,7 @@ public class InputView {
         try{
             return readMoving();
         } catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            OutputView.printError(e);
             return reReadMovingWhenError();
         }
     }
@@ -45,7 +45,7 @@ public class InputView {
         try{
             return readGameCommand();
         } catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            OutputView.printError(e);
             return reReadGameCommandWhenError();
         }
     }
