@@ -1,10 +1,10 @@
-package utils;
+package bridge.utils;
 
-import utils.validators.BridgeSizeValidator;
-import utils.validators.GameCommandValidator;
-import utils.validators.MovingValidator;
-import view.InputView;
-import view.OutputView;
+import bridge.utils.validators.BridgeSizeValidator;
+import bridge.utils.validators.GameCommandValidator;
+import bridge.utils.validators.MovingValidator;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class InputHandler {
 

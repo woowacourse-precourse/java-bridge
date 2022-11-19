@@ -1,7 +1,7 @@
-package view;
+package bridge.view;
 
-import controller.BridgeGame;
-import utils.EnumStrings;
+import bridge.controller.BridgeGame;
+import bridge.utils.EnumStrings;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.

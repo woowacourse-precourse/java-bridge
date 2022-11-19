@@ -1,12 +1,12 @@
-package controller;
+package bridge.controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.RealTimeBridge;
-import utils.EnumStrings;
-import utils.InputHandler;
-import view.OutputView;
+import bridge.utils.EnumStrings;
+import bridge.utils.InputHandler;
+import bridge.view.OutputView;
 import java.util.List;
 
 /**

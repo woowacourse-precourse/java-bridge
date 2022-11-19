@@ -1,4 +1,4 @@
-package utils.validators;
+package bridge.utils.validators;
 
 public class MovingValidator {
 
