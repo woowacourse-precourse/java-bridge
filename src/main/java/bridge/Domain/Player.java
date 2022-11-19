@@ -15,4 +15,11 @@ public class Player {
         return this.position;
     }
 
+    public boolean isPlayerInEndOfBridge(Bridge bridge) {
+        return bridge.isBridgeEnd(position);
+    }
+
+    public void initPosition() {
+        this.position = 0;
+    }
 }
