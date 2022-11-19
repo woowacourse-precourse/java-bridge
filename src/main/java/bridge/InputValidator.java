@@ -13,6 +13,7 @@ public class InputValidator {
     public static String validateInputMoveCommande(String inputMoveCommande){
         validateCommandeLength(inputMoveCommande);
         validateCommandUppercase(inputMoveCommande);
+        checkUorR(inputMoveCommande);
         return inputMoveCommande;
     }
 
@@ -35,6 +36,12 @@ public class InputValidator {
     public static void validateCommandUppercase(String inputMoveCommande){
         if(inputMoveCommande.matches(regExp)){
             throw new IllegalArgumentException("[ERROR]명령어는 대문자로 입력 해 주세요.");
+        }
+    }
+
+    public static void checkUorR(String inputMoveCommande){
+        if(!inputMoveCommande.equals("U") && !inputMoveCommande.equals("R")){
+            throw new IllegalArgumentException("[ERROR]명령어는 U 또는 R로 입력해 주세요");
         }
     }
 
