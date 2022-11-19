@@ -4,6 +4,8 @@ import bridge.domain.Bridge;
 import bridge.domain.User;
 
 public class BridgeGame {
+    private static final String RESTART_GAME = "R";
+    private static final String QUIT_GAME = "Q";
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -23,6 +25,16 @@ public class BridgeGame {
             return true;
         }
         return false;
+    }
+
+    public void userFailCase(Bridge bridge, User user, String command) {
+        if (command.equals(RESTART_GAME)) {
+            retry(bridge, user);
+        }
+        if (command.equals(QUIT_GAME)) {
+            user.gameDoneSuccess();
+            user.gameFail();
+        }
     }
 
     /**
