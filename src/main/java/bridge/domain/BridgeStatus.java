@@ -56,4 +56,8 @@ public class BridgeStatus {
     public boolean needCallRetryGame() {
         return gameStatus.needCallRetry();
     }
+
+    public List<String> getUserBridge() {
+        return userBridge;
+    }
 }
