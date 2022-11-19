@@ -12,6 +12,7 @@ import bridge.view.OutputView;
 
 import java.util.List;
 
+import static bridge.domain.Command.RETRY;
 import static bridge.domain.GameStatus.FAILED;
 import static bridge.domain.GameStatus.PLAYING;
 
@@ -37,17 +38,22 @@ public class BridgeApplication {
             BridgeGame bridgeGame = new BridgeGame(bridge);
 
             GameStatus status = PLAYING;
-            while (PLAYING.equals(status)) {
-                String moving = inputView.readMoving();
-                BridgeUnit nextUnit = BridgeUnit.from(moving);
+            do {
+                while (PLAYING.equals(status)) {
+                    String moving = inputView.readMoving();
+                    BridgeUnit nextUnit = BridgeUnit.from(moving);
 
-                status = bridgeGame.move(nextUnit);
-                outputView.printMap(bridgeGame);
-            }
-            if (FAILED.equals(status)) {
-                String code = inputView.readGameCommand();
-                Command command = Command.from(code);
-            }
+                    status = bridgeGame.move(nextUnit);
+                    outputView.printMap(bridgeGame);
+                }
+                if (FAILED.equals(status)) {
+                    String code = inputView.readGameCommand();
+                    Command command = Command.from(code);
+                    if (RETRY.equals(command)) {
+                        status = bridgeGame.retry();
+                    }
+                }
+            } while (PLAYING.equals(status));
         } catch (IllegalArgumentException e) {
 
         }
