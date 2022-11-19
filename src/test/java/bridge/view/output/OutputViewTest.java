@@ -50,4 +50,18 @@ class OutputViewTest {
 
         view.printResult(userStatus);
     }
+
+    @Test
+    void 성공여부_UI_확인용_테스트() {
+        OutputView view = new OutputView();
+        UserStatus userStatus = new UserStatus(new ArrayList<>(), 0, true);
+        userStatus.addDirection("U");
+        userStatus.addDirection("U");
+        userStatus.addDirection("D");
+        userStatus.addDirection("U");
+        userStatus.addDirection("D");
+        userStatus.addDirection("D");
+
+        view.printResult(userStatus);
+    }
 }

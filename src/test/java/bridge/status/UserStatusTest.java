@@ -79,5 +79,24 @@ class UserStatusTest {
                 .isInstanceOf(IndexOutOfBoundsException.class);
     }
 
+    @Test
+    void 유저가_게임에서_승리했을_시_성공_메세지_반환() {
+        UserStatus userStatus = new UserStatus(new ArrayList<>(), 0, true);
+        userStatus.addDirection("D");
+        userStatus.addDirection("D");
+
+        assertThat(userStatus.getStatusMessage()).isEqualTo("게임 성공 여부: 성공");
+    }
+
+    @Test
+    void 유저가_게임에서_패배시_실패_메세지_반환() {
+        UserStatus userStatus = new UserStatus(new ArrayList<>(), 0, true);
+        userStatus.addDirection("D");
+        userStatus.addDirection("D");
+
+        userStatus.lose();
+        assertThat(userStatus.getStatusMessage()).isEqualTo("게임 성공 여부: 실패");
+    }
+
 
 }
