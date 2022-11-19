@@ -36,12 +36,13 @@ public class BridgeGameCycle {
         bridgeLength = inputView.readBridgeSize();
     }
 
-    private void oneTurnCycle(BridgeGame game) {
+    private int oneTurnCycle(BridgeGame game) {
         printAskMoving();
         String inputMoving = inputView.readMoving();
-        nowState = game.move(inputMoving);
+        int nowState = game.move(inputMoving);
         finalMap = game.nowBridgeStage(nowState);
         printMap(finalMap);
+        return nowState;
     }
 
     private String askInputCommand() {
@@ -66,7 +67,7 @@ public class BridgeGameCycle {
         List<String> bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeLength);
         BridgeGame game = new BridgeGame(bridge);
         while (CONTINUE) {
-            oneTurnCycle(game);
+            nowState = oneTurnCycle(game);
             if (nowState == GAME_WIN.num()) break;
             if (!loseCycle(game)) break;
         }

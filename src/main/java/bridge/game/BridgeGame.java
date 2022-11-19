@@ -24,13 +24,13 @@ public class BridgeGame {
      */
     public int move(String nowStage) {
         if (bridge.get(stage).equals(nowStage)) {
-            if (isGameEnd()) return GAME_WIN.num();
+            if (isGameWin()) return GAME_WIN.num();
             return GAME_CONTINUE.num();
         }
         return GAME_LOSE.num();
     }
 
-    private boolean isGameEnd() {
+    private boolean isGameWin() {
         return bridge.size() - 1 == stage;
     }
 
