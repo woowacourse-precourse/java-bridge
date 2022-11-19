@@ -38,6 +38,7 @@ public class Controller {
                 break;
             }
         } while (true);
+        result();
     }
 
     // 다리를 건너는 기능
@@ -54,12 +55,18 @@ public class Controller {
 
     // 다시 시작 여부를 묻는 기능
     private boolean retry() {
-        do {
+        while (!service.isBridgeEnd() || !service.isAnswer()) {
             try {
                 return service.isRetry();
             } catch (IllegalArgumentException error) {
                 service.catchError(error);
             }
-        } while (true);
+        }
+        return true;
+    }
+
+    // 게임 결과 출력 기능
+    private void result() {
+        service.gameResult();
     }
 }
