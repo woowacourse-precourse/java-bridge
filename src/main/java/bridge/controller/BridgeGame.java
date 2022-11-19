@@ -8,6 +8,8 @@ import bridge.model.BridgeSize;
 import bridge.model.Moving;
 import bridge.view.Input;
 import bridge.view.InputView;
+import bridge.view.Output;
+import bridge.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +19,13 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    Input input = new InputView();
+    Output output = new OutputView();
+
     public void run() {
 
         // 사용자에게 다리길이를 입력 받는다
-        Input input = new InputView();
+
         BridgeSize bridgeSize = null;
         do {
             try {
@@ -61,7 +66,11 @@ public class BridgeGame {
             isCorrectMoving = judge.checkIsCorrectMoving(bridge, userBridge);
 
 
-        } while (isCorrectMoving);
+            // 사용자에게 결과를 보여준다
+            judge.makeResult(bridge, userBridge);
+            output.printMap(judge.toString());
+
+        } while (isCorrectMoving || userBridge.size() != bridge.size());
 
 
     }
