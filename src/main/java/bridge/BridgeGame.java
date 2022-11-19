@@ -32,10 +32,10 @@ public class BridgeGame {
 
     private boolean bridgeMainGame(List<String> bridgeList, boolean retryOrNot){
         for (int order = 0; order <bridgeList.size(); order++) {
+
             String upDownUserInput = inputView.readMoving();
             if (Compare(bridgeList,upDownUserInput, order)){
-                //출력
-                System.out.println(upDownUserInput);
+
                 this.retryOrNot = true;
                 if (order == bridgeList.size()-1){
                     this.retryOrNot = false;
@@ -55,6 +55,8 @@ public class BridgeGame {
             /** get을 사용하지 않는다?
              *
              */
+            //outputView사용
+
             return true;
         }
         return false;
