@@ -51,32 +51,26 @@ public class BridgeGameController {
     }
 
     private void playGame(BridgeGame bridgeGame) {
-        // do - while구조로 바꿀 생각해보기
-        // while 조건 식에 게임 상태가 종료가 아니면 이렇게 하는건?
-        while (true) {
-            try {
-                crossBridgeUntilFinish(bridgeGame);
-                // 다리 건너기(crossBridgeUntilExit);
-                // 재시작/종료 여부 입력받기(askRetryOrFinish)
-            } catch (IllegalArgumentException exception) {
-                outputView.printError(exception);
-            }
+        try {
+            crossBridgeUntilFinish(bridgeGame);
+        } catch (IllegalArgumentException exception) {
+            outputView.printError(exception);
         }
     }
 
     private void crossBridgeUntilFinish(BridgeGame bridgeGame) {
-        do {
+        while (!bridgeGame.isFinished()) {
             crossBridge(bridgeGame);
-        } while (true);
-//        } while (재시작종료여부가 재시작이라면);
+            outputView.printMap(bridgeGame);
+            if (bridgeGame.isFailed()) {
+                askRetryOrFinish();
+            }
+        }
     }
 
     private void crossBridge(BridgeGame bridgeGame) {
-        // while (게임을 진행중이라면)
-        while (true) {
-            outputView.printMovingInputRequest();
-            String spaceToMove = inputView.readMoving();
-            bridgeGame.move(spaceToMove);
-        }
+        outputView.printMovingInputRequest();
+        String spaceToMove = inputView.readMoving();
+        bridgeGame.move(spaceToMove);
     }
 }

@@ -10,6 +10,10 @@ import java.util.List;
  * InputView, OutputView 사용 불가
  */
 public class BridgeGame {
+    private final static int ONGOING = 0;
+    private final static int SUCCESS = 1;
+    private final static int FAIL = -1;
+
     private final List<String> bridge;
     private final Player player;
 
@@ -18,15 +22,28 @@ public class BridgeGame {
         this.player = player;
     }
 
+    public boolean isFinished() {
+        if (player.isArrived(bridge) || player.isDead()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isFailed() {
+        if (player.isDead()) {
+            return true;
+        }
+        return false;
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String spaceToMove) {
+    public void move(String spaceToMove) {
         validate(spaceToMove);
-        boolean moveResult = player.move(bridge, spaceToMove);
-        return moveResult;
+        player.move(bridge, spaceToMove);
     }
 
     private void validate(String spaceToMove) {
