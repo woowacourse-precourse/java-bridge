@@ -1,24 +1,27 @@
 package bridge.domain.bridgegame;
 
 public class AttemptCount {
-    private final static AttemptCount ATTEMPT_COUNT = new AttemptCount();
-    private int count;
+    private final int attemptCount;
 
-    private AttemptCount() {
-        this.count = 0;
+    private AttemptCount(int attemptCount) {
+        this.attemptCount = attemptCount;
     }
 
-    public static AttemptCount getInstance() {
-        return ATTEMPT_COUNT;
+    public static AttemptCount from(int attemptCount) {
+        return new AttemptCount(attemptCount);
     }
 
-    public void add() {
-        count++;
+    public AttemptCount increaseCount() {
+        return new AttemptCount(attemptCount + 1);
+    }
+
+    public int toInt() {
+        return attemptCount;
     }
 
     @Override
     public String toString() {
-        return Integer.toString(count);
+        return Integer.toString(attemptCount);
     }
 }
 
