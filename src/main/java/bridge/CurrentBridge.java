@@ -10,6 +10,7 @@ public class CurrentBridge extends Bridge{
     private BridgeStatus bridgeStatus;
     public CurrentBridge(List<String> bridge) {
         super(bridge);
+        bridgeStatus = BridgeStatus.SUCCESS;
     }
     public BridgeStatus getBridgeStatus(){
         return bridgeStatus;
@@ -29,7 +30,10 @@ public class CurrentBridge extends Bridge{
         if(otherBridge.getBridge(index).equals(this.getBridge(index))) return true;
         return false;
     }
-
+    public void reset(){
+        bridgeStatus = BridgeStatus.SUCCESS;
+        bridge.clear();
+    }
     @Override
     public String toString() {
         StringBuffer buffer = new StringBuffer();
@@ -42,6 +46,7 @@ public class CurrentBridge extends Bridge{
         if(bridge.get(index).equals(del))return "O";
         return " ";
     }
+
 
 
 }
