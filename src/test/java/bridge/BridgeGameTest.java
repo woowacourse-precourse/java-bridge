@@ -13,5 +13,12 @@ public class BridgeGameTest {
 
         assertThat(tester.move("U", "U")).isEqualTo(true);
     }
+
+    @Test
+    void retryTest() {
+        BridgeGame tester = new BridgeGame(List.of("U", "D", "D", "U", "D"));
+
+        assertThat(tester.retry("Q")).isEqualTo(false);
+    }
 }
 
