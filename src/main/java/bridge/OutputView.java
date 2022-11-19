@@ -20,4 +20,17 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    public void printStartGame(){
+        System.out.println("다리 건너기 게임을 시작합니다. \n");
+        printBridgeLength();
+    }
+
+    private void printBridgeLength(){
+        System.out.println("다리의 길이를 입력해주세요");
+    }
+
+    public void printArgumentErrorMessage(IllegalArgumentException e){
+        System.out.println(e.getMessage());
+    }
 }
