@@ -12,4 +12,8 @@ public class Exception {
     public Boolean isNumber(String bridgeSize) {
         return bridgeSize.chars().allMatch(Character::isDigit);
     }
+
+    public Boolean isUorD(String moving) {
+        return moving.equals("U") || moving.equals("D");
+    }
 }
