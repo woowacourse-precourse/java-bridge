@@ -8,8 +8,24 @@
   - 다리 길이를 입력하라는 메세지 출력 - printRequestBridgeSizeMessage()
   - 이동할 칸을 선택하라는 메세지 출력 - printRequestMovingMessage()
   - 게임을 다시 시도할지 여부를 입력하라는 메세지 출력 - printRequestRetryMessage()
+  - bridgeSize 를 입력받아 BridgeMaker 를 활용하여 bridge 를 만들어 리턴하는 메서드 - makeBridge()
+  - 유저의 이동하고자 하는 방향을 입력받아 결과 맵 String 을 리턴하는 메서드 -move()
+  - BridgeGame 필드 변수인 StringBuilder 타입의 sb1 을 리턴하는 메서드 -getSb1()
+  - BridgeGame 필드 변수인 StringBuilder 타입의 sb2 을 리턴하는 메서드 -getSb2()
+  - 게임 시작시(level == 0) BridgeGame 필드변수인 sb1, sb2 에 “[” 를 append 해주는 메서드  - isStart()
+  - Bridge 의 값이 U 일때 유저가 입력한 값의 동일성 여부를 확인하여 sb1 과 sb2 에 값을 추가하는 메서드 -isUp()
+  -  Bridge 의 값이 D 일때 유저가 입력한 값의 동일성 여부를 확인하여 sb1 과 sb2 에 값을 추가하는 메서드 -isDown()
+  -  bridge 의 크기와 level 이 같을때 (최종 스테이지 일때) sb1, sb2 에 “]” 를 추가해주는 메서드 -isLast()
+  -  bridge 의 값과 유저의 입력값을 비교하여 O 또는 X 를 리턴해주는 메서드 -compareBridgeAndMoving()
+  -  유저가 정답을 맞추지 못하여 다시 시도할 경우 그 전의 맵을 출력하는 메서드 -printBeforeMap()
+  -  유저가 정답을 맞추었을 경우 현재까지의 맵을, 모든 정답을 맞추었을경우 전체 맵을 출력하는 메서드 -makeCurrentResultMap()
+  -  Bridge 게임의 필드변수 level 을 리턴하는 메서드 -getLevel()
+  -  Bridge 게임의 필드변수 tryCount 를 리턴하는 메서드 -getTryCount()
+  -  다음 스테이지로 넘어갈 경우 level 을 ++ 해주는 메서드 -nextLevel()
+  -  게임을 다시 시도할 경우 BridgeGame 의 필드 변수 tryCount 를 ++ , level 을 다시 전 스테이지로 — 해주는 메서드 -goToBackStage()
 - BridgeMaker
-  - 다리길이를 입력 받아서 다리를 생성해준다. - makeBridge(int size)
+  - U 또는 D 의 랜덤값을 리턴해주는 메서드 -direction()
+  - 유저에게 입력받은 다리 길이만큼의 생성된 랜덤값들로 이루어진 List<String> bridge 를 리턴해준다. - makeBridge(int size)
 - BridgeRandomNumberGenerator
   - 0 또는 1의 랜덤값을 반환해준다. - generate()
 - InputView
@@ -24,6 +40,12 @@
   - 자동으로 생성할 다리 길이를 입력받을때 3이상 20 이하의 숫자인지 확인한다. - validRange()
   - 라운드마다 플레이어가 이동할 칸을 입력 받을때 올바른 값인지 확인한다. - validMovingInput()
   - 게임 재시작/종료 여부를 입력받을때 올바른 값인지 확인한다. - validGameCommandInput()
+- BridgeGameController
+  - 게임시작 메서드들을 실행시킨다. - gameStart()
+  - 유저에게 값을 입력받아 Bridge 를 생성하여 리턴한다. - makeBridge()
+  - 유저에게 이동할 다리의 값을 입력받아 이동하고 결과를 출력하며 재시작 여부를 입력받아 처리한다. - playGame()
+  - 유저가 입력한 재시작 여부에 따라 boolean 값을 리턴한다. - wantFinish()
+  - 최종 게임 결과와 도전 횟수를 출력한다. - printResult()
 
 
 #🚀 기능 요구 사항
