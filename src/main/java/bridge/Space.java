@@ -26,10 +26,10 @@ public enum Space {
         return DOWN.getIndex();
     }
 
-    public static Space getValueByRepresented(String represented) {
+    public static int getIndexByRepresented(String represented) {
         if (represented.equals(DOWN.getRepresented())) {
-            return DOWN;
+            return DOWN.getIndex();
         }
-        return UP;
+        return UP.getIndex();
     }
 }

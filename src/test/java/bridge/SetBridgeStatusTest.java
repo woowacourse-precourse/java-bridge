@@ -40,7 +40,7 @@ public class SetBridgeStatusTest {
 
         assertThat(up).isEqualTo(List.of("[", " ", "O", " ", "|", " ", " ", " ", "|", " ", " ", " ", "]"));
         assertThat(down).isEqualTo(List.of("[", " ", " ", " ", "|", " ", "O", " ", "|", " ", "X", " ", "]"));
-        outputView.printMap(testBridge);
+        OutputView.printMap(testBridge);
         assertThat(output.toString()).isEqualTo("[ O |   |   ]\n[   | O | X ]");
 
         testBridge.resetCurrentBridge();
@@ -59,15 +59,15 @@ public class SetBridgeStatusTest {
     @DisplayName("이동 결과를 UsersBridgeCrossStatus 내의 currentBridge에 저장한다.")
     @ParameterizedTest
     @MethodSource("sourceMethod")
-    void addCrossingResultTest(Space selectedSpace, int currBridgeOrder, String movingResult) {
-        testBridge.addCrossingResult(selectedSpace, currBridgeOrder, movingResult);
+    void addCrossingResultTest(int selectedSpaceIdx, int currBridgeOrder, String movingResult) {
+        testBridge.addCrossingResult(selectedSpaceIdx, currBridgeOrder, movingResult);
     }
 
     private static Stream<Arguments> sourceMethod() {
         return Stream.of(
-                Arguments.of(UP, 1, "O"),
-                Arguments.of(DOWN, 2, "O"),
-                Arguments.of(DOWN, 3, "X")
+                Arguments.of(1, 1, "O"),
+                Arguments.of(0, 2, "O"),
+                Arguments.of(0, 3, "X")
         );
     }
 

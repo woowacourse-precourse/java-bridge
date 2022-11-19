@@ -17,9 +17,10 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
+        init();
     }
 
-    private static void init() {
+    public static void init() {
         theNumberOfTrials = 1;
         makeBridges(getSizeInput());
         processEntireRounds();
@@ -45,15 +46,16 @@ public class Application {
                 return;
             }
         }
-        outputView.printResult(theNumberOfTrials); // 다리 건너기 성공 or 게임 재시도하지 않고 종료
+        userStatus.setSucceeded();
+        outputView.printResult(theNumberOfTrials, userStatus); // 다리 건너기 성공 or 게임 재시도하지 않고 종료
     }
 
     private static String processEachRound(int round) {
         String selectedSpace = inputView.readMoving();
         String movingResult = bridgeGame.move(round, answerBridge, selectedSpace); // O or X
 
-        userStatus.addCrossingResult(Space.getValueByRepresented(selectedSpace), round, movingResult);
-        outputView.printMap(userStatus);
+        userStatus.addCrossingResult(Space.getIndexByRepresented(selectedSpace), round, movingResult);
+        OutputView.printMap(userStatus);
 
         return movingResult;
     }
@@ -66,7 +68,7 @@ public class Application {
             userStatus.resetCurrentBridge();
             processEntireRounds();
         } else if (retryOrQuit.equals(QUIT)) {
-            outputView.printResult(theNumberOfTrials);
+            outputView.printResult(theNumberOfTrials, userStatus);
         }
     }
 }
