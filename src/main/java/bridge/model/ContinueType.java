@@ -1,7 +1,6 @@
 package bridge.model;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
 
 public enum ContinueType {
     RETRY("R", "재시도"),
@@ -11,25 +10,17 @@ public enum ContinueType {
 
     private final String description;
 
-    private static final Map<String, ContinueType> textContinue = new HashMap<>() {{
-        for (ContinueType type : ContinueType.values()) {
-            put(type.text, type);
-        }
-    }};
-
     ContinueType(String text, String description) {
         this.text = text;
         this.description = description;
     }
 
     public static ContinueType searchContinueTypeToText(String text) {
-        ContinueType continueType = textContinue.get(text);
-
-        if (continueType == null) {
-            throw new IllegalArgumentException("허용되지 않는 글자입니다. 재시도 여부를 선택할 수 없습니다.");
-        }
-
-        return continueType;
+        return Arrays.stream(ContinueType.values())
+                .filter(ct -> ct.text.equals(text))
+                .findFirst()
+                .orElseThrow(() ->
+                        new IllegalArgumentException("허용되지 않는 글자입니다. 재시도 여부를 선택할 수 없습니다."));
     }
 
     public String getText() {
