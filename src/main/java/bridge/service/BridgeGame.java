@@ -2,11 +2,6 @@ package bridge.service;
 
 import bridge.model.entity.*;
 import bridge.model.value.BridgeIngredient;
-import bridge.util.BridgeMaker;
-import bridge.view.InputView;
-import bridge.view.InputView.*;
-
-import static bridge.view.InputView.readBridgeSize;
 
 /**
 
@@ -27,15 +22,15 @@ public class BridgeGame {
      - [ ] 일치, 불일치 맵 추가 "O", "X" , " "
      *
      */
-    public void createBridge() {
-        this.bridge = Bridge.of(InputView.readBridgeSize());
+    public void createBridge(String size) {
+        this.bridge = Bridge.of(size);
     }
     public void createBridgeMap() {
         this.bridgeMap = BridgeMap.of();
     }
-    public void move() {
+    public void move(String readMove) {
         //문자가 U, D를 입력 받고 일치하는지 확인
-        Move move = Move.of(InputView.readMoving());
+        Move move = Move.of(readMove);
         checkMove(bridgeMap.getIndex(), move.getMove());
     }
 
