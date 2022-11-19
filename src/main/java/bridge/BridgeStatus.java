@@ -21,11 +21,12 @@ public enum BridgeStatus {
         return null;
     }
 
-    public int getStatusNumber() {
-        return this.statusNumber;
-    }
-
-    public String getStatusLetter() {
-        return this.statusLetter;
+    public static int convertLetterToNumber(String letter) {
+        for (BridgeStatus bridgeStatus : BridgeStatus.values()) {
+            if (bridgeStatus.statusLetter.equals(letter)) {
+                return bridgeStatus.statusNumber;
+            }
+        }
+        return 0;
     }
 }
