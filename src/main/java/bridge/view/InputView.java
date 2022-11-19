@@ -9,12 +9,15 @@ import bridge.model.Direction;
 import bridge.model.GameCondition;
 import bridge.util.NumericConverter;
 import camp.nextstep.edu.missionutils.Console;
-import java.util.Arrays;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+
+    public static final String BRIDGE_LENGTH_MESSAGE = "다리의 길이를 입력해주세요.";
+    public static final String MOVE_SELECT_MESSAGE = "이동할 칸을 선택해주세요. (위: %s, 아래: %s)";
+    public static final String TRY_AGAIN_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -22,7 +25,8 @@ public class InputView {
     public int readBridgeSize() {
         while (true) {
             try {
-                return NumericConverter.convert(inputBridgeSize());
+                String input = inputBridgeSize();
+                return NumericConverter.convert(input);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }
@@ -30,7 +34,7 @@ public class InputView {
     }
 
     private String inputBridgeSize() {
-        OutputView.printMessage("다리의 길이를 입력해주세요.");
+        OutputView.printMessage(BRIDGE_LENGTH_MESSAGE);
         return Console.readLine();
     }
 
@@ -41,7 +45,7 @@ public class InputView {
         while (true) {
             try {
                 String input = inputMoving();
-                return findMoving(input);
+                return Direction.from(input);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }
@@ -50,17 +54,8 @@ public class InputView {
 
     private String inputMoving() {
         OutputView.printMessage(
-                String.format("이동할 칸을 선택해주세요. (위: %s, 아래: %s)", UP.getDirection(),
-                        DOWN.getDirection()));
+                String.format(MOVE_SELECT_MESSAGE, UP.getDirection(), DOWN.getDirection()));
         return Console.readLine();
-    }
-
-    private Direction findMoving(String input) {
-        return Arrays.stream(Direction.values())
-                .filter(direction -> direction.isMatchDirection(input))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(
-                        String.format("해당하는 이동 칸이 존재하지 않습니다. 입력 : %s", input)));
     }
 
     /**
@@ -70,7 +65,7 @@ public class InputView {
         while (true) {
             try {
                 String input = inputGameCommand();
-                return findGameCommand(input);
+                return GameCondition.from(input);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }
@@ -79,17 +74,8 @@ public class InputView {
 
     private String inputGameCommand() {
         OutputView.printMessage(
-                String.format("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)", RESTART.getCondition(),
-                        QUIT.getCondition()));
+                String.format(TRY_AGAIN_MESSAGE, RESTART.getCondition(), QUIT.getCondition()));
         return Console.readLine();
-    }
-
-    private GameCondition findGameCommand(String input) {
-        return Arrays.stream(GameCondition.values())
-                .filter(condition -> condition.isMatchCondition(input))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(
-                        String.format("해당하는 시도가 존재하지 않습니다. 입력 : %s", input)));
     }
 
 }
