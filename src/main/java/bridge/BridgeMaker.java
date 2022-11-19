@@ -22,12 +22,12 @@ public class BridgeMaker {
         return IntStream.range(0, size)
                 .mapToObj(action -> {
                     int randomNumber = bridgeNumberGenerator.generate();
-                    return getRealBridgeByNumber(randomNumber);
+                    return createBlockByNumber(randomNumber);
                 })
                 .collect(Collectors.toList());
     }
 
-    private String getRealBridgeByNumber(int number) {
+    private String createBlockByNumber(int number) {
         if(number == 1) {
             return "U";
         }

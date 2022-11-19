@@ -2,8 +2,8 @@ package bridge.controller;
 
 import bridge.service.BridgeGame;
 import bridge.service.dto.request.BridgeSizeRequestDto;
-import bridge.service.dto.request.PlayerMovementRequestDto;
-import bridge.service.dto.response.BridgeStateResponseDto;
+import bridge.service.dto.request.SelectBlockRequestDto;
+import bridge.service.dto.response.BridgeResponseDto;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -25,14 +25,14 @@ public class BridgeGameController {
     }
 
     private void createBridge() {
-        BridgeSizeRequestDto dto = inputView.readBridgeSize();
-        bridgeGame.create(dto);
+        BridgeSizeRequestDto requestDto = inputView.readBridgeSize();
+        bridgeGame.create(requestDto);
     }
 
     private void play() {
         while (true) {
-            PlayerMovementRequestDto requestDto = inputView.readMoving();
-            BridgeStateResponseDto responseDto = bridgeGame.move(requestDto);
+            SelectBlockRequestDto requestDto = inputView.readMoving();
+            BridgeResponseDto responseDto = bridgeGame.move(requestDto);
             outputView.printMap(responseDto);
         }
     }

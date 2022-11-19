@@ -4,11 +4,11 @@ import bridge.domain.Result;
 
 import java.util.List;
 
-public class BridgeStateResponseDto {
+public class BridgeResponseDto {
     private final List<String> upSpaces;
     private final List<String> downSpaces;
 
-    public BridgeStateResponseDto(Result result) {
+    public BridgeResponseDto(Result result) {
         this.upSpaces = result.getUpBlocks();
         this.downSpaces = result.getDownBlocks();
     }

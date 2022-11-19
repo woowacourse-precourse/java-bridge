@@ -1,7 +1,7 @@
 package bridge;
 
 import bridge.controller.BridgeGameController;
-import bridge.domain.Bridges;
+import bridge.domain.Bridge;
 import bridge.domain.Player;
 import bridge.domain.Result;
 import bridge.service.BridgeGame;
@@ -26,8 +26,8 @@ public class Application {
         return new BridgeRandomNumberGenerator();
     }
 
-    private static Bridges bridges() {
-        return new Bridges();
+    private static Bridge bridges() {
+        return new Bridge();
     }
 
     private static Player player() {

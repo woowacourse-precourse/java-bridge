@@ -1,12 +1,12 @@
 package bridge.service;
 
 import bridge.BridgeMaker;
-import bridge.domain.Bridges;
+import bridge.domain.Bridge;
 import bridge.domain.Player;
 import bridge.domain.Result;
 import bridge.service.dto.request.BridgeSizeRequestDto;
-import bridge.service.dto.request.PlayerMovementRequestDto;
-import bridge.service.dto.response.BridgeStateResponseDto;
+import bridge.service.dto.request.SelectBlockRequestDto;
+import bridge.service.dto.response.BridgeResponseDto;
 
 import java.util.List;
 
@@ -15,20 +15,20 @@ import java.util.List;
  */
 public class BridgeGame {
     private final BridgeMaker bridgeMaker;
-    private final Bridges bridges;
+    private final Bridge bridge;
     private final Player player;
     private final Result result;
 
-    public BridgeGame(BridgeMaker bridgeMaker, Bridges bridges, Player player, Result result) {
+    public BridgeGame(BridgeMaker bridgeMaker, Bridge bridge, Player player, Result result) {
         this.bridgeMaker = bridgeMaker;
-        this.bridges = bridges;
+        this.bridge = bridge;
         this.player = player;
         this.result = result;
     }
 
     public void create(BridgeSizeRequestDto dto) {
-        List<String> realBridges = bridgeMaker.makeBridge(dto.getBridgeSize());
-        bridges.generate(realBridges);
+        List<String> bridge = bridgeMaker.makeBridge(dto.getBridgeSize());
+        this.bridge.init(bridge);
     }
 
     /**
@@ -36,13 +36,12 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public BridgeStateResponseDto move(PlayerMovementRequestDto dto) {
-        String positionByPlayerToMove = dto.getMovePlayer();
-        String bridge = bridges.getBridgeByPositionToMove(player.getPosition());
+    public BridgeResponseDto move(SelectBlockRequestDto dto) {
+        String playerBlock = dto.getBlock();
+        String bridgeBlock = bridge.getBridgeByPositionToMove(player.getPosition());
 
-
-        if(bridge.equals(positionByPlayerToMove)) {
-            if(bridge.equals("U")) {
+        if(bridgeBlock.equals(playerBlock)) {
+            if(bridgeBlock.equals("U")) {
                 result.addBlocks("O", " ");
             }
             else {
@@ -52,7 +51,7 @@ public class BridgeGame {
             player.move();
         }
         else {
-            if(bridge.equals("U")) {
+            if(bridgeBlock.equals("U")) {
                 result.addBlocks(" ", "X");
             }
             else {
@@ -60,7 +59,7 @@ public class BridgeGame {
             }
         }
 
-        return new BridgeStateResponseDto(result);
+        return new BridgeResponseDto(result);
     }
 
     /**

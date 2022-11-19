@@ -1,7 +1,7 @@
 package bridge.view;
 
 import bridge.service.dto.request.BridgeSizeRequestDto;
-import bridge.service.dto.request.PlayerMovementRequestDto;
+import bridge.service.dto.request.SelectBlockRequestDto;
 import bridge.validator.InputValidator;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -29,11 +29,11 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public PlayerMovementRequestDto readMoving() {
+    public SelectBlockRequestDto readMoving() {
         while (true) {
             try {
                 System.out.println(INPUT_MOVING_SPACE);
-                return new PlayerMovementRequestDto(InputValidator.checkMovingSpace(Console.readLine()));
+                return new SelectBlockRequestDto(InputValidator.checkMovingSpace(Console.readLine()));
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
