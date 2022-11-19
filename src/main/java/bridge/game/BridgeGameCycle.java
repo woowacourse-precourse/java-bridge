@@ -45,14 +45,22 @@ public class BridgeGameCycle {
         }
     }
     private int oneTurnCycle(BridgeGame game) {
-        printAskMoving();
-        String inputMoving = inputView.readMoving();
+        String inputMoving = checkReadMoving();
         int nowState = game.move(inputMoving);
         finalMap = game.nowBridgeStage(nowState);
         printMap(finalMap);
         return nowState;
     }
-
+    private String checkReadMoving(){
+        while(CONTINUE){
+            try{
+                printAskMoving();
+                return inputView.readMoving();
+            }catch (IllegalArgumentException exception){
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
     private String askInputCommand() {
         printAskCommand();
         return inputView.readGameCommand();
