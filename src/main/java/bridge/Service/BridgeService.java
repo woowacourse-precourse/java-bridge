@@ -15,9 +15,13 @@ public class BridgeService {
     private final OutputView outputView = new OutputView();
 
     public void startService() {
-        initService();
-        playService();
-        printResult();
+        try {
+            initService();
+            playService();
+            printResult();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void initService() {
