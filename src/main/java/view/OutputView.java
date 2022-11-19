@@ -65,6 +65,11 @@ public class OutputView {
 		}
 	}
 	
+	public void clearGameStateMap() {
+		currentGameStateUpMap = OUTPUT_TEXT_OPEN_SQUARE_BRACKETS;
+		currentGameStarteDownMap = OUTPUT_TEXT_OPEN_SQUARE_BRACKETS;
+	}
+	
 	private void updateGameStateMapCloseSquareBrackets() {
 		currentGameStateUpMap += OUTPUT_TEXT_CLOSE_SQUARE_BRACKETS;
 		currentGameStarteDownMap += OUTPUT_TEXT_CLOSE_SQUARE_BRACKETS;
