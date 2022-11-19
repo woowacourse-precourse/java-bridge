@@ -65,46 +65,50 @@ D
 
 ### 클래스 분리
 
-- 길이 입력
-- 정답 리스트 생성
-- 이동칸
-  - 일치 했을 때 -> checkBridge
-    - 도달하지 못했을 때
-      - 다시 이동 메소드 move
-    - 끝까지 도달했을 때 checkEnd
-      - 게임 성공 여부 메시지 - printResult
-      - 게임 시도 횟수 메시지 - printTryCount
-  - 일치 안했을 때
-    - 종료
-    - 재시작 - retry(BridgeGame)
-      - BridgeMap 초기화
-      - 이동메시지, move
+### Controller
+1. 게임시작 
+   1. 다리 생성 - `BridgeGame.createBridge`, `createBridgeMap`
+3. 반복해서 다리 맞추기 - `BridgeGame.move()`
+   1. 결과 출력 - `checkResult()`
+5. 재시작() ->  `BridgeGame.retry()`
+6. 종료(정답) -> `BridgeGame.endGame()` 
 
+### BridgeGame
+1. move
+    - [ ] `"U"`, `"D"` 문자 정답과 비교 `Boolean` 반환
+    - [ ] 일치, 불일치 맵 추가 `[` `O` `X` `|` `]`
+
+2. retry
+   - [ ] `"R"`, `"Q"` 문자 확인 Boolean 반환
+   - [ ] Player의 대답을 "R" -> 해당 대답으로 변환
+3. create Map
+    - [x] `List<String>` 맵 생성하기
+    - [ ] `List<String>` 형 맵 생성
 ### OutMessage enum
-1. START_MESSAGE
+1. `START_MESSAGE`
    - [ ] 다리 건너기 게임을 시작합니다.
-2. INPUT_BRIDGE_MESSAGE
+2. `INPUT_BRIDGE_MESSAGE`
    - [ ] 다리의 길이를 입력해주세요.
-3. INPUT_MOVE_MESSAGE
+3. `INPUT_MOVE_MESSAGE`
    - [ ] 이동할 칸을 선택해주세요. (위: U, 아래: D)
-4. INPUT_RETRY_MESSAGE
+4. `INPUT_RETRY_MESSAGE`
    - [ ] 게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)
-5. PRINT_BRIDGE_STATE<br>
+5. `PRINT_BRIDGE_STATE`<br>
    [ O |   |   ]<br>
    [   | O | O ]
-6. RESULT_MESSAGE
+6. `RESULT_MESSAGE`
    - [ ] 게임 성공 여부: 성공
-7. TRY_COUNT_MESSAGE
+7. `TRY_COUNT_MESSAGE`
    - [ ] 총 시도한 횟수: 2
 
 ### OutputView
-1. printMap
-2. printResult
+1. `printMap`
+2. `printResult`
 
 ### INPUT class
-1. readBridgeSize
-2. readMoving
-3. readGameCommand()
+1. `readBridgeSize`
+2. `readMoving`
+3. `readGameCommand()`
 
 ### BridgeMap
 
@@ -125,16 +129,9 @@ D
 <br>
 다리를 만들기 위한 재료
 
-### BridgeGame
-1. move
-
-2. retry
-
-3. create Map
-   - [ ] 맵 생성하기
-
 ### ChageType class
 
+---
 
 ## 📄 설계 구조
 
@@ -143,18 +140,23 @@ D
 - model
   - value
     - OutMessage enum
+    - BridgeIngredient
   - entity
     - Play
+    - Bridge
+    - BridgeMap
+    - UpAndDown
 - util
   - BridgeMaker
-  - BridgeNumberGenerator.java
-  - BridgeRandomNumberGenerator.java
+  - BridgeNumberGenerator
+  - BridgeRandomNumberGenerator
   - Validator
 - service
   - BridgeGame.java
 - view
   - InputView
   - OutputView
+- dto
 <hr>
 
 - controller
@@ -162,5 +164,6 @@ D
   - service
     - input
     - entity
+    - value
     
 대략적으로 이런 계층 구조를 가지고 있다. ex)util은 종속되지 않아서 계층구조에 표시 안함
