@@ -14,6 +14,7 @@ public class Controller {
 
     public void run(){
         startGame();
+        playGame();
     }
 
     public void startGame(){
@@ -29,5 +30,9 @@ public class Controller {
             System.out.println("[ERROR] 다리 길이는 3~20 사이의 값을 가져야 합니다. 다시 입력해 주십시오.");
             initBridgeGame(generator);
         }
+    }
+
+    public void playGame(){
+        bridgeGame.move(inputView.readMoving());
     }
 }
