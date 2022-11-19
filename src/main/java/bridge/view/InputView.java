@@ -2,8 +2,9 @@ package bridge.view;
 
 import static bridge.utils.command.MoveCommand.DOWN;
 import static bridge.utils.command.MoveCommand.UP;
+import static bridge.utils.message.FixedMessage.INPUT_BRIDGE_SIZE;
+import static bridge.utils.message.FixedMessage.INPUT_MOVING;
 
-import bridge.utils.message.FixedMessage;
 import bridge.validator.BridgeSizeValidator;
 import bridge.validator.MovingValidator;
 import bridge.validator.Validator;
@@ -20,7 +21,7 @@ public class InputView {
     public int readBridgeSize() {
         try {
             Validator bridgeSizeValidator = new BridgeSizeValidator();
-            System.out.println(FixedMessage.INPUT_BRIDGE_SIZE.getMessage());
+            System.out.println(INPUT_BRIDGE_SIZE.getMessage());
             String bridgeSize = Console.readLine();
             bridgeSizeValidator.validate(bridgeSize);
             return Integer.parseInt(bridgeSize);
@@ -36,7 +37,7 @@ public class InputView {
         try {
             Validator movingValidator = new MovingValidator();
             System.out.println(
-                    String.format(FixedMessage.INPUT_MOVING.getMessage(), UP.getCommand(), DOWN.getCommand()));
+                    String.format(INPUT_MOVING.getMessage(), UP.getCommand(), DOWN.getCommand()));
             String moving = Console.readLine();
             movingValidator.validate(moving);
             return moving;
