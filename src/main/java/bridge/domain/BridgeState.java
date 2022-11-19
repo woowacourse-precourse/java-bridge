@@ -13,9 +13,9 @@ public enum BridgeState {
         this.stateValue = stateValue;
     }
 
-    public static BridgeState makeBridgeState(int stateValue) {
+    public static BridgeState makeBridgeState(String state) {
         BridgeState bridgeState = Arrays.stream(values())
-                .filter(value -> value.stateValue == stateValue)
+                .filter(value -> value.state.equals(state))
                 .findAny()
                 .orElse(null);
         return bridgeState;
