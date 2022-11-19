@@ -30,70 +30,72 @@ public class OutputView {
         return true;
     }
 
+    private static void printTop(List<String> targetBridge, List<String> preStatus) {
+        System.out.print("[ ");
+        for (int i = 0; i < preStatus.size(); i++) {
+            if (preStatus.get(i).equals("U")) {
+                if (preStatus.get(i).equals(targetBridge.get(i))) {
+                    if (i == preStatus.size()-1) {
+                        System.out.print("O ");
+                        continue;
+                    }
+                    System.out.print("O | ");
+                    continue;
+                }
+
+                if (i == preStatus.size()-1) {
+                    System.out.print("X ");
+                    continue;
+                }
+                System.out.print("X | ");
+            }
+
+            if (preStatus.get(i).equals("D")) {
+                if (i == preStatus.size()-1) {
+                    System.out.print("  ");
+                    continue;
+                }
+                System.out.print("  | ");
+            }
+        }
+        System.out.println("]");
+    }
+
+    private static void printBottom(List<String> targetBridge, List<String> preStatus) {
+        System.out.print("[ ");
+        for (int i = 0; i < preStatus.size(); i++) {
+            if (preStatus.get(i).equals("D")) {
+                if (preStatus.get(i).equals(targetBridge.get(i))) {
+                    if (i == preStatus.size()-1) {
+                        System.out.print("O ");
+                        continue;
+                    }
+                    System.out.print("O | ");
+                    continue;
+                }
+
+                if (i == preStatus.size()-1) {
+                    System.out.print("X ");
+                    continue;
+                }
+                System.out.print("X | ");
+            }
+
+            if (preStatus.get(i).equals("U")) {
+                if (i == preStatus.size()-1) {
+                    System.out.print("  ");
+                    continue;
+                }
+                System.out.print("  | ");
+            }
+        }
+        System.out.println("]");
+    }
 
 
     public static void printMap(List<String> targetBridge, List<String> preStatus) {
-        System.out.println(targetBridge);
-        System.out.println(preStatus);
-        // 윗줄 출력
-        System.out.print("[ ");
-        for (int i = 0; i < preStatus.size(); i++) {
-            if (preStatus.get(i).equals("U")) {
-                if (preStatus.get(i).equals(targetBridge.get(i))) {
-                    if (i == preStatus.size()-1) {
-                        System.out.print("O ");
-                        continue;
-                    }
-                    System.out.print("O | ");
-                    continue;
-                }
-
-                if (i == preStatus.size()-1) {
-                    System.out.print("X ");
-                    continue;
-                }
-                System.out.print("X | ");
-            }
-
-            if (preStatus.get(i).equals("D")) {
-                if (i == preStatus.size()-1) {
-                    System.out.print("  ");
-                    continue;
-                }
-                System.out.print("  | ");
-            }
-        }
-        System.out.println("]");
-
-        // 아랫줄 출력
-        System.out.print("[ ");
-        for (int i = 0; i < preStatus.size(); i++) {
-            if (preStatus.get(i).equals("D")) {
-                if (preStatus.get(i).equals(targetBridge.get(i))) {
-                    if (i == preStatus.size()-1) {
-                        System.out.print("O ");
-                        continue;
-                    }
-                    System.out.print("O | ");
-                    continue;
-                }
-
-                if (i == preStatus.size()-1) {
-                    System.out.print("X ");
-                    continue;
-                }
-                System.out.print("X | ");
-            }
-
-            if (preStatus.get(i).equals("U")) {
-                if (i == preStatus.size()-1) {
-                    System.out.print("  ");
-                    continue;
-                }
-                System.out.print("  | ");
-            }
-        }
-        System.out.println("]");
+        printTop(targetBridge,  preStatus);
+        printBottom(targetBridge,  preStatus);
     }
 
     public static void printResult() {
