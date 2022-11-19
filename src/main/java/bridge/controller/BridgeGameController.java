@@ -1,19 +1,19 @@
 package bridge.controller;
 
-import static bridge.UpDownBridge.initBridge;
+import static bridge.domain.UpDownBridge.initBridge;
 
-import bridge.BridgeGame;
-import bridge.BridgeMaker;
+import bridge.domain.BridgeGame;
+import bridge.domain.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.InputView;
+import bridge.view.InputView;
 import bridge.Message;
-import bridge.OutputView;
+import bridge.view.OutputView;
 
 import java.util.List;
 
 public class BridgeGameController {
-    public static List<String> bridges;
-    public static int inputSize;
+    private static List<String> bridges;
+    private static int inputSize;
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
     private static final BridgeGame bridgeGame = new BridgeGame();
@@ -31,7 +31,7 @@ public class BridgeGameController {
         outputView.printResult();
     }
 
-    public static void setGame() {
+    private static void setGame() {
         while (status && bridgeLocation < inputSize) {
             String inputDirection = inputView.inputMovingDirection();
             String moveResult = bridgeGame.move(bridges.get(bridgeLocation), inputDirection);
@@ -42,7 +42,7 @@ public class BridgeGameController {
         }
     }
 
-    public static void setCurrentState(String moveResult) {
+    private static void setCurrentState(String moveResult) {
         if (moveResult.equals(Message.MOVE_FAIL.getMessage())) {
             status = false;
         } else if (moveResult.equals(Message.MOVE_SUCCESS.getMessage())) {
