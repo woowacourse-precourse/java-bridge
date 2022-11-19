@@ -20,22 +20,29 @@ public class BridgeGameCycle {
     private String finalMap;
 
 
-
     public void play() throws IllegalArgumentException {
 
 
     }
+
     private void beforeGame() {
         printGameStart();
         printAskLength();
         bridgeLength = inputView.readBridgeSize();
     }
+
     private void oneTurnCycle(BridgeGame game) {
         printAskMoving();
         String inputMoving = inputView.readMoving();
         nowState = game.move(inputMoving);
         finalMap = game.nowBridgeStage(nowState);
         printMap(finalMap);
+    }
+
+    private String askInputCommand() {
+        printAskCommand();
+        String inputCommand = inputView.readGameCommand();
+        return inputCommand;
     }
 
 }
