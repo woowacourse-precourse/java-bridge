@@ -4,6 +4,7 @@ import bridge.model.BridgeGame;
 import bridge.validator.ValueValidator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import net.bytebuddy.pool.TypePool;
 
 public class BridgeGameController {
     private ValueValidator validator = new ValueValidator();
@@ -65,14 +66,19 @@ public class BridgeGameController {
     }
 
     private void askRetryOrNot(){
-        outputView.printChooseGameCommand();
-        String input = inputView.readGameCommand();
-        validator.validateRetryOrQuit(input);
-        if(input.equals("R")){
-            bridgeGame.retry();
-        }
-        if(input.equals("Q")){
-            isContinued = false;
+        try{
+            outputView.printChooseGameCommand();
+            String input = inputView.readGameCommand();
+            validator.validateRetryOrQuit(input);
+            if(input.equals("R")){
+                bridgeGame.retry();
+            }
+            if(input.equals("Q")){
+                isContinued = false;
+            }
+        }catch(IllegalArgumentException e){
+            outputView.printErrorMessage(e.getMessage());
+            askRetryOrNot();
         }
     }
 
