@@ -23,7 +23,7 @@ public class OutputView {
             if(i>0){
                 System.out.print("|");
             }
-            System.out.print(userSelect);
+            System.out.print(" "+userSelect+" ");
         }
         System.out.println("]");
     }
@@ -34,7 +34,7 @@ public class OutputView {
             if(i>0){
                 System.out.print("|");
             }
-            System.out.print(userSelect);
+            System.out.print(" "+userSelect+" ");
         }
         System.out.println("]");
     }
