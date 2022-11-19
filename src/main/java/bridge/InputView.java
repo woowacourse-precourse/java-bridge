@@ -26,6 +26,7 @@ public class InputView {
     private static final String QUIT = "Q";
     private static final String GAME_COMMAND_ERROR_MESSAGE = "[ERROR] R(재시작), Q(종료) 중 하나를 입력해야 합니다.";
 
+    private static final String READ_GAME_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -46,7 +47,8 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println(READ_GAME_COMMAND_MESSAGE);
+        return getValidGameCommand();
     }
 
     public int getValidBridgeSize() {
