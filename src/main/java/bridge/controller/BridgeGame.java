@@ -2,9 +2,8 @@ package bridge.controller;
 
 import bridge.domain.Bridge;
 import bridge.domain.CurrentBridge;
-import bridge.view.InputView;
-import bridge.view.OutputView;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -12,27 +11,22 @@ import java.util.Map;
  */
 public class BridgeGame {
 
-    private final InputView inputView;
-    private final OutputView outputView;
     private final Bridge bridge;
     private final CurrentBridge currentBridge;
+    private final Map<String, Boolean> gameManager = new HashMap<>();
     private int currentSection = 1;
     private int trialCount = 0;
 
-    public BridgeGame() {
-        this.inputView = new InputView();
-        this.outputView = new OutputView();
-        outputView.printStartGame();
-        this.bridge = createBridge();
+    public BridgeGame(int bridgeSize) {
+        this.bridge = new Bridge(bridgeSize);
         this.currentBridge = new CurrentBridge();
     }
 
-    public Map<String, Boolean> move() {
-        String readMoving = inputView.readMoving();
+    public CurrentBridge move(String readMoving) {
         currentBridge.setSection(bridge.askCurrentShape(currentSection), readMoving);
         currentSection++;
-        outputView.printMap(currentBridge);
-        return getGameManager();
+        setGameManager();
+        return currentBridge;
     }
 
     /**
@@ -43,18 +37,22 @@ public class BridgeGame {
     public void retry() {
     }
 
-    private Bridge createBridge() {
-        int bridgeSize = inputView.readBridgeSize();
-        return new Bridge(bridgeSize);
-    }
-
-    private Map<String, Boolean> getGameManager() {
+    private void setGameManager() {
         boolean isSuccessGame = currentBridge.isSuccessLastSection();
         boolean isLastSection = bridge.getBridgeLength() == currentBridge.getCurrentBridgeLength();
         if (!isSuccessGame || isLastSection) {
             trialCount++;
-            return Map.of("isGameEnd", true, "isSuccessGame", isSuccessGame);
+            gameManager.putAll(Map.of("isGameEnd", true, "isSuccessGame", isSuccessGame));
+            return;
         }
-        return Map.of("isGameEnd", false, "isSuccessGame", false);
+        gameManager.put("isGameEnd", false);
+    }
+
+    public Map<String, Boolean> getGameManager() {
+        return gameManager;
+    }
+
+    public int getTrialCount() {
+        return trialCount;
     }
 }
