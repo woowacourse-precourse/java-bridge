@@ -1,8 +1,8 @@
 package bridge;
 
 public enum BridgeStatus {
-    UP("U", 1),
-    DOWN("D", 0);
+    UP(Constant.UP, 1),
+    DOWN(Constant.DOWN, 0);
 
     private final String bridgeCharacter;
     private final Integer bridgeNumber;

@@ -13,6 +13,12 @@ public class Validator {
         }
     }
 
+    public static void validateMoving(String input) throws IllegalArgumentException {
+        if (!input.equalsIgnoreCase(Constant.UP) && !input.equalsIgnoreCase(Constant.DOWN)) {
+            throw new IllegalArgumentException(Constant.MOVING_ERROR);
+        }
+    }
+
     public static Integer isNumber(String input) {
         try {
             return Integer.valueOf(input);
