@@ -1,14 +1,18 @@
 package bridge.model;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 import java.util.List;
 import java.util.stream.Stream;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -19,7 +23,7 @@ class ScoreTest {
     private Score score;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         score = new Score();
     }
 
@@ -66,4 +70,20 @@ class ScoreTest {
         );
     }
 
+    @DisplayName("R을 입력하면 유저가 지나온 정보가 초기화 된다.")
+    @Test
+    void judgeRetryThenIsRetry() {
+        Score newScore = new Score(List.of("U", "D"));
+        assertEquals("R", newScore.judgeRetry("R"));
+        this.score.judgeRetry("R");
+        assertThat(newScore).isEqualTo(this.score);
+    }
+
+    @DisplayName("Q를 입력하면 초기화 되지 않는다.")
+    @Test
+    void judgeRetryThenIsNotRetry(){
+        Score newScore = new Score(List.of("U", "D"));
+        assertEquals("Q", newScore.judgeRetry("Q"));
+        assertThat(newScore).isNotEqualTo(new Score());
+    }
 }
