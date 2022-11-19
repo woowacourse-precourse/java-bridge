@@ -1,6 +1,6 @@
 package bridge.io;
 
-import bridge.domain.game.BridgeGameLogger;
+import bridge.domain.game.GameResultLogger;
 import bridge.domain.game.CrossResult;
 
 import java.util.List;
@@ -18,7 +18,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap(BridgeGameLogger result) {
+    public static void printMap(GameResultLogger result) {
         printRoad(result.getTopRoad());
         printRoad(result.getDownRoad());
     }
@@ -47,7 +47,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(BridgeGameLogger result, boolean isEnd) {
+    public static void printResult(GameResultLogger result, boolean isEnd) {
         System.out.println("최종 게임 결과");
         printMap(result);
         System.out.println();

@@ -7,13 +7,13 @@ import java.util.List;
  */
 public class BridgeGame {
     private final List<String> bridge;
-    private BridgeGameLogger result;
+    private GameResultLogger result;
     private int currentTryIndex;
     private boolean isStopped;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
-        this.result = new BridgeGameLogger();
+        this.result = new GameResultLogger();
         this.currentTryIndex = 0;
         this.isStopped = false;
     }
@@ -57,7 +57,7 @@ public class BridgeGame {
         return isStopped;
     }
 
-    public BridgeGameLogger getResult() {
+    public GameResultLogger getResult() {
         return result;
     }
 }

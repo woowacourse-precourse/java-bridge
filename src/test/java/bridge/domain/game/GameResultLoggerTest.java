@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class BridgeGameLoggerTest {
+class GameResultLoggerTest {
     @Test
     void testLogResult() {
-        BridgeGameLogger result = new BridgeGameLogger();
+        GameResultLogger result = new GameResultLogger();
         result.logResult("U", CrossResult.SUCCESS);
         result.logResult("D", CrossResult.SUCCESS);
         result.logResult("U", CrossResult.FAILURE);
@@ -23,7 +23,7 @@ class BridgeGameLoggerTest {
 
     @Test
     void testCountAttempts() {
-        BridgeGameLogger result = new BridgeGameLogger();
+        GameResultLogger result = new GameResultLogger();
         result.logResult("U", CrossResult.FAILURE);
         result.reset();
         assertEquals(2, result.getNumOfAttempts());
