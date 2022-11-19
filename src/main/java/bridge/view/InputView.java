@@ -15,20 +15,13 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public static int readBridgeSize() {
+    public static String readBridgeSize() {
         OutputView.printBridgeLengthInputMessage();
-        String bridgeSize;
-        while(true) {
-            try {
-                bridgeSize = Console.readLine();
-                validateNonNumeric(bridgeSize);
-                validateRange(bridgeSize);
-                break;
-            } catch (IllegalArgumentException e){
-                OutputView.printErrorMessage(e);
-            }
-        }
-        return Integer.parseInt(bridgeSize);
+        String bridgeSize = Console.readLine();
+
+        validateNonNumeric(bridgeSize);
+        validateRange(bridgeSize);
+        return bridgeSize;
     }
 
     /**
@@ -36,16 +29,9 @@ public class InputView {
      */
     public static String readMoving() {
         OutputView.printSelectToMovePlayerMessage();
-        String moveCommand;
-        while (true) {
-            try {
-                moveCommand = Console.readLine();
-                validateInvalidType(moveCommand);
-                break;
-            } catch (IllegalArgumentException e) {
-                OutputView.printErrorMessage(e);
-            }
-        }
+        String moveCommand = Console.readLine();
+
+        validateInvalidType(moveCommand);
         return moveCommand;
     }
 
@@ -54,16 +40,9 @@ public class InputView {
      */
     public static String readGameCommand() {
         OutputView.printAskRetryMessage();
-        String retry;
-        while (true) {
-            try {
-                retry = Console.readLine();
-                validateInvalidRetryType(retry);
-                break;
-            } catch (IllegalArgumentException e) {
-                OutputView.printErrorMessage(e);
-            }
-        }
+        String retry = Console.readLine();
+
+        validateInvalidRetryType(retry);
         return retry;
     }
 }

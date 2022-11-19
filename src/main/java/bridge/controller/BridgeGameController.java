@@ -5,9 +5,12 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static bridge.validator.BlockValidator.validateInvalidType;
 
 public class BridgeGameController {
     private static List<String> bridge;
@@ -24,36 +27,64 @@ public class BridgeGameController {
             gameResult = oneGame();
             retryCount++;
             if (gameResult) break;
-            String retryCommand = InputView.readGameCommand();
+            String retryCommand = initGameCommand();
             play = bridgeGame.retry(retryCommand);
         } while (play);
-//        System.out.println("retryCount = " + retryCount);
-//        System.out.println("gameResult = " + gameResult);
         OutputView.printResult(currentBridge, bridge, retryCount, gameResult);
     }
 
     private List<String> gameSetUp() {
         OutputView.printGameStartMessage();
-        int size = InputView.readBridgeSize();
+        int size = initSize();
 
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         bridge = bridgeMaker.makeBridge(size);
-//        System.out.println("bridge = " + bridge.toString());
         return bridge;
+    }
+
+    private int initSize() {
+        String bridgeSize = "";
+        try {
+            bridgeSize = InputView.readBridgeSize();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
+            return initSize();
+        }
+        return Integer.parseInt(bridgeSize);
+    }
+
+    private String initMoving() {
+        String moveCommand;
+        try {
+            moveCommand = InputView.readMoving();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
+            return initMoving();
+        }
+        return moveCommand;
+    }
+
+    private String initGameCommand() {
+        String moveCommand;
+        try {
+            moveCommand = InputView.readGameCommand();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
+            return initGameCommand();
+        }
+        return moveCommand;
     }
 
     private boolean oneGame() {
         BridgeGame bridgeGame = new BridgeGame();
-//        List<Boolean> currentBridge = new ArrayList<>();
         currentBridge.clear();
         int currentIndex = 0;
         boolean result = true;
         for (int i = 0; i < bridge.size(); i++) {
-            String moveCommand = InputView.readMoving();
+            String moveCommand = initMoving();
             result = bridgeGame.move(currentIndex, moveCommand, bridge);
             currentBridge.add(result);
-//            System.out.println("currentBridge = " + currentBridge.toString());
             currentIndex++;
             OutputView.printMap(currentBridge, bridge);
             if (!result) return false;
