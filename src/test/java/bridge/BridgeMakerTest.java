@@ -1,9 +1,12 @@
 package bridge;
 
+import bridge.mock.MockBridgeNumberGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -25,6 +28,16 @@ public class BridgeMakerTest {
     @Test
     public void 다리에_U와_D만_포함되는지_확인() {
         Assertions.assertThat(createdBridge).containsOnly("U", "D");
+    }
+
+    @DisplayName("숫자 0, 1에 각각 대응되는 D, U가 다리의 칸에 알맞게 생성되는지 확인한다.")
+    @Test
+    public void 숫자에_따른_다리의_U와_D_생성_확인() {
+        List<Integer> bridgeNumbers = new ArrayList<>(Arrays.asList(1, 0, 1, 1, 0, 0, 1));
+        BridgeMaker bridgeMaker = new BridgeMaker(new MockBridgeNumberGenerator(bridgeNumbers));
+        List<String> createdBridge = bridgeMaker.makeBridge(bridgeNumbers.size());
+
+        Assertions.assertThat(createdBridge).containsOnly("U", "D", "U", "U", "D", "D", "U");
     }
 
 
