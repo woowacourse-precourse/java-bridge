@@ -48,4 +48,8 @@ public class BridgeResult {
     public boolean checkSuccess(Bridge bridge) {
         return isEnd(bridge) && result.get(bridge.getSize() - 1);
     }
+
+    public void initResult() {
+        result.clear();
+    }
 }
