@@ -8,14 +8,18 @@ import java.util.List;
 public class BridgeGame {
     public static final String IMMOVABLE = "Can't move";
     public static final String FINISH = "Finish";
-    public static final String SUCCESS = "Success";
+    public static final String NORMAL = "Normal";
     public static final int START_POSITION = 0;
+    public static final int FIRST = 1;
     private final List<String> bridge;
+    private String state;
     private int position;
-    private int attempt = 1;
+    private int attempt;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
+        this.state = NORMAL;
+        this.attempt = FIRST;
     }
 
     /**
@@ -23,21 +27,16 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String move(String selectedDirection) {
-        if (isImmovable(bridge.get(position), selectedDirection)) {
-            return IMMOVABLE;
-        }
-
+    public void move(String selectedDirection) {
+        checkMovable(bridge.get(position), selectedDirection);
         goForward();
-
-        if (isFinished()) {
-            return FINISH;
-        }
-        return SUCCESS;
+        checkFinished();
     }
 
-    private boolean isImmovable(String movableDirection, String selectedDirection) {
-        return notEquals(movableDirection, selectedDirection);
+    private void checkMovable(String movableDirection, String selectedDirection) {
+        if (notEquals(movableDirection, selectedDirection)) {
+            state = IMMOVABLE;
+        }
     }
 
     private boolean notEquals(String operand1, String operand2) {
@@ -48,8 +47,13 @@ public class BridgeGame {
         position++;
     }
 
-    private boolean isFinished() {
-        return position == bridge.size();
+    private void checkFinished() {
+        if (state.equals(IMMOVABLE)) {
+            return;
+        }
+        if (position == bridge.size()) {
+            state = FINISH;
+        }
     }
 
     /**
@@ -68,5 +72,17 @@ public class BridgeGame {
 
     private void increaseAttempts() {
         attempt++;
+    }
+
+    public boolean isNormal() {
+        return state.equals(NORMAL);
+    }
+
+    public boolean isFinished() {
+        return state.equals(FINISH);
+    }
+
+    public boolean isImmovable() {
+        return state.equals(IMMOVABLE);
     }
 }

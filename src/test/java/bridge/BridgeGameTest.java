@@ -9,35 +9,35 @@ import org.junit.jupiter.api.Test;
 
 class BridgeGameTest {
 
-    @DisplayName("건널 수 없는 칸을 선택하면 IMMOVABLE 메세지를 응답한다.")
+    @DisplayName("건널 수 없는 칸을 선택하면 IMMOVABLE 상태를 가진다.")
     @Test
     void moveThenReturnImmovable() {
         BridgeGame bridgeGame = new BridgeGame(List.of("U"));
 
-        String responseMessage = bridgeGame.move("D");
+        bridgeGame.move("D");
 
-        assertThat(responseMessage).isEqualTo(BridgeGame.IMMOVABLE);
+        assertThat(bridgeGame.isImmovable()).isTrue();
     }
 
-    @DisplayName("건널 수 있는 칸을 선택하면 SUCCESS 메세지를 응답한다.")
+    @DisplayName("건널 수 있는 칸을 선택하면 정상 상태를 가진다.")
     @Test
     void moveThenReturnSuccess() {
         BridgeGame bridgeGame = new BridgeGame(List.of("U", "D"));
 
-        String responseMessage = bridgeGame.move("U");
+        bridgeGame.move("U");
 
-        assertThat(responseMessage).isEqualTo(BridgeGame.SUCCESS);
+        assertThat(bridgeGame.isNormal()).isTrue();
     }
 
-    @DisplayName("다리를 다 건너면 FINISHED 메세지를 응답한다.")
+    @DisplayName("다리를 다 건너면 FINISHED 상태를 가진다.")
     @Test
     void moveThenReturnFinished() {
         BridgeGame bridgeGame = new BridgeGame(List.of("U", "D"));
 
         bridgeGame.move("U");
-        String responseMessage = bridgeGame.move("D");
+        bridgeGame.move("D");
 
-        assertThat(responseMessage).isEqualTo(BridgeGame.FINISH);
+        assertThat(bridgeGame.isFinished()).isTrue();
     }
 
     @DisplayName("재시도하면 플레이어의 위치가 초기화된다.")
