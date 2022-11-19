@@ -41,7 +41,7 @@ public class InputView {
      */
     private void checkRange(int input){
         try{
-            if(input > 20 && input < 3 ){
+            if(input > 20 || input < 3 ){
                 throw new IllegalArgumentException();
             }
         }catch (IllegalArgumentException e){
@@ -81,7 +81,7 @@ public class InputView {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String input = Console.readLine();
         checkReTry(input);
-        return null;
+        return input;
     }
 
     /**
