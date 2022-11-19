@@ -9,24 +9,20 @@
 - generate()
   - return : 0 or 1
 3. Position
-- int distance : 시작점으로부터 거리
-- int verticalStatus : Up or Down
-4. Bridge
-- List<Position> bridge
-- of(List<String>)
-- play(Position userNextPosition)
-  - UserStatus
+- String position : "U" or "D"
+4. PositionTable
+- List<Position> positionTable: Poistion의 List를 가진 일급콜렉션. Bridge와 UserPosition에 사용된다.
+- play(PositionTable userPositionTable)
   - return
-    - bridge가 nextPosition을 포함하고 마지막 값일 때 : WIN
-    - bridge가 nextPosition을 포함하고 마지막 값이 아닐 때 : KEEP
-    - bridge가 nextPosition을 포함하지 않을 때 : LOSE
-4. UserPosition
-- 유저의 위치
-- List<String> position
-- newInstance()
-  - 0에서 시작해서 하나씩 추가하기 때문
-- move(String command)
-  - command의 값을 position에 추가
+    - WIN : usePositionTable과 positionTable의 길이가 같고 마지막 요소가 같을 때
+    - KEEP : userPositionTable의 마지막 요소가 같은 위치에서 positionTable의 요소와 대응함
+    - LOSE : userPositionTable의 마지막 요소가 같은 위치에서 positionTable의 요소와 다르다.
+4. Bridge
+- PositionTable bridgePositionTable
+- of(List<String>) : bridgeMaker로부터 생성된 List<String>을 PositionTable로 mapping
+- play(PositionTable userPositionTable)
+  - User의 위치를 기록한 userPositionTable을 입력한다.
+  - bridgePositionTable에서 play(userPositionTable)을 실행한다.
 5. Result
 - KEEP : 사용자가 입력한 값이 정답이고 게임이 진행중일 때
 - LOSE : 사용자가 입력한 값이 정답이 아닐 때

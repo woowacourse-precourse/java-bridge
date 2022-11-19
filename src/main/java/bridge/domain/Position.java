@@ -29,4 +29,12 @@ public class Position {
     public int hashCode() {
         return Objects.hash(distance, verticalStatus);
     }
+
+    public boolean isUp() {
+        return verticalStatus == "U";
+    }
+
+    public boolean isDown() {
+        return verticalStatus == "D";
+    }
 }
