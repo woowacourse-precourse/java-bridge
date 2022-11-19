@@ -9,6 +9,12 @@ public class Validator {
         validateRange(bridgeSize);
     }
 
+    public static void validateMoving(String moving) {
+        if(!moving.matches("^[U]$|^[D]$")){
+            throwIllegalArgumentException(ErrorMessage.MOVING_WRONG_INPUT);
+        }
+    }
+
     private static void validateNumber(String bridgeSize) {
         if (!bridgeSize.matches("\\d+")) {
             throwIllegalArgumentException(ErrorMessage.BRIDGE_SIZE_NOT_NUMBER);
