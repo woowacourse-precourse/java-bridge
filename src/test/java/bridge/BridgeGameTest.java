@@ -2,9 +2,7 @@ package bridge;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import bridge.BridgeGame;
 import bridge.domain.Bridge;
-import bridge.domain.BridgeGameResult;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,7 +10,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class BridgeGameTest {
 
-    private final BridgeGame bridgeGame = new BridgeGame(new BridgeGameResult());
+    private final BridgeGame bridgeGame = new BridgeGame();
 
     @DisplayName("이동이 가능하면 ture, 이동이 불가능하면 false 확인")
     @CsvSource(value = {"D, true", "U, false"})
