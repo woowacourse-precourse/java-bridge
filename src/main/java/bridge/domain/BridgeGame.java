@@ -13,7 +13,6 @@ public class BridgeGame {
 
     private boolean status;
     private int mapCoordinate = START_INDEX;
-    private String winning;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
@@ -65,19 +64,11 @@ public class BridgeGame {
     }
 
     public boolean isWinningBrideGame() {
-        if (this.mapCoordinate == bridge.getBridge().size()) {
-            return successWhether("성공", true);
-        }
-        return successWhether("실패", false);
-    }
-
-    private boolean successWhether(String winning, boolean status) {
-        this.winning = winning;
-        return status;
+        return Result.checkWinning(mapCoordinate, bridge);
     }
 
     public Result getResult() {
-        return new Result(getCurrentMap(status), winning, gameCount.getGameCount());
+        return new Result(getCurrentMap(status), status, gameCount.getGameCount());
     }
 
     private BridgeMap getCurrentMap(boolean status) {
