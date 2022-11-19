@@ -24,7 +24,6 @@ public class BridgeController {
         this.bridgeGame = bridgeGame;
         this.validator = validator;
     }
-
     public void run() {
         printStartMessage();
         makeBridge();
@@ -32,9 +31,26 @@ public class BridgeController {
         printResult();
     }
 
-    private void printResult() {
-        ResultDto resultDto = bridgeGame.getResultDto();
-        outputView.printResult(resultDto);
+    private void printStartMessage() {
+        outputView.printGreetingMessage();
+    }
+
+    private void makeBridge() {
+        int bridgeSize = getBridgeSize();
+        bridgeGame.makeBridge(bridgeSize);
+    }
+
+    private int getBridgeSize() {
+        while (true) {
+            String input = inputView.readBridgeSize();
+            try {
+                validator.checkBridgeSize(input);
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e);
+                continue;
+            }
+            return Integer.parseInt(input);
+        }
     }
 
     private void moveToEndPoint() {
@@ -43,6 +59,26 @@ public class BridgeController {
             if (checkPlayerStatus()) {
                 break;
             }
+        }
+    }
+
+    private void movePlayer() {
+        String direction = getDirection();
+        bridgeGame.move(direction);
+        CurrentPositionDto currentPosition = bridgeGame.getCurrentPosition();
+        outputView.printMap(currentPosition);
+    }
+
+    private String getDirection() {
+        while (true) {
+            String input = inputView.readMoving();
+            try {
+                validator.checkMoving(input);
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e);
+                continue;
+            }
+            return input;
         }
     }
 
@@ -58,8 +94,8 @@ public class BridgeController {
         return false;
     }
 
-    private boolean CompleteToMove() {
-        return bridgeGame.isPlayerCompleteToMove();
+    private boolean FailToMove() {
+        return bridgeGame.isPlayerFailToMove();
     }
 
     private boolean isPlayerWantedToEnd() {
@@ -84,49 +120,12 @@ public class BridgeController {
         }
     }
 
-    private boolean FailToMove() {
-        return bridgeGame.isPlayerFailToMove();
+    private boolean CompleteToMove() {
+        return bridgeGame.isPlayerCompleteToMove();
     }
 
-    private void movePlayer() {
-        String direction = getDirection();
-        bridgeGame.move(direction);
-        CurrentPositionDto currentPosition = bridgeGame.getCurrentPosition();
-        outputView.printMap(currentPosition);
-    }
-
-    private void makeBridge() {
-        int bridgeSize = getBridgeSize();
-        bridgeGame.makeBridge(bridgeSize);
-    }
-
-    private String getDirection() {
-        while (true) {
-            String input = inputView.readMoving();
-            try {
-                validator.checkMoving(input);
-            } catch (IllegalArgumentException e) {
-                outputView.printError(e);
-                continue;
-            }
-            return input;
-        }
-    }
-
-    private int getBridgeSize() {
-        while (true) {
-            String input = inputView.readBridgeSize();
-            try {
-                validator.checkBridgeSize(input);
-            } catch (IllegalArgumentException e) {
-                outputView.printError(e);
-                continue;
-            }
-            return Integer.parseInt(input);
-        }
-    }
-
-    private void printStartMessage() {
-        outputView.printGreetingMessage();
+    private void printResult() {
+        ResultDto resultDto = bridgeGame.getResultDto();
+        outputView.printResult(resultDto);
     }
 }
