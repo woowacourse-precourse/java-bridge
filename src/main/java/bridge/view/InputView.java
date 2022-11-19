@@ -28,11 +28,11 @@ public class InputView {
     public Optional<Integer> readBridgeSize() {
         System.out.println(BRIDGE_LENGTH_INPUT_MESSAGE);
         try {
-            String input = Console.readLine();
+            String input = Console.readLine().trim();
             inputConfig.checkBridgeLength(input);
             int size = Integer.parseInt(input);
             return Optional.of(size);
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return Optional.empty();
         }
@@ -44,10 +44,10 @@ public class InputView {
     public Optional<String> readMoving() {
         printMovingUpOrDown();
         try {
-            String input = Console.readLine();
+            String input = Console.readLine().trim();
             inputConfig.checkMovingInput(input);
             return Optional.of(input);
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return Optional.empty();
         }
@@ -59,10 +59,10 @@ public class InputView {
     public Optional<String> readGameCommand() {
         printRetryOrQuit();
         try {
-            String input = Console.readLine();
+            String input = Console.readLine().trim();
             inputConfig.checkAskReGameInput(input);
             return Optional.of(input);
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return Optional.empty();
         }
