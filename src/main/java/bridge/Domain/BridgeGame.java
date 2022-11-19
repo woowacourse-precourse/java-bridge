@@ -17,7 +17,7 @@ public class BridgeGame {
     InputView inputView = new InputView();
 
     public BridgeGame() {
-        System.out.println(FrontMan.BRIDGE_GAME_IS_BEGINNING);
+        System.out.println(FrontMan.BRIDGE_GAME_IS_BEGINNING + "\n");
         bridgeMaker.makeBridge(inputView.readBridgeLength());
     }
 
