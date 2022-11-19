@@ -41,7 +41,8 @@ public class BridgeGame {
     }
 
     public void start() throws IllegalArgumentException {
-        List<String> bridge = inputController.getBridge(inputController.getBridgeSize());
+        int size = inputController.getBridgeSize(inputController.getBridgeSizeInput());
+        List<String> bridge = inputController.getBridge(size);
         play(bridge);
     }
 
@@ -73,7 +74,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() throws IllegalArgumentException {
-        String direction = inputController.getMovingDirection();
+        String direction = inputController.getMovingDirection(inputController.getMovingDirectionInput());
         board.add(direction);
     }
 
@@ -94,7 +95,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry() throws IllegalArgumentException {
-        String retryOrQuit = inputController.getGameCommand();
+        String retryOrQuit = inputController.getGameCommand(inputController.getGameCommandInput());
         if (retryOrQuit.equals(Constant.RETRY)) {
             count++;
             initialize();

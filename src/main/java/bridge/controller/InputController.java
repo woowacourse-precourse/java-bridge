@@ -22,26 +22,33 @@ public class InputController {
         return bridgeMaker.makeBridge(size);
     }
 
-    public int getBridgeSize() throws IllegalArgumentException {
-        String inputSize;
-        outputView.printGameStart();
-        outputView.printEnterSize();
-        inputSize = inputView.readBridgeSize();
-
+    public int getBridgeSize(String inputSize) throws IllegalArgumentException {
         Validation.checkOnlyNumber(inputSize);
         Validation.isValidBridgeSize(inputSize);
         return Integer.parseInt(inputSize);
     }
 
-    public String getMovingDirection() throws IllegalArgumentException {
-        String moving = inputView.readMoving();
+    public String getBridgeSizeInput() {
+        outputView.printGameStart();
+        outputView.printEnterSize();
+        return inputView.readBridgeSize();
+    }
+
+    public String getMovingDirection(String moving) throws IllegalArgumentException {
         Validation.isValidDirection(moving);
         return moving;
     }
 
-    public String getGameCommand() throws IllegalArgumentException {
-        String command = inputView.readGameCommand();
+    public String getMovingDirectionInput() {
+        return inputView.readMoving();
+    }
+
+    public String getGameCommand(String command) throws IllegalArgumentException {
         Validation.isValidGameCommand(command);
         return command;
+    }
+
+    public String getGameCommandInput() {
+        return inputView.readGameCommand();
     }
 }
