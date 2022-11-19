@@ -37,4 +37,9 @@ public class BridgeGame {
         int userKeyListSize = bridge.getUserKeyList().size();
         return bridgeSize == userKeyListSize;
     }
+
+    // 정답 인지 아닌지 boolean값 반환 기능
+    public boolean isAnswer() {
+        return bridge.isAnswer();
+    }
 }
