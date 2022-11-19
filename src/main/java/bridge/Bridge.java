@@ -7,6 +7,10 @@ public class Bridge {
 
     private List<String> bridge = new ArrayList();
 
+    public void init(){
+        bridge = new ArrayList<>();
+    }
+
     public void setBridge(int size){
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
