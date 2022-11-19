@@ -12,11 +12,11 @@ public class IsNumberInRangeCond implements Condition {
         return isNumeric(input) && isInBound(input);
     }
 
-    public boolean isNumeric(String input) {
+    private boolean isNumeric(String input) {
         return Arrays.stream(input.split("")).allMatch((String digit) -> Character.isDigit(digit.charAt(0)));
     }
 
-    public boolean isInBound(String input) {
+    private boolean isInBound(String input) {
         return LOWER_BOUND <= Integer.parseInt(input) && Integer.parseInt(input) <= UPPER_BOUND;
     }
 }
