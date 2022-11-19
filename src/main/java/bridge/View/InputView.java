@@ -18,9 +18,11 @@ public class InputView {
         System.out.println(READ_SIZE_MESSAGE);
 
         String input = Console.readLine();
-        inputValidator.validateSize(input);
 
+        inputValidator.validateDigit(input);
         int size = Integer.parseInt(input);
+        
+        inputValidator.validateSize(size);
 
         return size;
     }

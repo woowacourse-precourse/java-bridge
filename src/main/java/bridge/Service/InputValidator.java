@@ -5,24 +5,19 @@ public class InputValidator {
     private static int MIN_SIZE = 3;
     private static int MAX_SIZE = 20;
 
-    public void validateSize(String input) {
-        int size = getValidatedSingleNumber(input);
-
+    public void validateSize(int size) {
         if (size < MIN_SIZE || size > MAX_SIZE) {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException("[ERROR]");
         }
     }
 
-    public int getValidatedSingleNumber(String input) {
-        int number = 0;
+    public void validateDigit(String input) {
+        boolean result = input.chars()
+                .allMatch(Character::isDigit);
 
-        try {
-            number = Integer.parseInt(input);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("");
+        if (result == false) {
+            throw new IllegalArgumentException("[ERROR]");
         }
-
-        return number;
     }
 
 }
