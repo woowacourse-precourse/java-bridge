@@ -27,12 +27,16 @@ public class GameManager {
         bridge = bridgeMaker.makeBridge(bridgeSize);
         BridgeGame bridgeGame = new BridgeGame(bridge);
         int round = 0;
+        int tried = 0;
+        List<String> upResult = new ArrayList<>();
+        List<String> downResult = new ArrayList<>();
 
         while (activation) {
+            tried++;
             String moving = inputView.readMoving();
             List<List<String>> result = bridgeGame.move(round, moving);
-            List<String> upResult = result.get(0);
-            List<String> downResult = result.get(1);
+            upResult = result.get(0);
+            downResult = result.get(1);
             ouputView.printMap(upResult, downResult);
             round++;
 
@@ -46,10 +50,16 @@ public class GameManager {
                 activation = false;
             }
         }
+
+        boolean isSuccess = isSuccess(upResult, downResult);
     }
 
     public boolean retry() {
         String command = inputView.readGameCommand();
         return Objects.equals(command, "R");
+    }
+
+    public boolean isSuccess(List<String> upResult, List<String> downResult) {
+        return !upResult.contains(" X ") && !downResult.contains(" X ");
     }
 }
