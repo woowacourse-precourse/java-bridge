@@ -42,8 +42,7 @@ public class BridgeGame {
         String bridgeBlock = bridge.getBlockByPlayerPosition(player.getPosition());
 
         boolean canMove = bridgeBlock.equals(playerBlock);
-        BlockExpression blockExpression = bridge.getBlockExpressionByPosition(bridgeBlock, canMove);
-        result.addBlocks(blockExpression);
+        result.addBlocks(BlockExpression.getBlockExpressionByPosition(bridgeBlock, canMove));
         player.move();
         return new BridgeResponseDto(result);
     }
