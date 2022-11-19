@@ -24,12 +24,12 @@ public class BridgeGame {
      */
     public Result move(int index, String moving) {
         if (bridge.get(index) == moving) {
-            if (moving == UP.getMoving()) {
+            if (bridge.get(index) == UP.getMoving()) {
                 return UP_SUCCESS;
             }
             return DOWN_SUCCESS;
         }
-        if (moving == UP.getMoving()) {
+        if (bridge.get(index) == UP.getMoving()) {
             return UP_FAIL;
         }
         return DOWN_FAIL;
