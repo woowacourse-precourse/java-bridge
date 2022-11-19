@@ -19,6 +19,7 @@ public class InputView {
     public static int readBridgeSize() {
         System.out.println(INPUT_BRIDGE_SIZE);
         String size = Console.readLine();
+        System.out.println();
         return convertStringToInt(size);
     }
 
@@ -42,6 +43,7 @@ public class InputView {
 
     public static void printStartMessage() {
         System.out.println(START_MESSAGE);
+        System.out.println();
     }
 
     private static int convertStringToInt(String input) {
@@ -51,6 +53,4 @@ public class InputView {
             throw new IllegalArgumentException(NOT_INTEGER_ERROR);
         }
     }
-
-
 }
