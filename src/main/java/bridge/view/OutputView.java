@@ -73,6 +73,11 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static String printResult(boolean successGame, int retryCount) {
-        return "null";
+        if (successGame) {
+            return "최종 게임 결과\n" + "[" + leftBridge + "]\n" + "[" + rightBridge + "]\n" + "게임 성공 여부: 성공\n" + "총 시도한 횟수: "
+                    + retryCount;
+        }
+        return "최종 게임 결과\n" + "[" + leftBridge + "]\n" + "[" + rightBridge + "]\n" + "게임 성공 여부: 실패\n" + "총 시도한 횟수: "
+                + retryCount;
     }
 }
