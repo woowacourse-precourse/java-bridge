@@ -23,17 +23,17 @@ public class BridgeSize {
     }
 
     private void validateNumber(String userInput) {
-        String bridgeSizeRegex = "^([0-9]*)$";
+        String bridgeSizeRegex = "^([0-9]{1,2})$";
 
         if (!Pattern.matches(bridgeSizeRegex, userInput)) {
-            throw new IllegalArgumentException(InputErrorText.ERROR_BRIDGE_SIZE.errorText());
+            throw new IllegalArgumentException(InputErrorText.ERROR_BRIDGE_NUMBER.errorText());
         }
     }
 
     private void validateRange(String userInput) {
         int bridgeSize = Integer.parseInt(userInput);
         if (bridgeSize < BRIDGE_MIN_SIZE || bridgeSize > BRIDGE_MAX_SIZE) {
-            throw new IllegalArgumentException(InputErrorText.ERROR_BRIDGE_NUMBER.errorText());
+            throw new IllegalArgumentException(InputErrorText.ERROR_BRIDGE_SIZE.errorText());
         }
     }
 
