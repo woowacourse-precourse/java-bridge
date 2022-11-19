@@ -4,7 +4,8 @@ import static bridge.ExceptionConst.*;
 
 public enum GameFlag {
     RESTART("R"),
-    QUIT("Q");
+    QUIT("Q"),
+    NOTHING("");
 
     private final String flag;
 

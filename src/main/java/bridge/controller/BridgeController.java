@@ -20,9 +20,7 @@ public class BridgeController {
 
     public void gameStart() {
         init();
-        while (loop() != GameFlag.QUIT) {
-            bridgeGame.retry();
-        }
+        loop();
         bridgeView.printResult(bridgeGame.getMap(), bridgeGame.isCrossOver(), bridgeGame.getTryCount());
     }
 
@@ -32,7 +30,19 @@ public class BridgeController {
         bridgeGame = new BridgeGame(new User(), Bridge.of(strings));
     }
 
-    private GameFlag loop() {
+    private void loop() {
+        while (true) {
+            GameFlag flag = routine();
+            if (flag == GameFlag.QUIT) {
+                return;
+            }
+            if (flag == GameFlag.RESTART) {
+                bridgeGame.retry();
+            }
+        }
+    }
+
+    private GameFlag routine() {
         bridgeGame.move(bridgeView.receiveMoving());
         bridgeView.printMap(bridgeGame.getMap());
         ResultFlag result = bridgeGame.isCrossOver();
@@ -42,6 +52,6 @@ public class BridgeController {
         if (result == ResultFlag.FAIL) {
             return bridgeView.receiveRestart();
         }
-        return loop();
+        return GameFlag.NOTHING;
     }
 }
