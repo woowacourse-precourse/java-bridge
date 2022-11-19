@@ -49,4 +49,20 @@ public class OutputView {
         printSubBridge(upBridge);
         printSubBridge(downBridge);
     }
+
+    public void printgetInfo(){
+        boolean success = bridgeGame.getSuccess();
+        int retryCount = bridgeGame.getRetryCount();
+        printSucces(success);
+        System.out.println("총 시도한 횟수: "+retryCount);
+    }
+
+    private void printSucces(boolean success){
+        if(success){
+            System.out.println("게임 성공 여부: 성공");
+        }
+        if(!success){
+            System.out.println("게임 성공 여부: 실패");
+        }
+    }
 }
