@@ -26,7 +26,7 @@ public enum BridgeLocation {
 
     public static BridgeLocation createLocation(int locationNumber) {
         return Arrays.stream(values())
-                .filter(locationValue -> locationValue.locationNumber == locationNumber)
+                .filter(locationValue -> isLocationNumber(locationValue, locationNumber))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(LOCATION_NUMBER_ERROR));
     }
@@ -37,6 +37,10 @@ public enum BridgeLocation {
                         && isCorrectLocation(locationValue, correctLocation))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(LOCATION_ERROR));
+    }
+
+    private static boolean isLocationNumber(BridgeLocation locationValue, int locationNumber) {
+        return locationValue.locationNumber == locationNumber;
     }
 
     private static boolean isCorrectLocation(BridgeLocation locationValue, boolean correctLocation) {
