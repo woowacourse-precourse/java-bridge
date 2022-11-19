@@ -8,7 +8,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import bridge.repository.UserBridgeStatusDto;
+import bridge.repository.dto.UserBridgeStatusDto;
 import bridge.util.OutputViewConst;
 
 class OutputViewTest {

@@ -15,7 +15,7 @@ import bridge.domain.BridgeNumberGenerator;
 import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.repository.BridgeRepository;
 import bridge.repository.UserBridgeRepository;
-import bridge.repository.UserBridgeStatusDto;
+import bridge.repository.dto.UserBridgeStatusDto;
 
 class GameServiceTest {
 

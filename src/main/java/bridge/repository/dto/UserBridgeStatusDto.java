@@ -1,4 +1,4 @@
-package bridge.repository;
+package bridge.repository.dto;
 
 import java.util.List;
 

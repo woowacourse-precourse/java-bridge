@@ -1,6 +1,6 @@
 package bridge.controller;
 
-import bridge.repository.UserBridgeStatusDto;
+import bridge.repository.dto.UserBridgeStatusDto;
 import bridge.service.GameService;
 import bridge.util.InputViewConst;
 import bridge.util.OutputViewConst;

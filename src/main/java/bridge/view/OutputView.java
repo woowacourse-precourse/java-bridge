@@ -2,7 +2,7 @@ package bridge.view;
 
 import java.util.List;
 
-import bridge.repository.UserBridgeStatusDto;
+import bridge.repository.dto.UserBridgeStatusDto;
 import bridge.util.OutputViewConst;
 
 /**

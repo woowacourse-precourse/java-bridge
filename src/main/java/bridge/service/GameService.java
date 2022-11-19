@@ -5,7 +5,7 @@ import java.util.List;
 import bridge.domain.BridgeMaker;
 import bridge.repository.BridgeRepository;
 import bridge.repository.UserBridgeRepository;
-import bridge.repository.UserBridgeStatusDto;
+import bridge.repository.dto.UserBridgeStatusDto;
 import bridge.util.OutputViewConst;
 
 public class GameService {

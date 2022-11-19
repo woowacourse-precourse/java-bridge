@@ -3,6 +3,7 @@ package bridge.repository;
 import java.util.ArrayList;
 import java.util.List;
 
+import bridge.repository.dto.UserBridgeStatusDto;
 import bridge.util.InputViewConst;
 import bridge.util.OutputViewConst;
 
