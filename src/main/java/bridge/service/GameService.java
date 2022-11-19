@@ -13,7 +13,8 @@ public class GameService {
     }
 
     public static GameService createNewGame(ViewService viewService) {
-        int size = viewService.getBridgeLength();
+        viewService.printStartMessage();
+        int size = viewService.askBridgeLength();
         BridgeMakingService makingService = new BridgeMakingService(new BridgeMaker(new BridgeRandomNumberGenerator()));
         Bridge bridge = makingService.makeSizeOf(size);
         return new GameService(new BridgeGame(bridge));

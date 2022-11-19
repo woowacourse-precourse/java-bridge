@@ -20,7 +20,7 @@ public class ViewService {
         outputView.printStartingMessage();
     }
 
-    public int getBridgeLength() {
+    public int askBridgeLength() {
         Optional<Integer> size;
         do {
             size = inputView.readBridgeSize();
