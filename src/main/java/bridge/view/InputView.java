@@ -14,10 +14,15 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println(INPUT_SIZE);
-        String size = Console.readLine();
-        sizeValidate(size);
-        return Integer.valueOf(size);
+        try {
+            System.out.println(INPUT_SIZE);
+            String size = Console.readLine();
+            sizeValidate(size);
+            return Integer.valueOf(size);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readBridgeSize();
+        }
     }
 
     private void sizeValidate(String size) {
@@ -33,10 +38,15 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println(INPUT_MOVE);
-        String move = Console.readLine();
-        moveValidate(move);
-        return move;
+        try {
+            System.out.println(INPUT_MOVE);
+            String move = Console.readLine();
+            moveValidate(move);
+            return move;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
     }
 
     private void moveValidate(String move) {
@@ -49,10 +59,15 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println(INPUT_RETRY);
-        String gameCommand = Console.readLine();
-        gameCommandValidate(gameCommand);
-        return gameCommand;
+        try {
+            System.out.println(INPUT_RETRY);
+            String gameCommand = Console.readLine();
+            gameCommandValidate(gameCommand);
+            return gameCommand;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readGameCommand();
+        }
     }
 
     private void gameCommandValidate(String gameCommand) {
