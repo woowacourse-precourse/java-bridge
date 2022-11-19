@@ -51,10 +51,13 @@ public class BridgeGameController {
     }
 
     private void playGame(BridgeGame bridgeGame) {
-        try {
-            crossBridgeUntilFinish(bridgeGame);
-        } catch (IllegalArgumentException exception) {
-            outputView.printError(exception);
+        while (true) {
+            try {
+                crossBridgeUntilFinish(bridgeGame);
+                return;
+            } catch (IllegalArgumentException exception) {
+                outputView.printError(exception);
+            }
         }
     }
 
