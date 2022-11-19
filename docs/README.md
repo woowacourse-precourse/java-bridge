@@ -35,10 +35,6 @@
   - 게임 실패 시에 이동하는 메소드
 
 
-- private void next(List<String>, List<String>)
-  - 다음 칸으로 이동할 때 칸을 구분하는 '|'를 리스트에 삽입하는 메소드
-
-
 - private String bridgeTopExist(String)
   - 들어온 인수가 "U"라면 "O", "D"라면 " " 반환
 
