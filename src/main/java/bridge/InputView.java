@@ -9,11 +9,12 @@ import static bridge.GameMessage.*;
  */
 public class InputView {
 
+
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println(GAME_START_MESSAGE);
+        System.out.println(BRIDGE_LENGTH_INPUT_MESSAGE);
         String bridgeInput = Console.readLine();
         Validator.validateBridgeInput(bridgeInput);
         return Integer.parseInt(bridgeInput);
