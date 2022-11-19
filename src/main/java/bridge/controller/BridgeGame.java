@@ -28,6 +28,7 @@ public class BridgeGame {
     public void move(int index, String square) {
         if(bridge.get(index).equals(square)) {
             result.add("O");
+            return;
         }
 
         result.add("X");
