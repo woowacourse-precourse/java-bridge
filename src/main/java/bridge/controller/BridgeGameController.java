@@ -7,6 +7,7 @@ import bridge.domain.bridge.BridgeSize;
 import bridge.domain.bridge.Square;
 import bridge.domain.game.BridgeGame;
 import bridge.domain.game.BridgeResult;
+import bridge.domain.game.Command;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -25,8 +26,7 @@ public class BridgeGameController {
 
     public void run() {
         outputView.printInit();
-        int size = inputView.readBridgeSize();
-        BridgeSize bridgeSize = new BridgeSize(size);
+        BridgeSize bridgeSize = new BridgeSize(inputView.readBridgeSize());
 
         BridgeRandomNumberGenerator generator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker =  new BridgeMaker(generator);
@@ -53,5 +53,7 @@ public class BridgeGameController {
         if (bridgeGame.isGameSuccess()) {
             //OutputView.printResult();
         }
+
+        Command command = new Command(inputView.readGameCommand());
     }
 }
