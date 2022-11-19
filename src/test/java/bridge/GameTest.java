@@ -1,10 +1,14 @@
 package bridge;
 
 import bridge.Utils.Validation;
+import bridge.View.OutputView;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class GameTest extends NsTest {
@@ -25,6 +29,20 @@ public class GameTest extends NsTest {
 
         assertThatThrownBy(() -> validate.checkGameCommandInput("X"))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("다리의 표현을 확인합니다.")
+    void bridgeToString() {
+        List<String> testBridge = List.of("U", "U", "D", "D");
+        String expectedUpperPath = "[ O | O |   |   ]";
+        String expectedLowerPath = "[   |   | O | O ]";
+
+        OutputView output = new OutputView();
+        output.printMap(testBridge, "X", true);
+
+        assertThat(output()).contains(expectedUpperPath);
+        assertThat(output()).contains(expectedLowerPath);
     }
 
     @Override
