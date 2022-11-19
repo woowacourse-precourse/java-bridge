@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class IsNumberInRangeCondTest {
 
-    private static final Condition condition = new IsNumberInRangeCond();
+    private static final Condition condition = IsNumberInRangeCond.getInstance();
 
     @DisplayName("올바른 다리 길이 검증")
     @ValueSource(strings = {"3", "15", "20"})

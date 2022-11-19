@@ -4,8 +4,16 @@ import java.util.Arrays;
 
 public class IsNumberInRangeCond implements Condition {
 
+    private static final Condition instance = new IsNumberInRangeCond();
     private static final Integer LOWER_BOUND = 3;
     private static final Integer UPPER_BOUND = 20;
+
+    private IsNumberInRangeCond() {
+    }
+
+    public static Condition getInstance() {
+        return instance;
+    }
 
     @Override
     public boolean test(String input) {
