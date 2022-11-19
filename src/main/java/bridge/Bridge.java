@@ -3,13 +3,14 @@ package bridge;
 import java.util.List;
 
 public class Bridge {
+    private final List<String> bridges;
+
     public Bridge(List<String> bridge) {
-        this.bridge = bridge;
+        this.bridges = bridge;
     }
 
-    private final List<String> bridge;
-
-    public boolean move(String controlWord, int round) {
-        return bridge.get(round).matches(controlWord);
+    public boolean matchStep(int round, String controlKey) {
+        return bridges.get(round).matches(controlKey);
     }
+
 }

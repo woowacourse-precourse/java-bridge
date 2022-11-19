@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public enum BridgeKey {
@@ -20,6 +21,21 @@ public enum BridgeKey {
                 .filter(bridgeKey1 -> bridgeKey1.getBridgeNumber() == inputNumber)
                 .map(BridgeKey::getBridgeKey)
                 .collect(Collectors.joining());
+    }
+
+    public static BridgeKey findBridgeKey(String controlKey) {
+        return Arrays.stream(BridgeKey.values())
+                .filter(key -> Objects.equals(key.getBridgeKey(), controlKey))
+                .findAny()
+                .orElseThrow();
+    }
+
+    public static boolean isUpKey(String controlKey) {
+        return BridgeKey.UP.bridgeKey.matches(controlKey);
+    }
+
+    public static boolean isDownKey(String controlKey) {
+        return BridgeKey.DOWN.bridgeKey.matches(controlKey);
     }
 
     public int getBridgeNumber() {

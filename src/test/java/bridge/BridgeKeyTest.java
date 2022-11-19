@@ -16,4 +16,10 @@ class BridgeKeyTest {
     void bridgeKey(String input, String bridgeKey) {
         assertEquals(BridgeKey.bridgeKey(Integer.parseInt(input)), bridgeKey);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"U"})
+    void findBridgeKey(String bridgeKey) {
+        assertEquals(BridgeKey.UP, BridgeKey.findBridgeKey(bridgeKey));
+    }
 }
