@@ -4,6 +4,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.User;
 import bridge.util.TypeConverter;
+import bridge.validate.ValidateInput;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -26,6 +27,10 @@ public class BridgeGame {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         processCrossingBridge(bridge);
+
+        while (!user.isRestartGame()) {
+            retry(bridge);
+        }
     }
 
     private void processCrossingBridge(List<String> bridge) {
@@ -50,5 +55,10 @@ public class BridgeGame {
         }
         OutputView.printMap(false, user, step);
         return false;
+    }
+
+    private void retry(List<String> bridge) {
+        String restartGameWhether = InputView.readGameCommand();
+
     }
 }

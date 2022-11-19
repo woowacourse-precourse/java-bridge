@@ -31,4 +31,8 @@ public class User {
     public HashMap<Integer, String> getPastResult() {
         return pastResult;
     }
+
+    public boolean isRestartGame() {
+        return isRestartGame;
+    }
 }

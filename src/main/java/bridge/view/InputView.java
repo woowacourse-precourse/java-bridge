@@ -4,6 +4,8 @@ import bridge.util.TypeConverter;
 import bridge.validate.ValidateInput;
 import camp.nextstep.edu.missionutils.Console;
 
+import static bridge.util.Constants.InputViewConstants.RESTART_GAME;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -26,7 +28,8 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public static String readGameCommand() {
+        System.out.println(RESTART_GAME);
+        return Console.readLine();
     }
 }

@@ -33,4 +33,10 @@ public class Constants {
         public static final String GAME_RESULT = "최종 게임 결과";
     }
 
+    public static class InputViewConstants {
+        public static final String RESTART_GAME = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+        public static final String RESTART = "R";
+        public static final String QUIT = "Q";
+    }
+
 }
