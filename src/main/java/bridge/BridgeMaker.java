@@ -32,7 +32,7 @@ public class BridgeMaker {
     private void validate(int size) {
         if (size < BridgeSizeRule.START.getSize() || BridgeSizeRule.END.getSize() < size) {
             throw new IllegalArgumentException(
-                    String.format("다리의 길이는 %d이상, %d이하여야 합니다.",
+                    String.format("다리의 길이는 %d부터 %d사이의 숫자여야 합니다.",
                             BridgeSizeRule.START.getSize(),
                             BridgeSizeRule.END.getSize()));
         }
