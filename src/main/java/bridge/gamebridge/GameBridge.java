@@ -7,10 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameBridge {
+
     private AnswerBridge answerBridge;
     private final PlayerBridge playerBridge;
 
-    public GameBridge(){
+    public GameBridge() {
         this.playerBridge = new PlayerBridge();
     }
 
@@ -32,6 +33,10 @@ public class GameBridge {
             return moveInEmptyBridge(move);
         }
         return moveSquare(move);
+    }
+
+    public void clearPlayerBridge() {
+        playerBridge.clear();
     }
 
     private Bridge moveSquare(Move move) {

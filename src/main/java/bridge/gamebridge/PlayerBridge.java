@@ -3,6 +3,7 @@ package bridge.gamebridge;
 import bridge.domain.Bridge;
 
 public class PlayerBridge {
+
     private Bridge bridge;
 
     public Bridge getBridge() {
@@ -15,5 +16,9 @@ public class PlayerBridge {
 
     public boolean isEmpty() {
         return bridge == null;
+    }
+
+    public void clear() {
+        this.bridge = null;
     }
 }

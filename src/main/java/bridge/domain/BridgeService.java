@@ -25,4 +25,8 @@ public class BridgeService {
     public Result insertMove(Move move) {
         return gameBridge.insertMove(move);
     }
+
+    public void clearPlayerBridge() {
+        gameBridge.clearPlayerBridge();
+    }
 }

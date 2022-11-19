@@ -40,4 +40,8 @@ public class BridgeController {
             return inputPlayerMove();
         }
     }
+
+    public void restartGame() {
+        bridgeService.clearPlayerBridge();
+    }
 }
