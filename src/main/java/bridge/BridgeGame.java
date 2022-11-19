@@ -15,7 +15,10 @@ public class BridgeGame {
      *
      * @return
      */
-    public List<Integer> move(List<Integer> bridge, String moving) {
+    public List<Integer> move(List<Integer> bridge, String moving, boolean isWrong) {
+        if (isWrong) {
+           moving = setWrongMoving(moving);
+        }
         Bridge solution = Bridge.findTop(moving);
 
         bridge.add(solution.getTop());
@@ -30,60 +33,90 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry(List<String> bridge) {
-        boolean isWrong = false;
         String result = "";
         int count = 0;
-        String gameCommand = "R";
+
+        do {
+            result = run(bridge);
+            count++;
+        } while (!isNotFinish(result));
+
+        //종료하기!
+        stop(count, result);
+    }
+
+    public String moveUser() {
         InputView input = new InputView();
 
-        while (gameCommand.equals("R")) {
-            isWrong = false;
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        String moving = input.readMoving();
 
-            List<Integer> bottomBridge = new ArrayList<>();
-            List<Integer> topBridge = new ArrayList<>();
+        return moving;
+    }
 
-            for (int i = 0; i < bridge.size(); i++) {
-                List<Integer> userMove = new ArrayList<>();
-                if (isWrong) {
-                    break;
-                }
-                System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-                String moving = input.readMoving();
+    private boolean isWrongMove(String shape, String moving) {
+        boolean isWrong = false;
 
-                if (isNotEqual(bridge.get(i), moving)) {
-                    if (moving.equals(Bridge.UP.getOrder())) {
-                        moving = "W";
-                    }
-                    if (moving.equals(Bridge.DOWN.getOrder())) {
-                        moving = "F";
-                    }
-                    isWrong = true;
-                }
+        if (isNotEqual(shape, moving)) {
+            return isWrong = true;
+        }
 
-                move(userMove, moving);
-                topBridge.add(userMove.get(0));
-                bottomBridge.add(userMove.get(1));
+        return isWrong;
+    }
 
-                System.out.println(topBridge);
-                System.out.println(bottomBridge);
+    private String setWrongMoving(String moving) {
+        String move = "F";
 
-                result = requestPrintMap(saveMap(topBridge), saveMap(bottomBridge));
-            }
-            // 다 맞춤
-            if (!(topBridge.contains(Bridge.WRONG.getTop()) || topBridge.contains(Bridge.UNKNOWN.getTop()))) {
-                count++;
+        if (moving.equals(Bridge.UP.getOrder())) {
+            move = "W";
+        }
+
+        return move;
+    }
+
+    public String run(List<String> bridge) {
+        String result = "";
+        boolean isWrong;
+        List<Integer> bottomBridge = new ArrayList<>();
+        List<Integer> topBridge = new ArrayList<>();
+
+
+        for (int i = 0; i < bridge.size(); i++) {
+            List<Integer> userMove = new ArrayList<>();
+
+            String moving = moveUser();
+
+            isWrong = isWrongMove(bridge.get(i), moving);
+
+            move(userMove, moving, isWrong);
+            topBridge.add(userMove.get(0));
+            bottomBridge.add(userMove.get(1));
+
+            result = requestPrintMap(saveMap(topBridge), saveMap(bottomBridge));
+
+            if (isWrong) {
                 break;
             }
-            // X 있음
-            if (isWrong) {
-                count++;
-                System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-                gameCommand = input.readGameCommand();
-            }
-
         }
-        stop(count, result, isWrong);
+
+        return result;
     }
+
+    private boolean isNotFinish(String result) {
+        boolean isClear = true;
+        InputView input = new InputView();
+
+        if (result.contains("X")) {
+            System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+            String gameCommand = input.readGameCommand();
+
+            if (gameCommand.equals("R")) {
+                isClear = false;
+            }
+        }
+        return isClear;
+    }
+
 
     private static String requestPrintMap(String up, String down) {
         OutputView output = new OutputView();
@@ -115,25 +148,28 @@ public class BridgeGame {
         return false;
     }
 
-    public void stop(int count, String result, boolean isClear) {
+    public void stop(int count, String result) {
         OutputView output = new OutputView();
 
-        output.printResult(result, !isClear, count);
+        output.printResult(result, count);
     }
 
     public void start() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
-        System.out.println("다리의 길이를 입력해주세요.");
+        requestPrint("다리 건너기 게임을 시작합니다.");
+        requestPrint("다리의 길이를 입력해주세요.");
 
         InputView input = new InputView();
         int bridgeSize = input.readBridgeSize();
 
         // 다리를 생성하기
         BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> bridge = maker.makeBridge(bridgeSize);
 
-        System.out.println("다리 : " + bridge);
-        retry(bridge);
+        retry(maker.makeBridge(bridgeSize));
     }
 
+    private void requestPrint(String message) {
+        OutputView output = new OutputView();
+
+        output.printMap(message);
+    }
 }
