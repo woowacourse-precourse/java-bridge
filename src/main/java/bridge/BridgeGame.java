@@ -33,4 +33,11 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public int getBridgeLength() {
+        this.inputView.printPromptForBridgeLength();
+        String input = inputView.readBridgeLength();
+
+        return Integer.parseInt(input);
+    }
 }
