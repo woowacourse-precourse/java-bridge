@@ -50,4 +50,14 @@ public class BridgeGame {
     public int getGameStartCount() {
         return this.gameStartCount;
     }
+
+    public String getBridgeStatusAfterMove() {
+        return gameResultGenerator.getBridgeStatus(gameResult);
+    }
+
+    public String getBridgeResult() {
+        return gameResultGenerator.getGameResultOutput();
+    }
+
+
 }
