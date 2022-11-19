@@ -57,8 +57,7 @@ public class BridgeGameController {
     }
 
     private void moveBridge(Bridge bridge) {
-        int moveCount = 0;
-
+        int moveCount;
         for (moveCount = 0; moveCount < bridge.getSize(); moveCount++) {
             outputView.printMovingMsg();
 
