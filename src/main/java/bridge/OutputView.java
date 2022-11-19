@@ -52,6 +52,11 @@ public class OutputView {
             printMapByLevel(path, bridge, level);
     }
 
+    private String getPassOrFail(boolean pass) {
+        if (pass) return "성공";
+        return "실패";
+    }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -60,10 +65,8 @@ public class OutputView {
     public void printResult(List<String> path, List<String> bridge, int numberOfTry) {
         System.out.println("최종 게임 결과");
         printMap(path, bridge);
-        System.out.print("게임 성공 여부: ");
-        boolean isCorrect = (path.size() == bridge.size());
-        if(isCorrect) System.out.print("성공");
-        if(!isCorrect) System.out.print("실패");
+        String passOrFail = getPassOrFail(path.size() == bridge.size());
+        System.out.println("게임 성공 여부: " + passOrFail);
         System.out.printf("총 시도한 횟수: %d\n", numberOfTry);
     }
 
