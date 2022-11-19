@@ -31,7 +31,7 @@ public class OutputView {
     public void printResult() {
         System.out.println(FINAL_MESSAGE);
         printMap();
-        System.out.println(COMPLETE_OR_NOT + bridgeGame.checkCompleteOrFail());
+        System.out.println(COMPLETE_OR_NOT + bridgeGame.makeResultOfCompletionMessage());
         System.out.println(ATTEMPTS_NUMBER + bridgeGame.getRetryNumber());
     }
 }

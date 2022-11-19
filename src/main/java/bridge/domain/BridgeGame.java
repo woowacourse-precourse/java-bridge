@@ -12,10 +12,11 @@ import java.util.List;
  */
 public class BridgeGame {
     private final List<String> bridge;
+    private final List<String> upBridge = new ArrayList<>();
+    private final List<String> downBridge = new ArrayList<>();
+    private final BridgeMessageAdder bridgeMessageAdder = new BridgeMessageAdder(upBridge, downBridge);
     private int index = 0;
     private int retryNumber = 1;
-    private List<String> upBridge = new ArrayList<>();
-    private List<String> downBridge = new ArrayList<>();
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
@@ -23,25 +24,28 @@ public class BridgeGame {
 
     //사용자가 칸을 이동할 때 사용하는 메서드
     public boolean move(String inputPosition) {
-        BridgeMessageAdder bridgeMessageAdder = new BridgeMessageAdder(upBridge, downBridge);
-        boolean result = inputPosition.equals(bridge.get(index));
-        bridgeMessageAdder.addBridgeMessage(inputPosition, result);
-        if (result) {
+        boolean moveResult = inputPosition.equals(bridge.get(index));
+        bridgeMessageAdder.addBridgeMessage(inputPosition, moveResult);
+        if (moveResult) {
             index++;
         }
-        return result;
+        return moveResult;
     }
 
     //사용자가 게임을 다시 시도할 때 사용하는 메서드
     public void retry() {
         index = 0;
-        upBridge = new ArrayList<>();
-        downBridge = new ArrayList<>();
+        upBridge.clear();
+        downBridge.clear();
         retryNumber++;
     }
 
-    public String checkCompleteOrFail() {
-        if (index == bridge.size()) {
+    public boolean checkComplete() {
+        return index == bridge.size();
+    }
+
+    public String makeResultOfCompletionMessage() {
+        if (checkComplete()) {
             return COMPLETE;
         }
         return FAIL;

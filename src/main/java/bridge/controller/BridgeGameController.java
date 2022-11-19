@@ -1,7 +1,6 @@
 package bridge.controller;
 
-import static bridge.Constants.COMPLETE;
-import static bridge.Constants.RESTART_GAME;
+import static bridge.Constants.QUIT_GAME;
 
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
@@ -30,7 +29,7 @@ public class BridgeGameController {
         while (true) {
             boolean moveResult = bridgeGame.move(inputView.readMoving());
             outputView.printMap();
-            if (finishGame(moveResult, bridgeGame) | (Objects.equals(bridgeGame.checkCompleteOrFail(), COMPLETE))) {
+            if (quitGame(moveResult, bridgeGame) | bridgeGame.checkComplete()) {
                 break;
             }
         }
@@ -40,15 +39,14 @@ public class BridgeGameController {
         outputView.printResult();
     }
 
-    private boolean finishGame(boolean moveResult, BridgeGame bridgeGame) {
+    private boolean quitGame(boolean moveResult, BridgeGame bridgeGame) {
+        boolean gameQuit = false;
         if (!moveResult) {
-            String s = inputView.readGameCommand();
-            if (Objects.equals(s, RESTART_GAME)) {
+            gameQuit = Objects.equals(inputView.readGameCommand(), QUIT_GAME);
+            if (!gameQuit) {
                 bridgeGame.retry();
-                return false;
             }
-            return true;
         }
-        return false;
+        return gameQuit;
     }
 }

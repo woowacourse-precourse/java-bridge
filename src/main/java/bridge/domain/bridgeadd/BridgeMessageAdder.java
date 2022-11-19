@@ -20,8 +20,8 @@ public class BridgeMessageAdder {
         return bridgeAddStrategyConverter.get(inputPosition);
     }
 
-    public void addBridgeMessage(String inputPosition, boolean result) {
+    public void addBridgeMessage(String inputPosition, boolean moveResult) {
         BridgeMessageAddStrategy bridgeMessageAddStrategy = choiceStrategy(inputPosition);
-        bridgeMessageAddStrategy.addMessage(saveMessageConverter.get(result), this);
+        bridgeMessageAddStrategy.addMessage(saveMessageConverter.get(moveResult), this);
     }
 }
