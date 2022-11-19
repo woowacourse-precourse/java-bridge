@@ -24,11 +24,7 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int space = bridgeNumberGenerator.generate();
-            if (space == 0) {
-                bridge.add("D");
-            } else if (space == 1) {
-                bridge.add("U");
-            }
+            bridge.add(Direction.matchDirection(space));
         }
         return bridge;
     }
