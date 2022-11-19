@@ -46,4 +46,12 @@ public class Direction {
 
         return false;
     }
+
+    public static String getUpTextSource() {
+        return DirectionSource.UP.getText();
+    }
+
+    public static String getDownTextSource() {
+        return DirectionSource.DOWN.getText();
+    }
 }
