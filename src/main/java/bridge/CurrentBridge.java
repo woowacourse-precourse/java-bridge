@@ -3,10 +3,6 @@ package bridge;
 import java.util.List;
 
 public class CurrentBridge extends Bridge{
-    private String start = "[";
-    private String printFormat = " %c ";
-    private String end = "]";
-    private String inter = "|";
     private BridgeStatus bridgeStatus;
     public CurrentBridge(List<String> bridge) {
         super(bridge);
