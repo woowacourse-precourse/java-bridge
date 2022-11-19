@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -8,16 +9,21 @@ import java.util.Objects;
  */
 public class BridgeGame {
 
-    private final List<String> bridge;
+    private final List<BridgeGameStage> gameStages;
     private int numberOfMoving;
-    private int numberOfCrossedBlock;
     private int numberOfAttempt;
 
     public BridgeGame(List<String> bridge) {
-        this.bridge = bridge;
+        gameStages = new ArrayList<>();
+        for (String bridgeBlock : bridge) {
+            gameStages.add(new BridgeGameStage(bridgeBlock));
+        }
         numberOfMoving = 0;
-        numberOfCrossedBlock = 0;
         numberOfAttempt = 0;
+    }
+
+    public int getNumberOfMoving() {
+        return numberOfMoving;
     }
 
     public int getNumberOfAttempt() {
@@ -31,10 +37,13 @@ public class BridgeGame {
      */
     public boolean move(String playerMoving) {
         if (isFirstMoving()) numberOfAttempt++;
-        if (Objects.equals(bridge.get(numberOfMoving++), playerMoving)) {
-            numberOfCrossedBlock++;
+
+        BridgeGameStage gameStage = gameStages.get(numberOfMoving++);
+        if (Objects.equals(gameStage.getBridgeBlock(), playerMoving)) {
+            gameStage.crossBlock();
             return true;
         }
+        gameStage.notCrossBlock();
         return false;
     }
 
@@ -48,11 +57,15 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        gameStages.forEach(BridgeGameStage::initStatus);
         numberOfMoving = 0;
-        numberOfCrossedBlock = 0;
     }
 
-    public boolean isCrossed() {
-        return bridge.size() == numberOfCrossedBlock;
+    public boolean isAllCrossed() {
+        long numberOfCrossedBlock = gameStages.stream()
+                .map(BridgeGameStage::getStatus)
+                .filter(status -> status == Status.CROSSED)
+                .count();
+        return gameStages.size() == numberOfCrossedBlock;
     }
 }
