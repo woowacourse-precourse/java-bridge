@@ -1,13 +1,30 @@
 package bridge;
 
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
-
 public class BridgeValue {
 
     public static final int BRIDGE_LINE = 2;
+
+    public static int tryCounts = 1;
+
+    public void addTryCounts() {
+        tryCounts++;
+    }
+
+    public int getTryCounts() {
+        return tryCounts;
+    }
+
+    public static boolean checkReTry(String command) {
+        String retry = Information
+                .RE_TRY
+                .getValue();
+
+        if (retry.equals(command)) {
+            return true;
+        }
+
+        return false;
+    }
 
     public static String getDivisionOrBracket(int size, int index) {
         if (size == index) {
@@ -87,7 +104,7 @@ public class BridgeValue {
         UP_VALUE("1"),
         DOWN_VALUE("0"),
         QUIT("Q"),
-        RE_START("R"),
+        RE_TRY("R"),
         MINIMUM_LENGTH("3"),
         MAXIMUM_LENGTH("20");
 
