@@ -1,10 +1,13 @@
 package bridge;
 
 import static bridge.constant.OutputViewConstant.DIVIDING_LINE;
+import static bridge.constant.OutputViewConstant.FINAL_RESULT_MESSAGE;
+import static bridge.constant.OutputViewConstant.GAME_SUCCESS_OR_FAIL_MESSAGE;
 import static bridge.constant.OutputViewConstant.NEW_LINE;
 import static bridge.constant.OutputViewConstant.PREFIX;
 import static bridge.constant.OutputViewConstant.SPACE;
 import static bridge.constant.OutputViewConstant.SUFFIX;
+import static bridge.constant.OutputViewConstant.TOTAL_TRY_COUNT_MESSAGE;
 
 import bridge.constant.BridgeMove;
 import bridge.constant.GameStatus;
@@ -91,7 +94,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(BridgeGameStat bridgeGameStat) {
-        System.out.println("최종 게임 결과");
+        System.out.println(FINAL_RESULT_MESSAGE.getSymbol());
 
         printMap(bridgeGameStat.getBridgeMaps());
         printGameStatus(bridgeGameStat.getGameStatus());
@@ -99,11 +102,11 @@ public class OutputView {
     }
 
     private void printGameStatus(GameStatus gameStatus) {
-        System.out.println("게임 성공 여부: " + gameStatus.getMessage());
+        System.out.println(GAME_SUCCESS_OR_FAIL_MESSAGE.getSymbol() + gameStatus.getMessage());
     }
 
     private void printCountOfGame(int countOfGame) {
-        System.out.println("총 시도한 횟수: " + countOfGame);
+        System.out.println(TOTAL_TRY_COUNT_MESSAGE.getSymbol() + countOfGame);
     }
 
     /**
