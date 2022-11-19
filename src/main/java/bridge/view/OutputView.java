@@ -5,12 +5,17 @@ import bridge.domain.Player;
 import java.util.List;
 
 public class OutputView {
-
+    private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
     private static final String GAME_RESULT_MESSAGE = "최종 게임 결과";
     private static final String SUCCESS_OR_FAILURE = "게임 성공 여부: %s";
     private static final String TRIAL_COUNT_MESSAGE = "총 시도한 횟수: %d";
     private static final String UP_STAIR = "U";
     private static final String DOWN_STAIR = "D";
+
+    public static void printStartMessage(){
+        System.out.println(GAME_START_MESSAGE);
+        System.out.println();
+    }
 
     public static void printMap(BridgeGame bridgeGame) {
         printDependOn(UP_STAIR, bridgeGame);
