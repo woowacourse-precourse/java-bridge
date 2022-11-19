@@ -38,7 +38,7 @@ public class BridgeGame {
      */
 
     private boolean retry() {
-        if(!isAnswer){
+        if (!isAnswer) {
             String gameCommand = inputHandler.getGameCommand();
             return gameCommand.equals(GameCommand.RETRY.getValue());
         }
@@ -55,7 +55,7 @@ public class BridgeGame {
         outputView.printStartMessage();
         do {
             play(size, bridge);
-        } while(retry());
+        } while (retry());
         outputView.printResult(isAnswer, count, realTimeMap);
     }
 
