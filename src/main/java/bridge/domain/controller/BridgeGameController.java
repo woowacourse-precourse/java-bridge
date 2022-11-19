@@ -12,8 +12,8 @@ import bridge.view.OutputView;
 
 public class BridgeGameController {
 
-    private static final InputView inputView = new InputView();
-    private static final OutputView outputView = new OutputView();
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
 
     private BridgeGame bridgeGame;
 
@@ -43,12 +43,8 @@ public class BridgeGameController {
 
     private Bridge createBridge() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        int size = inputBridgeSize();
+        int size = inputView.readBridgeSize();
         return new Bridge(bridgeMaker.makeBridge(size));
-    }
-
-    private int inputBridgeSize() {
-        return inputView.readBridgeSize();
     }
 
     private GameStatus play() {
