@@ -10,6 +10,7 @@ import java.util.List;
 
 public class GameController {
 
+    private static final int BUILDER_INITIALIZE = 0;
     BridgeGame bridgeGame;
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
@@ -30,5 +31,12 @@ public class GameController {
             isClear = bridgeGame.isClear();
             outputView.printMap(selection, isCorrect);
         }
+    }
+
+    public void restartGame() {
+        outputView.upsideBridge.setLength(BUILDER_INITIALIZE);
+        outputView.downsideBridge.setLength(BUILDER_INITIALIZE);
+        bridgeGame.retry();
+        movePlayer();
     }
 }

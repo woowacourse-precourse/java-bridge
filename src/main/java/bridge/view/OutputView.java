@@ -17,8 +17,8 @@ public class OutputView {
     private static final String UP = "U";
     private static final String DOWN = "D";
 
-    StringBuilder upsideBridge = new StringBuilder(BRIDGE_START);
-    StringBuilder downsideBridge = new StringBuilder(BRIDGE_START);
+    public StringBuilder upsideBridge = new StringBuilder(BRIDGE_START);
+    public StringBuilder downsideBridge = new StringBuilder(BRIDGE_START);
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
