@@ -16,7 +16,6 @@ public class BridgeGame {
     private final static String RETRY = "R";
     private final static String BLANK_SPACE = " ";
 
-
     private final List<List<String>> result = new ArrayList<>();
     private final List<String> bridge;
     private boolean gameEnd = false;
@@ -39,6 +38,7 @@ public class BridgeGame {
             addMovingResult(moving);
             return;
         }
+
         addFailMovingResult(moving);
         gameEnd = true;
     }
@@ -48,6 +48,7 @@ public class BridgeGame {
             movingCount++;
             return true;
         }
+
         return false;
     }
 
@@ -56,6 +57,7 @@ public class BridgeGame {
             addLetterToFirstFloor(RESULT_SUCCESS);
             return;
         }
+
         addLetterToSecondFloor(RESULT_SUCCESS);
     }
 
@@ -74,6 +76,7 @@ public class BridgeGame {
             addLetterToFirstFloor(RESULT_FAIL);
             return;
         }
+
         addLetterToSecondFloor(RESULT_FAIL);
     }
 
@@ -88,6 +91,7 @@ public class BridgeGame {
             initRetryGame();
             return true;
         }
+
         return false;
     }
 
@@ -106,6 +110,7 @@ public class BridgeGame {
         if (isFinishBridge()) {
             return SUCCESS;
         }
+
         return FAIL;
     }
 
