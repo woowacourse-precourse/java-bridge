@@ -7,7 +7,6 @@ import bridge.input.InputView;
 import bridge.output.OutputView;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class BridgeGameMachine {
 
@@ -20,8 +19,6 @@ public class BridgeGameMachine {
         List<String> designBridge = bridgeMaker.makeBridge(bridgeLength);// 무작위 [U, D, U]
 
         HashMap<String, StringBuilder> bridgeState = new HashMap<>();
-
-
 
         BridgeGame bridgeGame = new BridgeGame(bridgeState);
         OutputView outputView = new OutputView();
@@ -72,16 +69,16 @@ public class BridgeGameMachine {
                 }
 
                 //TODO: 이름수정하기.
-                for (Map.Entry<String, StringBuilder> entry : bridgeConnection.entrySet()) {
-                    if (entry.getKey().contains("]")) {
-                        outputView.printResult(bridgeState, gameCount, gameSuccess);
-                        break;
-                    }
+                String stringBuilder = String.valueOf(
+                        bridgeConnection.get(Command.UP.getCommand()));
+                if (stringBuilder.contains("]")) {
+                    outputView.printResult(bridgeState, gameCount, gameSuccess);
+                    playerRetry = "Q";
+                    break;
                 }
             }
         }
     }
-
 }
 
 

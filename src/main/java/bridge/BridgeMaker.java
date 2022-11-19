@@ -16,8 +16,7 @@ public class BridgeMaker {
 
     /**
      * @param size 다리의 길이
-     * @return 입력받은 길이에 해당하는 다리 모양.
-     * 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
+     * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
         List<String> randomBridge = new ArrayList<>();
@@ -25,11 +24,10 @@ public class BridgeMaker {
         for (int i = 0; i < size; i++) {
             int word = bridgeNumberGenerator.generate();
             String randomWords = "";
+
             randomWords = func(word, randomWords);
             randomBridge.add(randomWords);
         }
-        // TODO : 고쳐야 될 코드
-        // randomBridge.add("1");
         return randomBridge;
     }
 

@@ -21,5 +21,4 @@ public enum Command {
     public String getCommand() {
         return command;
     }
-
 }
