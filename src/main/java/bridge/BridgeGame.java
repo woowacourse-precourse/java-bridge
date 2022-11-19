@@ -8,8 +8,8 @@ import java.util.List;
  */
 public class BridgeGame {
     private final static String moveError = "[ERROR] 어디에도 포함되지 않는 값입니다.";
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
+//    InputView inputView = new InputView();
+//    OutputView outputView = new OutputView();
     public static List<String> moveMapList = new ArrayList<>();
     public static int gameCount = 1;
     /**
@@ -34,15 +34,16 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(String input, List<String> bridge,List<String> moveMapList, int index) {
+    public String retry(String input, List<String> bridge,List<String> moveMapList, int index) {
         if(input.equals("R")){
             moveMapList.remove("X");
             gameCount += 1;
-            move(bridge.get(index), inputView.readMoving());
-            return;
+//            move(bridge.get(index), inputView.readMoving());
+            return "R";
         }
-        System.out.println("최종 게임 결과");
-        outputView.printMap(bridge, moveMapList);
-        outputView.printResult();
+//        System.out.println("최종 게임 결과");
+//        outputView.printMap(bridge, moveMapList);
+//        outputView.printResult();
+        return "Q";
     }
 }
