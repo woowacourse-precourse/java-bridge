@@ -14,11 +14,11 @@ public class OutputViewTest {
     @Test
     void printMap() {
         List<String> bridge = List.of("U", "U", "D", "U", "D");
-        int position = 2;
+        int position = 3;
         boolean correct = false;
         OutputView outputView = new OutputView();
-        String output = outputView.printMapBuild(bridge, position, correct);
-        String answer = "[ O | O |   ]\n" + "[   |   | X ]\n";
+        String output = outputView.printMapBuild(bridge, position, correct, "U");
+        String answer = "[ O | O | X ]\n" + "[   |   |   ]\n";
         assertThat(output).isEqualTo(answer);
     }
 }
