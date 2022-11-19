@@ -9,14 +9,14 @@ import org.junit.jupiter.api.Test;
 
 class BridgeGameTest {
 
-    @DisplayName("건널 수 없는 칸을 선택하면 IMMOVABLE 상태를 가진다.")
+    @DisplayName("건널 수 없는 칸을 선택하면 GameOver 상태를 가진다.")
     @Test
     void moveThenReturnImmovable() {
         BridgeGame bridgeGame = new BridgeGame(List.of("U"));
 
         bridgeGame.move("D");
 
-        assertThat(bridgeGame.isImmovable()).isTrue();
+        assertThat(bridgeGame.isGameOver()).isTrue();
     }
 
     @DisplayName("건널 수 있는 칸을 선택하면 정상 상태를 가진다.")
@@ -29,7 +29,7 @@ class BridgeGameTest {
         assertThat(bridgeGame.isNormal()).isTrue();
     }
 
-    @DisplayName("다리를 다 건너면 FINISHED 상태를 가진다.")
+    @DisplayName("다리를 다 건너면 GameClear 상태를 가진다.")
     @Test
     void moveThenReturnFinished() {
         BridgeGame bridgeGame = new BridgeGame(List.of("U", "D"));
@@ -37,7 +37,7 @@ class BridgeGameTest {
         bridgeGame.move("U");
         bridgeGame.move("D");
 
-        assertThat(bridgeGame.isFinished()).isTrue();
+        assertThat(bridgeGame.isGameClear()).isTrue();
     }
 
     @DisplayName("재시도하면 플레이어의 위치가 초기화된다.")

@@ -1,18 +1,17 @@
 package bridge;
 
+import static bridge.BridgeGameState.*;
+
 import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    public static final String IMMOVABLE = "Can't move";
-    public static final String FINISH = "Finish";
-    public static final String NORMAL = "Normal";
     public static final int START_POSITION = 0;
     public static final int FIRST = 1;
     private final List<String> bridge;
-    private String state;
+    private BridgeGameState state;
     private int position;
     private int attempt;
 
@@ -35,7 +34,7 @@ public class BridgeGame {
 
     private void checkMovable(String movableDirection, String selectedDirection) {
         if (notEquals(movableDirection, selectedDirection)) {
-            state = IMMOVABLE;
+            state = GAME_OVER;
         }
     }
 
@@ -48,11 +47,11 @@ public class BridgeGame {
     }
 
     private void checkFinished() {
-        if (state.equals(IMMOVABLE)) {
+        if (state == GAME_OVER) {
             return;
         }
         if (position == bridge.size()) {
-            state = FINISH;
+            state = GAME_CLEAR;
         }
     }
 
@@ -78,11 +77,11 @@ public class BridgeGame {
         return state.equals(NORMAL);
     }
 
-    public boolean isFinished() {
-        return state.equals(FINISH);
+    public boolean isGameClear() {
+        return state.equals(GAME_CLEAR);
     }
 
-    public boolean isImmovable() {
-        return state.equals(IMMOVABLE);
+    public boolean isGameOver() {
+        return state.equals(GAME_OVER);
     }
 }
