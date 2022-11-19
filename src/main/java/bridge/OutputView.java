@@ -9,6 +9,7 @@ public class OutputView {
 
     public void printGameStart() {
         System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println();
     }
 
     /**
@@ -34,7 +35,7 @@ public class OutputView {
         printMap(bridgeMoved, currentPosition);
 
         System.out.println("게임 성공 여부: " + gameStatus.isGameWon());
-        System.out.println("총 시도한 횟수: " + gameStatus.getRetryCount());
+        System.out.println("총 시도한 횟수: " + gameStatus.getTryCount());
     }
 
     private void printBridgeUpper(List<String> bridgeMoved, int bridgeSize) {

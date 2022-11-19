@@ -13,7 +13,7 @@ class BridgeGameTest {
     @Test
     void move() {
         List<String> bridgeMovedHistory = List.of("U", "D", "U");
-        BridgeGame bridgeGame = new BridgeGame(new GameStatus(), bridgeMovedHistory);
+        BridgeGame bridgeGame = new BridgeGame(new GameStatus(), bridgeMovedHistory, 4);
         List<String> bridgeMoved = bridgeGame.move("U");
 
         assertThat(bridgeMoved).containsExactly("U", "D", "U", "U");
@@ -22,9 +22,23 @@ class BridgeGameTest {
     @Test
     void retry() {
         List<String> bridgeMovedHistory = List.of("U", "D", "U");
-        BridgeGame bridgeGame = new BridgeGame(new GameStatus(), bridgeMovedHistory);
+        BridgeGame bridgeGame = new BridgeGame(new GameStatus(), bridgeMovedHistory, 4);
         boolean retryStatus = bridgeGame.retry("R");
 
         assertThat(retryStatus).isTrue();
+    }
+
+    @Test
+    void isMovable() {
+        List<String> bridgeMovedHistory = List.of("U", "D", "U", "D");
+        BridgeGame bridgeGame = new BridgeGame(new GameStatus(), bridgeMovedHistory, 4);
+
+        System.out.println("내가 이동한 다리 칸 : " + bridgeGame.getBridgeMoved());
+        System.out.println("실제 이동할 수 있는 다리 칸 :" + bridgeGame.getCorrectBridge());
+
+        for (int i = 1; i <= 4; i++) {
+            System.out.print(bridgeGame.isMovable(i) + " ");
+        }
+        System.out.println();
     }
 }

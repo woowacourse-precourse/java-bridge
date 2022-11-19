@@ -10,10 +10,14 @@ public class BridgeGame {
 
     private GameStatus gameStatus;
     private List<String> bridgeMoved;
+    private List<String> correctBridge;
 
-    public BridgeGame(GameStatus gameStatus, List<String> bridgeMoved) {
+    public BridgeGame(GameStatus gameStatus, List<String> bridgeMoved, int bridgeSize) {
         this.gameStatus = gameStatus;
         this.bridgeMoved = new ArrayList<>(bridgeMoved);
+
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        this.correctBridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
     /**
@@ -39,4 +43,24 @@ public class BridgeGame {
         }
         return false;
     }
+
+    public String isMovable(int currentPosition) {
+        if (bridgeMoved.get(currentPosition - 1).equals(correctBridge.get(currentPosition - 1))) {
+            return " O ";
+        }
+        return " X ";
+    }
+
+    public List<String> getBridgeMoved() {
+        return bridgeMoved;
+    }
+
+    public List<String> getCorrectBridge() {
+        return correctBridge;
+    }
+
+    //    public String decideValue() {
+//
+//    }
+
 }

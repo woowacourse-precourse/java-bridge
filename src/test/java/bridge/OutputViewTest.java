@@ -1,12 +1,10 @@
 package bridge;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class OutputViewTest {
 
@@ -33,7 +31,7 @@ class OutputViewTest {
         OutputView outputView = new OutputView();
         GameStatus gameStatus = new GameStatus();
         gameStatus.setGameWon(true);
-        gameStatus.setRetryCount(4);
+        gameStatus.setTryCount(4);
         List<String> bridgeMoved = List.of("U", "D", "U", "U");
 
         outputView.printResult(bridgeMoved, 4, gameStatus);

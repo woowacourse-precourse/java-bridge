@@ -2,20 +2,20 @@ package bridge;
 
 public class GameStatus {
 
-    private int retryCount;
+    private int tryCount;
     private boolean gameWon;
 
     public GameStatus() {
-        retryCount = 0;
+        tryCount = 1;
         gameWon = false;
     }
 
-    public int getRetryCount() {
-        return retryCount;
+    public int getTryCount() {
+        return tryCount;
     }
 
-    public void setRetryCount(int retryCount) {
-        this.retryCount = retryCount;
+    public void setTryCount(int tryCount) {
+        this.tryCount = tryCount;
     }
 
     public String isGameWon() {
