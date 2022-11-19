@@ -19,13 +19,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        while (true) {
-            try {
-                return checkNumberFormat(input());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        return checkNumberFormat(input());
     }
 
     /**

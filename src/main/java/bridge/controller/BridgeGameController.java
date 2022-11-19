@@ -50,8 +50,14 @@ public class BridgeGameController {
 
     private Bridge makeBridge() {
         outputView.printBridgeSizeMsg();
-        int size = inputView.readBridgeSize();
-        return bridgeMaker.makeBridge(makeShape(size));
+        while (true) {
+            try {
+                int size = inputView.readBridgeSize();
+                return bridgeMaker.makeBridge(makeShape(size));
+            } catch (IllegalArgumentException e) {
+                outputView.print(e.getMessage());
+            }
+        }
     }
 
     private List<String> makeShape(int size) {
