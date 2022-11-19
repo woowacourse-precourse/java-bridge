@@ -1,7 +1,12 @@
 package bridge.controller;
 
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BridgeController {
 
@@ -15,7 +20,7 @@ public class BridgeController {
 
     public void start() {
         outputView.printStart();
-        getBridgeSize();
+        getBridge(getBridgeSize());
     }
 
     private int getBridgeSize() {
@@ -27,5 +32,10 @@ public class BridgeController {
             getBridgeSize();
         }
         return size;
+    }
+
+    private void getBridge(int size) {
+        List<String> bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
+
     }
 }
