@@ -1,11 +1,12 @@
 package bridge.controller;
 
+import static bridge.constant.Message.ENTER_BRIDGE_LENGTH;
+import static bridge.constant.Message.ENTER_MOVE_DIRECTION;
+
 import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeController {
@@ -27,6 +28,7 @@ public class BridgeController {
     private int getBridgeSize() {
         int size = 0;
         try {
+            outputView.printMessage(ENTER_BRIDGE_LENGTH.toString());
             size = inputView.readBridgeSize();
         } catch (IllegalArgumentException ex) {
             outputView.printMessage(ex.getMessage());
@@ -43,6 +45,7 @@ public class BridgeController {
     private String getMoveDirection() {
         String direction = null;
         try {
+            outputView.printMessage(ENTER_MOVE_DIRECTION.toString());
             direction = inputView.readMoving();
         } catch (IllegalArgumentException ex) {
             outputView.printMessage(ex.getMessage());
