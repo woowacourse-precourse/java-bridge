@@ -1,13 +1,14 @@
 package bridge.controller;
 
 import static bridge.controller.InputController.getBridgeSize;
-import static bridge.model.FinalResult.isFinalSuccess;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.Bridge;
 import bridge.model.BridgeGame;
+import bridge.model.Diagram;
+import bridge.model.FinalResult;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -24,15 +25,17 @@ public class GameController {
 
         // 다리 길이 입력해 다리 만들기
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(getBridgeSize()));
+        Diagram diagram = new Diagram();
+        FinalResult finalResult = new FinalResult();
 
         // 다리 게임
-        BridgeGame bridgegame = new BridgeGame(bridge);
+        BridgeGame bridgegame = new BridgeGame(bridge, diagram, finalResult);
         bridgegame.move();
 
         // 성공, 실패 여부가 결정
-        System.out.println(isFinalSuccess());
-        if(isFinalSuccess()) {
-            outputView.printResult();
+        System.out.println(finalResult.isFinalSuccess());
+        if (finalResult.isFinalSuccess()) {
+            outputView.printResult(diagram, finalResult);
         }
 
 

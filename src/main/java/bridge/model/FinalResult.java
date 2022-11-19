@@ -1,18 +1,22 @@
 package bridge.model;
 
 public class FinalResult {
-    private static int attempts = 1;
-    private static boolean finalSuccess = false;
+    private int attempts = 1;
+    private boolean finalSuccess = false;
 
-    public static void addAttempts() {
+    public void addAttempts() {
         attempts++;
     }
 
-    public static void setFinalSuccess() {
+    public void setFinalSuccess() {
         finalSuccess = true;
     }
 
-    public static boolean isFinalSuccess() {
+    public boolean isFinalSuccess() {
         return finalSuccess;
+    }
+
+    public int getAttempts() {
+        return attempts;
     }
 }

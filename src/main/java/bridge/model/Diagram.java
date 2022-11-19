@@ -6,11 +6,11 @@ import java.util.List;
 public class Diagram {
 
 
-    private static List<String> upDiagram = new ArrayList<>();
-    private static List<String> downDiagram = new ArrayList<>();
+    private List<String> upDiagram = new ArrayList<>();
+    private List<String> downDiagram = new ArrayList<>();
 
 
-    public static void paintDiagrams(String position, Status status) {
+    public void updateDiagrams(String position, Status status) {
         if (position.equals("U")) {
             if (status == Status.SURVIVE) {
                 upDiagram.add("O");
@@ -36,17 +36,9 @@ public class Diagram {
         }
     }
 
-    public static void printDiagrams() {
+    public void printDiagrams() {
         System.out.println(upDiagram);
         System.out.println(downDiagram);
-
     }
 
-    public static List<String> getUpDiagram() {
-        return upDiagram;
-    }
-
-    public static List<String> getDownDiagram() {
-        return downDiagram;
-    }
 }

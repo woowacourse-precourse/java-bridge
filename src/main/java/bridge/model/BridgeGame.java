@@ -1,18 +1,20 @@
 package bridge.model;
 
 import static bridge.controller.InputController.getUserSelection;
-import static bridge.model.Diagram.paintDiagrams;
-import static bridge.model.FinalResult.setFinalSuccess;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
     private final Bridge bridge;
+    private final Diagram diagram;
+    private final FinalResult finalResult;
 
 
-    public BridgeGame(Bridge bridge) {
+    public BridgeGame(Bridge bridge, Diagram diagram, FinalResult finalResult) {
+        this.diagram = diagram;
         this.bridge = bridge;
+        this.finalResult = finalResult;
     }
     // BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.
     // BridgeGame에 필드(인스턴스 변수)를 추가할 수 있다
@@ -30,14 +32,14 @@ public class BridgeGame {
         for (index = 0; index < bridge.getBridgeSize(); index++) {
             String position = getUserSelection();
             if (!bridge.isUserSelectionCorrect(position, bridge.currentBridge(index))) {
-                paintDiagrams(position, Status.DIE);
+                diagram.updateDiagrams(position, Status.DIE);
                 break;
             }
-            paintDiagrams(position, Status.SURVIVE);
+            diagram.updateDiagrams(position, Status.SURVIVE);
         }
 
         if (index == bridge.getBridgeSize()) {
-            setFinalSuccess();
+            finalResult.setFinalSuccess();
         }
 
     }
