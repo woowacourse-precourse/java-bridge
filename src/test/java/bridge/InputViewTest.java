@@ -81,4 +81,24 @@ class InputViewTest {
             assertThrows(IllegalArgumentException.class, inputView::readMoving);
         }
     }
+
+    @Nested
+    @DisplayName("readGameCommand 테스트")
+    class ReadGameCommandTest {
+
+        @ParameterizedTest
+        @DisplayName("성공")
+        @ValueSource(strings = {"R", "Q"})
+        void readGameCommand_validInput_returnString(String string) {
+            // given
+            InputStream in = new ByteArrayInputStream(string.getBytes());
+            InputView inputView = new InputView();
+
+            // when
+            System.setIn(in);
+
+            // then
+            assertThat(inputView.readGameCommand()).isEqualTo(string);
+        }
+    }
 }
