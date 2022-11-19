@@ -16,8 +16,23 @@ public class BridgeMaker {
     }
     public int requestReadBridegesize() {
         InputView inputView = new InputView();
-        return inputView.readBridgeSize();
+        int number = inputView.readBridgeSize();
+        try {
+            isValid(number);
+        } catch (IllegalArgumentException e) {
+            e.getMessage();
+            number = requestReadBridegesize();
+        }
+        return number;
     }
+    public boolean isValid(int number) {
+        if(!(3<=number && number <= 20)) {
+            throw new IllegalArgumentException("[ERROR] 유효한 범위의 숫자가 아닙니다.");
+        }
+        return true;
+    }
+
+
     /**
      * @param size 다리의 길이
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
