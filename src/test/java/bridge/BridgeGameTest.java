@@ -107,6 +107,26 @@ class BridgeGameTest {
         assertThat(result2).isEqualTo(false);
     }
 
+    @DisplayName("미리 설정된 다리를 유지하면서 게임을 재시작한다.")
+    @Test
+    void 미리_설정된_다리를_유지하며_게임을_재시작하는_기능_테스트() {
+        //given
+        BridgeGame bridgeGameCase1 = new BridgeGame(new TestNumberGenerator(newArrayList(0,1,1)),3);
+        bridgeGameCase1.move("D");
+        bridgeGameCase1.move("D");
+        bridgeGameCase1.retry();
+        bridgeGameCase1.move("D");
+        bridgeGameCase1.move("U");
+        bridgeGameCase1.move("U");
+
+        //when
+        List<List<String>> result1 = bridgeGameCase1.getRoundResult();
+
+        //then
+        assertThat(result1.get(0)).isEqualTo(List.of("D", "U", "U"));
+        assertThat(result1.get(1)).isEqualTo(List.of("O", "O", "O"));
+    }
+
     static class TestNumberGenerator implements BridgeNumberGenerator {
 
         private final List<Integer> numbers;
