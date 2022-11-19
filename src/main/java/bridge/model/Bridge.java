@@ -21,6 +21,4 @@ public class Bridge {
     public String currentBridge(int index) {
         return bridge.get(index);
     }
-
-
 }

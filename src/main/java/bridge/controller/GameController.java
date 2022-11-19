@@ -24,12 +24,10 @@ public class GameController {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
-        // 다리 길이 입력해 다리 만들기
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(getBridgeSize()));
         FinalResult finalResult = new FinalResult();
         Diagram diagram = new Diagram();
 
-        // 다리 게임
         BridgeGame bridgegame = new BridgeGame(bridge, diagram, finalResult);
         bridgegame.retry();
         if (finalResult.isFinalSuccess()) {

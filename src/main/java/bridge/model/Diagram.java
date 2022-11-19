@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Diagram {
-
-
     private List<String> upDiagram = new ArrayList<>();
     private List<String> downDiagram = new ArrayList<>();
 
