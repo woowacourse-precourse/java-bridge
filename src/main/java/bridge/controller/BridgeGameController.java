@@ -4,42 +4,40 @@ import bridge.domain.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.List;
+
 public class BridgeGameController {
 
     private static final String RESTART = "R";
 
-    private final InputView inputView;
-    private final OutputView outputView;
     private final BridgeGame bridgeGame;
 
-    public BridgeGameController(InputView inputView, OutputView outputView, BridgeGame bridgeGame) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public BridgeGameController(BridgeGame bridgeGame) {
         this.bridgeGame = bridgeGame;
     }
 
     public void process() {
         initiation();
-        inGame();
+        playGame();
     }
 
     private void initiation() {
-        outputView.printStartMessage();
-        outputView.printBlankLine();
+        OutputView.printStartMessage();
+        OutputView.printBlankLine();
         setBridgeSize();
         bridgeGame.setLocation();
     }
 
     private void setBridgeSize() {
-        outputView.printBridgeSizeInputMessage();
-        int bridgeSize = inputView.readBridgeSize();
-        outputView.printBlankLine();
+        OutputView.printBridgeSizeInputMessage();
+        int bridgeSize = InputView.readBridgeSize();
+        OutputView.printBlankLine();
         bridgeGame.setBridge(bridgeSize);
     }
 
-    private void inGame() {
+    private void playGame() {
         takeTrial();
-        while (inputView.readGameCommand().equals(RESTART)) {
+        while (InputView.readGameCommand().equals(RESTART)) {
             bridgeGame.retry();
             takeTrial();
             if (isFinish()) {
@@ -59,13 +57,17 @@ public class BridgeGameController {
     }
 
     private String getMovement() {
-        outputView.printNextMovementInputMessage();
-        String nextMovement = inputView.readMoving();
+        OutputView.printNextMovementInputMessage();
+        String nextMovement = InputView.readMoving();
         bridgeGame.move();
         return nextMovement;
     }
 
     private boolean isFinish() {
         return bridgeGame.isLastSquare();
+    }
+
+    private void setMap(List) {
+
     }
 }
