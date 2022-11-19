@@ -24,7 +24,7 @@ public class BridgeGameMapState implements ConsolePrintable {
         List<String> downwardMap = new ArrayList<>();
 
         fillBridgeGameMap(upwardMap, downwardMap);
-        if (!isFailGame) {
+        if (isFailGame) {
             updateWrongSelection(upwardMap, downwardMap);
         }
         return joinToBridgeMap(upwardMap, downwardMap);
