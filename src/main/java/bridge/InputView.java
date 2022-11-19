@@ -19,23 +19,24 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        return Console.readLine();
+        String move = Console.readLine().strip();
+        checkNull(move);
+        return move;
     }
 
+    private static void checkNull(String userInput){
+        if(userInput.length() == 0){
+            throw new RuntimeException("[Error] 아무것도 입력하지 않았습니다. ");
+        }
+    }
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
         String command = Console.readLine().strip();
-        checkNullGameCommand(command);
+        checkNull(command);
         checkWrongGameCommand(command);
         return command;
-    }
-
-    private static void checkNullGameCommand(String command) {
-        if(command.length() == 0){
-            throw new RuntimeException("[Error] 아무것도 입력하지 않았습니다. R 혹은 Q를 입력해주세요.");
-        }
     }
 
     private static void checkWrongGameCommand(String command) {
