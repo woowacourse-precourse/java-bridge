@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.bridgemaking.BridgeMakerImpl;
+import bridge.domain.bridgemaking.BridgeMakerImpl;
 import bridge.domain.User;
 import bridge.ui.OutputView;
 import org.junit.jupiter.api.*;

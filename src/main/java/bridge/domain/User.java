@@ -1,22 +1,23 @@
 package bridge.domain;
 
-import bridge.bridgemaking.BridgeMakerImpl;
+import bridge.domain.bridgemaking.BridgeComponent;
+import bridge.domain.bridgemaking.BridgeMakerImpl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static bridge.domain.Space.*;
+import static bridge.domain.bridgemaking.Space.*;
 
 public class User {
     private List<List<String>> currentBridge;
     private final int bridgeSize;
     private boolean isSucceeded;
     private int theNumOfTrials;
+    private static final String BLANK = BridgeComponent.BLANK.getComponent();
+    private static final String DELIMITER = BridgeComponent.DELIMITER.getComponent();
     private static final int FIRST_BRIDGE = 1;
     private static final int INITIAL_BRIDGE_SIZE = 2;
-    private static final String BLANK = " ";
-    private static final String DELIMITER = "|";
 
     public User(List<List<String>> currentBridge, int bridgeSize) {
         this.currentBridge = currentBridge;

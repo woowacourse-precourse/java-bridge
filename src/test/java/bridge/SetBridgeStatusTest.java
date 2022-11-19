@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.bridgemaking.BridgeMakerImpl;
+import bridge.domain.bridgemaking.BridgeMakerImpl;
 import bridge.domain.User;
 import bridge.domain.BridgeGame;
 import bridge.ui.OutputView;
@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static bridge.domain.Space.*;
+import static bridge.domain.bridgemaking.Space.*;
 import static org.assertj.core.api.Assertions.*;
 
 public class SetBridgeStatusTest {

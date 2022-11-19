@@ -1,11 +1,11 @@
-package bridge.bridgemaking;
+package bridge.domain.bridgemaking;
 
 import bridge.BridgeNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.domain.Space.*;
+import static bridge.domain.bridgemaking.Space.*;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.

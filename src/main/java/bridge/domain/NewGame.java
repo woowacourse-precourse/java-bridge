@@ -1,17 +1,18 @@
 package bridge.domain;
 
-import bridge.bridgemaking.BridgeMakerImpl;
+import bridge.domain.bridgemaking.BridgeMakerImpl;
 import bridge.ui.InputView;
 import bridge.ui.OutputView;
 
 import java.util.List;
+
+import static bridge.domain.bridgemaking.BridgeComponent.*;
 
 public class NewGame {
     private static final OutputView outputView = new OutputView();
     private static final InputView inputView = new InputView();
     private final BridgeMakerImpl bridgeMakerImpl = new BridgeMakerImpl();
     private final BridgeGame bridgeGame;
-    private static final String CROSS_SUCCEEDED = "O";
     private static final String RETRY = "R";
     private List<String> answerBridge;
     private User user;
@@ -36,8 +37,8 @@ public class NewGame {
 
     private void play() {
         String movingResult = "O";
-
-        for (int round = 1; round <= user.getBridgeSize() && movingResult.equals(CROSS_SUCCEEDED); round++) {
+        int bridgeSize = user.getBridgeSize();
+        for (int round = 1; round <= bridgeSize && movingResult.equals(CROSS_SUCCEEDED.getComponent()); round++) {
             outputView.printMessageToGetSpaceToMove();
             movingResult = bridgeGame.processEachRound(round, inputView.readMoving());
             outputView.printMap(user);
@@ -47,7 +48,7 @@ public class NewGame {
 
     private void processTasksAfterGameEnds(String movingResult) {
         // 모든 다리를 건너 게임을 성공한 경우.
-        if (movingResult.equals(CROSS_SUCCEEDED)) {
+        if (movingResult.equals(CROSS_SUCCEEDED.getComponent())) {
             handleSucceededSituation();
             return;
         }

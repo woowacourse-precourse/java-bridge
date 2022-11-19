@@ -1,13 +1,15 @@
 package bridge.domain;
 
+import bridge.domain.bridgemaking.Space;
+
 import java.util.List;
+
+import static bridge.domain.bridgemaking.BridgeComponent.*;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private static final String CROSS_SUCCEEDED = "O";
-    private static final String CROSS_FAILED = "X";
     private final User user;
     private final List<String> answerBridge;
 
@@ -24,9 +26,9 @@ public class BridgeGame {
     public String move(int currBridgeOrder, List<String> answerBridge, String userInput) {
         String currentAnswerSpace = answerBridge.get(currBridgeOrder - 1);
         if (currentAnswerSpace.equals(userInput)) {
-            return CROSS_SUCCEEDED;
+            return CROSS_SUCCEEDED.getComponent();
         }
-        return CROSS_FAILED;
+        return CROSS_FAILED.getComponent();
     }
 
     // 각 라운드 진행(move() 호출하여 칸 이동, 이동 결과 저장)
