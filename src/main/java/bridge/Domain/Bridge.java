@@ -17,4 +17,8 @@ public class Bridge {
         }
         return result.toString();
     }
+
+    public String getSpaceByLocation(int location) {
+        return spaces.get(location);
+    }
 }
