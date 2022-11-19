@@ -7,8 +7,6 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameController {
-	private final InputView inputView = new InputView();
-	private final OutputView outputView = new OutputView();
 	private final BridgeGameService bridgeGameService;
 	private ProgressMap progressMap;
 
@@ -17,10 +15,10 @@ public class BridgeGameController {
 	}
 
 	public void start() {
-		inputView.printIntroMessage();
+		InputView.printIntroMessage();
 		BridgeGame bridgeGame = settingBridgeGame();
 		startBridgeGame(bridgeGame);
-		outputView.printResult(progressMap.getProgressMap(), bridgeGame);
+		OutputView.printResult(progressMap.getProgressMap(), bridgeGame);
 	}
 
 	private BridgeGame settingBridgeGame() {
@@ -31,7 +29,7 @@ public class BridgeGameController {
 
 	private int receiveBridgeSize() {
 		try {
-			int size = inputView.readBridgeSize();
+			int size = InputView.readBridgeSize();
 			return bridgeGameService.checkBridgeSize(size);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
@@ -53,7 +51,7 @@ public class BridgeGameController {
 		progressMap = bridgeGameService.initGameMap();
 		while (!progressMap.isMoveFailed() && bridgeGame.isNotFinish(progressMap)) {
 			moveBridgeOneTime(bridgeGame);
-			outputView.printMap(progressMap.getProgressMap());
+			OutputView.printMap(progressMap.getProgressMap());
 		}
 	}
 
@@ -64,7 +62,7 @@ public class BridgeGameController {
 
 	private String receiveMoveCommand() {
 		try {
-			String moving = inputView.readMoving();
+			String moving = InputView.readMoving();
 			return bridgeGameService.checkMoveCommand(moving);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
@@ -74,7 +72,7 @@ public class BridgeGameController {
 
 	private boolean askRetry() {
 		try {
-			String retryInput = inputView.readGameCommand();
+			String retryInput = InputView.readGameCommand();
 			return bridgeGameService.retryOrEnd(retryInput);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
