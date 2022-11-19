@@ -14,4 +14,11 @@ public class ExceptionTest extends ApplicationTest{
             assertThat(output()).contains(NOT_NUM_ERROR.getError());
         });
     }
+    @Test
+    void U_또는_D_외_입력시() {
+        assertSimpleTest(() -> {
+            runException("1","R");
+            assertThat(output()).contains(NOT_NUM_ERROR.getError());
+        });
+    }
 }
