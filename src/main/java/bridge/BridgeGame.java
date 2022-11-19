@@ -85,7 +85,7 @@ public class BridgeGame {
     public boolean retry(String gameCommand) {
         if (isRetryEquals(gameCommand)) {
             gameCount++;
-            initGame();
+            initRetryGame();
             return true;
         }
         return false;
@@ -95,7 +95,7 @@ public class BridgeGame {
         return command.equals(RETRY);
     }
 
-    private void initGame() {
+    private void initRetryGame() {
         movingCount = 0;
         gameEnd = false;
         result.get(0).clear();
