@@ -32,10 +32,10 @@ public class BridgeGame {
         if (input.equals("R")) {
             this.result = new Result();
             count = count.increase();
-            return true;
+            return playState.nowState();
         }
         end();
-        return false;
+        return playState.nowState();
     }
 
     public void end() {
@@ -68,6 +68,9 @@ public class BridgeGame {
     }
 
     public Result recentResult() {
+        if (result == null) {
+            throw new IllegalStateException("[ERROR] 게임이 시작되지 않았습니다");
+        }
         return this.result;
     }
 
