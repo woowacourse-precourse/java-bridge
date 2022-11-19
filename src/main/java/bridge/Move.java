@@ -25,7 +25,7 @@ public class Move {
     }
 
     public boolean checkWrong() {
-        return !upLine.contains(WRONG) && !downLine.contains(WRONG);
+        return upLine.contains(WRONG) || downLine.contains(WRONG);
     }
 
     public void printMoving() {
