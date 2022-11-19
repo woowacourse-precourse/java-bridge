@@ -4,7 +4,7 @@ public class Constants {
     public static final String ERROR_PREFIX = "[ERROR]";
     public static final String BRIDGE_ERROR = "다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     public static final String MOVE_ERROR = "이동할 칸은 U(위)혹은 D(아래)여야 합니다.";
-    public static final String RESTART_ERROR = "재시작 혹은 종료를 하려면 R(재시작)혹은 Q(종료)여야 합니다.";
+    public static final String COMMAND_ERROR = "재시작 혹은 종료를 하려면 R(재시작)혹은 Q(종료)여야 합니다.";
     public static final String RANDOM_ERROR = "다리 정보는 U(위) 혹은 D(아래)여야 합니다.";
 
     public static final int UP = 1;
