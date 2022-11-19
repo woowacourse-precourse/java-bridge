@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeMap {
-    private static final String LIST_CONNECT = ", ";
-    private static final String BRIDGE_CONNECT = "|";
+
+    private static final String BRIDGE_START = "[ ";
+    private static final String BRIDGE_CONNECT = " | ";
+    private static final String BRIDGE_END = " ]";
     final List<ResultType> map;
 
     public BridgeMap() {
@@ -17,7 +19,16 @@ public class BridgeMap {
     }
 
     public String getPrintMap() {
-        return map.toString().replace(LIST_CONNECT, BRIDGE_CONNECT);
+        StringBuilder builder = new StringBuilder();
+
+        builder.append(BRIDGE_START);
+        for (ResultType result : map) {
+            builder.append(result.getMark()).append(BRIDGE_CONNECT);
+        }
+        builder.setLength(builder.lastIndexOf(BRIDGE_CONNECT));
+        builder.append(BRIDGE_END);
+
+        return builder.toString();
     }
 
     public void reset() {
