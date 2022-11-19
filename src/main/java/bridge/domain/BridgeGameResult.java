@@ -1,9 +1,14 @@
 package bridge.domain;
 
+import java.util.Objects;
+
+import static bridge.domain.enumeration.MovingType.DOWN;
+import static bridge.domain.enumeration.MovingType.UP;
+
 public class BridgeGameResult {
 
-    private boolean isMatched;
-    private String userMoving;
+    private final boolean isMatched;
+    private final String userMoving;
 
     public BridgeGameResult(boolean isMatched, String userMoving) {
         this.isMatched = isMatched;
