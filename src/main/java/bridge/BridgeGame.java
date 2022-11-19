@@ -15,33 +15,33 @@ public class BridgeGame {
     private static final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private int tryCount = 1;
     private int currentPosition = 0;
-    private List<Bridge> currentBridge = new ArrayList<>();
+    private List<Bridge> movedBridge = new ArrayList<>();
 
     public void start() {
         System.out.println(BRIDGE_GAME_START);
         final int bridgeSize = inputController.inputBridgeSize();
-        final List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        gameLoop(bridge, bridgeSize);
+        final List<String> answerBridge = bridgeMaker.makeBridge(bridgeSize);
+        gameLoop(answerBridge, bridgeSize);
     }
 
-    private void gameLoop(List<String> bridge, int bridgeSize) {
+    private void gameLoop(List<String> answerBridge, int bridgeSize) {
         while (currentPosition < bridgeSize) {
-            Bridge moveResult = move(bridge, currentPosition);
-            currentBridge.add(moveResult);
-            outputController.printMap(currentBridge);
+            Bridge moveResult = move(answerBridge, currentPosition);
+            movedBridge.add(moveResult);
+            outputController.printMap(movedBridge);
             if (isGameOver(moveResult)) {
                 return;
             }
             currentPosition++;
         }
-        outputController.printResult(currentBridge, GAME_WIN, tryCount);
+        outputController.printResult(movedBridge, GAME_WIN, tryCount);
     }
 
     private boolean isGameOver(Bridge moveResult) {
         if (moveResult.getUpShape().equals("X") || moveResult.getDownShape().equals("X")) {
             boolean retryResult = retry();
             if (!retryResult) {
-                outputController.printResult(currentBridge, GAME_LOSE, tryCount);
+                outputController.printResult(movedBridge, GAME_LOSE, tryCount);
                 return true;
             }
             gameReset();
@@ -50,7 +50,7 @@ public class BridgeGame {
     }
 
     private void gameReset() {
-        currentBridge = new ArrayList<>();
+        movedBridge = new ArrayList<>();
         currentPosition = 0;
         tryCount++;
     }
@@ -60,9 +60,9 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public Bridge move(List<String> bridge, int currentPosition) {
+    public Bridge move(List<String> answerBridge, int currentPosition) {
         String moving = inputController.inputMoving();
-        return Calculator.moveCalculate(bridge.get(currentPosition), moving);
+        return Calculator.moveCalculate(answerBridge.get(currentPosition), moving);
     }
 
     /**
