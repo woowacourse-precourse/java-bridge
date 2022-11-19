@@ -28,4 +28,28 @@ public class BridgeGameTest {
 
         assertThat(move).isEqualTo(false);
     }
+
+    @DisplayName("위쪽 다리의 결과를 가져온다")
+    @Test
+    void getMovementsInUpBridge() {
+        Bridge bridge = new Bridge(List.of("D", "U", "D"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+
+        bridgeGame.move("U");
+        bridgeGame.move("U");
+
+        assertThat(bridgeGame.getMovementsInUpBridge()).isEqualTo(List.of(" X ", " O "));
+    }
+
+    @DisplayName("아래쪽 다리의 결과를 가져온다")
+    @Test
+    void getMovementsInDownBridge() {
+        Bridge bridge = new Bridge(List.of("D", "U", "D"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+
+        bridgeGame.move("D");
+        bridgeGame.move("D");
+
+        assertThat(bridgeGame.getMovementsInDownBridge()).isEqualTo(List.of(" O ", " X "));
+    }
 }
