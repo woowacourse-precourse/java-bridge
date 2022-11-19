@@ -1,9 +1,7 @@
 package bridge.vo;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import bridge.constant.Direction;
 import bridge.dto.TrialResult;
 
 public class GameResults {
@@ -11,14 +9,11 @@ public class GameResults {
     private static final int SIZE_AND_INDEX_DIFFERENCE = 1;
 
     private final List<TrialResult> trialResults;
-    private boolean isFinished = false;
+    private final boolean isFinished;
 
-    public GameResults() {
-        this.trialResults = new ArrayList<>();
-    }
-
-    public void add(Direction direction, boolean wasSuccessful) {
-        trialResults.add(new TrialResult(direction, wasSuccessful));
+    public GameResults(List<TrialResult> trialResults, boolean isFinished) {
+        this.trialResults = trialResults;
+        this.isFinished = isFinished;
     }
 
     public boolean wasLastSuccessful() {
@@ -28,10 +23,6 @@ public class GameResults {
 
     private int lastIndex() {
         return trialResults.size() - SIZE_AND_INDEX_DIFFERENCE;
-    }
-
-    public void finish() {
-        isFinished = true;
     }
 
     public boolean isFinished() {
