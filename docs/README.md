@@ -1,5 +1,12 @@
 ### 기능 구현 목록
 
+- 프로그래밍 요구사항
+    - InputView 클래스에서만 readLine() 이용해 입력 받음, 메서드와 시그니처 반환 타입 변경 가능
+    - OutputView 메서드 이름 변경 불가능, 인자와 반환 타입은 필요에 따라 추가하거나 변경 가능, 메서드 추가 가능
+    - BridgeGame 클래스에서 InputView, OutputView를 사용하지 않는다, 메서드 이름 변경 불가능, 인자와 반환 타입은 필요에 따라 추가하거나 변경 가능, 메서드 추가 또는 변경 가능
+    - BridgeMaker 클래스에서 필드 변경, 메서드 시그니처와 반환 타입 변경 불가능
+    - BridgeRandomNumberGenerator 클래스에서 Random값 추출 bridge.BridgeRandomNumberGenerator의 generate()를 활용
+    - BridgeRandomNumberGenerator, BridgeNumberGenerator 클래스 코드 변경 불가능
 - 게임 시작
     - [다리 건너기 게임을 시작합니다.] 메시지 출력
 - 다리 길이 입력
@@ -9,6 +16,7 @@
         - 숫자가 아닌 값 입력시
         - 3~20의 범위가 아닌 값 입력시
         - 공백 입력시
+    - InputView#readBridgeSize()
 - 다리 길이 생성
     - 입력 받은 길이만큼 위 칸, 아래 칸 다리 생성
     - 다리 생성할 때 위 칸과 아래 칸 건널 수 있는 칸은 0과 1 중 무작위 값을 이용
