@@ -1,6 +1,7 @@
 package bridge.domain;
 
 
+import java.util.Collections;
 import java.util.List;
 
 public class Bridge {
@@ -10,5 +11,13 @@ public class Bridge {
     public Bridge(List<String> bridge) {
         this.bridge = bridge;
         this.location = 0;
+    }
+
+    public List<String> getBridge() {
+        return Collections.unmodifiableList(bridge);
+    }
+
+    public int getLocation() {
+        return location;
     }
 }
