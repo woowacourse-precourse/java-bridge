@@ -48,6 +48,7 @@ public final class BridgeGameController {
             outputView.printInitialMessage();
             outputView.printAskBridgeLength();
             final int size = inputView.readBridgeSize();
+            BridgeValidator.validateBridgeSize(size);
             return new Bridge(bridgeMaker.makeBridge(size));
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
