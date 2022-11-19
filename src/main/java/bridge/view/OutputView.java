@@ -14,6 +14,10 @@ public class OutputView {
     private static final String MAP_SUFFIX = " ]";
     private static final String STRING_DELIMITER = "";
     private static final String MAP_DELIMITER = " | ";
+    private static final String FINAL_RESULT_HEADER = "최종 게임 결과";
+    private static final String SUCCESS_RESULT_MSG = "게임 성공 여부: 성공";
+    private static final String FAIL_RESULT_MSG = "게임 성공 여부: 실패";
+    private static final String PLAY_COUNT_PREFIX = "총 시도한 횟수: ";
 
 
     /**
@@ -21,9 +25,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> bridges) {
-        System.out.println(MAP_PREFIX + toPrintForm(bridges.get(0)) +MAP_SUFFIX);
-        System.out.println(MAP_PREFIX + toPrintForm(bridges.get(1)) +MAP_SUFFIX);
+    public void printMap(final List<String> bridges) {
+        System.out.println(MAP_PREFIX + toPrintForm(bridges.get(0)) + MAP_SUFFIX);
+        System.out.println(MAP_PREFIX + toPrintForm(bridges.get(1)) + MAP_SUFFIX);
     }
 
     private String toPrintForm(String bridge) {
@@ -35,7 +39,27 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(final List<String> bridges, final int playCount, final boolean isSuccess) {
+        printResultHeader();
+        printMap(bridges);
+        printSuccessState(isSuccess);
+        printPlayCount(playCount);
+    }
+
+    private void printResultHeader() {
+        System.out.println(FINAL_RESULT_HEADER);
+    }
+
+    private void printSuccessState(final boolean isSuccess) {
+        if (isSuccess) {
+            System.out.println(SUCCESS_RESULT_MSG);
+            return;
+        }
+        System.out.println(FAIL_RESULT_MSG);
+    }
+
+    private void printPlayCount(final int playCount) {
+        System.out.println(PLAY_COUNT_PREFIX + playCount);
     }
 
     public void printStart() {
