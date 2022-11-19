@@ -1,42 +1,21 @@
 package bridge.controller;
 
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
 import bridge.dto.BridgeGameDto;
-import bridge.exception.NotNumericException;
 import bridge.service.BridgeGameService;
 import bridge.service.PlayerService;
-import bridge.utils.StringUtils;
-import bridge.validator.BridgeSizeValidator;
 import bridge.validator.MovingDirectionValidator;
 import bridge.view.InputView;
 
+import java.util.List;
+
 public class BridgeGameController {
+    private final static List<String> INIT_GAME_MAP = List.of("", "");
 
     private final BridgeGameService bridgeGameService = new BridgeGameService();
     private final PlayerService playerService = new PlayerService();
 
     public void generateBridgeGame() {
-        String input = InputView.readBridgeSize();
-
-        try {
-            initBridgeGame(input);
-        } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
-            generateBridgeGame();
-        }
-    }
-
-    private void initBridgeGame(String input) {
-        if (!StringUtils.isNumeric(input)) {
-            throw new NotNumericException();
-        }
-
-        int bridgeSize = Integer.parseInt(input);
-        BridgeSizeValidator.validateBridgeSize(bridgeSize);
-
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        BridgeGameDto bridgeGameDto = BridgeGameDto.from(bridgeMaker.makeBridge(bridgeSize));
+        BridgeGameDto bridgeGameDto = BridgeGameDto.from(INIT_GAME_MAP);
         bridgeGameService.initBridgeGame(bridgeGameDto);
     }
 
@@ -46,7 +25,6 @@ public class BridgeGameController {
             try {
                 MovingDirectionValidator.validateDirection(movingDirection);
                 int currentDistance = playerService.getMovedDistance();
-                bridgeGameService.isPassable(currentDistance, movingDirection);
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
                 moveToNext();
