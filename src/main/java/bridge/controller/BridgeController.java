@@ -26,7 +26,7 @@ public class BridgeController {
 
     public void playingGame() {
         playGame();
-        if(isMove)
+        if (isMove)
             successGame();
         else if (!isMove) {
             failGame();
@@ -47,14 +47,13 @@ public class BridgeController {
 
     private void failGame() {
         String inputRetry = inputView.readGameCommand();
-        if(bridgeService.retryJudge(inputRetry)) {
-            while (true) {
-                attempt++;
-                index = 0;
-                isMove = true;
-                playGame();
-            }
-        } else if (!bridgeService.retryJudge(inputRetry)) {
+        while (bridgeService.retryJudge(inputRetry)) {
+            attempt++;
+            index = 0;
+            isMove = true;
+            playingGame();
+        }
+        if (!bridgeService.retryJudge(inputRetry)) {
             outputView.printResult(upAndDown.get(0), upAndDown.get(1));
             outputView.printFailResult(attempt);
         }
