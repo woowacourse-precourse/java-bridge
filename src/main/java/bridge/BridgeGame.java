@@ -8,55 +8,60 @@ public class BridgeGame {
     private final String UNMOVABLE = "X ";
     private final String SPLIT_BY = "| ";
     private final String SPACE = "  ";
-    private BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
-    private StringBuilder initialUpBridge =
-            new BridgeMaker(bridgeRandomNumberGenerator).makeInitialBridge();
-    private StringBuilder initialDownBridge =
-            new BridgeMaker(bridgeRandomNumberGenerator).makeInitialBridge();
-    private List<String> moveBridgeResult = new ArrayList<>();
+    private StringBuilder initialUpBridge = new StringBuilder("[ ]");
+    private StringBuilder initialDownBridge = new StringBuilder("[ ]");
+    private List<String> moveResult = new ArrayList<>();
 
-    public List<String> move(List<String> bridge, int tryCount, String sideToMove) {
-        isBridgeLengthMoreThan5(tryCount);
-        moveUp(sideToMove, bridge, tryCount);
-        moveDown(sideToMove, bridge, tryCount);
-        moveBridgeResult.add(initialUpBridge.toString());
-        moveBridgeResult.add(initialDownBridge.toString());
-        return moveBridgeResult;
+    public List<String> moveResult(List<String> bridge, int tryCount, String sideToMove) {
+        move(bridge, tryCount, sideToMove);
+        moveResult.add(initialUpBridge.toString());
+        moveResult.add(initialDownBridge.toString());
+        return moveResult;
     }
 
-    public void moveUp(String sideToMove, List<String> bridge, int tryCount) {
+    public void move(List<String> bridge, int tryCount, String sideToMove) {
+        createSeparator(tryCount);
+        moveUp(bridge, tryCount, sideToMove);
+        moveDown(bridge, tryCount, sideToMove);
+    }
+
+    public void moveUp(List<String> bridge, int tryCount, String sideToMove) {
         if (sideToMove.equals("U")) {
             if (bridge.get(tryCount).equals("U")) {
-                int lastIndex = initialUpBridge.length() - 1;
-                initialUpBridge.insert(lastIndex, MOVABLE);
-                initialDownBridge.insert(lastIndex, SPACE);
+                moveSuccess();
             }
             if (bridge.get(tryCount).equals("D")) {
-                int lastIndex = initialUpBridge.length() - 1;
-                initialUpBridge.insert(lastIndex, UNMOVABLE);
-                initialDownBridge.insert(lastIndex, SPACE);
+                moveFailed();
             }
         }
     }
 
-    public void moveDown(String sideToMove, List<String> bridge, int tryCount) {
+    public void moveDown(List<String> bridge, int tryCount, String sideToMove) {
         if (sideToMove.equals("D")) {
             if (bridge.get(tryCount).equals("D")) {
-                int lastIndex = initialDownBridge.length() - 1;
-                initialDownBridge.insert(lastIndex, MOVABLE);
-                initialUpBridge.insert(lastIndex, SPACE);
+                moveSuccess();
             }
             if (bridge.get(tryCount).equals("U")) {
-                int lastIndex = initialDownBridge.length() - 1;
-                initialDownBridge.insert(lastIndex, UNMOVABLE);
-                initialUpBridge.insert(lastIndex, SPACE);
+                moveFailed();
             }
         }
     }
 
-    public void isBridgeLengthMoreThan5(int tryCount) {
+    public void moveSuccess() {
+        int lastIndex = initialUpBridge.lastIndexOf("]");
+        initialDownBridge.insert(lastIndex, MOVABLE);
+        initialUpBridge.insert(lastIndex, SPACE);
+    }
+
+    public void moveFailed() {
+        int lastIndex = initialUpBridge.lastIndexOf("]");
+        initialDownBridge.insert(lastIndex, UNMOVABLE);
+        initialUpBridge.insert(lastIndex, SPACE);
+    }
+
+    public void createSeparator(int tryCount) {
         if (tryCount > 0) {
-            int lastIndex = initialUpBridge.length() - 1;
+            int lastIndex = initialUpBridge.lastIndexOf("]");
             initialUpBridge.insert(lastIndex, SPLIT_BY);
             initialDownBridge.insert(lastIndex, SPLIT_BY);
         }

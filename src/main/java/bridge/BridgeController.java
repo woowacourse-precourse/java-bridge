@@ -7,8 +7,9 @@ import java.util.List;
 
 public class BridgeController {
     private BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
-    private List<String> moveBridgeResult;
+    private List<String> moveResult;
     private BridgeMaker bridgeMaker;
+    private BridgeGame bridgeGame;
 
     public void run() {
         new OutputView().printStart();
@@ -24,32 +25,29 @@ public class BridgeController {
     }
 
     public void moveController(List<String> bridge, int blockCount) {
-        BridgeGame bridgeGame = new BridgeGame();
-        int totalTryCount = 1;
-        for (int tryCount = 0; tryCount < blockCount; tryCount++) {
+        bridgeGame = new BridgeGame();
+        for (int i = 0; i < blockCount; i++) {
             String sideToMove = new InputView().readMoving();
-            moveBridgeResult = bridgeGame.move(bridge, tryCount, sideToMove);
-            new OutputView().printMap(moveBridgeResult);
-            int resultSize = moveBridgeResult.size();
-
-            if (moveBridgeResult.get(resultSize - 1).contains("X")
-                    || moveBridgeResult.get(resultSize - 2).contains("X")) {
+            moveResult = bridgeGame.moveResult(bridge, i, sideToMove);
+            new OutputView().printMap(moveResult);
+            int resultSize = moveResult.size();
+            if (moveResult.get(resultSize - 1).contains("X")
+                    || moveResult.get(resultSize - 2).contains("X")) {
                 String gameCommand = new InputView().readGameCommand();
                 if (gameCommand.equals("R")) {
-                    moveBridgeResult.clear();
+                    moveResult.clear();
                     new BridgeGame().retry(bridge, blockCount);
-                    tryCount = blockCount;
+                    i = blockCount;
                 }
                 if (gameCommand.equals("Q")) {
-                    new OutputView().printResult(moveBridgeResult);
-                    new OutputView().printFailedResult(totalTryCount);
+                    new OutputView().printResult(moveResult);
+                    new OutputView().printFailedResult(1);
                     break;
                 }
             }
-
-            if (tryCount == blockCount - 1) {
-                new OutputView().printResult(moveBridgeResult);
-                new OutputView().printSuccessResult(totalTryCount);
+            if (i == blockCount - 1) {
+                new OutputView().printResult(moveResult);
+                new OutputView().printSuccessResult(1);
             }
         }
     }
