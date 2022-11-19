@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import view.InputView;
 
 /**
  *  추가적인 예외사항은 없는가??
@@ -45,6 +46,24 @@ class ValidationTest {
     void 경계_안쪽값_테스트(String value) {
         assertThatNoException().isThrownBy(() -> {
             validation.validBridgeSize(value);
+        });
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"NULL", "''", "u", "d", "1", "UU", "DD"}
+                    , nullValues = "NULL")
+    void 입력값이_U_or_D가아닐때_예외를_검증하는지_테스트(String input) {
+        assertThatThrownBy(() -> {
+            validation.validMovingNext(input);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_HEAD_MESSAGE);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"U", "D"})
+    void 입력값이_U_or_D일때_정상_작동하는지_테스트(String input) {
+        assertThatNoException().isThrownBy(() -> {
+            validation.validMovingNext(input);
         });
     }
 }
