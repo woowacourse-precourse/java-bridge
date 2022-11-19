@@ -3,15 +3,15 @@ package bridge.domain;
 import static bridge.utils.ErrorMessages.ERROR_INVALID_MOVING;
 
 public class BridgeMoving {
-    private final String moving;
+    private final Bridge bridge;
 
-    public BridgeMoving(String moving) {
-        validateMoving(moving);
-        this.moving = moving;
+    public BridgeMoving(Bridge bridge) {
+        this.bridge = bridge;
     }
 
-    public String move(Bridge bridge, int movingIndex) {
-        if (bridge.isPossibleMove(movingIndex, moving)) {
+    public String move(String moving, int movingIndex) {
+        validateMoving(moving);
+        if (bridge.isMove(moving, movingIndex)) {
             return "O";
         }
         return "X";
