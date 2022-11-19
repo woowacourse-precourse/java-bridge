@@ -1,6 +1,8 @@
 package bridge.controller;
 
 import bridge.domain.Bridge;
+import bridge.domain.BridgeMaker;
+import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.domain.Command;
 import bridge.domain.UserState;
 import bridge.view.InputView;
@@ -13,6 +15,15 @@ public class BridgeGame {
 
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
+    private static final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+
+    public void start() {
+        int bridgeSize = inputView.readBridgeSize();
+        Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+        UserState userState = new UserState();
+        retry(userState, bridge);
+        outputView.printResult(userState, bridgeSize);
+    }
 
     public void move(UserState userState, Bridge bridge) {
         while (userState.getStep() < bridge.getSize()) {
