@@ -21,10 +21,9 @@ public class BridgeGameController {
 	public void start() {
 		inputView.printIntroMessage();
 		int bridgeSize = receiveBridgeSize();
-		List<String> bridge = bridgeGameService.initBridge(bridgeSize);
-		BridgeGame bridgeGame = new BridgeGame(bridge);
+		BridgeGame bridgeGame = bridgeGameService.initBridgeGame(bridgeSize);
 		startBridgeGame(bridgeGame);
-		outputView.printResult(progressMap.getProgressMap() , bridgeGame);
+		outputView.printResult(progressMap.getProgressMap(), bridgeGame);
 	}
 
 	private int receiveBridgeSize() {

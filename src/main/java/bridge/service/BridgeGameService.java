@@ -20,8 +20,8 @@ public class BridgeGameService {
 		return size;
 	}
 
-	public List<String> initBridge(int size) {
-		return bridgeMaker.makeBridge(size);
+	public BridgeGame initBridgeGame(int size) {
+		return new BridgeGame(bridgeMaker.makeBridge(size));
 	}
 
 	public ProgressMap initGameMap(int bridgeSize) {
