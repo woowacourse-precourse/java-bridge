@@ -1,7 +1,5 @@
 package bridge;
 
-import bridge.constant.BridgeConst;
-
 import java.util.regex.Pattern;
 
 import static bridge.constant.BridgeConst.*;
@@ -36,9 +34,10 @@ public class ValidationUtil {
                     MIN_LENGTH.getNumber(), MAX_LENGTH.getNumber()));
         }
     }
-    
+
     /**
      * 사용자가 입력한 이동할 칸이 U 혹은 D인지 검증한다.
+     *
      * @param input 사용자의 입력값
      */
     public void validatePlayerMoveInput(String input) {
@@ -50,6 +49,7 @@ public class ValidationUtil {
 
     /**
      * 사용자가 입력한 재시작/종료 여부가 R 혹은 Q인지 검증한다.
+     *
      * @param input 사용자의 입력값
      */
     public void validatePlayControlInput(String input) {
