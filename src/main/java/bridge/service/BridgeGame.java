@@ -47,4 +47,11 @@ public class BridgeGame {
         }
         return false;
     }
+
+    public List<String> makeBridge(int bridgeSize) {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        bridge.setBridge(bridgeMaker.makeBridge(bridgeSize));
+
+        return bridge.getBridge();
+    }
 }
