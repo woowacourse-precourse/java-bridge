@@ -1,27 +1,33 @@
 package bridge.domain;
 
-import bridge.domain.dto.MovingResult;
 import bridge.utils.Convertor;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeMap {
+	private final String NEVER_MOVE = "[ERROR] 다리에서 이동한 적이 없으므로 게임결과를 출력형식에 맞게 변경할 수 없습니다.";
+	private final int MIN_MOVE_NUMBER = 1;
+
 	List<MovingResult> map = new ArrayList<>();
 
-	public void addResult(MovingResult movingResult) {
+	public boolean move(User user, Bridge bridge, int currentLocation) {
+		MovingResult movingResult = user.selectMoving(currentLocation, bridge);
 		map.add(movingResult);
-	}
-
-	public boolean isMovingSuccess(int currentLocation) {
-		MovingResult movingResult = map.get(currentLocation);
-		if (movingResult.getAnswer()) {
+		if (movingResult.isMovingSuccess()) {
 			return true;
 		}
 		return false;
 	}
 
-	public String getSplitMap(String splitDirection) {
+	public List<String> getSplitMap() {
+		validateIfMove();
 		Convertor convertor = new Convertor();
-		return convertor.joinSplitBridgeMap(splitDirection, this.map);
+		return convertor.convertSplitBridgeMap(map);
+	}
+
+	private void validateIfMove() {
+		if (map.size() < MIN_MOVE_NUMBER) {
+			throw new IllegalArgumentException(NEVER_MOVE);
+		}
 	}
 }

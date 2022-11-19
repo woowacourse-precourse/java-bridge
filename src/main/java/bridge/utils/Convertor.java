@@ -1,60 +1,60 @@
 package bridge.utils;
 
-import bridge.domain.dto.MovingResult;
+import bridge.domain.MovingResult;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Convertor {
-	private final String NOTHING = "   ";
-	private final String RIGHT = " O ";
-	private final String WRONG = " X ";
-	private static final String SEPARATOR = "|";
-	private static final String OPENING_BRACKET = "[";
-	private static final String CLOSING_BRACKET = "]";
+	private final String BLANK = " ";
+	private final String RIGHT = "O";
+	private final String WRONG = "X";
+	private static final String SEPARATOR = " | ";
+	private static final String OPENING_BRACKET = "[ ";
+	private static final String CLOSING_BRACKET = " ]";
 	private final String SUCCESS = "성공";
 	private final String FAIL = "실패";
 
-	public String isSuccess(boolean isSuccess) {
+	public String convertSuccessOrFail(boolean isSuccess) {
 		if (isSuccess) {
 			return SUCCESS;
 		}
 		return FAIL;
 	}
 
-	public String joinSplitBridgeMap(String bridgeSplitDirection, List<MovingResult> bridgeMap) {
-		StringBuilder convertedBridgeMap = new StringBuilder();
-		List<String> splitBridgeMap = splitBridgeMap(bridgeSplitDirection, bridgeMap);
-		String joinedSplitBridgeMap = String.join(SEPARATOR, splitBridgeMap);
-		convertedBridgeMap.append(OPENING_BRACKET);
-		convertedBridgeMap.append(joinedSplitBridgeMap);
-		convertedBridgeMap.append(CLOSING_BRACKET);
-		return convertedBridgeMap.toString();
-	}
-
-	private List<String> splitBridgeMap(String bridgeSplitDirection, List<MovingResult> bridgeMap) {
-		List<String> splitBridgeMap = new ArrayList<>();
+	public List<String> convertSplitBridgeMap(List<MovingResult> bridgeMap) {
+		List<String> upBridgeMap = new ArrayList<>();
+		List<String> downBridgeMap = new ArrayList<>();
 		bridgeMap.stream()
-			.forEach(movingResult -> inputBridgeMap(splitBridgeMap, movingResult, bridgeSplitDirection));
-		return splitBridgeMap;
+			.forEach(movingResult -> splitBridgeMap(movingResult, upBridgeMap, downBridgeMap));
+		return new ArrayList<>(Arrays.asList(toString(upBridgeMap), toString(downBridgeMap)));
 	}
 
-	private void inputBridgeMap(List<String> splitBridgeMap, MovingResult movingResult,
-								String bridgeSplitDirection) {
-		String bridgeBoxDirection = movingResult.getDirection();
-		if (bridgeBoxDirection.equals(bridgeSplitDirection)) {
-			whetherRightOrWrong(splitBridgeMap, movingResult);
+	private void splitBridgeMap(MovingResult movingResult, List<String> upBridgeMap, List<String> downBridgeMap) {
+		if (movingResult.isMovingDirectionUp()) {
+			addSplitBridgeMap(movingResult, upBridgeMap);
+			downBridgeMap.add(BLANK);
 		}
-		if (!bridgeBoxDirection.equals(bridgeSplitDirection)) {
-			splitBridgeMap.add(NOTHING);
+		if (movingResult.isMovingDirectionDown()) {
+			addSplitBridgeMap(movingResult, downBridgeMap);
+			upBridgeMap.add(BLANK);
 		}
 	}
 
-	private void whetherRightOrWrong(List<String> splitBridgeMap, MovingResult movingResult) {
-		if (movingResult.getAnswer()) {
+	private void addSplitBridgeMap(MovingResult movingResult, List<String> splitBridgeMap) {
+		if (movingResult.isMovingSuccess()) {
 			splitBridgeMap.add(RIGHT);
 		}
-		if (!movingResult.getAnswer()) {
+		if (!movingResult.isMovingSuccess()) {
 			splitBridgeMap.add(WRONG);
 		}
+	}
+
+	private String toString(List<String> splitBridgeMap) {
+		StringBuilder convertedBridgeMap = new StringBuilder();
+		convertedBridgeMap.append(OPENING_BRACKET);
+		convertedBridgeMap.append(String.join(SEPARATOR, splitBridgeMap));
+		convertedBridgeMap.append(CLOSING_BRACKET);
+		return convertedBridgeMap.toString();
 	}
 }
