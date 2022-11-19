@@ -10,6 +10,12 @@ import java.util.List;
  */
 public class OutputView {
 
+    private static final String GAME_RESULT = "최종 게임 결과";
+    private static final String SUCCESS_OR_NOT = "게임 성공 여부: ";
+    private static final String SUCCESS = "성공";
+    private static final String FAILURE = "실패";
+    private static final String TRY_COUNT = "총 시도한 횟수: ";
+
     private static final String ERROR_PREFIX = "[ERROR]";
 
     /**
