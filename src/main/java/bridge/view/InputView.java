@@ -1,7 +1,5 @@
 package bridge.view;
 
-import bridge.constant.Constant;
-import bridge.constant.ErrorMessage;
 import bridge.constant.Messages;
 import bridge.domain.BridgeSize;
 import bridge.domain.Command;

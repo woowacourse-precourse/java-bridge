@@ -1,15 +1,15 @@
 package bridge.view;
 
-import bridge.domain.Movement;
 import bridge.constant.Messages;
 
 public class OutputView {
 
     public static void printMap(String[] map) {
         for (String s : map) {
-            System.out.println("[ "+s+" ]");
+            System.out.println("[ " + s + " ]");
         }
     }
+
     public static void printResult(String[] map, String isSuccess, int tryCount) {
         System.out.println(Messages.FINISH_RESULT_MESSAGE.getMessage());
         printMap(map);
