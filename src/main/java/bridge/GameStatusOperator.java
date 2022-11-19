@@ -13,4 +13,21 @@ public class GameStatusOperator {
         this.numberOfTry = numberOfTry;
         this.gameStatus = gameStatus;
     }
+
+    public void tryOnce() {
+        numberOfTry++;
+    }
+
+    public void changePosition() {
+        currentPosition++;
+    }
+
+    public Integer getCurrentPosition() {
+        return currentPosition;
+    }
+
+    public Integer getNumberOfTry() {
+        return numberOfTry;
+    }
+
 }
