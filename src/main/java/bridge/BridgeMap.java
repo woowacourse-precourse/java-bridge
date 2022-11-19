@@ -50,4 +50,14 @@ public class BridgeMap {
         downStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.DIVISION);
         downStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.REFUSE_MOVE);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        upStair.forEach(stringBuilder::append);
+        stringBuilder.append("\n");
+        downStair.forEach(stringBuilder::append);
+
+        return stringBuilder.toString();
+    }
 }
