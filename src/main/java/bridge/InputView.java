@@ -14,10 +14,23 @@ public class InputView {
         this.bridgeGame = bridgeGame;
     }
 
+    public int getValidBridgeSize() {
+        int bridgeSize;
+
+        try {
+            bridgeSize = readBridgeSize();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            bridgeSize = getValidBridgeSize();
+        }
+
+        return bridgeSize;
+    }
+
     /**
      * 다리의 길이를 입력받는다.
      */
-    public static int readBridgeSize() {
+    private int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
         String input = Console.readLine();
         System.out.println();
