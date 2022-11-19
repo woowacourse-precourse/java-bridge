@@ -10,44 +10,44 @@ public class InputView {
         String bridgeSize = Console.readLine();
         try {
             Bug.validateChar(bridgeSize, Bug.SIZE_PATTERN, Bug.INPUT_ONLY_NATURAL_NUMBER);
+            return toInt(bridgeSize);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            readBridgeSize();
         }
-        return toInt(bridgeSize);
+        return readBridgeSize();
     }
 
     private int toInt(String bridgeSize) {
         int size = Integer.parseInt(bridgeSize);
         try {
             Bug.validateNumber(size, Bug.INPUT_BETWEEN_THREE_AND_TWENTY);
+            return size;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            readBridgeSize();
         }
-        return size;
+        return readBridgeSize();
     }
 
     public String readMoving() {
         String moving = Console.readLine();
         try {
             Bug.validateChar(moving, Bug.MOVING_PATTERN, Bug.INPUT_U_OR_D);
+            return moving;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            readMoving();
         }
-        return moving;
+        return readMoving();
     }
 
     public String readGameCommand() {
         String gameCommand = Console.readLine();
         try {
             Bug.validateChar(gameCommand, Bug.GAME_COMMAND_PATTERN, Bug.INPUT_R_OR_Q);
+            return gameCommand;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            readGameCommand();
         }
-        return gameCommand;
+        return readGameCommand();
     }
 
 }

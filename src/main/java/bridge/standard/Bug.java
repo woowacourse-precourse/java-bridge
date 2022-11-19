@@ -8,7 +8,7 @@ public class Bug {
     public static final String MOVING_PATTERN = "[" + GameForm.UP_CODE + GameForm.DOWN_CODE + "]";
     public static final String GAME_COMMAND_PATTERN = "[" + GameForm.RESTART_CODE + GameForm.QUIT_CODE + "]";
 
-    public static final String INPUT_ONLY_NATURAL_NUMBER = "다리 길이는 자연수여야 합니다.";
+    public static final String INPUT_ONLY_NATURAL_NUMBER = "다리 길이는 자연수를 숫자로 입력해야 합니다.";
     public static final String INPUT_BETWEEN_THREE_AND_TWENTY = "다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     public static final String INPUT_U_OR_D = "위 칸은 U, 아래 칸은 D로만 입력 가능합니다.";
     public static final String INPUT_R_OR_Q = "재시작은 R, 종료는 Q로만 입력 가능합니다.";
