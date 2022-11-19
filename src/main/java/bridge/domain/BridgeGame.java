@@ -17,14 +17,12 @@ public class BridgeGame {
     private static final String INVALID_GAME_COMMAND_ERROR = "R 또는 Q를 입력해주세요.";
 
     private final List<String> bridge;
-    private int currentPosition;
-    private int retryCount;
+    private final Player player;
 
     public BridgeGame(int size) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge = bridgeMaker.makeBridge(size);
-        currentPosition = 0;
-        retryCount = 1;
+        player = new Player();
     }
 
     /**
@@ -34,11 +32,13 @@ public class BridgeGame {
      */
     public boolean move(String moveCommand) {
         validateMoveCommand(moveCommand);
-        String availableRow = bridge.get(currentPosition);
-        if (moveCommand.equals(availableRow)) {
-            currentPosition++;
+        String correctDirection = bridge.get(player.getCurrentPosition());
+        if (moveCommand.equals(correctDirection)) {
+            player.addOneCurrentPosition();
+            player.setMoving(true);
             return true;
         }
+        player.setMoving(false);
         return false;
     }
 
@@ -49,8 +49,8 @@ public class BridgeGame {
      */
     public boolean retry(String retryCommand) {
         if (retryCommand.equals(RETRY)) {
-            currentPosition = 0;
-            retryCount++;
+            player.resetCurrentPosition();
+            player.addOneRetryCount();
             return true;
         }
         if (retryCommand.equals(QUIT)) {
@@ -68,14 +68,14 @@ public class BridgeGame {
 
     public boolean isReached() {
         int arrivalPosition = bridge.size();
-        return arrivalPosition == currentPosition;
+        return arrivalPosition == player.getCurrentPosition();
     }
 
     public List<String> getBridge() {
-        return bridge.subList(0, currentPosition + 1);
+        return bridge;
     }
 
     public int getRetryCount() {
-        return retryCount;
+        return player.getRetryCount();
     }
 }
