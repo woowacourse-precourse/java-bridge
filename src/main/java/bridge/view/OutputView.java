@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.message.ProgressMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +55,18 @@ public class OutputView {
            return "O";
         }
         return "X";
+    }
+
+    // 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
+    public void printResult(List<String> userSelectList,boolean isSuccess,int gameCount) {
+        System.out.println(ProgressMessage.GAME_RESULT_MESSAGE);
+        printMapForm(upList);
+        printMapForm(downList);
+        System.out.println();
+        if (isSuccess) System.out.println(ProgressMessage.SUCCESS_GAME_MESSAGE);
+        if (!(isSuccess)) System.out.println(ProgressMessage.FAIL_GAME_MESSAGE);
+        System.out.print(ProgressMessage.TOTAL_GAME_COUNT_MESSAGE);
+        System.out.println(gameCount);
     }
 
 }
