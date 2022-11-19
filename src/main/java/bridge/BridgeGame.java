@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.DoubleStream;
 
 /**
@@ -8,7 +10,7 @@ import java.util.stream.DoubleStream;
 
 public class BridgeGame {
 
-    private int tryCount = 1;
+    private int bridgeCount = 0;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -26,27 +28,28 @@ public class BridgeGame {
         return false;
     }
 
-    public String bridgeMove(boolean isMove, String bridgeMove) {
+    public List<Bridge> moveBridge(boolean isMove, String bridgeMove, List<Bridge> bridge) {
         if (isMove) {
-            return bridgeMoveSuccess(bridgeMove);
+            return successMoveBridge(bridgeMove, bridge);
         }
-        return bridgeMoveFail(bridgeMove);
+        return bridgeMoveFail(bridgeMove, bridge);
     }
 
-    public String bridgeMoveSuccess(String bridgeMove) {
+    public List<Bridge> successMoveBridge(String bridgeMove, List<Bridge> bridge) {
         if (bridgeMove.equals("U")) {
-            return "[ O ]";
+            return successBridgeUp(bridge);
         }
-        return "[ O ]";
+        return successBridgeDown(bridge);
     }
 
-    public String bridgeMoveFail(String bridgeMove) {
+    public List<Bridge> bridgeMoveFail(String bridgeMove, List<Bridge> bridge) {
         if (bridgeMove.equals("U")) {
-            return "[ X ]";
+            return failBridgeUp(bridge);
         }
-        return "[ X ]";
+        return failBridgeDown(bridge);
     }
 
+    
     public int BridgeNumberGenerator() {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         int randomNumber = bridgeRandomNumberGenerator.generate();
