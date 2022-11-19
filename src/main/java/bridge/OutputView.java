@@ -35,4 +35,9 @@ public class OutputView {
     public void printErrorMessage(String errorMessage) {
         System.out.println(errorMessage);
     }
+
+    public void printChooseMovingInputMessage() {
+        System.out.println();
+        System.out.println(InputMessage.MOVE_DIRECTION_INPUT_MESSAGE.getMessage());
+    }
 }

@@ -15,6 +15,7 @@ public class Application {
         int bridgeSize = getUserInput();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         bridgeMaker.makeBridge(bridgeSize);
+        move(bridgeSize);
     }
 
     private static int getUserInput() {
@@ -28,5 +29,11 @@ public class Application {
             }
         }
         return bridgeSize;
+    }
+
+    private static void move(int bridgeSize) {
+        for (int i = 0; i < bridgeSize; ++i) {
+            String moveDirection = inputView.readMoving();
+        }
     }
 }
