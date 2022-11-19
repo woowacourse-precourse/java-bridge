@@ -45,6 +45,7 @@ public class BridgeGame {
                     break;
                 }
             }
+            outputView.printResult(upperBridge, downBridge);
             if (!flag) {
                 break;
             }
