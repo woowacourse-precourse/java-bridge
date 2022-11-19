@@ -8,7 +8,8 @@
   - [ ] 입력 받은 값 유효성 검사 InputView#validateBridgeSize(int size)
 - [ ] 다리 생성 하기 BridgeMaker#makeBridge(int size)
     - 제공된 BridgeNumberGenerator를 통해 List 생성
-    - List를 가지고 Bridge 객체 생성하여 리턴
+- [x] 생성된 List로 Bride객체 생성하기 Bridge#of(List<String> bridge)
+  - 예외. U와 D로만 이뤄진 리스트가 아닌 경우 예외 발생
 
 ---
 ## 게임 운영 GameManager
