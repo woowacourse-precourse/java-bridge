@@ -1,64 +1,39 @@
 package bridge.view;
 
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.function.Consumer;
 
 public class OutputBuild {
-    public static String buildMap(List<String> userPosition) {
-        int size = userPosition.size();
-        List<StringBuilder> up = new ArrayList<>();
-        List<StringBuilder> down = new ArrayList<>();
-        Deque<Integer> downIndex = new LinkedList<>();
-
-        // U 인 부분
-        String upLine = buildUpLine(userPosition, size, up, downIndex);
-
-        // D 인 부분
-        String downLine = buildDownLine(size, down, downIndex);
-
-        String map = upLine + downLine;
-        return map;
+    public static String buildMap(List<String> bridge, Integer index, String way, List<List<StringBuilder>> moveTable) {
+        append(bridge.get(index).equals(way), way, moveTable);
+        return format(moveTable);
     }
 
-    private static String buildDownLine(int size, List<StringBuilder> down, Deque<Integer> downIndex) {
-        return buildLine(i -> addDown(down, downIndex, i), size, down, downIndex);
+    private static String format(List<List<StringBuilder>> moveTable) {
+        String upLine = "[" + String.join("|", moveTable.get(1)) + "]\n";
+        String downLine = "[" + String.join("|", moveTable.get(0)) + "]";
+
+        return upLine + downLine;
     }
 
-    private static void addDown(List<StringBuilder> down, Deque<Integer> downIndex, Integer i) {
-        if (!downIndex.isEmpty() && i == downIndex.getFirst()) {
-            down.add(new StringBuilder(" O "));
-            downIndex.removeFirst();
-            return;
+    private static void append(boolean canGo, String way, List<List<StringBuilder>> moveTable) {
+        if (canGo) {
+            // moveTable[0] 이 Down, moveTable[1] 이 Up
+            if (way.equals("U")) {
+                moveTable.get(1).add(new StringBuilder(" O "));
+                moveTable.get(0).add(new StringBuilder("   "));
+            } else {
+                moveTable.get(0).add(new StringBuilder(" O "));
+                moveTable.get(1).add(new StringBuilder("   "));
+            }
         }
-        down.add(new StringBuilder("   "));
-    }
-
-    private static String buildUpLine(List<String> userPosition, int size, List<StringBuilder> up, Deque<Integer> downIndex) {
-        return buildLine(i -> addUp(userPosition, up, downIndex, i), size, up, downIndex);
-    }
-
-    private static void addUp(List<String> userPosition, List<StringBuilder> up, Deque<Integer> downIndex, Integer i) {
-        if (userPosition.get(i).equals("U")) {
-            up.add(new StringBuilder(" O "));
-            return;
+        else{
+            if (way.equals("U")) {
+                moveTable.get(1).add(new StringBuilder(" X "));
+                moveTable.get(0).add(new StringBuilder("   "));
+            } else {
+                moveTable.get(0).add(new StringBuilder(" X "));
+                moveTable.get(1).add(new StringBuilder("   "));
+            }
         }
-        up.add(new StringBuilder("   "));
-        downIndex.add(i);
-    }
-
-    private static String buildLine(Consumer<Integer> callback, int size, List<StringBuilder> upDown, Deque<Integer> downIndex) {
-        for (int i = 0; i < size; i++) {
-            callback.accept(i);
-        }
-        String status = "[" + String.join("|", upDown) + "]\n";
-        return status;
-    }
-
-    public static String resolveClear(Boolean clear) {
-        if(clear) return "성공";
-        return "실패";
     }
 }

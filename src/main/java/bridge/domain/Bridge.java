@@ -9,6 +9,10 @@ public class Bridge {
         this.twoWays = twoWays;
     }
 
+    public List<String> getTwoWays() {
+        return twoWays;
+    }
+
     public boolean canGo(Integer index, String way){
         return twoWays.get(index).equals(way);
     }
