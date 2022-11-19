@@ -50,4 +50,9 @@ public class BridgeGame {
         }
         return true;
     }
+
+    // Bridge 객체 반환
+    public Bridge getBridge() {
+        return this.bridge;
+    }
 }
