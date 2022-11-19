@@ -10,15 +10,13 @@ public class BridgeGame {
     private static final String MOVING_ERROR_MESSAGE = "[ERROR] 유저가 이동할 수 없는 상태입니다.";
 
     private Bridge bridge;
-    private int userPosition;
-    private boolean aliveUser;
+    private User user;
     private boolean needToQuit;
     private int numberOfAttempts;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
-        this.userPosition = 0;
-        this.aliveUser = true;
+        this.user = new User(bridge);
         this.needToQuit = false;
         this.numberOfAttempts = 1;
     }
@@ -29,19 +27,11 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(Direction direction) {
-        movingValidation();
-        userPosition++;
-        checkLife(direction);
-    }
-
-    private void movingValidation() {
-        if (!aliveUser || bridge.isEndOfBridge(userPosition)) {
-            throw new IllegalArgumentException(MOVING_ERROR_MESSAGE);
-        }
+        user.move(direction);
     }
 
     public boolean isEndGame() {
-        if (!aliveUser || successGame()) {
+        if (!user.isAlive() || successGame()) {
             return true;
         }
         return false;
@@ -55,21 +45,15 @@ public class BridgeGame {
     }
 
     public UserState getProgressUserState() {
-        return new UserState(bridge, userPosition, aliveUser);
+        return user.getUserState();
     }
 
     public GameResult getGameResult() {
-        return new GameResult(getProgressUserState(),successGame(),numberOfAttempts);
-    }
-
-    private void checkLife(Direction direction) {
-        if (!bridge.isCorrectDirection(direction, userPosition)) {
-            aliveUser = false;
-        }
+        return new GameResult(user.getUserState(),successGame(),numberOfAttempts);
     }
 
     private boolean successGame() {
-        if (bridge.isEndOfBridge(userPosition) && aliveUser) {
+        if (user.reachEndOfBridge() && user.isAlive()) {
             return true;
         }
         return false;
@@ -90,9 +74,8 @@ public class BridgeGame {
     }
 
     private void settingForRestart() {
-        userPosition = 0;
+        user.revive();
         numberOfAttempts++;
-        aliveUser = true;
     }
 
     private void settingForQuit() {
