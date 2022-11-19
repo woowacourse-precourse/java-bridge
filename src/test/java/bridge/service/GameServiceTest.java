@@ -39,7 +39,7 @@ class GameServiceTest {
 		userBridgeRepository.clear();
 	}
 
-	@DisplayName("bridge 생성 테스트")
+	@DisplayName("bridge 생성 테스트 - 생성된 다리 순회하면서 U 또는 D 값만 가지고 있는지 테스트")
 	@Test
 	void makeBridge() {
 		//given
@@ -50,7 +50,7 @@ class GameServiceTest {
 		List<String> result = gameService.makeBridge(bridgeSize);
 
 		//then
-		Assertions.assertThat(result).containsAnyOf("U", "D");
+		result.stream().forEach(i -> Assertions.assertThat(i).containsAnyOf("U", "D"));
 	}
 
 	@DisplayName("checkValidSpace 테스트 - 유저가 건널수 있는 다리인지 확인하는 테스트")
