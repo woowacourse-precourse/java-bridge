@@ -63,4 +63,16 @@ public class OutputView {
         }
         System.out.println("\n게임 성공 여부: 실패");
     }
+
+    public void printBridgeSizeInputError(){
+        System.out.println("[ERROR] 다리 길이는 3~20 사이의 값을 가져야 합니다. 다시 입력해 주십시오.");
+    }
+
+    public void printPlayerMoveInputError(){
+        System.out.println("[ERROR] 이동 방향은 'U'/'D' 중 한가지로 입력되어야 합니다. 다시 입력해 주십시오.");
+    }
+
+    public void printRetryOrQuitInputError(){
+        System.out.println("[ERROR] 입력값은 'R'/'Q' 중 한가지로 입력되어야 합니다. 다시 입력해 주십시오.");
+    }
 }
