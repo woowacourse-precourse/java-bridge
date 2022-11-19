@@ -1,4 +1,4 @@
-package bridge.Utils.Validator;
+package Utils.Validator;
 
 import java.util.Objects;
 

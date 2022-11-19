@@ -1,9 +1,9 @@
 package bridge.Model;
 
 
-import bridge.Utils.Bridge.BridgeMaker;
-import bridge.Utils.Bridge.BridgeNumberGenerator;
-import bridge.Utils.Bridge.BridgeRandomNumberGenerator;
+import Utils.Bridge.BridgeMaker;
+import Utils.Bridge.BridgeNumberGenerator;
+import Utils.Bridge.BridgeRandomNumberGenerator;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ public class Bridge {
     }
 
 
-    private List<String> getBridge() {
+    public List<String> getBridge() {
         return this.bridge;
     }
 

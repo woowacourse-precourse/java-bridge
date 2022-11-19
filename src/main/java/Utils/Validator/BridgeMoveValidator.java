@@ -1,14 +1,14 @@
-package bridge.Utils.Validator;
+package Utils.Validator;
 
-import bridge.Utils.Constants.MoveInputAndNextInput;
+import Utils.Constants.MoveInputAndNextInput;
 
 public class BridgeMoveValidator {
 
     private static final String UP = "U";
 
 
-    public static MoveInputAndNextInput compareMoveInputAndNextMove(String moveInput, String nextMove) {
-        if(moveInput.equals(nextMove)){
+    public static MoveInputAndNextInput compareMoveInputAndNextMove(String moveInput, String correctMove) {
+        if(moveInput.equals(correctMove)){
             return getO(moveInput);
         }
         return getX(moveInput);

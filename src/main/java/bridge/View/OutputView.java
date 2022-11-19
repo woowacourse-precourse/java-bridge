@@ -2,14 +2,14 @@ package bridge.View;
 
 import java.util.List;
 
-import bridge.Utils.Converter;
+import Utils.Converter;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private static final String BRAKET_START= "[ ";
-    private static final String BRAKET_END= " ]";
+    private static final String BRACKET_START= "[ ";
+    private static final String BRACKET_END= " ]";
     private static final String BAR= " | ";
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -36,9 +36,9 @@ public class OutputView {
      * @param moveOutput 게임에서 나온 결과 리스트
      */
     public static void printLine(List<String> moveOutput) {
-        System.out.print(BRAKET_START);
+        System.out.print(BRACKET_START);
         printInner(moveOutput);
-        System.out.println(BRAKET_END);
+        System.out.println(BRACKET_END);
     }
 
     /**
