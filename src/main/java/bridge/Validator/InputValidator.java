@@ -2,28 +2,31 @@ package bridge.Validator;
 
 public class InputValidator {
 
-    public static void checkBridgeSize(String size) {
-        if (!(checkOnlyNumber(size))) {
-            throw new IllegalArgumentException("[ERROR] 숫자가 아닙니다.");
+    public static int checkBridgeSize(String size) {
+        try{
+            checkOnlyNumber(size);
+            checkBoundaryNumber(size);
+        }catch (IllegalArgumentException exception){
+            System.out.println(exception.getMessage());
+            System.out.println("다시 입력해주세요.");
+            return -1;
         }
-        if (!(checkBoundaryNumber(size))) {
-            throw new IllegalArgumentException("[ERROR] 범위가 아닙니다.");
-        }
+        return Integer.parseInt(size);
     }
 
-    public static boolean checkBoundaryNumber(String size) {
+    public static boolean checkBoundaryNumber(String size){
         Integer bridgeSize = Integer.parseInt(size);
         if (bridgeSize < 3 || bridgeSize > 20) {
             return false;
         }
-        return true;
+        throw new IllegalArgumentException("[ERROR] 범위가 아닙니다.");
     }
 
     public static boolean checkOnlyNumber(String size) {
         try {
             Integer.parseInt(size);
         } catch (NumberFormatException e) {
-            return false;
+            throw new IllegalArgumentException("[ERROR] 숫자가 아닙니다.");
         }
         return true;
     }

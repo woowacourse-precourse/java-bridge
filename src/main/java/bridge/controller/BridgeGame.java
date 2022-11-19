@@ -18,6 +18,7 @@ public class BridgeGame {
         Bridge bridge = initBridge();
         initTryCount();
         startGame(bridge);
+        OutputView.printResult(tryCount);
     }
 
     private void initTryCount() {
@@ -25,7 +26,10 @@ public class BridgeGame {
     }
 
     private Bridge initBridge() {
-        Integer bridgeSize = InputView.readBridgeSize();
+        Integer bridgeSize;
+        do {
+            bridgeSize = InputView.readBridgeSize();
+        } while (bridgeSize == -1);
         Bridge bridge = BridgeService.makeBridge(bridgeSize);
         return bridge;
     }
@@ -35,7 +39,6 @@ public class BridgeGame {
         initCount();
         move(bridge, gameResult);
         if(count == bridge.getBridgeLength()){
-            OutputView.printResult(tryCount);
             return;
         }
         retry(bridge);
