@@ -26,14 +26,14 @@ public class OutputView {
         System.out.println(UP+"]");
         System.out.println(Down+"]");
     }
-    public void Area_Division(List<String> Bridge, int Correct[], int Location){
+    public void Area_Division(List<String> Bridge, String Command, int Location){
         System.out.println("Location : "+ Location);
-        if(Correct[0]==1){
+        if(Command.equals("U")){
             Print_Up(Bridge.get(Location));
             Print_Middle();
             return;
         }
-        if(Correct[1]==1){
+        if(Command.equals("D")){
             Print_Down(Bridge.get(Location));
             Print_Middle();
         }
