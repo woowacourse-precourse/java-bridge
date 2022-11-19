@@ -86,4 +86,10 @@ public class InputView {
 		}
 		throw new IllegalArgumentException("[ERROR] R와 Q만 선택하세요.");
 	}
+	
+	public String getRestartOrQuit() {
+		this.restartOrQuit = "";
+		readGameCommand();
+		return this.restartOrQuit;
+	}
 }

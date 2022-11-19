@@ -8,7 +8,6 @@ import java.util.List;
  */
 public class BridgeGame {
 	InputView inputView = new InputView();
-	OutputView outputView= new OutputView();
 	List<List<String>> upDownBridgeList = new ArrayList<>();
 	ArrayList<String> upBridge = new ArrayList<>();
 	ArrayList<String> downBridge = new ArrayList<>();
@@ -32,11 +31,11 @@ public class BridgeGame {
 		boolean compareResult = compareMoving(inputMoving, madeBridge, order);
 		if(compareResult) {
 			addSuccessStateToBridge(inputMoving);
-			System.out.println(outputView.printMap(upDownBridgeList));
+			//System.out.println(outputView.printMap(upDownBridgeList));
 			return true;
 		}
 		addFailureStateToBridge(inputMoving);
-		System.out.println(outputView.printMap(upDownBridgeList));
+		//System.out.println(outputView.printMap(upDownBridgeList));
 		return false;
 	}
 	
@@ -76,6 +75,11 @@ public class BridgeGame {
 		return currentStateBridge;
 	}
 	*/
+	
+	public List<List<String>> getUpDownBridgeList(){
+		return this.upDownBridgeList;
+	}
+	
 	public String checkSuccessFailure() {
 		if(upBridge.contains("X") || downBridge.contains("X")) {
 			return "실패";
@@ -88,8 +92,8 @@ public class BridgeGame {
 	 * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 * @return 
 	 */
-	public boolean retry() {
-		String restartOrQuit = inputView.readGameCommand();
+	public boolean retry(String inputRestartOrQuit) {
+		String restartOrQuit = inputRestartOrQuit;
 		if(restartOrQuit.equals("R")) {
 			return true;
 		}
