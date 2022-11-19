@@ -10,11 +10,11 @@ import java.util.stream.IntStream;
  */
 public class BridgeGame {
     private final Bridge bridge;
-    private final List<String> movements;
+    private List<String> movements;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
-        this.movements = new ArrayList<>();
+        initMovements();
     }
 
     /**
@@ -23,8 +23,9 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String movingPosition) {
+        boolean possibleToMove = bridge.isPossibleToMove(movingPosition, movements.size());
         movements.add(movingPosition);
-        return bridge.isPossibleToMove(movingPosition, movements.size());
+        return possibleToMove;
     }
 
     /**
@@ -34,6 +35,7 @@ public class BridgeGame {
      */
     public boolean retry(String selectedProgress) {
         if (GameCommand.RETRY.isEqual(selectedProgress)) {
+            initMovements();
             return true;
         }
 
@@ -42,6 +44,10 @@ public class BridgeGame {
         }
 
         throw new IllegalArgumentException();
+    }
+
+    public void initMovements() {
+        this.movements = new ArrayList<>();
     }
 
     public List<String> getMovementsInUpBridge() {
