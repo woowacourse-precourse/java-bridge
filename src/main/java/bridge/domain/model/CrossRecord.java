@@ -30,31 +30,59 @@ public class CrossRecord {
         return emptyBridge;
     }
 
-    public void recordCrossedBridge(MovingDirection DIRECTION,
+    public void recordCrossedBridge(MovingDirection MOVE_TO,
             MovingPossibility MOVING_POSSIBILITY) {
         if (isFirst) {
-            isFirst = false;
-            for (Map.Entry<MovingDirection, List<String>> oneBridge : crossedBridge.entrySet()) {
-                List<String> drawnBridge = oneBridge.getValue();
-                if (oneBridge.getKey() == DIRECTION) {
-                    drawnBridge.add(drawnBridge.size() - 1, MOVING_POSSIBILITY.getCharacter());
-                } else {
-                    drawnBridge.add(drawnBridge.size() - 1, BridgeDrawer.EMPTY_SPACE.getCharacter());
-                }
-            }
-        } else {
-            for (Map.Entry<MovingDirection, List<String>> oneBridge : crossedBridge.entrySet()) {
-                List<String> drawnBridge = oneBridge.getValue();
-                drawnBridge.add(drawnBridge.size() - 1, BridgeDrawer.DIVIDE_SPACE.getCharacter());
-
-                if (oneBridge.getKey() == DIRECTION) {
-                    drawnBridge.add(drawnBridge.size() - 1, MOVING_POSSIBILITY.getCharacter());
-                    continue;
-                }
-
-                drawnBridge.add(drawnBridge.size() - 1, BridgeDrawer.EMPTY_SPACE.getCharacter());
-            }
+            recordFirstTime(MOVE_TO, MOVING_POSSIBILITY);
+            return;
         }
+
+        recordAfterFirstTime(MOVE_TO, MOVING_POSSIBILITY);
+    }
+
+    private void recordFirstTime(MovingDirection MOVE_TO, MovingPossibility MOVING_POSSIBILITY) {
+        isFirst = false;
+        for (MovingDirection BRIDGE_DIRECTION : MovingDirection.values()) {
+            if (BRIDGE_DIRECTION == MOVE_TO) {
+                recordOOrX(BRIDGE_DIRECTION, MOVING_POSSIBILITY);
+                continue;
+            }
+            recordEmptySpace(BRIDGE_DIRECTION);
+        }
+    }
+
+    private void recordAfterFirstTime(MovingDirection MOVE_TO,
+            MovingPossibility MOVING_POSSIBILITY) {
+        for (MovingDirection BRIDGE_DIRECTION : MovingDirection.values()) {
+            recordDivideSpace(BRIDGE_DIRECTION);
+            if (BRIDGE_DIRECTION == MOVE_TO) {
+                recordOOrX(BRIDGE_DIRECTION, MOVING_POSSIBILITY);
+                continue;
+            }
+            recordEmptySpace(BRIDGE_DIRECTION);
+        }
+    }
+
+    private void recordOOrX(MovingDirection BRIDGE_DIRECTION,
+            MovingPossibility MOVING_POSSIBILITY) {
+        int insertIndex = crossedBridge.get(BRIDGE_DIRECTION).size() - 1;
+        crossedBridge
+                .get(BRIDGE_DIRECTION)
+                .add(insertIndex, MOVING_POSSIBILITY.getCharacter());
+    }
+
+    private void recordEmptySpace(MovingDirection BRIDGE_DIRECTION) {
+        int insertIndex = crossedBridge.get(BRIDGE_DIRECTION).size() - 1;
+        crossedBridge
+                .get(BRIDGE_DIRECTION)
+                .add(insertIndex, BridgeDrawer.EMPTY_SPACE.getCharacter());
+    }
+
+    private void recordDivideSpace(MovingDirection BRIDGE_DIRECTION) {
+        int insertIndex = crossedBridge.get(BRIDGE_DIRECTION).size() - 1;
+        crossedBridge
+                .get(BRIDGE_DIRECTION)
+                .add(insertIndex, BridgeDrawer.DIVIDE_SPACE.getCharacter());
     }
 
     public void resetCrossedBridge() {
@@ -65,9 +93,11 @@ public class CrossRecord {
     public Map<MovingDirection, String> getCrossedBridge() {
         Map<MovingDirection, String> crossedBridgeForReturn = new HashMap<>();
 
-        for (MovingDirection DIRECTION : MovingDirection.values()) {
-            crossedBridgeForReturn.put(DIRECTION, String.join("", crossedBridge.get(DIRECTION)));
+        for (MovingDirection BRIDGE_DIRECTION : MovingDirection.values()) {
+            crossedBridgeForReturn.put(BRIDGE_DIRECTION,
+                    String.join("", crossedBridge.get(BRIDGE_DIRECTION)));
         }
+
         return crossedBridgeForReturn;
     }
 }
