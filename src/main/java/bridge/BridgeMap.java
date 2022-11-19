@@ -23,32 +23,31 @@ public class BridgeMap {
         downStair.add(BridgeShape.ENDING_POINT);
     }
 
-    private void moveUp() {
-        upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.DIVISION);
-        upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.ALLOW_MOVE);
-        downStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.DIVISION);
-        downStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.BLANK);
-    }
-
-    private void moveDown() {
-        upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.DIVISION);
+    public void moveSussess(InputType inputType) {
+        inputDivision();
+        if(inputType.equals(InputType.UP)) {
+            upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.ALLOW_MOVE);
+            downStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.BLANK);
+            return;
+        }
         upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.BLANK);
-        downStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.DIVISION);
         downStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.ALLOW_MOVE);
     }
 
-    private void failMoveUp() {
-        upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.DIVISION);
-        upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.REFUSE_MOVE);
-        downStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.DIVISION);
-        downStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.BLANK);
+    public void moveFail(InputType inputType) {
+        inputDivision();
+        if(inputType.equals(InputType.UP)) {
+            upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.REFUSE_MOVE);
+            downStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.BLANK);
+            return;
+        }
+        upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.BLANK);
+        downStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.REFUSE_MOVE);
     }
 
-    private void failMoveDown() {
+    private void inputDivision() {
         upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.DIVISION);
-        upStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.BLANK);
-        downStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.DIVISION);
-        downStair.add(upStair.size() - INSERT_PIVOT, BridgeShape.REFUSE_MOVE);
+        downStair.add(downStair.size() - INSERT_PIVOT, BridgeShape.DIVISION);
     }
 
     @Override
