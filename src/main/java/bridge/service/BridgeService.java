@@ -11,6 +11,7 @@ public class BridgeService {
     private BridgeGame bridgeGame;
     private InputView inputView;
     private boolean isCorrect;
+    private int gameCount = 1;
 
     public BridgeService() {
         this.bridgeGame = new BridgeGame();
@@ -48,6 +49,16 @@ public class BridgeService {
         } while (true);
     }
 
+
+    // 재시작 여부
+    public boolean isRetry() {
+        String isRestart = isRestartString();
+        if (bridgeGame.retry(isRestart)) {
+            gameCount += 1;
+            return true;
+        }
+        return false;
+    }
 
     // 재시작 입력받기
     public String isRestartString() {
