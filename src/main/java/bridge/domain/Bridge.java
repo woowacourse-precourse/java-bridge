@@ -28,4 +28,8 @@ public class Bridge {
     public void initLocation(){
         location = 0;
     }
+
+    public boolean isPass(String moveUpOrDown){
+        return bridge.get(location).equals(moveUpOrDown);
+    }
 }
