@@ -9,7 +9,7 @@ public class BridgeSizeException {
     public static void checkConvertToNumber(String size) {
         try {
             Integer.parseInt(size);
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(START_ERROR_MESSAGE + NOT_NUMBER_ERROR_MESSAGE);
         }
     }

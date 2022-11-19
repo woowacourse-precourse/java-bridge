@@ -17,6 +17,7 @@ public class BridgeGame {
 
     /**
      * 사용자가 게임을 시작할 때 랜덤한 다리를 만드는 메서드
+     *
      * @param bridgeSize
      */
     public void initGame(String bridgeSize) {

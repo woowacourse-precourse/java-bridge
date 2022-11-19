@@ -17,11 +17,11 @@ class MapMakerServiceTest {
     @Test
     @DisplayName("다리 생성 메시지 테스트 - 1")
     void makeMapTestOne() {
-        MapMakerService mapMakerService = new MapMakerService(Arrays.asList("D","D","D"));
-        User user = new User(Arrays.asList("D","D","D"));
+        MapMakerService mapMakerService = new MapMakerService(Arrays.asList("D", "D", "D"));
+        User user = new User(Arrays.asList("D", "D", "D"));
         user.addMove("D");
         user.addMove("D");
-        List<String> result = new ArrayList<>(Arrays.asList("[   |   ]","[ O | O ]"));
+        List<String> result = new ArrayList<>(Arrays.asList("[   |   ]", "[ O | O ]"));
         assertThat(mapMakerService.makeMap(user.getUserBridge()))
                 .isEqualTo(result);
     }
@@ -29,12 +29,12 @@ class MapMakerServiceTest {
     @Test
     @DisplayName("다리 생성 메시지 테스트 - 2")
     void makeMapTestTwo() {
-        MapMakerService mapMakerService = new MapMakerService(Arrays.asList("D","U","D"));
-        User user = new User(Arrays.asList("D","U","D"));
+        MapMakerService mapMakerService = new MapMakerService(Arrays.asList("D", "U", "D"));
+        User user = new User(Arrays.asList("D", "U", "D"));
         user.addMove("D");
         user.addMove("U");
         user.addMove("U");
-        List<String> result = new ArrayList<>(Arrays.asList("[   | O | X ]","[ O |   |   ]"));
+        List<String> result = new ArrayList<>(Arrays.asList("[   | O | X ]", "[ O |   |   ]"));
         assertThat(mapMakerService.makeMap(user.getUserBridge()))
                 .isEqualTo(result);
     }

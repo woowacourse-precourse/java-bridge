@@ -17,7 +17,7 @@ public class MapMakerService {
     public List<String> makeMap(List<String> userBridge) {
         List<String> map = new ArrayList<>(Arrays.asList("", ""));
         for (int i = 0; i < userBridge.size(); i++) {
-            map = makeLow(map,userBridge,i);
+            map = makeLow(map, userBridge, i);
             if (i != userBridge.size() - 1) {
                 map = addDivisionMark((map));
             }

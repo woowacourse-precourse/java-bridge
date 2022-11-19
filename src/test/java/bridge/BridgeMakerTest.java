@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class BridgeMakerTest {
 
     @DisplayName("다리 랜덤 생성 테스트")
-    @ValueSource(ints = {3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20})
+    @ValueSource(ints = {3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20})
     @ParameterizedTest
     void makeBridgeTest(int size) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());

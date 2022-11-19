@@ -20,7 +20,7 @@ class BridgeSizeExceptionTest {
     }
 
     @DisplayName("다리의 크기가 3에서 20사이의 숫자가 아니면 예외가 발생한다.")
-    @ValueSource(strings = {"0","1","2","21","100"})
+    @ValueSource(strings = {"0", "1", "2", "21", "100"})
     @ParameterizedTest
     void checkBridgeSizeIsCorrectRangeTest(String size) {
         assertThatThrownBy(() -> BridgeSizeException.checkBridgeSizeIsCorrectRange(size))
