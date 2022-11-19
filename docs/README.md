@@ -52,17 +52,31 @@
     - 다리를 출력한다.
 - public printResult method
     - 다리와 게임 성공 여부, 총 시도한 횟수를 출력한다.
+    - private getStringByClear method
+        - 성공 여부에 따라 "성공" 또는 "실패" 를 반환한다.
 
 ## BridgeGame Class
 
 - public move method
     - 다리를 움직인다.
+    - private getBridgeStatusString method
+        - 움직이는 칸에 따른 결과를 반환한다.
+        - private getBridgeSuccessOrFailure method
+            - 움직이는 칸에 따른 " O " 또는 " X " 를 반환한다.
 - public retry method
     - 다리를 초기화한다.
-- public getMoveResult method
-    - 움직인 다리의 결과를 반환한다.
+- public getUpBridgeToString method
+    - 위쪽 다리 결과의 문자열을 반환한다.
+- public getDownBridgeToString method
+    - 아래쪽 다리 결과의 문자열을 반환한다.
+- public isClear method
+    - 건너간 다리에 대한 결과를 반환한다.
+- public getCountOfTry method
+    - 게임에 대한 총 시도 횟수를 반환한다.
 
 ## BridgeMaker Class
 
 - makeBridge method
-    - 다리의 길이와 BridgeRandomNumberGenerator 통해 수가 1 이면 "U", 수가 0 이면 "D" 의 문자열 리스트를 반환한다.
+    - 다리의 길이와 BridgeNumberGenerator 를 통해 다리를 반환한다.
+    - private toUpOrDown method
+        - 1 이면 "U", 0 이면 "D" 를 반환한다.
