@@ -49,15 +49,11 @@ public class BridgeGame {
         return false;
     }
 
-    public void saveCompareResult(String moving) {
-        String mark = Constant.CORRECT_MARK;
-        if (!movement.canMove()) {
-            mark = Constant.WRONG_MARK;
-        }
-        bridgeMap.addMap(moving, mark);
     private void clearGame() {
         movement.clearMoving();
         bridgeMap.clearMap();
     }
+    private void saveCompareResult(String moving) {
+        bridgeMap.addMap(moving, movement.canMove());
     }
 }
