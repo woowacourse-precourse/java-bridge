@@ -1,28 +1,24 @@
 package bridge;
 
-import bridge.View.OutputView;
-
 import java.util.*;
-
-import static java.util.stream.Collectors.joining;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
     private final List<String> scaffold;
-    private final HashMap<String, List<String>> scaffoldMap = new HashMap<>();
+    private final HashMap<String, List<String>> stepProgress = new HashMap<>();
     private int gameStep = 0;
     private boolean survive = true;
 
     public BridgeGame(List<String> bridgeScaffold) {
         this.scaffold = bridgeScaffold;
-        initScaffoldMap();
+        initStepProgress();
     }
 
-    private void initScaffoldMap() {
-        this.scaffoldMap.put("U", new ArrayList<>());
-        this.scaffoldMap.put("D", new ArrayList<>());
+    private void initStepProgress() {
+        this.stepProgress.put("U", new ArrayList<>());
+        this.stepProgress.put("D", new ArrayList<>());
     }
 
     /**
@@ -45,7 +41,7 @@ public class BridgeGame {
     }
 
     private List<String> getMovingProgress(String direction) {
-        updateScaffordMap(direction);
+        updateStepProgress(direction);
 
         String upDirectionProgress = getProgressOfDirection("U");
         String downDirectionProgress = getProgressOfDirection("D");
@@ -60,20 +56,20 @@ public class BridgeGame {
         return "U";
     }
 
-    private void updateScaffordMap(String direction) {
+    private void updateStepProgress(String direction) {
         String oppositeDirection = getOppositeDirection(direction);
         if (!this.survive) {
-            this.scaffoldMap.get(direction).add("X");
-            this.scaffoldMap.get(oppositeDirection).add(" ");
+            this.stepProgress.get(direction).add("X");
+            this.stepProgress.get(oppositeDirection).add(" ");
         } else {
-            this.scaffoldMap.get(direction).add("O");
-            this.scaffoldMap.get(oppositeDirection).add(" ");
+            this.stepProgress.get(direction).add("O");
+            this.stepProgress.get(oppositeDirection).add(" ");
         }
     }
 
 
     private String getProgressOfDirection(String direction) {
-        String progress = String.join(" | ", this.scaffoldMap.get(direction));
+        String progress = String.join(" | ", this.stepProgress.get(direction));
         return "[ " + progress + " ]";
     }
 
@@ -84,7 +80,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        initScaffoldMap();
+        initStepProgress();
         gameStep = 0;
     }
 }
