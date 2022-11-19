@@ -1,9 +1,13 @@
 package bridge.Service;
 
+import bridge.Model.BridgeShape;
+
 public class InputValidator {
 
     private static int MIN_SIZE = 3;
     private static int MAX_SIZE = 20;
+    public static final String UP = BridgeShape.UP.getShape();
+    public static final String DOWN = BridgeShape.DOWN.getShape();
 
     public void validateSize(int size) {
         if (size < MIN_SIZE || size > MAX_SIZE) {
@@ -20,4 +24,9 @@ public class InputValidator {
         }
     }
 
+    public void validateMoving(String input) {
+        if (!input.equals(UP) && !input.equals(DOWN)) {
+            throw new IllegalArgumentException("[ERROR]");
+        }
+    }
 }
