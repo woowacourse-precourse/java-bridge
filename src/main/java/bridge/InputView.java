@@ -14,7 +14,7 @@ public class InputView {
     public int readBridgeSize() {
         String bridgeSize = Console.readLine();
         validationChecker.checkInputIsInteger(bridgeSize);
-        validationChecker.checkInputIsNaturalNumber(bridgeSize);
+        validationChecker.checkIntegerRange(Integer.parseInt(bridgeSize), 3, 20);
         return Integer.parseInt(bridgeSize);
     }
 
