@@ -1,7 +1,5 @@
 package bridge.controller;
 
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
 import bridge.model.Bridge;
 import bridge.model.BridgeGame;
 import bridge.model.PassingSpace;
@@ -11,7 +9,6 @@ import bridge.view.OutputView;
 public class GameController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
     public BridgeGame createBridgeGame(Bridge bridge) {
         PassingSpace passingSpace = new PassingSpace();
@@ -26,8 +23,10 @@ public class GameController {
     }
 
     private boolean continueGame(BridgeGame bridgeGame) {
-        String selectRetry = selectRetryGame();
-        return !bridgeGame.isSuccessCrossingBridge() && bridgeGame.retry(selectRetry);
+        if (bridgeGame.isSuccessCrossingBridge()) {
+            return false;
+        }
+        return bridgeGame.retry(selectRetryGame());
     }
 
     private void printResult(BridgeGame bridgeGame) {
@@ -41,6 +40,7 @@ public class GameController {
             outputView.printSelectRetryOrNotInput();
             return inputView.readGameCommand();
         } catch (IllegalArgumentException illegalArgumentException) {
+            illegalArgumentException.getMessage();
             return selectRetryGame();
         }
     }
@@ -64,6 +64,7 @@ public class GameController {
             String readMoving = inputView.readMoving();
             return readMoving;
         } catch (IllegalArgumentException illegalArgumentException) {
+            illegalArgumentException.getMessage();
             return selectMoving();
         }
     }

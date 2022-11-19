@@ -20,6 +20,7 @@ public class BridgeController {
             Bridge bridge = new Bridge(bridgeProtoType);
             return bridge;
         } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
             return createBridge();
         }
     }
@@ -29,5 +30,4 @@ public class BridgeController {
         int bridgeSize = inputView.readBridgeSize();
         return bridgeSize;
     }
-
 }
