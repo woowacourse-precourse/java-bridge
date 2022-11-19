@@ -15,9 +15,9 @@ public class OutputView {
     private static final String ROW_START_BRACKET = "[ ";
     private static final String ROW_END_BRACKET = " ]";
     private static final String ROW_DELIMITER = " | ";
-    private static final String CORRECT_ANSWER = "O";
-    private static final String INCORRECT_ANSWER = "X";
-    private static final String WHITE_SPACE = " ";
+    private static final String ANSWER_CORRECT = "O";
+    private static final String ANSWER_INCORRECT = "X";
+    private static final String ANSWER_WHITE_SPACE = " ";
     private static final String PRINT_GAME_START = "다리 건너기 게임을 시작합니다.";
     private static final String PRINT_FINAL_GAME_RESULT = "최종 게임 결과";
     private static final String PRINT_RESULT = "게임 성공 여부: %s%s";
@@ -29,13 +29,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(final Bridge bridge, final List<String> givenAnswerSheet) {
-        System.out.print(ROW_START_BRACKET);
-        printRow(bridge, givenAnswerSheet, UP_ROW);
-        System.out.println(ROW_END_BRACKET);
-        System.out.print(ROW_START_BRACKET);
-        printRow(bridge, givenAnswerSheet, DOWN_ROW);
-        System.out.println(ROW_END_BRACKET);
+    public void printMap(final Bridge bridge, final List<String> userAnswerSheet) {
+        printRow(bridge, userAnswerSheet, UP_ROW);
+        printRow(bridge, userAnswerSheet, DOWN_ROW);
     }
 
     /**
@@ -56,29 +52,24 @@ public class OutputView {
         System.out.println(PRINT_FINAL_GAME_RESULT);
     }
 
-    private void printRow(final Bridge bridge, final List<String> givenAnswerSheet, final String thisRow) {
-        for (int i = INDEX_ZERO; i < givenAnswerSheet.size(); ++i) {
+    private void printRow(final Bridge bridge, final List<String> userAnswerSheet, final String thisRow) {
+        System.out.print(ROW_START_BRACKET);
+        for (int i = INDEX_ZERO; i < userAnswerSheet.size(); ++i) {
             if (i != INDEX_ZERO) {
                 System.out.print(ROW_DELIMITER);
             }
-            printElementResultOrWhiteSpace(bridge.getElementByIndex(i), givenAnswerSheet.get(i), thisRow);
+            System.out.print(getElementResult(bridge.getElementByIndex(i), userAnswerSheet.get(i), thisRow));
         }
+        System.out.println(ROW_END_BRACKET);
     }
 
-    private void printElementResultOrWhiteSpace
-            (final String bridgeElement, final String userElement, final String thisRow) {
-        if (userElement.equals(thisRow)) {
-            printElementResult(bridgeElement, userElement);
-            return;
+    private String getElementResult(final String bridgeElement, final String userElement, final String thisRow) {
+        if (!userElement.equals(thisRow)) {
+            return ANSWER_WHITE_SPACE;
         }
-        System.out.print(WHITE_SPACE);
-    }
-
-    private void printElementResult(final String bridgeElement, final String userElement) {
         if (bridgeElement.equals(userElement)) {
-            System.out.print(CORRECT_ANSWER);
-            return;
+            return ANSWER_CORRECT;
         }
-        System.out.print(INCORRECT_ANSWER);
+        return ANSWER_INCORRECT;
     }
 }

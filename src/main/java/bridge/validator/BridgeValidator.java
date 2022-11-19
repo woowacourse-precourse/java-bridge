@@ -2,11 +2,9 @@ package bridge.validator;
 
 import bridge.exception.BridgeException;
 
-import java.util.List;
 
 public class BridgeValidator {
 
-    private static final int INDEX_ZERO = 0;
     private static final int BRIDGE_MIN_SIZE = 3;
     private static final int BRIDGE_MAX_SIZE = 20;
 
