@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Result {
+    private static final String UP_SIGN = "U";
+    private static final String DOWN_SIGN = "D";
+
     private int tryCount;
     private List<MoveDirection> directions;
     private List<Boolean> isAnswers;
@@ -35,5 +38,15 @@ public class Result {
         return isAnswers;
     }
 
+    public boolean isUpSignAnswer(boolean isAnswer, MoveDirection direction) {
+        return isAnswer && direction.isEqualTo(UP_SIGN);
+    }
 
+    public boolean isUpSignWrongAnswer(boolean isAnswer, MoveDirection direction) {
+        return !isAnswer && direction.isEqualTo(UP_SIGN);
+    }
+
+    public boolean isDownSignAnswer(boolean isAnswer, MoveDirection direction) {
+        return isAnswer && direction.isEqualTo(DOWN_SIGN);
+    }
 }
