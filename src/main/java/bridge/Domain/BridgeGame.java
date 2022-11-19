@@ -10,11 +10,14 @@ public class BridgeGame {
     private int gameStartCount;
     private Player player;
     private Bridge bridge;
+    private GameResult gameResult;
+    private GameResultGenerator gameResultGenerator;
 
-    public BridgeGame(Bridge bridge) {
+    public BridgeGame(Bridge bridge, GameResultGenerator gameResultGenerator) {
         this.gameStartCount = 1;
         this.player = new Player();
         this.bridge = bridge;
+        this.gameResultGenerator = gameResultGenerator;
     }
 
     /**
@@ -22,14 +25,15 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public GameResult move(String position) {
+    public void move(String position) {
         BridgeType positionType = BridgeType.getBridgeType(position);
         int distance = player.getPosition();
         player.movePlayer();
         if (bridge.isBridgeFinished(distance) && bridge.canCrossBridge(distance, position)) {
-            return new GameResult(positionType, BridgeResultType.POSSIBLE);
+            this.gameResult = new GameResult(positionType, BridgeResultType.POSSIBLE);
+            return;
         }
-        return new GameResult(positionType, BridgeResultType.IMPOSSIBLE);
+        this.gameResult = new GameResult(positionType, BridgeResultType.IMPOSSIBLE);
     }
 
     /**
@@ -37,12 +41,13 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(GameResultGenerator gameResultGenerator) {
+    public void retry() {
         this.gameStartCount++;
         gameResultGenerator.initGameResult();
+        player.initPosition();
     }
 
     public int getGameStartCount() {
-        return this.getGameStartCount();
+        return this.gameStartCount;
     }
 }
