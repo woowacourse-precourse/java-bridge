@@ -22,7 +22,7 @@ public class BridgeGame {
         this.bridgeGameResult = new BridgeGameResult();
     }
 
-    public Bridge makeBridge(int size) {
+    private Bridge makeBridge(int size) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         List<String> bridge = bridgeMaker.makeBridge(size);
