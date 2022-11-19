@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,6 @@ import java.util.List;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -23,22 +22,16 @@ public class BridgeMaker {
 
         for (int i = 0; i < size; i++) {
             int word = bridgeNumberGenerator.generate();
-            String randomWords = "";
-
-            randomWords = func(word, randomWords);
-            randomBridge.add(randomWords);
+            randomBridge.add(func(word));
         }
         return randomBridge;
     }
 
-    private String func(int word, String randomWords) {
+    private String func(int word) {
         if (word == 1) {
             randomWords = "U";
         }
 
-        if (word == 0) {
-            randomWords = "D";
-        }
-        return randomWords;
+        return "D";
     }
 }
