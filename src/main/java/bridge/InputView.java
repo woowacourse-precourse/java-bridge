@@ -13,6 +13,7 @@ public class InputView {
     public int readBridgeSize() {
         int bridge_size;
         String input_str = Console.readLine();
+        if(input_str.isBlank()) throw new IllegalArgumentException("[ERROR] 빈 문자를 입력할 수 없습니다.");
         try{
             bridge_size = Integer.parseInt(input_str);
         }catch (NumberFormatException e){
