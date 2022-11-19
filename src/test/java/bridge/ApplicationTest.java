@@ -119,10 +119,10 @@ class ApplicationTest extends NsTest {
         List<String> generatedBridge = List.of("U", "D", "D");
 
         // when
-        String output = OutputView.printMap(nowBridge, generatedBridge);
+        StringBuffer output = OutputView.printMap(nowBridge, generatedBridge);
 
         // then
-        assertEquals("[ O |   | X ]\n[   | O |   ]\n", output);
+        assertEquals("[ O |   | X ]\n[   | O |   ]\n", output.toString());
     }
 
 

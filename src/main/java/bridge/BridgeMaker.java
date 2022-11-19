@@ -24,10 +24,9 @@ public class BridgeMaker {
             int flag = bridgeNumberGenerator.generate();
             if (flag == 0) {
                 bridge.add("D");
+                continue;
             }
-            if (flag == 1) {
-                bridge.add("U");
-            }
+            bridge.add("U");
         }
         return bridge;
     }

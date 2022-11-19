@@ -2,6 +2,10 @@ package bridge;
 
 import java.util.List;
 
+import static bridge.BridgeMap.CORRECT;
+import static bridge.BridgeMap.INCORRECT;
+import static bridge.BridgeMap.BLANK;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -12,42 +16,43 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static String printMap(List<String> nowBridge, List<String> generatedBridge) {
-        String up = "[";
-        String down = "[";
-        final String CORRECT = " O ";
-        final String INCORRECT = " X ";
-        final String BLANK = "   ";
+    public static StringBuffer printMap(List<String> nowBridge, List<String> generatedBridge) {
+        StringBuffer up = new StringBuffer("[");
+        StringBuffer down = new StringBuffer("[");
 
         for (int i = 0; i < nowBridge.size(); i++) {
-            if (i != 0) {
-                up += "|";
-                down += "|";
+            consistentCase(nowBridge, generatedBridge, i, up, down);
+            inconsistentCase(nowBridge, generatedBridge, i, up, down);
+        }
+        up.replace(up.length() - 1, up.length(), "]").append("\n");
+        down.replace(down.length() - 1, down.length(), "]").append(("\n"));
+        return up.append(down);
+    }
+
+    public static void consistentCase(List<String> nowBridge, List<String> generatedBridge, int i, StringBuffer up, StringBuffer down) {
+        if (nowBridge.get(i).equals(generatedBridge.get(i))) {
+            if (nowBridge.get(i).equals("U")) {
+                up.append(CORRECT.getElement());
+                down.append(BLANK.getElement());
             }
-            if (nowBridge.get(i).equals(generatedBridge.get(i))) {
-                if (nowBridge.get(i).equals("U")) {
-                    up += CORRECT;
-                    down += BLANK;
-                }
-                if (nowBridge.get(i).equals("D")) {
-                    up += BLANK;
-                    down += CORRECT;
-                }
-            }
-            if (!nowBridge.get(i).equals(generatedBridge.get(i))) {
-                if (nowBridge.get(i).equals("U")) {
-                    up += INCORRECT;
-                    down += BLANK;
-                }
-                if (nowBridge.get(i).equals("D")) {
-                    up += BLANK;
-                    down += INCORRECT;
-                }
+            if (nowBridge.get(i).equals("D")) {
+                up.append(BLANK.getElement());
+                down.append(CORRECT.getElement());
             }
         }
-        up += "]\n";
-        down += "]\n";
-        return up + down;
+    }
+
+    public static void inconsistentCase(List<String> nowBridge, List<String> generatedBridge, int i, StringBuffer up, StringBuffer down) {
+        if (!nowBridge.get(i).equals(generatedBridge.get(i))) {
+            if (nowBridge.get(i).equals("U")) {
+                up.append(INCORRECT.getElement());
+                down.append(BLANK.getElement());
+            }
+            if (nowBridge.get(i).equals("D")) {
+                up.append(BLANK.getElement());
+                down.append(INCORRECT.getElement());
+            }
+        }
     }
 
 

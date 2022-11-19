@@ -37,16 +37,16 @@ public class BridgeGame {
         while (true) {
             try {
                 pick = InputView.readMoving();
-                break;
+                return pick;
             } catch (IllegalArgumentException e) {
                 System.out.println(e);
             }
         }
-        return pick;
     }
 
     public static boolean isGameWin(List<String> generatedBridge, List<String> nowBridge) {
-        return nowBridge.size() == generatedBridge.size() && nowBridge.get(nowBridge.size() - 1).equals(generatedBridge.get(generatedBridge.size() - 1));
+        return nowBridge.size() == generatedBridge.size() &&
+                nowBridge.get(nowBridge.size() - 1).equals(generatedBridge.get(generatedBridge.size() - 1));
     }
 
     /**
@@ -83,11 +83,10 @@ public class BridgeGame {
         while (true) {
             try {
                 size = InputView.readBridgeSize();
-                break;
+                return size;
             } catch (IllegalArgumentException e) {
                 System.out.println(e);
             }
         }
-        return size;
     }
 }
