@@ -26,9 +26,6 @@ public class BridgeController {
         List<String> bridgeNumbers = length.makeBridgeNumbers(bridgeMaker);
 
         Bridge bridge = createBridge(bridgeNumbers);
-//        bridge.getDirections().stream()
-//                .map(Direction::getDirection)
-//                .forEach(System.out::println);
 
         BridgeGame bridgeGame = createBridgeGame();
         boolean isQuit = false;
@@ -38,7 +35,6 @@ public class BridgeController {
         PassingPositions passingPositions = createPassingPositions(bridge);
         Result result = null;
 
-//        game:
         while (true) {
             pos = -1;
             do {
