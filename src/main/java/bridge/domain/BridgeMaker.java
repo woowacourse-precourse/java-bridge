@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import java.util.List;
 
@@ -19,5 +19,25 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         return null;
+    }
+
+    private String splitBridge(List<String> Bridge){
+        return null;
+    }
+
+    private List<Integer> putNumber(int size){
+        return null;
+    }
+
+    private List<String> putText(List<Integer> putNumber){
+        return null;
+    }
+
+    private void checkNumber(List<Integer> putNumber){
+
+    }
+
+    private void checkText(List<Integer> putText){
+
     }
 }

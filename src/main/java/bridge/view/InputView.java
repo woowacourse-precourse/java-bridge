@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -24,5 +24,15 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private int numberRange(int UserNumber){
+        return 0;
+    }
+
+
+
+    private void checkNumber(int UserNumber){
+
     }
 }
