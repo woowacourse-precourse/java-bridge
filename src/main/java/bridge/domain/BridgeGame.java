@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.calculator.BridgeCalculator;
 import bridge.domain.converter.ResultConverter;
 import bridge.ui.InputView;
@@ -26,10 +24,14 @@ public class BridgeGame {
         this.input = input;
         this.output = output;
         this.bridge = bridge;
+        this.attempts = 1;
         this.playerBoard = new PlayerBoard(bridge.size());
         this.bridgeCalculator = new BridgeCalculator(bridge);
         this.resultConverter = new ResultConverter();
-        this.attempts = 1;
+    }
+
+    public void quitGame(boolean isComplete) {
+        output.printResult(isComplete, attempts, playerBoard);
     }
     public void run() {
     }
