@@ -9,12 +9,14 @@ import java.util.List;
  */
 public class BridgeGame {
     private Bridge bridge;
+    private Player player;
     private int trial;
 
     public BridgeGame(int bridgeSize) {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         this.bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+        this.player = new Player();
         this.trial = 0;
     }
 
