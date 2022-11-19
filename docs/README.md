@@ -22,8 +22,8 @@
     - [ ] D,U값이 아니면 예외처리를 할 수 있다. BridgeMaker#checkText()
 
 
- - [ ] 사용자에게 U와 D값을 입력받을 수 있다. InputView#readMoving()
-   - [ ] 다른 값을 입력받으면 예외처리를 할 수 있다. InputView#checkText()
+ - [x] 사용자에게 U와 D값을 입력받을 수 있다. InputView#readMoving()
+   - [x] 다른 값을 입력받으면 예외처리를 할 수 있다. InputView#checkText()
 
 
  - [ ] 게임 시도 여부를 입력 받을 수 있다. InputView#readGameCommand()

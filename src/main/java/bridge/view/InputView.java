@@ -12,7 +12,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         int bridgeSize;
 
         OutputView.printStart();
@@ -46,7 +46,7 @@ public class InputView {
         return null;
     }
 
-    public void checkNumber(int userNumber){
+    public static void checkNumber(int userNumber){
         if(3> userNumber || userNumber > 20){
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
         }
