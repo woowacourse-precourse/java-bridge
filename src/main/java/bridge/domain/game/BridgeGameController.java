@@ -19,6 +19,11 @@ public class BridgeGameController {
     }
     
     public void start() {
+        outputView.printStartMessage();
+        play();
+    }
+    
+    private void play() {
         BridgeMove selectMove = inputView.readMoving();
         boolean isSuccess = bridgeGameService.tryMove(selectMove);
         outputView.printMap(bridgeGameService.getGame());
@@ -26,19 +31,19 @@ public class BridgeGameController {
         if (bridgeGameService.isFinish()) {
             return;
         }
-        
+    
         next(isSuccess);
     }
     
     private void next(boolean isSuccess) {
         if (isSuccess) {
-            start();
+            play();
             return;
         }
         
         if (isRetry()) {
             bridgeGameService.retry();
-            start();
+            play();
         }
     }
     
