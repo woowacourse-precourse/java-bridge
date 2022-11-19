@@ -25,7 +25,6 @@ public class InputController {
         }
     }
 
-
     public String readGameCommandUntilSucceed() {
         while (true) {
             try {
