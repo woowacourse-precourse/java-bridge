@@ -1,14 +1,13 @@
 package bridge;
 
+import static bridge.BridgeConstants.DOWN;
+import static bridge.BridgeConstants.QUIT;
+import static bridge.BridgeConstants.RETRY;
+import static bridge.BridgeConstants.UP;
+
 public class InputValidator {
     private static final int SIZE_LIMIT_START = 3;
     private static final int SIZE_LIMIT_END = 20;
-
-    private static final String UP = "U";
-    private static final String DOWN = "D";
-
-    private static final String RETRY = "R";
-    private static final String QUIT = "Q";
 
     public static boolean isValidBridge(String bridgeSize){
         return isNumeric(bridgeSize) && isValidInRange(bridgeSize);
@@ -23,11 +22,17 @@ public class InputValidator {
     }
 
     public static boolean isValidMove(String move){
-        return move.matches("^[UD]$");
+        if (move.equals(UP) || move.equals(DOWN)){
+            return true;
+        }
+        return false;
     }
 
     public static boolean isValidCmd(String cmd){
-        return cmd.matches("^[RQ]$");
+        if (cmd.equals(RETRY) || cmd.equals(QUIT)){
+            return true;
+        }
+        return false;
     }
 
 }
