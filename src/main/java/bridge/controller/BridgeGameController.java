@@ -36,6 +36,26 @@ public class BridgeGameController {
 		}
 	}
 
+	private String receiveMoveCommand() {
+		try {
+			String moving = inputView.readMoving();
+			return bridgeGameService.checkMoveCommand(moving);
+		} catch (IllegalArgumentException e) {
+			System.out.print(e.getMessage());
+			return receiveMoveCommand();
+		}
+	}
+
+	private boolean askRetry() {
+		try {
+			String retryInput = inputView.readGameCommand();
+			return bridgeGameService.retryOrEnd(retryInput);
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return askRetry();
+		}
+	}
+
 	private List<List<String>> startBridgeGame(BridgeGame bridgeGame) {
 		boolean playGame = true;
 		List<List<String>> currentMap = new ArrayList<>();
@@ -59,16 +79,6 @@ public class BridgeGameController {
 		return moveMap;
 	}
 
-	private String receiveMoveCommand() {
-		try {
-			String moving = inputView.readMoving();
-			return bridgeGameService.checkMoveCommand(moving);
-		} catch (IllegalArgumentException e) {
-			System.out.print(e.getMessage());
-			return receiveMoveCommand();
-		}
-	}
-
 	private boolean failedClear(List<List<String>> currentMap) {
 		List<String> upMap = currentMap.get(0);
 		List<String> downMap = currentMap.get(1);
@@ -76,26 +86,11 @@ public class BridgeGameController {
 	}
 
 	private void crossBridge(String moving, BridgeGame bridgeGame, List<List<String>> currentMap) {
-		try {
-			bridgeGameService.moveBridge(moving, bridgeGame, currentMap);
-			outputView.printMap(currentMap);
-		} catch (IllegalArgumentException e) {
-			System.out.print(e.getMessage());
-			crossBridge(moving, bridgeGame, currentMap);
-		}
+		bridgeGameService.moveBridge(moving, bridgeGame, currentMap);
+		outputView.printMap(currentMap);
 	}
 
 	private boolean checkInCorrect(List<String> map) {
 		return map.stream().anyMatch(m -> m.contains("X"));
-	}
-
-	private boolean askRetry() {
-		try {
-			String retryInput = inputView.readGameCommand();
-			return bridgeGameService.retryOrEnd(retryInput);
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-			return askRetry();
-		}
 	}
 }
