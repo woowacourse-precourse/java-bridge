@@ -63,6 +63,7 @@ public class BridgeGame {
     }
 
     public boolean isSuccess(){
+        //끝에 도착했으면서 마지막 입력이 틀리지 않을 때 성공
         return isEndOfBridge() && (userMoving.get(userMoving.size()-1).equals("U") || userMoving.get(userMoving.size()-1).equals("D"));
     }
 
