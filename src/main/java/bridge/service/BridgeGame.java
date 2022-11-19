@@ -54,4 +54,8 @@ public class BridgeGame {
 
         return bridge.getBridge();
     }
+
+    public String getResult() {
+        return resultBridge.toString();
+    }
 }
