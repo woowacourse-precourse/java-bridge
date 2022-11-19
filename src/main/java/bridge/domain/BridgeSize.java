@@ -1,6 +1,4 @@
-package bridge;
-
-import bridge.Message;
+package bridge.domain;
 
 public class BridgeSize {
     private int size;
