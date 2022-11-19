@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.List;
+import bridge.Map;
 
 public class BridgeGame {
 
@@ -38,15 +39,16 @@ public class BridgeGame {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         limitSize = determineBridgeSize();
         crossable = bridgeMaker.makeBridge(limitSize);
+        Map map = new Map(crossable);
 
         while (!endGame) {
-            isWin = bridgeMaker.makeMap(crossable);
+            isWin = map.makeMap(crossable);
             if (!isWin) {
                 endGame = retry();
             }
             if (isWin||endGame) {
                     outputView.printTitle();
-                    outputView.printMap(bridgeMaker.getMapUpper(),bridgeMaker.getMapLower());
+                    outputView.printMap(map.getMapUpper(),map.getMapLower());
                     outputView.printResult(isWin,attempts);
                     return;
                 }
