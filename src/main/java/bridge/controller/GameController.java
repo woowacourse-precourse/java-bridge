@@ -68,7 +68,7 @@ public class GameController {
 
     private void decideNextStep(String cmd) {
         if (cmd.equals(CONTINUE)) {
-            bridgeGame.refreshGameContext();
+            bridgeGame.retry();
             crossToOtherSide();
         }
         // printFinalResult();
