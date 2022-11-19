@@ -57,7 +57,7 @@ class BridgeGameTest {
         //given
         character.setNextMove("D");
         //when
-        bridgeGame.saveMove();
+        bridgeGame.saveNextMove();
         //then
         List<Progress> progresses = bridgeGame.showCurrentResult();
         assertThat(progresses.size()).isEqualTo(1);

@@ -21,11 +21,11 @@ public class BridgeGame {
 
     public void move(String destination) {
         character.setNextMove(destination);
-        saveMove();
+        saveNextMove();
         character.move();
     }
 
-    public void saveMove() {
+    public void saveNextMove() {
         String destination = character.showNextDestination();
         Progress progress = makeMove(destination, isAbleToMove());
         moves.add(progress);
