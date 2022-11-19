@@ -1,10 +1,11 @@
 package bridge.model.value;
 
 public enum BridgeIngredient {
-    START("[ "),
-    SEPARATOR("| "),
-    MATCH("O "),
-    NOT_MATCH("X "),
+    START("["),    //START, MATCH, SEPARATOR, NOT_MATCH, END
+    SEPARATOR("|"),
+    MATCH("O"),
+    NOT_MATCH("X"),
+    BLANK(" "),
     END("]");
     private final String ingredient;
     BridgeIngredient(String ingredient){
