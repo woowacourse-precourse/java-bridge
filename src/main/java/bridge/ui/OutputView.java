@@ -12,7 +12,6 @@ public class OutputView {
     public void printMap(List<Answer> upperBridge, List<Answer> downBridge) {
         printEachBridge(upperBridge);
         printEachBridge(downBridge);
-        System.out.println();
     }
 
     public void printResult(Result isSuccess, int totalTry) {
