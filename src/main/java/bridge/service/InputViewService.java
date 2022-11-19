@@ -29,4 +29,15 @@ public class InputViewService {
         }
         return inputMoving();
     }
+
+    public String inputGameCommand() {
+        try {
+            outputView.printChoiceRetry();
+            String gameCommand = inputView.readGameCommand();
+            return gameCommand;
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
+        return inputGameCommand();
+    }
 }
