@@ -37,10 +37,16 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public static String readMoving() {
+    public static String readMoving() throws IllegalArgumentException {
         System.out.println(BridgeGameInfo.SELECT_UP_DOWN.message);
         // 이동할 칸 입력받기
-        return Console.readLine();
+        String input = Console.readLine();
+
+        if (!(input.equals("U") || input.equals("D"))) {
+            throw new IllegalArgumentException();
+        }
+
+        return input;
     }
 
     /**

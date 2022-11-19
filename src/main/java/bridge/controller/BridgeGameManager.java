@@ -37,7 +37,12 @@ public class BridgeGameManager {
         int step = 0;
         while (step < targetBridge.size()) {
             // 이동 할 칸 입력받음
-            String upDown = InputView.readMoving();
+            try {
+                String upDown = InputView.readMoving();
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 이동할 칸은 U 또는 D 여야 합니다.");
+            }
+
             System.out.println(upDown);
 
             // 이동 시키키기
