@@ -30,7 +30,7 @@ public class BridgeGameController {
             if(!bridgeGame.success()) break;
         }
 
-        if(bridgeGame.getBridgeSize() != bridgeGame.getResultSize()) retry();
+        if(!bridgeGame.success()) retry();
     }
 
     private void end() {
