@@ -2,7 +2,7 @@
 - [ ] 게임 시작 문구 출력 기능 - BridgeGame
 
 - [ ] 다리의 길이를 입력받는 기능 (3 이상 20이하의 숫자) - InputView
-  - [ ] 다리 길이 입력받기 - InputView#readBridgeSize
+  - [x] 다리 길이 입력받기 - InputView#readBridgeSize
   - [ ] 예외처리 (숫자가 아닐 때 / 범위 벗어났을 때) - InputView#validateBridgeSize
 - [ ] 다리를 생성하는 기능 - BridgeMaker
   - [ ] 위 칸을 건널 수 있는 경우 U, 아래 칸을 건널 수 있는 경우 D값으로 나타내기 - BridgeMaker#makeBridge
@@ -32,6 +32,7 @@
   - IllegalArgumentException 발생 시키기
   - "[ERROR]"로 시작하는 에러 메시지를 출력
   - 그 부분부터 입력을 다시 받는다.
+  - +) 예외처리용 클래스 따로 만들까? 아니면 그냥 해당 클래스 안에서 알아서 처리?
 
 ## 🔗 제시된 클래스
 - InputView : 사용자로부터 입력을 받는 역할
