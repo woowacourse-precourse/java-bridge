@@ -63,6 +63,14 @@ public class BridgeGame {
         return bridge;
     }
 
+    public List<Bridge> failBridgeUp(List<Bridge> bridge) {
+        String bridgeUp = bridge.get(0).getBridge().get(bridgeCount).replace("   ", " X ");
+        bridge.get(0).getBridge().set(bridgeCount, bridgeUp);
+        bridgeCount++;
+        return bridge;
+    }
+
+
 
     public int BridgeNumberGenerator() {
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
