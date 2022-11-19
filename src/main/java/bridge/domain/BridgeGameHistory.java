@@ -7,10 +7,12 @@ public class BridgeGameHistory {
 
     private List<String> bridgeHistory;
     private int currentIndex;
+    private int bridgeSize;
 
-    public BridgeGameHistory() {
+    public BridgeGameHistory(int bridgeSize) {
         this.bridgeHistory = new ArrayList<>();
         this.currentIndex = 0;
+        this.bridgeSize = bridgeSize;
     }
 
     public void addBridgeHistory(String next) {
@@ -27,11 +29,18 @@ public class BridgeGameHistory {
     }
 
     private void updateCurrentIndex() {
-        currentIndex = bridgeHistory.size()-1;
+        currentIndex = bridgeHistory.size() - 1;
     }
 
     public void initBridgeHistory() {
         bridgeHistory = new ArrayList<>();
         currentIndex = 0;
+    }
+
+    public boolean isEndGame() {
+        if (bridgeHistory.size() == bridgeSize) {
+            return true;
+        }
+        return false;
     }
 }
