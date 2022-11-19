@@ -23,7 +23,11 @@ public class Bridge {
         currentPosition = -1;
     }
 
+    private int lastIndex() {
+        return availableBlocks.size() - 1;
+    }
+
     public boolean isLastBlock() {
-        return availableBlocks.size() == currentPosition;
+        return lastIndex() == currentPosition;
     }
 }
