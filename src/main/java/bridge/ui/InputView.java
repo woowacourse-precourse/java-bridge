@@ -11,6 +11,9 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        System.out.println("다리 건너기 게임을 시작합니다.\n");
+        System.out.println("다리의 길이를 입력해주세요.");
+
         try { return Integer.parseInt(Console.readLine());}
         catch(IllegalArgumentException e) { throw new IllegalArgumentException("숫자만 입력해주세요.");}
     }
@@ -19,6 +22,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String userMove = Console.readLine();
         return isCorrectInputCompareByTwoString(userMove, "U", "D");
     }
@@ -27,6 +31,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String userRestart = Console.readLine();
         return isCorrectInputCompareByTwoString(userRestart, "R", "Q");
     }
@@ -37,7 +42,6 @@ public class InputView {
      * @param possibleSecondString 가능한 두번째 문자열
      * @throws IllegalArgumentException possibleFirstString, possibleSecondString 아닌 문자열이 입력된 경우
      * @return 입력받은 문자열을 반환한다.
-
      */
     private String isCorrectInputCompareByTwoString(String userInput, String possibleFirstString, String possibleSecondString) {
         if(userInput.length() == 1)
