@@ -27,29 +27,32 @@ public class BridgeGame {
      */
     public boolean move(String moving, int count) {
         if (moving.equals("U")) {
-            if (moving.equals(bridge.get(count))) {
-                upperClass.add(count, "O");
-                lowerClass.add(count, " ");
-                return true;
-            } else {
-                upperClass.add(count,"X");
-                lowerClass.add(count, " ");
-                return false;
-            }
-        }
-        if (moving.equals("D")) {
-            if (moving.equals(bridge.get(count))) {
-                lowerClass.add("O");
-                upperClass.add(" ");
-                return true;
-            } else {
-                lowerClass.add("X");
-                upperClass.add(" ");
-                return false;
-            }
+            moveUp(moving, count);
+        } else if (moving.equals("D")) {
+            moveDown(moving, count);
         }
 
-        return false;
+        return moving.equals(bridge.get(count));
+    }
+
+    private void moveUp(String moving, int count) {
+        if (moving.equals(bridge.get(count))) {
+            upperClass.add(count, "O");
+            lowerClass.add(count, " ");
+        } else {
+            upperClass.add(count,"X");
+            lowerClass.add(count, " ");
+        }
+    }
+
+    private void moveDown(String moving, int count) {
+        if (moving.equals(bridge.get(count))) {
+            lowerClass.add("O");
+            upperClass.add(" ");
+        } else {
+            lowerClass.add("X");
+            upperClass.add(" ");
+        }
     }
 
     /**
