@@ -38,15 +38,24 @@ public class BridgeGameController {
     }
 
     private void inGame() {
-        takeTurn();
+        takeTrial();
         while (inputView.readGameCommand().equals(RESTART)) {
-            takeTurn();
+            bridgeGame.retry();
+            takeTrial();
         }
     }
 
-    private void takeTurn() {
+    private void takeTrial() {
+        String movement;
+        do {
+            movement = getMovement();
+        } while (bridgeGame.isMovementSuccess(movement));
+    }
+
+    private String getMovement() {
         outputView.printNextMovementInputMessage();
         String nextMovement = inputView.readMoving();
-        bridgeGame.move(nextMovement);
+        bridgeGame.move();
+        return nextMovement;
     }
 }

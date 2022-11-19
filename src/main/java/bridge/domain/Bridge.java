@@ -10,9 +10,9 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public boolean isMovable(String input, int squareIndex) {
+    public boolean isAvailableSquare(String upOrDown, int squareIndex) {
         String squareInformation = bridge.get(squareIndex);
-        return squareInformation.equals(input);
+        return squareInformation.equals(upOrDown);
     }
 
     public boolean isLastIndex(int index) {
