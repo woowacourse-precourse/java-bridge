@@ -16,6 +16,7 @@ public class GameManager {
         BridgeGame bridgeGame = new BridgeGame(bridge);
         bridgeGame.start();
 
+
     }
 
     private static List<String> createBridge(){
