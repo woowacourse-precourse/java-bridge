@@ -39,10 +39,7 @@ public class OutputView {
         System.out.printf(TRY_COUNT_ANNOUNCEMENT, tryCount);
     }
 
-    public void announceEndGame(boolean isSuccess) {
-        if (isSuccess) {
-            System.out.println();
-        }
+    public void announceEndGame() {
         System.out.println(END_GAME_ANNOUNCEMENT);
     }
 }
