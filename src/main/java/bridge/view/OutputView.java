@@ -89,4 +89,13 @@ public class OutputView {
     public void printNumberOfAttempts(Bridge bridge) {
         System.out.println("총 시도한 횟수: " + bridge.getNumberOfAttempts());
     }
+
+    // 게임 성공 여부 출력 기능
+    public void printGameResult(Bridge bridge) {
+        if (bridge.isBridgeEnd() && bridge.isAnswer()) {
+            System.out.println("게임 성공 여부: 성공");
+            return;
+        }
+        System.out.println("게임 성공 여부: 실패");
+    }
 }
