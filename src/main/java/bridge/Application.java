@@ -11,11 +11,13 @@ public class Application {
 
     public static void main(String[] args) {
         bridgeGame = new BridgeGame(GameSetter());
+        Boolean correct = null;
         while (!bridgeGame.gameFinishedCheck()) {
-            Boolean correct = move();
+            correct = move();
             outputView.printMap(bridgeGame, correct);
             if (!gameContinueCheck(correct)) break;
         }
+        outputView.printResult(bridgeGame, correct);
     }
 
     private static List<String> GameSetter() {
