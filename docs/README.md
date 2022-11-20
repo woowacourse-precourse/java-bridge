@@ -66,9 +66,15 @@
 4. input user answer
    * input view 구현
 5. check user's submitted answer
-   * controller 에 
+   * controller 에 BridgeMove를 선언하는 로직 구현
 6. print turn's result
+   * processBridgeGame() 구현
+   * 결과 출력을 위한 bridgeMap domain 구현
+   * OutputView의 printMap() 구현
 7. ask retry
+   * Command 입력을 위한 InputView 구현
+   * BridgeCommand domain 구현
+   * Message enum 구현
 8. retry game
 9. end game
 10. print whole game result

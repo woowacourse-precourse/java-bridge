@@ -2,10 +2,7 @@ package bridge.controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.domain.bridge.BridgeGame;
-import bridge.domain.bridge.BridgeMap;
-import bridge.domain.bridge.BridgeMove;
-import bridge.domain.bridge.BridgeSize;
+import bridge.domain.bridge.*;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -26,15 +23,16 @@ public class MainController {
     }
 
     public static void processBridgeGame(BridgeGame bridgeGame) {
-        BridgeMap bridgeMap = new BridgeMap();
         do {
             String direction = new BridgeMove(InputView.readMoving()).get();
-
             boolean isCorrect = bridgeGame.move(direction);
-            bridgeMap.addMap(direction, isCorrect);
-            OutputView.printMap(bridgeMap.get());
+            OutputView.printMap(bridgeGame.getBridgeMap().get());
             if (!isCorrect) {
-
+                BridgeCommand bridgeCommand = new BridgeCommand(InputView.readGameCommand());
+                if (!bridgeCommand.getIsRetry()) {
+                    break;
+                }
+                bridgeGame.retry();
             }
         } while (!bridgeGame.checkEnd());
     }
