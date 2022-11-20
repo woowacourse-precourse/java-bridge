@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGame {
@@ -11,6 +12,8 @@ public class BridgeGame {
 
     public BridgeGame(List<String> correctBridge) {
         this.correctBridge = correctBridge;
+        this.upperBridge = new ArrayList<>();
+        this.bottomBridge = new ArrayList<>();
     }
 
     public Boolean move(String inputMoving, String nextBridge) {
@@ -23,24 +26,33 @@ public class BridgeGame {
     }
 
     public Boolean retry(String retryInput) {
-        return retryInput.equals("R");
+        if (retryInput.equals("R")) {
+            clearFailStage();
+            return true;
+        }
+        return false;
     }
 
     private void makeBridgeSuccessState(String nextBridge) {
-        if (checkUpperBridge(nextBridge)) {
+        if (checkIsUpperBridge(nextBridge)) {
             upperBridge.add(1);
         }
         bottomBridge.add(2);
     }
 
     private void makeBridgeFailState(String nextBridge) {
-        if (checkUpperBridge(nextBridge)) {
+        if (checkIsUpperBridge(nextBridge)) {
             upperBridge.add(0);
         }
         bottomBridge.add(2);
     }
 
-    private Boolean checkUpperBridge(String nextBridge) {
+    private Boolean checkIsUpperBridge(String nextBridge) {
         return nextBridge.equals("U");
+    }
+
+    private void clearFailStage() {
+        upperBridge.remove(upperBridge.size() - 1);
+        bottomBridge.remove(bottomBridge.size() - 1);
     }
 }
