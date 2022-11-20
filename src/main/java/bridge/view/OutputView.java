@@ -106,7 +106,7 @@ public class OutputView {
         printMap(moveResult);
         System.out.println();
 
-        System.out.println("게임 성공 여부: " + moveResult.getMoveStatus());
+        System.out.println("게임 성공 여부: " + moveResult.getMoveStatus().getMessage());
         System.out.println("총 시도한 횟수: " + bridgeGame.getTotalAttempt());
     }
 }
