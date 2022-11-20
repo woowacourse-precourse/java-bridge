@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.validate.validateStringFormat;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -25,6 +26,7 @@ public class InputView {
     public String readMoving() {
         System.out.println(READ_MOVING_MESSAGE);
         String inputValue = Console.readLine();
+        validateStringFormat.validate(inputValue);
         return inputValue;
     }
 
@@ -34,6 +36,7 @@ public class InputView {
     public String readGameCommand() {
         System.out.println(READ_GAME_COMMAND_MESSAGE);
         String inputValue = Console.readLine();
+        validateStringFormat.validate(inputValue);
         return inputValue;
     }
 }
