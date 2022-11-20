@@ -9,10 +9,6 @@ public class MovingResult {
         this.State = state;
     }
 
-    public boolean isCorrect() {
-        return this.State.equals("O");
-    }
-
     public BridgeBlock getBridgeBlock() {
         return bridgeBlock;
     }

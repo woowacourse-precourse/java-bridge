@@ -21,7 +21,13 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
-
+    public void retry(BridgeResult bridgeResult, GameState gameState, String gameCommand) {
+        if (gameCommand.equals("Q")) {
+            gameState.gameOver();
+        }
+        if (gameCommand.equals("R")) {
+            gameState.plusTryCnt();
+            bridgeResult.clearMap();
+        }
     }
 }

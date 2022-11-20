@@ -1,21 +1,14 @@
 package bridge.system;
 
 import bridge.controller.BridgeController;
-import bridge.service.BridgeGame;
-import bridge.util.BridgeMaker;
-import bridge.util.BridgeRandomNumberGenerator;
-import bridge.view.InputView;
-import bridge.view.OutputView;
+import bridge.domain.BridgeResult;
+import bridge.domain.GameState;
+import bridge.domain.Phase;
 
 public class BridgeGameApplication {
 
     public void execute() {
-        InputView inputView = new InputView();
-        OutputView outputView = new OutputView();
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        BridgeGame bridgeGame = new BridgeGame();
-        BridgeController bridgeController = new BridgeController(inputView, outputView, bridgeGame, bridgeMaker);
-
-        bridgeController.playBridgeGame();
+        BridgeController bridgeController = new BridgeController();
+        bridgeController.playBridgeGame(new Phase(), new BridgeResult(), new GameState(1, true));
     }
 }
