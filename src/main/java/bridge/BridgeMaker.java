@@ -15,8 +15,8 @@ public class BridgeMaker {
     public static final int BRIDGE_SIZE_MIN_INCLUSIVE = 3;
     public static final int BRIDGE_SIZE_MAX_INCLUSIVE = 20;
 
-    final int UP_BRIDGE_NUMBER = 0;
-    final int DOWN_BRIDGE_NUMBER = 1;
+    final int UP_BRIDGE_NUMBER = 1;
+    final int DOWN_BRIDGE_NUMBER = 0;
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
