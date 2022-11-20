@@ -21,16 +21,6 @@
 
 ## 데이터 처리 관련 (Model)
 
-### PlayerPath (Entity/Repository - Transient)
-
-- 사용자의 이동 경로를 저장하는 기능
-- 저장된 이동 경로를 수정불가능하게 만들어서 반환하는 기능
-
-### Bridge (Entity/Repository - Persistent)
-
-- 다리의 안전한 경로를 받아서 추가/수정/삭제 불가능한 객체로 생성하는 기능
-- PlayerPath 이동경로가 안전한 경로인지 확인하는 기능
-
 ### BridgeMaker (Random)
 
 - 주어진 다리 길이만큼 안전경로를 만드는 기능
