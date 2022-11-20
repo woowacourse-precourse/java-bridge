@@ -1,45 +1,50 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player {
     private Bridge bridge;
+    private List<List<String>> stepsInTotalRound = new ArrayList<>();
     private int round = 0;
-    private int location = -1;
-    private boolean alive = true;
 
     public Player(Bridge bridge) {
         this.bridge = bridge;
     }
 
-    public void startRound() {
-        round++;
-        location = -1;
-        alive = true;
+    public int getLocation() {
+        if (isNewRound()) {
+            stepsInTotalRound.add(new ArrayList<>());
+            round++;
+        }
+        return stepsInTotalRound.get(round - 1).size();
+    }
+
+    private boolean isNewRound() {
+        if (stepsInTotalRound.size() == round) {
+            return true;
+        }
+        return false;
     }
 
     public boolean movable() {
-        if (bridge.hasNextBlock(location) && alive) {
+        if (bridge.hasNextBlock(getLocation())) {
             return true;
         }
         return false;
     }
 
     public int move(String step) {
-        if (movable() && bridge.matchBlockLocation((location + 1), step)) {
-            return ++location;
+        int location = getLocation();
+        if (bridge.matchBlockLocation(location, step)) {
+            saveStep(step);
+            return getLocation();
         }
 
-        alive = false;
         return location;
     }
 
-    public int showTrials() {
-        return round;
-    }
-
-    public boolean isSuccess() {
-        if (!movable() && alive) {
-            return true;
-        }
-        return false;
+    private void saveStep(String step) {
+        stepsInTotalRound.get(round - 1).add(step);
     }
 }
