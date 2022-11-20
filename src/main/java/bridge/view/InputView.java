@@ -22,8 +22,7 @@ public class InputView {
         String bridgeSize = Console.readLine();
         System.out.println();
 
-        boolean isThrowError = validate(this::validateBridgeSize, bridgeSize);
-        if (isThrowError) {
+        if (isThrowError(this::validateBridgeSize, bridgeSize)) {
             return readBridgeSize();
         }
         return Integer.parseInt(bridgeSize);
@@ -49,8 +48,7 @@ public class InputView {
         System.out.println(Message.REQUEST_MOVE_TO_PLACE);
         String moveToBridge = Console.readLine();
 
-        boolean isThrowError = validate(this::validateMoveToBridge, moveToBridge);
-        if (isThrowError) {
+        if (isThrowError(this::validateMoveToBridge, moveToBridge)) {
             return readMoving();
         }
         return moveToBridge;
@@ -69,8 +67,7 @@ public class InputView {
         System.out.println(Message.REQUEST_IS_RESTART_GAME);
         String isRestartGame = Console.readLine();
 
-        boolean isThrowError = validate(this::validateIsRestartGame, isRestartGame);
-        if (isThrowError) {
+        if (isThrowError(this::validateIsRestartGame, isRestartGame)) {
             return readGameCommand();
         }
         return isRestartGame;
@@ -86,13 +83,14 @@ public class InputView {
         return !isRestartGame.equals(Constant.QUIT_GAME) && !isRestartGame.equals(Constant.RESTART_GAME);
     }
 
-    public boolean validate(Consumer<String> validateFunction, String input) {
+    public boolean isThrowError(Consumer<String> validateFunction, String input) {
+        boolean isThrowError = false;
         try {
             validateFunction.accept(input);
         } catch (IllegalArgumentException e) {
             System.out.printf(ErrorMessage.ERROR_MESSAGE_FORM, e.getMessage());
-            return true;
+            isThrowError = true;
         }
-        return false;
+        return isThrowError;
     }
 }

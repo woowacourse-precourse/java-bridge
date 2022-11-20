@@ -21,7 +21,6 @@ public class BridgeService {
 
     public MoveResultDto move(String bridgeType) {
         Bridge bridgeToMove = Bridge.findBySign(bridgeType);
-
         return bridgeGame.move(bridgeToMove);
     }
 
