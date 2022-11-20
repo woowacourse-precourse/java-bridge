@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
-public class BridgeGame {
+public class BridgeGame { // private로 선언 후 getter, setter 생성
     Controller controller = new Controller();
     List<String> upBridge;
     List<String> downBridge;
@@ -20,37 +20,65 @@ public class BridgeGame {
 
     public boolean move(List<String> bridgeMap, String userMoving) {
         if (userMoving.equals("U")) {
-            if (bridgeMap.get(upBridge.size()).equals(userMoving)) {
-                upBridge.add("O");
-                downBridge.add(" ");
+            if (addUpAnswer(bridgeMap, userMoving)) {
                 return true;
             }
         }
         if (userMoving.equals("D")) {
-            if (bridgeMap.get(downBridge.size()).equals(userMoving)) {
-                upBridge.add(" ");
-                downBridge.add("O");
+            if (addDownAnswer(bridgeMap, userMoving)) {
                 return true;
             }
         }
         return false;
     }
 
+    public boolean addUpAnswer(List<String> bridgeMap, String userMoving) {
+        if (bridgeMap.get(upBridge.size()).equals(userMoving)) {
+            upBridge.add("O");
+            downBridge.add(" ");
+            return true;
+        }
+        return false;
+    }
+
+    public boolean addDownAnswer(List<String> bridgeMap, String userMoving) {
+        if (bridgeMap.get(downBridge.size()).equals(userMoving)) {
+            upBridge.add(" ");
+            downBridge.add("O");
+            return true;
+        }
+        return false;
+    }
+
     public void failMove(List<String> bridgeMap, String userMoving, int i) {
         if (userMoving.equals("U")) {
-            if (!bridgeMap.get(i).equals(userMoving)) {
-                upBridge.add("X");
-                downBridge.add(" ");
+            if (failUpMoveAdd(bridgeMap, userMoving, i)) {
                 failResult(upBridge, downBridge, bridgeMap);
             }
         }
         if (userMoving.equals("D")) {
-            if (!bridgeMap.get(i).equals(userMoving)) {
-                upBridge.add(" ");
-                downBridge.add("X");
+            if (failDownMoveAdd(bridgeMap, userMoving, i)) {
                 failResult(upBridge, downBridge, bridgeMap);
             }
         }
+    }
+
+    public boolean failUpMoveAdd(List<String> bridgeMap, String userMoving, int i) {
+        if (!bridgeMap.get(i).equals(userMoving)) {
+            upBridge.add("X");
+            downBridge.add(" ");
+            return true;
+        }
+        return false;
+    }
+
+    public boolean failDownMoveAdd(List<String> bridgeMap, String userMoving, int i) {
+        if (!bridgeMap.get(i).equals(userMoving)) {
+            upBridge.add(" ");
+            downBridge.add("X");
+            return true;
+        }
+        return false;
     }
 
 
@@ -68,7 +96,7 @@ public class BridgeGame {
         String userCommand = controller.inputViewCommand();
         if (userCommand.equals("R")) {
             gameTryCount += 1;
-            test(answer);
+            bridgeLogic(answer);
             return ;
         }
         resultMessage(up, down);
@@ -101,18 +129,16 @@ public class BridgeGame {
         Message.requestBridgeSizeMessage();
         int size = controller.inputViewSize();
         List<String> answer = bridgeMaker.makeBridge(size); // 정답
-        test(answer);
+        bridgeLogic(answer);
     }
-    public void test (List<String> answer) {
+    public void bridgeLogic(List<String> answer) {
         upBridge = new ArrayList<>();
         downBridge = new ArrayList<>();
-
-        System.out.println("answer = " + answer);
 
         for (int i = 0; i < answer.size(); i++) {
             Message.requestMovingMessage();
             String userMovingValue = controller.inputViewMoving();
-            if(!move(answer,userMovingValue)) { // 정답을 맞추면 현재 다리에 O를 추가한다
+            if(!move(answer,userMovingValue)) {
                 failMove(answer, userMovingValue, i);
                 return ;
             }
