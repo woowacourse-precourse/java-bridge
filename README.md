@@ -62,14 +62,14 @@ BUILD SUCCESSFUL in 0s
   - **Class Methods**
     - [x] public BridgeBlock(String bridgeBlock)
     - [x] public String getBridgeBlock()
-- [ ] **CLASS2. enum RetrySelector**
+- [x] **CLASS2. enum RetrySelector**
   - **Class Variables**
     - [x] RETRY("R")
     - [x] QUIT("Q")
     - [x] private final String retrySelector
   - **CLASS Methods**
     - [x] public RetrySelector(String retrySelector)
-    - [ ] public String getRetrySelect()
+    - [x] public String getRetrySelect()
 - [ ] **CLASS2. BridgeMaker**
   - **Class Variables**
     - [ ] private final BridgeNumberGenerator bridgeNumberGenerator
