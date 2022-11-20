@@ -11,19 +11,21 @@ public class User {
     private final List<String> route = new ArrayList<>();
     private int attemptNum = 1;
     private int location = -1;
-    private int bridgeSize;
     private Status status = Status.DOING;
     private final Bridge bridge;
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 
     User() {
-        this.bridgeSize = inputView.readBridgeSize();
-        this.bridge = new Bridge(this.bridgeSize, new BridgeRandomNumberGenerator());
+        this.bridge = new Bridge(inputView.readBridgeSize(), new BridgeRandomNumberGenerator());
     }
 
     private boolean isCrossBridge() {
-        return location == bridgeSize - 1;
+        if (location == bridge.size() - 1) {
+            status = Status.SUCCESS_END;
+            return true;
+        }
+        return false;
     }
 
 }
