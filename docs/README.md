@@ -148,7 +148,7 @@ D
 - [x] gameCount에 1를 더함
 
 ## Application
-- [ ] inputView 변수 생성 
+- [X] inputView 변수 생성
 - [ ] outputView 변수 생성
 - [ ] bridgeGame 변수 생성
 - [ ] bridgeMaker 변수 생성
