@@ -24,7 +24,16 @@ public class GameController {
         initializeGame();
     }
 
-    private void initializeGame() {
+    public void play() {
+        while (isPlaying) {
+            move();
+            printMoveResult();
+            checkGameEnd();
+        }
+        printFinalResult();
+    }
+
+    private void initializeGame() { //public -> private 순으로 재정렬
         bridgeGame = new BridgeGame(createNewBridge());
         isPlaying = true;
         tryCount = 1;
@@ -38,15 +47,6 @@ public class GameController {
                 System.out.println(exception.getMessage());
             }
         }
-    }
-
-    public void play() {
-        while (isPlaying) {
-            move();
-            printMoveResult();
-            checkGameEnd();
-        }
-        printFinalResult();
     }
 
     private void move() {

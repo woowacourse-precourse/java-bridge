@@ -4,17 +4,17 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public enum MoveStatus {
+public enum MapStatus {
     SUCCESS("O", true),
     FAIL("X", false),
     NONE(" ", null);
 
     private static final Map<Boolean, String> SUCCESS_MARK_MAP = Arrays.stream(values())
-            .collect(Collectors.toMap(MoveStatus::getSuccess, MoveStatus::getMark));
+            .collect(Collectors.toMap(MapStatus::getSuccess, MapStatus::getMark));
     private final String mark;
     private final Boolean isSuccess;
 
-    MoveStatus(String mark, Boolean success) {
+    MapStatus(String mark, Boolean success) {
         this.mark = mark;
         this.isSuccess = success;
     }

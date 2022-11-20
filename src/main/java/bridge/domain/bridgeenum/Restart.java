@@ -31,6 +31,7 @@ public enum Restart {
     private Boolean getRestart() {
         return isRestart;
     }
+
     private static void validateRestartCommand(String command) {
         if (COMMAND_RESTART_MAP.containsKey(command)) {
             return;

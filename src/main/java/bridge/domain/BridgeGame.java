@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.domain.bridgeenum.MoveCondition;
+import bridge.domain.bridgeenum.MovePosition;
 import java.util.List;
 
 /**
@@ -18,22 +18,12 @@ public class BridgeGame {
         initializeGame();
     }
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public void move(String nextPosition) throws IllegalArgumentException {
-        MoveCondition.validateNextMove(nextPosition);
-        boolean isSuccess = bridge.checkMoveSuccess(nextPosition, currentBoardIndex); //여기서 연산 하고, bridgeGame 에서 다시 그 결과에 따라 이동 내역 업데이트
+        MovePosition.validateNextMove(nextPosition); //검증 controller 에서?
+        boolean isSuccess = bridge.checkMoveSuccess(nextPosition, currentBoardIndex);
         updateGameStatus(nextPosition, isSuccess);
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public void retry() {
         initializeGame();
         moveResult.clearResult();
@@ -48,7 +38,7 @@ public class BridgeGame {
     }
 
     public boolean isGamePass() {
-        return !isGameOver && bridge.hasReachedEnd(currentBoardIndex);
+        return !isGameOver && bridge.hasReachedEnd(currentBoardIndex); //마지막까지 갔지만, 그 칸에서 실패한 경우 테스트 케이스 추가 , 게임 중도 실패한 경우 추가, 끝까지 성공한 경우 추가
     }
 
     private void initializeGame() {

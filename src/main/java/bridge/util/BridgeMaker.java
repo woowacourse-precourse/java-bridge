@@ -1,7 +1,7 @@
 package bridge.util;
 
 import bridge.BridgeNumberGenerator;
-import bridge.domain.bridgeenum.MoveCondition;
+import bridge.domain.bridgeenum.MovePosition;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +29,6 @@ public class BridgeMaker {
     }
 
     private String generateMovePosition() {
-        return MoveCondition.getMatchingMovePosition(bridgeNumberGenerator.generate());
+        return MovePosition.getMatchingMovePosition(bridgeNumberGenerator.generate());
     }
 }

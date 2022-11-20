@@ -5,26 +5,18 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public enum MoveCondition {
+public enum MovePosition {
     UPPER("U", 1),
     LOWER("D", 0);
 
     private static final Map<Integer, String> POSITION_VALUE_MAP = Arrays.stream(values())
-            .collect(Collectors.toMap(MoveCondition::getValue, MoveCondition::getPosition));
+            .collect(Collectors.toMap(MovePosition::getValue, MovePosition::getPosition));
     private final String position;
     private final int value;
 
-    MoveCondition(String position, int value) {
+    MovePosition(String position, int value) {
         this.position = position;
         this.value = value;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public int getValue() {
-        return value;
     }
 
     public static String getMatchingMovePosition(int value) {
@@ -36,6 +28,14 @@ public enum MoveCondition {
                 .filter(condition -> condition.hasPosition(inputPosition))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_IN_MOVE_CONDITION.printMessage()));
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    private int getValue() {
+        return value;
     }
 
     private boolean hasPosition(String position) {

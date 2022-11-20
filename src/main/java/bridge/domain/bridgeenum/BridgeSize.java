@@ -1,12 +1,12 @@
 package bridge.domain.bridgeenum;
 
-public enum BridgeCondition {
+public enum BridgeSize {
     MIN(3),
     MAX(20);
 
     private final int value;
 
-    BridgeCondition(int value) {
+    BridgeSize(int value) {
         this.value = value;
     }
 

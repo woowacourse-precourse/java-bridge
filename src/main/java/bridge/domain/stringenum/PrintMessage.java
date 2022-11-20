@@ -3,7 +3,7 @@ package bridge.domain.stringenum;
 public enum PrintMessage {
     START("다리 건너기 게임을 시작합니다."),
     BRIDGE_LENGTH("다리의 길이를 입력해주세요."),
-    MOVE("이동할 칸을 선택해주세요."),
+    MOVE("이동할 칸을 선택해주세요."), //출력할 때 선택할 값 제공, 개행 추가
     RESTART("게임을 다시 시도할지 여부를 입력해주세요."),
     RESULT("게임 성공 여부: %s"),
     TRY("총 시도한 횟수: %d"),
@@ -19,7 +19,7 @@ public enum PrintMessage {
 
     public String printMessage() {
         return this.value;
-    }
+    } //value -> message 로, toString 으로
 
     public String printMessage(boolean isSuccess) {
         if (isSuccess) {

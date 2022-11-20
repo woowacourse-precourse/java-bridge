@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.domain.bridgeenum.BridgeCondition;
+import bridge.domain.bridgeenum.BridgeSize;
 import bridge.domain.errorenum.ErrorMessage;
 import java.util.List;
 
@@ -27,7 +27,7 @@ public class Bridge {
     }
 
     private boolean isNotInRange(int size) {
-        return size < BridgeCondition.MIN.getValue() || size > BridgeCondition.MAX.getValue();
+        return size < BridgeSize.MIN.getValue() || size > BridgeSize.MAX.getValue();
     }
 
     private boolean isNextPositionSame(String nextPosition, String bridgePosition) {
