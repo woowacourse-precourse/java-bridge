@@ -20,19 +20,19 @@ public class InputController {
         }
     }
 
-    public static MoveBox getUserMoveBox() {
+    public static String getUserMoveBox() {
         try {
-            return new MoveBox(InputView.readMoving());
+            return new MoveBox(InputView.readMoving()).getMovebox();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getUserMoveBox();
         }
     }
 
-    public static RestartStatus getRestartStatus(){
-        try{
-            return new RestartStatus(InputView.readGameCommand());
-        } catch (IllegalArgumentException e){
+    public static String getRestartStatus() {
+        try {
+            return new RestartStatus(InputView.readGameCommand()).getRestart();
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getRestartStatus();
         }
