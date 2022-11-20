@@ -10,14 +10,15 @@ public class OutputView {
     private final String START_BRACKET = "[";
     private final String END_BRACKET = "]";
 
-    private List<String> upStr = new ArrayList<>();
-    private List<String> downStr = new ArrayList<>();
+    private final List<String> upStr = new ArrayList<>();
+    private final List<String> downStr = new ArrayList<>();
 
 
     public void clearMap () {
         upStr.clear();
         downStr.clear();
     }
+
 
     public void commandChecker(List<String> bridge, List<String> commands, int count) {
         String command = commands.get(count);
@@ -27,6 +28,7 @@ public class OutputView {
 
         printMap();
     }
+
 
     public void commandIsU(String s, String command) {
         if (s.equals(command)) {
@@ -52,11 +54,6 @@ public class OutputView {
     }
 
 
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     public void printMap() {
         String upperBridge = START_BRACKET +" ";
         String bottomBridge = START_BRACKET +" ";
@@ -68,11 +65,7 @@ public class OutputView {
         System.out.println(bottomBridge + " " + END_BRACKET);
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+
     public void printResult() {
         printMap();
     }

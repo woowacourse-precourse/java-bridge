@@ -8,7 +8,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     private BridgeGame bridgeGame;
 
-    
+
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -16,7 +16,7 @@ public class InputView {
         try {
             this.bridgeGame = new BridgeGame(Integer.parseInt(Console.readLine()));
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 3 ~ 20 사이의 정수만 입력 가능합니다.");
+            System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
             this.readBridgeSize();
         }
         return bridgeGame.getSize();
