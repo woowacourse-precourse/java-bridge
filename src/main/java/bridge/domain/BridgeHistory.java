@@ -6,10 +6,12 @@ public class BridgeHistory {
 
     private final BridgePlayer playerBridgeHistory;
     private final BridgeAnswer bridgeAnswer;
+    private final BridgeGameRound bridgeGameRound;
 
-    public BridgeHistory(BridgePlayer playerBridgeHistory, BridgeAnswer bridgeAnswer) {
+    public BridgeHistory(BridgePlayer playerBridgeHistory, BridgeAnswer bridgeAnswer, BridgeGameRound bridgeGameRound) {
         this.playerBridgeHistory = playerBridgeHistory;
         this.bridgeAnswer = bridgeAnswer;
+        this.bridgeGameRound = bridgeGameRound;
     }
 
     public List<BridgeMoveType> getPlayerBridge() {
@@ -20,4 +22,7 @@ public class BridgeHistory {
         return bridgeAnswer.getAnswerMoveHistory();
     }
 
+    public int getBridgeGameRound() {
+        return bridgeGameRound.checkRound();
+    }
 }
