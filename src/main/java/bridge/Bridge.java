@@ -17,4 +17,8 @@ public class Bridge {
         String movableBlockAtPosition = movableBlocks.get(position);
         return movableBlockAtPosition.equals(moveDirection);
     }
+
+    public boolean isEndOfBridge(int currentPosition) {
+        return movableBlocks.size() - 1 == currentPosition;
+    }
 }

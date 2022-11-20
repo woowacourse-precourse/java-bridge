@@ -15,7 +15,19 @@ public class Controller {
     public void start() {
         outputView.printBridgeGameStart();
         int bridgeSize = inputView.readBridgeSize(outputView::printBridgeSizeInput);
-        Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
-        String moveDirection = inputView.readMoving(outputView::printBridgeMoveDirectionInput);
+
+        BridgeGame bridgeGame = new BridgeGame(new Bridge(bridgeMaker.makeBridge(bridgeSize)));
+
+        boolean moveResult = true;
+        while (moveResult) {
+            String moveDirection = inputView.readMoving(outputView::printBridgeMoveDirectionInput);
+            moveResult = bridgeGame.move(moveDirection);
+            outputView.printMap(bridgeGame.getMoveHistory());
+        }
+
+        if (bridgeGame.isReachedEndOfBridge()) {
+            outputView.printResult();
+            return;
+        }
     }
 }
