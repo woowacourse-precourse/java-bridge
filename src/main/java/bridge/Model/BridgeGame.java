@@ -2,7 +2,7 @@ package bridge.Model;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.ChoiceResult;
+import bridge.CrossResult;
 import bridge.Model.VO.Bridge;
 import bridge.Model.VO.BridgeSize;
 import bridge.Model.VO.UserChoice;

@@ -1,22 +1,22 @@
 package bridge.Model.VO;
 
-import bridge.ChoiceResult;
+import bridge.CrossResult;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ChoiceResults {
-    List<String> choiceResults;
+    List<CrossResult> crossResults;
 
     public ChoiceResults(){
-        this.choiceResults = new ArrayList<>();
+        this.crossResults = new ArrayList<>();
     }
 
     public int index(){
-        return choiceResults.size();
+        return crossResults.size();
     }
 
-    public void appendResult(ChoiceResult crossingResult) {
-
+    public void appendResult(CrossResult crossResult) {
+        crossResults.add(crossResult);
     }
 }

@@ -13,20 +13,20 @@ public class BridgeTest {
     private Bridge bridge = new Bridge(List.of("U", "U", "D"));
     @ParameterizedTest
     @MethodSource("generateData")
-    void canCrossingTest(String choice, int index, ChoiceResult result){
+    void canCrossingTest(String choice, int index, CrossResult result){
         UserChoice userChoice = new UserChoice(choice);
-        ChoiceResult actual = bridge.canCrossing(userChoice, index);
+        CrossResult actual = bridge.cross(userChoice, index);
         assertThat(actual).isEqualTo(result);
     }
 
     static Stream<Arguments> generateData(){
         return Stream.of(
-                Arguments.of("U", 0, ChoiceResult.SUCCESS),
-                Arguments.of("U", 1, ChoiceResult.SUCCESS),
-                Arguments.of("D", 2, ChoiceResult.SUCCESS),
-                Arguments.of("D", 0, ChoiceResult.FAIL),
-                Arguments.of("D", 1, ChoiceResult.FAIL),
-                Arguments.of("U", 2, ChoiceResult.FAIL)
+                Arguments.of("U", 0, CrossResult.SUCCESS),
+                Arguments.of("U", 1, CrossResult.SUCCESS),
+                Arguments.of("D", 2, CrossResult.SUCCESS),
+                Arguments.of("D", 0, CrossResult.FAIL),
+                Arguments.of("D", 1, CrossResult.FAIL),
+                Arguments.of("U", 2, CrossResult.FAIL)
         );
     }
 }
