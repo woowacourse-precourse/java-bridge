@@ -6,10 +6,10 @@ import bridge.util.BridgeMaker;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.domain.BridgeBlock.*;
+import static bridge.domain.BridgeBlock.convertType;
+import static bridge.domain.BridgeBlock.valueOf;
 
 public class BridgeController {
 
@@ -26,30 +26,31 @@ public class BridgeController {
     }
 
     public void playBridgeGame() {
-        //입력값 받기
         outputView.printGameStartMessage();
         Bridge bridge = new Bridge(convertType(makeBridgeByInputSize()));
-        List<MovingResult> movingResults = new ArrayList<>();
         Phase phase = new Phase();
         BridgeResult bridgeResult = new BridgeResult();
+        GameState gameState = new GameState(1, true);
 
-        //다리 선택
-        while (true) {
-            doGame(bridge, phase, movingResults, bridgeResult);
+        while (gameState.isKeepGoing() && bridge.size() > phase.getCurrentPhase()) {
+            BridgeBlock inputBlock = valueOf(inputView.readMoving());
+
+            MovingResult movingResult = bridgeGame.move(bridge, inputBlock, phase);
+            bridgeResult.addResult(movingResult);
+            outputView.printMap(bridgeResult);
+            if (movingResult.getState().equals("X")) {
+                String gameCommand = inputView.readGameCommand();
+                if (gameCommand.equals("Q")) {
+                    gameState.gameOver();
+                }
+                if (gameCommand.equals("R")) {
+                    gameState.plusTryCnt();
+                    bridgeResult.clearMap();
+                }
+            }
         }
+        outputView.printResult(bridgeResult, gameState);
     }
-
-    //TODO : 메서드명 변경 필요
-    private void doGame(Bridge bridge, Phase phase, List<MovingResult> movingResults, BridgeResult bridgeResult) {
-        outputView.printSelectBlock();
-        BridgeBlock inputBlock = valueOf(inputView.readMoving());
-
-        MovingResult movingResult = bridgeGame.move(bridge, inputBlock, phase);
-        bridgeResult.addResult(movingResult);
-        movingResults.add(movingResult);
-        outputView.printMap(bridgeResult);
-    }
-
     private List<String> makeBridgeByInputSize() {
         return bridgeMaker.makeBridge(inputView.readBridgeSize());
     }
