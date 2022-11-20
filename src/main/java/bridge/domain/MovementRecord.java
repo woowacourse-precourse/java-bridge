@@ -10,16 +10,16 @@ public class MovementRecord {
         movementMap = new ArrayList<>();
     }
 
-    public BridgeLane getMovementRecord(int index) {
-        return movementMap.get(index - 1);
+    public BridgeLane getMovementAtPosition(int position) {
+        return movementMap.get(position - 1);
     }
 
     public int getMovementCount() {
         return movementMap.size();
     }
 
-    public void addMovementRecord(BridgeLane spotInfo) {
-        movementMap.add(spotInfo);
+    public void addMovement(BridgeLane bridgeLane) {
+        movementMap.add(bridgeLane);
     }
 
     public void clearMovementRecord() {

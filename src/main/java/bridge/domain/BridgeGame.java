@@ -26,7 +26,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(BridgeLane spotInfo) {
-        currentMovementRecord.addMovementRecord(spotInfo);
+        currentMovementRecord.addMovement(spotInfo);
     }
 
     /**
@@ -36,23 +36,23 @@ public class BridgeGame {
      */
     public void retry() {
         tryCount += 1;
-        clearLastMovementRecord();
-    }
-
-    public int getTryCount() {
-        return tryCount;
+        currentMovementRecord.clearMovementRecord();
     }
 
     public boolean isSafeSpot(int position, BridgeLane bridgeLane) {
         return bridge.isSafeSpot(position, bridgeLane);
     }
 
-    public BridgeLane getCurrentMovementRecord(int index) {
-        return currentMovementRecord.getMovementRecord(index);
+    public BridgeLane getCurrentMovementAtPosition(int position) {
+        return currentMovementRecord.getMovementAtPosition(position);
     }
 
     public int getCurrentPosition() {
         return currentMovementRecord.getMovementCount();
+    }
+
+    public int getTryCount() {
+        return tryCount;
     }
 
     public Status getStatus() {
@@ -67,12 +67,8 @@ public class BridgeGame {
         return Status.TBD;
     }
 
-    private void clearLastMovementRecord() {
-        currentMovementRecord.clearMovementRecord();
-    }
-
     private boolean doesPassUnsafeSpot(int position) {
-        BridgeLane laneOnPosition = getCurrentMovementRecord(position);
-        return !bridge.isSafeSpot(position, laneOnPosition);
+        BridgeLane laneAtPosition = getCurrentMovementAtPosition(position);
+        return !bridge.isSafeSpot(position, laneAtPosition);
     }
 }

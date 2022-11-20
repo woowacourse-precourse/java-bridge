@@ -105,7 +105,7 @@ public class OutputView {
     }
 
     private String getSpotText(BridgeGame bridgeGame, int index, BridgeLane spotInfo) {
-        BridgeLane targetMovement = bridgeGame.getCurrentMovementRecord(index);
+        BridgeLane targetMovement = bridgeGame.getCurrentMovementAtPosition(index);
         if(targetMovement == spotInfo) {
             return BLANK + getSafetySymbol(bridgeGame, index, spotInfo) + BLANK;
         }

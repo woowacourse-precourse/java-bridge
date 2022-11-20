@@ -51,10 +51,10 @@ public class BridgeTest {
         void movementCountTest() {
             MovementRecord movementRecord = new MovementRecord();
 
-            movementRecord.addMovementRecord(BridgeLane.UP);
-            movementRecord.addMovementRecord(BridgeLane.UP);
-            movementRecord.addMovementRecord(BridgeLane.UP);
-            movementRecord.addMovementRecord(BridgeLane.UP);
+            movementRecord.addMovement(BridgeLane.UP);
+            movementRecord.addMovement(BridgeLane.UP);
+            movementRecord.addMovement(BridgeLane.UP);
+            movementRecord.addMovement(BridgeLane.UP);
 
             int expectedCount = 4;
             assertThat(movementRecord.getMovementCount()).isEqualTo(expectedCount);
@@ -65,13 +65,13 @@ public class BridgeTest {
         void movementRecordTest() {
             MovementRecord movementRecord = new MovementRecord();
 
-            movementRecord.addMovementRecord(BridgeLane.UP);
-            movementRecord.addMovementRecord(BridgeLane.DOWN);
-            movementRecord.addMovementRecord(BridgeLane.DOWN);
-            movementRecord.addMovementRecord(BridgeLane.UP);
+            movementRecord.addMovement(BridgeLane.UP);
+            movementRecord.addMovement(BridgeLane.DOWN);
+            movementRecord.addMovement(BridgeLane.DOWN);
+            movementRecord.addMovement(BridgeLane.UP);
 
             BridgeLane expectedCount = BridgeLane.DOWN;
-            assertThat(movementRecord.getMovementRecord(3)).isEqualTo(expectedCount);
+            assertThat(movementRecord.getMovementAtPosition(3)).isEqualTo(expectedCount);
         }
     }
 
@@ -171,7 +171,7 @@ public class BridgeTest {
             game.move(BridgeLane.UP);
 
             BridgeLane expectedSpotInfo = BridgeLane.UP;
-            assertThat(game.getCurrentMovementRecord(1)).isEqualTo(expectedSpotInfo);
+            assertThat(game.getCurrentMovementAtPosition(1)).isEqualTo(expectedSpotInfo);
         }
     }
 
@@ -190,7 +190,7 @@ public class BridgeTest {
     private List<BridgeLane> getMoveRecord(BridgeGame game) {
         List<BridgeLane> movementRecord = new ArrayList<>();
         for(int i = 1; i <= game.getCurrentPosition(); i++) {
-            movementRecord.add(game.getCurrentMovementRecord(i));
+            movementRecord.add(game.getCurrentMovementAtPosition(i));
         }
         return movementRecord;
     }
