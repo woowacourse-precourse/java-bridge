@@ -11,8 +11,9 @@ import java.util.List;
 
 public class BridgeGameManager {
     public void run() {
-        BridgeGame bridgeGame = new BridgeGame();
-        bridgeGame.setTryNumber();
+        BridgeGame bridgeGame = makeGame();
+
+        setGame(bridgeGame);
 
         printStart();
 
@@ -55,6 +56,14 @@ public class BridgeGameManager {
         }
 
         printResult(targetBridge, bridgeGame);
+    }
+
+    private void setGame(BridgeGame bridgeGame) {
+        bridgeGame.setTryNumber();
+    }
+
+    private BridgeGame makeGame() {
+        return new BridgeGame();
     }
 
     private int inputBridgeSizeRepeat() {
