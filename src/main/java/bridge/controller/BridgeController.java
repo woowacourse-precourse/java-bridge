@@ -1,6 +1,7 @@
 package bridge.controller;
 
 import bridge.BridgeNumberGenerator;
+import bridge.commom.constant.GameState;
 import bridge.model.BridgeHistory;
 import bridge.model.BridgeManager;
 import bridge.view.InputView;
@@ -31,14 +32,14 @@ public class BridgeController {
         bridgeManager.setBridgeWithSize(size);
     }
 
-    public void getNowGameCondition() {
-
+    public GameState getNowGameProgress() {
+        return bridgeHistory.getProgress();
     }
 
     public void moveOneStep() {
         String userCommand = inputView.readMoving();
-        boolean isMoveable = bridgeManager.isMovable(userCommand, bridgeHistory.getNowStage());
-        bridgeHistory.updateGameState(userCommand, isMoveable);
+        boolean isMovable = bridgeManager.isMovable(userCommand, bridgeHistory.getNowStage());
+        bridgeHistory.updateGameState(userCommand, isMovable);
         outputView.printMap(bridgeHistory);
     }
 

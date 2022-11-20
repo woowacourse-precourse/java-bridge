@@ -1,5 +1,6 @@
 package bridge.model;
 
+import bridge.commom.constant.GameState;
 import bridge.commom.constant.LocationTable;
 
 import java.util.ArrayList;
@@ -19,10 +20,6 @@ public class BridgeHistory {
         this.retry = 1;
     }
 
-    public void getProgress() {
-
-    }
-
     public Map<String, List<String>> getHistory() {
         return history;
     }
@@ -33,6 +30,17 @@ public class BridgeHistory {
 
     public int getNowStage() {
         return nowStage;
+    }
+
+    public GameState getProgress() {
+        if (isFail()) {
+            return GameState.FAIL;
+        }
+        if (isSuccess()) {
+            return GameState.SUCCESS;
+        }
+
+        return GameState.RUNNING;
     }
 
     public void updateGameState(String command, boolean isSuccess) {
@@ -47,17 +55,32 @@ public class BridgeHistory {
     }
 
     private String getCheckShape(boolean isSuccess) {
-        if (isSuccess) return "O";
+        if (isSuccess) {
+            return "O";
+        }
+
         return "X";
     }
 
-    private void addPage(String command, String alterCommand, String checkShape) {
-        List<String> target = history.getOrDefault(command, new ArrayList<>());
-        List<String> another = history.getOrDefault(alterCommand, new ArrayList<>());
+    private List<String> getPages(String key) {
+        return history.getOrDefault(key, new ArrayList<>());
+    }
+
+    private void addPage(String key, String alterKey, String checkShape) {
+        List<String> target = getPages(key);
+        List<String> another = getPages(alterKey);
 
         target.add(checkShape);
         another.add(" ");
-        history.put(command, target);
-        history.put(alterCommand, another);
+        history.put(key, target);
+        history.put(alterKey, another);
+    }
+
+    private boolean isSuccess() {
+        return getPages("U").size() == bridgeLength;
+    }
+
+    private boolean isFail() {
+        return getPages("D").contains("X") || getPages("U").contains("X");
     }
 }
