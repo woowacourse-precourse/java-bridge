@@ -34,8 +34,7 @@ public class BridgeResult {
 
 	@Override
 	public String toString() {
-		return upBridge.stream().collect(Collectors.joining(" | ", "[ ", " ]"))
-			+ "\n"
-			+ downBridge.stream().collect(Collectors.joining(" | ", "[ ", " ]"));
+		return upBridge.stream().collect(Collectors.joining(" | ", "[ ", " ]\n"))
+			+ downBridge.stream().collect(Collectors.joining(" | ", "[ ", " ]\n"));
 	}
 }

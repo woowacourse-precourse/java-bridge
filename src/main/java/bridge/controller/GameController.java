@@ -12,11 +12,14 @@ public class GameController {
 	private final InputView inputView = new InputView();
 	private final OutputView outputView = new OutputView();
 	private BridgeGame bridgeGame;
+
 	public void run() {
 		try {
 			gameStart();
 			crossingBridge();
- 		} catch (IllegalArgumentException e) {
+			outputView.printResult(bridgeGame);
+			System.out.println(bridgeGame);
+		} catch (IllegalArgumentException e) {
 			Logger.error(e.getMessage());
 		}
 	}
@@ -34,23 +37,29 @@ public class GameController {
 			String moveInput = inputView.readMoving();
 			BridgeStatus bridgeStatus = bridgeGame.move(moveInput);
 			bridgeResult.crossBridge(bridgeStatus, moveInput);
-			outputView.printMap(bridgeResult);
-			checkRetry(bridgeStatus);
+			crossOneBridge(bridgeResult, bridgeStatus);
 		} while (bridgeGame.checkEnd() == BridgeStatus.PASS);
 	}
 
-	private void checkRetry(BridgeStatus bridgeStatus) {
+	private void crossOneBridge(BridgeResult bridgeResult, BridgeStatus bridgeStatus) {
+		outputView.printMap(bridgeResult);
+		bridgeGame.checkGameEnd(bridgeResult);
+		checkRetry(bridgeStatus, bridgeResult);
+	}
+
+	private void checkRetry(BridgeStatus bridgeStatus, BridgeResult bridgeResult) {
 		if (bridgeStatus == BridgeStatus.FAIL) {
 			outputView.printRequestRetry();
-			askContinue(inputView.readGameCommand());
+			askContinue(inputView.readGameCommand(), bridgeResult);
 		}
 	}
 
-	private void askContinue(String Input) {
+	private void askContinue(String Input, BridgeResult bridgeResult) {
 		if (Input.equals("R")) {
 			bridgeGame.retry();
 			crossingBridge();
+			return;
 		}
-		bridgeGame.end();
+		bridgeGame.end(bridgeResult);
 	}
 }

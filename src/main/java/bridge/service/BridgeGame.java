@@ -1,6 +1,7 @@
 package bridge.service;
 
 import bridge.domain.Bridge;
+import bridge.domain.BridgeResult;
 import bridge.domain.BridgeStatus;
 
 /**
@@ -10,22 +11,35 @@ public class BridgeGame {
 
 	private final Bridge bridge;
 	private int bridgeNumber = 0;
+	private int tryCount = 0;
+	private String gameResult;
+
+	private BridgeResult bridgeResult;
 
 	public BridgeGame(int size) {
 		bridge = new Bridge(new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size));
+		tryCount++;
 	}
 
-
 	public BridgeStatus checkEnd() {
-		if (bridge.isEnd(bridgeNumber))
+		if (bridge.isEnd(bridgeNumber)) {
 			return BridgeStatus.END;
+		}
 		return BridgeStatus.PASS;
 	}
 
-	public void end() {
+	public void checkGameEnd(BridgeResult bridgeResult) {
+		if (checkEnd() == BridgeStatus.END) {
+			this.bridgeResult = bridgeResult;
+			this.gameResult = "성공";
+		}
+	}
+
+	public void end(BridgeResult bridgeResult) {
 		while (!bridge.isEnd(bridgeNumber)) {
 			bridgeNumber++;
 		}
+		this.bridgeResult = bridgeResult;
 	}
 	/**
 	 * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -43,5 +57,12 @@ public class BridgeGame {
 	 */
 	public void retry() {
 		bridgeNumber = 0;
+		tryCount++;
+		gameResult = "실패";
+	}
+
+	@Override
+	public String toString() {
+		return String.format("%s\n게임 성공 여부: %s\n총 시도한 횟수: %d",bridgeResult, gameResult, tryCount);
 	}
 }
