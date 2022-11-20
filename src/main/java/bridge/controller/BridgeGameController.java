@@ -40,6 +40,8 @@ public class BridgeGameController {
                 System.out.println(e.getMessage());
             }
         }
+
+        printGameResult(successResult);
     }
 
     private List<String> generateBridge(){
@@ -91,5 +93,11 @@ public class BridgeGameController {
         } else if (command.equals("Q")) {
             moving = false;
         }
+    }
+
+    private void printGameResult(String successResult){
+        OutputView.endMessage();
+        OutputView.printMap(bridgeGame.makeBridgeCrossingResult());
+        OutputView.printResult(successResult, bridgeGame.toString());
     }
 }
