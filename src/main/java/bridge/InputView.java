@@ -7,7 +7,6 @@ import java.util.NoSuchElementException;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -35,9 +34,10 @@ public class InputView {
     }
 
     private static void validateMovingCommand(String line) {
-        if (line != BridgeGame.CMD_UP && line != BridgeGame.CMD_DOWN) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 이동 명령어 입니다. (U or D), Input: [" + line + "]");
+        if (line.equals(BridgeGame.CMD_UP) || line.equals(BridgeGame.CMD_DOWN)) {
+            return;
         }
+        throw new IllegalArgumentException("[ERROR] 잘못된 이동 명령어 입니다. (U or D), Input: [" + line + "]");
     }
 
     /**
@@ -51,9 +51,10 @@ public class InputView {
     }
 
     private static void validateGameCommand(String line) {
-        if (line != BridgeGame.CMD_RETRY && line != BridgeGame.CMD_QUIT) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 게임 명령어 입니다. (R or Q), Input: [" + line + "]");
+        if (line.equals(BridgeGame.CMD_RETRY) || line.equals(BridgeGame.CMD_QUIT)) {
+            return;
         }
+        throw new IllegalArgumentException("[ERROR] 잘못된 게임 명령어 입니다. (R or Q), Input: [" + line + "]");
     }
 
     private static String readLine() {
