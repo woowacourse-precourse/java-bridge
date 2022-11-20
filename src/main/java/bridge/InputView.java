@@ -13,7 +13,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() throws IllegalArgumentException {
+    public static int readBridgeSize() throws IllegalArgumentException {
         String bridgeSizeInput = Console.readLine();
         bridgeSizeNumberCheck(bridgeSizeInput);
         int bridgeSize = Integer.parseInt(bridgeSizeInput);
@@ -24,17 +24,17 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() throws IllegalArgumentException {
+    public static String readMoving() throws IllegalArgumentException {
         String movingInput = Console.readLine();
         movingInputErrorCheck(movingInput);
-        BridgeGame.movingInputs.add(movingInput);
+        Application.movingInputs.add(movingInput);
         return movingInput;
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public static String readGameCommand() {
         /**
          "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
          */
