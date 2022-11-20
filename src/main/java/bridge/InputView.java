@@ -21,7 +21,11 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String moving = readLine();
+        if(!"UD".contains(moving)) {
+            throw new IllegalArgumentException("[ERROR] 사용자는 'U' 혹은 'D'를 통해서만 이동할 수 있습니다.");
+        }
+        return moving;
     }
 
     /**
