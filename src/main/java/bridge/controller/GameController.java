@@ -20,7 +20,7 @@ public class GameController {
         outputView.printNewLine();
         do {
             play();
-        } while (wantRestart());
+        } while (retry());
 
         outputView.printResult(bridgeGame.resultOfMoving(), bridgeGame.calculatePlayCount(),bridgeGame.isSuccess());
     }
@@ -84,7 +84,7 @@ public class GameController {
         }
     }
 
-    private boolean wantRestart() {
+    private boolean retry() {
         if (bridgeGame.isSuccess()) {
             return false;
         }
