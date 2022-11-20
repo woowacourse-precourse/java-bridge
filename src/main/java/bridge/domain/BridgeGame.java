@@ -30,9 +30,8 @@ public class BridgeGame {
     public String move(String moving) {
         GameStatus gameStatusAfterMoving = this.bridgeCalculator.go(moving);
         this.gameStatus = gameStatusAfterMoving;
-//        this.bridgeMonitor.record(moving, gameStatusAfterMoving);
-//        return this.bridgeMonitor.getPicture();
-        return null;
+        this.bridgeMonitor.record(moving, gameStatusAfterMoving);
+        return this.bridgeMonitor.getPicture();
     }
 
     /**

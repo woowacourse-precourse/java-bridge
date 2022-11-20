@@ -19,9 +19,9 @@ public class BridgeController {
 
     public void start() {
         createBridgeGame();
-//        do {
-//            playTurn();
-//        } while (!this.bridgeGame.isEnd());
+        do {
+            playTurn();
+        } while (!this.bridgeGame.isEnd());
 //        announceFinalResult();
     }
 
@@ -33,8 +33,9 @@ public class BridgeController {
     }
 
     private void playTurn() {
-//        String bridgePicture = this.bridgeGame.move();
-//        this.outputView.printMap(bridgePicture);
+        String moving = this.inputView.readMoving();
+        String bridgePicture = this.bridgeGame.move(moving);
+        this.outputView.printMap(bridgePicture);
 //        if (this.bridgeGame.isFail()) {
 //            retryTurn();
 //        }
