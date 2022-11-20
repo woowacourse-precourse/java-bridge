@@ -62,6 +62,16 @@ public class Application {
         outputView.printSFAndNumber(passFail, number);
     }
 
+    public static boolean replayBridgeGame() {
+        outputView.printGameCommand();
+        if (!bridgeGame.retry(inputView.readGameCommand())) {
+            return false;
+        }
+        topBridge.clear();
+        bottomBridge.clear();
+        return true;
+    }
+
     public static void bridgeMovement() {
         outputView.printMovingInputBox();
         String move = inputView.readMoving();
