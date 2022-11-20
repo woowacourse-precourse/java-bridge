@@ -9,6 +9,9 @@ public class BridgeSizeValidator implements Validator {
         validateRange(input);
     }
 
+    /**
+     *  입력 값이 숫자가 아니면 예외 발생
+     */
     private void validateNumericInput(String input){
         try{
              Integer.parseInt(input);
@@ -18,6 +21,9 @@ public class BridgeSizeValidator implements Validator {
         }
     }
 
+    /**
+     *  입력 값이 제한된 범위를 벗어난 값이라면 예외 발생(3 <= N <= 30)
+     */
     private void validateRange(String input){
         int bridgeSize = Integer.parseInt(input);
         if (bridgeSize < 3 || bridgeSize > 30){
