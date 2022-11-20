@@ -6,34 +6,13 @@ import java.util.List;
 public class BridgeController {
 
 	public void start() {
+		noticePrint(Notice.START.getMessage());
 		int bridgeSize = getBridgeSize();
 
 		BridgeMaker maker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
 		BridgeGame game = new BridgeGame();
 		game.retry(maker.makeBridge(bridgeSize));
-	}
-
-	private int getBridgeSize() {
-		requestPrint("다리 건너기 게임을 시작합니다.");
-		requestPrint("다리의 길이를 입력해주세요.");
-
-		return requestInputValue("size");
-	}
-
-	private void requestPrint(String message) {
-		OutputView output = new OutputView();
-
-		output.printMap(message);
-	}
-
-	private int requestInputValue(String type) {
-		InputView input = new InputView();
-
-		if (type.equals("size")) {
-			return input.readBridgeSize();
-		}
-		return 0;
 	}
 
 	public String run(List<String> bridge) {
@@ -44,9 +23,32 @@ public class BridgeController {
 
 		return saveBridge(saveMap(topBridge), saveMap(bottomBridge));
 	}
+
+	public void stop(int count, String result) {
+		OutputView output = new OutputView();
+
+		output.printResult(result, count);
+	}
+
+	private int getBridgeSize() {
+		InputView input = new InputView();
+
+		noticePrint(Notice.CHOICE_SIZE.getMessage());
+
+		return input.readBridgeSize();
+	}
+
+	private void noticePrint(String message) {
+		OutputView output = new OutputView();
+
+		output.printMap(message);
+	}
+
+
 	private String saveBridge(String topBridge, String bottomBridge) {
 		return topBridge + "\n" + bottomBridge;
 	}
+
 	private void compareBridge(List<String> bridge, List<Integer> topBridge, List<Integer> bottomBridge) {
 		for (String s : bridge) {
 			List<Integer> userMove = new ArrayList<>();
@@ -103,7 +105,7 @@ public class BridgeController {
 	public String moveUser() {
 		InputView input = new InputView();
 
-		System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+		noticePrint(Notice.CHOICE_MOVE.getMessage());
 
 		return input.readMoving();
 	}
@@ -129,18 +131,12 @@ public class BridgeController {
 		output.printMap(down);
 	}
 
-	public void stop(int count, String result) {
-		OutputView output = new OutputView();
-
-		output.printResult(result, count);
-	}
-
 	public boolean isNotFinish(String result) {
 		boolean isClear = true;
 		InputView input = new InputView();
 
 		if (result.contains("X")) {
-			System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+			noticePrint(Notice.RETRY.getMessage());
 			String gameCommand = input.readGameCommand();
 
 			if (gameCommand.equals("R")) {
