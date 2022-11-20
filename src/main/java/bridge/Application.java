@@ -10,9 +10,9 @@ public class Application {
         OutputView outputView = new OutputView();
 
         outputView.printStartMessage();
-        outputView.printMessageForBridgeLengthInput();
+        outputView.printMessageForBridgeSize();
         inputView.readBridgeSize();
-        outputView.printMessageForMovingInput();
+        outputView.printMessageForMoving();
         inputView.readMoving();
     }
 }
