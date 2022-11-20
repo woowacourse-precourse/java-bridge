@@ -9,7 +9,7 @@ public class StartGame {
         movingInput = InputView.readMoving();
         BridgeGame.move();
         OutputView.printMap();
-        if (isWrong()) {
+        if (isWrongWay()) {
             if (wantRetry()) {
                 BridgeGame.retry();
                 return true;
@@ -23,8 +23,9 @@ public class StartGame {
     public static boolean wantRetry() {
         OutputView.printRetry();
         String retryOrNot = InputView.readGameCommand();
-        if (retryOrNot.equals("R"))
+        if (retryOrNot.equals("R")) {
             return true;
+        }
         return false;
     }
 
@@ -34,8 +35,9 @@ public class StartGame {
         return isRightAnswer;
     }
 
-    public static boolean isWrong() {
-        boolean isWrongWay = !isRightWay();
-        return isWrongWay;
+    public static boolean isWrongWay() {
+        boolean isWrongAnswer = !isRightWay();
+        return isWrongAnswer;
+
     }
 }

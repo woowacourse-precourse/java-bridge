@@ -16,10 +16,10 @@ public class Application {
     public static void main(String[] args) {
         Initialization.init();
         while (StartGame.startGame()) {
-            if (movingTurn == size)
+            if (movingTurn == size) {
                 break;
+            }
         }
         OutputView.printResult();
-        //종료 출력
     }
 }
