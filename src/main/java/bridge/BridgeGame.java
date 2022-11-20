@@ -44,9 +44,9 @@ public class BridgeGame {
         return start();
     }
 
-    public ProcessCondition quit() {
+    public ProcessCondition quit(ProcessCondition finishCondition) {
         gameStatusOperator.toQuit();
-        return FinishCondition.FINISHED;
+        return finishCondition;
     }
 
     public FinishCondition checkWhetherFinished() {
