@@ -30,4 +30,10 @@ class InputViewValidationTest {
         assertThatThrownBy(() -> InputViewValidation.validateIsUorD("A"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    public void validateIsRorQByA(){
+        assertThatThrownBy(() -> InputViewValidation.validateIsRorQ("A"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

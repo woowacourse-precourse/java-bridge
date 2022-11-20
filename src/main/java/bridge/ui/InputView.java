@@ -38,6 +38,6 @@ public class InputView {
         System.out.println(pleaseInputRetryOrEnd);
         String input = Console.readLine();
         InputViewValidation.validateIsRorQ(input);
-        return null;
+        return input;
     }
 }
