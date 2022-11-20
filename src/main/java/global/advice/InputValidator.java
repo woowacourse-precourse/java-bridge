@@ -2,6 +2,11 @@ package global.advice;
 
 import static bridge.BridgeMaker.TOP_ROW;
 import static bridge.BridgeMaker.UNDER_ROW;
+import static global.advice.ErrorMessage.CHECK_MOVING;
+import static global.advice.ErrorMessage.CHECK_RETRY;
+import static global.advice.ErrorMessage.CHECK_SIZE;
+import static global.advice.ErrorMessage.CHECK_SIZE_DIGIT;
+import static global.advice.ErrorMessage.makeErrorMessage;
 
 public class InputValidator {
 
@@ -17,7 +22,7 @@ public class InputValidator {
 
     public static void checkLength(String size) {
         if (size.length() < MIN_LENGTH || size.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(makeErrorMessage(CHECK_SIZE) + size);
         }
     }
 
@@ -29,25 +34,25 @@ public class InputValidator {
 
     private static void validateDigit(String number) {
         if (!Character.isDigit(number.charAt(0))) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(makeErrorMessage(CHECK_SIZE_DIGIT) + number);
         }
     }
 
     public static void checkRange(String size) {
         if (MIN_SIZE > Integer.parseInt(size) || MAX_SIZE < Integer.parseInt(size)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(makeErrorMessage(CHECK_SIZE) + size);
         }
     }
 
     public static void checkMoving(String moving) {
         if (!TOP_ROW.equals(moving) && !UNDER_ROW.equals(moving)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(makeErrorMessage(CHECK_MOVING) + moving);
         }
     }
 
     public static void checkRetryWhether(String retry) {
         if (!RETRY_SIGNAL.equals(retry) && !QUIT_SIGNAL.equals(retry)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(makeErrorMessage(CHECK_RETRY) + retry);
         }
     }
 }
