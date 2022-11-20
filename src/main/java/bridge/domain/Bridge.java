@@ -11,6 +11,10 @@ public class Bridge {
         bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
     }
 
+    public String get(int index) {
+        return bridge.get(index);
+    }
+
     public List<String> getBridge() {
         return bridge;
     }
