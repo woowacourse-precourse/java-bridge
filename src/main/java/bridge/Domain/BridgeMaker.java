@@ -1,6 +1,7 @@
 package bridge.Domain;
 
 import bridge.BridgeNumberGenerator;
+import bridge.Enum.BridgeGameInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +24,8 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            String way = "D";
-            if (bridgeNumberGenerator.generate() == 1) { way = "U"; }
+            String way = BridgeGameInfo.DOWN.getWord();
+            if (bridgeNumberGenerator.generate() == 1) { way = BridgeGameInfo.UP.getWord(); }
             bridge.add(way);
         }
         return bridge;

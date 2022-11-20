@@ -1,5 +1,6 @@
 package bridge.Domain;
 
+import bridge.Enum.BridgeGameInfo;
 import bridge.View.InputView;
 import bridge.View.OutputView;
 
@@ -23,7 +24,7 @@ public class BridgeGame {
     }
 
     public boolean retry(InputView inputView) {
-        if (inputView.readGameCommand().equals("R")) {
+        if (inputView.readGameCommand().equals(BridgeGameInfo.RESTART.getWord())) {
             setMatchResult(new ArrayList<>());
             return true;
         }

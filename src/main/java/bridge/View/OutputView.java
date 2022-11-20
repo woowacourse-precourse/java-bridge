@@ -1,17 +1,23 @@
 package bridge.View;
 
 import bridge.Domain.BridgeGame;
+import bridge.Enum.BridgeGameInfo;
 
 import java.util.List;
 
 public class OutputView {
+    String UP = BridgeGameInfo.UP.getWord();
+    String DOWN = BridgeGameInfo.DOWN.getWord();
+    String CORRECT = BridgeGameInfo.CORRECT.getWord();
+    String WRONG = BridgeGameInfo.WRONG.getWord();
+    String BLANK = BridgeGameInfo.BLANK.getWord();
 
     public void printMap(List<Boolean> matchResult,List<String> bridge) {
         System.out.print("[");
-        printBridgeCell(matchResult,bridge,"U");
+        printBridgeCell(matchResult,bridge,UP);
         System.out.println("]");
         System.out.print("[");
-        printBridgeCell(matchResult,bridge,"D");
+        printBridgeCell(matchResult,bridge,DOWN);
         System.out.println("]");
     }
     public void printBridgeCell(List<Boolean> matchResult, List<String> bridge, String way) {
@@ -28,9 +34,9 @@ public class OutputView {
 
     public void printEqual(List<Boolean> matchResult, List<String> bridge, String way, int i) {
         if (bridge.get(i).equals(way)) {
-            String correct = " O ";
+            String correct = CORRECT;
             if (!matchResult.get(i)) {
-                correct = "   ";
+                correct = BLANK;
             }
             System.out.print(correct);
         }
@@ -38,9 +44,9 @@ public class OutputView {
 
     public void printNotEqual(List<Boolean> matchResult, List<String> bridge, String way, int i) {
         if (!bridge.get(i).equals(way)) {
-            String wrong = " X ";
+            String wrong = WRONG;
             if (matchResult.get(i)) {
-                wrong = "   ";
+                wrong = BLANK;
             }
             System.out.print(wrong);
         }
