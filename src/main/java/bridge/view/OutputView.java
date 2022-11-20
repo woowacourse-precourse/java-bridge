@@ -43,4 +43,8 @@ public class OutputView {
     private void printNumberOfTry(int numberOfTry) {
         System.out.printf(Constants.TOTAL_NUMBER_OF_TRY_OUTPUT,numberOfTry);
     }
+
+    public void printExceptionMessage(Exception exception) {
+        System.out.println(exception.getMessage());
+    }
 }

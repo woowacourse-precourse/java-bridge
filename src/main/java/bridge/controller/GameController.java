@@ -38,9 +38,10 @@ public class GameController {
     private String selectRetryGame() {
         try {
             outputView.printSelectRetryOrNotInput();
-            return inputView.readGameCommand();
+            String selectRetryingGame = inputView.readGameCommand();
+            return selectRetryingGame;
         } catch (IllegalArgumentException illegalArgumentException) {
-            illegalArgumentException.getMessage();
+            outputView.printExceptionMessage(illegalArgumentException);
             return selectRetryGame();
         }
     }
@@ -64,7 +65,7 @@ public class GameController {
             String readMoving = inputView.readMoving();
             return readMoving;
         } catch (IllegalArgumentException illegalArgumentException) {
-            illegalArgumentException.getMessage();
+            outputView.printExceptionMessage(illegalArgumentException);
             return selectMoving();
         }
     }

@@ -16,13 +16,18 @@ public class BridgeController {
     public Bridge createBridge() {
         try {
             int bridgeSize = inputBridgeSize();
-            List<String> bridgeProtoType = bridgeMaker.makeBridge(bridgeSize);
-            Bridge bridge = new Bridge(bridgeProtoType);
+            Bridge bridge = makeBridge(bridgeSize);
             return bridge;
         } catch (IllegalArgumentException illegalArgumentException) {
-            System.out.println(illegalArgumentException.getMessage());
+            outputView.printExceptionMessage(illegalArgumentException);
             return createBridge();
         }
+    }
+
+    private Bridge makeBridge(int bridgeSize) {
+        List<String> bridgeProtoType = bridgeMaker.makeBridge(bridgeSize);
+        Bridge bridge = new Bridge(bridgeProtoType);
+        return bridge;
     }
 
     private int inputBridgeSize() {
