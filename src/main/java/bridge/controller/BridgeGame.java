@@ -13,6 +13,7 @@ import bridge.view.OutputView;
  */
 public class BridgeGame {
     public static int BRIDGE_LENGTH = 0;
+    private static int holeGameCount = 1;
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
     private Bridge bridge = new Bridge();
@@ -100,5 +101,6 @@ public class BridgeGame {
     private void resetGame() {
         player = new Player();
         referee = new Referee();
+        holeGameCount++;
     }
 }
