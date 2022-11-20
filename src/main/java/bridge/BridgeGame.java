@@ -9,6 +9,8 @@ public class BridgeGame {
 
     private static StringJoiner upSideBridge = new StringJoiner("|", "[", "]");
     private static StringJoiner downSideBridge = new StringJoiner("|", "[", "]");
+    private static int gameCount;
+    private static boolean isPlayerWin;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -51,12 +53,28 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean retry(String doRestart) {
-        if(doRestart.equals("Q")){
+        if (doRestart.equals("Q")) {
             return false;
         }
         upSideBridge = new StringJoiner("|", "[", "]");
         downSideBridge = new StringJoiner("|", "[", "]");
         return true;
+    }
+
+    public void addGameCount() {
+        gameCount += 1;
+    }
+
+    public void gameSuccess() {
+        isPlayerWin = true;
+    }
+
+    public static int getGameCount() {
+        return gameCount;
+    }
+
+    public static boolean getIsPlayerWin() {
+        return isPlayerWin;
     }
 
     public static StringJoiner getUpSideBridge() {
