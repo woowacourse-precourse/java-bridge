@@ -1,6 +1,8 @@
 package bridge.application;
 
 import bridge.domain.BridgeMaker;
+import bridge.domain.BridgeType;
+import bridge.domain.Result;
 import java.util.List;
 
 /**
@@ -14,12 +16,14 @@ public class BridgeGame {
 
     private List<String> bridge;
     private int gameCount;
-    private int next;
+    private int position;
+    private boolean terminate;
 
     private BridgeGame(BridgeMaker bridgeMaker) {
         this.bridgeMaker = bridgeMaker;
-        this.gameCount = 0;
-        this.next = 0;
+        this.gameCount = 1;
+        this.position = 0;
+        this.terminate = false;
     }
 
     public static BridgeGame getInstance(BridgeMaker bridgeMaker) {
@@ -40,7 +44,17 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public Result move(String command) {
+        validateGame();
+        validateMoveCommand(command);
+
+        if (bridge.get(position).equals(command)) {
+            Result result =  new Result(bridge.subList(0, position), true, isEnd());
+            continueGame();
+            return result;
+        }
+        terminateGame();
+        return new Result(bridge.subList(0, position), false, false);
     }
 
     /**
@@ -49,5 +63,33 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+    }
+
+    private void validateGame() {
+        if (terminate) {
+            throw new IllegalStateException("종료된 게임은 더이상 진행할 수 없습니다.");
+        }
+    }
+
+    private void validateMoveCommand(String command) {
+        List<String> types = BridgeType.getNames();
+        if (!types.contains(command)) {
+            throw new IllegalArgumentException("유효하지 않은 이동 명령입니다.");
+        }
+    }
+
+    private boolean isEnd() {
+        return bridge.size() == position + 1;
+    }
+
+    private void continueGame() {
+        if (bridge.size() == position + 1) {
+            terminate = true;
+        }
+        position++; // terminate 가 true 라면, position 은 더이상 의미가 없다.
+    }
+
+    private void terminateGame() {
+        terminate = true;
     }
 }
