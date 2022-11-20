@@ -31,17 +31,21 @@
 
 ## 기능 명세
 - --
-### BridgeMaker 클래스
+### BridgeMaker 메서드 클래스
 #### : 다리 생성
   - ```makeBridge``` : 다리 생성 및 반환
     - ```judgeRandomNumber``` : 랜덤값 다리 코드로 판단
+
+### BridgeLength 메서드 클래스
+#### : 다리 길이 입력
   - ```inputBridgeSize``` : 다리 길이 입력
     - ```isValidateInputBridgeSize``` : 다리 길이 입력값 확인
-      - ```checkIsNumber``` : 숫자인지 확인 
+      - ```checkIsNumber``` : 숫자인지 확인
       - ```checkIsRightRange``` : 올바른 범위 값인지 확인
 
 ### Setting 클래스
 #### : 프로그램 세팅
+  - ```BRIDGE_COUNT``` : 다리 개수
   - ```MIN_BRIDGE_SIZE``` : 최소 다리 길이
   - ```MAX_BRIDGE_SIZE``` : 최대 다리 길이
   - ```GAME_EXIT``` : 게임 종료 코드(Q)
