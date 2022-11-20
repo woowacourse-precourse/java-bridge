@@ -48,7 +48,7 @@ public class BridgeGame {
         if (!playerList.get(playerList.size() - 1).equals(bridgeList.get(playerList.size() - 1))) {
             gameStatus = GAME_STATUS_DIE;
         }
-        if (playerList.size() == bridgeList.size()) {
+        else if (playerList.size() == bridgeList.size()) {
             gameStatus = GAME_STATUS_CLEAR;
             cleared = "성공";
         }
