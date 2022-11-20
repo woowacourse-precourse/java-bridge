@@ -1,7 +1,7 @@
 package bridge.service;
 
-import bridge.domain.GameResult;
 import bridge.dto.BridgeDto;
+import bridge.dto.GameResultDto;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -49,7 +49,7 @@ public class ViewService {
         return cmd.get();
     }
 
-    public void printTotalResult(BridgeDto bridgeDto, GameResult gameResult, int count) {
-        outputView.printResult(bridgeDto, gameResult, count);
+    public void printTotalResult(BridgeDto bridgeDto, GameResultDto dto) {
+        outputView.printResult(bridgeDto, dto);
     }
 }

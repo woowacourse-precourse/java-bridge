@@ -4,6 +4,7 @@ package bridge.view;
 import bridge.domain.GameResult;
 import bridge.domain.State;
 import bridge.dto.BridgeDto;
+import bridge.dto.GameResultDto;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -61,11 +62,11 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      * 메서드 명 변경 불가
      */
-    public void printResult(BridgeDto bridgeDto, GameResult gameResult, int count) {
+    public void printResult(BridgeDto bridgeDto, GameResultDto dto) {
         System.out.println(GAME_RESULT_MESSAGE);
         getMap(bridgeDto);
-        printSuccessOrFailure(gameResult);
-        printTryCount(count);
+        printSuccessOrFailure(dto.getGameResult());
+        printTryCount(dto.getTryCount());
     }
 
     private void printSuccessOrFailure(GameResult gameResult) {

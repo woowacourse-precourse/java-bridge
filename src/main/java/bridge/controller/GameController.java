@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.domain.GameResult;
 import bridge.domain.MatchResult;
 import bridge.dto.BridgeDto;
+import bridge.dto.GameResultDto;
 import bridge.service.GameService;
 import bridge.service.ViewService;
 import bridge.view.InputView;
@@ -23,29 +24,47 @@ public class GameController {
     }
 
     public void run() {
-        GameResult gameResult;
-        int count = 0;
-        do {
-            count++;
-            if (doRound().equals(MatchResult.FINISH)) {
-                gameResult = GameResult.SUCCESS;
-                break;
-            }
-            gameResult = chooseReGame();
-        } while (gameResult.equals(GameResult.REGAME));
-        finish(gameResult, count);
+        GameResultDto gameResultDto = doGame();
+        finishGame(gameResultDto);
     }
 
-    private void finish(GameResult gameResult, int count) {
+    private GameResultDto doGame() {
+        GameResultDto gameResultDto = new GameResultDto();
+        GameResult gameResult;
+
+        do {
+            gameResultDto.counting();
+            MatchResult matchResult = doRound();
+            gameResult = doRetryOrQuit(matchResult);
+        } while (isReGame(gameResult));
+
+        gameResultDto.setGameResult(gameResult);
+        return gameResultDto;
+    }
+
+    private GameResult doRetryOrQuit(MatchResult matchResult) {
+        if (matchResult.equals(MatchResult.FINISH)) {
+            return GameResult.SUCCESS;
+        }
+        return chooseReGame();
+    }
+
+    private boolean isReGame(GameResult result) {
+        return result.equals(GameResult.REGAME);
+    }
+
+    private void finishGame(GameResultDto gameResultDto) {
         BridgeDto recentBridge = gameService.getRecentBridge();
-        viewService.printTotalResult(recentBridge, gameResult, count);
+        viewService.printTotalResult(recentBridge, gameResultDto);
     }
 
     private MatchResult doRound() {
         MatchResult matchResult;
+
         do {
             matchResult = chooseMove();
         } while (matchResult.equals(MatchResult.SUCCESS));
+
         return matchResult;
     }
 
