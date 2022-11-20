@@ -6,7 +6,9 @@ public enum printOutput {
     NOT_SELECTED(" "),
     BRIDGE_START("["),
     BRIDGE_END("]"),
-    BRIDGE_MIDDLE("|");
+    BRIDGE_MIDDLE("|"),
+    IS_SUCCESS("게임 성공 여부: "),
+    ALL_TRY("총 시도한 횟수: ");
     private final String gameOutput;
 
     public String getGameOutput() {
