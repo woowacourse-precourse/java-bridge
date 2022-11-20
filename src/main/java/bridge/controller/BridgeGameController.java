@@ -25,6 +25,7 @@ public class BridgeGameController {
         try {
             BridgeGame bridgeGame = generateGame();
             playGame(bridgeGame);
+            outputView.printResult(bridgeGame);
         } catch(IllegalStateException exception) {
             outputView.printError(exception);
         }
