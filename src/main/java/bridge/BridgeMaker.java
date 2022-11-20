@@ -29,6 +29,10 @@ public class BridgeMaker {
     }
 
     private String convertNumberToDirection(int number) {
+        if(number == 0) {
+            return "D";
+        }
 
+        return "U";
     }
 }
