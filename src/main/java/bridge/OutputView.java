@@ -1,8 +1,8 @@
 package bridge;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.Constant.MOVING_DOWN;
 import static bridge.Constant.MOVING_UP;
 
 /**
@@ -15,14 +15,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(Bridge bridge, int position) {
+    public void printMap(Bridge bridge, int position, boolean isMovable) {
         List<String> crossedBridge = bridge.getCrossedBridge(position);
-        List<Integer> crossedUpside = new ArrayList<>();
-        List<Integer> crossedDownside = new ArrayList<>();
-        for (String block : crossedBridge) {
-            saveCrossedRecord(block, crossedUpside, crossedDownside);
-        }
-        printCrossedRecord(crossedUpside, crossedDownside);
+
+        printCrossedUp(crossedBridge, isMovable);
+        printCrossedDown(crossedBridge, isMovable);
     }
 
     /**
@@ -33,44 +30,72 @@ public class OutputView {
     public void printResult() {
     }
 
-    private void saveCrossedRecord(String block, List<Integer> crossedUpside, List<Integer> crossedDownside) {
-        if (block.equals(MOVING_UP)) {
-            crossedUpside.add(1);
-            crossedDownside.add(0);
+
+    private void printCrossedUp(List<String> crossedBridge, boolean isMovable) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("[");
+        for (int i = 0; i < crossedBridge.size() - 1; i++) {
+            saveCrossedUpsideBridge(crossedBridge.get(i), stringBuilder);
+            stringBuilder.append("|");
+        }
+        saveLastUpsideMove(crossedBridge, isMovable, stringBuilder);
+        stringBuilder.append("]");
+        System.out.println(stringBuilder);
+    }
+
+    private void saveLastUpsideMove(List<String> crossedBridge, boolean isMovable, StringBuilder stringBuilder) {
+        if (isMovable) {
+            saveCrossedUpsideBridge(crossedBridge.get(crossedBridge.size() - 1), stringBuilder);
             return;
         }
-        crossedUpside.add(0);
-        crossedDownside.add(1);
-    }
-
-    private void printCrossedRecord(List<Integer> crossedUpside, List<Integer> crossedDownside) {
-        StringBuilder crossedUpsideStringBuilder = new StringBuilder();
-        StringBuilder crossedDownsideStringBuilder = new StringBuilder();
-        saveOutViewOfRecord(crossedUpside, crossedUpsideStringBuilder);
-        saveOutViewOfRecord(crossedDownside, crossedDownsideStringBuilder);
-        System.out.println(crossedUpsideStringBuilder);
-        System.out.println(crossedDownsideStringBuilder);
-    }
-
-    private void saveOutViewOfRecord(List<Integer> crossedUpside, StringBuilder stringBuilder) {
-        stringBuilder.append("[");
-        for (int i = 0; i < crossedUpside.size(); i++) {
-            if (crossedUpside.get(i) == 1 && i != crossedUpside.size() - 1) {
-                stringBuilder.append(" O ");
-            }
-            if (crossedUpside.get(i) == 0 && i != crossedUpside.size() - 1) {
-                stringBuilder.append("   ");
-            }
-            if (i < crossedUpside.size() - 1) {
-                stringBuilder.append("|");
-            }
-            if (i == crossedUpside.size() - 1 && crossedUpside.get(i) == 0) {
-                stringBuilder.append(" X ");
-            }
-            if (i == crossedUpside.size() - 1 && crossedUpside.get(i) == 1) {
-                stringBuilder.append("   ");
-            }
+        if (crossedBridge.get(crossedBridge.size() - 1).equals(MOVING_UP)) {
+            stringBuilder.append("   ");
         }
+        if (!crossedBridge.get(crossedBridge.size() - 1).equals(MOVING_UP)) {
+            stringBuilder.append(" X ");
+        }
+    }
+
+    private void saveCrossedUpsideBridge(String block, StringBuilder stringBuilder) {
+        if (block.equals(MOVING_UP)) {
+            stringBuilder.append(" O ");
+        }
+        if (!block.equals(MOVING_UP)) {
+            stringBuilder.append("   ");
+        }
+    }
+
+    private void printCrossedDown(List<String> brid, boolean isMovable) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("[");
+        for (int i = 0; i < brid.size() - 1; i++) {
+            saveCrossedDownsideBridge(brid.get(i), stringBuilder);
+            stringBuilder.append("|");
+        }
+        saveLastDownsideMove(brid, isMovable, stringBuilder);
         stringBuilder.append("]");
+        System.out.println(stringBuilder);
+    }
+
+    private void saveLastDownsideMove(List<String> brid, boolean isMovable, StringBuilder stringBuilder) {
+        if (isMovable) {
+            saveCrossedDownsideBridge(brid.get(brid.size() - 1), stringBuilder);
+            return;
+        }
+        if (brid.get(brid.size() - 1).equals(MOVING_DOWN)) {
+            stringBuilder.append("   ");
+        }
+        if (!brid.get(brid.size() - 1).equals(MOVING_DOWN)) {
+            stringBuilder.append(" X ");
+        }
+    }
+
+    private void saveCrossedDownsideBridge(String block, StringBuilder stringBuilder) {
+        if (block.equals(MOVING_DOWN)) {
+            stringBuilder.append(" O ");
+        }
+        if (!block.equals(MOVING_DOWN)) {
+            stringBuilder.append("   ");
+        }
     }
 }
