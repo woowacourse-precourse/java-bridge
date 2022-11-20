@@ -1,5 +1,12 @@
 package bridge.view;
 
+import static bridge.utils.Constant.ZERO;
+
+import bridge.domain.BridgeResult;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringJoiner;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -10,7 +17,51 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public static void printMap(List<BridgeResult> bridgeResults) {
+        printUpMap(bridgeResults);
+        printDownMap(bridgeResults);
+    }
+
+    public static void printUpMap(List<BridgeResult> bridgeResults){
+        StringJoiner upResultView = new StringJoiner(" | ", "[ ", " ]");
+
+        for(int i = ZERO; i<bridgeResults.size(); i++){
+            upResultView.add(drawUpMap(bridgeResults.get(i)));
+        }
+
+        String upMap = upResultView.toString();
+        System.out.println(upMap);
+    }
+
+    public static void printDownMap(List<BridgeResult> bridgeResults){
+        StringJoiner downResultView = new StringJoiner(" | ", "[ ", " ]");
+
+        for(int i = ZERO; i<bridgeResults.size(); i++){
+            downResultView.add(drawDownMap(bridgeResults.get(i)));
+        }
+
+        String downMap = downResultView.toString();
+        System.out.println(downMap);
+    }
+
+    private static String drawUpMap(BridgeResult bridgeResult){
+        if(bridgeResult.isUpMove() && bridgeResult.isSuccessMove()){
+            return "O";
+        }
+        if(bridgeResult.isUpMove() && !bridgeResult.isSuccessMove()){
+            return "X";
+        }
+        return " ";
+    }
+
+    private static String drawDownMap(BridgeResult bridgeResult){
+        if(!bridgeResult.isUpMove() && bridgeResult.isSuccessMove()){
+            return "O";
+        }
+        if(!bridgeResult.isUpMove() && !bridgeResult.isSuccessMove()){
+            return "X";
+        }
+        return " ";
     }
 
     /**

@@ -9,4 +9,18 @@ public class BridgeResult {
         this.nowStep = nowStep;
         this.nowResult = nowResult;
     }
+
+    public boolean isUpMove(){
+        if(this.nowStep == "U"){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isSuccessMove(){
+        if(this.nowResult == true){
+            return true;
+        }
+        return false;
+    }
 }

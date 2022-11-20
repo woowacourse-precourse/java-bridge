@@ -15,7 +15,7 @@ public class MoveValidator {
     }
 
     private void isValidMove(){
-        if (move != UP && move != DOWN) {
+        if (!this.move.equals(UP) && !this.move.equals(DOWN)) {
             throw new IllegalArgumentException(ERROR_MESSAGE + NOT_RANGE_STATE);
         }
     }
