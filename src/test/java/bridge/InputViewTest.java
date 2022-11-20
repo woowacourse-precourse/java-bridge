@@ -37,4 +37,26 @@ class InputViewTest {
 
         assertThatThrownBy(() -> input.readBridgeSize()).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 이동_칸_입력_테스트1() {
+        InputView input = new InputView();
+        this.stdInput("D");
+        assertThat(input.readMoving()).isEqualTo(0);
+    }
+
+    @Test
+    void 이동_칸_입력_테스트2() {
+        InputView input = new InputView();
+        this.stdInput("U");
+        assertThat(input.readMoving()).isEqualTo(1);
+    }
+
+    @Test
+    void 이동_칸_입력_테스트3() {
+        InputView input = new InputView();
+        this.stdInput("K");
+
+        assertThatThrownBy(() -> input.readMoving()).isInstanceOf(IllegalArgumentException.class);
+    }
 }
