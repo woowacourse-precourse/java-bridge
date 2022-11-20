@@ -8,6 +8,7 @@ import bridge.validation.MovingValidation;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import bridge.view.PrintGuideMessage;
+import bridge.view.enums.MapType;
 import java.util.List;
 
 public class BridgeGameController {
@@ -20,10 +21,14 @@ public class BridgeGameController {
     public void startGame() {
         int bridgeSize = getBridgeSize();
         List<String> bridge = game.createBridge(bridgeSize);
-        List<String> movingChoices = game.createMovingChoices(getMoving());
-        String move = game.move(new Player(movingChoices), bridge);
-        printMap(new Player(movingChoices), bridge, move);
-        String gameCommand = getGameCommand();
+        do {
+            List<String> movingChoices = game.createMovingChoices(getMoving());
+            String move = game.move(new Player(movingChoices), bridge);
+            printMap(new Player(movingChoices), bridge, move);
+            if (move.equals(MapType.CAN_NOT_STEP.getType())) {
+                break;
+            }
+        } while (game.retry(getGameCommand()));
     }
 
     public int getBridgeSize() {
