@@ -31,4 +31,17 @@ public class BridgeTest {
             System.out.println( bridge.isSafe(1));
         });
     }
+    @Test
+    void exceptionTest(){
+        assertSimpleTest(()->{
+            String testStr = "6\nD\nU";
+            InputStream is = new ByteArrayInputStream(testStr.getBytes());
+            System.setIn(is);
+            Bridge bridge = new Bridge();
+            bridge.printRoute();
+
+            System.out.println(bridge.isSafe(6));
+            System.out.println( bridge.isSafe(1));
+        });
+    }
 }

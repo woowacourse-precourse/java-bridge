@@ -2,6 +2,7 @@ package bridge;
 
 import java.util.List;
 import static Constant.MoveCondition.*;
+import static Constant.ErrorMessage.ILLEGAL_LIST_INDEX;
 public class Bridge {
     private List<String> bridgeRoute;
     private int bridgeLength;
@@ -13,6 +14,9 @@ public class Bridge {
         bridgeRoute = maker.makeBridge(bridgeLength);
     }
     public boolean isSafe(int index){
+        if(index>=bridgeLength){
+            throw new IllegalArgumentException(ILLEGAL_LIST_INDEX.getErrorMsg());
+        }
         String direction = userInput.readMoving();
         if (bridgeRoute.get(index).equals(direction)){
             return SUCCESS.getCond();
