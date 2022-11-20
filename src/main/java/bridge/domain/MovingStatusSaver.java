@@ -39,23 +39,25 @@ public class MovingStatusSaver {
         return this.movingStatus;
     }
 
-    public int getStatusSize(){
+    public int getStatusSize() {
         return this.movingStatus.size();
     }
 
-    public int getRandomBridgeSize(){
+    public int getRandomBridgeSize() {
         return this.randomBridge.size();
     }
 
     public boolean isStopCondition() {
-        if (movingStatus.contains(MovingStatus.UP.sideFail())
-                || movingStatus.contains(MovingStatus.DOWN.sideFail())) {
-            return true;
-        }
-        if (getStatusSize() == randomBridge.size()) {
-            return true;
-        }
-        return false;
+        return isWrongBridge() || isFullSize();
+    }
+
+    private boolean isWrongBridge() {
+        return movingStatus.contains(MovingStatus.UP.sideFail())
+                || movingStatus.contains(MovingStatus.DOWN.sideFail());
+    }
+
+    private boolean isFullSize() {
+        return getStatusSize() == getRandomBridgeSize();
     }
 
     @Override
