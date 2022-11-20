@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.model.OutputMessage;
 import bridge.model.UserKeySet;
 import bridge.service.BridgeGame;
 import bridge.service.BridgeMaker;
@@ -39,9 +40,9 @@ public class BridgeController {
     }
 
     public BridgeGame initGame() {
-        outputView.printGameStartMsg();
+        outputView.printSimpleMsg(OutputMessage.GAME_START_MSG);
 
-        outputView.printInputBridgeSizeMsg();
+        outputView.printSimpleMsg(OutputMessage.INPUT_BRIDGE_SIZE_MSG);
         int bridgeSize = inputView.readBridgeSize(BridgeMaker.BRIDGE_MIN_SIZE, BridgeMaker.BRIDGE_MAX_SIZE);
 
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
@@ -73,7 +74,7 @@ public class BridgeController {
     }
 
     public boolean retry(BridgeGame game) {
-        outputView.printRestartMsg();
+        outputView.printInputCommandMsg();
         String command = inputView.readGameCommand();
 
         boolean isRetry = command.equals(UserKeySet.RETRY.toString());
@@ -85,7 +86,7 @@ public class BridgeController {
     }
 
     public void end(BridgeGame game) {
-        outputView.printGameResultMsg();
+        outputView.printSimpleMsg(OutputMessage.GAME_RESULT_MSG);
         List<String> bridge = game.getBridge();
         List<String> movements = game.getMovements();
         outputView.printMap(bridge, movements);

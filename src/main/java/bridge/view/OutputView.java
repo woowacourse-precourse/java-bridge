@@ -16,22 +16,22 @@ public class OutputView {
     private static final String NOT_MOVED = " ";
     private static final String CORRECT_MOVED = "O";
     private static final String WRONG_MOVED = "X";
-    public void printGameStartMsg() {
-        System.out.println(OutputMessage.GAME_START_MSG);
-        System.out.println();
-    }
 
-    public void printInputBridgeSizeMsg() {
-        System.out.println(OutputMessage.INPUT_BRIDGE_SIZE_MSG);
+    private static final String FAILURE_WORD = "실패";
+    private static final String SUCCESS_WORD = "성공";
+
+    public void printSimpleMsg(OutputMessage message) {
+        System.out.println(message.toString());
     }
 
     public void printInputMoveCellMsg() {
-        System.out.println(OutputMessage.INPUT_MOVE_CELL_MSG);
+        System.out.println(OutputMessage.INPUT_MOVE_CELL_MSG.toString(UserKeySet.UP, UserKeySet.DOWN));
     }
 
-    public void printRestartMsg() {
-        System.out.println(OutputMessage.RESTART_MSG);
+    public void printInputCommandMsg() {
+        System.out.println(OutputMessage.RESTART_MSG.toString(UserKeySet.RETRY, UserKeySet.QUIT));
     }
+
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -73,20 +73,15 @@ public class OutputView {
         return CORRECT_MOVED;
     }
 
-    public void printGameResultMsg() {
-        System.out.println(OutputMessage.GAME_RESULT_MSG);
-    }
-
-
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      */
     public void printResult(boolean isSuccess, int trialCount) {
-        String success = "실패";
+        String success = FAILURE_WORD;
         if(isSuccess) {
-            success = "성공";
+            success = SUCCESS_WORD;
         }
 
-        System.out.printf(OutputMessage.GAME_TRY_RESULT_MSG.toString(), success, trialCount);
+        System.out.println(OutputMessage.GAME_TRY_RESULT_MSG.toString(success, trialCount));
     }
 }
