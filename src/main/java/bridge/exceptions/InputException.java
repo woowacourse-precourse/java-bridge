@@ -1,7 +1,7 @@
 package bridge.exceptions;
 
 public class InputException {
-    public static int bridgeSizeInputError(String bridgeSizeInput) {
+    public static int bridgeSizeInputError(String bridgeSizeInput) throws IllegalArgumentException{
         bridgeSizeNumberError(bridgeSizeInput);
         int bridgeSize = Integer.parseInt(bridgeSizeInput);
         bridgeSizeRangeError(bridgeSize);
