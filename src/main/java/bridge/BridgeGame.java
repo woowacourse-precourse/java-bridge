@@ -17,6 +17,11 @@ public class BridgeGame {
 
     public void startGame(List<String> bridge) {
         this.bridge = bridge;
+        int count = 0;
+        while(move(new StringBuilder(), new StringBuilder()) || retry()){
+            count++;
+        }
+
     }
 
     /**
@@ -24,16 +29,15 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
-        StringBuilder up = new StringBuilder();
-        StringBuilder down = new StringBuilder();
+    public boolean move(StringBuilder up, StringBuilder down) {
 
         for (String now : bridge) {
             boolean tf = addUpAndDown(up, down, now);
             outputView.printMap(up, down);
 
-            if (!tf) return;
+            if (!tf) return false;
         }
+        return true;
     }
 
     /**
@@ -41,7 +45,9 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry() {
+        String command = inputView.readGameCommand();
+        return command.equals("R");
     }
 
 

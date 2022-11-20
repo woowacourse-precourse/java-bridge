@@ -45,4 +45,11 @@ public class Validator {
         }
     }
 
+    public void checkCommandWord(String command) {
+        if(!command.equals("R") && !command.equals("Q")){
+            throw new IllegalArgumentException(
+                    ExceptionMessage.commandByNotRQ.getMessage());
+        }
+    }
+
 }
