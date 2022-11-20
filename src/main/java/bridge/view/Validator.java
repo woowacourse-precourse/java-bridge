@@ -9,34 +9,38 @@ public class Validator {
     /**
      * 다리 길이의 유효성 검사
      */
-    public static void validateInputSize(int bridgeSize) {
+
+    public static void validateInputSizeException(String inputSize) {
+        validateInputSizeNull(inputSize);
+        validateInputSizeType(inputSize);
+        validateInputSize(Integer.parseInt(inputSize));
+    }
+
+    private static void validateInputSize(int bridgeSize) {
         try {
             if (bridgeSize < 3 || bridgeSize > 20) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
-            System.out.println(ErrorMessage.BRIDGE_SIZE_INPUT_RANGE.getErrorMessage());
-            inputView.inputBridgeSize();
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_INPUT_RANGE.getErrorMessage());
         }
     }
 
-    public static void validateInputSizeType(String inputSize) {
+    private static void validateInputSizeType(String inputSize) {
         try {
             Integer.parseInt(inputSize);
         } catch (NumberFormatException e) {
-            System.out.println(ErrorMessage.BRIDGE_SIZE_INPUT_TYPE.getErrorMessage());
-            inputView.inputBridgeSize();
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_INPUT_TYPE.getErrorMessage());
         }
     }
 
-    public static void validateInputSizeNull(String inputSize) {
+    private static void validateInputSizeNull(String inputSize) {
         try {
             if (inputSize.length() == 0) {
                 throw new NullPointerException();
             }
         } catch (NullPointerException e) {
-            System.out.println(ErrorMessage.INPUT_NULL.getErrorMessage());
-            inputView.inputBridgeSize();
+            throw new IllegalArgumentException(ErrorMessage.INPUT_NULL.getErrorMessage());
         }
     }
 
