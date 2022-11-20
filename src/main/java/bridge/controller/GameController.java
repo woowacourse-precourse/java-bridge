@@ -25,12 +25,11 @@ public class GameController {
         Bridge bridge = createBridge();
 
         FinalResult finalResult = new FinalResult();
-        Diagram diagram = new Diagram();
+        BridgeGame bridgegame = new BridgeGame(bridge, finalResult);
 
-        BridgeGame bridgegame = new BridgeGame(bridge, diagram, finalResult);
-
-        while (bridgegame.retry()) {
-            bridgegame.move();
+        do {
+            Diagram diagram = new Diagram();
+            bridgegame.move(diagram);
             if (finalResult.isSuccess()) {
                 outputView.printResult(diagram, finalResult);
             }
@@ -38,13 +37,13 @@ public class GameController {
                 String retryOrQuit = getGameCommand();
                 if (retryOrQuit.equals("R")) {
                     finalResult.addAttempts();
-                    diagram = new Diagram();
                 }
                 if (retryOrQuit.equals("Q")) {
                     finalResult.quit();
+                    outputView.printResult(diagram, finalResult);
                 }
             }
-        }
+        } while (bridgegame.retry());
     }
 
     private static Bridge createBridge() {
