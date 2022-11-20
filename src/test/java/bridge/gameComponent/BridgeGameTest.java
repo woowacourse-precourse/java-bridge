@@ -81,7 +81,7 @@ public class BridgeGameTest {
         //when
         bridgeGame.retry();
         //then
-        assertThat(bridgeGame.getNumberOfTries())
+        assertThat(bridgeGame.getNumberOfTrials())
                 .isEqualTo(2);
         assertThat(bridgeGame.getIndex())
                 .isEqualTo(-1);
@@ -116,9 +116,7 @@ public class BridgeGameTest {
         //given
         Bridge bridge = Bridge.of(List.of("U","D","D"));
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        String userMove1 = "U";
         boolean isPossibleMove1 = true;
-        String userMove2 = "U";
         boolean isPossibleMove2 = false;
         //when
         bridgeGame.move();
