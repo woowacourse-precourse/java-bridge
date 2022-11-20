@@ -61,7 +61,7 @@ public class InputView {
         try {
             return (Console.readLine());
         } catch (NoSuchElementException ex) {
-            throw new IllegalArgumentException(ErrorMessageGenerator.generate("[ERROR] 잘못된 입력 값 입니다."));
+            throw new IllegalArgumentException(ErrorMessageGenerator.generate("잘못된 입력 값 입니다."));
         }
     }
 
