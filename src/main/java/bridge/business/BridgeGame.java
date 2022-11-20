@@ -1,5 +1,6 @@
 package bridge.business;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -51,6 +52,9 @@ public class BridgeGame {
     }
 
     public String validateMovingKey(String movingKey) {
+        if(movingKey == null){
+            throw new IllegalArgumentException("올바르지 못한 이동 키 입니다.");
+        }
         if(!MOVING_KEY.contains(movingKey)){
             throw new IllegalArgumentException("올바르지 못한 이동 키 입니다.");
         }
@@ -58,6 +62,9 @@ public class BridgeGame {
     }
 
     public String validateRetryKey(String retryKey) {
+        if(retryKey == null){
+            throw new IllegalArgumentException("올바르지 못한 재시도 키 입니다.");
+        }
         if(!RETRY_KEY.contains(retryKey)){
             throw new IllegalArgumentException("올바르지 못한 재시도 키 입니다.");
         }
