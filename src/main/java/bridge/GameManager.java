@@ -11,16 +11,16 @@ public class GameManager {
 
     public static void bridge(){
         outputView.printBridgeGameStart();
+        List<String> bridge = createBridge();
 
+
+    }
+
+    private static List<String> createBridge(){
         int bridgeSize = inputView.readBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-
-        for (String s : bridge) {
-            System.out.print(s);
-        }
-        System.out.println();
-
+        return bridge;
     }
 
 }
