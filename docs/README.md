@@ -17,6 +17,11 @@
   - 이때 사용되는 다리는 앞에서 사용했던 다리
 
 ### BridgeMaker 클래스
+- 다리 길이만큼 U / D 생성
+  - `int number = bridgeNumberGenerator.generate();` 이용
+    - 값 0이면 D, 1이면 U 저장
+
+### 다리 생성 UI 클래스
 - 다리의 시작 [
 - 선택하지 않은 칸: 공백
 - 이동할 수 있는 칸: O
