@@ -29,4 +29,9 @@ class BridgeGameTest {
     void 재시작_메서드_테스트() {
         assertThat(bridgeGame.retry("R")).isTrue();
     }
+
+    @Test
+    void 종료_메서드_테스트() {
+        assertThat(bridgeGame.quit("Q")).isTrue();
+    }
 }
