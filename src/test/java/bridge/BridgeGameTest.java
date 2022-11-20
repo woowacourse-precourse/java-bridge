@@ -19,7 +19,7 @@ class BridgeGameTest {
     @BeforeEach
     void setUp() {
         bridge = List.of("U", "D", "D");
-        bridgeGame = new BridgeGame();
+        bridgeGame = new BridgeGame(bridge.size());
     }
 
     @DisplayName("플레이어 이동 테스트")
@@ -45,5 +45,34 @@ class BridgeGameTest {
     void createMovingException(String moving) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> bridgeGame.move(bridge, moving));
+    }
+
+    @DisplayName("게임 결과 확인 테스트 - 진행 중")
+    @Test
+    void createInProgressTest() {
+        MovingResult movingResult = bridgeGame.move(bridge, "U");
+
+        assertThat(bridgeGame.getGameResult(movingResult)).isEqualTo(Result.IN_PROGRESS);
+    }
+
+    @DisplayName("게임 결과 확인 테스트 - 실패")
+    @Test
+    void createFailTest() {
+        bridgeGame.move(bridge, "U");
+
+        MovingResult movingResult = bridgeGame.move(bridge, "U");
+
+        assertThat(bridgeGame.getGameResult(movingResult)).isEqualTo(Result.FAIL);
+    }
+
+    @DisplayName("게임 결과 확인 테스트 - 성공")
+    @Test
+    void createSuccessTest() {
+        bridgeGame.move(bridge, "U");
+        bridgeGame.move(bridge, "D");
+
+        MovingResult movingResult = bridgeGame.move(bridge, "D");
+
+        assertThat(bridgeGame.getGameResult(movingResult)).isEqualTo(Result.SUCCESS);
     }
 }

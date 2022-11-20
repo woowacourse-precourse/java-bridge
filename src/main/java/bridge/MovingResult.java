@@ -13,4 +13,8 @@ public class MovingResult {
     public static MovingResult of(String moving, Result result) {
         return new MovingResult(moving, result);
     }
+
+    public boolean isFail() {
+        return result.isFail();
+    }
 }

@@ -10,9 +10,11 @@ public class BridgeGame {
     public static final int STARTING_POINT = 0;
 
     private int currentPosition;
+    private int bridgeSize;
 
-    public BridgeGame() {
+    public BridgeGame(int bridgeSize) {
         currentPosition = STARTING_POINT;
+        this.bridgeSize = bridgeSize;
     }
 
     /**
@@ -42,6 +44,16 @@ public class BridgeGame {
 
     private static boolean isValidMoving(String moving) {
         return !moving.equals("U") && !moving.equals("D");
+    }
+
+    public Result getGameResult(MovingResult movingResult) {
+        if (movingResult.isFail()) {
+            return Result.FAIL;
+        }
+        if (bridgeSize == currentPosition) {
+            return Result.SUCCESS;
+        }
+        return Result.IN_PROGRESS;
     }
 
     /**
