@@ -27,7 +27,7 @@ public class OutputView {
             if(!userBridge.get(index).equals("U")){
                 topLine+="  ";
             }
-            if(userBridge.get(index).equals("U")&&BridgeGame.checkSameMove(index)){
+            if(userBridge.get(index).equals("U")&&BridgeGame.checkSameMove(userBridge, answerBridge, index)){
                 topLine+="O ";
             }
             if(userBridge.get(index).equals("U")&&!BridgeGame.checkSameMove(index)){
@@ -37,6 +37,13 @@ public class OutputView {
         }
         topLine+="]";
         return topLine;
+    }
+    
+    public boolean checkSameMove(List<String> userBridge, List<String> answerBridge, int index){
+        if(userBridge.get(index)==answerBridge.get(index)){
+            return true;
+        }
+        return false;
     }
 
     /**
