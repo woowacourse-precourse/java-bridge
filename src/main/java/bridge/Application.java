@@ -11,7 +11,11 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        startGame();
+        try {
+            startGame();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private static void startGame() {
@@ -27,5 +31,13 @@ public class Application {
     private static void choiceMove() {
         String commend = inputView.readMoving();
         bridgeGame.move(commend);
+    }
+
+    private static boolean isFailed() {
+        return false;
+    }
+
+    private static boolean isSuccessful() {
+        return false;
     }
 }
