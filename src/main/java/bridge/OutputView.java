@@ -35,7 +35,7 @@ public class OutputView {
     public void printEnding() {
         System.out.println("최종 게임 결과");
     }
-    public void printResult(List<String> visited, String result, int tryNum) {
+    public void printResult(String result, int tryNum) {
         System.out.println("게임 성공 여부: " + result);
         System.out.println("총 시도한 횟수: " + tryNum);
     }
