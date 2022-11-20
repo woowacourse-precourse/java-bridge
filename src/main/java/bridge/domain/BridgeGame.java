@@ -2,6 +2,7 @@ package bridge.domain;
 
 import bridge.util.BridgeBlock;
 import bridge.util.BridgePosition;
+import bridge.util.ErrorMessage;
 import bridge.util.GameCommand;
 
 import java.util.ArrayList;
@@ -46,12 +47,7 @@ public class BridgeGame {
             trialCount++;
             return true;
         }
-
-        if (GameCommand.QUIT.isEqual(selectedProgress)) {
-            return false;
-        }
-
-        throw new IllegalArgumentException();
+        return false;
     }
 
     public void initMovements() {
