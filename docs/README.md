@@ -1,7 +1,7 @@
 # 4주차 다리건너기
-___
-
 ## 기능 구현 목록
+
+---
 
 ## BridgeGame(Controller)
 ### - 게임의 전체적 흐름을 관리
@@ -15,10 +15,11 @@ ___
 ## BridgeNumberGenerator, RandomNumberGenerator
 ### - 0, 1 두개의 수 중 하나를 생성하여 건널 다리를 결정하는 역할
 
-## BridgeStatus
-### BridgeMaker에서 생성된 다리를 인자로 받아 다리의 상황을 나타내는 클래스
-### Map에 이용해 건널 수 있는지 판단(건넌다면 O, 건너지 못하면 X)하는 내용을 저장() (makeStatus)
+## Bridge
+### - 다리의 상태를 리스트 형식으로 표현하는 역할
 
+## Player
+### - 사용자가 이동할 칸을 리스트 형식으로 표현하는 역할
 
 ---
 
