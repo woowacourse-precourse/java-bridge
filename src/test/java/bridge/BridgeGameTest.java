@@ -23,26 +23,26 @@ public class BridgeGameTest {
     @ParameterizedTest
     @MethodSource("moveUpSideTestSource")
     void moveUpSideTest(int distance, RouteMap expected) {
-        RouteMap actual = bridgeGame.move("U", distance);
-        assertThat(actual).isEqualTo(expected);
+        TotalResult actual = bridgeGame.move("U", distance);
+        assertThat(actual.getRouteMap()).isEqualTo(expected);
     }
 
     @DisplayName("위 다리로 이동한 경로를 반환한다")
     @ParameterizedTest
     @MethodSource("moveDownSideTestSource")
     void moveDownSideTest(int distance, RouteMap expected) {
-        RouteMap actual = bridgeGame.move("D", distance);
-        assertThat(actual).isEqualTo(expected);
+        TotalResult actual = bridgeGame.move("D", distance);
+        assertThat(actual.getRouteMap()).isEqualTo(expected);
     }
 
-    @DisplayName("3번 게임을 재시작하면 총 시도횟수 4를 반환한다")
+    @DisplayName("게임을 2번 재시작하면 총 시도 횟수 3을 반환한다")
     @Test
     void retryTest() {
-        BridgeGame bridgeGame2 = bridgeGame.retry();
-        BridgeGame bridgeGame3 = bridgeGame2.retry();
-        BridgeGame bridgeGame4 = bridgeGame3.retry();
+        BridgeGame nextBridgeGame = bridgeGame.retry();
+        nextBridgeGame = nextBridgeGame.retry();
 
-        assertThat(bridgeGame4.getTryCnt()).isEqualTo(4);
+        TotalResult actual = nextBridgeGame.move("D", 1);
+        assertThat(actual.getTryCnt()).isEqualTo(3);
     }
 
     private static Stream<Arguments> moveUpSideTestSource() {

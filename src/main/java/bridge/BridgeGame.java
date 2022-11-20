@@ -25,12 +25,14 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public RouteMap move(String movingSide, int distance) {
+    public TotalResult move(String movingSide, int distance) {
         if (movingSuccess(movingSide, distance)) {
-            return getSuccessRouteAt(distance);
+            RouteMap resultMap = getSuccessRouteAt(distance);
+            return new TotalResult(resultMap, tryCnt);
         }
 
-        return getFailureRouteAt(distance);
+        RouteMap resultMap = getFailureRouteAt(distance);
+        return new TotalResult(resultMap, tryCnt);
     }
 
     private boolean movingSuccess(String movingSide, int distance) {
@@ -56,9 +58,5 @@ public class BridgeGame {
      */
     public BridgeGame retry() {
         return new BridgeGame(bridge, tryCnt + 1);
-    }
-
-    public int getTryCnt() {
-        return tryCnt;
     }
 }
