@@ -1,7 +1,6 @@
 package bridge.domain.player;
 
 public class Player {
-
     private final AttemptCount attemptCount;
     private final MovedDistance movedDistance;
 

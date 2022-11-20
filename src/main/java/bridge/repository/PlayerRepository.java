@@ -3,7 +3,6 @@ package bridge.repository;
 import bridge.domain.player.Player;
 
 public class PlayerRepository {
-
     private static final PlayerRepository playerRepository = new PlayerRepository();
 
     private Player player;

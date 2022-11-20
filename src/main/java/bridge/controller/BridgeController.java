@@ -27,7 +27,6 @@ public class BridgeController {
         if (!StringUtils.isNumeric(input)) {
             throw new NotNumericException();
         }
-
         int bridgeSize = Integer.parseInt(input);
         BridgeSizeValidator.validateBridgeSize(bridgeSize);
 
