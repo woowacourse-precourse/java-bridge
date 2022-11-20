@@ -56,12 +56,7 @@ public class BridgeGameManager {
             step++;
         }
 
-        OutputView.printResult();
-        OutputView.printMap(targetBridge, bridgeGame.getPreStatus());
-        OutputView.printSuccessFailure(targetBridge, bridgeGame.getPreStatus());
-        OutputView.printTryNumber(bridgeGame.getTryNumber());
-
-        bridgeGame.resetTryNumber();
+        printResult(targetBridge, bridgeGame);
     }
 
     private int inputBridgeSizeRepeat() {
@@ -101,5 +96,13 @@ public class BridgeGameManager {
             }
         }
         return retryAnswer;
+    }
+
+    private void printResult(List<String> targetBridge, BridgeGame bridgeGame) {
+        OutputView.printResult();
+        OutputView.printMap(targetBridge, bridgeGame.getPreStatus());
+        OutputView.printSuccessFailure(targetBridge, bridgeGame.getPreStatus());
+        OutputView.printTryNumber(bridgeGame.getTryNumber());
+        bridgeGame.resetTryNumber();
     }
 }
