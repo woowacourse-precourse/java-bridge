@@ -1,8 +1,8 @@
-package bridge;
+package bridge.error;
 
 import java.util.Objects;
 
-public class Validate {
+public class Validator {
 
     public static int validateLengthOfBridge(String lengthOfBridge) {
         validateIsDigit(lengthOfBridge);

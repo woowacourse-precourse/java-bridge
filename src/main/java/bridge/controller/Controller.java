@@ -1,11 +1,16 @@
-package bridge;
+package bridge.controller;
 
+import bridge.domain.BridgeGame;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.error.Validator;
+import bridge.domain.BridgeMaker;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Controller {
-    private BridgeRandomNumberGenerator bridgeRandomNumberGenerator;
     private BridgeMaker bridgeMaker;
     private int numberOfAttempts;
     private List<Integer> movingSuccess;
@@ -19,7 +24,7 @@ public class Controller {
     }
 
     private void initialize() {
-        this.bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         this.bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         this.numberOfAttempts = 0;
         OutputView.printStartMessage();
@@ -28,7 +33,7 @@ public class Controller {
     private int getBridgeSize() {
         try {
             OutputView.printMessageForBridgeSize();
-            return Validate.validateLengthOfBridge(InputView.readBridgeSize());
+            return Validator.validateLengthOfBridge(InputView.readBridgeSize());
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return getBridgeSize();
@@ -60,7 +65,7 @@ public class Controller {
     private String getMoving() {
         try {
             OutputView.printMessageForMoving();
-            return Validate.validateMoving(InputView.readMoving());
+            return Validator.validateMoving(InputView.readMoving());
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return getMoving();
@@ -70,7 +75,7 @@ public class Controller {
     public static String getGameCommand() {
         try {
             OutputView.printMessageForTermination();
-            return Validate.validateGameCommand(InputView.readGameCommand());
+            return Validator.validateGameCommand(InputView.readGameCommand());
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return getGameCommand();
