@@ -3,19 +3,20 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeGame;
+import bridge.domain.Player;
+import bridge.domain.Result;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class Controller {
-    private final InputView inputView;
-    private final OutputView outputView;
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
     private final BridgeMaker bridgeMaker;
-
     private BridgeGame bridgeGame;
+    private Player player;
+    private Result result;
 
-    public Controller(InputView inputView, OutputView outputView, BridgeMaker bridgeMaker) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public Controller(BridgeMaker bridgeMaker) {
         this.bridgeMaker = bridgeMaker;
         outputView.printStartMessage();
         outputView.printInputLengthMessage();
@@ -35,17 +36,14 @@ public class Controller {
         try {
             String direction = inputView.input();
             return inputView.readMoving(direction);
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputDirection();
         }
     }
 
     public void setUpBridge(int size) {
-        bridgeGame = new BridgeGame(new Bridge(bridgeMaker.makeBridge(size)));
-    }
-
-    public void initialize() {
-        setUpBridge(inputBridgeLength());
+        result = new Result();
+        bridgeGame = new BridgeGame(new Bridge(bridgeMaker.makeBridge(size)), result);
     }
 }
