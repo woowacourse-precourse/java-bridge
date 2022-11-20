@@ -8,18 +8,15 @@ import bridge.view.OutputView;
 
 public class BridgeGameController {
     private final BridgeGame bridgeGame;
-    private final Player player;
 
-    public BridgeGameController(BridgeGame bridgeGame, Player player) {
+    public BridgeGameController(BridgeGame bridgeGame) {
         this.bridgeGame = bridgeGame;
-        this.player = player;
     }
 
     public void run() {
         OutputView.start();
         OutputView.askLength();
-        int size = player.inputBridgeSize();
-        bridgeGame.create(size);
+        bridgeGame.create();
         play();
     }
 

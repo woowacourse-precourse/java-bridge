@@ -8,15 +8,18 @@ import bridge.BridgeRandomNumberGenerator;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private Bridge bridge;
     private final BridgeMaker bridgeMaker;
+    private final Player player;
+    private Bridge bridge;
 
     public BridgeGame() {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         this.bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        this.player = new Player();
     }
 
-    public void create(int size) {
+    public void create() {
+        int size = player.inputBridgeSize();
         bridge = new Bridge(bridgeMaker.makeBridge(size));
     }
 
