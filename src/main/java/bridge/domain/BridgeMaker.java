@@ -30,6 +30,6 @@ public class BridgeMaker {
         if (number == 0) {
             return "D";
         }
-        return "C";
+        return "U";
     }
 }
