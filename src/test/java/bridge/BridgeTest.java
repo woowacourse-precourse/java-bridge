@@ -2,10 +2,16 @@ package bridge;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+import java.util.stream.Stream;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import bridge.enums.Inputs;
 
@@ -40,7 +46,7 @@ class BridgeTest {
 		assertTrue(alternativeBridge.moveNext(Inputs.MOVE_UP));
 	}
 
-	@DisplayName("게임 승리 여부에 대한 상태를 반환해야 한다")
+	@DisplayName("게임 승리 여부에 대한 상태를 반환해야 한다.")
 	@Test
 	void gameWonTest() {
 		alternativeBridge.moveNext(Inputs.MOVE_UP);
@@ -52,22 +58,14 @@ class BridgeTest {
 		assertTrue(alternativeBridge.gameWon());
 	}
 
-	// @DisplayName("위쪽으로만 이동이 가능한 길이 5의 다리가 생성되어야 한다")
-	// @ParameterizedTest
-	// @MethodSource("moveAndExpectedSrc")
-	// void moveNextTest(Inputs move, boolean isSuccess, List<Integer> expected) {
-	// 	Assertions.assertThat(upMovableLength10Bridge.moveNext(move)).isEqualTo(isSuccess);
-	// 	Assertions.assertThat(upMovableLength10Bridge.getSuccessfullyMovedPartialBridge()).isEqualTo(expected);
-	// }
-	//
-	// private static Stream<Arguments> moveAndExpectedSrc() {
-	// 	return Stream.of(
-	// 		Arguments.of(Inputs.MOVE_UP, true, List.of("U")),
-	// 		Arguments.of(Inputs.MOVE_UP, true, List.of("U", "U")),
-	// 		Arguments.of(Inputs.MOVE_DOWN, false, List.of("U", "U")),
-	// 		Arguments.of(Inputs.MOVE_UP, true, List.of("U", "U", "U")),
-	// 		Arguments.of(Inputs.MOVE_UP, true, List.of("U", "U", "U", "U")),
-	// 		Arguments.of(Inputs.MOVE_UP, true, List.of("U", "U", "U", "U", "U"))
-	// 	);
-	// }
+	@DisplayName("게임 진행에 따른 진행상황이 반환되어야 한다.")
+	@Test
+	void getSuccessfullyMovedPartialBridgeTest() {
+		alternativeBridge.moveNext(Inputs.MOVE_UP);
+		Assertions.assertThat(alternativeBridge.getSuccessfullyMovedPartialBridge()).isEqualTo(List.of("U"));
+		alternativeBridge.moveNext(Inputs.MOVE_DOWN);
+		Assertions.assertThat(alternativeBridge.getSuccessfullyMovedPartialBridge()).isEqualTo(List.of("U", "D"));
+		alternativeBridge.moveNext(Inputs.MOVE_UP);
+		Assertions.assertThat(alternativeBridge.getSuccessfullyMovedPartialBridge()).isEqualTo(List.of("U", "D", "U"));
+	}
 }
