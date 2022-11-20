@@ -3,16 +3,9 @@ package Controller;
 import Model.Map;
 import Util.Util;
 import View.OutputView;
-import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
-import bridge.BridgeRandomNumberGenerator;
-
 import java.util.List;
 
 public class BridgeGame {
-
-    BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-    BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     OutputView outputView = new OutputView();
     Util util = new Util();
 
@@ -28,23 +21,18 @@ public class BridgeGame {
 
     public boolean checkIfWin(List<String> crossable, Map map) {
         map.startMap();
+        boolean returnValue = true;
         for (int index=0; index<crossable.size(); index++) {
-            boolean isWin = move(map, crossable, index);
+            returnValue &= move(map, crossable, index);
             outputView.printMap(map.getMapUpper(), map.getMapLower());
-            if (!isWin) {
-                return false;
-            }
         }
-        return true;
+        return returnValue;
     }
 
     public boolean retry() {
         String continueOrEnd;
         continueOrEnd = util.determineIfContinue();
-        if (continueOrEnd.equals("R")) {
-            return true;
-        }
-        return false;
+        return continueOrEnd.equals("R");
     }
 
     public boolean checkIfRetry(boolean isWin) {
@@ -52,7 +40,7 @@ public class BridgeGame {
         if (!isWin) {
             isContinue = retry();
         }
-        if (isWin||!isContinue) {
+        if (isWin || !isContinue) {
             isContinue = false;
         }
         return isContinue;
