@@ -8,6 +8,8 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 
 public class Bridge {
+    private static final String INPUT_NOT_INTEGER_ERROR = "[ERROR] 생성할 다리의 길이는 정수만 입력이 가능합니다.";
+    private static final String INPUT_VALID_RANGE_OF_NUMBER_ERROR = "[ERROR] 3~20사이의 숫자만 입력이 가능합니다.";
     private final List<String> bridge;
 
     public Bridge(String size) {
@@ -32,7 +34,7 @@ public class Bridge {
         String regex = "^[0-9]+$";
 
         if (!size.matches(regex)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INPUT_NOT_INTEGER_ERROR);
         }
 
         return parseInt(size);
@@ -40,7 +42,7 @@ public class Bridge {
 
     private void validateRange(int size) {
         if (size < 3 || size > 20) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INPUT_VALID_RANGE_OF_NUMBER_ERROR);
         }
     }
 }
