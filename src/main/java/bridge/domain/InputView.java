@@ -15,7 +15,7 @@ public class InputView {
 	 * 다리의 길이를 입력받는다.
 	 */
 	public int readBridgeSize() {
-		while (this.bridgeLength == 0) {
+		while (bridgeLength == 0) {
 			System.out.println("\n다리의 길이를 입력해주세요.");
 			String bridgeLengthStr = Console.readLine();
 			try {

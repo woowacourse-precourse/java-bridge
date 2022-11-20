@@ -42,28 +42,29 @@ class ApplicationTest extends NsTest {
         }, 1, 0, 1);
         
         assertRandomNumberInRangeTest(() -> {
-            run("U", "D", "D", "Q");
+            run("U", "D", "U", "Q");
             assertThat(output()).contains(
             	"최종 게임 결과",
-                "[ O |   |   ]",
-                "[   | O | X ]",
+                "[ O |   | X ]",
+                "[   | O |   ]",
                 "게임 성공 여부: 실패",
                 "총 시도한 횟수: 1"
             );
 
-        }, 1, 0, 1);
+        }, 1, 0, 0);
         
         assertRandomNumberInRangeTest(() -> {
-            run("U", "D", "D", "R", "U", "D", "U");
+            run("D", "D", "D", "R", "D", "D", "U");
             assertThat(output()).contains(
             	"최종 게임 결과",
-                "[ O |   | O ]",
-                "[   | O |   ]",
+                "[   |   | O ]",
+                "[ O | O |   ]",
                 "게임 성공 여부: 성공",
                 "총 시도한 횟수: 2"
             );
 
-        }, 1, 0, 1);
+        }, 0, 0, 1);
+        
     }
 
 

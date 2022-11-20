@@ -20,11 +20,10 @@ public class Application {
 	static InputView inputView = new InputView();
 	static OutputView outputView = new OutputView();
     static BridgeGame bridgeGame;
-    static BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    static BridgeNumberGenerator bridgeNumberGenerator;
     
     public static void main(String[] args) {
-    	int tryCount = 0;
-    	
+    	int tryCount = 0;   	
     	makeBridgeFirst();
     	do {
     		bridgeGame = new BridgeGame(bridgeSize);
@@ -36,7 +35,9 @@ public class Application {
     
     public static void makeBridgeFirst() {
     	System.out.println("\n\n다리 건너기 게임을 시작합니다.");
+    	bridgeSize = 0;
         bridgeSize = inputView.readBridgeSize();
+        bridgeNumberGenerator = new BridgeRandomNumberGenerator();
      	BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
      	madeBridge = bridgeMaker.makeBridge(bridgeSize);
     }
