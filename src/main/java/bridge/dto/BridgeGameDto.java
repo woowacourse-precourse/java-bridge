@@ -25,4 +25,8 @@ public class BridgeGameDto {
     public int getCountOfTry() {
         return countOfTry;
     }
+
+    public boolean isSuccess() {
+        return bridge.equals(route);
+    }
 }

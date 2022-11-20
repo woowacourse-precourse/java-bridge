@@ -38,4 +38,27 @@ public class OutputViewTest extends PrintTestTool {
         }
     }
 
+    @ParameterizedTest(name = "Case {index}")
+    @ArgumentsSource(PrintResultTest.class)
+    void printResultTest(BridgeGameDto dto, List<String> excepted) {
+        new OutputView().printResult(dto);
+
+        assertThat(output()).contains(excepted);
+    }
+
+    static class PrintResultTest implements ArgumentsProvider {
+
+        @Override
+        public Stream<? extends Arguments> provideArguments(ExtensionContext context) throws Exception {
+            return Stream.of(
+                    Arguments.of(new BridgeGameDto(List.of("U","U","U","D"), List.of("U","U","U","D"), 3),
+                            List.of("최종 게임 여부: 성공", "총 시도한 횟수: 3")),
+                    Arguments.of(new BridgeGameDto(List.of("U","U","D"), List.of("U","U","D"), 20),
+                            List.of("최종 게임 여부: 성공", "총 시도한 횟수: 20")),
+                    Arguments.of(new BridgeGameDto(List.of("U","U","U","D"), List.of("U","D"),13),
+                            List.of("최종 게임 여부: 실패", "총 시도한 횟수: 13"))
+            );
+        }
+    }
+
 }
