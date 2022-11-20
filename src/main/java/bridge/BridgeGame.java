@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -9,9 +11,10 @@ public class BridgeGame {
     public static final String CMD_RETRY = "R";
     public static final String CMD_QUIT = "Q";
 
-    private Bridge bridge;
+    private List<String> bridge;
     private int tryCount;
     private Player player;
+    private String lastCommand;
 
     /**
      * 생성자
@@ -20,6 +23,7 @@ public class BridgeGame {
         player = new Player();
         bridge = null;
         tryCount = 1;
+        lastCommand = null;
     }
 
     /**
@@ -29,6 +33,7 @@ public class BridgeGame {
      */
     public void move(String command) {
         player.move(command);
+        lastCommand = command;
     }
 
     /**
@@ -47,7 +52,7 @@ public class BridgeGame {
      * @return 플레이어가 생존했다면 true 죽었다면 false
      */
     public boolean isPlayerAlive() {
-        if (player.getPosition() == 0 || bridge.get(player.getPosition() - 1).equals(player.getCommand())) {
+        if (player.getPosition() == 0 || bridge.get(player.getPosition() - 1).equals(lastCommand)) {
             return true;
         }
         return false;
@@ -82,16 +87,27 @@ public class BridgeGame {
      * 브릿지 맵을 설정하고 초기화 하는 메서드
      * @param bridge 브릿지 맵
      */
-    public void initBridge(Bridge bridge) {
-        this.bridge = bridge;
-        this.bridge.setPlayer(player);
+    public void initBridge(List<String> bridgeMap) {
+        bridge = bridgeMap;
     }
 
     public int getTryCount() {
         return tryCount;
     }
 
-    public Bridge getBridge() {
+    public List<String> getBridge() {
         return bridge;
+    }
+
+    public int getPlayerPosition() {
+        return player.getPosition();
+    }
+
+    public int getPlayerIndex() {
+        return player.getIndex();
+    }
+
+    public String getLastCommand() {
+        return lastCommand;
     }
 }

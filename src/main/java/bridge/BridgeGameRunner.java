@@ -3,6 +3,7 @@ package bridge;
 public class BridgeGameRunner {
     private InputView input;
     private OutputView output;
+    private BridgeMaker maker;
     BridgeGame game;
 
     /**
@@ -11,6 +12,7 @@ public class BridgeGameRunner {
     public BridgeGameRunner() {
         input = new InputView();
         output = new OutputView();
+        maker = new BridgeMaker(new BridgeRandomNumberGenerator());
         game = new BridgeGame();
     }
 
@@ -19,7 +21,7 @@ public class BridgeGameRunner {
      */
     public void run() {
         output.printStartMessage();
-        game.initBridge(new Bridge(input.readBridgeSize()));
+        game.initBridge(maker.makeBridge(input.readBridgeSize()));
         while (true) {
             repeatMove();
             if (game.isSuccess() || !askRetry()) {
@@ -48,7 +50,7 @@ public class BridgeGameRunner {
     private void repeatMove() {
         while (game.isPlayerAlive() && !game.isSuccess()) {
             game.move(input.readMoving());
-            output.printMap(game.getBridge());
+            output.printMap(game);
         }
     }
 }

@@ -1,9 +1,18 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    private enum Line {
+        TOP, BOTTOM;
+    }
+    private static final String CORRECT_CELL = " O ";
+    private static final String INCORRECT_CELL = " X ";
+    private static final String EMPTY_CELL = "   ";
+    private static final String SEPARATOR = "|";
     private static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.";
 
     public void printStartMessage() {
@@ -15,8 +24,52 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(Bridge bridge) {
-        System.out.print(bridge.toString());
+    public void printMap(BridgeGame game) {
+        StringBuilder builder = new StringBuilder();
+
+        builder.append(buildBridgeLine(Line.TOP, game).append("\n"));
+        builder.append(buildBridgeLine(Line.BOTTOM, game));
+
+        System.out.println(builder.toString());
+    }
+
+    private StringBuilder buildBridgeLine(Line flag, BridgeGame game) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < game.getPlayerPosition(); ++i) {
+            builder.append(getCell(flag, i, game));
+            if (i != game.getPlayerIndex()) {
+                builder.append(SEPARATOR);
+            }
+        }
+        appendBracketBothSide(builder);
+
+        return builder;
+    }
+
+    private String getCell(Line flag, int index, BridgeGame game) {
+        if (index < game.getPlayerIndex() && isSameLine(flag, game.getBridge().get(index))) {
+            return CORRECT_CELL;
+        }
+        if (index == game.getPlayerIndex() && isSameLine(flag, game.getLastCommand())) {
+            if (game.getLastCommand().equals(game.getBridge().get(index))) {
+                return CORRECT_CELL;
+            }
+            return INCORRECT_CELL;
+        }
+        return EMPTY_CELL;
+    }
+
+    private boolean isSameLine(Line flag, String command) {
+        if (flag == Line.TOP && command.equals(BridgeGame.CMD_UP)
+                || flag == Line.BOTTOM && command.equals(BridgeGame.CMD_DOWN)) {
+            return true;
+        }
+        return false;
+    }
+
+    private void appendBracketBothSide(StringBuilder builder) {
+        builder.insert(0, "[");
+        builder.append("]");
     }
 
     /**
