@@ -55,6 +55,10 @@ public class BridgeGame {
     private void plusAttempt() {
         attempt++;
     }
+
+    private int getAttempt() {
+        return this.attempt;
+    }
     public boolean isSuccess() {
         return this.success;
     }
