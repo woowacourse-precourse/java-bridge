@@ -135,4 +135,35 @@ class BridgeGameTest {
             assertThat(isEnd).isTrue();
         }
     }
+
+    @DisplayName("다리를 완전히 건넜는지 확인한다.")
+    @Nested
+    class CheckIsCrossBridgeCompletely {
+
+        @DisplayName("완전히 건넌 경우")
+        @Test
+        void should_BeTrue_When_CrossBridgeCompletely() {
+            // given
+            bridgeGame.move(UPPER_SIDE);
+            bridgeGame.move(LOWER_SIDE);
+            bridgeGame.move(UPPER_SIDE);
+            // when
+            boolean isSuccess = bridgeGame.isSuccess();
+            // then
+            assertThat(isSuccess).isTrue();
+        }
+
+        @DisplayName("완전히 건너지 못한 경우")
+        @Test
+        void should_BeFalse_When_FailToCrossBridge() {
+            // given
+            bridgeGame.move(UPPER_SIDE);
+            bridgeGame.move(UPPER_SIDE);
+            bridgeGame.retry(QUIT);
+            // when
+            boolean isSuccess = bridgeGame.isSuccess();
+            // then
+            assertThat(isSuccess).isFalse();
+        }
+    }
 }
