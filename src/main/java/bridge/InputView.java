@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
@@ -9,11 +10,14 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private static final List<Integer> bridgeSizeRangeInteger = IntStream.rangeClosed(3, 20).boxed().collect(Collectors.toList());
+    private static final List<String> bridgeSizeRange = bridgeSizeRangeInteger.stream().map(Objects::toString).collect(Collectors.toList());
     public enum input {
         Bridge_Size("bridge_size",
                 "다리의 길이를 입력해주세요.",
                 "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.",
-                List.of(IntStream.range(3, 21).toString())),
+                bridgeSizeRange),
+
         Moving_Command("moving_command",
                 "이동할 칸을 선택해주세요. (위: U, 아래: D)",
                 "[ERROR] U, D만 입력할 수 있습니다.",
