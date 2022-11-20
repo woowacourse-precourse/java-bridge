@@ -21,4 +21,14 @@ public class Constants {
         MoveMark(String letter) { this.letter = letter; }
         public String mark() { return letter; }
     }
+
+    public enum CommandMark {
+        RETRY("R"),
+        QUIT("Q");
+
+        private final String letter;
+
+        CommandMark(String letter) { this.letter = letter; }
+        public String mark() { return letter; }
+    }
 }

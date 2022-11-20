@@ -9,6 +9,8 @@ import bridge.view.OutputView;
 
 import java.util.List;
 
+import static bridge.Constants.CommandMark.*;
+
 public class GameController {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
@@ -45,11 +47,11 @@ public class GameController {
 
     private void failed(BridgeGame bridgeGame) {
         String command = inputCommand();
-        if (command.equals("R")) {
+        if (command.equals(RETRY.mark())) {
             bridgeGame.retry();
             bridgeNum = 0;
         }
-        if (command.equals("Q")) {
+        if (command.equals(QUIT.mark())) {
             gaming = false;
         }
     }
