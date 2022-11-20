@@ -1,6 +1,11 @@
 package bridge.validation;
 
 public class ReadBridgeSizeValidation {
+    public void validate(String inputBridgeSize) {
+        validateInputIsInteger(inputBridgeSize);
+        validateSizeRange(inputBridgeSize);
+    }
+
     public void validateInputIsInteger(String inputBridgeSize) {
         try {
             Integer.parseInt(inputBridgeSize);
