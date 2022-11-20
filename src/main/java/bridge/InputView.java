@@ -1,5 +1,5 @@
 package bridge;
-
+import camp.nextstep.edu.missionutils.Console;
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -24,5 +24,15 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    public int tryParseInt(String input){
+        int result=0;
+        try {
+            result=Integer.parseInt(input);
+        }catch (NumberFormatException exception){
+            IllegalArgumentException e = new IllegalArgumentException("[ERROR] 숫자만 입력해야 합니다.");
+        }
+        return result;
     }
 }
