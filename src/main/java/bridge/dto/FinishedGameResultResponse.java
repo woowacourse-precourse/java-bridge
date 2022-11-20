@@ -4,7 +4,6 @@ import bridge.constant.MoveStatus;
 import java.util.List;
 
 public class FinishedGameResultResponse {
-
     private final List<MoveStatus> statuses;
     private final boolean isSuccess;
     private final int playCount;

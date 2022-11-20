@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum MoveStatus {
-
     DOWN_SUCCESS(Direction.DOWNSIDE, true, "O"),
     DOWN_FAIL(Direction.DOWNSIDE, false, "X"),
     UP_SUCCESS(Direction.UPSIDE, true, "O"),
