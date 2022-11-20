@@ -1,16 +1,14 @@
 package bridge.game;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.InstanceOfAssertFactories.map;
 
 import bridge.generator.AreaStatus;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /*
 [X] 출력할 전체 맵 생성
@@ -32,15 +30,20 @@ public class MapMakerTest {
     void getLastResult() {
         //given
         List<Result> results = List.of(Result.CONTINUE, Result.SUCCESS, Result.FAIL);
+        //when
         Result lastResult = mapMaker.getLastResult(results);
+        //then
         assertThat(lastResult).isEqualTo(Result.FAIL);
     }
 
     @DisplayName("결과들을 알맞은 문자열로 변환")
     @Test
     void changeResultsToString() {
+        //given
         List<Result> results = List.of(Result.CONTINUE, Result.SUCCESS, Result.FAIL);
+        //when
         String lowerBridgeResultMap = mapMaker.changeResultsToString(results);
+        //then
         assertThat(lowerBridgeResultMap).isEqualTo("   | O | X ");
     }
 
@@ -134,9 +137,10 @@ public class MapMakerTest {
         assertThat(results.size()).isEqualTo(1);
         if (area.equals(AreaStatus.UP.symbol)) {
             assertThat(results).contains(Result.SUCCESS);
-            return;
         }
-        assertThat(results).contains(Result.NONE);
+        if (area.equals(AreaStatus.DOWN.symbol)) {
+            assertThat(results).contains(Result.NONE);
+        }
     }
 
     @DisplayName("아래칸 기준의 결과 저장 기능 테스트")
@@ -150,10 +154,11 @@ public class MapMakerTest {
         mapMaker.saveLowerMapResult(move, results);
         //then
         assertThat(results.size()).isEqualTo(1);
+        if (area.equals(AreaStatus.UP.symbol)) {
+            assertThat(results).contains(Result.NONE);
+        }
         if (area.equals(AreaStatus.DOWN.symbol)) {
             assertThat(results).contains(Result.SUCCESS);
-            return;
         }
-        assertThat(results).contains(Result.NONE);
     }
 }

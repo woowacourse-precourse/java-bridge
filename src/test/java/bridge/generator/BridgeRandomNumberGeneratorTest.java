@@ -5,16 +5,14 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.RepetitionInfo;
 
 class BridgeRandomNumberGeneratorTest {
-
     private final int RANDOM_LOWER_INCLUSIVE = 0;
     private final int RANDOM_UPPER_INCLUSIVE = 1;
 
     @DisplayName("랜덤으로 아래 위중 건널 수 있는 다리 지정")
     @RepeatedTest(10)
-    void generate(RepetitionInfo repetitionInfo) {
+    void generate() {
         //given
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         //when
