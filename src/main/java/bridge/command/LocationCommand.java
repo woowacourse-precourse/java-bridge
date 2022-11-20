@@ -7,18 +7,18 @@ public enum LocationCommand {
     Down("D", 0);
 
     private final String direction;
-    private final int randomNumber;
+    private final int locationNumber;
 
-    LocationCommand(String direction, int randomNumber) {
+    LocationCommand(String direction, int locationNumber) {
         this.direction = direction;
-        this.randomNumber = randomNumber;
+        this.locationNumber = locationNumber;
     }
 
     // 건널 수 있는 위치를 나타내는 기능
     public static String decideLocationToCross(int randomNumber) {
-        if (randomNumber == Up.getRandomNumber()) {
+        if (randomNumber == Up.getLocationNumber()) {
             return Up.getDirection();
-        } else if (randomNumber == Down.getRandomNumber()) {
+        } else if (randomNumber == Down.getLocationNumber()) {
             return Down.getDirection();
         }
         throw new IllegalArgumentException(ERROR_MESSAGE_BRIDGE_MAKE_INPUT_ERROR);
@@ -28,7 +28,7 @@ public enum LocationCommand {
         return direction;
     }
 
-    public int getRandomNumber() {
-        return randomNumber;
+    public int getLocationNumber() {
+        return locationNumber;
     }
 }
