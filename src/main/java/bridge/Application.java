@@ -24,7 +24,7 @@ public class Application {
 
         final List<String> upSideResult = new ArrayList<>();
         final List<String> downSideResult = new ArrayList<>();
-        final BridgeGame bridgeGame = new BridgeGame();
+        final BridgeGame bridgeGame = new BridgeGame(answerBridge);
 
         for (int index = 0; index < answerBridge.size(); index++) {
             final String playerMoving = InputView.readMoving();

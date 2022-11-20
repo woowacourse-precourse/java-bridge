@@ -17,7 +17,7 @@ public class InputValidator {
     }
 
     private static void validateAnswerToRetry(String input) {
-        if (!isUp(input) && !isDown(input)) {
+        if (!isRetry(input) && !isQuit(input)) {
             throw new IllegalArgumentException("[ERROR] 게임 재개 여부는 \"R\" 또는 \"Q\"만 입력할 수 있습니다.");
         }
     }
