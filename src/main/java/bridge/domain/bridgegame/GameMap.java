@@ -13,7 +13,7 @@ public class GameMap {
     private final static String BRIDGE_START_POINT = "[ ";
     private final static String BRIDGE_ENDPOINT = " ]";
 
-    private HashMap<String, List<String>> gameMap = new HashMap<>();
+    private final HashMap<String, List<String>> gameMap = new HashMap<>();
 
     private GameMap(List<String> upperBridgeMap, List<String> lowerBridgeMap) {
         gameMap.put(UPPER_BRIDGE, upperBridgeMap);
@@ -28,6 +28,24 @@ public class GameMap {
         return gameMap.get(position)
                 .stream()
                 .collect(Collectors.joining(BLOCK_SEPARATOR, BRIDGE_START_POINT, BRIDGE_ENDPOINT));
+    }
+
+    private String getOppositeDirection(String direction) {
+        if (direction.equals(UPPER_BRIDGE)) {
+            return LOWER_BRIDGE;
+        }
+        return UPPER_BRIDGE;
+    }
+
+    private void addBlockMap(String position, String blockMap) {
+        List<String> bridgeMap = gameMap.get(position);
+        bridgeMap.add(blockMap);
+        gameMap.put(position, bridgeMap);
+    }
+
+    public void addGameResult(String direction, boolean movingSuccess) {
+        addBlockMap(direction, GameMapElement.getMapElement(movingSuccess));
+        addBlockMap(getOppositeDirection(direction), GameMapElement.getMapElement());
     }
 
     @Override
