@@ -61,6 +61,11 @@ public class BridgeGameController {
         return input;
     }
 
-    public void printResult() {
+    public void printResult(String gameCommand, List<String> movingChoices, List<String> bridge) {
+        PrintGuideMessage.printResultGuide();
+        String successOrNot = game.getSuccessOrNot(gameCommand, movingChoices, bridge);
+        int attempts = game.getAttempts();
+        OutputView outputView = new OutputView();
+        outputView.printResult(successOrNot, attempts);
     }
 }
