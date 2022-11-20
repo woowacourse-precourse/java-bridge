@@ -9,6 +9,14 @@ import static bridge.OutputType.*;
  */
 public class OutputView {
 
+    public void printGameStart() {
+        System.out.println(PRINT_GAME_START.getMessage());
+    }
+
+    public void printResultTitle() {
+        System.out.println(PRINT_RESULT_TITLE.getMessage());
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
