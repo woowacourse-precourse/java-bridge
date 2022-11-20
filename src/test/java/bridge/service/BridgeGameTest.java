@@ -30,8 +30,10 @@ class BridgeGameTest {
     @Test
     public void moveCompleteTest() {
         //given
-        Bridge bridge = new Bridge(List.of("U"));
+        Bridge bridge = new Bridge(List.of("U", "U", "D"));
         User user = new User();
+        bridgeGame.move(bridge, user);
+        bridgeGame.move(bridge, user);
 
         //when
         bridgeGame.move(bridge, user);
