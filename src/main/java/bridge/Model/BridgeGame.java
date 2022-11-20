@@ -3,6 +3,7 @@ package bridge.Model;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.CrossResult;
+import bridge.GameStatus;
 import bridge.Model.VO.Bridge;
 import bridge.Model.VO.BridgeSize;
 import bridge.Model.VO.UserChoice;
@@ -27,8 +28,27 @@ public class BridgeGame {
         return bridgeMaker.makeBridge(size);
     }
     public void move(UserChoice userChoice) {
-        CrossResult crossResult = bridge.cross(userChoice, choiceResults.index());
+        CrossResult crossResult = bridge.cross(userChoice, choiceResults.position());
         choiceResults.appendResult(crossResult);
+    }
+
+    public GameStatus checkGameStatus(){
+        GameStatus status = GameStatus.RUNNING;
+        if(isEndPoint()){
+            status = GameStatus.SUCCESS;
+        }
+        if(isFailed()){
+            status = GameStatus.FAIL;
+        }
+        return status;
+    }
+
+    private boolean isEndPoint(){
+        return bridge.length() - choiceResults.position() == 0;
+    }
+
+    private boolean isFailed(){
+        return choiceResults.contain(CrossResult.FAIL);
     }
 
     /**

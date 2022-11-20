@@ -19,4 +19,8 @@ public class Bridge {
         }
         return CrossResult.FAIL;
     }
+
+    public int length(){
+        return bridge.size();
+    }
 }

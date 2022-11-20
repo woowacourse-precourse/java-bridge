@@ -12,11 +12,15 @@ public class ChoiceResults {
         this.crossResults = new ArrayList<>();
     }
 
-    public int index(){
+    public int position(){
         return crossResults.size();
     }
 
     public void appendResult(CrossResult crossResult) {
         crossResults.add(crossResult);
+    }
+
+    public boolean contain(CrossResult crossResult){
+        return crossResults.contains(crossResult);
     }
 }
