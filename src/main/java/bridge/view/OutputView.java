@@ -43,4 +43,9 @@ public class OutputView {
     public void printGameResult() {
         System.out.println(ViewConstants.GAME_RESULT);
     }
+
+    public void printSuccessOrFailure(String result) {
+        System.out.printf(ViewConstants.SUCCESS_OR_FAILURE, result);
+        System.out.println();
+    }
 }
