@@ -10,12 +10,16 @@ public class PlayerMap {
         playerMap = new String[bridgeVerticalSize][bridgeSize];
         initPlayerMap(bridgeSize);
     }
-    
+
     public void initPlayerMap(int bridgeSize) {
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < bridgeSize; j++) {
                 playerMap[i][j] = BLANK.getMark();
             }
         }
+    }
+
+    public String getMark(int row, int col) {
+        return playerMap[row][col];
     }
 }
