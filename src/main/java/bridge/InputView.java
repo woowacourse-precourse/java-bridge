@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.domain.Block;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -27,8 +28,8 @@ public class InputView {
     public static String readMoving() {
         System.out.printf(
                 INPUT_MOVING_POSITION_MESSAGE,
-                BridgeGame.getUpBridgeCharacter(),
-                BridgeGame.getDownBridgeCharacter()
+                Block.UP_BRIDGE.getString(),
+                Block.DOWN_BRIDGE.getString()
         );
         return getInput();
     }
