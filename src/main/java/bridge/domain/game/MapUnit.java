@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.game;
 
 import bridge.domain.bridge.BridgeUnit;
 

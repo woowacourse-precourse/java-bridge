@@ -1,9 +1,9 @@
 package bridge.view;
 
-import bridge.domain.BridgeGame;
+import bridge.domain.game.BridgeGame;
 import bridge.domain.bridge.BridgeUnit;
-import bridge.domain.GameStatus;
-import bridge.domain.MapUnit;
+import bridge.domain.game.GameStatus;
+import bridge.domain.game.MapUnit;
 
 import java.util.ArrayList;
 import java.util.List;
