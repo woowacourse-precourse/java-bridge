@@ -57,7 +57,11 @@ public class Application {
      * 다리를 이동하는 메서드
      */
     static void moveBridge(List<String> bridge) {
+        BridgeGame bridgeGame = new BridgeGame();
+        int index = 0;
+
         String checkMove = Application.inputMove();
+        List<List<String>> moveResult = bridgeGame.move(bridge, index, checkMove);
     }
 
     public static void main(String[] args) {

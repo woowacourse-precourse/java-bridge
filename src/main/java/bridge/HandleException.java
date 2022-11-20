@@ -37,7 +37,7 @@ public class HandleException {
     /**
      * 사용자가 입력한 칸을 확인하는 함수
      * <p>
-     * 성공 시 Integer로 바뀐 다리 길이 그대로 반환
+     * 성공 시 사용자가 입력한 칸 그대로 반환
      */
     public String checkMove(String move) {
         if (move != "U" && move != "D") {
