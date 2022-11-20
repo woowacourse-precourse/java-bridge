@@ -10,6 +10,7 @@ public class InputView {
     private static final String INPUT_READ_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String INPUT_READ_GAME_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private static final String ERROR_BRIDGE_SIZE_OVER = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+    private static final String ERROR_READ_MOVING_OVER = "[ERROR] U(위 칸)와 D(아래 칸) 중 하나의 문자를 입력해야 합니다.";
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -17,8 +18,7 @@ public class InputView {
         System.out.println(INPUT_BRIDGE_SIZE);
         try{
             int input = Integer.valueOf(Console.readLine());
-            CheckUtil.checkInputBridgeSize(input,ERROR_BRIDGE_SIZE_OVER);
-            return input;
+            return CheckUtil.checkInputBridgeSize(input,ERROR_BRIDGE_SIZE_OVER);
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             return readBridgeSize();
@@ -29,7 +29,14 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public static String readMoving() {
-        return null;
+        System.out.println(INPUT_READ_MOVING);
+        try {
+            String input = Console.readLine();
+            return CheckUtil.checkInputReadMoving(input,ERROR_READ_MOVING_OVER);
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
     }
 
     /**
