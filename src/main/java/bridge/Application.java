@@ -7,11 +7,15 @@ public class Application {
 
     private static int size;
 
-    private static String move;
-
-    private static String retry;
-
     private static Error error;
+
+    private static int number = 0;
+
+    private static InputView inputView = new InputView();
+
+    private static OutputView outputView = new OutputView();
+
+    private  static BridgeGame bridgeGame = new BridgeGame();
 
     private static List<String> bridgeShape = new ArrayList<>();
 
