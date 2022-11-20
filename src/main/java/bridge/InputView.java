@@ -38,19 +38,19 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public char readMoving() {
+    public char readMoveCommand() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
 
         String alphabeticInput = Console.readLine();
         validateAlphabeticInputLen(alphabeticInput);
 
-        char moving = alphabeticInput.charAt(0);
-        validateMovingFormat(moving);
+        char moveCommand = alphabeticInput.charAt(0);
+        validateMoveCommandFormat(moveCommand);
 
-        return moving;
+        return moveCommand;
     }
 
-    private void validateMovingFormat(char moving) {
+    private void validateMoveCommandFormat(char moving) {
         if (moving != 'U' && moving != 'D')
             throw new IllegalArgumentException("이동할 칸은 U 혹은 D를 입력하여야 합니다.");
     }
