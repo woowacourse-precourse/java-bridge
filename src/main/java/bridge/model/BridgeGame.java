@@ -30,13 +30,13 @@ public class BridgeGame {
     }
 
     private void checkUpDownValidity(String userInput) {
-        if (!"UD".contains(userInput)) {
+        if (!"UD".contains(userInput) || userInput.length() != 1) {
             throw new IllegalArgumentException(Sentence.INPUT_NOT_U_OR_D.getValue());
         }
     }
 
     private void checkRetryValidity(String userInput) {
-        if (!"RQ".contains(userInput)) {
+        if (!"RQ".contains(userInput) || userInput.length() != 1) {
             throw new IllegalArgumentException(Sentence.INPUT_NOT_R_OR_Q.getValue());
         }
     }
