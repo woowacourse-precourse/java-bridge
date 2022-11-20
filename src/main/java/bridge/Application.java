@@ -5,16 +5,18 @@ import game.Controller;
 import view.InputView;
 import view.OutputView;
 
+import java.util.List;
+
 public class Application {
 
     public static void main(String[] args) {
-        Controller controller = new Controller();
         try {
             OutputView.printStartMessage();
-            controller.run(InputView.readBridgeSize());
+            BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+            List<String> bridge = bridgeMaker.makeBridge(InputView.readBridgeSize());
+            Controller.run(bridge);
         } catch (UserInputException e) {
             e.printStackTrace();
-            InputView.readBridgeSize();
         }
     }
 }

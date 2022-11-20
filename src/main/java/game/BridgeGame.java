@@ -1,8 +1,6 @@
 package game;
 
 import exception.UserInputException;
-import view.InputView;
-import view.OutputView;
 
 import java.util.List;
 
@@ -11,17 +9,8 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    public int play(List<String> bridge, int stage) {
-        try {
-            OutputView.printMoveChoiceMessage();
-            //move(InputView.readMoving(), bridge.get(stage));
-            System.out.println(stage);
-            System.out.println(move(InputView.readMoving(), bridge.get(stage)));
-            return stage;
-        } catch (UserInputException e) {
-            e.printStackTrace();
-            return stage-1;
-        }
+    public void play(List<String> bridge, String movingFloor) {
+
     }
 
     /**
@@ -31,7 +20,7 @@ public class BridgeGame {
      */
     public String move(String movingFloor, String bridgeStatus) {
         if (movingFloor.equals(bridgeStatus)) {
-            return GameResult.CORRECT_FLOOR.getResultMessage();
+           return GameResult.CORRECT_FLOOR.getResultMessage();
         }
         return GameResult.WRONG_FLOOR.getResultMessage();
     }
