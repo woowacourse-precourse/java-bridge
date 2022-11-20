@@ -8,6 +8,8 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     private final static int MIN_BRIDGE_SIZE = 3;
     private final static int MAX_BRIDGE_SIZE = 20;
+    private final static String UP_STAIRS_SYMBOL = "U";
+    private final static String DOWN_STAIRS_SYMBOL = "D";
 
     private OutputView outputView = new OutputView();
     /**
@@ -28,7 +30,14 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String input = Console.readLine();
+        try {
+            validateInputBridgeStairs(input);
+        } catch(IllegalArgumentException e) {
+            outputView.printError(ExceptionMesssage.BRIDGE_MOVING_ERROR);
+            readMoving();
+        }
+        return input;
     }
 
     /**
@@ -53,5 +62,12 @@ public class InputView {
         if (number < MIN_BRIDGE_SIZE || number > MAX_BRIDGE_SIZE) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private void validateInputBridgeStairs(String input) {
+        if(input.equals(UP_STAIRS_SYMBOL) || input.equals(DOWN_STAIRS_SYMBOL)) {
+            return;
+        }
+        throw new IllegalArgumentException();
     }
 }
