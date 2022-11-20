@@ -79,6 +79,7 @@ public class ValidatorTest {
     @DisplayName("재시작, 종료 값이 Null이면 예외 발생")
     @Test
     void InputGameRestartNullTest() {
-
+        assertThatThrownBy(() -> validateInputGameRestartException(null))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
