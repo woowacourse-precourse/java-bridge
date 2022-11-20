@@ -17,6 +17,7 @@
   - [x] 이동을 할 수 있으면 O로 표시한다. BridgePosition#compare()
   - [x] 이동을 할 수 없으면 X로 표시한다. BridgePosition#compare()
   - [x] 선택하지 않은 칸은 공백 한 칸으로 표시한다. BridgePosition#compare()
+- [x] 결과를 저장하는 기능을 추가한다. BridgeRepository
 - [ ] 다리를 출력한다.
   - [ ] 다리의 시작은 `[`, 끝은 `]`로 표현한다.
   - [ ] 다리 칸의 구분은 ` | ` 로 표현한다.

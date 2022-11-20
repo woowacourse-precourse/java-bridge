@@ -1,11 +1,11 @@
 package bridge.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeRepository {
-    private List<String> upBridges;
-    private List<String> downBridges;
-
+    private final List<String> upBridges = new ArrayList<>();
+    private final List<String> downBridges = new ArrayList<>();
 
     public void save(final List<String> result) {
         String upBridgeInfo = result.get(0);
@@ -13,5 +13,13 @@ public class BridgeRepository {
 
         upBridges.add(upBridgeInfo);
         downBridges.add(downBridgeInfo);
+    }
+
+    public List<String> getUpBridges() {
+        return this.upBridges;
+    }
+
+    public List<String> getDownBridges() {
+        return this.downBridges;
     }
 }
