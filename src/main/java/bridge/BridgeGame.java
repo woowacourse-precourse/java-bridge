@@ -7,13 +7,29 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    private InputView inputView = new InputView();
+
+    /**
+     * 현재 user가 bridge에 위치하고있는 곳(bridge index)
+     */
+    private int current_position = 0;
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
-     * @return if 이동가능, 이동하는 칸('U' or 'D')
-     *         else, null
+     *
      * @param bridge
+     * @return if 이동가능, 이동하는 칸('U' or 'D')
+     * else, null
      */
     public String move(List<String> bridge) {
+        LifeGuard lifeGuard = new LifeGuard();
+        String moving = inputView.readMoving();
+        String next_bridge = bridge.get(current_position++);
+
+        if (lifeGuard.checkSafety(moving, next_bridge)) {
+            return moving;
+        }
+
         return null;
     }
 
