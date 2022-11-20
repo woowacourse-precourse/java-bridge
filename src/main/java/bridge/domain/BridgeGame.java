@@ -59,16 +59,17 @@ public class BridgeGame {
         return BridgeConstants.SPACE;
     }
 
+    public boolean isOngoing() {
+        int pathLastIndex = path.size() - 1;
+        return path.size() != bridge.size() && path.get(pathLastIndex).equals(bridge.get(pathLastIndex));
+    }
+
     public String calculateResult() {
-        if (path.size() == bridge.size() && isAlive()) {
+        int pathLastIndex = path.size() - 1;
+        if (path.get(pathLastIndex).equals(bridge.get(pathLastIndex))) {
             return BridgeConstants.WIN;
         }
         return BridgeConstants.LOSE;
-    }
-
-    public boolean isAlive() {
-        int pathLastIndex = path.size() - 1;
-        return path.get(pathLastIndex).equals(bridge.get(pathLastIndex));
     }
 
     /**
