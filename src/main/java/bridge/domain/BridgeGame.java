@@ -45,4 +45,8 @@ public class BridgeGame {
     public boolean isOnWay() {
         return this.gameStatus.equals(ON_WAY);
     }
+
+    public boolean isFail() {
+        return this.gameStatus.equals(FAIL);
+    }
 }
