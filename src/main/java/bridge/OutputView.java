@@ -33,11 +33,11 @@ public class OutputView {
         printMap(bridgeGame.getBridge(), position, isSuccess);
         if (isSuccess) {
             System.out.println("게임 성공 여부: 성공");
-            System.out.println("총 시도 횟수: " + bridgeGame.getAttempts());
+            System.out.println("총 시도한 횟수: " + bridgeGame.getAttempts());
             return;
         }
         System.out.println("게임 성공 여부: 실패");
-        System.out.println("총 시도 횟수: " + bridgeGame.getAttempts());
+        System.out.println("총 시도한 횟수: " + bridgeGame.getAttempts());
     }
 
 
