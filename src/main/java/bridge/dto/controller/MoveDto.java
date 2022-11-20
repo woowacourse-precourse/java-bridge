@@ -1,6 +1,5 @@
 package bridge.dto.controller;
 
-import bridge.domain.player.Player;
 import bridge.dto.output.PrintMapDto;
 import bridge.utils.game.GameStatus;
 
