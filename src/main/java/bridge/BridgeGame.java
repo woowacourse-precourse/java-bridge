@@ -40,6 +40,11 @@ public class BridgeGame {
             return true;
         }
 
+        failToMove(moving);
+        return false;
+    }
+
+    public void failToMove(String moving){
         if(moving.equals(UP)) {
             userMoving.add(WRONG_WHEN_INPUT_UP);
         }
@@ -47,7 +52,6 @@ public class BridgeGame {
         if(moving.equals(DOWN)){
             userMoving.add(WRONG_WHEN_INPUT_DOWN);
         }
-        return false;
     }
 
     /**
