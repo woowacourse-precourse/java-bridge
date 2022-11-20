@@ -9,15 +9,12 @@ public class BridgeGame {
     private final int bridgeSize;
     private final List<String> bridge;
 
-    public BridgeGame() {
-        InputView inputView = new InputView();
-        OutputView outputView = new OutputView();
+    public BridgeGame(int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-
-        outputView.printStartGame();
-        bridgeSize = inputView.readBridgeSize();
-        bridge = bridgeMaker.makeBridge(bridgeSize);
+        this.bridgeSize = bridgeSize;
+        bridge = bridgeMaker.makeBridge(this.bridgeSize);
     }
+
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
