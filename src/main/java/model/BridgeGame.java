@@ -7,8 +7,10 @@ import static model.enums.MoveResult.getMatchResult;
 
 import dto.GameResult;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import model.enums.GameStatus;
 import model.enums.MoveResult;
@@ -49,11 +51,11 @@ public class BridgeGame {
     }
 
     public GameResult getFinalGameResult() {
-        return new GameResult(Optional.of(tryCount), Optional.of(getGameStatus()), moveResults);
+        return new GameResult(Optional.of(tryCount), Optional.of(getGameStatus()), getMoveResults());
     }
 
     public GameResult getGameResult() {
-        return new GameResult(Optional.empty(), Optional.empty(), moveResults);
+        return new GameResult(Optional.empty(), Optional.empty(), getMoveResults());
     }
 
     public GameStatus getGameStatus() {
@@ -85,5 +87,10 @@ public class BridgeGame {
             }
             rowMoveResult.add(NULL);
         }
+    }
+
+    private List<List<MoveResult>> getMoveResults() {
+        return moveResults.stream().map((rowMoveResults) -> Collections.unmodifiableList(rowMoveResults))
+                .collect(Collectors.toUnmodifiableList());
     }
 }
