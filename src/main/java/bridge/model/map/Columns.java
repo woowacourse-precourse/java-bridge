@@ -3,17 +3,17 @@ package bridge.model.map;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Map {
-    private final List<MapColumn> columns = new ArrayList<>();
+public class Columns {
+    private final List<Column> columns = new ArrayList<>();
 
-    public Map add(MapColumn column) {
+    public Columns add(Column column) {
         columns.add(column);
         return this;
     }
 
     public String upperRow() {
         StringBuilder row = new StringBuilder();
-        for (MapColumn column : columns) {
+        for (Column column : columns) {
             row.append(column.up);
         }
         return row.toString();
@@ -21,7 +21,7 @@ public class Map {
 
     public String lowerRow() {
         StringBuilder row = new StringBuilder();
-        for (MapColumn column : columns) {
+        for (Column column : columns) {
             row.append(column.down);
         }
         return row.toString();

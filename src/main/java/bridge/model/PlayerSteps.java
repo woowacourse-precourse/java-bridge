@@ -22,9 +22,9 @@ public class PlayerSteps {
     }
 
     public boolean isLastStepSameWithBridge(Bridge bridge) {
-        int compareIndex = steps.size() - 1;
-        Node lastStep = steps.get(compareIndex);
-        return bridge.compareNodeOf(compareIndex, lastStep);
+        int currentStepCount = steps.size() - 1;
+        Node currentStepNode = steps.get(currentStepCount);
+        return bridge.compareNodeOf(currentStepCount, currentStepNode);
     }
 
     public boolean lastStepEquals(Node node) {

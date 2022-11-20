@@ -45,24 +45,23 @@ class PlayerStepsTest {
     @DisplayName("isLastNodeUp() 테스트")
     class GetLastNodeTest {
         BridgeNumberGenerator bridgeNumberGenerator;
+        PlayerSteps playerSteps = new PlayerSteps(5);
 
         @BeforeEach
         public void setUp() {
             bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+            for (int i = 0; i < 4; i++) {
+                int randomPosition = bridgeNumberGenerator.generate();
+                Node randomNode = Node.of(randomPosition);
+                playerSteps.add(randomNode);
+            }
         }
 
         @ParameterizedTest
         @EnumSource(Node.class)
         @DisplayName("마지막으로 추가한 노드와 steps의 마지막 노드가 같은지 확인할 수 있다.")
         public void returnUp(Node node) {
-            PlayerSteps playerSteps = new PlayerSteps(5);
-            for (int i = 0; i < 4; i++) {
-                int randomPosition = bridgeNumberGenerator.generate();
-                Node randomNode = Node.of(randomPosition);
-                playerSteps.add(randomNode);
-            }
             playerSteps.add(node);
-
             assertTrue(playerSteps.lastStepEquals(node));
         }
     }
@@ -106,7 +105,6 @@ class PlayerStepsTest {
         @Test
         @DisplayName("비웠을 때 steps가 empty이다.")
         public void deleteLastStep() {
-
             // when
             playerSteps.clearSteps();
 

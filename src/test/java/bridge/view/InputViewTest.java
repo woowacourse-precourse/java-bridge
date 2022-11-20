@@ -164,6 +164,7 @@ class InputViewTest {
         @Nested
         @DisplayName("잘못된 입력을 넣으면")
         class InvalidInputTest extends NsTest {
+
             @ParameterizedTest
             @ValueSource(strings = {"U", "D", "1", "a", "ㄱ", " "})
             @DisplayName("예외 메시지를 출력한다.")
