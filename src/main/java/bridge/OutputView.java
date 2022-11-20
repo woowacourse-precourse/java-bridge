@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,7 +14,8 @@ public class OutputView {
      *     U,D 를  O | X 로 변환하여 출력한다.
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> value) {
+    public void printMap(List<String> map,boolean currentCorrect,Integer endIndex ) {
+
     }
 
     /**
@@ -24,9 +26,36 @@ public class OutputView {
     public void printResult(boolean isSuccess, Integer count) {
         if(isSuccess){
             System.out.println("게임 성공 여부: 성공");
-            System.out.println("총 시도한 횟수: " + count);
+        }else{
+            System.out.println("게임 성공 여부: 실패");
         }
-        System.out.println("게임 성공 여부: 실패");
         System.out.println("총 시도한 횟수: " + count);
     }
 }
+
+
+/**
+ * 다리 건너기 게임을 시작합니다.
+
+ 다리의 길이를 입력해주세요.
+ 3
+
+ 이동할 칸을 선택해주세요. (위: U, 아래: D)
+ U
+ [ O ]
+ [   ]
+
+ 이동할 칸을 선택해주세요. (위: U, 아래: D)
+ U
+ [ O | X ]
+ [   |   ]
+
+ 게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)
+ Q
+ 최종 게임 결과
+ [ O | X ]
+ [   |   ]
+
+ 게임 성공 여부: 실패
+ 총 시도한 횟수: 1
+ * */
