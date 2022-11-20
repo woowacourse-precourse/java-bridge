@@ -33,15 +33,22 @@ public class GameController {
     public void play() {
         move();
         if (isFailure()) {
-            String gameCommand = inputView.readGameCommand();
-            if (COMMAND_RESTART.equals(gameCommand)) {
-                bridgeGame.retry();
-                play();
+            if (restart()) {
                 return;
             }
         }
 
         outputView.printResult(bridgeGame);
+    }
+
+    private boolean restart() {
+        String gameCommand = inputView.readGameCommand();
+        if (COMMAND_RESTART.equals(gameCommand)) {
+            bridgeGame.retry();
+            play();
+            return true;
+        }
+        return false;
     }
 
     private void move() {
