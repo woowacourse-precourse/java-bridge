@@ -5,7 +5,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static bridge.constant.Constants.*;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowable;
 
 class ValidatorTest {
 
@@ -13,11 +14,8 @@ class ValidatorTest {
     @ValueSource(strings = {"-1", "2", "21"})
     @ParameterizedTest
     void validateForRangeException1(Integer input) {
-        assertThatThrownBy(() -> {
-            if (input < Validator.MIN_BRIDGE_SIZE || input > Validator.MAX_BRIDGE_SIZE) {
-                throw new IllegalArgumentException(ERROR_MESSAGE + OUT_OF_RANGE_ERROR_MESSAGE);
-            }
-        })
+        Throwable t = catchThrowable(() -> Validator.validateForRangeException(input));
+        assertThat(t)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ERROR_MESSAGE + OUT_OF_RANGE_ERROR_MESSAGE);
     }
@@ -26,11 +24,7 @@ class ValidatorTest {
     @ValueSource(strings = {"3", "10", "20"})
     @ParameterizedTest
     void validateForRangeException2(Integer input) {
-        Throwable t = catchThrowable(() -> {
-            if (input < Validator.MIN_BRIDGE_SIZE || input > Validator.MAX_BRIDGE_SIZE) {
-                throw new IllegalArgumentException(ERROR_MESSAGE + OUT_OF_RANGE_ERROR_MESSAGE);
-            }
-        });
+        Throwable t = catchThrowable(() -> Validator.validateForRangeException(input));
         assertThat(t).doesNotThrowAnyException();
     }
 
@@ -38,11 +32,7 @@ class ValidatorTest {
     @ValueSource(strings = {"U", "D"})
     @ParameterizedTest
     void validateForIllegalInputUpOrDown1(String input) {
-        Throwable t = catchThrowable(() -> {
-            if (!UP_COMMAND.equals(input) && !DOWN_COMMAND.equals(input)) {
-                throw new IllegalArgumentException(ERROR_MESSAGE + INVALID_INPUT_ERROR_MESSAGE + SELECT_U_OR_D_MESSAGE);
-            }
-        });
+        Throwable t = catchThrowable(() -> Validator.validateForIllegalInputUpOrDown(input));
         assertThat(t).doesNotThrowAnyException();
     }
 
@@ -50,11 +40,7 @@ class ValidatorTest {
     @ValueSource(strings = {"K", "3"})
     @ParameterizedTest
     void validateForIllegalInputUpOrDown2(String input) {
-        Throwable t = catchThrowable(() -> {
-            if (!UP_COMMAND.equals(input) && !DOWN_COMMAND.equals(input)) {
-                throw new IllegalArgumentException(ERROR_MESSAGE + INVALID_INPUT_ERROR_MESSAGE + SELECT_U_OR_D_MESSAGE);
-            }
-        });
+        Throwable t = catchThrowable(() -> Validator.validateForIllegalInputUpOrDown(input));
         assertThat(t)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ERROR_MESSAGE + INVALID_INPUT_ERROR_MESSAGE + SELECT_U_OR_D_MESSAGE);
@@ -64,11 +50,7 @@ class ValidatorTest {
     @ValueSource(strings = {"R", "Q"})
     @ParameterizedTest
     void validateForIllegalInputRestartOrQuit1(String input) {
-        Throwable t = catchThrowable(() -> {
-            if (!RESTART_COMMAND.equals(input) && !QUIT_COMMAND.equals(input)) {
-                throw new IllegalArgumentException(ERROR_MESSAGE + INVALID_INPUT_ERROR_MESSAGE + SELECT_R_OR_Q_MESSAGE);
-            }
-        });
+        Throwable t = catchThrowable(() -> Validator.validateForIllegalInputRestartOrQuit(input));
         assertThat(t).doesNotThrowAnyException();
     }
 
@@ -76,11 +58,7 @@ class ValidatorTest {
     @ValueSource(strings = {"K", "3"})
     @ParameterizedTest
     void validateForIllegalInputRestartOrQuit2(String input) {
-        Throwable t = catchThrowable(() -> {
-            if (!RESTART_COMMAND.equals(input) && !QUIT_COMMAND.equals(input)) {
-                throw new IllegalArgumentException(ERROR_MESSAGE + INVALID_INPUT_ERROR_MESSAGE + SELECT_R_OR_Q_MESSAGE);
-            }
-        });
+        Throwable t = catchThrowable(() -> Validator.validateForIllegalInputRestartOrQuit(input));
         assertThat(t)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ERROR_MESSAGE + INVALID_INPUT_ERROR_MESSAGE + SELECT_R_OR_Q_MESSAGE);
