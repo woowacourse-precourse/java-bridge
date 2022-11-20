@@ -43,12 +43,11 @@ public class BridgeGame {
 
     /**
      * 게임 한 라운드가 끝난 뒤 game clear 체크 및 game retry를 한다.
-     * @param userRoute
      * @param bridge
      * @return 재시작 여부
      */
-    public boolean gameover(List<String> userRoute, List<String> bridge) {
-        if(gameClear(userRoute, bridge)) {
+    public boolean gameover(List<String> bridge) {
+        if(gameClear(bridge)) {
             return false;
         }
 
@@ -67,7 +66,7 @@ public class BridgeGame {
         current_position = 0;
     }
 
-    private boolean gameClear(List<String> userRoute, List<String> bridge) {
-        return true;
+    private boolean gameClear(List<String> bridge) {
+        return current_position == bridge.size();
     }
 }
