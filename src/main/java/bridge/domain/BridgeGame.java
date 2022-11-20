@@ -6,6 +6,8 @@ import bridge.constant.ExceptionConstants;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -40,6 +42,12 @@ public class BridgeGame {
         if (!List.of(BridgeConstants.DOWN, BridgeConstants.UP).contains(moving)) {
             throw new IllegalArgumentException(ExceptionConstants.INCORRECT_MOVING.getMessage());
         }
+    }
+
+    private List<String> makeRow(String position) {
+        return IntStream.range(0, path.size())
+                .mapToObj(index -> makeSymbol(index, position))
+                .collect(Collectors.toList());
     }
 
     private String makeSymbol(int index, String position) {
