@@ -25,7 +25,7 @@ public class BridgeMaker {
         List<String> securePath = new ArrayList<>(size);
         while(size-- != 0) {
             int bridgeNumber = bridgeNumberGenerator.generate();
-            Direction direction = convertBridgeNumber(bridgeNumber);
+            Direction direction = Direction.parseDirection(bridgeNumber);
             if(direction == Direction.ERR)
                 return null;
             securePath.add(direction.getAsString());
@@ -38,13 +38,5 @@ public class BridgeMaker {
             throw new CustomIllegalArgumentException(
                     "다리의 길이는 3이상 20이하의 값이어야 합니다."
             );
-    }
-
-    private Direction convertBridgeNumber(int number) {
-        if(number == Direction.DOWN.getAsInt())
-            return Direction.DOWN;
-        if(number == Direction.UP.getAsInt())
-            return Direction.UP;
-        return Direction.ERR;
     }
 }
