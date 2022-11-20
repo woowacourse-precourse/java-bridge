@@ -18,8 +18,11 @@ public class BridgeGame {
 
     public BridgeGame() {
         System.out.println(FrontMan.BRIDGE_GAME_IS_BEGINNING + "\n");
+    }
+
+    public void gameStart() {
         bridgeData.setBridge(bridgeMaker.makeBridge(inputView.readBridgeLength()));
-        bridgeData.increaseAttempts();
+        bridgeData.setTotalAttempt();
     }
 
     /**
