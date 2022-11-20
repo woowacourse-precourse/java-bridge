@@ -5,13 +5,12 @@ import java.util.Arrays;
 import java.util.function.BiPredicate;
 
 public enum Bridgelocation {
-    ERROR(new Bridge(" ", " "), (userInput, match) -> !userInput.equals("U") && !userInput.equals("D")),
+    ERROR(new Bridge(" ", " "),
+        (userInput, match) -> !userInput.equals("U") && !userInput.equals("D")),
     UPO(new Bridge("O", " "), (userInput, match) -> userInput.equals("U") && match),
     UPX(new Bridge("X", " "), (userInput, match) -> userInput.equals("U") && !match),
     DOWNO(new Bridge(" ", "O"), (userInput, match) -> userInput.equals("D") && match),
     DOWNX(new Bridge(" ", "X"), (userInput, match) -> userInput.equals("D") && !match);
-
-
     private final Bridge bridge;
     private final BiPredicate<String, Boolean> isMatch;
 
