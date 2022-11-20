@@ -12,18 +12,14 @@ public class BridgeGame {
         bridgeGameController = new BridgeGameController();
     }
     public void move() {
-
+        while(!bridgeGameController.isSuccess() || !bridgeGameController.isPaused()){
+            bridgeGameController.moveAStep();
+        }
     }
 
     public void retry() {
-
     }
 
     public void stop(){
-
-    }
-
-    public boolean isRunning(){
-        return false;
     }
 }
