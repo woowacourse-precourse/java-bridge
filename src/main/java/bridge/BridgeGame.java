@@ -37,9 +37,13 @@ public class BridgeGame {
         this.userInput = new ArrayList<>();
         this.userStatus = new ArrayList<>();
 
-        String moving = inputView.readMoving();
-        userInput.add(moving);
-        move(moving);
+        while (userLocation < bridgeSize) {
+            String moving = inputView.readMoving();
+            userInput.add(moving);
+            move(moving);
+            userLocation++;
+        }
+        outputView.printResult();
     }
 
     /**
@@ -51,7 +55,6 @@ public class BridgeGame {
         if (canMove(moving)) {
             userStatus.add("O");
             outputView.printMap(bridge, userInput, userStatus);
-            userLocation++;
         } else {
             userStatus.add("X");
             outputView.printMap(bridge, userInput, userStatus);

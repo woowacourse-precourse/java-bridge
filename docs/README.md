@@ -16,7 +16,7 @@
   - [x] 이동 가능 여부 판별 - BridgeGame#canMove
   - [x] 이동 결과를 출력하는 기능 - OutputView#printMap
 
-  - [ ] 다리를 끝까지 건너면 게임이 종료된다
+  - [x] 다리를 끝까지 건너면 게임이 종료된다
   - [ ] 다리를 건너다 실패하면 게임을 재시작하거나 종료할 수 있다 - BridgeGame#retry
     - [ ] 재시도 여부 묻는 기능
       - [ ] 재시도 여부 입력받기 - InputView#readGameCommand
