@@ -51,7 +51,7 @@ public class MovingStatusSaver {
         return isWrongBridge() || isFullSize();
     }
 
-    private boolean isWrongBridge() {
+    public boolean isWrongBridge() {
         return movingStatus.contains(MovingStatus.UP.sideFail())
                 || movingStatus.contains(MovingStatus.DOWN.sideFail());
     }
