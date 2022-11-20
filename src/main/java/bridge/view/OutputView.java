@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -32,7 +32,7 @@ public class OutputView {
     private void printClear(boolean isClear) {
         if (isClear) {
             System.out.println("게임 성공 여부: " + CLEAR_MSG);
-            return ;
+            return;
         }
         System.out.println("게임 성공 여부: " + NON_CLEAR_MSG);
     }

@@ -1,10 +1,10 @@
-package bridge;
+package bridge.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.BridgeStatus.DOWN;
-import static bridge.BridgeStatus.UP;
+import static bridge.domain.enumeration.BridgeStatus.DOWN;
+import static bridge.domain.enumeration.BridgeStatus.UP;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -23,17 +23,20 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        for (int idx = 0; idx < size; idx++){
+        for (int idx = 0; idx < size; idx++) {
             int randNumber = bridgeNumberGenerator.generate();
+            System.out.println(randNumber);
             addBridge(bridge, randNumber);
         }
         return bridge;
     }
 
     private void addBridge(List<String> bridge, int randNumber) {
-        if (randNumber == UP.getNumber())
+        if (randNumber == UP.getNumber()) {
             bridge.add(UP.getName());
-        if (randNumber == DOWN.getNumber())
+        }
+        if (randNumber == DOWN.getNumber()) {
             bridge.add(DOWN.getName());
+        }
     }
 }

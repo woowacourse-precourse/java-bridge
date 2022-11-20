@@ -1,5 +1,10 @@
-package bridge;
+package bridge.controller;
 
+import bridge.domain.BridgeGame;
+import bridge.domain.BridgeMaker;
+import bridge.domain.BridgeRandomNumberGenerator;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeGameController {
@@ -35,12 +40,12 @@ public class BridgeGameController {
     }
 
     private boolean checkRestart(BridgeGame bridgeGame, boolean moveFlag) {
-        if (!moveFlag)
-        {
+        if (!moveFlag) {
             outputView.printRestart();
             String restart = inputView.readGameCommand();
-            if (bridgeGame.retry(restart))
+            if (bridgeGame.retry(restart)) {
                 moveFlag = true;
+            }
         }
         return moveFlag;
     }

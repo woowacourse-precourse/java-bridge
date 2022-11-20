@@ -1,5 +1,7 @@
-package bridge;
+package bridge.domain;
 
+import bridge.domain.enumeration.BridgeStatus;
+import bridge.dto.BridgeDto;
 import java.util.List;
 
 /**

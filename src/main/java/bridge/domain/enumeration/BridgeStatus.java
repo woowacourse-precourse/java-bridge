@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain.enumeration;
 
 public enum BridgeStatus {
     UP(1, "U"),
@@ -7,7 +7,7 @@ public enum BridgeStatus {
     private final int number;
     private final String name;
 
-    BridgeStatus(int number,String name) {
+    BridgeStatus(int number, String name) {
         this.number = number;
         this.name = name;
     }
