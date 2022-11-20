@@ -27,7 +27,6 @@ public class InputView {
     public static String readMoving() throws IllegalArgumentException {
         String movingInput = Console.readLine();
         movingInputErrorCheck(movingInput);
-        Application.movingInputs.add(movingInput);
         return movingInput;
     }
 
