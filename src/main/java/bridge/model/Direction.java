@@ -7,6 +7,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * 다리의 각 칸에서의 위 / 아래 두 방향을 나타낸다.
+ */
 public enum Direction {
     DOWN(0, "D"),
     UP(1, "U");
@@ -33,6 +36,7 @@ public enum Direction {
 
     /**
      * 코드 값으로 방향 상수 불러오는 함수
+     * <p>
      * 0 -> DOWN, 1 -> UP 반환
      * @param code 0 또는 1의 상수 값
      * @return DOWN / UP
