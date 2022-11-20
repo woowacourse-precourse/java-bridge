@@ -34,8 +34,12 @@ public class OutputView {
 	 * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
 	public HashMap<String, String> printResult() {
-		status = bridgeStatus.loadStatus(" ", " ");
+		status = getStatus();
 		return status;
+	}
+
+	private HashMap<String, String> getStatus() {
+		return bridgeStatus.loadStatus(NULL, NULL);
 	}
 
 	public String printSuccessOrNot() {
@@ -47,5 +51,9 @@ public class OutputView {
 
 	public int printTotalGameCount() {
 		return bridgeStatus.getTotalGameCount();
+	}
+
+	public void printFinalGameResult() {
+		System.out.println(OUTPUT_GAME_RESULT);
 	}
 }
