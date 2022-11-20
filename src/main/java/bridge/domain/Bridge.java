@@ -30,7 +30,7 @@ public class Bridge {
     }
 
     public void initLocation() {
-        location = 0;
+        setLocation(0);
     }
 
     public boolean isPass(String moveUpOrDown) {
