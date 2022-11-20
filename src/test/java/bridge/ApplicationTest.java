@@ -64,6 +64,14 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 예외_테스트_다리_길이가_int_범위를_넘어설_때() {
+        assertSimpleTest(() -> {
+            runException("11111111111");
+            assertThat(output()).contains("[ERROR] 3이상 20 이하 숫자를 입력해주시오.");
+        });
+    }
+
+    @Test
     void 예외_테스트_다리를_선택할_때_U_또는_D가_아닌_문자를_입력하는_경우() {
         assertSimpleTest(() -> {
             runException("5", "Q");
