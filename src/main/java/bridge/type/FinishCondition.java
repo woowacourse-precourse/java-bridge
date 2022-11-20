@@ -1,6 +1,6 @@
 package bridge.type;
 
-public enum FinishCondition {
+public enum FinishCondition implements ProcessCondition {
 
     FINISHED,
     NOT_FINISHED;

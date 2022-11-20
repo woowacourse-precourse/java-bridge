@@ -2,7 +2,9 @@ package bridge;
 
 import bridge.domain.Bridge;
 import bridge.type.FinishCondition;
+import bridge.type.GameStatus;
 import bridge.type.PassCondition;
+import bridge.type.ProcessCondition;
 
 
 public class BridgeGame {
@@ -21,7 +23,13 @@ public class BridgeGame {
         return new BridgeGame(bridge, gameStatusOperator);
     }
 
-    public PassCondition move(String selectBlock) {
+    public GameStatus start() {
+        gameStatusOperator.incrementNumberOfTry();
+        gameStatusOperator.toOngoing();
+        return gameStatusOperator.getGameStatus();
+    }
+
+    public ProcessCondition move(String selectBlock) {
         Integer currentPosition = gameStatusOperator.getCurrentPosition();
         if (bridge.checkPassableBlock(currentPosition, selectBlock)) {
             gameStatusOperator.changePosition();
@@ -30,13 +38,15 @@ public class BridgeGame {
         return PassCondition.FAIL;
     }
 
-    public void retry() {
+    public GameStatus retry() {
         gameStatusOperator.toInitialPosition();
         gameStatusOperator.toRestart();
+        return start();
     }
 
-    public void quit() {
+    public ProcessCondition quit() {
         gameStatusOperator.toQuit();
+        return FinishCondition.FINISHED;
     }
 
     public FinishCondition checkWhetherFinished() {

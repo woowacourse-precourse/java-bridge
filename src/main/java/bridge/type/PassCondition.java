@@ -1,6 +1,6 @@
 package bridge.type;
 
-public enum PassCondition {
+public enum PassCondition implements ProcessCondition {
 
     PASS,
     FAIL;
