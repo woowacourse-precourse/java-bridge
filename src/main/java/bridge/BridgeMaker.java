@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class BridgeMaker {
 
-    private final List<String> Bridge = new ArrayList<>();
+    private final List<String> bridge = new ArrayList<>();
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -23,14 +23,16 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
 
         for (int i = 0; i < size; i++) {
-            String a = Integer.toString(bridgeNumberGenerator.generate());
-            if (a.equals("0")) {
-                Bridge.add("D");
+
+            int generate = bridgeNumberGenerator.generate();
+
+            if (generate == 0) {
+                bridge.add("D");
             }
-            if (a.equals("1")) {
-                Bridge.add("U");
+            if (generate == 1) {
+                bridge.add("U");
             }
         }
-        return Bridge;
+        return bridge;
     }
 }
