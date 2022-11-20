@@ -4,8 +4,7 @@ public class InputVerify {
 
 	public static void verifyBridgeSize(String input) {
 		verifyTrim(input);
-		verifyIsNumber(input);
-		verifyBridgeSizeBoundary(input);
+		verifyBridgeSizeBoundary(verifyIsNumber(input));
 	}
 
 	private static void verifyTrim(String input) {
@@ -14,11 +13,19 @@ public class InputVerify {
 		}
 	}
 
-	private static void verifyIsNumber(String input) {
+	private static int verifyIsNumber(String input) {
+		int number = 0;
 		try {
-			int number = Integer.parseInt(input);
+			number = Integer.parseInt(input);
 		} catch (NumberFormatException e) {
 			BridgeGameException.illegalArgumentException(BridgeGameException.ERROR_MESSAGE_NOT_NUMBER);
+		}
+		return number;
+	}
+
+	private static void verifyBridgeSizeBoundary(int bridgeSize) {
+		if (bridgeSize < Constants.LOWER_SIZE || bridgeSize > Constants.UPPER_SIZE) {
+			BridgeGameException.illegalArgumentException(BridgeGameException.ERROR_MESSAGE_SIZE_BOUNDARY);
 		}
 	}
 }
