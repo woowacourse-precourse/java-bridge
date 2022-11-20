@@ -4,6 +4,8 @@ import bridge.controller.BridgeGameController;
 import bridge.controller.BridgeMakerController;
 import bridge.service.BridgeGameService;
 import bridge.service.BridgeMakerService;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class AppConfig {
     private BridgeGameService bridgeGameService;

@@ -1,5 +1,8 @@
-package bridge;
+package bridge.view;
 
+import static bridge.view.Message.*;
+
+import bridge.UserBridge;
 import bridge.service.BridgeGameService;
 import java.util.List;
 
@@ -31,37 +34,35 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printFailResult(BridgeGameService bridgeGameService) {
-        System.out.println("최종 게임 결과");
+    public void printResult(BridgeGameService bridgeGameService, boolean success) {
+        System.out.println(RESULT_MESSAGE);
         printMap(bridgeGameService.getUserBridge());
-        System.out.println("게임 성공 여부: 실패");
-        printCount(bridgeGameService.getCount());
-    }
-
-    public void printSuccessResult(BridgeGameService bridgeGameService) {
-        System.out.println("최종 게임 결과");
-        printMap(bridgeGameService.getUserBridge());
-        System.out.println("게임 성공 여부: 성공");
+        if (!success) {
+            System.out.println(FAIL_MESSAGE);
+        }
+        if (success) {
+            System.out.println(SUCCESS_MESSAGE);
+        }
         printCount(bridgeGameService.getCount());
     }
 
     public void printStart() {
-        System.out.println("다리 건너기 게임을 시작합니다. \n");
+        System.out.println(START_MESSAGE);
     }
 
     public void printBridgeSize() {
-        System.out.println("다리의 길이를 입력해주세요.");
+        System.out.println(BRIDGE_SIZE_MESSAGE);
     }
 
     public void printMove() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println(MOVE_MESSAGE);
     }
 
     public void printCount(int count) {
-        System.out.println("총 시도한 횟수: " + count);
+        System.out.println(COUNT_MESSAGE + count);
     }
 
     public void printRetry() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.println(RETRY_MESSAGE);
     }
 }

@@ -1,7 +1,7 @@
 package bridge.controller;
 
-import bridge.InputView;
-import bridge.OutputView;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 import bridge.service.BridgeMakerService;
 
 public class BridgeMakerController {

@@ -1,7 +1,7 @@
 package bridge.controller;
 
-import bridge.InputView;
-import bridge.OutputView;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 import bridge.service.BridgeGameService;
 
 public class BridgeGameController {
@@ -52,7 +52,7 @@ public class BridgeGameController {
 
     private boolean playQuit() {
         if (bridgeGameService.isQuit(retry)) {
-            outputView.printFailResult(bridgeGameService);
+            outputView.printResult(bridgeGameService, false);
             return true;
         }
         return false;
@@ -61,7 +61,7 @@ public class BridgeGameController {
     private String playMove() {
         getMoving();
         bridgeGameService.move(moving);
-        outputView.printBridge(bridgeGameService.getUserBridge());
+        outputView.printMap(bridgeGameService.getUserBridge());
         return moving;
     }
 
@@ -79,7 +79,7 @@ public class BridgeGameController {
 
     private void playEnd() {
         if (!bridgeGameService.play()) {
-            outputView.printSuccessResult(bridgeGameService);
+            outputView.printResult(bridgeGameService, true);
         }
     }
 }
