@@ -14,7 +14,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         System.out.printf(INPUT_BRIDGE_SIZE);
         try{
             return convertToInt_Validate(Console.readLine());
@@ -28,7 +28,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public static String readMoving() {
         System.out.printf(READ_MOVE);
         try{
             return checkUserMove(Console.readLine());
@@ -46,7 +46,7 @@ public class InputView {
         return null;
     }
 
-    private int convertToInt_Validate(String input){
+    private static int convertToInt_Validate(String input){
         if (!input.matches("^[0-9]*$")){
             throw new IllegalArgumentException(ERROR_BRIDGE_SIZE);
         }
@@ -55,7 +55,7 @@ public class InputView {
         }
         return Integer.parseInt(input);
     }
-    private String checkUserMove(String input){
+    private static String checkUserMove(String input){
         if (input.equals("U")){
             return input;
         }
