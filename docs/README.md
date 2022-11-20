@@ -23,9 +23,9 @@
 ## 기능 목록
 
 - [ ] 사용자로 부터 다리 길이를 입력 받는다. InputView#readBridgeSize
-- [ ] 다리 생성
-    - [ ] 다리의 건널 수 있는 칸을 정한다. BridgeRandomNumberGenerator#generate
-    - [ ] 입력 받은 수에 맞게 다리를 생성 한다. BridgeMaker#makeBridge
+- [O] 다리 생성
+    - [O] 다리의 건널 수 있는 칸을 정한다. BridgeRandomNumberGenerator#generate
+    - [O] 입력 받은 수에 맞게 다리를 생성 한다. BridgeMaker#makeBridge
 - [ ] 게임 진행 BridgeGame#move
     - [ ] 사용자에게 위로 건널지 아래로 건널지 입력 받는다. InputView#readMoving
     - [ ] 사용자의 입력 값으로 해당 칸을 건널 수 있는지 없는지 판단한다.
