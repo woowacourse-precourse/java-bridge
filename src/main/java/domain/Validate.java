@@ -1,14 +1,24 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Validate {
 	private String errorMessage;
+	private List<String> sizeList = new ArrayList<>();
+
+	public Validate() {
+		setSizeList();
+	}
+
+	private void setSizeList() {
+		for (int i = 3; i < 21; i++) {
+			sizeList.add(i + "");
+		}
+	}
 
 	public void validateSize(String size) {
-		if(2 < Integer.parseInt(size) && Integer.parseInt(size) < 21) {
-			return;
-		}
-		
-		if (size.charAt(0) - 48 < 3 || 20 < size.charAt(0) - 48) {
+		if (!sizeList.contains(size)) {
 			errorMessage = ErrorMessage.WRONG_SIZE.getErrorMessage();
 			throw new IllegalArgumentException(errorMessage);
 		}
