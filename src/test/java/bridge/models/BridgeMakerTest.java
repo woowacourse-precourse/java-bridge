@@ -2,8 +2,6 @@ package bridge.models;
 
 import static org.assertj.core.api.Assertions.*;
 
-import bridge.utils.BridgeNumberGenerator;
-import bridge.utils.BridgeRandomNumberGenerator;
 import org.junit.jupiter.api.Test;
 
 class BridgeMakerTest {

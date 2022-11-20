@@ -1,4 +1,4 @@
-package bridge.utils;
+package bridge.models;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
