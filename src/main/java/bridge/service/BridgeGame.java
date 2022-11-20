@@ -8,7 +8,9 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    public void OX(){
+    public String OX(List<String> bridge,String moving, int index){//"O","X"반환
+        if(bridge.get(index).equals(moving)) return "O";
+        return "X";
     }
 
     /**
