@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import bridge.constance.GameConstance;
-
 public enum BlockExpression {
     MOVE_UP("O", " "),
     MOVE_DOWN(" ", "O"),
@@ -17,17 +15,20 @@ public enum BlockExpression {
     }
 
     public static BlockExpression getBlockExpressionByMove(boolean isUpBlock) {
-        if (isUpBlock) {
-            return BlockExpression.MOVE_UP;
-        }
-        return BlockExpression.MOVE_DOWN;
+        return getBlockExpression(isUpBlock, MOVE_UP, MOVE_DOWN);
     }
 
     public static BlockExpression getBlockExpressionByNotMove(boolean isUpBlock) {
+        return getBlockExpression(isUpBlock, NOT_MOVE_UP, NOT_MOVE_DOWN);
+    }
+
+    private static BlockExpression getBlockExpression(boolean isUpBlock,
+                                                      BlockExpression expression1,
+                                                      BlockExpression expression2) {
         if (isUpBlock) {
-            return BlockExpression.NOT_MOVE_UP;
+            return expression1;
         }
-        return BlockExpression.NOT_MOVE_DOWN;
+        return expression2;
     }
 
     public String getUpBlock() {

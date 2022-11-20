@@ -16,7 +16,7 @@ public class Player {
         this.totalTryNumber += 1;
     }
 
-    public int getPosition() {
+    public int nowPosition() {
         return this.position;
     }
 
