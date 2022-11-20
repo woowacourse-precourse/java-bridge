@@ -1,8 +1,10 @@
 package controller;
 
 import generator.BridgeRandomNumberGenerator;
-import service.BridgeMaker;
+import java.util.ArrayList;
+import model.BridgeGame;
 import java.util.List;
+import service.BridgeMaker;
 import view.InputView;
 import view.OutputView;
 
@@ -10,6 +12,24 @@ public class BridgeController {
     private static final InputView inputView = InputView.getInstance();
     private static final OutputView outputView = OutputView.getInstance();
     private static final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+
+    public static void run() {
+        List<List<String>> bothSide = init();
+        List<String> bridge = BridgeController.makeBridge();
+        BridgeGame.move(bridge, bothSide);
+        printResult(bothSide, BridgeGame.tryNumber);
+        BridgeGame.clearTryNumber();
+    }
+
+    public static List<List<String>> init() {
+        List<List<String>> bothSide = new ArrayList<>();
+        List<String> downSide = new ArrayList<>(20);
+        List<String> upSide = new ArrayList<>(20);
+
+        bothSide.add(downSide);
+        bothSide.add(upSide);
+        return bothSide;
+    }
 
     public static List<String> makeBridge() {
         int size = inputView.readBridgeSize();
@@ -37,12 +57,16 @@ public class BridgeController {
         outputView.printUserPath(path);
     }
 
-    public static void printMap(List<String> upSide, List<String> downSide) {
-        outputView.printMap(upSide, downSide);
+    public static void printStart() {
+        OutputView.printStart();
     }
 
-    public static void printResult(List<String> upSide, List<String> downSide, int countTryNumber) {
-        outputView.printResult(upSide, downSide, countTryNumber);
+    public static void printMap(List<List<String>> bothSide) {
+        outputView.printMap(bothSide);
+    }
+
+    public static void printResult(List<List<String>> bothSide, int tryNumber) {
+        outputView.printResult(bothSide, tryNumber);
     }
 
     public static void printRetryOrQuit(String retryOrQuit) {
