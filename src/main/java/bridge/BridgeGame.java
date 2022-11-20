@@ -21,37 +21,42 @@ public class BridgeGame {
     }
 
     public void startGame() {
-        System.out.println("다리 건너기 게임을 시작합니다.\n");
-        int bridgeSize = inputView.readBridgeSize();
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        int gameCount = 0;
-        while (true) {
-            boolean flag = false;
-            boolean success = true;
-            gameCount = countGame(gameCount);
-            List<String> upperBridge = new ArrayList<>();
-            List<String> downBridge = new ArrayList<>();
-            for (int i = 0; i < bridge.size(); i++) {
-                String moving = inputView.readMoving();
-                if (move(moving, bridge.get(i))) {
-                    outputView.makeMap(moving, "O", upperBridge, downBridge);
-                    outputView.printMap(upperBridge, downBridge);
-                } else if (!move(moving, bridge.get(i))) {
-                    success = false;
-                    outputView.makeMap(moving, "X", upperBridge, downBridge);
-                    outputView.printMap(upperBridge, downBridge);
-                    String gameCommand = inputView.readGameCommand();
-                    if (retry(gameCommand)) {
-                        flag = true;
+        try {
+            System.out.println("다리 건너기 게임을 시작합니다.\n");
+            int bridgeSize = inputView.readBridgeSize();
+            List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+            int gameCount = 0;
+            while (true) {
+                boolean flag = false;
+                boolean success = true;
+                gameCount = countGame(gameCount);
+                List<String> upperBridge = new ArrayList<>();
+                List<String> downBridge = new ArrayList<>();
+                for (int i = 0; i < bridge.size(); i++) {
+                    String moving = inputView.readMoving();
+                    if (move(moving, bridge.get(i))) {
+                        outputView.makeMap(moving, "O", upperBridge, downBridge);
+                        outputView.printMap(upperBridge, downBridge);
+                    } else if (!move(moving, bridge.get(i))) {
+                        success = false;
+                        outputView.makeMap(moving, "X", upperBridge, downBridge);
+                        outputView.printMap(upperBridge, downBridge);
+                        String gameCommand = inputView.readGameCommand();
+                        if (retry(gameCommand)) {
+                            flag = true;
+                        }
+                        break;
                     }
+                }
+                outputView.printResult(upperBridge, downBridge, success, gameCount);
+                if (!flag) {
                     break;
                 }
             }
-            outputView.printResult(upperBridge, downBridge, success, gameCount);
-            if (!flag) {
-                break;
-            }
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception);
         }
+
     }
 
     /**
