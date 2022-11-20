@@ -4,6 +4,7 @@ import bridge.BridgeDraw;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
+import game.BridgeGame;
 import view.InputView;
 import view.OutputView;
 import view.Valid;
@@ -14,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class BridgeGameController {
+
     private static List<String> answerBridge = new ArrayList<>();
 
     private List<String> upAndDown = new ArrayList<>(Arrays.asList("", ""));
@@ -30,32 +32,10 @@ public class BridgeGameController {
 
     private static final BridgeGame bridgeGame = new BridgeGame();
 
-    public int returnSize() {
-        String size = inputView.readBridgeSize();
-        Valid.isLengthValid(size);
-        return Integer.parseInt(size);
-    }
-
-    public void generateAnswer(int size) {
-        answerBridge = bridgeMaker.makeBridge(size);
-    }
-
-    public String returnPosition() {
-        String pos = inputView.readMoving();
-        Valid.isEnterValid(pos);
-        return pos;
-    }
-
-    public String returnFinish() {
-        String fin = inputView.readGameCommand();
-        Valid.isEnterFinishValid(fin);
-        return fin;
-    }
-
     public void restartOrNot() {
-        if (returnFinish().equals("R")) {
+        if (inputView.readGameCommand().equals("R")) {
             countRestart++;
-            repeatBridge();
+            repeatMakeBridge();
         }
     }
 
@@ -83,7 +63,7 @@ public class BridgeGameController {
     }
 
     public String makeBridge(String answerInput, int index) {
-        String userInput = returnPosition();
+        String userInput = inputView.readMoving();
         if (userInput.equals(answerInput)) {
             isValueSame(userInput, index);
         }
@@ -93,7 +73,7 @@ public class BridgeGameController {
         return userInput;
     }
 
-    public void repeatBridge() {
+    public void repeatMakeBridge() {
         int i = 0;
         while (i < answerBridge.size()) {
             String userInput = makeBridge(answerBridge.get(i), i);
@@ -120,7 +100,7 @@ public class BridgeGameController {
     public void doAfterEnterException() {
         String errorMessage = "";
         try {
-            repeatBridge();
+            repeatMakeBridge();
         } catch (IllegalArgumentException message) {
             errorMessage = String.valueOf(message);
             System.out.println(errorMessage);
@@ -144,8 +124,8 @@ public class BridgeGameController {
     public void startGame() {
         String errorMessage = "";
         try {
-            generateAnswer(returnSize());
-            repeatBridge();
+            answerBridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
+            repeatMakeBridge();
         } catch (IllegalArgumentException message) {
             errorMessage = String.valueOf(message);
             System.out.println(errorMessage);
