@@ -27,30 +27,52 @@ class BridgeGameTest {
         bridgeGame = new BridgeGame(bridge, gameStatusOperator);
     }
 
-    @DisplayName("플레이어가 건널 수 없는 칸을 선택한 경우 FAIL을 반환한다.")
+    @DisplayName("다리를 건너기 시작할 때 플레이어가 건널 수 없는 칸을 선택한 경우 FAIL을 반환한다.")
     @Test
-    void moveNonPassableBlock() {
+    void moveNonPassableBlockFromStart() {
         ProcessCondition passCondition = bridgeGame.move("D");
         Integer currentPosition = gameStatusOperator.getCurrentPosition();
         assertThat(passCondition).isEqualTo(PassCondition.FAIL);
         assertThat(currentPosition).isEqualTo(-1);
     }
 
-    @DisplayName("플레이어가 건널 수 있는 칸을 선택한 경우 PASS를 반환한다.")
+    @DisplayName("다리를 건너기 시작할 때 플레이어가 건널 수 있는 칸을 선택한 경우 PASS를 반환한다.")
     @Test
-    void movePassableBlock() {
+    void movePassableBlockFromStart() {
         ProcessCondition passCondition = bridgeGame.move("U");
         Integer currentPosition = gameStatusOperator.getCurrentPosition();
         assertThat(passCondition).isEqualTo(PassCondition.PASS);
         assertThat(currentPosition).isEqualTo(0);
     }
 
-    @DisplayName("플레이어가 게임을 재시작한다")
+    @DisplayName("다리의 두 번째 칸에 건너기 시작할 때 건널 수 없는 칸을 선택한 경우 FAIL을 반환한다.")
     @Test
-    void retry() {
-        bridgeGame.retry();
-        GameStatus gameStatus = gameStatusOperator.getGameStatus();
-        assertThat(gameStatus).isEqualTo(GameStatus.RESTART);
+    void moveNonPassableBlockFromFirstBlock() {
+        movePassableBlockFromStart();
+        ProcessCondition passCondition = bridgeGame.move("U");
+        Integer currentPosition = gameStatusOperator.getCurrentPosition();
+        assertThat(passCondition).isEqualTo(PassCondition.FAIL);
+        assertThat(currentPosition).isEqualTo(0);
+    }
+
+    @DisplayName("다리의 두 번째 칸에 건너기 시작할 때 건널 수 있는 칸을 선택한 경우 PASS를 반환한다.")
+    @Test
+    void movePassableBlockFromFirstBlock() {
+        movePassableBlockFromStart();
+        ProcessCondition passCondition = bridgeGame.move("D");
+        Integer currentPosition = gameStatusOperator.getCurrentPosition();
+        assertThat(passCondition).isEqualTo(PassCondition.PASS);
+        assertThat(currentPosition).isEqualTo(1);
+    }
+
+    @DisplayName("다리를 건너다가 건널 수 없는 칸을 선택하고, 재시도를 하면 START를 반환하고 현재 위치는 -1로 초기화된다.")
+    @Test
+    void retryAfterMovingNonPassableBlock() {
+        moveNonPassableBlockFromFirstBlock();
+        ProcessCondition gameStatus = bridgeGame.retry();
+        Integer currentPosition = gameStatusOperator.getCurrentPosition();
+        assertThat(gameStatus).isEqualTo(GameStatus.START);
+        assertThat(currentPosition).isEqualTo(-1);
     }
 
     @DisplayName("플레이어가 다리의 마지막 칸에 도달하면 FINISHED를 반환한다.")
