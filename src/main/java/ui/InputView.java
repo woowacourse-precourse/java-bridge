@@ -53,6 +53,10 @@ public class InputView {
             if (input.charAt(0) < '1' || input.charAt(0) > '2') {
                 throw new IllegalArgumentException("범위 초과");
             }
+        } else if (input.length() == 1) {
+            if (input.charAt(0) <= '2') {
+                throw new IllegalArgumentException("범위 초과");
+            }
         }
     }
 
@@ -89,8 +93,7 @@ public class InputView {
     }
 
     private void validateMovingCommand(String input) {
-        char command = input.charAt(0);
-        if (command != 'U' && command != 'u' && command != 'D' && command != 'd') {
+        if (!input.equals("U") || !input.equals("D")) {
             throw new IllegalArgumentException("유효하지 않은 이동 명령");
         }
     }
@@ -111,8 +114,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     private void validateGameCommand(String input) {
-        char command = input.charAt(0);
-        if (command != 'R' && command != 'r' && command != 'Q' && command != 'q') {
+        if (!input.equals("R") || !input.equals("Q")) {
             throw new IllegalArgumentException("유효하지 않은 게임 명령입니다.");
         }
     }
