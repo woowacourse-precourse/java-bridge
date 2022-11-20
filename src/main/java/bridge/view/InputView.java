@@ -23,14 +23,14 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public Direction readMoving() {
         String input = Console.readLine();
         try {
             new InputValidator().validateMoving(input);
         } catch (IllegalArgumentException exception) {
             return readMoving();
         }
-        return input;
+        return Direction.valueOf(input);
     }
 
     /**
