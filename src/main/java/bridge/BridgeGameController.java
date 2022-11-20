@@ -1,10 +1,12 @@
 package bridge;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 public class BridgeGameController {
     public static final String START = "다리 건너기 게임을 시작합니다.";
     public static final String RETRY = "R";
+    public static final String ERROR_PREFIX = "[ERROR] ";
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -31,7 +33,7 @@ public class BridgeGameController {
 
     private List<String> makeBridge() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        int bridgeSize = inputView.readBridgeSize();
+        Integer bridgeSize = handleException(inputView::readBridgeSize);
         return bridgeMaker.makeBridge(bridgeSize);
     }
 
@@ -47,16 +49,27 @@ public class BridgeGameController {
     }
 
     private void move(BridgeGame bridgeGame) {
-        String moving = inputView.readMoving();
+        String moving = handleException(inputView::readMoving);
         bridgeGame.move(moving);
         outputView.printMap(bridgeGame);
     }
 
     private void RetryOrQuit(BridgeGame bridgeGame) {
-        String gameCommand = inputView.readGameCommand();
+        String gameCommand = handleException(inputView::readGameCommand);
         if (gameCommand.equals(RETRY)) {
             bridgeGame.retry();
             run(bridgeGame);
         }
+    }
+
+    private <T> T handleException(Supplier<T> readSomething) {
+        T input;
+        try {
+            input = readSomething.get();
+        } catch (IllegalArgumentException e) {
+            System.out.println(ERROR_PREFIX + e.getMessage());
+            input = handleException(readSomething);
+        }
+        return input;
     }
 }
