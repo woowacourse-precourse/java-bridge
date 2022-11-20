@@ -35,11 +35,12 @@ public class BridgeGameController {
 
     public void playTurn() {
         newTurn();
-        if (bridgeGame.isSuccess()) {
-            resultSuccessGame();
-        }
         if (!bridgeGame.isSuccess()) {
             askRetry();
+            return;
+        }
+        if (bridgeGame.isSuccess()) {
+            turnResult();
         }
     }
 
@@ -51,9 +52,11 @@ public class BridgeGameController {
         outputView.printMap(isSuccess, playerPath);
     }
 
-    public void resultSuccessGame() {
+    public void turnResult() {
         if (bridgeGame.isEndOfBridge()) {
+            bridgeGame.victory();
             gameResult();
+            return;
         }
         if (!bridgeGame.isEndOfBridge()) {
             playTurn();
@@ -64,13 +67,17 @@ public class BridgeGameController {
         String retry = inputView.readGameCommand();
         if (retry.equals(Rules.GAME_RETRY)) {
             play();
+            return;
         }
-        if (!retry.equals(Rules.GAME_QUIT)) {
+        if (retry.equals(Rules.GAME_QUIT)) {
             gameResult();
         }
     }
 
     public void gameResult() {
-
+        boolean isVictory = bridgeGame.isVictory();
+        int tryCount = bridgeGame.getTryCount();
+        List<Plate> playerPath = bridgeGame.getPlayerPath();
+        outputView.printResult(isVictory, tryCount, playerPath);
     }
 }

@@ -1,12 +1,7 @@
 package bridge.model;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
 
     private Bridge bridge;
@@ -33,6 +28,10 @@ public class BridgeGame {
         player.newTry();
     }
 
+    public void victory() {
+        player.victory();
+    }
+
     public boolean isSuccess() {
         int currentIndex = player.getPlayerPosition();
         Plate currentPlate = player.getCurrentPlate();
@@ -43,5 +42,13 @@ public class BridgeGame {
         int currentIndex = player.getPlayerPosition();
         int lastIndex = bridge.getBridgeLastIndex();
         return currentIndex == lastIndex;
+    }
+
+    public boolean isVictory() {
+        return player.isVictory();
+    }
+
+    public int getTryCount() {
+        return player.getGameTryCount();
     }
 }
