@@ -1,6 +1,6 @@
 package bridge;
 
-import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,13 +13,20 @@ import static org.assertj.core.api.Assertions.*;
 
 class BridgeGameTest {
 
+    List<String> bridge;
+    BridgeGame bridgeGame;
+
+    @BeforeEach
+    void setUp() {
+        bridge = List.of("U", "D", "D");
+        bridgeGame = new BridgeGame();
+    }
+
     @DisplayName("플레이어 이동 테스트")
     @Test
     void createMovingTest() {
-        List<String> bridge = List.of("U", "D", "D");
         String moving = "U";
 
-        BridgeGame bridgeGame = new BridgeGame();
         MovingResult movingResult = bridgeGame.move(bridge, moving);
 
         assertThat(movingResult)
@@ -31,9 +38,6 @@ class BridgeGameTest {
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "s", "u", "d"})
     void createMovingException(String moving) {
-        List<String> bridge = List.of("U", "D", "D");
-        BridgeGame bridgeGame = new BridgeGame();
-
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> bridgeGame.move(bridge, moving));
     }
