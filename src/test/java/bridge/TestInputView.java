@@ -4,17 +4,19 @@ import bridge.domain.game.BridgeGameCommand;
 import java.util.List;
 
 public class TestInputView extends InputView {
+    private final int bridgeSize;
     private final List<BridgeMove> moves;
     private final List<BridgeGameCommand> commands;
     
-    public TestInputView(List<BridgeMove> moves, List<BridgeGameCommand> commands) {
+    public TestInputView(int bridgeSize, List<BridgeMove> moves, List<BridgeGameCommand> commands) {
+        this.bridgeSize = bridgeSize;
         this.moves = moves;
         this.commands = commands;
     }
     
     @Override
     public int readBridgeSize() {
-        return moves.size();
+        return bridgeSize;
     }
     
     @Override

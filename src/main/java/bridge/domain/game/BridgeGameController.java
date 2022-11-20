@@ -1,38 +1,43 @@
 package bridge.domain.game;
 
+import bridge.BridgeMaker;
 import bridge.BridgeMove;
+import bridge.BridgeNumberGenerator;
 import bridge.InputView;
 import bridge.OutputView;
 import bridge.domain.bridge.Bridge;
-import java.util.List;
 
 public class BridgeGameController {
     
     private final InputView inputView;
     private final OutputView outputView;
-    private final BridgeGameService bridgeGameService;
+    private BridgeGameService bridgeGameService;
     
-    public BridgeGameController(List<String> bridge, InputView inputView) {
-        bridgeGameService = new BridgeGameService(new BridgeGame(new Bridge(bridge)));
+    public BridgeGameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
-        this.outputView = new OutputView();
+        this.outputView = outputView;
     }
     
-    public void start() {
+    public void start(BridgeNumberGenerator bridgeNumberGenerator) {
         outputView.printStartMessage();
+        bridgeGameService = new BridgeGameService(new BridgeGame(generateBridge(bridgeNumberGenerator)));
         play();
         outputView.printResult(bridgeGameService.getGame());
+    }
+    
+    private Bridge generateBridge(BridgeNumberGenerator bridgeNumberGenerator) {
+        return new Bridge(new BridgeMaker(bridgeNumberGenerator).makeBridge(inputView.readBridgeSize()));
     }
     
     private void play() {
         BridgeMove selectMove = inputView.readMoving();
         boolean isSuccess = bridgeGameService.tryMove(selectMove);
         outputView.printMap(bridgeGameService.getGame());
-    
+        
         if (bridgeGameService.isFinish()) {
             return;
         }
-    
+        
         next(isSuccess);
     }
     

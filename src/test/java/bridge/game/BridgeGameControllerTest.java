@@ -3,8 +3,9 @@ package bridge.game;
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.util.Lists.newArrayList;
 
-import bridge.BridgeMaker;
 import bridge.BridgeMove;
+import bridge.BridgeNumberGenerator;
+import bridge.OutputView;
 import bridge.TestInputView;
 import bridge.domain.TestNumberGenerator;
 import bridge.domain.game.BridgeGameCommand;
@@ -35,7 +36,7 @@ public class BridgeGameControllerTest {
                 BridgeMove.UP,
                 BridgeMove.DOWN
         );
-        getController(expectMoves, selectMoves, newArrayList()).start();
+        getController(5, selectMoves, newArrayList()).start(getTestNumberGenerator(expectMoves));
     }
     
     @DisplayName("start 메소드는 실패 시 RETRY 커맨드를 받으면 처음부터 시작한다.")
@@ -46,7 +47,7 @@ public class BridgeGameControllerTest {
                 BridgeMove.UP,
                 BridgeMove.UP
         );
-    
+        
         List<BridgeMove> selectMoves = newArrayList(
                 BridgeMove.DOWN,
                 BridgeMove.UP,
@@ -56,10 +57,10 @@ public class BridgeGameControllerTest {
                 BridgeMove.UP,
                 BridgeMove.UP
         );
-    
-        BridgeGameController bridgeGameController = getController(expectMoves, selectMoves,
+        
+        BridgeGameController bridgeGameController = getController(3, selectMoves,
                 newArrayList(BridgeGameCommand.RETRY));
-        bridgeGameController.start();
+        bridgeGameController.start(getTestNumberGenerator(expectMoves));
     }
     
     @DisplayName("start 메소드는 실패 후 RETRY 커맨드를 받고 다시 시도 후 성공을 할 수 있다.")
@@ -81,9 +82,9 @@ public class BridgeGameControllerTest {
                 BridgeMove.UP
         );
         
-        BridgeGameController bridgeGameController = getController(expectMoves, selectMoves,
+        BridgeGameController bridgeGameController = getController(3, selectMoves,
                 newArrayList(BridgeGameCommand.RETRY));
-        bridgeGameController.start();
+        bridgeGameController.start(getTestNumberGenerator(expectMoves));
         assertThat(selectMoves.size()).isEqualTo(0);
     }
     
@@ -106,26 +107,25 @@ public class BridgeGameControllerTest {
                 BridgeMove.UP
         );
         
-        BridgeGameController bridgeGameController = getController(expectMoves, selectMoves,
+        BridgeGameController bridgeGameController = getController(3, selectMoves,
                 newArrayList(BridgeGameCommand.QUIT));
-        bridgeGameController.start();
+        bridgeGameController.start(getTestNumberGenerator(expectMoves));
         assertThat(selectMoves.size()).isEqualTo(3);
     }
     
-    
-    BridgeGameController getController(List<BridgeMove> expectMoves, List<BridgeMove> selectMoves,
-            List<BridgeGameCommand> commands) {
-        List<Integer> generateNumbers = newArrayList(expectMoves.stream().map(BridgeMove::getGenerateNumber).collect(
+    TestNumberGenerator getTestNumberGenerator(List<BridgeMove> expectMoves) {
+        return new TestNumberGenerator(expectMoves.stream().map(BridgeMove::getGenerateNumber).collect(
                 Collectors.toList()));
-        
+    }
+    
+    BridgeGameController getController(int bridgeSize, List<BridgeMove> selectMoves,
+            List<BridgeGameCommand> commands) {
         TestInputView testInputView = new TestInputView(
+                bridgeSize,
                 selectMoves,
                 commands
         );
         
-        return new BridgeGameController(
-                new BridgeMaker(new TestNumberGenerator(generateNumbers)).makeBridge(generateNumbers.size()),
-                testInputView
-        );
+        return new BridgeGameController(testInputView, new OutputView());
     }
 }
