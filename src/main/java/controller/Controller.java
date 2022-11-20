@@ -25,10 +25,14 @@ public class Controller {
     }
 
     private void move(Bridge bridge) {
-        BridgeGame bridgeGame = new BridgeGame();
+        BridgeGame bridgeGame = new BridgeGame(bridge);
 
         String movingPlace = inputView.readMoving();
-        bridgeGame.move(bridge, movingPlace);
+        String gameCommand;
+
+        if (!bridgeGame.move(movingPlace)) {
+            gameCommand = inputView.readGameCommand();
+        }
     }
 
 }
