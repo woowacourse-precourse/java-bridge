@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.validator.BridgeSizeValidator;
 import bridge.validator.DirectionValidator;
+import bridge.validator.GameCommandValidator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -38,6 +39,7 @@ public class InputView {
     public String readGameCommand() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String gameCommand = Console.readLine();
+        GameCommandValidator.validate(gameCommand);
         return gameCommand;
     }
 }
