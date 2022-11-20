@@ -1,5 +1,8 @@
 package bridge.view;
 
+import bridge.util.ConstantMessage;
+import bridge.util.Exceptions;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -10,6 +13,16 @@ public class OutputView {
 
     public static String printBridgeLengthInputPhrase() {
         return "다리의 길이를 입력해주세요.";
+    }
+
+    public static String printBridgeLengthErrorMessage(String readLine) {
+        String result;
+        result = Exceptions.validateBridgeLength(readLine);
+        if (!result.equals(ConstantMessage.BRIDGE_LENGTH_ERROR_MESSAGE)) {
+            return result;
+        }
+        System.out.println(result);
+        return result;
     }
 
     public static String printMovindBlockInputPhrase() {
