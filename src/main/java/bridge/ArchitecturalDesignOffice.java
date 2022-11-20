@@ -4,14 +4,23 @@ import java.util.List;
 
 public final class ArchitecturalDesignOffice {
 
-    private final List<String> storedBridgeBlueprint;
+    private static final ArchitecturalDesignOffice INSTANCE = new ArchitecturalDesignOffice();
+    private List<String> storedBridgeBlueprint;
 
-    public ArchitecturalDesignOffice(List<String> bridgeBlueprint) {
-        this.storedBridgeBlueprint = bridgeBlueprint;
+    private ArchitecturalDesignOffice() {
     }
 
-    public List<String> sendStoredBridgeBlueprint() {
-        return this.storedBridgeBlueprint;
+    public static ArchitecturalDesignOffice getInstance() {
+        return INSTANCE;
+    }
+
+    public void save(List<String> storedBridgeBlueprint) {
+        this.storedBridgeBlueprint = storedBridgeBlueprint;
+    }
+
+    public CompareResult compare(String readDirection, int bridgeLocation) {
+        return new CompareResult(readDirection, bridgeLocation,
+                this.storedBridgeBlueprint.get(bridgeLocation).equals(readDirection));
     }
 
 }

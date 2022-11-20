@@ -33,23 +33,25 @@ public class BridgeMaker {
             bridgeBlueprint.add(BridgeConverter.covertToBridgeNumber(bridgeNumberGenerator.generate()));
         }
 
-        save(bridgeBlueprint);
+        saveToArchitecturalDesignOffice(bridgeBlueprint);
 
         return bridgeBlueprint;
     }
 
-    private void validateBridgeSize(int bridgeSize) {
+    private void validateBridgeSize(final int bridgeSize) {
         if (bridgeSize < MINIMUM_BRIDGE_SIZE.getCode() || bridgeSize > MAXIMUM_BRIDGE_SIZE.getCode()) {
             BRIDGE_SIZE.error();
         }
     }
 
-    public ArchitecturalDesignOffice save(final List<String> bridgeBlueprint) {
-       return new ArchitecturalDesignOffice(bridgeBlueprint);
+    public void saveToArchitecturalDesignOffice(final List<String> bridgeBlueprint) {
+        ArchitecturalDesignOffice.getInstance()
+                                 .save(bridgeBlueprint);
     }
 
-    public List<String> reload(final ArchitecturalDesignOffice architecturalDesignOffice) {
-        return architecturalDesignOffice.sendStoredBridgeBlueprint();
+    public CompareResult compareToStoredBridgeBlueprint(final String direction, final int bridgeLocation) {
+        return ArchitecturalDesignOffice.getInstance()
+                                        .compare(direction, bridgeLocation);
     }
 
 }
