@@ -1,5 +1,7 @@
 package bridge.utils.validator;
 
+import static bridge.utils.constants.BridgeConstants.BRIDGE_SIZE_MIN_INCLUSIVE;
+import static bridge.utils.constants.BridgeConstants.BRIDGE_SIZE_MAX_INCLUSIVE;
 import static bridge.utils.constants.ErrorConstants.OUT_RANGE_BRIDGE_SIZE;
 import static bridge.utils.constants.ErrorConstants.NOT_NUMBER_BRIDGE_SIZE;
 
@@ -7,7 +9,7 @@ public class BridgeValidator {
 
     public static void validSize(String bridgeSize) {
         int size = isNumber(bridgeSize);
-        if (size < 3 || size > 20) {
+        if (size < BRIDGE_SIZE_MIN_INCLUSIVE || size > BRIDGE_SIZE_MAX_INCLUSIVE) {
             throw new IllegalArgumentException(OUT_RANGE_BRIDGE_SIZE);
         }
     }
