@@ -34,8 +34,8 @@ public class GameManager {
     public void start() {
         setBridge();
         while(!isGameOver) {
-            while(moveResult == MoveResult.Correct) moveResult = processGame();
-            if(moveResult.equals(MoveResult.CorrectAndLast)) break;
+            while(moveResult == MoveResult.Correct) moveResult = move();
+            if(moveResult == MoveResult.CorrectAndLast) break;
             isGameOver = !inputView.readRetry();
             if(!isGameOver) {
                 moveResult = MoveResult.Correct;
@@ -52,7 +52,7 @@ public class GameManager {
     }
 
     // 게임 진행
-    private MoveResult processGame() {
+    private MoveResult move() {
         String move = inputView.readMoving();
         MoveResult moveResult = bridgeGame.isCorrectMove(move);
         if(moveResult == MoveResult.Correct || moveResult == MoveResult.CorrectAndLast) bridgeGame.move();
