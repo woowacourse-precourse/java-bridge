@@ -5,15 +5,9 @@ import java.util.List;
 
 public class DownSide {
     private String downSide;
-    public List<String> downSideArr;
-
-    public DownSide() {
-        this.downSide = makeDownSide();
-    }
+    public List<String> downSideArr = new ArrayList<>();
 
     public String makeDownSide() {
-        downSideArr = new ArrayList<>();
-        convertDownSide();
         String downSideString = String.join(" | ", downSideArr);
         downSide = "[ ";
         downSide += downSideString;
@@ -21,18 +15,10 @@ public class DownSide {
         return downSide;
     }
 
-    public void convertDownSide() {
-        for (String e : Application.movingInputs) {
-            if (e.equals("U"))
-                downSideArr.add("O");
-            if (e.equals("D"))
-                downSideArr.add(" ");
-            if (e.equals("X"))
-                downSideArr.add("X");
-        }
+    public void addDownSide(String input) {
+        downSideArr.add(input);
     }
-
-    public String getDownSide() {
-        return this.downSide;
+    public String getDownSide(){
+        return downSide;
     }
 }
