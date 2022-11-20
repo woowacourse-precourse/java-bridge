@@ -14,8 +14,6 @@ import bridge.exception.domain.WrongGeneratorException;
 import bridge.utils.game.GameStatus;
 import bridge.utils.message.ExceptionMessageUtils;
 import bridge.view.GuideView;
-import bridge.view.InputView;
-import bridge.view.OutputView;
 import bridge.view.IOViewManager;
 import java.util.EnumMap;
 import java.util.Map;
@@ -27,10 +25,8 @@ public class GameController {
     private final Map<GameStatus, Supplier<GameStatus>> gameStatusMappings;
     private BridgeGame bridgeGame;
 
-    public GameController() {
-        InputView inputView = new InputView();
-        OutputView outputView = new OutputView();
-        ioViewManager = new IOViewManager(inputView, outputView);
+    public GameController(IOViewManager ioViewManager) {
+        this.ioViewManager = ioViewManager;
         gameStatusMappings = new EnumMap<>(GameStatus.class);
 
         initGameStatusMappings();
