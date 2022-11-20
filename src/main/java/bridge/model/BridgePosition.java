@@ -51,6 +51,10 @@ public enum BridgePosition {
         return Objects.equals(nextCommand, command);
     }
 
+    public static boolean isSuccess(final List<String> result) {
+        return result.contains(RIGHT_SIGN);
+    }
+
     public String getCommand() {
         return command;
     }

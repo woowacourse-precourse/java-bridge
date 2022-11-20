@@ -21,9 +21,9 @@ public class BridgeGame {
         return new BridgeGame(bridgeMaker.makeBridge(number));
     }
 
-    public List<String> move(final int nextPosition, final String command) {
-        String nextAnswer = bridges.get(nextPosition);
-        return BridgePosition.compare(nextAnswer, command);
+    public List<String> move(final int currentPosition, final String command) {
+        String currentAnswer = bridges.get(currentPosition);
+        return BridgePosition.compare(currentAnswer, command);
     }
 
     /**
@@ -36,5 +36,9 @@ public class BridgeGame {
 
     public List<String> getBridges() {
         return this.bridges;
+    }
+
+    public boolean isSuccess(final List<String> result) {
+        return BridgePosition.isSuccess(result);
     }
 }
