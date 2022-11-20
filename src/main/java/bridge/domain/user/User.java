@@ -17,7 +17,8 @@ public class User {
     }
 
     public int cross(Bridge bridge, Direction direction) {
-        if (bridge.canCross(userData.getPosition(), direction)) {
+        int currentPosition = userData.getPosition();
+        if (bridge.canCross(currentPosition, direction)) {
             userData.increasePosition();
             recordStep(LIVE, direction);
             return LIVE;
