@@ -16,7 +16,7 @@ public class OutputFormat {
     private static final String BRIDGE_START = "[";
     private static final String NEW_LINE = "\n";
 
-    public String bridgeGameResultFormat(BridgeGameResult result) {
+    public String printMapFormat(BridgeGameResult result) {
         Bridge bridge = result.bridge();
         List<BridgeShape> bridgeShapes = bridge.bridgeShapes();
         List<Boolean> booleans = result.attemptsResult();
@@ -27,7 +27,7 @@ public class OutputFormat {
         List<String> upSidesTexts = IntStream.range(0, booleans.size())
                 .mapToObj(index -> moveUpSideFormat(booleans.get(index), bridgeShapes.get(index)))
                 .collect(Collectors.toList());
-        return bridgeSideFormat(upSidesTexts);
+        return bridgeFormat(upSidesTexts);
     }
 
     private String moveUpSideFormat(boolean move, BridgeShape bridgeShape) {
@@ -44,7 +44,7 @@ public class OutputFormat {
         List<String> downSideTexts = IntStream.range(0, booleans.size())
                 .mapToObj(index -> moveDownSideFormat(booleans.get(index), bridgeShapes.get(index)))
                 .collect(Collectors.toList());
-        return bridgeSideFormat(downSideTexts);
+        return bridgeFormat(downSideTexts);
     }
 
     private String moveDownSideFormat(boolean move, BridgeShape bridgeShape) {
@@ -57,7 +57,7 @@ public class OutputFormat {
         return MOVE_NOT_SELECT;
     }
 
-    private String bridgeSideFormat(List<String> moveSideTexts) {
+    private String bridgeFormat(List<String> moveSideTexts) {
         return BRIDGE_START + String.join(BRIDGE_DELIMITER, moveSideTexts) + BRIDGE_END;
     }
 }

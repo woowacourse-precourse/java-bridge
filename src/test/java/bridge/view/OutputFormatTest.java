@@ -20,7 +20,7 @@ class OutputFormatTest {
     }
 
     @MethodSource
-    private static Stream<Arguments> provideForBridgeGameResultFormat() {
+    private static Stream<Arguments> provideForPrintMapFormat() {
         return Stream.of(
                 Arguments.of(
                         Bridge.createByBridgeShapeValue(List.of("D", "U", "D")),
@@ -55,11 +55,11 @@ class OutputFormatTest {
         );
     }
 
-    @ParameterizedTest(name = "다리 건너기 결과를 출력한다")
-    @MethodSource("provideForBridgeGameResultFormat")
-    void bridgeGameResultFormat(Bridge bridge, List<Boolean> attempts, List<String> outputs) {
+    @ParameterizedTest(name = "다리 건너기 결과로 변환한다.")
+    @MethodSource("provideForPrintMapFormat")
+    void printMapFormat(Bridge bridge, List<Boolean> attempts, List<String> outputs) {
         BridgeGameResult bridgeGameResult = new BridgeGameResult(bridge, attempts);
 
-        assertThat(outputFormat.bridgeGameResultFormat(bridgeGameResult)).containsSequence(outputs);
+        assertThat(outputFormat.printMapFormat(bridgeGameResult)).containsSequence(outputs);
     }
 }
