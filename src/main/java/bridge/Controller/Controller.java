@@ -37,6 +37,11 @@ public class Controller {
 
             if(mySelectBridge.get(position).equals(bridge.get(position))){
                 //성공
+                //printMap
+                if(position == bridgeLen - 1){
+                    gameSuccess = true;
+                    break;
+                }
             }
             else{
                 //실패
