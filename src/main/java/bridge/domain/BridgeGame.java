@@ -49,6 +49,8 @@ public class BridgeGame {
 
     public void retry() {
         tryCount++;
+        footPrint.get(0).clear();
+        footPrint.get(1).clear();
     }
 
 }

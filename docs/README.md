@@ -61,7 +61,7 @@
 - [x] 게임 시도 횟수 늘리기
 - [x] 게임 성공 여부 체크하기
 - [x] 이동한 칸과 위치 저장하기
-- [ ] FootPrint 초기화하기
+- [x] FootPrint 초기화하기
 - [x] BridgeCrossingDTO 반환하기
 - BridgeCrossingStatus
 - [x] 횡단 상태 메시지 정리 
@@ -70,7 +70,7 @@
 - BridgeService
 - [x] BridgeMaker에서 만든 다리 Bridge에 저장
 - [x] 이동할 칸에 맞는 BridgeCrossingDTO 반환
-- [ ] FootPrint 초기화
+- [x] FootPrint 초기화
 
 ### dto
 - BridgeCrossingDTO

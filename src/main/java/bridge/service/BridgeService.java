@@ -25,5 +25,6 @@ public class BridgeService {
     }
 
     public void retryGame() {
+        bridgeGame.retry();
     }
 }
