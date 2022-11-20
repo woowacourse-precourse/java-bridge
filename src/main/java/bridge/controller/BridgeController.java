@@ -3,6 +3,8 @@ package bridge.controller;
 import static bridge.constant.Message.ENTER_BRIDGE_LENGTH;
 import static bridge.constant.Message.ENTER_MOVE_DIRECTION;
 
+import bridge.Bridge;
+import bridge.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
@@ -21,8 +23,18 @@ public class BridgeController {
 
     public void start() {
         outputView.printStart();
-        getBridge(getBridgeSize());
-        getMoveDirection();
+        Bridge bridge = new Bridge(getBridge(getBridgeSize()));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        while(true) {
+            String direction = getMoveDirection();
+            bridgeGame.move(direction);
+            //TODO 결과 출력
+            if (!bridgeGame.canCrossBridge(direction)) {
+                // TODO 재시작/종료 입력받고 재실행 혹은 종료
+            }
+
+        }
+
     }
 
     private int getBridgeSize() {
@@ -37,9 +49,9 @@ public class BridgeController {
         return size;
     }
 
-    private void getBridge(int size) {
+    private List<String> getBridge(int size) {
         List<String> bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
-
+        return bridge;
     }
 
     private String getMoveDirection() {
