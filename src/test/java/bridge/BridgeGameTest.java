@@ -20,4 +20,15 @@ public class BridgeGameTest {
         assertThat(List.of("O")).isEqualTo(topBridge);
         assertThat(List.of(" ")).isEqualTo(bottomBridge);
     }
+
+    @Test
+    void failureTest() {
+        BridgeGame bridgeGame = new BridgeGame();
+        List<String> topBridge = new ArrayList<>();
+        List<String> bottomBridge = new ArrayList<>();
+        bridgeGame.failure(topBridge, bottomBridge, "U");
+
+        assertThat(List.of("X")).isEqualTo(topBridge);
+        assertThat(List.of(" ")).isEqualTo(bottomBridge);
+    }
 }
