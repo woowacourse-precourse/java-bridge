@@ -16,7 +16,7 @@ public class CrossResults {
         return crossResults.size();
     }
 
-    public void appendResult(CrossResult crossResult) {
+    public void add(CrossResult crossResult) {
         crossResults.add(crossResult);
     }
 

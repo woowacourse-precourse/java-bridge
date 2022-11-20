@@ -6,7 +6,6 @@ import bridge.Enum.CrossResult;
 import bridge.Enum.GameStatus;
 import bridge.Model.VO.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGame {
@@ -32,7 +31,7 @@ public class BridgeGame {
     public void move(UserChoice userChoice) {
         CrossResult crossResult = bridge.cross(userChoice, crossResults.position());
         userChoices.add(userChoice);
-        crossResults.appendResult(crossResult);
+        crossResults.add(crossResult);
     }
 
     public GameStatus checkGameStatus() {
