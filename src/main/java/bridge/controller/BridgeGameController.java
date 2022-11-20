@@ -14,5 +14,7 @@ public class BridgeGameController {
         bridgeLength = InputView.readBridgeSize();
         //입력된 다리 길이에 대한 검증 기능
         InputView.validateBridgeLength(bridgeLength);
+        //입력된 다리 길이에 대한 범위 유효 검증
+        InputView.validateBridgeLengthRange(Integer.parseInt(bridgeLength));
     }
 }

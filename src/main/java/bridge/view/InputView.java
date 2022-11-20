@@ -30,6 +30,15 @@ public class InputView {
     }
 
     /**
+     * 다리 길이의 유효성 검증
+     */
+    public static void validateBridgeLengthRange(int bridgeLength) {
+        if (!(3 <= bridgeLength && bridgeLength <= 20)) {
+            throw new IllegalArgumentException(Error.INPUT_NUMBER_RANGE_ERROR.getMessage());
+        }
+    }
+
+    /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {

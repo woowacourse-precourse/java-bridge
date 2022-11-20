@@ -1,5 +1,6 @@
 package bridge.view;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -7,6 +8,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputViewTest {
 
@@ -25,5 +27,14 @@ public class InputViewTest {
         //then
         assertThat(inputResult).isEqualTo(input);
         System.setIn(sysInBackup);
+    }
+
+    @DisplayName("다리 길이 입력값이 숫자인지 검증")
+    @Test
+    public void validateBridgeLengthTest() {
+        String input = "12ee334";
+
+        Assertions.assertThatThrownBy(() -> InputView.validateBridgeLength(input))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
