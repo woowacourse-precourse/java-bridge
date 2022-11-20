@@ -5,6 +5,8 @@ import bridge.BridgeRandomNumberGenerator;
 
 import java.util.List;
 
+import static bridge.domain.BridgeGameState.*;
+
 public class BridgeAnswer {
 
     private final List<BridgeMoveType> bridgeAnswer;
@@ -16,6 +18,16 @@ public class BridgeAnswer {
     public void setUpAnswerSizeBy(int bridgeSize) {
         clearBridgeAnswer();
         setUpBridgeAnswer(bridgeSize);
+    }
+
+    public BridgeGameState compareWith(BridgePlayer bridgePlayer) {
+        if (bridgePlayer.isNotSameLocation(bridgeAnswer)) {
+            return LOSE;
+        }
+        if (bridgePlayer.isPlayerReached(bridgeAnswer)) {
+            return WIN;
+        }
+        return CONTINUE;
     }
 
     private void clearBridgeAnswer() {
