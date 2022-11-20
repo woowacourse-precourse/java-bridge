@@ -9,6 +9,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class BridgeMakerTest {
     BridgeMaker bridgeMaker;
@@ -18,21 +20,10 @@ class BridgeMakerTest {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
-    @Test
-    @DisplayName("다리의 길이를 입력받을 때 길이가 3 미만이면 예외가 발생한다.")
-    void makeBridgeByUnder3Size() {
-        // given
-        int size = 2;
-        //expect
-        assertThatThrownBy(() -> bridgeMaker.makeBridge(size))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    @DisplayName("다리의 길이를 입력받을 때 길이가 20 초과이면 예외가 발생한다.")
-    void makeBridgeByOver20Size() {
-        // given
-        int size = 21;
+    @ParameterizedTest
+    @DisplayName("다리의 길이를 입력받을 때 길이가 3 미만, 20 초과이면 예외가 발생한다.")
+    @ValueSource(ints = {2, 21})
+    void makeBridgeByUnder3OrOver20Size(int size) {
         //expect
         assertThatThrownBy(() -> bridgeMaker.makeBridge(size))
                 .isInstanceOf(IllegalArgumentException.class);
