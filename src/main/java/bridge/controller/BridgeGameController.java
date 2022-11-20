@@ -11,8 +11,8 @@ import java.util.Objects;
 
 public class BridgeGameController {
     private final BridgeMaker bridgeMaker;
-    private BridgeGame bridgeGame;
     private Bridge bridge;
+    private BridgeGame bridgeGame;
     boolean isGameOver;
 
     public BridgeGameController() {

@@ -7,8 +7,8 @@ import bridge.domain.constant.ResultMessage;
  */
 public class BridgeGame {
     private Bridge bridge;
-    private int currentPosition;
     private BridgeGameResult bridgeGameResult;
+    private int currentPosition;
     private int numberOfTry = 1;
 
     public BridgeGame(Bridge bridge) {
@@ -17,20 +17,20 @@ public class BridgeGame {
 
     private void initBridgeGame(Bridge bridge) {
         this.bridge = bridge;
-        this.currentPosition = -1;
         this.bridgeGameResult = new BridgeGameResult();
+        this.currentPosition = -1;
     }
 
     public Bridge getBridge() {
         return bridge;
     }
 
-    public int getCurrentPosition() {
-        return currentPosition;
-    }
-
     public BridgeGameResult getBridgeGameResult() {
         return bridgeGameResult;
+    }
+
+    public int getCurrentPosition() {
+        return currentPosition;
     }
 
     public int getNumberOfTry() {

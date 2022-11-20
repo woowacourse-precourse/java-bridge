@@ -5,17 +5,18 @@ import bridge.domain.constant.Command;
 import java.util.Objects;
 
 public class BridgeGameResult {
-    private boolean isMoveFail;
     private final StringBuilder upperBridge;
     private final StringBuilder lowerBridge;
+    private boolean isMoveFail;
 
     public BridgeGameResult() {
-        isMoveFail = false;
         upperBridge = new StringBuilder();
         lowerBridge = new StringBuilder();
 
         upperBridge.append(BridgeComponent.BRIDGE_START.get());
         lowerBridge.append(BridgeComponent.BRIDGE_START.get());
+
+        isMoveFail = false;
     }
 
     public boolean getIsMoveFail() {
