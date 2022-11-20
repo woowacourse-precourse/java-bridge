@@ -75,6 +75,17 @@ class BridgeMoveTypeTest {
         assertThat(isMoveTypeSame).isTrue();
     }
 
+    @ParameterizedTest(name = "[{index}] moveTypeOne = {0}, moveTypeTwo = {1}")
+    @MethodSource("whenCompareDifferentMoveTypeThenSuccessTest")
+    @DisplayName("서로 다른 두 다리 이동 타입 비교시 동일하지 않다는 결과로 실패한다.")
+    void whenCompareDifferentMoveTypeThenSuccessTest(BridgeMoveType moveTypeOne, BridgeMoveType moveTypeTwo) {
+        // given & when
+        boolean isMoveTypeSame = moveTypeOne.isSame(moveTypeTwo);
+
+        // then
+        assertThat(isMoveTypeSame).isFalse();
+    }
+
     static Stream<Arguments> whenIntTypeSearchThenSuccessDummy() {
         return Stream.of(
                 Arguments.arguments(0, "D"),
@@ -93,6 +104,13 @@ class BridgeMoveTypeTest {
         return Stream.of(
                 Arguments.arguments(UP, UP),
                 Arguments.arguments(DOWN, DOWN)
+        );
+    }
+
+    static Stream<Arguments> whenCompareDifferentMoveTypeThenSuccessTest() {
+        return Stream.of(
+                Arguments.arguments(UP, DOWN),
+                Arguments.arguments(DOWN, UP)
         );
     }
 }
