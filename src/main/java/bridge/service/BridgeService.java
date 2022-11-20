@@ -1,110 +1,51 @@
 package bridge.service;
 
-import static bridge.message.MessageConstants.*;
+import static bridge.domain.ResultMessageStatus.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import bridge.domain.BridgeGame;
 import bridge.domain.ResultMessageStatus;
 import bridge.domain.ResultStatus;
-import bridge.filter.UserInputFilter;
-import bridge.view.InputView;
-import bridge.view.OutputView;
 
 public class BridgeService {
 
-	private static final InputView inputView = new InputView();
-	private static final OutputView outputView = new OutputView();
-	private static final UserInputFilter filter = new UserInputFilter();
-	private int bridgeSize;
-	private String moveCommand;
-	private String retryCommand;
+	private final List<ResultMessageStatus> resultMessageStatuses;
 	private BridgeGame bridgeGame;
-	private ResultStatus totalResult;
+	private int tryCount;
 
-	public void gameStart() {
-		totalResult = ResultStatus.RETRY;
-		outputView.printStartMessage();
-		createBridgeGame();
-		while (isExit()) {
-			totalResult = moveBridge();
-			checkFailureResultStatus();
-		}
-		printTotalResult();
+	public BridgeService() {
+		resultMessageStatuses = new ArrayList<>();
+		tryCount = 1;
 	}
 
-	private void createBridgeGame() {
-		setBridgeSize();
-		outputView.printEndl();
+	public void createBridgeGame(int bridgeSize) {
 		bridgeGame = new BridgeGame(bridgeSize);
 	}
 
-	private void setBridgeSize() {
-		try {
-			String userInput = inputView.readBridgeSize();
-			bridgeSize = filter.bindingBridgeSize(userInput);
-		} catch (IllegalArgumentException exception) {
-			outputView.printErrorMessage(exception);
-			setBridgeSize();
-		}
+	public ResultStatus moveService(String command) {
+		String bridgeCommand = bridgeGame.move();
+		ResultMessageStatus moveResultMessage = makeResultMessageStatus(bridgeCommand, command);
+		resultMessageStatuses.add(moveResultMessage);
+		return ResultStatus.makeResultStatus(bridgeCommand, command);
 	}
 
-	private ResultStatus moveBridge() {
-		ResultStatus moveResult = ResultStatus.RETRY;
-		while (!bridgeGame.isFinish(moveResult, bridgeSize)) {
-			setMoveCommand();
-			moveResult = bridgeGame.move(moveCommand);
-			printGameStageResult();
-		}
-		return moveResult;
+	public void retryService() {
+		bridgeGame.retry();
+		tryCount += 1;
+		resultMessageStatuses.clear();
 	}
 
-	private void setMoveCommand() {
-		try {
-			moveCommand = inputView.readMoving();
-			filter.bindingMoveCommand(moveCommand);
-		} catch (IllegalArgumentException exception) {
-			outputView.printErrorMessage(exception);
-			setMoveCommand();
-		}
+	public List<ResultMessageStatus> getResultMessageStatuses() {
+		return resultMessageStatuses;
 	}
 
-	private void checkFailureResultStatus() {
-		if (totalResult == ResultStatus.FAILURE) {
-			askRestartOrExit();
-			if (isRetry()) {
-				totalResult = ResultStatus.RETRY;
-				bridgeGame.retry();
-			}
-		}
+	public int getTryCount() {
+		return tryCount;
 	}
 
-	private void askRestartOrExit() {
-		try {
-			String userInput = inputView.readGameCommand();
-			retryCommand = filter.bindingRestartOrExitCommand(userInput);
-		} catch (IllegalArgumentException exception) {
-			outputView.printErrorMessage(exception);
-			askRestartOrExit();
-		}
-	}
-
-	private boolean isRetry() {
-		return retryCommand.equals(RESTART_COMMAND_MESSAGE);
-	}
-
-	private boolean isExit() {
-		return totalResult != ResultStatus.SUCCESS && totalResult != ResultStatus.FAILURE;
-	}
-
-	private void printGameStageResult() {
-		List<ResultMessageStatus> resultMessageStatuses = bridgeGame.getResultMessageStatuses();
-		outputView.printMap(resultMessageStatuses);
-	}
-
-	private void printTotalResult() {
-		List<ResultMessageStatus> resultMessageStatuses = bridgeGame.getResultMessageStatuses();
-		int tryCount = bridgeGame.getTryCount();
-		outputView.printResult(resultMessageStatuses, totalResult, tryCount);
+	public boolean isFinish(ResultStatus resultStatus, int bridgeSize) {
+		return resultStatus == ResultStatus.FAILURE || bridgeGame.isFinishGameStage(bridgeSize);
 	}
 }
