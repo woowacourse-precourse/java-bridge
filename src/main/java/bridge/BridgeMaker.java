@@ -26,10 +26,9 @@ public class BridgeMaker {
             int tmp = bridgeNumberGenerator.generate();
             if (tmp == Moving.DOWN.getCode()){
                 bridge.add(Moving.DOWN.getDirection());
+                continue;
             }
-            if (tmp == Moving.UP.getCode()){
-                bridge.add(Moving.UP.getDirection());
-            }
+            bridge.add(Moving.UP.getDirection());
         }
         return bridge;
     }
