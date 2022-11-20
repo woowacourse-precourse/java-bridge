@@ -1,7 +1,7 @@
 package bridge.Model;
 
 public enum GameResult {
-    SUCCESS("O"), FAIL("X");
+    SUCCESS("O"), FAIL("X"), RETRY("R"), QUIT("Q");
 
     private final String result;
 
