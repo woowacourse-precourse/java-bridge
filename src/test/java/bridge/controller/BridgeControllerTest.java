@@ -3,6 +3,7 @@ package bridge.controller;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.domain.Bridge;
+import bridge.domain.User;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,6 +36,21 @@ public class BridgeControllerTest {
         assertThat(secondResult).isEqualTo(true);
         assertThat(thirdResult).isEqualTo(true);
         assertThat(notMatchedResult).isEqualTo(false);
+    }
+
+    @DisplayName("processGame 테스트 (true 경우)")
+    @Test
+    public void processTrueTest() {
+        // given
+        Bridge bridge = new Bridge(List.of("U", "U" ,"U"));
+        User user = new User();
+        boolean isUserAnswerCorrect = true;
+
+        // when
+        bridgeController.processGame(bridge, user, isUserAnswerCorrect);
+
+        // then
+        assertThat(bridge.getNowIndex()).isEqualTo(1);
     }
 
     @DisplayName("isResetCase 테스트")
