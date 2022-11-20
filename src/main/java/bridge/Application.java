@@ -26,8 +26,8 @@ public class Application {
 
 
             if (result.equals("U")) {
-                up_bridge.add(" O ");
-                down_bridge.add("   ");
+                up_bridge.add("O");
+                down_bridge.add(" ");
                 BridgeMaker.bridge_index++;
                 output.printMap(up_bridge, down_bridge);
 
@@ -38,8 +38,8 @@ public class Application {
 
             }
             if (result.equals("D")) {
-                up_bridge.add("   ");
-                down_bridge.add(" O ");
+                up_bridge.add(" ");
+                down_bridge.add("O");
                 BridgeMaker.bridge_index++;
                 output.printMap(up_bridge, down_bridge);
 
@@ -50,8 +50,8 @@ public class Application {
 
             }
             if (result.equals("UX")) {
-                up_bridge.add(" X ");
-                down_bridge.add("   ");
+                up_bridge.add("X");
+                down_bridge.add(" ");
                 BridgeMaker.bridge_index++;
                 output.printMap(up_bridge, down_bridge);
 
@@ -65,8 +65,8 @@ public class Application {
                 }
             }
             if (result.equals("DX")) {
-                up_bridge.add("   ");
-                down_bridge.add(" X ");
+                up_bridge.add(" ");
+                down_bridge.add("X");
                 BridgeMaker.bridge_index++;
                 output.printMap(up_bridge, down_bridge);
 
