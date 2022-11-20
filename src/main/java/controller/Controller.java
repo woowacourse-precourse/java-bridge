@@ -33,6 +33,7 @@ public class Controller {
         do {
             String movingPlace = inputView.readMoving();
             isCorrect = bridgeGame.move(movingPlace);
+            outputView.printMap(bridge.toString());
             if (!isCorrect) {
                 gameCommand = inputView.readGameCommand();
             }
