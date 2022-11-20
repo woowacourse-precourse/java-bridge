@@ -17,6 +17,11 @@ public class Score {
         this.repetition = new Repetition();
     }
 
+    public Score(UserStep userStep) {
+        this.userStep = userStep;
+        this.repetition = new Repetition();
+    }
+
     public List<String> getUserStep() {
         return userStep.getUserStep();
     }

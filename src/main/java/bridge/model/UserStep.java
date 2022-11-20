@@ -14,6 +14,10 @@ public class UserStep {
         this.userStep = new ArrayList<>();
     }
 
+    public UserStep(List<String> userStep) {
+        this.userStep = userStep;
+    }
+
     public List<String> getUserStep() {
         return userStep;
     }
