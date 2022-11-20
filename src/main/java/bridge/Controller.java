@@ -2,6 +2,7 @@ package bridge;
 
 import enumCollections.GameStatus;
 import enumCollections.GuideMessage;
+import enumCollections.Position;
 
 public class Controller {
     OutputView outputView;
@@ -30,8 +31,11 @@ public class Controller {
             if (gameStatus == GameStatus.FAILURE) {
                 gameStatus = askRepeatGame(gameStatus, bridgeGame);
             }
-            map.add(bridgeGame.getAvailableSquare(bridgeGame.getCurrentPosition()), gameStatus);
-            outputView.printMap(map);
+            addMap(
+                    map,
+                    bridgeGame.getAvailableSquare(bridgeGame.getCurrentPosition()),
+                    gameStatus
+            );
         }
         return gameStatus;
     }
@@ -52,5 +56,10 @@ public class Controller {
 
     private void getResult(GameStatus gameResult, BridgeGame bridgeGame) {
         outputView.printResult(gameResult);
+    }
+
+    private void addMap(Map map, Position availableSide, GameStatus gameStatus) {
+        map.add(availableSide, gameStatus);
+        outputView.printMap(map);
     }
 }
