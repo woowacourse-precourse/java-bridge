@@ -64,4 +64,5 @@ public class BridgeGame {
     public Boolean getRetryInput(){
         return this.retryInput;
     }
+    public void setBridge(Bridge bridge){this.bridge = bridge;}
 }

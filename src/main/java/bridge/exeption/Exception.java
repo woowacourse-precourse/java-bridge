@@ -18,6 +18,6 @@ public class Exception {
     }
     public static void catchZeroInputException(String input){
         int inputInt = Integer.parseInt(input);
-        throwException(inputInt<MIN|MAX<inputInt,ZERO_INPUT_ERROR.getError());
+        throwException(inputInt<MIN|MAX<inputInt, OUT_OF_RANGE_INPUT_ERROR.getError());
     }
 }

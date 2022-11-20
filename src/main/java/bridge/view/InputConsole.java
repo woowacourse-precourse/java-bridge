@@ -6,20 +6,20 @@ public class InputConsole implements Input{
     private String input;
 
     @Override
-    public Integer inputInteger() {
+    public Integer getInputInteger() {
         input = Console.readLine();
         catchNotNumberException(input);
         catchZeroInputException(input);
         return Integer.parseInt(input);
     }
     @Override
-    public String inputMove() {
+    public String getInputMove() {
         input = Console.readLine();
         catchMoveInputException(input);
         return input;
     }
     @Override
-    public String inputRetry(){
+    public String getInputRetry(){
         input = Console.readLine();
         catchRetryInputException(input);
         return input;

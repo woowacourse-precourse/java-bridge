@@ -12,9 +12,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
 public class ViewTest extends ApplicationTest {
-    private static final Integer TEST_INT = 3;
-    private static final String TEST_STR = "U";
-    private TestInput testInput = new TestInput(TEST_INT, TEST_STR);
+    private TestInput testInput = new TestInput(3, "U","R");
     private Integer outputInt;
     private String outputStr;
     @Test
@@ -22,14 +20,14 @@ public class ViewTest extends ApplicationTest {
         InputView inputView = new InputView(testInput);
         outputInt = inputView.readBridgeSize();
         outputStr = inputView.readMoving();
-        assertThat(outputInt).isEqualTo(TEST_INT);
-        assertThat(outputStr).isEqualTo(TEST_STR);
+        assertThat(outputInt).isEqualTo(3);
+        assertThat(outputStr).isEqualTo("U");
     }
     @Test
     void printMapTest(){
         List<String> bridgeList = newArrayList("U","D","U","U");
         OutputView outputView = new OutputView(bridgeList);
-        outputView.printMap(false,2,"U");
+        outputView.printMap(false,2,"D");
         assertThat(output()).contains(
                 "[ O |   |   ]",
                 "[   | O | X ]"
@@ -69,23 +67,25 @@ public class ViewTest extends ApplicationTest {
     }
     static class TestInput implements Input {
         private Integer inputInt;
-        private String inputStr;
-        TestInput(Integer inputInt,String inputStr){
+        private String inputMove;
+        private String inputRetry;
+        TestInput(Integer inputInt,String inputStr,String inputRetry){
             this.inputInt = inputInt;
-            this.inputStr = inputStr;
+            this.inputMove = inputStr;
+            this.inputRetry = inputRetry;
         }
         @Override
-        public Integer inputInteger() {
+        public Integer getInputInteger() {
             return this.inputInt;
         }
 
         @Override
-        public String inputMove() {
-            return this.inputStr;
+        public String getInputMove() {
+            return this.inputMove;
         }
         @Override
-        public String inputRetry() {
-            return this.inputStr;
+        public String getInputRetry() {
+            return this.inputRetry;
         }
     }
 }

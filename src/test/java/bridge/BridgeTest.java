@@ -13,20 +13,12 @@ public class BridgeTest extends ApplicationTest {
     @Test
     void moveTest(){
         Bridge bridge =new Bridge(newArrayList("U","U","D"));
-        User user =new User();
         BridgeGame bridgeGame = new BridgeGame();
-        bridgeGame.isCorrect("U");
+        bridgeGame.setBridge(bridge);
         bridgeGame.move();
-        assertThat(user.getPosition()).isEqualTo(1);
+        assertThat(bridgeGame.getUser().getPosition()).isEqualTo(1);
         bridgeGame.isCorrect("D");
         bridgeGame.move();
-        assertThat(user.getResult()).isFalse();
-    }
-    @Test
-    void moveViewTest() {
-        assertSimpleTest(() -> {
-            runException("1","U");
-            Assertions.assertThat(output()).contains();
-        });
+        assertThat(bridgeGame.getUser().getResult()).isFalse();
     }
 }

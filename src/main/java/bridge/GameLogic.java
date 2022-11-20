@@ -3,10 +3,8 @@ package bridge;
 import bridge.view.InputConsole;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-
+import static bridge.option.Option.*;
 public class GameLogic {
-    private static final String RESTART = "R";
-    private static final String QUIT = "Q";
     private InputView inputView;
     private OutputView outputView;
     private BridgeGame bridgeGame;
@@ -63,7 +61,7 @@ public class GameLogic {
 
     private void askRetry(){
         catchRetryException();
-        if(inputRetry.equals(RESTART)){
+        if(inputRetry.equals(RETRY)){
             bridgeGame.retry();
             playOneGame();
             return;

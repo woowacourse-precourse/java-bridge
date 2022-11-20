@@ -18,24 +18,24 @@ public class ExceptionTest extends ApplicationTest{
     @Test
     void U_또는_D_외_입력시() {
         assertSimpleTest(() -> {
-            runException("1","R");
+            runException("3","R");
             assertThat(output()).contains(MOVE_INPUT_ERROR.getError());
         });
     }
     @Test
     void 재시작_입력_오류() {
         assertRandomNumberInRangeTest(() -> {
-            run("1", "D", "D","Q");
+            run("3", "D", "D","Q");
             assertThat(output()).contains(RETRY_INPUT_ERROR.getError()
             );
-        }, 1);
+        }, 1,0,1);
     }
     @Test
-    void 영입력시_오류() {
+    void 다리_갯수_입력_오류() {
         assertRandomNumberInRangeTest(() -> {
-            run("0", "1", "U");
-            assertThat(output()).contains(ZERO_INPUT_ERROR.getError()
+            run("2", "21","3", "U", "U", "U");
+            assertThat(output()).contains(OUT_OF_RANGE_INPUT_ERROR.getError()
             );
-        }, 1);
+        }, 1,1,1);
     }
 }
