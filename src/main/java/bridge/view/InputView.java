@@ -1,9 +1,11 @@
 package bridge.view;
 
 import static bridge.domain.BridgeSize.makeBridgeSize;
+import static bridge.value.BridgeCharacter.makeBridgeCharacter;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import bridge.domain.BridgeSize;
+import bridge.value.BridgeCharacter;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -20,8 +22,8 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public BridgeCharacter readMoving() {
+        return makeBridgeCharacter(readLine());
     }
 
     /**
