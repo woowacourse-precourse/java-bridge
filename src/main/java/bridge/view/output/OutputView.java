@@ -16,16 +16,19 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> bridge) {
-        if (bridge.size() == 0) {
-            return;
+    public void printMap(List<List<String>> bridge) {
+        for (List<String> row : bridge) {
+            printRow(row);
         }
+        System.out.println();
+    }
 
+    private void printRow(List<String> bridgeRow) {
         StringBuilder output = new StringBuilder("[");
 
-        for (int index = 0; index < bridge.size(); index++) {
-            output.append(String.format(" %s ", bridge.get(index)));
-            if (index != bridge.size() - 1) {
+        for (int index = 0; index < bridgeRow.size(); index++) {
+            output.append(String.format(" %s ", bridgeRow.get(index)));
+            if (index != bridgeRow.size() - 1) {
                 output.append("|");
             }
         }
