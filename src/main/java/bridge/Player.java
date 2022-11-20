@@ -20,4 +20,8 @@ public class Player {
     public void moveFrontSpace(){
         this.currentSpace+=1;
     }
+
+    public int getCurrentSpace() {
+        return currentSpace;
+    }
 }
