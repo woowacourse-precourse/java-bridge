@@ -8,13 +8,14 @@ import java.util.ArrayList;
 public class BridgeGame {
     private final Bridge bridge;
     private CurrentBridge currentBridge;
-    private Integer count = 0;
+    private Integer count;
     public Integer getCount() {
         return count;
     }
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
         currentBridge = new CurrentBridge(new ArrayList<>());
+        this.count = 1;
     }
     public boolean isComplete(){
         if(currentBridge.getBridgeStatus() == BridgeStatus.COMPLETE)return true;
