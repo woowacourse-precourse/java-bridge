@@ -43,30 +43,38 @@ public class OutputView {
 
     public String printMoveUpDown(List<String> bridge, String input, int step){
         if(bridge.get(step).equals(input)){
-            return "O";
+            return " O ";
         }
-        return "X";
+        return " X ";
     }
 
-    public void printGoUp(List<String> bridge, int step){
-        if(bridge.get(step).equals("U")){
-            sbUp.append(" O ");
-            sbDo.append("   ");
-        }
-        if(bridge.get(step).equals("D")){
-            sbUp.append(" X ");
-            sbDo.append("   ");
+    public void printGoUp(List<String> bridge, String input, int step){
+        String result = printMoveUpDown(bridge, input, step);
+
+        if(bridge.get(step).equals("U")) {
+            if (result.equals(" O ")) {
+                sbUp.append(result);
+                sbDo.append("   ");
+            }
+            if (result.equals(" X ")) {
+                sbUp.append("   ");
+                sbDo.append(result);
+            }
         }
     }
 
-    public void printGoDown(List<String> bridge, int step){
-        if(bridge.get(step).equals("U")){
-            sbUp.append("   ");
-            sbDo.append(" X ");
-        }
-        if(bridge.get(step).equals("D")){
-            sbUp.append("   ");
-            sbDo.append(" O ");
+    public void printGoDown(List<String> bridge, String input, int step){
+        String result = printMoveUpDown(bridge, input, step);
+
+        if(bridge.get(step).equals("D")) {
+            if (result.equals(" O ")) {
+                sbUp.append(result);
+                sbDo.append("   ");
+            }
+            if (result.equals(" X ")) {
+                sbUp.append("   ");
+                sbDo.append(result);
+            }
         }
     }
 }
