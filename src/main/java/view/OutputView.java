@@ -16,6 +16,11 @@ public class OutputView {
 	private static String currentGameStateUpMap = OUTPUT_TEXT_OPEN_SQUARE_BRACKETS;
 	private static String currentGameStarteDownMap = OUTPUT_TEXT_OPEN_SQUARE_BRACKETS;
 
+	public void printGameStartMessage() {
+		System.out.println(OUTPUT_TEXT_GAME_START);
+		System.out.println();
+	}
+
 	/**
 	 * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
 	 * <p>
@@ -86,7 +91,7 @@ public class OutputView {
 	 * <p>
 	 * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
-	public void printResult(String moving, int movingResult, int totalGameRound) {
+	public void printResult(int movingResult, int totalGameRound) {
 		System.out.println(OUTPUT_TEXT_FINAL_GAME_RESULT);
 		String currentGameStateMap = combineGameStateUpMapAndDownMap();
 		System.out.println(currentGameStateMap);
@@ -100,7 +105,7 @@ public class OutputView {
 			System.out.println(OUTPUT_TEXT_GAME_SUCCESS);
 		}
 		if (movingResult == MOVING_FAIL_WRONG_MOVING) {
-			System.out.println(OUTPUT_TEXT_GAME_SUCCESS);
+			System.out.println(OUTPUT_TEXT_GAME_FAIL);
 		}
 	}
 
