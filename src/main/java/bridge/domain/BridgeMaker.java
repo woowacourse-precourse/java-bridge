@@ -7,7 +7,6 @@ import bridge.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static bridge.util.BridgeConstant.DOWN_KEY;
 import static bridge.util.BridgeConstant.DOWN_POSITION;
