@@ -18,6 +18,10 @@ public class BridgeGame {
         bridge = new Bridge(size);
     }
 
+    public void initBridge(List<String> bridge) {
+        this.bridge = new Bridge(bridge);
+    }
+
     public Progress move(String UorD) {
         userAnswer.add(UorD);
         return compareBridgeAndUser(userAnswer.size() - 1);

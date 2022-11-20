@@ -16,12 +16,16 @@ public class Bridge {
         this.bridge = bridgeMaker.makeBridge(size);
     }
 
+    public Bridge(List<String> bridge) {
+        this.bridge = bridge;
+    }
+
     public List<String> getBridge() {
         return bridge;
     }
 
     public boolean isSameStringWithUser(int index, String UorD) {
-        if(UorD.equals(bridge.get(index))) {
+        if (UorD.equals(bridge.get(index))) {
             return true;
         }
         return false;
