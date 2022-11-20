@@ -313,8 +313,7 @@ int number = bridgeNumberGenerator.generate();
   - [x] 올바른 값이 아니면 예외 처리한다.
 
 
-### Bridge  
-
+### Bridge
   멤버변수: 다리 (List<String>), 다리 모양 (String[][])
   #### 기능목록
   - [x] D와 U를 입력 받아 다리와 비교
@@ -329,11 +328,23 @@ int number = bridgeNumberGenerator.generate();
   - [x] 사용자가 이동할 칸을 입력하면 플레이어의 위치가 한칸씩 이동해야 함
   - [x] 사용자가 오답을 입력하고 게임을 다시 시도하면 시도한 횟수가 늘어나야 함
 
+
 ### BridgeGame
   인스턴스변수: Player, Bridge
   - [x] 사용자의 이동할 칸을 입력 받아 Bridge의 정답과 비교한 후 다리 모양을 그림. (출력은 안함)
-  - [x] 사용자로부터 게임 재시작 여부(R, Q)를 입력 받고 R인 경우 Player의 위치, Bridge의 여태까지 건너왔던 출력 초기화
+  - [x] 사용자로부터 게임 재시작 여부(R, Q)를 파라미터로 받고 R인 경우 Player의 위치, Bridge의 여태까지 건너왔던 출력 초기화
   - [x] 유저가 다리를 끝까지 건넜는지 검증
+
+
+### BridgeGameController
+  bridge 패키지에 있는 기능을 모으고 인풋을 받아 아웃풋을 출력해주는 기능  
+  
+  인스턴스변수: InputView, OutputView, InputValidator, Bridge, BridgeGame
+  #### 기능목록
+  - [ ] 플레이어가 정답을 틀리면 재시작 여부(R, Q)를 물어보는 기능
+  - [ ] R을 입력할 경우 게임 재시작
+  - [ ] Q를 입력할 경우 게임을 끝내고 결과 출력
+  - [ ] 플레이어가 잘못된 값을 입력할 경우 에러 메시지를 출력하고 올바른 값을 입력할 때까지 루프를 도는 기능
 
 ### InputView
   #### 기능목록
@@ -345,4 +356,5 @@ int number = bridgeNumberGenerator.generate();
 ### OutputView
   #### 기능목록
   - [x] Bridge로부터  위, 아래 다리 모양(List<String>)을 입력 받아 요구사항에 맞춘 형식으로 변환하는 기능 (printMap())
-  - [ ] 최종 게임 결과를 출력하는 기다
+  - [x] 최종 게임 결과를 출력하는 기능
+
