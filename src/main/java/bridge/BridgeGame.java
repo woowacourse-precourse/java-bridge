@@ -12,15 +12,16 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String moving) {
+    public String move(String moving) {
         // 사용자가 이동할 칸 moving, 다리 index
+        String result = "   ";
         if (moving.equals(BridgeMaker.bridge_info.get(BridgeMaker.bridge_index)) && moving.equals("U")){
-            System.out.print(" O ");
+            result = " O ";
         }
         if (moving.equals(BridgeMaker.bridge_info.get(BridgeMaker.bridge_index)) && moving.equals("D")){
-            System.out.print(" X ");
+            result = " X ";
         }
-
+        return result;
     }
 
     /**
