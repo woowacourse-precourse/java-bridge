@@ -11,7 +11,7 @@ public class ValidateUtils {
         }
     }
 
-    public static void throwIllegalArgumentException(String message) throws IllegalArgumentException{
+    private static void throwIllegalArgumentException(String message) throws IllegalArgumentException{
         throw new IllegalArgumentException(message);
     }
 }
