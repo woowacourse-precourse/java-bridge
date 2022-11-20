@@ -34,11 +34,6 @@ public class BridgeHistory {
         return nowStage;
     }
 
-    private String getCheckShape(boolean isSuccess) {
-        if (isSuccess) return "O";
-        return "X";
-    }
-
     public void updateGameState(String command, boolean isSuccess) {
         updateHistory(command, isSuccess);
         nowStage++;
@@ -48,6 +43,11 @@ public class BridgeHistory {
         String alterCommand = LocationTable.getAlternativeKey(command);
         String checkShape = getCheckShape(isSuccess);
         addPage(command, alterCommand, checkShape);
+    }
+
+    private String getCheckShape(boolean isSuccess) {
+        if (isSuccess) return "O";
+        return "X";
     }
 
     private void addPage(String command, String alterCommand, String checkShape) {
