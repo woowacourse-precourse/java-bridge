@@ -7,10 +7,6 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    private static String readLineWithoutWhiteSpace() {
-        return Console.readLine().replaceAll(" ", "");
-    }
-
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -36,5 +32,9 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private String readLineWithoutWhiteSpace() {
+        return Console.readLine().replaceAll(" ", "");
     }
 }
