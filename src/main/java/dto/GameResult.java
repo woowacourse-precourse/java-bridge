@@ -9,9 +9,9 @@ public class GameResult {
 
     private Optional<Integer> tryCount;
     private Optional<GameStatus> status;
-    private List<MoveResult> moveResult;
+    private List<List<MoveResult>> moveResult;
 
-    public GameResult(Optional<Integer> tryCount, Optional<GameStatus> status, List<MoveResult> moveResult) {
+    public GameResult(Optional<Integer> tryCount, Optional<GameStatus> status, List<List<MoveResult>> moveResult) {
         this.tryCount = tryCount;
         this.status = status;
         this.moveResult = moveResult;
@@ -25,7 +25,7 @@ public class GameResult {
         return status.get();
     }
 
-    public List<MoveResult> getMoveResult() {
+    public List<List<MoveResult>> getMoveResult() {
         return moveResult;
     }
 }
