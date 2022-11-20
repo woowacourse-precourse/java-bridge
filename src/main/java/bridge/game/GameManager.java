@@ -73,6 +73,7 @@ public class GameManager {
     }
 
     private void printBridge_userPredict() {
+        OutputView.printMap(bridgeGame.getBridge_answer(), bridgeGame.getBridge_userMove());
     }
 
     private boolean isGameSucceed() {

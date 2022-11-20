@@ -32,12 +32,16 @@ public class BridgeGame {
         }
     }
 
-    public void setBridgeAnswer(List<String> bridge_answer) {
-        this.bridge_answer = bridge_answer;
+    public List<String> getBridge_answer() {
+        return bridge_answer;
     }
 
     public List<String> getBridge_userMove() {
         return bridge_userMove;
+    }
+
+    public void setBridgeAnswer(List<String> bridge_answer) {
+        this.bridge_answer = bridge_answer;
     }
 
     /**
