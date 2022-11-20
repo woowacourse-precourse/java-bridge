@@ -12,20 +12,20 @@ public class Validator {
 
     static void validateMove(String input) {
         if (!input.equals("U") && !input.equals("D")) {
-            throw new IllegalArgumentException("이동할 칸은 U(위 칸)와 D(아래 칸) 중 하나의 문자여야 합니다");
+            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U(위 칸)와 D(아래 칸) 중 하나의 문자여야 합니다.");
         }
     }
 
     static void validateGameCommand(String input) {
         if (!input.equals("R") && !input.equals("Q")) {
-            throw new IllegalArgumentException("게임 재시작/종료 여부는 R(재시작)과 Q(종료) 중 하나의 문자여야 합니다");
+            throw new IllegalArgumentException("[ERROR] 게임 재시작/종료 여부는 R(재시작)과 Q(종료) 중 하나의 문자여야 합니다.");
         }
     }
 
     private static void validateDecimal(String input) {
         for (int i = 0; i < input.length(); i++) {
             if (!Character.isDigit(input.charAt(i))) {
-                throw new IllegalArgumentException("입력값이 정수여야 합니다");
+                throw new IllegalArgumentException("[ERROR] 입력값이 정수여야 합니다.");
             }
         }
     }
