@@ -41,6 +41,7 @@ public class BridgeController {
                 return;
             }
         }
+        outputView.printResult(bridgeGame.result(), bridgeGame.tryCount());
     }
 
     private void retryGame(BridgeGame bridgeGame) {

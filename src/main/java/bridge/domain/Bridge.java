@@ -47,6 +47,10 @@ public class Bridge {
         return this.bridgeShapes.size() == compareBridge.bridgeShapes.size();
     }
 
+    public boolean sizeEqual(int size) {
+        return this.bridgeShapes.size() == size;
+    }
+
     public List<BridgeShape> bridgeShapes() {
         return this.bridgeShapes;
     }

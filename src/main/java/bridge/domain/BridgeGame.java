@@ -48,6 +48,10 @@ public class BridgeGame {
         return !bridge.sizeEqual(attempts);
     }
 
+    public TryCount tryCount() {
+        return this.tryCount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

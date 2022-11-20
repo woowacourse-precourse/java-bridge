@@ -39,4 +39,23 @@ class BridgeGameResultTest {
 
         assertThat(bridgeGameResult.isFail()).isEqualTo(expected);
     }
+
+    public static Stream<Arguments> provideForIsSuccess() {
+        return Stream.of(
+                Arguments.of(List.of(true), false),
+                Arguments.of(List.of(true, true), false),
+                Arguments.of(List.of(true, true, false), false),
+                Arguments.of(List.of(true, false, true), false),
+                Arguments.of(List.of(true, true, true), true)
+        );
+    }
+
+    @ParameterizedTest(name = "게임 결과가 성공인지 반환한다.")
+    @MethodSource("provideForIsSuccess")
+    void isSuccess(List<Boolean> attempts, boolean expected) {
+        Bridge bridge = new Bridge(List.of(BridgeShape.UP, BridgeShape.DOWN, BridgeShape.UP));
+        BridgeGameResult bridgeGameResult = new BridgeGameResult(bridge, attempts);
+
+        assertThat(bridgeGameResult.isSuccess()).isEqualTo(expected);
+    }
 }

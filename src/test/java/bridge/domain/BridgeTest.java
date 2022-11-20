@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -60,14 +61,30 @@ class BridgeTest {
         assertThatThrownBy(() -> bridge.compare(attempts)).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("전달된 사다리와 사이즈가 같은지 반환한다.")
-    @Test
-    public void sizeEqualBridge() {
-        Bridge bridge = Bridge.createByBridgeShapeValue(List.of("U", "D", "U"));
+    @DisplayName("사다리 비교 기능 테스트")
+    @Nested
+    class Size {
+        @DisplayName("전달된 사다리와 사이즈가 같은지 반환한다.")
+        @Test
+        public void sizeEqualBridge() {
+            Bridge bridge = Bridge.createByBridgeShapeValue(List.of("U", "D", "U"));
 
-        assertAll(
-                assertThat(bridge.sizeEqual(Bridge.createByBridgeShapeValue(List.of("D", "U", "D"))))::isTrue,
-                assertThat(bridge.sizeEqual(Bridge.createByBridgeShapeValue(List.of("D", "U"))))::isFalse
-        );
+            assertAll(
+                    assertThat(bridge.sizeEqual(Bridge.createByBridgeShapeValue(List.of("D", "U", "D"))))::isTrue,
+                    assertThat(bridge.sizeEqual(Bridge.createByBridgeShapeValue(List.of("D", "U"))))::isFalse
+            );
+        }
+
+        @DisplayName("사다리 사이즈와 숫자가 같은지 반환한다.")
+        @Test
+        public void sizeEqualNumber() {
+            Bridge bridge = Bridge.createByBridgeShapeValue(List.of("U", "D", "U"));
+
+            assertAll(
+                    assertThat(bridge.sizeEqual(2))::isFalse,
+                    assertThat(bridge.sizeEqual(3))::isTrue,
+                    assertThat(bridge.sizeEqual(4))::isFalse
+            );
+        }
     }
 }

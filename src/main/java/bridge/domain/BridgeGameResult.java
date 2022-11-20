@@ -24,6 +24,10 @@ public class BridgeGameResult {
         return attemptsResult.contains(Boolean.FALSE);
     }
 
+    public boolean isSuccess() {
+        return !attemptsResult.contains(Boolean.FALSE) && bridge.sizeEqual(attemptsResult.size());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
