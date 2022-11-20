@@ -1,12 +1,18 @@
 package bridge.controller;
 
-import bridge.domain.RestartInfo;
+import bridge.domain.GameCommand;
 import bridge.domain.BridgeLane;
+
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
     public int readBridgeSize() {
-        return readInteger();
+        int bridgeSize = readInteger();
+
+        if(bridgeSize < 3 || bridgeSize > 20) {
+            throw new IllegalArgumentException("다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
+        return bridgeSize;
     }
 
     public BridgeLane readMoving() {
@@ -14,9 +20,9 @@ public class InputView {
         return BridgeLane.makeBridgeLane(inputText);
     }
 
-    public RestartInfo readGameCommand() {
+    public GameCommand readGameCommand() {
         String inputText = Console.readLine();
-        return RestartInfo.makeRestartInfo(inputText);
+        return GameCommand.makeGameCommand(inputText);
     }
 
     private int readInteger() {
