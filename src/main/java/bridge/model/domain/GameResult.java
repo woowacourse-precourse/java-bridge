@@ -5,15 +5,21 @@ public class GameResult {
 	private static final String FAIL = "실패";
 
 	private int numberOfAttempts;
+	private boolean rightChoice;
 	private String result;
 
 	public GameResult() {
-		this.result = SUCCESS;
 		this.numberOfAttempts = 0;
+		this.rightChoice = true;
+		this.result = SUCCESS;
 	}
 
 	public void addNumberOfAttempts() {
 		numberOfAttempts += 1;
+	}
+
+	public void chooseStairs(boolean isEqual) {
+		rightChoice = isEqual;
 	}
 
 	public void changeResultToSuccess() {
@@ -34,6 +40,10 @@ public class GameResult {
 
 	public int getNumberOfAttempts() {
 		return numberOfAttempts;
+	}
+
+	public boolean isRightChoice() {
+		return rightChoice;
 	}
 
 	public String getResult() {
