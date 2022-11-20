@@ -24,7 +24,7 @@ public class BridgeMaker {
         validateSize(size);
         List<String> bridge = new ArrayList<>();
         for(int i = 0; i < size; i++){
-            bridge.add(String.valueOf(generateNumber()));
+            bridge.add(Row.judge(generateNumber()));
         }
         return bridge;
     }
