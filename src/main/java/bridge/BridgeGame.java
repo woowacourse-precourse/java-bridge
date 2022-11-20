@@ -59,12 +59,15 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry(String retryCommand) {
+    public boolean retry(String retryCommand) {
         if (retryCommand.equals(InputView.RETRY_YES)) {
             gameStatus = GAME_STATUS_NORMAL;
+            return true;
         } else if (retryCommand.equals(InputView.RETRY_NO)) {
             gameStatus = GAME_STATUS_DIE;
+            return false;
         }
+        return false;
     }
 
     public void reGame() {

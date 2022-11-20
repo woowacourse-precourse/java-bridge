@@ -60,11 +60,24 @@ public class BridgeGameController {
         return true;
     }
 
+    public boolean readRetry() {
+        outputView.printReadRetry();
+        do {
+            try {
+                retryString = inputView.readRetry();
+            } catch (IllegalArgumentException e) {
+                outputView.printError("[ERROR] 재시도 입력은 R 혹은 Q만 가능합니다.");
+            }
+        } while (retryString == null);
+        return bridgeGame.retry(retryString);
+    }
+
 
     public void playGame() {
         bridgeGame = new BridgeGame(makeBridge(), player);
-        while (!move()){
+        while (!move()) {
 
-        };
+        }
+        readRetry();
     }
 }
