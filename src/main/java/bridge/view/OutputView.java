@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.constants.ErrorMessages;
 import bridge.domain.BridgeGame;
 import bridge.domain.enums.GameStatus;
 
@@ -39,6 +40,6 @@ public class OutputView {
     }
 
     public void printError(String message) {
-        System.out.println(message);
+        System.out.println(ErrorMessages.PREFIX + message);
     }
 }

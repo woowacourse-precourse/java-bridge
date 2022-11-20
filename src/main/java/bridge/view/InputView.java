@@ -18,7 +18,7 @@ public class InputView {
         try {
             return Integer.parseInt(size);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessages.INPUT_NUMBER);
+            throw new IllegalArgumentException(ErrorMessages.INVALID_BRIDGE_INPUT);
         }
     }
 
