@@ -1,12 +1,11 @@
 package bridge;
 
-import bridge.Constants.Command;
 import java.util.ArrayList;
 import java.util.List;
+import bridge.Constants.Command;
 
 /**
- * 필드 변경 불가
- * 메서드 이름 인자 반환타입 변경 불가
+ * 필드 변경 불가 메서드 이름 인자 반환타입 변경 불가
  */
 
 /**
@@ -26,8 +25,8 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<String>();
-        for(int i = 0; i < size; i++) {
-            if(this.bridgeNumberGenerator.generate() == 0) {
+        for (int i = 0; i < size; i++) {
+            if (this.bridgeNumberGenerator.generate() == 0) {
                 bridge.add(Command.DOWN);
                 continue;
             }

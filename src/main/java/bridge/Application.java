@@ -19,7 +19,7 @@ public class Application {
         finishGame();
     }
 
-    private static void startGame(){
+    private static void startGame() {
         outputView.printStartGame();
     }
 
@@ -39,14 +39,17 @@ public class Application {
             }
         }
     }
-    private static void createBridge(int bridgeSize){
+
+    private static void createBridge(int bridgeSize) {
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         BridgeGame.setBridge(bridge);
     }
-    private static void setGame(){
+
+    private static void setGame() {
         bridgeGame = new BridgeGame();
         BridgeGame.setCountAttempt();
     }
+
     private static void finishGame() {
         outputView.printResult(bridgeGame);
     }
@@ -56,7 +59,7 @@ public class Application {
         outputView.printInputRetryCommand();
         String command = getRetryCommand();
         boolean isRetry = bridgeGame.retry(command);
-        if(!isRetry){
+        if (!isRetry) {
             return true;
         }
         return false;
@@ -71,29 +74,31 @@ public class Application {
 
         return isSuccess;
     }
+
     private static boolean proceedGame() {
-        while(true) {
-                boolean isSuccessMovement = generateMovement();
-                if(!isSuccessMovement) {
-                    return askToQuitGame();
-                }
-                if(bridgeGame.isSuccessFinish()) {
-                    return true;
-                }
+        while (true) {
+            boolean isSuccessMovement = generateMovement();
+            if (!isSuccessMovement) {
+                return askToQuitGame();
             }
+            if (bridgeGame.isSuccessFinish()) {
+                return true;
+            }
+        }
     }
+
     private static void playGame() {
-        while(true){
+        while (true) {
             setGame();
             boolean isCompleted = proceedGame();
-            if(isCompleted) {
+            if (isCompleted) {
                 break;
             }
         }
     }
 
     private static String getDirection() {
-        while(true) {
+        while (true) {
             try {
                 return inputView.readMoving();
             } catch (IllegalArgumentException e) {
@@ -101,8 +106,9 @@ public class Application {
             }
         }
     }
+
     private static String getRetryCommand() {
-        while(true) {
+        while (true) {
             try {
                 return inputView.readGameCommand();
             } catch (IllegalArgumentException e) {

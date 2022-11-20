@@ -6,7 +6,8 @@ public final class Constants {
         public static final String DIRECTION = "[ERROR] 위로가려면 U, 아래로 가려면 D를 입력해 주세요";
         public static final String COMMAND = "[ERROR] 재시도를 하려면 R, 종료하려면 Q를 입력해 주세요";
 
-        private ErrorState() {}
+        private ErrorState() {
+        }
     }
 
     public final class OutputState {
@@ -18,7 +19,8 @@ public final class Constants {
         public static final String SUCCESS_OR_NOT = "게임 성공 여부: ";
         public static final String TOTAL_ATTEMPT = "총 시도한 횟수: ";
 
-        private OutputState() {}
+        private OutputState() {
+        }
     }
 
     public final class BridgeShape {
@@ -28,7 +30,9 @@ public final class Constants {
         public static final String MOVABLE = " O ";
         public static final String UNMOVABLE = " X ";
         public static final String BLANK = "   ";
-        private BridgeShape() {}
+
+        private BridgeShape() {
+        }
     }
 
     public final class Command {

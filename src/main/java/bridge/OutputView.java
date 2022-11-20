@@ -1,12 +1,7 @@
 package bridge;
 
 /**
- * 패키지 변경 가능
- * 메서드 이름 변경 불가
- * 인자 변경 가능
- * 반환 타입 변경 가능
- * 추가 메서드 구현 가능
- * BridgeGame 클래스에서 사용 불가
+ * 패키지 변경 가능 메서드 이름 변경 불가 인자 변경 가능 반환 타입 변경 가능 추가 메서드 구현 가능 BridgeGame 클래스에서 사용 불가
  */
 
 import bridge.Constants.BridgeShape;
@@ -19,6 +14,7 @@ public class OutputView {
     public void printErrorState(IllegalArgumentException e) {
         System.out.println(e);
     }
+
     public void printStartGame() {
         System.out.println(OutputState.START_GAME);
     }
