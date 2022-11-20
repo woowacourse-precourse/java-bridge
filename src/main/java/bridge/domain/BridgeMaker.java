@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,13 +8,11 @@ import java.util.List;
  */
 public class BridgeMaker {
 
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
-
 
     public List<String> makeBridge(int size) {
         List<String> getBridge = new ArrayList<>();
@@ -30,19 +28,4 @@ public class BridgeMaker {
         }
         return "0";
     }
-/*
-    public List<String> makeAnotherBridge(List<String> bridge){
-        List<String> getAnotherBridge = new ArrayList<>();
-        for(String s : bridge){
-            getAnotherBridge.add(reversePassAndFail(s));
-        }
-        return getAnotherBridge;
-    }
-
-    private String reversePassAndFail(String s){
-        if(s == "1"){
-            return "0";
-        }
-        return "1";
-    }*/
 }
