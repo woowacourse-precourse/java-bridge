@@ -19,7 +19,7 @@ public class GameSimulator {
             trial++;
             userRoute = startGame(bridge);
         } while (!bridgeGame.gameClear(userRoute.size(), bridgeSize) && bridgeGame.gameover());
-        quitGame(bridgeSize, trial, userRoute);
+        quitGame(trial, bridge, userRoute);
     }
 
     /**
@@ -46,7 +46,7 @@ public class GameSimulator {
         return userRoute;
     }
 
-    private void quitGame(int bridgeSize, int trial, List<String> userRoute) {
-
+    private void quitGame(int trial, List<String> bridge, List<String> userRoute) {
+        outputView.printResult(trial, bridge, userRoute);
     }
 }
