@@ -7,12 +7,13 @@ import bridge.util.Exceptions;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    public static String printGameStartPhrase() {
-        return "다리 건너기 게임을 시작합니다.";
+    public static void printGameStartPhrase() {
+        System.out.println(ConstantMessage.GAME_START);
+        System.out.println();
     }
 
-    public static String printBridgeLengthInputPhrase() {
-        return "다리의 길이를 입력해주세요.";
+    public static void printBridgeLengthInputPhrase() {
+        System.out.println(ConstantMessage.BRIDGE_LENGTH_INPUT_PHRASE);
     }
 
     public static String printBridgeLengthInputErrorMessage(String readLine) {
