@@ -9,6 +9,7 @@ public class BridgeGame {
     // upper,bottom bridge 상태에서 1은 O, 0은 X, 2는 가지 않음을 의미한다
     private List<Integer> upperBridge;
     private List<Integer> bottomBridge;
+    public static Integer tryCount = 1;
 
     public BridgeGame(List<String> correctBridge) {
         this.correctBridge = correctBridge;
@@ -28,6 +29,7 @@ public class BridgeGame {
     public Boolean retry(String retryInput) {
         if (retryInput.equals("R")) {
             clearFailStage();
+            tryCount++;
             return true;
         }
         return false;

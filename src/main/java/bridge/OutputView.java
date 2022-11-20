@@ -14,6 +14,8 @@ public class OutputView {
         System.out.println("최종 게임 결과\n");
         printMap(upperBridge, bottomBridge);
         System.out.println("\n 게임 성공 여부:");
+        checkFinalResult(upperBridge, bottomBridge);
+        // 총 시도한 횟수 기록 필요
     }
 
     private void checkFinalResult(List<Integer> upperBridge, List<Integer> bottomBridge) {
