@@ -14,6 +14,11 @@ public class BridgePlayer {
         int currentLocation = playerBridge.size() - 1;
         return playerBridge.get(currentLocation) != bridgeMoveTypes.get(currentLocation);
     }
+
+    public boolean isPlayerReached(List<BridgeMoveType> bridgeMoveTypes) {
+        return playerBridge.size() == bridgeMoveTypes.size();
+    }
+
     public void moveTo(BridgeMoveType moveType) {
         playerBridge.add(moveType);
     }
