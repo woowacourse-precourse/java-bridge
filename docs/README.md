@@ -1,6 +1,6 @@
 ### 구현 기능 목록
 
-- [x] 다리 건너기 게임을 시작한다. BridgeGame#run()
+- [x] 다리 건너기 게임을 구동한다. BridgeGame#run()
 - [x] 의뢰인이 다리 건설을 요청한다. Client#requestBridgeConstruction()
 - [x] 의뢰인의 요청을 받는다. ViewMaker#receiveClientRequest()
   - [x] 다리 길이를 입력한다. InputView#readBridgeSize()
@@ -9,6 +9,7 @@
   - [x] 다리 길이 값이 유효한지 검증한다. BridgeMaker#validateBridgeSize()
 - [x] 건축 설계 사무소에 다리 설계도를 저장한다. BridgeMaker#saveToArchitecturalDesignOffice()
   - [x] 다리 설계도를 보낸다. ArchitecturalDesignOffice#sendStoredBridgeBlueprint()
+- [x] 다리 건너기 게임을 시작한다. BridgeGame#play()
 - [x] 이동할 방향을 요청한다. User#requestDirection()
   - [x] 이동할 방향을 입력한다. InputView#readDirection()
   - [x] 이동할 방향의 값이 유효한지 확인한다. InputView#validateDirection()

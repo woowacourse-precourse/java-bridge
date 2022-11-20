@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.domain.Client;
+import bridge.domain.User;
 import bridge.view.ViewMaker;
 
 /**
@@ -15,11 +16,23 @@ import bridge.view.ViewMaker;
 public class BridgeGame {
 
     public static void run() {
-        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
-        ViewMaker viewMaker = new ViewMaker(bridgeMaker);
+        ViewMaker viewMaker = new ViewMaker(new BridgeMaker(new BridgeRandomNumberGenerator()));
 
         Client.requestBridgeConstruction(viewMaker);
+
+        play(Client.introduceGameUser(viewMaker));
+    }
+
+    private static void play(User user) {
+        int bridgeLocation = 0;
+        
+        while (true) {
+            user.requestDirection(bridgeLocation);
+            bridgeLocation++;
+            continue;
+
+        }
+        
     }
 
     /**
