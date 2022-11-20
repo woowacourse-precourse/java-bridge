@@ -46,4 +46,8 @@ public class Bridge {
         Plate bridgePlate = this.bridge.get(nextBridgeIndex);
         return nextPlate.equals(bridgePlate);
     }
+
+    public int getBridgeLastIndex() {
+        return bridge.size() - 1;
+    }
 }

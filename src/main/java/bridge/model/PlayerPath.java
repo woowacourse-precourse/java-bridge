@@ -10,6 +10,10 @@ public class PlayerPath {
         playerPath = new ArrayList<>();
     }
 
+    public List<Plate> getPlayerPath() {
+        return this.playerPath;
+    }
+
     public void nextStep(Plate nextPlate) {
         playerPath.add(nextPlate);
     }
