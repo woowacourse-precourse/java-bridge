@@ -47,6 +47,10 @@ public class BridgeGameResult {
         return isSuccess;
     }
 
+    public int getLastMovementCount() {
+        return lastMovementRecord.getMovementCount();
+    }
+
     public SpotInfo getLastMovementRecord(int index) {
         return lastMovementRecord.getMovementRecord(index);
     }

@@ -43,4 +43,8 @@ public class BridgeGame {
     public BridgeGameResult getResult() {
         return new BridgeGameResult(result);
     }
+
+    public Bridge getBridge() {
+        return new Bridge(bridge);
+    }
 }
