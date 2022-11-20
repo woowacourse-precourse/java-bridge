@@ -16,7 +16,7 @@
 - [X] 게임 재시도 여부 입력 안내 메시지 출력 - OutputView#printInputRetryOrNot()
 - [X] 현재 다리 상태 출력 - OutputView#printMap()
 - [X] 최종 게임 결과 출력 - OutputView#printResult()
-- [ ] 게임 성공 여부 출력 (성공 또는 실패) - OutputView#printGameResult()
+- [X] 게임 성공 여부 출력 (성공 또는 실패) - OutputView#printGameResult()
 - [X] 총 시도 횟수 출력 - OutputView#printTotalGameAttempts()
 ***
 

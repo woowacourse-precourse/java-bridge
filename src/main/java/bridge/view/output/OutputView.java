@@ -50,6 +50,14 @@ public class OutputView {
         printMap(bridgeState);
     }
 
+    public void printGameResult(BridgeGame bridgeGame) {
+        if (bridgeGame.isWon()) {
+            System.out.println(GAME_RESULT_SUCCESS);
+            return;
+        }
+        System.out.println(GAME_RESULT_FAILURE);
+    }
+
     public void printTotalGameAttempts(BridgeGame bridgeGame) {
         System.out.println(bridgeGame.getTotalGameAttempts());
     }

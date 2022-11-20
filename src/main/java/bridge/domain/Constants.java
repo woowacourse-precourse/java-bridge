@@ -16,4 +16,6 @@ public class Constants {
     public static final String DELIMITER = "|";
     public static final String OPEN_SQUARE_BRACKETS = "[";
     public static final String CLOSE_SQUARE_BRACKETS = "]";
+    public static final String GAME_RESULT_SUCCESS = "성공";
+    public static final String GAME_RESULT_FAILURE = "실패";
 }
