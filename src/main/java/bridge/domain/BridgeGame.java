@@ -10,6 +10,7 @@ public class BridgeGame {
 
     private final List<String> moveResult = new ArrayList<>();
     private int tryCount = 1;
+    private int retryCount = 1;
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -49,6 +50,7 @@ public class BridgeGame {
      */
     public List<String> retry(String gameCommand) {
         if (gameCommand.equals("R")) {
+            retryCount = retryCount + 1;
             moveResult.clear();
             return moveResult;
         }
@@ -76,5 +78,12 @@ public class BridgeGame {
             return true;
         }
         return false;
+    }
+
+    /**
+     * 게임 총 재시도한 횟수 확인할 때 사용하는 메서드
+     */
+    public int checkRetryCount() {
+        return retryCount;
     }
 }
