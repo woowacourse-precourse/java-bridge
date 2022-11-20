@@ -12,11 +12,13 @@ public class BridgeGame {
 
     private final List<String> bridge;
     private final Player player;
+    private final MovingMap movingMap;
     private int tryCount;
 
     public BridgeGame(List<String> bridge, Player player) {
         this.bridge = bridge;
         this.player = player;
+        movingMap = new MovingMap();
         tryCount = 1;
     }
 
@@ -27,6 +29,7 @@ public class BridgeGame {
      */
     public void move(String moving) {
         player.move(moving);
+        movingMap.addMoving(moving, isLatestMovingSuccess());
     }
 
     public boolean canContinue() {
@@ -63,13 +66,14 @@ public class BridgeGame {
     public void retry() {
         tryCount++;
         player.reset();
+        movingMap.clear();
     }
 
     public int getTryCount() {
         return tryCount;
     }
 
-    public List<String> getPlayerMovingMap() {
-        return player.getMovingMap();
+    public MovingMap getMovingMap() {
+        return movingMap;
     }
 }
