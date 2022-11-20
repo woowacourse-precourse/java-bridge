@@ -3,9 +3,12 @@ package bridge;
 import java.util.StringJoiner;
 
 public class ResultInformation {
+    private static final int BLANK = 32;
+    private static final char O_SIGN = 'O';
     private final char[] upBridge;
     private final char[] downBridge;
     private final int bridgeSize;
+    private int tryCount = 0;
 
     public ResultInformation(int size) {
         this.bridgeSize = size;
@@ -30,5 +33,15 @@ public class ResultInformation {
         }
         return upJoiner + "\n" + downJoiner;
     }
+    void clear() {
+        for (int i = 0; i < bridgeSize; i++) {
+            upBridge[i] = (char) BLANK;
+            downBridge[i] = (char) BLANK;
+        }
+        tryCount++;
+    }
 
+    boolean isPossibility() {
+        return upBridge[bridgeSize - 1] == O_SIGN || downBridge[bridgeSize - 1] == O_SIGN;
+    }
 }

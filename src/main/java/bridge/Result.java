@@ -28,4 +28,8 @@ public class Result {
         position.fail();
     }
 
+    void clear() {
+        resultInformation.clear();
+    }
+
 }
