@@ -26,6 +26,7 @@ public enum GameStatus {
     }
 
     public static GameStatus getMatchStatus(boolean succeed, boolean fail) {
-        return null;
+        return Arrays.stream(GameStatus.values()).filter((status) -> status.succeed == succeed && status.fail == fail)
+                .findFirst().get();
     }
 }
