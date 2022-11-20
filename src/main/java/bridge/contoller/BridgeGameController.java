@@ -6,21 +6,18 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameController {
-    private ValueValidator validator = new ValueValidator();
-    private InputView inputView = new InputView();
-    private OutputView outputView = new OutputView();
-    private BridgeGame bridgeGame = new BridgeGame();
+    private final ValueValidator validator = new ValueValidator();
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private final BridgeGame bridgeGame = new BridgeGame();
     private boolean isContinued = true;
 
     public void play(){
-        if(bridgeGame.getTryCount() == 1){
-            start();
-            createBridge();
-        }
+        initializeGame();
         for(int i = 0; i < bridgeGame.getBridge().getSize(); i++){
             playRound();
             if(bridgeGame.isGameFail()){
-                askRetryOrNot();
+                askRetryOrQuit();
                 break;
             }
             goNextRound();
@@ -32,8 +29,15 @@ public class BridgeGameController {
         return isContinued;
     }
 
-    private void start(){
-        outputView.printGameStart();
+    private void initializeGame(){
+        if(bridgeGame.getTryCount() == 0){
+            outputView.printGameStart();
+            createBridge();
+        }
+        if(bridgeGame.getTryCount() > 0){
+            bridgeGame.retry();
+        }
+        bridgeGame.updateTryCount();
     }
 
     private void createBridge(){
@@ -64,20 +68,21 @@ public class BridgeGameController {
         bridgeGame.move();
     }
 
-    private void askRetryOrNot(){
+    private void askRetryOrQuit(){
         try{
             outputView.printChooseGameCommand();
             String input = inputView.readGameCommand();
             validator.validateRetryOrQuit(input);
-            if(input.equals("R")){
-                bridgeGame.retry();
-            }
-            if(input.equals("Q")){
-                isContinued = false;
-            }
+            checkQuit(input);
         }catch(IllegalArgumentException e){
             outputView.printErrorMessage(e.getMessage());
-            askRetryOrNot();
+            askRetryOrQuit();
+        }
+    }
+
+    private void checkQuit(String command){
+        if(command.equals("Q")){
+            isContinued = false;
         }
     }
 
@@ -87,7 +92,7 @@ public class BridgeGameController {
             outputView.printResult(bridgeGame);
             isContinued = false;
         }
-        if(bridgeGame.isGameFail() && isContinued == false){
+        if(bridgeGame.isGameFail() && !isContinued){
             outputView.printResult(bridgeGame);
         }
     }
