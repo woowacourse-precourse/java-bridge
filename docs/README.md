@@ -13,6 +13,8 @@
 
 **BrigdeGame.java**
 * move : 사용자가 칸을 이동한 뒤의 결과를 반환한다.
+* retry : 사용자가 게임을 재시작할 때 사용한다.
+* makeBridgeGame : 사용자가 게임을 시작할 때 사용한다.
 
 **InputView.java**
 * readBridgeSize : 다리의 길이를 입력받는다.
