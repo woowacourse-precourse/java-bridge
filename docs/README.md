@@ -37,34 +37,65 @@
     - [x] 게임 성공 여부 출력하기
     - [x] 총 시도한 횟수 출력하기
 
+## 패키지 구조
+
+```bash
+├── constant
+│   ├── Constant                 // 메시지에 사용되지 않는 일반적인 상수
+│   ├── ErrorMessage             // 에러메시지에 사용되는 상수
+│   └── Message                  // 일반메시지에 사용되는 상수
+├── controller                   
+│   └── BridgeController         // 뷰와 모델 사이를 이어주는 인터페이스
+├── enums
+│   ├── Bridge                   // 다리의 상태("U", "D")를 나타내는 enum
+│   ├── BridgeSign               // 다리의 출력에 대한 표식("O", "X", " ")을 나타내는 enum
+│   └── SuccessOrFail            // 게임의 성공 또는 실패를 나타내는 enum
+├── model                        
+│   ├── domain                   
+│   │   ├── BridgeGame           // 다리 이동, 게임 다시 시작, 게임 결과 반환
+│   │   └── Bridges              // 건너갈 다리 모음
+│   ├── dto                      
+│   │   ├── GameResultDto        // 다리를 나타내는 지도, 게임 성공여부, 재시작 횟수 정보를 가진 dto 
+│   │   └── MoveResultDto        // 다리를 나타내는 지도, 다리선택의 정답여부, 다리 마지막에 도달했는지 정보를 가진 dto 
+│   └── service                  
+│       └── BridgeService        // 도메인의 메소드를 호출하고, 출력할 데이터를 dto를 통해 컨트롤러로 반환
+├── view                         
+│   ├── InputView                // 입력에 대한 뷰
+│   └── OutputView               // 출력에 대한 뷰
+├── Application                  // 메인 메소드를 가지고 있는 엔트리 포인트
+├── BridgeMaker                  // 다리 생성
+├── BridgeNumberGenerator        // 랜덤번호 생성 (인터페이스)
+└── BridgeRandomNumberGenerator  // 랜던번호 생성
+``` 
+
 ## 과제 제출 전 체크 리스트
 
-- [ ] 요구 사항에 명시된 출력값 형식 지키기
-- [ ] 모든 테스트가 성공하는지 확인하기
-- [ ] 자바 11버전 확인하기
+- [x] 요구 사항에 명시된 출력값 형식 지키기
+- [x] 모든 테스트가 성공하는지 확인하기
+- [x] 자바 11버전 확인하기
 
 ## 프로그래밍 요구사항
 
-- [ ] 자바 코드 컨벤션 지키기
-- [ ] 들여쓰기의 깊이는 최대 2
-- [ ] 3항 연산자 사용하지 않기
-- [ ] 메소드가 한 가지 일만 하도록 최대한 작게 만들기
-- [ ] else 사용하지 않기
-- [ ] 도메인 로직에 단위 테스트 구현하기
-- [ ] 메소드 길이가 10라인을 넘어가지 않도록 구현하기
-- [ ] 메소드의 파리미터 개수는 최대 3개
-- [ ] `InputView` 클래스에서만 `camp.nextstep.edu.missionutils.Console` 의 `readLine()` 메서드를 이용가능
-- [ ] `BridgeGame` 클래스에서 `InputView`, `OutputView` 를 사용하지 않음
+- [x] 자바 코드 컨벤션 지키기
+- [x] 들여쓰기의 깊이는 최대 2
+- [x] 3항 연산자 사용하지 않기
+- [x] 메소드가 한 가지 일만 하도록 최대한 작게 만들기
+- [x] else 사용하지 않기
+- [x] 도메인 로직에 단위 테스트 구현하기
+- [x] 메소드 길이가 10라인을 넘어가지 않도록 구현하기
+- [x] 메소드의 파리미터 개수는 최대 3개
+- [x] `InputView` 클래스에서만 `camp.nextstep.edu.missionutils.Console` 의 `readLine()` 메서드를 이용가능
+- [x] `BridgeGame` 클래스에서 `InputView`, `OutputView` 를 사용하지 않음
 
 ### BridgeGame 클래스
 
-- [ ] 메서드의 이름 변경 불가능
+- [x] 메서드의 이름 변경 불가능
 
 ### BridgeMaker 클래스
 
-- [ ] 인스턴스 변수 변경 불가능
-- [ ] 메서드의 인자, 이름, 반환타입 변경 불가능
+- [x] 인스턴스 변수 변경 불가능
+- [x] 메서드의 인자, 이름, 반환타입 변경 불가능
 
 ### BridgeRandomNumberGenerator, BridgeNumberGenerator 클래스
 
-- [ ] 변경 불가능
+- [x] 변경 불가능
