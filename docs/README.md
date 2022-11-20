@@ -149,8 +149,8 @@ D
 
 ### compareMoveCount
 - [x] 매개변수와 moveCount 비교
-- [ ] true이면 true 반환
-- [ ] false리면 false 반환
+- [x] true이면 true 반환
+- [x] false리면 false 반환
 
 ## Application
 - [x] inputView 변수 생성
