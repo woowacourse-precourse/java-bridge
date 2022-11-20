@@ -12,8 +12,8 @@ public class OutputView {
     private static final String BOUNDARY_LINE = " | ";
     private static final String UP = "U";
     private static final String DOWN = "D";
-    private static final String CORRECT = "O";
-    private static final String WRONG = "X";
+    private static final String PASS = "O";
+    private static final String FAIL = "X";
     private static final String SPACE = " ";
     private StringBuilder upState = new StringBuilder();
     private StringBuilder downState = new StringBuilder();
@@ -44,9 +44,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(int location, boolean check, String moveUpOrDown) {
+    public void printMap(int location, boolean pass, String moveUpOrDown) {
         setBoundaryLine(location);
-        checkUpOrDown(moveUpOrDown, check);
+        checkUpOrDown(moveUpOrDown, pass);
         printResultMap();
     }
 
@@ -57,31 +57,31 @@ public class OutputView {
         }
     }
 
-    private void checkUpOrDown(String UpAndDown, boolean check) {
+    private void checkUpOrDown(String UpAndDown, boolean pass) {
         if (UpAndDown.equals(UP)) {
-            setUpState(check);
+            setUpState(pass);
         }
         if (UpAndDown.equals(DOWN)) {
-            setDownState(check);
+            setDownState(pass);
         }
     }
 
-    private void setUpState(boolean check) {
-        if (check) {
-            upState.append(CORRECT);
+    private void setUpState(boolean pass) {
+        if (pass) {
+            upState.append(PASS);
         }
-        if (!check) {
-            upState.append(WRONG);
+        if (!pass) {
+            upState.append(FAIL);
         }
         downState.append(SPACE);
     }
 
-    private void setDownState(boolean check) {
-        if (check) {
-            downState.append(CORRECT);
+    private void setDownState(boolean pass) {
+        if (pass) {
+            downState.append(PASS);
         }
-        if (!check) {
-            downState.append(WRONG);
+        if (!pass) {
+            downState.append(FAIL);
         }
         upState.append(SPACE);
     }
