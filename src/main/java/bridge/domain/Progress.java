@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain;
 
 public enum Progress {
     SUCCESS("성공"),

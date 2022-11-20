@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.Bridge;
+import bridge.domain.Bridge;
 import bridge.view.utils.CustomStringBuilderForBridge;
 
 import java.util.List;

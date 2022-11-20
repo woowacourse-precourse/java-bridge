@@ -1,17 +1,19 @@
-package bridge;
+package bridge.controller;
 
+import bridge.domain.BridgeGame;
+import bridge.domain.Progress;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 import static bridge.constant.Constants.*;
 
-public class GameControl {
+public class GameController {
 
     private final InputView inputView;
     private final OutputView outputView;
     private BridgeGame bridgeGame;
 
-    public GameControl() {
+    public GameController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
         this.bridgeGame = new BridgeGame();
