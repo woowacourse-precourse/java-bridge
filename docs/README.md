@@ -54,7 +54,8 @@
   - [ ] 게임 최종 결과를 출력한다.
 ## UI 로직
 ### 입력
-- [ ] 다리의 길이를 입력받는다. - InputView#readBridgeSize
+- [x] 다리의 길이를 입력받는다. - InputView#readBridgeSize
+  - 예외) 숫자가 아닌 문자가 입력된 경우
   - 예외) 3 이상 20 이하의 숫자를 입력하지 않은 경우
 - [ ] 사용자가 이동할 칸을 입력한다. - InputView#readMoving
   - 예외) 문자 하나를 입력하지 않은 경우 
