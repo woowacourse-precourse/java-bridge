@@ -8,20 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 public class InputView {
 
-    final static BridgeGame bridgeGame = new BridgeGame();
-    final static OutputView outputView = new OutputView();
-
-    static int size = 1;
+    public static OutputView outputView = new OutputView();
+    static int size = 0;
     static List<String> move = new ArrayList<>();
 
     public void readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
         try {
+//            System.out.println("asd" + write_bridge_size());
             size = write_bridge_size();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -30,9 +26,10 @@ public class InputView {
     }
 
     public int write_bridge_size() {
-        int answer = 0;
+        int answer;
         try {
             answer = Integer.parseInt(Console.readLine());
+//            System.out.println(answer);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 잘못된 입력을 하였습니다.");
         }
@@ -53,14 +50,14 @@ public class InputView {
         String answer = "";
         try {
             answer = Console.readLine();
-        } catch (StringIndexOutOfBoundsException e) {
+//            checkValidateMove(answer);
+        } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("[ERROR] 잘못된 입력을 하였습니다.");
         }
         return answer;
     }
 
     public static String readGameCommand() {
-        System.out.println("리드게임커맨드실행");
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String a = Console.readLine();
         return a;
@@ -91,4 +88,10 @@ public class InputView {
     public void clearMove(){
         move.clear();
     }
+
+//    public void checkValidateMove(String a){
+//        if(!Objects.equals(a, "D") || !Objects.equals(a, "U")){
+//            throw new IllegalArgumentException("[ERROR] 잘못된 입력을 하였습니다.");
+//        }
+//    }
 }
