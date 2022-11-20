@@ -3,16 +3,13 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.Scanner;
+
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-
-//    private final Validate validate;
-//
-//    public InputView(Validate validate) {
-//        this.validate = validate;
-//    }
 
     /**
      * 다리의 길이를 입력받는다.
