@@ -12,7 +12,7 @@ public class BridgeGame {
     private int movingCount;
     private int tryCount;
 
-    BridgeGame(List<String> bridge) {
+    public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         tryCount++;
     }
