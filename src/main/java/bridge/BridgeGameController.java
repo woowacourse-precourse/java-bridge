@@ -12,7 +12,7 @@ public class BridgeGameController {
     List<String> bridge = bridgeMaker.makeBridge(size);
     BridgeGame bridgeGame = new BridgeGame();
     OutputView outputView = new OutputView();
-    List<Integer> gameResult = List.of(0, 0);
+    int[] gameResult = new int[2];
 
     public List<String> playBridgeGame(){
         List<String> stepResult = new ArrayList<>();
@@ -20,19 +20,19 @@ public class BridgeGameController {
             String moving = inputView.readMoving();
             stepResult.add(moving);
             outputView.printMap(stepResult, bridge);
-            if(bridgeGame.move(idx, moving, bridge)){
+            if(!bridgeGame.move(idx, moving, bridge)){
                 break;
             }
         }
         return stepResult;
     }
 
-    public void afterBridgeGame(){
+    public void controlBridgeGame(){
         while(true){
             List<String> stepResult = playBridgeGame();
-            List<Integer> resultStatistics = bridgeGame.retry(stepResult, bridge, gameResult);
+            gameResult = bridgeGame.retry(stepResult, bridge, gameResult);
             String gameCommand = inputView.readGameCommand();
-            if(gameResult.get(0) == 1 || gameCommand.equals("Q")){
+            if(gameResult[0] == 1 || gameCommand.equals("Q")){
                 outputView.printResult(stepResult, bridge, gameResult);
                 return;
             }
