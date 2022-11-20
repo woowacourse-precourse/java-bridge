@@ -5,12 +5,9 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static bridge.validator.BlockValidator.validateInvalidType;
 
 public class BridgeGameController {
     private static List<String> bridge;
@@ -19,16 +16,13 @@ public class BridgeGameController {
 
     public void gameStart() {
         BridgeGame bridgeGame = new BridgeGame();
-        boolean play = false;
         boolean gameResult;
         gameSetUp();
         do {
             gameResult = oneGame();
             retryCount++;
             if (gameResult) break;
-            String retryCommand = initGameCommand();
-            play = bridgeGame.retry(retryCommand);
-        } while (play);
+        } while (bridgeGame.retry(initGameCommand()));
         printGameResult(gameResult);
     }
 
@@ -38,14 +32,13 @@ public class BridgeGameController {
         OutputView.printTotalCountResult(retryCount);
     }
 
-    private List<String> gameSetUp() {
+    private void gameSetUp() {
         OutputView.printGameStartMessage();
         int size = initSize();
 
         BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
         bridge = bridgeMaker.makeBridge(size);
-        return bridge;
     }
 
     private int initSize() {
@@ -82,18 +75,21 @@ public class BridgeGameController {
     }
 
     private boolean oneGame() {
-        BridgeGame bridgeGame = new BridgeGame();
         currentBridge.clear();
-        int currentIndex = 0;
-        boolean result = true;
         for (int i = 0; i < bridge.size(); i++) {
-            String moveCommand = initMoving();
-            result = bridgeGame.move(currentIndex, moveCommand, bridge);
+            boolean result = moveBridge(i);
             currentBridge.add(result);
-            currentIndex++;
-            OutputView.printMap(currentBridge, bridge);
+            OutputView.printTopMap(currentBridge, bridge);
+            OutputView.printBottomMap(currentBridge, bridge);
             if (!result) return false;
         }
         return true;
+    }
+
+    private boolean moveBridge(int i) {
+        BridgeGame bridgeGame = new BridgeGame();
+
+        String moveCommand = initMoving();
+        return bridgeGame.move(i, moveCommand, bridge);
     }
 }
