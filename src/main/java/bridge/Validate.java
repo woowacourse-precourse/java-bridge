@@ -13,8 +13,7 @@ public class Validate {
     }
 
     public static void checkLenInput(String input) {
-        int len = Integer.parseInt(input);
-        if (!input.chars().allMatch(Character::isDigit) || 3 > len || len > 20){
+        if (!input.chars().allMatch(Character::isDigit) || 3 > Integer.parseInt(input) || Integer.parseInt(input) > 20){
             throw new IllegalArgumentException("[ERROR] 3 ~ 20사이 숫자를 입력하여 주세요.");
         }
     }
