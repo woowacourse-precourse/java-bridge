@@ -4,12 +4,15 @@ package bridge;
 public class GameController {
     private final InputView inputView;
     private final OutputView outputView;
+    private final BridgeMap bridgeMap;
     private BridgeGame bridgeGame;
     private int tryCount;
+
 
     public GameController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
+        this.bridgeMap = new BridgeMap();
     }
 
     public void makeBridgeGame() {
@@ -17,6 +20,7 @@ public class GameController {
         outputView.printStartGame();
         bridgeSize = inputView.readBridgeSize();
         this.bridgeGame = new BridgeGame(bridgeSize);
+        System.out.println("bridgeGame.getBridge() = " + bridgeGame.getBridge());
     }
 
     public void playBridgeGame() {
@@ -31,20 +35,10 @@ public class GameController {
         outputView.printQuestion();
         String currentMoving = inputView.readMoving();
         bridgeGame.move(currentMoving);
-        String[] map = makeMap(bridgeGame);
+        String[] map = bridgeMap.makeMap(bridgeGame);
         outputView.printMap(map);
     }
 
-    public String[] makeMap(BridgeGame bridgeGame) {
-        return new String[2];
-    }
 
-    public String makeUpSide() {
-        return "";
-    }
-
-    public String makeDownSide() {
-        return "";
-    }
 
 }

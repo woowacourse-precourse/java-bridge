@@ -40,4 +40,12 @@ public class BridgeGame {
         return this.bridgeSize;
     }
 
+    public List<String> getBridge() {
+        return this.bridge;
+    }
+
+    public List<String> getMoves() {
+        return this.moves;
+    }
+
 }
