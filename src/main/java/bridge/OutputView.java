@@ -84,6 +84,7 @@ public class OutputView {
     private String concatUpStringAndDownString(StringBuilder upStringBuilder, StringBuilder downStringBuilder) {
         upStringBuilder.append(NEW_LINE.getSymbol());
         upStringBuilder.append(downStringBuilder);
+        upStringBuilder.append(NEW_LINE.getSymbol());
 
         return upStringBuilder.toString();
     }
@@ -106,7 +107,7 @@ public class OutputView {
     }
 
     private void printCountOfGame(int countOfGame) {
-        System.out.println(TOTAL_TRY_COUNT_MESSAGE.getSymbol() + countOfGame);
+        System.out.print(TOTAL_TRY_COUNT_MESSAGE.getSymbol() + countOfGame);
     }
 
     /**

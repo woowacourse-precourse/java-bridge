@@ -19,6 +19,7 @@ public class InputView {
         do {
             System.out.println("다리의 길이를 입력해주세요.");
             String input = Console.readLine();
+            System.out.println();
             conversionInput = getConversionInput(conversionInput, input);
         } while (Validator.isNumberNotInBridgeRange(conversionInput));
 
