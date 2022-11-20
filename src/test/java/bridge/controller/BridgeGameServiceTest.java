@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class BridgeGameControllerTest {
+public class BridgeGameServiceTest {
 
     private static BridgeMaker bridgeMaker;
     private static BridgeGame bridgeGame;
@@ -69,5 +69,15 @@ public class BridgeGameControllerTest {
         }
         //then
         assertThat(bridgeGameService.isComplete());
+    }
+
+    @Test
+    void 재시작해도_처음에_만든_다리와_일치한지_확인하는_테스트() {
+        //given
+        List<String> bridge = bridgeGameService.getBridge();
+        //when
+        bridgeGameService.restart();
+        //then
+        assertThat(bridgeGameService.getBridge()).isEqualTo(bridge);
     }
 }
