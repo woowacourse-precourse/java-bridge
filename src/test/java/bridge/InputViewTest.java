@@ -59,4 +59,26 @@ class InputViewTest {
 
         assertThatThrownBy(() -> input.readMoving()).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 재시도_입력_테스트1() {
+        InputView input = new InputView();
+        this.stdInput("R");
+        assertThat(input.readGameCommand()).isEqualTo(true);
+    }
+
+    @Test
+    void 재시도_입력_테스트2() {
+        InputView input = new InputView();
+        this.stdInput("Q");
+        assertThat(input.readGameCommand()).isEqualTo(false);
+    }
+
+    @Test
+    void 재시도_입력_테스트3() {
+        InputView input = new InputView();
+        this.stdInput("E");
+
+        assertThatThrownBy(() -> input.readGameCommand()).isInstanceOf(IllegalArgumentException.class);
+    }
 }
