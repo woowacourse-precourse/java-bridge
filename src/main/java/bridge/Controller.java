@@ -1,9 +1,9 @@
 package bridge;
 
 public class Controller {
-    InputView inputView;
-    OutputView outputView;
-    BridgeMaker bridgeMaker;
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final BridgeMaker bridgeMaker;
 
     public Controller(InputView input, OutputView output, BridgeRandomNumberGenerator generator) {
         this.inputView = input;
@@ -13,5 +13,7 @@ public class Controller {
 
     public void start() {
         outputView.printGameStart();
+        int bridgeSize = inputView.readBridgeSize();
     }
+
 }
