@@ -98,6 +98,5 @@ public class BridgeGame {
         DownMap = new ArrayList<>();
         flag = true;
         idx = 0;
-        System.out.println(randomMap);
     }
 }
