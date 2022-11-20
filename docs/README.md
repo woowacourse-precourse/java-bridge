@@ -131,7 +131,7 @@ D
 - [x] downBridge라는 인스턴스 변수 생성
 - [x] moveCount라는 인스턴스 변수 생성
 - [x] gameCount라는 인스턴스 변수 생성
-- [ ] gameStatus라는 인스턴스 변수 생성
+- [x] gameStatus라는 인스턴스 변수 생성
 
 ### BridgeGame
 - [x] upBridge를 초기화
