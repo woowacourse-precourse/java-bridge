@@ -20,7 +20,8 @@ public class BridgeGameController {
 
 
     public void start() {
-        bridgeGame.move(inputView.readMoving());
+        String movingCommand = inputView.readMoving();
+        String sign = bridgeGame.move(movingCommand);
         // 결과 출력 : OutputView #printMap
 
     }

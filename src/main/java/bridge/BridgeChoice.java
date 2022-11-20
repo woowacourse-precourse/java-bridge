@@ -21,7 +21,18 @@ public enum BridgeChoice {
                 .get();
     }
 
+//    public static BridgeChoice fromSign(String direction) {
+//        return Arrays.stream(BridgeChoice.values())
+//                .filter(bridgeChoice -> bridgeChoice.direction.equals(direction))
+//                .findAny()
+//                .get();
+//    }
+
     public String getDirection() {
         return direction;
     }
+
+//    public int getNumber() {
+//        return 1 - number;
+//    }
 }
