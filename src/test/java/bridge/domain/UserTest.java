@@ -38,7 +38,6 @@ class UserTest {
 		private final String MOVING_DIRECTION_UP = "U";
 		private final String MOVING_DIRECTION_DOWN = "D";
 		private List<String> inputBridge = new ArrayList<>(Arrays.asList("U", "U", "D"));
-		private Bridge bridge = new Bridge(inputBridge, inputBridge.size());
 
 		@Nested
 		@DisplayName("만약 해당 칸에 맞는 이동 방향을 선택하면")
@@ -48,9 +47,9 @@ class UserTest {
 			@Test
 			@DisplayName("이동 결과가 true인 이동 결과 객체를 반환한다.")
 			void it_returns_moving_result() {
-				int currentLocation = 0;
+				Bridge bridge = new Bridge(inputBridge);
 				User user = new User(moving);
-				MovingResult movingResult = user.selectMoving(currentLocation, bridge);
+				MovingResult movingResult = user.selectMoving(bridge);
 				MovingResult expected = new MovingResult(moving, true);
 
 				assertThat(movingResult).usingRecursiveComparison().isEqualTo(expected);
@@ -65,9 +64,9 @@ class UserTest {
 			@Test
 			@DisplayName("이동 결과가 false인 이동 결과 객체를 반환한다.")
 			void it_returns_moving_result() {
-				int currentLocation = 1;
+				Bridge bridge = new Bridge(inputBridge);
 				User user = new User(moving);
-				MovingResult movingResult = user.selectMoving(currentLocation, bridge);
+				MovingResult movingResult = user.selectMoving(bridge);
 				MovingResult expected = new MovingResult(moving, false);
 
 				assertThat(movingResult).usingRecursiveComparison().isEqualTo(expected);
