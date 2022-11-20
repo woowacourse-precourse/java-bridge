@@ -9,14 +9,14 @@ import java.util.List;
 import java.util.Objects;
 
 import static bridge.model.GameResultState.LOSE;
+import static bridge.model.GameResultState.WIN;
 
 public class BridgeGameController {
 
     private static final String RETRY_SIGN = "R";
-    private static final String QUIT_SIGN = "Q";
 
-    private static int totalTries = 0;
-    private static int currentPosition = -1;
+    private static int totalTries = 1;
+    private static int currentPosition = 0;
     private static int bridgeSize;
 
     private final InputView inputView = new InputView();
@@ -34,33 +34,62 @@ public class BridgeGameController {
     }
 
     private void proceedGame() {
-        totalTries++;
-        currentPosition++;
-        String move = inputView.printMoveMessage();
-        boolean success = bridgeGameService.moveAndReturnSuccess(currentPosition, move);
-        printMap();
-
-        judgeProceed(success);
+        doGame();
+        judgeResult();
     }
 
-    private void judgeProceed(final boolean success) {
+    private void judgeResult() {
+        if (isEndPosition()) {
+            printEndMessage(WIN);
+            return;
+        }
+
+        printEndMessage(LOSE);
+    }
+
+    private void doGame() {
+        boolean proceed = true;
+
+        while (proceed) {
+            String move = inputView.printMoveMessage();
+            boolean success = bridgeGameService.moveAndReturnSuccess(currentPosition, move);
+            printMap();
+            proceed = judgeProceed(success);
+        }
+    }
+
+    private boolean judgeProceed(final boolean success) {
         if (isLose(success)) {
             String gameCommand = inputView.printGameCommand();
-            proceedOrQuitGame(gameCommand);
-
-            printEndMessage(LOSE);
+            return proceedOrQuitGame(gameCommand);
         }
+
+        return judgeIfWin();
     }
 
     private static boolean isLose(final boolean success) {
         return !success;
     }
 
-    private void proceedOrQuitGame(final String gameCommand) {
+    private boolean proceedOrQuitGame(final String gameCommand) {
         if (isRetryCommand(gameCommand)) {
             initialize();
-            proceedGame();
+            return true;
         }
+
+        return false;
+    }
+
+    private static boolean judgeIfWin() {
+        if (isEndPosition()) {
+            return false;
+        }
+        currentPosition++;
+        return true;
+    }
+
+    private static boolean isEndPosition() {
+        return currentPosition == bridgeSize - 1;
     }
 
     private static boolean isRetryCommand(final String gameCommand) {
