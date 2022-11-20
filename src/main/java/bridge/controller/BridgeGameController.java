@@ -26,6 +26,15 @@ public class BridgeGameController {
                 System.out.println(e.getMessage());
             }
         }
+
+        while (moving){
+            try{
+                String blankToMove = inputBridgeMove();
+                bridgeMove(blankToMove);
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private List<String> generateBridge(){
@@ -33,5 +42,16 @@ public class BridgeGameController {
         Validation.validateRange(bridgeSize);
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         return bridgeMaker.makeBridge(bridgeSize);
+    }
+
+    private String inputBridgeMove(){
+        String blankToMove = InputView.inputMoving();
+        Validation.isValidBlankToMove(blankToMove);
+        return blankToMove;
+    }
+
+    private void bridgeMove(String blankToMove){
+        bridgeGame.move(blankToMove);
+        OutputView.printMap(bridgeGame.makeBridgeCrossingResult());
     }
 }
