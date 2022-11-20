@@ -48,7 +48,7 @@ class BridgeMoveTypeTest {
     }
 
     @ParameterizedTest(name = "[{index}] moveTypeCode = {0}")
-    @ValueSource(strings = {"A", "B", "C", "!", "@", "#", "$", "%", " ", "asd", "UU", "UD", "DD", "UDU"})
+    @ValueSource(strings = {"A", "B", "C", "!", "@", "#", "$", "%", " ", "", "asd", "UU", "UD", "DD", "UDU"})
     @DisplayName("잘못 입력된 String 타입의 다리 이동 코드를 이용하여 다리 이동 타입 검색을 실패하여 예외처리 된다.")
     void whenWrongStringTypeSearchThenExceptionTest(String moveType) {
         assertThatExceptionOfType(IllegalArgumentException.class)
@@ -64,6 +64,17 @@ class BridgeMoveTypeTest {
                 .withMessage(READ_WRONG_TYPE_EXCEPTION.getMessage());
     }
 
+    @ParameterizedTest(name = "[{index}] moveTypeOne = {0}, moveTypeTwo = {1}")
+    @MethodSource("whenCompareSameMoveTypeThenSuccessDummy")
+    @DisplayName("동일한 두 다리 이동 타입 비교시 동일하다는 결과로 성공한다.")
+    void whenCompareSameMoveTypeThenSuccessTest(BridgeMoveType moveTypeOne, BridgeMoveType moveTypeTwo) {
+        // given & when
+        boolean isMoveTypeSame = moveTypeOne.isSame(moveTypeTwo);
+
+        // then
+        assertThat(isMoveTypeSame).isTrue();
+    }
+
     static Stream<Arguments> whenIntTypeSearchThenSuccessDummy() {
         return Stream.of(
                 Arguments.arguments(0, "D"),
@@ -75,6 +86,13 @@ class BridgeMoveTypeTest {
         return Stream.of(
                 Arguments.arguments("D", DOWN),
                 Arguments.arguments("U", UP)
+        );
+    }
+
+    static Stream<Arguments> whenCompareSameMoveTypeThenSuccessDummy() {
+        return Stream.of(
+                Arguments.arguments(UP, UP),
+                Arguments.arguments(DOWN, DOWN)
         );
     }
 }
