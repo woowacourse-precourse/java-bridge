@@ -1,5 +1,6 @@
 package controller;
 
+import constant.Number;
 import generator.BridgeRandomNumberGenerator;
 import java.util.ArrayList;
 import model.BridgeGame;
@@ -15,7 +16,7 @@ public class BridgeController {
 
     public static void run() {
         List<List<String>> bothSide = init();
-        List<String> bridge = BridgeController.makeBridge();
+        List<String> bridge = makeBridge();
         BridgeGame.move(bridge, bothSide);
         printResult(bothSide, BridgeGame.tryNumber);
         BridgeGame.clearTryNumber();
@@ -23,8 +24,8 @@ public class BridgeController {
 
     public static List<List<String>> init() {
         List<List<String>> bothSide = new ArrayList<>();
-        List<String> downSide = new ArrayList<>(20);
-        List<String> upSide = new ArrayList<>(20);
+        List<String> downSide = new ArrayList<>(Number.BRIDGE_SIZE_END_INCLUSIVE.getNumber());
+        List<String> upSide = new ArrayList<>(Number.BRIDGE_SIZE_END_INCLUSIVE.getNumber());
 
         bothSide.add(downSide);
         bothSide.add(upSide);
