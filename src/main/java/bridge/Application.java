@@ -35,7 +35,7 @@ public class Application {
         int index = 0;
         while (index < answerBridge.size()) {
             final CapitalLetter currentMoving = InputView.readMoving();
-            final String result = bridgeGame.move(answerBridge.get(index), currentMoving);
+            final String result = bridgeGame.move(currentMoving, index);
 
             if (currentMoving.equals("U")) {
                 upSideResult.add(result);
