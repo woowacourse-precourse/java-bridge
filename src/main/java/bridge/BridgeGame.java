@@ -37,19 +37,18 @@ public class BridgeGame {
      */
     public MoveResult move(char moveCommand) {
         history.add(String.valueOf(moveCommand));
+        return getMoveResult();
+    }
 
+    private MoveResult getMoveResult() {
         int idx = history.size() - 1;
-        //UDDU
 
-        //UDDU  CORRECT
-        if (history.equals(bridge))
+        if (history.equals(bridge)) {
             return new MoveResult(history, GameStatus.CORRECT);
-
-        //UD    CONTINUE
-        if (history.get(idx).equals(bridge.get(idx)))
+        }
+        if (history.get(idx).equals(bridge.get(idx))) {
             return new MoveResult(history, GameStatus.CONTINUE);
-
-        //UU    FAIL
+        }
         return new MoveResult(history, GameStatus.FAIL);
     }
 

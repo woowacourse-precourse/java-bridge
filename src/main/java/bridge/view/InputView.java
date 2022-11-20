@@ -1,5 +1,7 @@
-package bridge;
+package bridge.view;
 
+import bridge.MoveCommand;
+import bridge.RetryCommand;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -51,7 +53,7 @@ public class InputView {
     }
 
     private void validateMoveCommandFormat(char moving) {
-        if (moving != 'U' && moving != 'D')
+        if (moving != MoveCommand.UP.getValue() && moving != MoveCommand.DOWN.getValue())
             throw new IllegalArgumentException("이동할 칸은 U 혹은 D를 입력하여야 합니다.");
     }
 
@@ -75,8 +77,8 @@ public class InputView {
         return restartCommand;
     }
 
-    private void validateRetryCommandFormat(char gameCommand) {
-        if (gameCommand != 'R' && gameCommand != 'Q')
+    private void validateRetryCommandFormat(char retryCommand) {
+        if (retryCommand != RetryCommand.RETRY.getValue() && retryCommand != RetryCommand.QUIT.getValue())
             throw new IllegalArgumentException("게임 재시도 여부는 R 혹은 Q를 입력하여야 합니다.");
     }
 }

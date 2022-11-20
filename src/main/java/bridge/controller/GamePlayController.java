@@ -1,8 +1,12 @@
 package bridge.controller;
 
 import bridge.*;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class GamePlayController {
+    private final static String ERROR_MESSAGE_PREFIX = "[ERROR] ";
+
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 
@@ -14,7 +18,7 @@ public class GamePlayController {
                 bridgeGame = createBridgeGame(bridgeSize);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println(ERROR_MESSAGE_PREFIX + e.getMessage());
             }
         }
         moveUser(bridgeGame);
@@ -38,7 +42,7 @@ public class GamePlayController {
                 }
 
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println(ERROR_MESSAGE_PREFIX + e.getMessage());
             }
         }
     }
@@ -48,7 +52,6 @@ public class GamePlayController {
         if (gameStatus == GameStatus.FAIL) {
             return !retry(bridgeGame, moveResult);
         }
-
         if (gameStatus == GameStatus.CORRECT) {
             outputView.printResult(moveResult, bridgeGame);
             return true;
@@ -61,18 +64,18 @@ public class GamePlayController {
             try {
                 char retryCommand = inputView.readRetryCommand();
 
-                if (retryCommand == 'Q') {
+                if (retryCommand == RetryCommand.QUIT.getValue()) {
                     outputView.printResult(moveResult, bridgeGame);
                     return false;
                 }
 
-                if(retryCommand == 'R'){
+                if (retryCommand == RetryCommand.RETRY.getValue()) {
                     bridgeGame.retry();
                     return true;
                 }
-                
+
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println(ERROR_MESSAGE_PREFIX + e.getMessage());
             }
         }
     }
