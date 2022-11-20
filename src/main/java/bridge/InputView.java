@@ -2,6 +2,9 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static bridge.exceptions.InputException.*;
 
 /**
@@ -9,14 +12,10 @@ import static bridge.exceptions.InputException.*;
  */
 public class InputView {
 
-
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() throws IllegalArgumentException {
-        /**
-         "다리의 길이를 입력해주세요."
-         */
         String bridgeSizeInput = Console.readLine();
         bridgeSizeNumberCheck(bridgeSizeInput);
         int bridgeSize = Integer.parseInt(bridgeSizeInput);
@@ -28,11 +27,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() throws IllegalArgumentException {
-        /**
-         "이동할 칸을 선택해주세요. (위: U, 아래: D)"
-         */
         String movingInput = Console.readLine();
         movingInputErrorCheck(movingInput);
+        BridgeGame.movingInputs.add(movingInput);
         return movingInput;
     }
 
