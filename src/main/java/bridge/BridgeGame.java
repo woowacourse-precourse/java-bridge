@@ -1,7 +1,5 @@
 package bridge;
 
-import camp.nextstep.edu.missionutils.Console;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +9,7 @@ public class BridgeGame {
     List<String> visited = new ArrayList<>();
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     Bridge bridge;
-    private int tryNum = 0;
+    private int tryNum = 1;
 
     public void init(){
         int bridgeLen = inputView.readBridgeSize();
