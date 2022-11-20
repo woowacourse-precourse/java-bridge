@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.BridgeRule;
+import bridge.MoveRule;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Objects;
 
@@ -38,7 +39,7 @@ public class InputView {
      */
     public String readMoving() {
         String move = readValue();
-        if (Objects.equals(move, "U") || Objects.equals(move, "D")) {
+        if (move.equals(MoveRule.MOVE_UP.getMove()) || !move.equals(MoveRule.MOVE_DOWN.getMove())) {
             throw new IllegalArgumentException("허용되지 않는 값! U(위쪽) D(아래쪽) 중 하나를 입력하셔야 합니다!");
         }
         return move;
