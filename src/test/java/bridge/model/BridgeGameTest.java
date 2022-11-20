@@ -2,14 +2,12 @@ package bridge.model;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class BridgeGameTest {
 
     private BridgeGame bridgeGame;
-    private List<String> bridge = List.of("U", "D", "D");
 
     @BeforeEach
     void beforeEach() {
@@ -18,28 +16,28 @@ class BridgeGameTest {
 
     @Test
     void oneStepMoveCorrectBridge() {
-        boolean result = bridgeGame.move(bridge, "U");
+        boolean result = bridgeGame.move("U", "U");
         assertThat(result).isTrue();
     }
 
     @Test
     void MoveCorrectBridge() {
-        bridgeGame.move(bridge, "U");
-        bridgeGame.move(bridge, "D");
-        boolean result = bridgeGame.move(bridge, "D");
+        bridgeGame.move("U", "U");
+        bridgeGame.move("D", "D");
+        boolean result = bridgeGame.move("D", "D");
         assertThat(result).isTrue();
     }
 
     @Test
     void oneStepMoveInCorrectBridge() {
-        boolean result = bridgeGame.move(bridge, "D");
+        boolean result = bridgeGame.move("U", "D");
         assertThat(result).isFalse();
     }
 
     @Test
     void twoStepMoveInCorrectBridge() {
-        bridgeGame.move(bridge, "U");
-        boolean result = bridgeGame.move(bridge, "U");
+        bridgeGame.move("U", "U");
+        boolean result = bridgeGame.move("D", "U");
         assertThat(result).isFalse();
     }
 
