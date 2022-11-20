@@ -22,4 +22,11 @@ public class BridgeGameValidationTest {
         assertThatThrownBy(() -> bridgeGameValidation.validateMoveWhenAvailable("U", List.of("U"), List.of("X")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("이동 불가능한 칸으로 이동한 경우, 예외가 발생한다.")
+    @Test
+    public void validateNotMoveWhenUnavailableTest() {
+        assertThatThrownBy(() -> bridgeGameValidation.validateNotMoveWhenUnavailable("U", List.of("D"), List.of("O")))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
