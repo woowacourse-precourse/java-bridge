@@ -15,6 +15,8 @@ public class OutputView {
 
     private static final String GAME_START = "다리 건너기 게임을 시작합니다.";
     private static final String GAME_END = "최종 게임 결과";
+    private static final String GAME_RESULT = "게임 성공 여부: ";
+    private static final String GAME_TRY_COUNTS = "총 시도한 횟수: ";
 
     private OutputView() {
     }
@@ -47,18 +49,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(Player player, GameStatus gameStatus) {
+    public static void printResult(Player player, String gameResult) {
         System.out.println(GAME_END);
         printMap(player);
-        System.out.println("게임 성공 여부: " + printClearOrFail(gameStatus));
-        System.out.print("총 시도한 횟수: " + player.getLifeCount());
-    }
-
-    private static String printClearOrFail(GameStatus gameStatus) {
-        if (gameStatus == GameStatus.CLEAR) {
-            return "성공";
-        }
-        return "실패";
+        System.out.println(GAME_RESULT + gameResult);
+        System.out.print(GAME_TRY_COUNTS + player.getLifeCount());
     }
 
     public static void printStart() {

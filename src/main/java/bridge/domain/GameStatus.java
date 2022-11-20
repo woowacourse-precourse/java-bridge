@@ -3,16 +3,26 @@ package bridge.domain;
 import java.util.Arrays;
 
 public enum GameStatus {
-    PLAYING("P"),
-    CLEAR("C"),
-    FAIL("F"),
-    RETRY("R"),
-    QUIT("Q");
+    PLAYING("P", "플레이"),
+    CLEAR("C", "성공"),
+    DEATH("D", "죽음"),
+    RETRY("R", "재도전"),
+    QUIT("Q", "실패");
 
     final String input;
+    final String meaning;
 
-    GameStatus(String input) {
+    GameStatus(String input, String meaning) {
         this.input = input;
+        this.meaning = meaning;
+    }
+
+    public static String decideGameResult(GameStatus gameStatus) {
+        if (gameStatus == CLEAR || gameStatus == QUIT) {
+            return gameStatus.meaning;
+        }
+
+        throw new IllegalArgumentException("잘못된 게임 결과");
     }
 
     public static GameStatus receiveInputAfterGameOver(String input) {

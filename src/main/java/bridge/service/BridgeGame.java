@@ -4,12 +4,6 @@ import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.*;
 
-import java.util.List;
-import java.util.Map;
-
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private final Player player = new Player();
@@ -33,13 +27,12 @@ public class BridgeGame {
             return GameStatus.PLAYING;
         }
 
-        return GameStatus.FAIL;
+        return GameStatus.DEATH;
     }
 
     public Player getPlayer() {
         return player;
     }
-
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>

@@ -16,13 +16,13 @@ public class BridgeGameController {
     }
 
     private void end() {
-        OutputView.printResult(bridgeGame.getPlayer(), gameStatus);
+        OutputView.printResult(bridgeGame.getPlayer(), GameStatus.decideGameResult(gameStatus));
     }
 
     private void play() {
         while (gameStatus == GameStatus.PLAYING) {
             moveBridge();
-            if (gameStatus == GameStatus.FAIL) {
+            if (gameStatus == GameStatus.DEATH) {
                 askRetry();
             }
         }
