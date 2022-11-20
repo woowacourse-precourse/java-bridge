@@ -26,7 +26,7 @@ public class CurrentRouteTest {
             currentRoute.moveNext(movements[0]);
         }
 
-        assertThat(currentRoute.getCurrentLocationIndex()).isEqualTo(moveCount);
+        assertThat(currentRoute.getCurrentLocationIndex()).isEqualTo(moveCount - 1);
     }
 
     @DisplayName("위치 초기화가 정상적으로 되는지 확인")
@@ -35,6 +35,6 @@ public class CurrentRouteTest {
         currentRoute.moveNext("D");
         currentRoute.initialize();
 
-        assertThat(currentRoute.getCurrentLocationIndex()).isEqualTo(0);
+        assertThat(currentRoute.getCurrentLocationIndex()).isEqualTo(-1);
     }
 }
