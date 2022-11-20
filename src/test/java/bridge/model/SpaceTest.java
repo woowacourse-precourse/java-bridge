@@ -1,10 +1,7 @@
 package bridge.model;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class SpaceTest {
     private static final int UP_NUMBER = 1;
@@ -30,9 +27,19 @@ class SpaceTest {
 
     @Test
     void convertDownToUp() {
+        Space down = Space.D;
+
+        Space cross = down.cross();
+
+        Assertions.assertThat(cross).isEqualTo(Space.U);
     }
 
     @Test
     void convertUpToDown() {
+        Space up = Space.U;
+
+        Space cross = up.cross();
+
+        Assertions.assertThat(cross).isEqualTo(Space.D);
     }
 }
