@@ -7,6 +7,7 @@ public class OutputView {
 
     private static final String gameStartMessage = "다리 건너기 게임을 시작합니다.";
     private static final String askBridgeSizeMessage = "다리의 길이를 입력해주세요.\n";
+    private static final String askUserMoveDirectionMessage = "이동할 칸을 선택해주세요. (위: U, 아래: D)\n";
 
     // 게임 시작 문구 출력
     public static void printGameStartMessage() {
@@ -16,6 +17,10 @@ public class OutputView {
     // 다리 길이 입력 문구 출력
     public static void askBridgeSize() {
         System.out.println(askBridgeSizeMessage);
+    }
+
+    public static void askUserMoveDirection() {
+        System.out.println(askUserMoveDirectionMessage);
     }
 
     /**
