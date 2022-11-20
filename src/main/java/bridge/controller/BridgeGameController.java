@@ -3,15 +3,13 @@ package bridge.controller;
 import bridge.dto.BridgeGameDto;
 import bridge.service.BridgeGameService;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class BridgeGameController {
-    private final static List<String> INIT_GAME_MAP = List.of("", "");
-
     private final BridgeGameService bridgeGameService = new BridgeGameService();
 
     public void generateBridgeGame() {
-        BridgeGameDto bridgeGameDto = BridgeGameDto.from(INIT_GAME_MAP);
+        BridgeGameDto bridgeGameDto = BridgeGameDto.from(new ArrayList<>(), new ArrayList<>());
         bridgeGameService.initBridgeGame(bridgeGameDto);
     }
 }

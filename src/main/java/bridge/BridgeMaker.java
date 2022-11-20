@@ -8,8 +8,8 @@ import java.util.List;
  */
 public class BridgeMaker {
     private static final int UPWARD_PASSABLE_CASE = 1;
-    private final String UPWARD_PASSABLE = "U";
-    private final String DOWNWARD_PASSABLE = "D";
+    public final static String UPPER_BRIDGE = "U";
+    public final static String LOWER_BRIDGE = "D";
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -19,9 +19,9 @@ public class BridgeMaker {
 
     private String getBridgeElement(int bridgeNumber) {
         if (bridgeNumber == UPWARD_PASSABLE_CASE) {
-            return UPWARD_PASSABLE;
+            return UPPER_BRIDGE;
         }
-        return DOWNWARD_PASSABLE;
+        return LOWER_BRIDGE;
     }
 
     /**

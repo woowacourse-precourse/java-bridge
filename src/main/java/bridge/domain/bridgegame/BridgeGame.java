@@ -9,12 +9,12 @@ public class BridgeGame {
 
     private final GameMap gameMap;
 
-    private BridgeGame(List<String> gameMap) {
-        this.gameMap = GameMap.from(gameMap);
+    private BridgeGame(List<String> upperBridgeMap, List<String> lowerBridgeMap) {
+        this.gameMap = GameMap.generateMap(upperBridgeMap, lowerBridgeMap);
     }
 
-    public static BridgeGame from(List<String> gameMap) {
-        return new BridgeGame(gameMap);
+    public static BridgeGame from(List<String> upperBridgeMap, List<String> lowerBridgeMap) {
+        return new BridgeGame(upperBridgeMap, lowerBridgeMap);
     }
 
     /**
