@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.Objects;
+
 public class History {
 
     private final int position;
@@ -22,5 +24,23 @@ public class History {
 
     public boolean isSamePosition(int position) {
         return this.position == position;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        History history = (History) o;
+        return position == history.position && isMoveSucess() == history.isMoveSucess() && Objects
+                .equals(moveDirection, history.moveDirection);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(position, moveDirection, isMoveSucess());
     }
 }

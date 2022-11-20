@@ -9,6 +9,7 @@ import java.util.List;
 public class BridgeGame {
 
     private final Bridge bridge;
+    private int tryCount = 1;
     private int currentPosition = -1;
     private List<History> moveHistory = new ArrayList<>();
 
@@ -37,10 +38,14 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        this.tryCount++;
+        this.currentPosition = -1;
+        this.moveHistory.clear();
     }
 
-    public boolean isReachedEndOfBridge() {
-        return this.bridge.isEndOfBridge(this.currentPosition);
+    public boolean isWin() {
+        return this.bridge.isEndOfBridge(this.currentPosition)
+                && moveHistory.get(this.currentPosition).isMoveSucess();
     }
 
     private boolean canMove() {
@@ -48,7 +53,23 @@ public class BridgeGame {
                 && (this.currentPosition == -1 || this.moveHistory.get(this.currentPosition).isMoveSucess());
     }
 
+    private boolean isReachedEndOfBridge() {
+        return this.bridge.isEndOfBridge(this.currentPosition);
+    }
+
+    public Bridge getBridge() {
+        return bridge;
+    }
+
+    public int getCurrentPosition() {
+        return currentPosition;
+    }
+
     public List<History> getMoveHistory() {
         return moveHistory;
+    }
+
+    public int getTryCount() {
+        return tryCount;
     }
 }

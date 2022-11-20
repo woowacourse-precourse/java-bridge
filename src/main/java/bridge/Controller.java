@@ -17,21 +17,43 @@ public class Controller {
 
     public void start() {
         outputView.printBridgeGameStart();
-        int bridgeSize = inputView.readBridgeSize(outputView::printBridgeSizeInput);
+        BridgeGame bridgeGame = createBridgeGame(readBridgeSize());
 
-        BridgeGame bridgeGame = new BridgeGame(new Bridge(bridgeMaker.makeBridge(bridgeSize)));
+        do {
+            moveToEndOfBridge(bridgeGame);
+        } while (!bridgeGame.isWin() && doRetryOrNot(readGameCommand(), bridgeGame));
 
+        outputView.printResult();
+    }
+
+    private int readBridgeSize() {
+        return inputView.readBridgeSize(outputView::printBridgeSizeInput);
+    }
+
+    private BridgeGame createBridgeGame(int bridgeSize) {
+        return new BridgeGame(
+                new Bridge(this.bridgeMaker.makeBridge(bridgeSize))
+        );
+    }
+
+    private String readGameCommand() {
+        return inputView.readGameCommand(outputView::printGameCommandInput);
+    }
+
+    private void moveToEndOfBridge(BridgeGame bridgeGame) {
         boolean moveResult = true;
-        while (moveResult) {
+        while (!bridgeGame.isWin() && moveResult) {
             String moveDirection = inputView.readMoving(outputView::printBridgeMoveDirectionInput);
             moveResult = bridgeGame.move(moveDirection);
             outputView.printMap(bridgeGame.getMoveHistory());
         }
-        String gameCommand = inputView.readGameCommand(outputView::printGameCommandInput);
+    }
 
-        if (bridgeGame.isReachedEndOfBridge()) {
-            outputView.printResult();
-            return;
+    private boolean doRetryOrNot(String gameCommand, BridgeGame bridgeGame) {
+        if (RETRY_GAME_COMMAND.equals(gameCommand)) {
+            bridgeGame.retry();
+            return true;
         }
+        return false;
     }
 }
