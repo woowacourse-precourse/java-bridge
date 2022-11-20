@@ -23,7 +23,7 @@ public enum BridgeMoveType {
                 .orElseThrow(() -> new IllegalArgumentException(READ_WRONG_TYPE_EXCEPTION.getMessage()));
     }
 
-    public static String typeOf(int bridgeCode) {
+    public static String of(int bridgeCode) {
         return Arrays.stream(BridgeMoveType.values())
                 .filter(bridge -> bridge.code == bridgeCode)
                 .findFirst()
