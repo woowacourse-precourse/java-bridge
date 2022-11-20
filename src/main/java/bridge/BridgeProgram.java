@@ -21,4 +21,15 @@ public class BridgeProgram {
     public void play() {
         outputView.printStart();
     }
+
+    private void make() {
+        while (true) {
+            try {
+                bridgeGame.make(inputView.readBridgeSize());
+                return;
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e);
+            }
+        }
+    }
 }
