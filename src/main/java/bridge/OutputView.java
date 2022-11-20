@@ -13,8 +13,19 @@ public class OutputView {
     public static void printResult() {
         System.out.println("최종 게임 결과");
         printMap();
-        System.out.println("게임성공여부: ");
-        System.out.println("총 시도한 횟수: "+Application.totalTrial);
+        printSuccess();
+        System.out.println("총 시도한 횟수: " + Application.totalTrial);
+    }
+
+    public static void printSuccess() {
+        String successResult = "";
+        if (Application.success) {
+            successResult = "성공";
+        }
+        if (!Application.success) {
+            successResult = "실패";
+        }
+        System.out.println("게임 성공 여부: " + successResult);
     }
 
     public static void printStart() {
