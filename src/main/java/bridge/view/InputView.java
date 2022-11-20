@@ -16,12 +16,17 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String bridgeSize = Console.readLine();
-        validateBridgeSizeInput(bridgeSize);
-        return Integer.parseInt(bridgeSize);
+        try {
+            String bridgeSize = Console.readLine();
+            validateBridgeSizeInput(bridgeSize);
+            return Integer.parseInt(bridgeSize);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readBridgeSize();
+        }
     }
 
-    private void validateBridgeSizeInput(String bridgeSize) {
+    private void validateBridgeSizeInput(String bridgeSize) throws IllegalArgumentException {
         if (!bridgeSize.matches(REGEX_NUMBER)) {
             throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE);
         }
@@ -35,12 +40,17 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String moving = Console.readLine();
-        validateMoving(moving);
-        return moving;
+        try {
+            String moving = Console.readLine();
+            validateMoving(moving);
+            return moving;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
     }
 
-    private void validateMoving(String moving) {
+    private void validateMoving(String moving) throws IllegalArgumentException {
         if (!moving.matches(REGEX_MOVING)) {
             throw new IllegalArgumentException(ErrorMessage.MOVING);
         }
@@ -50,12 +60,17 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        String gameCommand = Console.readLine();
-        validateGameCommand(gameCommand);
-        return gameCommand;
+        try {
+            String gameCommand = Console.readLine();
+            validateGameCommand(gameCommand);
+            return gameCommand;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readGameCommand();
+        }
     }
 
-    private void validateGameCommand(String gameCommand) {
+    private void validateGameCommand(String gameCommand) throws IllegalArgumentException{
         if (!gameCommand.matches(REGEX_GAME_COMMAND)) {
             throw new IllegalArgumentException(ErrorMessage.GAME_COMMAND);
         }
