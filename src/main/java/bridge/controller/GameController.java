@@ -16,7 +16,7 @@ public class GameController {
             outputView.startMsg();
             bridgeMaker.makeBridge(inputView.readBridgeSize());
         } catch (IllegalArgumentException exception) {
-            OutputView.printMsg("[ERROR] " + exception.getMessage());
+            outputView.printException(exception.getMessage());
         }
     }
 }
