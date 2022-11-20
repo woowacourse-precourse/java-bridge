@@ -3,6 +3,7 @@ package bridge;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import bridge.model.Bridge;
 import org.junit.jupiter.api.Test;
 
 class BridgeTest {

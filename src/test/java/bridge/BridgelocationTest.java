@@ -3,6 +3,8 @@ package bridge;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import bridge.model.Bridgelocation;
+import bridge.model.MoveBox;
 import org.junit.jupiter.api.Test;
 
 class BridgelocationTest {
