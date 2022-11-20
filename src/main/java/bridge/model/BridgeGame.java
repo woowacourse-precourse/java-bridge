@@ -17,13 +17,14 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String userInput, String bridge) {
-        Bridgelocation bridgelocation = Bridgelocation.valueOf(userInput,Utility.StringEquals(userInput, bridge));
+        Bridgelocation bridgelocation = Bridgelocation.valueOf(userInput,
+            Utility.StringEquals(userInput, bridge));
         validate(bridgelocation);
         result.add(bridgelocation.getBridge());
     }
 
-    private void validate(Bridgelocation bridgelocation){
-        if(bridgelocation == Bridgelocation.ERROR){
+    private void validate(Bridgelocation bridgelocation) {
+        if (bridgelocation == Bridgelocation.ERROR) {
             throw new IllegalArgumentException("[ERROR] 잘못된 값입니다.");
         }
     }
@@ -40,6 +41,27 @@ public class BridgeGame {
         }
         return false;
     }
+
+    public StringBuilder upline() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for (Bridge bridge : result) {
+            sb.append(" ").append(bridge.getUp()).append(" |");
+        }
+        sb.deleteCharAt(sb.length() - 1).append("]");
+        return sb;
+    }
+
+    public StringBuilder downline() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for (Bridge bridge : result) {
+            sb.append(" ").append(bridge.getDown()).append(" |");
+        }
+        sb.deleteCharAt(sb.length() - 1).append("]");
+        return sb;
+    }
+
 
     public List<Bridge> getResult() {
         return result;

@@ -22,21 +22,16 @@ public class BridgeGameController {
     }
 
     public void gameStart() {
-        try {
-            outputView.printgameStart();
-            List<String> bridges = gameinit();
-            BridgeGame bridgeGame = new BridgeGame();
-            boolean restart;
-            int count = 0;
-            do {
-                count++;
-                restart = Bridgemove(bridges, bridgeGame);
-            } while (restart);
-            outputView.printResult(bridgeGame.getResult(), success(bridgeGame), count);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-
+        outputView.printgameStart();
+        List<String> bridges = InputController.getBridgeMaker();
+        BridgeGame bridgeGame = new BridgeGame();
+        boolean restart;
+        int count = 0;
+        do {
+            count++;
+            restart = Bridgemove(bridges, bridgeGame);
+        } while (restart);
+        outputView.printResult(bridgeGame, success(bridgeGame), count);
     }
 
     public String success(BridgeGame bridgeGame) {
@@ -51,18 +46,12 @@ public class BridgeGameController {
         for (String bridge : bridges) {
             MoveBox userinput = new MoveBox(inputView.readMoving());
             bridgeGame.move(userinput.getMovebox(), bridge);
-            outputView.printMap(bridgeGame.getResult());
+            outputView.printMap(bridgeGame.upline(), bridgeGame.downline());
             if (!Utility.StringEquals(userinput.getMovebox(), bridge)) {
                 return bridgeGame.retry(inputView.readGameCommand());
             }
         }
         return false;
     }
-
-    public List<String> gameinit() {
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        return bridgeMaker.makeBridge(new lengthBridge(inputView.readBridgeSize()).getLength());
-    }
-
 
 }
