@@ -17,4 +17,8 @@ public class Bridge {
         return availableSquares.size() - 1;
     }
 
+    public String getAvailableSquare(int bridgeIndex) {
+        return availableSquares.get(bridgeIndex);
+    }
+
 }

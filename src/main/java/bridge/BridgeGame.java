@@ -1,6 +1,7 @@
 package bridge;
 
 import enumCollections.GameStatus;
+import enumCollections.Position;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -47,5 +48,13 @@ public class BridgeGame {
 
     public void retry() {
         player = new Player();
+    }
+
+    public int getCurrentPosition() {
+        return player.currentPosition;
+    }
+
+    public Position getAvailableSquare(int bridgeIndex) {
+        return Position.getPosition(bridge.getAvailableSquare(bridgeIndex));
     }
 }
