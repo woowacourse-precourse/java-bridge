@@ -110,7 +110,7 @@ public class Application {
     private static String getRetryCommand() {
         while (true) {
             try {
-                return inputView.readGameCommand();
+                return inputView.readRetryCommand();
             } catch (IllegalArgumentException e) {
                 outputView.printErrorState(e);
             }

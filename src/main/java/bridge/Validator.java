@@ -20,7 +20,7 @@ public class Validator {
         }
     }
 
-    public static void command(String command) {
+    public static void retryCommand(String command) {
         if (!(command.equals(Command.RETRY) || command.equals(Command.QUIT))) {
             throw new IllegalArgumentException(ErrorState.COMMAND);
         }
