@@ -37,6 +37,10 @@ public class BridgeGame {
         return userMoving;
     }
 
+    public boolean compareLastBridgeAndUserThink(){
+        return bridge.getBridgeComponent(userThinkBridge.getBridgeSize()-1).equals(userMoving);
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
