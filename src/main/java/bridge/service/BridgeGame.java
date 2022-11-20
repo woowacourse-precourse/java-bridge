@@ -1,6 +1,7 @@
 package bridge.service;
 
 import bridge.domain.Bridge;
+import bridge.domain.GameRecord;
 import bridge.domain.Player;
 
 import java.util.List;
@@ -15,12 +16,12 @@ import java.util.List;
 public class BridgeGame {
     private final Bridge bridge;
     private final Player player;
-    private int tryCount;
+    private GameRecord gameRecord;
 
     public BridgeGame(Bridge bridge, Player player) {
         this.bridge = bridge;
         this.player = player;
-        this.tryCount = 1;
+        this.gameRecord = new GameRecord();
     }
 
     public boolean isFinished() {
@@ -60,7 +61,7 @@ public class BridgeGame {
      */
     public void retry() {
         player.reVive();
-        tryCount += 1;
+        gameRecord.recordRetry();
     }
 
     public List<String> getMovableSpaces() {
