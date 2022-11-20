@@ -111,4 +111,29 @@ public class OutputViewTest {
 		// then
 		assertThat(actualStatus).isEqualTo(expectedStatus);
 	}
+
+	@DisplayName("게임 종료 시 최종 결과 출력")
+	@Test
+	void printResult() {
+		// given
+		BridgeStatus bridgeStatus = BridgeStatus.getInstance();
+		String userSelectedCell = "U";
+		String bridgeLetter = "U";
+		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
+		userSelectedCell = "D";
+		bridgeLetter = "D";
+		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
+		userSelectedCell = "D";
+		bridgeLetter = "D";
+		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
+		HashMap<String, String> expectedStatus = new HashMap<>();
+		expectedStatus.put("UpperCell", "[ O |   |   ]");
+		expectedStatus.put("LowerCell", "[   | O | O ]");
+
+		// when
+		HashMap<String, String> actualStatus = new OutputView().printResult();
+
+		// then
+		assertThat(actualStatus).isEqualTo(expectedStatus);
+	}
 }
