@@ -13,7 +13,8 @@ public class InputView {
      */
     public int readBridgeSize() {
         String candidate = readLine();
-        int lengthOfBridge = validateNumeric(candidate);
+        validateNumeric(candidate);
+        int lengthOfBridge = Integer.parseInt(candidate);
         validateRange(lengthOfBridge);
         return lengthOfBridge;
     }

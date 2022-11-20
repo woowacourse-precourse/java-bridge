@@ -8,12 +8,16 @@ public class InputValidator {
     private static final String DOWN = "D";
     private static final String RETRY = "R";
     private static final String QUIT = "Q";
-    public static int validateNumeric(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException nfe) {
+
+    public static void validateNumeric(String input) {
+        boolean isNumeric = isNumeric(input);
+        if (!isNumeric) {
             throw new IllegalArgumentException(ERROR_FOR_LENGTH_OF_BRIDGE);
         }
+    }
+
+    public static boolean isNumeric(String input) {
+        return input.chars().allMatch(Character::isDigit);
     }
 
     public static void validateRange(int input) {
@@ -28,10 +32,9 @@ public class InputValidator {
         }
     }
 
-    public static void validateRetry(String input){
-        if (!(input.equals(RETRY) || input.equals(QUIT))){
+    public static void validateRetry(String input) {
+        if (!(input.equals(RETRY) || input.equals(QUIT))) {
             throw new IllegalArgumentException(ERROR_FOR_RETRY_OR_QUIT);
         }
     }
-
 }
