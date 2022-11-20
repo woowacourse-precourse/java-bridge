@@ -5,7 +5,7 @@ public class MoveDirection {
     private static final String INVALID_MOVING_SIGN_MESSAGE = "[ERROR] 이동할 칸은 U또는 D만 입력 가능합니다";
     private static final String UP_SIGN = "U";
     private static final String DOWN_SIGN = "D";
-    private String direction;
+    private final String direction;
 
     public MoveDirection(String direction) {
         validateDirection(direction);
