@@ -22,12 +22,12 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for(int i=0;i<size;i++){
             int number = bridgeNumberGenerator.generate();
-            bridge.add(changeNumbertoString(number));
+            bridge.add(changeTypeofNumber(number));
         }
         return bridge;
     }
 
-    public String changeNumbertoString(int number){
+    public String changeTypeofNumber(int number){
         if(number == 0)
             return "D";
         return "U";
