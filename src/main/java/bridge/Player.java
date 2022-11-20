@@ -16,4 +16,8 @@ public class Player {
     public void moveBackSpace(){
         this.currentSpace-=1;
     }
+
+    public void moveFrontSpace(){
+        this.currentSpace+=1;
+    }
 }
