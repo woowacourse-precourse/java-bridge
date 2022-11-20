@@ -35,4 +35,12 @@ class ResultTest {
         result.convertCorrectResultAfterFirstRound(userInput);
         assertThat(result.getMap().toString()).isEqualTo(output);
     }
+
+    @DisplayName("첫 라운드 이후에 틀린 경우에는 다음칸이 X가 된다.")
+    @ParameterizedTest
+    @CsvSource(value = {"U:[[ |   ], [ | X ]]", "D:[[ | X ], [ |   ]]"}, delimiter = ':')
+    void wrongOtherRound(String userInput, String output) {
+        result.convertWrongResultAfterFirstRound(userInput);
+        assertThat(result.getMap().toString()).isEqualTo(output);
+    }
 }
