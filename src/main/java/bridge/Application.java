@@ -1,24 +1,39 @@
 package bridge;
 
+import java.util.List;
+
 public class Application {
     InputView inputView = new InputView();
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    BridgeGame bridgeGame = new BridgeGame();
+    String game = "R";
+    int count = 0;
 
     public void run(){
         // output view
         System.out.println("다리 건너기 게임을 시작합니다.");
         // 자동으로 생성할 다리 길이를 입력 받는다. --> input view
+        System.out.println("다리의 길이를 입력해주세요.");
         int bridgeSize = inputView.readBridgeSize();
 
         // 다리를 생성합니다. --> bridge maker
-        bridgeMaker.makeBridge(bridgeSize);
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
 
         // 이동할 칸을 선택해주세요 --> output view
-        // U 또는 D 입력 받기 --> input view
-        // 다리를 출력합니다 --> output view
+        System.out.println("이동할 칸을 선택해주세요");
 
-        // 게임 실패시 다시 시도 여부 --> bridge game, output view
-        // R 또는 Q 입력 --> input view
+        // U 또는 D 입력 받기 --> input view
+        while (game.equals("R")) {
+            String move = inputView.readMoving();
+            // 다리를 출력합니다 --> output view
+            bridgeGame.move(bridge, move);
+            if (bridge.size() > bridgeSize) {
+                // 게임 실패시 다시 시도 여부 --> bridge game, output view
+                // R 또는 Q 입력 --> input view
+                System.out.println("게임 종료");
+
+            }
+        }
 
         // 마지막 칸 도착시
         // 최종 게임 결과 -- > outputView
@@ -29,5 +44,8 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
+        Application app = new Application();
+        app.run();
+
     }
 }
