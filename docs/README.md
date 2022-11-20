@@ -111,7 +111,7 @@ D
 
 ### readScopeOfBridgeSizeOfNumberException
 - [x] 매개변수를 Integer타입으로 형변환하여 size에 저장
-- [ ] size가 3미만이고, 20초과인지, 확인
+- [x] size가 3미만이고, 20초과인지, 확인
 - [ ] false이면, 예외 던짐
 
 ## 출력
