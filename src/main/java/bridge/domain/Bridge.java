@@ -24,8 +24,8 @@ public class Bridge {
                 .collect(Collectors.toList()));
     }
 
-    public void connect(String bridgeShapeValue) {
-        bridgeShapes.add(BridgeShape.of(bridgeShapeValue));
+    public void connect(BridgeShape bridgeShape) {
+        bridgeShapes.add(bridgeShape);
     }
 
     public BridgeGameResult compare(Bridge compareBridge) {
