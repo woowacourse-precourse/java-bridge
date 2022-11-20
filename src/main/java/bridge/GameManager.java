@@ -13,6 +13,8 @@ public class GameManager {
         outputView.printBridgeGameStart();
         List<String> bridge = createBridge();
 
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        bridgeGame.start();
 
     }
 
