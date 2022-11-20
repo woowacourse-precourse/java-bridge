@@ -23,6 +23,7 @@ public class BridgeMaker {
         while (bridge.size() < size) {
             if (bridgeNumberGenerator.generate() == Moving.UP.getNumber()) {
                 bridge.add(Moving.UP.getValue());
+                continue;
             }
             bridge.add(Moving.DOWN.getValue());
         }
