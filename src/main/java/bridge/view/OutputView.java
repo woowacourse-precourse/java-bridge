@@ -38,14 +38,15 @@ public class OutputView {
 
     private void printUpperPart(BridgeGame bridgeGame) {
         int playerLocation = bridgeGame.getPlayerLocation();
-        List<String> upperBridge = bridgeGame.getMovableSpaces().subList(0, playerLocation);
+        List<String> crossedSpaces = bridgeGame.getMovableSpaces().subList(0, playerLocation);
 
-        String upperPart = String.join("|", upperBridge);
+        String upperPart = String.join("|", crossedSpaces);
+
         // 만약 실패했고 실패한 지점의 정답이 D였다면 사망표시
-        if (bridgeGame.isFailed() && upperPart.charAt(playerLocation - 1) == 'D') {
-            upperPart = upperPart.substring(0, playerLocation - 1) + " X ";
-        } else if (bridgeGame.isFailed() && upperPart.charAt(playerLocation - 1) == 'U') {
-            upperPart = upperPart.substring(0, playerLocation - 1) + "   ";
+        if (bridgeGame.isFailed() && upperPart.charAt(upperPart.length() - 1) == 'D') {
+            upperPart = upperPart.substring(0, upperPart.length() - 1) + " X ";
+        } else if (bridgeGame.isFailed() && upperPart.charAt(upperPart.length() - 1) == 'U') {
+            upperPart = upperPart.substring(0, upperPart.length() - 1) + "   ";
         }
 
         upperPart = upperPart.replace("U", " O ");
@@ -55,14 +56,14 @@ public class OutputView {
 
     private void printLowerPart(BridgeGame bridgeGame) {
         int playerLocation = bridgeGame.getPlayerLocation();
-        List<String> lowerBridge = bridgeGame.getMovableSpaces().subList(0, playerLocation);
+        List<String> crossedSpaces = bridgeGame.getMovableSpaces().subList(0, playerLocation);
 
-        String lowerPart = String.join("|", lowerBridge);
+        String lowerPart = String.join("|", crossedSpaces);
         // 만약 실패했고 실패한 지점의 정답이 U였다면 사망표시
-        if (bridgeGame.isFailed() && lowerPart.charAt(playerLocation) == 'U') {
-            lowerPart = lowerPart.substring(0, playerLocation - 1) + " X ";
-        } else if (bridgeGame.isFailed() && lowerPart.charAt(playerLocation - 1) == 'D') {
-            lowerPart = lowerPart.substring(0, playerLocation - 1) + "   ";
+        if (bridgeGame.isFailed() && lowerPart.charAt(lowerPart.length() - 1) == 'U') {
+            lowerPart = lowerPart.substring(0, lowerPart.length() - 1) + " X ";
+        } else if (bridgeGame.isFailed() && lowerPart.charAt(lowerPart.length() - 1) == 'D') {
+            lowerPart = lowerPart.substring(0, lowerPart.length() - 1) + "   ";
         }
 
         lowerPart = lowerPart.replace("U", "   ");
