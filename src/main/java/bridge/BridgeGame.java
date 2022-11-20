@@ -127,6 +127,12 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printBeforeMap(int level) {
+        String result = goToBackSB(level);
+        System.out.println(result);
+    }
+
+    private String goToBackSB(int level) {
+        String result = "";
         if (level == 0) {
             sb1.delete(0, sb1.length());
             sb2.delete(0, sb2.length());
@@ -135,9 +141,9 @@ public class BridgeGame {
             sb1.delete(sb1.length() - 4, sb1.length());
             sb2.delete(sb2.length() - 4, sb2.length());
 
-            System.out.println(sb1.substring(0,sb1.length()-1)+END_BRACKET);
-            System.out.println(sb2.substring(0,sb2.length()-1)+END_BRACKET);
+            result = sb1.substring(0, sb1.length() - 1) + END_BRACKET + "\n" + sb2.substring(0, sb2.length() - 1) + END_BRACKET;
         }
+        return result;
     }
 
     public String makeCurrentResultMap(int bridgeSize) {
