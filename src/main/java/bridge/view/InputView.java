@@ -3,27 +3,19 @@ package bridge.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.regex.Pattern;
 
+import static bridge.view.InputViewConstants.*;
+
 public class InputView {
-
-    private static final String GET_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요.";
-    private static final String GET_PLAYER_MOVE_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    private static final String GET_GAME_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-    private static final String STRING_REGEX = "^[a-zA-Z]*$";
-    private static final String NUMBER_REGEX = "^[1-9]*$";
-    private static final String NUMBER_FORMAT_ERROR_MESSAGE = "[ERROR] 숫자만 입력해주세요 : %s";
-    private static final String STRING_FORMAT_ERROR_MESSAGE = "[ERROR] 문자만 입력해주세요 : %s";
-    private static final String BLANK_ERROR_MESSAGE = "[ERROR] 빈 문자열은 입력될 수 없습니다.";
-    private static final String FORMAT_OPTION_ERROR_MESSAGE = "[ERROR] %s 또는 %s를 입력해주세요";
-    private static final String GAME_REPLAY = "R";
-    private static final String GAME_QUIT = "Q";
-    private static final String UP_STAIR = "U";
-    private static final String DOWN_STAIR = "D";
-
 
     public static int readBridgeSize() {
         System.out.println(GET_BRIDGE_SIZE_MESSAGE);
         String input = Console.readLine();
-        validateNumberForm(input);
+        try {
+            validateNumberForm(input);
+        } catch (IllegalArgumentException error) {
+            System.out.println(error.getMessage());
+            return readBridgeSize();
+        }
         return Integer.parseInt(input);
     }
 
@@ -37,14 +29,24 @@ public class InputView {
     public static String readMoving() {
         System.out.println(GET_PLAYER_MOVE_MESSAGE);
         String input = Console.readLine();
-        validate(input, UP_STAIR, DOWN_STAIR);
+        try {
+            validate(input, UP_STAIR, DOWN_STAIR);
+        } catch (IllegalArgumentException error) {
+            System.out.println(error.getMessage());
+            return readMoving();
+        }
         return input;
     }
 
     public static boolean readGameCommand() {
         System.out.println(GET_GAME_COMMAND_MESSAGE);
         String input = Console.readLine();
-        validate(input, GAME_REPLAY, GAME_QUIT);
+        try {
+            validate(input, GAME_REPLAY, GAME_QUIT);
+        } catch (IllegalArgumentException error) {
+            System.out.println(error.getMessage());
+            return readGameCommand();
+        }
         return input.equals(GAME_REPLAY);
     }
 

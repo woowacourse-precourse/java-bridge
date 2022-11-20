@@ -27,12 +27,12 @@ public class BridgeGameController {
     }
 
     private void play(BridgeGame bridgeGame) {
-        while (!bridgeGame.isGameEnd() && bridgeGame.isPlayerAlive()) {
+        do {
             playRounds(bridgeGame);
             if (!bridgeGame.isPlayerAlive()) {
                 getGameCommand(bridgeGame);
             }
-        }
+        } while (!bridgeGame.isGameEnd() && bridgeGame.isPlayerAlive());
         OutputView.printResult(bridgeGame);
     }
 
@@ -46,26 +46,12 @@ public class BridgeGameController {
     }
 
     private static String getPlayerChoice() {
-        while (true) {
-            try {
-                return InputView.readMoving();
-            } catch (IllegalArgumentException error) {
-                System.out.println(error.getMessage());
-            }
-        }
+        return InputView.readMoving();
     }
 
     private void getGameCommand(BridgeGame bridgeGame) {
-        while (true) {
-            try {
-                if (InputView.readGameCommand()) {
-                    bridgeGame.retry();
-                    return;
-                }
-                return;
-            } catch (IllegalArgumentException error) {
-                System.out.println(error.getMessage());
-            }
+        if (InputView.readGameCommand()) {
+            bridgeGame.retry();
         }
     }
 }
