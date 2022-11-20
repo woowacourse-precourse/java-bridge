@@ -11,4 +11,7 @@ public class Bridge {
         this.bridge = bridgeMaker.makeBridge(size);
     }
 
+    public boolean isCanCross(int location, String goal) {
+        return bridge.get(location).equals(goal);
+    }
 }
