@@ -8,9 +8,11 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     private static final String BRIDGE_SIZE_GUIDE = "다리의 길이를 입력해주세요.";
     private static final String MOVING_GUIDE = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String GAME_COMMAND_GUIDE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private static final String BRIDGE_SIZE_NOT_INTEGER_ERROR = "[ERROR] 다리 길이는 정수입니다.";
     private static final String BRIDGE_SIZE_RANGE_ERROR = "[ERROR] 다리 길이의 범위는 3 이상 20 이하입니다.";
     private static final String MOVING_ERROR = "[ERROR] 이동 가능한 칸은 'U'(위) 또는 'D'(아래) 입니다.";
+    private static final String GAME_COMMAND_ERROR = "[ERROR] 재시도 명령어는 R, 종료 명령어는 Q 입니다.";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -52,7 +54,15 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String input = getInput(GAME_COMMAND_GUIDE);
+        validateGameCommand(input);
+        return input;
+    }
+
+    private void validateGameCommand(String input) {
+        if (!input.equals("R") && !input.equals("Q")) {
+            throw new IllegalArgumentException(GAME_COMMAND_ERROR);
+        }
     }
 
     /**
