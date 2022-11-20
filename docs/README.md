@@ -67,9 +67,9 @@ UserMoveStatus -- move bridgePosition --> BridgeGame -- history --> UserMoveStat
     - [X] code 를 입력받으면 위치 값으로 변경해줍니다.
     - [X] position을 통해서 BridgePosition을 만들 수 있습니다.
 - SurviveStatus (생존 여부)
-    - [ ] O는 생존 성공 상태입니다.
-    - [ ] X는 생존 실패 상태입니다.
-    - [ ] 생존 여부를 출력할 수 있습니다.
+    - [X] O는 생존 성공 상태입니다.
+    - [X] X는 생존 실패 상태입니다.
+    - [X] 생존 여부를 출력할 수 있습니다.
 - History 기록
     - [ ] 단계별 진행사항을 기록합니다.
     - [ ] 기록한 결과를 출력할 수 있습니다.
