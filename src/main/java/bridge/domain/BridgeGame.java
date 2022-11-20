@@ -34,11 +34,9 @@ public class BridgeGame {
         checkValidMove(input);
         if (bridgeDto.getBridge().get(bridgeDto.getCurrentStage()).equals(input)) {
             bridgeDto.increaseCurrentStage();
-            System.out.println("이동 성공 !");
             return true;
         }
         isFail = true;
-        System.out.println("이동 실패 !");
         return false;
     }
 
