@@ -6,9 +6,24 @@ public class InputValidator {
         validateNumber(bridgeSize);
     }
 
-    private void validateInputMove(String command) {
+    public void validateInputMove(String command) {
         validateIsOneChar(command);
         validateIsMoveCommand(command.charAt(0));
+    }
+
+    public void validateInputRetry(String command) {
+        validateIsOneChar(command);
+        validateIsRetryCommand(command.charAt(0));
+    }
+
+    private void validateIsRetryCommand(char command) {
+        if(isNotRetryCommand(command)) {
+            throw new IllegalArgumentException(ErrorMessage.WRONG_INPUT.toString());
+        }
+    }
+
+    private boolean isNotRetryCommand(char command) {
+        return command!= InputType.RETRY.getValue() && command != InputType.QUIT.getValue();
     }
 
     private void validateIsMoveCommand(char command) {
