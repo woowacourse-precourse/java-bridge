@@ -1,5 +1,11 @@
 package bridge;
 
+import bridge.domain.Bridge;
+import bridge.domain.GameResult;
+import bridge.validator.PlayerInputValidator;
+
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -10,7 +16,44 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public GameResult move(List<String> bridgeShape, String input, GameResult gameResult) {
+        inputShapeValidate(input);
+        for (int i = 0; i < bridgeShape.size(); i++) {
+            if (input.equals(bridgeShape.get(i))) {
+                gameResult = setSuccessResult(gameResult, bridgeShape.get(i));
+                break;
+            }
+            gameResult = setFailResult(gameResult, bridgeShape.get(i));
+            gameResult.setBridgeGameResult(false);
+            break;
+        }
+        return gameResult;
+    }
+
+    public GameResult setSuccessResult(GameResult gameResult, String bridgeShape) {
+        if (bridgeShape.equals("U")) {
+            gameResult.getUpBridgeResult().add("O");
+            gameResult.getDownBridgeResult().add(" ");
+            gameResult.setBridgeGameResult(true);
+            return gameResult;
+        }
+        gameResult.getUpBridgeResult().add(" ");
+        gameResult.getDownBridgeResult().add("O");
+        gameResult.setBridgeGameResult(true);
+        return gameResult;
+    }
+
+    public GameResult setFailResult(GameResult gameResult, String bridgeShape) {
+        if (bridgeShape.equals("U")) {
+            gameResult.getUpBridgeResult().add("X");
+            gameResult.getDownBridgeResult().add(" ");
+            gameResult.setBridgeGameResult(false);
+            return gameResult;
+        }
+        gameResult.getUpBridgeResult().add(" ");
+        gameResult.getDownBridgeResult().add("X");
+        gameResult.setBridgeGameResult(false);
+        return gameResult;
     }
 
     /**
@@ -18,6 +61,19 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry(String input) {
+        inputRetryValidate(input);
+        if (input.equals("Y")) {
+            return true;
+        }
+        return false;
+    }
+
+    public void inputShapeValidate(String input) {
+        PlayerInputValidator.moveBridgeInputValidator(input);
+    }
+
+    public void inputRetryValidate(String input) {
+        PlayerInputValidator.restartOrEndInputValidator(input);
     }
 }
