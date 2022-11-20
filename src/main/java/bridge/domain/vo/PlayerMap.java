@@ -6,8 +6,8 @@ import java.util.List;
 
 public class PlayerMap {
 
-    private List<String> firstLine;
-    private List<String> secondLine;
+    private final List<String> firstLine;
+    private final List<String> secondLine;
 
     public PlayerMap() {
         this.firstLine = new ArrayList<>();
