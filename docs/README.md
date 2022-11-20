@@ -51,6 +51,9 @@ UserMoveStatus -- move bridgePosition --> BridgeGame -- history --> UserMoveStat
             - 다리 건너기 게임의 다리를 만드는 상태입니다.
                 - [ ] 사용자로 부터 다리의 길이를 입력받습니다.
                 - [ ] 입력받아진 다리의 길이로 랜덤한 다리를 만들어서 컨텍스트로 전달합니다.
+        - PlayerUnitMoveStatus
+            - 사용자의 장기말이 움직이는 상태입니다.
+                - [ ] 
 
 ## 도메인 요구사항
 
@@ -62,7 +65,7 @@ UserMoveStatus -- move bridgePosition --> BridgeGame -- history --> UserMoveStat
     - [X] [검증] 1과 0을 제외한 값은 생성될 수 없습니다.
     - [X] 1은 U 0는 B 입니다.
     - [X] code 를 입력받으면 위치 값으로 변경해줍니다.
-    - [ ] position을 통해서 BridgePosition을 만들 수 있습니다.
+    - [X] position을 통해서 BridgePosition을 만들 수 있습니다.
 - SurviveStatus (생존 여부)
     - [ ] O는 생존 성공 상태입니다.
     - [ ] X는 생존 실패 상태입니다.
