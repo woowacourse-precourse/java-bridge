@@ -4,6 +4,7 @@ import model.Bridge;
 import model.BridgeMaps;
 import model.BridgeType;
 import model.MoveMark;
+import model.TryCount;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -12,15 +13,21 @@ public class BridgeGame {
     private final Bridge bridge;
     private final BridgeMaps maps;
     private boolean status;
+    private final TryCount count;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
         this.maps = new BridgeMaps();
         this.status = true;
+        this.count = new TryCount();
     }
 
     public BridgeMaps getMaps() {
         return maps;
+    }
+
+    public TryCount getCount() {
+        return count;
     }
 
     /**
@@ -58,5 +65,6 @@ public class BridgeGame {
     public void retry() {
         maps.reset();
         status = true;
+        count.increase();
     }
 }
