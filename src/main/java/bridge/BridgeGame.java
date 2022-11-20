@@ -16,7 +16,7 @@ public class BridgeGame {
     public boolean move(int idx, String inputValue, List<String> bridge) {
         // 만약 X가 나올 경우, stop할 수 있도록.
         // O가 나온다면 그대로 진행..
-        if(inputValue != bridge.get(idx)){
+        if(!inputValue.equals(bridge.get(idx))){
             return false;
         }
         return true;

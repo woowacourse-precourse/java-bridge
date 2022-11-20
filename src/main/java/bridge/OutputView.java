@@ -8,10 +8,10 @@ import java.util.List;
  */
 public class OutputView {
     public enum PrintLastElement {
-        O(true, true, "O]"),
-        X(true, false, "X]"),
-        Blank_O(false, true, " ]"),
-        Blank_X(false, false, " ]");
+        O(true, true, " O ]"),
+        X(true, false, " X ]"),
+        Blank_O(false, true, "   ]"),
+        Blank_X(false, false, "   ]");
 
         private final Boolean isRightLocation;
         private final Boolean isRightStep;
@@ -24,10 +24,10 @@ public class OutputView {
         }
 
         public static void getMessage(String lastStep, String lastBridge, String printLocation){
-            boolean isRightLocation = (lastStep == printLocation);
-            boolean isRightStep = (lastStep == lastBridge);
+            boolean isRightLocation = lastStep.equals(printLocation);
+            boolean isRightStep = lastStep.equals(lastBridge);
             String outputMessage = Arrays.stream(values())
-                    .filter(find -> find.isRightLocation == isRightLocation && find.isRightStep == isRightStep)
+                    .filter(find -> find.isRightLocation.equals(isRightLocation) && find.isRightStep.equals(isRightStep))
                     .findAny().get().OutputMessage;
             System.out.println(outputMessage);
         }
@@ -52,14 +52,14 @@ public class OutputView {
     public void printUpMap(List<String> stepResult) {
         System.out.print("[");
         stepResult.subList(0, stepResult.size()-1)
-                .stream().map(el -> (el == "U") ? "O|":" |")
+                .stream().map(el -> el.equals("U") ? " O |":"   |")
                 .forEach(now -> System.out.print(now));
     }
 
     public void printDownMap(List<String> stepResult) {
         System.out.print("[");
         stepResult.subList(0, stepResult.size()-1)
-                .stream().map(el -> (el == "D") ? "O|":" |")
+                .stream().map(el -> el.equals("D") ? " O |":"   |")
                 .forEach(now -> System.out.print(now));
     }
 

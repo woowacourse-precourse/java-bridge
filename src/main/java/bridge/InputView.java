@@ -41,19 +41,19 @@ public class InputView {
 
         public static String inputMessageByInputType(String input_type){
             return Arrays.stream(values())
-                    .filter(find -> find.input_type == input_type)
+                    .filter(find -> find.input_type.equals(input_type))
                     .findAny().get().input_message;
         }
 
         public static String errorMessageByInputType(String input_type) {
             return Arrays.stream(values())
-                    .filter(find -> find.input_type == input_type)
+                    .filter(find -> find.input_type.equals(input_type))
                     .findAny().get().error_message;
         }
 
         public static Optional isRightInput(String input_type, String input_value){
             return Arrays.stream(values())
-                    .filter(find -> find.input_type == input_type && find.right_input.contains(input_value))
+                    .filter(find -> find.input_type.equals(input_type) && find.right_input.contains(input_value))
                     .findAny();
         }
     }

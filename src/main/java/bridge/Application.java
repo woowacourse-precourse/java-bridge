@@ -31,9 +31,9 @@ public class Application {
         BridgeGame bridgeGame = new BridgeGame();
         OutputView outputView = new OutputView();
 
+        List<String> stepResult = new ArrayList<>();
         for(int idx = 0; idx < size; idx++){
             String inputValue = inputView.readMoving();
-            List<String> stepResult = new ArrayList<>();
             stepResult.add(inputValue);
             outputView.printMap(stepResult, bridge);
         }
