@@ -35,7 +35,7 @@ public class PlayerSteps {
         return Collections.unmodifiableList(steps);
     }
 
-    public void deleteLastStep() {
-        steps.remove(steps.size() - 1);
+    public void clearSteps() {
+        steps.clear();
     }
 }

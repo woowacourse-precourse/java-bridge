@@ -12,12 +12,21 @@ public class Bridge {
         nodes = new ArrayList<>(size);
     }
 
+    /**
+     *
+     * @param generatedBridge: "U" 또는 "D"를 원소로 가지는 리스트
+     * @return 생성된 Bridge 객체
+     */
     public static Bridge of(List<String> generatedBridge) {
         Bridge bridge = new Bridge(generatedBridge.size());
         for (String position : generatedBridge) {
             bridge.nodes.add(Node.of(position));
         }
         return bridge;
+    }
+
+    public int size() {
+        return nodes.size();
     }
 
     public boolean compareNodeOf(int index, Node other) {

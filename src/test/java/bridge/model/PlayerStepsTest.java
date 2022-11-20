@@ -91,8 +91,8 @@ class PlayerStepsTest {
     }
 
     @Nested
-    @DisplayName("deleteLastStep() 테스트")
-    class DeleteLastStepTest {
+    @DisplayName("clearSteps() 테스트")
+    class ClearStepsTest {
         PlayerSteps playerSteps;
 
         @BeforeEach
@@ -104,21 +104,15 @@ class PlayerStepsTest {
         }
 
         @Test
-        @DisplayName("삭제했을 때 마지막 스텝이 지워진다")
+        @DisplayName("비웠을 때 steps가 empty이다.")
         public void deleteLastStep() {
-            // given
-            playerSteps.add(Node.DOWN);
-            List<Node> stepsBeforeDeletion = List.copyOf(playerSteps.getSteps());
 
             // when
-            playerSteps.deleteLastStep();
+            playerSteps.clearSteps();
 
             // then
-            List<Node> stepsAfterDeletion = playerSteps.getSteps();
-
-            assertThat(stepsAfterDeletion)
-                    .isEqualTo(stepsBeforeDeletion.subList(0, stepsBeforeDeletion.size() - 1));
-
+            List<Node> stepsAfterClear = playerSteps.getSteps();
+            assertThat(stepsAfterClear).isEmpty();
         }
     }
 }
