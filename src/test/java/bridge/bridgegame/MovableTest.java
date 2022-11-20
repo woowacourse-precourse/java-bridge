@@ -1,5 +1,6 @@
 package bridge.bridgegame;
 
+import static bridge.Constants.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,14 +14,15 @@ import bridge.BridgeGame;
 import bridge.Pause;
 
 public class MovableTest {
-	Bridge bridgeLetters = new Bridge(List.of("U", "D", "U", "D", "U"));
-	BridgeGame bridgeGame = new BridgeGame(bridgeLetters, 5);
+	Bridge bridgeLetters = new Bridge(List.of(UP, DOWN, UP, DOWN, UP));
+	int bridgeLength = 5;
+	BridgeGame bridgeGame = new BridgeGame(bridgeLetters, bridgeLength);
 
 	@DisplayName("선택한 칸이 이동 가능한 칸인지 확인")
 	@Test
 	void isMovable() {
 		// given
-		String userSelectedCell = "U";
+		String userSelectedCell = UP;
 
 		// when
 		boolean isMovable = bridgeGame.isMovable(bridgeLetters, userSelectedCell);
@@ -33,9 +35,9 @@ public class MovableTest {
 	@Test
 	void isNotMovable() {
 		// given
-		String userSelectedCell = "U";
+		String userSelectedCell = UP;
 		bridgeGame.move(userSelectedCell);
-		userSelectedCell = "U";
+		userSelectedCell = UP;
 
 		// when
 		boolean isMovable = bridgeGame.isMovable(bridgeLetters, userSelectedCell);

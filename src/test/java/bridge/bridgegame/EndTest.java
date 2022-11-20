@@ -1,5 +1,6 @@
 package bridge.bridgegame;
 
+import static bridge.Constants.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,14 +14,15 @@ import bridge.BridgeGame;
 import bridge.Pause;
 
 public class EndTest {
-	Bridge bridgeLetters = new Bridge(List.of("U", "D", "U", "D", "U"));
-	BridgeGame bridgeGame = new BridgeGame(bridgeLetters, 5);
+	Bridge bridgeLetters = new Bridge(List.of(UP, DOWN, UP, DOWN, UP));
+	int bridgeLength = 5;
+	BridgeGame bridgeGame = new BridgeGame(bridgeLetters, bridgeLength);
 
 	@DisplayName("게임 진행 중 게임 종료 여부 확인")
 	@Test
 	void isEnd() {
 		// given
-		String userSelectedCell = "D";
+		String userSelectedCell = DOWN;
 		bridgeGame.move(userSelectedCell);
 
 		// when
@@ -39,15 +41,15 @@ public class EndTest {
 	@Test
 	void isEndWithComplete() {
 		// given
-		String userSelectedCell = "U";
+		String userSelectedCell = UP;
 		bridgeGame.move(userSelectedCell);
-		userSelectedCell = "D";
+		userSelectedCell = DOWN;
 		bridgeGame.move(userSelectedCell);
-		userSelectedCell = "U";
+		userSelectedCell = UP;
 		bridgeGame.move(userSelectedCell);
-		userSelectedCell = "D";
+		userSelectedCell = DOWN;
 		bridgeGame.move(userSelectedCell);
-		userSelectedCell = "U";
+		userSelectedCell = UP;
 		bridgeGame.move(userSelectedCell);
 
 		// when

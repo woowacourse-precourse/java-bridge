@@ -1,5 +1,7 @@
 package bridge;
 
+import static bridge.Constants.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,15 +19,23 @@ public class Bridge {
 	}
 
 	public void putOneToUp(Integer number) {
-		if (number == 1) {
-			bridgeLetters.add("U");
+		if (isOne(number)) {
+			bridgeLetters.add(UP);
 		}
 	}
 
+	private static boolean isOne(Integer number) {
+		return number == 1;
+	}
+
 	public void putZeroToDown(Integer number) {
-		if (number == 0) {
-			bridgeLetters.add("D");
+		if (isZero(number)) {
+			bridgeLetters.add(DOWN);
 		}
+	}
+
+	private static boolean isZero(Integer number) {
+		return number == 0;
 	}
 
 	public List<String> getBridgeLetters() {

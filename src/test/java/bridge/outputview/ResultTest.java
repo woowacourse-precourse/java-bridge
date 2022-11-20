@@ -1,5 +1,6 @@
 package bridge.outputview;
 
+import static bridge.Constants.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.HashMap;
@@ -16,18 +17,18 @@ public class ResultTest {
 	@Test
 	void printResult() {
 		// given
-		String userSelectedCell = "U";
-		String bridgeLetter = "U";
+		String userSelectedCell = UP;
+		String bridgeLetter = UP;
 		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
-		userSelectedCell = "D";
-		bridgeLetter = "D";
+		userSelectedCell = DOWN;
+		bridgeLetter = DOWN;
 		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
-		userSelectedCell = "D";
-		bridgeLetter = "D";
+		userSelectedCell = DOWN;
+		bridgeLetter = DOWN;
 		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
 		HashMap<String, String> expectedStatus = new HashMap<>();
-		expectedStatus.put("UpperCell", "[ O |   |   ]");
-		expectedStatus.put("LowerCell", "[   | O | O ]");
+		expectedStatus.put(UPPER_CELL, "[ O |   |   ]");
+		expectedStatus.put(LOWER_CELL, "[   | O | O ]");
 
 		// when
 		HashMap<String, String> actualStatus = new OutputView().printResult();
@@ -40,20 +41,20 @@ public class ResultTest {
 	@Test
 	void printSuccess() {
 		// given
-		String userSelectedCell = "U";
-		String bridgeLetter = "U";
+		String userSelectedCell = UP;
+		String bridgeLetter = UP;
 		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
-		userSelectedCell = "D";
-		bridgeLetter = "D";
+		userSelectedCell = DOWN;
+		bridgeLetter = DOWN;
 		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
-		userSelectedCell = "D";
-		bridgeLetter = "D";
+		userSelectedCell = DOWN;
+		bridgeLetter = DOWN;
 		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
-		String expectedPrint = "게임 성공 여부: 성공";
+		String expectedPrint = OUTPUT_GAME_REPORT + SUCCESS_MESSAGE;
 
 		// when
 		String success = new OutputView().printSuccessOrNot();
-		String actualPrint = "게임 성공 여부: " + success;
+		String actualPrint = OUTPUT_GAME_REPORT + success;
 
 		// then
 		assertThat(actualPrint).isEqualTo(expectedPrint);
@@ -63,20 +64,20 @@ public class ResultTest {
 	@Test
 	void printFail() {
 		// given
-		String userSelectedCell = "U";
-		String bridgeLetter = "U";
+		String userSelectedCell = UP;
+		String bridgeLetter = UP;
 		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
-		userSelectedCell = "D";
-		bridgeLetter = "D";
+		userSelectedCell = DOWN;
+		bridgeLetter = DOWN;
 		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
-		userSelectedCell = "U";
-		bridgeLetter = "D";
+		userSelectedCell = UP;
+		bridgeLetter = DOWN;
 		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
-		String expectedPrint = "게임 성공 여부: 실패";
+		String expectedPrint = OUTPUT_GAME_REPORT + FAIL_MESSAGE;
 
 		// when
 		String fail = new OutputView().printSuccessOrNot();
-		String actualPrint = "게임 성공 여부: " + fail;
+		String actualPrint = OUTPUT_GAME_REPORT + fail;
 
 		// then
 		assertThat(actualPrint).isEqualTo(expectedPrint);
@@ -86,20 +87,20 @@ public class ResultTest {
 	@Test
 	void printTotalGameCount() {
 		// given
-		String userSelectedCell = "U";
-		String bridgeLetter = "U";
+		String userSelectedCell = UP;
+		String bridgeLetter = UP;
 		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
-		userSelectedCell = "D";
-		bridgeLetter = "D";
+		userSelectedCell = DOWN;
+		bridgeLetter = DOWN;
 		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
-		userSelectedCell = "U";
-		bridgeLetter = "D";
+		userSelectedCell = UP;
+		bridgeLetter = DOWN;
 		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
-		String expectedPrint = "총 시도한 게임 횟수: 3";
+		String expectedPrint = OUTPUT_TOTAL_TRY_COUNT + "3";
 
 		// when
 		int totalGameCount = new OutputView().printTotalGameCount();
-		String actualPrint = "총 시도한 게임 횟수: " + totalGameCount;
+		String actualPrint = OUTPUT_TOTAL_TRY_COUNT + totalGameCount;
 
 		// then
 		assertThat(actualPrint).isEqualTo(expectedPrint);

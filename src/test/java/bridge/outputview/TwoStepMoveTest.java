@@ -1,5 +1,6 @@
 package bridge.outputview;
 
+import static bridge.Constants.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.HashMap;
@@ -17,14 +18,14 @@ public class TwoStepMoveTest {
 	@Test
 	void printFailSecondUpperCell() {
 		// given
-		String userSelectedCell = "U";
-		String bridgeLetter = "U";
+		String userSelectedCell = UP;
+		String bridgeLetter = UP;
 		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
-		userSelectedCell = "U";
-		bridgeLetter = "D";
+		userSelectedCell = UP;
+		bridgeLetter = DOWN;
 		HashMap<String, String> expectedStatus = new HashMap<>();
-		expectedStatus.put("UpperCell", "[ O | X ]");
-		expectedStatus.put("LowerCell", "[   |   ]");
+		expectedStatus.put(UPPER_CELL, "[ O | X ]");
+		expectedStatus.put(LOWER_CELL, "[   |   ]");
 
 		// when
 		HashMap<String, String> actualStatus = new OutputView().printMap(userSelectedCell, bridgeLetter);
@@ -37,14 +38,14 @@ public class TwoStepMoveTest {
 	@Test
 	void printFailSecondLowerCell() {
 		// given
-		String userSelectedCell = "D";
-		String bridgeLetter = "D";
+		String userSelectedCell = DOWN;
+		String bridgeLetter = DOWN;
 		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
-		userSelectedCell = "D";
-		bridgeLetter = "U";
+		userSelectedCell = DOWN;
+		bridgeLetter = UP;
 		HashMap<String, String> expectedStatus = new HashMap<>();
-		expectedStatus.put("UpperCell", "[   |   ]");
-		expectedStatus.put("LowerCell", "[ O | X ]");
+		expectedStatus.put(UPPER_CELL, "[   |   ]");
+		expectedStatus.put(LOWER_CELL, "[ O | X ]");
 
 		// when
 		HashMap<String, String> actualStatus = new OutputView().printMap(userSelectedCell, bridgeLetter);

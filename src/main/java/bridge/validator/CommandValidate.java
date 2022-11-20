@@ -1,34 +1,36 @@
 package bridge.validator;
 
+import static bridge.Constants.*;
+
 public class CommandValidate {
 
 	public static void validateCharacter(String input) {
 		if (input.length() != 1) {
-			throw new IllegalArgumentException("여러 개의 문자를 입력할 수 없습니다.");
+			throw new IllegalArgumentException(ERROR_ONE_CHARACTER);
 		}
 	}
 
 	public static void validateEnglish(String input) {
-		if (!input.matches("^[a-zA-Z]+$")) {
-			throw new IllegalArgumentException("영어만 입력할 수 있습니다.");
+		if (!input.matches(ENGLISH_ONLY)) {
+			throw new IllegalArgumentException(ERROR_ENGLISH_ONLY);
 		}
 	}
 
 	public static void validateUpperCase(String input) {
-		if (!input.matches("^[A-Z]+$")) {
-			throw new IllegalArgumentException("대문자만 입력할 수 있습니다.");
+		if (!input.matches(UPPERCASE_ONLY)) {
+			throw new IllegalArgumentException(ERROR_UPPERCASE_ONLY);
 		}
 	}
 
 	public static void validateExactCharacterUD(String input) {
-		if (!input.matches("^[UD]+$")) {
-			throw new IllegalArgumentException("U와 D만 입력할 수 있습니다.");
+		if (!input.matches(UD_ONLY)) {
+			throw new IllegalArgumentException(ERROR_UD_ONLY);
 		}
 	}
 
 	public static void validateExactCharacterRQ(String input) {
-		if (!input.matches("^[RQ]+$")) {
-			throw new IllegalArgumentException("R과 Q만 입력할 수 있습니다.");
+		if (!input.matches(RQ_ONLY)) {
+			throw new IllegalArgumentException(ERROR_RQ_ONLY);
 		}
 	}
 }

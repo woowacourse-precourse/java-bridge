@@ -1,16 +1,18 @@
 package bridge.validator;
 
+import static bridge.Constants.*;
+
 public class BridgeLengthValidate {
 	public static void validateNumber(String input) {
-		if (!input.matches("^[0-9]+$")) {
-			throw new IllegalArgumentException("숫자만 입력해주세요.");
+		if (!input.matches(NUMBERS_ONLY)) {
+			throw new IllegalArgumentException(ERROR_NUMBERS_ONLY);
 		}
 	}
 
 	public static void validateRange(String input) {
 		int number = Integer.parseInt(input);
 		if (number < 2 || number > 20) {
-			throw new IllegalArgumentException("2 이상 20 이하의 숫자를 입력해주세요.");
+			throw new IllegalArgumentException(ERROR_RANGE);
 		}
 	}
 }

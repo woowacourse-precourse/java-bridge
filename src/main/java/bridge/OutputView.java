@@ -7,6 +7,8 @@ package bridge;
  * 값 출력을 위해 필요한 메서드를 추가할 수 있다.
  */
 
+import static bridge.Constants.*;
+
 import java.util.HashMap;
 
 /**
@@ -38,9 +40,9 @@ public class OutputView {
 
 	public String printSuccessOrNot() {
 		if (bridgeStatus.isSuccess()) {
-			return "성공";
+			return SUCCESS_MESSAGE;
 		}
-		return "실패";
+		return FAIL_MESSAGE;
 	}
 
 	public int printTotalGameCount() {
