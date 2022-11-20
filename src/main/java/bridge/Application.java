@@ -10,6 +10,7 @@ public class Application {
     static List<String> currentDownState = new ArrayList<>();
     static BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     static String gameCommand = "";
+    static int count = 1;
     public static void main(String[] args) {
         System.out.println(printGameStart);
         InputView inputView = new InputView();
@@ -32,6 +33,9 @@ public class Application {
             }
             outputView.printMap(currentUpState,currentDownState);
 
+            if(i==bridge.size()-1){
+                outputView.printResult(currentUpState,currentDownState,bridge.size());
+            }
             if(bridgeGame.move(bridge,i,upDown).equals("X")){
                 gameCommand = inputView.readGameCommand();
             }
@@ -40,15 +44,15 @@ public class Application {
                 currentUpState.clear();
                 currentDownState.clear();
                 i=-1;
+                count++;
+                gameCommand = "";
             }
 
             if(gameCommand.equals("Q")){
                 outputView.printResult(currentUpState,currentDownState,bridge.size());
             }
-
-
-
         }
+        System.out.println("총 시도한 횟수: "+ count);
 
 
 
