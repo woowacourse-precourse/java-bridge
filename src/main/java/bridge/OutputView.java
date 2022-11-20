@@ -15,7 +15,6 @@ enum Brackets {
     }
 }
 
-
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -31,10 +30,6 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
 
-    //    public void printMap(int step, List<String> answer, List<String> submitted) {
-//        printUpperBridge(step,answer,submitted);
-//        printLowerBridge(step,answer,submitted);
-//    }
     public void printMap(int step, List<String> answer, List<String> submitted) {
         printUpperBridge(step, answer, submitted);
         printLowerBridge(step, answer, submitted);
@@ -64,7 +59,6 @@ public class OutputView {
         System.out.println(Brackets.END.getSymbol());
     }
 
-
     public void printLowerBridge(int step, List<String> answer, List<String> submitted) {
         System.out.print(Brackets.START.getSymbol());
         for (int loop = 0; loop < step + 1; loop++) {
@@ -92,7 +86,6 @@ public class OutputView {
         System.out.println(game.trialCount);
     }
 
-
     public void isMiddle(int loop) {
         if (loop != 0) {
             System.out.print(Brackets.MIDDLE.getSymbol());
@@ -116,5 +109,4 @@ public class OutputView {
             System.out.print(Brackets.BLANK.getSymbol());
         }
     }
-
 }
