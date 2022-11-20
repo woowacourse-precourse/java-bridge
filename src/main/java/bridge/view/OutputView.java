@@ -15,8 +15,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(BridgeState bridgePlace) {
-        bridgePlace.printBridge();
+    public void printMap(BridgeState bridgeState) {
+        bridgeState.printBridge();
     }
 
 
@@ -26,20 +26,22 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(BridgeState bridgeState, int count, boolean success) {
+        SystemConsole systemConsole = new SystemConsole();
+
         bridgeState.endPrintBridge();
         System.out.println();
 
-        gameSuccess(success);
-        System.out.println("총 시도한 횟수: " + count);
+        gameSuccess(success, systemConsole);
+        systemConsole.allTryCount(count);
     }
 
-    private void gameSuccess(boolean success) {
+    private void gameSuccess(boolean success, SystemConsole systemConsole) {
         if (success == true) {
-            System.out.println("게임 성공 여부: 성공");
+            systemConsole.gameSuccess();
         }
 
         if (success == false) {
-            System.out.println("게임 성공 여부: 실패");
+            systemConsole.gameFailure();
         }
     }
 }
