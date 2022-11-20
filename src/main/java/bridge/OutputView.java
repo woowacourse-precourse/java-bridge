@@ -7,6 +7,17 @@ import java.util.List;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    private final String success = "성공";
+    private final String fail = "실패";
+
+
+    public String getSuccess() {
+        return success;
+    }
+
+    public String getFail() {
+        return fail;
+    }
     public OutputView() {
         this.upResultList = new ArrayList<>();
         this.downResultList = new ArrayList<>();

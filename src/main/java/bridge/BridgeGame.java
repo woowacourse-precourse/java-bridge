@@ -81,8 +81,8 @@ public class BridgeGame {
     }
     public String getStringResult(){
         if (gameSet){
-            return "실패";
+            return outputView.getFail();
         }
-        return "성공";
+        return outputView.getSuccess();
     }
 }
