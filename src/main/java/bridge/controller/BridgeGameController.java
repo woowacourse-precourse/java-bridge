@@ -53,6 +53,6 @@ public class BridgeGameController {
     }
 
     public void gameResult() {
-        OutputView.printResult(bridgeGame.getRetry(), gamePlay());
+        OutputView.printResult(gamePlay(), bridgeGame.getRetry());
     }
 }
