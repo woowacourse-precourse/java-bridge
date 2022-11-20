@@ -5,6 +5,7 @@ import static bridge.result.GameStatus.FAIL;
 import static bridge.result.GameStatus.PROGRESS;
 import static bridge.result.GameStatus.SUCCESS;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import bridge.domain.Bridge;
 import bridge.gamebridge.GameBridge;
@@ -25,6 +26,7 @@ public class GameBridgeTest {
     @ParameterizedTest
     void insertMoveInPlayerBridgeTest(List<String> inputMoves) {
         GameBridge gameBridge = new GameBridge();
+        gameBridge.generateAnswerBridge(new Bridge(List.of("U", "D", "U", "U", "D")));
         insertMovesForTest(inputMoves, gameBridge);
         Bridge answerBridge = new Bridge(inputMoves);
 
@@ -69,6 +71,14 @@ public class GameBridgeTest {
         assertThat(result.getGameStatus()).isEqualTo(SUCCESS);
     }
 
+    @DisplayName("정답 브릿지를 생성하지 않고 입력하면 예외가 발생한다.")
+    @Test
+    void insertMoveBeforeGenerateAnswerBridge() {
+        GameBridge gameBridge = new GameBridge();
+        assertThatThrownBy(() -> gameBridge.insertMove(new Move("U")))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
     private static Stream<Arguments> generateTestMoveInput() {
         return Stream.of(
             Arguments.of(List.of("U")),
@@ -80,7 +90,7 @@ public class GameBridgeTest {
     private void insertMovesForTest(List<String> inputMoves, GameBridge gameBridge) {
         List<Move> moves = convertStringListToMoveList(inputMoves);
         for (Move move : moves) {
-            gameBridge.insertMoveInPlayerBridge(move);
+            gameBridge.insertMove(move);
         }
     }
 }
