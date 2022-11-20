@@ -4,7 +4,7 @@
 
 ### 1. BridgeGame
 - [x] 사용자가 칸을 이동하는 기능
-- [ ] 사용자가 게임을 재시작하는 기능
+- [x] 사용자가 게임을 재시작하는 기능
 ### 2. BridgeMaker
 - [x] 다리를 생성하는 기능
 ### 3. BridgeNumberGenerator
