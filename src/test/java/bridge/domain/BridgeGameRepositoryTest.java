@@ -60,7 +60,7 @@ class BridgeGameRepositoryTest {
     @DisplayName("현재라운드가 finalRound와")
     @Nested
     class FinalRound {
-        
+
         @DisplayName("일치하면 true를 반환한다.")
         @Test
         void test1() {

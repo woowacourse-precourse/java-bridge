@@ -61,7 +61,8 @@ class BridgeMakerTest {
                     .isInstanceOf(IllegalStateException.class);
         }
 
-        private boolean isCreateSpecificValue(BridgeMaker bridgeMaker, String moveToUpperBlock) {
+        private boolean isCreateSpecificValue(BridgeMaker bridgeMaker,
+                                              String moveToUpperBlock) {
             List<String> bridge = bridgeMaker.makeBridge(10);
             return bridge.stream()
                     .allMatch(value -> value.equals(moveToUpperBlock));

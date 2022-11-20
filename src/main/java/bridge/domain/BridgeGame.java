@@ -8,9 +8,6 @@ import bridge.dto.GameResult;
 import bridge.dto.MoveResult;
 import java.util.List;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
 
     private final BridgeGameRepository bridgeGameRepository = new BridgeGameRepository();
