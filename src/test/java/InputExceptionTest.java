@@ -54,7 +54,7 @@ public class InputExceptionTest {
     void nonAlphabeticInputException(String input) {
         assertThatThrownBy(() -> InputValidator.moving(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 이동할 칸은 오직 알파벳 형태만 받을 수 있습니다.");
+                .hasMessageContaining("[ERROR] 오직 알파벳 형태만 입력할 수 있습니다.");
     }
 
     @DisplayName("이동할 칸 입력 시 \"U\" 또는 \"D\"와 일치하지 않으면 예외가 발생한다.")
@@ -64,5 +64,31 @@ public class InputExceptionTest {
         assertThatThrownBy(() -> InputValidator.moving(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 이동할 칸은 \"U\" 또는 \"D\"로 입력되어야 합니다.");
+    }
+
+    @DisplayName("게임 재개 여부 입력 시 아무 것도 입력하지 않으면 예외가 발생한다.")
+    @Test
+    void noInputException3() {
+        assertThatThrownBy(() -> InputValidator.gameCommand(""))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 입력된 값이 없습니다.");
+    }
+
+    @DisplayName("게임 재개 여부 입력 시 알파벳 형태가 아닌 값이 들어가 있으면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"가즈아", "야메로", "I'm 던", "q!"})
+    void nonAlphabeticInputException2(String input) {
+        assertThatThrownBy(() -> InputValidator.gameCommand(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 오직 알파벳 형태만 입력할 수 있습니다.");
+    }
+
+    @DisplayName("게임 재개 여부 입력 시 \"R\" 또는 \"Q\"와 일치하지 않으면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"retry", "exit", "e", "qq"})
+    void noUpOrDownException2(String input) {
+        assertThatThrownBy(() -> InputValidator.gameCommand(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 게임 재개 여부는 \"R\" 또는 \"Q\"만 입력할 수 있습니다.");
     }
 }
