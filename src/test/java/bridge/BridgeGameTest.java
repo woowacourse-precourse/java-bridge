@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.dto.PathDTO;
-import bridge.model.Command;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

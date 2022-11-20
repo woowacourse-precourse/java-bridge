@@ -3,8 +3,7 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.model.Direction.DOWN;
-import static bridge.model.Direction.UP;
+import static bridge.model.Direction.*;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.

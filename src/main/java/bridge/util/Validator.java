@@ -1,7 +1,6 @@
 package bridge.util;
 
-import static bridge.model.Command.END;
-import static bridge.model.Command.RETRY;
+import static bridge.model.Command.*;
 import static bridge.model.Direction.*;
 import static bridge.message.ErrorMessage.*;
 

@@ -3,11 +3,9 @@ package bridge.view;
 import bridge.dto.MapDTO;
 import bridge.dto.PathDTO;
 import bridge.dto.ResultDTO;
-
 import java.util.List;
 
-import static bridge.model.Direction.DOWN;
-import static bridge.model.Direction.UP;
+import static bridge.model.Direction.*;
 import static bridge.message.NoticeMessage.*;
 
 /**
