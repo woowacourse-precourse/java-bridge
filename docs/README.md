@@ -17,6 +17,7 @@
     - [ ] 다리를 생성한다. - BridgeMaker#makeBridge()
       - [ ] 한 칸마다 위, 아래 랜덤으로 정한다. - BridgeNumberGenerator#generate()
   - [ ] 게임이 끝날때까지 게임을 진행한다. - GameSimulator#startGame()
+    - [ ] 다리를 건넜는지 체크한다. - BridgeGame#checkCrossingBridge()
     - [ ] 다리를 이동한다. - BridgeGame#move()
       - [ ] 다리와 일치하는 이동인지 체크한다. - LifeGuard#checkSafety
   - [ ] 게임오버가 되었다. - BridgeGame#gameover()
