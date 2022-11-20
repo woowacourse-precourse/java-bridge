@@ -14,4 +14,12 @@ public class Bridge {
         return bridge;
     }
 
+    public boolean canGo(BridgeMoveValue bridgeMoveValue, int turnCount) {
+        String bridgeValue = this.bridge.get(turnCount);
+        if (bridgeMoveValue.getStringIdentifier()
+                .equals(bridgeValue)) {
+            return true;
+        }
+        return false;
+    }
 }
