@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- * OutputView의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
+ * OutputView 의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
  * 값 출력을 위해 필요한 메서드를 추가할 수 있다.
  */
 public class OutputView {
@@ -44,12 +44,12 @@ public class OutputView {
         return "[   ]";
     }
     public String makeFirstLineMiddle(BridgeGame bridgeGame) {
-        String line = "";
+        StringBuilder line = new StringBuilder();
         List<String> bridge = bridgeGame.getBridge();
         for(int i = 0; i < bridgeGame.getCurrentPosition(); i++) {
-            line += convertToResultForFirstLine(bridge.get(i));
+            line.append(convertToResultForFirstLine(bridge.get(i))) ;
         }
-        return line;
+        return line.toString();
     }
     public String convertToResultForFirstLine(String move) {
         if(move.equals("U")) {
@@ -85,12 +85,12 @@ public class OutputView {
         return "[   ]";
     }
     public String makeSecondLineMiddle(BridgeGame bridgeGame) {
-        String line = "";
+        StringBuilder line = new StringBuilder();
         List<String> bridge = bridgeGame.getBridge();
         for(int i = 0; i < bridgeGame.getCurrentPosition(); i++) {
-            line += convertToResultForSecondLine(bridge.get(i));
+            line.append(convertToResultForSecondLine(bridge.get(i)));
         }
-        return line;
+        return line.toString();
     }
     public String convertToResultForSecondLine(String move) {
         if(move.equals("D")) {

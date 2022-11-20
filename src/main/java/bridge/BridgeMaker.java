@@ -15,22 +15,21 @@ public class BridgeMaker {
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
-    public int requestReadBridegeSize() {
+    public int requestReadBridgeSize() {
         InputView inputView = new InputView();
         int number = inputView.readBridgeSize();
         try {
             isValid(number);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            number = requestReadBridegeSize();
+            number = requestReadBridgeSize();
         }
         return number;
     }
-    public boolean isValid(int number) {
+    public void isValid(int number) {
         if(!(3<=number && number <= 20)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_VALID_RANGE.toString());
         }
-        return true;
     }
 
     /**

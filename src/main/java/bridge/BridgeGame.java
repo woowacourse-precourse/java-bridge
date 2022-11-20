@@ -23,7 +23,7 @@ public class BridgeGame {
     }
 
     public void requestBridge() {
-        int bridgeSize = bridgeMaker.requestReadBridegeSize();
+        int bridgeSize = bridgeMaker.requestReadBridgeSize();
         bridge = bridgeMaker.makeBridge(bridgeSize);
         System.out.println(bridge);
     }
@@ -33,16 +33,16 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move() {
+    public void move() {
         currentPosition++;
         String moveCommand = bridgePlay.requestReadMoving();
         if(!bridge.get(currentPosition).equals(moveCommand)) {
-            return success = false;
+            success = false;
+            return;
         }
         if(currentPosition == bridge.size()-1) {
             complete = true;
         }
-        return true;
     }
 
     /**
