@@ -75,19 +75,39 @@ class BridgeMonitorTest {
         }
     }
 
-    @DisplayName("실패한 이동 기록을 제거한다.")
-    @Test
-    void should_DeleteRecordOfWrongMoving_When_Retry() {
-        // given
-        BridgeMonitor bridgeMonitor = new BridgeMonitor();
-        bridgeMonitor.record(UPPER_SIDE, ON_WAY);
-        bridgeMonitor.record(LOWER_SIDE, FAIL);
-        String bridgePictureBefore = bridgeMonitor.getPicture();
-        // when
-        bridgeMonitor.turnBackOnce();
-        String bridgePictureAfter = bridgeMonitor.getPicture();
-        // then
-        assertThat(bridgePictureBefore).isEqualTo("[ O |   ]" + "\n" + "[   | X ]");
-        assertThat(bridgePictureAfter).isEqualTo("[ O ]" + "\n" + "[   ]");
+    @DisplayName("이동 기록을 1회 되돌린다.")
+    @Nested
+    class turnBackMoving {
+
+        @DisplayName("이동 1회 성공 후 이동 실패한 경우")
+        @Test
+        void should_DeleteRecordOfWrongMoving_When_FailAfterMoveOnce() {
+            // given
+            BridgeMonitor bridgeMonitor = new BridgeMonitor();
+            bridgeMonitor.record(UPPER_SIDE, ON_WAY);
+            bridgeMonitor.record(LOWER_SIDE, FAIL);
+            String bridgePictureBefore = bridgeMonitor.getPicture();
+            // when
+            bridgeMonitor.turnBackOnce();
+            String bridgePictureAfter = bridgeMonitor.getPicture();
+            // then
+            assertThat(bridgePictureBefore).isEqualTo("[ O |   ]" + "\n" + "[   | X ]");
+            assertThat(bridgePictureAfter).isEqualTo("[ O ]" + "\n" + "[   ]");
+        }
+
+        @DisplayName("시작 후 바로 이동 실패한 경우")
+        @Test
+        void should_DeleteRecordOfWrongMoving_When_FailRightAfterStart() {
+            // given
+            BridgeMonitor bridgeMonitor = new BridgeMonitor();
+            bridgeMonitor.record(LOWER_SIDE, FAIL);
+            String bridgePictureBefore = bridgeMonitor.getPicture();
+            // when
+            bridgeMonitor.turnBackOnce();
+            String bridgePictureAfter = bridgeMonitor.getPicture();
+            // then
+            assertThat(bridgePictureBefore).isEqualTo("[   ]" + "\n" + "[ X ]");
+            assertThat(bridgePictureAfter).isEqualTo("[]" + "\n" + "[]");
+        }
     }
 }
