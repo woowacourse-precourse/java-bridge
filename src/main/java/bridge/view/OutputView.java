@@ -22,6 +22,7 @@ public class OutputView {
         makeUpNdownList(bridge);
         System.out.println(String.join("",upList));
         System.out.println(String.join("",downList));
+        System.out.println();
     }
 
     private void makeUpNdownList(Bridge bridge) {
@@ -67,9 +68,7 @@ public class OutputView {
     public void printResult(int tryCount, Bridge bridge) {
         System.out.println(OutputMessage.RESULT);
         printMap(bridge);
-        System.out.println();
-        boolean allDone = (bridge.getBridgeSpaces().get(bridge.getBridgeSpaces().size()-1).getMyMoved() == Moved.CAN);
-        if (allDone) {
+        if (bridge.getBridgeSpaces().get(bridge.getBridgeSpaces().size()-1).getMyMoved() == Moved.CAN) {
             System.out.println("게임 성공 여부: 성공");
             System.out.println("총 시도한 횟수: "+tryCount);
             return;
@@ -78,6 +77,7 @@ public class OutputView {
         System.out.println("총 시도한 횟수: "+tryCount);
 
     }
+
 
     public void printStartGame() {
         System.out.println(OutputMessage.START_GAME);

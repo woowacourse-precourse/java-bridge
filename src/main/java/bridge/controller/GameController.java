@@ -24,18 +24,22 @@ public class GameController {
 
     public void playGame() {
         int tryCount = 0;
-        boolean allDone = false;
         informStart();
         buildBridge();
+        tryCount = doRepeatBridgeGame();
+        printResult(tryCount,bridge);
+    }
+
+    private int doRepeatBridgeGame() {
+        int tryCount = 0;
         do {
             tryCount += 1;
-            bridge = bridgeGame.retry(bridge);
-            allDone = doRepeatBridgeMove();
-            if(allDone) {
+            bridge = bridgeGame.retry(bridge); // (재시도)초기화 처리
+            if (doRepeatBridgeMove()) {
                 break;
             }
         }while(askRetry());
-        printResult(tryCount,bridge);
+        return tryCount;
     }
 
     private void printResult(int tryCount, Bridge bridge) {
