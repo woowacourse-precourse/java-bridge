@@ -14,7 +14,7 @@ class ValidatorTest {
     @ParameterizedTest
     void validateForRangeException1(Integer input) {
         assertThatThrownBy(() -> {
-            if (input < MIN_BRIDGE_SIZE || input > MAX_BRIDGE_SIZE) {
+            if (input < Validator.MIN_BRIDGE_SIZE || input > Validator.MAX_BRIDGE_SIZE) {
                 throw new IllegalArgumentException(ERROR_MESSAGE + OUT_OF_RANGE_ERROR_MESSAGE);
             }
         })
@@ -27,7 +27,7 @@ class ValidatorTest {
     @ParameterizedTest
     void validateForRangeException2(Integer input) {
         Throwable t = catchThrowable(() -> {
-            if (input < MIN_BRIDGE_SIZE || input > MAX_BRIDGE_SIZE) {
+            if (input < Validator.MIN_BRIDGE_SIZE || input > Validator.MAX_BRIDGE_SIZE) {
                 throw new IllegalArgumentException(ERROR_MESSAGE + OUT_OF_RANGE_ERROR_MESSAGE);
             }
         });
