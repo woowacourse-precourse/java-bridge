@@ -1,4 +1,4 @@
-package bridge;
+package bridge.model;
 
 import bridge.views.OutputView;
 

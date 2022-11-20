@@ -1,17 +1,16 @@
 package bridge.views;
 
-import bridge.ValidityCheck;
+import bridge.model.ValidityCheck;
 import camp.nextstep.edu.missionutils.Console;
 
-import static bridge.enums.DorU.DOWN;
-import static bridge.enums.DorU.UP;
+import static bridge.enums.DorU.*;
 import static bridge.enums.ErrorMessage.*;
 import static bridge.enums.Sentence.*;
 import static bridge.views.OutputView.printStartGame;
 
 public class InputView {
 
-    private static final ValidityCheck validityCheck = new ValidityCheck();
+    private final static ValidityCheck validityCheck = new ValidityCheck();
     private final static String EXIT = "Q";
     private final static String RESTART = "R";
 
@@ -34,9 +33,6 @@ public class InputView {
         return inputDorU;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     public String getExitOrRestart() {
         System.out.println(RESTART_OF_END.getValue());
         String exitOrRestart = Console.readLine();

@@ -1,5 +1,9 @@
 package bridge;
 
+import bridge.controller.GameController;
+import bridge.model.Moving;
+import bridge.model.ReEnter;
+
 public class BridgeGame {
 
     public static boolean move(String computer, String userInput) {

@@ -1,11 +1,16 @@
-package bridge;
+package bridge.controller;
 
+import bridge.BridgeGame;
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.model.Moving;
+import bridge.model.ReEnter;
 import bridge.views.OutputView;
 
 import java.util.List;
 
-import static bridge.enums.Sentence.RESULT;
-import static bridge.enums.Sentence.returnSuccessOrFailure;
+import static bridge.enums.Sentence.*;
 
 public class GameController {
 
@@ -23,9 +28,9 @@ public class GameController {
 
     public void gamingSet(List<String> bridge) {
         TRY_COUNT++;
-        for (String s : bridge) {
+        for (int stage = 0; stage < bridge.size(); stage++) {
             String userMoveInput = reEnter.reGetMoveString();
-            moving.moving(s, userMoveInput);
+            moving.moving(bridge.get(stage), userMoveInput);
             Moving.printMoving();
             if (moving.checkWrong()) {
                 return;
