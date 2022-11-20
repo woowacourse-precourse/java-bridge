@@ -16,6 +16,10 @@ public class BridgeGame {
     private int location;
     private int retryCount;
 
+    public int getRetryCount(){
+        return retryCount;
+    }
+
     public BridgeGame(int size){
         this.location=-1;
         this.retryCount=1;
