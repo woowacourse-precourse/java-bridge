@@ -1,5 +1,7 @@
 package bridge.gamebridge;
 
+import static bridge.config.ExceptionMessage.EMPTY_ANSWER_BRIDGE;
+
 import bridge.domain.Bridge;
 import bridge.option.Move;
 import bridge.result.Result;
@@ -20,6 +22,7 @@ public class GameBridge {
     }
 
     public Result insertMove(Move move) {
+        validate();
         Bridge insertedBridge = insertMoveInPlayerBridge(move);
         return answerBridge.checkBridge(insertedBridge);
     }
@@ -28,15 +31,21 @@ public class GameBridge {
         return playerBridge;
     }
 
-    public Bridge insertMoveInPlayerBridge(Move move) {
+    public void clearPlayerBridge() {
+        playerBridge.clear();
+    }
+
+    private void validate() {
+        if (answerBridge == null) {
+            throw new IllegalArgumentException(EMPTY_ANSWER_BRIDGE.toString());
+        }
+    }
+
+    private Bridge insertMoveInPlayerBridge(Move move) {
         if (playerBridge.isEmpty()) {
             return moveInEmptyBridge(move);
         }
         return moveSquare(move);
-    }
-
-    public void clearPlayerBridge() {
-        playerBridge.clear();
     }
 
     private Bridge moveSquare(Move move) {

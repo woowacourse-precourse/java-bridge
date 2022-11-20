@@ -7,7 +7,6 @@ import static bridge.result.GameStatus.SUCCESS;
 import bridge.domain.Bridge;
 import bridge.result.GameStatus;
 import bridge.result.Result;
-import java.util.List;
 
 public class AnswerBridge {
 
@@ -24,7 +23,7 @@ public class AnswerBridge {
     private GameStatus determineGameStatus(Bridge otherBridge) {
         if (bridge.equals(otherBridge)) {
             return SUCCESS;
-        } else if (this.bridge.isPassableBridge(otherBridge)) {
+        } else if (bridge.isPassableBridge(otherBridge)) {
             return PROGRESS;
         }
         return FAIL;
