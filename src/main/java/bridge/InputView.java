@@ -10,11 +10,16 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public int readBridgeSize() throws IllegalArgumentException {
         OutputView.printStart();
         System.out.println("\n다리의 길이를 입력해주세요.");
-        bridge_size = Integer.parseInt(Console.readLine());
-        if (bridge_size < 3 || bridge_size > 20){
+        try {
+            bridge_size = Integer.parseInt(Console.readLine());
+            if (bridge_size < 3 || bridge_size > 20){
+                System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException();
+            }
+        } catch(NumberFormatException e) {
             System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
             throw new IllegalArgumentException();
         }
@@ -24,7 +29,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public String readMoving() throws IllegalArgumentException{
         System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
         String moving = Console.readLine();
         if (!(moving.equals("U")) && !(moving.equals("D"))){
@@ -37,7 +42,7 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public String readGameCommand() throws IllegalArgumentException {
         System.out.println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
         String game_command = Console.readLine();
         if (!(game_command.equals("R")) && !(game_command.equals("Q"))){
