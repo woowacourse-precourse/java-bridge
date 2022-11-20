@@ -1,10 +1,8 @@
 package bridge.view.output;
 
 import bridge.domain.BridgeState;
-import bridge.domain.Constants;
 
-import static bridge.domain.Constants.CLOSE_SQUARE_BRACKETS;
-import static bridge.domain.Constants.OPEN_SQUARE_BRACKETS;
+import static bridge.domain.Constants.*;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
