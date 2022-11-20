@@ -23,6 +23,10 @@ public class BridgeGame {
         boolean isOnSafeSpot = bridge.isSafeSpot(++currentSpot, spotInfo);
         result.addMovementOnLastMovementRecord(spotInfo);
 
+        if(!isOnSafeSpot) {
+            result.makeResultFail();
+        }
+
         if(isOnSafeSpot && currentSpot == bridge.getBridgeLength()) {
             result.makeResultSuccess();
         }
