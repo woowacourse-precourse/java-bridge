@@ -5,8 +5,11 @@ import static bridge.constant.GameCommand.RETRY;
 import static bridge.constant.GameStatus.END;
 import static bridge.constant.GameStatus.FAIL;
 import static bridge.constant.GameStatus.ON_WAY;
+import static bridge.constant.Moving.LOWER_SIDE;
+import static bridge.constant.Moving.UPPER_SIDE;
 
 import bridge.constant.GameStatus;
+import bridge.constant.Moving;
 import java.util.List;
 
 /**
@@ -31,6 +34,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public String move(String moving) {
+        validateMoving(moving);
         GameStatus gameStatusAfterMoving = this.bridgeMover.go(moving);
         this.gameStatus = gameStatusAfterMoving;
         this.bridgeMonitor.record(moving, gameStatusAfterMoving);
@@ -75,5 +79,14 @@ public class BridgeGame {
 
     public int getTryCount() {
         return this.tryCount;
+    }
+
+    private void validateMoving(String moving) {
+        if (moving.equals(UPPER_SIDE) || moving.equals(LOWER_SIDE)) {
+            return;
+        }
+        throw new IllegalArgumentException(String.format(
+                "[ERROR] 위로 이동하려면 \"%s\", 아래로 이동하려면 \"%s\"를 입력하세요.", UPPER_SIDE, LOWER_SIDE
+        ));
     }
 }

@@ -61,7 +61,7 @@
 - [x] 이동 현황 반환
 - [x] 총 시도한 횟수 반환
 - [ ] 유효성 검사
-  - [ ] 이동할 방향(moving)
+  - [x] 이동할 방향(moving)
   - [ ] 게임 재시작 여부(game command)
 
 ### BridgeMover
