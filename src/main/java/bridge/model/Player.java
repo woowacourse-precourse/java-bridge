@@ -25,4 +25,8 @@ public class Player {
     public String inputMove() {
         return InputView.readMoving();
     }
+
+    public void move() {
+        this.currentIndex++;
+    }
 }

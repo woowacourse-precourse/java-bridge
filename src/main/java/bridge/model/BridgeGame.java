@@ -27,6 +27,7 @@ public class BridgeGame {
     public boolean move() {
         String nextLocation = player.inputMove();
         if (bridge.ableToMove(nextLocation, player.getCurrentIndex() + 1)) {
+            player.move();
             return true;
         }
         return false;
