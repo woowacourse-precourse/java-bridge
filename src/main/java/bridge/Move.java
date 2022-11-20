@@ -1,16 +1,16 @@
 package bridge;
 
 public enum Move {
-    D(0),
-    U(1);
+    D(1),
+    U(0);
 
-    private final int order;
+    private final int location;
 
-    Move(int order) {
-        this.order = order;
+    Move(int location) {
+        this.location = location;
     }
 
-    public int getOrder() {
-        return order;
+    public int getLocation() {
+        return location;
     }
 }
