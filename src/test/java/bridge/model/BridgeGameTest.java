@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.*;
 
@@ -35,5 +36,19 @@ public class BridgeGameTest {
 
         //then
         Assertions.assertEquals(expectedResult,bridgeGame.getRetryCount());
+    }
+
+    @DisplayName("다리 길이 끝에 도달 체크 기능 테스트")
+    @Test
+    void generateEndPoint(){
+        //given
+        bridgeGame = new BridgeGame(1);
+        bridgeGame.move("U");
+
+        //when
+        boolean found = bridgeGame.checkEndPoint();
+
+        //then
+        Assertions.assertEquals(true,found);
     }
 }
