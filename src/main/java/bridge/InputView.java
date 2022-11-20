@@ -33,17 +33,10 @@ public class InputView {
         return moveTO;
     }
 
-    public boolean readRestart() {
+    public boolean readGameCommand() {
         String restart = Console.readLine();
         validateOfRestart(restart);
         return restart.equals("R");
-    }
-
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public String readGameCommand() {
-        return null;
     }
 
     private void validateOfBridgeLength(int bridgelength) {
@@ -66,7 +59,4 @@ public class InputView {
             throw new IllegalArgumentException();
         }
     }
-
-
-
     }

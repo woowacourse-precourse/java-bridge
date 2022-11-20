@@ -15,9 +15,6 @@ public class BridgeGame {
         bridge = new Bridge(bridgemaker.makeBridge(lengthBridge));
         while (state) {
             state = move();
-            if (!state) {
-                state = retry();
-            }
         }
     }
 
@@ -29,7 +26,7 @@ public class BridgeGame {
     public boolean move() {
         String moveTo = input.readMoving();
         if (!bridge.applyMove(moveTo)) {
-            retry();
+            return retry(moveTo);
         };
         return true;
     }
@@ -39,14 +36,14 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean retry() {
+    public boolean retry(String moveTo) {
         OutputView.messageRestart();
-        boolean restart = input.readRestart();
+        boolean restart = input.readGameCommand();
         if (!restart) {
-            // 최종 게임 결과
-            OutputView.printResult();
-            // 게임 성공 여부: 실패
-            // 총 시도한 횟수: 1
+            OutputView.printResult(bridge.getBridgeNow(), false, moveTo, bridge.getCountTotal());
+        }
+        if (restart) {
+            bridge.clearBridgeNow();
         }
         return restart;
     }

@@ -11,34 +11,25 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap(List<String> bridgeNow, boolean flag) {
+    public static void printMap(List<String> bridgeNow, boolean flag, String moveTo) {
         StringBuilder UpStep = new StringBuilder("[ ");
         StringBuilder DownStep = new StringBuilder("[ ");
         for (String s : bridgeNow) {
-            if ((s.equals("1")) && (flag)) {
+            if (s.equals("1")) {
                 UpStep.append("O | ");
                 DownStep.append("  | ");
             }
-            if ((s.equals("0")) && (flag)) {
+            if (s.equals("0")) {
                 UpStep.append("  | ");
                 DownStep.append("O | ");
             }
-            if ((s.equals("1")) && (!flag)) {
-                UpStep.append("X | ");
-                DownStep.append("  | ");
-            }
-            if ((s.equals("0")) && (!flag)) {
-                UpStep.append("  | ");
-                DownStep.append("X | ");
-            }
         }
-        UpStep.deleteCharAt(UpStep.length() - 1);
-        UpStep.deleteCharAt(UpStep.length() - 1);
-        DownStep.deleteCharAt(DownStep.length() -1);
-        DownStep.deleteCharAt(DownStep.length() -1);
-
-        System.out.println(UpStep + "]");
-        System.out.println(DownStep + "]");
+        if (flag) {
+            continueRound(UpStep, DownStep);
+        }
+        if (!flag) {
+            overRound(UpStep, DownStep, moveTo);
+        }
     }
 
     /**
@@ -46,8 +37,16 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult() {
+    public static void printResult(List<String> bridgeNow, boolean flag, String moveTo, int totalCount) {
         System.out.println("최종 게임 결과");
+        printMap(bridgeNow, flag, moveTo);
+        if (flag) {
+            System.out.println("게임 성공 여부: 성공");
+        }
+        if (!flag) {
+            System.out.println("게임 성공 여부: 실패");
+        }
+        System.out.println("총 시도한 횟수: " + totalCount);
     }
 
     public static void messageGameStart() {
@@ -64,5 +63,19 @@ public class OutputView {
 
     public static void messageRestart() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+    }
+
+    private static void continueRound(StringBuilder UpStep, StringBuilder DownStep) {
+        System.out.println(UpStep.substring(0,UpStep.length() - 3) + " ]");
+        System.out.println(DownStep.substring(0,DownStep.length() - 3) + " ]");
+    }
+
+    private static void overRound(StringBuilder UpStep, StringBuilder DownStep, String moveTo) {
+        if (moveTo.equals("U")) {
+            System.out.println(UpStep.substring(0,UpStep.length() - 4) + "X ]");
+            System.out.println(DownStep.substring(0,DownStep.length() - 2) + "]");}
+        if (moveTo.equals("D")) {
+            System.out.println(UpStep.substring(0,UpStep.length() - 2) + "]");
+            System.out.println(DownStep.substring(0,DownStep.length() - 4) + "X ]");}
     }
 }

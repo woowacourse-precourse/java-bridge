@@ -23,11 +23,10 @@ public class Bridge {
             bridgeNow.add("0");
         }
         if(!checkSucces()) {
-            OutputView.printMap(bridgeNow, false);
+            OutputView.printMap(bridgeNow, false, moveTo);
             return false;
         }
-        OutputView.printMap(bridgeNow, true);
-
+        OutputView.printMap(bridgeNow, true, moveTo);
         return true;
 
     }
@@ -45,5 +44,15 @@ public class Bridge {
         return true;
     }
 
-//    public void get
+    public void clearBridgeNow() {
+        bridgeNow.clear();
+    }
+
+    public List<String> getBridgeNow() {
+        return bridgeNow;
+    }
+
+    int getCountTotal() {
+        return countTotal;
+    }
 }
