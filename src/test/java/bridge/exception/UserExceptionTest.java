@@ -24,4 +24,10 @@ class UserExceptionTest {
         assertThatThrownBy(() -> UserException.movingException("T"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 재시도_입력_예외_테스트() {
+        assertThatThrownBy(() -> UserException.reGameException("T"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
