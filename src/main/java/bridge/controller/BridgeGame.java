@@ -3,6 +3,7 @@ package bridge.controller;
 import bridge.domain.Bridge;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeRandomNumberGenerator;
+import bridge.domain.Result;
 import bridge.util.Validator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -16,10 +17,12 @@ public class BridgeGame {
     private OutputView outputView;
     private InputView inputView;
     private Bridge bridge;
+    private Result result;
 
     public BridgeGame(){
         this.outputView=new OutputView();
         this.inputView=new InputView();
+        this.result=new Result();
     }
     public void gameStart(){
         outputView.printStartGame();
@@ -43,7 +46,7 @@ public class BridgeGame {
      */
     public void move() {
         String moving=inputView.readMoving();
-        bridge.getMoveResult(moving);
+        result.addResult(moving, bridge.getMoveResult(moving));
     }
 
     /**
