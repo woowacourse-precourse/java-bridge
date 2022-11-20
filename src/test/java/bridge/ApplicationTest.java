@@ -55,6 +55,15 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 다리_생성_테스트2(){
+        BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
+        List<String> bridge = bridgeMaker.makeBridge(3);
+        if (!bridge.contains("D")){assertThat(bridge).contains("U");}
+        if (!bridge.contains("U")){assertThat(bridge).contains("D");}
+    }
+
 
     @Override
     protected void runMain() {
