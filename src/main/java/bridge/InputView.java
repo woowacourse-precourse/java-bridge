@@ -49,10 +49,13 @@ public class InputView {
         }
     }
 
-    public String readGameCommand() {
+    public boolean readGameCommand() {
         String command = Console.readLine();
         validateCommand(command);
-        return command;
+        if(command.equals("R")) {
+            return true;
+        }
+        return false;
     }
 
     private void validateCommand(String command) {
