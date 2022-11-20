@@ -1,6 +1,6 @@
 package controller;
 
-import constant.Number;
+import constant.NumberConstant;
 import generator.BridgeRandomNumberGenerator;
 import java.util.ArrayList;
 import model.BridgeGame;
@@ -24,8 +24,8 @@ public class BridgeController {
 
     public static List<List<String>> init() {
         List<List<String>> bothSide = new ArrayList<>();
-        List<String> downSide = new ArrayList<>(Number.BRIDGE_SIZE_END_INCLUSIVE.getNumber());
-        List<String> upSide = new ArrayList<>(Number.BRIDGE_SIZE_END_INCLUSIVE.getNumber());
+        List<String> downSide = new ArrayList<>(NumberConstant.BRIDGE_SIZE_END_INCLUSIVE.getConstant());
+        List<String> upSide = new ArrayList<>(NumberConstant.BRIDGE_SIZE_END_INCLUSIVE.getConstant());
 
         bothSide.add(downSide);
         bothSide.add(upSide);
