@@ -8,9 +8,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import bridge.model.domain.FootPrint;
-import bridge.model.domain.Map;
-
 class MapTest {
 
 	static Map map = new Map();
@@ -26,9 +23,6 @@ class MapTest {
 		map.drawMap(footPrints);
 		downstairs.append(down.getFootPrint());
 		upstairs.append(up.getFootPrint());
-
-		System.out.printf("[%s]%n", map.getDownstairs());
-		System.out.printf("[%s]%n", map.getUpstairs());
 
 		assertEquals(map.getDownstairs(), downstairs.substring(0, downstairs.length() - 1));
 		assertEquals(map.getUpstairs(), upstairs.substring(0, upstairs.length() - 1));
