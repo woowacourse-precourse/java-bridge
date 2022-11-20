@@ -13,9 +13,7 @@ public final class GameRunner {
     }
 
     public static void run(GameStatus gameStatus) {
-        InputView inputView = new InputView(printConsumer());
-        OutputView outputView = new OutputView(printConsumer());
-        IOViewManager ioViewManager = new IOViewManager(inputView, outputView);
+        IOViewManager ioViewManager = createIOViewManager(System.out::println);
         GameController controller = new GameController(ioViewManager);
 
         while (gameStatus.isPlayable()) {
@@ -23,7 +21,10 @@ public final class GameRunner {
         }
     }
 
-    private static Consumer<String> printConsumer() {
-        return System.out::println;
+    private static IOViewManager createIOViewManager(Consumer<String> print) {
+        InputView inputView = new InputView(print);
+        OutputView outputView = new OutputView(print);
+
+        return new IOViewManager(inputView, outputView);
     }
 }
