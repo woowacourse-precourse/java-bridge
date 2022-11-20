@@ -16,7 +16,7 @@ public class BridgeTest {
     @Test
     void 특정_데크_특정_방향이_이동가능한지_알_수_있다() {
         List<Direction> bridgeDirections = List.of(UPPER, LOWER, UPPER, LOWER, UPPER);
-        Bridge bridge = new Bridge(getCapitalLetters(bridgeDirections));
+        Bridge bridge = Bridge.from(getCapitalLetters(bridgeDirections));
 
         assertThat(bridge.isMovable(new Position(1), LOWER)).isTrue();
     }
@@ -24,7 +24,7 @@ public class BridgeTest {
     @Test
     void 잘못된_위치는_이동가능하지않다() {
         List<Direction> bridgeDirections = List.of(UPPER, LOWER, UPPER, LOWER, UPPER);
-        Bridge bridge = new Bridge(getCapitalLetters(bridgeDirections));
+        Bridge bridge = Bridge.from(getCapitalLetters(bridgeDirections));
         int bridgeSize = bridgeDirections.size();
 
         assertThat(bridge.isMovable(new Position(bridgeSize), LOWER)).isFalse();

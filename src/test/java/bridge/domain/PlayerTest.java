@@ -17,7 +17,7 @@ public class PlayerTest {
     @Test
     void 다리를_이동할_수_있다() {
         List<Direction> bridgeDirections = List.of(UPPER, LOWER, LOWER, LOWER, UPPER);
-        Bridge bridge = new Bridge(getCapitalLetters(bridgeDirections));
+        Bridge bridge = Bridge.from(getCapitalLetters(bridgeDirections));
 
         Player player = new Player(bridge);
         assertThat(player.moveNext(UPPER)).isTrue();
@@ -28,7 +28,7 @@ public class PlayerTest {
     @Test
     void 다리_끝에_도달했는지_알_수_있다() {
         List<Direction> bridgeDirections = Collections.emptyList();
-        Bridge bridge = new Bridge(getCapitalLetters(bridgeDirections));
+        Bridge bridge = Bridge.from(getCapitalLetters(bridgeDirections));
 
         Player player = new Player(bridge);
 

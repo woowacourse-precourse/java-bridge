@@ -10,10 +10,18 @@ public class Bridge {
 
     private final List<Direction> directions;
 
-    public Bridge(List<String> capitalLetters) {
-        this.directions = capitalLetters.stream()
+    private Bridge(List<Direction> directions) {
+        this.directions = directions;
+    }
+
+    public static Bridge from(List<String> capitalLetters) {
+        return new Bridge(capitalLetters.stream()
                 .map(Direction::from)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
+    }
+
+    static Bridge fromDirections(List<Direction> directions) {
+        return new Bridge(directions);
     }
 
     public boolean isMovable(Position position, Direction direction) {
