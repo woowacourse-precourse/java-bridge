@@ -36,6 +36,7 @@ public class BridgeGame {
             end = move(size, bridge, end);
             //TODO 재시도 여부 입력
             //종료면 end = true;
+            inputView.readGameCommand();
             if (end){
                 break;
             }
