@@ -1,11 +1,6 @@
 package bridge.game;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.RETURNS_MOCKS;
-import static org.mockito.Mockito.mockConstruction;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.withSettings;
 
 import bridge.BridgeMaker;
 import bridge.dto.BridgeGameDto;
@@ -19,7 +14,7 @@ import org.mockito.MockedConstruction;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class BridgeGameTest {
+public class BridgeGameTest extends BridgeGameTestTool{
 
     @ParameterizedTest(name = "move test Case {index}")
     @ArgumentsSource(MovingTestData.class)
@@ -63,14 +58,14 @@ public class BridgeGameTest {
 
     @ParameterizedTest(name = "isContinue test Case {index}")
     @ArgumentsSource(IsContinueTestData.class)
-    void isContinueTest(List<String> bridge, List<String> movingRoute, boolean excepted) {
+    void isContinueTest(List<String> bridge, List<String> movingRoute, boolean expected) {
         try (MockedConstruction<BridgeMaker> mockBridgeMaker = mockedBridgeMaker(bridge)) {
             BridgeGame bridgeGame = new BridgeGame(bridge.size());
             moveByMovingRoute(movingRoute, bridgeGame);
 
             boolean result = bridgeGame.isContinue();
 
-            assertThat(result).isEqualTo(excepted);
+            assertThat(result).isEqualTo(expected);
         }
     }
 
@@ -125,21 +120,5 @@ public class BridgeGameTest {
                     Arguments.of(List.of("U","U","D","D"), List.of("U","U","D","U"), false)
             );
         }
-    }
-
-    MockedConstruction<BridgeMaker> mockedBridgeMaker(List<String> bridge) {
-        return mockConstruction(BridgeMaker.class,
-                withSettings().defaultAnswer(RETURNS_MOCKS),
-                (mock, context) -> {
-                    when(mock.makeBridge(anyInt())).thenReturn(bridge);
-                });
-    }
-
-    BridgeGameDto moveByMovingRoute(List<String> movingRoutes, BridgeGame bridgeGame) {
-        BridgeGameDto bridgeGameDto = null;
-        for (String movingRoute : movingRoutes) {
-            bridgeGameDto = bridgeGame.move(movingRoute);
-        }
-        return bridgeGameDto;
     }
 }
