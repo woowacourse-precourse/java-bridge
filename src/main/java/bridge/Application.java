@@ -21,6 +21,9 @@ public class Application {
             outputView.printMap(bridgeGame.downBridge);
             if(!gameChecked){
                 String userGameCommand = inputView.readGameCommand();
+                if (userGameCommand.equals("R")){
+
+                }
             }
         }while (!bridgeGame.compareMoveCount(brideSize));
     }
