@@ -80,4 +80,19 @@ class BridgePasserTest {
         boolean actual = bridgePasser.isBridgeEnd();
         assertThat(actual).isFalse();
     }
+
+    @Test
+    void 다리_초기화_테스트() {
+        bridgePasser.move();
+        bridgePasser.move();
+        bridgePasser.move();
+        bridgePasser.move();
+
+        boolean beforeStatus = bridgePasser.isBridgeEnd();
+        bridgePasser.clear();
+        boolean afterStatus = bridgePasser.isBridgeEnd();
+
+        assertThat(beforeStatus).isNotEqualTo(afterStatus);
+
+    }
 }
