@@ -17,5 +17,7 @@ public class Application {
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
 
         BridgeGame bridgeGame = new BridgeGame(bridge);
+
+        outputView.printMoveInputMessage();
     }
 }
