@@ -62,8 +62,6 @@ class BridgeMessageMakerTest {
     }
 
     private String makeBridgeMessage(StepResult... stepResults) {
-        List<StepResult> given = List.of(stepResults);
-
-        return bridgeMessageMaker.makeBridgeMessage(given);
+        return bridgeMessageMaker.makeBridgeMessage(List.of(stepResults));
     }
 }

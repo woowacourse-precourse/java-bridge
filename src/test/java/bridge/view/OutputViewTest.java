@@ -93,8 +93,7 @@ class OutputViewTest {
 
             //then
             assertThat(captor.toString())
-                    .isEqualTo("[   | O | X ]" + System.lineSeparator() + "[ O |   |   ]" +
-                            System.lineSeparator());
+                    .isEqualTo(String.format("[   | O | X ]%n" + "[ O |   |   ]%n"));
         }
     }
 
@@ -127,9 +126,7 @@ class OutputViewTest {
 
             //then
             assertThat(captor.toString())
-                    .contains("최종 게임 결과",
-                            "[ O |   | X ]",
-                            "[   | O |   ]");
+                    .contains("최종 게임 결과", "[ O |   | X ]", "[   | O |   ]");
         }
 
         @ParameterizedTest(name = "입력값 -> isFinished: {0}")

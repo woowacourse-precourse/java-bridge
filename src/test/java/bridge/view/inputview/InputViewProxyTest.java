@@ -58,10 +58,7 @@ class InputViewProxyTest {
         private InputViewInterface makeInputViewProxy(String... mockInputs) {
             InputViewInterface target = new MockInputView(mockInputs);
             InvocationHandler invocationHandler
-                    = new InputViewExceptionHandlingProxy(
-                    target,
-                    new OutputView(new BridgeMessageMaker())
-            );
+                    = new InputViewExceptionHandlingProxy(target, new OutputView(new BridgeMessageMaker()));
             return (InputViewInterface) Proxy.newProxyInstance(
                     InputViewInterface.class.getClassLoader(),
                     new Class[]{InputViewInterface.class},
