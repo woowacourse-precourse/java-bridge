@@ -36,7 +36,7 @@ class InputViewTest {
     class MovingNextInputTest extends NsTest {
         @ParameterizedTest
         @ValueSource(strings = {"u,d,UU,U ,U"})
-        void U_or_D를_입력받을때까지_입력받는지_테스트(String input) {
+        void U_또는_D를_입력받을때까지_입력받는지_테스트(String input) {
             run(input.split(","));
         }
 
@@ -48,9 +48,15 @@ class InputViewTest {
 
     @Nested
     class CommandInputTest extends NsTest {
+        @ParameterizedTest
+        @ValueSource(strings = {"r,q,RR,R ,R"})
+        void R_또는_Q를_입력받을때까지_입력받는지_테스트(String input) {
+            run(input.split(","));
+        }
+
         @Override
         public void runMain() {
-
+            inputView.readGameCommand();
         }
     }
 }
