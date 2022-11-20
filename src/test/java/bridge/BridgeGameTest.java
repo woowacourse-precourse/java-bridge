@@ -15,6 +15,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class BridgeGameTest {
     List<String> bridge = List.of("U", "U", "U", "U", "U", "U", "U");
+    List<String> invalidBridge = List.of("U", "D", "a", "kk", "U", "U", "U");
+
     BridgeGame bridgeGame;
 
     @BeforeEach
@@ -29,15 +31,6 @@ class BridgeGameTest {
     void initTest() {
         assertEquals(bridgeGame.getStatus(), PLAYING);
         assertEquals(bridgeGame.getTryCount(), 1);
-    }
-
-    @DisplayName("U, D가 아닌 다른값이면 예외")
-    @ParameterizedTest(name = "입력이 {0}이면 예외")
-    @CsvSource({"1", "2", "u", "d", "hello world"})
-    void moveTest(String input) {
-        assertThrows(IllegalArgumentException.class, () -> {
-            bridgeGame.move(input);
-        });
     }
 
     @Nested
@@ -79,4 +72,24 @@ class BridgeGameTest {
         assertEquals(bridgeGame.getTryCount(), result);
     }
 
+    @Nested
+    @DisplayName("예외 테스트")
+    class exceptionTest {
+        @DisplayName("잘못된 다리형식이 들어오면 예외")
+        @Test
+        void createWithWrongBridge() {
+            assertThrows(IllegalArgumentException.class, () -> {
+                BridgeGame game = new BridgeGame(invalidBridge);
+            });
+        }
+
+        @DisplayName("U, D가 아닌 다른값이면 예외")
+        @ParameterizedTest(name = "입력이 {0}이면 예외")
+        @CsvSource({"1", "2", "u", "d", "hello world"})
+        void moveTest(String input) {
+            assertThrows(IllegalArgumentException.class, () -> {
+                bridgeGame.move(input);
+            });
+        }
+    }
 }
