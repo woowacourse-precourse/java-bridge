@@ -14,26 +14,25 @@ public class BridgeMaker {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    public List<SlabType> makeBridge(int size) {
-        List<SlabType> bridge = new LinkedList<>();
-
+    public List<String> makeBridge(int size) {
+        List<String> bridge = new LinkedList<>();
         for (int tries = 0; tries < size; tries++) {
-            bridge.add(this.getSlabType());
+            bridge.add(this.getBridgeTypeName());
         }
-
         return bridge;
     }
+    private String getBridgeTypeName() {
+        String bridgeTypeName = SlabType
+                .build(this.bridgeNumberGenerator.generate())
+                .getTypeName();
 
-    private SlabType getSlabType() {
-        SlabType bridgeTypeName = SlabType.create(this.bridgeNumberGenerator.generate());
-        this.checkSlabValid(bridgeTypeName);
+        this.checkBridgeTypeName(bridgeTypeName);
 
         return bridgeTypeName;
     }
-
-    private void checkSlabValid(SlabType slab) {
-        if (slab.equals(SlabType.UNKNOWN)) {
-            throw new RuntimeException(LangType.get(LangType.THROW_UNKNOWN_BRIDGE_TYPE));
+    private void checkBridgeTypeName(String bridgeTypeName) {
+        if (bridgeTypeName.equals(SlabType.UNKNOWN.getTypeName())) {
+            throw new RuntimeException(LangType.get(LangType.SLAB_TYPE_IS_UNKNOWN));
         }
     }
 }
