@@ -3,8 +3,8 @@ package bridge;
 import java.util.List;
 
 public class RouteMap {
-    private final List<String> upSide;
-    private final List<String> downSide;
+    protected final List<String> upSide;
+    protected final List<String> downSide;
     private final MapFormat mapFormat = MapFormat.FORMAT;
 
     public RouteMap(List<String> upSide, List<String> downSide) {
