@@ -1,11 +1,14 @@
 package bridge;
 
+import java.util.List;
+
 public class BridgeGameSystem {
     private static final InputView inputView = new InputView();
 
     public void startBridgeGame(){
         startGame();
         int bridgeSize = getBridgeSize();
+        List<String> bridge = getBridge(bridgeSize);
     }
 
     public static void startGame(){
@@ -19,4 +22,11 @@ public class BridgeGameSystem {
             return getBridgeSize();
         }
     }
+
+    public static List<String> getBridge(int bridgeSize){
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        return bridgeMaker.makeBridge(bridgeSize);
+    }
+
 }
