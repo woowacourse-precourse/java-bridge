@@ -10,8 +10,8 @@ public class Application {
         output.printGameStart();
         output.printAskBridgeSize();
         BridgeGame newGame = new BridgeGame(newBridge.makeBridge(input.readBridgeSize()));
-        output.printAskMovement();
         while (playing) {
+            output.printAskMovement();
             playing = newGame.move(input.readMoving());
             output.printMap(newGame.bridge, newGame.moveResult);
             if (!playing) {
