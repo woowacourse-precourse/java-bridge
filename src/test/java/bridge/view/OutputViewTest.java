@@ -68,7 +68,7 @@ class OutputViewTest {
 		String userFinalResult = OutputViewConst.USER_FINAL_RESULT;
 		String userTryCountPhrase = OutputViewConst.USER_TRY_COUNT_PHRASE;
 		String result = "성공";
-		Integer count = 2;
+		Integer count = 1000;
 
 		//given
 		outputView.printResult(result, count);

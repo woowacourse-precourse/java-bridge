@@ -47,7 +47,8 @@ public class OutputView {
 	 */
 	public void printResult(String result, Integer count) {
 		System.out.println(OutputViewConst.USER_FINAL_RESULT + result);
-		System.out.println(OutputViewConst.USER_TRY_COUNT_PHRASE + count); // 여기서 string.format 이용해서 출력받기
+		System.out.println(
+			OutputViewConst.USER_TRY_COUNT_PHRASE + String.format("%d", count)); // 여기서 string.format 이용해서 출력받기
 	}
 
 	public void printError(String errorMessage) {
