@@ -21,6 +21,7 @@ public class BridgeProgram {
     }
 
     public void start(){
+        inputView.gameStart();
         BridgeGame bridgeGame = inputBridgeSize();
         StepResponseDto stepResponseDto = null;
         do {

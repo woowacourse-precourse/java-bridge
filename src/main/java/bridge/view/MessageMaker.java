@@ -63,6 +63,6 @@ public class MessageMaker implements MessageFactory{
     private String replaceFinalMessage(StringBuilder upperBridge, StringBuilder underBridge) {
         upperBridge.deleteCharAt(upperBridge.length() - 1).append(findMessage(END_LINE));
         underBridge.deleteCharAt(upperBridge.length() - 1).append(findMessage(END_LINE));
-        return upperBridge + "\n" + underBridge;
+        return upperBridge + "\n" + underBridge + "\n";
     }
 }

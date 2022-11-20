@@ -27,6 +27,6 @@ public class OutputView {
      */
     public void printResult(StepResponseDto stepResponseDto) {
         System.out.println(FINAL_GAME_RESULT);
-        System.out.println(getFinalMessage(stepResponseDto));
+        System.out.println(getFinalMessage(stepResponseDto) + "\n");
     }
 }
