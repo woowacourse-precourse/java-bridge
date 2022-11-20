@@ -2,7 +2,7 @@ package bridge.view;
 
 
 import bridge.domain.GameResult;
-import bridge.domain.State;
+import bridge.domain.BridgeState;
 import bridge.dto.BridgeDto;
 import bridge.dto.GameResultDto;
 
@@ -37,7 +37,7 @@ public class OutputView {
     }
 
     private void getMap(BridgeDto bridgeDto) {
-        for (List<State> stateOfBridge : bridgeDto.toList()) {
+        for (List<BridgeState> stateOfBridge : bridgeDto.toList()) {
             printStartOfBridge();
             printBridgeMark(stateOfBridge);
             printEndOfBridge();
@@ -45,7 +45,7 @@ public class OutputView {
         System.out.println();
     }
 
-    private void printBridgeMark(List<State> stateOfBridge) {
+    private void printBridgeMark(List<BridgeState> stateOfBridge) {
         int bound = stateOfBridge.size() - 1;
         IntStream.range(0, bound)
                 .mapToObj(i -> stateOfBridge.get(i).getMark())

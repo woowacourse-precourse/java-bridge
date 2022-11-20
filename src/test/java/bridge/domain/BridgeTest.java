@@ -51,15 +51,15 @@ class BridgeTest {
     @Test
     @DisplayName("매개변수로 입력한 값이 다리의 값과 일치하는지_일치")
     void getStateOf_true() {
-        State result = bridge.getStateOf(0, "U");
-        assertThat(result).isEqualTo(State.CORRECT);
+        BridgeState result = bridge.getStateOf(0, "U");
+        assertThat(result).isEqualTo(BridgeState.CORRECT);
     }
 
     @Test
     @DisplayName("매개변수로 입력한 값이 다리의 값과 일치하는지_불일치")
     void getStateOf_false() {
-        State result = bridge.getStateOf(0, "D");
-        assertThat(result).isEqualTo(State.WRONG);
+        BridgeState result = bridge.getStateOf(0, "D");
+        assertThat(result).isEqualTo(BridgeState.WRONG);
     }
 
 }

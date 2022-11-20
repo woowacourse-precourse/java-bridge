@@ -46,7 +46,7 @@ public class GameService {
     }
 
     public BridgeDto getRecentBridge() {
-        if(cache.isEmpty()) {
+        if (cache.isEmpty()) {
             return new BridgeDto();
         }
         return cache.get(cache.size() - 1);
@@ -55,7 +55,7 @@ public class GameService {
     private void setBridgeDto(String input) {
         BridgeDto recentDto = getRecentBridge();
 
-        State state = bridgeGame.matchRecentInput();
+        BridgeState state = bridgeGame.matchRecentInput();
         Command command = Command.getByAbbreviation(input);
 
         recentDto.setBridge(command, state);

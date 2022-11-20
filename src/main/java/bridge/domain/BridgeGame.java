@@ -40,7 +40,7 @@ public class BridgeGame {
         return MatchResult.SUCCESS;
     }
 
-    public State matchRecentInput() {
+    public BridgeState matchRecentInput() {
         int idx = myBridge.size() - 1;
         return bridge.getStateOf(idx, myBridge.get(idx));
     }

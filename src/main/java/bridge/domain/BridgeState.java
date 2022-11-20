@@ -1,13 +1,13 @@
 package bridge.domain;
 
-public enum State {
+public enum BridgeState {
     CORRECT(" O "),
     WRONG(" X "),
     NONE("   ");
 
     private String mark;
 
-    State(String mark) {
+    BridgeState(String mark) {
         this.mark = mark;
     }
 

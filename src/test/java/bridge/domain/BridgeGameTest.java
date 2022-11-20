@@ -46,15 +46,15 @@ class BridgeGameTest {
     @DisplayName("최근 선택한 다리의 결과를 반환한다_이동가능한 다리일 때")
     void matchRecentInput_Correct() {
         bridgeGame.move("U");
-        State result = bridgeGame.matchRecentInput();
-        assertThat(result).isEqualTo(State.CORRECT);
+        BridgeState result = bridgeGame.matchRecentInput();
+        assertThat(result).isEqualTo(BridgeState.CORRECT);
     }
 
     @Test
     @DisplayName("최근 선택한 다리의 결과를 반환한다_이동가능한 다리일 때")
     void matchRecentInput_Wrong() {
         bridgeGame.move("D");
-        State result = bridgeGame.matchRecentInput();
-        assertThat(result).isEqualTo(State.WRONG);
+        BridgeState result = bridgeGame.matchRecentInput();
+        assertThat(result).isEqualTo(BridgeState.WRONG);
     }
 }

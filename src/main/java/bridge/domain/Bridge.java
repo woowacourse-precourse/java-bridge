@@ -18,10 +18,10 @@ public class Bridge {
     }
 
 
-    public State getStateOf(int idx, String candidate) {
+    public BridgeState getStateOf(int idx, String candidate) {
         if (matchWithIndex(idx, candidate)) {
-            return State.CORRECT;
+            return BridgeState.CORRECT;
         }
-        return State.WRONG;
+        return BridgeState.WRONG;
     }
 }
