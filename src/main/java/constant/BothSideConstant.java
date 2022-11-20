@@ -10,7 +10,7 @@ public enum BothSideConstant {
         this.bothSideConstant = bothSideConstant;
     }
 
-    public int getBothSideConstant() {
+    public int getConstant() {
         return bothSideConstant;
     }
 }
