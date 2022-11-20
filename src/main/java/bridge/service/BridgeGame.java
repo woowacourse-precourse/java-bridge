@@ -19,10 +19,6 @@ public class BridgeGame {
         bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
-    public void newGame() {
-        player.newLife();
-    }
-
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -45,6 +41,12 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public GameStatus retry(GameStatus gameStatus) {
+        if (gameStatus == GameStatus.RETRY) {
+            player.newLife();
+            return GameStatus.PLAYING;
+        }
+
+        return GameStatus.QUIT;
     }
 }

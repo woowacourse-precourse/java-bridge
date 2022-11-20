@@ -7,7 +7,7 @@ import bridge.view.OutputView;
 
 public class BridgeGameController {
     BridgeGame bridgeGame = new BridgeGame();
-    GameStatus gameStatus;
+    GameStatus gameStatus = GameStatus.PLAYING;
 
     public void run() {
         start();
@@ -15,23 +15,16 @@ public class BridgeGameController {
     }
 
     private void play() {
-        bridgeGame.newGame();
-        gameStatus = GameStatus.PLAYING;
         while (gameStatus == GameStatus.PLAYING) {
             moveBridge();
-        }
-
-        if (gameStatus == GameStatus.FAIL) {
-            askRetry();
+            if (gameStatus == GameStatus.FAIL) {
+                askRetry();
+            }
         }
     }
 
     private void askRetry() {
-        gameStatus = InputView.printAskRetry();
-
-        if (gameStatus == GameStatus.RETRY) {
-            play();
-        }
+        gameStatus = bridgeGame.retry(InputView.printAskRetry());
     }
 
     private void moveBridge() {
