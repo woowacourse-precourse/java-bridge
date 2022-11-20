@@ -24,7 +24,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public static int readBridgeSize() {
         System.out.println(INPUT_BRIDGE_SIZE);
         String bridgeSize = Console.readLine();
         try {
@@ -40,7 +40,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public static String readMoving() {
         System.out.println(INPUT_MOVE);
         String command = Console.readLine();
         try {
@@ -55,7 +55,7 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
+    public static String readGameCommand() {
         System.out.println(INPUT_GAME_COMMAND);
         String gameCommand = Console.readLine();
         try{
@@ -73,7 +73,7 @@ public class InputView {
         }
     }
 
-    private void validateBridgeSize(int size) {
+    private static void validateBridgeSize(int size) {
         if (size < MIN_SIZE || size > MAX_SIZE) {
             throw new IllegalArgumentException(BRIDGE_SIZE_ERROR);
         }
