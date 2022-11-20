@@ -32,6 +32,7 @@ public class BridgeGameController {
     private void start() {
         outputView.printGameStartMsg();
         setUp();
+        bridgeGame.start();
     }
 
     private void setUp() {

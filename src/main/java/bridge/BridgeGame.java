@@ -12,7 +12,10 @@ public class BridgeGame {
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
-        this.bridgeGameResult = new BridgeGameResult();
+    }
+
+    public void start() {
+        bridgeGameResult.increaseTryCount();
     }
 
     public boolean move(int moveCount, String moving) {
