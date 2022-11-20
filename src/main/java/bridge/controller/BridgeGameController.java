@@ -1,8 +1,11 @@
 package bridge.controller;
 
-import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.BridgeGame;
+import bridge.domain.BridgeLane;
+import bridge.domain.BridgeMaker;
+import bridge.domain.GameCommand;
 
-import bridge.domain.*;
+import bridge.BridgeRandomNumberGenerator;
 
 public class BridgeGameController {
     private final OutputView outputView;
@@ -25,56 +28,69 @@ public class BridgeGameController {
 
     private void runGameWithoutExceptionControl() {
         printGameStartAlert();
-
-        int bridgeSize = getAndProcessBridgeLengthInput();
+        int bridgeSize = getBridgeSizeInput();
         makeRandomBridge(bridgeSize);
 
-        boolean willRetry = true;
         do {
-            BridgeLane nextMove = getAndProcessNextMovementInput();
-            bridgeGame.move(nextMove);
-            printBridgeMap();
-
-            if(bridgeGame.getStatus() == BridgeGame.Status.SUCCESS) {
-                willRetry = false;
-                continue;
-            }
-            if(bridgeGame.getStatus() == BridgeGame.Status.FAIL) {
-                GameCommand gameCommand = getAndProcessGameCommandInput();
-                if(gameCommand == GameCommand.RETRY) {
-                    bridgeGame.retry();
-                    continue;
-                }
-                if(gameCommand == GameCommand.QUIT) {
-                    willRetry = false;
-                }
-            }
-        } while(willRetry);
-
-        outputView.printResult(bridgeGame);
+            getAndProcessNextMovementInput();
+        } while(retryOrNot());
+        printGameResult();
     }
 
-    private GameCommand getAndProcessGameCommandInput() {
-        outputView.printRetryInputAlert();
-        return inputView.readGameCommand();
+    private void getAndProcessNextMovementInput() {
+        BridgeLane nextMove = getNextMovementInput();
+        bridgeGame.move(nextMove);
+        printBridgeMap();
     }
 
-    private void printBridgeMap() {
-        outputView.printMap(bridgeGame);
-    }
-
-    private BridgeLane getAndProcessNextMovementInput() {
+    private BridgeLane getNextMovementInput() {
         outputView.printNextMovementInputAlert();
         return inputView.readMoving();
     }
 
-    private void printGameStartAlert() {
-        outputView.printGameStartAlert();
+    private void printBridgeMap() {
+        outputView.printMap(bridgeGame);
+        outputView.printEmptyLine();
     }
 
-    private int getAndProcessBridgeLengthInput() {
+    private boolean retryOrNot() {
+        if(bridgeGame.getStatus() == BridgeGame.Status.SUCCESS) {
+            return false;
+        }
+        if(bridgeGame.getStatus() == BridgeGame.Status.FAIL) {
+            return getAndProcessGameCommand();
+        }
+        return true;
+    }
+
+    private boolean getAndProcessGameCommand() {
+        GameCommand gameCommand = getGameCommandInput();
+        if(gameCommand == GameCommand.RETRY) {
+            bridgeGame.retry();
+            return true;
+        }
+        return false;
+    }
+
+    private GameCommand getGameCommandInput() {
+        outputView.printRetryInputAlert();
+        return inputView.readGameCommand();
+    }
+
+    private void printGameStartAlert() {
+        outputView.printGameStartAlert();
+        outputView.printEmptyLine();
+    }
+
+    private void printGameResult() {
+        outputView.printResult(bridgeGame);
+    }
+
+    private int getBridgeSizeInput() {
         outputView.printBridgeSizeInputAlert();
-        return inputView.readBridgeSize();
+        int bridgeSize =  inputView.readBridgeSize();
+        outputView.printEmptyLine();
+        return bridgeSize;
     }
 
     private void makeRandomBridge(int bridgeSize) {
