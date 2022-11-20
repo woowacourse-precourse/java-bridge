@@ -12,7 +12,7 @@ public class OutputView {
     private static final String BRIDGE_START ="[ ";
     private static final String BRIDGE_END =" ]";
     private static final String LAST_RESULT = "최종 게임 결과";
-    private static final String GAME_END = "게임 성공 여부";
+    private static final String GAME_END = "게임 성공 여부: ";
     private static final String WIN = "성공";
     private static final String FAIL = "실패";
     private static final String RESULT_COUNT = "총 시도한 횟수";
