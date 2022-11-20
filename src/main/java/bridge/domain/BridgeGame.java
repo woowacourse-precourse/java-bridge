@@ -68,4 +68,8 @@ public class BridgeGame {
     public boolean isSuccess() {
         return this.bridgeMover.isCrossCompletely();
     }
+
+    public String getPicture() {
+        return this.bridgeMonitor.getPicture();
+    }
 }
