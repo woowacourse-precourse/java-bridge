@@ -22,6 +22,10 @@ public class GameControll {
         gamePowerWhether = false;
     }
 
+    public void sucessGame() {
+        gameSucessWheter = true;
+    }
+
     public void initialize() {
         idx = 0;
         gamePowerWhether = true;
