@@ -96,7 +96,4 @@ public class BridgeGameController {
             outputView.printResult(bridgeGame);
         }
     }
-
-
-
 }
