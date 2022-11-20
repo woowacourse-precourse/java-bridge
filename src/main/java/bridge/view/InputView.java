@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.BridgeType;
 import bridge.util.Message;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -15,9 +16,10 @@ public class InputView {
     public int readBridgeSize() {
         outputView.printMessage(Message.BRIDGE_SIZE);
         String sizeInput = Console.readLine();
+        System.out.println();
         try {
             return Integer.parseInt(sizeInput);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(Message.ERROR_NOT_NUMBER.getMessage());
         }
     }
@@ -27,7 +29,11 @@ public class InputView {
      */
     public String readMoving() {
         outputView.printMessage(Message.MOVING_CHOOSE);
-        return Console.readLine();
+        String userMove = Console.readLine();
+        if (!(userMove.equals(BridgeType.UP.getStringCode()) || userMove.equals(BridgeType.DOWN.getStringCode()))) {
+            throw new IllegalArgumentException(Message.ERROR_MOVE.getMessage());
+        }
+        return userMove;
     }
 
     /**
