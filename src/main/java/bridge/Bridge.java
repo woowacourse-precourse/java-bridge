@@ -22,8 +22,8 @@ public class Bridge {
         return current;
     }
 
-    public int getNextPosition() {
-        return current + 1;
+    public int getNextPosition(int index) {
+        return index + 1;
     }
 
     public void move() {
@@ -44,15 +44,20 @@ public class Bridge {
     }
 
     public boolean isNextMovable(String upperOrLower) {
-        if (bridge.get(getNextPosition()).equals(upperOrLower)) {
+        if (bridge.get(getNextPosition(getCurrent())).equals(upperOrLower)) {
             return true;
         }
         return false;
     }
 
-    /**
-     *  일단 여기서 로그 메시지를 출력해본다
-     */
+    public boolean whetherFollowingEndOrNot() {
+        return getCurrent() < getBridgeEndIndex();
+    }
+
+    public int getBridgeEndIndex() {
+        return bridge.size() - 1;
+    }
+
     public void readAndMove(InputView inputView) {
 
         do {
@@ -75,14 +80,14 @@ public class Bridge {
      *  그리고 마지막 경계 검사도
      */
     public void printFailure() {
-        printUpperLine(getNextPosition(), false);
-        printLowerLine(getNextPosition(), false);
+        printUpperLine(getNextPosition(getCurrent()), false);
+        printLowerLine(getNextPosition(getCurrent()), false);
     }
 
     public void printSuccess() {
         // current + 1 까지 범위의 로그 메시지를 출력한다.
-        printUpperLine(getNextPosition(), true);
-        printLowerLine(getNextPosition(), true);
+        printUpperLine(getNextPosition(getCurrent()), true);
+        printLowerLine(getNextPosition(getCurrent()), true);
     }
 
     private void printLowerLine(int until, boolean isLastIndexMatching) {
@@ -138,4 +143,6 @@ public class Bridge {
 
         System.out.println(str);
     }
+
+
 }
