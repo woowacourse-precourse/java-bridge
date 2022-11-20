@@ -17,7 +17,7 @@ public class OutputView {
 
     private static final String selectionGuide = String.join(", ", new ArrayList<>() {{
         for (BridgeType bridge : BridgeType.values()) {
-            add(String.format("%s: %s", bridge.getPosition(), bridge.getText()));
+            add(String.format("%s: %s", bridge.getPosition(), bridge.getCommand()));
         }
     }});
 
