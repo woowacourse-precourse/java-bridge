@@ -7,11 +7,6 @@ import java.util.List;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-    private static final int DOWN_NUM = 0;
-    private static final int UP_NUM = 1;
-    private static final String DOWN_STRING = "D";
-    private static final String UP_STRING = "U";
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -28,28 +23,28 @@ public class BridgeMaker {
         }
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            randomNumToString(this.bridgeNumberGenerator.generate());
+            bridge.add(randomNumToString(this.bridgeNumberGenerator.generate()));
         }
         return bridge;
     }
 
     static String randomNumToString(int randomNum) throws IllegalStateException {
         if (isUpNum(randomNum)) {
-            return UP_STRING;
+            return Utils.UP_STRING;
         }
         if (isDownNum(randomNum)) {
-            return DOWN_STRING;
+            return Utils.DOWN_STRING;
         }
         bridgeNumberGeneratorException();
         return "";
     }
 
     private static boolean isUpNum(int num) {
-        return num == UP_NUM;
+        return num == Utils.UP_NUM;
     }
 
     private static boolean isDownNum(int num) {
-        return num == DOWN_NUM;
+        return num == Utils.DOWN_NUM;
     }
 
     private static void bridgeNumberGeneratorException() throws IllegalArgumentException {

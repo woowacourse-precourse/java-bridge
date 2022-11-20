@@ -2,14 +2,12 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
+// 예외 체크 코드 ExceptionHandler로 이동할지 생각
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
-    private static final int MIN_SIZE = 3;
-    private static final int MAX_SIZE = 20;
-    private static final String DOWN = "D";
-    private static final String UP = "U";
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -30,9 +28,8 @@ public class InputView {
         }
     }
 
-
     static boolean isValidSize(int size) {
-        return size >= MIN_SIZE && size <= MAX_SIZE;
+        return size >= Utils.MIN_SIZE && size <= Utils.MAX_SIZE;
     }
 
     /**
@@ -48,7 +45,7 @@ public class InputView {
     }
 
     static boolean isValidDirection(String dir) {
-        return dir == UP || dir == DOWN;
+        return dir.equals(Utils.UP_STRING) || dir.equals(Utils.DOWN_STRING);
     }
 
     /**

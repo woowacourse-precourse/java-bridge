@@ -1,22 +1,22 @@
 package bridge;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
-
-    private static int size;
     private static InputView userInput;
-    private static Bridge bridge;
+    private static OutputView stdout;
+    private static int size;
     private static String moving;
+    private static BridgeGame bridgeGame;
 
-    static void init () {
+    private static void init() {
         userInput = new InputView();
+        stdout = new OutputView();
         size = initBridgeSize();
-        bridge = initBridge();
+        bridgeGame = new BridgeGame(initBridge());
     }
 
-    static int readValidBridgeSize() {
+    private static int readValidBridgeSize() {
         try {
             return userInput.readBridgeSize();
         } catch (IllegalArgumentException e) {
@@ -25,21 +25,21 @@ public class Application {
         }
     }
 
-    static int initBridgeSize() {
+    private static int initBridgeSize() {
         int size = readValidBridgeSize();
-        while(size == ExceptionHandler.ERROR) {
+        while (size == ExceptionHandler.ERROR) {
             size = readValidBridgeSize();
         }
         return size;
     }
 
-    static Bridge initBridge() {
+    private static Bridge initBridge() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(size);
         return new Bridge(bridge, size);
     }
 
-    static String readValidMoving() {
+    private static String readValidMoving() {
         try {
             return userInput.readMoving();
         } catch (IllegalArgumentException e) {
@@ -48,16 +48,25 @@ public class Application {
         }
     }
 
-    static String setNextMoving() {
+    private static String setNextMoving() {
         String moving = readValidMoving();
-        while(moving == null) {
+        while (moving == null) {
             moving = readValidMoving();
         }
         return moving;
     }
 
+    private static int runBridgeGame() {
+        int state;
+        do {
+            moving = setNextMoving();
+            bridgeGame.move(moving);
+        } while((state = bridgeGame.isEnded()) == Utils.CONTINUE);
+        return state;
+    }
+
     public static void main(String[] args) {
         init();
-        setNextMoving();
+        runBridgeGame();
     }
 }
