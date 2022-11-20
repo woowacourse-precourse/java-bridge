@@ -9,7 +9,6 @@ import bridge.util.Converter;
 import bridge.util.Validator;
 import bridge.ui.InputView;
 import bridge.ui.OutputView;
-import camp.nextstep.edu.missionutils.Console;
 
 import java.util.List;
 
@@ -18,10 +17,13 @@ import static bridge.util.ErrorCode.*;
 public class BridgeGameController {
     private static final String UPSIDE = "U";
     private static final String DOWNSIDE = "D";
+    private static final String RETRY_COMMAND = "R";
+    private static final String QUIT_COMMAND = "Q";
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final Validator validator = new Validator();
+    private final Converter converter = new Converter();
     private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
@@ -34,11 +36,27 @@ public class BridgeGameController {
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         BridgeGame bridgeGame = new BridgeGame(bridge);
         getMovingInputAndMove(bridgeGame);
-        commandGame(bridgeGame);
     }
 
-    private void commandGame(BridgeGame bridgeGame) {
-        askToRetryOrQuit();
+    private void commandGame(BridgeGame bridgeGame, String commandLetter) {
+        if (commandLetter.equals(RETRY_COMMAND)) {
+            bridgeGame.retry();
+            getMovingInputAndMove(bridgeGame);
+        }
+    }
+
+    private void finishGame(BridgeGame bridgeGame, boolean successTf) {
+        int totalTrials = bridgeGame.getTrials();
+
+        List<String> uRecords = bridgeGame.getRecords(UPSIDE);
+        List<String> dRecords = bridgeGame.getRecords(DOWNSIDE);
+        MapMaker mapMaker = new MapMaker(uRecords, dRecords);
+
+        String upsideMap = mapMaker.makeUpsideMap();
+        String downsideMap = mapMaker.makeDownsideMap();
+        String totalResult = converter.convertBooleanToString(successTf);
+
+        outputView.printResult(upsideMap, downsideMap, totalResult, totalTrials);
     }
 
     private boolean playGame(BridgeGame bridgeGame, String moving) {
@@ -69,24 +87,29 @@ public class BridgeGameController {
     private void getMovingInputAndMove(BridgeGame bridgeGame) {
         try {
             boolean succeed = true;
-            while (succeed) {
+            while (succeed && !bridgeGame.isArrived()) {
                 String moving = inputView.readMoving();
                 validateMoving(moving);
                 succeed = playGame(bridgeGame, moving);
             }
+            if (!bridgeGame.isArrived()) {
+                askToRetryOrQuit(bridgeGame);
+            }
+            finishGame(bridgeGame, succeed);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(INVALID_MOVING);
             getMovingInputAndMove(bridgeGame);
         }
     }
 
-    private void askToRetryOrQuit() {
+    private void askToRetryOrQuit(BridgeGame bridgeGame) {
         try {
-            String letter = inputView.readGameCommand();
-            validateCommand(letter);
+            String commandLetter = inputView.readGameCommand();
+            validateCommand(commandLetter);
+            commandGame(bridgeGame, commandLetter);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(INVALID_COMMAND);
-            askToRetryOrQuit();
+            askToRetryOrQuit(bridgeGame);
         }
     }
 
