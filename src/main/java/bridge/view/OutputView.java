@@ -23,7 +23,7 @@ public class OutputView {
         System.out.println(GAME_START_MESSAGE);
     }
 
-    private static OutputView outputView = new OutputView();
+    private static final OutputView outputView = new OutputView();
 
     private OutputView() {
 
