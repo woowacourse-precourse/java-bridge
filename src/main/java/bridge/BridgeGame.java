@@ -7,6 +7,7 @@ public class BridgeGame {
     private InputController input;
     private Bridge bridge;
     private OutputView output;
+    private int gameTry = 1;
 
     public void init() {
         BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
@@ -22,7 +23,7 @@ public class BridgeGame {
         int round = 0;
         output.printStart();
         status = move(round, status);
-        output.printResult(status); // status 를 매개변수로 받아 성고 실패 여부 판별 true : 성공, false : 실패
+        output.printResult(status, gameTry); // status 를 매개변수로 받아 성고 실패 여부 판별 true : 성공, false : 실패
     }
 
     /**
@@ -32,9 +33,10 @@ public class BridgeGame {
      */
     public boolean move(int round, boolean status) {
         while(round < bridge.getSize() && status) {
-            String movement = checkMovable(round);
+            String userInput = input.requestMove();
+            String movement = checkMovable(round, userInput);
             status = checkX(movement);
-            output.printMap(round);
+            output.printMap(round, bridge, userInput);
             round += checkO(movement);
             status = retry(status);
         }
@@ -53,8 +55,8 @@ public class BridgeGame {
         return movement.equals("O");
     }
 
-    public String checkMovable(int round) {
-        if(input.requestMove().equals("U")) {
+    public String checkMovable(int round, String userInput) {
+        if(userInput.equals("U")) {
             return bridge.getUpperBridge().get(round);
         }
 
@@ -71,6 +73,7 @@ public class BridgeGame {
             return true;
         }
 
+        gameTry++;
         return input.requestRetry().equals("R");
     }
 }
