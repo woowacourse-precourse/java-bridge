@@ -30,6 +30,37 @@ public class GameController {
         printResult(tryCount,bridge);
     }
 
+    private void informStart() {
+        outputView.printStartGame();
+    }
+
+    private void printNowBridge() {
+        outputView.printMap(this.bridge);
+    }
+
+    private void printResult(int tryCount, Bridge bridge) {
+        outputView.printResult(tryCount,bridge);
+    }
+
+    private Integer inputBridgeSize() {
+        return inputView.readBridgeSize();
+    }
+
+    private String inputUserMove() {
+        return inputView.readMoving();
+    }
+
+    private boolean askRetry() {
+        String retryFlag = inputView.readGameCommand();
+        return Objects.equals(retryFlag, "R");
+    }
+
+    private void buildBridge() {
+        Integer bridgeSize = inputBridgeSize();
+        List<String> bridgeStrs =  bridgeMaker.makeBridge(bridgeSize);
+        bridge = new Bridge(bridgeStrs);
+    }
+
     private int doRepeatBridgeGame() {
         int tryCount = 0;
         do {
@@ -42,30 +73,6 @@ public class GameController {
         return tryCount;
     }
 
-    private void printResult(int tryCount, Bridge bridge) {
-        outputView.printResult(tryCount,bridge);
-    }
-
-    private void informStart() {
-        outputView.printStartGame();
-    }
-
-    private Integer inputBridgeSize() {
-        Integer bridgeSize = inputView.readBridgeSize();
-        return bridgeSize;
-    }
-
-    private void buildBridge() {
-        Integer bridgeSize = inputBridgeSize();
-        List<String> bridgeStrs =  bridgeMaker.makeBridge(bridgeSize);
-        bridge = new Bridge(bridgeStrs);
-    }
-
-    private String inputUserMove() {
-        String userMove = inputView.readMoving();
-        return userMove;
-    }
-
     private boolean doRepeatBridgeMove() {
         for (int idx = 0; idx < bridge.getBridgeSpaces().size(); idx++) {
             String userDirection = inputUserMove();
@@ -76,18 +83,5 @@ public class GameController {
         }
         return bridgeGame.checkAllDone(bridge);
     }
-
-    private boolean askRetry() {
-        String retryFlag = inputView.readGameCommand();
-        return Objects.equals(retryFlag, "R");
-    }
-
-    private void printNowBridge() {
-        outputView.printMap(this.bridge);
-    }
-
-
-
-
 
 }
