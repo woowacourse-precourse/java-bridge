@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.constant.BridgeMark;
+import bridge.constant.GameStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

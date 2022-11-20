@@ -1,7 +1,7 @@
 package bridge.service;
 
-import bridge.BridgeMark;
-import bridge.GameStatus;
+import bridge.constant.BridgeMark;
+import bridge.constant.GameStatus;
 import bridge.TestBridgeNumberGenerator;
 import bridge.dto.GameResultDto;
 import org.junit.jupiter.api.BeforeEach;

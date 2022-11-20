@@ -1,7 +1,7 @@
 package bridge.controller;
 
 import bridge.BridgeRandomNumberGenerator;
-import bridge.GameStatus;
+import bridge.constant.GameStatus;
 import bridge.dto.GameResultDto;
 import bridge.service.BridgeGame;
 import bridge.view.InputView;

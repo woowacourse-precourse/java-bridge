@@ -1,5 +1,8 @@
 package bridge;
 
+import bridge.constant.BridgeMark;
+import bridge.constant.GameStatus;
+
 import java.util.List;
 
 public class Bridge {

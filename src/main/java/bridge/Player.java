@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.constant.BridgeMark;
+
 import java.util.ArrayList;
 import java.util.List;
 
