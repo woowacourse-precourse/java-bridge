@@ -34,7 +34,13 @@ public class OutputView {
     }
 
     public void printLowerBridge(int userPosition, String userDecision, boolean checkDirection, List<String> bridge){
-
+        printMapStart();
+        for(int i = 0; i < userPosition; i++){
+            printOnePartOfLowerBridge(i, bridge);
+            printSeparation();
+        }
+        printWhetherUserDecisionIsCorrect(userDecision, checkDirection);
+        printMapEnd();
     }
 
     public void printWhetherUserDecisionIsCorrect(String userDecision, boolean checkDirection){
