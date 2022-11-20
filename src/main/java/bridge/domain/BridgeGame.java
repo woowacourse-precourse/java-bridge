@@ -46,12 +46,8 @@ public class BridgeGame {
     public boolean retry() {
         OutputView.printRetryMessage();
         String command = InputView.inputGameCommand();
-        if (command.equals("R")){
-            return true;
-        }
-        if (command.equals("Q")){
-            return false;
-        }
+        if (command.equals("R")) return true;
+        if (command.equals("Q")) return false;
         throw new IllegalArgumentException("[ERROR] 'R' 또는 'Q'를 입력해 주세요.");
     }
 }

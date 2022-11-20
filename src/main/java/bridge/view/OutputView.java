@@ -1,5 +1,7 @@
 package bridge.view;
 
+import bridge.domain.BridgeResult;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -11,8 +13,10 @@ public class OutputView {
     private static final String GAME_RESULT_MESSAGE = "최종 게임 결과";
 
 
+
     public static void printGameStartMessage() {
         System.out.println(GAME_START_MESSAGE);
+        System.out.println();
     }
 
     public static void printInputBridgeSizeMessage() {
@@ -23,9 +27,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap(StringBuilder upSide, StringBuilder downSide) {
-        System.out.println(upSide);
-        System.out.println(downSide);
+    public static void printMap(BridgeResult bridgeResult) {
+        System.out.println(bridgeResult.getUpsideResult());
+        System.out.println(bridgeResult.getDownsideResult());
         System.out.println();
     }
 
@@ -46,7 +50,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(int retryCount, boolean result) {
+    public static void printSuccessOrFailureResult(int retryCount, boolean result) {
         if (result){
             System.out.println("게임 성공 여부: " + "성공");
             System.out.println("총 시도한 횟수: " + retryCount);
@@ -55,5 +59,11 @@ public class OutputView {
             System.out.println("게임 성공 여부: " + "실패");
             System.out.println("총 시도한 횟수: " + retryCount);
         }
+    }
+
+    public static void printBridgeResult(BridgeResult bridgeResult,boolean result, int tryCount) {
+        OutputView.printResultMessage();
+        OutputView.printMap(bridgeResult);
+        OutputView.printSuccessOrFailureResult(tryCount, result);
     }
 }
