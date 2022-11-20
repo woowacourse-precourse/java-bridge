@@ -9,8 +9,8 @@ public class BridgeMap {
         this.bridgeMap = bridgeMap;
     }
 
-    public boolean isEqualWithIndex(int index, Moving moving) {
-        return moving.equals(bridgeMap.get(index));
+    public boolean isMove(PlayerMap playerMap, Moving moving) {
+        return moving.equals(bridgeMap.get(playerMap.getSize()));
     }
 
     public int getSize() {
