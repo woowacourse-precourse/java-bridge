@@ -6,19 +6,19 @@ import java.util.List;
 
 public class Bridge {
 
-    private BridgeMaker bridgeMaker;
+    private final BridgeMaker bridgeMaker;
 
-    Bridge(BridgeMaker bridgeMaker) {
+    public Bridge(BridgeMaker bridgeMaker) {
         this.bridgeMaker = bridgeMaker;
     }
 
-    private List<String> bridge;
+    private static List<String> bridge;
 
     public void setBridge(int size) {
         bridge = bridgeMaker.makeBridge(size);
     }
 
-    public List<String> getBridge() {
+    public static List<String> getBridge() {
         return bridge;
     }
 }
