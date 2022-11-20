@@ -2,6 +2,7 @@ package bridge.service;
 
 import bridge.BridgeMaker;
 import bridge.model.Bridge;
+import bridge.model.GameStatus;
 import bridge.model.Moving;
 import bridge.model.Player;
 
@@ -14,9 +15,14 @@ import static java.util.stream.Collectors.toList;
 public class BridgeGame {
     private final BridgeMaker bridgeMaker;
     private Bridge bridge;
+    private GameStatus gameStatus;
 
     public BridgeGame(BridgeMaker bridgeMaker) {
         this.bridgeMaker = bridgeMaker;
+    }
+
+    public void initialize() {
+        gameStatus = GameStatus.PLAY;
     }
 
     public void makeBridge(int bridgeSize) {
