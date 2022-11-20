@@ -51,7 +51,7 @@ public class BridgeGameController {
     }
 
     private boolean isSuccess(){
-        return false;
+        return player.isGameFinished(bridge);
     }
 
     private boolean isQuit(){
