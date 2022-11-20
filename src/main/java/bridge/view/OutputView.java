@@ -2,6 +2,8 @@ package bridge.view;
 
 import bridge.Result;
 import bridge.ResultSignResolver;
+import bridge.view.sign.FirstBridgeSignStrategy;
+import bridge.view.sign.SecondBridgeSignStrategy;
 
 import static bridge.support.ResultSign.*;
 
@@ -32,7 +34,7 @@ public class OutputView {
         StringBuilder sb = new StringBuilder();
 
         appendOpenSquareBracket(sb);
-        ResultSignResolver resolver = new ResultSignResolver(result);
+        ResultSignResolver resolver = new ResultSignResolver(result, new FirstBridgeSignStrategy(result, sb));
         sb.append(resolver.resolveResult());
         appendCloseSquareBracket(sb);
 
@@ -42,7 +44,8 @@ public class OutputView {
     private void printSecondBridge(Result result) {
         StringBuilder sb = new StringBuilder();
         appendOpenSquareBracket(sb);
-        sb.append(ResultSignResolver.discriminateSecondBridgeSign(result));
+        ResultSignResolver resolver = new ResultSignResolver(result, new SecondBridgeSignStrategy(result, sb));
+        sb.append(resolver.resolveResult());
         appendCloseSquareBracket(sb);
 
         System.out.print(sb);
