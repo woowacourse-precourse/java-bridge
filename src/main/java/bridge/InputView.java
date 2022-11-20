@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.validator.InputValidator;
+import bridge.validator.Validator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -12,7 +13,16 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        int size = Integer.parseInt(Console.readLine());
+
+        try {
+            Validator.validateBridgeSize(size);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            readBridgeSize();
+        }
+
+        return size;
     }
 
     /**
