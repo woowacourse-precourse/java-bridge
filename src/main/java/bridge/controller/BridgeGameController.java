@@ -20,5 +20,6 @@ public class BridgeGameController {
 
     public void run() {
         OutputView.start();
+        OutputView.askLength();
     }
 }
