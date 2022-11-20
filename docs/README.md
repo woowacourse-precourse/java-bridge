@@ -6,3 +6,6 @@
 - 입력키와 매치 결과를 클래스 변수로 갖고 한 칸의 움직인 결과를 갖는 MoveResult
 - boolen 값이 fail일시 X를 true일시 O의 값을 갖는 enum CrossResult 구현
 - moveResult의 일급 컬렉션 MoveResult, moveResult 요소를 추가 받고, 실패한 값을 지울 수 있다.
+- 숫자 입력화면을 출력한다.
+- 재시작 입력 화면을 출력한다.
+- 

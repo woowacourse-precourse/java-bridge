@@ -14,6 +14,13 @@ public class MoveResults {
         moveResults.removeIf(moveResult -> !moveResult.isMatchResult());
     }
 
+    public int size() {
+        return moveResults.size();
+    }
+
+    public boolean success(){
+       return moveResults.get(size()-1).isMatchResult();
+    }
 
     public List<MoveResult> getMoveResults() {
         return moveResults;

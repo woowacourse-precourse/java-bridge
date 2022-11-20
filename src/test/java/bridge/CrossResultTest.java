@@ -9,7 +9,7 @@ class CrossResultTest {
     @Test
     void findCrossResult() {
         MoveResult moveResult = new MoveResult("U", false);
-        new OutputView().printMap(moveResult);
+
         assertEquals(CrossResult.FAIL, CrossResult.findCrossResult(moveResult.isMatchResult()));
     }
 
