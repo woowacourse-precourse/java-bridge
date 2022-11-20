@@ -22,7 +22,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeGame bridgeGame, String direction) {
-        makeMap(bridgeGame.getCurrentIndex(), bridgeGame.checkStatus(direction), direction);
+        makeMap(bridgeGame.getCurrentIndex(), bridgeGame.isGameContinue(), direction);
         System.out.println(START + upperBridge + END);
         System.out.println(START + lowerBridge + END);
         System.out.println();
@@ -73,7 +73,7 @@ public class OutputView {
     }
 
     private String getResult(BridgeGame bridgeGame) {
-        if (bridgeGame.gameSuccess()) {
+        if (bridgeGame.isGameSuccess()) {
             return GAME_SUCCESS_MESSAGE;
         }
         return GAME_FAIL_MESSAGE;

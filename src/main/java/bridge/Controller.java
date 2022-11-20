@@ -29,10 +29,10 @@ public class Controller {
 
     public static void startRound(BridgeGame bridgeGame, OutputView outputView) {
         do {
-            String directions = getMovingDirection();
-            bridgeGame.move(directions);
-            outputView.printMap(bridgeGame, directions);
-            if (bridgeGame.gameSuccess()) {
+            String direction = getMovingDirection();
+            bridgeGame.move(direction);
+            outputView.printMap(bridgeGame, direction);
+            if (bridgeGame.isGameSuccess()) {
                 break;
             }
         } while (bridgeGame.isGameContinue());
