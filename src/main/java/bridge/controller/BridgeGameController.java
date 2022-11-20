@@ -13,8 +13,7 @@ public class BridgeGameController {
     private int trials = 1;
     private String moving;
     private boolean retry = true;
-
-    BridgeGame bridgeGame;
+    private BridgeGame bridgeGame;
 
     public void run() {
         initialize();
@@ -84,7 +83,8 @@ public class BridgeGameController {
     }
 
     private void printResult(String gameResult) {
-        OutputView.printLastMap(BridgeResultData.getUpBridgeResults(), BridgeResultData.getDownBridgeResults());
+        OutputView.printFinalMapMessage();
+        OutputView.printMap(BridgeResultData.getUpBridgeResults(), BridgeResultData.getDownBridgeResults());
         OutputView.printResult(gameResult, trials);
     }
 }
