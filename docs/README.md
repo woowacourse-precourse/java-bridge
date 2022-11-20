@@ -63,5 +63,5 @@
 
 
 # 건널 수 있는 칸 생성 # BridgeNumberGenerator
-- [ ] 이동 가능한 칸 생성
-  - [ ] 무작위로 이동 가능한 칸 생성 # BridgeRandomNumberGenerator
+- [x] 이동 가능한 칸 생성
+  - [x] 무작위로 이동 가능한 칸 생성 # BridgeRandomNumberGenerator
