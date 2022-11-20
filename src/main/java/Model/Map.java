@@ -64,19 +64,19 @@ public class Map {
     }
 
     public boolean checkWhenInputIsD(String answer) {
-        makeMapLower(answer.equals("D"));
-        return answer.equals("D");
+        makeMapLower(answer.equals(Moving.Down.getMoving()));
+        return answer.equals(Moving.Down.getMoving());
     }
 
     public boolean checkWhenInputIsU(String answer) {
-        makeMapUpper(answer.equals("U"));
-        return answer.equals("U");
+        makeMapUpper(answer.equals(Moving.Up.getMoving()));
+        return answer.equals(Moving.Up.getMoving());
     }
 
     public boolean runMap(String moving, String answer) {
         boolean isWin = false;
 
-        if (moving.equals("D")) {
+        if (moving.equals(Moving.Down.getMoving())) {
             isWin = checkWhenInputIsD(answer);
             return isWin;
         }
