@@ -1,14 +1,11 @@
-package bridge.Controller;
+package bridge.View;
 
-import bridge.View.InputView;
-import bridge.View.OutputView;
-
-public class ViewController {
+public class TotalView {
 
     private final InputView input;
     private final OutputView output;
 
-    public ViewController() {
+    public TotalView() {
         input = new InputView();
         output = new OutputView();
     }

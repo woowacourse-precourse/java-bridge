@@ -2,16 +2,17 @@ package bridge.Controller;
 
 import bridge.BridgeRandomNumberGenerator;
 import bridge.Domain.BridgeMaker;
+import bridge.View.TotalView;
 import java.util.List;
 
 public class BridgeController {
 
     BridgeMaker bridgeMaker;
-    ViewController view;
+    TotalView view;
 
     public BridgeController() {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        view = new ViewController();
+        view = new TotalView();
     }
 
     public List<String> getAnswerBridge() {

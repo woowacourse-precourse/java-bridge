@@ -4,7 +4,7 @@ import static bridge.Utils.Constant.GameCommand.QUIT;
 import static bridge.Utils.Constant.GameCommand.RETRY;
 
 import bridge.Controller.BridgeController;
-import bridge.Controller.ViewController;
+import bridge.View.TotalView;
 import bridge.Domain.Bridge;
 import java.util.List;
 
@@ -13,8 +13,8 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    BridgeController bridgeController;
-    ViewController viewController;
+    private final BridgeController bridgeController;
+    private final TotalView view;
     Bridge user;
     int playCount = 0;
     boolean isPlaying;
@@ -22,7 +22,7 @@ public class BridgeGame {
 
     BridgeGame() {
         bridgeController = new BridgeController();
-        viewController = new ViewController();
+        view = new TotalView();
 
         play();
     }
@@ -48,9 +48,9 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
-        user.addMoving(viewController.getMoving());
+        user.addMoving(view.getMoving());
         if (user.isMatchAboutThisMoving()) {
-            viewController.printResult(user.getResult());
+            view.printResult(user.getResult());
             if (user.isFinish()) {
                 quit(true);
             }
@@ -60,7 +60,7 @@ public class BridgeGame {
     }
 
     public void quitOrRetry() {
-        String command = viewController.getCommand();
+        String command = view.getCommand();
         if (command.equals(QUIT.toString())) {
             quit(false);
         }
@@ -72,7 +72,7 @@ public class BridgeGame {
     public void quit(boolean isSuccess) {
         isPlaying = false;
         String result = user.getResult();
-        viewController.quit(result, isSuccess, playCount);
+        view.quit(result, isSuccess, playCount);
     }
 
     /**
