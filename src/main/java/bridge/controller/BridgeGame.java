@@ -15,7 +15,10 @@ public class BridgeGame {
     private int tryCount;
 
     public void runGame() {
-        String bridgeSize = InputView.readBridgeSize();
+        String bridgeSize;
+        do {
+            bridgeSize = InputView.readBridgeSize();
+        }while (bridgeSize == "error");
         Bridge bridge = BridgeGameService.initBridge(bridgeSize);
         tryCount = BridgeGameService.initTryCount();
         startGame(bridge);
@@ -35,21 +38,22 @@ public class BridgeGame {
 
     public void move(Bridge bridge, BridgeResult bridgeResult) {
         while (count < bridge.getBridgeLength()) {
-            if(canCross(bridge,count, bridgeResult)){
+            if(!(canCross(bridge,count, bridgeResult))){
                 OutputView.printMap(bridgeResult);
-                count ++ ;
-                continue;
+                return;
             }
+            count ++ ;
             OutputView.printMap(bridgeResult);
-            return;
         }
     }
 
     private boolean canCross(Bridge bridge, int count, BridgeResult bridgeResult) {
-        String userMoving = InputView.readMoving();
+        String userMoving;
+        do {
+            userMoving = InputView.readMoving();
+        }while (userMoving == "error");
         String movingResult = bridge.judgeMoving(userMoving,count);
         bridgeResult.recordResult(movingResult,userMoving);
-
         if(movingResult.equals("O")){
             return true;
         }
@@ -57,7 +61,10 @@ public class BridgeGame {
     }
 
     public void retry(Bridge bridge) {
-        String retryInput = InputView.readRetry();
+        String retryInput;
+        do {
+            retryInput = InputView.readGameCommand();
+        }while(retryInput == "error");
         if(retryInput.equals("R")){
             tryCount ++ ;
             startGame(bridge);

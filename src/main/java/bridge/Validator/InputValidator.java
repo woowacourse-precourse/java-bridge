@@ -1,5 +1,7 @@
 package bridge.Validator;
 
+import bridge.view.OutputView;
+
 public class InputValidator {
 
     public static String checkBridgeSize(String size) {
@@ -29,12 +31,30 @@ public class InputValidator {
         }
     }
 
+    public static String controlMovingInput(String moving){
+        try {
+            checkMoving(moving);
+        }catch (IllegalArgumentException exception){
+            OutputView.printException(exception.getMessage());
+            return "error";
+        }
+        return moving;
+    }
     public static void checkMoving(String moving) {
         if (!(moving.equals("U") || moving.equals("D"))){
             throw new IllegalArgumentException("[ERROR] 유효한 값이 아닙니다.");
         }
     }
 
+    public static String controlRetryInput(String retryInput){
+        try {
+            checkRetry(retryInput);
+        }catch (IllegalArgumentException exception){
+            OutputView.printException(exception.getMessage());
+            return "error";
+        }
+        return retryInput;
+    }
     public static void checkRetry(String retryInput) {
         if(!(retryInput.equals("Q") || retryInput.equals("R"))){
             throw new IllegalArgumentException("[ERROR] 유효한 값이 아닙니다.");

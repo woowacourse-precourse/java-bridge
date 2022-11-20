@@ -28,4 +28,8 @@ public class OutputView {
         System.out.println("게임 성공 여부: 성공");
         System.out.println("총 시도한 횟수: " + tryCount);
     }
+
+    public static void printException(String message) {
+        System.out.println(message);
+    }
 }
