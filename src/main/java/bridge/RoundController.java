@@ -15,7 +15,7 @@ public class RoundController {
     private List<String> bridgeFirstLayer = new ArrayList<>();
     private List<String> bridgeSecondLayer = new ArrayList<>();
     private int position = 0;
-    private int success = 0;
+    private int success = 1;
     private int trial = 1;
 
     public RoundController(BridgeMaker bridgeMaker) {
@@ -71,11 +71,11 @@ public class RoundController {
 
         while (position < bridgeShape.size()) {
             if (!retryProgress()) {
+                success = 0;
                 break;
             }
         }
 
-        success = 1;
         List<List<String>> layers = Arrays.asList(bridgeFirstLayer, bridgeSecondLayer);
         outputView.printResult(layers, success, trial);
     }
