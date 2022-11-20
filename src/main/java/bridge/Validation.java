@@ -1,12 +1,14 @@
 package bridge;
 
+import bridge.domain.Error;
+
 public class Validation {
 
     public boolean isInteger(String number) {
         try {
             Integer.parseInt(number);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR]문자가 아닌 숫자를 입력해주세요.");
+            throw new IllegalArgumentException(Error.INPUT_INTEGER_ERROR.getErrorMessage());
         }
 
         return true;
@@ -14,13 +16,13 @@ public class Validation {
 
     public void validateInputPosition(String moving) {
         if (!moving.equals("U") && !moving.equals("D")) {
-            throw new IllegalArgumentException("[ERROR]위로 가려면 U, 아래로 가려면 D를 입력해주세요.");
+            throw new IllegalArgumentException(Error.INPUT_MOVING_ERROR.getErrorMessage());
         }
     }
 
     public void validateInputRetry(String retryCommand) {
         if (!retryCommand.equals("R") && !retryCommand.equals("Q")) {
-            throw new IllegalArgumentException("[ERROR]재시작은 R, 종료는 Q를 입력해주세요.");
+            throw new IllegalArgumentException(Error.INPUT_RETRY_COMMAND.getErrorMessage());
         }
     }
 }
