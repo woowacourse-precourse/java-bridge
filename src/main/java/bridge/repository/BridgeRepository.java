@@ -22,4 +22,9 @@ public class BridgeRepository {
     public List<String> getDownBridges() {
         return this.downBridges;
     }
+
+    public void clear() {
+        this.upBridges.clear();
+        this.downBridges.clear();
+    }
 }

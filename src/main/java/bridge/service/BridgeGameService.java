@@ -30,4 +30,8 @@ public class BridgeGameService {
     public List<String> getDownBridges() {
         return bridgeRepository.getDownBridges();
     }
+
+    public void clearRepository() {
+        bridgeRepository.clear();
+    }
 }
