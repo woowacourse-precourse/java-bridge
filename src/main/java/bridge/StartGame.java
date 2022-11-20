@@ -23,7 +23,7 @@ public class StartGame {
     public static void init() {
         OutputView.printStart();
         selectBridgeSize();
-        makeBridge();
+        createBridge();
     }
 
     public static void selectBridgeSize() {
@@ -31,7 +31,7 @@ public class StartGame {
         Application.size = InputView.readBridgeSize();
     }
 
-    public static void makeBridge() {
+    public static void createBridge() {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         Application.bridge = bridgeMaker.makeBridge(Application.size);
