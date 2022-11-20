@@ -37,8 +37,9 @@ public class BridgeController {
         String moving = this.inputView.readMoving();
         String bridgePicture = this.bridgeGame.move(moving);
         this.outputView.printMap(bridgePicture);
-//        if (this.bridgeGame.isFail()) {
-//            retryTurn();
-//        }
+        if (this.bridgeGame.isFail()) {
+            String gameCommand = this.inputView.readGameCommand();
+            retryTurn(gameCommand);
+        }
     }
 }
