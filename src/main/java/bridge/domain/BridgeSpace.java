@@ -22,7 +22,7 @@ public enum BridgeSpace {
         return value;
     }
 
-    public static BridgeSpace find(int value) {
+    public static BridgeSpace findByValue(int value) {
         return values.get(value);
     }
 
