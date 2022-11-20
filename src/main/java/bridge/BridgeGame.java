@@ -12,6 +12,9 @@ public class BridgeGame {
     private final List<String> bridge;
     private List<String> upResult;
     private List<String> downResult;
+    private static final String SPACE = "   ";
+    private static final String X = " X ";
+    private static final String O = " O ";
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
@@ -25,15 +28,23 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public List<List<String>> move(int round, String moving) {
-        String[] result = {"   ", "   "};
         String current = bridge.get(round);
         BridgeType bridgeByMoving = BridgeType.valueOfString(moving);
-        result[bridgeByMoving.getNumber()] = " X ";
-        if (Objects.equals(moving, current)) {
-            result[bridgeByMoving.getNumber()] = " O ";
-        }
+        String[] result = compare(moving, current, bridgeByMoving);
+
         addGameResult(result);
         return Arrays.asList(upResult, downResult);
+    }
+
+    public String[] compare(String moving, String current, BridgeType bridgeByMoving) {
+        String[] result = {SPACE, SPACE};
+        result[bridgeByMoving.getNumber()] = X;
+
+        if (Objects.equals(moving, current)) {
+            result[bridgeByMoving.getNumber()] = O;
+        }
+
+        return result;
     }
 
     public void addGameResult(String[] result) {

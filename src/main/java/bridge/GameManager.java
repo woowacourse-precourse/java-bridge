@@ -22,10 +22,10 @@ public class GameManager {
 
     public void start() {
         ouputView.printGameStart();
-        boolean activation = true;
         int bridgeSize = inputView.readBridgeSize();
         bridge = bridgeMaker.makeBridge(bridgeSize);
         BridgeGame bridgeGame = new BridgeGame(bridge);
+        boolean activation = true;
         int round = 0;
         int tried = 0;
         List<String> upResult = new ArrayList<>();
@@ -37,11 +37,12 @@ public class GameManager {
             List<List<String>> result = bridgeGame.move(round, moving);
             upResult = result.get(0);
             downResult = result.get(1);
-            ouputView.printMap(upResult, downResult);
+            ouputView.printMap(upResult);
+            ouputView.printMap(downResult);
             round++;
 
             if (upResult.contains(" X ") || downResult.contains(" X ")) {
-                activation = retry();
+                activation = isRetried();
                 bridgeGame.retry();
                 round = 0;
             }
@@ -51,16 +52,21 @@ public class GameManager {
             }
         }
 
-        boolean isSuccess = isSuccess(upResult, downResult);
-        ouputView.printResult(Arrays.asList(upResult, downResult), isSuccess, tried);
+        ouputView.printResult(Arrays.asList(upResult, downResult), isSuccess(upResult, downResult), tried);
     }
 
-    public boolean retry() {
+    public boolean isRetried() {
         String command = inputView.readGameCommand();
         return Objects.equals(command, "R");
     }
 
-    public boolean isSuccess(List<String> upResult, List<String> downResult) {
-        return !upResult.contains(" X ") && !downResult.contains(" X ");
+    public String isSuccess(List<String> upResult, List<String> downResult) {
+        String success = "실패";
+
+        if (!upResult.contains(" X ") && !downResult.contains(" X ")) {
+            success = "성공";
+        }
+
+        return success;
     }
 }
