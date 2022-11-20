@@ -22,11 +22,11 @@ public class Player {
 	}
 
 	public boolean isDead() {
-		return playerStatus == PlayerStatus.DEAD;
+		return playerStatus.equals(PlayerStatus.DEAD);
 	}
 
 	public boolean isAlive() {
-		return playerStatus == PlayerStatus.ALIVE;
+		return playerStatus.equals(PlayerStatus.ALIVE);
 	}
 
 	public int getCurrentLocation() {
