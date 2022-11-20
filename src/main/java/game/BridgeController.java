@@ -33,30 +33,31 @@ public class BridgeController {
     public void run(List<String> bridge) {
         gameRound++;
         commands.clear();
+
         for (int i = 0; i < bridge.size(); i++) {
             String command = moveCommand();
             commands.add(command);
-
             outputView.commandChecker(bridge, commands, i);
-
             if (!(bridge.get(i).equals(command))) break;
+            gameResult = "성공";
         }
 
         if (!(commands.equals(bridge))) restart(bridge);
-        gameResult = "성공";
     }
 
 
     public void restart(List<String> bridge) {
         String retry = retryCommand();
-        outputView.clearMap();
-        if (retry.equals("R")) run(bridge);
+        if (retry.equals("R")) {
+            run(bridge);
+            outputView.clearMap();
+        }
         if (retry.equals("Q")) gameResult = "실패";
     }
 
     public void printGameResult() {
         System.out.println("최종 게임 결과");
-//        outputView.printResult();
+        outputView.printResult();
         System.out.println("게임 성공 여부: " + gameResult);
         System.out.println("총 시도한 횟수: " + gameRound);
     }
