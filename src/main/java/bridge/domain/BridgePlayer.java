@@ -27,6 +27,10 @@ public class BridgePlayer {
         if (playerBridge.size() != bridgeMoveTypes.size()) {
             return false;
         }
+        return compareAllMoveTypesSame(bridgeMoveTypes);
+    }
+
+    private boolean compareAllMoveTypesSame(List<BridgeMoveType> bridgeMoveTypes) {
         return IntStream.range(0, playerBridge.size())
                 .allMatch(currentLocation -> {
                     BridgeMoveType playerMoveType = playerBridge.get(currentLocation);
