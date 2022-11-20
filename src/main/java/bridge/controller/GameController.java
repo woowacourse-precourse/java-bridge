@@ -17,7 +17,6 @@ public class GameController {
     private final Validator validator = new Validator();
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private final BridgeGame bridgeGame = new BridgeGame();
-    private boolean gameFlag = true;
 
     public void startGame() {
         User user = new User();
@@ -33,15 +32,14 @@ public class GameController {
         int tryCount = user.getRetryCount();
         int currentIndex = 0;
         while (true) {
-            String direction = inputView.readMoving();
-            setDirection(direction);
-            boolean isUp = direction.equals(bridge.get(currentIndex));
+            String direction = setDirection(inputView.readMoving());
             String result = bridgeGame.move(direction, bridge.get(currentIndex));
-            addResultBridge(isUp, result, user);
+            addResultBridge(direction.equals("U"), result, user);
+            currentIndex++;
             outputView.printMap(user.toString());
             if(result.equals("X")) {
                 askRestartOrEnd(user.toString(), tryCount, user);
-                return;
+                break;
             }
         }
     }
@@ -50,7 +48,7 @@ public class GameController {
         setRetryOrQuit(retryOrQuit);
         if(retryOrQuit.equals("R")) {
             user.plusRetryCount();
-            user = new User();
+            user.changeisRestartGame();
             return;
         }
         outputView.printResult(userBridge, true, tryCount);
@@ -70,13 +68,12 @@ public class GameController {
     public void addResultBridge(boolean isUp, String result, User user) {
         if(isUp) {
             user.addUpperBridge(result);
-            System.out.println("U");
             return;
         }
         user.addLowerBridge(result);
     }
 
-    public void setDirection(String direction) {
+    public String setDirection(String direction) {
         try {
             validator.validateDirection(direction);
         } catch (IllegalArgumentException e) {
@@ -84,6 +81,7 @@ public class GameController {
             direction = inputView.readMoving();
             setDirection(direction);
         }
+        return direction;
     }
     public void setBridgeSize(int bridgeSize) {
         try {
