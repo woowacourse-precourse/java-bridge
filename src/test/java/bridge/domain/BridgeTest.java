@@ -14,7 +14,7 @@ public class BridgeTest {
     public void canMoveImpossibleThenFalse() throws Exception{
         //given
         Bridge bridge = Bridge.from(List.of("U", "D", "U"));
-        String nextDirection = "D";
+        Direction nextDirection = Direction.from("D");
         int location =0;
 
         //when
@@ -29,7 +29,7 @@ public class BridgeTest {
     public void canMovePossibleThenTrue() throws Exception{
         //given
         Bridge bridge = Bridge.from(List.of("U", "D", "U"));
-        String nextDirection = "D";
+        Direction nextDirection = Direction.from("D");
         int location =1;
 
         //when
