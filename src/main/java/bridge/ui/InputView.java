@@ -12,7 +12,7 @@ public class InputView {
      */
     public String readMoving() {
         String movingSpace = Console.readLine();
-        validateMovingSpaceLength(movingSpace);
+        validateWordLength(movingSpace);
         validateMovingSpaceWord(movingSpace);
         return movingSpace;
     }
@@ -66,11 +66,11 @@ public class InputView {
     }
 
     /**
-     * 검증 로직 : 이동할 칸 문자 길이를 검증한다.
+     * 검증 로직 : 문자 길이를 검증한다.
      */
-    private void validateMovingSpaceLength(String movingSpace) {
-        if (movingSpace.length() != 1) {
-            throw new IllegalArgumentException("[ERROR] 'U' 또는 'D' 중 하나의 문자를 입력하셔야 합니다.");
+    private void validateWordLength(String word) {
+        if (word.length() != 1) {
+            throw new IllegalArgumentException("[ERROR] 하나의 문자를 입력하셔야 합니다.");
         }
     }
 
