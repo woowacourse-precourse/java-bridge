@@ -19,4 +19,10 @@ public class InputValidator {
             throw new IllegalArgumentException(ERROR_PREFIX.get() + ERROR_MOVING_IS_NOT_U_OR_D.get());
         }
     }
+
+    public void GameCommand(String input) {
+        if (!input.equals(GAME_COMMAND_RETRY.get()) && !input.equals(GAME_COMMAND_RETRY.get())) {
+            throw new IllegalArgumentException(ERROR_PREFIX.get() + ERROR_GAME_COMMAND_IS_NOT_R_OR_Q.get());
+        }
+    }
 }

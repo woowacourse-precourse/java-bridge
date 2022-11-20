@@ -28,7 +28,7 @@
 3. InputValidator
     - [x] 다리 길이 입력 값의 유효성 검사 → BridgeSize
     - [x] 다리 이동 입력 값의 유효성 검사 → Moving
-    - [ ] 게임 재시작/종료 여부 입력 값의 유효성 검사 → GameCommand
+    - [x] 게임 재시작/종료 여부 입력 값의 유효성 검사 → GameCommand
 
 ### view
 
