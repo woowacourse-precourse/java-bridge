@@ -3,6 +3,7 @@ package bridge.domain;
 public class GameStatus {
     private final String gameHistory;
     private GameFlag flag = GameFlag.PLAYING;
+    private int count;
 
     public GameStatus(GameUser gameUser) {
         this.gameHistory = gameUser.toString();
@@ -14,6 +15,22 @@ public class GameStatus {
             return;
         }
         flag = GameFlag.CLEAR;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public String getMessage() {
+        return flag.getMessage();
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public String getGameHistory() {
+        return gameHistory;
     }
 
     public boolean isPlaying() {
@@ -28,11 +45,4 @@ public class GameStatus {
         return flag.isFail();
     }
 
-    public String getMessage() {
-        return flag.getMessage();
-    }
-
-    public String getGameHistory() {
-        return gameHistory;
-    }
 }

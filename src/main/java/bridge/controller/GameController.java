@@ -14,7 +14,7 @@ public class GameController {
     public void run() {
         initialize();
         GameStatus gameStatus = getFinalGameResult();
-        outputView.printResult(gameStatus, bridgeGame.getCount());
+        outputView.printResult(gameStatus, gameStatus.getCount());
     }
 
     private GameStatus getFinalGameResult() {

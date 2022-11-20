@@ -22,16 +22,14 @@ public class BridgeGame {
         GameStatus gameStatus = new GameStatus(gameUser);
         if (isGameOver()) {
             gameStatus.setFlag(gameUser, answerBridge);
+            gameStatus.setCount(gameCounter.getCount());
         }
         return gameStatus;
     }
 
-    public void move(String moving) {
-        gameUser.move(moving);
-    }
-
-    public int getCount() {
-        return gameCounter.getCount();
+    public void retry() {
+        gameCounter.addCount();
+        gameUser.reset();
     }
 
     private boolean isGameOver() {
@@ -39,8 +37,7 @@ public class BridgeGame {
                 gameUser.hasBridgeLength(answerBridge.length());
     }
 
-    public void retry() {
-        gameCounter.addCount();
-        gameUser.reset();
+    private void move(String moving) {
+        gameUser.move(moving);
     }
 }
