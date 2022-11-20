@@ -11,24 +11,12 @@ import java.util.List;
 
 public class BridgeGameManager {
     public void run() {
-        int bridgeSize;
-        String upDown;
-        String retryAnswer;
-
         BridgeGame bridgeGame = new BridgeGame();
         bridgeGame.setTryNumber();
 
         OutputView.printStart();
 
-        while (true) {
-            try {
-                bridgeSize = InputView.readBridgeSize();
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
-            }
-        }
-
+        int bridgeSize = inputBridgeSizeRepeat();
 
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
@@ -39,36 +27,21 @@ public class BridgeGameManager {
         int step = 0;
         while (step < targetBridge.size()) {
             // 이동 할 칸 입력받음
-            while (true) {
-                try {
-                    upDown = InputView.readMoving();
-                    break;
-                } catch (IllegalArgumentException e) {
-                    System.out.println("[ERROR] 이동할 칸은 U 또는 D 여야 합니다.");
-                }
-            }
+            String upDownInput = inputUpDownRepeat();
 
-
-            System.out.println(upDown);
+            System.out.println(upDownInput);
 
             // 이동 시키키기
-            bridgeGame.move(upDown);
+            bridgeGame.move(upDownInput);
 
             // 현재상태 출력
             List<String> preStatus = bridgeGame.getPreStatus();
             OutputView.printMap(targetBridge, preStatus);
 
             // 만약 새로 간 칸이 잘 못된 칸이라면
-            if (!targetBridge.get(step).equals(upDown)) {
-                while (true) {
-                    try {
-                        retryAnswer = InputView.readGameCommand();
-                        break;
-                    } catch (IllegalArgumentException e) {
-                        System.out.println("[ERROR] 재시작/종료는 Q 또는 R이어야 합니다.");
-                    }
-                }
+            if (!targetBridge.get(step).equals(upDownInput)) {
 
+                String retryAnswer = inputRetryRepeat();
 
                 if (retryAnswer.equals("R")) {
                     bridgeGame.back(step);
@@ -89,5 +62,44 @@ public class BridgeGameManager {
         OutputView.printTryNumber(bridgeGame.getTryNumber());
 
         bridgeGame.resetTryNumber();
+    }
+
+    private int inputBridgeSizeRepeat() {
+        int bridgeSize;
+        while (true) {
+            try {
+                bridgeSize = InputView.readBridgeSize();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+            }
+        }
+        return bridgeSize;
+    }
+
+    private String inputUpDownRepeat() {
+        String upDownInput;
+        while (true) {
+            try {
+                upDownInput = InputView.readMoving();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 이동할 칸은 U 또는 D 여야 합니다.");
+            }
+        }
+        return upDownInput;
+    }
+
+    private String inputRetryRepeat() {
+        String retryAnswer;
+        while (true) {
+            try {
+                retryAnswer = InputView.readGameCommand();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 재시작/종료는 Q 또는 R이어야 합니다.");
+            }
+        }
+        return retryAnswer;
     }
 }
