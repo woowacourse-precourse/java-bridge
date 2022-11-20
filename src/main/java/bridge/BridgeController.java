@@ -1,8 +1,8 @@
 package bridge;
 
 public class BridgeController {
-    private OutputView outputView;
-    private InputView inputView;
+    private final OutputView outputView;
+    private final InputView inputView;
     private BridgeGame bridgeGame;
 
     public BridgeController() {
