@@ -22,6 +22,18 @@ public class Player {
         return position;
     }
 
+    public List<String> getGameHistory() {
+        return gameHistory;
+    }
+
+    public String getLastChoice() {
+        return lastChoice;
+    }
+
+    public boolean getResult() {
+        return result;
+    }
+
     public int move() {
         return ++position;
     }
