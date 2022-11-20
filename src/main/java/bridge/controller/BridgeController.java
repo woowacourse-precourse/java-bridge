@@ -30,4 +30,15 @@ public class BridgeController {
             }
         }
     }
+
+    private void move() {
+        while (true) {
+            try {
+                bridgeGame.move(inputView.readMoving());
+                return;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }
