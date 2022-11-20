@@ -13,6 +13,7 @@ import java.util.List;
 public class BridgeGame {
     private final List<String> bridge;
     private final List<String> path = new ArrayList<>();
+    private int attemptTimes = 1;
 
     public BridgeGame(int size) {
         isCorrectRange(size);
@@ -48,5 +49,10 @@ public class BridgeGame {
      */
     public void retry() {
         path.clear();
+        attemptTimes++;
+    }
+
+    public int getAttemptTimes() {
+        return attemptTimes;
     }
 }
