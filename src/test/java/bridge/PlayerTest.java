@@ -1,11 +1,8 @@
 package bridge;
 
 import bridge.controller.PlayerController;
-import bridge.domain.player.Player;
-import bridge.repository.PlayerRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -19,7 +16,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class PlayerTest {
     private final PlayerController playerController = new PlayerController();
-    private final PlayerRepository playerRepository = PlayerRepository.getInstance();
 
     @BeforeEach
     void setUp() {
@@ -40,14 +36,5 @@ class PlayerTest {
             playerController.getMovingDirection();
         } catch (NoSuchElementException ignore) {}
         assertThat(out.toString()).contains(ERROR_MESSAGE);
-    }
-
-    @DisplayName("사용자의 이동 거리 증가")
-    @Test
-    void increaseMovedDistance() {
-        playerController.increaseMovedDistance();
-        Player player = playerRepository.get();
-
-        assertThat(player.getMovedDistance()).isEqualTo(1);
     }
 }
