@@ -13,7 +13,7 @@ class BridgeSizeTest {
 	@DisplayName("3 에서 20 사이 자연수를 입력하면 해당 숫자를 반환한다")
 	@Test
 	void inRangeTest() {
-		for (int size = BridgeSize.MIN_NUMBER; size <= BridgeSize.MIN_NUMBER; size++) {
+		for (int size = BridgeSize.MIN_NUMBER; size <= BridgeSize.MAX_NUMBER; size++) {
 			assertEquals(new BridgeSize(size).getSize(), size);
 		}
 	}
