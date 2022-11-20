@@ -63,4 +63,34 @@ class OutputViewTest {
                 "[   | O | O |   ]"
         );
     }
+
+    @Test
+    void 최종_결과_성공_출력_테스트() {
+        GameStatus gameStatus = new GameStatus(true, 1);
+        outputView.printResult(gameStatus, List.of("U", "D", "U", "D"), List.of("U", "D", "U", "D"));
+        String printOut = consoleOut.toString().trim();
+
+        assertThat(printOut).contains(
+                "최종 게임 결과",
+                "[ O |   | O |   ]",
+                "[   | O |   | O ]",
+                "게임 성공 여부: 성공",
+                "총 시도한 횟수: 1"
+        );
+    }
+
+    @Test
+    void 최종_결과_실패_출력_테스트() {
+        GameStatus gameStatus = new GameStatus(false, 1);
+        outputView.printResult(gameStatus, List.of("U", "D", "U", "U"), List.of("U", "D", "U", "D"));
+        String printOut = consoleOut.toString().trim();
+
+        assertThat(printOut).contains(
+                "최종 게임 결과",
+                "[ O |   | O |   ]",
+                "[   | O |   | X ]",
+                "게임 성공 여부: 실패",
+                "총 시도한 횟수: 1"
+        );
+    }
 }
