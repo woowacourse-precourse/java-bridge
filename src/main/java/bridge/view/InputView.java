@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.verifier.InputVerifier;
 import camp.nextstep.edu.missionutils.Console;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  * 제공된 InputView 클래스를 활용해 구현해야 한다.
