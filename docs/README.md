@@ -12,9 +12,11 @@
 ### model
 
 1. BridgeGame
-    - [ ] 다리 이동 → move
+    - [x] 다리 이동 → move
         
         위 다리와 아래 다리를 map으로 구분하여 저장
+        - [x] 해당 다리로 이동할 수 있는지 확인 → compareMovableCell
+        - [x] 해당 다리에 이동 결과 추가 → addProgress
     - [ ] 게임 재시작 → retry
         
         재시도 회수 저장
