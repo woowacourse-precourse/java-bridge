@@ -50,7 +50,7 @@ public class BridgeGame {
      */
     public void retry() {
         if(new InputView().readGameCommand().equals("Q")){
-            System.out.println("종료멘트 출력");
+            new OutputView().printResult();
             return;
         }
         run();
