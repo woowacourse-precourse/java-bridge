@@ -41,14 +41,13 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     private void move() {
-        String command = inputView.readMoving();
-        if (!command.equals(bridges.get(0))) {
-            gameLog.addLog(false, command);
-            retry();
-            return;
+        final String command = inputView.readMoving();
+        final boolean isMove = command.equals(bridges.get(0));
+        gameLog.addLog(isMove, command);
+        retry(isMove);
+        if (isMove) {
+            bridges.remove(0);
         }
-        gameLog.addLog(true, command);
-        bridges.remove(0);
     }
 
     /**
@@ -56,7 +55,10 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    private void retry(boolean isMove) {
+        if (isMove) {
+            return;
+        }
         String command = inputView.readGameCommand();
         if (command.equals(END_COMMAND)) {
             isEnd = true;
