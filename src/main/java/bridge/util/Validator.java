@@ -16,4 +16,10 @@ public class Validator {
         }
         return true;
     }
+    public static boolean checkMoving(String input){
+        if(input!=Constants.MOVE_UP && input!=Constants.MOVE_DOWN){
+            throw new IllegalArgumentException(ErrorMessage.ERROR_MOVING.print());
+        }
+        return true;
+    }
 }
