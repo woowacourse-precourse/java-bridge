@@ -44,5 +44,16 @@ public class BridgeGame {
 	
 	public void retry() {
 	}
+	
+	public void ending(boolean gameResult) {
+		String result = "성공";
+
+		if (!gameResult) {
+			result = "실패";
+		}
+
+		out.printResult(mapMaker.toString(), result, gameCount);
+		return;
+	}
 
 }
