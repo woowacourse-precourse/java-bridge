@@ -10,8 +10,15 @@ public class InputValidator {
     private static final String NON_DIGIT_CHARACTER = "[^0-9]";
 
     public static void bridgeSize(String input) {
+        validateBlank(input);
         validateNumericType(input);
         validateRange(Integer.parseInt(input));
+    }
+
+    private static void validateBlank(String input) {
+        if (input == null | input.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 입력된 값이 없습니다.");
+        }
     }
 
     private static void validateNumericType(String input) {
