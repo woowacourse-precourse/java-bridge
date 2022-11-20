@@ -15,7 +15,7 @@ public class Bridge {
     }
 
     public static Bridge convert(List<String> bridgeChars) {
-        return new Bridge(bridgeChars.stream().map(BridgeCharacter::MakeBridgeCharacter).collect(Collectors.toList()));
+        return new Bridge(bridgeChars.stream().map(BridgeCharacter::makeBridgeCharacter).collect(Collectors.toList()));
     }
 
     private void validate(List<BridgeCharacter> bridge) {
