@@ -13,13 +13,13 @@ import java.util.stream.IntStream;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private final List<String> bridge;
+    private final Bridge bridge;
     private final List<String> path = new ArrayList<>();
     private int attemptTimes = 1;
 
     public BridgeGame(int size) {
         isCorrectRange(size);
-        bridge = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size);
+        bridge = new Bridge(size);
     }
 
     private void isCorrectRange(int size) {
