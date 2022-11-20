@@ -46,7 +46,8 @@ public class OutputView {
 
     private static String makeFirstRow(List<String> bridge, List<String> user) {
         int size = bridge.size();
-        String[] status = {" ", " ", " "};
+        String[] status = new String[size];
+        Arrays.fill(status, " ");
         int index = 0;
 
         for (; index < user.size(); index++) {
@@ -69,7 +70,8 @@ public class OutputView {
 
     private static String makeSecondRow(List<String> bridge, List<String> user) {
         int size = bridge.size();
-        String[] status = {" ", " ", " "};
+        String[] status = new String[size];
+        Arrays.fill(status, " ");
         int index = 0;
 
         for (; index < user.size(); index++) {
