@@ -36,6 +36,10 @@ public class BridgeController {
         bridgeService.initBridge(bridgeDto);
     }
 
+    public int getBridgeSize() {
+        return bridgeService.getBridgeSize();
+    }
+
     public boolean isPassable(int distance, String movingDirection) {
         return bridgeService.isPassable(distance, movingDirection);
     }

@@ -17,7 +17,7 @@ public class BridgeRepository {
         this.bridge = bridge;
     }
 
-    public String getPassableDirectionAt(int distance) {
-        return bridge.passableDirectionAt(distance);
+    public Bridge get() {
+        return bridge;
     }
 }

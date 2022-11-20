@@ -1,5 +1,6 @@
 package bridge.service;
 
+import bridge.domain.bridge.Bridge;
 import bridge.dto.BridgeDto;
 import bridge.repository.BridgeRepository;
 
@@ -10,8 +11,15 @@ public class BridgeService {
         bridgeRepository.update(bridgeDto.toEntity());
     }
 
+    public int getBridgeSize() {
+        Bridge bridge = bridgeRepository.get();
+        return bridge.size();
+    }
+
     public boolean isPassable(int distance, String movingDirection) {
-        String passableDirection = bridgeRepository.getPassableDirectionAt(distance);
+        Bridge bridge = bridgeRepository.get();
+        String passableDirection = bridge.passableDirectionAt(distance);
+
         return movingDirection.equals(passableDirection);
     }
 }

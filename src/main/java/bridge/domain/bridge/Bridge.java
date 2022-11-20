@@ -13,6 +13,10 @@ public class Bridge {
         return new Bridge(bridge);
     }
 
+    public int size() {
+        return bridge.size();
+    }
+
     public String passableDirectionAt(int distance) {
         return bridge.get(distance);
     }
