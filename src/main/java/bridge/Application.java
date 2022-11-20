@@ -24,10 +24,28 @@ public class Application {
         return game.move(input.readMoving());
     }
 
+    /**
+     * 다리에서 이동한 결과를 출력 후 사용자가 다리를 건너는 데 실패한 경우 재시도, 종료를 선택하도록 한다.
+     */
+    private static boolean result(List<String> curMove){
+        output.printMap(curMove);
+        if (game.isOver()){
+            output.printGameCommand();
+            if (input.readGameCommand() == "Q"){
+                return true;
+            }
+            game.retry();
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         start();
         while (!game.isDone()){
-            choice();
+            List<String> curMove = choice();
+            if (result(curMove)){
+                break;
+            }
         }
     }
 }
