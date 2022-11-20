@@ -28,4 +28,14 @@ public class FunctionTest {
             assertThat(inputView.readBridgeSize()).isEqualTo(intInput.get(i));
         }
     }
+
+    @DisplayName("입력한 size 만큼의 길이의 Bridge 만들기")
+    @Test
+    void 입력한_길이의_다리_만들기_테스트() {
+        BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
+
+        assertThat(bridgeMaker.makeBridge(3).size()).isEqualTo(3);
+        assertThat(bridgeMaker.makeBridge(10).size()).isEqualTo(10);
+    }
 }
