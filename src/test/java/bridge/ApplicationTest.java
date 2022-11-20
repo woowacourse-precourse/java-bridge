@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.util.Lists.newArrayList;
 
-import bridge.domain.BridgeGame;
+import bridge.controller.BridgeGame;
 import bridge.domain.BridgeMaker;
 import bridge.domain.message.ErrorMessage;
 import bridge.exception.IllegalGenerateException;
@@ -34,7 +34,7 @@ class ApplicationTest extends NsTest {
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
         assertThatThrownBy(() -> {
-            BridgeGame bridgeGame = new BridgeGame(bridgeMaker, 3);
+            bridgeMaker.makeBridge(3);
         })
                 .isInstanceOf(IllegalGenerateException.class)
                 .hasMessageContaining(ErrorMessage.BRIDGE_GENERATE_ERROR);

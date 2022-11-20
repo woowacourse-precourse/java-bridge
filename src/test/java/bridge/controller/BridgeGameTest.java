@@ -11,9 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class BridgeControllerTest {
+class BridgeGameTest {
 
     private InputView inputView;
 
