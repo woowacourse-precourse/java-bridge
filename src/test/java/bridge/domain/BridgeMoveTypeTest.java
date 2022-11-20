@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
+import static bridge.domain.BridgeMoveType.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BridgeMoveTypeTest {
@@ -16,16 +17,34 @@ class BridgeMoveTypeTest {
     @DisplayName("입력된 int 타입의 다리 이동 코드를 이용하여 다리 이동 타입 검색을 성공한다.")
     void whenIntTypeSearchThenSuccessTest(int moveTypeCode, String moveType) {
         // given & when
-        String findMoveType = BridgeMoveType.of(moveTypeCode);
+        String findMoveType = of(moveTypeCode);
 
         // then
         assertThat(findMoveType).isEqualTo(moveType);
+    }
+
+    @ParameterizedTest(name = "[{index}] moveType = {0}, bridgeMoveType = {1}")
+    @MethodSource("whenStringTypeSearchThenSuccessDummy")
+    @DisplayName("입력된 String 타입의 다리 이동 코드를 이용하여 다리 이동 타입 검색을 성공한다.")
+    void whenStringTypeSearchThenSuccessTest(String moveType, BridgeMoveType bridgeMoveType) {
+        // given & when
+        BridgeMoveType findMoveType = of(moveType);
+
+        // then
+        assertThat(findMoveType).isEqualTo(bridgeMoveType);
     }
 
     static Stream<Arguments> whenIntTypeSearchThenSuccessDummy() {
         return Stream.of(
                 Arguments.arguments(0, "D"),
                 Arguments.arguments(1, "U")
+        );
+    }
+
+    static Stream<Arguments> whenStringTypeSearchThenSuccessDummy() {
+        return Stream.of(
+                Arguments.arguments("D", DOWN),
+                Arguments.arguments("U", UP)
         );
     }
 }
