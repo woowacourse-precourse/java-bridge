@@ -3,6 +3,7 @@ package bridge.domain.bridge;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.domain.BridgeLocation;
 import bridge.value.BridgeCharacter;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,11 +33,11 @@ class BridgeTest {
     @Test
     void 이동_결과_테스트() {
 
-        boolean canMove1 = bridge.canMove(0, BridgeCharacter.UP);
-        boolean canMove2 = bridge.canMove(1, BridgeCharacter.DOWN);
+        boolean canMove1 = bridge.canMove(new BridgeLocation(0), BridgeCharacter.UP);
+        boolean canMove2 = bridge.canMove(new BridgeLocation(1), BridgeCharacter.DOWN);
 
-        boolean canNotMove1 = bridge.canMove(0, BridgeCharacter.DOWN);
-        boolean canNotMove2 = bridge.canMove(5, BridgeCharacter.DOWN);
+        boolean canNotMove1 = bridge.canMove(new BridgeLocation(0), BridgeCharacter.DOWN);
+        boolean canNotMove2 = bridge.canMove(new BridgeLocation(5), BridgeCharacter.DOWN);
 
 
         assertThat(canMove1).isTrue();
@@ -49,11 +50,11 @@ class BridgeTest {
     @Test
     void 범위체크_테스트() {
 
-        boolean isSuccess1 = bridge.isRange(0);
-        boolean isSuccess2 = bridge.isRange(3);
+        boolean isSuccess1 = bridge.isRange(new BridgeLocation(0));
+        boolean isSuccess2 = bridge.isRange(new BridgeLocation(3));
 
-        boolean isNotSuccess1 = bridge.isRange(6);
-        boolean isNotSuccess2 = bridge.isRange(-3);
+        boolean isNotSuccess1 = bridge.isRange(new BridgeLocation(6));
+        boolean isNotSuccess2 = bridge.isRange(new BridgeLocation(-3));
 
 
         assertThat(isSuccess1).isTrue();

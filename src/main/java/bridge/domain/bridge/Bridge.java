@@ -1,5 +1,6 @@
 package bridge.domain.bridge;
 
+import bridge.domain.BridgeLocation;
 import bridge.value.BridgeCharacter;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,15 +24,15 @@ public class Bridge {
         }
     }
 
-    public boolean isRange(int location) {
-        return 0 <= location && location <= bridge.size();
+    public boolean isRange(BridgeLocation bridgeLocation) {
+        return bridgeLocation.isBelow(bridge.size());
     }
 
-    public boolean canMove(int location, BridgeCharacter bridgeCharacter) {
-        if (!isRange(location + 1)) {
+    public boolean canMove(BridgeLocation bridgeLocation, BridgeCharacter bridgeCharacter) {
+        if (!isRange(bridgeLocation.next())) {
             throw new IllegalStateException("더이상 이동할 수 없습니다.");
         }
-        return bridge.get(location).equals(bridgeCharacter);
+        return bridge.get(bridgeLocation.value()).equals(bridgeCharacter);
     }
 
     public List<BridgeCharacter> bridge() {
