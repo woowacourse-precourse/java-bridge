@@ -39,23 +39,19 @@ public class BridgeGame {
 	public List<List<String>> currentMap() {
 		List<Move> userMap = user.getSelections();
 		return IntStream.range(0, userMap.size())
-			.mapToObj(i -> addMap(userMap, i))
+			.mapToObj(i -> addMap(userMap.get(i), i))
 			.collect(Collectors.toList());
 	}
 
-	private List<String> addMap(List<Move> userMap, int index) {
+	private List<String> addMap(Move move, int index) {
 		List<String> space = new ArrayList<>();
 		space.add(BLANK_SPACE);
-		if (bridge.match(index, userMap.get(index))) {
-			space.add(moveNumber(userMap.get(index)), POSSIBLE_SPACE);
+		if (bridge.match(index, move)) {
+			space.add(move.getMoveNumber(), POSSIBLE_SPACE);
 			return space;
 		}
-		space.add(moveNumber(userMap.get(index)), IMPOSSIBLE_SPACE);
+		space.add(move.getMoveNumber(), IMPOSSIBLE_SPACE);
 		return space;
-	}
-
-	private int moveNumber(Move move) {
-		return move.getMoveNumber();
 	}
 
 	public boolean end() {
