@@ -32,13 +32,19 @@ public class GameController {
 
 	private void crossingBridge() {
 		BridgeResult bridgeResult = new BridgeResult();
+
 		do {
-			outputView.printRequestMove();
-			String moveInput = inputView.readMoving();
+			String moveInput = requestMove();
 			BridgeStatus bridgeStatus = bridgeGame.move(moveInput);
 			bridgeResult.crossOneBridge(bridgeStatus, moveInput);
 			oneBridgeResult(bridgeResult, bridgeStatus);
 		} while (bridgeGame.checkEnd() == BridgeStatus.PASS);
+	}
+
+	private String requestMove() {
+		outputView.printRequestMove();
+
+		return inputView.readMoving();
 	}
 
 	private void oneBridgeResult(BridgeResult bridgeResult, BridgeStatus bridgeStatus) {
@@ -58,6 +64,7 @@ public class GameController {
 		if (Input.equals("R")) {
 			bridgeGame.retry();
 			crossingBridge();
+
 			return;
 		}
 		bridgeGame.end(bridgeResult);

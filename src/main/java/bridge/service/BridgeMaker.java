@@ -11,7 +11,7 @@ public class BridgeMaker {
 	private final static int UP_NUMBER = 1;
 	public final static String UP_STRING = "U";
 	private final static String DOWN_STRING = "D";
-	private final static String ERROR_MESSAGE_RANGE ="다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+
 	private final BridgeNumberGenerator bridgeNumberGenerator;
 
 	public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -24,10 +24,11 @@ public class BridgeMaker {
 	 */
 	public List<String> makeBridge(int size) {
 		List<String> bridge = new ArrayList<>();
-		validateRange(size);
+
 		for (int bridgeNumber = 0; bridgeNumber < size; bridgeNumber++) {
 			bridge.add(makeUpAndDown(bridgeNumberGenerator.generate()));
 		}
+
 		return bridge;
 	}
 
@@ -35,12 +36,7 @@ public class BridgeMaker {
 		if (bridgeNumber == UP_NUMBER) {
 			return UP_STRING;
 		}
-		return DOWN_STRING;
-	}
 
-	private void validateRange(int size) {
-		if (size < 3 || 20 < size) {
-			throw new IllegalArgumentException(ERROR_MESSAGE_RANGE);
-		}
+		return DOWN_STRING;
 	}
 }

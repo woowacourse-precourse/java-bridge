@@ -13,18 +13,18 @@ public class BridgeGame {
 	private int bridgeNumber = 0;
 	private int tryCount = 0;
 	private String gameResult;
-
 	private BridgeResult bridgeResult;
 
 	public BridgeGame(int size) {
-		bridge = new Bridge(new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size));
-		tryCount++;
+		this.bridge = new Bridge(new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size));
+		this.tryCount++;
 	}
 
 	public BridgeStatus checkEnd() {
 		if (bridge.isEnd(bridgeNumber)) {
 			return BridgeStatus.END;
 		}
+
 		return BridgeStatus.PASS;
 	}
 
@@ -39,8 +39,10 @@ public class BridgeGame {
 		while (!bridge.isEnd(bridgeNumber)) {
 			bridgeNumber++;
 		}
+
 		this.bridgeResult = bridgeResult;
 	}
+
 	/**
 	 * 사용자가 칸을 이동할 때 사용하는 메서드
 	 * <p>
@@ -56,13 +58,13 @@ public class BridgeGame {
 	 * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
 	 */
 	public void retry() {
-		bridgeNumber = 0;
-		tryCount++;
-		gameResult = "실패";
+		this.bridgeNumber = 0;
+		this.gameResult = "실패";
+		this.tryCount++;
 	}
 
 	@Override
 	public String toString() {
-		return String.format("%s\n게임 성공 여부: %s\n총 시도한 횟수: %d",bridgeResult, gameResult, tryCount);
+		return String.format("%s\n게임 성공 여부: %s\n총 시도한 횟수: %d", bridgeResult, gameResult, tryCount);
 	}
 }

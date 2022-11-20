@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 
 public class BridgeResult {
 
+	private static final String EMPTY = " ";
+
 	private final List<String> upBridge;
 	private final List<String> downBridge;
 
@@ -18,14 +20,19 @@ public class BridgeResult {
 	}
 
 	public void crossOneBridge(BridgeStatus bridgeStatus, String move) {
-		boolean moveFlag = checkMove(move);
-		if (moveFlag) {
-			upBridge.add(bridgeStatus.getMessage());
-			downBridge.add(" ");
+		boolean isUp = checkMove(move);
+
+		if (isUp) {
+			addBridge(bridgeStatus.getMessage(), EMPTY);
+
 			return;
 		}
-		downBridge.add(bridgeStatus.getMessage());
-		upBridge.add(" ");
+		addBridge(EMPTY, bridgeStatus.getMessage());
+	}
+
+	private void addBridge(String upBridge, String downBridge) {
+		this.upBridge.add(upBridge);
+		this.downBridge.add(downBridge);
 	}
 
 	private boolean checkMove(String move) {
