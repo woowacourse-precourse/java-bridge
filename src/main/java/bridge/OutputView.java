@@ -8,12 +8,13 @@ public class OutputView {
     private final String DEL ="|";
     private final String END = "]";
 
-    public void printMap(String map) {
+    public String printMap(String map) {
         StringBuffer builder = new StringBuffer();
         int len = map.length();
         builder.append(printMap(map,0,len / 2) + "\n");
         builder.append(printMap(map,len / 2  ,len));
         System.out.println(builder);
+        return builder.toString();
     }
     private String printMap(String map,int s,int e){
         StringBuffer builder = new StringBuffer();
@@ -28,11 +29,8 @@ public class OutputView {
     }
     public void printResult(String map , Integer count) {
         StringBuffer builder = new StringBuffer();
-        int len = map.length();
         builder.append("최종 게임 결과\n");
-        builder.append(printMap(map,0,len / 2) + "\n");
-        builder.append(printMap(map,len / 2  ,len) +"\n");
-        builder.append("\n");
+        builder.append(printMap(map) + "\n");
         builder.append("게임 성공 여부: ");
         builder.append(isSuccess(map) + "\n");
         builder.append("총 시도한 횟수: ");
