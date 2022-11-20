@@ -1,7 +1,5 @@
 package bridge.view;
 
-import bridge.model.BridgeSize;
-
 public class BridgeGameView {
 
     private final InputView inputView;
@@ -14,8 +12,11 @@ public class BridgeGameView {
 
     public int requestNewBridgeSize() {
         outputView.printStartPrompt();
-        BridgeSize bridgeSize = inputView.readBridgeSize();
 
-        return bridgeSize.getBridgeSize();
+        return inputView.readBridgeSize();
+    }
+
+    public String requestDirection() {
+        return inputView.readMoving();
     }
 }
