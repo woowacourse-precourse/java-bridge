@@ -16,21 +16,16 @@ import java.util.List;
 public class GameController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private boolean success = false;
 
     public void play() {
         outputView.printGameStartMessage();
         BridgeSize bridgeSize = readBridgeSize();
-
         Integer size = bridgeSize.getBrideSize();
-
         BridgeMaker bridgeMaker = bridgeMaker();
-
         List<String> bridge = bridgeMaker.makeBridge(size);
-
-        BridgeGame bridgeGame = new BridgeGame();
-
-        startWalk(bridgeGame, bridge);
+        AttemptNumber attemptNumber = attemptNumber();
+        BridgeGame bridgeGame = bridgeGame();
+        startWalk(bridgeGame, bridge, attemptNumber);
     }
 
     private AttemptNumber attemptNumber() {
@@ -60,14 +55,13 @@ public class GameController {
             }
             return;
         }
-        success = true;
+        bridgeGame.gameSuccess();
     }
 
-    private void startWalk(BridgeGame bridgeGame, List<String> bridge) {
-        AttemptNumber attemptNumber = attemptNumber(); // 리팩토링 대상
-        while (!success) {
+    private void startWalk(BridgeGame bridgeGame, List<String> bridge, AttemptNumber attemptNumber) {
+        while (!bridgeGame.isSuccess()) {
             walk(bridgeGame, bridge);
-            if (isRetry()) {
+            if (isRetry(bridgeGame)) {
                 bridgeGame.retry(attemptNumber);
                 continue;
             }
@@ -79,7 +73,8 @@ public class GameController {
     private void finalGameResult(BridgeGame bridgeGame, AttemptNumber attemptNumber) {
         outputView.printFinalGameResult();
         printBridge(bridgeGame);
-        attemptNumber.printAttemptNumber(outputView, success);
+        boolean gameSuccessOrNot = bridgeGame.isSuccess();
+        attemptNumber.printAttemptNumber(outputView, gameSuccessOrNot);
     }
 
     private void printBridge(BridgeGame bridgeGame) {
@@ -90,9 +85,9 @@ public class GameController {
 
     private boolean isMovePossible(BridgeGame bridgeGame, String bridgeStatus) {
         String moving = moving();
-        boolean move = bridgeGame.move(moving, bridgeStatus);
+        boolean movePossible = bridgeGame.move(moving, bridgeStatus);
         printBridge(bridgeGame);
-        return move;
+        return movePossible;
     }
 
     private String moving() {
@@ -112,8 +107,12 @@ public class GameController {
         return gameCommand.isRetry();
     }
 
-    private boolean isRetry() {
-        while (!success) {
+    private BridgeGame bridgeGame() {
+        return new BridgeGame();
+    }
+
+    private boolean isRetry(BridgeGame bridgeGame) {
+        while (!bridgeGame.isSuccess()) {
             try {
                 return gameCommand();
             } catch (IllegalArgumentException e) {

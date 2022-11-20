@@ -14,6 +14,7 @@ public class BridgeGame {
     private static final String MOVE_IMPOSSIBLE = "X";
     private final List<String> highBridge = new ArrayList<>();
     private final List<String> lowBridge = new ArrayList<>();
+    private boolean SUCCESS = false;
 
 
     /**
@@ -45,12 +46,20 @@ public class BridgeGame {
         return lowBridge;
     }
 
-    private void makeMoveBridge(String moving, boolean movingPossible) {
+    public void gameSuccess() {
+        SUCCESS = true;
+    }
+
+    public boolean isSuccess() {
+        return SUCCESS;
+    }
+
+    private void makeMoveBridge(String moving, boolean success) {
         if (moving.equals(MOVE_TO_UP)) {
-            up(movingPossible);
+            up(success);
         }
         if (moving.equals(MOVE_TO_DOWN)) {
-            down(movingPossible);
+            down(success);
         }
     }
 
