@@ -12,7 +12,6 @@ public class Constants {
         EXCEPTION_PREFIX + String.format("다리 길이의 범위는 최소 %d ~ %d 사이 입니다.",
             SizeOfBridge.START_INCLUSIVE, SizeOfBridge.END_INCLUSIVE);
     // Regex
-    public static final String NUMBER_PATTERN = "[0-9]";
-
+    public static final String NUMBER_PATTERN = "[1-9]+[0-9]*$";
 
 }
