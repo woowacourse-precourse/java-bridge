@@ -21,11 +21,11 @@ public class Bridge {
         throw new IllegalArgumentException(INVALID_LENGTH_RANGE_MESSAGE);
     }
 
-    public List<String> getBridgeAnswers() {
-        return bridgeAnswers;
-    }
-
     public boolean isAnswer(MoveDirection direction, int index) {
         return direction.isEqualTo(bridgeAnswers.get(index));
+    }
+
+    public int getBridgeSize() {
+        return bridgeAnswers.size();
     }
 }
