@@ -3,31 +3,44 @@ package bridge.view;
 import bridge.validation.Validation;
 import camp.nextstep.edu.missionutils.Console;
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 public class InputView {
 
-    /**
-     * 다리의 길이를 입력받는다.
-     */
-    public int readBridgeSize(Validation validation) {
-        String bridgeSize = validatedUserInput(validation);
+    Validation bridgeValidation, movingValidation, restartQuickValidation;
+
+    public InputView builder(){
+        return this;
+    }
+
+    public InputView setBridgeValidation(Validation bridgeValidation) {
+        this.bridgeValidation = bridgeValidation;
+        return this;
+    }
+
+    public InputView setMovingValidation(Validation movingValidation) {
+        this.movingValidation = movingValidation;
+        return this;
+    }
+
+    public InputView setRestartQuickValidation(Validation restartQuickValidation) {
+        this.restartQuickValidation = restartQuickValidation;
+        return this;
+    }
+
+    public InputView build(){
+        return this;
+    }
+
+    public int readBridgeSize() {
+        String bridgeSize = validatedUserInput(bridgeValidation);
         return Integer.parseInt(bridgeSize);
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
-    public String readMoving(Validation validation) {
-        return validatedUserInput(validation);
+    public String readMoving() {
+        return validatedUserInput(movingValidation);
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    public String readGameCommand(Validation validation) {
-        return validatedUserInput(validation);
+    public String readGameCommand() {
+        return validatedUserInput(restartQuickValidation);
     }
 
     private String validatedUserInput(Validation validation){
