@@ -15,4 +15,13 @@ public class InputView {
 
         return bridgeSize;
     }
+
+    public String readMoving() {
+        String move = Console.readLine();
+        ExceptionHandler.checkNullInput(move);
+        ExceptionHandler.checkIsCharacter(move);
+        ExceptionHandler.checkInvalidMove(move);
+
+        return move;
+    }
 }
