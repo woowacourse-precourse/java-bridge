@@ -17,6 +17,10 @@ public class BridgeState {
         }
     }
 
+    private boolean isEmpty() {
+        return (upBridge.length() == 0 && downBridge.length() == 0);
+    }
+
     public void initBridgeState() {
     }
 }
