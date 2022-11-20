@@ -2,9 +2,7 @@ package bridge.controller;
 
 import bridge.BridgeRandomNumberGenerator;
 
-import bridge.model.*;
-import bridge.view.InputView;
-import bridge.view.OutputView;
+import bridge.domain.*;
 
 public class BridgeGameController {
     private final OutputView outputView;

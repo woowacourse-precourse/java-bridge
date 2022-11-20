@@ -1,7 +1,7 @@
-package bridge.view;
+package bridge.controller;
 
-import bridge.model.RestartInfo;
-import bridge.model.BridgeLane;
+import bridge.domain.RestartInfo;
+import bridge.domain.BridgeLane;
 import camp.nextstep.edu.missionutils.Console;
 
 /**

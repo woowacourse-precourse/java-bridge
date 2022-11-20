@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.model.*;
+import bridge.domain.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

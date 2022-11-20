@@ -1,4 +1,4 @@
-package bridge.model;
+package bridge.domain;
 
 public enum BridgeLane {
     UP,
