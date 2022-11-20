@@ -11,6 +11,7 @@ import java.util.List;
 
 class BridgeGameTest {
     private BridgeGame bridgeGame;
+
     @BeforeEach
     public void beforeEach() {
         Bridge bridge = new Bridge(List.of("U", "D", "U"));
@@ -50,15 +51,27 @@ class BridgeGameTest {
         Assertions.assertThat(isRetrying).isEqualTo(result);
     }
 
+    @DisplayName("다리를 건너는데 실패했다..")
+    @Test
+    void isFailureCrossingBridge() {
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("D");
+
+        boolean isSuccessCrossing = bridgeGame.isSuccessCrossingBridge();
+
+        Assertions.assertThat(isSuccessCrossing).isFalse();
+    }
+
+    @DisplayName("다리를 건너는데 성공했다.")
     @Test
     void isSuccessCrossingBridge() {
-    }
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("U");
 
-    @Test
-    void getNumberOfTry() {
-    }
+        boolean isSuccessCrossing = bridgeGame.isSuccessCrossingBridge();
 
-    @Test
-    void isRightSpace() {
+        Assertions.assertThat(isSuccessCrossing).isTrue();
     }
 }
