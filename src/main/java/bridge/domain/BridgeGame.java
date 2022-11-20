@@ -34,24 +34,16 @@ public class BridgeGame {
 
         player.move(moving);
         movingMap.addMoving(moving, isLatestMovingSuccess());
+
+        if (isPlayerLocatedEnd() && !isGameFailed()) {
+            isEnd = true;
+        }
     }
 
     private void assertGameIsNotEnd() {
         if (isEnd) {
             throw new IllegalStateException("게임이 이미 종료 되었습니다.");
         }
-    }
-
-    public boolean canContinue() {
-        if (isEnd) {
-            return false;
-        }
-
-        if (player.getPosition() > 0) {
-            return !isLatestMovingSuccess() && !isPlayerLocatedEnd();
-        }
-
-        return true;
     }
 
     private boolean isPlayerLocatedEnd() {
@@ -61,6 +53,18 @@ public class BridgeGame {
         return position == endPosition;
     }
 
+    public boolean isGameEnd() {
+        return isEnd;
+    }
+
+    public boolean isGameClear() {
+        return isEnd && !isGameFailed();
+    }
+
+    public boolean isGameFailed() {
+        return !isLatestMovingSuccess();
+    }
+
     private boolean isLatestMovingSuccess() {
         String latestMoving = player.getLatestMoving();
         int position = player.getPosition();
@@ -68,13 +72,6 @@ public class BridgeGame {
         return bridge.get(position).equals(latestMoving);
     }
 
-    public boolean isGameEnd() {
-        return !isEnd;
-    }
-
-    public boolean isGameClear() {
-        return isEnd && isLatestMovingSuccess();
-    }
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드

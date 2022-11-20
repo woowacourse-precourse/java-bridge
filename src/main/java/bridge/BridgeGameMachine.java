@@ -24,7 +24,7 @@ public class BridgeGameMachine {
         int bridgeSize = inputBridgeSize();
         BridgeGame bridgeGame = createNewGame(bridgeSize);
 
-        while (bridgeGame.isGameEnd()) {
+        while (!bridgeGame.isGameEnd()) {
             playOneTurn(bridgeGame);
         }
 
@@ -36,7 +36,7 @@ public class BridgeGameMachine {
         bridgeGame.move(moving);
         printMovingMap(bridgeGame);
 
-        if (!bridgeGame.canContinue() && bridgeGame.isGameEnd()) {
+        if (bridgeGame.isGameFailed()) {
             checkRetry(bridgeGame);
         }
     }
