@@ -12,6 +12,7 @@ import java.util.List;
 
 import static bridge.constant.SuccessFail.FAIL;
 import static bridge.constant.SuccessFail.SUCCESS;
+import static bridge.constant.Updown.*;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -43,11 +44,11 @@ public class OutputView {
     public List<String> makeUpOX(List<String> bridge, List<String> player) {
         List<String> ox = new ArrayList<>();
         for (int i = 0; i < player.size(); i++) {
-            if (player.get(i) == "D")
+            if (player.get(i).equals(DOWN.getKey()))
                 ox.add(" ");
-            if ((player.get(i) == "U") && (bridge.get(i) == "U"))
+            if ((player.get(i).equals(UP.getKey())) && (bridge.get(i).equals(UP.getKey())))
                 ox.add("O");
-            if ((player.get(i) == "U") && (bridge.get(i) == "D"))
+            if ((player.get(i).equals(UP.getKey())) && (bridge.get(i).equals(DOWN.getKey())))
                 ox.add("X");
         }
         return ox;
@@ -56,11 +57,11 @@ public class OutputView {
     public List<String> makeDownOX(List<String> bridge, List<String> player) {
         List<String> ox = new ArrayList<>();
         for (int i = 0; i < player.size(); i++) {
-            if (player.get(i) == "U")
+            if (player.get(i).equals(UP.getKey()))
                 ox.add(" ");
-            if ((player.get(i) == "D") && (bridge.get(i) == "D"))
+            if ((player.get(i).equals(DOWN.getKey())) && (bridge.get(i).equals(DOWN.getKey())))
                 ox.add("O");
-            if ((player.get(i) == "D") && (bridge.get(i) == "U"))
+            if ((player.get(i).equals(DOWN.getKey())) && (bridge.get(i).equals(UP.getKey())))
                 ox.add("X");
         }
         return ox;
@@ -75,7 +76,7 @@ public class OutputView {
 
         System.out.println("최종 게임 결과");
         printMap(bridge, player);
-        System.out.print("게임 성공 여부: " + isSuccess(bridge, player).getKorean());
+        System.out.println("게임 성공 여부: " + isSuccess(bridge, player).getKorean());
         System.out.println("총 시도한 횟수: " + attempts);
     }
 
