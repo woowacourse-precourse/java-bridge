@@ -35,16 +35,21 @@ public class BridgeController {
             //System.out.println(bridgeGame.getBridge());
             startMove();
 
-            if (bridgeGame.isSuccess()) {
-                outputView.printResult(bridgeGame.getUserMoving(),SUCCESS,count);
-                break;
-            }
-            // 성공 하지도 못했는데 재시작도 안하면 실패
-            if (bridgeGame.retry(inputView.readGameCommand()) == false) {
-                outputView.printResult(bridgeGame.getUserMoving(),FAILURE,count);
-                break;
-            }
+            if(proceedEndOfGame(count)) break;
         }
+    }
+
+    public boolean proceedEndOfGame(int count){
+        if (bridgeGame.isSuccess()) {
+            outputView.printResult(bridgeGame.getUserMoving(),SUCCESS,count);
+            return true;
+        }
+        // 성공 하지도 못했는데 재시작도 안하면 실패
+        if (bridgeGame.retry(inputView.readGameCommand()) == false) {
+            outputView.printResult(bridgeGame.getUserMoving(),FAILURE,count);
+            return true;
+        }
+        return false;
     }
 
     public void startMove() {
