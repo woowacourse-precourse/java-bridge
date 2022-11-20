@@ -1,5 +1,8 @@
 package bridge.controller;
 
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
 import bridge.InputView;
 import bridge.view.Print;
 
@@ -8,6 +11,8 @@ import bridge.view.Print;
  */
 public class BridgeGame {
 
+    static int bridgeSize;
+
     public void setting() { //입력값받기
         Print.gameStartMessage();
         int startNumber = 1;
@@ -15,14 +20,25 @@ public class BridgeGame {
             Print.requestBridgeLengthMessage();
             try {
                 InputView inputView = new InputView();
-                int bridgeSize = inputView.readBridgeSize();
+                bridgeSize = inputView.readBridgeSize();
                 startNumber = 0;
             } catch (IllegalArgumentException e) {
                 Print.exceptionMessage(e);
                 startNumber = 1;
             }
         }
+
     }
+
+    public void make(){ //입력값만큼 다리 만들고 랜덤값 넣기
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+
+        bridgeMaker.fillBridge(bridgeSize);
+        //System.out.println("bridgeSize "+ bridgeSize);
+
+    }
+
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
