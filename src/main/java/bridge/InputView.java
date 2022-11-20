@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.validator.InputValidator;
-import bridge.validator.Validator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -16,7 +15,7 @@ public class InputView {
         int size = Integer.parseInt(Console.readLine());
 
         try {
-            Validator.validateBridgeSize(size);
+            InputValidator.validateBridgeSize(size);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             readBridgeSize();
