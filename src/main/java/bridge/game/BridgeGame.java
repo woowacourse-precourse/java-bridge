@@ -10,6 +10,27 @@ public class BridgeGame {
     private List<String> bridge_answer;
     private List<String> bridge_userPredict;
 
+    public enum BridgeShape {
+        DOWN(0, "D"),
+        UP(1, "U");
+
+        private int integerValue;
+        private String stringValue;
+
+        BridgeShape(int integerValue, String stringValue) {
+            this.integerValue = integerValue;
+            this.stringValue = stringValue;
+        }
+
+        public int getIntegerValue() {
+            return integerValue;
+        }
+
+        public String getStringValue() {
+            return stringValue;
+        }
+    }
+
     public void setBridgeAnswer(List<String> bridge_answer) {
         this.bridge_answer = bridge_answer;
     }
