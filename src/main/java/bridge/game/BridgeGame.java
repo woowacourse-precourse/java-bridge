@@ -14,13 +14,14 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private final List<String> bridgeAnswer;
-    private final CurrentBridge currentBridge = new CurrentBridge();
+    private final Bridge bridgeAnswer;
+    private final Bridge currentBridge;
     private BridgeGameStatus status;
     private int tryCount;
 
     public BridgeGame(List<String> bridgeAnswer) {
-        this.bridgeAnswer = bridgeAnswer;
+        this.bridgeAnswer = new Bridge(bridgeAnswer);
+        this.currentBridge = new Bridge();
         status = RUNNING;
         tryCount = 1;
     }
@@ -33,7 +34,7 @@ public class BridgeGame {
     public void move(String direction) {
         validateMove(direction);
         int currentIndex = currentBridge.size();
-        String answer = bridgeAnswer.get(currentIndex);
+        String answer = bridgeAnswer.getDirectionAt(currentIndex);
 
         matchBridge(answer, direction);
     }
@@ -49,17 +50,17 @@ public class BridgeGame {
 
     private void matchBridge(String answer, String direction) {
         if (answer.equals("U") && answer.equals(direction)) {
-            currentBridge.update(CORRECT, NONE);
+            currentBridge.updateUpperCorrect();
         }
         if (answer.equals("U") && !answer.equals(direction)) {
-            currentBridge.update(NONE, WRONG);
+            currentBridge.updateUpperWrong();
         }
 
         if (answer.equals("D") && answer.equals(direction)) {
-            currentBridge.update(NONE, CORRECT);
+            currentBridge.updateLowerCorrect();
         }
         if (answer.equals("D") && !answer.equals(direction)) {
-            currentBridge.update(WRONG, NONE);
+            currentBridge.updateLowerWrong();
         }
 
         updateStatus();
