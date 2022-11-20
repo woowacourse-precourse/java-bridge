@@ -13,41 +13,9 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(List<String> bridge, int countOfMove, boolean isMove) {
-        String message = "";
-        String mark = " ";
-        for (int i = 0; i < countOfMove; i++) {
-            mark = " ";
-            if (bridge.get(i) == "U") {
-                mark = "O";
-            }
-            message += " " + mark + " |";
-        }
-        mark = " ";
-        if (bridge.get(countOfMove) == "U" && isMove){
-            mark = "O";
-        }
-        if (bridge.get(countOfMove) == "U" && !isMove) {
-            mark = "X";
-        }
-        message += " " + mark + " ";
+        String message = makeMessageForPrintMap(bridge, countOfMove, isMove, "U");
         System.out.println("[" + message + "]");
-
-        message = "";
-        for (int i = 0; i < countOfMove; i++) {
-            mark = " ";
-            if (bridge.get(i) == "D") {
-                mark = "O";
-            }
-            message += " " + mark + " |";
-        }
-        mark = " ";
-        if (bridge.get(countOfMove) == "D" && isMove){
-            mark = "O";
-        }
-        if (bridge.get(countOfMove) == "D" && !isMove) {
-            mark = "X";
-        }
-        message += " " + mark + " ";
+        message = makeMessageForPrintMap(bridge, countOfMove, isMove, "D");
         System.out.println("[" + message + "]");
     }
 
@@ -81,5 +49,26 @@ public class OutputView {
 
     public void printRestartMessage() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+    }
+
+    private String makeMessageForPrintMap(List<String> bridge, int countOfMove, boolean isMove, String target) {
+        String message = "";
+        String mark = " ";
+        for (int i = 0; i < countOfMove; i++) {
+            mark = " ";
+            if (bridge.get(i) == target) {
+                mark = "O";
+            }
+            message += " " + mark + " |";
+        }
+        mark = " ";
+        if (bridge.get(countOfMove) == target && isMove){
+            mark = "O";
+        }
+        if (bridge.get(countOfMove) == target && !isMove) {
+            mark = "X";
+        }
+        message += " " + mark + " ";
+        return message;
     }
 }
