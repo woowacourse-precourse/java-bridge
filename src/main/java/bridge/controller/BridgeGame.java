@@ -57,6 +57,13 @@ public class BridgeGame {
     public GameState retry(User user) {
         if (gameState == GameState.END)
             return GameState.END;
+
+        String input = inputView.readGameCommand();
+        if (input.equals(GameState.RETRY)) {
+            user.initialize();
+            return GameState.START;
+        }
+
         return GameState.END;
     }
 
