@@ -59,9 +59,9 @@ UserMoveStatus -- move bridgePosition --> BridgeGame -- history --> UserMoveStat
     - [x] [검증] 다리의 길이는 숫자이 외의 값을 가질 수 없습니다.
     - [x] 다리의 길이는 자신의 값을 전달할 수 있습니다.
 - BridgePosition
-    - [ ] [검증] 1과 0을 제외한 값은 생성될 수 없습니다.
-    - [ ] 1은 U 0는 B 입니다.
-    - [ ] code 를 입력받으면 위치 값으로 변경해줍니다.
+    - [X] [검증] 1과 0을 제외한 값은 생성될 수 없습니다.
+    - [X] 1은 U 0는 B 입니다.
+    - [X] code 를 입력받으면 위치 값으로 변경해줍니다.
     - [ ] position을 통해서 BridgePosition을 만들 수 있습니다.
 - SurviveStatus (생존 여부)
     - [ ] O는 생존 성공 상태입니다.
