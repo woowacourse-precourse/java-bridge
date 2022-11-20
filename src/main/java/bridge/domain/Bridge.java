@@ -9,10 +9,14 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public boolean isMatch(int idx, String direction) {
-        if (bridge.get(idx).equals(direction)) {
+    public boolean isMatch(int idx, String input) {
+        if (bridge.get(idx).equals(input)) {
             return true;
         }
         return false;
+    }
+
+    public int size() {
+        return bridge.size();
     }
 }
