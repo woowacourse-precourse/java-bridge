@@ -40,8 +40,12 @@ public class BridgeGame {
         }
     }
 
-    public boolean isVictory() {
-        return gameProgress.isSuccess();
+    public int getTrialCount() {
+        return gameProgress.getTrialCount();
+    }
+
+    public boolean isGameSuccess() {
+        return gameProgress.isGameSuccess();
     }
 
     private boolean isLastSquare() {

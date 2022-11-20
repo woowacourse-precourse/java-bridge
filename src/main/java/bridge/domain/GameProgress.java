@@ -14,7 +14,7 @@ public class GameProgress {
         return trialCount;
     }
 
-    public boolean isSuccess() {
+    public boolean isGameSuccess() {
         return success;
     }
 
