@@ -6,6 +6,7 @@ public enum MessageUtil {
     BRIDGE_SIZE_INPUT_INTRO("다리의 길이를 입력해주세요."),
     POSITION_CHOICE_INPUT("이동할 칸을 선택해주세요. (위: U, 아래: D)"),
     CONTINUE_OR_QUIT("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"),
+    FINAL_RESULT_INTRO("최종 게임 결과"),
 
     // 에러 관련
     INVALID_BRIDGE_SIZE("잘못된 입력 형식입니다. 3 ~ 20 사이의 숫자를 입력해주세요."),

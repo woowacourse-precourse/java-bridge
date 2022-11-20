@@ -1,7 +1,9 @@
 package bridge.controller;
 
+import static bridge.domain.BridgeConstants.QUIT;
 import static bridge.domain.BridgeConstants.RETRY;
 
+import bridge.GameContext;
 import bridge.domain.Bridge;
 import bridge.BridgeGame;
 import bridge.ui.InputView;
@@ -12,17 +14,21 @@ public class GameController {
     private final InputView inputView;
     private final OutputView outputView;
     private BridgeGame bridgeGame;
+    private final GameContext context;
 
     public GameController() {
         inputView = new InputView();
         outputView = new OutputView();
+        context = GameContext.getInstance();
     }
 
     public void executeGame() {
         outputView.printOpening();
         bridgeGame = new BridgeGame(makeBridge());
         crossToOtherSide();
-        // printFinalResult();
+        if (!context.hasQuit()){
+            printFinalResult();
+        }
     }
 
     private Bridge makeBridge() {
@@ -39,7 +45,7 @@ public class GameController {
     }
 
     private void crossToOtherSide() {
-        while (!bridgeGame.playerHasCrossed()) {
+        while (!bridgeGame.playerHasCrossed() && !context.hasQuit()) {
             outputView.printUserChoiceOpening();
             try {
                 String choice = inputView.readMoving(inputView.userInput());
@@ -49,6 +55,7 @@ public class GameController {
                 outputView.printErrorMessage(exception.getMessage());
             }
         }
+        context.transition();
     }
 
     private void moveNextStep(String choice) {
@@ -72,9 +79,19 @@ public class GameController {
 
     private void decideAction(String cmd) {
         if (cmd.equals(RETRY)) {
+            context.increaseTryCount();
             bridgeGame.retry();
             crossToOtherSide();
         }
-        // printFinalResult();
+        if (cmd.equals(QUIT)) {
+            context.quit();
+            printFinalResult();
+        }
+    }
+
+    private void printFinalResult() {
+        outputView.printResultOpening();
+        outputView.printMap(bridgeGame.matchResults(), bridgeGame.getPlayersMove());
+        outputView.printResult(context.getTryCount(), context.isSuccess());
     }
 }
