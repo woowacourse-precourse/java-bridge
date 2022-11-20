@@ -63,15 +63,15 @@
 
 2. UI 로직
 
-    * readBridgeSize()
+    * readBridgeSize() - UI_readBridgeSizeTest()
         * 예외 체크
             - 3 이상 20 이하의 정수가 아니면 IllegalArgumentException 발생시키고 [ERROR]로 시작하는 에러 메시지 출력하고 다시 입력받기 
     
-    * readMoving()
+    * readMoving() - UI_readMovingTest()
         * 예외 체크
             - U 나 D의 문자가 아니면 IllegalArgumentException 발생시키고 [ERROR]로 시작하는 에러 메시지 출력하고 다시 입력받기
 
-    * readGameCommand()
+    * readGameCommand() - UI_readGameCommandTest()
         * 예외 체크
             - R이나 Q의 문자가 아니면 IllegalArgumentException 발생시키고 [ERROR]로 시작하는 에러 메시지 출력하고 다시 입력받기
 

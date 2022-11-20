@@ -47,7 +47,6 @@ public class Application {
         	successBridgeState(bridgeGame);
         	outputView.printCurrentStateBridge(bridgeGame.getUpDownBridgeList());  // 현재 다리의 상태를 출력해줌
         }
-    	
     	return false;   // 다리를 다 건넜을 때 return false.
     }
     
