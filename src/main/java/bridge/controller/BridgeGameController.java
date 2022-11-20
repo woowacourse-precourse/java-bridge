@@ -29,7 +29,6 @@ public class BridgeGameController {
 
     private void initializeGame() {
         OutputView.printStartMessage();
-        OutputView.printBlankLine();
         setBridgeSize();
         bridgeGame.setGameState();
     }
@@ -43,7 +42,7 @@ public class BridgeGameController {
 
     private void playGame() {
         takeTrial();
-        if (isGameSuccess()) {
+        if (bridgeGame.isGameSuccess()) {
             return;
         }
         retryGame();
@@ -51,10 +50,9 @@ public class BridgeGameController {
 
     private void retryGame() {
         while (isRestart()) {
-            bridgeGame.retry();
-            mapConverter.initialize();
+            setRetry();
             takeTrial();
-            if (isGameSuccess()) {
+            if (bridgeGame.isGameSuccess()) {
                 return;
             }
         }
@@ -62,7 +60,7 @@ public class BridgeGameController {
 
     private void takeTrial() {
         do {
-            if (isGameSuccess()) {
+            if (bridgeGame.isGameSuccess()) {
                 return;
             }
             takeTurn();
@@ -73,12 +71,13 @@ public class BridgeGameController {
         OutputView.printNextMovementInputMessage();
         String nextMovement = InputView.readMoving();
         bridgeGame.move(nextMovement);
-        bridgeGame.setResult();
+        bridgeGame.updateGameProgress();
         setMap(nextMovement);
     }
 
-    private boolean isGameSuccess() {
-        return bridgeGame.isGameSuccess();
+    private void setRetry() {
+        bridgeGame.retry();
+        mapConverter.initialize();
     }
 
     private void setMap(String nextMovement) {

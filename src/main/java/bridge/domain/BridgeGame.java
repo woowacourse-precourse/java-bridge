@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import java.util.ArrayList;
-
 public class BridgeGame {
 
     private Bridge bridge;
@@ -15,7 +13,7 @@ public class BridgeGame {
     }
 
     public void setGameState() {
-        currentRoute = new CurrentRoute(new ArrayList<>());
+        currentRoute = new CurrentRoute();
         gameProgress = new GameProgress();
     }
 
@@ -34,7 +32,7 @@ public class BridgeGame {
         return bridge.isAvailableSquare(currentLocationIndex, currentLocation);
     }
 
-    public void setResult() {
+    public void updateGameProgress() {
         if (isLastSquare() && isMovementSuccess()) {
             gameProgress.victoryGame();
         }

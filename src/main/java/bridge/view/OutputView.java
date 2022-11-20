@@ -19,6 +19,7 @@ public class OutputView {
 
     public static void printStartMessage() {
         System.out.println(START_MESSAGE);
+        printBlankLine();
     }
 
     public static void printBridgeSizeInputMessage() {

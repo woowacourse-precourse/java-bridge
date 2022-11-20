@@ -1,13 +1,14 @@
 package bridge.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CurrentRoute {
 
     private final List<String> currentRoute;
 
-    public CurrentRoute(List<String> currentRoute) {
-        this.currentRoute = currentRoute;
+    public CurrentRoute() {
+        this.currentRoute = new ArrayList<>();
     }
 
     public void initialize() {

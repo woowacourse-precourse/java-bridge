@@ -14,7 +14,7 @@ public class CurrentRouteTest {
 
     @BeforeEach
     void setUp() {
-        currentRoute = new CurrentRoute(new ArrayList<>());
+        currentRoute = new CurrentRoute();
     }
 
     @DisplayName("다음 위치로 정상 이동되는지 확인")
