@@ -39,8 +39,8 @@ public class BridgeGame {
 
     private List<StepResult> handleFailure(Bridge bridge, TryCount tryCount, List<StepResult> stepHistory) {
         outputView.printAskingGameCommandMessage();
-        String command = inputView.readGameCommand();
-        if (command.equals(Command.R.toString())) {
+        Command command = Command.getByValue(inputView.readGameCommand());
+        if (command.equals(Command.R)) {
             return retry(bridge, tryCount);
         }
         return stepHistory;

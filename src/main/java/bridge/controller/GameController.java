@@ -32,6 +32,14 @@ public class GameController {
         handleGameResult(bridge, gameResult);
     }
 
+    private Bridge makeBridge() {
+        outputView.printAskingBridgeSizeMessage();
+        int bridgeSize = inputView.readBridgeSize();
+
+        List<Step> steps = Step.from(bridgeMaker.makeBridge(bridgeSize));
+        return new Bridge(steps);
+    }
+
     private void handleGameResult(Bridge bridge, GameResult gameResult) {
         if (gameResult.isFinishedFrom(bridge)) {
             handleSuccess(gameResult);
@@ -45,13 +53,5 @@ public class GameController {
 
     private void handleFailure(GameResult gameResult) {
         outputView.printResult(gameResult, false);
-    }
-
-    private Bridge makeBridge() {
-        outputView.printAskingBridgeSizeMessage();
-        int bridgeSize = inputView.readBridgeSize();
-
-        List<Step> steps = Step.from(bridgeMaker.makeBridge(bridgeSize));
-        return new Bridge(steps);
     }
 }

@@ -25,7 +25,7 @@ class StepTest {
             //when && then
             assertThatThrownBy(() -> Step.getByNumber(2))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(Step.INVALID_NUMBER_MESSAGE);
+                    .hasMessage(Step.INVALID_VALUE_MESSAGE);
         }
     }
 }

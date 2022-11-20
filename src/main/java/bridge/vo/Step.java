@@ -8,7 +8,7 @@ public enum Step {
     U(1),
     D(0);
 
-    public static final String INVALID_NUMBER_MESSAGE = "U, D 어느 쪽에도 해당하지 않는 값입니다.";
+    public static final String INVALID_VALUE_MESSAGE = "U, D 어느 쪽에도 해당하지 않는 값입니다.";
     private final int number;
 
     Step(int number) {
@@ -19,7 +19,7 @@ public enum Step {
         return Arrays.stream(Step.values())
                 .filter(value -> number == value.number)
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(INVALID_NUMBER_MESSAGE))
+                .orElseThrow(() -> new IllegalArgumentException(INVALID_VALUE_MESSAGE))
                 // TODO: IllegalArgumentException 이 적절하지 않을 수 있다.
                 .toString();
     }
@@ -28,7 +28,7 @@ public enum Step {
         return Arrays.stream(Step.values())
                 .filter(bridgeStep -> bridgeStep.toString().equals(value))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(INVALID_NUMBER_MESSAGE));
+                .orElseThrow(() -> new IllegalArgumentException(INVALID_VALUE_MESSAGE));
                 // TODO: IllegalArgumentException 이 적절하지 않을 수 있다.
     }
 
