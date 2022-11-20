@@ -1,6 +1,11 @@
 package bridge.view;
 
+import bridge.dto.BridgeMapDto;
+import bridge.model.entity.BridgeMap;
+import bridge.model.value.BridgeIngredient;
 import bridge.model.value.OutMessage;
+
+import java.util.List;
 
 import static bridge.model.value.OutMessage.*;
 
@@ -21,8 +26,20 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
-        System.out.println(PRINT_BRIDGE_STATE);
+    public void printMap(BridgeMapDto bridgeMapDto) {
+        String upMap = createPrintMap(bridgeMapDto.getUpMap());
+        String downMap = createPrintMap(bridgeMapDto.getDownMap());
+        System.out.println(upMap);
+        System.out.println(downMap);
+    }
+
+    public String createPrintMap(List<String> map){
+        String strMap = BridgeIngredient.START.getIngredient() + BridgeIngredient.BLANK.getIngredient();
+        for(int i = 0; i < map.size(); i ++){
+            strMap += map.get(i) + BridgeIngredient.BLANK.getIngredient();
+        }
+        strMap += BridgeIngredient.END.getIngredient();
+        return strMap;
     }
 
     /**
