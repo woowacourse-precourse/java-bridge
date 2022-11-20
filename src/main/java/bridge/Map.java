@@ -3,6 +3,8 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.Constants.X;
+
 public class Map {
 	private final List<List<String>> map;
 
@@ -18,5 +20,33 @@ public class Map {
 
 	public void addDown(String answer) {
 		map.get(1).add(answer);
+	}
+
+	public int getSize(){
+		return map.get(0).size();
+	}
+
+	public boolean containX(){
+		for (List<String> map : this.map){
+			if (map.contains(X))
+				return true;
+		}
+		return false;
+	}
+
+	public boolean success(Map map, int size) {
+		if (map.getSize() == size && !map.containX()) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean fail() {
+		// todo 성공 종료 조건
+		for (List<String> way : map){
+			if (way.contains(X))
+				return true;
+		}
+		return false;
 	}
 }

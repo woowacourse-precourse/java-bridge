@@ -8,6 +8,7 @@ public class Application {
 		InputView inputView = new InputView();
 		PlayerBridge playerBridge = new PlayerBridge();
 		Map map = new Map();
+		BridgeGame bridgeGame = new BridgeGame();
 
 		System.out.println(START);
 
@@ -19,10 +20,18 @@ public class Application {
 		Bridge bridge = new Bridge(new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(size));
 
 		// todo 사용자 U, D 입력
-		System.out.println(WRITE_WANNA_MOVE);
-		playerBridge.add(inputView.readMoving());
+		while (map.success(map, size)) {
+			System.out.println(WRITE_WANNA_MOVE);
+			playerBridge.add(inputView.readMoving());
 
-		// todo move( 값 비교)
-		new BridgeGame().move(map, bridge, playerBridge);
+			// move
+			bridgeGame.move(map, bridge, playerBridge);
+			// 다리 출력
+
+			if (map.fail()) {// 틀렸을 때
+
+			}
+
+		}
 	}
 }
