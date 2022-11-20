@@ -4,6 +4,8 @@ import bridge.enums.ErrorMessage;
 import bridge.enums.InputMessage;
 import camp.nextstep.edu.missionutils.Console;
 
+import static bridge.util.ValidationUtil.*;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -12,10 +14,9 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public static int readBridgeSize() {
-        System.out.println(InputMessage.ENTER_BRIDGE_LENGTH_MESSAGE.getMessage());
+    public static int readBridgeSize(String input) {
         try {
-            int bridgeSize = Integer.valueOf(Console.readLine());
+            int bridgeSize = Integer.parseInt(input);
             validateBridgeSize(bridgeSize);
             return bridgeSize;
         } catch (NumberFormatException e) {
@@ -26,9 +27,7 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public static String readMoving() {
-        System.out.println(InputMessage.SELECT_CELL_TO_MOVE_MESSAGE.getMessage());
-        String direction = Console.readLine();
+    public static String readMoving(String direction) {
         validateMove(direction);
         return direction;
     }
@@ -36,43 +35,27 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public static String readGameCommand() {
-        System.out.println(InputMessage.ENTER_WHETHER_TO_RETRY_GAME_MESSAGE.getMessage());
-        String retry = Console.readLine();
+    public static String readGameCommand(String retry) {
         validateWhetherToRetry(retry);
         return retry;
     }
 
-    /**
-     * 다리 길이가 1 이상인지 확인한다.
-     *
-     * @param size 다리의 길이
-     */
-    private static void validateBridgeSize(int size) {
-        if (size <= 0) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_BRIDGE_LENGTH_INPUT.getMessage());
-        }
+    /*
+        아래 메서드는 위 메서드를 오버로딩해서 테스트를 용이하게 만들었다.
+        수정할 여지가 있는지 고민할 필요가 있다.
+    */
+    public static int readBridgeSize() {
+        System.out.println(InputMessage.ENTER_BRIDGE_LENGTH_MESSAGE.getMessage());
+        return readBridgeSize(Console.readLine());
     }
 
-    /**
-     * 이동 방향이 U 또는 D가 맞는지 확인한다.
-     *
-     * @param direction 다음 이동 방향 (U/D)
-     */
-    private static void validateMove(String direction) {
-        if (!direction.equals("U") && !direction.equals("D")) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_DIRECTION_INPUT.getMessage());
-        }
+    public static String readMoving() {
+        System.out.println(InputMessage.SELECT_CELL_TO_MOVE_MESSAGE.getMessage());
+        return readMoving(Console.readLine());
     }
 
-    /**
-     * 게임 재개 입력이 R 또는 Q가 맞는지 확인한다.
-     *
-     * @param retry 게임 재개 여부 (R/Q)
-     */
-    private static void validateWhetherToRetry(String retry) {
-        if (!retry.equals("R") && !retry.equals("Q")) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_RETRY_INPUT.getMessage());
-        }
+    public static String readGameCommand() {
+        System.out.println(InputMessage.ENTER_WHETHER_TO_RETRY_GAME_MESSAGE.getMessage());
+        return readGameCommand(Console.readLine());
     }
 }
