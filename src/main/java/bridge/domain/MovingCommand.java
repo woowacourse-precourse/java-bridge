@@ -22,8 +22,7 @@ public enum MovingCommand {
         throw new IllegalArgumentException(ERROR_MOVING_INPUT);
     }
 
-    @Override
-    public String toString() {
-        return this.name;
+    public String getName() {
+        return name;
     }
 }

@@ -23,7 +23,7 @@ public class BridgeStatus {
     }
 
     public void addUserMovingCommand(MovingCommand movingCommand) {
-        userBridge.add(movingCommand.toString());
+        userBridge.add(movingCommand.getName());
         int userBridgeLastIndex = userBridge.size() - 1;
         validateAddUserMovingCommand();
         checkGameStatus(userBridge.get(userBridgeLastIndex), answerBridge.get(userBridgeLastIndex));
