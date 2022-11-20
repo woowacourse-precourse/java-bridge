@@ -22,7 +22,7 @@ public class InputView {
         String bridgeSize = Console.readLine();
         System.out.println();
 
-        boolean isThrowError = tryCatch(this::validateBridgeSize, bridgeSize);
+        boolean isThrowError = validate(this::validateBridgeSize, bridgeSize);
         if (isThrowError) {
             return readBridgeSize();
         }
@@ -50,7 +50,7 @@ public class InputView {
         System.out.println(Message.REQUEST_MOVE_TO_PLACE);
         String moveToBridge = Console.readLine();
 
-        boolean isThrowError = tryCatch(this::validateMoveToBridge, moveToBridge);
+        boolean isThrowError = validate(this::validateMoveToBridge, moveToBridge);
         if (isThrowError) {
             return readMoving();
         }
@@ -71,7 +71,7 @@ public class InputView {
         return null;
     }
 
-    public boolean tryCatch(Consumer<String> validateFunction, String input) {
+    public boolean validate(Consumer<String> validateFunction, String input) {
         try {
             validateFunction.accept(input);
         } catch (IllegalArgumentException e) {
