@@ -2,7 +2,7 @@ package bridge.domain;
 
 public class User {
     private int tryCount = 1;
-    private boolean isSuccess;
+    private boolean isSuccessComplete;
     private boolean gameOver;
 
     public int getTryCount() {
@@ -22,11 +22,11 @@ public class User {
     }
 
     private void setSuccess() {
-        isSuccess = true;
+        isSuccessComplete = true;
     }
 
     public boolean isSuccessComplete() {
-        return isSuccess;
+        return isSuccessComplete;
     }
 
     public void finishGame() {
