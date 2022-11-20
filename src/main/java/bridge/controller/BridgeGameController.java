@@ -35,7 +35,7 @@ public class BridgeGameController {
         while (bridgeGame.isPlaying()) {
             String direction = inputView.readMoving();
             bridgeGame.move(direction);
-            outputView.printMap(bridgeGame.getPathResultToString());
+            outputView.printMap(bridgeGame);
         }
 
         if (bridgeGame.isGameClear()) {
@@ -53,6 +53,6 @@ public class BridgeGameController {
     }
 
     private void finishGame() {
-        outputView.printResult(bridgeGame.getResultToString());
+        outputView.printResult(bridgeGame);
     }
 }
