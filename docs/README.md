@@ -19,8 +19,6 @@
     - IllegalArgumentException 을 발생시키고,
     - "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
 
-
-
 - 입력한 칸이 이동 가능한 칸인지 확인한다. BridgeGame.move
 - 현재까지 건넌 다리를 모두 출력한다. OutputView.printMap
   - 이동한 칸을 건널 수 있다면 O로 표시한다. 건널 수 없다면 X로 표시한다.
