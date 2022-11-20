@@ -3,7 +3,7 @@ package model;
 import java.util.List;
 
 public class Bridge {
-    List<String> bridgeMap;
+    final List<String> bridgeMap;
 
     public Bridge(List<String> bridgeMap){
         this.bridgeMap = bridgeMap;

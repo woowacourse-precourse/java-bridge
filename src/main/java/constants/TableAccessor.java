@@ -12,7 +12,7 @@ public class TableAccessor {
 
     public static Map<Integer, String> resultTableAccessor = Map.of(
             ResultTable.PASS.getResultNumber(), "PASS",
-            ResultTable.FAIL.getResultNumber(), "FAIL" ,
+            ResultTable.FAIL.getResultNumber(), "FAIL",
             ResultTable.END.getResultNumber(), "END"
-            );
+    );
 }
