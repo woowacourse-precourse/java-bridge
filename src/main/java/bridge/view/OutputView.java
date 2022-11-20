@@ -20,6 +20,12 @@ public class OutputView {
 
     private void printGameStatus(String result){
         System.out.println(TOTAL_RESULT+SKIP_LINE+result+SKIP_LINE);
+
+    }
+
+    private String makeResultStatement(String result){
+        if(isFail(result)) return FAILURE;
+        return SUCCESS;
     }
 
     private void printTrialCounts(){
