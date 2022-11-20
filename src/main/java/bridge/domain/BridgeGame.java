@@ -62,6 +62,11 @@ public class BridgeGame {
         return false;
     }
 
+    public static void clear() {
+        upBridge.clear();
+        downBridge.clear();
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
@@ -71,8 +76,6 @@ public class BridgeGame {
         if(input.equals("Q")) {
             return false;
         }
-        upBridge.clear();
-        downBridge.clear();
         return true;
     }
 }
