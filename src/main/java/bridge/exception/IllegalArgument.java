@@ -15,4 +15,11 @@ public class IllegalArgument {
         }
         return false;
     }
+
+    public static boolean isIncorrectMoving(String moving) {
+        if (moving.equals("U") || moving.equals("D")) {
+            return false;
+        }
+        return true;
+    }
 }

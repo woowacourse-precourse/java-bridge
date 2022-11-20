@@ -27,7 +27,7 @@ public class InputView {
     public String readMoving() {
         System.out.println(Message.INPUT_CROSS_THE_BRIDGE_MESSAGE);
         String moving = Console.readLine();
-        return moving;
+        return parser.parseMoving(moving);
     }
 
     /**

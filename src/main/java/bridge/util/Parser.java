@@ -10,4 +10,11 @@ public class Parser {
         }
         return Integer.parseInt(bridgeSizeInput);
     }
+
+    public String parseMoving(String moving) {
+        if (IllegalArgument.isIncorrectMoving(moving)) {
+            throw new IllegalArgumentException(ErrorMessage.INCORRECT_MOVING_ERROR);
+        }
+        return moving;
+    }
 }
