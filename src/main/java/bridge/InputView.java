@@ -34,7 +34,9 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String gameCommand = Console.readLine();
+        isValidGameCommand(gameCommand);
+        return gameCommand;
     }
 
     private int checkNumeralInput(String bridgeSizeInput) {
@@ -54,6 +56,12 @@ public class InputView {
     private void isValidBlockInput(String block) {
         if (!block.equals(MOVING_UP) && !block.equals(MOVING_DOWN)) {
             throw new IllegalArgumentException("[ERROR] 이동 시에는 U or D 의 문자가 입력되어야 합니다.");
+        }
+    }
+
+    private void isValidGameCommand(String gameCommand) {
+        if (!gameCommand.equals(QUIT_GAME) && !gameCommand.equals(RETRY_GAME)) {
+            throw new IllegalArgumentException("[ERROR] 게임 재시작/종료 여부에는 R or Q 의 문자가 입력되어야 합니다.");
         }
     }
 }
