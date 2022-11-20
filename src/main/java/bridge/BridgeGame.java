@@ -22,5 +22,6 @@ public class BridgeGame {
     }
 
     public void stop(){
+        bridgeGameController.concludeGame();
     }
 }
