@@ -16,12 +16,14 @@ public class Validator {
 
     public static void validateInputDirectionException(String inputDirection) {
         validateInputDirectionNull(inputDirection);
+        validateInputNumber(inputDirection);
         validateInputDirectionLowerCase(inputDirection);
         validateInputDirection(inputDirection);
     }
 
     public static void validateInputGameRestartException(String inputRestart) {
         validateInputGameRestartNull(inputRestart);
+        validateInputNumber(inputRestart);
         validateInputGameRestartLowerCase(inputRestart);
         validateInputGameRestart(inputRestart);
     }
@@ -122,6 +124,17 @@ public class Validator {
             }
         } catch (NullPointerException e) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_NULL.getErrorMessage());
+        }
+    }
+
+    private static void validateInputNumber(String input) {
+        char check = input.charAt(0);
+        try {
+            if (check >= '0' && check <= '9') {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(ErrorMessage.BRIDGE_INPUT_NUMBER.getErrorMessage());
         }
     }
 }
