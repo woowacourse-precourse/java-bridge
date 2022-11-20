@@ -13,7 +13,7 @@ public class BridgeGame {
     
     private List<String> bridgeList = new ArrayList<>();
     private List<String> bridgeStatus = new ArrayList<>();
-    private boolean flag = true;
+    private boolean flag = false;
     private int count = 1;
     private int index = 0;
     private int size;
@@ -61,7 +61,7 @@ public class BridgeGame {
         }
         bridgeStatus.add(input + "X");
         index++;
-        flag = false;
+        flag = true;
         return bridgeStatus;
     }
 
@@ -71,5 +71,7 @@ public class BridgeGame {
     public void retry() {
         bridgeStatus.clear();
         count++;
+        flag = false;
+        index = 0;
     }
 }
