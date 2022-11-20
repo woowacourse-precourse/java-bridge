@@ -19,10 +19,6 @@ public class BridgeProgram {
     }
 
     public void play() {
-        printStartGame();
-    }
-
-    public void printStartGame() {
         outputView.printStart();
     }
 }
