@@ -73,6 +73,7 @@ public class Service {
         outputView.printResultMessage();
         Bridge bridge = bridgeGame.getBridge();
         outputView.printBridge(bridge);
+        outputView.printGameResult(bridge);
         outputView.printNumberOfAttempts(bridge);
     }
 }
