@@ -1,7 +1,7 @@
 package bridge;
 
 public class Pause {
-	static boolean paused = false;
+	public static boolean paused = false;
 
 	public static void setPause() {
 		if (whenNotPaused()) {
