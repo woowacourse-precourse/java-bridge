@@ -1,25 +1,24 @@
 package bridge.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MovementRecord {
-    private List<SpotInfo> movementMap;
+    private final List<SpotInfo> movementMap;
 
     public MovementRecord() {
-        // TODO 구현 필요
+        movementMap = new ArrayList<>();
     }
 
     public SpotInfo getMovementRecord(int index) {
-        // TODO 구현 필요
-        return SpotInfo.UP;
+        return movementMap.get(index);
     }
 
     public int getMovementCount() {
-        // TODO 구현 필요
-        return 0;
+        return movementMap.size();
     }
 
     public void addMovementRecord(SpotInfo spotInfo) {
-        // TODO 구현 필요
+        movementMap.add(spotInfo);
     }
 }
