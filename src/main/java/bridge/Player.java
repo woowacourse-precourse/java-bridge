@@ -5,7 +5,7 @@ public class Player {
     private int currentSpace;
 
     public Player(){
-        this.attempt=0;
+        this.attempt=1;
         this.currentSpace=0;
     }
 
