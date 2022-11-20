@@ -30,6 +30,10 @@ public class OutputView {
             System.out.print(" | ");
         }
     }
+
+    public void printEndBridge(){
+        System.out.println(" ]");
+    }
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
