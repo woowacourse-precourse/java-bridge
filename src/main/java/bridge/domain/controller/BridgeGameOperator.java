@@ -28,22 +28,11 @@ public class BridgeGameOperator {
     }
 
     public void playBridgeGame() {
-        GameResultInformation.increaseCountOfTry();
         printStartGuideAndSetBridge();
 
-        boolean gameStart = true;
-        while (gameStart) {
-            if (tryOneGame() == MovingPossibility.CAN_MOVE) {
-                GameResultInformation.setGameResult(GameResult.SUCCESS);
-                break;
-            }
+        playGame();
 
-            if (!selectRetryOrNot()) {
-                gameStart = false;
-                GameResultInformation.setGameResult(GameResult.FAIL);
-            }
-        }
-        outputView.printResult();
+        printFinalResult();
     }
 
     private void printStartGuideAndSetBridge() {
@@ -61,7 +50,18 @@ public class BridgeGameOperator {
         Bridge.setBridge(bridge);
     }
 
-    private MovingPossibility tryOneGame() {
+    private void playGame() {
+        boolean gameStart = true;
+        while (gameStart) {
+            if (tryOneGame() == GameResult.SUCCESS) {
+                break;
+            }
+
+            gameStart = selectRetryOrNot();
+        }
+    }
+
+    private GameResult tryOneGame() {
         MovingPossibility MOVING_POSSIBILITY = MovingPossibility.CAN_MOVE;
         int space = 0;
 
@@ -70,7 +70,7 @@ public class BridgeGameOperator {
             outputView.printMap();
             space++;
         }
-        return MOVING_POSSIBILITY;
+        return setAndReturnGameResult(MOVING_POSSIBILITY);
     }
 
     private MovingPossibility moveOnce(int space) {
@@ -91,6 +91,25 @@ public class BridgeGameOperator {
         return Direction.DOWN;
     }
 
+    private GameResult setAndReturnGameResult(MovingPossibility MOVING_POSSIBILITY) {
+        GameResult GAME_RESULT = returnGameResult(MOVING_POSSIBILITY);
+
+        setGameResult(GAME_RESULT);
+
+        return GAME_RESULT;
+    }
+
+    private GameResult returnGameResult(MovingPossibility MOVING_POSSIBILITY) {
+        if (MOVING_POSSIBILITY == MovingPossibility.CAN_MOVE) {
+            return GameResult.SUCCESS;
+        }
+        return GameResult.FAIL;
+    }
+
+    private void setGameResult(GameResult GAME_RESULT) {
+        GameResultInformation.setGameResult(GAME_RESULT);
+    }
+
     private boolean selectRetryOrNot() {
         outputView.printRetryGuide();
 
@@ -106,5 +125,9 @@ public class BridgeGameOperator {
             return true;
         }
         return false;
+    }
+
+    private void printFinalResult() {
+        outputView.printResult();
     }
 }
