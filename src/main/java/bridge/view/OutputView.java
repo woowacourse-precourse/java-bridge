@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 import bridge.domain.MovingResult;
 import java.util.Map;
@@ -23,11 +23,15 @@ public class OutputView {
 
             if (part.equals(moving)) {
                 printer.insert(insertIndex, result);
+                System.out.println(printer.toString());
                 continue;
             }
 
             printer.insert(insertIndex, "|   ");
+            System.out.println(printer.toString());
         }
+
+        System.out.println();
     }
 
     /**
