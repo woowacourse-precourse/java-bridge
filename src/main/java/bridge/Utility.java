@@ -13,4 +13,10 @@ public class Utility {
 
     public static int MIN_BRIDGE_LENGTH = 3;
     public static int MAX_BRIDGE_LENGTH = 20;
+
+    public static int convertStringToInt(String input){
+        int result = Integer.parseInt(input);
+        return result;
+    }
+
 }
