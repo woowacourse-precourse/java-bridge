@@ -11,20 +11,20 @@ import bridge.view.Print;
  */
 public class BridgeGame {
 
+    InputView inputView = new InputView();
     static int bridgeSize;
 
     public void setting() { //입력값받기
         Print.gameStartMessage();
-        int startNumber = 1;
-        while (startNumber != 0) {
+        int retryCheckNumber = 1;
+        while (retryCheckNumber != 0) {
             Print.requestBridgeLengthMessage();
             try {
-                InputView inputView = new InputView();
                 bridgeSize = inputView.readBridgeSize();
-                startNumber = 0;
+                retryCheckNumber = 0;
             } catch (IllegalArgumentException e) {
                 Print.exceptionMessage(e);
-                startNumber = 1;
+                retryCheckNumber = 1;
             }
         }
 
@@ -33,12 +33,8 @@ public class BridgeGame {
     public void make(){ //입력값만큼 다리 만들고 랜덤값 넣기
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-
         bridgeMaker.makeBridge(bridgeSize);
-        //System.out.println("bridgeSize "+ bridgeSize);
-
     }
-
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -46,6 +42,18 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
+        int retryCheckNumber = 1;
+        while (retryCheckNumber != 0) {
+            Print.requestPickAPartOfBridgeMessage();
+            try {
+                String userInput = inputView.readMoving();
+                retryCheckNumber = 0;
+            } catch (IllegalArgumentException e) {
+                Print.exceptionMessage(e);
+                retryCheckNumber = 1;
+            }
+        }
+
     }
 
     /**

@@ -33,22 +33,5 @@ public class BridgeMaker {
         return bridge;
     }
 
-/*
-
-    public void fillBridge(int size){
-        ArrayList<Integer> round = new ArrayList<>();
-        ArrayList<String> bridge = new ArrayList<>();
-
-        for (int i = 0; i < size; i++) {
-            round.clear();
-            int number = bridgeNumberGenerator.generate();
-            round.add(number);
-            number = (1 - number);
-            round.add(number);
-            bridge.add(round.toString());
-        }
-        System.out.println("bridge" +bridge);
-    }
-*/
 
 }
