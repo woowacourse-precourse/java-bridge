@@ -28,7 +28,7 @@ public class BridgeGameTest {
         //when
         BridgeGame bridgeGame = new BridgeGame(bridge);
         //then
-        assertThat(bridgeGame.getEndIndex())
+        assertThat(bridgeGame.getLastStep())
                 .isEqualTo(1);
     }
     @Test
@@ -53,7 +53,7 @@ public class BridgeGameTest {
         //when
         bridgeGame.move();
         //then
-        assertThat(bridgeGame.getIndex())
+        assertThat(bridgeGame.getCurrentStep())
                 .isEqualTo(0);
     }
 
@@ -83,7 +83,7 @@ public class BridgeGameTest {
         //then
         assertThat(bridgeGame.getNumberOfTrials())
                 .isEqualTo(2);
-        assertThat(bridgeGame.getIndex())
+        assertThat(bridgeGame.getCurrentStep())
                 .isEqualTo(-1);
     }
 

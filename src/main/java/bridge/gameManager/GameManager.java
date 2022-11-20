@@ -56,7 +56,7 @@ public class GameManager {
         int isPossibleMove = bridgeGame.isCorrectMove(move);
         if(isPossibleMove >= 1) bridgeGame.move();
         char[][] mapRecord = bridgeGame.recordMap(isPossibleMove);
-        int indexToPrint = bridgeGame.getIndex();
+        int indexToPrint = bridgeGame.getCurrentStep();
         if(isPossibleMove == 0) indexToPrint++;
         outputView.printMap(mapRecord, indexToPrint);
         return isPossibleMove;
@@ -64,7 +64,7 @@ public class GameManager {
     // 게임 종료
     private void endGame() {
         boolean isSuccess = bridgeGame.isSuccess();
-        int indexToPrint = bridgeGame.getIndex();
+        int indexToPrint = bridgeGame.getCurrentStep();
         if(!isSuccess) indexToPrint++;
         outputView.printEndMessage();
         outputView.printMap(bridgeGame.getMapRecord(), indexToPrint);

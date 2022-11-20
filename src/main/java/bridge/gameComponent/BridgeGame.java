@@ -6,8 +6,8 @@ import bridge.exception.ExceptionMessage;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private int index; //현재까지 움직인 칸
-    private int endIndex; //마지막 칸
+    private int currentStep; //현재까지 움직인 칸
+    private int lastStep; //마지막 칸
     private int numberOfTrials;
     private char[][] mapRecord; //현재까지 움직인 다리 기록
     private Bridge bridge;
@@ -17,22 +17,22 @@ public class BridgeGame {
             throw new IllegalArgumentException(ExceptionMessage.NULL_INPUT.getMessage());
         }
         this.bridge = bridge;
-        this.index = -1;
-        this.endIndex = bridge.getBridge().size() - 1;
+        this.currentStep = -1;
+        this.lastStep = bridge.getBridge().size() - 1;
         this.numberOfTrials = 1;
-        this.mapRecord = new char[2][this.endIndex + 1];
+        this.mapRecord = new char[2][this.lastStep + 1];
     }
 
     public int getNumberOfTrials() {
         return numberOfTrials;
     }
 
-    public int getIndex() {
-        return index;
+    public int getCurrentStep() {
+        return currentStep;
     }
 
-    public int getEndIndex() {
-        return endIndex;
+    public int getLastStep() {
+        return lastStep;
     }
     public char[][] getMapRecord() {
         return mapRecord;
@@ -46,10 +46,10 @@ public class BridgeGame {
      * 마지막 칸까지 도달했다면 1 리턴, 그렇지 않으면 0 리턴
      **/
     public void move() {
-        if(index >= endIndex) {
+        if(currentStep >= lastStep) {
             throw new IllegalStateException(ExceptionMessage.CANNOT_MOVE_FURTHER.getMessage());
         }
-        index++;
+        currentStep++;
     }
 
     /**
@@ -60,12 +60,12 @@ public class BridgeGame {
     public void retry() {
         if (isSuccess()) throw new IllegalStateException(ExceptionMessage.GAME_ALREADY_SUCCESS.getMessage());
         this.numberOfTrials++;
-        this.index = -1;
-        this.mapRecord = new char[2][this.endIndex + 1];
+        this.currentStep = -1;
+        this.mapRecord = new char[2][this.lastStep + 1];
     }
 
     public boolean isSuccess() {
-        if (index == endIndex) return true;
+        if (currentStep == lastStep) return true;
         return false;
     }
 
@@ -74,17 +74,17 @@ public class BridgeGame {
         int userMoveAsInt = moveToInt(userMove);
         int userNotMoveAsInt = notMoveToInt(userMove);
         if (isPossibleMove >= 1) {
-            this.mapRecord[userMoveAsInt][index] = 'O';
-            this.mapRecord[userNotMoveAsInt][index] = ' ';
+            this.mapRecord[userMoveAsInt][currentStep] = 'O';
+            this.mapRecord[userNotMoveAsInt][currentStep] = ' ';
             return this.mapRecord;
         }
-        this.mapRecord[userMoveAsInt][index + 1] = 'X';
-        this.mapRecord[userNotMoveAsInt][index + 1] = ' ';
+        this.mapRecord[userMoveAsInt][currentStep + 1] = 'X';
+        this.mapRecord[userNotMoveAsInt][currentStep + 1] = ' ';
         return this.mapRecord;
     }
     public int isCorrectMove(String move) {
-        boolean isPossibleMove = this.bridge.isPossibleMove(this.index + 1, move);
-        if(isPossibleMove && this.index + 1 == this.endIndex) return 2;
+        boolean isPossibleMove = this.bridge.isPossibleMove(this.currentStep + 1, move);
+        if(isPossibleMove && this.currentStep + 1 == this.lastStep) return 2;
         if(isPossibleMove) return 1;
         return 0;
     }
@@ -104,9 +104,9 @@ public class BridgeGame {
          */
     private String inferUserMove(int isPossibleMove) {
         if(isPossibleMove >= 1) {
-            return this.bridge.getBridge().get(this.index);
+            return this.bridge.getBridge().get(this.currentStep);
         }
-        String supposedToBeRightAnswer = this.bridge.getBridge().get(this.index + 1);
+        String supposedToBeRightAnswer = this.bridge.getBridge().get(this.currentStep + 1);
         if(supposedToBeRightAnswer.equals("U")) return "D";
         return "U";
     }
