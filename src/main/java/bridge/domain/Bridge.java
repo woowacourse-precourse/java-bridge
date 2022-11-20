@@ -2,20 +2,15 @@ package bridge.domain;
 
 import java.util.List;
 
-public class Status {
+public class Bridge {
 
-    private final List<String> bridgeStatus;
+    private final List<String> bridge;
 
-    public Status(List<String> bridgeStatus) {
-        this.bridgeStatus = bridgeStatus;
+    public Bridge(List<String> bridge) {
+        this.bridge = bridge;
     }
 
-    // 유저의 입력과 만들어진 다리의 인덱스가 같다면 걸을 수 있는 다리인 상태
     public boolean isMove(List<String> playerMoving, int index) {
-        return bridgeStatus.get(index).equals(playerMoving.get(index));
-    }
-
-    public int getstatusSize() {
-        return bridgeStatus.size();
+        return bridge.get(index).equals(playerMoving.get(index));
     }
 }
