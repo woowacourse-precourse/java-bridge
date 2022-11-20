@@ -17,10 +17,14 @@ public class Player {
 
     private void validateGetCommand() {
         if (command == null) {
-            throw new IllegalStateException(ErrorMessageGenerator.generate("플레이어에게 커맨드가 설정되지 않았습니다."));
+            throw new IllegalStateException(ErrorMessageGenerator.generate("플레이어에게 명령어가 설정되지 않았습니다."));
         }
     }
 
+    /**
+     * 플레이어의 위치를 한 칸 이동시키고 마지막 명령어를 저장하는 메서드
+     * @param command 명령어 (U or D)
+     */
     public void move(String command) {
         validateMove(command);
         this.command = command;
