@@ -21,34 +21,61 @@ public class OutputView {
     }
 
     public void printMap(GameStatus gameStatus) {
-        String gameHistory = gameStatus.getGameHistory();
-        List<String> upperLine = new ArrayList<>();
-        List<String> lowerLine = new ArrayList<>();
-
-        setLines(gameHistory, upperLine, lowerLine);
-        convertIfGameOver(gameStatus, upperLine, lowerLine);
-
-        String result = joinListToString(upperLine) + "\n" + joinListToString(lowerLine) + "\n";
+        String result = makeFormattedResult(gameStatus);
         System.out.println(result);
     }
 
-    private String joinListToString(List<String> toJoin) {
+    private String makeFormattedResult(GameStatus gameStatus) {
+        String normalizedGameHistory = normalize(gameStatus.getGameHistory());
+
+        List<String> upperLine = makeUpperLine(normalizedGameHistory);
+        List<String> lowerLine = makeLowerLine(normalizedGameHistory);
+        convertIfGameOver(gameStatus, upperLine, lowerLine);
+
+        return formatLine(upperLine) + "\n" + formatLine(lowerLine) + "\n";
+    }
+
+    private String normalize(String gameHistory) {
+        String commaDeleted = gameHistory.replaceAll(",", "");
+        String spaceDeleted = commaDeleted.replaceAll(" ", "");
+        String bracketDeleted = spaceDeleted.substring(1, spaceDeleted.length() - 1);
+        return bracketDeleted;
+    }
+
+    private List<String> makeUpperLine(String gameHistory) {
+        List<String> upperLine = new ArrayList<>();
+        for (int i = 0; i < gameHistory.length(); i++) {
+            upperLine.add(getSymbolIfMovingIsUp(gameHistory.substring(i, i+1)));
+        }
+        return upperLine;
+    }
+
+    private List<String> makeLowerLine(String gameHistory) {
+        List<String> lowerLine = new ArrayList<>();
+        for (int i = 0; i < gameHistory.length(); i++) {
+            lowerLine.add(getSymbolIfMovingIsDown(gameHistory.substring(i, i+1)));
+        }
+        return lowerLine;
+    }
+
+    private String getSymbolIfMovingIsUp(String moving) {
+        if (GameMoving.isUp(moving)) {
+            return "O";
+        }
+        return " ";
+    }
+
+    private String getSymbolIfMovingIsDown(String moving) {
+        if (GameMoving.isDown(moving)) {
+            return "O";
+        }
+        return " ";
+    }
+
+    private String formatLine(List<String> toJoin) {
         return toJoin.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(" | ", "[ ", " ]"));
-    }
-
-    private void setLines(String gameHistory, List<String> upperLine, List<String> lowerLine) {
-        for (int i = 0; i < gameHistory.length(); i++) {
-            if (GameMoving.isUp(gameHistory.substring(i, i+1))) {
-                upperLine.add("O");
-                lowerLine.add(" ");
-            }
-            if (GameMoving.isDown(gameHistory.substring(i, i+1))) {
-                upperLine.add(" ");
-                lowerLine.add("O");
-            }
-        }
     }
 
     private void convertIfGameOver(GameStatus gameStatus, List<String> upperLine, List<String> lowerLine) {
