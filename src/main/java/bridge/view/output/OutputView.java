@@ -1,5 +1,6 @@
 package bridge.view.output;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -45,5 +46,10 @@ public class OutputView {
     public void printResult(String result, int tryCount) {
         System.out.printf("게임 성공 여부: %s\n"
                 + "총 시도한 횟수: %d\n\n", result, tryCount);
+    }
+
+    public void printException(Exception e) {
+        System.out.println(e.getMessage());
+        Arrays.stream(e.getStackTrace()).forEach(System.out::println);
     }
 }
