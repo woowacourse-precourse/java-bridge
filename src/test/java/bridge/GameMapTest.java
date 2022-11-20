@@ -1,28 +1,34 @@
 package bridge;
 
 import bridge.domain.bridgegame.GameMap;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static bridge.BridgeMaker.LOWER_BRIDGE;
+import static bridge.BridgeMaker.UPPER_BRIDGE;
 
 public class GameMapTest {
-    @DisplayName("게임 맵 생성")
-    @Test
-    void generateMapString() {
-        GameMap gameMap = GameMap.generateMap(List.of(" ", "O"), List.of("O", " "));
-        assertThat(gameMap.toString()).contains("[   | O ]", "[ O |   ]");
+    private GameMap gameMap;
+    @BeforeEach
+    void setUp() {
+        HashMap<String, List<String>> initMap = new HashMap<>();
+        initMap.put(UPPER_BRIDGE, new ArrayList<>());
+        initMap.put(LOWER_BRIDGE, new ArrayList<>());
+
+        gameMap = GameMap.from(initMap);
     }
 
     @DisplayName("사용자의 이동 결과에 따라 게임 맵 추가")
     @Test
     void addMapElement() {
-        GameMap gameMap = GameMap.generateMap(new ArrayList<>(), new ArrayList<>());
-        gameMap.addGameResult("U", true);
-        gameMap.addGameResult("D", false);
+        gameMap.addGameResult(UPPER_BRIDGE, true);
+        gameMap.addGameResult(LOWER_BRIDGE, false);
         assertThat(gameMap.toString()).contains("[ O |   ]", "[   | X ]");
     }
 }
