@@ -38,4 +38,24 @@ public class InputValidatorTest {
         int size = InputValidator.checkBridgeSize(bridgeSize);
         assertThat(size).isEqualTo(Integer.parseInt(bridgeSize));
     }
+
+    @DisplayName("칸을 선택할 때 형식(U 또는 D)에 맞지 않다면 예외 처리")
+    @ValueSource(strings = {
+            "A", "B", "C", "E", "F", "G", "H", "I", "G", "K", "L", "M", "N",
+            "O", "P", "Q", "R", "S", "T", "V", "W", "X", "Y", "Z",
+            "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
+            "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"})
+    @ParameterizedTest
+    void notFormatBlock(String block) {
+        assertThatThrownBy(() -> InputValidator.checkBridgeSize(block))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("칸을 선택할 때 크기가 1이 아니라면 예외 처리")
+    @ValueSource(strings = {"AG", "FDSFK", "231231", ",,.#@"})
+    @ParameterizedTest
+    void oneLengthBlock(String block) {
+        assertThatThrownBy(() -> InputValidator.checkBridgeSize(block))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
