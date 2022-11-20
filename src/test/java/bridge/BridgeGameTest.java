@@ -44,7 +44,7 @@ class BridgeGameTest {
         bridgeGame.retry();
 
         // Then
-        assertThat(bridgeGame.getTrial()).isEqualTo(2);
+        assertThat(bridgeGame.getTrial()).isEqualTo(1);
         assertThat(bridgeGame.getUserSteps().size()).isEqualTo(0);
     }
 

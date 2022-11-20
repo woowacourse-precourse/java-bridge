@@ -10,7 +10,7 @@ public class BridgeGame {
 
     private int trial = 0;
     private List<String> bridge;
-    private List<String> userSteps;
+    private List<String> userSteps = new ArrayList<>();
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
