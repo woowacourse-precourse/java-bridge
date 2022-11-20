@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import bridge.constant.enums.Moving;
 import java.util.ArrayList;
 import java.util.List;
 

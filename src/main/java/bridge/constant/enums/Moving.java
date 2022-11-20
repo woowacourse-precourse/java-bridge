@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.constant.enums;
 
 public enum Moving {
 
@@ -13,11 +13,11 @@ public enum Moving {
         this.number = number;
     }
 
-    String getValue() {
+    public String getValue() {
         return value;
     }
 
-    int getNumber() {
+    public int getNumber() {
         return number;
     }
 }

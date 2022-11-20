@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.constant.BridgeGameConstants;
+import bridge.constant.enums.Moving;
 import bridge.constant.message.InputExceptionMessage;
 
 public class Checker {
