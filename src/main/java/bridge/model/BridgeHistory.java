@@ -22,21 +22,6 @@ public class BridgeHistory {
 
     }
 
-    public void updateGameState(String command, boolean isSuccess) {
-        String alterCommand = LocationTable.getAlternativeKey(command);
-        String check = "O";
-
-        if (!isSuccess) check = "X";
-        List<String> target = history.getOrDefault(command, new ArrayList<>());
-        List<String> another = history.getOrDefault(LocationTable.getAlternativeKey(command), new ArrayList<>());
-
-        target.add(check);
-        another.add(" ");
-
-        history.put(command, target);
-        history.put(alterCommand, another);
-    }
-
     public Map<String, List<String>> getHistory() {
         return history;
     }
@@ -49,4 +34,29 @@ public class BridgeHistory {
         return nowStage;
     }
 
+    private String getCheckShape(boolean isSuccess) {
+        if (isSuccess) return "O";
+        return "X";
+    }
+
+    public void updateGameState(String command, boolean isSuccess) {
+        updateHistory(command, isSuccess);
+        nowStage++;
+    }
+
+    private void updateHistory(String command, boolean isSuccess) {
+        String alterCommand = LocationTable.getAlternativeKey(command);
+        String checkShape = getCheckShape(isSuccess);
+        addPage(command, alterCommand, checkShape);
+    }
+
+    private void addPage(String command, String alterCommand, String checkShape) {
+        List<String> target = history.getOrDefault(command, new ArrayList<>());
+        List<String> another = history.getOrDefault(alterCommand, new ArrayList<>());
+
+        target.add(checkShape);
+        another.add(" ");
+        history.put(command, target);
+        history.put(alterCommand, another);
+    }
 }
