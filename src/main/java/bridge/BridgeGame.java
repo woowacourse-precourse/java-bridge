@@ -34,10 +34,15 @@ public class BridgeGame {
     public Boolean retry(String retryInput) {
         if (retryInput.equals("R")) {
             clearFailStage();
+            bridgeCount--;
             tryCount++;
             return true;
         }
         return false;
+    }
+
+    public Boolean clearCheck() {
+        return bridgeCount == correctBridge.size();
     }
 
     private void makeBridgeSuccessState(String nextBridge) {
