@@ -19,7 +19,6 @@ public class Result {
         upBlocks = new ArrayList<>();
         downBlocks = new ArrayList<>();
         gameOver = GameStatus.PLAYING;
-        totalTryNumber = 0;
     }
 
     public void addBlocks(BlockExpression blockExpression) {
@@ -43,7 +42,7 @@ public class Result {
         return gameOver == GameStatus.FAIL;
     }
 
-    public void tryMove() {
+    public void addTryGame() {
         this.totalTryNumber += 1;
     }
 

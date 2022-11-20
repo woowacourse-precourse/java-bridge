@@ -33,6 +33,7 @@ public class BridgeGameController {
     }
 
     private void play() {
+        bridgeGame.tryGame();
         while (!bridgeGame.gameOver()) {
             SelectBlockRequestDto requestDto = inputView.readMoving();
             BridgeResponseDto responseDto = bridgeGame.move(requestDto);

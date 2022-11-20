@@ -41,7 +41,6 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public BridgeResponseDto move(SelectBlockRequestDto dto) {
-        result.tryMove();
         String playerBlock = dto.getBlock();
         String bridgeBlock = bridge.getBlockByPlayerPosition(player.getPosition());
 
@@ -73,6 +72,10 @@ public class BridgeGame {
 
     public boolean isFail() {
         return result.isFail();
+    }
+
+    public void tryGame() {
+        result.addTryGame();
     }
 
     /**
