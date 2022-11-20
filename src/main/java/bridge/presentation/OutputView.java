@@ -59,5 +59,10 @@ public class OutputView {
         }
         return GameMessage.GAME_FAILURE.getMessage();
     }
+
+    private void printTryCount(int tryCount) {
+        String message = GameMessage.TRY_COUNT.getMessage() + COLON.getMark() + BLANK.getMark() + tryCount;
+        System.out.println(message);
+    }
 }
 
