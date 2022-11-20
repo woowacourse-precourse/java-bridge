@@ -35,8 +35,8 @@ public class Bridge {
     public String[] getBridgeMap() {
         String[] bridgeMap = new String[userKeyList.size()];
         for (int index = 0; index < userKeyList.size(); index++) {
-            String bridgeIndex = getBridge().get(index);
-            String keyIndex = getUserKeyList().get(index);
+            String bridgeIndex = bridge.get(index);
+            String keyIndex = userKeyList.get(index);
             bridgeMap[index] = compareKey(bridgeIndex, keyIndex);
         }
         return bridgeMap;
@@ -48,11 +48,6 @@ public class Bridge {
             return Setting.KEY_MATCH;
         }
         return Setting.KEY_NOT_MATCH;
-    }
-
-    // 만든 다리 반환
-    public List<String> getBridge() {
-        return this.bridge;
     }
 
     // 입력한 키 리스트 반환
