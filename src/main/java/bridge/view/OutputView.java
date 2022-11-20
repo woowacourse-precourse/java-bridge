@@ -31,15 +31,6 @@ public class OutputView {
         printEnter();
     }
 
-//    private static StringJoiner createMap(List<String> gameBoard) {
-//        StringJoiner map = new StringJoiner(BRIDGE_SEPARATOR, BRIDGE_START, BRIDGE_FINISH);
-//
-//        for (String value : gameBoard) {
-//            map.add(value);
-//        }
-//        return map;
-//    }
-
     /**
      * [제공된 메서드]
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.

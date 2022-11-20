@@ -1,11 +1,11 @@
 package bridge.service;
 
 import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.Bridge;
 import bridge.domain.BridgeMaker;
 import bridge.domain.GameBoard;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static bridge.constant.Constants.BridgeSign.*;
 
@@ -25,7 +25,7 @@ public class BridgeGame {
     BridgeGameConsole console = new BridgeGameConsole();
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     GameBoard topGameBoard, bottomGameBoard;
-    List<String> bridge = new ArrayList<>();
+    Bridge bridge = new Bridge(new ArrayList<>());
     boolean isGameLose = false;
     int tryCount = 1;
 
@@ -42,13 +42,13 @@ public class BridgeGame {
         }
     }
 
-    private void bridgeExistCheck(){
-        if(bridge.isEmpty()){
+    private void bridgeExistCheck() {
+        if (bridge.isEmpty()) {
             bridge = generateBridge(bridgeMaker);
         }
     }
 
-    public void end(){
+    public void end() {
         console.gameResult(topGameBoard, bottomGameBoard);
         console.gameStatistics(isGameLose, tryCount);
     }
@@ -71,8 +71,8 @@ public class BridgeGame {
         }
     }
 
-    private void startMove(List<String> bridge) {
-        for (String nowBridge : bridge) {
+    private void startMove(Bridge bridge) {
+        for (String nowBridge : bridge.getBridge()) {
             move(nowBridge);
 
             if (isGameLose) {
@@ -123,12 +123,12 @@ public class BridgeGame {
         return movingDirection;
     }
 
-    private List<String> generateBridge(BridgeMaker bridgeMaker) {
+    private Bridge generateBridge(BridgeMaker bridgeMaker) {
         console.bridgeSizeInputRequestMessage();
-        List<String> bridge;
+        Bridge bridge;
 
         try {
-            bridge = bridgeMaker.makeBridge(console.inputBridgeSize());
+            bridge = new Bridge(bridgeMaker.makeBridge(console.inputBridgeSize()));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             bridge = generateBridge(bridgeMaker);
