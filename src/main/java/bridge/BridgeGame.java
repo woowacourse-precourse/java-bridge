@@ -1,9 +1,22 @@
 package bridge;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private List<String> bridge;
+    private List<String> answerPath;
+    private int attempts;
+
+    public BridgeGame() {
+        this.attempts = 1;
+    }
+
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
