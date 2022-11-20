@@ -12,9 +12,9 @@ public class GameController {
 
 
     public void run() {
-        initialize();
-        GameStatus gameStatus = getFinalGameResult();
-        outputView.printResult(gameStatus, gameStatus.getCount());
+        initializeGame();
+        GameStatus finalGameStatus = getFinalGameResult();
+        outputView.printResult(finalGameStatus, finalGameStatus.getCount());
     }
 
     private GameStatus getFinalGameResult() {
@@ -45,7 +45,7 @@ public class GameController {
         return false;
     }
 
-    private void initialize() {
+    private void initializeGame() {
         int size = inputController.readBridgeSizeUntilSucceed();
         bridgeGame.initialize(size);
     }
