@@ -8,7 +8,7 @@ public class BridgeGame {
     private static final String RETRY = "R";
 
     private final Bridge bridge;
-    private final BridgeGameResult bridgeGameResult;
+    private final BridgeGameResult bridgeGameResult = new BridgeGameResult();
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
