@@ -1,11 +1,9 @@
-package bridge.controller;
+package bridge.service;
 
 import bridge.BridgeRandomNumberGenerator;
-import bridge.service.BridgeMaker;
 import bridge.util.Utils;
 import bridge.util.validator.BridgeMakerValidator;
-import bridge.view.InputView;
-import bridge.view.OutputView;
+import bridge.util.validator.BridgeMoveValidator;
 
 import java.util.List;
 
@@ -16,13 +14,7 @@ public class BridgeGame {
 
     private BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
-    public void start() {
-        OutputView.printStartGame();
-        createBridge();
-    }
-
-    public List<String> createBridge() {
-        String length = InputView.readBridgeSize();
+    public List<String> createBridge(String length) {
         new BridgeMakerValidator(length);
         return bridgeMaker.makeBridge(Utils.convertToInt(length));
     }
@@ -32,7 +24,9 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public void move(String location) {
+        new BridgeMoveValidator(location);
+
     }
 
     /**
