@@ -27,14 +27,14 @@ public enum Direction {
         throw new InvalidDirectionFormatException();
     }
 
+    private String getDirectionInitial() {
+        return directionInitial;
+    }
+
     public static Direction getDirection(int generate) {
         return Arrays.stream(Direction.values())
                 .filter(direction -> direction.isMatch.test(generate))
                 .findAny()
-                .orElseThrow(IllegalArgumentException::new);
-    }
-
-    private String getDirectionInitial() {
-        return directionInitial;
+                .orElseThrow(InvalidDirectionFormatException::new);
     }
 }
