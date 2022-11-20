@@ -447,6 +447,7 @@ int number=bridgeNumberGenerator.generate();
                 * getBridge_userMove - 사용자의 다리 상 이동 위치 List 반환
                 * setBridgeAnswer - 정답 다리 값 저장
                 * move - 사용자의 다리 칸 이동
+                * checkIfGameIsSucceed - 게임 성공 여부 확인
                 * retry - 게임을 다시 시도
     *
 
@@ -455,13 +456,17 @@ int number=bridgeNumberGenerator.generate();
             * fields
                 1. isPlayingGame - 게임 진행 여부
                 2. isGameSucceed - 게임 성공 여부
-                3. numberOfTrials - 총 시도 횟수
+                3. numberOfGameTrials - 게임 총 시도 횟수
+                4. numberOfMoves - 게임 중 이동한 횟수
             * methods
                 * isPlayingGame - 게임 진행 여부 반환
-                * setNotPlayingGame - 게임을 진행하지 않는 것으로 상태 변경
                 * isGameSucceed - 게임 성공 여부 반환
+                * getNumberOfMoves - 게임 중 이동한 횟수 반환
+                * setNotPlayingGame - 게임을 진행하지 않는 것으로 상태 변경
                 * setGameSucceed - 게임 성공으로 상태 변경
-                * increaseNumberOfTrials - 총 시도 횟수 1회 증가
+                * resetNumberOfMoves - 게임 중 이동한 횟수 초기화
+                * increaseNumberOfGameTrials - 총 시도 횟수 1회 증가
+                * increaseNumberOfMoves - 게임 중 이동한 횟수 1회 증가
     *
 
     * package: `view` - console I/O
