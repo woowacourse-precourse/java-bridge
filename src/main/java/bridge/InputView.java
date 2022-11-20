@@ -6,11 +6,14 @@ package bridge;
 public class InputView {
 
     /**
-     * 다리의 길이를 입력받는다.
+     * 다리의 길이를 입력받는다. ->bridgemaker
      */
     public int readBridgeSize() {
         return 0;
     }
+
+    /*3~20의 숫자일때 통과되도록*/
+
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
