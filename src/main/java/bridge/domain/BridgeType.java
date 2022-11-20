@@ -1,9 +1,6 @@
 package bridge.domain;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -24,6 +21,11 @@ public enum BridgeType {
             Collections.unmodifiableMap(Stream.of(values())
                     .collect(Collectors.toMap(BridgeType::getNumNotation, Function.identity())));
 
+    private static final List<String> bridgeTypeEngNotations =
+            Collections.unmodifiableList(Stream.of(BridgeType.values())
+                    .map(BridgeType::getEngNotation)
+                    .collect(Collectors.toList()));
+
     public int getNumNotation(){
         return this.numNotation;
     }
@@ -36,5 +38,9 @@ public enum BridgeType {
         return Optional
                 .ofNullable(bridgeTypeByNumNotation.get(numNotation))
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 찾을 수 없음"));
+    }
+
+    public static boolean isContains(String engNotation){
+        return bridgeTypeEngNotations.contains(engNotation);
     }
 }

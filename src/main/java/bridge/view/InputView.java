@@ -16,7 +16,10 @@ public class InputView {
     }
 
     public String readMoving() {
-        return null;
+        String userInput = getUserInput();
+        Validator.validateCharacter(userInput);
+        Validator.validateMovingType(userInput);
+        return userInput.toUpperCase();
     }
 
     public String readGameCommand() {
