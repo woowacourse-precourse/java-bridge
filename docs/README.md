@@ -16,7 +16,7 @@
 - [ ] `Player`가 재시작을 선택하면 새로운 `Bridge`를 생성한다.
 
 # View
-- [ ] `BridgeMap`을 출력한다.
+- [X] `BridgeMap`을 출력한다.
 - [ ] 
 
 # Exception
