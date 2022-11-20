@@ -5,6 +5,27 @@ package bridge.view.output;
  */
 public class OutputView {
 
+    private static final String NOTIFY_GAME_START = "다리 건너기 게임을 시작합니다.";
+    private static final String NOTIFY_INPUT_BRIDGE_LENGTH = "다리의 길이를 입력해주세요.";
+    private static final String NOTIFY_INPUT_ARROW = "이동할 칸을 선택해주세요.";
+    private static final String NOTIFY_INPUT_RETRY_OR_NOT = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+
+    public void printGameStartNotification() {
+        System.out.println(NOTIFY_GAME_START);
+    }
+
+    public void printInputBridgeLengthNotification() {
+        System.out.println(NOTIFY_INPUT_BRIDGE_LENGTH);
+    }
+
+    public void printInputArrow() {
+        System.out.println(NOTIFY_INPUT_ARROW);
+    }
+
+    public void printInputRetryOrNot() {
+        System.out.println(NOTIFY_INPUT_RETRY_OR_NOT);
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
