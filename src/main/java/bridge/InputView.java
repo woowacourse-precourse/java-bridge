@@ -6,6 +6,8 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private static final int MIN_BRIDGE_SIZE = 3;
+    private static final int MAX_BRIDGE_SIZE = 20;
 
     /**
      * 다리의 길이를 입력받는다.
@@ -19,14 +21,19 @@ public class InputView {
     }
 
     private void validateBridgeSize(String input) {
-
+        if(!isDecimal(input)) {
+            throw new IllegalArgumentException();
+        }
+        if(!isInRange(input, MIN_BRIDGE_SIZE, MAX_BRIDGE_SIZE)) {
+            throw new IllegalArgumentException();
+        }
     }
 
-    private boolean isDecimal() {
+    private boolean isDecimal(String input) {
         return true;
     }
 
-    private boolean isInRange() {
+    private boolean isInRange(String input, int from, int to) {
         return true;
     }
 
