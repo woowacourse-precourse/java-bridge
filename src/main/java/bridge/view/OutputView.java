@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -31,6 +31,24 @@ public class OutputView {
             return BridgeStyle.CORRECT_PANEL.get();
         }
         return BridgeStyle.EMPTY_PANEL.get();
+    }
+
+    private void putFailureElement (List<List<String>> bridgeLines, int order) {
+        for (List<String> line : bridgeLines) {
+            putFailureElementToLine(line, order);
+        }
+    }
+
+    private void putFailureElementToLine (List<String> line, int order) {
+        int lastPanelIndex = --order;
+        String lastPanel = line.get(lastPanelIndex);
+        if (lastPanel.equals(BridgeStyle.EMPTY_PANEL.get())) {
+            line.set(lastPanelIndex, BridgeStyle.WRONG_PANEL.get());
+            return;
+        }
+        if (lastPanel.equals(BridgeStyle.CORRECT_PANEL.get())) {
+            line.set(lastPanelIndex, BridgeStyle.EMPTY_PANEL.get());
+        }
     }
 
     /**
