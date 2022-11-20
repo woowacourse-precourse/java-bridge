@@ -35,15 +35,6 @@ class UserInputValidatorTest {
         assertDoesNotThrow(() -> UserInputValidator.validateBridgeSize(bridgeLength));
     }
 
-    @DisplayName("다리 칸은 하나의 문자만 입력 가능하다.")
-    @ParameterizedTest
-    @ValueSource(strings = {"", "DU", "A "})
-    void 다리_칸은_하나의_문자만_입력_가능(String spaceToMove) {
-        assertThatThrownBy(() -> UserInputValidator.validateSpaceToMove(spaceToMove))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ERROR_MESSAGE_INPUT_SIZE);
-    }
-
     @DisplayName("이동할 칸은 U,D만 입력 가능하다.")
     @ParameterizedTest
     @ValueSource(strings = {"A", "W", " "})
