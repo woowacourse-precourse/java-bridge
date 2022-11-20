@@ -12,6 +12,7 @@ public class BridgeGame {
     private static final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     private static final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     private static List<String> bridge;
+    private static int index;
     private static boolean success;
 
     public void init() {
@@ -37,10 +38,10 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
-        for (int i = 0; i < bridge.size(); i++) {
+        for (index = 0; index < bridge.size(); index++) {
             String moving = getMoving();
-            boolean same = bridge.get(i).equals(moving);
-            outputView.printMap(bridge, i, same);
+            boolean same = bridge.get(index).equals(moving);
+            outputView.printMap(bridge, index, same);
             if (!same) {
                 return;
             }
@@ -83,6 +84,10 @@ public class BridgeGame {
     }
 
     public void quit(int tryCount) {
+        if (index == bridge.size()) {
+            index--;
+        }
+        outputView.printFinalMap(bridge, index, success);
         outputView.printResult(success, tryCount);
     }
 }
