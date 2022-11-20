@@ -15,6 +15,13 @@ public enum Direction {
         this.isMatch = isMatch;
     }
 
+    public static Direction getDirection(int generate) {
+        return Arrays.stream(Direction.values())
+                .filter(direction -> direction.isMatch.test(generate))
+                .findAny()
+                .orElseThrow(IllegalArgumentException::new);
+    }
+
     public String getDirectionInitial() {
         return directionInitial;
     }
