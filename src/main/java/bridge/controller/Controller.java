@@ -11,15 +11,17 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class Controller {
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
+    private final InputView inputView;
+    private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
     private BridgeGame bridgeGame;
     private Player player;
     private Result result;
 
-    public Controller(BridgeMaker bridgeMaker) {
+    public Controller(BridgeMaker bridgeMaker, InputView inputView, OutputView outputView) {
         this.bridgeMaker = bridgeMaker;
+        this.inputView = inputView;
+        this.outputView = outputView;
         outputView.printStartMessage();
         outputView.printInputLengthMessage();
     }
@@ -61,6 +63,7 @@ public class Controller {
             outputView.printSelectDirectionMessage();
             bridgeGame.move(inputDirection());
         } while (!bridgeGame.isFinish());
+        outputView.printMap(result);
         outputView.printResult(player, result, MessageConstant.SUCCESS.getValue());
     }
     public void compareDecision(String decision) {
