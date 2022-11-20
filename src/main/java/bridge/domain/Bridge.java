@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.constance.GameConstance;
+
 import java.util.List;
 
 public class Bridge {
@@ -9,8 +11,14 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public String getBlockByPlayerPosition(int position) {
-        return bridge.get(position);
+    public boolean canCross(int position, String moving) {
+        String block = bridge.get(position);
+        return block.equals(moving);
+    }
+
+    public boolean isUpBlock(int position) {
+        String block = bridge.get(position);
+        return block.equals(GameConstance.UP_BLOCK_EXPRESSION);
     }
 
     public boolean isDoneCrossingBridge(int position) {

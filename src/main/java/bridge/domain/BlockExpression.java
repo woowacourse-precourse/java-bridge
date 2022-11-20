@@ -16,15 +16,15 @@ public enum BlockExpression {
         this.downBlock = downBlock;
     }
 
-    public static BlockExpression getBlockExpressionByMove(String bridgeBlock) {
-        if (bridgeBlock.equals(GameConstance.UP_BLOCK_EXPRESSION)) {
+    public static BlockExpression getBlockExpressionByMove(boolean isUpBlock) {
+        if (isUpBlock) {
             return BlockExpression.MOVE_UP;
         }
         return BlockExpression.MOVE_DOWN;
     }
 
-    public static BlockExpression getBlockExpressionByNotMove(String bridgeBlock) {
-        if (bridgeBlock.equals(GameConstance.UP_BLOCK_EXPRESSION)) {
+    public static BlockExpression getBlockExpressionByNotMove(boolean isUpBlock) {
+        if (isUpBlock) {
             return BlockExpression.NOT_MOVE_UP;
         }
         return BlockExpression.NOT_MOVE_DOWN;

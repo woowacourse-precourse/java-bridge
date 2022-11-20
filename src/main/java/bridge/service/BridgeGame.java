@@ -41,21 +41,22 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public BridgeResponseDto move(SelectBlockRequestDto dto) {
-        String playerBlock = dto.getBlock();
-        String bridgeBlock = bridge.getBlockByPlayerPosition(player.getPosition());
-
-        return moveOrFail(playerBlock, bridgeBlock);
+        int nowPosition = player.getPosition();
+        boolean canCross = bridge.canCross(nowPosition, dto.getBlock());
+        boolean isUpBlock = bridge.isUpBlock(nowPosition);
+        return moveOrFail(canCross, isUpBlock);
     }
 
-    private BridgeResponseDto moveOrFail(String playerBlock, String bridgeBlock) {
-        if (bridgeBlock.equals(playerBlock)) {
-            result.addBlocks(BlockExpression.getBlockExpressionByMove(bridgeBlock));
+    //TODO
+    private BridgeResponseDto moveOrFail(boolean canCross, boolean isUpBlock) {
+        if (canCross) {
+            result.addBlocks(BlockExpression.getBlockExpressionByMove(isUpBlock));
             player.move();
             validateGameSuccess(player.getPosition());
             return new BridgeResponseDto(result);
         }
 
-        result.addBlocks(BlockExpression.getBlockExpressionByNotMove(bridgeBlock));
+        result.addBlocks(BlockExpression.getBlockExpressionByNotMove(isUpBlock));
         result.fail();
         return new BridgeResponseDto(result);
     }
