@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.model.RestartInfo;
 import bridge.model.SpotInfo;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -26,8 +27,9 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public RestartInfo readGameCommand() {
+        String inputText = Console.readLine();
+        return RestartInfo.makeRestartInfo(inputText);
     }
 
     private int readInteger() {
