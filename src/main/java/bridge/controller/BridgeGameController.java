@@ -24,8 +24,8 @@ public class BridgeGameController {
         OutputView.printGameStartMessage();
         initBridgeGame();
         do {
-            boolean isMoveFail = moveForward(bridgeGame);
-            if (isMoveFail) {
+            moveForward(bridgeGame);
+            if (bridgeGame.getBridgeGameResult().getIsMoveFail()) {
                 isGameOver = handleRestartAndQuit(InputView.readGameCommand(), bridgeGame, bridge);
             }
             isGameOver = isEndOfBridge(bridge, bridgeGame, isGameOver);
@@ -37,10 +37,9 @@ public class BridgeGameController {
         bridgeGame = new BridgeGame(bridge);
     }
 
-    private boolean moveForward(BridgeGame bridgeGame) {
-        boolean isMoveFail = bridgeGame.move(InputView.readMoving());
+    private void moveForward(BridgeGame bridgeGame) {
+        bridgeGame.move(InputView.readMoving());
         OutputView.printMap(bridgeGame.getBridgeGameResult());
-        return isMoveFail;
     }
 
     private boolean handleRestartAndQuit(String command, BridgeGame bridgeGame, Bridge bridge) {
