@@ -5,7 +5,7 @@ import bridge.view.OutputView;
 
 public class Application {
 
-    static private OutputView outputView= new OutputView();
+    static private OutputView outputView = new OutputView();
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현

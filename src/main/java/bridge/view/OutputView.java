@@ -1,7 +1,7 @@
 package bridge.view;
 
-import bridge.constant.PrintString;
-import bridge.domain.MapPrinting;
+import bridge.constant.ShowPrint;
+import bridge.domain.BridgePrinting;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -22,10 +22,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(int count, MapPrinting mapPrinting, boolean isSuccess) {
+    public void printResult(int count, BridgePrinting bridgePrinting, boolean isSuccess) {
         String gameResult = "실패";
         System.out.println("최종 게임 결과");
-        mapPrinting.makeList();
+        bridgePrinting.makeList();
         if (isSuccess) {
             gameResult = "성공";
         }
@@ -38,20 +38,20 @@ public class OutputView {
     }
 
     public void printSetSize() {
-        System.out.println(PrintString.SET_SIZE.getPrint());
+        System.out.println(ShowPrint.SET_SIZE.getPrint());
     }
 
     public void printStart() {
-        System.out.println(PrintString.INIT_START.getPrint());
+        System.out.println(ShowPrint.INIT_START.getPrint());
     }
 
     public void printMove() {
-        System.out.println(PrintString.MOVE.getPrint());
+        System.out.println(ShowPrint.MOVE.getPrint());
     }
 
 
     public void printRestart() {
-        System.out.println(PrintString.RESTART.getPrint());
+        System.out.println(ShowPrint.RESTART.getPrint());
     }
 
 

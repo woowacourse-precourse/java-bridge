@@ -15,21 +15,21 @@ public class Controller {
     private int size = 0;
     private BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     private BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-    private List<String> mapBridge = new ArrayList<>();
+    private List<String> bridgeState = new ArrayList<>();
 
 
     public Controller() {
-        setMap();
+        setBridge();
     }
 
-    public void setMap() {
+    public void setBridge() {
         size = inputView.readBridgeSize();
-        mapBridge = bridgeMaker.makeBridge(size);
+        bridgeState = bridgeMaker.makeBridge(size);
     }
 
     public void play() {
-        GameController gameController = new GameController();
-        gameController.start(mapBridge, size);
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.start(bridgeState, size);
     }
 
 
