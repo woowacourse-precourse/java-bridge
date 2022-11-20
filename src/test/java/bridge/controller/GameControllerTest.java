@@ -1,6 +1,8 @@
 package bridge.controller;
 
 import bridge.mock.MockObjectMaker;
+import bridge.system.validation.InputToMovingPointValidator;
+import bridge.view.outputview.OutputView;
 import org.junit.jupiter.api.*;
 
 import java.io.ByteArrayOutputStream;
@@ -72,44 +74,48 @@ class GameControllerTest {
 
         private void assertOutputInGivenQuitingInputsWhenDoingGameThenPrintsMessage() {
             assertThat(captor.toString())
-                    .isEqualTo(String.format(getGameStartMessage() +
+                    .isEqualTo(getGameStartMessage() +
                             getEachStepMessage("[   ]", "[ X ]") +
-                            "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)%n" + "%n" +
+                            String.format(OutputView.ASKING_GAME_COMMAND_MESSAGE) +
                             getEachStepMessage("[   ]", "[ X ]") +
-                            "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)%n" + "%n" +
+                            String.format(OutputView.ASKING_GAME_COMMAND_MESSAGE) +
                             getResultMapMessage("[   ]", "[ X ]") +
                             getResultMessage(false, 2)
-                    ));
+                    );
         }
 
         private void assertOutputInGivenInvalidInputsWhenDoingGameThenPrintsMessageAndInputAgain() {
             assertThat(captor.toString())
-                    .isEqualTo(String.format(getGameStartMessage() +
+                    .isEqualTo(getGameStartMessage() +
                             getEachStepMessage("[   ]", "[ O ]") +
                             getAskingNextMoveMessage() +
-                            "[ERROR] 이동할 칸으로는 대문자 U 또는 D 둘 중 하나만 입력하실 수 있습니다. 다시 입력해 주세요.%n" +
+                            getErrorMessage(InputToMovingPointValidator.INVALID_INPUT_VALUE_MESSAGE) +
                             getStepMapMessage("[   | O ]", "[ O |   ]") +
                             getEachStepMessage("[   | O |   ]", "[ O |   | O ]") +
                             getResultMapMessage("[   | O |   ]", "[ O |   | O ]") +
                             getResultMessage(true, 1)
-                    ));
+                    );
         }
 
         private void assertOutputInGivenInputsWhenDoingGameThenPrintsMessage() {
             assertThat(captor.toString())
-                    .isEqualTo(String.format(getGameStartMessage() +
+                    .isEqualTo(getGameStartMessage() +
                             getEachStepMessage("[   ]", "[ O ]") +
                             getEachStepMessage("[   | O ]", "[ O |   ]") +
                             getEachStepMessage("[   | O |   ]", "[ O |   | O ]") +
                             getEachStepMessage("[   | O |   | O ]", "[ O |   | O |   ]") +
                             getResultMapMessage("[   | O |   | O ]", "[ O |   | O |   ]") +
                             getResultMessage(true, 1)
-                    ));
+                    );
         }
 
         private String getGameStartMessage() {
-            return "다리 건너기 게임을 시작합니다.%n" + "%n" +
-                    "다리의 길이를 입력해주세요.%n" + "%n";
+            return String.format(OutputView.GAME_STARTING_MESSAGE +
+                    OutputView.ASKING_BRIDGE_SIZE_MESSAGE);
+        }
+
+        private String getErrorMessage(String errorMessage) {
+            return String.format(OutputView.ERROR_MESSAGE_FORMAT, errorMessage);
         }
 
         private String getEachStepMessage(String upBridgeMap, String downBridgeMap) {
@@ -117,26 +123,30 @@ class GameControllerTest {
         }
 
         private String getAskingNextMoveMessage() {
-            return "이동할 칸을 선택해주세요. (위: U, 아래: D)%n";
+            return String.format(OutputView.ASKING_NEXT_STEP_MESSAGE);
         }
 
         private String getStepMapMessage(String upBridgeMap, String downBridgeMap) {
-            return upBridgeMap + "%n" + downBridgeMap + "%n" + "%n";
+            return String.format(upBridgeMap + "%n" + downBridgeMap + "%n");
         }
 
         private String getResultMapMessage(String upBridgeMap, String downBridgeMap) {
-            return "최종 게임 결과%n" + getStepMapMessage(upBridgeMap, downBridgeMap);
+            return String.format(OutputView.GAME_RESULT_PREFIX + getStepMapMessage(upBridgeMap, downBridgeMap));
         }
 
         private String getResultMessage(boolean isSucceed, int tryCount) {
-            String succeedMessage = null;
+            String succeedOrNotMessage = null;
             if (isSucceed) {
-                succeedMessage = "성공";
+                succeedOrNotMessage = OutputView.GAME_SUCCESS_MESSAGE;
             }
             if (!isSucceed) {
-                succeedMessage = "실패";
+                succeedOrNotMessage = OutputView.GAME_FAILURE_MESSAGE;
             }
-            return String.format("게임 성공 여부: %s%%n" + "총 시도한 횟수: %d", succeedMessage, tryCount);
+            return succeedOrNotMessage + getTryingCountMessage(tryCount);
+        }
+
+        private String getTryingCountMessage(int tryCount) {
+            return String.format(OutputView.TRY_COUNT_MESSAGE_FORMAT, tryCount);
         }
     }
 }
