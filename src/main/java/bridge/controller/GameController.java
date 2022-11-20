@@ -1,7 +1,7 @@
 package bridge.controller;
 
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
+import bridge.BridgeGame;
+import bridge.domain.GameRecord;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -10,13 +10,15 @@ import java.util.List;
 public class GameController {
     private InputView inputView;
     private OutputView outputView;
-    private BridgeMaker bridgeMaker;
+    private BridgeGame bridgeGame;
+    private GameRecord gameRecord;
     private List<String> bridge;
 
     public GameController() {
         inputView = new InputView();
         outputView = new OutputView();
-        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        bridgeGame = new BridgeGame();
+        gameRecord = new GameRecord();
     }
 
     public void start() {
@@ -24,8 +26,13 @@ public class GameController {
 
         // 다리 길이 입력받음, 다리 생성
         generateBridge();
-
-        // U, D 입력 받으며 다리 위 이동
+        // 게임 종료할 때 까지의 사이클
+        do{
+            // U, D 입력 받으며 다리 위 이동
+            gameRecord.setPlayTimes(gameRecord.getPlayTimes() + 1);
+            bridgeGame.generateNewRound();
+            play();
+        } while (true);
 
         // 결과 출력 및 종료
     }
@@ -34,10 +41,24 @@ public class GameController {
         try {
             outputView.printInputBridgeSize();
             int size = inputView.readBridgeSize();
-            bridge = bridgeMaker.makeBridge(size);
+            bridgeGame.generateBridge(size);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             generateBridge();
         }
+    }
+
+    private void play() {
+        outputView.printMoveCommand();
+
+        move();
+    }
+
+    private void move() {
+        outputView.printMoveCommand();
+
+        String correctResult = bridgeGame.move(inputView.readMoving());
+        // 현재 까지의 결과 출력
+
     }
 }
