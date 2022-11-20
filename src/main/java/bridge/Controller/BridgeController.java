@@ -1,5 +1,6 @@
 package bridge.Controller;
 
+import bridge.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
@@ -40,20 +41,8 @@ public class BridgeController {
 
                 // 다리를 건넌다
                 String space = bridge.getSpaceByLocation(location);
-                if(space.equals("U") && moveTo.equals("U")) {
-                    gameHistory.move("O", " ");
-                }
-                if(space.equals("U") && moveTo.equals("D")) {
-                    gameHistory.move(" ", "X");
-                    playGame = false;
-                }
-                if(space.equals("D") && moveTo.equals("U")) {
-                    gameHistory.move("X", " ");
-                    playGame = false;
-                }
-                if(space.equals("D") && moveTo.equals("D")) {
-                    gameHistory.move(" ", "O");
-                }
+                playGame = BridgeGame.move(moveTo, space, gameHistory);
+
                 OutputView.printMap(gameHistory, location+1);
 
                 if(!playGame)
