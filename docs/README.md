@@ -6,6 +6,9 @@
   - [x] 1 ~ 20 이외에는 예외 처리, 0100도 예외처리 - inputIsNotRangeException()
   - [x] 숫자이외의 수가 들어갈 경우 예외 처리 - inputIsNotNumberException()
 
+-[x] 테스트 코드 쉽게 만들기 - CustomNsTest
+  - [x] 입력으로 테스트 하는것은 쉽게 테스트 하기 위해 만듬
+
 -[ ] 유틸 - class Util
   - [x] 숫자인가? - isNumber()
   - [x] 문자인가? - isLetter()
@@ -31,3 +34,9 @@
   - [x] 맞췄을 경우 그것이 U인지 Q인지 분기로 나눈다 - selectedBridgeIsSucceed()
   - [x] 맞추지 못했을 경우 그것이 U인지 Q인지 분기로 나눈다. - selectedBridgeIsFail()
   - [x] 다리 상황을 출력하는 기능 - printBridge()
+
+-[x] 크기를 입력받고 랜덤된 다리 생성 - class RandomBridge
+  - [x] 브릿지를 한번에 초기화 해주는 기능 - initBridge()
+  - [x] 브릿지의 크기를 입력하는 메소드 - readBirdgeSize()
+  - [x] 사이즈를 받아서 그 크기만큼 랜덤 할당 - makeBridge()
+  - [x] 랜덤 할당된 bridge 반환 - getBridge()
