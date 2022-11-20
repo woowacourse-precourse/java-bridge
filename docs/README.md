@@ -147,7 +147,7 @@ D
 - [x] upBridge를 초기화
 - [x] downBridge를 초기화
 - [x] moveCount를 0으로 초기화
-- [x] gameCount를 0으로 초기화
+- [x] gameCount를 1으로 초기화
 - [x] gameStatus를 false로 초기화
 
 ### move
