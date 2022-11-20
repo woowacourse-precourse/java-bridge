@@ -1,87 +1,45 @@
 package bridge.view.game;
 
-import static bridge.domain.BridgeLocation.initBridgeLocation;
-import static bridge.value.BridgeCharacter.DOWN;
-import static bridge.value.BridgeCharacter.UP;
+import static bridge.view.BridgeLineView.makeGameStatusLineView;
 
-import bridge.domain.BridgeLocation;
 import bridge.domain.bridge.BridgeAndPasser;
 import bridge.value.BridgeCharacter;
+import bridge.view.BridgeLineView;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GameStatusView {
 
-    private final List<BridgeCharacter> bridgeCharacters;
-    private final BridgeLocation endLocation;
+    private final List<BridgeLineView> lineViews;
+    /*
+     * endLocation에 따라 마지막 글자가 뭔지는 알 수 있다.
+     * 근데, 어느 경우에 마지막문자도 출력할건지 결정해야 한다.
+     * 상속으로 처리?
+     * */
 
-    public GameStatusView(BridgeAndPasser bridgeAndPasser) {
-        this.bridgeCharacters = bridgeAndPasser.getBridge().characters();
-        this.endLocation = bridgeAndPasser.getBridgePasser().getLocation();
+    public GameStatusView(List<BridgeLineView> lineViews) {
+        this.lineViews = lineViews;
     }
 
     public static GameStatusView makeGameStatusView(BridgeAndPasser bridgeAndPasser) {
-        return new GameStatusView(bridgeAndPasser);
+        List<BridgeLineView> lineViews = Arrays.stream(BridgeCharacter.values())
+                .map((bridgeCharacter -> makeGameStatusLineView(bridgeAndPasser, bridgeCharacter))).collect(
+                        Collectors.toList());
+        return new GameStatusView(lineViews);
     }
 
     public String renderStatus() {
         StringBuffer stringBuffer = new StringBuffer();
 
-        fillLine(stringBuffer, UP);
-        stringBuffer.append(System.lineSeparator());
-        fillLine(stringBuffer, DOWN);
+        lineViews.forEach(lineView -> appendLine(stringBuffer, lineView));
 
         return stringBuffer.toString();
     }
 
-    private void fillLine(StringBuffer stringBuffer, BridgeCharacter currLocationCharacter) {
-        BridgeLocation currLocation = initBridgeLocation();
-
-        fillStartCharacter(stringBuffer);
-        fillBridge(stringBuffer, currLocationCharacter, currLocation);
-//        if (bridgeCharacters.get(endLocation.value()) == currLocationCharacter) {
-//            stringBuffer.append("X");
-//        }
-
-        fillEndCharacter(stringBuffer);
+    private static void appendLine(StringBuffer stringBuffer, BridgeLineView lineView) {
+        stringBuffer.append(lineView.renderLine());
+        stringBuffer.append(System.lineSeparator());
     }
 
-    private void fillBridge(StringBuffer stringBuffer, BridgeCharacter currLocationCharacter,
-                           BridgeLocation currLocation) {
-        while (!currLocation.equals(endLocation)) {
-            fillBridgeCharacter(stringBuffer, currLocationCharacter, currLocation);
-            fillSeparator(stringBuffer);
-            currLocation =  currLocation.next();
-        }
-        popLastCharacter(stringBuffer);
-    }
-
-    private void fillBridgeCharacter(StringBuffer stringBuffer, BridgeCharacter currLocationCharacter,
-                           BridgeLocation currLocation) {
-        stringBuffer.append(characterFor(currLocationCharacter, bridgeCharacters, currLocation));
-    }
-
-    private static void fillEndCharacter(StringBuffer stringBuffer) {
-        stringBuffer.append("]");
-    }
-
-    private static void fillSeparator(StringBuffer stringBuffer) {
-        stringBuffer.append("|");
-    }
-
-    private static void fillStartCharacter(StringBuffer stringBuffer) {
-        stringBuffer.append("[");
-    }
-
-    private static void popLastCharacter(StringBuffer stringBuffer) {
-        stringBuffer.deleteCharAt(stringBuffer.length() - 1);
-    }
-
-    private static String characterFor(BridgeCharacter currLocationCharacter, List<BridgeCharacter> bridgeCharacters,
-                                       BridgeLocation currLocation) {
-        if (bridgeCharacters.get(currLocation.value()) == currLocationCharacter) {
-            return " O ";
-        }
-
-        return "   ";
-    }
 }
