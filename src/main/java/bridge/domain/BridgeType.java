@@ -10,15 +10,15 @@ public enum BridgeType {
     D(0),
     ;
 
-    private final Integer value;
+    private final int value;
 
-    BridgeType(Integer value) {
+    BridgeType(int value) {
         this.value = value;
     }
 
-    public static BridgeType valueOf(Integer value) {
+    public static BridgeType valueOf(int value) {
         return Arrays.stream(BridgeType.values())
-            .filter(type -> type.getValue().equals(value))
+            .filter(type -> type.getValue() == value)
             .findAny()
             .orElseThrow(() -> new IllegalArgumentException("정의되지 않은 발판 타입입니다."));
     }
@@ -29,7 +29,7 @@ public enum BridgeType {
             .collect(Collectors.toList());
     }
 
-    public Integer getValue() {
+    public int getValue() {
         return value;
     }
 }
