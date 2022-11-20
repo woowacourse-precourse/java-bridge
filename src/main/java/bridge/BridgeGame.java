@@ -5,33 +5,39 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bridge.StringValue.*;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
     private final List<String> bridgeState = new ArrayList<>();
-
-    private BridgeMaker bridgeMaker;
     private Bridge bridge;
     private int tryCount = 1;
+    private final String SUCCESS = "성공";
+    private final String FAIL = "실패";
+    private final String X = "X";
+    private final String O = "O";
 
     public void play() {
         bridge = new Bridge();
+        String res = SUCCESS;
         while(!bridge.checkResult()) {
             if(move(InputView.readMoving())) {
                 OutputView.printMap(bridgeState);
                 continue;
             }
             OutputView.printMap(bridgeState);
-            if(retry().equals("Q")) {
+            if(QUIT.isEqual(retry())) {
+                res = FAIL;
                 break;
             }
             removeBridgeState();
             bridge.incorrect();
             addTryCount();
         }
-        OutputView.printResult(bridgeState, tryCount, "실패");
+        OutputView.printResult(bridgeState, tryCount, res);
     }
 
     private void addTryCount() {
@@ -50,10 +56,10 @@ public class BridgeGame {
      */
     public boolean move(final String uOrD) {
         if(!bridge.matchBridge(uOrD)) {
-            bridgeState.add(uOrD + "X");
+            bridgeState.add(uOrD + X);
             return false;
         }
-        bridgeState.add(uOrD + "O");
+        bridgeState.add(uOrD + O);
         return true;
     }
 
