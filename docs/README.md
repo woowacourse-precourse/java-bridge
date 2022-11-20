@@ -66,4 +66,4 @@
   - [X] UP_X: 위 방향 선택 + 건널 수 없음
   - [X] DOWN_O: 아래 방향 선택 + 건널 수 있음
   - [X] DOWN_X: 아래 방향 선택 + 건널 수 없음
-- [ ] 방향 키 + 다리 건널 수 있는지 여부 값을 통해 BridgeStatus 참조 불가능 시 예외처리 - validateReferabilityBridgeStatus()
+- [X] 방향 키 + 다리 건널 수 있는지 여부 값으로 BridgeStatus 상수 참조 불가능 시 예외처리 - validateReferabilityBridgeStatus()
