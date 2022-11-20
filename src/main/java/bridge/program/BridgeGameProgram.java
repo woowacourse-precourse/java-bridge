@@ -17,9 +17,10 @@ public class BridgeGameProgram {
 
     public void run() {
         consoleView.showGameStart();
-        List<String> bridgeMap = bridgeMaker.makeBridge(consoleView.requestBridgeSize());
 
+        List<String> bridgeMap = bridgeMaker.makeBridge(consoleView.requestBridgeSize());
         BridgeGame bridgeGame = new BridgeGame(bridgeMap);
+
         while (bridgeGame.isNotDone()) {
             bridgeGame.move(consoleView.requestMove());
             consoleView.showNowBridge(bridgeGame.nowUserMapState());

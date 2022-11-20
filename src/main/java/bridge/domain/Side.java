@@ -5,8 +5,8 @@ public enum Side {
     DOWN(0,"D"),
     ;
 
-    private int sideOfNumber;
-    private String sideOfString;
+    private final int sideOfNumber;
+    private final String sideOfString;
 
     Side(int sideOfNumber, String sideOfString) {
         this.sideOfNumber = sideOfNumber;

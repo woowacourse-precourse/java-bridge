@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.domain.BridgeOfUser;
+import java.rmi.server.ExportException;
 
 public class ConsoleView {
     private final InputView inputView;
@@ -19,7 +20,7 @@ public class ConsoleView {
         try {
             outputView.printRequestBridgeSizeComment();
             return inputView.readBridgeSize();
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
             return requestBridgeSize();
         }
@@ -29,7 +30,7 @@ public class ConsoleView {
         try {
             outputView.printRequestMoveSideComment();
             return inputView.readMoving();
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
             return requestMove();
         }
@@ -43,7 +44,7 @@ public class ConsoleView {
         try {
             outputView.printRequestRetryComment();
             return inputView.readRetry();
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
             return requestRetry();
         }
