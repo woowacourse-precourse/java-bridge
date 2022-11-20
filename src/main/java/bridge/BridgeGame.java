@@ -1,8 +1,6 @@
 package bridge;
 
-import view.InputView;
-import view.OutputView;
-
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,9 +8,7 @@ import java.util.List;
  */
 public class BridgeGame {
     int trialCount = 0;
-
-    private InputView inputModule = new InputView();
-    private OutputView outputModule = new OutputView();
+    List<String> bridge = new ArrayList<>();
 
 
     /**
@@ -20,13 +16,10 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(List<String> bridge, int index) {
-        String userMovement = inputModule.readMoving();
+    public boolean move(List<String> bridge, int index, String userMovement) {
         if (!bridge.get(index).equals(userMovement)) {
-            outputModule.printMap();
             return false;
         }
-        outputModule.printMap();
         return true;
     }
 
@@ -39,9 +32,9 @@ public class BridgeGame {
         this.trialCount++;
     }
 
-    public List<String> initBridge(int size) {
-        BridgeNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
+    public void initBridge(int size) {
+        BridgeRandomNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-        return bridgeMaker.makeBridge(size);
+        this.bridge = bridgeMaker.makeBridge(size);
     }
 }
