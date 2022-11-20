@@ -3,6 +3,7 @@ package bridge.utils.console;
 import static bridge.utils.message.ErrorMessagesUtil.MOVING;
 import static bridge.utils.message.ErrorMessagesUtil.NOT_BLANK;
 import static bridge.utils.message.ErrorMessagesUtil.ONLY_NUMBERS;
+import static bridge.utils.message.ErrorMessagesUtil.RETRY_COMMAND;
 import static bridge.utils.message.ErrorMessagesUtil.SIZE_OUT_OF_RANGE;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -71,6 +72,16 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        String command = Console.readLine();
+        validateCommand(command);
+
+        return command;
+    }
+
+    private void validateCommand(String command) {
+        if (command.equals("R") || command.equals("Q")) {
+            return;
+        }
+        throw new IllegalArgumentException(RETRY_COMMAND.getMessage());
     }
 }

@@ -2,6 +2,7 @@ package bridge;
 
 import static bridge.utils.message.GameMessagesUtil.CHOICE_MOVE;
 import static bridge.utils.message.GameMessagesUtil.INPUT_BRIDGE_SIZE;
+import static bridge.utils.message.GameMessagesUtil.INPUT_RETRY;
 import static bridge.utils.message.GameMessagesUtil.START;
 
 import bridge.domain.BridgeGame;
@@ -51,6 +52,10 @@ public class Application {
         while (!game.isFinish()) {
             String choiceMove = getChoiceMove();
             showMoveResult(game.move(choiceMove));
+
+            if (game.isFail()) {
+                game.retry(getChoiceRetry());
+            }
         }
     }
 
@@ -67,6 +72,17 @@ public class Application {
 
     private static void showMoveResult(MoveResult moveResult) {
         output.printMap(moveResult);
+    }
+
+    private static String getChoiceRetry() {
+        while (true) {
+            try {
+                output.printMessage(INPUT_RETRY.getMessage());
+                return input.readGameCommand();
+            } catch (IllegalArgumentException ex) {
+                output.printMessage(ex.getMessage());
+            }
+        }
     }
 
 }

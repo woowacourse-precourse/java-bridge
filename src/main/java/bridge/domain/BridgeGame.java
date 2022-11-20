@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import static bridge.utils.message.ErrorMessagesUtil.MOVING;
+import static bridge.utils.message.ErrorMessagesUtil.RETRY_COMMAND;
 
 import java.util.List;
 
@@ -10,10 +11,14 @@ import java.util.List;
 public class BridgeGame {
     private MoveResult moveResult;
     private List<String> bridge;
+    private boolean fail;
+    private boolean finish;
 
     public BridgeGame(List<String> bridge) {
-        this.moveResult = new MoveResult();
         this.bridge = bridge;
+        this.moveResult = new MoveResult();
+        this.fail = false;
+        this.finish = false;
     }
 
     /**
@@ -48,11 +53,16 @@ public class BridgeGame {
 
     private MoveResult moveFail(String moving) {
         moveResult.addMove(moving, "X");
+        fail = true;
         return moveResult;
     }
 
     public boolean isFinish() {
-        return moveResult.isFinish(bridge.size());
+        return finish || moveResult.isFinish(bridge.size());
+    }
+
+    public boolean isFail() {
+        return fail;
     }
 
     /**
@@ -60,6 +70,25 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(String choiceRetry) {
+        validateRetry(choiceRetry);
+        this.finish = true;
+
+        if (choiceRetry.equals("R")) {
+            init();
+        }
+    }
+
+    private void validateRetry(String choiceRetry) {
+        if (choiceRetry.equals("R") || choiceRetry.equals("Q")) {
+            return;
+        }
+        throw new IllegalArgumentException(RETRY_COMMAND.getMessage());
+    }
+
+    private void init() {
+        this.moveResult = new MoveResult();
+        this.fail = false;
+        this.finish = false;
     }
 }
