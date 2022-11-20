@@ -47,10 +47,10 @@ public class BridgeMap {
     }
 
     private void convertBridgeToMap(String bridgeStatus, StringBuilder upBridge, StringBuilder downBridge) {
-        if (bridgeStatus.equals(COVERT_STAND_WORD)) {
+        if (bridgeStatus.equals(UP)) {
             appendBridgeContext(upBridge, downBridge);
         }
-        if (!bridgeStatus.equals(COVERT_STAND_WORD)) {
+        if (!bridgeStatus.equals(UP)) {
             appendBridgeContext(downBridge, upBridge);
         }
     }

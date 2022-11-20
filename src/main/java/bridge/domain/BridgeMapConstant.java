@@ -1,7 +1,7 @@
 package bridge.domain;
 
 public class BridgeMapConstant {
-    public static final String COVERT_STAND_WORD = "U";
+    public static final String UP = "U";
     public static final String DIVISION = "][";
     public static final String REPLACE = "|";
     public static final String SUCCESS_BRIDGE = "[ O ]";
