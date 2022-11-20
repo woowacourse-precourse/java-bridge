@@ -14,4 +14,8 @@ public class User {
 
         userCommand.add(inputView.readMoving());
     }
+
+    public List<String> getUserCommand() {
+        return userCommand;
+    }
 }
