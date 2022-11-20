@@ -7,12 +7,11 @@ public class Application {
     private static int position = 0;
     private static boolean stopFlag = false;
     private static BridgeGame bridgeGame;
-    private static int bridgeSize;
 
     public static void main(String[] args) {
         try {
             output.startGame();
-            bridgeSize = input.readBridgeSize();
+            int bridgeSize = input.readBridgeSize();
             bridgeGame = new BridgeGame(bridgeSize);
             runGame();
         } catch (Exception e) {
@@ -41,6 +40,7 @@ public class Application {
 
     private static void executeInAvailable() {
         position += 1;
+        int bridgeSize = bridgeGame.getSize();
         if (position == bridgeSize) {
             stopGame(bridgeSize - 1, true);
         }

@@ -42,4 +42,8 @@ public class BridgeGame {
         }
         return false;
     }
+
+    public int getSize() {
+        return bridge.size();
+    }
 }
