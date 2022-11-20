@@ -7,32 +7,51 @@ public class BridgeGameController {
     private final InputView inputView = new InputView();
 
     public void start() {
-        outputView.printStartMsg();
-        outputView.printRequestLenOfBridge();
+        BridgeGame bridgeGame = createGame();
 
-        int size = inputView.readBridgeSize();
-        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        List<String> bridge = bridgeMaker.makeBridge(size);
-        BridgeGame bridgeGame = new BridgeGame(bridge);
+        createGameProgress(bridgeGame);
 
+        outputView.printResult(bridgeGame.toString(), !bridgeGame.isFail(), bridgeGame.getTryNumber());
+    }
+
+    private void createGameProgress(BridgeGame bridgeGame) {
         boolean moveFlag = true;
         while (moveFlag) {
-            outputView.printChooseMove();
-            String move = inputView.readMoving();
-            moveFlag = bridgeGame.move(move);
-            outputView.printMap(bridgeGame.toString());
+            moveFlag = createMove(bridgeGame);
             if (bridgeGame.isGameEnd()) {
                 break;
             }
-            if (!moveFlag)
-            {
-                outputView.printRestart();
-                String restart = inputView.readGameCommand();
-                if (bridgeGame.retry(restart))
-                    moveFlag = true;
-            }
+            moveFlag = checkRestart(bridgeGame, moveFlag);
         }
+    }
 
-        outputView.printResult(bridgeGame.toString(), !bridgeGame.isFail(), bridgeGame.getTryNumber());
+    private boolean createMove(BridgeGame bridgeGame) {
+        boolean moveFlag;
+        outputView.printChooseMove();
+        String move = inputView.readMoving();
+        moveFlag = bridgeGame.move(move);
+        outputView.printMap(bridgeGame.toString());
+        return moveFlag;
+    }
+
+    private boolean checkRestart(BridgeGame bridgeGame, boolean moveFlag) {
+        if (!moveFlag)
+        {
+            outputView.printRestart();
+            String restart = inputView.readGameCommand();
+            if (bridgeGame.retry(restart))
+                moveFlag = true;
+        }
+        return moveFlag;
+    }
+
+    private BridgeGame createGame() {
+        outputView.printStartMsg();
+        outputView.printRequestLenOfBridge();
+        int size = inputView.readBridgeSize();
+
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> bridge = bridgeMaker.makeBridge(size);
+        return new BridgeGame(bridge);
     }
 }
