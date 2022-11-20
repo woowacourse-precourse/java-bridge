@@ -19,10 +19,10 @@ public class OutputView {
     private static final String UPPER_BLOCKS_KEY = "upper";
     private static final String LOWER_BLOCKS_KEY = "lower";
 
-    private static final String GAME_CLEAR_SUCCESS = "성공";
-    private static final String GAME_CLEAR_FAIL = "실패";
+    private static final String GAME_SUCCESS = "성공";
+    private static final String GAME_FAIL = "실패";
 
-    private static final int CONSTANCE_FOR_GET_VALUES_EXCEPT_RECENT_RESULT = 1;
+    private static final int FOR_GET_ONLY_OTHER_ROUND_RESULT = 1;
 
     /**
      * 성공 - 실패 여부가 불확실한 현재 라운드 결과(getCurrentRoundResult)와
@@ -68,7 +68,7 @@ public class OutputView {
 
         bridge.getBlocks()
                 .stream()
-                .limit(round - CONSTANCE_FOR_GET_VALUES_EXCEPT_RECENT_RESULT)
+                .limit(round - FOR_GET_ONLY_OTHER_ROUND_RESULT)
                 .forEach(block -> setOtherValues(upperBlocks, lowerBlocks, block));
 
         return Map.of(UPPER_BLOCKS_KEY, upperBlocks, LOWER_BLOCKS_KEY, lowerBlocks);
@@ -96,8 +96,8 @@ public class OutputView {
 
     private String getSuccessMessage(GameResult gameResult) {
         if (gameResult.isGameClear()) {
-            return GAME_CLEAR_SUCCESS;
+            return GAME_SUCCESS;
         }
-        return GAME_CLEAR_FAIL;
+        return GAME_FAIL;
     }
 }
