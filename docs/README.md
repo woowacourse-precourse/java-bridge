@@ -241,11 +241,11 @@ v2 release
 
 1. [ ] 테스트 기능 구현이 필요하다. <br>
 
-2. [ ] map description 기능 및 클래스 리팩토링 <br>
+2. [x] map description 기능 및 클래스 리팩토링 <br>
 
 3. [ ] getter 사용 방식 및 명명 수정 고려 <br>
 
-4. [ ] crossing 로직 수정
+4. [x] crossing 로직 수정
 
 ---
 
