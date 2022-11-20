@@ -14,10 +14,6 @@ public enum Command {
         this.command = command;
     }
 
-    public int getSequence() {
-        return sequence;
-    }
-
     public String getCommand() {
         return command;
     }
