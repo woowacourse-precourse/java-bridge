@@ -6,7 +6,7 @@ public class BridgeGame {
 
     private Bridge bridge;
     private CurrentRoute currentRoute;
-    private int trialCount;
+    private GameProgress gameProgress;
 
     public void setBridge(int bridgeSize) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
@@ -14,12 +14,9 @@ public class BridgeGame {
         bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
 
-    public void setCurrentRoute() {
+    public void setGameState() {
         currentRoute = new CurrentRoute(new ArrayList<>());
-    }
-
-    public void setTrialCount() {
-        trialCount = 0;
+        gameProgress = new GameProgress();
     }
 
     public void move(String input) {
@@ -28,7 +25,7 @@ public class BridgeGame {
 
     public void retry() {
         currentRoute.initialize();
-        updateTrialCount();
+        gameProgress.updateTrialCount();
     }
 
     public boolean isMovementSuccess() {
@@ -40,13 +37,5 @@ public class BridgeGame {
     public boolean isLastSquare() {
         int currentLocationIndex = currentRoute.getCurrentLocationIndex();
         return bridge.isLastIndex(currentLocationIndex);
-    }
-
-    public int getTrialCount() {
-        return trialCount;
-    }
-
-    private void updateTrialCount() {
-        trialCount++;
     }
 }

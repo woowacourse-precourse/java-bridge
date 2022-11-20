@@ -27,8 +27,7 @@ public class BridgeGameController {
         OutputView.printStartMessage();
         OutputView.printBlankLine();
         setBridgeSize();
-        bridgeGame.setCurrentRoute();
-        bridgeGame.setTrialCount();
+        bridgeGame.setGameState();
     }
 
     private void setBridgeSize() {
