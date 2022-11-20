@@ -48,13 +48,7 @@ public class BridgeGame {
      */
     public int move(BridgeAnswer bridgeAnswer) {
         BridgePiece bridgePiece = new BridgePiece(UpDownRetryQuit);
-        int compareResult = bridgePiece.compareWithAnswer(bridgeAnswer);
-        if (compareResult == 1) {
-            return 1;
-        } else if (compareResult == 2) {
-            return 2;
-        }
-        return 3;
+        return bridgePiece.compareWithAnswer(bridgeAnswer);
     }
 
     /**
@@ -64,9 +58,6 @@ public class BridgeGame {
      */
     public boolean retry(BridgeAnswer bridgeAnswer) {
         BridgePiece.replayCurrentPlaceReset(bridgeAnswer);
-        if (UpDownRetryQuit.equals(Sentence.RETRY_CHUNK.getValue())) {
-            return true;
-        }
-        return false;
+        return UpDownRetryQuit.equals(Sentence.RETRY_CHUNK.getValue());
     }
 }
