@@ -29,4 +29,8 @@ public enum Bridge {
                 .findFirst()
                 .orElse(NOTHING);
     }
+
+    public int getBridgeType() {
+        return bridgeType;
+    }
 }

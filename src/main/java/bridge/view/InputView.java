@@ -33,7 +33,6 @@ public class InputView {
         if (!Pattern.matches(Constant.BRIDGE_SIZE_REGEX, bridgeSize)) {
             throw new IllegalArgumentException(ErrorMessage.ONLY_NUMBER);
         }
-
         if (isInvalidBridgeSize(Integer.parseInt(bridgeSize))) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_BRIDGE_SIZE);
         }

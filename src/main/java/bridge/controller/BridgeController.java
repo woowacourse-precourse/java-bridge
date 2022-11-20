@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.model.dto.MoveResultDto;
 import bridge.model.service.BridgeService;
 import bridge.view.InputView;
 import bridge.view.OutputView;

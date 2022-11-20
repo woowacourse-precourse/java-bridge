@@ -1,5 +1,8 @@
 package bridge.model.domain;
 
+import bridge.constant.Constant;
+import bridge.enums.Bridge;
+import bridge.model.dto.MoveResultDto;
 import java.util.List;
 
 /**
@@ -8,6 +11,7 @@ import java.util.List;
 public class BridgeGame {
 
     private final Bridges bridges;
+    private int position = Constant.BRIDGE_INITIAL_POSITION;
 
     public BridgeGame(List<String> bridgesSign) {
         this.bridges = new Bridges(bridgesSign);
@@ -18,7 +22,12 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public MoveResultDto move(Bridge bridgeToMove) {
+        Bridge actualBridge = bridges.findBridgeByPosition(++position);
+        List<Integer> bridgeMap = bridges.readBridgeMap(position);
+        boolean isRightLastBridgePick = actualBridge == bridgeToMove;
+        boolean isMovableStatus = position != bridges.size() - Constant.INDEX_ZEROING_NUMBER;
+        return new MoveResultDto(bridgeMap, isRightLastBridgePick, isMovableStatus);
     }
 
     /**
