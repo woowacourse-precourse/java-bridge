@@ -17,9 +17,10 @@ public class Application{
                 break;
             }
         }
-
+        bridgeGame.finish(gameResult,tryCount);
 
     }
+
 
 
 

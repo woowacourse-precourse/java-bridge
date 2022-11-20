@@ -52,4 +52,12 @@ public class BridgeGame extends BridgeGameInit{
         outputView.initOutputFormat();
         return "R";
     }
+
+    public void finish(String result, int tryCount) {
+        if (result == "F") {
+            outputView.printResult("실패", tryCount);
+        } else if (result == "S") {
+            outputView.printResult("성공",tryCount);
+        }
+    }
 }
