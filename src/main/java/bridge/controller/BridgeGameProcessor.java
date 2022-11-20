@@ -19,16 +19,16 @@ public class BridgeGameProcessor {
         this.bridgeMaker = bridgeMaker;
     }
 
-    public void play() {
+    public void playGame() {
         outputView.printStartMessage();
-        BridgeGame bridgeGame = setBridgeGame(setBridge());
-        while (isContinue(bridgeGame)) {
-        }
+        BridgeGame bridgeGame = startBridgeGame(setBridge());
 
+        while (isContinueGame(bridgeGame)) {
+        }
     }
 
-    private boolean isContinue(BridgeGame bridgeGame) {
-        if (!isPlayStage(bridgeGame)) {
+    private boolean isContinueGame(BridgeGame bridgeGame) {
+        if (!isContinueMoving(bridgeGame)) {
             outputView.printResult(bridgeGame.getMapOfUpBridge(), bridgeGame.getMapOfDownBridge(), bridgeGame.getTrialCount(), InformationMessage.FAILURE);
             return false;
         }
@@ -39,10 +39,10 @@ public class BridgeGameProcessor {
         return true;
     }
 
-    private boolean isPlayStage(BridgeGame bridgeGame) {
-        boolean moving = isMoving(bridgeGame);
+    private boolean isContinueMoving(BridgeGame bridgeGame) {
+        boolean isSuccessMoving = isSuccessMoving(bridgeGame);
         outputView.printMap(bridgeGame.getMapOfUpBridge(), bridgeGame.getMapOfDownBridge());
-        if (moving) {
+        if (isSuccessMoving) {
             return true;
         }
 
@@ -60,7 +60,7 @@ public class BridgeGameProcessor {
         }
     }
 
-    private boolean isMoving(BridgeGame bridgeGame) {
+    private boolean isSuccessMoving(BridgeGame bridgeGame) {
         while (true) {
             try {
                 outputView.printPositionSelectionMessage();
@@ -71,7 +71,7 @@ public class BridgeGameProcessor {
         }
     }
 
-    private BridgeGame setBridgeGame(Bridge bridge) {
+    private BridgeGame startBridgeGame(Bridge bridge) {
         return new BridgeGame(bridge);
     }
 

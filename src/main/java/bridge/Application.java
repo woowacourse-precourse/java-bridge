@@ -9,6 +9,10 @@ import bridge.view.OutputView;
 public class Application {
 
     public static void main(String[] args) {
-        new BridgeGameProcessor(new InputView(new InputValidator()), new OutputView(), new BridgeMaker(new BridgeRandomNumberGenerator())).play();
+        BridgeGameProcessor bridgeGameProcessor = new BridgeGameProcessor(
+                new InputView(new InputValidator()),
+                new OutputView(),
+                new BridgeMaker(new BridgeRandomNumberGenerator()));
+        bridgeGameProcessor.playGame();
     }
 }
