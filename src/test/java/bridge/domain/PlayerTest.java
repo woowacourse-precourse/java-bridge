@@ -16,4 +16,16 @@ public class PlayerTest {
 		//then
 		assertThat(player.isDead()).isTrue();
 	}
+
+	@Test
+	public void 플레이어_이동_테스트() {
+	    //given
+		Player player = new Player();
+		int currentLocation = player.getCurrentLocation();
+	    //when
+		player.move();
+		int moveLocation = player.getCurrentLocation();
+	    //then
+		assertThat(currentLocation).isNotEqualTo(moveLocation);
+	}
 }
