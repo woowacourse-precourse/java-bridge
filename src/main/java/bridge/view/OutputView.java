@@ -28,6 +28,10 @@ public class OutputView {
     private static final String PLAY_COUNT_PREFIX = "총 시도한 횟수: ";
 
 
+    public static void printError(String errorMsg) {
+        System.out.println(ERROR_PREFIX + errorMsg + ERROR_SUFFIX);
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
@@ -76,10 +80,6 @@ public class OutputView {
     public void printStart() {
         System.out.println(GAME_START_MSG);
         System.out.println(BRIDGE_SIZE_DEMAND_MSG);
-    }
-
-    public void printError(String errorMsg) {
-        System.out.println(ERROR_PREFIX + errorMsg + ERROR_SUFFIX);
     }
 
     public void printOrder() {

@@ -36,59 +36,29 @@ public class GameController {
         return new BridgeGame(getValidBridgeSize());
     }
 
-    private int getValidBridgeSize() {
-        outputView.printStart();
-
-        return readValidBridgeSize();
-    }
-
-    private int readValidBridgeSize() {
-        while(true){
-            try {
-                return inputView.readBridgeSize();
-            } catch (IllegalArgumentException e) {
-                outputView.printError(e.getMessage());
-            }
-        }
-    }
-
-    private String getValidBridgeMove() {
-        outputView.printOrder();
-
-        return readValidBridgeMove();
-    }
-
-    private String readValidBridgeMove() {
-        while(true){
-            try {
-                return inputView.readMoving();
-            } catch (IllegalArgumentException e) {
-                outputView.printError(e.getMessage());
-            }
-        }
-    }
-
-    private String getValidGameRetryCommand() {
-        outputView.printRetry();
-
-        return readValidGameCommand();
-    }
-
-    private String readValidGameCommand() {
-        while(true){
-            try {
-                return inputView.readGameCommand();
-            } catch (IllegalArgumentException e) {
-                outputView.printError(e.getMessage());
-            }
-        }
-    }
-
     private boolean retry() {
         if (bridgeGame.isSuccess()) {
             return false;
         }
 
         return bridgeGame.retry(getValidGameRetryCommand());
+    }
+
+    private int getValidBridgeSize() {
+        outputView.printStart();
+
+        return inputView.readBridgeSize();
+    }
+
+    private String getValidBridgeMove() {
+        outputView.printOrder();
+
+        return inputView.readMoving();
+    }
+
+    private String getValidGameRetryCommand() {
+        outputView.printRetry();
+
+        return inputView.readGameCommand();
     }
 }
