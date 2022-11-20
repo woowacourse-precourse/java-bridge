@@ -26,7 +26,9 @@ public class InputView {
      */
     public static String readMoving() {
         System.out.println(MOVING_BRIDGE_PHRASE);
-        return Console.readLine();
+        String input = Console.readLine();
+        validateIsUOrD(input);
+        return input;
     }
 
     /**
@@ -46,11 +48,10 @@ public class InputView {
         }
     }
 
-    private static String validateIsUOrD() {
-        try {
-            return Console.readLine();
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(INVALID_VALUE);
+    private static void validateIsUOrD(String input) {
+        if (input.equals("U") || input.equals("D")) {
+            System.out.println(INVALID_VALUE);
+            throw new IllegalArgumentException();
         }
     }
 }
