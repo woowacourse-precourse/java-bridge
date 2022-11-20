@@ -1,6 +1,10 @@
 package view;
 
-import model.BridgeMaps;
+import model.BridgeType;
+import model.ResultType;
+
+import java.util.List;
+import java.util.Map;
 
 import static model.BridgeType.DOWN;
 import static model.BridgeType.UP;
@@ -9,6 +13,9 @@ import static model.BridgeType.UP;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    private static final String BRIDGE_START = "[ ";
+    private static final String BRIDGE_CONNECT = " | ";
+    private static final String BRIDGE_END = " ]";
     private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
 
     public void printGameStart() {
@@ -20,9 +27,17 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(BridgeMaps maps) {
-        System.out.println(maps.getPrintMap(UP));
-        System.out.println(maps.getPrintMap(DOWN));
+    public void printMap(Map<BridgeType, List<String>> maps) {
+        System.out.println(getPrintMap(maps.get(UP)));
+        System.out.println(getPrintMap(maps.get(DOWN)));
+    }
+
+    private String getPrintMap(List<String> map) {
+        StringBuilder builder = new StringBuilder();
+        builder.append(BRIDGE_START);
+        builder.append(String.join(BRIDGE_CONNECT, map));
+        builder.append(BRIDGE_END);
+        return builder.toString();
     }
 
     /**

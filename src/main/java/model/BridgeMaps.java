@@ -52,10 +52,6 @@ public class BridgeMaps {
         maps.put(type, map);
     }
 
-    public String getPrintMap(BridgeType type) {
-        return maps.get(type).getPrintMap();
-    }
-
     public void reset() {
         maps.forEach((type, map) -> map.reset());
     }
