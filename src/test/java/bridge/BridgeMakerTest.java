@@ -1,13 +1,12 @@
 package bridge;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+
 
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class BridgeMakerTest {
-
     @Test
     void get_iput_and_build_bridge_checksize() {
         BridgeMaker bridgeMaker = new BridgeMaker(null);
