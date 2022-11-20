@@ -1,28 +1,20 @@
 package bridge.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Result {
-    private List<String> upBlocks;
-    private List<String> downBlocks;
+    private final BridgeStatus bridgeStatus;
     private GameStatus gameOver;
 
     public Result() {
-        upBlocks = new ArrayList<>();
-        downBlocks = new ArrayList<>();
+        bridgeStatus = new BridgeStatus();
         gameOver = GameStatus.PLAYING;
     }
 
     public void init() {
-        upBlocks = new ArrayList<>();
-        downBlocks = new ArrayList<>();
         gameOver = GameStatus.PLAYING;
     }
 
     public void addBlocks(BlockExpression blockExpression) {
-        this.upBlocks.add(blockExpression.getUpBlock());
-        this.downBlocks.add(blockExpression.getDownBlock());
+        bridgeStatus.addStatus(blockExpression);
     }
 
     public void success() {
@@ -45,12 +37,8 @@ public class Result {
         return gameOver;
     }
 
-    public List<String> getUpBlocks() {
-        return this.upBlocks;
-    }
-
-    public List<String> getDownBlocks() {
-        return this.downBlocks;
+    public BridgeStatus getBridgeStatus() {
+        return this.bridgeStatus;
     }
 
     public enum GameStatus {
@@ -58,10 +46,7 @@ public class Result {
         FAIL("실패"),
         PLAYING("진행중");
 
-        private String name;
-
-        GameStatus() {
-        }
+        private final String name;
 
         GameStatus(String name) {
             this.name = name;

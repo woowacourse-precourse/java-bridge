@@ -29,8 +29,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeResponseDto dto) {
-        printBridge(dto.getUpBlocks());
-        printBridge(dto.getDownBlocks());
+        printBridge(dto.getBridgeStatus().getUpBlocks());
+        printBridge(dto.getBridgeStatus().getDownBlocks());
         System.out.println();
     }
 
@@ -41,8 +41,8 @@ public class OutputView {
      */
     public void printResult(GameResultResponseDto dto) {
         System.out.println(FINAL_GAME_RESULT);
-        printBridge(dto.getUpBlocks());
-        printBridge(dto.getDownBlocks());
+        printBridge(dto.getBridgeStatus().getUpBlocks());
+        printBridge(dto.getBridgeStatus().getDownBlocks());
         System.out.println();
         System.out.println(GAME_SUCCESS_OR_FAIL + dto.getGameSuccessOrFail());
         System.out.println(TOTAL_TRY_NUMBER + dto.getTotalTryNumber());
