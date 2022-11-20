@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.constant.Constant;
+import bridge.constant.Direction;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -10,18 +12,18 @@ public class UserBridgeTest {
     @Test
     void 위칸_이동_테스트() {
         userBridge.moveUpBridge(Direction.U);
-        assertThat(userBridge.getUpBridge().contains("O")).isTrue();
+        assertThat(userBridge.getUpBridge().contains(Constant.CROSS)).isTrue();
 
         userBridge.moveUpBridge(Direction.D);
-        assertThat(userBridge.getUpBridge().contains("X")).isTrue();
+        assertThat(userBridge.getUpBridge().contains(Constant.CROSS_FAIL)).isTrue();
     }
 
     @Test
     void 아래칸_이동_테스트() {
         userBridge.moveDownBridge(Direction.U);
-        assertThat(userBridge.getDownBridge().contains("X")).isTrue();
+        assertThat(userBridge.getDownBridge().contains(Constant.CROSS_FAIL)).isTrue();
 
         userBridge.moveDownBridge(Direction.D);
-        assertThat(userBridge.getDownBridge().contains("O")).isTrue();
+        assertThat(userBridge.getDownBridge().contains(Constant.CROSS)).isTrue();
     }
 }
