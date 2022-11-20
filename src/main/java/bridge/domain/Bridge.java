@@ -1,9 +1,13 @@
 package bridge.domain;
 
+import bridge.constant.ViewStatus;
+import bridge.dto.GameResult;
+
 import java.util.List;
 
 public class Bridge {
 
+    private final int STARTING_POINT = 0;
     private final List<String> bridgeFrame;
 
     public Bridge(List<String> bridgeFrame) {
@@ -18,8 +22,21 @@ public class Bridge {
         return bridgeFrame.size();
     }
 
-    public GameResult resultOf(int columnPosition) {
-        bridgeFrame.subList(0, columnPosition);
-        return GameResult.from(bridgeFrame.subList(0, columnPosition));
+    public GameResult getMatchedPathResult(int columnPosition) {
+        List<String> result = bridgeFrame.subList(STARTING_POINT, columnPosition);
+
+        if (columnPosition == bridgeFrame.size()) {
+            return GameResult.of(result, ViewStatus.WIN);
+        }
+
+        return GameResult.of(result, ViewStatus.DETERMINE_MOVE);
+    }
+
+    public GameResult getUnMatchedPathResult(int columnPosition) {
+        return GameResult.of(bridgeFrame.subList(STARTING_POINT, columnPosition), ViewStatus.DETERMINE_CONTINUE);
+    }
+
+    public boolean compare(String command, int indexOfBridge) {
+        return command.equals(bridgeFrame.get(indexOfBridge));
     }
 }

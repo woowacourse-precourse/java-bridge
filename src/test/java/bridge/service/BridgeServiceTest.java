@@ -1,6 +1,7 @@
 package bridge.service;
 
 import bridge.constant.ViewStatus;
+import bridge.dto.GameResult;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -24,5 +25,21 @@ class BridgeServiceTest {
     void returnMakeBridgeResponseWhenSizeIsInvalid(int size) {
         assertThat(bridgeService.makeBridge(size))
                 .isEqualTo(ViewStatus.DETERMINE_MOVE);
+    }
+
+    @ValueSource(strings = {"a","t","1"})
+    @ParameterizedTest
+    void throwErrorWhenInputWrong(String command) {
+        bridgeService.makeBridge(3);
+        assertThatThrownBy(() -> bridgeService.move(command))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ValueSource(strings = {"U","D"})
+    @ParameterizedTest
+    void returnResultWhenInputValid(String command) {
+        bridgeService.makeBridge(3);
+        assertThat(bridgeService.move(command))
+                .isInstanceOf(GameResult.class);
     }
 }

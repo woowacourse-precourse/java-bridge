@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.constant.BridgePosition;
+import bridge.dto.GameResult;
 import bridge.exception.IllegalMoveCommandException;
 
 /**
@@ -16,6 +17,7 @@ public class BridgeGame {
         this.bridge = bridge;
         this.columnPosition = 0;
     }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -24,7 +26,10 @@ public class BridgeGame {
     public GameResult move(String command) {
         validateMove(command);
         columnPosition++;
-        return bridge.resultOf(columnPosition);
+        if (bridge.compare(command, columnPosition - 1)) {
+            return bridge.getMatchedPathResult(columnPosition);
+        }
+        return bridge.getUnMatchedPathResult(columnPosition);
     }
 
     /**
@@ -36,7 +41,7 @@ public class BridgeGame {
     }
 
     private void validateMove(String moveCommand) {
-        if(moveCommand.equals(BridgePosition.UP.getPositionFormOfAlphabet()) ||
+        if (moveCommand.equals(BridgePosition.UP.getPositionFormOfAlphabet()) ||
                 moveCommand.equals(BridgePosition.DOWN.getPositionFormOfAlphabet())) {
             return;
         }

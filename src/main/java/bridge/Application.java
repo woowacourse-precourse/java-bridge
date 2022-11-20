@@ -9,5 +9,6 @@ public class Application {
         InputView inputView = Injector.getInputView();
 
         inputView.makeBridge();
+        inputView.move();
     }
 }
