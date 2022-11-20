@@ -27,9 +27,9 @@ class BridgeGameControllerTest {
         assertThat(bridge.getLocation()).isEqualTo(1);
     }
 
-    @DisplayName("통과 실패 테스트")
+    @DisplayName("통과 실패 후 종료 테스트")
     @Test
-    public void runFailCaseTest() {
+    public void runFailCaseWithEndTest() {
         //given
         Bridge bridge = new Bridge(List.of("U", "U", "D"));
         User user = new User();
