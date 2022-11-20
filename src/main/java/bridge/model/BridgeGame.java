@@ -52,6 +52,14 @@ public class BridgeGame {
         return true;
     }
 
+    public boolean isFallBridge() {
+        return this.progress.get(UP_SIDE_PROGRESS.get()).stream()
+                .anyMatch(element -> element.equals(UNMOVABLE_CELL.get()))
+                ||
+                this.progress.get(DOWN_SIDE_PROGRESS.get()).stream()
+                .anyMatch(element -> element.equals(UNMOVABLE_CELL.get()));
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>

@@ -18,12 +18,11 @@
         - [x] 해당 다리로 이동할 수 있는지 확인 → compareMovableCell
         - [x] 해당 다리에 이동 결과 추가 → addProgress
     - [x] 계속 이동할 수 있는지 확인 → isContinue
+    - [x] 다리를 건넜는지 떨어졌는지 확인 → isFallBridge
     - [ ] 게임 재시작 → retry
         
         재시도 회수 저장
     - [x] 생성한 다리 저장 → BridgeGame 생성자로 해결
-    - [ ] 게임 종료 → end
-        - 잘못된 칸으로 이동하거나 다리를 건널 경우 호출되는 메서드 
 2. BridgeMaker
     - [x] 다리 생성 → makeBridge
 3. InputValidator
