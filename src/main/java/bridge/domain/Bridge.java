@@ -13,7 +13,7 @@ public class Bridge {
     public List<Boolean> compareWithUserMovement(List<String> userMovement) {
         List<Boolean> compareResult = new ArrayList<>();
         for (int i = 0; i < userMovement.size(); i++) {
-            compareResult.add(userMovement.get(i) == bridge.get(i));
+            compareResult.add(userMovement.get(i).equals(bridge.get(i)));
         }
         return compareResult;
     }
@@ -21,5 +21,4 @@ public class Bridge {
     public Boolean atTheEndOfBridge(List<String> userMovement) {
         return userMovement.size() == bridge.size();
     }
-
 }
