@@ -24,6 +24,11 @@ public class OutputView {
     private final String SPACE = "   ";
     private final String SEPARATION = "|";
     private final String FAIL_TO_CROSSE_BRIDGE = " X ";
+    private final String UP = "U";
+    private final String DOWN = "D";
+    private final String WRONG_WHEN_INPUT_UP = "UX";
+    private final String WRONG_WHEN_INPUT_DOWN = "DX";
+    private final int CALCULATING_SIZE_FOR_SEPARATION = 1;
 
     public void printStartingPhrase() {
         System.out.println(STARTING_MSG);
@@ -45,10 +50,10 @@ public class OutputView {
     private void printUpperBridge(List<String> userMoving) {
         System.out.print(START_OF_BRIDGE);
         for (int bridgeIndex = 0; bridgeIndex < userMoving.size(); bridgeIndex++) {
-            if (userMoving.get(bridgeIndex).equals("U")) System.out.print(CROSSE_BRIDGE);
-            if (userMoving.get(bridgeIndex).equals("UX")) System.out.print(FAIL_TO_CROSSE_BRIDGE);
-            if (userMoving.get(bridgeIndex).equals("D") || userMoving.get(bridgeIndex).equals("DX")) System.out.print(SPACE);
-            if (bridgeIndex < userMoving.size() - 1) System.out.print(SEPARATION);
+            if (userMoving.get(bridgeIndex).equals(UP)) System.out.print(CROSSE_BRIDGE);
+            if (userMoving.get(bridgeIndex).equals(WRONG_WHEN_INPUT_UP)) System.out.print(FAIL_TO_CROSSE_BRIDGE);
+            if (userMoving.get(bridgeIndex).equals(DOWN) || userMoving.get(bridgeIndex).equals(WRONG_WHEN_INPUT_DOWN)) System.out.print(SPACE);
+            if (bridgeIndex < userMoving.size() - CALCULATING_SIZE_FOR_SEPARATION) System.out.print(SEPARATION);
         }
         System.out.println(END_OF_BRIDGE);
     }
@@ -56,10 +61,10 @@ public class OutputView {
     private void printLowerBridge(List<String> userMoving) {
         System.out.print(START_OF_BRIDGE);
         for (int bridgeIndex = 0; bridgeIndex < userMoving.size(); bridgeIndex++) {
-            if (userMoving.get(bridgeIndex).equals("D")) System.out.print(CROSSE_BRIDGE);
-            if (userMoving.get(bridgeIndex).equals("DX")) System.out.print(FAIL_TO_CROSSE_BRIDGE);
-            if (userMoving.get(bridgeIndex).equals("U") || userMoving.get(bridgeIndex).equals("UX")) System.out.print(SPACE);
-            if (bridgeIndex < userMoving.size() - 1) System.out.print(SEPARATION);
+            if (userMoving.get(bridgeIndex).equals(DOWN)) System.out.print(CROSSE_BRIDGE);
+            if (userMoving.get(bridgeIndex).equals(WRONG_WHEN_INPUT_DOWN)) System.out.print(FAIL_TO_CROSSE_BRIDGE);
+            if (userMoving.get(bridgeIndex).equals(UP) || userMoving.get(bridgeIndex).equals(WRONG_WHEN_INPUT_UP)) System.out.print(SPACE);
+            if (bridgeIndex < userMoving.size() - CALCULATING_SIZE_FOR_SEPARATION) System.out.print(SEPARATION);
         }
         System.out.println(END_OF_BRIDGE);
     }
