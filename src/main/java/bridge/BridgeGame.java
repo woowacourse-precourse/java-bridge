@@ -2,6 +2,7 @@ package bridge;
 
 import bridge.model.BridgeComparator;
 import bridge.model.BridgeMaker;
+import bridge.model.BridgeMap;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
 public class BridgeGame {
     private final List<String> bridge;
     private final BridgeComparator bridgeComparator;
+    private final BridgeMap bridgeMap;
     private int location;
     private int retryCount;
 
@@ -20,6 +22,7 @@ public class BridgeGame {
         BridgeMaker bridgeMaker =new BridgeMaker(new BridgeRandomNumberGenerator());
         bridge=bridgeMaker.makeBridge(size);
         bridgeComparator = new BridgeComparator();
+        bridgeMap = new BridgeMap(size);
     }
 
 
@@ -28,11 +31,10 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public int move(String moving) {
-        location+=1;
-        String result = bridgeComparator.compareBridge(bridge, moving, location);
-        return location;
+    public void move(String moving) {
     }
+
+
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
