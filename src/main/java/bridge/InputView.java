@@ -19,7 +19,7 @@ public class InputView {
 
     private static void validateBridgeSize(int bridgeSize) {
         if (bridgeSize < 3 || bridgeSize > 20) {
-            throw new IllegalArgumentException("[ERROR] 브릿지 크기가 범위 밖입니다. (3 ~ 20), Input: [" + bridgeSize + "]");
+            throw new IllegalArgumentException(ErrorMessageGenerator.generate("브릿지 크기가 범위 밖입니다."));
         }
     }
 
@@ -37,7 +37,7 @@ public class InputView {
         if (line.equals(BridgeGame.CMD_UP) || line.equals(BridgeGame.CMD_DOWN)) {
             return;
         }
-        throw new IllegalArgumentException("[ERROR] 잘못된 이동 명령어 입니다. (U or D), Input: [" + line + "]");
+        throw new IllegalArgumentException(ErrorMessageGenerator.generate("잘못된 이동 명령어 입니다."));
     }
 
     /**
@@ -54,14 +54,14 @@ public class InputView {
         if (line.equals(BridgeGame.CMD_RETRY) || line.equals(BridgeGame.CMD_QUIT)) {
             return;
         }
-        throw new IllegalArgumentException("[ERROR] 잘못된 게임 명령어 입니다. (R or Q), Input: [" + line + "]");
+        throw new IllegalArgumentException(ErrorMessageGenerator.generate("잘못된 게임 명령어 입니다."));
     }
 
     private static String readLine() {
         try {
             return (Console.readLine());
         } catch (NoSuchElementException ex) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 입력 값 입니다.");
+            throw new IllegalArgumentException(ErrorMessageGenerator.generate("[ERROR] 잘못된 입력 값 입니다."));
         }
     }
 
@@ -69,7 +69,7 @@ public class InputView {
         try {
             return Integer.parseInt(number);
         } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException("[ERROR] 변환할 수 없는 문자열입니다. Input: [" + number + "]");
+            throw new IllegalArgumentException(ErrorMessageGenerator.generate("변환할 수 없는 문자열입니다."));
         }
     }
 }
