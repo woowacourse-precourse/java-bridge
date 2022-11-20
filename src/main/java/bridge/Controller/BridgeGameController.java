@@ -26,6 +26,7 @@ public class BridgeGameController {
             }
             if (bridgeGame.winBridgeGame(moving)) {
                 printResult(WIN_GAME);
+                bridgeGame.quit();
                 break;
             }
         }
@@ -70,6 +71,7 @@ public class BridgeGameController {
         }
         if (!retry) {
             printResult(LOSE_GAME);
+            bridgeGame.quit();
         }
     }
 

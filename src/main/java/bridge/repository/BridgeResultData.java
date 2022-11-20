@@ -24,8 +24,13 @@ public class BridgeResultData {
         downBridgeResults.add(downBridgeResult);
     }
 
-    public static void reset() {
+    public static void resetLastMove() {
         upBridgeResults.remove(upBridgeResults.size() - 1);
         downBridgeResults.remove(downBridgeResults.size() - 1);
+    }
+
+    public static void reset() {
+        upBridgeResults.clear();
+        downBridgeResults.clear();
     }
 }

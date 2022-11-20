@@ -15,7 +15,7 @@ public class MovingData {
         playerMoving.add(moving);
     }
 
-    public static void reset() {
+    public static void resetLastMove() {
         playerMoving.remove(getLastIndex());
     }
 
@@ -28,6 +28,10 @@ public class MovingData {
 
     public static int getSize() {
         return playerMoving.size();
+    }
+
+    public static void reset() {
+        playerMoving.clear();
     }
 
 }

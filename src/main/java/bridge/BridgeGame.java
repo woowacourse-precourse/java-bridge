@@ -58,7 +58,7 @@ public class BridgeGame {
         return NOT_CHOSEN;
     }
 
-    public boolean movingIsWrong(String moving) { // bridge 메소드 호출하니까 에러 있었음
+    public boolean movingIsWrong(String moving) {
         return !getBridge().get(MovingData.getLastIndex()).equals(moving);
     }
 
@@ -68,8 +68,8 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        MovingData.reset();
-        BridgeResultData.reset();
+        MovingData.resetLastMove();
+        BridgeResultData.resetLastMove();
     }
 
     public boolean readRetry(String input) {
@@ -85,6 +85,14 @@ public class BridgeGame {
 
     public boolean winBridgeGame(String moving) {
         return bridge.isCorrectMoving(MovingData.getLastIndex(), moving)
-                && bridge.getSize() == MovingData.getSize();  // bridge.getSize()하면 안됨?
+                && bridge.getSize() == MovingData.getSize();
+    }
+
+    /**
+     * 사용자가 게임을 종료할 때 사용하는 메서드
+     */
+    public void quit() {
+        BridgeResultData.reset();
+        MovingData.reset();
     }
 }
