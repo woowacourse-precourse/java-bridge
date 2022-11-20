@@ -28,6 +28,9 @@ public class Application {
         return checkBridgeRange;
     }
 
+    /**
+     * 다리를 만드는 메서드
+     */
     static List<String> makeBridge(int bridgeSize) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
@@ -35,11 +38,21 @@ public class Application {
         return bridge;
     }
 
+    /**
+     * 다리를 이동하는 메서드
+     */
+    static void moveBridge(List<String> bridge) {
+        OutputView outputView = new OutputView();
+
+        outputView.printChoiceMove();
+    }
+
     public static void main(String[] args) {
         try {
             Application.gameStart();
             int bridgeSize = Application.knowBridgeLength();
-            List<String> bridge = makeBridge(bridgeSize);
+            List<String> bridge = Application.makeBridge(bridgeSize);
+            Application.moveBridge(bridge);
         } catch (IllegalArgumentException e) {}
     }
 }
