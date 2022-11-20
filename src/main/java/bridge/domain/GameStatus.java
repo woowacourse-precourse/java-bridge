@@ -7,4 +7,8 @@ public class GameStatus {
     public void setMatchCorrect(boolean isCorrect){
         this.isCorrect = isCorrect;
     }
+
+    public boolean getMatchCorrect(boolean isCorrect){
+        return this.isCorrect;
+    }
 }

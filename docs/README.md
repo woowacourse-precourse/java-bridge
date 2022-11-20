@@ -99,7 +99,7 @@ public class BridgeMaker {
 
 **GameStatus**
 >- [x] Bridge와 User의 일치 여부를 저장하는 기능 ( setMatchCorrect )
->- [ ] Bridge와 User의 일치 여부를 조회하는 기능 ( getMatchCorrect )
+>- [x] Bridge와 User의 일치 여부를 조회하는 기능 ( getMatchCorrect )
 >- [ ] 게임 시작 횟수를 더하는 기능 ( addGameCount )
 >- [ ] 게임 시작 횟수를 조회하는 기능 ( getGameCount )
 
