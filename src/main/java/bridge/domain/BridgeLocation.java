@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import java.util.Objects;
+
 public class BridgeLocation {
 
     private final int location;
@@ -29,5 +31,22 @@ public class BridgeLocation {
 
     public boolean isBelow(int size) {
         return value() <= size;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        BridgeLocation that = (BridgeLocation) o;
+        return location == that.location;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(location);
     }
 }
