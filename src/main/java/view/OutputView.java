@@ -43,7 +43,7 @@ public class OutputView {
         System.out.println(retryOrQuit);
     }
 
-    public void printFinalResult() {
+    private void printFinalResult() {
         System.out.println(View.FINAL_RESULT.message());
     }
 
@@ -59,7 +59,7 @@ public class OutputView {
         insertLineBreak();
     }
 
-    public void printSide(List<String> side) {
+    private void printSide(List<String> side) {
         for (int index = 0; index < side.size(); index++) {
             System.out.print(side.get(index));
             if (index < lastIndex(side)) {
@@ -80,33 +80,33 @@ public class OutputView {
         }
     }
 
-    public int lastIndex(List<String> side) {
+    private int lastIndex(List<String> side) {
         return (side.size() - 1);
     }
 
-    public void printStartSquareBracket() {
+    private void printStartSquareBracket() {
         System.out.print(StringConstant.START_SQUARE_BRACKET.getConstant());
     }
 
-    public void printDelimeter() {
+    private void printDelimeter() {
         System.out.print(StringConstant.DELIMETER.getConstant());
     }
 
-    public void printEndSquareBracket() {
+    private void printEndSquareBracket() {
         System.out.println(StringConstant.END_SQUARE_BRACKET.getConstant());
     }
 
-    public boolean isWin(List<List<String>> bothSide) {
+    private boolean isWin(List<List<String>> bothSide) {
         return !bothSide.get(0).contains(StringConstant.WRONG_PATH.getConstant())
                 && !bothSide.get(1).contains(StringConstant.WRONG_PATH.getConstant());
     }
 
-    public boolean isFail(List<List<String>> bothSide) {
+    private boolean isFail(List<List<String>> bothSide) {
         return bothSide.get(0).contains(StringConstant.WRONG_PATH.getConstant())
                 || bothSide.get(1).contains(StringConstant.WRONG_PATH.getConstant());
     }
 
-    public void printWin(int tryNumber) {
+    private void printWin(int tryNumber) {
         System.out.print(View.WIN_FAIL_STATUS.message());
         System.out.print(View.BLANK.message());
         System.out.println(StringConstant.WIN.getConstant());
@@ -116,7 +116,7 @@ public class OutputView {
         System.out.println(tryNumber);
     }
 
-    public void printFail(int tryNumber) {
+    private void printFail(int tryNumber) {
         System.out.print(View.WIN_FAIL_STATUS.message());
         System.out.print(View.BLANK.message());
         System.out.println(StringConstant.FAIL.getConstant());
@@ -126,7 +126,7 @@ public class OutputView {
         System.out.println(tryNumber);
     }
 
-    public static void insertLineBreak() {
+    private static void insertLineBreak() {
         System.out.println();
     }
 }
