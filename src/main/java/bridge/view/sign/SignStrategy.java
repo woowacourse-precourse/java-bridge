@@ -1,4 +1,6 @@
-package bridge;
+package bridge.view.sign;
+
+import bridge.MoveDirection;
 
 public interface SignStrategy {
     void appendSignIsDownSignAnswer(boolean isAnswer, MoveDirection direction);
