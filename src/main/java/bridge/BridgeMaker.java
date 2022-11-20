@@ -20,11 +20,10 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        List<String> alphabetMappingIndex = List.of("D", "U");
         List<String> bridge = new ArrayList<>();
 
         for (int currentBridgeSize = 0; currentBridgeSize < size; currentBridgeSize++) {
-            bridge.add(alphabetMappingIndex.get(bridgeNumberGenerator.generate()));
+            bridge.add(StepDirectionCommand.getByNumber(bridgeNumberGenerator.generate()));
         }
 
         return bridge;

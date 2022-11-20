@@ -5,8 +5,8 @@ import java.util.List;
 
 public class CurrentBridgeStatusMaker {
 
-    private static final int DOWN = 0;
-    private static final int UP = 1;
+    private static final int UP_INDEX = 1;
+    private static final int DOWN_INDEX = 0;
     private List<StringBuilder> currentBridgeStatus;
 
     public List<StringBuilder> convertCurrentBridgeStatus(List<String> currentPlayerBridge, List<String> createdBridge) {
@@ -40,7 +40,7 @@ public class CurrentBridgeStatusMaker {
     }
 
     private void updateUpBridge(String add) {
-        StringBuilder upBridge = currentBridgeStatus.get(UP);
+        StringBuilder upBridge = currentBridgeStatus.get(UP_INDEX);
 
         if(add.equals(BridgeDrawing.BRIDGE_END_DRAWING.toString())) {
             upBridge.replace(upBridge.length() - 1, upBridge.length(), add);
@@ -51,7 +51,7 @@ public class CurrentBridgeStatusMaker {
     }
 
     private void updateDownBridge(String add) {
-        StringBuilder downBridge = currentBridgeStatus.get(DOWN);
+        StringBuilder downBridge = currentBridgeStatus.get(DOWN_INDEX);
 
         if(add.equals(BridgeDrawing.BRIDGE_END_DRAWING.toString())) {
             downBridge.replace(downBridge.length() - 1, downBridge.length(), add);
@@ -62,7 +62,7 @@ public class CurrentBridgeStatusMaker {
     }
 
     void markBridge(String currentPlayerPosition, BridgeDrawing bridgeDrawing) {
-        if(currentPlayerPosition.equals("U")) {
+        if(currentPlayerPosition.equals(StepDirectionCommand.U.toString())) {
             updateUpBridge(String.format(BridgeDrawing.BRIDGE_STEP_DRAWING.toString(), bridgeDrawing.toString()));
             updateDownBridge(BridgeDrawing.BRIDGE_NO_STEP_DRAWING.toString());
             return;

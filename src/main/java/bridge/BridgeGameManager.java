@@ -41,12 +41,16 @@ public class BridgeGameManager {
     }
 
     public String checkEndResult() {
+        final String SUCCESS_MESSAGE = "성공";
+        final String FAIL_MESSAGE = "실패";
+
         if(bridgeGame.isEnd()) {
-            return "성공";
+            return SUCCESS_MESSAGE;
         }
 
-        return "실패";
+        return FAIL_MESSAGE;
     }
+
     public boolean isGameEnd() {
         if(!bridgeGame.isEnd()) {
             System.out.println(GameProgressMessage.GAME_RETRY_MESSAGE);
