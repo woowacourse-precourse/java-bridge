@@ -69,9 +69,11 @@ public class ValidatorTest {
     }
 
     @DisplayName("재시작, 종료 값을 소문자로 입력 시 예외 발생")
-    @Test
-    void InputGameRestartLowerCaseTest() {
-
+    @ValueSource(strings = {"r", "q"})
+    @ParameterizedTest
+    void InputGameRestartLowerCaseTest(String input) {
+        assertThatThrownBy(() -> validateInputGameRestartException(input))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("재시작, 종료 값이 Null이면 예외 발생")
