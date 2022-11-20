@@ -41,4 +41,8 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public boolean isOnWay() {
+        return this.gameStatus.equals(ON_WAY);
+    }
 }
