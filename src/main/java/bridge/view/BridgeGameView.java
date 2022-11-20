@@ -1,6 +1,7 @@
 package bridge.view;
 
-public class BridgeGameView{
+public class BridgeGameView {
+
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -17,4 +18,8 @@ public class BridgeGameView{
     public OutputView getOutputView() {
         return outputView;
     }
+
 }
+
+
+
