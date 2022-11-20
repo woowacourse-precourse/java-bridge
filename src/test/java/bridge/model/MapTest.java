@@ -4,6 +4,8 @@ import bridge.Move;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class MapTest {
@@ -12,8 +14,10 @@ public class MapTest {
     @Test
     void createMapTest(){
         //given
-        Map map = new Map();
-        Map map2 = new Map();
+        List<String> generatedMap = List.of("U","D","U");
+
+        Map map = new Map(generatedMap);
+        Map map2 = new Map(generatedMap);
 
         //when
         map.insertMove(Move.U);
@@ -21,10 +25,10 @@ public class MapTest {
         map.insertMove(Move.U);
 
         map2.insertMove(Move.U);
-        map2.insertMove(Move.D);
+        map2.insertMove(Move.U);
 
         //then
         assertThat(map.toString()).isEqualTo("[ O |   | O ]\n[   | O |   ]");
-        assertThat(map2.toString()).isEqualTo("[ O |   ]\n[   | O ]");
+        assertThat(map2.toString()).isEqualTo("[ O | X ]\n[   |   ]");
     }
 }
