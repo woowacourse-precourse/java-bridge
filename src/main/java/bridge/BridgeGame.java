@@ -10,6 +10,7 @@ public class BridgeGame {
     List<Integer> upperBridge;
     List<Integer> bottomBridge;
     public static Integer tryCount = 1;
+    private Integer bridgeCount = 0;
 
     public BridgeGame(int size) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
@@ -20,8 +21,9 @@ public class BridgeGame {
     }
 
     public Boolean move(String inputMoving) {
-        String nextBridge = correctBridge.get(tryCount);
-        if (correctBridge.get(tryCount).equals(inputMoving)) {
+        bridgeCount++;
+        String nextBridge = correctBridge.get(bridgeCount - 1);
+        if (nextBridge.equals(inputMoving)) {
             makeBridgeSuccessState(nextBridge);
             return true;
         }
@@ -41,15 +43,21 @@ public class BridgeGame {
     private void makeBridgeSuccessState(String nextBridge) {
         if (checkIsUpperBridge(nextBridge)) {
             upperBridge.add(1);
+            bottomBridge.add(2);
+            return;
         }
-        bottomBridge.add(2);
+        upperBridge.add(2);
+        bottomBridge.add(1);
     }
 
     private void makeBridgeFailState(String nextBridge) {
         if (checkIsUpperBridge(nextBridge)) {
             upperBridge.add(0);
+            bottomBridge.add(2);
+            return;
         }
-        bottomBridge.add(2);
+        upperBridge.add(2);
+        bottomBridge.add(0);
     }
 
     private Boolean checkIsUpperBridge(String nextBridge) {
