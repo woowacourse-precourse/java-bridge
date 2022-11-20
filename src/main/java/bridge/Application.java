@@ -24,31 +24,28 @@ public class Application {
         outputView.printResult(bridgeGame.createResultMap(), bridgeGame.getTryNum(), bridgeGame.getCurrentState());
     }
 
-    private static boolean inGame(OutputView outputView, InputView inputView,
-            BridgeGame bridgeGame) {
-        String gameCommand = "";  
+    private static boolean inGame(OutputView outputView, InputView inputView, BridgeGame bridgeGame) {
+        String gameCommand = "";
         if (!move(outputView, inputView, bridgeGame)) {
             printMap(outputView, bridgeGame);
             gameCommand = gameEnd(outputView, inputView);
         }
         printMap(outputView, bridgeGame);
-        
-        return continueGame(gameCommand, bridgeGame);
+
+        return checkContinueGame(gameCommand, bridgeGame);
     }
 
-    private static boolean continueGame(String gameCommand, BridgeGame bridgeGame) {
-        if (gameCommand == "Q")
+    private static boolean checkContinueGame(String gameCommand, BridgeGame bridgeGame) {
+        if (gameCommand.equals("Q"))
             return false;
-        if (gameCommand == "R")
+        if (gameCommand.equals("R"))
             bridgeGame.retry();
         return true;
     }
 
     private static String gameEnd(OutputView outputView, InputView inputView) {
-        String gameCommand;
         outputView.printGameOver();
-        gameCommand = inputView.readGameCommand();
-        return gameCommand;
+        return inputView.readGameCommand();
     }
 
     private static void printMap(OutputView outputView, BridgeGame bridgeGame) {
@@ -59,12 +56,11 @@ public class Application {
     private static boolean move(OutputView outputView, InputView inputView, BridgeGame bridgeGame) {
         outputView.printSelectMove();
         String playerMove = inputView.readMoving();
-        
+
         return bridgeGame.move(playerMove);
     }
 
-    private static void makeBridge(OutputView outputView, InputView inputView,
-            BridgeGame bridgeGame) {
+    private static void makeBridge(OutputView outputView, InputView inputView, BridgeGame bridgeGame) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
@@ -73,4 +69,5 @@ public class Application {
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         bridgeGame.setBridge(bridge);
     }
+    
 }
