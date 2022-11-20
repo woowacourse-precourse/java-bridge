@@ -10,10 +10,12 @@ import view.InputView;
 public class Bridge {
     private final List<String> bridge;
     private int current;
+    private int gameCount;
 
     public Bridge(List<String> bridge) {
         this.bridge = bridge;
         this.current = -1;
+        this.gameCount = 1;
     }
 
 
@@ -147,5 +149,18 @@ public class Bridge {
 
     public void minusCurrent() {
         current -= 1;
+    }
+
+    public void reset() {
+        resetCurrent();
+        addGameCount();
+    }
+
+    private void addGameCount() {
+        this.gameCount += 1;
+    }
+
+    private void resetCurrent() {
+        this.current = -1;
     }
 }
