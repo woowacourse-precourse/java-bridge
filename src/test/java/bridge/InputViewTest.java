@@ -18,7 +18,7 @@ class InputViewTest {
     }
 
     @Test
-    void readBridgeSize() throws IllegalAccessException {
+    void readBridgeSize() throws IllegalArgumentException {
         int result;
         String inputValue = "20";
         systemIn(inputValue);
@@ -28,13 +28,15 @@ class InputViewTest {
         assertEquals(result, 20);
     }
 
-    private int rbTest() throws IllegalAccessException {
+    private int rbTest() throws IllegalArgumentException {
         return inputView.readBridgeSize();
     }
 
-    @Test
-    void readMoving() {
+    @Test()
+    void readMoving()  {
+
     }
+
 
     @Test
     void readGameCommand() {
