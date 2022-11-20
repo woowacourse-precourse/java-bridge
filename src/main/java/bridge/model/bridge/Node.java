@@ -29,10 +29,10 @@ public enum Node {
     }
 
     public static Node of(String position) {
-        if (position.equals("U")) {
+        if (position.equals(Node.UP.position)) {
             return UP;
         }
-        if (position.equals("D")) {
+        if (position.equals(Node.DOWN.position)) {
             return DOWN;
         }
         throw new IllegalArgumentException(INVALID_POSITION_FOR_BRIDGE_NODE);
