@@ -1,12 +1,21 @@
 package bridge.presentation;
 
 import bridge.ExceptionHandler;
+import bridge.data.Error;
 import camp.nextstep.edu.missionutils.Console;
+
+import java.util.NoSuchElementException;
 
 public class InputView {
 
     public int readBridgeSize() {
-        String input = Console.readLine();
+        String input;
+        try {
+            input = Console.readLine();
+        } catch (NoSuchElementException e) {
+            throw new IllegalArgumentException(Error.NULL_INPUT.getMessage());
+        }
+
         ExceptionHandler.checkNullInput(input);
         ExceptionHandler.checkIsNumber(input);
 
@@ -17,7 +26,13 @@ public class InputView {
     }
 
     public String readMoving() {
-        String move = Console.readLine();
+        String move;
+        try {
+            move = Console.readLine();
+        } catch (NoSuchElementException e) {
+            throw new IllegalArgumentException(Error.NULL_INPUT.getMessage());
+        }
+
         ExceptionHandler.checkNullInput(move);
         ExceptionHandler.checkIsCharacter(move);
         ExceptionHandler.checkInvalidMove(move);
@@ -26,7 +41,13 @@ public class InputView {
     }
 
     public String readGameCommand() throws IllegalArgumentException {
-        String retryCommand = Console.readLine();
+        String retryCommand;
+        try {
+            retryCommand = Console.readLine();
+        } catch (NoSuchElementException e) {
+            throw new IllegalArgumentException(Error.NULL_INPUT.getMessage());
+        }
+
         ExceptionHandler.checkNullInput(retryCommand);
         ExceptionHandler.checkIsCharacter(retryCommand);
         ExceptionHandler.checkInvalidRetryCommand(retryCommand);
