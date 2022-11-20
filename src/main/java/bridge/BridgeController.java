@@ -2,6 +2,8 @@ package bridge;
 
 import bridge.domain.BridgeStatus;
 import bridge.domain.GameStatus;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class BridgeController {
 

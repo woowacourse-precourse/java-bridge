@@ -1,4 +1,4 @@
-package bridge;
+package bridge.view;
 
 import bridge.domain.BridgeStatus;
 import bridge.domain.GameStatus;
