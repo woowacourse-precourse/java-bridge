@@ -3,21 +3,21 @@ package bridge.model;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class BridgeTest {
 
-    private Bridge bridge;
-
-    @BeforeEach
-    void setUp() {
-        bridge = new Bridge(List.of("U", "D", "D"));
+    @Test
+    void isRightMovingWithBridge() {
+        Bridge bridge = new Bridge(List.of("U", "D", "D"));
+        assertThat(bridge.isRightMoving(0, "U")).isEqualTo(true);
+        assertThat(bridge.isRightMoving(1, "U")).isEqualTo(false);
     }
 
     @Test
-    void isRightMovingWithBridge() {
-        assertThat(bridge.isRightMoving(0, "U")).isEqualTo(true);
-        assertThat(bridge.isRightMoving(1, "U")).isEqualTo(false);
+    void isBridgeGetSize() {
+        assertThat(new Bridge(List.of("U", "D", "D")).getSize()).isEqualTo(3);
+        assertThat(new Bridge(List.of("U", "D", "D", "U")).getSize()).isEqualTo(4);
+        assertThat(new Bridge(List.of("U", "D", "D", "U", "D")).getSize()).isEqualTo(5);
     }
 }
