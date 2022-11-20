@@ -13,6 +13,17 @@ public class InputView {
     }
 
     public int readBridgeSize() {
+        int num = 0;
+        try {
+            num = read();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] : Please input valid argument!");
+            return readBridgeSize();
+        }
+        return num;
+    }
+
+    private int read() {
         int isize = 0;
         String size = Console.readLine();
 
@@ -38,6 +49,17 @@ public class InputView {
     }
 
     public String readMoving() {
+        String cmd;
+        try {
+            cmd = moving();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] : Please input valid argument!");
+            return readMoving();
+        }
+        return cmd;
+    }
+
+    private String moving() {
         String move = Console.readLine();
         validateMoving(move);
         return move;
@@ -50,6 +72,17 @@ public class InputView {
     }
 
     public boolean readGameCommand() {
+        boolean value;
+        try {
+            value = gameCommand();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] : Please input valid argument!");
+            return readGameCommand();
+        }
+        return value;
+    }
+
+    private boolean gameCommand() {
         String command = Console.readLine();
         validateCommand(command);
         if(command.equals("R")) {
