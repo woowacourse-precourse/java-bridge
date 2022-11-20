@@ -41,7 +41,7 @@ public class BridgeGame {
      **/
     public int move() {
         index++;
-        if (index == endIndex) return 1;
+        if (isSuccess()) return 1;
         if (index < endIndex) return 0;
         throw new IllegalStateException(ExceptionMessage.CANNOT_MOVE_FURTHER.getMessage());
     }
@@ -52,8 +52,13 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        if (index == endIndex) throw new IllegalStateException(ExceptionMessage.GAME_ALREADY_SUCCESS.getMessage());
+        if (isSuccess()) throw new IllegalStateException(ExceptionMessage.GAME_ALREADY_SUCCESS.getMessage());
         this.numberOfTries++;
         this.index = -1;
+    }
+
+    public boolean isSuccess() {
+        if (index == endIndex) return true;
+        return false;
     }
 }

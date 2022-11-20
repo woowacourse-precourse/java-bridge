@@ -39,8 +39,7 @@
   - 진행 상황 리셋
   - 시도 횟수 증가
   - 예외. 이미 게임이 성공해서 종료된 상황인데 다시 시도하는 경우 예외 발생
-- [ ] 성공 여부 얻기 BridgeGame#isSuccess()
-- [ ] 시도 횟수 얻기 BridgeGame#getNumberOfTries()
+- [x] 성공 여부 얻기 BridgeGame#isSuccess()
 - 
 ### 추가 기능
 - [ ] AOP 프록시를 이용하여 예외 발생시 다시 입력 받도록 구현

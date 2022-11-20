@@ -35,6 +35,7 @@ public class BridgeGameTest {
         //given
         Bridge bridge = Bridge.of(List.of("U"));
         BridgeGame bridgeGame = new BridgeGame(bridge);
+        bridgeGame.move();
         //when
         Throwable throwable = catchThrowable(() -> {
             bridgeGame.move();
@@ -52,7 +53,7 @@ public class BridgeGameTest {
         bridgeGame.move();
         //then
         assertThat(bridgeGame.getIndex())
-                .isEqualTo(1);
+                .isEqualTo(0);
     }
 
     @Test
@@ -85,4 +86,27 @@ public class BridgeGameTest {
                 .isEqualTo(-1);
     }
 
+    @Test
+    void isSuccess_true_테스트() {
+        //given
+        Bridge bridge = Bridge.of(List.of("U"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        bridgeGame.move();
+        //when
+        boolean isSuccess = bridgeGame.isSuccess();
+        //then
+        assertThat(isSuccess)
+                .isTrue();
+    }
+    @Test
+    void isSuccess_false_테스트() {
+        //given
+        Bridge bridge = Bridge.of(List.of("U"));
+        BridgeGame bridgeGame = new BridgeGame(bridge);
+        //when
+        boolean isSuccess = bridgeGame.isSuccess();
+        //then
+        assertThat(isSuccess)
+                .isFalse();
+    }
 }
