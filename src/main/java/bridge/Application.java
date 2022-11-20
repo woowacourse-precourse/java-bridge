@@ -28,19 +28,19 @@ public class Application {
     }
 
     public static String inputMove() {
-        String move = inputView.readMoving();
-        ExceptionHandler.moveExceptionHandler(move);
+        String move;
+        move = ExceptionHandler.moveExceptionHandler(inputView.readMoving());
         return move;
+    }
+
+    public static String inputGameCommand() {
+        String gameCommand;
+        gameCommand = ExceptionHandler.gameCommandExceptionHandler(inputView.readGameCommand());
+        return gameCommand;
     }
 
     public static void printMap(List<List<String>> userPlaying) {
         outputView.printMap(userPlaying);
-    }
-
-    public static String inputGameCommand() {
-        String gameCommand = inputView.readGameCommand();
-        ExceptionHandler.gameCommandExceptionHandler(gameCommand);
-        return gameCommand;
     }
 
     public static void printResult(String isSuccess, int tryCount, List<List<String>> userPlaying) {
