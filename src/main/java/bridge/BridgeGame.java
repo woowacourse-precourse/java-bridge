@@ -20,6 +20,7 @@ public class BridgeGame {
     public List<String> bridge;
     public List<String> userInput;
     public int userLocation = 0;
+    public int cnt = 0;
 
 
     public BridgeGame() {
@@ -41,7 +42,7 @@ public class BridgeGame {
             move(moving);
             userLocation++;
         }
-        outputView.printResult();
+        outputView.printResult(bridge, userInput, cnt);
     }
 
     /**
@@ -73,6 +74,7 @@ public class BridgeGame {
         if (gameCommand.equals("R")) {
             userLocation = -1;
             userInput.clear();
+            cnt++;
         }
         if (gameCommand.equals("Q")) {
             userLocation = bridge.size();
