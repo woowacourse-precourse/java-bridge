@@ -10,11 +10,13 @@ public class BridgeGame {
     private final List<String> bridge;
     private int playerPosition;
     private int playCount;
+    private boolean success;
 
     public BridgeGame(List<String> bridge){
         this.bridge= new ValidateBridgeGame().validate(bridge);
         playerPosition=0;
         playCount=1;
+        success =true;
     }
 
     /**
@@ -22,16 +24,34 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String moveTo) {
-        if(bridge.get(playerPosition).equals(moveTo)){
-            playerPosition++;
-            return checkNotGoal();
+    public void move(String moveTo) {
+        if(bridge.get(playerPosition++).equals(moveTo)){
+            success=true;
+            return;
+        }
+        success=false;
+    }
+
+    public boolean checkNotGoal(){
+        if(bridge.size()!=playerPosition){
+            return true;
         }
         return false;
     }
 
-    private boolean checkNotGoal(){
-        if(bridge.size()!=playerPosition){
+    public boolean isSuccess(){
+        return success;
+    }
+
+    public boolean checkSuccess(String moveTo,int position){
+        if(bridge.get(position).equals(moveTo)){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkPlayerPosition(int position){
+        if(position==playerPosition){
             return true;
         }
         return false;
@@ -42,6 +62,8 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {//playerPosition을 0으로 만들면됨,playCount 1추가
+    public void retry() {
+        playerPosition=0;
+        playCount++;
     }
 }
