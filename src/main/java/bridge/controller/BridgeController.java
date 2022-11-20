@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.model.UserKeySet;
 import bridge.service.BridgeGame;
 import bridge.service.BridgeMaker;
 import bridge.view.InputView;
@@ -12,6 +13,7 @@ public class BridgeController {
     private final InputView inputView;
     private final OutputView outputView;
     private final BridgeMaker bridgeMaker;
+
     public BridgeController(InputView inputView, OutputView outputView, BridgeMaker bridgeMaker) {
         this.inputView = inputView;
         this.outputView = outputView;
@@ -19,15 +21,32 @@ public class BridgeController {
     }
 
     public void run() {
+        try {
+            playGame();
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    private void playGame() {
         BridgeGame game = initGame();
 
         while (!game.isComplete()) {
             boolean moveSuccess = move(game);
 
-            if(moveSuccess) {
+            if (moveSuccess) {
                 continue;
             }
+
+            boolean isRetry = retry();
+
+            if(!isRetry) {
+                break;
+            }
+
+            game.retry();
         }
+        end(game);
     }
 
     public BridgeGame initGame() {
@@ -45,10 +64,30 @@ public class BridgeController {
         outputView.printInputMoveCellMsg();
         String movement = inputView.readMoving();
 
-        return game.move(movement);
+        boolean success = game.move(movement);
+
+        List<String> bridge = game.getBridge();
+        List<String> movements = game.getMovements();
+        outputView.printMap(bridge, movements);
+
+        return success;
     }
 
-    public boolean retry(BridgeGame game) {
-        return false;
+    public boolean retry() {
+        outputView.printRestartMsg();
+        String command = inputView.readGameCommand();
+
+        return command.equals(UserKeySet.RETRY.toString());
+    }
+
+    public void end(BridgeGame game) {
+        outputView.printGameResultMsg();
+        List<String> bridge = game.getBridge();
+        List<String> movements = game.getMovements();
+        outputView.printMap(bridge, movements);
+
+        boolean success = game.isComplete();
+        int trialCount = game.getTrialCount();
+        outputView.printResult(success, trialCount);
     }
 }

@@ -35,9 +35,9 @@ public class BridgeMaker {
         int movableCell = bridgeNumberGenerator.generate();
 
         if(movableCell > 0) {
-            return UserKeySet.DOWN.toString();
+            return UserKeySet.UP.toString();
         }
 
-        return UserKeySet.UP.toString();
+        return UserKeySet.DOWN.toString();
     }
 }
