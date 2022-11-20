@@ -131,7 +131,7 @@ D
 - [x] 같으면 true, 틀리면 false를 리턴
 
 ### retry
-- [ ] upBridge변수의 요소 제거
+- [x] upBridge변수의 요소 제거
 - [ ] downBridge변수의 요소 제거
 - [ ] moveCount변수를 0으로 초기화
 - [ ] gameCount에 1를 더함
