@@ -35,7 +35,6 @@ public class BridgeController {
 
     private void playTurn() {
         String moving = this.inputView.readMoving();
-        System.out.println(moving);
         String bridgePicture = this.bridgeGame.move(moving);
         this.outputView.printMap(bridgePicture);
 //        if (this.bridgeGame.isFail()) {
