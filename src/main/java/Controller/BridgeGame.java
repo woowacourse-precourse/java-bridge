@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.Map;
-import Util.Util;
 import java.util.List;
 
 public class BridgeGame {
