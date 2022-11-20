@@ -13,12 +13,17 @@ public class InputView {
     private static final String BRIDGE_SIZE_RANGE_ERROR = "[ERROR] 다리 길이의 범위는 3 이상 20 이하입니다.";
     private static final String MOVING_ERROR = "[ERROR] 이동 가능한 칸은 'U'(위) 또는 'D'(아래) 입니다.";
     private static final String GAME_COMMAND_ERROR = "[ERROR] 재시도 명령어는 R, 종료 명령어는 Q 입니다.";
+    private static final String UP = "U";
+    private static final String DOWN = "D";
+    private static final String RESTART_COMMAND = "R";
+    private static final String QUIT_COMMAND = "Q";
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
         String input = getInput(BRIDGE_SIZE_GUIDE);
+        System.out.println();
         validateBridgeSize(input);
         return Integer.parseInt(input);
     }
@@ -45,7 +50,7 @@ public class InputView {
     }
 
     private void validateMoving(String input) {
-        if (!input.equals("U") && !input.equals("D")) {
+        if (!input.equals(UP) && !input.equals(DOWN)) {
             throw new IllegalArgumentException(MOVING_ERROR);
         }
     }
@@ -60,7 +65,7 @@ public class InputView {
     }
 
     private void validateGameCommand(String input) {
-        if (!input.equals("R") && !input.equals("Q")) {
+        if (!input.equals(RESTART_COMMAND) && !input.equals(QUIT_COMMAND)) {
             throw new IllegalArgumentException(GAME_COMMAND_ERROR);
         }
     }
@@ -73,8 +78,6 @@ public class InputView {
      */
     public String getInput(String guide) {
         System.out.println(guide);
-        String input = Console.readLine();
-        System.out.println();
-        return input;
+        return Console.readLine();
     }
 }

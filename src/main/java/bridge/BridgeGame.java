@@ -6,6 +6,7 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private final static String RESTART_GAME_COMMAND = "R";
     private static final OutputView outputView = new OutputView();
     private static final InputView inputView = new InputView();
     private static final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
@@ -74,10 +75,7 @@ public class BridgeGame {
     }
 
     private boolean isRetry(String command) {
-        if (command.equals("R")) {
-            return true;
-        }
-        return false;
+        return command.equals(RESTART_GAME_COMMAND);
     }
 
     public boolean getSuccess() {
