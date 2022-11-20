@@ -5,6 +5,7 @@ import bridge.model.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.model.Bridgelocation;
 import bridge.model.MoveBox;
+import bridge.model.lengthBridge;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 import bridge.Utility;
@@ -60,7 +61,7 @@ public class BridgeGameController {
 
     public List<String> gameinit() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        return bridgeMaker.makeBridge(inputView.readBridgeSize());
+        return bridgeMaker.makeBridge(new lengthBridge(inputView.readBridgeSize()).getLength());
     }
 
 
