@@ -82,5 +82,16 @@ public class OutputView {
     public void printResult(BridgeGame bridgeGame) {
         System.out.println("최종 게임 결과");
         printMap(bridgeGame);
+        printSuccessOrFail(bridgeGame.isFailed());
+    }
+
+    private void printSuccessOrFail(boolean fail) {
+        String result;
+        if (fail) {
+            result = "실패";
+        } else {
+            result = "성공";
+        }
+        System.out.println("게임 성공 여부: " + result);
     }
 }
