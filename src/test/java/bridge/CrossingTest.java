@@ -9,9 +9,9 @@ import static org.assertj.core.api.Assertions.*;
 public class CrossingTest {
     @ParameterizedTest
     @CsvSource(value = { "0:D", "1:U" }, delimiter = ':')
-    @DisplayName("changeString 메소드 테스트")
-    void changeStringTest(int number, String string){
-        String actual = Crossing.changeString(number);
+    @DisplayName("toString 메소드 테스트")
+    void toStringTest(int number, String string){
+        String actual = Crossing.toString(number);
         assertThat(actual).isEqualTo(string);
     }
 }
