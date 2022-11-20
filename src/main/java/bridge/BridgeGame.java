@@ -31,7 +31,43 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public Map<String,List<String>> move(String moving) {
+        this.answerPath.add(moving);
+        return generateResultMap();
+    }
+
+    public Map<String, List<String>> generateResultMap() {
+        Map<String, List<String>> resultMap = new HashMap<>();
+        List<String> upperLine = new ArrayList<>();
+        List<String> bottomLine = new ArrayList<>();
+        setUpperBottomLines(upperLine, bottomLine);
+        resultMap.put("upperLine", upperLine);
+        resultMap.put("bottomLine", bottomLine);
+        return resultMap;
+    }
+    private void setUpperBottomLines(List<String> upperLine, List<String> bottomLine) {
+        for (int index = 0; index < answerPath.size(); index++) {
+            addIsCorrectToLines(index, upperLine, bottomLine);
+        }
+    }
+
+    private void addIsCorrectToLines(int index, List<String> upperLine, List<String> bottomLine) {
+        String isCorrect = getIsCorrect(index);
+        upperLine.add(" ");
+        bottomLine.add(" ");
+        if ("U".equals(answerPath.get(index))) {
+            upperLine.set(index, isCorrect);
+            return;
+        }
+        bottomLine.set(index, isCorrect);
+    }
+
+    private String getIsCorrect(int index) {
+        String isCorrect = "X";
+        if (answerPath.get(index).equals(bridge.get(index))) {
+            isCorrect = "O";
+        }
+        return isCorrect;
     }
 
     /**
