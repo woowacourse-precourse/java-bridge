@@ -32,7 +32,7 @@ public class Application {
         output.printMap(curMove);
         if (game.isOver()){
             output.printGameCommand();
-            if (input.readGameCommand() == "Q"){
+            if (input.readGameCommand().equals("Q")){
                 return true;
             }
             game.retry();
@@ -54,7 +54,7 @@ public class Application {
             curMove = choice();
             if (result(curMove)){
                 finish(curMove, false, game.getCount());
-                break;
+                return;
             }
         }
         finish(curMove, true, game.getCount());
