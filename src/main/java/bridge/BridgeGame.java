@@ -4,15 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGame {
+    private final int MINBRIDGELEN = 3;
+    private final int MAXBRIDGELEN = 20;
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     List<String> visited = new ArrayList<>();
     BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    Validate validate = new Validate();
     Bridge bridge;
     private int tryNum = 1;
 
     public void init(){
-        int bridgeLen = inputView.readBridgeSize();
+        String input = inputView.readBridgeSize();
+        validate.validateNumberRange(input, MINBRIDGELEN, MAXBRIDGELEN);
+        int bridgeLen = Integer.parseInt(input);
         List<String> answerBridge = bridgeMaker.makeBridge(bridgeLen);
         bridge = new Bridge(answerBridge);
     }
