@@ -35,6 +35,7 @@ public class OutputView {
     public void printResult(BridgeGame bridgeGame) {
         printGameResult();
         printMap(bridgeGame.makeMap());
+        printSuccessOrFailure(bridgeGame.calculateResult());
         printAttemptTimes(bridgeGame.getAttemptTimes());
     }
 
