@@ -65,7 +65,7 @@ public class BridgeGame {
         return Status.TBD;
     }
 
-    public void clearLastMovementRecord() {
+    private void clearLastMovementRecord() {
         currentMovementRecord.clearMovementRecord();
     }
 
