@@ -76,6 +76,13 @@
    * BridgeCommand domain 구현
    * Message enum 구현
 8. retry game
+   * askRetry() 로직 구현
+   * BridgeGame 내 retry 구현
 9. end game
+   * checkEnd 로직 구현
+   * processBridgeGame 내 end 조건 구현
 10. print whole game result
+   * 메세지 출력을 위한 OutputView 구현
 11. print count of game tried
+   * 브릿지 게임 getTries() 구현
+   * retry 로직 재구성
