@@ -69,3 +69,12 @@ U
 ### 1. 다리 길이 입력 기능 테스트
 - [x] 입력 다리 길이가 숫자가 아니라면 `IllegalArgumentException` 발생
 - [x] 입력 다리 길이가 지정된 범위의 값이 아니라면 `IllegalArgumentException` 발생
+
+### 2. 다리 생성 기능 테스트
+
+- [x] 다리생성후 다리가 U와D로 이루어져있는지 테스트
+- [x] 만들고자하는 다리의 크기가 맞는지 테스트
+
+### 3. 다리 선택 입력 기능
+
+- [x] 다리선택 입력값이 U와 D가 아니라면 `IllegalArgumentException` 발생
