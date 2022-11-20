@@ -4,6 +4,7 @@ package bridge.view;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
+    private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.";
     private static final OutputView INSTANCE = new OutputView();
 
     private OutputView() {
@@ -32,6 +33,6 @@ public class OutputView {
     }
 
     public void printStartMessage() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println(GAME_START_MESSAGE);
     }
 }

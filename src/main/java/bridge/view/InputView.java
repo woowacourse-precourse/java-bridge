@@ -14,6 +14,9 @@ public class InputView {
     private static final String NUMBER_RANGE_ERROR_MESSAGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
     private static final String MOVING_TYPE_ERROR_MESSAGE = "[ERROR] 다리는 U(위) 또는 D(아래)를 입력받아 건널 수 있습니다.";
     private static final String GAME_COMMAND_TYPE_ERROR_MESSAGE = "[ERROR] 종료 명령어는 Q, 재시작 명령어는 R입니다.";
+    private static final String READ_BRIDGE_SIZE_MESSAGE = "\n다리의 길이를 입력해주세요.";
+    private static final String READ_MOVING_MESSAGE = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private static final String READ_COMMAND_MESSAGE = "\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private static final InputView INSTANCE = new InputView();
 
     private InputView() {
@@ -29,7 +32,7 @@ public class InputView {
     public int readBridgeSize() {
         while (true) {
             try {
-                System.out.println("\n다리의 길이를 입력해주세요.");
+                System.out.println(READ_BRIDGE_SIZE_MESSAGE);
                 int bridgeSize = ParsingUtils.stringToInt(Console.readLine());
                 checkNumberRange(bridgeSize);
                 return bridgeSize;
@@ -51,7 +54,7 @@ public class InputView {
     public String readMoving() {
         while (true) {
             try {
-                System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
+                System.out.println(READ_MOVING_MESSAGE);
                 String moving = Console.readLine();
                 checkMovingType(moving);
                 return moving;
@@ -73,7 +76,7 @@ public class InputView {
     public String readGameCommand() {
         while (true) {
             try {
-                System.out.println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+                System.out.println(READ_COMMAND_MESSAGE);
                 String gameCommand = Console.readLine();
                 checkGameCommandType(gameCommand);
                 return gameCommand;
