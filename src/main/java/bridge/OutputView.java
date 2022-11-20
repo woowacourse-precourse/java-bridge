@@ -39,7 +39,7 @@ public class OutputView {
     private void printFloor(String direction, List<String> userRoute, List<String> bridge) {
         System.out.print("[");
         for (int i = 0; i < userRoute.size(); i++) {
-            printCell(direction, userRoute.get(i), bridge.get(i));
+            System.out.println(getCell(direction, userRoute.get(i), bridge.get(i)));
             if (i == userRoute.size() - 1) {
                 break;
             }
@@ -48,14 +48,14 @@ public class OutputView {
         System.out.println("]");
     }
 
-    private void printCell(String direction, String userDirection, String bridgeDirection) {
+    private String getCell(String direction, String userDirection, String bridgeDirection) {
         if (direction.equals(userDirection)) {
             if (userDirection.equals(bridgeDirection)) {
-                System.out.print(" O ");
+                return " O ";
             }
-            System.out.print(" X ");
+            return " X ";
         }
-        System.out.print("   ");
+        return "   ";
     }
 
     /**
