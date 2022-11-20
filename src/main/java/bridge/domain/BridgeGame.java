@@ -1,6 +1,5 @@
 package bridge.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,11 +8,9 @@ import java.util.List;
 public class BridgeGame {
     private final List<String> bridge;
     private int position;
-    private boolean alive;
 
     public BridgeGame(BridgeMaker bridgeMaker, int size) {
         bridge = bridgeMaker.makeBridge(size);
-        alive = true;
     }
 
     /**
@@ -21,31 +18,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String input) {
+    public void move() {
         position = position + 1;
-        alive = isCorrect(input);
-    }
-
-    public List<String> getResult(String input) {
-        List<String> result = new ArrayList<>(bridge.subList(0, position));
-        if (isCorrect(input)) {
-            return List.copyOf(result);
-        }
-        result.remove(position - 1);
-        result.add(input);
-        return List.copyOf(result);
-    }
-
-    private boolean isCorrect(String input) {
-        return bridge.get(position - 1).equals(input);
-    }
-
-    public boolean isAlive() {
-        return alive;
-    }
-
-    public boolean isPlaying() {
-        return position < bridge.size();
     }
 
     /**
