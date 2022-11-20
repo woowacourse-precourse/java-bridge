@@ -51,9 +51,9 @@ class UserTest {
     @Test
     public void isNotSuccessCompleteTest() {
         //given
-        User user = new User();
 
         //when
+        User user = new User();
 
         //then
         assertThat(user.isSuccessComplete()).isEqualTo(false);
