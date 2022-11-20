@@ -16,4 +16,11 @@ public class BridgeSizeValidator implements Validator {
             throw new IllegalArgumentException(ERROR_NON_NUMERIC_VALUE);
         }
     }
+
+    private void validateRange(String input){
+        int bridgeSize = Integer.parseInt(input);
+        if (bridgeSize < 3 || bridgeSize > 30){
+            throw new IllegalArgumentException(ERROR_OUT_OF_RANGE);
+        }
+    }
 }
