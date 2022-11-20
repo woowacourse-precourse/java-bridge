@@ -11,6 +11,10 @@ import static bridge.Utility.MOVE_NAME;
  */
 public class OutputView {
 
+    public static final String finalResultMessage = "최종 게임 결과";
+    public static final String gameResultMessage = "게임 성공 여부: ";
+    public static final String totalTriesMessage = "총 시도한 횟수: ";
+
     public static final String mapStart = "[ ";
     public static final String mapEnd = " ]";
     public static final String mapSeparator = " | ";
@@ -26,11 +30,11 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> totalMove, int curLocation, List <String> bridge) {
+    public void printMap(List<String> totalMove, List <String> bridge) {
         for(int i=Move.UP.getNum(); i>=Move.DOWN.getNum(); i--){
             String _curMove = MOVE_NAME.get(i);
             String curMove = Move.valueOf(_curMove).getMoveType();
-            String mapResult = createMapByLine(totalMove, curLocation, bridge, curMove);
+            String mapResult = createMapByLine(totalMove, bridge, curMove);
             printMessage(mapResult);
         }
     }
@@ -40,13 +44,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
-    }
 
-    public String createMapByLine(List<String> totalMove, int curLocation, List <String> bridge, String type){
+
+    public String createMapByLine(List<String> totalMove, List <String> bridge, String type){
         String mapResult = "";
         mapResult = mapResult+mapStart;
-        for(int i=0; i<curLocation; i++){
+        for(int i=0; i<totalMove.size(); i++){
             String selectedCurMove = totalMove.get(i);
             String bridgeCurMove = bridge.get(i);
             if(!selectedCurMove.equals(type))
@@ -55,7 +58,7 @@ public class OutputView {
                 mapResult = mapResult+mapRight;
             if(selectedCurMove.equals(type) && !selectedCurMove.equals(bridgeCurMove))
                 mapResult = mapResult+mapWrong;
-            if(i!=(curLocation-1))
+            if(i!=(totalMove.size()-1))
                 mapResult = mapResult+mapSeparator;
         }
         mapResult = mapResult+mapEnd;
