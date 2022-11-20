@@ -22,6 +22,8 @@ class BridgeGameTest {
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
+
+
     @BeforeEach
     public void setUp() {
         System.setOut(new PrintStream(outputStreamCaptor));
@@ -39,7 +41,7 @@ class BridgeGameTest {
             bridgeGame.startGame(List.of("U", "U", "D"));
 
             setInput("U" + "\n" + "U" + "\n" + "D");
-            bridgeGame.move();
+            bridgeGame.move(new StringBuilder(), new StringBuilder());
 
             assertThat(outputStreamCaptor.toString())
                     .contains(
@@ -56,7 +58,7 @@ class BridgeGameTest {
             bridgeGame.startGame(List.of("U", "U", "D"));
 
             setInput("u" + "\n" + "u" + "\n" + "d");
-            bridgeGame.move();
+            bridgeGame.move(new StringBuilder(), new StringBuilder());
 
             assertThat(outputStreamCaptor.toString())
                     .contains(
@@ -73,7 +75,7 @@ class BridgeGameTest {
             bridgeGame.startGame(List.of("U", "U", "D"));
 
             setInput("D");
-            bridgeGame.move();
+            bridgeGame.move(new StringBuilder(), new StringBuilder());
 
             assertThat(outputStreamCaptor.toString())
                     .contains(
@@ -89,7 +91,7 @@ class BridgeGameTest {
             bridgeGame.startGame(List.of("U", "U", "D"));
 
             setInput("U"+"\n"+"D");
-            bridgeGame.move();
+            bridgeGame.move(new StringBuilder(), new StringBuilder());
 
             assertThat(outputStreamCaptor.toString())
                     .contains(
@@ -106,7 +108,7 @@ class BridgeGameTest {
             bridgeGame.startGame(List.of("U", "U", "D"));
 
             setInput("K");
-            bridgeGame.move();
+            bridgeGame.move(new StringBuilder(), new StringBuilder());
 
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.moveByNotUD.getMessage());

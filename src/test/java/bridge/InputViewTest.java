@@ -83,6 +83,34 @@ class InputViewTest {
                 .hasMessage(ExceptionMessage.moveByNotUD.getMessage());
     }
 
+    @DisplayName("이동거리가 Q 일 때, 정상 종료")
+    @Test
+    public void checkCommandUpperWordsNot() {
+        assertThatCode(() -> {
+            setInput("Q");
+            inputView.readGameCommand();
+        }).doesNotThrowAnyException();
+    }
+
+    @DisplayName("이동거리가 q 일 때, 정상 종료")
+    @Test
+    public void checkCommandLowerWordsNot() {
+        assertThatCode(() -> {
+            setInput("q");
+            inputView.readGameCommand();
+        }).doesNotThrowAnyException();
+    }
+
+    @DisplayName("이동거리가 R 또는 Q가 아닐 경우 예외 발생")
+    @Test
+    public void checkCommandWordsNot() {
+        assertThatCode(() -> {
+            setInput("X");
+            inputView.readGameCommand();
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.commandByNotRQ.getMessage());
+    }
+
     private void setInput(String input) {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
