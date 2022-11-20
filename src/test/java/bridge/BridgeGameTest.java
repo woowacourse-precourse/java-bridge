@@ -9,6 +9,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class BridgeGameTest {
 
+    private static final boolean CORRECT_BRIDGE = true;
+    private static final boolean WRONG_BRIDGE = false;
     private static final boolean END_GAME = true;
 
     List<String> bridge;
@@ -25,7 +27,7 @@ public class BridgeGameTest {
         for (int i = 0; i < inputMoving.size(); i++) {
             game.move(bridge, inputMoving.get(i));
         }
-        assertThat(game.getMovingResult()).isEqualTo(List.of(true, true, false));
+        assertThat(game.getMovingResult()).isEqualTo(List.of(CORRECT_BRIDGE, CORRECT_BRIDGE, WRONG_BRIDGE));
     }
 
     @Test
