@@ -396,39 +396,73 @@ int number=bridgeNumberGenerator.generate();
 
 * package: `bridge` - root
     * class: **Application**
-        * method: main - 게임 실행 (GameManager 호출)  
-    * 
+        * method: main
+            1. GameManager 생성
+            2. 게임 초기화 (GameManager.startBridgeGame()) 호출)
+            3. 게임 실행 (GameManager.playBridgeGame() 호출)
+    *
 
     * class: **BridgeMaker** - 다리를 생성해주는 역할
-        * method: makeBridge - 입력받은 길이에 해당하는 다리 생성  
-    * 
-    
+        * method: makeBridge - 입력받은 길이에 해당하는 다리 생성
+    *
+
     * class: **BridgeRandomNumberGenerator** - 다리 생성을 위한 난수를 생성해주는 역할
         * method: generate - 난수 생성 (0 또는 1)
-    * interface: **BridgeNumberGenerator**  
-    * 
-    
+    * interface: **BridgeNumberGenerator**
+    *
+
     * package: `game`
-        * class: **GameManager** - 게임 진행자, 사용자와 게임을 이어주는 매개체  
-        * 
+        * class: **GameManager** - 게임 진행자, 사용자와 게임을 이어주는 매개체
+            * fields
+                * User 객체
+                * BridgeGame 객체
+            * methods
+                * startBridgeGame - 게임 초기화
+                    1. 게임 시작 문구 출력
+                    2. generateBridgeAnswer - 다리 생성
+                * playBridgeGame - 게임 진행
+                    1. 사용자가 게임을 진행하는지 확인 (User.isPlayingGame() 호출)
+                    2. moveUser - 사용자 이동
+                    3. printBridge_userPredict - 현재까지 건넌 다리 출력
+                    4. isGameSucceed - 성공, 실패 여부 확인
+                    5. askRestartGame - 재시작 여부 확인
+                    6. printGameResult - 게임 종료 문구 출력
+        *
         * class: **BridgeGame** - 다리 건너기 게임을 관리
-          * method: move - 칸 이동
-          * method: retry - 게임을 다시 시도  
-    * 
+            * fields
+                * bridge_answer - 정답 다리
+                * bridge_userPredict - 사용자가 현재까지 건넌 다리
+            * methods
+                * setBridgeAnswer - 정답 다리 값 저장
+                * move - 칸 이동
+                * retry - 게임을 다시 시도
+    *
 
     * package: `user`
-        * class: **User** - 사용자의 상태를 관리  
-    * 
+        * class: **User** - 사용자의 상태를 관리
+            * fields
+                1. isPlayingGame - 게임 진행 여부
+                2. isGameSucceed - 게임 성공 여부
+                3. numberOfTrials - 총 시도 횟수
+            * methods
+                * isPlayingGame - 게임 진행 여부 반환
+                * setNotPlayingGame - 게임을 진행하지 않는 것으로 상태 변경
+                * isGameSucceed - 게임 성공 여부 반환
+                * setGameSucceed - 게임 성공으로 상태 변경
+                * increaseNumberOfTrials - 총 시도 횟수 1회 증가
+    *
 
     * package: `view` - console I/O
         * class: **InputView** - 사용자로부터 입력을 받는 역할, 입력 예외처리
-          * method: readBridgeSize - 다리의 길이 입력받기
-          * method: readMoving - 사용자가 이동할 칸 입력받기
-          * method: readMoving - 게임을 다시 시도할지 종료할지 여부 입력받기  
-        * 
+            * methods
+                * readBridgeSize - 다리의 길이 입력받기
+                * readMoving - 사용자가 이동할 칸 입력받기
+                * readMoving - 게임을 다시 시도할지 종료할지 여부 입력받기
+        *
         * class: **OutputView** - 사용자에게 게임 진행 상황과 결과를 출력하는 역할
-          * method: printMap - 현재까지 이동한 다리의 상태 출력
-          * method: printResult - 게임의 최종 결과 출력
+            * methods
+                * printMap - 현재까지 이동한 다리의 상태 출력
+                * printResult - 게임의 최종 결과 출력
 
 ---
 
