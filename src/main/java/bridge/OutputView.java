@@ -21,6 +21,24 @@ public class OutputView {
         System.out.println(downLine);
     }
 
+    public String printTopLine(List<String> userBridge, List<String> answerBridge){
+        String topLine="[ ";
+        for(int index=0;index<userBridge.size();index++){
+            if(!userBridge.get(index).equals("U")){
+                topLine+="  ";
+            }
+            if(userBridge.get(index).equals("U")&&BridgeGame.checkSameMove(index)){
+                topLine+="O ";
+            }
+            if(userBridge.get(index).equals("U")&&!BridgeGame.checkSameMove(index)){
+                topLine+="X ";
+            }
+            topLine+="| ";
+        }
+        topLine+="]";
+        return topLine;
+    }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
