@@ -7,7 +7,6 @@ import bridge.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
@@ -51,20 +50,22 @@ public class Controller {
 
     private List<Integer> move(int flag, int step){
         while(step != bridgeGame.getBridgeSize()){
-            settingMoving();
-            if (!bridgeGame.move(step++)){
-                outputView.printMap(bridgeGame);
+            boolean isEqual = settingMoving(step);
+            if (!isEqual){
                 flag = compareBridgeAndUserThink();
                 break;
             }
-            outputView.printMap(bridgeGame);
+            step++;
         }
         return List.of(flag, step);
     }
 
-    private void settingMoving(){
+    private boolean settingMoving(int step){
         inputView.getInputMoveUpOrDownMsg();
         bridgeGame.setUserMoving(inputView.readMoving());
+        boolean isEqual = bridgeGame.move(step);
+        outputView.printMap(bridgeGame);
+        return isEqual;
     }
 
     private int compareBridgeAndUserThink(){
