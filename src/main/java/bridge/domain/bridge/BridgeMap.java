@@ -1,6 +1,6 @@
 package bridge.domain.bridge;
 
-import bridge.domain.Correct;
+import bridge.domain.Status;
 import bridge.domain.Direction;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class BridgeMap {
     public void addMap(String direction, boolean isCorrect) {
         int index = Direction.getBySymbol(direction).getKey();
         int otherIndex = getOtherIndex(index);
-        String symbol = Correct.getByCorrect(isCorrect).getSymbol();
+        String symbol = Status.getByStatus(isCorrect).getSymbol();
 
         bridgeMap.get(index).add(symbol);
         bridgeMap.get(otherIndex).add(" ");

@@ -1,7 +1,6 @@
 package bridge.view;
 
 import bridge.domain.Message;
-import bridge.domain.bridge.BridgeMap;
 
 import java.util.List;
 
@@ -35,9 +34,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printResult(List<List<String>> mapData, boolean isSuccess, int tries) {
+    public static void printResult(List<List<String>> mapData, String status, int tries) {
         System.out.printf(Message.OUTPUT_END_GAME.get());
         printMap(mapData);
-        System.out.printf(Message.OUTPUT_STATUS.get(), isSuccess, tries);
+        System.out.printf(Message.OUTPUT_STATUS.get(), status, tries);
     }
 }

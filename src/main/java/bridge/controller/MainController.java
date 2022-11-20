@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.Status;
 import bridge.domain.bridge.*;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -13,16 +14,15 @@ public class MainController {
         OutputView.printWelcome();
         BridgeSize bridgeSize = getBridgeSize();
         BridgeGame bridgeGame = makeBridgeGame(bridgeSize.get());
-        boolean isSuccess = processBridgeGame(bridgeGame);
+        String result = processBridgeGame(bridgeGame);
         OutputView.printResult(
-                bridgeGame.getBridgeMap().get(), isSuccess, bridgeGame.getTries());
+                bridgeGame.getBridgeMap().get(), result, bridgeGame.getTries());
     }
 
     private static BridgeSize getBridgeSize() {
         while (true) {
             try {
-                BridgeSize bridgeSize = new BridgeSize(InputView.readBridgeSize());
-                return bridgeSize;
+                return new BridgeSize(InputView.readBridgeSize());
             } catch (IllegalArgumentException E) {
                 System.out.printf(E.getMessage());
             }
@@ -37,15 +37,15 @@ public class MainController {
 
     /**
      * 브릿지 게임을 진행하는 메소드
-     * output: 승패 여부 (boolean)
+     * output: 게임의 결과 (성공,실패) (String)
      */
-    private static boolean processBridgeGame(BridgeGame bridgeGame) {
+    private static String processBridgeGame(BridgeGame bridgeGame) {
         do {
             if (!processTurn(bridgeGame)) {
-                return false;
+                return Status.getByStatus(false).getName();
             }
         } while (!bridgeGame.checkEnd());
-        return true;
+        return Status.getByStatus(true).getName();
     }
 
     /**
