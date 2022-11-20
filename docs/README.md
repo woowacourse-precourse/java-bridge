@@ -64,8 +64,8 @@ BridgeGameController
 - [x] playBridgeGame
 - [x] inputMoving
 - [x] printMap
-- [ ] inputGameCommand
-	- [ ] printResult
+- [x] inputGameCommand
+- [x] printResult
 
 
 
