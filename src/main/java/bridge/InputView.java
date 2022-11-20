@@ -13,13 +13,17 @@ public class InputView {
     public int readBridgeSize() {
         startGame();
         try {
-            int input = Integer.parseInt(Console.readLine());
-            if(input < 3 || input > 20) throw new NumberFormatException();
-            return input;
+            return validateSize(Integer.parseInt(Console.readLine()));
         } catch (NumberFormatException e) {
             System.out.println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
             throw new IllegalArgumentException();
         }
+    }
+
+    public int validateSize(int parseInt) {
+        int input = parseInt;
+        if(input < 3 || input > 20) { throw new NumberFormatException(); }
+        return input;
     }
 
     /**

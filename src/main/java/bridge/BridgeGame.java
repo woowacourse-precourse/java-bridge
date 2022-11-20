@@ -18,7 +18,6 @@ public class BridgeGame {
       char[][] maps = initialMap(bridge.size());
       for(int idx = 0; idx < bridge.size(); idx++) {
         makeMaps(maps, idx, bridge.get(idx));
-        new OutputView().printMap(maps, idx);
         if(maps[0][idx] == 'X' || maps[1][idx] == 'X') {
           return retry(bridge, maps, idx, cnt);
         }
@@ -43,6 +42,7 @@ public class BridgeGame {
       } else {
         makeX(maps, input, idx);
       }
+      new OutputView().printMap(maps, idx);
     }
 
     public void makeX(char[][] maps, String input, int idx) {
