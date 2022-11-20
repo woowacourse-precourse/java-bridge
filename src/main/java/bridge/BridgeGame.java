@@ -22,10 +22,10 @@ public class BridgeGame {
      */
     public int move(String blockInput) {
         if (bridge.isMovableBlock(position, blockInput)) {
-            position++;
-            return position;
+            this.position++;
+            return this.position;
         }
-        return position;
+        return this.position;
     }
 
     /**
@@ -34,7 +34,11 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        position = 0;
-        attempts++;
+        this.position = 0;
+        this.attempts++;
+    }
+
+    public int getAttempts() {
+        return this.attempts;
     }
 }
