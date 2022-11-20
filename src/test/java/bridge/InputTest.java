@@ -41,7 +41,19 @@ public class InputTest  {
         }
     }
 
+    @DisplayName("다리 길이를 성공적으로 입력받는 케이스 - 입력이 지정 범위 이내")
+    @Test
+    void readBridgeSizeSuccess() {
+        command("15");
+        assertThatCode(() -> inputView.readBridgeSize()).doesNotThrowAnyException();
+    }
 
+    @DisplayName("다리 길이를 입력받지 못하는 케이스 - 입력이 지정 범위 밖")
+    @Test
+    void readBridgeSizeFail() {
+        command("21");
+        assertThatThrownBy(() -> inputView.readBridgeSize()).isInstanceOf(IllegalArgumentException.class);
+    }
 
     // 입력에 대한 테스트를 수행하기 위해 사전에 정의된 NsTest 클래스에서 command 메서드 가져옴
     private void command(final String... args) {
