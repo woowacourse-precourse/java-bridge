@@ -17,7 +17,7 @@ public class OutputView {
     }
 
     public void printAskingNextMove() {
-        System.out.println(ViewConstants.ASKING_NEXT_MOVE);
+        System.out.println(ViewConstants.ASKING_MOVING);
     }
 
     /**
