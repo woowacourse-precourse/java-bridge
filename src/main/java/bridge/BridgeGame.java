@@ -47,8 +47,6 @@ public class BridgeGame {
         if (!isAlive() || player.size() == bridge.size())
             return true;
 
-        if (bridge.size() == player.size())
-            return true;
         return false;
     }
 
