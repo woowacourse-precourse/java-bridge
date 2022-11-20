@@ -23,7 +23,7 @@ public class InputView {
             = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: " + RETRY + ", 종료: " + QUIT + ")";
     private static final String GAME_COMMAND_REGEX = String.join("|", RETRY, QUIT);
     private static final String INPUT_NUMBER_EXCEPTION_MESSAGE = "숫자가 아닙니다.";
-    
+
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -64,13 +64,17 @@ public class InputView {
     public String readMoving() {
         System.out.println(READ_MOVING_GUIDE);
         try {
-            String moving = Console.readLine();
-            validateInputMoving(moving);
-            return moving;
+            return inputMoving();
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
         }
         return readMoving();
+    }
+
+    private String inputMoving() {
+        String moving = Console.readLine();
+        validateInputMoving(moving);
+        return moving;
     }
 
     public void validateInputMoving(String moving) {
