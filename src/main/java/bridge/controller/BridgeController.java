@@ -11,6 +11,10 @@ public class BridgeController {
 
     public void run() {
         init();
+        do {
+            play();
+            gameOver();
+        } while (bridgeGame.isOngoing());
     }
 
     private void init() {
@@ -52,6 +56,11 @@ public class BridgeController {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private void gameOver() {
+        outputView.printAskingRestartingGame();
+        restartOrQuit();
     }
 
     private void restartOrQuit() {
