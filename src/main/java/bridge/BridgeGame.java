@@ -20,19 +20,31 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String uD,int loopIndex) {
-        if(loopIndex==0){
-            myRoute= new ArrayList<>();
-        }
-        myRoute.add(uD);
+    public boolean move(String uD, int loopIndex) {
+        myRoute = setMyRoute(loopIndex, uD);
         if (!bridgeRoute.get(step).equals(uD)) {
-            output.printMap(step, bridgeRoute, myRoute);
-            step = 0;
+            wrongAnswer();
             return false;
         }
+        rightAnswer();
+        return true;
+    }
+
+    public void wrongAnswer() {
+        output.printMap(step, bridgeRoute, myRoute);
+        step = 0;
+    }
+    public void rightAnswer() {
         output.printMap(step, bridgeRoute, myRoute);
         step++;
-        return true;
+    }
+
+    public List<String> setMyRoute(int index, String uD) {
+        if (index == 0) {
+            myRoute = new ArrayList<>();
+        }
+        myRoute.add(uD);
+        return myRoute;
     }
 
     /**

@@ -45,7 +45,30 @@ public class OutputView {
         printUpperBridge(length-1,answer,submitted);
         printLowerBridge(length-1,answer,submitted);
     }
-
+    public void printUpperBridge(int step, List<String> answer, List<String> submitted) {
+        System.out.print(Brackets.START.getSymbol());
+        for (int loop = 0; loop < step+1; loop++) {
+            String loopAnswer=answer.get(loop);
+            String loopSubmitted=submitted.get(loop);
+            isMiddle(loop);
+            isMatch(UP,loopSubmitted,loopAnswer);
+            isMismatch(UP,loopSubmitted,loopAnswer);
+            isBlank(DOWN,loopSubmitted);
+        }
+        System.out.println(Brackets.END.getSymbol());
+    }
+    public void printLowerBridge(int step, List<String> answer, List<String> submitted) {
+        System.out.print(Brackets.START.getSymbol());
+        for (int loop = 0; loop < step+1; loop++) {
+            String loopAnswer=answer.get(loop);
+            String loopSubmitted=submitted.get(loop);
+            isMiddle(loop);
+            isMatch(DOWN,loopSubmitted,loopAnswer);
+            isMismatch(DOWN,loopSubmitted,loopAnswer);
+            isBlank(UP,loopSubmitted);
+        }
+        System.out.println(Brackets.END.getSymbol());
+    }
     public void printSuccessOrFail(BridgeGame game) {
         String SorF="실퍠";
         System.out.print(SUCCESS_RESULT_MESSAGE);
@@ -60,44 +83,27 @@ public class OutputView {
         System.out.println(game.trialCount);
     }
 
-    public void printUpperBridge(int step, List<String> answer, List<String> submitted) {
-        System.out.print(Brackets.START.getSymbol());
-        for (int loop = 0; loop < step+1; loop++) {
-            String loopAnswer=answer.get(loop);
-            String loopSubmitted=submitted.get(loop);
-            if(loop!=0){
-                System.out.print(Brackets.MIDDLE.getSymbol());
-            }
-            if (loopSubmitted.equals(UP) && loopSubmitted.equals(loopAnswer)){
-                System.out.print(Brackets.MATCH.getSymbol());
-            }
-            if (loopSubmitted.equals(UP) && !loopSubmitted.equals(loopAnswer)) {
-                System.out.print(Brackets.MISMATCH.getSymbol());
-            }
-            if (loopSubmitted.equals(DOWN)) {
-                System.out.print(Brackets.BLANK.getSymbol());
-            }
+
+    public void isMiddle(int loop){
+        if(loop!=0){
+            System.out.print(Brackets.MIDDLE.getSymbol());
         }
-        System.out.println(Brackets.END.getSymbol());
     }
-    public void printLowerBridge(int step, List<String> answer, List<String> submitted) {
-        System.out.print(Brackets.START.getSymbol());
-        for (int loop = 0; loop < step+1; loop++) {
-            String loopAnswer=answer.get(loop);
-            String loopSubmitted=submitted.get(loop);
-            if(loop!=0){
-                System.out.print(Brackets.MIDDLE.getSymbol());
-            }
-            if (loopSubmitted.equals(DOWN) && loopSubmitted.equals(loopAnswer)){
-                System.out.print(Brackets.MATCH.getSymbol());
-            }
-            if (loopSubmitted.equals(DOWN) && !loopSubmitted.equals(loopAnswer)) {
-                System.out.print(Brackets.MISMATCH.getSymbol());
-            }
-            if (loopSubmitted.equals(UP)) {
-                System.out.print(Brackets.BLANK.getSymbol());
-            }
+
+    public void isMatch(String upOrDown, String submitted, String answer){
+        if (submitted.equals(upOrDown) && submitted.equals(answer)){
+            System.out.print(Brackets.MATCH.getSymbol());
         }
-        System.out.println(Brackets.END.getSymbol());
     }
+    public void isMismatch(String upOrDown,String submitted, String answer){
+        if (submitted.equals(UP) && !submitted.equals(answer)) {
+            System.out.print(Brackets.MISMATCH.getSymbol());
+        }
+    }
+    public void isBlank(String upOrDown,String submitted){
+        if (submitted.equals(upOrDown)) {
+            System.out.print(Brackets.BLANK.getSymbol());
+        }
+    }
+
 }

@@ -6,7 +6,6 @@ public class Application {
 
     public static void main(String[] args) {
         BridgeGame game = new BridgeGame();
-        int bridgeLength=game.bridgeLength;
 
         setBridge(game);
         gamePlay(game);
@@ -23,6 +22,7 @@ public class Application {
         game.bridgeLength = input.readBridgeSize();
         game.bridgeRoute = bridgeMaker.makeBridge(game.bridgeLength);
     }
+
     public static void totalResult(BridgeGame game){
         OutputView output = new OutputView();
         output.printResult(game.bridgeLength,game.bridgeRoute, game.myRoute);
@@ -36,9 +36,7 @@ public class Application {
         Boolean isSuccess;
         for (int loop = 0; loop < length; loop++) {
             isSuccess = game.move(input.readMoving(), loop);
-            if (!isSuccess) {
-                return false;
-            }
+            if (!isSuccess) return false;
         }
         return true;
     }
@@ -46,20 +44,14 @@ public class Application {
     public static void gamePlay(BridgeGame game) {
         InputView input = new InputView();
         game.trialCount += 1;
-        Boolean isQuit;
-        Boolean isSuccess;
         while (true) {
-            isSuccess = gameMove(game);
-            if (isSuccess) {
-                game.isSuccess=isSuccess;
+            if (gameMove(game)) {
+                game.isSuccess=true;
                 break;
             }
-            isQuit = game.retry(input.readGameCommand());
-            if (isQuit) {
-                break;
-            }
+            Boolean isQuit = game.retry(input.readGameCommand());
+            if (isQuit) break;
         }
     }
-
 
 }
