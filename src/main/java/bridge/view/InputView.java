@@ -1,11 +1,11 @@
-package bridge;
+package bridge.view;
 
-import bridge.utils.constant.Constant;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.NoSuchElementException;
 
 import static bridge.utils.constant.Constant.*;
+import static bridge.utils.constant.ExceptionPhrase.*;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -17,16 +17,26 @@ public class InputView {
      */
     public int readBridgeSize() {
         String size = Console.readLine();
+        int length = bridgeSizeIsNumeric(size);
+
+        return bridgeSizeRange(length);
+    }
+
+    public int bridgeSizeIsNumeric(String size) {
         int length;
         try {
-            length =  Integer.parseInt(size);
-            if(length <3 || length > 20) {
-                throw new IllegalArgumentException("[ERROR] Not in range 3 to 20");
-            }
-        } catch(NumberFormatException | NoSuchElementException e) {
-            throw new IllegalArgumentException("[ERROR] " + e.getMessage());
+            length = Integer.parseInt(size);
+        } catch (NoSuchElementException | NumberFormatException e) {
+            throw new IllegalArgumentException(INVALID_INPUT_NOT_NUMBER.getPhrase());
         }
         return length;
+    }
+
+    public int bridgeSizeRange(int bridge) {
+        if(bridge < 3 || bridge > 20) {
+            throw new IllegalArgumentException(INVALID_INPUT_NOT_RANGE_IN_THREE_TO_TWENTY.getPhrase());
+        }
+        return bridge;
     }
 
     /**
@@ -35,7 +45,7 @@ public class InputView {
     public String readMoving() {
         String move = Console.readLine();
         if(!(move.equals(UP.getValue()) || move.equals(DOWN.getValue()))) {
-            throw new IllegalArgumentException("[ERROR] invalid input not U or D");
+            throw new IllegalArgumentException(INVALID_INPUT_NOT_U_OR_D.getPhrase());
         }
         return move;
     }
@@ -47,7 +57,7 @@ public class InputView {
         String quit =  Console.readLine();
 
         if(!(quit.equals(QUIT.getValue()) || quit.equals(RESTART.getValue()))) {
-            throw new IllegalArgumentException("[ERROR] invalid input not Q or R");
+            throw new IllegalArgumentException(INVALID_INPUT_NOT_Q_OR_R.getPhrase());
         }
         return quit;
     }

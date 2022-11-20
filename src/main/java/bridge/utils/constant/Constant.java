@@ -7,7 +7,11 @@ public enum Constant {
     DOWN("D"),
     O("O"),
     X("X"),
-    BLANK(" ");
+    BLANK(" "),
+    SUCCESS("성공"),
+    FAILED("실패"),
+
+    CONTINUE("continue");
 
     private final String value;
 

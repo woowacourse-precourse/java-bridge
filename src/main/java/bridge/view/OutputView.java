@@ -1,7 +1,9 @@
-package bridge;
+package bridge.view;
 
 import java.util.List;
 
+import static bridge.utils.constant.Constant.FAILED;
+import static bridge.utils.constant.Constant.SUCCESS;
 import static bridge.utils.constant.Phrase.*;
 
 /**
@@ -21,15 +23,8 @@ public class OutputView {
         System.out.println(PHRASE_INPUT_BRIDGE_SIZE.getPhrase());
     }
 
-    public void printMap(List<List<String>> bridges) {
-        StringBuilder sb = new StringBuilder();
-        for(List<String> bridge : bridges) {
-            String output = bridge.toString();
-            output = output.replaceAll(", ","|");
-            output = output.replaceAll("", " ");
-            sb.append(output).append("\n");
-        }
-        System.out.println(sb);
+    public void printMap(String bridges) {
+        System.out.println(bridges);
     }
 
     public void printWhereToMove() {
@@ -46,18 +41,19 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(List<List<String>> bridges) {
+    public void printResult(String bridges) {
         System.out.println(PHRASE_RESULT_OF_THE_GAME.getPhrase());
         printMap(bridges);
     }
     public void gameAttemptCount(String result, int attempt) {
-        if(result.equals("성공")) {
+        if(result.equals(SUCCESS.getValue())) {
             System.out.println(PHRASE_GAME_SUCCESS.getPhrase());
         }
-        if(result.equals("실패")) {
+        if(result.equals(FAILED.getValue())) {
             System.out.println(PHRASE_GAME_FAILED.getPhrase());
         }
         System.out.println(PHRASE_GAME_ATTEMPT.getPhrase() + attempt);
     }
 
 }
+

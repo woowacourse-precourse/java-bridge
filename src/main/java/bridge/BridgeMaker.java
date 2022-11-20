@@ -1,5 +1,4 @@
 package bridge;
-import bridge.utils.BridgeConverter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +22,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) { //011001 -> DUUDDU
         List<String> bridge = new ArrayList<>();
-        for(int i = 0; i< size; i++) {
+        for(int compartment = 0; compartment< size; compartment++) {
             int square = bridgeNumberGenerator.generate();
             bridge.add(upOrDown(square));
         }

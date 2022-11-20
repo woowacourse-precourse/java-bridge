@@ -12,8 +12,6 @@ import static bridge.utils.constant.ExceptionPhrase.INVALID_INPUT_NOT_Q_OR_R;
 public class BridgeGame {
 
     public List<List<String>> bridges;
-//    public List<String> bridgeUp;
-//    public List<String> bridgeDown;
 
     public BridgeGame() {
         this.bridges = List.of(new ArrayList<>(), new ArrayList<>());
@@ -24,17 +22,18 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String direction, String answer) {
+    public List<List<String>> move(String direction, String answer) {
         String result = addOorX(direction, answer);
         List<String> bridgeUp = bridges.get(0);
         List<String> bridgeDown = bridges.get(1);
         if(direction.equals(UP.getValue())) {
             bridgeUp.add(result);
             bridgeDown.add(BLANK.getValue());
-            return;
+            return bridges;
         }
-        bridges.get(0).add(BLANK.getValue());
-        bridges.get(1).add(result);
+        bridgeUp.add(BLANK.getValue());
+        bridgeDown.add(result);
+        return bridges;
     }
 
     public String addOorX(String direction, String answer) {
@@ -60,7 +59,31 @@ public class BridgeGame {
         throw new IllegalArgumentException(INVALID_INPUT_NOT_Q_OR_R.getPhrase());
     }
 
-    public List<List<String>> getBridges() {
-        return bridges;
+    public void clearBridges() {
+        this.bridges = List.of(new ArrayList<>(), new ArrayList<>());
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        for (List<String> bridge : this.bridges) {
+            sb.append("[");
+            sb.append(bridgeToString(bridge));
+            sb.append("]");
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+
+    private String bridgeToString(List<String> bridge) {
+        StringBuilder sb = new StringBuilder();
+        for (int j = 0; j < bridge.size(); j++) {
+            sb.append(" ").append(bridge.get(j)).append(" ");
+            if (j < bridge.size() - 1) {
+                sb.append("|");
+            }
+        }
+        return sb.toString();
     }
 }

@@ -1,6 +1,8 @@
 package bridge.config;
 
 import bridge.*;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class AppConfig {
 

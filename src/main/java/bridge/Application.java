@@ -2,6 +2,8 @@ package bridge;
 
 import bridge.config.AppConfig;
 
+import static bridge.utils.constant.ExceptionPhrase.ERROR;
+
 public class Application {
 
     public static void main(String[] args) {
@@ -9,7 +11,7 @@ public class Application {
         try {
             AppConfig.config().play();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            System.out.println(ERROR.getPhrase() + e.getMessage());
         }
     }
 }

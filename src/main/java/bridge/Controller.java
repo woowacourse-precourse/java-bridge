@@ -1,6 +1,8 @@
 package bridge;
 
-import java.util.ArrayList;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+
 import java.util.List;
 
 import static bridge.utils.constant.Constant.*;
@@ -8,7 +10,7 @@ import static bridge.utils.constant.Constant.*;
 public class Controller {
 
     private final InputView inputView;
-    private BridgeGame bridgeGame;
+    private final BridgeGame bridgeGame;
     private final BridgeMaker bridgeMaker;
     private final OutputView outputView;
 
@@ -26,7 +28,6 @@ public class Controller {
             outputView.printBridgeSize();
             int size = inputView.readBridgeSize();
             List<String> bridge = bridgeMaker.makeBridge(size);
-            System.out.println(bridge.toString());
 
             quit = whileQuitIsR(bridge);
         } while(!quit.equals(QUIT.getValue()));
@@ -45,41 +46,44 @@ public class Controller {
     }
 
     public void printResult(String failed, int attempt) {
-        outputView.printResult(bridgeGame.getBridges());
+        outputView.printResult(bridgeGame.toString());
         outputView.gameAttemptCount(failed, attempt);
     }
     public String crossingBridge(List<String> bridge) {
-        int count = 0;
-        bridgeGame = new BridgeGame();
-        List<List<String>> bridges = bridgeGame.getBridges();
-        while(true) {
-            outputView.printWhereToMove();
-            String direction = inputView.readMoving();
-            count++;
-            bridgeGame.move(direction, bridge.get(count-1));
-            outputView.printMap(bridges);
-            if(!endOfTheGame(bridges, bridge, count).equals("continue")) {
-                return endOfTheGame(bridges, bridge, count);
-            }
-        }
+        clearBridges();
+        return successCrossingBridge(bridge);
     }
 
-    public String endOfTheGame(List<List<String>> bridges, List<String> bridge,int count) {
-        for (List<String> strings : bridges) {
-            if (strings.contains(X.getValue())) {
-                return "실패";
+    public void clearBridges() {
+        bridgeGame.clearBridges();
+    }
+
+    public String successCrossingBridge(List<String> bridge) {
+        for (String s : bridge) {
+            outputView.printWhereToMove();
+            String direction = inputView.readMoving();
+            List<List<String>> bridges = bridgeGame.move(direction, s);
+            outputView.printMap(bridgeGame.toString());
+            if (endOfTheGame(bridges).equals(FAILED.getValue())) {
+                return FAILED.getValue();
             }
         }
-        if (count == bridge.size()) {
-            return "성공";
+        return SUCCESS.getValue();
+    }
+
+    public String endOfTheGame(List<List<String>> bridges) {
+        for (List<String> strings : bridges) {
+            if (strings.contains(X.getValue())) {
+                return FAILED.getValue();
+            }
         }
-        return "continue";
+        return SUCCESS.getValue();
     }
 
     public String askQuit(String failed) {
         String quit;
 
-        if(failed.equals("실패")) {
+        if(failed.equals(FAILED.getValue())) {
             outputView.askRestartGame();
             quit = inputView.readGameCommand();
             return quit;

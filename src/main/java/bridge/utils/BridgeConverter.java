@@ -17,8 +17,8 @@ public enum BridgeConverter {
 
     public static String upOrDown(int generate) {
         return Arrays.stream(BridgeConverter.values())
-                .filter(o -> o.generate == generate)
-                .map(o -> o.direction).findAny()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] invalid input not U or D"));
+                .filter(upDown -> upDown.generate == generate)
+                .map(upDown -> upDown.direction).findAny()
+                .get();
     }
 }
