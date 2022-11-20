@@ -1,7 +1,5 @@
 package bridge.game;
 
-import bridge.generator.BridgeMaker;
-import bridge.generator.BridgeRandomNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,35 +10,111 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
+/*
+[X] 목적지를 주면 캐릭터가 다음 목적지를 알고 결과를 저장하고 움직이는 테스트 : move(String destination)
+[X] 다음 움직임 저장 : saveNextMove()
+[X] 캐릭터가 다음 목적지로 이동이 가능한지 : boolean isAbleToMove()
+[ ] 다리의 원하는 구역에 이동가능 위치를 얻는다 : String showRightDestinationInArea(int area)
+[X] 움직임 생성 : Progress makeMove(String destination, boolean result)
+[X] 이동 결과 반환 받기 : Result moveResult()
+[X] 도전기회 증가 : addTotalTry()
+[X] 재도전 : void retry()
+[ ] 현재까지 이동 결과 조회 : List<Progress> showCurrentResult()
+[X] 성공 표시 : void success()
+[X] 성공 조회 : boolean isSuccess()
+[X] 성공 표시 : String showSuccess()
+[X] 총 도전 횟수 조회 :  int showTotalTry()
+ */
+
 class BridgeGameTest {
-    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private final int BRIDGE_SIZE = 20;
     private GameCharacter character;
     private BridgeGame bridgeGame;
 
     @BeforeEach
     void beforeEach() {
         character = new GameCharacter();
-        bridgeGame = new BridgeGame(character, 20);
+        bridgeGame = new BridgeGame(character, BRIDGE_SIZE);
+    }
+
+    @DisplayName("재도전 기능 테스트")
+    @Test
+    void retry(){
+        bridgeGame.move("D");
+        bridgeGame.move("U");
+        assertThat(bridgeGame.showCurrentResult().size()).isEqualTo(2);
+        assertThat(character.showCurrentLocation()).isEqualTo(1);
+        bridgeGame.retry();
+        assertThat(bridgeGame.showCurrentResult().size()).isEqualTo(0);
+        assertThat(character.showCurrentLocation()).isEqualTo(-1);
+    }
+
+    @DisplayName("이동 결과 반환 받기 테스트")
+    @ValueSource(strings = {"U", "D"})
+    @ParameterizedTest
+    void moveResult(String destination) {
+        bridgeGame.move(destination);
+        String answer = bridgeGame.showRightDestinationInArea(0);
+        Result result = bridgeGame.moveResult();
+        if(destination == answer){
+            assertThat(result).isEqualTo(Result.SUCCESS);
+        }
+        if(destination != answer){
+            assertThat(result).isEqualTo(Result.FAIL);
+        }
+    }
+
+    @DisplayName("총 도전 횟수 조회")
+    @Test
+    void showTotalTry() {
+        int before = bridgeGame.showTotalTry();
+        bridgeGame.addTotalTry();
+        int after = bridgeGame.showTotalTry();
+        assertThat(before).isEqualTo(0);
+        assertThat(after).isEqualTo(1);
+    }
+
+    @DisplayName("성공 체크 기능 테스트")
+    @Test
+    void success() {
+        final boolean FAIL = false;
+        final boolean SUCCESS = true;
+        boolean before = bridgeGame.isSuccess();
+        bridgeGame.success();
+        boolean after = bridgeGame.isSuccess();
+        assertThat(before).isEqualTo(FAIL);
+        assertThat(after).isEqualTo(SUCCESS);
+    }
+
+    @DisplayName("성공 여부 표시 테스트")
+    @Test
+    void showSuccess() {
+        final String FAIL = "실패";
+        final String SUCCESS = "성공";
+        String fail = bridgeGame.showSuccess();
+        bridgeGame.success();
+        String success = bridgeGame.showSuccess();
+        assertThat(fail).isEqualTo(FAIL);
+        assertThat(success).isEqualTo(SUCCESS);
     }
 
     @DisplayName("게임 캐릭터가 이동할 칸의 이동 가능 여부 체크 테스트")
-    @ValueSource(strings = {"U", "D", "D", "U", "D"})
+    @ValueSource(strings = {"U", "D"})
     @ParameterizedTest
     void isAbleToMove(String destination) {
+        //given
+        String answer = bridgeGame.showRightDestinationInArea(character.showNextArea());
+        boolean expect = answer.equals(destination);
         character.setNextMove(destination);
-        String nextRightDestination = bridgeGame.showRightDestinationInArea(character.showNextArea());
+        //when
         boolean ableToMove = bridgeGame.isAbleToMove();
-        if (nextRightDestination.equals(destination)) {
-            assertThat(ableToMove).isTrue();
-        }
-        if (!nextRightDestination.equals(destination)) {
-            assertThat(ableToMove).isFalse();
-        }
+        //then
+        assertThat(ableToMove).isEqualTo(expect);
     }
 
-    @DisplayName("진행 결과 만들기")
+    @DisplayName("다음 진행 결과 만들기")
     @Test
-    void makeProgress() {
+    void makeMove() {
         //given
         String destination = "U";
         boolean isSuccess = true;
@@ -51,29 +125,35 @@ class BridgeGameTest {
         assertThat(progress.isSuccess()).isEqualTo(isSuccess);
     }
 
-    @DisplayName("진행 결과 저장")
-    @Test
-    void saveProgress() {
+    @DisplayName("다음 이동 결과 저장")
+    @ValueSource(strings = {"U", "D"})
+    @ParameterizedTest
+    void saveNextMove(String destination) {
         //given
-        character.setNextMove("D");
+        character.setNextMove(destination);
+        String answer = bridgeGame.showRightDestinationInArea(character.showNextArea());
+        boolean moveResult = destination.equals(answer);
         //when
         bridgeGame.saveNextMove();
         //then
-        List<Progress> progresses = bridgeGame.showCurrentResult();
-        assertThat(progresses.size()).isEqualTo(1);
-        assertThat(progresses.get(0).getDestination()).isEqualTo("D");
+        List<Progress> currentResult = bridgeGame.showCurrentResult();
+        assertThat(currentResult.size()).isEqualTo(1);
+        assertThat(currentResult.get(0).getDestination()).isEqualTo(destination);
+        assertThat(currentResult.get(0).isSuccess()).isEqualTo(moveResult);
     }
 
-    @DisplayName("캐릭터 이동, 결과 저장")
-    @Test
-    void move(){
+    @DisplayName("입력한 곳으로 캐릭터가 이동시 결과 저장 후 이동")
+    @ValueSource(strings = {"U", "D"})
+    @ParameterizedTest
+    void move(String destination) {
         //given
         //when
-        bridgeGame.move("D");
+        bridgeGame.move(destination);
         //then
+        assertThat(character.showNextDestination()).isEqualTo(destination);
+        assertThat(character.showCurrentLocation()).isEqualTo(0);
         List<Progress> progresses = bridgeGame.showCurrentResult();
         assertThat(progresses.size()).isEqualTo(1);
-        assertThat(progresses.get(0).getDestination()).isEqualTo("D");
-        assertThat(character.showCurrentLocation()).isEqualTo(0);
+        assertThat(progresses.get(0).getDestination()).isEqualTo(destination);
     }
 }
