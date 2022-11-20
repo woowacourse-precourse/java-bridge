@@ -2,6 +2,6 @@ package bridge.model;
 
 public enum PlayerStatus {
     CROSSED,
-    SURVIVING,
+    MOVING,
     DEAD;
 }
