@@ -11,15 +11,15 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() throws IllegalAccessException {
+    public int readBridgeSize() {
         String input = readLine();
         if (!input.matches("[0-9]+")) {
-            throw new IllegalAccessException();
+            throw new IllegalArgumentException();
         }
 
         int size = Integer.parseInt(input);
         if (size < 3 || size > 20) {
-            throw new IllegalAccessException();
+            throw new IllegalArgumentException();
         }
         return size;
     }
@@ -27,10 +27,10 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() throws IllegalAccessException {
+    public String readMoving() {
         String input = readLine();
         if ( !(input.equals("U") || input.equals("D")) ) {
-            throw new IllegalAccessException();
+            throw new IllegalArgumentException();
         }
         return input;
     }
@@ -38,10 +38,10 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() throws IllegalAccessException {
+    public String readGameCommand() {
         String input = readLine();
         if ( !(input.equals("R") || input.equals("Q")) ) {
-            throw new IllegalAccessException();
+            throw new IllegalArgumentException();
         }
         return input;
     }
