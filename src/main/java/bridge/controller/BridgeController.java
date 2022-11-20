@@ -1,6 +1,8 @@
 package bridge.controller;
 
 
+import bridge.Exception.QuitGameException;
+import bridge.Exception.SuccessGameException;
 import bridge.domain.BridgeGame;
 import bridge.domain.StageResult;
 import bridge.generator.BridgeMaker;
@@ -30,15 +32,21 @@ public class BridgeController {
         bridgeGame = new BridgeGame(bridge);
     }
 
+    public void playWithExceptionCatch() {
+        try {
+            play();
+        } catch (QuitGameException e) {
+
+        }catch (SuccessGameException e) {
+
+        }
+    }
+
     public void play() {
         initBridgeGame();
 
-        try {
-            while(true) {
-                processGame();
-            }
-        } catch (IllegalArgumentException e) {
-
+        while(true) {
+            processGame();
         }
     }
 
@@ -53,21 +61,17 @@ public class BridgeController {
 
     public void processResult(StageResult result) {
         if(result == StageResult.PASS) {
-            pass();
+            bridgeGame.pass();
         }
         if(result == StageResult.FAIL) {
-            fail();
+            decideRetryOrQuit();
         }
         if(result == StageResult.SUCCESS) {
-            success();
+            bridgeGame.success();
         }
     }
 
-    public void pass() {
-        bridgeGame.pass();
-    }
-
-    public void fail() {
+    public void decideRetryOrQuit() {
         String userInput = inputView.readGameCommand();
 
         if(userInput.equals(Unit.RETRY.getCommand())) {
@@ -75,11 +79,7 @@ public class BridgeController {
         }
 
         if(userInput.equals(Unit.QUITE.getCommand())) {
-            throw new IllegalArgumentException();
+            bridgeGame.quit();
         }
-    }
-
-    public void success() {
-        throw new IllegalArgumentException();
     }
 }
