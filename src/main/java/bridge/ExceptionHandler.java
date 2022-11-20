@@ -31,6 +31,6 @@ public class ExceptionHandler {
     }
 
     private static boolean isUorD(String input) {
-        return input !=null && (input.contains("U") || input.contains("D"));
+        return input != null && input.length() == 1 && (input.contains("U") || input.contains("D"));
     }
 }
