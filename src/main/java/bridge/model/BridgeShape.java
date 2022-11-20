@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +16,7 @@ public class BridgeShape {
     private final String EMPTY_STEP = "   ";
     private final List<String> upBridgeShape = new ArrayList<>();
     private final List<String> downBridgeShape = new ArrayList<>();
+
 
     public void moveBridge(String whereBridge, boolean checkBridge) {
 
