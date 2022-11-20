@@ -2,7 +2,10 @@ package bridge.controller;
 
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.domain.Bridge;
 import bridge.domain.BridgeMaker;
+import bridge.domain.User;
+import bridge.domain.utils.BridgeState;
 import bridge.domain.utils.GameState;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -13,7 +16,7 @@ import bridge.view.OutputView;
 public class BridgeGame {
     private final InputView inputView;
     private final OutputView outputView;
-    private final GameState gameState;
+    private GameState gameState;
 
     public BridgeGame(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -24,9 +27,10 @@ public class BridgeGame {
     public void run() {
         outputView.printStartGame();
         final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        makeBridgeGame(bridgeMaker);
+        final User user = new User();
+        final Bridge bridge = makeBridgeGame(bridgeMaker);
         while (gameState == GameState.START || gameState == GameState.RETRY) {
-            move();
+            gameState = move(user, bridge);
         }
     }
 
@@ -35,12 +39,11 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
-        try {
-            inputView.readMoving();
-        } catch (IllegalArgumentException illegalArgumentException) {
-            System.out.println(illegalArgumentException.getMessage());
-        }
+    public GameState move(User user, Bridge bridge) {
+        String position = inputView.readMoving();
+        boolean isAlive = bridge.isAlive(position, user.crossingBridgeNumber());
+        user.addUserState(BridgeState.convertToBridgeState(position, isAlive));
+        return null;
     }
 
     /**
@@ -51,14 +54,16 @@ public class BridgeGame {
     public void retry() {
     }
 
-    public void makeBridgeGame(BridgeMaker bridgeMaker) {
+    public Bridge makeBridgeGame(BridgeMaker bridgeMaker) {
         int bridgeSize;
         try {
             bridgeSize = inputView.readBridgeSize();
-            bridgeMaker.makeBridge(bridgeSize);
+            return new Bridge(bridgeMaker.makeBridge(bridgeSize));
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
             makeBridgeGame(bridgeMaker);
         }
+        return null;
     }
+
 }
