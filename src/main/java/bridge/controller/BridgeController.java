@@ -46,28 +46,23 @@ public class BridgeController {
         String userInput = inputView.readMoving();
 
         StageResult stageResult = bridgeGame.processStage(userInput);
-        if(stageResult == StageResult.FAIL) {
-            processFail();
-        }
-        if(stageResult == StageResult.SUCCESS) {
-            processSuccess();
-        }
+
+        processResult(stageResult);
     }
 
 
-    public void processFail() {
-        String userInput = inputView.readGameCommand();
-
-        if(userInput == Unit.QUITE.getCommand()) {
-            throw new IllegalArgumentException();
+    public void processResult(StageResult result) {
+        if(result == StageResult.PASS) {
+            pass();
         }
-
-        if(userInput == Unit.RESTART.getCommand()) {
-            bridgeGame.retry();
+        if(result == StageResult.FAIL) {
+            fail();
+        }
+        if(result == StageResult.SUCCESS) {
+            success();
         }
     }
-
-    public void processSuccess() {
-
-    }
+    public void pass() {}
+    public void fail() {}
+    public void success() {}
 }

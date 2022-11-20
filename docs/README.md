@@ -20,9 +20,14 @@
  - [x] 단계를 증가한다
  - [x] 단계를 초기화 한다
 
+### History(BridgeGame의 history를 따로 객체로 분리하자)
+
 ### BridgeController
  - [x] 다리 크기를 입력받아 다리를 생성한다 - initBridge()
- - [ ] BridgeGame의 processStage() 결과를 받아 PASS, FAIL, SUCCESS에 대응하는 기능 실행
+ - [x] BridgeGame의 processStage() 결과를 받아 PASS, FAIL, SUCCESS에 대응하는 기능 실행 - processResult()
+ - [ ] 결과가 PASS이면 Stage단계를 증가한다
+ - [ ] 결과가 FAIL이면 재시작 여부를 물어본다
+ - [ ] 결과가 SUCCESS이면 최종결과와 시도횟수를 출력 한 뒤 종료한다
  - [ ] 구현된 기능을 통해 전체적 게임을 진행한다 - processGame()
  
 
