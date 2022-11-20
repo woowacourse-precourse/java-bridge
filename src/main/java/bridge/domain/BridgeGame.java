@@ -60,6 +60,9 @@ public class BridgeGame {
     }
 
     public boolean isOngoing() {
+        if (path.isEmpty()) {
+            return true;
+        }
         int pathLastIndex = path.size() - 1;
         return path.size() != bridge.size() && path.get(pathLastIndex).equals(bridge.get(pathLastIndex));
     }
