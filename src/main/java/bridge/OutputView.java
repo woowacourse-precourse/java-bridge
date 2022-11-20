@@ -37,8 +37,7 @@ public class OutputView {
     private void printFloor(String direction, List<String> userRoute, List<String> bridge) {
         System.out.print("[");
         for (int i = 0; i < userRoute.size(); i++) {
-            String OX = getOX(direction, userRoute.get(i), bridge.get(i));
-            System.out.print(" " + OX + " ");
+            printCell(direction, userRoute.get(i), bridge.get(i));
             if (i == userRoute.size() - 1) {
                 break;
             }
@@ -47,16 +46,14 @@ public class OutputView {
         System.out.println("]");
     }
 
-    private String getOX(String direction, String userDirection, String bridgeDirection) {
+    private void printCell(String direction, String userDirection, String bridgeDirection) {
         if (direction == userDirection) {
             if (userDirection == bridgeDirection) {
-                return "O";
+                System.out.print(" O ");
             }
-
-            return "X";
+            System.out.print(" X ");
         }
-
-        return " ";
+        System.out.print("   ");
     }
 
     /**

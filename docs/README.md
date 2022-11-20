@@ -10,6 +10,8 @@
   - [ ] 이동할 칸 입력 안내문구 - OutputView#printMovingGuide()
   - [ ] 재시작 안내문구 - OutputView#printGameCommandGuide()
   - [ ] 이동시마다 다리 건너기 결과 - OutputView#printMap()
+    - [ ] 맵 한층마다의 해당하는 결과 값 - OutputView#printFloor()
+    - [ ] 맵 한칸마다의 해당하는 결과 값 - OutputView#printCell()
   - [ ] 게임 최종 결과 - OutputView#printResult()
   
 - [ ] 게임을 시작한다. - GameSimulator#simulateGame()
