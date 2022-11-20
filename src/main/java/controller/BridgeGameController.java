@@ -1,5 +1,10 @@
 package controller;
 
+import static model.BridgeGameConstants.MOVING_SUCCESS;
+import static model.BridgeGameConstants.MOVING_SUCCESS_GAME_END;
+
+import static view.InputViewConstants.GAME_COMMAND_RESTART;
+
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
@@ -19,6 +24,28 @@ public class BridgeGameController {
 		BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
 		BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 		bridgeGame = new BridgeGame(bridgeMaker.makeBridge(readBridgeSize()));
+	}
+
+	public void gameProgress() {
+		int gameRound = 1;
+		while (true) {
+			int movingResult = playerMoving();
+			if (movingResult == MOVING_SUCCESS) {
+				continue;
+			}
+			if (movingResult == MOVING_SUCCESS_GAME_END) {
+				printGameResult(movingResult, gameRound);
+				break;
+			}
+			if (readGameCommand().equals(GAME_COMMAND_RESTART)) {
+				outputView.clearGameStateMap(); // -> 이 호출을 outputView가 하게 하면?
+				bridgeGame.retry(); // -> 이 호출을 bridgeGame이 하
+				gameRound += 1;
+				continue;
+			}
+			printGameResult(movingResult, gameRound);
+			break;
+		}
 	}
 
 	private void gameStart() {
