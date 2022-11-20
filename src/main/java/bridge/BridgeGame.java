@@ -37,6 +37,15 @@ public class BridgeGame {
     public void retry() {
     }
 
+    public boolean isFailed() {
+        for (int i = 0; i < this.userSelect.size(); i++) {
+            if (!this.bridge.get(i).equals(this.userSelect.get(i)))
+                return true;
+        }
+
+        return false;
+    }
+
     public List<String> getUserSelect() {
         return this.userSelect;
     }
