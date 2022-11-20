@@ -3,7 +3,6 @@ package bridge.controller;
 import bridge.BridgeGame;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
-import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.Bridge;
 import bridge.domain.Direction;
 import bridge.domain.GameCommand;
@@ -32,41 +31,39 @@ public class BridgeController {
     public void play() {
         Length length = createLengthLoop();
         List<String> bridgeNumbers = length.makeBridgeNumbers(bridgeMaker);
-
         Bridge bridge = createBridge(bridgeNumbers);
         PassingPositions passingPositions = createPassingPositions(bridge);
         Result result = null;
-
-        int distance;
         int attempt = 1;
 
-        game:
         while (true) {
-            distance = -1;
-            do {
-                distance++;
-                if (length.isSameLength(distance)) {
-                    break game;
-                }
-
-                Direction direction = createDirectionLoop();
-                Position position = createPosition(distance, direction);
-                bridgeGame.move(position, passingPositions);
-                result = passingPositions.makeResult();
-            } while (!outputView.printMap(result));
-
+            result = playEachRound(length, passingPositions, result);
+            if (length.isSameLength(result.getDistance())) {
+                break;
+            }
             GameCommand gameCommand = createGameCommandLoop();
             if (gameCommand.isSameQuit()) {
                 break;
             }
-
             bridgeGame.retry(passingPositions);
             attempt++;
         }
-
-        if (result != null) {
             outputView.printResult(result, attempt);
-        }
+    }
+
+    private Result playEachRound(Length length, PassingPositions passingPositions, Result result) {
+        int distance = -1;
+        do {
+            if (length.isSameLength(++distance)) {
+                return result;
+            }
+            Direction direction = createDirectionLoop();
+            Position position = createPosition(distance, direction);
+            bridgeGame.move(position, passingPositions);
+            result = passingPositions.makeResult(distance);
+        } while (!outputView.printMap(result));
+        result.setDistance(--distance);
+        return result;
     }
 
     private Length createLengthLoop() {

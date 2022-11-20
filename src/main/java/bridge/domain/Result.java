@@ -7,12 +7,23 @@ import java.util.List;
 public class Result {
 
     private final List<List<String>> resultsGroup = new ArrayList<>();
+    private int distance;
 
-    public Result(List<String> upDirections, List<String> downDirections) {
+    public Result(List<String> upDirections, List<String> downDirections, int distance) {
+        this.distance = distance + 1;
+
         upDirections.remove(0);
         downDirections.remove(0);
         resultsGroup.add(upDirections);
         resultsGroup.add(downDirections);
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
     }
 
     public List<List<String>> getResultsGroup() {

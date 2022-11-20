@@ -22,11 +22,11 @@ public class PassingPositions {
         passingPositions.add(position);
     }
 
-    public Result makeResult() {
+    public Result makeResult(int distance) {
         List<String> upDirections = new ArrayList<>();
         List<String> downDirections = new ArrayList<>();
         moveLoop(upDirections, downDirections);
-        return new Result(upDirections, downDirections);
+        return new Result(upDirections, downDirections, distance);
     }
 
     private void moveLoop(List<String> upDirections, List<String> downDirections) {
