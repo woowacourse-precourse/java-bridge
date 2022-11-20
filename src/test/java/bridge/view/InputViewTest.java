@@ -121,11 +121,11 @@ class InputViewTest {
     }
 
     @Nested
-    @DisplayName("게임 다시시도 여부 입력 테스트")
-    class ReadGameCommand {
+    @DisplayName("readGameCommand() 테스트")
+    class ReadGameCommandTest {
         @Nested
         @DisplayName("종료하고 싶을 때")
-        class ReadToQuit extends NsTest {
+        class ReadToQuitTest extends NsTest {
 
             @Test
             @DisplayName("Q를 입력하면 GameCommand.QUIT을 반환한다.")
@@ -141,24 +141,45 @@ class InputViewTest {
                 assertThat(command).isEqualTo(GameCommand.QUIT);
             }
         }
-    }
 
-    @Nested
-    @DisplayName("다시 시도하고 싶을 때")
-    class ReadToReplay extends NsTest {
+        @Nested
+        @DisplayName("다시 시도하고 싶을 때")
+        class ReadToReplayTest extends NsTest {
 
-        @Test
-        @DisplayName("R을 입력하면 GameCommand.REPLAY를 반환한다.")
-        public void returnREPLAY() {
-            assertSimpleTest(() -> {
-                run("R");
-            });
+            @Test
+            @DisplayName("R을 입력하면 GameCommand.REPLAY를 반환한다.")
+            public void returnREPLAY() {
+                assertSimpleTest(() -> {
+                    run("R");
+                });
+            }
+
+            @Override
+            protected void runMain() {
+                GameCommand command = inputView.readGameCommand();
+                assertThat(command).isEqualTo(GameCommand.REPLAY);
+            }
         }
 
-        @Override
-        protected void runMain() {
-            GameCommand command = inputView.readGameCommand();
-            assertThat(command).isEqualTo(GameCommand.REPLAY);
+        @Nested
+        @DisplayName("잘못된 입력을 넣으면")
+        class InvalidInputTest extends NsTest {
+            @ParameterizedTest
+            @ValueSource(strings = {"U", "D", "1", "a", "ㄱ", " "})
+            @DisplayName("예외 메시지를 출력한다.")
+            public void printErrorMessage(String arg) {
+                String exceptionMessage = "게임 재시도 여부가 올바르지 않습니다.";
+                assertSimpleTest(()-> {
+                    run(arg, "R");
+                    assertThat(output()).contains(exceptionMessage);
+                });
+            }
+
+            @Override
+            protected void runMain() {
+                inputView.readGameCommand();
+            }
         }
     }
+
 }
