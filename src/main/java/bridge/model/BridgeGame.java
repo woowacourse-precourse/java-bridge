@@ -28,22 +28,22 @@ public class BridgeGame {
 
     public void moveUp(String move, List<String> bridge) {
         up.add(moveMatch(move, bridge));
-        down.add(" ");
+        down.add("   ");
     }
 
     public void moveDown(String move, List<String> bridge) {
-        up.add(" ");
+        up.add("   ");
         down.add(moveMatch(move, bridge));
     }
 
     public String moveMatch(String move, List<String> bridge) {
         if (bridge.get(currentCount).contentEquals(move)) {
             currentCount++;
-            return "O";
+            return " O ";
         }
         currentCount = bridge.size();
         gameContinue = false;
-        return "X";
+        return " X ";
     }
 
     public List<String> getUp() {
