@@ -2,6 +2,8 @@ package domain;
 
 import view.InputMessage;
 import view.InputView;
+import view.OutputMessage;
+import view.OutputView;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -36,6 +38,12 @@ public class BridgeGame {
         return false;
     }
 
+    public boolean retry(AllBridge allBridge) {
+        if(checkFinish(allBridge) || checkRetry()) { return true; }
+        if(userPos == 0) { initBridge(); }
+        return false;
+    }
+
     public boolean checkRetry() {
         if(userPos == 0) {
             System.out.println(InputMessage.RESTART.getInputMsg());
@@ -56,8 +64,9 @@ public class BridgeGame {
         return false;
     }
 
-    public void retry() {
-        userPos = 0;
-        attempts += 1;
+    public void initBridge() {
+        OutputView.lower = OutputMessage.START.getOutputMsg();
+        OutputView.upper = OutputMessage.START.getOutputMsg();
     }
+
 }
