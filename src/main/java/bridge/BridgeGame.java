@@ -19,6 +19,7 @@ public class BridgeGame {
         downBridge = new ArrayList<>();
         moveCount = 0;
         gameCount = 0;
+        gameStatus = false;
     }
 
     /**
