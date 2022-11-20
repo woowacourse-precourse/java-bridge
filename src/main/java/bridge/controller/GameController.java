@@ -25,7 +25,7 @@ public class GameController {
         setBridgeSize(bridgeSize);
 
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-
+        crossBridge(bridge, user);
     }
     public boolean crossBridge(List<String> bridge, User user) {
         int currentIndex = 0;
@@ -35,7 +35,7 @@ public class GameController {
             boolean isUp = direction.equals(bridge.get(currentIndex));
             String result = bridgeGame.move(direction, bridge.get(currentIndex));
             addResultBridge(isUp, result, user);
-            //다리 출력
+            outputView.printMessage(user.toString());
         }
     }
     public void addResultBridge(boolean isUp, String result, User user) {

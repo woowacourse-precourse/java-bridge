@@ -21,4 +21,15 @@ public class User {
     public void plusRetryCount () {
         retryCount++;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        String stringBridge = bridge.toString()
+                .replace(",", " | ")
+                .replace("[", "[ ")
+                .replace("]", " ]");
+        sb.append(stringBridge).append("\n");
+        return sb.toString();
+    }
 }

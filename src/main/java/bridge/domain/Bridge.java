@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Bridge {
@@ -21,4 +22,11 @@ public class Bridge {
         upperBridge.add(" ");
         lowerBridge.add(lowerBridgeResult);
     }
+
+    @Override
+    public String toString() {
+        return upperBridge + "\n" + lowerBridge;
+    }
+
+
 }
