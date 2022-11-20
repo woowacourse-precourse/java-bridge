@@ -9,11 +9,11 @@ import java.util.List;
 public class BridgeGame {
 
     private static List<List<String>> bridges;
-    private static List<String> bridgeUp;
-    private static List<String> bridgeDown;
+    private static List<String> bridgeUp = new ArrayList<>();
+    private static List<String> bridgeDown = new ArrayList<>();
 
     public BridgeGame() {
-        this.bridges = List.of(new ArrayList<>(), new ArrayList<>());
+        this.bridges = List.of(bridgeUp, bridgeDown);
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -23,10 +23,8 @@ public class BridgeGame {
     public List<List<String>> move(String square, String choice) {
 
         String result = moveOne(square, choice);
-        bridgeUp = bridges.get(0);
-        bridgeDown = bridges.get(1);
+
         resultAdd(choice,result);
-        System.out.println(bridges);
         return bridges;
     }
 
@@ -46,6 +44,28 @@ public class BridgeGame {
             bridgeDown.add(result);
             bridgeUp.add(" ");
         }
+    }
+
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        for(List<String> bridge : this.bridges){
+            sb.append("[ ");
+            sb.append(bridgeToString(bridge));
+            sb.append(" ]");
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+
+    public String bridgeToString(List<String> bridge){
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<bridge.size();i++){
+            sb.append(bridge.get(i));
+            if(i < bridge.size() -1) {
+                sb.append(" | ");
+            }
+        }
+        return sb.toString();
     }
 
     /**

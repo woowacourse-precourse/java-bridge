@@ -29,6 +29,8 @@ public class BridgeController {
             mm.isProper(move);
 
             bridgeGame.move(bridge.get(i), move);
+            bridgeGame.toString();
+
         }
 
 
