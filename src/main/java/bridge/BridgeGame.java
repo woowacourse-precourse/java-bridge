@@ -13,7 +13,7 @@ public class BridgeGame {
     
     private List<String> bridgeList = new ArrayList<>();
     private List<String> bridgeStatus = new ArrayList<>();
-    private boolean flag = false;
+    private boolean flag = true;
     private int count = 1;
     private int index = 0;
     private int size;
@@ -34,6 +34,16 @@ public class BridgeGame {
     }
 
     /**
+     * 사용자가 다리를 다 건너는 데 성공한 상태인지 확인 시 사용하는 메서드
+     */
+    public boolean isDone(){
+        if (index == size){
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      */
     public List<String> move(String input) {
@@ -44,6 +54,7 @@ public class BridgeGame {
         }
         bridgeStatus.add(input + "X");
         index++;
+        flag = false;
         return bridgeStatus;
     }
 
