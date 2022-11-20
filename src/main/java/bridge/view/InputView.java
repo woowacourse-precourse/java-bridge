@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.domain.User;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -14,7 +15,7 @@ public class InputView {
         OutputView.printInputSize();
         String userInput = Console.readLine();
         //예외처리
-        //User 클래스에 값 저장
+        User.setBridgeSize(userInput);
     }
 
     /**
@@ -24,7 +25,7 @@ public class InputView {
         OutputView.printSelectMessage();
         String userInput = Console.readLine();
         //예외처리
-        //User 클래스에 값 저장
+        User.recordUserMoving(userInput);
         return userInput;
     }
 
@@ -35,7 +36,6 @@ public class InputView {
         OutputView.printRestartMessage();
         String userInput = Console.readLine();
         //예외처리
-        //User 클래스에 값 저장
         return userInput;
     }
 }
