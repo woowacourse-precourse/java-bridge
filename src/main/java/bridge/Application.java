@@ -22,7 +22,7 @@ public class Application {
             if(!gameChecked){
                 String userGameCommand = inputView.readGameCommand();
                 if (userGameCommand.equals("R")){
-
+                    bridgeGame.retry();
                 }
             }
         }while (!bridgeGame.compareMoveCount(brideSize));
