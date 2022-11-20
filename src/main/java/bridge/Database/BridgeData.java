@@ -12,8 +12,8 @@ public class BridgeData {
         this.bridge = bridge;
     }
 
-    public void setBridgeDesignByUser(List<String> bridgeDesignByUser) {
-        this.bridgeDesignByUser = bridgeDesignByUser;
+    public void setBridgeDesignByUser(String bridgeDesignByUser) {
+        this.bridgeDesignByUser.add(bridgeDesignByUser);
     }
 
     public List<String> getBridge() {
