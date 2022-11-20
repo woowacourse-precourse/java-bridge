@@ -1,8 +1,11 @@
 package bridge.view;
 
+import static bridge.KeyBoardEvent.DOWN;
+import static bridge.KeyBoardEvent.UP;
 import static bridge.constant.NumberConstant.MAXIMUM_BRIDGE_SIZE;
 import static bridge.constant.NumberConstant.MINIMUM_BRIDGE_SIZE;
 import static bridge.exception.ExceptionHandler.BRIDGE_SIZE;
+import static bridge.exception.ExceptionHandler.INPUT_DIRECTION;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -40,8 +43,17 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
-        return null;
+    public String readDirection() {
+        String direction = Console.readLine();
+        validateDirection(direction);
+
+        return direction;
+    }
+
+    private void validateDirection(String direction) {
+        if (direction.equals(UP.getFirstLetter()) && direction.equals(DOWN.getFirstLetter())) {
+            INPUT_DIRECTION.error();
+        }
     }
 
     /**

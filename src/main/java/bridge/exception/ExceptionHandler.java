@@ -1,5 +1,6 @@
 package bridge.exception;
 
+import static bridge.constant.ErrorConstant.INPUT_DIRECTION_EXCEPTION;
 import static bridge.constant.ErrorConstant.INPUT_NUMBER_EXCEPTION;
 import static bridge.constant.ErrorConstant.NOT_FOUND_CODE;
 
@@ -15,8 +16,15 @@ public enum ExceptionHandler {
 
     NO_SUCH_ELEMENT {
         @Override
-        public void error(){
+        public void error() {
             throw new NoSuchElementException(NOT_FOUND_CODE.getMessage());
+        }
+    },
+
+    INPUT_DIRECTION {
+        @Override
+        public void error() {
+            throw new IllegalArgumentException(INPUT_DIRECTION_EXCEPTION.getMessage());
         }
     };
 

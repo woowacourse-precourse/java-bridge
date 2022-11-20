@@ -16,10 +16,21 @@ public class ViewMaker {
 
     public void receiveClientRequest() {
         try {
-            bridgeMaker.makeBridge(inputView.readBridgeSize());
+            this.bridgeMaker.makeBridge(this.inputView.readBridgeSize());
         } catch (IllegalArgumentException exception) {
-            outputView.printError(exception.getMessage());
+            this.outputView.printError(exception.getMessage());
             this.receiveClientRequest();
+        }
+    }
+
+    public void receiveUserDirection(int bridgeLocation) {
+        try {
+            this.outputView.printMap(
+                    bridgeMaker.compareToStoredBridgeBlueprint(inputView.readDirection(), bridgeLocation));
+
+        } catch (IllegalArgumentException exception) {
+            this.outputView.printError(exception.getMessage());
+            this.receiveUserDirection(bridgeLocation);
         }
     }
 
