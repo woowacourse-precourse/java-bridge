@@ -46,6 +46,15 @@ class BridgeMoveTypeTest {
                 .withMessage(READ_WRONG_TYPE_EXCEPTION.getMessage());
     }
 
+    @ParameterizedTest(name = "[{index}] moveTypeCode = {0}")
+    @ValueSource(strings = {"A", "B", "C", "!", "@", "#", "$", "%", " ", "asd", "UU", "UD", "DD", "UDU"})
+    @DisplayName("잘못 입력된 String 타입의 다리 이동 코드를 이용하여 다리 이동 타입 검색을 실패하여 예외처리 된다.")
+    void whenWrongStringTypeSearchThenExceptionTest(String moveType) {
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> BridgeMoveType.of(moveType))
+                .withMessage(READ_WRONG_TYPE_EXCEPTION.getMessage());
+    }
+
     static Stream<Arguments> whenIntTypeSearchThenSuccessDummy() {
         return Stream.of(
                 Arguments.arguments(0, "D"),
