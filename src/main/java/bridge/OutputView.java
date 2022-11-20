@@ -1,5 +1,7 @@
 package bridge;
 
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -10,7 +12,45 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(List<String> input, List<String> answer) {
+        int size = input.size();
+        // 윗부분 출력
+        System.out.print("[");
+        for (int i = 0; i < size; i++) {
+            if ("U".equals(input.get(i)) && "U".equals(answer.get(i))) {
+                System.out.print(" O ");
+            }
+            else if ("U".equals(input.get(i)) && "D".equals(answer.get(i))) {
+                System.out.print(" X ");
+            }
+            else {
+                System.out.print("   ");
+            }
+            if (i != size - 1) {
+                System.out.print("|");
+            }
+        }
+        System.out.print("]");
+        System.out.println();
+
+        // 아랫부분 출력
+        System.out.print("[");
+        for (int i = 0; i < size; i++) {
+            if ("D".equals(input.get(i)) && "D".equals(answer.get(i))) {
+                System.out.print(" O ");
+            }
+            else if ("D".equals(input.get(i)) && "U".equals(answer.get(i))) {
+                System.out.print(" X ");
+            }
+            else {
+                System.out.print("   ");
+            }
+            if (i != size - 1) {
+                System.out.print("|");
+            }
+        }
+        System.out.print("]");
+        System.out.println();
     }
 
     /**
