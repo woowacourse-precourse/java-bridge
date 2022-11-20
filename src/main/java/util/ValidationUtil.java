@@ -7,7 +7,13 @@ public class ValidationUtil {
 
     public void validateBridgeSizeInput(int sizeInput) {
         if (sizeInput < 3 || sizeInput > 20) {
-            throw new UserInputException(ErrorResponse.INPUT_BRIDE_SIZE_RANGE_ERROR);
+            throw new UserInputException(ErrorResponse.INPUT_BRIDGE_SIZE_RANGE_ERROR);
+        }
+    }
+
+    public void validateBridgeSizeDigitInput(String sizeInput) {
+        if (!sizeInput.chars().allMatch(Character::isDigit)) {
+            throw new UserInputException(ErrorResponse.INPUT_BRIDGE_NOT_NUMBER_ERROR);
         }
     }
 
