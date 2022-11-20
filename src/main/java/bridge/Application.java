@@ -6,6 +6,8 @@ public class Application {
         InputView inputView = new InputView();
 
         int bridgeSize = inputView.readBridgeSize();
-        System.out.println(bridgeSize);
+        String moveSpaceAnswer = inputView.readMoving();
+
+        System.out.println(moveSpaceAnswer);
     }
 }
