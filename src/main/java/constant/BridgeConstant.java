@@ -10,7 +10,7 @@ public enum BridgeConstant {
         this.bridgeConstant = bridgeConstant;
     }
 
-    public int getBridgeConstant() {
+    public int getConstant() {
         return bridgeConstant;
     }
 }
