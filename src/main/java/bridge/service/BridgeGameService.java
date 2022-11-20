@@ -1,6 +1,6 @@
 package bridge.service;
 
-import bridge.domain.bridgegame.BridgeGame;
+import bridge.domain.bridgeGame.BridgeGame;
 import bridge.dto.BridgeGameDto;
 import bridge.repository.BridgeGameRepository;
 

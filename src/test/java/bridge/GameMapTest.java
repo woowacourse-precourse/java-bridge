@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.domain.bridgegame.GameMap;
+import bridge.domain.bridgeGame.GameMap;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

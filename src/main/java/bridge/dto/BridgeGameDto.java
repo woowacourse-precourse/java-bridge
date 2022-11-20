@@ -1,6 +1,6 @@
 package bridge.dto;
 
-import bridge.domain.bridgegame.BridgeGame;
+import bridge.domain.bridgeGame.BridgeGame;
 
 import java.util.HashMap;
 import java.util.List;

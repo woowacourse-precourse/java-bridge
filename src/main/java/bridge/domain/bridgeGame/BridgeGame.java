@@ -1,4 +1,4 @@
-package bridge.domain.bridgegame;
+package bridge.domain.bridgeGame;
 
 import java.util.HashMap;
 import java.util.List;

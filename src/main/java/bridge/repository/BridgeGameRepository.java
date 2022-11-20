@@ -1,6 +1,6 @@
 package bridge.repository;
 
-import bridge.domain.bridgegame.BridgeGame;
+import bridge.domain.bridgeGame.BridgeGame;
 
 public class BridgeGameRepository {
     private static final BridgeGameRepository bridgeGameRepository = new BridgeGameRepository();

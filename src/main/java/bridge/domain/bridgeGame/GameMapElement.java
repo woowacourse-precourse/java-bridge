@@ -1,4 +1,4 @@
-package bridge.domain.bridgegame;
+package bridge.domain.bridgeGame;
 
 public enum GameMapElement {
     MOVING_SUCCESS("O"),

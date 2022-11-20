@@ -1,4 +1,4 @@
-package bridge.domain.bridgegame;
+package bridge.domain.bridgeGame;
 
 public enum GameResult {
     FAIL("실패"),
