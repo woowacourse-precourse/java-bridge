@@ -1,12 +1,12 @@
 package bridge.constant;
 
-public enum BridgeRule {
+public enum BridgeLengthRule {
     MIN_LENGTH(3),
     MAX_LENGTH(20);
 
     private final int value;
 
-    BridgeRule(int value) {
+    BridgeLengthRule(int value) {
         this.value = value;
     }
 
