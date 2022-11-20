@@ -20,6 +20,10 @@ public class BridgeGameResult {
         return this.attemptsResult;
     }
 
+    public boolean isFail() {
+        return attemptsResult.contains(Boolean.FALSE);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

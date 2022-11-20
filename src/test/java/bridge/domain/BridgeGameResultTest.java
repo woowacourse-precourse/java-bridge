@@ -3,7 +3,11 @@ package bridge.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class BridgeGameResultTest {
 
@@ -17,5 +21,22 @@ class BridgeGameResultTest {
         BridgeGameResult expected = new BridgeGameResult(expectedBridge, expectedBooleans);
 
         assertThat(actual).isEqualTo(expected);
+    }
+
+    public static Stream<Arguments> provideForIsFail() {
+        return Stream.of(
+                Arguments.of(List.of(true, true, true), false),
+                Arguments.of(List.of(true, true, false), true),
+                Arguments.of(List.of(true, false, true), true)
+        );
+    }
+
+    @ParameterizedTest(name = "게임 결과가 실패인지 반환한다.")
+    @MethodSource("provideForIsFail")
+    void isFail(List<Boolean> attempts, boolean expected) {
+        Bridge bridge = new Bridge(List.of(BridgeShape.UP, BridgeShape.DOWN, BridgeShape.UP));
+        BridgeGameResult bridgeGameResult = new BridgeGameResult(bridge, attempts);
+
+        assertThat(bridgeGameResult.isFail()).isEqualTo(expected);
     }
 }
