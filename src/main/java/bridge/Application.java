@@ -7,8 +7,26 @@ public class Application {
     private static final BridgeRandomNumberGenerator bridgeRandomNumberGenerator = new BridgeRandomNumberGenerator();
     private static final BridgeMaker bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
     private static final BridgeGame bridgeGame = new BridgeGame();
+    private static final OutputView output = new OutputView();
     public static void main(String[] args) {
-        List<String> birdge = bridgeMaker.makeBridge(input.readBridgeSize());
+        List<String> bridge = bridgeMaker.makeBridge(input.readBridgeSize());
+        int trial = 1;
+        String success = "실패";
 
+        while (true) {
+            if(bridgeGame.move(bridge)){
+                break;
+            }
+
+            if(bridgeGame.retry()){
+                trial++;
+                continue;
+            }
+            success = "성공";
+            break;
+        }
+
+        output.printResult(success, trial);
     }
+
 }
