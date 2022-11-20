@@ -83,6 +83,7 @@ public class OutputView {
         System.out.println("최종 게임 결과");
         printMap(bridgeGame);
         printSuccessOrFail(bridgeGame.isFailed());
+        printTryCount(bridgeGame);
     }
 
     private void printSuccessOrFail(boolean fail) {
@@ -93,5 +94,10 @@ public class OutputView {
             result = "성공";
         }
         System.out.println("게임 성공 여부: " + result);
+    }
+
+    private void printTryCount(BridgeGame bridgeGame) {
+        int tryCount = bridgeGame.getTryCount();
+        System.out.println("총 시도한 횟수: " + tryCount);
     }
 }

@@ -67,4 +67,8 @@ public class BridgeGame {
     public int getPlayerLocation() {
         return player.getCurrentSpaceIndex();
     }
+
+    public int getTryCount() {
+        return tryCount;
+    }
 }
