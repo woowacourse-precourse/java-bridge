@@ -43,6 +43,12 @@
       - ```checkIsNumber``` : 숫자인지 확인
       - ```checkIsRightRange``` : 올바른 범위 값인지 확인
 
+### BridgeMove 메서드 클래스
+#### : 이동할 칸 입력
+  - ```inputMoveBridge``` : 이동할 칸 입력
+    - ```isValidateInputMoveBridge``` : 이동할 칸 입력값 확인
+      - ```checkIsMoveCode``` : 올바른 코드 입력 확인
+
 ### Setting 클래스
 #### : 프로그램 세팅
   - ```BRIDGE_COUNT``` : 다리 개수
