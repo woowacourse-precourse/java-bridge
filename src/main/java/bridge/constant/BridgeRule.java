@@ -13,9 +13,4 @@ public enum BridgeRule {
     public int getValue() {
         return value;
     }
-
-    @Override
-    public String toString() {
-        return super.toString();
-    }
 }
