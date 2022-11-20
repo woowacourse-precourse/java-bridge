@@ -23,6 +23,14 @@ public class BridgeGame {
         this.bridge = new Bridge(size);
     }
 
+    public static String getRetryCharacter() {
+        return RETRY_CHARACTER;
+    }
+
+    public static String getQuitCharacter() {
+        return QUIT_CHARACTER;
+    }
+
     public List<String> getBridge() {
         return bridge.getBridge();
     }
