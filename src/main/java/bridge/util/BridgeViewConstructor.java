@@ -4,12 +4,15 @@ import java.util.List;
 
 public class BridgeViewConstructor {
 
+    private StringBuilder upperBridge = new StringBuilder();
+    private StringBuilder lowerBridge = new StringBuilder();
+
     public String constructBridge(List<String> player, List<String> bridge){
         return null;
     }
 
     private boolean isSameIndex(String playerIndexed, String bridgeIndexed){
-        return false;
+        return playerIndexed.equals(bridgeIndexed);
     }
 
     private void appendRightAnswer(){
