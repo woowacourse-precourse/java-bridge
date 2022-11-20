@@ -13,6 +13,9 @@ public enum Move {
         this.moveType = moveType;
     }
 
+    public int getNum(){
+        return num;
+    }
     public String getMoveType() {
         return moveType;
     }
