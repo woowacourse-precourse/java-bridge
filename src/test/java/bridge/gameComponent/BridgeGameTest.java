@@ -1,5 +1,6 @@
 package bridge.gameComponent;
 
+import bridge.util.MoveResult;
 import org.assertj.core.data.Index;
 import org.junit.jupiter.api.Test;
 
@@ -116,12 +117,12 @@ public class BridgeGameTest {
         //given
         Bridge bridge = Bridge.of(List.of("U","D","D"));
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        int isPossibleMove1 = 1;
-        int isPossibleMove2 = 0;
+        MoveResult moveResult1 = MoveResult.Correct;
+        MoveResult moveResult2 = MoveResult.Wrong;
         //when
         bridgeGame.move();
-        bridgeGame.recordMap(isPossibleMove1);
-        char[][] map = bridgeGame.recordMap(isPossibleMove2);
+        bridgeGame.recordMap(moveResult1);
+        char[][] map = bridgeGame.recordMap(moveResult2);
         //then
         assertThat(map)
                 .contains(new char[] {'O','X','\u0000'}, Index.atIndex(0))
@@ -132,9 +133,9 @@ public class BridgeGameTest {
         //given
         Bridge bridge = Bridge.of(List.of("U","D","D"));
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        int isPossibleMove1 = 0;
+        MoveResult moveResult = MoveResult.Wrong;
         //when
-        char[][] map = bridgeGame.recordMap(isPossibleMove1);
+        char[][] map = bridgeGame.recordMap(moveResult);
 
         //then
         assertThat(map)
@@ -148,10 +149,10 @@ public class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(bridge);
         String userMove = "D";
         //when
-        int isPossibleMove = bridgeGame.isCorrectMove(userMove);
+        MoveResult moveResult = bridgeGame.isCorrectMove(userMove);
         //then
-        assertThat(isPossibleMove)
-                .isEqualTo(0);
+        assertThat(moveResult)
+                .isEqualTo(MoveResult.Wrong);
     }
     @Test
     void isPossibleMoveTest_가능한_경우() {
@@ -160,9 +161,9 @@ public class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(bridge);
         String userMove = "U";
         //when
-        int isPossibleMove = bridgeGame.isCorrectMove(userMove);
+        MoveResult moveResult = bridgeGame.isCorrectMove(userMove);
         //then
-        assertThat(isPossibleMove)
-                .isEqualTo(1);
+        assertThat(moveResult)
+                .isEqualTo(MoveResult.Correct);
     }
 }

@@ -1,6 +1,7 @@
 package bridge.gameComponent;
 
 import bridge.exception.ExceptionMessage;
+import bridge.util.MoveResult;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -69,11 +70,11 @@ public class BridgeGame {
         return false;
     }
 
-    public char[][] recordMap(int isPossibleMove) {
-        String userMove = inferUserMove(isPossibleMove);
+    public char[][] recordMap(MoveResult moveResult) {
+        String userMove = inferUserMove(moveResult);
         int userMoveAsInt = moveToInt(userMove);
         int userNotMoveAsInt = notMoveToInt(userMove);
-        if (isPossibleMove >= 1) {
+        if (moveResult == MoveResult.Correct || moveResult == MoveResult.CorrectAndLast) {
             this.mapRecord[userMoveAsInt][currentStep] = 'O';
             this.mapRecord[userNotMoveAsInt][currentStep] = ' ';
             return this.mapRecord;
@@ -82,11 +83,11 @@ public class BridgeGame {
         this.mapRecord[userNotMoveAsInt][currentStep + 1] = ' ';
         return this.mapRecord;
     }
-    public int isCorrectMove(String move) {
+    public MoveResult isCorrectMove(String move) {
         boolean isPossibleMove = this.bridge.isPossibleMove(this.currentStep + 1, move);
-        if(isPossibleMove && this.currentStep + 1 == this.lastStep) return 2;
-        if(isPossibleMove) return 1;
-        return 0;
+        if(isPossibleMove && this.currentStep + 1 == this.lastStep) return MoveResult.CorrectAndLast;
+        if(isPossibleMove) return MoveResult.Correct;
+        return MoveResult.Wrong;
     }
     private int moveToInt(String move) {
         if (move.equals("U")) return 0;
@@ -102,8 +103,8 @@ public class BridgeGame {
          * D true => [1][index] = 'O'
          * D false => [0][index + 1] = 'X'
          */
-    private String inferUserMove(int isPossibleMove) {
-        if(isPossibleMove >= 1) {
+    private String inferUserMove(MoveResult moveResult) {
+        if(moveResult == MoveResult.Correct || moveResult == MoveResult.CorrectAndLast) {
             return this.bridge.getBridge().get(this.currentStep);
         }
         String supposedToBeRightAnswer = this.bridge.getBridge().get(this.currentStep + 1);

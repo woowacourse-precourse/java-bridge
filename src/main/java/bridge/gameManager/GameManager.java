@@ -5,6 +5,7 @@ import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.gameComponent.Bridge;
 import bridge.gameComponent.BridgeGame;
+import bridge.util.MoveResult;
 import bridge.validator.InputValidator;
 import bridge.viewer.InputView;
 import bridge.viewer.OutputView;
@@ -16,7 +17,7 @@ public class GameManager {
     private BridgeGame bridgeGame;
     private BridgeNumberGenerator bridgeNumberGenerator;
     private BridgeMaker bridgeMaker;
-    private int isRightAnswer; //0 -> 오답, 1-> 정댭, 2->끝까지 성공
+    private MoveResult moveResult; //0 -> 오답, 1-> 정댭, 2->끝까지 성공
     private boolean isGameOver;
 
     // 의존성 설정
@@ -26,18 +27,18 @@ public class GameManager {
         this.outputView = new OutputView();
         this.bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         this.bridgeMaker = new BridgeMaker(this.bridgeNumberGenerator);
-        isRightAnswer = 1;
+        moveResult = MoveResult.Correct;
         isGameOver = false;
     }
 
     public void start() {
         setBridge();
         while(!isGameOver) {
-            while(isRightAnswer == 1) isRightAnswer = processGame();
-            if(isRightAnswer == 2) break;
+            while(moveResult == MoveResult.Correct) moveResult = processGame();
+            if(moveResult.equals(MoveResult.CorrectAndLast)) break;
             isGameOver = !inputView.readRetry();
             if(!isGameOver) {
-                isRightAnswer = 1;
+                moveResult = MoveResult.Correct;
                 bridgeGame.retry();
             }
         }
@@ -51,15 +52,15 @@ public class GameManager {
     }
 
     // 게임 진행
-    private int processGame() {
+    private MoveResult processGame() {
         String move = inputView.readMoving();
-        int isPossibleMove = bridgeGame.isCorrectMove(move);
-        if(isPossibleMove >= 1) bridgeGame.move();
-        char[][] mapRecord = bridgeGame.recordMap(isPossibleMove);
+        MoveResult moveResult = bridgeGame.isCorrectMove(move);
+        if(moveResult == MoveResult.Correct || moveResult == MoveResult.CorrectAndLast) bridgeGame.move();
+        char[][] mapRecord = bridgeGame.recordMap(moveResult);
         int indexToPrint = bridgeGame.getCurrentStep();
-        if(isPossibleMove == 0) indexToPrint++;
+        if(moveResult.equals(MoveResult.Wrong)) indexToPrint++;
         outputView.printMap(mapRecord, indexToPrint);
-        return isPossibleMove;
+        return moveResult;
     }
     // 게임 종료
     private void endGame() {
