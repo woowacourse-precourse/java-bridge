@@ -18,18 +18,38 @@ public class BridgeGameTest {
 	class SuccessTest {
 
 		@Test
-		void moveTest() {
+		@DisplayName("moving 성공한 경우 테스트")
+		void moveSuccessTest() {
 			// given
 			final List<String> bridge = newArrayList("U", "D", "U", "U");
 			BridgeGame bridgeGame = new BridgeGame(bridge);
 
 			// when
-			List<String> movings = newArrayList("U", "D", "U", "U");
+			List<String> movings = newArrayList("U", "D", "U");
 
 			// then
 			for (String moving : movings) {
 				assertThat(bridgeGame.move(moving)).isEqualTo(MOVING_SUCCESS);
 			}
+		}
+
+		@Test
+		@DisplayName("moving 성공으로 다리 끝에 도달한 경우 테스트")
+		void moveSuccessGameEndTest() {
+			// given
+			final List<String> bridge = newArrayList("U", "D", "D", "U", "D");
+			BridgeGame bridgeGame = new BridgeGame(bridge);
+
+			// when
+			List<String> movings = newArrayList("U", "D", "D", "U");
+			String lastMoving = "D";
+
+			// then
+			for (String moving : movings) {
+				assertThat(bridgeGame.move(moving)).isEqualTo(MOVING_SUCCESS);
+			}
+			assertThat(bridgeGame.move(lastMoving)).isEqualTo(MOVING_SUCCESS_GAME_END);
+
 		}
 	}
 
@@ -82,23 +102,6 @@ public class BridgeGameTest {
 			// then
 			assertThat(movingResults).containsExactly(MOVING_SUCCESS, MOVING_SUCCESS, MOVING_SUCCESS, MOVING_SUCCESS,
 					MOVING_SUCCESS, MOVING_SUCCESS);
-		}
-
-		@Test
-		@DisplayName("이미 다리를 다 건넜을 경우 테스트")
-		void moveFinish() {
-			// given
-			final List<String> bridge = newArrayList("U", "D", "U", "U");
-
-			BridgeGame bridgeGame = new BridgeGame(bridge);
-			List<String> movings = newArrayList("U", "D", "U", "U");
-
-			for (String moving : movings) {
-				assertThat(bridgeGame.move(moving)).isEqualTo(MOVING_SUCCESS);
-			}
-
-			// when: 이미 다 건넜는데 또 건너는 경우
-			assertThat(bridgeGame.move("U")).isEqualTo(MOVING_FAIL_ALREADY_END);
 		}
 	}
 }
