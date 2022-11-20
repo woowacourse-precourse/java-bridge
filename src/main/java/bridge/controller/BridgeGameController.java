@@ -12,8 +12,8 @@ import bridge.view.OutputView;
 import java.util.List;
 
 public class BridgeGameController {
-    private final String RETRY = "R";
-    private final String QUIT = "Q";
+    private static final String RETRY = "R";
+    private static final String QUIT = "Q";
     private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     private final OutputView outputView = new OutputView();
