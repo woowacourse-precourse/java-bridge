@@ -51,6 +51,14 @@ public class OutputView {
         }
     }
 
+    private String styleBridgeLine (List<String> line) {
+        return line.stream().collect(Collectors.joining(
+                BridgeStyle.DELIMITER.get(),
+                BridgeStyle.START.get(),
+                BridgeStyle.END.get()
+        ));
+    }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      * <p>
