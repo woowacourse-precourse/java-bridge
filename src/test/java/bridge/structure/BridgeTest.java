@@ -39,4 +39,20 @@ class BridgeTest {
                 .isFalse();
     }
 
+    @Test
+    void 다리게임_턴_검증() throws Exception {
+        //given
+        Bridge bridge = new Bridge(List.of("U", "U", "D"));
+        BridgeMoveValue down = BridgeMoveValue.DOWN;
+        int turnCount = 4;
+
+        //when
+
+
+        //then
+        Assertions.assertThatIllegalArgumentException()
+                .isThrownBy(() ->bridge.canGo(down, turnCount));
+
+    }
+
 }
