@@ -10,10 +10,12 @@ public class BridgeGame {
 
     private final List<String> bridge;
     private final List<String> movings;
+    private int numberOfAttempts;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         this.movings = new ArrayList<>(bridge.size());
+        this.numberOfAttempts = 1;
     }
 
     /**
@@ -41,5 +43,6 @@ public class BridgeGame {
      */
     public void retry() {
         movings.clear();
+        numberOfAttempts++;
     }
 }
