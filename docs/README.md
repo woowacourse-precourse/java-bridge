@@ -34,7 +34,7 @@
 ## Controller
 ### BridgeController
 - [x] 다리 게임 생성
-- [ ] 한 턴의 이동 요청
+- [x] 한 턴의 이동 요청
 - [ ] 게임 종료
 ---
 
