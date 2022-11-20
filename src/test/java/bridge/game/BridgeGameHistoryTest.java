@@ -59,4 +59,39 @@ public class BridgeGameHistoryTest {
         
         assertThat(bridgeGameHistory.getMoveResultByTryCount(1)).isEqualTo(expected);
     }
+    
+    @DisplayName("getBestRecord 메소드는 성공한 이동이 가장 많은 순으로 정렬하여 tryCount를 반환한다.")
+    @Test
+    void getBestRecordByMoveCount() {
+    
+        bridgeGameHistory.createHistory(1);
+        bridgeGameHistory.addMoveHistory(1, new BridgeMoveHistory(BridgeMove.DOWN, true));
+        bridgeGameHistory.addMoveHistory(1, new BridgeMoveHistory(BridgeMove.UP, true));
+        bridgeGameHistory.addMoveHistory(1, new BridgeMoveHistory(BridgeMove.DOWN, true));
+    
+        bridgeGameHistory.createHistory(2);
+        bridgeGameHistory.addMoveHistory(2, new BridgeMoveHistory(BridgeMove.DOWN, true));
+        bridgeGameHistory.addMoveHistory(2, new BridgeMoveHistory(BridgeMove.UP, true));
+        bridgeGameHistory.addMoveHistory(2, new BridgeMoveHistory(BridgeMove.UP, false));
+        
+        assertThat(bridgeGameHistory.getTryCountOfBestRecord()).isEqualTo(1);
+    }
+    
+    
+    @DisplayName("getBestRecord 메소드는 성공한 이동 수가 같을 때 가장 최근 tryCount를 반환한다.")
+    @Test
+    void getBestRecordByRecentlyTry() {
+        
+        bridgeGameHistory.createHistory(1);
+        bridgeGameHistory.addMoveHistory(1, new BridgeMoveHistory(BridgeMove.DOWN, true));
+        bridgeGameHistory.addMoveHistory(1, new BridgeMoveHistory(BridgeMove.UP, true));
+        bridgeGameHistory.addMoveHistory(1, new BridgeMoveHistory(BridgeMove.DOWN, true));
+        
+        bridgeGameHistory.createHistory(2);
+        bridgeGameHistory.addMoveHistory(2, new BridgeMoveHistory(BridgeMove.DOWN, true));
+        bridgeGameHistory.addMoveHistory(2, new BridgeMoveHistory(BridgeMove.UP, true));
+        bridgeGameHistory.addMoveHistory(2, new BridgeMoveHistory(BridgeMove.DOWN, true));
+        
+        assertThat(bridgeGameHistory.getTryCountOfBestRecord()).isEqualTo(2);
+    }
 }
