@@ -1,6 +1,6 @@
 package bridge.bridgeGame;
 
-import bridge.bridgeGenerator.BridgeRandomNumberGenerator;
+import bridge.bridgeGenerator.BridgeNumberGenerator;
 import bridge.bridgeMaker.BridgeMaker;
 import bridge.inputView.InputView;
 import bridge.outputView.OutputView;
@@ -18,12 +18,12 @@ public class BridgeGame {
 
     private boolean isEnd;
 
-    public BridgeGame(InputView inputView, OutputView outputView) {
+    public BridgeGame(InputView inputView, OutputView outputView, BridgeNumberGenerator generator) {
         OutputView.println("다리 건너기 게임을 시작합니다.");
         this.inputView = inputView;
         this.outputView = outputView;
         this.gameLog = new BridgeGameLog();
-        bridges = new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(inputView.readBridgeSize());
+        bridges = new BridgeMaker(generator).makeBridge(inputView.readBridgeSize());
     }
 
     public void play() {
