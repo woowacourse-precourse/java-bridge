@@ -6,6 +6,8 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private static final String ERROR_MESSAGE = "[ERROR]";
+
     private static final int MIN_BRIDGE_SIZE = 3;
     private static final int MAX_BRIDGE_SIZE = 20;
 
@@ -22,10 +24,10 @@ public class InputView {
 
     private void validateBridgeSize(String input) {
         if (!isDecimal(input)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_MESSAGE + "다리길이는 숫자여야합니다.");
         }
         if (!isInRange(input, MIN_BRIDGE_SIZE, MAX_BRIDGE_SIZE)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_MESSAGE + "다리길이는 3부터 20사이의 숫자여야합니다.");
         }
     }
 
@@ -47,10 +49,14 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String input = Console.readLine();
+
+        validateMoving(input);
+
+        return input;
     }
 
-    private void validateMoving() {
+    private void validateMoving(String input) {
 
     }
 
