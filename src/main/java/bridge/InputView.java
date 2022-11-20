@@ -78,10 +78,12 @@ public class InputView {
     }
 
     private void validateGameCommand(String input) {
-
+        if(!isRetryOrQuit(input)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + "R또는 Q로 입력하여야합니다.");
+        }
     }
 
-    private boolean isRetryOrQuit() {
+    private boolean isRetryOrQuit(String input) {
         return true;
     }
 }
