@@ -19,18 +19,7 @@ public class Bridge {
 		Validator.validateBridgeSizeRange(bridge.size());
 	}
 
-	public boolean isCorrectMoving(int index, String moving) {
-		return bridge.get(index).equals(moving);
-	}
-
 	public BridgeDto toBridgeDto() {
 		return new BridgeDto(bridge);
-	}
-	public int getBridgeSize() {
-		return bridge.size();
-	}
-
-	public List<String> getPartOfBridge(int index) {
-		return bridge.subList(0,index+1);
 	}
 }
