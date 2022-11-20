@@ -7,11 +7,11 @@ public class BridgeGamePlay {
 
     public void startGame() {
         System.out.println(GAME_START_MESSAGE);
-        playGame(inputView.readBridgeSize());
+        playGame();
     }
-    private void playGame(int size) {
+    private void playGame() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        Bridge bridge = new Bridge(bridgeMaker.makeBridge(size), size);
+        Bridge bridge = new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
         BridgeGame bridgeGame = new BridgeGame(bridge);
         OutputView outputView = new OutputView(bridge, bridgeGame);
         playLoop(bridge, bridgeGame, outputView);

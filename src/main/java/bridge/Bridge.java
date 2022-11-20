@@ -4,7 +4,6 @@ import java.util.List;
 
 public class Bridge {
     private final List<String> bridge;
-    private final int size;
     private int location = 0;
     private boolean correct;
     private String lastMoving;
@@ -13,9 +12,8 @@ public class Bridge {
         FIRST, SECOND;
     }
 
-    public Bridge(List<String> bridge, int size) {
+    public Bridge(List<String> bridge) {
         this.bridge = bridge;
-        this.size = size;
     }
 
     public int getLocation() {
@@ -112,7 +110,7 @@ public class Bridge {
     }
 
     public boolean getGameResult() {
-        return location == size;
+        return location == bridge.size();
     }
     public String getGameResultString() {
         if (getGameResult())
