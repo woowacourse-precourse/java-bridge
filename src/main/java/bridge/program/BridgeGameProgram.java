@@ -2,43 +2,35 @@ package bridge.program;
 
 import bridge.domain.BridgeMaker;
 import bridge.domain.common.BridgeRandomNumberGenerator;
-import bridge.view.InputView;
-import bridge.view.OutputView;
+import bridge.view.ConsoleView;
 import bridge.domain.BridgeGame;
 import java.util.List;
 
 public class BridgeGameProgram {
-    private final InputView inputView;
-    private final OutputView outputView;
+    private final ConsoleView consoleView;
     private final BridgeMaker bridgeMaker;
 
     public BridgeGameProgram() {
-        this.inputView = new InputView();
-        this.outputView = new OutputView();
+        this.consoleView = new ConsoleView();
         this.bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     }
 
     public void run() {
-        outputView.printGameStartComment();
-        outputView.printRequestBridgeSizeComment();
-        List<String> bridgeMap = bridgeMaker.makeBridge(inputView.readBridgeSize());
+        consoleView.showGameStart();
+        List<String> bridgeMap = bridgeMaker.makeBridge(consoleView.requestBridgeSize());
 
         BridgeGame bridgeGame = new BridgeGame(bridgeMap);
         while (bridgeGame.isNotDone()) {
-            outputView.printRequestMoveSideComment();
-            bridgeGame.move(inputView.readMoving());
-            outputView.printMap(bridgeGame.nowUserMapState());
+            bridgeGame.move(consoleView.requestMove());
+            consoleView.showNowBridge(bridgeGame.nowUserMapState());
 
             if (bridgeGame.isFail()) {
-                outputView.printRequestRetryComment();
-                String s = inputView.readRetry();
+                String s = consoleView.requestRetry();
                 if (s.equals("R")) {
                     bridgeGame.retry();
                 }
             }
         }
-        outputView.printResultComment();
-        outputView.printMap(bridgeGame.nowUserMapState());
-        outputView.printResult(bridgeGame.failOrSuccess(), bridgeGame.getTryCount());
+        consoleView.showResult(bridgeGame.nowUserMapState(), bridgeGame.failOrSuccess(), bridgeGame.getTryCount());
     }
 }
