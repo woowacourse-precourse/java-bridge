@@ -11,25 +11,26 @@ import bridge.views.OutputView;
 
 public class Controller {
 
-    public static BridgeGame makeBridgeMap() {
-        int bridgeSize = getBridgeSize();
+    public static BridgeGame startGame() {
+        System.out.printf("다리 건너기 게임을 시작합니다.%n%n");
+        int bridgeSize = requestBridgeSize();
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         return new BridgeGame(bridgeMaker, bridgeSize);
     }
 
-    public static int getBridgeSize() {
+    public static int requestBridgeSize() {
         try {
             return InputView.readBridgeSize();
         } catch (IllegalArgumentException e) {
             ErrorMessage.print(e.getMessage());
-            return getBridgeSize();
+            return requestBridgeSize();
         }
     }
 
     public static void startRound(BridgeGame bridgeGame, OutputView outputView) {
         do {
-            String direction = getMovingDirection();
+            String direction = requestMovingDirection();
             bridgeGame.move(direction);
             outputView.printMap(bridgeGame, direction);
             if (bridgeGame.isGameSuccess()) {
@@ -38,7 +39,7 @@ public class Controller {
         } while (bridgeGame.isGameContinue());
     }
 
-    public static String getMovingDirection() {
+    public static String requestMovingDirection() {
         while (true) {
             try {
                 return InputView.readMoving();
@@ -48,19 +49,21 @@ public class Controller {
         }
     }
 
-    public static void restartRound(BridgeGame bridgeGame) {
-        String gameCommand = getGameCommand();
+    public static void restartGame(BridgeGame bridgeGame, OutputView outputView) {
+        String gameCommand = requestGameCommand();
         if (gameCommand.equals(Setting.GAME_RESTART)) {
             bridgeGame.retry();
+            return;
         }
+        outputView.printResult(bridgeGame);
     }
 
-    public static String getGameCommand() {
+    public static String requestGameCommand() {
         try {
             return InputView.readGameCommand();
         } catch (IllegalArgumentException e) {
             ErrorMessage.print(e.getMessage());
-            return getGameCommand();
+            return requestGameCommand();
         }
     }
 }

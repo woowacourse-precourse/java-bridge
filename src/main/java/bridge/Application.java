@@ -5,17 +5,15 @@ import bridge.views.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        System.out.println("다리 건너기 게임을 시작합니다.");
-        BridgeGame bridgeGame = Controller.makeBridgeMap();
-        OutputView outputView;
+        BridgeGame bridgeGame = Controller.startGame();
         do {
-            outputView = new OutputView();
+            OutputView outputView = new OutputView();
             Controller.startRound(bridgeGame, outputView);
-            if (bridgeGame.gameSuccess()) {
+            if (bridgeGame.isGameSuccess()) {
+                outputView.printResult(bridgeGame);
                 break;
             }
-            Controller.restartGame(bridgeGame);
+            Controller.restartGame(bridgeGame, outputView);
         } while (bridgeGame.isGameContinue());
-        outputView.printResult(bridgeGame);
     }
 }
