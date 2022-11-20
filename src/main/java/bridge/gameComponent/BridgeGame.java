@@ -82,7 +82,7 @@ public class BridgeGame {
         this.mapRecord[userNotMoveAsInt][index + 1] = ' ';
         return this.mapRecord;
     }
-    public int isPossibleMove(String move) {
+    public int isCorrectMove(String move) {
         boolean isPossibleMove = this.bridge.isPossibleMove(this.index + 1, move);
         if(isPossibleMove && this.index + 1 == this.endIndex) return 2;
         if(isPossibleMove) return 1;

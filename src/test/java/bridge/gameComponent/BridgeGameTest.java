@@ -148,7 +148,7 @@ public class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(bridge);
         String userMove = "D";
         //when
-        int isPossibleMove = bridgeGame.isPossibleMove(userMove);
+        int isPossibleMove = bridgeGame.isCorrectMove(userMove);
         //then
         assertThat(isPossibleMove)
                 .isEqualTo(0);
@@ -160,7 +160,7 @@ public class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(bridge);
         String userMove = "U";
         //when
-        int isPossibleMove = bridgeGame.isPossibleMove(userMove);
+        int isPossibleMove = bridgeGame.isCorrectMove(userMove);
         //then
         assertThat(isPossibleMove)
                 .isEqualTo(1);

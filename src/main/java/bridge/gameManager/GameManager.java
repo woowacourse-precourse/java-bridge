@@ -53,7 +53,7 @@ public class GameManager {
     // 게임 진행
     private int processGame() {
         String move = inputView.readMoving();
-        int isPossibleMove = bridgeGame.isPossibleMove(move);
+        int isPossibleMove = bridgeGame.isCorrectMove(move);
         if(isPossibleMove >= 1) bridgeGame.move();
         char[][] mapRecord = bridgeGame.recordMap(isPossibleMove);
         int indexToPrint = bridgeGame.getIndex();
