@@ -16,6 +16,15 @@ public class Result {
         this.round = round;
     }
 
+    // 첫 번째 라운드 결과
+    public void convertResultFirstRound(String userInput, List<String> bridge) {
+        if (compareBridgeRootToUserInput(userInput, bridge)) {
+            convertCorrectResultFirstRound(userInput);
+        } else if (!compareBridgeRootToUserInput(userInput, bridge)) {
+            convertWrongResultFirstRound(userInput);
+        }
+    }
+
     // 첫 라운드 이후에 사용자가 맞춘 경우
     public void convertCorrectResultAfterFirstRound(String userInput) {
         if (userInput.equals(Up.getDirection())) {
@@ -58,6 +67,11 @@ public class Result {
             map.set(Up.getLocationNumber(), map.get(Up.getLocationNumber()).replace(MAP_END, FIRST_ROUND_END));
             map.set(Down.getLocationNumber(), map.get(Down.getLocationNumber()).replace(BLANK, FIRST_ROUND_WRONG));
         }
+    }
+
+    // 사용자의 입력값과 다리의 건널 수 있는 위치의 일치 여부
+    public boolean compareBridgeRootToUserInput(String userInput, List<String> bridge) {
+        return userInput.equals(bridge.get(round.getRound()));
     }
 
     public List<String> getMap() {
