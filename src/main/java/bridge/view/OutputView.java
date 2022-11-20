@@ -44,7 +44,7 @@ public class OutputView {
         StringBuilder bridgeMapBuilder = new StringBuilder(BRIDGE_START_SIGN);
         int index = 0;
         while (player.isPassedPosition(index)) {
-            Tile playerTile = player.getMovingLogOf(index);
+            Tile playerTile = player.getPassedTileLogOf(index);
             bridgeMapBuilder.append(tile.toFormatString(playerTile, bridgeGame.checkBridgeTileAt(index++, playerTile)));
             bridgeMapBuilder.append(BRIDGE_DIVIDE_SIGN);
         }

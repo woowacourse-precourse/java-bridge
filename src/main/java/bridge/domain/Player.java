@@ -6,7 +6,7 @@ import java.util.List;
 public class Player {
 
     private int tryCount;
-    private List<Tile> movingLog;
+    private List<Tile> movingPathLog;
     private boolean aliveState;
 
     public Player() {
@@ -22,8 +22,8 @@ public class Player {
      * @return 이동한 후 위치 index
      */
     public int moveForward(Tile targetTile) {
-        movingLog.add(targetTile);
-        return movingLog.size() - 1;
+        movingPathLog.add(targetTile);
+        return movingPathLog.size() - 1;
     }
 
     /**
@@ -46,7 +46,7 @@ public class Player {
     }
 
     private void initPosition() {
-        movingLog = new ArrayList<>();
+        movingPathLog = new ArrayList<>();
     }
 
     /**
@@ -56,7 +56,7 @@ public class Player {
      * @return 현 위치가 맞으면 true, 아니면 false
      */
     public boolean isCurrentPosition(int position) {
-        return movingLog.size() - 1 == position;
+        return getCurrentPositionIndex() == position;
     }
 
     /**
@@ -66,7 +66,7 @@ public class Player {
      * @return 지나간 길이면 true, 아니면 false
      */
     public boolean isPassedPosition(int position) {
-        return movingLog.size() - 1 >= position;
+        return getCurrentPositionIndex() >= position;
     }
 
     /**
@@ -84,8 +84,8 @@ public class Player {
      * @param index 확인할 사용자의 위치 index (첫칸이 0부터 시작)
      * @return 해당 칸의 Tile enum
      */
-    public Tile getMovingLogOf(int index) {
-        return movingLog.get(index);
+    public Tile getPassedTileLogOf(int index) {
+        return movingPathLog.get(index);
     }
 
     /**
@@ -95,5 +95,9 @@ public class Player {
      */
     public int getTryCount() {
         return this.tryCount;
+    }
+
+    private int getCurrentPositionIndex() {
+        return movingPathLog.size() - 1;
     }
 }

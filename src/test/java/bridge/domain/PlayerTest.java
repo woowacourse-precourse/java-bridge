@@ -46,7 +46,7 @@ class PlayerTest {
         player.moveForward(Tile.DOWN);
         player.moveForward(Tile.UP);
 
-        assertThat(player.getMovingLogOf(1)).isEqualTo(Tile.DOWN);
+        assertThat(player.getPassedTileLogOf(1)).isEqualTo(Tile.DOWN);
     }
 
     @DisplayName(value = "시도 횟수 확인 테스트")
