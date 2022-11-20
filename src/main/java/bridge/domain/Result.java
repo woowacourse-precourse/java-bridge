@@ -45,4 +45,12 @@ public class Result {
         }
         return downsStairs.toString().replaceAll(", ", "|");
     }
+
+    public void changeUpStairsRecord() {
+        upStairs.set(upStairs.size() - 1, " X ");
+    }
+
+    public void changeDownStairsRecord() {
+        downsStairs.set(downsStairs.size() - 1, " X ");
+    }
 }
