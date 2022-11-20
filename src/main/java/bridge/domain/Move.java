@@ -18,9 +18,9 @@ public enum Move {
         return direction;
     }
 
-    public static Move reverseMove(Move move) {
+    public static Move other(Move move) {
         return Arrays.stream(values())
-                .filter(reverse -> reverse != move)
+                .filter(other -> other != move)
                 .findAny()
                 .get();
     }
