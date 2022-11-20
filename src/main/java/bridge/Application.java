@@ -4,8 +4,7 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        InputView inputView = new InputView();
-
-        System.out.println(inputView.readBridgeSize());
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.play();
     }
 }

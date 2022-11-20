@@ -24,4 +24,27 @@ public class Validate {
         isInteger(inputBridgeSize);
         isValidRange(inputBridgeSize);
     }
+
+    public static void isUOrD(String upOrDown) {
+        String pattern = "^[uUdD]$";
+        if(!Pattern.matches(pattern, upOrDown)) {
+            throw new IllegalArgumentException("[ERROR] U 또는 D만 가능합니다.(소문자도 가능)");
+        }
+    }
+
+    /**
+     * DO DX UO UX 이런식으로 들어온다.
+     * */
+    public static String isUp(String states) {
+        if(states.charAt(0) == 'U') {
+            return states.substring(1);
+        }
+        return " ";
+    }
+    public static String isDown(String states) {
+        if(states.charAt(0) == 'D') {
+            return states.substring(1);
+        }
+        return " ";
+    }
 }
