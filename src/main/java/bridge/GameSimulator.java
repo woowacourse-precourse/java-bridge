@@ -17,7 +17,7 @@ public class GameSimulator {
 
         do {
             trial++;
-            userRoute = startGame(bridge);
+            userRoute = startGameRound(bridge);
         } while (bridgeGame.gameover(userRoute, bridge));
         quitGame(trial, bridge, userRoute);
     }
@@ -35,7 +35,7 @@ public class GameSimulator {
         return bridgeMaker.makeBridge(bridgeSize);
     }
 
-    private List<String> startGame(List<String> bridge) {
+    private List<String> startGameRound(List<String> bridge) {
         List<String> userRoute = new ArrayList<>();
 
         String moving;
