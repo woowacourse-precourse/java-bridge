@@ -29,6 +29,29 @@ class BridgeGameTest extends NsTest {
         }, 1, 0, 1);
     }
 
+    @Test
+    void 재시작할때_다리를_재사용하는지_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "U", "U", "R", "U", "D", "U");
+            assertThat(output()).contains(
+                    "[ O ]",
+                    "[   ]",
+                    "[ O | X ]",
+                    "[   |   ]",
+
+                    "[ O ]",
+                    "[   ]",
+                    "[ O |   ]",
+                    "[   | O ]",
+                    "[ O |   | O ]",
+                    "[   | O |   ]",
+                    "최종 게임 결과",
+                    "[ O |   | O ]",
+                    "[   | O |   ]"
+            );
+        }, 1, 0, 1);
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
