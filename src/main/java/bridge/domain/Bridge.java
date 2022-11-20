@@ -1,6 +1,5 @@
 package bridge.domain;
 
-import bridge.Constants;
 import java.util.List;
 
 public class Bridge {
