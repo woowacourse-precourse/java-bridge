@@ -4,6 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import bridge.ApplicationTest.TestNumberGenerator;
+import bridge.domain.Bridge;
+import bridge.domain.BridgeResult;
+import bridge.domain.BridgeStatus;
 import bridge.service.BridgeMaker;
 import bridge.service.BridgeNumberGenerator;
 import camp.nextstep.edu.missionutils.test.NsTest;
@@ -23,10 +26,46 @@ public class BridgeTest extends NsTest {
 
 		try {
 			List<String> bridge = bridgeMaker.makeBridge(2);
-		} catch (IllegalArgumentException e) {}
+		} catch (IllegalArgumentException e) {
+			System.out.println(e);
+		}
 
 		assertThat(output()).contains(ERROR_MESSAGE);
 	}
+
+	@Test
+	@DisplayName("다리 이동시 이동 가능한지 테스트")
+	void 다리_이동가능_테스트() {
+		Bridge bridge = new Bridge(List.of("U", "D", "D"));
+		BridgeStatus bridgeStatus = bridge.isBridge("U", 0);
+		BridgeStatus bridgeStatus2 = bridge.isBridge("U", 1);
+		BridgeStatus bridgeStatus3 = bridge.isBridge("D", 2);
+
+		assertThat(bridgeStatus).isEqualTo(BridgeStatus.SUCCESS);
+		assertThat(bridgeStatus2).isEqualTo(BridgeStatus.FAIL);
+		assertThat(bridgeStatus3).isEqualTo(BridgeStatus.SUCCESS);
+	}
+
+
+	@Test
+	@DisplayName("다리 이동 건너기 테스트")
+	void 다리_이동출력_테스트() {
+		BridgeResult bridgeResult = new BridgeResult();
+
+		bridgeResult.crossBridge(BridgeStatus.SUCCESS, "U");
+		bridgeResult.crossBridge(BridgeStatus.SUCCESS, "D");
+		bridgeResult.crossBridge(BridgeStatus.SUCCESS, "U");
+		bridgeResult.crossBridge(BridgeStatus.FAIL, "D");
+
+		System.out.println(bridgeResult);
+
+		assertThat(output()).contains(
+			"[ O |   | O |   ]",
+			"[   | O |   | X ]"
+		);
+	}
+
+
 	@Override
 	protected void runMain() {
 
