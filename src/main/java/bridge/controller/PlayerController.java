@@ -1,10 +1,13 @@
 package bridge.controller;
 
 import bridge.service.PlayerService;
+import bridge.validator.GameCommandValidator;
 import bridge.validator.MovingDirectionValidator;
 import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class PlayerController {
+    private final static String RESTART_GAME = "R";
 
     private final PlayerService playerService = new PlayerService();
 
@@ -13,7 +16,7 @@ public class PlayerController {
     }
 
     public int getCurrentDistance() {
-        return playerService.getMovedDistance();
+        return playerService.getAndIncreaseMovedDistance();
     }
 
     public String getMovingDirection() {
@@ -27,11 +30,27 @@ public class PlayerController {
         }
     }
 
-    public void increaseMovedDistance() {
-        playerService.increaseMovedDistance();
+    private String getGameCommand() {
+        String input = InputView.readGameCommand();
+        try {
+            GameCommandValidator.validateCommand(input);
+            return input;
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return getGameCommand();
+        }
     }
 
-    public void backToStartPoint() {
-        playerService.backToStartPoint();
+    public boolean retryGame() {
+        boolean retryGame = getGameCommand().equals(RESTART_GAME);
+        if (retryGame) {
+            playerService.backToStartPoint();
+        }
+        return retryGame;
+    }
+
+    public void printGameStatics() {
+        int attemptCount = playerService.getAttemptCount();
+        OutputView.printGameStatics(attemptCount);
     }
 }

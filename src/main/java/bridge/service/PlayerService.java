@@ -6,7 +6,7 @@ import bridge.repository.PlayerRepository;
 import static bridge.domain.player.MovedDistance.INIT_DISTANCE;
 
 public class PlayerService {
-    private final static int INIT_ATTEMPT_COUNT = 0;
+    private final static int INIT_ATTEMPT_COUNT = 1;
 
     private static final PlayerRepository playerRepository = PlayerRepository.getInstance();
 
@@ -14,18 +14,21 @@ public class PlayerService {
         playerRepository.update(Player.of(INIT_DISTANCE, INIT_ATTEMPT_COUNT));
     }
 
-    public int getMovedDistance() {
+    public int getAndIncreaseMovedDistance() {
         Player player = playerRepository.get();
-        return player.getMovedDistance();
-    }
-
-    public void increaseMovedDistance() {
-        Player player = playerRepository.get();
+        int currentDistance = player.getMovedDistance();
         playerRepository.update(player.increaseMovedDistance());
+
+        return currentDistance;
     }
 
     public void backToStartPoint() {
         Player player = playerRepository.get();
         playerRepository.update(player.makeNewAttempt());
+    }
+
+    public int getAttemptCount() {
+        Player player = playerRepository.get();
+        return player.getAttemptCount();
     }
 }

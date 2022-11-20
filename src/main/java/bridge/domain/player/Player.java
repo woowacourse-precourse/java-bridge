@@ -28,4 +28,8 @@ public class Player {
     public Player makeNewAttempt() {
         return new Player(movedDistance.reset(), attemptCount.increaseCount());
     }
+
+    public int getAttemptCount() {
+        return attemptCount.toInt();
+    }
 }
