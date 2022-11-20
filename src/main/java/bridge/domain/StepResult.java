@@ -7,7 +7,8 @@ public enum StepResult {
     UPPER_SUCCESS("U", true, "O"),
     UPPER_FAIL("U",  false, "X"),
     LOWER_SUCCESS("D", true, "O"),
-    LOWER_FAIL("D", false, "X");
+    LOWER_FAIL("D", false, "X"),
+    NO_RESULT("null", false, "null");
 
     private final String direction;
     private final boolean passed;
@@ -24,7 +25,7 @@ public enum StepResult {
                 .filter(stepResult -> stepResult.direction.equals(moving))
                 .filter(stepResult -> stepResult.passed == moveFlag)
                 .findAny()
-                .orElse(null);
+                .orElse(NO_RESULT);
     }
 
     public String getDirection() {
