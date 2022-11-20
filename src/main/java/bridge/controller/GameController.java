@@ -1,47 +1,49 @@
 package bridge.controller;
 
 import bridge.model.BridgeGame;
+import bridge.model.GameResult;
 import bridge.model.bridge.Node;
 import bridge.view.GameCommand;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import java.util.ArrayList;
 import java.util.List;
 
 public class GameController {
-    private static final BridgeGame game = new BridgeGame();
+    private static BridgeGame game;
     private static final InputView input = new InputView();
     private static final OutputView output = new OutputView();
 
     public static void run() {
         startGameAndBuildBridge();
-        while (game.isEnd()) {
-            goOneStepAndPrintResult();
+        while (!game.isEnd()) {
+            goOneStepAndPrintMap();
             checkLastStepAndDecideToContinue();
         }
-        output.printResult();
+        printResultAfterEndGame();
     }
 
     private static void startGameAndBuildBridge() {
         output.printStart();
         int bridgeSize = input.readBridgeSize();
-        game.init(bridgeSize);
+        game = new BridgeGame(bridgeSize);
     }
 
-    private static void goOneStepAndPrintResult() {
+    private static void goOneStepAndPrintMap() {
         readInputAndMove();
-        printResultAfterMove();
+        printMap();
     }
 
-    private static void printResultAfterMove() {
-        List<String> result = new ArrayList<>(2);
-        // TODO: game 안에서 bridge 랑 steps를 비교해야함
+    private static void printMap() {
+        List<String> result = game.makeMap();
         output.printMap(result);
     }
 
     private static void checkLastStepAndDecideToContinue() {
         if (game.lastStepMismatch()) {
             quitOrRetry();
+        }
+        if (game.complete()) {
+            game.quit();
         }
     }
 
@@ -58,6 +60,12 @@ public class GameController {
         }
         game.retry();
     }
+
+    private static void printResultAfterEndGame() {
+        GameResult result = game.makeResult();
+        output.printResult(result);
+    }
+
 
     private static boolean wantToQuit(GameCommand command) {
         return command == GameCommand.QUIT;

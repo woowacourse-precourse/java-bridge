@@ -65,11 +65,11 @@ public class BridgeGame {
         return MapMaker.make(bridge, steps);
     }
 
-    private boolean succeed() {
+    public boolean complete() {
         return steps.size() == bridge.size() && steps.isLastStepSameWithBridge(bridge);
     }
 
     public GameResult makeResult() {
-        return new GameResult(makeMap(), succeed(), numberOfAttempts);
+        return new GameResult(makeMap(), complete(), numberOfAttempts);
     }
 }
