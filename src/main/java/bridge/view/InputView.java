@@ -31,7 +31,7 @@ public class InputView {
     private void validateMovingInput(String selectUpOrDownInput) {
         String match = "^[U|D]$";
         if (!selectUpOrDownInput.matches(match)) {
-            throw new IllegalStateException(WRONG_MOVING_MARK_INPUT_ERROR);
+            throw new IllegalArgumentException(WRONG_MOVING_MARK_INPUT_ERROR);
         }
     }
 
@@ -45,7 +45,7 @@ public class InputView {
     private void validateGameCommandInput(String gameCommandInput) {
         String match = "^[R|Q]$";
         if (!gameCommandInput.matches(match)) {
-            throw new IllegalStateException(WRONG_RETRY_INPUT_ERROR);
+            throw new IllegalArgumentException(WRONG_RETRY_INPUT_ERROR);
         }
     }
 
