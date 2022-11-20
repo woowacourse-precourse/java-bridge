@@ -9,12 +9,12 @@ import java.util.List;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-
     private final BridgeNumberGenerator bridgeNumberGenerator; // 변경이 불가능한 기본 인스턴스 변수
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
+
 
     /**
      * @param size 다리의 길이
@@ -23,14 +23,18 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            int bridgeNumber = bridgeNumberGenerator.generate();
-            if (bridgeNumber == 1) {
-                bridge.add("U");
-            }
-            if (bridgeNumber == 0) {
-                bridge.add("D");
-            }
+            generateBridgeSide(bridge);
         }
         return bridge;
+    }
+
+    private void generateBridgeSide(List<String> bridge) {
+        int bridgeNumber = bridgeNumberGenerator.generate();
+        if (bridgeNumber == 1) {
+            bridge.add("U");
+        }
+        if (bridgeNumber == 0) {
+            bridge.add("D");
+        }
     }
 }

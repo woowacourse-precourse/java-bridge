@@ -16,14 +16,6 @@ public class BridgeGame {
         this.tryCount = tryCount;
     }
 
-    public int size() {
-        return bridgeGame.size();
-    }
-
-    public String toString(List<String> result) {
-        return result.toString();
-    }
-
     public boolean move(String moveSide, int index) {
         return bridgeGame.get(index).equals(moveSide);
     }
