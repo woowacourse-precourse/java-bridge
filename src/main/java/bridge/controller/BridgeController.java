@@ -23,7 +23,7 @@ public class BridgeController {
         outputView.printStart();
 
         List<String> bridge = bridgeGame.setBridge(inputBridgeSize().getBridgeSize());
-        startRound();
+        startRound(bridge);
     }
 
     public BridgeSize inputBridgeSize() {
@@ -35,8 +35,15 @@ public class BridgeController {
         }
     }
 
-    private void startRound() {
-        String space = inputBridgeSpace().getUserInput();
+    private void startRound(List<String> bridge) {
+        for (String answer : bridge) {
+            String userSpace = inputBridgeSpace().getUserInput();
+            List<List<String>> result = bridgeGame.move(userSpace, answer);
+            if (!isSameWithAnswer(userSpace, answer)) {
+                //askRestart();
+                break;
+            }
+        }
     }
 
     private UserBridge inputBridgeSpace() {
@@ -46,5 +53,9 @@ public class BridgeController {
             outputView.printError(e.getMessage());
             return inputBridgeSpace();
         }
+    }
+
+    private boolean isSameWithAnswer(String user, String answer) {
+        return user.equals(answer);
     }
 }

@@ -3,6 +3,7 @@ package bridge.domain;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,17 +11,42 @@ import java.util.List;
  */
 public class BridgeGame {
 
+    private final List<String> upBridge;
+    private final List<String> downBridge;
+
+    public BridgeGame() {
+        upBridge = new ArrayList<>();
+        downBridge = new ArrayList<>();
+    }
+
     public List<String> setBridge(int size) {
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         return bridgeMaker.makeBridge(size);
     }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public List<List<String>> move(String user, String answer) {
+        String result = compareUserAndAnswer(user, answer);
+        if (user.equals("U")) {
+            upBridge.add(result);
+            downBridge.add(Bridge.BLANK.getLocation());
+        } else if (user.equals("D")) {
+            upBridge.add(Bridge.BLANK.getLocation());
+            downBridge.add(result);
+        }
+        return List.of(upBridge, downBridge);
+    }
+
+    private String compareUserAndAnswer(String user, String answer) {
+        if (user.equals(answer)) {
+            return Bridge.O.getLocation();
+        }
+        return Bridge.X.getLocation();
     }
 
     /**
