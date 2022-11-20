@@ -42,7 +42,7 @@ playerMap
 
 InputHandler
 
-	- [x] stringToInt
+ - [x] stringToInt
 
 InputView
 
@@ -52,8 +52,8 @@ InputView
 
 OutputView
 
-	- [x] printMap
-	- [x] printResult
+ - [x] printMap
+ - [x] printResult
 
 ### Controller
 
@@ -61,9 +61,9 @@ BridgeGameController
 
 - [x] inputBridgeSize
 - [x] makeBridge
-- [ ] startGame
-- [ ] inputMoving
-- [ ] printMap
+- [x] playBridgeGame
+- [x] inputMoving
+- [x] printMap
 - [ ] inputGameCommand
 	- [ ] printResult
 
