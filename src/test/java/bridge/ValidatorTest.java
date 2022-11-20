@@ -3,6 +3,7 @@ package bridge;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
+import bridge.domain.Command;
 import bridge.validator.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -37,9 +38,9 @@ class ValidatorTest {
         assertThat(result3).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("입력된 문자열이 둘 중 하나의 문자열과 일치하는지 검증")
+    @DisplayName("입력된 문자열이 둘 중 하나의 커맨드와 일치하는지 검증")
     @Test
-    void 입력된_문자열이_둘_중_하나의_문자열과_일치하는지_검증하는_기능_테스트(){
+    void 입력된_문자열이_둘_중_하나의_커맨드와_일치하는지_검증하는_기능_테스트(){
         //given
         String case1 = "U";
         String case2 = "D";
@@ -48,16 +49,16 @@ class ValidatorTest {
 
         //when
         Throwable result1 = catchThrowable(()->{
-            Validator.validateIsStringOneCharacter(case1, "U", "D");
+            Validator.validateIsStringCommand(case1, Command.MOVE_UP, Command.MOVE_DOWN);
         });
         Throwable result2 = catchThrowable(()->{
-            Validator.validateIsStringOneCharacter(case2, "U", "D");
+            Validator.validateIsStringCommand(case2, Command.MOVE_UP, Command.MOVE_DOWN);
         });
         Throwable result3 = catchThrowable(()->{
-            Validator.validateIsStringOneCharacter(case3, "U", "D");
+            Validator.validateIsStringCommand(case3, Command.MOVE_UP, Command.MOVE_DOWN);
         });
         Throwable result4 = catchThrowable(()->{
-            Validator.validateIsStringOneCharacter(case4, "U", "D");
+            Validator.validateIsStringCommand(case4, Command.MOVE_UP, Command.MOVE_DOWN);
         });
 
         //then

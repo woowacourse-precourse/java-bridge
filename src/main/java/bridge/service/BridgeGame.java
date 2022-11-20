@@ -39,7 +39,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String nextMove) throws IllegalArgumentException{
-        Validator.validateIsStringOneCharacter(nextMove, Command.MOVE_UP.getValue(), Command.MOVE_DOWN.getValue());
+        Validator.validateIsStringCommand(nextMove, Command.MOVE_UP, Command.MOVE_DOWN);
         userBridge.add(nextMove);
     }
 

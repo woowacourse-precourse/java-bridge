@@ -78,7 +78,7 @@ public class Controller {
         String command;
         try{
             command = inputView.readGameCommand();
-            Validator.validateIsStringOneCharacter(command, Command.RETRY_GAME.getValue(), Command.QUIT_GAME.getValue());
+            Validator.validateIsStringCommand(command, Command.RETRY_GAME, Command.QUIT_GAME);
         } catch (IllegalArgumentException error) {
             outputView.printRetryOrQuitInputError();
             return getRetryOrQuitCommand();
