@@ -26,11 +26,10 @@ public class OutputView {
         bridgeGame.clearBridge(); bridgeGame.needRestart = 0; int stopPlaying = 0;
         for(int i=0; i<correctBridge.size(); i++) {
             bridgeGame.move(correctBridge.get(i), InputView.readMoving());
-            printUpDown(); if(bridgeGame.getNeedRestart() == 1 ) {
-                stopPlaying = bridgerestart.bridgeRestartCheck(InputView.readGameCommand());
+            printUpDown();
+            if(bridgeGame.getNeedRestart() == 1 ) { stopPlaying = bridgerestart.bridgeRestartCheck(InputView.readGameCommand());
                 break;
-            } if(bridgeGame.getUpBridge().size() == correctBridge.size()) {
-                stopPlaying = 2;}
+            } if(bridgeGame.getUpBridge().size() == correctBridge.size()) { stopPlaying = 2;}
         } return stopPlaying ;
     }
 

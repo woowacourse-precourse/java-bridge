@@ -2,9 +2,6 @@ package bridge;
 
 import bridge.view.OutputView;
 
-import java.util.List;
-
-
 public class BridgeRestart {
     public int bridgeRestartCheck(String playerCommand) {
         int quitCommand = 0;
