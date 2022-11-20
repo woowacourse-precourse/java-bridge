@@ -22,17 +22,17 @@
 
 ## 기능 목록
 
-- [ ] 사용자로 부터 다리 길이를 입력 받는다. InputView#readBridgeSize
+- [O] 사용자로 부터 다리 길이를 입력 받는다. InputView#readBridgeSize
 - [O] 다리 생성
     - [O] 다리의 건널 수 있는 칸을 정한다. BridgeRandomNumberGenerator#generate
     - [O] 입력 받은 수에 맞게 다리를 생성 한다. BridgeMaker#makeBridge
 - [ ] 게임 진행 BridgeGame#move
-    - [ ] 사용자에게 위로 건널지 아래로 건널지 입력 받는다. InputView#readMoving
+    - [O] 사용자에게 위로 건널지 아래로 건널지 입력 받는다. InputView#readMoving
     - [ ] 사용자의 입력 값으로 해당 칸을 건널 수 있는지 없는지 판단한다.
         - [ ] 해당 칸에 O,X 를 표시해 결과를 출력한다. OutputView#printMap
             - [ ] 성공할 경우 게임을 계속 진행한다.
                 - [ ] 다리를 끝까지 건너면 게임이 종료된다.
-            - [ ] 실패 할 경우 게임을 재시작 하거나 종료할지 입력 받는다. InputView#readGameCommand
+            - [O] 실패 할 경우 게임을 재시작 하거나 종료할지 입력 받는다. InputView#readGameCommand
                 - [ ] 재시작할 경우 전에 만든 다리를 활용해, 게임을 진행한다. BridgeGame#retry
 - [ ] 게임 종료
 - [ ] 게임이 종료 될 경우 성공 여부 및 시도 횟수를 출력한다.
