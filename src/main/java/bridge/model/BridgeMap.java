@@ -15,16 +15,6 @@ public class BridgeMap {
         initBridgeMap(size);
     }
 
-    public boolean isExpressionX(int location){
-        if(bridgeUpMap.get(location).equals("X")){
-            return true;
-        }
-        if(bridgeDownMap.get(location).equals("X")){
-            return true;
-        }
-        return false;
-    }
-
     public List<String> getBridgeUpMap(){
         return bridgeUpMap;
     }

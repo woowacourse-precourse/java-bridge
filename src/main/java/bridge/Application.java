@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.controller.BridgeGameController;
 import bridge.model.BridgeMaker;
 
 import java.util.ArrayList;

@@ -20,6 +20,16 @@ public class BridgeGame {
         return retryCount;
     }
 
+    public List<String> getUpBridge(){
+        return bridgeMap.getBridgeUpMap();
+    }
+    public List<String> getDownBridge(){
+        return bridgeMap.getBridgeDownMap();
+    }
+    public List<String> getBridge(){
+        return bridge;
+    }
+
     public BridgeGame(int size){
         this.location=-1;
         this.retryCount=1;
@@ -28,7 +38,6 @@ public class BridgeGame {
         bridgeComparator = new BridgeComparator();
         bridgeMap = new BridgeMap(size);
     }
-
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -46,6 +55,7 @@ public class BridgeGame {
     }
 
 
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
@@ -54,6 +64,10 @@ public class BridgeGame {
     public void retry(int size) {
         countRetry();
         bridgeMap=new BridgeMap(size);
+    }
+
+    public boolean isClosed() {
+        return bridgeComparator.isExpressionX(location, bridgeMap.getBridgeUpMap(), bridgeMap.getBridgeDownMap());
     }
 
     public void countRetry(){
