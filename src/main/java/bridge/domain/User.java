@@ -40,7 +40,7 @@ public class User {
     public void prepareToRestart() {
         footPrints.reset();
         userData.resetPosition();
-        userData.addTryCount();
+        userData.increaseTryCount();
     }
 
     public int getTryCount() {

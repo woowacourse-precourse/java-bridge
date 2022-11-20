@@ -17,7 +17,7 @@ public class UserData {
         position++;
     }
 
-    public void addTryCount() {
+    public void increaseTryCount() {
         tryCount++;
     }
 
