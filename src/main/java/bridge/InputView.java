@@ -18,7 +18,16 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String moving = null;
+        try {
+            moving = Console.readLine().toUpperCase();
+            return moving;
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            throw new IllegalStateException();
+        } catch (IllegalStateException e) {
+            throw new IllegalStateException();
+        }
     }
 
     /**
