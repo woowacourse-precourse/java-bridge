@@ -101,7 +101,7 @@ public class OutputView {
         System.out.println(INPUT_MOVE_DIRECTION_MESSAGE);
     }
 
-    public void printInputGameRetry() {
+    public void printInputGameCommand() {
         System.out.println(INPUT_GAME_RETRY_MESSAGE);
     }
 
