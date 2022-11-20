@@ -19,6 +19,11 @@ public class Map {
         downMap += result + "|";
     }
 
+    public void resetMap() {
+        upMap = "[";
+        downMap = "[";
+    }
+
     public String getUpMap() {
         return upMap.substring(0, upMap.length() - 1) + "]";
     }

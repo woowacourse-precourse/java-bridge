@@ -38,6 +38,7 @@ public class BridgeController {
 
     private void startPlay(List<String> bridge) {
         do {
+            bridgeGame.resetRound();
             startRound(bridge);
         } while (askRestart());
     }
