@@ -14,4 +14,8 @@ public enum Direction {
         this.directionInitial = directionInitial;
         this.isMatch = isMatch;
     }
+
+    public String getDirectionInitial() {
+        return directionInitial;
+    }
 }
