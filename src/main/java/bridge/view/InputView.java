@@ -2,10 +2,12 @@ package bridge.view;
 
 import static bridge.domain.BridgeSize.makeBridgeSize;
 import static bridge.value.BridgeCharacter.makeBridgeCharacter;
+import static bridge.value.GameCommand.makeGameCommand;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import bridge.domain.BridgeSize;
 import bridge.value.BridgeCharacter;
+import bridge.value.GameCommand;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -29,8 +31,8 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public GameCommand readGameCommand() {
+        return makeGameCommand(readLine());
     }
 
     private int readInt() {
