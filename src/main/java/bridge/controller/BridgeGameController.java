@@ -2,7 +2,15 @@ package bridge.controller;
 
 import static bridge.BridgeGame.createGame;
 import static bridge.domain.game.GameRunStatus.makeGameRunStatus;
+import static bridge.message.SystemMessage.GAME_RESULT;
+import static bridge.message.SystemMessage.GAME_START;
+import static bridge.message.SystemMessage.INPUT_BRIDGE_SIZE;
+import static bridge.message.SystemMessage.INPUT_MOVING;
+import static bridge.message.SystemMessage.RETRY;
 import static bridge.value.GameCommand.QUIT;
+import static bridge.view.game.GameResultView.makeGameResultView;
+import static bridge.view.game.GameStatusView.makeGameResultStatusView;
+import static bridge.view.game.GameStatusView.makeGameStatusView;
 
 import bridge.BridgeGame;
 import bridge.domain.game.GameRunStatus;
@@ -24,23 +32,29 @@ public class BridgeGameController {
     }
 
     public void start() {
+        outputView.printMessage(GAME_START);
+        outputView.lineSeparate();
+        initGame();
         while (!gameRunStatus.isStop()) {
-            initGame();
-
             run();
-            //결과 표시
         }
-        //최종 결과 표시
+        outputView.printMessage(GAME_RESULT);
+        outputView.printResult(makeGameResultView(bridgeGame.result()));
     }
 
     private void initGame() {
+        outputView.printMessage(INPUT_BRIDGE_SIZE);
         this.bridgeGame = createGame(inputView.readBridgeSize());
+        outputView.lineSeparate();
     }
 
     public void run() {
+        outputView.printMessage(INPUT_MOVING);
         BridgeCharacter bridgeCharacter = inputView.readMoving();
 
         if (!bridgeGame.canMove(bridgeCharacter)) {
+            outputView.printMap(makeGameResultStatusView(bridgeGame.status()));
+            outputView.printMessage(RETRY);
             processFor(inputView.readGameCommand());
 
             return;
@@ -51,6 +65,9 @@ public class BridgeGameController {
         if (bridgeGame.isGameSuccess()) {
             gameRunStatus.stop();
         }
+
+        outputView.printMap(makeGameStatusView(bridgeGame.status()));
+//        outputView.lineSeparate();
     }
 
     private void processFor(GameCommand gameCommand) {

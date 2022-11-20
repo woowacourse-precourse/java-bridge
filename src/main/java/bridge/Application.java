@@ -1,8 +1,10 @@
 package bridge;
 
+import static bridge.configuration.AppConfig.bridgeGameController;
+
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        bridgeGameController().start();
     }
 }
