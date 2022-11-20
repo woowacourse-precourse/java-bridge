@@ -12,6 +12,33 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
+    public int readBridgeSize() {
+        while (true) {
+            String bridgeSize = readLine();
+            try{
+                int size=checkInteger(bridgeSize);
+                if(checkSize(size)) return size;
+            }catch (IllegalArgumentException e){
+                    printErrorMessage(BRIDGE_SIZE_ERROR);
+            }
+        }
+    }
+
+    private int checkInteger(String str) {
+        try{
+            int convertedInteger = Integer.parseInt(str);
+            return convertedInteger;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private boolean checkSize(int size) {
+        if (size < 3 || size > 20) {
+            throw new IllegalArgumentException();
+        }
+        return true;
+    }
 
     private void printErrorMessage(String errorMsg){
         StringBuilder stringBuilder = new StringBuilder();
