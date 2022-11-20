@@ -17,8 +17,7 @@ public class OutputView {
 		String upBridge = createBridgeMap(gameResult.get(0));
 		String downBridge = createBridgeMap(gameResult.get(1));
 		System.out.println(upBridge);
-		System.out.println(downBridge);
-		System.out.println();
+		System.out.println(downBridge+ "\n");
 	}
 
 	private static String createBridgeMap(List<String> map) {

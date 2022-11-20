@@ -11,15 +11,13 @@ public class InputView {
 	private InputView(){}
 
 	public static void printIntroMessage() {
-		System.out.println("다리 건너기 게임을 시작합니다.");
-		System.out.println();
+		System.out.println("다리 건너기 게임을 시작합니다.\n");
 	}
 
 	public static int readBridgeSize() {
-		System.out.println("다리의 길이를 입력해주세요.");
+		System.out.println("다리의 길이를 입력해주세요.\n");
 		String input = Console.readLine();
 		validSize(input);
-		System.out.println();
 		return Integer.parseInt(input);
 	}
 
