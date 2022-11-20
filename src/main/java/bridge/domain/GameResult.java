@@ -1,8 +1,5 @@
 package bridge.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class GameResult {
     private static final String SUCCESS = "성공";
     private static final String FAIL = "실패";
