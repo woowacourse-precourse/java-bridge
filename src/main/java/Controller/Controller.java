@@ -2,12 +2,10 @@ package Controller;
 
 import Model.Map;
 import Util.Util;
-import View.Output;
 import View.OutputView;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
-
 import java.util.List;
 
 public class Controller {

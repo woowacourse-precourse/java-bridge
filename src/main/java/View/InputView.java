@@ -10,22 +10,28 @@ public class InputView {
     public int readBridgeSize() {
         String bridgeSize;
         bridgeSize = Console.readLine();
+
         exception.validateIfInputIsNumber(bridgeSize);
         exception.validateInputNumberRange(bridgeSize);
+
         return Integer.parseInt(bridgeSize);
     }
 
     public String readMoving() {
         String moving;
         moving = Console.readLine();
+
         exception.validateMovingInput(moving);
+
         return moving;
     }
 
     public boolean readGameCommand() {
         String gameCommand;
         gameCommand = Console.readLine();
+
         exception.validateRetryInput(gameCommand);
+
         return gameCommand.equals("R");
     }
 }

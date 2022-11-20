@@ -1,14 +1,13 @@
 package Map;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import Model.Map;
-import View.OutputView;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MapTest {
 

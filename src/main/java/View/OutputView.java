@@ -1,7 +1,6 @@
 package View;
 
 import Model.Map;
-
 import java.util.List;
 
 public class OutputView {
