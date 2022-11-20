@@ -54,4 +54,8 @@ public class BridgeGame {
         position--;
         playerMap.resetPrev(position);
     }
+
+    public int getPosition() {
+        return position;
+    }
 }
