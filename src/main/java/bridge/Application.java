@@ -43,8 +43,10 @@ public class Application {
      */
     static void moveBridge(List<String> bridge) {
         OutputView outputView = new OutputView();
+        InputView inputView = new InputView();
 
         outputView.printChoiceMove();
+        String move = inputView.readMoving();
     }
 
     public static void main(String[] args) {
