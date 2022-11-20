@@ -19,19 +19,31 @@ public class AppConfig {
         return new BridgeGameController(bridgeGameService, inputView(), outputView());
     }
 
-    public BridgeMakerService bridgeMakerService() {
+    private BridgeMakerService bridgeMakerService() {
         return new BridgeMakerService();
     }
 
     private void setBidgeMakerService(BridgeMakerService bridgeMakerService) {
-        bridgeGameService = new BridgeGameService(bridgeMakerService);
+        bridgeGameService = new BridgeGameService(bridgeMakerService, bridgeGameManager(), bridgeGame(), userBridge());
     }
 
-    public InputView inputView() {
+    private BridgeGameManager bridgeGameManager() {
+        return new BridgeGameManager();
+    }
+
+    private BridgeGame bridgeGame() {
+        return new BridgeGame();
+    }
+
+    private UserBridge userBridge() {
+        return new UserBridge();
+    }
+
+    private InputView inputView() {
         return new InputView();
     }
 
-    public OutputView outputView() {
+    private OutputView outputView() {
         return new OutputView();
     }
 }

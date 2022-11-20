@@ -2,19 +2,22 @@ package bridge.service;
 
 import bridge.BridgeGame;
 import bridge.BridgeGameManager;
-import bridge.Direction;
+import bridge.constant.Direction;
 import bridge.UserBridge;
 import java.util.List;
 
 public class BridgeGameService {
     private BridgeMakerService bridgeMakerService;
+    private BridgeGameManager bridgeGameManager;
+    private BridgeGame bridgeGame;
+    private final UserBridge userBridge;
 
-    private BridgeGameManager bridgeGameManager = new BridgeGameManager();
-    private BridgeGame bridgeGame = new BridgeGame();
-    private final UserBridge userBridge = new UserBridge();
-
-    public BridgeGameService(BridgeMakerService bridgeMakerService) {
+    public BridgeGameService(BridgeMakerService bridgeMakerService, BridgeGameManager bridgeGameManager,
+                             BridgeGame bridgeGame, UserBridge userBridge) {
         this.bridgeMakerService = bridgeMakerService;
+        this.bridgeGameManager = bridgeGameManager;
+        this.bridgeGame = bridgeGame;
+        this.userBridge = userBridge;
     }
 
     private static Direction findDirection(List<String> bridge, BridgeGameManager bridgeGameManager) {
@@ -27,8 +30,6 @@ public class BridgeGameService {
         bridgeGame.move(userBridge, direction, now);
         return userBridge;
     }
-
-
 
     public boolean fail(String moving) {
         Direction direction = findDirection(bridgeMakerService.getBridge(), bridgeGameManager);
