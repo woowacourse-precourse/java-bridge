@@ -44,6 +44,13 @@ public class BridgeGame {
     }
 
     /**
+     * 사용자가 다리를 현재 건너는 데 실패했는지 확인 시 사용하는 메서드
+     */
+    public boolean isOver(){
+        return flag;
+    }
+
+    /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      */
     public List<String> move(String input) {
