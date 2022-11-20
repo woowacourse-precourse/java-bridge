@@ -1,4 +1,4 @@
-package bridge.Model;
+package bridge.Controller;
 
 public interface Validator {
 

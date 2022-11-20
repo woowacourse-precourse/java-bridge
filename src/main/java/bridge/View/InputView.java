@@ -1,7 +1,7 @@
 package bridge.View;
 
-import bridge.Model.BridgeSizeValidator;
-import bridge.Model.Validator;
+import bridge.Controller.BridgeSizeValidator;
+import bridge.Controller.Validator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**

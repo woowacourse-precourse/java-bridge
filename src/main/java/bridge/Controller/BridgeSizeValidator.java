@@ -1,4 +1,4 @@
-package bridge.Model;
+package bridge.Controller;
 
 public class BridgeSizeValidator implements Validator {
     private static final String ERROR_NON_NUMERIC_VALUE = "[ERROR] 숫자 이외의 값을 입력할 수 없습니다.";
