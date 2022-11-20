@@ -13,7 +13,7 @@ class BridgeGameTest {
         //GIVEN
         BridgeGame bridgeGame = new BridgeGame(List.of("U","D","D"));
         //WHEN
-        boolean moveCheck = bridgeGame.move("U");
+        BirdgeMoveType moveCheck = bridgeGame.move("U");
         //THEN
         assertEquals(moveCheck,true);
     }
@@ -22,7 +22,7 @@ class BridgeGameTest {
         //GIVEN
         BridgeGame bridgeGame = new BridgeGame(List.of("U","D","D"));
         //WHEN
-        boolean moveCheck = bridgeGame.move("D");
+        BirdgeMoveType moveCheck = bridgeGame.move("D");
         //THEN
         assertEquals(moveCheck,false);
     }

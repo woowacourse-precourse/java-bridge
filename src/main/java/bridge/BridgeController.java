@@ -4,24 +4,25 @@ import java.util.List;
 
 public class BridgeController {
     private static InputView inputView = new InputView();
-    public List<String> doBridgeMake(){
+    public BridgeGame doBridgeMake(){
 
         int bridgeSize = inputView.readBridgeSize();
 
         BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-
-        return bridgeMaker.makeBridge(bridgeSize);
+        List<String> bridgeList = bridgeMaker.makeBridge(bridgeSize);
+        BridgeGame bridgeGame = new BridgeGame(bridgeList);
+        return bridgeGame;
     }
 
-    public void doBridgeMove(List<String> bridgeMaker){
+    public void doBridgeMove(BridgeGame bridgeGame){
         String moveWay = inputView.readMoving();
-        BridgeGame bridgeGame = new BridgeGame(bridgeMaker);
-        boolean isPossibleMove = bridgeGame.move(moveWay);
+
+        BirdgeMoveType isPossibleMove = bridgeGame.move(moveWay);
         printMove(isPossibleMove);
     }
-    public void printMove(boolean isPossibleMove){
+    public void printMove(BirdgeMoveType isPossibleMove){
         OutputView outputView = new OutputView();
-        outputView.printMap();
+        outputView.printMap(isPossibleMove);
     }
 }

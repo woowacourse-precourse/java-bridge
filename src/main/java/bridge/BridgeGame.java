@@ -19,13 +19,23 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String moveWay) {
+    public BirdgeMoveType move(String moveWay) {
         //IllegalStatementException bridgeList 없을시
         if(bridgeList.get(count) == moveWay){
             count+=1;
-            return true;
+            if(moveWay.equals("U")){
+                return BirdgeMoveType.upGoMovement;
+            } else if (moveWay.equals("D")) {
+                return BirdgeMoveType.downGoMovement;
+            }
+        } else if (bridgeList.get(count) != moveWay) {
+            if (moveWay.equals("U")){
+                return BirdgeMoveType.upStopMovement;
+            } else if (moveWay.equals("D")) {
+                return BirdgeMoveType.downStopMovement;
+            }
         }
-        return false;
+        return null;
     }
 
     /**
@@ -34,5 +44,6 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        count=0;
     }
 }
