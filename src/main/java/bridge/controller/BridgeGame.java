@@ -1,6 +1,7 @@
 package bridge.controller;
 
 import bridge.dto.MapDto;
+import bridge.dto.ResultDto;
 import bridge.model.Bridge;
 import bridge.model.BridgeResult;
 
@@ -52,5 +53,9 @@ public class BridgeGame {
 
     public boolean success() {
         return bridgeResult.checkSuccess(bridge);
+    }
+
+    public ResultDto getResult() {
+        return new ResultDto(bridge, bridgeResult);
     }
 }
