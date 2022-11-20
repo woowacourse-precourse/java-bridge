@@ -8,6 +8,7 @@ public class OutputView {
     private static final String END_GAME_ANNOUNCEMENT = "최종 게임 결과";
     private static final String SUCCESS_GAME_ANNOUNCEMENT = "게임 성공 여부: 성공";
     private static final String FAIL_GAME_ANNOUNCEMENT = "게임 성공 여부: 실패";
+    private static final String TRY_COUNT_ANNOUNCEMENT = "총 시도한 횟수: %d";
 
     public void announceStartGame() {
         System.out.println(START_GAME_ANNOUNCEMENT);
@@ -28,7 +29,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(boolean isSuccess, int tryCount) {
+        if (isSuccess) {
+            System.out.println(SUCCESS_GAME_ANNOUNCEMENT);
+        }
+        if (!isSuccess) {
+            System.out.println(FAIL_GAME_ANNOUNCEMENT);
+        }
+        System.out.printf(TRY_COUNT_ANNOUNCEMENT, tryCount);
     }
 
     public void announceEndGame(boolean isSuccess) {
