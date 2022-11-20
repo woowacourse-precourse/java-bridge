@@ -1,7 +1,7 @@
 package bridge;
 
 /**
- * 사용자로부터 입력을 받는 역할을 한다.
+ * 사용자 입력값의 예외 해당 여부를 확인하는 클래스
  */
 public class Validation {
 
@@ -17,9 +17,6 @@ public class Validation {
     private final static int LOWERBOUND = 3;
     private final static int UPPERBOUND = 20;
 
-    /**
-     * Validation 메소드의 생성자, 호출될 때 전달 받은 inputType에 따라 validate함
-     */
     public Validation(String lineInput, InputType inputType) {
         checkLengthLimit(lineInput, inputType);
         if (inputType == InputType.BRIDGELENGTH) {
@@ -28,7 +25,10 @@ public class Validation {
         }
         validateCode(lineInput, inputType);
     }
-
+    
+    /**
+     * 모든 입력의 입력 길이 예외를 검토하는 메소드
+     */
     private void checkLengthLimit(String lineInput, InputType inputType) {
         if (lineInput.length() <= inputType.lengthLimit) return;
         if (inputType == InputType.BRIDGELENGTH)
@@ -42,6 +42,9 @@ public class Validation {
         isInValidRange(lineInput);
     }
 
+    /**
+     * 숫자 외 다른 입력이 주어졌는지 확인하는 메소드(다리 길이 입력: 예외 2)
+     */
     private void isInputNumber(String lineInput) {
         for (int index = 0; index < lineInput.length(); index++) {
             if (lineInput.charAt(index) < '0' || lineInput.charAt(index) > '9')
@@ -49,11 +52,17 @@ public class Validation {
         }
     }
 
+    /**
+     * 십의 자리에 0이 있는지 확인하는 메소드(다리 길이 입력: 예외 3)
+     */
     private void isTenthsPlaceZero(String lineInput) {
         if (lineInput.charAt(0) == '0')
             throw new IllegalArgumentException("[ERROR] 십의 자리가 0일 수 없습니다.");
     }
 
+    /**
+     * 입력된 자연수가 3 미만이거나 20을 초과하는지 확인하는 메소드(다리 길이 입력: 예외 4)
+     */
     private void isInValidRange(String lineInput) {
         int number = Integer.parseInt(lineInput);
         if (number < LOWERBOUND || number > UPPERBOUND)
@@ -62,6 +71,9 @@ public class Validation {
                             LOWERBOUND, UPPERBOUND));
     }
 
+    /**
+     * 입력이 이동 명령 또는 재시작/종료 코드에 부합하는 입력인지 확인하는 메소드(코드 입력: 예외 2)
+     */
     private void validateCode(String lineInput, InputType inputType) {
         String correctInput = getCorrectInput(inputType);
         if (correctInput.contains(lineInput)) return;
