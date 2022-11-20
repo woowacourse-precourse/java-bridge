@@ -25,6 +25,15 @@ public class Result {
         }
     }
 
+    // 첫 라운드 이후의 결과
+    public void convertResultAfterFirstRound(String userInput, List<String> bridge) {
+        if (compareBridgeRootToUserInput(userInput, bridge)) {
+            convertCorrectResultAfterFirstRound(userInput);
+        } else if (!compareBridgeRootToUserInput(userInput, bridge)) {
+            convertWrongResultAfterFirstRound(userInput);
+        }
+    }
+
     // 첫 라운드 이후에 사용자가 맞춘 경우
     public void convertCorrectResultAfterFirstRound(String userInput) {
         if (userInput.equals(Up.getDirection())) {
