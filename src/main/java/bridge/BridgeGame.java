@@ -2,6 +2,7 @@ package bridge;
 
 
 import bridge.data.Direction;
+import bridge.data.GameMark;
 
 import java.util.List;
 
@@ -33,5 +34,14 @@ public class BridgeGame {
     public boolean canMove(String move, List<String> bridge) {
         String cur = bridge.get(position);
         return cur.equals(move);
+    }
+
+    private String createMark(String move, List<String> bridge) {
+        boolean canMove = canMove(move, bridge);
+
+        if (canMove) {
+            return GameMark.O.getMark();
+        }
+        return GameMark.X.getMark();
     }
 }
