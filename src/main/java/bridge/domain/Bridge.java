@@ -15,6 +15,14 @@ public class Bridge {
         return bridge;
     }
 
+    public List<String> copyBridge() {
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < bridge.size(); i++) {
+            list.add(bridge.get(i));
+        }
+        return list;
+    }
+
     @Override
     public String toString() {
         return bridge.toString();
