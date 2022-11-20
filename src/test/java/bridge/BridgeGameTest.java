@@ -21,10 +21,23 @@ class BridgeGameTest {
     BridgeGame bridgeGame;
 
     @BeforeEach
-    void initBridgeGame() {
+    void initTest() {
         bridge = new Bridge(List.of("U", "D", "U", "D"));
         gameStatusOperator = GameStatusOperator.initGameStatusOperator();
         bridgeGame = new BridgeGame(bridge, gameStatusOperator);
+    }
+
+    @DisplayName("게임 초기화 테스트")
+    @Test
+    void initBridgeGame() {
+        BridgeGame bridgeGame = BridgeGame.initBridgeGame(3);
+        Integer currentPosition = gameStatusOperator.getCurrentPosition();
+        GameStatus gameStatus = gameStatusOperator.getGameStatus();
+        Integer numberOfTry = gameStatusOperator.getNumberOfTry();
+
+        assertThat(currentPosition).isEqualTo(-1);
+        assertThat(gameStatus).isEqualTo(gameStatus.START);
+        assertThat(numberOfTry).isEqualTo(0);
     }
 
     @DisplayName("다리를 건너기 시작할 때 플레이어가 건널 수 없는 칸을 선택한 경우 FAIL을 반환한다.")
