@@ -60,7 +60,7 @@ class BridgeGameTest {
 
     @DisplayName("재시작으로 Q를 입력하면 값을 초기화하지 않는다.")
     @Test
-    void BridgeGameTest() {
+    void 재시작으로_Q를_입력하면_값을_초기화하지_않는다() {
         // when
         bridgeGame.move("D");
         bridgeGame.retry("Q");
@@ -74,5 +74,15 @@ class BridgeGameTest {
     void 재시작으로_잘못된_값을_입력하면_예외가_발생한다() {
         assertThatThrownBy(() -> bridgeGame.retry("A"))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("재시작하면 게임 시도 횟수가 증가한다.")
+    @Test
+    void 재시작하면_게임_시도_횟수가_증가한다() {
+        // when
+        bridgeGame.retry("R");
+
+        // then
+        assertThat(bridgeGame.getTotalCount()).isEqualTo(2);
     }
 }
