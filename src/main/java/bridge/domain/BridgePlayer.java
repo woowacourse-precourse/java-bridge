@@ -2,6 +2,7 @@ package bridge.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class BridgePlayer {
 
@@ -14,6 +15,18 @@ public class BridgePlayer {
     public boolean isLastMoveTypeNotSameAs(List<BridgeMoveType> bridgeMoveTypes) {
         int currentLocation = playerBridge.size() - 1;
         return playerBridge.get(currentLocation) != bridgeMoveTypes.get(currentLocation);
+    }
+
+    public boolean isAllMoveTypeSameAs(List<BridgeMoveType> bridgeMoveTypes) {
+        if (playerBridge.size() != bridgeMoveTypes.size()) {
+            return false;
+        }
+        return IntStream.range(0, playerBridge.size())
+                .allMatch(currentLocation -> {
+                    BridgeMoveType playerMoveType = playerBridge.get(currentLocation);
+                    BridgeMoveType answerMoveType = bridgeMoveTypes.get(currentLocation);
+                    return playerMoveType.isSame(answerMoveType);
+                });
     }
 
     public void moveTo(BridgeMoveType moveType) {
