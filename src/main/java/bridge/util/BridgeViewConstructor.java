@@ -32,7 +32,14 @@ public class BridgeViewConstructor {
         appendWithO(lowerBridge);
     }
 
-    private void appendWrongAnswer(){
+    private void appendWrongAnswer(String playerIndexed){
+        if(isU(playerIndexed)){
+            appendWithX(upperBridge);
+            appendWithBlank(lowerBridge);
+            return;
+        }
+        appendWithBlank(upperBridge);
+        appendWithX(lowerBridge);
     }
 
     private boolean isU(String playerIndexed){
