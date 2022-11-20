@@ -58,7 +58,7 @@ public class BridgeGame {
         return bridgeGameResult.getIsMatched();
     }
 
-    private BridgeGameResult computeGameResult(Moving moving, String bridgeRoom) {
+    public BridgeGameResult computeGameResult(Moving moving, String bridgeRoom) {
         boolean isMatched = compare(moving.getMoving(), bridgeRoom);
         return createBridgeGameResult(isMatched, moving.getMoving());
     }
