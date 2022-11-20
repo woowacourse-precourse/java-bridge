@@ -1,9 +1,7 @@
 package bridge;
 
 import java.util.List;
-import java.util.function.Predicate;
 
-import static bridge.Direction.*;
 import static bridge.ErrorMessage.INCORRECT_BRIDGE_DIRECTION;
 
 public class Bridge {
