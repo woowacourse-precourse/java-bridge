@@ -44,6 +44,6 @@ public class OutputView {
 	}
 
 	public int printTotalGameCount() {
-		return 3;
+		return bridgeStatus.getTotalGameCount();
 	}
 }

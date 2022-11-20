@@ -144,4 +144,12 @@ public class BridgeStatus {
 		boolean isFailLowerCell = getLowerCell().contains("X");
 		return !isFailUpperCell && !isFailLowerCell;
 	}
+
+	public int getTotalGameCount() {
+		int totalGameCount = 0;
+		if (phase > 0) {
+			totalGameCount = phase;
+		}
+		return totalGameCount;
+	}
 }
