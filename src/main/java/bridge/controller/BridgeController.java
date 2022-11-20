@@ -22,7 +22,7 @@ public class BridgeController {
         this.bridgeMaker = bridgeMaker;
     }
 
-    public void initBridge() {
+    public void initBridgeGame() {
         int bridgeSize = inputView.readBridgeSize();
 
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
@@ -31,14 +31,12 @@ public class BridgeController {
     }
 
     public void play() {
-        initBridge();
+        initBridgeGame();
 
-        try {
-            while(true) {
-                processGame();
-            }
-        } catch (IllegalArgumentException e) {
-            throw e;
+        StageResult stageResult = StageResult.PASS;
+
+        while (stageResult == StageResult.PASS) {
+            processGame();
         }
     }
 
@@ -70,14 +68,16 @@ public class BridgeController {
     public void fail() {
         String userInput = inputView.readGameCommand();
 
-        if(userInput == Unit.RETRY.getCommand()) {
+        if(userInput.equals(Unit.RETRY.getCommand())) {
             bridgeGame.retry();
         }
 
-        if(userInput == Unit.QUITE.getCommand()) {
+        if(userInput.equals(Unit.QUITE.getCommand())) {
             throw new IllegalArgumentException();
         }
     }
 
-    public void success() {}
+    public void success() {
+        throw new IllegalArgumentException();
+    }
 }

@@ -1,5 +1,5 @@
 package bridge.domain;
 
 public enum StageResult {
-    PASS, FAIL, SUCCESS
+    PASS, FAIL, SUCCESS, RETRY, QUIT
 }

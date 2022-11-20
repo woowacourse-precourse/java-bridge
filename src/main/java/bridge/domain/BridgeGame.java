@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.validator.Unit;
+
 import java.util.List;
 
 /**
@@ -44,12 +46,35 @@ public class BridgeGame {
 
         StageResult stageResult = compareInputWithBridge(userInput);
 
+        processResult(stageResult);
+
         return stageResult;
+    }
+
+    //
+    public void processResult(StageResult result) {
+        if(result == StageResult.PASS) {
+            pass();
+        }
+        if(result == StageResult.FAIL) {
+            return;
+        }
+        if(result == StageResult.SUCCESS) {
+            return;
+        }
     }
 
     public void pass() {
         BridgeStage.nextStage();
     }
+
+
+    public void success() {
+        throw new IllegalArgumentException();
+    }
+    //
+
+
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드

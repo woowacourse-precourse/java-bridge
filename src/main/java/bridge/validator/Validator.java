@@ -28,7 +28,7 @@ public class Validator {
         }
     }
     public void validateGameCommand(String userInput) {
-        if((!userInput.equals(Unit.RETRY.getCommand()) || userInput.equals(Unit.QUITE.getCommand()))) {
+        if(!(userInput.equals(Unit.RETRY.getCommand()) || userInput.equals(Unit.QUITE.getCommand()))) {
             throw new IllegalArgumentException(Messages.ERROR_GAME_COMMAND.getMessage());
         }
     }
