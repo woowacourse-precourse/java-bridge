@@ -12,7 +12,7 @@ public class InputView {
         int number;
         while (true) {
             try {
-                number = tryInput();
+                number = tryNumInput();
                 break;
             } catch (Exception e) {
                 throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
@@ -21,19 +21,19 @@ public class InputView {
         return number;
     }
 
-    public static int tryInput(){
+    public static int tryNumInput() {
         int number;
         try {
             String input = camp.nextstep.edu.missionutils.Console.readLine();
             number = Integer.parseInt(input);
-            validate(number);
-        }catch (Exception e){
+            validateNumber(number);
+        } catch (Exception e) {
             throw new IllegalArgumentException();
         }
         return number;
     }
 
-    public static void validate(int number) {
+    public static void validateNumber(int number) {
         if (number < 3 || 20 < number) {
             throw new IllegalArgumentException();
         }
@@ -43,7 +43,33 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String input;
+        while (true) {
+            try {
+                input = tryForwardInput();
+                break;
+            } catch (Exception e) {
+                throw new IllegalArgumentException("[ERROR] U 또는 D만 입력해야 합니다.");
+            }
+        }
+        return input;
+    }
+
+    public static String tryForwardInput() {
+        String input;
+        try {
+            input = camp.nextstep.edu.missionutils.Console.readLine();
+            validateForward(input);
+        } catch (Exception e) {
+            throw new IllegalArgumentException();
+        }
+        return input;
+    }
+
+    public static void validateForward(String forward) {
+        if (forward != "U" && forward != "D") {
+            throw new IllegalArgumentException();
+        }
     }
 
     /**
