@@ -11,13 +11,15 @@ public class BridgeViewConstructor {
     private static final String WRONG_BRIDGE = " X";
     private static final String BRIDGE_CONNECTOR = " |";
     private static final String BRACKET_STARTED = "[";
-    private static final String BRACKET_FINISHER = "]";
+    private static final String BRACKET_FINISHER = " ]";
 
     private StringBuilder upperBridge = new StringBuilder();
     private StringBuilder lowerBridge = new StringBuilder();
 
     public String constructBridge(List<String> player, List<String> bridge){
-        return null;
+        constructBeforeLast(player);
+        constructLast(player, bridge);
+        return makeBracket();
     }
 
     private void constructBeforeLast(List<String> player){
@@ -67,7 +69,7 @@ public class BridgeViewConstructor {
     }
 
     private void appendWithO(StringBuilder bridge){
-        bridge.append(WRONG_BRIDGE).append(BRIDGE_CONNECTOR);
+        bridge.append(RIGHT_BRIDGE).append(BRIDGE_CONNECTOR);
     }
 
     private void appendWithBlank(StringBuilder bridge){
@@ -76,12 +78,16 @@ public class BridgeViewConstructor {
     }
 
     private void appendWithX(StringBuilder bridge){
-        bridge.append(RIGHT_BRIDGE).append(BRIDGE_CONNECTOR);
+        bridge.append(WRONG_BRIDGE).append(BRIDGE_CONNECTOR);
     }
 
     private String makeBracket(){
-        String upper = BRACKET_STARTED + upperBridge.toString() + BRACKET_FINISHER;
-        String lower = BRACKET_STARTED + lowerBridge.toString() + BRACKET_FINISHER;
+        String upper = BRACKET_STARTED + deleteLastDivider(upperBridge) + BRACKET_FINISHER;
+        String lower = BRACKET_STARTED + deleteLastDivider(lowerBridge) + BRACKET_FINISHER;
         return upper + "\n" + lower;
+    }
+
+    private String deleteLastDivider(StringBuilder stringBuilder){
+        return stringBuilder.substring(0, stringBuilder.toString().length()-2);
     }
 }

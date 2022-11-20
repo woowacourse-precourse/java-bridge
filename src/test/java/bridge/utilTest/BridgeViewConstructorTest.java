@@ -22,6 +22,6 @@ public class BridgeViewConstructorTest {
     void constructBridgeTest(){
         assertThat(bridgeViewConstructor
                 .constructBridge(List.of("U", "D", "U"), List.of("U", "D", "U")))
-                .isEqualTo("[ O |   | O ]\n[   | O |   }");
+                .isEqualTo("[ O |   | O ]\n[   | O |   ]");
     }
 }
