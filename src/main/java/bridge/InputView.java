@@ -2,6 +2,8 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.regex.Pattern;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -38,7 +40,10 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        return null;
+        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        String input = Console.readLine();
+        isAvailableCommand(input);
+        return input;
     }
 
     public void isAvailableNumber(int bridgeSize) {
@@ -48,8 +53,16 @@ public class InputView {
     }
 
     public void isAvailableWord(String word) {
-        if (!word.equals("U") && !word.equals("D")) {
+        String pattern = "[UD]";
+        if (!Pattern.matches(pattern, word)) {
             throw new IllegalArgumentException("[ERROR] U와 D만 입력 가능합니다");
+        }
+    }
+
+    public void isAvailableCommand(String input) {
+        String pattern = "[RQ]";
+        if (!Pattern.matches(pattern, input)) {
+            throw new IllegalArgumentException("[ERROR] R과 Q만 입력 가능합니다.");
         }
     }
 }

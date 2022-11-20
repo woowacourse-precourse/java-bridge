@@ -9,6 +9,15 @@ import java.util.Random;
  */
 public class BridgeMaker {
 
+    private static BridgeMaker bridgeMaker;
+     List<String> bridge;
+
+    public static BridgeMaker getInstance() {
+        if (bridgeMaker == null) {
+            bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        }
+        return bridgeMaker;
+    }
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -21,8 +30,8 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<Integer> numList = bridgePlace(size);
-        List<String> bridgeList = bridgeConvert(numList);
-        return bridgeList;
+        bridge = bridgeConvert(numList);
+        return bridge;
     }
 
     public List<Integer> bridgePlace(int size) {

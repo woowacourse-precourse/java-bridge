@@ -31,6 +31,15 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public String retry() {
+        String str = "";
+        String result = inputView.readGameCommand();
+        if (result.equals("R")) {
+            return "retry";
+        }
+        if (result.equals("Q")) {
+            return "fail";
+        }
+        return str;
     }
 }
