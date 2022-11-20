@@ -5,41 +5,39 @@
 ### Model
 
 #### BridgeGame
-- [ ] 다리를 생성하는 함수 setBridge()
-- [ ] 사용자 위치를 이동시키는 함수 move()
-- [ ] 사용자의 이동이 가능한지 체크하는 함수 checkMove()
+- [x] 다리를 생성하는 함수 setBridge()
+- [x] 사용자 위치를 이동시키는 함수 move()
+- [x] 사용자의 이동이 가능한지 체크하는 함수 checkMove()
 - [ ] 게임을 재시작하는 함수 retry()
 
 #### BridgeMaker
-- [ ] 다리를 만드는 함수 makeBridge()
+- [x] 다리를 만드는 함수 makeBridge()
 
 #### BridgeRandomNumberGenerator
-- [ ] 0과 1중 랜덤값을 추출하는 함수 generate()
+- [x] 0과 1중 랜덤값을 추출하는 함수 generate()
 
 ### View
 
 #### InputView
-- [ ] 다리의 길이를 입력하는 함수 readBridgeSize()
-- [ ] 이동할 칸을 입력하는 함수 readMoving()
+- [x] 다리의 길이를 입력하는 함수 readBridgeSize()
+- [x] 이동할 칸을 입력하는 함수 readMoving()
 - [ ] 게임 재시도 여부를 입력하는 함수 readGameCommand()
 - [ ] 에러 메시지를 받아 에러를 발생시키는 함수 generateError()
 
 #### OutputView
-- [ ] 게임 시작을 알리는 함수 printStart()
-- [ ] 다리를 출력하는 함수 printMap()
+- [x] 게임 시작을 알리는 함수 printStart()
+- [x] 다리를 출력하는 함수 printMap()
 - [ ] 결과를 출력하는 함수 printResult()
 
 ### Controller
 
 #### BridgeController
 ##### input
-- [ ] 다리를 생성하는 함수 setBridgeController()
-- [ ] 사용자를 이동시키는 컨트롤러 moveController() 
-- [ ] 게임을 재시작하는 컨트롤러 retryController()
+- [x] 다리를 생성하는 함수 setBridgeController()
+- [x] 사용자를 이동시키는 컨트롤러 moveController() 
+
 #### output
-- [ ] 게임 시작을 알리는 컨트롤러 startController()
-- [ ] 다리를 출력하는 컨트롤러 printMapController()
-- [ ] 결과를 출력하는 컨트롤러 printResultController()
+- [x] 게임 시작을 알리는 컨트롤러 startController()
 
 ## 예외상황
 #### 다리길이 입력

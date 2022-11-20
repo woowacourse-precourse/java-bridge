@@ -1,44 +1,54 @@
 package bridge.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
+enum GameState {
+    Over,
+    Playing,
+    Done
+}
+
 public class BridgeGame {
     private BridgeMaker bridgeMaker;
     private List<String> bridge;
-    private int tryTime;
+    private List<String> bridgeState;
+    private String userState;
+    private int moveTime;
+
     public BridgeGame() {
         bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-        tryTime = 0;
-    }
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move(String move) {
-    }
-    private void checkMove() {
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry() {
+    public List<String> move(String move) {
+        moveTime++;
+        if (!checkMove(move)) {
+            userState = String.valueOf(GameState.Over);
+            move = move + "X";
+        } else if (moveTime == bridge.size()) {
+            userState = String.valueOf(GameState.Done);
+        }
+        bridgeState.add(move);
+        return bridgeState;
     }
 
+    private boolean checkMove(String move) {
+        if (move.equals(bridge.get(moveTime - 1))) {
+            return true;
+        }
+        return false;
+    }
     public void setBridge(int size) {
-        this.bridge = bridgeMaker.makeBridge(size);
+        moveTime = 0;
+        bridge = bridgeMaker.makeBridge(size);
+        userState = String.valueOf(GameState.Playing);
+        bridgeState = new ArrayList<String>();
+        System.out.println(bridge);
     }
 
-    public List<String> getBridge() {
-        return bridge;
+    public String getUserState() {
+        return userState;
     }
-    public int getTryTime() {
-        return tryTime;
+    public void retry() {
     }
 }

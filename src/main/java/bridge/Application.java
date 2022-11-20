@@ -6,12 +6,8 @@ public class Application {
 
     public static void main(String[] args) {
         BridgeController bridgeController = new BridgeController();
-        try {
-            bridgeController.startController();
-            bridgeController.setBridgeController();
-            bridgeController.moveController();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        bridgeController.startController();
+        bridgeController.setBridgeController();
+        bridgeController.moveController();
     }
 }

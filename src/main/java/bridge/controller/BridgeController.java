@@ -4,6 +4,8 @@ import bridge.model.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
+import java.util.List;
+
 public class BridgeController {
     private OutputView outputView;
     private InputView inputView;
@@ -13,18 +15,28 @@ public class BridgeController {
         outputView = new OutputView();
         bridgeGame = new BridgeGame();
     }
+    public void startController() {
+        outputView.printStart();
+    }
     public void setBridgeController() {
         int size = inputView.readBridgeSize();
         bridgeGame.setBridge(size);
     }
     public void moveController() {
         String move = inputView.readMoving();
-        bridgeGame.move(move);
+        List<String> bridge = bridgeGame.move(move);
+        String userState = bridgeGame.getUserState();
+        outputView.printMap(bridge);
+        System.out.println(userState);
+        if (userState.equals("Over")) {
+            retry();
+        } else if (userState.equals("Playing")) {
+            moveController();
+        }
     }
-    public void retryController() {}
-    public void startController() {
-        outputView.printStart();
+    public void retry() {
+        inputView.readGameCommand();
     }
-    public void printMapController() {}
-    public void printResultController() {}
+
+    public void printResult() {}
 }

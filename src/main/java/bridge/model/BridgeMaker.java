@@ -20,15 +20,15 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<String>();
+        String move;
         while (size-- > 0) {
+            move = "U";
             int randomNum = this.bridgeNumberGenerator.generate();
-            bridge.add(Integer.toString(randomNum) + Integer.toString(toggle(randomNum)));
+            if (randomNum == 0) {
+                move = "D";
+            }
+            bridge.add(move);
         }
         return bridge;
-    }
-
-    private int toggle(int num) {
-        if (num == 1) return 0;
-        return 1;
     }
 }
