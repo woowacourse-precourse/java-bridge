@@ -16,7 +16,13 @@ public class BridgeGame {
      */
     public MovingResult move(InputView inputView, List<String> bridge, int next) {
         String moving =  inputView.readMoving();
-        return moveBridge(bridge.get(next), moving);
+        String target = bridge.get(next);
+
+        if (target.equals(moving)) {
+            return new MovingResult(moving, "O");
+        }
+
+        return new MovingResult(moving, "X");
     }
 
     /**
@@ -24,15 +30,8 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
-    }
+    public void retry(InputView inputView) {
 
-    private MovingResult moveBridge(String brick, String moving) {
-        if (brick.equals(moving)) {
-            return new MovingResult(moving, "O");
-        }
-
-        return new MovingResult(moving, "X");
     }
 
 }
