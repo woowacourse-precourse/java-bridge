@@ -13,11 +13,11 @@ import org.junit.jupiter.api.Test;
 
 public class DomainTest {
 
-    private static BridgeGame bridgeGame;
+    private static BridgeGame bridgeGame = new BridgeGame(5);;
+
     @DisplayName("move 기능 테스트")
     @Test
     void moveTest() {
-        bridgeGame = new BridgeGame(5);
         List<String> realBridge = bridgeGame.getRealBridge();
 
         for (int i = 0; i < 5; i++) {
@@ -36,10 +36,18 @@ public class DomainTest {
         for (int i = 0; i < 5; i++) {
             if (realBridge.get(i).equals("U")) {
                 assertThat(upper.get(i).equals("O"));
-            }
-            else {
+            } else {
                 assertThat(under.get(i).equals("O"));
             }
         }
+    }
+
+    @DisplayName("retry 기능 테스트")
+    @Test
+    void retryTest() {
+        bridgeGame.retry();
+        assertThat(bridgeGame.getCurrentLocation() == -1);
+        assertThat(bridgeGame.getMoveStatus().get("U").size() == 0);
+        assertThat(bridgeGame.getRestartNumber() == 2);
     }
 }
