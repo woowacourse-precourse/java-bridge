@@ -62,6 +62,17 @@ public class Application {
         outputView.printSFAndNumber(passFail, number);
     }
 
+    public static void bridgeMovement() {
+        outputView.printMovingInputBox();
+        String move = inputView.readMoving();
+        if (!bridgeGame.rightMove(move, bridgeShape.get(topBridge.size()))) {
+            bridgeGame.failure(topBridge, bottomBridge, move);
+            passFail = false;
+            return;
+        }
+        bridgeGame.move(topBridge, bottomBridge, move);
+    }
+
     public static void setError(Error errorMessage) {
         error = errorMessage;
     }
