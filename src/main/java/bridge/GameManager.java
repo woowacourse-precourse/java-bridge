@@ -1,7 +1,6 @@
 package bridge;
 
-import static bridge.InputView.readBridgeSize;
-import static bridge.InputView.readMoving;
+import static bridge.InputView.*;
 import static bridge.OutputView.*;
 
 public class GameManager {
@@ -23,17 +22,17 @@ public class GameManager {
   }
 
   private void gameStart() {
+    int length = getLengthInput();
     do {
-      bridgeGame.gameInit();
-      makeBridgeByLengthInput();
+      bridgeGame.gameInit(length);
       tryMove(); // 시도가 끝날 때 까지 이동
     } while (!checkIsGameFinish());
     // 최종 게임 결과, 시도횟수 출력
   }
 
-  private void makeBridgeByLengthInput() {
+  private int getLengthInput(){
     printLengthInputMessage();
-    bridgeGame.makeBridge(readBridgeSize());
+    return readBridgeSize();
   }
 
   private void tryMove() {
@@ -49,16 +48,17 @@ public class GameManager {
   }
 
   private boolean checkIsGameFinish() {
-
     if (!bridgeGame.isTrySuccess()) { // 시도 실패
-      return checkRetryByInput(); // 재시도 여부 질문
+      return !checkRetryByInput(); // 재시도 여부 질문
     }
     return true;
   }
 
   private boolean checkRetryByInput() {
     printCheckRetryInputMessage();
-    // 입력받아서 재시도할 것인지 안할 것인지 판단
-    return true;
+    if (readGameCommand().equals(GameCommand.RETRY.getCommand())) {
+      return true;
+    }
+    return false;
   }
 }
