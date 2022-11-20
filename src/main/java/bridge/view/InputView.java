@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.game.BridgeGame;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.regex.Matcher;
@@ -14,6 +15,10 @@ public class InputView {
     private static final String BRIDGE_SIZE_REGEX = "^\\d*$";
     private static final int MIN_BRIDGE_SIZE = 3;
     private static final int MAX_BRIDGE_SIZE = 20;
+
+    // D 또는 U
+    private static final String USER_MOVE_DIRECTION_REGEX = "^[" + BridgeGame.BridgeShape.DOWN.getStringValue() + "|" + BridgeGame.BridgeShape.UP.getStringValue() + "]$";
+
 
     /**
      * 다리의 길이를 입력받는다.
@@ -48,9 +53,25 @@ public class InputView {
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
+     *
+     * @return 사용자가 입력한 이동할 칸
      */
     public static String readMoving() {
-        return null;
+        String userMoveDirection = Console.readLine();
+        if (!checkUserMoveDirection_regex(userMoveDirection)) {
+            throw new IllegalArgumentException();
+        }
+        return userMoveDirection;
+    }
+
+    /**
+     * @param userMoveDirection 사용자가 입력한 이동할 칸
+     * @return 입력이 "U" 또는 "D"라면 true / 그 이외의 값이라면 false
+     */
+    private static boolean checkUserMoveDirection_regex(String userMoveDirection) {
+        Pattern pattern = Pattern.compile(USER_MOVE_DIRECTION_REGEX);
+        Matcher matcher = pattern.matcher(userMoveDirection);
+        return matcher.matches();
     }
 
     /**
