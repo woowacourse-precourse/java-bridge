@@ -13,28 +13,33 @@ public class Application {
 
     public static void main(String[] args) {
         System.out.println("다리 건너기 게임을 시작합니다.");
-        GetBridge();
-        GameStart();
+        getBridge();
+        gameStart();
     }
 
-    private static void GetBridge() {
-        GetBridgeSize();
+    private static void getBridge() {
+        getBridgeSize();
         bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
-    private static void GetBridgeSize() {
+    private static void getBridgeSize() {
         bridgeSize = inputview.readBridgeSize();
     }
 
-    private static void GameStart() {
+    private static void gameStart() {
         playerMove = new ArrayList<>();
-        while(true){
-            String move = inputview.readMoving();
-            CheckMove(move);
+        boolean success = true;
+        while(success){
+            bridgeGame.move();
+            success = CheckSuccess();
         }
     }
 
-    private static void CheckMove(String move) {
-        playerMove.add(move);
+    private static boolean CheckSuccess() {
+        int index = playerMove.size() - 1;
+        String lastMove = playerMove.get(index);
+        if(bridge.get(index).equals(lastMove))
+            return true;
+        return false;
     }
 }
