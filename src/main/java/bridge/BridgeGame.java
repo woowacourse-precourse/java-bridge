@@ -42,31 +42,9 @@ public class BridgeGame {
     }
 
     /**
-     * 게임 한 라운드가 끝난 뒤 game clear 체크 및 game retry를 한다.
-     * @param bridge
-     * @return 재시작 여부
-     */
-    public boolean gameover(List<String> bridge) {
-        if(gameClear(bridge)) {
-            return false;
-        }
-
-        if(inputView.readGameCommand()) {
-            retry();
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      */
-    private void retry() {
+    public void retry() {
         current_position = 0;
-    }
-
-    private boolean gameClear(List<String> bridge) {
-        return current_position == bridge.size();
     }
 }

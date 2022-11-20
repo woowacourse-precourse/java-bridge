@@ -18,7 +18,7 @@ public class GameSimulator {
         do {
             trial++;
             userRoute = startGameRound(bridge);
-        } while (bridgeGame.gameover(bridge));
+        } while (gameover(bridge));
         quitGame(trial, bridge, userRoute);
     }
 
@@ -45,6 +45,24 @@ public class GameSimulator {
         }
 
         return userRoute;
+    }
+
+    /**
+     * 게임 한 라운드가 끝난 뒤 game clear 체크 및 game retry를 한다.
+     * @param bridge
+     * @return 재시작 여부
+     */
+    private boolean gameover(List<String> bridge) {
+        if(bridgeGame.checkCrossingBridge(bridge)) {
+            return false;
+        }
+
+        if(inputView.readGameCommand()) {
+            bridgeGame.retry();
+            return true;
+        }
+
+        return false;
     }
 
     private void quitGame(int trial, List<String> bridge, List<String> userRoute) {
