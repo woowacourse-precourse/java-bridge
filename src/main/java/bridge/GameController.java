@@ -20,15 +20,11 @@ public class GameController {
         BridgeGameStatus status = new BridgeGameStatus(true);
         while (status.isRunning()) {
             Bridge bridge = this.generateBridge();
-
-            BridgeGame bridgeGame = new BridgeGame(bridge);
-            BridgeGameReferee referee = new BridgeGameReferee();
+            BridgeGame bridgeGame = new BridgeGame(bridge, new BridgeGameReferee());
 
             Result result = new Result();
-
             for (int i = 0; i < bridge.getBridgeSize(); i++) {
-                MoveDirection direction = this.readMoving();
-                result = referee.updateResult(result, direction, bridgeGame.move(direction, i));
+                bridgeGame.move(result, this.readMoving(), i);
                 if (result.hasWrong()) {
                     status.changeToGameOver();
                     break;
