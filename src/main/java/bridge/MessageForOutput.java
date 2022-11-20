@@ -11,8 +11,18 @@ public enum MessageForOutput {
     GAME_SUCCESS_STATUS("게임 성공 여부: "),
     GAME_SUCCESS("성공"),
     GAME_FAIL("실패"),
-    TRY_COUNT("총 시도한 횟수: ")
-    ;
+    TRY_COUNT("총 시도한 횟수: "),
+    GAME_START("다리 건너기 게임을 시작합니다."),
+    REQUIRE_SIZE("다리의 길이를 입력해주세요."),
+    REQUIRE_WHERE_TO_MOVE("이동할 칸을 선택해주세요. "
+            + "(위: " + BridgeState.UP.getBridgeMark()
+            + ", 아래: " + BridgeState.DOWN.getBridgeMark() + ")"
+    ),
+    REQUIRE_WANT_TO_RETRY("게임을 다시 시도할지 여부를 입력해주세요. "
+            + "(재시도: "+GameState.RETRY_COMMAND
+            + ", 종료: " +GameState.QUIT_COMMAND + ")"
+    );
+
 
     final String message;
     MessageForOutput(String message) {

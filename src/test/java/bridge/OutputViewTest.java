@@ -27,7 +27,7 @@ public class OutputViewTest {
         List<String> bridgeTrack = List.of("U", "D", "D");
 
         outputView.printMap(bridgeTrack, answerBridge);
-        assertThat(out.toString()).isEqualTo("[ O |   |   ]\n[   | O | O ]\n");
+        assertThat(out.toString()).isEqualTo("[ O |   |   ]\n[   | O | O ]\n\n");
     }
     @DisplayName("UDD로 이루어진 다리를 UU로 실패한 경우")
     @Test
@@ -35,7 +35,7 @@ public class OutputViewTest {
         List<String> answerBridge = List.of("U", "D", "D");
         List<String> bridgeTrack = List.of("U", "U");
         outputView.printMap(bridgeTrack, answerBridge);
-        assertThat(out.toString()).isEqualTo("[ O | X ]\n[   |   ]\n");
+        assertThat(out.toString()).isEqualTo("[ O | X ]\n[   |   ]\n\n");
     }
     @DisplayName("UDD로 이루어진 다리를 2회 시도하여 UDD로 성공한 경우의 결과 출력")
     @Test

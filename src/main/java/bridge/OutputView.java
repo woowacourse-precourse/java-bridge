@@ -49,6 +49,7 @@ public class OutputView {
             printEnding();
             System.out.print("\n");
         }
+        System.out.print("\n");
     }
     private void printStarting() {
         System.out.print(MAP_STARTING.getMessage());
@@ -78,7 +79,6 @@ public class OutputView {
     public void printResult(List<String> bridgeTrack, List<String> answerBridge, int tryCount) {
         printGameEndingHead();
         printMap(bridgeTrack, answerBridge);
-        System.out.print("\n");
         printGameSuccessStatus(bridgeTrack, answerBridge);
         System.out.print("\n");
         printTryCount(tryCount);
