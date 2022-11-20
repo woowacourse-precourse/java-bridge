@@ -40,7 +40,8 @@
 
 ### 브릿지 게임 진행 - ClassName : BridgeGame
 - [x] 이동하기 - `#move()`
-- [ ] 게임을 재시도하는 경우 - `#retry()`
+- [x] 게임을 재시도하는 경우 - `#retry()`
+- [ ] 재시도 횟수 반환 - `#getAttempts()`
 
 ---
 
