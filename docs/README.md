@@ -2,7 +2,7 @@
 
 # 기능
 
-    1. 게임 시작 문구 출력 기능 / OutputView
+    1. 게임 시작 문구 출력 기능 / Main
     2. 다리 길이 입력받는 기능 / InputView
     3. 입력 길이만큼 다리 리스트를 생성하는 기능 / BridgeMaker
     4. 다리에 이동가능여부 설정하는 기능 / BridgeMaker
@@ -10,7 +10,7 @@
     6. 플레이어를 이동시키는 기능 / BridgeGame
     7. 현재까지 이동한 다리를 출력하는 기능 / OutputView
     8. 게임 종료 여부 판단하는 기능 / BridgeGame
-    9. 게임 종료 문구 출력 기능 / OutputView
+    9. 게임 종료 문구 및 결과 출력 기능 / OutputView
     10. 게임 재시작/종료 여부 입력받는 기능 / BridgeGame
 
 # 예외처리
