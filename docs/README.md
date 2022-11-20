@@ -110,6 +110,7 @@ D
 - [x] false이면, 예외 던짐
 
 ### readScopeOfBridgeSizeOfNumberException
+- [ ] 매개변수를 Integer타입으로 형변환하여 size에 저장
 - [ ] 매개변수가 scopeOfbrideSizeRegularExpression에 들어맞는지, 확인
 - [ ] false이면, 예외 던짐
 
