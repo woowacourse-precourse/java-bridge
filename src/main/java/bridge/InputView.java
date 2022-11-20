@@ -8,6 +8,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     private static final String NUMBER_REGEX = "^[0-9]*$";
+    private static final String CHARACTER_REGEX = "^[a-zA-Z]*$";
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     /**
@@ -24,7 +25,10 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String moving = Console.readLine();
+
+        validateMoving(moving);
+        return moving;
     }
 
     /**
@@ -37,9 +41,16 @@ public class InputView {
     public void validateBridgeSize(final String bridgeSize) {
         final int parsedBridgeSize = Integer.parseInt(bridgeSize);
 
+        validateEmptyString(bridgeSize);
         validateNumber(bridgeSize);
         validateInteger(parsedBridgeSize);
         validateRange(parsedBridgeSize);
+    }
+
+    public void validateEmptyString(final String text) {
+        if (text.length() == 0) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + "입력된 값이 없습니다.");
+        }
     }
 
     public void validateNumber(final String text) {
@@ -63,6 +74,31 @@ public class InputView {
         }
         if (bridgeSize < 3) {
             throw new IllegalArgumentException(ERROR_MESSAGE + "3 보다 작은 수를 입력할 수 없습니다.");
+        }
+    }
+
+    public void validateMoving(final String moving) {
+        validateEmptyString(moving);
+        validateCharacter(moving);
+        validateDuplicatedCharacter(moving);
+        validateCommand(moving);
+    }
+
+    public void validateCharacter(String text) {
+        if (!text.matches(CHARACTER_REGEX)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + "영문자를 입력해야 합니다.");
+        }
+    }
+
+    public void validateDuplicatedCharacter(String text) {
+        if (text.length() > 1) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + "너무 많이 입력했습니다.");
+        }
+    }
+
+    public void validateCommand(String moving) {
+        if (!(moving.contains("U") | moving.contains("D"))) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + "U 또는 D가 아닌 문자를 입력했습니다.");
         }
     }
 }
