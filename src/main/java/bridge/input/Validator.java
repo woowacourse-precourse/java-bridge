@@ -1,5 +1,6 @@
 package bridge.input;
 
+import bridge.game.Moving;
 import bridge.input.message.Exception;
 
 public class Validator {
@@ -16,7 +17,7 @@ public class Validator {
     }
 
     public static void moving(String moving) {
-        if (!(moving.equals(Command.UP.getLetter()) || moving.equals(Command.DOWN.getLetter()))) {
+        if (!(moving.equals(Moving.UP.getLetter()) || moving.equals(Moving.DOWN.getLetter()))) {
             throw new IllegalArgumentException(Exception.MOVING.getMessage());
         }
     }

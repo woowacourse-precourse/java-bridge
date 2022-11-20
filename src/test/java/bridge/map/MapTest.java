@@ -1,6 +1,7 @@
 package bridge.map;
 
-import bridge.input.Command;
+import bridge.game.Moving;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,8 +16,8 @@ class MapTest {
     @BeforeEach
     void setUp() {
         map = new Map();
-        up = Command.UP.getLetter();
-        down = Command.DOWN.getLetter();
+        up = Moving.UP.getLetter();
+        down = Moving.DOWN.getLetter();
     }
 
     @Test

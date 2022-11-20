@@ -1,6 +1,6 @@
 package bridge.map;
 
-import bridge.input.Command;
+import bridge.game.Moving;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,25 +16,25 @@ public class Map {
     }
 
     public void addCrossing(String moving) {
-        if (moving.equals(Command.UP.getLetter())) {
-            up.add(Status.CROSSING.getLetter());
-            down.add(Status.BLANK.getLetter());
+        if (moving.equals(Moving.UP.getLetter())) {
+            up.add(Crossing.SUCCESS.getLetter());
+            down.add(Crossing.EMPTY.getLetter());
             return;
         }
 
-        up.add(Status.BLANK.getLetter());
-        down.add(Status.CROSSING.getLetter());
+        up.add(Crossing.EMPTY.getLetter());
+        down.add(Crossing.SUCCESS.getLetter());
     }
 
     public void addNoCrossing(String moving) {
-        if (moving.equals(Command.UP.getLetter())) {
-            up.add(Status.NO_CROSSING.getLetter());
-            down.add(Status.BLANK.getLetter());
+        if (moving.equals(Moving.UP.getLetter())) {
+            up.add(Crossing.FAIL.getLetter());
+            down.add(Crossing.EMPTY.getLetter());
             return;
         }
 
-        up.add(Status.BLANK.getLetter());
-        down.add(Status.NO_CROSSING.getLetter());
+        up.add(Crossing.EMPTY.getLetter());
+        down.add(Crossing.FAIL.getLetter());
     }
 
     @Override

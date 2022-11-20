@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.input.Command;
+import bridge.game.Moving;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,15 +17,16 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         while (bridge.size() < size) {
             int number = bridgeNumberGenerator.generate();
-            bridge.add(toCommand(number));
+            bridge.add(toLetter(number));
         }
         return bridge;
     }
 
-    private String toCommand(int number) {
-        if (number == Command.UP.getNumber()) {
-            return Command.UP.getLetter();
+    private String toLetter(int number) {
+        if (number == Moving.UP.getNumber()) {
+            return Moving.UP.getLetter();
         }
-        return Command.DOWN.getLetter();
+
+        return Moving.DOWN.getLetter();
     }
 }

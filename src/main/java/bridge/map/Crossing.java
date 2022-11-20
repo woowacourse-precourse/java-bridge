@@ -1,14 +1,14 @@
 package bridge.map;
 
-public enum Status {
+public enum Crossing {
 
-    CROSSING("O"),
-    NO_CROSSING("X"),
-    BLANK(" ");
+    SUCCESS("O"),
+    FAIL("X"),
+    EMPTY(" ");
 
     private final String letter;
 
-    Status(String letter) {
+    Crossing(String letter) {
         this.letter = letter;
     }
 
