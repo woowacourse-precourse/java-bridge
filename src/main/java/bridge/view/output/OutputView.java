@@ -54,7 +54,7 @@ public class OutputView {
     public void printResult(BridgeGameDto dto) {
         System.out.println("최종 게임 결과");
         printMap(dto);
-        System.out.println("\n최종 게임 여부: " + getSuccessInfo(dto));
+        System.out.println("\n게임 성공 여부: " + getSuccessInfo(dto));
         System.out.println("총 시도한 횟수: " + dto.getCountOfTry());
     }
 
