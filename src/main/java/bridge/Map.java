@@ -7,7 +7,7 @@ import java.util.List;
 public class Map {
     private static final String MAP_BEGINNING = "[ ";
     private static final String MAP_END = " ]";
-    private static final String DIVISION_LINE = "| ";
+    private static final String DIVISION_LINE = " | ";
     private static final String CORRECT = "O";
     private static final String WRONG = "X";
     private static final String BLANK_SPACE = " ";
