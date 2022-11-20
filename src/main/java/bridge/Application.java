@@ -1,7 +1,7 @@
 package bridge;
 
 public class Application {
-    private static InputView inputView = new InputView(new Validation());
+    private static Input inputView = new ProxyInputView(new Validation());
     private static OutputView outputView = new OutputView();
 
     public static void main(String[] args) {
