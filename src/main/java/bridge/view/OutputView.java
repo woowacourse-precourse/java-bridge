@@ -26,8 +26,8 @@ public class OutputView {
         return result;
     }
 
-    public static String printMovindBlockInputPhrase() {
-        return "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    public static void printMovindBlockInputPhrase() {
+        System.out.println(ConstantMessage.MOVING_BLOCK_INPUT_PHRASE);
     }
 
     public static String printMovingBlockInputErrorMessage(String readLine) {
