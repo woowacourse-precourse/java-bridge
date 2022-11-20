@@ -35,7 +35,7 @@
 1. InputView
     - [x] 다리 길이 입력 기능 → readBridgeSize
     - [x] 이동할 칸 입력 기능 → readMoving
-    - [ ] 게임 재시작 입력 기능 →readGameCommand
+    - [x] 게임 재시작 입력 기능 →readGameCommand
 2. OutputView
     - [x] 게임 시작 출력 기능 → printStart
     - [x] 게임 중 현재까지 이동한 다리 출력 기능 → printMap
@@ -83,7 +83,7 @@
 
 - [x] 다리 길이는 3~20 사이의 숫자만 입력 가능
 - [x] 플레이어가 이동할 칸은 U와 D만 입력 가능
-- [ ] 게임 재시작/종료 여부는 R과 D만 입력 가능
+- [ ] 게임 재시작/종료 여부는 R과 Q만 입력 가능
 - [ ] 예외 처리시 “[ERROR]”로 시작하는 에러 문구 출력
     - try catch문 사용시 `Exception` 은 사용 금지
 
