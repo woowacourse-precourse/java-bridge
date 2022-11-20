@@ -31,13 +31,9 @@ public class BridgeGameController {
 
     private void start() {
         outputView.printGameStartMsg();
-        setUp();
-        bridgeGame.start();
-    }
-
-    private void setUp() {
-        play = true;
         bridgeGame = new BridgeGame(makeBridge());
+        bridgeGame.start();
+        play = true;
     }
 
     private void end() {
