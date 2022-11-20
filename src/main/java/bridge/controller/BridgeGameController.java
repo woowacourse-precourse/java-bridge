@@ -21,6 +21,7 @@ public class BridgeGameController {
         outputView.printStartMessage();
         setForGame();
         run();
+        restartGame();
     }
 
     private void setForGame() {
@@ -35,5 +36,9 @@ public class BridgeGameController {
             outputView.printMap(bridgeGame.getResultToString());
         }
         while (bridgeGame.isPlaying());
+    }
+
+    private void restartGame() {
+        inputView.readGameCommand();
     }
 }
