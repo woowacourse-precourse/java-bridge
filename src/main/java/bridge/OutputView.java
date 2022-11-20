@@ -14,7 +14,7 @@ public class OutputView {
     private static final String BRIDGE_NOT_SELECTED = "   ";
     private static final String SEPARATOR = "|";
     private static final String BRIDGE_START = "[";
-    private static final String BRIDGE_END = "\b]";
+    private static final String BRIDGE_END = "]";
 
     private List<String> resultBridge = new ArrayList<>();
     private List<String> resultPath = new ArrayList<>();
@@ -42,17 +42,17 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(String judge ,int gameTryCount) {
+    public void printResult(String judge, int gameTryCount) {
         System.out.println("최종 게임 결과");
 
-        System.out.print("[");
+        System.out.print(BRIDGE_START);
         printBridge(UP, resultBridge, resultPath);
-        System.out.println("\b]");
+        System.out.println("]");
         System.out.print("[");
         printBridge(DOWN, resultBridge, resultPath);
-        System.out.println("\b]\n");
+        System.out.println(BRIDGE_END + "\n");
 
-        System.out.println("게임 성공 여부: "+judge+"\n총 시도한 횟수: "+gameTryCount);
+        System.out.println("게임 성공 여부: " + judge + "\n총 시도한 횟수: " + gameTryCount);
     }
 
     private void printBridge(String UpDown, List<String> bridge, List<String> path) {
@@ -63,7 +63,8 @@ public class OutputView {
                 System.out.print(PATH_BRIDGE_NOT_EQUAL);
             if (!path.get(i).equals(UpDown))
                 System.out.print(BRIDGE_NOT_SELECTED);
-            System.out.print(SEPARATOR);
+            if (path.size() - 1 != i)
+                System.out.print(SEPARATOR);
         }
     }
 }
