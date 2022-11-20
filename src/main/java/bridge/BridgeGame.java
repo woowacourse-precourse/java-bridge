@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private List<String> bridgeState = new ArrayList<>();
+    private final List<String> bridgeState = new ArrayList<>();
 
     private BridgeMaker bridgeMaker;
     private Bridge bridge;
@@ -48,7 +48,7 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(String uOrD) {
+    public boolean move(final String uOrD) {
         if(!bridge.matchBridge(uOrD)) {
             bridgeState.add(uOrD + "X");
             return false;
@@ -57,7 +57,7 @@ public class BridgeGame {
         return true;
     }
 
-    public List<String> move(Bridge b, String uOrD) {
+    public List<String> move(final Bridge b, final String uOrD) {
         if(!b.matchBridge(uOrD)) {
             bridgeState.add(uOrD + "X");
         } else{
