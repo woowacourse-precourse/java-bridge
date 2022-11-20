@@ -11,4 +11,9 @@ public class User {
         this.topBridge = new ArrayList<>();
         this.bottomBridge = new ArrayList<>();
     }
+
+    public void resetUser() {
+        this.topBridge = new ArrayList<>();
+        this.bottomBridge = new ArrayList<>();
+    }
 }
