@@ -6,7 +6,7 @@ import bridge.model.RoundStatus;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-public class PathResultAdapterTest {
+public class MapAdapterTest {
     @Test
     void isReturnRightFormOfResultWhenGivenCourseAndRoundStatus() {
         //given
@@ -15,7 +15,7 @@ public class PathResultAdapterTest {
         String compareResult = "[[ O |   ], [   | X ]]";
 
         //when
-        String result = PathResultAdapter.changePathResult(course, roundStatus).toString();
+        String result = MapAdapter.changeMap(course, roundStatus).toString();
 
         //then
         assertThat(result).isEqualTo(compareResult);

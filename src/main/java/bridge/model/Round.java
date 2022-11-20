@@ -4,19 +4,19 @@ import static bridge.model.RoundStatus.CLEAR;
 import static bridge.model.RoundStatus.FAIL;
 import static bridge.model.RoundStatus.PLAYING;
 
-import bridge.util.PathResultAdapter;
+import bridge.util.MapAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Round {
     private int currentIndex;
     private RoundStatus roundStatus;
-    private final List<String> course;
+    private final List<String> map;
 
     public Round() {
         currentIndex = 0;
         roundStatus = PLAYING;
-        course = new ArrayList<>();
+        map = new ArrayList<>();
     }
 
     private boolean isMovable(List<Integer> accessibleIndexes) {
@@ -24,7 +24,7 @@ public class Round {
     }
 
     public void updateStatusAfterMove(String direction, List<Integer> accessibleIndexes) {
-        course.add(direction);
+        map.add(direction);
 
         if (isMovable(accessibleIndexes)) {
             currentIndex++;
@@ -34,8 +34,8 @@ public class Round {
         roundStatus = FAIL;
     }
 
-    public List<String> getCourseResult() {
-        return PathResultAdapter.changePathResult(course, roundStatus);
+    public List<String> getMap() {
+        return MapAdapter.changeMap(map, roundStatus);
     }
 
     private void checkRoundStatus(int destinationIndex) {

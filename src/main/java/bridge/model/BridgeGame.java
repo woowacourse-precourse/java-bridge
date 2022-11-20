@@ -39,9 +39,9 @@ public class BridgeGame {
         round.updateStatusAfterMove(direction, bridge.getAccessibleIndexes(direction));
     }
 
-    public String getPathResultToString() {
-        List<String> courseResult = round.getCourseResult();
-        return courseResult.get(0) + "\n" + courseResult.get(1);
+    public String getMapToString() {
+        List<String> map = round.getMap();
+        return map.get(0) + "\n" + map.get(1);
     }
 
     public boolean isPlaying() {
