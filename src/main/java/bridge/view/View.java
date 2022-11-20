@@ -12,7 +12,7 @@ public class View {
 	public void printGameResult(int tryNumber, BridgeMap bridgeMap, boolean isGameSuccess) {
 		Convertor convertor = new Convertor();
 		OutputView outputView = new OutputView();
-		String gameSuccessOrFail = convertor.isSuccess(isGameSuccess);
+		String gameSuccessOrFail = convertor.convertSuccessOrFail(isGameSuccess);
 		outputView.printResult(tryNumber, bridgeMap, gameSuccessOrFail);
 	}
 }

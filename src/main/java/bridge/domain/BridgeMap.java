@@ -10,13 +10,8 @@ public class BridgeMap {
 
 	List<MovingResult> map = new ArrayList<>();
 
-	public boolean move(User user, Bridge bridge, int currentLocation) {
-		MovingResult movingResult = user.selectMoving(currentLocation, bridge);
+	public void addMovingResult(MovingResult movingResult) {
 		map.add(movingResult);
-		if (movingResult.isMovingSuccess()) {
-			return true;
-		}
-		return false;
 	}
 
 	public List<String> getSplitMap() {
