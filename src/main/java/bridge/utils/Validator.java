@@ -9,6 +9,14 @@ public class Validator {
         }
     }
 
+    public static void checkBridgeSize(int bridgeSize) {
+        final int MIN_BRIDGE_SIZE = 3;
+        final int MAX_BRIDGE_SIZE = 20;
+        if (bridgeSize < MIN_BRIDGE_SIZE || bridgeSize > MAX_BRIDGE_SIZE) {
+            throw new IllegalArgumentException("다리의 길이는 3 이상 20 이하 입니다.");
+        }
+    }
+
     public static void checkIsSide(String moveSide) {
         String sideRegularExpression = "^[UD]$";
         boolean isNotSide = !moveSide.matches(sideRegularExpression);
@@ -25,11 +33,5 @@ public class Validator {
         }
     }
 
-    public static void checkBridgeSize(int bridgeSize) {
-        final int MIN_BRIDGE_SIZE = 3;
-        final int MAX_BRIDGE_SIZE = 20;
-        if (bridgeSize < MIN_BRIDGE_SIZE || bridgeSize > MAX_BRIDGE_SIZE) {
-            throw new IllegalArgumentException("다리의 길이는 3 이상 20 이하 입니다.");
-        }
-    }
+
 }
