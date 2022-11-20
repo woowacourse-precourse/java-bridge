@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class BridgeGame {
     private List<String> bridge;
-    BridgeGame(){
+    public BridgeGame(){
         bridge = new ArrayList<>();
     }
     /**
