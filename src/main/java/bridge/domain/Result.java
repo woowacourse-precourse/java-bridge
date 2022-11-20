@@ -22,8 +22,9 @@ public class Result {
         return distance;
     }
 
-    public void setDistance(int distance) {
-        this.distance = distance;
+
+    public void rollbackDistance() {
+        distance -= 1;
     }
 
     public List<List<String>> getResultsGroup() {

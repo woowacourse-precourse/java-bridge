@@ -62,7 +62,7 @@ public class BridgeController {
             bridgeGame.move(position, passingPositions);
             result = passingPositions.makeResult(distance);
         } while (!outputView.printMap(result));
-        result.setDistance(--distance);
+        result.rollbackDistance();
         return result;
     }
 
