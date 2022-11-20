@@ -29,5 +29,11 @@ public class GameController {
             outputView.printMap(this.bridgeGame.getProgress().get(UP_SIDE_PROGRESS.get()));
             outputView.printMap(this.bridgeGame.getProgress().get(DOWN_SIDE_PROGRESS.get()));
         }
+
+        checkGameStatus();
+    }
+
+    public void checkGameStatus() {
+
     }
 }
