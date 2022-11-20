@@ -1,6 +1,6 @@
 package bridge.repository;
 
-import static bridge.exception.Validator.checkBridgeLength;
+import static bridge.exception.Validator.validBridgeLength;
 
 import bridge.BridgeRandomNumberGenerator;
 import bridge.maker.BridgeMaker;
@@ -12,7 +12,7 @@ public class BridgeRepository {
     private List<String> bridge;
 
     public BridgeRepository(int size) {
-        checkBridgeLength(size);
+        validBridgeLength(size);
         this.size = size;
         setBridge();
     }
