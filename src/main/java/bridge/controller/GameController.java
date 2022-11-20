@@ -41,10 +41,13 @@ public class GameController {
     }
 
     private void handleGameResult(Bridge bridge, GameResult gameResult) {
-        if (gameResult.isFinishedFrom(bridge)) {
+        boolean isFinished = gameResult.isFinishedFrom(bridge);
+        if (isFinished) {
             handleSuccess(gameResult);
         }
-        handleFailure(gameResult);
+        if (!isFinished) {
+            handleFailure(gameResult);
+        }
     }
 
     private void handleSuccess(GameResult gameResult) {
