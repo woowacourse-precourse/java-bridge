@@ -1,11 +1,4 @@
 # 클래스 설계
-## Domain
-___
-### Bridge
-- private final List<String> spaces
-- private final BridgeMaker bridgeMaker
-- public Bridge(BridgeMaker bridgeMaker, int size)
-
 ### BridgeMaker
 - private final BridgeNumberGenerator bridgeNumberGenerator
 - public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator)
@@ -13,10 +6,18 @@ ___
 
 ### BridgeNumberGenerator
 - int generate()
+
 ### BridgeRandomNumberGenerator
 - private static final int RANDOM_LOWER_INCLUSIVE = 0;
 - private static final int RANDOM_UPPER_INCLUSIVE = 1;
 - public int generate()
+
+## Domain
+___
+### Bridge
+- private final List<String> spaces
+- private final BridgeMaker bridgeMaker
+- public Bridge(BridgeMaker bridgeMaker, int size)
 
 ### Result
 - private List<String> moves
