@@ -20,8 +20,8 @@ public class BridgeGameController {
 
     public void start() {
         bridgeExistCheck();
-        bridgeGame.resetGame();
-        bridgeGame.startMove(bridge);
+        bridgeGame.retry();
+        bridgeGame.move(bridge);
 
         if (bridgeGame.checkIsGameLose()) {
             if (checkRetry()) {

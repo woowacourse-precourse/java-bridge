@@ -9,7 +9,7 @@ import java.util.List;
 
 import static bridge.constant.Constants.BridgeSign.*;
 import static bridge.view.InputView.readMoving;
-import static bridge.view.OutputView.printInputDirectionMessage;
+import static bridge.view.OutputView.printInputMovingDirectionMessage;
 import static bridge.view.OutputView.printMap;
 
 
@@ -36,20 +36,9 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    private void move(String nowBridge) {
-        String movingDirection = inputMovingDirection();
-        String movingResult = getMovingResult(nowBridge, movingDirection);
-
-        checkDirection(movingDirection, movingResult);
-
-        if (movingResult.equals(FAIL)) {
-            isGameLose = true;
-        }
-    }
-
-    public void startMove(Bridge bridge) {
-        for (String nowBridge : bridge.getBridge()) {
-            move(nowBridge);
+    public void move(Bridge bridge) {
+        for (String correctDirection : bridge.getBridge()) {
+            compare(correctDirection);
             printMap(topGameBoard, bottomGameBoard);
 
             if (isGameLose) {
@@ -58,8 +47,20 @@ public class BridgeGame {
         }
     }
 
+    private void compare(String correctDirection) {
+        String movingDirection = inputMovingDirection();
+        String movingResult = compareDirection(correctDirection, movingDirection);
+
+        checkDirection(movingDirection, movingResult);
+
+        if (movingResult.equals(FAIL)) {
+            isGameLose = true;
+        }
+    }
+
+
     private String inputMovingDirection() {
-        printInputDirectionMessage();
+        printInputMovingDirectionMessage();
         String movingDirection;
 
         try {
@@ -72,8 +73,8 @@ public class BridgeGame {
     }
 
 
-    private String getMovingResult(String bridgeDirection, String direction) {
-        if (direction.equals(bridgeDirection)) {
+    private String compareDirection(String bridgeCheckPoint, String movingDirection) {
+        if (movingDirection.equals(bridgeCheckPoint)) {
             return PASS;
         }
         return FAIL;
@@ -96,7 +97,7 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void resetGame() {
+    public void retry() {
         resetGameValue();
         tryCount++;
     }

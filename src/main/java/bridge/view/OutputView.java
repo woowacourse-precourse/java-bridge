@@ -2,11 +2,6 @@ package bridge.view;
 
 import bridge.domain.GameBoard;
 
-import java.util.List;
-import java.util.StringJoiner;
-
-import static bridge.constant.Constants.BridgeUtils.*;
-import static bridge.constant.Constants.BridgeUtils.BRIDGE_FINISH;
 import static bridge.constant.Constants.Console.*;
 
 /**
@@ -66,7 +61,7 @@ public class OutputView {
         System.out.println(INPUT_BRIDGE_SIZE_MESSAGE);
     }
 
-    public static void printInputDirectionMessage() {
+    public static void printInputMovingDirectionMessage() {
         System.out.println(INPUT_DIRECTION_MESSAGE);
     }
 
