@@ -38,12 +38,12 @@ public class Controller {
 
                 count++;
 
-                if (game == false && count == 4) {
+                if (game == false && count == 3) {
                     System.out.println("다시 시작하시겠습니까?");
                     System.out.println("Yes");
                     game = true;
                     count = 0;
-                } else if (game == true && count == 4) {
+                } else if (game == true && count == 3) {
                     System.out.println("게임 종료");
                     game = false;
                 }

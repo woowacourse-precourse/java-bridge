@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.*;
 
-public class NumberFormatExceptionTest extends NsTest {
+public class BridgeSizeExceptionTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
 
@@ -34,6 +34,26 @@ public class NumberFormatExceptionTest extends NsTest {
     @DisplayName("다리 길이 입력 문구에 제대로 입력했을 때, 작동 확인")
     @Test
     void validateBridgeSize() {
+        String inputSize = "5";
+
+        assertThatCode(() -> {
+            BridgeSizeInputException.validate(inputSize);
+        }).doesNotThrowAnyException();
+    }
+
+    @DisplayName("다리 길이 입력시 범위가 3~20이 아닐 때 예외 발생 확인")
+    @Test
+    void checkBridgeNumberOverRange() {
+        String inputSize = "1";
+
+        assertThatThrownBy(() -> {
+            BridgeSizeInputException.validate(inputSize);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("다리 길이 입력시 범위 3~20가 맞을 때 작동 확인")
+    @Test
+    void checkBridgeNumberRange() {
         String inputSize = "5";
 
         assertThatCode(() -> {
