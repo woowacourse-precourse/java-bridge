@@ -26,8 +26,7 @@ public class BridgeController {
         BridgeGame bridgeGame = new BridgeGame();
 
         for (int bridgeIndex = 0; bridgeIndex < bridge.length(); bridgeIndex++) {
-            String moving = inputView.readMoving();
-            bridgeGame.move(moving, bridge.findBlockByIndex(bridgeIndex));
+            bridgeGame.move(inputView.readMoving(), bridge.findBlockByIndex(bridgeIndex));
             outputView.printMap(bridgeGame);
         }
     }
