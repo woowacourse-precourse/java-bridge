@@ -13,7 +13,7 @@ public class Bridge {
     }
 
     public int getBridgeSize(){
-        return size;
+        return this.size;
     }
 
     public void setBridgeLoad(List<String> bridgeLoad){
