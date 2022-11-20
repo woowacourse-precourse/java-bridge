@@ -14,17 +14,26 @@ public class BridgeGameController {
     private final InputView inputView;
     private final Player player;
     private final GameStatus gameStatus;
-    private final BridgeGame bridgeGame;
+    private final BridgeMaker bridgeMaker;
 
     public BridgeGameController(BridgeMaker bridgeMaker) {
         this.outputView = new OutputView();
         this.inputView = new InputView();
         this.player = new Player();
         this.gameStatus = new GameStatus();
-        this.bridgeGame = new BridgeGame(new Bridge(bridgeMaker.makeBridge(inputBridgeSize())), player, gameStatus);
+        this.bridgeMaker = bridgeMaker;
     }
 
     public void run() {
+        Bridge bridge = new Bridge(bridgeMaker.makeBridge(inputBridgeSize()));
+        BridgeGame bridgeGame = new BridgeGame(bridge, player, gameStatus);
+
+        runBridgeGame(bridgeGame);
+
+        outputView.printResult(bridgeGame.getBridgeResult(), gameStatus);
+    }
+
+    private void runBridgeGame(BridgeGame bridgeGame) {
         while (gameStatus.isRunning()) {
             tryCross(player, bridgeGame);
             if (gameStatus.isSuccess()) {
@@ -32,7 +41,6 @@ public class BridgeGameController {
             }
             checkRetry(gameStatus, bridgeGame);
         }
-        outputView.printResult(bridgeGame.getBridgeResult(), gameStatus);
     }
 
     private int inputBridgeSize() {
