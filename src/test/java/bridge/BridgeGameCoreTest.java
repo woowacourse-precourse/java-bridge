@@ -4,14 +4,14 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberI
 import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.constant.GameState;
-import bridge.domain.BridgePrinting;
+import bridge.controller.BridgeGame;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
-public class BridgeGameTest extends NsTest{
+public class BridgeGameCoreTest extends NsTest{
 
 
     private final boolean moveStop = false;
@@ -80,7 +80,7 @@ public class BridgeGameTest extends NsTest{
 
 
    @Test
-   @DisplayName("성공적으로 종료가 됬는지 확인")
+   @DisplayName("성공적으로 종료가 됬는지, 다리 끝까지 도착한 경우")
     void isSuccessFinal(){
         int bridgeSize=3;
         int idx =bridgeSize;
@@ -130,7 +130,6 @@ public class BridgeGameTest extends NsTest{
         }
         Assertions.assertThat(result).isEqualTo(GameState.GAME_FAIL);
     }
-
 
 
     @Override
