@@ -1,6 +1,5 @@
 package bridge.view;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +33,16 @@ public class InputViewTest {
     public void validateBridgeLengthTest() {
         String input = "12ee334";
 
-        Assertions.assertThatThrownBy(() -> InputView.validateBridgeLength(input))
+        assertThatThrownBy(() -> InputView.validateBridgeLength(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("다리 길이 입력의 범위 유효성 검증")
+    @Test
+    public void validateBridgeLengthRange() {
+        int input = 45;
+
+        assertThatThrownBy(() -> InputView.validateBridgeLengthRange(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
