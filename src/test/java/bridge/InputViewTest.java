@@ -16,7 +16,7 @@ public class InputViewTest {
     void isDigit() {
         assertSimpleTest(() -> {
             InputView test = new InputView();
-            String input = "3wq\n1";
+            String input = "3wq\n3";
             InputStream is = new ByteArrayInputStream(input.getBytes());
             System.setIn(is);
             test.readBridgeSize();

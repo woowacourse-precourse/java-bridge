@@ -24,7 +24,7 @@ public class InputView {
         int size;
         do{
             while(!isDigit(input=Console.readLine())){}
-            size = convertToInteger(input);
+            size = Integer.parseInt(input);
         }while(!isValidRange(size));
 
         return size;
@@ -86,7 +86,5 @@ public class InputView {
             return false;
         }
     }
-    private void testVaildRange(){
 
-    }
 }
