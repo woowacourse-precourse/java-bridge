@@ -31,7 +31,7 @@ public class InputView {
     public String readGameCommand() {
         String command = Console.readLine();
         validateNonBlank(command);
-        
+
         return command;
     }
 
