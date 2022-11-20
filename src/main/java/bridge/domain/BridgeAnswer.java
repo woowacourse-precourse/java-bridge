@@ -13,6 +13,15 @@ public class BridgeAnswer {
         this.bridgeAnswer = bridgeAnswer;
     }
 
+    public void setUpAnswerSizeBy(int bridgeSize) {
+        clearBridgeAnswer();
+        setUpBridgeAnswer(bridgeSize);
+    }
+
+    private void clearBridgeAnswer() {
+        bridgeAnswer.clear();
+    }
+
     private void setUpBridgeAnswer(int bridgeSize) {
         new BridgeMaker(new BridgeRandomNumberGenerator())
                 .makeBridge(bridgeSize)
