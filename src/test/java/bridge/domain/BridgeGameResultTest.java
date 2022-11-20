@@ -33,9 +33,9 @@ class BridgeGameResultTest {
 
     @ParameterizedTest(name = "게임 결과가 실패인지 반환한다.")
     @MethodSource("provideForIsFail")
-    void isFail(List<Boolean> attempts, boolean expected) {
+    void isFail(List<Boolean> playerMoveResult, boolean expected) {
         Bridge bridge = new Bridge(List.of(BridgeShape.UP, BridgeShape.DOWN, BridgeShape.UP));
-        BridgeGameResult bridgeGameResult = new BridgeGameResult(bridge, attempts);
+        BridgeGameResult bridgeGameResult = new BridgeGameResult(bridge, playerMoveResult);
 
         assertThat(bridgeGameResult.isFail()).isEqualTo(expected);
     }
@@ -52,9 +52,9 @@ class BridgeGameResultTest {
 
     @ParameterizedTest(name = "게임 결과가 성공인지 반환한다.")
     @MethodSource("provideForIsSuccess")
-    void isSuccess(List<Boolean> attempts, boolean expected) {
+    void isSuccess(List<Boolean> playerMoveResult, boolean expected) {
         Bridge bridge = new Bridge(List.of(BridgeShape.UP, BridgeShape.DOWN, BridgeShape.UP));
-        BridgeGameResult bridgeGameResult = new BridgeGameResult(bridge, attempts);
+        BridgeGameResult bridgeGameResult = new BridgeGameResult(bridge, playerMoveResult);
 
         assertThat(bridgeGameResult.isSuccess()).isEqualTo(expected);
     }

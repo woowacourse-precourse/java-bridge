@@ -58,7 +58,7 @@ public class OutputView {
     private String sideFormat(BridgeGameResult result, BridgeShape bridgeShape) {
         Bridge bridge = result.bridge();
         List<BridgeShape> bridgeShapes = bridge.bridgeShapes();
-        List<Boolean> attemptsResult = result.attemptsResult();
+        List<Boolean> attemptsResult = result.playerMoveResult();
         List<String> sidesTexts = IntStream.range(0, attemptsResult.size())
                 .mapToObj(index -> moveFormat(attemptsResult.get(index), bridgeShapes.get(index), bridgeShape))
                 .collect(Collectors.toList());

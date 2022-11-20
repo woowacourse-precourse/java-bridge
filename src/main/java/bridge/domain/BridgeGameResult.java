@@ -5,27 +5,27 @@ import java.util.Objects;
 
 public class BridgeGameResult {
     private final Bridge bridge;
-    private final List<Boolean> attemptsResult;
+    private final List<Boolean> playerMoveResult;
 
     public BridgeGameResult(Bridge bridge, List<Boolean> booleans) {
         this.bridge = bridge;
-        this.attemptsResult = booleans;
+        this.playerMoveResult = booleans;
     }
 
     public Bridge bridge() {
         return this.bridge;
     }
 
-    public List<Boolean> attemptsResult() {
-        return this.attemptsResult;
+    public List<Boolean> playerMoveResult() {
+        return this.playerMoveResult;
     }
 
     public boolean isFail() {
-        return attemptsResult.contains(Boolean.FALSE);
+        return playerMoveResult.contains(Boolean.FALSE);
     }
 
     public boolean isSuccess() {
-        return !attemptsResult.contains(Boolean.FALSE) && bridge.sizeEqual(attemptsResult.size());
+        return !playerMoveResult.contains(Boolean.FALSE) && bridge.sizeEqual(playerMoveResult.size());
     }
 
     @Override
@@ -37,11 +37,11 @@ public class BridgeGameResult {
             return false;
         }
         BridgeGameResult that = (BridgeGameResult) o;
-        return Objects.equals(bridge, that.bridge) && Objects.equals(attemptsResult, that.attemptsResult);
+        return Objects.equals(bridge, that.bridge) && Objects.equals(playerMoveResult, that.playerMoveResult);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bridge, attemptsResult);
+        return Objects.hash(bridge, playerMoveResult);
     }
 }
