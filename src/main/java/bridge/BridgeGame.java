@@ -15,9 +15,10 @@ public class BridgeGame {
 
     public Boolean move(String inputMoving, String nextBridge) {
         if (nextBridge.equals(inputMoving)) {
-
+            makeBridgeSuccessState(nextBridge);
             return true;
         }
+        makeBridgeFailState(nextBridge);
         return false;
     }
 
