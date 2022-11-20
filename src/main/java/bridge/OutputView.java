@@ -24,6 +24,17 @@ public class OutputView {
         System.out.println(" ]");
     }
 
+    private void bottomBridgeMap(List<Integer> bottomBridge) {
+        System.out.println("[ ");
+        for (int i = 0; i < bottomBridge.size(); i++) {
+            printBridgeUnit(bottomBridge.indexOf(i));
+            if ((i != 0) && (i != bottomBridge.size() - 1)) {
+                System.out.println(" | ");
+            }
+        }
+        System.out.println(" ]");
+    }
+
     private void printBridgeUnit(Integer bridgeUnit) {
         if (!printStatus(bridgeUnit)){
             skipBridgeUnit(bridgeUnit);
