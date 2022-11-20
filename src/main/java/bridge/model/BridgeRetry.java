@@ -12,7 +12,9 @@ public class BridgeRetry {
     public String getRetry() {
         return retry;
     }
-
+    public boolean isRetry(){
+        return retry.equals("R");
+    }
 
     public void validateRetry(String retry) {
         if (isRetryFormatCorrect(retry)) {
