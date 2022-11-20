@@ -8,8 +8,10 @@ import java.util.List;
 
 public class User {
     private List<BridgeState> bridgeGames;
+    private int retryCount;
 
     public User() {
+        retryCount = 1;
         bridgeGames = new ArrayList<>();
     }
 
@@ -27,5 +29,10 @@ public class User {
 
     public BridgeState getUserCrossing(int index) {
         return bridgeGames.get(index);
+    }
+
+    public void initialize() {
+        bridgeGames.clear();
+        retryCount++;
     }
 }

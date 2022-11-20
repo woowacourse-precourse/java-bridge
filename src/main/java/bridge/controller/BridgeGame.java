@@ -31,6 +31,8 @@ public class BridgeGame {
         final Bridge bridge = makeBridgeGame(bridgeMaker);
         while (gameState == GameState.START) {
             gameState = move(user, bridge);
+            if (gameState != GameState.START)
+                gameState = retry(user);
         }
     }
 
@@ -52,7 +54,10 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public GameState retry(User user) {
+        if (gameState == GameState.END)
+            return GameState.END;
+        return GameState.END;
     }
 
     public Bridge makeBridgeGame(BridgeMaker bridgeMaker) {
@@ -71,7 +76,7 @@ public class BridgeGame {
         if (bridge.getBridgeSize() == user.crossingBridgeNumber() && isAlive)
             return GameState.END;
         if (!isAlive)
-            return GameState.RETRY;
+            return GameState.FAILED;
         return GameState.START;
     }
 

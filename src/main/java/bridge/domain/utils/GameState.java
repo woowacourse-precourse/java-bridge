@@ -3,7 +3,8 @@ package bridge.domain.utils;
 public enum GameState {
     START("S"),
     END("Q"),
-    RETRY("R");
+    RETRY("R"),
+    FAILED("F");
 
     private final String state;
 
