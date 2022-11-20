@@ -23,4 +23,10 @@ public class TryCountTest {
                 () -> assertThat(new TryCount(1)).isEqualTo(new TryCount(1))
         );
     }
+
+    @DisplayName("시도 횟수 1 증가시킨다.")
+    @Test
+    void plusOne() {
+        assertThat(new TryCount(3).plusOne()).isEqualTo(new TryCount(4));
+    }
 }

@@ -23,6 +23,10 @@ public class TryCount {
         }
     }
 
+    public TryCount plusOne() {
+        return new TryCount(this.count + 1);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
