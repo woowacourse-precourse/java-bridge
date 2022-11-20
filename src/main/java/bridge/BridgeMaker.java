@@ -24,15 +24,16 @@ public class BridgeMaker {
    */
   public List<String> makeBridge(int size) {
     List<String> makeBridge = new ArrayList<>();
-    for (int i = 0; i < size; i++) {
+    for(int i = 0; i < size; i++) {
+      makeBridge.add(randomBridge());
+    }
+    return makeBridge;
+  }
+  public String randomBridge(){
       int randomNumber = bridgeNumberGenerator.generate();
       if (randomNumber == 1) {
-        makeBridge.add("U");
+        return "U";
       }
-      if (randomNumber == 0) {
-        makeBridge.add("D");
-      }
-    }
-      return makeBridge;
+    return "D";
   }
 }
