@@ -16,20 +16,19 @@ public class InputView {
         while(true) {
         try{
             String Input=Console.readLine();
-            checkError(Input);
-            return Integer.parseInt(Input);
+            return checkError(Input);
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             continue;
         }
     }
     }
-    public void checkError(String Input){
+    public int checkError(String Input){
         isNumber(Input);
         int size=Integer.parseInt(Input);
         isRange(size);
-
         System.out.println();
+        return size;
     }
     public void isNumber(String Input){
         try{
@@ -48,27 +47,41 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String Input=Console.readLine();
-        isUD(Input);
-        return Input;
+        while(true){
+            try{
+                String Input=Console.readLine();
+                return isUD(Input);
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+                continue;
+            }
+        }
     }
-    public void isUD(String Input){
+    public String isUD(String Input){
         if(!(Input.equals("U")||Input.equals("D"))){
             throw new IllegalArgumentException(ERROR_UD);
         }
+        return Input;
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
+        while(true){
+            try{
         String regame=Console.readLine();
-        isRQ(regame);
-        return regame;
+        return isRQ(regame);
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+                continue;
+            }
     }
-    public void isRQ(String Input){
+    }
+    public String isRQ(String Input){
         if(!(Input.equals("R")||Input.equals("Q"))){
             throw new IllegalArgumentException(ERROR_RQ);
         }
+        return Input;
     }
 }

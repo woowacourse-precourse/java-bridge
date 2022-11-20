@@ -7,6 +7,7 @@ public class PlayGame {
     private  static boolean Playing=true;
     private static int total=1;
     private static int count=1;
+    private static int index;
     private static String answer="";
 
     OutputView outputView;
@@ -29,30 +30,29 @@ public class PlayGame {
         outputView.printInputSize();
        return inputView.readBridgeSize();
     }
-    public void upTotal(){
-        total++;
-    }
+    public void upTotal(){total++;}
     public void changePlayingState(boolean state){
         Playing=state;
     }
     public String moveStart(String result,List<String> Bridge){
         outputView.printMoving();
         String inputMoving=inputView.readMoving();
+        index=count-1;
         return checkMove(result,Bridge,inputMoving);
     }
     public String checkMove(String result,List<String> Bridge,String inputMoving){
-        int index=count-1;
         if( bridgeGame.move(Bridge.get(index),inputMoving)){
             return result=outputView.printMap(result,inputMoving,count);
         }
         result=outputView.printFailMap(result,inputMoving,count);
-            return checkreGameAnswer(result);
+            return checkReGameAnswer(result);
         }
-    public String checkreGameAnswer(String result){
+    public String checkReGameAnswer(String result){
         String regameanswer = reGameAnswer();
         if(regameanswer.equals("R")){
             return bridgeGame.retry();
         }
+        count=1;
         return bridgeGame.gameOver(result);
     }
     public String reGameAnswer() {
@@ -64,39 +64,39 @@ public class PlayGame {
         int size=sizeStart();
         this.Bridge=bridgemaker.makeBridge(size);
     }
-    public void Startgame(){
+
+    public void Startgame() {
+
         setBridge();
         run();
-        }
-        public void run(){
-            while (Playing) {
-                answer = moveStart(answer, this.Bridge);
-                if (answer.equals("")) {
-                    count = 1;
-                    continue;
-                }
-                if (count == Bridge.size()) {
-                    outputView.printResult(answer, total, true);
-                    return;
-                }
-                count++;
-                if (Playing == false) {
-                    outputView.printResult(answer, total, false);
-                    return;
-                }
-            }
-        }
     }
-    /*public String checkOver(){
+
+    public void run() {
+        while (Playing) {
+            answer = moveStart(answer, this.Bridge);
+            if (isEqualsAnswer(answer))
+            { continue;}
+            if (checkWinCondition())
+            { return;}
+            count++;
+        }
+        outputView.printResult(answer, total, false);
+        return; }
+    public boolean isEqualsAnswer(String answer){
         if(answer.equals("")){
             count=1;
-            return "Re";
+            return true;
         }
+        return false;
+    }
+    public boolean checkWinCondition(){
         if(count==Bridge.size()){
-            outputView.printResult(answer, total, true);
-            return "Over";
+            outputView.printResult(answer,total,true);
+            return true;
         }
-        return ""*/
+        return false;
+    }
+    }
 
 
 
