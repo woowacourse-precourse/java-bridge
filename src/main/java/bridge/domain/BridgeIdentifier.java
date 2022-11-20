@@ -7,18 +7,18 @@ public enum BridgeIdentifier {
     UP("U", 1),
     DOWN("D", 0);
 
-    private final String valueOfString;
-    private final int valueOfInt;
+    private final String direction;
+    private final int number;
 
-    BridgeIdentifier(String valueOfString, int valueOfInt) {
-        this.valueOfString = valueOfString;
-        this.valueOfInt = valueOfInt;
+    BridgeIdentifier(String direction, int number) {
+        this.direction = direction;
+        this.number = number;
     }
 
-    public static String convertIntToString(int valueOfInt) {
+    public static String convertNumberToDirection(int number) {
         return Arrays.stream(values())
-                .filter(identifier -> identifier.valueOfInt == valueOfInt)
+                .filter(identifier -> identifier.number == number)
                 .findFirst()
-                .get().valueOfString;
+                .get().direction;
     }
 }
