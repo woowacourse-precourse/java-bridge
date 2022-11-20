@@ -47,9 +47,9 @@ public class OutputView {
 
     private void compareUserAndAnswer(Bridge bridge, List<String> userAnswer, CustomStringBuilderForBridge stringBuilderBridge) {
         for (int i = 0; i < userAnswer.size(); i++) {
-            if (bridge.getBridge().get(i).equals(userAnswer.get(i))) {
+            if (bridge.getBridgeIdx(i).equals(userAnswer.get(i))) {
                 stringBuilderBridge.addO(userAnswer.get(i));
-            } else if (!bridge.getBridge().get(i).equals(userAnswer.get(i))) {
+            } else if (!bridge.getBridgeIdx(i).equals(userAnswer.get(i))) {
                 stringBuilderBridge.addX(userAnswer.get(i));
             }
             if (i != userAnswer.size() - 1) {
