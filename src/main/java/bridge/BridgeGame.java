@@ -4,25 +4,7 @@ package bridge;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private int bridgeSize;
 
-    public void start() {
-        System.out.println(GameMessage.START.getMessage());
-    }
-
-    public void enterBridgeSize() {
-        InputView inputView = new InputView();
-        try {
-            String userInput = inputView.readBridgeSize();
-            Validator.validateNumber(userInput);
-            int tempBridgeSize = Converter.convertToNumber(userInput);
-            Validator.validateRange(tempBridgeSize);
-            this.bridgeSize = tempBridgeSize;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            enterBridgeSize();
-        }
-    }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
