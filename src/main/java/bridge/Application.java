@@ -2,6 +2,7 @@ package bridge;
 
 public class Application {
     InputView inputView = new InputView();
+    BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
     public void run(){
         // output view
@@ -10,6 +11,7 @@ public class Application {
         int bridgeSize = inputView.readBridgeSize();
 
         // 다리를 생성합니다. --> bridge maker
+        bridgeMaker.makeBridge(bridgeSize);
 
         // 이동할 칸을 선택해주세요 --> output view
         // U 또는 D 입력 받기 --> input view
