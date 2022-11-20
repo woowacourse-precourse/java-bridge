@@ -25,22 +25,20 @@ public class BridgeController {
         List<String> bridgeNumbers = length.makeBridgeNumbers(bridgeMaker);
 
         Bridge bridge = createBridge(bridgeNumbers);
-
         BridgeGame bridgeGame = createBridgeGame();
-        boolean isQuit = false;
-        int pos;
-        int attempt = 1;
-
         PassingPositions passingPositions = createPassingPositions(bridge);
         Result result = null;
 
+        int pos;
+        int attempt = 1;
+
+        game:
         while (true) {
             pos = -1;
             do {
                 pos++;
                 if (length.isSameLength(pos)) {
-                    isQuit = true;
-                    break;
+                    break game;
                 }
 
                 Direction direction = createDirectionLoop();
@@ -48,10 +46,6 @@ public class BridgeController {
                 bridgeGame.move(position, passingPositions);
                 result = passingPositions.makeResult();
             } while (!OutputView.printMap(result));
-
-            if (isQuit) {
-                break;
-            }
 
             GameCommand gameCommand = createGameCommandLoop();
             if (gameCommand.isSameQuit()) {
@@ -67,7 +61,7 @@ public class BridgeController {
         }
     }
 
-    
+
     private BridgeNumberGenerator createBridgeNumberGenerator() {
         return new BridgeRandomNumberGenerator();
     }
