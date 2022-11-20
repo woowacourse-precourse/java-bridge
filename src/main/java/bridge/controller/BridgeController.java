@@ -35,8 +35,13 @@ public class BridgeController {
         }
     }
     public void retry() {
-        inputView.readGameCommand();
+        String command = inputView.readGameCommand();
+        if (command.equals("R")) {
+            bridgeGame.retry();
+            moveController();
+        } else if (command.equals("Q")) {
+            return;
+        }
     }
-
     public void printResult() {}
 }

@@ -8,7 +8,7 @@
 - [x] 다리를 생성하는 함수 setBridge()
 - [x] 사용자 위치를 이동시키는 함수 move()
 - [x] 사용자의 이동이 가능한지 체크하는 함수 checkMove()
-- [ ] 게임을 재시작하는 함수 retry()
+- [x] 게임을 재시작하는 함수 retry()
 
 #### BridgeMaker
 - [x] 다리를 만드는 함수 makeBridge()
@@ -21,7 +21,7 @@
 #### InputView
 - [x] 다리의 길이를 입력하는 함수 readBridgeSize()
 - [x] 이동할 칸을 입력하는 함수 readMoving()
-- [ ] 게임 재시도 여부를 입력하는 함수 readGameCommand()
+- [x] 게임 재시도 여부를 입력하는 함수 readGameCommand()
 - [ ] 에러 메시지를 받아 에러를 발생시키는 함수 generateError()
 
 #### OutputView

@@ -43,12 +43,16 @@ public class BridgeGame {
         bridge = bridgeMaker.makeBridge(size);
         userState = String.valueOf(GameState.Playing);
         bridgeState = new ArrayList<String>();
-        System.out.println(bridge);
+//        System.out.println(bridge);
     }
 
     public String getUserState() {
         return userState;
     }
     public void retry() {
+        moveTime = 0;
+        userState = String.valueOf(GameState.Playing);
+        bridgeState = new ArrayList<String>();
+//        System.out.println(bridge);
     }
 }
