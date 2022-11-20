@@ -5,8 +5,8 @@ import bridge.domain.bridge.BridgeUnit;
 import bridge.domain.game.GameStatus;
 import bridge.domain.game.GameProgress;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -14,7 +14,7 @@ import java.util.List;
 public class OutputView {
 
     private static final String START_MESSAGE = "다리 건너기 게임을 시작합니다.";
-    private static final String MAP_UNIT = "[%s]\n[%s]";
+    private static final String MAP_FORMAT = "[%s]\n[%s]";
     private static final String BRIDGE_UNIT_DELIMITER = "|";
     private static final String SYMBOL = " %s ";
     private static final String BLANK = "   ";
@@ -36,27 +36,26 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(BridgeGame bridgeGame) {
-        System.out.println(getMap(bridgeGame));
+        System.out.println(toMap(bridgeGame.getGameProgress()));
         System.out.println();
     }
 
-    private String getMap(BridgeGame bridgeGame) {
-        String upSide = toPrintFormat(bridgeGame, BridgeUnit.UP);
-        String downSide = toPrintFormat(bridgeGame, BridgeUnit.DOWN);
-        return String.format(MAP_UNIT, upSide, downSide);
+    private String toMap(List<GameProgress> gameProgress) {
+        String upSide = toMapSide(gameProgress, BridgeUnit.UP);
+        String downSide = toMapSide(gameProgress, BridgeUnit.DOWN);
+        return String.format(MAP_FORMAT, upSide, downSide);
     }
 
-    private String toPrintFormat(BridgeGame bridgeGame, BridgeUnit bridgeUnit) {
-        List<String> results = new ArrayList<>();
-        bridgeGame.getGameProgress().stream()
-                .map(gameProgress -> getFormat(gameProgress, bridgeUnit))
-                .forEach(results::add);
+    private String toMapSide(List<GameProgress> gameProgress, BridgeUnit bridgeUnit) {
+        List<String> results = gameProgress.stream()
+                .map(progress -> getMapSideUnit(progress, bridgeUnit))
+                .collect(Collectors.toList());
         return String.join(BRIDGE_UNIT_DELIMITER, results);
     }
 
-    private String getFormat(GameProgress unit, BridgeUnit bridgeUnit) {
-        if (bridgeUnit.equals(unit.getBridgeUnit())) {
-            return String.format(SYMBOL, getSymbol(unit.isSuccess()));
+    private String getMapSideUnit(GameProgress progress, BridgeUnit bridgeUnit) {
+        if (bridgeUnit.equals(progress.getBridgeUnit())) {
+            return String.format(SYMBOL, getSymbol(progress.isSuccess()));
         }
         return BLANK;
     }
