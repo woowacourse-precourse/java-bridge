@@ -71,7 +71,7 @@ public class BridgeGame {
         return isCorrectLocation;
     }
 
-    private boolean hasSucceeded() {
+    public boolean hasSucceeded() {
         return realBridge.size() == (currentLocation + 1);
     }
 }
