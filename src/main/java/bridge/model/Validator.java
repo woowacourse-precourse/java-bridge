@@ -7,6 +7,8 @@ public class Validator {
     private static final int MAX_SIZE = 20;
     private static final String UP = "U";
     private static final String DOWN = "D";
+    private static final String RESTART = "R";
+    private static final String QUIT = "Q";
 
     public static void validateSize(String input) {
         isNumber(input);
@@ -30,6 +32,12 @@ public class Validator {
     public static void validateMove(String input) {
         if (!input.equals(UP) && !input.equals(DOWN)) {
             throw new IllegalArgumentException(ErrorMessage.ONLY_U_OR_D_POSSIBLE.getMessage());
+        }
+    }
+
+    public static void validateCommand(String input) {
+        if (!input.equals(RESTART) && !input.equals(QUIT)) {
+            throw new IllegalArgumentException(ErrorMessage.ONLY_R_OR_Q_POSSIBLE.getMessage());
         }
     }
 }

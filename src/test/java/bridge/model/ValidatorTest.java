@@ -36,4 +36,13 @@ public class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.ONLY_U_OR_D_POSSIBLE.getMessage());
     }
+
+    @DisplayName("게임 재시작 여부 입력값이 R 또는 Q가 아닌 경우 예외 발생")
+    @ValueSource(strings = {"aaa", " ", "d"})
+    @ParameterizedTest
+    void onlyRQPossible(String input) {
+        assertThatThrownBy(() -> Validator.validateCommand(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.ONLY_R_OR_Q_POSSIBLE.getMessage());
+    }
 }

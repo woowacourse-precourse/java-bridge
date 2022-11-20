@@ -21,7 +21,7 @@ public class BridgeGame {
     }
 
     public void tryGame() {
-        player.oneMoreTry();
+        player.retry();
     }
 
     public boolean move() {
