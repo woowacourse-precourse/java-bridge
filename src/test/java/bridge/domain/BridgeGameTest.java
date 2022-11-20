@@ -111,7 +111,7 @@ class BridgeGameTest {
         @Test
         void should_BeOnWay_When_Input_Retry() {
             // given
-            bridgeGame.move(UPPER_SIDE);
+            bridgeGame.move(LOWER_SIDE);
             boolean isFail = bridgeGame.isFail();
             // when
             bridgeGame.retry(RETRY);
@@ -125,7 +125,7 @@ class BridgeGameTest {
         @Test
         void should_BeEnd_When_Input_Quit() {
             // given
-            bridgeGame.move(UPPER_SIDE);
+            bridgeGame.move(LOWER_SIDE);
             boolean isFail = bridgeGame.isFail();
             // when
             bridgeGame.retry(QUIT);
