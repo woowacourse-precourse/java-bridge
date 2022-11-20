@@ -19,8 +19,8 @@ public class InputException {
         }
     }
 
-    public static void validateMovingCommand(String input) {
-        if (!(input.equals(MovingCommand.UpStairs.get()) || input.equals(MovingCommand.DownStairs.get()))) {
+    public static void validateMovingCommand(String command) {
+        if (!(command.equals(MovingCommand.UpStairs.get()) || command.equals(MovingCommand.DownStairs.get()))) {
             throw new IllegalArgumentException(ExceptionPhrases.MovingValue.getPhrase());
         }
     }
