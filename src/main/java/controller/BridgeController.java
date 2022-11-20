@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import model.BridgeGame;
 import java.util.List;
 import service.BridgeMaker;
+import util.Cleaner;
 import view.InputView;
 import view.OutputView;
 
@@ -19,10 +20,10 @@ public class BridgeController {
         List<String> bridge = makeBridge();
         BridgeGame.move(bridge, bothSide);
         printResult(bothSide, BridgeGame.tryNumber);
-        BridgeGame.clearTryNumber();
+        Cleaner.clearTryNumber();
     }
 
-    public static List<List<String>> init() {
+    private static List<List<String>> init() {
         List<List<String>> bothSide = new ArrayList<>();
         List<String> downSide = new ArrayList<>(NumberConstant.BRIDGE_SIZE_END_INCLUSIVE.getConstant());
         List<String> upSide = new ArrayList<>(NumberConstant.BRIDGE_SIZE_END_INCLUSIVE.getConstant());
@@ -32,7 +33,7 @@ public class BridgeController {
         return bothSide;
     }
 
-    public static List<String> makeBridge() {
+    private static List<String> makeBridge() {
         int size = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(size);
 
@@ -48,7 +49,11 @@ public class BridgeController {
         return inputView.readGameCommand();
     }
 
-    public static void printBridgeSize(int size) {
+    public static void printStart() {
+        OutputView.printStart();
+    }
+
+    private static void printBridgeSize(int size) {
         outputView.printRequestBridgeSize();
         outputView.printBridgeSize(size);
     }
@@ -58,20 +63,16 @@ public class BridgeController {
         outputView.printUserPath(path);
     }
 
-    public static void printStart() {
-        OutputView.printStart();
-    }
-
     public static void printMap(List<List<String>> bothSide) {
         outputView.printMap(bothSide);
-    }
-
-    public static void printResult(List<List<String>> bothSide, int tryNumber) {
-        outputView.printResult(bothSide, tryNumber);
     }
 
     public static void printRetryOrQuit(String retryOrQuit) {
         outputView.printRequestRetryOrQuit();
         outputView.printUserRetryOrQuit(retryOrQuit);
+    }
+
+    private static void printResult(List<List<String>> bothSide, int tryNumber) {
+        outputView.printResult(bothSide, tryNumber);
     }
 }
