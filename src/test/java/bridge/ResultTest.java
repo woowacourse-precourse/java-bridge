@@ -13,11 +13,10 @@ class ResultTest {
     private Result result;
     @BeforeEach
     void setUp() {
-        result = new Result(1);
+        result = new Result();
     }
 
-    @DisplayName("정답 여부가 결과에 입력되었을 때, 정답 여부 리스트와 시도 횟수가 잘 저장되는지 테스트")
-    @Test
+    @DisplayName("정답 여부가 결과에 입력되었을 때, 정답 여부 리스트가 잘 저장되는지 테스트")
     void updateIsAnswers() {
         //given
         //when
@@ -25,8 +24,6 @@ class ResultTest {
         result.updateIsAnswers(new MoveDirection(DOWN_SIGN), true);
         result.updateIsAnswers(new MoveDirection(DOWN_SIGN), false);
         //then
-        assertThat(result.getTryCount())
-                  .isEqualTo(3);
         assertThat(result.getIsAnswers()
                                     .get(0)).isTrue();
         assertThat(result.getIsAnswers()
