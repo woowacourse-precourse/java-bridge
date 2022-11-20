@@ -22,4 +22,12 @@ public class BridgeGameService {
 
         return bridgeGame.isSuccess(result);
     }
+
+    public List<String> getUpBridges() {
+        return bridgeRepository.getUpBridges();
+    }
+
+    public List<String> getDownBridges() {
+        return bridgeRepository.getDownBridges();
+    }
 }
