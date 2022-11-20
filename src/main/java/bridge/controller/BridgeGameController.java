@@ -52,7 +52,7 @@ public class BridgeGameController {
         return player.isGameFinished(bridge);
     }
 
-    public boolean wannaQuit(){
-        return inputView.readGameCommand().equals(QUIT.getCommand());
+    public String readFinalCommand(){
+        return inputView.readGameCommand();
     }
 }
