@@ -80,4 +80,13 @@ public class Controller {
             decisionGameContinuous();
         }
     }
+    public void start() {
+        try {
+            play(player);
+        } catch (IllegalArgumentException e) {
+            outputView.printMap(result);
+            outputView.printSelectAgainMessage();
+            decisionGameContinuous();
+        }
+    }
 }
