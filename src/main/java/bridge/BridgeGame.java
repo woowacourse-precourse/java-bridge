@@ -47,5 +47,6 @@ public class BridgeGame {
         upBridge.clear();
         downBridge.clear();
         moveCount = 0;
+        gameCount +=1;
     }
 }
