@@ -12,7 +12,7 @@
 - [ ] 이동할 칸을 입력받는 기능 - InputView
   - [x] 이동할 칸 입력받기 - InputView#readMoving
   - [ ] 예외처리 (U 또는 D중 하나가 아닐 때) - InputView#validateMoving
-- [ ] 이동하는 기능 - BridgeGame#move
+- [x] 이동하는 기능 - BridgeGame#move
   - [x] 이동 가능 여부 판별 - BridgeGame#canMove
   - [x] 이동 결과를 출력하는 기능 - OutputView#printMap
 

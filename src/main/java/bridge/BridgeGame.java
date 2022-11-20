@@ -20,7 +20,7 @@ public class BridgeGame {
     public List<String> bridge;
     public List<String> userInput;
     public List<String> userStatus;
-    public int userLocation = 1;
+    public int userLocation = 0;
 
 
     public BridgeGame() {
