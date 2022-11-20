@@ -22,7 +22,8 @@ public class BridgeGame {
      */
     public int move(String blockInput) {
         if (bridge.isMovableBlock(position, blockInput)) {
-            return position++;
+            position++;
+            return position;
         }
         return position;
     }
