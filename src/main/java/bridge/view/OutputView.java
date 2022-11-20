@@ -25,4 +25,21 @@ public class OutputView {
      */
     public void printResult() {
     }
+
+    public enum ErrorMessage {
+        ERROR_NUMBER("숫자만 입력하세요."),
+        ERROR_RANGE("3 이상, 20 이하 숫자를 입력하세요."),
+        ERROR_UP_DOWN("U, D 만 입력하세요"),
+        ERROR_RESTART_QUIT("R, Q 만 입력하세요");
+
+        private final String message;
+
+        ErrorMessage(String message) {
+            this.message = message;
+        }
+
+        public String printMessage() {
+            return "[ERROR] " + message;
+        }
+    }
 }
