@@ -9,7 +9,11 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
  */
 public class InputView {
     private static final InputValidation inputValidation=new InputValidation();
+    private final String ERROR_MESSAGE="[ERROR]";
+
     String user_input_bridge_size;
+
+    String user_input_bridge_move;
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -21,7 +25,7 @@ public class InputView {
 
     private int bridgeSizeValidation() {
         int bridge_size=0;
-        if (inputValidation.userInputBridgeSizeValidation(user_input_bridge_size).equals("[ERROR]")) {
+        if (inputValidation.userInputBridgeSizeValidation(user_input_bridge_size).equals(ERROR_MESSAGE)) {
             readBridgeSize();
         }
         bridge_size=Integer.parseInt(user_input_bridge_size);
@@ -32,7 +36,14 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        user_input_bridge_move = readLine();
+        return bridgeMoveValidation();
+    }
+    private String bridgeMoveValidation(){
+        if (inputValidation.userInputBridgeMoveValidation(user_input_bridge_move).equals(ERROR_MESSAGE)){
+            readMoving();
+        }
+        return user_input_bridge_move;
     }
 
     /**
