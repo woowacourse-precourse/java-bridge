@@ -39,13 +39,6 @@ public class BridgeApplication {
         }
     }
 
-    private void playBridgeGame(BridgeGame bridgeGame) {
-        do {
-            crossBridge(bridgeGame);
-            readGameCommandIfFailed(bridgeGame);
-        } while (PLAYING.equals(status));
-    }
-
     private BridgeGame initBridgeGame() {
         try {
             int bridgeSize = readBridgeSize();
@@ -63,6 +56,13 @@ public class BridgeApplication {
             outputView.printError(e.getMessage());
             return readBridgeSize();
         }
+    }
+
+    private void playBridgeGame(BridgeGame bridgeGame) {
+        do {
+            crossBridge(bridgeGame);
+            readGameCommandIfFailed(bridgeGame);
+        } while (PLAYING.equals(status));
     }
 
     private void crossBridge(BridgeGame bridgeGame) {
