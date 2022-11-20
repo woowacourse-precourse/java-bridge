@@ -17,21 +17,20 @@
 - [x] 성공여부를 저장 및 반환
 - [x] 게임종료 여부를 저장 및 반환
 
-## bridgeMaker
+### bridgeMaker
 
 - [x] 입력으로 들어온 길이만큼 리스트로 변환 랜덤 값
 - (1 -> U) , (0 -> D)
 
-## inputView
+## view
+
+### inputView
 
 - [x] 다리의 길이를 입력받음
 - [x] 이동할 방향을 입력받음
 - [x] 재시작 여부를 입력받음
 
-## inputService
-- [x] 입력받은 값에서 예외가 있을시 다시 입력을 받도록 함
-
-## outputView
+### outputView
 
 - [x] 게임 메시지를 출력함
 - [x] 게임 상황을 출력함
@@ -39,10 +38,18 @@
 
 ## service
 
+### bridgeGame
+
 - [x] 다리를 이동을 처리함
 - [x] 게임 재시작을 처리함
 
+### inputService
+
+- [x] 입력받은 값에서 예외가 있을시 다시 입력을 받도록 함
+
 ## controller
+
+### bridgeGameController
 
 - [x] 게임을 시작함
 - [x] 다리를 건너감
@@ -50,6 +57,8 @@
 - [X] 게임 결과를 나타냄
 
 ## exception
+
+### bridgeGameInputException
 
 - [x] 다리길이 예외처리
 - [x] 이동할 입력 예외처리
