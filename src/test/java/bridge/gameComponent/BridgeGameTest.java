@@ -116,8 +116,8 @@ public class BridgeGameTest {
         //given
         Bridge bridge = Bridge.of(List.of("U","D","D"));
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        boolean isPossibleMove1 = true;
-        boolean isPossibleMove2 = false;
+        int isPossibleMove1 = 1;
+        int isPossibleMove2 = 0;
         //when
         bridgeGame.move();
         bridgeGame.recordMap(isPossibleMove1);
@@ -132,7 +132,7 @@ public class BridgeGameTest {
         //given
         Bridge bridge = Bridge.of(List.of("U","D","D"));
         BridgeGame bridgeGame = new BridgeGame(bridge);
-        boolean isPossibleMove1 = false;
+        int isPossibleMove1 = 0;
         //when
         char[][] map = bridgeGame.recordMap(isPossibleMove1);
 
@@ -148,10 +148,10 @@ public class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(bridge);
         String userMove = "D";
         //when
-        boolean isPossibleMove = bridgeGame.isPossibleMove(userMove);
+        int isPossibleMove = bridgeGame.isPossibleMove(userMove);
         //then
         assertThat(isPossibleMove)
-                .isFalse();
+                .isEqualTo(0);
     }
     @Test
     void isPossibleMoveTest_가능한_경우() {
@@ -160,9 +160,9 @@ public class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame(bridge);
         String userMove = "U";
         //when
-        boolean isPossibleMove = bridgeGame.isPossibleMove(userMove);
+        int isPossibleMove = bridgeGame.isPossibleMove(userMove);
         //then
         assertThat(isPossibleMove)
-                .isTrue();
+                .isEqualTo(1);
     }
 }
