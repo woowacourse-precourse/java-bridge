@@ -14,15 +14,27 @@ public class Validator {
     }
 
     public static void moving(String moving) {
-        if (!(moving.equals(Moving.UP.getLetter()) || moving.equals(Moving.DOWN.getLetter()))) {
-            throw new IllegalArgumentException(Exception.MOVING.getMessage());
+        if (moving.equals(Moving.UP.getLetter())) {
+            return;
         }
+
+        if (moving.equals(Moving.DOWN.getLetter())) {
+            return;
+        }
+
+        throw new IllegalArgumentException(Exception.MOVING.getMessage());
     }
 
     public static void gameCommand(String gameCommand) {
-        if (!(gameCommand.equals(GameCommand.RETRY.getLetter()) || gameCommand.equals(GameCommand.QUIT.getLetter()))) {
-            throw new IllegalArgumentException(Exception.GAME_COMMAND.getMessage());
+        if (gameCommand.equals(GameCommand.RETRY.getLetter())) {
+            return;
         }
+
+        if (gameCommand.equals(GameCommand.QUIT.getLetter())) {
+            return;
+        }
+
+        throw new IllegalArgumentException(Exception.GAME_COMMAND.getMessage());
     }
 
     private static void isLengthInRange(String bridgeSize) {
