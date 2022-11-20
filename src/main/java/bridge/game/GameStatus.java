@@ -28,7 +28,7 @@ public class GameStatus {
     private void init() {
         up = new StringBuilder(OPENER);
         down = new StringBuilder(OPENER);
-        this.isStart = true;
+        isStart = true;
     }
 
     public int getTryCount() {

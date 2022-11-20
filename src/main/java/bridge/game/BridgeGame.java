@@ -32,7 +32,7 @@ public class BridgeGame {
             gameStatus.makeFail(direction);
             throw new FailException();
         } catch (IllegalStateException e) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_BRIDGE_STATUS);
+            throw new IllegalStateException(ErrorMessage.INVALID_BRIDGE_STATUS);
         }
     }
 
