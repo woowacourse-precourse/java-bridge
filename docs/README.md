@@ -59,7 +59,9 @@
 사용자로부터 입력을 받아 반환하는 역할
 
 <aside>
-❗  다리 길이를 입력 받는 기능 `([3,20])`
+❗  
+
+다리 길이를 입력 받는 기능 (`[3,20]`)
 
 이동 위치를 입력 받는 기능 (`U/D`)
 
@@ -82,7 +84,7 @@
 
 </aside>
 
-## 💻Validator
+## 💻InputValidator
 
 입력 값의 검증을 담당
 
@@ -100,6 +102,7 @@
 다리 위치 별 알맞은 선택지(U / D)를 정하는 역할
 
 <aside>
+
 ❗  `0` or `1`의 값을 반환하는 기능
 
 </aside>
@@ -131,7 +134,7 @@
 
 ---
 
-## ✏️GameController
+## ✏️BridgeGameController
 
 게임 전체 흐름을 제어하는 역할
 
@@ -144,7 +147,7 @@
 
 </aside>
 
-## ✏️GameService
+## ✏️BridgeGameService
 
 추상화 되어있는 컨트롤러의 기능을 실제로 구현 / 수행하는 역할
 
@@ -166,8 +169,9 @@
 
 <aside>
 ❗ 아래의 두 가지 상태를 가짐
-UP(”U”,0)
-DOWN(”D”,1)
+
+`UP(U,0)`
+`DOWN(D,1)`
 
 U / D를 입력 받아 알맞은 `MoveChoice`를 반환하는 기능
 
@@ -183,6 +187,7 @@ U / D를 입력 받아 알맞은 `MoveChoice`를 반환하는 기능
 
 <aside>
 ❗ 아래의 두 가지 상태를 가짐
+
 `QUIT('Q',false)`
 `CONTINUE('C',true)`
 
@@ -201,7 +206,7 @@ Q / D를 입력 받아 알맞은 `RetryIntention`반환하는 기능
 
 </aside>
 
-## 🎮GameHistory
+## 🎮GameResult
 
 현재까지 게임 정보를 담고 있는 객체
 
@@ -214,21 +219,13 @@ Q / D를 입력 받아 알맞은 `RetryIntention`반환하는 기능
 
 </aside>
 
-## 🎮MoveHistory
 
-현재까지 이동 경로를 담고 있는 객체
-
-<aside>
-❗ 현재까지 사용자가 이동한 경로를 나타내는 기능
-(성공한 위치는 `true`, 실패한 위치는 `false`)
-
-</aside>
-
-## 🎮Exceptions
+## 🎮BridgeGameExceptions
 
 ❗프로그램 실행 과정에서 발생하는 에러 목록을 정의하는 역할
 
 <aside>
+
 입력 값이 숫자가 아닌 경우 (`NOT_A_NUMBER`)
 
 입력 값이 범위를 벗어난 경우(`OUT_OF_RANGE`)
@@ -236,5 +233,20 @@ Q / D를 입력 받아 알맞은 `RetryIntention`반환하는 기능
 입력 값이 비어있는 경우(`NULL_INPUT`)
 
 입력 값이 알맞지 않은 경우(`INCORRECT_INPUT`)
+
+</aside>
+
+## 🎮GameStatus
+
+❗현재 게임 상태를 나타내는 역할
+
+<aside>
+
+현재 게임이 진행중인 경우 (`IN_PROCESS`)
+
+클리어된 경우(`SUCCEED`)
+
+게임오버된 경우(`FAILED`)
+
 
 </aside>
