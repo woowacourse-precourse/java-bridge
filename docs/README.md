@@ -124,7 +124,7 @@ public class BridgeMaker {
 **BridgeGame**
 >- [x] Game을 시작하는 기능 ( startGame )
 >- [x] 움직이는 기능 ( move )
->- [ ] Game을 재시작하는 기능 ( retry )
+>- [x] Game을 재시작하는 기능 ( retry )
 >- [ ] Game을 종료하는 기능 ( endGame )
 >- [x] 만들어진 User의 Map을 가져오는 기능 ( getMergeBrdige )
 >- [ ] Bridge요소와 User요소가 같은지 가져오는 기능 ( getMatchCorrect )
