@@ -1,4 +1,7 @@
-package bridge;
+package bridge.domain;
+
+import bridge.util.BridgePosition;
+import bridge.util.GameCommand;
 
 import java.util.ArrayList;
 import java.util.List;

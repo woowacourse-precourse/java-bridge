@@ -1,4 +1,6 @@
-package bridge;
+package bridge.view;
+
+import bridge.util.InformationMessage;
 
 import java.util.List;
 

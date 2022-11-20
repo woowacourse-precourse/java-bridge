@@ -1,4 +1,4 @@
-package bridge;
+package bridge.util;
 
 public enum BridgePosition {
     UP("U", 1),

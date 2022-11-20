@@ -1,4 +1,11 @@
-package bridge;
+package bridge.controller;
+
+import bridge.domain.Bridge;
+import bridge.domain.BridgeGame;
+import bridge.domain.BridgeMaker;
+import bridge.util.InformationMessage;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
 public class BridgeGameProcessor {
     private final InputView inputView;

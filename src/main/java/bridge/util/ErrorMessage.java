@@ -1,4 +1,4 @@
-package bridge;
+package bridge.util;
 
 public enum ErrorMessage {
     INVALID_NUMBER_TYPE("숫자만 입력 가능합니다"),

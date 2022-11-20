@@ -1,4 +1,8 @@
-package bridge;
+package bridge.view;
+
+import bridge.util.BridgePosition;
+import bridge.util.ErrorMessage;
+import bridge.util.GameCommand;
 
 public class InputValidator {
 
