@@ -25,13 +25,13 @@ public class OutputView {
     public void movementUp(int round, Bridge bridge, String movement) {
         if(movement.equals("U")) {
             upperMap.add(bridge.getUpperBridge().get(round));
-            lowerMap.add(" ");
+            lowerMap.add("   ");
         }
     }
 
     public void movementDown(int round, Bridge bridge, String movement) {
         if(movement.equals("D")) {
-            upperMap.add(" ");
+            upperMap.add("   ");
             lowerMap.add(bridge.getLowerBridge().get(round));
         }
     }
@@ -42,7 +42,7 @@ public class OutputView {
     }
 
     public void ifBlocked(int round) {
-        if(upperMap.get(round).equals("X") || lowerMap.get(round).equals("X")) {
+        if(upperMap.get(round).equals(" X ") || lowerMap.get(round).equals(" X ")) {
             upperMap.remove(round);
             lowerMap.remove(round);
         }
@@ -55,7 +55,7 @@ public class OutputView {
      */
     public void printResult(boolean status, int gameTry) {
         if(status) {
-            System.out.println("게임 성공 여부: 성공");
+            System.out.println("최종 게임 결과\n게임 성공 여부: 성공");
             System.out.println("총 시도한 횟수: " + gameTry);
             return;
         }

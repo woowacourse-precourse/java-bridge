@@ -29,8 +29,6 @@ public class BridgeMaker {
     }
 
     public String selectUpDown() {
-        bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-
         if(bridgeNumberGenerator.generate() == 1) {
             return "U";
         }

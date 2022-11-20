@@ -40,19 +40,18 @@ public class BridgeGame {
             round += checkO(movement);
             status = retry(status);
         }
-
         return status;
     }
 
     public int checkO(String movement) {
-        if(movement.equals("O")) {
+        if(movement.equals(" O ")) {
             return 1;
         }
 
         return 0;
     }
     public boolean checkX(String movement) {
-        return movement.equals("O");
+        return movement.equals(" O ");
     }
 
     public String checkMovable(int round, String userInput) {

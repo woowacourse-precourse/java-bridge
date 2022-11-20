@@ -22,15 +22,15 @@ public class Bridge {
 
 	private void up(String shape) {
 		if(shape.equals("U")) {
-			upperBridge.add("O");
-			lowerBridge.add("X");
+			upperBridge.add(" O ");
+			lowerBridge.add(" X ");
 		}
 	}
 
 	private void down(String shape) {
 		if(shape.equals("D")) {
-			upperBridge.add("X");
-			lowerBridge.add("O");
+			upperBridge.add(" X ");
+			lowerBridge.add(" O ");
 		}
 	}
 
