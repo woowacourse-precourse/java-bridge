@@ -59,7 +59,7 @@ class ApplicationTest extends NsTest {
 
     @Override
     protected void runMain() {
-        Application.main(new String[]{});
+        Application.main(new String[] {});
     }
 
     static class TestNumberGenerator implements BridgeNumberGenerator {

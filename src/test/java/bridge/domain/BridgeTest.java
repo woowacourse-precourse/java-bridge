@@ -12,16 +12,16 @@ public class BridgeTest {
 
     @Test
     void 횡단_성공을_알리는_지_테스트() {
-        assertThat(bridge.isRightTrack(2,"D")).isEqualTo(BridgeCrossingStatus.SUCCESS);
+        assertThat(bridge.isRightTrack(2, "D")).isEqualTo(BridgeCrossingStatus.SUCCESS);
     }
 
     @Test
     void 횡단_실패를_알리는_지_테스트() {
-        assertThat(bridge.isRightTrack(0,"D")).isEqualTo(BridgeCrossingStatus.FAIL);
+        assertThat(bridge.isRightTrack(0, "D")).isEqualTo(BridgeCrossingStatus.FAIL);
     }
 
     @Test
     void 횡단_진행_중임을_알리는_지_테스트() {
-        assertThat(bridge.isRightTrack(1,"D")).isEqualTo(BridgeCrossingStatus.PROGRESS);
+        assertThat(bridge.isRightTrack(1, "D")).isEqualTo(BridgeCrossingStatus.PROGRESS);
     }
 }

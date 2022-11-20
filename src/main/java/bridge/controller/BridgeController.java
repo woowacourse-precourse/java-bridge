@@ -7,9 +7,9 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeController {
-    private final BridgeService bridgeService;
     private static final String GAME_RESTART_KEY = "R";
     private static final String GAME_QUIT_KEY = "Q";
+    private final BridgeService bridgeService;
 
     public BridgeController(BridgeService bridgeService) {
         this.bridgeService = bridgeService;

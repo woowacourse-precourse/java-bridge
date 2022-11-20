@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import bridge.dto.BridgeCrossingDTO;
 
 public class BridgeGame {
@@ -12,9 +11,8 @@ public class BridgeGame {
         put("U", 0);
         put("D", 1);
     }};
-    private List<List<String>> footPrint = new ArrayList<>();
-
     private final Bridge bridge;
+    private List<List<String>> footPrint = new ArrayList<>();
     private int tryCount;
     private BridgeCrossingStatus crossingStatus;
 

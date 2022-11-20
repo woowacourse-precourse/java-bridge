@@ -1,16 +1,14 @@
 package bridge.view;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
-
-import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
     private static final int BRIDGE_MAXIMUM_SIZE = 20;
     private static final int BRIDGE_MINIMUM_SIZE = 3;
-    private static final List<String> BRIDGE_DIRECTION = new ArrayList<>(List.of("U","D"));
-    private static final List<String> GAME_RESTART_KEY = new ArrayList<>(List.of("R","Q"));
-
+    private static final List<String> BRIDGE_DIRECTION = new ArrayList<>(List.of("U", "D"));
+    private static final List<String> GAME_RESTART_KEY = new ArrayList<>(List.of("R", "Q"));
 
     public static int inputBridgeSize() {
         String bridgeSize = Console.readLine().trim();

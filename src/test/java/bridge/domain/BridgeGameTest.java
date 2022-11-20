@@ -109,6 +109,7 @@ public class BridgeGameTest {
         assertThat(bridgeCrossingDTO.getFootPrint())
             .isEqualTo(new ArrayList<>(List.of(expectedUpperTrack, expectedDownTrack)));
     }
+
     @Test
     void 재시작_후_게임_성공인_위치_테스트() {
         // given

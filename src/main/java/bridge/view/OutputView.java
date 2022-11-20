@@ -29,7 +29,7 @@ public class OutputView {
     }
 
     public static void printMap(List<List<String>> footPrint) {
-        for (List<String> hierarchical: footPrint) {
+        for (List<String> hierarchical : footPrint) {
             System.out.print(OutputMessage.START_SQUARE_BRACKET.getMessage());
             printMapMember(hierarchical);
             System.out.println(OutputMessage.END_SQUARE_BRACKET.getMessage());
