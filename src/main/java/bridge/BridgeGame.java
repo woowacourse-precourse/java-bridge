@@ -12,12 +12,15 @@ public class BridgeGame {
     private final List<String> bridge;
     private final InputView inputView;
 
+    private final OutputView outputView;
+
     private int attempts;
 
     public BridgeGame(BridgeMaker bridgeMaker) {
         this.user = new ArrayList<>();
-        this.bridge = createBridge(bridgeMaker);
         this.inputView = new InputView();
+        this.outputView = new OutputView();
+        this.bridge = createBridge(bridgeMaker);
     }
 
     public List<String> createBridge(BridgeMaker bridgeMaker) {
@@ -57,5 +60,22 @@ public class BridgeGame {
     public void resetGame() {
         attempts++;
         user.clear();
+    }
+
+    public boolean isCorrect() {
+        int lastIndex = user.size() - 1;
+        return user.get(lastIndex).equals(bridge.get(lastIndex));
+    }
+
+    public void play() {
+        attempts++;
+        while (true) {
+            move();
+            outputView.printMap(user, bridge);
+            if ((!isCorrect() && !retry()) || user.equals(bridge)) {
+                outputView.printResult();
+                break;
+            }
+        }
     }
 }
