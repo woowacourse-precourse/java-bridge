@@ -40,15 +40,9 @@ public class InputView {
 
         System.out.println(MOVE_BRIDGE_SPACE_QUESTION);
         moveBridgeSpace = Console.readLine();
-        validateUpOrDown(moveBridgeSpace);
+        validateOneLength(moveBridgeSpace);
 
         return moveBridgeSpace;
-    }
-
-    private void validateUpOrDown(String moveBridgeSpace) {
-        if (!moveBridgeSpace.equals("U") && moveBridgeSpace.equals("D")) {
-            throw new IllegalArgumentException(ErrorMessage.MOVE_BRIDGE_SPACE_IS_U_OR_D.getErrorMessage());
-        }
     }
 
     /**
@@ -59,13 +53,13 @@ public class InputView {
 
         System.out.println(RETRY_QUESTION);
         retryAnswer = Console.readLine();
-        validateRetryOrQuit(retryAnswer);
+        validateOneLength(retryAnswer);
         return retryAnswer;
     }
 
-    private void validateRetryOrQuit(String retryAnswer) {
-        if (!retryAnswer.equals("R") && !retryAnswer.equals("Q")) {
-            throw new IllegalArgumentException(ErrorMessage.RETRY_ANSWER_IS_R_OR_Q.getErrorMessage());
+    private void validateOneLength(String input) {
+        if (input.length() != 1) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_VALUE_IS_ONLY_ONE_LENGTH.getErrorMessage());
         }
     }
 }
