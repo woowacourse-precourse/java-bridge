@@ -11,7 +11,6 @@ import bridge.view.SystemConsole;
 import java.util.List;
 
 public class BridgeGameMachine {
-
     private final InputView inputView;
     private final OutputView outputView;
     private final SystemConsole systemConsole;
@@ -23,26 +22,28 @@ public class BridgeGameMachine {
         this.systemConsole = systemConsole;
     }
 
+    //TODO: (상수화), (enum자리 할당), (메서드 길이제한), (변수명, 메서드명), (get() 가져오는것들 확인)
+
     public void run() {
         systemConsole.gameStartMessage();
 
         systemConsole.bridgeLength();
-        int bridgeLength = inputView.readBridgeSize(); // 총길이
+        int bridgeLength = inputView.readBridgeSize();
         systemConsole.nextLine();
 
         BridgeRandomNumberGenerator randomGenerator = new BridgeRandomNumberGenerator();
         BridgeMaker bridgeMaker = new BridgeMaker(randomGenerator);
-        List<String> designBridge = bridgeMaker.makeBridge(bridgeLength);// 무작위 [U, D, U]
+        List<String> designBridge = bridgeMaker.makeBridge(bridgeLength);
 
-        BridgeState bridgeState = new BridgeState(systemConsole); // player
+        BridgeState bridgeState = new BridgeState(systemConsole);
         BridgeGame bridgeGame = new BridgeGame(bridgeState);
 
-        String playerRetry = ""; // R Q
+        String playerRetry = "";
         boolean gameSuccess = true;
         int gameCount = 1;
 
         Loop1:
-        while (!(playerRetry.equals(Command.END.getCommand()))) {  // 게임이 성공했을 때?
+        while (!(playerRetry.equals(Command.END.getCommand()))) {
 
             bridgeState.initBridgeState();
 
@@ -55,7 +56,7 @@ public class BridgeGameMachine {
                 String bridgeJudgment = bridgeGame.judgment(playerMoving,
                         designBridge.get(bridgeIndex));
 
-                BridgeState bridgePlace = bridgeGame.move(playerMoving, bridgeJudgment); // 다리 만들기
+                BridgeState bridgePlace = bridgeGame.move(playerMoving, bridgeJudgment);
 
                 bridgePlace = bridgeGame.bridgeConnection(bridgeLength, bridgeJudgment,
                         bridgeIndex);

@@ -4,10 +4,9 @@ import bridge.view.SystemConsole;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BridgeState {  // Map 걷어내고 이거 쓰겠다.
-
-    private final List<String> upBridge = new ArrayList<>();   // "| O |"
-    private final List<String> downBridge = new ArrayList<>(); // "|   |"
+public class BridgeState {
+    private final List<String> upBridge = new ArrayList<>();
+    private final List<String> downBridge = new ArrayList<>();
     private final SystemConsole systemConsole;
 
     public BridgeState(SystemConsole systemConsole) {
@@ -90,5 +89,4 @@ public class BridgeState {  // Map 걷어내고 이거 쓰겠다.
         }
         System.out.println();
     }
-
 }
