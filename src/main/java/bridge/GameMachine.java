@@ -3,8 +3,8 @@ package bridge;
 import bridge.types.BridgeType;
 import bridge.types.MoveResult;
 import bridge.types.RetryCommand;
-import bridge.view.InputView;
-import bridge.view.OutputView;
+import bridge.views.InputView;
+import bridge.views.OutputView;
 
 import java.util.List;
 
