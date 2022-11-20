@@ -21,8 +21,7 @@ public class GameController {
     public void startGame() {
         User user = new User(1);
         inputView.printMessage(inputMessage.START_GAME);
-        int bridgeSize = inputView.readBridgeSize();
-        setBridgeSize(bridgeSize);
+        int bridgeSize = setBridgeSize(inputView.readBridgeSize());
         List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
         crossBridge(bridge, user);
         while (user.isRestartGame()) {
@@ -48,12 +47,8 @@ public class GameController {
             }
         }
     }
-    public void printStatusBridge(String userBridge) {
-        outputView.printMap(userBridge);
-    }
     public void askRestartOrEnd(String userBridge, int tryCount, User user) {
-        String retryOrQuit  = inputView.readGameCommand();
-        setRetryOrQuit(retryOrQuit);
+        String retryOrQuit = setRetryOrQuit(inputView.readGameCommand());
         if(retryOrQuit.equals("R")) {
             user.plusRetryCount();
             user.changeisRestartGame();
@@ -62,7 +57,7 @@ public class GameController {
         outputView.printResult(userBridge, true, tryCount);
     }
 
-    private void setRetryOrQuit(String retryOrQuit) {
+    private String setRetryOrQuit(String retryOrQuit) {
         try {
             validator.validateRetryOfQuit(retryOrQuit);
         } catch (IllegalArgumentException e) {
@@ -70,6 +65,7 @@ public class GameController {
             retryOrQuit = inputView.readMoving();
             setDirection(retryOrQuit);
         }
+        return retryOrQuit;
     }
 
     public void addResultBridge(boolean isUp, String result, User user) {
@@ -90,7 +86,7 @@ public class GameController {
         }
         return direction;
     }
-    public void setBridgeSize(int bridgeSize) {
+    public int setBridgeSize(int bridgeSize) {
         try {
             validator.validateBridgeSize(bridgeSize);
         } catch (IllegalArgumentException e) {
@@ -98,5 +94,6 @@ public class GameController {
             bridgeSize = inputView.readBridgeSize();
             setBridgeSize(bridgeSize);
         }
+        return bridgeSize;
     }
 }
