@@ -5,6 +5,7 @@ import bridge.model.BridgeMaker;
 import bridge.model.BridgeNumberGenerator;
 import bridge.model.BridgeRandomNumberGenerator;
 import bridge.model.GameCommand;
+import bridge.model.Moving;
 import bridge.model.MovingHistory;
 import bridge.model.MovingResult;
 import bridge.constant.GuidanceMessage;
@@ -48,7 +49,7 @@ public class BridgeGameController {
     }
 
     private MovingResult move(List<String> bridge, BridgeGame bridgeGame, MovingHistory movingHistory) {
-        String moving = readMoving();
+        Moving moving = readMoving();
         MovingResult movingResult = bridgeGame.move(bridge, moving);
         movingHistory.save(movingResult);
         outputView.printMap(movingHistory);
@@ -56,8 +57,8 @@ public class BridgeGameController {
         return movingResult;
     }
 
-    private String readMoving() {
-        String moving;
+    private Moving readMoving() {
+        Moving moving;
 
         try {
             moving = inputView.readMoving();

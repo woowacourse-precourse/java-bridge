@@ -2,15 +2,15 @@ package bridge.model;
 
 public class MovingResult {
 
-    private final String moving;
+    private final Moving moving;
     private final Result result;
 
-    public MovingResult(String moving, Result result) {
+    public MovingResult(Moving moving, Result result) {
         this.moving = moving;
         this.result = result;
     }
 
-    public static MovingResult of(String moving, Result result) {
+    public static MovingResult of(Moving moving, Result result) {
         return new MovingResult(moving, result);
     }
 
@@ -23,10 +23,10 @@ public class MovingResult {
     }
 
     public boolean isUpSide() {
-        return moving.equals("U");
+        return moving.isUp();
     }
 
     public boolean isDownSide() {
-        return moving.equals("D");
+        return moving.isDown();
     }
 }

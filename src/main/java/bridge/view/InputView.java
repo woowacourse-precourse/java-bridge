@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.constant.ErrorMessage;
 import bridge.constant.GuidanceMessage;
+import bridge.model.Moving;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -24,9 +25,10 @@ public class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public String readMoving() {
+    public Moving readMoving() {
         System.out.println(GuidanceMessage.INPUT_MOVING);
-        return Console.readLine();
+
+        return Moving.of(Console.readLine());
     }
 
     /**

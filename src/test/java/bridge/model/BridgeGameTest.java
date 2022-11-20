@@ -1,13 +1,8 @@
 package bridge.model;
 
-import bridge.model.BridgeGame;
-import bridge.model.MovingResult;
-import bridge.model.Result;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -28,34 +23,24 @@ class BridgeGameTest {
     @DisplayName("플레이어 이동 테스트")
     @Test
     void createMovingTest() {
-        String moving = "U";
-
-        MovingResult firstResult = bridgeGame.move(bridge, moving);
-        MovingResult secondResult = bridgeGame.move(bridge, moving);
+        MovingResult firstResult = bridgeGame.move(bridge, Moving.UP);
+        MovingResult secondResult = bridgeGame.move(bridge, Moving.UP);
 
         assertThat(firstResult)
                 .usingRecursiveComparison()
-                .isEqualTo(MovingResult.of("U", Result.SUCCESS));
+                .isEqualTo(MovingResult.of(Moving.UP, Result.SUCCESS));
 
         assertThat(secondResult)
                 .usingRecursiveComparison()
-                .isEqualTo(MovingResult.of("U", Result.FAIL));
-    }
-
-    @DisplayName("플레이어 이동 예외 처리 테스트")
-    @ParameterizedTest
-    @ValueSource(strings = {"", " ", "s", "u", "d"})
-    void createMovingException(String moving) {
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> bridgeGame.move(bridge, moving));
+                .isEqualTo(MovingResult.of(Moving.UP, Result.FAIL));
     }
 
     @DisplayName("게임 결과 확인 테스트 - 실패")
     @Test
     void createFailTest() {
-        bridgeGame.move(bridge, "U");
+        bridgeGame.move(bridge, Moving.DOWN);
 
-        MovingResult movingResult = bridgeGame.move(bridge, "U");
+        MovingResult movingResult = bridgeGame.move(bridge, Moving.DOWN);
 
         assertThat(bridgeGame.getGameResult()).isEqualTo(Result.FAIL);
     }
@@ -63,10 +48,10 @@ class BridgeGameTest {
     @DisplayName("게임 결과 확인 테스트 - 성공")
     @Test
     void createSuccessTest() {
-        bridgeGame.move(bridge, "U");
-        bridgeGame.move(bridge, "D");
+        bridgeGame.move(bridge, Moving.UP);
+        bridgeGame.move(bridge, Moving.DOWN);
 
-        MovingResult movingResult = bridgeGame.move(bridge, "D");
+        MovingResult movingResult = bridgeGame.move(bridge, Moving.DOWN);
 
         assertThat(bridgeGame.getGameResult()).isEqualTo(Result.SUCCESS);
     }

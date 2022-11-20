@@ -11,11 +11,11 @@ import java.util.List;
 public class BridgeMaker {
 
     public static final int FIRST_BLOCK = 0;
-    public static final int DOWN_NUMBER = 0;
+    public static final int DOWN_COMMAND = 0;
     public static final int MIN_SIZE = 3;
     public static final int MAX_SIZE = 20;
-    public static final String DOWN_STRING = "D";
-    public static final String UP_STRING = "U";
+    public static final String DOWN = "D";
+    public static final String UP = "U";
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
@@ -49,9 +49,9 @@ public class BridgeMaker {
     }
 
     private String generateBlock(int generatedNumber) {
-        if (generatedNumber == DOWN_NUMBER) {
-            return DOWN_STRING;
+        if (generatedNumber == DOWN_COMMAND) {
+            return DOWN;
         }
-        return UP_STRING;
+        return UP;
     }
 }
