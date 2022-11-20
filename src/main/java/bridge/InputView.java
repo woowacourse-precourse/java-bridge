@@ -35,13 +35,13 @@ public class InputView {
 
     private static void checkNull(String userInput){
         if(userInput.length() == 0){
-            throw new RuntimeException("[Error] 아무것도 입력하지 않았습니다. ");
+            throw new RuntimeException("[ERROR] 아무것도 입력하지 않았습니다. ");
         }
     }
 
     private static void checkWrongMove(String move){
         if(!move.equals("U") && !move.equals("D")){
-            throw new RuntimeException("[Error] 잘못된 이동입니다.");
+            throw new RuntimeException("[ERROR] 잘못된 이동입니다.");
         }
     }
     /**
@@ -56,7 +56,7 @@ public class InputView {
 
     private static void checkWrongGameCommand(String command) {
         if(!command.equals("R") && !command.equals("Q")){
-            throw new RuntimeException("[Error] 잘못된 커맨드를 입력하셨습니다.");
+            throw new RuntimeException("[ERROR] 잘못된 커맨드를 입력하셨습니다.");
         }
     }
 }
