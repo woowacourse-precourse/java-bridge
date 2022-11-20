@@ -12,7 +12,7 @@ public enum InputConstant {
         this.inputConstant = inputConstant;
     }
 
-    public String getInputConstant() {
+    public String getConstant() {
         return inputConstant;
     }
 
