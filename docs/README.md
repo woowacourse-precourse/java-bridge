@@ -1,5 +1,9 @@
 # 구현 기능 목록
 
+## 프로그램 흐름 및 페이즈 구분
+
+![프로그램 흐름 및 페이즈 구분 그림](./process.png)
+
 ## 프로그램 흐름 및 이벤트 처리 관련 (Controller)
 
 ### Application
@@ -41,11 +45,11 @@
 - 사용자의 성공 여부 반환 기능
 - 사용자의 총 시도 횟수 반환 기능
 
-### MoveIdentifier (enum)
+### Direction (enum)
 
 - 입출력와 데이터 처리의 이동 방향(위/아래) 식별 기능
 
-### GameRetryIdentifier (enum)
+### GameRetry (enum)
 
 - 입출력과 데이터 처리의 재시작/종료 식별 기능
 
