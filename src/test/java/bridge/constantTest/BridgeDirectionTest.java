@@ -3,13 +3,14 @@ package bridge.constantTest;
 import bridge.constant.BridgeDirection;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.*;
 
 import java.util.NoSuchElementException;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BridgeDirectionTest {
 
@@ -26,4 +27,19 @@ public class BridgeDirectionTest {
     public void checkProperBridgeState(int bridgeStateNumber, String bridgeState){
         assertThat(BridgeDirection.transformToWordDirection(bridgeStateNumber)).isEqualTo(bridgeState);
     }
+
+    @ParameterizedTest
+    @MethodSource("provideStringsForFindByWordBridgeDirection")
+    @DisplayName("문자인 다리 상태를 이용하여 해당하는 BridgeDirection 객체를 반환하는지 확인한다.")
+    void findByWordBridgeDirection_ShouldReturnMatchedBridgeDirection(String input, BridgeDirection expected) {
+        assertEquals(expected, BridgeDirection.findByWordBridgeDirection(input));
+    }
+
+    private static Stream<Arguments> provideStringsForFindByWordBridgeDirection() {
+        return Stream.of(
+                Arguments.of("D", BridgeDirection.DOWN),
+                Arguments.of("U", BridgeDirection.UP)
+        );
+    }
+
 }
