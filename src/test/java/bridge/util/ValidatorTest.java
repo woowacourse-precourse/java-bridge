@@ -42,4 +42,17 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 이동할 칸은 U 또는 D를 입력해야 합니다.");
     }
+    @Test
+    @DisplayName("재시작 R 또는 종료 Q 입력 시 true 반환하는지 확인")
+    void trueCheckRetry(){
+        assertThat(Validator.checkRetryOrQuit("R")).isTrue();
+        assertThat(Validator.checkRetryOrQuit("Q")).isTrue();
+    }
+    @Test
+    @DisplayName("재시작 R 또는 종료 Q 외의 값 입력 시 예외처리하는지 확인")
+    void exceptionCheckRetry(){
+        assertThatThrownBy(()->Validator.checkRetryOrQuit("K"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] R(재시작) 또는 Q(종료)를 입력해야 합니다.");
+    }
 }
