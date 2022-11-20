@@ -39,6 +39,19 @@ public class BridgeGame {
         }
     }
 
+    public boolean isContinue() {
+        if (this.bridge.size() == this.progress.get(UP_SIDE_PROGRESS.get()).size()) {
+            return false;
+        }
+        if (this.progress.get(UP_SIDE_PROGRESS.get()).contains(UNMOVABLE_CELL.get())) {
+            return false;
+        }
+        if (this.progress.get(DOWN_SIDE_PROGRESS.get()).contains(UNMOVABLE_CELL.get())) {
+            return false;
+        }
+        return true;
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>

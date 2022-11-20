@@ -18,7 +18,9 @@ public class GameController {
     }
 
     public void startGame() {
-        String moving = inputController.inputMoving();
-        this.bridgeGame.move(moving);
+        while (bridgeGame.isContinue()) {
+            String moving = inputController.inputMoving();
+            this.bridgeGame.move(moving);
+        }
     }
 }
