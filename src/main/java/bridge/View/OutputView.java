@@ -58,15 +58,15 @@ public class OutputView {
     }
 
     public String getString() {
-        String output = "";
+        StringBuilder output = new StringBuilder();
         for(String input: bridgeMapUp) {
-            output += input;
+            output.append(input);
         }
-        output += '\n';
+        output.append('\n');
         for(String input: bridgeMapDown) {
-            output += input;
+            output.append(input);
         }
-        return output;
+        return output.toString();
     }
 
     /**
