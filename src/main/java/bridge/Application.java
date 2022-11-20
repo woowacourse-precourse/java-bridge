@@ -8,7 +8,7 @@ public class Application {
         OutputView outputView = new OutputView();
         InputView inputView = new InputView();
         outputView.printGreeting();
-        BridgeGame bridgeGame = initializeBridgeGame(inputView, outputView);
+        BridgeGame bridgeGame = initialize(inputView, outputView);
 
         outputView.printMoveInputMessage();
         String direction = inputView.readMoving();
@@ -16,7 +16,7 @@ public class Application {
         bridgeGame.move(direction);
     }
 
-    private static BridgeGame initializeBridgeGame(InputView inputView, OutputView outputView) {
+    private static BridgeGame initialize(InputView inputView, OutputView outputView) {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         do {
             outputView.printBridgeSizeInputMessage();
