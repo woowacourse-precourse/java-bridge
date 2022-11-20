@@ -26,26 +26,28 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult() {
+
     }
 
     private void printBridgeUnit(Integer bridgeUnit) {
-
+        if (!printStatus(bridgeUnit)){
+            skipBridgeUnit(bridgeUnit);
+        }
     }
 
-    private Boolean skipBridgeUnit(Integer bridgeUnit) {
+    private void skipBridgeUnit(Integer bridgeUnit) {
         if (bridgeUnit == 0) {
             System.out.println(" ");
-            return true;
         }
-        return false;
     }
 
-    private void printStatus(Integer bridgeUnit) {
+    private Boolean printStatus(Integer bridgeUnit) {
         if (bridgeUnit == 1) {
             System.out.println("O");
         }
         if (bridgeUnit == 2) {
             System.out.println("X");
         }
+        return ((bridgeUnit == 1) || (bridgeUnit == 2));
     }
 }
