@@ -1,23 +1,44 @@
 package bridge;
 
 public class Application {
-    static InputView input = new InputView();
-    static OutputView output = new OutputView();
-    static BridgeMaker newBridge = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private final InputView input = new InputView();
+    private final OutputView output = new OutputView();
+    private final BridgeMaker newBridge = new BridgeMaker(new BridgeRandomNumberGenerator());
 
     public static void main(String[] args) {
-        boolean playing = true;
+        Application app = new Application();
+        BridgeGame newGame = app.settingGame();
+        app.runningGame(newGame);
+        app.closingGame(newGame);
+    }
+
+    public BridgeGame settingGame() {
         output.printGameStart();
         output.printAskBridgeSize();
-        BridgeGame newGame = new BridgeGame(newBridge.makeBridge(input.readBridgeSize()));
+        return new BridgeGame(newBridge.makeBridge(input.readBridgeSize()));
+    }
+
+    public void runningGame(BridgeGame game) {
+        boolean playing = true;
         while (playing) {
-            output.printAskMovement();
-            playing = newGame.move(input.readMoving());
-            output.printMap(newGame.bridge, newGame.moveResult);
+            playing = moving(game);
+            output.printMap(game.bridge, game.moveResult);
             if (!playing) {
-                output.printAskRetry();
-                playing = newGame.retry(input.readGameCommand());
+                playing = playAgain(game);
             }
         }
+    }
+
+    public void closingGame(BridgeGame game) {
+    }
+
+    private boolean moving(BridgeGame game){
+        output.printAskMovement();
+        return game.move(input.readMoving());
+    }
+
+    private boolean playAgain(BridgeGame game){
+        output.printAskRetry();
+        return game.retry(input.readGameCommand());
     }
 }
