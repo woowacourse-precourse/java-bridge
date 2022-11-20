@@ -56,7 +56,7 @@
 
 - **[예외 목록]**
     - [ ] 입력값에 예외가 존재하면 그 부분부터 다시 입력받는다.
-        - [ ] 입력값이 숫자가 아니면 IllegalArgumentExceptino을 발생시키고
+        - [X] 입력값이 숫자가 아니면 IllegalArgumentExceptino을 발생시키고
           "[ERROR]"로 시작하는 에러 메시지를 출력한다.
         - [ ] 입력값이 `3이상 20이하`의 숫자가 아니라면 IllegalArgumentExceptino을 발생시키고
           "[ERROR]"로 시작하는 에러 메시지를 출력한다.

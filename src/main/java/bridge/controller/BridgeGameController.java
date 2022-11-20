@@ -1,5 +1,7 @@
 package bridge.controller;
 
+import static bridge.messages.ErrorMessage.NON_NUMERIC_BRIDGE_SIZE_ERROR;
+
 import bridge.service.BridgeGameService;
 import bridge.views.InputView;
 import bridge.views.OutputView;
@@ -14,7 +16,7 @@ public class BridgeGameController {
         try {
             bridgeGameService.generateRandomBridge(Integer.parseInt(inputView.readBridgeSize()));
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NON_NUMERIC_BRIDGE_SIZE_ERROR);
         }
     }
 }
