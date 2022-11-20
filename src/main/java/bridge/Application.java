@@ -19,6 +19,8 @@ public class Application {
             boolean gameChecked = bridgeGame.move(answerBridge,userRemoveCommand);
             outputView.printMap(bridgeGame.upBridge);
             outputView.printMap(bridgeGame.downBridge);
+            if(!gameChecked){
+            }
         }while (!bridgeGame.compareMoveCount(brideSize));
     }
 }
