@@ -5,6 +5,10 @@ package bridge;
  */
 public class OutputView {
 
+    static final String START_MESSAGE = "다리 건너기 게임을 시작합니다. \n";
+    static final String SELECT_SIZE_BRIDGE_MESSAGE = "다리의 길이를 입력해주세요";
+    static final String SELECT_UP_DOWN_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래 : D)";
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
