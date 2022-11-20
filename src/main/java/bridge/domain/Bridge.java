@@ -5,14 +5,14 @@ import java.util.Collections;
 import java.util.List;
 
 public class Bridge {
-    private static final int DEFAULT = 0;
+    private static final int DEFAULT_VALUE = 0;
     private static final int MOVE_ON_NEXT = 1;
     private final List<String> bridge;
     private int location;
 
     public Bridge(List<String> bridge) {
         this.bridge = bridge;
-        this.location = DEFAULT;
+        this.location = DEFAULT_VALUE;
     }
 
     public List<String> getBridge() {
@@ -32,7 +32,7 @@ public class Bridge {
     }
 
     public void initLocation() {
-        setLocation(DEFAULT);
+        setLocation(DEFAULT_VALUE);
     }
 
     public boolean isPass(String moveUpOrDown) {
