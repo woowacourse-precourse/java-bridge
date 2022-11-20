@@ -1,7 +1,7 @@
 package bridge.maker;
 
 import bridge.BridgeNumberGenerator;
-import bridge.domain.BridgeType;
+import bridge.domain.BridgeSpaceType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,9 +24,13 @@ public class BridgeMaker {
         List<String> bridges = new ArrayList<>();
 
         for (int i = 1; i <= size; i++) {
-            bridges.add(BridgeType.find(bridgeNumberGenerator.generate()).name());
+            bridges.add(setCrossingSpace(bridgeNumberGenerator.generate()));
         }
 
         return bridges;
+    }
+
+    public String setCrossingSpace(int randomNumber) {
+        return BridgeSpaceType.find(randomNumber).name();
     }
 }
