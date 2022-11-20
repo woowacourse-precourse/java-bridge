@@ -29,9 +29,8 @@ public class BridgeGame {
         final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         final User user = new User();
         final Bridge bridge = makeBridgeGame(bridgeMaker);
-        while (gameState == GameState.START || gameState == GameState.RETRY) {
+        while (gameState == GameState.START) {
             gameState = move(user, bridge);
-            outputView.printMap(user);
         }
     }
 
@@ -44,6 +43,7 @@ public class BridgeGame {
         String position = inputView.readMoving();
         boolean isAlive = bridge.isAlive(position, user.crossingBridgeNumber());
         user.addUserState(BridgeState.convertToBridgeState(position, isAlive));
+        outputView.printMap(user);
         return isGameEnd(user, bridge, isAlive);
     }
 
