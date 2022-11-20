@@ -12,59 +12,57 @@
 ### model
 
 1. BridgeGame
-    - [ ]  다리 이동 → move
+    - [ ] 다리 이동 → move
         
-        이동한 회수 저장
-        
-    - [ ]  게임 재시작 → retry
+        위 다리와 아래 다리를 map으로 구분하여 저장
+    - [ ] 게임 재시작 → retry
         
         재시도 회수 저장
-        
-    - [x]  생성한 다리 저장 → BridgeGame 생성자로 해결
+    - [x] 생성한 다리 저장 → BridgeGame 생성자로 해결
 2. BridgeMaker
-    - [x]  다리 생성 → makeBridge
+    - [x] 다리 생성 → makeBridge
 3. InputValidator
-    - [x]  다리 길이 입력 값의 유효성 검사 → BridgeSize
-    - [ ]  다리 이동 입력 값의 유효성 검사 → Moving
-    - [ ]  게임 재시작/종료 여부 입력 값의 유효성 검사 → GameCommand
+    - [x] 다리 길이 입력 값의 유효성 검사 → BridgeSize
+    - [ ] 다리 이동 입력 값의 유효성 검사 → Moving
+    - [ ] 게임 재시작/종료 여부 입력 값의 유효성 검사 → GameCommand
 
 ### view
 
 1. InputView
-    - [x]  다리 길이 입력 기능 → readBridgeSize
-    - [ ]  이동할 칸 입력 기능 → readMoving
-    - [ ]  게임 재시작 입력 기능 →readGameCommand
+    - [x] 다리 길이 입력 기능 → readBridgeSize
+    - [ ] 이동할 칸 입력 기능 → readMoving
+    - [ ] 게임 재시작 입력 기능 →readGameCommand
 2. OutputView
-    - [x]  게임 시작 출력 기능 → printStart
-    - [ ]  게임 중 현재까지 이동한 다리 출력 기능 → printMap
-    - [ ]  게임 종료 후 최종 결과 출력 기능 → printResult
+    - [x] 게임 시작 출력 기능 → printStart
+    - [ ] 게임 중 현재까지 이동한 다리 출력 기능 → printMap
+    - [ ] 게임 종료 후 최종 결과 출력 기능 → printResult
 
 ### controller
 
 1. GameController
-    - [x]  게임 초기화 → initGame
+    - [x] 게임 초기화 → initGame
         1. 다리 길이 리턴
         2. 다리 생성
-    - [ ]  게임 시작 → startGame
+    - [ ] 게임 시작 → startGame
         1. 다리 이동 리턴
         2. 다리 이동
         3. 다리 건너면 게임 종료
         4. 다리 건너기 실패시 재시작
-    - [ ]  게임 재시작 → retryGame
+    - [ ] 게임 재시작 → retryGame
         1. 게임 재시작 리턴
         2. 재시작 입력 시 게임 시작 호출
         3. 종료 입력 시 게임 종료 호출
-    - [ ]  게임 종료 → endGame
+    - [ ] 게임 종료 → endGame
         1. 게임 종료 결과 출력
 2.  InputController
     - **잘못된 값 입력시 에러 메시지 출력 후 재입력**
-    - [x]  다리 길이 입력 및 검증 → inputBridgeSize
+    - [x] 다리 길이 입력 및 검증 → inputBridgeSize
         1. 다리 길이 입력
         2. 다리 길이 유효성 검사
-    - [ ]  이동할 칸 입력 및 검증 → inputMoving
+    - [ ] 이동할 칸 입력 및 검증 → inputMoving
         1. 이동할 칸 입력
         2. 이동할 칸 유효성 검사
-    - [ ]  게임 재시작 입력 및 검증 → inputStart
+    - [ ] 게임 재시작 입력 및 검증 → inputStart
         1. 게임 재시작 입력
         2. 게임 재시작 유효성 검사
 
