@@ -1,11 +1,10 @@
 package bridge.controller;
 
-import bridge.domain.MoveResult;
 import bridge.domain.Player;
+import bridge.dto.GameMoveDto;
 import bridge.service.BridgeGameService;
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import java.util.List;
 
 public class BridgeGameController {
     private final InputView inputView = new InputView();
@@ -27,8 +26,8 @@ public class BridgeGameController {
 
         while (bridgeGameService.isPlayable()) {
             String move = readMoving();
-            List<List<MoveResult>> result = bridgeGameService.play(player, move);
-            outputView.printMap(result);
+            GameMoveDto gameMoveDto = bridgeGameService.play(player, move);
+            outputView.printMap(gameMoveDto);
 
             if (!bridgeGameService.isPlayable()) {
                 String command = readGameCommand();

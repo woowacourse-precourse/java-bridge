@@ -5,8 +5,8 @@ import bridge.domain.AnswerBridge;
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeGameStatus;
 import bridge.domain.Direction;
-import bridge.domain.MoveResult;
 import bridge.domain.Player;
+import bridge.dto.GameMoveDto;
 import java.util.List;
 import java.util.Objects;
 
@@ -27,12 +27,12 @@ public class BridgeGameService {
         this.bridgeGame = new BridgeGame(answerBridge);
     }
 
-    public List<List<MoveResult>> play(Player player, String move) {
+    public GameMoveDto play(Player player, String move) {
         if (!isPlayable()) {
             throw new IllegalStateException(INVALID_GAME_STATE_MESSAGE);
         }
         player.move(bridgeGame, Direction.toEnum(move));
-        return player.getBridgeGameResult();
+        return new GameMoveDto(player.getBridgeGameResult());
     }
 
     public void retry(Player player, String command) {

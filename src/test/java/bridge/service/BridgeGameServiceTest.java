@@ -8,6 +8,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.domain.MoveResult;
 import bridge.domain.Player;
+import bridge.dto.GameMoveDto;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -45,9 +46,9 @@ class BridgeGameServiceTest {
     void play_메서드는_사용자와_방향을_입력받아_다리를_건너고_결과를_반환한다() {
         bridgeGameService.initializeBridgeGame(3);
 
-        List<List<MoveResult>> result = bridgeGameService.play(new Player(), "U");
+        GameMoveDto gameMoveDto = bridgeGameService.play(new Player(), "U");
 
-        assertThat(result.get(0)).isEqualTo(List.of(MoveResult.FAIL));
+        assertThat(gameMoveDto.getResult().get(0)).isEqualTo(List.of(MoveResult.FAIL));
     }
 
     @Test
