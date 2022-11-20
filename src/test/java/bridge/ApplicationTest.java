@@ -7,6 +7,8 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -45,6 +47,41 @@ class ApplicationTest extends NsTest {
             runException("a");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+    
+    //추가 테스트코드 작성
+    @Test
+    @DisplayName("다리의 길이가 3보다 짧을 시 예외 발생")
+    void bridgeShortLengthCheck(){
+        assertSimpleTest(() -> {
+            runException("1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    @Test
+    @DisplayName("다리의 길이가 20보다 길 시 예외 발생")
+    void bridgeLongLengthCheck(){
+        assertSimpleTest(() -> {
+            runException("21");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("이동 시 D, U 이외의 값 입력 시 예외발생")
+    void moveCharacterCheck(){
+        assertSimpleTest(() -> {
+            runException("3", "a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    @Test
+    @DisplayName("재시도 시 R, Q 이외의 값 입력 시 예외발생")
+    void retryCharacterCheck() {
+        assertRandomNumberInRangeTest(() -> {
+            run("3", "D", "a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+            },1);
     }
 
     @Override
