@@ -45,7 +45,7 @@ class ScoreTest {
     @ParameterizedTest
     @MethodSource("listProviderIsCrossing")
     void isCrossing(List<String> userStep, List<String> bridge) {
-        assertTrue(new Score(userStep).isCrossing(new Bridge(bridge)));
+        assertTrue(new Score(new UserStep(userStep)).isCrossing(new Bridge(bridge)));
     }
 
     static Stream<Arguments> listProviderIsCrossing() {
@@ -60,7 +60,7 @@ class ScoreTest {
     @ParameterizedTest
     @MethodSource("listProviderIsNotCrossing")
     void isNotCrossing(List<String> userStep, List<String> bridge) {
-        assertFalse(new Score(userStep).isCrossing(new Bridge(bridge)));
+        assertFalse(new Score(new UserStep(userStep)).isCrossing(new Bridge(bridge)));
     }
 
     static Stream<Arguments> listProviderIsNotCrossing() {
@@ -73,7 +73,7 @@ class ScoreTest {
     @DisplayName("R을 입력하면 유저가 지나온 정보가 초기화 된다.")
     @Test
     void judgeRetryThenIsRetry() {
-        Score newScore = new Score(List.of("U", "D"));
+        Score newScore = new Score(new UserStep(List.of("U", "D")));
         assertEquals("R", newScore.judgeRetry("R"));
         this.score.judgeRetry("R");
         assertThat(newScore).isEqualTo(this.score);
@@ -82,7 +82,7 @@ class ScoreTest {
     @DisplayName("Q를 입력하면 초기화 되지 않는다.")
     @Test
     void judgeRetryThenIsNotRetry(){
-        Score newScore = new Score(List.of("U", "D"));
+        Score newScore = new Score(new UserStep(List.of("U", "D")));
         assertEquals("Q", newScore.judgeRetry("Q"));
         assertThat(newScore).isNotEqualTo(new Score());
     }
