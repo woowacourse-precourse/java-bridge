@@ -31,7 +31,6 @@ public class BridgeMaker {
         if (word == 1) {
             randomWords = "U";
         }
-
         return "D";
     }
 }
