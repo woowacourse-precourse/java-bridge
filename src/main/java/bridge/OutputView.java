@@ -29,12 +29,12 @@ public class OutputView {
 
     public List<String> makeTotalBridge(List<String> layer) {
         List<String> output = new ArrayList<>();
-        output.add(outputMessage.OUTPUT_BRIDGE_HEAD.get());
+        output.add(OutputMessage.OUTPUT_BRIDGE_HEAD.get());
         for (int i=0; i<layer.size()-1; i++) {
-            output.add(layer.get(i) + outputMessage.OUTPUT_BRIDGE_MIDDLE.get());
+            output.add(layer.get(i) + OutputMessage.OUTPUT_BRIDGE_MIDDLE.get());
         }
         output.add(layer.get(layer.size()-1));
-        output.add(outputMessage.OUTPUT_BRIDGE_TAIL.get());
+        output.add(OutputMessage.OUTPUT_BRIDGE_TAIL.get());
 
         return output;
     }
@@ -44,11 +44,20 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(List<List<String>> layers, int success, int trial) {
+        System.out.println(OutputMessage.OUTPUT_TOTAL.get());
+        printMap(layers.get(0), layers.get(1));
+        if (success == 0) {
+            System.out.println(OutputMessage.OUTPUT_RESULT.get() + OutputMessage.OUTPUT_FAILURE.get());
+        }
+        if (success == 1) {
+            System.out.println(OutputMessage.OUTPUT_RESULT.get() + OutputMessage.OUTPUT_SUCCESS.get());
+        }
+        System.out.println(OutputMessage.OUTPUT_TRIAL.get() + trial);
     }
 }
 
-enum outputMessage {
+enum OutputMessage {
 
     OUTPUT_BRIDGE_HEAD("["),
     OUTPUT_BRIDGE_TAIL("]"),
@@ -63,7 +72,7 @@ enum outputMessage {
 
     private final String message;
 
-    outputMessage(String message) {
+    OutputMessage(String message) {
         this.message = message;
     }
 
