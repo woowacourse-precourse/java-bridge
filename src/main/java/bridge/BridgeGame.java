@@ -36,4 +36,9 @@ public class BridgeGame {
     public void retry() {
         cursor = 0;
     }
+
+    // check game is over
+    public boolean isOver() {
+        return cursor == bridge.size();
+    }
 }
