@@ -1,8 +1,11 @@
 package bridge;
 
+import static bridge.utils.message.GameMessagesUtil.CHOICE_MOVE;
 import static bridge.utils.message.GameMessagesUtil.INPUT_BRIDGE_SIZE;
 import static bridge.utils.message.GameMessagesUtil.START;
 
+import bridge.domain.BridgeGame;
+import bridge.domain.MoveResult;
 import bridge.utils.console.InputView;
 import bridge.utils.console.OutputView;
 import java.util.List;
@@ -13,7 +16,8 @@ public class Application {
 
     public static void main(String[] args) {
         List<String> bridge = getBridge();
-        System.out.println("bridge = " + bridge);
+
+        play(bridge);
     }
 
     private static List<String> getBridge() {
@@ -39,6 +43,30 @@ public class Application {
                 output.printMessage(ex.getMessage());
             }
         }
+    }
+
+    private static void play(List<String> bridge) {
+        BridgeGame game = new BridgeGame(bridge);
+
+        while (!game.isFinish()) {
+            String choiceMove = getChoiceMove();
+            showMoveResult(game.move(choiceMove));
+        }
+    }
+
+    private static String getChoiceMove() {
+        while (true) {
+            try {
+                output.printMessage(CHOICE_MOVE.getMessage());
+                return input.readMoving();
+            } catch (IllegalArgumentException ex) {
+                output.printMessage(ex.getMessage());
+            }
+        }
+    }
+
+    private static void showMoveResult(MoveResult moveResult) {
+        output.printMap(moveResult);
     }
 
 }

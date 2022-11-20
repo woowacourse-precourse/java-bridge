@@ -1,5 +1,6 @@
 package bridge.utils.console;
 
+import static bridge.utils.message.ErrorMessagesUtil.MOVING;
 import static bridge.utils.message.ErrorMessagesUtil.NOT_BLANK;
 import static bridge.utils.message.ErrorMessagesUtil.ONLY_NUMBERS;
 import static bridge.utils.message.ErrorMessagesUtil.SIZE_OUT_OF_RANGE;
@@ -53,7 +54,17 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String move = Console.readLine();
+        validateMove(move);
+
+        return move;
+    }
+
+    private void validateMove(String move) {
+        if (move.equals("U") || move.equals("D")) {
+            return;
+        }
+        throw new IllegalArgumentException(MOVING.getMessage());
     }
 
     /**
