@@ -9,6 +9,9 @@ public class BridgeGame {
     private final Bridge bridge;
     private CurrentBridge currentBridge;
     private Integer count = 0;
+    public Integer getCount() {
+        return count;
+    }
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
         currentBridge = new CurrentBridge(new ArrayList<>());
