@@ -8,7 +8,7 @@ import bridge.exception.ExceptionMessage;
 public class BridgeGame {
     private int index; //현재까지 움직인 칸
     private int endIndex; //마지막 칸
-    private int numberOfTries;
+    private int numberOfTrials;
     private char[][] mapRecord; //현재까지 움직인 다리 기록
     private Bridge bridge;
 
@@ -19,12 +19,12 @@ public class BridgeGame {
         this.bridge = bridge;
         this.index = -1;
         this.endIndex = bridge.getBridge().size() - 1;
-        this.numberOfTries = 1;
+        this.numberOfTrials = 1;
         this.mapRecord = new char[2][this.endIndex + 1];
     }
 
-    public int getNumberOfTries() {
-        return numberOfTries;
+    public int getNumberOfTrials() {
+        return numberOfTrials;
     }
 
     public int getIndex() {
@@ -34,8 +34,10 @@ public class BridgeGame {
     public int getEndIndex() {
         return endIndex;
     }
-
-    /**
+    public char[][] getMapRecord() {
+        return mapRecord;
+    }
+/**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
@@ -43,11 +45,11 @@ public class BridgeGame {
     /**
      * 마지막 칸까지 도달했다면 1 리턴, 그렇지 않으면 0 리턴
      **/
-    public int move() {
+    public void move() {
+        if(index >= endIndex) {
+            throw new IllegalStateException(ExceptionMessage.CANNOT_MOVE_FURTHER.getMessage());
+        }
         index++;
-        if (isSuccess()) return 1;
-        if (index < endIndex) return 0;
-        throw new IllegalStateException(ExceptionMessage.CANNOT_MOVE_FURTHER.getMessage());
     }
 
     /**
@@ -57,7 +59,7 @@ public class BridgeGame {
      */
     public void retry() {
         if (isSuccess()) throw new IllegalStateException(ExceptionMessage.GAME_ALREADY_SUCCESS.getMessage());
-        this.numberOfTries++;
+        this.numberOfTrials++;
         this.index = -1;
         this.mapRecord = new char[2][this.endIndex + 1];
     }
