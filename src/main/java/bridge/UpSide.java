@@ -7,7 +7,7 @@ public class UpSide {
     private String upSide;
 
     public String makeUpSide(List<String> bridge) {
-        String upSideString = String.join("|", convertUpSide(bridge));
+        String upSideString = String.join(" | ", convertUpSide(bridge));
         upSide += "[ ";
         upSide += upSideString;
         upSide += " ]";
