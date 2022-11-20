@@ -61,8 +61,18 @@ public class BridgeGame {
     /**
      * 게임 실패 여부 검사할 때 사용하는 메서드
      */
-    public boolean IsFailGame() {
+    public boolean isFailGame() {
         if (moveResult.contains("X")) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 게임 실패 여부 최종 결과 검사할 때 사용하는 메서드
+     */
+    public boolean isFailFinalGame(List<String> bridge) {
+        if (isFailGame() || bridge.size() != (moveResult.size() / 2)) {
             return true;
         }
         return false;
