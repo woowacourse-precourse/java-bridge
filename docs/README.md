@@ -68,3 +68,6 @@
 - [x] BridgeGame 클래스의 move 메서드 반환 타입 변경
 - [x] BridgeGame의 getTryCnt 메서드 삭제
 - [x] BridgeGameTest 수정
+
+- [x] BridgeGame 클래스에 다리 길이 반환 메서드 추가
+- [ ] 게임 컨트롤러 객체 추가

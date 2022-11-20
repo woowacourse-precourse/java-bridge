@@ -59,4 +59,7 @@ public class BridgeGame {
     public BridgeGame retry() {
         return new BridgeGame(bridge, tryCnt + 1);
     }
+    public int getBridgeSize() {
+        return bridge.size();
+    }
 }
