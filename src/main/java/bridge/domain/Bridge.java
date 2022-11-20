@@ -18,7 +18,12 @@ public class Bridge {
     // 유저가 입력할 키 리스트 초기화
     public void initUserKeyList() {
         userKeyList = new ArrayList<>();
-        this.numberOfAttempts += 1;
+        addNumberOfAttempts(1);
+    }
+
+    // 시도횟수 number만큼 증가
+    private void addNumberOfAttempts(int number) {
+        this.numberOfAttempts += number;
     }
 
     // 움직인 키 입력받기
