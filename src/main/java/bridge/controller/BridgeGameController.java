@@ -7,8 +7,6 @@ import bridge.util.BridgeRandomNumberGenerator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-import java.util.List;
-
 public class BridgeGameController {
 
     private final InputView inputView = new InputView();
@@ -22,7 +20,7 @@ public class BridgeGameController {
     }
 
     public void moveAStep(){
-
+        player.addNewBridgeInput(inputView.readMoving());
     }
 
     public void resetGame(){
