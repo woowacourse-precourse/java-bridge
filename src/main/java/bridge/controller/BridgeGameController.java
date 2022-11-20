@@ -33,7 +33,8 @@ public class BridgeGameController {
         return exceptionHandle.getCorrectInput(() -> {
             outputView.printRequestBridgeLength();
             int bridgeSize = inputView.readBridgeSize();
-            return new BridgeMaker(new BridgeRandomNumberGenerator()).makeBridge(bridgeSize);
+            BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+            return bridgeMaker.makeBridge(bridgeSize);
         });
     }
 
