@@ -3,41 +3,39 @@ ___
 
 ## 기능 구현 목록
 
-## Game(Controller)
-### 게임을 전반적으로 관리
-### 1. 다리의 길이를 입력받는다.(inputView.readBridgeSize)
-### 2. 입력받은 다리의 길이를 받고 다리를 생성 -> 게임 끝까지 사용 (BridgeMaker.makebridge)
-### 3. 이동할 칸을 선택하도록 U와 D를 입력받는다. (inputView.readMoving)
-### 4. 3에서 입력받은 값으로 칸을 이동한다. (BrdigeGame.move)
-### 5. 칸을 이동한 리스트를 출력(OutputView.printmap)
-### 6. 다리가 건널수 없는 상태라면 게임 재시도 여부를 묻는다(OutputView.printResult, BridgeGame.retry)
-### 다리를 건널 수 없는 상태 : 다리 하나에 X가 나오면 건널수 없음
-### 7. 종료 조건이 만족할때까지 3~6를 반복한다.
-### 종료 조건 : 1) 재시도입력 시 Q가 입력될 떄 까지, 2) 1에서 생성한 길이만큼 다리를 건넜을 때
-### 8. 종료 조건이 만족하면 최종 게임결과와 게임 성공여부, 시도 횟수를 출력(OutputView.printResult)
+## BridgeGame(Controller)
+### - 게임의 전체적 흐름을 관리
+### - 사용자가 칸을 이동하는 역할(move)
+### - 게임을 재시도하는 역할(retry)
 
+---
 ## BridgeMaker
-### - 입력받은 다리의 길이를 인자로 받아 다리를 생성하는 역할
-
-## BridgeGame
-### - 사용자가 칸을 이동하는 역할
-### - 게임을 재시도하는 역할
+### - 입력받은 다리의 길이를 인자로 받아 다리를 생성하는 역할(makeBridge)
 
 ## BridgeNumberGenerator, RandomNumberGenerator
 ### - 0, 1 두개의 수 중 하나를 생성하여 건널 다리를 결정하는 역할
 
+## BridgeStatus
+### BridgeMaker에서 생성된 다리를 인자로 받아 다리의 상황을 나타내는 클래스
+### Map에 이용해 건널 수 있는지 판단(건넌다면 O, 건너지 못하면 X)하는 내용을 저장() (makeStatus)
+
+
+---
+
 ## InputView
-### - 다리의 길이를 입력받는 역할
-### - 사용자가 이동할 칸을 입력받는 역할
-### - 게임 재시도 여부를 입력받는 역할
+### - 다리의 길이를 입력받는 역할 (readBridgeSize)
+### - 사용자가 이동할 칸을 입력받는 역할 (readMoving)
+### - 게임 재시도 여부를 입력받는 역할 (readGameCommand)
 
 ## OutputView
-### - 다리의 상태를 출력하는 역할
-### - 게임 최종 결과를 출력하는 역할
+### - 다리의 상태를 출력하는 역할 (printMap)
+### - 게임 최종 결과를 출력하는 역할 (prntResult)
 
+---
 ## Exception
 ### 다리 길이 입력이 3부터 20사이의 숫자가 아니라면 예외 발생
 ### 이동할 칸 입력 시 U, D이외의 문자가 입력되면 예외 발생
+
 ---
 
 ## 필요 상수
