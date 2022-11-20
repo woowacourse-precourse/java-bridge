@@ -1,8 +1,11 @@
-package bridge.domain;
+package bridge.controller;
 
-import bridge.constant.Constant;
+import bridge.domain.BridgeMaker;
+import bridge.domain.BridgeNumberGenerator;
+import bridge.domain.BridgeRandomNumberGenerator;
+import bridge.view.InputView;
+import bridge.view.OutputView;
 
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -10,29 +13,28 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    
+    private BridgeMaker bridgeMaker;
+    private InputView inputView;
+    private OutputView outputView;
+
+    public BridgeGame() {
+        bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        inputView = new InputView();
+        outputView = new OutputView();
+    }
+
+    public void play() {
+        int bridgeSize = inputView.readBridgeSize();
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public HashMap<String, String> move(String moving, String bridge) {
-        HashMap<String, String> status = new HashMap<>();
-        for (int i = 0; i < userMoved.size(); i++) {
-            if (canMove(userMoved, i)) {
-                matchingStatus.put(userMoved.get(i), "O");
-                continue;
-            }
-            sta.put(userMoved.get(i), "X");
-        }
-        return matchingStatus;
+    public void move() {
     }
-
-    public boolean canMove(List<String> userMoved, int idx) {
-        return bridge.get(idx) == userMoved.get(idx);
-    }
-
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
