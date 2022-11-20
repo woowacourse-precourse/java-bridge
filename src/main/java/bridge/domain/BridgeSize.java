@@ -20,4 +20,8 @@ public class BridgeSize {
             throw new IllegalArgumentException(LESS_THAN_MIN_SIZE_MESSAGE);
         }
     }
+
+    public int getLength() {
+        return bridgeSize;
+    }
 }
