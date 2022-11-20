@@ -26,6 +26,16 @@ public class BridgeGame {
     public void move(String direction) {
         validateMove(direction);
         userPath.add(direction);
+    private boolean isLastMoveCorrect() {
+        int lastMoveIndex = userPath.size() - 1;
+        if (lastMoveIndex == -1) {
+            return true;
+        }
+        return bridge.get(lastMoveIndex).equals(
+                userPath.get(lastMoveIndex)
+        );
+    }
+
     }
 
     private void validateMove(String direction) {
