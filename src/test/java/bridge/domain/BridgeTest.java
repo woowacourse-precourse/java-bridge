@@ -28,7 +28,7 @@ public class BridgeTest {
             "D, 3, true"
     })
     void checkCheckingMovableSquareWorksProperly(String movement, int index, boolean expected) {
-        assertEquals(bridge.isAvailableSquare(movement, index), expected);
+        assertEquals(bridge.isAvailableSquare(index, movement), expected);
     }
 
     @DisplayName("마지막 원소인지 확인해주는 작업이 정상적으로 이루어지는지 확인")
