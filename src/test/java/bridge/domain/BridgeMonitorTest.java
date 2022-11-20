@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 class BridgeMonitorTest {
+
     @DisplayName("한 턴의 이동에 대한 현황을 기록한다.")
     @Nested
     class recordMoving {
@@ -72,5 +73,21 @@ class BridgeMonitorTest {
                     "[ O |   |   ]" + "\n" + "[   | O | O ]"
             );
         }
+    }
+
+    @DisplayName("실패한 이동 기록을 제거한다.")
+    @Test
+    void should_DeleteRecordOfWrongMoving_When_Retry() {
+        // given
+        BridgeMonitor bridgeMonitor = new BridgeMonitor();
+        bridgeMonitor.record(UPPER_SIDE, ON_WAY);
+        bridgeMonitor.record(LOWER_SIDE, FAIL);
+        String bridgePictureBefore = bridgeMonitor.getPicture();
+        // when
+        bridgeMonitor.turnBackOnce();
+        String bridgePictureAfter = bridgeMonitor.getPicture();
+        // then
+        assertThat(bridgePictureBefore).isEqualTo("[ O |   ]" + "\n" + "[   | X ]");
+        assertThat(bridgePictureAfter).isEqualTo("[ O ]" + "\n" + "[   ]");
     }
 }
