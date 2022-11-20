@@ -54,4 +54,11 @@
 - [X] 다리 길이 유효 숫자 범위 내 길이 지정 시, 해당 길이의 다리 생성 - BridgeMakerTest#makeBridgePerSize()
 
 - [X] 다리 방향 입력 값이 U(위 칸) 또는 D(아래 칸) 중 하나가 아닌 경우 예외 발생 - BridgeGameTest#validateBridgeArrow()
-- [ ] 위 다리
+- [X] 첫 라운드 다리 건너고 나서 위 다리 상태 값 확인 - BridgeGameTest#confirmFirstRoundUpBridgeState()
+- [X] 첫 라운드 다리 건너고 나서 아래 다리 상태 값 확인 - BridgeGameTest#confirmFirstRoundDownBridgeState()
+- [ ] 두 라운드까지 다리 건너고 나서 위 다래 상태 값 확인
+- [ ] 두 라운드까지 다리 건너고 나서 아래 다리 상태 값 확인
+- [ ] 다리 건널 때 게임 라운드 카운트 값 확인 
+- [ ] 게임 재시작 시 게임 라운드 초기화 값 확인
+- [ ] 게임 재시작 시 총 게임 도전 횟수 카운트 값 확인
+- [ ] 게임 재시작 시 위, 아래 다리 상태 초기화 확인
