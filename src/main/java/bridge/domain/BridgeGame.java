@@ -38,6 +38,13 @@ public class BridgeGame {
         return arrow.equals(bridge.get(round));
     }
 
+    private BridgeStatus makeBridgeStatus(String arrow) {
+        if (isCrossable(arrow)) {
+            return BridgeStatus.valueOfArrowAndMark(arrow, O);
+        }
+        return BridgeStatus.valueOfArrowAndMark(arrow, X);
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
