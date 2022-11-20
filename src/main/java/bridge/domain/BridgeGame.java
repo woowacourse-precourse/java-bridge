@@ -82,6 +82,12 @@ public class BridgeGame {
         attemptTimes++;
     }
 
+    private void isCorrectGameCommand(String gameCommand) {
+        if (!List.of(BridgeConstants.RESTART, BridgeConstants.QUIT).contains(gameCommand)) {
+            throw new IllegalArgumentException(ExceptionConstants.INCORRECT_GAME_COMMAND.getMessage());
+        }
+    }
+
     public int getAttemptTimes() {
         return attemptTimes;
     }
