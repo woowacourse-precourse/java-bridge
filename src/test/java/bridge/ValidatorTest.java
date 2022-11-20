@@ -13,56 +13,64 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class ValidatorTest {
 
-    @DisplayName("다리 길이 생성 시 숫자 범위 테스트")
-    @ValueSource(strings = {"1", "0", "-1", "46"})
+    @DisplayName("3 이상 20 이하의 숫자가 아닐 시 예외 발생")
+    @ValueSource(strings = {"1", "0", "-1", "21"})
     @ParameterizedTest
-    void validateInputSizeTest(String input) {
+    void InputSizeTest(String input) {
         assertThatThrownBy(() -> validateInputSizeException(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("다리 길이 값 Null 테스트")
+    @DisplayName("다리 길이 입력 값이 Null이면 예외 발생")
     @Test
-    void validateInputSizeNullTest() {
+    void InputSizeNullTest() {
         assertThatThrownBy(() -> validateInputSizeException(null))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("U,D 외의 문자를 입력했다면 ERROR 출력")
+    @DisplayName("다리 길이에 문자 입력시 예외 발생")
+    @ValueSource(strings = {"1r", "g", "U", "Q"})
+    @ParameterizedTest
+    void InputSizeTypeTest(String input) {
+        assertThatThrownBy(() -> validateInputSizeException(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("다리 이동 시 U,D 외의 문자 입력시 예외 발생")
     @ValueSource(strings = {"x", "1", "R", "Q"})
     @ParameterizedTest
-    void validateInputDirectionTest(String input) {
+    void InputDirectionTest(String input) {
         assertThatThrownBy(() -> validateInputDirectionException(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("U, D를 대문자로 입력했는지 테스트")
+    @DisplayName("U, D를 소문자로 입력 시 예외 발생")
     @Test
-    void validateInputDirectionLowerCaseTest() {
+    void InputDirectionLowerCaseTest() {
 
     }
 
-    @DisplayName("이동 입력 값 Null 테스트")
+    @DisplayName("이동 입력 값이 Null이면 예외 발생")
     @Test
-    void validateInputDirectionNullTest() {
+    void InputDirectionNullTest() {
 
     }
 
-    @DisplayName("재시작, 종료 시 R 또는 Q외의 문자를 선택했다면 ERROR 출력")
+    @DisplayName("재시작, 종료 시 R,Q 외의 문자 입력시 예외 발생")
     @Test
-    void validateInputGameRestartTest() {
+    void InputGameRestartTest() {
 
     }
 
-    @DisplayName("재시작, 종료 시 R 또는 Q외의 문자를 선택했다면 ERROR 출력")
+    @DisplayName("재시작, 종료 값을 소문자로 입력 시 예외 발생")
     @Test
-    void validateInputGameRestartLowerCaseTest() {
+    void InputGameRestartLowerCaseTest() {
 
     }
 
-    @DisplayName("재시작, 종료 시 R 또는 Q외의 문자를 선택했다면 ERROR 출력")
+    @DisplayName("재시작, 종료 값이 Null이면 예외 발생")
     @Test
-    void validateInputGameRestartNullTest() {
+    void InputGameRestartNullTest() {
 
     }
 }
