@@ -19,14 +19,13 @@
 
 ## 🚀 기능 목록
 - [X] 게임 시작 문구를 출력한다.
-- [X] 다리의 길이를 입력받는다. InputView#readBridgeSize()
+- [X] 다리의 길이를 입력받는다. - InputView#readBridgeSize()
   - [X] 숫자가 아니면 예외처리 한다.
-- [X] 다리의 길이를 검증한다. Validator#checkBridgeLength()
-  - [X] 3 이상 20 이하가 아니면 예외처리 한다.
-- [ ] 다리의 길이만큼 다리를 생성한다. - BridgeMaker#makeBridge()
-- [ ] 다리는 위 아래 두 칸을 가진다.
-  - [ ] 위 아래 두 칸 중 하나만 건널 수 있다.
-    - [ ] 0과 1중 무작위 값을 정할 수 있다. - BridgeRandomNumberGenerator#generate()
+- [X] 다리의 길이가 3 이상 20 이하가 아니면 예외처리 한다. - Validator#checkBridgeLength()
+- [X] 다리의 길이만큼 다리를 생성한다. - BridgeMaker#makeBridge()
+  - [X] 다리의 건널 수 있는 칸을 정할 수 있다. - BridgeMaker#setCrossingSpace()
+    - [X] 0과 1중 무작위 값을 생성할 수 있다. - BridgeRandomNumberGenerator#generate()
+    - [X] 0이면 아래 칸(D), 1이면 위 칸(U)을 건널 수 있다. - BridgeSpaceType#find()
 - [ ] 다리는 건널 수 있다.- BridgeGame#move()
   - [ ] 다리는 왼쪽에서 오른쪽으로 건너야 한다.
 - [ ] 라운드마다 플레이어가 이동할 칸을 입력 받는다.
