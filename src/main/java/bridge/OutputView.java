@@ -12,22 +12,46 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> bridge, int index) {
-        printBridgeLine(bridge, "U", index);
-        printBridgeLine(bridge, "D", index);
+    public void printMap(List<String> bridge, List<String> userRoute) {
+        String bridgeUpLine = getBridgeLine(bridge, userRoute, "U");
+        String bridgeDownLine = getBridgeLine(bridge, userRoute, "D");
+
+        System.out.println(bridgeUpLine);
+        System.out.println(bridgeDownLine);
     }
 
-    private void printBridgeLine(List<String> bridge, String bridgeLine, int index) {
-        System.out.print("[");
-        for (int i = 0; i < index; i++) {
-            if (bridgeLine.equals(bridge.get(i)))
-                System.out.print(" O ");
-            if (!bridgeLine.equals(bridge.get(i)))
-                System.out.print("   ");
-            if (i != index - 1)
-                System.out.print("|");
+    // type 'U', 'D'
+    private String getBridgeLine(List<String> bridge, List<String> userRoute, String type) {
+        StringBuffer sb = makeBaseLine(userRoute.size());
+        for (int i = 0; i < userRoute.size(); i++) {
+            if (isCorrectAndEqualsType(bridge.get(i), userRoute.get(i), type)) {
+                sb.setCharAt(2 + i * 4, 'O');
+                continue;
+            }
+            if (isWrong(userRoute.get(i), type))
+                sb.setCharAt(2 + i * 4, 'X');
         }
-        System.out.println("]");
+        return sb.toString();
+    }
+
+    private StringBuffer makeBaseLine(int index) {
+        StringBuffer sb = new StringBuffer();
+        sb.append("[");
+        for (int i = 0; i < index; i++) {
+            sb.append("   ");
+            if (i != index - 1)
+                sb.append("|");
+        }
+        sb.append("]");
+        return sb;
+    }
+
+    private boolean isWrong(String userRoute, String type) {
+        return type.equals(userRoute);
+    }
+
+    private boolean isCorrectAndEqualsType(String bridge, String userRoute, String type) {
+        return userRoute.equals(bridge) && type.equals(userRoute);
     }
 
     /**
