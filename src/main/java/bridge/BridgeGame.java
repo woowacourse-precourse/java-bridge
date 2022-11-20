@@ -33,7 +33,7 @@ public class BridgeGame {
         realBridge = generateBridge(bridgeLength);
         moveStatus.put("U", new ArrayList<String>());
         moveStatus.put("D", new ArrayList<String>());
-        currentLocation = 0;
+        currentLocation = -1;
         restartNumber = 1;
     }
 
@@ -69,5 +69,9 @@ public class BridgeGame {
         moveStatus.get(bridgeIntegerMapper.get(1 - bridgeIntegerMapper.indexOf(direction))).add(" ");
 
         return isCorrectLocation;
+    }
+
+    private boolean hasSucceeded() {
+        return realBridge.size() == (currentLocation + 1);
     }
 }
