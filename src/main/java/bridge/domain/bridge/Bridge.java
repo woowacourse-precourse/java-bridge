@@ -24,4 +24,12 @@ public class Bridge {
         var originalPosition = BridgePosition.convertCodeToPosition(madeBridge.get(index++));
         return SurviveStatus.convertValueToStatus(originalPosition, targetPosition);
     }
+
+    public boolean canMove() {
+        return index < bridgeSize.size();
+    }
+
+    public boolean canNotMove() {
+        return !canMove();
+    }
 }
