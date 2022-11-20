@@ -22,10 +22,10 @@ public class BridgeGameAnswer {
         List<List<String>> rvalue = new ArrayList<>();
         for (int i = 0; i < history.size(); i++) {
             if (isAnswer(history.get(i), i)) {
-                rvalue.add(getCollectMessage(bridgeAnswer.get(i), isLastIndex(history, i)));
+                rvalue.add(getCollectMessage(bridgeAnswer.get(i), isLastIndex(history.size(), i)));
                 continue;
             }
-            rvalue.add(getWrongMessage(bridgeAnswer.get(i), isLastIndex(history, i)));
+            rvalue.add(getWrongMessage(bridgeAnswer.get(i), isLastIndex(history.size(), i)));
         }
         return rvalue;
     }
@@ -44,8 +44,8 @@ public class BridgeGameAnswer {
         return BridgeShape.WRONG_DOWN.getShapeMessages(isLast);
     }
 
-    private boolean isLastIndex(List<String> history, int index) {
-        if (history.size() == index + 1) {
+    private boolean isLastIndex(int historySize, int index) {
+        if (historySize == index + 1) {
             return true;
         }
         return false;
