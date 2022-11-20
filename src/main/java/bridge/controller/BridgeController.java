@@ -12,13 +12,21 @@ import java.util.List;
 public class BridgeController {
     InputView inputView = new InputView();
     BridgeGame bridgeGame = new BridgeGame();
+    OutputView outputView = new OutputView();
+    String success = "실패";
 
     public void run() {
         List<String> bridge = gameStart();
 
-        while (bridgeGame.getCurrentCount() < bridge.size()) {
+        while (bridgeGame.isGameContinue() && bridgeGame.getCurrentCount() < bridge.size()) {
             moveBridge(bridge);
         }
+
+        if (bridge.size() == bridgeGame.getUp().size()) {
+            success = "성공";
+        }
+
+        outputView.printResult(bridgeGame, success);
     }
 
     public List<String> gameStart() {
@@ -35,7 +43,16 @@ public class BridgeController {
     public void moveBridge(List<String> bridge) {
         String move = inputView.readMoving();
         bridgeGame.move(move, bridge);
-        OutputView outputView = new OutputView();
         outputView.printMap(bridgeGame);
+
+        if (!bridgeGame.isGameContinue()) {
+            reStart();
+        }
+    }
+
+    public void reStart() {
+        if (inputView.readGameCommand().contentEquals("R")) {
+            bridgeGame.retry();
+        }
     }
 }
