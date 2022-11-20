@@ -43,7 +43,7 @@ public class Service {
     public void move() {
         outputView.printInputSpaceToMove();
         Bridge bridge = bridgeGame.move(inputView.readMoving());
-        outputView.printBridge(bridge);
+        outputView.printMap(bridge);
     }
 
     // 정답 유무 boolean값으로 반환
@@ -72,8 +72,8 @@ public class Service {
     public void gameResult() {
         outputView.printResultMessage();
         Bridge bridge = bridgeGame.getBridge();
-        outputView.printBridge(bridge);
-        outputView.printGameResult(bridge);
+        outputView.printMap(bridge);
+        outputView.printResult(bridge);
         outputView.printNumberOfAttempts(bridge);
     }
 }
