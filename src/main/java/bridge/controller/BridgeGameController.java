@@ -35,7 +35,7 @@ public class BridgeGameController {
         do {
             String direction = inputView.readMoving();
             bridgeGame.move(direction);
-            outputView.printMap(bridgeGame.getResultToString());
+            outputView.printMap(bridgeGame.getPathResultToString());
         }
         while (bridgeGame.isPlaying());
     }

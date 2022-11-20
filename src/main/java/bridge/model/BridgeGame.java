@@ -30,7 +30,7 @@ public class BridgeGame {
         round.updateStatusAfterMove(direction, bridge.getAccessibleIndexes(direction));
     }
 
-    public String getResultToString() {
+    public String getPathResultToString() {
         List<String> courseResult = round.getCourseResult();
         return courseResult.get(0) + "\n" + courseResult.get(1);
     }
