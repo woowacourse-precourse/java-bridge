@@ -24,16 +24,25 @@ public class BridgeGameController {
         BridgeGame bridgeGame = new BridgeGame(bridgeSize);
         MovingHistory movingHistory = new MovingHistory();
 
+        progressGame(bridge, bridgeGame, movingHistory);
+        outputView.printResult(movingHistory, bridgeGame);
+    }
+
+    private void progressGame(List<String> bridge, BridgeGame bridgeGame, MovingHistory movingHistory) {
         boolean inProgress = IN_PROGRESS;
         while (inProgress) {
-            String moving = readMoving();
-            MovingResult movingResult = bridgeGame.move(bridge, moving);
-            movingHistory.save(movingResult);
-            outputView.printMap(movingHistory);
-
+            MovingResult movingResult = move(bridge, bridgeGame, movingHistory);
             inProgress = updateGameStatus(bridgeGame, movingResult);
         }
-        outputView.printResult(movingHistory, bridgeGame);
+    }
+
+    private MovingResult move(List<String> bridge, BridgeGame bridgeGame, MovingHistory movingHistory) {
+        String moving = readMoving();
+        MovingResult movingResult = bridgeGame.move(bridge, moving);
+        movingHistory.save(movingResult);
+        outputView.printMap(movingHistory);
+
+        return movingResult;
     }
 
     private String readMoving() {
