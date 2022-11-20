@@ -21,6 +21,7 @@ public class BridgeGame {
         validate(bridgelocation);
         result.add(bridgelocation.getBridge());
     }
+
     private void validate(Bridgelocation bridgelocation){
         if(bridgelocation == Bridgelocation.ERROR){
             throw new IllegalArgumentException("[ERROR] 잘못된 값입니다.");
