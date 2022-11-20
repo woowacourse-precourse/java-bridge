@@ -10,7 +10,10 @@ public enum OutputMessage {
     OPEN_BRACKET("\\["),
     CLOSE_BRACKET("]"),
     COMMA(","),
-    SEPARATOR("|");
+    EMPTY_SPACING(" "),
+    SEPARATOR("|"),
+    MOVE_SUCCESS("O"),
+    MOVE_FAIL("X");
 
     private final String message;
 
