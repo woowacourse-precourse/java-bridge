@@ -27,7 +27,7 @@ public class BridgeGame {
         outputView.moveGuide();
         String movement = inputView.readMoving();
         // 입력에 대한 예외 검사 추가
-        userSelectResult = userBridgeCorrector.addBridge(movement,userSelectResult);
+        userSelectResult = userBridgeCorrector.addBridge(movement, userSelectResult);
         return userSelectResult;
     }//move
 
@@ -50,12 +50,19 @@ public class BridgeGame {
     public void startSetUp() {
         outputView.startGuide();
         // 길이에 대한 에외 검사 추가
-    }//lengthens
+    }//startSetUp
 
-    public boolean isSuccess(List<String> userSelectResult,List<String> computerBridge) {
-        boolean success= compareBridge.isSame(userSelectResult,computerBridge);
-        outputView.printMap(userSelectResult,success);
-
+    public boolean isSuccess(List<String> userSelectResult, List<String> computerBridge) {
+        boolean success = compareBridge.isSame(userSelectResult, computerBridge);
+        outputView.printMap(userSelectResult, success);
         return success;
-    }//compare
+    }//isSuccess
+
+    public boolean isGameSuccess(List<String> userSelectResult, List<String> computerBridge, boolean UnitSuccess) {
+        boolean gameSuccess = false;
+        if (userSelectResult.size() == computerBridge.size() && UnitSuccess) {
+            gameSuccess = true;
+        }// if
+        return gameSuccess;
+    }//isGameSuccess
 } // end class
