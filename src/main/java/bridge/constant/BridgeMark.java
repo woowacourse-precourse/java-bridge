@@ -8,6 +8,7 @@ public enum BridgeMark {
 
     UP("U"), DOWN("D");
 
+    public static final String ERROR_INVALID_MOVING_MARK = "[ERROR] 이동할 칸의 입력의 경우 U와 D 뿐이어야 합니다.";
     private final String mark;
 
     BridgeMark(String mark) {
@@ -24,7 +25,15 @@ public enum BridgeMark {
         return Arrays.stream(BridgeMark.values())
                 .filter(bridgeMark -> bridgeMark.isEqualMark(mark))
                 .findFirst()
-                .orElseThrow();
+                .orElseThrow(() -> new IllegalArgumentException(ERROR_INVALID_MOVING_MARK));
+    }
+
+    public static void validateInput(String mark) {
+        Arrays.stream(BridgeMark.values())
+                .map(BridgeMark::name)
+                .filter(s -> s.equals(mark))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(ERROR_INVALID_MOVING_MARK));
     }
 
     private boolean isEqualMark(String mark) {
