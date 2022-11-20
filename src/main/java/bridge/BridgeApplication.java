@@ -11,6 +11,7 @@ import bridge.view.OutputView;
 import static bridge.domain.Command.RETRY;
 import static bridge.domain.GameStatus.FAILED;
 import static bridge.domain.GameStatus.PLAYING;
+import static bridge.support.ErrorMessage.UNEXPECTED_EXCEPTION;
 
 public class BridgeApplication {
 
@@ -28,11 +29,21 @@ public class BridgeApplication {
         outputView.printStartMessage();
         BridgeGame bridgeGame = initBridgeGame();
 
+        try {
+            playBridgeGame(bridgeGame);
+            outputView.printResult(bridgeGame, status);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+        } catch (Exception | Error e) {
+            outputView.printError(UNEXPECTED_EXCEPTION);
+        }
+    }
+
+    private void playBridgeGame(BridgeGame bridgeGame) {
         do {
             crossBridge(bridgeGame);
             readGameCommandIfFailed(bridgeGame);
         } while (PLAYING.equals(status));
-        outputView.printResult(bridgeGame, status);
     }
 
     private BridgeGame initBridgeGame() {
@@ -55,15 +66,11 @@ public class BridgeApplication {
     }
 
     private void crossBridge(BridgeGame bridgeGame) {
-        try {
-            while (PLAYING.equals(status)) {
-                BridgeUnit nextUnit = readNextBridgeUnit();
+        while (PLAYING.equals(status)) {
+            BridgeUnit nextUnit = readNextBridgeUnit();
 
-                status = bridgeGame.move(nextUnit);
-                outputView.printMap(bridgeGame);
-            }
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
+            status = bridgeGame.move(nextUnit);
+            outputView.printMap(bridgeGame);
         }
     }
 

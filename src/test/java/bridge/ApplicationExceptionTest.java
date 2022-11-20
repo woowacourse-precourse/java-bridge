@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import static bridge.support.ErrorMessage.BRIDGE_MAKER_SIZE_ERROR;
 import static bridge.support.ErrorMessage.INVALID_BRIDGE_UNIT_CODE_ERROR;
 import static bridge.support.ErrorMessage.INVALID_COMMAND_ERROR;
+import static bridge.support.ErrorMessage.TOO_MANY_ATTEMPTS;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -48,7 +49,7 @@ class ApplicationExceptionTest extends NsTest {
         }
         assertRandomNumberInRangeTest(() -> {
             run(sb.toString().split(","));
-            assertThat(output()).contains(ERROR_MESSAGE + " " + INVALID_COMMAND_ERROR);
+            assertThat(output()).contains(ERROR_MESSAGE + " " + TOO_MANY_ATTEMPTS);
         }, 1, 0, 1);
     }
 
