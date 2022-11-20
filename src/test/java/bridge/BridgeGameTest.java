@@ -31,7 +31,7 @@ class BridgeGameTest {
         bridgeGame.move("U");
 
         // Then
-        assertThat(bridgeGame.getCurrentUserStep()).isEqualTo(2);
+        assertThat(bridgeGame.getUserSteps().size()).isEqualTo(2);
     }
 
     @DisplayName("사용자가 재시도를 수행하면 시도횟수가 증가하고 현재단계가 초기화됨")
@@ -45,7 +45,7 @@ class BridgeGameTest {
 
         // Then
         assertThat(bridgeGame.getTrial()).isEqualTo(2);
-        assertThat(bridgeGame.getCurrentUserStep()).isEqualTo(0);
+        assertThat(bridgeGame.getUserSteps().size()).isEqualTo(0);
     }
 
     private BridgeGame create(List<String> bridge) {
