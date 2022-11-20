@@ -29,7 +29,15 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        InputStreamReader ir = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(ir);
+        String moving;
+        try {
+            moving = br.readLine();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return moving;
     }
 
     /**
