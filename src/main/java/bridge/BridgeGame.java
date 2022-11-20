@@ -26,15 +26,33 @@ public class BridgeGame {
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      */
-    public void move() {
+    public String move() {
         String moving = new InputView().readMoving();
         makeBridgeForPrint(moving);
+        // 상태 출력
+        outputView.printMap(bridgeForPrint);
+        // 맞추기 실패 시 재시도
+        if (!moving.equals(bridge.get(currentPosition))) {
+        }
+        // 정답 시 현재 위치 + 1
+        currentPosition += 1;
+        // 현재가 최고 기록이면 최고 기록 갱신
+        if (currentPosition > bestRecordPosition) {
+            bestRecordPosition = currentPosition;
+        }
+        // 정답을 전부 맞춘 상황일 시 게임 종료
+        if (bestRecordPosition == bridge.size()) {
+            outputView.printResult(bridgeForPrint, trialCount);
+            return "GameOver";
+        }
+        return "Continue";
     }
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      */
     public void retry() {
+
     }
 
     private void addTrialCount() {
