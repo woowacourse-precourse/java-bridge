@@ -12,15 +12,18 @@ import camp.nextstep.edu.missionutils.Console;
  */
 public class InputView {
     private final Validator validator;
+    private final OutputView outputView;
 
-    public InputView(Validator validator) {
+    public InputView(Validator validator, OutputView outputView) {
         this.validator = validator;
+        this.outputView = outputView;
     }
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        outputView.printMessage(Messages.VIEW_BRIDGE_SIZE);
         String userInput = readInput();
 
         userInput = readBridgeSizeUntilCollectFormat(userInput);
@@ -45,6 +48,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+        outputView.printMessage(Messages.VIEW_SELECT_UP_DOWN);
         String userInput = readInput();
 
         userInput = readMoveUntilCollectFormat(userInput);
@@ -69,6 +73,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
+        outputView.printMessage(Messages.VIEW_RESTART);
         String userInput = readInput();
 
         userInput = readGameCommandUntilCollectFormat(userInput);

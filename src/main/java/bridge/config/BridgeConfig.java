@@ -25,7 +25,7 @@ public class BridgeConfig {
     }
 
     public InputView inputView() {
-        return new InputView(validator());
+        return new InputView(validator(), outputView());
     }
 
     public OutputView outputView() {
