@@ -12,8 +12,8 @@ public class InputView {
      */
     public int readBridgeSize() {
         String size = Console.readLine();
-        if (!isNumber(size)) {
-            throw new IllegalArgumentException("숫자만 입력 가능합니다.");
+        if (isEmptyOrNull(size) ||!isNumber(size)) {
+            throw new IllegalArgumentException("잘못된 값이 입력되었습니다. 숫자만 입력해주세요.");
         }
         return Integer.parseInt(size);
     }
@@ -23,6 +23,13 @@ public class InputView {
             if (!Character.isDigit(ch)) {
                 return false;
             }
+        }
+        return true;
+    }
+
+    private boolean isEmptyOrNull(String str) {
+        if (str != null && !str.isEmpty()) {
+            return false;
         }
         return true;
     }

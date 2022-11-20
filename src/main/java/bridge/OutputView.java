@@ -26,6 +26,7 @@ public class OutputView {
     }
 
     public void printError(Exception e) {
-        System.out.println(e.getMessage());
+        String startupErrorMessage = "[ERROR]";
+        System.out.println(startupErrorMessage + " " + e.getMessage());
     }
 }
