@@ -67,4 +67,8 @@ public class OutputView {
         }
         System.out.println(NOTICE_RESULT_TRY_COUNT + tryCount);
     }
+
+    public void printErrorMessage(Exception exception) {
+        System.out.println(exception.getMessage());
+    }
 }

@@ -24,17 +24,22 @@ public class BridgeGameController {
     }
 
     public void createNewBridge() {
-        int bridgeLength = inputView.readBridgeSize();
-        bridgeGame.newBridge(bridgeLength);
+        try {
+            int bridgeLength = inputView.readBridgeSize();
+            bridgeGame.newBridge(bridgeLength);
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception);
+            createNewBridge();
+        }
     }
 
     public void play() {
         bridgeGame.retry();
-        playTurn();
+        playRound();
     }
 
-    public void playTurn() {
-        newTurn();
+    public void playRound() {
+        selectPlate();
         if (!bridgeGame.isSuccess()) {
             askRetry();
             return;
@@ -44,12 +49,15 @@ public class BridgeGameController {
         }
     }
 
-    public void newTurn() {
-        String nextStep = inputView.readMoving();
-        bridgeGame.move(nextStep);
-        boolean isSuccess = bridgeGame.isSuccess();
-        List<Plate> playerPath = bridgeGame.getPlayerPath();
-        outputView.printMap(isSuccess, playerPath);
+    public void selectPlate() {
+        try {
+            String nextStep = inputView.readMoving();
+            bridgeGame.move(nextStep);
+            outputView.printMap(bridgeGame.isSuccess(), bridgeGame.getPlayerPath());
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception);
+            selectPlate();
+        }
     }
 
     public void turnResult() {
@@ -59,18 +67,23 @@ public class BridgeGameController {
             return;
         }
         if (!bridgeGame.isEndOfBridge()) {
-            playTurn();
+            playRound();
         }
     }
 
     public void askRetry() {
-        String retry = inputView.readGameCommand();
-        if (retry.equals(Rules.GAME_RETRY)) {
-            play();
-            return;
-        }
-        if (retry.equals(Rules.GAME_QUIT)) {
-            gameResult();
+        try {
+            String retry = inputView.readGameCommand();
+            if (retry.equals(Rules.GAME_RETRY)) {
+                play();
+                return;
+            }
+            if (retry.equals(Rules.GAME_QUIT)) {
+                gameResult();
+            }
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception);
+            askRetry();
         }
     }
 
