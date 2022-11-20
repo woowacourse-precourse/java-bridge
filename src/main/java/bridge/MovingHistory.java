@@ -16,7 +16,7 @@ public class MovingHistory {
         history = new ArrayList<>();
     }
 
-    public void addMovingResult(MovingResult movingResult) {
+    public void save(MovingResult movingResult) {
         history.add(movingResult);
     }
 
