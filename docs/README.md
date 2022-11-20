@@ -34,32 +34,32 @@
 
 ### 클래스별 정리
 #### INPUTVIEW
-- 다리 길이 숫자 입력
-- 다리 이동 칸 입력
-- 게임 재시작 / 종료 입력
+- 다리 길이 숫자 입력 @ inputBridgeLength
+- 다리 이동 칸 입력 @ inputDirection
+- 게임 재시작 / 종료 입력 @ inputGameOver
 
 #### OUTPUTVIEW
-- 게임 시작 문구
-- 다리 길이 입력 문구
-- 다리 선택 문구
-- 다리 이동 표시 문구
-- 게임 재시작/종료 선택 문구
-- 최종 게임 결과 문구
-- 게임 성공 여부 문구
-- 게임 시도 횟수 문구
-- 이동 불가능 칸 표시
-- 이동 가능 칸 표시
+- 게임 시작 문구 @ printGameStart
+- 다리 길이 입력 문구 @ printBridgeLengthInput
+- 다리 선택 문구 @ printDirectionInput
+- 다리 이동 표시 문구 @ printBridgeStatus
+- 게임 재시작/종료 선택 문구 @ printGameOver
+- 최종 게임 결과 문구 @ printFinalResult
+- 게임 성공 여부 문구 @ printSuccessStatus
+- 게임 시도 횟수 문구 @ printTrialAmount
+- 이동 불가능 칸 표시 @ printX
+- 이동 가능 칸 표시 @ printO
 
 #### BRIDGEGAME
-- 시도 (다리 생성) 횟수 / 총 시도 횟수
-- 게임 재시작
-- 게임 종료
-- 최종 게임 결과
-- 게임 성공 여부
-- 게임 실패 여부 
+- 시도 (다리 생성) 횟수 / 총 시도 횟수 @ trialAmount
+- 게임 재시작 @ gameRestart
+- 게임 종료 @ gameOver
+- 최종 게임 결과 @ finalResult
+- 게임 성공 여부 @ gameSuccess
+- 게임 실패 여부  @ gameFailure
 
 #### BRIDGEMAKER
-- 다리 생성
+- 다리 생성 @ generateBridge
 
 
 ## 프로그래밍 요구 사항
