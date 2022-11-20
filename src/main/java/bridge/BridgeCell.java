@@ -9,7 +9,7 @@ public enum BridgeCell {
 
     private final int numberNotation;
 
-    BridgeCell(int numberNotation){
+    BridgeCell(int numberNotation) {
         this.numberNotation = numberNotation;
     }
 

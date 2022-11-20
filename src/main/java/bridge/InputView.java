@@ -12,7 +12,7 @@ public class InputView {
      */
     public int readBridgeSize() {
         String size = Console.readLine();
-        if (isEmptyOrNull(size) ||!isNumber(size)) {
+        if (isEmptyOrNull(size) || !isNumber(size)) {
             throw new IllegalArgumentException("잘못된 값이 입력되었습니다. 숫자만 입력해주세요.");
         }
         return Integer.parseInt(size);
