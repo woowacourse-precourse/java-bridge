@@ -2,6 +2,7 @@ package bridge.model.domain;
 
 import bridge.constant.Constant;
 import bridge.enums.Bridge;
+import bridge.enums.SuccessOrFail;
 import bridge.model.dto.MoveResultDto;
 import java.util.List;
 
@@ -12,6 +13,8 @@ public class BridgeGame {
 
     private final Bridges bridges;
     private int position = Constant.BRIDGE_INITIAL_POSITION;
+    private int retryCount = Constant.INITIAL_RETRY_COUNT;
+    private SuccessOrFail successOrFail = SuccessOrFail.SUCCESS;
 
     public BridgeGame(List<String> bridgesSign) {
         this.bridges = new Bridges(bridgesSign);
@@ -35,6 +38,12 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(boolean isRestartGame) {
+        if (!isRestartGame) {
+            successOrFail = SuccessOrFail.FAIL;
+            return;
+        }
+        position = Constant.BRIDGE_INITIAL_POSITION;
+        retryCount++;
     }
 }

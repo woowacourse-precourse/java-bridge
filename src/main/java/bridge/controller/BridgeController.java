@@ -28,6 +28,7 @@ public class BridgeController {
             isMovableStatus = moveResultDto.isMovableStatus();
             if (!moveResultDto.isRightLastBridgePick()) {
                 String gameCommand = inputView.readGameCommand();
+                isMovableStatus = bridgeService.retry(gameCommand);
             }
         }
     }

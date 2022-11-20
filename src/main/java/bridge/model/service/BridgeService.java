@@ -2,6 +2,7 @@ package bridge.model.service;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
+import bridge.constant.Constant;
 import bridge.enums.Bridge;
 import bridge.model.domain.BridgeGame;
 import bridge.model.dto.MoveResultDto;
@@ -21,5 +22,11 @@ public class BridgeService {
         Bridge bridgeToMove = Bridge.findBySign(bridgeType);
 
         return bridgeGame.move(bridgeToMove);
+    }
+
+    public boolean retry(String gameCommand) {
+        boolean isRestartGame = gameCommand.equals(Constant.RESTART_GAME);
+        bridgeGame.retry(isRestartGame);
+        return isRestartGame;
     }
 }
