@@ -45,10 +45,14 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        String askTryGame = Console.readLine();
+        try {
+            String restartAndQuit = Console.readLine();
+            RetryInputException.validateRetryInput(restartAndQuit);
+            return restartAndQuit;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readGameCommand();
+        }
 
-        /* 예외 처리에 대한 내용*/
-
-        return askTryGame;
     }
 }
