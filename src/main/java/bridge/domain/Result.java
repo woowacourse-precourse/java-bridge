@@ -17,4 +17,9 @@ public class Result {
         upStairs.add(" O ");
         downsStairs.add("   ");
     }
+
+    public void addDownsStairs() {
+        upStairs.add("   ");
+        downsStairs.add(" O ");
+    }
 }
