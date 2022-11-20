@@ -25,4 +25,21 @@ public class DomainTest {
             assertThat(bridgeGame.move(realBridge.get(i)));
         }
     }
+
+    @DisplayName("현재 진행상황 저장 기능 테스트")
+    @Test
+    void reflectMovementTest() {
+        List<String> realBridge = bridgeGame.getRealBridge();
+        List<String> upper = bridgeGame.getMoveStatus().get("U");
+        List<String> under = bridgeGame.getMoveStatus().get("D");
+
+        for (int i = 0; i < 5; i++) {
+            if (realBridge.get(i).equals("U")) {
+                assertThat(upper.get(i).equals("O"));
+            }
+            else {
+                assertThat(under.get(i).equals("O"));
+            }
+        }
+    }
 }
