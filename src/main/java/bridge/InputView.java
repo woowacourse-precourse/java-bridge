@@ -15,9 +15,8 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String input = "";
         System.out.println("다리의 길이를 입력해주세요.");
-        input = inputValue();
+        String input = inputValue();
 
         if (!Exception.isNumeric(input) || !Exception.checkBridgeSize(Integer.parseInt(input))) {
             throw new IllegalArgumentException(ErrorMessage.BRIDGE_SIZE_ERROR.getMessage());
@@ -30,7 +29,12 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)");
-        return inputValue();
+        String input = inputValue();
+
+        if (!Exception.checkMoving(input)) {
+            throw new IllegalArgumentException(ErrorMessage.MOVING_ERROR.getMessage());
+        }
+        return input;
     }
 
     /**
