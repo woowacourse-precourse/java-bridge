@@ -29,7 +29,7 @@ public class OutputView {
         printMapOfCase();
     }
 
-    public void printMapOfCase() {
+    private void printMapOfCase() {
         System.out.println("[ "+ mapShape.upperMapToString() + " ]");
         System.out.println("[ "+ mapShape.lowerMapToString() + " ]");
     }
@@ -39,15 +39,15 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(int tryCount, boolean keepGoing) {
+    public void printResult(int tryCount, boolean passOrFail) {
         System.out.println(FINAL_RESULT_MESSAGE);
         printMapOfCase();
-        System.out.println(PASS_OR_FAIL_MESSAGE + checkPassOrFail(keepGoing));
+        System.out.println(PASS_OR_FAIL_MESSAGE + checkPassOrFail(passOrFail));
         System.out.println(TOTAL_TRY_COUNT_MESSAGE + tryCount);
     }
 
-    private String checkPassOrFail(boolean keepGoing) {
-        if(keepGoing)
+    private String checkPassOrFail(boolean passOrFail) {
+        if(passOrFail)
             return PASS_MESSAGE;
         return FAIL_MESSAGE;
     }

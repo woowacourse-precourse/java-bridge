@@ -37,7 +37,7 @@ public class GameController {
         inputView.printStartMessage();
         setGame();
         while(keepGoing && currentPosition < bridgeSize){
-            playGame();
+            playBridgeGame();
         }
         outputView.printResult(tryCount, keepGoing);
     }
@@ -47,7 +47,7 @@ public class GameController {
         bridge = bridgeMaker.makeBridge(bridgeSize);
     }
 
-    private void playGame() {
+    private void playBridgeGame() {
         String nextMove = inputView.readMoving();
         String moveResult = bridgeGame.move(bridge.get(currentPosition), nextMove);
         outputView.printMap(nextMove, moveResult);
