@@ -1,13 +1,7 @@
 package bridge.model;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
-
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
-
-import java.util.List;
 
 /**
  * 제공된 BridgeGame 클래스를 활용해 구현해야 한다.
@@ -18,23 +12,25 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    private final BridgeNumberGenerator bridgeNumberGenerator;
     private final BridgeMaker bridgeMaker;
     private final Bridge bridge;
 
     private int currentLocation;
+    private int trial;
 
     public BridgeGame(int size) {
+        bridgeNumberGenerator = new BridgeRandomNumberGenerator();
         this.bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         this.bridge = new Bridge(bridgeMaker.makeBridge(size));
     }
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    public boolean start(String step) {
+        return bridge.checkStep(currentLocation, step);
+    }
+
     public boolean move(String step) {
+        currentLocation += 1;
         return bridge.checkStep(currentLocation, step);
     }
 
@@ -45,4 +41,6 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+
 }
