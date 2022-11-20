@@ -12,7 +12,7 @@ public class ValidationUtil {
     }
 
     public void validateUserMovement(String movement) {
-        if (!movement.equals("U") || !movement.equals("D")) {
+        if (!movement.equals("U") && !movement.equals("D")) {
             throw new UserInputException(ErrorResponse.INPUT_MOVEMENT_ERROR);
         }
     }
