@@ -1,23 +1,49 @@
 package bridge;
 
+import static bridge.configuration.AppConfig.bridgeMaker;
+import static bridge.domain.bridge.Bridge.convert;
+import static bridge.domain.bridge.BridgePasser.makeBridgePasser;
+
+import bridge.domain.GameRecord;
+import bridge.domain.bridge.Bridge;
+import bridge.domain.bridge.BridgePasser;
+import bridge.value.BridgeCharacter;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+    private final BridgePasser bridgePasser;
+    private final Bridge bridge;
+    private final GameRecord gameRecord;
+
+    public BridgeGame(BridgePasser bridgePasser, Bridge bridge, GameRecord gameRecord) {
+        this.bridgePasser = bridgePasser;
+        this.bridge = bridge;
+        this.gameRecord = gameRecord;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void retry() {
+    public static BridgeGame createGame(int bridgeSize) {
+        Bridge bridge = convert(bridgeMaker().makeBridge(bridgeSize));
+        BridgePasser bridgePasser = makeBridgePasser(bridge);
+
+        return new BridgeGame(bridgePasser, bridge, new GameRecord());
+    }
+
+    public boolean canMove(BridgeCharacter bridgeCharacter) {
+        return bridgePasser.canMove(bridgeCharacter);
+    }
+
+    public void move() {
+        if(isGameSuccess()) {
+            throw new IllegalStateException("게임이 종료되었습니다.");
+        }
+
+        bridgePasser.move();
+    }
+
+    public boolean isGameSuccess() {
+        return bridgePasser.isBridgeEnd();
     }
 }
