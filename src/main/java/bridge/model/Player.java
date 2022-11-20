@@ -16,7 +16,7 @@ public class Player {
     }
 
     public List<String> getBridges(){
-        return new ArrayList<>();
+        return bridges;
     }
 
     public boolean isGameFinished(Bridge bridge){
