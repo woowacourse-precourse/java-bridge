@@ -44,7 +44,7 @@ class BridgeGameTest {
             @DisplayName("다리를 생성해 Bridge를 초기화하고 반환한다.")
             void it_returns_bridgeGame() {
                 assertThatCode(() -> new BridgeGame(defaultSize, validGenerator))
-                    .doesNotThrowAnyException();
+                        .doesNotThrowAnyException();
             }
         }
 
@@ -58,7 +58,7 @@ class BridgeGameTest {
                 BridgeNumberGenerator invalidGenerator = new StubBridgeNumberGenerator(List.of(2, 3, 4));
 
                 assertThatThrownBy(() -> new BridgeGame(defaultSize, invalidGenerator))
-                    .isInstanceOf(WrongGeneratorException.class);
+                        .isInstanceOf(WrongGeneratorException.class);
             }
         }
 
@@ -71,7 +71,7 @@ class BridgeGameTest {
             @DisplayName("IllegalArgumentException 예외가 발생한다")
             void it_throws_exception(int input) {
                 assertThatThrownBy(() -> new BridgeGame(input, validGenerator))
-                    .isInstanceOf(IllegalArgumentException.class);
+                        .isInstanceOf(IllegalArgumentException.class);
             }
         }
     }
@@ -86,11 +86,11 @@ class BridgeGameTest {
 
             @ParameterizedTest
             @CsvSource(
-                value = {
-                    "U:GAME_OVER",
-                    "D:GAME_PLAY"
-                },
-                delimiter = ':'
+                    value = {
+                        "U:GAME_OVER",
+                        "D:GAME_PLAY"
+                    },
+                    delimiter = ':'
             )
             @DisplayName("입력한 다리로 플레이어가 이동할 수 있는지를 계산해 MoveDto로 반환한다")
             void it_returns_moveDto(String validInput, GameStatus expected) {
@@ -114,8 +114,8 @@ class BridgeGameTest {
                 bridgeGame.move(readMovingDto);
 
                 MoveDto move = bridgeGame.move(readMovingDto);
-
                 PrintMapDto printMapDto = move.getPrintMapDto();
+
                 assertThat(move.getNextGameStatus()).isSameAs(GameStatus.GAME_EXIT);
                 assertThat(printMapDto.getUpBridgeHistory()).contains(" ");
                 assertThat(printMapDto.getDownBridgeHistory()).contains("O");
@@ -133,7 +133,7 @@ class BridgeGameTest {
                 ReadMovingDto readMovingDto = new ReadMovingDto(invalidInput);
 
                 assertThatThrownBy(() -> bridgeGame.move(readMovingDto))
-                    .isInstanceOf(IllegalArgumentException.class);
+                        .isInstanceOf(IllegalArgumentException.class);
             }
         }
     }
@@ -148,11 +148,11 @@ class BridgeGameTest {
 
             @ParameterizedTest
             @CsvSource(
-                value = {
-                    "R:GAME_PLAY",
-                    "Q:GAME_EXIT"
-                },
-                delimiter = ':'
+                    value = {
+                        "R:GAME_PLAY",
+                        "Q:GAME_EXIT"
+                    },
+                    delimiter = ':'
             )
             @DisplayName("입력한 커맨드에 따라 다음 진행할 GameStatus를 계산해 RetryDto를 반환한다")
             void itReturns(String input, GameStatus expected) {
@@ -175,7 +175,7 @@ class BridgeGameTest {
                 ReadGameCommandDto readGameCommandDto = new ReadGameCommandDto(invalidInput);
 
                 assertThatThrownBy(() -> bridgeGame.retry(readGameCommandDto))
-                    .isInstanceOf(IllegalArgumentException.class);
+                        .isInstanceOf(IllegalArgumentException.class);
             }
         }
     }

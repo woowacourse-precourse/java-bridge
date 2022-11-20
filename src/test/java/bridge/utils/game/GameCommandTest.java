@@ -19,11 +19,11 @@ class GameCommandTest {
 
             @ParameterizedTest
             @CsvSource(
-                value = {
-                    "Q:GAME_EXIT",
-                    "R:GAME_PLAY"
-                },
-                delimiter = ':'
+                    value = {
+                        "Q:GAME_EXIT",
+                        "R:GAME_PLAY"
+                    },
+                    delimiter = ':'
             )
             @DisplayName("커맨드와 일치하는 GameStatus를 반환한다")
             void it_returns_gameStatus(String command, GameStatus expected) {

@@ -42,9 +42,9 @@ public class Player {
 
     public String getPlayerTargetTileHistory(final Bridge bridge, final BridgeTile targetTile) {
         return IntStream.range(0, playerStepHistory.size())
-            .mapToObj(position -> playerStepHistory.get(position)
-                    .getBridgeTileLog(bridge, targetTile, position))
-            .collect(Collectors.joining(HISTORY_SEPARATOR));
+                .mapToObj(position -> playerStepHistory.get(position)
+                        .getBridgeTileLog(bridge, targetTile, position))
+                .collect(Collectors.joining(HISTORY_SEPARATOR));
     }
 
     public boolean isSuccessful(final Bridge bridge) {

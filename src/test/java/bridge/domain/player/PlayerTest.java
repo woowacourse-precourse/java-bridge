@@ -61,11 +61,11 @@ class PlayerTest {
 
             @ParameterizedTest
             @CsvSource(
-                value = {
-                    "UP:false",
-                    "DOWN:true"
-                },
-                delimiter = ':'
+                    value = {
+                        "UP:false",
+                        "DOWN:true"
+                    },
+                    delimiter = ':'
             )
             @DisplayName("이동 가능 여부를 반환한다")
             void it_returns_movable(BridgeTile playerStep, boolean expected) {
@@ -135,7 +135,7 @@ class PlayerTest {
             void initPlayer() {
                 player = new Player(defaultBridgeSize);
                 IntStream.range(0, defaultBridgeSize)
-                    .forEach(i -> player.move(bridge, BridgeTile.DOWN));
+                        .forEach(i -> player.move(bridge, BridgeTile.DOWN));
             }
 
             @Test

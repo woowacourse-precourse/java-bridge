@@ -25,8 +25,8 @@ class BridgeRandomNumberGeneratorTest {
                 int actual = generator.generate();
 
                 assertThat(actual)
-                    .isLessThanOrEqualTo(BridgeConst.UP_TILE_VALUE)
-                    .isGreaterThanOrEqualTo(BridgeConst.DOWN_TILE_VALUE);
+                        .isLessThanOrEqualTo(BridgeConst.UP_TILE_VALUE)
+                        .isGreaterThanOrEqualTo(BridgeConst.DOWN_TILE_VALUE);
             }
         }
     }

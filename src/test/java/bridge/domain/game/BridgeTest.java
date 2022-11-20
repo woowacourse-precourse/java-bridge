@@ -34,7 +34,7 @@ class BridgeTest {
             @DisplayName("다리를 생성해 Bridge를 초기화하고 반환한다.")
             void it_returns_bridge() {
                 assertThatCode(() -> new Bridge(defaultSize, validGenerator))
-                    .doesNotThrowAnyException();
+                        .doesNotThrowAnyException();
             }
         }
 
@@ -48,7 +48,7 @@ class BridgeTest {
                 BridgeNumberGenerator invalidGenerator = new StubBridgeNumberGenerator(List.of(2, 3, 4));
 
                 assertThatThrownBy(() -> new Bridge(defaultSize, invalidGenerator))
-                    .isInstanceOf(WrongGeneratorException.class);
+                        .isInstanceOf(WrongGeneratorException.class);
             }
         }
 
@@ -61,7 +61,7 @@ class BridgeTest {
             @DisplayName("IllegalArgumentException 예외가 발생한다")
             void it_throws_exception(int size) {
                 assertThatThrownBy(() -> new Bridge(size, validGenerator))
-                    .isInstanceOf(IllegalArgumentException.class);
+                        .isInstanceOf(IllegalArgumentException.class);
             }
         }
     }
@@ -76,11 +76,11 @@ class BridgeTest {
 
             @ParameterizedTest
             @CsvSource(
-                value = {
-                    "UP:false",
-                    "DOWN:true"
-                },
-                delimiter = ':'
+                    value = {
+                        "UP:false",
+                        "DOWN:true"
+                    },
+                    delimiter = ':'
             )
             @DisplayName("건널 수 있는지 여부를 반환한다")
             void it_returns_movable(BridgeTile playerStep, boolean expected) {
@@ -101,12 +101,12 @@ class BridgeTest {
 
             @ParameterizedTest
             @CsvSource(
-                value = {
-                    "0:false",
-                    "1:false",
-                    "2:true"
-                },
-                delimiter = ':'
+                    value = {
+                        "0:false",
+                        "1:false",
+                        "2:true"
+                    },
+                    delimiter = ':'
             )
             @DisplayName("플레이어의 현재 위치가 다리의 끝인지 여부를 반환한다")
             void it_returns_bridge_end(int position, boolean expected) {

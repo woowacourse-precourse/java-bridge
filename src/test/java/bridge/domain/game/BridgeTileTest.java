@@ -23,11 +23,11 @@ class BridgeTileTest {
 
             @ParameterizedTest
             @CsvSource(
-                value = {
-                    "D:DOWN",
-                    "U:UP"
-                },
-                delimiter = ':'
+                    value = {
+                        "D:DOWN",
+                        "U:UP"
+                    },
+                    delimiter = ':'
             )
             @DisplayName("커맨드가 일치하는 BridgeTile을 반환한다")
             void it_returns_bridgeTile(String command, BridgeTile expectedTile) {
@@ -48,11 +48,11 @@ class BridgeTileTest {
 
             @ParameterizedTest
             @CsvSource(
-                value = {
-                    "0:D",
-                    "1:U"
-                },
-                delimiter = ':'
+                    value = {
+                        "0:D",
+                        "1:U"
+                    },
+                    delimiter = ':'
             )
             @DisplayName("다리의 칸에 해당하는 커맨드를 반환한다")
             void it_returns_bridgeCommand(int validValue, String expectedCommand) {
@@ -71,7 +71,7 @@ class BridgeTileTest {
             @DisplayName("WrongGeneratorException 예외가 발생한다.")
             void it_throws_exception(int invalidValue) {
                 assertThatThrownBy(() -> BridgeTile.mapToCommand(invalidValue))
-                    .isInstanceOf(WrongGeneratorException.class);
+                        .isInstanceOf(WrongGeneratorException.class);
             }
         }
     }

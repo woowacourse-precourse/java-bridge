@@ -55,7 +55,7 @@ class BridgeMakerTest {
             @DisplayName("WrongGeneratorException 예외가 발생한다")
             void it_throws_exception() {
                 assertThatThrownBy(() -> bridgeMaker.makeBridge(3))
-                    .isInstanceOf(WrongGeneratorException.class);
+                        .isInstanceOf(WrongGeneratorException.class);
             }
         }
     }
