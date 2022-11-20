@@ -1,11 +1,20 @@
 package bridge;
 
-import Game.Controller;
+import exception.UserInputException;
+import game.Controller;
+import view.InputView;
+import view.OutputView;
 
 public class Application {
 
     public static void main(String[] args) {
         Controller controller = new Controller();
-        controller.run();
+        try {
+            OutputView.printStartMsg();
+            controller.run(InputView.readBridgeSize());
+        } catch (UserInputException e) {
+            e.printStackTrace();
+            InputView.readBridgeSize();
+        }
     }
 }
