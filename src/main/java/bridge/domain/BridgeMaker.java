@@ -22,15 +22,8 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int randomBridgeNumber = bridgeNumberGenerator.generate();
-            bridge.add(convertBridgeNumber(randomBridgeNumber));
+            bridge.add(BridgeIdentifier.convertIntToString(randomBridgeNumber));
         }
         return bridge;
-    }
-
-    private String convertBridgeNumber(int bridgeNumber) {
-        if (bridgeNumber == 0) {
-            return "D";
-        }
-        return "U";
     }
 }
