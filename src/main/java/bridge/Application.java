@@ -12,6 +12,7 @@ public class Application {
     static BridgeGame bridgeGame = new BridgeGame();
     static OutputView outputView = new OutputView();
     static int Location = 0;
+    static String Command;
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -19,6 +20,8 @@ public class Application {
         System.out.println(Bridge);
         for (int i = 0; i < Bridge.size(); i++) {
             Bridge_Move();
+            Bridge_Check();
+            Location++;
         }
     }
 
@@ -28,9 +31,13 @@ public class Application {
     }
 
     public static void Bridge_Move() {
-        String Command = input.readGameCommand();
+        Command = input.readMoving();
         outputView.Area_Division(Bridge, Command, Location);
-        Location++;
         outputView.printMap();
+    }
+    private static void Bridge_Check(){
+        if(bridgeGame.move(Command,Location)){
+            String Retry_Command = input.readGameCommand();
+        }
     }
 }
