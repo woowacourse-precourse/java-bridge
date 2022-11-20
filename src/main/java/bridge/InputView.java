@@ -2,8 +2,7 @@ package bridge;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import static bridge.Constant.MAX_BRIDGE_LENGTH;
-import static bridge.Constant.MIN_BRIDGE_LENGTH;
+import static bridge.Constant.*;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -26,7 +25,9 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        String blockInput = Console.readLine();
+        isValidBlockInput(blockInput);
+        return blockInput;
     }
 
     /**
@@ -47,6 +48,12 @@ public class InputView {
     private void isValidBridgeSize(int bridgeSize) {
         if (bridgeSize < MIN_BRIDGE_LENGTH || bridgeSize > MAX_BRIDGE_LENGTH) {
             throw new IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.");
+        }
+    }
+
+    private void isValidBlockInput(String block) {
+        if (!block.equals(MOVING_UP) && !block.equals(MOVING_DOWN)) {
+            throw new IllegalArgumentException("[ERROR] 이동 시에는 U or D 의 문자가 입력되어야 합니다.");
         }
     }
 }
