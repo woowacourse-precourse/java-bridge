@@ -12,7 +12,6 @@ import bridge.view.OutputView;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-    private static int progressCount = 1;
     public static int BRIDGE_LENGTH = 0;
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
@@ -21,11 +20,21 @@ public class BridgeGame {
     private Referee referee = new Referee();
 
     public void play() {
-        OutputView.printStartGame();
+        outputView.printStartGame();
         generateBridge();
-        while (true) {
+        while (retry()) {
             move();
+            if (referee.isClear() && Referee.succeed) {
+                break;
+            }
         }
+        printResult();
+    }
+
+    private void printResult() {
+        outputView.printEndGame();
+        outputView.printMap(referee.getUpSideBridgeResult(), referee.getDownSideBridgeResult());
+        outputView.printResult(referee.getProgressCount());
     }
 
     public void generateBridge() {
@@ -56,9 +65,9 @@ public class BridgeGame {
     }
 
     private void printMove(String moveType) {
-        referee.addPlayerChoiceResult(bridge.getBridge(), moveType, progressCount - 1);
-
+        referee.addPlayerChoiceResult(bridge.getBridge(), moveType, referee.getProgressCount());
         outputView.printMap(referee.getUpSideBridgeResult(), referee.getDownSideBridgeResult());
+        referee.addProgressCount();
     }
 
     /**
@@ -66,6 +75,30 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public boolean retry() {
+        if ((Referee.succeed && !referee.isClear())) {
+            return true;
+        }
+        if (getCommand().equals("R")) {
+            resetGame();
+            return true;
+        }
+        return false;
+    }
+
+    private String getCommand() {
+        String command = inputView.readGameCommand();
+        try {
+            Validation.inputResumeCommandValid(command);
+        } catch (IllegalArgumentException e) {
+            System.out.println(ErrorType.INPUT_RESUME_COMMAND_ERROR_TYPE.getText());
+            retry();
+        }
+        return command;
+    }
+
+    private void resetGame() {
+        player = new Player();
+        referee = new Referee();
     }
 }
