@@ -4,35 +4,37 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LocationTest {
+public class CurrentRouteTest {
 
-    private Location location;
+    private CurrentRoute currentRoute;
 
     @BeforeEach
     void setUp() {
-        location = new Location();
-        location.init();
+        currentRoute = new CurrentRoute(new ArrayList<>());
     }
 
     @DisplayName("다음 위치로 정상 이동되는지 확인")
     @Test
     void checkMovementWorkingProperly() {
         int moveCount = 5;
+        String[] movements = {"D", "D", "U", "U", "U"};
         for (int i = 0; i < moveCount; i++) {
-            location.moveNext();
+            currentRoute.moveNext(movements[0]);
         }
 
-        assertThat(location.getLocation()).isEqualTo(moveCount);
+        assertThat(currentRoute.getCurrentLocationIndex()).isEqualTo(moveCount);
     }
 
     @DisplayName("위치 초기화가 정상적으로 되는지 확인")
     @Test
     void checkLocationInitiation() {
-        location.moveNext();
-        location.init();
+        currentRoute.moveNext("D");
+        currentRoute.initiation();
 
-        assertThat(location.getLocation()).isEqualTo(0);
+        assertThat(currentRoute.getCurrentLocationIndex()).isEqualTo(0);
     }
 }

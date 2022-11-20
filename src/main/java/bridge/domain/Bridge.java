@@ -10,7 +10,7 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public boolean isAvailableSquare(String upOrDown, int squareIndex) {
+    public boolean isAvailableSquare(int squareIndex, String upOrDown) {
         String squareInformation = bridge.get(squareIndex);
         return squareInformation.equals(upOrDown);
     }

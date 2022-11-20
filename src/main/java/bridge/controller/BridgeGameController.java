@@ -4,8 +4,6 @@ import bridge.domain.BridgeGame;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-import java.util.List;
-
 public class BridgeGameController {
 
     private static final String RESTART = "R";
@@ -25,7 +23,7 @@ public class BridgeGameController {
         OutputView.printStartMessage();
         OutputView.printBlankLine();
         setBridgeSize();
-        bridgeGame.setLocation();
+        bridgeGame.setCurrentRoute();
     }
 
     private void setBridgeSize() {
@@ -37,6 +35,13 @@ public class BridgeGameController {
 
     private void playGame() {
         takeTrial();
+        if (isFinish()) {
+            return;
+        }
+        retryGame();
+    }
+
+    private void retryGame() {
         while (InputView.readGameCommand().equals(RESTART)) {
             bridgeGame.retry();
             takeTrial();
@@ -47,27 +52,21 @@ public class BridgeGameController {
     }
 
     private void takeTrial() {
-        String movement;
         do {
             if (isFinish()) {
                 return;
             }
-            movement = getMovement();
-        } while (bridgeGame.isMovementSuccess(movement));
+            takeTurn();
+        } while (bridgeGame.isMovementSuccess());
     }
 
-    private String getMovement() {
+    private void takeTurn() {
         OutputView.printNextMovementInputMessage();
         String nextMovement = InputView.readMoving();
-        bridgeGame.move();
-        return nextMovement;
+        bridgeGame.move(nextMovement);
     }
 
     private boolean isFinish() {
         return bridgeGame.isLastSquare();
-    }
-
-    private void setMap(List) {
-
     }
 }
