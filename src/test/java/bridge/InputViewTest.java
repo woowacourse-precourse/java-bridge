@@ -20,9 +20,19 @@ class InputViewTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("입력된 숫자가 int형으로 변환되는지 확인한다..")
+    @DisplayName("입력된 숫자가 int형으로 변환되는지 확인한다.")
     @Test
     void validateBridgeSize() {
         assertThat(inputView.validateBridgeSize("3")).isEqualTo(3);
     }
+
+    @DisplayName("입력 문자열은 U또는 D여야 한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"S", " ", "!@#$", ""})
+    void validateMoving(String wantedDirection) {
+        assertThatThrownBy(() -> {
+            inputView.validateBridgeSize(wantedDirection);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

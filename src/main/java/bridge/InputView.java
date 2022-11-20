@@ -8,6 +8,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     private static final String ERROR_BRIDGE_LENGTH_NOT_NUMBER = "[ERROR] 다리 길이는 숫자여야 합니다.";
     private static final String ERROR_BRIDGE_LENGTH_RANGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.";
+    private static final String ERROR_MOVING_INPUT = "[ERROR] 이동할 칸은 U또는 D여야 합니다.";
     private static final int BRIDGE_RANGE_START = 3;
     private static final int BRIDGE_RANGE_END = 20;
 
@@ -41,7 +42,16 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        return null;
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        String wantedDirection = Console.readLine();
+        return validateMoving(wantedDirection);
+    }
+
+    private String validateMoving(String wantMoved) {
+        if (wantMoved.equals("U") || wantMoved.equals("D")) {
+            return wantMoved;
+        }
+        throw new IllegalArgumentException(ERROR_MOVING_INPUT);
     }
 
     /**
