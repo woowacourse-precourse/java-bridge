@@ -13,7 +13,8 @@ public class BridgeController {
     }
 
     public void run() {
-
+        SettingController settingController = new SettingController();
+        settingController.setBridgeGame();
 
     }
 
