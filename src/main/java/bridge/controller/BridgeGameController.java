@@ -1,13 +1,19 @@
 package bridge.controller;
 
-import bridge.domain.*;
+import bridge.domain.BridgeGame;
+import bridge.domain.CurrentRoute;
+import bridge.domain.GameProgress;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameController {
 
     private BridgeGame bridgeGame;
-    private MapConverter mapConverter;
+    private final MapConverterController mapConverterController;
+
+    public BridgeGameController() {
+        this.mapConverterController = new MapConverterController();
+    }
 
     public void process() {
         try {
@@ -19,24 +25,13 @@ public class BridgeGameController {
         }
     }
 
-    private void initializeGame() {
+    public void initializeGame() {
         OutputView.printStartMessage();
-        int bridgeSize = getBridgeSize();
-        bridgeGame = new BridgeGame(getBridge(bridgeSize), new CurrentRoute(), new GameProgress());
-        mapConverter = new MapConverter();
-    }
-
-    private int getBridgeSize() {
-        OutputView.printBridgeSizeInputMessage();
-        int bridgeSize = InputView.readBridgeSize();
-        OutputView.printBlankLine();
-        return bridgeSize;
-    }
-
-    private Bridge getBridge(int bridgeSize) {
-        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        return new Bridge(bridgeMaker.makeBridge(bridgeSize));
+        bridgeGame = new BridgeGame(
+                BridgeInitializer.initialize(),
+                new CurrentRoute(),
+                new GameProgress()
+        );
     }
 
     private void playGame() {
@@ -67,22 +62,22 @@ public class BridgeGameController {
     }
 
     private void takeTurn() {
+        String movement = getMove();
+        boolean movementSuccess = bridgeGame.isMovementSuccess();
+        mapConverterController.drawMap(movement, movementSuccess);
+    }
+
+    private String getMove() {
         OutputView.printNextMovementInputMessage();
         String nextMovement = InputView.readMoving();
         bridgeGame.move(nextMovement);
         bridgeGame.updateGameProgress();
-        setMap(nextMovement);
+        return nextMovement;
     }
 
     private void setRetry() {
         bridgeGame.retry();
-        mapConverter.initialize();
-    }
-
-    private void setMap(String nextMovement) {
-        boolean success = bridgeGame.isMovementSuccess();
-        mapConverter.drawNext(nextMovement, success);
-        OutputView.printMap(mapConverter.getUpperMap(), mapConverter.getLowerMap());
+        mapConverterController.initialize();
     }
 
     private boolean isRestart() {
@@ -93,7 +88,7 @@ public class BridgeGameController {
 
     private void finishGame() {
         OutputView.printResultHeader();
-        OutputView.printMap(mapConverter.getUpperMap(), mapConverter.getLowerMap());
+        mapConverterController.drawLatestMap();
         OutputView.printResult(bridgeGame.isGameSuccess(), bridgeGame.getTrialCount());
     }
 }
