@@ -24,10 +24,5 @@ public class Result {
         playResult.get(0).add(Constants.NOTHING);
         playResult.get(1).add(result);
     }
-    public List<String> getUpResult(){
-        return playResult.get(0);
-    }
-    public List<String> getDownResult(){
-        return playResult.get(1);
-    }
+    public List<List<String>> getPlayResult(){ return playResult; }
 }
