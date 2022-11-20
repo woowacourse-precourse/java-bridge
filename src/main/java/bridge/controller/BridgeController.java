@@ -29,20 +29,20 @@ public class BridgeController {
         PassingPositions passingPositions = createPassingPositions(bridge);
         Result result = null;
 
-        int pos;
+        int distance;
         int attempt = 1;
 
         game:
         while (true) {
-            pos = -1;
+            distance = -1;
             do {
-                pos++;
-                if (length.isSameLength(pos)) {
+                distance++;
+                if (length.isSameLength(distance)) {
                     break game;
                 }
 
                 Direction direction = createDirectionLoop();
-                Position position = createPosition(pos, direction);
+                Position position = createPosition(distance, direction);
                 bridgeGame.move(position, passingPositions);
                 result = passingPositions.makeResult();
             } while (!OutputView.printMap(result));
