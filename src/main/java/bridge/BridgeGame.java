@@ -30,9 +30,9 @@ public class BridgeGame {
 
     private void gameLoop(List<String> answerBridge, int bridgeSize) {
         while (currentPosition < bridgeSize) {
-            boolean isGameOver = move(answerBridge);
+            boolean isGameOverResult = move(answerBridge);
             outputController.printMap(movedBridge);
-            if (isGameOver) {
+            if (isGameOverResult) {
                 break;
             }
         }
