@@ -22,14 +22,18 @@ public class Bridge {
     }
 
     public void increaseLocation() {
-        location++;
+        setLocation(this.location + 1);
     }
 
-    public void initLocation(){
+    private void setLocation(int location) {
+        this.location = location;
+    }
+
+    public void initLocation() {
         location = 0;
     }
 
-    public boolean isPass(String moveUpOrDown){
+    public boolean isPass(String moveUpOrDown) {
         return bridge.get(location).equals(moveUpOrDown);
     }
 }
