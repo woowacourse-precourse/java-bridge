@@ -105,7 +105,7 @@ class ApplicationTest extends NsTest {
 		@Test
 		@DisplayName("첫 번째 라운드는 실패하고 재시작 두 번째 라운드는 성공하고 종료하는 테스트")
 		void firstRoundFailAndRestartSecondRoundSuccessGameEnd() {
-
+			outputView.clearGameStateMap();
 			String expectedPrintMap = "다리의 길이를 입력해주세요.\r\n"
 //					+ "3\r\n"
 					+ "\r\n" + "이동할 칸을 선택해주세요. (위: U, 아래: D)\r\n"
@@ -161,9 +161,56 @@ class ApplicationTest extends NsTest {
 
 				outputView.printMap(moving, movingResult);
 				if (movingResult == MOVING_SUCCESS_GAME_END || movingResult == MOVING_FAIL_WRONG_MOVING) {
-					outputView.printResult(moving, movingResult, 2);
+					outputView.printResult(movingResult, 2);
 				}
 			}
+			assertThat(outputStream.toString()).isEqualTo(expectedPrintMap);
+		}
+
+		@Test
+		@DisplayName("첫 번째 라운드 실패 후 종료하는 테스트")
+		void firstRoundFailAndRestartSecondRoundFailAndQuit() {
+			String expectedPrintMap = "다리 건너기 게임을 시작합니다.\r\n" + "\r\n" + "다리의 길이를 입력해주세요.\r\n"
+//					+ "3\r\n"
+					+ "\r\n" + "이동할 칸을 선택해주세요. (위: U, 아래: D)\r\n"
+//					+ "U\r\n"
+					+ "[ O ]\r\n" + "[   ]\r\n" + "\r\n" + "이동할 칸을 선택해주세요. (위: U, 아래: D)\r\n"
+//					+ "U\r\n"
+					+ "[ O | X ]\r\n" + "[   |   ]\r\n" + "\r\n" + "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\r\n"
+//					+ "Q\r\n"
+					+ "최종 게임 결과\r\n" + "[ O | X ]\r\n" + "[   |   ]\r\n" + "\r\n" + "게임 성공 여부: 실패\r\n" + "총 시도한 횟수: 1";
+
+			// given
+			List<String> bridge = List.of("U", "D");
+			bridgeGame = new BridgeGame(bridge);
+			String bridgeSize = "3";
+			List<String> movingCommandsRoundOne = List.of("U", "U");
+
+			outputView.printGameStartMessage();
+
+			// when: 다리크기 입력
+			readLine(bridgeSize);
+			inputView.readBridgeSize();
+
+			for (String command : movingCommandsRoundOne) {
+				// when: 이동할 칸 입력
+				readLine(command);
+				inputView.readMoving();
+
+				// when: 이동하기
+				int movingResult = bridgeGame.move(command);
+
+				outputView.printMap(command, movingResult);
+
+				// when: 게임 재시작 Q 입력
+				if (movingResult == MOVING_FAIL_WRONG_MOVING) {
+					readLine("Q");
+					inputView.readGameCommand();
+					outputView.printResult(movingResult, 1);
+				}
+			}
+
+			// then
 			assertThat(outputStream.toString()).isEqualTo(expectedPrintMap);
 		}
 	}
