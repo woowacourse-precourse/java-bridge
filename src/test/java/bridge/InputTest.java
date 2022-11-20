@@ -45,4 +45,12 @@ class InputTest {
         assertThatThrownBy(() -> inputValidator.Moving(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("게임 재시작으로 받은 입력이 R이나 Q가 아닌 경우 예외 발생")
+    @ParameterizedTest
+    @CsvSource(value = {"a", "1"})
+    void testGameCommandInput(String input) {
+        assertThatThrownBy(() -> inputValidator.GameCommand(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
