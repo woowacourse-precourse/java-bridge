@@ -1,4 +1,4 @@
-package bridge;
+package bridge.Enum;
 
 public enum Crossing {
     UP(1, "U"),

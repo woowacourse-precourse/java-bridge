@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.Enum.Crossing;
+
 import java.util.ArrayList;
 import java.util.List;
 

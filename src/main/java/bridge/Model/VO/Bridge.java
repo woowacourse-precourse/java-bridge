@@ -1,6 +1,6 @@
 package bridge.Model.VO;
 
-import bridge.CrossResult;
+import bridge.Enum.CrossResult;
 
 import java.util.List;
 

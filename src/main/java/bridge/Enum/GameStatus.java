@@ -1,4 +1,4 @@
-package bridge;
+package bridge.Enum;
 
 public enum GameStatus {
     RUNNING("게임 진행중"),

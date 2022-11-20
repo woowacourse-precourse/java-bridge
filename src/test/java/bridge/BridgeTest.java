@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.Enum.CrossResult;
 import bridge.Model.VO.Bridge;
 import bridge.Model.VO.UserChoice;
 import org.junit.jupiter.params.ParameterizedTest;

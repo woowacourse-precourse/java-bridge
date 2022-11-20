@@ -2,8 +2,8 @@ package bridge.Model;
 
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.CrossResult;
-import bridge.GameStatus;
+import bridge.Enum.CrossResult;
+import bridge.Enum.GameStatus;
 import bridge.Model.VO.Bridge;
 import bridge.Model.VO.BridgeSize;
 import bridge.Model.VO.UserChoice;

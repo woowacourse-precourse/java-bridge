@@ -1,6 +1,6 @@
 package bridge.Model.VO;
 
-import bridge.Crossing;
+import bridge.Enum.Crossing;
 
 public class UserChoice {
     private String choice;
