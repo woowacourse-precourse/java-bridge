@@ -18,18 +18,18 @@ public class Bridge {
     }
 
     private void validate(List<BridgeCharacter> bridge) {
-        if(!(3<= bridge.size() && bridge.size() <= 20 )) {
+        if (!(3 <= bridge.size() && bridge.size() <= 20)) {
             throw new IllegalArgumentException("다리의 길이가 범위에 해당되지 않습니다.");
         }
     }
 
     public boolean isRange(int location) {
-        return bridge.size() <= location;
+        return 0 <= location && location <= bridge.size();
     }
 
     public boolean canMove(int location, BridgeCharacter bridgeCharacter) {
-        if(isRange(location)) {
-            return false;
+        if (!isRange(location + 1)) {
+            throw new IllegalStateException("더이상 이동할 수 없습니다.");
         }
         return bridge.get(location).equals(bridgeCharacter);
     }

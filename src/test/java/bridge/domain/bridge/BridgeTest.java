@@ -47,12 +47,12 @@ class BridgeTest {
     }
 
     @Test
-    void 게임_성공_테스트() {
+    void 범위체크_테스트() {
 
-        boolean isSuccess1 = bridge.isRange(5);
-        boolean isSuccess2 = bridge.isRange(10);
+        boolean isSuccess1 = bridge.isRange(0);
+        boolean isSuccess2 = bridge.isRange(3);
 
-        boolean isNotSuccess1 = bridge.isRange(0);
+        boolean isNotSuccess1 = bridge.isRange(6);
         boolean isNotSuccess2 = bridge.isRange(-3);
 
 
