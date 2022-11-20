@@ -5,7 +5,7 @@ import exception.UserInputException;
 public class Invalidator {
 
     public static int isValidBridgeLength(String inputValue) throws UserInputException {
-        if(!isNumeric(inputValue)) {
+        if (!isNumeric(inputValue)) {
             throw new UserInputException("[ERROR]");
         }
         if (!(Integer.parseInt(inputValue) >= 3 && Integer.parseInt(inputValue) <= 20)) {

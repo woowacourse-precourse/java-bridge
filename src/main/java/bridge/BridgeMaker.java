@@ -21,17 +21,9 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
         for (int shapeIndex = 0; shapeIndex < size; shapeIndex++) {
-            addBridgeShape(bridge,bridgeNumberGenerator.generate());
+            Direction direction = Direction.of(bridgeNumberGenerator.generate());
+            bridge.add(direction.getFloor());
         }
         return bridge;
-    }
-
-    private void addBridgeShape(List<String> bridge, int shape) {
-        if (shape == Direction.DOWN.getValue()) {
-            bridge.add(Direction.DOWN.getShape());
-        }
-        if (shape == Direction.UP.getValue()) {
-            bridge.add(Direction.UP.getShape());
-        }
     }
 }
