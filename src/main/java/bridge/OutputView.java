@@ -15,30 +15,35 @@ public class OutputView {
     public void printMap(List<String> userBridge, List<String> answerBridge) {
         String topLine="";
         String downLine="";
-        topLine+=printTopLine(userBridge, answerBridge);
-        downLine+=printDownLine(userBridge, answerBridge);
+        topLine+=printLine(userBridge, answerBridge, "U");
+        downLine+=printLine(userBridge, answerBridge, "D");
         System.out.println(topLine);
         System.out.println(downLine);
     }
 
-    public String printTopLine(List<String> userBridge, List<String> answerBridge){
-        String topLine="[ ";
+    public String printLine(List<String> userBridge, List<String> answerBridge,String location){
+        String line="[ ";
         for(int index=0;index<userBridge.size();index++){
-            if(!userBridge.get(index).equals("U")){
-                topLine+="  ";
-            }
-            if(userBridge.get(index).equals("U")&&BridgeGame.checkSameMove(userBridge, answerBridge, index)){
-                topLine+="O ";
-            }
-            if(userBridge.get(index).equals("U")&&!BridgeGame.checkSameMove(index)){
-                topLine+="X ";
-            }
-            topLine+="| ";
+            line+=printOneLine(userBridge,answerBridge,index,location);
+            line+="| ";
         }
-        topLine+="]";
-        return topLine;
+        line+="]";
+        return line;
     }
-    
+
+    public String printOneLine(List<String> userBridge, List<String> answerBridge, int index, String location){
+        if(!userBridge.get(index).equals(location)){
+            return "  ";
+        }
+        if(userBridge.get(index).equals(location)&&checkSameMove(userBridge, answerBridge, index)){
+            return "O ";
+        }
+        if(userBridge.get(index).equals(location)&&!checkSameMove(userBridge, answerBridge, index)){
+            return "X ";
+        }
+        return "";
+    }
+
     public boolean checkSameMove(List<String> userBridge, List<String> answerBridge, int index){
         if(userBridge.get(index)==answerBridge.get(index)){
             return true;
