@@ -31,6 +31,7 @@ public class OutputView {
     public void printResult(int position, boolean available, BridgeGame bridgeGame) {
         System.out.println(Sentence.OUTPUT_RESULT);
         printMap(position, available, bridgeGame.bridge);
+
         System.out.println(getSuccessOrFail(available));
         System.out.println(Sentence.OUTPUT_TRY + Integer.toString(bridgeGame.trying));
     }

@@ -18,6 +18,7 @@ public class InputView {
     public int readBridgeSize() {
         String input = readInput(Sentence.INPUT_LENGTH);
         System.out.println();
+
         validateNumber(input);
         int number = stringToInt(input);
         validateNumberRange(number);
