@@ -63,7 +63,12 @@ public class BridgeGame {
      */
     public void retry(int size) {
         countRetry();
+        initLocation();
         bridgeMap=new BridgeMap(size);
+    }
+
+    private void initLocation() {
+        location=-1;
     }
 
     public boolean isClosed() {
