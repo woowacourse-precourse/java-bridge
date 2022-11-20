@@ -26,10 +26,10 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(MovingResult moveResult, int next) {
+    public void printMap(MovingResult moveResult) {
         for (String part : map.keySet()) {
             StringBuilder printer = map.get(part);
-            insertSeparator(printer, next);
+            insertSeparator(printer);
             printPart(part, printer, moveResult);
         }
 
@@ -60,9 +60,10 @@ public class OutputView {
         }
     }
 
-    private void insertSeparator(StringBuilder printer, int next) {
-        if (next != 0) {
-            int lastSpaceIndex = printer.lastIndexOf(" ");
+    private void insertSeparator(StringBuilder printer) {
+        int lastSpaceIndex = printer.lastIndexOf(" ");
+
+        if (lastSpaceIndex != 2) {
             printer.insert(lastSpaceIndex, " | ");
         }
     }
