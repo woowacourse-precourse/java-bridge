@@ -23,13 +23,11 @@ public class GameManager {
   }
 
   private void gameStart() {
-    boolean isGameFinish = false;
-    while (!isGameFinish) {
+    do {
       bridgeGame.gameInit();
       makeBridgeByLengthInput();
       tryMove(); // 시도가 끝날 때 까지 이동
-      isGameFinish = checkIsGameFinish();
-    }
+    } while (!checkIsGameFinish());
     // 최종 게임 결과, 시도횟수 출력
   }
 
@@ -51,6 +49,7 @@ public class GameManager {
   }
 
   private boolean checkIsGameFinish() {
+
     if (!bridgeGame.isTrySuccess()) { // 시도 실패
       return checkRetryByInput(); // 재시도 여부 질문
     }
