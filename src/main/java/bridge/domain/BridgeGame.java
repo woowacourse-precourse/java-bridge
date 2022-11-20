@@ -41,6 +41,6 @@ public class BridgeGame {
     }
 
     public BridgeHistory getHistory() {
-        return new BridgeHistory(bridgePlayer, bridgeAnswer);
+        return new BridgeHistory(bridgePlayer, bridgeAnswer, bridgeRound);
     }
 }
