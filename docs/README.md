@@ -35,7 +35,7 @@
     - [ ]  이동할 칸 입력 기능 → readMoving
     - [ ]  게임 재시작 입력 기능 →readGameCommand
 2. OutputView
-    - [ ]  게임 시작 출력 기능 → printStart
+    - [x]  게임 시작 출력 기능 → printStart
     - [ ]  게임 중 현재까지 이동한 다리 출력 기능 → printMap
     - [ ]  게임 종료 후 최종 결과 출력 기능 → printResult
 
