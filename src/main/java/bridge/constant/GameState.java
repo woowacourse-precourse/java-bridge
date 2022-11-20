@@ -24,4 +24,7 @@ public final class GameState {
     public static final String betweenBridge="| ";
     public static final String endBridge="]";
 
+    public static final String GAME_SUCCESS="성공";
+
+    public static final String GAME_FAIL="실패";
 }

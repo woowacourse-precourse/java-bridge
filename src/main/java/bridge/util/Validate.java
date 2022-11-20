@@ -41,5 +41,13 @@ public class Validate {
         }
     }
 
+    public String validateFinalSuccess(Boolean isSuccess){
+        String gameResult = GameState.GAME_FAIL;
+        if (isSuccess) {
+            gameResult = GameState.GAME_SUCCESS;
+        }
+        return gameResult;
+    }
+
 
 }
