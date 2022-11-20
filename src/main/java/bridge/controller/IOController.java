@@ -1,6 +1,7 @@
 package bridge.controller;
 
 import bridge.util.InputCallback;
+import bridge.util.Message;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -17,7 +18,6 @@ public class IOController {
     private <T> T inputTemplate(InputCallback<T> inputCallback)
     {
         while(true) {
-
             try {
                 return inputCallback.input();
             }
@@ -32,7 +32,7 @@ public class IOController {
         return inputTemplate(new InputCallback<Integer>() {
             @Override
             public Integer input() {
-                outputView.printMessage("다리의 길이를 입력해주세요.\n");
+                outputView.printMessage(Message.BRIDGE_SIZE_INPUT_MESSAGE);
                 return inputView.readBridgeSize();
             }
         });
@@ -43,7 +43,7 @@ public class IOController {
         return inputTemplate(new InputCallback<String>() {
             @Override
             public String input() {
-                outputView.printMessage("이동할 칸을 선택해주세요. (위: U, 아래: D)\n");
+                outputView.printMessage(Message.MOVE_INPUT_MESSAGE);
                 return inputView.readMoving();
             }
         });
@@ -54,7 +54,7 @@ public class IOController {
         return inputTemplate(new InputCallback<String>() {
             @Override
             public String input() {
-                outputView.printMessage("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n");
+                outputView.printMessage(Message.GAME_COMMAND_INPUT_MESSAGE);
                 return inputView.readGameCommand();
             }
         });
@@ -67,13 +67,13 @@ public class IOController {
 
     public void printResult(String gameResult)
     {
-        outputView.printMessage("최종 게임 결과\n");
+        outputView.printMessage(Message.GAME_RESULT_MESSAGE);
         outputView.printResult(gameResult);
     }
 
     public void printGameStartMessage()
     {
-        outputView.printMessage("다리 건너기 게임을 시작합니다.\n");
+        outputView.printMessage(Message.GAME_START_MESSAGE);
     }
 
 
