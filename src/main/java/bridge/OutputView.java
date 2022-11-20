@@ -4,29 +4,22 @@ package bridge;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private static final String startAnnouncement = "다리 건너기 게임을 시작합니다.";
-    private static final String enterLengthOfBridge = "다리의 길이를 입력해주세요.";
-    private static final String choiceMove = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
-    private static final String startOfBridge = "[";
-    private static final String endOfBridge = "]";
-    private static final String divisionOfBridge = "|";
 
-    private static final String retryOrNot = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
-    private static final String resultOfGame = "최종 게임 결과";
-    private static final String success = "게임 성공 여부: ";
-    private static final String totalOfAttempt = "총 시도한 횟수";
-
-    public static void outputInitialAnnouncement() {
+    public void outputInitialAnnouncement() {
+        String startAnnouncement = "다리 건너기 게임을 시작합니다.";
         System.out.println(startAnnouncement);
         System.out.println();
+        String enterLengthOfBridge = "다리의 길이를 입력해주세요.";
         System.out.println(enterLengthOfBridge);
     }
 
-    public static void outputChoiceMove() {
+    public void outputChoiceMove() {
+        String choiceMove = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
         System.out.println(choiceMove);
     }
 
-    public static void outputRetryOrNot() {
+    public void outputRetryOrNot() {
+        String retryOrNot = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
         System.out.println(retryOrNot);
     }
 
@@ -36,11 +29,14 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printMap(String map) {
+        String startOfBridge = "[";
+        String endOfBridge = "]";
         String output = startOfBridge + map + endOfBridge;
         System.out.println(output);
     }
 
     private String checkSuccess(boolean isSuccess) {
+        String success = "게임 성공 여부: ";
         if (isSuccess) {
             return success + "성공";
         }
@@ -54,11 +50,13 @@ public class OutputView {
      */
     public void printResult(BridgeGame bridgeGame) {
         User user = bridgeGame.getUser();
+        String resultOfGame = "최종 게임 결과";
         System.out.println(resultOfGame);
         printMap(user.getPathOfUpperBridge());
         printMap(user.getPathOfLowerBridge());
         System.out.println();
         System.out.println(checkSuccess(bridgeGame.isSuccess()));
+        String totalOfAttempt = "총 시도한 횟수";
         System.out.println(totalOfAttempt + bridgeGame.getAttempt());
     }
 }
