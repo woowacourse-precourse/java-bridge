@@ -26,7 +26,7 @@ class BridgeGameTest {
         int size = 5;
         BridgeFactory bridgeFactory = new BridgeFactory();
         pedestrian = new Pedestrian();
-        game = BridgeGame.of(pedestrian, bridgeFactory.createBridge(size));
+        game = BridgeGame.from(bridgeFactory.createBridge(size));
     }
 
     @DisplayName("move 메소드에 방향을 입력하였을 때 방향이 Pedestrian 객체의 필드에 기록되는지 확인")
@@ -44,7 +44,7 @@ class BridgeGameTest {
 
     private void moveInManyDirections(BridgeGame game, List<Direction> directions) {
         for (Direction direction : directions) {
-            game.move(direction);
+            game.move(pedestrian, direction);
         }
     }
 
