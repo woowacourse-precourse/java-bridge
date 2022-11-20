@@ -40,8 +40,8 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public static String readGameCommand() {
-        String commandMark = Console.readLine();
-        GameCommand.validateInput(commandMark);
-        return commandMark;
+        String command = Console.readLine();
+        GameCommand.validateInput(command);
+        return command;
     }
 }

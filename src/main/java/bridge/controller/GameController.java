@@ -1,6 +1,7 @@
 package bridge.controller;
 
 import bridge.BridgeRandomNumberGenerator;
+import bridge.constant.GameCommand;
 import bridge.constant.GameStatus;
 import bridge.dto.GameResultDto;
 import bridge.service.BridgeGame;
@@ -56,13 +57,13 @@ public class GameController {
 
     private void checkRestart(GameResultDto gameResult) {
         OutputView.printRestart();
-        String restart = InputView.readGameCommand();
-
-        if (restart.equals(RESTART)) {
+        String command = InputView.readGameCommand();
+        GameCommand gameCommand = GameCommand.of(command);
+        if (gameCommand.isRestart()) {
             bridgeGame.retry();
             recursiveRound(START_ROUND);
         }
-        if (restart.equals(QUIT)) {
+        if (gameCommand.isQuit()) {
             OutputView.printResult(gameResult);
         }
     }
