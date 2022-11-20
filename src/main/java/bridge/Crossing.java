@@ -18,4 +18,8 @@ public enum Crossing {
         }
         return Crossing.DOWN.string;
     }
+
+    public String getString(){
+        return string;
+    }
 }
