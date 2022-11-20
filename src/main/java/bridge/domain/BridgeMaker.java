@@ -4,6 +4,7 @@ import static bridge.constant.Moving.LOWER_SIDE;
 import static bridge.constant.Moving.UPPER_SIDE;
 
 import bridge.BridgeNumberGenerator;
+import bridge.constant.ErrorMessage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -47,6 +48,8 @@ public class BridgeMaker {
         if (MINIMUM_SIZE <= size && size <= MAXIMUM_SIZE) {
             return;
         }
-        throw new IllegalArgumentException(String.format("[ERROR] 다리 길이는 %d 이상 %d 이하여야 합니다.", MINIMUM_SIZE, MAXIMUM_SIZE));
+        throw new IllegalArgumentException(String.format(
+                ErrorMessage.WRONG_BRIDGE_SIZE.getValue(), MINIMUM_SIZE, MAXIMUM_SIZE
+        ));
     }
 }

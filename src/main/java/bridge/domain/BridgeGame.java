@@ -8,6 +8,7 @@ import static bridge.constant.GameStatus.ON_WAY;
 import static bridge.constant.Moving.LOWER_SIDE;
 import static bridge.constant.Moving.UPPER_SIDE;
 
+import bridge.constant.ErrorMessage;
 import bridge.constant.GameCommand;
 import bridge.constant.GameStatus;
 import bridge.constant.Moving;
@@ -88,7 +89,7 @@ public class BridgeGame {
             return;
         }
         throw new IllegalArgumentException(String.format(
-                "[ERROR] 위로 이동하려면 \"%s\", 아래로 이동하려면 \"%s\"를 입력하세요.", UPPER_SIDE, LOWER_SIDE
+                ErrorMessage.WRONG_MOVING.getValue(), UPPER_SIDE, LOWER_SIDE
         ));
     }
 
@@ -97,7 +98,7 @@ public class BridgeGame {
             return;
         }
         throw new IllegalArgumentException(String.format(
-                "[ERROR] 게임을 재시작하려면 \"%s\", 종료하려면 \"%s\"를 입력하세요.", RETRY, QUIT
+                ErrorMessage.WRONG_GAME_COMMAND.getValue(), RETRY, QUIT
         ));
     }
 }
