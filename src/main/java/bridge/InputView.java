@@ -6,12 +6,21 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private final ExceptionHandler exceptionHandler;
+
+    InputView() {
+        this.exceptionHandler = new ExceptionHandler();
+    }
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return Integer.parseInt(Console.readLine());
+        String sizeString = Console.readLine();
+        while (!exceptionHandler.checkBridgeSize(sizeString)) {
+            sizeString = Console.readLine();
+        }
+        return Integer.parseInt(sizeString);
     }
 
     /**

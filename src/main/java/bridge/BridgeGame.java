@@ -9,10 +9,6 @@ public class BridgeGame {
     private final int bridgeSize;
     private final List<String> bridge;
 
-    /**
-     * BridgeGame 클래스 생성자
-     * 다리의 길이를 입력받고 다리를 생성한다.
-     */
     public BridgeGame() {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
