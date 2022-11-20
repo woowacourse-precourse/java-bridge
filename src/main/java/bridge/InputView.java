@@ -16,7 +16,7 @@ public class InputView {
             String bridgeSize = Console.readLine();
 
             /* 예외 처리에 대한 내용 */
-            BridgeSizeInputException.validate(bridgeSize);
+            BridgeSizeInputException.validateBridgeSize(bridgeSize);
             return Integer.parseInt(bridgeSize);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -29,10 +29,16 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String upOrDown = Console.readLine();
-        // 예외 처리에 대한 내용
+        try {
+            System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+            String upOrDown = Console.readLine();
 
-        return upOrDown;
+            MoveInputException.validateMoveInput(upOrDown);
+            return upOrDown;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
     }
 
     /**

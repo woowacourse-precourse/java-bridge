@@ -2,7 +2,7 @@ package bridge;
 
 public class BridgeSizeInputException {
 
-    public static void validate(String bridgeSize) {
+    public static void validateBridgeSize(String bridgeSize) {
         checkParsingError(bridgeSize);
         isNumber(bridgeSize);
     }

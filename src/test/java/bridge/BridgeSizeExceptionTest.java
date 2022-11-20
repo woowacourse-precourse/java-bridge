@@ -26,7 +26,7 @@ public class BridgeSizeExceptionTest extends NsTest {
         String inputSize = "ff";
 
         assertThatThrownBy(() -> {
-            BridgeSizeInputException.validate(inputSize);
+            BridgeSizeInputException.validateBridgeSize(inputSize);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ERROR_MESSAGE + " 숫자만 입력해주세요.");
     }
@@ -37,7 +37,7 @@ public class BridgeSizeExceptionTest extends NsTest {
         String inputSize = "5";
 
         assertThatCode(() -> {
-            BridgeSizeInputException.validate(inputSize);
+            BridgeSizeInputException.validateBridgeSize(inputSize);
         }).doesNotThrowAnyException();
     }
 
@@ -47,7 +47,7 @@ public class BridgeSizeExceptionTest extends NsTest {
         String inputSize = "1";
 
         assertThatThrownBy(() -> {
-            BridgeSizeInputException.validate(inputSize);
+            BridgeSizeInputException.validateBridgeSize(inputSize);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -57,7 +57,7 @@ public class BridgeSizeExceptionTest extends NsTest {
         String inputSize = "5";
 
         assertThatCode(() -> {
-            BridgeSizeInputException.validate(inputSize);
+            BridgeSizeInputException.validateBridgeSize(inputSize);
         }).doesNotThrowAnyException();
     }
     

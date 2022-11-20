@@ -24,9 +24,9 @@ public class Controller {
 
             test = bridgeMaker.makeBridge(bridgeSize);
             for (String s : test) {
-                System.out.println("s = " + s);
+                System.out.print(s + " ");
             }
-            System.out.println("움직이다 ( U and D )");
+            System.out.println();
 
 
 
