@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.support.ResultGenerator;
+import bridge.support.BridgeGameReferee;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -17,17 +17,45 @@ public class GameController {
     }
 
     public void execute() {
-        int bridgeSize = readBridgeSize();
-        BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
-        Bridge bridge = new Bridge(bridgeMaker.makeBridge(bridgeSize));
+        BridgeGameStatus status = new BridgeGameStatus(true);
+        while (status.isRunning()) {
+            Bridge bridge = generateBridge();
 
-        BridgeGame bridgeGame = new BridgeGame(bridge);
-        Result result = ResultGenerator.generateResult(bridgeSize, bridgeGame);
+            BridgeGame bridgeGame = new BridgeGame(bridge);
+            BridgeGameReferee referee = new BridgeGameReferee();
 
+            Result result = new Result();
+
+            for (int i = 0; i < bridge.getBridgeSize(); i++) {
+                MoveDirection direction = this.readMoving();
+                result = referee.updateResult(result, direction, bridgeGame.move(direction, i));
+                if (result.hasWrong()) {
+                    status.changeToGameOver();
+                    break;
+                }
+            }
+        }
     }
+
+    private Bridge generateBridge() {
+        try {
+            int bridgeSize = this.readBridgeSize();
+            BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+            return new Bridge(bridgeMaker.makeBridge(bridgeSize));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return generateBridge();
+        }
+    }
+
 
     private int readBridgeSize() {
         outputView.printInputBridgeSize();
         return inputView.readBridgeSize();
+    }
+
+    private MoveDirection readMoving() {
+        outputView.printInputMoveDirection();
+        return inputView.readMoving();
     }
 }
