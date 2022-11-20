@@ -17,4 +17,8 @@ public class Player {
     private int nextLocation() {
         return history.size();
     }
+
+    public List<Moving> getHistory() {
+        return history;
+    }
 }
