@@ -70,6 +70,20 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 기능_테스트4() {
+        assertRandomNumberInRangeTest(() -> {
+            run("5", "U", "D", "U", "U", "D");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O |   | O | O |   ]",
+                    "[   | O |   |   | O ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 1"
+            );
+        }, 1,0, 1, 1, 0);
+    }
+
+    @Test
     void 예외_테스트1() {
         assertSimpleTest(() -> {
             runException("a");
@@ -97,6 +111,14 @@ class ApplicationTest extends NsTest {
     void 예외_테스트4() {
         assertSimpleTest(() -> {
             runException("3", "U", "R");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트5() {
+        assertSimpleTest(() -> {
+            runException("3", "U", "U", "D", "S");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
