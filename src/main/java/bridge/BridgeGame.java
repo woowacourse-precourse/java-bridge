@@ -16,9 +16,6 @@ public class BridgeGame {
     private int position;
     private String lastCommand;
 
-    /**
-     * 생성자
-     */
     public BridgeGame() {
         position = 0;
         bridge = null;

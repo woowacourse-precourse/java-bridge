@@ -6,9 +6,6 @@ public class BridgeGameRunner {
     private final BridgeMaker maker;
     private final BridgeGame game;
 
-    /**
-     * 생성자
-     */
     public BridgeGameRunner() {
         input = new InputView();
         output = new OutputView();
