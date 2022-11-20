@@ -52,4 +52,8 @@ public class BridgeGame {
     public int getPlayerPosition(){
         return playerPosition;
     }
+
+    public List<String> getBridge(){
+        return bridge;
+    }
 }
