@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class RoundController {
@@ -16,6 +17,8 @@ public class RoundController {
     private List<String> failureFirstLayer = new ArrayList<>();
     private List<String> failureSecondLayer = new ArrayList<>();
     private int position = 0;
+    private int success = 0;
+    private int trial = 1;
 
     public RoundController(BridgeMaker bridgeMaker) {
         this.bridgeMaker = bridgeMaker;
@@ -42,11 +45,7 @@ public class RoundController {
         return true;
     }
 
-    public boolean bridgeRound() {
-        makeBridgeWithSize();
-        System.out.println(bridgeShape);
-        moveToStatus();
-
+    public boolean statusResult() {
         if (!moveToStatus()) {
             outputView.printMap(failureFirstLayer, failureSecondLayer);
             return false;
@@ -56,14 +55,41 @@ public class RoundController {
         return true;
     }
 
-    public boolean progressGame() {
-        if (!bridgeRound()) {
+    public boolean retryProgress() {
+        if (!statusResult()) {
             if (inputView.readGameCommand().equals(Retry.QUIT.get())) {
                 return false;
             }
-            return true;
+            trial += 1;
         }
         return true;
+    }
+
+    public void bridgeRound() {
+        makeBridgeWithSize();
+        System.out.println(bridgeShape);
+
+        while (position < bridgeShape.size()) {
+            if (!retryProgress()) {
+                break;
+            }
+        }
+
+        success = 1;
+        List<List<String>> layers = Arrays.asList(bridgeFirstLayer, bridgeSecondLayer);
+        outputView.printResult(layers, success, trial);
+    }
+
+    public void bridgeGame() {
+        while (position < bridgeShape.size()) {
+            if (!retryProgress()) {
+                success = 0;
+                break;
+            }
+        }
+        success = 1;
+        List<List<String>> layers = Arrays.asList(bridgeFirstLayer, bridgeSecondLayer);
+        outputView.printResult(layers, success, trial);
     }
 
     public void correctToBridge(String status) {
@@ -89,13 +115,14 @@ public class RoundController {
     public void upCorrect() {
         bridgeFirstLayer.add(BridgeStatus.MOVING_CORRECT.get());
         bridgeSecondLayer.add(BridgeStatus.NO_MOVING.get());
+        failureFirstLayer = bridgeFirstLayer;
+        failureSecondLayer = bridgeSecondLayer;
         position += 1;
     }
 
     public void upIncorrect() {
         failureFirstLayer = bridgeFirstLayer;
         failureSecondLayer = bridgeSecondLayer;
-
         failureFirstLayer.add(BridgeStatus.MOVING_INCORRECT.get());
         failureSecondLayer.add(BridgeStatus.NO_MOVING.get());
     }
@@ -103,13 +130,14 @@ public class RoundController {
     public void downCorrect() {
         bridgeFirstLayer.add(BridgeStatus.NO_MOVING.get());
         bridgeSecondLayer.add(BridgeStatus.MOVING_CORRECT.get());
+        failureFirstLayer = bridgeFirstLayer;
+        failureSecondLayer = bridgeSecondLayer;
         position += 1;
     }
 
     public void downIncorrect() {
         failureFirstLayer = bridgeFirstLayer;
         failureSecondLayer = bridgeSecondLayer;
-
         bridgeFirstLayer.add(BridgeStatus.NO_MOVING.get());
         bridgeSecondLayer.add(BridgeStatus.MOVING_INCORRECT.get());
     }
