@@ -1,4 +1,4 @@
-package bridge;
+package bridge.main;
 
 import camp.nextstep.edu.missionutils.Console;
 
