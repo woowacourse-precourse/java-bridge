@@ -10,7 +10,7 @@ public class CurrentRoute {
         this.currentRoute = currentRoute;
     }
 
-    public void initiation() {
+    public void initialize() {
         currentRoute.clear();
     }
 
@@ -24,9 +24,5 @@ public class CurrentRoute {
 
     public String getCurrentLocation() {
         return currentRoute.get(getCurrentLocationIndex());
-    }
-
-    public List<String> getCurrentRoute() {
-        return currentRoute;
     }
 }

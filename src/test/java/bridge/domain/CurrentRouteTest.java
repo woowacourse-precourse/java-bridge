@@ -33,7 +33,7 @@ public class CurrentRouteTest {
     @Test
     void checkLocationInitiation() {
         currentRoute.moveNext("D");
-        currentRoute.initiation();
+        currentRoute.initialize();
 
         assertThat(currentRoute.getCurrentLocationIndex()).isEqualTo(0);
     }
