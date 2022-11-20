@@ -22,4 +22,10 @@ public class Validator {
         }
         return true;
     }
+    public static boolean checkRetryOrQuit(String input){
+        if(input!=Constants.RETRY && input!=Constants.QUIT){
+            throw new IllegalArgumentException(ErrorMessage.ERROR_RETRY_OR_QUIT.print());
+        }
+        return true;
+    }
 }

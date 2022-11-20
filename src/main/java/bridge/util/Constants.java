@@ -10,4 +10,6 @@ public class Constants {
     public static final String NOTHING=" ";
     public static final String SUCCESS="성공";
     public static final String FAIL="실패";
+    public static final String RETRY="R";
+    public static final String QUIT="Q";
 }
