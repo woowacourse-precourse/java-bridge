@@ -81,10 +81,7 @@ public class InputView {
      * 검증 로직 : 이동할 칸 문자를 'U' 또는 'D' 중에 하나를 선택했는지 검증한다.
      */
     private void validateMovingSpaceWord(String movingSpace) {
-        if (movingSpace.equals("U")) {
-            return;
-        }
-        if (!movingSpace.equals("D")) {
+        if (movingSpace.equals("U") || movingSpace.equals("D")) {
             return;
         }
         throw new IllegalArgumentException("[ERROR] 'U' 또는 'D' 중 하나의 문자를 입력하셔야 합니다.");
