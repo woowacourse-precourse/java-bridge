@@ -20,6 +20,7 @@ public class Controller {
         outputView.printGameStart();
 
         Bridge bridge = generateBridge();
+
     }
 
     private Bridge generateBridge() {
@@ -27,7 +28,7 @@ public class Controller {
             int bridgeSize = inputView.readBridgeSize();
             return bridgeGame.generateBridge(bridgeSize);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printError(e.getMessage());
             return generateBridge();
         }
     }
