@@ -17,7 +17,9 @@ public class UserChoice {
         throw new IllegalArgumentException("올바른 값을 입력해주세요");
     }
 
-    public String getChoice(){
-        return choice;
+    @Override
+    public boolean equals(Object object){
+        String other = (String)object;
+        return choice.equals(other);
     }
 }
