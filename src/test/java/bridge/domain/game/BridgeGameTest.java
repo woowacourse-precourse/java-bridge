@@ -12,6 +12,7 @@ import bridge.dto.controller.MoveDto;
 import bridge.dto.controller.RetryDto;
 import bridge.dto.input.ReadGameCommandDto;
 import bridge.dto.input.ReadMovingDto;
+import bridge.dto.output.PrintMapDto;
 import bridge.exception.domain.WrongGeneratorException;
 import bridge.helper.common.CommonStubBridgeGeneratorField;
 import bridge.helper.stub.StubBridgeNumberGenerator;
@@ -114,7 +115,10 @@ class BridgeGameTest {
 
                 MoveDto move = bridgeGame.move(readMovingDto);
 
+                PrintMapDto printMapDto = move.getPrintMapDto();
                 assertThat(move.getNextGameStatus()).isSameAs(GameStatus.GAME_EXIT);
+                assertThat(printMapDto.getUpBridgeHistory()).contains(" ");
+                assertThat(printMapDto.getDownBridgeHistory()).contains("O");
             }
         }
 

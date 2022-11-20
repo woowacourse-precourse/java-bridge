@@ -92,25 +92,25 @@ class BridgeTest {
     }
 
     @Nested
-    @DisplayName("isEnd 메소드는")
-    class DescribeIsEndMethodTest extends CommonBridgeField {
+    @DisplayName("calculatePassingBridge 메소드는")
+    class DescribeCalculatePassingBridgeMethodTest extends CommonBridgeField {
 
         @Nested
-        @DisplayName("만약 플레이어의 현재 위치가 주어지면")
+        @DisplayName("만약 플레이어의 현재 위치와 플레이어의 이동 경로가 주어지면")
         class ContextWithPlayerPositionTest {
 
             @ParameterizedTest
             @CsvSource(
                 value = {
+                    "0:false",
                     "1:false",
-                    "2:false",
-                    "3:true"
+                    "2:true"
                 },
                 delimiter = ':'
             )
             @DisplayName("플레이어의 현재 위치가 다리의 끝인지 여부를 반환한다")
             void it_returns_bridge_end(int position, boolean expected) {
-                boolean actual = bridge.isEnd(position);
+                boolean actual = bridge.calculatePassingBridge(position, BridgeTile.DOWN);
 
                 assertThat(actual).isSameAs(expected);
             }

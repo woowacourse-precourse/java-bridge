@@ -45,7 +45,8 @@ class PlayerTest {
             @ValueSource(ints = {-1, 0, 1, 2, 21})
             @DisplayName("IllegalArgumentException 예외가 발생한다")
             void it_throws_exception(int invalidInput) {
-                assertThatThrownBy(() -> new Player(invalidInput)).isInstanceOf(IllegalArgumentException.class);
+                assertThatThrownBy(() -> new Player(invalidInput))
+                        .isInstanceOf(IllegalArgumentException.class);
             }
         }
     }
@@ -80,18 +81,18 @@ class PlayerTest {
     class DescribeGetPlayerTargetTileHistoryMethodTest extends CommonBeforeEach {
 
         @Nested
-        @DisplayName("만약 출력하고자 하는 BridgeTile이 주어지면")
+        @DisplayName("만약 다리와 출력하고자 하는 BridgeTile이 주어지면")
         class ContextWithBridgeTileTest {
 
             @ParameterizedTest
             @MethodSource("bridge.domain.player.arguments.PlayerTestArguments#getPlayerTargetTileHistoryArgument")
             @DisplayName("해당 BridgeTile에 대한 플레이어의 이동 경로를 반환한다")
             void it_returns_movableHistory(List<BridgeTile> playerSteps,
-                String expectedUpHistory, String expectedDownHistory) {
+                    String expectedUpHistory, String expectedDownHistory) {
                 playerSteps.forEach(step -> player.move(bridge, step));
 
-                String upHistory = player.getPlayerTargetTileHistory(BridgeTile.UP);
-                String downHistory = player.getPlayerTargetTileHistory(BridgeTile.DOWN);
+                String upHistory = player.getPlayerTargetTileHistory(bridge, BridgeTile.UP);
+                String downHistory = player.getPlayerTargetTileHistory(bridge, BridgeTile.DOWN);
 
                 assertThat(upHistory).isEqualTo(expectedUpHistory);
                 assertThat(downHistory).isEqualTo(expectedDownHistory);
