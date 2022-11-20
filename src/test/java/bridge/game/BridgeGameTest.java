@@ -103,6 +103,30 @@ public class BridgeGameTest {
         }
     }
 
+    @ParameterizedTest
+    @ArgumentsSource(IsSuccessTestData.class)
+    void isSuccessTest(List<String> bridge, List<String> movingRoute, boolean expected) {
+        try (MockedConstruction<BridgeMaker> mockBridgeMaker = mockedBridgeMaker(bridge)) {
+            BridgeGame bridgeGame = new BridgeGame(bridge.size());
+            moveByMovingRoute(movingRoute, bridgeGame);
+
+            boolean result = bridgeGame.isSuccess();
+
+            assertThat(result).isEqualTo(expected);
+        }
+    }
+
+    static class IsSuccessTestData implements ArgumentsProvider {
+
+        @Override
+        public Stream<? extends Arguments> provideArguments(ExtensionContext context) throws Exception {
+            return Stream.of(
+                    Arguments.of(List.of("U","U","D","D"), List.of("U","U","D","D"), true),
+                    Arguments.of(List.of("U","U","D","D"), List.of("U","U","D","U"), false)
+            );
+        }
+    }
+
     MockedConstruction<BridgeMaker> mockedBridgeMaker(List<String> bridge) {
         return mockConstruction(BridgeMaker.class,
                 withSettings().defaultAnswer(RETURNS_MOCKS),

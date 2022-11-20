@@ -57,4 +57,8 @@ public class BridgeGame {
     private boolean isCorrectRoute(int index) {
         return route.get(index).equals(bridge.get(index));
     }
+
+    public boolean isSuccess() {
+        return route.equals(bridge);
+    }
 }
