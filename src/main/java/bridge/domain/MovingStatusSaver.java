@@ -60,6 +60,10 @@ public class MovingStatusSaver {
         return getStatusSize() == getRandomBridgeSize();
     }
 
+    public void clearMovingStatus(){
+        movingStatus.clear();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
