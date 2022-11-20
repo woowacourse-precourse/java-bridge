@@ -84,6 +84,6 @@ public class InputView {
     }
 
     private boolean isRetryOrQuit(String input) {
-        return true;
+        return input == "R" || input == "Q";
     }
 }
