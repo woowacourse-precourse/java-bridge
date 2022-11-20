@@ -58,6 +58,10 @@ public class InputView {
         }while(!isValidChoice(input , GAME_RESTART));
         return input;
     }
+    public boolean isRestart(){
+        String input = readGameCommand();
+        return Constant.MoveCondition.valueOf(input).getCond();
+    }
 
     private boolean isValidChoice(String input, BridgeInput enumChoice){
         try {
