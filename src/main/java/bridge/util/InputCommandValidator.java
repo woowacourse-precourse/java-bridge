@@ -11,7 +11,7 @@ public class InputCommandValidator {
 
     private static void validateCommand(String input) {
         if (!RESTART.equals(input) && !QUIT.equals(input)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_MOVE_COMMAND);
         }
     }
 }
