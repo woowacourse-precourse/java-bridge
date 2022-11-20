@@ -3,7 +3,7 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.BridgeNumberGenerator;
-import bridge.model.AttemptNumber;
+import bridge.model.TryNumber;
 import bridge.model.BridgeGame;
 import bridge.model.BridgeSize;
 import bridge.model.GameCommand;
@@ -23,13 +23,13 @@ public class GameController {
         Integer size = bridgeSize.getBrideSize();
         BridgeMaker bridgeMaker = bridgeMaker();
         List<String> bridge = bridgeMaker.makeBridge(size);
-        AttemptNumber attemptNumber = attemptNumber();
+        TryNumber tryNumber = tryNumber();
         BridgeGame bridgeGame = bridgeGame();
-        startWalk(bridgeGame, bridge, attemptNumber);
+        startWalk(bridgeGame, bridge, tryNumber);
     }
 
-    private AttemptNumber attemptNumber() {
-        return new AttemptNumber();
+    private TryNumber tryNumber() {
+        return new TryNumber();
     }
 
     private BridgeSize readBridgeSize() {
@@ -58,26 +58,26 @@ public class GameController {
         bridgeGame.gameSuccess();
     }
 
-    private void startWalk(BridgeGame bridgeGame, List<String> bridge, AttemptNumber attemptNumber) {
+    private void startWalk(BridgeGame bridgeGame, List<String> bridge, TryNumber tryNumber) {
         while (!bridgeGame.isSuccess()) {
             walk(bridgeGame, bridge);
             if (isRetry(bridgeGame)) {
-                bridgeGame.retry(attemptNumber);
+                bridgeGame.retry(tryNumber);
                 continue;
             }
             break;
         }
-        finalGameResult(bridgeGame, attemptNumber);
+        finalGameResult(bridgeGame, tryNumber);
     }
 
-    private void finalGameResult(BridgeGame bridgeGame, AttemptNumber attemptNumber) {
+    private void finalGameResult(BridgeGame bridgeGame, TryNumber tryNumber) {
         outputView.printFinalGameResult();
-        printBridge(bridgeGame);
+        printMap(bridgeGame);
         boolean gameSuccessOrNot = bridgeGame.isSuccess();
-        attemptNumber.printAttemptNumber(outputView, gameSuccessOrNot);
+        tryNumber.printAttemptNumber(outputView, gameSuccessOrNot);
     }
 
-    private void printBridge(BridgeGame bridgeGame) {
+    private void printMap(BridgeGame bridgeGame) {
         List<String> lowBridge = bridgeGame.getLowBridge();
         List<String> highBridge = bridgeGame.getHighBridge();
         outputView.printMap(lowBridge, highBridge);
@@ -86,7 +86,7 @@ public class GameController {
     private boolean isMovePossible(BridgeGame bridgeGame, String bridgeStatus) {
         String moving = moving();
         boolean movePossible = bridgeGame.move(moving, bridgeStatus);
-        printBridge(bridgeGame);
+        printMap(bridgeGame);
         return movePossible;
     }
 
