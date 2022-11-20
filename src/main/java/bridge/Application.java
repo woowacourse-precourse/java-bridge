@@ -17,12 +17,37 @@ public class Application {
         game.bridgeRoute=bridgeRoute;
         game.trialCount+=1;
 
-        for(int loop=0;loop<bridgeLength;loop++){
-            if(!game.move(input.readMoving())){
-                game.retry();
-            };
-        }
+        gameSet(game,bridgeLength);
+
+
 
     }
+    public static boolean gameMove(BridgeGame game,int bridgeLength){
+        InputView input = new InputView();
+        Boolean isSuccess;
+        for(int loop=0;loop<bridgeLength;loop++){
+            isSuccess=game.move(input.readMoving(),loop);
+            if(!isSuccess){
+                return false;
+            };
+        }
+        return true;
+    }
+    public static void gameSet(BridgeGame game,int bridgeLength){
+        InputView input=new InputView();
+        Boolean isQuit;
+        Boolean isSuccess;
+        while(true){
+            isSuccess=gameMove(game,bridgeLength);
+            if(isSuccess){
+                break;
+            }
+            isQuit=game.retry(input.readGameCommand());
+            if(isQuit){
+                break;
+            }
+        }
+    }
+
 
 }
