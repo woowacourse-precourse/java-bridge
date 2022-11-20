@@ -58,13 +58,13 @@ public class BridgeGame {
         if (!RetryCommand.canRetry(userInput)) {
             return false;
         }
+        prepareRetry();
 
-        return prepareRetry();
+        return true;
     }
 
-    private boolean prepareRetry() {
+    private void prepareRetry() {
         result.reset();
         playCount++;
-        return true;
     }
 }
