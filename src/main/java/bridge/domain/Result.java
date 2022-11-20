@@ -31,4 +31,18 @@ public class Result {
             addDownsStairs();
         }
     }
+
+    public String makeUpStairsMessage() {
+        if(upStairs.size() == EMPTY) {
+            return "";
+        }
+        return upStairs.toString().replaceAll(", ", "|");
+    }
+
+    public String makeDownStairsMessage() {
+        if(downsStairs.size() == EMPTY) {
+            return "";
+        }
+        return downsStairs.toString().replaceAll(", ", "|");
+    }
 }
