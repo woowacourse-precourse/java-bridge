@@ -11,8 +11,8 @@ import java.util.List;
 public class BridgeGame {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
-    List<String> upBridge = new ArrayList<>();
-    List<String> downBridge = new ArrayList<>();
+    List<String> upBridge;
+    List<String> downBridge;
     int gameTryCount = 1;
 
     /**

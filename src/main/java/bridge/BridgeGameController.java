@@ -1,7 +1,25 @@
 package bridge;
 
+import java.util.List;
+
 public class BridgeGameController {
-  BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator()); // 정답 생성을 위한 생성자 호출
+  private InputView inputView;
+  private OutputView outputView;
 
+  public int inputViewSize() {
+    return inputView.readBridgeSize();
+  }
 
+  public String inputViewMoving() {
+    return inputView.readMoving();
+  }
+
+  public String inputViewCommand() {
+    return inputView.readGameCommand();
+  }
+
+  public void outputViewResult(List<String> up, List<String > down) {
+    outputView.printMap(up);
+    outputView.printMap(down);
+  }
 }
