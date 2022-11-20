@@ -2,6 +2,8 @@ package bridge.view.input;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import static bridge.domain.Constants.BRIDGE_ARROW_VALUE_LENGTH;
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -22,7 +24,15 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+        String moving = Console.readLine();
+        validateMovingValueLength(moving);
         return null;
+    }
+
+    private void validateMovingValueLength(String moving) {
+        if (moving.length() > BRIDGE_ARROW_VALUE_LENGTH) {
+            throw new IllegalArgumentException();
+        }
     }
 
     /**

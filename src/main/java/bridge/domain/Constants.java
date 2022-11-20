@@ -2,6 +2,7 @@ package bridge.domain;
 
 public class Constants {
 
+    public static final int BRIDGE_ARROW_VALUE_LENGTH = 1;
     public static final int BRIDGE_SIZE_LOWER_INCLUSIVE = 3;
     public static final int BRIDGE_SIZE_UPPER_INCLUSIVE = 20;
     public static final int BRIDGE_DOWN_NUMBER = 0;
