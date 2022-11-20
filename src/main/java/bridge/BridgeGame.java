@@ -5,6 +5,9 @@ import bridge.objects.DownSide;
 import bridge.objects.UpSide;
 
 public class BridgeGame {
+    public static UpSide upSide = new UpSide();
+    public static DownSide downSide = new DownSide();
+    public static int totalTrial = 1;
 
     public static void move() {
         if (StartGame.isRightWay()) {
@@ -15,31 +18,31 @@ public class BridgeGame {
     }
 
     public static void retry() {
-        Application.upSide = new UpSide();
-        Application.downSide = new DownSide();
+        upSide = new UpSide();
+        downSide = new DownSide();
         Application.movingTurn = 1;
-        Application.totalTrial++;
+        totalTrial++;
     }
 
     public static void rightWayMove() {
-        if (Application.movingInput.equals("U")) {
-            Application.upSide.upSideArr.add("O");
-            Application.downSide.downSideArr.add(" ");
+        if (StartGame.movingInput.equals("U")) {
+            upSide.upSideArr.add("O");
+            downSide.downSideArr.add(" ");
         }
-        if (Application.movingInput.equals("D")) {
-            Application.upSide.upSideArr.add(" ");
-            Application.downSide.downSideArr.add("O");
+        if (StartGame.movingInput.equals("D")) {
+            upSide.upSideArr.add(" ");
+            downSide.downSideArr.add("O");
         }
     }
 
     public static void wrongWayMove() {
-        if (Application.movingInput.equals("U")) {
-            Application.upSide.upSideArr.add("X");
-            Application.downSide.downSideArr.add(" ");
+        if (StartGame.movingInput.equals("U")) {
+            upSide.upSideArr.add("X");
+            downSide.downSideArr.add(" ");
         }
-        if (Application.movingInput.equals("D")) {
-            Application.upSide.upSideArr.add(" ");
-            Application.downSide.downSideArr.add("X");
+        if (StartGame.movingInput.equals("D")) {
+            upSide.upSideArr.add(" ");
+            downSide.downSideArr.add("X");
         }
     }
 }

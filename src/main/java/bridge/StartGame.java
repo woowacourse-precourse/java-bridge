@@ -1,6 +1,11 @@
 package bridge;
 
+import bridge.view.InputView;
+import bridge.view.OutputView;
+
 public class StartGame {
+
+    public static String movingInput;
 
     public static boolean startGame() {
         requestMove();
@@ -15,7 +20,7 @@ public class StartGame {
 
     public static void requestMove() {
         OutputView.printSelect();
-        Application.movingInput = InputView.readMoving();
+        movingInput = InputView.readMoving();
     }
 
     public static boolean whenWrong() {
@@ -30,20 +35,15 @@ public class StartGame {
     public static boolean wantRetry() {
         OutputView.printRetry();
         String retryOrNot = InputView.readGameCommand();
-        if (retryOrNot.equals("R")) {
-            return true;
-        }
-        return false;
+        return retryOrNot.equals("R");
     }
 
     public static boolean isRightWay() {
         String rightWay = Application.bridge.get(Application.movingTurn);
-        boolean isRightAnswer = rightWay.equals(Application.movingInput);
-        return isRightAnswer;
+        return rightWay.equals(movingInput);
     }
 
     public static boolean isWrongWay() {
-        boolean isWrongAnswer = !isRightWay();
-        return isWrongAnswer;
+        return !isRightWay();
     }
 }

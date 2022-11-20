@@ -1,14 +1,15 @@
 package bridge.view;
 
 import bridge.Application;
+import bridge.BridgeGame;
 
 public class OutputView {
 
     public static void printMap() {
-        Application.upSide.makeUpSide();
-        System.out.println(Application.upSide.getUpSide());
-        Application.downSide.makeDownSide();
-        System.out.println(Application.downSide.getDownSide());
+        BridgeGame.upSide.makeUpSide();
+        System.out.println(BridgeGame.upSide.getUpSide());
+        BridgeGame.downSide.makeDownSide();
+        System.out.println(BridgeGame.downSide.getDownSide());
         System.out.println();
     }
 
@@ -16,18 +17,15 @@ public class OutputView {
         System.out.println("최종 게임 결과");
         printMap();
         printSuccess();
-        System.out.println("총 시도한 횟수: " + Application.totalTrial);
+        System.out.println("총 시도한 횟수: " + BridgeGame.totalTrial);
     }
 
     public static void printSuccess() {
-        String successResult = "";
         if (Application.success) {
-            successResult = "성공";
+            System.out.println("게임 성공 여부: " + "성공");
+            return;
         }
-        if (!Application.success) {
-            successResult = "실패";
-        }
-        System.out.println("게임 성공 여부: " + successResult);
+        System.out.println("게임 성공 여부: " + "실패");
     }
 
     public static void printStart() {
