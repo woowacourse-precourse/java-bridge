@@ -6,13 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 public class Player {
+    private Map<Move, List<MoveResult>> moveResults = new EnumMap<>(Move.class);
     private int moveDistance;
-    private Map<Move, List<MoveResult>> moveResults;
     private int lifeCount;
 
     public Player() {
         this.lifeCount = 1;
-        this.moveResults = new EnumMap<>(Move.class);
         initMoveResults();
     }
 
@@ -29,9 +28,9 @@ public class Player {
     }
 
     private void initMoveResults() {
-        moveResults.clear();
-        moveResults.put(Move.UP, new ArrayList<>());
-        moveResults.put(Move.DOWN, new ArrayList<>());
+        for (Move move : Move.values()) {
+            moveResults.put(move, new ArrayList<>());
+        }
     }
 
     public void newLife() {
@@ -41,9 +40,9 @@ public class Player {
     }
 
     public boolean move(Bridge bridge, Move moveTo) {
-        moveResults.get(Move.reverseMove(moveTo)).add(MoveResult.OTHER);
         MoveResult moveResult = bridge.crossBridge(moveDistance, moveTo);
-        moveResults.get(moveTo).add(bridge.crossBridge(moveDistance, moveTo));
+        moveResults.get(moveTo).add(moveResult);
+        moveResults.get(Move.other(moveTo)).add(MoveResult.OTHER);
         moveDistance++;
 
         return moveResult.canMove;
