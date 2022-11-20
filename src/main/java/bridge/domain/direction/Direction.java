@@ -1,7 +1,11 @@
 package bridge.domain.direction;
 
+import java.util.Map;
+
 import static java.lang.String.format;
 import static java.util.Arrays.stream;
+import static java.util.Optional.ofNullable;
+import static java.util.stream.Collectors.toMap;
 
 public enum Direction {
 
@@ -12,6 +16,12 @@ public enum Direction {
     private static final String NOT_MATCH_SYMBOL_BY_NUMBER = "%d에 대응되는 심볼이 없습니다.";
     private static final String NOT_MATCH_DIRECTION_BY_SYMBOL = "%s 에 대응되는 방향이 없습니다.";
 
+    private static final Map<String, Direction> BY_SYMBOL =
+            stream(values()).collect(toMap(Direction::symbol, direction -> direction));
+
+    private static final Map<Integer, String> NUMBER_TO_SYMBOL =
+            stream(values()).collect(toMap(Direction::mappingNumber, Direction::symbol));
+
     private final String symbol;
     private final int mappingNumber;
 
@@ -21,19 +31,20 @@ public enum Direction {
     }
 
     public static String mapNumberToSymbol(final int number) {
-        return stream(values())
-                .filter(direction -> direction.mappingNumber == number)
-                .map(direction -> direction.symbol)
-                .findAny()
-                .orElseThrow(() ->
-                        new IllegalArgumentException(format(NOT_MATCH_SYMBOL_BY_NUMBER, number)));
+        return ofNullable(NUMBER_TO_SYMBOL.get(number))
+                .orElseThrow(() -> new IllegalArgumentException(format(NOT_MATCH_SYMBOL_BY_NUMBER, number)));
     }
 
     public static Direction ofSymbol(final String symbol) {
-        return stream(values())
-                .filter(direction -> direction.symbol.equals(symbol))
-                .findAny()
-                .orElseThrow(() ->
-                        new IllegalArgumentException(format(NOT_MATCH_DIRECTION_BY_SYMBOL, symbol)));
+        return ofNullable(BY_SYMBOL.get(symbol))
+                .orElseThrow(() -> new IllegalArgumentException(format(NOT_MATCH_DIRECTION_BY_SYMBOL, symbol)));
+    }
+
+    public String symbol() {
+        return symbol;
+    }
+
+    public int mappingNumber() {
+        return mappingNumber;
     }
 }
