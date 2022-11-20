@@ -3,9 +3,9 @@ package bridge;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import bridge.view.InputView;
+import bridge.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringJoiner;
 
 public class Application {
     private static final int INITIAL_COUNT = 1;
@@ -13,9 +13,13 @@ public class Application {
     private final static String BRIDGE_TAIL = "]";
     private final static String BLANK_SPACE = " ";
     private final static String BRIDGE_PARTITION = "|";
+    private final static String SUCCESS = "성공";
+    private final static String FAILURE = "실패";
+
 
     public static void main(String[] args) {
         int trialCount = INITIAL_COUNT;
+        String gameResult = SUCCESS;
 
         final int bridgeSize =  InputView.readBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
@@ -53,9 +57,18 @@ public class Application {
                     bridgeGame.retry();
                 }
                 if (playerCommand.equals("Q")) {
-                    index = answerBridge.size();
+                    gameResult = FAILURE;
+                    break;
                 }
             }
+        }
+        if (gameResult.equals(SUCCESS)) {
+            OutputView.printResult(index - 1, upSideResult, downSideResult, gameResult);
+            OutputView.printTotalTrialCount(bridgeGame.trialCount);
+        }
+        if (gameResult.equals(FAILURE)) {
+            OutputView.printResult(index - 1, upSideResult, downSideResult, gameResult);
+            OutputView.printTotalTrialCount(bridgeGame.trialCount);
         }
     }
 }
