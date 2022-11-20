@@ -69,22 +69,20 @@ public class GameController {
     private boolean doRepeatBridgeMove() {
         for (int idx = 0; idx < bridge.getBridgeSpaces().size(); idx++) {
             String userMove = inputUserMove();
-            BridgeSpace movedSpace = this.bridgeGame.move(userMove,bridge.getBridgeSpaces().get(idx));
-            bridge.getBridgeSpaces().set(idx,movedSpace);
+            bridge.getBridgeSpaces().get(idx).setMyMoved(
+                    bridgeGame.move(userMove,bridge.getBridgeSpaces().get(idx)));
             printNowBridge();
             if(bridge.getBridgeSpaces().get(idx).getMyMoved() == Moved.CANT) break;
         }
-        return checkAllDone(); //모두 완료
+        return checkAllDone();
     }
 
     private boolean askRetry() {
-        // 재시도 묻기
         String retryFlag = inputView.readGameCommand();
         return Objects.equals(retryFlag, "R");
     }
 
     private boolean checkAllDone() {
-        // 모두 완료했는지 검사, 마지막 요소가 이동 가능이면
         return bridge.getBridgeSpaces().get(bridge.getBridgeSpaces().size() - 1).getMyMoved()
                 == Moved.CAN;
     }

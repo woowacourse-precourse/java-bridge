@@ -6,8 +6,8 @@ public class BridgeSpace {
     String upOrDown;
     Moved myMoved;
 
-    public BridgeSpace(String str) {
-        this.upOrDown = str;
+    public BridgeSpace(String upOrDown) {
+        this.upOrDown = upOrDown;
         this.myMoved = Moved.NOTYET;
     }
 
@@ -19,13 +19,15 @@ public class BridgeSpace {
         return myMoved;
     }
 
-    public BridgeSpace checkMoving(String userMove) {
+    public void setMyMoved(Moved myMoved) {
+        this.myMoved = myMoved;
+    }
+
+    public Moved checkMoving(String userMove) {
         if (Objects.equals(userMove, upOrDown)) {
-            this.myMoved = Moved.CAN;
-            return this;
+            return Moved.CAN;
         }
-        this.myMoved = Moved.CANT;
-        return this;
+        return Moved.CANT;
     }
 
     public void init() {

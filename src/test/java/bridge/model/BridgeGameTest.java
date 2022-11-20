@@ -14,7 +14,7 @@ class BridgeGameTest {
         System.out.println(bridgeSpace.getMyMoved());
         Moved moved = Moved.CAN;
         BridgeGame bridgeGame = new BridgeGame();
-        Moved result = bridgeGame.move(userMove,bridgeSpace).getMyMoved();
+        Moved result = bridgeGame.move(userMove,bridgeSpace);
         System.out.println(result);
         assertThat(result).isEqualTo(moved);
     }

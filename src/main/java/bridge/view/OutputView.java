@@ -20,8 +20,8 @@ public class OutputView {
      */
     public void printMap(Bridge bridge) {
         makeUpNdownList(bridge);
-        System.out.println(String.join("",upList));
-        System.out.println(String.join("",downList));
+        System.out.println(String.join("",upList)); // 위 다리
+        System.out.println(String.join("",downList)); // 아래 다리
         System.out.println();
     }
 
@@ -44,7 +44,6 @@ public class OutputView {
     }
 
     private void appendBridgeInfo(BridgeSpace bridgeSpace) {
-
         if ((bridgeSpace.getUpOrDown() == "U"
                 && bridgeSpace.getMyMoved() == Moved.CAN)
                 || (bridgeSpace.getUpOrDown() == "D"
@@ -56,7 +55,6 @@ public class OutputView {
         upList.add(" ");
         downList.add(bridgeSpace.getMyMoved().getoOrX());
     }
-
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
