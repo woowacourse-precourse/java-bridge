@@ -25,14 +25,14 @@
     - [X] 무작위 값(0 또는 1)에 대해 각각 아래 칸(D), 위 칸(U)으로 변환 - BridgeMaker#convertBridgeRandomNumberToUpDownMark()
     - [X] 생성된 다리에 각 다리 지점 별로 이동할 수 있는 방향 값 배치 - BridgeMaker#addBridgeArrow()
 ***
-- [ ] 다리 건너기 - BridgeGame#move()
+- [X] 다리 건너기 - BridgeGame#move()
     - [X] 다리 방향 입력 값 검증 및 예외처리 - BridgeGame#validateBridgeArrow()
     - [X] 몇 라운드인지 계산
     - [X] 사용자가 입력한 다리 방향에 대해 다리를 건널 수 있는지 여부 확인 - BridgeGame#isCrossable()
     - [X] 다리에 표시할 상태 값 생성 - BridgeGame#makeBridgeStatus()
     - [X] 다리 표시 작업 요청 - BridgeGame#BridgeState#mark()
 - [ ] 게임 재시도 - BridgeGame#retry()
-    - [ ] 게임 라운드 초기화 
+    - [X] 게임 라운드 초기화 
     - [ ] 게임 총 도전 횟수 카운트
     - [ ] 다리 상태 초기화 요청 - BridgeGame#BridgeState#initBridgeState()
 - [ ] 게임 성공 여부 값 반환 - BridgeGame#isWon()
