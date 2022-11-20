@@ -12,6 +12,12 @@ public class BridgeGame {
      */
     public void move() {
     }
+    public boolean isPass(String answer, String input){
+        if(answer.equals(input)){
+            return true;
+        }
+        return false;
+    }
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
