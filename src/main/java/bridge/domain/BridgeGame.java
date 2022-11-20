@@ -1,24 +1,78 @@
 package bridge.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static bridge.domain.BridgeMaker.*;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    public static final String CROSSABLE = "O";
+    public static final String UNCROSSABLE = "X";
+    public static final String NONE = " ";
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * <p>
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void move() {
+    private final Bridge bridge;
+    private List<String> top;
+    private List<String> bottom;
+    private int playCount;
 
+    public BridgeGame(Bridge bridge) {
+        this.bridge = bridge;
+        this.top = new ArrayList<>();
+        this.bottom = new ArrayList<>();
+        this.playCount = 0;
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    public void move(int idx, String input) {
+        if (bridge.isMatch(idx, input)) {
+            pass(input);
+        }
+        fail(input);
+    }
+
     public void retry() {
+        top.clear();
+        bottom.clear();
+        playCount += 1;
+    }
+
+    public void pass(String input) {
+        if (input.equals(UP)) {
+            top.add(CROSSABLE);
+            bottom.add(NONE);
+        }
+        if (input.equals(DOWN)) {
+            bottom.add(CROSSABLE);
+            top.add(NONE);
+        }
+    }
+
+    public void fail(String input) {
+        if (input.equals(UP)) {
+            top.add(UNCROSSABLE);
+            bottom.add(NONE);
+        }
+        if (input.equals(DOWN)) {
+            bottom.add(UNCROSSABLE);
+            top.add(NONE);
+        }
+    }
+
+    public boolean isClear() {
+        return top.size() == bridge.size();
+    }
+
+    public int getPlayCount() {
+        return playCount;
+    }
+
+    public List<String> getTop() {
+        return top;
+    }
+
+    public List<String> getBottom() {
+        return bottom;
     }
 }
