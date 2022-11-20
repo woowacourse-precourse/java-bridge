@@ -13,17 +13,12 @@ public class BridgeGame {
     private final BridgeMaker bridgeMaker = new BridgeMaker(generator);
     public void run() {
         try {
-            initMsg();
+            outputView.startMsg();
             int bridgeSize = inputView.readBridgeSize();
             bridgeMaker.makeBridge(bridgeSize);
         } catch (IllegalArgumentException exception) {
             OutputView.printMsg("[ERROR] " + exception.getMessage());
         }
-    }
-
-    private void initMsg() {
-        outputView.startMsg();
-        outputView.lengthMsg();
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
