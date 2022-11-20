@@ -30,12 +30,10 @@ public class BridgeGame {
         count = 0;
     }
 
-    public void game(){
+    public void game() {
         start();
-        boolean done = false;
-        while(!(done || run())) {
-            done = quit();
-        }
+        while (!(crossingBridge() || quit()))
+            ;
         outputView.printResult(isSuccess, count);
     }
 
@@ -43,14 +41,17 @@ public class BridgeGame {
         inputView.printGameStart();
         bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
     }
-    private boolean run() {
+
+    private boolean crossingBridge() {
         outputView.initMap();
         bridgeIndex = new ArrayDeque<>(bridge);
         count++;
         isSuccess = true;
-        while (!bridgeIndex.isEmpty() && (isSuccess = move()));
+        while (!bridgeIndex.isEmpty() && (isSuccess = move()))
+            ;
         return isSuccess;
     }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -63,7 +64,6 @@ public class BridgeGame {
         outputView.printMap();
         return outputView.getOX(currBridgeIndex, input).equals(O);
     }
-
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      * <p>
@@ -73,5 +73,4 @@ public class BridgeGame {
         String command = inputView.readGameCommand();
         return command.equals(QUIT);
     }
-
 }

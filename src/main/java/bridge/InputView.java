@@ -18,20 +18,23 @@ public class InputView {
     private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
     private static final String INPUT_BRIDGE_SIZE_MESSAGE = "\n다리의 길이를 입력해주세요.\n";
     private static final String INPUT_DIRECTION_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)\n";
-    private static final String INPUT_COMMAND_MESSAGE ="게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n";
+    private static final String INPUT_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n";
 
     private static final int MIN_NUMBER = 3;
     private static final int MAX_NUMBER = 20;
 
-    public void printGameStart(){
+    public void printGameStart() {
         System.out.printf(GAME_START_MESSAGE);
     }
+
     private void printInputBridgeSize() {
         System.out.printf(INPUT_BRIDGE_SIZE_MESSAGE);
     }
+
     private void printInputDirection() {
         System.out.printf(INPUT_DIRECTION_MESSAGE);
     }
+
     private void printInputCommand() {
         System.out.printf(INPUT_COMMAND_MESSAGE);
     }
@@ -73,12 +76,13 @@ public class InputView {
         }
     }
 
-    private String validateMove(String input){
+    private String validateMove(String input) {
         if (input.equals(UP) || input.equals(DOWN)) {
             return input;
         }
         throw new IllegalArgumentException(WRONG_MOVE_MESSAGE);
     }
+
     public String readGameCommand() {
         printInputCommand();
         while (true) {

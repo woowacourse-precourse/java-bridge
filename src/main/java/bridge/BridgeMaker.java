@@ -29,8 +29,8 @@ public class BridgeMaker {
         return bridge;
     }
 
-    private String getBridgeNumber(){
-        if (bridgeNumberGenerator.generate() == 1){
+    private String getBridgeNumber() {
+        if (bridgeNumberGenerator.generate() == 1) {
             return UP;
         }
         return DOWN;
