@@ -3,10 +3,10 @@ package bridge.validator;
 import static bridge.validator.ErrorConstants.ERROR_NOT_NUMBER;
 import static bridge.validator.ErrorConstants.ERROR_OUT_OF_BRIDGE_RANGE;
 
-public class BridgeValidator {
-	public static void validateBridgeLength(String input) {
+public class BridgeSizeValidator {
+	public static void validateBridgeSize(String input) {
 		validateIsNumber(input);
-		validateBridgeLengthRange(Integer.parseInt(input));
+		validateBridgeSizeRange(Integer.parseInt(input));
 	}
 
 	private static void validateIsNumber(String input) {
@@ -17,7 +17,7 @@ public class BridgeValidator {
 		}
 	}
 
-	private static void validateBridgeLengthRange(int length) {
+	private static void validateBridgeSizeRange(int length) {
 		if (!(length >= 3 && length <= 20)) {
 			throw new IllegalArgumentException(ERROR_OUT_OF_BRIDGE_RANGE);
 		}
