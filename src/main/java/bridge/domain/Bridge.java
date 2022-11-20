@@ -6,7 +6,7 @@ import java.util.List;
 public class Bridge {
     private final List<String> bridge;
 
-    Bridge(List<String> bridgeInfo) {
+    public Bridge(List<String> bridgeInfo) {
         this.bridge = bridgeInfo;
     }
 
