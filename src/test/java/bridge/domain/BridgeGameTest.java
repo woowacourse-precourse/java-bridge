@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.domain.BridgeUnit.DOWN;
@@ -66,6 +67,26 @@ class BridgeGameTest {
 
             //then
             assertThat(status).isEqualTo(SUCCESS);
+        }
+    }
+
+    @Nested
+    @DisplayName("retry 테스트")
+    class RetryTest {
+
+        @Test
+        void 재시작하면_시도_횟수가_올라가고_진행_상황을_초기화_하며_PLAYING을_리턴한다() {
+            //given
+            bridgeGame.move(DOWN);
+            bridgeGame.move(UP);
+
+            //when
+            GameStatus status = bridgeGame.retry();
+
+            //then
+            assertThat(status).isEqualTo(PLAYING);
+            assertThat(bridgeGame.getAttempt()).isEqualTo(2);
+            assertThat(bridgeGame.getGameMap()).isEqualTo(new ArrayList<MapUnit>());
         }
     }
 }
