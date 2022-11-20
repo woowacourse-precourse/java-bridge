@@ -13,7 +13,7 @@ public class Bridge {
         return this.blocks.size();
     }
 
-    public String findByIndex(int index) {
+    public String findBlockByIndex(int index) {
         return blocks.get(index);
     }
 }
