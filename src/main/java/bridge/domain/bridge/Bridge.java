@@ -29,7 +29,7 @@ public class Bridge {
     }
 
     public boolean canMove(BridgeLocation bridgeLocation, BridgeCharacter bridgeCharacter) {
-        if (!isRange(bridgeLocation.next())) {
+        if (!isRange(bridgeLocation)) {
             throw new IllegalStateException("더이상 이동할 수 없습니다.");
         }
         return bridge.get(bridgeLocation.value()).equals(bridgeCharacter);
