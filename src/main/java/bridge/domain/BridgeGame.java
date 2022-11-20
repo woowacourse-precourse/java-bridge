@@ -55,5 +55,6 @@ public class BridgeGame {
     public void retry() {
         round = 0;
         totalGameAttempts++;
+        bridgeState.initBridgeState();
     }
 }

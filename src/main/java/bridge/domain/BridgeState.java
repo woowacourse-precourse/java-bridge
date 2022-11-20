@@ -7,4 +7,7 @@ public class BridgeState {
 
     public void mark(BridgeStatus bridgeStatus) {
     }
+
+    public void initBridgeState() {
+    }
 }

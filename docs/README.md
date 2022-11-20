@@ -31,10 +31,10 @@
     - [X] 사용자가 입력한 다리 방향에 대해 다리를 건널 수 있는지 여부 확인 - BridgeGame#isCrossable()
     - [X] 다리에 표시할 상태 값 생성 - BridgeGame#makeBridgeStatus()
     - [X] 다리 표시 작업 요청 - BridgeGame#BridgeState#mark()
-- [ ] 게임 재시도 - BridgeGame#retry()
+- [X] 게임 재시도 - BridgeGame#retry()
     - [X] 게임 라운드 초기화 
     - [X] 게임 총 도전 횟수 카운트
-    - [ ] 다리 상태 초기화 요청 - BridgeGame#BridgeState#initBridgeState()
+    - [X] 다리 상태 초기화 요청 - BridgeGame#BridgeState#initBridgeState()
 - [ ] 게임 성공 여부 값 반환 - BridgeGame#isWon()
 - [ ] 게임 총 도전 횟수 값 반환 - BridgeGame#getTotalGameAttemps()
 ***
