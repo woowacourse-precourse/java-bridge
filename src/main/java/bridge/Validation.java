@@ -24,7 +24,7 @@ public class Validation {
         }
     }
 
-    private void validateContinue(String restartGame) {
+    public static void validateContinue(String restartGame) {
         if (!(restartGame.equals("Q") || restartGame.equals("R"))) {
             throw new IllegalArgumentException("[ERROR] : 재시도 여부는 종료(Q) 또는 재시도(R) 이어야 합니다.");
         }
