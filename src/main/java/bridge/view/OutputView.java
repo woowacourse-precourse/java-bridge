@@ -25,13 +25,13 @@ public class OutputView {
                 + downOut + System.lineSeparator());
     }
 
-    private void appendEdge(String edge){
+    private void appendEdge(String edge) {
         upOut.append(edge);
         downOut.append(edge);
     }
 
-    private void beforeState(int current, List<String> bridge){
-        for(int i=0; i<current; i++){
+    private void beforeState(int current, List<String> bridge) {
+        for (int i = 0; i < current; i++) {
             String state = bridge.get(i);
             setUpState(state, BridgePart.OK.getValue());
             setDownState(state, BridgePart.OK.getValue());
@@ -41,18 +41,21 @@ public class OutputView {
         }
     }
 
-    private void currentState(int current, String input, List<String> bridge){
-        if(input.equals(bridge.get(current))){
+    private void currentState(int current, String input, List<String> bridge) {
+        String expect = bridge.get(current);
+
+        if (input.equals(expect)) {
             setUpState(input, BridgePart.OK.getValue());
             setDownState(input, BridgePart.OK.getValue());
-        }else{
-            setUpState(input, BridgePart.NO.getValue());
-            setDownState(input, BridgePart.NO.getValue());
+            return;
         }
+
+        setUpState(input, BridgePart.NO.getValue());
+        setDownState(input, BridgePart.NO.getValue());
     }
 
-    private void setUpState(String state, String answer){
-        if(state.equals(UpDown.UP.getValue())){
+    private void setUpState(String state, String answer) {
+        if (state.equals(UpDown.UP.getValue())) {
             upOut.append(BridgePart.BLANK.getValue())
                     .append(answer)
                     .append(BridgePart.BLANK.getValue());
@@ -63,8 +66,8 @@ public class OutputView {
         }
     }
 
-    private void setDownState(String state, String answer){
-        if(state.equals(UpDown.DOWN.getValue())){
+    private void setDownState(String state, String answer) {
+        if (state.equals(UpDown.DOWN.getValue())) {
             upOut.append(BridgePart.BLANK.getValue())
                     .append(BridgePart.BLANK.getValue())
                     .append(BridgePart.BLANK.getValue());
