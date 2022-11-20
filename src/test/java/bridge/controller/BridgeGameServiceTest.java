@@ -87,10 +87,10 @@ public class BridgeGameServiceTest {
         //given
         List<String> bridge = bridgeGameService.getBridge();
         //when
-        for(int i=0; i<retry; i++) {
+        for (int i = 0; i < retry; i++) {
             bridgeGameService.restart();
         }
         //then
-        assertThat(bridgeGameService.getNumberOfAttempts()).isEqualTo(retry+1);
+        assertThat(bridgeGameService.getNumberOfAttempts()).isEqualTo(retry + 1);
     }
 }

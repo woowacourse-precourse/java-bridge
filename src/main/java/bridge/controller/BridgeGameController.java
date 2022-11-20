@@ -37,10 +37,10 @@ public class BridgeGameController {
     }
 
     private void progress() {
-        while(bridgeGameService.success() && !bridgeGameService.isComplete()) {
+        while (bridgeGameService.success() && !bridgeGameService.isComplete()) {
             moveAndPrint();
         }
-        if(!bridgeGameService.isComplete()) retry();
+        if (!bridgeGameService.isComplete()) retry();
     }
 
     private void moveAndPrint() {
@@ -67,7 +67,7 @@ public class BridgeGameController {
     private void retry() {
         try {
             String command = getGameCommand();
-            if(command.equals(GameCommand.Restart.get())) executeRetry();
+            if (command.equals(GameCommand.Restart.get())) executeRetry();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             retry();

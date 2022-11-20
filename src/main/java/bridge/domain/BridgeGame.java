@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import bridge.command.MarkCommand;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,7 +16,7 @@ public class BridgeGame {
     }
 
     public void move(String square) {
-        if(bridge.get(result.size()).equals(square)) {
+        if (bridge.get(result.size()).equals(square)) {
             result.add(MarkCommand.Possible.get());
             return;
         }
@@ -30,6 +31,7 @@ public class BridgeGame {
     public int getBridgeSize() {
         return bridge.size();
     }
+
     public int getResultSize() {
         return result.size();
     }

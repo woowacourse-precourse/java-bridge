@@ -2,6 +2,7 @@ package bridge.service;
 
 import bridge.command.MarkCommand;
 import bridge.domain.BridgeGame;
+
 import java.util.List;
 
 public class BridgeGameService {
@@ -26,12 +27,12 @@ public class BridgeGameService {
     }
 
     public boolean success() {
-        if(!bridgeGame.getResult().contains(MarkCommand.Impossible.get())) return true;
+        if (!bridgeGame.getResult().contains(MarkCommand.Impossible.get())) return true;
         return false;
     }
 
     public boolean isComplete() {
-        if((bridgeGame.getBridgeSize() == bridgeGame.getResultSize()) && success()) return true;
+        if ((bridgeGame.getBridgeSize() == bridgeGame.getResultSize()) && success()) return true;
         return false;
     }
 
