@@ -22,4 +22,11 @@ public class Bridge {
         BridgeState bridgeState = bridge.get(stage);
         return bridgeState.isSameState(givenTile);
     }
+
+    public boolean isLastTile(int stage) {
+        if(bridge.size() == stage) {
+            return true;
+        }
+        return false;
+    }
 }
