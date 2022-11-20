@@ -13,22 +13,50 @@ public class OutputView {
 
 
     public void printMap(BridgeRouteDto bridgeRouteDto) {
-        List<String> resultMap = makeResultMap(bridgeRouteDto.getBridge(), bridgeRouteDto.getMoveHistory());
+        List<String> resultMapInfo = makeResultMapInfo(bridgeRouteDto.getBridge(), bridgeRouteDto.getMoveHistory());
         StringBuilder top = new StringBuilder();
         StringBuilder bottom = new StringBuilder();
-        makeTopResultMap(top, resultMap);
-        makeBottomResultMap(bottom, resultMap);
+        makeTopResultMap(top, resultMapInfo);
+        makeBottomResultMap(bottom, resultMapInfo);
         System.out.println(top);
         System.out.println(bottom);
         System.out.println();
     }
 
-    private void makeTopResultMap(StringBuilder top, List<String> resultMap) {
+    private List<String> makeResultMapInfo(List<String> bridge, List<String> movingHistory) {
+        List<String> resultMapInfo = new ArrayList<>();
+        for (int i=0; i<movingHistory.size(); i++) {
+            if (movingHistory.get(i).equals(Direction.UP.getLetter())) {
+                makeUpDirection(bridge.get(i), resultMapInfo);
+                continue;
+            }
+            makeBottomDirection(bridge.get(i), resultMapInfo);
+        }
+        return resultMapInfo;
+    }
+
+    private void makeUpDirection(String answer, List<String> resultMapInfo) {
+        if (answer.equals(Direction.UP.getLetter())) {
+            resultMapInfo.add(MapType.UP_CORRECT.getSign());
+            return;
+        }
+        resultMapInfo.add(MapType.UP_WRONG.getSign());
+    }
+
+    private void makeBottomDirection(String answer, List<String> resultMapInfo) {
+        if (answer.equals(Direction.DOWN.getLetter())) {
+            resultMapInfo.add(MapType.DOWN_CORRECT.getSign());
+            return;
+        }
+        resultMapInfo.add(MapType.DOWN_WRONG.getSign());
+    }
+
+    private void makeTopResultMap(StringBuilder top, List<String> resultMapInfo) {
         top.append(MapType.START.getSign());
-        for (int i=0; i<resultMap.size(); i++) {
-            String result = resultMap.get(i);
+        for (int i=0; i<resultMapInfo.size(); i++) {
+            String result = resultMapInfo.get(i);
             addEachResultForTop(result, top);
-            if (i != resultMap.size()-1) {
+            if (i != resultMapInfo.size()-1) {
                 top.append(MapType.SEPARATOR.getSign());
             }
         }
@@ -47,12 +75,12 @@ public class OutputView {
         top.append(MapType.BLANK.getSign());
     }
 
-    private void makeBottomResultMap(StringBuilder bottom, List<String> resultMap) {
+    private void makeBottomResultMap(StringBuilder bottom, List<String> resultMapInfo) {
         bottom.append(MapType.START.getSign());
-        for (int i=0; i<resultMap.size(); i++) {
-            String result = resultMap.get(i);
+        for (int i=0; i<resultMapInfo.size(); i++) {
+            String result = resultMapInfo.get(i);
             addEachResultForBottom(result, bottom);
-            if (i != resultMap.size()-1) {
+            if (i != resultMapInfo.size()-1) {
                 bottom.append(MapType.SEPARATOR.getSign());
             }
         }
@@ -69,35 +97,6 @@ public class OutputView {
             return;
         }
         bottom.append(MapType.BLANK.getSign());
-    }
-
-
-    private List<String> makeResultMap(List<String> bridge, List<String> movingHistory) {
-        List<String> resultMap = new ArrayList<>();
-        for (int i=0; i<movingHistory.size(); i++) {
-            if (movingHistory.get(i).equals(Direction.UP.getLetter())) {
-                makeUpDirection(bridge.get(i), resultMap);
-                continue;
-            }
-            makeBottomDirection(bridge.get(i), resultMap);
-        }
-        return resultMap;
-    }
-
-    private void makeBottomDirection(String answer, List<String> resultMap) {
-        if (answer.equals(Direction.DOWN.getLetter())) {
-            resultMap.add(MapType.DOWN_CORRECT.getSign());
-            return;
-        }
-        resultMap.add(MapType.DOWN_WRONG.getSign());
-    }
-
-    private void makeUpDirection(String answer, List<String> resultMap) {
-        if (answer.equals(Direction.UP.getLetter())) {
-            resultMap.add(MapType.UP_CORRECT.getSign());
-            return;
-        }
-        resultMap.add(MapType.UP_WRONG.getSign());
     }
 
     public void printResult(ResultDto resultDto) {
