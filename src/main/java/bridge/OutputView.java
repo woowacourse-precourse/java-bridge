@@ -25,6 +25,37 @@ public class OutputView {
         Level(String id) { this.id = id; }
     }
 
+    /**
+     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
+     */
+    public void printMap(List<String> path, List<String> bridge) {
+        for (Level level : Level.values())
+            printMapByLevel(path, bridge, level);
+    }
+
+    /**
+     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
+     */
+    public void printResult(List<String> path, List<String> bridge, int numberOfTry) {
+        printMessage("최종 게임 결과");
+        printMap(path, bridge);
+        String passOrFail = getPassOrFail(path.equals(bridge));
+        printMessage("게임 성공 여부: " + passOrFail);
+        printMessage("총 시도한 횟수: " + String.valueOf(numberOfTry));
+    }
+
+    public void printMessage(String message) { System.out.println(message); }
+
+    public void guideStart() { guide(Guide.START); }
+
+    public void guideBridgeSizeInput() { guide(Guide.BRIDGESIZEINPUT); }
+
+    public void guideMovingCommandInput() { guide(Guide.MOVECOMMANDINPUT); }
+
+    public void guideRetry() { guide(Guide.RETRY); }
+
+    private void guide(Guide guide) { System.out.println(guide.message); }
+
     private String getSign(String pathAtIndex, String bridgeAtIndex, Level level) {
         if(!pathAtIndex.equals(level.id)) return " ";
         if(pathAtIndex.equals(bridgeAtIndex)) return "O";
@@ -39,43 +70,11 @@ public class OutputView {
             stringBuilder.append(" ").append(sign).append(" ");
         }
         stringBuilder.append("]");
-        System.out.println(stringBuilder.toString());
-    }
-
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printMap(List<String> path, List<String> bridge) {
-        for (Level level : Level.values())
-            printMapByLevel(path, bridge, level);
+        printMessage(stringBuilder.toString());
     }
 
     private String getPassOrFail(boolean pass) {
         if (pass) return "성공";
         return "실패";
     }
-
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     * <p>
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    public void printResult(List<String> path, List<String> bridge, int numberOfTry) {
-        System.out.println("최종 게임 결과");
-        printMap(path, bridge);
-        String passOrFail = getPassOrFail(path.equals(bridge));
-        System.out.println("게임 성공 여부: " + passOrFail);
-        System.out.printf("총 시도한 횟수: %d\n", numberOfTry);
-    }
-
-    public void printMessage(String message) { System.out.println(message); }
-
-    private void guide(Guide guide) { System.out.println(guide.message); }
-
-    public void guideStart() { guide(Guide.START); }
-    public void guideBridgeSizeInput() { guide(Guide.BRIDGESIZEINPUT); }
-    public void guideMovingCommandInput() { guide(Guide.MOVECOMMANDINPUT); }
-    public void guideRetry() { guide(Guide.RETRY); }
 }
