@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.BridgeNumberGenerator;
+import bridge.type.MovingType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +26,8 @@ public class BridgeMaker {
 
     private String pickPositionByRandomNumber() {
         if (bridgeNumberGenerator.generate() == 1) {
-            return "U";
+            return MovingType.UP.getKey();
         }
-        return "D";
+        return MovingType.DOWN.getKey();
     }
 }

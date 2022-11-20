@@ -1,7 +1,7 @@
 package bridge.controller;
 
 import bridge.domain.Bridge;
-import bridge.service.BridgeGame;
+import bridge.domain.BridgeGame;
 import bridge.service.BridgeMakerService;
 import bridge.type.GameStatusType;
 import bridge.view.InputView;
@@ -15,7 +15,7 @@ public class BridgeGameController {
     private int gameCount;
 
     public BridgeGameController() {
-        this.bridge = BridgeMakerService.createBridge(InputView.readBridgeSize());
+        this.bridge = createBridge();
         this.bridgeInfo = bridge.getBridge();
         this.bridgeGame = new BridgeGame(bridgeInfo);
         this.gameCount = 0;
@@ -42,5 +42,16 @@ public class BridgeGameController {
     private boolean askRestart() {
         String status = InputView.readGameCommand();
         return status.equals("R");
+    }
+
+    private Bridge createBridge() {
+        while (true) {
+            try {
+                int size = InputView.readBridgeSize();
+                return BridgeMakerService.createBridge(size);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

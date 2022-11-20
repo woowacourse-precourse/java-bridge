@@ -11,3 +11,4 @@ public class BridgeMakerService {
         return new Bridge(bridgeMaker.makeBridge(size));
     }
 }
+

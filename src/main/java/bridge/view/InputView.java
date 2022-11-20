@@ -12,15 +12,7 @@ public class InputView {
      */
     public static int readBridgeSize() {
         System.out.println("다리의 길이를 입력해주세요.");
-        String size = readLine();
-        try {
-            validateDigit(size);
-            validateRange(size);
-        } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
-            return readBridgeSize();
-        }
-        return Integer.parseInt(size);
+        return validateDigit(readLine());
     }
 
     /**
@@ -53,18 +45,11 @@ public class InputView {
         return command;
     }
 
-    private static void validateDigit(String input) {
+    private static int validateDigit(String input) throws IllegalArgumentException {
         if (!input.matches("[0-9]+")) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
         }
-    }
-
-    private static void validateRange(String input) {
-        int size = Integer.parseInt(input);
-
-        if (size < 3 || size > 20) {
-            throw new IllegalArgumentException("[ERROR] 3이상 20 이하 숫자를 입력해 주세요.");
-        }
+        return Integer.parseInt(input);
     }
 
     private static void validateMoving(String input) {
