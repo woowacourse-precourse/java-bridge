@@ -22,10 +22,10 @@ public class InputView {
         return moving;
     }
 
-    public String readGameCommand() {
+    public boolean readGameCommand() {
         String gameCommand;
         gameCommand = Console.readLine();
         exception.validateRetryInput(gameCommand);
-        return gameCommand;
+        return gameCommand.equals("R");
     }
 }
