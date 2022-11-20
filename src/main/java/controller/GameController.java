@@ -18,7 +18,7 @@ public class GameController {
 	public void control() {
 		BridgeDto bridgeDto = init();
 		MapDto mapDto = run(bridgeDto);
-		end(mapDto);
+		finish(bridgeDto, mapDto);
 	}
 
 	private BridgeDto init() {
@@ -28,33 +28,50 @@ public class GameController {
 	}
 
 	private MapDto run(BridgeDto bridgeDto) {
-		MapDto finalMapDto;
-		do {
-			finalMapDto = play(bridgeDto);
-			if (finalMapDto.getNumberOfCorrect() == bridgeDto.getBridgeSize()) {
-				return finalMapDto;
+		while (true) {
+			MapDto finalMapDto = play(bridgeDto);
+			if (isRetry(bridgeDto, finalMapDto)) {
+				continue;
 			}
+			return finalMapDto;
+		}
+	}
+
+	private boolean isRetry(BridgeDto bridgeDto, MapDto finalMapDto) {
+		if (!isSuccess(bridgeDto, finalMapDto)) {
 			GameCommandDto gameCommandDto = new GameCommandDto(inputView.readGameCommand());
-			finalMapDto = bridgeGame.retry(gameCommandDto, finalMapDto);
-		} while (finalMapDto.getMap().equals(""));
-		return finalMapDto;
+			return bridgeGame.retry(gameCommandDto);
+		}
+		return false;
 	}
 
 	private MapDto play(BridgeDto bridgeDto) {
 		MapDto mapDto = null;
 		for (int index = 0; index < bridgeDto.getBridgeSize(); index++) {
-			MovingDto movingDto = new MovingDto(inputView.readMoving());
-			mapDto = bridgeGame.move(bridgeDto, new IndexDto(index), movingDto);
-			outputView.printMap(mapDto.getMap());
+			mapDto = move(bridgeDto, index);
 
-			if (bridgeGame.isFinish(mapDto, bridgeDto, new IndexDto(index))) {
+			if (isSuccess(bridgeDto, mapDto) || mapDto.getNumberOfCorrect() == index) {
 				break;
 			}
 		}
 		return mapDto;
 	}
 
-	private void end(MapDto mapDto) {
-		outputView.printResult(mapDto.getMap(), bridgeGame.isSuccess(), PlayCount.getInstance().getCount());
+	private MapDto move(BridgeDto bridgeDto, int index) {
+		MovingDto movingDto = new MovingDto(inputView.readMoving());
+		MapDto mapDto = bridgeGame.move(bridgeDto, new IndexDto(index), movingDto);
+		outputView.printMap(mapDto.getMap());
+		return mapDto;
+	}
+
+	private void finish(BridgeDto bridgeDto, MapDto mapDto) {
+		boolean isSuccess = isSuccess(bridgeDto, mapDto);
+		String map = mapDto.getMap();
+
+		outputView.printResult(map, isSuccess, PlayCount.getInstance().getCount());
+	}
+
+	private boolean isSuccess(BridgeDto bridgeDto, MapDto mapDto) {
+		return bridgeDto.getBridgeSize() == mapDto.getNumberOfCorrect();
 	}
 }
