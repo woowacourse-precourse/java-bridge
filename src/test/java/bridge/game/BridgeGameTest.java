@@ -77,10 +77,10 @@ class BridgeGameTest {
         bridgeGame.moveCycle(destination);
         String answer = bridgeGame.showRightDestinationInArea(0);
         Result result = bridgeGame.moveResult();
-        if (destination == answer) {
-            assertThat(result).isEqualTo(Result.SUCCESS);
+        if (destination.equals(answer)) {
+            assertThat(result).isEqualTo(Result.CONTINUE);
         }
-        if (destination != answer) {
+        if (!destination.equals(answer)) {
             assertThat(result).isEqualTo(Result.FAIL);
         }
     }
