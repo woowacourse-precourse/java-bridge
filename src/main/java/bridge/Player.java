@@ -8,6 +8,7 @@ import java.util.List;
 public class Player {
 
     public static final int DEFAULT_GAME_ATTEMPT = 1;
+
     private final List<BridgeMark> record;
     private int attempt;
 
