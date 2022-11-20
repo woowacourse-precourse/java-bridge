@@ -53,7 +53,6 @@ public class MovingProcessing {
             return false;
         }
         selectedBridgeIsSucceed(input);
-        printBridge();
         return true;
     }
 
@@ -79,7 +78,7 @@ public class MovingProcessing {
         }
     }
 
-    private void printBridge() {
+    public void printBridge() {
         String upSideBridge = upSide.stream().collect(joining(" | ", "[ ", " ]"));
         String downSideBridge = downSide.stream().collect(joining(" | ", "[ ", " ]"));
         System.out.println(upSideBridge);
