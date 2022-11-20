@@ -1,5 +1,6 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,6 +8,7 @@ import java.util.List;
  */
 public class BridgeGame {
     InputView input = new InputView();
+    OutputView output = new OutputView();
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -14,11 +16,18 @@ public class BridgeGame {
      */
     public boolean move(List<String> bridge) {
         String userMove;
-        for(String log:bridge){
+        ArrayList<String> steppedBridge = new ArrayList<>();
+        for(int i=0;i<bridge.size();i++){
+            String log = bridge.get(i);
             userMove = input.readMoving();
+
             if(!log.equals(userMove)){
+                steppedBridge.add("fail");
+                output.printMap(steppedBridge, bridge);
                 return false;
             }
+            steppedBridge.add("success");
+            output.printMap(steppedBridge, bridge);
         }
         return true;
     }
