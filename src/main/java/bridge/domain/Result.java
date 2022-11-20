@@ -27,6 +27,17 @@ public class Result {
         }
     }
 
+    // 첫 라운드에 사용자가 틀린 경우
+    public void convertWrongResultFirstRound(String userInput) {
+        if (userInput.equals(Up.getDirection())) {
+            map.set(Up.getLocationNumber(), map.get(Up.getLocationNumber()).replace(BLANK, FIRST_ROUND_WRONG));
+            map.set(Down.getLocationNumber(), map.get(Down.getLocationNumber()).replace(MAP_END, FIRST_ROUND_END));
+        } else if (userInput.equals(Down.getDirection())) {
+            map.set(Up.getLocationNumber(), map.get(Up.getLocationNumber()).replace(MAP_END, FIRST_ROUND_END));
+            map.set(Down.getLocationNumber(), map.get(Down.getLocationNumber()).replace(BLANK, FIRST_ROUND_WRONG));
+        }
+    }
+
     public List<String> getMap() {
         return map;
     }

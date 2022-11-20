@@ -8,6 +8,7 @@ public class Constant {
     public static final int FIRST_ROUND = 0;
     public static final String BLANK = " ";
     public static final String FIRST_ROUND_CORRECT = " O ";
+    public static final String FIRST_ROUND_WRONG = " X ";
     public static final String MAP_END = "]";
     public static final String FIRST_ROUND_END = "  ]";
 
