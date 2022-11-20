@@ -24,8 +24,7 @@ public class BridgeGameManager {
             printStatus(bridgeGame, targetBridge);
 
             // 만약 새로 간 칸이 잘 못된 칸이라면
-            if (!targetBridge.get(tries).equals(upDownInput)) {
-
+            if (isFault(targetBridge, tries, upDownInput)) {
                 String retryAnswer = inputRetryRepeat();
 
                 if (retryAnswer.equals("R")) {
@@ -42,6 +41,10 @@ public class BridgeGameManager {
         }
 
         printResult(targetBridge, bridgeGame);
+    }
+
+    private boolean isFault(List<String> targetBridge, int tries, String upDownInput) {
+        return !targetBridge.get(tries).equals(upDownInput);
     }
 
     private void printStatus(BridgeGame bridgeGame, List<String> targetBridge) {
