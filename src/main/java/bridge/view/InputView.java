@@ -33,7 +33,7 @@ public class InputView {
      */
     public String readMoving() {
         String moving = Console.readLine();
-        validation.validateInputPosition(moving);
+        validation.validateInputMoving(moving);
 
         return moving;
     }

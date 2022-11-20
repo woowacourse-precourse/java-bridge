@@ -14,7 +14,7 @@ public class Validation {
         return true;
     }
 
-    public void validateInputPosition(String moving) {
+    public void validateInputMoving(String moving) {
         if (!moving.equals("U") && !moving.equals("D")) {
             throw new IllegalArgumentException(Error.INPUT_MOVING_ERROR.getErrorMessage());
         }
