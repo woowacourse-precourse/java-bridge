@@ -12,7 +12,7 @@ public class Program {
 
     public static void init() {
         startGame();
-        setBridge();
+        setupBridge();
         playGame();
         finishGame();
     }
@@ -21,12 +21,18 @@ public class Program {
         outputView.printStartGame();
     }
 
-    private static void setBridge() {
+    private static void setupBridge() {
         outputView.printInputBridgeLength();
 
         int bridgeSize = getBridgeSize();
         createBridge(bridgeSize);
     }
+    private static void createBridge(int bridgeSize) {
+        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
+        BridgeGame.setBridge(bridge);
+    }
+
+
 
     private static int getBridgeSize() {
         while (true) {
@@ -38,10 +44,7 @@ public class Program {
         }
     }
 
-    private static void createBridge(int bridgeSize) {
-        List<String> bridge = bridgeMaker.makeBridge(bridgeSize);
-        BridgeGame.setBridge(bridge);
-    }
+
 
     private static void setGame() {
         bridgeGame = new BridgeGame();
