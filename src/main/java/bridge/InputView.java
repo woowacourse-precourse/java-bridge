@@ -57,13 +57,13 @@ public class InputView {
     }
 
     private void validateMoving(String input) {
-        if (!isUpOrDown()) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + "'U'또는 'D'로 입력하여야합니다.");
+        if (!isUpOrDown(input)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + "U또는 D로 입력하여야합니다.");
         }
     }
 
-    private boolean isUpOrDown() {
-        return true;
+    private boolean isUpOrDown(String input) {
+        return input == "U" || input == "D";
     }
 
     /**
