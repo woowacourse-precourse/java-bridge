@@ -35,4 +35,8 @@ public class OutputView {
 		status = bridgeStatus.loadStatus(" ", " ");
 		return status;
 	}
+
+	public String printSuccessOrNot() {
+		return "성공";
+	}
 }

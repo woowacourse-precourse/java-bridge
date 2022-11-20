@@ -136,4 +136,52 @@ public class OutputViewTest {
 		// then
 		assertThat(actualStatus).isEqualTo(expectedStatus);
 	}
+
+	@DisplayName("게임 성공 여부 출력 확인 - 성공")
+	@Test
+	void printSuccess() {
+		// given
+		BridgeStatus bridgeStatus = BridgeStatus.getInstance();
+		String userSelectedCell = "U";
+		String bridgeLetter = "U";
+		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
+		userSelectedCell = "D";
+		bridgeLetter = "D";
+		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
+		userSelectedCell = "D";
+		bridgeLetter = "D";
+		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
+		String expectedPrint = "게임 성공 여부: 성공";
+
+		// when
+		String success = new OutputView().printSuccessOrNot();
+		String actualPrint = "게임 성공 여부: " + success;
+
+		// then
+		assertThat(actualPrint).isEqualTo(expectedPrint);
+	}
+
+	@DisplayName("게임 성공 여부 출력 확인 - 실패")
+	@Test
+	void printFail() {
+		// given
+		BridgeStatus bridgeStatus = BridgeStatus.getInstance();
+		String userSelectedCell = "U";
+		String bridgeLetter = "U";
+		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
+		userSelectedCell = "D";
+		bridgeLetter = "D";
+		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
+		userSelectedCell = "U";
+		bridgeLetter = "D";
+		bridgeStatus.loadStatus(userSelectedCell, bridgeLetter);
+		String expectedPrint = "게임 성공 여부: 실패";
+
+		// when
+		String fail = new OutputView().printSuccessOrNot();
+		String actualPrint = "게임 성공 여부: " + fail;
+
+		// then
+		assertThat(actualPrint).isEqualTo(expectedPrint);
+	}
 }
