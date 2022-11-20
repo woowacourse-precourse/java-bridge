@@ -1,4 +1,9 @@
-package bridge;
+package bridge.view;
+
+import bridge.constant.ExceptionConstants;
+import bridge.constant.ViewConstants;
+
+import java.util.regex.Pattern;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -24,5 +29,11 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    }
+
+    private void isNaturalNumber(String input) {
+        if (!Pattern.matches(ViewConstants.NATURAL_NUMBER_REGEX, input)) {
+            throw new IllegalArgumentException(ExceptionConstants.NOT_NATURAL_NUMBER.getMessage());
+        }
     }
 }
