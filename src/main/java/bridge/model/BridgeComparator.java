@@ -11,14 +11,4 @@ public class BridgeComparator {
         return "X";
     }
 
-
-    public boolean isExpressionX(int location,List<String> bridgeUpMap,List<String> bridgeDownMap){
-        if(bridgeUpMap.get(location).equals("X")){
-            return true;
-        }
-        if(bridgeDownMap.get(location).equals("X")){
-            return true;
-        }
-        return false;
-    }
 }
