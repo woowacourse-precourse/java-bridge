@@ -1,13 +1,9 @@
 package bridge;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static bridge.Application.ERROR_PREFIX;
-import static bridge.DIRECTION.DOWN;
-import static bridge.DIRECTION.UP;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -15,11 +11,16 @@ import static bridge.DIRECTION.UP;
 public class BridgeGame {
 
     private final List<DIRECTION> bridge = new ArrayList<>();
-    private int tryCount = 0;
+    private int tryCount = 1;
     private int currentIdx = 0;
+    private DIRECTION guess;
 
     public List<DIRECTION> getBridge() {
         return bridge;
+    }
+
+    public DIRECTION getGuess() {
+        return guess;
     }
 
     public int getTryCount() {
@@ -43,8 +44,8 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public boolean move(String moveInput) {
-        DIRECTION direction = DIRECTION.toEnum(moveInput);
-        if (bridge.get(currentIdx).equals(direction)) {
+        guess = DIRECTION.toEnum(moveInput);
+        if (bridge.get(currentIdx).equals(guess)) {
             currentIdx++;
             return true;
         }
@@ -61,5 +62,8 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
+        currentIdx = 0;
+        tryCount++;
+        guess = null;
     }
 }

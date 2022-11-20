@@ -1,11 +1,12 @@
 package bridge;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static bridge.DIRECTION.DOWN;
+import static bridge.DIRECTION.UP;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -44,5 +45,33 @@ class BridgeGameTest {
         assertThat(bridgeGame.isComplete()).isFalse();
         assertThat(bridgeGame.move("U")).isFalse();
         assertThat(bridgeGame.isComplete()).isFalse();
+    }
+
+    @Test
+    @DisplayName("2번 재시도")
+    void retryTest() {
+        BridgeGame bridgeGame = new BridgeGame(List.of("U", "D", "D"));
+        bridgeGame.move("U");
+        bridgeGame.move("U");
+        bridgeGame.retry();
+
+        assertThat(bridgeGame.getGuess()).isEqualTo(null);
+        assertThat(bridgeGame.getBridge()).containsExactly(UP, DOWN, DOWN);
+        assertThat(bridgeGame.getCurrentIdx()).isEqualTo(0);
+        assertThat(bridgeGame.getTryCount()).isEqualTo(2);
+
+        bridgeGame.move("U");
+        bridgeGame.move("D");
+        bridgeGame.move("U");
+        bridgeGame.retry();
+
+        assertThat(bridgeGame.getGuess()).isEqualTo(null);
+        assertThat(bridgeGame.getBridge()).containsExactly(UP, DOWN, DOWN);
+        assertThat(bridgeGame.getCurrentIdx()).isEqualTo(0);
+        assertThat(bridgeGame.getTryCount()).isEqualTo(3);
+
+
+
+
     }
 }

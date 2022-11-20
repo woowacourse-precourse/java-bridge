@@ -1,5 +1,6 @@
 package bridge;
 
+
 public class Application {
 
     public final static String ERROR_PREFIX = "[ERROR] ";
@@ -10,19 +11,23 @@ public class Application {
         try {
             System.out.println("다리 건너기 게임을 시작합니다.");
             BridgeGame bridgeGame = createNewGame();
-            while (true) {
-                boolean success = move(bridgeGame);
-                if (bridgeGame.isComplete()) {
-                    break;
-                }
-                if (!success) {
-                    // TODO: 게임 재시도 혹은 종료 여부 받기
-                    break;
-                }
-            }
-
+            game(bridgeGame);
+            outputView.printResult(bridgeGame);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    private static void game(BridgeGame bridgeGame) {
+        while (!bridgeGame.isComplete()) {
+            boolean moveSuccess = move(bridgeGame);
+            if (moveSuccess) {
+                continue;
+            }
+            if (inputView.readGameCommand().equals("Q")) {
+                break;
+            }
+            bridgeGame.retry();
         }
     }
 
