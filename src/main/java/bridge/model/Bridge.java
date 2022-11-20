@@ -20,7 +20,7 @@ public class Bridge {
     }
 
     public PlayerStatus acceptPlayer(int location, Moving choice) {
-        if (isCrossed(location)) {
+        if (isCrossed(location, choice)) {
             return PlayerStatus.CROSSED;
         }
         if (isSurviving(location, choice)) {
@@ -29,8 +29,10 @@ public class Bridge {
         return PlayerStatus.DEAD;
     }
 
-    private boolean isCrossed(int location) {
-        return bridge.size() <= location;
+    private boolean isCrossed(int location, Moving choice) {
+        int lastIndex = bridge.size() - 1;
+        return lastIndex < location ||
+                (lastIndex == location && bridge.get(lastIndex) == choice);
     }
 
     private boolean isSurviving(int location, Moving choice) {
