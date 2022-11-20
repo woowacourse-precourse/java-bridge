@@ -17,7 +17,7 @@ class InputViewExceptionTest {
     @DisplayName("3~20 사이의 숫자가 아니면 예외가 발생한다.")
     @Test
     void inputWrongBridgeSize() {
-        boolean result = inputView.isWrongValue("21","[ERROR] 3 ~ 20사이 숫자를 입력하여 주세요",1);
+        boolean result = inputView.isWrongValue("21",1);
         assertThat(result).isEqualTo(true);
     }
 
