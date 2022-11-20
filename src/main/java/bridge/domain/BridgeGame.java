@@ -27,8 +27,7 @@ public class BridgeGame {
     }
 
     public String[][] getCurrentMap() {
-        String[][] map = new String[2][movementRecord.size()];
-        clearMap(map);
+        String[][] map = getEmptyMap();
         for (int i = 0; i < movementRecord.size(); i++) {
             Direction dir = movementRecord.get(i);
             map[dir.getIndex()][i] = marking(isMovable(i, dir.getCommand()));
@@ -65,10 +64,16 @@ public class BridgeGame {
         return Value.IMPOSSIBLE;
     }
 
-    private void clearMap(String[][] map) {
+    private void initMap(String[][] map) {
         for (String[] line : map) {
             Arrays.fill(line, " ");
         }
+    }
+
+    private String[][] getEmptyMap() {
+        String[][] emptyMap = new String[2][movementRecord.size()];
+        initMap(emptyMap);
+        return emptyMap;
     }
 
     /**
