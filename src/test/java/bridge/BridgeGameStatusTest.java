@@ -36,6 +36,18 @@ class BridgeGameStatusTest {
                 .isTrue();
     }
 
+    @DisplayName("command 값이 R과 동일하지 않아서 계속 실행이 불가능한 상태라면 거짓을 반환하는지 테스트")
+    @Test
+    void isNotRunning() {
+        //given
+        BridgeGameStatus status = new BridgeGameStatus("Q");
+        //when
+        boolean isRunning = status.isRunning();
+        //then
+        assertThat(isRunning)
+                .isFalse();
+    }
+
     @Test
     void changeStatus() {
     }
