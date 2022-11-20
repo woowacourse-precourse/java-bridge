@@ -4,7 +4,7 @@ import static bridge.validator.ExceptionMessage.*;
 
 public class BridgeSizeValidator {
     private static final int MIN_SIZE = 3;
-    private static final int MAX_SIZE = 30;
+    private static final int MAX_SIZE = 20;
     private static final String EMPTY_VALUE = "";
 
     public static void validate(String size) {

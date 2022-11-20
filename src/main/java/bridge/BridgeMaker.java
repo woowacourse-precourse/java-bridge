@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import static bridge.domain.BridgeMapConstant.START_INDEX;
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
@@ -23,7 +25,7 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         List<String> bridge = new ArrayList<>();
-        IntStream.range(0, size).forEach(value -> bridge.add(String.valueOf(bridgeNumberGenerator.generate())));
-        return Convert.toUpAndDownList(bridge);
+        IntStream.range(START_INDEX, size).forEach(value -> bridge.add(String.valueOf(bridgeNumberGenerator.generate())));
+        return Convert.toUpAndDownBridge(bridge);
     }
 }

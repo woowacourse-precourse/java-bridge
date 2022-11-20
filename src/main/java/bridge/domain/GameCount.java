@@ -1,7 +1,16 @@
 package bridge.domain;
 
 public class GameCount {
-    private int gameCount = 1;
+    private static final int START_COUNT = 1;
+    private int gameCount;
+
+    public GameCount(int gameCount) {
+        this.gameCount = gameCount;
+    }
+
+    public static GameCount start() {
+        return new GameCount(START_COUNT);
+    }
 
     public void increase() {
         this.gameCount++;

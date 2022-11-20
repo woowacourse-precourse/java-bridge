@@ -24,16 +24,16 @@ public class BridgeApplication {
         do {
             BridgeMap bridgeMap = bridgeGame.move(inputView.readMoving());
             outputView.printMap(bridgeMap.getMap());
-        } while (checkWinning(bridgeGame) && (checkGameStatus(bridgeGame) || checkRestart(bridgeGame)));
+        } while (!isWinningGame(bridgeGame) && (checkGameStatus(bridgeGame) || checkRestart(bridgeGame)));
         outputView.printResult(bridgeGame.getResult());
-    }
-
-    private boolean checkWinning(BridgeGame bridgeGame) {
-        return !bridgeGame.isWinningBrideGame();
     }
 
     private boolean checkGameStatus(BridgeGame bridgeGame) {
         return bridgeGame.checkStatus();
+    }
+
+    private boolean isWinningGame(BridgeGame bridgeGame) {
+        return bridgeGame.checkWinning();
     }
 
     private boolean checkRestart(BridgeGame bridgeGame) {

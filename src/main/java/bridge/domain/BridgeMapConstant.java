@@ -10,5 +10,5 @@ public class BridgeMapConstant {
     public static final char BLANK_SPACE = ' ';
     public static final char FAIL_MARK = 'X';
     public static final int START_INDEX = 0;
-    public static final int EXCHANGE_LENGTH = 3;
+    public static final int EXCHANGE_LOCATION_INDEX = 3;
 }

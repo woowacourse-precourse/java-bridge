@@ -1,6 +1,8 @@
 package bridge.domain;
 
 public class Result {
+    private static final String SUCCESS = "성공";
+    private static final String FAIL = "실패";
     private final BridgeMap bridgeMap;
     private final int gameCount;
     private String winning;
@@ -8,11 +10,15 @@ public class Result {
     public Result(BridgeMap bridgeMap, boolean status, int gameCount) {
         this.bridgeMap = bridgeMap;
         this.gameCount = gameCount;
+        currentGameStatus(status);
+    }
+
+    private void currentGameStatus(boolean status) {
         if (status) {
-            this.winning = "성공";
+            this.winning = SUCCESS;
         }
         if (!status) {
-            this.winning = "실패";
+            this.winning = FAIL;
         }
     }
 

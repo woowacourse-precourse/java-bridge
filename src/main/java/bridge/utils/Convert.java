@@ -9,7 +9,7 @@ public class Convert {
     public static final String UP = "U";
     public static final String DOWN = "D";
 
-    public static List<String> toUpAndDownList(List<String> bridge) {
+    public static List<String> toUpAndDownBridge(List<String> bridge) {
         return bridge.stream()
                 .map(value -> value.replace(ONE, UP))
                 .map(value -> value.replace(ZERO, DOWN))

@@ -5,25 +5,24 @@ import java.util.stream.IntStream;
 import static bridge.domain.BridgeMapConstant.*;
 import static bridge.ui.ViewConstant.LINE_FEED;
 
-
 public class BridgeMap {
     private final Bridge bridge;
-    private final int gameStage;
+    private final int mapCoordinate;
     private final boolean winning;
 
-    public BridgeMap(Bridge bridge, int gameStage, boolean winning) {
+    public BridgeMap(Bridge bridge, int mapCoordinate, boolean winning) {
         this.bridge = bridge;
-        this.gameStage = gameStage;
+        this.mapCoordinate = mapCoordinate;
         this.winning = winning;
     }
 
     public String getMap() {
-        String bridgeMap = buildBridge(new StringBuilder(), new StringBuilder());
+        String bridgeMap = makeBridgeMap(new StringBuilder(), new StringBuilder());
         return replaceDivisionMark(bridgeMap);
     }
 
-    private String buildBridge(StringBuilder upBridge, StringBuilder downBridge) {
-        IntStream.range(START_INDEX, this.gameStage)
+    private String makeBridgeMap(StringBuilder upBridge, StringBuilder downBridge) {
+        IntStream.range(START_INDEX, this.mapCoordinate)
                 .forEach(value -> convertBridgeToMap(this.bridge.getBridge().get(value), upBridge, downBridge));
         checkWinningAndExchangeFailMap(upBridge, downBridge);
         return upBridge + LINE_FEED + downBridge;
@@ -44,19 +43,19 @@ public class BridgeMap {
     }
 
     private int getExchangeIndex(StringBuilder bridge) {
-        return bridge.length() - EXCHANGE_LENGTH;
+        return bridge.length() - EXCHANGE_LOCATION_INDEX;
     }
 
     private void convertBridgeToMap(String bridgeStatus, StringBuilder upBridge, StringBuilder downBridge) {
         if (bridgeStatus.equals(COVERT_STAND_WORD)) {
-            appendSuccessBridgeContext(upBridge, downBridge);
+            appendBridgeContext(upBridge, downBridge);
         }
         if (!bridgeStatus.equals(COVERT_STAND_WORD)) {
-            appendSuccessBridgeContext(downBridge, upBridge);
+            appendBridgeContext(downBridge, upBridge);
         }
     }
 
-    private void appendSuccessBridgeContext(StringBuilder upBridge, StringBuilder downBridge) {
+    private void appendBridgeContext(StringBuilder upBridge, StringBuilder downBridge) {
         upBridge.append(SUCCESS_BRIDGE);
         downBridge.append(BLANK_BRIDGE);
     }
