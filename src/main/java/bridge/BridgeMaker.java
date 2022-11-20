@@ -9,6 +9,8 @@ import java.util.List;
 public class BridgeMaker {
     private static final int RANDOM_NUM_LOWER = 0;
     private static final int RANDOM_NUM_UPPER = 1;
+    private static final String LOWER_BOX = "D";
+    private static final String UPPER_BOX = "U";
 
     private final BridgeNumberGenerator bridgeNumberGenerator;
     private List<String> bridge;
@@ -34,7 +36,7 @@ public class BridgeMaker {
     private void generateNumAndAddBoxToBridge() {
         int generatedNum = bridgeNumberGenerator.generate();
 
-        if (generatedNum == RANDOM_NUM_LOWER) bridge.add("D");
-        if (generatedNum == RANDOM_NUM_UPPER) bridge.add("U");
+        if (generatedNum == RANDOM_NUM_LOWER) bridge.add(LOWER_BOX);
+        if (generatedNum == RANDOM_NUM_UPPER) bridge.add(UPPER_BOX);
     }
 }
