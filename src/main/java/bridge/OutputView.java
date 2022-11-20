@@ -87,4 +87,8 @@ public class OutputView {
 
         return "X";
     }
+
+    public static void printError(String errorMessage){
+        System.out.println("[ERROR]" + errorMessage);
+    }
 }

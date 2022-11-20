@@ -9,14 +9,21 @@ public class InputView {
     private final String REGEX = "[0-9]+";
     private final int minLength = 3;
     private final int maxLength = 20;
-    private final String bridgeSize = "다리의 길이를 입력해주세요.";
+    private final String msg_BridgeSize = "다리의 길이를 입력해주세요.";
+    private final String msg_Moving = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    private final String msg_GameCommand = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private final String errorMsg_SmallSize = "다리의 길이는 3보다 작을 수 없습니다.";
+    private final String errorMsg_BigSize = "다리의 길이는 20보다 클 수 없습니다.";
+    private final String errorMsg_NotNumber = "다리의 길이는 숫자로 작성해주셔야 합니다.";
+    private final String errorMsg_UpAndDown = "이동 칸은 U(위 칸)와 D(아래 칸) 중 하나의 문자를 입력하셔야 합니다.";
+    private final String errorMsg_RetryAndQuit = "게임 재시도는 R(재시도)와 Q(종료) 중 하나의 문자를 입력하셔야 합니다.";
 
     //region 다리길이
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println(bridgeSize);
+        System.out.println(msg_BridgeSize);
         String input = Console.readLine();
         validateSize(input);
         return Integer.valueOf(input);
@@ -28,7 +35,7 @@ public class InputView {
             checkSize(input);
         }
         catch (IllegalArgumentException ex){
-            System.out.println("[ERROR]" + ex.getMessage());
+            OutputView.printError(ex.getMessage());
             readBridgeSize();
         }
     }
@@ -36,15 +43,15 @@ public class InputView {
     private void checkSize(String input) {
         int size = Integer.valueOf(input);
         if(size < minLength)
-            throw new IllegalArgumentException("다리의 길이는 3보다 작을 수 없습니다.");
+            throw new IllegalArgumentException(errorMsg_SmallSize);
 
         if(size > maxLength)
-            throw new IllegalArgumentException("다리의 길이는 20보다 클 수 없습니다.");
+            throw new IllegalArgumentException(errorMsg_BigSize);
     }
 
     private void checkOnlyNumber(String input) {
         if(!input.matches(REGEX))
-            throw new IllegalArgumentException("다리의 길이는 숫자로 작성해주셔야 합니다.");
+            throw new IllegalArgumentException(errorMsg_NotNumber);
     }
     //endregion
 
@@ -53,7 +60,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println(msg_Moving);
         String input = Console.readLine();
         ValidateMove(input);
         return input;
@@ -61,13 +68,17 @@ public class InputView {
 
     private void ValidateMove(String input) {
         try {
-            if (!input.equals("U") && !input.equals("D"))
-                throw new IllegalArgumentException("이동 칸은 U(위 칸)와 D(아래 칸) 중 하나의 문자를 입력하셔야 합니다.");
+            checkUpOrDown(input);
         }
         catch (IllegalArgumentException ex){
-            System.out.println("[ERROR]" + ex.getMessage());
+            OutputView.printError(ex.getMessage());
             readMoving();
         }
+    }
+
+    private void checkUpOrDown(String input) {
+        if (!input.equals("U") && !input.equals("D"))
+            throw new IllegalArgumentException(errorMsg_UpAndDown);
     }
     //endregion
 
@@ -76,7 +87,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.println(msg_GameCommand);
         String input = Console.readLine();
         ValidateGameCommand(input);
         return input;
@@ -84,13 +95,17 @@ public class InputView {
 
     private void ValidateGameCommand(String input) {
         try{
-            if (!input.equals("R") && !input.equals("Q"))
-                throw new IllegalArgumentException("게임 재시도는 R(재시도)와 Q(종료) 중 하나의 문자를 입력하셔야 합니다.");
+            checkRetryAndQuit(input);
         }
         catch (IllegalArgumentException ex){
-            System.out.println("[ERROR]" + ex.getMessage());
+            OutputView.printError(ex.getMessage());
             readGameCommand();
         }
+    }
+
+    private void checkRetryAndQuit(String input) {
+        if (!input.equals("R") && !input.equals("Q"))
+            throw new IllegalArgumentException(errorMsg_RetryAndQuit);
     }
     //endregion
 }
