@@ -23,7 +23,7 @@ class InputViewExceptionTest {
     @DisplayName("3~20 사이의 숫자가 아니면 예외가 발생한다.")
     @ParameterizedTest
     @CsvSource({"21,true","20,false","z,true"})
-    void inputWrongBridgeSize(String input, boolean expected) {
+    void checkBridgeSizeException(String input, boolean expected) {
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
@@ -31,15 +31,39 @@ class InputViewExceptionTest {
         assertThat(result).isEqualTo(expected);
         if (result){
             assertThat(out.toString()).contains("[ERROR] 3 ~ 20사이 숫자를 입력하여 주세요");
-        }
 
+        }
     }
 
 
-
     //사용자 이동 입력값 예외 테스트
+    @DisplayName("입력값이 'U','D'가 아니면 예외가 발생한다.")
+    @ParameterizedTest
+    @CsvSource({"e,true","D,false","U,false","2,true"})
+    void checkMovingException(String input, boolean expected) {
+        OutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        boolean result = inputView.isWrongValue(input,2);
+        assertThat(result).isEqualTo(expected);
+        if (result){
+            assertThat(out.toString()).contains("[ERROR] 위: U, 아래: D로 입력해야 합니다.");
+        }
+    }
 
     //게임 재시작, 종료 여부 입력값 예외 테스트
+    @DisplayName("입력값이 'R','Q'가 아니면 예외가 발생한다.")
+    @ParameterizedTest
+    @CsvSource({"t,true","R,false","Q,false","3,true"})
+    void checkGameCommandException(String input, boolean expected) {
+        OutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
 
+        boolean result = inputView.isWrongValue(input,3);
+        assertThat(result).isEqualTo(expected);
+        if (result){
+            assertThat(out.toString()).contains("[ERROR] 재시도: R,종료: Q로 입력해야 합니다.");
+        }
+    }
 }
 
