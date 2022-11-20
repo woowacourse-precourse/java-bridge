@@ -7,8 +7,9 @@ import java.util.List;
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-    private static final int UP = 0;
-    private static final int DOWN = 1;
+
+    private static final int UP = 1;
+    private static final int DOWN = 0;
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -23,23 +24,16 @@ public class BridgeMaker {
         List<String> bridgeMap = new ArrayList<>();
 
         for (int i = 0; i < size; ++i) {
-            String cell = buildBridgeCell(bridgeNumberGenerator.generate());
+            String cell = makeBridgeCell(bridgeNumberGenerator.generate());
             bridgeMap.add(cell);
         }
         return bridgeMap;
     }
 
-    private String buildBridgeCell(int cell) {
-        validateBridgeCell(cell);
+    private String makeBridgeCell(int cell) {
         if (cell == UP) {
             return BridgeGame.CMD_UP;
         }
         return BridgeGame.CMD_DOWN;
-    }
-
-    private static void validateBridgeCell(int cell) {
-        if (cell != UP && cell != DOWN) {
-            throw new IllegalArgumentException("[ERROR] 브릿지 셀을 만드는 과정에서 예기치 못한 오류가 발생했습니다.");
-        }
     }
 }
