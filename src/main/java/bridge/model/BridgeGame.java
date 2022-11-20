@@ -39,6 +39,7 @@ public class BridgeGame {
     }
 
     public void retry() {
+        trial = 0;
     }
 
 
