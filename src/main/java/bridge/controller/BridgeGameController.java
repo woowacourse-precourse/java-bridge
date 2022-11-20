@@ -1,9 +1,6 @@
 package bridge.controller;
 
-import bridge.model.Bridge;
 import bridge.model.BridgeGame;
-import bridge.model.Player;
-import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class BridgeGameController {
@@ -20,12 +17,20 @@ public class BridgeGameController {
         play();
     }
 
-    public void play() {
+    private void play() {
         bridgeGame.tryGame();
         boolean isMoving = true;
         do {
             OutputView.askMove();
             isMoving = bridgeGame.move();
         } while (isMoving && bridgeGame.isOnGoing());
+        if (!isMoving && bridgeGame.retry()) {
+            play();
+            return;
+        }
+        end();
+    }
+
+    private void end() {
     }
 }
