@@ -31,6 +31,9 @@ public class BridgeGame {
 		if (isMovable(bridge, userSelectedCell)) {
 			currentPhase++;
 		}
+		if (isEnd()) {
+			return;
+		}
 		if (!isMovable(bridge, userSelectedCell)) {
 			Pause.setPause();
 		}
@@ -51,8 +54,11 @@ public class BridgeGame {
 	}
 
 	public void end() {
+		currentPhase = totalPhase;
+		Pause.unsetPause();
 	}
+
 	public boolean isEnd() {
-		return true;
+		return currentPhase == totalPhase;
 	}
 }

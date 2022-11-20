@@ -102,6 +102,7 @@ public class BridgeGameTest {
 		userSelectedCell = "D";
 		bridgeGame.move(userSelectedCell);
 		userSelectedCell = "U";
+		bridgeGame.move(userSelectedCell);
 
 		// when
 		if (Pause.paused) {
