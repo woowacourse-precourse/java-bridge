@@ -23,4 +23,7 @@ public enum Row {
     public static String judge(int randomNumber){
         return BY_RANDOM_NUMBER.get(randomNumber).capitalLetter;
     }
+    public static boolean isValidateLetter(String input){
+        return BY_RANDOM_NUMBER.containsKey(input);
+    }
 }
