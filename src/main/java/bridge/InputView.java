@@ -1,5 +1,7 @@
 package bridge;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.Scanner;
 
 /**
@@ -16,7 +18,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() throws IllegalAccessException {
-        String size = scanner.nextLine();
+        String size = Console.readLine();
         validate(size);
 
         return Integer.parseInt(size);
