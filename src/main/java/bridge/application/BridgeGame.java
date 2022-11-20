@@ -1,9 +1,39 @@
 package bridge.application;
 
+import bridge.domain.BridgeMaker;
+import java.util.List;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+
+    private static BridgeGame instance;
+
+    private final BridgeMaker bridgeMaker;
+
+    private List<String> bridge;
+    private int gameCount;
+    private int next;
+
+    private BridgeGame(BridgeMaker bridgeMaker) {
+        this.bridgeMaker = bridgeMaker;
+        this.gameCount = 0;
+        this.next = 0;
+    }
+
+    public static BridgeGame getInstance(BridgeMaker bridgeMaker) {
+        if (instance == null) {
+            instance = new BridgeGame(bridgeMaker);
+        }
+        return instance;
+    }
+
+    public List<String> initBridge(int size) {
+        bridge = bridgeMaker.makeBridge(size);
+        return bridge;
+    }
+
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
