@@ -36,4 +36,34 @@ class ValidatorTest {
         assertThat(result2).isInstanceOf(IllegalArgumentException.class);
         assertThat(result3).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("입력된 문자열이 둘 중 하나의 문자열과 일치하는지 검증")
+    @Test
+    void 입력된_문자열이_둘_중_하나의_문자열과_일치하는지_검증하는_기능_테스트(){
+        //given
+        String case1 = "U";
+        String case2 = "D";
+        String case3 = " ";
+        String case4 = "UDAASKDFJ";
+
+        //when
+        Throwable result1 = catchThrowable(()->{
+            Validator.validateIsStringOneCharacter(case1, "U", "D");
+        });
+        Throwable result2 = catchThrowable(()->{
+            Validator.validateIsStringOneCharacter(case2, "U", "D");
+        });
+        Throwable result3 = catchThrowable(()->{
+            Validator.validateIsStringOneCharacter(case3, "U", "D");
+        });
+        Throwable result4 = catchThrowable(()->{
+            Validator.validateIsStringOneCharacter(case4, "U", "D");
+        });
+
+        //then
+        assertThat(result1).doesNotThrowAnyException();
+        assertThat(result2).doesNotThrowAnyException();
+        assertThat(result3).isInstanceOf(IllegalArgumentException.class);
+        assertThat(result4).isInstanceOf(IllegalArgumentException.class);
+    }
 }
