@@ -45,4 +45,26 @@ public class Game {
         }
     }
 
+    public void isRetry() {
+        BridgeGameStatus bridgeGameStatus = this.bridgeGame.getBridgeGameStatus();
+        ifCorrect(bridgeGameStatus);
+        ifFall(bridgeGameStatus);
+    }
+
+    private void ifCorrect(BridgeGameStatus bridgeGameStatus) {
+        if (bridgeGameStatus.equals(BridgeGameStatus.CORRECT)) {
+            this.gameStatus.end();
+        }
+    }
+
+    private void ifFall(BridgeGameStatus bridgeGameStatus) {
+        if (bridgeGameStatus.equals(BridgeGameStatus.FALL)) {
+            this.outputView.printChoiceRestart();
+            if (!this.bridgeGame.retry(this.inputView.readGameCommand())) {
+                this.gameStatus.end();
+            }
+            this.gameStatus.again();
+        }
+    }
+
 }
