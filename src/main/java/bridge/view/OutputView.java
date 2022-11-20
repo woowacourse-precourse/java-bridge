@@ -19,6 +19,12 @@ public class OutputView {
     private final static String GAME_RESULT = "최종 게임 결과";
     private final static String MISSION_COMPLETE_OR_NOT = "게임 성공 여부: %s";
     private final static String TOTAL_TRIAL_COUNT = "총 시도한 횟수: ";
+    private final static String GAME_START = "다리 건너기 게임을 시작합니다.";
+
+    public static void printGameStart() {
+        System.out.println(GAME_START);
+        System.out.println();
+    }
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.

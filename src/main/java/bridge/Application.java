@@ -18,6 +18,7 @@ public class Application {
 
 
     public static void main(String[] args) {
+        OutputView.printGameStart();
         int trialCount = INITIAL_COUNT;
         String gameResult = SUCCESS;
 
