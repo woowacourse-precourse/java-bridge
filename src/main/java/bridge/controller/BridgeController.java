@@ -60,6 +60,9 @@ public class BridgeController {
     }
 
     private void gameOver() {
+        if (bridgeGame.isWin()) {
+            return;
+        }
         outputView.printAskingRestartingGame();
         restartOrQuit();
     }
