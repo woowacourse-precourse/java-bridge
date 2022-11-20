@@ -10,7 +10,7 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public int readBridgeSize() {
+    public int readBridgeSize() throws IllegalArgumentException {
         System.out.println("다리의 길이를 입력해주세요.");
         String input = Console.readLine();
         int size = changeToNumber(input);
@@ -24,8 +24,12 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        // 위 칸은 U, 아래 칸은 D 입력
-        return null;
+        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        String moving = Console.readLine();
+        if (!moving.equals("U") && !moving.equals("D")) {
+            throw new IllegalArgumentException("[ERROR] U 또는 D를 입력해야 합니다.");
+        }
+        return moving;
     }
 
     /**
