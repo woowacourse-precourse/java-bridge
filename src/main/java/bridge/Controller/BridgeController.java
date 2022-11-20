@@ -30,9 +30,10 @@ public class BridgeController {
         System.out.println(bridge);
 
         History gameHistory = new History();
-        int location = 0;
-        boolean quitGame = false;
-        while (!quitGame) {      // 사용자가 Q를 입력하기 전까지 게임이 계속된다
+
+        boolean trying = true;
+        while (trying) {      // 사용자가 Q를 입력하기 전까지 게임이 계속된다
+            int location = 0;
             boolean playGame = true;
             gameHistory.gameTry();
             while(playGame) {
@@ -51,19 +52,13 @@ public class BridgeController {
                 if (location == bridgeSize) {
                     gameHistory.gameSuccess();
                     playGame = false;
-                    quitGame = true;
+                    trying = false;
                 }
             }
-            if (quitGame) break;
+            if (!trying) break;
+
             // 이동할 수 없는 경우 재시작 여부를 입력받는다
-            String retry = InputView.readGameCommand();
-            if (retry.equals("Q")) {
-                quitGame = true;
-            }
-            if (retry.equals("R")) {
-                gameHistory.reset();
-                location = 0;
-            }
+            trying = BridgeGame.retry(gameHistory);
         }
 
         // 최종 결과를 출력한다
