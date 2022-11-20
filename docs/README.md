@@ -13,6 +13,8 @@
  - [x] 위, 아래중 입력을 받아 해당 입력을 history에 저장 - move()
  - [x] 사용자의 입력과 해당 입력이 다리의 정답과 맞는지 비교하여 PASS, FAIL, SUCCESS 반환 - compareInputWithBridge()
  - [x] move()와 compareInputWithBridge()를 조합하여 한 단계를 진행 한 후 결과 반환- processStage()
+ - [x] 결과가 PASS이면 Stage단계를 증가한다
+ - [ ] 사용자가 게임에 실패하고 재도전을하면 stage와 history를 초기화 한다
  
 
 ### BridgeStage
@@ -25,7 +27,6 @@
 ### BridgeController
  - [x] 다리 크기를 입력받아 다리를 생성한다 - initBridge()
  - [x] BridgeGame의 processStage() 결과를 받아 PASS, FAIL, SUCCESS에 대응하는 기능 실행 - processResult()
- - [ ] 결과가 PASS이면 Stage단계를 증가한다
  - [ ] 결과가 FAIL이면 재시작 여부를 물어본다
  - [ ] 결과가 SUCCESS이면 최종결과와 시도횟수를 출력 한 뒤 종료한다
  - [ ] 구현된 기능을 통해 전체적 게임을 진행한다 - processGame()

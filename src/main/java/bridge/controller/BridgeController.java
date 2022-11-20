@@ -4,7 +4,6 @@ package bridge.controller;
 import bridge.domain.BridgeGame;
 import bridge.domain.StageResult;
 import bridge.generator.BridgeMaker;
-import bridge.validator.Unit;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -62,7 +61,13 @@ public class BridgeController {
             success();
         }
     }
-    public void pass() {}
-    public void fail() {}
+
+    public void pass() {
+        bridgeGame.pass();
+    }
+
+    public void fail() {
+        
+    }
     public void success() {}
 }
