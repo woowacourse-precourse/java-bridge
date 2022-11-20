@@ -10,25 +10,24 @@ public class BridgeRecord {
 	private int tryCount;
 
 	public BridgeRecord() {
-		boards= new ArrayList<>();
-		tryCount=1;
+		boards = new ArrayList<>();
+		tryCount = 1;
 	}
 
-	public boolean addBoard(Bridge bridge, String board){
+	public boolean addBoard(Bridge bridge, String board) {
 		List<String> bridgeBoards = bridge.getBoards();
-		boolean success = true;
 
-		if(bridgeBoards.get(boards.size()).equals(board)){
-			boards.add(new String[]{board, GameRule.ANSWER_MARK});
-		} else if (!bridgeBoards.get(boards.size()).equals(board)){
-			boards.add(new String[]{board, GameRule.WRONG_MARK});
-			success = false;
+		if (bridgeBoards.get(boards.size()).equals(board)) {
+			boards.add(new String[] {board, GameRule.ANSWER_MARK});
+		} else if (!bridgeBoards.get(boards.size()).equals(board)) {
+			boards.add(new String[] {board, GameRule.WRONG_MARK});
+			return false;
 		}
-		return success;
+		return true;
 	}
 
 	public void deleteBoard() {
-		boards.remove(boards.size()-1);
+		boards.remove(boards.size() - 1);
 	}
 
 	public void increaseTry() {
