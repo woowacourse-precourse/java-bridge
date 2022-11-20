@@ -5,6 +5,8 @@ import bridge.view.ErrorMessage;
 public class Validator {
     private static final int MIN_SIZE = 3;
     private static final int MAX_SIZE = 20;
+    private static final String UP = "U";
+    private static final String DOWN = "D";
 
     public static void validateSize(String input) {
         isNumber(input);
@@ -22,6 +24,12 @@ public class Validator {
         int n = Integer.parseInt(input);
         if (n < MIN_SIZE || n > MAX_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE.getMessage());
+        }
+    }
+
+    public static void validateMove(String input) {
+        if (!input.equals(UP) && !input.equals(DOWN)) {
+            throw new IllegalArgumentException(ErrorMessage.ONLY_U_OR_D_POSSIBLE.getMessage());
         }
     }
 }

@@ -27,4 +27,13 @@ public class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.OUT_OF_RANGE.getMessage());
     }
+
+    @DisplayName("이동할 칸 입력값이 U 또는 D가 아닌 경우 예외 발생")
+    @ValueSource(strings = {"aaa", " ", "d"})
+    @ParameterizedTest
+    void onlyUDPossible(String input) {
+        assertThatThrownBy(() -> Validator.validateMove(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.ONLY_U_OR_D_POSSIBLE.getMessage());
+    }
 }
