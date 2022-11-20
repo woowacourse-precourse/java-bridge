@@ -34,6 +34,10 @@ public class BridgeGame {
         return lastMove.equals(answerBridge.get(lastIndex));
     }
 
+    public void initialize() {
+        user.clearUserMove();
+    }
+
     private void validateMoveInput(String moveInput) {
         Validator.checkMoveInput(moveInput);
     }
