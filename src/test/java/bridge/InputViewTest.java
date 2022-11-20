@@ -28,8 +28,12 @@ class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void readMovingTest() {
+    @DisplayName("이동할 칸 입력 예외처리 테스트")
+    @ParameterizedTest
+    @ValueSource(strings={"123","!!","rdx","ㄱㄴㄷ","UD","DD","UU","DU"," "})
+    void checkMovingTest(String input) {
+        assertThatThrownBy(()->inputView.checkMoving(input))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

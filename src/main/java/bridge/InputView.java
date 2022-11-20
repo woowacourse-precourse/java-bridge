@@ -40,6 +40,12 @@ public class InputView {
         return moving;
     }
 
+    public void checkMoving(String moving){
+        if(!moving.equals("U")||!moving.equals("D")){
+            throw new IllegalArgumentException("[ERROR] 이동할 칸은 U나 D만 입력하세요.");
+        }
+    }
+
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
