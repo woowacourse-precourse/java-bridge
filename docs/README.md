@@ -20,6 +20,7 @@
 - [x] 현재 진행중인 다리 인덱스 가져오는 기능 -bridgeGame#getCurrentCount()
 - [x] 게임 재시도 기능 -BridgeGame#retry()
   - [x] 게임 재시도 입력 기능 -InputView#readGameCommand()
+  - [x] 게임 재시도 입력 예외 처리 기능 -UserException#reGameException()
 - [x] 최종 결과 출력 기능 -OutputView#printResult()
   - [x] 재시도 횟수 출력 기능
 ## 기능 요구 사항

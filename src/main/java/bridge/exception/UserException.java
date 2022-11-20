@@ -27,4 +27,11 @@ public class UserException {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void reGameException(String s) {
+        if (!s.contentEquals("R") && !s.contentEquals("Q")) {
+            System.out.println("[ERROR] R 또는 Q를 입력해 주세요.");
+            throw new IllegalArgumentException();
+        }
+    }
 }
