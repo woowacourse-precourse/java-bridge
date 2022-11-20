@@ -39,4 +39,12 @@ class InputViewTest {
         assertThatThrownBy(() -> inputView.movingValidate(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName(" R 와 Q 중 하나가 아닐때 예외처리")
+    @ValueSource(strings = {"0", "-1", "D", "U"})
+    @ParameterizedTest
+    void  GameCommandValidate(String input)  {
+        assertThatThrownBy(() -> inputView.GameCommandValidate(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
