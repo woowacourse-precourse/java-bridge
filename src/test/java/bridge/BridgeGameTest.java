@@ -41,7 +41,7 @@ class BridgeGameTest {
     }
 
     @Nested
-    @DisplayName("진행상테 테스트")
+    @DisplayName("진행상태 테스트")
     class gameStatusTest {
         @Test
         @DisplayName("떨여졌을 때 상태는 LOSE")
@@ -69,9 +69,10 @@ class BridgeGameTest {
         }
     }
 
-    @ParameterizedTest(name = "{0}번 재시작 시 재시작횟수는 {1}번")
-    @CsvSource({"1:2", "3:4", "6:7"})
-    void retryCountTest(int count, int result) {
+    @DisplayName("시도 횟수 테스트")
+    @ParameterizedTest(name = "{0}번 재시작 시 시도횟수 {1}번")
+    @CsvSource(value = {"1:2", "3:4", "6:7"}, delimiter = ':')
+    void tryCountTest(int count, int result) {
         for (int i = 0; i < count; i++) {
             bridgeGame.retry();
         }
