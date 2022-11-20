@@ -39,4 +39,10 @@ public class Service {
     public List<String> getFinalResult() {
         return result.getFinalResultToString();
     }
+
+    public void resetForRetry() {
+        game.initialize();
+        result.initialize();
+        result.plusTryCount();
+    }
 }
