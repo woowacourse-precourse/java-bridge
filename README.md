@@ -341,9 +341,9 @@ int number = bridgeNumberGenerator.generate();
   
   인스턴스변수: InputView, OutputView, InputValidator, Bridge, BridgeGame
   #### 기능목록
-  - [ ] 플레이어가 정답을 틀리면 재시작 여부(R, Q)를 물어보는 기능
-  - [ ] R을 입력할 경우 게임 재시작
-  - [ ] Q를 입력할 경우 게임을 끝내고 결과 출력
+  - [x] 플레이어가 정답을 틀리면 재시작 여부(R, Q)를 물어보는 기능
+  - [x] R을 입력할 경우 게임 재시작
+  - [x] Q를 입력할 경우 게임을 끝내고 결과 출력
   - [ ] 플레이어가 잘못된 값을 입력할 경우 에러 메시지를 출력하고 올바른 값을 입력할 때까지 루프를 도는 기능
 
 ### InputView

@@ -17,11 +17,13 @@ public class bridgeTest {
 
         BridgeNumberGenerator bridgeNumberGenerator;
         BridgeMaker bridgeMaker;
+
         @BeforeEach
         void setUp() {
             bridgeNumberGenerator = new BridgeRandomNumberGenerator();
             bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
         }
+
         @Test
         @DisplayName("다리 사이즈가 3 미만일 때 정상적으로 예외를 던지고 메시지를 출력하는지 테스트")
         void validateBridgeSizeIsFour() {
@@ -59,8 +61,6 @@ public class bridgeTest {
             bridge.generateShapeAndReturnWhetherUserGetTheRightAnswer("D", 3);
             assertThat(bridge.getBridgeUpperSide().contains("[O, ,O, ]"));
             assertThat(bridge.getBridgeUpperSide().contains("[ ,O, ,O]"));
-            System.out.println(bridge.getBridgeUpperSide());
-            System.out.println(bridge.getBridgeDownSide());
         }
 
         @Test
@@ -71,8 +71,6 @@ public class bridgeTest {
             bridge.generateShapeAndReturnWhetherUserGetTheRightAnswer("D", 3);
             assertThat(bridge.getBridgeUpperSide().contains("[O,X, , ]"));
             assertThat(bridge.getBridgeUpperSide().contains("[ , ,X,O]"));
-            System.out.println(bridge.getBridgeUpperSide());
-            System.out.println(bridge.getBridgeDownSide());
         }
 
         @Test
@@ -86,6 +84,7 @@ public class bridgeTest {
     @Nested
     class BridgeGameTest {
         BridgeGame bridgeGame;
+
         @BeforeEach
         void setUp() {
             List<String> testBridge = List.of("U", "D", "U", "D");
@@ -128,7 +127,7 @@ public class bridgeTest {
         }
 
         @Test
-        void 플레이어가_정답을_모두_맞췄을_때_true가_반환되는지_테스트() {
+        void 플레이어가_정답을_모두_맞췄을_때_false가_반환되는지_테스트() {
             String correctPosition = "U";
             bridgeGame.playGame(correctPosition);
             String correctPosition2 = "D";
@@ -137,7 +136,7 @@ public class bridgeTest {
             bridgeGame.playGame(correctPosition3);
             String correctPosition4 = "D";
             bridgeGame.playGame(correctPosition4);
-            assertThat(bridgeGame.isUserReachedToEndOfTheBridge(4)).isEqualTo(true);
+            assertThat(bridgeGame.ifUserReachedToEndOfTheBridgeReturnFalse(4)).isEqualTo(false);
         }
     }
 
@@ -146,37 +145,32 @@ public class bridgeTest {
     class InputViewTest {
 
         InputView inputView;
+
         @BeforeEach
         void setUp() {
             inputView = new InputView();
         }
-        @Test
-        @DisplayName("다리 사이즈에서 숫자만 정상적으로 받는지 테스트")
-        void validateBridgeSizeIsNumberTest() {
-            assertThatThrownBy(() -> {
-                inputView.convertStringToInt("itCanNotBeConvertedToInt");
-            }).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining("[ERROR] 숫자만 입력해주세요.");
-        }
-    }
 
-    @Nested
-    class OutputViewTest {
-        OutputView outputView;
-        Bridge bridge;
-        @BeforeEach
-        void setUp() {
-            this.outputView = new OutputView();
-            List<String> testBridge = List.of("U", "D", "U", "D");
-            this.bridge = new Bridge(testBridge);
-            bridge.generateShapeAndReturnWhetherUserGetTheRightAnswer("U", 0);
-            bridge.generateShapeAndReturnWhetherUserGetTheRightAnswer("D", 1);
-            bridge.generateShapeAndReturnWhetherUserGetTheRightAnswer("U", 2);
-            bridge.generateShapeAndReturnWhetherUserGetTheRightAnswer("D", 3);
-        }
-        @Test
-        void printMapTest() {
-            outputView.printMap(bridge);
+        @Nested
+        class OutputViewTest {
+            OutputView outputView;
+            Bridge bridge;
+
+            @BeforeEach
+            void setUp() {
+                this.outputView = new OutputView();
+                List<String> testBridge = List.of("U", "D", "U", "D");
+                this.bridge = new Bridge(testBridge);
+                bridge.generateShapeAndReturnWhetherUserGetTheRightAnswer("U", 0);
+                bridge.generateShapeAndReturnWhetherUserGetTheRightAnswer("D", 1);
+                bridge.generateShapeAndReturnWhetherUserGetTheRightAnswer("U", 2);
+                bridge.generateShapeAndReturnWhetherUserGetTheRightAnswer("D", 3);
+            }
+
+            @Test
+            void printMapTest() {
+                outputView.printMap(bridge);
+            }
         }
     }
 }

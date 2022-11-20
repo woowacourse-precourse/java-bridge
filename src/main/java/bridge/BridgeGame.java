@@ -33,11 +33,11 @@ public class BridgeGame {
         return false;
     }
 
-    public boolean isUserReachedToEndOfTheBridge(int bridgeSize) {
+    public boolean ifUserReachedToEndOfTheBridgeReturnFalse(int bridgeSize) {
         if (player.getCurrentLocation()+1 == bridgeSize) {
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
     public int getCountOfTry() {
@@ -58,7 +58,7 @@ public class BridgeGame {
     }
 
     private void validateUserInputIsOnlyROrQ(String userInputToGameRestartOrEnd) {
-        if (userInputToGameRestartOrEnd != "R" && userInputToGameRestartOrEnd != "Q") {
+        if (!userInputToGameRestartOrEnd.equals("R") && !userInputToGameRestartOrEnd.equals("Q")) {
             throw new IllegalArgumentException("[ERROR] R과 Q만 입력할 수 있습니다.");
         }
     }
