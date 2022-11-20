@@ -1,6 +1,11 @@
 package bridge.controller;
 
-import bridge.domain.*;
+import bridge.domain.bridge.Bridge;
+import bridge.domain.bridge.BridgeBlock;
+import bridge.domain.bridge.Phase;
+import bridge.domain.result.BridgeResult;
+import bridge.domain.result.GameState;
+import bridge.domain.result.MovingResult;
 import bridge.service.BridgeGame;
 import bridge.util.BridgeMaker;
 import bridge.util.BridgeRandomNumberGenerator;
@@ -9,8 +14,8 @@ import bridge.view.OutputView;
 
 import java.util.List;
 
-import static bridge.domain.BridgeBlock.convertType;
-import static bridge.domain.BridgeBlock.valueOf;
+import static bridge.domain.bridge.BridgeBlock.convertType;
+import static bridge.domain.bridge.BridgeBlock.valueOf;
 
 public class BridgeController {
 
@@ -31,19 +36,20 @@ public class BridgeController {
         Bridge bridge = new Bridge(convertType(makeBridgeByInputSize()));
 
         while (gameState.isKeepGoing() && bridge.size() > phase.getCurrentPhase()) {
-            BridgeBlock inputBlock = valueOf(inputView.readMoving());
-
-            MovingResult movingResult = bridgeGame.move(bridge, inputBlock, phase);
-            bridgeResult.addResult(movingResult);
+            MovingResult moveResult = bridgeGame.move(bridge, getInputBlock(), phase);
+            bridgeResult.addResult(moveResult);
             outputView.printMap(bridgeResult);
-
-            checkRetry(bridgeResult, gameState, movingResult);
+            checkRetry(bridgeResult, gameState, moveResult);
         }
         outputView.printResult(bridgeResult, gameState);
     }
 
-    private void checkRetry(BridgeResult bridgeResult, GameState gameState, MovingResult movingResult) {
-        if (movingResult.getState().equals("X")) {
+    private BridgeBlock getInputBlock() {
+        return valueOf(inputView.readMoving());
+    }
+
+    private void checkRetry(BridgeResult bridgeResult, GameState gameState, MovingResult moveResult) {
+        if (moveResult.getState().equals("X")) {
             bridgeGame.retry(bridgeResult, gameState, inputView.readGameCommand());
         }
     }
