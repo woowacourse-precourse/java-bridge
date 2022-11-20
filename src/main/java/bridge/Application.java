@@ -10,7 +10,7 @@ public class Application {
     public static void main(String[] args) {
         Controller controller = new Controller();
         try {
-            OutputView.printStartMsg();
+            OutputView.printStartMessage();
             controller.run(InputView.readBridgeSize());
         } catch (UserInputException e) {
             e.printStackTrace();
