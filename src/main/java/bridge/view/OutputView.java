@@ -10,14 +10,15 @@ public class OutputView {
 	private static final String PRINT_MAP_LAST_LETTER = " ]";
 	private static final String PRINT_MAP_DELIMITER = " | ";
 
-	private OutputView() {}
+	private OutputView() {
+	}
 
 	public static void printMap(ProgressMap result) {
 		List<List<String>> gameResult = result.getProgressMap();
 		String upBridge = createBridgeMap(gameResult.get(0));
 		String downBridge = createBridgeMap(gameResult.get(1));
 		System.out.println(upBridge);
-		System.out.println(downBridge+ "\n");
+		System.out.println(downBridge + "\n");
 	}
 
 	private static String createBridgeMap(List<String> progress) {
