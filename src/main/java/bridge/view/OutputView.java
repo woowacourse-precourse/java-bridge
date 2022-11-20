@@ -17,7 +17,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      *
-     * @param footPrints
+     * @param footPrints 현재까지 이동한 다리의 상태
      */
     public void printMap(String footPrints) {
         System.out.println(footPrints);
@@ -28,8 +28,8 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      *
-     * @param bridgeGame
-     * @param status
+     * @param bridgeGame 다리 건너기 게임 정보
+     * @param status     게임 상태
      */
     public void printResult(BridgeGame bridgeGame, GameStatus status) {
         System.out.println("최종 게임 결과");
