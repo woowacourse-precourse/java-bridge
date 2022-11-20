@@ -5,11 +5,13 @@ package bridge;
  */
 public class InputView {
 
+    public static final String INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        System.out.println(INPUT_BRIDGE_SIZE);
+        return Integer.parseInt(Console.readLine());
     }
 
     /**
