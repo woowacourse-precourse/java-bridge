@@ -30,10 +30,10 @@
 
 <br> <br>
 
-- [ ] 추가 요구사항
+- [x] 추가 요구사항
   - [x] BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.
-  - [ ] 메서드의 길이는 10줄을 넘지 않는다.
-  - [ ] 메서드의 파라미터 개수는 3개까지 허용한다.
+  - [x] 메서드의 길이는 10줄을 넘지 않는다.
+  - [x] 메서드의 파라미터 개수는 3개까지 허용한다.
 
 <br> <br>
 
@@ -46,5 +46,5 @@
     - [x] 현재 까지 건넌 다리를 모두 출력한다
 
 
-- [ ] 리팩토링
-  - [ ] 출력값(System.out.println("Some Message")) Enum 으로 처리하기
+- [x] 리팩토링
+  - [x] 출력값(System.out.println("Some Message")) Enum 으로 처리하기

@@ -5,20 +5,23 @@ import bridge.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static message.GameMessage.*;
+
 
 public class BridgeController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private final List<String> commands = new ArrayList<>();
+
 
     private int gameRound = 1;
     private String gameResult = "";
-    private final List<String> commands = new ArrayList<>();
 
-    
+
     public void settingGame() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
-        System.out.println("다리의 길이를 입력해주세요.");
+        System.out.println(START_GAME.getStatus());
+        System.out.println(BRIDGE_LENGTH.getStatus());
         List<String> bridge = getBridge();
 
         run(bridge);
@@ -39,7 +42,7 @@ public class BridgeController {
             commands.add(command);
             outputView.commandChecker(bridge, commands, i);
             if (!(bridge.get(i).equals(command))) break;
-            gameResult = "성공";
+            gameResult = SUCCESS_MESSAGE.getStatus();
         }
         if (!(commands.equals(bridge))) restart(bridge);
     }
@@ -48,19 +51,19 @@ public class BridgeController {
     private void restart(List<String> bridge) {
         String retry = retryCommand();
 
-        if (retry.equals("R")) {
+        if (retry.equals(RETRY_R_COMMAND.getStatus())) {
             gameManager();
             run(bridge);
         }
-        if (retry.equals("Q")) gameResult = "실패";
+        if (retry.equals(RETRY_Q_COMMAND.getStatus())) gameResult = FAIL_MESSAGE.getStatus();
     }
 
 
     private void printGameResult() {
-        System.out.println("최종 게임 결과");
+        System.out.println(FINAL_RESULT.getStatus());
         outputView.printResult();
-        System.out.println("게임 성공 여부: " + gameResult);
-        System.out.println("총 시도한 횟수: " + gameRound);
+        System.out.println(GAME_RESULT.getStatus() + gameResult);
+        System.out.println(GAME_ROUND.getStatus() + gameRound);
     }
 
 
@@ -71,15 +74,14 @@ public class BridgeController {
 
 
     private String moveCommand() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println(MOVE_COMMAND.getStatus());
         String command = inputView.readMoving();
         return command;
     }
 
 
     private String retryCommand() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        gameResult = "실패";
+        System.out.println(RETRY_COMMAND.getStatus());
         String command = inputView.readGameCommand();
         return command;
     }
