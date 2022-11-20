@@ -18,4 +18,8 @@ public class MovingResult {
         return result;
     }
 
+    public boolean isSuccess() {
+        return result.equals("O");
+    }
+
 }
