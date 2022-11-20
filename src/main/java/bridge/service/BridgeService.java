@@ -23,4 +23,7 @@ public class BridgeService {
         bridgeGame.move(bridgeMoving);
         return bridgeGame.toResponseDto();
     }
+
+    public void retryGame() {
+    }
 }

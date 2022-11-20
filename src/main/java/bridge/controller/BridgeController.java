@@ -8,6 +8,8 @@ import bridge.view.OutputView;
 
 public class BridgeController {
     private final BridgeService bridgeService;
+    private static final String GAME_RESTART_KEY = "R";
+    private static final String GAME_QUIT_KEY = "Q";
 
     public BridgeController(BridgeService bridgeService) {
         this.bridgeService = bridgeService;
@@ -76,9 +78,16 @@ public class BridgeController {
 
 
     private void checkRestart(String inputGameRestart, BridgeCrossingDTO bridgeCrossingDTO) {
+        if (inputGameRestart.equals(GAME_QUIT_KEY)) {
+            outputGameResult(bridgeCrossingDTO.getCrossStatus(), bridgeCrossingDTO.getTryCount());
+        }
+        if (inputGameRestart.equals(GAME_RESTART_KEY)) {
+            bridgeService.retryGame();
+            moveOnTheBridge(inputBridgeMove());
+        }
     }
+
     private void outputGameResult(String crossStatus, int tryCount) {
-
+        OutputView.printResult(crossStatus, tryCount);
     }
-
 }

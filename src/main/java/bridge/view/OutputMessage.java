@@ -14,7 +14,9 @@ public enum OutputMessage {
     // Output 관련 멘트
     START_SQUARE_BRACKET("[ "),
     END_SQUARE_BRACKET(" ]"),
-    VERTICAL_BAR(" | ");
+    VERTICAL_BAR(" | "),
+    IS_GAME_CLEAR("게임 성공 여부: %s\n"),
+    RETRY_COUNT("총 시도한 횟수: %d\n");
 
     private static final String errorMessagePrefix = "[ERROR] ";
     private final String outputMessage;
