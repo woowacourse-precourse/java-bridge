@@ -41,7 +41,7 @@ public class OutputView {
                             GameResult gameResult) {
         System.out.println("최종 게임 결과");
         printMap(bridge, gameResult.getMoveResult());
-        System.out.printf("게임 성공 여부: %s\n", getSuccessMessage(gameResult));
+        System.out.printf("게임 성공 여부: %s\n", getGameClearResultMessage(gameResult));
         System.out.printf("총 시도한 횟수: %s\n", gameResult.getTryCount());
     }
 
@@ -55,8 +55,8 @@ public class OutputView {
         return Map.of(UPPER_BLOCKS_KEY, BLANK, LOWER_BLOCKS_KEY, resultMark);
     }
 
-    private String getResultMark(boolean isSuccess) {
-        if (isSuccess) {
+    private String getResultMark(boolean success) {
+        if (success) {
             return ANSWER_IS_RIGHT;
         }
         return ANSWER_IS_WRONG;
@@ -94,7 +94,7 @@ public class OutputView {
         System.out.printf("[ %s ]\n", String.join(" | ", blocks));
     }
 
-    private String getSuccessMessage(GameResult gameResult) {
+    private String getGameClearResultMessage(GameResult gameResult) {
         if (gameResult.isGameClear()) {
             return GAME_SUCCESS;
         }
