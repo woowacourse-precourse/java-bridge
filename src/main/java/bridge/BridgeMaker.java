@@ -21,7 +21,7 @@ public class BridgeMaker {
         try {
             isValid(number);
         } catch (IllegalArgumentException e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
             number = requestReadBridegeSize();
         }
         return number;

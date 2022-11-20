@@ -7,7 +7,7 @@ public class BridgePlay {
         try {
             isValidMove(moveCommand);
         } catch (IllegalArgumentException e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
             moveCommand = inputView.readMoving();
         }
         return moveCommand;
@@ -24,7 +24,7 @@ public class BridgePlay {
         try {
             isValidRetry(retryCommand);
         } catch (IllegalArgumentException e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
             retryCommand = inputView.readGameCommand();
         }
         return retryCommand;

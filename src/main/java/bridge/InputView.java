@@ -18,8 +18,8 @@ public class InputView {
             bridgeSize = convertToInt(Console.readLine());
         }
         catch (IllegalArgumentException e) {
-            e.getMessage();
-            bridgeSize = convertToInt(Console.readLine());
+            System.out.println(e.getMessage());
+            bridgeSize = readBridgeSize();
         }
         return bridgeSize;
     }

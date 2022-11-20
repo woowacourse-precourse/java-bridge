@@ -18,7 +18,7 @@ public class Application {
                 break;
             }
             outputView.printRequestToInputRetryCommand();
-            retry = bridgeGame.retry(); // 재시도
+            retry = bridgeGame.retry();
         }
         outputView.printResult(bridgeGame);
     }
