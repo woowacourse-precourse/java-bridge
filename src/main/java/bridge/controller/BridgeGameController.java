@@ -1,4 +1,4 @@
-package bridge.Controller;
+package bridge.controller;
 
 import bridge.BridgeGame;
 import bridge.InputView;
