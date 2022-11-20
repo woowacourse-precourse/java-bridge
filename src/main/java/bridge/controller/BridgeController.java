@@ -88,12 +88,12 @@ public class BridgeController {
     }
 
     private void printFailureGameResult() {
-        classConfig.outputView().printResult(new Result(FAILURE, count));
+        classConfig.outputView().printResult(new Result(FAILURE.getGameResult(), count));
     }
 
     private void printSuccessGameResult() {
         if (correctBridge) {
-            classConfig.outputView().printResult(new Result(SUCCESS, count));
+            classConfig.outputView().printResult(new Result(SUCCESS.getGameResult(), count));
         }
     }
 }
