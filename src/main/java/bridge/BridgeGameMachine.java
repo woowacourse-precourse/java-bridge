@@ -24,31 +24,36 @@ public class BridgeGameMachine {
         int bridgeSize = inputBridgeSize();
         BridgeGame bridgeGame = createNewGame(bridgeSize);
 
-        while (true) {
-            String moving = inputMoving();
-            bridgeGame.move(moving);
-            printMovingMap(bridgeGame);
-
-            if (!bridgeGame.canContinue()) {
-                if (!bridgeGame.isLatestMovingSuccess()) {
-                    String gameCommand = inputGameCommand();
-
-                    if ("R".equals(gameCommand)) {
-                        bridgeGame.retry();
-                        continue;
-                    }
-                }
-
-                break;
-            }
+        while (bridgeGame.isGameEnd()) {
+            playOneTurn(bridgeGame);
         }
 
         printResult(bridgeGame);
     }
 
+    private void playOneTurn(BridgeGame bridgeGame) {
+        String moving = inputMoving();
+        bridgeGame.move(moving);
+        printMovingMap(bridgeGame);
+
+        if (!bridgeGame.canContinue() && bridgeGame.isGameEnd()) {
+            checkRetry(bridgeGame);
+        }
+    }
+
+    private void checkRetry(BridgeGame bridgeGame) {
+        String gameCommand = inputGameCommand();
+        if ("R".equals(gameCommand)) {
+            bridgeGame.retry();
+        }
+        if ("Q".equals(gameCommand)) {
+            bridgeGame.finishGame();
+        }
+    }
+
     private void printResult(BridgeGame bridgeGame) {
         MovingMap movingMap = bridgeGame.getMovingMap();
-        boolean isClear = bridgeGame.isClear();
+        boolean isClear = bridgeGame.isGameClear();
         int tryCount = bridgeGame.getTryCount();
         outputView.printResult(movingMap, isClear, tryCount);
     }

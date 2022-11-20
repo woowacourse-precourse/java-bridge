@@ -14,12 +14,14 @@ public class BridgeGame {
     private final Player player;
     private final MovingMap movingMap;
     private int tryCount;
+    private boolean isEnd;
 
     public BridgeGame(List<String> bridge, Player player) {
         this.bridge = bridge;
         this.player = player;
         movingMap = new MovingMap();
         tryCount = 1;
+        isEnd = false;
     }
 
     /**
@@ -28,13 +30,25 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move(String moving) {
+        assertGameIsNotEnd();
+
         player.move(moving);
         movingMap.addMoving(moving, isLatestMovingSuccess());
     }
 
+    private void assertGameIsNotEnd() {
+        if (isEnd) {
+            throw new IllegalStateException("게임이 이미 종료 되었습니다.");
+        }
+    }
+
     public boolean canContinue() {
+        if (isEnd) {
+            return false;
+        }
+
         if (player.getPosition() > 0) {
-            return isLatestMovingSuccess() && !isPlayerLocatedEnd();
+            return !isLatestMovingSuccess() && !isPlayerLocatedEnd();
         }
 
         return true;
@@ -47,15 +61,19 @@ public class BridgeGame {
         return position == endPosition;
     }
 
-    public boolean isLatestMovingSuccess() {
+    private boolean isLatestMovingSuccess() {
         String latestMoving = player.getLatestMoving();
         int position = player.getPosition();
 
         return bridge.get(position).equals(latestMoving);
     }
 
-    public boolean isClear() {
-        return isPlayerLocatedEnd() && isLatestMovingSuccess();
+    public boolean isGameEnd() {
+        return !isEnd;
+    }
+
+    public boolean isGameClear() {
+        return isEnd && isLatestMovingSuccess();
     }
 
     /**
@@ -67,6 +85,10 @@ public class BridgeGame {
         tryCount++;
         player.reset();
         movingMap.clear();
+    }
+
+    public void finishGame() {
+        isEnd = true;
     }
 
     public int getTryCount() {
