@@ -1,9 +1,6 @@
 package bridge.service;
 
-import bridge.model.Bridge;
-import bridge.model.GameStatus;
-import bridge.model.Moving;
-import bridge.model.Player;
+import bridge.model.*;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -11,6 +8,7 @@ import bridge.model.Player;
 public class BridgeGame {
     private final Bridge bridge;
     private GameStatus gameStatus;
+    private TrialCount trialCount;
 
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
@@ -18,6 +16,7 @@ public class BridgeGame {
 
     public void initialize() {
         gameStatus = GameStatus.PLAY;
+        trialCount = TrialCount.initialCount();
     }
 
     /**
