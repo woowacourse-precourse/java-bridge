@@ -127,11 +127,11 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printBeforeMap(int level) {
-        String result = goToBackSB(level);
+        String result = goToBeforeLevelSB(level);
         System.out.println(result);
     }
 
-    private String goToBackSB(int level) {
+    private String goToBeforeLevelSB(int level) {
         String result = "";
         if (level == 0) {
             sb1.delete(0, sb1.length());
