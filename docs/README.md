@@ -24,8 +24,9 @@ String answer = readLine();
 ```
 -------------------
 ### 생각 해야 할 것!
-1. InputView에 있는 OutputView 객체 제거해보기
+1. InputView 에 있는 OutputView 객체 제거해보기
 2. UI 메세지들 모두 모아서 처리해보기..?
+3. main 함수 줄 10줄 넘어감. 분리 필요!
 -------------------
 ## 필요한 기능 목록
 
@@ -56,7 +57,8 @@ String answer = readLine();
         이번 다리의 UP or DOWN을 랜덤하게 결정해줌: bridgeNumberGenerator.generate() 이용
 ###### InputView
     1. readBridgeSize()
-        세부 내용 작성: try-catch 구문을 이용하여 오류 발생시, OutputView의 printError로 오류 출력 후 다시 입력 받기
+        세부 내용 작성: try-catch 구문을 이용하여 다리 크기를 입력 받음. 
+            오류 발생시, OutputView의 printError로 오류 출력 후 다시 입력 받기
     2. validateSizeNotNumber()
         입력 값이 숫자로 이루어져있으면, int로 변환하여 반환
         입력 값이 숫자가 아니라면, 에러를 발생시키고 "다리 길이는 숫자를 입력해야 합니다." 를 에러메세지로 넘김.
@@ -79,7 +81,8 @@ String answer = readLine();
         인자로 String movement를 받아오도록 함.
 ###### InputView
     1. readMoving()
-        세부 내용 작성: try-catch 구문을 이용하여 오류 발생시, OutputView의 printError로 오류 출력 후 다시 입력 받기
+        세부 내용 작성: try-catch 구문을 이용하여 움직임 입력 받음.
+            오류 발생시, OutputView의 printError로 오류 출력 후 다시 입력 받기
     2. validateMovement()
         입력 값이 'U' 또는 'D'가 아니라면, 에러를 발생시키고 "이동할 칸은 'U' 또는 'D' 만 입력 가능합니다." 를 에러메세지로 넘김.
 ###### OutputView
@@ -115,7 +118,19 @@ String answer = readLine();
 ### 4. 다리 건너기 실패 &rarr; 게임 재시작 or 종료 입력 받기
 
 #### 추가한 기능 목록
-
+###### Application
+    1. boolean playing field 추가
+        while문을 돌며, move를 하고, 성공 여부를 받아 playing에 저장.
+        playing이 false가 되면(move 실패 시), retry를 입력받음.
+###### InputView
+    1. readGameCommand()
+        세부 내용 작성: try-catch 구문을 이용하여 게임 커맨드를 입력받음.
+            오류 발생시, OutputView의 printError로 오류 출력 후 다시 입력 받기
+    2. validateGameCommand()
+        입력 값이 'R' 또는 'Q'가 아니라면, 에러를 발생시키고 "커맨드는 'R' 또는 'Q' 만 입력 가능합니다." 를 에러메세지로 넘김.
+###### OutputView
+    1. printAskRetry()
+        다시하기 여부를 묻는 문구 출력
 -------------------
 ### 5. 재시작시, 기존 다리 재사용하기
 
