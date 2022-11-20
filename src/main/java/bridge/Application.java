@@ -24,6 +24,7 @@ public class Application {
                 if (userGameCommand.equals("R")){
                     bridgeGame.retry();
                 }
+                break;
             }
         }while (!bridgeGame.compareMoveCount(brideSize));
     }
