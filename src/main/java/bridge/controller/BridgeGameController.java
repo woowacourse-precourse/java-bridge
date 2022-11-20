@@ -25,7 +25,11 @@ public class BridgeGameController {
 
     private void play() {
         player.tryGame();
-        OutputView.askMove();
-        String nextLocation = player.inputMove();
+        boolean isMoving;
+        do {
+            OutputView.askMove();
+            String nextLocation = player.inputMove();
+            isMoving = bridgeGame.move(nextLocation, player.getCurrentIndex() + 1);
+        } while (isMoving);
     }
 }

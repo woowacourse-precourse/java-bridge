@@ -8,4 +8,8 @@ public class Bridge {
     public Bridge(List<String> bridge) {
         this.bridge = bridge;
     }
+
+    public boolean isConnected(String location, int index) {
+
+    }
 }

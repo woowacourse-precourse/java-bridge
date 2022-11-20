@@ -3,12 +3,17 @@ package bridge.model;
 import bridge.view.InputView;
 
 public class Player {
-    private int currentLocation;
+    private int currentIndex;
     private int tries;
     public Player() {
-        this.currentLocation = -1;
+        this.currentIndex = -1;
         this.tries = 0;
     }
+
+    public int getCurrentIndex() {
+        return this.currentIndex;
+    }
+
     public int inputBridgeSize() {
         return InputView.readBridgeSize();
     }
