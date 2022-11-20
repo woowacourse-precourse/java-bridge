@@ -118,8 +118,8 @@
 #### (2) 사용 제한
 - [x] `System.exit()`을 통한 종료를 하지 않았는가
 - [x] 3항 연산자를 쓰지 않았는가
-- [ ] `else` 예약어를 사용하지 않았는가
-- [ ] `BridgeGame`  에서 `InputView` `OutputView`을 사용하지 않았는가
+- [x] `else` 예약어를 사용하지 않았는가
+- [x] `BridgeGame`  에서 `InputView` `OutputView`을 사용하지 않았는가
 
 #### (3) 코드 작성 제한
 - [x] <u>**블럭 들여쓰기에 +4 스페이스**</u>가 올바르게 쓰였는가
