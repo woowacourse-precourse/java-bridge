@@ -23,4 +23,15 @@ public class ParserTest {
         assertThatThrownBy(() ->
                 new Parser().parseBridgeSize("21")).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 칸_이동_예외_처리() {
+        assertThatThrownBy(() ->
+                new Parser().parseMoving("d")).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 칸_이동_올바른_입력() {
+        assertThat(new Parser().parseMoving("U")).isEqualTo("U");
+    }
 }
