@@ -7,7 +7,7 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
-
+    private int tryNumber;
     private User user = new User();
     private List<String> bridge;
 
@@ -15,9 +15,11 @@ public class BridgeGame {
         startGame();
         makeBridge();
         move();
+        retry();
     }
 
     private void startGame() {
+        tryNumber = 1;
         ViewMessage.printGameStartMessage();
         user.resetUserMoving();
     }
@@ -31,6 +33,7 @@ public class BridgeGame {
         int bridgeSize = InputView.readBridgeSize();
         bridge = bridgeMaker.makeBridge(bridgeSize);
     }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
@@ -38,7 +41,7 @@ public class BridgeGame {
      */
     public void move() {
         boolean moveSuccess = true;
-        while(moveSuccess) {
+        while (moveSuccess) {
             String moving = getMoving();
             List<String> userMoving = user.recordUserMoving(moving);
             moveSuccess = OutputView.printMap(userMoving, bridge);
@@ -56,6 +59,13 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    private void retry() {
+        ViewMessage.printGameCommandInputRequest();
+        String gameCommand = InputView.readGameCommand();
+        if (gameCommand.equals("R")) {
+            user.resetUserMoving();
+            tryNumber++;
+            move();
+        }
     }
 }

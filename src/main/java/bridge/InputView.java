@@ -45,19 +45,32 @@ public class InputView {
     }
 
     public static void validateMoving(String moving) {
-        if(isNotUD(moving)){
+        if (isNotUD(moving)) {
             throw new IllegalArgumentException("[ERROR] 이동할 칸에 대한 입력은 'U' 또는 'D'여야 합니다.");
         }
     }
 
-    private static boolean isNotUD (String moving) {
+    private static boolean isNotUD(String moving) {
         return !moving.equals("U") && !moving.equals("D");
     }
-    
+
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public String readGameCommand() {
-        return null;
+    public static String readGameCommand() {
+        String gameCommand = Console.readLine();
+        validateGameCommand(gameCommand);
+
+        return gameCommand;
+    }
+
+    private static void validateGameCommand(String gameCommand) {
+        if(isNotRQ(gameCommand)){
+            throw new IllegalArgumentException("[ERROR] 게임 재시작/종료 여부에 대한 입력은 'R' 또는 'Q'여야 합니다.");
+        }
+    }
+
+    private static boolean isNotRQ(String gameCommand) {
+        return !gameCommand.equals("R") && !gameCommand.equals("Q");
     }
 }

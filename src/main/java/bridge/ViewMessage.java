@@ -12,4 +12,8 @@ public class ViewMessage {
     public static void printMovingInputRequest() {
         System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
     }
+
+    public static void printGameCommandInputRequest() {
+        System.out.println("게임을 다시 시도할지 여부를 입력후재세요. (재시도: R, 종료: Q)");
+    }
 }

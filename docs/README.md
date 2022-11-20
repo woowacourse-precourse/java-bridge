@@ -16,18 +16,18 @@
   - [x] 0이 나오면 아래칸, 1이 나오면 위 칸이 건널 수 있는 칸이 된다. (BridgeMaker # makeOneBlock)
 ### 3. 게임 진행하기
 #### 1) 유저 위치 초기화
-- [ ] 유저의 위치를 초기화 한다. (BridgeGame # resetStartPoint)
+- [x] 유저의 위치를 초기화 한다. (User # resetStartPoint)
 #### 2) 이동할 칸 입력 받기
 - [x] 이동할 칸 입력 요청 문구를 출력한다. (ViewMessage # printMovingInputRequest)
 - [x] 이동할 칸을 입력 받는다. ('U' or 'D') (InputView # readMoving)
 - [x] 입력 받은 명령어에 대한 유효성 검사를 한다. (InputView # validateMoving)
 #### 3) 유저 이동하기
-- [ ] 입력 받은 명령어에 맞춰 유저를 이동한다. (BridgeGame # move)
-- [ ] 이동한만큼 다리를 출력한다. (OutputView # printMap)
-- [ ] 이동한 곳이 'X'인 경우 재시작 여부 입력 요청 문구를 출력한다. (ViewMessage # printGameCommandInputRequest)
-    - [ ] 재시작 여부를 입력 받는다. (InputView # readGameCommand)
-    - [ ] 입력받은 재시작 여부에 대한 유효성 검사를 한다. (InputView # validateGameCommand)
-    - [ ] 'R'을 입력 받으면 시도 횟수 +1을 하고, '2.게임 진행하기' 로 돌아간다. (BridgeGame # retry)
+- [x] 입력 받은 명령어에 맞춰 유저를 이동한다. (BridgeGame # move)
+- [x] 이동한만큼 다리를 출력한다. (OutputView # printMap)
+- [x] 이동한 곳이 'X'인 경우 재시작 여부 입력 요청 문구를 출력한다. (ViewMessage # printGameCommandInputRequest)
+    - [x] 재시작 여부를 입력 받는다. (InputView # readGameCommand)
+    - [x] 입력받은 재시작 여부에 대한 유효성 검사를 한다. (InputView # validateGameCommand)
+    - [x] 'R'을 입력 받으면 시도 횟수 +1을 하고, '2.게임 진행하기' 로 돌아간다. (BridgeGame # retry)
     - [ ] 'Q'를 입력 받으면 게임을 종료한다. (BridgeGame # quitGame)
         - [ ] 게임 성공 여부 실패를 출력한다. (OutputView # printResult)
         - [ ] 시도 횟수를 출력한다. (OutputView # printResult)
