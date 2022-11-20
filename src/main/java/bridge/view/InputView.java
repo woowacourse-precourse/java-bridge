@@ -48,7 +48,7 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("자연수를 입력해주세요.");
+            throw new IllegalArgumentException("자연수를 입력하셔야 합니다.");
         }
     }
 }
