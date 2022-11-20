@@ -49,7 +49,7 @@ public class InputView {
     }
 
     private static void validateIsUOrD(String input) {
-        if (input.equals("U") || input.equals("D")) {
+        if (!(input.equals("U") || input.equals("D"))) {
             System.out.println(INVALID_VALUE);
             throw new IllegalArgumentException();
         }
