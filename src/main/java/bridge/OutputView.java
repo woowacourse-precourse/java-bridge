@@ -36,5 +36,14 @@ public class OutputView {
         printTryCount();
     }
 
+    public void printIsGameSuccess() {
+        Message.printGame();
+        if (application.getIsGame()) {
+            Message.gameSuccess();
+            return;
+        }
+        Message.gameFail();
+    }
+
 
 }
