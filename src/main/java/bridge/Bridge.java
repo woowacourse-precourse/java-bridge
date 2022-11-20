@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bridge {
+
 	private List<String> bridge;
 	private List<String> upperBridge = new ArrayList<>();
 	private List<String> lowerBridge = new ArrayList<>();
@@ -14,21 +15,21 @@ public class Bridge {
 	}
 
 	private void buildUpperLower() {
-		for(String shape : bridge) {
+		for (String shape : bridge) {
 			up(shape);
 			down(shape);
 		}
 	}
 
 	private void up(String shape) {
-		if(shape.equals("U")) {
+		if (shape.equals("U")) {
 			upperBridge.add(" O ");
 			lowerBridge.add(" X ");
 		}
 	}
 
 	private void down(String shape) {
-		if(shape.equals("D")) {
+		if (shape.equals("D")) {
 			upperBridge.add(" X ");
 			lowerBridge.add(" O ");
 		}
