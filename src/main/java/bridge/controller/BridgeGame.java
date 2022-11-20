@@ -43,6 +43,7 @@ public class BridgeGame {
      */
     public void move() {
         String moving=inputView.readMoving();
+        bridge.getMoveResult(moving);
     }
 
     /**

@@ -8,4 +8,9 @@ public class Bridge {
     public Bridge(List<String> bridge){
         this.bridge=bridge;
     }
+    public List<String> getBridge(){return  bridge;}
+    public boolean getMoveResult(String moving){
+        if(bridge.get(0).equals(moving)) { return true; }
+        return false;
+    }
 }
