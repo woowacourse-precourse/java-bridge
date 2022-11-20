@@ -440,10 +440,11 @@ int number=bridgeNumberGenerator.generate();
         * class: **BridgeGame** - 다리 건너기 게임을 관리
             * fields
                 * bridge_answer - 정답 다리
-                * bridge_userPredict - 사용자가 현재까지 건넌 다리
+                * bridge_userMove - 사용자가 다리 상에서 이동한 위치를 저장 (List)
                 * enum BridgeShape - 다리 모양의 숫자 값(0, 1), 문자 값("U", "D") 저장
             * methods
                 * setBridgeAnswer - 정답 다리 값 저장
+                * getBridge_userMove - 사용자의 다리 상 이동 위치 List 반환
                 * move - 칸 이동
                 * retry - 게임을 다시 시도
     *
