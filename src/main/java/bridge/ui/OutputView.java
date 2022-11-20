@@ -12,38 +12,37 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<String> bridge, List<String> userInput, List<String> userStatus) {
+    public void printMap(List<String> bridge, List<String> userInput) {
         int size = userInput.size();
-        String upResult = "[";
-        String downResult = "[";
+        String upResult = "[ ";
+        String downResult = "[ ";
 
         for (int i = 0; i < size; i++) {
-            if (userInput.get(i) == "U" && userStatus.get(i) == "O") {
-                upResult += "O";
+            String x = isSame(bridge.get(i), userInput.get(i));
+            if (userInput.get(i).equals("U")) {
+                upResult += x;
                 downResult += " ";
             }
-            if (userInput.get(i) == "U" && userStatus.get(i) == "X") {
-                upResult += "X";
-                downResult += " ";
-            }
-            if (userInput.get(i) == "D" && userStatus.get(i) == "O") {
+            if (userInput.get(i).equals("D")) {
                 upResult += " ";
-                downResult += "O";
-            }
-            if (userInput.get(i) == "D" && userStatus.get(i) == "X") {
-                upResult += " ";
-                downResult += "X";
+                downResult += x;
             }
             if (i != size - 1) {
                 upResult += " | ";
                 downResult += " | ";
             }
         }
-        upResult += "]";
-        downResult += "]";
-
+        upResult += " ]";
+        downResult += " ]";
         System.out.println(upResult);
         System.out.println(downResult);
+    }
+
+    private String isSame(String bridge, String userInput) {
+        if (bridge.equals(userInput)) {
+            return "O";
+        }
+        return "X";
     }
 
     /**
