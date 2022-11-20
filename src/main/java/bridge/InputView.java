@@ -6,6 +6,8 @@ import camp.nextstep.edu.missionutils.Console;
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
+    private final OutputView outputView = new OutputView();
+
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     private static final int MIN_BRIDGE_SIZE = 3;
@@ -15,6 +17,7 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
+        outputView.printBridgeSizeGuide();
         String input = Console.readLine();
 
         validateBridgeSize(input);
@@ -49,6 +52,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+        outputView.printMovingGuide();
         String input = Console.readLine();
 
         validateMoving(input);
@@ -70,6 +74,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public boolean readGameCommand() {
+        outputView.printGameCommandGuide();
         String input = Console.readLine();
 
         validateGameCommand(input);

@@ -18,6 +18,7 @@ public class GameSimulator {
         do {
             trial++;
             userRoute = startGameRound(bridge);
+            outputView.printMap(userRoute, bridge);
         } while (gameover(bridge));
         quitGame(trial, bridge, userRoute);
     }

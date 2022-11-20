@@ -25,8 +25,10 @@ public class OutputView {
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
+     * @param userRoute
+     * @param bridge
      */
-    public void printMap() {
+    public void printMap(List<String> userRoute, List<String> bridge) {
     }
 
     /**
