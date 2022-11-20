@@ -1,6 +1,7 @@
 package bridge.domain;
 
-import bridge.constant.BridgeGameConstant;
+import bridge.constant.BridgeGameConstants;
+import bridge.constant.message.InputExceptionMessage;
 
 public class Checker {
     private static final Checker checker = new Checker();
@@ -16,22 +17,22 @@ public class Checker {
     public void validateBridgeSize(String bridgeSize) {
         try {
             if (!checkBridgeSizeRange(Integer.parseInt(bridgeSize))) {
-                throw new IllegalArgumentException(InputExceptionMessage.WRONG_BRIDGE_SIZE.getMessage());
+                throw new IllegalArgumentException(InputExceptionMessage.WRONG_BRIDGE_SIZE);
             }
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(InputExceptionMessage.WRONG_BRIDGE_SIZE.getMessage());
+            throw new IllegalArgumentException(InputExceptionMessage.WRONG_BRIDGE_SIZE);
         }
     }
 
     public void validateMoving(String moving) {
         if (!checkMovingValue(moving)) {
-            throw new IllegalArgumentException(InputExceptionMessage.WRONG_MOVING.getMessage());
+            throw new IllegalArgumentException(InputExceptionMessage.WRONG_MOVING);
         }
     }
 
     public void validateGameCommand(String gameCommand) {
         if (!checkGameCommandValue(gameCommand)) {
-            throw new IllegalArgumentException(InputExceptionMessage.WRONG_GAME_COMMAND.getMessage());
+            throw new IllegalArgumentException(InputExceptionMessage.WRONG_GAME_COMMAND);
         }
     }
 
@@ -44,7 +45,7 @@ public class Checker {
     }
 
     private boolean checkGameCommandValue(String gameCommand) {
-        return gameCommand.equals(BridgeGameConstant.GAME_RESTART)
-                || gameCommand.equals(BridgeGameConstant.GAME_QUIT);
+        return gameCommand.equals(BridgeGameConstants.GAME_RESTART)
+                || gameCommand.equals(BridgeGameConstants.GAME_QUIT);
     }
 }
