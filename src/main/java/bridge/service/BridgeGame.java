@@ -2,6 +2,7 @@ package bridge.service;
 
 import bridge.domain.Bridge;
 import bridge.domain.User;
+import bridge.support.BridgeLogger;
 import bridge.utils.GameStatus;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import static bridge.utils.GameStatus.*;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private final BridgeLogger logger;
     private GameStatus status = PLAYING;
     private int tryCount = 1;
 
@@ -21,6 +23,7 @@ public class BridgeGame {
     public BridgeGame(List<String> floors) {
         user = new User();
         bridge = new Bridge(floors);
+        logger = new BridgeLogger();
     }
 
     /**
@@ -30,6 +33,7 @@ public class BridgeGame {
      */
     public void move(String input) {
         user.move(bridge, input);
+        logger.log(input, user.isLive());
         if (!user.isLive()) {
             this.status = LOSE;
         }
@@ -58,5 +62,9 @@ public class BridgeGame {
 
     public int getTryCount() {
         return tryCount;
+    }
+
+    public String getResultMap() {
+        return logger.toString();
     }
 }
