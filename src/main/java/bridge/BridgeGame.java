@@ -33,6 +33,7 @@ public class BridgeGame {
         outputView.printMap(bridgeForPrint);
         // 맞추기 실패 시 재시도
         if (!moving.equals(bridge.get(currentPosition))) {
+            return retry();
         }
         // 정답 시 현재 위치 + 1
         currentPosition += 1;
@@ -51,8 +52,17 @@ public class BridgeGame {
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      */
-    public void retry() {
-
+    public String retry() {
+        String gameCommand = new InputView().readGameCommand();
+        if (gameCommand.equals("R")) {
+            addTrialCount();
+            initCurrentPosition();
+            initBridgeForPrint();
+            return "Retry";
+        }
+        // 최종 결과 출력
+        outputView.printResult(bridgeForPrint, trialCount);
+        return "GameOver";
     }
 
     private void addTrialCount() {
@@ -71,5 +81,13 @@ public class BridgeGame {
             return;
         }
         bridgeForPrint.add(moving + "X");
+    }
+
+    private void initCurrentPosition() {
+        currentPosition = 0;
+    }
+
+    private void initBridgeForPrint() {
+        bridgeForPrint = new ArrayDeque<>();
     }
 }
