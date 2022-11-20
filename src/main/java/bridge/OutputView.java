@@ -25,8 +25,7 @@ public class OutputView {
         System.out.println(UpResult);
         System.out.println(DownResult);
     }
-    public void makeResult(String Result,String input,int count,boolean gameset){
-        count++;
+    public boolean makeResult(String Result,String input,boolean gameSet){
         if (Result.equals(input)){//정답일때
             if (input.equals("U")){
                 // up 이면
@@ -42,13 +41,14 @@ public class OutputView {
                 // up 이면
                 upResultList.add(" X ");
                 downResultList.add("   ");
-                gameset=true;
+                gameSet=true;
             }else {
                 upResultList.add("   ");
                 downResultList.add(" X ");
-                gameset=true;
+                gameSet=true;
             }
         }
+        return gameSet;
     }
     public void printStart(){
         System.out.println("다리 건너기 게임을 시작합니다.");

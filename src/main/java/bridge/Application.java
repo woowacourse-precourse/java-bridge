@@ -10,7 +10,9 @@ public class Application {
         List<String> bridgeList = bridgeGame.start();
         for (String bridge : bridgeList){
             bridgeGame.move(bridge);
-            System.out.println("bridge = " + bridge);
+            if (bridgeGame.getGameSet()){
+                break;
+            }
         }
     }
 }

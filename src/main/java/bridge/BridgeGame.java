@@ -10,7 +10,12 @@ public class BridgeGame {
     OutputView outputView = new OutputView();
     BridgeMaker bridgeMaker = new BridgeMaker();
 
-    boolean gameSet = false;
+    private boolean gameSet = false;
+
+    public boolean getGameSet() {
+        return gameSet;
+    }
+
     int count = 0;
 
     /**
@@ -28,10 +33,9 @@ public class BridgeGame {
 
     public void move(String result) {
         String input = inputView.readMoving();
-        outputView.makeResult(result,input,count,gameSet);
+        this.gameSet = outputView.makeResult(result,input,gameSet);
         outputView.printMap();
     }
-
 
 
     /**
