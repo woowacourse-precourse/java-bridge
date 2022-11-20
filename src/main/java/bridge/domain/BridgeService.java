@@ -2,6 +2,7 @@ package bridge.domain;
 
 import bridge.BridgeNumberGenerator;
 import bridge.bridgemaker.BridgeMaker;
+import bridge.command.Size;
 import bridge.gamebridge.BridgeContainer;
 import bridge.command.Move;
 import bridge.result.Result;
@@ -17,8 +18,8 @@ public class BridgeService {
         this.bridgeContainer = new BridgeContainer();
     }
 
-    public void generateBridge(int size) {
-        List<String> squares = bridgeMaker.makeBridge(size);
+    public void generateBridge(Size size) {
+        List<String> squares = bridgeMaker.makeBridge(size.getSize());
         bridgeContainer.generateAnswerBridge(new Bridge(squares));
     }
 

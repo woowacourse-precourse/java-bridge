@@ -11,6 +11,7 @@ import bridge.BridgeNumberGenerator;
 import bridge.bridgemaker.BridgeMaker;
 import bridge.bridgemaker.TestBridgeNumberGenerator;
 import bridge.command.Move;
+import bridge.command.Size;
 import bridge.result.Result;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -34,7 +35,7 @@ public class BridgeServiceTest {
     void MoveToCrossAbleBridge() {
         BridgeNumberGenerator generator = new TestBridgeNumberGenerator(newArrayList(1, 0, 1, 1, 0));
         BridgeService bridgeService = new BridgeService(generator);
-        bridgeService.generateBridge(5);
+        bridgeService.generateBridge(new Size("5"));
 
         insertMove(List.of("U", "D", "U"), bridgeService);
         Result result = bridgeService.insertMove(new Move("U"));
@@ -47,7 +48,7 @@ public class BridgeServiceTest {
     void MoveToImpassableBridge() {
         BridgeNumberGenerator generator = new TestBridgeNumberGenerator(newArrayList(1, 0, 1, 1, 0));
         BridgeService bridgeService = new BridgeService(generator);
-        bridgeService.generateBridge(5);
+        bridgeService.generateBridge(new Size("5"));
 
         insertMove(List.of("U", "D", "U", "U"), bridgeService);
         Result result = bridgeService.insertMove(new Move("U"));
@@ -60,7 +61,7 @@ public class BridgeServiceTest {
     void MoveToGameClearBridge() {
         BridgeNumberGenerator generator = new TestBridgeNumberGenerator(newArrayList(1, 0, 1, 1, 0));
         BridgeService bridgeService = new BridgeService(generator);
-        bridgeService.generateBridge(5);
+        bridgeService.generateBridge(new Size("5"));
 
         insertMove(List.of("U", "D", "U", "U"), bridgeService);
         Result result = bridgeService.insertMove(new Move("D"));
