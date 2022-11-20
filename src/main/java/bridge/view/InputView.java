@@ -1,5 +1,6 @@
 package bridge.view;
 
+import bridge.domain.BridgeSize;
 import bridge.domain.InputException;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -13,9 +14,9 @@ public class InputView {
      */
     public int readBridgeSize() {
         String userBridgeSize = Console.readLine();
-        // TODO Bridge 길이 에러 처리
         validateBridgeSizeIsBlank(userBridgeSize);
-        validateBridgeInputFormat(userBridgeSize);
+        validateBridgeSizeFormat(userBridgeSize);
+        validateBridgeSizeRange(userBridgeSize);
         int bridgeSize = changeStringToInt(userBridgeSize);
         return bridgeSize;
     }
@@ -26,7 +27,7 @@ public class InputView {
         }
     }
 
-    public void validateBridgeInputFormat(String uncheckedInput) {
+    public void validateBridgeSizeFormat(String uncheckedInput) {
         try {
             changeStringToInt(uncheckedInput);
         } catch (NumberFormatException e) {
@@ -34,8 +35,15 @@ public class InputView {
         }
     }
 
-    public int changeStringToInt(String checkedInput) {
+    private int changeStringToInt(String checkedInput) {
         return Integer.parseInt(checkedInput);
+    }
+
+    public void validateBridgeSizeRange(String uncheckedInput) {
+        int bridgeSize = changeStringToInt(uncheckedInput);
+        if(bridgeSize < BridgeSize.SIZE_MINIMUM.getSize() || bridgeSize > BridgeSize.SIZE_MAXIMUM.getSize()) {
+            throw new IllegalArgumentException(InputException.OUT_OF_RANGE_BRIDGE_LENGTH.getExceptionMessage());
+        }
     }
 
     /**
