@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.domain.Player;
 import bridge.service.BridgeGame;
 import bridge.validation.BridgeSizeValidation;
 import bridge.validation.MovingValidation;
@@ -22,6 +23,7 @@ public class BridgeGameController {
         int bridgeSize = getBridgeSize();
         List<String> bridge = game.createBridge(bridgeSize);
         List<String> movingChoices = game.createMovingChoices(getMoving());
+        String move = game.move(new Player(movingChoices), bridge);
     }
 
     public int getBridgeSize() {
