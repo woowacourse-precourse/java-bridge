@@ -4,20 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGame {
-
+    BridgeMaker bridgeMaker;
     private final List<String> correctBridge;
     // upper,bottom bridge 상태에서 1은 O, 0은 X, 2는 가지 않음을 의미한다
     List<Integer> upperBridge;
     List<Integer> bottomBridge;
     public static Integer tryCount = 1;
 
-    public BridgeGame(List<String> correctBridge) {
-        this.correctBridge = correctBridge;
+    public BridgeGame(int size) {
+        BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+        bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+        this.correctBridge = bridgeMaker.makeBridge(size);
         this.upperBridge = new ArrayList<>();
         this.bottomBridge = new ArrayList<>();
     }
 
-    public Boolean move(String inputMoving, String nextBridge) {
+    public Boolean move(String inputMoving) {
+        String nextBridge = correctBridge.get(tryCount);
         if (correctBridge.get(tryCount).equals(inputMoving)) {
             makeBridgeSuccessState(nextBridge);
             return true;
@@ -56,9 +59,5 @@ public class BridgeGame {
     private void clearFailStage() {
         upperBridge.remove(upperBridge.size() - 1);
         bottomBridge.remove(bottomBridge.size() - 1);
-    }
-
-    public List<String> getCorrectBridge() {
-        return correctBridge;
     }
 }
