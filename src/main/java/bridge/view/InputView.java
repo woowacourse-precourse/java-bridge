@@ -1,7 +1,7 @@
 package bridge.view;
 
-import camp.nextstep.edu.missionutils.Console;
 import bridge.validate.Validator;
+import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
     public int readBridgeSize() {
@@ -12,9 +12,9 @@ public class InputView {
     }
 
     public int reReadBridgeSizeWhenError() {
-        try{
+        try {
             return readBridgeSize();
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             OutputView.printError(e);
             return reReadBridgeSizeWhenError();
         }
@@ -27,9 +27,9 @@ public class InputView {
     }
 
     public String reReadMovingWhenError() {
-        try{
+        try {
             return readMoving();
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             OutputView.printError(e);
             return reReadMovingWhenError();
         }
@@ -42,9 +42,9 @@ public class InputView {
     }
 
     public String reReadGameCommandWhenError() {
-        try{
+        try {
             return readGameCommand();
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             OutputView.printError(e);
             return reReadGameCommandWhenError();
         }

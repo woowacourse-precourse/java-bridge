@@ -2,7 +2,7 @@ package bridge.generator;
 
 public enum AreaStatus {
     UP("U", 1),
-    DOWN( "D", 0);
+    DOWN("D", 0);
 
     public final String symbol;
     public final int status;

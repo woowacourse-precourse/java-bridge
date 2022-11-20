@@ -2,14 +2,12 @@ package bridge.game;
 
 import bridge.generator.BridgeMaker;
 import bridge.generator.BridgeRandomNumberGenerator;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGame {
     private final GameCharacter character;
     private final List<String> bridge;
-
     private int totalTry = 0;
     private boolean success = false;
     private List<Move> moves = new ArrayList<>();
