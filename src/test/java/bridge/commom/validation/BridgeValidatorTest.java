@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BridgeValidatorTest {
+
     private static final String exceptionMessage = "다리 길이는 3부터 20 사이의 숫자여야 합니다.";
 
     @DisplayName("다리의 사이즈가 3 미만이라면 예외를 발생한다.")

@@ -9,6 +9,7 @@ import bridge.view.OutputView;
 import java.util.HashMap;
 
 public class BridgeController {
+
     private final InputView inputView;
     private final OutputView outputView;
     private BridgeHistory bridgeHistory;

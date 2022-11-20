@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class BridgeHistory {
+
     private final int bridgeLength;
     private Map<String, List<String>> history;
     private int retry;

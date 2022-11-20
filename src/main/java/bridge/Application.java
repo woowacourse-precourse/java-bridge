@@ -6,6 +6,7 @@ import bridge.view.InputView;
 import bridge.view.OutputView;
 
 public class Application {
+
     public static void main(String[] args) {
         BridgeGame bridgeGame = getInitializedGame();
         bridgeGame.run();

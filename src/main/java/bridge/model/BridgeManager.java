@@ -7,6 +7,7 @@ import bridge.commom.validation.BridgeValidator;
 import java.util.List;
 
 public class BridgeManager {
+
     private final BridgeMaker bridgeMaker;
     private List<String> bridge;
 

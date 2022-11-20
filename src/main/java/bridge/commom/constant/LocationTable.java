@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public class LocationTable {
+
     private static final Map<String, Integer> locationMap = Map.of(
             "D", 0,
             "U", 1
