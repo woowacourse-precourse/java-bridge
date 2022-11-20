@@ -23,4 +23,19 @@ class BridgeGameTest {
         assertThat(trialResult.wasSuccessful()).isTrue();
         assertThat(trialResult.getDirection()).isEqualTo(UPPER);
     }
+
+    @Test
+    void 게임이_끝났는지_알_수_있다() {
+        BridgeGame bridgeGame = BridgeGame.fromDirections(List.of(UPPER));
+
+        bridgeGame.move(UPPER.capitalLetter());
+        assertThat(bridgeGame.isFinished()).isTrue();
+    }
+
+    @Test
+    void 게임이_아직_끝나지_않았다() {
+        BridgeGame bridgeGame = BridgeGame.fromDirections(List.of(UPPER));
+
+        assertThat(bridgeGame.isFinished()).isFalse();
+    }
 }

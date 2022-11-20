@@ -44,4 +44,8 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public boolean isFinished() {
+        return player.isArrived();
+    }
 }
