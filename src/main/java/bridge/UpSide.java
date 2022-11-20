@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UpSide {
-    private String upSide="";
+    private String upSide;
 
     public UpSide(List<String> bridge) {
         this.upSide = makeUpSide(bridge);
@@ -12,7 +12,7 @@ public class UpSide {
 
     public String makeUpSide(List<String> bridge) {
         String upSideString = String.join(" | ", convertUpSide(bridge));
-        upSide += "[ ";
+        upSide = "[ ";
         upSide += upSideString;
         upSide += " ]";
         System.out.println(upSide);
