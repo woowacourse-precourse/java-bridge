@@ -39,5 +39,10 @@ public class OutputView {
         System.out.println("최종 게임 결과");
         printMap(upBridge);
         printMap(downBridge);
+        if(gameStatus){
+            System.out.println("게임 성공 여부: 성공");
+        }else{
+            System.out.println("게임 성공 여부: 실패");
+        }
     }
 }
