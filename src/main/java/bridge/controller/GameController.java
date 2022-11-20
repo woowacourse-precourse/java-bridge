@@ -9,16 +9,18 @@ import bridge.view.OutputView;
 public class GameController {
 
 	private final BridgeGame bridgeGame;
+	private final InputController inputController;
 	private final OutputView outputView;
 
 	public GameController() {
 		this.bridgeGame = new BridgeGame();
+		this.inputController = new InputController();
 		this.outputView = new OutputView();
 	}
 
 	public void run() {
 		outputView.printStartMessage();
-		List<String> bridges = bridgeGame.makeBridge(InputController.getBridgeSize());
+		List<String> bridges = bridgeGame.makeBridge(inputController.getBridgeSize());
 		playGame(bridges);
 		outputView.printResult(bridgeGame.getMap(), bridgeGame.getResult());
 	}
@@ -32,7 +34,7 @@ public class GameController {
 
 	private void playRound(List<String> bridges) {
 		for (String square : bridges) {
-			if (!isRightStep(square, InputController.getStairs())) {
+			if (!isRightStep(square, inputController.getStairs())) {
 				bridgeGame.changeResultToFail();
 				break;
 			}
@@ -48,7 +50,7 @@ public class GameController {
 
 	private boolean isKeepGaming() {
 		if (bridgeGame.isLose()) {
-			return bridgeGame.retry(InputController.getExitOption());
+			return bridgeGame.retry(inputController.getExitOption());
 		}
 		return false;
 	}

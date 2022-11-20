@@ -7,9 +7,9 @@ import bridge.view.InputView;
 
 public class InputController {
 
-	private static final InputView inputView = new InputView();
+	private final InputView inputView = new InputView();
 
-	public static int getBridgeSize() {
+	public int getBridgeSize() {
 		try {
 			return new BridgeSize(inputView.readBridgeSize()).getSize();
 		} catch (IllegalArgumentException e) {
@@ -18,7 +18,7 @@ public class InputController {
 		}
 	}
 
-	public static Stairs getStairs() {
+	public Stairs getStairs() {
 		try {
 			return Stairs.of(inputView.readMoving());
 		} catch (IllegalArgumentException e) {
@@ -27,7 +27,7 @@ public class InputController {
 		}
 	}
 
-	public static ExitOption getExitOption() {
+	public ExitOption getExitOption() {
 		try {
 			return ExitOption.of(inputView.readGameCommand());
 		} catch (IllegalArgumentException e) {
