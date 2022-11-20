@@ -24,4 +24,13 @@ public class InputView {
 
         return move;
     }
+
+    public String readGameCommand() throws IllegalArgumentException {
+        String retryCommand = Console.readLine();
+        ExceptionHandler.checkNullInput(retryCommand);
+        ExceptionHandler.checkIsCharacter(retryCommand);
+        ExceptionHandler.checkInvalidRetryCommand(retryCommand);
+
+        return retryCommand;
+    }
 }
