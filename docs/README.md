@@ -14,7 +14,7 @@
   - [ ] 예외처리 (U 또는 D중 하나가 아닐 때) - InputView#validateMoving
 - [ ] 이동하는 기능 - BridgeGame#move
   - [x] 이동 가능 여부 판별 - BridgeGame#canMove
-  - [ ] 이동 결과를 출력하는 기능 - OutputView#printMap
+  - [x] 이동 결과를 출력하는 기능 - OutputView#printMap
 
   - [ ] 다리를 끝까지 건너면 게임이 종료된다
   - [ ] 다리를 건너다 실패하면 게임을 재시작하거나 종료할 수 있다 - BridgeGame#retry

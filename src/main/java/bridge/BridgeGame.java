@@ -3,6 +3,7 @@ package bridge;
 import bridge.ui.InputView;
 import bridge.ui.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,7 +18,10 @@ public class BridgeGame {
     public BridgeMaker bridgeMaker;
 
     public List<String> bridge;
-    public int userLocation = 0;
+    public List<String> userInput;
+    public List<String> userStatus;
+    public int userLocation = 1;
+
 
     public BridgeGame() {
         this.inputView = new InputView();
@@ -30,8 +34,11 @@ public class BridgeGame {
 
         int bridgeSize = inputView.readBridgeSize();
         this.bridge  = bridgeMaker.makeBridge(bridgeSize);
+        this.userInput = new ArrayList<>();
+        this.userStatus = new ArrayList<>();
 
         String moving = inputView.readMoving();
+        userInput.add(moving);
         move(moving);
     }
 
@@ -42,8 +49,12 @@ public class BridgeGame {
      */
     public void move(String moving) {
         if (canMove(moving)) {
+            userStatus.add("O");
+            outputView.printMap(bridge, userInput, userStatus);
             userLocation++;
         } else {
+            userStatus.add("X");
+            outputView.printMap(bridge, userInput, userStatus);
             retry();
         }
     }
