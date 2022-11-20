@@ -122,8 +122,8 @@
 ### Controller
 
 - BridgeController
-    - [ ] 인사 기능을 수행한다. `BridgeController#playGreeting`
-    - [ ] 게임 시작 준비를 한다. `BridgeController#setupGame`
+    - [ ✔ ] 인사 기능을 수행한다. `BridgeController#playGreeting`
+    - [ ✔ ] 게임 시작 준비를 한다. `BridgeController#setupGame`
     - [ ] 게임 진행 여부를 파악한다. `BridgeController#getNowGameCodition`
     - [ ] 다리 건너기를 수행한다. `BridgeController#moveOneStep`
     - [ ] 재시작 여부를 파악한다. `BridgeController#figureOutToRestartGame`
@@ -132,32 +132,32 @@
 ### View
 
 - InputView
-    - [ ] 다리의 크기를 입력받는다. `InputView#readBridgeSize`
+    - [ ✔ ] 다리의 크기를 입력받는다. `InputView#readBridgeSize`
     - [ ] 어디로 이동할지 입력받는다. `InputView#readMoving`
     - [ ] 재시작 여부를 입력받는다. `InputView#readGameCommand`
 
 - OutputView
-    - [ ] 시작 메시지를 출력한다. `OutputView#printGreeting`
+    - [ ✔ ] 시작 메시지를 출력한다. `OutputView#printGreeting`
     - [ ] 다리를 출력한다. `OutputView#printMap`
     - [ ] 게임의 결과를 출력한다. `OutputView#printResult`
 
 ### Model
 
 - BridgeManager
-    - [ ] 다리를 준비한다. `BridgeManager#setBridgeWithSize`
+    - [ ✔ ] 다리를 준비한다. `BridgeManager#setBridgeWithSize`
     - [ ] 사용자가 가고 싶은 곳이 지나갈 수 있는지 판별한다. `BridgeManager#isMovable`
 
 - BridgeHistory
-    - [ ] 현재 게임의 진행상태를 알려준다. `BridgeHistory#getProgress`
+    - [  ] 현재 게임의 진행상태를 알려준다. `BridgeHistory#getProgress`
     - [ ] 현재 게임의 상태를 갱신한다. `BridgeHistory#updateGameState`
 
 ### Library
 
 - BridgeMaker
-    - [ ] 다리를 생성한다. `BridgeMaker#makeBridge`
+    - [ ✔ ] 다리를 생성한다. `BridgeMaker#makeBridge`
 
 - BridgeRandomNumberGenerator
-    - [ ] 난수를 생성한다. `BridgeRandomNumberGenerator#generate`
+    - [ ✔ ] 난수를 생성한다. `BridgeRandomNumberGenerator#generate`
 
 
 
