@@ -1,5 +1,6 @@
 package bridge.controller;
 
+import bridge.domain.Bridge;
 import bridge.domain.BridgeMaker;
 import bridge.domain.BridgeRandomNumberGenerator;
 import bridge.util.Validator;
@@ -14,26 +15,26 @@ import java.util.List;
 public class BridgeGame {
     private OutputView outputView;
     private InputView inputView;
-    private BridgeMaker bridgeMaker;
+    private Bridge bridge;
 
     public BridgeGame(){
         this.outputView=new OutputView();
         this.inputView=new InputView();
-        this.bridgeMaker=new BridgeMaker(new BridgeRandomNumberGenerator());
     }
     public void gameStart(){
+        outputView.printStartGame();
         setBridgeSize();
+        move();
     }
     public void setBridgeSize(){
-        outputView.printStartGame();
         String bridgeSize=inputView.readBridgeSize();
         if(Validator.isDigit(bridgeSize) && Validator.checkRange(bridgeSize)){
             makeBridge(Integer.parseInt(bridgeSize));
         }
     }
     public void makeBridge(int bridgeSize){
-        List<String> bridge=bridgeMaker.makeBridge(bridgeSize);
-        System.out.println(bridge);
+        BridgeMaker bridgeMaker=new BridgeMaker(new BridgeRandomNumberGenerator());
+        bridge=new Bridge(bridgeMaker.makeBridge(bridgeSize));
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -41,6 +42,7 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void move() {
+        String moving=inputView.readMoving();
     }
 
     /**
