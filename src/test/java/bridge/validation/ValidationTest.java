@@ -31,5 +31,13 @@ class ValidationTest {
                 .withMessageStartingWith(ERROR_MESSAGE);
     }
 
-    
+    @ParameterizedTest
+    @ValueSource(strings = {"", "u", "d", "123", "****", "1qwer", "U", "D", "q", "r"})
+    void 유효하지_않은_재시작_혹은_종료_입력(String retryOrQuit){
+        assertThatIllegalArgumentException()
+                .isThrownBy(()->{
+                    Validation.verifyUserInputIsCharacter(retryOrQuit, Mode.RetryOrQuit);
+                })
+                .withMessageStartingWith(ERROR_MESSAGE);
+    }
 }
