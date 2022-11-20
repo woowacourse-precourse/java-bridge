@@ -8,6 +8,8 @@ import java.util.List;
 public class OutputView {
     private static final String SPACE_VALUE = " ";
     private static final String WALL_VALUE = " | ";
+    private static final String OPEN_VALUE = "[";
+    private static final String CLOSE_VALUE = "]";
 
     public static void println(String letter) {
         System.out.println(letter);
@@ -21,9 +23,9 @@ public class OutputView {
     public void printMap(List<List<String>> logs) {
         StringBuffer message = new StringBuffer();
         for (int i = 0; i < logs.size(); i++) {
-            message.append("[");
+            message.append(OPEN_VALUE);
             getValue(logs.get(i), message);
-            message.append("]");
+            message.append(CLOSE_VALUE);
             message.append("\n");
         }
         System.out.println(message);
