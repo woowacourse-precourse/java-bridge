@@ -7,9 +7,12 @@ public class Application {
     public static void main(String[] args) {
         BridgeGame bridgeGame = new BridgeGame();
         bridgeGame.createBridge();
-        int position = 0;
-        while (bridgeGame.move(position)) {
-            position++;
-        }
+        do {
+            int position = 0;
+            while (bridgeGame.move(position)) {
+                position++;
+            }
+        } while (bridgeGame.retry());
+
     }
 }
