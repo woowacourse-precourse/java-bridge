@@ -40,7 +40,9 @@ public class OutputView {
             if(checkSameLocation(userBridge,index, location)&&!checkSameMove(userBridge, answerBridge, index)){
                 oneLine+="X ";
             }
-            oneLine+="| ";
+            if(index< userBridge.size()-1) {
+                oneLine += "| ";
+            }
         }
         return oneLine;
     }

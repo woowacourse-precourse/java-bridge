@@ -15,14 +15,7 @@ class OutputViewTest {
     OutputView outputView= new OutputView();
     List<String> answer=List.of("U","D","U","D");
     List<String> input=List.of("U","D","D","D");
-
-    @DisplayName("전체 출력이 잘 되는지 테스트")
-    @Test
-    void printMapTest() {
-        String check=outputView.printLine(answer,answer, "U");
-        assertThat(check).isEqualTo("[ O |   | O |   ]\n[   | O |   | O ]");
-    }
-
+    
     @DisplayName("한 줄이 잘 출력 되는지 테스트")
     @Test
     void printLineTest() {
