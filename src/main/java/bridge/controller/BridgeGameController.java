@@ -28,5 +28,30 @@ public class BridgeGameController {
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
         User user = new User(INIT_POSITION, INIT_TRIAL);
         BridgeGame bridgeGame = new BridgeGame(bridge, user);
+
+        start(bridgeGame);
+    }
+
+    public void start(BridgeGame bridgeGame) {
+        do {
+            boolean moveFlag = bridgeGame.move(inputView.readMoving());
+            outputView.printMap(bridgeGame.getBridgeState());
+            if (!moveFlag && !checkRetry(bridgeGame)) {
+                break;
+            }
+        } while (bridgeGame.canContinue());
+        outputView.printResult(bridgeGame);
+    }
+
+    private boolean checkRetry(BridgeGame bridgeGame) {
+        if (getRetryIntention().equals(RETRY)) {
+            bridgeGame.retry();
+            return true;
+        }
+        return false;
+    }
+
+    private String getRetryIntention() {
+        return inputView.readGameCommand();
     }
 }
