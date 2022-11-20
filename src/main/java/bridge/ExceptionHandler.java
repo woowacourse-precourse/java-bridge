@@ -29,4 +29,16 @@ public class ExceptionHandler {
             throw new IllegalArgumentException();
         }
     }
+
+    public boolean checkMoving(String moving) {
+        try {
+            if (!moving.equals("U") && !moving.equals("D")) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 잘못된 이동입니다.");
+            return false;
+        }
+        return true;
+    }
 }
