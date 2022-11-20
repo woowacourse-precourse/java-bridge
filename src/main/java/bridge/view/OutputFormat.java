@@ -14,15 +14,13 @@ public class OutputFormat {
     private static final String BRIDGE_DELIMITER = "|";
     private static final String BRIDGE_END = "]";
     private static final String BRIDGE_START = "[";
+    private static final String NEW_LINE = "\n";
 
     public String bridgeGameResultFormat(BridgeGameResult result) {
         Bridge bridge = result.bridge();
         List<BridgeShape> bridgeShapes = bridge.bridgeShapes();
         List<Boolean> booleans = result.attemptsResult();
-        StringBuilder bridgeGameResultFormat = new StringBuilder();
-        bridgeGameResultFormat.append(upSideFormat(bridgeShapes, booleans));
-        bridgeGameResultFormat.append(downSideFormat(bridgeShapes, booleans));
-        return bridgeGameResultFormat.toString();
+        return String.join(NEW_LINE, upSideFormat(bridgeShapes, booleans), downSideFormat(bridgeShapes, booleans));
     }
 
     private String upSideFormat(List<BridgeShape> bridgeShapes, List<Boolean> booleans) {

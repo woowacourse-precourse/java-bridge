@@ -25,32 +25,32 @@ class OutputFormatTest {
                 Arguments.of(
                         Bridge.createByBridgeShapeValue(List.of("D", "U", "D")),
                         List.of(true, true, true),
-                        List.of("[   | O |   ]", "[ O |   | O ]")
+                        List.of("[   | O |   ]\n[ O |   | O ]")
                 ),
                 Arguments.of(
                         Bridge.createByBridgeShapeValue(List.of("D", "U", "D")),
                         List.of(true, true, false),
-                        List.of("[   | O | X ]", "[ O |   |   ]")
+                        List.of("[   | O | X ]\n[ O |   |   ]")
                 ),
                 Arguments.of(
                         Bridge.createByBridgeShapeValue(List.of("U", "U", "U")),
                         List.of(true, true, true),
-                        List.of("[ O | O | O ]", "[   |   |   ]")
+                        List.of("[ O | O | O ]\n[   |   |   ]")
                 ),
                 Arguments.of(
                         Bridge.createByBridgeShapeValue(List.of("U", "U", "U")),
                         List.of(false, false, false),
-                        List.of("[   |   |   ]", "[ X | X | X ]")
+                        List.of("[   |   |   ]\n[ X | X | X ]")
                 ),
                 Arguments.of(
                         Bridge.createByBridgeShapeValue(List.of("D", "D", "D")),
                         List.of(true, true, true),
-                        List.of("[   |   |   ]", "[ O | O | O ]")
+                        List.of("[   |   |   ]\n[ O | O | O ]")
                 ),
                 Arguments.of(
                         Bridge.createByBridgeShapeValue(List.of("D", "D", "D")),
                         List.of(false, false, false),
-                        List.of("[ X | X | X ]", "[   |   |   ]")
+                        List.of("[ X | X | X ]\n[   |   |   ]")
                 )
         );
     }
