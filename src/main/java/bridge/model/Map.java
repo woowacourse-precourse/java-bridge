@@ -9,15 +9,18 @@ import java.util.List;
 
 public class Map {
     static final int SIZE_OF_TILES = 2;
+
     private ArrayList<LinkedList<String>> map;
-    private Iterator<String> answer;
+    private List<String> answer;
+    private Iterator<String> answerChecker;
 
     public Map(List<String> generatedMap) {
         ArrayList<LinkedList<String>> initializedMap = new ArrayList<>();
         for (int i = 0; i < SIZE_OF_TILES; i++) {
             initializedMap.add(new LinkedList<String>());
         }
-        this.answer = generatedMap.iterator();
+        this.answer = generatedMap;
+        this.answerChecker = generatedMap.iterator();
         this.map = initializedMap;
     }
 
@@ -27,15 +30,19 @@ public class Map {
         }
         LinkedList<String> target = map.get(move.getOrder());
         String compareResult = compareWithCurrentAnswer(move.getLocation());
-        target.set(target.size() - 1,compareResult);
-        if(compareResult=="O"){
+        target.set(target.size() - 1, compareResult);
+        if (compareResult.equals("O")) {
             return true;
         }
         return false;
     }
 
+    public void restartMap(){
+        answerChecker = answer.iterator();
+    }
+
     private String compareWithCurrentAnswer(String move) {
-        if (move.equals(answer.next())) {
+        if (move.equals(answerChecker.next())) {
             return "O";
         }
         return "X";
@@ -44,12 +51,12 @@ public class Map {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (LinkedList<String> target : map) {
+        for (LinkedList<String> tiles : map) {
             sb.append("[ ");
-            for (String temp1 : target) {
-                sb.append(temp1 + " | ");
+            for (String tile : tiles) {
+                sb.append(tile + " | ");
             }
-            sb.replace(sb.length()-3,sb.length()," ]\n");
+            sb.replace(sb.length() - 3, sb.length(), " ]\n");
         }
         sb.delete(sb.length() - 1, sb.length());
         return sb.toString();
