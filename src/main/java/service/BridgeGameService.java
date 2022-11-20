@@ -16,5 +16,7 @@ public class BridgeGameService {
     public void restartGame(){}
 
 
-    public void displayResult(){};
+    public void displaySimpleGameResult(){};
+
+    public void displayFullGameResult(){};
 }
