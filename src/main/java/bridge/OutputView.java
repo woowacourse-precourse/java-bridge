@@ -15,6 +15,8 @@ public class OutputView {
     private static final String SEPARATOR = "|";
     private static final String BRIDGE_START = "[";
     private static final String BRIDGE_END = "]";
+    private static final String GAME_SUCCESS_OR_FAILURE = "게임 성공 여부: ";
+    private static final String TOTAL_TRY = "\n총 시도한 횟수: ";
 
     private List<String> resultBridge = new ArrayList<>();
     private List<String> resultPath = new ArrayList<>();
@@ -47,12 +49,12 @@ public class OutputView {
 
         System.out.print(BRIDGE_START);
         printBridge(UP, resultBridge, resultPath);
-        System.out.println("]");
-        System.out.print("[");
+        System.out.println(BRIDGE_END);
+        System.out.print(BRIDGE_START);
         printBridge(DOWN, resultBridge, resultPath);
         System.out.println(BRIDGE_END + "\n");
 
-        System.out.println("게임 성공 여부: " + judge + "\n총 시도한 횟수: " + gameTryCount);
+        System.out.println(GAME_SUCCESS_OR_FAILURE + judge + TOTAL_TRY + gameTryCount);
     }
 
     private void printBridge(String UpDown, List<String> bridge, List<String> path) {
