@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BridgePlayer {
@@ -25,5 +26,9 @@ public class BridgePlayer {
 
     public void clearPlayerBridge() {
         playerBridge.clear();
+    }
+
+    public List<BridgeMoveType> getMoveHistory() {
+        return new ArrayList<>(playerBridge);
     }
 }

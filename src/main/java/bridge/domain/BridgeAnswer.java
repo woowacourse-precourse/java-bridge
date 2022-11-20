@@ -3,6 +3,7 @@ package bridge.domain;
 import bridge.BridgeMaker;
 import bridge.BridgeRandomNumberGenerator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.domain.BridgeGameState.*;
@@ -40,5 +41,9 @@ public class BridgeAnswer {
                 .stream()
                 .map(BridgeMoveType::of)
                 .forEach(bridgeAnswer::add);
+    }
+
+    public List<BridgeMoveType> getAnswerMoveHistory() {
+        return new ArrayList<>(bridgeAnswer);
     }
 }

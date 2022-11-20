@@ -41,4 +41,8 @@ public class BridgeGame {
         bridgeRound.nextRound();
         bridgePlayer.clearPlayerBridge();
     }
+
+    public BridgeHistory getHistory() {
+        return new BridgeHistory(bridgePlayer, bridgeAnswer);
+    }
 }
