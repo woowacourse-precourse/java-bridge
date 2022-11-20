@@ -3,6 +3,10 @@ package bridge;
 import java.util.List;
 
 public class Bridge {
+    private enum Line {
+        TOP, BOTTOM;
+    }
+
     private List<String> bridge;
     private Player player;
     private BridgeMaker bridgeMaker;
@@ -19,58 +23,56 @@ public class Bridge {
 
     /**
      * 플레이어와 브릿지 게임의 맵을 비교하여 결과를 스트링으로 반환하는 메서드
+     *
      * @return String으로 표현된 맵 (플레이어 상태에 따른)
      */
     @Override
     public String toString() {
-        StringBuilder top = new StringBuilder("[");
-        StringBuilder bottom = new StringBuilder("[");
+        StringBuilder builder = new StringBuilder();
 
+        builder.append(buildBridgeLine(Line.TOP).append("\n"));
+        builder.append(buildBridgeLine(Line.BOTTOM).append("\n"));
+
+        return builder.toString();
+    }
+
+    private StringBuilder buildBridgeLine(Line flag) {
+        StringBuilder builder = new StringBuilder();
         for (int i = 0; i < player.getPosition(); ++i) {
-            top.append(getTopCell(i));
-            bottom.append(getBottomCell(i));
+            builder.append(getCell(flag, i));
             if (i != player.getIndex()) {
-                top.append(SEPARATOR);
-                bottom.append(SEPARATOR);
+                builder.append(SEPARATOR);
             }
         }
-        top.append("]\n");
-        bottom.append("]\n");
-        return top.toString() + bottom.toString();
+        appendBracketBothSide(builder);
+
+        return builder;
     }
 
-    private String getTopCell(int index) {
-        if (index < player.getIndex()) {
-            if (bridge.get(index).equals(BridgeGame.CMD_UP)) {
-                return CORRECT_CELL;
-            }
+    private String getCell(Line flag, int index) {
+        if (index < player.getIndex() && isSameLine(flag, bridge.get(index))) {
+            return CORRECT_CELL;
         }
-        if (index == player.getIndex()) {
-            if (bridge.get(index).equals(BridgeGame.CMD_UP) && bridge.get(index).equals(player.getCommand())) {
+        if (index == player.getIndex() && isSameLine(flag, player.getCommand())) {
+            if (player.getCommand().equals(bridge.get(index))) {
                 return CORRECT_CELL;
             }
-            if (player.getCommand().equals(BridgeGame.CMD_UP)) {
-                return INCORRECT_CELL;
-            }
+            return INCORRECT_CELL;
         }
         return EMPTY_CELL;
     }
 
-    private String getBottomCell(int index) {
-        if (index < player.getIndex()) {
-            if (bridge.get(index).equals(BridgeGame.CMD_DOWN)) {
-                return CORRECT_CELL;
-            }
+    private boolean isSameLine(Line flag, String command) {
+        if (flag == Line.TOP && command.equals(BridgeGame.CMD_UP)
+                || flag == Line.BOTTOM && command.equals(BridgeGame.CMD_DOWN)) {
+            return true;
         }
-        if (index == player.getIndex()) {
-            if (bridge.get(index).equals(BridgeGame.CMD_DOWN) && bridge.get(index).equals(player.getCommand())) {
-                return CORRECT_CELL;
-            }
-            if (player.getCommand().equals(BridgeGame.CMD_DOWN)) {
-                return INCORRECT_CELL;
-            }
-        }
-        return EMPTY_CELL;
+        return false;
+    }
+
+    private void appendBracketBothSide(StringBuilder builder) {
+        builder.insert(0, "[");
+        builder.append("]");
     }
 
     public String get(int index) {
