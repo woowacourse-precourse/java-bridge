@@ -43,11 +43,4 @@ class GameCommandTest {
         assertThatThrownBy(() -> createGameCommand("A"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-    @DisplayName("다리의 길이를 3 이하의 숫자로 입력 시 예외가 발생한다.")
-    @Test
-    void case3() {
-        assertThatThrownBy(() -> createGameCommand("1"))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
 }
