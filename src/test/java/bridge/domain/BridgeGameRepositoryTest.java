@@ -18,19 +18,19 @@ class BridgeGameRepositoryTest {
 
     @DisplayName("round의 기본값은 1이다.")
     @Test
-    void test1() {
+    void round_default_value_is_1() {
         assertThat(bridgeGameRepository.findRound()).isEqualTo(1);
     }
 
     @DisplayName("tryCount의 기본값은 1이다.")
     @Test
-    void test2() {
+    void tryCount_default_value_is_1() {
         assertThat(bridgeGameRepository.findTryCount()).isEqualTo(1);
     }
 
     @DisplayName("다음 라운드로 넘어갈시 round 값이 1 증가한다.")
     @Test
-    void test3() {
+    void round_value_plus_1_if_go_to_next_round() {
         bridgeGameRepository.goToNextRound();
         assertThat(bridgeGameRepository.findRound()).isEqualTo(2);
     }
@@ -46,13 +46,13 @@ class BridgeGameRepositoryTest {
 
         @DisplayName("tryCount 값이 1 증가한다.")
         @Test
-        void test1() {
+        void tryCount_plus_one() {
             assertThat(bridgeGameRepository.findTryCount()).isEqualTo(2);
         }
 
         @DisplayName("round는 기본값으로 변경된다.")
         @Test
-        void test2() {
+        void round_set_default_value() {
             assertThat(bridgeGameRepository.findRound()).isEqualTo(1);
         }
     }
@@ -63,7 +63,7 @@ class BridgeGameRepositoryTest {
 
         @DisplayName("일치하면 true를 반환한다.")
         @Test
-        void test1() {
+        void if_match_return_true() {
             bridgeGameRepository.goToNextRound();
             bridgeGameRepository.goToNextRound();
             assertThat(bridgeGameRepository.isFinalRound()).isTrue();
@@ -71,7 +71,7 @@ class BridgeGameRepositoryTest {
 
         @DisplayName("일치하지않으면 false를 반환한다.")
         @Test
-        void test2() {
+        void if_not_match_return_false() {
             assertThat(bridgeGameRepository.isFinalRound()).isFalse();
         }
     }

@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -24,10 +23,10 @@ class BridgeTest {
     @Nested
     class Validate {
 
-        @DisplayName("길이가 범위를 벗어날 경우 예외를 반환한다")
+        @DisplayName("길이가 " + MIN_SIZE + " 미만," + MAX_SIZE + " 초과일시 예외를 반환한다.")
         @ValueSource(ints = {MIN_SIZE - 1, MAX_SIZE + 1})
         @ParameterizedTest
-        void test1(int wrongSize) {
+        void wrong_range_value_is_exception(int wrongSize) {
             assertThatThrownBy(() -> new Bridge(createBlocks(wrongSize)))
                     .isInstanceOf(IllegalArgumentException.class);
         }
@@ -35,7 +34,7 @@ class BridgeTest {
         @DisplayName("잘못된 값을 가지고 있을 경우 예외를 반환한다.")
         @ValueSource(ints = {MIN_SIZE})
         @ParameterizedTest
-        void test2(int rightSize) {
+        void if_blocks_contain_wrong_value_is_exception(int rightSize) {
             List<String> blocks = createBlocks(rightSize);
             blocks.add("wrongValue");
             assertThatThrownBy(() -> new Bridge(blocks))
@@ -45,7 +44,7 @@ class BridgeTest {
         @DisplayName("값이 문제없으면 정상적으로 생성한다")
         @ValueSource(ints = {MIN_SIZE})
         @ParameterizedTest
-        void test3(int rightSize) {
+        void pass_logic(int rightSize) {
             assertThatNoException().isThrownBy(() -> new Bridge(createBlocks(rightSize)));
         }
 
@@ -58,7 +57,7 @@ class BridgeTest {
         @DisplayName("일치하면 true를 반환한다")
         @ValueSource(ints = {MIN_SIZE})
         @ParameterizedTest
-        void test1(int rightSize) {
+        void match_specific_round_value_is_true(int rightSize) {
             List<String> blocks = createBlocks(rightSize);
             Bridge bridge = new Bridge(blocks);
 
@@ -68,7 +67,7 @@ class BridgeTest {
         @DisplayName("일치하지않으면 false를 반환한다")
         @ValueSource(ints = {MIN_SIZE})
         @ParameterizedTest
-        void test2(int rightSize) {
+        void not_match_specific_round_value_is_false(int rightSize) {
             List<String> blocks = createBlocks(rightSize);
             Bridge bridge = new Bridge(blocks);
             String falseValue = getFalseValue(blocks.get(0));

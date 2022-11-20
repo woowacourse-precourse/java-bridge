@@ -19,7 +19,7 @@ class BridgeMakerTest {
     @DisplayName("입력한 길이와 다리 길이가 일치한다")
     @ValueSource(ints = 10)
     @ParameterizedTest
-    void test1(int anyValue) {
+    void bridge_size_is_match_by_input(int anyValue) {
         List<String> bridge = bridgeMaker.makeBridge(anyValue);
         assertThat(bridge.size()).isEqualTo(anyValue);
     }
@@ -27,7 +27,7 @@ class BridgeMakerTest {
     @DisplayName(MOVE_TO_UPPER_BLOCK + ", " + MOVE_TO_LOWER_BLOCK + " 2개의 값만 생성된다")
     @ValueSource(ints = 10)
     @ParameterizedTest
-    void test2(int anyValue) {
+    void bright_contain_only_specific_value(int anyValue) {
         List<String> bridge = bridgeMaker.makeBridge(anyValue);
         assertThat(bridge.stream()
                 .allMatch(value -> value.equals(MOVE_TO_UPPER_BLOCK) || value.equals(MOVE_TO_LOWER_BLOCK))).isTrue();
@@ -39,7 +39,7 @@ class BridgeMakerTest {
 
         @DisplayName("1이면 " + MOVE_TO_UPPER_BLOCK + "를 반환한다.")
         @Test
-        void test1() {
+        void if_1_change_to_U() {
             BridgeMaker bridgeMaker = new BridgeMaker(() -> 1);
             boolean result = isCreateSpecificValue(bridgeMaker, MOVE_TO_UPPER_BLOCK);
             assertThat(result).isTrue();
@@ -47,7 +47,7 @@ class BridgeMakerTest {
 
         @DisplayName("0이면 " + MOVE_TO_LOWER_BLOCK + "를 반환한다.")
         @Test
-        void test2() {
+        void if_2_change_to_D() {
             BridgeMaker bridgeMaker = new BridgeMaker(() -> 0);
             boolean result = isCreateSpecificValue(bridgeMaker, MOVE_TO_LOWER_BLOCK);
             assertThat(result).isTrue();
@@ -55,7 +55,7 @@ class BridgeMakerTest {
 
         @DisplayName("그외의 값이면 예외를 반환한다.")
         @Test
-        void test3() {
+        void else_value_is_exception() {
             BridgeMaker bridgeMaker = new BridgeMaker(() -> 2);
             assertThatThrownBy(() -> bridgeMaker.makeBridge(10))
                     .isInstanceOf(IllegalStateException.class);
