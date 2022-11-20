@@ -11,7 +11,7 @@ public class Application {
     static OutputView outputView = new OutputView();
     static BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     static BridgeGame bridgeGame = new BridgeGame();
-    static boolean success;
+    static boolean stepSuccess;
     static int tryCount;
 
     public static void main(String[] args) {
@@ -28,7 +28,7 @@ public class Application {
 
     private static void initialize() {
         playerMove = new ArrayList<>();
-        success = true;
+        stepSuccess = true;
         tryCount = 0;
     }
 
@@ -43,14 +43,22 @@ public class Application {
 
     public static void gameStart() {
         tryCount++;
-        while(success){
+        while(stepSuccess){
+            if(checkSuccess())
+                return;
             bridgeGame.move();
-            success = CheckSuccess();
+            stepSuccess = CheckStep();
         }
         CheckRetry();
     }
 
-    private static boolean CheckSuccess() {
+    private static boolean checkSuccess() {
+        if(bridgeSize == playerMove.size() && stepSuccess)
+            return true;
+        return false;
+    }
+
+    private static boolean CheckStep() {
         int index = playerMove.size() - 1;
         String lastMove = playerMove.get(index);
         if(bridge.get(index).equals(lastMove))

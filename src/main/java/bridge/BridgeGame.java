@@ -32,6 +32,6 @@ public class BridgeGame {
 
     private void gameInitialize(){
         Application.playerMove = new ArrayList<>();
-        Application.success = true;
+        Application.stepSuccess = true;
     }
 }

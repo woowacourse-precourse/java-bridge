@@ -36,7 +36,7 @@ public class OutputView {
     }
 
     private void printGameSuccessOrFail() {
-        System.out.println(GameResult(Application.success));
+        System.out.println(GameResult(Application.stepSuccess));
     }
 
     private String GameResult(boolean success) {
@@ -74,11 +74,11 @@ public class OutputView {
         List<String> upStair = makeStair(answer, playerMove, "U");
         List<String> downStair = makeStair(answer, playerMove, "D");
 
-        String upStr = String.join("|", upStair);
-        String downStr = String.join("|", upStair);
+        String upStr = String.join(" | ", upStair);
+        String downStr = String.join(" | ", downStair);
 
-        System.out.println(upStr);
-        System.out.println(downStr);
+        System.out.println("[ " + upStr + " ]");
+        System.out.println("[ " + downStr + " ]");
     }
 
     private String compareStair(String bridge, String move){
