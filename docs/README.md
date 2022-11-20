@@ -2,7 +2,7 @@
 
 ## [ Controller ]
 
-### Application
+### BridgeGameController
 - [x] InputView의 값을 통해 Domain의 상태를 업데이트한다.
 - [x] 업데이트 된 Domain의 상태를 OutputView를 통해 출력한다.
 
