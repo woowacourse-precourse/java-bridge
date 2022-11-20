@@ -90,15 +90,8 @@ public class BridgeGame {
     public void retry(Player player) {
         boolean continueCommand = bridgeRetry.getContinueCode(player);
         if (continueCommand == CONTINUE) {
-            updateGameStatus(player);
             return;
         }
         gameSet(LOSE);
-    }
-
-    private void updateGameStatus(Player player) {
-        player.initializePosition();
-        player.addTryCount();
-        BridgeMap.getBridgeMap().initializeBridges();
     }
 }
