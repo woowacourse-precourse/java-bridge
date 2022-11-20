@@ -56,20 +56,18 @@ public class BridgeGameResult {
     private void tryMoveBridge(Bridge bridge, int currentPosition, String direction) {
         if (Objects.equals(direction, Command.UPPER.toString())) {
             tryMoveUpperBridge(bridge, currentPosition, direction);
+            return;
         }
-        if (Objects.equals(direction, Command.LOWER.toString())) {
-            tryMoveLowerBridge(bridge, currentPosition, direction);
-        }
+        tryMoveLowerBridge(bridge, currentPosition, direction);
     }
 
     private void tryMoveUpperBridge(Bridge bridge, int currentPosition, String direction) {
         if (bridge.isPossibleMove(currentPosition, direction)) {
             moveUpperBridge();
+            return;
         }
-        if (!bridge.isPossibleMove(currentPosition, direction)) {
-            moveFailUpperBridge();
-            isMoveFail = true;
-        }
+        moveFailUpperBridge();
+        isMoveFail = true;
     }
 
     private void moveUpperBridge() {
@@ -85,11 +83,10 @@ public class BridgeGameResult {
     private void tryMoveLowerBridge(Bridge bridge, int currentPosition, String direction) {
         if (bridge.isPossibleMove(currentPosition, direction)) {
             moveLowerBridge();
+            return;
         }
-        if (!bridge.isPossibleMove(currentPosition, direction)) {
-            moveFailLowerBridge();
-            isMoveFail = true;
-        }
+        moveFailLowerBridge();
+        isMoveFail = true;
     }
 
     private void moveLowerBridge() {
