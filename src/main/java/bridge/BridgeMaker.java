@@ -26,7 +26,7 @@ public class BridgeMaker {
         final int start = 3;
         final int end = 20;
         Validator.validateRangeOfInt(size, start, end);
-        List<Direction> dir = List.of(U, D);
+        List<Direction> dir = List.of(D, U);
 
         return IntStream.range(0, size)
                 .mapToObj(i -> dir.get(bridgeNumberGenerator.generate()))
