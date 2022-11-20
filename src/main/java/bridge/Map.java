@@ -3,6 +3,7 @@ package bridge;
 import enumCollections.GameResult;
 import enumCollections.GameStatus;
 import enumCollections.Position;
+import jdk.dynalink.beans.BeansLinker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,18 +19,21 @@ public class Map {
     public void add(Position position, String isSucceed) {
         this.bridgeUserInterface.get(Position.getIndex(position))
                 .add(isSucceed);
+        this.bridgeUserInterface.get((Position.getIndex(position) + 1 ) % 2)
+                .add(GameResult.getUi(GameResult.EMPTY));
     }
 
-    public String get() {
-        return this.bridgeUserInterface.toString();
+    public List<List<String>> get() {
+        return bridgeUserInterface;
     }
 
     public void add(BridgeGame bridgeGame, GameStatus gameStatus) {
-        for (int bridgeIndex = 0; bridgeIndex < bridgeGame.getCurrentPosition(); bridgeIndex++) {
-            add(Position.getPosition(
-                    bridgeGame.getAvailableSquare(bridgeIndex)),
-                    GameResult.getUi(GameResult.RIGHT_POSITION)
-            );
+        String isSucceed = "O";
+        Position position = Position.UP;
+        if (gameStatus == GameStatus.FAILURE) {
+            isSucceed = "X";
+            position = Position.getOppositePosition(position);
         }
+        add(position, isSucceed);
     }
 }
