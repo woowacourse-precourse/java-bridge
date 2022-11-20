@@ -13,6 +13,7 @@ public class InputView {
     public int readBridgeSize() {
         String pleaseInputBridgeSize = "다리의 길이를 입력해주세요.";
         System.out.println(pleaseInputBridgeSize);
+
         String input = Console.readLine();
         InputViewValidation.validateIsInteger(input);
         InputViewValidation.validateIsInRange(input);
@@ -25,6 +26,7 @@ public class InputView {
     public String readMoving() {
         String pleaseInputMoving = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
         System.out.println(pleaseInputMoving);
+
         String input = Console.readLine();
         InputViewValidation.validateIsUorD(input);
         return input;
@@ -36,6 +38,7 @@ public class InputView {
     public String readGameCommand() {
         String pleaseInputRetryOrEnd = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
         System.out.println(pleaseInputRetryOrEnd);
+
         String input = Console.readLine();
         InputViewValidation.validateIsRorQ(input);
         return input;
