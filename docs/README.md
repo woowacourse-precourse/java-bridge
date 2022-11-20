@@ -147,6 +147,11 @@ D
 - [x] moveCount변수를 0으로 초기화
 - [x] gameCount에 1를 더함
 
+### compareMoveCount
+- [ ] 매개변수와 moveCount 비교
+- [ ] true이면 true 반환
+- [ ] false리면 false 반환
+
 ## Application
 - [x] inputView 변수 생성
 - [x] outputView 변수 생성
