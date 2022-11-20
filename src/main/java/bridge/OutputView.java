@@ -15,6 +15,9 @@ public class OutputView {
     public static final String SPACE = " ";
     public static final String SUCCESS = "O";
     public static final String FAIL = "X";
+    public static final String GAME_RESULTS = "최종 게임 결과";
+    public static final String GAME_CLEARED = "게임 성공 여부: ";
+    public static final String TOTAL_ATTEMPT = "총 시도한 횟수: ";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -31,6 +34,7 @@ public class OutputView {
 
         printRowWithPrefixAndSuffix(joinByDelimiter(topRow));
         printRowWithPrefixAndSuffix(joinByDelimiter(bottomRow));
+        System.out.println();
     }
 
     private static void checkGameOver(BridgeGame bridgeGame, Stack<String> topRow, Stack<String> bottomRow) {
@@ -79,15 +83,14 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(BridgeGame bridgeGame) {
-        System.out.println("최종 게임 결과");
+        System.out.println(GAME_RESULTS);
         printMap(bridgeGame);
-        System.out.println();
-        String gameResult = getGameResult(bridgeGame);
-        System.out.println("게임 성공 여부: " + gameResult);
-        System.out.println("총 시도한 횟수: " + bridgeGame.getAttempt());
+        String result = getResult(bridgeGame);
+        System.out.println(GAME_CLEARED + result);
+        System.out.println(TOTAL_ATTEMPT + bridgeGame.getAttempt());
     }
 
-    private String getGameResult(BridgeGame bridgeGame) {
+    private String getResult(BridgeGame bridgeGame) {
         if (bridgeGame.isGameClear()) {
             return "성공";
         }

@@ -13,12 +13,18 @@ public class InputView {
     public static final String DOWN = "D";
     public static final String RETRY = "R";
     public static final String QUIT = "Q";
+    public static final String INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요.";
+    public static final String CHOICE_UP_OR_DOWN = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
+    public static final String INPUT_RETRY_OR_QUIT = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
 
     /**
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        return validateBridgeSize(parseInt(Console.readLine()));
+        System.out.println(INPUT_BRIDGE_SIZE);
+        int bridgeSize = validateBridgeSize(parseInt(Console.readLine()));
+        System.out.println();
+        return bridgeSize;
     }
 
     private int parseInt(String input) {
@@ -42,6 +48,7 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
+        System.out.println(CHOICE_UP_OR_DOWN);
         return validateMoving(Console.readLine());
     }
 
@@ -56,6 +63,7 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
+        System.out.println(INPUT_RETRY_OR_QUIT);
         return validateGameCommand(Console.readLine());
     }
 
