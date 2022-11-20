@@ -46,7 +46,13 @@ public class BridgeController {
             MoveResult moveResult = bridgeGame.move(movePath, playerPosition);
             if (moveResult == MoveResult.O) {
                 playerPosition++;
-
+                outputView.printMap(bridge, playerPosition, moveResult);
+                continue;
+            }
+            if (moveResult == MoveResult.X) {
+                outputView.printMap(bridge, playerPosition, moveResult);
+                outputView.printRestartMassage();
+                String gameCommand = inputView.readGameCommand();
             }
         }
     }
