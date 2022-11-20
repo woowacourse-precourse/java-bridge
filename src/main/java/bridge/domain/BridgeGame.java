@@ -29,17 +29,19 @@ public class BridgeGame {
     public boolean move(String userInput, int round) {
         history.add(userInput);
 
-        boolean result = checkAnswer(userInput, round);
+        boolean result = compareInputWithBridge(userInput, round);
 
         return result;
     }
 
-    public boolean checkAnswer(String userInput, int round) {
+    public boolean compareInputWithBridge(String userInput, int round) {
         if(bridge.get(round).equals(userInput)) {
             return true;
         }
         return false;
     }
+
+
 
 
     /**
