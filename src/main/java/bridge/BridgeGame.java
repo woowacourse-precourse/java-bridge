@@ -1,13 +1,12 @@
 package bridge;
 
+import bridge.Constants.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class BridgeGame {
     private int tryCount = 1;
-    private final String CORRECT = "O";
-    private final String WRONG = "X";
-    private final String NOTHING = " ";
     private final List<String> correctBridge;
     private final List<List<String>> bridgeMap = new ArrayList<>();
 
@@ -18,13 +17,12 @@ public class BridgeGame {
 
     public boolean checkMove(int bridgeNum, String moving) {
         String correctAnswer = correctBridge.get(bridgeNum);
+
         if (moving.equals(correctAnswer)) {
-            if (moving.equals("U")) addMap(CORRECT, NOTHING);
-            if (moving.equals("D")) addMap(NOTHING, CORRECT);
+            mapIfCorrect(correctAnswer);
             return true;
         }
-        if (moving.equals("U")) addMap(WRONG, NOTHING);
-        if (moving.equals("D")) addMap(NOTHING, WRONG);
+        mapIfWrong(correctAnswer);
         return false;
     }
 
@@ -39,6 +37,24 @@ public class BridgeGame {
     public void retry() {
         newBridgePattern();
         this.tryCount += 1;
+    }
+
+    private void mapIfCorrect(String moving) {
+        if (moving.equals("U")) {
+            addMap(MapMark.CORRECT.mark(), MapMark.NOTHING.mark());
+        }
+        if (moving.equals("D")) {
+            addMap(MapMark.NOTHING.mark(), MapMark.CORRECT.mark());
+        }
+    }
+
+    private void mapIfWrong(String moving) {
+        if (moving.equals("U")) {
+            addMap(MapMark.WRONG.mark(), MapMark.NOTHING.mark());
+        }
+        if (moving.equals("D")) {
+            addMap(MapMark.NOTHING.mark(), MapMark.WRONG.mark());
+        }
     }
 
     private void newBridgePattern() {
