@@ -81,8 +81,6 @@ public class BridgeGame {
      */
     public boolean retry() {
         String moving = inputController.inputGameCommand();
-        if (moving.equals(RESTART_COMMAND))
-            return true;
-        return false;
+        return moving.equals(RESTART_COMMAND);
     }
 }
