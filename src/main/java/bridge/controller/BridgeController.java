@@ -16,13 +16,18 @@ public class BridgeController {
 
     public void startGame() {
         List<String> bridge;
-        int count = START_OF_COUNT;
 
         outputView.printStartingPhrase();
         bridge = bridgeMaker.makeBridge(inputView.readBridgeSize());
         //실행 예시와 맞추기 위해 한 칸 띄워준다.
         System.out.println();
         bridgeGame = new BridgeGame(bridge);
+
+        proceedBridgeGame();
+    }
+
+    public void proceedBridgeGame(){
+        int count = START_OF_COUNT;
 
         while (true) {
             count++;
