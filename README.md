@@ -64,11 +64,11 @@ BUILD SUCCESSFUL in 0s
     - [x] public String getBridgeBlock()
 - [ ] **CLASS2. enum RetrySelector**
   - **Class Variables**
-    - [ ] RETRY("R")
-    - [ ] QUIT("Q")
-    - [ ] private final String retrySelector
+    - [x] RETRY("R")
+    - [x] QUIT("Q")
+    - [x] private final String retrySelector
   - **CLASS Methods**
-    - [ ] public RetrySelector(String retrySelector)
+    - [x] public RetrySelector(String retrySelector)
     - [ ] public String getRetrySelect()
 - [ ] **CLASS2. BridgeMaker**
   - **Class Variables**
