@@ -10,17 +10,19 @@ public class GameController {
 
     private static final String RETRY = GameResult.RETRY.getResult();
     private int progress;
+    private int totalTries = 1;
     private boolean isCrossable;
     private BridgeGame bridgeGame = new BridgeGame();
 
     public void run(Bridge bridge) {
         String command;
 
-        do {
+        do { //TODO: 라인 줄이기
             command = "";
             boolean isCrossable = proceed(bridge);
             if (!isCrossable) {
                 command = handleRetryCommand();
+                totalTries++;
             }
         } while (command.equals(RETRY));
 
@@ -69,6 +71,6 @@ public class GameController {
     private void printFinalResult() {
         OutputView outputView = new OutputView();
 
-        outputView.printResult();
+        outputView.printResult(isCrossable, totalTries);
     }
 }
