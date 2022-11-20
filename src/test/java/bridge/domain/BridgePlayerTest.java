@@ -1,6 +1,5 @@
 package bridge.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -9,7 +8,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static bridge.domain.BridgeMoveType.*;
+import static bridge.domain.BridgeMoveType.DOWN;
+import static bridge.domain.BridgeMoveType.UP;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class BridgePlayerTest {
 
@@ -25,7 +26,7 @@ class BridgePlayerTest {
         boolean isLastMoveTypeNotSame = bridgePlayer.isLastMoveTypeNotSameAs(compareBridge);
 
         // then
-        Assertions.assertThat(isLastMoveTypeNotSame).isTrue();
+        assertThat(isLastMoveTypeNotSame).isTrue();
     }
 
     @ParameterizedTest(name = "[{index}] playerBridge = {0}, compareBridge = {1}")
@@ -40,7 +41,22 @@ class BridgePlayerTest {
         boolean isAllMoveTypesSame = bridgePlayer.isAllMoveTypeSameAs(compareBridge);
 
         // then
-        Assertions.assertThat(isAllMoveTypesSame).isTrue();
+        assertThat(isAllMoveTypesSame).isTrue();
+    }
+
+    @ParameterizedTest(name = "[{index}] moveTypes = {0}")
+    @MethodSource("whenMovePlayerThenSuccessDummy")
+    @DisplayName("플레이어를 다리 이동 타입을 이용하여 이동에 성공한다.")
+    void whenMovePlayerThenSuccessTest(List<BridgeMoveType> moveTypes) {
+        // given
+        BridgePlayer bridgePlayer = new BridgePlayer();
+
+        // when
+        moveTypes.forEach(bridgePlayer::moveTo);
+        List<BridgeMoveType> playerMoveHistory = bridgePlayer.getMoveHistory();
+
+        // then
+        assertThat(playerMoveHistory).hasSize(moveTypes.size());
     }
 
     static Stream<Arguments> whenCheckLastMoveTypeNotSameThenSuccessDummy() {
@@ -64,6 +80,18 @@ class BridgePlayerTest {
                 Arguments.arguments(List.of(UP, DOWN, UP, UP, DOWN), List.of(UP, DOWN, UP, UP, DOWN)),
                 Arguments.arguments(List.of(UP, UP, DOWN, DOWN, DOWN), List.of(UP, UP, DOWN, DOWN, DOWN)),
                 Arguments.arguments(List.of(DOWN, UP, UP, DOWN, DOWN), List.of(DOWN, UP, UP, DOWN, DOWN))
+        );
+    }
+
+    static Stream<Arguments> whenMovePlayerThenSuccessDummy() {
+        return Stream.of(
+                Arguments.arguments(List.of(UP, UP, UP, DOWN, DOWN)),
+                Arguments.arguments(List.of(DOWN, DOWN, UP, UP, DOWN)),
+                Arguments.arguments(List.of(UP, DOWN, UP, DOWN, DOWN)),
+                Arguments.arguments(List.of(DOWN, UP, UP, DOWN, DOWN)),
+                Arguments.arguments(List.of(UP, DOWN, UP, UP, DOWN)),
+                Arguments.arguments(List.of(UP, UP, DOWN, DOWN, DOWN)),
+                Arguments.arguments(List.of(DOWN, UP, UP, DOWN, DOWN))
         );
     }
 }
