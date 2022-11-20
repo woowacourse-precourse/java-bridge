@@ -11,8 +11,8 @@ public class InputVerifier {
         }
     }
 
-    public static void moving(String moving){
-        if (!(moving.equals(MOVING_UP) || moving.equals(MOVING_DOWN))){
+    public static void moving(String moving) {
+        if (!(moving.equals(MOVING_UP) || moving.equals(MOVING_DOWN))) {
             throw new IllegalArgumentException("[ERROR] 이동할 칸 입력 오류");
         }
     }

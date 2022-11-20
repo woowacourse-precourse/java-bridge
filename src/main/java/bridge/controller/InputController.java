@@ -14,4 +14,14 @@ public class InputController {
             }
         }
     }
+
+    public static String readMoving() {
+        while (true) {
+            try {
+                return inputView.readMoving();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }
