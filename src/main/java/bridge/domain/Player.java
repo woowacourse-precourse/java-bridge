@@ -12,6 +12,9 @@ public class Player {
     }
 
     public void move(List<String> bridge, String spaceToMove) {
+        if (isDead()) {
+            throw new IllegalStateException("[ERROR] 유효하지 않은 상태에서 move가 호출됐습니다");
+        }
         int nextSpace = currentSpaceIndex + 1;
         currentSpaceIndex += 1;
         if (!bridge.get(nextSpace).equals(spaceToMove)) { // 그 칸에 발판이 없다면. 이 부분을 다리 객체가 하게끔 하는게 좋을 듯..
