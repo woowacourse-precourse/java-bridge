@@ -110,7 +110,6 @@ D
 - [x] false이면, 예외 던짐
 
 ### readScopeOfBridgeSizeOfNumberException
-- [ ] scopeOfbrideSizeRegularExpression에 숫자가 3이상 20이하의 숫자에 대한 정규표현식을 저장
 - [ ] 매개변수가 scopeOfbrideSizeRegularExpression에 들어맞는지, 확인
 - [ ] false이면, 예외 던짐
 
