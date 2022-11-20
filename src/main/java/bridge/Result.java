@@ -1,6 +1,7 @@
 package bridge;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Result {
@@ -30,11 +31,11 @@ public class Result {
     }
 
     public List<MoveDirection> getDirections() {
-        return directions;
+        return Collections.unmodifiableList(directions);
     }
 
     public List<Boolean> getIsAnswers() {
-        return isAnswers;
+        return Collections.unmodifiableList(isAnswers);
     }
 
     public boolean isUpSignAnswer(boolean isAnswer, MoveDirection direction) {
