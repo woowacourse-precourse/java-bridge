@@ -44,7 +44,7 @@ public class BridgeGame {
         boolean isMoving = true;
         state.start();
 
-        while (isMoving) {
+        while (isMoving && tryCount < bridge.size()) {
             boolean isSuccess = move();
 
             if (!isSuccess) {

@@ -28,14 +28,25 @@ public class BridgeMoveState implements BridgeState {
         boolean isSuccess = true;
         outputView.printInputBridge();
         bridgeGame.getUserDirection().add(inputView.readMoving());
+        bridgeGame.setTryCount(bridgeGame.getTryCount() + 1);
 
-//        if (isCanCross(bridgeGame.getBridge(), bridgeGame.getUserDirection())) {
-//            bridgeGame.setState(bridgeGame.getRetryState());
-//            isSuccess = false;
-//        }
+        if (!isCanCross(bridgeGame.getBridge(), bridgeGame.getUserDirection())) {
+            bridgeGame.setState(bridgeGame.getRetryState());
+            isSuccess = false;
+        }
 
         outputView.printMap();
         return isSuccess;
+    }
+
+    private boolean isCanCross(List<String> bridge, List<String> userDirection) {
+        for (int i = 0; i < userDirection.size() && i < bridge.size(); ++i) {
+            if (!bridge.get(i).equals(userDirection.get(i))) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     @Override
