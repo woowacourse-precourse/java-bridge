@@ -9,7 +9,6 @@ import bridge.service.BridgeMaker;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -51,7 +50,6 @@ class ApplicationTest extends NsTest {
     }
 
     @Override
-    @AfterEach
     protected void runMain() {
         Application.main(new String[]{});
     }
