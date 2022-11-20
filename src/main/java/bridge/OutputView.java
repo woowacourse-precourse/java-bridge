@@ -29,7 +29,8 @@ public class OutputView {
             gameResult = "성공";
         }
         System.out.println(resultLocation);
+        System.out.println();
         System.out.println("게임 성공 여부: " + gameResult);
-        System.out.println("총 시도환 횟수: " + resultCount);
+        System.out.println("총 시도한 횟수: " + resultCount);
     }
 }

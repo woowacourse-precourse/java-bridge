@@ -5,9 +5,6 @@ import java.util.List;
 
 public class CurrentLocationInformation {
     private final OutputView outputView = new OutputView();
-    private String upStateTest = "";
-    private String downStateTest = "";
-    private String stay = "";
     public static List<String> str = new ArrayList<>();
     public static List<String> upStr = new ArrayList<>();
 
@@ -30,66 +27,73 @@ public class CurrentLocationInformation {
     }
 
     private void makeUpLocation(List<String> bridge, int count, String moving) {
-        List<Boolean> test = new ArrayList<>();
-        for (int i = 0; i < bridge.size(); i++) {
-            if (bridge.get(i).equals("U")) {
-                test.add(true);
-            }
-            if (bridge.get(i).equals("D")) {
-                test.add(false);
-            }
-        }
+        List<Boolean> bridgeExist = makeUpLocationExist(bridge);
+
         String state = "[ ";
         if (count == 0) {
-            state += gameIng(test, bridge, count, moving);
+            state += gameIng(bridgeExist, bridge, count, moving);
             upStr.add(state);
         } else {
             state = "";
             state += upStr.get(count - 1);
-            state += gameIng(test, bridge, count, moving);
+            state += gameIng(bridgeExist, bridge, count, moving);
             upStr.add(state);
         }
         state += " ]";
         outputView.printMap(state);
     }
 
-    private void makeDownLocation(List<String> bridge, int count, String moving) {
-        List<Boolean> test = new ArrayList<>();
+    private List<Boolean> makeUpLocationExist(List<String> bridge) {
+        List<Boolean> bridgeTrueAndFalse = new ArrayList<>();
         for (int i = 0; i < bridge.size(); i++) {
-            if (bridge.get(i).equals("D")) {
-                test.add(true);
-            }
             if (bridge.get(i).equals("U")) {
-                test.add(false);
+                bridgeTrueAndFalse.add(true);
+            }
+            if (bridge.get(i).equals("D")) {
+                bridgeTrueAndFalse.add(false);
             }
         }
+        return bridgeTrueAndFalse;
+    }
+
+    private void makeDownLocation(List<String> bridge, int count, String moving) {
+        List<Boolean> bridgeTrueAndFalse = makeDownLocationExist(bridge);
+
         String state = "[ ";
         if (count == 0) {
-            state += gameIng(test, bridge, count, moving);
+            state += gameIng(bridgeTrueAndFalse, bridge, count, moving);
             str.add(state);
-        } else {
+        } else if (count != 0) {
             state = "";
             state += str.get(count - 1);
-            state += gameIng(test, bridge, count, moving);
+            state += gameIng(bridgeTrueAndFalse, bridge, count, moving);
             str.add(state);
         }
         state += " ]";
         outputView.printMap(state);
     }
 
+    private List<Boolean> makeDownLocationExist(List<String> bridge) {
+        List<Boolean> bridgeTrueAndFalse = new ArrayList<>();
+        for (int i = 0; i < bridge.size(); i++) {
+            if (bridge.get(i).equals("D")) {
+                bridgeTrueAndFalse.add(true);
+            }
+            if (bridge.get(i).equals("U")) {
+                bridgeTrueAndFalse.add(false);
+            }
+        }
+        return bridgeTrueAndFalse;
+    }
+
     private String gameIng(List<Boolean> test, List<String> bridge, int count, String moving) { // count는 라운드
         String ing = "";
-        // 왜 인스턴스 변수로 만들면 위 아래 둘 다 O O가 출력 될까..?
-        for (int i = 0; i < 1; i++) {
-            if (count == 0) {
-                ing += showUpAndDownResult(test, bridge, count, moving);
-            }
-            if (count > 0) {
-                for (int j = 0; j < 1; j++) {
-                    ing += " | ";
-                }
-                ing += showUpAndDownResult(test, bridge, count, moving);
-            }
+        if (count == 0) {
+            ing += showUpAndDownResult(test, bridge, count, moving);
+        }
+        if (count > 0) {
+            ing += " | ";
+            ing += showUpAndDownResult(test, bridge, count, moving);
         }
         return ing;
     }

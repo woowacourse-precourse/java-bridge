@@ -16,6 +16,10 @@ public class Controller {
         bridgeMaker = new BridgeMaker(bridgeRandomNumberGenerator);
     }
 
+    private void init() {
+
+    }
+
     public void startGame() {
         try {
             int count = 0;
@@ -25,40 +29,46 @@ public class Controller {
             int bridgeSize = inputView.readBridgeSize();
 
             List<String> test = new ArrayList<>();
+            OutputView outputView = new OutputView();
 
             test = bridgeMaker.makeBridge(bridgeSize);
             for (String s : test) {
                 System.out.print(s + " ");
             }
             System.out.println();
-
-
-
-
             BridgeGame bridgeGame = new BridgeGame();
+
             while (game) {
                 String moving = inputView.readMoving();
                 game = bridgeGame.move(test, moving, count);
 
                 count++;
 
-                if (game == false && count == bridgeSize) {
-                    System.out.println("다시 시작하시겠습니까?");
+                if (game == false && count < bridgeSize) {
                     game = bridgeGame.retry(inputView.readGameCommand());
-                    challengeCount++;
+                    if (game == false) {
+                        outputView.printResult(currentLocationInformation, challengeCount, game);
+                    }
                     count = 0;
-                } else if (game == true && count == bridgeSize) {
-                    System.out.println("게임 종료 ( 지워야 됨 )");
-                    OutputView outputView = new OutputView();
-                    outputView.printResult(currentLocationInformation, challengeCount, game);
-                    System.out.println("총 시도한 횟수: " + challengeCount);
-                    game = false;
+                    challengeCount++;
+                }
 
+                if (game == false && count == bridgeSize) {
+                    game = bridgeGame.retry(inputView.readGameCommand());
+                    if (game == false) {
+                        outputView.printResult(currentLocationInformation, challengeCount, game);
+                    }
+                    count = 0;
+                    challengeCount++;
+                }
+
+
+                if (game == true && count == bridgeSize) {
+                    outputView.printResult(currentLocationInformation, challengeCount, game);
+                    game = false;
                 }
             }
-
-
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
