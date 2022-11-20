@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.validation.ReadBridgeSizeValidation;
+import bridge.validation.ReadMovingValidation;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -29,6 +30,8 @@ public class InputView {
         String movingCommand = Console.readLine();
         System.out.println();
 
+        ReadMovingValidation readMovingValidation = new ReadMovingValidation();
+        readMovingValidation.validateInputFormat(movingCommand);
         return movingCommand;
     }
 
