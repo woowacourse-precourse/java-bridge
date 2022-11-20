@@ -50,11 +50,11 @@ public class OutputView {
         System.out.println(PHRASE_RESULT_OF_THE_GAME.getPhrase());
         printMap(bridges);
     }
-    public void gameAttemptCount(boolean result, int attempt) {
-        if(result) {
+    public void gameAttemptCount(String result, int attempt) {
+        if(result.equals("성공")) {
             System.out.println(PHRASE_GAME_SUCCESS.getPhrase());
         }
-        if(!result) {
+        if(result.equals("실패")) {
             System.out.println(PHRASE_GAME_FAILED.getPhrase());
         }
         System.out.println(PHRASE_GAME_ATTEMPT.getPhrase() + attempt);

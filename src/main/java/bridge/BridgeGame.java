@@ -11,9 +11,9 @@ import static bridge.utils.constant.Constant.*;
  */
 public class BridgeGame {
 
-    public final List<List<String>> bridges;
-    public final List<String> bridgeUp;
-    public final List<String> bridgeDown;
+    public List<List<String>> bridges;
+    public List<String> bridgeUp;
+    public List<String> bridgeDown;
 
     public BridgeGame() {
         this.bridges = new ArrayList<>();
@@ -52,7 +52,7 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public int retry(int attempt, String quit) {
-        if(Objects.equals(quit, RESTART.getValue())) {
+        if(quit.equals(RESTART.getValue())) {
             attempt++;
             return attempt;
         }

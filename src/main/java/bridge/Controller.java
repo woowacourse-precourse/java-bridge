@@ -1,90 +1,90 @@
 package bridge;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static bridge.utils.constant.Constant.*;
 
 public class Controller {
 
-    InputView inputView = new InputView();
-    BridgeGame bridgeGame;
-    BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-    OutputView outputView = new OutputView();
+    private final InputView inputView;
+    private BridgeGame bridgeGame;
+    private final BridgeMaker bridgeMaker;
+    private final OutputView outputView;
+
+    public Controller(InputView inputView, BridgeGame bridgeGame, BridgeMaker bridgeMaker, OutputView outputView) {
+        this.inputView = inputView;
+        this.bridgeGame = bridgeGame;
+        this.bridgeMaker = bridgeMaker;
+        this.outputView = outputView;
+    }
 
     void play() {
-        String quit = "R";
+        String quit;
         outputView.printGameStart();
-        while(!quit.equals("Q")) {
+         do{
             outputView.printBridgeSize();
             int size = inputView.readBridgeSize();
             List<String> bridge = bridgeMaker.makeBridge(size);
             System.out.println(bridge.toString());
 
-            quit = whileQuitIsR(quit, bridge);
-
-
-        }
+            quit = whileQuitIsR(bridge);
+        } while(!quit.equals(QUIT.getValue()));
     }
-    public String whileQuitIsR(String quit, List<String> bridge) {
-        int attempt = 1;
-        boolean failed;
-        while(quit.equals("R")) {
-            bridgeGame = new BridgeGame();
-            List<List<String>> bridges = bridgeGame.getBridges();
-            failed = crossingBridge(bridges, bridge);
-            quit = askQuit(bridges,failed, attempt);
-            if(quit.equals("Q")) {
-                break;
-            }
-        }
+    public String whileQuitIsR(List<String> bridge) {
+        int attempt = 0;
+        String failed;
+        String quit = RESTART.getValue();
+        do {
+            failed = crossingBridge(bridge);
+            attempt = bridgeGame.retry(attempt, quit);
+            quit = askQuit(failed);
+        } while (!quit.equals(QUIT.getValue()));
+        printResult(failed, attempt);
         return quit;
     }
 
-    public boolean crossingBridge(List<List<String>> bridges, List<String> bridge) {
+    public void printResult(String failed, int attempt) {
+        outputView.printResult(bridgeGame.getBridges());
+        outputView.gameAttemptCount(failed, attempt);
+    }
+    public String crossingBridge(List<String> bridge) {
         int count = 0;
+        bridgeGame = new BridgeGame();
+        List<List<String>> bridges = bridgeGame.getBridges();
         while(true) {
-
+            outputView.printWhereToMove();
             String direction = inputView.readMoving();
             count++;
-            outputView.printWhereToMove();
             bridgeGame.move(direction, bridge.get(count-1));
-
             outputView.printMap(bridges);
-
-            try {
-                return endOfTheGame(bridges, bridge ,count);
-            } catch (IllegalArgumentException ignored) {
+            if(!endOfTheGame(bridges, bridge, count).equals("continue")) {
+                return endOfTheGame(bridges, bridge, count);
             }
         }
     }
 
-    public boolean endOfTheGame(List<List<String>> bridges, List<String> bridge,int count) {
-
+    public String endOfTheGame(List<List<String>> bridges, List<String> bridge,int count) {
         for (List<String> strings : bridges) {
-            if (strings.contains("X")) {
-                return true;
+            if (strings.contains(X.getValue())) {
+                return "실패";
             }
         }
         if (count == bridge.size()) {
-            return false;
+            return "성공";
         }
-        throw new IllegalArgumentException("회피용");
+        return "continue";
     }
 
-    public String askQuit(List<List<String>> bridges,boolean failed,int attempt) {
-        String quit = "R";
-        int tmp = attempt;
+    public String askQuit(String failed) {
+        String quit;
 
-        if(failed) {
+        if(failed.equals("실패")) {
             outputView.askRestartGame();
             quit = inputView.readGameCommand();
-            attempt = bridgeGame.retry(attempt, quit);
+            return quit;
         }
-        if(tmp == attempt) {
-            quit = "Q";
-            outputView.printResult(bridges);
-            outputView.gameAttemptCount(!failed, attempt);
-        }
+        quit = QUIT.getValue();
         return quit;
     }
-
-
 }
