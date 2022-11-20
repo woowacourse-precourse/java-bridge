@@ -1,71 +1,60 @@
 package controller;
 
-import repository.Bridge;
-import bridge.BridgeGame;
-import bridge.BridgeMaker;
-import bridge.BridgeRandomNumberGenerator;
-import bridge.BridgeSize;
-import bridge.MapRenderer;
+import dto.BridgeDto;
+import dto.GameCommandDto;
+import dto.IndexDto;
+import dto.MapDto;
+import dto.MovingDto;
 import repository.PlayCount;
+import service.BridgeGame;
 import view.InputView;
 import view.OutputView;
 
 public class GameController {
 	private final InputView inputView = new InputView();
 	private final OutputView outputView = new OutputView();
+	private final BridgeGame bridgeGame = new BridgeGame();
 
 	public void control() {
-		BridgeGame bridgeGame = new BridgeGame();
-
-		Bridge bridge = init();
-		String result = run(bridge, bridgeGame);
-		end(result, bridgeGame);
+		BridgeDto bridgeDto = init();
+		MapDto mapDto = run(bridgeDto);
+		end(mapDto);
 	}
 
-	public Bridge init() {
+	private BridgeDto init() {
 		outputView.printStartMessage();
-
-		BridgeRandomNumberGenerator numberGenerator = new BridgeRandomNumberGenerator();
-		BridgeMaker bridgeMaker = new BridgeMaker(numberGenerator);
-		BridgeSize bridgeSize = new BridgeSize(inputView.readBridgeSize());
-		return new Bridge(bridgeMaker.makeBridge(bridgeSize.getBridgeSize()));
+		int bridgeSize = inputView.readBridgeSize();
+		return bridgeGame.initBridge(bridgeSize);
 	}
 
-	public String run(Bridge bridge, BridgeGame bridgeGame) {
-		MapRenderer mapRenderer = new MapRenderer();
-		String result = "";
-
-		while (result.equals("")) {
-			result = play(bridge, bridgeGame, mapRenderer);
-			if (result.chars().filter(x -> x == 'O').count() == bridge.getBridgeSize()) {
-				return result;
+	private MapDto run(BridgeDto bridgeDto) {
+		MapDto finalMapDto;
+		do {
+			finalMapDto = play(bridgeDto);
+			if (finalMapDto.getNumberOfCorrect() == bridgeDto.getBridgeSize()) {
+				return finalMapDto;
 			}
-			String gameCommand = inputView.readGameCommand();
-			result = bridgeGame.retry(gameCommand, result);
-		}
-		return result;
+			GameCommandDto gameCommandDto = new GameCommandDto(inputView.readGameCommand());
+			finalMapDto = bridgeGame.retry(gameCommandDto, finalMapDto);
+		} while (finalMapDto.getMap().equals(""));
+		return finalMapDto;
 	}
 
-	private String play(Bridge bridge, BridgeGame bridgeGame, MapRenderer mapRenderer) {
-		String result = "";
-		for (int index = 0; index < bridge.getBridgeSize(); index++) {
-			String moving = inputView.readMoving();
-			boolean isSafe = bridgeGame.move(bridge.getBridge().subList(0, index + 1), moving);
-			String map = mapRenderer.render(bridge.getBridge().subList(0, index + 1), isSafe);
-			outputView.printMap(map);
-			if (bridge.isCorrectMoving(index, moving)) {
-				if (index == bridge.getBridgeSize() - 1) {
-					return map;
-				}
-				continue;
+	private MapDto play(BridgeDto bridgeDto) {
+		MapDto mapDto = null;
+		for (int index = 0; index < bridgeDto.getBridgeSize(); index++) {
+			MovingDto movingDto = new MovingDto(inputView.readMoving());
+			mapDto = bridgeGame.move(bridgeDto, new IndexDto(index), movingDto);
+			outputView.printMap(mapDto.getMap());
+
+			if (bridgeGame.isFinish(mapDto, bridgeDto, new IndexDto(index))) {
+				break;
 			}
-			result = map;
-			break;
 		}
-		return result;
+		return mapDto;
 	}
 
-	public void end(String result, BridgeGame bridgeGame) {
-		outputView.printResult(result, bridgeGame.isSuccess(), PlayCount.getInstance().getCount());
+	private void end(MapDto mapDto) {
+		outputView.printResult(mapDto.getMap(), bridgeGame.isSuccess(), PlayCount.getInstance().getCount());
 	}
 }
