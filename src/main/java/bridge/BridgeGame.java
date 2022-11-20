@@ -3,8 +3,6 @@ package bridge;
 import bridge.domain.Bridge;
 import bridge.repository.BridgeResultData;
 import bridge.repository.MovingData;
-import bridge.systemMessage.ErrorMessage;
-import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -14,8 +12,8 @@ public class BridgeGame {
     private static final String RIGHT_ANSWER = "O";
     private static final String WRONG_ANSWER = "X";
     private static final String NOT_CHOSEN = " ";
-    private static final String RETRY_CHARACTER = "R";
-    private static final String QUIT_CHARACTER = "Q";
+    private static final String RETRY_COMMAND = "R";
+    private static final String QUIT_COMMAND = "Q";
 
     private final Bridge bridge;
 
@@ -23,16 +21,12 @@ public class BridgeGame {
         this.bridge = new Bridge(size);
     }
 
-    public static String getRetryCharacter() {
-        return RETRY_CHARACTER;
+    public static String getRetryCommand() {
+        return RETRY_COMMAND;
     }
 
-    public static String getQuitCharacter() {
-        return QUIT_CHARACTER;
-    }
-
-    public List<String> getBridge() {
-        return bridge.getBridge();
+    public static String getQuitCommand() {
+        return QUIT_COMMAND;
     }
 
     /**
@@ -59,7 +53,7 @@ public class BridgeGame {
     }
 
     public boolean movingIsWrong(String moving) {
-        return !getBridge().get(MovingData.getLastIndex()).equals(moving);
+        return !bridge.getBridge().get(MovingData.getLastIndex()).equals(moving);
     }
 
     /**
@@ -73,19 +67,7 @@ public class BridgeGame {
     }
 
     public boolean readRetry(String input) {
-        validateRetryOrQuit(input);
-        return input.equals(RETRY_CHARACTER);
-    }
-
-    private void validateRetryOrQuit(String input) {
-        if (!input.equals(RETRY_CHARACTER) && !input.equals(QUIT_CHARACTER)) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_VALID_RETRY_OR_QUIT_INPUT_ERROR.getMessage());
-        }
-    }
-
-    public boolean winBridgeGame(String moving) {
-        return bridge.isCorrectMoving(MovingData.getLastIndex(), moving)
-                && bridge.getSize() == MovingData.getSize();
+        return input.equals(RETRY_COMMAND);
     }
 
     /**
@@ -94,5 +76,9 @@ public class BridgeGame {
     public void quit() {
         BridgeResultData.reset();
         MovingData.reset();
+    }
+
+    public boolean winBridgeGame(String moving) {
+        return !movingIsWrong(moving) && bridge.getSize() == MovingData.getSize();
     }
 }

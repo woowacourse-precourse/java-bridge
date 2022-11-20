@@ -20,8 +20,8 @@ public enum ErrorMessage {
     ),
     NOT_VALID_RETRY_OR_QUIT_INPUT_ERROR(
             String.format("게임을 다시 시도하려면 %s, 종료하려면 %s를 입력해주세요.",
-                    BridgeGame.getRetryCharacter(),
-                    BridgeGame.getQuitCharacter())
+                    BridgeGame.getRetryCommand(),
+                    BridgeGame.getQuitCommand())
     );
 
     private static final String ERROR = "[ERROR] ";

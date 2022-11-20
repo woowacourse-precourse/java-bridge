@@ -46,7 +46,4 @@ public class Bridge {
         }
     }
 
-    public boolean isCorrectMoving(int index, String moving) {
-        return bridge.get(index).equals(moving);
-    }
 }
