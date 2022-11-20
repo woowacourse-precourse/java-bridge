@@ -17,6 +17,7 @@ public class Application {
     public static boolean run() {
         while (!game.isEnd()) {
             game.move(getMove());
+            output.printMap(game.getMap(), game.getUserSelect());
         }
 
         if (game.isFailed() && getRetry())
