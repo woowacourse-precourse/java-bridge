@@ -1,6 +1,6 @@
 package bridge.domain;
 
-public enum Direction {
+public enum Moving {
     U,
     D;
 }

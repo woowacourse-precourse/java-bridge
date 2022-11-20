@@ -29,6 +29,6 @@ public class BridgeMaker {
 
     private String makeOne() {
         String generated = Integer.toString(bridgeNumberGenerator.generate());
-        return Direction.valueOf(generated).name();
+        return Moving.valueOf(generated).name();
     }
 }
