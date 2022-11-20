@@ -8,13 +8,12 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import bridge.model.constant.Error;
-import bridge.model.constant.Size;
 
 class BridgeSizeTest {
 	@DisplayName("3 에서 20 사이 자연수를 입력하면 해당 숫자를 반환한다")
 	@Test
 	void inRangeTest() {
-		for (int size = Size.MIN.getNumber(); size <= Size.MAX.getNumber(); size++) {
+		for (int size = BridgeSize.MIN_NUMBER; size <= BridgeSize.MIN_NUMBER; size++) {
 			assertEquals(new BridgeSize(size).getSize(), size);
 		}
 	}

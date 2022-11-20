@@ -9,7 +9,7 @@ import java.util.Set;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import bridge.model.constant.Size;
+import bridge.model.validation.BridgeSize;
 import bridge.model.validation.Stairs;
 
 class BridgeMakerTest {
@@ -18,7 +18,7 @@ class BridgeMakerTest {
 	@Test
 	void makeBridgeTest() {
 		BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
-		for (int size = Size.MIN.getNumber(); size <= Size.MAX.getNumber(); size++) {
+		for (int size = BridgeSize.MIN_NUMBER; size <= BridgeSize.MAX_NUMBER; size++) {
 			List<String> bridges = bridgeMaker.makeBridge(size);
 			Set<String> nonDuplicateBridges = new HashSet<>(bridges);
 
