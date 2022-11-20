@@ -1,6 +1,7 @@
 package bridge.constant;
 
 public enum GameStatus {
+
     CONTINUE("계속"), FAIL("실패"), SUCCESS("성공");
 
     private final String message;
