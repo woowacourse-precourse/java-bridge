@@ -9,10 +9,13 @@ import bridge.view.OutputView;
 public class BridgeGame {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
+    private final BridgeRandomNumberGenerator generator = new BridgeRandomNumberGenerator();
+    private final BridgeMaker bridgeMaker = new BridgeMaker(generator);
     public void run() {
         try {
             initMsg();
-            //int bridgeSize = inputView.readBridgeSize();
+            int bridgeSize = inputView.readBridgeSize();
+            bridgeMaker.makeBridge(bridgeSize);
         } catch (IllegalArgumentException exception) {
             OutputView.printMsg("[ERROR] " + exception.getMessage());
         }
