@@ -13,4 +13,8 @@ public class Bridge {
    public boolean isCorrect(int index, String bridgeType){
         return bridge.get(index).equals(bridgeType);
    }
+
+   public int getSize(){
+        return bridge.size();
+   }
 }
