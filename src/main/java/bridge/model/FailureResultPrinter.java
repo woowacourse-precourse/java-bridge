@@ -4,6 +4,9 @@ import java.util.List;
 
 public class FailureResultPrinter extends ResultPrinter {
 
+    public static final String WRONG_SIGN = "X";
+    public static final int CHANGE_INDEX_ADD_ONE = 1;
+
     FailureResultPrinter(List<String> directions) {
         super(directions);
     }

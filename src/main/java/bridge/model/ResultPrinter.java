@@ -7,8 +7,6 @@ abstract class ResultPrinter {
     public static final String DIRECTION_UP = "U";
     public static final String DIRECTION_DOWN = "D";
     public static final String RIGHT_SIGN = "O";
-    public static final String WRONG_SIGN = "X";
-    public static final int CHANGE_INDEX_ADD_ONE = 1;
     public static final String RESULT_DELIMITER = " | ";
     public static final String DEFAULT_SIGN = " ";
     public static final String FORMAT_RESULT = "[ %s ]\n";
@@ -16,6 +14,13 @@ abstract class ResultPrinter {
 
     ResultPrinter(List<String> directions) {
         this.directions = directions;
+    }
+
+    public static ResultPrinter createResultPrinter(Boolean success, List<String> directions) {
+        if (success) {
+            return new SuccessResultPrinter(directions);
+        }
+        return new FailureResultPrinter(directions);
     }
 
     abstract String print();

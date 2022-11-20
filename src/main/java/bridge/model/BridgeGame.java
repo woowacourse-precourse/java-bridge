@@ -48,11 +48,7 @@ public class BridgeGame {
         return player.isStartStatus();
     }
 
-    public String printWrongResult() {
-        return player.printFailureResult();
-    }
-
-    public String printRightResult() {
-        return player.printSuccessResult();
+    public String printResult() {
+        return player.printResult(isSuccess());
     }
 }

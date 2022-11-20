@@ -23,13 +23,7 @@ public class Player {
         return directions.isEmpty();
     }
 
-    String printFailureResult() {
-        FailureResultPrinter failureResultPrinter = new FailureResultPrinter(directions);
-        return failureResultPrinter.print();
-    }
-
-    String printSuccessResult() {
-        SuccessResultPrinter successResultPrinter = new SuccessResultPrinter(directions);
-        return successResultPrinter.print();
+    String printResult(Boolean success) {
+        return ResultPrinter.createResultPrinter(success, directions).print();
     }
 }

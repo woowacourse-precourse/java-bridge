@@ -33,22 +33,4 @@ public class PlayerTest {
         player.move("U");
         assertThat(player.isStartStatus()).isFalse();
     }
-
-    @DisplayName("성공시 리스트 출력")
-    @Test
-    void print_success_result() {
-        Player player = new Player();
-        player.move("U");
-        player.move("D");
-        assertThat(player.printSuccessResult()).isEqualTo("[ O |   ]\n[   | O ]\n");
-    }
-
-    @DisplayName("실패시 리스트 출력")
-    @Test
-    void print_failure_result() {
-        Player player = new Player();
-        player.move("U");
-        player.move("D");
-        assertThat(player.printFailureResult()).isEqualTo("[ O |   ]\n[   | X ]\n");
-    }
 }
