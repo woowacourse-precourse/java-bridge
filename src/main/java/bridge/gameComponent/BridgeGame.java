@@ -10,7 +10,7 @@ public class BridgeGame {
     private int currentStep; //현재까지 움직인 칸
     private int lastStep; //마지막 칸
     private int numberOfTrials;
-    private char[][] mapRecord; //현재까지 움직인 다리 기록
+    private char[][] moveRecord; //현재까지 움직인 다리 기록
     private Bridge bridge;
 
     public BridgeGame(Bridge bridge) {
@@ -21,7 +21,7 @@ public class BridgeGame {
         this.currentStep = -1;
         this.lastStep = bridge.getBridge().size() - 1;
         this.numberOfTrials = 1;
-        this.mapRecord = new char[2][this.lastStep + 1];
+        this.moveRecord = new char[2][this.lastStep + 1];
     }
 
     public int getNumberOfTrials() {
@@ -35,8 +35,8 @@ public class BridgeGame {
     public int getLastStep() {
         return lastStep;
     }
-    public char[][] getMapRecord() {
-        return mapRecord;
+    public char[][] getMoveRecord() {
+        return moveRecord;
     }
 /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -62,7 +62,7 @@ public class BridgeGame {
         if (isSuccess()) throw new IllegalStateException(ExceptionMessage.GAME_ALREADY_SUCCESS.getMessage());
         this.numberOfTrials++;
         this.currentStep = -1;
-        this.mapRecord = new char[2][this.lastStep + 1];
+        this.moveRecord = new char[2][this.lastStep + 1];
     }
 
     public boolean isSuccess() {
@@ -75,14 +75,15 @@ public class BridgeGame {
         int userMoveAsInt = moveToInt(userMove);
         int userNotMoveAsInt = notMoveToInt(userMove);
         if (moveResult == MoveResult.CORRECT || moveResult == MoveResult.CORRECT_AND_LAST) {
-            this.mapRecord[userMoveAsInt][currentStep] = 'O';
-            this.mapRecord[userNotMoveAsInt][currentStep] = ' ';
-            return this.mapRecord;
+            this.moveRecord[userMoveAsInt][currentStep] = 'O';
+            this.moveRecord[userNotMoveAsInt][currentStep] = ' ';
+            return this.moveRecord;
         }
-        this.mapRecord[userMoveAsInt][currentStep + 1] = 'X';
-        this.mapRecord[userNotMoveAsInt][currentStep + 1] = ' ';
-        return this.mapRecord;
+        this.moveRecord[userMoveAsInt][currentStep + 1] = 'X';
+        this.moveRecord[userNotMoveAsInt][currentStep + 1] = ' ';
+        return this.moveRecord;
     }
+
     public MoveResult isCorrectMove(String move) {
         boolean isPossibleMove = this.bridge.isPossibleMove(this.currentStep + 1, move);
         if(isPossibleMove && this.currentStep + 1 == this.lastStep) return MoveResult.CORRECT_AND_LAST;

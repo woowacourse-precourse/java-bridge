@@ -65,7 +65,7 @@ public class GameManager {
         int indexToPrint = bridgeGame.getCurrentStep();
         if(!isSuccess) indexToPrint++;
         outputView.printEndMessage();
-        outputView.printMap(bridgeGame.getMapRecord(), indexToPrint);
+        outputView.printMap(bridgeGame.getMoveRecord(), indexToPrint);
         outputView.printResult(isSuccess, bridgeGame.getNumberOfTrials());
     }
 }
