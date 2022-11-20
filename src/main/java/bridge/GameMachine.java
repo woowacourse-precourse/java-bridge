@@ -19,13 +19,15 @@ public class GameMachine {
     private int counter;
 
     public GameMachine() {
+        view.printStart();
+        view.printBridgeSizeRequest();
+
         bridge = makeBridge();
         bridgeGame = new BridgeGame(bridge);
         counter = 1;
     }
 
     public void run() {
-        start();
         RetryCommand retry = RetryCommand.RETRY;
         while (retry == RetryCommand.RETRY) {
             bridgeGame.retry();
@@ -33,11 +35,6 @@ public class GameMachine {
             retry = gameAfter(gameResult);
         }
         end();
-    }
-
-    private void start() {
-        view.printBridgeSizeRequest();
-        view.printStart();
     }
 
     private RetryCommand gameAfter(MoveResult gameResult) {
