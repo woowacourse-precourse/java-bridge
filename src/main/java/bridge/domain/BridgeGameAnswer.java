@@ -22,10 +22,11 @@ public class BridgeGameAnswer {
         List<List<String>> rvalue = new ArrayList<>();
         for (int i = 0; i < history.size(); i++) {
             if (isAnswer(history.get(i), i)) {
-                rvalue.add(getCollectMessage(bridgeAnswer.get(i), isLastIndex(history.size(), i)));
+                rvalue.add(getCollectMessage(bridgeAnswer.get(i),
+                        isLastIndex(history.size(), i + 1)));
                 continue;
             }
-            rvalue.add(getWrongMessage(bridgeAnswer.get(i), isLastIndex(history.size(), i)));
+            rvalue.add(getWrongMessage(bridgeAnswer.get(i), isLastIndex(history.size(), i + 1)));
         }
         return rvalue;
     }
