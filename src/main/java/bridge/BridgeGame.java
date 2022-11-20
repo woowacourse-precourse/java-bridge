@@ -28,22 +28,19 @@ public class BridgeGame {
         outputView.printStartNotice();
         int size = inputBridgeSize();
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(size));
-        crossBridge(size, bridge);
-        //결과 출력
+        ResultDTO resultDTO = crossBridge(size, bridge);
+        outputView.printResult(resultDTO);
     }
 
-    public static void main(String[] args) {
-        BridgeGame bridgeGame = new BridgeGame();
-        bridgeGame.run();
-    }
-
-    private void crossBridge(int size, Bridge bridge) {
+    private ResultDTO crossBridge(int size, Bridge bridge) {
+        int count = 1;
         while (true) {
-            boolean end = false;
-            end = move(size, bridge, end);
+            List<PathDTO> pathDTO = new ArrayList<>();
+            boolean end = move(size, bridge, pathDTO);
             if (isEnd(end)) {
-                break;
+                return new ResultDTO(new MapDTO(pathDTO), end, count);
             }
+            count++;
         }
     }
 
@@ -67,8 +64,8 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public boolean move(int size, Bridge bridge, boolean end) {
-        List<PathDTO> pathDTO = new ArrayList<>();
+    public boolean move(int size, Bridge bridge, List<PathDTO> pathDTO) {
+        boolean end = false;
         for (int round = 0; round < size; round++) {
             if (getPassable(bridge, pathDTO, round).equals(FAIL)) {
                 break;
