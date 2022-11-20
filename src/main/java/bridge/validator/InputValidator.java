@@ -14,4 +14,10 @@ public class InputValidator {
             throw new IllegalArgumentException(ExceptionMessage.INPUT_SHOULD_BE_U_OR_D.getMessage());
         }
     }
+
+    public void validateRetry(String retryQuit) {
+        if(!(retryQuit.equals("R") || retryQuit.equals("Q"))) {
+            throw new IllegalArgumentException(ExceptionMessage.INPUT_SHOULD_BE_U_OR_D.getMessage());
+        }
+    }
 }

@@ -9,7 +9,7 @@
 ## 입력 유효성 검사 InputValidator
 - [x] 다리 크기 유효성 검사 InputValidator#validateBridgeSize(int size)
 - [x] U 또는 D 입력 유효성 검사 InputValidator#validateMove(String move)
-- [ ] R 또는 Q 입력 유효성 검사 InputValidator#validateRetry(String retryQuit)
+- [x] R 또는 Q 입력 유효성 검사 InputValidator#validateRetry(String retryQuit)
 
 ## 출력 OutputView
 - [ ] 게임 시작 메시지 InputView#startGame()

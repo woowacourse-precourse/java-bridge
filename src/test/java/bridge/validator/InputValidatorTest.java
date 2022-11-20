@@ -44,6 +44,55 @@ public class InputValidatorTest {
                 .isNull();
     }
     @Test
+    void validateRetryTest_R또는Q_아닌_경우() {
+        //given
+        String retryQuit = "Test";
+        //when
+        Throwable throwable = catchThrowable(() -> {
+            inputValidator.validateRetry(retryQuit);
+        });
+        //then
+        assertThat(throwable)
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    @Test
+    void validateRetryTest_빈문자열_경우() {
+        //given
+        String retryQuit = "";
+        //when
+        Throwable throwable = catchThrowable(() -> {
+            inputValidator.validateRetry(retryQuit);
+        });
+        //then
+        assertThat(throwable)
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    @Test
+    void validateRetryTest_정상_R_경우() {
+        //given
+        String retryQuit = "R";
+        //when
+        Throwable throwable = catchThrowable(() -> {
+            inputValidator.validateRetry(retryQuit);
+        });
+        //then
+        assertThat(throwable)
+                .isNull();
+    }
+    @Test
+    void validateRetryTest_정상_Q_경우() {
+        //given
+        String retryQuit = "Q";
+        //when
+        Throwable throwable = catchThrowable(() -> {
+            inputValidator.validateRetry(retryQuit);
+        });
+        //then
+        assertThat(throwable)
+                .isNull();
+    }
+
+    @Test
     void validateMoveTest_U또는D_아닌_경우() {
         //given
         String move = "Test";
