@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.ui.InputView;
+import bridge.ui.OutputView;
 
 import java.util.List;
 
@@ -11,11 +12,13 @@ public class BridgeGame {
     private List<String> bridge;
     private int position;
     private InputView inputView;
+    private OutputView outputView;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
         this.position = 0;
         this.inputView = new InputView();
+        this.outputView = new OutputView();
     }
 
     public void start(){
@@ -40,6 +43,8 @@ public class BridgeGame {
      */
     public void move() {
         String moving = inputView.readMoving();
+        boolean isPass = isPassBridge(moving);
+        outputView.printMap(bridge, position, isPass);
         if (!isPassBridge(moving)) {
             // 실패했을 때 로직
             return;
