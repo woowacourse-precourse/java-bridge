@@ -1,6 +1,5 @@
 package bridge.view;
 
-import bridge.domain.CompareBridge;
 import bridge.domain.Player;
 import bridge.domain.enums.BridgePanel;
 import bridge.view.enums.MapType;
@@ -21,30 +20,30 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(Player player, List<String> bridge, CompareBridge compareBridge) {
+    public void printMap(Player player, List<String> bridge, String move) {
         up = new StringBuilder(MapType.START.getType());
         down = new StringBuilder(MapType.START.getType());
         for (int index = 0; index <= player.informMovingIndex(); index++) {
-            makeUpMap(player, bridge, compareBridge);
-            makeDownMap(player, bridge, compareBridge);
+            makeUpMap(player, bridge, move);
+            makeDownMap(player, bridge, move);
         }
         System.out.println(up);
         System.out.println(down);
     }
 
-    public void makeUpMap(Player player, List<String> bridge, CompareBridge compareBridge) {
+    public void makeUpMap(Player player, List<String> bridge, String move) {
         if (bridge.get(player.informMovingIndex()).equals(BridgePanel.UP_PANEL.getPosition())) {
-            up.append(compareBridge.stepping(player, bridge)).append(MapType.END.getType());
-            down.append(MapType.EMPTY).append(MapType.END.getType());
+            up.append(move).append(MapType.END.getType());
+            down.append(MapType.EMPTY.getType()).append(MapType.END.getType());
         }
         insertDivision(up);
         insertDivision(down);
     }
 
-    public void makeDownMap(Player player, List<String> bridge, CompareBridge compareBridge) {
+    public void makeDownMap(Player player, List<String> bridge, String move) {
         if (bridge.get(player.informMovingIndex()).equals(BridgePanel.DOWN_PANEL.getPosition())) {
-            down.append(compareBridge.stepping(player, bridge)).append(MapType.END.getType());
-            up.append(MapType.EMPTY).append(MapType.END.getType());
+            down.append(move).append(MapType.END.getType());
+            up.append(MapType.EMPTY.getType()).append(MapType.END.getType());
         }
         insertDivision(up);
         insertDivision(down);
