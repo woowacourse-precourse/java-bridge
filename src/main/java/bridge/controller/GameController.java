@@ -74,7 +74,8 @@ public class GameController {
         outputView.printFinalGameResult();
         printMap(bridgeGame);
         boolean gameSuccessOrNot = bridgeGame.isSuccess();
-        tryNumber.printAttemptNumber(outputView, gameSuccessOrNot);
+        Integer tryNumberCount = tryNumber.getTryNumber();
+        outputView.printResult(tryNumberCount, gameSuccessOrNot);
     }
 
     private void printMap(BridgeGame bridgeGame) {

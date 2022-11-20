@@ -1,7 +1,5 @@
 package bridge.model;
 
-import bridge.view.OutputView;
-
 public class TryNumber {
     private Integer tryNumber = 1;
 
@@ -9,7 +7,7 @@ public class TryNumber {
         tryNumber += 1;
     }
 
-    public void printAttemptNumber(OutputView outputView, boolean success) {
-        outputView.printResult(tryNumber, success);
+    public Integer getTryNumber() {
+        return tryNumber;
     }
 }

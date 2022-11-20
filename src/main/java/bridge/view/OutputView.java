@@ -9,7 +9,7 @@ public class OutputView {
     private static final String ERROR_MESSAGE = "[ERROR] ";
     private static final String GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.\n";
     private static final String GAME_SUCCESS_WHETHER = "게임 성공 여부";
-    private static final String GAME_ATTEMPT_COUNT = "총 시도한 횟수";
+    private static final String GAME_TRY_COUNT = "총 시도한 횟수";
     private static final String GAME_SUCCESS = "성공";
     private static final String GAME_FAILURE = "실패";
     private static final String START_BRIDGE = "[";
@@ -34,9 +34,9 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(Integer attemptNumber, boolean isSuccess) {
+    public void printResult(Integer tryNumber, boolean isSuccess) {
         System.out.println(successOrNot(isSuccess));
-        System.out.println(attemptCount(attemptNumber));
+        System.out.println(tryCount(tryNumber));
     }
 
     public void printGameStartMessage() {
@@ -63,7 +63,7 @@ public class OutputView {
         return String.format("%s %s %s", START_BRIDGE, bridgeStatus, END_BRIDGE);
     }
 
-    private String attemptCount(Integer attemptNumber) {
-        return String.format("%s: %d", GAME_ATTEMPT_COUNT, attemptNumber);
+    private String tryCount(Integer tryNumber) {
+        return String.format("%s: %d", GAME_TRY_COUNT, tryNumber);
     }
 }
