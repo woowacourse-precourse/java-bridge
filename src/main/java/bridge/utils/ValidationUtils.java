@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 import static bridge.exception.Errors.CANNOT_CHARACTER_FORMAT;
 import static bridge.exception.Errors.EMPTY_INPUT;
 import static bridge.exception.Errors.INPUT_RIGHT_RANGE;
+import static bridge.exception.Errors.NOT_RIGHT_GAME_COMMAND;
 import static bridge.exception.Errors.NOT_RIGHT_MOVE_COMMAND;
 
 public class ValidationUtils {
@@ -15,6 +16,7 @@ public class ValidationUtils {
     private static final int MINIMUM_BRIDGE_LENGTH = 3;
     private static final int MAXIMUM_BRIDGE_LENGTH = 20;
     private static final String MOVE_COMMAND_REGEX = "[U|D]";
+    private static final String GAME_COMMAND_REGEX = "[R|Q]";
 
     private ValidationUtils() {
     }
@@ -51,6 +53,21 @@ public class ValidationUtils {
         validateRightMoveCommand(move);
     }
 
+    private static boolean isDifferentMoveCommand(final String move) {
+        return !Pattern.matches(MOVE_COMMAND_REGEX, move);
+    }
+
+    private static void validateRightMoveCommand(final String move) {
+        if (isDifferentMoveCommand(move)) {
+            throw new IllegalArgumentException(NOT_RIGHT_MOVE_COMMAND.getMessage());
+        }
+    }
+
+    public static void validateGameCommand(final String command) {
+        validateEmpty(command);
+        validateRightGameCommand(command);
+    }
+
     private static void validateEmpty(final String input) {
         if (isBlank(input)) {
             throw new IllegalArgumentException(EMPTY_INPUT.getMessage());
@@ -61,13 +78,13 @@ public class ValidationUtils {
         return StringUtils.isBlank(input);
     }
 
-    private static boolean isDifferentMoveCommand(final String move) {
-        return !Pattern.matches(MOVE_COMMAND_REGEX, move);
+    private static void validateRightGameCommand(final String command) {
+        if (isDifferentGameCommand(command)) {
+            throw new IllegalArgumentException(NOT_RIGHT_GAME_COMMAND.getMessage());
+        }
     }
 
-    private static void validateRightMoveCommand(final String move) {
-        if (isDifferentMoveCommand(move)) {
-            throw new IllegalArgumentException(NOT_RIGHT_MOVE_COMMAND.getMessage());
-        }
+    private static boolean isDifferentGameCommand(final String command) {
+        return !Pattern.matches(GAME_COMMAND_REGEX, command);
     }
 }

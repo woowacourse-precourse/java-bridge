@@ -59,7 +59,7 @@ class ValidationUtilsTest {
 
         @DisplayName("U나 D이외의 값이 입력이 되면 오류가 발생한다.")
         @ParameterizedTest
-        @ValueSource(strings = {"A", "B", "S", "C", "z", "u", "d", "0", "*"})
+        @ValueSource(strings = {"A", "B", "S", "R", "Q", "C", "z", "u", "d", "0", "*"})
         void throwExceptionWhenInputNotRightCommand(String command) {
             assertThatThrownBy(() -> ValidationUtils.validateMove(command))
                     .isInstanceOf(IllegalArgumentException.class);
@@ -70,6 +70,33 @@ class ValidationUtilsTest {
         @ValueSource(strings = {"U", "D"})
         void passWhenInputUOrD(String command) {
             assertThatNoException().isThrownBy(() -> ValidationUtils.validateMove(command));
+        }
+    }
+
+    @Nested
+    @DisplayName("입력되는 게임 명령을 검증한다.")
+    class inputGameCommandTest {
+        @DisplayName("아무것도 입력이 안되면 오류가 발생된다.")
+        @ParameterizedTest
+        @ValueSource(strings = {" ", ""})
+        void throwExceptionWhenInputNoting(String command) {
+            assertThatThrownBy(() -> ValidationUtils.validateGameCommand(command))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        @DisplayName("R이나 Q이외의 값이 입력이 되면 오류가 발생한다.")
+        @ParameterizedTest
+        @ValueSource(strings = {"A", "B", "D", "S", "C", "U", "z", "u", "d", "0", "*"})
+        void throwExceptionWhenInputNotRightCommand(String command) {
+            assertThatThrownBy(() -> ValidationUtils.validateGameCommand(command))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        @DisplayName("R나 Q를 입력하면 검증이 통과된다.")
+        @ParameterizedTest
+        @ValueSource(strings = {"R", "Q"})
+        void passWhenInputUOrD(String command) {
+            assertThatNoException().isThrownBy(() -> ValidationUtils.validateGameCommand(command));
         }
     }
 }
