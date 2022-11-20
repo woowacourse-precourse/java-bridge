@@ -14,8 +14,6 @@ public class BridgeGame {
     private boolean succecss = false;
 
     public boolean move(InputView inputView, OutputView outputView, int i) {
-        List<String> bridge = getBridge();
-        List<Boolean> matchResult = getMatchResult();
         String input = inputView.readMoving();
         boolean match = bridge.get(i).equals(input);
         matchResult.add(match);
@@ -24,9 +22,9 @@ public class BridgeGame {
         return match;
     }
 
-    public boolean retry(InputView inputView, BridgeGame bridgeGame) {
+    public boolean retry(InputView inputView) {
         if (inputView.readGameCommand().equals("R")) {
-            bridgeGame.setMatchResult(new ArrayList<>());
+            setMatchResult(new ArrayList<>());
             return true;
         }
         return false;

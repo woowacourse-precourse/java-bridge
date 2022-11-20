@@ -39,7 +39,7 @@ public class GameController {
     }
 
     public boolean SELECTRESTART() {
-        return bridgeGame.retry(inputView,bridgeGame);
+        return bridgeGame.retry(inputView);
     }
 
     public void STOPGAME() {
