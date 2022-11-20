@@ -28,7 +28,7 @@ public class BridgeController {
         while(true) {
             String direction = getMoveDirection();
             bridgeGame.move(direction);
-            //TODO 결과 출력
+            outputView.printMap(bridgeGame);
             if (!bridgeGame.canCrossBridge(direction)) {
                 // TODO 재시작/종료 입력받고 재실행 혹은 종료
             }

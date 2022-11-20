@@ -1,20 +1,39 @@
 package bridge.view;
 
+import bridge.BridgeGame;
+import bridge.GameResult;
+import bridge.constant.Message;
+import java.util.List;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
 
-    private static final String NEW_LINE = "\n";
-    private static final String START_MESSAGE = "다리 건너기 게임을 시작합니다." + NEW_LINE;
-
+    private static final String BEGINING_BRIDGE = "[ ";
+    private static final String END_BRIDGE = " ]";
+    private static final String BLOCK_SEPERATOR = " | ";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(BridgeGame bridgeGame) {
+        GameResult gameResult = bridgeGame.getGameResult();
+        System.out.println(makeBridgeFormat(gameResult.getUpperBridge().getBridge()));
+        System.out.println(makeBridgeFormat(gameResult.getLowerBridge().getBridge()));
+    }
+
+    private String makeBridgeFormat(List<String> bridgeResult) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(BEGINING_BRIDGE);
+        for (String element : bridgeResult) {
+            stringBuilder.append(element);
+            stringBuilder.append(BLOCK_SEPERATOR);
+        }
+        stringBuilder.append(END_BRIDGE);
+        return stringBuilder.toString();
     }
 
     /**
@@ -26,7 +45,7 @@ public class OutputView {
     }
 
     public void printStart() {
-        System.out.println(START_MESSAGE);
+        System.out.println(Message.START_MESSAGE);
     }
 
     public void printMessage(String message) {

@@ -14,10 +14,6 @@ public class GameResult {
     private final Bridge upperBridge = new Bridge(new ArrayList<>());
     private final Bridge lowerBridge = new Bridge(new ArrayList<>());
 
-    public int getGameCount() {
-        return upperBridge.getSize();
-    }
-
     public void add(String upperOrLower, boolean isAnswer) {
         Direction direction = Direction.getDirection(upperOrLower);
         if (direction.equals(UPPER)) {
@@ -43,5 +39,17 @@ public class GameResult {
 
     private void addToLowerBridge(String result) {
         lowerBridge.add(result);
+    }
+
+    public int getGameCount() {
+        return upperBridge.getSize();
+    }
+
+    public Bridge getUpperBridge() {
+        return upperBridge;
+    }
+
+    public Bridge getLowerBridge() {
+        return lowerBridge;
     }
 }

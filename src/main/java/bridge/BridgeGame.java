@@ -34,4 +34,8 @@ public class BridgeGame {
      */
     public void retry() {
     }
+
+    public GameResult getGameResult() {
+        return gameResult;
+    }
 }

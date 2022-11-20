@@ -20,4 +20,8 @@ public class Bridge {
     public void add(String element) {
          bridge.add(element);
     }
+
+    public List<String> getBridge() {
+        return bridge;
+    }
 }
