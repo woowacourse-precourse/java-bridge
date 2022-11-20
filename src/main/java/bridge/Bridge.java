@@ -72,18 +72,17 @@ public class Bridge {
             stepMemory.get(i).add(blank);
         }
     }
-    public void printRoute(){
-        for(int i=0; i<BRIDGE_ROUTE.getBranchNum(); i++){
-            String outputString = String.join(" | ", stepMemory.get(i));
-            System.out.println("[ "+outputString+" ]");
-        }
-
+    public List<List<String>> getStepMemory(){
+        return stepMemory;
     }
     public boolean resetStep(){
         boolean choice = userInput.isRestart();
         if(choice) {
             currentPosition = -1;
-            stepMemory = new ArrayList<>();
+            for(List<String > step : stepMemory){
+                step.clear();
+            }
+
             safeMemory = new ArrayList<>();
         }
         return choice;
