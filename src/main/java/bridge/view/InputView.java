@@ -24,7 +24,8 @@ public class InputView {
     public static void validateBridgeLength(String bridgeLength) {
         String numberExpression = "^[0-9]+$";
 
-        if (!bridgeLength.matches(numberExpression)) {
+        if (!bridgeLength.matches(numberExpression) ||
+                (bridgeLength.length() >= 2 && bridgeLength.charAt(0) == '0')) {
             throw new IllegalArgumentException(Error.INPUT_NUMBER_ERROR.getMessage());
         }
     }
