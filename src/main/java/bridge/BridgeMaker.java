@@ -26,33 +26,15 @@ public class BridgeMaker {
         String input = inputView.getReadMoving();
         for(int i = 0; i < randomNumbers.length; i++) {
             randomNumbers[i] = bridgeNumberGenerator.generate();
-        }
-        if(randomNumbers[0] == 1) {
-            System.out.println("U");
-        }
-        if(randomNumbers[0] == 0) {
-            System.out.println("D");
-        }
-        List<String> finalBridge = connectBridge(bridge, randomNumbers, input);
-
-        return finalBridge;
-    }
-
-    public List<String> connectBridge(List<String> bridge, int[] randomNumbers, String input) {
-        for(int i = 0; i < randomNumbers.length; i++) {
-            if(randomNumbers[i] == 1 && input.equals("U")) {
-                bridge.add("O");
+            if(randomNumbers[i] == 1) {
+                bridge.add("U");
             }
-            if(randomNumbers[i] == 1 && input.equals("D")) {
-                bridge.add("X");
-            }
-            if(randomNumbers[i] == 0 && input.equals("D")) {
-                bridge.add("O");
-            }
-            if(randomNumbers[i] == 0 && input.equals("U")) {
-                bridge.add("X");
+            if(randomNumbers[i] == 0) {
+                bridge.add("D");
             }
         }
         return bridge;
     }
+
+
 }
