@@ -20,12 +20,26 @@ public class User {
         this.bridge = new Bridge(inputView.readBridgeSize(), new BridgeRandomNumberGenerator());
     }
 
+    public boolean move(){
+        String goal = inputView.readMoving();
+        this.location += 1;
+
+    }
+
     private boolean isCrossBridge() {
         if (location == bridge.size() - 1) {
             status = Status.SUCCESS_END;
             return true;
         }
         return false;
+    }
+
+    private boolean moveNext(String goal) {
+        this.route.add(goal);
+        if (isCrossBridge()) {
+            return false;
+        }
+        return true;
     }
 
 }
