@@ -6,12 +6,16 @@ import java.util.List;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class GameRunner {
+
+    enum StepType { NORMAL, RETRY }
+
     private final static OutputView outputView = new OutputView();
     private final static InputView inputView = new InputView();
 
     private static BridgeGame bridgeGame;
 
     private int numberOfTry;
+
 
     public GameRunner(List<String> bridge) {
         bridgeGame = new BridgeGame(bridge);
@@ -27,25 +31,25 @@ public class GameRunner {
     }
 
     private void runLoop() {
-        playOneStep();
+        tryOneStep();
         while (bridgeGame.isMoveWrong()) {
             guideRetry();
-            if(!isRetryCommand(getGameCommand())) return;
+            String gameCommand = getGameCommand();
+            if(!isRetryCommand(gameCommand)) return;
+            this.numberOfTry++;
             retryOneStep();
         }
         if(!bridgeGame.isEnd()) runLoop();
     }
 
-    private void playOneStep() {
-        outputView.guideMovingCommandInput();
-        bridgeGame.move();
-        bridgeGame.printMap();
-    }
+    private void tryOneStep() { tryOneStep(StepType.NORMAL); }
 
-    private void retryOneStep() {
-        this.numberOfTry++;
+    private void retryOneStep() { tryOneStep(StepType.RETRY); }
+
+    private void tryOneStep(StepType stepType) {
         outputView.guideMovingCommandInput();
-        bridgeGame.retry();
+        if(stepType == StepType.NORMAL) bridgeGame.move();
+        if(stepType == StepType.RETRY) bridgeGame.retry();
         bridgeGame.printMap();
     }
 
