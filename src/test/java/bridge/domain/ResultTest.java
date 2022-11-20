@@ -27,4 +27,12 @@ class ResultTest {
         result.convertWrongResultFirstRound(userInput);
         assertThat(result.getMap().toString()).isEqualTo(output);
     }
+
+    @DisplayName("첫 라운드 이후에 맞춘 경우에는 다음칸이 O가 된다.")
+    @ParameterizedTest
+    @CsvSource(value = {"U:[[ |   ], [ | O ]]", "D:[[ | O ], [ |   ]]"}, delimiter = ':')
+    void correctOtherRound(String userInput, String output) {
+        result.convertCorrectResultAfterFirstRound(userInput);
+        assertThat(result.getMap().toString()).isEqualTo(output);
+    }
 }
