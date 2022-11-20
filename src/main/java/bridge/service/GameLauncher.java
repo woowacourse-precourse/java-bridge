@@ -33,10 +33,26 @@ public class GameLauncher {
     }
 
     private boolean doGame(List<String> bridge, int size){
+        str = new ArrayList<>(Arrays.asList("[]","[]"));
+        for(int i=0;i<size;i++){
+            String ox = predict(bridge,i);
+            if(ox.equals("X")) return bridgeGame.retry(inputView.readGameCommand());
+        }
+        PF = true;
+        return false;
     }
-    
+
+    private String predict(List<String> bridge,int i){
+        String moving = inputView.readMoving();
+        String ox = bridgeGame.OX(bridge,moving,i);
+        str = bridgeGame.move(str,ox,moving);
+        outputView.printMap(str);
+        return ox;
+    }
+
 
     private void endGame(List<String> str, boolean PF, int gameCount){
+        outputView.printResult(str,PF,gameCount);
     }
 
 }
