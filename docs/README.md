@@ -22,8 +22,16 @@
   - 게임의 재시작/종료가 이루어지는 메소드
 
 
+- public static void endBridgeGame()
+  - 게임의 종료가 진행되는 메소드
+
+
 - public static void setError(Error)
   - 에러 메세지를 설정하는 메소드
+
+
+- public static void bridgeMovement()
+  - 다리의 다음 단계로 넘어가는 메소드
   
 ### 🚀 BridgeGame class
 
