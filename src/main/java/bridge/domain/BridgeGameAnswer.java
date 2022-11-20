@@ -23,10 +23,10 @@ public class BridgeGameAnswer {
         for (int i = 0; i < history.size(); i++) {
             if (isAnswer(history.get(i), i)) {
                 rvalue.add(getCollectMessage(bridgeAnswer.get(i),
-                        isLastIndex(history.size(), i + 1)));
+                        isLastIndex(history.size(), i)));
                 continue;
             }
-            rvalue.add(getWrongMessage(bridgeAnswer.get(i), isLastIndex(history.size(), i + 1)));
+            rvalue.add(getWrongMessage(bridgeAnswer.get(i), isLastIndex(history.size(), i)));
         }
         return rvalue;
     }
